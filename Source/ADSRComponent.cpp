@@ -1,0 +1,103 @@
+/*
+  ==============================================================================
+
+    ADSRComponent.cpp
+    Created: 26 Feb 2019 9:04:59pm
+    Author:  frot
+
+  ==============================================================================
+*/
+
+#include "ADSRComponent.h"
+#include "../JuceLibraryCode/JuceHeader.h"
+
+//==============================================================================
+ADSRComponent::ADSRComponent()
+    : m_loop("loop_button", juce::DrawableButton::ButtonStyle::ImageRaw) {
+
+  juce::Image loop_1 = ImageCache::getFromFile(
+      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonloop_1.png"));
+  juce::Image loop_2 = ImageCache::getFromFile(
+      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonloop_2.png"));
+  juce::Image loop_3 = ImageCache::getFromFile(
+      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonloop_3.png"));
+  juce::Image loop_4 = ImageCache::getFromFile(
+      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonloop_4.png"));
+
+  juce::DrawableImage loop_draw1;
+  juce::DrawableImage loop_draw2;
+  juce::DrawableImage loop_draw3;
+  juce::DrawableImage loop_draw4;
+
+  loop_draw1.setImage(loop_1);
+  loop_draw2.setImage(loop_2);
+  loop_draw3.setImage(loop_3);
+  loop_draw4.setImage(loop_4);
+
+  m_loop.setImages(&loop_draw2, &loop_draw2, &loop_draw1, &loop_draw1,
+                   &loop_draw4, &loop_draw4, &loop_draw3, &loop_draw3);
+  m_loop.setClickingTogglesState(true);
+  m_loop.setBounds(LOOP_POS_X, LOOP_POS_Y, loop_1.getWidth(),
+                   loop_1.getHeight());
+  addAndMakeVisible(m_loop);
+  m_loop.setAlwaysOnTop(true);
+  m_loop.setTriggeredOnMouseDown(true);
+  m_loop.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId,
+                   juce::Colour());
+  m_loop.setTooltip("Loops the envelopes attack\n and decay sections");
+
+  m_attack.setSliderStyle(juce::Slider::SliderStyle::LinearVertical);
+  addAndMakeVisible(m_attack);
+  m_decay.setSliderStyle(juce::Slider::SliderStyle::LinearVertical);
+  addAndMakeVisible(m_decay);
+  m_sustain.setSliderStyle(juce::Slider::SliderStyle::LinearVertical);
+  addAndMakeVisible(m_sustain);
+  m_release.setSliderStyle(juce::Slider::SliderStyle::LinearVertical);
+  addAndMakeVisible(m_release);
+
+  m_attack.setRange(A_LOW_LIMIT, A_HIGH_LIMIT);
+  m_attack.setSkewFactorFromMidPoint(A_MID_VALUE);
+  m_attack.setValue(A_DEFAULT, sendNotification);
+  m_attack.setDoubleClickReturnValue(true, A_DEFAULT, ModifierKeys::ctrlModifier);
+  m_attack.setTooltip("Attack\nDefines how long the envelope\ntakes to reach the top peak");
+
+  m_decay.setRange(D_LOW_LIMIT, D_HIGH_LIMIT);
+  m_decay.setSkewFactorFromMidPoint(D_MID_VALUE);
+  m_decay.setValue(D_DEFAULT, sendNotification);
+  m_decay.setDoubleClickReturnValue(true, D_DEFAULT, ModifierKeys::ctrlModifier);
+  m_decay.setTextValueSuffix(" s");
+  m_decay.setTooltip("Decay\nDefines how long the\n envelope takes to fall from the top\n peak to the sustain level");
+
+  m_sustain.setRange(S_LOW_LIMIT, S_HIGH_LIMIT);
+  m_sustain.setSkewFactorFromMidPoint(S_MID_VALUE);
+  m_sustain.setValue(S_DEFAULT, sendNotification);
+  m_sustain.setDoubleClickReturnValue(true, S_DEFAULT, ModifierKeys::ctrlModifier);
+  m_sustain.setNumDecimalPlacesToDisplay(3);
+  m_sustain.setTooltip("Sustain\nDefines the height of the evelope\nafter the decay section is finished");
+
+  m_release.setRange(R_LOW_LIMIT, R_HIGH_LIMIT);
+  m_release.setSkewFactorFromMidPoint(R_MID_VALUE);
+  m_release.setValue(R_DEFAULT, sendNotification);
+  m_release.setDoubleClickReturnValue(true, R_DEFAULT, ModifierKeys::ctrlModifier);
+  m_release.setTextValueSuffix(" s");
+  m_release.setTooltip("Release\nDefines how long the envelope takes\n to fall back to zero after\nthe key is released");
+}
+
+ADSRComponent::~ADSRComponent() {}
+
+void ADSRComponent::paint(Graphics &g) {
+  // g.setColour (Colours::grey);
+  // g.drawRect (getLocalBounds(), 1);   // draw an outline around the component
+}
+
+void ADSRComponent::resized() {
+  // This method is where you should set the bounds of any child
+  // components that your component contains..
+  m_attack.setBounds(SLIDER_POS_X, SLIDER_POS_Y, SLIDER_SIZE_X, SLIDER_SIZE_Y);
+  m_decay.setBounds(SLIDER_POS_X + SLIDER_OFFSET * 1 - 1, SLIDER_POS_Y,
+                    SLIDER_SIZE_X, SLIDER_SIZE_Y);
+  m_sustain.setBounds(SLIDER_POS_X + SLIDER_OFFSET * 2, SLIDER_POS_Y,
+                      SLIDER_SIZE_X, SLIDER_SIZE_Y);
+  m_release.setBounds(SLIDER_POS_X + SLIDER_OFFSET * 3, SLIDER_POS_Y,
+                      SLIDER_SIZE_X, SLIDER_SIZE_Y);
+}
