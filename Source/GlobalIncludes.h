@@ -11,13 +11,13 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 
 
-#define M_PI 3.14159265359
 
 #ifdef ODIN_LINUX
   #define GRAPHICS_PATH std::string("/home/frot/Odin/Gimp/")
 #endif
 #ifdef ODIN_WIN
   #define GRAPHICS_PATH std::string("E:/odin-gui/Gimp/")
+  #define M_PI 3.14159265359
 #endif
 
 #define MENU_BACKGROUND_COLOR Colour(35, 35, 35)

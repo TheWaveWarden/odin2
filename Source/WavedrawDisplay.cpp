@@ -22,6 +22,9 @@ WavedrawDisplay::WavedrawDisplay() {
   for (int i = 0; i < WAVEDRAW_STEPS_X; ++i) {
     m_draw_values[i] = sin((float)i * 2 * M_PI / WAVEDRAW_STEPS_X) * 0.9;
   }
+
+  setMouseCursor(MouseCursor::StandardCursorType::CrosshairCursor);
+  
 }
 
 WavedrawDisplay::~WavedrawDisplay() {}

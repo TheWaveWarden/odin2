@@ -18,7 +18,7 @@ SpecdrawDisplay::SpecdrawDisplay() {
 
   setSize(m_glaspanel.getWidth(), m_glaspanel.getHeight());
 
-  setMouseCursor(MouseCursor::StandardCursorType::CrosshairCursor); //?
+  setMouseCursor(MouseCursor::StandardCursorType::CrosshairCursor);
 }
 
 SpecdrawDisplay::~SpecdrawDisplay() {}

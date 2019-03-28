@@ -19,6 +19,9 @@ ChipdrawWindow::ChipdrawWindow()
 
     setSize(m_glaspanel.getWidth(), m_glaspanel.getHeight());
 
+  setMouseCursor(MouseCursor::StandardCursorType::CrosshairCursor);
+    
+
 }
 
 ChipdrawWindow::~ChipdrawWindow()
