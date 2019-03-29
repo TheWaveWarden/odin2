@@ -21,6 +21,8 @@ OdinAudioProcessor::OdinAudioProcessor()
                       #endif
                        .withOutput ("Output", AudioChannelSet::stereo(), true)
                      #endif
+                       ), parameters (*this, nullptr, Identifier ("Odin"),
+                       #include "AudioValueTree.h"
                        )
 #endif
 {

@@ -2493,6 +2493,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\AudioValueTree.h">
+      <Filter>Odin\Source</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\ADSRComponent.h">
       <Filter>Odin\Source</Filter>
     </ClInclude>

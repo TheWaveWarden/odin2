@@ -4,6 +4,8 @@
               pluginFormats="buildStandalone,buildVST,buildVST3">
   <MAINGROUP id="Tn76b3" name="Odin">
     <GROUP id="{7AF384ED-9FD6-6492-4B8C-5777BB9A2698}" name="Source">
+      <FILE id="X68G2u" name="AudioValueTree.h" compile="0" resource="0"
+            file="Source/AudioValueTree.h"/>
       <FILE id="lwsphb" name="ADSRComponent.cpp" compile="1" resource="0"
             file="Source/ADSRComponent.cpp"/>
       <FILE id="Movfh7" name="ADSRComponent.h" compile="0" resource="0" file="Source/ADSRComponent.h"/>

@@ -1991,6 +1991,7 @@
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_opengl.cpp"/>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\AudioValueTree.h"/>
     <ClInclude Include="..\..\Source\ADSRComponent.h"/>
     <ClInclude Include="..\..\Source\AmpDistortionFlowComponent.h"/>
     <ClInclude Include="..\..\Source\ChipdrawWindow.h"/>

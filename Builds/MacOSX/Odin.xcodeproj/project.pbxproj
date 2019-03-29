@@ -879,6 +879,13 @@
 			path = "../../JuceLibraryCode/include_juce_audio_plugin_client_VST_utils.mm";
 			sourceTree = "SOURCE_ROOT";
 		};
+		CDAE96418DAFF7C292BCAF5E = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = AudioValueTree.h;
+			path = ../../Source/AudioValueTree.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		D0CA2CA07E19947F4F8ADF92 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -1050,6 +1057,7 @@
 		DA68EAE39AAE6BE7BAE84567 = {
 			isa = PBXGroup;
 			children = (
+				CDAE96418DAFF7C292BCAF5E,
 				466715786EAB52C79B82B912,
 				81DAE3BD232040C61F617095,
 				6C6E6392D7D1684006B6B3CA,

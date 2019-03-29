@@ -72,14 +72,14 @@ FilterComponent::FilterComponent() : m_vowel_left(false), m_vowel_right(true) {
   m_freq.setValue(FREQ_DEFAULT);
   m_freq.setDoubleClickReturnValue(true, FREQ_DEFAULT, ModifierKeys::ctrlModifier);
   m_freq.setNumDecimalPlacesToDisplay(1);
-  m_freq.setKnobTooltip("The filter cutoff frequency\nfor the filter");
+  m_freq.setKnobTooltip("The filter cutoff frequency");
   addChildComponent(m_freq);
 
   m_res.setStrip(metal_knob_mid, N_KNOB_FRAMES);
   m_res.setSliderStyle(Slider::RotaryVerticalDrag);
   m_res.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
   m_res.setSize(metal_knob_mid.getWidth(), metal_knob_mid.getHeight()/N_KNOB_FRAMES);
-  m_res.setKnobTooltip("The filter resonance.\nFilters will not\n self oscillate");
+  m_res.setKnobTooltip("Creates a resonant peak at the cutoff frequency.\nFilters will not\n self oscillate");
   addChildComponent(m_res);
 
   m_saturation.setStrip(black_knob_small, N_KNOB_FRAMES);
