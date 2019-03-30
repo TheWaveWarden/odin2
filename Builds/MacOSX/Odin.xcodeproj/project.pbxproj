@@ -69,6 +69,114 @@
 			isa = PBXBuildFile;
 			fileRef = 9D6FAF4C6B9E08A29875BF33;
 		};
+		B340DC5252A6B3FBD9FE0AE8 = {
+			isa = PBXBuildFile;
+			fileRef = 1AB61C06B1B3ABA74C604267;
+		};
+		646E8F1912821DF67D9FF8B9 = {
+			isa = PBXBuildFile;
+			fileRef = 1BE2D7FAE9B60BC90C93B8E6;
+		};
+		9EF2D962EA3C6489D672A4FA = {
+			isa = PBXBuildFile;
+			fileRef = B996ED6DE0DF4FC12AFBF953;
+		};
+		213C54C8869B0BECF7D71CC1 = {
+			isa = PBXBuildFile;
+			fileRef = 041B1CB6D7FF951424E20AD6;
+		};
+		367ED43A68B32F688AAA4769 = {
+			isa = PBXBuildFile;
+			fileRef = 85788B2C7868DD879F67D910;
+		};
+		7F165AA3BB53BB54375B4F63 = {
+			isa = PBXBuildFile;
+			fileRef = D8366554F12325264744AADB;
+		};
+		F9690C3998CE03484F9DA4E7 = {
+			isa = PBXBuildFile;
+			fileRef = 69AA9A49FB2EA0B6DED32F10;
+		};
+		F342A5A44035570BC1EED890 = {
+			isa = PBXBuildFile;
+			fileRef = 4F9E211C7EA3560377DDB653;
+		};
+		0AA4957054BA898F77C9356B = {
+			isa = PBXBuildFile;
+			fileRef = 4A3E4C150F1B12C90AE4FDEB;
+		};
+		BF46C04633830AB475F89C78 = {
+			isa = PBXBuildFile;
+			fileRef = FD95AC2E960AFC4F5CAF10CF;
+		};
+		EFF6A1EAE2BFB6BEFB2DCD75 = {
+			isa = PBXBuildFile;
+			fileRef = CE6D084D7210243264312D30;
+		};
+		A9C1619292A765A0C52813C0 = {
+			isa = PBXBuildFile;
+			fileRef = 7AC8A15FE24FF8C6E667B130;
+		};
+		B5C51CFEFD875253CF827933 = {
+			isa = PBXBuildFile;
+			fileRef = 080EFF2BCC1728D49F852FEE;
+		};
+		F5608F0779144B90F1477EA4 = {
+			isa = PBXBuildFile;
+			fileRef = 4304C563BE954E90D410E7AA;
+		};
+		3C04DFADC3C9E38A1EAC2E73 = {
+			isa = PBXBuildFile;
+			fileRef = 89D2F08C238EDC30EED96F4B;
+		};
+		2F25E8B92749BD30C5389DB6 = {
+			isa = PBXBuildFile;
+			fileRef = 4DD81A807D51DE5E8572CCD7;
+		};
+		CB87A549848FD209FA12E306 = {
+			isa = PBXBuildFile;
+			fileRef = C143C7A65B00F99481FDACF8;
+		};
+		96CC774B1C0FAF0B331950A3 = {
+			isa = PBXBuildFile;
+			fileRef = 29A581061DF714FD1861598B;
+		};
+		A456BAC31248A16A53AABB03 = {
+			isa = PBXBuildFile;
+			fileRef = A0516C472761E34C89D254BB;
+		};
+		D0CC987044F5B8D8440F5AAB = {
+			isa = PBXBuildFile;
+			fileRef = BE83BB7C5AC1AFF596A04256;
+		};
+		9AD3FFAC1165D82BD47A2D93 = {
+			isa = PBXBuildFile;
+			fileRef = 2C22B43479DFB4EB0061C6D2;
+		};
+		0D3AB383E3DEFB9F2D1821E9 = {
+			isa = PBXBuildFile;
+			fileRef = BDC0A8B61DF3BD6A81C05479;
+		};
+		8DAC4C1BE06E745A74F7E904 = {
+			isa = PBXBuildFile;
+			fileRef = FB03CE71165395A54CCB1286;
+		};
+		ED1B9340D4598D77BC31B34C = {
+			isa = PBXBuildFile;
+			fileRef = 75F54CA72A0E9976BB540712;
+		};
+		0F206DC3A0BAD92C7048ADF0 = {
+			isa = PBXBuildFile;
+			fileRef = 54F43106397388A32057507D;
+		};
+		09544A81E4C76C92EB27CCB3 = {
+			isa = PBXBuildFile;
+			fileRef = 9C72655A0DA960DE9F2D590D;
+		};
+		B1B2989C3681F7BB4FE4E772 = {
+			isa = PBXBuildFile;
+			fileRef = 73AB84D42C759F6D8201B00D;
+		};
 		882F55734D0337A5B1808BD5 = {
 			isa = PBXBuildFile;
 			fileRef = 466715786EAB52C79B82B912;
@@ -249,11 +357,25 @@
 			isa = PBXBuildFile;
 			fileRef = B51EA9AFC99A736ABEB3D027;
 		};
+		02ADD3434D285C5C3249DD39 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = WavetableCoefficients.h;
+			path = ../../Source/audio/Oscillators/WavetableCoefficients.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		02CC24ACF9A1A1958614DAE4 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
 			name = OscComponent.h;
 			path = ../../Source/OscComponent.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		041B1CB6D7FF951424E20AD6 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = ChiptuneOscillator.cpp;
+			path = ../../Source/audio/Oscillators/ChiptuneOscillator.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
 		057592395E073A5CE75A70AE = {
@@ -262,6 +384,13 @@
 			name = AudioToolbox.framework;
 			path = System/Library/Frameworks/AudioToolbox.framework;
 			sourceTree = SDKROOT;
+		};
+		080EFF2BCC1728D49F852FEE = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = WavetableOsc2D.cpp;
+			path = ../../Source/audio/Oscillators/WavetableOsc2D.cpp;
+			sourceTree = "SOURCE_ROOT";
 		};
 		091B559B9CB20B0696C5D762 = {
 			isa = PBXFileReference;
@@ -284,6 +413,13 @@
 			path = ../../Source/LeftRightButton.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
+		0B9523105933832874900C40 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = Delay.h;
+			path = ../../Source/audio/FX/Delay.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		0BA6057BC87476D241D119DF = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -296,6 +432,13 @@
 			lastKnownFileType = sourcecode.cpp.objcpp;
 			name = "include_juce_cryptography.mm";
 			path = "../../JuceLibraryCode/include_juce_cryptography.mm";
+			sourceTree = "SOURCE_ROOT";
+		};
+		0EE930E3CAF824F5942E9AD0 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = PitchShiftTable.h;
+			path = ../../Source/audio/Oscillators/PitchShiftTable.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		125A2F879ECDCD15584809D0 = {
@@ -319,12 +462,68 @@
 			path = "../../JuceLibraryCode/include_juce_audio_processors.mm";
 			sourceTree = "SOURCE_ROOT";
 		};
+		15E2463D9D5ECE79C98AD6BD = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = AnalogOscillator.h;
+			path = ../../Source/audio/Oscillators/AnalogOscillator.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		1716D4E7088965890BB7C8F0 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = OdinConstants.h;
+			path = ../../Source/audio/OdinConstants.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		1721D28E8729ABE2DA49719D = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = QuarticShaper.h;
+			path = ../../Source/audio/FX/QuarticShaper.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		196A6414196D76F8E1307167 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = Korg35Filter.h;
+			path = ../../Source/audio/Filters/Korg35Filter.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		199052596FDA2EEABAFC3B5A = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = WavetableOsc1D.h;
+			path = ../../Source/audio/Oscillators/WavetableOsc1D.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		1A5AA6392713A98B2D8FE1E1 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = ADSR.h;
+			path = ../../Source/audio/ADSR.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		1AB61C06B1B3ABA74C604267 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = CheapFunctions.cpp;
+			path = ../../Source/audio/CheapFunctions.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
 		1BCD1BAC1B75F86BD7A35AED = {
 			isa = PBXFileReference;
 			lastKnownFileType = wrapper.framework;
 			name = OpenGL.framework;
 			path = System/Library/Frameworks/OpenGL.framework;
 			sourceTree = SDKROOT;
+		};
+		1BE2D7FAE9B60BC90C93B8E6 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = AnalogOscillator.cpp;
+			path = ../../Source/audio/Oscillators/AnalogOscillator.cpp;
+			sourceTree = "SOURCE_ROOT";
 		};
 		20B407BAA936CF4B9D1D03C3 = {
 			isa = PBXFileReference;
@@ -361,6 +560,13 @@
 			path = ../../Source/DelayComponent.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		27DE08906A1EB12BD9314550 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = SEMFilter24.h;
+			path = ../../Source/audio/Filters/SEMFilter24.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		28DEC571CCF1EE1B026BA0A0 = {
 			isa = PBXFileReference;
 			lastKnownFileType = file;
@@ -375,6 +581,13 @@
 			path = ../../Source/GlasDropdown.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		29A581061DF714FD1861598B = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = QuarticShaper.cpp;
+			path = ../../Source/audio/FX/QuarticShaper.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
 		2A2DBDBA71E3934101CF338A = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -382,11 +595,25 @@
 			path = ../../Source/FormantSelector.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		2A91F034F4066B4A217D8C20 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = NoiseOscillator.h;
+			path = ../../Source/audio/Oscillators/NoiseOscillator.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		2BD6B13A1CFCA0CC8AADD739 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.objcpp;
 			name = "include_juce_gui_extra.mm";
 			path = "../../JuceLibraryCode/include_juce_gui_extra.mm";
+			sourceTree = "SOURCE_ROOT";
+		};
+		2C22B43479DFB4EB0061C6D2 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = FormantFilter.cpp;
+			path = ../../Source/audio/Filters/FormantFilter.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
 		2D2E06466C71D3E736F4F255 = {
@@ -438,6 +665,13 @@
 			path = ../../Source/FXComponent.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
+		37D27A4FDB47E48597C33E8C = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = WavetableContainer.h;
+			path = ../../Source/audio/Oscillators/WavetableContainer.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		3A380D09989C5607852D4CFD = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
@@ -450,6 +684,20 @@
 			lastKnownFileType = sourcecode.cpp.cpp;
 			name = XYPadComponent.cpp;
 			path = ../../Source/XYPadComponent.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
+		3B0DE1CF1ED31E03F5751E56 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = Oscillator.h;
+			path = ../../Source/audio/Oscillators/Oscillator.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		3D7B7DFDFB6B33AED39988FF = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = Bitcrusher.h;
+			path = ../../Source/audio/FX/Bitcrusher.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		3DA9EE2E2CF0675BDF66D688 = {
@@ -473,11 +721,39 @@
 			path = "../../JuceLibraryCode/include_juce_graphics.mm";
 			sourceTree = "SOURCE_ROOT";
 		};
+		41EC867293DC695AE98C3B82 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = DiodeFilter.h;
+			path = ../../Source/audio/Filters/DiodeFilter.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		4304C563BE954E90D410E7AA = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = Bitcrusher.cpp;
+			path = ../../Source/audio/FX/Bitcrusher.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
 		4342A59B773465824B2FF255 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
 			name = LFOComponent.h;
 			path = ../../Source/LFOComponent.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		437745C28ECF61A0BB41D1E7 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = FormantFilter.h;
+			path = ../../Source/audio/Filters/FormantFilter.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		446E489F5CD13463572A856F = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = "adsr_pow.h";
+			path = "../../Source/audio/LookupTables/adsr_pow.h";
 			sourceTree = "SOURCE_ROOT";
 		};
 		44F5C3038D816EBA1C4EC507 = {
@@ -501,6 +777,13 @@
 			path = ../../Source/LFOSelectorComponent.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		4A3E4C150F1B12C90AE4FDEB = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = Oscillator.cpp;
+			path = ../../Source/audio/Oscillators/Oscillator.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
 		4A430A5456A6FF1074C882CF = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
@@ -513,6 +796,13 @@
 			lastKnownFileType = sourcecode.c.h;
 			name = GlasDisplay.h;
 			path = ../../Source/GlasDisplay.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		4DD81A807D51DE5E8572CCD7 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = Delay.cpp;
+			path = ../../Source/audio/FX/Delay.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
 		4E31961ED84007245E2E1C6F = {
@@ -529,6 +819,20 @@
 			path = ../../Source/GlasDropdown.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
+		4F9E211C7EA3560377DDB653 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = NoiseOscillator.cpp;
+			path = ../../Source/audio/Oscillators/NoiseOscillator.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
+		54F43106397388A32057507D = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = SEMFilter24.cpp;
+			path = ../../Source/audio/Filters/SEMFilter24.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
 		55DF222C4F4502029136F0F8 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
@@ -541,6 +845,13 @@
 			lastKnownFileType = sourcecode.c.h;
 			name = AmpDistortionFlowComponent.h;
 			path = ../../Source/AmpDistortionFlowComponent.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		59B2A728DFEBA6764C6DC97F = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = FatSaw.h;
+			path = ../../Source/audio/Oscillators/Wavetables/FatSaw.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		5D45A684C17C294E812B405B = {
@@ -556,6 +867,20 @@
 			name = QuartzCore.framework;
 			path = System/Library/Frameworks/QuartzCore.framework;
 			sourceTree = SDKROOT;
+		};
+		602D83995BA199A11F02E40A = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = FMOscillator.h;
+			path = ../../Source/audio/Oscillators/FMOscillator.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		60B24714B0DFEC3989828C43 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = CubicShaper.h;
+			path = ../../Source/audio/FX/CubicShaper.h;
+			sourceTree = "SOURCE_ROOT";
 		};
 		637115A7BF3E5E1E6ACAA807 = {
 			isa = PBXFileReference;
@@ -583,6 +908,27 @@
 			lastKnownFileType = sourcecode.cpp.objcpp;
 			name = "include_juce_data_structures.mm";
 			path = "../../JuceLibraryCode/include_juce_data_structures.mm";
+			sourceTree = "SOURCE_ROOT";
+		};
+		69AA9A49FB2EA0B6DED32F10 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = MultiOscillator.cpp;
+			path = ../../Source/audio/Oscillators/MultiOscillator.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
+		69F74D260B20B46F34296435 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = WavetableOsc2D.h;
+			path = ../../Source/audio/Oscillators/WavetableOsc2D.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		69F93E108B363AB8DECCC8E1 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = OversamplingDistortion.h;
+			path = ../../Source/audio/FX/OversamplingDistortion.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		6AD4EA43AE9941D543AEE196 = {
@@ -620,11 +966,46 @@
 			path = Odin.entitlements;
 			sourceTree = "SOURCE_ROOT";
 		};
+		73AB84D42C759F6D8201B00D = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = ADSR.cpp;
+			path = ../../Source/audio/ADSR.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
+		75F54CA72A0E9976BB540712 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = SEMFilter12.cpp;
+			path = ../../Source/audio/Filters/SEMFilter12.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
+		76615046CD3A95374CDB1692 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = ChiptuneArpeggiator.h;
+			path = ../../Source/audio/Oscillators/ChiptuneArpeggiator.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		76E854E9538151EE208D86E7 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
 			name = XYPadComponent.h;
 			path = ../../Source/XYPadComponent.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		7AC8A15FE24FF8C6E667B130 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = WavetableOsc1D.cpp;
+			path = ../../Source/audio/Oscillators/WavetableOsc1D.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
+		7B45690CE0BF55AD3DC0FD87 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = MultiOscillator.h;
+			path = ../../Source/audio/Oscillators/MultiOscillator.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		7DF5E0E71A049827B7483F70 = {
@@ -648,6 +1029,20 @@
 			path = ../../Source/IntegerKnob.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		84E0994B167D859CEFBACB56 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = ChiptuneSquare25.h;
+			path = ../../Source/audio/Oscillators/Wavetables/ChiptuneSquare25.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		85788B2C7868DD879F67D910 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = DriftGenerator.cpp;
+			path = ../../Source/audio/Oscillators/DriftGenerator.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
 		87F0CF602B0A818E759F2B7A = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -655,11 +1050,25 @@
 			path = ../../Source/PluginEditor.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		87F61BDEAE5903A8A3C7B36E = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = VAOnePoleFilter.h;
+			path = ../../Source/audio/Filters/VAOnePoleFilter.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		89661EFAE1BD4C6AADADBE1D = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
 			name = FilterComponent.h;
 			path = ../../Source/FilterComponent.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		89D2F08C238EDC30EED96F4B = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = CubicShaper.cpp;
+			path = ../../Source/audio/FX/CubicShaper.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
 		8B3A08B0C6A72053C9CB762F = {
@@ -676,6 +1085,13 @@
 			path = "../../JuceLibraryCode/include_juce_audio_basics.mm";
 			sourceTree = "SOURCE_ROOT";
 		};
+		8C94A0CB2A3A8229528F869C = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = ChiptuneCustom3.h;
+			path = ../../Source/audio/Oscillators/Wavetables/ChiptuneCustom3.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		919D1DBFFA8B78C9C4C65EEF = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -689,6 +1105,13 @@
 			name = "juce_audio_plugin_client";
 			path = "~/JUCE/modules/juce_audio_plugin_client";
 			sourceTree = "<absolute>";
+		};
+		97B7532B7B2382ECE442BB7B = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = ChiptuneCustom5.h;
+			path = ../../Source/audio/Oscillators/Wavetables/ChiptuneCustom5.h;
+			sourceTree = "SOURCE_ROOT";
 		};
 		99A6E771F591BCB619F17999 = {
 			isa = PBXFileReference;
@@ -718,6 +1141,13 @@
 			path = "../../JuceLibraryCode/include_juce_audio_plugin_client_Standalone.cpp";
 			sourceTree = "SOURCE_ROOT";
 		};
+		9C72655A0DA960DE9F2D590D = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = VAOnePoleFilter.cpp;
+			path = ../../Source/audio/Filters/VAOnePoleFilter.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
 		9CE64407C9CEA088B72E63F9 = {
 			isa = PBXFileReference;
 			lastKnownFileType = file;
@@ -737,6 +1167,13 @@
 			lastKnownFileType = sourcecode.cpp.cpp;
 			name = IntegerKnob.cpp;
 			path = ../../Source/IntegerKnob.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
+		A0516C472761E34C89D254BB = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = DiodeFilter.cpp;
+			path = ../../Source/audio/Filters/DiodeFilter.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
 		A0D0D903A780D2203960A2EE = {
@@ -767,6 +1204,13 @@
 			path = ../../Source/SaveLoadComponent.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		AB3EA1D434A7F982E53D2B38 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = Sine.h;
+			path = ../../Source/audio/Oscillators/Wavetables/Sine.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		AE3360BFE24BE74C19BE743F = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -795,6 +1239,13 @@
 			path = "../../JuceLibraryCode/include_juce_opengl.mm";
 			sourceTree = "SOURCE_ROOT";
 		};
+		B58E3F1DB4DBEE8DD039645A = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = "ChiptuneSquare12_5.h";
+			path = "../../Source/audio/Oscillators/Wavetables/ChiptuneSquare12_5.h";
+			sourceTree = "SOURCE_ROOT";
+		};
 		B6352AFCCB1D304B2592D38D = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
@@ -802,11 +1253,25 @@
 			path = ../../Source/OscComponent.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
+		B996ED6DE0DF4FC12AFBF953 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = ChiptuneArpeggiator.cpp;
+			path = ../../Source/audio/Oscillators/ChiptuneArpeggiator.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
 		B9B5DADC52F9269EEF47F739 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
 			name = DelayComponent.cpp;
 			path = ../../Source/DelayComponent.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
+		BDC0A8B61DF3BD6A81C05479 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = Korg35Filter.cpp;
+			path = ../../Source/audio/Filters/Korg35Filter.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
 		BDFFE86FF72014D0F6BB0480 = {
@@ -823,6 +1288,13 @@
 			path = ../../Source/DrawableSlider.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
+		BE83BB7C5AC1AFF596A04256 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = Filter.cpp;
+			path = ../../Source/audio/Filters/Filter.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
 		BF541D283C5BD9D6BF71ED1B = {
 			isa = PBXFileReference;
 			lastKnownFileType = wrapper.framework;
@@ -837,11 +1309,39 @@
 			path = ../../Source/LeftRightButton.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		C143C7A65B00F99481FDACF8 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = OversamplingDistortion.cpp;
+			path = ../../Source/audio/FX/OversamplingDistortion.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
 		C2421602FC0264328D627612 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
 			name = GlasDisplay.cpp;
 			path = ../../Source/GlasDisplay.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
+		C2C2BDC049CE493A4381E9C9 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = ChiptuneCustom1.h;
+			path = ../../Source/audio/Oscillators/Wavetables/ChiptuneCustom1.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		C6FE6D0E35CC9A44DB56D4C8 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = ChiptuneTriangle.h;
+			path = ../../Source/audio/Oscillators/Wavetables/ChiptuneTriangle.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		C7C938F3BBCA2D007CBE9890 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = Filter.h;
+			path = ../../Source/audio/Filters/Filter.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		C8B331D95726F7FAAEFFC87F = {
@@ -886,6 +1386,20 @@
 			path = ../../Source/AudioValueTree.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		CE6D084D7210243264312D30 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = WavetableContainer.cpp;
+			path = ../../Source/audio/Oscillators/WavetableContainer.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
+		CF703C48005602866108A9CF = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = CheapFunctions.h;
+			path = ../../Source/audio/CheapFunctions.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		D0CA2CA07E19947F4F8ADF92 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -900,6 +1414,41 @@
 			path = System/Library/Frameworks/CoreMIDI.framework;
 			sourceTree = SDKROOT;
 		};
+		D2723C9073060D798CCB7F79 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = Saw.h;
+			path = ../../Source/audio/Oscillators/Wavetables/Saw.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		D79D1E973BABFA7811DB8B21 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = LadderFilter.h;
+			path = ../../Source/audio/Filters/LadderFilter.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		D8366554F12325264744AADB = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = FMOscillator.cpp;
+			path = ../../Source/audio/Oscillators/FMOscillator.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
+		D896B52DA7D07E80A0E8B163 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = ChiptuneCustom4.h;
+			path = ../../Source/audio/Oscillators/Wavetables/ChiptuneCustom4.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		DB69AAB20D6FE843E79FC205 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = VectorOscillator.h;
+			path = ../../Source/audio/Oscillators/VectorOscillator.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		DBDAAA43E0BA16842823738C = {
 			isa = PBXFileReference;
 			lastKnownFileType = file;
@@ -912,6 +1461,13 @@
 			lastKnownFileType = text.plist.xml;
 			name = "Info-VST3.plist";
 			path = "Info-VST3.plist";
+			sourceTree = "SOURCE_ROOT";
+		};
+		DCC3C7DD17CB5EC8C272BA89 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = Triangle.h;
+			path = ../../Source/audio/Oscillators/Wavetables/Triangle.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		DF235E90C8EE83A30B3C754D = {
@@ -949,18 +1505,32 @@
 			path = ../../Source/FilterComponent.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
+		E5F388931178BB21EB1D96D7 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = ChiptuneOscillator.h;
+			path = ../../Source/audio/Oscillators/ChiptuneOscillator.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		E822E5A61A906D97D3BF143A = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = ChiptuneSquare50.h;
+			path = ../../Source/audio/Oscillators/Wavetables/ChiptuneSquare50.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		E9A6DA24DCF6715E499F2A4C = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = DriftGenerator.h;
+			path = ../../Source/audio/Oscillators/DriftGenerator.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		ECACBE8160CFA39B470A6957 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
 			name = JuceHeader.h;
 			path = ../../JuceLibraryCode/JuceHeader.h;
-			sourceTree = "SOURCE_ROOT";
-		};
-		ECB4A9422DDA7DDD48789B52 = {
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.c.h;
-			name = PitchWheel.h;
-			path = ../../Source/PitchWheel.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		EDA78FF6C7C34E3BE3CF945F = {
@@ -977,13 +1547,6 @@
 			path = ../../Source/PluginProcessor.h;
 			sourceTree = "SOURCE_ROOT";
 		};
-		F196B8C5A02E8B1D95473EAE = {
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.cpp.cpp;
-			name = PluginProcessor.cpp;
-			path = ../../Source/PluginProcessor.cpp;
-			sourceTree = "SOURCE_ROOT";
-		};
 		FC12642B755F0EA465F450F1 = {
 			isa = PBXFileReference;
 			explicitFileType = wrapper.cfbundle;
@@ -997,13 +1560,6 @@
 			includeInIndex = 0;
 			path = Odin.vst3;
 			sourceTree = "BUILT_PRODUCTS_DIR";
-		};
-		F03E01A3E845B2D892786A49 = {
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.c.h;
-			name = Knob.h;
-			path = ../../Source/Knob.h;
-			sourceTree = "SOURCE_ROOT";
 		};
 		F2F8D33D66E229F8F81A7E97 = {
 			isa = PBXFileReference;
@@ -1019,6 +1575,41 @@
 			path = libOdin.a;
 			sourceTree = "BUILT_PRODUCTS_DIR";
 		};
+		ECB4A9422DDA7DDD48789B52 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = PitchWheel.h;
+			path = ../../Source/PitchWheel.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		F03E01A3E845B2D892786A49 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = Knob.h;
+			path = ../../Source/Knob.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		F196B8C5A02E8B1D95473EAE = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = PluginProcessor.cpp;
+			path = ../../Source/PluginProcessor.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
+		F337A655FAE757A10050CBAD = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = SEMFilter12.h;
+			path = ../../Source/audio/Filters/SEMFilter12.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		F539FBE55A47AC61EF735C1D = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = ChiptuneCustom2.h;
+			path = ../../Source/audio/Oscillators/Wavetables/ChiptuneCustom2.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		F7EE059DC74FA1D7339DC4E7 = {
 			isa = PBXFileReference;
 			lastKnownFileType = file;
@@ -1033,11 +1624,25 @@
 			path = ../../JuceLibraryCode/AppConfig.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		FA4BC831893D91AFF01BA822 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = ChiptuneCustom6.h;
+			path = ../../Source/audio/Oscillators/Wavetables/ChiptuneCustom6.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		FAD89A285E9951E99978A7B1 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
 			name = LFODisplayComponent.h;
 			path = ../../Source/LFODisplayComponent.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		FB03CE71165395A54CCB1286 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = LadderFilter.cpp;
+			path = ../../Source/audio/Filters/LadderFilter.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
 		FBCF9E75D27BD84459C32376 = {
@@ -1054,10 +1659,135 @@
 			path = ../../Source/WavedrawDisplay.h;
 			sourceTree = "SOURCE_ROOT";
 		};
-		DA68EAE39AAE6BE7BAE84567 = {
+		FD95AC2E960AFC4F5CAF10CF = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = VectorOscillator.cpp;
+			path = ../../Source/audio/Oscillators/VectorOscillator.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
+		BDDBEFAF90068D80EA214A8F = {
 			isa = PBXGroup;
 			children = (
-				CDAE96418DAFF7C292BCAF5E,
+				446E489F5CD13463572A856F,
+			);
+			name = Lookuptables;
+			sourceTree = "<group>";
+		};
+		51FDD30CE7ECF88E652A3F6F = {
+			isa = PBXGroup;
+			children = (
+				C2C2BDC049CE493A4381E9C9,
+				F539FBE55A47AC61EF735C1D,
+				8C94A0CB2A3A8229528F869C,
+				D896B52DA7D07E80A0E8B163,
+				97B7532B7B2382ECE442BB7B,
+				FA4BC831893D91AFF01BA822,
+				B58E3F1DB4DBEE8DD039645A,
+				84E0994B167D859CEFBACB56,
+				E822E5A61A906D97D3BF143A,
+				C6FE6D0E35CC9A44DB56D4C8,
+				59B2A728DFEBA6764C6DC97F,
+				D2723C9073060D798CCB7F79,
+				AB3EA1D434A7F982E53D2B38,
+				DCC3C7DD17CB5EC8C272BA89,
+			);
+			name = Wavetables;
+			sourceTree = "<group>";
+		};
+		2A9EF31758E05C7F5C89CBA5 = {
+			isa = PBXGroup;
+			children = (
+				51FDD30CE7ECF88E652A3F6F,
+				1BE2D7FAE9B60BC90C93B8E6,
+				15E2463D9D5ECE79C98AD6BD,
+				B996ED6DE0DF4FC12AFBF953,
+				76615046CD3A95374CDB1692,
+				041B1CB6D7FF951424E20AD6,
+				E5F388931178BB21EB1D96D7,
+				85788B2C7868DD879F67D910,
+				E9A6DA24DCF6715E499F2A4C,
+				D8366554F12325264744AADB,
+				602D83995BA199A11F02E40A,
+				69AA9A49FB2EA0B6DED32F10,
+				7B45690CE0BF55AD3DC0FD87,
+				4F9E211C7EA3560377DDB653,
+				2A91F034F4066B4A217D8C20,
+				4A3E4C150F1B12C90AE4FDEB,
+				3B0DE1CF1ED31E03F5751E56,
+				0EE930E3CAF824F5942E9AD0,
+				FD95AC2E960AFC4F5CAF10CF,
+				DB69AAB20D6FE843E79FC205,
+				02ADD3434D285C5C3249DD39,
+				CE6D084D7210243264312D30,
+				37D27A4FDB47E48597C33E8C,
+				7AC8A15FE24FF8C6E667B130,
+				199052596FDA2EEABAFC3B5A,
+				080EFF2BCC1728D49F852FEE,
+				69F74D260B20B46F34296435,
+			);
+			name = Oscillators;
+			sourceTree = "<group>";
+		};
+		92BC889CF9AF7E0F64D60465 = {
+			isa = PBXGroup;
+			children = (
+				4304C563BE954E90D410E7AA,
+				3D7B7DFDFB6B33AED39988FF,
+				89D2F08C238EDC30EED96F4B,
+				60B24714B0DFEC3989828C43,
+				4DD81A807D51DE5E8572CCD7,
+				0B9523105933832874900C40,
+				C143C7A65B00F99481FDACF8,
+				69F93E108B363AB8DECCC8E1,
+				29A581061DF714FD1861598B,
+				1721D28E8729ABE2DA49719D,
+			);
+			name = FX;
+			sourceTree = "<group>";
+		};
+		CFFD9728F28C0822E93E269D = {
+			isa = PBXGroup;
+			children = (
+				A0516C472761E34C89D254BB,
+				41EC867293DC695AE98C3B82,
+				BE83BB7C5AC1AFF596A04256,
+				C7C938F3BBCA2D007CBE9890,
+				2C22B43479DFB4EB0061C6D2,
+				437745C28ECF61A0BB41D1E7,
+				BDC0A8B61DF3BD6A81C05479,
+				196A6414196D76F8E1307167,
+				FB03CE71165395A54CCB1286,
+				D79D1E973BABFA7811DB8B21,
+				75F54CA72A0E9976BB540712,
+				F337A655FAE757A10050CBAD,
+				54F43106397388A32057507D,
+				27DE08906A1EB12BD9314550,
+				9C72655A0DA960DE9F2D590D,
+				87F61BDEAE5903A8A3C7B36E,
+			);
+			name = Filters;
+			sourceTree = "<group>";
+		};
+		9B7AED194DE9A837B907A769 = {
+			isa = PBXGroup;
+			children = (
+				BDDBEFAF90068D80EA214A8F,
+				CF703C48005602866108A9CF,
+				1AB61C06B1B3ABA74C604267,
+				2A9EF31758E05C7F5C89CBA5,
+				92BC889CF9AF7E0F64D60465,
+				CFFD9728F28C0822E93E269D,
+				73AB84D42C759F6D8201B00D,
+				1A5AA6392713A98B2D8FE1E1,
+				1716D4E7088965890BB7C8F0,
+			);
+			name = audio;
+			sourceTree = "<group>";
+		};
+		EA9DB1D60A88EF1A65170869 = {
+			isa = PBXGroup;
+			children = (
 				466715786EAB52C79B82B912,
 				81DAE3BD232040C61F617095,
 				6C6E6392D7D1684006B6B3CA,
@@ -1114,6 +1844,16 @@
 				76E854E9538151EE208D86E7,
 				CB4935F9D13B0935F1A3787C,
 				30143C979485E86E3A8069B6,
+			);
+			name = GUI;
+			sourceTree = "<group>";
+		};
+		DA68EAE39AAE6BE7BAE84567 = {
+			isa = PBXGroup;
+			children = (
+				9B7AED194DE9A837B907A769,
+				EA9DB1D60A88EF1A65170869,
+				CDAE96418DAFF7C292BCAF5E,
 				F196B8C5A02E8B1D95473EAE,
 				EDDCFB136841B4C3E040BD25,
 				637115A7BF3E5E1E6ACAA807,
@@ -1961,6 +2701,33 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B340DC5252A6B3FBD9FE0AE8,
+				646E8F1912821DF67D9FF8B9,
+				9EF2D962EA3C6489D672A4FA,
+				213C54C8869B0BECF7D71CC1,
+				367ED43A68B32F688AAA4769,
+				7F165AA3BB53BB54375B4F63,
+				F9690C3998CE03484F9DA4E7,
+				F342A5A44035570BC1EED890,
+				0AA4957054BA898F77C9356B,
+				BF46C04633830AB475F89C78,
+				EFF6A1EAE2BFB6BEFB2DCD75,
+				A9C1619292A765A0C52813C0,
+				B5C51CFEFD875253CF827933,
+				F5608F0779144B90F1477EA4,
+				3C04DFADC3C9E38A1EAC2E73,
+				2F25E8B92749BD30C5389DB6,
+				CB87A549848FD209FA12E306,
+				96CC774B1C0FAF0B331950A3,
+				A456BAC31248A16A53AABB03,
+				D0CC987044F5B8D8440F5AAB,
+				9AD3FFAC1165D82BD47A2D93,
+				0D3AB383E3DEFB9F2D1821E9,
+				8DAC4C1BE06E745A74F7E904,
+				ED1B9340D4598D77BC31B34C,
+				0F206DC3A0BAD92C7048ADF0,
+				09544A81E4C76C92EB27CCB3,
+				B1B2989C3681F7BB4FE4E772,
 				882F55734D0337A5B1808BD5,
 				B27E37362AD48C37DC1EB80B,
 				FBFB9F2A1358E5BD3E2BF9B2,

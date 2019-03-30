@@ -4,107 +4,236 @@
               pluginFormats="buildStandalone,buildVST,buildVST3">
   <MAINGROUP id="Tn76b3" name="Odin">
     <GROUP id="{7AF384ED-9FD6-6492-4B8C-5777BB9A2698}" name="Source">
+      <GROUP id="{3EB8BD5A-21BA-3762-1B22-4C7E7C63EF47}" name="audio">
+        <GROUP id="{6154F4CF-B621-5841-23CC-5426B7C28BDC}" name="Lookuptables">
+          <FILE id="IuvMkp" name="adsr_pow.h" compile="0" resource="0" file="Source/audio/LookupTables/adsr_pow.h"/>
+        </GROUP>
+        <FILE id="s5TOXG" name="CheapFunctions.h" compile="0" resource="0"
+              file="Source/audio/CheapFunctions.h"/>
+        <FILE id="GWD8r7" name="CheapFunctions.cpp" compile="1" resource="0"
+              file="Source/audio/CheapFunctions.cpp"/>
+        <GROUP id="{D6691E6B-37D4-2804-8E68-093C3D0E2F7C}" name="Oscillators">
+          <GROUP id="{CC755845-2929-23F1-4554-1FBF3CEE4635}" name="Wavetables">
+            <FILE id="P0B3Ne" name="ChiptuneCustom1.h" compile="0" resource="0"
+                  file="Source/audio/Oscillators/Wavetables/ChiptuneCustom1.h"/>
+            <FILE id="Ql3eoR" name="ChiptuneCustom2.h" compile="0" resource="0"
+                  file="Source/audio/Oscillators/Wavetables/ChiptuneCustom2.h"/>
+            <FILE id="IoIBss" name="ChiptuneCustom3.h" compile="0" resource="0"
+                  file="Source/audio/Oscillators/Wavetables/ChiptuneCustom3.h"/>
+            <FILE id="HNM91g" name="ChiptuneCustom4.h" compile="0" resource="0"
+                  file="Source/audio/Oscillators/Wavetables/ChiptuneCustom4.h"/>
+            <FILE id="m1GzLL" name="ChiptuneCustom5.h" compile="0" resource="0"
+                  file="Source/audio/Oscillators/Wavetables/ChiptuneCustom5.h"/>
+            <FILE id="cqiT6K" name="ChiptuneCustom6.h" compile="0" resource="0"
+                  file="Source/audio/Oscillators/Wavetables/ChiptuneCustom6.h"/>
+            <FILE id="JBB3UP" name="ChiptuneSquare12_5.h" compile="0" resource="0"
+                  file="Source/audio/Oscillators/Wavetables/ChiptuneSquare12_5.h"/>
+            <FILE id="KcGZdN" name="ChiptuneSquare25.h" compile="0" resource="0"
+                  file="Source/audio/Oscillators/Wavetables/ChiptuneSquare25.h"/>
+            <FILE id="Bux6C5" name="ChiptuneSquare50.h" compile="0" resource="0"
+                  file="Source/audio/Oscillators/Wavetables/ChiptuneSquare50.h"/>
+            <FILE id="rHeAVu" name="ChiptuneTriangle.h" compile="0" resource="0"
+                  file="Source/audio/Oscillators/Wavetables/ChiptuneTriangle.h"/>
+            <FILE id="ceC1o2" name="FatSaw.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/FatSaw.h"/>
+            <FILE id="uha7eN" name="Saw.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Saw.h"/>
+            <FILE id="XsmV7h" name="Sine.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Sine.h"/>
+            <FILE id="UrbZSK" name="Triangle.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Triangle.h"/>
+          </GROUP>
+          <FILE id="PzYVzE" name="AnalogOscillator.cpp" compile="1" resource="0"
+                file="Source/audio/Oscillators/AnalogOscillator.cpp"/>
+          <FILE id="gPM1ce" name="AnalogOscillator.h" compile="0" resource="0"
+                file="Source/audio/Oscillators/AnalogOscillator.h"/>
+          <FILE id="sPNQm4" name="ChiptuneArpeggiator.cpp" compile="1" resource="0"
+                file="Source/audio/Oscillators/ChiptuneArpeggiator.cpp"/>
+          <FILE id="zqCRIU" name="ChiptuneArpeggiator.h" compile="0" resource="0"
+                file="Source/audio/Oscillators/ChiptuneArpeggiator.h"/>
+          <FILE id="L3MvH4" name="ChiptuneOscillator.cpp" compile="1" resource="0"
+                file="Source/audio/Oscillators/ChiptuneOscillator.cpp"/>
+          <FILE id="esUc7q" name="ChiptuneOscillator.h" compile="0" resource="0"
+                file="Source/audio/Oscillators/ChiptuneOscillator.h"/>
+          <FILE id="CE6vGJ" name="DriftGenerator.cpp" compile="1" resource="0"
+                file="Source/audio/Oscillators/DriftGenerator.cpp"/>
+          <FILE id="Qz35ns" name="DriftGenerator.h" compile="0" resource="0"
+                file="Source/audio/Oscillators/DriftGenerator.h"/>
+          <FILE id="R0zX2y" name="FMOscillator.cpp" compile="1" resource="0"
+                file="Source/audio/Oscillators/FMOscillator.cpp"/>
+          <FILE id="YA7M7F" name="FMOscillator.h" compile="0" resource="0" file="Source/audio/Oscillators/FMOscillator.h"/>
+          <FILE id="YVfWG0" name="MultiOscillator.cpp" compile="1" resource="0"
+                file="Source/audio/Oscillators/MultiOscillator.cpp"/>
+          <FILE id="nEhvRd" name="MultiOscillator.h" compile="0" resource="0"
+                file="Source/audio/Oscillators/MultiOscillator.h"/>
+          <FILE id="TV4bLP" name="NoiseOscillator.cpp" compile="1" resource="0"
+                file="Source/audio/Oscillators/NoiseOscillator.cpp"/>
+          <FILE id="AeBAUC" name="NoiseOscillator.h" compile="0" resource="0"
+                file="Source/audio/Oscillators/NoiseOscillator.h"/>
+          <FILE id="qxC0Cn" name="Oscillator.cpp" compile="1" resource="0" file="Source/audio/Oscillators/Oscillator.cpp"/>
+          <FILE id="qBHAzZ" name="Oscillator.h" compile="0" resource="0" file="Source/audio/Oscillators/Oscillator.h"/>
+          <FILE id="SICYHb" name="PitchShiftTable.h" compile="0" resource="0"
+                file="Source/audio/Oscillators/PitchShiftTable.h"/>
+          <FILE id="IYqmHh" name="VectorOscillator.cpp" compile="1" resource="0"
+                file="Source/audio/Oscillators/VectorOscillator.cpp"/>
+          <FILE id="PpzmNd" name="VectorOscillator.h" compile="0" resource="0"
+                file="Source/audio/Oscillators/VectorOscillator.h"/>
+          <FILE id="mXal1g" name="WavetableCoefficients.h" compile="0" resource="0"
+                file="Source/audio/Oscillators/WavetableCoefficients.h"/>
+          <FILE id="aYxAnU" name="WavetableContainer.cpp" compile="1" resource="0"
+                file="Source/audio/Oscillators/WavetableContainer.cpp"/>
+          <FILE id="DYLqVG" name="WavetableContainer.h" compile="0" resource="0"
+                file="Source/audio/Oscillators/WavetableContainer.h"/>
+          <FILE id="lRs7XQ" name="WavetableOsc1D.cpp" compile="1" resource="0"
+                file="Source/audio/Oscillators/WavetableOsc1D.cpp"/>
+          <FILE id="nIWcf5" name="WavetableOsc1D.h" compile="0" resource="0"
+                file="Source/audio/Oscillators/WavetableOsc1D.h"/>
+          <FILE id="qEv55g" name="WavetableOsc2D.cpp" compile="1" resource="0"
+                file="Source/audio/Oscillators/WavetableOsc2D.cpp"/>
+          <FILE id="VTgjWS" name="WavetableOsc2D.h" compile="0" resource="0"
+                file="Source/audio/Oscillators/WavetableOsc2D.h"/>
+        </GROUP>
+        <GROUP id="{C724E5C9-D97D-5F0F-8A81-C41A55596A1D}" name="FX">
+          <FILE id="Sd74Ze" name="Bitcrusher.cpp" compile="1" resource="0" file="Source/audio/FX/Bitcrusher.cpp"/>
+          <FILE id="peP7jn" name="Bitcrusher.h" compile="0" resource="0" file="Source/audio/FX/Bitcrusher.h"/>
+          <FILE id="RBH9bS" name="CubicShaper.cpp" compile="1" resource="0" file="Source/audio/FX/CubicShaper.cpp"/>
+          <FILE id="L42AwZ" name="CubicShaper.h" compile="0" resource="0" file="Source/audio/FX/CubicShaper.h"/>
+          <FILE id="bvAs10" name="Delay.cpp" compile="1" resource="0" file="Source/audio/FX/Delay.cpp"/>
+          <FILE id="awSILU" name="Delay.h" compile="0" resource="0" file="Source/audio/FX/Delay.h"/>
+          <FILE id="ga6YdP" name="OversamplingDistortion.cpp" compile="1" resource="0"
+                file="Source/audio/FX/OversamplingDistortion.cpp"/>
+          <FILE id="b06Ob4" name="OversamplingDistortion.h" compile="0" resource="0"
+                file="Source/audio/FX/OversamplingDistortion.h"/>
+          <FILE id="bipTNG" name="QuarticShaper.cpp" compile="1" resource="0"
+                file="Source/audio/FX/QuarticShaper.cpp"/>
+          <FILE id="OIBYdF" name="QuarticShaper.h" compile="0" resource="0" file="Source/audio/FX/QuarticShaper.h"/>
+        </GROUP>
+        <GROUP id="{A1F58DC9-32D9-511A-BCD5-B1084A4E1EFD}" name="Filters">
+          <FILE id="JHfaPb" name="DiodeFilter.cpp" compile="1" resource="0" file="Source/audio/Filters/DiodeFilter.cpp"/>
+          <FILE id="FSMHAJ" name="DiodeFilter.h" compile="0" resource="0" file="Source/audio/Filters/DiodeFilter.h"/>
+          <FILE id="gg9mto" name="Filter.cpp" compile="1" resource="0" file="Source/audio/Filters/Filter.cpp"/>
+          <FILE id="IvlOHH" name="Filter.h" compile="0" resource="0" file="Source/audio/Filters/Filter.h"/>
+          <FILE id="PCXPLn" name="FormantFilter.cpp" compile="1" resource="0"
+                file="Source/audio/Filters/FormantFilter.cpp"/>
+          <FILE id="RcryvM" name="FormantFilter.h" compile="0" resource="0" file="Source/audio/Filters/FormantFilter.h"/>
+          <FILE id="EnWIR4" name="Korg35Filter.cpp" compile="1" resource="0"
+                file="Source/audio/Filters/Korg35Filter.cpp"/>
+          <FILE id="lCXpVi" name="Korg35Filter.h" compile="0" resource="0" file="Source/audio/Filters/Korg35Filter.h"/>
+          <FILE id="dl7KX3" name="LadderFilter.cpp" compile="1" resource="0"
+                file="Source/audio/Filters/LadderFilter.cpp"/>
+          <FILE id="wpKP9V" name="LadderFilter.h" compile="0" resource="0" file="Source/audio/Filters/LadderFilter.h"/>
+          <FILE id="z8dMj5" name="SEMFilter12.cpp" compile="1" resource="0" file="Source/audio/Filters/SEMFilter12.cpp"/>
+          <FILE id="nOpc0Z" name="SEMFilter12.h" compile="0" resource="0" file="Source/audio/Filters/SEMFilter12.h"/>
+          <FILE id="Y2t4NA" name="SEMFilter24.cpp" compile="1" resource="0" file="Source/audio/Filters/SEMFilter24.cpp"/>
+          <FILE id="nmWYyd" name="SEMFilter24.h" compile="0" resource="0" file="Source/audio/Filters/SEMFilter24.h"/>
+          <FILE id="atXb4h" name="VAOnePoleFilter.cpp" compile="1" resource="0"
+                file="Source/audio/Filters/VAOnePoleFilter.cpp"/>
+          <FILE id="pLRS0p" name="VAOnePoleFilter.h" compile="0" resource="0"
+                file="Source/audio/Filters/VAOnePoleFilter.h"/>
+        </GROUP>
+        <FILE id="h8lquZ" name="ADSR.cpp" compile="1" resource="0" file="Source/audio/ADSR.cpp"/>
+        <FILE id="lRyi7H" name="ADSR.h" compile="0" resource="0" file="Source/audio/ADSR.h"/>
+        <FILE id="yhSMDf" name="OdinConstants.h" compile="0" resource="0" file="Source/audio/OdinConstants.h"/>
+      </GROUP>
+      <GROUP id="{67642AFD-C38A-0B04-08CB-62632A5DEA0B}" name="GUI">
+        <FILE id="lwsphb" name="ADSRComponent.cpp" compile="1" resource="0"
+              file="Source/ADSRComponent.cpp"/>
+        <FILE id="Movfh7" name="ADSRComponent.h" compile="0" resource="0" file="Source/ADSRComponent.h"/>
+        <FILE id="lvM7JR" name="AmpDistortionFlowComponent.cpp" compile="1"
+              resource="0" file="Source/AmpDistortionFlowComponent.cpp"/>
+        <FILE id="NeR3PY" name="AmpDistortionFlowComponent.h" compile="0" resource="0"
+              file="Source/AmpDistortionFlowComponent.h"/>
+        <FILE id="nONSmU" name="ChipdrawWindow.cpp" compile="1" resource="0"
+              file="Source/ChipdrawWindow.cpp"/>
+        <FILE id="ttWLIf" name="ChipdrawWindow.h" compile="0" resource="0"
+              file="Source/ChipdrawWindow.h"/>
+        <FILE id="riEt3M" name="DelayComponent.cpp" compile="1" resource="0"
+              file="Source/DelayComponent.cpp"/>
+        <FILE id="spAhRO" name="DelayComponent.h" compile="0" resource="0"
+              file="Source/DelayComponent.h"/>
+        <FILE id="tLzCnJ" name="DragButton.h" compile="0" resource="0" file="Source/DragButton.h"/>
+        <FILE id="xsJGhH" name="DrawableSlider.cpp" compile="1" resource="0"
+              file="Source/DrawableSlider.cpp"/>
+        <FILE id="HzAuT4" name="DrawableSlider.h" compile="0" resource="0"
+              file="Source/DrawableSlider.h"/>
+        <FILE id="Fnxqzc" name="FilterComponent.cpp" compile="1" resource="0"
+              file="Source/FilterComponent.cpp"/>
+        <FILE id="Emk8R2" name="FilterComponent.h" compile="0" resource="0"
+              file="Source/FilterComponent.h"/>
+        <FILE id="JxK0ry" name="FormantSelector.h" compile="0" resource="0"
+              file="Source/FormantSelector.h"/>
+        <FILE id="z7G0DM" name="FXButtonsSection.h" compile="0" resource="0"
+              file="Source/FXButtonsSection.h"/>
+        <FILE id="qWO85U" name="FXComponent.cpp" compile="1" resource="0" file="Source/FXComponent.cpp"/>
+        <FILE id="X2OoWP" name="FXComponent.h" compile="0" resource="0" file="Source/FXComponent.h"/>
+        <FILE id="Ph3kj6" name="GlasDisplay.cpp" compile="1" resource="0" file="Source/GlasDisplay.cpp"/>
+        <FILE id="iMYp5V" name="GlasDisplay.h" compile="0" resource="0" file="Source/GlasDisplay.h"/>
+        <FILE id="b6MSSu" name="GlasDropdown.cpp" compile="1" resource="0"
+              file="Source/GlasDropdown.cpp"/>
+        <FILE id="Tk1utf" name="GlasDropdown.h" compile="0" resource="0" file="Source/GlasDropdown.h"/>
+        <FILE id="zzT1mi" name="GlobalIncludes.h" compile="0" resource="0"
+              file="Source/GlobalIncludes.h"/>
+        <FILE id="rx44he" name="IntegerKnob.cpp" compile="1" resource="0" file="Source/IntegerKnob.cpp"/>
+        <FILE id="pKAX8X" name="IntegerKnob.h" compile="0" resource="0" file="Source/IntegerKnob.h"/>
+        <FILE id="DmvTXS" name="Knob.h" compile="0" resource="0" file="Source/Knob.h"/>
+        <FILE id="vQFK0n" name="LeftRightButton.cpp" compile="1" resource="0"
+              file="Source/LeftRightButton.cpp"/>
+        <FILE id="hjrHvc" name="LeftRightButton.h" compile="0" resource="0"
+              file="Source/LeftRightButton.h"/>
+        <FILE id="oxoLYE" name="LFOComponent.cpp" compile="1" resource="0"
+              file="Source/LFOComponent.cpp"/>
+        <FILE id="UVizd7" name="LFOComponent.h" compile="0" resource="0" file="Source/LFOComponent.h"/>
+        <FILE id="Eek9MY" name="LFODisplayComponent.cpp" compile="1" resource="0"
+              file="Source/LFODisplayComponent.cpp"/>
+        <FILE id="j9HcuP" name="LFODisplayComponent.h" compile="0" resource="0"
+              file="Source/LFODisplayComponent.h"/>
+        <FILE id="saDiWs" name="LFOSelectorComponent.cpp" compile="1" resource="0"
+              file="Source/LFOSelectorComponent.cpp"/>
+        <FILE id="B6GWKF" name="LFOSelectorComponent.h" compile="0" resource="0"
+              file="Source/LFOSelectorComponent.h"/>
+        <FILE id="cJEMvz" name="ModAmountComponent.cpp" compile="1" resource="0"
+              file="Source/ModAmountComponent.cpp"/>
+        <FILE id="FUfI47" name="ModAmountComponent.h" compile="0" resource="0"
+              file="Source/ModAmountComponent.h"/>
+        <FILE id="kVI8bf" name="ModMatrixComponent.cpp" compile="1" resource="0"
+              file="Source/ModMatrixComponent.cpp"/>
+        <FILE id="kNCtEn" name="ModMatrixComponent.h" compile="0" resource="0"
+              file="Source/ModMatrixComponent.h"/>
+        <FILE id="LVd1xr" name="NumberSelector.cpp" compile="1" resource="0"
+              file="Source/NumberSelector.cpp"/>
+        <FILE id="UAhsRO" name="NumberSelector.h" compile="0" resource="0"
+              file="Source/NumberSelector.h"/>
+        <FILE id="zWGLzS" name="OscComponent.cpp" compile="1" resource="0"
+              file="Source/OscComponent.cpp"/>
+        <FILE id="MVOzDk" name="OscComponent.h" compile="0" resource="0" file="Source/OscComponent.h"/>
+        <FILE id="iiqCGQ" name="PitchWheel.h" compile="0" resource="0" file="Source/PitchWheel.h"/>
+        <FILE id="Szl1N3" name="SaveLoadComponent.cpp" compile="1" resource="0"
+              file="Source/SaveLoadComponent.cpp"/>
+        <FILE id="NuSaSw" name="SaveLoadComponent.h" compile="0" resource="0"
+              file="Source/SaveLoadComponent.h"/>
+        <FILE id="J4fojV" name="SpecdrawDisplay.cpp" compile="1" resource="0"
+              file="Source/SpecdrawDisplay.cpp"/>
+        <FILE id="BZ0TVo" name="SpecdrawDisplay.h" compile="0" resource="0"
+              file="Source/SpecdrawDisplay.h"/>
+        <FILE id="jWVk1F" name="SyncTimeSelector.cpp" compile="1" resource="0"
+              file="Source/SyncTimeSelector.cpp"/>
+        <FILE id="dGTCvN" name="SyncTimeSelector.h" compile="0" resource="0"
+              file="Source/SyncTimeSelector.h"/>
+        <FILE id="J8nqZi" name="WavedrawDisplay.cpp" compile="1" resource="0"
+              file="Source/WavedrawDisplay.cpp"/>
+        <FILE id="OpAghB" name="WavedrawDisplay.h" compile="0" resource="0"
+              file="Source/WavedrawDisplay.h"/>
+        <FILE id="KX1Hbu" name="WaveformSelectorComponent.cpp" compile="1"
+              resource="0" file="Source/WaveformSelectorComponent.cpp"/>
+        <FILE id="T4dsUW" name="WaveformSelectorComponent.h" compile="0" resource="0"
+              file="Source/WaveformSelectorComponent.h"/>
+        <FILE id="jRAnrN" name="XYPadComponent.cpp" compile="1" resource="0"
+              file="Source/XYPadComponent.cpp"/>
+        <FILE id="GvMLZk" name="XYPadComponent.h" compile="0" resource="0"
+              file="Source/XYPadComponent.h"/>
+        <FILE id="it0a18" name="XYSectionComponent.cpp" compile="1" resource="0"
+              file="Source/XYSectionComponent.cpp"/>
+        <FILE id="glT7el" name="XYSectionComponent.h" compile="0" resource="0"
+              file="Source/XYSectionComponent.h"/>
+      </GROUP>
       <FILE id="X68G2u" name="AudioValueTree.h" compile="0" resource="0"
             file="Source/AudioValueTree.h"/>
-      <FILE id="lwsphb" name="ADSRComponent.cpp" compile="1" resource="0"
-            file="Source/ADSRComponent.cpp"/>
-      <FILE id="Movfh7" name="ADSRComponent.h" compile="0" resource="0" file="Source/ADSRComponent.h"/>
-      <FILE id="lvM7JR" name="AmpDistortionFlowComponent.cpp" compile="1"
-            resource="0" file="Source/AmpDistortionFlowComponent.cpp"/>
-      <FILE id="NeR3PY" name="AmpDistortionFlowComponent.h" compile="0" resource="0"
-            file="Source/AmpDistortionFlowComponent.h"/>
-      <FILE id="nONSmU" name="ChipdrawWindow.cpp" compile="1" resource="0"
-            file="Source/ChipdrawWindow.cpp"/>
-      <FILE id="ttWLIf" name="ChipdrawWindow.h" compile="0" resource="0"
-            file="Source/ChipdrawWindow.h"/>
-      <FILE id="riEt3M" name="DelayComponent.cpp" compile="1" resource="0"
-            file="Source/DelayComponent.cpp"/>
-      <FILE id="spAhRO" name="DelayComponent.h" compile="0" resource="0"
-            file="Source/DelayComponent.h"/>
-      <FILE id="tLzCnJ" name="DragButton.h" compile="0" resource="0" file="Source/DragButton.h"/>
-      <FILE id="xsJGhH" name="DrawableSlider.cpp" compile="1" resource="0"
-            file="Source/DrawableSlider.cpp"/>
-      <FILE id="HzAuT4" name="DrawableSlider.h" compile="0" resource="0"
-            file="Source/DrawableSlider.h"/>
-      <FILE id="Fnxqzc" name="FilterComponent.cpp" compile="1" resource="0"
-            file="Source/FilterComponent.cpp"/>
-      <FILE id="Emk8R2" name="FilterComponent.h" compile="0" resource="0"
-            file="Source/FilterComponent.h"/>
-      <FILE id="JxK0ry" name="FormantSelector.h" compile="0" resource="0"
-            file="Source/FormantSelector.h"/>
-      <FILE id="z7G0DM" name="FXButtonsSection.h" compile="0" resource="0"
-            file="Source/FXButtonsSection.h"/>
-      <FILE id="qWO85U" name="FXComponent.cpp" compile="1" resource="0" file="Source/FXComponent.cpp"/>
-      <FILE id="X2OoWP" name="FXComponent.h" compile="0" resource="0" file="Source/FXComponent.h"/>
-      <FILE id="Ph3kj6" name="GlasDisplay.cpp" compile="1" resource="0" file="Source/GlasDisplay.cpp"/>
-      <FILE id="iMYp5V" name="GlasDisplay.h" compile="0" resource="0" file="Source/GlasDisplay.h"/>
-      <FILE id="b6MSSu" name="GlasDropdown.cpp" compile="1" resource="0"
-            file="Source/GlasDropdown.cpp"/>
-      <FILE id="Tk1utf" name="GlasDropdown.h" compile="0" resource="0" file="Source/GlasDropdown.h"/>
-      <FILE id="zzT1mi" name="GlobalIncludes.h" compile="0" resource="0"
-            file="Source/GlobalIncludes.h"/>
-      <FILE id="rx44he" name="IntegerKnob.cpp" compile="1" resource="0" file="Source/IntegerKnob.cpp"/>
-      <FILE id="pKAX8X" name="IntegerKnob.h" compile="0" resource="0" file="Source/IntegerKnob.h"/>
-      <FILE id="DmvTXS" name="Knob.h" compile="0" resource="0" file="Source/Knob.h"/>
-      <FILE id="vQFK0n" name="LeftRightButton.cpp" compile="1" resource="0"
-            file="Source/LeftRightButton.cpp"/>
-      <FILE id="hjrHvc" name="LeftRightButton.h" compile="0" resource="0"
-            file="Source/LeftRightButton.h"/>
-      <FILE id="oxoLYE" name="LFOComponent.cpp" compile="1" resource="0"
-            file="Source/LFOComponent.cpp"/>
-      <FILE id="UVizd7" name="LFOComponent.h" compile="0" resource="0" file="Source/LFOComponent.h"/>
-      <FILE id="Eek9MY" name="LFODisplayComponent.cpp" compile="1" resource="0"
-            file="Source/LFODisplayComponent.cpp"/>
-      <FILE id="j9HcuP" name="LFODisplayComponent.h" compile="0" resource="0"
-            file="Source/LFODisplayComponent.h"/>
-      <FILE id="saDiWs" name="LFOSelectorComponent.cpp" compile="1" resource="0"
-            file="Source/LFOSelectorComponent.cpp"/>
-      <FILE id="B6GWKF" name="LFOSelectorComponent.h" compile="0" resource="0"
-            file="Source/LFOSelectorComponent.h"/>
-      <FILE id="cJEMvz" name="ModAmountComponent.cpp" compile="1" resource="0"
-            file="Source/ModAmountComponent.cpp"/>
-      <FILE id="FUfI47" name="ModAmountComponent.h" compile="0" resource="0"
-            file="Source/ModAmountComponent.h"/>
-      <FILE id="kVI8bf" name="ModMatrixComponent.cpp" compile="1" resource="0"
-            file="Source/ModMatrixComponent.cpp"/>
-      <FILE id="kNCtEn" name="ModMatrixComponent.h" compile="0" resource="0"
-            file="Source/ModMatrixComponent.h"/>
-      <FILE id="LVd1xr" name="NumberSelector.cpp" compile="1" resource="0"
-            file="Source/NumberSelector.cpp"/>
-      <FILE id="UAhsRO" name="NumberSelector.h" compile="0" resource="0"
-            file="Source/NumberSelector.h"/>
-      <FILE id="zWGLzS" name="OscComponent.cpp" compile="1" resource="0"
-            file="Source/OscComponent.cpp"/>
-      <FILE id="MVOzDk" name="OscComponent.h" compile="0" resource="0" file="Source/OscComponent.h"/>
-      <FILE id="iiqCGQ" name="PitchWheel.h" compile="0" resource="0" file="Source/PitchWheel.h"/>
-      <FILE id="Szl1N3" name="SaveLoadComponent.cpp" compile="1" resource="0"
-            file="Source/SaveLoadComponent.cpp"/>
-      <FILE id="NuSaSw" name="SaveLoadComponent.h" compile="0" resource="0"
-            file="Source/SaveLoadComponent.h"/>
-      <FILE id="J4fojV" name="SpecdrawDisplay.cpp" compile="1" resource="0"
-            file="Source/SpecdrawDisplay.cpp"/>
-      <FILE id="BZ0TVo" name="SpecdrawDisplay.h" compile="0" resource="0"
-            file="Source/SpecdrawDisplay.h"/>
-      <FILE id="jWVk1F" name="SyncTimeSelector.cpp" compile="1" resource="0"
-            file="Source/SyncTimeSelector.cpp"/>
-      <FILE id="dGTCvN" name="SyncTimeSelector.h" compile="0" resource="0"
-            file="Source/SyncTimeSelector.h"/>
-      <FILE id="J8nqZi" name="WavedrawDisplay.cpp" compile="1" resource="0"
-            file="Source/WavedrawDisplay.cpp"/>
-      <FILE id="OpAghB" name="WavedrawDisplay.h" compile="0" resource="0"
-            file="Source/WavedrawDisplay.h"/>
-      <FILE id="KX1Hbu" name="WaveformSelectorComponent.cpp" compile="1"
-            resource="0" file="Source/WaveformSelectorComponent.cpp"/>
-      <FILE id="T4dsUW" name="WaveformSelectorComponent.h" compile="0" resource="0"
-            file="Source/WaveformSelectorComponent.h"/>
-      <FILE id="jRAnrN" name="XYPadComponent.cpp" compile="1" resource="0"
-            file="Source/XYPadComponent.cpp"/>
-      <FILE id="GvMLZk" name="XYPadComponent.h" compile="0" resource="0"
-            file="Source/XYPadComponent.h"/>
-      <FILE id="it0a18" name="XYSectionComponent.cpp" compile="1" resource="0"
-            file="Source/XYSectionComponent.cpp"/>
-      <FILE id="glT7el" name="XYSectionComponent.h" compile="0" resource="0"
-            file="Source/XYSectionComponent.h"/>
       <FILE id="mcyhWq" name="PluginProcessor.cpp" compile="1" resource="0"
             file="Source/PluginProcessor.cpp"/>
       <FILE id="RcYKsR" name="PluginProcessor.h" compile="0" resource="0"

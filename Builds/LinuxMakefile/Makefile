@@ -94,6 +94,33 @@ OBJECTS_STANDALONE_PLUGIN := \
   $(JUCE_OBJDIR)/include_juce_audio_plugin_client_Standalone_1a871192.o \
 
 OBJECTS_SHARED_CODE := \
+  $(JUCE_OBJDIR)/CheapFunctions_4d22f4ee.o \
+  $(JUCE_OBJDIR)/AnalogOscillator_c0f2832e.o \
+  $(JUCE_OBJDIR)/ChiptuneArpeggiator_e83edba1.o \
+  $(JUCE_OBJDIR)/ChiptuneOscillator_da583742.o \
+  $(JUCE_OBJDIR)/DriftGenerator_ce7bf3e8.o \
+  $(JUCE_OBJDIR)/FMOscillator_5e192725.o \
+  $(JUCE_OBJDIR)/MultiOscillator_4d18105.o \
+  $(JUCE_OBJDIR)/NoiseOscillator_fc137526.o \
+  $(JUCE_OBJDIR)/Oscillator_58293cde.o \
+  $(JUCE_OBJDIR)/VectorOscillator_711bee41.o \
+  $(JUCE_OBJDIR)/WavetableContainer_af9d98ca.o \
+  $(JUCE_OBJDIR)/WavetableOsc1D_35e0873b.o \
+  $(JUCE_OBJDIR)/WavetableOsc2D_37955fda.o \
+  $(JUCE_OBJDIR)/Bitcrusher_c3c2e100.o \
+  $(JUCE_OBJDIR)/CubicShaper_dfe88b40.o \
+  $(JUCE_OBJDIR)/Delay_dc951fe8.o \
+  $(JUCE_OBJDIR)/OversamplingDistortion_abdc373d.o \
+  $(JUCE_OBJDIR)/QuarticShaper_76c4a84f.o \
+  $(JUCE_OBJDIR)/DiodeFilter_62ce6c57.o \
+  $(JUCE_OBJDIR)/Filter_7d90fd8e.o \
+  $(JUCE_OBJDIR)/FormantFilter_af384aaf.o \
+  $(JUCE_OBJDIR)/Korg35Filter_ef7435e9.o \
+  $(JUCE_OBJDIR)/LadderFilter_bc8d0e90.o \
+  $(JUCE_OBJDIR)/SEMFilter12_a774d708.o \
+  $(JUCE_OBJDIR)/SEMFilter24_a945dea9.o \
+  $(JUCE_OBJDIR)/VAOnePoleFilter_3a71ea7f.o \
+  $(JUCE_OBJDIR)/ADSR_c06f6444.o \
   $(JUCE_OBJDIR)/ADSRComponent_e465fb5c.o \
   $(JUCE_OBJDIR)/AmpDistortionFlowComponent_1279bdf7.o \
   $(JUCE_OBJDIR)/ChipdrawWindow_d7c4d329.o \
@@ -180,6 +207,141 @@ $(JUCE_OBJDIR)/include_juce_audio_plugin_client_Standalone_1a871192.o: ../../Juc
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling include_juce_audio_plugin_client_Standalone.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_STANDALONE_PLUGIN) $(JUCE_CFLAGS_STANDALONE_PLUGIN) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/CheapFunctions_4d22f4ee.o: ../../Source/audio/CheapFunctions.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling CheapFunctions.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/AnalogOscillator_c0f2832e.o: ../../Source/audio/Oscillators/AnalogOscillator.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling AnalogOscillator.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/ChiptuneArpeggiator_e83edba1.o: ../../Source/audio/Oscillators/ChiptuneArpeggiator.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling ChiptuneArpeggiator.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/ChiptuneOscillator_da583742.o: ../../Source/audio/Oscillators/ChiptuneOscillator.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling ChiptuneOscillator.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/DriftGenerator_ce7bf3e8.o: ../../Source/audio/Oscillators/DriftGenerator.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling DriftGenerator.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/FMOscillator_5e192725.o: ../../Source/audio/Oscillators/FMOscillator.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling FMOscillator.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/MultiOscillator_4d18105.o: ../../Source/audio/Oscillators/MultiOscillator.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling MultiOscillator.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/NoiseOscillator_fc137526.o: ../../Source/audio/Oscillators/NoiseOscillator.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling NoiseOscillator.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/Oscillator_58293cde.o: ../../Source/audio/Oscillators/Oscillator.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling Oscillator.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/VectorOscillator_711bee41.o: ../../Source/audio/Oscillators/VectorOscillator.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling VectorOscillator.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/WavetableContainer_af9d98ca.o: ../../Source/audio/Oscillators/WavetableContainer.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling WavetableContainer.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/WavetableOsc1D_35e0873b.o: ../../Source/audio/Oscillators/WavetableOsc1D.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling WavetableOsc1D.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/WavetableOsc2D_37955fda.o: ../../Source/audio/Oscillators/WavetableOsc2D.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling WavetableOsc2D.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/Bitcrusher_c3c2e100.o: ../../Source/audio/FX/Bitcrusher.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling Bitcrusher.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/CubicShaper_dfe88b40.o: ../../Source/audio/FX/CubicShaper.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling CubicShaper.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/Delay_dc951fe8.o: ../../Source/audio/FX/Delay.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling Delay.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/OversamplingDistortion_abdc373d.o: ../../Source/audio/FX/OversamplingDistortion.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling OversamplingDistortion.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/QuarticShaper_76c4a84f.o: ../../Source/audio/FX/QuarticShaper.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling QuarticShaper.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/DiodeFilter_62ce6c57.o: ../../Source/audio/Filters/DiodeFilter.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling DiodeFilter.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/Filter_7d90fd8e.o: ../../Source/audio/Filters/Filter.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling Filter.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/FormantFilter_af384aaf.o: ../../Source/audio/Filters/FormantFilter.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling FormantFilter.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/Korg35Filter_ef7435e9.o: ../../Source/audio/Filters/Korg35Filter.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling Korg35Filter.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/LadderFilter_bc8d0e90.o: ../../Source/audio/Filters/LadderFilter.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling LadderFilter.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/SEMFilter12_a774d708.o: ../../Source/audio/Filters/SEMFilter12.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling SEMFilter12.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/SEMFilter24_a945dea9.o: ../../Source/audio/Filters/SEMFilter24.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling SEMFilter24.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/VAOnePoleFilter_3a71ea7f.o: ../../Source/audio/Filters/VAOnePoleFilter.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling VAOnePoleFilter.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/ADSR_c06f6444.o: ../../Source/audio/ADSR.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling ADSR.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/ADSRComponent_e465fb5c.o: ../../Source/ADSRComponent.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)

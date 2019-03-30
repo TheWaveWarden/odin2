@@ -2,6 +2,27 @@
 
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <Filter Include="Odin\Source\audio\Lookuptables">
+      <UniqueIdentifier>{A5392AD4-F0ED-DCBD-F7D8-57AF54671594}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Odin\Source\audio\Oscillators\Wavetables">
+      <UniqueIdentifier>{33818FD5-EC4F-37C4-1650-331F09FFA8AF}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Odin\Source\audio\Oscillators">
+      <UniqueIdentifier>{C7C8B533-2614-8E2C-52DB-147404FDB612}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Odin\Source\audio\FX">
+      <UniqueIdentifier>{28407950-BC47-CBA8-709B-646C38927B02}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Odin\Source\audio\Filters">
+      <UniqueIdentifier>{1F56B62E-D5DB-9C47-1C16-7D2C7C624A5A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Odin\Source\audio">
+      <UniqueIdentifier>{9B140F95-2E7A-3DBF-AEE3-6F2B5B5CC8CB}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Odin\Source\GUI">
+      <UniqueIdentifier>{156D4DE7-3D6B-A14D-3352-50ACD5565BCB}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Odin\Source">
       <UniqueIdentifier>{BE32FCED-5388-6C4F-2C16-FBF06202E712}</UniqueIdentifier>
     </Filter>
@@ -433,80 +454,161 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\audio\CheapFunctions.cpp">
+      <Filter>Odin\Source\audio</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\audio\Oscillators\AnalogOscillator.cpp">
+      <Filter>Odin\Source\audio\Oscillators</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\audio\Oscillators\ChiptuneArpeggiator.cpp">
+      <Filter>Odin\Source\audio\Oscillators</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\audio\Oscillators\ChiptuneOscillator.cpp">
+      <Filter>Odin\Source\audio\Oscillators</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\audio\Oscillators\DriftGenerator.cpp">
+      <Filter>Odin\Source\audio\Oscillators</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\audio\Oscillators\FMOscillator.cpp">
+      <Filter>Odin\Source\audio\Oscillators</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\audio\Oscillators\MultiOscillator.cpp">
+      <Filter>Odin\Source\audio\Oscillators</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\audio\Oscillators\NoiseOscillator.cpp">
+      <Filter>Odin\Source\audio\Oscillators</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\audio\Oscillators\Oscillator.cpp">
+      <Filter>Odin\Source\audio\Oscillators</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\audio\Oscillators\VectorOscillator.cpp">
+      <Filter>Odin\Source\audio\Oscillators</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\audio\Oscillators\WavetableContainer.cpp">
+      <Filter>Odin\Source\audio\Oscillators</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\audio\Oscillators\WavetableOsc1D.cpp">
+      <Filter>Odin\Source\audio\Oscillators</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\audio\Oscillators\WavetableOsc2D.cpp">
+      <Filter>Odin\Source\audio\Oscillators</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\audio\FX\Bitcrusher.cpp">
+      <Filter>Odin\Source\audio\FX</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\audio\FX\CubicShaper.cpp">
+      <Filter>Odin\Source\audio\FX</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\audio\FX\Delay.cpp">
+      <Filter>Odin\Source\audio\FX</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\audio\FX\OversamplingDistortion.cpp">
+      <Filter>Odin\Source\audio\FX</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\audio\FX\QuarticShaper.cpp">
+      <Filter>Odin\Source\audio\FX</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\audio\Filters\DiodeFilter.cpp">
+      <Filter>Odin\Source\audio\Filters</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\audio\Filters\Filter.cpp">
+      <Filter>Odin\Source\audio\Filters</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\audio\Filters\FormantFilter.cpp">
+      <Filter>Odin\Source\audio\Filters</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\audio\Filters\Korg35Filter.cpp">
+      <Filter>Odin\Source\audio\Filters</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\audio\Filters\LadderFilter.cpp">
+      <Filter>Odin\Source\audio\Filters</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\audio\Filters\SEMFilter12.cpp">
+      <Filter>Odin\Source\audio\Filters</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\audio\Filters\SEMFilter24.cpp">
+      <Filter>Odin\Source\audio\Filters</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\audio\Filters\VAOnePoleFilter.cpp">
+      <Filter>Odin\Source\audio\Filters</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\audio\ADSR.cpp">
+      <Filter>Odin\Source\audio</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\ADSRComponent.cpp">
-      <Filter>Odin\Source</Filter>
+      <Filter>Odin\Source\GUI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\AmpDistortionFlowComponent.cpp">
-      <Filter>Odin\Source</Filter>
+      <Filter>Odin\Source\GUI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\ChipdrawWindow.cpp">
-      <Filter>Odin\Source</Filter>
+      <Filter>Odin\Source\GUI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\DelayComponent.cpp">
-      <Filter>Odin\Source</Filter>
+      <Filter>Odin\Source\GUI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\DrawableSlider.cpp">
-      <Filter>Odin\Source</Filter>
+      <Filter>Odin\Source\GUI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\FilterComponent.cpp">
-      <Filter>Odin\Source</Filter>
+      <Filter>Odin\Source\GUI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\FXComponent.cpp">
-      <Filter>Odin\Source</Filter>
+      <Filter>Odin\Source\GUI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\GlasDisplay.cpp">
-      <Filter>Odin\Source</Filter>
+      <Filter>Odin\Source\GUI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\GlasDropdown.cpp">
-      <Filter>Odin\Source</Filter>
+      <Filter>Odin\Source\GUI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\IntegerKnob.cpp">
-      <Filter>Odin\Source</Filter>
+      <Filter>Odin\Source\GUI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\LeftRightButton.cpp">
-      <Filter>Odin\Source</Filter>
+      <Filter>Odin\Source\GUI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\LFOComponent.cpp">
-      <Filter>Odin\Source</Filter>
+      <Filter>Odin\Source\GUI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\LFODisplayComponent.cpp">
-      <Filter>Odin\Source</Filter>
+      <Filter>Odin\Source\GUI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\LFOSelectorComponent.cpp">
-      <Filter>Odin\Source</Filter>
+      <Filter>Odin\Source\GUI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\ModAmountComponent.cpp">
-      <Filter>Odin\Source</Filter>
+      <Filter>Odin\Source\GUI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\ModMatrixComponent.cpp">
-      <Filter>Odin\Source</Filter>
+      <Filter>Odin\Source\GUI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\NumberSelector.cpp">
-      <Filter>Odin\Source</Filter>
+      <Filter>Odin\Source\GUI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\OscComponent.cpp">
-      <Filter>Odin\Source</Filter>
+      <Filter>Odin\Source\GUI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\SaveLoadComponent.cpp">
-      <Filter>Odin\Source</Filter>
+      <Filter>Odin\Source\GUI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\SpecdrawDisplay.cpp">
-      <Filter>Odin\Source</Filter>
+      <Filter>Odin\Source\GUI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\SyncTimeSelector.cpp">
-      <Filter>Odin\Source</Filter>
+      <Filter>Odin\Source\GUI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\WavedrawDisplay.cpp">
-      <Filter>Odin\Source</Filter>
+      <Filter>Odin\Source\GUI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\WaveformSelectorComponent.cpp">
-      <Filter>Odin\Source</Filter>
+      <Filter>Odin\Source\GUI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\XYPadComponent.cpp">
-      <Filter>Odin\Source</Filter>
+      <Filter>Odin\Source\GUI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\XYSectionComponent.cpp">
-      <Filter>Odin\Source</Filter>
+      <Filter>Odin\Source\GUI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\PluginProcessor.cpp">
       <Filter>Odin\Source</Filter>
@@ -2493,100 +2595,235 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Source\AudioValueTree.h">
-      <Filter>Odin\Source</Filter>
+    <ClInclude Include="..\..\Source\audio\LookupTables\adsr_pow.h">
+      <Filter>Odin\Source\audio\Lookuptables</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\CheapFunctions.h">
+      <Filter>Odin\Source\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Oscillators\Wavetables\ChiptuneCustom1.h">
+      <Filter>Odin\Source\audio\Oscillators\Wavetables</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Oscillators\Wavetables\ChiptuneCustom2.h">
+      <Filter>Odin\Source\audio\Oscillators\Wavetables</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Oscillators\Wavetables\ChiptuneCustom3.h">
+      <Filter>Odin\Source\audio\Oscillators\Wavetables</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Oscillators\Wavetables\ChiptuneCustom4.h">
+      <Filter>Odin\Source\audio\Oscillators\Wavetables</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Oscillators\Wavetables\ChiptuneCustom5.h">
+      <Filter>Odin\Source\audio\Oscillators\Wavetables</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Oscillators\Wavetables\ChiptuneCustom6.h">
+      <Filter>Odin\Source\audio\Oscillators\Wavetables</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Oscillators\Wavetables\ChiptuneSquare12_5.h">
+      <Filter>Odin\Source\audio\Oscillators\Wavetables</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Oscillators\Wavetables\ChiptuneSquare25.h">
+      <Filter>Odin\Source\audio\Oscillators\Wavetables</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Oscillators\Wavetables\ChiptuneSquare50.h">
+      <Filter>Odin\Source\audio\Oscillators\Wavetables</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Oscillators\Wavetables\ChiptuneTriangle.h">
+      <Filter>Odin\Source\audio\Oscillators\Wavetables</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Oscillators\Wavetables\FatSaw.h">
+      <Filter>Odin\Source\audio\Oscillators\Wavetables</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Oscillators\Wavetables\Saw.h">
+      <Filter>Odin\Source\audio\Oscillators\Wavetables</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Oscillators\Wavetables\Sine.h">
+      <Filter>Odin\Source\audio\Oscillators\Wavetables</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Oscillators\Wavetables\Triangle.h">
+      <Filter>Odin\Source\audio\Oscillators\Wavetables</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Oscillators\AnalogOscillator.h">
+      <Filter>Odin\Source\audio\Oscillators</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Oscillators\ChiptuneArpeggiator.h">
+      <Filter>Odin\Source\audio\Oscillators</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Oscillators\ChiptuneOscillator.h">
+      <Filter>Odin\Source\audio\Oscillators</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Oscillators\DriftGenerator.h">
+      <Filter>Odin\Source\audio\Oscillators</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Oscillators\FMOscillator.h">
+      <Filter>Odin\Source\audio\Oscillators</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Oscillators\MultiOscillator.h">
+      <Filter>Odin\Source\audio\Oscillators</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Oscillators\NoiseOscillator.h">
+      <Filter>Odin\Source\audio\Oscillators</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Oscillators\Oscillator.h">
+      <Filter>Odin\Source\audio\Oscillators</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Oscillators\PitchShiftTable.h">
+      <Filter>Odin\Source\audio\Oscillators</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Oscillators\VectorOscillator.h">
+      <Filter>Odin\Source\audio\Oscillators</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Oscillators\WavetableCoefficients.h">
+      <Filter>Odin\Source\audio\Oscillators</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Oscillators\WavetableContainer.h">
+      <Filter>Odin\Source\audio\Oscillators</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Oscillators\WavetableOsc1D.h">
+      <Filter>Odin\Source\audio\Oscillators</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Oscillators\WavetableOsc2D.h">
+      <Filter>Odin\Source\audio\Oscillators</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\FX\Bitcrusher.h">
+      <Filter>Odin\Source\audio\FX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\FX\CubicShaper.h">
+      <Filter>Odin\Source\audio\FX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\FX\Delay.h">
+      <Filter>Odin\Source\audio\FX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\FX\OversamplingDistortion.h">
+      <Filter>Odin\Source\audio\FX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\FX\QuarticShaper.h">
+      <Filter>Odin\Source\audio\FX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Filters\DiodeFilter.h">
+      <Filter>Odin\Source\audio\Filters</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Filters\Filter.h">
+      <Filter>Odin\Source\audio\Filters</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Filters\FormantFilter.h">
+      <Filter>Odin\Source\audio\Filters</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Filters\Korg35Filter.h">
+      <Filter>Odin\Source\audio\Filters</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Filters\LadderFilter.h">
+      <Filter>Odin\Source\audio\Filters</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Filters\SEMFilter12.h">
+      <Filter>Odin\Source\audio\Filters</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Filters\SEMFilter24.h">
+      <Filter>Odin\Source\audio\Filters</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Filters\VAOnePoleFilter.h">
+      <Filter>Odin\Source\audio\Filters</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\ADSR.h">
+      <Filter>Odin\Source\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\OdinConstants.h">
+      <Filter>Odin\Source\audio</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\ADSRComponent.h">
-      <Filter>Odin\Source</Filter>
+      <Filter>Odin\Source\GUI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\AmpDistortionFlowComponent.h">
-      <Filter>Odin\Source</Filter>
+      <Filter>Odin\Source\GUI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\ChipdrawWindow.h">
-      <Filter>Odin\Source</Filter>
+      <Filter>Odin\Source\GUI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\DelayComponent.h">
-      <Filter>Odin\Source</Filter>
+      <Filter>Odin\Source\GUI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\DragButton.h">
-      <Filter>Odin\Source</Filter>
+      <Filter>Odin\Source\GUI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\DrawableSlider.h">
-      <Filter>Odin\Source</Filter>
+      <Filter>Odin\Source\GUI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\FilterComponent.h">
-      <Filter>Odin\Source</Filter>
+      <Filter>Odin\Source\GUI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\FormantSelector.h">
-      <Filter>Odin\Source</Filter>
+      <Filter>Odin\Source\GUI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\FXButtonsSection.h">
-      <Filter>Odin\Source</Filter>
+      <Filter>Odin\Source\GUI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\FXComponent.h">
-      <Filter>Odin\Source</Filter>
+      <Filter>Odin\Source\GUI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\GlasDisplay.h">
-      <Filter>Odin\Source</Filter>
+      <Filter>Odin\Source\GUI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\GlasDropdown.h">
-      <Filter>Odin\Source</Filter>
+      <Filter>Odin\Source\GUI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\GlobalIncludes.h">
-      <Filter>Odin\Source</Filter>
+      <Filter>Odin\Source\GUI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\IntegerKnob.h">
-      <Filter>Odin\Source</Filter>
+      <Filter>Odin\Source\GUI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Knob.h">
-      <Filter>Odin\Source</Filter>
+      <Filter>Odin\Source\GUI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\LeftRightButton.h">
-      <Filter>Odin\Source</Filter>
+      <Filter>Odin\Source\GUI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\LFOComponent.h">
-      <Filter>Odin\Source</Filter>
+      <Filter>Odin\Source\GUI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\LFODisplayComponent.h">
-      <Filter>Odin\Source</Filter>
+      <Filter>Odin\Source\GUI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\LFOSelectorComponent.h">
-      <Filter>Odin\Source</Filter>
+      <Filter>Odin\Source\GUI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\ModAmountComponent.h">
-      <Filter>Odin\Source</Filter>
+      <Filter>Odin\Source\GUI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\ModMatrixComponent.h">
-      <Filter>Odin\Source</Filter>
+      <Filter>Odin\Source\GUI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\NumberSelector.h">
-      <Filter>Odin\Source</Filter>
+      <Filter>Odin\Source\GUI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\OscComponent.h">
-      <Filter>Odin\Source</Filter>
+      <Filter>Odin\Source\GUI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\PitchWheel.h">
-      <Filter>Odin\Source</Filter>
+      <Filter>Odin\Source\GUI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\SaveLoadComponent.h">
-      <Filter>Odin\Source</Filter>
+      <Filter>Odin\Source\GUI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\SpecdrawDisplay.h">
-      <Filter>Odin\Source</Filter>
+      <Filter>Odin\Source\GUI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\SyncTimeSelector.h">
-      <Filter>Odin\Source</Filter>
+      <Filter>Odin\Source\GUI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\WavedrawDisplay.h">
-      <Filter>Odin\Source</Filter>
+      <Filter>Odin\Source\GUI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\WaveformSelectorComponent.h">
-      <Filter>Odin\Source</Filter>
+      <Filter>Odin\Source\GUI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\XYPadComponent.h">
-      <Filter>Odin\Source</Filter>
+      <Filter>Odin\Source\GUI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\XYSectionComponent.h">
+      <Filter>Odin\Source\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\AudioValueTree.h">
       <Filter>Odin\Source</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\PluginProcessor.h">
