@@ -55,7 +55,7 @@
 class DelayComponent : public Component
 {
 public:
-  DelayComponent();
+  DelayComponent(AudioProcessorValueTreeState& vts);
   ~DelayComponent();
 
   void paint(Graphics &) override;
@@ -104,6 +104,18 @@ private:
   SyncTimeSelector m_sync_time;
 
   juce::DrawableButton m_sync;
+
+  AudioProcessorValueTreeState& m_value_tree;
+
+  std::unique_ptr<SliderAttachment> m_delay_time_attach;
+  std::unique_ptr<SliderAttachment> m_delay_feedback_attach;
+  std::unique_ptr<SliderAttachment> m_delay_hp_attach;
+  std::unique_ptr<SliderAttachment> m_delay_ducking_attach;
+  std::unique_ptr<SliderAttachment> m_delay_dry_attach;
+  std::unique_ptr<SliderAttachment> m_delay_wet_attach;
+
+  std::unique_ptr<ButtonAttachment> m_sync_attach;
+  
 
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(DelayComponent)
 };

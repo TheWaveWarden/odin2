@@ -71,7 +71,7 @@
  */
 class FilterComponent : public Component {
 public:
-  FilterComponent();
+  FilterComponent(AudioProcessorValueTreeState& vts, std::string p_filter_number);
   ~FilterComponent();
 
   void paint(Graphics &) override;
@@ -119,5 +119,20 @@ protected:
   juce::Image m_background;
   juce::Image m_background_bypass;
   int m_filter_type;
+
+  std::string m_filter_number;
+  AudioProcessorValueTreeState& m_value_tree;
+
+  std::unique_ptr<SliderAttachment> m_vel_attach;
+  std::unique_ptr<SliderAttachment> m_kbd_attach;
+  std::unique_ptr<SliderAttachment> m_gain_attach;
+  std::unique_ptr<SliderAttachment> m_freq_attach;
+  std::unique_ptr<SliderAttachment> m_res_attach;
+  std::unique_ptr<SliderAttachment> m_saturation_attach;
+  std::unique_ptr<SliderAttachment> m_formant_transition_attach;
+  std::unique_ptr<SliderAttachment> m_sem_transition_attach;
+
+  
+
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(FilterComponent)
 };

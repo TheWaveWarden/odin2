@@ -252,7 +252,7 @@ protected:
   std::unique_ptr<ButtonAttachment> m_step_3_on_attach;
   std::unique_ptr<ButtonAttachment> m_chipnoise_attach;
   std::unique_ptr<ButtonAttachment> m_exp_fm_attach;
-  
+
 
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(OscComponent)
 };

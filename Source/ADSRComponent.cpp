@@ -12,8 +12,9 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 
 //==============================================================================
-ADSRComponent::ADSRComponent()
-    : m_loop("loop_button", juce::DrawableButton::ButtonStyle::ImageRaw) {
+ADSRComponent::ADSRComponent(AudioProcessorValueTreeState& vts, std::string p_adsr_number)
+    : m_loop("loop_button", juce::DrawableButton::ButtonStyle::ImageRaw),
+     m_value_tree(vts), m_adsr_number(p_adsr_number){
 
   juce::Image loop_1 = ImageCache::getFromFile(
       juce::File(GRAPHICS_PATH + "cropped/buttons/buttonloop_1.png"));
@@ -81,6 +82,13 @@ ADSRComponent::ADSRComponent()
   m_release.setDoubleClickReturnValue(true, R_DEFAULT, ModifierKeys::ctrlModifier);
   m_release.setTextValueSuffix(" s");
   m_release.setTooltip("Release\nDefines how long the envelope takes\n to fall back to zero after\nthe key is released");
+
+  m_attack_attach.reset (new SliderAttachment (m_value_tree, "env"+m_adsr_number+"_attack", m_attack));
+  m_decay_attach.reset (new SliderAttachment (m_value_tree, "env"+m_adsr_number+"_decay", m_decay));
+  m_sustain_attach.reset (new SliderAttachment (m_value_tree, "env"+m_adsr_number+"_sustain", m_sustain));
+  m_release_attach.reset (new SliderAttachment (m_value_tree, "env"+m_adsr_number+"_release", m_release));
+
+  m_loop_attach.reset (new ButtonAttachment (m_value_tree, "env"+m_adsr_number+"_loop", m_loop));
 }
 
 ADSRComponent::~ADSRComponent() {}

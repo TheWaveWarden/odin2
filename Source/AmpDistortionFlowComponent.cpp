@@ -12,10 +12,11 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 
 //==============================================================================
-AmpDistortionFlowComponent::AmpDistortionFlowComponent()
+AmpDistortionFlowComponent::AmpDistortionFlowComponent(AudioProcessorValueTreeState& vts)
     : m_flow_left("flow_left", juce::DrawableButton::ButtonStyle::ImageRaw),
       m_flow_right("flow_right", juce::DrawableButton::ButtonStyle::ImageRaw),
-      m_distortion("distortion", juce::DrawableButton::ButtonStyle::ImageRaw) {
+      m_distortion("distortion", juce::DrawableButton::ButtonStyle::ImageRaw),
+      m_value_tree(vts) {
 
   juce::Image flow_left_1 = ImageCache::getFromFile(
       juce::File(GRAPHICS_PATH + "cropped/buttons/buttonleft_1.png"));
@@ -186,6 +187,16 @@ AmpDistortionFlowComponent::AmpDistortionFlowComponent()
   m_distortion_algo.setColor(juce::STANDARD_DISPLAY_COLOR);
   m_distortion_algo.setTooltip("Select the distortion\nalgorithm to be used");
   addAndMakeVisible(m_distortion_algo);
+
+  m_amp_vel_attach.reset (new SliderAttachment (m_value_tree, "amp_vel", m_amp_vel));
+  m_amp_gain_attach.reset (new SliderAttachment (m_value_tree, "amp_gain", m_amp_gain));
+  m_amp_pan_attach.reset (new SliderAttachment (m_value_tree, "amp_pan", m_amp_pan));
+  m_dist_threshold_attach.reset (new SliderAttachment (m_value_tree, "dist_threshold", m_threshold));
+  m_dist_drywet_attach.reset (new SliderAttachment (m_value_tree, "dist_drywet", m_dry_wet));
+
+  m_dist_on_attach.reset (new ButtonAttachment (m_value_tree, "dist_on", m_distortion));
+  m_fil1_to_amp_attach.reset (new ButtonAttachment (m_value_tree, "fil1_to_amp", m_flow_right));
+  m_fil2_to_amp_attach.reset (new ButtonAttachment (m_value_tree, "fil2_to_amp", m_flow_left));
 }
 
 AmpDistortionFlowComponent::~AmpDistortionFlowComponent() {}

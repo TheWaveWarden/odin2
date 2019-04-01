@@ -62,7 +62,6 @@ private:
     Voice m_voice[VOICES];
     AudioProcessorValueTreeState m_parameters;
 
-    float* m_phaser_on_parameter;
     //osc1
     float* m_osc1_oct;
     float* m_osc1_semi;
@@ -132,7 +131,125 @@ private:
     float* m_osc3_step_3_on;
     float* m_osc3_chipnoise;
     float* m_osc3_exp_fm;
-
+    //fil1
+    float* m_fil1_vel;
+    float* m_fil1_kbd;
+    float* m_fil1_gain;
+    float* m_fil1_freq;
+    float* m_fil1_res;
+    float* m_fil1_saturation;
+    float* m_fil1_formant_transition;
+    float* m_fil1_sem_transition;
+    //fil2
+    float* m_fil2_vel;
+    float* m_fil2_kbd;
+    float* m_fil2_gain;
+    float* m_fil2_freq;
+    float* m_fil2_res;
+    float* m_fil2_saturation;
+    float* m_fil2_formant_transition;
+    float* m_fil2_sem_transition;
+    //fil3
+    float* m_fil3_vel;
+    float* m_fil3_kbd;
+    float* m_fil3_gain;
+    float* m_fil3_freq;
+    float* m_fil3_res;
+    float* m_fil3_saturation;
+    float* m_fil3_formant_transition;
+    float* m_fil3_sem_transition;
+    //midsection
+    float* m_amp_pan;
+    float* m_amp_gain;
+    float* m_amp_vel;
+    float* m_dist_threshold;
+    float* m_dist_drywet;
+    float* m_dist_on;
+    float* m_fil1_to_amp;
+    float* m_fil2_to_amp;
+    //env1
+    float* m_env1_attack;
+    float* m_env1_decay;
+    float* m_env1_sustain;
+    float* m_env1_release;
+    float* m_env1_loop;
+    //env2
+    float* m_env2_attack;
+    float* m_env2_decay;
+    float* m_env2_sustain;
+    float* m_env2_release;
+    float* m_env2_loop;
+    //env3
+    float* m_env3_attack;
+    float* m_env3_decay;
+    float* m_env3_sustain;
+    float* m_env3_release;
+    float* m_env3_loop;
+    //env4
+    float* m_env4_attack;
+    float* m_env4_decay;
+    float* m_env4_sustain;
+    float* m_env4_release;
+    float* m_env4_loop;
+    //lfo1
+    float* m_lfo1_freq;
+    float* m_lfo1_reset;
+    float* m_lfo1_sync;
+    //lfo2
+    float* m_lfo2_freq;
+    float* m_lfo2_reset;
+    float* m_lfo2_sync;
+    //lfo3
+    float* m_lfo3_freq;
+    float* m_lfo3_reset;
+    float* m_lfo3_sync;
+    //lfo4
+    float* m_lfo4_freq;
+    float* m_lfo4_reset;
+    float* m_lfo4_sync;
+    //main
+    float* m_glide;
+    float* m_master;
+    float* m_modwheel;
+    float* m_pitchbend;
+    float* m_pitchbend_amount;
+    float* m_delay_on;
+    float* m_phaser_on;
+    float* m_flanger_on;
+    float* m_chorus_on;
+    float* m_fil1_osc1;
+    float* m_fil1_osc2;
+    float* m_fil1_osc3;
+    float* m_fil2_osc1;
+    float* m_fil2_osc2;
+    float* m_fil2_osc3;
+    float* m_fil2_fil1;
+    //delay
+    float* m_delay_time;
+    float* m_delay_feedback;
+    float* m_delay_hp;
+    float* m_delay_ducking;
+    float* m_delay_dry;
+    float* m_delay_wet;
+    float* m_delay_sync;
+    //phaser
+    float* m_phaser_reset;
+    float* m_phaser_sync;
+    float* m_phaser_frequency;
+    float* m_phaser_amount;
+    float* m_phaser_drywet;
+    //flanger
+    float* m_flanger_reset;
+    float* m_flanger_sync;
+    float* m_flanger_frequency;
+    float* m_flanger_amount;
+    float* m_flanger_drywet;
+    //chorus
+    float* m_chorus_reset;
+    float* m_chorus_sync;
+    float* m_chorus_frequency;
+    float* m_chorus_amount;
+    float* m_chorus_drywet;
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (OdinAudioProcessor)
 };

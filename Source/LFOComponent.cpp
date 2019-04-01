@@ -12,8 +12,8 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 
 //==============================================================================
-LFOComponent::LFOComponent()
-    : m_reset("reset", juce::DrawableButton::ButtonStyle::ImageRaw),
+LFOComponent::LFOComponent(AudioProcessorValueTreeState& vts, std::string p_lfo_number)
+    : m_value_tree(vts), m_lfo_number(p_lfo_number), m_reset("reset", juce::DrawableButton::ButtonStyle::ImageRaw),
       m_sync("sync", juce::DrawableButton::ButtonStyle::ImageRaw) {
 
   juce::Image reset_1 = ImageCache::getFromFile(
@@ -101,8 +101,14 @@ LFOComponent::LFOComponent()
   m_sync_time.setTooltip("Set the frequency in sync to your track.");
   addChildComponent(m_sync_time);
 
+  m_freq_attach.reset (new SliderAttachment (m_value_tree, "lfo"+m_lfo_number+"_freq", m_freq));
+  
+  m_sync_attach.reset (new ButtonAttachment (m_value_tree, "lfo"+m_lfo_number+"_sync", m_sync));
+  m_reset_attach.reset (new ButtonAttachment (m_value_tree, "lfo"+m_lfo_number+"_reset", m_reset));
 
   setSync(false);
+
+  
 }
 
 LFOComponent::~LFOComponent() {}

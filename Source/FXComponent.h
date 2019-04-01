@@ -10,8 +10,8 @@
 
 #pragma once
 
-#include "GlobalIncludes.h"
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "GlobalIncludes.h"
 #include "Knob.h"
 
 #define AMOUNT_POS_X 103
@@ -33,32 +33,37 @@
 
 #define FX_DRYWET_DEFAULT 1
 
-
 //==============================================================================
 /*
-*/
-class FXComponent    : public Component
-{
+ */
+class FXComponent : public Component {
 public:
-    FXComponent();
-    ~FXComponent();
+  FXComponent(AudioProcessorValueTreeState &vts, std::string p_fx_name);
+  ~FXComponent();
 
-    void paint (Graphics&) override;
-    void resized() override;
-    void setImage(juce::Image p_background){
-      m_background = p_background;
-    }
-    
+  void paint(Graphics &) override;
+  void resized() override;
+  void setImage(juce::Image p_background) { m_background = p_background; }
+
 private:
+  Knob m_freq;
+  Knob m_amount;
+  Knob m_dry_wet;
 
-    Knob m_freq;
-    Knob m_amount;
-    Knob m_dry_wet;
+  juce::DrawableButton m_sync;
+  juce::DrawableButton m_reset;
 
-    juce::DrawableButton m_sync;
-    juce::DrawableButton m_reset;
-    
+  juce::Image m_background;
 
-    juce::Image m_background;
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (FXComponent)
+  std::string m_fx_name;
+  AudioProcessorValueTreeState &m_value_tree;
+
+  std::unique_ptr<SliderAttachment> m_frequency_attach;
+  std::unique_ptr<SliderAttachment> m_amount_attach;
+  std::unique_ptr<SliderAttachment> m_drywet_attach;
+
+  std::unique_ptr<ButtonAttachment> m_sync_attach;
+  std::unique_ptr<ButtonAttachment> m_reset_attach;
+
+  JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(FXComponent)
 };

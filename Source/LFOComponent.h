@@ -47,7 +47,7 @@
  */
 class LFOComponent : public Component {
 public:
-  LFOComponent();
+  LFOComponent(AudioProcessorValueTreeState& vts, std::string p_lfo_number);
   ~LFOComponent();
 
   
@@ -86,5 +86,14 @@ private:
 
   juce::Image m_freq_overdraw;
   bool m_sync_active = false;
+
+  std::string m_lfo_number;
+  AudioProcessorValueTreeState& m_value_tree;
+
+  std::unique_ptr<SliderAttachment> m_freq_attach;
+
+  std::unique_ptr<ButtonAttachment> m_sync_attach;
+  std::unique_ptr<ButtonAttachment> m_reset_attach;
+
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(LFOComponent)
 };

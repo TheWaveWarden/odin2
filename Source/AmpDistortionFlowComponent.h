@@ -49,7 +49,7 @@
  */
 class AmpDistortionFlowComponent : public Component {
 public:
-  AmpDistortionFlowComponent();
+  AmpDistortionFlowComponent(AudioProcessorValueTreeState& vts);
   ~AmpDistortionFlowComponent();
 
   void paint(Graphics &) override {}
@@ -67,6 +67,19 @@ private:
   juce::DrawableButton m_distortion;
 
   GlasDropdown m_distortion_algo;
+
+  AudioProcessorValueTreeState& m_value_tree;
+
+  std::unique_ptr<SliderAttachment> m_amp_pan_attach;
+  std::unique_ptr<SliderAttachment> m_amp_gain_attach;
+  std::unique_ptr<SliderAttachment> m_amp_vel_attach;
+  std::unique_ptr<SliderAttachment> m_dist_threshold_attach;
+  std::unique_ptr<SliderAttachment> m_dist_drywet_attach;
+
+  std::unique_ptr<ButtonAttachment> m_dist_on_attach;
+  std::unique_ptr<ButtonAttachment> m_fil1_to_amp_attach;
+  std::unique_ptr<ButtonAttachment> m_fil2_to_amp_attach;
+
 
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(AmpDistortionFlowComponent)
 };

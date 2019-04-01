@@ -56,7 +56,23 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor (OdinAudioProcessor& p, Audio
       m_pitch_amount(true),
       m_osc1(vts, "1"),
       m_osc2(vts, "2"),
-      m_osc3(vts, "3")
+      m_osc3(vts, "3"),
+      m_fil1_component(vts, "1"),
+      m_fil2_component(vts, "2"),
+      m_fil3_component(vts, "3"),
+      m_midsection(vts),
+      m_adsr_1(vts, "1"),
+      m_adsr_2(vts, "2"),
+      m_adsr_3(vts, "3"),
+      m_adsr_4(vts, "4"),
+      m_lfo_1(vts, "1"),
+      m_lfo_2(vts, "2"),
+      m_lfo_3(vts, "3"),
+      m_lfo_4(vts, "4"),
+      m_delay(vts),
+      m_phaser(vts, "phaser"),
+      m_flanger(vts, "flanger"),
+      m_chorus(vts, "chorus")
 {
     m_osc_dropdown_menu.addItem(1, "None");
   m_osc_dropdown_menu.addItem(2, "Analog Oscillator");
@@ -263,7 +279,6 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor (OdinAudioProcessor& p, Audio
   m_phaser_on_button.setTooltip("Enables the phaser");
   m_phaser_on_button.setColour(
       juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
-  m_phaser_on_attachment.reset (new ButtonAttachment (m_value_tree, "phaser_on", m_phaser_on_button));
 
   m_flanger_on_button.setImages(&fx_on_draw2, &fx_on_draw2, &fx_on_draw1,
                                 &fx_on_draw1, &fx_on_draw4, &fx_on_draw4,
@@ -728,6 +743,23 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor (OdinAudioProcessor& p, Audio
   m_filter_dropdown_menu.setLookAndFeel(&m_menu_feels);
 
   m_tooltip.setLookAndFeel(&m_tooltip_feels);
+
+  m_phaser_on_attachment.reset (new ButtonAttachment (m_value_tree, "phaser_on", m_phaser_on_button));
+  m_flanger_on_attachment.reset (new ButtonAttachment (m_value_tree, "flanger_on", m_flanger_on_button));
+  m_delay_on_attachment.reset (new ButtonAttachment (m_value_tree, "delay_on", m_delay_on_button));
+  m_chorus_on_attachment.reset (new ButtonAttachment (m_value_tree, "chorus_on", m_chorus_on_button));
+  m_fil1_osc1_attachment.reset (new ButtonAttachment (m_value_tree, "fil1_osc1", m_filleft_button1));
+  m_fil1_osc2_attachment.reset (new ButtonAttachment (m_value_tree, "fil1_osc2", m_filleft_button2));
+  m_fil1_osc3_attachment.reset (new ButtonAttachment (m_value_tree, "fil1_osc3", m_filleft_button3));
+  m_fil2_osc1_attachment.reset (new ButtonAttachment (m_value_tree, "fil2_osc1", m_filright_button1));
+  m_fil2_osc2_attachment.reset (new ButtonAttachment (m_value_tree, "fil2_osc2", m_filright_button2));
+  m_fil2_osc3_attachment.reset (new ButtonAttachment (m_value_tree, "fil2_osc3", m_filright_button3));
+  m_fil2_fil1_attachment.reset (new ButtonAttachment (m_value_tree, "fil2_fil1", m_filright_buttonf1));
+
+  m_glide_attachment.reset (new SliderAttachment (m_value_tree, "glide", m_glide));
+  m_master_attachment.reset (new SliderAttachment (m_value_tree, "master", m_master));
+  m_modwheel_attachment.reset (new SliderAttachment (m_value_tree, "modwheel", m_modwheel));
+  m_pitchbend_attachment.reset (new SliderAttachment (m_value_tree, "pitchbend", m_pitchwheel));
 
   setSize(800, 600);
 }

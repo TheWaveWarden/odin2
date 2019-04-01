@@ -45,7 +45,7 @@
  */
 class ADSRComponent : public Component {
 public:
-  ADSRComponent();
+  ADSRComponent(AudioProcessorValueTreeState& vts, std::string p_adsr_number);
   ~ADSRComponent();
 
   void paint(Graphics &) override;
@@ -59,6 +59,17 @@ private:
   DrawableSlider m_decay;
   DrawableSlider m_sustain;
   DrawableSlider m_release;
+
+  std::string m_adsr_number;
+  AudioProcessorValueTreeState& m_value_tree;
+
+  std::unique_ptr<SliderAttachment> m_attack_attach;
+  std::unique_ptr<SliderAttachment> m_decay_attach;
+  std::unique_ptr<SliderAttachment> m_sustain_attach;
+  std::unique_ptr<SliderAttachment> m_release_attach;
+
+  std::unique_ptr<ButtonAttachment> m_loop_attach;
+
 
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(ADSRComponent)
 };
