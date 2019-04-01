@@ -24,13 +24,8 @@ FXComponent::FXComponent(AudioProcessorValueTreeState &vts,
   m_amount.setSliderStyle(Slider::RotaryVerticalDrag);
   m_amount.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
   m_amount.setValue(FX_AMOUNT_DEFAULT);
-#ifdef ODIN_LINUX
   m_amount.setDoubleClickReturnValue(true, FX_AMOUNT_DEFAULT,
                                      ModifierKeys::ctrlModifier);
-#endif
-#ifdef ODIN_WIN
-  m_amount.setDoubleClickReturnValue(true, FX_AMOUNT_DEFAULT);
-#endif
   m_amount.setKnobTooltip(
       "How much the internal\nLFO modulates the\nfrequency of this effect");
   addAndMakeVisible(m_amount);
@@ -43,13 +38,8 @@ FXComponent::FXComponent(AudioProcessorValueTreeState &vts,
   m_freq.setTextValueSuffix(" Hz");
   m_freq.setNumDecimalPlacesToDisplay(2);
   m_freq.setValue(FX_FREQ_DEFAULT);
-#ifdef ODIN_LINUX
   m_freq.setDoubleClickReturnValue(true, FX_FREQ_DEFAULT,
                                    ModifierKeys::ctrlModifier);
-#endif
-#ifdef ODIN_WIN
-  m_freq.setDoubleClickReturnValue(true, FX_FREQ_DEFAULT);
-#endif
   m_freq.setKnobTooltip("The frequency of the internal LFO");
   addAndMakeVisible(m_freq);
 
@@ -57,13 +47,8 @@ FXComponent::FXComponent(AudioProcessorValueTreeState &vts,
   m_dry_wet.setSliderStyle(Slider::RotaryVerticalDrag);
   m_dry_wet.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
   m_dry_wet.setValue(FX_DRYWET_DEFAULT);
-#ifdef ODIN_LINUX
   m_dry_wet.setDoubleClickReturnValue(true, FX_DRYWET_DEFAULT,
                                       ModifierKeys::ctrlModifier);
-#endif
-#ifdef ODIN_WIN
-  m_dry_wet.setDoubleClickReturnValue(true, FX_DRYWET_DEFAULT);
-#endif
 
   m_dry_wet.setKnobTooltip("The mix of processed and\n unprocessed signals");
   addAndMakeVisible(m_dry_wet);

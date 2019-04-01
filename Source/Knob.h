@@ -78,12 +78,7 @@ public:
     setPopupDisplayEnabled(true, false, nullptr);
     setNumDecimalPlacesToDisplay(3);
     setVelocityModeParameters(1.0, 1, 0.0, true, ModifierKeys::shiftModifier);
-#ifdef ODIN_LINUX
-	setDoubleClickReturnValue(true, 0, ModifierKeys::ctrlModifier);
-#endif
-#ifdef ODIN_WIN
-	setDoubleClickReturnValue(true, 0);
-#endif
+    setDoubleClickReturnValue(true, 0, ModifierKeys::ctrlModifier);
 
     setTooltip("henlo");
     // todo not working
@@ -127,9 +122,7 @@ public:
 
   void mouseDoubleClick(const MouseEvent &event) override {}
 
-  void setKnobTooltip(const std::string p_tooltip){
-    setTooltip(p_tooltip);
-  }
+  void setKnobTooltip(const std::string p_tooltip) { setTooltip(p_tooltip); }
 
 private:
   bool m_is_vertical = true;

@@ -204,12 +204,7 @@ OscComponent::OscComponent(AudioProcessorValueTreeState& vts, std::string p_osc_
   m_pw.setSliderStyle(Slider::RotaryVerticalDrag);
   m_pw.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
   m_pw.setValue(PW_DEFAULT);
-#ifdef ODIN_LINUX
   m_pw.setDoubleClickReturnValue(true, PW_DEFAULT, ModifierKeys::ctrlModifier);
-#endif
-#ifdef ODIN_WIN
-  m_pw.setDoubleClickReturnValue(true, PW_DEFAULT);
-#endif
   m_pw.setKnobTooltip("The pulse width if\nthe pulse wave is selected");
   addChildComponent(m_pw);
 

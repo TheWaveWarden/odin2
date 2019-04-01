@@ -151,12 +151,7 @@ AmpDistortionFlowComponent::AmpDistortionFlowComponent(AudioProcessorValueTreeSt
   m_threshold.setStrip(round_knob, N_KNOB_FRAMES);
   m_threshold.setSliderStyle(Slider::RotaryVerticalDrag);
   m_threshold.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-#ifdef ODIN_LINUX
   m_threshold.setDoubleClickReturnValue(true, THRESHOLD_DEFAULT, ModifierKeys::ctrlModifier);
-#endif
-#ifdef ODIN_WIN
-  m_threshold.setDoubleClickReturnValue(true, THRESHOLD_DEFAULT);
-#endif
   m_threshold.setValue(THRESHOLD_DEFAULT);
   m_threshold.setKnobTooltip("The threshold to\n be reached before the\n algorithm cuts the\n waveform");
   addAndMakeVisible(m_threshold);
@@ -165,12 +160,7 @@ AmpDistortionFlowComponent::AmpDistortionFlowComponent(AudioProcessorValueTreeSt
   m_dry_wet.setSliderStyle(Slider::RotaryVerticalDrag);
   m_dry_wet.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
   m_dry_wet.setValue(DRYWET_DIST_DEFAULT);
-#ifdef ODIN_LINUX
   m_dry_wet.setDoubleClickReturnValue(true, DRYWET_DIST_DEFAULT, ModifierKeys::ctrlModifier);
-#endif
-#ifdef ODIN_WIN
-  m_dry_wet.setDoubleClickReturnValue(true, DRYWET_DIST_DEFAULT);
-#endif
   m_dry_wet.setKnobTooltip("The ratio of processed\nand unprocessed sound");
   addAndMakeVisible(m_dry_wet);
 
