@@ -6,11 +6,11 @@
 #define MIN_DECAY_RELEASE_VAL 0.001
 #include <cmath>
 
-class ADSR
+class ADSREnvelope
 {
   public:
-	ADSR();
-	~ADSR();
+	ADSREnvelope();
+	~ADSREnvelope();
 
 	float doEnvelope();
 	void startRelease();

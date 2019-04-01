@@ -21,11 +21,37 @@ OdinAudioProcessor::OdinAudioProcessor()
                       #endif
                        .withOutput ("Output", AudioChannelSet::stereo(), true)
                      #endif
-                       ), parameters (*this, nullptr, Identifier ("Odin"),
+                       ), m_parameters (*this, nullptr, Identifier ("Odin"),
                        #include "AudioValueTree.h"
                        )
 #endif
 {
+    m_phaser_on_parameter = m_parameters.getRawParameterValue ("phaser_on");
+
+    m_osc1_oct = m_parameters.getRawParameterValue("osc1_oct");
+    m_osc1_semi = m_parameters.getRawParameterValue("osc1_semi");
+    m_osc1_fine = m_parameters.getRawParameterValue("osc1_fine");
+    m_osc1_vol = m_parameters.getRawParameterValue("osc1_vol");
+    m_osc1_position = m_parameters.getRawParameterValue("osc1_position");
+    m_osc1_detune = m_parameters.getRawParameterValue("osc1_detune");
+    m_osc1_multi_position = m_parameters.getRawParameterValue("osc1_multi_position");
+    m_osc1_spread = m_parameters.getRawParameterValue("osc1_spread");
+    m_osc1_pulsewidth = m_parameters.getRawParameterValue("osc1_pulsewidth");
+    m_osc1_drift = m_parameters.getRawParameterValue("osc1_drift");
+    m_osc1_arp_speed = m_parameters.getRawParameterValue("osc1_arp_speed");
+    m_osc1_step_1 = m_parameters.getRawParameterValue("osc1_step_1");
+    m_osc1_step_2 = m_parameters.getRawParameterValue("osc1_step_2");
+    m_osc1_step_3 = m_parameters.getRawParameterValue("osc1_step_3");
+    m_osc1_fm = m_parameters.getRawParameterValue("osc1_fm");
+    m_osc1_lp = m_parameters.getRawParameterValue("osc1_lp");
+    m_osc1_hp = m_parameters.getRawParameterValue("osc1_hp");
+    m_osc1_reset = m_parameters.getRawParameterValue("osc1_reset");
+    m_osc1_arp_on = m_parameters.getRawParameterValue("osc1_arp_on");
+    m_osc1_step_3_on = m_parameters.getRawParameterValue("osc1_step_3_on");
+    m_osc1_chipnoise = m_parameters.getRawParameterValue("osc1_chipnoise");
+    m_osc1_exp_fm = m_parameters.getRawParameterValue("osc1_exp_fm");
+
+
 }
 
 OdinAudioProcessor::~OdinAudioProcessor()
@@ -136,6 +162,8 @@ void OdinAudioProcessor::processBlock (AudioBuffer<float>& buffer, MidiBuffer& m
     ScopedNoDenormals noDenormals;
     auto totalNumInputChannels  = getTotalNumInputChannels();
     auto totalNumOutputChannels = getTotalNumOutputChannels();
+    //DBG(*m_phaser_on_parameter);
+    
 
     // In case we have more outputs than inputs, this code clears any output
     // channels that didn't contain input data, (because these aren't
@@ -168,7 +196,7 @@ bool OdinAudioProcessor::hasEditor() const
 
 AudioProcessorEditor* OdinAudioProcessor::createEditor()
 {
-    return new OdinAudioProcessorEditor (*this);
+    return new OdinAudioProcessorEditor (*this, m_parameters);
 }
 
 //==============================================================================

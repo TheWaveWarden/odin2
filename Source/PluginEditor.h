@@ -167,7 +167,7 @@ public:
 class OdinAudioProcessorEditor  : public AudioProcessorEditor
 {
 public:
-    OdinAudioProcessorEditor (OdinAudioProcessor&);
+    OdinAudioProcessorEditor (OdinAudioProcessor&, AudioProcessorValueTreeState& vts);
     ~OdinAudioProcessorEditor();
 
     //==============================================================================
@@ -259,6 +259,14 @@ private:
 
   LeftRightButton m_lfo_13_button;
   LeftRightButton m_lfo_24_button;
+
+  AudioProcessorValueTreeState& m_value_tree;
+
+  std::unique_ptr<ButtonAttachment> m_phaser_on_attachment;
+
+
+
+
 
   TooltipWindow m_tooltip;
   TooltipFeels m_tooltip_feels;

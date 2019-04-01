@@ -1246,6 +1246,13 @@
 			path = "../../Source/audio/Oscillators/Wavetables/ChiptuneSquare12_5.h";
 			sourceTree = "SOURCE_ROOT";
 		};
+		B5FA42C48EAA776A85DDFFDB = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = Voice.h;
+			path = ../../Source/Voice.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		B6352AFCCB1D304B2592D38D = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
@@ -1533,6 +1540,13 @@
 			path = ../../JuceLibraryCode/JuceHeader.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		ECB4A9422DDA7DDD48789B52 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = PitchWheel.h;
+			path = ../../Source/PitchWheel.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		EDA78FF6C7C34E3BE3CF945F = {
 			isa = PBXFileReference;
 			lastKnownFileType = text.plist.xml;
@@ -1545,41 +1559,6 @@
 			lastKnownFileType = sourcecode.c.h;
 			name = PluginProcessor.h;
 			path = ../../Source/PluginProcessor.h;
-			sourceTree = "SOURCE_ROOT";
-		};
-		FC12642B755F0EA465F450F1 = {
-			isa = PBXFileReference;
-			explicitFileType = wrapper.cfbundle;
-			includeInIndex = 0;
-			path = Odin.vst;
-			sourceTree = "BUILT_PRODUCTS_DIR";
-		};
-		EC0E529B3A008A4BD8268B1E = {
-			isa = PBXFileReference;
-			explicitFileType = wrapper.cfbundle;
-			includeInIndex = 0;
-			path = Odin.vst3;
-			sourceTree = "BUILT_PRODUCTS_DIR";
-		};
-		F2F8D33D66E229F8F81A7E97 = {
-			isa = PBXFileReference;
-			explicitFileType = wrapper.application;
-			includeInIndex = 0;
-			path = Odin.app;
-			sourceTree = "BUILT_PRODUCTS_DIR";
-		};
-		15821A179AC7F4A6A5912916 = {
-			isa = PBXFileReference;
-			explicitFileType = archive.ar;
-			includeInIndex = 0;
-			path = libOdin.a;
-			sourceTree = "BUILT_PRODUCTS_DIR";
-		};
-		ECB4A9422DDA7DDD48789B52 = {
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.c.h;
-			name = PitchWheel.h;
-			path = ../../Source/PitchWheel.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		F03E01A3E845B2D892786A49 = {
@@ -1610,13 +1589,6 @@
 			path = ../../Source/audio/Oscillators/Wavetables/ChiptuneCustom2.h;
 			sourceTree = "SOURCE_ROOT";
 		};
-		F7EE059DC74FA1D7339DC4E7 = {
-			isa = PBXFileReference;
-			lastKnownFileType = file;
-			name = "juce_gui_extra";
-			path = "~/JUCE/modules/juce_gui_extra";
-			sourceTree = "<absolute>";
-		};
 		F90AA0EFB4B742929A1DE14B = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -1630,6 +1602,41 @@
 			name = ChiptuneCustom6.h;
 			path = ../../Source/audio/Oscillators/Wavetables/ChiptuneCustom6.h;
 			sourceTree = "SOURCE_ROOT";
+		};
+		FC12642B755F0EA465F450F1 = {
+			isa = PBXFileReference;
+			explicitFileType = wrapper.cfbundle;
+			includeInIndex = 0;
+			path = Odin.vst;
+			sourceTree = "BUILT_PRODUCTS_DIR";
+		};
+		EC0E529B3A008A4BD8268B1E = {
+			isa = PBXFileReference;
+			explicitFileType = wrapper.cfbundle;
+			includeInIndex = 0;
+			path = Odin.vst3;
+			sourceTree = "BUILT_PRODUCTS_DIR";
+		};
+		F2F8D33D66E229F8F81A7E97 = {
+			isa = PBXFileReference;
+			explicitFileType = wrapper.application;
+			includeInIndex = 0;
+			path = Odin.app;
+			sourceTree = "BUILT_PRODUCTS_DIR";
+		};
+		15821A179AC7F4A6A5912916 = {
+			isa = PBXFileReference;
+			explicitFileType = archive.ar;
+			includeInIndex = 0;
+			path = libOdin.a;
+			sourceTree = "BUILT_PRODUCTS_DIR";
+		};
+		F7EE059DC74FA1D7339DC4E7 = {
+			isa = PBXFileReference;
+			lastKnownFileType = file;
+			name = "juce_gui_extra";
+			path = "~/JUCE/modules/juce_gui_extra";
+			sourceTree = "<absolute>";
 		};
 		FAD89A285E9951E99978A7B1 = {
 			isa = PBXFileReference;
@@ -1851,6 +1858,7 @@
 		DA68EAE39AAE6BE7BAE84567 = {
 			isa = PBXGroup;
 			children = (
+				B5FA42C48EAA776A85DDFFDB,
 				9B7AED194DE9A837B907A769,
 				EA9DB1D60A88EF1A65170869,
 				CDAE96418DAFF7C292BCAF5E,

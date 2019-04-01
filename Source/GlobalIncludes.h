@@ -27,6 +27,11 @@
 //#define STANDARD_DISPLAY_COLOR Colour(10,40,50)
 #define STANDARD_DISPLAY_COLOR Colour(25, 44, 53)
 
+
+typedef AudioProcessorValueTreeState::SliderAttachment SliderAttachment;
+typedef AudioProcessorValueTreeState::ButtonAttachment ButtonAttachment;
+
+
 class OdinMenuFeels : public LookAndFeel_V4 {
 public:
   void drawPopupMenuBackground(Graphics &g, int width, int height) override {

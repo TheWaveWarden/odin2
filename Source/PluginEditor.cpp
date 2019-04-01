@@ -12,8 +12,9 @@
 #include "PluginEditor.h"
 
 //==============================================================================
-OdinAudioProcessorEditor::OdinAudioProcessorEditor (OdinAudioProcessor& p)
-    : AudioProcessorEditor (&p), processor (p), m_osc1_dropdown("osc1_dropdown_button",
+OdinAudioProcessorEditor::OdinAudioProcessorEditor (OdinAudioProcessor& p, AudioProcessorValueTreeState& vts)
+    : m_value_tree(vts), AudioProcessorEditor (&p), processor (p), 
+      m_osc1_dropdown("osc1_dropdown_button",
                       juce::DrawableButton::ButtonStyle::ImageRaw),
       m_osc2_dropdown("osc2_dropdown_button",
                       juce::DrawableButton::ButtonStyle::ImageRaw),
@@ -52,7 +53,10 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor (OdinAudioProcessor& p)
                         juce::DrawableButton::ButtonStyle::ImageRaw),
       m_env_13_button("env13_button"), m_env_24_button("env24_button"),
       m_lfo_13_button("lfo13_button"), m_lfo_24_button("lfo24_button"),
-      m_pitch_amount(true)
+      m_pitch_amount(true),
+      m_osc1(vts, "1"),
+      m_osc2(vts, "2"),
+      m_osc3(vts, "3")
 {
     m_osc_dropdown_menu.addItem(1, "None");
   m_osc_dropdown_menu.addItem(2, "Analog Oscillator");
@@ -259,6 +263,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor (OdinAudioProcessor& p)
   m_phaser_on_button.setTooltip("Enables the phaser");
   m_phaser_on_button.setColour(
       juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
+  m_phaser_on_attachment.reset (new ButtonAttachment (m_value_tree, "phaser_on", m_phaser_on_button));
 
   m_flanger_on_button.setImages(&fx_on_draw2, &fx_on_draw2, &fx_on_draw1,
                                 &fx_on_draw1, &fx_on_draw4, &fx_on_draw4,

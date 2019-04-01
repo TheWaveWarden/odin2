@@ -12,8 +12,9 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 
 //==============================================================================
-OscComponent::OscComponent()
-    : m_reset("reset_button", juce::DrawableButton::ButtonStyle::ImageRaw),
+OscComponent::OscComponent(AudioProcessorValueTreeState& vts, std::string p_osc_number)
+    : m_value_tree(vts),
+      m_reset("reset_button", juce::DrawableButton::ButtonStyle::ImageRaw),
       m_LED_saw("LED_Saw", juce::DrawableButton::ButtonStyle::ImageRaw),
       m_LED_pulse("LED_pulse", juce::DrawableButton::ButtonStyle::ImageRaw),
       m_LED_triangle("LED_triangle",
@@ -31,8 +32,8 @@ OscComponent::OscComponent()
       m_chiptune_waveselector(true), m_carrier_waveselector(false),
       m_modulator_waveselector(true), m_wavetable_waveselector(true),
       m_carrier_ratio(false), m_modulator_ratio(true), m_fm_exp("fm_exp"),
-      m_xy(m_xy_x_dummy, m_xy_x_dummy, true)
-
+      m_xy(m_xy_x_dummy, m_xy_x_dummy, true),
+      m_osc_number(p_osc_number)
 {
   m_vol.setStrip(
      ImageCache::getFromFile(juce::File(
@@ -96,6 +97,7 @@ OscComponent::OscComponent()
   m_oct.setRange(-OCT_RANGE_MAX, OCT_RANGE_MAX);
   m_oct.setNumDecimalPlacesToDisplay(0);
   m_oct.setKnobTooltip("The pitch of\nthe oscillator in octaves");
+  
   addChildComponent(m_oct);
 
   m_semi.setStrip(
@@ -726,6 +728,42 @@ OscComponent::OscComponent()
   m_vec_d.setColor(vector_color);
   m_vec_d.setTooltip("Select the waveform to the bottom right of the XY pad");
   addChildComponent(m_vec_d);
+
+
+  m_oct_attach.reset (new SliderAttachment (m_value_tree, "osc"+m_osc_number+"_oct", m_oct));
+  m_semi_attach.reset (new SliderAttachment (m_value_tree, "osc"+m_osc_number+"_semi", m_semi));
+  m_fine_attach.reset (new SliderAttachment (m_value_tree, "osc"+m_osc_number+"_fine", m_fine));
+  m_vol_attach.reset (new SliderAttachment (m_value_tree, "osc"+m_osc_number+"_vol", m_vol));
+  m_position_attach.reset (new SliderAttachment (m_value_tree, "osc"+m_osc_number+"_position", m_position));
+  m_detune_attach.reset (new SliderAttachment (m_value_tree, "osc"+m_osc_number+"_detune", m_detune));
+  m_multi_position_attach.reset (new SliderAttachment (m_value_tree, "osc"+m_osc_number+"_multi_position", m_position_multi));
+  m_spread_attach.reset (new SliderAttachment (m_value_tree, "osc"+m_osc_number+"_spread", m_spread));
+  m_pulsewidth_attach.reset (new SliderAttachment (m_value_tree, "osc"+m_osc_number+"_pulsewidth", m_pw));
+  m_drift_attach.reset (new SliderAttachment (m_value_tree, "osc"+m_osc_number+"_drift", m_drift));
+  m_arp_speed_attach.reset (new SliderAttachment (m_value_tree, "osc"+m_osc_number+"_arp_speed", m_speed));
+  m_step_1_attach.reset (new SliderAttachment (m_value_tree, "osc"+m_osc_number+"_step_1", m_step_1));
+  m_step_2_attach.reset (new SliderAttachment (m_value_tree, "osc"+m_osc_number+"_step_2", m_step_2));
+  m_step_3_attach.reset (new SliderAttachment (m_value_tree, "osc"+m_osc_number+"_step_3", m_step_3));
+  m_fm_attach.reset (new SliderAttachment (m_value_tree, "osc"+m_osc_number+"_fm", m_fm));
+  m_lp_attach.reset (new SliderAttachment (m_value_tree, "osc"+m_osc_number+"_lp", m_lp));
+  m_hp_attach.reset (new SliderAttachment (m_value_tree, "osc"+m_osc_number+"_hp", m_hp));
+  
+  m_reset_attach.reset (new ButtonAttachment (m_value_tree, "osc"+m_osc_number+"_reset", m_reset));
+  m_arp_on_attach.reset (new ButtonAttachment (m_value_tree, "osc"+m_osc_number+"_arp_on", m_arp));
+  m_step_3_on_attach.reset (new ButtonAttachment (m_value_tree, "osc"+m_osc_number+"_step_3_on", m_step_button));
+  m_chipnoise_attach.reset (new ButtonAttachment (m_value_tree, "osc"+m_osc_number+"_chipnoise", m_noise));
+  m_exp_fm_attach.reset (new ButtonAttachment (m_value_tree, "osc"+m_osc_number+"_exp_fm", m_fm_exp));
+
+
+
+
+
+
+
+
+
+
+
 
   setSize(247, 145);
 }

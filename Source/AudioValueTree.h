@@ -169,25 +169,25 @@
   std::make_unique<AudioParameterFloat> ("env1_attack", "Envelope1 Attack", 0.001f, 10.f, 0.01f),
   std::make_unique<AudioParameterFloat> ("env1_decay", "Envelope1 Decay", 0.001f, 10.f, 1.f),
   std::make_unique<AudioParameterFloat> ("env1_sustain", "Envelope1 Sustain", 0.f, 1.f, 0.5f),
-  std::make_unique<AudioParameterFloat> ("env1_attack", "Envelope1 Release", 0.001f, 10.f, 0.01f),
+  std::make_unique<AudioParameterFloat> ("env1_release", "Envelope1 Release", 0.001f, 10.f, 0.01f),
   std::make_unique<AudioParameterInt> ("env1_loop", "Envelope1 Loop", 0, 1, 0),
   //ADSR2
   std::make_unique<AudioParameterFloat> ("env2_attack", "Envelope2 Attack", 0.001f, 10.f, 0.01f),
   std::make_unique<AudioParameterFloat> ("env2_decay", "Envelope2 Decay", 0.001f, 10.f, 1.f),
   std::make_unique<AudioParameterFloat> ("env2_sustain", "Envelope2 Sustain", 0.f, 1.f, 0.5f),
-  std::make_unique<AudioParameterFloat> ("env2_attack", "Envelope2 Release", 0.001f, 10.f, 0.01f),
+  std::make_unique<AudioParameterFloat> ("env2_release", "Envelope2 Release", 0.001f, 10.f, 0.01f),
   std::make_unique<AudioParameterInt> ("env2_loop", "Envelope2 Loop", 0, 1, 0),
   //ADSR3
   std::make_unique<AudioParameterFloat> ("env3_attack", "Envelope3 Attack", 0.001f, 10.f, 0.01f),
   std::make_unique<AudioParameterFloat> ("env3_decay", "Envelope3 Decay", 0.001f, 10.f, 1.f),
   std::make_unique<AudioParameterFloat> ("env3_sustain", "Envelope3 Sustain", 0.f, 1.f, 0.5f),
-  std::make_unique<AudioParameterFloat> ("env3_attack", "Envelope3 Release", 0.001f, 10.f, 0.01f),
+  std::make_unique<AudioParameterFloat> ("env3_release", "Envelope3 Release", 0.001f, 10.f, 0.01f),
   std::make_unique<AudioParameterInt> ("env3_loop", "Envelope3 Loop", 0, 1, 0),
   //ADSR4
   std::make_unique<AudioParameterFloat> ("env4_attack", "Envelope4 Attack", 0.001f, 10.f, 0.01f),
   std::make_unique<AudioParameterFloat> ("env4_decay", "Envelope4 Decay", 0.001f, 10.f, 1.f),
   std::make_unique<AudioParameterFloat> ("env4_sustain", "Envelope4 Sustain", 0.f, 1.f, 0.5f),
-  std::make_unique<AudioParameterFloat> ("env4_attack", "Envelope4 Release", 0.001f, 10.f, 0.01f),
+  std::make_unique<AudioParameterFloat> ("env4_release", "Envelope4 Release", 0.001f, 10.f, 0.01f),
   std::make_unique<AudioParameterInt> ("env4_loop", "Envelope4 Loop", 0, 1, 0),
   //LFO1
   std::make_unique<AudioParameterInt> ("lfo1_reset", "LFO1 Reset", 0, 1, 0),
@@ -195,7 +195,6 @@
   std::make_unique<AudioParameterInt> ("lfo1_wave", "LFO1 Waveform", 0, 20, 0),
   std::make_unique<AudioParameterInt> ("lfo1_synctime_numerator", "LFO1 SyncTime Numerator", 1, 20, 0),
   std::make_unique<AudioParameterInt> ("lfo1_synctime_denominator", "LFO1 SyncTime Denominator", 1, 20, 0),
-  std::make_unique<AudioParameterInt> ("lfo1_wave", "LFO1 Waveform", 0, 20, 0),
   std::make_unique<AudioParameterFloat> ("lfo1_freq", "LFO1 Frequency", 0.05, 100, 1),
   //LFO2
   std::make_unique<AudioParameterInt> ("lfo2_reset", "LFO2 Reset", 0, 1, 0),
@@ -203,7 +202,6 @@
   std::make_unique<AudioParameterInt> ("lfo2_wave", "LFO2 Waveform", 0, 20, 0),
   std::make_unique<AudioParameterInt> ("lfo2_synctime_numerator", "LFO2 SyncTime Numerator", 1, 20, 0),
   std::make_unique<AudioParameterInt> ("lfo2_synctime_denominator", "LFO2 SyncTime Denominator", 1, 20, 0),
-  std::make_unique<AudioParameterInt> ("lfo2_wave", "LFO2 Waveform", 0, 20, 0),
   std::make_unique<AudioParameterFloat> ("lfo2_freq", "LFO2 Frequency", 0.05, 100, 1),
   //LFO3
   std::make_unique<AudioParameterInt> ("lfo3_reset", "LFO3 Reset", 0, 1, 0),
@@ -211,7 +209,6 @@
   std::make_unique<AudioParameterInt> ("lfo3_wave", "LFO3 Waveform", 0, 20, 0),
   std::make_unique<AudioParameterInt> ("lfo3_synctime_numerator", "LFO3 SyncTime Numerator", 1, 20, 0),
   std::make_unique<AudioParameterInt> ("lfo3_synctime_denominator", "LFO3 SyncTime Denominator", 1, 20, 0),
-  std::make_unique<AudioParameterInt> ("lfo3_wave", "LFO3 Waveform", 0, 20, 0),
   std::make_unique<AudioParameterFloat> ("lfo3_freq", "LFO3 Frequency", 0.05, 100, 1),
   //LFO4
   std::make_unique<AudioParameterInt> ("lfo4_reset", "LFO4 Reset", 0, 1, 0),
@@ -219,7 +216,6 @@
   std::make_unique<AudioParameterInt> ("lfo4_wave", "LFO4 Waveform", 0, 20, 0),
   std::make_unique<AudioParameterInt> ("lfo4_synctime_numerator", "LFO4 SyncTime Numerator", 1, 20, 0),
   std::make_unique<AudioParameterInt> ("lfo4_synctime_denominator", "LFO4 SyncTime Denominator", 1, 20, 0),
-  std::make_unique<AudioParameterInt> ("lfo4_wave", "LFO4 Waveform", 0, 20, 0),
   std::make_unique<AudioParameterFloat> ("lfo4_freq", "LFO4 Frequency", 0.05, 100, 1),
   //Misc
   std::make_unique<AudioParameterInt> ("fil1_to_amp", "Filter1 To Amplifier", 0, 1, 0),

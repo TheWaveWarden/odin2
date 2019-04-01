@@ -2595,6 +2595,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\Voice.h">
+      <Filter>Odin\Source</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\audio\LookupTables\adsr_pow.h">
       <Filter>Odin\Source\audio\Lookuptables</Filter>
     </ClInclude>

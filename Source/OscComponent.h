@@ -129,7 +129,7 @@
 class OscComponent : public Component
 {
 public:
-  OscComponent();
+  OscComponent(AudioProcessorValueTreeState& vts, std::string p_osc_number);
   ~OscComponent();
 
   void paint(Graphics &) override;
@@ -219,11 +219,40 @@ protected:
   SpecdrawDisplay m_specdraw;
 
   XYPadComponent m_xy;
-  Knob m_xy_x_dummy; //not seen, but for automation??
-  Knob m_xy_y_dummy; //not seen, but for automation??
+  Knob m_xy_x_dummy; //todo not seen, but for automation??
+  Knob m_xy_y_dummy; //todo not seen, but for automation??
   GlasDropdown m_vec_a;
   GlasDropdown m_vec_b;
   GlasDropdown m_vec_c;
   GlasDropdown m_vec_d;
+
+  std::string m_osc_number;
+  AudioProcessorValueTreeState& m_value_tree;
+
+  std::unique_ptr<SliderAttachment> m_oct_attach;
+  std::unique_ptr<SliderAttachment> m_semi_attach;
+  std::unique_ptr<SliderAttachment> m_fine_attach;
+  std::unique_ptr<SliderAttachment> m_vol_attach;
+  std::unique_ptr<SliderAttachment> m_position_attach;
+  std::unique_ptr<SliderAttachment> m_detune_attach;
+  std::unique_ptr<SliderAttachment> m_multi_position_attach;
+  std::unique_ptr<SliderAttachment> m_spread_attach;
+  std::unique_ptr<SliderAttachment> m_pulsewidth_attach;
+  std::unique_ptr<SliderAttachment> m_drift_attach;
+  std::unique_ptr<SliderAttachment> m_arp_speed_attach;
+  std::unique_ptr<SliderAttachment> m_step_1_attach;
+  std::unique_ptr<SliderAttachment> m_step_2_attach;
+  std::unique_ptr<SliderAttachment> m_step_3_attach;
+  std::unique_ptr<SliderAttachment> m_fm_attach;
+  std::unique_ptr<SliderAttachment> m_lp_attach;
+  std::unique_ptr<SliderAttachment> m_hp_attach;
+
+  std::unique_ptr<ButtonAttachment> m_reset_attach;
+  std::unique_ptr<ButtonAttachment> m_arp_on_attach;
+  std::unique_ptr<ButtonAttachment> m_step_3_on_attach;
+  std::unique_ptr<ButtonAttachment> m_chipnoise_attach;
+  std::unique_ptr<ButtonAttachment> m_exp_fm_attach;
+  
+
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(OscComponent)
 };

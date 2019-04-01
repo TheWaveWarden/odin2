@@ -4,6 +4,7 @@
               pluginFormats="buildStandalone,buildVST,buildVST3">
   <MAINGROUP id="Tn76b3" name="Odin">
     <GROUP id="{7AF384ED-9FD6-6492-4B8C-5777BB9A2698}" name="Source">
+      <FILE id="xZqU3u" name="Voice.h" compile="0" resource="0" file="Source/Voice.h"/>
       <GROUP id="{3EB8BD5A-21BA-3762-1B22-4C7E7C63EF47}" name="audio">
         <GROUP id="{6154F4CF-B621-5841-23CC-5426B7C28BDC}" name="Lookuptables">
           <FILE id="IuvMkp" name="adsr_pow.h" compile="0" resource="0" file="Source/audio/LookupTables/adsr_pow.h"/>

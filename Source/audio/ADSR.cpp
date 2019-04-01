@@ -5,19 +5,19 @@
 
 
 
-ADSR::ADSR()
+ADSREnvelope::ADSREnvelope()
 {
     //m_cheap_functions = CheapFunctions::getInstance();
 }
 
 
-ADSR::~ADSR()
+ADSREnvelope::~ADSREnvelope()
 {
 }
 
 
 
-float ADSR::doEnvelope(){
+float ADSREnvelope::doEnvelope(){
     if(m_current_section == -1){
         m_attack_start_value = 0.f;
         m_current_section = 0; // go to attack
@@ -73,7 +73,7 @@ float ADSR::doEnvelope(){
 }
 
 
-void ADSR::startRelease(){
+void ADSREnvelope::startRelease(){
     if(m_current_section == 1){
         m_release_start_value = m_current_value * (1. - m_sustain) + m_sustain;
     } else if (m_current_section == 2){
@@ -87,12 +87,12 @@ void ADSR::startRelease(){
 }
 
 
-int ADSR::getCurrentSection(){
+int ADSREnvelope::getCurrentSection(){
     return m_current_section;
 }
 
 
-void ADSR::testADSRPow(){
+void ADSREnvelope::testADSRPow(){
     std::ofstream output;
     output.open("E:\\odin\\DEBUG.txt");
     for(size_t i = 0; i <  10000; ++i){
@@ -101,7 +101,7 @@ void ADSR::testADSRPow(){
     output.close();
 }
 
-void ADSR::profileCheapPow(){
+void ADSREnvelope::profileCheapPow(){
 
     using namespace std;
     clock_t cheap_begin = clock();
