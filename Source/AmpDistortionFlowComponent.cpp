@@ -187,6 +187,9 @@ AmpDistortionFlowComponent::AmpDistortionFlowComponent(AudioProcessorValueTreeSt
   m_dist_on_attach.reset (new ButtonAttachment (m_value_tree, "dist_on", m_distortion));
   m_fil1_to_amp_attach.reset (new ButtonAttachment (m_value_tree, "fil1_to_amp", m_flow_right));
   m_fil2_to_amp_attach.reset (new ButtonAttachment (m_value_tree, "fil2_to_amp", m_flow_left));
+
+  m_dist_algo_attach.reset(new ComboBoxAttachment(m_value_tree, "dist_algo", m_distortion_algo));
+
 }
 
 AmpDistortionFlowComponent::~AmpDistortionFlowComponent() {}

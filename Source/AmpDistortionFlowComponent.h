@@ -80,6 +80,6 @@ private:
   std::unique_ptr<ButtonAttachment> m_fil1_to_amp_attach;
   std::unique_ptr<ButtonAttachment> m_fil2_to_amp_attach;
 
-
+  std::unique_ptr<ComboBoxAttachment> m_dist_algo_attach;
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(AmpDistortionFlowComponent)
 };

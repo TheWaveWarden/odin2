@@ -749,7 +749,10 @@ OscComponent::OscComponent(AudioProcessorValueTreeState& vts, std::string p_osc_
   m_chipnoise_attach.reset (new ButtonAttachment (m_value_tree, "osc"+m_osc_number+"_chipnoise", m_noise));
   m_exp_fm_attach.reset (new ButtonAttachment (m_value_tree, "osc"+m_osc_number+"_exp_fm", m_fm_exp));
 
-
+  m_vec_a_attach.reset(new ComboBoxAttachment (m_value_tree, "osc"+m_osc_number+"_vec_a", m_vec_a));
+  m_vec_b_attach.reset(new ComboBoxAttachment (m_value_tree, "osc"+m_osc_number+"_vec_b", m_vec_b));
+  m_vec_c_attach.reset(new ComboBoxAttachment (m_value_tree, "osc"+m_osc_number+"_vec_c", m_vec_c));
+  m_vec_d_attach.reset(new ComboBoxAttachment (m_value_tree, "osc"+m_osc_number+"_vec_d", m_vec_d));
 
 
 

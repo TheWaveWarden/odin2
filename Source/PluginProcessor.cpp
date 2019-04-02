@@ -51,6 +51,10 @@ OdinAudioProcessor::OdinAudioProcessor()
   m_osc1_step_3_on = m_parameters.getRawParameterValue("osc1_step_3_on");
   m_osc1_chipnoise = m_parameters.getRawParameterValue("osc1_chipnoise");
   m_osc1_exp_fm = m_parameters.getRawParameterValue("osc1_exp_fm");
+  m_osc1_vec_a = m_parameters.getRawParameterValue("osc1_vec_a");
+  m_osc1_vec_b = m_parameters.getRawParameterValue("osc1_vec_b");
+  m_osc1_vec_c = m_parameters.getRawParameterValue("osc1_vec_c");
+  m_osc1_vec_d = m_parameters.getRawParameterValue("osc1_vec_d");
 
   m_osc2_oct = m_parameters.getRawParameterValue("osc2_oct");
   m_osc2_semi = m_parameters.getRawParameterValue("osc2_semi");
@@ -75,6 +79,10 @@ OdinAudioProcessor::OdinAudioProcessor()
   m_osc2_step_3_on = m_parameters.getRawParameterValue("osc2_step_3_on");
   m_osc2_chipnoise = m_parameters.getRawParameterValue("osc2_chipnoise");
   m_osc2_exp_fm = m_parameters.getRawParameterValue("osc2_exp_fm");
+  m_osc2_vec_a = m_parameters.getRawParameterValue("osc2_vec_a");
+  m_osc2_vec_b = m_parameters.getRawParameterValue("osc2_vec_b");
+  m_osc2_vec_c = m_parameters.getRawParameterValue("osc2_vec_c");
+  m_osc2_vec_d = m_parameters.getRawParameterValue("osc2_vec_d");
 
   m_osc3_oct = m_parameters.getRawParameterValue("osc3_oct");
   m_osc3_semi = m_parameters.getRawParameterValue("osc3_semi");
@@ -99,6 +107,10 @@ OdinAudioProcessor::OdinAudioProcessor()
   m_osc3_step_3_on = m_parameters.getRawParameterValue("osc3_step_3_on");
   m_osc3_chipnoise = m_parameters.getRawParameterValue("osc3_chipnoise");
   m_osc3_exp_fm = m_parameters.getRawParameterValue("osc3_exp_fm");
+  m_osc3_vec_a = m_parameters.getRawParameterValue("osc3_vec_a");
+  m_osc3_vec_b = m_parameters.getRawParameterValue("osc3_vec_b");
+  m_osc3_vec_c = m_parameters.getRawParameterValue("osc3_vec_c");
+  m_osc3_vec_d = m_parameters.getRawParameterValue("osc3_vec_d");
 
   m_fil1_vel = m_parameters.getRawParameterValue("fil1_vel");
   m_fil1_kbd = m_parameters.getRawParameterValue("fil1_kbd");
@@ -139,6 +151,7 @@ OdinAudioProcessor::OdinAudioProcessor()
   m_dist_threshold = m_parameters.getRawParameterValue("dist_threshold");
   m_dist_drywet = m_parameters.getRawParameterValue("dist_drywet");
   m_dist_on = m_parameters.getRawParameterValue("dist_on");
+  m_dist_algo = m_parameters.getRawParameterValue("dist_algo");
   m_fil1_to_amp = m_parameters.getRawParameterValue("fil1_to_amp");
   m_fil2_to_amp = m_parameters.getRawParameterValue("fil2_to_amp");
 

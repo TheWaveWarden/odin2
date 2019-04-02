@@ -85,6 +85,10 @@ private:
     float* m_osc1_step_3_on;
     float* m_osc1_chipnoise;
     float* m_osc1_exp_fm;
+    float* m_osc1_vec_a;
+    float* m_osc1_vec_b;
+    float* m_osc1_vec_c;
+    float* m_osc1_vec_d;
     //osc2
     float* m_osc2_oct;
     float* m_osc2_semi;
@@ -108,6 +112,10 @@ private:
     float* m_osc2_step_3_on;
     float* m_osc2_chipnoise;
     float* m_osc2_exp_fm;
+    float* m_osc2_vec_a;
+    float* m_osc2_vec_b;
+    float* m_osc2_vec_c;
+    float* m_osc2_vec_d;
     //osc3
     float* m_osc3_oct;
     float* m_osc3_semi;
@@ -131,6 +139,10 @@ private:
     float* m_osc3_step_3_on;
     float* m_osc3_chipnoise;
     float* m_osc3_exp_fm;
+    float* m_osc3_vec_a;
+    float* m_osc3_vec_b;
+    float* m_osc3_vec_c;
+    float* m_osc3_vec_d;
     //fil1
     float* m_fil1_vel;
     float* m_fil1_kbd;
@@ -165,6 +177,7 @@ private:
     float* m_dist_threshold;
     float* m_dist_drywet;
     float* m_dist_on;
+    float* m_dist_algo;
     float* m_fil1_to_amp;
     float* m_fil2_to_amp;
     //env1
