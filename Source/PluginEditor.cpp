@@ -72,7 +72,15 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor (OdinAudioProcessor& p, Audio
       m_delay(vts),
       m_phaser(vts, "phaser"),
       m_flanger(vts, "flanger"),
-      m_chorus(vts, "chorus")
+      m_chorus(vts, "chorus"),
+      m_xy_section(vts, "xy"),
+      m_osc1_type_indentifier("osc1_type"),
+      m_osc2_type_indentifier("osc2_type"),
+      m_osc3_type_indentifier("osc3_type"),
+      m_fil1_type_indentifier("fil1_type"),
+      m_fil2_type_indentifier("fil2_type"),
+      m_fil3_type_indentifier("fil3_type"),
+      m_pitchbend_amount_identifier("pitchbend_amount")
 {
     m_osc_dropdown_menu.addItem(1, "None");
   m_osc_dropdown_menu.addItem(2, "Analog Oscillator");
@@ -732,6 +740,9 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor (OdinAudioProcessor& p, Audio
   m_lfo_4.setSyncOverdraw(lfo24_sync_background);
   addChildComponent(m_lfo_4);
 
+  m_pitch_amount.OnValueChange = [&](int p_new_value){
+      m_value_tree.getParameter(m_pitchbend_amount_identifier)->setValueNotifyingHost(((float)p_new_value - 0.5f) / 24.f);    
+  };
   m_pitch_amount.setTopLeftPosition(PITCH_AMOUNT_X, PITCH_AMOUNT_Y);
   addAndMakeVisible(m_pitch_amount);
   m_pitch_amount.setRange(1, 24);
@@ -853,26 +864,32 @@ void OdinAudioProcessorEditor::resized()
 
 void OdinAudioProcessorEditor::setOsc1Plate(int p_osc_type) {
   m_osc1.setOscType(p_osc_type);
+  m_value_tree.getParameter(m_osc1_type_indentifier)->setValueNotifyingHost(((float)p_osc_type - 0.5f) / 11.f);
 }
 
 void OdinAudioProcessorEditor::setOsc2Plate(int p_osc_type) {
   m_osc2.setOscType(p_osc_type);
+  m_value_tree.getParameter(m_osc2_type_indentifier)->setValueNotifyingHost(((float)p_osc_type - 0.5f) / 11.f);
 }
 
 void OdinAudioProcessorEditor::setOsc3Plate(int p_osc_type) {
   m_osc3.setOscType(p_osc_type);
+  m_value_tree.getParameter(m_osc3_type_indentifier)->setValueNotifyingHost(((float)p_osc_type - 0.5f) / 11.f);
 }
 
 void OdinAudioProcessorEditor::setFilter1Plate(int p_osc_type) {
   m_fil1_component.setFilterType(p_osc_type);
+  m_value_tree.getParameter(m_fil1_type_indentifier)->setValueNotifyingHost(((float)p_osc_type - 0.5f) / 13.f);
 }
 
 void OdinAudioProcessorEditor::setFilter2Plate(int p_osc_type) {
   m_fil2_component.setFilterType(p_osc_type);
+  m_value_tree.getParameter(m_fil2_type_indentifier)->setValueNotifyingHost(((float)p_osc_type - 0.5f) / 13.f);
 }
 
 void OdinAudioProcessorEditor::setFilter3Plate(int p_osc_type) {
   m_fil3_component.setFilterType(p_osc_type);
+  m_value_tree.getParameter(m_fil3_type_indentifier)->setValueNotifyingHost(((float)p_osc_type - 0.5f) / 13.f);
 }
 
 void OdinAudioProcessorEditor::setEnv13(bool p_env1) {

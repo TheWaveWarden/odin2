@@ -14,7 +14,10 @@
 //==============================================================================
 LFOComponent::LFOComponent(AudioProcessorValueTreeState& vts, std::string p_lfo_number)
     : m_value_tree(vts), m_lfo_number(p_lfo_number), m_reset("reset", juce::DrawableButton::ButtonStyle::ImageRaw),
-      m_sync("sync", juce::DrawableButton::ButtonStyle::ImageRaw) {
+      m_sync("sync", juce::DrawableButton::ButtonStyle::ImageRaw),
+      m_lfo_wave_identifier("lfo" + p_lfo_number + "_wave"),
+      m_lfo_synctime_denominator_identifier("lfo" + p_lfo_number + "_synctime_denominator"),
+      m_lfo_synctime_numerator_identifier("lfo" + p_lfo_number + "_synctime_numerator") {
 
   juce::Image reset_1 = ImageCache::getFromFile(
       juce::File(GRAPHICS_PATH + "cropped/buttons/buttonreset_lfo_1.png"));
@@ -93,10 +96,19 @@ LFOComponent::LFOComponent(AudioProcessorValueTreeState& vts, std::string p_lfo_
   m_freq.setKnobTooltip("The frequency of the LFO");  
   addAndMakeVisible(m_freq);
 
+  m_selector.OnValueChange = [&](int p_new_value){
+      m_value_tree.getParameter(m_lfo_wave_identifier)->setValueNotifyingHost(((float)p_new_value) / 20.f);          
+  };
   m_selector.setTopLeftPosition(SELECTOR_POS_X, SELECTOR_POS_Y);
   m_selector.setTooltip("The waveform to be used for the LFO");
   addAndMakeVisible(m_selector);
 
+
+
+  m_sync_time.OnValueChange = [&](int p_left, int p_right) {
+      m_value_tree.getParameter(m_lfo_synctime_numerator_identifier)->setValueNotifyingHost(((float)p_left ) / 20.f);    
+      m_value_tree.getParameter(m_lfo_synctime_denominator_identifier)->setValueNotifyingHost(((float)p_right ) / 20.f);         
+  };
   m_sync_time.setTopLeftPosition(SYNC_TIME_POS_X, SYNC_TIME_POS_Y);
   m_sync_time.setTooltip("Set the frequency in sync to your track.");
   addChildComponent(m_sync_time);

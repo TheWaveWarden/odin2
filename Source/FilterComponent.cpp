@@ -15,7 +15,10 @@
 //==============================================================================
 FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts,
                                  std::string p_filter_number)
-    : m_value_tree(vts), m_filter_number(p_filter_number), m_vowel_left(false), m_vowel_right(true) {
+    : m_value_tree(vts), m_filter_number(p_filter_number), m_vowel_left(false), m_vowel_right(true),
+    m_vowel_left_identifier("fil" + p_filter_number + "_vowel_left"),
+    m_vowel_right_identifier("fil" + p_filter_number + "_vowel_right")
+     {
   juce::Image metal_knob_big = ImageCache::getFromFile(
       juce::File(GRAPHICS_PATH + "cropped/knobs/metal3/metal_knob_big.png"));
   juce::Image metal_knob_mid = ImageCache::getFromFile(
@@ -125,6 +128,9 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts,
       "Transitions from the vowel on the\nleft to the one on the right");
   addChildComponent(m_formant_transition);
 
+  m_vowel_left.OnValueChange = [&](int p_new_value){
+      m_value_tree.getParameter(m_vowel_left_identifier)->setValueNotifyingHost(((float)p_new_value) / 7.f);    
+  };
   m_vowel_left.setTopLeftPosition(FORMANT_VOW_LEFT_POS_X,
                                   FORMANT_VOW_LEFT_POS_Y);
   m_vowel_left.setTooltip(
@@ -133,6 +139,9 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts,
   m_vowel_left.setValue(0);
   m_vowel_left.setColor(Colour(70, 30, 40));
 
+  m_vowel_right.OnValueChange = [&](int p_new_value){
+      m_value_tree.getParameter(m_vowel_right_identifier)->setValueNotifyingHost(((float)p_new_value) / 7.f);    
+  };
   m_vowel_right.setTopLeftPosition(FORMANT_VOW_RIGHT_POS_X,
                                    FORMANT_VOW_RIGHT_POS_Y);
   m_vowel_right.setTooltip(

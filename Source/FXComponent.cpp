@@ -17,7 +17,8 @@ FXComponent::FXComponent(AudioProcessorValueTreeState &vts,
                          std::string p_fx_name)
     : m_value_tree(vts), m_fx_name(p_fx_name),
       m_sync("sync", juce::DrawableButton::ButtonStyle::ImageRaw),
-      m_reset("reset", juce::DrawableButton::ButtonStyle::ImageRaw) {
+      m_reset("reset", juce::DrawableButton::ButtonStyle::ImageRaw),    m_fx_synctime_denominator_identifier(p_fx_name + "_synctime_denominator"),
+      m_fx_synctime_numerator_identifier(p_fx_name + "_synctime_numerator") {
   juce::Image metal_knob_big = ImageCache::getFromFile(
       juce::File(GRAPHICS_PATH + "cropped/knobs/metal3/metal_knob_big.png"));
   m_amount.setStrip(metal_knob_big, N_KNOB_FRAMES);

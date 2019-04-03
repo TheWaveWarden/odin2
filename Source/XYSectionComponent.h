@@ -26,13 +26,16 @@
  */
 class XYSectionComponent : public Component {
 public:
-  XYSectionComponent();
+  XYSectionComponent(AudioProcessorValueTreeState& vts, std::string p_section_name);
   ~XYSectionComponent();
 
   void paint(Graphics &) override;
   void resized() override;
 
 private:
+  std::string m_section_name;
+  AudioProcessorValueTreeState& m_value_tree;
+
   Knob m_modx;
   Knob m_mody;
 

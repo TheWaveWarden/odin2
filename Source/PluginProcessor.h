@@ -63,6 +63,7 @@ private:
     AudioProcessorValueTreeState m_parameters;
 
     //osc1
+    float* m_osc1_type;
     float* m_osc1_oct;
     float* m_osc1_semi;
     float* m_osc1_fine;
@@ -78,6 +79,8 @@ private:
     float* m_osc1_step_2;
     float* m_osc1_step_3;
     float* m_osc1_fm;
+    float* m_osc1_carrier_ratio;
+    float* m_osc1_modulator_ratio;
     float* m_osc1_lp;
     float* m_osc1_hp;
     float* m_osc1_reset;
@@ -89,7 +92,11 @@ private:
     float* m_osc1_vec_b;
     float* m_osc1_vec_c;
     float* m_osc1_vec_d;
+    float* m_osc1_vec_x;
+    float* m_osc1_vec_y;
+    float* m_osc1_wavetable;
     //osc2
+    float* m_osc2_type;
     float* m_osc2_oct;
     float* m_osc2_semi;
     float* m_osc2_fine;
@@ -105,6 +112,8 @@ private:
     float* m_osc2_step_2;
     float* m_osc2_step_3;
     float* m_osc2_fm;
+    float* m_osc2_carrier_ratio;
+    float* m_osc2_modulator_ratio;
     float* m_osc2_lp;
     float* m_osc2_hp;
     float* m_osc2_reset;
@@ -116,7 +125,11 @@ private:
     float* m_osc2_vec_b;
     float* m_osc2_vec_c;
     float* m_osc2_vec_d;
+    float* m_osc2_vec_x;
+    float* m_osc2_vec_y;
+    float* m_osc2_wavetable;
     //osc3
+    float* m_osc3_type;
     float* m_osc3_oct;
     float* m_osc3_semi;
     float* m_osc3_fine;
@@ -132,6 +145,8 @@ private:
     float* m_osc3_step_2;
     float* m_osc3_step_3;
     float* m_osc3_fm;
+    float* m_osc3_carrier_ratio;
+    float* m_osc3_modulator_ratio;
     float* m_osc3_lp;
     float* m_osc3_hp;
     float* m_osc3_reset;
@@ -143,7 +158,11 @@ private:
     float* m_osc3_vec_b;
     float* m_osc3_vec_c;
     float* m_osc3_vec_d;
+    float* m_osc3_vec_x;
+    float* m_osc3_vec_y;
+    float* m_osc3_wavetable;
     //fil1
+    float* m_fil1_type;
     float* m_fil1_vel;
     float* m_fil1_kbd;
     float* m_fil1_gain;
@@ -152,7 +171,10 @@ private:
     float* m_fil1_saturation;
     float* m_fil1_formant_transition;
     float* m_fil1_sem_transition;
+    float* m_fil1_vowel_left;
+    float* m_fil1_vowel_right;
     //fil2
+    float* m_fil2_type;
     float* m_fil2_vel;
     float* m_fil2_kbd;
     float* m_fil2_gain;
@@ -161,7 +183,10 @@ private:
     float* m_fil2_saturation;
     float* m_fil2_formant_transition;
     float* m_fil2_sem_transition;
+    float* m_fil2_vowel_left;
+    float* m_fil2_vowel_right;
     //fil3
+    float* m_fil3_type;
     float* m_fil3_vel;
     float* m_fil3_kbd;
     float* m_fil3_gain;
@@ -170,6 +195,8 @@ private:
     float* m_fil3_saturation;
     float* m_fil3_formant_transition;
     float* m_fil3_sem_transition;
+    float* m_fil3_vowel_left;
+    float* m_fil3_vowel_right;
     //midsection
     float* m_amp_pan;
     float* m_amp_gain;
@@ -208,24 +235,38 @@ private:
     float* m_lfo1_freq;
     float* m_lfo1_reset;
     float* m_lfo1_sync;
+    float* m_lfo1_wave;
+    float* m_lfo1_synctime_numerator;
+    float* m_lfo1_synctime_denominator;
     //lfo2
     float* m_lfo2_freq;
     float* m_lfo2_reset;
     float* m_lfo2_sync;
+    float* m_lfo2_wave;
+    float* m_lfo2_synctime_numerator;
+    float* m_lfo2_synctime_denominator;
     //lfo3
     float* m_lfo3_freq;
     float* m_lfo3_reset;
     float* m_lfo3_sync;
+    float* m_lfo3_wave;
+    float* m_lfo3_synctime_numerator;
+    float* m_lfo3_synctime_denominator;
     //lfo4
     float* m_lfo4_freq;
     float* m_lfo4_reset;
     float* m_lfo4_sync;
+    float* m_lfo4_wave;
+    float* m_lfo4_synctime_numerator;
+    float* m_lfo4_synctime_denominator;
     //main
     float* m_glide;
     float* m_master;
     float* m_modwheel;
     float* m_pitchbend;
     float* m_pitchbend_amount;
+    float* m_xy_x;
+    float* m_xy_y;
     float* m_delay_on;
     float* m_phaser_on;
     float* m_flanger_on;
@@ -245,6 +286,8 @@ private:
     float* m_delay_dry;
     float* m_delay_wet;
     float* m_delay_sync;
+    float* m_delay_synctime_numerator;
+    float* m_delay_synctime_denominator;
     //phaser
     float* m_phaser_reset;
     float* m_phaser_sync;

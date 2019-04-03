@@ -29,6 +29,7 @@ public:
     if(p_value < m_display.getNrOfWaves() && p_value > 0){
       m_value = p_value;
       m_display.setValue(p_value);
+      OnValueChange(p_value);
     }
   }
   
@@ -36,16 +37,19 @@ public:
     m_display.setTooltip(p_text);
   }
 
+  std::function<void(int)> OnValueChange = [](int){};
 private:
   void increment(){
     if(m_value + 1 < m_display.getNrOfWaves()){
       m_display.setValue(++m_value);
+      OnValueChange(m_value);
     }
   }
   
   void decrement(){
     if(m_value > 0){
       m_display.setValue(--m_value);
+      OnValueChange(m_value);
     }
   }
 

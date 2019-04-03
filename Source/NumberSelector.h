@@ -40,6 +40,7 @@ public:
     if(p_value >= m_min && p_value <= m_max){
       m_value = p_value;
       m_display.setText(std::to_string(m_value));
+      OnValueChange(p_value);
     }
   }
 
@@ -50,7 +51,8 @@ public:
   //void mouseEnter (const MouseEvent&)     { 
   //  showTooltip();
   //}
-
+  std::function<void(int)>OnValueChange = [](int){};
+  
 protected:
   void increment()
   {

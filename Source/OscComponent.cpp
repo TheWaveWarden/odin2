@@ -33,7 +33,13 @@ OscComponent::OscComponent(AudioProcessorValueTreeState& vts, std::string p_osc_
       m_modulator_waveselector(true), m_wavetable_waveselector(true),
       m_carrier_ratio(false), m_modulator_ratio(true), m_fm_exp("fm_exp"),
       m_xy(m_xy_x_dummy, m_xy_x_dummy, true),
-      m_osc_number(p_osc_number)
+      m_osc_number(p_osc_number),
+      m_wavetable_identifier("osc" + p_osc_number + "_wavetable"),
+      m_chipwave_identifier("osc" + p_osc_number + "_chipwave"),
+      m_modulator_wave_identifier("osc" + p_osc_number + "_modulator_wave"),
+      m_carrier_wave_identifier("osc" + p_osc_number + "_carrier_wave"),
+      m_modulator_ratio_identifier("osc" + p_osc_number + "_modulator_ratio"),
+      m_carrier_ratio_identifier("osc" + p_osc_number + "_carrier_ratio")
 {
   m_vol.setStrip(
      ImageCache::getFromFile(juce::File(
@@ -532,6 +538,9 @@ OscComponent::OscComponent(AudioProcessorValueTreeState& vts, std::string p_osc_
 
   juce::Colour chip_color(102, 93, 79);
 
+  m_chiptune_waveselector.OnValueChange = [&](int p_new_value){
+      m_value_tree.getParameter(m_chipwave_identifier)->setValueNotifyingHost(((float)p_new_value - 0.5f) / 1000.f);
+  };
   m_chiptune_waveselector.setTopLeftPosition(WAVE_CHIPTUNE_POS_X,
                                              WAVE_CHIPTUNE_POS_Y);
   m_chiptune_waveselector.addWave(1, "Saw");
@@ -553,6 +562,9 @@ OscComponent::OscComponent(AudioProcessorValueTreeState& vts, std::string p_osc_
 
   juce::Colour fm_color(90, 40, 40);
 
+  m_carrier_waveselector.OnValueChange = [&](int p_new_value){
+      m_value_tree.getParameter(m_carrier_wave_identifier)->setValueNotifyingHost(((float)p_new_value - 0.5f) / 1000.f);
+  };
   m_carrier_waveselector.setTopLeftPosition(WAVE_CARRIER_POS_X,
                                             WAVE_CARRIER_POS_Y);
   m_carrier_waveselector.addWave(1, "Saw");
@@ -565,6 +577,9 @@ OscComponent::OscComponent(AudioProcessorValueTreeState& vts, std::string p_osc_
   m_carrier_waveselector.setTooltip("Selects the wave for the carrier osc");
   addChildComponent(m_carrier_waveselector);
 
+  m_wavetable_waveselector.OnValueChange = [&](int p_new_value){
+      m_value_tree.getParameter(m_wavetable_identifier)->setValueNotifyingHost(((float)p_new_value - 0.5f) / 1000.f);
+  };
   m_wavetable_waveselector.setTopLeftPosition(WAVE_CARRIER_POS_X,
                                               WAVE_CARRIER_POS_Y);
   m_wavetable_waveselector.addWave(1, "Saw");
@@ -572,10 +587,13 @@ OscComponent::OscComponent(AudioProcessorValueTreeState& vts, std::string p_osc_
   m_wavetable_waveselector.addWave(3, "WOW");
   m_wavetable_waveselector.addWave(4, "henlo");
   m_wavetable_waveselector.addWave(5, "CARRIER");
-  m_wavetable_waveselector.setValue(1);
+  m_wavetable_waveselector.setValue(2);
   m_wavetable_waveselector.setTooltip("Selects the wave for the oscillator");
   addChildComponent(m_wavetable_waveselector);
 
+  m_modulator_waveselector.OnValueChange = [&](int p_new_value){
+      m_value_tree.getParameter(m_modulator_wave_identifier)->setValueNotifyingHost(((float)p_new_value - 0.5f) / 1000.f);
+  };
   m_modulator_waveselector.setTopLeftPosition(WAVE_MODULATOR_POS_X,
                                               WAVE_MODULATOR_POS_Y);
   m_modulator_waveselector.addWave(1, "Saw");
@@ -588,6 +606,9 @@ OscComponent::OscComponent(AudioProcessorValueTreeState& vts, std::string p_osc_
   m_modulator_waveselector.setTooltip("Selects the wave for the modulator osc");
   addChildComponent(m_modulator_waveselector);
 
+  m_carrier_ratio.OnValueChange = [&](int p_new_value){
+      m_value_tree.getParameter(m_carrier_ratio_identifier)->setValueNotifyingHost(((float)p_new_value - 0.5f) / 12.f);    
+  };
   m_carrier_ratio.setTopLeftPosition(RATIO_CARRIER_POS_X, RATIO_CARRIER_POS_Y);
   m_carrier_ratio.setRange(1, 12);
   m_carrier_ratio.setValue(1);
@@ -595,6 +616,10 @@ OscComponent::OscComponent(AudioProcessorValueTreeState& vts, std::string p_osc_
   m_carrier_ratio.setTooltip("The pitch ratio of the carrier to base frequency");
   addChildComponent(m_carrier_ratio);
 
+
+  m_modulator_ratio.OnValueChange = [&](int p_new_value){
+      m_value_tree.getParameter(m_modulator_ratio_identifier)->setValueNotifyingHost(((float)p_new_value - 0.5f) / 12.f);    
+  };
   m_modulator_ratio.setTopLeftPosition(RATIO_MODULATOR_POS_X,
                                        RATIO_MODULATOR_POS_Y);
   m_modulator_ratio.setRange(1, 12);
@@ -742,6 +767,8 @@ OscComponent::OscComponent(AudioProcessorValueTreeState& vts, std::string p_osc_
   m_fm_attach.reset (new SliderAttachment (m_value_tree, "osc"+m_osc_number+"_fm", m_fm));
   m_lp_attach.reset (new SliderAttachment (m_value_tree, "osc"+m_osc_number+"_lp", m_lp));
   m_hp_attach.reset (new SliderAttachment (m_value_tree, "osc"+m_osc_number+"_hp", m_hp));
+  m_x_attach.reset (new SliderAttachment (m_value_tree, "osc"+m_osc_number+"_vec_x", m_xy_x_dummy));
+  m_y_attach.reset (new SliderAttachment (m_value_tree, "osc"+m_osc_number+"_vec_y", m_xy_y_dummy));
   
   m_reset_attach.reset (new ButtonAttachment (m_value_tree, "osc"+m_osc_number+"_reset", m_reset));
   m_arp_on_attach.reset (new ButtonAttachment (m_value_tree, "osc"+m_osc_number+"_arp_on", m_arp));
@@ -754,7 +781,7 @@ OscComponent::OscComponent(AudioProcessorValueTreeState& vts, std::string p_osc_
   m_vec_c_attach.reset(new ComboBoxAttachment (m_value_tree, "osc"+m_osc_number+"_vec_c", m_vec_c));
   m_vec_d_attach.reset(new ComboBoxAttachment (m_value_tree, "osc"+m_osc_number+"_vec_d", m_vec_d));
 
-
+  
 
 
 

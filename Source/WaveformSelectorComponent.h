@@ -90,8 +90,12 @@ public:
     {
       m_display.setText(it->second);
       m_value = p_value;
+      OnValueChange(m_value);
     }
   }
+
+  std::function<void(int)>OnValueChange = [](int){};
+
 
 private:
   void increment()
@@ -111,6 +115,7 @@ private:
       setValue(it->second);
     }
   }
+
 
   GlasDisplay m_display;
   juce::PopupMenu m_menu;

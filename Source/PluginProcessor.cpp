@@ -28,6 +28,7 @@ OdinAudioProcessor::OdinAudioProcessor()
 #endif
 {
 
+  m_osc1_type = m_parameters.getRawParameterValue("osc1_type");
   m_osc1_oct = m_parameters.getRawParameterValue("osc1_oct");
   m_osc1_semi = m_parameters.getRawParameterValue("osc1_semi");
   m_osc1_fine = m_parameters.getRawParameterValue("osc1_fine");
@@ -44,6 +45,8 @@ OdinAudioProcessor::OdinAudioProcessor()
   m_osc1_step_2 = m_parameters.getRawParameterValue("osc1_step_2");
   m_osc1_step_3 = m_parameters.getRawParameterValue("osc1_step_3");
   m_osc1_fm = m_parameters.getRawParameterValue("osc1_fm");
+  m_osc1_carrier_ratio = m_parameters.getRawParameterValue("osc1_carrier_ratio");
+  m_osc1_modulator_ratio = m_parameters.getRawParameterValue("osc1_modulator_ratio");
   m_osc1_lp = m_parameters.getRawParameterValue("osc1_lp");
   m_osc1_hp = m_parameters.getRawParameterValue("osc1_hp");
   m_osc1_reset = m_parameters.getRawParameterValue("osc1_reset");
@@ -55,7 +58,11 @@ OdinAudioProcessor::OdinAudioProcessor()
   m_osc1_vec_b = m_parameters.getRawParameterValue("osc1_vec_b");
   m_osc1_vec_c = m_parameters.getRawParameterValue("osc1_vec_c");
   m_osc1_vec_d = m_parameters.getRawParameterValue("osc1_vec_d");
+  m_osc1_vec_x = m_parameters.getRawParameterValue("osc1_vec_x");
+  m_osc1_vec_y = m_parameters.getRawParameterValue("osc1_vec_y");
+  m_osc1_wavetable = m_parameters.getRawParameterValue("osc1_wavetable");
 
+  m_osc2_type = m_parameters.getRawParameterValue("osc2_type");
   m_osc2_oct = m_parameters.getRawParameterValue("osc2_oct");
   m_osc2_semi = m_parameters.getRawParameterValue("osc2_semi");
   m_osc2_fine = m_parameters.getRawParameterValue("osc2_fine");
@@ -72,6 +79,8 @@ OdinAudioProcessor::OdinAudioProcessor()
   m_osc2_step_2 = m_parameters.getRawParameterValue("osc2_step_2");
   m_osc2_step_3 = m_parameters.getRawParameterValue("osc2_step_3");
   m_osc2_fm = m_parameters.getRawParameterValue("osc2_fm");
+  m_osc2_carrier_ratio = m_parameters.getRawParameterValue("osc2_carrier_ratio");
+  m_osc2_modulator_ratio = m_parameters.getRawParameterValue("osc2_modulator_ratio");
   m_osc2_lp = m_parameters.getRawParameterValue("osc2_lp");
   m_osc2_hp = m_parameters.getRawParameterValue("osc2_hp");
   m_osc2_reset = m_parameters.getRawParameterValue("osc2_reset");
@@ -83,7 +92,11 @@ OdinAudioProcessor::OdinAudioProcessor()
   m_osc2_vec_b = m_parameters.getRawParameterValue("osc2_vec_b");
   m_osc2_vec_c = m_parameters.getRawParameterValue("osc2_vec_c");
   m_osc2_vec_d = m_parameters.getRawParameterValue("osc2_vec_d");
+  m_osc2_vec_x = m_parameters.getRawParameterValue("osc2_vec_x");
+  m_osc2_vec_y = m_parameters.getRawParameterValue("osc2_vec_y");
+  m_osc2_wavetable = m_parameters.getRawParameterValue("osc2_wavetable");
 
+  m_osc3_type = m_parameters.getRawParameterValue("osc3_type");
   m_osc3_oct = m_parameters.getRawParameterValue("osc3_oct");
   m_osc3_semi = m_parameters.getRawParameterValue("osc3_semi");
   m_osc3_fine = m_parameters.getRawParameterValue("osc3_fine");
@@ -100,6 +113,8 @@ OdinAudioProcessor::OdinAudioProcessor()
   m_osc3_step_2 = m_parameters.getRawParameterValue("osc3_step_2");
   m_osc3_step_3 = m_parameters.getRawParameterValue("osc3_step_3");
   m_osc3_fm = m_parameters.getRawParameterValue("osc3_fm");
+  m_osc3_carrier_ratio = m_parameters.getRawParameterValue("osc3_carrier_ratio");
+  m_osc3_modulator_ratio = m_parameters.getRawParameterValue("osc3_modulator_ratio");
   m_osc3_lp = m_parameters.getRawParameterValue("osc3_lp");
   m_osc3_hp = m_parameters.getRawParameterValue("osc3_hp");
   m_osc3_reset = m_parameters.getRawParameterValue("osc3_reset");
@@ -111,7 +126,11 @@ OdinAudioProcessor::OdinAudioProcessor()
   m_osc3_vec_b = m_parameters.getRawParameterValue("osc3_vec_b");
   m_osc3_vec_c = m_parameters.getRawParameterValue("osc3_vec_c");
   m_osc3_vec_d = m_parameters.getRawParameterValue("osc3_vec_d");
+  m_osc3_vec_x = m_parameters.getRawParameterValue("osc3_vec_x");
+  m_osc3_vec_y = m_parameters.getRawParameterValue("osc3_vec_y");
+  m_osc3_wavetable = m_parameters.getRawParameterValue("osc3_wavetable");
 
+  m_fil1_type = m_parameters.getRawParameterValue("fil1_type");
   m_fil1_vel = m_parameters.getRawParameterValue("fil1_vel");
   m_fil1_kbd = m_parameters.getRawParameterValue("fil1_kbd");
   m_fil1_gain = m_parameters.getRawParameterValue("fil1_gain");
@@ -122,7 +141,10 @@ OdinAudioProcessor::OdinAudioProcessor()
       m_parameters.getRawParameterValue("fil1_formant_transition");
   m_fil1_sem_transition =
       m_parameters.getRawParameterValue("fil1_sem_transition");
+  m_fil1_vowel_left = m_parameters.getRawParameterValue("fil1_vowel_left");
+  m_fil1_vowel_right = m_parameters.getRawParameterValue("fil1_vowel_right");
 
+  m_fil2_type = m_parameters.getRawParameterValue("fil2_type");
   m_fil2_vel = m_parameters.getRawParameterValue("fil2_vel");
   m_fil2_kbd = m_parameters.getRawParameterValue("fil2_kbd");
   m_fil2_gain = m_parameters.getRawParameterValue("fil2_gain");
@@ -133,7 +155,10 @@ OdinAudioProcessor::OdinAudioProcessor()
       m_parameters.getRawParameterValue("fil2_formant_transition");
   m_fil2_sem_transition =
       m_parameters.getRawParameterValue("fil2_sem_transition");
+  m_fil2_vowel_left = m_parameters.getRawParameterValue("fil2_vowel_left");
+  m_fil2_vowel_right = m_parameters.getRawParameterValue("fil2_vowel_right");
 
+  m_fil3_type = m_parameters.getRawParameterValue("fil3_type");
   m_fil3_vel = m_parameters.getRawParameterValue("fil3_vel");
   m_fil3_kbd = m_parameters.getRawParameterValue("fil3_kbd");
   m_fil3_gain = m_parameters.getRawParameterValue("fil3_gain");
@@ -144,6 +169,8 @@ OdinAudioProcessor::OdinAudioProcessor()
       m_parameters.getRawParameterValue("fil3_formant_transition");
   m_fil3_sem_transition =
       m_parameters.getRawParameterValue("fil3_sem_transition");
+  m_fil3_vowel_left = m_parameters.getRawParameterValue("fil3_vowel_left");
+  m_fil3_vowel_right = m_parameters.getRawParameterValue("fil3_vowel_right");
 
   m_amp_pan = m_parameters.getRawParameterValue("amp_pan");
   m_amp_gain = m_parameters.getRawParameterValue("amp_gain");
@@ -182,18 +209,30 @@ OdinAudioProcessor::OdinAudioProcessor()
   m_lfo1_freq = m_parameters.getRawParameterValue("lfo1_freq");
   m_lfo1_reset = m_parameters.getRawParameterValue("lfo1_reset");
   m_lfo1_sync = m_parameters.getRawParameterValue("lfo1_sync");
+  m_lfo1_wave = m_parameters.getRawParameterValue("lfo1_wave");
+  m_lfo1_synctime_numerator = m_parameters.getRawParameterValue("lfo1_synctime_numerator");
+  m_lfo1_synctime_denominator = m_parameters.getRawParameterValue("lfo1_synctime_denominator");
 
   m_lfo2_freq = m_parameters.getRawParameterValue("lfo2_freq");
   m_lfo2_reset = m_parameters.getRawParameterValue("lfo2_reset");
   m_lfo2_sync = m_parameters.getRawParameterValue("lfo2_sync");
+  m_lfo2_wave = m_parameters.getRawParameterValue("lfo2_wave");
+  m_lfo2_synctime_numerator = m_parameters.getRawParameterValue("lfo2_synctime_numerator");
+  m_lfo2_synctime_denominator = m_parameters.getRawParameterValue("lfo2_synctime_denominator");
 
   m_lfo3_freq = m_parameters.getRawParameterValue("lfo3_freq");
   m_lfo3_reset = m_parameters.getRawParameterValue("lfo3_reset");
   m_lfo3_sync = m_parameters.getRawParameterValue("lfo3_sync");
+  m_lfo3_wave = m_parameters.getRawParameterValue("lfo3_wave");
+  m_lfo3_synctime_numerator = m_parameters.getRawParameterValue("lfo3_synctime_numerator");
+  m_lfo3_synctime_denominator = m_parameters.getRawParameterValue("lfo3_synctime_denominator");
 
   m_lfo4_freq = m_parameters.getRawParameterValue("lfo4_freq");
   m_lfo4_reset = m_parameters.getRawParameterValue("lfo4_reset");
   m_lfo4_sync = m_parameters.getRawParameterValue("lfo4_sync");
+  m_lfo4_wave = m_parameters.getRawParameterValue("lfo4_wave");
+  m_lfo4_synctime_numerator = m_parameters.getRawParameterValue("lfo4_synctime_numerator");
+  m_lfo4_synctime_denominator = m_parameters.getRawParameterValue("lfo4_synctime_denominator");
   
   m_phaser_on = m_parameters.getRawParameterValue("phaser_on");
   m_flanger_on = m_parameters.getRawParameterValue("flanger_on");
@@ -207,10 +246,13 @@ OdinAudioProcessor::OdinAudioProcessor()
   m_fil2_osc2 = m_parameters.getRawParameterValue("fil2_osc2");
   m_fil2_osc3 = m_parameters.getRawParameterValue("fil2_osc3");
   m_fil2_fil1 = m_parameters.getRawParameterValue("fil2_fil1");
+  m_xy_x = m_parameters.getRawParameterValue("xy_x");
+  m_xy_y = m_parameters.getRawParameterValue("xy_y");
   m_glide = m_parameters.getRawParameterValue("glide");
   m_master = m_parameters.getRawParameterValue("master");
   m_modwheel = m_parameters.getRawParameterValue("modwheel");
   m_pitchbend = m_parameters.getRawParameterValue("pitchbend");
+  m_pitchbend_amount = m_parameters.getRawParameterValue("pitchbend_amount");
 
   m_delay_time = m_parameters.getRawParameterValue("delay_time");
   m_delay_feedback = m_parameters.getRawParameterValue("delay_feedback");
@@ -219,6 +261,9 @@ OdinAudioProcessor::OdinAudioProcessor()
   m_delay_dry = m_parameters.getRawParameterValue("delay_dry");
   m_delay_wet = m_parameters.getRawParameterValue("delay_wet");
   m_delay_sync = m_parameters.getRawParameterValue("delay_sync");
+  m_delay_synctime_numerator = m_parameters.getRawParameterValue("delay_synctime_numerator");
+  m_delay_synctime_denominator = m_parameters.getRawParameterValue("delay_synctime_denominator");
+  
 
   m_phaser_frequency = m_parameters.getRawParameterValue("phaser_frequency");
   m_phaser_amount = m_parameters.getRawParameterValue("phaser_amount");
@@ -326,7 +371,8 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
   ScopedNoDenormals noDenormals;
   auto totalNumInputChannels = getTotalNumInputChannels();
   auto totalNumOutputChannels = getTotalNumOutputChannels();
-  // DBG(*m_phaser_on_parameter);
+  //DBG(*m_delay_synctime_numerator);
+  //DBG(*m_delay_synctime_denominator);
 
   // In case we have more outputs than inputs, this code clears any output
   // channels that didn't contain input data, (because these aren't

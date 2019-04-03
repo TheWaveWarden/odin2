@@ -28,6 +28,7 @@ public:
     if (p_value >= m_min && p_value <= m_max) {
       m_value = p_value;
       m_display.setText(m_formant_vector[p_value]);
+      OnValueChange(p_value);
     }
   }
 

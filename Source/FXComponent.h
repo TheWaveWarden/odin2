@@ -65,5 +65,8 @@ private:
   std::unique_ptr<ButtonAttachment> m_sync_attach;
   std::unique_ptr<ButtonAttachment> m_reset_attach;
 
+  Identifier m_fx_synctime_numerator_identifier;
+  Identifier m_fx_synctime_denominator_identifier;
+
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(FXComponent)
 };

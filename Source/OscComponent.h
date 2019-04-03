@@ -246,6 +246,8 @@ protected:
   std::unique_ptr<SliderAttachment> m_fm_attach;
   std::unique_ptr<SliderAttachment> m_lp_attach;
   std::unique_ptr<SliderAttachment> m_hp_attach;
+  std::unique_ptr<SliderAttachment> m_x_attach;
+  std::unique_ptr<SliderAttachment> m_y_attach;
 
   std::unique_ptr<ButtonAttachment> m_reset_attach;
   std::unique_ptr<ButtonAttachment> m_arp_on_attach;
@@ -257,6 +259,13 @@ protected:
   std::unique_ptr<ComboBoxAttachment> m_vec_b_attach;
   std::unique_ptr<ComboBoxAttachment> m_vec_c_attach;
   std::unique_ptr<ComboBoxAttachment> m_vec_d_attach;
-  
+
+  Identifier m_wavetable_identifier;
+  Identifier m_chipwave_identifier;
+  Identifier m_modulator_wave_identifier;
+  Identifier m_carrier_wave_identifier;
+  Identifier m_modulator_ratio_identifier;
+  Identifier m_carrier_ratio_identifier;
+
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(OscComponent)
 };

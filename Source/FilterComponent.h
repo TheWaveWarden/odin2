@@ -132,7 +132,8 @@ protected:
   std::unique_ptr<SliderAttachment> m_formant_transition_attach;
   std::unique_ptr<SliderAttachment> m_sem_transition_attach;
 
-  
+  Identifier m_vowel_left_identifier;  
+  Identifier m_vowel_right_identifier;  
 
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(FilterComponent)
 };
