@@ -1,6 +1,6 @@
 #pragma once
 #include "Filter.h"
-#include "GlobalIncludes.h"
+#include "../../GlobalIncludes.h"
 class SEMFilter12 :
 	public Filter
 {

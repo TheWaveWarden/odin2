@@ -2,7 +2,7 @@
 #include "Filter.h"
 #include "VAOnePoleFilter.h"
 #include "SEMFilter12.h"
-#include "GlobalIncludes.h"
+#include "../../GlobalIncludes.h"
 
 class SEMFilter24 : public Filter
 {

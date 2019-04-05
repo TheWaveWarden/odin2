@@ -796,6 +796,7 @@ OdinAudioProcessorEditor::~OdinAudioProcessorEditor()
 {
     m_osc_dropdown_menu.setLookAndFeel(nullptr);
   m_filter_dropdown_menu.setLookAndFeel(nullptr);
+  m_tooltip.setLookAndFeel(nullptr);
 }
 
 //==============================================================================
