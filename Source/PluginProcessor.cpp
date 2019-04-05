@@ -270,18 +270,30 @@ OdinAudioProcessor::OdinAudioProcessor()
   m_phaser_drywet = m_parameters.getRawParameterValue("phaser_drywet");
   m_phaser_sync = m_parameters.getRawParameterValue("phaser_sync");
   m_phaser_reset = m_parameters.getRawParameterValue("phaser_reset");
+  m_phaser_synctime_numerator = m_parameters.getRawParameterValue("phaser_synctime_numerator");
+  m_phaser_synctime_denominator = m_parameters.getRawParameterValue("phaser_synctime_denominator");
 
   m_flanger_frequency = m_parameters.getRawParameterValue("flanger_frequency");
   m_flanger_amount = m_parameters.getRawParameterValue("flanger_amount");
   m_flanger_drywet = m_parameters.getRawParameterValue("flanger_drywet");
   m_flanger_sync = m_parameters.getRawParameterValue("flanger_sync");
   m_flanger_reset = m_parameters.getRawParameterValue("flanger_reset");
+  m_flanger_synctime_numerator = m_parameters.getRawParameterValue("flanger_synctime_numerator");
+  m_flanger_synctime_denominator = m_parameters.getRawParameterValue("flanger_synctime_denominator");
 
   m_chorus_frequency = m_parameters.getRawParameterValue("chorus_frequency");
   m_chorus_amount = m_parameters.getRawParameterValue("chorus_amount");
   m_chorus_drywet = m_parameters.getRawParameterValue("chorus_drywet");
   m_chorus_sync = m_parameters.getRawParameterValue("chorus_sync");
   m_chorus_reset = m_parameters.getRawParameterValue("chorus_reset");
+  m_chorus_synctime_numerator = m_parameters.getRawParameterValue("chorus_synctime_numerator");
+  m_chorus_synctime_denominator = m_parameters.getRawParameterValue("chorus_synctime_denominator");
+
+  m_delay_position = m_parameters.getRawParameterValue("delay_position");
+  m_flanger_position = m_parameters.getRawParameterValue("flanger_position");
+  m_phaser_position = m_parameters.getRawParameterValue("phaser_position");
+  m_chorus_position = m_parameters.getRawParameterValue("chorus_position");
+  
   
   
 }
@@ -371,7 +383,9 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
   ScopedNoDenormals noDenormals;
   auto totalNumInputChannels = getTotalNumInputChannels();
   auto totalNumOutputChannels = getTotalNumOutputChannels();
-  //DBG(*m_delay_synctime_numerator);
+  DBG(*m_phaser_synctime_denominator);
+  DBG(*m_phaser_synctime_numerator);
+  DBG("---------");
   //DBG(*m_delay_synctime_denominator);
 
   // In case we have more outputs than inputs, this code clears any output

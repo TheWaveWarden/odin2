@@ -278,6 +278,10 @@ private:
     float* m_fil2_osc2;
     float* m_fil2_osc3;
     float* m_fil2_fil1;
+    float* m_delay_position;
+    float* m_flanger_position;
+    float* m_phaser_position;
+    float* m_chorus_position;
     //delay
     float* m_delay_time;
     float* m_delay_feedback;
@@ -294,18 +298,24 @@ private:
     float* m_phaser_frequency;
     float* m_phaser_amount;
     float* m_phaser_drywet;
+    float* m_phaser_synctime_numerator;
+    float* m_phaser_synctime_denominator;
     //flanger
     float* m_flanger_reset;
     float* m_flanger_sync;
     float* m_flanger_frequency;
     float* m_flanger_amount;
     float* m_flanger_drywet;
+    float* m_flanger_synctime_numerator;
+    float* m_flanger_synctime_denominator;
     //chorus
     float* m_chorus_reset;
     float* m_chorus_sync;
     float* m_chorus_frequency;
     float* m_chorus_amount;
     float* m_chorus_drywet;
+    float* m_chorus_synctime_numerator;
+    float* m_chorus_synctime_denominator;
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (OdinAudioProcessor)
 };

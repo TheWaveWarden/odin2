@@ -29,6 +29,8 @@
 #define WET_POS_Y DRY_POS_Y
 #define DELAY_SYNC_POS_X 24
 #define DELAY_SYNC_POS_Y 78
+#define SYNC_TIME_DELAY_POS_X 2
+#define SYNC_TIME_DELAY_POS_Y 29
 
 #define HP_FREQ_MIN 80
 #define HP_FREQ_MAX 18000
@@ -46,9 +48,6 @@
 //#define SYNC_TIME_DELAY_POS_X 17
 //#define SYNC_TIME_DELAY_POS_Y 10
 
-
-#define SYNC_TIME_DELAY_POS_X 2
-#define SYNC_TIME_DELAY_POS_Y 29
 //==============================================================================
 /*
 */

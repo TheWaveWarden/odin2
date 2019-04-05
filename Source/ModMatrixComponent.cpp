@@ -31,6 +31,18 @@ ModMatrixComponent::ModMatrixComponent()
                       juce::DrawableButton::ButtonStyle::ImageRaw),
       m_clear_button8("clear_button",
                       juce::DrawableButton::ButtonStyle::ImageRaw) {
+
+  //set identifiers
+  for (int i = 0; i < N_ROWS - 1; ++i) {
+    m_source_identifier[i] = Identifier("source_[" + std::to_string(i) + "]");
+    m_amount_1_identifier[i] = Identifier("amount_1_[" + std::to_string(i) + "]");
+    m_amount_2_identifier[i] = Identifier("amount_2_[" + std::to_string(i) + "]");
+    m_amount_3_identifier[i] = Identifier("amount_3_[" + std::to_string(i) + "]");
+    m_dest_1_identifier[i] = Identifier("dest_1_[" + std::to_string(i) + "]");
+    m_dest_2_identifier[i] = Identifier("dest_2__[" + std::to_string(i) + "]");
+    m_scale_identifier[i] = Identifier("scale_[" + std::to_string(i) + "]");
+  }
+
   juce::Image glas_left_down = ImageCache::getFromFile(
       juce::File(GRAPHICS_PATH + "cropped/modpanelbig_left_down.png"));
   juce::Image glas_left_mid = ImageCache::getFromFile(
@@ -81,9 +93,8 @@ ModMatrixComponent::ModMatrixComponent()
   m_scale[N_ROWS - 1].setImage(glas_right_down);
 
   juce::Colour modmatrix_color = STANDARD_DISPLAY_COLOR;
-  juce::Colour modmatrix_color_bar(90,150,180);
+  juce::Colour modmatrix_color_bar(90, 150, 180);
   m_color = modmatrix_color;
-
 
   for (int i = 0; i < N_ROWS; ++i) {
     m_source[i].setTooltip("Set the mod source");
@@ -91,10 +102,9 @@ ModMatrixComponent::ModMatrixComponent()
     m_dest_1[i].setTooltip("Set the first mod destination");
     m_amount_2[i].setTooltip("Set the mod amount for the second destination");
     m_dest_2[i].setTooltip("Set the second mod destination");
-    m_amount_3[i].setTooltip("Set how much the scale signal scales the modulation");
+    m_amount_3[i].setTooltip(
+        "Set how much the scale signal scales the modulation");
     m_scale[i].setTooltip("Set the scale signal");
-    
-
 
     m_source[i].addItem("Source", 1);
     m_source[i].addItem("henlo", 2);
@@ -104,7 +114,7 @@ ModMatrixComponent::ModMatrixComponent()
     m_source[i].setColor(modmatrix_color);
     m_source[i].setGreyFirstElement(true);
     addAndMakeVisible(m_source[i]);
-    
+
     m_amount_1[i].setColor(modmatrix_color);
     m_amount_1[i].setColorBar(modmatrix_color_bar);
     addAndMakeVisible(m_amount_1[i]);
@@ -119,7 +129,7 @@ ModMatrixComponent::ModMatrixComponent()
 
     m_amount_2[i].setColor(modmatrix_color);
     m_amount_2[i].setColorBar(modmatrix_color_bar);
-    
+
     addAndMakeVisible(m_amount_2[i]);
     m_dest_2[i].addItem("Dest2", 1);
     m_dest_2[i].addItem("Freq", 2);
@@ -133,7 +143,7 @@ ModMatrixComponent::ModMatrixComponent()
     m_amount_3[i].setColor(modmatrix_color);
     m_amount_3[i].setColorBar(modmatrix_color_bar);
     addAndMakeVisible(m_amount_3[i]);
-    
+
     m_scale[i].addItem("Scale", 1);
     m_scale[i].addItem("henlo", 2);
     m_scale[i].addItem("LFO", 3);
@@ -152,10 +162,10 @@ ModMatrixComponent::ModMatrixComponent()
       juce::File(GRAPHICS_PATH + "cropped/buttons/buttonclear_1.png"));
   juce::Image clear_2 = ImageCache::getFromFile(
       juce::File(GRAPHICS_PATH + "cropped/buttons/buttonclear_2.png"));
-  juce::Image clearlast_1 = ImageCache::getFromFile(juce::File(
-      GRAPHICS_PATH + "cropped/buttons/buttonclearlast_1.png"));
-  juce::Image clearlast_2 = ImageCache::getFromFile(juce::File(
-      GRAPHICS_PATH + "cropped/buttons/buttonclearlast_2.png"));
+  juce::Image clearlast_1 = ImageCache::getFromFile(
+      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonclearlast_1.png"));
+  juce::Image clearlast_2 = ImageCache::getFromFile(
+      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonclearlast_2.png"));
 
   juce::DrawableImage clear_draw1;
   juce::DrawableImage clear_draw2;
@@ -263,9 +273,9 @@ ModMatrixComponent::ModMatrixComponent()
   m_clear_button7.setColour(
       juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
 
-  m_clear_button8.setImages(&clearlast_draw2, &clearlast_draw2, &clearlast_draw1,
-                            &clearlast_draw1, &clearlast_draw2, &clearlast_draw2,
-                            &clearlast_draw1, &clearlast_draw1);
+  m_clear_button8.setImages(
+      &clearlast_draw2, &clearlast_draw2, &clearlast_draw1, &clearlast_draw1,
+      &clearlast_draw2, &clearlast_draw2, &clearlast_draw1, &clearlast_draw1);
   m_clear_button8.setClickingTogglesState(true);
   m_clear_button8.setBounds(4 * m_big_panel_width + 3 * m_small_panel_width,
                             8 * m_panel_height, clearlast_1.getWidth(),
@@ -275,33 +285,15 @@ ModMatrixComponent::ModMatrixComponent()
   m_clear_button8.setColour(
       juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
 
-  m_clear_button0.onClick = [&](){
-      clearRow(0);
-  };
-  m_clear_button1.onClick = [&](){
-      clearRow(1);
-  };
-  m_clear_button2.onClick = [&](){
-      clearRow(2);
-  };
-  m_clear_button3.onClick = [&](){
-      clearRow(3);
-  };
-  m_clear_button4.onClick = [&](){
-      clearRow(4);
-  };
-  m_clear_button5.onClick = [&](){
-      clearRow(5);
-  };
-  m_clear_button6.onClick = [&](){
-      clearRow(6);
-  };
-  m_clear_button7.onClick = [&](){
-      clearRow(7);
-  };
-  m_clear_button8.onClick = [&](){
-      clearRow(8);
-  };
+  m_clear_button0.onClick = [&]() { clearRow(0); };
+  m_clear_button1.onClick = [&]() { clearRow(1); };
+  m_clear_button2.onClick = [&]() { clearRow(2); };
+  m_clear_button3.onClick = [&]() { clearRow(3); };
+  m_clear_button4.onClick = [&]() { clearRow(4); };
+  m_clear_button5.onClick = [&]() { clearRow(5); };
+  m_clear_button6.onClick = [&]() { clearRow(6); };
+  m_clear_button7.onClick = [&]() { clearRow(7); };
+  m_clear_button8.onClick = [&]() { clearRow(8); };
 
   m_clear_button0.setTooltip("Clear the entire modmatrix row");
   m_clear_button1.setTooltip("Clear the entire modmatrix row");
@@ -347,12 +339,12 @@ void ModMatrixComponent::resized() {
   }
 }
 
-void ModMatrixComponent::clearRow(int p_row){
-    m_source[p_row].reset();
-    m_amount_1[p_row].reset();
-    m_dest_1[p_row].reset();
-    m_amount_2[p_row].reset();
-    m_dest_2[p_row].reset();
-    m_amount_3[p_row].reset();
-    m_scale[p_row].reset();
+void ModMatrixComponent::clearRow(int p_row) {
+  m_source[p_row].reset();
+  m_amount_1[p_row].reset();
+  m_dest_1[p_row].reset();
+  m_amount_2[p_row].reset();
+  m_dest_2[p_row].reset();
+  m_amount_3[p_row].reset();
+  m_scale[p_row].reset();
 }

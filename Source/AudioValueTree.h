@@ -227,6 +227,10 @@
   std::make_unique<AudioParameterInt> ("pitchbend_amount", "Pitchbend Semitones", 1, 24, 12),  
   std::make_unique<AudioParameterFloat> ("xy_x", "XY Pad X", 0.f, 1.f, 0.f),
   std::make_unique<AudioParameterFloat> ("xy_y", "XY Pad Y", 0.f, 1.f, 0.f),
+  std::make_unique<AudioParameterInt> ("delay_position", "Delay Drag n Drop Position", 0, 3, 0),  
+  std::make_unique<AudioParameterInt> ("phaser_position", "Phaser Drag n Drop Position", 0, 3, 1),  
+  std::make_unique<AudioParameterInt> ("flanger_position", "Flanger Drag n Drop Position", 0, 3, 2),  
+  std::make_unique<AudioParameterInt> ("chorus_position", "Chorus Drag n Drop Position", 0, 3, 3),  
   //Delay
   std::make_unique<AudioParameterInt> ("delay_sync", "Delay Sync", 0, 1, 0),
   std::make_unique<AudioParameterFloat> ("delay_time", "Delay Time", 0.01f, 3.f, 1.f),

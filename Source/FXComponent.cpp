@@ -17,7 +17,8 @@ FXComponent::FXComponent(AudioProcessorValueTreeState &vts,
                          std::string p_fx_name)
     : m_value_tree(vts), m_fx_name(p_fx_name),
       m_sync("sync", juce::DrawableButton::ButtonStyle::ImageRaw),
-      m_reset("reset", juce::DrawableButton::ButtonStyle::ImageRaw),    m_fx_synctime_denominator_identifier(p_fx_name + "_synctime_denominator"),
+      m_reset("reset", juce::DrawableButton::ButtonStyle::ImageRaw),
+      m_fx_synctime_denominator_identifier(p_fx_name + "_synctime_denominator"),
       m_fx_synctime_numerator_identifier(p_fx_name + "_synctime_numerator") {
   juce::Image metal_knob_big = ImageCache::getFromFile(
       juce::File(GRAPHICS_PATH + "cropped/knobs/metal3/metal_knob_big.png"));
@@ -112,23 +113,42 @@ FXComponent::FXComponent(AudioProcessorValueTreeState &vts,
   m_sync.setTriggeredOnMouseDown(true);
   m_sync.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId,
                    juce::Colour());
-  m_sync.onStateChange = [&]() {
-    // setSync(m_sync.getToggleState());
-  };
+  m_sync.onStateChange = [&]() { setSyncEnabled(m_sync.getToggleState()); };
   m_sync.setTooltip("Syncs the internal LFOs\nspeed to your track");
   addAndMakeVisible(m_sync);
 
-  m_frequency_attach.reset (new SliderAttachment (m_value_tree, m_fx_name+"_frequency", m_freq));
-  m_amount_attach.reset (new SliderAttachment (m_value_tree, m_fx_name+"_amount", m_amount));
-  m_drywet_attach.reset (new SliderAttachment (m_value_tree, m_fx_name+"_drywet", m_dry_wet));
-  
-  m_sync_attach.reset (new ButtonAttachment (m_value_tree, m_fx_name+"_sync", m_sync));
-  m_reset_attach.reset (new ButtonAttachment (m_value_tree, m_fx_name+"_reset", m_reset));
+  m_frequency_attach.reset(
+      new SliderAttachment(m_value_tree, m_fx_name + "_frequency", m_freq));
+  m_amount_attach.reset(
+      new SliderAttachment(m_value_tree, m_fx_name + "_amount", m_amount));
+  m_drywet_attach.reset(
+      new SliderAttachment(m_value_tree, m_fx_name + "_drywet", m_dry_wet));
+
+  m_sync_attach.reset(
+      new ButtonAttachment(m_value_tree, m_fx_name + "_sync", m_sync));
+  m_reset_attach.reset(
+      new ButtonAttachment(m_value_tree, m_fx_name + "_reset", m_reset));
+
+  m_synctime.OnValueChange = [&](int p_left, int p_right) {
+    m_value_tree.getParameter(m_fx_synctime_numerator_identifier)
+        ->setValueNotifyingHost(((float)p_left) / 20.f);
+    m_value_tree.getParameter(m_fx_synctime_denominator_identifier)
+        ->setValueNotifyingHost(((float)p_right) / 20.f);
+  };
+  m_synctime.setTopLeftPosition(SYNC_TIME_FX_POS_X, SYNC_TIME_FX_POS_Y);
+  m_synctime.setTooltip("Set the delay time in sync to your track");
+  addChildComponent(m_synctime);
 }
 
 FXComponent::~FXComponent() {}
 
-void FXComponent::paint(Graphics &g) { g.drawImageAt(m_background, 0, 0); }
+void FXComponent::paint(Graphics &g) {
+  if (m_sync_enabled) {
+    g.drawImageAt(m_background_sync, 0, 0);
+  } else {
+    g.drawImageAt(m_background_no_sync, 0, 0);
+  }
+}
 
 void FXComponent::resized() {
   m_amount.setBounds(AMOUNT_POS_X, AMOUNT_POS_Y, METAL_KNOB_BIG_SIZE_X,
@@ -137,4 +157,18 @@ void FXComponent::resized() {
                    METAL_KNOB_BIG_SIZE_Y);
   m_dry_wet.setBounds(DRY_WET_POS_X, DRY_WET_POS_Y, METAL_KNOB_BIG_SIZE_X,
                       METAL_KNOB_BIG_SIZE_Y);
+}
+
+void FXComponent::setSyncEnabled(bool p_sync) {
+  if (m_sync_enabled != p_sync) {
+    m_sync_enabled = p_sync;
+    if (m_sync_enabled) {
+      m_freq.setVisible(false);
+      m_synctime.setVisible(true);
+    } else {
+      m_freq.setVisible(true);
+      m_synctime.setVisible(false);
+    }
+    repaint();
+  }
 }

@@ -286,9 +286,10 @@ private:
   Identifier m_fil2_type_indentifier; 
   Identifier m_fil3_type_indentifier; 
   Identifier m_pitchbend_amount_identifier; 
-
-
-
+  Identifier m_delay_position_identifier;
+  Identifier m_phaser_position_identifier;
+  Identifier m_flanger_position_identifier;
+  Identifier m_chorus_position_identifier;
 
 
   TooltipWindow m_tooltip;

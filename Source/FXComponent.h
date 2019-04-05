@@ -13,6 +13,7 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "GlobalIncludes.h"
 #include "Knob.h"
+#include "SyncTimeSelector.h"
 
 #define AMOUNT_POS_X 103
 #define AMOUNT_POS_Y 43
@@ -24,6 +25,8 @@
 #define FX_SYNC_POS_Y 79
 #define FX_RESET_POS_X 176
 #define FX_RESET_POS_Y FX_SYNC_POS_Y
+#define SYNC_TIME_FX_POS_X 16
+#define SYNC_TIME_FX_POS_Y 29
 
 #define FX_FREQ_MIN 0.05
 #define FX_FREQ_MAX 20
@@ -43,7 +46,16 @@ public:
 
   void paint(Graphics &) override;
   void resized() override;
-  void setImage(juce::Image p_background) { m_background = p_background; }
+  
+  void setImage(juce::Image p_background, bool p_sync) {
+    if (p_sync) {
+      m_background_sync = p_background;
+    } else {
+      m_background_no_sync = p_background;
+    }
+  }
+
+  void setSyncEnabled(bool p_sync);
 
 private:
   Knob m_freq;
@@ -53,7 +65,12 @@ private:
   juce::DrawableButton m_sync;
   juce::DrawableButton m_reset;
 
-  juce::Image m_background;
+  juce::Image m_background_sync;
+  juce::Image m_background_no_sync;
+
+  SyncTimeSelector m_synctime;
+
+  bool m_sync_enabled = false;
 
   std::string m_fx_name;
   AudioProcessorValueTreeState &m_value_tree;

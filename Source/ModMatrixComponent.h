@@ -43,6 +43,14 @@ private:
     ModAmountComponent m_amount_3[N_ROWS];
     GlasDropdown m_scale[N_ROWS];
 
+    Identifier m_source_identifier[N_ROWS];
+    Identifier m_amount_1_identifier[N_ROWS];
+    Identifier m_dest_1_identifier[N_ROWS];
+    Identifier m_amount_2_identifier[N_ROWS];
+    Identifier m_dest_2_identifier[N_ROWS];
+    Identifier m_amount_3_identifier[N_ROWS];
+    Identifier m_scale_identifier[N_ROWS];
+
     //can't be array due to missing standard constructor..
     juce::DrawableButton m_clear_button0;
     juce::DrawableButton m_clear_button1;

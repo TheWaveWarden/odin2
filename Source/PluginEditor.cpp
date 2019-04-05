@@ -80,7 +80,11 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor (OdinAudioProcessor& p, Audio
       m_fil1_type_indentifier("fil1_type"),
       m_fil2_type_indentifier("fil2_type"),
       m_fil3_type_indentifier("fil3_type"),
-      m_pitchbend_amount_identifier("pitchbend_amount")
+      m_pitchbend_amount_identifier("pitchbend_amount"),
+      m_delay_position_identifier("delay_position"),
+      m_flanger_position_identifier("flanger_position"),
+      m_phaser_position_identifier("phaser_position"),
+      m_chorus_position_identifier("chorus_position")
 {
     m_osc_dropdown_menu.addItem(1, "None");
   m_osc_dropdown_menu.addItem(2, "Analog Oscillator");
@@ -640,17 +644,20 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor (OdinAudioProcessor& p, Audio
 
   juce::Image flanger_image = ImageCache::getFromFile(
       juce::File(GRAPHICS_PATH + "cropped/flangernosync.png"));
-  m_flanger.setImage(flanger_image);
+  m_flanger.setImage(flanger_image, true);
+  m_flanger.setImage(flanger_image, false);//todo
   addChildComponent(m_flanger);
 
   juce::Image phaser_image = ImageCache::getFromFile(
       juce::File(GRAPHICS_PATH + "cropped/phasernosync.png"));
-  m_phaser.setImage(phaser_image);
+  m_phaser.setImage(phaser_image, true);
+  m_phaser.setImage(flanger_image, false);//todo
   addChildComponent(m_phaser);
 
   juce::Image chorus_image = ImageCache::getFromFile(
       juce::File(GRAPHICS_PATH + "cropped/chorusnosync.png"));
-  m_chorus.setImage(chorus_image);
+  m_chorus.setImage(chorus_image, true);
+  m_chorus.setImage(flanger_image, false);//todo
   addChildComponent(m_chorus);
 
   juce::Image delay_image = ImageCache::getFromFile(
@@ -946,6 +953,11 @@ void OdinAudioProcessorEditor::arrangeFXOnButtons(std::map<std::string, int> p_m
   m_delay_on_button.setTopLeftPosition(
       FX_ON_BUTTON_X + p_map.find("delay")->second * FX_BUTTON_OFFSET,
       FX_ON_BUTTON_Y);
+
+  m_value_tree.getParameter(m_delay_position_identifier)->setValueNotifyingHost(((float)p_map.find("delay")->second) / 3.f);
+  m_value_tree.getParameter(m_phaser_position_identifier)->setValueNotifyingHost(((float)p_map.find("phaser")->second) / 3.f);
+  m_value_tree.getParameter(m_flanger_position_identifier)->setValueNotifyingHost(((float)p_map.find("flanger")->second) / 3.f);
+  m_value_tree.getParameter(m_chorus_position_identifier)->setValueNotifyingHost(((float)p_map.find("chorus")->second) / 3.f);
 }
 
 void OdinAudioProcessorEditor::setActiveFXPanel(std::string p_name) {
