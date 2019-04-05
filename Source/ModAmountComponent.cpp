@@ -71,5 +71,6 @@ void ModAmountComponent::mouseDrag(const MouseEvent &event) {
             (m_drag_start_y - getMouseXYRelative().getY()) * DRAG_SCALAR;
   m_value = m_value > 1 ? 1 : m_value;
   m_value = m_value < -1 ? -1 : m_value;
+  onValueChange(m_value);
   repaint();
 }

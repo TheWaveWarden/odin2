@@ -41,6 +41,7 @@ public:
   void 	mouseDrag (const MouseEvent &event) override;
   
   std::function<void()> onMouseDown = []() {}; // overwriteable with lambda
+  std::function<void(float)> onValueChange = [](float){};
 private:
   juce::Colour m_color_bar;
   juce::Colour m_color = juce::Colours::black;

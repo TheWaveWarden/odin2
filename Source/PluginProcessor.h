@@ -319,6 +319,14 @@ private:
     float* m_chorus_drywet;
     float* m_chorus_synctime_numerator;
     float* m_chorus_synctime_denominator;
+    //modmatrix
+    float* m_amount_1[9];
+    float* m_amount_2[9];
+    float* m_amount_3[9];
+    float* m_source[9];
+    float* m_dest_1[9];
+    float* m_dest_2[9];
+    float* m_scale[9];
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (OdinAudioProcessor)
 };

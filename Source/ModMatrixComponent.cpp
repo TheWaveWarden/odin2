@@ -12,7 +12,7 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 
 //==============================================================================
-ModMatrixComponent::ModMatrixComponent()
+ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
     : m_clear_button0("clear_button",
                       juce::DrawableButton::ButtonStyle::ImageRaw),
       m_clear_button1("clear_button",
@@ -30,18 +30,49 @@ ModMatrixComponent::ModMatrixComponent()
       m_clear_button7("clear_button",
                       juce::DrawableButton::ButtonStyle::ImageRaw),
       m_clear_button8("clear_button",
-                      juce::DrawableButton::ButtonStyle::ImageRaw) {
+                      juce::DrawableButton::ButtonStyle::ImageRaw),
+      m_value_tree(vts), m_amount_1_identifier0("amount_1_[0]"),
+      m_amount_2_identifier0("amount_2_[0]"),
+      m_amount_3_identifier0("amount_3_[0]"),
+      m_amount_1_identifier1("amount_1_[1]"),
+      m_amount_2_identifier1("amount_2_[1]"),
+      m_amount_3_identifier1("amount_3_[1]"),
+      m_amount_1_identifier2("amount_1_[2]"),
+      m_amount_2_identifier2("amount_2_[2]"),
+      m_amount_3_identifier2("amount_3_[2]"),
+      m_amount_1_identifier3("amount_1_[3]"),
+      m_amount_2_identifier3("amount_2_[3]"),
+      m_amount_3_identifier3("amount_3_[3]"),
+      m_amount_1_identifier4("amount_1_[4]"),
+      m_amount_2_identifier4("amount_2_[4]"),
+      m_amount_3_identifier4("amount_3_[4]"),
+      m_amount_1_identifier5("amount_1_[5]"),
+      m_amount_2_identifier5("amount_2_[5]"),
+      m_amount_3_identifier5("amount_3_[5]"),
+      m_amount_1_identifier6("amount_1_[6]"),
+      m_amount_2_identifier6("amount_2_[6]"),
+      m_amount_3_identifier6("amount_3_[6]"),
+      m_amount_1_identifier7("amount_1_[7]"),
+      m_amount_2_identifier7("amount_2_[7]"),
+      m_amount_3_identifier7("amount_3_[7]"),
+      m_amount_1_identifier8("amount_1_[8]"),
+      m_amount_2_identifier8("amount_2_[8]"),
+      m_amount_3_identifier8("amount_3_[8]") {
 
-  //set identifiers
-  for (int i = 0; i < N_ROWS - 1; ++i) {
-    m_source_identifier[i] = Identifier("source_[" + std::to_string(i) + "]");
-    m_amount_1_identifier[i] = Identifier("amount_1_[" + std::to_string(i) + "]");
-    m_amount_2_identifier[i] = Identifier("amount_2_[" + std::to_string(i) + "]");
-    m_amount_3_identifier[i] = Identifier("amount_3_[" + std::to_string(i) + "]");
-    m_dest_1_identifier[i] = Identifier("dest_1_[" + std::to_string(i) + "]");
-    m_dest_2_identifier[i] = Identifier("dest_2__[" + std::to_string(i) + "]");
-    m_scale_identifier[i] = Identifier("scale_[" + std::to_string(i) + "]");
-  }
+  // set identifiers
+  // for (int i = 0; i < N_ROWS - 1; ++i) {
+  //  m_source_identifier[i] = Identifier("source_[" + std::to_string(i) + "]");
+  //  m_amount_1_identifier[i] =
+  //      Identifier("amount_1_[" + std::to_string(i) + "]");
+  //  m_amount_2_identifier[i] =
+  //      Identifier("amount_2_[" + std::to_string(i) + "]");
+  //  m_amount_3_identifier[i] =
+  //      Identifier("amount_3_[" + std::to_string(i) + "]");
+  //  m_dest_1_identifier[i] = Identifier("dest_1_[" + std::to_string(i) + "]");
+  //  m_dest_2_identifier[i] = Identifier("dest_2__[" + std::to_string(i) +
+  //  "]"); m_scale_identifier[i] = Identifier("scale_[" + std::to_string(i) +
+  //  "]");
+  //}
 
   juce::Image glas_left_down = ImageCache::getFromFile(
       juce::File(GRAPHICS_PATH + "cropped/modpanelbig_left_down.png"));
@@ -109,6 +140,7 @@ ModMatrixComponent::ModMatrixComponent()
     m_source[i].addItem("Source", 1);
     m_source[i].addItem("henlo", 2);
     m_source[i].addItem("LFO", 3);
+    m_source[i].addItem("last", 1000);
     m_source[i].setEditableText(false);
     m_source[i].setSelectedId(1, dontSendNotification);
     m_source[i].setColor(modmatrix_color);
@@ -153,6 +185,123 @@ ModMatrixComponent::ModMatrixComponent()
     m_scale[i].setGreyFirstElement(true);
     addAndMakeVisible(m_scale[i]);
   }
+
+  m_amount_1[0].onValueChange = [&](float p_value) {
+    m_value_tree.getParameter(m_amount_1_identifier0)
+        ->setValueNotifyingHost(((float)p_value + 1.f) / 2.f);
+  };
+  m_amount_2[0].onValueChange = [&](float p_value) {
+    m_value_tree.getParameter(m_amount_2_identifier0)
+        ->setValueNotifyingHost(((float)p_value + 1.f) / 2.f);
+  };
+  m_amount_3[0].onValueChange = [&](float p_value) {
+    m_value_tree.getParameter(m_amount_3_identifier0)
+        ->setValueNotifyingHost(((float)p_value + 1.f) / 2.f);
+  };
+
+  m_amount_1[1].onValueChange = [&](float p_value) {
+    m_value_tree.getParameter(m_amount_1_identifier1)
+        ->setValueNotifyingHost(((float)p_value + 1.f) / 2.f);
+  };
+  m_amount_2[1].onValueChange = [&](float p_value) {
+    m_value_tree.getParameter(m_amount_2_identifier1)
+        ->setValueNotifyingHost(((float)p_value + 1.f) / 2.f);
+  };
+  m_amount_3[1].onValueChange = [&](float p_value) {
+    m_value_tree.getParameter(m_amount_3_identifier1)
+        ->setValueNotifyingHost(((float)p_value + 1.f) / 2.f);
+  };
+
+  m_amount_1[2].onValueChange = [&](float p_value) {
+    m_value_tree.getParameter(m_amount_1_identifier2)
+        ->setValueNotifyingHost(((float)p_value + 1.f) / 2.f);
+  };
+  m_amount_2[2].onValueChange = [&](float p_value) {
+    m_value_tree.getParameter(m_amount_2_identifier2)
+        ->setValueNotifyingHost(((float)p_value + 1.f) / 2.f);
+  };
+  m_amount_3[2].onValueChange = [&](float p_value) {
+    m_value_tree.getParameter(m_amount_3_identifier2)
+        ->setValueNotifyingHost(((float)p_value + 1.f) / 2.f);
+  };
+
+  m_amount_1[3].onValueChange = [&](float p_value) {
+    m_value_tree.getParameter(m_amount_1_identifier3)
+        ->setValueNotifyingHost(((float)p_value + 1.f) / 2.f);
+  };
+  m_amount_2[3].onValueChange = [&](float p_value) {
+    m_value_tree.getParameter(m_amount_2_identifier3)
+        ->setValueNotifyingHost(((float)p_value + 1.f) / 2.f);
+  };
+  m_amount_3[3].onValueChange = [&](float p_value) {
+    m_value_tree.getParameter(m_amount_3_identifier3)
+        ->setValueNotifyingHost(((float)p_value + 1.f) / 2.f);
+  };
+
+  m_amount_1[4].onValueChange = [&](float p_value) {
+    m_value_tree.getParameter(m_amount_1_identifier4)
+        ->setValueNotifyingHost(((float)p_value + 1.f) / 2.f);
+  };
+  m_amount_2[4].onValueChange = [&](float p_value) {
+    m_value_tree.getParameter(m_amount_2_identifier4)
+        ->setValueNotifyingHost(((float)p_value + 1.f) / 2.f);
+  };
+  m_amount_3[4].onValueChange = [&](float p_value) {
+    m_value_tree.getParameter(m_amount_3_identifier4)
+        ->setValueNotifyingHost(((float)p_value + 1.f) / 2.f);
+  };
+
+  m_amount_1[5].onValueChange = [&](float p_value) {
+    m_value_tree.getParameter(m_amount_1_identifier5)
+        ->setValueNotifyingHost(((float)p_value + 1.f) / 2.f);
+  };
+  m_amount_2[5].onValueChange = [&](float p_value) {
+    m_value_tree.getParameter(m_amount_2_identifier5)
+        ->setValueNotifyingHost(((float)p_value + 1.f) / 2.f);
+  };
+  m_amount_3[5].onValueChange = [&](float p_value) {
+    m_value_tree.getParameter(m_amount_3_identifier5)
+        ->setValueNotifyingHost(((float)p_value + 1.f) / 2.f);
+  };
+
+  m_amount_1[6].onValueChange = [&](float p_value) {
+    m_value_tree.getParameter(m_amount_1_identifier6)
+        ->setValueNotifyingHost(((float)p_value + 1.f) / 2.f);
+  };
+  m_amount_2[6].onValueChange = [&](float p_value) {
+    m_value_tree.getParameter(m_amount_2_identifier6)
+        ->setValueNotifyingHost(((float)p_value + 1.f) / 2.f);
+  };
+  m_amount_3[6].onValueChange = [&](float p_value) {
+    m_value_tree.getParameter(m_amount_3_identifier6)
+        ->setValueNotifyingHost(((float)p_value + 1.f) / 2.f);
+  };
+
+  m_amount_1[7].onValueChange = [&](float p_value) {
+    m_value_tree.getParameter(m_amount_1_identifier7)
+        ->setValueNotifyingHost(((float)p_value + 1.f) / 2.f);
+  };
+  m_amount_2[7].onValueChange = [&](float p_value) {
+    m_value_tree.getParameter(m_amount_2_identifier7)
+        ->setValueNotifyingHost(((float)p_value + 1.f) / 2.f);
+  };
+  m_amount_3[7].onValueChange = [&](float p_value) {
+    m_value_tree.getParameter(m_amount_3_identifier7)
+        ->setValueNotifyingHost(((float)p_value + 1.f) / 2.f);
+  };
+
+  m_amount_1[8].onValueChange = [&](float p_value) {
+    m_value_tree.getParameter(m_amount_1_identifier8)
+        ->setValueNotifyingHost(((float)p_value + 1.f) / 2.f);
+  };
+  m_amount_2[8].onValueChange = [&](float p_value) {
+    m_value_tree.getParameter(m_amount_2_identifier8)
+        ->setValueNotifyingHost(((float)p_value + 1.f) / 2.f);
+  };
+  m_amount_3[8].onValueChange = [&](float p_value) {
+    m_value_tree.getParameter(m_amount_3_identifier8)
+        ->setValueNotifyingHost(((float)p_value + 1.f) / 2.f);
+  };
 
   m_small_panel_width = glas_small_down.getWidth();
   m_big_panel_width = glas_mid_down.getWidth();
@@ -304,6 +453,17 @@ ModMatrixComponent::ModMatrixComponent()
   m_clear_button6.setTooltip("Clear the entire modmatrix row");
   m_clear_button7.setTooltip("Clear the entire modmatrix row");
   m_clear_button8.setTooltip("Clear the entire modmatrix row");
+
+  for (int i = 0; i < N_ROWS; ++i) {
+    m_source_attach[i].reset(new ComboBoxAttachment(
+        m_value_tree, "source_[" + std::to_string(i) + "]", m_source[i]));
+    m_dest_1_attach[i].reset(new ComboBoxAttachment(
+        m_value_tree, "dest_1_[" + std::to_string(i) + "]", m_dest_1[i]));
+    m_dest_2_attach[i].reset(new ComboBoxAttachment(
+        m_value_tree, "dest_2_[" + std::to_string(i) + "]", m_dest_2[i]));
+    m_scale_attach[i].reset(new ComboBoxAttachment(
+        m_value_tree, "scale_[" + std::to_string(i) + "]", m_scale[i]));
+  }
 }
 
 ModMatrixComponent::~ModMatrixComponent() {}

@@ -297,7 +297,15 @@ OdinAudioProcessor::OdinAudioProcessor()
   m_phaser_position = m_parameters.getRawParameterValue("phaser_position");
   m_chorus_position = m_parameters.getRawParameterValue("chorus_position");
   
-  
+  for(int i = 0; i < 9; ++i){
+    m_amount_1[i] = m_parameters.getRawParameterValue("amount_1_[" + std::to_string(i) + "]");
+    m_amount_2[i] = m_parameters.getRawParameterValue("amount_2_[" + std::to_string(i) + "]");
+    m_amount_3[i] = m_parameters.getRawParameterValue("amount_3_[" + std::to_string(i) + "]");
+    m_source[i] = m_parameters.getRawParameterValue("source_[" + std::to_string(i) + "]");
+    m_dest_1[i] = m_parameters.getRawParameterValue("dest_1_[" + std::to_string(i) + "]");
+    m_dest_2[i] = m_parameters.getRawParameterValue("dest_2_[" + std::to_string(i) + "]");
+    m_scale[i] = m_parameters.getRawParameterValue("scale_[" + std::to_string(i) + "]");
+  }
   
 }
 
@@ -386,7 +394,10 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
   ScopedNoDenormals noDenormals;
   auto totalNumInputChannels = getTotalNumInputChannels();
   auto totalNumOutputChannels = getTotalNumOutputChannels();
-  //DBG(*m_fil1_comb_polarity);
+  
+  DBG(*m_dest_1[0]);
+  DBG(*m_dest_2[1]);
+  DBG(*m_scale[2]);
   //DBG("---------");
   //DBG(*m_delay_synctime_denominator);
 

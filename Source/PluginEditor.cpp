@@ -84,7 +84,8 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor (OdinAudioProcessor& p, Audio
       m_delay_position_identifier("delay_position"),
       m_flanger_position_identifier("flanger_position"),
       m_phaser_position_identifier("phaser_position"),
-      m_chorus_position_identifier("chorus_position")
+      m_chorus_position_identifier("chorus_position"),
+      m_mod_matrix(vts)
 {
     m_osc_dropdown_menu.addItem(1, "None");
   m_osc_dropdown_menu.addItem(2, "Analog Oscillator");
