@@ -143,6 +143,7 @@ OdinAudioProcessor::OdinAudioProcessor()
       m_parameters.getRawParameterValue("fil1_sem_transition");
   m_fil1_vowel_left = m_parameters.getRawParameterValue("fil1_vowel_left");
   m_fil1_vowel_right = m_parameters.getRawParameterValue("fil1_vowel_right");
+  m_fil1_comb_polarity = m_parameters.getRawParameterValue("fil1_comb_polarity");
 
   m_fil2_type = m_parameters.getRawParameterValue("fil2_type");
   m_fil2_vel = m_parameters.getRawParameterValue("fil2_vel");
@@ -157,6 +158,7 @@ OdinAudioProcessor::OdinAudioProcessor()
       m_parameters.getRawParameterValue("fil2_sem_transition");
   m_fil2_vowel_left = m_parameters.getRawParameterValue("fil2_vowel_left");
   m_fil2_vowel_right = m_parameters.getRawParameterValue("fil2_vowel_right");
+  m_fil2_comb_polarity = m_parameters.getRawParameterValue("fil2_comb_polarity");
 
   m_fil3_type = m_parameters.getRawParameterValue("fil3_type");
   m_fil3_vel = m_parameters.getRawParameterValue("fil3_vel");
@@ -171,6 +173,7 @@ OdinAudioProcessor::OdinAudioProcessor()
       m_parameters.getRawParameterValue("fil3_sem_transition");
   m_fil3_vowel_left = m_parameters.getRawParameterValue("fil3_vowel_left");
   m_fil3_vowel_right = m_parameters.getRawParameterValue("fil3_vowel_right");
+  m_fil3_comb_polarity = m_parameters.getRawParameterValue("fil3_comb_polarity");
 
   m_amp_pan = m_parameters.getRawParameterValue("amp_pan");
   m_amp_gain = m_parameters.getRawParameterValue("amp_gain");
@@ -383,9 +386,8 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
   ScopedNoDenormals noDenormals;
   auto totalNumInputChannels = getTotalNumInputChannels();
   auto totalNumOutputChannels = getTotalNumOutputChannels();
-  DBG(*m_phaser_synctime_denominator);
-  DBG(*m_phaser_synctime_numerator);
-  DBG("---------");
+  //DBG(*m_fil1_comb_polarity);
+  //DBG("---------");
   //DBG(*m_delay_synctime_denominator);
 
   // In case we have more outputs than inputs, this code clears any output

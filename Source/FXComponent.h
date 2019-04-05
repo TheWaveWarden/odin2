@@ -26,7 +26,7 @@
 #define FX_RESET_POS_X 176
 #define FX_RESET_POS_Y FX_SYNC_POS_Y
 #define SYNC_TIME_FX_POS_X 16
-#define SYNC_TIME_FX_POS_Y 29
+#define SYNC_TIME_FX_POS_Y 35
 
 #define FX_FREQ_MIN 0.05
 #define FX_FREQ_MAX 20
@@ -47,6 +47,10 @@ public:
   void paint(Graphics &) override;
   void resized() override;
   
+  void setSyncTimeColor(juce::Colour p_color){
+    m_synctime.setColor(p_color);
+  }
+
   void setImage(juce::Image p_background, bool p_sync) {
     if (p_sync) {
       m_background_sync = p_background;

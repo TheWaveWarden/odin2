@@ -173,6 +173,7 @@ private:
     float* m_fil1_sem_transition;
     float* m_fil1_vowel_left;
     float* m_fil1_vowel_right;
+    float* m_fil1_comb_polarity;
     //fil2
     float* m_fil2_type;
     float* m_fil2_vel;
@@ -185,6 +186,7 @@ private:
     float* m_fil2_sem_transition;
     float* m_fil2_vowel_left;
     float* m_fil2_vowel_right;
+    float* m_fil2_comb_polarity;
     //fil3
     float* m_fil3_type;
     float* m_fil3_vel;
@@ -197,6 +199,7 @@ private:
     float* m_fil3_sem_transition;
     float* m_fil3_vowel_left;
     float* m_fil3_vowel_right;
+    float* m_fil3_comb_polarity;
     //midsection
     float* m_amp_pan;
     float* m_amp_gain;

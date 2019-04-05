@@ -23,6 +23,10 @@ public:
   SyncTimeSelector();
   ~SyncTimeSelector();
 
+  void setColor(juce::Colour p_color){
+    m_display.setColor(p_color);
+  }
+
   void setValueLeft(int p_value) {
     if (p_value < m_left_values.size() && p_value > 0) {
       m_value_left = p_value;

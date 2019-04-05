@@ -14,6 +14,7 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "Knob.h"
 #include "FormantSelector.h"
+#include "LeftRightButton.h"
 
 #define VEL_POS_X 9
 #define VEL_POS_Y 8
@@ -43,6 +44,8 @@
 #define FORMANT_TRANSITION_Y 63
 #define TRANSITION_POS_X 166
 #define TRANSITION_POS_Y (RES_POS_Y + 2)
+#define COMB_PLUS_POS_X 152
+#define COMB_PLUS_POS_Y 105
 
 #define FREQ_MIN 80
 #define FREQ_MAX 18000
@@ -116,6 +119,8 @@ protected:
   FormantSelector m_vowel_left;
   FormantSelector m_vowel_right;
 
+  LeftRightButton m_comb_plus_minus;
+
   juce::Image m_background;
   juce::Image m_background_bypass;
   int m_filter_type;
@@ -131,6 +136,8 @@ protected:
   std::unique_ptr<SliderAttachment> m_saturation_attach;
   std::unique_ptr<SliderAttachment> m_formant_transition_attach;
   std::unique_ptr<SliderAttachment> m_sem_transition_attach;
+
+  std::unique_ptr<ButtonAttachment> m_comb_polarity_attach;
 
   Identifier m_vowel_left_identifier;  
   Identifier m_vowel_right_identifier;  

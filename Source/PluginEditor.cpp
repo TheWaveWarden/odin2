@@ -644,20 +644,29 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor (OdinAudioProcessor& p, Audio
 
   juce::Image flanger_image = ImageCache::getFromFile(
       juce::File(GRAPHICS_PATH + "cropped/flangernosync.png"));
-  m_flanger.setImage(flanger_image, true);
-  m_flanger.setImage(flanger_image, false);//todo
+  juce::Image flanger_image_sync = ImageCache::getFromFile(
+      juce::File(GRAPHICS_PATH + "cropped/flangersync.png"));
+  m_flanger.setImage(flanger_image_sync, true);
+  m_flanger.setImage(flanger_image, false);
+  m_flanger.setSyncTimeColor(FLANGER_DISPLAY_COLOR);
   addChildComponent(m_flanger);
 
   juce::Image phaser_image = ImageCache::getFromFile(
       juce::File(GRAPHICS_PATH + "cropped/phasernosync.png"));
-  m_phaser.setImage(phaser_image, true);
-  m_phaser.setImage(flanger_image, false);//todo
+  juce::Image phaser_image_sync = ImageCache::getFromFile(
+      juce::File(GRAPHICS_PATH + "cropped/phasersync.png"));
+  m_phaser.setImage(phaser_image_sync, true);
+  m_phaser.setImage(phaser_image, false);
+  m_phaser.setSyncTimeColor(PHASER_DISPLAY_COLOR);
   addChildComponent(m_phaser);
 
   juce::Image chorus_image = ImageCache::getFromFile(
       juce::File(GRAPHICS_PATH + "cropped/chorusnosync.png"));
-  m_chorus.setImage(chorus_image, true);
-  m_chorus.setImage(flanger_image, false);//todo
+  juce::Image chorus_image_sync = ImageCache::getFromFile(
+      juce::File(GRAPHICS_PATH + "cropped/chorussync.png"));
+  m_chorus.setImage(chorus_image_sync, true);
+  m_chorus.setImage(chorus_image, false);
+  m_chorus.setSyncTimeColor(CHORUS_DISPLAY_COLOR);
   addChildComponent(m_chorus);
 
   juce::Image delay_image = ImageCache::getFromFile(

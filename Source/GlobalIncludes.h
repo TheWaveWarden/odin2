@@ -13,7 +13,7 @@
 
 
 #ifdef ODIN_LINUX
-  #define GRAPHICS_PATH std::string("/home/frot/Odin/Gimp/")
+  #define GRAPHICS_PATH std::string("/home/frot/odinvst/Gimp/")
 #endif
 #ifdef ODIN_WIN
   #define GRAPHICS_PATH std::string("E:/odin-gui/Gimp/")
@@ -26,6 +26,9 @@
 #define MENU_HIGHLIGHT_BACKGROUND_COLOR Colour(50,50,50)
 //#define STANDARD_DISPLAY_COLOR Colour(10,40,50)
 #define STANDARD_DISPLAY_COLOR Colour(25, 44, 53)
+#define PHASER_DISPLAY_COLOR Colour(20, 60, 30)
+#define FLANGER_DISPLAY_COLOR Colour(40, 20, 53)
+#define CHORUS_DISPLAY_COLOR Colour(60, 20, 20)
 
 
 typedef AudioProcessorValueTreeState::SliderAttachment SliderAttachment;
