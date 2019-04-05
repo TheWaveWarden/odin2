@@ -32,6 +32,11 @@
 
 // one voice of the polyphonic voices, i.e. everything up to the amplifier
 struct Voice {
+
+  Voice(){
+    env1.setFinishFlag(&voice_active);
+  }
+
   //oscs
   AnalogOscillator analog_osc;
   WavetableOsc2D wavetable_osc;
@@ -41,18 +46,29 @@ struct Voice {
   FMOscillator fm_osc;
   NoiseOscillator noise_osc;
 
-  //filters
-  LadderFilter ladder_filter;
-  DiodeFilter diode_filter;
-  FormantFilter formant_filter;
-  Korg35Filter korg_filter;
-  SEMFilter12 SEM_filter_12;
-  SEMFilter24 SEM_filter_24;
-
-  //ADSR
+  //filter1
+  LadderFilter ladder_filter_1;
+  DiodeFilter diode_filter_1;
+  FormantFilter formant_filter_1;
+  Korg35Filter korg_filter_1;
+  SEMFilter12 SEM_filter_12_1;
+  SEMFilter24 SEM_filter_24_1;
+  //filter2
+  LadderFilter ladder_filter_2;
+  DiodeFilter diode_filter_2;
+  FormantFilter formant_filter_2;
+  Korg35Filter korg_filter_2;
+  SEMFilter12 SEM_filter_12_2;
+  SEMFilter24 SEM_filter_24_2;
+  //ADSRs
   ADSREnvelope env1; //amp
   ADSREnvelope env2; //filter
   ADSREnvelope env3; 
   ADSREnvelope env4; 
 
+  //LFOs
+  //todo
+
+  //voice_active
+  bool voice_active = false;
 };

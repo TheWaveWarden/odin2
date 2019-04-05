@@ -62,8 +62,10 @@ float ADSREnvelope::doEnvelope(){
         m_current_value *= m_release_factor;
         if(m_current_value < MIN_DECAY_RELEASE_VAL){
             //envelope ends here...
-            //todo
             m_current_value = 0.;
+            if(m_envelope_finish_flag){
+                *m_envelope_finish_flag = false;
+            }
         }
 
         return m_current_value * m_release_start_value;

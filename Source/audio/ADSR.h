@@ -19,6 +19,10 @@ class ADSREnvelope
 	void testADSRPow();
 	void profileCheapPow();
 
+	void setFinishFlag(bool* p_finish_flag){
+		m_envelope_finish_flag = p_finish_flag;
+	}
+
 	inline void reset()
 	{
 		m_current_section = -1;
@@ -83,4 +87,6 @@ class ADSREnvelope
 
 	double m_current_value = 0.f;
 	double m_samplerate;
+
+	bool* m_envelope_finish_flag = nullptr;
 };

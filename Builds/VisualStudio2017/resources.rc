@@ -7,16 +7,17 @@
 #include <windows.h>
 
 VS_VERSION_INFO VERSIONINFO
-FILEVERSION  1,0,0,0
+FILEVERSION  2,0,0,0
 BEGIN
   BLOCK "StringFileInfo"
   BEGIN
     BLOCK "040904E4"
     BEGIN
+      VALUE "CompanyName",  "BommelDSP\0"
       VALUE "FileDescription",  "Odin\0"
-      VALUE "FileVersion",  "1.0.0\0"
+      VALUE "FileVersion",  "2.0.0\0"
       VALUE "ProductName",  "Odin\0"
-      VALUE "ProductVersion",  "1.0.0\0"
+      VALUE "ProductVersion",  "2.0.0\0"
     END
   END
 

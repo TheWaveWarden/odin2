@@ -22,10 +22,10 @@ OdinAudioProcessor::OdinAudioProcessor()
                          .withOutput("Output", AudioChannelSet::stereo(), true)
 #endif
                          ),
-      m_parameters(*this, nullptr, Identifier("Odin"),
+#endif
+     : m_parameters(*this, nullptr, Identifier("Odin"),
 #include "AudioValueTree.h"
       )
-#endif
 {
 
   m_osc1_type = m_parameters.getRawParameterValue("osc1_type");
