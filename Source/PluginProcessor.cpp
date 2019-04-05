@@ -395,9 +395,9 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
   auto totalNumInputChannels = getTotalNumInputChannels();
   auto totalNumOutputChannels = getTotalNumOutputChannels();
   
-  DBG(*m_dest_1[0]);
-  DBG(*m_dest_2[1]);
-  DBG(*m_scale[2]);
+  //DBG(*m_dest_1[0]);
+  //DBG(*m_dest_2[1]);
+  //DBG(*m_scale[2]);
   //DBG("---------");
   //DBG(*m_delay_synctime_denominator);
 

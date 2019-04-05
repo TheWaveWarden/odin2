@@ -152,9 +152,9 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts,
   m_vowel_right.setColor(Colour(60, 20, 18));
 
   juce::Image comb_plus = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonexplin_1.png"));
+      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonplusminus_1.png"));
   juce::Image comb_minus = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonexplin_3.png"));
+      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonplusminus_3.png"));
   m_comb_plus_minus.setImage(comb_plus, 1);
   m_comb_plus_minus.setImage(comb_minus, 2);
   m_comb_plus_minus.setBounds(COMB_PLUS_POS_X, COMB_PLUS_POS_Y, comb_plus.getWidth(),
