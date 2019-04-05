@@ -40,7 +40,10 @@ void GlasDropdown::paint(Graphics &g) {
   //  g.setColour(Colours::grey);
   //}
 
-  //g.setFont(bfont);
+  //g.setFont(bfont);Font current_font = g.getCurrentFont();
+  Font current_font = g.getCurrentFont();
+  current_font.setStyleFlags(1);//bold
+  g.setFont(current_font);
   g.setFont(12.0f);
   g.drawText(getText(), getLocalBounds(), Justification::centred,
              true); // draw some placeholder text

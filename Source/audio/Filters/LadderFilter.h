@@ -2,6 +2,7 @@
 
 #include "Filter.h"
 #include "VAOnePoleFilter.h"
+#include "GlobalIncludes.h"
 
 class LadderFilter : public Filter
 {

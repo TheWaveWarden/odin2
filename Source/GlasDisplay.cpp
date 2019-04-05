@@ -36,6 +36,9 @@ void GlasDisplay::paint(Graphics &g) {
   bottom_right.addXY(-m_inlay, -m_inlay);
   g.fillRect(juce::Rectangle<int>(top_left, bottom_right)); //pmai
   g.setColour(Colours::white);
+  Font current_font = g.getCurrentFont();
+  current_font.setStyleFlags(1);//bold
+  g.setFont(current_font);
   g.setFont(12.0f);
   g.drawText(m_text, getLocalBounds(), Justification::centred,
              true); // draw some placeholder text

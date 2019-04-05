@@ -47,6 +47,9 @@ void ModAmountComponent::paint(Graphics &g) {
     g.fillRect(juce::Rectangle<int>(top_left, bottom_right));
   }
 
+  Font current_font = g.getCurrentFont();
+  current_font.setStyleFlags(1);//bold
+  g.setFont(current_font);
   g.setFont(12.0f);
   std::stringstream stream;
   stream << std::fixed << std::setprecision(0) << m_value * 100;

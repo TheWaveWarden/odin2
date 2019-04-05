@@ -1,6 +1,8 @@
 #pragma once
 
 #include "Filter.h"
+#include "GlobalIncludes.h"
+
 
 class VAOnePoleFilter : public Filter
 {
