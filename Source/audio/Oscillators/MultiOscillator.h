@@ -32,14 +32,14 @@ public:
 
 	virtual void loadWavetables() override; 
 
-	inline virtual void startOscillator() override{
-		m_note_on = true;
-		if(m_reset_active){
-			for(int osc = 0; osc < OSCS_PER_MULTIOSC; ++osc){
-				m_read_index_multi[osc] = 0.f;
-			}
-		}
-	}
+	//inline virtual void startOscillator() override{
+	//	//m_note_on = true;
+	//	if(m_reset_active){
+	//		for(int osc = 0; osc < OSCS_PER_MULTIOSC; ++osc){
+	//			m_read_index_multi[osc] = 0.f;
+	//		}
+	//	}
+	//}
 
 protected:
 

@@ -1218,6 +1218,13 @@
 			path = ../../Source/audio/Oscillators/Wavetables/Sine.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		AD1E681D7A109EDD620192C0 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = AudioParameterConnections.h;
+			path = ../../Source/AudioParameterConnections.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		AE3360BFE24BE74C19BE743F = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -1865,6 +1872,7 @@
 		DA68EAE39AAE6BE7BAE84567 = {
 			isa = PBXGroup;
 			children = (
+				AD1E681D7A109EDD620192C0,
 				B5FA42C48EAA776A85DDFFDB,
 				964778F9C5CEA99DE5E6CAE0,
 				9B7AED194DE9A837B907A769,

@@ -63,9 +63,9 @@ float WavetableOsc1D::doWavetable(){
 }
 
 float WavetableOsc1D::doOscillate(){
-    if(!m_note_on){
-        return 0.f;
-    }
+    //if(!m_note_on){
+    //    return 0.f;
+    //}
     return doWavetable() * m_volume_factor;
 }
 

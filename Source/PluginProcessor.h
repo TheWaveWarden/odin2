@@ -12,6 +12,7 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "Voice.h"
+#include "audio/Oscillators/WavetableContainer.h"
 
 #define VOICES 12
 

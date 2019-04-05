@@ -32,9 +32,10 @@ void ChiptuneOscillator::loadWavetables(){
 }
 
 float ChiptuneOscillator::doOscillate(){
-	if(!m_note_on){
-        return 0.f;
-    }else if(m_generate_noise){
+	//if(!m_note_on){
+    //    return 0.f;
+    /*}else*/
+    if(m_generate_noise){
 		return generateChipNoise() * m_volume_factor;
 	} else{
 		return doWavetable() * m_volume_factor;
@@ -115,9 +116,9 @@ void ChiptuneOscillator::reset(){
     m_read_index = 0.0;
 }
 
-void ChiptuneOscillator::startOscillator(){
-	Oscillator::startOscillator();
-	m_chiptune_arp.reset();
-}
+//void ChiptuneOscillator::startOscillator(){
+//	Oscillator::startOscillator();
+//	m_chiptune_arp.reset();
+//}
 
 

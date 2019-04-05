@@ -31,10 +31,10 @@ void MultiOscillator::loadWavetables()
 
 float MultiOscillator::doOscillate()
 {
-    if (!m_note_on)
-    {
-        return 0.f;
-    }
+    // if (!m_note_on)
+    //{
+    //    return 0.f;
+    //}
     return doWavetableMulti();
 }
 

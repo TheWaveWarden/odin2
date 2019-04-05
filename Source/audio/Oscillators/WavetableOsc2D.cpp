@@ -22,9 +22,9 @@ void WavetableOsc2D::loadWavetables(){
 
 
 float WavetableOsc2D::doOscillate(){
-    if(!m_note_on){
-        return 0.f;
-    }
+    //if(!m_note_on){
+    //    return 0.f;
+    //}
 
     return doWavetable2D();
 }

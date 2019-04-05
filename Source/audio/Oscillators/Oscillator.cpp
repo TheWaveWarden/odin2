@@ -5,7 +5,7 @@ Oscillator::Oscillator(void)
 {
 	// --- initialize variables
 	m_samplerate = 44100;
-	m_note_on = false;
+	//m_note_on = true;
 	m_modulo = 0.0;
 	m_increment = 0.0;
 	m_osc_freq_base = OSC_FO_DEFAULT; // GUI

@@ -36,10 +36,10 @@ void VectorOscillator::selectWavetable(int p_wavetable_index, int p_vector_point
 
 float VectorOscillator::doOscillate()
 {
-    if (!m_note_on)
-    {
-        return 0.f;
-    }
+    //if (!m_note_on)
+    //{
+    //    return 0.f;
+    //}
     return doVectortable();
 }
 

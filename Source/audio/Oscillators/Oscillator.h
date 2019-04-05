@@ -44,8 +44,8 @@ public:
 	// --- reset the modulo (required for master->slave operations)
 	inline void resetModulo(double d = 0.0){m_modulo = d;}
 	inline void setPitchBendMod(double dMod){m_mod_pitch_bend = dMod;}
-	virtual void startOscillator() {m_note_on = true;}
-	virtual void stopOscillator() {m_note_on = false;}
+	//virtual void startOscillator() {m_note_on = true;}
+	//virtual void stopOscillator() {m_note_on = false;}
 	virtual float doOscillate() = 0; 
 	virtual void setSampleRate(float p_sample_rate){m_samplerate = p_sample_rate;}
 	virtual void reset();
@@ -89,7 +89,7 @@ public:
 public:
 
 	
-	bool m_note_on; // --- oscillator run flag
+	//bool m_note_on; // --- oscillator run flag
 	double m_osc_freq_base;	// oscillator frequency from MIDI note number
 	double m_amplitude;	// 0->1 from GUI
 	double m_modulo;	// modulo counter 0->1

@@ -16,8 +16,8 @@ public:
 	virtual void reset() override;
 	virtual float doOscillate() override;
 	virtual void loadWavetables();
-	virtual void startOscillator() override;
-	virtual void stopOscillator() override;
+	//virtual void startOscillator() override;
+	//virtual void stopOscillator() override;
 	
 	inline void setFMAmount(float p_fm_amount){
 		m_FM_amount = p_fm_amount;

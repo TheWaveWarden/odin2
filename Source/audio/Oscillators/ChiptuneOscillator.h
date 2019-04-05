@@ -16,7 +16,7 @@ public:
     virtual void update() override;
     virtual void setSampleRate(float p_sample_rate) override;
     virtual void reset() override;
-    virtual void startOscillator() override;
+    //virtual void startOscillator() override;
 
     float generateChipNoise();
 

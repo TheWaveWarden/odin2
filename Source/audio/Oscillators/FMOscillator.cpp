@@ -45,16 +45,16 @@ float FMOscillator::doOscillate() {
 }
 
 
-void FMOscillator::startOscillator(){
+//void FMOscillator::startOscillator(){
     //always reset this one to avoid unpredictable behaviour
-    reset();
-    m_note_on = true;
-    m_carrier_osc.startOscillator();
-    m_modulator_osc.startOscillator();
-}
+    //reset();
+    //m_note_on = true;
+    //m_carrier_osc.startOscillator();
+    //m_modulator_osc.startOscillator();
+//}
 
-void FMOscillator::stopOscillator(){
-    m_note_on = false;
-    m_carrier_osc.stopOscillator();
-    m_modulator_osc.stopOscillator();
-}
+//void FMOscillator::stopOscillator(){
+//    //m_note_on = false;
+//    m_carrier_osc.stopOscillator();
+//    m_modulator_osc.stopOscillator();
+//}

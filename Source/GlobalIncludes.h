@@ -68,3 +68,5 @@ public:
   Colour m_text_color = MENU_FONT_COLOR;
   Colour m_highlight_text_color = MENU_HIGHLIGHT_FONT_COLOR;
 };
+
+

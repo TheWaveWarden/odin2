@@ -45,9 +45,9 @@ void  AnalogOscillator::update(){
 
 
 float AnalogOscillator::doOscillate(){
-    if (!m_note_on){
-        return 0.f;
-    }
+    //if (!m_note_on){
+    //    return 0.f;
+    //}
 
     if(m_wavetable_index != 1){
         return doWavetable();

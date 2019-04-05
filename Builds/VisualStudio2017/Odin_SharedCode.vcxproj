@@ -2018,6 +2018,7 @@
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_opengl.cpp"/>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\AudioParameterConnections.h"/>
     <ClInclude Include="..\..\Source\Voice.h"/>
     <ClInclude Include="..\..\Source\AudioVarDeclarations.h"/>
     <ClInclude Include="..\..\Source\audio\LookupTables\adsr_pow.h"/>
