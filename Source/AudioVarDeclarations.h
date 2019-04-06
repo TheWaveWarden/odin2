@@ -43,45 +43,20 @@
     float* m_osc_vec_y[3];
     float* m_osc_wavetable[3];
     
-    //fil1
-    float* m_fil1_type;
-    float* m_fil1_vel;
-    float* m_fil1_kbd;
-    float* m_fil1_gain;
-    float* m_fil1_freq;
-    float* m_fil1_res;
-    float* m_fil1_saturation;
-    float* m_fil1_formant_transition;
-    float* m_fil1_sem_transition;
-    float* m_fil1_vowel_left;
-    float* m_fil1_vowel_right;
-    float* m_fil1_comb_polarity;
-    //fil2
-    float* m_fil2_type;
-    float* m_fil2_vel;
-    float* m_fil2_kbd;
-    float* m_fil2_gain;
-    float* m_fil2_freq;
-    float* m_fil2_res;
-    float* m_fil2_saturation;
-    float* m_fil2_formant_transition;
-    float* m_fil2_sem_transition;
-    float* m_fil2_vowel_left;
-    float* m_fil2_vowel_right;
-    float* m_fil2_comb_polarity;
-    //fil3
-    float* m_fil3_type;
-    float* m_fil3_vel;
-    float* m_fil3_kbd;
-    float* m_fil3_gain;
-    float* m_fil3_freq;
-    float* m_fil3_res;
-    float* m_fil3_saturation;
-    float* m_fil3_formant_transition;
-    float* m_fil3_sem_transition;
-    float* m_fil3_vowel_left;
-    float* m_fil3_vowel_right;
-    float* m_fil3_comb_polarity;
+    //filters
+    float* m_fil_type[3];
+    float* m_fil_vel[3];
+    float* m_fil_kbd[3];
+    float* m_fil_gain[3];
+    float* m_fil_freq[3];
+    float* m_fil_res[3];
+    float* m_fil_saturation[3];
+    float* m_fil_formant_transition[3];
+    float* m_fil_sem_transition[3];
+    float* m_fil_vowel_left[3];
+    float* m_fil_vowel_right[3];
+    float* m_fil_comb_polarity[3];
+
     //midsection
     float* m_amp_pan;
     float* m_amp_gain;
@@ -156,12 +131,10 @@
     float* m_phaser_on;
     float* m_flanger_on;
     float* m_chorus_on;
-    float* m_fil1_osc1;
-    float* m_fil1_osc2;
-    float* m_fil1_osc3;
-    float* m_fil2_osc1;
-    float* m_fil2_osc2;
-    float* m_fil2_osc3;
+    float* m_fil_osc1[2];
+    float* m_fil_osc2[2];
+    float* m_fil_osc3[2];
+
     float* m_fil2_fil1;
     float* m_delay_position;
     float* m_flanger_position;

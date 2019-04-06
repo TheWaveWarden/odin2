@@ -43,6 +43,24 @@
 #define OSC_TYPE_CHIPDRAW 9
 #define OSC_TYPE_SPECDRAW 10
 
+#define FILTER_TYPE_NONE 1
+#define FILTER_TYPE_LP24 2
+#define FILTER_TYPE_LP12 3
+#define FILTER_TYPE_BP24 4
+#define FILTER_TYPE_BP12 5
+#define FILTER_TYPE_HP24 6
+#define FILTER_TYPE_HP12 7
+#define FILTER_TYPE_SEM24 8
+#define FILTER_TYPE_SEM12 9
+#define FILTER_TYPE_KORG 10
+#define FILTER_TYPE_DIODE 11
+#define FILTER_TYPE_FORMANT 12
+#define FILTER_TYPE_COMB 13
+
+//#define WAVEDRAW_LENGTH 2 //todo
+//#define CHIPDRAW_LENGTH 2 //todo
+//#define SPECDRAW_LENGTH 2 //todo
+
 typedef AudioProcessorValueTreeState::SliderAttachment SliderAttachment;
 typedef AudioProcessorValueTreeState::ButtonAttachment ButtonAttachment;
 typedef AudioProcessorValueTreeState::ComboBoxAttachment ComboBoxAttachment;

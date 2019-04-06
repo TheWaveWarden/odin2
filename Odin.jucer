@@ -99,19 +99,33 @@
         <GROUP id="{C724E5C9-D97D-5F0F-8A81-C41A55596A1D}" name="FX">
           <FILE id="Sd74Ze" name="Bitcrusher.cpp" compile="1" resource="0" file="Source/audio/FX/Bitcrusher.cpp"/>
           <FILE id="peP7jn" name="Bitcrusher.h" compile="0" resource="0" file="Source/audio/FX/Bitcrusher.h"/>
+          <FILE id="FUhLIK" name="Chorus.cpp" compile="1" resource="0" file="Source/audio/FX/Chorus.cpp"/>
+          <FILE id="u4iPMH" name="Chorus.h" compile="0" resource="0" file="Source/audio/FX/Chorus.h"/>
           <FILE id="RBH9bS" name="CubicShaper.cpp" compile="1" resource="0" file="Source/audio/FX/CubicShaper.cpp"/>
           <FILE id="L42AwZ" name="CubicShaper.h" compile="0" resource="0" file="Source/audio/FX/CubicShaper.h"/>
           <FILE id="bvAs10" name="Delay.cpp" compile="1" resource="0" file="Source/audio/FX/Delay.cpp"/>
           <FILE id="awSILU" name="Delay.h" compile="0" resource="0" file="Source/audio/FX/Delay.h"/>
+          <FILE id="OuZeMw" name="Flanger.cpp" compile="1" resource="0" file="Source/audio/FX/Flanger.cpp"/>
+          <FILE id="YKUi7R" name="Flanger.h" compile="0" resource="0" file="Source/audio/FX/Flanger.h"/>
           <FILE id="ga6YdP" name="OversamplingDistortion.cpp" compile="1" resource="0"
                 file="Source/audio/FX/OversamplingDistortion.cpp"/>
           <FILE id="b06Ob4" name="OversamplingDistortion.h" compile="0" resource="0"
                 file="Source/audio/FX/OversamplingDistortion.h"/>
+          <FILE id="JA6dF1" name="Phaser.cpp" compile="1" resource="0" file="Source/audio/FX/Phaser.cpp"/>
+          <FILE id="w0t2yJ" name="Phaser.h" compile="0" resource="0" file="Source/audio/FX/Phaser.h"/>
           <FILE id="bipTNG" name="QuarticShaper.cpp" compile="1" resource="0"
                 file="Source/audio/FX/QuarticShaper.cpp"/>
           <FILE id="OIBYdF" name="QuarticShaper.h" compile="0" resource="0" file="Source/audio/FX/QuarticShaper.h"/>
         </GROUP>
         <GROUP id="{A1F58DC9-32D9-511A-BCD5-B1084A4E1EFD}" name="Filters">
+          <FILE id="QRF8aB" name="BiquadAllpass.cpp" compile="1" resource="0"
+                file="Source/audio/Filters/BiquadAllpass.cpp"/>
+          <FILE id="DUwOrT" name="BiquadAllpass.h" compile="0" resource="0" file="Source/audio/Filters/BiquadAllpass.h"/>
+          <FILE id="YyeT25" name="BiquadFilter.cpp" compile="1" resource="0"
+                file="Source/audio/Filters/BiquadFilter.cpp"/>
+          <FILE id="sq338l" name="BiquadFilter.h" compile="0" resource="0" file="Source/audio/Filters/BiquadFilter.h"/>
+          <FILE id="AB83zF" name="CombFilter.cpp" compile="1" resource="0" file="Source/audio/Filters/CombFilter.cpp"/>
+          <FILE id="ktQwAi" name="CombFilter.h" compile="0" resource="0" file="Source/audio/Filters/CombFilter.h"/>
           <FILE id="JHfaPb" name="DiodeFilter.cpp" compile="1" resource="0" file="Source/audio/Filters/DiodeFilter.cpp"/>
           <FILE id="FSMHAJ" name="DiodeFilter.h" compile="0" resource="0" file="Source/audio/Filters/DiodeFilter.h"/>
           <FILE id="gg9mto" name="Filter.cpp" compile="1" resource="0" file="Source/audio/Filters/Filter.cpp"/>

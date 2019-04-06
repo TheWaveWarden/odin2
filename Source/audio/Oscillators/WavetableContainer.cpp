@@ -1,10 +1,11 @@
 #include "WavetableContainer.h"
 #include <cmath>
+#include <cstring>
 #include <iostream>
 #include <fstream>
 
 WavetableContainer::WavetableContainer(){
-#include "WavetableCoefficients.h"
+	#include "WavetableCoefficients.h"
 }
 
 WavetableContainer::~WavetableContainer()
@@ -40,7 +41,7 @@ void WavetableContainer::createWavetables(float p_sample_rate)
             int number_of_harmonics = (int)((p_sample_rate * 0.5f / seed_freq) - 1);
 
             //don't allow more than 800 harmonics (for big Samplerates this might happen)
-            number_of_harmonics = number_of_harmonics > 801 ? 801 : number_of_harmonics;
+            number_of_harmonics = number_of_harmonics > NUMBER_OF_HARMONICS ? NUMBER_OF_HARMONICS : number_of_harmonics;
 
             for (int index_harmonics = 1; index_harmonics < number_of_harmonics; ++index_harmonics)
             {
@@ -112,7 +113,7 @@ void WavetableContainer::createChipdrawTable(int p_table_nr, float p_chipdraw_va
         int number_of_harmonics = (int)((p_sample_rate * 0.5f / seed_freq) - 1);
 
         //don't allow more than 800 harmonics (for big Samplerates this might happen)
-        number_of_harmonics = number_of_harmonics > 801 ? 801 : number_of_harmonics;
+        number_of_harmonics = number_of_harmonics > NUMBER_OF_HARMONICS ? NUMBER_OF_HARMONICS : number_of_harmonics;
 
         for (int index_position = 0; index_position < WAVETABLE_LENGTH; ++index_position)
         {
@@ -152,6 +153,163 @@ void WavetableContainer::createChipdrawTable(int p_table_nr, float p_chipdraw_va
 }
 
 
+void WavetableContainer::createWavedrawTable(int p_table_nr, float p_wavedraw_values[WAVEDRAW_LENGTH], float p_sample_rate, bool p_const_sections)
+{
+
+    //first generate the fourrier coefficients
+    float wavedraw_coefficients[SIN_AND_COS][NUMBER_OF_HARMONICS];
+
+    float step_width = 2 * PI / WAVEDRAW_LENGTH;
+
+    for (int harmonic = 1; harmonic < NUMBER_OF_HARMONICS; ++harmonic)
+    {
+
+        float coeff_sine = 0.f;
+        float coeff_cosine = 0.f;
+
+        for (int segment = 0; segment < WAVEDRAW_LENGTH; ++segment)
+        {   
+            //use either const sections or linear sections
+            if(p_const_sections){
+                coeff_sine   += const_segment_one_overtone_sine(  segment * step_width, (segment + 1) * step_width, p_wavedraw_values[segment], harmonic);
+                coeff_cosine += const_segment_one_overtone_cosine(segment * step_width, (segment + 1) * step_width, p_wavedraw_values[segment], harmonic);
+            } else {
+                // wrap function value at end to start
+                float segment_end_value = (segment == WAVEDRAW_LENGTH - 1) ? p_wavedraw_values[0] : p_wavedraw_values[segment + 1];
+                
+                coeff_sine +=   lin_segment_one_overtone_sine(  segment * step_width, (segment + 1) * step_width, p_wavedraw_values[segment], segment_end_value, harmonic);
+                coeff_cosine += lin_segment_one_overtone_cosine(segment * step_width, (segment + 1) * step_width, p_wavedraw_values[segment], segment_end_value, harmonic);
+            }
+        }
+        wavedraw_coefficients[0][harmonic] = coeff_sine;
+        wavedraw_coefficients[1][harmonic] = coeff_cosine;
+    }
+
+    //now create the wavetable from the fourrier coefficients
+    double seed_freq = 27.5; //A0
+    float max = 0.f;
+
+    //delete old table
+    memset(m_wavedraw_tables[p_table_nr], 0, SUBTABLES_PER_WAVETABLE * WAVETABLE_LENGTH * sizeof(float));
+
+    //loop over subtables
+    for (int index_sub_table = 0; index_sub_table < SUBTABLES_PER_WAVETABLE; ++index_sub_table)
+    {
+
+        //how many harmonics are needed for this subtable
+        int number_of_harmonics = (int)((p_sample_rate * 0.5f / seed_freq) - 1);
+
+        //don't allow more than 800 harmonics (for big Samplerates this might happen)
+        number_of_harmonics = number_of_harmonics > NUMBER_OF_HARMONICS ? NUMBER_OF_HARMONICS : number_of_harmonics;
+
+        for (int index_position = 0; index_position < WAVETABLE_LENGTH; ++index_position)
+        {
+            for (int index_harmonics = 1; index_harmonics < number_of_harmonics; ++index_harmonics)
+            {
+
+                //fill table with
+                //sine harmonics
+                m_wavedraw_tables[p_table_nr][index_sub_table][index_position] += wavedraw_coefficients[0][index_harmonics] * sin(2.f * PI * index_position * index_harmonics / (float)WAVETABLE_LENGTH);
+                //cosine
+                m_wavedraw_tables[p_table_nr][index_sub_table][index_position] += wavedraw_coefficients[1][index_harmonics] * cos(2.f * PI * index_position * index_harmonics / (float)WAVETABLE_LENGTH);
+            }
+            //find max among all tables
+            if (fabs(m_wavedraw_tables[p_table_nr][index_sub_table][index_position]) > max)
+            {
+                max = fabs(m_wavedraw_tables[p_table_nr][index_sub_table][index_position]);
+            }
+        }
+        //increment seed frequency by minor third = 2^(3/12)
+        seed_freq *= 1.1892071150;
+
+        //set pointers
+        m_wavedraw_pointers[p_table_nr][index_sub_table] = m_wavedraw_tables[p_table_nr][index_sub_table];
+    }
+
+    //do another round to scale the table
+    //acoid division by 0
+    if(max > 1e-5){
+        max = 1.f / max; //for faster computation
+    }
+    for (int index_sub_table = 0; index_sub_table < SUBTABLES_PER_WAVETABLE; ++index_sub_table){
+        for (int index_position = 0; index_position < WAVETABLE_LENGTH; ++index_position){
+            m_wavedraw_tables[p_table_nr][index_sub_table][index_position] *= max;
+        }
+    }
+
+}
+
+
+void WavetableContainer::createSpecdrawTable(int p_table_nr, float p_specdraw_values[SIN_AND_COS][SPECDRAW_LENGTH], float p_sample_rate){
+        //now create the wavetable from the fourrier coefficients
+    double seed_freq = 27.5; //A0
+    float max = 0.f;
+
+    //delete old table
+    memset(m_wavedraw_tables[p_table_nr], 0, SUBTABLES_PER_WAVETABLE * WAVETABLE_LENGTH * sizeof(float));
+
+    //loop over subtables
+    for (int index_sub_table = 0; index_sub_table < SUBTABLES_PER_WAVETABLE; ++index_sub_table)
+    {
+
+        //how many harmonics are needed for this subtable
+        int number_of_harmonics = (int)((p_sample_rate * 0.5f / seed_freq) - 1);
+
+        //don't allow more than 800 harmonics (for big Samplerates this might happen)
+        number_of_harmonics = number_of_harmonics > SPECDRAW_LENGTH ? SPECDRAW_LENGTH : number_of_harmonics;
+
+        for (int index_position = 0; index_position < WAVETABLE_LENGTH; ++index_position)
+        {
+            for (int index_harmonics = 1; index_harmonics < number_of_harmonics; ++index_harmonics)
+            {
+
+                //fill table with
+                //sine harmonics
+                m_specdraw_tables[p_table_nr][index_sub_table][index_position] += p_specdraw_values[0][index_harmonics] / (float)index_harmonics * sin(2.f * PI * index_position * index_harmonics / (float)WAVETABLE_LENGTH);
+                //cosine
+                m_specdraw_tables[p_table_nr][index_sub_table][index_position] += p_specdraw_values[1][index_harmonics] / (float)index_harmonics * cos(2.f * PI * index_position * index_harmonics / (float)WAVETABLE_LENGTH);
+            }
+            //find max among all tables
+            if (fabs(m_specdraw_tables[p_table_nr][index_sub_table][index_position]) > max)
+            {
+                max = fabs(m_specdraw_tables[p_table_nr][index_sub_table][index_position]);
+            }
+        }
+        //increment seed frequency by minor third = 2^(3/12)
+        seed_freq *= 1.1892071150;
+
+        //set pointers
+        m_specdraw_pointers[p_table_nr][index_sub_table] = m_specdraw_tables[p_table_nr][index_sub_table];
+    }
+
+    //do another round to scale the table
+    //acoid division by 0
+    if(max > 1e-5){
+        max = 1.f / max; //for faster computation
+    }
+    for (int index_sub_table = 0; index_sub_table < SUBTABLES_PER_WAVETABLE; ++index_sub_table){
+        for (int index_position = 0; index_position < WAVETABLE_LENGTH; ++index_position){
+            m_wavedraw_tables[p_table_nr][index_sub_table][index_position] *= max;
+        }
+    }
+}
+
+
+float WavetableContainer::lin_segment_one_overtone_sine( float p_a, float p_b, float p_fa, float p_fb, int p_ot){
+        
+    float m = (p_fb - p_fa)/(p_b - p_a);  // slope of linear function
+    float c = p_fa - m * p_a;             // const offset of linear function 
+
+    return (m*(sin(p_b * p_ot) - sin(p_a * p_ot)) + p_ot * (p_a * m + c) * cos(p_a * p_ot) - p_ot*(p_b * m + c) * cos(p_b * p_ot)) / p_ot / p_ot;
+}
+
+float WavetableContainer::lin_segment_one_overtone_cosine( float p_a, float p_b, float p_fa, float p_fb, int p_ot){
+       
+    float m = (p_fb - p_fa)/(p_b - p_a);  // slope of linear function
+    float c = p_fa - m * p_a;             // const offset of linear function
+
+    return (-p_ot * (p_a * m + c) * sin(p_a * p_ot) - m * cos(p_a * p_ot) + p_ot*(p_b * m + c) * sin(p_b * p_ot) + m*cos(p_b * p_ot)) / p_ot / p_ot;
+}
 
 float WavetableContainer::const_segment_one_overtone_sine(float p_start, float p_end, float p_height, int p_harmonic)
 {
@@ -177,8 +335,16 @@ void WavetableContainer::destroyWavetables()
     m_wavetables_created = false;
 }
 
-float** WavetableContainer::getChipDrawPointer(int p_chipdraw_index){
+float** WavetableContainer::getChipdrawPointer(int p_chipdraw_index){
     return m_chipdraw_pointers[p_chipdraw_index];
+}
+
+float** WavetableContainer::getWavedrawPointer(int p_wavedraw_index){
+    return m_wavedraw_pointers[p_wavedraw_index];
+}
+
+float ** WavetableContainer::getSpecdrawPointer(int p_specdraw_index){
+    return m_specdraw_pointers[p_specdraw_index];
 }
 
 float **WavetableContainer::getWavetablePointers(int p_wavetable)
