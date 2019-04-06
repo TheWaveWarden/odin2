@@ -37,7 +37,7 @@
   std::make_unique<AudioParameterFloat> ("osc1_lp", "Oscillator1 Noise Lowpass", NormalisableRange<float> (80.f, 18000.f), 18000.f),
   std::make_unique<AudioParameterFloat> ("osc1_hp", "Oscillator1 Noise Highpass", NormalisableRange<float> (80.f, 18000.f), 80.f),
     //Oscillator 2
-  std::make_unique<AudioParameterInt> ("osc2_type", "Oscillator2 Type", 1, 11, 2),
+  std::make_unique<AudioParameterInt> ("osc2_type", "Oscillator2 Type", 1, 11, 1),
   std::make_unique<AudioParameterInt> ("osc2_oct", "Oscillator2 Octave", -3, 3, 0),
   std::make_unique<AudioParameterInt> ("osc2_semi", "Oscillator2 Semitones", -7, 7, 0),
   std::make_unique<AudioParameterFloat> ("osc2_fine", "Oscillator2 Finetune", NormalisableRange<float> (-50.0f, 50.0f), 0),
@@ -74,7 +74,7 @@
   std::make_unique<AudioParameterFloat> ("osc2_lp", "Oscillator2 Noise Lowpass", NormalisableRange<float> (80.f, 18000.f), 18000.f),
   std::make_unique<AudioParameterFloat> ("osc2_hp", "Oscillator2 Noise Highpass", NormalisableRange<float> (80.f, 18000.f), 80.f),
     //Oscillator 3
-  std::make_unique<AudioParameterInt> ("osc3_type", "Oscillator3 Type", 1, 11, 2),
+  std::make_unique<AudioParameterInt> ("osc3_type", "Oscillator3 Type", 1, 11, 1),
   std::make_unique<AudioParameterInt> ("osc3_oct", "Oscillator3 Octave", -3, 3, 0),
   std::make_unique<AudioParameterInt> ("osc3_semi", "Oscillator3 Semitones", -7, 7, 0),
   std::make_unique<AudioParameterFloat> ("osc3_fine", "Oscillator3 Finetune", NormalisableRange<float> (-50.0f, 50.0f), 0),

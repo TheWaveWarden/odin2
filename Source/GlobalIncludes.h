@@ -32,12 +32,16 @@
 #define VOICES 12
 
 
-#define OSC_TYPE_ANALOG 1
-#define OSC_TYPE_WAVETABLE 2
-#define OSC_TYPE_MULTI 3
-#define OSC_TYPE_VECTOR 4
-#define OSC_TYPE_CHIPTUNE 5
-#define OSC_TYPE_NOISE 6
+#define OSC_TYPE_ANALOG 2
+#define OSC_TYPE_WAVETABLE 3
+#define OSC_TYPE_MULTI 4
+#define OSC_TYPE_VECTOR 5
+#define OSC_TYPE_CHIPTUNE 6
+#define OSC_TYPE_FM 7
+#define OSC_TYPE_NOISE 8
+#define OSC_TYPE_WAVEDRAW 8
+#define OSC_TYPE_CHIPDRAW 9
+#define OSC_TYPE_SPECDRAW 10
 
 typedef AudioProcessorValueTreeState::SliderAttachment SliderAttachment;
 typedef AudioProcessorValueTreeState::ButtonAttachment ButtonAttachment;

@@ -25,7 +25,6 @@ float WavetableOsc2D::doOscillate(){
     //if(!m_note_on){
     //    return 0.f;
     //}
-
     return doWavetable2D();
 }
 
@@ -61,7 +60,6 @@ float WavetableOsc2D::doWavetable2D(){
     int right_table;
     float interpolation_value;
     getTableIndicesAndInterpolation(left_table, right_table, interpolation_value, m_position_2D);
-
     
     // do linear interpolation 
     float output_left = linearInterpolation(m_current_table_2D[left_table][read_index_trunc], m_current_table_2D[left_table][read_index_next], fractional);

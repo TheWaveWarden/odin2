@@ -46,6 +46,7 @@ OdinAudioProcessor::OdinAudioProcessor()
     for (int osc = 0; osc < 3; ++osc)
     {
       m_voice[i].analog_osc[osc].loadWavetables();
+      m_voice[i].wavetable_osc[osc].loadWavetables();
       m_voice[i].chiptune_osc[osc].loadWavetables();
       m_voice[i].vector_osc[osc].loadWavetables();
       m_voice[i].multi_osc[osc].loadWavetables();
@@ -168,28 +169,46 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
         //===== OSCS ==========
 
         //output var for the individual oscs
-        float osc_output[3];
+        float osc_output[3] = {0};
         for(int osc = 0; osc < 3; ++osc){
           //analog osc
-          if((int)m_osc_type[osc] == OSC_TYPE_ANALOG){
+          DBG(*m_osc_type[osc]);
+          if(*m_osc_type[osc] == OSC_TYPE_ANALOG){
             m_voice[voice].analog_osc[osc].update();
             osc_output[osc] += m_voice[voice].analog_osc[osc].doOscillate();
           } 
           //wavetable osc
-          else if((int)m_osc_type[osc] == OSC_TYPE_WAVETABLE) {
+          else if(*m_osc_type[osc] == OSC_TYPE_WAVETABLE) {
+            //m_voice[voice].wavetable_osc[osc].setPosition(0);
+          	//m_voice[voice].wavetable_osc[osc].selectWavetable(0);
             m_voice[voice].wavetable_osc[osc].update();
-            osc_output[osc] += m_voice[voice].multi_osc[osc].doOscillate();
+            osc_output[osc] += m_voice[voice].wavetable_osc[osc].doOscillate();
           } 
           //multi osc
-          else if((int)m_osc_type[osc] == OSC_TYPE_MULTI) {
+          else if(*m_osc_type[osc] == OSC_TYPE_MULTI) {
             m_voice[voice].multi_osc[osc].update();
             osc_output[osc] += m_voice[voice].multi_osc[osc].doOscillate();
           } 
+          //vector osc
+          else if(*m_osc_type[osc] == OSC_TYPE_VECTOR) {
+            m_voice[voice].vector_osc[osc].update();
+            osc_output[osc] += m_voice[voice].vector_osc[osc].doOscillate();
+          }
           //chiptune osc
-          else if((int)m_osc_type[osc] == OSC_TYPE_CHIPTUNE) {
+          else if(*m_osc_type[osc] == OSC_TYPE_CHIPTUNE) {
             m_voice[voice].chiptune_osc[osc].update();
             osc_output[osc] += m_voice[voice].chiptune_osc[osc].doOscillate();
-          } 
+          }
+          //fm osc
+          else if(*m_osc_type[osc] == OSC_TYPE_FM) {
+            m_voice[voice].fm_osc[osc].update();
+            osc_output[osc] += m_voice[voice].fm_osc[osc].doOscillate();
+          }
+          //noise osc
+          else if(*m_osc_type[osc] == OSC_TYPE_NOISE) {
+            m_voice[voice].noise_osc[osc].setFilterFreqs(18000, 80);
+            osc_output[osc] += m_voice[voice].noise_osc[osc].doNoise();
+          }
         //just write all oscs to output for now...
         voices_output += osc_output[osc];
         }//osc loop
