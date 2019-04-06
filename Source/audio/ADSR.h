@@ -2,6 +2,7 @@
 
 #include "CheapFunctions.h"
 #include <fstream> //todo  delay
+#include <functional>
 
 #define MIN_DECAY_RELEASE_VAL 0.001
 #include <cmath>
@@ -19,9 +20,9 @@ class ADSREnvelope
 	void testADSRPow();
 	void profileCheapPow();
 
-	void setFinishFlag(bool* p_finish_flag){
-		m_envelope_finish_flag = p_finish_flag;
-	}
+	//void setFinishFlag(bool* p_finish_flag){
+	//	m_envelope_finish_flag = p_finish_flag;
+	//}
 
 	inline void reset()
 	{
@@ -70,6 +71,9 @@ class ADSREnvelope
 		return CheapFunctions::getInstance().cheapADSRPow(m_samplerate * p_decay);
 	}
 
+	//used to signal voice endign if this is amp-envelope
+	std::function<void()> onEnvelopeEnd = [](){};
+
   protected:
 	//CheapFunctions& m_cheap_functions;
 
@@ -88,5 +92,5 @@ class ADSREnvelope
 	double m_current_value = 0.f;
 	double m_samplerate;
 
-	bool* m_envelope_finish_flag = nullptr;
+	//bool* m_envelope_finish_flag = nullptr;
 };

@@ -14,7 +14,6 @@
 #include "Voice.h"
 #include "audio/Oscillators/WavetableContainer.h"
 
-#define VOICES 12
 
 //==============================================================================
 /**
@@ -61,7 +60,9 @@ public:
 
 private:
     Voice m_voice[VOICES];
+    VoiceManager m_voice_manager;
     AudioProcessorValueTreeState m_parameters;
+
 
     #include "AudioVarDeclarations.h"
     //==============================================================================

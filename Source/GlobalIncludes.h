@@ -29,7 +29,15 @@
 #define PHASER_DISPLAY_COLOR Colour(20, 60, 30)
 #define FLANGER_DISPLAY_COLOR Colour(40, 20, 53)
 #define CHORUS_DISPLAY_COLOR Colour(60, 20, 20)
+#define VOICES 12
 
+
+#define OSC_TYPE_ANALOG 1
+#define OSC_TYPE_WAVETABLE 2
+#define OSC_TYPE_MULTI 3
+#define OSC_TYPE_VECTOR 4
+#define OSC_TYPE_CHIPTUNE 5
+#define OSC_TYPE_NOISE 6
 
 typedef AudioProcessorValueTreeState::SliderAttachment SliderAttachment;
 typedef AudioProcessorValueTreeState::ButtonAttachment ButtonAttachment;
