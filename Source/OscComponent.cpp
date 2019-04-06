@@ -12,7 +12,8 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 
 //==============================================================================
-OscComponent::OscComponent(AudioProcessorValueTreeState& vts, std::string p_osc_number)
+OscComponent::OscComponent(AudioProcessorValueTreeState &vts,
+                           std::string p_osc_number)
     : m_value_tree(vts),
       m_reset("reset_button", juce::DrawableButton::ButtonStyle::ImageRaw),
       m_LED_saw("LED_Saw", juce::DrawableButton::ButtonStyle::ImageRaw),
@@ -32,18 +33,17 @@ OscComponent::OscComponent(AudioProcessorValueTreeState& vts, std::string p_osc_
       m_chiptune_waveselector(true), m_carrier_waveselector(false),
       m_modulator_waveselector(true), m_wavetable_waveselector(true),
       m_carrier_ratio(false), m_modulator_ratio(true), m_fm_exp("fm_exp"),
-      m_xy(m_xy_x_dummy, m_xy_x_dummy, true),
-      m_osc_number(p_osc_number),
+      m_xy(m_xy_x_dummy, m_xy_x_dummy, true), m_osc_number(p_osc_number),
       m_wavetable_identifier("osc" + p_osc_number + "_wavetable"),
       m_chipwave_identifier("osc" + p_osc_number + "_chipwave"),
       m_modulator_wave_identifier("osc" + p_osc_number + "_modulator_wave"),
       m_carrier_wave_identifier("osc" + p_osc_number + "_carrier_wave"),
       m_modulator_ratio_identifier("osc" + p_osc_number + "_modulator_ratio"),
-      m_carrier_ratio_identifier("osc" + p_osc_number + "_carrier_ratio")
-{
+      m_carrier_ratio_identifier("osc" + p_osc_number + "_carrier_ratio"),
+      m_analog_wave_identifier("osc" + p_osc_number + "_analog_wave") {
   m_vol.setStrip(
-     ImageCache::getFromFile(juce::File(
-      GRAPHICS_PATH + "cropped/knobs/black2/black_knob_small.png")),
+      ImageCache::getFromFile(juce::File(
+          GRAPHICS_PATH + "cropped/knobs/black2/black_knob_small.png")),
       N_KNOB_FRAMES);
   m_vol.setSliderStyle(Slider::RotaryVerticalDrag);
   m_vol.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
@@ -83,7 +83,8 @@ OscComponent::OscComponent(AudioProcessorValueTreeState& vts, std::string p_osc_
   m_reset.setClickingTogglesState(true);
   m_reset.setBounds(RESET_POS_X, RESET_POS_Y, reset_1.getWidth(),
                     reset_1.getHeight());
-  m_reset.setTooltip("Resets the oscillator to\nthe start of its waveform\nfor a new note");
+  m_reset.setTooltip(
+      "Resets the oscillator to\nthe start of its waveform\nfor a new note");
   addChildComponent(m_reset);
   m_reset.setAlwaysOnTop(true);
   m_reset.setTriggeredOnMouseDown(true);
@@ -92,7 +93,7 @@ OscComponent::OscComponent(AudioProcessorValueTreeState& vts, std::string p_osc_
 
   m_oct.setStrip(
       ImageCache::getFromFile(juce::File(
-      GRAPHICS_PATH + "cropped/knobs/black2/black_knob_small.png")),
+          GRAPHICS_PATH + "cropped/knobs/black2/black_knob_small.png")),
       N_KNOB_FRAMES);
   m_oct.setSliderStyle(Slider::RotaryVerticalDrag);
   m_oct.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
@@ -103,12 +104,12 @@ OscComponent::OscComponent(AudioProcessorValueTreeState& vts, std::string p_osc_
   m_oct.setRange(-OCT_RANGE_MAX, OCT_RANGE_MAX);
   m_oct.setNumDecimalPlacesToDisplay(0);
   m_oct.setKnobTooltip("The pitch of\nthe oscillator in octaves");
-  
+
   addChildComponent(m_oct);
 
   m_semi.setStrip(
       ImageCache::getFromFile(juce::File(
-      GRAPHICS_PATH + "cropped/knobs/black2/black_knob_small.png")),
+          GRAPHICS_PATH + "cropped/knobs/black2/black_knob_small.png")),
       N_KNOB_FRAMES);
   m_semi.setSliderStyle(Slider::RotaryVerticalDrag);
   m_semi.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
@@ -119,7 +120,7 @@ OscComponent::OscComponent(AudioProcessorValueTreeState& vts, std::string p_osc_
 
   m_fine.setStrip(
       ImageCache::getFromFile(juce::File(
-      GRAPHICS_PATH + "cropped/knobs/black2/black_knob_small.png")),
+          GRAPHICS_PATH + "cropped/knobs/black2/black_knob_small.png")),
       N_KNOB_FRAMES);
   m_fine.setSliderStyle(Slider::RotaryVerticalDrag);
   m_fine.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
@@ -159,6 +160,12 @@ OscComponent::OscComponent(AudioProcessorValueTreeState& vts, std::string p_osc_
   m_LED_saw.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId,
                       juce::Colour());
   m_LED_saw.setTooltip("Select the saw wave");
+  m_LED_saw.onStateChange = [&]() {
+    if (m_LED_saw.getToggleState()) {
+      m_value_tree.getParameter(m_analog_wave_identifier)
+          ->setValueNotifyingHost(0);
+    }
+  };
   addChildComponent(m_LED_saw);
 
   m_LED_pulse.setImages(&LED_draw2, &LED_draw2, &LED_draw2, &LED_draw2,
@@ -173,6 +180,12 @@ OscComponent::OscComponent(AudioProcessorValueTreeState& vts, std::string p_osc_
   m_LED_pulse.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId,
                         juce::Colour());
   m_LED_pulse.setTooltip("Select the pulse wave");
+  m_LED_pulse.onStateChange = [&]() {
+    if (m_LED_pulse.getToggleState()) {
+      m_value_tree.getParameter(m_analog_wave_identifier)
+          ->setValueNotifyingHost(2.f/4.f);
+    }
+  };
   addChildComponent(m_LED_pulse);
 
   m_LED_triangle.setImages(&LED_draw2, &LED_draw2, &LED_draw2, &LED_draw2,
@@ -187,7 +200,13 @@ OscComponent::OscComponent(AudioProcessorValueTreeState& vts, std::string p_osc_
   m_LED_triangle.setColour(
       juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
   m_LED_triangle.setTooltip("Select the triangle wave");
-
+  //m_LED_triangle.setClickingTogglesState(true);
+  m_LED_triangle.onStateChange = [&]() {
+    if (m_LED_triangle.getToggleState()) {
+      m_value_tree.getParameter(m_analog_wave_identifier)
+          ->setValueNotifyingHost(3.f/4.f);
+    }
+  };
   addChildComponent(m_LED_triangle);
 
   m_LED_sine.setImages(&LED_draw2, &LED_draw2, &LED_draw2, &LED_draw2,
@@ -202,11 +221,18 @@ OscComponent::OscComponent(AudioProcessorValueTreeState& vts, std::string p_osc_
   m_LED_sine.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId,
                        juce::Colour());
   m_LED_sine.setTooltip("Select the sine wave");
+  m_LED_sine.onStateChange = [&]() {
+    if (m_LED_sine.getToggleState()) {
+      m_value_tree.getParameter(m_analog_wave_identifier)
+          ->setValueNotifyingHost(1);
+    }
+  };
   addChildComponent(m_LED_sine);
 
-  m_pw.setStrip(ImageCache::getFromFile(juce::File(
-      GRAPHICS_PATH + "cropped/knobs/black2/black_knob_small.png")),
-                N_KNOB_FRAMES);
+  m_pw.setStrip(
+      ImageCache::getFromFile(juce::File(
+          GRAPHICS_PATH + "cropped/knobs/black2/black_knob_small.png")),
+      N_KNOB_FRAMES);
   m_pw.setSliderStyle(Slider::RotaryVerticalDrag);
   m_pw.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
   m_pw.setValue(PW_DEFAULT);
@@ -216,11 +242,12 @@ OscComponent::OscComponent(AudioProcessorValueTreeState& vts, std::string p_osc_
 
   m_drift.setStrip(
       ImageCache::getFromFile(juce::File(
-      GRAPHICS_PATH + "cropped/knobs/black4/black_knob_big.png")),
+          GRAPHICS_PATH + "cropped/knobs/black4/black_knob_big.png")),
       N_KNOB_FRAMES);
   m_drift.setSliderStyle(Slider::RotaryVerticalDrag);
   m_drift.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-  m_drift.setKnobTooltip("Slightly detunes the oscillator\nover time, like an analog\noscillator would");
+  m_drift.setKnobTooltip("Slightly detunes the oscillator\nover time, like an "
+                         "analog\noscillator would");
   addChildComponent(m_drift);
 
   juce::Image arp_1 = ImageCache::getFromFile(
@@ -319,7 +346,7 @@ OscComponent::OscComponent(AudioProcessorValueTreeState& vts, std::string p_osc_
 
   m_step_1.setStrip(
       ImageCache::getFromFile(juce::File(
-      GRAPHICS_PATH + "cropped/knobs/black2/black_knob_small.png")),
+          GRAPHICS_PATH + "cropped/knobs/black2/black_knob_small.png")),
       256);
   m_step_1.setBounds(STEP_1_POS_X, STEP_1_POS_Y, BLACK_KNOB_SMALL_SIZE_X,
                      BLACK_KNOB_SMALL_SIZE_Y);
@@ -327,12 +354,13 @@ OscComponent::OscComponent(AudioProcessorValueTreeState& vts, std::string p_osc_
   m_step_1.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
   m_step_1.setRange(-STEP_RANGE_MAX, STEP_RANGE_MAX);
   m_step_1.setNumDecimalPlacesToDisplay(0);
-  m_step_1.setKnobTooltip("The pitch of the\nfirst step of the\narpeggiator in semitones");
+  m_step_1.setKnobTooltip(
+      "The pitch of the\nfirst step of the\narpeggiator in semitones");
   addChildComponent(m_step_1);
 
   m_step_2.setStrip(
       ImageCache::getFromFile(juce::File(
-      GRAPHICS_PATH + "cropped/knobs/black2/black_knob_small.png")),
+          GRAPHICS_PATH + "cropped/knobs/black2/black_knob_small.png")),
       256);
   m_step_2.setBounds(STEP_2_POS_X, STEP_2_POS_Y, BLACK_KNOB_SMALL_SIZE_X,
                      BLACK_KNOB_SMALL_SIZE_Y);
@@ -341,13 +369,15 @@ OscComponent::OscComponent(AudioProcessorValueTreeState& vts, std::string p_osc_
   m_step_2.setRange(-STEP_RANGE_MAX, STEP_RANGE_MAX);
   m_step_2.setValue(STEP_2_DEFAULT);
   m_step_2.setNumDecimalPlacesToDisplay(0);
-  m_step_2.setKnobTooltip("The pitch of the\nsecond step of the\narpeggiator in semitones");
-  m_step_2.setDoubleClickReturnValue(true, STEP_2_DEFAULT,ModifierKeys::ctrlModifier );
+  m_step_2.setKnobTooltip(
+      "The pitch of the\nsecond step of the\narpeggiator in semitones");
+  m_step_2.setDoubleClickReturnValue(true, STEP_2_DEFAULT,
+                                     ModifierKeys::ctrlModifier);
   addChildComponent(m_step_2);
 
   m_step_3.setStrip(
       ImageCache::getFromFile(juce::File(
-      GRAPHICS_PATH + "cropped/knobs/black2/black_knob_small.png")),
+          GRAPHICS_PATH + "cropped/knobs/black2/black_knob_small.png")),
       256);
   m_step_3.setBounds(STEP_3_POS_X, STEP_3_POS_Y, BLACK_KNOB_SMALL_SIZE_X,
                      BLACK_KNOB_SMALL_SIZE_Y);
@@ -356,9 +386,11 @@ OscComponent::OscComponent(AudioProcessorValueTreeState& vts, std::string p_osc_
   m_step_3.setRange(-STEP_RANGE_MAX, STEP_RANGE_MAX);
   m_step_3.setValue(STEP_3_DEFAULT);
   m_step_3.setNumDecimalPlacesToDisplay(0);
-  m_step_3.setKnobTooltip("The pitch of the\nthird step of the\narpeggiator in semitones");
-  m_step_3.setDoubleClickReturnValue(true, STEP_2_DEFAULT,ModifierKeys::ctrlModifier );
-  addChildComponent(m_step_3); 
+  m_step_3.setKnobTooltip(
+      "The pitch of the\nthird step of the\narpeggiator in semitones");
+  m_step_3.setDoubleClickReturnValue(true, STEP_2_DEFAULT,
+                                     ModifierKeys::ctrlModifier);
+  addChildComponent(m_step_3);
 
   m_fm.setStrip(ImageCache::getFromFile(juce::File(
                     GRAPHICS_PATH + "cropped/knobs/metal3/metal_knob_big.png")),
@@ -367,7 +399,8 @@ OscComponent::OscComponent(AudioProcessorValueTreeState& vts, std::string p_osc_
                  METAL_KNOB_BIG_SIZE_Y);
   m_fm.setSliderStyle(Slider::RotaryVerticalDrag);
   m_fm.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-  m_fm.setKnobTooltip("How much the modulator\nmodulates the pitch of\n the carrier wave");
+  m_fm.setKnobTooltip(
+      "How much the modulator\nmodulates the pitch of\n the carrier wave");
   addChildComponent(m_fm);
 
   m_lp.setStrip(ImageCache::getFromFile(juce::File(
@@ -383,7 +416,8 @@ OscComponent::OscComponent(AudioProcessorValueTreeState& vts, std::string p_osc_
   m_lp.setDoubleClickReturnValue(true, LP_DEFAULT, ModifierKeys::ctrlModifier);
   m_lp.setTextValueSuffix(" Hz");
   m_lp.setNumDecimalPlacesToDisplay(0);
-  m_lp.setKnobTooltip("The frequency of\nthe lowpass filter which\nis applied to the noise");
+  m_lp.setKnobTooltip(
+      "The frequency of\nthe lowpass filter which\nis applied to the noise");
   addChildComponent(m_lp);
 
   m_hp.setStrip(ImageCache::getFromFile(juce::File(
@@ -399,7 +433,8 @@ OscComponent::OscComponent(AudioProcessorValueTreeState& vts, std::string p_osc_
   m_hp.setValue(HP_DEFAULT);
   m_hp.setDoubleClickReturnValue(true, HP_DEFAULT, ModifierKeys::ctrlModifier);
   m_hp.setNumDecimalPlacesToDisplay(0);
-  m_hp.setKnobTooltip("The frequency of\nthe highspass filter which\nis applied to the noise");
+  m_hp.setKnobTooltip(
+      "The frequency of\nthe highspass filter which\nis applied to the noise");
   addChildComponent(m_hp);
 
   m_position.setStrip(
@@ -410,7 +445,8 @@ OscComponent::OscComponent(AudioProcessorValueTreeState& vts, std::string p_osc_
                        METAL_KNOB_BIG_SIZE_Y);
   m_position.setSliderStyle(Slider::RotaryVerticalDrag);
   m_position.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-  m_position.setKnobTooltip("The position in the\nwavetable used. There are\nfour tables through which\nyou can sweep");
+  m_position.setKnobTooltip("The position in the\nwavetable used. There "
+                            "are\nfour tables through which\nyou can sweep");
   addChildComponent(m_position);
 
   m_detune.setStrip(
@@ -421,7 +457,8 @@ OscComponent::OscComponent(AudioProcessorValueTreeState& vts, std::string p_osc_
                      METAL_KNOB_BIG_SIZE_Y);
   m_detune.setSliderStyle(Slider::RotaryVerticalDrag);
   m_detune.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-  m_detune.setKnobTooltip("How much the individual\noscillators are detuned\n against each other");
+  m_detune.setKnobTooltip(
+      "How much the individual\noscillators are detuned\n against each other");
   addChildComponent(m_detune);
 
   m_spread.setStrip(
@@ -432,7 +469,8 @@ OscComponent::OscComponent(AudioProcessorValueTreeState& vts, std::string p_osc_
                      METAL_KNOB_SMALL_SIZE_Y);
   m_spread.setSliderStyle(Slider::RotaryVerticalDrag);
   m_spread.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-  m_spread.setKnobTooltip("Spreads the oscillators to\n different positions in the\n wavetable");
+  m_spread.setKnobTooltip(
+      "Spreads the oscillators to\n different positions in the\n wavetable");
   addChildComponent(m_spread);
 
   m_position_multi.setStrip(
@@ -443,12 +481,14 @@ OscComponent::OscComponent(AudioProcessorValueTreeState& vts, std::string p_osc_
                              METAL_KNOB_SMALL_SIZE_X, METAL_KNOB_SMALL_SIZE_Y);
   m_position_multi.setSliderStyle(Slider::RotaryVerticalDrag);
   m_position_multi.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-  m_position_multi.setKnobTooltip("The position in the\nwavetable used. There are\nfour tables through which\nyou can sweep");
+  m_position_multi.setKnobTooltip(
+      "The position in the\nwavetable used. There are\nfour tables through "
+      "which\nyou can sweep");
   addChildComponent(m_position_multi);
 
   m_speed.setStrip(
       ImageCache::getFromFile(juce::File(
-      GRAPHICS_PATH + "cropped/knobs/black2/black_knob_small.png")),
+          GRAPHICS_PATH + "cropped/knobs/black2/black_knob_small.png")),
       256);
   m_speed.setBounds(SPEED_POS_X, SPEED_POS_Y, BLACK_KNOB_SMALL_SIZE_X,
                     BLACK_KNOB_SMALL_SIZE_Y);
@@ -458,7 +498,8 @@ OscComponent::OscComponent(AudioProcessorValueTreeState& vts, std::string p_osc_
   m_speed.setRange(SPEED_MIN, SPEED_MAX);
   m_speed.setSkewFactorFromMidPoint(SPEED_MID);
   m_speed.setValue(SPEED_DEFAULT);
-  m_speed.setDoubleClickReturnValue(true, SPEED_DEFAULT, ModifierKeys::ctrlModifier);
+  m_speed.setDoubleClickReturnValue(true, SPEED_DEFAULT,
+                                    ModifierKeys::ctrlModifier);
   m_speed.setNumDecimalPlacesToDisplay(1);
   m_speed.setKnobTooltip("Speed of the arpeggiator");
   addChildComponent(m_speed);
@@ -497,7 +538,9 @@ OscComponent::OscComponent(AudioProcessorValueTreeState& vts, std::string p_osc_
   m_chipdraw_convert.onClick = [&]() {
     m_chipdraw_convert.setToggleState(true, sendNotification);
   };
-  m_chipdraw_convert.setTooltip("Converts the waveform drawn\nin the window. You won't hear\nany changes before you press\nthis button");
+  m_chipdraw_convert.setTooltip(
+      "Converts the waveform drawn\nin the window. You won't hear\nany changes "
+      "before you press\nthis button");
   addChildComponent(m_chipdraw_convert);
 
   m_wavedraw_convert.setImages(
@@ -515,7 +558,9 @@ OscComponent::OscComponent(AudioProcessorValueTreeState& vts, std::string p_osc_
   m_wavedraw_convert.onClick = [&]() {
     m_wavedraw_convert.setToggleState(true, sendNotification);
   };
-  m_wavedraw_convert.setTooltip("Converts the waveform drawn\nin the window. You won't hear\nany changes before you press\nthis button");
+  m_wavedraw_convert.setTooltip(
+      "Converts the waveform drawn\nin the window. You won't hear\nany changes "
+      "before you press\nthis button");
   addChildComponent(m_wavedraw_convert);
 
   m_specdraw_convert.setImages(
@@ -533,13 +578,16 @@ OscComponent::OscComponent(AudioProcessorValueTreeState& vts, std::string p_osc_
   m_specdraw_convert.onClick = [&]() {
     m_specdraw_convert.setToggleState(true, sendNotification);
   };
-  m_specdraw_convert.setTooltip("Converts the waveform drawn\nin the window. You won't hear\nany changes before you press\nthis button");
+  m_specdraw_convert.setTooltip(
+      "Converts the waveform drawn\nin the window. You won't hear\nany changes "
+      "before you press\nthis button");
   addChildComponent(m_specdraw_convert);
 
   juce::Colour chip_color(102, 93, 79);
 
-  m_chiptune_waveselector.OnValueChange = [&](int p_new_value){
-      m_value_tree.getParameter(m_chipwave_identifier)->setValueNotifyingHost(((float)p_new_value - 0.5f) / 1000.f);
+  m_chiptune_waveselector.OnValueChange = [&](int p_new_value) {
+    m_value_tree.getParameter(m_chipwave_identifier)
+        ->setValueNotifyingHost(((float)p_new_value - 0.5f) / 1000.f);
   };
   m_chiptune_waveselector.setTopLeftPosition(WAVE_CHIPTUNE_POS_X,
                                              WAVE_CHIPTUNE_POS_Y);
@@ -562,8 +610,9 @@ OscComponent::OscComponent(AudioProcessorValueTreeState& vts, std::string p_osc_
 
   juce::Colour fm_color(90, 40, 40);
 
-  m_carrier_waveselector.OnValueChange = [&](int p_new_value){
-      m_value_tree.getParameter(m_carrier_wave_identifier)->setValueNotifyingHost(((float)p_new_value - 0.5f) / 1000.f);
+  m_carrier_waveselector.OnValueChange = [&](int p_new_value) {
+    m_value_tree.getParameter(m_carrier_wave_identifier)
+        ->setValueNotifyingHost(((float)p_new_value - 0.5f) / 1000.f);
   };
   m_carrier_waveselector.setTopLeftPosition(WAVE_CARRIER_POS_X,
                                             WAVE_CARRIER_POS_Y);
@@ -577,8 +626,9 @@ OscComponent::OscComponent(AudioProcessorValueTreeState& vts, std::string p_osc_
   m_carrier_waveselector.setTooltip("Selects the wave for the carrier osc");
   addChildComponent(m_carrier_waveselector);
 
-  m_wavetable_waveselector.OnValueChange = [&](int p_new_value){
-      m_value_tree.getParameter(m_wavetable_identifier)->setValueNotifyingHost(((float)p_new_value - 0.5f) / 1000.f);
+  m_wavetable_waveselector.OnValueChange = [&](int p_new_value) {
+    m_value_tree.getParameter(m_wavetable_identifier)
+        ->setValueNotifyingHost(((float)p_new_value - 0.5f) / 1000.f);
   };
   m_wavetable_waveselector.setTopLeftPosition(WAVE_CARRIER_POS_X,
                                               WAVE_CARRIER_POS_Y);
@@ -591,8 +641,9 @@ OscComponent::OscComponent(AudioProcessorValueTreeState& vts, std::string p_osc_
   m_wavetable_waveselector.setTooltip("Selects the wave for the oscillator");
   addChildComponent(m_wavetable_waveselector);
 
-  m_modulator_waveselector.OnValueChange = [&](int p_new_value){
-      m_value_tree.getParameter(m_modulator_wave_identifier)->setValueNotifyingHost(((float)p_new_value - 0.5f) / 1000.f);
+  m_modulator_waveselector.OnValueChange = [&](int p_new_value) {
+    m_value_tree.getParameter(m_modulator_wave_identifier)
+        ->setValueNotifyingHost(((float)p_new_value - 0.5f) / 1000.f);
   };
   m_modulator_waveselector.setTopLeftPosition(WAVE_MODULATOR_POS_X,
                                               WAVE_MODULATOR_POS_Y);
@@ -606,26 +657,29 @@ OscComponent::OscComponent(AudioProcessorValueTreeState& vts, std::string p_osc_
   m_modulator_waveselector.setTooltip("Selects the wave for the modulator osc");
   addChildComponent(m_modulator_waveselector);
 
-  m_carrier_ratio.OnValueChange = [&](int p_new_value){
-      m_value_tree.getParameter(m_carrier_ratio_identifier)->setValueNotifyingHost(((float)p_new_value - 0.5f) / 12.f);    
+  m_carrier_ratio.OnValueChange = [&](int p_new_value) {
+    m_value_tree.getParameter(m_carrier_ratio_identifier)
+        ->setValueNotifyingHost(((float)p_new_value - 0.5f) / 12.f);
   };
   m_carrier_ratio.setTopLeftPosition(RATIO_CARRIER_POS_X, RATIO_CARRIER_POS_Y);
   m_carrier_ratio.setRange(1, 12);
   m_carrier_ratio.setValue(1);
   m_carrier_ratio.setColor(fm_color);
-  m_carrier_ratio.setTooltip("The pitch ratio of the carrier to base frequency");
+  m_carrier_ratio.setTooltip(
+      "The pitch ratio of the carrier to base frequency");
   addChildComponent(m_carrier_ratio);
 
-
-  m_modulator_ratio.OnValueChange = [&](int p_new_value){
-      m_value_tree.getParameter(m_modulator_ratio_identifier)->setValueNotifyingHost(((float)p_new_value - 0.5f) / 12.f);    
+  m_modulator_ratio.OnValueChange = [&](int p_new_value) {
+    m_value_tree.getParameter(m_modulator_ratio_identifier)
+        ->setValueNotifyingHost(((float)p_new_value - 0.5f) / 12.f);
   };
   m_modulator_ratio.setTopLeftPosition(RATIO_MODULATOR_POS_X,
                                        RATIO_MODULATOR_POS_Y);
   m_modulator_ratio.setRange(1, 12);
   m_modulator_ratio.setValue(1);
   m_modulator_ratio.setColor(fm_color);
-  m_modulator_ratio.setTooltip("The pitch ratio of the modulator to base frequency");
+  m_modulator_ratio.setTooltip(
+      "The pitch ratio of the modulator to base frequency");
   addChildComponent(m_modulator_ratio);
 
   juce::Image fm_exp_left = ImageCache::getFromFile(
@@ -640,7 +694,9 @@ OscComponent::OscComponent(AudioProcessorValueTreeState& vts, std::string p_osc_
   m_fm_exp.onStateChange = [&]() {
     // setLfo13(m_fm_exp_button.getToggleState());
   };
-  m_fm_exp.setTooltip("Whether to use exponential or linear FM.\nExponential FM has a more musical character to it, as it preserves the perceived note pitch.");
+  m_fm_exp.setTooltip(
+      "Whether to use exponential or linear FM.\nExponential FM has a more "
+      "musical character to it, as it preserves the perceived note pitch.");
   addChildComponent(m_fm_exp);
 
   m_chipdraw.setTopLeftPosition(CHIPDRAW_POSITION_X, CHIPDRAW_POSITION_Y);
@@ -649,7 +705,8 @@ OscComponent::OscComponent(AudioProcessorValueTreeState& vts, std::string p_osc_
   m_chipdraw.onDraw = [&]() {
     m_chipdraw_convert.setToggleState(false, dontSendNotification);
   };
-  m_chipdraw.setTooltip("Draw a custom 4Bit waveform.\n\nDon't forget to apply your waveform with the button on the bottom right.");
+  m_chipdraw.setTooltip("Draw a custom 4Bit waveform.\n\nDon't forget to apply "
+                        "your waveform with the button on the bottom right.");
   addChildComponent(m_chipdraw);
 
   juce::Colour wave_color(71, 92, 108);
@@ -661,7 +718,9 @@ OscComponent::OscComponent(AudioProcessorValueTreeState& vts, std::string p_osc_
   m_wavedraw.onDraw = [&]() {
     m_wavedraw_convert.setToggleState(false, dontSendNotification);
   };
-  m_wavedraw.setTooltip("Become the Picasso of music production.\n\nDon't forget to apply your waveform with the button on the bottom right.");
+  m_wavedraw.setTooltip(
+      "Become the Picasso of music production.\n\nDon't forget to apply your "
+      "waveform with the button on the bottom right.");
   addChildComponent(m_wavedraw);
 
   juce::Colour spec_color(61, 80, 70);
@@ -673,7 +732,10 @@ OscComponent::OscComponent(AudioProcessorValueTreeState& vts, std::string p_osc_
   m_specdraw.onDraw = [&]() {
     m_specdraw_convert.setToggleState(false, dontSendNotification);
   };
-  m_specdraw.setTooltip("Draw the spectrum of the oscillator. A single peak corresponds to a sine function.\n\nDon't forget to apply your waveform with the button on the bottom right.");
+  m_specdraw.setTooltip(
+      "Draw the spectrum of the oscillator. A single peak corresponds to a "
+      "sine function.\n\nDon't forget to apply your waveform with the button "
+      "on the bottom right.");
   addChildComponent(m_specdraw);
 
   juce::Colour vector_color(60, 60, 60);
@@ -685,7 +747,9 @@ OscComponent::OscComponent(AudioProcessorValueTreeState& vts, std::string p_osc_
   m_xy.setImage(glas_panel);
   m_xy.setInlay(1);
   m_xy.setColor(vector_color);
-  m_xy.setTooltip("Transition seamlessly through four waveforms. Each corner contains a waveform, which can be selected by the dropdowns on the right.");
+  m_xy.setTooltip(
+      "Transition seamlessly through four waveforms. Each corner contains a "
+      "waveform, which can be selected by the dropdowns on the right.");
   addAndMakeVisible(m_xy);
 
   juce::Image glas_panel_vecwave = ImageCache::getFromFile(
@@ -749,46 +813,65 @@ OscComponent::OscComponent(AudioProcessorValueTreeState& vts, std::string p_osc_
   m_vec_d.setTooltip("Select the waveform to the bottom right of the XY pad");
   addChildComponent(m_vec_d);
 
+  m_oct_attach.reset(
+      new SliderAttachment(m_value_tree, "osc" + m_osc_number + "_oct", m_oct));
+  m_semi_attach.reset(new SliderAttachment(
+      m_value_tree, "osc" + m_osc_number + "_semi", m_semi));
+  m_fine_attach.reset(new SliderAttachment(
+      m_value_tree, "osc" + m_osc_number + "_fine", m_fine));
+  m_vol_attach.reset(
+      new SliderAttachment(m_value_tree, "osc" + m_osc_number + "_vol", m_vol));
+  m_position_attach.reset(new SliderAttachment(
+      m_value_tree, "osc" + m_osc_number + "_position", m_position));
+  m_detune_attach.reset(new SliderAttachment(
+      m_value_tree, "osc" + m_osc_number + "_detune", m_detune));
+  m_multi_position_attach.reset(new SliderAttachment(
+      m_value_tree, "osc" + m_osc_number + "_multi_position",
+      m_position_multi));
+  m_spread_attach.reset(new SliderAttachment(
+      m_value_tree, "osc" + m_osc_number + "_spread", m_spread));
+  m_pulsewidth_attach.reset(new SliderAttachment(
+      m_value_tree, "osc" + m_osc_number + "_pulsewidth", m_pw));
+  m_drift_attach.reset(new SliderAttachment(
+      m_value_tree, "osc" + m_osc_number + "_drift", m_drift));
+  m_arp_speed_attach.reset(new SliderAttachment(
+      m_value_tree, "osc" + m_osc_number + "_arp_speed", m_speed));
+  m_step_1_attach.reset(new SliderAttachment(
+      m_value_tree, "osc" + m_osc_number + "_step_1", m_step_1));
+  m_step_2_attach.reset(new SliderAttachment(
+      m_value_tree, "osc" + m_osc_number + "_step_2", m_step_2));
+  m_step_3_attach.reset(new SliderAttachment(
+      m_value_tree, "osc" + m_osc_number + "_step_3", m_step_3));
+  m_fm_attach.reset(
+      new SliderAttachment(m_value_tree, "osc" + m_osc_number + "_fm", m_fm));
+  m_lp_attach.reset(
+      new SliderAttachment(m_value_tree, "osc" + m_osc_number + "_lp", m_lp));
+  m_hp_attach.reset(
+      new SliderAttachment(m_value_tree, "osc" + m_osc_number + "_hp", m_hp));
+  m_x_attach.reset(new SliderAttachment(
+      m_value_tree, "osc" + m_osc_number + "_vec_x", m_xy_x_dummy));
+  m_y_attach.reset(new SliderAttachment(
+      m_value_tree, "osc" + m_osc_number + "_vec_y", m_xy_y_dummy));
 
-  m_oct_attach.reset (new SliderAttachment (m_value_tree, "osc"+m_osc_number+"_oct", m_oct));
-  m_semi_attach.reset (new SliderAttachment (m_value_tree, "osc"+m_osc_number+"_semi", m_semi));
-  m_fine_attach.reset (new SliderAttachment (m_value_tree, "osc"+m_osc_number+"_fine", m_fine));
-  m_vol_attach.reset (new SliderAttachment (m_value_tree, "osc"+m_osc_number+"_vol", m_vol));
-  m_position_attach.reset (new SliderAttachment (m_value_tree, "osc"+m_osc_number+"_position", m_position));
-  m_detune_attach.reset (new SliderAttachment (m_value_tree, "osc"+m_osc_number+"_detune", m_detune));
-  m_multi_position_attach.reset (new SliderAttachment (m_value_tree, "osc"+m_osc_number+"_multi_position", m_position_multi));
-  m_spread_attach.reset (new SliderAttachment (m_value_tree, "osc"+m_osc_number+"_spread", m_spread));
-  m_pulsewidth_attach.reset (new SliderAttachment (m_value_tree, "osc"+m_osc_number+"_pulsewidth", m_pw));
-  m_drift_attach.reset (new SliderAttachment (m_value_tree, "osc"+m_osc_number+"_drift", m_drift));
-  m_arp_speed_attach.reset (new SliderAttachment (m_value_tree, "osc"+m_osc_number+"_arp_speed", m_speed));
-  m_step_1_attach.reset (new SliderAttachment (m_value_tree, "osc"+m_osc_number+"_step_1", m_step_1));
-  m_step_2_attach.reset (new SliderAttachment (m_value_tree, "osc"+m_osc_number+"_step_2", m_step_2));
-  m_step_3_attach.reset (new SliderAttachment (m_value_tree, "osc"+m_osc_number+"_step_3", m_step_3));
-  m_fm_attach.reset (new SliderAttachment (m_value_tree, "osc"+m_osc_number+"_fm", m_fm));
-  m_lp_attach.reset (new SliderAttachment (m_value_tree, "osc"+m_osc_number+"_lp", m_lp));
-  m_hp_attach.reset (new SliderAttachment (m_value_tree, "osc"+m_osc_number+"_hp", m_hp));
-  m_x_attach.reset (new SliderAttachment (m_value_tree, "osc"+m_osc_number+"_vec_x", m_xy_x_dummy));
-  m_y_attach.reset (new SliderAttachment (m_value_tree, "osc"+m_osc_number+"_vec_y", m_xy_y_dummy));
-  
-  m_reset_attach.reset (new ButtonAttachment (m_value_tree, "osc"+m_osc_number+"_reset", m_reset));
-  m_arp_on_attach.reset (new ButtonAttachment (m_value_tree, "osc"+m_osc_number+"_arp_on", m_arp));
-  m_step_3_on_attach.reset (new ButtonAttachment (m_value_tree, "osc"+m_osc_number+"_step_3_on", m_step_button));
-  m_chipnoise_attach.reset (new ButtonAttachment (m_value_tree, "osc"+m_osc_number+"_chipnoise", m_noise));
-  m_exp_fm_attach.reset (new ButtonAttachment (m_value_tree, "osc"+m_osc_number+"_exp_fm", m_fm_exp));
+  m_reset_attach.reset(new ButtonAttachment(
+      m_value_tree, "osc" + m_osc_number + "_reset", m_reset));
+  m_arp_on_attach.reset(new ButtonAttachment(
+      m_value_tree, "osc" + m_osc_number + "_arp_on", m_arp));
+  m_step_3_on_attach.reset(new ButtonAttachment(
+      m_value_tree, "osc" + m_osc_number + "_step_3_on", m_step_button));
+  m_chipnoise_attach.reset(new ButtonAttachment(
+      m_value_tree, "osc" + m_osc_number + "_chipnoise", m_noise));
+  m_exp_fm_attach.reset(new ButtonAttachment(
+      m_value_tree, "osc" + m_osc_number + "_exp_fm", m_fm_exp));
 
-  m_vec_a_attach.reset(new ComboBoxAttachment (m_value_tree, "osc"+m_osc_number+"_vec_a", m_vec_a));
-  m_vec_b_attach.reset(new ComboBoxAttachment (m_value_tree, "osc"+m_osc_number+"_vec_b", m_vec_b));
-  m_vec_c_attach.reset(new ComboBoxAttachment (m_value_tree, "osc"+m_osc_number+"_vec_c", m_vec_c));
-  m_vec_d_attach.reset(new ComboBoxAttachment (m_value_tree, "osc"+m_osc_number+"_vec_d", m_vec_d));
-
-  
-
-
-
-
-
-
-
+  m_vec_a_attach.reset(new ComboBoxAttachment(
+      m_value_tree, "osc" + m_osc_number + "_vec_a", m_vec_a));
+  m_vec_b_attach.reset(new ComboBoxAttachment(
+      m_value_tree, "osc" + m_osc_number + "_vec_b", m_vec_b));
+  m_vec_c_attach.reset(new ComboBoxAttachment(
+      m_value_tree, "osc" + m_osc_number + "_vec_c", m_vec_c));
+  m_vec_d_attach.reset(new ComboBoxAttachment(
+      m_value_tree, "osc" + m_osc_number + "_vec_d", m_vec_d));
 
   setSize(247, 145);
 }

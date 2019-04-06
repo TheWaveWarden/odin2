@@ -16,6 +16,8 @@ for (int osc = 0; osc < 3; ++osc) {
       "osc" + std::to_string(osc + 1) + "_oct");
   m_osc_semi[osc] = m_parameters.getRawParameterValue(
       "osc" + std::to_string(osc + 1) + "_semi");
+  m_osc_analog_wave[osc] = m_parameters.getRawParameterValue(
+      "osc" + std::to_string(osc + 1) + "_analog_wave");
   m_osc_fine[osc] = m_parameters.getRawParameterValue(
       "osc" + std::to_string(osc + 1) + "_fine");
   m_osc_vol[osc] = m_parameters.getRawParameterValue(
@@ -103,7 +105,6 @@ for (int fil = 0; fil < 3; ++fil) {
       "fil" + std::to_string(fil + 1) + "_comb_polarity");
 }
 
-
 m_amp_pan = m_parameters.getRawParameterValue("amp_pan");
 m_amp_gain = m_parameters.getRawParameterValue("amp_gain");
 m_amp_vel = m_parameters.getRawParameterValue("amp_vel");
@@ -180,9 +181,12 @@ m_delay_on = m_parameters.getRawParameterValue("delay_on");
 m_chorus_on = m_parameters.getRawParameterValue("chorus_on");
 
 for (int fil = 0; fil < 2; ++fil) {
-  m_fil_osc1[fil] = m_parameters.getRawParameterValue("fil" + std::to_string(fil+1) + "_osc1");
-  m_fil_osc2[fil] = m_parameters.getRawParameterValue("fil" + std::to_string(fil+1) + "_osc2");
-  m_fil_osc3[fil] = m_parameters.getRawParameterValue("fil" + std::to_string(fil+1) + "_osc3");
+  m_fil_osc1[fil] = m_parameters.getRawParameterValue(
+      "fil" + std::to_string(fil + 1) + "_osc1");
+  m_fil_osc2[fil] = m_parameters.getRawParameterValue(
+      "fil" + std::to_string(fil + 1) + "_osc2");
+  m_fil_osc3[fil] = m_parameters.getRawParameterValue(
+      "fil" + std::to_string(fil + 1) + "_osc3");
 }
 
 m_fil2_fil1 = m_parameters.getRawParameterValue("fil2_fil1");
@@ -256,4 +260,274 @@ for (int i = 0; i < 9; ++i) {
       m_parameters.getRawParameterValue("dest_2_[" + std::to_string(i) + "]");
   m_scale[i] =
       m_parameters.getRawParameterValue("scale_[" + std::to_string(i) + "]");
+}
+
+//============================================================================
+//============================================================================
+//============================================================================
+//============================================================================
+//============================================================================
+//============================================================================
+//============================================================================
+//============================================================================
+//============================================================================
+//======================== ATTACH TO LISTENER ================================
+//============================================================================
+//============================================================================
+//============================================================================
+//============================================================================
+//============================================================================
+//============================================================================
+//============================================================================
+//============================================================================
+
+for (int osc = 0; osc < 3; ++osc) {
+  m_parameters.addParameterListener("osc" + std::to_string(osc + 1) + "_type",
+                                    &m_tree_listener);
+  m_parameters.addParameterListener("osc" + std::to_string(osc + 1) + "_oct",
+                                    &m_tree_listener);
+  m_parameters.addParameterListener("osc" + std::to_string(osc + 1) + "_semi",
+                                    &m_tree_listener);
+  m_parameters.addParameterListener("osc" + std::to_string(osc + 1) + "_fine",
+                                    &m_tree_listener);
+  m_parameters.addParameterListener("osc" + std::to_string(osc + 1) + "_analog_wave",
+                                    &m_tree_listener);
+  m_parameters.addParameterListener("osc" + std::to_string(osc + 1) + "_vol",
+                                    &m_tree_listener);
+  m_parameters.addParameterListener(
+      "osc" + std::to_string(osc + 1) + "_position", &m_tree_listener);
+  m_parameters.addParameterListener("osc" + std::to_string(osc + 1) + "_detune",
+                                    &m_tree_listener);
+  m_parameters.addParameterListener(
+      "osc" + std::to_string(osc + 1) + "_multi_position", &m_tree_listener);
+  m_parameters.addParameterListener("osc" + std::to_string(osc + 1) + "_spread",
+                                    &m_tree_listener);
+  m_parameters.addParameterListener(
+      "osc" + std::to_string(osc + 1) + "_pulsewidth", &m_tree_listener);
+  m_parameters.addParameterListener("osc" + std::to_string(osc + 1) + "_drift",
+                                    &m_tree_listener);
+  m_parameters.addParameterListener(
+      "osc" + std::to_string(osc + 1) + "_arp_speed", &m_tree_listener);
+  m_parameters.addParameterListener("osc" + std::to_string(osc + 1) + "_step_1",
+                                    &m_tree_listener);
+  m_parameters.addParameterListener("osc" + std::to_string(osc + 1) + "_step_2",
+                                    &m_tree_listener);
+  m_parameters.addParameterListener("osc" + std::to_string(osc + 1) + "_step_3",
+                                    &m_tree_listener);
+  m_parameters.addParameterListener("osc" + std::to_string(osc + 1) + "_fm",
+                                    &m_tree_listener);
+  m_parameters.addParameterListener(
+      "osc" + std::to_string(osc + 1) + "_carrier_ratio", &m_tree_listener);
+  m_parameters.addParameterListener(
+      "osc" + std::to_string(osc + 1) + "_modulator_ratio", &m_tree_listener);
+  m_parameters.addParameterListener("osc" + std::to_string(osc + 1) + "_lp",
+                                    &m_tree_listener);
+  m_parameters.addParameterListener("osc" + std::to_string(osc + 1) + "_hp",
+                                    &m_tree_listener);
+  m_parameters.addParameterListener("osc" + std::to_string(osc + 1) + "_reset",
+                                    &m_tree_listener);
+  m_parameters.addParameterListener("osc" + std::to_string(osc + 1) + "_arp_on",
+                                    &m_tree_listener);
+  m_parameters.addParameterListener(
+      "osc" + std::to_string(osc + 1) + "_step_3_on", &m_tree_listener);
+  m_parameters.addParameterListener(
+      "osc" + std::to_string(osc + 1) + "_chipnoise", &m_tree_listener);
+  m_parameters.addParameterListener("osc" + std::to_string(osc + 1) + "_exp_fm",
+                                    &m_tree_listener);
+  m_parameters.addParameterListener("osc" + std::to_string(osc + 1) + "_vec_a",
+                                    &m_tree_listener);
+  m_parameters.addParameterListener("osc" + std::to_string(osc + 1) + "_vec_b",
+                                    &m_tree_listener);
+  m_parameters.addParameterListener("osc" + std::to_string(osc + 1) + "_vec_c",
+                                    &m_tree_listener);
+  m_parameters.addParameterListener("osc" + std::to_string(osc + 1) + "_vec_d",
+                                    &m_tree_listener);
+  m_parameters.addParameterListener("osc" + std::to_string(osc + 1) + "_vec_x",
+                                    &m_tree_listener);
+  m_parameters.addParameterListener("osc" + std::to_string(osc + 1) + "_vec_y",
+                                    &m_tree_listener);
+  m_parameters.addParameterListener(
+      "osc" + std::to_string(osc + 1) + "_wavetable", &m_tree_listener);
+}
+
+for (int fil = 0; fil < 3; ++fil) {
+  m_parameters.addParameterListener("fil" + std::to_string(fil + 1) + "_type",
+                                    &m_tree_listener);
+  m_parameters.addParameterListener("fil" + std::to_string(fil + 1) + "_vel",
+                                    &m_tree_listener);
+  m_parameters.addParameterListener("fil" + std::to_string(fil + 1) + "_kbd",
+                                    &m_tree_listener);
+  m_parameters.addParameterListener("fil" + std::to_string(fil + 1) + "_gain",
+                                    &m_tree_listener);
+  m_parameters.addParameterListener("fil" + std::to_string(fil + 1) + "_freq",
+                                    &m_tree_listener);
+  m_parameters.addParameterListener("fil" + std::to_string(fil + 1) + "_res",
+                                    &m_tree_listener);
+  m_parameters.addParameterListener(
+      "fil" + std::to_string(fil + 1) + "_saturation", &m_tree_listener);
+  m_parameters.addParameterListener("fil" + std::to_string(fil + 1) +
+                                        "_formant_transition",
+                                    &m_tree_listener);
+  m_parameters.addParameterListener(
+      "fil" + std::to_string(fil + 1) + "_sem_transition", &m_tree_listener);
+  m_parameters.addParameterListener(
+      "fil" + std::to_string(fil + 1) + "_vowel_left", &m_tree_listener);
+  m_parameters.addParameterListener(
+      "fil" + std::to_string(fil + 1) + "_vowel_right", &m_tree_listener);
+  m_parameters.addParameterListener(
+      "fil" + std::to_string(fil + 1) + "_comb_polarity", &m_tree_listener);
+}
+
+// m_parameters.addParameterListener("osc1_oct", &m_tree_listener);
+
+m_parameters.addParameterListener("amp_pan", &m_tree_listener);
+m_parameters.addParameterListener("amp_gain", &m_tree_listener);
+m_parameters.addParameterListener("amp_vel", &m_tree_listener);
+m_parameters.addParameterListener("dist_threshold", &m_tree_listener);
+m_parameters.addParameterListener("dist_drywet", &m_tree_listener);
+m_parameters.addParameterListener("dist_on", &m_tree_listener);
+m_parameters.addParameterListener("dist_algo", &m_tree_listener);
+m_parameters.addParameterListener("fil1_to_amp", &m_tree_listener);
+m_parameters.addParameterListener("fil2_to_amp", &m_tree_listener);
+
+m_parameters.addParameterListener("env1_attack", &m_tree_listener);
+m_parameters.addParameterListener("env1_decay", &m_tree_listener);
+m_parameters.addParameterListener("env1_sustain", &m_tree_listener);
+m_parameters.addParameterListener("env1_release", &m_tree_listener);
+m_parameters.addParameterListener("env1_loop", &m_tree_listener);
+
+m_parameters.addParameterListener("env2_attack", &m_tree_listener);
+m_parameters.addParameterListener("env2_decay", &m_tree_listener);
+m_parameters.addParameterListener("env2_sustain", &m_tree_listener);
+m_parameters.addParameterListener("env2_release", &m_tree_listener);
+m_parameters.addParameterListener("env2_loop", &m_tree_listener);
+
+m_parameters.addParameterListener("env3_attack", &m_tree_listener);
+m_parameters.addParameterListener("env3_decay", &m_tree_listener);
+m_parameters.addParameterListener("env3_sustain", &m_tree_listener);
+m_parameters.addParameterListener("env3_release", &m_tree_listener);
+m_parameters.addParameterListener("env3_loop", &m_tree_listener);
+
+m_parameters.addParameterListener("env4_attack", &m_tree_listener);
+m_parameters.addParameterListener("env4_decay", &m_tree_listener);
+m_parameters.addParameterListener("env4_sustain", &m_tree_listener);
+m_parameters.addParameterListener("env4_release", &m_tree_listener);
+m_parameters.addParameterListener("env4_loop", &m_tree_listener);
+
+m_parameters.addParameterListener("lfo1_freq", &m_tree_listener);
+m_parameters.addParameterListener("lfo1_reset", &m_tree_listener);
+m_parameters.addParameterListener("lfo1_sync", &m_tree_listener);
+m_parameters.addParameterListener("lfo1_wave", &m_tree_listener);
+m_parameters.addParameterListener("lfo1_synctime_numerator", &m_tree_listener);
+m_parameters.addParameterListener("lfo1_synctime_denominator",
+                                  &m_tree_listener);
+
+m_parameters.addParameterListener("lfo2_freq", &m_tree_listener);
+m_parameters.addParameterListener("lfo2_reset", &m_tree_listener);
+m_parameters.addParameterListener("lfo2_sync", &m_tree_listener);
+m_parameters.addParameterListener("lfo2_wave", &m_tree_listener);
+m_parameters.addParameterListener("lfo2_synctime_numerator", &m_tree_listener);
+m_parameters.addParameterListener("lfo2_synctime_denominator",
+                                  &m_tree_listener);
+
+m_parameters.addParameterListener("lfo3_freq", &m_tree_listener);
+m_parameters.addParameterListener("lfo3_reset", &m_tree_listener);
+m_parameters.addParameterListener("lfo3_sync", &m_tree_listener);
+m_parameters.addParameterListener("lfo3_wave", &m_tree_listener);
+m_parameters.addParameterListener("lfo3_synctime_numerator", &m_tree_listener);
+m_parameters.addParameterListener("lfo3_synctime_denominator",
+                                  &m_tree_listener);
+
+m_parameters.addParameterListener("lfo4_freq", &m_tree_listener);
+m_parameters.addParameterListener("lfo4_reset", &m_tree_listener);
+m_parameters.addParameterListener("lfo4_sync", &m_tree_listener);
+m_parameters.addParameterListener("lfo4_wave", &m_tree_listener);
+m_parameters.addParameterListener("lfo4_synctime_numerator", &m_tree_listener);
+m_parameters.addParameterListener("lfo4_synctime_denominator",
+                                  &m_tree_listener);
+
+m_parameters.addParameterListener("phaser_on", &m_tree_listener);
+m_parameters.addParameterListener("flanger_on", &m_tree_listener);
+m_parameters.addParameterListener("delay_on", &m_tree_listener);
+m_parameters.addParameterListener("chorus_on", &m_tree_listener);
+
+for (int fil = 0; fil < 2; ++fil) {
+  m_parameters.addParameterListener("fil" + std::to_string(fil + 1) + "_osc1",
+                                    &m_tree_listener);
+  m_parameters.addParameterListener("fil" + std::to_string(fil + 1) + "_osc2",
+                                    &m_tree_listener);
+  m_parameters.addParameterListener("fil" + std::to_string(fil + 1) + "_osc3",
+                                    &m_tree_listener);
+}
+
+m_parameters.addParameterListener("fil2_fil1", &m_tree_listener);
+m_parameters.addParameterListener("xy_x", &m_tree_listener);
+m_parameters.addParameterListener("xy_y", &m_tree_listener);
+m_parameters.addParameterListener("glide", &m_tree_listener);
+m_parameters.addParameterListener("master", &m_tree_listener);
+m_parameters.addParameterListener("modwheel", &m_tree_listener);
+m_parameters.addParameterListener("pitchbend", &m_tree_listener);
+m_parameters.addParameterListener("pitchbend_amount", &m_tree_listener);
+
+m_parameters.addParameterListener("delay_time", &m_tree_listener);
+m_parameters.addParameterListener("delay_feedback", &m_tree_listener);
+m_parameters.addParameterListener("delay_hp", &m_tree_listener);
+m_parameters.addParameterListener("delay_ducking", &m_tree_listener);
+m_parameters.addParameterListener("delay_dry", &m_tree_listener);
+m_parameters.addParameterListener("delay_wet", &m_tree_listener);
+m_parameters.addParameterListener("delay_sync", &m_tree_listener);
+m_parameters.addParameterListener("delay_synctime_numerator", &m_tree_listener);
+m_parameters.addParameterListener("delay_synctime_denominator",
+                                  &m_tree_listener);
+
+m_parameters.addParameterListener("phaser_frequency", &m_tree_listener);
+m_parameters.addParameterListener("phaser_amount", &m_tree_listener);
+m_parameters.addParameterListener("phaser_drywet", &m_tree_listener);
+m_parameters.addParameterListener("phaser_sync", &m_tree_listener);
+m_parameters.addParameterListener("phaser_reset", &m_tree_listener);
+m_parameters.addParameterListener("phaser_synctime_numerator",
+                                  &m_tree_listener);
+m_parameters.addParameterListener("phaser_synctime_denominator",
+                                  &m_tree_listener);
+
+m_parameters.addParameterListener("flanger_frequency", &m_tree_listener);
+m_parameters.addParameterListener("flanger_amount", &m_tree_listener);
+m_parameters.addParameterListener("flanger_drywet", &m_tree_listener);
+m_parameters.addParameterListener("flanger_sync", &m_tree_listener);
+m_parameters.addParameterListener("flanger_reset", &m_tree_listener);
+m_parameters.addParameterListener("flanger_synctime_numerator",
+                                  &m_tree_listener);
+m_parameters.addParameterListener("flanger_synctime_denominator",
+                                  &m_tree_listener);
+
+m_parameters.addParameterListener("chorus_frequency", &m_tree_listener);
+m_parameters.addParameterListener("chorus_amount", &m_tree_listener);
+m_parameters.addParameterListener("chorus_drywet", &m_tree_listener);
+m_parameters.addParameterListener("chorus_sync", &m_tree_listener);
+m_parameters.addParameterListener("chorus_reset", &m_tree_listener);
+m_parameters.addParameterListener("chorus_synctime_numerator",
+                                  &m_tree_listener);
+m_parameters.addParameterListener("chorus_synctime_denominator",
+                                  &m_tree_listener);
+
+m_parameters.addParameterListener("delay_position", &m_tree_listener);
+m_parameters.addParameterListener("flanger_position", &m_tree_listener);
+m_parameters.addParameterListener("phaser_position", &m_tree_listener);
+m_parameters.addParameterListener("chorus_position", &m_tree_listener);
+
+for (int i = 0; i < 9; ++i) {
+  m_parameters.addParameterListener("amount_1_[" + std::to_string(i) + "]",
+                                    &m_tree_listener);
+  m_parameters.addParameterListener("amount_2_[" + std::to_string(i) + "]",
+                                    &m_tree_listener);
+  m_parameters.addParameterListener("amount_3_[" + std::to_string(i) + "]",
+                                    &m_tree_listener);
+  m_parameters.addParameterListener("source_[" + std::to_string(i) + "]",
+                                    &m_tree_listener);
+  m_parameters.addParameterListener("dest_1_[" + std::to_string(i) + "]",
+                                    &m_tree_listener);
+  m_parameters.addParameterListener("dest_2_[" + std::to_string(i) + "]",
+                                    &m_tree_listener);
+  m_parameters.addParameterListener("scale_[" + std::to_string(i) + "]",
+                                    &m_tree_listener);
 }

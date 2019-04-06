@@ -13,7 +13,7 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "Voice.h"
 #include "audio/Oscillators/WavetableContainer.h"
-
+#include "OdinTreeListener.h"
 
 //==============================================================================
 /**
@@ -62,6 +62,9 @@ private:
     Voice m_voice[VOICES];
     VoiceManager m_voice_manager;
     AudioProcessorValueTreeState m_parameters;
+    OdinTreeListener m_tree_listener;
+
+    void treeValueChanged(const String& p_ID, float p_new_value);
 
 
     #include "AudioVarDeclarations.h"

@@ -11,6 +11,9 @@
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 
+//this file contains implementation
+#include "ValueChange.h" 
+
 //==============================================================================
 OdinAudioProcessor::OdinAudioProcessor()
 #ifndef JucePlugin_PreferredChannelConfigurations
@@ -27,6 +30,12 @@ OdinAudioProcessor::OdinAudioProcessor()
 #include "AudioValueTree.h"
       ) {
 #include "AudioParameterConnections.h"
+
+
+  //set up the tree listener
+  m_tree_listener.onValueChange = [&](const String& p_ID, float p_new_value){
+    treeValueChanged(p_ID, p_new_value);
+  };
 
   // connect voice end to voice manager
   for (int i = 0; i < VOICES; ++i) {
@@ -155,6 +164,7 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
     for (int voice = 0; voice < VOICES; ++voice) {
       if (m_voice[voice]) {
 
+
         //===== OSCS ======
 
         // output var for the individual oscs
@@ -200,7 +210,7 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
         } // osc loop
 
         //===== FILTERS ======
-        DBG(*m_fil_type[0]);
+        
         float filter_input[2] = {0};
         float filter_output[2] = {0};
         for (int fil = 0; fil < 2; ++fil) {
@@ -269,7 +279,7 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
     }   // voice loop
     for (int channel = 0; channel < totalNumInputChannels; ++channel) {
       auto *channelData = buffer.getWritePointer(channel);
-      channelData[sample] = voices_output * 0.2f;
+      channelData[sample] = 0;//voices_output * 0.2f;
     } // channel
   }   // sample
 }

@@ -14,6 +14,7 @@
     float* m_osc_oct[3];
     float* m_osc_semi[3];
     float* m_osc_fine[3];
+    float* m_osc_analog_wave[3];
     float* m_osc_vol[3];
     float* m_osc_position[3];
     float* m_osc_detune[3];

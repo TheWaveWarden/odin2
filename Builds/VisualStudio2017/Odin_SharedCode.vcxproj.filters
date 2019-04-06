@@ -2613,6 +2613,12 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\ValueChange.h">
+      <Filter>Odin\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\OdinTreeListener.h">
+      <Filter>Odin\Source</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\AudioParameterConnections.h">
       <Filter>Odin\Source</Filter>
     </ClInclude>

@@ -6,6 +6,9 @@
               pluginManufacturerCode="BDSP" pluginCode="ODIN" pluginChannelConfigs="{0,2}">
   <MAINGROUP id="Tn76b3" name="Odin">
     <GROUP id="{7AF384ED-9FD6-6492-4B8C-5777BB9A2698}" name="Source">
+      <FILE id="BnAGtb" name="ValueChange.h" compile="0" resource="0" file="Source/ValueChange.h"/>
+      <FILE id="RyCmuE" name="OdinTreeListener.h" compile="0" resource="0"
+            file="Source/OdinTreeListener.h"/>
       <FILE id="gQqTHH" name="AudioParameterConnections.h" compile="0" resource="0"
             file="Source/AudioParameterConnections.h"/>
       <FILE id="xZqU3u" name="Voice.h" compile="0" resource="0" file="Source/Voice.h"/>
