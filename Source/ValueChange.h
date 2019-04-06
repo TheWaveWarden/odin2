@@ -11,6 +11,13 @@ void OdinAudioProcessor::treeValueChanged(const String& p_ID, float p_new_value)
 #endif
 
 
+for(int osc = 0; osc < 3; ++osc){
+  if(id == m_osc1_analog_wave_identifier){}
+
+
+
+}
+
 
 
 

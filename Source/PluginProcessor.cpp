@@ -11,8 +11,8 @@
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 
-//this file contains implementation
-#include "ValueChange.h" 
+// this file contains implementation
+#include "ValueChange.h"
 
 //==============================================================================
 OdinAudioProcessor::OdinAudioProcessor()
@@ -27,13 +27,14 @@ OdinAudioProcessor::OdinAudioProcessor()
                          ),
 #endif
     : m_parameters(*this, nullptr, Identifier("Odin"),
-#include "AudioValueTree.h"
-      ) {
-#include "AudioParameterConnections.h"
+#include "AudioValueTree.h" //contains the definition of audiotree. WATCH CLOSELY: is IN m_parameters constructor
+                   ),
+#include "ProcessorInitializerList.h" //contains the connection of Identifiers with their strings
+{
+#include "AudioParameterConnections.h" // constains the connection between raw float pointers and their ValueTree counter
 
-
-  //set up the tree listener
-  m_tree_listener.onValueChange = [&](const String& p_ID, float p_new_value){
+  // set up the tree listener
+  m_tree_listener.onValueChange = [&](const String &p_ID, float p_new_value) {
     treeValueChanged(p_ID, p_new_value);
   };
 
@@ -164,7 +165,6 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
     for (int voice = 0; voice < VOICES; ++voice) {
       if (m_voice[voice]) {
 
-
         //===== OSCS ======
 
         // output var for the individual oscs
@@ -210,7 +210,7 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
         } // osc loop
 
         //===== FILTERS ======
-        
+
         float filter_input[2] = {0};
         float filter_output[2] = {0};
         for (int fil = 0; fil < 2; ++fil) {
@@ -242,7 +242,7 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
                 m_voice[voice].SEM_filter_24[fil].doFilter(filter_input[fil]);
 
           } else if (*m_fil_type[fil] == FILTER_TYPE_SEM12) {
-            //todo need params set to wörk...
+            // todo need params set to wörk...
             m_voice[voice].SEM_filter_12[fil].update();
             filter_output[fil] =
                 m_voice[voice].SEM_filter_12[fil].doFilter(filter_input[fil]);
@@ -279,9 +279,9 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
     }   // voice loop
     for (int channel = 0; channel < totalNumInputChannels; ++channel) {
       auto *channelData = buffer.getWritePointer(channel);
-      channelData[sample] = 0;//voices_output * 0.2f;
-    } // channel
-  }   // sample
+      channelData[sample] = 0; // voices_output * 0.2f;
+    }                          // channel
+  }                            // sample
 }
 
 //==============================================================================

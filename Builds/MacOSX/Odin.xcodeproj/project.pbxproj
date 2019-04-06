@@ -892,6 +892,13 @@
 			path = ../../Source/AmpDistortionFlowComponent.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		561B281EF921BB46335A1534 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = ProcessorInitializerList.h;
+			path = ../../Source/ProcessorInitializerList.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		59B2A728DFEBA6764C6DC97F = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -2006,6 +2013,7 @@
 		DA68EAE39AAE6BE7BAE84567 = {
 			isa = PBXGroup;
 			children = (
+				561B281EF921BB46335A1534,
 				0BD72BFA8E149A74A1ECE025,
 				5133E141FE37B43E7DD8B8E7,
 				AD1E681D7A109EDD620192C0,

@@ -1,3 +1,7 @@
+
+
+
+
 {
   //Oscillator 1
   std::make_unique<AudioParameterInt> ("osc1_type", "Oscillator1 Type", 1, 11, 2),
@@ -342,28 +346,8 @@
   std::make_unique<AudioParameterInt> ("scale_[5]", "scale_[5]", 0,1000,0), 
   std::make_unique<AudioParameterInt> ("scale_[6]", "scale_[6]", 0,1000,0), 
   std::make_unique<AudioParameterInt> ("scale_[7]", "scale_[7]", 0,1000,0), 
-  std::make_unique<AudioParameterInt> ("scale_[8]", "scale_[8]", 0,1000,0), 
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-
-  
-  
-  
- 
- 
+  std::make_unique<AudioParameterInt> ("scale_[8]", "scale_[8]", 0,1000,0),  
 }
+
+
+

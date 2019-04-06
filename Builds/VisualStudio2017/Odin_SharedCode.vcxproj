@@ -2024,6 +2024,7 @@
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_opengl.cpp"/>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\ProcessorInitializerList.h"/>
     <ClInclude Include="..\..\Source\ValueChange.h"/>
     <ClInclude Include="..\..\Source\OdinTreeListener.h"/>
     <ClInclude Include="..\..\Source\AudioParameterConnections.h"/>

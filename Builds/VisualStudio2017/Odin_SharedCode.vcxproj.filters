@@ -2613,6 +2613,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\ProcessorInitializerList.h">
+      <Filter>Odin\Source</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\ValueChange.h">
       <Filter>Odin\Source</Filter>
     </ClInclude>
