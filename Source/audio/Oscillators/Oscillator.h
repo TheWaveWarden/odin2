@@ -40,7 +40,6 @@ public:
 		}
 		return false;
 	}
-	
 	// --- reset the modulo (required for master->slave operations)
 	inline void resetModulo(double d = 0.0){m_modulo = d;}
 	inline void setPitchBendMod(double dMod){m_mod_pitch_bend = dMod;}

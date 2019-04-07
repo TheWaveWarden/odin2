@@ -97,7 +97,14 @@ struct Voice
     }
   }
 
-
+  void setOctave(int p_octave, int p_osc){
+      analog_osc[p_osc].m_octave = p_octave;
+      wavetable_osc[p_osc].m_octave = p_octave;
+      multi_osc[p_osc].m_octave = p_octave;
+      vector_osc[p_osc].m_octave = p_octave;
+      chiptune_osc[p_osc].m_octave = p_octave;
+      fm_osc[p_osc].m_octave = p_octave;
+  }
 
   void setOscBaseFreq(float p_freq)
   {
@@ -108,6 +115,7 @@ struct Voice
       multi_osc[osc].setBaseFrequency(p_freq);
       vector_osc[osc].setBaseFrequency(p_freq);
       chiptune_osc[osc].setBaseFrequency(p_freq);
+      fm_osc[osc].setBaseFrequency(p_freq);
     }
   }
 
