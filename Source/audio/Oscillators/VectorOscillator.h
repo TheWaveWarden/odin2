@@ -11,6 +11,14 @@ public:
 		m_XY_pad_x = p_x;
 		m_XY_pad_y = p_y;
 	}
+
+	inline void setX(float p_x){
+		m_XY_pad_x = p_x;
+	}
+
+	inline void setY(float p_y){
+		m_XY_pad_y = p_y;
+	}
 	
 	void selectWavetable(int p_wavetable_index, int p_vector_point);
 

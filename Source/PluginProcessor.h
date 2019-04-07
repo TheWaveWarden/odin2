@@ -66,7 +66,7 @@ private:
 
     void treeValueChanged(const String& p_ID, float p_new_value);
 
-
+    int m_counter = 0;//todo remove
     #include "AudioVarDeclarations.h"
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (OdinAudioProcessor)
