@@ -515,9 +515,18 @@ void OdinAudioProcessor::treeValueChanged(const String &p_ID,
   } else if (id == m_amp_pan_identifier) {
     m_amp.setPan(p_new_value);
   } else if (id == m_amp_gain_identifier) {
-    m_amp.setGainDb(p_new_value);
+    m_amp.setGainDecibels(p_new_value);
   } else if (id == m_amp_vel_identifier) {
     m_amp.setVelocityAmount(p_new_value);
+  } else if (id == m_dist_drywet_identifier) {
+    m_distortion[0].setDryWet(p_new_value);
+    m_distortion[1].setDryWet(p_new_value);
+  } else if (id == m_dist_threshold_identifier) {
+    m_distortion[0].setThreshold(p_new_value);
+    m_distortion[1].setThreshold(p_new_value);
+  } else if (id == m_dist_algo_identifier) {
+    m_distortion[0].setOverdrive(p_new_value < 1.5f);
+    m_distortion[1].setOverdrive(p_new_value < 1.5f);
   }
 
 }

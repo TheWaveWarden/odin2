@@ -15,6 +15,7 @@
 #include "audio/Oscillators/WavetableContainer.h"
 #include "OdinTreeListener.h"
 #include "audio/Amplifier.h"
+#include "audio/FX/OversamplingDistortion.h"
 
 //==============================================================================
 /**
@@ -66,6 +67,7 @@ private:
 
     Voice m_voice[VOICES];
     Amplifier m_amp;
+    OversamplingDistortion m_distortion[2];
 
     void treeValueChanged(const String& p_ID, float p_new_value);
 

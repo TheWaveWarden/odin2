@@ -278,14 +278,25 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
       } // voice active
     }   // voice loop
 
-    float amp_out_left;
-    float amp_out_right;
+    //===== AMPLIFIER ======
 
-    m_amp.doAmplifier(voices_output, amp_out_left, amp_out_right);
+    float stereo_left;
+    float stereo_right;
+
+    m_amp.doAmplifier(voices_output, stereo_left, stereo_right);
+
+    //===== DISTORTION ======
+    if(*m_dist_on){
+      stereo_left = m_distortion[0].doDistortion(stereo_left);
+      stereo_right = m_distortion[1].doDistortion(stereo_right);
+    }
 
 
-    float final_output_left = amp_out_left;
-    float final_output_right = amp_out_right;
+    //===== OUTPUT ======
+
+
+    float final_output_left = stereo_left;
+    float final_output_right = stereo_right;
 
     auto *channelData = buffer.getWritePointer(0);
     channelData[sample] = final_output_left;
@@ -293,12 +304,7 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
     channelData[sample] = final_output_right;
     
 
-    //for (int channel = 0; channel < totalNumInputChannels; ++channel) {
-    //  auto *channelData = buffer.getWritePointer(channel);
-    //  channelData[sample] = voices_output * 0.1f;
-    //  channelData[sample] = 0;
-    //}                          // channel
-  }                            // sample
+  }// sample loop
 
 
 

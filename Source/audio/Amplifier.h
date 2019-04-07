@@ -28,7 +28,7 @@ public:
     }
   }
 
-  inline void setGainDb(float p_dB){
+  inline void setGainDecibels(float p_dB){
     //convert dB to multiplicator
     m_gain = Decibels::decibelsToGain(p_dB);
   }

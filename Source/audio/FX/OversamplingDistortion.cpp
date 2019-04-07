@@ -80,5 +80,5 @@ double OversamplingDistortion::doDistortion(double p_input){
                      + ( -1.8755960587 * yv[8]);
     
     //return only the last of the three samples
-    return yv[9];
+    return yv[9] * m_drywet + p_input * (1.f- m_drywet);
 }
