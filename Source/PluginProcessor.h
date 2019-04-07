@@ -14,6 +14,7 @@
 #include "Voice.h"
 #include "audio/Oscillators/WavetableContainer.h"
 #include "OdinTreeListener.h"
+#include "audio/Amplifier.h"
 
 //==============================================================================
 /**
@@ -59,10 +60,12 @@ public:
     void setStateInformation (const void* data, int sizeInBytes) override;
 
 private:
-    Voice m_voice[VOICES];
     VoiceManager m_voice_manager;
     AudioProcessorValueTreeState m_parameters;
     OdinTreeListener m_tree_listener;
+
+    Voice m_voice[VOICES];
+    Amplifier m_amp;
 
     void treeValueChanged(const String& p_ID, float p_new_value);
 

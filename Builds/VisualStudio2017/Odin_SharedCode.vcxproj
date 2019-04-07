@@ -136,6 +136,7 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\audio\Amplifier.cpp"/>
     <ClCompile Include="..\..\Source\audio\CheapFunctions.cpp"/>
     <ClCompile Include="..\..\Source\audio\Oscillators\AnalogOscillator.cpp"/>
     <ClCompile Include="..\..\Source\audio\Oscillators\ChiptuneArpeggiator.cpp"/>
@@ -2031,6 +2032,7 @@
     <ClInclude Include="..\..\Source\Voice.h"/>
     <ClInclude Include="..\..\Source\AudioVarDeclarations.h"/>
     <ClInclude Include="..\..\Source\audio\LookupTables\adsr_pow.h"/>
+    <ClInclude Include="..\..\Source\audio\Amplifier.h"/>
     <ClInclude Include="..\..\Source\audio\CheapFunctions.h"/>
     <ClInclude Include="..\..\Source\audio\Oscillators\Wavetables\ChiptuneCustom1.h"/>
     <ClInclude Include="..\..\Source\audio\Oscillators\Wavetables\ChiptuneCustom2.h"/>

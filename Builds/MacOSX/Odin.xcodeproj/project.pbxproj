@@ -69,6 +69,10 @@
 			isa = PBXBuildFile;
 			fileRef = 9D6FAF4C6B9E08A29875BF33;
 		};
+		1E65FEE769C5B261F02F51FC = {
+			isa = PBXBuildFile;
+			fileRef = 89075D2CBE36822E8C238051;
+		};
 		B340DC5252A6B3FBD9FE0AE8 = {
 			isa = PBXBuildFile;
 			fileRef = 1AB61C06B1B3ABA74C604267;
@@ -1123,6 +1127,13 @@
 			path = ../../Source/audio/Filters/VAOnePoleFilter.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		89075D2CBE36822E8C238051 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = Amplifier.cpp;
+			path = ../../Source/audio/Amplifier.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
 		89661EFAE1BD4C6AADADBE1D = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -1317,6 +1328,13 @@
 			lastKnownFileType = sourcecode.c.h;
 			name = AudioParameterConnections.h;
 			path = ../../Source/AudioParameterConnections.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		ADEA711886D0DD109F3AF7E2 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = Amplifier.h;
+			path = ../../Source/audio/Amplifier.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		AE3360BFE24BE74C19BE743F = {
@@ -1935,6 +1953,8 @@
 			isa = PBXGroup;
 			children = (
 				BDDBEFAF90068D80EA214A8F,
+				89075D2CBE36822E8C238051,
+				ADEA711886D0DD109F3AF7E2,
 				CF703C48005602866108A9CF,
 				1AB61C06B1B3ABA74C604267,
 				2A9EF31758E05C7F5C89CBA5,
@@ -2869,6 +2889,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E65FEE769C5B261F02F51FC,
 				B340DC5252A6B3FBD9FE0AE8,
 				646E8F1912821DF67D9FF8B9,
 				9EF2D962EA3C6489D672A4FA,

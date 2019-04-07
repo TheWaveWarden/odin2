@@ -277,11 +277,27 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
         }
       } // voice active
     }   // voice loop
-    for (int channel = 0; channel < totalNumInputChannels; ++channel) {
-      auto *channelData = buffer.getWritePointer(channel);
-      channelData[sample] = voices_output * 0.1f;
-      //channelData[sample] = 0;
-    }                          // channel
+
+    float amp_out_left;
+    float amp_out_right;
+
+    m_amp.doAmplifier(voices_output, amp_out_left, amp_out_right);
+
+
+    float final_output_left = amp_out_left;
+    float final_output_right = amp_out_right;
+
+    auto *channelData = buffer.getWritePointer(0);
+    channelData[sample] = final_output_left;
+    channelData = buffer.getWritePointer(1);
+    channelData[sample] = final_output_right;
+    
+
+    //for (int channel = 0; channel < totalNumInputChannels; ++channel) {
+    //  auto *channelData = buffer.getWritePointer(channel);
+    //  channelData[sample] = voices_output * 0.1f;
+    //  channelData[sample] = 0;
+    //}                          // channel
   }                            // sample
 
 

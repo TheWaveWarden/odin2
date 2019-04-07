@@ -512,5 +512,12 @@ void OdinAudioProcessor::treeValueChanged(const String &p_ID,
     for (int voice = 0; voice < VOICES; ++voice) {
       m_voice[voice].comb_filter[1].setPositive(p_new_value);
     }
+  } else if (id == m_amp_pan_identifier) {
+    m_amp.setPan(p_new_value);
+  } else if (id == m_amp_gain_identifier) {
+    m_amp.setGainDb(p_new_value);
+  } else if (id == m_amp_vel_identifier) {
+    m_amp.setVelocityAmount(p_new_value);
   }
+
 }

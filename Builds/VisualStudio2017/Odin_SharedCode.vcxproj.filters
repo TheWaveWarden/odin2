@@ -454,6 +454,9 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\audio\Amplifier.cpp">
+      <Filter>Odin\Source\audio</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\audio\CheapFunctions.cpp">
       <Filter>Odin\Source\audio</Filter>
     </ClCompile>
@@ -2633,6 +2636,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\audio\LookupTables\adsr_pow.h">
       <Filter>Odin\Source\audio\Lookuptables</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Amplifier.h">
+      <Filter>Odin\Source\audio</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\audio\CheapFunctions.h">
       <Filter>Odin\Source\audio</Filter>

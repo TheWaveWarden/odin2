@@ -20,6 +20,8 @@
         <GROUP id="{6154F4CF-B621-5841-23CC-5426B7C28BDC}" name="Lookuptables">
           <FILE id="IuvMkp" name="adsr_pow.h" compile="0" resource="0" file="Source/audio/LookupTables/adsr_pow.h"/>
         </GROUP>
+        <FILE id="kbJgTr" name="Amplifier.cpp" compile="1" resource="0" file="Source/audio/Amplifier.cpp"/>
+        <FILE id="gD2con" name="Amplifier.h" compile="0" resource="0" file="Source/audio/Amplifier.h"/>
         <FILE id="s5TOXG" name="CheapFunctions.h" compile="0" resource="0"
               file="Source/audio/CheapFunctions.h"/>
         <FILE id="GWD8r7" name="CheapFunctions.cpp" compile="1" resource="0"
