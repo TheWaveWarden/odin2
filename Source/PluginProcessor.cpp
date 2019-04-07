@@ -280,42 +280,60 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
 
     //===== AMPLIFIER ======
 
-    float stereo_left;
-    float stereo_right;
+    float stereo_signal[2];
 
-    m_amp.doAmplifier(voices_output, stereo_left, stereo_right);
+    m_amp.doAmplifier(voices_output, stereo_signal[0], stereo_signal[1]);
 
-    //===== DISTORTION ======
-    if(*m_dist_on){
-      stereo_left = m_distortion[0].doDistortion(stereo_left);
-      stereo_right = m_distortion[1].doDistortion(stereo_right);
-    }
+    for (int channel = 0; channel < 2; ++channel) {
+
+      //===== DISTORTION ======
+      if (*m_dist_on) {
+        stereo_signal[channel] =
+            m_distortion[channel].doDistortion(stereo_signal[channel]);
+      }
+
+      //===== FILTER 3 ======
+      if (*m_fil_type[2] == FILTER_TYPE_LP24 ||
+          *m_fil_type[2] == FILTER_TYPE_LP12 ||
+          *m_fil_type[2] == FILTER_TYPE_BP24 ||
+          *m_fil_type[2] == FILTER_TYPE_BP12 ||
+          *m_fil_type[2] == FILTER_TYPE_HP24 ||
+          *m_fil_type[2] == FILTER_TYPE_HP12) {
+        m_ladder_filter[channel].update();
+        stereo_signal[channel] = m_ladder_filter[channel].doFilter(stereo_signal[channel]);
+      } 
+      else if (*m_fil_type[2] == FILTER_TYPE_SEM24) {
+        m_SEM_filter_24[channel].update();
+        stereo_signal[channel] = m_SEM_filter_24[channel].doFilter(stereo_signal[channel]);
+      }
+      else if (*m_fil_type[2] == FILTER_TYPE_SEM12) {
+        m_SEM_filter_12[channel].update();
+        stereo_signal[channel] = m_SEM_filter_12[channel].doFilter(stereo_signal[channel]);
+      }
+      else if (*m_fil_type[2] == FILTER_TYPE_KORG) {
+        m_korg_filter[channel].update();
+        stereo_signal[channel] = m_korg_filter[channel].doFilter(stereo_signal[channel]);
+      }
+      else if (*m_fil_type[2] == FILTER_TYPE_DIODE) {
+        m_diode_filter[channel].update();
+        stereo_signal[channel] = m_diode_filter[channel].doFilter(stereo_signal[channel]);
+      } 
+      else if (*m_fil_type[2] == FILTER_TYPE_FORMANT) {
+        m_formant_filter[channel].update();
+        stereo_signal[channel] = m_formant_filter[channel].doFilter(stereo_signal[channel]);
+      } 
+      else if (*m_fil_type[2] == FILTER_TYPE_COMB) {
+        stereo_signal[channel] = m_comb_filter[channel].doFilter(stereo_signal[channel]);
+      }
+
+      //===== OUTPUT ======
+
+      auto *channelData = buffer.getWritePointer(channel);
+      channelData[sample] = stereo_signal[channel];
 
 
-    //===== OUTPUT ======
-
-
-    float final_output_left = stereo_left;
-    float final_output_right = stereo_right;
-
-    auto *channelData = buffer.getWritePointer(0);
-    channelData[sample] = final_output_left;
-    channelData = buffer.getWritePointer(1);
-    channelData[sample] = final_output_right;
-    
-
-  }// sample loop
-
-
-
-  for (int channel = 0; channel < totalNumOutputChannels; ++channel) {
-    auto *channelData = buffer.getWritePointer(channel);
-    for (int sample = 0; sample < buffer.getNumSamples(); ++sample) {
-      //channelData[sample] = sin((float)++m_counter / 44100.f * 2 * M_PI * 800.f) * 0.2f;
-    }
-  }
-
-
+    } // stereo loop
+  } // sample loop
 }
 
 //==============================================================================

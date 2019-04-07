@@ -16,6 +16,13 @@
 #include "OdinTreeListener.h"
 #include "audio/Amplifier.h"
 #include "audio/FX/OversamplingDistortion.h"
+#include "audio/Filters/LadderFilter.h"
+#include "audio/Filters/CombFilter.h"
+#include "audio/Filters/SEMFilter24.h"
+#include "audio/Filters/SEMFilter12.h"
+#include "audio/Filters/DiodeFilter.h"
+#include "audio/Filters/FormantFilter.h"
+#include "audio/Filters/Korg35Filter.h"
 
 //==============================================================================
 /**
@@ -68,6 +75,15 @@ private:
     Voice m_voice[VOICES];
     Amplifier m_amp;
     OversamplingDistortion m_distortion[2];
+
+
+    LadderFilter m_ladder_filter[2];
+    SEMFilter24 m_SEM_filter_24[2];
+    SEMFilter12 m_SEM_filter_12[2];
+    Korg35Filter m_korg_filter[2];
+    DiodeFilter m_diode_filter[2];
+    FormantFilter m_formant_filter[2];
+    CombFilter m_comb_filter[2];
 
     void treeValueChanged(const String& p_ID, float p_new_value);
 

@@ -1,5 +1,4 @@
 #pragma once
-#include "../JuceLibraryCode/JuceHeader.h"//todo remove
 
 #include "../OdinConstants.h"
 #include "Filter.h"
@@ -30,7 +29,6 @@ class CombFilter
 	{
 		//TODO check for too long time... here?
 		m_delay_time_control = 1.f / p_freq; 
-		DBG(m_delay_time_control);
 	}
 
 	inline void setResonance(float p_feedback)

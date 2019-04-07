@@ -527,6 +527,102 @@ void OdinAudioProcessor::treeValueChanged(const String &p_ID,
   } else if (id == m_dist_algo_identifier) {
     m_distortion[0].setOverdrive(p_new_value < 1.5f);
     m_distortion[1].setOverdrive(p_new_value < 1.5f);
+  } else if (id == m_fil3_freq_identifier) {
+    m_ladder_filter[0].m_freq_base = p_new_value;
+    m_SEM_filter_12[0].m_freq_base = p_new_value;
+    m_SEM_filter_24[0].m_freq_base = p_new_value;
+    m_korg_filter[0].m_freq_base = p_new_value;
+    m_diode_filter[0].m_freq_base = p_new_value;
+    m_comb_filter[0].setCombFreq(p_new_value);
+    m_ladder_filter[1].m_freq_base = p_new_value;
+    m_SEM_filter_12[1].m_freq_base = p_new_value;
+    m_SEM_filter_24[1].m_freq_base = p_new_value;
+    m_korg_filter[1].m_freq_base = p_new_value;
+    m_diode_filter[1].m_freq_base = p_new_value;
+    m_comb_filter[1].setCombFreq(p_new_value);
+  } else if (id == m_fil3_res_identifier) {
+    m_ladder_filter[0].setResControl(p_new_value);
+    m_SEM_filter_12[0].setResControl(p_new_value);
+    m_SEM_filter_24[0].setResControl(p_new_value);
+    m_korg_filter[0].setResControl(p_new_value);
+    m_diode_filter[0].setResControl(p_new_value);
+    m_comb_filter[0].setResonance(p_new_value);
+    m_ladder_filter[1].setResControl(p_new_value);
+    m_SEM_filter_12[1].setResControl(p_new_value);
+    m_SEM_filter_24[1].setResControl(p_new_value);
+    m_korg_filter[1].setResControl(p_new_value);
+    m_diode_filter[1].setResControl(p_new_value);
+    m_comb_filter[1].setResonance(p_new_value);
+  } else if (id == m_fil3_type_identifier) {
+    if (p_new_value < 7.5f && p_new_value > 1.5f) {
+      m_ladder_filter[0].setFilterType((int)p_new_value - 2);
+      m_ladder_filter[1].setFilterType((int)p_new_value - 2);
+    }
+  } else if (id == m_fil3_kbd_identifier) {
+    m_ladder_filter[0].m_kbd_mod_amount = p_new_value;
+    m_SEM_filter_12[0].m_kbd_mod_amount = p_new_value;
+    m_SEM_filter_24[0].m_kbd_mod_amount = p_new_value;
+    m_korg_filter[0].m_kbd_mod_amount = p_new_value;
+    m_diode_filter[0].m_kbd_mod_amount = p_new_value;
+    m_comb_filter[0].m_kbd_mod_amount = p_new_value;
+    m_ladder_filter[1].m_kbd_mod_amount = p_new_value;
+    m_SEM_filter_12[1].m_kbd_mod_amount = p_new_value;
+    m_SEM_filter_24[1].m_kbd_mod_amount = p_new_value;
+    m_korg_filter[1].m_kbd_mod_amount = p_new_value;
+    m_diode_filter[1].m_kbd_mod_amount = p_new_value;
+    m_comb_filter[1].m_kbd_mod_amount = p_new_value;
+  } else if (id == m_fil3_vel_identifier) {
+    m_ladder_filter[0].m_vel_mod_amount = p_new_value;
+    m_SEM_filter_12[0].m_vel_mod_amount = p_new_value;
+    m_SEM_filter_24[0].m_vel_mod_amount = p_new_value;
+    m_korg_filter[0].m_vel_mod_amount = p_new_value;
+    m_diode_filter[0].m_vel_mod_amount = p_new_value;
+    m_comb_filter[0].m_vel_mod_amount = p_new_value;
+    m_formant_filter[0].m_vel_mod_amount = p_new_value;
+    m_ladder_filter[1].m_vel_mod_amount = p_new_value;
+    m_SEM_filter_12[1].m_vel_mod_amount = p_new_value;
+    m_SEM_filter_24[1].m_vel_mod_amount = p_new_value;
+    m_korg_filter[1].m_vel_mod_amount = p_new_value;
+    m_diode_filter[1].m_vel_mod_amount = p_new_value;
+    m_comb_filter[1].m_vel_mod_amount = p_new_value;
+    m_formant_filter[1].m_vel_mod_amount = p_new_value;
+  } else if (id == m_fil3_env_identifier) {
+    m_ladder_filter[0].m_env_mod_amount = p_new_value;
+    m_SEM_filter_12[0].m_env_mod_amount = p_new_value;
+    m_SEM_filter_24[0].m_env_mod_amount = p_new_value;
+    m_korg_filter[0].m_env_mod_amount = p_new_value;
+    m_diode_filter[0].m_env_mod_amount = p_new_value;
+    m_comb_filter[0].m_env_mod_amount = p_new_value;
+    m_formant_filter[0].m_env_mod_amount = p_new_value;
+    m_ladder_filter[1].m_env_mod_amount = p_new_value;
+    m_SEM_filter_12[1].m_env_mod_amount = p_new_value;
+    m_SEM_filter_24[1].m_env_mod_amount = p_new_value;
+    m_korg_filter[1].m_env_mod_amount = p_new_value;
+    m_diode_filter[1].m_env_mod_amount = p_new_value;
+    m_comb_filter[1].m_env_mod_amount = p_new_value;
+    m_formant_filter[1].m_env_mod_amount = p_new_value;
+  } else if (id == m_fil3_saturation_identifier) {
+    m_ladder_filter[0].m_overdrive = p_new_value;
+    m_SEM_filter_12[0].m_overdrive = p_new_value;
+    m_SEM_filter_24[0].m_overdrive = p_new_value;
+    m_korg_filter[0].m_overdrive = p_new_value;
+    m_diode_filter[0].m_overdrive = p_new_value;
+    m_ladder_filter[1].m_overdrive = p_new_value;
+    m_SEM_filter_12[1].m_overdrive = p_new_value;
+    m_SEM_filter_24[1].m_overdrive = p_new_value;
+    m_korg_filter[1].m_overdrive = p_new_value;
+    m_diode_filter[1].m_overdrive = p_new_value;
+  } else if (id == m_fil3_vowel_left_identifier) {
+    m_formant_filter[0].setVowelLeft((int)p_new_value - 1);
+    m_formant_filter[1].setVowelLeft((int)p_new_value - 1);
+  } else if (id == m_fil3_vowel_right_identifier) {
+    m_formant_filter[0].setVowelRight((int)p_new_value - 1);
+    m_formant_filter[1].setVowelRight((int)p_new_value - 1);
+  } else if (id == m_fil3_formant_transition_identifier) {
+    m_formant_filter[0].setTransition(p_new_value);
+    m_formant_filter[1].setTransition(p_new_value);
+  } else if (id == m_fil3_comb_polarity_identifier) {
+      m_comb_filter[0].setPositive(p_new_value);
+      m_comb_filter[1].setPositive(p_new_value);
   }
-
 }
