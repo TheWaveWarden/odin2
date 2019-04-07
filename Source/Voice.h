@@ -21,65 +21,52 @@
 // wavedraw
 // chipdraw
 // specdraw
+#include "audio/Filters/CombFilter.h"
 #include "audio/Filters/DiodeFilter.h"
 #include "audio/Filters/FormantFilter.h"
 #include "audio/Filters/Korg35Filter.h"
 #include "audio/Filters/LadderFilter.h"
 #include "audio/Filters/SEMFilter12.h"
 #include "audio/Filters/SEMFilter24.h"
-#include "audio/Filters/CombFilter.h"
 
 #include "audio/ADSR.h"
 
-class VoiceManager
-{
+class VoiceManager {
 public:
-  //returns free voice index or steals one and sets it busy
-  int getVoice()
-  {
-    for (int i = 0; i < VOICES; ++i)
-    {
-      if (!voice_busy[i])
-      {
+  // returns free voice index or steals one and sets it busy
+  int getVoice() {
+    for (int i = 0; i < VOICES; ++i) {
+      if (!voice_busy[i]) {
         voice_busy[i] = true;
         return i;
       }
     }
-    //TODO all voices busy, steal
+    // TODO all voices busy, steal
     return 0;
   }
 
-  //marks a voice as free again
-  void freeVoice(int p_voice)
-  {
-    voice_busy[p_voice] = false;
-  }
+  // marks a voice as free again
+  void freeVoice(int p_voice) { voice_busy[p_voice] = false; }
 
 protected:
-  bool voice_busy[VOICES] = {false}; //is voice busy
+  bool voice_busy[VOICES] = {false}; // is voice busy
 };
 
 // one voice of the polyphonic voices, i.e. everything up to the amplifier
-struct Voice
-{
+struct Voice {
 
   // implicit conversion to bool
   operator bool() const { return m_voice_active; }
 
-  Voice()
-  {
-    env1.onEnvelopeEnd = [&]() {
-      onEnvelopeEnd();
-    };
+  Voice() {
+    env1.onEnvelopeEnd = [&]() { onEnvelopeEnd(); };
   }
 
-  float MIDINoteToFreq(int p_MIDI_note)
-  {
+  float MIDINoteToFreq(int p_MIDI_note) {
     return 27.5f * pow(2.f, (float)(p_MIDI_note - 21) / 12.f);
   }
 
-  void start(int p_MIDI_key)
-  {
+  void start(int p_MIDI_key) {
     reset();
     setOscBaseFreq(MIDINoteToFreq(p_MIDI_key));
     m_voice_active = true;
@@ -87,9 +74,9 @@ struct Voice
     m_MIDI_key = p_MIDI_key;
   }
 
-  //starts release on envelopes if this is the key that was pressed
-  void keyUp(int p_MIDI_key){
-    if(m_MIDI_key = p_MIDI_key){
+  // starts release on envelopes if this is the key that was pressed
+  void keyUp(int p_MIDI_key) {
+    if (m_MIDI_key = p_MIDI_key) {
       env1.startRelease();
       env2.startRelease();
       env3.startRelease();
@@ -97,47 +84,44 @@ struct Voice
     }
   }
 
-  void setOctave(int p_octave, int p_osc){
-      analog_osc[p_osc].m_octave = p_octave;
-      wavetable_osc[p_osc].m_octave = p_octave;
-      multi_osc[p_osc].m_octave = p_octave;
-      vector_osc[p_osc].m_octave = p_octave;
-      chiptune_osc[p_osc].m_octave = p_octave;
-      fm_osc[p_osc].m_octave = p_octave;
+  void setOctave(int p_octave, int p_osc) {
+    analog_osc[p_osc].m_octave = p_octave;
+    wavetable_osc[p_osc].m_octave = p_octave;
+    multi_osc[p_osc].m_octave = p_octave;
+    vector_osc[p_osc].m_octave = p_octave;
+    chiptune_osc[p_osc].m_octave = p_octave;
+    fm_osc[p_osc].m_octave = p_octave;
   }
 
-  void setSemitones(int p_semi, int p_osc){
-      analog_osc[p_osc].m_semitones = p_semi;
-      wavetable_osc[p_osc].m_semitones = p_semi;
-      multi_osc[p_osc].m_semitones = p_semi;
-      vector_osc[p_osc].m_semitones = p_semi;
-      chiptune_osc[p_osc].m_semitones = p_semi;
-      fm_osc[p_osc].m_semitones = p_semi;
+  void setSemitones(int p_semi, int p_osc) {
+    analog_osc[p_osc].m_semitones = p_semi;
+    wavetable_osc[p_osc].m_semitones = p_semi;
+    multi_osc[p_osc].m_semitones = p_semi;
+    vector_osc[p_osc].m_semitones = p_semi;
+    chiptune_osc[p_osc].m_semitones = p_semi;
+    fm_osc[p_osc].m_semitones = p_semi;
   }
 
-  void setFinetune(float p_fine, int p_osc){
-      analog_osc[p_osc].m_cent = p_fine;
-      wavetable_osc[p_osc].m_cent = p_fine;
-      multi_osc[p_osc].m_cent = p_fine;
-      vector_osc[p_osc].m_cent = p_fine;
-      chiptune_osc[p_osc].m_cent = p_fine;
-      fm_osc[p_osc].m_cent = p_fine;
+  void setFinetune(float p_fine, int p_osc) {
+    analog_osc[p_osc].m_cent = p_fine;
+    wavetable_osc[p_osc].m_cent = p_fine;
+    multi_osc[p_osc].m_cent = p_fine;
+    vector_osc[p_osc].m_cent = p_fine;
+    chiptune_osc[p_osc].m_cent = p_fine;
+    fm_osc[p_osc].m_cent = p_fine;
   }
 
-void setReset(bool p_reset, int p_osc){
-      analog_osc[p_osc].m_reset = p_reset;
-      wavetable_osc[p_osc].m_reset = p_reset;
-      multi_osc[p_osc].m_reset = p_reset;
-      vector_osc[p_osc].m_reset = p_reset;
-      chiptune_osc[p_osc].m_reset = p_reset;
-      fm_osc[p_osc].m_reset = p_reset;
+  void setReset(bool p_reset, int p_osc) {
+    analog_osc[p_osc].m_reset = p_reset;
+    wavetable_osc[p_osc].m_reset = p_reset;
+    multi_osc[p_osc].m_reset = p_reset;
+    vector_osc[p_osc].m_reset = p_reset;
+    chiptune_osc[p_osc].m_reset = p_reset;
+    fm_osc[p_osc].m_reset = p_reset;
   }
 
-  
-  void setOscBaseFreq(float p_freq)
-  {
-    for (int osc = 0; osc < 3; ++osc)
-    {
+  void setOscBaseFreq(float p_freq) {
+    for (int osc = 0; osc < 3; ++osc) {
       analog_osc[osc].setBaseFrequency(p_freq);
       wavetable_osc[osc].setBaseFrequency(p_freq);
       multi_osc[osc].setBaseFrequency(p_freq);
@@ -147,10 +131,8 @@ void setReset(bool p_reset, int p_osc){
     }
   }
 
-  void reset()
-  {
-    for (int osc = 0; osc < 3; ++osc)
-    {
+  void reset() {
+    for (int osc = 0; osc < 3; ++osc) {
       analog_osc[osc].reset();
       wavetable_osc[osc].reset();
       multi_osc[osc].reset();
@@ -158,10 +140,9 @@ void setReset(bool p_reset, int p_osc){
       chiptune_osc[osc].reset();
       fm_osc[osc].reset();
 
-      //todo draw oscs
+      // todo draw oscs
     }
-    for (int fil = 0; fil < 2; ++fil)
-    {
+    for (int fil = 0; fil < 2; ++fil) {
       ladder_filter[fil].reset();
       diode_filter[fil].reset();
       formant_filter[fil].reset();
@@ -169,6 +150,25 @@ void setReset(bool p_reset, int p_osc){
       SEM_filter_12[fil].reset();
     }
   }
+
+  void setFilterFreq(float p_freq, int p_fil) {
+      ladder_filter[p_fil].m_freq_base = p_freq;
+      SEM_filter_12[p_fil].m_freq_base = p_freq;
+      SEM_filter_24[p_fil].m_freq_base = p_freq;
+      korg_filter[p_fil].m_freq_base = p_freq;
+      diode_filter[p_fil].m_freq_base = p_freq;
+      comb_filter[p_fil].setCombFreq(p_freq);
+  }
+
+  void setFilterRes(float p_res, int p_fil) {
+      ladder_filter[p_fil].setResControl(p_res);
+      SEM_filter_12[p_fil].setResControl(p_res);
+      SEM_filter_24[p_fil].setResControl(p_res);
+      korg_filter[p_fil].setResControl(p_res);
+      diode_filter[p_fil].setResControl(p_res);
+      comb_filter[p_fil].setResonance(p_res);
+  }
+
   // oscs
   AnalogOscillator analog_osc[3];
   WavetableOsc2D wavetable_osc[3];
@@ -195,7 +195,7 @@ void setReset(bool p_reset, int p_osc){
   // LFOs
   // todo
 
-  //called when the envelope ends to signal voice end to voice manager
+  // called when the envelope ends to signal voice end to voice manager
   std::function<void()> onEnvelopeEnd = []() {};
   bool m_voice_active = false;
   int m_MIDI_key = 0;

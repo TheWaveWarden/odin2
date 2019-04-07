@@ -521,6 +521,40 @@ void OdinAudioProcessor::treeValueChanged(const String &p_ID,
       m_voice[voice].noise_osc[2].setLPFreq(p_new_value);
     }
   }
+  else if (id == m_fil1_freq_identifier) {
+    for(int voice = 0; voice < VOICES; ++voice){
+      m_voice[voice].setFilterFreq(p_new_value, 0);
+    }
+  }
+  else if (id == m_fil2_freq_identifier) {
+    for(int voice = 0; voice < VOICES; ++voice){
+      m_voice[voice].setFilterFreq(p_new_value, 1);
+    }
+  }
+  else if (id == m_fil1_res_identifier) {
+    for(int voice = 0; voice < VOICES; ++voice){
+      m_voice[voice].setFilterRes(p_new_value, 0);
+    }
+  }
+  else if (id == m_fil2_res_identifier) {
+    for(int voice = 0; voice < VOICES; ++voice){
+      m_voice[voice].setFilterRes(p_new_value, 1);
+    }
+  }
+  else if (id == m_fil1_type_identifier) {
+    if(p_new_value < 7.5f && p_new_value > 1.5f){
+    for(int voice = 0; voice < VOICES; ++voice){
+      m_voice[voice].ladder_filter[0].setFilterType((int)p_new_value-2);
+    }
+    }
+  }
+  else if (id == m_fil2_type_identifier) {
+    if(p_new_value < 7.5f && p_new_value > 1.5f){
+    for(int voice = 0; voice < VOICES; ++voice){
+      m_voice[voice].ladder_filter[1].setFilterType((int)p_new_value-2);
+    }
+    }
+  }
   
   
   
