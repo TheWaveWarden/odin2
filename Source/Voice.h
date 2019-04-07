@@ -106,6 +106,33 @@ struct Voice
       fm_osc[p_osc].m_octave = p_octave;
   }
 
+  void setSemitones(int p_semi, int p_osc){
+      analog_osc[p_osc].m_semitones = p_semi;
+      wavetable_osc[p_osc].m_semitones = p_semi;
+      multi_osc[p_osc].m_semitones = p_semi;
+      vector_osc[p_osc].m_semitones = p_semi;
+      chiptune_osc[p_osc].m_semitones = p_semi;
+      fm_osc[p_osc].m_semitones = p_semi;
+  }
+
+  void setFinetune(float p_fine, int p_osc){
+      analog_osc[p_osc].m_cent = p_fine;
+      wavetable_osc[p_osc].m_cent = p_fine;
+      multi_osc[p_osc].m_cent = p_fine;
+      vector_osc[p_osc].m_cent = p_fine;
+      chiptune_osc[p_osc].m_cent = p_fine;
+      fm_osc[p_osc].m_cent = p_fine;
+  }
+
+void setReset(bool p_reset, int p_osc){
+      analog_osc[p_osc].m_reset = p_reset;
+      wavetable_osc[p_osc].m_reset = p_reset;
+      multi_osc[p_osc].m_reset = p_reset;
+      vector_osc[p_osc].m_reset = p_reset;
+      chiptune_osc[p_osc].m_reset = p_reset;
+      fm_osc[p_osc].m_reset = p_reset;
+  }
+
   void setOscBaseFreq(float p_freq)
   {
     for (int osc = 0; osc < 3; ++osc)

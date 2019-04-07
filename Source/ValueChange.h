@@ -40,6 +40,52 @@ void OdinAudioProcessor::treeValueChanged(const String &p_ID,
       m_voice[voice].setOctave(p_new_value, 2);      
     }
   }
+  else if (id == m_osc1_semi_identifier) {
+    for(int voice = 0; voice < VOICES; ++voice){
+      m_voice[voice].setSemitones(p_new_value, 0);
+    }
+  }
+  else if (id == m_osc2_semi_identifier) {
+    for(int voice = 0; voice < VOICES; ++voice){
+      m_voice[voice].setSemitones(p_new_value, 1);      
+    }
+  }
+  else if (id == m_osc3_semi_identifier) {
+    for(int voice = 0; voice < VOICES; ++voice){
+      m_voice[voice].setSemitones(p_new_value, 2);      
+    }
+  }
+  else if (id == m_osc1_fine_identifier) {
+    for(int voice = 0; voice < VOICES; ++voice){
+      m_voice[voice].setFinetune(p_new_value, 0);
+    }
+  }
+  else if (id == m_osc2_fine_identifier) {
+    for(int voice = 0; voice < VOICES; ++voice){
+      m_voice[voice].setFinetune(p_new_value, 1);      
+    }
+  }
+  else if (id == m_osc3_fine_identifier) {
+    for(int voice = 0; voice < VOICES; ++voice){
+      m_voice[voice].setFinetune(p_new_value, 2);      
+    }
+  }
+  else if (id == m_osc1_reset_identifier) {
+    for(int voice = 0; voice < VOICES; ++voice){
+      m_voice[voice].setReset(p_new_value, 0);
+    }
+  }
+  else if (id == m_osc2_reset_identifier) {
+    for(int voice = 0; voice < VOICES; ++voice){
+      m_voice[voice].setReset(p_new_value, 1);      
+    }
+  }
+  else if (id == m_osc3_reset_identifier) {
+    for(int voice = 0; voice < VOICES; ++voice){
+      m_voice[voice].setReset(p_new_value, 2);      
+    }
+  }
+  
   
   /*else if (id == m_osc1_semi_identifier) {
     for(int voice = 0; voice < VOICES; ++voice){

@@ -100,6 +100,8 @@ public:
 	int m_octave;	      // octave tweak
 	int m_semitones;	  // semitones tweak
 	int m_cent;			  // cents tweak
+
+	bool m_reset = false;  //if this is true, osc will reset on noteon
 	
 	bool m_is_master_osc; // flag indicating we are a master oscillator
 	
