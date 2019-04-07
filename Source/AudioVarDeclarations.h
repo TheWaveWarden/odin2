@@ -29,12 +29,15 @@
     float* m_osc_fm[3];
     float* m_osc_carrier_ratio[3];
     float* m_osc_modulator_ratio[3];
+    float* m_osc_carrier_wave[3];
+    float* m_osc_modulator_wave[3];
     float* m_osc_lp[3];
     float* m_osc_hp[3];
     float* m_osc_reset[3];
     float* m_osc_arp_on[3];
     float* m_osc_step_3_on[3];
     float* m_osc_chipnoise[3];
+    float* m_osc_chipwave[3];
     float* m_osc_exp_fm[3];
     float* m_osc_vec_a[3];
     float* m_osc_vec_b[3];
@@ -252,6 +255,12 @@
     Identifier m_osc1_modulator_ratio_identifier;
     Identifier m_osc2_modulator_ratio_identifier;
     Identifier m_osc3_modulator_ratio_identifier;
+    Identifier m_osc1_carrier_wave_identifier;
+    Identifier m_osc2_carrier_wave_identifier;
+    Identifier m_osc3_carrier_wave_identifier;
+    Identifier m_osc1_modulator_wave_identifier;
+    Identifier m_osc2_modulator_wave_identifier;
+    Identifier m_osc3_modulator_wave_identifier;
     Identifier m_osc1_lp_identifier;
     Identifier m_osc2_lp_identifier;
     Identifier m_osc3_lp_identifier;
@@ -270,6 +279,9 @@
     Identifier m_osc1_chipnoise_identifier;
     Identifier m_osc2_chipnoise_identifier;
     Identifier m_osc3_chipnoise_identifier;
+    Identifier m_osc1_chipwave_identifier;
+    Identifier m_osc2_chipwave_identifier;
+    Identifier m_osc3_chipwave_identifier;
     Identifier m_osc1_exp_fm_identifier;
     Identifier m_osc2_exp_fm_identifier;
     Identifier m_osc3_exp_fm_identifier;

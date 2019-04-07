@@ -28,8 +28,20 @@ public:
         m_chiptune_arp.setStepSemitone(p_step, p_value);
     }
 
+    inline void setArpEnabled(bool p_enabled){
+	    m_chiptune_arp.setArpeggiatorOn(p_enabled);
+    }
+
     inline void setArpStepThreeOn(bool p_on){
         m_chiptune_arp.setStepThreeActive(p_on);
+    }
+
+    inline void setNoiseEnabled(bool p_noise){
+        if(p_noise){
+            setOperationModeNoise();
+        } else {
+            setOPerationModeWave();
+        }
     }
 
     inline void setOperationModeNoise(){

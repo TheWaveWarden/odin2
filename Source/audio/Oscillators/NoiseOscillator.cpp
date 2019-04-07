@@ -23,7 +23,7 @@ float NoiseOscillator::doNoise(){
     m_highpass.update();
 
     float white_noise = (float)rand();
-	white_noise          = 2 * (white_noise / 32767.f) - 1;
+	white_noise          = 2 * (white_noise / RAND_MAX) - 1;
 
     //do 2nd order like this?
     white_noise = m_lowpass.doFilter(white_noise);
@@ -34,5 +34,12 @@ float NoiseOscillator::doNoise(){
 void NoiseOscillator::setFilterFreqs(float p_lowpass_freq, float p_highpass_freq){
     m_lowpass.m_freq_base = p_lowpass_freq;
     m_highpass.m_freq_base = p_highpass_freq;
+}
+
+void NoiseOscillator::setHPFreq(float p_freq){
+    m_lowpass.m_freq_base = p_freq;
+}
+void NoiseOscillator::setLPFreq(float p_freq){
+    m_highpass.m_freq_base = p_freq;
 }
 

@@ -60,6 +60,8 @@ for (int osc = 0; osc < 3; ++osc) {
       "osc" + std::to_string(osc + 1) + "_step_3_on");
   m_osc_chipnoise[osc] = m_parameters.getRawParameterValue(
       "osc" + std::to_string(osc + 1) + "_chipnoise");
+  m_osc_chipwave[osc] = m_parameters.getRawParameterValue(
+      "osc" + std::to_string(osc + 1) + "_chipwave");
   m_osc_exp_fm[osc] = m_parameters.getRawParameterValue(
       "osc" + std::to_string(osc + 1) + "_exp_fm");
   m_osc_vec_a[osc] = m_parameters.getRawParameterValue(
@@ -320,6 +322,10 @@ for (int osc = 0; osc < 3; ++osc) {
       "osc" + std::to_string(osc + 1) + "_carrier_ratio", &m_tree_listener);
   m_parameters.addParameterListener(
       "osc" + std::to_string(osc + 1) + "_modulator_ratio", &m_tree_listener);
+  m_parameters.addParameterListener(
+      "osc" + std::to_string(osc + 1) + "_carrier_wave", &m_tree_listener);
+  m_parameters.addParameterListener(
+      "osc" + std::to_string(osc + 1) + "_modulator_wave", &m_tree_listener);
   m_parameters.addParameterListener("osc" + std::to_string(osc + 1) + "_lp",
                                     &m_tree_listener);
   m_parameters.addParameterListener("osc" + std::to_string(osc + 1) + "_hp",
@@ -332,6 +338,8 @@ for (int osc = 0; osc < 3; ++osc) {
       "osc" + std::to_string(osc + 1) + "_step_3_on", &m_tree_listener);
   m_parameters.addParameterListener(
       "osc" + std::to_string(osc + 1) + "_chipnoise", &m_tree_listener);
+  m_parameters.addParameterListener(
+      "osc" + std::to_string(osc + 1) + "_chipwave", &m_tree_listener);
   m_parameters.addParameterListener("osc" + std::to_string(osc + 1) + "_exp_fm",
                                     &m_tree_listener);
   m_parameters.addParameterListener("osc" + std::to_string(osc + 1) + "_vec_a",

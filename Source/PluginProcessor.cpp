@@ -279,8 +279,8 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
     }   // voice loop
     for (int channel = 0; channel < totalNumInputChannels; ++channel) {
       auto *channelData = buffer.getWritePointer(channel);
-      //channelData[sample] = voices_output * 0.1f;
-//      channelData[sample] = 0;
+      channelData[sample] = voices_output * 0.1f;
+      //channelData[sample] = 0;
     }                          // channel
   }                            // sample
 

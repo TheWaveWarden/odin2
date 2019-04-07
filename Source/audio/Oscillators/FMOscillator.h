@@ -28,12 +28,28 @@ public:
 		m_modulator_ratio = p_modulator;
 	}
 
+	inline void setCarrierRatio(int p_carrier){
+		m_carrier_ratio = p_carrier;
+	}
+
+	inline void setModulatorRatio(int p_modulator){
+		m_modulator_ratio = p_modulator;
+	}
+
 	inline void setFMExponential(bool p_exp){
 		m_FM_is_exponential = p_exp; //else linear
 	}
 
 	inline void selectWavetables(int p_wt_carrier, int p_wt_modulator){
 		m_carrier_osc.selectWavetable(p_wt_carrier);
+		m_modulator_osc.selectWavetable(p_wt_modulator);
+	}
+
+	inline void selectCarrierWavetable(int p_wt_carrier){
+		m_carrier_osc.selectWavetable(p_wt_carrier);
+	}
+
+	inline void selectModulatorWavetable(int p_wt_modulator){
 		m_modulator_osc.selectWavetable(p_wt_modulator);
 	}
 

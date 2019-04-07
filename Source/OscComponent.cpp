@@ -587,7 +587,7 @@ OscComponent::OscComponent(AudioProcessorValueTreeState &vts,
 
   m_chiptune_waveselector.OnValueChange = [&](int p_new_value) {
     m_value_tree.getParameter(m_chipwave_identifier)
-        ->setValueNotifyingHost(((float)p_new_value - 0.5f) / 1000.f);
+        ->setValueNotifyingHost(((float)p_new_value) / 5.f);
   };
   m_chiptune_waveselector.setTopLeftPosition(WAVE_CHIPTUNE_POS_X,
                                              WAVE_CHIPTUNE_POS_Y);

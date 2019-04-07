@@ -281,6 +281,248 @@ void OdinAudioProcessor::treeValueChanged(const String &p_ID,
       m_voice[voice].vector_osc[2].setY(p_new_value);
     }
   }
+  else if (id == m_osc1_chipwave_identifier) {
+    for(int voice = 0; voice < VOICES; ++voice){
+      m_voice[voice].chiptune_osc[0].selectWavetable(p_new_value);
+    }
+  }
+  else if (id == m_osc2_chipwave_identifier) {
+    for(int voice = 0; voice < VOICES; ++voice){
+      m_voice[voice].chiptune_osc[1].selectWavetable(p_new_value);
+    }
+  }
+  else if (id == m_osc3_chipwave_identifier) {
+    for(int voice = 0; voice < VOICES; ++voice){
+      m_voice[voice].chiptune_osc[2].selectWavetable(p_new_value);
+    }
+  }
+  else if (id == m_osc1_chipnoise_identifier) {
+    for(int voice = 0; voice < VOICES; ++voice){
+      m_voice[voice].chiptune_osc[0].setNoiseEnabled(p_new_value);
+    }
+  }
+  else if (id == m_osc2_chipnoise_identifier) {
+    for(int voice = 0; voice < VOICES; ++voice){
+      m_voice[voice].chiptune_osc[1].setNoiseEnabled(p_new_value);
+    }
+  }
+  else if (id == m_osc3_chipnoise_identifier) {
+    for(int voice = 0; voice < VOICES; ++voice){
+      m_voice[voice].chiptune_osc[2].setNoiseEnabled(p_new_value);
+    }
+  }
+  else if (id == m_osc1_step_1_identifier) {
+    for(int voice = 0; voice < VOICES; ++voice){
+      m_voice[voice].chiptune_osc[0].setArpSemitone(0, p_new_value);
+    }
+  }
+  else if (id == m_osc2_step_1_identifier) {
+    for(int voice = 0; voice < VOICES; ++voice){
+      m_voice[voice].chiptune_osc[1].setArpSemitone(0, p_new_value);
+    }
+  }
+  else if (id == m_osc3_step_1_identifier) {
+    for(int voice = 0; voice < VOICES; ++voice){
+      m_voice[voice].chiptune_osc[2].setArpSemitone(0, p_new_value);
+    }
+  }
+  else if (id == m_osc1_step_2_identifier) {
+    for(int voice = 0; voice < VOICES; ++voice){
+      m_voice[voice].chiptune_osc[0].setArpSemitone(1, p_new_value);
+    }
+  }
+  else if (id == m_osc2_step_2_identifier) {
+    for(int voice = 0; voice < VOICES; ++voice){
+      m_voice[voice].chiptune_osc[1].setArpSemitone(1, p_new_value);
+    }
+  }
+  else if (id == m_osc3_step_2_identifier) {
+    for(int voice = 0; voice < VOICES; ++voice){
+      m_voice[voice].chiptune_osc[2].setArpSemitone(1, p_new_value);
+    }
+  }
+  else if (id == m_osc1_step_3_identifier) {
+    for(int voice = 0; voice < VOICES; ++voice){
+      m_voice[voice].chiptune_osc[0].setArpSemitone(2, p_new_value);
+    }
+  }
+  else if (id == m_osc2_step_3_identifier) {
+    for(int voice = 0; voice < VOICES; ++voice){
+      m_voice[voice].chiptune_osc[1].setArpSemitone(2, p_new_value);
+    }
+  }
+  else if (id == m_osc3_step_3_identifier) {
+    for(int voice = 0; voice < VOICES; ++voice){
+      m_voice[voice].chiptune_osc[2].setArpSemitone(2, p_new_value);
+    }
+  }
+  else if (id == m_osc1_step_3_on_identifier) {
+    for(int voice = 0; voice < VOICES; ++voice){
+      m_voice[voice].chiptune_osc[0].setArpStepThreeOn(p_new_value);
+    }
+  }
+  else if (id == m_osc2_step_3_on_identifier) {
+    for(int voice = 0; voice < VOICES; ++voice){
+      m_voice[voice].chiptune_osc[1].setArpStepThreeOn(p_new_value);
+    }
+  }
+  else if (id == m_osc3_step_3_on_identifier) {
+    for(int voice = 0; voice < VOICES; ++voice){
+      m_voice[voice].chiptune_osc[2].setArpStepThreeOn(p_new_value);
+    }
+  }
+  else if (id == m_osc1_arp_on_identifier) {
+    for(int voice = 0; voice < VOICES; ++voice){
+      m_voice[voice].chiptune_osc[0].setArpEnabled(p_new_value);
+    }
+  }
+  else if (id == m_osc2_arp_on_identifier) {
+    for(int voice = 0; voice < VOICES; ++voice){
+      m_voice[voice].chiptune_osc[1].setArpEnabled(p_new_value);
+    }
+  }
+  else if (id == m_osc3_arp_on_identifier) {
+    for(int voice = 0; voice < VOICES; ++voice){
+      m_voice[voice].chiptune_osc[2].setArpEnabled(p_new_value);
+    }
+  }
+  else if (id == m_osc1_arp_speed_identifier) {
+    for(int voice = 0; voice < VOICES; ++voice){
+      m_voice[voice].chiptune_osc[0].setArpSpeed(p_new_value);
+    }
+  }
+  else if (id == m_osc2_arp_speed_identifier) {
+    for(int voice = 0; voice < VOICES; ++voice){
+      m_voice[voice].chiptune_osc[1].setArpSpeed(p_new_value);
+    }
+  }
+  else if (id == m_osc3_arp_speed_identifier) {
+    for(int voice = 0; voice < VOICES; ++voice){
+      m_voice[voice].chiptune_osc[2].setArpSpeed(p_new_value);
+    }
+  }
+  else if (id == m_osc1_fm_identifier) {
+    for(int voice = 0; voice < VOICES; ++voice){
+      m_voice[voice].fm_osc[0].setFMAmount(p_new_value);
+    }
+  }
+  else if (id == m_osc2_fm_identifier) {
+    for(int voice = 0; voice < VOICES; ++voice){
+      m_voice[voice].fm_osc[1].setFMAmount(p_new_value);
+    }
+  }
+  else if (id == m_osc3_fm_identifier) {
+    for(int voice = 0; voice < VOICES; ++voice){
+      m_voice[voice].fm_osc[2].setFMAmount(p_new_value);
+    }
+  }
+  else if (id == m_osc1_carrier_ratio_identifier) {
+    for(int voice = 0; voice < VOICES; ++voice){
+      m_voice[voice].fm_osc[0].setCarrierRatio(p_new_value);
+    }
+  }
+  else if (id == m_osc2_carrier_ratio_identifier) {
+    for(int voice = 0; voice < VOICES; ++voice){
+      m_voice[voice].fm_osc[1].setCarrierRatio(p_new_value);
+    }
+  }
+  else if (id == m_osc3_carrier_ratio_identifier) {
+    for(int voice = 0; voice < VOICES; ++voice){
+      m_voice[voice].fm_osc[2].setCarrierRatio(p_new_value);
+    }
+  }
+  else if (id == m_osc1_modulator_ratio_identifier) {
+    for(int voice = 0; voice < VOICES; ++voice){
+      m_voice[voice].fm_osc[0].setModulatorRatio(p_new_value);
+    }
+  }
+  else if (id == m_osc2_modulator_ratio_identifier) {
+    for(int voice = 0; voice < VOICES; ++voice){
+      m_voice[voice].fm_osc[1].setModulatorRatio(p_new_value);
+    }
+  }
+  else if (id == m_osc3_modulator_ratio_identifier) {
+    for(int voice = 0; voice < VOICES; ++voice){
+      m_voice[voice].fm_osc[2].setModulatorRatio(p_new_value);
+    }
+  }
+  else if (id == m_osc1_carrier_wave_identifier) {
+    for(int voice = 0; voice < VOICES; ++voice){
+      m_voice[voice].fm_osc[0].selectCarrierWavetable(p_new_value);
+    }
+  }
+  else if (id == m_osc2_carrier_wave_identifier) {
+    for(int voice = 0; voice < VOICES; ++voice){
+      m_voice[voice].fm_osc[1].selectCarrierWavetable(p_new_value);
+    }
+  }
+  else if (id == m_osc3_carrier_wave_identifier) {
+    for(int voice = 0; voice < VOICES; ++voice){
+      m_voice[voice].fm_osc[2].selectCarrierWavetable(p_new_value);
+    }
+  }
+  else if (id == m_osc1_modulator_wave_identifier) {
+    for(int voice = 0; voice < VOICES; ++voice){
+      m_voice[voice].fm_osc[0].selectModulatorWavetable(p_new_value);
+    }
+  }
+  else if (id == m_osc2_modulator_wave_identifier) {
+    for(int voice = 0; voice < VOICES; ++voice){
+      m_voice[voice].fm_osc[1].selectModulatorWavetable(p_new_value);
+    }
+  }
+  else if (id == m_osc3_modulator_wave_identifier) {
+    for(int voice = 0; voice < VOICES; ++voice){
+      m_voice[voice].fm_osc[2].selectModulatorWavetable(p_new_value);
+    }
+  }
+  else if (id == m_osc1_exp_fm_identifier) {
+    for(int voice = 0; voice < VOICES; ++voice){
+      m_voice[voice].fm_osc[0].setFMExponential(p_new_value);
+    }
+  }
+  else if (id == m_osc2_exp_fm_identifier) {
+    for(int voice = 0; voice < VOICES; ++voice){
+      m_voice[voice].fm_osc[1].setFMExponential(p_new_value);
+    }
+  }
+  else if (id == m_osc3_exp_fm_identifier) {
+    for(int voice = 0; voice < VOICES; ++voice){
+      m_voice[voice].fm_osc[2].setFMExponential(p_new_value);
+    }
+  }
+  else if (id == m_osc1_hp_identifier) {
+    for(int voice = 0; voice < VOICES; ++voice){
+      m_voice[voice].noise_osc[0].setHPFreq(p_new_value);
+    }
+  }
+  else if (id == m_osc2_hp_identifier) {
+    for(int voice = 0; voice < VOICES; ++voice){
+      m_voice[voice].noise_osc[1].setHPFreq(p_new_value);
+    }
+  }
+  else if (id == m_osc3_hp_identifier) {
+    for(int voice = 0; voice < VOICES; ++voice){
+      m_voice[voice].noise_osc[2].setHPFreq(p_new_value);
+    }
+  }
+  else if (id == m_osc1_lp_identifier) {
+    for(int voice = 0; voice < VOICES; ++voice){
+      m_voice[voice].noise_osc[0].setLPFreq(p_new_value);
+    }
+  }
+  else if (id == m_osc2_lp_identifier) {
+    for(int voice = 0; voice < VOICES; ++voice){
+      m_voice[voice].noise_osc[1].setLPFreq(p_new_value);
+    }
+  }
+  else if (id == m_osc3_lp_identifier) {
+    for(int voice = 0; voice < VOICES; ++voice){
+      m_voice[voice].noise_osc[2].setLPFreq(p_new_value);
+    }
+  }
+  
+  
   
 
 }

@@ -97,7 +97,6 @@ float ChiptuneOscillator::generateChipNoise(){
 }
 
 void ChiptuneOscillator::update(){
-	m_chiptune_arp.setArpeggiatorOn(true);//todo remove
 	m_mod_exp_other = (float)m_chiptune_arp.doArpeggiator();
 	WavetableOsc1D::update();
 }
