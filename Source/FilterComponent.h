@@ -130,6 +130,7 @@ protected:
 
   std::unique_ptr<SliderAttachment> m_vel_attach;
   std::unique_ptr<SliderAttachment> m_kbd_attach;
+  std::unique_ptr<SliderAttachment> m_env_attach;
   std::unique_ptr<SliderAttachment> m_gain_attach;
   std::unique_ptr<SliderAttachment> m_freq_attach;
   std::unique_ptr<SliderAttachment> m_res_attach;

@@ -17,6 +17,8 @@ public:
 
 	inline void setPWMDuty(float p_duty){
 		m_duty = p_duty;
+		m_duty = m_duty > 0.98f ? 0.98f : m_duty;
+		m_duty = m_duty < 0.02f ? 0.02f : m_duty;
 	}
 
 	virtual float doOscillate() override;

@@ -1,10 +1,13 @@
 #pragma once
+#include "../JuceLibraryCode/JuceHeader.h"//todo remove
 
 #include "../OdinConstants.h"
 #include "Filter.h"
 #include <cstring>
 
 #define COMB_BUFFER_LENGTH (MAX_EXPECTED_SAMPLE_RATE / FILTER_FC_MIN)
+
+//#include "../JuceLibraryCode/JuceHeader.h"//todo remove
 
 class CombFilter
 {
@@ -13,6 +16,11 @@ class CombFilter
 	~CombFilter();
 
 	float doFilter(float p_input);
+	int m_MIDI_note = 0;
+	float m_kbd_mod_amount = 0;
+	float m_vel_mod_amount = 0;
+	float m_env_mod_amount = 0;
+
 
 	inline void setPositive(bool p_positive){
 		m_positive_comb = p_positive ? 1 : -1;
@@ -22,6 +30,7 @@ class CombFilter
 	{
 		//TODO check for too long time... here?
 		m_delay_time_control = 1.f / p_freq; 
+		DBG(m_delay_time_control);
 	}
 
 	inline void setResonance(float p_feedback)
@@ -60,9 +69,9 @@ class CombFilter
 	int m_positive_comb = 1;
 
 	//need to be init by synth
-	float m_delay_time_control;
-	float m_delay_time_smooth = 1./440; //todo what value here?
-	float m_feedback;
-	float m_samplerate;
+	double m_delay_time_control = 1./440.f;
+	double m_delay_time_smooth = 1./440.f; //todo what value here?
+	float m_feedback = 0;
+	float m_samplerate = 44100;
 
 };

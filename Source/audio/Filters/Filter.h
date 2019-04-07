@@ -30,6 +30,12 @@ class Filter
 
 	double m_freq_base;
 	double m_res_base;
+	int m_MIDI_note = 0;
+	
+	float m_kbd_mod_amount = 0;
+	float m_vel_mod_amount = 0;
+    float m_env_mod_amount = 0;
+
 	// --- for an aux filter specific like SEM BSF
 	//     control or paasband gain comp (Moog)
 	double m_aux_control; //todo where is this initialized?
@@ -56,7 +62,7 @@ class Filter
 			m_freq_modded = FILTER_FC_MIN;
 	}
 	
-	double m_mod_frequency;
+	double m_mod_frequency = 0;
 	
   protected:
 	double m_samplerate;

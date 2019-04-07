@@ -69,6 +69,7 @@ struct Voice {
   void start(int p_MIDI_key) {
     reset();
     setOscBaseFreq(MIDINoteToFreq(p_MIDI_key));
+    setFilterMIDINote(p_MIDI_key);
     m_voice_active = true;
     DBG("Started voice");
     m_MIDI_key = p_MIDI_key;
@@ -151,22 +152,70 @@ struct Voice {
     }
   }
 
+  void setFilterMIDINote(int p_MIDI_note) {
+    for (int fil = 0; fil < 3; ++fil) {
+      ladder_filter[fil].m_MIDI_note = p_MIDI_note;
+      diode_filter[fil].m_MIDI_note = p_MIDI_note;
+      korg_filter[fil].m_MIDI_note = p_MIDI_note;
+      SEM_filter_24[fil].m_MIDI_note = p_MIDI_note;
+      SEM_filter_12[fil].m_MIDI_note = p_MIDI_note;
+      comb_filter[fil].m_MIDI_note = p_MIDI_note;
+    }
+  }
+
+  void setKbd(float p_kbd, int p_fil) {
+    ladder_filter[p_fil].m_kbd_mod_amount = p_kbd;
+    SEM_filter_12[p_fil].m_kbd_mod_amount = p_kbd;
+    SEM_filter_24[p_fil].m_kbd_mod_amount = p_kbd;
+    korg_filter[p_fil].m_kbd_mod_amount = p_kbd;
+    diode_filter[p_fil].m_kbd_mod_amount = p_kbd;
+    comb_filter[p_fil].m_kbd_mod_amount = p_kbd;
+  }
+
+  void setVelModAmount(float p_vel, int p_fil) {
+    ladder_filter[p_fil].m_vel_mod_amount = p_vel;
+    SEM_filter_12[p_fil].m_vel_mod_amount = p_vel;
+    SEM_filter_24[p_fil].m_vel_mod_amount = p_vel;
+    korg_filter[p_fil].m_vel_mod_amount = p_vel;
+    diode_filter[p_fil].m_vel_mod_amount = p_vel;
+    comb_filter[p_fil].m_vel_mod_amount = p_vel;
+    formant_filter[p_fil].m_vel_mod_amount = p_vel;
+  }
+
+  void setSaturation(float p_sat, int p_fil){
+    ladder_filter[p_fil].m_overdrive = p_sat;
+    SEM_filter_12[p_fil].m_overdrive = p_sat;
+    SEM_filter_24[p_fil].m_overdrive = p_sat;
+    korg_filter[p_fil].m_overdrive = p_sat;
+    diode_filter[p_fil].m_overdrive = p_sat;
+  }
+
+  void setEnvModAmount(float p_env, int p_fil) {
+    ladder_filter[p_fil].m_env_mod_amount = p_env;
+    SEM_filter_12[p_fil].m_env_mod_amount = p_env;
+    SEM_filter_24[p_fil].m_env_mod_amount = p_env;
+    korg_filter[p_fil].m_env_mod_amount = p_env;
+    diode_filter[p_fil].m_env_mod_amount = p_env;
+    comb_filter[p_fil].m_env_mod_amount = p_env;
+    formant_filter[p_fil].m_env_mod_amount = p_env;
+  }
+
   void setFilterFreq(float p_freq, int p_fil) {
-      ladder_filter[p_fil].m_freq_base = p_freq;
-      SEM_filter_12[p_fil].m_freq_base = p_freq;
-      SEM_filter_24[p_fil].m_freq_base = p_freq;
-      korg_filter[p_fil].m_freq_base = p_freq;
-      diode_filter[p_fil].m_freq_base = p_freq;
-      comb_filter[p_fil].setCombFreq(p_freq);
+    ladder_filter[p_fil].m_freq_base = p_freq;
+    SEM_filter_12[p_fil].m_freq_base = p_freq;
+    SEM_filter_24[p_fil].m_freq_base = p_freq;
+    korg_filter[p_fil].m_freq_base = p_freq;
+    diode_filter[p_fil].m_freq_base = p_freq;
+    comb_filter[p_fil].setCombFreq(p_freq);
   }
 
   void setFilterRes(float p_res, int p_fil) {
-      ladder_filter[p_fil].setResControl(p_res);
-      SEM_filter_12[p_fil].setResControl(p_res);
-      SEM_filter_24[p_fil].setResControl(p_res);
-      korg_filter[p_fil].setResControl(p_res);
-      diode_filter[p_fil].setResControl(p_res);
-      comb_filter[p_fil].setResonance(p_res);
+    ladder_filter[p_fil].setResControl(p_res);
+    SEM_filter_12[p_fil].setResControl(p_res);
+    SEM_filter_24[p_fil].setResControl(p_res);
+    korg_filter[p_fil].setResControl(p_res);
+    diode_filter[p_fil].setResControl(p_res);
+    comb_filter[p_fil].setResonance(p_res);
   }
 
   // oscs

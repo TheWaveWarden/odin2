@@ -51,6 +51,7 @@
     float* m_fil_type[3];
     float* m_fil_vel[3];
     float* m_fil_kbd[3];
+    float* m_fil_env[3];
     float* m_fil_gain[3];
     float* m_fil_freq[3];
     float* m_fil_res[3];
@@ -312,6 +313,9 @@
     Identifier m_fil1_vel_identifier;
     Identifier m_fil2_vel_identifier;
     Identifier m_fil3_vel_identifier;
+    Identifier m_fil1_env_identifier;
+    Identifier m_fil2_env_identifier;
+    Identifier m_fil3_env_identifier;
     Identifier m_fil1_kbd_identifier;
     Identifier m_fil2_kbd_identifier;
     Identifier m_fil3_kbd_identifier;

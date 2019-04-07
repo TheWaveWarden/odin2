@@ -15,11 +15,36 @@
 //==============================================================================
 FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts,
                                  std::string p_filter_number)
-    : m_value_tree(vts), m_filter_number(p_filter_number), m_vowel_left(false), m_vowel_right(true),
-    m_vowel_left_identifier("fil" + p_filter_number + "_vowel_left"),
-    m_vowel_right_identifier("fil" + p_filter_number + "_vowel_right"),
-     m_comb_plus_minus("comb_plus_minus")
-     {
+    : m_value_tree(vts), m_filter_number(p_filter_number), m_vowel_left(false),
+      m_vowel_right(true),
+      m_vowel_left_identifier("fil" + p_filter_number + "_vowel_left"),
+      m_vowel_right_identifier("fil" + p_filter_number + "_vowel_right"),
+      m_comb_plus_minus("comb_plus_minus") {
+
+  m_vel_attach.reset(new SliderAttachment(
+      m_value_tree, "fil" + m_filter_number + "_vel", m_vel));
+  m_env_attach.reset(new SliderAttachment(
+      m_value_tree, "fil" + m_filter_number + "_env", m_env));
+  m_kbd_attach.reset(new SliderAttachment(
+      m_value_tree, "fil" + m_filter_number + "_kbd", m_kbd));
+  m_gain_attach.reset(new SliderAttachment(
+      m_value_tree, "fil" + m_filter_number + "_gain", m_gain));
+  m_freq_attach.reset(new SliderAttachment(
+      m_value_tree, "fil" + m_filter_number + "_freq", m_freq));
+  m_res_attach.reset(new SliderAttachment(
+      m_value_tree, "fil" + m_filter_number + "_res", m_res));
+  m_saturation_attach.reset(new SliderAttachment(
+      m_value_tree, "fil" + m_filter_number + "_saturation", m_saturation));
+  m_formant_transition_attach.reset(new SliderAttachment(
+      m_value_tree, "fil" + m_filter_number + "_formant_transition",
+      m_formant_transition));
+  m_sem_transition_attach.reset(new SliderAttachment(
+      m_value_tree, "fil" + m_filter_number + "_sem_transition",
+      m_sem_transition));
+  m_comb_polarity_attach.reset(new ButtonAttachment(
+      m_value_tree, "fil" + m_filter_number + "_comb_polarity",
+      m_comb_plus_minus));
+
   juce::Image metal_knob_big = ImageCache::getFromFile(
       juce::File(GRAPHICS_PATH + "cropped/knobs/metal3/metal_knob_big.png"));
   juce::Image metal_knob_mid = ImageCache::getFromFile(
@@ -76,13 +101,13 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts,
   m_freq.setSize(metal_knob_big.getWidth(),
                  metal_knob_big.getHeight() / N_KNOB_FRAMES);
   m_freq.setRange(FREQ_MIN, FREQ_MAX);
+  m_freq.setKnobTooltip("The filter cutoff frequency");
   m_freq.setSkewFactorFromMidPoint(FREQ_MID);
   m_freq.setTextValueSuffix(" Hz");
   m_freq.setValue(FREQ_DEFAULT);
   m_freq.setDoubleClickReturnValue(true, FREQ_DEFAULT,
                                    ModifierKeys::ctrlModifier);
   m_freq.setNumDecimalPlacesToDisplay(1);
-  m_freq.setKnobTooltip("The filter cutoff frequency");
   addChildComponent(m_freq);
 
   m_res.setStrip(metal_knob_mid, N_KNOB_FRAMES);
@@ -129,8 +154,9 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts,
       "Transitions from the vowel on the\nleft to the one on the right");
   addChildComponent(m_formant_transition);
 
-  m_vowel_left.OnValueChange = [&](int p_new_value){
-      m_value_tree.getParameter(m_vowel_left_identifier)->setValueNotifyingHost(((float)p_new_value) / 7.f);    
+  m_vowel_left.OnValueChange = [&](int p_new_value) {
+    m_value_tree.getParameter(m_vowel_left_identifier)
+        ->setValueNotifyingHost(((float)p_new_value) / 7.f);
   };
   m_vowel_left.setTopLeftPosition(FORMANT_VOW_LEFT_POS_X,
                                   FORMANT_VOW_LEFT_POS_Y);
@@ -138,10 +164,11 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts,
       "The vowel to\nthe left side of\nthe transition knob");
   addChildComponent(m_vowel_left);
   m_vowel_left.setValue(0);
-  //m_vowel_left.setColor(Colour(70, 30, 40));
+  // m_vowel_left.setColor(Colour(70, 30, 40));
 
-  m_vowel_right.OnValueChange = [&](int p_new_value){
-      m_value_tree.getParameter(m_vowel_right_identifier)->setValueNotifyingHost(((float)p_new_value) / 7.f);    
+  m_vowel_right.OnValueChange = [&](int p_new_value) {
+    m_value_tree.getParameter(m_vowel_right_identifier)
+        ->setValueNotifyingHost(((float)p_new_value) / 7.f);
   };
   m_vowel_right.setTopLeftPosition(FORMANT_VOW_RIGHT_POS_X,
                                    FORMANT_VOW_RIGHT_POS_Y);
@@ -157,29 +184,15 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts,
       juce::File(GRAPHICS_PATH + "cropped/buttons/buttonplusminus_3.png"));
   m_comb_plus_minus.setImage(comb_plus, 1);
   m_comb_plus_minus.setImage(comb_minus, 2);
-  m_comb_plus_minus.setBounds(COMB_PLUS_POS_X, COMB_PLUS_POS_Y, comb_plus.getWidth(),
-                     comb_plus.getHeight());
+  m_comb_plus_minus.setBounds(COMB_PLUS_POS_X, COMB_PLUS_POS_Y,
+                              comb_plus.getWidth(), comb_plus.getHeight());
   m_comb_plus_minus.setToggleState(true, dontSendNotification);
   m_comb_plus_minus.onStateChange = [&]() {
     // setLfo13(m_comb_plus_minus_button.getToggleState());
   };
-  m_comb_plus_minus.setTooltip("Whether to add or subtrackt the feedback\n in the internal delay line");
+  m_comb_plus_minus.setTooltip(
+      "Whether to add or subtrackt the feedback\n in the internal delay line");
   addChildComponent(m_comb_plus_minus);
-
-
-
-
-
-  m_vel_attach.reset (new SliderAttachment (m_value_tree, "fil"+m_filter_number+"_vel", m_vel));
-  m_kbd_attach.reset (new SliderAttachment (m_value_tree, "fil"+m_filter_number+"_kbd", m_kbd));
-  m_gain_attach.reset (new SliderAttachment (m_value_tree, "fil"+m_filter_number+"_gain", m_gain));
-  m_freq_attach.reset (new SliderAttachment (m_value_tree, "fil"+m_filter_number+"_freq", m_freq));
-  m_res_attach.reset (new SliderAttachment (m_value_tree, "fil"+m_filter_number+"_res", m_res));
-  m_saturation_attach.reset (new SliderAttachment (m_value_tree, "fil"+m_filter_number+"_saturation", m_saturation));
-  m_formant_transition_attach.reset (new SliderAttachment (m_value_tree, "fil"+m_filter_number+"_formant_transition", m_formant_transition));
-  m_sem_transition_attach.reset (new SliderAttachment (m_value_tree, "fil"+m_filter_number+"_sem_transition", m_sem_transition));
-  m_comb_polarity_attach.reset(new ButtonAttachment(m_value_tree, "fil"+ m_filter_number + "_comb_polarity", m_comb_plus_minus ));
-
 }
 
 FilterComponent::~FilterComponent() {}

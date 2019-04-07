@@ -14,7 +14,7 @@ float CombFilter::doFilter(float p_input){
 
     //todo audio bug when increasing delay_time
 
-	m_delay_time_smooth =  (m_delay_time_smooth - m_delay_time_control) * 0.9999 + m_delay_time_control;
+	m_delay_time_smooth =  (m_delay_time_smooth - m_delay_time_control) * 0.999 + m_delay_time_control;
 
     //calc read index
     float read_index = (float)m_write_index - m_delay_time_smooth * m_samplerate;

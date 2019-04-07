@@ -135,9 +135,9 @@
   std::make_unique<AudioParameterInt> ("fil1_vowel_right", "Filter1 Right Vowel", 1, 8, 2),
   std::make_unique<AudioParameterInt> ("fil1_comb_polarity", "Filter1 Comb Polarity", 0, 1, 0),
   //Filter2
-  std::make_unique<AudioParameterInt> ("fil2_osc1", "Filter2 Osc1 Input", 0, 1, 1),    
-  std::make_unique<AudioParameterInt> ("fil2_osc2", "Filter2 Osc2 Input", 0, 1, 1),    
-  std::make_unique<AudioParameterInt> ("fil2_osc3", "Filter2 Osc3 Input", 0, 1, 1),    
+  std::make_unique<AudioParameterInt> ("fil2_osc1", "Filter2 Osc1 Input", 0, 1, 0),    
+  std::make_unique<AudioParameterInt> ("fil2_osc2", "Filter2 Osc2 Input", 0, 1, 0),    
+  std::make_unique<AudioParameterInt> ("fil2_osc3", "Filter2 Osc3 Input", 0, 1, 0),    
   std::make_unique<AudioParameterInt> ("fil2_fil1", "Filter2 Filter1 Input", 0, 1, 1),    
   std::make_unique<AudioParameterInt> ("fil2_type", "Filter2 Type", 1, 13, 1),  
   std::make_unique<AudioParameterFloat> ("fil2_vel", "Filter2 Velocity Amount", NormalisableRange<float> (0.f, 1.f), 0.f),

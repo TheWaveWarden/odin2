@@ -85,6 +85,8 @@ for (int fil = 0; fil < 3; ++fil) {
       "fil" + std::to_string(fil + 1) + "_type");
   m_fil_vel[fil] = m_parameters.getRawParameterValue(
       "fil" + std::to_string(fil + 1) + "_vel");
+  m_fil_env[fil] = m_parameters.getRawParameterValue(
+      "fil" + std::to_string(fil + 1) + "_env");
   m_fil_kbd[fil] = m_parameters.getRawParameterValue(
       "fil" + std::to_string(fil + 1) + "_kbd");
   m_fil_gain[fil] = m_parameters.getRawParameterValue(
@@ -292,8 +294,8 @@ for (int osc = 0; osc < 3; ++osc) {
                                     &m_tree_listener);
   m_parameters.addParameterListener("osc" + std::to_string(osc + 1) + "_fine",
                                     &m_tree_listener);
-  m_parameters.addParameterListener("osc" + std::to_string(osc + 1) + "_analog_wave",
-                                    &m_tree_listener);
+  m_parameters.addParameterListener(
+      "osc" + std::to_string(osc + 1) + "_analog_wave", &m_tree_listener);
   m_parameters.addParameterListener("osc" + std::to_string(osc + 1) + "_vol",
                                     &m_tree_listener);
   m_parameters.addParameterListener(
@@ -362,6 +364,8 @@ for (int fil = 0; fil < 3; ++fil) {
   m_parameters.addParameterListener("fil" + std::to_string(fil + 1) + "_type",
                                     &m_tree_listener);
   m_parameters.addParameterListener("fil" + std::to_string(fil + 1) + "_vel",
+                                    &m_tree_listener);
+  m_parameters.addParameterListener("fil" + std::to_string(fil + 1) + "_env",
                                     &m_tree_listener);
   m_parameters.addParameterListener("fil" + std::to_string(fil + 1) + "_kbd",
                                     &m_tree_listener);
