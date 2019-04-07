@@ -18,9 +18,11 @@ class Filter
 	Filter(void);
 	~Filter(void);
 
+	//todo potential bottleneck
 	float pitchShiftMultiplier(float p_semitones){
-		return 1.f;
+		return pow(2.f, p_semitones / 12.f);
 	}
+	//todo
 	float fasttanh(float p_input){
 		return p_input;
 	}

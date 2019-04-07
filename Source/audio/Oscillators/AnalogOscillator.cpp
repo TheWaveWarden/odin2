@@ -1,6 +1,7 @@
 #include "AnalogOscillator.h"
 #include <cstdlib>
 
+
 #define DRIFT_NOISE_SMOOTH_FACTOR 0.0001
 
 AnalogOscillator::AnalogOscillator()
@@ -39,6 +40,7 @@ float AnalogOscillator::generateDrift(){
 
 void  AnalogOscillator::update(){
     m_mod_exp_other = generateDrift() * m_drift * DRIFT_RANGE_SEMITONES;
+    //DBG(m_mod_exp_other);
     WavetableOsc1D::update();
 }
 

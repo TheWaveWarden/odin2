@@ -1,5 +1,6 @@
 #include "DriftGenerator.h"
 #include "stdlib.h"
+#include "../JuceLibraryCode/JuceHeader.h"//todo
 
 
 DriftGenerator::DriftGenerator()
@@ -20,6 +21,9 @@ void DriftGenerator::initialize(float p_samlerate){
 
     m_last_value = getRand();
     m_next_value = getRand();
+
+    DBG(m_last_value);
+    DBG(m_next_value);
 
     // generate first coeffs random
     // float f_0 = getRand();
@@ -54,6 +58,6 @@ void DriftGenerator::calcNewCoeffs(){
 float DriftGenerator::getRand(){
     //generate random in range -1 +1
     float random = (float)rand();
-	return 2.f * (random / 32767.f) - 1.f;
+	return 2.f * ((float)random / (float)RAND_MAX) - 1.f;
 }
 

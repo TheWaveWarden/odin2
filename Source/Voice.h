@@ -133,6 +133,7 @@ void setReset(bool p_reset, int p_osc){
       fm_osc[p_osc].m_reset = p_reset;
   }
 
+  
   void setOscBaseFreq(float p_freq)
   {
     for (int osc = 0; osc < 3; ++osc)

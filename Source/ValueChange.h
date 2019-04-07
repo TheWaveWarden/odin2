@@ -85,6 +85,36 @@ void OdinAudioProcessor::treeValueChanged(const String &p_ID,
       m_voice[voice].setReset(p_new_value, 2);      
     }
   }
+  else if (id == m_osc1_pulsewidth_identifier) {
+    for(int voice = 0; voice < VOICES; ++voice){
+      m_voice[voice].analog_osc[0].setPWMDuty(p_new_value);
+    }
+  }
+  else if (id == m_osc2_pulsewidth_identifier) {
+    for(int voice = 0; voice < VOICES; ++voice){
+      m_voice[voice].analog_osc[1].setPWMDuty(p_new_value);
+    }
+  }
+  else if (id == m_osc3_pulsewidth_identifier) {
+    for(int voice = 0; voice < VOICES; ++voice){
+      m_voice[voice].analog_osc[2].setPWMDuty(p_new_value);
+    }
+  }
+  else if (id == m_osc1_drift_identifier) {
+    for(int voice = 0; voice < VOICES; ++voice){
+      m_voice[voice].analog_osc[0].setDrift(p_new_value);
+    }
+  }
+  else if (id == m_osc2_drift_identifier) {
+    for(int voice = 0; voice < VOICES; ++voice){
+      m_voice[voice].analog_osc[1].setDrift(p_new_value);
+    }
+  }
+  else if (id == m_osc3_drift_identifier) {
+    for(int voice = 0; voice < VOICES; ++voice){
+      m_voice[voice].analog_osc[2].setDrift(p_new_value);
+    }
+  }
   
   
   /*else if (id == m_osc1_semi_identifier) {

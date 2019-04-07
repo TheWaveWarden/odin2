@@ -1,6 +1,7 @@
 #pragma once
 //#include "../pluginconstants.h"
 //#include "../synthfunctions.h"
+#include <cmath>
 
 #define OSC_FO_MOD_RANGE 2			//2 semitone default
 #define OSC_HARD_SYNC_RATIO_RANGE 4	//4
@@ -20,7 +21,10 @@ public:
 	// --- increment the modulo counters
 	inline void incModulo(){m_modulo += m_increment;}
 
-	float pitchShiftMultiplier(float p_semitones){return 1.f;}
+	//todo potential bottleneck
+	float pitchShiftMultiplier(float p_semitones){
+		return pow(2.f, p_semitones / 12.f);
+	}
 
 	// --- check and wrap the modulo
 	//     returns true if modulo wrapped
