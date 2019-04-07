@@ -116,6 +116,10 @@ public:
 		}
 	}
 
+	inline void enablePassBandCompensation(){
+		m_aux_control = 1.f;
+	}
+
 	inline virtual double doFilter(double xn)
 	{
 

@@ -38,7 +38,7 @@ class Filter
 
 	// --- for an aux filter specific like SEM BSF
 	//     control or paasband gain comp (Moog)
-	double m_aux_control; //todo where is this initialized?
+	double m_aux_control;
 	// --- for NLP - Non Linear Procssing
 	bool m_NLP;
 	double m_overdrive;
