@@ -1,5 +1,8 @@
 #define DEBUG_VARIABLES
 
+
+//todo split this into a few functions to reduce overhead
+
 void OdinAudioProcessor::treeValueChanged(const String &p_ID,
                                           float p_new_value) {
 
@@ -622,7 +625,53 @@ void OdinAudioProcessor::treeValueChanged(const String &p_ID,
     m_formant_filter[0].setTransition(p_new_value);
     m_formant_filter[1].setTransition(p_new_value);
   } else if (id == m_fil3_comb_polarity_identifier) {
-      m_comb_filter[0].setPositive(p_new_value);
-      m_comb_filter[1].setPositive(p_new_value);
+    m_comb_filter[0].setPositive(p_new_value);
+    m_comb_filter[1].setPositive(p_new_value);
+  } else if (id == m_delay_time_identifier) {
+    m_delay[0].setDelayTime(p_new_value);
+    m_delay[1].setDelayTime(p_new_value);
+  } else if (id == m_delay_feedback_identifier) {
+    m_delay[0].setFeedback(p_new_value);
+    m_delay[1].setFeedback(p_new_value);
+  } else if (id == m_delay_hp_identifier) {
+    m_delay[0].setHPFreq(p_new_value);
+    m_delay[1].setHPFreq(p_new_value);
+  } else if (id == m_delay_ducking_identifier) {
+    m_delay[0].setDucking(p_new_value);
+    m_delay[1].setDucking(p_new_value);
+  } else if (id == m_delay_dry_identifier) {
+    m_delay[0].setDry(p_new_value);
+    m_delay[1].setDry(p_new_value);
+  } else if (id == m_delay_wet_identifier) {
+    m_delay[0].setWet(p_new_value);
+    m_delay[1].setWet(p_new_value);
+  } else if (id == m_phaser_amount_identifier) {
+    m_phaser[0].setLFOAmplitude(p_new_value);
+    m_phaser[1].setLFOAmplitude(p_new_value);
+  } else if (id == m_phaser_frequency_identifier) {
+    m_phaser[0].setLFOFreq(p_new_value);
+    m_phaser[1].setLFOFreq(p_new_value);
+  } else if (id == m_phaser_drywet_identifier) {
+    m_phaser[0].setAmount(p_new_value);
+    m_phaser[1].setAmount(p_new_value);
+  } else if (id == m_flanger_amount_identifier) {
+    m_flanger[0].setLFOAmount(p_new_value);
+    m_flanger[1].setLFOAmount(p_new_value);
+  } else if (id == m_flanger_frequency_identifier) {
+    m_flanger[0].setLFOFreq(p_new_value);
+    m_flanger[1].setLFOFreq(p_new_value);
+  } else if (id == m_flanger_drywet_identifier) {
+    m_flanger[0].setDryWet(p_new_value);
+    m_flanger[1].setDryWet(p_new_value);
+  } else if (id == m_chorus_amount_identifier) {
+    m_chorus[0].setAmount(p_new_value);
+    m_chorus[1].setAmount(p_new_value);
+  } else if (id == m_chorus_frequency_identifier) {
+    m_chorus[0].setLFOFreq(p_new_value);
+    m_chorus[1].setLFOFreq(p_new_value);
+  } else if (id == m_chorus_drywet_identifier) {
+    m_chorus[0].setDryWet(p_new_value);
+    m_chorus[1].setDryWet(p_new_value);
   }
+
 }

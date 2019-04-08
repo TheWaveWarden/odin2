@@ -43,6 +43,9 @@ OdinAudioProcessor::OdinAudioProcessor()
     m_voice[i].onEnvelopeEnd = [&]() { m_voice_manager.freeVoice(i); };
   }
 
+  setSampleRate(44100.f);
+  initializeModules();
+  
   // create wavetables
   WavetableContainer::getInstance().createWavetables(44100.f); // todo
 
@@ -300,30 +303,55 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
           *m_fil_type[2] == FILTER_TYPE_HP24 ||
           *m_fil_type[2] == FILTER_TYPE_HP12) {
         m_ladder_filter[channel].update();
-        stereo_signal[channel] = m_ladder_filter[channel].doFilter(stereo_signal[channel]);
-      } 
-      else if (*m_fil_type[2] == FILTER_TYPE_SEM24) {
+        stereo_signal[channel] =
+            m_ladder_filter[channel].doFilter(stereo_signal[channel]);
+      } else if (*m_fil_type[2] == FILTER_TYPE_SEM24) {
         m_SEM_filter_24[channel].update();
-        stereo_signal[channel] = m_SEM_filter_24[channel].doFilter(stereo_signal[channel]);
-      }
-      else if (*m_fil_type[2] == FILTER_TYPE_SEM12) {
+        stereo_signal[channel] =
+            m_SEM_filter_24[channel].doFilter(stereo_signal[channel]);
+      } else if (*m_fil_type[2] == FILTER_TYPE_SEM12) {
         m_SEM_filter_12[channel].update();
-        stereo_signal[channel] = m_SEM_filter_12[channel].doFilter(stereo_signal[channel]);
-      }
-      else if (*m_fil_type[2] == FILTER_TYPE_KORG) {
+        stereo_signal[channel] =
+            m_SEM_filter_12[channel].doFilter(stereo_signal[channel]);
+      } else if (*m_fil_type[2] == FILTER_TYPE_KORG) {
         m_korg_filter[channel].update();
-        stereo_signal[channel] = m_korg_filter[channel].doFilter(stereo_signal[channel]);
-      }
-      else if (*m_fil_type[2] == FILTER_TYPE_DIODE) {
+        stereo_signal[channel] =
+            m_korg_filter[channel].doFilter(stereo_signal[channel]);
+      } else if (*m_fil_type[2] == FILTER_TYPE_DIODE) {
         m_diode_filter[channel].update();
-        stereo_signal[channel] = m_diode_filter[channel].doFilter(stereo_signal[channel]);
-      } 
-      else if (*m_fil_type[2] == FILTER_TYPE_FORMANT) {
+        stereo_signal[channel] =
+            m_diode_filter[channel].doFilter(stereo_signal[channel]);
+      } else if (*m_fil_type[2] == FILTER_TYPE_FORMANT) {
         m_formant_filter[channel].update();
-        stereo_signal[channel] = m_formant_filter[channel].doFilter(stereo_signal[channel]);
-      } 
-      else if (*m_fil_type[2] == FILTER_TYPE_COMB) {
-        stereo_signal[channel] = m_comb_filter[channel].doFilter(stereo_signal[channel]);
+        stereo_signal[channel] =
+            m_formant_filter[channel].doFilter(stereo_signal[channel]);
+      } else if (*m_fil_type[2] == FILTER_TYPE_COMB) {
+        stereo_signal[channel] =
+            m_comb_filter[channel].doFilter(stereo_signal[channel]);
+      }
+
+      //==== FX SECTION ====
+
+      // ugly solution, yet here we go
+      for (int fx_slot = 0; fx_slot < 4; ++fx_slot) {
+        if ((int)*m_delay_position == fx_slot) {
+          if (*m_delay_on) {
+            stereo_signal[channel] = m_delay[channel].doDelay(stereo_signal[channel]);
+          }
+        } else if ((int)*m_phaser_position == fx_slot) {
+          if (*m_phaser_on) {
+            stereo_signal[channel] = m_phaser[channel].doPhaser(stereo_signal[channel]);
+          }
+        } else if ((int)*m_flanger_position == fx_slot) {
+          if (*m_flanger_on) {
+            stereo_signal[channel] =
+                m_flanger[channel].doFlanger(stereo_signal[channel]);
+          }
+        } else if ((int)*m_chorus_position == fx_slot) {
+          if (*m_chorus_on) {
+            stereo_signal[channel] = m_chorus[channel].doChorus(stereo_signal[channel]);
+          }
+        }
       }
 
       //===== OUTPUT ======
@@ -331,9 +359,8 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
       auto *channelData = buffer.getWritePointer(channel);
       channelData[sample] = stereo_signal[channel];
 
-
     } // stereo loop
-  } // sample loop
+  }   // sample loop
 }
 
 //==============================================================================
@@ -362,3 +389,25 @@ void OdinAudioProcessor::setStateInformation(const void *data,
 AudioProcessor *JUCE_CALLTYPE createPluginFilter() {
   return new OdinAudioProcessor();
 }
+
+void OdinAudioProcessor::setSampleRate(float p_samplerate){
+  //todo set ALL samplerates here and check where the host sets them
+  m_delay[0].setSampleRate(p_samplerate);
+  m_delay[1].setSampleRate(p_samplerate);
+  m_phaser[0].setSamplerate(p_samplerate);
+  m_phaser[1].setSamplerate(p_samplerate);
+  m_flanger[0].setSamplerate(p_samplerate);
+  m_flanger[1].setSamplerate(p_samplerate);
+  m_chorus[0].setSamplerate(p_samplerate);
+  m_chorus[1].setSamplerate(p_samplerate);
+  
+
+}
+
+void OdinAudioProcessor::initializeModules(){
+  m_phaser[0].setBaseFreq(18000.f);
+  m_phaser[1].setBaseFreq(18000.f);
+	m_phaser[0].setRadiusBase(1.25f);
+	m_phaser[1].setRadiusBase(1.25f);
+}
+

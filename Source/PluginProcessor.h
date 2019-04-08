@@ -23,6 +23,10 @@
 #include "audio/Filters/DiodeFilter.h"
 #include "audio/Filters/FormantFilter.h"
 #include "audio/Filters/Korg35Filter.h"
+#include "audio/FX/Delay.h"
+#include "audio/FX/Phaser.h"
+#include "audio/FX/Flanger.h"
+#include "audio/FX/Chorus.h"
 
 //==============================================================================
 /**
@@ -68,6 +72,9 @@ public:
     void setStateInformation (const void* data, int sizeInBytes) override;
 
 private:
+    void setSampleRate(float p_samplerate);
+    void initializeModules();
+
     VoiceManager m_voice_manager;
     AudioProcessorValueTreeState m_parameters;
     OdinTreeListener m_tree_listener;
@@ -84,6 +91,10 @@ private:
     DiodeFilter m_diode_filter[2];
     FormantFilter m_formant_filter[2];
     CombFilter m_comb_filter[2];
+    Delay m_delay[2];
+    Phaser m_phaser[2];
+    Flanger m_flanger[2];
+    Chorus m_chorus[2];
 
     void treeValueChanged(const String& p_ID, float p_new_value);
 
