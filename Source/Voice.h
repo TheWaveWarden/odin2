@@ -64,7 +64,7 @@ struct Voice {
   operator bool() const { return m_voice_active; }
 
   Voice() {
-    env1.onEnvelopeEnd = [&]() { onEnvelopeEnd(); };
+    env[0].onEnvelopeEnd = [&]() { onEnvelopeEnd(); };
   }
 
   float MIDINoteToFreq(int p_MIDI_note) {
@@ -84,10 +84,10 @@ struct Voice {
   // returns true if the voice was actually stopped
   bool keyUp(int p_MIDI_key) {
     if (m_MIDI_key == p_MIDI_key) {
-      env1.startRelease();
-      env2.startRelease();
-      env3.startRelease();
-      env4.startRelease();
+      env[1].startRelease();
+      env[2].startRelease();
+      env[3].startRelease();
+      env[4].startRelease();
       //TODO REMOVE HAACK
       m_voice_active = false;
       return true;
@@ -228,6 +228,13 @@ struct Voice {
     comb_filter[p_fil].setResonance(p_res);
   }
 
+  void setSampleRate(float p_samplerate){
+    env[0].setSamplerate(p_samplerate);
+    env[1].setSamplerate(p_samplerate);
+    env[2].setSamplerate(p_samplerate);
+    env[3].setSamplerate(p_samplerate);
+  }
+
   // oscs
   AnalogOscillator analog_osc[3];
   WavetableOsc2D wavetable_osc[3];
@@ -246,10 +253,7 @@ struct Voice {
   FormantFilter formant_filter[2];
   CombFilter comb_filter[2];
   // ADSRs
-  ADSREnvelope env1; // amp
-  ADSREnvelope env2; // filter
-  ADSREnvelope env3;
-  ADSREnvelope env4;
+  ADSREnvelope env[4]; // amp
 
   // LFOs
   // todo

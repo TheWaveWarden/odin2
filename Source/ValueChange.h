@@ -672,6 +672,86 @@ void OdinAudioProcessor::treeValueChanged(const String &p_ID,
   } else if (id == m_chorus_drywet_identifier) {
     m_chorus[0].setDryWet(p_new_value);
     m_chorus[1].setDryWet(p_new_value);
+  } else if (id == m_env1_attack_identifier) {
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_voice[voice].env[0].setAttack(p_new_value);
+    }
+  } else if (id == m_env2_attack_identifier) {
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_voice[voice].env[1].setAttack(p_new_value);
+    }
+  } else if (id == m_env3_attack_identifier) {
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_voice[voice].env[2].setAttack(p_new_value);
+    }
+  } else if (id == m_env4_attack_identifier) {
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_voice[voice].env[3].setAttack(p_new_value);
+    }
   }
-
+  else if (id == m_env1_decay_identifier) {
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_voice[voice].env[0].setDecay(p_new_value);
+    }
+  } else if (id == m_env2_decay_identifier) {
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_voice[voice].env[1].setDecay(p_new_value);
+    }
+  } else if (id == m_env3_decay_identifier) {
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_voice[voice].env[2].setDecay(p_new_value);
+    }
+  } else if (id == m_env4_decay_identifier) {
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_voice[voice].env[3].setDecay(p_new_value);
+    }
+  } else if (id == m_env1_sustain_identifier) {
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_voice[voice].env[0].setSustain(p_new_value);
+    }
+  } else if (id == m_env2_sustain_identifier) {
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_voice[voice].env[1].setSustain(p_new_value);
+    }
+  } else if (id == m_env3_sustain_identifier) {
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_voice[voice].env[2].setSustain(p_new_value);
+    }
+  } else if (id == m_env4_sustain_identifier) {
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_voice[voice].env[3].setSustain(p_new_value);
+    }
+  } else if (id == m_env1_release_identifier) {
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_voice[voice].env[0].setRelease(p_new_value);
+    }
+  } else if (id == m_env2_release_identifier) {
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_voice[voice].env[1].setRelease(p_new_value);
+    }
+  } else if (id == m_env3_release_identifier) {
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_voice[voice].env[2].setRelease(p_new_value);
+    }
+  } else if (id == m_env4_release_identifier) {
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_voice[voice].env[3].setRelease(p_new_value);
+    }
+  } else if (id == m_env1_loop_identifier) {
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_voice[voice].env[0].setLoop(p_new_value);
+    }
+  } else if (id == m_env2_loop_identifier) {
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_voice[voice].env[1].setLoop(p_new_value);
+    }
+  } else if (id == m_env3_loop_identifier) {
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_voice[voice].env[2].setLoop(p_new_value);
+    }
+  } else if (id == m_env4_loop_identifier) {
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_voice[voice].env[3].setLoop(p_new_value);
+    }
+  }
 }

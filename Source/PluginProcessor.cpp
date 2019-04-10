@@ -113,7 +113,8 @@ void OdinAudioProcessor::changeProgramName(int index, const String &newName) {}
 void OdinAudioProcessor::prepareToPlay(double sampleRate, int samplesPerBlock) {
   // Use this method as the place to do any pre-playback
   // initialisation that you need..
-  //m_voice[0].start(52, 100);
+  m_voice[0].start(52, 100);
+  m_voice[0].env[0].setLoop(true);
 }
 
 void OdinAudioProcessor::releaseResources() {
@@ -189,6 +190,13 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
     // loop over all voices
     for (int voice = 0; voice < VOICES; ++voice) {
       if (m_voice[voice]) {
+
+        //===== ADSR ======
+        float adsr[4];
+        for(int env = 0; env < 4; ++env){
+          adsr[env] = m_voice[voice].env[env].doEnvelope();
+        }
+
 
         //===== OSCS ======
 
@@ -295,11 +303,12 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
         } // filter loop
 
         if (*m_fil1_to_amp) {
-          voices_output += filter_output[0];
+          voices_output += filter_output[0] * adsr[0];
         }
         if (*m_fil2_to_amp) {
-          voices_output += filter_output[1];
+          voices_output += filter_output[1] * adsr[0];
         }
+        
       } // voice active
     }   // voice loop
 
@@ -414,6 +423,10 @@ AudioProcessor *JUCE_CALLTYPE createPluginFilter() {
 
 void OdinAudioProcessor::setSampleRate(float p_samplerate){
   //todo set ALL samplerates here and check where the host sets them
+  for(int voice = 0; voice < VOICES; ++voice){
+    m_voice[voice].setSampleRate(p_samplerate);
+  }
+  
   m_delay[0].setSampleRate(p_samplerate);
   m_delay[1].setSampleRate(p_samplerate);
   m_phaser[0].setSamplerate(p_samplerate);
@@ -422,6 +435,7 @@ void OdinAudioProcessor::setSampleRate(float p_samplerate){
   m_flanger[1].setSamplerate(p_samplerate);
   m_chorus[0].setSamplerate(p_samplerate);
   m_chorus[1].setSamplerate(p_samplerate);
+  
 }
 
 void OdinAudioProcessor::initializeModules(){
