@@ -38,15 +38,20 @@ public:
     for (int i = 0; i < VOICES; ++i) {
       if (!voice_busy[i]) {
         voice_busy[i] = true;
+        DBG("Voice manager returned voice " + std::to_string(i));
         return i;
       }
     }
     // TODO all voices busy, steal
+    DBG("Voice manager returned voice 0");    
     return 0;
   }
 
   // marks a voice as free again
-  void freeVoice(int p_voice) { voice_busy[p_voice] = false; }
+  void freeVoice(int p_voice) { 
+    voice_busy[p_voice] = false; 
+    DBG("Voice manager freed voice " + std::to_string(p_voice));
+    }
 
 protected:
   bool voice_busy[VOICES] = {false}; // is voice busy
@@ -66,7 +71,7 @@ struct Voice {
     return 27.5f * pow(2.f, (float)(p_MIDI_note - 21) / 12.f);
   }
 
-  void start(int p_MIDI_key) {
+  void start(int p_MIDI_key, int p_MIDI_velocity) {
     reset();
     setOscBaseFreq(MIDINoteToFreq(p_MIDI_key));
     setFilterMIDINote(p_MIDI_key);
@@ -76,13 +81,18 @@ struct Voice {
   }
 
   // starts release on envelopes if this is the key that was pressed
-  void keyUp(int p_MIDI_key) {
-    if (m_MIDI_key = p_MIDI_key) {
+  // returns true if the voice was actually stopped
+  bool keyUp(int p_MIDI_key) {
+    if (m_MIDI_key == p_MIDI_key) {
       env1.startRelease();
       env2.startRelease();
       env3.startRelease();
       env4.startRelease();
+      //TODO REMOVE HAACK
+      m_voice_active = false;
+      return true;
     }
+    return false;
   }
 
   void setOctave(int p_octave, int p_osc) {

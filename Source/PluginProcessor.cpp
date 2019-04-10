@@ -113,7 +113,7 @@ void OdinAudioProcessor::changeProgramName(int index, const String &newName) {}
 void OdinAudioProcessor::prepareToPlay(double sampleRate, int samplesPerBlock) {
   // Use this method as the place to do any pre-playback
   // initialisation that you need..
-  m_voice[0].start(52);
+  //m_voice[0].start(52, 100);
 }
 
 void OdinAudioProcessor::releaseResources() {
@@ -150,12 +150,34 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
   auto totalNumInputChannels = getTotalNumInputChannels();
   auto totalNumOutputChannels = getTotalNumOutputChannels();
 
-  // DBG(totalNumInputChannels);
-  // DBG(totalNumOutputChannels);
-  // DBG("-----");
+  MidiMessage midi_message;
+  int midi_message_sample;
+  MidiBuffer::Iterator midi_iterator(midiMessages);
+  bool midi_message_remaining = midi_iterator.getNextEvent(midi_message, midi_message_sample);
 
   // loop over samples
   for (int sample = 0; sample < buffer.getNumSamples(); ++sample) {
+
+    //===== MIDI =====
+    if(midi_message_remaining){
+      if(midi_message_sample <= sample){
+        //apply midi message
+        if(midi_message.isNoteOn()){
+          m_voice[m_voice_manager.getVoice()].start(midi_message.getNoteNumber(), midi_message.getVelocity());
+        } else if (midi_message.isNoteOff()){
+          for(int voice = 0; voice < VOICES; ++voice){
+            if(m_voice[voice].keyUp(midi_message.getNoteNumber())){
+              // todo HACK it should only be keyupped here
+              m_voice_manager.freeVoice(voice);
+            }
+          }
+        }
+
+        //get next midi message
+        midi_message_remaining = midi_iterator.getNextEvent(midi_message, midi_message_sample);
+      }
+    }
+
 
     //============================================================
     //======================== VOICES ============================
@@ -400,8 +422,6 @@ void OdinAudioProcessor::setSampleRate(float p_samplerate){
   m_flanger[1].setSamplerate(p_samplerate);
   m_chorus[0].setSamplerate(p_samplerate);
   m_chorus[1].setSamplerate(p_samplerate);
-  
-
 }
 
 void OdinAudioProcessor::initializeModules(){
