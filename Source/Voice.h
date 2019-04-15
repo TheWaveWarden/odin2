@@ -97,6 +97,7 @@ struct Voice {
 
   void setOctave(int p_octave, int p_osc) {
     analog_osc[p_osc].m_octave = p_octave;
+    wavedraw_osc[p_osc].m_octave = p_octave;
     wavetable_osc[p_osc].m_octave = p_octave;
     multi_osc[p_osc].m_octave = p_octave;
     vector_osc[p_osc].m_octave = p_octave;
@@ -106,6 +107,7 @@ struct Voice {
 
   void setSemitones(int p_semi, int p_osc) {
     analog_osc[p_osc].m_semitones = p_semi;
+    wavedraw_osc[p_osc].m_semitones = p_semi;
     wavetable_osc[p_osc].m_semitones = p_semi;
     multi_osc[p_osc].m_semitones = p_semi;
     vector_osc[p_osc].m_semitones = p_semi;
@@ -115,6 +117,7 @@ struct Voice {
 
   void setFinetune(float p_fine, int p_osc) {
     analog_osc[p_osc].m_cent = p_fine;
+    wavedraw_osc[p_osc].m_cent = p_fine;
     wavetable_osc[p_osc].m_cent = p_fine;
     multi_osc[p_osc].m_cent = p_fine;
     vector_osc[p_osc].m_cent = p_fine;
@@ -124,6 +127,7 @@ struct Voice {
 
   void setReset(bool p_reset, int p_osc) {
     analog_osc[p_osc].m_reset = p_reset;
+    wavedraw_osc[p_osc].m_reset = p_reset;
     wavetable_osc[p_osc].m_reset = p_reset;
     multi_osc[p_osc].m_reset = p_reset;
     vector_osc[p_osc].m_reset = p_reset;
@@ -134,6 +138,7 @@ struct Voice {
   void setOscBaseFreq(float p_freq) {
     for (int osc = 0; osc < 3; ++osc) {
       analog_osc[osc].setBaseFrequency(p_freq);
+      wavedraw_osc[osc].setBaseFrequency(p_freq);
       wavetable_osc[osc].setBaseFrequency(p_freq);
       multi_osc[osc].setBaseFrequency(p_freq);
       vector_osc[osc].setBaseFrequency(p_freq);
@@ -146,6 +151,7 @@ struct Voice {
     for (int osc = 0; osc < 3; ++osc) {
       analog_osc[osc].reset();
       wavetable_osc[osc].reset();
+      wavedraw_osc[osc].reset();
       multi_osc[osc].reset();
       vector_osc[osc].reset();
       chiptune_osc[osc].reset();
@@ -201,6 +207,7 @@ struct Voice {
   }
 
   void setEnvModAmount(float p_env, int p_fil) {
+    //set as quadratic
     ladder_filter[p_fil].m_env_mod_amount = p_env;
     SEM_filter_12[p_fil].m_env_mod_amount = p_env;
     SEM_filter_24[p_fil].m_env_mod_amount = p_env;
@@ -208,6 +215,24 @@ struct Voice {
     diode_filter[p_fil].m_env_mod_amount = p_env;
     comb_filter[p_fil].m_env_mod_amount = p_env;
     formant_filter[p_fil].m_env_mod_amount = p_env;
+  }
+
+  void setFilterEnvValue(float p_env){    
+    ladder_filter[0].m_env_value = p_env;
+    SEM_filter_12[0].m_env_value = p_env;
+    SEM_filter_24[0].m_env_value = p_env;
+    korg_filter[0].m_env_value = p_env;
+    diode_filter[0].m_env_value = p_env;
+    comb_filter[0].m_env_value = p_env;
+    formant_filter[0].m_env_value = p_env;
+
+    ladder_filter[1].m_env_value = p_env;
+    SEM_filter_12[1].m_env_value = p_env;
+    SEM_filter_24[1].m_env_value = p_env;
+    korg_filter[1].m_env_value = p_env;
+    diode_filter[1].m_env_value = p_env;
+    comb_filter[1].m_env_value = p_env;
+    formant_filter[1].m_env_value = p_env;
   }
 
   void setFilterFreq(float p_freq, int p_fil) {
@@ -243,6 +268,7 @@ struct Voice {
   ChiptuneOscillator chiptune_osc[3];
   FMOscillator fm_osc[3];
   NoiseOscillator noise_osc[3];
+  WavetableOsc1D wavedraw_osc[3];
 
   // filter
   LadderFilter ladder_filter[2];

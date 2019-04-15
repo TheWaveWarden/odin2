@@ -3,6 +3,8 @@
 //#include "../pluginconstants.h"
 //#include "../synthfunctions.h"
 #include <cmath>
+#include "../JuceLibraryCode/JuceHeader.h"
+
 
 // 46.881879936465680 semitones = semitonesBetweenFrequencies(80, 18000.0)/2.0
 #define FILTER_FC_MOD_RANGE 46.881879936465680
@@ -10,6 +12,7 @@
 #define FILTER_FC_MAX 18000		// 18kHz
 #define FILTER_FC_DEFAULT 10000 // 10kHz
 #define FILTER_Q_DEFAULT 0.707  // Butterworth
+#define FILTER_ENV_MOD_SEMITONES_MAX 48
 
 // Filter Abastract Base Class for all filters
 class Filter
@@ -24,6 +27,8 @@ class Filter
 	}
 	//todo
 	float fasttanh(float p_input){
+		//idea1: just use tanh
+		//idea2: use curveable x^3
 		return p_input;
 	}
 
@@ -35,6 +40,7 @@ class Filter
 	float m_kbd_mod_amount = 0;
 	float m_vel_mod_amount = 0;
     float m_env_mod_amount = 0;
+	float m_env_value = 0.f;
 
 	// --- for an aux filter specific like SEM BSF
 	//     control or paasband gain comp (Moog)
@@ -53,8 +59,10 @@ class Filter
 	{
 
 		//setResControl(m_res_base);
-
-		m_freq_modded = m_freq_base * pitchShiftMultiplier(m_mod_frequency);
+		//DBG(m_env_mod_amount);
+		//DBG(m_env_value);
+		//DBG("===");
+		m_freq_modded = m_freq_base * pitchShiftMultiplier(m_mod_frequency + m_env_value * m_env_mod_amount * FILTER_ENV_MOD_SEMITONES_MAX);
 
 		if (m_freq_modded > FILTER_FC_MAX)
 			m_freq_modded = FILTER_FC_MAX;

@@ -2,6 +2,9 @@
 #include <cmath>
 
 
+#include "../JuceLibraryCode/JuceHeader.h"
+
+
 WavetableOsc1D::WavetableOsc1D(){}
 
 
@@ -53,6 +56,8 @@ float WavetableOsc1D::doWavetable(){
     float fractional = m_read_index - (float)read_index_trunc;
     int read_index_next = read_index_trunc + 1 >= WAVETABLE_LENGTH ? 0 : read_index_trunc + 1;
 
+    //DBG((long)m_current_table);
+
     // do linear interpolation 
     float output = linearInterpolation(m_current_table[read_index_trunc], m_current_table[read_index_next], fractional);
 
@@ -86,4 +91,11 @@ void WavetableOsc1D::loadWavetables(){
     for(int wavetable = 0; wavetable < NUMBER_OF_WAVETABLES; ++wavetable){
 		setWavetablePointer(wavetable, WavetableContainer::getInstance().getWavetablePointers(wavetable));
 	}
+}
+
+void WavetableOsc1D::loadWavedrawTables(int p_osc){
+    //for(int wavetable = 0; wavetable < NUMBER_OF_WAVETABLES; ++wavetable){
+	setWavetablePointer(0, WavetableContainer::getInstance().getWavedrawPointer(p_osc));
+    m_nr_of_wavetables = 1;
+	//}
 }

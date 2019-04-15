@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "array": "cpp"
+        "array": "cpp",
+        "cmath": "cpp"
     }
 }

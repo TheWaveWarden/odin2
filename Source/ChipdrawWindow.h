@@ -14,7 +14,6 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #define INLAY_DEFAULT_CHIPDRAW 2
 
-#define CHIPDRAW_STEPS_X 16
 #define CHIPDRAW_STEPS_Y 8
 #define DRAW_INLAY_LEFT 3
 #define DRAW_INLAY_RIGHT 3

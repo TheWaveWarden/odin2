@@ -158,7 +158,6 @@ void OdinAudioProcessor::treeValueChanged(const String &p_ID,
       m_voice[voice].multi_osc[2].setWavetableMultiSpread(p_new_value);
     }
   }
-
   else if (id == m_osc1_vec_a_identifier) {
     for (int voice = 0; voice < VOICES; ++voice) {
       m_voice[voice].vector_osc[0].selectWavetable(p_new_value, 0);
@@ -754,4 +753,25 @@ void OdinAudioProcessor::treeValueChanged(const String &p_ID,
       m_voice[voice].env[3].setLoop(p_new_value);
     }
   }
+
+  else if (id == m_osc1_vol_identifier) {
+    m_osc_vol_control[0] = Decibels::decibelsToGain(p_new_value);
+  }
+  else if (id == m_osc2_vol_identifier) {
+    m_osc_vol_control[1] = Decibels::decibelsToGain(p_new_value);
+  }
+  else if (id == m_osc3_vol_identifier) {
+    m_osc_vol_control[2] = Decibels::decibelsToGain(p_new_value);
+  }
+  else if (id == m_fil1_gain_identifier) {
+    m_fil_gain_control[0] = Decibels::decibelsToGain(p_new_value);
+  }
+  else if (id == m_fil2_gain_identifier) {
+    m_fil_gain_control[1] = Decibels::decibelsToGain(p_new_value);
+  }
+  else if (id == m_fil3_gain_identifier) {
+    m_fil_gain_control[2] = Decibels::decibelsToGain(p_new_value);
+  }
+
+
 }

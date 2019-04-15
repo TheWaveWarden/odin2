@@ -22,8 +22,8 @@ void DriftGenerator::initialize(float p_samlerate){
     m_last_value = getRand();
     m_next_value = getRand();
 
-    DBG(m_last_value);
-    DBG(m_next_value);
+    //DBG(m_last_value);
+    //DBG(m_next_value);
 
     // generate first coeffs random
     // float f_0 = getRand();

@@ -21,7 +21,6 @@
 #define DRAW_INLAY_DOWN_SPEC 7
 #define SPECDRAW_THICCNESS 2
 #define DISPLAY_WIDTH_SPEC 205
-#define SPECDRAW_STEPS_X (DISPLAY_WIDTH_SPEC - DRAW_INLAY_LEFT_SPEC - DRAW_INLAY_RIGHT_SPEC)
 //==============================================================================
 /*
  */

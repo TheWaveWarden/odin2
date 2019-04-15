@@ -168,6 +168,8 @@ public:
   void showWavetableComponents();
   void showMultiComponents();
 
+  void createWavedrawTables();
+
 protected:
   int m_osc_type = 0;
 

@@ -11,95 +11,98 @@
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
-#include "Voice.h"
-#include "audio/Oscillators/WavetableContainer.h"
 #include "OdinTreeListener.h"
+#include "Voice.h"
 #include "audio/Amplifier.h"
+#include "audio/FX/Chorus.h"
+#include "audio/FX/Delay.h"
+#include "audio/FX/Flanger.h"
 #include "audio/FX/OversamplingDistortion.h"
-#include "audio/Filters/LadderFilter.h"
+#include "audio/FX/Phaser.h"
 #include "audio/Filters/CombFilter.h"
-#include "audio/Filters/SEMFilter24.h"
-#include "audio/Filters/SEMFilter12.h"
 #include "audio/Filters/DiodeFilter.h"
 #include "audio/Filters/FormantFilter.h"
 #include "audio/Filters/Korg35Filter.h"
-#include "audio/FX/Delay.h"
-#include "audio/FX/Phaser.h"
-#include "audio/FX/Flanger.h"
-#include "audio/FX/Chorus.h"
+#include "audio/Filters/LadderFilter.h"
+#include "audio/Filters/SEMFilter12.h"
+#include "audio/Filters/SEMFilter24.h"
+#include "audio/Oscillators/WavetableContainer.h"
 
 //==============================================================================
 /**
-*/
-class OdinAudioProcessor  : public AudioProcessor
-{
+ */
+class OdinAudioProcessor : public AudioProcessor {
 public:
-    //==============================================================================
-    OdinAudioProcessor();
-    ~OdinAudioProcessor();
+  //==============================================================================
+  OdinAudioProcessor();
+  ~OdinAudioProcessor();
 
-    //==============================================================================
-    void prepareToPlay (double sampleRate, int samplesPerBlock) override;
-    void releaseResources() override;
+  //==============================================================================
+  void prepareToPlay(double sampleRate, int samplesPerBlock) override;
+  void releaseResources() override;
 
-   #ifndef JucePlugin_PreferredChannelConfigurations
-    bool isBusesLayoutSupported (const BusesLayout& layouts) const override;
-   #endif
+#ifndef JucePlugin_PreferredChannelConfigurations
+  bool isBusesLayoutSupported(const BusesLayout &layouts) const override;
+#endif
 
-    void processBlock (AudioBuffer<float>&, MidiBuffer&) override;
+  void processBlock(AudioBuffer<float> &, MidiBuffer &) override;
 
-    //==============================================================================
-    AudioProcessorEditor* createEditor() override;
-    bool hasEditor() const override;
+  //==============================================================================
+  AudioProcessorEditor *createEditor() override;
+  bool hasEditor() const override;
 
-    //==============================================================================
-    const String getName() const override;
+  //==============================================================================
+  const String getName() const override;
 
-    bool acceptsMidi() const override;
-    bool producesMidi() const override;
-    bool isMidiEffect() const override;
-    double getTailLengthSeconds() const override;
+  bool acceptsMidi() const override;
+  bool producesMidi() const override;
+  bool isMidiEffect() const override;
+  double getTailLengthSeconds() const override;
 
-    //==============================================================================
-    int getNumPrograms() override;
-    int getCurrentProgram() override;
-    void setCurrentProgram (int index) override;
-    const String getProgramName (int index) override;
-    void changeProgramName (int index, const String& newName) override;
+  //==============================================================================
+  int getNumPrograms() override;
+  int getCurrentProgram() override;
+  void setCurrentProgram(int index) override;
+  const String getProgramName(int index) override;
+  void changeProgramName(int index, const String &newName) override;
 
-    //==============================================================================
-    void getStateInformation (MemoryBlock& destData) override;
-    void setStateInformation (const void* data, int sizeInBytes) override;
+  //==============================================================================
+  void getStateInformation(MemoryBlock &destData) override;
+  void setStateInformation(const void *data, int sizeInBytes) override;
 
 private:
-    void setSampleRate(float p_samplerate);
-    void initializeModules();
+  float m_osc_vol_smooth[3] = {1.f};   // factor
+  float m_fil_gain_smooth[3] = {1.f};  // factor
+  float m_osc_vol_control[3] = {1.f};  // factor
+  float m_fil_gain_control[3] = {1.f}; // factor
 
-    VoiceManager m_voice_manager;
-    AudioProcessorValueTreeState m_parameters;
-    OdinTreeListener m_tree_listener;
+  void setSampleRate(float p_samplerate);
+  void initializeModules();
 
-    Voice m_voice[VOICES];
-    Amplifier m_amp;
-    OversamplingDistortion m_distortion[2];
+  VoiceManager m_voice_manager;
+  AudioProcessorValueTreeState m_parameters;
+  OdinTreeListener m_tree_listener;
 
+  Voice m_voice[VOICES];
+  Amplifier m_amp;
+  OversamplingDistortion m_distortion[2];
 
-    LadderFilter m_ladder_filter[2];
-    SEMFilter24 m_SEM_filter_24[2];
-    SEMFilter12 m_SEM_filter_12[2];
-    Korg35Filter m_korg_filter[2];
-    DiodeFilter m_diode_filter[2];
-    FormantFilter m_formant_filter[2];
-    CombFilter m_comb_filter[2];
-    Delay m_delay[2];
-    Phaser m_phaser[2];
-    Flanger m_flanger[2];
-    Chorus m_chorus[2];
+  LadderFilter m_ladder_filter[2];
+  SEMFilter24 m_SEM_filter_24[2];
+  SEMFilter12 m_SEM_filter_12[2];
+  Korg35Filter m_korg_filter[2];
+  DiodeFilter m_diode_filter[2];
+  FormantFilter m_formant_filter[2];
+  CombFilter m_comb_filter[2];
+  Delay m_delay[2];
+  Phaser m_phaser[2];
+  Flanger m_flanger[2];
+  Chorus m_chorus[2];
 
-    void treeValueChanged(const String& p_ID, float p_new_value);
+  void treeValueChanged(const String &p_ID, float p_new_value);
 
-    int m_counter = 0;//todo remove
-    #include "AudioVarDeclarations.h"
-    //==============================================================================
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (OdinAudioProcessor)
+  int m_counter = 0; // todo remove
+#include "AudioVarDeclarations.h"
+  //==============================================================================
+  JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(OdinAudioProcessor)
 };

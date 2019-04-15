@@ -117,3 +117,7 @@ void WavedrawDisplay::mouseUp(const MouseEvent &event) {
   // DBG("UP!");
   //}
 }
+
+float* WavedrawDisplay::getDrawnTable(){
+  return m_draw_values;
+}

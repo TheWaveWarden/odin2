@@ -19,6 +19,7 @@ class CombFilter
 	float m_kbd_mod_amount = 0;
 	float m_vel_mod_amount = 0;
 	float m_env_mod_amount = 0;
+	float m_env_value = 0;
 
 
 	inline void setPositive(bool p_positive){

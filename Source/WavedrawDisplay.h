@@ -12,9 +12,9 @@
 
 #include "GlobalIncludes.h"
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "audio/Oscillators/WavetableContainer.h"
 #define INLAY_DEFAULT_WAVEDRAW 2
 
-#define WAVEDRAW_STEPS_X 64
 #define DRAW_INLAY_LEFT 3
 #define DRAW_INLAY_RIGHT 3
 #define DRAW_INLAY_UP 5
@@ -40,6 +40,8 @@ public:
   void mouseUp(const MouseEvent &event) override;
   
   void mouseInteraction();
+
+  float* getDrawnTable();
 
   
 

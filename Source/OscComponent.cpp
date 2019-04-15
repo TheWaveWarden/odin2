@@ -557,6 +557,7 @@ OscComponent::OscComponent(AudioProcessorValueTreeState &vts,
       juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
   m_wavedraw_convert.onClick = [&]() {
     m_wavedraw_convert.setToggleState(true, sendNotification);
+    createWavedrawTables();
   };
   m_wavedraw_convert.setTooltip(
       "Converts the waveform drawn\nin the window. You won't hear\nany changes "
@@ -1147,4 +1148,9 @@ void OscComponent::showNoiseComponents() {
   showVolComponent();
   m_lp.setVisible(true);
   m_hp.setVisible(true);
+}
+
+void OscComponent::createWavedrawTables(){
+  DBG("createwavetables in osccomponent");
+  WavetableContainer::getInstance().createWavedrawTable(std::stoi(m_osc_number), m_wavedraw.getDrawnTable(), 44100.f);
 }

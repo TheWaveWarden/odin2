@@ -3,6 +3,7 @@
 #include <string> // why tf is memset defined in cstring?
 #include "../OdinConstants.h"
 #include <map>
+#include "../../GlobalIncludes.h"
 
 class WavetableContainer
 {
@@ -19,8 +20,8 @@ public:
 	
 	void createWavetables(float p_sample_rate);
 	void createChipdrawTable(int p_table_nr, float p_chipdraw_values[32], float p_sample_rate);
-	void createWavedrawTable(int p_table_nr, float p_wavedraw_values[WAVEDRAW_LENGTH], float p_sample_rate, bool p_const_sections = false);
-	void createSpecdrawTable(int p_table_nr, float p_fourrier_values[SIN_AND_COS][SPECDRAW_LENGTH], float p_sample_rate);
+	void createWavedrawTable(int p_table_nr, float p_wavedraw_values[WAVEDRAW_STEPS_X], float p_sample_rate, bool p_const_sections = false);
+	void createSpecdrawTable(int p_table_nr, float p_fourrier_values[SIN_AND_COS][SPECDRAW_STEPS_X], float p_sample_rate);
 
 
 	void destroyWavetables();
@@ -29,11 +30,15 @@ public:
 	float** getWavetablePointers(int p_wavetable);
 	float** getWavetablePointers(std::string p_name);
 	float** getChipdrawPointer(int p_chipdraw_index);
-	float** getWavedrawPointer(int p_chipdraw_index);
-	float** getSpecdrawPointer(int p_chipdraw_index);
+	float** getWavedrawPointer(int p_wavedraw_index);
+	float** getSpecdrawPointer(int p_specdraw_index);
 
 	void writeScaleFactorsToFile();
 
+
+	//void deleteWavedraw() {
+	//	m_wavedraw_tables = {0};
+	//}
 private:
 	WavetableContainer();
 
@@ -58,7 +63,7 @@ protected:
 
 	//drawn tables
 	float m_chipdraw_tables[NUMBER_OF_CHIPDRAW_TABLES][SUBTABLES_PER_WAVETABLE][WAVETABLE_LENGTH];
-	float m_wavedraw_tables[NUMBER_OF_WAVEDRAW_TABLES][SUBTABLES_PER_WAVETABLE][WAVETABLE_LENGTH];
+	float m_wavedraw_tables[NUMBER_OF_WAVEDRAW_TABLES][SUBTABLES_PER_WAVETABLE][WAVETABLE_LENGTH] = {0};
 	float m_specdraw_tables[NUMBER_OF_SPECDRAW_TABLES][SUBTABLES_PER_WAVETABLE][WAVETABLE_LENGTH];
 
 	std::string m_wavetable_names_1D[NUMBER_OF_WAVETABLES];

@@ -88,13 +88,13 @@ public:
 	float m_last_mean = 0.f;
 
 	//need to be init by synth
-	float m_delay_time_control;
+	float m_delay_time_control = 0.5f;
 	float m_delay_time_smooth = 0.5f;//todo what value here?
-	float m_feedback;
+	float m_feedback = 0.7;
 	float m_samplerate;
-	float m_dry;
-	float m_wet;
-	float m_highpass_freq;
-	float m_ducking_amount;
+	float m_dry = 1.f;
+	float m_wet = 0.7f;
+	float m_highpass_freq = 80.f;
+	float m_ducking_amount = 0.f;
 };
 

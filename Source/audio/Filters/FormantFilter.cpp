@@ -6,7 +6,7 @@ FormantFilter::FormantFilter()
 {
     m_BPF1.m_filter_type = LadderFilter::FILTERTYPE::LP2;//todo?
     m_BPF2.m_filter_type = LadderFilter::FILTERTYPE::BP2;
-
+    
     m_BPF1.setResControl(0.8);
     m_BPF2.setResControl(0.8);
 
