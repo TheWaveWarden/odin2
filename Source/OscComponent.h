@@ -170,6 +170,7 @@ public:
 
   void createWavedrawTables();
   void createChipdrawTables();
+  void createSpecdrawTables();
 
 protected:
   int m_osc_type = 0;

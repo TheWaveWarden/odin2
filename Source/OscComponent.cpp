@@ -579,6 +579,7 @@ OscComponent::OscComponent(AudioProcessorValueTreeState &vts,
       juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
   m_specdraw_convert.onClick = [&]() {
     m_specdraw_convert.setToggleState(true, sendNotification);
+    createSpecdrawTables();
   };
   m_specdraw_convert.setTooltip(
       "Converts the waveform drawn\nin the window. You won't hear\nany changes "
@@ -1152,9 +1153,14 @@ void OscComponent::showNoiseComponents() {
 }
 
 void OscComponent::createWavedrawTables(){
+//todo sampling freqencies
   WavetableContainer::getInstance().createWavedrawTable(std::stoi(m_osc_number)-1, m_wavedraw.getDrawnTable(), 44100.f);
 }
 
 void OscComponent::createChipdrawTables(){
   WavetableContainer::getInstance().createChipdrawTable(std::stoi(m_osc_number)-1, m_chipdraw.getDrawnTable(), 44100.f);
+}
+
+void OscComponent::createSpecdrawTables(){
+  WavetableContainer::getInstance().createSpecdrawTable(std::stoi(m_osc_number)-1, m_specdraw.getDrawnTable(), 44100.f);
 }

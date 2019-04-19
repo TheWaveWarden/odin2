@@ -40,7 +40,9 @@ public:
   void mouseUp(const MouseEvent &event) override;
   void mouseInteraction();
 
-  std::function<void()> onDraw= []() {};
+  float *getDrawnTable();
+
+  std::function<void()> onDraw = []() {};
 
 private:
   int m_inlay = INLAY_DEFAULT_SPECDRAW;

@@ -105,3 +105,9 @@ void SpecdrawDisplay::mouseUp(const MouseEvent &event) {
   //DBG("UP!");
   //}
 }
+
+
+
+float* SpecdrawDisplay::getDrawnTable(){
+  return m_draw_values;
+}

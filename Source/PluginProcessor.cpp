@@ -257,9 +257,15 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
             m_voice[voice].wavedraw_osc[osc].update();
             osc_output[osc] += m_voice[voice].wavedraw_osc[osc].doOscillate();
           }
+          // chipdraw osc
           else if (*m_osc_type[osc] == OSC_TYPE_CHIPDRAW) {
             m_voice[voice].chipdraw_osc[osc].update();
             osc_output[osc] += m_voice[voice].chipdraw_osc[osc].doOscillate();
+          }
+          // chipdraw osc
+          else if (*m_osc_type[osc] == OSC_TYPE_SPECDRAW) {
+            m_voice[voice].specdraw_osc[osc].update();
+            osc_output[osc] += m_voice[voice].specdraw_osc[osc].doOscillate();
           }
           // apply volume
           osc_output[osc] *= m_osc_vol_smooth[osc];
