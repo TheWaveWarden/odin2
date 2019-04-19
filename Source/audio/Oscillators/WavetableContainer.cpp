@@ -101,7 +101,10 @@ void WavetableContainer::createWavetables(float p_sample_rate) {
   for (int osc = 0; osc < 3; ++osc) {
     createWavedrawTable(osc, draw_values, p_sample_rate);
   }
-
+  for (int i = 0; i < WAVEDRAW_STEPS_X; ++i) {
+    draw_values[i] = sin((float)i * 2 * M_PI / WAVEDRAW_STEPS_X) * 0.9;
+  }
+  createWavedrawTable(2, draw_values, p_sample_rate);
   m_wavetables_created = true;
 }
 
@@ -202,11 +205,6 @@ void WavetableContainer::createWavedrawTable(
     int p_table_nr, float p_wavedraw_values[WAVEDRAW_STEPS_X],
     float p_sample_rate, bool p_const_sections) {
 
-  // for(int i = 0; i < WAVEDRAW_STEPS_X; ++i){
-  // DBG(p_wavedraw_values[i]);
-  //}
-  // DBG("=======================");
-
   // first generate the fourrier coefficients
   float wavedraw_coefficients[SIN_AND_COS][NUMBER_OF_HARMONICS];
 
@@ -295,7 +293,7 @@ void WavetableContainer::createWavedrawTable(
     // set pointers
     m_wavedraw_pointers[p_table_nr][index_sub_table] =
         m_wavedraw_tables[p_table_nr][index_sub_table];
-    //DBG((long)m_wavedraw_pointers[p_table_nr][index_sub_table]);
+    // DBG((long)m_wavedraw_pointers[p_table_nr][index_sub_table]);
   }
 
   // do another round to scale the table
@@ -308,9 +306,6 @@ void WavetableContainer::createWavedrawTable(
     for (int index_position = 0; index_position < WAVETABLE_LENGTH;
          ++index_position) {
       m_wavedraw_tables[p_table_nr][index_sub_table][index_position] *= max;
-      if (index_sub_table == 0) {
-        DBG(m_wavedraw_tables[p_table_nr][index_sub_table][index_position]); 
-      }
     }
   }
 }

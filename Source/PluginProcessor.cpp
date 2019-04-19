@@ -115,7 +115,6 @@ void OdinAudioProcessor::prepareToPlay(double sampleRate, int samplesPerBlock) {
   // Use this method as the place to do any pre-playback
   // initialisation that you need..
   m_voice[0].start(52, 100);
-  m_voice[0].env[0].setLoop(true);
 }
 
 void OdinAudioProcessor::releaseResources() {

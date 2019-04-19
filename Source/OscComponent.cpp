@@ -1152,5 +1152,5 @@ void OscComponent::showNoiseComponents() {
 
 void OscComponent::createWavedrawTables(){
   DBG("createwavetables in osccomponent");
-  WavetableContainer::getInstance().createWavedrawTable(std::stoi(m_osc_number), m_wavedraw.getDrawnTable(), 44100.f);
+  WavetableContainer::getInstance().createWavedrawTable(std::stoi(m_osc_number)-1, m_wavedraw.getDrawnTable(), 44100.f);
 }

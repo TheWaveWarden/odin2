@@ -9,7 +9,7 @@ class WavetableContainer
 {
 public:
 	static WavetableContainer& getInstance(){
-		static WavetableContainer instance;
+	    static WavetableContainer instance;
 		return instance;
 	}
 	WavetableContainer(WavetableContainer const &) = delete;
