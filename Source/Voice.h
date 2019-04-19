@@ -98,6 +98,8 @@ struct Voice {
   void setOctave(int p_octave, int p_osc) {
     analog_osc[p_osc].m_octave = p_octave;
     wavedraw_osc[p_osc].m_octave = p_octave;
+    chipdraw_osc[p_osc].m_octave = p_octave;
+    specdraw_osc[p_osc].m_octave = p_octave;
     wavetable_osc[p_osc].m_octave = p_octave;
     multi_osc[p_osc].m_octave = p_octave;
     vector_osc[p_osc].m_octave = p_octave;
@@ -108,6 +110,8 @@ struct Voice {
   void setSemitones(int p_semi, int p_osc) {
     analog_osc[p_osc].m_semitones = p_semi;
     wavedraw_osc[p_osc].m_semitones = p_semi;
+    chipdraw_osc[p_osc].m_semitones = p_semi;
+    specdraw_osc[p_osc].m_semitones = p_semi;
     wavetable_osc[p_osc].m_semitones = p_semi;
     multi_osc[p_osc].m_semitones = p_semi;
     vector_osc[p_osc].m_semitones = p_semi;
@@ -118,6 +122,8 @@ struct Voice {
   void setFinetune(float p_fine, int p_osc) {
     analog_osc[p_osc].m_cent = p_fine;
     wavedraw_osc[p_osc].m_cent = p_fine;
+    chipdraw_osc[p_osc].m_cent = p_fine;
+    specdraw_osc[p_osc].m_cent = p_fine;
     wavetable_osc[p_osc].m_cent = p_fine;
     multi_osc[p_osc].m_cent = p_fine;
     vector_osc[p_osc].m_cent = p_fine;
@@ -128,6 +134,8 @@ struct Voice {
   void setReset(bool p_reset, int p_osc) {
     analog_osc[p_osc].m_reset = p_reset;
     wavedraw_osc[p_osc].m_reset = p_reset;
+    chipdraw_osc[p_osc].m_reset = p_reset;
+    specdraw_osc[p_osc].m_reset = p_reset;
     wavetable_osc[p_osc].m_reset = p_reset;
     multi_osc[p_osc].m_reset = p_reset;
     vector_osc[p_osc].m_reset = p_reset;
@@ -139,6 +147,8 @@ struct Voice {
     for (int osc = 0; osc < 3; ++osc) {
       analog_osc[osc].setBaseFrequency(p_freq);
       wavedraw_osc[osc].setBaseFrequency(p_freq);
+      chipdraw_osc[osc].setBaseFrequency(p_freq);
+      specdraw_osc[osc].setBaseFrequency(p_freq);
       wavetable_osc[osc].setBaseFrequency(p_freq);
       multi_osc[osc].setBaseFrequency(p_freq);
       vector_osc[osc].setBaseFrequency(p_freq);
@@ -152,6 +162,8 @@ struct Voice {
       analog_osc[osc].reset();
       wavetable_osc[osc].reset();
       wavedraw_osc[osc].reset();
+      chipdraw_osc[osc].reset();
+      specdraw_osc[osc].reset();
       multi_osc[osc].reset();
       vector_osc[osc].reset();
       chiptune_osc[osc].reset();
@@ -269,6 +281,9 @@ struct Voice {
   FMOscillator fm_osc[3];
   NoiseOscillator noise_osc[3];
   WavetableOsc1D wavedraw_osc[3];
+  WavetableOsc1D chipdraw_osc[3];
+  WavetableOsc1D specdraw_osc[3];
+
 
   // filter
   LadderFilter ladder_filter[2];

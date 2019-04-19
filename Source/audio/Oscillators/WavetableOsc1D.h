@@ -23,6 +23,8 @@ public:
 	//used to load wavetables can be overwritten by child classes
 	virtual void loadWavetables();
 	void loadWavedrawTables(int p_osc);
+	void loadChipdrawTables(int p_osc);
+	void loadSpecdrawTables(int p_osc);
 
 
 protected:

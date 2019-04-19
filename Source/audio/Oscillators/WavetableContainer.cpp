@@ -90,22 +90,12 @@ void WavetableContainer::createWavetables(float p_sample_rate) {
   // create sine array
   float draw_values[WAVEDRAW_STEPS_X];
   for (int i = 0; i < WAVEDRAW_STEPS_X; ++i) {
-    if (i < WAVEDRAW_STEPS_X / 3.f) {
-      draw_values[i] = 1.f;
-    } else if (i < WAVEDRAW_STEPS_X / 3.f * 2.f) {
-      draw_values[i] = -1.f;
-    } else {
-      draw_values[i] = 0.f;
-    }
+    draw_values[i] = sin((float)i * 2 * M_PI / WAVEDRAW_STEPS_X) * 0.9;
   }
   for (int osc = 0; osc < 3; ++osc) {
     createWavedrawTable(osc, draw_values, p_sample_rate);
+    createChipdrawTable(osc, draw_values, p_sample_rate);
   }
-  for (int i = 0; i < WAVEDRAW_STEPS_X; ++i) {
-    draw_values[i] = sin((float)i * 2 * M_PI / WAVEDRAW_STEPS_X) * 0.9;
-  }
-  createWavedrawTable(2, draw_values, p_sample_rate);
-  m_wavetables_created = true;
 }
 
 void WavetableContainer::createChipdrawTable(

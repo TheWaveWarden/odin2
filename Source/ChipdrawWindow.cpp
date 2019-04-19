@@ -90,3 +90,8 @@ void ChipdrawWindow::mouseInteraction()
     onDraw();
     repaint();
 }
+
+
+float* ChipdrawWindow::getDrawnTable(){
+  return m_draw_values;
+}

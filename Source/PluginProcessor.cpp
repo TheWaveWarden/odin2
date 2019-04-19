@@ -59,6 +59,8 @@ OdinAudioProcessor::OdinAudioProcessor()
       m_voice[i].multi_osc[osc].loadWavetables();
       m_voice[i].fm_osc[osc].loadWavetables();
       m_voice[i].wavedraw_osc[osc].loadWavedrawTables(osc);
+      m_voice[i].chipdraw_osc[osc].loadChipdrawTables(osc);
+      m_voice[i].specdraw_osc[osc].loadSpecdrawTables(osc);
     }
   }
 }
@@ -254,6 +256,10 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
           else if (*m_osc_type[osc] == OSC_TYPE_WAVEDRAW) {
             m_voice[voice].wavedraw_osc[osc].update();
             osc_output[osc] += m_voice[voice].wavedraw_osc[osc].doOscillate();
+          }
+          else if (*m_osc_type[osc] == OSC_TYPE_CHIPDRAW) {
+            m_voice[voice].chipdraw_osc[osc].update();
+            osc_output[osc] += m_voice[voice].chipdraw_osc[osc].doOscillate();
           }
           // apply volume
           osc_output[osc] *= m_osc_vol_smooth[osc];

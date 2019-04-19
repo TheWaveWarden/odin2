@@ -169,6 +169,7 @@ public:
   void showMultiComponents();
 
   void createWavedrawTables();
+  void createChipdrawTables();
 
 protected:
   int m_osc_type = 0;

@@ -40,6 +40,9 @@ public:
   void mouseInteraction();
 
   std::function<void()> onDraw= []() {};
+
+  float* getDrawnTable();
+  
 private:
   int m_inlay = INLAY_DEFAULT_CHIPDRAW;
   juce::Image m_glaspanel;
