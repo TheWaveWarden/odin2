@@ -89,7 +89,8 @@ void WavetableContainer::createWavetables(float p_sample_rate) {
   // create draw tables as well
   // create sine array
   float draw_values[WAVEDRAW_STEPS_X];
-  float spec_values[SPECDRAW_STEPS_X];
+  float spec_values[SPECDRAW_STEPS_X] = {0};
+  spec_values[0] = 1.f;
   for (int i = 0; i < WAVEDRAW_STEPS_X; ++i) {
     draw_values[i] = sin((float)i * 2 * M_PI / WAVEDRAW_STEPS_X) * 0.9;
   }
@@ -303,7 +304,7 @@ void WavetableContainer::createWavedrawTable(
 }
 
 void WavetableContainer::createSpecdrawTable(
-    int p_table_nr, float p_specdraw_values[SIN_AND_COS][SPECDRAW_STEPS_X],
+    int p_table_nr, float p_specdraw_values[SPECDRAW_STEPS_X],
     float p_sample_rate) {
   // now create the wavetable from the fourrier coefficients
   double seed_freq = 27.5; // A0
@@ -334,13 +335,8 @@ void WavetableContainer::createSpecdrawTable(
         // fill table with
         // sine harmonics
         m_specdraw_tables[p_table_nr][index_sub_table][index_position] +=
-            p_specdraw_values[0][index_harmonics] / (float)index_harmonics *
+            p_specdraw_values[index_harmonics] / (float)index_harmonics *
             sin(2.f * PI * index_position * index_harmonics /
-                (float)WAVETABLE_LENGTH);
-        // cosine
-        m_specdraw_tables[p_table_nr][index_sub_table][index_position] +=
-            p_specdraw_values[1][index_harmonics] / (float)index_harmonics *
-            cos(2.f * PI * index_position * index_harmonics /
                 (float)WAVETABLE_LENGTH);
       }
       // find max among all tables

@@ -21,7 +21,7 @@ public:
 	void createWavetables(float p_sample_rate);
 	void createChipdrawTable(int p_table_nr, float p_chipdraw_values[32], float p_sample_rate);
 	void createWavedrawTable(int p_table_nr, float p_wavedraw_values[WAVEDRAW_STEPS_X], float p_sample_rate, bool p_const_sections = false);
-	void createSpecdrawTable(int p_table_nr, float p_fourrier_values[SIN_AND_COS][SPECDRAW_STEPS_X], float p_sample_rate);
+	void createSpecdrawTable(int p_table_nr, float p_fourrier_values[SPECDRAW_STEPS_X], float p_sample_rate);
 
 
 	void destroyWavetables();
