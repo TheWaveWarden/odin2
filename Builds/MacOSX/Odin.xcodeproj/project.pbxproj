@@ -69,6 +69,10 @@
 			isa = PBXBuildFile;
 			fileRef = 9D6FAF4C6B9E08A29875BF33;
 		};
+		3A20E19EA1355F92C31D391F = {
+			isa = PBXBuildFile;
+			fileRef = 1EC0C7E3033B00EB03750775;
+		};
 		1E65FEE769C5B261F02F51FC = {
 			isa = PBXBuildFile;
 			fileRef = 89075D2CBE36822E8C238051;
@@ -560,6 +564,13 @@
 			path = ../../Source/audio/Oscillators/AnalogOscillator.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
+		1EC0C7E3033B00EB03750775 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = ModMatrix.cpp;
+			path = ../../Source/ModMatrix.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
 		20B407BAA936CF4B9D1D03C3 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -999,6 +1010,13 @@
 			lastKnownFileType = sourcecode.cpp.cpp;
 			name = AmpDistortionFlowComponent.cpp;
 			path = ../../Source/AmpDistortionFlowComponent.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
+		6D407C91D8D2B67432B7CFD3 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = ModMatrix.h;
+			path = ../../Source/ModMatrix.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		6FD29A8CF8FAB165138A4C03 = {
@@ -1701,11 +1719,11 @@
 			path = ../../Source/Knob.h;
 			sourceTree = "SOURCE_ROOT";
 		};
-		F539FBE55A47AC61EF735C1D = {
+		FA4BC831893D91AFF01BA822 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			name = ChiptuneCustom2.h;
-			path = ../../Source/audio/Oscillators/Wavetables/ChiptuneCustom2.h;
+			name = ChiptuneCustom6.h;
+			path = ../../Source/audio/Oscillators/Wavetables/ChiptuneCustom6.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		FC12642B755F0EA465F450F1 = {
@@ -1764,6 +1782,13 @@
 			path = ../../Source/audio/Filters/CombFilter.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		F539FBE55A47AC61EF735C1D = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = ChiptuneCustom2.h;
+			path = ../../Source/audio/Oscillators/Wavetables/ChiptuneCustom2.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		F7EE059DC74FA1D7339DC4E7 = {
 			isa = PBXFileReference;
 			lastKnownFileType = file;
@@ -1776,13 +1801,6 @@
 			lastKnownFileType = sourcecode.c.h;
 			name = AppConfig.h;
 			path = ../../JuceLibraryCode/AppConfig.h;
-			sourceTree = "SOURCE_ROOT";
-		};
-		FA4BC831893D91AFF01BA822 = {
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.c.h;
-			name = ChiptuneCustom6.h;
-			path = ../../Source/audio/Oscillators/Wavetables/ChiptuneCustom6.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		FAD89A285E9951E99978A7B1 = {
@@ -2033,6 +2051,8 @@
 		DA68EAE39AAE6BE7BAE84567 = {
 			isa = PBXGroup;
 			children = (
+				1EC0C7E3033B00EB03750775,
+				6D407C91D8D2B67432B7CFD3,
 				561B281EF921BB46335A1534,
 				0BD72BFA8E149A74A1ECE025,
 				5133E141FE37B43E7DD8B8E7,
@@ -2889,6 +2909,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A20E19EA1355F92C31D391F,
 				1E65FEE769C5B261F02F51FC,
 				B340DC5252A6B3FBD9FE0AE8,
 				646E8F1912821DF67D9FF8B9,

@@ -454,6 +454,9 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\ModMatrix.cpp">
+      <Filter>Odin\Source</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\audio\Amplifier.cpp">
       <Filter>Odin\Source\audio</Filter>
     </ClCompile>
@@ -2616,6 +2619,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\ModMatrix.h">
+      <Filter>Odin\Source</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\ProcessorInitializerList.h">
       <Filter>Odin\Source</Filter>
     </ClInclude>
