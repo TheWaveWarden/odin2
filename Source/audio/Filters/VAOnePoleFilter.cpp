@@ -5,12 +5,13 @@ VAOnePoleFilter::VAOnePoleFilter(void)
 	// init
 	m_alpha = 1.0;
 	m_beta = 0.0;
-	m_z_1 = 0.0;
-
 	m_gamma = 1.0;
 	m_delta = 0.0;
 	m_epsilon = 0.0;
+
+	m_z_1 = 0.0;
 	m_a_0 = 1.0;
+	
 	m_feedback = 0.0;
 
 	// always set the default!

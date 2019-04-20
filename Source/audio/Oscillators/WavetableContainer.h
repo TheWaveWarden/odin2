@@ -66,6 +66,9 @@ protected:
 	float m_wavedraw_tables[NUMBER_OF_WAVEDRAW_TABLES][SUBTABLES_PER_WAVETABLE][WAVETABLE_LENGTH] = {0};
 	float m_specdraw_tables[NUMBER_OF_SPECDRAW_TABLES][SUBTABLES_PER_WAVETABLE][WAVETABLE_LENGTH];
 
+	//specdraw scalar (1/sqrt(harmonic))
+	float m_specdraw_scalar[SPECDRAW_STEPS_X];
+
 	std::string m_wavetable_names_1D[NUMBER_OF_WAVETABLES];
 
 	bool m_wavetables_created = false;

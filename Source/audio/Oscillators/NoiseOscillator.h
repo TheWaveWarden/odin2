@@ -24,8 +24,6 @@ public:
 
 protected:
 
-	bool m_note_on = false;
-
 	VAOnePoleFilter m_lowpass;
 	VAOnePoleFilter m_highpass;
 };

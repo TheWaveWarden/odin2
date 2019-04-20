@@ -71,10 +71,10 @@ public:
   void setStateInformation(const void *data, int sizeInBytes) override;
 
 private:
-  float m_osc_vol_smooth[3] = {1.f};   // factor
-  float m_fil_gain_smooth[3] = {1.f};  // factor
-  float m_osc_vol_control[3] = {1.f};  // factor
-  float m_fil_gain_control[3] = {1.f}; // factor
+  float m_osc_vol_smooth[3] = {1.f, 1.f, 1.f};   // factor
+  float m_fil_gain_smooth[3] = {1.f, 1.f, 1.f};  // factor
+  float m_osc_vol_control[3] = {1.f, 1.f, 1.f};  // factor
+  float m_fil_gain_control[3] = {1.f, 1.f, 1.f}; // factor
 
   void setSampleRate(float p_samplerate);
   void initializeModules();

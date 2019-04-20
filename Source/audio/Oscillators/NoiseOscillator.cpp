@@ -1,3 +1,4 @@
+#include "../JuceLibraryCode/JuceHeader.h"
 #include "NoiseOscillator.h"
 #include "stdlib.h"
 
@@ -8,7 +9,6 @@ NoiseOscillator::NoiseOscillator(){
     
     m_highpass.m_freq_base = FILTER_FC_MIN;
     m_highpass.setHP();
-
 }
 
 
@@ -27,7 +27,8 @@ float NoiseOscillator::doNoise(){
 
     //do 2nd order like this?
     white_noise = m_lowpass.doFilter(white_noise);
-    return m_highpass.doFilter(white_noise);
+    white_noise = m_highpass.doFilter(white_noise);
+    return white_noise;
 
 }   
 
@@ -37,9 +38,10 @@ void NoiseOscillator::setFilterFreqs(float p_lowpass_freq, float p_highpass_freq
 }
 
 void NoiseOscillator::setHPFreq(float p_freq){
-    m_lowpass.m_freq_base = p_freq;
-}
-void NoiseOscillator::setLPFreq(float p_freq){
     m_highpass.m_freq_base = p_freq;
+}
+
+void NoiseOscillator::setLPFreq(float p_freq){
+    m_lowpass.m_freq_base = p_freq;
 }
 

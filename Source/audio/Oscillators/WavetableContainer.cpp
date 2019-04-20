@@ -8,6 +8,11 @@
 
 WavetableContainer::WavetableContainer(){
 #include "WavetableCoefficients.h"
+  
+  //create specdraw scalar
+  for(int harmonic = 1; harmonic < SPECDRAW_STEPS_X + 1; ++harmonic){
+  	m_specdraw_scalar[harmonic - 1] = 1.f / sqrtf((float)harmonic);  
+  }
 }
 
 WavetableContainer::~WavetableContainer() {
@@ -311,7 +316,7 @@ void WavetableContainer::createSpecdrawTable(
   float max = 0.f;
 
   // delete old table
-  memset(m_wavedraw_tables[p_table_nr], 0,
+  memset(m_specdraw_tables[p_table_nr], 0,
          SUBTABLES_PER_WAVETABLE * WAVETABLE_LENGTH * sizeof(float));
 
   // loop over subtables
@@ -323,8 +328,8 @@ void WavetableContainer::createSpecdrawTable(
 
     // don't allow more than 800 harmonics (for big Samplerates this might
     // happen)
-    number_of_harmonics = number_of_harmonics > SPECDRAW_STEPS_X
-                              ? SPECDRAW_STEPS_X
+    number_of_harmonics = number_of_harmonics > SPECDRAW_STEPS_X + 1
+                              ? SPECDRAW_STEPS_X + 1
                               : number_of_harmonics;
 
     for (int index_position = 0; index_position < WAVETABLE_LENGTH;
@@ -335,7 +340,7 @@ void WavetableContainer::createSpecdrawTable(
         // fill table with
         // sine harmonics
         m_specdraw_tables[p_table_nr][index_sub_table][index_position] +=
-            p_specdraw_values[index_harmonics] / (float)index_harmonics *
+            p_specdraw_values[index_harmonics - 1] * m_specdraw_scalar[index_harmonics - 1] *
             sin(2.f * PI * index_position * index_harmonics /
                 (float)WAVETABLE_LENGTH);
       }
