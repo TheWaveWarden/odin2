@@ -65,7 +65,7 @@ public:
 	{
 
 		// --- do the  complete frequency mod
-		m_osc_freq_modded = m_osc_freq_base*pitchShiftMultiplier(m_mod_freq_exp + m_mod_exp_other +
+		m_osc_freq_modded = m_osc_freq_base*pitchShiftMultiplier( (*m_pitch_mod_exp) + m_mod_freq_exp + m_mod_exp_other +
 													     m_mod_pitch_bend + 
 													     m_octave*12.0 + 
 													     m_semitones + 
@@ -89,6 +89,10 @@ public:
 	inline virtual void setBaseFrequency(float p_freq){
 		m_osc_freq_base = p_freq;
 	}
+
+	void setPitchModExpPointer(float* p_pointer){
+		m_pitch_mod_exp = p_pointer;
+	}
 public:
 
 	
@@ -101,6 +105,8 @@ public:
 	double m_mod_freq_exp;		 // modulation input -1 to +1 */
 	double m_mod_freq_lin;		 // FM modulation input -1 to +1 (not actually used in Yamaha FM!) */
 	
+	float* m_pitch_mod_exp;
+
 	int m_octave;	      // octave tweak
 	int m_semitones;	  // semitones tweak
 	int m_cent;			  // cents tweak

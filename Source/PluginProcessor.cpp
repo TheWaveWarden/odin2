@@ -479,10 +479,23 @@ void OdinAudioProcessor::setSampleRate(float p_samplerate) {
 }
 
 void OdinAudioProcessor::initializeModules() {
-
+  m_mod_matrix.setSourcesAndDestinations(&m_mod_sources, &m_mod_destinations);
 
   m_phaser[0].setBaseFreq(18000.f);
   m_phaser[1].setBaseFreq(18000.f);
   m_phaser[0].setRadiusBase(1.25f);
   m_phaser[1].setRadiusBase(1.25f);
+
+
+  setModulationPointers();
+}
+
+
+void OdinAudioProcessor::setModulationPointers(){
+  //only set destination pointers here
+  for(int voice = 0; voice < VOICES; ++voice){
+    for(int osc = 0; osc < 3; ++osc){
+      m_voice[voice].analog_osc[osc].setPitchModExpPointer(&(m_mod_destinations.voice[voice].osc[osc].pitch_exponential));
+    }
+  }
 }

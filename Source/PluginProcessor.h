@@ -27,6 +27,7 @@
 #include "audio/Filters/SEMFilter12.h"
 #include "audio/Filters/SEMFilter24.h"
 #include "audio/Oscillators/WavetableContainer.h"
+#include "ModMatrix.h" 
 
 //==============================================================================
 /**
@@ -99,6 +100,11 @@ private:
   Flanger m_flanger[2];
   Chorus m_chorus[2];
 
+  ModMatrix m_mod_matrix;
+  ModSources m_mod_sources;
+  ModDestinations m_mod_destinations;
+
+  void setModulationPointers();
   void treeValueChanged(const String &p_ID, float p_new_value);
 
   int m_counter = 0; // todo remove
