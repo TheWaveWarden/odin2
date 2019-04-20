@@ -753,7 +753,6 @@ void OdinAudioProcessor::treeValueChanged(const String &p_ID,
       m_voice[voice].env[3].setLoop(p_new_value);
     }
   }
-
   else if (id == m_osc1_vol_identifier) {
     m_osc_vol_control[0] = Decibels::decibelsToGain(p_new_value);
   }
@@ -773,5 +772,15 @@ void OdinAudioProcessor::treeValueChanged(const String &p_ID,
     m_fil_gain_control[2] = Decibels::decibelsToGain(p_new_value);
   }
 
+  //modmatrix
+  else if(id == m_amount_1_row_1_identifier){
+    m_mod_matrix.setModAmount(0, p_new_value);
+  }
+  else if(id == m_source_row_1_identifier){
+    m_mod_matrix.setModSource(0, p_new_value);
+  }
+  else if(id == m_dest_1_row_1_identifier){
+    m_mod_matrix.setModDestination(0, p_new_value);
+  }
 
 }

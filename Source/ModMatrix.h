@@ -168,9 +168,7 @@ private:
   float* m_destination_value[VOICES];
   float* m_scale_value[VOICES];
 
-  bool m_source_poly = false;
   bool m_destination_poly = false;
-  bool m_scale_poly = false;
 
 
   ModSources* m_sources;

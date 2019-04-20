@@ -194,6 +194,13 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
     }
 
     //============================================================
+    //======================= MODMATRIX ==========================
+    //============================================================
+    
+    m_mod_matrix.zeroAllDestinations();
+    m_mod_matrix.applyModulation();
+
+    //============================================================
     //======================== VOICES ============================
     //============================================================
 
@@ -205,9 +212,10 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
       if (m_voice[voice]) {
 
         //===== ADSR ======
-        float adsr[4];
+        //float adsr[4];
         for (int env = 0; env < 4; ++env) {
-          adsr[env] = m_voice[voice].env[env].doEnvelope();
+          m_adsr[voice][env] = m_voice[voice].env[env].doEnvelope();
+          m_mod_sources.voice[voice].adsr[env] = m_adsr[voice][env];
         }
 
         //===== OSCS ======
@@ -276,7 +284,7 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
         float filter_input[2] = {0};
         float filter_output[2] = {0};
         m_voice[voice].setFilterEnvValue(
-            adsr[1]); // can be split up to individual filters
+            m_adsr[voice][1]); // can be split up to individual filters
         for (int fil = 0; fil < 2; ++fil) {
           // get filter inputs, fil1->fil2 is done at the end of fil1 calc
           if (*m_fil_osc1[fil]) {
@@ -341,10 +349,10 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
         } // filter loop
 
         if (*m_fil1_to_amp) {
-          voices_output += filter_output[0] * adsr[0];
+          voices_output += filter_output[0] * m_adsr[voice][0];
         }
         if (*m_fil2_to_amp) {
-          voices_output += filter_output[1] * adsr[0];
+          voices_output += filter_output[1] * m_adsr[voice][0];
         }
 
       } // voice active

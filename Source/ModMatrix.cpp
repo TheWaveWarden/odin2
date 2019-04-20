@@ -33,11 +33,25 @@ void ModMatrixRow::applyModulation() {
 }
 
 void ModMatrixRow::setModSource(int p_source) {
+
+  for(int voice = 0;  voice < VOICES; ++voice){
+    m_source_value[voice] = &(m_sources->voice[voice].adsr[3]);
+  }
+
+
   m_source = p_source;
   m_active = (m_source && m_destination);
 }
 
 void ModMatrixRow::setModDestination(int p_destination) {
+
+
+  for(int voice = 0;  voice < VOICES; ++voice){
+    m_destination_value[voice] = &(m_destinations->voice[voice].osc[0].pitch_exponential);
+  }
+  m_destination_poly = true;
+
+
   m_destination = p_destination;
   m_active = (m_source && m_destination);
 }

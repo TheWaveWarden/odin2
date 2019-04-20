@@ -107,6 +107,10 @@ private:
   void setModulationPointers();
   void treeValueChanged(const String &p_ID, float p_new_value);
 
+  //MOD SOURCES
+  float m_adsr[VOICES][4] = {0.f};
+
+
   int m_counter = 0; // todo remove
 #include "AudioVarDeclarations.h"
   //==============================================================================
