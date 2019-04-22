@@ -17,6 +17,7 @@ void ModMatrixRow::setSourcesAndDestinations(ModSources *p_source,
 }
 
 void ModMatrixRow::applyModulation() {
+  //DBG("henlo");
   // poly destination -> 12 modulations
   if (m_destination_poly) {
     for (int voice = 0; voice < VOICES; ++voice) {
@@ -34,17 +35,51 @@ void ModMatrixRow::applyModulation() {
 
 void ModMatrixRow::setModSource(int p_source) {
 
-  for(int voice = 0;  voice < VOICES; ++voice){
-    m_source_value[voice] = &(m_sources->voice[voice].adsr[3]);
+  switch(p_source){
+    case 200:
+    for(int voice = 0;  voice < VOICES; ++voice){
+      m_source_value[voice] = &(m_sources->voice[voice].adsr[0]);
+    }
+    break;
+    case 201:
+    for(int voice = 0;  voice < VOICES; ++voice){
+      m_source_value[voice] = &(m_sources->voice[voice].adsr[1]);
+    }
+    break;
+    case 202:
+    for(int voice = 0;  voice < VOICES; ++voice){
+      m_source_value[voice] = &(m_sources->voice[voice].adsr[2]);
+    }
+    break;
+    case 203:
+    for(int voice = 0;  voice < VOICES; ++voice){
+      m_source_value[voice] = &(m_sources->voice[voice].adsr[3]);
+    }
+    break;
+
+
+
+    default:
+    //todo
+    break;
   }
+  //DBG(p_source);
+
+
+  //for(int voice = 0;  voice < VOICES; ++voice){
+  //  m_source_value[voice] = &(m_sources->voice[voice].adsr[3]);
+  //}
 
 
   m_source = p_source;
   m_active = (m_source && m_destination);
+  
+  DBG(m_source);
+  DBG(m_destination);
 }
 
 void ModMatrixRow::setModDestination(int p_destination) {
-
+  //DBG(p_destination);
 
   for(int voice = 0;  voice < VOICES; ++voice){
     m_destination_value[voice] = &(m_destinations->voice[voice].osc[0].pitch_exponential);
@@ -54,6 +89,8 @@ void ModMatrixRow::setModDestination(int p_destination) {
 
   m_destination = p_destination;
   m_active = (m_source && m_destination);
+  DBG(m_source);
+  DBG(m_destination);
 }
 
 void ModMatrixRow::setModScale(int p_scale) { m_scale = p_scale; }

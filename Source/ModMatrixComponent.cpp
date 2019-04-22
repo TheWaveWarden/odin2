@@ -58,44 +58,26 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
       m_amount_1_identifier8("amount_1_[8]"),
       m_amount_2_identifier8("amount_2_[8]"),
       m_amount_3_identifier8("amount_3_[8]"),
-      m_source_identifier0("source_[0]"),
-      m_source_identifier1("source_[2]"),
-      m_source_identifier2("source_[2]"),
-      m_source_identifier3("source_[3]"),
-      m_source_identifier4("source_[4]"),
-      m_source_identifier5("source_[5]"),
-      m_source_identifier6("source_[6]"),
-      m_source_identifier7("source_[7]"),
-      m_source_identifier8("source_[8]"),
-      m_dest_1_identifier0("dest_1_[0]"),
-      m_dest_1_identifier1("dest_1_[2]"),
-      m_dest_1_identifier2("dest_1_[2]"),
-      m_dest_1_identifier3("dest_1_[3]"),
-      m_dest_1_identifier4("dest_1_[4]"),
-      m_dest_1_identifier5("dest_1_[5]"),
-      m_dest_1_identifier6("dest_1_[6]"),
-      m_dest_1_identifier7("dest_1_[7]"),
-      m_dest_1_identifier8("dest_1_[8]"),
-      m_dest_2_identifier0("dest_2_[0]"),
-      m_dest_2_identifier1("dest_2_[2]"),
-      m_dest_2_identifier2("dest_2_[2]"),
-      m_dest_2_identifier3("dest_2_[3]"),
-      m_dest_2_identifier4("dest_2_[4]"),
-      m_dest_2_identifier5("dest_2_[5]"),
-      m_dest_2_identifier6("dest_2_[6]"),
-      m_dest_2_identifier7("dest_2_[7]"),
-      m_dest_2_identifier8("dest_2_[8]"),
-      m_scale_identifier0("scale_[0]"),
-      m_scale_identifier1("scale_[2]"),
-      m_scale_identifier2("scale_[2]"),
-      m_scale_identifier3("scale_[3]"),
-      m_scale_identifier4("scale_[4]"),
-      m_scale_identifier5("scale_[5]"),
-      m_scale_identifier6("scale_[6]"),
-      m_scale_identifier7("scale_[7]"),
-      m_scale_identifier8("scale_[8]")
-      
-       {
+      m_source_identifier0("source_[0]"), m_source_identifier1("source_[2]"),
+      m_source_identifier2("source_[2]"), m_source_identifier3("source_[3]"),
+      m_source_identifier4("source_[4]"), m_source_identifier5("source_[5]"),
+      m_source_identifier6("source_[6]"), m_source_identifier7("source_[7]"),
+      m_source_identifier8("source_[8]"), m_dest_1_identifier0("dest_1_[0]"),
+      m_dest_1_identifier1("dest_1_[2]"), m_dest_1_identifier2("dest_1_[2]"),
+      m_dest_1_identifier3("dest_1_[3]"), m_dest_1_identifier4("dest_1_[4]"),
+      m_dest_1_identifier5("dest_1_[5]"), m_dest_1_identifier6("dest_1_[6]"),
+      m_dest_1_identifier7("dest_1_[7]"), m_dest_1_identifier8("dest_1_[8]"),
+      m_dest_2_identifier0("dest_2_[0]"), m_dest_2_identifier1("dest_2_[2]"),
+      m_dest_2_identifier2("dest_2_[2]"), m_dest_2_identifier3("dest_2_[3]"),
+      m_dest_2_identifier4("dest_2_[4]"), m_dest_2_identifier5("dest_2_[5]"),
+      m_dest_2_identifier6("dest_2_[6]"), m_dest_2_identifier7("dest_2_[7]"),
+      m_dest_2_identifier8("dest_2_[8]"), m_scale_identifier0("scale_[0]"),
+      m_scale_identifier1("scale_[2]"), m_scale_identifier2("scale_[2]"),
+      m_scale_identifier3("scale_[3]"), m_scale_identifier4("scale_[4]"),
+      m_scale_identifier5("scale_[5]"), m_scale_identifier6("scale_[6]"),
+      m_scale_identifier7("scale_[7]"), m_scale_identifier8("scale_[8]")
+
+{
 
   // create submenus to be inserted on demand
   for (int osc = 0; osc < 3; ++osc) {
@@ -252,31 +234,28 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
   for (int mod = 0; mod < 4; ++mod) {
 
     std::string env_name;
-    switch(mod){
-        case 0:
-        env_name = "Amp Env";
-        break;
-        case 1:
-        env_name = "Filter Env";
-        break;
-        case 2:
-        env_name = "Env3";
-        break;
-        case 3:
-        env_name = "Env4";
-        break;
+    switch (mod) {
+    case 0:
+      env_name = "Amp Env";
+      break;
+    case 1:
+      env_name = "Filter Env";
+      break;
+    case 2:
+      env_name = "Env3";
+      break;
+    case 3:
+      env_name = "Env4";
+      break;
     }
 
-    m_adsr_menu[mod].addItem(
-        600 + 10 * mod + 1, env_name + " Attack");
-    m_adsr_menu[mod].addItem(
-        600 + 10 * mod + 2, env_name + " Decay");
-    m_adsr_menu[mod].addItem(
-        600 + 10 * mod + 3, env_name + " Sustain");
-    m_adsr_menu[mod].addItem(
-        600 + 10 * mod + 4, env_name + " Release");
+    m_adsr_menu[mod].addItem(600 + 10 * mod + 1, env_name + " Attack");
+    m_adsr_menu[mod].addItem(600 + 10 * mod + 2, env_name + " Decay");
+    m_adsr_menu[mod].addItem(600 + 10 * mod + 3, env_name + " Sustain");
+    m_adsr_menu[mod].addItem(600 + 10 * mod + 4, env_name + " Release");
 
-    m_lfo_menu[mod].addItem(650 + 10 * mod + 1, "LFO" + std::to_string(mod + 1) + " Freq");
+    m_lfo_menu[mod].addItem(650 + 10 * mod + 1,
+                            "LFO" + std::to_string(mod + 1) + " Freq");
   }
 
   m_delay_menu.addItem(701, "Delay Time");
@@ -296,7 +275,6 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
   m_chorus_menu.addItem(851, "Chorus Freq");
   m_chorus_menu.addItem(852, "Chorus Amount");
   m_chorus_menu.addItem(853, "Chorus DryWet");
-
 
   m_amp_menu.addItem(900, "Amp Gain");
   m_amp_menu.addItem(901, "Amp Pan");
@@ -326,8 +304,7 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
   m_sources_menu.addItem(402, "ModWheel");
   m_sources_menu.addItem(403, "PitchBend");
   m_sources_menu.addItem(1000, "Constant");
-  //1000 must be higherst value
-
+  // 1000 must be higherst value
 
   juce::Image glas_left_down = ImageCache::getFromFile(
       juce::File(GRAPHICS_PATH + "cropped/modpanelbig_left_down.png"));
@@ -393,7 +370,7 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
     m_scale[i].setTooltip("Set the scale signal");
 
     m_source[i].clear();
-    //createMenu(m_source[i].getRootMenu());
+    // createMenu(m_source[i].getRootMenu());
     setStandardMenu(m_source[i].getRootMenu());
 
     m_source[i].setEditableText(false);
@@ -405,7 +382,6 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
     m_amount_1[i].setColor(modmatrix_color);
     m_amount_1[i].setColorBar(modmatrix_color_bar);
     addAndMakeVisible(m_amount_1[i]);
-
 
     m_dest_1[i].rearrangeMenu = [&, i]() {
       m_dest_1[i].clear();
@@ -423,7 +399,6 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
 
     addAndMakeVisible(m_amount_2[i]);
 
-
     m_dest_2[i].rearrangeMenu = [&, i]() {
       m_dest_2[i].clear();
       createMenu(m_dest_2[i].getRootMenu());
@@ -438,7 +413,6 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
     m_amount_3[i].setColor(modmatrix_color);
     m_amount_3[i].setColorBar(modmatrix_color_bar);
     addAndMakeVisible(m_amount_3[i]);
-
 
     m_scale[i].clear();
     setStandardMenu(m_scale[i].getRootMenu());
@@ -566,158 +540,157 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
         ->setValueNotifyingHost(((float)p_value + 1.f) / 2.f);
   };
 
-
-  m_source[0].onChange = [&](){
+  m_source[0].onChange = [&]() {
     m_value_tree.getParameter(m_source_identifier0)
-        ->setValueNotifyingHost(m_source[0].getSelectedId()/1000.f);
+        ->setValueNotifyingHost(m_source[0].getSelectedId() / 1000.f);
   };
-  m_dest_1[0].onChange = [&](){
-    m_value_tree.getParameter(m_source_identifier0)
-        ->setValueNotifyingHost(m_dest_1[0].getSelectedId()/1000.f);
+  m_dest_1[0].onChange = [&]() {
+    m_value_tree.getParameter(m_dest_1_identifier0)
+        ->setValueNotifyingHost(m_dest_1[0].getSelectedId() / 1000.f);
   };
-  m_dest_2[0].onChange = [&](){
-    m_value_tree.getParameter(m_source_identifier0)
-        ->setValueNotifyingHost(m_dest_2[0].getSelectedId()/1000.f);
+  m_dest_2[0].onChange = [&]() {
+    m_value_tree.getParameter(m_dest_2_identifier0)
+        ->setValueNotifyingHost(m_dest_2[0].getSelectedId() / 1000.f);
   };
-  m_scale[0].onChange = [&](){
-    m_value_tree.getParameter(m_source_identifier0)
-        ->setValueNotifyingHost(m_scale[0].getSelectedId()/1000.f);
+  m_scale[0].onChange = [&]() {
+    m_value_tree.getParameter(m_scale_identifier0)
+        ->setValueNotifyingHost(m_scale[0].getSelectedId() / 1000.f);
   };
 
-  m_source[1].onChange = [&](){
+  m_source[1].onChange = [&]() {
     m_value_tree.getParameter(m_source_identifier1)
-        ->setValueNotifyingHost(m_source[1].getSelectedId()/1000.f);
+        ->setValueNotifyingHost(m_source[1].getSelectedId() / 1000.f);
   };
-  m_dest_1[1].onChange = [&](){
-    m_value_tree.getParameter(m_source_identifier1)
-        ->setValueNotifyingHost(m_dest_1[1].getSelectedId()/1000.f);
+  m_dest_1[1].onChange = [&]() {
+    m_value_tree.getParameter(m_dest_1_identifier1)
+        ->setValueNotifyingHost(m_dest_1[1].getSelectedId() / 1000.f);
   };
-  m_dest_2[1].onChange = [&](){
-    m_value_tree.getParameter(m_source_identifier1)
-        ->setValueNotifyingHost(m_dest_2[1].getSelectedId()/1000.f);
+  m_dest_2[1].onChange = [&]() {
+    m_value_tree.getParameter(m_dest_2_identifier1)
+        ->setValueNotifyingHost(m_dest_2[1].getSelectedId() / 1000.f);
   };
-  m_scale[1].onChange = [&](){
-    m_value_tree.getParameter(m_source_identifier1)
-        ->setValueNotifyingHost(m_scale[1].getSelectedId()/1000.f);
+  m_scale[1].onChange = [&]() {
+    m_value_tree.getParameter(m_scale_identifier1)
+        ->setValueNotifyingHost(m_scale[1].getSelectedId() / 1000.f);
   };
 
-  m_source[2].onChange = [&](){
+  m_source[2].onChange = [&]() {
     m_value_tree.getParameter(m_source_identifier2)
-        ->setValueNotifyingHost(m_source[2].getSelectedId()/1000.f);
+        ->setValueNotifyingHost(m_source[2].getSelectedId() / 1000.f);
   };
-  m_dest_1[2].onChange = [&](){
-    m_value_tree.getParameter(m_source_identifier2)
-        ->setValueNotifyingHost(m_dest_1[2].getSelectedId()/1000.f);
+  m_dest_1[2].onChange = [&]() {
+    m_value_tree.getParameter(m_dest_1_identifier2)
+        ->setValueNotifyingHost(m_dest_1[2].getSelectedId() / 1000.f);
   };
-  m_dest_2[2].onChange = [&](){
-    m_value_tree.getParameter(m_source_identifier2)
-        ->setValueNotifyingHost(m_dest_2[2].getSelectedId()/1000.f);
+  m_dest_2[2].onChange = [&]() {
+    m_value_tree.getParameter(m_dest_2_identifier2)
+        ->setValueNotifyingHost(m_dest_2[2].getSelectedId() / 1000.f);
   };
-  m_scale[2].onChange = [&](){
-    m_value_tree.getParameter(m_source_identifier2)
-        ->setValueNotifyingHost(m_scale[2].getSelectedId()/1000.f);
+  m_scale[2].onChange = [&]() {
+    m_value_tree.getParameter(m_scale_identifier2)
+        ->setValueNotifyingHost(m_scale[2].getSelectedId() / 1000.f);
   };
 
-  m_source[3].onChange = [&](){
+  m_source[3].onChange = [&]() {
     m_value_tree.getParameter(m_source_identifier3)
-        ->setValueNotifyingHost(m_source[3].getSelectedId()/1000.f);
+        ->setValueNotifyingHost(m_source[3].getSelectedId() / 1000.f);
   };
-  m_dest_1[3].onChange = [&](){
-    m_value_tree.getParameter(m_source_identifier3)
-        ->setValueNotifyingHost(m_dest_1[3].getSelectedId()/1000.f);
+  m_dest_1[3].onChange = [&]() {
+    m_value_tree.getParameter(m_dest_1_identifier3)
+        ->setValueNotifyingHost(m_dest_1[3].getSelectedId() / 1000.f);
   };
-  m_dest_2[3].onChange = [&](){
-    m_value_tree.getParameter(m_source_identifier3)
-        ->setValueNotifyingHost(m_dest_2[3].getSelectedId()/1000.f);
+  m_dest_2[3].onChange = [&]() {
+    m_value_tree.getParameter(m_dest_2_identifier3)
+        ->setValueNotifyingHost(m_dest_2[3].getSelectedId() / 1000.f);
   };
-  m_scale[3].onChange = [&](){
-    m_value_tree.getParameter(m_source_identifier3)
-        ->setValueNotifyingHost(m_scale[3].getSelectedId()/1000.f);
+  m_scale[3].onChange = [&]() {
+    m_value_tree.getParameter(m_scale_identifier3)
+        ->setValueNotifyingHost(m_scale[3].getSelectedId() / 1000.f);
   };
 
-  m_source[4].onChange = [&](){
+  m_source[4].onChange = [&]() {
     m_value_tree.getParameter(m_source_identifier4)
-        ->setValueNotifyingHost(m_source[4].getSelectedId()/1000.f);
+        ->setValueNotifyingHost(m_source[4].getSelectedId() / 1000.f);
   };
-  m_dest_1[4].onChange = [&](){
-    m_value_tree.getParameter(m_source_identifier4)
-        ->setValueNotifyingHost(m_dest_1[4].getSelectedId()/1000.f);
+  m_dest_1[4].onChange = [&]() {
+    m_value_tree.getParameter(m_dest_1_identifier4)
+        ->setValueNotifyingHost(m_dest_1[4].getSelectedId() / 1000.f);
   };
-  m_dest_2[4].onChange = [&](){
-    m_value_tree.getParameter(m_source_identifier4)
-        ->setValueNotifyingHost(m_dest_2[4].getSelectedId()/1000.f);
+  m_dest_2[4].onChange = [&]() {
+    m_value_tree.getParameter(m_dest_2_identifier4)
+        ->setValueNotifyingHost(m_dest_2[4].getSelectedId() / 1000.f);
   };
-  m_scale[4].onChange = [&](){
-    m_value_tree.getParameter(m_source_identifier4)
-        ->setValueNotifyingHost(m_scale[4].getSelectedId()/1000.f);
-  };
-
-  m_source[5].onChange = [&](){
-    m_value_tree.getParameter(m_source_identifier5)
-        ->setValueNotifyingHost(m_source[5].getSelectedId()/1000.f);
-  };
-  m_dest_1[5].onChange = [&](){
-    m_value_tree.getParameter(m_source_identifier5)
-        ->setValueNotifyingHost(m_dest_1[5].getSelectedId()/1000.f);
-  };
-  m_dest_2[5].onChange = [&](){
-    m_value_tree.getParameter(m_source_identifier5)
-        ->setValueNotifyingHost(m_dest_2[5].getSelectedId()/1000.f);
-  };
-  m_scale[5].onChange = [&](){
-    m_value_tree.getParameter(m_source_identifier5)
-        ->setValueNotifyingHost(m_scale[5].getSelectedId()/1000.f);
+  m_scale[4].onChange = [&]() {
+    m_value_tree.getParameter(m_scale_identifier4)
+        ->setValueNotifyingHost(m_scale[4].getSelectedId() / 1000.f);
   };
 
-  m_source[6].onChange = [&](){
-    m_value_tree.getParameter(m_source_identifier6)
-        ->setValueNotifyingHost(m_source[6].getSelectedId()/1000.f);
+  m_source[5].onChange = [&]() {
+    m_value_tree.getParameter(m_source_identifier5)
+        ->setValueNotifyingHost(m_source[5].getSelectedId() / 1000.f);
   };
-  m_dest_1[6].onChange = [&](){
-    m_value_tree.getParameter(m_source_identifier6)
-        ->setValueNotifyingHost(m_dest_1[6].getSelectedId()/1000.f);
+  m_dest_1[5].onChange = [&]() {
+    m_value_tree.getParameter(m_dest_1_identifier5)
+        ->setValueNotifyingHost(m_dest_1[5].getSelectedId() / 1000.f);
   };
-  m_dest_2[6].onChange = [&](){
-    m_value_tree.getParameter(m_source_identifier6)
-        ->setValueNotifyingHost(m_dest_2[6].getSelectedId()/1000.f);
+  m_dest_2[5].onChange = [&]() {
+    m_value_tree.getParameter(m_dest_2_identifier5)
+        ->setValueNotifyingHost(m_dest_2[5].getSelectedId() / 1000.f);
   };
-  m_scale[6].onChange = [&](){
-    m_value_tree.getParameter(m_source_identifier6)
-        ->setValueNotifyingHost(m_scale[6].getSelectedId()/1000.f);
-  };
-
-  m_source[7].onChange = [&](){
-    m_value_tree.getParameter(m_source_identifier7)
-        ->setValueNotifyingHost(m_source[7].getSelectedId()/1000.f);
-  };
-  m_dest_1[7].onChange = [&](){
-    m_value_tree.getParameter(m_source_identifier7)
-        ->setValueNotifyingHost(m_dest_1[7].getSelectedId()/1000.f);
-  };
-  m_dest_2[7].onChange = [&](){
-    m_value_tree.getParameter(m_source_identifier7)
-        ->setValueNotifyingHost(m_dest_2[7].getSelectedId()/1000.f);
-  };
-  m_scale[7].onChange = [&](){
-    m_value_tree.getParameter(m_source_identifier7)
-        ->setValueNotifyingHost(m_scale[7].getSelectedId()/1000.f);
+  m_scale[5].onChange = [&]() {
+    m_value_tree.getParameter(m_scale_identifier5)
+        ->setValueNotifyingHost(m_scale[5].getSelectedId() / 1000.f);
   };
 
-  m_source[8].onChange = [&](){
-    m_value_tree.getParameter(m_source_identifier8)
-        ->setValueNotifyingHost(m_source[8].getSelectedId()/1000.f);
+  m_source[6].onChange = [&]() {
+    m_value_tree.getParameter(m_source_identifier6)
+        ->setValueNotifyingHost(m_source[6].getSelectedId() / 1000.f);
   };
-  m_dest_1[8].onChange = [&](){
-    m_value_tree.getParameter(m_source_identifier8)
-        ->setValueNotifyingHost(m_dest_1[8].getSelectedId()/1000.f);
+  m_dest_1[6].onChange = [&]() {
+    m_value_tree.getParameter(m_dest_1_identifier6)
+        ->setValueNotifyingHost(m_dest_1[6].getSelectedId() / 1000.f);
   };
-  m_dest_2[8].onChange = [&](){
-    m_value_tree.getParameter(m_source_identifier8)
-        ->setValueNotifyingHost(m_dest_2[8].getSelectedId()/1000.f);
+  m_dest_2[6].onChange = [&]() {
+    m_value_tree.getParameter(m_dest_2_identifier6)
+        ->setValueNotifyingHost(m_dest_2[6].getSelectedId() / 1000.f);
   };
-  m_scale[8].onChange = [&](){
+  m_scale[6].onChange = [&]() {
+    m_value_tree.getParameter(m_scale_identifier6)
+        ->setValueNotifyingHost(m_scale[6].getSelectedId() / 1000.f);
+  };
+
+  m_source[7].onChange = [&]() {
+    m_value_tree.getParameter(m_source_identifier7)
+        ->setValueNotifyingHost(m_source[7].getSelectedId() / 1000.f);
+  };
+  m_dest_1[7].onChange = [&]() {
+    m_value_tree.getParameter(m_dest_1_identifier7)
+        ->setValueNotifyingHost(m_dest_1[7].getSelectedId() / 1000.f);
+  };
+  m_dest_2[7].onChange = [&]() {
+    m_value_tree.getParameter(m_dest_2_identifier7)
+        ->setValueNotifyingHost(m_dest_2[7].getSelectedId() / 1000.f);
+  };
+  m_scale[7].onChange = [&]() {
+    m_value_tree.getParameter(m_scale_identifier7)
+        ->setValueNotifyingHost(m_scale[7].getSelectedId() / 1000.f);
+  };
+
+  m_source[8].onChange = [&]() {
     m_value_tree.getParameter(m_source_identifier8)
-        ->setValueNotifyingHost(m_scale[8].getSelectedId()/1000.f);
+        ->setValueNotifyingHost(m_source[8].getSelectedId() / 1000.f);
+  };
+  m_dest_1[8].onChange = [&]() {
+    m_value_tree.getParameter(m_dest_1_identifier8)
+        ->setValueNotifyingHost(m_dest_1[8].getSelectedId() / 1000.f);
+  };
+  m_dest_2[8].onChange = [&]() {
+    m_value_tree.getParameter(m_dest_2_identifier8)
+        ->setValueNotifyingHost(m_dest_2[8].getSelectedId() / 1000.f);
+  };
+  m_scale[8].onChange = [&]() {
+    m_value_tree.getParameter(m_scale_identifier8)
+        ->setValueNotifyingHost(m_scale[8].getSelectedId() / 1000.f);
   };
 
   m_small_panel_width = glas_small_down.getWidth();
@@ -870,7 +843,6 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
   m_clear_button6.setTooltip("Clear the entire modmatrix row");
   m_clear_button7.setTooltip("Clear the entire modmatrix row");
   m_clear_button8.setTooltip("Clear the entire modmatrix row");
-
 }
 
 ModMatrixComponent::~ModMatrixComponent() {}
@@ -916,8 +888,8 @@ void ModMatrixComponent::clearRow(int p_row) {
   m_scale[p_row].reset();
 }
 
-void ModMatrixComponent::setStandardMenu(PopupMenu *p_menu){
-    *p_menu = m_sources_menu;
+void ModMatrixComponent::setStandardMenu(PopupMenu *p_menu) {
+  *p_menu = m_sources_menu;
 }
 
 void ModMatrixComponent::createMenu(PopupMenu *p_menu) {
@@ -990,15 +962,15 @@ void ModMatrixComponent::createMenu(PopupMenu *p_menu) {
   p_menu->addSubMenu("Amplifier", m_amp_menu, true);
   p_menu->addSubMenu("Distortion", m_distortion_menu, true);
 
-  p_menu->addSubMenu("Amp Env",m_adsr_menu[0], true);
-  p_menu->addSubMenu("Filter Env",m_adsr_menu[1], true);
-  p_menu->addSubMenu("Envelope 3",m_adsr_menu[2], true);
-  p_menu->addSubMenu("Envelope 4",m_adsr_menu[3], true);
+  p_menu->addSubMenu("Amp Env", m_adsr_menu[0], true);
+  p_menu->addSubMenu("Filter Env", m_adsr_menu[1], true);
+  p_menu->addSubMenu("Envelope 3", m_adsr_menu[2], true);
+  p_menu->addSubMenu("Envelope 4", m_adsr_menu[3], true);
 
-  p_menu->addSubMenu("LFO 1", m_lfo_menu[0],true);
-  p_menu->addSubMenu("LFO 2", m_lfo_menu[1],true);
-  p_menu->addSubMenu("LFO 3", m_lfo_menu[2],true);
-  p_menu->addSubMenu("LFO 4", m_lfo_menu[3],true);
+  p_menu->addSubMenu("LFO 1", m_lfo_menu[0], true);
+  p_menu->addSubMenu("LFO 2", m_lfo_menu[1], true);
+  p_menu->addSubMenu("LFO 3", m_lfo_menu[2], true);
+  p_menu->addSubMenu("LFO 4", m_lfo_menu[3], true);
 
   p_menu->addSubMenu("Delay", m_delay_menu, true);
   p_menu->addSubMenu("Phaser", m_phaser_menu, true);
