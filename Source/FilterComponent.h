@@ -86,6 +86,7 @@ public:
   }
 
   void hideAllComponents();
+  int getFilterType(){return m_filter_type;}
   void setFilterType(int p_filter_type);
   void setFilterBypass();
   void setFilterLP24();

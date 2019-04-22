@@ -2,7 +2,10 @@
 
 
 
-FMOscillator::FMOscillator(){}
+FMOscillator::FMOscillator(){
+    m_carrier_osc.setPitchModExpPointer(&m_zero_modulation_dummy);
+    m_modulator_osc.setPitchModExpPointer(&m_zero_modulation_dummy);
+}
 
 
 FMOscillator::~FMOscillator(){}

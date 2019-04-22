@@ -12,7 +12,7 @@
 
 #include "GlobalIncludes.h"
 #include "../JuceLibraryCode/JuceHeader.h"
-#include "GlobalIncludes.h"
+#include <functional>
 #define INLAY_DEFAULT 0
 //==============================================================================
 /*
@@ -30,13 +30,20 @@ public:
   void setInlay(int p_inlay) { m_inlay = p_inlay; }
   int m_inlay = INLAY_DEFAULT;
 
+  void mouseDown(const MouseEvent &event) {
+    rearrangeMenu();
+    ComboBox::mouseDown(event);
+  }
+
   
   void reset(){
     setSelectedId(1, sendNotification);
     repaint();
   }
 
+  std::function<void()> rearrangeMenu = [](){};
 private:
+
   bool m_grey_first_element = false;
 
   juce::Image m_glaspanel;

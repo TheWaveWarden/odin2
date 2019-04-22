@@ -639,7 +639,7 @@ OscComponent::OscComponent(AudioProcessorValueTreeState &vts,
   m_wavetable_waveselector.addWave(2, "Pulse");
   m_wavetable_waveselector.addWave(3, "WOW");
   m_wavetable_waveselector.addWave(4, "henlo");
-  m_wavetable_waveselector.addWave(5, "CARRIER");
+  m_wavetable_waveselector.addWave(1000, "CARRIER");
   m_wavetable_waveselector.setValue(2);
   m_wavetable_waveselector.setTooltip("Selects the wave for the oscillator");
   addChildComponent(m_wavetable_waveselector);

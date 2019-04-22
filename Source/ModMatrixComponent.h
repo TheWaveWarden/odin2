@@ -28,8 +28,13 @@ public:
   void paint(Graphics &) override;
   void resized() override;
 
+  std::function<void(int&, int&, int&, int&, int&, int&)> getOscFilterTypes = [](int&, int&, int&, int&, int&, int&){};
+
 private:
   void clearRow(int p_row);
+
+  void createMenu(PopupMenu* p_menu);
+  void setStandardMenu(PopupMenu *p_menu);
 
   GlasDropdown m_source[N_ROWS];
   ModAmountComponent m_amount_1[N_ROWS];
@@ -89,6 +94,30 @@ private:
   juce::DrawableButton m_clear_button8;
 
   AudioProcessorValueTreeState &m_value_tree;
+
+  PopupMenu m_analog_osc_menu[3];
+  PopupMenu m_wavetable_osc_menu[3];
+  PopupMenu m_multi_osc_menu[3];
+  PopupMenu m_vector_osc_menu[3];
+  PopupMenu m_fm_osc_menu[3];
+  PopupMenu m_noise_osc_menu[3];
+  PopupMenu m_draw_osc_menu[3];
+  PopupMenu m_chiptune_osc_menu[3];
+  PopupMenu m_standard_fil_menu[3];
+  PopupMenu m_SEM_fil_menu[3];
+  PopupMenu m_formant_fil_menu[3];
+  PopupMenu m_adsr_menu[4];
+  PopupMenu m_lfo_menu[4];
+  PopupMenu m_amp_menu;
+  PopupMenu m_distortion_menu;
+  PopupMenu m_delay_menu;
+  PopupMenu m_phaser_menu;
+  PopupMenu m_flanger_menu;
+  PopupMenu m_chorus_menu;
+
+  PopupMenu m_sources_menu;
+
+  
 
   int m_panel_height;
   int m_small_panel_width;

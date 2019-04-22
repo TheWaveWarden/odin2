@@ -504,6 +504,14 @@ void OdinAudioProcessor::setModulationPointers(){
   for(int voice = 0; voice < VOICES; ++voice){
     for(int osc = 0; osc < 3; ++osc){
       m_voice[voice].analog_osc[osc].setPitchModExpPointer(&(m_mod_destinations.voice[voice].osc[osc].pitch_exponential));
+      m_voice[voice].wavetable_osc[osc].setPitchModExpPointer(&(m_mod_destinations.voice[voice].osc[osc].pitch_exponential));
+      m_voice[voice].multi_osc[osc].setPitchModExpPointer(&(m_mod_destinations.voice[voice].osc[osc].pitch_exponential));
+      m_voice[voice].vector_osc[osc].setPitchModExpPointer(&(m_mod_destinations.voice[voice].osc[osc].pitch_exponential));
+      m_voice[voice].fm_osc[osc].setPitchModExpPointer(&(m_mod_destinations.voice[voice].osc[osc].pitch_exponential));
+      m_voice[voice].chiptune_osc[osc].setPitchModExpPointer(&(m_mod_destinations.voice[voice].osc[osc].pitch_exponential));
+      m_voice[voice].wavedraw_osc[osc].setPitchModExpPointer(&(m_mod_destinations.voice[voice].osc[osc].pitch_exponential));
+      m_voice[voice].chipdraw_osc[osc].setPitchModExpPointer(&(m_mod_destinations.voice[voice].osc[osc].pitch_exponential));
+      m_voice[voice].specdraw_osc[osc].setPitchModExpPointer(&(m_mod_destinations.voice[voice].osc[osc].pitch_exponential));
     }
   }
 }

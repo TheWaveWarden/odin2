@@ -11,17 +11,17 @@
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
-#include "Knob.h"
-#include "IntegerKnob.h"
-#include "WaveformSelectorComponent.h"
-#include "NumberSelector.h"
-#include "LeftRightButton.h"
 #include "ChipdrawWindow.h"
-#include "WavedrawDisplay.h"
-#include "SpecdrawDisplay.h"
-#include "XYPadComponent.h"
-#include "GlobalIncludes.h"
 #include "GlasDropdown.h"
+#include "GlobalIncludes.h"
+#include "IntegerKnob.h"
+#include "Knob.h"
+#include "LeftRightButton.h"
+#include "NumberSelector.h"
+#include "SpecdrawDisplay.h"
+#include "WavedrawDisplay.h"
+#include "WaveformSelectorComponent.h"
+#include "XYPadComponent.h"
 
 #define OCT_POS_X 139
 #define SEMI_POS_X 169
@@ -101,7 +101,7 @@
 #define SEMI_RANGE_MAX 7
 #define FINE_RANGE_MAX 50
 #define PW_DEFAULT 0.5
-#define STEP_RANGE_MAX 12 
+#define STEP_RANGE_MAX 12
 #define STEP_2_DEFAULT 12
 #define STEP_3_DEFAULT 7
 
@@ -126,20 +126,18 @@
 //==============================================================================
 /*
  */
-class OscComponent : public Component
-{
+class OscComponent : public Component {
 public:
-  OscComponent(AudioProcessorValueTreeState& vts, std::string p_osc_number);
+  OscComponent(AudioProcessorValueTreeState &vts, std::string p_osc_number);
   ~OscComponent();
 
   void paint(Graphics &) override;
   void resized() override;
   void setBackground(juce::Image p_background) { m_background = p_background; }
-  void setBackgroundBypass(juce::Image p_background)
-  {
+  void setBackgroundBypass(juce::Image p_background) {
     m_background_bypass = p_background;
   }
-
+  int getOscType() { return m_osc_type; }
   void setOscType(int p_osc_type);
   void setOscTypeBypass();
   void setOscTypeAnalog();
@@ -223,15 +221,15 @@ protected:
   SpecdrawDisplay m_specdraw;
 
   XYPadComponent m_xy;
-  Knob m_xy_x_dummy; //todo not seen, but for automation??
-  Knob m_xy_y_dummy; //todo not seen, but for automation??
+  Knob m_xy_x_dummy; // todo not seen, but for automation??
+  Knob m_xy_y_dummy; // todo not seen, but for automation??
   GlasDropdown m_vec_a;
   GlasDropdown m_vec_b;
   GlasDropdown m_vec_c;
   GlasDropdown m_vec_d;
 
   std::string m_osc_number;
-  AudioProcessorValueTreeState& m_value_tree;
+  AudioProcessorValueTreeState &m_value_tree;
 
   std::unique_ptr<SliderAttachment> m_oct_attach;
   std::unique_ptr<SliderAttachment> m_semi_attach;

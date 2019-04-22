@@ -59,20 +59,236 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
       m_amount_2_identifier8("amount_2_[8]"),
       m_amount_3_identifier8("amount_3_[8]") {
 
-  // set identifiers
-  // for (int i = 0; i < N_ROWS - 1; ++i) {
-  //  m_source_identifier[i] = Identifier("source_[" + std::to_string(i) + "]");
-  //  m_amount_1_identifier[i] =
-  //      Identifier("amount_1_[" + std::to_string(i) + "]");
-  //  m_amount_2_identifier[i] =
-  //      Identifier("amount_2_[" + std::to_string(i) + "]");
-  //  m_amount_3_identifier[i] =
-  //      Identifier("amount_3_[" + std::to_string(i) + "]");
-  //  m_dest_1_identifier[i] = Identifier("dest_1_[" + std::to_string(i) + "]");
-  //  m_dest_2_identifier[i] = Identifier("dest_2__[" + std::to_string(i) +
-  //  "]"); m_scale_identifier[i] = Identifier("scale_[" + std::to_string(i) +
-  //  "]");
-  //}
+  // create submenus to be inserted on demand
+  for (int osc = 0; osc < 3; ++osc) {
+    // analog oscs
+    m_analog_osc_menu[osc].addItem(
+        100 * osc + 1, "Osc" + std::to_string(osc + 1) + "Pitch Exp");
+    m_analog_osc_menu[osc].addItem(
+        100 * osc + 2, "Osc" + std::to_string(osc + 1) + " Pitch Lin");
+    m_analog_osc_menu[osc].addItem(100 * osc + 3,
+                                   "Osc" + std::to_string(osc + 1) + " Volume");
+    m_analog_osc_menu[osc].addItem(
+        100 * osc + 10, "Osc" + std::to_string(osc + 1) + " Pulse Width");
+
+    // wavetable oscs
+    m_wavetable_osc_menu[osc].addItem(
+        100 * osc + 1, "Osc" + std::to_string(osc + 1) + " Pitch Exp");
+    m_wavetable_osc_menu[osc].addItem(
+        100 * osc + 2, "Osc" + std::to_string(osc + 1) + " Pitch Lin");
+    m_wavetable_osc_menu[osc].addItem(
+        100 * osc + 3, "Osc" + std::to_string(osc + 1) + " Volume");
+    m_wavetable_osc_menu[osc].addItem(
+        100 * osc + 20, "Osc" + std::to_string(osc + 1) + " Position");
+
+    // multi oscs
+    m_multi_osc_menu[osc].addItem(
+        100 * osc + 1, "Osc" + std::to_string(osc + 1) + " Pitch Exp");
+    m_multi_osc_menu[osc].addItem(
+        100 * osc + 2, "Osc" + std::to_string(osc + 1) + " Pitch Lin");
+    m_multi_osc_menu[osc].addItem(100 * osc + 3,
+                                  "Osc" + std::to_string(osc + 1) + " Volume");
+    m_multi_osc_menu[osc].addItem(100 * osc + 21,
+                                  "Osc" + std::to_string(osc + 1) + " Detune");
+    m_multi_osc_menu[osc].addItem(
+        100 * osc + 20, "Osc" + std::to_string(osc + 1) + " Position");
+    m_multi_osc_menu[osc].addItem(100 * osc + 22,
+                                  "Osc" + std::to_string(osc + 1) + " Spread");
+
+    // vector oscs
+    m_vector_osc_menu[osc].addItem(
+        100 * osc + 1, "Osc" + std::to_string(osc + 1) + " Pitch Exp");
+    m_vector_osc_menu[osc].addItem(
+        100 * osc + 2, "Osc" + std::to_string(osc + 1) + " Pitch Lin");
+    m_vector_osc_menu[osc].addItem(100 * osc + 3,
+                                   "Osc" + std::to_string(osc + 1) + " Volume");
+    m_vector_osc_menu[osc].addItem(100 * osc + 30,
+                                   "Osc" + std::to_string(osc + 1) + " X");
+    m_vector_osc_menu[osc].addItem(100 * osc + 31,
+                                   "Osc" + std::to_string(osc + 1) + " Y");
+
+    // chiptune
+    m_chiptune_osc_menu[osc].addItem(
+        100 * osc + 1, "Osc" + std::to_string(osc + 1) + " Pitch Exp");
+    m_chiptune_osc_menu[osc].addItem(
+        100 * osc + 2, "Osc" + std::to_string(osc + 1) + " Pitch Lin");
+    m_chiptune_osc_menu[osc].addItem(
+        100 * osc + 3, "Osc" + std::to_string(osc + 1) + " Volume");
+    m_chiptune_osc_menu[osc].addItem(
+        100 * osc + 40, "Osc" + std::to_string(osc + 1) + " Arp Speed");
+
+    // fm
+    m_fm_osc_menu[osc].addItem(100 * osc + 1,
+                               "Osc" + std::to_string(osc + 1) + " Pitch Exp");
+    m_fm_osc_menu[osc].addItem(100 * osc + 2,
+                               "Osc" + std::to_string(osc + 1) + " Pitch Lin");
+    m_fm_osc_menu[osc].addItem(100 * osc + 3,
+                               "Osc" + std::to_string(osc + 1) + " Volume");
+    m_fm_osc_menu[osc].addItem(100 * osc + 50,
+                               "Osc" + std::to_string(osc + 1) + " FM Amount");
+    m_fm_osc_menu[osc].addItem(100 * osc + 51, "Osc" + std::to_string(osc + 1) +
+                                                   " Carrier Ratio");
+    m_fm_osc_menu[osc].addItem(100 * osc + 52, "Osc" + std::to_string(osc + 1) +
+                                                   " Modulator Ratio");
+
+    // noise
+    m_noise_osc_menu[osc].addItem(
+        100 * osc + 60, "Osc" + std::to_string(osc + 1) + " LP Frequency");
+    m_noise_osc_menu[osc].addItem(
+        100 * osc + 61, "Osc" + std::to_string(osc + 1) + " HP Frequency");
+
+    // draw
+    m_draw_osc_menu[osc].addItem(
+        100 * osc + 1, "Osc" + std::to_string(osc + 1) + " Pitch Exp");
+    m_draw_osc_menu[osc].addItem(
+        100 * osc + 2, "Osc" + std::to_string(osc + 1) + " Pitch Lin");
+    m_draw_osc_menu[osc].addItem(100 * osc + 3,
+                                 "Osc" + std::to_string(osc + 1) + " Volume");
+  }
+  for (int fil = 0; fil < 3; ++fil) {
+
+    // standard
+    m_standard_fil_menu[fil].addItem(
+        300 + 100 * fil + 1, "Filter" + std::to_string(fil + 1) + " Frequency");
+    m_standard_fil_menu[fil].addItem(
+        300 + 100 * fil + 2, "Filter" + std::to_string(fil + 1) + " Resonance");
+    m_standard_fil_menu[fil].addItem(
+        300 + 100 * fil + 3, "Filter" + std::to_string(fil + 1) + " Gain");
+    m_standard_fil_menu[fil].addItem(300 + 100 * fil + 4,
+                                     "Filter" + std::to_string(fil + 1) +
+                                         " Env Amount");
+    m_standard_fil_menu[fil].addItem(300 + 100 * fil + 5,
+                                     "Filter" + std::to_string(fil + 1) +
+                                         " Vel Amount");
+    m_standard_fil_menu[fil].addItem(300 + 100 * fil + 6,
+                                     "Filter" + std::to_string(fil + 1) +
+                                         " Kbd Amount");
+    m_standard_fil_menu[fil].addItem(300 + 100 * fil + 7,
+                                     "Filter" + std::to_string(fil + 1) +
+                                         " Saturation");
+
+    // SEM
+    m_SEM_fil_menu[fil].addItem(
+        300 + 100 * fil + 1, "Filter" + std::to_string(fil + 1) + " Frequency");
+    m_SEM_fil_menu[fil].addItem(
+        300 + 100 * fil + 2, "Filter" + std::to_string(fil + 1) + " Resonance");
+    m_SEM_fil_menu[fil].addItem(300 + 100 * fil + 3,
+                                "Filter" + std::to_string(fil + 1) + " Gain");
+    m_SEM_fil_menu[fil].addItem(300 + 100 * fil + 4,
+                                "Filter" + std::to_string(fil + 1) +
+                                    " Env Amount");
+    m_SEM_fil_menu[fil].addItem(300 + 100 * fil + 5,
+                                "Filter" + std::to_string(fil + 1) +
+                                    " Vel Amount");
+    m_SEM_fil_menu[fil].addItem(300 + 100 * fil + 6,
+                                "Filter" + std::to_string(fil + 1) +
+                                    " Kbd Amount");
+    m_SEM_fil_menu[fil].addItem(300 + 100 * fil + 7,
+                                "Filter" + std::to_string(fil + 1) +
+                                    " Saturation");
+    m_SEM_fil_menu[fil].addItem(300 + 100 * fil + 10,
+                                "Filter" + std::to_string(fil + 1) +
+                                    " SEM Transition");
+
+    // formant
+    m_formant_fil_menu[fil].addItem(
+        300 + 100 * fil + 1, "Filter" + std::to_string(fil + 1) + " Frequency");
+    m_formant_fil_menu[fil].addItem(
+        300 + 100 * fil + 2, "Filter" + std::to_string(fil + 1) + " Resonance");
+    m_formant_fil_menu[fil].addItem(
+        300 + 100 * fil + 3, "Filter" + std::to_string(fil + 1) + " Gain");
+    m_formant_fil_menu[fil].addItem(300 + 100 * fil + 4,
+                                    "Filter" + std::to_string(fil + 1) +
+                                        " Env Amount");
+    m_formant_fil_menu[fil].addItem(300 + 100 * fil + 5,
+                                    "Filter" + std::to_string(fil + 1) +
+                                        " Vel Amount");
+    m_formant_fil_menu[fil].addItem(300 + 100 * fil + 7,
+                                    "Filter" + std::to_string(fil + 1) +
+                                        " Saturation");
+    m_formant_fil_menu[fil].addItem(300 + 100 * fil + 20,
+                                    "Filter" + std::to_string(fil + 1) +
+                                        " Formant Transition");
+  }
+
+  for (int mod = 0; mod < 4; ++mod) {
+
+    std::string env_name;
+    switch(mod){
+        case 0:
+        env_name = "Amp Env";
+        break;
+        case 1:
+        env_name = "Filter Env";
+        break;
+        case 2:
+        env_name = "Env3";
+        break;
+        case 3:
+        env_name = "Env4";
+        break;
+    }
+
+    m_adsr_menu[mod].addItem(
+        600 + 10 * mod + 1, env_name + " Attack");
+    m_adsr_menu[mod].addItem(
+        600 + 10 * mod + 2, env_name + " Decay");
+    m_adsr_menu[mod].addItem(
+        600 + 10 * mod + 3, env_name + " Sustain");
+    m_adsr_menu[mod].addItem(
+        600 + 10 * mod + 4, env_name + " Release");
+
+    m_lfo_menu[mod].addItem(650 + 10 * mod + 1, "LFO" + std::to_string(mod + 1) + " Freq");
+  }
+
+  m_delay_menu.addItem(701, "Delay Time");
+  m_delay_menu.addItem(702, "Delay Feedback");
+  m_delay_menu.addItem(703, "Delay HP Freq");
+  m_delay_menu.addItem(704, "Delay Dry");
+  m_delay_menu.addItem(705, "Delay Wet");
+
+  m_phaser_menu.addItem(751, "Phaser Freq");
+  m_phaser_menu.addItem(752, "Phaser Amount");
+  m_phaser_menu.addItem(753, "Phaser DryWet");
+
+  m_flanger_menu.addItem(801, "Phaser Freq");
+  m_flanger_menu.addItem(802, "Phaser Amount");
+  m_flanger_menu.addItem(803, "Phaser DryWet");
+
+  m_chorus_menu.addItem(851, "Chorus Freq");
+  m_chorus_menu.addItem(852, "Chorus Amount");
+  m_chorus_menu.addItem(853, "Chorus DryWet");
+
+
+  m_amp_menu.addItem(900, "Amp Gain");
+  m_amp_menu.addItem(901, "Amp Pan");
+  m_amp_menu.addItem(902, "Amp Velocity");
+
+  m_distortion_menu.addItem(950, "Distortion Threshold");
+  m_distortion_menu.addItem(951, "Distortion DryWet");
+
+  m_sources_menu.addItem(100, "Oscillator 1");
+  m_sources_menu.addItem(101, "Oscillator 2");
+  m_sources_menu.addItem(102, "Oscillator 3");
+  m_sources_menu.addItem(110, "Filter 1 Out");
+  m_sources_menu.addItem(111, "Filter 2 Out");
+  m_sources_menu.addSeparator();
+  m_sources_menu.addItem(200, "Amp Envelope");
+  m_sources_menu.addItem(201, "Filter Envelope");
+  m_sources_menu.addItem(202, "Envelope 3");
+  m_sources_menu.addItem(203, "Envelope 4");
+  m_sources_menu.addSeparator();
+  m_sources_menu.addItem(300, "LFO 1");
+  m_sources_menu.addItem(301, "LFO 2");
+  m_sources_menu.addItem(302, "LFO 3");
+  m_sources_menu.addItem(303, "LFO 4");
+  m_sources_menu.addSeparator();
+  m_sources_menu.addItem(400, "X");
+  m_sources_menu.addItem(401, "Y");
+  m_sources_menu.addItem(402, "ModWheel");
+  m_sources_menu.addItem(403, "PitchBend");
+  m_sources_menu.addItem(404, "Constant");
+
 
   juce::Image glas_left_down = ImageCache::getFromFile(
       juce::File(GRAPHICS_PATH + "cropped/modpanelbig_left_down.png"));
@@ -137,10 +353,10 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
         "Set how much the scale signal scales the modulation");
     m_scale[i].setTooltip("Set the scale signal");
 
-    m_source[i].addItem("Source", 1);
-    m_source[i].addItem("henlo", 2);
-    m_source[i].addItem("LFO", 3);
-    m_source[i].addItem("last", 1000);
+    m_source[i].clear();
+    //createMenu(m_source[i].getRootMenu());
+    setStandardMenu(m_source[i].getRootMenu());
+
     m_source[i].setEditableText(false);
     m_source[i].setSelectedId(1, dontSendNotification);
     m_source[i].setColor(modmatrix_color);
@@ -150,9 +366,13 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
     m_amount_1[i].setColor(modmatrix_color);
     m_amount_1[i].setColorBar(modmatrix_color_bar);
     addAndMakeVisible(m_amount_1[i]);
-    m_dest_1[i].addItem("Dest1", 1);
-    m_dest_1[i].addItem("Freq", 2);
-    m_dest_1[i].addItem("Pitch", 3);
+
+
+    m_dest_1[i].rearrangeMenu = [&, i]() {
+      m_dest_1[i].clear();
+      createMenu(m_dest_1[i].getRootMenu());
+    };
+    m_dest_1[i].rearrangeMenu();
     m_dest_1[i].setEditableText(false);
     m_dest_1[i].setSelectedId(1, dontSendNotification);
     m_dest_1[i].setColor(modmatrix_color);
@@ -163,9 +383,13 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
     m_amount_2[i].setColorBar(modmatrix_color_bar);
 
     addAndMakeVisible(m_amount_2[i]);
-    m_dest_2[i].addItem("Dest2", 1);
-    m_dest_2[i].addItem("Freq", 2);
-    m_dest_2[i].addItem("Pitch", 3);
+
+
+    m_dest_2[i].rearrangeMenu = [&, i]() {
+      m_dest_2[i].clear();
+      createMenu(m_dest_2[i].getRootMenu());
+    };
+    m_dest_2[i].rearrangeMenu();
     m_dest_2[i].setEditableText(false);
     m_dest_2[i].setSelectedId(1, dontSendNotification);
     m_dest_2[i].setColor(modmatrix_color);
@@ -176,9 +400,9 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
     m_amount_3[i].setColorBar(modmatrix_color_bar);
     addAndMakeVisible(m_amount_3[i]);
 
-    m_scale[i].addItem("Scale", 1);
-    m_scale[i].addItem("henlo", 2);
-    m_scale[i].addItem("LFO", 3);
+
+    m_scale[i].clear();
+    setStandardMenu(m_scale[i].getRootMenu());
     m_scale[i].setEditableText(false);
     m_scale[i].setSelectedId(1, dontSendNotification);
     m_scale[i].setColor(modmatrix_color);
@@ -507,4 +731,97 @@ void ModMatrixComponent::clearRow(int p_row) {
   m_dest_2[p_row].reset();
   m_amount_3[p_row].reset();
   m_scale[p_row].reset();
+}
+
+void ModMatrixComponent::setStandardMenu(PopupMenu *p_menu){
+    *p_menu = m_sources_menu;
+}
+
+void ModMatrixComponent::createMenu(PopupMenu *p_menu) {
+  // read osc and filter types from parent
+  int osc_type[3];
+  int fil_type[3];
+  getOscFilterTypes(osc_type[0], osc_type[1], osc_type[2], fil_type[0],
+                    fil_type[1], fil_type[2]);
+
+  for (int osc = 0; osc < 3; ++osc) {
+    if (osc_type[osc] == OSC_TYPE_ANALOG) {
+      p_menu->addSubMenu("Osc " + std::to_string(osc + 1),
+                         m_analog_osc_menu[osc], true);
+    } else if (osc_type[osc] == OSC_TYPE_WAVETABLE) {
+      p_menu->addSubMenu("Osc " + std::to_string(osc + 1),
+                         m_wavetable_osc_menu[osc], true);
+    } else if (osc_type[osc] == OSC_TYPE_MULTI) {
+      p_menu->addSubMenu("Osc " + std::to_string(osc + 1),
+                         m_multi_osc_menu[osc], true);
+    } else if (osc_type[osc] == OSC_TYPE_VECTOR) {
+      p_menu->addSubMenu("Osc " + std::to_string(osc + 1),
+                         m_vector_osc_menu[osc], true);
+    } else if (osc_type[osc] == OSC_TYPE_FM) {
+      p_menu->addSubMenu("Osc " + std::to_string(osc + 1), m_fm_osc_menu[osc],
+                         true);
+    } else if (osc_type[osc] == OSC_TYPE_CHIPTUNE) {
+      p_menu->addSubMenu("Osc " + std::to_string(osc + 1),
+                         m_chiptune_osc_menu[osc], true);
+    } else if (osc_type[osc] == OSC_TYPE_NOISE) {
+      p_menu->addSubMenu("Osc " + std::to_string(osc + 1),
+                         m_noise_osc_menu[osc], true);
+    } else if (osc_type[osc] == OSC_TYPE_WAVEDRAW) {
+      p_menu->addSubMenu("Osc " + std::to_string(osc + 1), m_draw_osc_menu[osc],
+                         true);
+    } else if (osc_type[osc] == OSC_TYPE_CHIPDRAW) {
+      p_menu->addSubMenu("Osc " + std::to_string(osc + 1), m_draw_osc_menu[osc],
+                         true);
+    } else if (osc_type[osc] == OSC_TYPE_SPECDRAW) {
+      p_menu->addSubMenu("Osc " + std::to_string(osc + 1), m_draw_osc_menu[osc],
+                         true);
+    } else {
+      p_menu->addItem(998, "Osc " + std::to_string(osc + 1), false);
+    }
+  }
+
+  for (int fil = 0; fil < 3; ++fil) {
+    if (fil_type[fil] == FILTER_TYPE_LP24 ||
+        fil_type[fil] == FILTER_TYPE_LP12 ||
+        fil_type[fil] == FILTER_TYPE_BP24 ||
+        fil_type[fil] == FILTER_TYPE_BP12 ||
+        fil_type[fil] == FILTER_TYPE_HP24 ||
+        fil_type[fil] == FILTER_TYPE_HP12 ||
+        fil_type[fil] == FILTER_TYPE_KORG ||
+        fil_type[fil] == FILTER_TYPE_DIODE ||
+        fil_type[fil] == FILTER_TYPE_COMB) {
+      p_menu->addSubMenu("Filter " + std::to_string(fil + 1),
+                         m_standard_fil_menu[fil], true);
+    } else if (fil_type[fil] == FILTER_TYPE_FORMANT) {
+      p_menu->addSubMenu("Filter " + std::to_string(fil + 1),
+                         m_formant_fil_menu[fil], true);
+    } else if (fil_type[fil] == FILTER_TYPE_SEM12 ||
+               fil_type[fil] == FILTER_TYPE_SEM24) {
+      p_menu->addSubMenu("Filter " + std::to_string(fil + 1),
+                         m_SEM_fil_menu[fil], true);
+    } else {
+      p_menu->addItem(998, "Filter " + std::to_string(fil + 1), false);
+    }
+  }
+
+  p_menu->addSubMenu("Amplifier", m_amp_menu, true);
+  p_menu->addSubMenu("Distortion", m_distortion_menu, true);
+
+  p_menu->addSubMenu("Amp Env",m_adsr_menu[0], true);
+  p_menu->addSubMenu("Filter Env",m_adsr_menu[1], true);
+  p_menu->addSubMenu("Envelope 3",m_adsr_menu[2], true);
+  p_menu->addSubMenu("Envelope 4",m_adsr_menu[3], true);
+
+  p_menu->addSubMenu("LFO 1", m_lfo_menu[0],true);
+  p_menu->addSubMenu("LFO 2", m_lfo_menu[1],true);
+  p_menu->addSubMenu("LFO 3", m_lfo_menu[2],true);
+  p_menu->addSubMenu("LFO 4", m_lfo_menu[3],true);
+
+  p_menu->addSubMenu("Delay", m_delay_menu, true);
+  p_menu->addSubMenu("Phaser", m_phaser_menu, true);
+  p_menu->addSubMenu("Flanger", m_flanger_menu, true);
+  p_menu->addSubMenu("Chorus", m_chorus_menu, true);
+
+  p_menu->addItem(999, "Glide");
+  p_menu->addItem(1000, "Master");
 }

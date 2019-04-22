@@ -61,6 +61,9 @@ protected:
 	int m_carrier_ratio = 1.f;
 	int m_modulator_ratio = 1.f;
 
+	//keep this to have a mod pointer for suboscs
+	float m_zero_modulation_dummy = 0.f;
+
 	WavetableOsc1D m_carrier_osc;
 	WavetableOsc1D m_modulator_osc;
 };
