@@ -57,7 +57,45 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
       m_amount_3_identifier7("amount_3_[7]"),
       m_amount_1_identifier8("amount_1_[8]"),
       m_amount_2_identifier8("amount_2_[8]"),
-      m_amount_3_identifier8("amount_3_[8]") {
+      m_amount_3_identifier8("amount_3_[8]"),
+      m_source_identifier0("source_[0]"),
+      m_source_identifier1("source_[2]"),
+      m_source_identifier2("source_[2]"),
+      m_source_identifier3("source_[3]"),
+      m_source_identifier4("source_[4]"),
+      m_source_identifier5("source_[5]"),
+      m_source_identifier6("source_[6]"),
+      m_source_identifier7("source_[7]"),
+      m_source_identifier8("source_[8]"),
+      m_dest_1_identifier0("dest_1_[0]"),
+      m_dest_1_identifier1("dest_1_[2]"),
+      m_dest_1_identifier2("dest_1_[2]"),
+      m_dest_1_identifier3("dest_1_[3]"),
+      m_dest_1_identifier4("dest_1_[4]"),
+      m_dest_1_identifier5("dest_1_[5]"),
+      m_dest_1_identifier6("dest_1_[6]"),
+      m_dest_1_identifier7("dest_1_[7]"),
+      m_dest_1_identifier8("dest_1_[8]"),
+      m_dest_2_identifier0("dest_2_[0]"),
+      m_dest_2_identifier1("dest_2_[2]"),
+      m_dest_2_identifier2("dest_2_[2]"),
+      m_dest_2_identifier3("dest_2_[3]"),
+      m_dest_2_identifier4("dest_2_[4]"),
+      m_dest_2_identifier5("dest_2_[5]"),
+      m_dest_2_identifier6("dest_2_[6]"),
+      m_dest_2_identifier7("dest_2_[7]"),
+      m_dest_2_identifier8("dest_2_[8]"),
+      m_scale_identifier0("scale_[0]"),
+      m_scale_identifier1("scale_[2]"),
+      m_scale_identifier2("scale_[2]"),
+      m_scale_identifier3("scale_[3]"),
+      m_scale_identifier4("scale_[4]"),
+      m_scale_identifier5("scale_[5]"),
+      m_scale_identifier6("scale_[6]"),
+      m_scale_identifier7("scale_[7]"),
+      m_scale_identifier8("scale_[8]")
+      
+       {
 
   // create submenus to be inserted on demand
   for (int osc = 0; osc < 3; ++osc) {
@@ -287,7 +325,8 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
   m_sources_menu.addItem(401, "Y");
   m_sources_menu.addItem(402, "ModWheel");
   m_sources_menu.addItem(403, "PitchBend");
-  m_sources_menu.addItem(404, "Constant");
+  m_sources_menu.addItem(1000, "Constant");
+  //1000 must be higherst value
 
 
   juce::Image glas_left_down = ImageCache::getFromFile(
@@ -527,6 +566,160 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
         ->setValueNotifyingHost(((float)p_value + 1.f) / 2.f);
   };
 
+
+  m_source[0].onChange = [&](){
+    m_value_tree.getParameter(m_source_identifier0)
+        ->setValueNotifyingHost(m_source[0].getSelectedId()/1000.f);
+  };
+  m_dest_1[0].onChange = [&](){
+    m_value_tree.getParameter(m_source_identifier0)
+        ->setValueNotifyingHost(m_dest_1[0].getSelectedId()/1000.f);
+  };
+  m_dest_2[0].onChange = [&](){
+    m_value_tree.getParameter(m_source_identifier0)
+        ->setValueNotifyingHost(m_dest_2[0].getSelectedId()/1000.f);
+  };
+  m_scale[0].onChange = [&](){
+    m_value_tree.getParameter(m_source_identifier0)
+        ->setValueNotifyingHost(m_scale[0].getSelectedId()/1000.f);
+  };
+
+  m_source[1].onChange = [&](){
+    m_value_tree.getParameter(m_source_identifier1)
+        ->setValueNotifyingHost(m_source[1].getSelectedId()/1000.f);
+  };
+  m_dest_1[1].onChange = [&](){
+    m_value_tree.getParameter(m_source_identifier1)
+        ->setValueNotifyingHost(m_dest_1[1].getSelectedId()/1000.f);
+  };
+  m_dest_2[1].onChange = [&](){
+    m_value_tree.getParameter(m_source_identifier1)
+        ->setValueNotifyingHost(m_dest_2[1].getSelectedId()/1000.f);
+  };
+  m_scale[1].onChange = [&](){
+    m_value_tree.getParameter(m_source_identifier1)
+        ->setValueNotifyingHost(m_scale[1].getSelectedId()/1000.f);
+  };
+
+  m_source[2].onChange = [&](){
+    m_value_tree.getParameter(m_source_identifier2)
+        ->setValueNotifyingHost(m_source[2].getSelectedId()/1000.f);
+  };
+  m_dest_1[2].onChange = [&](){
+    m_value_tree.getParameter(m_source_identifier2)
+        ->setValueNotifyingHost(m_dest_1[2].getSelectedId()/1000.f);
+  };
+  m_dest_2[2].onChange = [&](){
+    m_value_tree.getParameter(m_source_identifier2)
+        ->setValueNotifyingHost(m_dest_2[2].getSelectedId()/1000.f);
+  };
+  m_scale[2].onChange = [&](){
+    m_value_tree.getParameter(m_source_identifier2)
+        ->setValueNotifyingHost(m_scale[2].getSelectedId()/1000.f);
+  };
+
+  m_source[3].onChange = [&](){
+    m_value_tree.getParameter(m_source_identifier3)
+        ->setValueNotifyingHost(m_source[3].getSelectedId()/1000.f);
+  };
+  m_dest_1[3].onChange = [&](){
+    m_value_tree.getParameter(m_source_identifier3)
+        ->setValueNotifyingHost(m_dest_1[3].getSelectedId()/1000.f);
+  };
+  m_dest_2[3].onChange = [&](){
+    m_value_tree.getParameter(m_source_identifier3)
+        ->setValueNotifyingHost(m_dest_2[3].getSelectedId()/1000.f);
+  };
+  m_scale[3].onChange = [&](){
+    m_value_tree.getParameter(m_source_identifier3)
+        ->setValueNotifyingHost(m_scale[3].getSelectedId()/1000.f);
+  };
+
+  m_source[4].onChange = [&](){
+    m_value_tree.getParameter(m_source_identifier4)
+        ->setValueNotifyingHost(m_source[4].getSelectedId()/1000.f);
+  };
+  m_dest_1[4].onChange = [&](){
+    m_value_tree.getParameter(m_source_identifier4)
+        ->setValueNotifyingHost(m_dest_1[4].getSelectedId()/1000.f);
+  };
+  m_dest_2[4].onChange = [&](){
+    m_value_tree.getParameter(m_source_identifier4)
+        ->setValueNotifyingHost(m_dest_2[4].getSelectedId()/1000.f);
+  };
+  m_scale[4].onChange = [&](){
+    m_value_tree.getParameter(m_source_identifier4)
+        ->setValueNotifyingHost(m_scale[4].getSelectedId()/1000.f);
+  };
+
+  m_source[5].onChange = [&](){
+    m_value_tree.getParameter(m_source_identifier5)
+        ->setValueNotifyingHost(m_source[5].getSelectedId()/1000.f);
+  };
+  m_dest_1[5].onChange = [&](){
+    m_value_tree.getParameter(m_source_identifier5)
+        ->setValueNotifyingHost(m_dest_1[5].getSelectedId()/1000.f);
+  };
+  m_dest_2[5].onChange = [&](){
+    m_value_tree.getParameter(m_source_identifier5)
+        ->setValueNotifyingHost(m_dest_2[5].getSelectedId()/1000.f);
+  };
+  m_scale[5].onChange = [&](){
+    m_value_tree.getParameter(m_source_identifier5)
+        ->setValueNotifyingHost(m_scale[5].getSelectedId()/1000.f);
+  };
+
+  m_source[6].onChange = [&](){
+    m_value_tree.getParameter(m_source_identifier6)
+        ->setValueNotifyingHost(m_source[6].getSelectedId()/1000.f);
+  };
+  m_dest_1[6].onChange = [&](){
+    m_value_tree.getParameter(m_source_identifier6)
+        ->setValueNotifyingHost(m_dest_1[6].getSelectedId()/1000.f);
+  };
+  m_dest_2[6].onChange = [&](){
+    m_value_tree.getParameter(m_source_identifier6)
+        ->setValueNotifyingHost(m_dest_2[6].getSelectedId()/1000.f);
+  };
+  m_scale[6].onChange = [&](){
+    m_value_tree.getParameter(m_source_identifier6)
+        ->setValueNotifyingHost(m_scale[6].getSelectedId()/1000.f);
+  };
+
+  m_source[7].onChange = [&](){
+    m_value_tree.getParameter(m_source_identifier7)
+        ->setValueNotifyingHost(m_source[7].getSelectedId()/1000.f);
+  };
+  m_dest_1[7].onChange = [&](){
+    m_value_tree.getParameter(m_source_identifier7)
+        ->setValueNotifyingHost(m_dest_1[7].getSelectedId()/1000.f);
+  };
+  m_dest_2[7].onChange = [&](){
+    m_value_tree.getParameter(m_source_identifier7)
+        ->setValueNotifyingHost(m_dest_2[7].getSelectedId()/1000.f);
+  };
+  m_scale[7].onChange = [&](){
+    m_value_tree.getParameter(m_source_identifier7)
+        ->setValueNotifyingHost(m_scale[7].getSelectedId()/1000.f);
+  };
+
+  m_source[8].onChange = [&](){
+    m_value_tree.getParameter(m_source_identifier8)
+        ->setValueNotifyingHost(m_source[8].getSelectedId()/1000.f);
+  };
+  m_dest_1[8].onChange = [&](){
+    m_value_tree.getParameter(m_source_identifier8)
+        ->setValueNotifyingHost(m_dest_1[8].getSelectedId()/1000.f);
+  };
+  m_dest_2[8].onChange = [&](){
+    m_value_tree.getParameter(m_source_identifier8)
+        ->setValueNotifyingHost(m_dest_2[8].getSelectedId()/1000.f);
+  };
+  m_scale[8].onChange = [&](){
+    m_value_tree.getParameter(m_source_identifier8)
+        ->setValueNotifyingHost(m_scale[8].getSelectedId()/1000.f);
+  };
+
   m_small_panel_width = glas_small_down.getWidth();
   m_big_panel_width = glas_mid_down.getWidth();
   m_panel_height = glas_left_down.getHeight();
@@ -678,16 +871,6 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
   m_clear_button7.setTooltip("Clear the entire modmatrix row");
   m_clear_button8.setTooltip("Clear the entire modmatrix row");
 
-  for (int i = 0; i < N_ROWS; ++i) {
-    m_source_attach[i].reset(new ComboBoxAttachment(
-        m_value_tree, "source_[" + std::to_string(i) + "]", m_source[i]));
-    m_dest_1_attach[i].reset(new ComboBoxAttachment(
-        m_value_tree, "dest_1_[" + std::to_string(i) + "]", m_dest_1[i]));
-    m_dest_2_attach[i].reset(new ComboBoxAttachment(
-        m_value_tree, "dest_2_[" + std::to_string(i) + "]", m_dest_2[i]));
-    m_scale_attach[i].reset(new ComboBoxAttachment(
-        m_value_tree, "scale_[" + std::to_string(i) + "]", m_scale[i]));
-  }
 }
 
 ModMatrixComponent::~ModMatrixComponent() {}

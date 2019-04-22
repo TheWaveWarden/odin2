@@ -49,10 +49,50 @@ private:
 //  Identifier m_dest_2_identifier;
 //  Identifier m_scale_identifier;
 
-  std::unique_ptr<ComboBoxAttachment> m_source_attach[N_ROWS];
-  std::unique_ptr<ComboBoxAttachment> m_dest_1_attach[N_ROWS];
-  std::unique_ptr<ComboBoxAttachment> m_dest_2_attach[N_ROWS];
-  std::unique_ptr<ComboBoxAttachment> m_scale_attach[N_ROWS];
+  //std::unique_ptr<ComboBoxAttachment> m_source_attach[N_ROWS];
+  //std::unique_ptr<ComboBoxAttachment> m_dest_1_attach[N_ROWS];
+  //std::unique_ptr<ComboBoxAttachment> m_dest_2_attach[N_ROWS];
+  //std::unique_ptr<ComboBoxAttachment> m_scale_attach[N_ROWS];
+
+  Identifier m_source_identifier0;
+  Identifier m_source_identifier1;
+  Identifier m_source_identifier2;
+  Identifier m_source_identifier3;
+  Identifier m_source_identifier4;
+  Identifier m_source_identifier5;
+  Identifier m_source_identifier6;
+  Identifier m_source_identifier7;
+  Identifier m_source_identifier8;
+
+  Identifier m_dest_1_identifier0;
+  Identifier m_dest_1_identifier1;
+  Identifier m_dest_1_identifier2;
+  Identifier m_dest_1_identifier3;
+  Identifier m_dest_1_identifier4;
+  Identifier m_dest_1_identifier5;
+  Identifier m_dest_1_identifier6;
+  Identifier m_dest_1_identifier7;
+  Identifier m_dest_1_identifier8;
+
+  Identifier m_dest_2_identifier0;
+  Identifier m_dest_2_identifier1;
+  Identifier m_dest_2_identifier2;
+  Identifier m_dest_2_identifier3;
+  Identifier m_dest_2_identifier4;
+  Identifier m_dest_2_identifier5;
+  Identifier m_dest_2_identifier6;
+  Identifier m_dest_2_identifier7;
+  Identifier m_dest_2_identifier8;
+
+  Identifier m_scale_identifier0;
+  Identifier m_scale_identifier1;
+  Identifier m_scale_identifier2;
+  Identifier m_scale_identifier3;
+  Identifier m_scale_identifier4;
+  Identifier m_scale_identifier5;
+  Identifier m_scale_identifier6;
+  Identifier m_scale_identifier7;
+  Identifier m_scale_identifier8;
 
   Identifier m_amount_1_identifier0;
   Identifier m_amount_2_identifier0;
