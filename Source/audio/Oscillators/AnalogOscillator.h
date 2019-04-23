@@ -24,9 +24,13 @@ public:
 	virtual float doOscillate() override;
 	virtual void update() override;
 	virtual void loadWavetables() override;
-	
+	void setPWMModPointer(float* p_pointer){
+		pwm_mod = p_pointer;
+	}
+
 protected:
 
+	float* pwm_mod;
 
 	float doSquare();
 	float generateDrift();
