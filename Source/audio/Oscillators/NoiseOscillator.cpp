@@ -28,7 +28,10 @@ float NoiseOscillator::doNoise(){
     //do 2nd order like this?
     white_noise = m_lowpass.doFilter(white_noise);
     white_noise = m_highpass.doFilter(white_noise);
-    return white_noise;
+
+    float vol_mod_factor = (*m_vol_mod) > 0 ? 1.f + 4 *(*m_vol_mod) : (1.f + *m_vol_mod);
+    
+    return white_noise * vol_mod_factor;
 
 }   
 

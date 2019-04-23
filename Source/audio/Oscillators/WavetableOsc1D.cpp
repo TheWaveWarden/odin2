@@ -71,7 +71,9 @@ float WavetableOsc1D::doOscillate(){
     //if(!m_note_on){
     //    return 0.f;
     //}
-    return doWavetable() * m_volume_factor;
+    float vol_mod_factor = (*m_vol_mod) > 0 ? 1.f + 4 *(*m_vol_mod) : (1.f + *m_vol_mod);
+    
+    return doWavetable() * m_volume_factor * vol_mod_factor;
 }
 
 void WavetableOsc1D::setWavetablePointer(int p_wavetable_index, float* p_wavetable_pointers[SUBTABLES_PER_WAVETABLE]){

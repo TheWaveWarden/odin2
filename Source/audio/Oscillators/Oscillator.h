@@ -97,6 +97,9 @@ public:
 	void setPitchModLinPointer(float* p_pointer){
 		m_pitch_mod_lin = p_pointer;
 	}
+	void setVolModPointer(float* p_pointer){
+		m_vol_mod = p_pointer;
+	}
 public:
 
 	
@@ -111,6 +114,7 @@ public:
 	
 	float* m_pitch_mod_exp;
 	float* m_pitch_mod_lin;
+	float* m_vol_mod;
 
 	int m_octave;	      // octave tweak
 	int m_semitones;	  // semitones tweak

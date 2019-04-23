@@ -40,7 +40,9 @@ float VectorOscillator::doOscillate()
     //{
     //    return 0.f;
     //}
-    return doVectortable();
+    float vol_mod_factor = (*m_vol_mod) > 0 ? 1.f + 4 *(*m_vol_mod) : (1.f + *m_vol_mod);
+    
+    return doVectortable() * vol_mod_factor;
 }
 
 void VectorOscillator::update()

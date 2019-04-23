@@ -35,10 +35,12 @@ float ChiptuneOscillator::doOscillate(){
 	//if(!m_note_on){
     //    return 0.f;
     /*}else*/
+    float vol_mod_factor = (*m_vol_mod) > 0 ? 1.f + 4 *(*m_vol_mod) : (1.f + *m_vol_mod);
+    
     if(m_generate_noise){
-		return generateChipNoise() * m_volume_factor;
+		return generateChipNoise() * m_volume_factor * vol_mod_factor;
 	} else{
-		return doWavetable() * m_volume_factor;
+		return doWavetable() * m_volume_factor * vol_mod_factor;
 	}
 }
 

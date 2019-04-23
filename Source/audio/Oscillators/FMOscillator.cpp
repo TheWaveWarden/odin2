@@ -7,6 +7,8 @@ FMOscillator::FMOscillator(){
     m_modulator_osc.setPitchModExpPointer(&m_zero_modulation_dummy);
     m_carrier_osc.setPitchModLinPointer(&m_zero_modulation_dummy);
     m_modulator_osc.setPitchModLinPointer(&m_zero_modulation_dummy);
+    m_carrier_osc.setVolModPointer(&m_zero_modulation_dummy);
+    m_modulator_osc.setVolModPointer(&m_zero_modulation_dummy);
 }
 
 
@@ -46,7 +48,9 @@ void FMOscillator::reset() {
 }
 
 float FMOscillator::doOscillate() {
-    return m_carrier_osc.doOscillate();
+    float vol_mod_factor = (*m_vol_mod) > 0 ? 1.f + 4 *(*m_vol_mod) : (1.f + *m_vol_mod);
+    
+    return m_carrier_osc.doOscillate() * vol_mod_factor;
 }
 
 

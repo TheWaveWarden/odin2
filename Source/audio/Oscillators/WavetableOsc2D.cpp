@@ -25,7 +25,9 @@ float WavetableOsc2D::doOscillate(){
     //if(!m_note_on){
     //    return 0.f;
     //}
-    return doWavetable2D();
+    float vol_mod_factor = (*m_vol_mod) > 0 ? 1.f + 4 *(*m_vol_mod) : (1.f + *m_vol_mod);
+    
+    return doWavetable2D() * vol_mod_factor;
 }
 
 void WavetableOsc2D::update(){

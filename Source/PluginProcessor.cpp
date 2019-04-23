@@ -583,6 +583,27 @@ void OdinAudioProcessor::setModulationPointers() {
           &(m_mod_destinations.voice[voice].osc[osc].pitch_linear));
       m_voice[voice].specdraw_osc[osc].setPitchModLinPointer(
           &(m_mod_destinations.voice[voice].osc[osc].pitch_linear));
+
+      m_voice[voice].analog_osc[osc].setVolModPointer(
+          &(m_mod_destinations.voice[voice].osc[osc].vol));
+      m_voice[voice].wavetable_osc[osc].setVolModPointer(
+          &(m_mod_destinations.voice[voice].osc[osc].vol));
+      m_voice[voice].multi_osc[osc].setVolModPointer(
+          &(m_mod_destinations.voice[voice].osc[osc].vol));
+      m_voice[voice].vector_osc[osc].setVolModPointer(
+          &(m_mod_destinations.voice[voice].osc[osc].vol));
+      m_voice[voice].fm_osc[osc].setVolModPointer(
+          &(m_mod_destinations.voice[voice].osc[osc].vol));
+      m_voice[voice].chiptune_osc[osc].setVolModPointer(
+          &(m_mod_destinations.voice[voice].osc[osc].vol));
+      m_voice[voice].wavedraw_osc[osc].setVolModPointer(
+          &(m_mod_destinations.voice[voice].osc[osc].vol));
+      m_voice[voice].chipdraw_osc[osc].setVolModPointer(
+          &(m_mod_destinations.voice[voice].osc[osc].vol));
+      m_voice[voice].specdraw_osc[osc].setVolModPointer(
+          &(m_mod_destinations.voice[voice].osc[osc].vol));
+      m_voice[voice].noise_osc[osc].setVolModPointer(
+          &(m_mod_destinations.voice[voice].osc[osc].vol));
     }
   }
 }

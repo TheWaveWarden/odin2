@@ -35,7 +35,9 @@ float MultiOscillator::doOscillate()
     //{
     //    return 0.f;
     //}
-    return doWavetableMulti();
+    float vol_mod_factor = (*m_vol_mod) > 0 ? 1.f + 4 *(*m_vol_mod) : (1.f + *m_vol_mod);
+    
+    return doWavetableMulti() * vol_mod_factor;
 }
 
 void MultiOscillator::update()
