@@ -47,6 +47,11 @@ XYSectionComponent::XYSectionComponent(AudioProcessorValueTreeState &vts,
   m_mody.setTooltip("The Y value\nof the XY pad");
   addAndMakeVisible(m_mody);
 
+  m_x_attach.reset (new SliderAttachment (m_value_tree, "xy_x", m_modx));
+  m_y_attach.reset (new SliderAttachment (m_value_tree, "xy_y", m_mody));
+
+
+
   m_modx.setNumDecimalPlacesToDisplay(3);
   m_mody.setNumDecimalPlacesToDisplay(3);
 }

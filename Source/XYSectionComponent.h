@@ -39,6 +39,9 @@ private:
   Knob m_modx;
   Knob m_mody;
 
+  std::unique_ptr<SliderAttachment> m_x_attach;
+  std::unique_ptr<SliderAttachment> m_y_attach;
+
   XYPadComponent m_xy_pad;
 
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(XYSectionComponent)

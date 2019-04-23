@@ -301,10 +301,15 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
   m_sources_menu.addSeparator();
   m_sources_menu.addItem(400, "X");
   m_sources_menu.addItem(401, "Y");
+  m_sources_menu.addSeparator();
   m_sources_menu.addItem(402, "ModWheel");
   m_sources_menu.addItem(403, "PitchBend");
+  m_sources_menu.addItem(404, "MIDI note");
+  m_sources_menu.addItem(405, "MIDI velocity");
+  m_sources_menu.addItem(406, "MIDI aftertouch");
+  m_sources_menu.addSeparator();
   m_sources_menu.addItem(1000, "Constant");
-  // 1000 must be higherst value
+  // 1000 must be highest value
 
   juce::Image glas_left_down = ImageCache::getFromFile(
       juce::File(GRAPHICS_PATH + "cropped/modpanelbig_left_down.png"));

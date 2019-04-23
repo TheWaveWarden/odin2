@@ -112,6 +112,14 @@ private:
   float m_lfo[VOICES][4] = {0.f}; //doesnt exist yet
   float m_filter_output[VOICES][2] = {0.f};
   float m_osc_output[VOICES][3] = {0.f};
+  float m_MIDI_key[VOICES] = {0.f};
+  float m_MIDI_velocity[VOICES] = {0.f};
+  float m_MIDI_aftertouch = 0.f;
+  float m_constant = 1.f;
+  //float m_modwheel = 0.f;
+  //float m_pitchwheel = 0.f;
+  float m_x = 0.f;
+  float m_y = 0.f;
 
 
   int m_counter = 0; // todo remove

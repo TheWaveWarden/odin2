@@ -52,12 +52,12 @@ void ModMatrixRow::setModSource(int p_source) {
       m_source_value[voice] = m_sources->voice[voice].osc[2];
     }
     break;
-    case 110:
+  case 110:
     for (int voice = 0; voice < VOICES; ++voice) {
       m_source_value[voice] = m_sources->voice[voice].filter[0];
     }
     break;
-    case 111:
+  case 111:
     for (int voice = 0; voice < VOICES; ++voice) {
       m_source_value[voice] = m_sources->voice[voice].filter[1];
     }
@@ -82,6 +82,74 @@ void ModMatrixRow::setModSource(int p_source) {
       m_source_value[voice] = m_sources->voice[voice].adsr[3];
     }
     break;
+  case 300:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_source_value[voice] = m_sources->voice[voice].lfo[0];
+    }
+    break;
+  case 301:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_source_value[voice] = m_sources->voice[voice].lfo[1];
+    }
+    break;
+  case 302:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_source_value[voice] = m_sources->voice[voice].lfo[2];
+    }
+    break;
+  case 303:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_source_value[voice] = m_sources->voice[voice].lfo[3];
+    }
+    break;
+  
+
+  case 400:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_source_value[voice] = m_sources->x;
+    }
+    break;
+  case 401:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_source_value[voice] = m_sources->y;
+    }
+    break;
+  case 402:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_source_value[voice] = m_sources->modwheel;
+    }
+    break;
+    case 403:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_source_value[voice] = m_sources->pitchwheel;
+    }
+    break;
+
+
+    
+    case 404:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_source_value[voice] = m_sources->voice[voice].MIDI_key;
+    }
+    break;
+     case 405:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_source_value[voice] = m_sources->voice[voice].MIDI_velocity;
+    }
+    break;
+     case 406:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_source_value[voice] = m_sources->MIDI_aftertouch;
+    }
+    break;
+
+
+    case 1000:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_source_value[voice] = m_sources->constant;
+    }
+    break;
+  
 
   default:
     // todo
