@@ -1,6 +1,7 @@
 #include "ADSR.h"
 
 // todo remove for profiling only
+#include "../JuceLibraryCode/JuceHeader.h"
 #include <ctime>
 
 ADSREnvelope::ADSREnvelope() {
@@ -18,7 +19,8 @@ float ADSREnvelope::doEnvelope() {
 
   if (m_current_section == 0) { // attack
     m_current_value += (1. - m_attack_start_value) / m_samplerate / m_attack;
-    if (m_current_value > 1) {
+    DBG(m_current_value);
+    if (m_current_value >= 1) {
       m_current_value = 1;
       m_current_section = 1; // move to decay
     }

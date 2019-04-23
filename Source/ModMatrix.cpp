@@ -26,6 +26,7 @@ void ModMatrixRow::applyModulation() {
             (*m_source_value[voice]) * m_mod_amount *
             (1 + (*m_scale_value[voice] - 1) * m_scale_amount);
       } else {
+        //DBG("MOD SLOT ACTIVE");
         *(m_destination_value[voice]) +=
             (*m_source_value[voice]) * m_mod_amount;
       }

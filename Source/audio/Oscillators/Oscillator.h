@@ -9,6 +9,7 @@
 #define OSC_FO_MIN 20				//20Hz
 #define OSC_FO_MAX 20480			//20.480kHz = 10 octaves up from 20Hz
 #define OSC_FO_DEFAULT 440.0		//A5
+#define OSC_EXP_MOD_RANGE 24
 
 class Oscillator
 {
@@ -65,7 +66,7 @@ public:
 	{
 
 		// --- do the  complete frequency mod
-		m_osc_freq_modded = m_osc_freq_base*pitchShiftMultiplier( (*m_pitch_mod_exp) + m_mod_freq_exp + m_mod_exp_other +
+		m_osc_freq_modded = m_osc_freq_base*pitchShiftMultiplier( (*m_pitch_mod_exp)* OSC_EXP_MOD_RANGE + m_mod_freq_exp + m_mod_exp_other +
 													     m_mod_pitch_bend + 
 													     m_octave*12.0 + 
 													     m_semitones + 
