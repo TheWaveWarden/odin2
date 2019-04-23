@@ -19,7 +19,6 @@ float ADSREnvelope::doEnvelope() {
 
   if (m_current_section == 0) { // attack
     m_current_value += (1. - m_attack_start_value) / m_samplerate / m_attack;
-    DBG(m_current_value);
     if (m_current_value >= 1) {
       m_current_value = 1;
       m_current_section = 1; // move to decay

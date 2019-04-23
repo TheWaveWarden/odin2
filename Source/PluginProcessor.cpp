@@ -212,12 +212,10 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
       if (m_voice[voice]) {
 
         //===== ADSR ======
-        //float adsr[4];
         for (int env = 0; env < 4; ++env) {
           m_adsr[voice][env] = m_voice[voice].env[env].doEnvelope();
           m_mod_sources.voice[voice].adsr[env] = m_adsr[voice][env];
         }
-        DBG(m_voice[voice].env[0].getCurrentSection());
 
         //===== OSCS ======
 
