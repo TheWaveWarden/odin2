@@ -112,22 +112,22 @@ struct ModDestinations {
 };
 
 struct ModSourceVoice {
-  float osc[3];
-  float filter[2];
-  float adsr[4];
-  float lfo[4];
-  float MIDI_key;
-  float MIDI_velocity;
+  float* osc[3];
+  float* filter[2];
+  float* adsr[4];
+  float* lfo[4];
+  float* MIDI_key;
+  float* MIDI_velocity;
 };
 
 struct ModSources {
   ModSourceVoice voice[VOICES];
-  float filter3;
-  float modwheel;
-  float pitchwheel;
-  float x;
-  float y;
-  float MIDI_aftertouch;
+  float* filter3;
+  float* modwheel;
+  float* pitchwheel;
+  float* x;
+  float* y;
+  float* MIDI_aftertouch;
 };
 
 class ModMatrixRow {

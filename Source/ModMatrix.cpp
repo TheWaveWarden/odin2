@@ -39,22 +39,22 @@ void ModMatrixRow::setModSource(int p_source) {
   switch (p_source) {
   case 200:
     for (int voice = 0; voice < VOICES; ++voice) {
-      m_source_value[voice] = &(m_sources->voice[voice].adsr[0]);
+      m_source_value[voice] = m_sources->voice[voice].adsr[0];
     }
     break;
   case 201:
     for (int voice = 0; voice < VOICES; ++voice) {
-      m_source_value[voice] = &(m_sources->voice[voice].adsr[1]);
+      m_source_value[voice] = m_sources->voice[voice].adsr[1];
     }
     break;
   case 202:
     for (int voice = 0; voice < VOICES; ++voice) {
-      m_source_value[voice] = &(m_sources->voice[voice].adsr[2]);
+      m_source_value[voice] = m_sources->voice[voice].adsr[2];
     }
     break;
   case 203:
     for (int voice = 0; voice < VOICES; ++voice) {
-      m_source_value[voice] = &(m_sources->voice[voice].adsr[3]);
+      m_source_value[voice] = m_sources->voice[voice].adsr[3];
     }
     break;
 
