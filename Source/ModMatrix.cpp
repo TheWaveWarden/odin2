@@ -37,6 +37,31 @@ void ModMatrixRow::applyModulation() {
 void ModMatrixRow::setModSource(int p_source) {
 
   switch (p_source) {
+  case 100:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_source_value[voice] = m_sources->voice[voice].osc[0];
+    }
+    break;
+  case 101:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_source_value[voice] = m_sources->voice[voice].osc[1];
+    }
+    break;
+  case 102:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_source_value[voice] = m_sources->voice[voice].osc[2];
+    }
+    break;
+    case 110:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_source_value[voice] = m_sources->voice[voice].filter[0];
+    }
+    break;
+    case 111:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_source_value[voice] = m_sources->voice[voice].filter[1];
+    }
+    break;
   case 200:
     for (int voice = 0; voice < VOICES; ++voice) {
       m_source_value[voice] = m_sources->voice[voice].adsr[0];
