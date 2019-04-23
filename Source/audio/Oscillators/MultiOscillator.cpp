@@ -41,11 +41,13 @@ float MultiOscillator::doOscillate()
 void MultiOscillator::update()
 {
     //we overwrite even Oscillator here...
-    m_osc_freq_modded = m_osc_freq_base * pitchShiftMultiplier(m_mod_freq_exp + m_mod_exp_other +
+    m_osc_freq_modded = m_osc_freq_base * pitchShiftMultiplier((*m_pitch_mod_exp) * OSC_EXP_MOD_RANGE + m_mod_freq_exp + m_mod_exp_other +
                                             m_mod_pitch_bend +
                                             m_octave * 12.0 +
                                             m_semitones +
                                             m_cent / 100.0);
+
+    m_osc_freq_modded += (*m_pitch_mod_lin) * m_osc_freq_modded * 2;
 
     //TODO THIS IS VERY BAD!!!!!
     m_oscillator_freq_multi[0] = m_osc_freq_modded * cheapPitchShiftMultiplier(-1.f * m_detune) + m_mod_freq_lin;

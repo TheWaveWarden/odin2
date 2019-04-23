@@ -220,7 +220,7 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
 
         // output var for the individual oscs
         memset(m_osc_output, 0, sizeof(float) * VOICES * 3);
-        
+
         for (int osc = 0; osc < 3; ++osc) {
           // analog osc
           if (*m_osc_type[osc] == OSC_TYPE_ANALOG) {
@@ -257,7 +257,8 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
           // fm osc
           else if (*m_osc_type[osc] == OSC_TYPE_FM) {
             m_voice[voice].fm_osc[osc].update();
-            m_osc_output[voice][osc] += m_voice[voice].fm_osc[osc].doOscillate();
+            m_osc_output[voice][osc] +=
+                m_voice[voice].fm_osc[osc].doOscillate();
           }
           // noise osc
           else if (*m_osc_type[osc] == OSC_TYPE_NOISE) {
@@ -540,8 +541,6 @@ void OdinAudioProcessor::setModulationPointers() {
   m_mod_sources.pitchwheel = m_pitchbend;
   m_mod_sources.constant = &(m_constant);
 
-
-
   //========================================
   //============= DESTINATIONS =============
   //========================================
@@ -565,6 +564,25 @@ void OdinAudioProcessor::setModulationPointers() {
           &(m_mod_destinations.voice[voice].osc[osc].pitch_exponential));
       m_voice[voice].specdraw_osc[osc].setPitchModExpPointer(
           &(m_mod_destinations.voice[voice].osc[osc].pitch_exponential));
+
+      m_voice[voice].analog_osc[osc].setPitchModLinPointer(
+          &(m_mod_destinations.voice[voice].osc[osc].pitch_linear));
+      m_voice[voice].wavetable_osc[osc].setPitchModLinPointer(
+          &(m_mod_destinations.voice[voice].osc[osc].pitch_linear));
+      m_voice[voice].multi_osc[osc].setPitchModLinPointer(
+          &(m_mod_destinations.voice[voice].osc[osc].pitch_linear));
+      m_voice[voice].vector_osc[osc].setPitchModLinPointer(
+          &(m_mod_destinations.voice[voice].osc[osc].pitch_linear));
+      m_voice[voice].fm_osc[osc].setPitchModLinPointer(
+          &(m_mod_destinations.voice[voice].osc[osc].pitch_linear));
+      m_voice[voice].chiptune_osc[osc].setPitchModLinPointer(
+          &(m_mod_destinations.voice[voice].osc[osc].pitch_linear));
+      m_voice[voice].wavedraw_osc[osc].setPitchModLinPointer(
+          &(m_mod_destinations.voice[voice].osc[osc].pitch_linear));
+      m_voice[voice].chipdraw_osc[osc].setPitchModLinPointer(
+          &(m_mod_destinations.voice[voice].osc[osc].pitch_linear));
+      m_voice[voice].specdraw_osc[osc].setPitchModLinPointer(
+          &(m_mod_destinations.voice[voice].osc[osc].pitch_linear));
     }
   }
 }

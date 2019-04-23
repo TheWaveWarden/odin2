@@ -102,7 +102,6 @@ void ModMatrixRow::setModSource(int p_source) {
       m_source_value[voice] = m_sources->voice[voice].lfo[3];
     }
     break;
-  
 
   case 400:
     for (int voice = 0; voice < VOICES; ++voice) {
@@ -119,37 +118,33 @@ void ModMatrixRow::setModSource(int p_source) {
       m_source_value[voice] = m_sources->modwheel;
     }
     break;
-    case 403:
+  case 403:
     for (int voice = 0; voice < VOICES; ++voice) {
       m_source_value[voice] = m_sources->pitchwheel;
     }
     break;
 
-
-    
-    case 404:
+  case 404:
     for (int voice = 0; voice < VOICES; ++voice) {
       m_source_value[voice] = m_sources->voice[voice].MIDI_key;
     }
     break;
-     case 405:
+  case 405:
     for (int voice = 0; voice < VOICES; ++voice) {
       m_source_value[voice] = m_sources->voice[voice].MIDI_velocity;
     }
     break;
-     case 406:
+  case 406:
     for (int voice = 0; voice < VOICES; ++voice) {
       m_source_value[voice] = m_sources->MIDI_aftertouch;
     }
     break;
 
-
-    case 1000:
+  case 1000:
     for (int voice = 0; voice < VOICES; ++voice) {
       m_source_value[voice] = m_sources->constant;
     }
     break;
-  
 
   default:
     // todo
@@ -191,6 +186,30 @@ void ModMatrixRow::setModDestination(int p_destination) {
     for (int voice = 0; voice < VOICES; ++voice) {
       m_destination_value[voice] =
           &(m_destinations->voice[voice].osc[2].pitch_exponential);
+    }
+    m_destination_poly = true;
+    break;
+
+  case 2:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_destination_value[voice] =
+          &(m_destinations->voice[voice].osc[0].pitch_linear);
+    }
+    m_destination_poly = true;
+    break;
+
+  case 102:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_destination_value[voice] =
+          &(m_destinations->voice[voice].osc[1].pitch_linear);
+    }
+    m_destination_poly = true;
+    break;
+
+  case 202:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_destination_value[voice] =
+          &(m_destinations->voice[voice].osc[2].pitch_linear);
     }
     m_destination_poly = true;
     break;

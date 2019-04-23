@@ -72,7 +72,7 @@ public:
 													     m_semitones + 
 													     m_cent/100.0);
 		// --- apply linear FM (not used in book projects)
-		m_osc_freq_modded += m_mod_freq_lin;
+		m_osc_freq_modded += (*m_pitch_mod_lin) * m_osc_freq_modded * 2 + m_mod_freq_lin;
 
 		// --- bound Fo (can go outside for FM/PM mod)
 		//     +/- 20480 for FM/PM
@@ -94,6 +94,9 @@ public:
 	void setPitchModExpPointer(float* p_pointer){
 		m_pitch_mod_exp = p_pointer;
 	}
+	void setPitchModLinPointer(float* p_pointer){
+		m_pitch_mod_lin = p_pointer;
+	}
 public:
 
 	
@@ -107,6 +110,7 @@ public:
 	double m_mod_freq_lin;		 // FM modulation input -1 to +1 (not actually used in Yamaha FM!) */
 	
 	float* m_pitch_mod_exp;
+	float* m_pitch_mod_lin;
 
 	int m_octave;	      // octave tweak
 	int m_semitones;	  // semitones tweak

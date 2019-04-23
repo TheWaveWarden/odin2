@@ -5,6 +5,8 @@
 FMOscillator::FMOscillator(){
     m_carrier_osc.setPitchModExpPointer(&m_zero_modulation_dummy);
     m_modulator_osc.setPitchModExpPointer(&m_zero_modulation_dummy);
+    m_carrier_osc.setPitchModLinPointer(&m_zero_modulation_dummy);
+    m_modulator_osc.setPitchModLinPointer(&m_zero_modulation_dummy);
 }
 
 
