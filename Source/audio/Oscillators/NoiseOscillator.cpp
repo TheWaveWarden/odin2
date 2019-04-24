@@ -9,6 +9,12 @@ NoiseOscillator::NoiseOscillator(){
     
     m_highpass.m_freq_base = FILTER_FC_MIN;
     m_highpass.setHP();
+
+    m_lowpass.setSampleRate(44100.f);
+    m_highpass.setSampleRate(44100.f);
+
+    m_lowpass.reset();
+    m_highpass.reset();
 }
 
 

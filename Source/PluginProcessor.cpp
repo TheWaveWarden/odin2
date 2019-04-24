@@ -262,7 +262,6 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
           }
           // noise osc
           else if (*m_osc_type[osc] == OSC_TYPE_NOISE) {
-            m_voice[voice].noise_osc[osc].setFilterFreqs(18000, 80);
             m_osc_output[voice][osc] += m_voice[voice].noise_osc[osc].doNoise();
           }
           // wavedraw osc
