@@ -308,6 +308,7 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
   m_sources_menu.addItem(405, "MIDI velocity");
   m_sources_menu.addItem(406, "MIDI aftertouch");
   m_sources_menu.addSeparator();
+  m_sources_menu.addItem(999, "Random");
   m_sources_menu.addItem(1000, "Constant");
   // 1000 must be highest value
 

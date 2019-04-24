@@ -629,6 +629,26 @@ void OdinAudioProcessor::setModulationPointers() {
     }
     for(int fil = 0; fil < 2; ++fil){
       m_voice[voice].ladder_filter[fil].setFreqModPointer(&(m_mod_destinations.voice[voice].filter[fil].freq));
+      m_voice[voice].diode_filter[fil].setFreqModPointer(&(m_mod_destinations.voice[voice].filter[fil].freq));
+      m_voice[voice].korg_filter[fil].setFreqModPointer(&(m_mod_destinations.voice[voice].filter[fil].freq));
+      m_voice[voice].comb_filter[fil].setFreqModPointer(&(m_mod_destinations.voice[voice].filter[fil].freq));
+      m_voice[voice].SEM_filter_12[fil].setFreqModPointer(&(m_mod_destinations.voice[voice].filter[fil].freq));
+      m_voice[voice].SEM_filter_24[fil].setFreqModPointer(&(m_mod_destinations.voice[voice].filter[fil].freq));
+      
+      m_voice[voice].ladder_filter[fil].setResModPointer(&(m_mod_destinations.voice[voice].filter[fil].res));
+      
     }
+  }
+
+  for(int stereo = 0; stereo < 2; ++stereo){
+    m_ladder_filter[stereo].setFreqModPointer(&(m_mod_destinations.filter3.freq));
+    m_diode_filter[stereo].setFreqModPointer(&(m_mod_destinations.filter3.freq));
+    m_korg_filter[stereo].setFreqModPointer(&(m_mod_destinations.filter3.freq));
+    m_SEM_filter_12[stereo].setFreqModPointer(&(m_mod_destinations.filter3.freq));
+    m_SEM_filter_24[stereo].setFreqModPointer(&(m_mod_destinations.filter3.freq));
+    m_comb_filter[stereo].setFreqModPointer(&(m_mod_destinations.filter3.freq));
+
+    m_ladder_filter[stereo].setFreqModPointer(&(m_mod_destinations.filter3.res));
+    
   }
 }

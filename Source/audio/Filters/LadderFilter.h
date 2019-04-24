@@ -26,6 +26,11 @@ public:
 
 	inline virtual void update()
 	{	
+
+		m_k_modded = m_k + 4 * (*m_res_mod);
+		m_k_modded = m_k_modded > 3.88 ? 3.88 : m_k_modded;
+		m_k_modded = m_k_modded < 0 ? 0 : m_k_modded;
+
 		// do any modulation first
 		Filter::update();
 
@@ -53,7 +58,7 @@ public:
 
 		m_gamma = G*G*G*G; // G^4
 
-		m_alpha_0 = 1.0/(1.0 + m_k*m_gamma);
+		m_alpha_0 = 1.0/(1.0 + m_k_modded*m_gamma);
 
 		// Oberheim variation
 		switch(m_filter_type)
@@ -132,10 +137,10 @@ public:
 		//     you can connect this to a GUI control 
 		//     and let user choose instead
 		//todo wut?
-		xn *= 1.0 + m_aux_control * m_k;
+		xn *= 1.0 + m_aux_control * m_k_modded;
 
 		// calculate input to first filter
-		double dU = (xn - m_k * dSigma)*m_alpha_0;
+		double dU = (xn - m_k_modded * dSigma)*m_alpha_0;
 
 		// TODO real approx?
 		if (m_overdrive < 1.) {
@@ -169,6 +174,7 @@ public:
 
 	// variables
 	double m_k;		// K, set with Q
+	double m_k_modded;
 	double m_gamma;	// see block diagram
 	double m_alpha_0;	// see block diagram
 
