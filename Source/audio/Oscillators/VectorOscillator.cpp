@@ -79,17 +79,26 @@ float VectorOscillator::doVectortable()
     float output_2 = linearInterpolation(m_current_table_vec_2[read_index_trunc], m_current_table_vec_2[read_index_next], fractional);
     float output_3 = linearInterpolation(m_current_table_vec_3[read_index_trunc], m_current_table_vec_3[read_index_next], fractional);
 
+    float x_modded = m_XY_pad_x + *m_mod_x;
+    x_modded = x_modded > 1 ? 1 : x_modded;
+    x_modded = x_modded < 0 ? 0 : x_modded;
+    float y_modded = m_XY_pad_y + *m_mod_y;
+    y_modded = y_modded > 1 ? 1 : y_modded;
+    y_modded = y_modded < 0 ? 0 : y_modded;
+
+
+
     // 1---2
     // |   |
     // 0---3
 
     //reuse 0 as "lower" and 1 as "upper"
-    output_0 = (1.f - m_XY_pad_x) * output_0 + m_XY_pad_x * output_3;
-    output_1 = (1.f - m_XY_pad_x) * output_1 + m_XY_pad_x * output_2;
+    output_0 = (1.f - x_modded) * output_0 + x_modded * output_3;
+    output_1 = (1.f - x_modded) * output_1 + x_modded * output_2;
 
     m_read_index += m_wavetable_inc;
     checkWrapIndex(m_read_index);
 
     //return interpolation between "upper" and "lower"
-    return (1.f - m_XY_pad_y) * output_0 + m_XY_pad_y * output_1;
+    return (1.f - y_modded) * output_0 + y_modded * output_1;
 }

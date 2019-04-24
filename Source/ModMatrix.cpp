@@ -324,6 +324,72 @@ void ModMatrixRow::setModDestination(int p_destination) {
     }
     m_destination_poly = true;
     break;
+
+    case 30:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_destination_value[voice] =
+          &(m_destinations->voice[voice].osc[0].x);
+    }
+    m_destination_poly = true;
+    break;
+  case 130:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_destination_value[voice] =
+          &(m_destinations->voice[voice].osc[1].x);
+    }
+    m_destination_poly = true;
+    break;
+  case 230:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_destination_value[voice] =
+          &(m_destinations->voice[voice].osc[2].x);
+    }
+    m_destination_poly = true;
+    break;
+
+    case 31:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_destination_value[voice] =
+          &(m_destinations->voice[voice].osc[0].y);
+    }
+    m_destination_poly = true;
+    break;
+  case 131:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_destination_value[voice] =
+          &(m_destinations->voice[voice].osc[1].y);
+    }
+    m_destination_poly = true;
+    break;
+  case 231:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_destination_value[voice] =
+          &(m_destinations->voice[voice].osc[2].y);
+    }
+    m_destination_poly = true;
+    break;
+
+    case 40:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_destination_value[voice] =
+          &(m_destinations->voice[voice].osc[0].arp_speed);
+    }
+    m_destination_poly = true;
+    break;
+  case 140:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_destination_value[voice] =
+          &(m_destinations->voice[voice].osc[1].arp_speed);
+    }
+    m_destination_poly = true;
+    break;
+  case 240:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_destination_value[voice] =
+          &(m_destinations->voice[voice].osc[2].arp_speed);
+    }
+    m_destination_poly = true;
+    break;
   }
 
   m_destination = p_destination;

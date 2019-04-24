@@ -62,6 +62,11 @@ public:
         return m_generate_noise;
     }
 
+    void setArpSpeedModPointer(float* p_pointer){
+        m_chiptune_arp.setFreqModPointer(p_pointer);
+    }
+
+
     ChiptuneArpeggiator m_chiptune_arp;
     bool m_generate_noise = false; //set when noise should be generated
     float m_last_noise_value = 0.0;

@@ -26,7 +26,8 @@ class ChiptuneArpeggiator
 
     inline void setFrequency(float p_frequency)
     {
-        m_inc = p_frequency / m_samplerate;
+        m_frequency = p_frequency;
+        //m_inc = p_frequency / m_samplerate;
     }
 
     inline void setArpeggiatorOn(bool p_arp_on)
@@ -41,7 +42,13 @@ class ChiptuneArpeggiator
 
     int doArpeggiator();
 
+    void setFreqModPointer(float* p_pointer){
+        m_freq_mod = p_pointer;
+    }
+    
   protected:
+    float* m_freq_mod;
+    float m_frequency = 20.f;
     float m_samplerate = 44100;
     float m_inc = 20./ 44100.f;
     float m_position_in_step = 0.f;

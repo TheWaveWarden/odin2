@@ -26,7 +26,17 @@ public:
 	virtual void update() override;
 	virtual void loadWavetables() override;
 
+	void setXModPointer(float* p_pointer){
+		m_mod_x = p_pointer;
+	}
+	void setYModPointer(float* p_pointer){
+		m_mod_y = p_pointer;
+	}
+
 protected:
+
+	float* m_mod_x;
+	float* m_mod_y;
 
 	float doVectortable();
 
