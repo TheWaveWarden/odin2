@@ -16,6 +16,15 @@ public:
 	void setVolModPointer(float* p_pointer){
 		m_vol_mod = p_pointer;
 	}
+
+	void setHPModPointer(float* p_pointer){
+		m_highpass.setFreqModPointer(p_pointer);
+	}
+
+	void setLPModPointer(float* p_pointer){
+		m_lowpass.setFreqModPointer(p_pointer);
+	}
+
 	//inline void startOscillator(){
 	//	m_note_on = true;
 	//}
@@ -27,6 +36,8 @@ public:
 protected:
 
 	float* m_vol_mod;
+	//float* m_lp_mod;
+	//float* m_hp_mod;
 
 	VAOnePoleFilter m_lowpass;
 	VAOnePoleFilter m_highpass;

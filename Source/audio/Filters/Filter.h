@@ -13,6 +13,7 @@
 #define FILTER_FC_DEFAULT 10000 // 10kHz
 #define FILTER_Q_DEFAULT 0.707  // Butterworth
 #define FILTER_ENV_MOD_SEMITONES_MAX 48
+#define FILTER_FREQ_MOD_RANGE_SEMITONES 48
 
 // Filter Abastract Base Class for all filters
 class Filter
@@ -49,6 +50,10 @@ class Filter
 	bool m_NLP;
 	double m_overdrive;
 
+	void setFreqModPointer(float* p_pointer){
+		m_freq_mod = p_pointer;
+	}
+
   public:
 	inline void setFcMod(double d) { m_mod_frequency = d; }
 	virtual double doFilter(double xn) = 0;
@@ -62,7 +67,7 @@ class Filter
 		//DBG(m_env_mod_amount);
 		//DBG(m_env_value);
 		//DBG("===");
-		m_freq_modded = m_freq_base * pitchShiftMultiplier(m_mod_frequency + m_env_value * m_env_mod_amount * FILTER_ENV_MOD_SEMITONES_MAX);
+		m_freq_modded = m_freq_base * pitchShiftMultiplier(*m_freq_mod * FILTER_FREQ_MOD_RANGE_SEMITONES + m_mod_frequency + m_env_value * m_env_mod_amount * FILTER_ENV_MOD_SEMITONES_MAX);
 
 		if (m_freq_modded > FILTER_FC_MAX)
 			m_freq_modded = FILTER_FC_MAX;
@@ -73,6 +78,9 @@ class Filter
 	double m_mod_frequency = 0;
 	
   protected:
+
+	float* m_freq_mod;
+
 	double m_samplerate;
 	double m_freq_modded;
 	double m_res_modded;

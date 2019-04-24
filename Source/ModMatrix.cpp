@@ -407,8 +407,7 @@ void ModMatrixRow::setModDestination(int p_destination) {
     m_destination_poly = true;
     break;
 
-
-    case 51:
+  case 51:
     for (int voice = 0; voice < VOICES; ++voice) {
       m_destination_value[voice] =
           &(m_destinations->voice[voice].osc[0].carrier_ratio);
@@ -430,7 +429,7 @@ void ModMatrixRow::setModDestination(int p_destination) {
     m_destination_poly = true;
     break;
 
-    case 52:
+  case 52:
     for (int voice = 0; voice < VOICES; ++voice) {
       m_destination_value[voice] =
           &(m_destinations->voice[voice].osc[0].modulator_ratio);
@@ -448,6 +447,50 @@ void ModMatrixRow::setModDestination(int p_destination) {
     for (int voice = 0; voice < VOICES; ++voice) {
       m_destination_value[voice] =
           &(m_destinations->voice[voice].osc[2].modulator_ratio);
+    }
+    m_destination_poly = true;
+    break;
+
+  case 60:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_destination_value[voice] =
+          &(m_destinations->voice[voice].osc[0].lp_freq);
+    }
+    m_destination_poly = true;
+    break;
+  case 160:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_destination_value[voice] =
+          &(m_destinations->voice[voice].osc[1].lp_freq);
+    }
+    m_destination_poly = true;
+    break;
+  case 260:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_destination_value[voice] =
+          &(m_destinations->voice[voice].osc[2].lp_freq);
+    }
+    m_destination_poly = true;
+    break;
+
+  case 61:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_destination_value[voice] =
+          &(m_destinations->voice[voice].osc[0].hp_freq);
+    }
+    m_destination_poly = true;
+    break;
+  case 161:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_destination_value[voice] =
+          &(m_destinations->voice[voice].osc[1].hp_freq);
+    }
+    m_destination_poly = true;
+    break;
+  case 261:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_destination_value[voice] =
+          &(m_destinations->voice[voice].osc[2].hp_freq);
     }
     m_destination_poly = true;
     break;
