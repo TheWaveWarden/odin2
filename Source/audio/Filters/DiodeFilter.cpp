@@ -1,4 +1,6 @@
 #include "DiodeFilter.h"
+#include "../JuceLibraryCode/JuceHeader.h"//todo remove
+
 
 DiodeFilter::DiodeFilter(void)
 {
@@ -91,6 +93,8 @@ void DiodeFilter::update()
 
 double DiodeFilter::doFilter(double xn)
 {
+	DBG("dofilter");
+
 	m_LPF4.m_feedback = 0.0;
 	m_LPF3.m_feedback = m_LPF4.getFeedbackOutput();
 	m_LPF2.m_feedback = m_LPF3.getFeedbackOutput();
@@ -98,10 +102,16 @@ double DiodeFilter::doFilter(double xn)
 
 	double sigma = m_sg1 * m_LPF1.getFeedbackOutput() + m_sg2 * m_LPF2.getFeedbackOutput() + m_sg3 * m_LPF3.getFeedbackOutput() + m_sg4 * m_LPF4.getFeedbackOutput();
 
-	// for passband gain compensation:
-	xn *= 1.0 + m_aux_control * m_k;
+	float k_modded = m_k + *m_res_mod * 16;
+	DBG(*m_res_mod);
+	k_modded = k_modded > 16 ? 16 : k_modded;
+	k_modded = k_modded < 0 ? 0 : k_modded;
 
-	double u = (xn - m_k * sigma) / (1.0 + m_k * m_gamma);
+
+	// for passband gain compensation:
+	xn *= 1.0 + m_aux_control * k_modded;
+
+	double u = (xn - k_modded * sigma) / (1.0 + k_modded * m_gamma);
 
 	//todo copy saturation from ladderfilter
 	// TODO real approx?
@@ -120,5 +130,5 @@ double DiodeFilter::doFilter(double xn)
 
 void DiodeFilter::setResControl(double res)
 {
-	m_k = 17.0 * res;
+	m_k = 16.0 * res;
 }

@@ -49,12 +49,17 @@ void Korg35Filter::update()
 	m_HPF1.m_alpha = G;
 	m_HPF2.m_alpha = G;
 
-	m_alpha = 1.0 / (1.0 - m_k * G + m_k * G * G);
+	m_k_modded = m_k + (*m_res_mod) * 2;
+	m_k_modded = m_k_modded > 1.96 ? 1.96 : m_k_modded;
+	m_k_modded = m_k_modded < 0.01 ? 0.01 : m_k_modded;
+
+
+	m_alpha = 1.0 / (1.0 - m_k_modded * G + m_k_modded * G * G);
 
 	if (m_is_lowpass) {
-		m_LPF2.m_beta = (m_k - m_k * G) / (1.0 + g);
+		m_LPF2.m_beta = (m_k_modded - m_k_modded * G) / (1.0 + g);
 		m_HPF1.m_beta = -1.0 / (1.0 + g);
-		m_LPF1.m_beta = (m_k - m_k * G) / (1.0 + g);
+		m_LPF1.m_beta = (m_k_modded - m_k_modded * G) / (1.0 + g);
 		m_HPF2.m_beta = -1.0 / (1.0 + g);
 	} else {
 		m_HPF2.m_beta = -1.0 * G / (1.0 + g);
@@ -80,7 +85,7 @@ double Korg35Filter::doFilter(double xn)
 		    u = fasttanh(m_overdrive * u);
 	    }
 
-		y = m_k * m_LPF2.doFilter(u);
+		y = m_k_modded * m_LPF2.doFilter(u);
 		m_HPF1.doFilter(y);
 	} else {
 		double y1 = m_HPF1.doFilter(xn);
@@ -95,10 +100,10 @@ double Korg35Filter::doFilter(double xn)
 		    u = fasttanh(m_overdrive * u);
 	    }
 
-		y = m_k * u;
+		y = m_k_modded * u;
 		m_LPF1.doFilter(m_HPF2.doFilter(y));
 	}	
-	y /= m_k;
+	y /= m_k_modded;
 
 	return y;
 }

@@ -12,7 +12,6 @@ public:
 	double doFilter(double xn) override;
 	void setResControl(double res) override;
 
-
 private:
 	double m_k;
 	double m_gamma;

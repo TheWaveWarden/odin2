@@ -19,6 +19,7 @@ public:
 	
 private:
 	double m_k;
+	double m_k_modded;
 	double m_alpha;
 
 	VAOnePoleFilter m_LPF1;

@@ -55,7 +55,12 @@ public:
     memset(circular_buffer, 0, COMB_BUFFER_LENGTH * sizeof(float));
   }
 
-  float *m_freq_mod;
+  void setResModPointer(float* p_pointer){
+    m_res_mod = p_pointer;
+  }
+
+  float* m_freq_mod;
+  float* m_res_mod;
 
   // buffer length is 4 seks at 192kHz or ~17s at 44.1Khz...
   float circular_buffer[COMB_BUFFER_LENGTH] = {0};

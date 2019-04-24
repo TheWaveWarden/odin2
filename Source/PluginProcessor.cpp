@@ -636,6 +636,13 @@ void OdinAudioProcessor::setModulationPointers() {
       m_voice[voice].SEM_filter_24[fil].setFreqModPointer(&(m_mod_destinations.voice[voice].filter[fil].freq));
       
       m_voice[voice].ladder_filter[fil].setResModPointer(&(m_mod_destinations.voice[voice].filter[fil].res));
+      m_voice[voice].diode_filter[fil].setResModPointer(&(m_mod_destinations.voice[voice].filter[fil].res));
+      m_voice[voice].korg_filter[fil].setResModPointer(&(m_mod_destinations.voice[voice].filter[fil].res));
+      m_voice[voice].SEM_filter_12[fil].setResModPointer(&(m_mod_destinations.voice[voice].filter[fil].res));
+      m_voice[voice].SEM_filter_24[fil].setResModPointer(&(m_mod_destinations.voice[voice].filter[fil].res));
+      m_voice[voice].comb_filter[fil].setResModPointer(&(m_mod_destinations.voice[voice].filter[fil].res));
+      
+      
       
     }
   }
