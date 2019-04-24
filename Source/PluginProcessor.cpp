@@ -618,6 +618,9 @@ void OdinAudioProcessor::setModulationPointers() {
       m_voice[voice].vector_osc[osc].setYModPointer(&(m_mod_destinations.voice[voice].osc[osc].y));
 
       m_voice[voice].chiptune_osc[osc].setArpSpeedModPointer(&(m_mod_destinations.voice[voice].osc[osc].arp_speed));
+
+      m_voice[voice].fm_osc[osc].setFMModPointer(&(m_mod_destinations.voice[voice].osc[osc].fm_amount));
+      
       
       
       

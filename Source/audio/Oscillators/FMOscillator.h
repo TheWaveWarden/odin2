@@ -53,7 +53,13 @@ public:
 		m_modulator_osc.selectWavetable(p_wt_modulator);
 	}
 
+	void setFMModPointer(float* p_pointer){
+		m_fm_mod = p_pointer;
+	}
+
 protected:
+
+	float* m_fm_mod;
 
 	bool m_FM_is_exponential = false; // else linear
 

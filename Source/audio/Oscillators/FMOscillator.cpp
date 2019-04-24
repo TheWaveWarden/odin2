@@ -32,11 +32,14 @@ void FMOscillator::update() {
     m_modulator_osc.update(); // TODO this uses pitchshiftmodulator although it needn't
     float mod_value = m_modulator_osc.doOscillate();
 
+    float fm_amount_modded = m_FM_amount + *m_fm_mod;
+    fm_amount_modded = fm_amount_modded < 0 ? 0 : fm_amount_modded;
+
     //set mod and update
     if(m_FM_is_exponential){
-        m_carrier_osc.m_mod_freq_exp = mod_value * m_FM_amount * EXP_FM_SEMITONES;
+        m_carrier_osc.m_mod_freq_exp = mod_value * fm_amount_modded * EXP_FM_SEMITONES;
     } else {
-        m_carrier_osc.m_mod_freq_lin = mod_value * 2 * m_osc_freq_base * m_FM_amount;
+        m_carrier_osc.m_mod_freq_lin = mod_value * 2 * m_osc_freq_base * fm_amount_modded;
     }
     m_carrier_osc.update();
 }
