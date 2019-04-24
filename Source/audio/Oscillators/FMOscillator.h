@@ -57,9 +57,19 @@ public:
 		m_fm_mod = p_pointer;
 	}
 
+	void setCarrierRatioModPointer(float* p_pointer){
+		m_carrier_ratio_mod = p_pointer;
+	}
+
+	void setModulatorRatioModPointer(float* p_pointer){
+		m_modulator_ratio_mod = p_pointer;
+	}
+
 protected:
 
 	float* m_fm_mod;
+	float* m_carrier_ratio_mod;
+	float* m_modulator_ratio_mod;
 
 	bool m_FM_is_exponential = false; // else linear
 

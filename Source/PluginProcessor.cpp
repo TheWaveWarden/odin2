@@ -620,6 +620,10 @@ void OdinAudioProcessor::setModulationPointers() {
       m_voice[voice].chiptune_osc[osc].setArpSpeedModPointer(&(m_mod_destinations.voice[voice].osc[osc].arp_speed));
 
       m_voice[voice].fm_osc[osc].setFMModPointer(&(m_mod_destinations.voice[voice].osc[osc].fm_amount));
+
+      m_voice[voice].fm_osc[osc].setCarrierRatioModPointer(&(m_mod_destinations.voice[voice].osc[osc].carrier_ratio));
+      m_voice[voice].fm_osc[osc].setModulatorRatioModPointer(&(m_mod_destinations.voice[voice].osc[osc].modulator_ratio));
+      
       
       
       

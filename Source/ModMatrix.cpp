@@ -406,6 +406,51 @@ void ModMatrixRow::setModDestination(int p_destination) {
     }
     m_destination_poly = true;
     break;
+
+
+    case 51:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_destination_value[voice] =
+          &(m_destinations->voice[voice].osc[0].carrier_ratio);
+    }
+    m_destination_poly = true;
+    break;
+  case 151:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_destination_value[voice] =
+          &(m_destinations->voice[voice].osc[1].carrier_ratio);
+    }
+    m_destination_poly = true;
+    break;
+  case 251:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_destination_value[voice] =
+          &(m_destinations->voice[voice].osc[2].carrier_ratio);
+    }
+    m_destination_poly = true;
+    break;
+
+    case 52:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_destination_value[voice] =
+          &(m_destinations->voice[voice].osc[0].modulator_ratio);
+    }
+    m_destination_poly = true;
+    break;
+  case 152:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_destination_value[voice] =
+          &(m_destinations->voice[voice].osc[1].modulator_ratio);
+    }
+    m_destination_poly = true;
+    break;
+  case 252:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_destination_value[voice] =
+          &(m_destinations->voice[voice].osc[2].modulator_ratio);
+    }
+    m_destination_poly = true;
+    break;
   }
 
   m_destination = p_destination;
