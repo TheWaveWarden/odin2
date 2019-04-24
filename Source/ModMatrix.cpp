@@ -237,21 +237,90 @@ void ModMatrixRow::setModDestination(int p_destination) {
 
   case 10:
     for (int voice = 0; voice < VOICES; ++voice) {
-      m_destination_value[voice] = &(m_destinations->voice[voice].osc[0].pulse_width);
+      m_destination_value[voice] =
+          &(m_destinations->voice[voice].osc[0].pulse_width);
     }
     m_destination_poly = true;
     break;
 
   case 110:
     for (int voice = 0; voice < VOICES; ++voice) {
-      m_destination_value[voice] = &(m_destinations->voice[voice].osc[1].pulse_width);
+      m_destination_value[voice] =
+          &(m_destinations->voice[voice].osc[1].pulse_width);
     }
     m_destination_poly = true;
     break;
 
   case 210:
     for (int voice = 0; voice < VOICES; ++voice) {
-      m_destination_value[voice] = &(m_destinations->voice[voice].osc[2].pulse_width);
+      m_destination_value[voice] =
+          &(m_destinations->voice[voice].osc[2].pulse_width);
+    }
+    m_destination_poly = true;
+    break;
+
+  case 20:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_destination_value[voice] =
+          &(m_destinations->voice[voice].osc[0].position);
+    }
+    m_destination_poly = true;
+    break;
+  case 120:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_destination_value[voice] =
+          &(m_destinations->voice[voice].osc[1].position);
+    }
+    m_destination_poly = true;
+    break;
+  case 220:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_destination_value[voice] =
+          &(m_destinations->voice[voice].osc[2].position);
+    }
+    m_destination_poly = true;
+    break;
+
+  case 21:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_destination_value[voice] =
+          &(m_destinations->voice[voice].osc[0].detune);
+    }
+    m_destination_poly = true;
+    break;
+  case 121:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_destination_value[voice] =
+          &(m_destinations->voice[voice].osc[1].detune);
+    }
+    m_destination_poly = true;
+    break;
+  case 221:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_destination_value[voice] =
+          &(m_destinations->voice[voice].osc[2].detune);
+    }
+    m_destination_poly = true;
+    break;
+
+  case 22:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_destination_value[voice] =
+          &(m_destinations->voice[voice].osc[0].spread);
+    }
+    m_destination_poly = true;
+    break;
+  case 122:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_destination_value[voice] =
+          &(m_destinations->voice[voice].osc[1].spread);
+    }
+    m_destination_poly = true;
+    break;
+  case 222:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_destination_value[voice] =
+          &(m_destinations->voice[voice].osc[2].spread);
     }
     m_destination_poly = true;
     break;

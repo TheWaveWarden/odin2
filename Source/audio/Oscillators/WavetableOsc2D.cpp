@@ -61,7 +61,10 @@ float WavetableOsc2D::doWavetable2D(){
     int left_table;
     int right_table;
     float interpolation_value;
-    getTableIndicesAndInterpolation(left_table, right_table, interpolation_value, m_position_2D);
+    float position_modded = m_position_2D + (*m_pos_mod);
+    position_modded = position_modded > 1 ? 1 : position_modded;
+    position_modded = position_modded < 0 ? 0 : position_modded;
+    getTableIndicesAndInterpolation(left_table, right_table, interpolation_value, position_modded);
     
     // do linear interpolation 
     float output_left = linearInterpolation(m_current_table_2D[left_table][read_index_trunc], m_current_table_2D[left_table][read_index_next], fractional);

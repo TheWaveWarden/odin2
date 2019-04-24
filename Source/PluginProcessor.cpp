@@ -606,6 +606,16 @@ void OdinAudioProcessor::setModulationPointers() {
           &(m_mod_destinations.voice[voice].osc[osc].vol));
 
       m_voice[voice].analog_osc[osc].setPWMModPointer(&(m_mod_destinations.voice[voice].osc[osc].pulse_width));
+
+      m_voice[voice].wavetable_osc[osc].setPosModPointer(&(m_mod_destinations.voice[voice].osc[osc].position));
+      m_voice[voice].multi_osc[osc].setPosModPointer(&(m_mod_destinations.voice[voice].osc[osc].position));
+
+      m_voice[voice].multi_osc[osc].setDetuneModPointer(&(m_mod_destinations.voice[voice].osc[osc].detune));
+
+      m_voice[voice].multi_osc[osc].setSpreadModPointer(&(m_mod_destinations.voice[voice].osc[osc].spread));
+      
+      
+      
     }
   }
 }

@@ -51,11 +51,14 @@ void MultiOscillator::update()
 
     m_osc_freq_modded += (*m_pitch_mod_lin) * m_osc_freq_modded * 2;
 
+    float detune_modded = m_detune + *m_detune_mod;
+    detune_modded = detune_modded < 0 ? 0 : detune_modded;
+
     //TODO THIS IS VERY BAD!!!!!
-    m_oscillator_freq_multi[0] = m_osc_freq_modded * cheapPitchShiftMultiplier(-1.f * m_detune) + m_mod_freq_lin;
-    m_oscillator_freq_multi[1] = m_osc_freq_modded * cheapPitchShiftMultiplier(-0.348 * m_detune) + m_mod_freq_lin;
-    m_oscillator_freq_multi[2] = m_osc_freq_modded * cheapPitchShiftMultiplier(0.238 * m_detune) + m_mod_freq_lin;
-    m_oscillator_freq_multi[3] = m_osc_freq_modded * cheapPitchShiftMultiplier(1.f * m_detune) + m_mod_freq_lin;
+    m_oscillator_freq_multi[0] = m_osc_freq_modded * cheapPitchShiftMultiplier(-1.f * detune_modded) + m_mod_freq_lin;
+    m_oscillator_freq_multi[1] = m_osc_freq_modded * cheapPitchShiftMultiplier(-0.348 * detune_modded) + m_mod_freq_lin;
+    m_oscillator_freq_multi[2] = m_osc_freq_modded * cheapPitchShiftMultiplier(0.238 * detune_modded) + m_mod_freq_lin;
+    m_oscillator_freq_multi[3] = m_osc_freq_modded * cheapPitchShiftMultiplier(1.f * detune_modded) + m_mod_freq_lin;
 
     //apply pitch mod to multioscs here...
     for (int osc = 0; osc < OSCS_PER_MULTIOSC; ++osc)
@@ -123,7 +126,7 @@ float MultiOscillator::doWavetableMulti()
 
         //spread oscs over wavetable
         //TODO range... now is +-0.75
-        m_position_2D_multi[osc] = m_position_2D + ((float)osc - 1.5f) * m_wavetable_multi_spread * 0.5f;
+        m_position_2D_multi[osc] = m_position_2D + ((float)osc - 1.5f) * (m_wavetable_multi_spread + (*m_spread_mod)) * 0.5f + *m_pos_mod;
         m_position_2D_multi[osc] = m_position_2D_multi[osc] > 1.f ? 1.f : m_position_2D_multi[osc];
         m_position_2D_multi[osc] = m_position_2D_multi[osc] < 0.f ? 0.f : m_position_2D_multi[osc];
 

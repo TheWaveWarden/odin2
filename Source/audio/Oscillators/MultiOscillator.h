@@ -32,6 +32,14 @@ public:
 
 	virtual void loadWavetables() override; 
 
+	void setDetuneModPointer(float* p_pointer){
+		m_detune_mod = p_pointer;
+	}
+
+	void setSpreadModPointer(float* p_pointer){
+		m_spread_mod = p_pointer;
+	}
+	
 	//inline virtual void startOscillator() override{
 	//	//m_note_on = true;
 	//	if(m_reset_active){
@@ -42,6 +50,9 @@ public:
 	//}
 
 protected:
+	
+	float* m_detune_mod;
+	float* m_spread_mod;
 
 	double cheapPitchShiftMultiplier(double p_semitones);
 

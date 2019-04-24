@@ -16,6 +16,10 @@ public:
 
 	virtual void loadWavetables() override; 
 
+	void setPosModPointer(float* p_pointer){
+		m_pos_mod = p_pointer;
+	}
+
 protected:
 
 	inline void getTableIndicesAndInterpolation(int& p_left_table, int& p_right_table, float& p_interpolation_value, float p_position_2D){
@@ -36,6 +40,8 @@ protected:
 		return;
 		
 	}
+	
+	float* m_pos_mod;
 
 	float m_position_2D = 0.f;
 
