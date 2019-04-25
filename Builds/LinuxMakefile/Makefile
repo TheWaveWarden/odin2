@@ -102,6 +102,7 @@ OBJECTS_SHARED_CODE := \
   $(JUCE_OBJDIR)/ChiptuneOscillator_da583742.o \
   $(JUCE_OBJDIR)/DriftGenerator_ce7bf3e8.o \
   $(JUCE_OBJDIR)/FMOscillator_5e192725.o \
+  $(JUCE_OBJDIR)/LFO_17053501.o \
   $(JUCE_OBJDIR)/MultiOscillator_4d18105.o \
   $(JUCE_OBJDIR)/NoiseOscillator_fc137526.o \
   $(JUCE_OBJDIR)/Oscillator_58293cde.o \
@@ -254,6 +255,11 @@ $(JUCE_OBJDIR)/DriftGenerator_ce7bf3e8.o: ../../Source/audio/Oscillators/DriftGe
 $(JUCE_OBJDIR)/FMOscillator_5e192725.o: ../../Source/audio/Oscillators/FMOscillator.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling FMOscillator.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/LFO_17053501.o: ../../Source/audio/Oscillators/LFO.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling LFO.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/MultiOscillator_4d18105.o: ../../Source/audio/Oscillators/MultiOscillator.cpp

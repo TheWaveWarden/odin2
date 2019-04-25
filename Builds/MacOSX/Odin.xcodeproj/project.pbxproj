@@ -101,6 +101,10 @@
 			isa = PBXBuildFile;
 			fileRef = D8366554F12325264744AADB;
 		};
+		D5A2394ECC0434C6DC939740 = {
+			isa = PBXBuildFile;
+			fileRef = 0835FC56750DC1A176046DC9;
+		};
 		F9690C3998CE03484F9DA4E7 = {
 			isa = PBXBuildFile;
 			fileRef = 69AA9A49FB2EA0B6DED32F10;
@@ -424,6 +428,13 @@
 			path = ../../Source/audio/Oscillators/WavetableOsc2D.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
+		0835FC56750DC1A176046DC9 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = LFO.cpp;
+			path = ../../Source/audio/Oscillators/LFO.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
 		091B559B9CB20B0696C5D762 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -646,6 +657,13 @@
 			lastKnownFileType = sourcecode.c.h;
 			name = NoiseOscillator.h;
 			path = ../../Source/audio/Oscillators/NoiseOscillator.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		2AFC0A32B4CCF8DCDFD314A0 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = LFO.h;
+			path = ../../Source/audio/Oscillators/LFO.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		2BC8D69956E8EF8D92CBC29E = {
@@ -1895,6 +1913,8 @@
 				E9A6DA24DCF6715E499F2A4C,
 				D8366554F12325264744AADB,
 				602D83995BA199A11F02E40A,
+				0835FC56750DC1A176046DC9,
+				2AFC0A32B4CCF8DCDFD314A0,
 				69AA9A49FB2EA0B6DED32F10,
 				7B45690CE0BF55AD3DC0FD87,
 				4F9E211C7EA3560377DDB653,
@@ -2917,6 +2937,7 @@
 				213C54C8869B0BECF7D71CC1,
 				367ED43A68B32F688AAA4769,
 				7F165AA3BB53BB54375B4F63,
+				D5A2394ECC0434C6DC939740,
 				F9690C3998CE03484F9DA4E7,
 				F342A5A44035570BC1EED890,
 				0AA4957054BA898F77C9356B,

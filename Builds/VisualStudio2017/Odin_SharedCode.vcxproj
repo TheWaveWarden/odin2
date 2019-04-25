@@ -144,6 +144,7 @@
     <ClCompile Include="..\..\Source\audio\Oscillators\ChiptuneOscillator.cpp"/>
     <ClCompile Include="..\..\Source\audio\Oscillators\DriftGenerator.cpp"/>
     <ClCompile Include="..\..\Source\audio\Oscillators\FMOscillator.cpp"/>
+    <ClCompile Include="..\..\Source\audio\Oscillators\LFO.cpp"/>
     <ClCompile Include="..\..\Source\audio\Oscillators\MultiOscillator.cpp"/>
     <ClCompile Include="..\..\Source\audio\Oscillators\NoiseOscillator.cpp"/>
     <ClCompile Include="..\..\Source\audio\Oscillators\Oscillator.cpp"/>
@@ -2055,6 +2056,7 @@
     <ClInclude Include="..\..\Source\audio\Oscillators\ChiptuneOscillator.h"/>
     <ClInclude Include="..\..\Source\audio\Oscillators\DriftGenerator.h"/>
     <ClInclude Include="..\..\Source\audio\Oscillators\FMOscillator.h"/>
+    <ClInclude Include="..\..\Source\audio\Oscillators\LFO.h"/>
     <ClInclude Include="..\..\Source\audio\Oscillators\MultiOscillator.h"/>
     <ClInclude Include="..\..\Source\audio\Oscillators\NoiseOscillator.h"/>
     <ClInclude Include="..\..\Source\audio\Oscillators\Oscillator.h"/>

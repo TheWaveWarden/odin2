@@ -74,6 +74,8 @@
           <FILE id="R0zX2y" name="FMOscillator.cpp" compile="1" resource="0"
                 file="Source/audio/Oscillators/FMOscillator.cpp"/>
           <FILE id="YA7M7F" name="FMOscillator.h" compile="0" resource="0" file="Source/audio/Oscillators/FMOscillator.h"/>
+          <FILE id="eJ0pSP" name="LFO.cpp" compile="1" resource="0" file="Source/audio/Oscillators/LFO.cpp"/>
+          <FILE id="qIP5Ci" name="LFO.h" compile="0" resource="0" file="Source/audio/Oscillators/LFO.h"/>
           <FILE id="YVfWG0" name="MultiOscillator.cpp" compile="1" resource="0"
                 file="Source/audio/Oscillators/MultiOscillator.cpp"/>
           <FILE id="nEhvRd" name="MultiOscillator.h" compile="0" resource="0"
