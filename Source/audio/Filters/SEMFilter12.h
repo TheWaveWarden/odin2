@@ -14,6 +14,7 @@ public:
 
 	double m_transition;
 	double m_resonance;
+	double m_resonance_modded;
 	double m_alpha;
 	double m_alpha_0;
 	double m_rho;

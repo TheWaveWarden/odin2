@@ -10,6 +10,8 @@ SEMFilter12::SEMFilter12()
     reset();
 
     m_transition = -1.;
+    m_resonance = 0.5f;
+    m_resonance_modded = m_resonance;
 }
 
 SEMFilter12::~SEMFilter12()
@@ -31,7 +33,12 @@ void SEMFilter12::update()
     double wa = (2 / T) * tan(wd * T / 2);
     double g = wa * T / 2;
 
-    double r = 1.0 / (2.0 * m_resonance);
+    m_resonance_modded = m_resonance + (*m_res_mod) * 24.5;
+    m_resonance_modded = m_resonance_modded > 25 ? 25 : m_resonance_modded;
+    m_resonance_modded = m_resonance_modded < 0.5 ? 0.5 : m_resonance_modded;
+
+
+    double r = 1.0 / (2.0 * m_resonance_modded);
 
     m_alpha_0 = 1.0 / (1.0 + 2.0 * r * g + g * g);
     m_alpha = g;
@@ -47,7 +54,7 @@ double SEMFilter12::doFilter(double xn)
     
 
     double lpf = m_alpha * bpf + m_z_2;
-    double r = 1.0 / (2.0 * m_resonance);
+    double r = 1.0 / (2.0 * m_resonance_modded);
     double bsf = xn - 2.0 * r * bpf;
 
     m_z_1 = m_alpha * hpf + bpf;

@@ -50,10 +50,10 @@ class Filter
 	bool m_NLP;
 	double m_overdrive;
 
-	void setFreqModPointer(float* p_pointer){
+	virtual void setFreqModPointer(float* p_pointer){
 		m_freq_mod = p_pointer;
 	}
-	void setResModPointer(float* p_pointer){
+	virtual void setResModPointer(float* p_pointer){
 		m_res_mod = p_pointer;
 	}
 

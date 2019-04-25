@@ -17,7 +17,7 @@ void SEMFilter24::reset() {
 }
 
 void SEMFilter24::setResControl(double p_res) {
-	m_resonance = 24.5 * p_res*p_res + 0.5;
+	m_resonance = 20.5 * p_res*p_res + 0.5;
 	m_resonance *= 0.2;
 	m_SEM1.m_resonance = m_resonance;
 	m_SEM2.m_resonance = m_resonance;

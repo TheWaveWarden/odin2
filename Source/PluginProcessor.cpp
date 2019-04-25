@@ -324,6 +324,10 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
 
           } else if (*m_fil_type[fil] == FILTER_TYPE_SEM12) {
             // todo need params set to wörk...
+            //m_voice[voice].SEM_filter_12[fil].setResControl(0);
+	          //m_voice[voice].SEM_filter_12[fil].m_freq_base = 2000.f;
+	          //m_voice[voice].SEM_filter_12[fil].m_overdrive = 0.f;
+	          //m_voice[voice].SEM_filter_12[fil].m_transition = -1.f;
             m_voice[voice].SEM_filter_12[fil].update();
             m_filter_output[voice][fil] =
                 m_voice[voice].SEM_filter_12[fil].doFilter(filter_input[fil]) *

@@ -13,6 +13,18 @@ class SEMFilter24 : public Filter
 	void setResControl(double res) override;
 	double doFilter(double xn) override;
 
+	void setFreqModPointer(float* p_pointer) override {
+		Filter::setFreqModPointer(p_pointer);
+		m_SEM1.setFreqModPointer(p_pointer);
+		m_SEM2.setFreqModPointer(p_pointer);
+	}
+
+	void setResModPointer(float* p_pointer) override {
+		m_SEM1.setResModPointer(p_pointer);
+		m_SEM2.setResModPointer(p_pointer);
+		m_res_mod = p_pointer;
+	}
+
 	float m_transition;
 	float m_resonance;
 
@@ -27,7 +39,15 @@ class SEMFilter24 : public Filter
 		double wa = (2 / T) * tan(wd * T / 2);
 		double g = wa * T / 2;
 
-		double r = 1.0 / (2.0 * m_resonance);
+		float resonance_modded = m_resonance + (*m_res_mod) * 20.5 * 0.2;
+    resonance_modded = resonance_modded > 21*0.2 ? 21*0.2 : resonance_modded;
+    resonance_modded = resonance_modded < 0.1 ? 0.1 : resonance_modded;
+
+		m_SEM1.m_resonance_modded = resonance_modded;
+		m_SEM2.m_resonance_modded = resonance_modded;
+
+
+		double r = 1.0 / (2.0 * resonance_modded);
 
     	m_SEM1.m_alpha_0 = 1.0 / (1.0 + 2.0 * r * g + g * g);
     	m_SEM1.m_alpha = g;
