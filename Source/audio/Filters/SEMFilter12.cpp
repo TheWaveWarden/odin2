@@ -66,13 +66,6 @@ double SEMFilter12::doFilter(double xn)
         xn = m_transition * hpf + (1 - m_transition) * bsf;
     }
 
-    if (m_overdrive < 1.){
-	    //interpolate here so we have possibility of pure linear Processing
-	    xn = xn * (1. - m_overdrive) + m_overdrive * fasttanh(xn);
-	} else {
-	    xn = fasttanh(m_overdrive * xn);
-	}
-
     float vol_mod_factor = (*m_vol_mod) > 0 ? 1.f + 4 *(*m_vol_mod) : (1.f + *m_vol_mod);
 
     return xn * vol_mod_factor;

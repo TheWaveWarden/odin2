@@ -110,21 +110,14 @@ double DiodeFilter::doFilter(double xn)
 
 	double u = (xn - k_modded * sigma) / (1.0 + k_modded * m_gamma);
 
-	//todo copy saturation from ladderfilter
-	// TODO real approx?
-	if (m_overdrive < 1.)
-	{
-		//interpolate here so we have possibility of pure linear Processing
-		u = u * (1. - m_overdrive) + m_overdrive * fasttanh(u);
-	}
-	else
-	{
-		u = fasttanh(m_overdrive * u);
-	}
+
+	double output = m_LPF4.doFilter(m_LPF3.doFilter(m_LPF2.doFilter(m_LPF1.doFilter(u))));
+
+	applyOverdrive(output);
 
     float vol_mod_factor = (*m_vol_mod) > 0 ? 1.f + 4 *(*m_vol_mod) : (1.f + *m_vol_mod);	
 
-	return m_LPF4.doFilter(m_LPF3.doFilter(m_LPF2.doFilter(m_LPF1.doFilter(u)))) * vol_mod_factor;
+	return output * vol_mod_factor;
 }
 
 void DiodeFilter::setResControl(double res)

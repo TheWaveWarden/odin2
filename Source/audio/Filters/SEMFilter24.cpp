@@ -27,8 +27,6 @@ double SEMFilter24::doFilter(double xn) {
 
     m_SEM1.m_transition = m_transition;
     m_SEM2.m_transition = m_transition;
-    m_SEM1.m_overdrive = m_overdrive;
-    m_SEM2.m_overdrive = m_overdrive;
 
     return m_SEM1.doFilter(m_SEM2.doFilter(xn));
 }

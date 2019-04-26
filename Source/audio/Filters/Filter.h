@@ -25,19 +25,19 @@ public:
     return pow(2.f, p_semitones / 12.f);
   }
   // todo
-  float fasttanh(float p_input) {
+  float fasttanh(float p_input, float p_tanh_factor) {
     // idea2: use curveable x^3
     // tanh(3x)
-    return juce::dsp::FastMathApproximations::tanh(3.5f * p_input);
+    return juce::dsp::FastMathApproximations::tanh(p_tanh_factor * p_input);
   }
 
-  inline void applyOverdrive(double &pio_input) {
+  inline void applyOverdrive(double &pio_input, float p_tanh_factor = 3.5) {
     if (m_overdrive > 0.01f && m_overdrive < 1.f) {
       // interpolate here so we have possibility of pure linear Processing
       pio_input =
-          pio_input * (1. - m_overdrive) + m_overdrive * fasttanh(pio_input);
+          pio_input * (1. - m_overdrive) + m_overdrive * fasttanh(pio_input, p_tanh_factor);
     } else if (m_overdrive > 1.f) {
-      pio_input = fasttanh(m_overdrive * pio_input);
+      pio_input = fasttanh(m_overdrive * pio_input, p_tanh_factor);
     }
   }
 

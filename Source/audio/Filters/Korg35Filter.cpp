@@ -78,13 +78,6 @@ double Korg35Filter::doFilter(double xn)
 		double s35 = m_LPF2.getFeedbackOutput() + m_HPF1.getFeedbackOutput();
 		double u = m_alpha * (y1 + s35);
 
-        if (m_overdrive < 1.){
-		    //interpolate here so we have possibility of pure linear Processing
-		    u = u * (1. - m_overdrive) + m_overdrive * fasttanh(u);
-	    } else {
-		    u = fasttanh(m_overdrive * u);
-	    }
-
 		y = m_k_modded * m_LPF2.doFilter(u);
 		m_HPF1.doFilter(y);
 	} else {
@@ -93,17 +86,13 @@ double Korg35Filter::doFilter(double xn)
 		double u = m_alpha * (y1 + s35);
 
 
-        if (m_overdrive < 1.){
-		    //interpolate here so we have possibility of pure linear Processing
-		    u = u * (1. - m_overdrive) + m_overdrive * fasttanh(u);
-	    } else {
-		    u = fasttanh(m_overdrive * u);
-	    }
-
 		y = m_k_modded * u;
 		m_LPF1.doFilter(m_HPF2.doFilter(y));
 	}	
 	y /= m_k_modded;
+
+	//make this one a bit easier (3.f), its very aggresive
+	applyOverdrive(y, 3.f);
 
     float vol_mod_factor = (*m_vol_mod) > 0 ? 1.f + 4 *(*m_vol_mod) : (1.f + *m_vol_mod);	
 

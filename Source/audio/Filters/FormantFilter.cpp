@@ -87,15 +87,6 @@ void FormantFilter::setTransition(float p_trans){
 double FormantFilter::doFilter(double p_input){
     double out = m_BPF1.doFilter(m_BPF2.doFilter(p_input));
 
-    if (m_overdrive < 1.) {
-			//interpolate here so we have possibility of pure linear Processing
-			out = out * (1. - m_overdrive) + m_overdrive * fasttanh(out);
-	}
-	else {
-		out = fasttanh(m_overdrive*out);
-	}
-
-
     float vol_mod_factor = (*m_vol_mod) > 0 ? 1.f + 4 *(*m_vol_mod) : (1.f + *m_vol_mod);    
 
     return out * vol_mod_factor;
