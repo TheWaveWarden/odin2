@@ -765,6 +765,22 @@ void OdinAudioProcessor::treeValueChanged(const String &p_ID,
     for (int voice = 0; voice < VOICES; ++voice) {
       m_voice[voice].env[3].setLoop(p_new_value);
     }
+  } else if (id == m_lfo1_freq_identifier) {
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_voice[voice].lfo[0].setBaseFrequency(p_new_value);
+    }
+  } else if (id == m_lfo2_freq_identifier) {
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_voice[voice].lfo[1].setBaseFrequency(p_new_value);
+    }
+  } else if (id == m_lfo3_freq_identifier) {
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_voice[voice].lfo[2].setBaseFrequency(p_new_value);
+    }
+  } else if (id == m_lfo4_freq_identifier) {
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_voice[voice].lfo[3].setBaseFrequency(p_new_value);
+    }
   }
   else if (id == m_osc1_vol_identifier) {
     m_osc_vol_control[0] = Decibels::decibelsToGain(p_new_value);

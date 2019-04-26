@@ -56,8 +56,6 @@ float WavetableOsc1D::doWavetable(){
     float fractional = m_read_index - (float)read_index_trunc;
     int read_index_next = read_index_trunc + 1 >= WAVETABLE_LENGTH ? 0 : read_index_trunc + 1;
 
-    //DBG((long)m_current_table);
-
     // do linear interpolation 
     float output = linearInterpolation(m_current_table[read_index_trunc], m_current_table[read_index_next], fractional);
 

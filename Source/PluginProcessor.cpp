@@ -61,6 +61,10 @@ OdinAudioProcessor::OdinAudioProcessor()
       m_voice[i].wavedraw_osc[osc].loadWavedrawTables(osc);
       m_voice[i].chipdraw_osc[osc].loadChipdrawTables(osc);
       m_voice[i].specdraw_osc[osc].loadSpecdrawTables(osc);
+      m_voice[i].lfo[osc].loadWavetables();
+    }
+    for(int mod = 0; mod < 4; ++mod){
+      m_voice[i].lfo[mod].loadWavetables();
     }
   }
 }
@@ -211,9 +215,13 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
     for (int voice = 0; voice < VOICES; ++voice) {
       if (m_voice[voice]) {
 
-        //===== ADSR ======
-        for (int env = 0; env < 4; ++env) {
-          m_adsr[voice][env] = m_voice[voice].env[env].doEnvelope();
+        for (int mod = 0; mod < 4; ++mod) {
+          //===== ADSR ======
+          m_adsr[voice][mod] = m_voice[voice].env[mod].doEnvelope();
+
+          //====== LFO ======
+          m_voice[voice].lfo[mod].update();
+          m_lfo[voice][mod] = m_voice[voice].lfo[mod].doOscillate();
         }
 
         //===== OSCS ======
@@ -324,10 +332,10 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
 
           } else if (*m_fil_type[fil] == FILTER_TYPE_SEM12) {
             // todo need params set to wörk...
-            //m_voice[voice].SEM_filter_12[fil].setResControl(0);
-	          //m_voice[voice].SEM_filter_12[fil].m_freq_base = 2000.f;
-	          //m_voice[voice].SEM_filter_12[fil].m_overdrive = 0.f;
-	          //m_voice[voice].SEM_filter_12[fil].m_transition = -1.f;
+            // m_voice[voice].SEM_filter_12[fil].setResControl(0);
+            // m_voice[voice].SEM_filter_12[fil].m_freq_base = 2000.f;
+            // m_voice[voice].SEM_filter_12[fil].m_overdrive = 0.f;
+            // m_voice[voice].SEM_filter_12[fil].m_transition = -1.f;
             m_voice[voice].SEM_filter_12[fil].update();
             m_filter_output[voice][fil] =
                 m_voice[voice].SEM_filter_12[fil].doFilter(filter_input[fil]) *
@@ -608,58 +616,88 @@ void OdinAudioProcessor::setModulationPointers() {
       m_voice[voice].noise_osc[osc].setVolModPointer(
           &(m_mod_destinations.voice[voice].osc[osc].vol));
 
-      m_voice[voice].analog_osc[osc].setPWMModPointer(&(m_mod_destinations.voice[voice].osc[osc].pulse_width));
+      m_voice[voice].analog_osc[osc].setPWMModPointer(
+          &(m_mod_destinations.voice[voice].osc[osc].pulse_width));
 
-      m_voice[voice].wavetable_osc[osc].setPosModPointer(&(m_mod_destinations.voice[voice].osc[osc].position));
-      m_voice[voice].multi_osc[osc].setPosModPointer(&(m_mod_destinations.voice[voice].osc[osc].position));
+      m_voice[voice].wavetable_osc[osc].setPosModPointer(
+          &(m_mod_destinations.voice[voice].osc[osc].position));
+      m_voice[voice].multi_osc[osc].setPosModPointer(
+          &(m_mod_destinations.voice[voice].osc[osc].position));
 
-      m_voice[voice].multi_osc[osc].setDetuneModPointer(&(m_mod_destinations.voice[voice].osc[osc].detune));
+      m_voice[voice].multi_osc[osc].setDetuneModPointer(
+          &(m_mod_destinations.voice[voice].osc[osc].detune));
 
-      m_voice[voice].multi_osc[osc].setSpreadModPointer(&(m_mod_destinations.voice[voice].osc[osc].spread));
+      m_voice[voice].multi_osc[osc].setSpreadModPointer(
+          &(m_mod_destinations.voice[voice].osc[osc].spread));
 
-      m_voice[voice].vector_osc[osc].setXModPointer(&(m_mod_destinations.voice[voice].osc[osc].x));
-      m_voice[voice].vector_osc[osc].setYModPointer(&(m_mod_destinations.voice[voice].osc[osc].y));
+      m_voice[voice].vector_osc[osc].setXModPointer(
+          &(m_mod_destinations.voice[voice].osc[osc].x));
+      m_voice[voice].vector_osc[osc].setYModPointer(
+          &(m_mod_destinations.voice[voice].osc[osc].y));
 
-      m_voice[voice].chiptune_osc[osc].setArpSpeedModPointer(&(m_mod_destinations.voice[voice].osc[osc].arp_speed));
+      m_voice[voice].chiptune_osc[osc].setArpSpeedModPointer(
+          &(m_mod_destinations.voice[voice].osc[osc].arp_speed));
 
-      m_voice[voice].fm_osc[osc].setFMModPointer(&(m_mod_destinations.voice[voice].osc[osc].fm_amount));
+      m_voice[voice].fm_osc[osc].setFMModPointer(
+          &(m_mod_destinations.voice[voice].osc[osc].fm_amount));
 
-      m_voice[voice].fm_osc[osc].setCarrierRatioModPointer(&(m_mod_destinations.voice[voice].osc[osc].carrier_ratio));
-      m_voice[voice].fm_osc[osc].setModulatorRatioModPointer(&(m_mod_destinations.voice[voice].osc[osc].modulator_ratio));
+      m_voice[voice].fm_osc[osc].setCarrierRatioModPointer(
+          &(m_mod_destinations.voice[voice].osc[osc].carrier_ratio));
+      m_voice[voice].fm_osc[osc].setModulatorRatioModPointer(
+          &(m_mod_destinations.voice[voice].osc[osc].modulator_ratio));
 
-      m_voice[voice].noise_osc[osc].setHPModPointer(&(m_mod_destinations.voice[voice].osc[osc].hp_freq));
-      m_voice[voice].noise_osc[osc].setLPModPointer(&(m_mod_destinations.voice[voice].osc[osc].lp_freq));
-      
+      m_voice[voice].noise_osc[osc].setHPModPointer(
+          &(m_mod_destinations.voice[voice].osc[osc].hp_freq));
+      m_voice[voice].noise_osc[osc].setLPModPointer(
+          &(m_mod_destinations.voice[voice].osc[osc].lp_freq));
     }
-    for(int fil = 0; fil < 2; ++fil){
-      m_voice[voice].ladder_filter[fil].setFreqModPointer(&(m_mod_destinations.voice[voice].filter[fil].freq));
-      m_voice[voice].diode_filter[fil].setFreqModPointer(&(m_mod_destinations.voice[voice].filter[fil].freq));
-      m_voice[voice].korg_filter[fil].setFreqModPointer(&(m_mod_destinations.voice[voice].filter[fil].freq));
-      m_voice[voice].comb_filter[fil].setFreqModPointer(&(m_mod_destinations.voice[voice].filter[fil].freq));
-      m_voice[voice].SEM_filter_12[fil].setFreqModPointer(&(m_mod_destinations.voice[voice].filter[fil].freq));
-      m_voice[voice].SEM_filter_24[fil].setFreqModPointer(&(m_mod_destinations.voice[voice].filter[fil].freq));
-      
-      m_voice[voice].ladder_filter[fil].setResModPointer(&(m_mod_destinations.voice[voice].filter[fil].res));
-      m_voice[voice].diode_filter[fil].setResModPointer(&(m_mod_destinations.voice[voice].filter[fil].res));
-      m_voice[voice].korg_filter[fil].setResModPointer(&(m_mod_destinations.voice[voice].filter[fil].res));
-      m_voice[voice].SEM_filter_12[fil].setResModPointer(&(m_mod_destinations.voice[voice].filter[fil].res));
-      m_voice[voice].SEM_filter_24[fil].setResModPointer(&(m_mod_destinations.voice[voice].filter[fil].res));
-      m_voice[voice].comb_filter[fil].setResModPointer(&(m_mod_destinations.voice[voice].filter[fil].res));
-      
-      
-      
+    for (int fil = 0; fil < 2; ++fil) {
+      m_voice[voice].ladder_filter[fil].setFreqModPointer(
+          &(m_mod_destinations.voice[voice].filter[fil].freq));
+      m_voice[voice].diode_filter[fil].setFreqModPointer(
+          &(m_mod_destinations.voice[voice].filter[fil].freq));
+      m_voice[voice].korg_filter[fil].setFreqModPointer(
+          &(m_mod_destinations.voice[voice].filter[fil].freq));
+      m_voice[voice].comb_filter[fil].setFreqModPointer(
+          &(m_mod_destinations.voice[voice].filter[fil].freq));
+      m_voice[voice].SEM_filter_12[fil].setFreqModPointer(
+          &(m_mod_destinations.voice[voice].filter[fil].freq));
+      m_voice[voice].SEM_filter_24[fil].setFreqModPointer(
+          &(m_mod_destinations.voice[voice].filter[fil].freq));
+
+      m_voice[voice].ladder_filter[fil].setResModPointer(
+          &(m_mod_destinations.voice[voice].filter[fil].res));
+      m_voice[voice].diode_filter[fil].setResModPointer(
+          &(m_mod_destinations.voice[voice].filter[fil].res));
+      m_voice[voice].korg_filter[fil].setResModPointer(
+          &(m_mod_destinations.voice[voice].filter[fil].res));
+      m_voice[voice].SEM_filter_12[fil].setResModPointer(
+          &(m_mod_destinations.voice[voice].filter[fil].res));
+      m_voice[voice].SEM_filter_24[fil].setResModPointer(
+          &(m_mod_destinations.voice[voice].filter[fil].res));
+      m_voice[voice].comb_filter[fil].setResModPointer(
+          &(m_mod_destinations.voice[voice].filter[fil].res));
+    }
+
+    for (int mod = 0; mod < 4; ++mod) {
+      m_voice[voice].lfo[mod].setPitchModExpPointer(
+          &(m_mod_destinations.voice[voice].lfo[mod].freq));
     }
   }
 
-  for(int stereo = 0; stereo < 2; ++stereo){
-    m_ladder_filter[stereo].setFreqModPointer(&(m_mod_destinations.filter3.freq));
-    m_diode_filter[stereo].setFreqModPointer(&(m_mod_destinations.filter3.freq));
+  for (int stereo = 0; stereo < 2; ++stereo) {
+    m_ladder_filter[stereo].setFreqModPointer(
+        &(m_mod_destinations.filter3.freq));
+    m_diode_filter[stereo].setFreqModPointer(
+        &(m_mod_destinations.filter3.freq));
     m_korg_filter[stereo].setFreqModPointer(&(m_mod_destinations.filter3.freq));
-    m_SEM_filter_12[stereo].setFreqModPointer(&(m_mod_destinations.filter3.freq));
-    m_SEM_filter_24[stereo].setFreqModPointer(&(m_mod_destinations.filter3.freq));
+    m_SEM_filter_12[stereo].setFreqModPointer(
+        &(m_mod_destinations.filter3.freq));
+    m_SEM_filter_24[stereo].setFreqModPointer(
+        &(m_mod_destinations.filter3.freq));
     m_comb_filter[stereo].setFreqModPointer(&(m_mod_destinations.filter3.freq));
 
-    m_ladder_filter[stereo].setFreqModPointer(&(m_mod_destinations.filter3.res));
-    
+    m_ladder_filter[stereo].setFreqModPointer(
+        &(m_mod_destinations.filter3.res));
   }
 }

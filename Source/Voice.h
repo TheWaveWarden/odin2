@@ -17,6 +17,8 @@
 #include "audio/Oscillators/NoiseOscillator.h"
 #include "audio/Oscillators/VectorOscillator.h"
 #include "audio/Oscillators/WavetableOsc2D.h"
+#include "audio/Oscillators/LFO.h"
+
 
 // wavedraw
 // chipdraw
@@ -168,8 +170,12 @@ struct Voice {
       vector_osc[osc].reset();
       chiptune_osc[osc].reset();
       fm_osc[osc].reset();
-
-      // todo draw oscs
+      wavedraw_osc[osc].reset();
+      specdraw_osc[osc].reset();
+      chipdraw_osc[osc].reset();
+    }
+    for(int mod = 0; mod < 4; ++mod){
+      lfo[mod].reset();
     }
     for (int fil = 0; fil < 2; ++fil) {
       ladder_filter[fil].reset();
@@ -294,7 +300,8 @@ struct Voice {
   FormantFilter formant_filter[2];
   CombFilter comb_filter[2];
   // ADSRs
-  ADSREnvelope env[4]; // amp
+  ADSREnvelope env[4];
+  LFO lfo[4];
 
   // LFOs
   // todo

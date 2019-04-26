@@ -109,7 +109,7 @@ private:
 
   //MOD SOURCES
   float m_adsr[VOICES][4] = {0.f};
-  float m_lfo[VOICES][4] = {0.f}; //doesnt exist yet
+  float m_lfo[VOICES][4] = {0.f};
   float m_filter_output[VOICES][2] = {0.f};
   float m_osc_output[VOICES][3] = {0.f};
   float m_MIDI_key[VOICES] = {0.f};
