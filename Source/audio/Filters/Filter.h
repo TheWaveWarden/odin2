@@ -32,12 +32,14 @@ public:
   }
 
   inline void applyOverdrive(double &pio_input, float p_tanh_factor = 3.5) {
-    if (m_overdrive > 0.01f && m_overdrive < 1.f) {
+    float overdrive_modded = m_overdrive + 2* (*m_saturation_mod);
+    overdrive_modded = overdrive_modded < 0 ? 0 : overdrive_modded;
+    if (overdrive_modded > 0.01f && overdrive_modded < 1.f) {
       // interpolate here so we have possibility of pure linear Processing
       pio_input =
-          pio_input * (1. - m_overdrive) + m_overdrive * fasttanh(pio_input, p_tanh_factor);
-    } else if (m_overdrive > 1.f) {
-      pio_input = fasttanh(m_overdrive * pio_input, p_tanh_factor);
+          pio_input * (1. - overdrive_modded) + overdrive_modded * fasttanh(pio_input, p_tanh_factor);
+    } else if (overdrive_modded > 1.f) {
+      pio_input = fasttanh(overdrive_modded * pio_input, p_tanh_factor);
     }
   }
 
@@ -60,6 +62,7 @@ public:
   virtual void setFreqModPointer(float *p_pointer) { m_freq_mod = p_pointer; }
   virtual void setResModPointer(float *p_pointer) { m_res_mod = p_pointer; }
   virtual void setVolModPointer(float *p_pointer) { m_vol_mod = p_pointer; }
+  virtual void setSaturationModPointer(float *p_pointer) { m_saturation_mod = p_pointer; }
 
 public:
   inline void setFcMod(double d) { m_mod_frequency = d; }
@@ -92,6 +95,9 @@ protected:
   float *m_vol_mod;
   float *m_res_mod;
   float *m_freq_mod;
+  float *m_saturation_mod = &m_mod_dummy_zero;
+
+  float m_mod_dummy_zero = 0;
 
   double m_samplerate;
   double m_freq_modded;

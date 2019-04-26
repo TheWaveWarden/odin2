@@ -693,6 +693,15 @@ void OdinAudioProcessor::setModulationPointers() {
           &(m_mod_destinations.voice[voice].filter[fil].gain));
       m_voice[voice].formant_filter[fil].setVolModPointer(
           &(m_mod_destinations.voice[voice].filter[fil].gain));
+
+
+
+      m_voice[voice].ladder_filter[fil].setSaturationModPointer(
+          &(m_mod_destinations.voice[voice].filter[fil].saturation));
+      m_voice[voice].diode_filter[fil].setSaturationModPointer(
+          &(m_mod_destinations.voice[voice].filter[fil].saturation));
+      m_voice[voice].korg_filter[fil].setSaturationModPointer(
+          &(m_mod_destinations.voice[voice].filter[fil].saturation));
     }
 
     for (int mod = 0; mod < 4; ++mod) {

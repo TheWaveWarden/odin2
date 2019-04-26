@@ -29,6 +29,7 @@ struct ModDestFilter {
   float res;
   float drive;
   float gain;
+  float saturation;
   float env_amount;
   float vel_amount;
   float kbd_amount;
