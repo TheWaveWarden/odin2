@@ -25,15 +25,63 @@ LFOSelectorComponent::LFOSelectorComponent()
   m_display.setInlay(1);
   addAndMakeVisible(m_display);
 
+  juce::Image sine = ImageCache::getFromFile(
+      juce::File(GRAPHICS_PATH + "cropped/lfo/sine.png"));
+  m_display.addWave(sine);
   juce::Image saw = ImageCache::getFromFile(
       juce::File(GRAPHICS_PATH + "cropped/lfo/saw.png"));
   m_display.addWave(saw);
-  juce::Image square = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/lfo/square.png"));
-  m_display.addWave(square);
   juce::Image triangle = ImageCache::getFromFile(
       juce::File(GRAPHICS_PATH + "cropped/lfo/triangle.png"));
   m_display.addWave(triangle);
+  juce::Image square = ImageCache::getFromFile(
+      juce::File(GRAPHICS_PATH + "cropped/lfo/square50.png"));
+  m_display.addWave(square);
+  juce::Image square25 = ImageCache::getFromFile(
+      juce::File(GRAPHICS_PATH + "cropped/lfo/square25.png"));
+  m_display.addWave(square25);
+  juce::Image square12 = ImageCache::getFromFile(
+      juce::File(GRAPHICS_PATH + "cropped/lfo/square12.png"));
+  m_display.addWave(square12);
+  juce::Image peak = ImageCache::getFromFile(
+      juce::File(GRAPHICS_PATH + "cropped/lfo/peak.png"));
+  m_display.addWave(peak);
+  juce::Image SH = ImageCache::getFromFile(
+      juce::File(GRAPHICS_PATH + "cropped/lfo/SH.png"));
+  m_display.addWave(SH);
+  juce::Image pyram3 = ImageCache::getFromFile(
+      juce::File(GRAPHICS_PATH + "cropped/lfo/pyram3.png"));
+  m_display.addWave(pyram3);
+  juce::Image pyram4 = ImageCache::getFromFile(
+      juce::File(GRAPHICS_PATH + "cropped/lfo/pyram4.png"));
+  m_display.addWave(pyram4);
+  juce::Image pyram6 = ImageCache::getFromFile(
+      juce::File(GRAPHICS_PATH + "cropped/lfo/pyram6.png"));
+  m_display.addWave(pyram6);
+  juce::Image pyram8 = ImageCache::getFromFile(
+      juce::File(GRAPHICS_PATH + "cropped/lfo/pyram8.png"));
+  m_display.addWave(pyram8);
+  juce::Image stair3 = ImageCache::getFromFile(
+      juce::File(GRAPHICS_PATH + "cropped/lfo/stair3.png"));
+  m_display.addWave(stair3);
+  juce::Image stair4 = ImageCache::getFromFile(
+      juce::File(GRAPHICS_PATH + "cropped/lfo/stair4.png"));
+  m_display.addWave(stair4);
+  juce::Image stair6 = ImageCache::getFromFile(
+      juce::File(GRAPHICS_PATH + "cropped/lfo/stair6.png"));
+  m_display.addWave(stair6);
+  juce::Image stair8 = ImageCache::getFromFile(
+      juce::File(GRAPHICS_PATH + "cropped/lfo/stair8.png"));
+  m_display.addWave(stair8);
+  juce::Image wavedraw1 = ImageCache::getFromFile(
+      juce::File(GRAPHICS_PATH + "cropped/lfo/wavedraw1.png"));
+  m_display.addWave(wavedraw1);
+  juce::Image wavedraw2 = ImageCache::getFromFile(
+      juce::File(GRAPHICS_PATH + "cropped/lfo/wavedraw2.png"));
+  m_display.addWave(wavedraw2);
+  juce::Image wavedraw3 = ImageCache::getFromFile(
+      juce::File(GRAPHICS_PATH + "cropped/lfo/wavedraw3.png"));
+  m_display.addWave(wavedraw3);
 
   juce::Image up_1 = ImageCache::getFromFile(
       juce::File(GRAPHICS_PATH + "cropped/buttons/buttonup_2.png"));

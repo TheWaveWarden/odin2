@@ -16,6 +16,7 @@ void LFO::loadWavetables() {
         wavetable,
         WavetableContainer::getInstance().getWavetablePointers(wavetable));
   }
+  setWavetablePointer(0, WavetableContainer::getInstance().getWavedrawPointer(2));
 }
 
 float LFO::doOscillate() {
