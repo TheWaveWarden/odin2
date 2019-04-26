@@ -8,6 +8,9 @@ public:
   LFO() {
     //always use lowest table, since this is LFO and we really dont care about aliasing
     m_sub_table_index = 0;
+
+    //get first random SH value
+    m_SH_value = getBipolarRandom();
   }
   ~LFO() {}
 
@@ -36,7 +39,23 @@ public:
 
 
   }
+
+  void setSHActive(bool p_active){
+    m_SH_active = p_active;
+  }
+
+  float getBipolarRandom(){
+    float white_noise = (float)rand();
+	white_noise          = 2 * (white_noise / RAND_MAX) - 1;
+  }
+
+  float doSampleHold();
+
 protected:
+
+  float m_SH_active = false;
+  float m_SH_value;
+
   inline int getTableIndex() { return 0; }
 
 };

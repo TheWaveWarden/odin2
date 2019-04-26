@@ -16,9 +16,30 @@ void LFO::loadWavetables() {
         wavetable,
         WavetableContainer::getInstance().getWavetablePointers(wavetable));
   }
-  setWavetablePointer(0, WavetableContainer::getInstance().getWavedrawPointer(2));
+  setWavetablePointer(0,
+                      WavetableContainer::getInstance().getWavedrawPointer(2));
 }
 
 float LFO::doOscillate() {
-  return doWavetable();
+  if (!m_SH_active) {
+    return doWavetable();
+  } else {
+    return doSampleHold();
+  }
+}
+
+float LFO::doSampleHold() {
+
+  m_read_index += m_wavetable_inc;
+
+  while (m_read_index < 0) {
+    m_read_index += WAVETABLE_LENGTH;
+    m_SH_value = getBipolarRandom();
+  }
+  while (m_read_index >= WAVETABLE_LENGTH) {
+    m_read_index -= WAVETABLE_LENGTH;
+    m_SH_value = getBipolarRandom();    
+  }
+
+  return m_SH_value;
 }
