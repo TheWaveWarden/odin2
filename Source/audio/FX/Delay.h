@@ -43,6 +43,10 @@ public:
 		m_highpass.m_freq_base = p_freq;
 	}
 
+	void setHPFreqModPointer(float* p_pointer){
+		m_highpass.setFreqModPointer(p_pointer);
+	}
+
 	inline float linearInterpolation(float p_low, float p_high, float p_distance){
 		return (1.f - p_distance) * p_low + p_distance * p_high;
 	}
