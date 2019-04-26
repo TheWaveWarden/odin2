@@ -476,11 +476,11 @@ void OdinAudioProcessor::treeValueChanged(const String &p_ID,
     }
   } else if (id == m_fil1_saturation_identifier) {
     for (int voice = 0; voice < VOICES; ++voice) {
-      m_voice[voice].setSaturation(p_new_value, 0);
+      m_voice[voice].setSaturation(p_new_value*2, 0);
     }
   } else if (id == m_fil2_saturation_identifier) {
     for (int voice = 0; voice < VOICES; ++voice) {
-      m_voice[voice].setSaturation(p_new_value, 1);
+      m_voice[voice].setSaturation(p_new_value*2, 1);
     }
   } else if (id == m_fil1_vowel_left_identifier) {
     for (int voice = 0; voice < VOICES; ++voice) {
@@ -617,16 +617,16 @@ void OdinAudioProcessor::treeValueChanged(const String &p_ID,
     m_comb_filter[1].m_env_mod_amount = p_new_value;
     m_formant_filter[1].m_env_mod_amount = p_new_value;
   } else if (id == m_fil3_saturation_identifier) {
-    m_ladder_filter[0].m_overdrive = p_new_value;
-    m_SEM_filter_12[0].m_overdrive = p_new_value;
-    m_SEM_filter_24[0].m_overdrive = p_new_value;
-    m_korg_filter[0].m_overdrive = p_new_value;
-    m_diode_filter[0].m_overdrive = p_new_value;
-    m_ladder_filter[1].m_overdrive = p_new_value;
-    m_SEM_filter_12[1].m_overdrive = p_new_value;
-    m_SEM_filter_24[1].m_overdrive = p_new_value;
-    m_korg_filter[1].m_overdrive = p_new_value;
-    m_diode_filter[1].m_overdrive = p_new_value;
+    m_ladder_filter[0].m_overdrive = p_new_value * 2;
+    m_SEM_filter_12[0].m_overdrive = p_new_value * 2;
+    m_SEM_filter_24[0].m_overdrive = p_new_value * 2;
+    m_korg_filter[0].m_overdrive = p_new_value * 2;
+    m_diode_filter[0].m_overdrive = p_new_value * 2;
+    m_ladder_filter[1].m_overdrive = p_new_value * 2;
+    m_SEM_filter_12[1].m_overdrive = p_new_value * 2;
+    m_SEM_filter_24[1].m_overdrive = p_new_value * 2;
+    m_korg_filter[1].m_overdrive = p_new_value * 2;
+    m_diode_filter[1].m_overdrive = p_new_value * 2;
   } else if (id == m_fil3_vowel_left_identifier) {
     m_formant_filter[0].setVowelLeft((int)p_new_value - 1);
     m_formant_filter[1].setVowelLeft((int)p_new_value - 1);

@@ -373,6 +373,10 @@
 			isa = PBXBuildFile;
 			fileRef = 66F1EB78F4CE580B07190050;
 		};
+		7AAE2AE23FE7596ED4500527 = {
+			isa = PBXBuildFile;
+			fileRef = A458815DFEB5F572F375D77F;
+		};
 		94AEB896EE6B79481E80793D = {
 			isa = PBXBuildFile;
 			fileRef = 2DFC51237CD01D4E0F763B3B;
@@ -1324,6 +1328,13 @@
 			path = ../../Source/ModMatrixComponent.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		A458815DFEB5F572F375D77F = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.objcpp;
+			name = "include_juce_dsp.mm";
+			path = "../../JuceLibraryCode/include_juce_dsp.mm";
+			sourceTree = "SOURCE_ROOT";
+		};
 		A65B5408553DE72271402426 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
@@ -1603,6 +1614,13 @@
 			name = Chorus.h;
 			path = ../../Source/audio/FX/Chorus.h;
 			sourceTree = "SOURCE_ROOT";
+		};
+		D7394E31B6AEC6E7A3FCB355 = {
+			isa = PBXFileReference;
+			lastKnownFileType = file;
+			name = "juce_dsp";
+			path = "~/JUCE/modules/juce_dsp";
+			sourceTree = "<absolute>";
 		};
 		D79D1E973BABFA7811DB8B21 = {
 			isa = PBXFileReference;
@@ -2110,6 +2128,7 @@
 				9BBA09EF915225C6256CA53E,
 				28DEC571CCF1EE1B026BA0A0,
 				6AD4EA43AE9941D543AEE196,
+				D7394E31B6AEC6E7A3FCB355,
 				9CE64407C9CEA088B72E63F9,
 				DF235E90C8EE83A30B3C754D,
 				5D45A684C17C294E812B405B,
@@ -2136,6 +2155,7 @@
 				E05054C4DCA1689871E8E6F8,
 				0DBE30205E570259D236FADD,
 				66F1EB78F4CE580B07190050,
+				A458815DFEB5F572F375D77F,
 				2DFC51237CD01D4E0F763B3B,
 				3EED4B506AAAF2C75F914125,
 				23B21334BB03AF2359533A6B,
@@ -3002,6 +3022,7 @@
 				C4085864A8B2002F190D94BE,
 				59139C2150EE77F2A3512B9B,
 				9870C8C18C4477C3178F0714,
+				7AAE2AE23FE7596ED4500527,
 				94AEB896EE6B79481E80793D,
 				55FCA8A38E81EFA53BBE6B24,
 				35D936875A902C6EF92A08BD,
