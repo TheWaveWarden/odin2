@@ -26,6 +26,8 @@ public:
 
   void setFreqModPointer(float *p_pointer) { m_freq_mod = p_pointer; }
   void setVolModPointer(float *p_pointer) { m_vol_mod = p_pointer; }
+  void setEnvModPointer(float *p_pointer) { m_env_mod_mod = p_pointer; }
+  
 
   inline void setPositive(bool p_positive) {
     m_positive_comb = p_positive ? 1 : -1;
@@ -63,6 +65,9 @@ public:
   float* m_freq_mod;
   float* m_res_mod;
   float* m_vol_mod;
+  float* m_env_mod_mod = &m_zero_modulation_dummy;
+
+  float m_zero_modulation_dummy = 0.f;
 
   // buffer length is 4 seks at 192kHz or ~17s at 44.1Khz...
   float circular_buffer[COMB_BUFFER_LENGTH] = {0};

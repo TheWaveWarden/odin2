@@ -12,8 +12,8 @@ float CombFilter::doFilter(float p_input) {
                         m_delay_time_control;
 
   float delay_time_modded = m_delay_time_smooth;
-  if (*m_freq_mod) {
-    delay_time_modded *= pitchShiftMultiplier((-*m_freq_mod) * 48);
+  if (*m_freq_mod - m_env_mod_amount - *m_env_mod_mod) {
+    delay_time_modded *= pitchShiftMultiplier(((-*m_freq_mod) - m_env_value * (m_env_mod_amount + *m_env_mod_mod))*48);
     delay_time_modded =
         delay_time_modded > 1.f / 40.f ? 1.f / 40.f : delay_time_modded;
   }

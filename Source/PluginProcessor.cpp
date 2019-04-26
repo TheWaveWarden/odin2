@@ -63,7 +63,7 @@ OdinAudioProcessor::OdinAudioProcessor()
       m_voice[i].specdraw_osc[osc].loadSpecdrawTables(osc);
       m_voice[i].lfo[osc].loadWavetables();
     }
-    for(int mod = 0; mod < 4; ++mod){
+    for (int mod = 0; mod < 4; ++mod) {
       m_voice[i].lfo[mod].loadWavetables();
     }
   }
@@ -543,7 +543,8 @@ void OdinAudioProcessor::setModulationPointers() {
     m_mod_sources.voice[voice].lfo[2] = &(m_lfo[voice][2]);
     m_mod_sources.voice[voice].lfo[3] = &(m_lfo[voice][3]);
     m_mod_sources.voice[voice].MIDI_key = &(m_voice[voice].MIDI_key_mod_source);
-    m_mod_sources.voice[voice].MIDI_velocity = &(m_voice[voice].MIDI_velocity_mod_source);
+    m_mod_sources.voice[voice].MIDI_velocity =
+        &(m_voice[voice].MIDI_velocity_mod_source);
   }
   m_mod_sources.MIDI_aftertouch = &(m_MIDI_aftertouch);
   m_mod_sources.x = m_xy_x;
@@ -678,7 +679,6 @@ void OdinAudioProcessor::setModulationPointers() {
       m_voice[voice].comb_filter[fil].setResModPointer(
           &(m_mod_destinations.voice[voice].filter[fil].res));
 
-
       m_voice[voice].ladder_filter[fil].setVolModPointer(
           &(m_mod_destinations.voice[voice].filter[fil].gain));
       m_voice[voice].diode_filter[fil].setVolModPointer(
@@ -694,7 +694,20 @@ void OdinAudioProcessor::setModulationPointers() {
       m_voice[voice].formant_filter[fil].setVolModPointer(
           &(m_mod_destinations.voice[voice].filter[fil].gain));
 
-
+      m_voice[voice].ladder_filter[fil].setEnvModPointer(
+          &(m_mod_destinations.voice[voice].filter[fil].env_amount));
+      m_voice[voice].diode_filter[fil].setEnvModPointer(
+          &(m_mod_destinations.voice[voice].filter[fil].env_amount));
+      m_voice[voice].korg_filter[fil].setEnvModPointer(
+          &(m_mod_destinations.voice[voice].filter[fil].env_amount));
+      m_voice[voice].SEM_filter_12[fil].setEnvModPointer(
+          &(m_mod_destinations.voice[voice].filter[fil].env_amount));
+      m_voice[voice].SEM_filter_24[fil].setEnvModPointer(
+          &(m_mod_destinations.voice[voice].filter[fil].env_amount));
+      m_voice[voice].comb_filter[fil].setEnvModPointer(
+          &(m_mod_destinations.voice[voice].filter[fil].env_amount));
+      m_voice[voice].formant_filter[fil].setEnvModPointer(
+          &(m_mod_destinations.voice[voice].filter[fil].env_amount));
 
       m_voice[voice].ladder_filter[fil].setSaturationModPointer(
           &(m_mod_destinations.voice[voice].filter[fil].saturation));
@@ -711,6 +724,8 @@ void OdinAudioProcessor::setModulationPointers() {
   }
 
   for (int stereo = 0; stereo < 2; ++stereo) {
+
+    // todo ADD ALL DESTINATIONS FROM VOICE SECTIONS FOR FILTER3
     m_ladder_filter[stereo].setFreqModPointer(
         &(m_mod_destinations.filter3.freq));
     m_diode_filter[stereo].setFreqModPointer(
@@ -725,6 +740,6 @@ void OdinAudioProcessor::setModulationPointers() {
     m_ladder_filter[stereo].setFreqModPointer(
         &(m_mod_destinations.filter3.res));
 
-    m_delay[stereo].setHPFreqModPointer(&(m_mod_destinations.delay.hp_freq));  
-    }
+    m_delay[stereo].setHPFreqModPointer(&(m_mod_destinations.delay.hp_freq));
+  }
 }

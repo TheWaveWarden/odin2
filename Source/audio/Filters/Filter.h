@@ -63,6 +63,7 @@ public:
   virtual void setResModPointer(float *p_pointer) { m_res_mod = p_pointer; }
   virtual void setVolModPointer(float *p_pointer) { m_vol_mod = p_pointer; }
   virtual void setSaturationModPointer(float *p_pointer) { m_saturation_mod = p_pointer; }
+  virtual void setEnvModPointer(float *p_pointer) { m_env_mod_mod = p_pointer; }
 
 public:
   inline void setFcMod(double d) { m_mod_frequency = d; }
@@ -81,7 +82,7 @@ public:
         m_freq_base *
         pitchShiftMultiplier(
             *m_freq_mod * FILTER_FREQ_MOD_RANGE_SEMITONES + m_mod_frequency +
-            m_env_value * m_env_mod_amount * FILTER_ENV_MOD_SEMITONES_MAX);
+            m_env_value * (m_env_mod_amount + *m_env_mod_mod) * FILTER_ENV_MOD_SEMITONES_MAX);
 
     if (m_freq_modded > FILTER_FC_MAX)
       m_freq_modded = FILTER_FC_MAX;
@@ -96,6 +97,7 @@ protected:
   float *m_res_mod;
   float *m_freq_mod;
   float *m_saturation_mod = &m_mod_dummy_zero;
+  float *m_env_mod_mod = &m_mod_dummy_zero;
 
   float m_mod_dummy_zero = 0;
 
