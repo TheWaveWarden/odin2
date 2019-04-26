@@ -542,8 +542,8 @@ void OdinAudioProcessor::setModulationPointers() {
     m_mod_sources.voice[voice].lfo[1] = &(m_lfo[voice][1]);
     m_mod_sources.voice[voice].lfo[2] = &(m_lfo[voice][2]);
     m_mod_sources.voice[voice].lfo[3] = &(m_lfo[voice][3]);
-    m_mod_sources.voice[voice].MIDI_key = &(m_MIDI_key[voice]);
-    m_mod_sources.voice[voice].MIDI_velocity = &(m_MIDI_velocity[voice]);
+    m_mod_sources.voice[voice].MIDI_key = &(m_voice[voice].MIDI_key_mod_source);
+    m_mod_sources.voice[voice].MIDI_velocity = &(m_voice[voice].MIDI_velocity_mod_source);
   }
   m_mod_sources.MIDI_aftertouch = &(m_MIDI_aftertouch);
   m_mod_sources.x = m_xy_x;

@@ -80,6 +80,8 @@ struct Voice {
     m_voice_active = true;
     DBG("Started voice");
     m_MIDI_key = p_MIDI_key;
+    MIDI_key_mod_source = (float)p_MIDI_key / 127.f;
+    MIDI_velocity_mod_source = (float)p_MIDI_velocity / 127.f;
   }
 
   // starts release on envelopes if this is the key that was pressed
@@ -305,6 +307,10 @@ struct Voice {
 
   // LFOs
   // todo
+
+  //modulation values
+  float MIDI_key_mod_source = 0.f;
+  float MIDI_velocity_mod_source = 0.f;
 
   // called when the envelope ends to signal voice end to voice manager
   std::function<void()> onEnvelopeEnd = []() {};
