@@ -47,11 +47,8 @@ void SEMFilter12::update()
 
 double SEMFilter12::doFilter(double xn)
 {
-
     double hpf = m_alpha_0 * (xn - m_rho * m_z_1 - m_z_2);
-    double bpf = m_alpha * hpf + m_z_1;
-
-    
+    double bpf = m_alpha * hpf + m_z_1;    
 
     double lpf = m_alpha * bpf + m_z_2;
     double r = 1.0 / (2.0 * m_resonance_modded);
@@ -76,7 +73,9 @@ double SEMFilter12::doFilter(double xn)
 	    xn = fasttanh(m_overdrive * xn);
 	}
 
-    return xn;
+    float vol_mod_factor = (*m_vol_mod) > 0 ? 1.f + 4 *(*m_vol_mod) : (1.f + *m_vol_mod);
+
+    return xn * vol_mod_factor;
 }
 
 void SEMFilter12::setResControl(double p_res)

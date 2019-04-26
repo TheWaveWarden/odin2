@@ -16,6 +16,14 @@ FormantFilter::FormantFilter()
     reset();
 
     updateParabolas();
+
+    setFreqModPointer(&m_zero_dummy);
+    m_BPF1.setFreqModPointer(&m_zero_dummy);
+    m_BPF2.setFreqModPointer(&m_zero_dummy);
+    m_BPF1.setResModPointer(&m_zero_dummy);
+    m_BPF2.setResModPointer(&m_zero_dummy);
+    m_BPF1.setVolModPointer(&m_zero_dummy);
+    m_BPF2.setVolModPointer(&m_zero_dummy);
 }
 
 
@@ -87,5 +95,8 @@ double FormantFilter::doFilter(double p_input){
 		out = fasttanh(m_overdrive*out);
 	}
 
-    return out;
+
+    float vol_mod_factor = (*m_vol_mod) > 0 ? 1.f + 4 *(*m_vol_mod) : (1.f + *m_vol_mod);    
+
+    return out * vol_mod_factor;
 }

@@ -25,6 +25,11 @@ class SEMFilter24 : public Filter
 		m_res_mod = p_pointer;
 	}
 
+	void setVolModPointer(float* p_pointer) override {
+		m_SEM1.setVolModPointer(p_pointer);
+		m_SEM2.setVolModPointer(p_pointer);
+	}
+
 	float m_transition;
 	float m_resonance;
 

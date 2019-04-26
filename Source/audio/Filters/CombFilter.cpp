@@ -57,5 +57,8 @@ float CombFilter::doFilter(float p_input) {
   // increasing delay time circular_buffer[read_index_trunc] = 0.f; // todo not
   // enough? (time jumps over this)
 
-  return (p_input + output) * 0.5f;
+  float vol_mod_factor =
+      (*m_vol_mod) > 0 ? 1.f + 4 * (*m_vol_mod) : (1.f + *m_vol_mod);
+
+  return (p_input + output) * 0.5f * vol_mod_factor;
 }

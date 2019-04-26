@@ -56,6 +56,9 @@ class Filter
 	virtual void setResModPointer(float* p_pointer){
 		m_res_mod = p_pointer;
 	}
+	virtual void setVolModPointer(float* p_pointer){
+		m_vol_mod = p_pointer;
+	}
 
   public:
 	inline void setFcMod(double d) { m_mod_frequency = d; }
@@ -82,7 +85,7 @@ class Filter
 	double m_mod_frequency = 0;
 	
   protected:
-
+	float* m_vol_mod;
 	float* m_res_mod;
 	float* m_freq_mod;
 

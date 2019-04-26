@@ -157,8 +157,11 @@ public:
 		double dLP3 = m_LPF3.doFilter(dLP2);
 		double dLP4 = m_LPF4.doFilter(dLP3);
 
+	    float vol_mod_factor = (*m_vol_mod) > 0 ? 1.f + 4 *(*m_vol_mod) : (1.f + *m_vol_mod);
+		
+
 		// --- Oberheim variations
-		return m_a*dU + m_b*dLP1 + m_c*dLP2 + m_d*dLP3 +  m_e*dLP4;  
+		return (m_a*dU + m_b*dLP1 + m_c*dLP2 + m_d*dLP3 +  m_e*dLP4)*vol_mod_factor;  
 	}
 
 	inline void setFilterType(int p_filtertype){

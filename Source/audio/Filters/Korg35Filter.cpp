@@ -105,7 +105,9 @@ double Korg35Filter::doFilter(double xn)
 	}	
 	y /= m_k_modded;
 
-	return y;
+    float vol_mod_factor = (*m_vol_mod) > 0 ? 1.f + 4 *(*m_vol_mod) : (1.f + *m_vol_mod);	
+
+	return y * vol_mod_factor;
 }
 
 void Korg35Filter::setResControl(double res){

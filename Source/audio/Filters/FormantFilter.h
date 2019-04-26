@@ -24,8 +24,13 @@ public:
 		updateParabolas();
 	}
 
+	void setVolModPointer(float* p_pointer) { m_vol_mod = p_pointer; }
+
 
 protected:
+
+	float* m_vol_mod;
+	float m_zero_dummy;
 
 	void updateParabolas();
 	

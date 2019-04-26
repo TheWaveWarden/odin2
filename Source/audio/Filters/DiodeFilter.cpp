@@ -93,8 +93,6 @@ void DiodeFilter::update()
 
 double DiodeFilter::doFilter(double xn)
 {
-	DBG("dofilter");
-
 	m_LPF4.m_feedback = 0.0;
 	m_LPF3.m_feedback = m_LPF4.getFeedbackOutput();
 	m_LPF2.m_feedback = m_LPF3.getFeedbackOutput();
@@ -103,7 +101,6 @@ double DiodeFilter::doFilter(double xn)
 	double sigma = m_sg1 * m_LPF1.getFeedbackOutput() + m_sg2 * m_LPF2.getFeedbackOutput() + m_sg3 * m_LPF3.getFeedbackOutput() + m_sg4 * m_LPF4.getFeedbackOutput();
 
 	float k_modded = m_k + *m_res_mod * 16;
-	DBG(*m_res_mod);
 	k_modded = k_modded > 16 ? 16 : k_modded;
 	k_modded = k_modded < 0 ? 0 : k_modded;
 
@@ -125,7 +122,9 @@ double DiodeFilter::doFilter(double xn)
 		u = fasttanh(m_overdrive * u);
 	}
 
-	return m_LPF4.doFilter(m_LPF3.doFilter(m_LPF2.doFilter(m_LPF1.doFilter(u))));
+    float vol_mod_factor = (*m_vol_mod) > 0 ? 1.f + 4 *(*m_vol_mod) : (1.f + *m_vol_mod);	
+
+	return m_LPF4.doFilter(m_LPF3.doFilter(m_LPF2.doFilter(m_LPF1.doFilter(u)))) * vol_mod_factor;
 }
 
 void DiodeFilter::setResControl(double res)
