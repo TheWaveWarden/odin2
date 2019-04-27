@@ -35,6 +35,34 @@ void ModMatrixRow::applyModulation() {
     // todo this is not the right way, use newest voice as source?
     *(m_destination_value[0]) += (*m_source_value[0]) * m_mod_amount;
   }
+
+  // TODO BIG wrap head around matrix logic
+  if (m_destination_poly) {
+    if (m_source_poly) {
+      if (m_scale) {
+        for (int voice = 0; voice < VOICES; ++voice) {
+        }
+      } else {
+      }
+    } else {
+      if (m_scale) {
+
+      } else {
+      }
+    }
+  } else {
+    if (m_source_poly) {
+      if (m_scale) {
+
+      } else {
+      }
+    } else {
+      if (m_scale) {
+
+      } else {
+      }
+    }
+  }
 }
 
 void ModMatrixRow::setModSource(int p_source) {
@@ -789,6 +817,27 @@ void ModMatrixRow::setModDestination(int p_destination) {
       m_destination_value[voice] = &(m_destinations->voice[voice].lfo[3].freq);
     }
     m_destination_poly = true;
+    break;
+
+  case 701:
+    m_destination_value[0] = &(m_destinations->delay.time);
+    m_destination_poly = false;
+    break;
+  case 702:
+    m_destination_value[0] = &(m_destinations->delay.feedback);
+    m_destination_poly = false;
+    break;
+  case 703:
+    m_destination_value[0] = &(m_destinations->delay.hp_freq);
+    m_destination_poly = false;
+    break;
+  case 704:
+    m_destination_value[0] = &(m_destinations->delay.dry);
+    m_destination_poly = false;
+    break;
+  case 705:
+    m_destination_value[0] = &(m_destinations->delay.wet);
+    m_destination_poly = false;
     break;
 
   case 900:

@@ -80,6 +80,29 @@ public:
         return m_last_mean * DUCKING_SCALE_FACTOR > 1 ? 1 : m_last_mean * DUCKING_SCALE_FACTOR;
 	}
 
+	void setTimeModPointer(float* p_pointer){
+		m_time_mod = p_pointer;
+	}
+
+	void setFeedbackModPointer(float* p_pointer){
+		m_feedback_mod = p_pointer;
+	}
+
+	void setDryModPointer(float* p_pointer){
+		m_dry_mod = p_pointer;
+	}
+
+	void setWetModPointer(float* p_pointer){
+		m_wet_mod = p_pointer;
+	}
+
+	float* m_time_mod;
+	float* m_feedback_mod;
+	float* m_dry_mod;
+	float* m_wet_mod;
+
+
+
 	//buffer length is 4 seks at 192kHz or ~17s at 44.1Khz...
 	float circular_buffer[CIRCULAR_BUFFER_LENGTH] = {0};
 

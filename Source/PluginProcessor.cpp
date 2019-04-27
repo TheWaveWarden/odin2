@@ -919,7 +919,10 @@ void OdinAudioProcessor::setModulationPointers() {
     m_distortion[stereo].setDryWetModPointer(&(m_mod_destinations.distortion.drywet));
 
 
-
+    m_delay[stereo].setTimeModPointer(&(m_mod_destinations.delay.time));
+    m_delay[stereo].setFeedbackModPointer(&(m_mod_destinations.delay.feedback));
     m_delay[stereo].setHPFreqModPointer(&(m_mod_destinations.delay.hp_freq));
+    m_delay[stereo].setDryModPointer(&(m_mod_destinations.delay.dry));
+    m_delay[stereo].setWetModPointer(&(m_mod_destinations.delay.wet));
   }
 }
