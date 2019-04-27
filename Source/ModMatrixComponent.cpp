@@ -957,6 +957,8 @@ void ModMatrixComponent::createMenu(PopupMenu *p_menu) {
     }
   }
 
+  p_menu->addSeparator();
+
   for (int fil = 0; fil < 3; ++fil) {
     if (fil_type[fil] == FILTER_TYPE_LP24 ||
         fil_type[fil] == FILTER_TYPE_LP12 ||
@@ -982,23 +984,33 @@ void ModMatrixComponent::createMenu(PopupMenu *p_menu) {
     }
   }
 
+  p_menu->addSeparator();
+
   p_menu->addSubMenu("Amplifier", m_amp_menu, true);
   p_menu->addSubMenu("Distortion", m_distortion_menu, true);
+
+  p_menu->addSeparator();
 
   p_menu->addSubMenu("Amp Env", m_adsr_menu[0], true);
   p_menu->addSubMenu("Filter Env", m_adsr_menu[1], true);
   p_menu->addSubMenu("Envelope 3", m_adsr_menu[2], true);
   p_menu->addSubMenu("Envelope 4", m_adsr_menu[3], true);
 
+  p_menu->addSeparator();
+
   p_menu->addSubMenu("LFO 1", m_lfo_menu[0], true);
   p_menu->addSubMenu("LFO 2", m_lfo_menu[1], true);
   p_menu->addSubMenu("LFO 3", m_lfo_menu[2], true);
   p_menu->addSubMenu("LFO 4", m_lfo_menu[3], true);
 
+  p_menu->addSeparator();
+
   p_menu->addSubMenu("Delay", m_delay_menu, true);
   p_menu->addSubMenu("Phaser", m_phaser_menu, true);
   p_menu->addSubMenu("Flanger", m_flanger_menu, true);
   p_menu->addSubMenu("Chorus", m_chorus_menu, true);
+
+  p_menu->addSeparator();
 
   p_menu->addItem(999, "Glide");
   p_menu->addItem(1000, "Master");
