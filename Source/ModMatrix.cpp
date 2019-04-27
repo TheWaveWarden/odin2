@@ -571,6 +571,44 @@ void ModMatrixRow::setModDestination(int p_destination) {
     m_destination_poly = false;
     break;
 
+    case 305:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_destination_value[voice] =
+          &(m_destinations->voice[voice].filter[0].vel_amount);
+    }
+    m_destination_poly = true;
+    break;
+  case 405:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_destination_value[voice] =
+          &(m_destinations->voice[voice].filter[1].vel_amount);
+    }
+    m_destination_poly = true;
+    break;
+  case 505:
+    m_destination_value[0] = &(m_destinations->filter3.vel_amount);
+    m_destination_poly = false;
+    break;
+
+case 306:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_destination_value[voice] =
+          &(m_destinations->voice[voice].filter[0].kbd_amount);
+    }
+    m_destination_poly = true;
+    break;
+  case 406:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_destination_value[voice] =
+          &(m_destinations->voice[voice].filter[1].kbd_amount);
+    }
+    m_destination_poly = true;
+    break;
+  case 506:
+    m_destination_value[0] = &(m_destinations->filter3.kbd_amount);
+    m_destination_poly = false;
+    break;
+
     case 307:
     for (int voice = 0; voice < VOICES; ++voice) {
       m_destination_value[voice] =

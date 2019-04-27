@@ -709,6 +709,36 @@ void OdinAudioProcessor::setModulationPointers() {
       m_voice[voice].formant_filter[fil].setEnvModPointer(
           &(m_mod_destinations.voice[voice].filter[fil].env_amount));
 
+
+      m_voice[voice].ladder_filter[fil].setVelModPointer(
+          &(m_mod_destinations.voice[voice].filter[fil].vel_amount));
+      m_voice[voice].diode_filter[fil].setVelModPointer(
+          &(m_mod_destinations.voice[voice].filter[fil].vel_amount));
+      m_voice[voice].korg_filter[fil].setVelModPointer(
+          &(m_mod_destinations.voice[voice].filter[fil].vel_amount));
+      m_voice[voice].SEM_filter_12[fil].setVelModPointer(
+          &(m_mod_destinations.voice[voice].filter[fil].vel_amount));
+      m_voice[voice].SEM_filter_24[fil].setVelModPointer(
+          &(m_mod_destinations.voice[voice].filter[fil].vel_amount));
+      m_voice[voice].comb_filter[fil].setVelModPointer(
+          &(m_mod_destinations.voice[voice].filter[fil].vel_amount));
+
+
+      m_voice[voice].ladder_filter[fil].setKbdModPointer(
+          &(m_mod_destinations.voice[voice].filter[fil].kbd_amount));
+      m_voice[voice].diode_filter[fil].setKbdModPointer(
+          &(m_mod_destinations.voice[voice].filter[fil].kbd_amount));
+      m_voice[voice].korg_filter[fil].setKbdModPointer(
+          &(m_mod_destinations.voice[voice].filter[fil].kbd_amount));
+      m_voice[voice].SEM_filter_12[fil].setKbdModPointer(
+          &(m_mod_destinations.voice[voice].filter[fil].kbd_amount));
+      m_voice[voice].SEM_filter_24[fil].setKbdModPointer(
+          &(m_mod_destinations.voice[voice].filter[fil].kbd_amount));
+      m_voice[voice].comb_filter[fil].setKbdModPointer(
+          &(m_mod_destinations.voice[voice].filter[fil].kbd_amount));
+      m_voice[voice].formant_filter[fil].setKbdModPointer(
+          &(m_mod_destinations.voice[voice].filter[fil].kbd_amount));
+
       m_voice[voice].ladder_filter[fil].setSaturationModPointer(
           &(m_mod_destinations.voice[voice].filter[fil].saturation));
       m_voice[voice].diode_filter[fil].setSaturationModPointer(

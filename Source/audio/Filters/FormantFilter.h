@@ -26,6 +26,7 @@ public:
 
 	void setVolModPointer(float* p_pointer) { m_vol_mod = p_pointer; }
 
+	float m_MIDI_velocity = 0.f;
 
 protected:
 

@@ -15,10 +15,13 @@ public:
 
   float doFilter(float p_input);
   int m_MIDI_note = 0;
+  int m_MIDI_velocity = 0.f;
+
   float m_kbd_mod_amount = 0;
   float m_vel_mod_amount = 0;
   float m_env_mod_amount = 0;
   float m_env_value = 0;
+
 
   float pitchShiftMultiplier(float p_semitones) {
     return pow(2.f, p_semitones / 12.f);
@@ -27,6 +30,8 @@ public:
   void setFreqModPointer(float *p_pointer) { m_freq_mod = p_pointer; }
   void setVolModPointer(float *p_pointer) { m_vol_mod = p_pointer; }
   void setEnvModPointer(float *p_pointer) { m_env_mod_mod = p_pointer; }
+  void setVelModPointer(float *p_pointer) { m_vel_mod_mod = p_pointer; }
+  void setKbdModPointer(float *p_pointer) { m_kbd_mod_mod = p_pointer; }
   
 
   inline void setPositive(bool p_positive) {
@@ -66,6 +71,8 @@ public:
   float* m_res_mod;
   float* m_vol_mod;
   float* m_env_mod_mod = &m_zero_modulation_dummy;
+  float* m_vel_mod_mod = &m_zero_modulation_dummy;
+  float* m_kbd_mod_mod = &m_zero_modulation_dummy;
 
   float m_zero_modulation_dummy = 0.f;
 

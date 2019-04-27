@@ -76,7 +76,7 @@ struct Voice {
   void start(int p_MIDI_key, int p_MIDI_velocity) {
     reset();
     setOscBaseFreq(MIDINoteToFreq(p_MIDI_key));
-    setFilterMIDINote(p_MIDI_key);
+    setFilterMIDIValues(p_MIDI_key, p_MIDI_velocity);
     m_voice_active = true;
     DBG("Started voice");
     m_MIDI_key = p_MIDI_key;
@@ -188,7 +188,11 @@ struct Voice {
     }
   }
 
-  void setFilterMIDINote(int p_MIDI_note) {
+  void setFilterMIDIValues(int p_MIDI_note, int p_MIDI_vel) {
+    //shift note here so the lowest note possible is 21
+    p_MIDI_note -= 21;
+    p_MIDI_note = p_MIDI_note < 0 ? 0 : p_MIDI_note;
+    
     for (int fil = 0; fil < 3; ++fil) {
       ladder_filter[fil].m_MIDI_note = p_MIDI_note;
       diode_filter[fil].m_MIDI_note = p_MIDI_note;
@@ -196,6 +200,14 @@ struct Voice {
       SEM_filter_24[fil].m_MIDI_note = p_MIDI_note;
       SEM_filter_12[fil].m_MIDI_note = p_MIDI_note;
       comb_filter[fil].m_MIDI_note = p_MIDI_note;
+
+      ladder_filter[fil].m_MIDI_velocity = p_MIDI_vel;
+      diode_filter[fil].m_MIDI_velocity = p_MIDI_vel;
+      korg_filter[fil].m_MIDI_velocity = p_MIDI_vel;
+      SEM_filter_24[fil].m_MIDI_velocity = p_MIDI_vel;
+      SEM_filter_12[fil].m_MIDI_velocity = p_MIDI_vel;
+      comb_filter[fil].m_MIDI_velocity = p_MIDI_vel;
+      formant_filter[fil].m_MIDI_velocity = p_MIDI_vel;
     }
   }
 

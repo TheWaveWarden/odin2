@@ -32,12 +32,12 @@ public:
   }
 
   inline void applyOverdrive(double &pio_input, float p_tanh_factor = 3.5) {
-    float overdrive_modded = m_overdrive + 2* (*m_saturation_mod);
+    float overdrive_modded = m_overdrive + 2 * (*m_saturation_mod);
     overdrive_modded = overdrive_modded < 0 ? 0 : overdrive_modded;
     if (overdrive_modded > 0.01f && overdrive_modded < 1.f) {
       // interpolate here so we have possibility of pure linear Processing
-      pio_input =
-          pio_input * (1. - overdrive_modded) + overdrive_modded * fasttanh(pio_input, p_tanh_factor);
+      pio_input = pio_input * (1. - overdrive_modded) +
+                  overdrive_modded * fasttanh(pio_input, p_tanh_factor);
     } else if (overdrive_modded > 1.f) {
       pio_input = fasttanh(overdrive_modded * pio_input, p_tanh_factor);
     }
@@ -45,7 +45,9 @@ public:
 
   double m_freq_base;
   double m_res_base;
+
   int m_MIDI_note = 0;
+  int m_MIDI_velocity = 0;
 
   float m_kbd_mod_amount = 0;
   float m_vel_mod_amount = 0;
@@ -56,17 +58,20 @@ public:
   //     control or paasband gain comp (Moog)
   double m_aux_control;
   // --- for NLP - Non Linear Procssing
-  bool m_NLP;
+  // bool m_NLP;
   double m_overdrive = 0.;
 
   virtual void setFreqModPointer(float *p_pointer) { m_freq_mod = p_pointer; }
   virtual void setResModPointer(float *p_pointer) { m_res_mod = p_pointer; }
   virtual void setVolModPointer(float *p_pointer) { m_vol_mod = p_pointer; }
-  virtual void setSaturationModPointer(float *p_pointer) { m_saturation_mod = p_pointer; }
+  virtual void setVelModPointer(float *p_pointer) { m_vel_mod_mod = p_pointer; }
+  virtual void setKbdModPointer(float *p_pointer) { m_kbd_mod_mod = p_pointer; }
+  virtual void setSaturationModPointer(float *p_pointer) {
+    m_saturation_mod = p_pointer;
+  }
   virtual void setEnvModPointer(float *p_pointer) { m_env_mod_mod = p_pointer; }
 
 public:
-  inline void setFcMod(double d) { m_mod_frequency = d; }
   virtual double doFilter(double xn) = 0;
   inline virtual void setSampleRate(double d) { m_samplerate = d; }
   virtual void reset();
@@ -74,15 +79,18 @@ public:
 
   inline virtual void update() {
 
-    // setResControl(m_res_base);
-    // DBG(m_env_mod_amount);
-    // DBG(m_env_value);
-    // DBG("===");
+    float kbd_modded = m_kbd_mod_amount + *m_kbd_mod_mod < 0 ? 0 : m_kbd_mod_amount + *m_kbd_mod_mod;
+    float vel_modded = m_vel_mod_amount + *m_vel_mod_mod < 0 ? 0 : m_vel_mod_amount + *m_vel_mod_mod;
+
     m_freq_modded =
         m_freq_base *
-        pitchShiftMultiplier(
+        pitchShiftMultiplier( // todo m_mod_frequency needed still?
             *m_freq_mod * FILTER_FREQ_MOD_RANGE_SEMITONES + m_mod_frequency +
-            m_env_value * (m_env_mod_amount + *m_env_mod_mod) * FILTER_ENV_MOD_SEMITONES_MAX);
+            kbd_modded * m_MIDI_note +
+            m_env_value *
+                (m_env_mod_amount + *m_env_mod_mod +
+                 vel_modded * (float)m_MIDI_velocity / 127.f) *
+                FILTER_ENV_MOD_SEMITONES_MAX);
 
     if (m_freq_modded > FILTER_FC_MAX)
       m_freq_modded = FILTER_FC_MAX;
@@ -98,6 +106,8 @@ protected:
   float *m_freq_mod;
   float *m_saturation_mod = &m_mod_dummy_zero;
   float *m_env_mod_mod = &m_mod_dummy_zero;
+  float *m_vel_mod_mod = &m_mod_dummy_zero;
+  float *m_kbd_mod_mod = &m_mod_dummy_zero;
 
   float m_mod_dummy_zero = 0;
 
