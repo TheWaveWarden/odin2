@@ -647,6 +647,122 @@ void ModMatrixRow::setModDestination(int p_destination) {
     m_destination_poly = false;
     break;
 
+  case 601:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_destination_value[voice] =
+          &(m_destinations->voice[voice].adsr[0].attack);
+    }
+    m_destination_poly = true;
+    break;
+  case 611:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_destination_value[voice] =
+          &(m_destinations->voice[voice].adsr[1].attack);
+    }
+    m_destination_poly = true;
+    break;
+  case 621:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_destination_value[voice] =
+          &(m_destinations->voice[voice].adsr[2].attack);
+    }
+    m_destination_poly = true;
+    break;
+  case 631:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_destination_value[voice] =
+          &(m_destinations->voice[voice].adsr[3].attack);
+    }
+    m_destination_poly = true;
+    break;
+
+  case 602:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_destination_value[voice] =
+          &(m_destinations->voice[voice].adsr[0].decay);
+    }
+    m_destination_poly = true;
+    break;
+  case 612:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_destination_value[voice] =
+          &(m_destinations->voice[voice].adsr[1].decay);
+    }
+    m_destination_poly = true;
+    break;
+  case 622:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_destination_value[voice] =
+          &(m_destinations->voice[voice].adsr[2].decay);
+    }
+    m_destination_poly = true;
+    break;
+  case 632:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_destination_value[voice] =
+          &(m_destinations->voice[voice].adsr[3].decay);
+    }
+    m_destination_poly = true;
+    break;
+
+  case 603:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_destination_value[voice] =
+          &(m_destinations->voice[voice].adsr[0].sustain);
+    }
+    m_destination_poly = true;
+    break;
+  case 613:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_destination_value[voice] =
+          &(m_destinations->voice[voice].adsr[1].sustain);
+    }
+    m_destination_poly = true;
+    break;
+  case 623:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_destination_value[voice] =
+          &(m_destinations->voice[voice].adsr[2].sustain);
+    }
+    m_destination_poly = true;
+    break;
+  case 633:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_destination_value[voice] =
+          &(m_destinations->voice[voice].adsr[3].sustain);
+    }
+    m_destination_poly = true;
+    break;
+
+  case 604:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_destination_value[voice] =
+          &(m_destinations->voice[voice].adsr[0].release);
+    }
+    m_destination_poly = true;
+    break;
+  case 614:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_destination_value[voice] =
+          &(m_destinations->voice[voice].adsr[1].release);
+    }
+    m_destination_poly = true;
+    break;
+  case 624:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_destination_value[voice] =
+          &(m_destinations->voice[voice].adsr[2].release);
+    }
+    m_destination_poly = true;
+    break;
+  case 634:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_destination_value[voice] =
+          &(m_destinations->voice[voice].adsr[3].release);
+    }
+    m_destination_poly = true;
+    break;
+
   case 651:
     for (int voice = 0; voice < VOICES; ++voice) {
       m_destination_value[voice] = &(m_destinations->voice[voice].lfo[0].freq);
@@ -669,7 +785,7 @@ void ModMatrixRow::setModDestination(int p_destination) {
     for (int voice = 0; voice < VOICES; ++voice) {
       m_destination_value[voice] = &(m_destinations->voice[voice].lfo[3].freq);
     }
-    m_destination_poly = true;    
+    m_destination_poly = true;
     break;
   }
   m_destination = p_destination;

@@ -18,7 +18,12 @@ float ADSREnvelope::doEnvelope() {
   }
 
   if (m_current_section == 0) { // attack
-    m_current_value += (1. - m_attack_start_value) / m_samplerate / m_attack;
+    double attack_modded = m_attack;
+    if (*m_attack_mod) {
+      attack_modded *= calcModFactor(*m_attack_mod);
+    }
+    m_current_value +=
+        (1. - m_attack_start_value) / m_samplerate / attack_modded;
     if (m_current_value >= 1) {
       m_current_value = 1;
       m_current_section = 1; // move to decay
@@ -27,35 +32,53 @@ float ADSREnvelope::doEnvelope() {
   }
 
   else if (m_current_section == 1) { // decay
+    double decay_modded = m_decay;
+    if (*m_decay_mod) {
+      decay_modded *= calcModFactor(*m_decay_mod);
+    }
+
     // just decay to zero but return scaled
-    m_decay_factor = calcDecayFactorCheap(m_decay);
+    m_decay_factor = calcDecayFactor(decay_modded);
     m_current_value *= m_decay_factor;
+    double sustain_modded = m_sustain + *m_sustain_mod;
+    sustain_modded = sustain_modded < 0 ? 0 : sustain_modded;
+    sustain_modded = sustain_modded > 1 ? 1 : sustain_modded;
     if (m_current_value < MIN_DECAY_RELEASE_VAL) {
       if (m_loop) {
         m_current_section = 0; // go back to attack
-        m_attack_start_value = m_sustain;
-        m_current_value = m_sustain + (1 - m_sustain) * m_current_value;
-        return m_sustain;
+        m_attack_start_value = sustain_modded;
+        m_current_value =
+            sustain_modded + (1 - sustain_modded) * m_current_value;
+        return sustain_modded;
       } else {
         m_current_section = 2; // go to sustain
-        m_current_value = 0;
+        m_current_value = 0;   // why?
       }
     }
-    return m_sustain + (1 - m_sustain) * m_current_value;
+    return sustain_modded + (1 - sustain_modded) * m_current_value;
   }
 
   else if (m_current_section == 2) { // sustain
+    double sustain_modded = m_sustain + *m_sustain_mod;
+    sustain_modded = sustain_modded < 0 ? 0 : sustain_modded;
+    sustain_modded = sustain_modded > 1 ? 1 : sustain_modded;
     // just return sustain here
     if (m_loop) {
       m_current_section = 0; // go back to attack
-      m_attack_start_value = m_sustain;
-      m_current_value = m_sustain + (1 - m_sustain) * m_current_value;
+      m_attack_start_value = sustain_modded;
+      m_current_value = sustain_modded + (1 - sustain_modded) * m_current_value;
     }
-    return m_sustain;
+    return sustain_modded;
   }
 
+
+  //TODO TEST RELEASE MODULATION UNTESTED RIGHT NOW
   else if (m_current_section == 3) { // release
-    m_release_factor = calcDecayFactorCheap(m_release);
+    double release_modded = m_release;
+    if(*m_release_mod){
+      release_modded *= calcModFactor(*m_release_mod);
+    }
+    m_release_factor = calcReleaseFactor(release_modded);
     // again just decay from 1 to 0 and output scaled version
     m_current_value *= m_release_factor;
     if (m_current_value < MIN_DECAY_RELEASE_VAL) {
@@ -74,10 +97,14 @@ float ADSREnvelope::doEnvelope() {
 }
 
 void ADSREnvelope::startRelease() {
+  double sustain_modded = m_sustain + *m_sustain_mod;
+  sustain_modded = sustain_modded < 0 ? 0 : sustain_modded;
+  sustain_modded = sustain_modded > 1 ? 1 : sustain_modded;
   if (m_current_section == 1) {
-    m_release_start_value = m_current_value * (1. - m_sustain) + m_sustain;
+    m_release_start_value =
+        m_current_value * (1. - sustain_modded) + sustain_modded;
   } else if (m_current_section == 2) {
-    m_release_start_value = m_sustain;
+    m_release_start_value = sustain_modded;
   } else {
     m_release_start_value = m_current_value;
   }

@@ -188,8 +188,10 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
     m_modwheel_smooth = m_modwheel_smooth * PITCHBEND_SMOOTHIN_FACTOR +
                         (1.f - PITCHBEND_SMOOTHIN_FACTOR) * (*m_modwheel);
 
-    m_x_smooth = m_x_smooth * PAD_SMOOTHIN_FACTOR + (1.f - PAD_SMOOTHIN_FACTOR) * (*m_xy_x);
-    m_y_smooth = m_y_smooth * PAD_SMOOTHIN_FACTOR + (1.f - PAD_SMOOTHIN_FACTOR) * (*m_xy_y);
+    m_x_smooth = m_x_smooth * PAD_SMOOTHIN_FACTOR +
+                 (1.f - PAD_SMOOTHIN_FACTOR) * (*m_xy_x);
+    m_y_smooth = m_y_smooth * PAD_SMOOTHIN_FACTOR +
+                 (1.f - PAD_SMOOTHIN_FACTOR) * (*m_xy_y);
 
     //===== MIDI =====
     if (midi_message_remaining) {
@@ -427,43 +429,37 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
           *m_fil_type[2] == FILTER_TYPE_BP12 ||
           *m_fil_type[2] == FILTER_TYPE_HP24 ||
           *m_fil_type[2] == FILTER_TYPE_HP12) {
-        m_ladder_filter[channel].m_freq_base =
-            m_fil_freq_smooth[2];
+        m_ladder_filter[channel].m_freq_base = m_fil_freq_smooth[2];
         m_ladder_filter[channel].update();
         stereo_signal[channel] =
             m_ladder_filter[channel].doFilter(stereo_signal[channel]) *
             m_fil_gain_smooth[2];
       } else if (*m_fil_type[2] == FILTER_TYPE_SEM24) {
-        m_SEM_filter_24[channel].m_freq_base =
-            m_fil_freq_smooth[2];
+        m_SEM_filter_24[channel].m_freq_base = m_fil_freq_smooth[2];
         m_SEM_filter_24[channel].update();
         stereo_signal[channel] =
             m_SEM_filter_24[channel].doFilter(stereo_signal[channel]) *
             m_fil_gain_smooth[2];
       } else if (*m_fil_type[2] == FILTER_TYPE_SEM12) {
-        m_SEM_filter_12[channel].m_freq_base =
-            m_fil_freq_smooth[2];
+        m_SEM_filter_12[channel].m_freq_base = m_fil_freq_smooth[2];
         m_SEM_filter_12[channel].update();
         stereo_signal[channel] =
             m_SEM_filter_12[channel].doFilter(stereo_signal[channel]) *
             m_fil_gain_smooth[2];
       } else if (*m_fil_type[2] == FILTER_TYPE_KORG) {
-        m_korg_filter[channel].m_freq_base =
-            m_fil_freq_smooth[2];
+        m_korg_filter[channel].m_freq_base = m_fil_freq_smooth[2];
         m_korg_filter[channel].update();
         stereo_signal[channel] =
             m_korg_filter[channel].doFilter(stereo_signal[channel]) *
             m_fil_gain_smooth[2];
       } else if (*m_fil_type[2] == FILTER_TYPE_DIODE) {
-        m_diode_filter[channel].m_freq_base =
-            m_fil_freq_smooth[2];
+        m_diode_filter[channel].m_freq_base = m_fil_freq_smooth[2];
         m_diode_filter[channel].update();
         stereo_signal[channel] =
             m_diode_filter[channel].doFilter(stereo_signal[channel]) *
             m_fil_gain_smooth[2];
       } else if (*m_fil_type[2] == FILTER_TYPE_FORMANT) {
-        m_formant_filter[channel].m_freq_base =
-            m_fil_freq_smooth[2];
+        m_formant_filter[channel].m_freq_base = m_fil_freq_smooth[2];
         m_formant_filter[channel].update();
         stereo_signal[channel] =
             m_formant_filter[channel].doFilter(stereo_signal[channel]) *
@@ -812,6 +808,16 @@ void OdinAudioProcessor::setModulationPointers() {
     for (int mod = 0; mod < 4; ++mod) {
       m_voice[voice].lfo[mod].setPitchModExpPointer(
           &(m_mod_destinations.voice[voice].lfo[mod].freq));
+
+      m_voice[voice].env[mod].setAttackModPointer(
+          &(m_mod_destinations.voice[voice].adsr[mod].attack));
+      m_voice[voice].env[mod].setDecayModPointer(
+          &(m_mod_destinations.voice[voice].adsr[mod].decay));
+      m_voice[voice].env[mod].setSustainModPointer(
+          &(m_mod_destinations.voice[voice].adsr[mod].sustain));
+      m_voice[voice].env[mod].setReleaseModPointer(
+          &(m_mod_destinations.voice[voice].adsr[mod].release));
+      
     }
   }
 
@@ -903,7 +909,4 @@ void OdinAudioProcessor::setModulationPointers() {
 
     m_delay[stereo].setHPFreqModPointer(&(m_mod_destinations.delay.hp_freq));
   }
-
-    
-
 }
