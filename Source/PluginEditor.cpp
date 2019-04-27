@@ -8,12 +8,13 @@
   ==============================================================================
 */
 
-#include "PluginProcessor.h"
 #include "PluginEditor.h"
+#include "PluginProcessor.h"
 
 //==============================================================================
-OdinAudioProcessorEditor::OdinAudioProcessorEditor (OdinAudioProcessor& p, AudioProcessorValueTreeState& vts)
-    : m_value_tree(vts), AudioProcessorEditor (&p), processor (p), 
+OdinAudioProcessorEditor::OdinAudioProcessorEditor(
+    OdinAudioProcessor &p, AudioProcessorValueTreeState &vts)
+    : m_value_tree(vts), AudioProcessorEditor(&p), processor(p),
       m_osc1_dropdown("osc1_dropdown_button",
                       juce::DrawableButton::ButtonStyle::ImageRaw),
       m_osc2_dropdown("osc2_dropdown_button",
@@ -53,28 +54,14 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor (OdinAudioProcessor& p, Audio
                         juce::DrawableButton::ButtonStyle::ImageRaw),
       m_env_13_button("env13_button"), m_env_24_button("env24_button"),
       m_lfo_13_button("lfo13_button"), m_lfo_24_button("lfo24_button"),
-      m_pitch_amount(true),
-      m_osc1(vts, "1"),
-      m_osc2(vts, "2"),
-      m_osc3(vts, "3"),
-      m_fil1_component(vts, "1"),
-      m_fil2_component(vts, "2"),
-      m_fil3_component(vts, "3"),
-      m_midsection(vts),
-      m_adsr_1(vts, "1"),
-      m_adsr_2(vts, "2"),
-      m_adsr_3(vts, "3"),
-      m_adsr_4(vts, "4"),
-      m_lfo_1(vts, "1"),
-      m_lfo_2(vts, "2"),
-      m_lfo_3(vts, "3"),
-      m_lfo_4(vts, "4"),
-      m_delay(vts),
-      m_phaser(vts, "phaser"),
-      m_flanger(vts, "flanger"),
-      m_chorus(vts, "chorus"),
-      m_xy_section(vts, "xy"),
-      m_osc1_type_indentifier("osc1_type"),
+      m_pitch_amount(true), m_osc1(vts, "1"), m_osc2(vts, "2"),
+      m_osc3(vts, "3"), m_fil1_component(vts, "1"), m_fil2_component(vts, "2"),
+      m_fil3_component(vts, "3"), m_midsection(vts), m_adsr_1(vts, "1"),
+      m_adsr_2(vts, "2"), m_adsr_3(vts, "3"), m_adsr_4(vts, "4"),
+      m_lfo_1(vts, "1"), m_lfo_2(vts, "2"), m_lfo_3(vts, "3"),
+      m_lfo_4(vts, "4"), m_delay(vts), m_phaser(vts, "phaser"),
+      m_flanger(vts, "flanger"), m_chorus(vts, "chorus"),
+      m_xy_section(vts, "xy"), m_osc1_type_indentifier("osc1_type"),
       m_osc2_type_indentifier("osc2_type"),
       m_osc3_type_indentifier("osc3_type"),
       m_fil1_type_indentifier("fil1_type"),
@@ -84,10 +71,8 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor (OdinAudioProcessor& p, Audio
       m_delay_position_identifier("delay_position"),
       m_flanger_position_identifier("flanger_position"),
       m_phaser_position_identifier("phaser_position"),
-      m_chorus_position_identifier("chorus_position"),
-      m_mod_matrix(vts)
-{
-    m_osc_dropdown_menu.addItem(1, "None");
+      m_chorus_position_identifier("chorus_position"), m_mod_matrix(vts) {
+  m_osc_dropdown_menu.addItem(1, "None");
   m_osc_dropdown_menu.addItem(2, "Analog Oscillator");
   m_osc_dropdown_menu.addItem(3, "Wavetable Oscillator");
   m_osc_dropdown_menu.addItem(4, "Multi Oscillator");
@@ -413,10 +398,14 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor (OdinAudioProcessor& p, Audio
                               question_button_1.getHeight());
   m_question_button.setColour(
       juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
-  m_question_button.onStateChange = [&]{
-      setTooltipEnabled(m_question_button.getToggleState());
+  m_question_button.onStateChange = [&] {
+    setTooltipEnabled(m_question_button.getToggleState());
   };
-  m_question_button.setTooltip("Shows a tooltip for every\nparameter in the synth. Simply\n hover your mouse over it!\n\nGENERAL TIPS:\n\nHold shift to finetune knobs\n\nCtr + click to reset knobs\n\nThe order of FX can be rearranged\nby dragging and dropping\n the FX selection buttons.");
+  m_question_button.setTooltip(
+      "Shows a tooltip for every\nparameter in the synth. Simply\n hover your "
+      "mouse over it!\n\nGENERAL TIPS:\n\nHold shift to finetune knobs\n\nCtr "
+      "+ click to reset knobs\n\nThe order of FX can be rearranged\nby "
+      "dragging and dropping\n the FX selection buttons.");
   addAndMakeVisible(m_question_button);
 
   juce::Image filter_button2_1 = ImageCache::getFromFile(
@@ -587,7 +576,8 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor (OdinAudioProcessor& p, Audio
   m_glide.setStrip(metal_knob_small, N_KNOB_FRAMES);
   m_glide.setSliderStyle(Slider::RotaryVerticalDrag);
   m_glide.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-  m_glide.setKnobTooltip("Makes the pitch glide\nfrom the\nlast key pressed to\nthe current one");
+  m_glide.setKnobTooltip(
+      "Makes the pitch glide\nfrom the\nlast key pressed to\nthe current one");
   addAndMakeVisible(m_glide);
 
   m_master.setStrip(metal_knob_small, N_KNOB_FRAMES);
@@ -605,7 +595,9 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor (OdinAudioProcessor& p, Audio
   m_pitchwheel.setBounds(PITCHWHEEL_X, WHEEL_Y,
                          pitchwheel.getWidth() / N_KNOB_FRAMES,
                          pitchwheel.getHeight());
-  m_pitchwheel.setTooltip("Bends the pitch of all\noscillators up or down.\nYou can specify the amount\nby the selector below");
+  m_pitchwheel.setTooltip(
+      "Bends the pitch of all\noscillators up or down.\nYou can specify the "
+      "amount\nby the selector below");
   addAndMakeVisible(m_pitchwheel);
 
   m_modwheel.setStrip(pitchwheel, N_KNOB_FRAMES, false);
@@ -757,59 +749,73 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor (OdinAudioProcessor& p, Audio
   m_lfo_4.setSyncOverdraw(lfo24_sync_background);
   addChildComponent(m_lfo_4);
 
-  m_pitch_amount.OnValueChange = [&](int p_new_value){
-      m_value_tree.getParameter(m_pitchbend_amount_identifier)->setValueNotifyingHost(((float)p_new_value - 0.5f) / 24.f);    
+  m_pitch_amount.OnValueChange = [&](int p_new_value) {
+    m_value_tree.getParameter(m_pitchbend_amount_identifier)
+        ->setValueNotifyingHost(((float)p_new_value - 0.5f) / 24.f);
   };
   m_pitch_amount.setTopLeftPosition(PITCH_AMOUNT_X, PITCH_AMOUNT_Y);
   addAndMakeVisible(m_pitch_amount);
   m_pitch_amount.setRange(1, 24);
   m_pitch_amount.setValue(12);
   m_pitch_amount.setColor(Colour(10, 40, 50));
-  m_pitch_amount.setTooltip("The amount of pitchbend for the pitchwheel in semitones");
+  m_pitch_amount.setTooltip(
+      "The amount of pitchbend for the pitchwheel in semitones");
 
   m_osc_dropdown_menu.setLookAndFeel(&m_menu_feels);
   m_filter_dropdown_menu.setLookAndFeel(&m_menu_feels);
 
   m_tooltip.setLookAndFeel(&m_tooltip_feels);
 
-  m_phaser_on_attachment.reset (new ButtonAttachment (m_value_tree, "phaser_on", m_phaser_on_button));
-  m_flanger_on_attachment.reset (new ButtonAttachment (m_value_tree, "flanger_on", m_flanger_on_button));
-  m_delay_on_attachment.reset (new ButtonAttachment (m_value_tree, "delay_on", m_delay_on_button));
-  m_chorus_on_attachment.reset (new ButtonAttachment (m_value_tree, "chorus_on", m_chorus_on_button));
-  m_fil1_osc1_attachment.reset (new ButtonAttachment (m_value_tree, "fil1_osc1", m_filleft_button1));
-  m_fil1_osc2_attachment.reset (new ButtonAttachment (m_value_tree, "fil1_osc2", m_filleft_button2));
-  m_fil1_osc3_attachment.reset (new ButtonAttachment (m_value_tree, "fil1_osc3", m_filleft_button3));
-  m_fil2_osc1_attachment.reset (new ButtonAttachment (m_value_tree, "fil2_osc1", m_filright_button1));
-  m_fil2_osc2_attachment.reset (new ButtonAttachment (m_value_tree, "fil2_osc2", m_filright_button2));
-  m_fil2_osc3_attachment.reset (new ButtonAttachment (m_value_tree, "fil2_osc3", m_filright_button3));
-  m_fil2_fil1_attachment.reset (new ButtonAttachment (m_value_tree, "fil2_fil1", m_filright_buttonf1));
+  m_phaser_on_attachment.reset(
+      new ButtonAttachment(m_value_tree, "phaser_on", m_phaser_on_button));
+  m_flanger_on_attachment.reset(
+      new ButtonAttachment(m_value_tree, "flanger_on", m_flanger_on_button));
+  m_delay_on_attachment.reset(
+      new ButtonAttachment(m_value_tree, "delay_on", m_delay_on_button));
+  m_chorus_on_attachment.reset(
+      new ButtonAttachment(m_value_tree, "chorus_on", m_chorus_on_button));
+  m_fil1_osc1_attachment.reset(
+      new ButtonAttachment(m_value_tree, "fil1_osc1", m_filleft_button1));
+  m_fil1_osc2_attachment.reset(
+      new ButtonAttachment(m_value_tree, "fil1_osc2", m_filleft_button2));
+  m_fil1_osc3_attachment.reset(
+      new ButtonAttachment(m_value_tree, "fil1_osc3", m_filleft_button3));
+  m_fil2_osc1_attachment.reset(
+      new ButtonAttachment(m_value_tree, "fil2_osc1", m_filright_button1));
+  m_fil2_osc2_attachment.reset(
+      new ButtonAttachment(m_value_tree, "fil2_osc2", m_filright_button2));
+  m_fil2_osc3_attachment.reset(
+      new ButtonAttachment(m_value_tree, "fil2_osc3", m_filright_button3));
+  m_fil2_fil1_attachment.reset(
+      new ButtonAttachment(m_value_tree, "fil2_fil1", m_filright_buttonf1));
 
-  m_glide_attachment.reset (new SliderAttachment (m_value_tree, "glide", m_glide));
-  m_master_attachment.reset (new SliderAttachment (m_value_tree, "master", m_master));
-  m_modwheel_attachment.reset (new SliderAttachment (m_value_tree, "modwheel", m_modwheel));
-  m_pitchbend_attachment.reset (new SliderAttachment (m_value_tree, "pitchbend", m_pitchwheel));
+  m_glide_attachment.reset(
+      new SliderAttachment(m_value_tree, "glide", m_glide));
+  m_master_attachment.reset(
+      new SliderAttachment(m_value_tree, "master", m_master));
+  m_modwheel_attachment.reset(
+      new SliderAttachment(m_value_tree, "modwheel", m_modwheel));
+  m_pitchbend_attachment.reset(
+      new SliderAttachment(m_value_tree, "pitchbend", m_pitchwheel));
 
   setSize(800, 600);
 }
 
-OdinAudioProcessorEditor::~OdinAudioProcessorEditor()
-{
-    m_osc_dropdown_menu.setLookAndFeel(nullptr);
+OdinAudioProcessorEditor::~OdinAudioProcessorEditor() {
+  m_osc_dropdown_menu.setLookAndFeel(nullptr);
   m_filter_dropdown_menu.setLookAndFeel(nullptr);
   m_tooltip.setLookAndFeel(nullptr);
 }
 
 //==============================================================================
-void OdinAudioProcessorEditor::paint (Graphics& g)
-{
-    g.drawImageAt(ImageCache::getFromFile(
+void OdinAudioProcessorEditor::paint(Graphics &g) {
+  g.drawImageAt(ImageCache::getFromFile(
                     juce::File(GRAPHICS_PATH + "applied/odin_backdrop.png")),
                 0, 0);
 }
 
-void OdinAudioProcessorEditor::resized()
-{
-    Rectangle<int> area_glide(METAL_KNOB_SMALL_SIZE_X, METAL_KNOB_SMALL_SIZE_Y);
+void OdinAudioProcessorEditor::resized() {
+  Rectangle<int> area_glide(METAL_KNOB_SMALL_SIZE_X, METAL_KNOB_SMALL_SIZE_Y);
   Rectangle<int> area_master(METAL_KNOB_SMALL_SIZE_X, METAL_KNOB_SMALL_SIZE_Y);
   Rectangle<int> area_osc_1(OSC_SIZE_X, OSC_SIZE_Y);
   Rectangle<int> area_osc_2(OSC_SIZE_X, OSC_SIZE_Y);
@@ -872,15 +878,15 @@ void OdinAudioProcessorEditor::resized()
   m_xy_section.setBounds(XY_COMPONENT_POS_X, XY_COMPONENT_POS_Y,
                          XY_COMPONENT_SIZE_X, XY_COMPONENT_SIZE_Y);
 
-  m_mod_matrix.getOscFilterTypes = [&](int& osc1, int& osc2, int& osc3, int& fil1, int& fil2, int& fil3){
-      osc1 = m_osc1.getOscType();
-      osc2 = m_osc2.getOscType();
-      osc3 = m_osc3.getOscType();
-      fil1 = m_fil1_component.getFilterType();
-      fil2 = m_fil2_component.getFilterType();
-      fil3 = m_fil3_component.getFilterType();
+  m_mod_matrix.getOscFilterTypes = [&](int &osc1, int &osc2, int &osc3,
+                                       int &fil1, int &fil2, int &fil3) {
+    osc1 = m_osc1.getOscType();
+    osc2 = m_osc2.getOscType();
+    osc3 = m_osc3.getOscType();
+    fil1 = m_fil1_component.getFilterType();
+    fil2 = m_fil2_component.getFilterType();
+    fil3 = m_fil3_component.getFilterType();
   };
-
 
   m_tooltip.setBounds(100, 100, 100, 100);
   m_tooltip.setAlwaysOnTop(true);
@@ -891,33 +897,57 @@ void OdinAudioProcessorEditor::resized()
 }
 
 void OdinAudioProcessorEditor::setOsc1Plate(int p_osc_type) {
+  if (p_osc_type == 0) {
+    return;
+  }
   m_osc1.setOscType(p_osc_type);
-  m_value_tree.getParameter(m_osc1_type_indentifier)->setValueNotifyingHost(((float)p_osc_type - 0.5f) / 11.f);
+  m_value_tree.getParameter(m_osc1_type_indentifier)
+      ->setValueNotifyingHost(((float)p_osc_type - 0.5f) / 11.f);
 }
 
 void OdinAudioProcessorEditor::setOsc2Plate(int p_osc_type) {
+  if (p_osc_type == 0) {
+    return;
+  }
   m_osc2.setOscType(p_osc_type);
-  m_value_tree.getParameter(m_osc2_type_indentifier)->setValueNotifyingHost(((float)p_osc_type - 0.5f) / 11.f);
+  m_value_tree.getParameter(m_osc2_type_indentifier)
+      ->setValueNotifyingHost(((float)p_osc_type - 0.5f) / 11.f);
 }
 
 void OdinAudioProcessorEditor::setOsc3Plate(int p_osc_type) {
+  if (p_osc_type == 0) {
+    return;
+  }
   m_osc3.setOscType(p_osc_type);
-  m_value_tree.getParameter(m_osc3_type_indentifier)->setValueNotifyingHost(((float)p_osc_type - 0.5f) / 11.f);
+  m_value_tree.getParameter(m_osc3_type_indentifier)
+      ->setValueNotifyingHost(((float)p_osc_type - 0.5f) / 11.f);
 }
 
 void OdinAudioProcessorEditor::setFilter1Plate(int p_osc_type) {
+  if (p_osc_type == 0) {
+    return;
+  }
   m_fil1_component.setFilterType(p_osc_type);
-  m_value_tree.getParameter(m_fil1_type_indentifier)->setValueNotifyingHost(((float)p_osc_type - 0.5f) / 13.f);
+  m_value_tree.getParameter(m_fil1_type_indentifier)
+      ->setValueNotifyingHost(((float)p_osc_type - 0.5f) / 13.f);
 }
 
 void OdinAudioProcessorEditor::setFilter2Plate(int p_osc_type) {
+  if (p_osc_type == 0) {
+    return;
+  }
   m_fil2_component.setFilterType(p_osc_type);
-  m_value_tree.getParameter(m_fil2_type_indentifier)->setValueNotifyingHost(((float)p_osc_type - 0.5f) / 13.f);
+  m_value_tree.getParameter(m_fil2_type_indentifier)
+      ->setValueNotifyingHost(((float)p_osc_type - 0.5f) / 13.f);
 }
 
 void OdinAudioProcessorEditor::setFilter3Plate(int p_osc_type) {
+  if (p_osc_type == 0) {
+    return;
+  }
   m_fil3_component.setFilterType(p_osc_type);
-  m_value_tree.getParameter(m_fil3_type_indentifier)->setValueNotifyingHost(((float)p_osc_type - 0.5f) / 13.f);
+  m_value_tree.getParameter(m_fil3_type_indentifier)
+      ->setValueNotifyingHost(((float)p_osc_type - 0.5f) / 13.f);
 }
 
 void OdinAudioProcessorEditor::setEnv13(bool p_env1) {
@@ -960,7 +990,8 @@ void OdinAudioProcessorEditor::setLfo24(bool p_lfo2) {
   }
 }
 
-void OdinAudioProcessorEditor::arrangeFXOnButtons(std::map<std::string, int> p_map) {
+void OdinAudioProcessorEditor::arrangeFXOnButtons(
+    std::map<std::string, int> p_map) {
 
   m_flanger_on_button.setTopLeftPosition(
       FX_ON_BUTTON_X + p_map.find("flanger")->second * FX_BUTTON_OFFSET,
@@ -975,10 +1006,14 @@ void OdinAudioProcessorEditor::arrangeFXOnButtons(std::map<std::string, int> p_m
       FX_ON_BUTTON_X + p_map.find("delay")->second * FX_BUTTON_OFFSET,
       FX_ON_BUTTON_Y);
 
-  m_value_tree.getParameter(m_delay_position_identifier)->setValueNotifyingHost(((float)p_map.find("delay")->second) / 3.f);
-  m_value_tree.getParameter(m_phaser_position_identifier)->setValueNotifyingHost(((float)p_map.find("phaser")->second) / 3.f);
-  m_value_tree.getParameter(m_flanger_position_identifier)->setValueNotifyingHost(((float)p_map.find("flanger")->second) / 3.f);
-  m_value_tree.getParameter(m_chorus_position_identifier)->setValueNotifyingHost(((float)p_map.find("chorus")->second) / 3.f);
+  m_value_tree.getParameter(m_delay_position_identifier)
+      ->setValueNotifyingHost(((float)p_map.find("delay")->second) / 3.f);
+  m_value_tree.getParameter(m_phaser_position_identifier)
+      ->setValueNotifyingHost(((float)p_map.find("phaser")->second) / 3.f);
+  m_value_tree.getParameter(m_flanger_position_identifier)
+      ->setValueNotifyingHost(((float)p_map.find("flanger")->second) / 3.f);
+  m_value_tree.getParameter(m_chorus_position_identifier)
+      ->setValueNotifyingHost(((float)p_map.find("chorus")->second) / 3.f);
 }
 
 void OdinAudioProcessorEditor::setActiveFXPanel(std::string p_name) {
@@ -1012,12 +1047,12 @@ void OdinAudioProcessorEditor::setActiveFXPanel(std::string p_name) {
   }
 }
 
-void OdinAudioProcessorEditor::setTooltipEnabled(bool p_enabled){
-    if(p_enabled){
-          m_tooltip.setMillisecondsBeforeTipAppears(0);
-    } else {
-      //todo unelegant af solution 
-      m_tooltip.setMillisecondsBeforeTipAppears(2047483647);
-      m_tooltip.hideTip();
-    }
+void OdinAudioProcessorEditor::setTooltipEnabled(bool p_enabled) {
+  if (p_enabled) {
+    m_tooltip.setMillisecondsBeforeTipAppears(0);
+  } else {
+    // todo unelegant af solution
+    m_tooltip.setMillisecondsBeforeTipAppears(2047483647);
+    m_tooltip.hideTip();
+  }
 }

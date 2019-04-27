@@ -66,7 +66,7 @@ public:
 	{
 
 		// --- do the  complete frequency mod
-		m_osc_freq_modded = m_osc_freq_base*pitchShiftMultiplier( (*m_pitch_mod_exp)* OSC_EXP_MOD_RANGE + m_mod_freq_exp + m_mod_exp_other +
+		m_osc_freq_modded = m_osc_freq_base*pitchShiftMultiplier(*(m_pitchbend) + (*m_pitch_mod_exp)* OSC_EXP_MOD_RANGE + m_mod_freq_exp + m_mod_exp_other +
 													     m_mod_pitch_bend + 
 													     m_octave*12.0 + 
 													     m_semitones + 
@@ -100,6 +100,9 @@ public:
 	void setVolModPointer(float* p_pointer){
 		m_vol_mod = p_pointer;
 	}
+	void setPitchBendPointer(float* p_pointer){
+		m_pitchbend = p_pointer;
+	}
 public:
 
 	
@@ -115,6 +118,7 @@ public:
 	float* m_pitch_mod_exp;
 	float* m_pitch_mod_lin;
 	float* m_vol_mod;
+	float* m_pitchbend;
 
 	int m_octave;	      // octave tweak
 	int m_semitones;	  // semitones tweak

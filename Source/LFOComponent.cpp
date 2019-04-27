@@ -100,7 +100,7 @@ LFOComponent::LFOComponent(AudioProcessorValueTreeState& vts, std::string p_lfo_
       m_value_tree.getParameter(m_lfo_wave_identifier)->setValueNotifyingHost(((float)p_new_value) / 20.f);          
   };
   m_selector.setTopLeftPosition(SELECTOR_POS_X, SELECTOR_POS_Y);
-  m_selector.setTooltip("The waveform to be used for the LFO");
+  m_selector.setTooltip("The waveform to be used for this LFO. WD1-3 are using the wavedraw tables drawn in oscillators 1-3.");
   addAndMakeVisible(m_selector);
 
 

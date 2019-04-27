@@ -76,6 +76,7 @@ private:
   float m_fil_gain_smooth[3] = {1.f, 1.f, 1.f};  // factor
   float m_osc_vol_control[3] = {1.f, 1.f, 1.f};  // factor
   float m_fil_gain_control[3] = {1.f, 1.f, 1.f}; // factor
+  float m_pitch_bend_smooth_and_applied = 0.f;
 
   void setSampleRate(float p_samplerate);
   void initializeModules();

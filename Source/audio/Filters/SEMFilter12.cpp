@@ -37,7 +37,6 @@ void SEMFilter12::update()
     m_resonance_modded = m_resonance_modded > 25 ? 25 : m_resonance_modded;
     m_resonance_modded = m_resonance_modded < 0.5 ? 0.5 : m_resonance_modded;
 
-
     double r = 1.0 / (2.0 * m_resonance_modded);
 
     m_alpha_0 = 1.0 / (1.0 + 2.0 * r * g + g * g);
@@ -48,7 +47,7 @@ void SEMFilter12::update()
 double SEMFilter12::doFilter(double xn)
 {
     double hpf = m_alpha_0 * (xn - m_rho * m_z_1 - m_z_2);
-    double bpf = m_alpha * hpf + m_z_1;    
+    double bpf = m_alpha * hpf + m_z_1;
 
     double lpf = m_alpha * bpf + m_z_2;
     double r = 1.0 / (2.0 * m_resonance_modded);

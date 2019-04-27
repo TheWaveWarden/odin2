@@ -9,6 +9,8 @@ FMOscillator::FMOscillator(){
     m_modulator_osc.setPitchModLinPointer(&m_zero_modulation_dummy);
     m_carrier_osc.setVolModPointer(&m_zero_modulation_dummy);
     m_modulator_osc.setVolModPointer(&m_zero_modulation_dummy);
+    m_carrier_osc.setPitchBendPointer(&m_zero_modulation_dummy);
+    m_modulator_osc.setPitchBendPointer(&m_zero_modulation_dummy);
 }
 
 

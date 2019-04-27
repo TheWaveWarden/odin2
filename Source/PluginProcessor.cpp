@@ -154,13 +154,7 @@ bool OdinAudioProcessor::isBusesLayoutSupported(
 void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
                                       MidiBuffer &midiMessages) {
 
-  //===== SMOOTH CONTROLS ======
-  for (int i = 0; i < 3; ++i) {
-    m_osc_vol_smooth[i] = m_osc_vol_smooth[i] * GAIN_SMOOTHIN_FACTOR +
-                          (1.f - GAIN_SMOOTHIN_FACTOR) * m_osc_vol_control[i];
-    m_fil_gain_smooth[i] = m_fil_gain_smooth[i] * GAIN_SMOOTHIN_FACTOR +
-                           (1.f - GAIN_SMOOTHIN_FACTOR) * m_fil_gain_control[i];
-  }
+  
 
   ScopedNoDenormals noDenormals;
   auto totalNumInputChannels = getTotalNumInputChannels();
@@ -174,6 +168,17 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
 
   // loop over samples
   for (int sample = 0; sample < buffer.getNumSamples(); ++sample) {
+
+  //===== SMOOTH CONTROLS ======
+  for (int i = 0; i < 3; ++i) {
+    m_osc_vol_smooth[i] = m_osc_vol_smooth[i] * GAIN_SMOOTHIN_FACTOR +
+                          (1.f - GAIN_SMOOTHIN_FACTOR) * m_osc_vol_control[i];
+    m_fil_gain_smooth[i] = m_fil_gain_smooth[i] * GAIN_SMOOTHIN_FACTOR +
+                           (1.f - GAIN_SMOOTHIN_FACTOR) * m_fil_gain_control[i];
+  }
+
+  m_pitch_bend_smooth_and_applied = m_pitch_bend_smooth_and_applied * PITCHBEND_SMOOTHIN_FACTOR +
+                          (1.f - PITCHBEND_SMOOTHIN_FACTOR) * (*m_pitchbend) * (*m_pitchbend_amount);
 
     //===== MIDI =====
     if (midi_message_remaining) {
@@ -558,6 +563,25 @@ void OdinAudioProcessor::setModulationPointers() {
   //========================================
   for (int voice = 0; voice < VOICES; ++voice) {
     for (int osc = 0; osc < 3; ++osc) {
+      m_voice[voice].analog_osc[osc].setPitchBendPointer(
+          &(m_pitch_bend_smooth_and_applied));
+      m_voice[voice].wavetable_osc[osc].setPitchBendPointer(
+          &(m_pitch_bend_smooth_and_applied));
+      m_voice[voice].multi_osc[osc].setPitchBendPointer(
+          &(m_pitch_bend_smooth_and_applied));
+      m_voice[voice].vector_osc[osc].setPitchBendPointer(
+          &(m_pitch_bend_smooth_and_applied));
+      m_voice[voice].fm_osc[osc].setPitchBendPointer(
+          &(m_pitch_bend_smooth_and_applied));
+      m_voice[voice].chiptune_osc[osc].setPitchBendPointer(
+          &(m_pitch_bend_smooth_and_applied));
+      m_voice[voice].wavedraw_osc[osc].setPitchBendPointer(
+          &(m_pitch_bend_smooth_and_applied));
+      m_voice[voice].chipdraw_osc[osc].setPitchBendPointer(
+          &(m_pitch_bend_smooth_and_applied));
+      m_voice[voice].specdraw_osc[osc].setPitchBendPointer(
+          &(m_pitch_bend_smooth_and_applied));
+
       m_voice[voice].analog_osc[osc].setPitchModExpPointer(
           &(m_mod_destinations.voice[voice].osc[osc].pitch_exponential));
       m_voice[voice].wavetable_osc[osc].setPitchModExpPointer(
