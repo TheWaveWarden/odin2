@@ -188,6 +188,9 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
     m_modwheel_smooth = m_modwheel_smooth * PITCHBEND_SMOOTHIN_FACTOR +
                         (1.f - PITCHBEND_SMOOTHIN_FACTOR) * (*m_modwheel);
 
+    m_x_smooth = m_x_smooth * PAD_SMOOTHIN_FACTOR + (1.f - PAD_SMOOTHIN_FACTOR) * (*m_xy_x);
+    m_y_smooth = m_y_smooth * PAD_SMOOTHIN_FACTOR + (1.f - PAD_SMOOTHIN_FACTOR) * (*m_xy_y);
+
     //===== MIDI =====
     if (midi_message_remaining) {
       if (midi_message_sample <= sample) {
@@ -586,8 +589,8 @@ void OdinAudioProcessor::setModulationPointers() {
         &(m_voice[voice].MIDI_velocity_mod_source);
   }
   m_mod_sources.MIDI_aftertouch = &(m_MIDI_aftertouch);
-  m_mod_sources.x = m_xy_x;
-  m_mod_sources.y = m_xy_y;
+  m_mod_sources.x = &m_x_smooth;
+  m_mod_sources.y = &m_y_smooth;
   m_mod_sources.modwheel = &m_modwheel_smooth;
   m_mod_sources.pitchwheel = &m_pitch_bend_smooth_and_applied;
   m_mod_sources.constant = &(m_constant);

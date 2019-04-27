@@ -80,6 +80,8 @@ private:
   float m_fil_freq_smooth[3] = {2000, 2000, 2000};
   float m_pitch_bend_smooth_and_applied = 0.f;
   float m_modwheel_smooth = 0.f;
+  float m_x_smooth = 0.f;
+  float m_y_smooth = 0.f;
 
   void setSampleRate(float p_samplerate);
   void initializeModules();
