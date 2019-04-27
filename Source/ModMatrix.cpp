@@ -646,8 +646,32 @@ void ModMatrixRow::setModDestination(int p_destination) {
     m_destination_value[0] = &(m_destinations->filter3.SEM_transition);
     m_destination_poly = false;
     break;
-  }
 
+  case 651:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_destination_value[voice] = &(m_destinations->voice[voice].lfo[0].freq);
+    }
+    m_destination_poly = true;
+    break;
+  case 661:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_destination_value[voice] = &(m_destinations->voice[voice].lfo[1].freq);
+    }
+    m_destination_poly = true;
+    break;
+  case 671:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_destination_value[voice] = &(m_destinations->voice[voice].lfo[2].freq);
+    }
+    m_destination_poly = true;
+    break;
+  case 681:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_destination_value[voice] = &(m_destinations->voice[voice].lfo[3].freq);
+    }
+    m_destination_poly = true;    
+    break;
+  }
   m_destination = p_destination;
   m_active = (m_source && m_destination);
   DBG(m_source);
@@ -679,7 +703,8 @@ void ModMatrix::setSourcesAndDestinations(ModSources *p_sources,
   zeroAllSources();
 }
 
-// ModMatrix::ModMatrix(ModSources *p_sources, ModDestinations *p_destinations){
+// ModMatrix::ModMatrix(ModSources *p_sources, ModDestinations
+// *p_destinations){
 //  for (int row = 0; row < MODMATRIX_ROWS; ++row) {
 //    m_row[row].setSourcesAndDestinations(p_sources, p_destinations);
 //  }

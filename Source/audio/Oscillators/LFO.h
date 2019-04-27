@@ -11,13 +11,15 @@ public:
 
     //get first random SH value
     m_SH_value = getBipolarRandom();
+
+    m_osc_freq_base = 1.f;
   }
   ~LFO() {}
 
 	void loadWavetables();
   float doOscillate();  
 
-  inline void update() {
+  inline void update() override {
 
     // --- do the  complete frequency mod
     if (*m_pitch_mod_exp) {
@@ -29,7 +31,6 @@ public:
 
     m_osc_freq_modded = m_osc_freq_modded > OSC_FO_MAX ? OSC_FO_MAX : m_osc_freq_modded;
 
-    // --- calculate increment (a.k.a. phase a.m_k.a. phaseIncrement, etc...)
     m_increment = m_osc_freq_modded / m_samplerate;
     m_wavetable_inc = WAVETABLE_LENGTH * m_increment;
 

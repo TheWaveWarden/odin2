@@ -903,4 +903,7 @@ void OdinAudioProcessor::setModulationPointers() {
 
     m_delay[stereo].setHPFreqModPointer(&(m_mod_destinations.delay.hp_freq));
   }
+
+    
+
 }
