@@ -835,6 +835,46 @@ void ModMatrixRow::setModDestination(int p_destination) {
     m_destination_value[0] = &(m_destinations->delay.dry);
     m_destination_poly = false;
     break;
+
+  case 751:
+    m_destination_value[0] = &(m_destinations->phaser.freq);
+    m_destination_poly = false;
+    break;
+  case 752:
+    m_destination_value[0] = &(m_destinations->phaser.amount);
+    m_destination_poly = false;
+    break;
+  case 753:
+    m_destination_value[0] = &(m_destinations->phaser.drywet);
+    m_destination_poly = false;
+    break;
+
+  case 801:
+    m_destination_value[0] = &(m_destinations->flanger.freq);
+    m_destination_poly = false;
+    break;
+  case 802:
+    m_destination_value[0] = &(m_destinations->flanger.amount);
+    m_destination_poly = false;
+    break;
+  case 803:
+    m_destination_value[0] = &(m_destinations->flanger.drywet);
+    m_destination_poly = false;
+    break;
+
+  case 851:
+    m_destination_value[0] = &(m_destinations->chorus.freq);
+    m_destination_poly = false;
+    break;
+  case 852:
+    m_destination_value[0] = &(m_destinations->chorus.amount);
+    m_destination_poly = false;
+    break;
+  case 853:
+    m_destination_value[0] = &(m_destinations->chorus.drywet);
+    m_destination_poly = false;
+    break;
+
   case 705:
     m_destination_value[0] = &(m_destinations->delay.wet);
     m_destination_poly = false;

@@ -45,7 +45,7 @@ public:
 
   inline void setResonance(float p_feedback) { m_feedback = p_feedback; }
 
-  inline void setSamplerate(float p_samplerate) { m_samplerate = p_samplerate; }
+  inline virtual void setSamplerate(float p_samplerate) { m_samplerate = p_samplerate; }
 
   inline void incWriteIndex() {
     if (++m_write_index >= COMB_BUFFER_LENGTH) {
@@ -67,9 +67,9 @@ public:
     m_res_mod = p_pointer;
   }
 
-  float* m_freq_mod;
-  float* m_res_mod;
-  float* m_vol_mod;
+  float* m_freq_mod = &m_zero_modulation_dummy;
+  float* m_res_mod = &m_zero_modulation_dummy;
+  float* m_vol_mod = &m_zero_modulation_dummy;
   float* m_env_mod_mod = &m_zero_modulation_dummy;
   float* m_vel_mod_mod = &m_zero_modulation_dummy;
   float* m_kbd_mod_mod = &m_zero_modulation_dummy;

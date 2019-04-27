@@ -122,7 +122,6 @@ void OdinAudioProcessor::prepareToPlay(double sampleRate, int samplesPerBlock) {
   // initialisation that you need..
   m_voice[0].start(52, 100);
   m_amp.setMIDIVelocity(100);
-  
 }
 
 void OdinAudioProcessor::releaseResources() {
@@ -820,14 +819,12 @@ void OdinAudioProcessor::setModulationPointers() {
           &(m_mod_destinations.voice[voice].adsr[mod].sustain));
       m_voice[voice].env[mod].setReleaseModPointer(
           &(m_mod_destinations.voice[voice].adsr[mod].release));
-      
     }
   }
 
   m_amp.setGainModPointer(&(m_mod_destinations.amp.gain));
   m_amp.setPanModPointer(&(m_mod_destinations.amp.pan));
   m_amp.setVelModPointer(&(m_mod_destinations.amp.vel));
-
 
   for (int stereo = 0; stereo < 2; ++stereo) {
 
@@ -915,14 +912,27 @@ void OdinAudioProcessor::setModulationPointers() {
     m_SEM_filter_12[stereo].setTransitionModPointer(
         &(m_mod_destinations.filter3.SEM_transition));
 
-    m_distortion[stereo].setThresholdModPointer(&(m_mod_destinations.distortion.threshold));
-    m_distortion[stereo].setDryWetModPointer(&(m_mod_destinations.distortion.drywet));
-
+    m_distortion[stereo].setThresholdModPointer(
+        &(m_mod_destinations.distortion.threshold));
+    m_distortion[stereo].setDryWetModPointer(
+        &(m_mod_destinations.distortion.drywet));
 
     m_delay[stereo].setTimeModPointer(&(m_mod_destinations.delay.time));
     m_delay[stereo].setFeedbackModPointer(&(m_mod_destinations.delay.feedback));
     m_delay[stereo].setHPFreqModPointer(&(m_mod_destinations.delay.hp_freq));
     m_delay[stereo].setDryModPointer(&(m_mod_destinations.delay.dry));
     m_delay[stereo].setWetModPointer(&(m_mod_destinations.delay.wet));
+
+    m_phaser[stereo].setFreqModPointer(&(m_mod_destinations.phaser.freq));
+    m_phaser[stereo].setAmountModPointer(&(m_mod_destinations.phaser.amount));
+    m_phaser[stereo].setDryWetModPointer(&(m_mod_destinations.phaser.drywet));
+
+    m_flanger[stereo].setFreqModPointer(&(m_mod_destinations.flanger.freq));
+    m_flanger[stereo].setAmountModPointer(&(m_mod_destinations.flanger.amount));
+    m_flanger[stereo].setDryWetModPointer(&(m_mod_destinations.flanger.drywet));
+
+    m_chorus[stereo].setFreqModPointer(&(m_mod_destinations.chorus.freq));
+    m_chorus[stereo].setAmountModPointer(&(m_mod_destinations.chorus.amount));
+    m_chorus[stereo].setDryWetModPointer(&(m_mod_destinations.chorus.drywet));
   }
 }
