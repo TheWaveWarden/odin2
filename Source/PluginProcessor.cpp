@@ -915,6 +915,11 @@ void OdinAudioProcessor::setModulationPointers() {
     m_SEM_filter_12[stereo].setTransitionModPointer(
         &(m_mod_destinations.filter3.SEM_transition));
 
+    m_distortion[stereo].setThresholdModPointer(&(m_mod_destinations.distortion.threshold));
+    m_distortion[stereo].setDryWetModPointer(&(m_mod_destinations.distortion.drywet));
+
+
+
     m_delay[stereo].setHPFreqModPointer(&(m_mod_destinations.delay.hp_freq));
   }
 }

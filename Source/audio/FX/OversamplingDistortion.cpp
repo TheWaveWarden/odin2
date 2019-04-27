@@ -21,23 +21,26 @@ double OversamplingDistortion::doDistortion(double p_input){
 
     m_last_input = p_input;
 
-    //do distortion
+    float threshold_modded = m_threshold + *m_threshold_mod;
+    threshold_modded = threshold_modded > 1 ? 1 : threshold_modded;
+    threshold_modded = threshold_modded < 0 ? 0 : threshold_modded;
 
+    //do distortion
     if(m_is_overdrive){
         for (int sample = 0; sample < 3; ++sample){
-            if(input_upsampled[sample] > m_bias && input_upsampled[sample] > m_bias + m_threshold){
-                input_upsampled[sample] = m_bias + m_threshold;
+            if(input_upsampled[sample] > m_bias && input_upsampled[sample] > m_bias + threshold_modded){
+                input_upsampled[sample] = m_bias + threshold_modded;
             } 
-            else if(input_upsampled[sample] < m_bias && input_upsampled[sample] < m_bias - m_threshold){
-                input_upsampled[sample] = m_bias - m_threshold;
+            else if(input_upsampled[sample] < m_bias && input_upsampled[sample] < m_bias - threshold_modded){
+                input_upsampled[sample] = m_bias - threshold_modded;
             }
         }
     } else {
         for (int sample = 0; sample < 3; ++sample){
-            if(input_upsampled[sample] > m_bias && input_upsampled[sample] > m_bias + m_threshold){
+            if(input_upsampled[sample] > m_bias && input_upsampled[sample] > m_bias + threshold_modded){
                 input_upsampled[sample] = 0.;
             } 
-            else if(input_upsampled[sample] < m_bias && input_upsampled[sample] < m_bias - m_threshold){
+            else if(input_upsampled[sample] < m_bias && input_upsampled[sample] < m_bias - threshold_modded){
                 input_upsampled[sample] = 0.;
             }
         }
@@ -79,6 +82,10 @@ double OversamplingDistortion::doDistortion(double p_input){
                      + ( -2.2721421641 * yv[6]) + ( -2.6598673212 * yv[7])
                      + ( -1.8755960587 * yv[8]);
     
+    float drywet_modded = m_drywet + *m_drywet_mod;
+    drywet_modded = drywet_modded > 1 ? 1 : drywet_modded;
+    drywet_modded = drywet_modded < 0 ? 0 : drywet_modded;
+
     //return only the last of the three samples
-    return yv[9] * m_drywet + p_input * (1.f- m_drywet);
+    return yv[9] * drywet_modded + p_input * (1.f- drywet_modded);
 }

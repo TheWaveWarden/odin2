@@ -803,6 +803,15 @@ void ModMatrixRow::setModDestination(int p_destination) {
     m_destination_value[0] = &(m_destinations->amp.vel);
     m_destination_poly = false;
     break;
+
+  case 950:
+    m_destination_value[0] = &(m_destinations->distortion.threshold);
+    m_destination_poly = false;
+    break;
+  case 951:
+    m_destination_value[0] = &(m_destinations->distortion.drywet);
+    m_destination_poly = false;
+    break;
   }
   m_destination = p_destination;
   m_active = (m_source && m_destination);

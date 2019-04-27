@@ -24,7 +24,19 @@ public:
 		m_drywet = p_drywet;
 	}
 
+	void setThresholdModPointer(float* p_pointer){
+		m_threshold_mod = p_pointer;
+	}
+
+	void setDryWetModPointer(float* p_pointer){
+		m_drywet_mod = p_pointer;
+	}
+
 protected:
+
+	float* m_threshold_mod;
+	float* m_drywet_mod;
+
 	bool m_is_overdrive = true; // else fuzz
 
 	double m_last_input = 0.f;
