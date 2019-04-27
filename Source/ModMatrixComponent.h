@@ -145,6 +145,7 @@ private:
   PopupMenu m_chiptune_osc_menu[3];
   PopupMenu m_standard_fil_menu[3];
   PopupMenu m_SEM_fil_menu[3];
+  PopupMenu m_comb_fil_menu[3];
   PopupMenu m_formant_fil_menu[3];
   PopupMenu m_adsr_menu[4];
   PopupMenu m_lfo_menu[4];

@@ -39,7 +39,7 @@ public:
   }
 
   inline void setCombFreq(float p_freq) {
-    // TODO check for too long time... here?
+    // TODO check for too long time... here? no bc gets modded later
     m_delay_time_control = 1.f / p_freq;
   }
 

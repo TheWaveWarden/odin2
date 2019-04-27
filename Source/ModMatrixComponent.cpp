@@ -187,6 +187,23 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
                                      "Filter" + std::to_string(fil + 1) +
                                          " Saturation");
 
+    // comb
+    m_comb_fil_menu[fil].addItem(
+        300 + 100 * fil + 1, "Filter" + std::to_string(fil + 1) + " Frequency");
+    m_comb_fil_menu[fil].addItem(
+        300 + 100 * fil + 2, "Filter" + std::to_string(fil + 1) + " Resonance");
+    m_comb_fil_menu[fil].addItem(300 + 100 * fil + 3,
+                                 "Filter" + std::to_string(fil + 1) + " Gain");
+    m_comb_fil_menu[fil].addItem(300 + 100 * fil + 4,
+                                 "Filter" + std::to_string(fil + 1) +
+                                     " Env Amount");
+    m_comb_fil_menu[fil].addItem(300 + 100 * fil + 5,
+                                 "Filter" + std::to_string(fil + 1) +
+                                     " Vel Amount");
+    m_comb_fil_menu[fil].addItem(300 + 100 * fil + 6,
+                                 "Filter" + std::to_string(fil + 1) +
+                                     " Kbd Amount");
+
     // SEM
     m_SEM_fil_menu[fil].addItem(
         300 + 100 * fil + 1, "Filter" + std::to_string(fil + 1) + " Frequency");
@@ -949,8 +966,7 @@ void ModMatrixComponent::createMenu(PopupMenu *p_menu) {
         fil_type[fil] == FILTER_TYPE_HP24 ||
         fil_type[fil] == FILTER_TYPE_HP12 ||
         fil_type[fil] == FILTER_TYPE_KORG ||
-        fil_type[fil] == FILTER_TYPE_DIODE ||
-        fil_type[fil] == FILTER_TYPE_COMB) {
+        fil_type[fil] == FILTER_TYPE_DIODE) {
       p_menu->addSubMenu("Filter " + std::to_string(fil + 1),
                          m_standard_fil_menu[fil], true);
     } else if (fil_type[fil] == FILTER_TYPE_FORMANT) {
@@ -960,6 +976,8 @@ void ModMatrixComponent::createMenu(PopupMenu *p_menu) {
                fil_type[fil] == FILTER_TYPE_SEM24) {
       p_menu->addSubMenu("Filter " + std::to_string(fil + 1),
                          m_SEM_fil_menu[fil], true);
+    } else if (fil_type[fil] == FILTER_TYPE_COMB) {
+      p_menu->addSubMenu("Filter " + std::to_string(fil + 1), m_comb_fil_menu[fil]);
     } else {
       p_menu->addItem(998, "Filter " + std::to_string(fil + 1), false);
     }
