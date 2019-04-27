@@ -78,7 +78,7 @@ protected:
   void setRadius(float p_radius);
   void setFrequency(float p_frequency);
 
-  float m_amount;
+  float m_amount = 1.f;
   float m_base_freq;
 
   BiquadAllpass m_AP1;
@@ -90,7 +90,7 @@ protected:
 
   int m_LFO_sign =
       1; // switches from the positive to the negative proportion of the LFO
-  float m_LFO_amplitude;
+  float m_LFO_amplitude = 0.3f;
   float m_index_sine = 0;
   float m_increment_sine;
 
