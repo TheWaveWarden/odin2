@@ -57,13 +57,17 @@ double SEMFilter12::doFilter(double xn)
     m_z_1 = m_alpha * hpf + bpf;
     m_z_2 = m_alpha * bpf + lpf;
 
-    if (m_transition < 0)
+    float transition_modded = m_transition + *m_transition_mod * 2;
+    transition_modded = transition_modded > 1 ? 1 : transition_modded;
+    transition_modded = transition_modded < -1 ? -1 : transition_modded;
+
+    if (transition_modded < 0)
     {
-        xn = (1 + m_transition) * bsf - m_transition * lpf;
+        xn = (1 + transition_modded) * bsf - transition_modded * lpf;
     }
     else
     {
-        xn = m_transition * hpf + (1 - m_transition) * bsf;
+        xn = transition_modded * hpf + (1 - transition_modded) * bsf;
     }
 
     float vol_mod_factor = (*m_vol_mod) > 0 ? 1.f + 4 *(*m_vol_mod) : (1.f + *m_vol_mod);

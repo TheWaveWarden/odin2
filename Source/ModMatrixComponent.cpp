@@ -76,7 +76,6 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
       m_scale_identifier3("scale_[3]"), m_scale_identifier4("scale_[4]"),
       m_scale_identifier5("scale_[5]"), m_scale_identifier6("scale_[6]"),
       m_scale_identifier7("scale_[7]"), m_scale_identifier8("scale_[8]")
-
 {
 
   // create submenus to be inserted on demand

@@ -571,7 +571,7 @@ void ModMatrixRow::setModDestination(int p_destination) {
     m_destination_poly = false;
     break;
 
-    case 305:
+  case 305:
     for (int voice = 0; voice < VOICES; ++voice) {
       m_destination_value[voice] =
           &(m_destinations->voice[voice].filter[0].vel_amount);
@@ -590,7 +590,7 @@ void ModMatrixRow::setModDestination(int p_destination) {
     m_destination_poly = false;
     break;
 
-case 306:
+  case 306:
     for (int voice = 0; voice < VOICES; ++voice) {
       m_destination_value[voice] =
           &(m_destinations->voice[voice].filter[0].kbd_amount);
@@ -609,7 +609,7 @@ case 306:
     m_destination_poly = false;
     break;
 
-    case 307:
+  case 307:
     for (int voice = 0; voice < VOICES; ++voice) {
       m_destination_value[voice] =
           &(m_destinations->voice[voice].filter[0].saturation);
@@ -625,6 +625,25 @@ case 306:
     break;
   case 507:
     m_destination_value[0] = &(m_destinations->filter3.saturation);
+    m_destination_poly = false;
+    break;
+
+  case 310:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_destination_value[voice] =
+          &(m_destinations->voice[voice].filter[0].SEM_transition);
+    }
+    m_destination_poly = true;
+    break;
+  case 410:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_destination_value[voice] =
+          &(m_destinations->voice[voice].filter[1].SEM_transition);
+    }
+    m_destination_poly = true;
+    break;
+  case 510:
+    m_destination_value[0] = &(m_destinations->filter3.SEM_transition);
     m_destination_poly = false;
     break;
   }

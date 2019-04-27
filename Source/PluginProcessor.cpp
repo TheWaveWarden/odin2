@@ -709,7 +709,6 @@ void OdinAudioProcessor::setModulationPointers() {
       m_voice[voice].formant_filter[fil].setEnvModPointer(
           &(m_mod_destinations.voice[voice].filter[fil].env_amount));
 
-
       m_voice[voice].ladder_filter[fil].setVelModPointer(
           &(m_mod_destinations.voice[voice].filter[fil].vel_amount));
       m_voice[voice].diode_filter[fil].setVelModPointer(
@@ -722,7 +721,6 @@ void OdinAudioProcessor::setModulationPointers() {
           &(m_mod_destinations.voice[voice].filter[fil].vel_amount));
       m_voice[voice].comb_filter[fil].setVelModPointer(
           &(m_mod_destinations.voice[voice].filter[fil].vel_amount));
-
 
       m_voice[voice].ladder_filter[fil].setKbdModPointer(
           &(m_mod_destinations.voice[voice].filter[fil].kbd_amount));
@@ -745,6 +743,9 @@ void OdinAudioProcessor::setModulationPointers() {
           &(m_mod_destinations.voice[voice].filter[fil].saturation));
       m_voice[voice].korg_filter[fil].setSaturationModPointer(
           &(m_mod_destinations.voice[voice].filter[fil].saturation));
+
+      m_voice[voice].SEM_filter_12[fil].setTransitionModPointer(
+          &(m_mod_destinations.voice[voice].filter[fil].SEM_transition));
     }
 
     for (int mod = 0; mod < 4; ++mod) {
@@ -761,14 +762,83 @@ void OdinAudioProcessor::setModulationPointers() {
     m_diode_filter[stereo].setFreqModPointer(
         &(m_mod_destinations.filter3.freq));
     m_korg_filter[stereo].setFreqModPointer(&(m_mod_destinations.filter3.freq));
+    m_comb_filter[stereo].setFreqModPointer(&(m_mod_destinations.filter3.freq));
     m_SEM_filter_12[stereo].setFreqModPointer(
         &(m_mod_destinations.filter3.freq));
     m_SEM_filter_24[stereo].setFreqModPointer(
         &(m_mod_destinations.filter3.freq));
-    m_comb_filter[stereo].setFreqModPointer(&(m_mod_destinations.filter3.freq));
 
-    m_ladder_filter[stereo].setFreqModPointer(
-        &(m_mod_destinations.filter3.res));
+    m_ladder_filter[stereo].setResModPointer(&(m_mod_destinations.filter3.res));
+    m_diode_filter[stereo].setResModPointer(&(m_mod_destinations.filter3.res));
+    m_korg_filter[stereo].setResModPointer(&(m_mod_destinations.filter3.res));
+    m_SEM_filter_12[stereo].setResModPointer(&(m_mod_destinations.filter3.res));
+    m_SEM_filter_24[stereo].setResModPointer(&(m_mod_destinations.filter3.res));
+    m_comb_filter[stereo].setResModPointer(&(m_mod_destinations.filter3.res));
+
+    m_ladder_filter[stereo].setVolModPointer(
+        &(m_mod_destinations.filter3.gain));
+    m_diode_filter[stereo].setVolModPointer(&(m_mod_destinations.filter3.gain));
+    m_korg_filter[stereo].setVolModPointer(&(m_mod_destinations.filter3.gain));
+    m_SEM_filter_12[stereo].setVolModPointer(
+        &(m_mod_destinations.filter3.gain));
+    m_SEM_filter_24[stereo].setVolModPointer(
+        &(m_mod_destinations.filter3.gain));
+    m_comb_filter[stereo].setVolModPointer(&(m_mod_destinations.filter3.gain));
+    m_formant_filter[stereo].setVolModPointer(
+        &(m_mod_destinations.filter3.gain));
+
+    m_ladder_filter[stereo].setEnvModPointer(
+        &(m_mod_destinations.filter3.env_amount));
+    m_diode_filter[stereo].setEnvModPointer(
+        &(m_mod_destinations.filter3.env_amount));
+    m_korg_filter[stereo].setEnvModPointer(
+        &(m_mod_destinations.filter3.env_amount));
+    m_SEM_filter_12[stereo].setEnvModPointer(
+        &(m_mod_destinations.filter3.env_amount));
+    m_SEM_filter_24[stereo].setEnvModPointer(
+        &(m_mod_destinations.filter3.env_amount));
+    m_comb_filter[stereo].setEnvModPointer(
+        &(m_mod_destinations.filter3.env_amount));
+    m_formant_filter[stereo].setEnvModPointer(
+        &(m_mod_destinations.filter3.env_amount));
+
+    m_ladder_filter[stereo].setVelModPointer(
+        &(m_mod_destinations.filter3.vel_amount));
+    m_diode_filter[stereo].setVelModPointer(
+        &(m_mod_destinations.filter3.vel_amount));
+    m_korg_filter[stereo].setVelModPointer(
+        &(m_mod_destinations.filter3.vel_amount));
+    m_SEM_filter_12[stereo].setVelModPointer(
+        &(m_mod_destinations.filter3.vel_amount));
+    m_SEM_filter_24[stereo].setVelModPointer(
+        &(m_mod_destinations.filter3.vel_amount));
+    m_comb_filter[stereo].setVelModPointer(
+        &(m_mod_destinations.filter3.vel_amount));
+
+    m_ladder_filter[stereo].setKbdModPointer(
+        &(m_mod_destinations.filter3.kbd_amount));
+    m_diode_filter[stereo].setKbdModPointer(
+        &(m_mod_destinations.filter3.kbd_amount));
+    m_korg_filter[stereo].setKbdModPointer(
+        &(m_mod_destinations.filter3.kbd_amount));
+    m_SEM_filter_12[stereo].setKbdModPointer(
+        &(m_mod_destinations.filter3.kbd_amount));
+    m_SEM_filter_24[stereo].setKbdModPointer(
+        &(m_mod_destinations.filter3.kbd_amount));
+    m_comb_filter[stereo].setKbdModPointer(
+        &(m_mod_destinations.filter3.kbd_amount));
+    m_formant_filter[stereo].setKbdModPointer(
+        &(m_mod_destinations.filter3.kbd_amount));
+
+    m_ladder_filter[stereo].setSaturationModPointer(
+        &(m_mod_destinations.filter3.saturation));
+    m_diode_filter[stereo].setSaturationModPointer(
+        &(m_mod_destinations.filter3.saturation));
+    m_korg_filter[stereo].setSaturationModPointer(
+        &(m_mod_destinations.filter3.saturation));
+
+    m_SEM_filter_12[stereo].setTransitionModPointer(
+        &(m_mod_destinations.filter3.SEM_transition));
 
     m_delay[stereo].setHPFreqModPointer(&(m_mod_destinations.delay.hp_freq));
   }

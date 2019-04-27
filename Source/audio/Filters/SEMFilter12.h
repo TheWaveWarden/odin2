@@ -19,7 +19,13 @@ public:
 	double m_alpha_0;
 	double m_rho;
 
+	void setTransitionModPointer(float* p_pointer){
+		m_transition_mod = p_pointer;
+	}
+
 protected:
+	float* m_transition_mod = &m_mod_dummy_zero;
+
 	double m_z_1;
 	double m_z_2;
 };
