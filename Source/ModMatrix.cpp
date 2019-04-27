@@ -31,6 +31,9 @@ void ModMatrixRow::applyModulation() {
             (*m_source_value[voice]) * m_mod_amount;
       }
     }
+  } else {
+    // todo this is not the right way, use newest voice as source?
+    *(m_destination_value[0]) += (*m_source_value[0]) * m_mod_amount;
   }
 }
 
@@ -786,6 +789,19 @@ void ModMatrixRow::setModDestination(int p_destination) {
       m_destination_value[voice] = &(m_destinations->voice[voice].lfo[3].freq);
     }
     m_destination_poly = true;
+    break;
+
+  case 900:
+    m_destination_value[0] = &(m_destinations->amp.gain);
+    m_destination_poly = false;
+    break;
+  case 901:
+    m_destination_value[0] = &(m_destinations->amp.pan);
+    m_destination_poly = false;
+    break;
+  case 902:
+    m_destination_value[0] = &(m_destinations->amp.vel);
+    m_destination_poly = false;
     break;
   }
   m_destination = p_destination;

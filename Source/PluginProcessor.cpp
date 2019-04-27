@@ -121,6 +121,8 @@ void OdinAudioProcessor::prepareToPlay(double sampleRate, int samplesPerBlock) {
   // Use this method as the place to do any pre-playback
   // initialisation that you need..
   m_voice[0].start(52, 100);
+  m_amp.setMIDIVelocity(100);
+  
 }
 
 void OdinAudioProcessor::releaseResources() {
@@ -200,6 +202,7 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
         if (midi_message.isNoteOn()) {
           m_voice[m_voice_manager.getVoice()].start(
               midi_message.getNoteNumber(), midi_message.getVelocity());
+          m_amp.setMIDIVelocity(midi_message.getVelocity());
         } else if (midi_message.isNoteOff()) {
           for (int voice = 0; voice < VOICES; ++voice) {
             if (m_voice[voice].keyUp(midi_message.getNoteNumber())) {
@@ -820,6 +823,11 @@ void OdinAudioProcessor::setModulationPointers() {
       
     }
   }
+
+  m_amp.setGainModPointer(&(m_mod_destinations.amp.gain));
+  m_amp.setPanModPointer(&(m_mod_destinations.amp.pan));
+  m_amp.setVelModPointer(&(m_mod_destinations.amp.vel));
+
 
   for (int stereo = 0; stereo < 2; ++stereo) {
 
