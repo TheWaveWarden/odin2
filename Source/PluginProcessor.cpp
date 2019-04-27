@@ -154,8 +154,6 @@ bool OdinAudioProcessor::isBusesLayoutSupported(
 void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
                                       MidiBuffer &midiMessages) {
 
-  
-
   ScopedNoDenormals noDenormals;
   auto totalNumInputChannels = getTotalNumInputChannels();
   auto totalNumOutputChannels = getTotalNumOutputChannels();
@@ -169,16 +167,26 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
   // loop over samples
   for (int sample = 0; sample < buffer.getNumSamples(); ++sample) {
 
-  //===== SMOOTH CONTROLS ======
-  for (int i = 0; i < 3; ++i) {
-    m_osc_vol_smooth[i] = m_osc_vol_smooth[i] * GAIN_SMOOTHIN_FACTOR +
-                          (1.f - GAIN_SMOOTHIN_FACTOR) * m_osc_vol_control[i];
-    m_fil_gain_smooth[i] = m_fil_gain_smooth[i] * GAIN_SMOOTHIN_FACTOR +
-                           (1.f - GAIN_SMOOTHIN_FACTOR) * m_fil_gain_control[i];
-  }
+    //===== SMOOTH CONTROLS ======
+    for (int i = 0; i < 3; ++i) {
+      m_osc_vol_smooth[i] = m_osc_vol_smooth[i] * GAIN_SMOOTHIN_FACTOR +
+                            (1.f - GAIN_SMOOTHIN_FACTOR) * m_osc_vol_control[i];
+      m_fil_gain_smooth[i] =
+          m_fil_gain_smooth[i] * GAIN_SMOOTHIN_FACTOR +
+          (1.f - GAIN_SMOOTHIN_FACTOR) * m_fil_gain_control[i];
 
-  m_pitch_bend_smooth_and_applied = m_pitch_bend_smooth_and_applied * PITCHBEND_SMOOTHIN_FACTOR +
-                          (1.f - PITCHBEND_SMOOTHIN_FACTOR) * (*m_pitchbend) * (*m_pitchbend_amount);
+      m_fil_freq_smooth[i] =
+          m_fil_freq_smooth[i] * FILTER_FREQ_SMOOTHING_FACTOR +
+          (1.f - FILTER_FREQ_SMOOTHING_FACTOR) * m_fil_freq_control[i];
+    }
+
+    m_pitch_bend_smooth_and_applied =
+        m_pitch_bend_smooth_and_applied * PITCHBEND_SMOOTHIN_FACTOR +
+        (1.f - PITCHBEND_SMOOTHIN_FACTOR) * (*m_pitchbend) *
+            (*m_pitchbend_amount);
+
+    m_modwheel_smooth = m_modwheel_smooth * PITCHBEND_SMOOTHIN_FACTOR +
+                        (1.f - PITCHBEND_SMOOTHIN_FACTOR) * (*m_modwheel);
 
     //===== MIDI =====
     if (midi_message_remaining) {
@@ -325,17 +333,23 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
                      *m_fil_type[fil] == FILTER_TYPE_BP12 ||
                      *m_fil_type[fil] == FILTER_TYPE_HP24 ||
                      *m_fil_type[fil] == FILTER_TYPE_HP12) {
+            m_voice[voice].ladder_filter[fil].m_freq_base =
+                m_fil_freq_smooth[fil];
             m_voice[voice].ladder_filter[fil].update();
             m_filter_output[voice][fil] =
                 m_voice[voice].ladder_filter[fil].doFilter(filter_input[fil]) *
                 m_fil_gain_smooth[fil];
           } else if (*m_fil_type[fil] == FILTER_TYPE_SEM24) {
+            m_voice[voice].SEM_filter_24[fil].m_freq_base =
+                m_fil_freq_smooth[fil];
             m_voice[voice].SEM_filter_24[fil].update();
             m_filter_output[voice][fil] =
                 m_voice[voice].SEM_filter_24[fil].doFilter(filter_input[fil]) *
                 m_fil_gain_smooth[fil];
 
           } else if (*m_fil_type[fil] == FILTER_TYPE_SEM12) {
+            m_voice[voice].SEM_filter_12[fil].m_freq_base =
+                m_fil_freq_smooth[fil];
             // todo need params set to wörk...
             // m_voice[voice].SEM_filter_12[fil].setResControl(0);
             // m_voice[voice].SEM_filter_12[fil].m_freq_base = 2000.f;
@@ -346,21 +360,28 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
                 m_voice[voice].SEM_filter_12[fil].doFilter(filter_input[fil]) *
                 m_fil_gain_smooth[fil];
           } else if (*m_fil_type[fil] == FILTER_TYPE_KORG) {
+            m_voice[voice].korg_filter[fil].m_freq_base =
+                m_fil_freq_smooth[fil];
             m_voice[voice].korg_filter[fil].update();
             m_filter_output[voice][fil] =
                 m_voice[voice].korg_filter[fil].doFilter(filter_input[fil]) *
                 m_fil_gain_smooth[fil];
           } else if (*m_fil_type[fil] == FILTER_TYPE_DIODE) {
+            m_voice[voice].diode_filter[fil].m_freq_base =
+                m_fil_freq_smooth[fil];
             m_voice[voice].diode_filter[fil].update();
             m_filter_output[voice][fil] =
                 m_voice[voice].diode_filter[fil].doFilter(filter_input[fil]) *
                 m_fil_gain_smooth[fil];
           } else if (*m_fil_type[fil] == FILTER_TYPE_FORMANT) {
+            m_voice[voice].formant_filter[fil].m_freq_base =
+                m_fil_freq_smooth[fil];
             m_voice[voice].formant_filter[fil].update();
             m_filter_output[voice][fil] =
                 m_voice[voice].formant_filter[fil].doFilter(filter_input[fil]) *
                 m_fil_gain_smooth[fil];
           } else if (*m_fil_type[fil] == FILTER_TYPE_COMB) {
+            m_voice[voice].comb_filter[fil].setCombFreq(m_fil_freq_smooth[fil]);
             m_filter_output[voice][fil] =
                 m_voice[voice].comb_filter[fil].doFilter(filter_input[fil]) *
                 m_fil_gain_smooth[fil];
@@ -403,36 +424,49 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
           *m_fil_type[2] == FILTER_TYPE_BP12 ||
           *m_fil_type[2] == FILTER_TYPE_HP24 ||
           *m_fil_type[2] == FILTER_TYPE_HP12) {
+        m_ladder_filter[channel].m_freq_base =
+            m_fil_freq_smooth[2];
         m_ladder_filter[channel].update();
         stereo_signal[channel] =
             m_ladder_filter[channel].doFilter(stereo_signal[channel]) *
             m_fil_gain_smooth[2];
       } else if (*m_fil_type[2] == FILTER_TYPE_SEM24) {
+        m_SEM_filter_24[channel].m_freq_base =
+            m_fil_freq_smooth[2];
         m_SEM_filter_24[channel].update();
         stereo_signal[channel] =
             m_SEM_filter_24[channel].doFilter(stereo_signal[channel]) *
             m_fil_gain_smooth[2];
       } else if (*m_fil_type[2] == FILTER_TYPE_SEM12) {
+        m_SEM_filter_12[channel].m_freq_base =
+            m_fil_freq_smooth[2];
         m_SEM_filter_12[channel].update();
         stereo_signal[channel] =
             m_SEM_filter_12[channel].doFilter(stereo_signal[channel]) *
             m_fil_gain_smooth[2];
       } else if (*m_fil_type[2] == FILTER_TYPE_KORG) {
+        m_korg_filter[channel].m_freq_base =
+            m_fil_freq_smooth[2];
         m_korg_filter[channel].update();
         stereo_signal[channel] =
             m_korg_filter[channel].doFilter(stereo_signal[channel]) *
             m_fil_gain_smooth[2];
       } else if (*m_fil_type[2] == FILTER_TYPE_DIODE) {
+        m_diode_filter[channel].m_freq_base =
+            m_fil_freq_smooth[2];
         m_diode_filter[channel].update();
         stereo_signal[channel] =
             m_diode_filter[channel].doFilter(stereo_signal[channel]) *
             m_fil_gain_smooth[2];
       } else if (*m_fil_type[2] == FILTER_TYPE_FORMANT) {
+        m_formant_filter[channel].m_freq_base =
+            m_fil_freq_smooth[2];
         m_formant_filter[channel].update();
         stereo_signal[channel] =
             m_formant_filter[channel].doFilter(stereo_signal[channel]) *
             m_fil_gain_smooth[2];
       } else if (*m_fil_type[2] == FILTER_TYPE_COMB) {
+        m_comb_filter[channel].setCombFreq(m_fil_freq_smooth[2]);
         stereo_signal[channel] =
             m_comb_filter[channel].doFilter(stereo_signal[channel]) *
             m_fil_gain_smooth[2];
@@ -554,8 +588,8 @@ void OdinAudioProcessor::setModulationPointers() {
   m_mod_sources.MIDI_aftertouch = &(m_MIDI_aftertouch);
   m_mod_sources.x = m_xy_x;
   m_mod_sources.y = m_xy_y;
-  m_mod_sources.modwheel = m_modwheel;
-  m_mod_sources.pitchwheel = m_pitchbend;
+  m_mod_sources.modwheel = &m_modwheel_smooth;
+  m_mod_sources.pitchwheel = &m_pitch_bend_smooth_and_applied;
   m_mod_sources.constant = &(m_constant);
 
   //========================================

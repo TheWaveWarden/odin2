@@ -268,6 +268,7 @@ struct Voice {
   }
 
   void setFilterFreq(float p_freq, int p_fil) {
+    //note: not used right now since control is smoothed
     ladder_filter[p_fil].m_freq_base = p_freq;
     SEM_filter_12[p_fil].m_freq_base = p_freq;
     SEM_filter_24[p_fil].m_freq_base = p_freq;

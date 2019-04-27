@@ -423,13 +423,15 @@ void OdinAudioProcessor::treeValueChanged(const String &p_ID,
       m_voice[voice].noise_osc[2].setLPFreq(p_new_value);
     }
   } else if (id == m_fil1_freq_identifier) {
-    for (int voice = 0; voice < VOICES; ++voice) {
-      m_voice[voice].setFilterFreq(p_new_value, 0);
-    }
+    m_fil_freq_control[0] = p_new_value;
+    // for (int voice = 0; voice < VOICES; ++voice) {
+    //   m_voice[voice].setFilterFreq(p_new_value, 0);
+    // }
   } else if (id == m_fil2_freq_identifier) {
-    for (int voice = 0; voice < VOICES; ++voice) {
-      m_voice[voice].setFilterFreq(p_new_value, 1);
-    }
+    m_fil_freq_control[1] = p_new_value;
+    // for (int voice = 0; voice < VOICES; ++voice) {
+    //   m_voice[voice].setFilterFreq(p_new_value, 1);
+    // }
   } else if (id == m_fil1_res_identifier) {
     for (int voice = 0; voice < VOICES; ++voice) {
       m_voice[voice].setFilterRes(p_new_value, 0);
@@ -543,18 +545,19 @@ void OdinAudioProcessor::treeValueChanged(const String &p_ID,
     m_distortion[0].setOverdrive(p_new_value < 1.5f);
     m_distortion[1].setOverdrive(p_new_value < 1.5f);
   } else if (id == m_fil3_freq_identifier) {
-    m_ladder_filter[0].m_freq_base = p_new_value;
-    m_SEM_filter_12[0].m_freq_base = p_new_value;
-    m_SEM_filter_24[0].m_freq_base = p_new_value;
-    m_korg_filter[0].m_freq_base = p_new_value;
-    m_diode_filter[0].m_freq_base = p_new_value;
-    m_comb_filter[0].setCombFreq(p_new_value);
-    m_ladder_filter[1].m_freq_base = p_new_value;
-    m_SEM_filter_12[1].m_freq_base = p_new_value;
-    m_SEM_filter_24[1].m_freq_base = p_new_value;
-    m_korg_filter[1].m_freq_base = p_new_value;
-    m_diode_filter[1].m_freq_base = p_new_value;
-    m_comb_filter[1].setCombFreq(p_new_value);
+    m_fil_freq_control[2] = p_new_value;    
+    // m_ladder_filter[0].m_freq_base = p_new_value;
+    // m_SEM_filter_12[0].m_freq_base = p_new_value;
+    // m_SEM_filter_24[0].m_freq_base = p_new_value;
+    // m_korg_filter[0].m_freq_base = p_new_value;
+    // m_diode_filter[0].m_freq_base = p_new_value;
+    // m_comb_filter[0].setCombFreq(p_new_value);
+    // m_ladder_filter[1].m_freq_base = p_new_value;
+    // m_SEM_filter_12[1].m_freq_base = p_new_value;
+    // m_SEM_filter_24[1].m_freq_base = p_new_value;
+    // m_korg_filter[1].m_freq_base = p_new_value;
+    // m_diode_filter[1].m_freq_base = p_new_value;
+    // m_comb_filter[1].setCombFreq(p_new_value);
   } else if (id == m_fil3_res_identifier) {
     m_ladder_filter[0].setResControl(p_new_value);
     m_SEM_filter_12[0].setResControl(p_new_value);
