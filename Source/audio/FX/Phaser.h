@@ -45,7 +45,7 @@ public:
   }
 
   inline void setLFOAmplitude(float p_amplitude) {
-    m_LFO_amplitude = p_amplitude;
+    m_amount = p_amplitude;
   }
 
   inline void setBaseFreq(float p_base_freq) { m_base_freq = p_base_freq; }
@@ -56,8 +56,8 @@ public:
 
 protected:
   float *m_freq_mod;
-  float *m_amount_mod;
   float *m_drywet_mod;
+  float *m_amount_mod;
 
   inline void incrementLFO() {
     float increment_modded = m_increment_sine;
@@ -78,7 +78,7 @@ protected:
   void setRadius(float p_radius);
   void setFrequency(float p_frequency);
 
-  float m_amount = 0.5f;
+  float m_drywet = 0.5f;
   float m_base_freq;
 
   BiquadAllpass m_AP1;
@@ -90,7 +90,7 @@ protected:
 
   int m_LFO_sign =
       1; // switches from the positive to the negative proportion of the LFO
-  float m_LFO_amplitude = 0.3f;
+  float m_amount = 0.3f;
   float m_index_sine = 0;
   float m_increment_sine;
 

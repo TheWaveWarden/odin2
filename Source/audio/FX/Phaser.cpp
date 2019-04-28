@@ -33,17 +33,27 @@ void Phaser::setFrequency(float p_frequency){
 
 
 void Phaser::setAmount(float p_amount){
-    m_amount = p_amount * 0.5f;
+    m_drywet = p_amount * 0.5f;
 }
 
 float Phaser::doPhaser(float p_input){
     incrementLFO();
-    //setFrequency(m_base_freq * pow(2.f, doLFO() * m_LFO_amplitude));
+    //setFrequency(m_base_freq * pow(2.f, doLFO() * m_amount));
     float LFO = doLFO();
-    setRadius(m_radius_base + 0.15f * LFO * m_LFO_amplitude);
-    setFrequency((LFO + 1 ) * m_LFO_amplitude * PHASER_MAX_LFO_AMPLITUDE);
+
+    float amount_modded = m_amount + *m_amount_mod;
+    amount_modded = amount_modded < 0 ? 0 : amount_modded;
+    amount_modded = amount_modded > 1.5f ? 1.5f : amount_modded;
+
+    setRadius(m_radius_base + 0.15f * LFO * amount_modded);
+    setFrequency((LFO + 1 ) * amount_modded * PHASER_MAX_LFO_AMPLITUDE);
 
     double phase_shifted = m_AP1.doFilter(m_AP2.doFilter(m_AP3.doFilter(p_input)));
     phase_shifted = m_AP4.doFilter(m_AP5.doFilter(m_AP6.doFilter(phase_shifted)));
-    return (float)((1.f - m_amount) * p_input + m_amount * phase_shifted);
+
+    float drywet_modded = m_drywet + *m_drywet_mod * 0.5f;
+    drywet_modded = drywet_modded > 0.5f ? 0.5f : drywet_modded;
+    drywet_modded = drywet_modded < 0 ? 0 : drywet_modded;
+
+    return (float)((1.f - drywet_modded) * p_input + drywet_modded * phase_shifted);
 }

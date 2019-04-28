@@ -41,6 +41,67 @@ OscComponent::OscComponent(AudioProcessorValueTreeState &vts,
       m_modulator_ratio_identifier("osc" + p_osc_number + "_modulator_ratio"),
       m_carrier_ratio_identifier("osc" + p_osc_number + "_carrier_ratio"),
       m_analog_wave_identifier("osc" + p_osc_number + "_analog_wave") {
+
+  m_oct_attach.reset(
+      new SliderAttachment(m_value_tree, "osc" + m_osc_number + "_oct", m_oct));
+  m_semi_attach.reset(new SliderAttachment(
+      m_value_tree, "osc" + m_osc_number + "_semi", m_semi));
+  m_fine_attach.reset(new SliderAttachment(
+      m_value_tree, "osc" + m_osc_number + "_fine", m_fine));
+  m_vol_attach.reset(
+      new SliderAttachment(m_value_tree, "osc" + m_osc_number + "_vol", m_vol));
+  m_position_attach.reset(new SliderAttachment(
+      m_value_tree, "osc" + m_osc_number + "_position", m_position));
+  m_detune_attach.reset(new SliderAttachment(
+      m_value_tree, "osc" + m_osc_number + "_detune", m_detune));
+  m_multi_position_attach.reset(new SliderAttachment(
+      m_value_tree, "osc" + m_osc_number + "_multi_position",
+      m_position_multi));
+  m_spread_attach.reset(new SliderAttachment(
+      m_value_tree, "osc" + m_osc_number + "_spread", m_spread));
+  m_pulsewidth_attach.reset(new SliderAttachment(
+      m_value_tree, "osc" + m_osc_number + "_pulsewidth", m_pw));
+  m_drift_attach.reset(new SliderAttachment(
+      m_value_tree, "osc" + m_osc_number + "_drift", m_drift));
+  m_arp_speed_attach.reset(new SliderAttachment(
+      m_value_tree, "osc" + m_osc_number + "_arp_speed", m_speed));
+  m_step_1_attach.reset(new SliderAttachment(
+      m_value_tree, "osc" + m_osc_number + "_step_1", m_step_1));
+  m_step_2_attach.reset(new SliderAttachment(
+      m_value_tree, "osc" + m_osc_number + "_step_2", m_step_2));
+  m_step_3_attach.reset(new SliderAttachment(
+      m_value_tree, "osc" + m_osc_number + "_step_3", m_step_3));
+  m_fm_attach.reset(
+      new SliderAttachment(m_value_tree, "osc" + m_osc_number + "_fm", m_fm));
+  m_lp_attach.reset(
+      new SliderAttachment(m_value_tree, "osc" + m_osc_number + "_lp", m_lp));
+  m_hp_attach.reset(
+      new SliderAttachment(m_value_tree, "osc" + m_osc_number + "_hp", m_hp));
+  m_x_attach.reset(new SliderAttachment(
+      m_value_tree, "osc" + m_osc_number + "_vec_x", m_xy_x_dummy));
+  m_y_attach.reset(new SliderAttachment(
+      m_value_tree, "osc" + m_osc_number + "_vec_y", m_xy_y_dummy));
+
+  m_reset_attach.reset(new ButtonAttachment(
+      m_value_tree, "osc" + m_osc_number + "_reset", m_reset));
+  m_arp_on_attach.reset(new ButtonAttachment(
+      m_value_tree, "osc" + m_osc_number + "_arp_on", m_arp));
+  m_step_3_on_attach.reset(new ButtonAttachment(
+      m_value_tree, "osc" + m_osc_number + "_step_3_on", m_step_button));
+  m_chipnoise_attach.reset(new ButtonAttachment(
+      m_value_tree, "osc" + m_osc_number + "_chipnoise", m_noise));
+  m_exp_fm_attach.reset(new ButtonAttachment(
+      m_value_tree, "osc" + m_osc_number + "_exp_fm", m_fm_exp));
+
+  m_vec_a_attach.reset(new ComboBoxAttachment(
+      m_value_tree, "osc" + m_osc_number + "_vec_a", m_vec_a));
+  m_vec_b_attach.reset(new ComboBoxAttachment(
+      m_value_tree, "osc" + m_osc_number + "_vec_b", m_vec_b));
+  m_vec_c_attach.reset(new ComboBoxAttachment(
+      m_value_tree, "osc" + m_osc_number + "_vec_c", m_vec_c));
+  m_vec_d_attach.reset(new ComboBoxAttachment(
+      m_value_tree, "osc" + m_osc_number + "_vec_d", m_vec_d));
+
   m_vol.setStrip(
       ImageCache::getFromFile(juce::File(
           GRAPHICS_PATH + "cropped/knobs/black2/black_knob_small.png")),
@@ -183,7 +244,7 @@ OscComponent::OscComponent(AudioProcessorValueTreeState &vts,
   m_LED_pulse.onStateChange = [&]() {
     if (m_LED_pulse.getToggleState()) {
       m_value_tree.getParameter(m_analog_wave_identifier)
-          ->setValueNotifyingHost(2.f/4.f);
+          ->setValueNotifyingHost(2.f / 4.f);
     }
   };
   addChildComponent(m_LED_pulse);
@@ -200,11 +261,11 @@ OscComponent::OscComponent(AudioProcessorValueTreeState &vts,
   m_LED_triangle.setColour(
       juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
   m_LED_triangle.setTooltip("Select the triangle wave");
-  //m_LED_triangle.setClickingTogglesState(true);
+  // m_LED_triangle.setClickingTogglesState(true);
   m_LED_triangle.onStateChange = [&]() {
     if (m_LED_triangle.getToggleState()) {
       m_value_tree.getParameter(m_analog_wave_identifier)
-          ->setValueNotifyingHost(3.f/4.f);
+          ->setValueNotifyingHost(3.f / 4.f);
     }
   };
   addChildComponent(m_LED_triangle);
@@ -459,6 +520,7 @@ OscComponent::OscComponent(AudioProcessorValueTreeState &vts,
   m_detune.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
   m_detune.setKnobTooltip(
       "How much the individual\noscillators are detuned\n against each other");
+  m_detune.setSkewFactorFromMidPoint(0.3);
   addChildComponent(m_detune);
 
   m_spread.setStrip(
@@ -816,66 +878,6 @@ OscComponent::OscComponent(AudioProcessorValueTreeState &vts,
   m_vec_d.setTooltip("Select the waveform to the bottom right of the XY pad");
   addChildComponent(m_vec_d);
 
-  m_oct_attach.reset(
-      new SliderAttachment(m_value_tree, "osc" + m_osc_number + "_oct", m_oct));
-  m_semi_attach.reset(new SliderAttachment(
-      m_value_tree, "osc" + m_osc_number + "_semi", m_semi));
-  m_fine_attach.reset(new SliderAttachment(
-      m_value_tree, "osc" + m_osc_number + "_fine", m_fine));
-  m_vol_attach.reset(
-      new SliderAttachment(m_value_tree, "osc" + m_osc_number + "_vol", m_vol));
-  m_position_attach.reset(new SliderAttachment(
-      m_value_tree, "osc" + m_osc_number + "_position", m_position));
-  m_detune_attach.reset(new SliderAttachment(
-      m_value_tree, "osc" + m_osc_number + "_detune", m_detune));
-  m_multi_position_attach.reset(new SliderAttachment(
-      m_value_tree, "osc" + m_osc_number + "_multi_position",
-      m_position_multi));
-  m_spread_attach.reset(new SliderAttachment(
-      m_value_tree, "osc" + m_osc_number + "_spread", m_spread));
-  m_pulsewidth_attach.reset(new SliderAttachment(
-      m_value_tree, "osc" + m_osc_number + "_pulsewidth", m_pw));
-  m_drift_attach.reset(new SliderAttachment(
-      m_value_tree, "osc" + m_osc_number + "_drift", m_drift));
-  m_arp_speed_attach.reset(new SliderAttachment(
-      m_value_tree, "osc" + m_osc_number + "_arp_speed", m_speed));
-  m_step_1_attach.reset(new SliderAttachment(
-      m_value_tree, "osc" + m_osc_number + "_step_1", m_step_1));
-  m_step_2_attach.reset(new SliderAttachment(
-      m_value_tree, "osc" + m_osc_number + "_step_2", m_step_2));
-  m_step_3_attach.reset(new SliderAttachment(
-      m_value_tree, "osc" + m_osc_number + "_step_3", m_step_3));
-  m_fm_attach.reset(
-      new SliderAttachment(m_value_tree, "osc" + m_osc_number + "_fm", m_fm));
-  m_lp_attach.reset(
-      new SliderAttachment(m_value_tree, "osc" + m_osc_number + "_lp", m_lp));
-  m_hp_attach.reset(
-      new SliderAttachment(m_value_tree, "osc" + m_osc_number + "_hp", m_hp));
-  m_x_attach.reset(new SliderAttachment(
-      m_value_tree, "osc" + m_osc_number + "_vec_x", m_xy_x_dummy));
-  m_y_attach.reset(new SliderAttachment(
-      m_value_tree, "osc" + m_osc_number + "_vec_y", m_xy_y_dummy));
-
-  m_reset_attach.reset(new ButtonAttachment(
-      m_value_tree, "osc" + m_osc_number + "_reset", m_reset));
-  m_arp_on_attach.reset(new ButtonAttachment(
-      m_value_tree, "osc" + m_osc_number + "_arp_on", m_arp));
-  m_step_3_on_attach.reset(new ButtonAttachment(
-      m_value_tree, "osc" + m_osc_number + "_step_3_on", m_step_button));
-  m_chipnoise_attach.reset(new ButtonAttachment(
-      m_value_tree, "osc" + m_osc_number + "_chipnoise", m_noise));
-  m_exp_fm_attach.reset(new ButtonAttachment(
-      m_value_tree, "osc" + m_osc_number + "_exp_fm", m_fm_exp));
-
-  m_vec_a_attach.reset(new ComboBoxAttachment(
-      m_value_tree, "osc" + m_osc_number + "_vec_a", m_vec_a));
-  m_vec_b_attach.reset(new ComboBoxAttachment(
-      m_value_tree, "osc" + m_osc_number + "_vec_b", m_vec_b));
-  m_vec_c_attach.reset(new ComboBoxAttachment(
-      m_value_tree, "osc" + m_osc_number + "_vec_c", m_vec_c));
-  m_vec_d_attach.reset(new ComboBoxAttachment(
-      m_value_tree, "osc" + m_osc_number + "_vec_d", m_vec_d));
-
   setSize(247, 145);
 }
 
@@ -1152,15 +1154,18 @@ void OscComponent::showNoiseComponents() {
   m_hp.setVisible(true);
 }
 
-void OscComponent::createWavedrawTables(){
-//todo sampling freqencies
-  WavetableContainer::getInstance().createWavedrawTable(std::stoi(m_osc_number)-1, m_wavedraw.getDrawnTable(), 44100.f);
+void OscComponent::createWavedrawTables() {
+  // todo sampling freqencies
+  WavetableContainer::getInstance().createWavedrawTable(
+      std::stoi(m_osc_number) - 1, m_wavedraw.getDrawnTable(), 44100.f);
 }
 
-void OscComponent::createChipdrawTables(){
-  WavetableContainer::getInstance().createChipdrawTable(std::stoi(m_osc_number)-1, m_chipdraw.getDrawnTable(), 44100.f);
+void OscComponent::createChipdrawTables() {
+  WavetableContainer::getInstance().createChipdrawTable(
+      std::stoi(m_osc_number) - 1, m_chipdraw.getDrawnTable(), 44100.f);
 }
 
-void OscComponent::createSpecdrawTables(){
-  WavetableContainer::getInstance().createSpecdrawTable(std::stoi(m_osc_number)-1, m_specdraw.getDrawnTable(), 44100.f);
+void OscComponent::createSpecdrawTables() {
+  WavetableContainer::getInstance().createSpecdrawTable(
+      std::stoi(m_osc_number) - 1, m_specdraw.getDrawnTable(), 44100.f);
 }

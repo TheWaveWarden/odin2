@@ -14,9 +14,23 @@
 //==============================================================================
 DelayComponent::DelayComponent(AudioProcessorValueTreeState &vts)
     : m_sync("sync", juce::DrawableButton::ButtonStyle::ImageRaw),
-      m_value_tree(vts), m_delay_synctime_denominator_identifier(
-                             "delay_synctime_denominator"),
+      m_value_tree(vts),
+      m_delay_synctime_denominator_identifier("delay_synctime_denominator"),
       m_delay_synctime_numerator_identifier("delay_synctime_numerator") {
+
+  m_delay_time_attach.reset(
+      new SliderAttachment(m_value_tree, "delay_time", m_time));
+  m_delay_feedback_attach.reset(
+      new SliderAttachment(m_value_tree, "delay_feedback", m_feedback));
+  m_delay_hp_attach.reset(new SliderAttachment(m_value_tree, "delay_hp", m_HP));
+  m_delay_ducking_attach.reset(
+      new SliderAttachment(m_value_tree, "delay_ducking", m_ducking));
+  m_delay_dry_attach.reset(
+      new SliderAttachment(m_value_tree, "delay_dry", m_dry));
+  m_delay_wet_attach.reset(
+      new SliderAttachment(m_value_tree, "delay_wet", m_wet));
+
+  m_sync_attach.reset(new ButtonAttachment(m_value_tree, "", m_sync));
 
   juce::Image sync_1 = ImageCache::getFromFile(
       juce::File(GRAPHICS_PATH + "cropped/buttons/buttonsync_1.png"));
@@ -125,20 +139,6 @@ DelayComponent::DelayComponent(AudioProcessorValueTreeState &vts)
   m_sync_time.setTopLeftPosition(SYNC_TIME_DELAY_POS_X, SYNC_TIME_DELAY_POS_Y);
   m_sync_time.setTooltip("Set the delay time in sync to your track");
   addChildComponent(m_sync_time);
-
-  m_delay_time_attach.reset(
-      new SliderAttachment(m_value_tree, "delay_time", m_time));
-  m_delay_feedback_attach.reset(
-      new SliderAttachment(m_value_tree, "delay_feedback", m_feedback));
-  m_delay_hp_attach.reset(new SliderAttachment(m_value_tree, "delay_hp", m_HP));
-  m_delay_ducking_attach.reset(
-      new SliderAttachment(m_value_tree, "delay_ducking", m_ducking));
-  m_delay_dry_attach.reset(
-      new SliderAttachment(m_value_tree, "delay_dry", m_dry));
-  m_delay_wet_attach.reset(
-      new SliderAttachment(m_value_tree, "delay_wet", m_wet));
-
-  m_sync_attach.reset(new ButtonAttachment(m_value_tree, "", m_sync));
 }
 
 DelayComponent::~DelayComponent() {}
