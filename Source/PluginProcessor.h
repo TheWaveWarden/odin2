@@ -82,6 +82,8 @@ private:
   float m_modwheel_smooth = 0.f;
   float m_x_smooth = 0.f;
   float m_y_smooth = 0.f;
+  float m_master_smooth = 1.f;
+  float m_master_control = 1.f; //factor
 
   void setSampleRate(float p_samplerate);
   void initializeModules();
@@ -124,6 +126,8 @@ private:
   //float m_pitchwheel = 0.f;
   float m_x = 0.f;
   float m_y = 0.f;
+  //MOD DEST
+  float* m_master_mod;
 
 
   int m_counter = 0; // todo remove

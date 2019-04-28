@@ -887,4 +887,8 @@ void OdinAudioProcessor::treeValueChanged(const String &p_ID,
     m_mod_matrix.setModDestination(8, p_new_value);
   }
 
+  else if(id == m_master_identifier){
+    m_master_control = Decibels::decibelsToGain(p_new_value);
+  }
+
 }

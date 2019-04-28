@@ -194,6 +194,9 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
     m_y_smooth = m_y_smooth * PAD_SMOOTHIN_FACTOR +
                  (1.f - PAD_SMOOTHIN_FACTOR) * (*m_xy_y);
 
+    m_master_smooth = m_master_smooth * GAIN_SMOOTHIN_FACTOR +
+                      (1 - GAIN_SMOOTHIN_FACTOR) * (m_master_control);
+
     //===== MIDI =====
     if (midi_message_remaining) {
       if (midi_message_sample <= sample) {
@@ -502,8 +505,12 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
 
       //===== OUTPUT ======
 
+      float master_mod_factor =
+          (*m_master_mod) > 0 ? 1.f + 4 * (*m_master_mod) : (1.f + *m_master_mod);
+
       auto *channelData = buffer.getWritePointer(channel);
-      channelData[sample] = stereo_signal[channel];
+      channelData[sample] = stereo_signal[channel] * m_master_smooth * master_mod_factor;
+      // DBG(m_master_smooth);
 
     } // stereo loop
   }   // sample loop
@@ -934,5 +941,7 @@ void OdinAudioProcessor::setModulationPointers() {
     m_chorus[stereo].setFreqModPointer(&(m_mod_destinations.chorus.freq));
     m_chorus[stereo].setAmountModPointer(&(m_mod_destinations.chorus.amount));
     m_chorus[stereo].setDryWetModPointer(&(m_mod_destinations.chorus.drywet));
+
+    m_master_mod = &(m_mod_destinations.misc.master);
   }
 }
