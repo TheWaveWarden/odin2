@@ -15,15 +15,14 @@ float CombFilter::doFilter(float p_input) {
   if (*m_freq_mod + m_vel_mod_amount + *m_vel_mod_mod + m_env_mod_amount +
           *m_env_mod_mod ||
       m_kbd_mod_amount + *m_kbd_mod_mod) {
-          DBG("MOD");
     delay_time_modded *= pitchShiftMultiplier(
         ((-*m_freq_mod) - m_env_value * (m_env_mod_amount + *m_env_mod_mod) -
          (m_vel_mod_amount + *m_vel_mod_mod) * (float)m_MIDI_velocity / 127.f) *
             48 -
         m_MIDI_note * (m_kbd_mod_amount + *m_kbd_mod_mod));
-    delay_time_modded =
-        delay_time_modded > 1.f / 40.f ? 1.f / 40.f : delay_time_modded;
   }
+  delay_time_modded =
+      delay_time_modded > 1.f / 40.f ? 1.f / 40.f : delay_time_modded;
 
   // calc read index
   float read_index = (float)m_write_index - delay_time_modded * m_samplerate;
