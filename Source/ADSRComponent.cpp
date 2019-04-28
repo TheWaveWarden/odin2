@@ -12,9 +12,19 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 
 //==============================================================================
-ADSRComponent::ADSRComponent(AudioProcessorValueTreeState& vts, std::string p_adsr_number)
+ADSRComponent::ADSRComponent(AudioProcessorValueTreeState &vts,
+                             std::string p_adsr_number)
     : m_loop("loop_button", juce::DrawableButton::ButtonStyle::ImageRaw),
-     m_value_tree(vts), m_adsr_number(p_adsr_number){
+      m_value_tree(vts), m_adsr_number(p_adsr_number) {
+
+  m_attack_attach.reset(new SliderAttachment(
+      m_value_tree, "env" + m_adsr_number + "_attack", m_attack));
+  m_decay_attach.reset(new SliderAttachment(
+      m_value_tree, "env" + m_adsr_number + "_decay", m_decay));
+  m_sustain_attach.reset(new SliderAttachment(
+      m_value_tree, "env" + m_adsr_number + "_sustain", m_sustain));
+  m_release_attach.reset(new SliderAttachment(
+      m_value_tree, "env" + m_adsr_number + "_release", m_release));
 
   juce::Image loop_1 = ImageCache::getFromFile(
       juce::File(GRAPHICS_PATH + "cropped/buttons/buttonloop_1.png"));
@@ -57,38 +67,42 @@ ADSRComponent::ADSRComponent(AudioProcessorValueTreeState& vts, std::string p_ad
   addAndMakeVisible(m_release);
 
   m_attack.setRange(A_LOW_LIMIT, A_HIGH_LIMIT);
-  m_attack.setSkewFactorFromMidPoint(A_MID_VALUE);
   m_attack.setValue(A_DEFAULT, sendNotification);
-  m_attack.setDoubleClickReturnValue(true, A_DEFAULT, ModifierKeys::ctrlModifier);
-  m_attack.setTooltip("Attack\nDefines how long the envelope\ntakes to reach the top peak");
+  m_attack.setDoubleClickReturnValue(true, A_DEFAULT,
+                                     ModifierKeys::ctrlModifier);
+  m_attack.setTooltip(
+      "Attack\nDefines how long the envelope\ntakes to reach the top peak");
+  m_attack.setSkewFactorFromMidPoint(A_MID_VALUE);
 
   m_decay.setRange(D_LOW_LIMIT, D_HIGH_LIMIT);
   m_decay.setSkewFactorFromMidPoint(D_MID_VALUE);
   m_decay.setValue(D_DEFAULT, sendNotification);
-  m_decay.setDoubleClickReturnValue(true, D_DEFAULT, ModifierKeys::ctrlModifier);
+  m_decay.setDoubleClickReturnValue(true, D_DEFAULT,
+                                    ModifierKeys::ctrlModifier);
   m_decay.setTextValueSuffix(" s");
-  m_decay.setTooltip("Decay\nDefines how long the\n envelope takes to fall from the top\n peak to the sustain level");
+  m_decay.setTooltip("Decay\nDefines how long the\n envelope takes to fall "
+                     "from the top\n peak to the sustain level");
 
   m_sustain.setRange(S_LOW_LIMIT, S_HIGH_LIMIT);
   m_sustain.setSkewFactorFromMidPoint(S_MID_VALUE);
   m_sustain.setValue(S_DEFAULT, sendNotification);
-  m_sustain.setDoubleClickReturnValue(true, S_DEFAULT, ModifierKeys::ctrlModifier);
+  m_sustain.setDoubleClickReturnValue(true, S_DEFAULT,
+                                      ModifierKeys::ctrlModifier);
   m_sustain.setNumDecimalPlacesToDisplay(3);
-  m_sustain.setTooltip("Sustain\nDefines the height of the evelope\nafter the decay section is finished");
+  m_sustain.setTooltip("Sustain\nDefines the height of the evelope\nafter the "
+                       "decay section is finished");
 
   m_release.setRange(R_LOW_LIMIT, R_HIGH_LIMIT);
   m_release.setSkewFactorFromMidPoint(R_MID_VALUE);
   m_release.setValue(R_DEFAULT, sendNotification);
-  m_release.setDoubleClickReturnValue(true, R_DEFAULT, ModifierKeys::ctrlModifier);
+  m_release.setDoubleClickReturnValue(true, R_DEFAULT,
+                                      ModifierKeys::ctrlModifier);
   m_release.setTextValueSuffix(" s");
-  m_release.setTooltip("Release\nDefines how long the envelope takes\n to fall back to zero after\nthe key is released");
+  m_release.setTooltip("Release\nDefines how long the envelope takes\n to fall "
+                       "back to zero after\nthe key is released");
 
-  m_attack_attach.reset (new SliderAttachment (m_value_tree, "env"+m_adsr_number+"_attack", m_attack));
-  m_decay_attach.reset (new SliderAttachment (m_value_tree, "env"+m_adsr_number+"_decay", m_decay));
-  m_sustain_attach.reset (new SliderAttachment (m_value_tree, "env"+m_adsr_number+"_sustain", m_sustain));
-  m_release_attach.reset (new SliderAttachment (m_value_tree, "env"+m_adsr_number+"_release", m_release));
-
-  m_loop_attach.reset (new ButtonAttachment (m_value_tree, "env"+m_adsr_number+"_loop", m_loop));
+  m_loop_attach.reset(new ButtonAttachment(
+      m_value_tree, "env" + m_adsr_number + "_loop", m_loop));
 }
 
 ADSRComponent::~ADSRComponent() {}

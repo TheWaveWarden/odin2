@@ -20,6 +20,19 @@ FXComponent::FXComponent(AudioProcessorValueTreeState &vts,
       m_reset("reset", juce::DrawableButton::ButtonStyle::ImageRaw),
       m_fx_synctime_denominator_identifier(p_fx_name + "_synctime_denominator"),
       m_fx_synctime_numerator_identifier(p_fx_name + "_synctime_numerator") {
+
+  m_frequency_attach.reset(
+      new SliderAttachment(m_value_tree, m_fx_name + "_frequency", m_freq));
+  m_amount_attach.reset(
+      new SliderAttachment(m_value_tree, m_fx_name + "_amount", m_amount));
+  m_drywet_attach.reset(
+      new SliderAttachment(m_value_tree, m_fx_name + "_drywet", m_dry_wet));
+
+  m_sync_attach.reset(
+      new ButtonAttachment(m_value_tree, m_fx_name + "_sync", m_sync));
+  m_reset_attach.reset(
+      new ButtonAttachment(m_value_tree, m_fx_name + "_reset", m_reset));
+
   juce::Image metal_knob_big = ImageCache::getFromFile(
       juce::File(GRAPHICS_PATH + "cropped/knobs/metal3/metal_knob_big.png"));
   m_amount.setStrip(metal_knob_big, N_KNOB_FRAMES);
@@ -116,18 +129,6 @@ FXComponent::FXComponent(AudioProcessorValueTreeState &vts,
   m_sync.onStateChange = [&]() { setSyncEnabled(m_sync.getToggleState()); };
   m_sync.setTooltip("Syncs the internal LFOs\nspeed to your track");
   addAndMakeVisible(m_sync);
-
-  m_frequency_attach.reset(
-      new SliderAttachment(m_value_tree, m_fx_name + "_frequency", m_freq));
-  m_amount_attach.reset(
-      new SliderAttachment(m_value_tree, m_fx_name + "_amount", m_amount));
-  m_drywet_attach.reset(
-      new SliderAttachment(m_value_tree, m_fx_name + "_drywet", m_dry_wet));
-
-  m_sync_attach.reset(
-      new ButtonAttachment(m_value_tree, m_fx_name + "_sync", m_sync));
-  m_reset_attach.reset(
-      new ButtonAttachment(m_value_tree, m_fx_name + "_reset", m_reset));
 
   m_synctime.OnValueChange = [&](int p_left, int p_right) {
     m_value_tree.getParameter(m_fx_synctime_numerator_identifier)

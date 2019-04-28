@@ -78,7 +78,7 @@ protected:
   void setRadius(float p_radius);
   void setFrequency(float p_frequency);
 
-  float m_amount = 1.f;
+  float m_amount = 0.5f;
   float m_base_freq;
 
   BiquadAllpass m_AP1;
