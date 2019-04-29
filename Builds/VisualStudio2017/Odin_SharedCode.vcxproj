@@ -2088,6 +2088,15 @@
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_opengl.cpp"/>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\audio\Oscillators\Wavetables\LFO\LFOStair12.h"/>
+    <ClInclude Include="..\..\Source\audio\Oscillators\Wavetables\LFO\LFOStair8.h"/>
+    <ClInclude Include="..\..\Source\audio\Oscillators\Wavetables\LFO\LFOStair6.h"/>
+    <ClInclude Include="..\..\Source\audio\Oscillators\Wavetables\LFO\LFOStair4.h"/>
+    <ClInclude Include="..\..\Source\audio\Oscillators\Wavetables\LFO\LFOStair3.h"/>
+    <ClInclude Include="..\..\Source\audio\Oscillators\Wavetables\LFO\LFOPyramid12.h"/>
+    <ClInclude Include="..\..\Source\audio\Oscillators\Wavetables\LFO\LFOPyramid8.h"/>
+    <ClInclude Include="..\..\Source\audio\Oscillators\Wavetables\LFO\LFOPyramid6.h"/>
+    <ClInclude Include="..\..\Source\audio\Oscillators\Wavetables\LFO\LFOPyramid4.h"/>
     <ClInclude Include="..\..\Source\ModMatrix.h"/>
     <ClInclude Include="..\..\Source\ProcessorInitializerList.h"/>
     <ClInclude Include="..\..\Source\ValueChange.h"/>

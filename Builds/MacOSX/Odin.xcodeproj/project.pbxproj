@@ -481,6 +481,13 @@
 			path = ../../Source/ValueChange.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		0D500B525349E93DF85ADE14 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = LFOStair3.h;
+			path = ../../Source/audio/Oscillators/Wavetables/LFO/LFOStair3.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		0DBE30205E570259D236FADD = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.objcpp;
@@ -614,6 +621,13 @@
 			path = ../../Source/LFOComponent.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
+		26FAB4C556516DB21C558CFD = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = LFOStair4.h;
+			path = ../../Source/audio/Oscillators/Wavetables/LFO/LFOStair4.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		2772D2404EBE659C7CD77484 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -719,6 +733,13 @@
 			path = ../../Source/XYSectionComponent.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		304AA6D8FE52F61FA8BDAF3D = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = LFOPyramid12.h;
+			path = ../../Source/audio/Oscillators/Wavetables/LFO/LFOPyramid12.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		31CBFA30F51138FE06860051 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
@@ -766,6 +787,13 @@
 			lastKnownFileType = sourcecode.c.h;
 			name = Oscillator.h;
 			path = ../../Source/audio/Oscillators/Oscillator.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		3C3AF81098A24EA8C9C65A2A = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = LFOStair6.h;
+			path = ../../Source/audio/Oscillators/Wavetables/LFO/LFOStair6.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		3D7B7DFDFB6B33AED39988FF = {
@@ -927,6 +955,13 @@
 			lastKnownFileType = sourcecode.c.h;
 			name = AmpDistortionFlowComponent.h;
 			path = ../../Source/AmpDistortionFlowComponent.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		56166D92E27522E8438B2F06 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = LFOPyramid8.h;
+			path = ../../Source/audio/Oscillators/Wavetables/LFO/LFOPyramid8.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		561B281EF921BB46335A1534 = {
@@ -1286,6 +1321,13 @@
 			path = "~/JUCE/modules/juce_events";
 			sourceTree = "<absolute>";
 		};
+		9D198189787FB1F1AFF788C3 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = LFOStair8.h;
+			path = ../../Source/audio/Oscillators/Wavetables/LFO/LFOStair8.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		9D61EFBD62D2B598A574B7DB = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -1445,6 +1487,13 @@
 			lastKnownFileType = sourcecode.cpp.cpp;
 			name = DelayComponent.cpp;
 			path = ../../Source/DelayComponent.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
+		B9CC9027EC8070660F4C2557 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = LFOPyramid6.h;
+			path = ../../Source/audio/Oscillators/Wavetables/LFO/LFOPyramid6.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		BDC0A8B61DF3BD6A81C05479 = {
@@ -1699,6 +1748,13 @@
 			path = "../../JuceLibraryCode/include_juce_audio_devices.mm";
 			sourceTree = "SOURCE_ROOT";
 		};
+		E1B3AA142746CF9DF37942EE = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = LFOStair12.h;
+			path = ../../Source/audio/Oscillators/Wavetables/LFO/LFOStair12.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		E5A51B860637578937EFEDEE = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
@@ -1748,18 +1804,18 @@
 			path = ../../Source/PluginProcessor.h;
 			sourceTree = "SOURCE_ROOT";
 		};
-		F03E01A3E845B2D892786A49 = {
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.c.h;
-			name = Knob.h;
-			path = ../../Source/Knob.h;
-			sourceTree = "SOURCE_ROOT";
-		};
 		FA4BC831893D91AFF01BA822 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
 			name = ChiptuneCustom6.h;
 			path = ../../Source/audio/Oscillators/Wavetables/ChiptuneCustom6.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		FB85BBF7D17CE5AFB2B68FE9 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = LFOPyramid4.h;
+			path = ../../Source/audio/Oscillators/Wavetables/LFO/LFOPyramid4.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		FC12642B755F0EA465F450F1 = {
@@ -1795,6 +1851,13 @@
 			lastKnownFileType = sourcecode.c.h;
 			name = PitchWheel.h;
 			path = ../../Source/PitchWheel.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		F03E01A3E845B2D892786A49 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = Knob.h;
+			path = ../../Source/Knob.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		F196B8C5A02E8B1D95473EAE = {
@@ -2089,6 +2152,15 @@
 		DA68EAE39AAE6BE7BAE84567 = {
 			isa = PBXGroup;
 			children = (
+				E1B3AA142746CF9DF37942EE,
+				9D198189787FB1F1AFF788C3,
+				3C3AF81098A24EA8C9C65A2A,
+				26FAB4C556516DB21C558CFD,
+				0D500B525349E93DF85ADE14,
+				304AA6D8FE52F61FA8BDAF3D,
+				56166D92E27522E8438B2F06,
+				B9CC9027EC8070660F4C2557,
+				FB85BBF7D17CE5AFB2B68FE9,
 				1EC0C7E3033B00EB03750775,
 				6D407C91D8D2B67432B7CFD3,
 				561B281EF921BB46335A1534,

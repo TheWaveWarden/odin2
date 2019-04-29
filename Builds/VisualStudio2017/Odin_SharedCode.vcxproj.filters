@@ -2709,6 +2709,33 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\audio\Oscillators\Wavetables\LFO\LFOStair12.h">
+      <Filter>Odin\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Oscillators\Wavetables\LFO\LFOStair8.h">
+      <Filter>Odin\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Oscillators\Wavetables\LFO\LFOStair6.h">
+      <Filter>Odin\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Oscillators\Wavetables\LFO\LFOStair4.h">
+      <Filter>Odin\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Oscillators\Wavetables\LFO\LFOStair3.h">
+      <Filter>Odin\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Oscillators\Wavetables\LFO\LFOPyramid12.h">
+      <Filter>Odin\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Oscillators\Wavetables\LFO\LFOPyramid8.h">
+      <Filter>Odin\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Oscillators\Wavetables\LFO\LFOPyramid6.h">
+      <Filter>Odin\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Oscillators\Wavetables\LFO\LFOPyramid4.h">
+      <Filter>Odin\Source</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\ModMatrix.h">
       <Filter>Odin\Source</Filter>
     </ClInclude>
