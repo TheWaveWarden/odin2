@@ -6,12 +6,12 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 
-WavetableContainer::WavetableContainer(){
+WavetableContainer::WavetableContainer() {
 #include "WavetableCoefficients.h"
-  
-  //create specdraw scalar
-  for(int harmonic = 1; harmonic < SPECDRAW_STEPS_X + 1; ++harmonic){
-  	m_specdraw_scalar[harmonic - 1] = 1.f / sqrtf((float)harmonic);  
+
+  // create specdraw scalar
+  for (int harmonic = 1; harmonic < SPECDRAW_STEPS_X + 1; ++harmonic) {
+    m_specdraw_scalar[harmonic - 1] = 1.f / sqrtf((float)harmonic);
   }
 }
 
@@ -103,6 +103,67 @@ void WavetableContainer::createWavetables(float p_sample_rate) {
     createWavedrawTable(osc, draw_values, p_sample_rate);
     createChipdrawTable(osc, draw_values, p_sample_rate);
     createSpecdrawTable(osc, spec_values, p_sample_rate);
+  }
+
+  createLFOtables(p_sample_rate);
+}
+
+void WavetableContainer::createLFOtables(float p_sample_rate) {
+
+  // //loop over all wavetables
+  for (int index_wavetable = 0; index_wavetable < NUMBER_OF_LFOTABLES;
+       ++index_wavetable) {
+
+    double seed_freq = 27.5; // A0
+    float max = 0.f;
+
+    // allocate memory for actual tables
+    float *next_table = new float[WAVETABLE_LENGTH];
+    memset(next_table, 0, WAVETABLE_LENGTH * sizeof(float));
+
+    // how many harmonics are needed for this subtable
+    int number_of_harmonics = (int)((p_sample_rate * 0.5f / seed_freq) - 1);
+
+    // don't allow more than 800 harmonics (for big Samplerates this might
+    // happen)
+    number_of_harmonics = number_of_harmonics > NUMBER_OF_HARMONICS
+                              ? NUMBER_OF_HARMONICS
+                              : number_of_harmonics;
+
+    for (int index_harmonics = 0; index_harmonics < number_of_harmonics;
+         ++index_harmonics) {
+      for (int index_position = 0; index_position < WAVETABLE_LENGTH;
+           ++index_position) {
+
+        // fill table with //sine harmonics
+        next_table[index_position] +=
+            m_LFO_fourrier_coeffs[index_wavetable][0][index_harmonics] *
+            sin(2.f * PI * index_position * index_harmonics /
+                (float)WAVETABLE_LENGTH) *
+            m_fourrier_coeffs[index_wavetable][1]
+                             [0]; // last term is normalization
+        // cosine
+        next_table[index_position] +=
+            m_fourrier_coeffs[index_wavetable][1][index_harmonics] *
+            cos(2.f * PI * index_position * index_harmonics /
+                (float)WAVETABLE_LENGTH) *
+            m_fourrier_coeffs[index_wavetable][1]
+                             [0]; // last term is normalization
+      }
+    }
+
+    // for(int index_position = 0; index_position < WAVETABLE_LENGTH;
+    // ++index_position){
+    //     if(fabs(next_table[index_position]) > max){
+    //         max = fabs(next_table[index_position]);
+    //     }
+    // }
+
+    // assign array to corresponding pointer
+    m_lfotable_pointers[index_wavetable] = next_table;
+
+    m_LFO_name_index_map.insert(std::pair<std::string, int>(
+        m_lfotable_names[index_wavetable], index_wavetable));
   }
 }
 
@@ -340,7 +401,8 @@ void WavetableContainer::createSpecdrawTable(
         // fill table with
         // sine harmonics
         m_specdraw_tables[p_table_nr][index_sub_table][index_position] +=
-            p_specdraw_values[index_harmonics - 1] * m_specdraw_scalar[index_harmonics - 1] *
+            p_specdraw_values[index_harmonics - 1] *
+            m_specdraw_scalar[index_harmonics - 1] *
             sin(2.f * PI * index_position * index_harmonics /
                 (float)WAVETABLE_LENGTH);
       }

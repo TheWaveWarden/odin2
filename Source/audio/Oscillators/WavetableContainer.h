@@ -19,6 +19,7 @@ public:
 
 	
 	void createWavetables(float p_sample_rate);
+	void createLFOtables(float p_sample_rate);
 	void createChipdrawTable(int p_table_nr, float p_chipdraw_values[32], float p_sample_rate);
 	void createWavedrawTable(int p_table_nr, float p_wavedraw_values[WAVEDRAW_STEPS_X], float p_sample_rate, bool p_const_sections = false);
 	void createSpecdrawTable(int p_table_nr, float p_fourrier_values[SPECDRAW_STEPS_X], float p_sample_rate);
@@ -51,15 +52,19 @@ protected:
 	float lin_segment_one_overtone_cosine( float p_a, float p_b, float p_fa, float p_fb, int p_ot);
 
 	std::map<std::string, int> m_name_index_map;
+	std::map<std::string, int> m_LFO_name_index_map;
 
 	//Wavetable pointers
 	float* m_wavetable_pointers[NUMBER_OF_WAVETABLES][SUBTABLES_PER_WAVETABLE];
 	float* m_chipdraw_pointers[NUMBER_OF_CHIPDRAW_TABLES][SUBTABLES_PER_WAVETABLE];
 	float* m_wavedraw_pointers[NUMBER_OF_WAVEDRAW_TABLES][SUBTABLES_PER_WAVETABLE];
 	float* m_specdraw_pointers[NUMBER_OF_SPECDRAW_TABLES][SUBTABLES_PER_WAVETABLE];
+	float* m_lfotable_pointers[NUMBER_OF_LFOTABLES];
+	
 
 	//Fourrier Coefficients
 	float m_fourrier_coeffs[NUMBER_OF_WAVETABLES][SIN_AND_COS][NUMBER_OF_HARMONICS] = {0}; //index [x][1][0] will store scalar, since it is usually constant offset
+	float m_LFO_fourrier_coeffs[NUMBER_OF_LFOTABLES][SIN_AND_COS][NUMBER_OF_HARMONICS] = {0}; //index [x][1][0] will store scalar, since it is usually constant offset
 
 	//drawn tables
 	float m_chipdraw_tables[NUMBER_OF_CHIPDRAW_TABLES][SUBTABLES_PER_WAVETABLE][WAVETABLE_LENGTH];
@@ -70,6 +75,7 @@ protected:
 	float m_specdraw_scalar[SPECDRAW_STEPS_X];
 
 	std::string m_wavetable_names_1D[NUMBER_OF_WAVETABLES];
+	std::string m_lfotable_names[NUMBER_OF_WAVETABLES];
 
 	bool m_wavetables_created = false;
 };
