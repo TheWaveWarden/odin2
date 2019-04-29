@@ -1,6 +1,6 @@
 #pragma once
 
-#include <string> // why tf is memset defined in cstring?
+#include <string> 
 #include "../OdinConstants.h"
 #include <map>
 #include "../../GlobalIncludes.h"
