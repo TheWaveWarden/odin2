@@ -14,3 +14,18 @@
 #include "Wavetables/FatSaw.h"                 //13
 //#include "Wavetables/ChiptuneCustom18k.h"
 
+
+
+
+//LFOS
+#include "Wavetables/LFO/LFOPyramid4.h"
+#include "Wavetables/LFO/LFOPyramid6.h"
+#include "Wavetables/LFO/LFOPyramid8.h"
+#include "Wavetables/LFO/LFOPyramid12.h"
+#include "Wavetables/LFO/LFOStair3.h"
+#include "Wavetables/LFO/LFOStair4.h"
+#include "Wavetables/LFO/LFOStair6.h"
+#include "Wavetables/LFO/LFOStair8.h"
+#include "Wavetables/LFO/LFOStair12.h"
+
+

@@ -163,7 +163,7 @@ void WavetableContainer::createLFOtables(float p_sample_rate) {
     m_lfotable_pointers[index_wavetable] = next_table;
 
     m_LFO_name_index_map.insert(std::pair<std::string, int>(
-        m_lfotable_names[index_wavetable], index_wavetable));
+        m_LFO_names[index_wavetable], index_wavetable));
   }
 }
 

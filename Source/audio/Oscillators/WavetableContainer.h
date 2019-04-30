@@ -75,7 +75,7 @@ protected:
 	float m_specdraw_scalar[SPECDRAW_STEPS_X];
 
 	std::string m_wavetable_names_1D[NUMBER_OF_WAVETABLES];
-	std::string m_lfotable_names[NUMBER_OF_WAVETABLES];
+	std::string m_LFO_names[NUMBER_OF_WAVETABLES];
 
 	bool m_wavetables_created = false;
 };

@@ -1,6 +1,6 @@
 #define WT_NR 8
 	
-m_LFO_names[WT_NR] = Stair12;
+m_LFO_names[WT_NR] = "Stair12";
 m_LFO_fourrier_coeffs[WT_NR][1][0] = 1.f; //scalar TODO measure
 	
 m_LFO_fourrier_coeffs[WT_NR][0][1] = 1.25;
