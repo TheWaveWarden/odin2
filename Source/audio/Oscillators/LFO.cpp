@@ -30,6 +30,7 @@ void LFO::loadWavetables() {
   setWavetablePointer(8, WavetableContainer::getInstance().getLFOPointers("Pyramid6"));
   setWavetablePointer(9, WavetableContainer::getInstance().getLFOPointers("Pyramid8"));
   setWavetablePointer(10, WavetableContainer::getInstance().getLFOPointers("Pyramid12"));
+  
   setWavetablePointer(11, WavetableContainer::getInstance().getLFOPointers("Stair3"));
   setWavetablePointer(12, WavetableContainer::getInstance().getLFOPointers("Stair4"));
   setWavetablePointer(13, WavetableContainer::getInstance().getLFOPointers("Stair6"));
