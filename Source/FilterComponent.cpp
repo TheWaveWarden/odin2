@@ -236,16 +236,16 @@ void FilterComponent::setFilterType(int p_filter_type) {
     setFilterHP12();
     break;
   case 8:
-    setFilterSEM24();
-    break;
-  case 9:
     setFilterSEM12();
     break;
-  case 10:
+  case 9:
     setFilterDiode();
     break;
+  case 10:
+    setFilterKorgLP();
+    break;
   case 11:
-    setFilterKorg();
+    setFilterKorgLP();
     break;
   case 12:
     setFilterComb();
@@ -331,9 +331,15 @@ void FilterComponent::setFilterDiode() {
   showStandardFilterComponents();
 }
 
-void FilterComponent::setFilterKorg() {
+void FilterComponent::setFilterKorgLP() {
   m_background = ImageCache::getFromFile(
       juce::File(GRAPHICS_PATH + "applied/korg_backdrop.png"));
+  showStandardFilterComponents();
+}
+
+void FilterComponent::setFilterKorgHP() {
+  m_background = ImageCache::getFromFile(
+      juce::File(GRAPHICS_PATH + "applied/SEM24_backdrop.png"));
   showStandardFilterComponents();
 }
 

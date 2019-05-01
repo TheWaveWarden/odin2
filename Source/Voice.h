@@ -29,7 +29,7 @@
 #include "audio/Filters/Korg35Filter.h"
 #include "audio/Filters/LadderFilter.h"
 #include "audio/Filters/SEMFilter12.h"
-#include "audio/Filters/SEMFilter24.h"
+//#include "audio/Filters/SEMFilter24.h"
 
 #include "audio/ADSR.h"
 
@@ -197,14 +197,14 @@ struct Voice {
       ladder_filter[fil].m_MIDI_note = p_MIDI_note;
       diode_filter[fil].m_MIDI_note = p_MIDI_note;
       korg_filter[fil].m_MIDI_note = p_MIDI_note;
-      SEM_filter_24[fil].m_MIDI_note = p_MIDI_note;
+      //SEM_filter_24[fil].m_MIDI_note = p_MIDI_note;
       SEM_filter_12[fil].m_MIDI_note = p_MIDI_note;
       comb_filter[fil].m_MIDI_note = p_MIDI_note;
 
       ladder_filter[fil].m_MIDI_velocity = p_MIDI_vel;
       diode_filter[fil].m_MIDI_velocity = p_MIDI_vel;
       korg_filter[fil].m_MIDI_velocity = p_MIDI_vel;
-      SEM_filter_24[fil].m_MIDI_velocity = p_MIDI_vel;
+      //SEM_filter_24[fil].m_MIDI_velocity = p_MIDI_vel;
       SEM_filter_12[fil].m_MIDI_velocity = p_MIDI_vel;
       comb_filter[fil].m_MIDI_velocity = p_MIDI_vel;
       formant_filter[fil].m_MIDI_velocity = p_MIDI_vel;
@@ -214,7 +214,7 @@ struct Voice {
   void setKbd(float p_kbd, int p_fil) {
     ladder_filter[p_fil].m_kbd_mod_amount = p_kbd;
     SEM_filter_12[p_fil].m_kbd_mod_amount = p_kbd;
-    SEM_filter_24[p_fil].m_kbd_mod_amount = p_kbd;
+    //SEM_filter_24[p_fil].m_kbd_mod_amount = p_kbd;
     korg_filter[p_fil].m_kbd_mod_amount = p_kbd;
     diode_filter[p_fil].m_kbd_mod_amount = p_kbd;
     comb_filter[p_fil].m_kbd_mod_amount = p_kbd;
@@ -223,7 +223,7 @@ struct Voice {
   void setVelModAmount(float p_vel, int p_fil) {
     ladder_filter[p_fil].m_vel_mod_amount = p_vel;
     SEM_filter_12[p_fil].m_vel_mod_amount = p_vel;
-    SEM_filter_24[p_fil].m_vel_mod_amount = p_vel;
+    //SEM_filter_24[p_fil].m_vel_mod_amount = p_vel;
     korg_filter[p_fil].m_vel_mod_amount = p_vel;
     diode_filter[p_fil].m_vel_mod_amount = p_vel;
     comb_filter[p_fil].m_vel_mod_amount = p_vel;
@@ -233,7 +233,7 @@ struct Voice {
   void setSaturation(float p_sat, int p_fil){
     ladder_filter[p_fil].m_overdrive = p_sat;
     SEM_filter_12[p_fil].m_overdrive = p_sat;
-    SEM_filter_24[p_fil].m_overdrive = p_sat;
+    //SEM_filter_24[p_fil].m_overdrive = p_sat;
     korg_filter[p_fil].m_overdrive = p_sat;
     diode_filter[p_fil].m_overdrive = p_sat;
   }
@@ -242,7 +242,7 @@ struct Voice {
     //set as quadratic
     ladder_filter[p_fil].m_env_mod_amount = p_env;
     SEM_filter_12[p_fil].m_env_mod_amount = p_env;
-    SEM_filter_24[p_fil].m_env_mod_amount = p_env;
+    //SEM_filter_24[p_fil].m_env_mod_amount = p_env;
     korg_filter[p_fil].m_env_mod_amount = p_env;
     diode_filter[p_fil].m_env_mod_amount = p_env;
     comb_filter[p_fil].m_env_mod_amount = p_env;
@@ -252,7 +252,7 @@ struct Voice {
   void setFilterEnvValue(float p_env){    
     ladder_filter[0].m_env_value = p_env;
     SEM_filter_12[0].m_env_value = p_env;
-    SEM_filter_24[0].m_env_value = p_env;
+    //SEM_filter_24[0].m_env_value = p_env;
     korg_filter[0].m_env_value = p_env;
     diode_filter[0].m_env_value = p_env;
     comb_filter[0].m_env_value = p_env;
@@ -260,7 +260,7 @@ struct Voice {
 
     ladder_filter[1].m_env_value = p_env;
     SEM_filter_12[1].m_env_value = p_env;
-    SEM_filter_24[1].m_env_value = p_env;
+    //SEM_filter_24[1].m_env_value = p_env;
     korg_filter[1].m_env_value = p_env;
     diode_filter[1].m_env_value = p_env;
     comb_filter[1].m_env_value = p_env;
@@ -271,7 +271,7 @@ struct Voice {
     //note: not used right now since control is smoothed
     ladder_filter[p_fil].m_freq_base = p_freq;
     SEM_filter_12[p_fil].m_freq_base = p_freq;
-    SEM_filter_24[p_fil].m_freq_base = p_freq;
+    //SEM_filter_24[p_fil].m_freq_base = p_freq;
     korg_filter[p_fil].m_freq_base = p_freq;
     diode_filter[p_fil].m_freq_base = p_freq;
     comb_filter[p_fil].setCombFreq(p_freq);
@@ -280,7 +280,7 @@ struct Voice {
   void setFilterRes(float p_res, int p_fil) {
     ladder_filter[p_fil].setResControl(p_res);
     SEM_filter_12[p_fil].setResControl(p_res);
-    SEM_filter_24[p_fil].setResControl(p_res);
+    //SEM_filter_24[p_fil].setResControl(p_res);
     korg_filter[p_fil].setResControl(p_res);
     diode_filter[p_fil].setResControl(p_res);
     comb_filter[p_fil].setResonance(p_res);
@@ -309,7 +309,7 @@ struct Voice {
   // filter
   LadderFilter ladder_filter[2];
   SEMFilter12 SEM_filter_12[2];
-  SEMFilter24 SEM_filter_24[2];
+  //SEMFilter24 SEM_filter_24[2];
   Korg35Filter korg_filter[2];
   DiodeFilter diode_filter[2];
   FormantFilter formant_filter[2];

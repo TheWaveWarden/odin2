@@ -97,7 +97,7 @@ private:
   OversamplingDistortion m_distortion[2];
 
   LadderFilter m_ladder_filter[2];
-  SEMFilter24 m_SEM_filter_24[2];
+  //SEMFilter24 m_SEM_filter_24[2];
   SEMFilter12 m_SEM_filter_12[2];
   Korg35Filter m_korg_filter[2];
   DiodeFilter m_diode_filter[2];

@@ -92,10 +92,10 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
   m_filter_dropdown_menu.addItem(5, "Bandpass 12");
   m_filter_dropdown_menu.addItem(6, "Highpass 24");
   m_filter_dropdown_menu.addItem(7, "Highpass 12");
-  m_filter_dropdown_menu.addItem(8, "Oberheim 24");
-  m_filter_dropdown_menu.addItem(9, "Oberheim 12");
-  m_filter_dropdown_menu.addItem(10, "Diode Ladder");
-  m_filter_dropdown_menu.addItem(11, "Korg 35");
+  m_filter_dropdown_menu.addItem(8, "Oberheim 12");
+  m_filter_dropdown_menu.addItem(9, "Diode Ladder");
+  m_filter_dropdown_menu.addItem(10, "Korg 35 LP");
+  m_filter_dropdown_menu.addItem(11, "Korg 35 HP");
   m_filter_dropdown_menu.addItem(12, "Comb Filter");
   m_filter_dropdown_menu.addItem(13, "Formant Filter");
 

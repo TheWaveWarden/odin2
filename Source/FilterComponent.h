@@ -98,7 +98,8 @@ public:
   void setFilterSEM24();
   void setFilterSEM12();
   void setFilterDiode();
-  void setFilterKorg();
+  void setFilterKorgLP();
+  void setFilterKorgHP();
   void setFilterComb();
   void setFilterFormant();
 

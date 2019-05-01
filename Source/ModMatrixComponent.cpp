@@ -75,8 +75,7 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
       m_scale_identifier1("scale_[2]"), m_scale_identifier2("scale_[2]"),
       m_scale_identifier3("scale_[3]"), m_scale_identifier4("scale_[4]"),
       m_scale_identifier5("scale_[5]"), m_scale_identifier6("scale_[6]"),
-      m_scale_identifier7("scale_[7]"), m_scale_identifier8("scale_[8]")
-{
+      m_scale_identifier7("scale_[7]"), m_scale_identifier8("scale_[8]") {
 
   // create submenus to be inserted on demand
   for (int osc = 0; osc < 3; ++osc) {
@@ -964,21 +963,21 @@ void ModMatrixComponent::createMenu(PopupMenu *p_menu) {
         fil_type[fil] == FILTER_TYPE_LP12 ||
         fil_type[fil] == FILTER_TYPE_BP24 ||
         fil_type[fil] == FILTER_TYPE_BP12 ||
-        fil_type[fil] == FILTER_TYPE_HP24 ||
         fil_type[fil] == FILTER_TYPE_HP12 ||
-        fil_type[fil] == FILTER_TYPE_KORG ||
+        fil_type[fil] == FILTER_TYPE_KORG_LP ||
+        fil_type[fil] == FILTER_TYPE_KORG_HP ||
         fil_type[fil] == FILTER_TYPE_DIODE) {
       p_menu->addSubMenu("Filter " + std::to_string(fil + 1),
                          m_standard_fil_menu[fil], true);
     } else if (fil_type[fil] == FILTER_TYPE_FORMANT) {
       p_menu->addSubMenu("Filter " + std::to_string(fil + 1),
                          m_formant_fil_menu[fil], true);
-    } else if (fil_type[fil] == FILTER_TYPE_SEM12 ||
-               fil_type[fil] == FILTER_TYPE_SEM24) {
+    } else if (fil_type[fil] == FILTER_TYPE_SEM12) {
       p_menu->addSubMenu("Filter " + std::to_string(fil + 1),
                          m_SEM_fil_menu[fil], true);
     } else if (fil_type[fil] == FILTER_TYPE_COMB) {
-      p_menu->addSubMenu("Filter " + std::to_string(fil + 1), m_comb_fil_menu[fil]);
+      p_menu->addSubMenu("Filter " + std::to_string(fil + 1),
+                         m_comb_fil_menu[fil]);
     } else {
       p_menu->addItem(998, "Filter " + std::to_string(fil + 1), false);
     }
