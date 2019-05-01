@@ -309,9 +309,6 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
                     //====== LFO ======
                     m_voice[voice].lfo[mod].update();
                     m_lfo[voice][mod] = m_voice[voice].lfo[mod].doOscillate();
-                    if(mod == 0){
-                        DBG(m_lfo[voice][mod]);
-                    }
                 }
 
                 //===== OSCS ======

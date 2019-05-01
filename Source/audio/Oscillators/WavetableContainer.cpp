@@ -177,20 +177,6 @@ void WavetableContainer::createLFOtables(float p_sample_rate)
       }
     }
 
-    if (index_wavetable == 0)
-    {
-      for (int index_position = 0; index_position < WAVETABLE_LENGTH;
-           ++index_position)
-      {
-        DBG("pos:" + std::to_string(index_position) + "WT: " + std::to_string(next_table[index_position]));
-      }
-    }
-    // for(int index_position = 0; index_position < WAVETABLE_LENGTH;
-    // ++index_position){
-    //     if(fabs(next_table[index_position]) > max){
-    //         max = fabs(next_table[index_position]);
-    //     }
-    // }
 
     // assign array to corresponding pointer
     m_lfotable_pointers[index_wavetable][0] = next_table;
@@ -661,7 +647,7 @@ float **WavetableContainer::getWavetablePointers(std::string p_name)
   {
     return m_wavetable_pointers[it->second];
   }
-
+  DBG("COULDN'T FIND WAVETABLE WITH NAME " + p_name);
   return m_wavetable_pointers[0]; // return sine if no wt found
 }
 
