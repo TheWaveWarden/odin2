@@ -33,6 +33,8 @@ public:
 	float** getChipdrawPointer(int p_chipdraw_index);
 	float** getWavedrawPointer(int p_wavedraw_index);
 	float** getSpecdrawPointer(int p_specdraw_index);
+	float** getLFOPointers(std::string p_name);
+	
 
 	void writeScaleFactorsToFile();
 
@@ -59,7 +61,7 @@ protected:
 	float* m_chipdraw_pointers[NUMBER_OF_CHIPDRAW_TABLES][SUBTABLES_PER_WAVETABLE];
 	float* m_wavedraw_pointers[NUMBER_OF_WAVEDRAW_TABLES][SUBTABLES_PER_WAVETABLE];
 	float* m_specdraw_pointers[NUMBER_OF_SPECDRAW_TABLES][SUBTABLES_PER_WAVETABLE];
-	float* m_lfotable_pointers[NUMBER_OF_LFOTABLES];
+	float* m_lfotable_pointers[NUMBER_OF_LFOTABLES][1];
 	
 
 	//Fourrier Coefficients

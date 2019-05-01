@@ -11,13 +11,14 @@
 #include "LFO.h"
 
 void LFO::loadWavetables() {
-  for (int wavetable = 0; wavetable < NUMBER_OF_WAVETABLES; ++wavetable) {
-    setWavetablePointer(
-        wavetable,
-        WavetableContainer::getInstance().getWavetablePointers(wavetable));
-  }
-  setWavetablePointer(0,
-                      WavetableContainer::getInstance().getWavedrawPointer(2));
+  //for (int wavetable = 0; wavetable < NUMBER_OF_LFOTABLES; ++wavetable) {
+  //  setWavetablePointer(
+  //      wavetable,
+  //      WavetableContainer::getInstance().getWavetablePointers(wavetable));
+  //}
+  //setWavetablePointer(0,
+  //                    WavetableContainer::getInstance().getWavedrawPointer(2));
+  setWavetablePointer(0, WavetableContainer::getInstance().getLFOPointers("test"));
 }
 
 float LFO::doOscillate() {

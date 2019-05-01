@@ -3,6 +3,9 @@
 #include <cstring>
 #include <fstream>
 #include <iostream>
+#include <ctime>
+
+
 
 #include "../JuceLibraryCode/JuceHeader.h"
 
@@ -21,7 +24,13 @@ WavetableContainer::~WavetableContainer() {
   }
 }
 
+
+
 void WavetableContainer::createWavetables(float p_sample_rate) {
+
+  std::clock_t begin = std::clock();
+
+
 
   // //loop over all wavetables
   for (int index_wavetable = 0; index_wavetable < NUMBER_OF_WAVETABLES;
@@ -106,6 +115,11 @@ void WavetableContainer::createWavetables(float p_sample_rate) {
   }
 
   createLFOtables(p_sample_rate);
+
+  std::clock_t end = std::clock();
+  double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
+
+  DBG("Wavetable creation took " + std::to_string(elapsed_secs) + " seconds");
 }
 
 void WavetableContainer::createLFOtables(float p_sample_rate) {
@@ -160,7 +174,7 @@ void WavetableContainer::createLFOtables(float p_sample_rate) {
     // }
 
     // assign array to corresponding pointer
-    m_lfotable_pointers[index_wavetable] = next_table;
+    m_lfotable_pointers[index_wavetable][0] = next_table;
 
     m_LFO_name_index_map.insert(std::pair<std::string, int>(
         m_LFO_names[index_wavetable], index_wavetable));
@@ -522,6 +536,16 @@ float **WavetableContainer::getWavetablePointers(std::string p_name) {
 
   return m_wavetable_pointers[0]; // return sine if no wt found
 }
+
+float** WavetableContainer::getLFOPointers(std::string p_name){
+  auto it = m_LFO_name_index_map.find(p_name);
+  if (it != m_LFO_name_index_map.end()) {
+    return m_lfotable_pointers[it->second];
+  }
+  return m_lfotable_pointers[0];
+}
+
+
 
 void WavetableContainer::changeSampleRate(float p_sample_rate) {
   if (m_wavetables_created) {
