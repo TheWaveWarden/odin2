@@ -553,6 +553,9 @@
     <ClCompile Include="..\..\Source\audio\Filters\BiquadFilter.cpp">
       <Filter>Odin\Source\audio\Filters</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\audio\Filters\BiquadResonator.cpp">
+      <Filter>Odin\Source\audio\Filters</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\audio\Filters\CombFilter.cpp">
       <Filter>Odin\Source\audio\Filters</Filter>
     </ClCompile>
@@ -2881,6 +2884,9 @@
       <Filter>Odin\Source\audio\Filters</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\audio\Filters\BiquadFilter.h">
+      <Filter>Odin\Source\audio\Filters</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Filters\BiquadResonator.h">
       <Filter>Odin\Source\audio\Filters</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\audio\Filters\CombFilter.h">

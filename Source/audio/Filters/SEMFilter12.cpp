@@ -76,5 +76,5 @@ double SEMFilter12::doFilter(double xn)
 
 void SEMFilter12::setResControl(double p_res)
 {
-    m_resonance = 24.5 * p_res * p_res + 0.5;
+    m_resonance = 24.5 * p_res * p_res * p_res * p_res + 0.5;
 }

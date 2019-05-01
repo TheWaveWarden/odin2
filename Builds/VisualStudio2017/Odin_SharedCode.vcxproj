@@ -162,6 +162,7 @@
     <ClCompile Include="..\..\Source\audio\FX\QuarticShaper.cpp"/>
     <ClCompile Include="..\..\Source\audio\Filters\BiquadAllpass.cpp"/>
     <ClCompile Include="..\..\Source\audio\Filters\BiquadFilter.cpp"/>
+    <ClCompile Include="..\..\Source\audio\Filters\BiquadResonator.cpp"/>
     <ClCompile Include="..\..\Source\audio\Filters\CombFilter.cpp"/>
     <ClCompile Include="..\..\Source\audio\Filters\DiodeFilter.cpp"/>
     <ClCompile Include="..\..\Source\audio\Filters\Filter.cpp"/>
@@ -2146,6 +2147,7 @@
     <ClInclude Include="..\..\Source\audio\FX\QuarticShaper.h"/>
     <ClInclude Include="..\..\Source\audio\Filters\BiquadAllpass.h"/>
     <ClInclude Include="..\..\Source\audio\Filters\BiquadFilter.h"/>
+    <ClInclude Include="..\..\Source\audio\Filters\BiquadResonator.h"/>
     <ClInclude Include="..\..\Source\audio\Filters\CombFilter.h"/>
     <ClInclude Include="..\..\Source\audio\Filters\DiodeFilter.h"/>
     <ClInclude Include="..\..\Source\audio\Filters\Filter.h"/>

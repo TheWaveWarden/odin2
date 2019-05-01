@@ -169,6 +169,10 @@
 			isa = PBXBuildFile;
 			fileRef = A812B7D04F00D7D7A25C9061;
 		};
+		4069F71E49620CF6C3064147 = {
+			isa = PBXBuildFile;
+			fileRef = C841A91AC7D3994BD2B7C5A6;
+		};
 		4B842D9B9139E58FFCF4D04F = {
 			isa = PBXBuildFile;
 			fileRef = 802EBD4996D052A3FE4877B5;
@@ -1229,6 +1233,13 @@
 			path = ../../Source/audio/Oscillators/Wavetables/ChiptuneCustom3.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		8CB05833FFCF696D42BD6BA1 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = BiquadResonator.h;
+			path = ../../Source/audio/Filters/BiquadResonator.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		919D1DBFFA8B78C9C4C65EEF = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -1556,6 +1567,13 @@
 			lastKnownFileType = sourcecode.c.h;
 			name = Filter.h;
 			path = ../../Source/audio/Filters/Filter.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		C841A91AC7D3994BD2B7C5A6 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = BiquadResonator.cpp;
+			path = ../../Source/audio/Filters/BiquadResonator.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
 		C8B331D95726F7FAAEFFC87F = {
@@ -2017,6 +2035,8 @@
 				7C93E4B584786C84B4971DAA,
 				A812B7D04F00D7D7A25C9061,
 				9D61EFBD62D2B598A574B7DB,
+				C841A91AC7D3994BD2B7C5A6,
+				8CB05833FFCF696D42BD6BA1,
 				802EBD4996D052A3FE4877B5,
 				F387316B58FBE28F72210683,
 				A0516C472761E34C89D254BB,
@@ -2848,6 +2868,7 @@
 				96CC774B1C0FAF0B331950A3,
 				FA2F4D6020FDCFE87C56D18B,
 				DB3596DDF815F089B241912C,
+				4069F71E49620CF6C3064147,
 				4B842D9B9139E58FFCF4D04F,
 				A456BAC31248A16A53AABB03,
 				D0CC987044F5B8D8440F5AAB,

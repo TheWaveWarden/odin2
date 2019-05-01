@@ -107,6 +107,7 @@ OBJECTS_SHARED_CODE := \
   $(JUCE_OBJDIR)/QuarticShaper_76c4a84f.o \
   $(JUCE_OBJDIR)/BiquadAllpass_abccc578.o \
   $(JUCE_OBJDIR)/BiquadFilter_c764057c.o \
+  $(JUCE_OBJDIR)/BiquadResonator_88ab96db.o \
   $(JUCE_OBJDIR)/CombFilter_79a4e2ef.o \
   $(JUCE_OBJDIR)/DiodeFilter_62ce6c57.o \
   $(JUCE_OBJDIR)/Filter_7d90fd8e.o \
@@ -318,6 +319,11 @@ $(JUCE_OBJDIR)/BiquadAllpass_abccc578.o: ../../Source/audio/Filters/BiquadAllpas
 $(JUCE_OBJDIR)/BiquadFilter_c764057c.o: ../../Source/audio/Filters/BiquadFilter.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling BiquadFilter.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/BiquadResonator_88ab96db.o: ../../Source/audio/Filters/BiquadResonator.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling BiquadResonator.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/CombFilter_79a4e2ef.o: ../../Source/audio/Filters/CombFilter.cpp

@@ -144,6 +144,10 @@
           <FILE id="YyeT25" name="BiquadFilter.cpp" compile="1" resource="0"
                 file="Source/audio/Filters/BiquadFilter.cpp"/>
           <FILE id="sq338l" name="BiquadFilter.h" compile="0" resource="0" file="Source/audio/Filters/BiquadFilter.h"/>
+          <FILE id="TnN6fP" name="BiquadResonator.cpp" compile="1" resource="0"
+                file="Source/audio/Filters/BiquadResonator.cpp"/>
+          <FILE id="jxR1eT" name="BiquadResonator.h" compile="0" resource="0"
+                file="Source/audio/Filters/BiquadResonator.h"/>
           <FILE id="AB83zF" name="CombFilter.cpp" compile="1" resource="0" file="Source/audio/Filters/CombFilter.cpp"/>
           <FILE id="ktQwAi" name="CombFilter.h" compile="0" resource="0" file="Source/audio/Filters/CombFilter.h"/>
           <FILE id="JHfaPb" name="DiodeFilter.cpp" compile="1" resource="0" file="Source/audio/Filters/DiodeFilter.cpp"/>
