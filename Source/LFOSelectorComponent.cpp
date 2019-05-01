@@ -12,7 +12,6 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "GlobalIncludes.h"
 
-
 //==============================================================================
 LFOSelectorComponent::LFOSelectorComponent()
     : m_up("up", juce::DrawableButton::ButtonStyle::ImageRaw),
@@ -46,12 +45,9 @@ LFOSelectorComponent::LFOSelectorComponent()
   juce::Image peak = ImageCache::getFromFile(
       juce::File(GRAPHICS_PATH + "cropped/lfo/peak.png"));
   m_display.addWave(peak);
-  juce::Image SH = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/lfo/SH.png"));
+  juce::Image SH =
+      ImageCache::getFromFile(juce::File(GRAPHICS_PATH + "cropped/lfo/SH.png"));
   m_display.addWave(SH);
-  juce::Image pyram3 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/lfo/pyram3.png"));
-  m_display.addWave(pyram3);
   juce::Image pyram4 = ImageCache::getFromFile(
       juce::File(GRAPHICS_PATH + "cropped/lfo/pyram4.png"));
   m_display.addWave(pyram4);
@@ -61,6 +57,9 @@ LFOSelectorComponent::LFOSelectorComponent()
   juce::Image pyram8 = ImageCache::getFromFile(
       juce::File(GRAPHICS_PATH + "cropped/lfo/pyram8.png"));
   m_display.addWave(pyram8);
+  juce::Image pyram12 = ImageCache::getFromFile(
+      juce::File(GRAPHICS_PATH + "cropped/lfo/pyram12.png"));
+  m_display.addWave(pyram12);
   juce::Image stair3 = ImageCache::getFromFile(
       juce::File(GRAPHICS_PATH + "cropped/lfo/stair3.png"));
   m_display.addWave(stair3);
@@ -73,7 +72,9 @@ LFOSelectorComponent::LFOSelectorComponent()
   juce::Image stair8 = ImageCache::getFromFile(
       juce::File(GRAPHICS_PATH + "cropped/lfo/stair8.png"));
   m_display.addWave(stair8);
-  m_display.addWave(stair8);//todo fix images
+  juce::Image stair12 = ImageCache::getFromFile(
+      juce::File(GRAPHICS_PATH + "cropped/lfo/stair12.png"));
+  m_display.addWave(stair12);
   juce::Image wavedraw1 = ImageCache::getFromFile(
       juce::File(GRAPHICS_PATH + "cropped/lfo/wavedraw1.png"));
   m_display.addWave(wavedraw1);
