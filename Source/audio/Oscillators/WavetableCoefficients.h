@@ -27,6 +27,9 @@
 #include "Wavetables/LFO/LFOStair6.h"
 #include "Wavetables/LFO/LFOStair8.h"
 #include "Wavetables/LFO/LFOStair12.h"
-#include "Wavetables/LFO/ChiptuneCustom9999.h"
+#include "Wavetables/LFO/LFOSquare50.h"
+#include "Wavetables/LFO/LFOSquare25.h"
+#include "Wavetables/LFO/LFOSquare12.h"
+//#include "Wavetables/LFO/ChiptuneCustom9999.h"
 
 

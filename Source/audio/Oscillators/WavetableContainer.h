@@ -20,9 +20,10 @@ public:
 	
 	void createWavetables(float p_sample_rate);
 	void createLFOtables(float p_sample_rate);
+	void createLFOCoefficientsFromConstSections(int p_table_nr, float p_const_section_values[], int p_number_of_sections, std::string p_table_name);
 	void createChipdrawTable(int p_table_nr, float p_chipdraw_values[32], float p_sample_rate);
 	void createWavedrawTable(int p_table_nr, float p_wavedraw_values[WAVEDRAW_STEPS_X], float p_sample_rate, bool p_const_sections = false);
-	void createSpecdrawTable(int p_table_nr, float p_fourrier_values[SPECDRAW_STEPS_X], float p_sample_rate);
+	void createSpecdrawTable(int p_table_nr, float p_fourier_values[SPECDRAW_STEPS_X], float p_sample_rate);
 
 
 	void destroyWavetables();
@@ -65,8 +66,8 @@ protected:
 	
 
 	//Fourrier Coefficients
-	float m_fourrier_coeffs[NUMBER_OF_WAVETABLES][SIN_AND_COS][NUMBER_OF_HARMONICS] = {0}; //index [x][1][0] will store scalar, since it is usually constant offset
-	float m_LFO_fourrier_coeffs[NUMBER_OF_LFOTABLES][SIN_AND_COS][NUMBER_OF_HARMONICS] = {0}; //index [x][1][0] will store scalar, since it is usually constant offset
+	float m_fourier_coeffs[NUMBER_OF_WAVETABLES][SIN_AND_COS][NUMBER_OF_HARMONICS] = {0}; //index [x][1][0] will store scalar, since it is usually constant offset
+	float m_LFO_fourier_coeffs[NUMBER_OF_LFOTABLES][SIN_AND_COS][NUMBER_OF_HARMONICS] = {0}; //index [x][1][0] will store scalar, since it is usually constant offset
 
 	//drawn tables
 	float m_chipdraw_tables[NUMBER_OF_CHIPDRAW_TABLES][SUBTABLES_PER_WAVETABLE][WAVETABLE_LENGTH];
