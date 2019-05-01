@@ -4,11 +4,11 @@
 
 FormantFilter::FormantFilter()
 {
-    m_BPF1.m_filter_type = LadderFilter::FILTERTYPE::LP2;//todo?
-    m_BPF2.m_filter_type = LadderFilter::FILTERTYPE::BP2;
+    //m_BPF1.m_filter_type = LadderFilter::FILTERTYPE::LP2;//todo?
+    //m_BPF2.m_filter_type = LadderFilter::FILTERTYPE::BP2;
     
-    m_BPF1.setResControl(0.8);
-    m_BPF2.setResControl(0.8);
+    //m_BPF1.setResControl(0.8);
+    //m_BPF2.setResControl(0.8);
 
     //m_BPF1.enablePassBandCompensation();
     //m_BPF2.enablePassBandCompensation();
@@ -18,12 +18,12 @@ FormantFilter::FormantFilter()
     updateParabolas();
 
     setFreqModPointer(&m_zero_dummy);
-    m_BPF1.setFreqModPointer(&m_zero_dummy);
-    m_BPF2.setFreqModPointer(&m_zero_dummy);
-    m_BPF1.setResModPointer(&m_zero_dummy);
-    m_BPF2.setResModPointer(&m_zero_dummy);
-    m_BPF1.setVolModPointer(&m_zero_dummy);
-    m_BPF2.setVolModPointer(&m_zero_dummy);
+    //m_BPF1.setFreqModPointer(&m_zero_dummy);
+    //m_BPF2.setFreqModPointer(&m_zero_dummy);
+    //m_BPF1.setResModPointer(&m_zero_dummy);
+    //m_BPF2.setResModPointer(&m_zero_dummy);
+    //m_BPF1.setVolModPointer(&m_zero_dummy);
+    //m_BPF2.setVolModPointer(&m_zero_dummy);
 }
 
 
@@ -32,15 +32,18 @@ FormantFilter::~FormantFilter()
 }
 
 void FormantFilter::reset(){
-    m_BPF1.reset();
-    m_BPF2.reset();
+    //m_BPF1.reset();
+    //m_BPF2.reset();
 }
 
 void FormantFilter::update(){
     Filter::update();
 
-    m_BPF1.m_freq_base = m_a0 * m_transition * m_transition + m_b0 * m_transition + m_c0;
-    m_BPF2.m_freq_base = m_a1 * m_transition * m_transition + m_b1 * m_transition + m_c1;
+    m_resonator1.setFrequency(m_a0 * m_transition * m_transition + m_b0 * m_transition + m_c0);
+    m_resonator2.setFrequency(m_a1 * m_transition * m_transition + m_b1 * m_transition + m_c1);
+
+    //m_BPF1.m_freq_base = m_a0 * m_transition * m_transition + m_b0 * m_transition + m_c0;
+    //m_BPF2.m_freq_base = m_a1 * m_transition * m_transition + m_b1 * m_transition + m_c1;
     //for(float transition = 0.f; transition <= 1.f; transition += 0.01){
     //  DBG(m_a0 * transition * transition + m_b0 * transition + m_c0);  
     //}
@@ -52,8 +55,8 @@ void FormantFilter::update(){
 //    m_BPF1.m_mod_frequency = m_formant_width;
 //    m_BPF2.m_mod_frequency = -m_formant_width;
 
-    m_BPF1.update();
-    m_BPF2.update();
+    //m_BPF1.update();
+    //m_BPF2.update();
 }
 
 void FormantFilter::updateParabolas(){
@@ -85,7 +88,8 @@ void FormantFilter::setTransition(float p_trans){
 
 
 double FormantFilter::doFilter(double p_input){
-    double out = m_BPF1.doFilter(m_BPF2.doFilter(p_input));
+    //double out = m_BPF1.doFilter(m_BPF2.doFilter(p_input));
+    double out = m_resonator1.doFilter(m_resonator2.doFilter(p_input));
 
     float vol_mod_factor = (*m_vol_mod) > 0 ? 1.f + 4 *(*m_vol_mod) : (1.f + *m_vol_mod);    
 

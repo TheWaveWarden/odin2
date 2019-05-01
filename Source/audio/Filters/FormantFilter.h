@@ -1,6 +1,7 @@
 #pragma once
 #include "Filter.h"
-#include "LadderFilter.h"
+//#include "LadderFilter.h"
+#include "BiquadResonator.h"
 
 
 class FormantFilter :
@@ -61,7 +62,10 @@ protected:
 	float m_c1;
 
 
-	LadderFilter m_BPF1;
-	LadderFilter m_BPF2;
+	BiquadResonator m_resonator1;
+	BiquadResonator m_resonator2;
+
+	//LadderFilter m_BPF1;
+	//LadderFilter m_BPF2;
 };
 
