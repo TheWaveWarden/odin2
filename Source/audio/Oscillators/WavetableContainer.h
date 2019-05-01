@@ -21,6 +21,7 @@ public:
 	void createWavetables(float p_sample_rate);
 	void createLFOtables(float p_sample_rate);
 	void createLFOCoefficientsFromConstSections(int p_table_nr, float p_const_section_values[], int p_number_of_sections, std::string p_table_name);
+	void createLFOCoefficientsFromLinSections(int p_table_nr, float p_const_section_values[], int p_number_of_sections, std::string p_table_name);
 	void createChipdrawTable(int p_table_nr, float p_chipdraw_values[32], float p_sample_rate);
 	void createWavedrawTable(int p_table_nr, float p_wavedraw_values[WAVEDRAW_STEPS_X], float p_sample_rate, bool p_const_sections = false);
 	void createSpecdrawTable(int p_table_nr, float p_fourier_values[SPECDRAW_STEPS_X], float p_sample_rate);

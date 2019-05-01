@@ -177,7 +177,6 @@ void WavetableContainer::createLFOtables(float p_sample_rate)
       }
     }
 
-
     // assign array to corresponding pointer
     m_lfotable_pointers[index_wavetable][0] = next_table;
 
@@ -211,7 +210,56 @@ void WavetableContainer::createLFOCoefficientsFromConstSections(int p_table_nr, 
     }
     LFO_coefficients[0][harmonic] = coeff_sine / PI;
     LFO_coefficients[1][harmonic] = coeff_cosine / PI;
-    if(harmonic == 0){
+    if (harmonic == 0)
+    {
+      //no idea why this is necessary...
+      LFO_coefficients[1][0] *= 0.5f;
+    }
+  }
+
+  std::ofstream output_file;
+  output_file.open("/home/frederik_siepe/odinvst/Source/audio/Oscillators/Wavetables/LFO/LFO" + p_table_name + ".h");
+
+  output_file << "#define WT_NR " + std::to_string(p_table_nr) + "\n\n";
+  output_file << "m_LFO_names[WT_NR] = \"" + p_table_name + "\";\n\n";
+  for (int harmonic = 0; harmonic < NUMBER_OF_HARMONICS; ++harmonic)
+  {
+
+    output_file << "m_LFO_fourier_coeffs[WT_NR][0][" + std::to_string(harmonic) + "] = " + std::to_string(LFO_coefficients[0][harmonic]) + ";\n";
+    output_file << "m_LFO_fourier_coeffs[WT_NR][1][" + std::to_string(harmonic) + "] = " + std::to_string(LFO_coefficients[1][harmonic]) + ";\n";
+  }
+
+  output_file << "#undef WT_NR\n";
+  output_file.close();
+}
+
+void WavetableContainer::createLFOCoefficientsFromLinSections(int p_table_nr, float p_lin_section_values[], int p_number_of_sections, std::string p_table_name)
+{
+  // first generate the fourier coefficients
+  float LFO_coefficients[SIN_AND_COS][NUMBER_OF_HARMONICS];
+
+  float step_width = 2 * PI / (float)p_number_of_sections;
+
+  for (int harmonic = 0; harmonic < NUMBER_OF_HARMONICS; ++harmonic)
+  {
+
+    float coeff_sine = 0.f;
+    float coeff_cosine = 0.f;
+
+    for (int segment = 0; segment < p_number_of_sections; ++segment)
+    {
+
+      coeff_sine += lin_segment_one_overtone_sine(
+          segment * step_width, (segment + 1) * step_width,
+          p_lin_section_values[segment], p_lin_section_values[segment + 1], harmonic);
+      coeff_cosine += lin_segment_one_overtone_cosine(
+          segment * step_width, (segment + 1) * step_width,
+          p_lin_section_values[segment], p_lin_section_values[segment + 1], harmonic);
+    }
+    LFO_coefficients[0][harmonic] = coeff_sine / PI;
+    LFO_coefficients[1][harmonic] = coeff_cosine / PI;
+    if (harmonic == 0)
+    {
       //no idea why this is necessary...
       LFO_coefficients[1][0] *= 0.5f;
     }
@@ -536,13 +584,14 @@ float WavetableContainer::lin_segment_one_overtone_sine(float p_a, float p_b,
                                                         float p_fa, float p_fb,
                                                         int p_ot)
 {
-  if (p_ot == 0)
-  {
-    return 0;
-  }
 
   float m = (p_fb - p_fa) / (p_b - p_a); // slope of linear function
   float c = p_fa - m * p_a;              // const offset of linear function
+
+  if (p_ot == 0)
+  {
+    return m / 2.f * p_b * p_b + c * p_b - m / 2.f * p_a * p_a - c * p_a;
+  }
 
   return (m * (sin(p_b * p_ot) - sin(p_a * p_ot)) +
           p_ot * (p_a * m + c) * cos(p_a * p_ot) -

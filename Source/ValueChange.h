@@ -1327,28 +1327,72 @@ void OdinAudioProcessor::treeValueChanged(const String &p_ID,
   {
     for (int voice = 0; voice < VOICES; ++voice)
     {
-      m_voice[voice].lfo[0].selectWavetable(p_new_value);
+      if (p_new_value < 6.5f)
+      {
+        m_voice[voice].lfo[0].selectWavetable(p_new_value);
+        m_voice[voice].lfo[0].setSHActive(false);
+      }
+      else if (p_new_value > 7.5f)
+      {
+        m_voice[voice].lfo[0].selectWavetable((int)p_new_value - 1);
+        m_voice[voice].lfo[0].setSHActive(false);
+      } else {
+        m_voice[voice].lfo[0].setSHActive(true);
+      }
     }
   }
   else if (id == m_lfo2_wave_identifier)
   {
     for (int voice = 0; voice < VOICES; ++voice)
     {
-      m_voice[voice].lfo[1].selectWavetable(p_new_value);
+      if (p_new_value < 6.5f)
+      {
+        m_voice[voice].lfo[1].selectWavetable(p_new_value);
+        m_voice[voice].lfo[1].setSHActive(false);
+      }
+      else if (p_new_value > 7.5f)
+      {
+        m_voice[voice].lfo[1].selectWavetable((int)p_new_value - 1);
+        m_voice[voice].lfo[1].setSHActive(false);
+      } else {
+        m_voice[voice].lfo[1].setSHActive(true);
+      }
     }
   }
   else if (id == m_lfo3_wave_identifier)
   {
     for (int voice = 0; voice < VOICES; ++voice)
     {
-      m_voice[voice].lfo[2].selectWavetable(p_new_value);
+      if (p_new_value < 6.5f)
+      {
+        m_voice[voice].lfo[2].selectWavetable(p_new_value);
+        m_voice[voice].lfo[2].setSHActive(false);
+      }
+      else if (p_new_value > 7.5f)
+      {
+        m_voice[voice].lfo[2].selectWavetable((int)p_new_value - 1);
+        m_voice[voice].lfo[2].setSHActive(false);
+      } else {
+        m_voice[voice].lfo[2].setSHActive(true);
+      }
     }
   }
   else if (id == m_lfo4_wave_identifier)
   {
     for (int voice = 0; voice < VOICES; ++voice)
     {
-      m_voice[voice].lfo[3].selectWavetable(p_new_value);
+      if (p_new_value < 6.5f)
+      {
+        m_voice[voice].lfo[3].selectWavetable(p_new_value);
+        m_voice[voice].lfo[3].setSHActive(false);
+      }
+      else if (p_new_value > 7.5f)
+      {
+        m_voice[voice].lfo[3].selectWavetable((int)p_new_value - 1);
+        m_voice[voice].lfo[3].setSHActive(false);
+      } else {
+        m_voice[voice].lfo[3].setSHActive(true);
+      }
     }
   }
 

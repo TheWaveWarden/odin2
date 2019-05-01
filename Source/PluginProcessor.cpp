@@ -110,6 +110,22 @@ OdinAudioProcessor::OdinAudioProcessor()
             m_voice[i].lfo[mod].loadWavetables();
         }
     }
+
+    float spike[1001] = {0};
+    for (int i = 0; i < 1001; ++i)
+    {
+        float x = (float)i / 1000.f * 2 * PI;
+        if (i < 500)
+        {
+            spike[i] = 2.f / PI / PI * x * x - 1;
+        }
+        else
+        {
+            spike[i] = 2.f / PI / PI * (x - 2 * PI) * (x - 2 * PI) - 1;
+        }
+    }
+
+    //WavetableContainer::getInstance().createLFOCoefficientsFromLinSections(12, spike, 1000, "Spike");
 }
 
 OdinAudioProcessor::~OdinAudioProcessor()

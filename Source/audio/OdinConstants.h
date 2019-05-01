@@ -5,7 +5,7 @@
 #define NUMBER_OF_CHIPDRAW_TABLES 3 //number of chipdraw tables (one per osc slot)
 #define NUMBER_OF_WAVEDRAW_TABLES 3 //number of wavedraw tables (one per osc slot)
 #define NUMBER_OF_SPECDRAW_TABLES 3 //number of specdraw tables (one per osc slot)
-#define NUMBER_OF_LFOTABLES 12
+#define NUMBER_OF_LFOTABLES 13
 //#define CHIPDRAW_LENGTH 32 //how many samples we draw in the chipdraw window
 //#define WAVEDRAW_LENGTH 256 //how many samples we draw in the wavedraw window
 //#define SPECDRAW_LENGTH 100

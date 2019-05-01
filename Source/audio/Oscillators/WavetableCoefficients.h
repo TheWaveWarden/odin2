@@ -9,9 +9,9 @@
 #include "Wavetables/ChiptuneCustom4.h"     //8
 #include "Wavetables/ChiptuneCustom5.h"     //9
 #include "Wavetables/ChiptuneCustom6.h"     //10
-#include "Wavetables/Triangle.h"            //11
-#include "Wavetables/Saw.h"                 //12
-#include "Wavetables/FatSaw.h"                 //13
+#include "Wavetables/Saw.h"                 //11
+#include "Wavetables/Triangle.h"            //12
+#include "Wavetables/FatSaw.h"                //13
 //#include "Wavetables/ChiptuneCustom18k.h"
 
 
@@ -30,6 +30,7 @@
 #include "Wavetables/LFO/LFOSquare50.h"
 #include "Wavetables/LFO/LFOSquare25.h"
 #include "Wavetables/LFO/LFOSquare12.h"
+#include "Wavetables/LFO/LFOSpike.h"
 //#include "Wavetables/LFO/ChiptuneCustom9999.h"
 
 

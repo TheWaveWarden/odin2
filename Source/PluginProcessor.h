@@ -130,6 +130,7 @@ private:
   float* m_master_mod;
 
 
+
   int m_counter = 0; // todo remove
 #include "AudioVarDeclarations.h"
   //==============================================================================
