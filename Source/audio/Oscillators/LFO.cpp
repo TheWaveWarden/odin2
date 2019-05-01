@@ -38,6 +38,10 @@ void LFO::loadWavetables() {
   setWavetablePointer(13, WavetableContainer::getInstance().getLFOPointers("Stair6"));
   setWavetablePointer(14, WavetableContainer::getInstance().getLFOPointers("Stair8"));
   setWavetablePointer(15, WavetableContainer::getInstance().getLFOPointers("Stair12"));
+
+  setWavetablePointer(16, WavetableContainer::getInstance().getWavedrawPointer(0));
+  setWavetablePointer(17, WavetableContainer::getInstance().getWavedrawPointer(1));
+  setWavetablePointer(18, WavetableContainer::getInstance().getWavedrawPointer(2));
 }
 
 float LFO::doOscillate() {

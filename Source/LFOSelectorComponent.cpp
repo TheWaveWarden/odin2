@@ -73,6 +73,7 @@ LFOSelectorComponent::LFOSelectorComponent()
   juce::Image stair8 = ImageCache::getFromFile(
       juce::File(GRAPHICS_PATH + "cropped/lfo/stair8.png"));
   m_display.addWave(stair8);
+  m_display.addWave(stair8);//todo fix images
   juce::Image wavedraw1 = ImageCache::getFromFile(
       juce::File(GRAPHICS_PATH + "cropped/lfo/wavedraw1.png"));
   m_display.addWave(wavedraw1);
