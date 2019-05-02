@@ -166,11 +166,17 @@ public:
   void showWavetableComponents();
   void showMultiComponents();
 
+
+  void writeWavedrawTableToFile();
+
   void createWavedrawTables();
   void createChipdrawTables();
   void createSpecdrawTables();
 
 protected:
+
+  TextEditor REMOVE_EDITOR;
+
   int m_osc_type = 0;
 
   juce::Image m_background;
@@ -199,6 +205,7 @@ protected:
   juce::DrawableButton m_noise;
   juce::DrawableButton m_chipdraw_convert;
   juce::DrawableButton m_wavedraw_convert;
+  juce::DrawableButton m_wavedraw_convert_REMOVE;
   juce::DrawableButton m_specdraw_convert;
   juce::DrawableButton m_LED_saw;
   juce::DrawableButton m_LED_pulse;

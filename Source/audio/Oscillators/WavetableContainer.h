@@ -37,8 +37,8 @@ public:
 	float** getSpecdrawPointer(int p_specdraw_index);
 	float** getLFOPointers(std::string p_name);
 	
-
 	void writeScaleFactorsToFile();
+    void writeWavedrawTable(float p_wavedraw_values[WAVEDRAW_STEPS_X], std::string p_name);
 
 
 	//void deleteWavedraw() {

@@ -28,6 +28,8 @@ OscComponent::OscComponent(AudioProcessorValueTreeState &vts,
                          juce::DrawableButton::ButtonStyle::ImageRaw),
       m_wavedraw_convert("convert_wavedraw",
                          juce::DrawableButton::ButtonStyle::ImageRaw),
+      m_wavedraw_convert_REMOVE("convert_wavedrawREMOVE",
+                                juce::DrawableButton::ButtonStyle::ImageRaw),
       m_specdraw_convert("convert_wavedraw",
                          juce::DrawableButton::ButtonStyle::ImageRaw),
       m_chiptune_waveselector(true), m_carrier_waveselector(false),
@@ -627,6 +629,26 @@ OscComponent::OscComponent(AudioProcessorValueTreeState &vts,
       "before you press\nthis button");
   addChildComponent(m_wavedraw_convert);
 
+  m_wavedraw_convert_REMOVE.setImages(
+      &chipdraw_convert_draw2, &chipdraw_convert_draw2, &chipdraw_convert_draw1,
+      &chipdraw_convert_draw1, &chipdraw_convert_draw4, &chipdraw_convert_draw4,
+      &chipdraw_convert_draw3, &chipdraw_convert_draw3);
+  m_wavedraw_convert_REMOVE.setClickingTogglesState(true);
+  m_wavedraw_convert_REMOVE.setBounds(CONVERT_POS_X, CONVERT_POS_Y-chipdraw_convert_1.getHeight()*1.1,
+                               chipdraw_convert_1.getWidth(),
+                               chipdraw_convert_1.getHeight());
+  m_wavedraw_convert_REMOVE.setAlwaysOnTop(true);
+  m_wavedraw_convert_REMOVE.setTriggeredOnMouseDown(true);
+  m_wavedraw_convert_REMOVE.setColour(
+      juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
+  m_wavedraw_convert_REMOVE.onClick = [&]() {
+    m_wavedraw_convert_REMOVE.setToggleState(true, sendNotification);
+    writeWavedrawTableToFile();
+  };
+  m_wavedraw_convert_REMOVE.setTooltip(
+      "R E M O V E");
+  addChildComponent(m_wavedraw_convert_REMOVE);
+
   m_specdraw_convert.setImages(
       &chipdraw_convert_draw2, &chipdraw_convert_draw2, &chipdraw_convert_draw1,
       &chipdraw_convert_draw1, &chipdraw_convert_draw4, &chipdraw_convert_draw4,
@@ -697,12 +719,31 @@ OscComponent::OscComponent(AudioProcessorValueTreeState &vts,
   };
   m_wavetable_waveselector.setTopLeftPosition(WAVE_CARRIER_POS_X,
                                               WAVE_CARRIER_POS_Y);
-  m_wavetable_waveselector.addWave(1, "Saw");
-  m_wavetable_waveselector.addWave(2, "Pulse");
-  m_wavetable_waveselector.addWave(3, "WOW");
-  m_wavetable_waveselector.addWave(4, "henlo");
-  m_wavetable_waveselector.addWave(1000, "CARRIER");
-  m_wavetable_waveselector.setValue(2);
+  m_wavetable_waveselector.addWave(1, "Classic Analog");
+  m_wavetable_waveselector.addWave(2, "Wave2");
+  m_wavetable_waveselector.addWave(3, "Wave3");
+  m_wavetable_waveselector.addWave(4, "Wave4");
+  m_wavetable_waveselector.addWave(5, "Wave5");
+  m_wavetable_waveselector.addWave(6, "Wave6");
+  m_wavetable_waveselector.addWave(7, "Wave7");
+  m_wavetable_waveselector.addWave(8, "Wave8");
+  m_wavetable_waveselector.addWave(9, "Wave9");
+  m_wavetable_waveselector.addWave(10, "Wave10");
+  m_wavetable_waveselector.addWave(11, "Wave11");
+  m_wavetable_waveselector.addWave(12, "Wave12");
+  m_wavetable_waveselector.addWave(13, "Wave13");
+  m_wavetable_waveselector.addWave(14, "Wave14");
+  m_wavetable_waveselector.addWave(15, "Wave15");
+  m_wavetable_waveselector.addWave(16, "Wave16");
+  m_wavetable_waveselector.addWave(17, "Wave17");
+  m_wavetable_waveselector.addWave(18, "Wave18");
+  m_wavetable_waveselector.addWave(19, "Wave19");
+  m_wavetable_waveselector.addWave(20, "Wave20");
+  m_wavetable_waveselector.addWave(21, "Wave21");
+  m_wavetable_waveselector.addWave(22, "Wave22");
+  m_wavetable_waveselector.addWave(23, "Wave23");
+  m_wavetable_waveselector.addWave(1000, "Last");
+  m_wavetable_waveselector.setValue(1);
   m_wavetable_waveselector.setTooltip("Selects the wave for the oscillator");
   addChildComponent(m_wavetable_waveselector);
 
@@ -878,6 +919,11 @@ OscComponent::OscComponent(AudioProcessorValueTreeState &vts,
   m_vec_d.setTooltip("Select the waveform to the bottom right of the XY pad");
   addChildComponent(m_vec_d);
 
+  //todo
+  REMOVE_EDITOR.setBounds(0,0,100,25);
+  addChildComponent(REMOVE_EDITOR);
+
+
   setSize(247, 145);
 }
 
@@ -1037,6 +1083,8 @@ void OscComponent::hideAllComponents() {
   m_chipdraw_convert.setVisible(false);
   m_wavedraw.setVisible(false);
   m_wavedraw_convert.setVisible(false);
+  m_wavedraw_convert_REMOVE.setVisible(false);
+  REMOVE_EDITOR.setVisible(false);
   m_specdraw.setVisible(false);
   m_specdraw_convert.setVisible(false);
   m_lp.setVisible(false);
@@ -1107,6 +1155,8 @@ void OscComponent::showWavedrawComponents() {
   showPitchComponents();
   m_wavedraw.setVisible(true);
   m_wavedraw_convert.setVisible(true);
+  m_wavedraw_convert_REMOVE.setVisible(true);
+  REMOVE_EDITOR.setVisible(true);
 }
 
 void OscComponent::showSpecdrawComponents() {
@@ -1168,4 +1218,10 @@ void OscComponent::createChipdrawTables() {
 void OscComponent::createSpecdrawTables() {
   WavetableContainer::getInstance().createSpecdrawTable(
       std::stoi(m_osc_number) - 1, m_specdraw.getDrawnTable(), 44100.f);
+}
+
+
+void OscComponent::writeWavedrawTableToFile(){
+    WavetableContainer::getInstance().writeWavedrawTable(
+      m_wavedraw.getDrawnTable(), REMOVE_EDITOR.getText().toStdString());
 }
