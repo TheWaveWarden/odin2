@@ -5,6 +5,12 @@ public:
 	OversamplingDistortion();
 	~OversamplingDistortion();
 
+	enum DistortionAlgorithm{
+		Clamp = 1,
+		Fold = 2,
+		Zero = 3
+	};
+
 
 	double doDistortion(double p_input);
 
@@ -16,8 +22,12 @@ public:
 	//	m_bias = p_bias;
 	//}
 
-	inline void setOverdrive(bool p_overdrive){
-		m_is_overdrive = p_overdrive;
+	//inline void setOverdrive(bool p_overdrive){
+	//	m_is_overdrive = p_overdrive;
+	//}
+
+	void setAlgorithm(int p_algo){
+		m_algorithm = (DistortionAlgorithm)p_algo;
 	}
 
 	inline void setDryWet(float p_drywet){
@@ -37,7 +47,8 @@ protected:
 	float* m_threshold_mod;
 	float* m_drywet_mod;
 
-	bool m_is_overdrive = true; // else fuzz
+	//bool m_is_overdrive = true; // else fuzz
+	DistortionAlgorithm m_algorithm = Clamp;
 
 	double m_last_input = 0.f;
 	float m_bias = 0.f;

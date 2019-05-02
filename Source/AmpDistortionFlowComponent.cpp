@@ -168,8 +168,9 @@ AmpDistortionFlowComponent::AmpDistortionFlowComponent(AudioProcessorValueTreeSt
       juce::File(GRAPHICS_PATH + "cropped/glaspanel_midbig.png"));
   m_distortion_algo.setImage(glas_panel);
   m_distortion_algo.setInlay(1);
-  m_distortion_algo.addItem("Overdrive", 1);
-  m_distortion_algo.addItem("Fuzz", 2);
+  m_distortion_algo.addItem("Clamp", 1);
+  m_distortion_algo.addItem("Fold", 2);
+  m_distortion_algo.addItem("Zero", 3);
   m_distortion_algo.setEditableText(false);
   m_distortion_algo.setSelectedId(1, dontSendNotification);
   m_distortion_algo.setBounds(DIST_ALGO_POS_X, DIST_ALGO_POS_Y, glas_panel.getWidth(), glas_panel.getHeight());

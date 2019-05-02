@@ -553,8 +553,8 @@ void OdinAudioProcessor::treeValueChanged(const String &p_ID,
     m_distortion[0].setThreshold(p_new_value);
     m_distortion[1].setThreshold(p_new_value);
   } else if (id == m_dist_algo_identifier) {
-    m_distortion[0].setOverdrive(p_new_value < 1.5f);
-    m_distortion[1].setOverdrive(p_new_value < 1.5f);
+    m_distortion[0].setAlgorithm((int)p_new_value);
+    m_distortion[1].setAlgorithm((int)p_new_value);
   } else if (id == m_fil3_freq_identifier) {
     m_fil_freq_control[2] = p_new_value;
     // m_ladder_filter[0].m_freq_base = p_new_value;

@@ -174,7 +174,7 @@
   std::make_unique<AudioParameterFloat> ("dist_threshold", "Distortion Threshold", NormalisableRange<float> (0.f, 1.f), 0.7f),
   std::make_unique<AudioParameterFloat> ("dist_drywet", "Distortion DryWet", NormalisableRange<float> (0.f, 1.f), 1.f),
   std::make_unique<AudioParameterInt> ("dist_on", "Distortion Enable", 0, 1, 0),
-  std::make_unique<AudioParameterInt> ("dist_algo", "Distortion Algorithm", 1, 2, 1),
+  std::make_unique<AudioParameterInt> ("dist_algo", "Distortion Algorithm", 1, 3, 1),
   //ADSR1
   std::make_unique<AudioParameterFloat> ("env1_attack", "Envelope1 Attack", 0.001f, 10.f, 0.01f),
   std::make_unique<AudioParameterFloat> ("env1_decay", "Envelope1 Decay", 0.001f, 10.f, 1.f),
