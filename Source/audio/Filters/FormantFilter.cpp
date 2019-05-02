@@ -39,8 +39,13 @@ void FormantFilter::reset(){
 void FormantFilter::update(){
     Filter::update();
 
-    m_resonator1.setFrequency(m_a0 * m_transition * m_transition + m_b0 * m_transition + m_c0);
-    m_resonator2.setFrequency(m_a1 * m_transition * m_transition + m_b1 * m_transition + m_c1);
+    float transition_modded = m_transition + *m_transition_mod;
+    transition_modded = transition_modded > 1 ? 1 : transition_modded;
+    transition_modded = transition_modded < 0 ? 0 : transition_modded;
+
+
+    m_resonator1.setFrequency(m_a0 * transition_modded * transition_modded + m_b0 * transition_modded + m_c0);
+    m_resonator2.setFrequency(m_a1 * transition_modded * transition_modded + m_b1 * transition_modded + m_c1);
 
     //m_BPF1.m_freq_base = m_a0 * m_transition * m_transition + m_b0 * m_transition + m_c0;
     //m_BPF2.m_freq_base = m_a1 * m_transition * m_transition + m_b1 * m_transition + m_c1;

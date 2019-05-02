@@ -8,7 +8,7 @@
 class BiquadResonator : public BiquadFilter {
 public:
   BiquadResonator() {
-    m_b0 = 1;
+    m_b0 = 0.005;
     m_b1 = 0;
     m_b2 = 0;
     m_a2 = 1;    
@@ -34,7 +34,7 @@ public:
   }
 
 protected:
-  float m_radius = 0.5;
+  float m_radius = 0.99;
   float m_freq = 2000;
   float m_samplerate = 48000.f;
 };
