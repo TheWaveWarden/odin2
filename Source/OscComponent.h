@@ -168,6 +168,8 @@ public:
 
 
   void writeWavedrawTableToFile();
+  void writeChipdrawTableToFile();
+  void writeSpecdrawTableToFile();
 
   void createWavedrawTables();
   void createChipdrawTables();
@@ -206,6 +208,8 @@ protected:
   juce::DrawableButton m_chipdraw_convert;
   juce::DrawableButton m_wavedraw_convert;
   juce::DrawableButton m_wavedraw_convert_REMOVE;
+  juce::DrawableButton m_specdraw_convert_REMOVE;
+  juce::DrawableButton m_chipdraw_convert_REMOVE;
   juce::DrawableButton m_specdraw_convert;
   juce::DrawableButton m_LED_saw;
   juce::DrawableButton m_LED_pulse;

@@ -30,6 +30,10 @@ OscComponent::OscComponent(AudioProcessorValueTreeState &vts,
                          juce::DrawableButton::ButtonStyle::ImageRaw),
       m_wavedraw_convert_REMOVE("convert_wavedrawREMOVE",
                                 juce::DrawableButton::ButtonStyle::ImageRaw),
+      m_chipdraw_convert_REMOVE("convert_wadsvedrawREMOVE",
+                                juce::DrawableButton::ButtonStyle::ImageRaw),
+      m_specdraw_convert_REMOVE("convert_wdavedrawREMOVE",
+                                juce::DrawableButton::ButtonStyle::ImageRaw),
       m_specdraw_convert("convert_wavedraw",
                          juce::DrawableButton::ButtonStyle::ImageRaw),
       m_chiptune_waveselector(true), m_carrier_waveselector(false),
@@ -634,9 +638,9 @@ OscComponent::OscComponent(AudioProcessorValueTreeState &vts,
       &chipdraw_convert_draw1, &chipdraw_convert_draw4, &chipdraw_convert_draw4,
       &chipdraw_convert_draw3, &chipdraw_convert_draw3);
   m_wavedraw_convert_REMOVE.setClickingTogglesState(true);
-  m_wavedraw_convert_REMOVE.setBounds(CONVERT_POS_X, CONVERT_POS_Y-chipdraw_convert_1.getHeight()*1.1,
-                               chipdraw_convert_1.getWidth(),
-                               chipdraw_convert_1.getHeight());
+  m_wavedraw_convert_REMOVE.setBounds(
+      CONVERT_POS_X, CONVERT_POS_Y - chipdraw_convert_1.getHeight() * 1.1,
+      chipdraw_convert_1.getWidth(), chipdraw_convert_1.getHeight());
   m_wavedraw_convert_REMOVE.setAlwaysOnTop(true);
   m_wavedraw_convert_REMOVE.setTriggeredOnMouseDown(true);
   m_wavedraw_convert_REMOVE.setColour(
@@ -645,9 +649,46 @@ OscComponent::OscComponent(AudioProcessorValueTreeState &vts,
     m_wavedraw_convert_REMOVE.setToggleState(true, sendNotification);
     writeWavedrawTableToFile();
   };
-  m_wavedraw_convert_REMOVE.setTooltip(
-      "R E M O V E");
+  m_wavedraw_convert_REMOVE.setTooltip("R E M O V E");
   addChildComponent(m_wavedraw_convert_REMOVE);
+
+  m_chipdraw_convert_REMOVE.setImages(
+      &chipdraw_convert_draw2, &chipdraw_convert_draw2, &chipdraw_convert_draw1,
+      &chipdraw_convert_draw1, &chipdraw_convert_draw4, &chipdraw_convert_draw4,
+      &chipdraw_convert_draw3, &chipdraw_convert_draw3);
+  m_chipdraw_convert_REMOVE.setClickingTogglesState(true);
+  m_chipdraw_convert_REMOVE.setBounds(
+      CONVERT_POS_X, CONVERT_POS_Y - chipdraw_convert_1.getHeight() * 1.1,
+      chipdraw_convert_1.getWidth(), chipdraw_convert_1.getHeight());
+  m_chipdraw_convert_REMOVE.setAlwaysOnTop(true);
+  m_chipdraw_convert_REMOVE.setTriggeredOnMouseDown(true);
+  m_chipdraw_convert_REMOVE.setColour(
+      juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
+  m_chipdraw_convert_REMOVE.onClick = [&]() {
+    m_chipdraw_convert_REMOVE.setToggleState(true, sendNotification);
+    writeChipdrawTableToFile();
+  };
+  m_chipdraw_convert_REMOVE.setTooltip("R E M O V E");
+  addChildComponent(m_chipdraw_convert_REMOVE);
+
+  m_specdraw_convert_REMOVE.setImages(
+      &chipdraw_convert_draw2, &chipdraw_convert_draw2, &chipdraw_convert_draw1,
+      &chipdraw_convert_draw1, &chipdraw_convert_draw4, &chipdraw_convert_draw4,
+      &chipdraw_convert_draw3, &chipdraw_convert_draw3);
+  m_specdraw_convert_REMOVE.setClickingTogglesState(true);
+  m_specdraw_convert_REMOVE.setBounds(
+      CONVERT_POS_X, CONVERT_POS_Y - chipdraw_convert_1.getHeight() * 1.1,
+      chipdraw_convert_1.getWidth(), chipdraw_convert_1.getHeight());
+  m_specdraw_convert_REMOVE.setAlwaysOnTop(true);
+  m_specdraw_convert_REMOVE.setTriggeredOnMouseDown(true);
+  m_specdraw_convert_REMOVE.setColour(
+      juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
+  m_specdraw_convert_REMOVE.onClick = [&]() {
+    m_specdraw_convert_REMOVE.setToggleState(true, sendNotification);
+    writeSpecdrawTableToFile();
+  };
+  m_specdraw_convert_REMOVE.setTooltip("R E M O V E");
+  addChildComponent(m_specdraw_convert_REMOVE);
 
   m_specdraw_convert.setImages(
       &chipdraw_convert_draw2, &chipdraw_convert_draw2, &chipdraw_convert_draw1,
@@ -919,10 +960,9 @@ OscComponent::OscComponent(AudioProcessorValueTreeState &vts,
   m_vec_d.setTooltip("Select the waveform to the bottom right of the XY pad");
   addChildComponent(m_vec_d);
 
-  //todo
-  REMOVE_EDITOR.setBounds(0,0,100,25);
+  // todo
+  REMOVE_EDITOR.setBounds(0, 0, 100, 25);
   addChildComponent(REMOVE_EDITOR);
-
 
   setSize(247, 145);
 }
@@ -1084,6 +1124,8 @@ void OscComponent::hideAllComponents() {
   m_wavedraw.setVisible(false);
   m_wavedraw_convert.setVisible(false);
   m_wavedraw_convert_REMOVE.setVisible(false);
+  m_chipdraw_convert_REMOVE.setVisible(false);
+  m_specdraw_convert_REMOVE.setVisible(false);
   REMOVE_EDITOR.setVisible(false);
   m_specdraw.setVisible(false);
   m_specdraw_convert.setVisible(false);
@@ -1148,6 +1190,8 @@ void OscComponent::showChipdrawComponents() {
   showPitchComponents();
   m_chipdraw.setVisible(true);
   m_chipdraw_convert.setVisible(true);
+  m_chipdraw_convert_REMOVE.setVisible(true);
+  REMOVE_EDITOR.setVisible(true);
 }
 
 void OscComponent::showWavedrawComponents() {
@@ -1164,6 +1208,8 @@ void OscComponent::showSpecdrawComponents() {
   showPitchComponents();
   m_specdraw.setVisible(true);
   m_specdraw_convert.setVisible(true);
+  m_specdraw_convert_REMOVE.setVisible(true);
+  REMOVE_EDITOR.setVisible(true);
 }
 
 void OscComponent::showVectorComponents() {
@@ -1220,8 +1266,17 @@ void OscComponent::createSpecdrawTables() {
       std::stoi(m_osc_number) - 1, m_specdraw.getDrawnTable(), 44100.f);
 }
 
-
-void OscComponent::writeWavedrawTableToFile(){
-    WavetableContainer::getInstance().writeWavedrawTable(
+void OscComponent::writeWavedrawTableToFile() {
+  WavetableContainer::getInstance().writeWavedrawTable(
       m_wavedraw.getDrawnTable(), REMOVE_EDITOR.getText().toStdString());
+}
+
+void OscComponent::writeSpecdrawTableToFile() {
+  WavetableContainer::getInstance().writeSpecdrawTable(
+      m_specdraw.getDrawnTable(), REMOVE_EDITOR.getText().toStdString());
+}
+
+void OscComponent::writeChipdrawTableToFile() {
+  WavetableContainer::getInstance().writeChipdrawTable(
+      m_chipdraw.getDrawnTable(), REMOVE_EDITOR.getText().toStdString());
 }
