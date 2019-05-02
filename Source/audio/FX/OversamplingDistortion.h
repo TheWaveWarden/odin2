@@ -53,6 +53,7 @@ protected:
 	double m_last_input = 0.f;
 	float m_bias = 0.f;
 	float m_threshold = 0.7f;
+	float m_threshold_smooth = 0.7f;
 	float m_drywet = 1.f;
 
 	//IIR Filter buffers for downsampling

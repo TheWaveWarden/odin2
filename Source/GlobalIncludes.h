@@ -11,7 +11,6 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 
 
-
 #ifdef ODIN_LINUX
   #define GRAPHICS_PATH std::string("/home/frot/odinvst/Gimp/")
   //#define GRAPHICS_PATH std::string("/home/frederik_siepe/odinvst/Gimp/")
@@ -64,6 +63,7 @@
 #define FILTER_FREQ_SMOOTHING_FACTOR 0.998
 #define PAD_SMOOTHIN_FACTOR 0.998
 #define PWM_SMOOTHIN_FACTOR 0.998
+#define THRESHOLD_SMOOTHIN_FACTOR 0.998
 
 #define WAVEDRAW_STEPS_X 256
 #define SPECDRAW_STEPS_X 193 //(DISPLAY_WIDTH_SPEC - DRAW_INLAY_LEFT_SPEC - DRAW_INLAY_RIGHT_SPEC)

@@ -1,6 +1,8 @@
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h" //for db to gain
+#include "../GlobalIncludes.h"
+
 
 #define MIDI_VEL_MAX 127.f
 
@@ -12,7 +14,11 @@ public:
     // appply gain
     float gain_mod_factor =
         (*m_gain_mod) > 0 ? 1.f + 4 * (*m_gain_mod) : (1.f + *m_gain_mod);
-    p_in *= m_gain * gain_mod_factor;
+
+    m_gain_smooth = m_gain_smooth * GAIN_SMOOTHIN_FACTOR +
+                    (1 - GAIN_SMOOTHIN_FACTOR) * (m_gain);
+
+    p_in *= m_gain_smooth * gain_mod_factor;
 
     // apply velocity
     float vel_modded = m_vel_amount + *(m_vel_mod);
@@ -60,5 +66,6 @@ protected:
   float m_MIDI_vel = 0.f;
   float m_vel_amount = 0.f;
   float m_gain = 1.f; // this is a multiplicator, not a dB value
+  float m_gain_smooth = 1.f;
   float m_pan = 0.f;
 };

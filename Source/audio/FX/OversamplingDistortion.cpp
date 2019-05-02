@@ -1,4 +1,5 @@
 #include "OversamplingDistortion.h"
+#include "../../GlobalIncludes.h"
 #include <cmath>
 
 OversamplingDistortion::OversamplingDistortion() {}
@@ -14,7 +15,10 @@ double OversamplingDistortion::doDistortion(double p_input) {
 
   m_last_input = p_input;
 
-  float threshold_modded = m_threshold + *m_threshold_mod;
+m_threshold_smooth = m_threshold_smooth * THRESHOLD_SMOOTHIN_FACTOR +
+                          (1 - THRESHOLD_SMOOTHIN_FACTOR) * (m_threshold);
+
+  float threshold_modded = m_threshold_smooth + *m_threshold_mod;
   threshold_modded = threshold_modded > 1 ? 1 : threshold_modded;
   threshold_modded = threshold_modded < 0 ? 0 : threshold_modded;
 
