@@ -62,7 +62,10 @@ float AnalogOscillator::doOscillate(){
 float AnalogOscillator::doSquare(){
     //square is done by subtracting two saw waves
     //prepare both sides and interpol value for base and offset value
-    double read_index_offset = m_read_index + (m_duty + (*pwm_mod) / 2) * WAVETABLE_LENGTH;
+    m_duty_smooth = m_duty_smooth * PWM_SMOOTHIN_FACTOR +
+                          (1 - PWM_SMOOTHIN_FACTOR) * (m_duty);
+
+    double read_index_offset = m_read_index + (m_duty_smooth + (*pwm_mod) / 2) * WAVETABLE_LENGTH;
     checkWrapIndex(read_index_offset);
 
     int read_index_trunc = (int) m_read_index;

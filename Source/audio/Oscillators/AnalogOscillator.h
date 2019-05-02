@@ -28,6 +28,10 @@ public:
 		pwm_mod = p_pointer;
 	}
 
+	void setSmoothValues(){
+		m_duty_smooth = m_duty;
+	}
+
 protected:
 
 	float* pwm_mod;
@@ -40,5 +44,6 @@ protected:
 	float m_smoothed_drift_noise = 0.f;
 	float m_drift = 0.f;
 	float m_duty = 0.5f;
+	float m_duty_smooth = 0.5f;
 };
 
