@@ -26,10 +26,6 @@ public:
 		m_wavetable_multi_spread = p_wt_spread;
 	}
 
-	inline void setResetActive(bool p_reset){
-		m_reset_active = p_reset;
-	}
-
 	//virtual void loadWavetables() override; 
 
 	void setDetuneModPointer(float* p_pointer){
@@ -79,7 +75,6 @@ protected:
 
 	float m_position_2D = 0.f;
 	float m_detune = 0.f;
-	bool m_reset_active = false;
 	float m_wavetable_multi_spread = 0.f;
 
 	float m_position_2D_multi[OSCS_PER_MULTIOSC];

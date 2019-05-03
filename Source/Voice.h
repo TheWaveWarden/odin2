@@ -205,15 +205,15 @@ struct Voice {
   }
 
   void setReset(bool p_reset, int p_osc) {
-    analog_osc[p_osc].m_reset = p_reset;
-    wavedraw_osc[p_osc].m_reset = p_reset;
-    chipdraw_osc[p_osc].m_reset = p_reset;
-    specdraw_osc[p_osc].m_reset = p_reset;
-    wavetable_osc[p_osc].m_reset = p_reset;
-    multi_osc[p_osc].m_reset = p_reset;
-    vector_osc[p_osc].m_reset = p_reset;
-    chiptune_osc[p_osc].m_reset = p_reset;
-    fm_osc[p_osc].m_reset = p_reset;
+    analog_osc[p_osc].setResetActive(p_reset);
+    wavedraw_osc[p_osc].setResetActive(p_reset);
+    chipdraw_osc[p_osc].setResetActive(p_reset);
+    specdraw_osc[p_osc].setResetActive(p_reset);
+    wavetable_osc[p_osc].setResetActive(p_reset);
+    multi_osc[p_osc].setResetActive(p_reset);
+    vector_osc[p_osc].setResetActive(p_reset);
+    chiptune_osc[p_osc].setResetActive(p_reset);
+    fm_osc[p_osc].setResetActive(p_reset);
   }
 
   void setOscBaseFreq(float p_freq, float p_last_freq) {
@@ -241,18 +241,19 @@ struct Voice {
 
   void reset() {
     for (int osc = 0; osc < 3; ++osc) {
-      analog_osc[osc].reset();
-      wavetable_osc[osc].reset();
-      wavedraw_osc[osc].reset();
-      chipdraw_osc[osc].reset();
-      specdraw_osc[osc].reset();
-      multi_osc[osc].reset();
-      vector_osc[osc].reset();
-      chiptune_osc[osc].reset();
-      fm_osc[osc].reset();
-      wavedraw_osc[osc].reset();
-      specdraw_osc[osc].reset();
-      chipdraw_osc[osc].reset();
+      //use start voice, oscs will reset if reset is active
+      analog_osc[osc].voiceStart();
+      wavetable_osc[osc].voiceStart();
+      wavedraw_osc[osc].voiceStart();
+      chipdraw_osc[osc].voiceStart();
+      specdraw_osc[osc].voiceStart();
+      multi_osc[osc].voiceStart();
+      vector_osc[osc].voiceStart();
+      chiptune_osc[osc].voiceStart();
+      fm_osc[osc].voiceStart();
+      wavedraw_osc[osc].voiceStart();
+      specdraw_osc[osc].voiceStart();
+      chipdraw_osc[osc].voiceStart();
     }
     for (int mod = 0; mod < 4; ++mod) {
       lfo[mod].reset();

@@ -53,6 +53,17 @@ public:
   }
   virtual void reset();
 
+  void voiceStart(){
+    if(m_reset_active){
+      reset();
+    }
+  }
+
+	
+  inline void setResetActive(bool p_reset){
+		m_reset_active = p_reset;
+	}  
+
   // INLINE FUNCTIONS: these are inlined because they will be
   //                   called every sample period
   //					 You may want to move them to the .cpp file
@@ -114,6 +125,7 @@ public:
   }
 
 public:
+	bool m_reset_active = false;
   // bool m_note_on; // --- oscillator run flag
   double m_osc_freq_glide_target; // the target freq after glide from MIDI note
                                   // number
@@ -139,7 +151,7 @@ public:
   int m_semitones; // semitones tweak
   int m_cent;      // cents tweak
 
-  bool m_reset = false; // if this is true, osc will reset on noteon
+  //bool m_reset = false; // if this is true, osc will reset on noteon
 
   bool m_is_master_osc; // flag indicating we are a master oscillator
 
