@@ -76,8 +76,9 @@ float ADSREnvelope::doEnvelope() {
   else if (m_current_section == 3) { // release
     double release_modded = m_release;
     if(*m_release_mod){
-      release_modded *= calcModFactor(*m_release_mod);
+      release_modded *= calcModFactor(*m_release_mod*2);
     }
+    
     m_release_factor = calcReleaseFactor(release_modded);
     // again just decay from 1 to 0 and output scaled version
     m_current_value *= m_release_factor;
@@ -97,6 +98,9 @@ float ADSREnvelope::doEnvelope() {
 }
 
 void ADSREnvelope::startRelease() {
+  if(m_current_section == 3){
+    return;
+  }
   double sustain_modded = m_sustain + *m_sustain_mod;
   sustain_modded = sustain_modded < 0 ? 0 : sustain_modded;
   sustain_modded = sustain_modded > 1 ? 1 : sustain_modded;
@@ -111,6 +115,7 @@ void ADSREnvelope::startRelease() {
 
   m_current_value = 1.;
   m_current_section = 3; // set to release
+  
 }
 
 int ADSREnvelope::getCurrentSection() { return m_current_section; }

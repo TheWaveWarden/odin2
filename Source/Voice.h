@@ -78,22 +78,25 @@ struct Voice {
     setOscBaseFreq(MIDINoteToFreq(p_MIDI_key));
     setFilterMIDIValues(p_MIDI_key, p_MIDI_velocity);
     m_voice_active = true;
-    DBG("Started voice");
     m_MIDI_key = p_MIDI_key;
     MIDI_key_mod_source = (float)p_MIDI_key / 127.f;
     MIDI_velocity_mod_source = (float)p_MIDI_velocity / 127.f;
+    for(int mod = 0; mod  < 4; ++mod){
+      env[mod].reset();
+    }
+    DBG("Started voice");
   }
 
   // starts release on envelopes if this is the key that was pressed
   // returns true if the voice was actually stopped
   bool keyUp(int p_MIDI_key) {
     if (m_MIDI_key == p_MIDI_key) {
+      DBG("STOPPING ENVELOPES ON KEy " + std::to_string(m_MIDI_key));
+      env[0].startRelease();
       env[1].startRelease();
       env[2].startRelease();
       env[3].startRelease();
-      env[4].startRelease();
-      //TODO REMOVE HAACK
-      m_voice_active = false;
+      
       return true;
     }
     return false;
