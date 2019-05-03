@@ -29,6 +29,12 @@ void FMOscillator::update() {
     //use modded freq of this osc for basefreq of child oscs
     m_carrier_osc.m_osc_freq_base = m_osc_freq_modded;
     m_modulator_osc.m_osc_freq_base = m_osc_freq_modded * m_modulator_ratio / m_carrier_ratio;
+    m_carrier_osc.m_osc_freq_glide_target = m_osc_freq_modded;
+    m_modulator_osc.m_osc_freq_glide_target = m_modulator_osc.m_osc_freq_base;
+
+    // DBG(m_osc_freq_modded);
+    // DBG(m_osc_freq_base);
+    // DBG("was mod base");
 
     if(*m_carrier_ratio_mod || *m_modulator_ratio_mod){
         //DBG("EXPENSIVE MODULATION");

@@ -235,7 +235,7 @@ struct Voice {
       chiptune_osc[osc].setBaseFrequency(p_last_freq);
       chiptune_osc[osc].setGlideTargetFrequency(p_freq);
       fm_osc[osc].setBaseFrequency(p_last_freq);
-      fm_osc[osc].setGlideTargetFrequency(p_last_freq);
+      fm_osc[osc].setGlideTargetFrequency(p_freq);
     }
   }
 

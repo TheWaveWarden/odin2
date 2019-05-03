@@ -63,9 +63,9 @@ public:
   //
   // --- update the frequency, amp mod and PWM
   inline virtual void update() {
-    DBG(m_osc_freq_base);
-    DBG(m_osc_freq_glide_target);
-    DBG("===");
+    //DBG(m_osc_freq_base);
+    //DBG(m_osc_freq_glide_target);
+    //DBG("===");
     m_osc_freq_base =
         m_osc_freq_glide_target * (1.f - m_glide) + (m_glide)*m_osc_freq_base;
 

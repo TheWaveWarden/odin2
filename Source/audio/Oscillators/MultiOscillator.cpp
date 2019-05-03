@@ -42,6 +42,8 @@ float MultiOscillator::doOscillate()
 
 void MultiOscillator::update()
 {
+        m_osc_freq_base =
+        m_osc_freq_glide_target * (1.f - m_glide) + (m_glide)*m_osc_freq_base;
     //we overwrite even Oscillator here...
     m_osc_freq_modded = m_osc_freq_base * pitchShiftMultiplier(*m_pitchbend + (*m_pitch_mod_exp) * OSC_EXP_MOD_RANGE + m_mod_freq_exp + m_mod_exp_other +
                                             m_mod_pitch_bend +
