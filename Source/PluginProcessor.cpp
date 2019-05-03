@@ -591,7 +591,7 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
 
             auto *channelData = buffer.getWritePointer(channel);
             channelData[sample] =
-                stereo_signal[channel] * m_master_smooth * master_mod_factor;
+                stereo_signal[channel] * m_master_smooth * master_mod_factor* 0.1;
             // DBG(m_master_smooth);
 
         } // stereo loop

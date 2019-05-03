@@ -64,6 +64,26 @@ void WavetableOsc2D::loadWavetables(){
     setWavetablePointer(9, 1, WavetableContainer::getInstance().getWavetablePointers("Organ2"));
     setWavetablePointer(9, 2, WavetableContainer::getInstance().getWavetablePointers("Organ3"));
     setWavetablePointer(9, 3, WavetableContainer::getInstance().getWavetablePointers("Organ4"));
+
+    setWavetablePointer(10, 0, WavetableContainer::getInstance().getWavetablePointers("BrokenSine1"));
+    setWavetablePointer(10, 1, WavetableContainer::getInstance().getWavetablePointers("BrokenSine2"));
+    setWavetablePointer(10, 2, WavetableContainer::getInstance().getWavetablePointers("BrokenSine3"));
+    setWavetablePointer(10, 3, WavetableContainer::getInstance().getWavetablePointers("BrokenSine4"));
+
+    setWavetablePointer(11, 0, WavetableContainer::getInstance().getWavetablePointers("Skyline1"));
+    setWavetablePointer(11, 1, WavetableContainer::getInstance().getWavetablePointers("Skyline2"));
+    setWavetablePointer(11, 2, WavetableContainer::getInstance().getWavetablePointers("Skyline3"));
+    setWavetablePointer(11, 3, WavetableContainer::getInstance().getWavetablePointers("Skyline4"));
+
+    setWavetablePointer(12, 0, WavetableContainer::getInstance().getWavetablePointers("Soft1"));
+    setWavetablePointer(12, 1, WavetableContainer::getInstance().getWavetablePointers("Soft2"));
+    setWavetablePointer(12, 2, WavetableContainer::getInstance().getWavetablePointers("Soft3"));
+    setWavetablePointer(12, 3, WavetableContainer::getInstance().getWavetablePointers("Soft4"));
+
+    setWavetablePointer(13, 0, WavetableContainer::getInstance().getWavetablePointers("MultiSaw1"));
+    setWavetablePointer(13, 1, WavetableContainer::getInstance().getWavetablePointers("MultiSaw2"));
+    setWavetablePointer(13, 2, WavetableContainer::getInstance().getWavetablePointers("MultiSaw3"));
+    setWavetablePointer(13, 3, WavetableContainer::getInstance().getWavetablePointers("MultiSaw4"));
 }
 
 

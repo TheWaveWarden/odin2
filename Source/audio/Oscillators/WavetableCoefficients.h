@@ -52,6 +52,31 @@
 #include "Wavetables/Organ3.h"//48
 #include "Wavetables/Organ4.h"//49
 
+#include "Wavetables/BrokenSine1.h"//50
+#include "Wavetables/BrokenSine2.h"//51
+#include "Wavetables/BrokenSine3.h"//52
+#include "Wavetables/BrokenSine4.h"//53
+
+#include "Wavetables/Skyline1.h"//54
+#include "Wavetables/Skyline2.h"//55
+#include "Wavetables/Skyline3.h"//56
+#include "Wavetables/Skyline4.h"//57
+
+#include "Wavetables/Soft1.h"//58
+#include "Wavetables/Soft2.h"//59
+#include "Wavetables/Soft3.h"//60
+#include "Wavetables/Soft4.h"//61
+
+#include "Wavetables/MultiSaw1.h"//62
+#include "Wavetables/MultiSaw2.h"//63
+#include "Wavetables/MultiSaw3.h"//64
+#include "Wavetables/MultiSaw4.h"//65
+
+// #include "Wavetables/1.h"//
+// #include "Wavetables/2.h"//
+// #include "Wavetables/3.h"//
+// #include "Wavetables/4.h"//
+
 
 
 

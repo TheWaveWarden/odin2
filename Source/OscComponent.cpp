@@ -770,10 +770,10 @@ OscComponent::OscComponent(AudioProcessorValueTreeState &vts,
   m_wavetable_waveselector.addWave(8, "Harmonics3");
   m_wavetable_waveselector.addWave(9, "Harmonics4");
   m_wavetable_waveselector.addWave(10, "Organ");
-  m_wavetable_waveselector.addWave(11, "Wave11");
-  m_wavetable_waveselector.addWave(12, "Wave12");
-  m_wavetable_waveselector.addWave(13, "Wave13");
-  m_wavetable_waveselector.addWave(14, "Wave14");
+  m_wavetable_waveselector.addWave(11, "BrokenSine");
+  m_wavetable_waveselector.addWave(12, "Skyline");
+  m_wavetable_waveselector.addWave(13, "Soft");
+  m_wavetable_waveselector.addWave(14, "MultiSaw");
   m_wavetable_waveselector.addWave(15, "Wave15");
   m_wavetable_waveselector.addWave(16, "Wave16");
   m_wavetable_waveselector.addWave(17, "Wave17");
