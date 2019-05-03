@@ -221,9 +221,15 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
         if (midi_message.isNoteOn()) {
           int voice_number = m_voice_manager.getVoice(midi_message.getNoteNumber());
           if (voice_number >= 0) {//else is on sustain
+            if(m_last_midi_note == -1){
+                //first time glide - dont glide
+                m_last_midi_note = midi_message.getNoteNumber();
+            }
             m_voice[voice_number].start(
-                midi_message.getNoteNumber(), midi_message.getVelocity());
+                midi_message.getNoteNumber(), midi_message.getVelocity(), m_last_midi_note);
             m_amp.setMIDIVelocity(midi_message.getVelocity());
+            m_last_midi_note = midi_message.getNoteNumber();
+            
           }
         } else if (midi_message.isNoteOff()) {
           DBG("NOTEOFF, key " + std::to_string(midi_message.getNoteNumber()));

@@ -13,12 +13,11 @@
 #include "audio/Oscillators/AnalogOscillator.h"
 #include "audio/Oscillators/ChiptuneOscillator.h"
 #include "audio/Oscillators/FMOscillator.h"
+#include "audio/Oscillators/LFO.h"
 #include "audio/Oscillators/MultiOscillator.h"
 #include "audio/Oscillators/NoiseOscillator.h"
 #include "audio/Oscillators/VectorOscillator.h"
 #include "audio/Oscillators/WavetableOsc2D.h"
-#include "audio/Oscillators/LFO.h"
-
 
 // wavedraw
 // chipdraw
@@ -37,13 +36,14 @@ class VoiceManager {
 public:
   // returns free voice index or steals one and sets it busy
   int getVoice(int p_note) {
-    //first check if the note to be played is on the sustain list:
-    if(m_sustain_active){
-      for(int voice = 0; voice < VOICES; ++voice){
-        if(m_kill_list[voice] && m_kill_list_note[voice] == p_note){
-          //note is on sustain... just remove it from kill list and be done
+    // first check if the note to be played is on the sustain list:
+    if (m_sustain_active) {
+      for (int voice = 0; voice < VOICES; ++voice) {
+        if (m_kill_list[voice] && m_kill_list_note[voice] == p_note) {
+          // note is on sustain... just remove it from kill list and be done
           m_kill_list[voice] = false;
-          DBG("Note " + std::to_string(p_note) + " is already ins sustain on voice " + std::to_string(voice));
+          DBG("Note " + std::to_string(p_note) +
+              " is already ins sustain on voice " + std::to_string(voice));
           return -1;
         }
       }
@@ -57,44 +57,37 @@ public:
       }
     }
     // TODO all voices busy, steal
-    DBG("Voice manager returned voice 0");    
+    DBG("Voice manager returned voice 0");
     removeFromKillList(0);
     return 0;
   }
 
   // marks a voice as free again
-  void freeVoice(int p_voice) { 
-    voice_busy[p_voice] = false; 
+  void freeVoice(int p_voice) {
+    voice_busy[p_voice] = false;
     DBG("Voice manager freed voice " + std::to_string(p_voice));
-    }
-
-  void setSustainActive(bool p_active){
-    m_sustain_active = p_active;
   }
 
-  bool getSustainActive(){
-    return m_sustain_active;
-  }
+  void setSustainActive(bool p_active) { m_sustain_active = p_active; }
 
-  //adds to killlist to be killed after sustain pedal gets lifted
-  void addToKillList(int p_voice, int p_note){
+  bool getSustainActive() { return m_sustain_active; }
+
+  // adds to killlist to be killed after sustain pedal gets lifted
+  void addToKillList(int p_voice, int p_note) {
     m_kill_list_note[p_voice] = p_note;
     m_kill_list[p_voice] = true;
   }
 
-  void removeFromKillList(int p_voice){
-    m_kill_list[p_voice] = false;
-  }
+  void removeFromKillList(int p_voice) { m_kill_list[p_voice] = false; }
 
-  bool isOnKillList(int p_voice){
-    return m_kill_list[p_voice];
-  }
+  bool isOnKillList(int p_voice) { return m_kill_list[p_voice]; }
 
-  void clearKillList(){
-    for(int voice = 0; voice < VOICES; ++voice){
+  void clearKillList() {
+    for (int voice = 0; voice < VOICES; ++voice) {
       m_kill_list[voice] = false;
     }
   }
+
 protected:
   bool m_sustain_active = false;
   bool m_kill_list[VOICES];
@@ -116,15 +109,15 @@ struct Voice {
     return 27.5f * pow(2.f, (float)(p_MIDI_note - 21) / 12.f);
   }
 
-  void start(int p_MIDI_key, int p_MIDI_velocity) {
+  void start(int p_MIDI_key, int p_MIDI_velocity, int p_last_MIDI_key) {
     reset();
-    setOscBaseFreq(MIDINoteToFreq(p_MIDI_key));
+    setOscBaseFreq(MIDINoteToFreq(p_MIDI_key), MIDINoteToFreq(p_last_MIDI_key));
     setFilterMIDIValues(p_MIDI_key, p_MIDI_velocity);
     m_voice_active = true;
     m_MIDI_key = p_MIDI_key;
     MIDI_key_mod_source = (float)p_MIDI_key / 127.f;
     MIDI_velocity_mod_source = (float)p_MIDI_velocity / 127.f;
-    for(int mod = 0; mod  < 4; ++mod){
+    for (int mod = 0; mod < 4; ++mod) {
       env[mod].reset();
     }
     DBG("Started voice");
@@ -139,18 +132,19 @@ struct Voice {
       env[1].startRelease();
       env[2].startRelease();
       env[3].startRelease();
-      
+
       return true;
     }
     return false;
   }
 
   bool startRelease() {
-      DBG("Stopping envelopes on key " + std::to_string(m_MIDI_key) + " after sustian was released");
-      env[0].startRelease();
-      env[1].startRelease();
-      env[2].startRelease();
-      env[3].startRelease();   
+    DBG("Stopping envelopes on key " + std::to_string(m_MIDI_key) +
+        " after sustian was released");
+    env[0].startRelease();
+    env[1].startRelease();
+    env[2].startRelease();
+    env[3].startRelease();
   }
 
   bool usesThisMIDIKey(int p_MIDI_key) {
@@ -196,6 +190,20 @@ struct Voice {
     fm_osc[p_osc].m_cent = p_fine;
   }
 
+  void setGlide(float p_glide) {
+    for (int osc = 0; osc < 3; ++osc) {
+      analog_osc[osc].setGlide(p_glide);
+      wavedraw_osc[osc].setGlide(p_glide);
+      chipdraw_osc[osc].setGlide(p_glide);
+      specdraw_osc[osc].setGlide(p_glide);
+      wavetable_osc[osc].setGlide(p_glide);
+      multi_osc[osc].setGlide(p_glide);
+      vector_osc[osc].setGlide(p_glide);
+      chiptune_osc[osc].setGlide(p_glide);
+      fm_osc[osc].setGlide(p_glide);
+    }
+  }
+
   void setReset(bool p_reset, int p_osc) {
     analog_osc[p_osc].m_reset = p_reset;
     wavedraw_osc[p_osc].m_reset = p_reset;
@@ -208,17 +216,26 @@ struct Voice {
     fm_osc[p_osc].m_reset = p_reset;
   }
 
-  void setOscBaseFreq(float p_freq) {
+  void setOscBaseFreq(float p_freq, float p_last_freq) {
     for (int osc = 0; osc < 3; ++osc) {
-      analog_osc[osc].setBaseFrequency(p_freq);
-      wavedraw_osc[osc].setBaseFrequency(p_freq);
-      chipdraw_osc[osc].setBaseFrequency(p_freq);
-      specdraw_osc[osc].setBaseFrequency(p_freq);
-      wavetable_osc[osc].setBaseFrequency(p_freq);
-      multi_osc[osc].setBaseFrequency(p_freq);
-      vector_osc[osc].setBaseFrequency(p_freq);
-      chiptune_osc[osc].setBaseFrequency(p_freq);
-      fm_osc[osc].setBaseFrequency(p_freq);
+      analog_osc[osc].setBaseFrequency(p_last_freq);
+      analog_osc[osc].setGlideTargetFrequency(p_freq);
+      wavedraw_osc[osc].setBaseFrequency(p_last_freq);
+      wavedraw_osc[osc].setGlideTargetFrequency(p_freq);
+      chipdraw_osc[osc].setBaseFrequency(p_last_freq);
+      chipdraw_osc[osc].setGlideTargetFrequency(p_freq);
+      specdraw_osc[osc].setBaseFrequency(p_last_freq);
+      specdraw_osc[osc].setGlideTargetFrequency(p_freq);
+      wavetable_osc[osc].setBaseFrequency(p_last_freq);
+      wavetable_osc[osc].setGlideTargetFrequency(p_freq);
+      multi_osc[osc].setBaseFrequency(p_last_freq);
+      multi_osc[osc].setGlideTargetFrequency(p_freq);
+      vector_osc[osc].setBaseFrequency(p_last_freq);
+      vector_osc[osc].setGlideTargetFrequency(p_freq);
+      chiptune_osc[osc].setBaseFrequency(p_last_freq);
+      chiptune_osc[osc].setGlideTargetFrequency(p_freq);
+      fm_osc[osc].setBaseFrequency(p_last_freq);
+      fm_osc[osc].setGlideTargetFrequency(p_last_freq);
     }
   }
 
@@ -237,7 +254,7 @@ struct Voice {
       specdraw_osc[osc].reset();
       chipdraw_osc[osc].reset();
     }
-    for(int mod = 0; mod < 4; ++mod){
+    for (int mod = 0; mod < 4; ++mod) {
       lfo[mod].reset();
     }
     for (int fil = 0; fil < 2; ++fil) {
@@ -250,22 +267,22 @@ struct Voice {
   }
 
   void setFilterMIDIValues(int p_MIDI_note, int p_MIDI_vel) {
-    //shift note here so the lowest note possible is 21
+    // shift note here so the lowest note possible is 21
     p_MIDI_note -= 21;
     p_MIDI_note = p_MIDI_note < 0 ? 0 : p_MIDI_note;
-    
+
     for (int fil = 0; fil < 3; ++fil) {
       ladder_filter[fil].m_MIDI_note = p_MIDI_note;
       diode_filter[fil].m_MIDI_note = p_MIDI_note;
       korg_filter[fil].m_MIDI_note = p_MIDI_note;
-      //SEM_filter_24[fil].m_MIDI_note = p_MIDI_note;
+      // SEM_filter_24[fil].m_MIDI_note = p_MIDI_note;
       SEM_filter_12[fil].m_MIDI_note = p_MIDI_note;
       comb_filter[fil].m_MIDI_note = p_MIDI_note;
 
       ladder_filter[fil].m_MIDI_velocity = p_MIDI_vel;
       diode_filter[fil].m_MIDI_velocity = p_MIDI_vel;
       korg_filter[fil].m_MIDI_velocity = p_MIDI_vel;
-      //SEM_filter_24[fil].m_MIDI_velocity = p_MIDI_vel;
+      // SEM_filter_24[fil].m_MIDI_velocity = p_MIDI_vel;
       SEM_filter_12[fil].m_MIDI_velocity = p_MIDI_vel;
       comb_filter[fil].m_MIDI_velocity = p_MIDI_vel;
       formant_filter[fil].m_MIDI_velocity = p_MIDI_vel;
@@ -275,7 +292,7 @@ struct Voice {
   void setKbd(float p_kbd, int p_fil) {
     ladder_filter[p_fil].m_kbd_mod_amount = p_kbd;
     SEM_filter_12[p_fil].m_kbd_mod_amount = p_kbd;
-    //SEM_filter_24[p_fil].m_kbd_mod_amount = p_kbd;
+    // SEM_filter_24[p_fil].m_kbd_mod_amount = p_kbd;
     korg_filter[p_fil].m_kbd_mod_amount = p_kbd;
     diode_filter[p_fil].m_kbd_mod_amount = p_kbd;
     comb_filter[p_fil].m_kbd_mod_amount = p_kbd;
@@ -284,36 +301,36 @@ struct Voice {
   void setVelModAmount(float p_vel, int p_fil) {
     ladder_filter[p_fil].m_vel_mod_amount = p_vel;
     SEM_filter_12[p_fil].m_vel_mod_amount = p_vel;
-    //SEM_filter_24[p_fil].m_vel_mod_amount = p_vel;
+    // SEM_filter_24[p_fil].m_vel_mod_amount = p_vel;
     korg_filter[p_fil].m_vel_mod_amount = p_vel;
     diode_filter[p_fil].m_vel_mod_amount = p_vel;
     comb_filter[p_fil].m_vel_mod_amount = p_vel;
     formant_filter[p_fil].m_vel_mod_amount = p_vel;
   }
 
-  void setSaturation(float p_sat, int p_fil){
+  void setSaturation(float p_sat, int p_fil) {
     ladder_filter[p_fil].m_overdrive = p_sat;
     SEM_filter_12[p_fil].m_overdrive = p_sat;
-    //SEM_filter_24[p_fil].m_overdrive = p_sat;
+    // SEM_filter_24[p_fil].m_overdrive = p_sat;
     korg_filter[p_fil].m_overdrive = p_sat;
     diode_filter[p_fil].m_overdrive = p_sat;
   }
 
   void setEnvModAmount(float p_env, int p_fil) {
-    //set as quadratic
+    // set as quadratic
     ladder_filter[p_fil].m_env_mod_amount = p_env;
     SEM_filter_12[p_fil].m_env_mod_amount = p_env;
-    //SEM_filter_24[p_fil].m_env_mod_amount = p_env;
+    // SEM_filter_24[p_fil].m_env_mod_amount = p_env;
     korg_filter[p_fil].m_env_mod_amount = p_env;
     diode_filter[p_fil].m_env_mod_amount = p_env;
     comb_filter[p_fil].m_env_mod_amount = p_env;
     formant_filter[p_fil].m_env_mod_amount = p_env;
   }
 
-  void setFilterEnvValue(float p_env){    
+  void setFilterEnvValue(float p_env) {
     ladder_filter[0].m_env_value = p_env;
     SEM_filter_12[0].m_env_value = p_env;
-    //SEM_filter_24[0].m_env_value = p_env;
+    // SEM_filter_24[0].m_env_value = p_env;
     korg_filter[0].m_env_value = p_env;
     diode_filter[0].m_env_value = p_env;
     comb_filter[0].m_env_value = p_env;
@@ -321,7 +338,7 @@ struct Voice {
 
     ladder_filter[1].m_env_value = p_env;
     SEM_filter_12[1].m_env_value = p_env;
-    //SEM_filter_24[1].m_env_value = p_env;
+    // SEM_filter_24[1].m_env_value = p_env;
     korg_filter[1].m_env_value = p_env;
     diode_filter[1].m_env_value = p_env;
     comb_filter[1].m_env_value = p_env;
@@ -329,10 +346,10 @@ struct Voice {
   }
 
   void setFilterFreq(float p_freq, int p_fil) {
-    //note: not used right now since control is smoothed
+    // note: not used right now since control is smoothed
     ladder_filter[p_fil].m_freq_base = p_freq;
     SEM_filter_12[p_fil].m_freq_base = p_freq;
-    //SEM_filter_24[p_fil].m_freq_base = p_freq;
+    // SEM_filter_24[p_fil].m_freq_base = p_freq;
     korg_filter[p_fil].m_freq_base = p_freq;
     diode_filter[p_fil].m_freq_base = p_freq;
     comb_filter[p_fil].setCombFreq(p_freq);
@@ -341,13 +358,13 @@ struct Voice {
   void setFilterRes(float p_res, int p_fil) {
     ladder_filter[p_fil].setResControl(p_res);
     SEM_filter_12[p_fil].setResControl(p_res);
-    //SEM_filter_24[p_fil].setResControl(p_res);
+    // SEM_filter_24[p_fil].setResControl(p_res);
     korg_filter[p_fil].setResControl(p_res);
     diode_filter[p_fil].setResControl(p_res);
     comb_filter[p_fil].setResonance(p_res);
   }
 
-  void setSampleRate(float p_samplerate){
+  void setSampleRate(float p_samplerate) {
     env[0].setSamplerate(p_samplerate);
     env[1].setSamplerate(p_samplerate);
     env[2].setSamplerate(p_samplerate);
@@ -366,11 +383,10 @@ struct Voice {
   WavetableOsc1D chipdraw_osc[3];
   WavetableOsc1D specdraw_osc[3];
 
-
   // filter
   LadderFilter ladder_filter[2];
   SEMFilter12 SEM_filter_12[2];
-  //SEMFilter24 SEM_filter_24[2];
+  // SEMFilter24 SEM_filter_24[2];
   Korg35Filter korg_filter[2];
   DiodeFilter diode_filter[2];
   FormantFilter formant_filter[2];
@@ -382,7 +398,7 @@ struct Voice {
   // LFOs
   // todo
 
-  //modulation values
+  // modulation values
   float MIDI_key_mod_source = 0.f;
   float MIDI_velocity_mod_source = 0.f;
 

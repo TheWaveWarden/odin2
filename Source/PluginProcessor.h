@@ -85,6 +85,8 @@ private:
   float m_master_smooth = 1.f;
   float m_master_control = 1.f; //factor
 
+  int m_last_midi_note = -1;
+
   void setSampleRate(float p_samplerate);
   void initializeModules();
 

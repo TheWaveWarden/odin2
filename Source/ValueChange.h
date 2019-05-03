@@ -866,6 +866,10 @@ void OdinAudioProcessor::treeValueChanged(const String &p_ID,
         m_voice[voice].lfo[3].setSHActive(true);
       }
     }
+  } else if(id == m_glide_identifier){
+    for(int voice = 0; voice < VOICES; ++voice){
+      m_voice[voice].setGlide(p_new_value);
+    }
   }
 
   // modmatrix
