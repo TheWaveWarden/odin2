@@ -112,6 +112,8 @@ private:
   ModSources m_mod_sources;
   ModDestinations m_mod_destinations;
 
+  void setPitchWheelValue(int p_value);
+
   void setModulationPointers();
   void treeValueChanged(const String &p_ID, float p_new_value);
 

@@ -36,16 +36,29 @@
 class VoiceManager {
 public:
   // returns free voice index or steals one and sets it busy
-  int getVoice() {
+  int getVoice(int p_note) {
+    //first check if the note to be played is on the sustain list:
+    if(m_sustain_active){
+      for(int voice = 0; voice < VOICES; ++voice){
+        if(m_kill_list[voice] && m_kill_list_note[voice] == p_note){
+          //note is on sustain... just remove it from kill list and be done
+          m_kill_list[voice] = false;
+          DBG("Note " + std::to_string(p_note) + " is already ins sustain on voice " + std::to_string(voice));
+          return -1;
+        }
+      }
+    }
     for (int i = 0; i < VOICES; ++i) {
       if (!voice_busy[i]) {
         voice_busy[i] = true;
         DBG("Voice manager returned voice " + std::to_string(i));
+        removeFromKillList(i);
         return i;
       }
     }
     // TODO all voices busy, steal
     DBG("Voice manager returned voice 0");    
+    removeFromKillList(0);
     return 0;
   }
 
@@ -55,8 +68,38 @@ public:
     DBG("Voice manager freed voice " + std::to_string(p_voice));
     }
 
+  void setSustainActive(bool p_active){
+    m_sustain_active = p_active;
+  }
+
+  bool getSustainActive(){
+    return m_sustain_active;
+  }
+
+  //adds to killlist to be killed after sustain pedal gets lifted
+  void addToKillList(int p_voice, int p_note){
+    m_kill_list_note[p_voice] = p_note;
+    m_kill_list[p_voice] = true;
+  }
+
+  void removeFromKillList(int p_voice){
+    m_kill_list[p_voice] = false;
+  }
+
+  bool isOnKillList(int p_voice){
+    return m_kill_list[p_voice];
+  }
+
+  void clearKillList(){
+    for(int voice = 0; voice < VOICES; ++voice){
+      m_kill_list[voice] = false;
+    }
+  }
 protected:
-  bool voice_busy[VOICES] = {false}; // is voice busy
+  bool m_sustain_active = false;
+  bool m_kill_list[VOICES];
+  int m_kill_list_note[VOICES];
+  bool voice_busy[VOICES]; // is voice busy
 };
 
 // one voice of the polyphonic voices, i.e. everything up to the amplifier
@@ -91,12 +134,27 @@ struct Voice {
   // returns true if the voice was actually stopped
   bool keyUp(int p_MIDI_key) {
     if (m_MIDI_key == p_MIDI_key) {
-      DBG("STOPPING ENVELOPES ON KEy " + std::to_string(m_MIDI_key));
+      DBG("Stopping envelopes on key " + std::to_string(m_MIDI_key));
       env[0].startRelease();
       env[1].startRelease();
       env[2].startRelease();
       env[3].startRelease();
       
+      return true;
+    }
+    return false;
+  }
+
+  bool startRelease() {
+      DBG("Stopping envelopes on key " + std::to_string(m_MIDI_key) + " after sustian was released");
+      env[0].startRelease();
+      env[1].startRelease();
+      env[2].startRelease();
+      env[3].startRelease();   
+  }
+
+  bool usesThisMIDIKey(int p_MIDI_key) {
+    if (m_MIDI_key == p_MIDI_key) {
       return true;
     }
     return false;

@@ -219,18 +219,46 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
       if (midi_message_sample <= sample) {
         // apply midi message
         if (midi_message.isNoteOn()) {
-          m_voice[m_voice_manager.getVoice()].start(
-              midi_message.getNoteNumber(), midi_message.getVelocity());
-          m_amp.setMIDIVelocity(midi_message.getVelocity());
+          int voice_number = m_voice_manager.getVoice(midi_message.getNoteNumber());
+          if (voice_number >= 0) {//else is on sustain
+            m_voice[voice_number].start(
+                midi_message.getNoteNumber(), midi_message.getVelocity());
+            m_amp.setMIDIVelocity(midi_message.getVelocity());
+          }
         } else if (midi_message.isNoteOff()) {
           DBG("NOTEOFF, key " + std::to_string(midi_message.getNoteNumber()));
-          for (int voice = 0; voice < VOICES; ++voice) {
-            if (m_voice[voice].keyUp(midi_message.getNoteNumber())) {
+
+          if (!m_voice_manager.getSustainActive()) {
+            for (int voice = 0; voice < VOICES; ++voice) {
+              if (m_voice[voice].keyUp(midi_message.getNoteNumber())) {
                 DBG("KeyUp on voice " + std::to_string(voice));
+              }
+            }
+          } else {
+            for (int voice = 0; voice < VOICES; ++voice) {
+              if (m_voice[voice].usesThisMIDIKey(
+                      midi_message.getNoteNumber())) {
+                m_voice_manager.addToKillList(voice,midi_message.getNoteNumber());
+              }
             }
           }
+
+        } else if (midi_message.isPitchWheel()) {
+          setPitchWheelValue(midi_message.getPitchWheelValue());
+        } else if (midi_message.isSustainPedalOn()) {
+          m_voice_manager.setSustainActive(true);
+          DBG("Sustain pedal pressed");
+        } else if (midi_message.isSustainPedalOff()) {
+          DBG("Sustain pedal released");
+          m_voice_manager.setSustainActive(false);
+          for (int voice = 0; voice < VOICES; ++voice) {
+            if (m_voice_manager.isOnKillList(voice)) {
+              m_voice[voice].startRelease();
+            }
+          }
+          m_voice_manager.clearKillList();
         } else {
-            DBG("UNHANDELED MIDI MESSAGE: " + midi_message.getDescription());
+          DBG("UNHANDELED MIDI MESSAGE: " + midi_message.getDescription());
         }
 
         // get next midi message
@@ -953,4 +981,9 @@ void OdinAudioProcessor::setModulationPointers() {
 
     m_master_mod = &(m_mod_destinations.misc.master);
   }
+}
+
+void OdinAudioProcessor::setPitchWheelValue(int p_value) {
+  // todo this should update the GUI, lets see after MIDI learn
+  *m_pitchbend = (float)(p_value - 8192) / 8192.f;
 }

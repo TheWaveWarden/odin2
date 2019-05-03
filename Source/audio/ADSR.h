@@ -49,7 +49,7 @@ public:
 
   inline double calcDecayFactor(double p_decay) {
     if (p_decay != m_last_decay) {
-      DBG("DELAY RECALCULATED");
+      //DBG("DELAY RECALCULATED");
       m_last_decay_return =
           pow(MIN_DECAY_RELEASE_VAL, 1. / m_samplerate / p_decay);
 	  m_last_decay = p_decay;
@@ -59,7 +59,7 @@ public:
 
   inline double calcReleaseFactor(double p_release) {
     if (p_release != m_last_release) {
-      DBG("RELEASE RECALCULATED");
+      //DBG("RELEASE RECALCULATED");
       m_last_release_return =
           pow(MIN_DECAY_RELEASE_VAL, 1. / m_samplerate / p_release);
 	  m_last_release = p_release;
