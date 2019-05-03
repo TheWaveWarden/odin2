@@ -39,7 +39,7 @@ OscComponent::OscComponent(AudioProcessorValueTreeState &vts,
       m_chiptune_waveselector(true), m_carrier_waveselector(false),
       m_modulator_waveselector(true), m_wavetable_waveselector(true),
       m_carrier_ratio(false), m_modulator_ratio(true), m_fm_exp("fm_exp"),
-      m_xy(m_xy_x_dummy, m_xy_y_dummy, true), m_osc_number(p_osc_number),
+      m_xy(m_xy_x, m_xy_y, true), m_osc_number(p_osc_number),
       m_wavetable_identifier("osc" + p_osc_number + "_wavetable"),
       m_chipwave_identifier("osc" + p_osc_number + "_chipwave"),
       m_modulator_wave_identifier("osc" + p_osc_number + "_modulator_wave"),
@@ -84,9 +84,9 @@ OscComponent::OscComponent(AudioProcessorValueTreeState &vts,
   m_hp_attach.reset(
       new SliderAttachment(m_value_tree, "osc" + m_osc_number + "_hp", m_hp));
   m_x_attach.reset(new SliderAttachment(
-      m_value_tree, "osc" + m_osc_number + "_vec_x", m_xy_x_dummy));
+      m_value_tree, "osc" + m_osc_number + "_vec_x", m_xy_x));
   m_y_attach.reset(new SliderAttachment(
-      m_value_tree, "osc" + m_osc_number + "_vec_y", m_xy_y_dummy));
+      m_value_tree, "osc" + m_osc_number + "_vec_y", m_xy_y));
 
   m_reset_attach.reset(new ButtonAttachment(
       m_value_tree, "osc" + m_osc_number + "_reset", m_reset));
@@ -960,6 +960,38 @@ OscComponent::OscComponent(AudioProcessorValueTreeState &vts,
   m_vec_d.setTooltip("Select the waveform to the bottom right of the XY pad");
   addChildComponent(m_vec_d);
 
+  m_xy_x.setStrip(
+      ImageCache::getFromFile(juce::File(
+          GRAPHICS_PATH + "cropped/knobs/black1/black_knob_very_small.png")),
+      256);
+  m_xy_x.setBounds(X_POS_X, X_POS_Y, BLACK_KNOB_VERY_SMALL_SIZE_X,
+                    BLACK_KNOB_VERY_SMALL_SIZE_Y);
+  m_xy_x.setSliderStyle(Slider::RotaryVerticalDrag);
+  m_xy_x.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
+  m_xy_x.setDoubleClickReturnValue(true, 0,
+                                    ModifierKeys::ctrlModifier);
+  m_xy_x.setNumDecimalPlacesToDisplay(3);
+  m_xy_x.setKnobTooltip("X part of the XY pad");
+  m_xy_x.onValueChange = [&] { m_xy.setX(m_xy_x.getValue()); };
+  
+  addChildComponent(m_xy_x);
+
+
+  m_xy_y.setStrip(
+      ImageCache::getFromFile(juce::File(
+          GRAPHICS_PATH + "cropped/knobs/black1/black_knob_very_small.png")),
+      256);
+  m_xy_y.setBounds(Y_POS_X, Y_POS_Y, BLACK_KNOB_VERY_SMALL_SIZE_X,
+                    BLACK_KNOB_VERY_SMALL_SIZE_Y);
+  m_xy_y.setSliderStyle(Slider::RotaryVerticalDrag);
+  m_xy_y.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
+  m_xy_y.setDoubleClickReturnValue(true, 0,
+                                    ModifierKeys::ctrlModifier);
+  m_xy_y.setNumDecimalPlacesToDisplay(3);
+  m_xy_y.setKnobTooltip("X part of the XY pad");
+  m_xy_y.onValueChange = [&] { m_xy.setY(m_xy_y.getValue()); };
+  addChildComponent(m_xy_y);
+
   // todo
   REMOVE_EDITOR.setBounds(0, 0, 100, 25);
   addChildComponent(REMOVE_EDITOR);
@@ -1132,6 +1164,8 @@ void OscComponent::hideAllComponents() {
   m_lp.setVisible(false);
   m_hp.setVisible(false);
   m_xy.setVisible(false);
+  m_xy_x.setVisible(false);
+  m_xy_y.setVisible(false);
   m_vec_a.setVisible(false);
   m_vec_b.setVisible(false);
   m_vec_c.setVisible(false);
@@ -1220,6 +1254,8 @@ void OscComponent::showVectorComponents() {
   m_vec_b.setVisible(true);
   m_vec_c.setVisible(true);
   m_vec_d.setVisible(true);
+  m_xy_x.setVisible(true);
+  m_xy_y.setVisible(true);
 }
 
 void OscComponent::showWavetableComponents() {

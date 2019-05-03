@@ -123,6 +123,11 @@
 #define LP_MAX 18000
 #define LP_DEFAULT 18000
 #define LP_MID 2000
+
+#define X_POS_X 30
+#define X_POS_Y 27
+#define Y_POS_X 75
+#define Y_POS_Y X_POS_Y
 //==============================================================================
 /*
  */
@@ -232,8 +237,8 @@ protected:
   SpecdrawDisplay m_specdraw;
 
   XYPadComponent m_xy;
-  Knob m_xy_x_dummy; // todo not seen, but for automation??
-  Knob m_xy_y_dummy; // todo not seen, but for automation??
+  Knob m_xy_x; // todo not seen, but for automation??
+  Knob m_xy_y; // todo not seen, but for automation??
   GlasDropdown m_vec_a;
   GlasDropdown m_vec_b;
   GlasDropdown m_vec_c;
