@@ -806,7 +806,25 @@ void OdinAudioProcessor::treeValueChanged(const String &p_ID,
     for (int voice = 0; voice < VOICES; ++voice) {
       m_voice[voice].lfo[3].setBaseFrequency(p_new_value);
     }
-  } else if (id == m_osc1_vol_identifier) {
+  } else if (id == m_lfo1_reset_identifier) {
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_voice[voice].lfo[0].setResetActive(p_new_value > 0.5f);
+    }
+  } else if (id == m_lfo2_reset_identifier) {
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_voice[voice].lfo[1].setResetActive(p_new_value > 0.5f);
+    }
+  } else if (id == m_lfo3_reset_identifier) {
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_voice[voice].lfo[2].setResetActive(p_new_value > 0.5f);
+    }
+  } else if (id == m_lfo4_reset_identifier) {
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_voice[voice].lfo[3].setResetActive(p_new_value > 0.5f);
+    }
+  }
+
+  else if (id == m_osc1_vol_identifier) {
     m_osc_vol_control[0] = Decibels::decibelsToGain(p_new_value);
   } else if (id == m_osc2_vol_identifier) {
     m_osc_vol_control[1] = Decibels::decibelsToGain(p_new_value);
@@ -866,8 +884,8 @@ void OdinAudioProcessor::treeValueChanged(const String &p_ID,
         m_voice[voice].lfo[3].setSHActive(true);
       }
     }
-  } else if(id == m_glide_identifier){
-    for(int voice = 0; voice < VOICES; ++voice){
+  } else if (id == m_glide_identifier) {
+    for (int voice = 0; voice < VOICES; ++voice) {
       m_voice[voice].setGlide(p_new_value);
     }
   }

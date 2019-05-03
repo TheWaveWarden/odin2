@@ -256,7 +256,7 @@ struct Voice {
       chipdraw_osc[osc].voiceStart();
     }
     for (int mod = 0; mod < 4; ++mod) {
-      lfo[mod].reset();
+      lfo[mod].voiceStart();
     }
     for (int fil = 0; fil < 2; ++fil) {
       ladder_filter[fil].reset();
