@@ -111,14 +111,17 @@ void OdinAudioProcessor::treeValueChanged(const String &p_ID,
   } else if (id == m_osc1_wavetable_identifier) {
     for (int voice = 0; voice < VOICES; ++voice) {
       m_voice[voice].wavetable_osc[0].selectWavetable((int)p_new_value - 1);
+      m_voice[voice].multi_osc[0].selectWavetable((int)p_new_value - 1);
     }
   } else if (id == m_osc2_wavetable_identifier) {
     for (int voice = 0; voice < VOICES; ++voice) {
       m_voice[voice].wavetable_osc[1].selectWavetable((int)p_new_value - 1);
+      m_voice[voice].multi_osc[1].selectWavetable((int)p_new_value - 1);
     }
   } else if (id == m_osc3_wavetable_identifier) {
     for (int voice = 0; voice < VOICES; ++voice) {
       m_voice[voice].wavetable_osc[2].selectWavetable((int)p_new_value - 1);
+      m_voice[voice].multi_osc[2].selectWavetable((int)p_new_value - 1);
     }
   } else if (id == m_osc1_detune_identifier) {
     for (int voice = 0; voice < VOICES; ++voice) {

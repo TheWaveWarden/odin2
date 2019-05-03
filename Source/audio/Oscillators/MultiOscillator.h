@@ -30,7 +30,7 @@ public:
 		m_reset_active = p_reset;
 	}
 
-	virtual void loadWavetables() override; 
+	//virtual void loadWavetables() override; 
 
 	void setDetuneModPointer(float* p_pointer){
 		m_detune_mod = p_pointer;

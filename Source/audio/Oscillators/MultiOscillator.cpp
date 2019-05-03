@@ -2,7 +2,7 @@
 
 MultiOscillator::MultiOscillator()
 {
-    m_nr_of_wavetables = 1;
+    m_nr_of_wavetables = 99;
 
     // generate table for cheap pitchshiftfunction
     
@@ -21,13 +21,13 @@ MultiOscillator::~MultiOscillator()
 {
 }
 
-void MultiOscillator::loadWavetables()
-{
-    setWavetablePointer(0, 0, WavetableContainer::getInstance().getWavetablePointers("Saw"));
-    setWavetablePointer(0, 1, WavetableContainer::getInstance().getWavetablePointers("ChiptuneSquare50"));
-    setWavetablePointer(0, 2, WavetableContainer::getInstance().getWavetablePointers("Triangle"));
-    setWavetablePointer(0, 3, WavetableContainer::getInstance().getWavetablePointers("Sine"));
-}
+// void MultiOscillator::loadWavetables()
+// {
+//     setWavetablePointer(0, 0, WavetableContainer::getInstance().getWavetablePointers("Saw"));
+//     setWavetablePointer(0, 1, WavetableContainer::getInstance().getWavetablePointers("ChiptuneSquare50"));
+//     setWavetablePointer(0, 2, WavetableContainer::getInstance().getWavetablePointers("Triangle"));
+//     setWavetablePointer(0, 3, WavetableContainer::getInstance().getWavetablePointers("Sine"));
+// }
 
 float MultiOscillator::doOscillate()
 {
