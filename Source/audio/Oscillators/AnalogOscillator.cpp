@@ -16,7 +16,7 @@ AnalogOscillator::~AnalogOscillator()
 void AnalogOscillator::loadWavetables()
 {
     //load the saw table for square as well since PWM is generated from saw
-    setWavetablePointer(0, WavetableContainer::getInstance().getWavetablePointers("Saw")); //TODO FATSAW
+    setWavetablePointer(0, WavetableContainer::getInstance().getWavetablePointers("FatSaw")); //TODO FATSAW
     setWavetablePointer(1, WavetableContainer::getInstance().getWavetablePointers("Saw"));    
     setWavetablePointer(2, WavetableContainer::getInstance().getWavetablePointers("Triangle"));
     setWavetablePointer(3, WavetableContainer::getInstance().getWavetablePointers("Sine"));

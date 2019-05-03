@@ -4,7 +4,7 @@
 
 WavetableOsc2D::WavetableOsc2D()
 {
-    m_nr_of_wavetables = 1;
+    m_nr_of_wavetables = 20;
 }
 
 
@@ -18,6 +18,27 @@ void WavetableOsc2D::loadWavetables(){
     setWavetablePointer(0, 1, WavetableContainer::getInstance().getWavetablePointers("ChiptuneSquare50"));
     setWavetablePointer(0, 2, WavetableContainer::getInstance().getWavetablePointers("Triangle"));
     setWavetablePointer(0, 3, WavetableContainer::getInstance().getWavetablePointers("Sine"));
+
+
+    setWavetablePointer(1, 0, WavetableContainer::getInstance().getWavetablePointers("Additive1"));
+    setWavetablePointer(1, 1, WavetableContainer::getInstance().getWavetablePointers("Additive2"));
+    setWavetablePointer(1, 2, WavetableContainer::getInstance().getWavetablePointers("Additive3"));
+    setWavetablePointer(1, 3, WavetableContainer::getInstance().getWavetablePointers("Additive4"));
+
+    setWavetablePointer(2, 0, WavetableContainer::getInstance().getWavetablePointers("Additive5"));
+    setWavetablePointer(2, 1, WavetableContainer::getInstance().getWavetablePointers("Additive6"));
+    setWavetablePointer(2, 2, WavetableContainer::getInstance().getWavetablePointers("Additive7"));
+    setWavetablePointer(2, 3, WavetableContainer::getInstance().getWavetablePointers("Additive8"));
+
+    setWavetablePointer(3, 0, WavetableContainer::getInstance().getWavetablePointers("Additive9"));
+    setWavetablePointer(3, 1, WavetableContainer::getInstance().getWavetablePointers("Additive10"));
+    setWavetablePointer(3, 2, WavetableContainer::getInstance().getWavetablePointers("Additive11"));
+    setWavetablePointer(3, 3, WavetableContainer::getInstance().getWavetablePointers("Additive12"));
+
+    setWavetablePointer(4, 0, WavetableContainer::getInstance().getWavetablePointers("Additive13"));
+    setWavetablePointer(4, 1, WavetableContainer::getInstance().getWavetablePointers("Additive14"));
+    setWavetablePointer(4, 2, WavetableContainer::getInstance().getWavetablePointers("Additive15"));
+    setWavetablePointer(4, 3, WavetableContainer::getInstance().getWavetablePointers("Additive16"));
 }
 
 

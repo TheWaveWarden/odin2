@@ -761,12 +761,12 @@ OscComponent::OscComponent(AudioProcessorValueTreeState &vts,
   m_wavetable_waveselector.setTopLeftPosition(WAVE_CARRIER_POS_X,
                                               WAVE_CARRIER_POS_Y);
   m_wavetable_waveselector.addWave(1, "Classic Analog");
-  m_wavetable_waveselector.addWave(2, "Wave2");
-  m_wavetable_waveselector.addWave(3, "Wave3");
-  m_wavetable_waveselector.addWave(4, "Wave4");
-  m_wavetable_waveselector.addWave(5, "Wave5");
-  m_wavetable_waveselector.addWave(6, "Wave6");
-  m_wavetable_waveselector.addWave(7, "Wave7");
+  m_wavetable_waveselector.addWave(2, "Additive 1");
+  m_wavetable_waveselector.addWave(3, "Additive 2");
+  m_wavetable_waveselector.addWave(4, "Additive 3");
+  m_wavetable_waveselector.addWave(5, "Additive 4");
+  m_wavetable_waveselector.addWave(6, "Harmonics1");
+  m_wavetable_waveselector.addWave(7, "Harmonics2");
   m_wavetable_waveselector.addWave(8, "Wave8");
   m_wavetable_waveselector.addWave(9, "Wave9");
   m_wavetable_waveselector.addWave(10, "Wave10");

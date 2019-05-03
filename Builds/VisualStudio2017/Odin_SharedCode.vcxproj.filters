@@ -2769,6 +2769,54 @@
     <ClInclude Include="..\..\Source\audio\CheapFunctions.h">
       <Filter>Odin\Source\audio</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Oscillators\Wavetables\Additive1.h">
+      <Filter>Odin\Source\audio\Oscillators\Wavetables</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Oscillators\Wavetables\Additive2.h">
+      <Filter>Odin\Source\audio\Oscillators\Wavetables</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Oscillators\Wavetables\Additive3.h">
+      <Filter>Odin\Source\audio\Oscillators\Wavetables</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Oscillators\Wavetables\Additive4.h">
+      <Filter>Odin\Source\audio\Oscillators\Wavetables</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Oscillators\Wavetables\Additive5.h">
+      <Filter>Odin\Source\audio\Oscillators\Wavetables</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Oscillators\Wavetables\Additive6.h">
+      <Filter>Odin\Source\audio\Oscillators\Wavetables</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Oscillators\Wavetables\Additive7.h">
+      <Filter>Odin\Source\audio\Oscillators\Wavetables</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Oscillators\Wavetables\Additive8.h">
+      <Filter>Odin\Source\audio\Oscillators\Wavetables</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Oscillators\Wavetables\Additive9.h">
+      <Filter>Odin\Source\audio\Oscillators\Wavetables</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Oscillators\Wavetables\Additive10.h">
+      <Filter>Odin\Source\audio\Oscillators\Wavetables</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Oscillators\Wavetables\Additive11.h">
+      <Filter>Odin\Source\audio\Oscillators\Wavetables</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Oscillators\Wavetables\Additive12.h">
+      <Filter>Odin\Source\audio\Oscillators\Wavetables</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Oscillators\Wavetables\Additive13.h">
+      <Filter>Odin\Source\audio\Oscillators\Wavetables</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Oscillators\Wavetables\Additive14.h">
+      <Filter>Odin\Source\audio\Oscillators\Wavetables</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Oscillators\Wavetables\Additive15.h">
+      <Filter>Odin\Source\audio\Oscillators\Wavetables</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Oscillators\Wavetables\Additive16.h">
+      <Filter>Odin\Source\audio\Oscillators\Wavetables</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\audio\Oscillators\Wavetables\ChiptuneCustom1.h">
       <Filter>Odin\Source\audio\Oscillators\Wavetables</Filter>
     </ClInclude>

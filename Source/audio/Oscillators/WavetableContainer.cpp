@@ -4,6 +4,7 @@
 #include <ctime>
 #include <fstream>
 #include <iostream>
+#include <algorithm>
 
 #include "../JuceLibraryCode/JuceHeader.h"
 
@@ -21,6 +22,13 @@ WavetableContainer::~WavetableContainer() {
     destroyWavetables();
   }
 }
+
+std::string to_string_no_comma(float p_input){
+  std::string out = std::to_string(p_input);
+  std::replace( out.begin(), out.end(), ',', '.');
+  return out;
+}
+
 
 void WavetableContainer::createWavetables(float p_sample_rate) {
 
@@ -218,17 +226,17 @@ void WavetableContainer::createLFOCoefficientsFromConstSections(
                    "Wavetables/LFO/LFO" +
                    p_table_name + ".h");
 
-  output_file << "#define WT_NR " + std::to_string(p_table_nr) + "\n\n";
+  output_file << "#define WT_NR " + to_string_no_comma(p_table_nr) + "\n\n";
   output_file << "m_LFO_names[WT_NR] = \"" + p_table_name + "\";\n\n";
   for (int harmonic = 0; harmonic < NUMBER_OF_HARMONICS; ++harmonic) {
 
     output_file << "m_LFO_fourier_coeffs[WT_NR][0][" +
                        std::to_string(harmonic) +
-                       "] = " + std::to_string(LFO_coefficients[0][harmonic]) +
+                       "] = " + to_string_no_comma(LFO_coefficients[0][harmonic]) +
                        ";\n";
     output_file << "m_LFO_fourier_coeffs[WT_NR][1][" +
                        std::to_string(harmonic) +
-                       "] = " + std::to_string(LFO_coefficients[1][harmonic]) +
+                       "] = " + to_string_no_comma(LFO_coefficients[1][harmonic]) +
                        ";\n";
   }
 
@@ -279,11 +287,11 @@ void WavetableContainer::createLFOCoefficientsFromLinSections(
 
     output_file << "m_LFO_fourier_coeffs[WT_NR][0][" +
                        std::to_string(harmonic) +
-                       "] = " + std::to_string(LFO_coefficients[0][harmonic]) +
+                       "] = " + to_string_no_comma(LFO_coefficients[0][harmonic]) +
                        ";\n";
     output_file << "m_LFO_fourier_coeffs[WT_NR][1][" +
                        std::to_string(harmonic) +
-                       "] = " + std::to_string(LFO_coefficients[1][harmonic]) +
+                       "] = " + to_string_no_comma(LFO_coefficients[1][harmonic]) +
                        ";\n";
   }
 
@@ -478,18 +486,18 @@ void WavetableContainer::writeWavedrawTable(
   output_file << "#define WT_NR \n\n";
   output_file << "m_wavetable_names_1D[WT_NR] = \"" + p_table_name + "\";\n\n";
 
-  output_file << "m_fourier_coeffs[WT_NR][1][0] = " + std::to_string(max) +
+  output_file << "m_fourier_coeffs[WT_NR][1][0] = " + to_string_no_comma(max) +
                      ";//scalar\n\n";
 
   for (int harmonic = 1; harmonic < NUMBER_OF_HARMONICS; ++harmonic) {
 
     output_file << "m_fourier_coeffs[WT_NR][0][" + std::to_string(harmonic) +
                        "] = " +
-                       std::to_string(wavedraw_coefficients[0][harmonic]) +
+                       to_string_no_comma(wavedraw_coefficients[0][harmonic]) +
                        ";\n";
     output_file << "m_fourier_coeffs[WT_NR][1][" + std::to_string(harmonic) +
                        "] = " +
-                       std::to_string(wavedraw_coefficients[1][harmonic]) +
+                       to_string_no_comma(wavedraw_coefficients[1][harmonic]) +
                        ";\n";
   }
 
@@ -585,18 +593,18 @@ void WavetableContainer::writeChipdrawTable(
   output_file << "#define WT_NR \n\n";
   output_file << "m_wavetable_names_1D[WT_NR] = \"" + p_table_name + "\";\n\n";
 
-  output_file << "m_fourier_coeffs[WT_NR][1][0] = " + std::to_string(max) +
+  output_file << "m_fourier_coeffs[WT_NR][1][0] = " + to_string_no_comma(max) +
                      ";//scalar\n\n";
 
   for (int harmonic = 1; harmonic < NUMBER_OF_HARMONICS; ++harmonic) {
 
     output_file << "m_fourier_coeffs[WT_NR][0][" + std::to_string(harmonic) +
                        "] = " +
-                       std::to_string(wavedraw_coefficients[0][harmonic]) +
+                       to_string_no_comma(wavedraw_coefficients[0][harmonic]) +
                        ";\n";
     output_file << "m_fourier_coeffs[WT_NR][1][" + std::to_string(harmonic) +
                        "] = " +
-                       std::to_string(wavedraw_coefficients[1][harmonic]) +
+                       to_string_no_comma(wavedraw_coefficients[1][harmonic]) +
                        ";\n";
   }
 
@@ -670,14 +678,14 @@ void WavetableContainer::writeSpecdrawTable(
   output_file << "#define WT_NR \n\n";
   output_file << "m_wavetable_names_1D[WT_NR] = \"" + p_table_name + "\";\n\n";
 
-  output_file << "m_fourier_coeffs[WT_NR][1][0] = " + std::to_string(max) +
+  output_file << "m_fourier_coeffs[WT_NR][1][0] = " + to_string_no_comma(max) +
                      ";//scalar\n\n";
 
   for (int harmonic = 1; harmonic < SPECDRAW_STEPS_X; ++harmonic) {
 
     output_file << "m_fourier_coeffs[WT_NR][0][" + std::to_string(harmonic) +
                        "] = " +
-                       std::to_string(p_specdraw_values[harmonic-1]) +
+                       to_string_no_comma(p_specdraw_values[harmonic-1]) +
                        ";\n";
   }
 

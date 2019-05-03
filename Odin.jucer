@@ -39,6 +39,22 @@
               file="Source/audio/CheapFunctions.cpp"/>
         <GROUP id="{D6691E6B-37D4-2804-8E68-093C3D0E2F7C}" name="Oscillators">
           <GROUP id="{CC755845-2929-23F1-4554-1FBF3CEE4635}" name="Wavetables">
+            <FILE id="KgSt1J" name="Additive1.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Additive1.h"/>
+            <FILE id="WYWBBf" name="Additive2.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Additive2.h"/>
+            <FILE id="kFAecZ" name="Additive3.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Additive3.h"/>
+            <FILE id="eAgKln" name="Additive4.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Additive4.h"/>
+            <FILE id="iwVE04" name="Additive5.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Additive5.h"/>
+            <FILE id="PtlZWf" name="Additive6.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Additive6.h"/>
+            <FILE id="gxthIi" name="Additive7.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Additive7.h"/>
+            <FILE id="XJvB6n" name="Additive8.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Additive8.h"/>
+            <FILE id="tMd9It" name="Additive9.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Additive9.h"/>
+            <FILE id="GBg194" name="Additive10.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Additive10.h"/>
+            <FILE id="aycUml" name="Additive11.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Additive11.h"/>
+            <FILE id="mEhpPj" name="Additive12.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Additive12.h"/>
+            <FILE id="NsVwa0" name="Additive13.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Additive13.h"/>
+            <FILE id="jAUieB" name="Additive14.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Additive14.h"/>
+            <FILE id="jJHYID" name="Additive15.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Additive15.h"/>
+            <FILE id="xuvj7Z" name="Additive16.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Additive16.h"/>
             <FILE id="P0B3Ne" name="ChiptuneCustom1.h" compile="0" resource="0"
                   file="Source/audio/Oscillators/Wavetables/ChiptuneCustom1.h"/>
             <FILE id="Ql3eoR" name="ChiptuneCustom2.h" compile="0" resource="0"
