@@ -39,6 +39,31 @@ void WavetableOsc2D::loadWavetables(){
     setWavetablePointer(4, 1, WavetableContainer::getInstance().getWavetablePointers("Additive14"));
     setWavetablePointer(4, 2, WavetableContainer::getInstance().getWavetablePointers("Additive15"));
     setWavetablePointer(4, 3, WavetableContainer::getInstance().getWavetablePointers("Additive16"));
+
+    setWavetablePointer(5, 0, WavetableContainer::getInstance().getWavetablePointers("Harmonics9"));//overtones 1-4
+    setWavetablePointer(5, 1, WavetableContainer::getInstance().getWavetablePointers("Harmonics10"));
+    setWavetablePointer(5, 2, WavetableContainer::getInstance().getWavetablePointers("Harmonics11"));
+    setWavetablePointer(5, 3, WavetableContainer::getInstance().getWavetablePointers("Harmonics12"));
+
+    setWavetablePointer(6, 0, WavetableContainer::getInstance().getWavetablePointers("Harmonics13"));//overtones 5-9
+    setWavetablePointer(6, 1, WavetableContainer::getInstance().getWavetablePointers("Harmonics14"));
+    setWavetablePointer(6, 2, WavetableContainer::getInstance().getWavetablePointers("Harmonics15"));
+    setWavetablePointer(6, 3, WavetableContainer::getInstance().getWavetablePointers("Harmonics16"));
+
+    setWavetablePointer(7, 0, WavetableContainer::getInstance().getWavetablePointers("Harmonics5"));
+    setWavetablePointer(7, 1, WavetableContainer::getInstance().getWavetablePointers("Harmonics6"));
+    setWavetablePointer(7, 2, WavetableContainer::getInstance().getWavetablePointers("Harmonics7"));
+    setWavetablePointer(7, 3, WavetableContainer::getInstance().getWavetablePointers("Harmonics8"));
+
+    setWavetablePointer(8, 0, WavetableContainer::getInstance().getWavetablePointers("Harmonics1"));
+    setWavetablePointer(8, 1, WavetableContainer::getInstance().getWavetablePointers("Harmonics2"));
+    setWavetablePointer(8, 2, WavetableContainer::getInstance().getWavetablePointers("Harmonics3"));
+    setWavetablePointer(8, 3, WavetableContainer::getInstance().getWavetablePointers("Harmonics4"));
+
+    setWavetablePointer(9, 0, WavetableContainer::getInstance().getWavetablePointers("Organ1"));
+    setWavetablePointer(9, 1, WavetableContainer::getInstance().getWavetablePointers("Organ2"));
+    setWavetablePointer(9, 2, WavetableContainer::getInstance().getWavetablePointers("Organ3"));
+    setWavetablePointer(9, 3, WavetableContainer::getInstance().getWavetablePointers("Organ4"));
 }
 
 

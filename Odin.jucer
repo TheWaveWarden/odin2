@@ -76,6 +76,26 @@
             <FILE id="rHeAVu" name="ChiptuneTriangle.h" compile="0" resource="0"
                   file="Source/audio/Oscillators/Wavetables/ChiptuneTriangle.h"/>
             <FILE id="ceC1o2" name="FatSaw.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/FatSaw.h"/>
+            <FILE id="bou18d" name="Harmonics1.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Harmonics1.h"/>
+            <FILE id="djxYTC" name="Harmonics2.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Harmonics2.h"/>
+            <FILE id="cCCPDj" name="Harmonics3.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Harmonics3.h"/>
+            <FILE id="U7ewdq" name="Harmonics4.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Harmonics4.h"/>
+            <FILE id="CxGHIh" name="Harmonics5.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Harmonics5.h"/>
+            <FILE id="R7CCVU" name="Harmonics6.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Harmonics6.h"/>
+            <FILE id="abMe1Q" name="Harmonics7.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Harmonics7.h"/>
+            <FILE id="CVOlhT" name="Harmonics8.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Harmonics8.h"/>
+            <FILE id="xWe5q6" name="Harmonics9.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Harmonics9.h"/>
+            <FILE id="k4Guzo" name="Harmonics10.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Harmonics10.h"/>
+            <FILE id="OaU9wP" name="Harmonics11.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Harmonics11.h"/>
+            <FILE id="UImOtL" name="Harmonics12.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Harmonics12.h"/>
+            <FILE id="gDnluB" name="Harmonics13.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Harmonics13.h"/>
+            <FILE id="tX3CZM" name="Harmonics14.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Harmonics14.h"/>
+            <FILE id="PJCSys" name="Harmonics15.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Harmonics15.h"/>
+            <FILE id="UFZZf2" name="Harmonics16.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Harmonics16.h"/>
+            <FILE id="Uje5wZ" name="Organ1.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Organ1.h"/>
+            <FILE id="Xbe0TV" name="Organ2.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Organ2.h"/>
+            <FILE id="oI5lrN" name="Organ3.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Organ3.h"/>
+            <FILE id="DK81It" name="Organ4.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Organ4.h"/>
             <FILE id="uha7eN" name="Saw.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Saw.h"/>
             <FILE id="XsmV7h" name="Sine.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Sine.h"/>
             <FILE id="UrbZSK" name="Triangle.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Triangle.h"/>

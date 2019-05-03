@@ -30,6 +30,28 @@
 #include "Wavetables/Additive15.h"//28
 #include "Wavetables/Additive16.h"//29
 
+#include "Wavetables/Harmonics1.h"//30
+#include "Wavetables/Harmonics2.h"//31
+#include "Wavetables/Harmonics3.h"//32
+#include "Wavetables/Harmonics4.h"//33
+#include "Wavetables/Harmonics5.h"//34
+#include "Wavetables/Harmonics6.h"//35
+#include "Wavetables/Harmonics7.h"//36
+#include "Wavetables/Harmonics8.h"//37 this is overtone 1
+#include "Wavetables/Harmonics9.h"//38
+#include "Wavetables/Harmonics10.h"//39
+#include "Wavetables/Harmonics11.h"//40
+#include "Wavetables/Harmonics12.h"//41
+#include "Wavetables/Harmonics13.h"//42
+#include "Wavetables/Harmonics14.h"//43
+#include "Wavetables/Harmonics15.h"//44
+#include "Wavetables/Harmonics16.h"//45 this is overtone 8
+
+#include "Wavetables/Organ1.h"//46
+#include "Wavetables/Organ2.h"//47
+#include "Wavetables/Organ3.h"//48
+#include "Wavetables/Organ4.h"//49
+
 
 
 

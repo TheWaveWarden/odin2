@@ -435,6 +435,13 @@
 			path = ../../Source/audio/Oscillators/Wavetables/Additive7.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		078932CC5BE5BCD2D5561EB3 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = Organ2.h;
+			path = ../../Source/audio/Oscillators/Wavetables/Organ2.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		080EFF2BCC1728D49F852FEE = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
@@ -547,6 +554,13 @@
 			path = "../../JuceLibraryCode/include_juce_audio_processors.mm";
 			sourceTree = "SOURCE_ROOT";
 		};
+		14B37B4F1CA85E3EF1347708 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = Harmonics5.h;
+			path = ../../Source/audio/Oscillators/Wavetables/Harmonics5.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		15E2463D9D5ECE79C98AD6BD = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -596,6 +610,13 @@
 			path = ../../Source/audio/CheapFunctions.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
+		1AF809D76F302A82005AF628 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = Harmonics10.h;
+			path = ../../Source/audio/Oscillators/Wavetables/Harmonics10.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		1BCD1BAC1B75F86BD7A35AED = {
 			isa = PBXFileReference;
 			lastKnownFileType = wrapper.framework;
@@ -622,6 +643,13 @@
 			lastKnownFileType = sourcecode.c.h;
 			name = NumberSelector.h;
 			path = ../../Source/NumberSelector.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		22369D659EEF58C3A48F916D = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = Organ1.h;
+			path = ../../Source/audio/Oscillators/Wavetables/Organ1.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		23B21334BB03AF2359533A6B = {
@@ -743,11 +771,25 @@
 			path = "Info-Standalone_Plugin.plist";
 			sourceTree = "SOURCE_ROOT";
 		};
+		2DBBBCA8A46FF668419B18FC = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = Harmonics8.h;
+			path = ../../Source/audio/Oscillators/Wavetables/Harmonics8.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		2DFC51237CD01D4E0F763B3B = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.objcpp;
 			name = "include_juce_events.mm";
 			path = "../../JuceLibraryCode/include_juce_events.mm";
+			sourceTree = "SOURCE_ROOT";
+		};
+		2E7464FE0A3A832AAC41B753 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = Harmonics15.h;
+			path = ../../Source/audio/Oscillators/Wavetables/Harmonics15.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		30143C979485E86E3A8069B6 = {
@@ -1016,6 +1058,13 @@
 			path = "~/JUCE/modules/juce_gui_basics";
 			sourceTree = "<absolute>";
 		};
+		5E9BE5C7C97B1FE5B3D03FF8 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = Harmonics16.h;
+			path = ../../Source/audio/Oscillators/Wavetables/Harmonics16.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		5F8D1B01CDCAE9C2109F9962 = {
 			isa = PBXFileReference;
 			lastKnownFileType = wrapper.framework;
@@ -1063,6 +1112,13 @@
 			lastKnownFileType = sourcecode.cpp.objcpp;
 			name = "include_juce_data_structures.mm";
 			path = "../../JuceLibraryCode/include_juce_data_structures.mm";
+			sourceTree = "SOURCE_ROOT";
+		};
+		6979BD19042CAEF491928D9B = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = Harmonics14.h;
+			path = ../../Source/audio/Oscillators/Wavetables/Harmonics14.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		69AA9A49FB2EA0B6DED32F10 = {
@@ -1233,6 +1289,13 @@
 			path = ../../Source/audio/Oscillators/DriftGenerator.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
+		871AC59AD1FFCA988A33ACF5 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = Organ4.h;
+			path = ../../Source/audio/Oscillators/Wavetables/Organ4.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		87F0CF602B0A818E759F2B7A = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -1245,6 +1308,20 @@
 			lastKnownFileType = sourcecode.c.h;
 			name = VAOnePoleFilter.h;
 			path = ../../Source/audio/Filters/VAOnePoleFilter.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		885332C9FBC8241E499EC626 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = Organ3.h;
+			path = ../../Source/audio/Oscillators/Wavetables/Organ3.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		88ED361C830F18D021ECFA97 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = Harmonics3.h;
+			path = ../../Source/audio/Oscillators/Wavetables/Harmonics3.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		89075D2CBE36822E8C238051 = {
@@ -1408,6 +1485,13 @@
 			path = ../../Source/IntegerKnob.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
+		9E3AF6457FFD929EB72A3952 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = Harmonics4.h;
+			path = ../../Source/audio/Oscillators/Wavetables/Harmonics4.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		9ED38CDAFA7DC4A19A6CB307 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -1553,6 +1637,13 @@
 			lastKnownFileType = sourcecode.cpp.cpp;
 			name = OscComponent.cpp;
 			path = ../../Source/OscComponent.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
+		B80A78E6C2F5247C13CBE331 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = Harmonics1.h;
+			path = ../../Source/audio/Oscillators/Wavetables/Harmonics1.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		B996ED6DE0DF4FC12AFBF953 = {
@@ -1758,6 +1849,13 @@
 			path = ../../Source/audio/Oscillators/Wavetables/Saw.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		D3AEBDE80BC33DF723DD9AE9 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = Harmonics2.h;
+			path = ../../Source/audio/Oscillators/Wavetables/Harmonics2.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		D6FF18F453BADF93E9A63990 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -1786,11 +1884,25 @@
 			path = ../../Source/audio/Oscillators/FMOscillator.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
+		D84F558A504F7E8171F4FB4B = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = Harmonics13.h;
+			path = ../../Source/audio/Oscillators/Wavetables/Harmonics13.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		D896B52DA7D07E80A0E8B163 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
 			name = ChiptuneCustom4.h;
 			path = ../../Source/audio/Oscillators/Wavetables/ChiptuneCustom4.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		DB0E35464929615E25BBCA18 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = Harmonics6.h;
+			path = ../../Source/audio/Oscillators/Wavetables/Harmonics6.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		DB69AAB20D6FE843E79FC205 = {
@@ -1819,6 +1931,13 @@
 			lastKnownFileType = sourcecode.c.h;
 			name = Triangle.h;
 			path = ../../Source/audio/Oscillators/Wavetables/Triangle.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		DE7FBA381924DCED72357AFE = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = Harmonics7.h;
+			path = ../../Source/audio/Oscillators/Wavetables/Harmonics7.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		DF235E90C8EE83A30B3C754D = {
@@ -1856,6 +1975,13 @@
 			path = ../../Source/audio/Oscillators/Wavetables/LFO/LFOStair12.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		E27A91701CB03B7F3DE5BE0F = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = Harmonics12.h;
+			path = ../../Source/audio/Oscillators/Wavetables/Harmonics12.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		E5A51B860637578937EFEDEE = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
@@ -1891,11 +2017,39 @@
 			path = Odin.vst3;
 			sourceTree = "BUILT_PRODUCTS_DIR";
 		};
+		ECACBE8160CFA39B470A6957 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = JuceHeader.h;
+			path = ../../JuceLibraryCode/JuceHeader.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		ECB4A9422DDA7DDD48789B52 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = PitchWheel.h;
+			path = ../../Source/PitchWheel.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		EDDCFB136841B4C3E040BD25 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
 			name = PluginProcessor.h;
 			path = ../../Source/PluginProcessor.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		F03E01A3E845B2D892786A49 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = Knob.h;
+			path = ../../Source/Knob.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		F196B8C5A02E8B1D95473EAE = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = PluginProcessor.cpp;
+			path = ../../Source/PluginProcessor.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
 		F2F8D33D66E229F8F81A7E97 = {
@@ -1917,34 +2071,6 @@
 			lastKnownFileType = sourcecode.c.h;
 			name = Additive11.h;
 			path = ../../Source/audio/Oscillators/Wavetables/Additive11.h;
-			sourceTree = "SOURCE_ROOT";
-		};
-		ECACBE8160CFA39B470A6957 = {
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.c.h;
-			name = JuceHeader.h;
-			path = ../../JuceLibraryCode/JuceHeader.h;
-			sourceTree = "SOURCE_ROOT";
-		};
-		ECB4A9422DDA7DDD48789B52 = {
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.c.h;
-			name = PitchWheel.h;
-			path = ../../Source/PitchWheel.h;
-			sourceTree = "SOURCE_ROOT";
-		};
-		F03E01A3E845B2D892786A49 = {
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.c.h;
-			name = Knob.h;
-			path = ../../Source/Knob.h;
-			sourceTree = "SOURCE_ROOT";
-		};
-		F196B8C5A02E8B1D95473EAE = {
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.cpp.cpp;
-			name = PluginProcessor.cpp;
-			path = ../../Source/PluginProcessor.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
 		F337A655FAE757A10050CBAD = {
@@ -1989,6 +2115,13 @@
 			path = ../../Source/audio/Oscillators/Wavetables/Additive12.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		F99DBDAC146F7B84F8FFA644 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = Harmonics9.h;
+			path = ../../Source/audio/Oscillators/Wavetables/Harmonics9.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		FA4BC831893D91AFF01BA822 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -2029,6 +2162,13 @@
 			lastKnownFileType = sourcecode.c.h;
 			name = WavedrawDisplay.h;
 			path = ../../Source/WavedrawDisplay.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		FD19926DE45A661D44712E5C = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = Harmonics11.h;
+			path = ../../Source/audio/Oscillators/Wavetables/Harmonics11.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		FD45C30C189EE7927372B856 = {
@@ -2090,6 +2230,26 @@
 				E822E5A61A906D97D3BF143A,
 				C6FE6D0E35CC9A44DB56D4C8,
 				59B2A728DFEBA6764C6DC97F,
+				B80A78E6C2F5247C13CBE331,
+				D3AEBDE80BC33DF723DD9AE9,
+				88ED361C830F18D021ECFA97,
+				9E3AF6457FFD929EB72A3952,
+				14B37B4F1CA85E3EF1347708,
+				DB0E35464929615E25BBCA18,
+				DE7FBA381924DCED72357AFE,
+				2DBBBCA8A46FF668419B18FC,
+				F99DBDAC146F7B84F8FFA644,
+				1AF809D76F302A82005AF628,
+				FD19926DE45A661D44712E5C,
+				E27A91701CB03B7F3DE5BE0F,
+				D84F558A504F7E8171F4FB4B,
+				6979BD19042CAEF491928D9B,
+				2E7464FE0A3A832AAC41B753,
+				5E9BE5C7C97B1FE5B3D03FF8,
+				22369D659EEF58C3A48F916D,
+				078932CC5BE5BCD2D5561EB3,
+				885332C9FBC8241E499EC626,
+				871AC59AD1FFCA988A33ACF5,
 				D2723C9073060D798CCB7F79,
 				AB3EA1D434A7F982E53D2B38,
 				DCC3C7DD17CB5EC8C272BA89,

@@ -2850,6 +2850,66 @@
     <ClInclude Include="..\..\Source\audio\Oscillators\Wavetables\FatSaw.h">
       <Filter>Odin\Source\audio\Oscillators\Wavetables</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Oscillators\Wavetables\Harmonics1.h">
+      <Filter>Odin\Source\audio\Oscillators\Wavetables</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Oscillators\Wavetables\Harmonics2.h">
+      <Filter>Odin\Source\audio\Oscillators\Wavetables</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Oscillators\Wavetables\Harmonics3.h">
+      <Filter>Odin\Source\audio\Oscillators\Wavetables</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Oscillators\Wavetables\Harmonics4.h">
+      <Filter>Odin\Source\audio\Oscillators\Wavetables</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Oscillators\Wavetables\Harmonics5.h">
+      <Filter>Odin\Source\audio\Oscillators\Wavetables</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Oscillators\Wavetables\Harmonics6.h">
+      <Filter>Odin\Source\audio\Oscillators\Wavetables</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Oscillators\Wavetables\Harmonics7.h">
+      <Filter>Odin\Source\audio\Oscillators\Wavetables</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Oscillators\Wavetables\Harmonics8.h">
+      <Filter>Odin\Source\audio\Oscillators\Wavetables</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Oscillators\Wavetables\Harmonics9.h">
+      <Filter>Odin\Source\audio\Oscillators\Wavetables</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Oscillators\Wavetables\Harmonics10.h">
+      <Filter>Odin\Source\audio\Oscillators\Wavetables</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Oscillators\Wavetables\Harmonics11.h">
+      <Filter>Odin\Source\audio\Oscillators\Wavetables</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Oscillators\Wavetables\Harmonics12.h">
+      <Filter>Odin\Source\audio\Oscillators\Wavetables</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Oscillators\Wavetables\Harmonics13.h">
+      <Filter>Odin\Source\audio\Oscillators\Wavetables</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Oscillators\Wavetables\Harmonics14.h">
+      <Filter>Odin\Source\audio\Oscillators\Wavetables</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Oscillators\Wavetables\Harmonics15.h">
+      <Filter>Odin\Source\audio\Oscillators\Wavetables</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Oscillators\Wavetables\Harmonics16.h">
+      <Filter>Odin\Source\audio\Oscillators\Wavetables</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Oscillators\Wavetables\Organ1.h">
+      <Filter>Odin\Source\audio\Oscillators\Wavetables</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Oscillators\Wavetables\Organ2.h">
+      <Filter>Odin\Source\audio\Oscillators\Wavetables</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Oscillators\Wavetables\Organ3.h">
+      <Filter>Odin\Source\audio\Oscillators\Wavetables</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\audio\Oscillators\Wavetables\Organ4.h">
+      <Filter>Odin\Source\audio\Oscillators\Wavetables</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\audio\Oscillators\Wavetables\Saw.h">
       <Filter>Odin\Source\audio\Oscillators\Wavetables</Filter>
     </ClInclude>
