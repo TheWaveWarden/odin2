@@ -53,13 +53,16 @@ public:
         voice_busy[i] = true;
         DBG("Voice manager returned voice " + std::to_string(i));
         removeFromKillList(i);
+        updateVoiceHistory(i);
         return i;
       }
     }
     // TODO all voices busy, steal
-    DBG("Voice manager returned voice 0");
-    removeFromKillList(0);
-    return 0;
+    DBG("Voice manager STOLE voice " + std::to_string(m_voice_history[11]));
+    removeFromKillList(m_voice_history[11]);
+    int ret = m_voice_history[11];
+    updateVoiceHistory(ret);
+    return ret;
   }
 
   // marks a voice as free again
@@ -88,7 +91,26 @@ public:
     }
   }
 
+  void updateVoiceHistory(int p_next_voice){
+    int index = 0;
+    while(p_next_voice != m_voice_history[index]){
+      ++index;
+    }
+
+    //p_next_voice was at position index, move all above on down:
+    for(int voice = index; voice > 0; --voice){
+      m_voice_history[voice] = m_voice_history[voice - 1];
+    }
+
+    //now set new as newest value:
+    m_voice_history[0] = p_next_voice;
+
+    DBG(std::to_string(m_voice_history[0]) + " " + std::to_string(m_voice_history[1]) + " " +std::to_string( m_voice_history[2]) + " " + std::to_string(m_voice_history[3]) + " " + std::to_string(m_voice_history[4]) + " " + std::to_string(m_voice_history[5]) + " " + std::to_string(m_voice_history[6]) + " " + std::to_string(m_voice_history[7]) + " " + std::to_string(m_voice_history[8]) + " " + std::to_string(m_voice_history[9])+ " " + std::to_string(m_voice_history[10]) + " " + std::to_string(m_voice_history[11]));
+  }
+
 protected:
+  //used to determine oldest voice for stealing
+  int m_voice_history[VOICES] = {0,1,2,3,4,5,6,7,8,9,10,11};
   bool m_sustain_active = false;
   bool m_kill_list[VOICES];
   int m_kill_list_note[VOICES];
