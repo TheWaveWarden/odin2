@@ -67,115 +67,123 @@ void ModMatrixRow::applyModulation() {
 
 }
 
-void ModMatrixRow::setModSource(int p_source) {
+void ModMatrixRow::setModSource(int p_source){
+  setModSource(p_source, m_source_value, m_source);
+}
+
+void ModMatrixRow::setModScale(int p_source){
+  setModSource(p_source, m_scale_value, m_scale);
+}
+
+void ModMatrixRow::setModSource(int p_source, float** p_source_pointers, int& p_source_store) {
 
   switch (p_source) {
   case 100:
     for (int voice = 0; voice < VOICES; ++voice) {
-      m_source_value[voice] = m_sources->voice[voice].osc[0];
+      p_source_pointers[voice] = m_sources->voice[voice].osc[0];
     }
     break;
   case 101:
     for (int voice = 0; voice < VOICES; ++voice) {
-      m_source_value[voice] = m_sources->voice[voice].osc[1];
+      p_source_pointers[voice] = m_sources->voice[voice].osc[1];
     }
     break;
   case 102:
     for (int voice = 0; voice < VOICES; ++voice) {
-      m_source_value[voice] = m_sources->voice[voice].osc[2];
+      p_source_pointers[voice] = m_sources->voice[voice].osc[2];
     }
     break;
   case 110:
     for (int voice = 0; voice < VOICES; ++voice) {
-      m_source_value[voice] = m_sources->voice[voice].filter[0];
+      p_source_pointers[voice] = m_sources->voice[voice].filter[0];
     }
     break;
   case 111:
     for (int voice = 0; voice < VOICES; ++voice) {
-      m_source_value[voice] = m_sources->voice[voice].filter[1];
+      p_source_pointers[voice] = m_sources->voice[voice].filter[1];
     }
     break;
   case 200:
     for (int voice = 0; voice < VOICES; ++voice) {
-      m_source_value[voice] = m_sources->voice[voice].adsr[0];
+      p_source_pointers[voice] = m_sources->voice[voice].adsr[0];
     }
     break;
   case 201:
     for (int voice = 0; voice < VOICES; ++voice) {
-      m_source_value[voice] = m_sources->voice[voice].adsr[1];
+      p_source_pointers[voice] = m_sources->voice[voice].adsr[1];
     }
     break;
   case 202:
     for (int voice = 0; voice < VOICES; ++voice) {
-      m_source_value[voice] = m_sources->voice[voice].adsr[2];
+      p_source_pointers[voice] = m_sources->voice[voice].adsr[2];
     }
     break;
   case 203:
     for (int voice = 0; voice < VOICES; ++voice) {
-      m_source_value[voice] = m_sources->voice[voice].adsr[3];
+      p_source_pointers[voice] = m_sources->voice[voice].adsr[3];
     }
     break;
   case 300:
     for (int voice = 0; voice < VOICES; ++voice) {
-      m_source_value[voice] = m_sources->voice[voice].lfo[0];
+      p_source_pointers[voice] = m_sources->voice[voice].lfo[0];
     }
     break;
   case 301:
     for (int voice = 0; voice < VOICES; ++voice) {
-      m_source_value[voice] = m_sources->voice[voice].lfo[1];
+      p_source_pointers[voice] = m_sources->voice[voice].lfo[1];
     }
     break;
   case 302:
     for (int voice = 0; voice < VOICES; ++voice) {
-      m_source_value[voice] = m_sources->voice[voice].lfo[2];
+      p_source_pointers[voice] = m_sources->voice[voice].lfo[2];
     }
     break;
   case 303:
     for (int voice = 0; voice < VOICES; ++voice) {
-      m_source_value[voice] = m_sources->voice[voice].lfo[3];
+      p_source_pointers[voice] = m_sources->voice[voice].lfo[3];
     }
     break;
 
   case 400:
     for (int voice = 0; voice < VOICES; ++voice) {
-      m_source_value[voice] = m_sources->x;
+      p_source_pointers[voice] = m_sources->x;
     }
     break;
   case 401:
     for (int voice = 0; voice < VOICES; ++voice) {
-      m_source_value[voice] = m_sources->y;
+      p_source_pointers[voice] = m_sources->y;
     }
     break;
   case 402:
     for (int voice = 0; voice < VOICES; ++voice) {
-      m_source_value[voice] = m_sources->modwheel;
+      p_source_pointers[voice] = m_sources->modwheel;
     }
     break;
   case 403:
     for (int voice = 0; voice < VOICES; ++voice) {
-      m_source_value[voice] = m_sources->pitchwheel;
+      p_source_pointers[voice] = m_sources->pitchwheel;
     }
     break;
 
   case 404:
     for (int voice = 0; voice < VOICES; ++voice) {
-      m_source_value[voice] = m_sources->voice[voice].MIDI_key;
+      p_source_pointers[voice] = m_sources->voice[voice].MIDI_key;
     }
     break;
   case 405:
     for (int voice = 0; voice < VOICES; ++voice) {
-      m_source_value[voice] = m_sources->voice[voice].MIDI_velocity;
+      p_source_pointers[voice] = m_sources->voice[voice].MIDI_velocity;
     }
     break;
   case 406:
     for (int voice = 0; voice < VOICES; ++voice) {
-      m_source_value[voice] = m_sources->MIDI_aftertouch;
+      p_source_pointers[voice] = m_sources->MIDI_aftertouch;
     }
     break;
 
   case 1000:
     for (int voice = 0; voice < VOICES; ++voice) {
-      m_source_value[voice] = m_sources->constant;
+      p_source_pointers[voice] = m_sources->constant;
     }
     break;
 
@@ -186,10 +194,10 @@ void ModMatrixRow::setModSource(int p_source) {
   // DBG(p_source);
 
   // for(int voice = 0;  voice < VOICES; ++voice){
-  //  m_source_value[voice] = &(m_sources->voice[voice].adsr[3]);
+  //  p_source_pointers[voice] = &(m_sources->voice[voice].adsr[3]);
   //}
 
-  m_source = p_source;
+  p_source_store = p_source;
 
   checkRowActive();
 }
@@ -960,7 +968,6 @@ void ModMatrixRow::checkRowActive() {
   //DBG("src " + std::to_string(m_source) + " dest " + std::to_string(m_destination_2) + " act: " + std::to_string(m_active_2) );
 }
 
-void ModMatrixRow::setModScale(int p_scale) { m_scale = p_scale; }
 
 //=========================================================
 //=================== MODMATRIX ===========================

@@ -145,7 +145,7 @@ public:
   void applyModulation();
 
   //this sets for source and scale
-  void setModSource(int p_source);
+  void setModSource(int p_source, float** p_source_pointers, int& p_source_store);
 
   //this sets for dest1 and dest2
   void setModDestination(int p_destination, float** p_destination_pointers, bool &p_dest_poly, int &p_destination_store);
@@ -153,6 +153,7 @@ public:
   void checkRowActive();
 
   void setModScale(int p_scale);
+  void setModSource(int p_scale); //this only sets source (as opposed to function with same name)
 
   void setModAmount1(float p_mod_amount){
     m_mod_amount_1 = p_mod_amount;

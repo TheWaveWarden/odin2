@@ -998,6 +998,50 @@ void OdinAudioProcessor::treeValueChanged(const String &p_ID,
     m_mod_matrix.setModAmount2(8, p_new_value);
   } 
 
+
+
+
+  else if (id == m_amount_3_row_1_identifier) {
+    m_mod_matrix.setScaleAmount(0, p_new_value);
+  } else if (id == m_amount_3_row_2_identifier) {
+    m_mod_matrix.setScaleAmount(1, p_new_value);
+  } else if (id == m_amount_3_row_3_identifier) {
+    m_mod_matrix.setScaleAmount(2, p_new_value);
+  } else if (id == m_amount_3_row_4_identifier) {
+    m_mod_matrix.setScaleAmount(3, p_new_value);
+  } else if (id == m_amount_3_row_5_identifier) {
+    m_mod_matrix.setScaleAmount(4, p_new_value);
+  } else if (id == m_amount_3_row_6_identifier) {
+    m_mod_matrix.setScaleAmount(5, p_new_value);
+  } else if (id == m_amount_3_row_7_identifier) {
+    m_mod_matrix.setScaleAmount(6, p_new_value);
+  } else if (id == m_amount_3_row_8_identifier) {
+    m_mod_matrix.setScaleAmount(7, p_new_value);
+  } else if (id == m_amount_3_row_9_identifier) {
+    m_mod_matrix.setScaleAmount(8, p_new_value);
+  } 
+
+
+    else if (id == m_scale_row_1_identifier) {
+    m_mod_matrix.setModScale(0, p_new_value);
+  } else if (id == m_scale_row_2_identifier) {
+    m_mod_matrix.setModScale(1, p_new_value);
+  } else if (id == m_scale_row_3_identifier) {
+    m_mod_matrix.setModScale(2, p_new_value);
+  } else if (id == m_scale_row_4_identifier) {
+    m_mod_matrix.setModScale(3, p_new_value);
+  } else if (id == m_scale_row_5_identifier) {
+    m_mod_matrix.setModScale(4, p_new_value);
+  } else if (id == m_scale_row_6_identifier) {
+    m_mod_matrix.setModScale(5, p_new_value);
+  } else if (id == m_scale_row_7_identifier) {
+    m_mod_matrix.setModScale(6, p_new_value);
+  } else if (id == m_scale_row_8_identifier) {
+    m_mod_matrix.setModScale(7, p_new_value);
+  } else if (id == m_scale_row_9_identifier) {
+    m_mod_matrix.setModScale(8, p_new_value);
+  } 
+
   else if (id == m_master_identifier) {
     m_master_control = Decibels::decibelsToGain(p_new_value);
   }
