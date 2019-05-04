@@ -23,11 +23,17 @@ void ModMatrixRow::applyModulation() {
     if (m_destination_1_poly) {
       for (int voice = 0; voice < VOICES; ++voice) {
         if (m_scale) {
-          *(m_destination_1_value[voice]) +=
-              (*m_source_value[voice]) * m_mod_amount_1 *
-              (1 + (*m_scale_value[voice] - 1) * m_scale_amount);
+          if (m_scale_amount >= 0) {
+            *(m_destination_1_value[voice]) +=
+                (*m_source_value[voice]) * m_mod_amount_1 *
+                (1 + (*m_scale_value[voice] - 1) * m_scale_amount);
+          } else {
+            *(m_destination_1_value[voice]) +=
+                (*m_source_value[voice]) * m_mod_amount_1 *
+                (1 + *m_scale_value[voice] * m_scale_amount);
+          }
         } else {
-          //DBG("MOD SLOT ACTIVE");
+          // DBG("MOD SLOT ACTIVE");
           *(m_destination_1_value[voice]) +=
               (*m_source_value[voice]) * m_mod_amount_1;
         }
@@ -46,11 +52,17 @@ void ModMatrixRow::applyModulation() {
     if (m_destination_2_poly) {
       for (int voice = 0; voice < VOICES; ++voice) {
         if (m_scale) {
-          *(m_destination_2_value[voice]) +=
-              (*m_source_value[voice]) * m_mod_amount_2 *
-              (1 + (*m_scale_value[voice] - 1) * m_scale_amount);
+        if (m_scale_amount >= 0) {
+            *(m_destination_2_value[voice]) +=
+                (*m_source_value[voice]) * m_mod_amount_2 *
+                (1 + (*m_scale_value[voice] - 1) * m_scale_amount);
+          } else {
+            *(m_destination_2_value[voice]) +=
+                (*m_source_value[voice]) * m_mod_amount_2 *
+                (1 + *m_scale_value[voice] * m_scale_amount);
+          }
         } else {
-          //DBG("MOD SLOT ACTIVE");
+          // DBG("MOD SLOT ACTIVE");
           *(m_destination_2_value[voice]) +=
               (*m_source_value[voice]) * m_mod_amount_2;
         }
@@ -63,19 +75,18 @@ void ModMatrixRow::applyModulation() {
           (*m_source_value[m_most_recent_voice]) * m_mod_amount_2;
     }
   }
-
-
 }
 
-void ModMatrixRow::setModSource(int p_source){
+void ModMatrixRow::setModSource(int p_source) {
   setModSource(p_source, m_source_value, m_source);
 }
 
-void ModMatrixRow::setModScale(int p_source){
+void ModMatrixRow::setModScale(int p_source) {
   setModSource(p_source, m_scale_value, m_scale);
 }
 
-void ModMatrixRow::setModSource(int p_source, float** p_source_pointers, int& p_source_store) {
+void ModMatrixRow::setModSource(int p_source, float **p_source_pointers,
+                                int &p_source_store) {
 
   switch (p_source) {
   case 100:
@@ -210,8 +221,7 @@ void ModMatrixRow::setModDestination1(int p_destination) {
 void ModMatrixRow::setModDestination2(int p_destination) {
   setModDestination(p_destination, m_destination_2_value, m_destination_2_poly,
                     m_destination_2);
-  //DBG("val: " + std::to_string(p_destination));
-                    
+  // DBG("val: " + std::to_string(p_destination));
 }
 
 void ModMatrixRow::setModDestination(int p_destination,
@@ -957,17 +967,17 @@ void ModMatrixRow::setModDestination(int p_destination,
   }
   p_destination_store = p_destination;
 
-  //check if modulation still applies
-  checkRowActive();  
+  // check if modulation still applies
+  checkRowActive();
 }
 
 void ModMatrixRow::checkRowActive() {
   m_active_1 = (m_source && m_destination_1);
   m_active_2 = (m_source && m_destination_2);
 
-  //DBG("src " + std::to_string(m_source) + " dest " + std::to_string(m_destination_2) + " act: " + std::to_string(m_active_2) );
+  // DBG("src " + std::to_string(m_source) + " dest " +
+  // std::to_string(m_destination_2) + " act: " + std::to_string(m_active_2) );
 }
-
 
 //=========================================================
 //=================== MODMATRIX ===========================
@@ -1008,7 +1018,7 @@ void ModMatrix::setModDestination1(int p_row, int p_destination) {
 }
 void ModMatrix::setModDestination2(int p_row, int p_destination) {
   m_row[p_row].setModDestination2(p_destination);
-  //DBG("row: " + std::to_string(p_row));  
+  // DBG("row: " + std::to_string(p_row));
 }
 
 void ModMatrix::setModScale(int p_row, int p_scale) {
@@ -1020,7 +1030,7 @@ void ModMatrix::setModAmount1(int p_row, float p_mod_amount) {
 }
 void ModMatrix::setModAmount2(int p_row, float p_mod_amount) {
   m_row[p_row].setModAmount2(p_mod_amount);
-  //DBG("row: " + std::to_string(p_row));
+  // DBG("row: " + std::to_string(p_row));
 }
 
 void ModMatrix::setScaleAmount(int p_row, float p_scale_amount) {

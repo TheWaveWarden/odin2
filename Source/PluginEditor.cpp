@@ -751,11 +751,11 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
 
   m_pitch_amount.OnValueChange = [&](int p_new_value) {
     m_value_tree.getParameter(m_pitchbend_amount_identifier)
-        ->setValueNotifyingHost(((float)p_new_value - 0.5f) / 24.f);
+        ->setValueNotifyingHost(((float)p_new_value) / 24.f);
   };
   m_pitch_amount.setTopLeftPosition(PITCH_AMOUNT_X, PITCH_AMOUNT_Y);
   addAndMakeVisible(m_pitch_amount);
-  m_pitch_amount.setRange(1, 24);
+  m_pitch_amount.setRange(0, 24);
   m_pitch_amount.setValue(12);
   m_pitch_amount.setColor(Colour(10, 40, 50));
   m_pitch_amount.setTooltip(

@@ -234,7 +234,7 @@
   std::make_unique<AudioParameterFloat> ("master", "Master", -20.f, 12.f, 0.f),
   std::make_unique<AudioParameterFloat> ("modwheel", "Modwheel", 0.f, 1.f, 0.f),
   std::make_unique<AudioParameterFloat> ("pitchbend", "Pitchbend", -1.f, 1.f, 0.f),
-  std::make_unique<AudioParameterInt> ("pitchbend_amount", "Pitchbend Semitones", 1, 24, 12),  
+  std::make_unique<AudioParameterInt> ("pitchbend_amount", "Pitchbend Semitones", 0, 24, 12),  
   std::make_unique<AudioParameterFloat> ("xy_x", "XY Pad X", 0.f, 1.f, 0.f),
   std::make_unique<AudioParameterFloat> ("xy_y", "XY Pad Y", 0.f, 1.f, 0.f),
   std::make_unique<AudioParameterInt> ("delay_position", "Delay Drag n Drop Position", 0, 3, 0),  
