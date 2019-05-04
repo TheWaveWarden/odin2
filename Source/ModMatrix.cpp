@@ -30,7 +30,7 @@ void ModMatrixRow::applyModulation() {
           } else {
             *(m_destination_1_value[voice]) +=
                 (*m_source_value[voice]) * m_mod_amount_1 *
-                (1 + *m_scale_value[voice] * m_scale_amount);
+                (1 + fabs(*m_scale_value[voice]) * m_scale_amount);
           }
         } else {
           // DBG("MOD SLOT ACTIVE");
@@ -42,8 +42,20 @@ void ModMatrixRow::applyModulation() {
     {
       // use most recent voice for poly, for mono all 12 are identical so it
       // doesnt matter
-      *(m_destination_1_value[0]) +=
-          (*m_source_value[m_most_recent_voice]) * m_mod_amount_1;
+      if (m_scale) {
+        if (m_scale_amount >= 0) {
+          *(m_destination_1_value[0]) +=
+              (*m_source_value[m_most_recent_voice]) * m_mod_amount_1 *
+              (1 + (*m_scale_value[m_most_recent_voice] - 1) * m_scale_amount);
+        } else {
+          *(m_destination_1_value[0]) +=
+              (*m_source_value[m_most_recent_voice]) * m_mod_amount_1 *
+              (1 + fabs(*m_scale_value[m_most_recent_voice]) * m_scale_amount);
+        }
+      } else {
+        *(m_destination_1_value[0]) +=
+            (*m_source_value[m_most_recent_voice]) * m_mod_amount_1;
+      }
     }
   }
 
@@ -52,14 +64,14 @@ void ModMatrixRow::applyModulation() {
     if (m_destination_2_poly) {
       for (int voice = 0; voice < VOICES; ++voice) {
         if (m_scale) {
-        if (m_scale_amount >= 0) {
+          if (m_scale_amount >= 0) {
             *(m_destination_2_value[voice]) +=
                 (*m_source_value[voice]) * m_mod_amount_2 *
                 (1 + (*m_scale_value[voice] - 1) * m_scale_amount);
           } else {
             *(m_destination_2_value[voice]) +=
                 (*m_source_value[voice]) * m_mod_amount_2 *
-                (1 + *m_scale_value[voice] * m_scale_amount);
+                (1 + fabs(*m_scale_value[voice]) * m_scale_amount);
           }
         } else {
           // DBG("MOD SLOT ACTIVE");
@@ -71,8 +83,20 @@ void ModMatrixRow::applyModulation() {
     {
       // use most recent voice for poly, for mono all 12 are identical so it
       // doesnt matter
-      *(m_destination_2_value[0]) +=
-          (*m_source_value[m_most_recent_voice]) * m_mod_amount_2;
+      if (m_scale) {
+        if (m_scale_amount >= 0) {
+          *(m_destination_2_value[0]) +=
+              (*m_source_value[m_most_recent_voice]) * m_mod_amount_2 *
+              (1 + (*m_scale_value[m_most_recent_voice] - 1) * m_scale_amount);
+        } else {
+          *(m_destination_2_value[0]) +=
+              (*m_source_value[m_most_recent_voice]) * m_mod_amount_2 *
+              (1 + fabs(*m_scale_value[m_most_recent_voice]) * m_scale_amount);
+        }
+      } else {
+        *(m_destination_2_value[0]) +=
+            (*m_source_value[m_most_recent_voice]) * m_mod_amount_2;
+      }
     }
   }
 }

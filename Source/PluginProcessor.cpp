@@ -198,10 +198,10 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
           (1.f - FILTER_FREQ_SMOOTHING_FACTOR) * m_fil_freq_control[i];
     }
 
+    m_pitch_bend_smooth = m_pitch_bend_smooth * PITCHBEND_SMOOTHIN_FACTOR +
+                          (1.f - PITCHBEND_SMOOTHIN_FACTOR) * (*m_pitchbend);
     m_pitch_bend_smooth_and_applied =
-        m_pitch_bend_smooth_and_applied * PITCHBEND_SMOOTHIN_FACTOR +
-        (1.f - PITCHBEND_SMOOTHIN_FACTOR) * (*m_pitchbend) *
-            (*m_pitchbend_amount);
+        m_pitch_bend_smooth * (*m_pitchbend_amount);
 
     m_modwheel_smooth = m_modwheel_smooth * PITCHBEND_SMOOTHIN_FACTOR +
                         (1.f - PITCHBEND_SMOOTHIN_FACTOR) * (*m_modwheel);
@@ -219,18 +219,19 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
       if (midi_message_sample <= sample) {
         // apply midi message
         if (midi_message.isNoteOn()) {
-          int voice_number = m_voice_manager.getVoice(midi_message.getNoteNumber());
-          if (voice_number >= 0) {//else is on sustain
-            if(m_last_midi_note == -1){
-                //first time glide - dont glide
-                m_last_midi_note = midi_message.getNoteNumber();
+          int voice_number =
+              m_voice_manager.getVoice(midi_message.getNoteNumber());
+          if (voice_number >= 0) { // else is on sustain
+            if (m_last_midi_note == -1) {
+              // first time glide - dont glide
+              m_last_midi_note = midi_message.getNoteNumber();
             }
-            m_voice[voice_number].start(
-                midi_message.getNoteNumber(), midi_message.getVelocity(), m_last_midi_note);
+            m_voice[voice_number].start(midi_message.getNoteNumber(),
+                                        midi_message.getVelocity(),
+                                        m_last_midi_note);
             m_amp.setMIDIVelocity(midi_message.getVelocity());
             m_last_midi_note = midi_message.getNoteNumber();
             m_mod_matrix.setMostRecentVoice(voice_number);
-            
           }
         } else if (midi_message.isNoteOff()) {
           DBG("NOTEOFF, key " + std::to_string(midi_message.getNoteNumber()));
@@ -245,7 +246,8 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
             for (int voice = 0; voice < VOICES; ++voice) {
               if (m_voice[voice].usesThisMIDIKey(
                       midi_message.getNoteNumber())) {
-                m_voice_manager.addToKillList(voice,midi_message.getNoteNumber());
+                m_voice_manager.addToKillList(voice,
+                                              midi_message.getNoteNumber());
               }
             }
           }
@@ -635,7 +637,7 @@ void OdinAudioProcessor::setModulationPointers() {
   m_mod_sources.x = &m_x_smooth;
   m_mod_sources.y = &m_y_smooth;
   m_mod_sources.modwheel = &m_modwheel_smooth;
-  m_mod_sources.pitchwheel = &m_pitch_bend_smooth_and_applied;
+  m_mod_sources.pitchwheel = &m_pitch_bend_smooth;
   m_mod_sources.constant = &(m_constant);
 
   //========================================
@@ -647,12 +649,10 @@ void OdinAudioProcessor::setModulationPointers() {
           &(m_pitch_bend_smooth_and_applied));
       m_voice[voice].wavetable_osc[osc].setPitchBendPointer(
           &(m_pitch_bend_smooth_and_applied));
-      m_voice[voice].multi_osc[osc].setPitchBendPointer(
-          &(m_pitch_bend_smooth_and_applied));
+      m_voice[voice].multi_osc[osc].setPitchBendPointer(&(m_pitch_bend_smooth_and_applied));
       m_voice[voice].vector_osc[osc].setPitchBendPointer(
           &(m_pitch_bend_smooth_and_applied));
-      m_voice[voice].fm_osc[osc].setPitchBendPointer(
-          &(m_pitch_bend_smooth_and_applied));
+      m_voice[voice].fm_osc[osc].setPitchBendPointer(&(m_pitch_bend_smooth_and_applied));
       m_voice[voice].chiptune_osc[osc].setPitchBendPointer(
           &(m_pitch_bend_smooth_and_applied));
       m_voice[voice].wavedraw_osc[osc].setPitchBendPointer(

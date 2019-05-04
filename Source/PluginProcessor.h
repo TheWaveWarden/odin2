@@ -78,6 +78,7 @@ private:
   float m_fil_gain_control[3] = {1.f, 1.f, 1.f}; // factor
   float m_fil_freq_control[3] = {2000, 2000, 2000};
   float m_fil_freq_smooth[3] = {2000, 2000, 2000};
+  float m_pitch_bend_smooth = 0.f;
   float m_pitch_bend_smooth_and_applied = 0.f;
   float m_modwheel_smooth = 0.f;
   float m_x_smooth = 0.f;
