@@ -28,6 +28,18 @@ void OdinAudioProcessor::treeValueChanged(const String &p_ID,
     for (int voice = 0; voice < VOICES; ++voice) {
       m_voice[voice].setOctave(p_new_value, 0);
     }
+  } else if (id == m_osc1_type_identifier) {
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_voice[voice].killGlide(0);
+    }
+  } else if (id == m_osc2_type_identifier) {
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_voice[voice].killGlide(1);
+    }
+  } else if (id == m_osc3_type_identifier) {
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_voice[voice].killGlide(2);
+    }
   } else if (id == m_osc2_oct_identifier) {
     for (int voice = 0; voice < VOICES; ++voice) {
       m_voice[voice].setOctave(p_new_value, 1);
@@ -892,60 +904,99 @@ void OdinAudioProcessor::treeValueChanged(const String &p_ID,
 
   // modmatrix
   else if (id == m_amount_1_row_1_identifier) {
-    m_mod_matrix.setModAmount(0, p_new_value);
+    m_mod_matrix.setModAmount1(0, p_new_value);
   } else if (id == m_source_row_1_identifier) {
     m_mod_matrix.setModSource(0, p_new_value);
   } else if (id == m_dest_1_row_1_identifier) {
-    m_mod_matrix.setModDestination(0, p_new_value);
+    m_mod_matrix.setModDestination1(0, p_new_value);
   } else if (id == m_amount_1_row_2_identifier) {
-    m_mod_matrix.setModAmount(1, p_new_value);
+    m_mod_matrix.setModAmount1(1, p_new_value);
   } else if (id == m_source_row_2_identifier) {
     m_mod_matrix.setModSource(1, p_new_value);
   } else if (id == m_dest_1_row_2_identifier) {
-    m_mod_matrix.setModDestination(1, p_new_value);
+    m_mod_matrix.setModDestination1(1, p_new_value);
   } else if (id == m_amount_1_row_3_identifier) {
-    m_mod_matrix.setModAmount(2, p_new_value);
+    m_mod_matrix.setModAmount1(2, p_new_value);
   } else if (id == m_source_row_3_identifier) {
     m_mod_matrix.setModSource(2, p_new_value);
   } else if (id == m_dest_1_row_3_identifier) {
-    m_mod_matrix.setModDestination(2, p_new_value);
+    m_mod_matrix.setModDestination1(2, p_new_value);
   } else if (id == m_amount_1_row_4_identifier) {
-    m_mod_matrix.setModAmount(3, p_new_value);
+    m_mod_matrix.setModAmount1(3, p_new_value);
   } else if (id == m_source_row_4_identifier) {
     m_mod_matrix.setModSource(3, p_new_value);
   } else if (id == m_dest_1_row_4_identifier) {
-    m_mod_matrix.setModDestination(3, p_new_value);
+    m_mod_matrix.setModDestination1(3, p_new_value);
   } else if (id == m_amount_1_row_5_identifier) {
-    m_mod_matrix.setModAmount(4, p_new_value);
+    m_mod_matrix.setModAmount1(4, p_new_value);
   } else if (id == m_source_row_5_identifier) {
     m_mod_matrix.setModSource(4, p_new_value);
   } else if (id == m_dest_1_row_5_identifier) {
-    m_mod_matrix.setModDestination(4, p_new_value);
+    m_mod_matrix.setModDestination1(4, p_new_value);
   } else if (id == m_amount_1_row_6_identifier) {
-    m_mod_matrix.setModAmount(6, p_new_value);
+    m_mod_matrix.setModAmount1(5, p_new_value);
   } else if (id == m_source_row_6_identifier) {
-    m_mod_matrix.setModSource(6, p_new_value);
+    m_mod_matrix.setModSource(5, p_new_value);
   } else if (id == m_dest_1_row_6_identifier) {
-    m_mod_matrix.setModDestination(6, p_new_value);
+    m_mod_matrix.setModDestination1(5, p_new_value);
   } else if (id == m_amount_1_row_7_identifier) {
-    m_mod_matrix.setModAmount(6, p_new_value);
+    m_mod_matrix.setModAmount1(6, p_new_value);
   } else if (id == m_source_row_7_identifier) {
     m_mod_matrix.setModSource(6, p_new_value);
   } else if (id == m_dest_1_row_7_identifier) {
-    m_mod_matrix.setModDestination(6, p_new_value);
+    m_mod_matrix.setModDestination1(6, p_new_value);
   } else if (id == m_amount_1_row_8_identifier) {
-    m_mod_matrix.setModAmount(7, p_new_value);
+    m_mod_matrix.setModAmount1(7, p_new_value);
   } else if (id == m_source_row_8_identifier) {
     m_mod_matrix.setModSource(7, p_new_value);
   } else if (id == m_dest_1_row_8_identifier) {
-    m_mod_matrix.setModDestination(7, p_new_value);
+    m_mod_matrix.setModDestination1(7, p_new_value);
   } else if (id == m_amount_1_row_9_identifier) {
-    m_mod_matrix.setModAmount(8, p_new_value);
+    m_mod_matrix.setModAmount1(8, p_new_value);
   } else if (id == m_source_row_9_identifier) {
     m_mod_matrix.setModSource(8, p_new_value);
   } else if (id == m_dest_1_row_9_identifier) {
-    m_mod_matrix.setModDestination(8, p_new_value);
-  }
+    m_mod_matrix.setModDestination1(8, p_new_value);
+
+  } else if(id == m_dest_2_row_1_identifier){
+    m_mod_matrix.setModDestination2(0, p_new_value);
+  } else if(id == m_dest_2_row_2_identifier){
+    m_mod_matrix.setModDestination2(1, p_new_value);
+  } else if(id == m_dest_2_row_3_identifier){
+    m_mod_matrix.setModDestination2(2, p_new_value);
+  } else if(id == m_dest_2_row_4_identifier){
+    m_mod_matrix.setModDestination2(3, p_new_value);
+  } else if(id == m_dest_2_row_5_identifier){
+    m_mod_matrix.setModDestination2(4, p_new_value);
+  } else if(id == m_dest_2_row_6_identifier){
+    m_mod_matrix.setModDestination2(5, p_new_value);
+  } else if(id == m_dest_2_row_7_identifier){
+    m_mod_matrix.setModDestination2(6, p_new_value);
+  } else if(id == m_dest_2_row_8_identifier){
+    m_mod_matrix.setModDestination2(7, p_new_value);
+  } else if(id == m_dest_2_row_9_identifier){
+    m_mod_matrix.setModDestination2(8, p_new_value);
+
+
+  } else if (id == m_amount_2_row_1_identifier) {
+    m_mod_matrix.setModAmount2(0, p_new_value);
+  } else if (id == m_amount_2_row_2_identifier) {
+    m_mod_matrix.setModAmount2(1, p_new_value);
+  } else if (id == m_amount_2_row_3_identifier) {
+    m_mod_matrix.setModAmount2(2, p_new_value);
+  } else if (id == m_amount_2_row_4_identifier) {
+    m_mod_matrix.setModAmount2(3, p_new_value);
+  } else if (id == m_amount_2_row_5_identifier) {
+    m_mod_matrix.setModAmount2(4, p_new_value);
+  } else if (id == m_amount_2_row_6_identifier) {
+    m_mod_matrix.setModAmount2(5, p_new_value);
+  } else if (id == m_amount_2_row_7_identifier) {
+    m_mod_matrix.setModAmount2(6, p_new_value);
+  } else if (id == m_amount_2_row_8_identifier) {
+    m_mod_matrix.setModAmount2(7, p_new_value);
+  } else if (id == m_amount_2_row_9_identifier) {
+    m_mod_matrix.setModAmount2(8, p_new_value);
+  } 
 
   else if (id == m_master_identifier) {
     m_master_control = Decibels::decibelsToGain(p_new_value);

@@ -139,38 +139,63 @@ public:
   void setSourcesAndDestinations(ModSources* p_source, ModDestinations* p_destination);
 
   operator bool() const {
-    return m_active;
+    return m_active_1 || m_active_2;
   }
 
   void applyModulation();
 
-
+  //this sets for source and scale
   void setModSource(int p_source);
-  void setModDestination(int p_destination);
+
+  //this sets for dest1 and dest2
+  void setModDestination(int p_destination, float** p_destination_pointers, bool &p_dest_poly, int &p_destination_store);
+
+  void checkRowActive();
+
   void setModScale(int p_scale);
 
-  void setModAmount(float p_mod_amount){
-    m_mod_amount = p_mod_amount;
+  void setModAmount1(float p_mod_amount){
+    m_mod_amount_1 = p_mod_amount;
+  }
+
+  void setModAmount2(float p_mod_amount){
+    DBG("AMOUNT: " + std::to_string(p_mod_amount));
+    m_mod_amount_2 = p_mod_amount;
   }
 
   void setScaleAmount(float p_scale_amount){
     m_scale_amount = p_scale_amount;
   }
 
-private:
-  int m_source = 0;
-  int m_destination = 0;
-  int m_scale = 0;
-  bool m_active = false;
+  void setMostRecentVoice(int p_voice){
+    m_most_recent_voice = p_voice;
+  }
+  
+  void setModDestination1(int p_destination);
+  void setModDestination2(int p_destination);
 
-  float m_mod_amount = 0.f;
+
+private:
+  int m_most_recent_voice;
+
+  int m_source = 0;
+  int m_destination_1 = 0;
+  int m_destination_2 = 0;
+  int m_scale = 0;
+  bool m_active_1 = false;//only for one of the two modulation slots
+  bool m_active_2 = false;//only for one of the two modulation slots
+
+  float m_mod_amount_1 = 0.f;
+  float m_mod_amount_2 = 0.f;
   float m_scale_amount = 0.f;
 
   float* m_source_value[VOICES];
-  float* m_destination_value[VOICES];
+  float* m_destination_1_value[VOICES];
+  float* m_destination_2_value[VOICES];
   float* m_scale_value[VOICES];
 
-  bool m_destination_poly = false;
+  bool m_destination_1_poly = false;
+  bool m_destination_2_poly = false;
   bool m_source_poly = false;
 
 
@@ -188,14 +213,23 @@ public:
   void applyModulation();
 
   void setModSource(int p_row, int p_source);
-  void setModDestination(int p_row, int p_destination);
+  void setModDestination1(int p_row, int p_destination);
+  void setModDestination2(int p_row, int p_destination);
   void setModScale(int p_row, int p_scale);
-  void setModAmount(int p_row, float p_mod_amount);
+  void setModAmount1(int p_row, float p_mod_amount);
+  void setModAmount2(int p_row, float p_mod_amount);
   void setScaleAmount(int p_row, float p_scale_amount);
+  void setMostRecentVoice(int p_voice){
+    m_most_recent_voice = p_voice;
+    for(int row = 0; row < MODMATRIX_ROWS; ++row){
+      m_row[row].setMostRecentVoice(p_voice);
+    }
+  }
 
   void zeroAllSources();
   void zeroAllDestinations();
 private:
+  int m_most_recent_voice = 0;
   ModMatrixRow m_row[MODMATRIX_ROWS];
   ModSources* m_sources;
   ModDestinations* m_destinations;

@@ -204,6 +204,18 @@ struct Voice {
     }
   }
 
+  void killGlide(int p_osc) {
+      analog_osc[p_osc].killGlide();
+      wavedraw_osc[p_osc].killGlide();
+      chipdraw_osc[p_osc].killGlide();
+      specdraw_osc[p_osc].killGlide();
+      wavetable_osc[p_osc].killGlide();
+      multi_osc[p_osc].killGlide();
+      vector_osc[p_osc].killGlide();
+      chiptune_osc[p_osc].killGlide();
+      fm_osc[p_osc].killGlide();
+  }
+
   void setReset(bool p_reset, int p_osc) {
     analog_osc[p_osc].setResetActive(p_reset);
     wavedraw_osc[p_osc].setResetActive(p_reset);

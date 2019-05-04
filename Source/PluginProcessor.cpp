@@ -229,6 +229,7 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
                 midi_message.getNoteNumber(), midi_message.getVelocity(), m_last_midi_note);
             m_amp.setMIDIVelocity(midi_message.getVelocity());
             m_last_midi_note = midi_message.getNoteNumber();
+            m_mod_matrix.setMostRecentVoice(voice_number);
             
           }
         } else if (midi_message.isNoteOff()) {

@@ -67,7 +67,7 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
       m_dest_1_identifier3("dest_1_[3]"), m_dest_1_identifier4("dest_1_[4]"),
       m_dest_1_identifier5("dest_1_[5]"), m_dest_1_identifier6("dest_1_[6]"),
       m_dest_1_identifier7("dest_1_[7]"), m_dest_1_identifier8("dest_1_[8]"),
-      m_dest_2_identifier0("dest_2_[0]"), m_dest_2_identifier1("dest_2_[2]"),
+      m_dest_2_identifier0("dest_2_[0]"), m_dest_2_identifier1("dest_2_[1]"),
       m_dest_2_identifier2("dest_2_[2]"), m_dest_2_identifier3("dest_2_[3]"),
       m_dest_2_identifier4("dest_2_[4]"), m_dest_2_identifier5("dest_2_[5]"),
       m_dest_2_identifier6("dest_2_[6]"), m_dest_2_identifier7("dest_2_[7]"),

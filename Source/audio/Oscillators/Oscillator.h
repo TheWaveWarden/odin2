@@ -110,6 +110,11 @@ public:
     m_osc_freq_base = p_freq;
   }
 
+  //moves the freq to glide target on osc change, otherwise after oscillator change the oscs glide again
+  void killGlide(){
+    m_osc_freq_base = m_osc_freq_glide_target;
+  }
+
   void setPitchModExpPointer(float *p_pointer) { m_pitch_mod_exp = p_pointer; }
   void setPitchModLinPointer(float *p_pointer) { m_pitch_mod_lin = p_pointer; }
   void setVolModPointer(float *p_pointer) { m_vol_mod = p_pointer; }
