@@ -123,15 +123,15 @@ private:
   Identifier m_amount_3_identifier8;
 
   // can't be array due to missing standard constructor..
-  juce::DrawableButton m_clear_button0;
-  juce::DrawableButton m_clear_button1;
-  juce::DrawableButton m_clear_button2;
-  juce::DrawableButton m_clear_button3;
-  juce::DrawableButton m_clear_button4;
-  juce::DrawableButton m_clear_button5;
-  juce::DrawableButton m_clear_button6;
-  juce::DrawableButton m_clear_button7;
-  juce::DrawableButton m_clear_button8;
+  DrawableButton m_clear_button0;
+  DrawableButton m_clear_button1;
+  DrawableButton m_clear_button2;
+  DrawableButton m_clear_button3;
+  DrawableButton m_clear_button4;
+  DrawableButton m_clear_button5;
+  DrawableButton m_clear_button6;
+  DrawableButton m_clear_button7;
+  DrawableButton m_clear_button8;
 
   AudioProcessorValueTreeState &m_value_tree;
 

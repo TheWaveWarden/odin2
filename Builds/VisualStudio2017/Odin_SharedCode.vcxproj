@@ -191,6 +191,7 @@
     <ClCompile Include="..\..\Source\ModAmountComponent.cpp"/>
     <ClCompile Include="..\..\Source\ModMatrixComponent.cpp"/>
     <ClCompile Include="..\..\Source\NumberSelector.cpp"/>
+    <ClCompile Include="..\..\Source\OdinButton.cpp"/>
     <ClCompile Include="..\..\Source\OscComponent.cpp"/>
     <ClCompile Include="..\..\Source\SaveLoadComponent.cpp"/>
     <ClCompile Include="..\..\Source\SpecdrawDisplay.cpp"/>
@@ -2218,6 +2219,7 @@
     <ClInclude Include="..\..\Source\ModAmountComponent.h"/>
     <ClInclude Include="..\..\Source\ModMatrixComponent.h"/>
     <ClInclude Include="..\..\Source\NumberSelector.h"/>
+    <ClInclude Include="..\..\Source\OdinButton.h"/>
     <ClInclude Include="..\..\Source\OscComponent.h"/>
     <ClInclude Include="..\..\Source\PitchWheel.h"/>
     <ClInclude Include="..\..\Source\SaveLoadComponent.h"/>

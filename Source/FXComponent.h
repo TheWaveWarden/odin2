@@ -10,6 +10,7 @@
 
 #pragma once
 
+#include "OdinButton.h"
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "GlobalIncludes.h"
 #include "Knob.h"
@@ -66,8 +67,8 @@ private:
   Knob m_amount;
   Knob m_dry_wet;
 
-  juce::DrawableButton m_sync;
-  juce::DrawableButton m_reset;
+  OdinButton m_sync;
+  OdinButton m_reset;
 
   juce::Image m_background_sync;
   juce::Image m_background_no_sync;

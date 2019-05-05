@@ -13,6 +13,7 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "GlobalIncludes.h"
 #include "Knob.h"
+#include "OdinButton.h"
 #include "GlasDropdown.h"
 
 #define AMP_GAIN_POS_X (400 - 275)
@@ -62,9 +63,9 @@ private:
   Knob m_threshold;
   Knob m_dry_wet;
 
-  juce::DrawableButton m_flow_left;
-  juce::DrawableButton m_flow_right;
-  juce::DrawableButton m_distortion;
+  OdinButton m_flow_left;
+  OdinButton m_flow_right;
+  OdinButton m_distortion;
 
   GlasDropdown m_distortion_algo;
 

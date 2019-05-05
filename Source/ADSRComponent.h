@@ -12,6 +12,7 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "DrawableSlider.h"
+#include "OdinButton.h"
 
 #define SLIDER_SIZE_X 23
 #define SLIDER_SIZE_Y 79
@@ -52,7 +53,7 @@ public:
   void resized() override;
 
 private:
-  juce::DrawableButton m_loop;
+  OdinButton m_loop;
 
 
   DrawableSlider m_attack;

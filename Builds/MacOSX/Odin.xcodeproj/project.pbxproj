@@ -285,6 +285,10 @@
 			isa = PBXBuildFile;
 			fileRef = FBCF9E75D27BD84459C32376;
 		};
+		D750F57BA7F6419A32A4B0EE = {
+			isa = PBXBuildFile;
+			fileRef = 52A915EE2FEC6789E3763430;
+		};
 		1BFD2BDC38C8F42222995D84 = {
 			isa = PBXBuildFile;
 			fileRef = B6352AFCCB1D304B2592D38D;
@@ -1006,6 +1010,13 @@
 			path = ../../Source/OdinTreeListener.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		52A915EE2FEC6789E3763430 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = OdinButton.cpp;
+			path = ../../Source/OdinButton.cpp;
+			sourceTree = "SOURCE_ROOT";
+		};
 		54A1445F85E6D27A91B87D72 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -1543,6 +1554,13 @@
 			lastKnownFileType = sourcecode.cpp.objcpp;
 			name = "include_juce_dsp.mm";
 			path = "../../JuceLibraryCode/include_juce_dsp.mm";
+			sourceTree = "SOURCE_ROOT";
+		};
+		A545D27F0304054AA408332E = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = OdinButton.h;
+			path = ../../Source/OdinButton.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		A65B5408553DE72271402426 = {
@@ -2419,6 +2437,8 @@
 				A2365721DD14430E2BD90418,
 				FBCF9E75D27BD84459C32376,
 				20B407BAA936CF4B9D1D03C3,
+				52A915EE2FEC6789E3763430,
+				A545D27F0304054AA408332E,
 				B6352AFCCB1D304B2592D38D,
 				02CC24ACF9A1A1958614DAE4,
 				ECB4A9422DDA7DDD48789B52,
@@ -3197,6 +3217,7 @@
 				035CBC04803B00AC551D1031,
 				791FB65859194AFC35481BDD,
 				8D3E1760F8125AF7FA33FF04,
+				D750F57BA7F6419A32A4B0EE,
 				1BFD2BDC38C8F42222995D84,
 				126C89ACC2D3B942E7A47EB1,
 				E976A44AE602E5AFB7FCC5E4,

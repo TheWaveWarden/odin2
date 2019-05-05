@@ -14,6 +14,7 @@
 #include "Knob.h"
 #include "LFOSelectorComponent.h"
 #include "GlobalIncludes.h"
+#include "OdinButton.h"
 #include "SyncTimeSelector.h"
 
 
@@ -81,8 +82,8 @@ private:
 
   Knob m_freq;
 
-  juce::DrawableButton m_reset;
-  juce::DrawableButton m_sync;
+  OdinButton m_reset;
+  OdinButton m_sync;
 
   juce::Image m_freq_overdraw;
   bool m_sync_active = false;

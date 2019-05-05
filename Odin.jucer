@@ -281,6 +281,8 @@
               file="Source/NumberSelector.cpp"/>
         <FILE id="UAhsRO" name="NumberSelector.h" compile="0" resource="0"
               file="Source/NumberSelector.h"/>
+        <FILE id="TUdZK1" name="OdinButton.cpp" compile="1" resource="0" file="Source/OdinButton.cpp"/>
+        <FILE id="PQdLa2" name="OdinButton.h" compile="0" resource="0" file="Source/OdinButton.h"/>
         <FILE id="zWGLzS" name="OscComponent.cpp" compile="1" resource="0"
               file="Source/OscComponent.cpp"/>
         <FILE id="MVOzDk" name="OscComponent.h" compile="0" resource="0" file="Source/OscComponent.h"/>

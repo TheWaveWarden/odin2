@@ -640,6 +640,9 @@
     <ClCompile Include="..\..\Source\NumberSelector.cpp">
       <Filter>Odin\Source\GUI</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\OdinButton.cpp">
+      <Filter>Odin\Source\GUI</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\OscComponent.cpp">
       <Filter>Odin\Source\GUI</Filter>
     </ClCompile>
@@ -3097,6 +3100,9 @@
       <Filter>Odin\Source\GUI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\NumberSelector.h">
+      <Filter>Odin\Source\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\OdinButton.h">
       <Filter>Odin\Source\GUI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\OscComponent.h">

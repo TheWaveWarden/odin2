@@ -21,6 +21,7 @@
 #include "SpecdrawDisplay.h"
 #include "WavedrawDisplay.h"
 #include "WaveformSelectorComponent.h"
+#include "OdinButton.h"
 #include "XYPadComponent.h"
 
 //#include "PluginProcessor.h"
@@ -214,21 +215,21 @@ protected:
   Knob m_spread;
   Knob m_detune;
 
-  juce::DrawableButton m_arp;
-  juce::DrawableButton m_step_button;
-  juce::DrawableButton m_noise;
-  juce::DrawableButton m_chipdraw_convert;
-  juce::DrawableButton m_wavedraw_convert;
-  juce::DrawableButton m_wavedraw_convert_REMOVE;
-  juce::DrawableButton m_specdraw_convert_REMOVE;
-  juce::DrawableButton m_chipdraw_convert_REMOVE;
-  juce::DrawableButton m_specdraw_convert;
-  juce::DrawableButton m_LED_saw;
-  juce::DrawableButton m_LED_pulse;
-  juce::DrawableButton m_LED_triangle;
-  juce::DrawableButton m_LED_sine;
+  OdinButton m_arp;
+  OdinButton m_step_button;
+  OdinButton m_noise;
+  OdinButton m_chipdraw_convert;
+  OdinButton m_wavedraw_convert;
+  OdinButton m_wavedraw_convert_REMOVE;
+  OdinButton m_specdraw_convert_REMOVE;
+  OdinButton m_chipdraw_convert_REMOVE;
+  OdinButton m_specdraw_convert;
+  OdinButton m_LED_saw;
+  OdinButton m_LED_pulse;
+  OdinButton m_LED_triangle;
+  OdinButton m_LED_sine;
 
-  juce::DrawableButton m_reset;
+  OdinButton m_reset;
 
   WaveformSelectorComponent m_chiptune_waveselector;
   WaveformSelectorComponent m_carrier_waveselector;

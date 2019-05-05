@@ -55,8 +55,8 @@ private:
 
   LFODisplayComponent m_display;
 
-  juce::DrawableButton m_up;
-  juce::DrawableButton m_down;
+  DrawableButton m_up;
+  DrawableButton m_down;
 
   int m_value = 0;
 

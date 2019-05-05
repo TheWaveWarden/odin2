@@ -13,6 +13,7 @@
 #include "GlobalIncludes.h"
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "Knob.h"
+#include "OdinButton.h"
 #include "SyncTimeSelector.h"
 
 #define TIME_POS_X 17
@@ -102,7 +103,7 @@ private:
 
   SyncTimeSelector m_sync_time;
 
-  juce::DrawableButton m_sync;
+  OdinButton m_sync;
 
   AudioProcessorValueTreeState& m_value_tree;
 

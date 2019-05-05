@@ -136,6 +136,7 @@ OBJECTS_SHARED_CODE := \
   $(JUCE_OBJDIR)/ModAmountComponent_d7b9742c.o \
   $(JUCE_OBJDIR)/ModMatrixComponent_f9a93f63.o \
   $(JUCE_OBJDIR)/NumberSelector_8d6881d1.o \
+  $(JUCE_OBJDIR)/OdinButton_7f3a4915.o \
   $(JUCE_OBJDIR)/OscComponent_a9199e47.o \
   $(JUCE_OBJDIR)/SaveLoadComponent_f10c989b.o \
   $(JUCE_OBJDIR)/SpecdrawDisplay_5fb14f24.o \
@@ -465,6 +466,11 @@ $(JUCE_OBJDIR)/ModMatrixComponent_f9a93f63.o: ../../Source/ModMatrixComponent.cp
 $(JUCE_OBJDIR)/NumberSelector_8d6881d1.o: ../../Source/NumberSelector.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling NumberSelector.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/OdinButton_7f3a4915.o: ../../Source/OdinButton.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling OdinButton.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/OscComponent_a9199e47.o: ../../Source/OscComponent.cpp

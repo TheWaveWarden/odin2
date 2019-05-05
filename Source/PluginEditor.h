@@ -29,6 +29,7 @@
 #include "OscComponent.h"
 #include "PitchWheel.h"
 #include "SaveLoadComponent.h"
+#include "OdinButton.h"
 #include "XYSectionComponent.h"
 
 #define GLIDE_POS_X 117
@@ -245,10 +246,10 @@ private:
 
   FXButtonsSection m_fx_buttons_section;
 
-  juce::DrawableButton m_flanger_on_button;
-  juce::DrawableButton m_phaser_on_button;
-  juce::DrawableButton m_chorus_on_button;
-  juce::DrawableButton m_delay_on_button;
+  OdinButton m_flanger_on_button;
+  OdinButton m_phaser_on_button;
+  OdinButton m_chorus_on_button;
+  OdinButton m_delay_on_button;
 
   juce::DrawableButton m_question_button;
 
