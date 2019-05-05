@@ -75,6 +75,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
 
   Knob::setOdinPointer(&p_processor);
   DrawableSlider::setOdinPointer(&p_processor);
+  LeftRightButton::setOdinPointer(&p_processor);
 
   m_osc_dropdown_menu.addItem(1, "None");
   m_osc_dropdown_menu.addItem(2, "Analog Oscillator");

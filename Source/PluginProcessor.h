@@ -31,6 +31,7 @@
 
 #include "Knob.h"
 #include "DrawableSlider.h"
+#include "LeftRightButton.h"
 
 //==============================================================================
 /**
@@ -82,9 +83,13 @@ public:
     if (m_midi_learn_knob) {
       m_midi_learn_knob->stopMidiLearn();
     }
+    if (m_midi_learn_lrbutton) {
+      m_midi_learn_lrbutton->stopMidiLearn();
+    }
     m_midi_learn_knob = p_knob;
-    m_midi_learn_knob_active = true;
+    m_midi_learn_lrbutton_active = false;
     m_midi_learn_slider_active = false;
+    m_midi_learn_knob_active = true;
   }
 
   void midiForget(Knob *p_knob) {
@@ -103,8 +108,12 @@ public:
     if (m_midi_learn_knob) {
       m_midi_learn_knob->stopMidiLearn();
     }
+    if (m_midi_learn_lrbutton) {
+      m_midi_learn_lrbutton->stopMidiLearn();
+    }
     m_midi_learn_slider = p_slider;
     m_midi_learn_knob_active = false;
+    m_midi_learn_lrbutton_active = false;
     m_midi_learn_slider_active = true;
   }
 
@@ -112,6 +121,31 @@ public:
     for (auto const &control : m_midi_control_list_slider) {
       if (control.second == p_slider) {
         m_midi_control_list_slider.erase(control.first);
+      }
+    }
+  }
+
+  void startMidiLearn(LeftRightButton *p_button) {
+    DBG("MIDI LEARN WAS SIGNALED");
+    if (m_midi_learn_slider) {
+      m_midi_learn_slider->stopMidiLearn();
+    }
+    if (m_midi_learn_knob) {
+      m_midi_learn_knob->stopMidiLearn();
+    }
+    if (m_midi_learn_lrbutton) {
+      m_midi_learn_lrbutton->stopMidiLearn();
+    }
+    m_midi_learn_lrbutton = p_button;
+    m_midi_learn_knob_active = false;
+    m_midi_learn_slider_active = false;
+    m_midi_learn_lrbutton_active = true;
+  }
+
+  void midiForget(LeftRightButton *p_button) {
+    for (auto const &control : m_midi_control_list_lrbutton) {
+      if (control.second == p_button) {
+        m_midi_control_list_lrbutton.erase(control.first);
       }
     }
   }
@@ -124,6 +158,10 @@ private:
   bool m_midi_learn_slider_active = false;
   DrawableSlider *m_midi_learn_slider = nullptr;
   std::multimap<int, DrawableSlider *> m_midi_control_list_slider;
+
+  bool m_midi_learn_lrbutton_active = false;
+  LeftRightButton *m_midi_learn_lrbutton = nullptr;
+  std::multimap<int, LeftRightButton *> m_midi_control_list_lrbutton;
 
   float m_osc_vol_smooth[3] = {1.f, 1.f, 1.f};   // factor
   float m_fil_gain_smooth[3] = {1.f, 1.f, 1.f};  // factor

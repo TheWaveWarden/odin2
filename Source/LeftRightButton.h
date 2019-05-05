@@ -16,9 +16,12 @@
 //==============================================================================
 /*
  */
+
+class OdinAudioProcessor;
+
 class LeftRightButton : public juce::Button {
 public:
-  LeftRightButton(const String& buttonName) ;
+  LeftRightButton(const String &buttonName);
   ~LeftRightButton();
 
   void paintButton(Graphics &g, bool shouldDrawButtonAsHighlighted,
@@ -33,9 +36,27 @@ public:
   }
 
   void mouseDown(const MouseEvent &) override;
-  void mouseExit(const MouseEvent &) override{}
+  void mouseExit(const MouseEvent &) override {}
+  static void setOdinPointer(OdinAudioProcessor *p_pointer) {
+    m_processor = p_pointer;
+  }
+
+  void stopMidiLearn() {
+    m_midi_learn = false;
+    repaint();
+  }
+
+  void setMidiControlActive() {
+    m_midi_learn = false;
+    m_midi_control = true;
+    repaint();
+  }
 
 private:
+  bool m_midi_learn = false;
+  bool m_midi_control = false;
+
+  static OdinAudioProcessor *m_processor;
   juce::Image m_image_left;
   juce::Image m_image_right;
 

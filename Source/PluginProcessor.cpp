@@ -284,11 +284,20 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
                 std::to_string(midi_message.getControllerNumber()));
           }
           if (m_midi_learn_slider_active) {
-            m_midi_control_list_slider.emplace(midi_message.getControllerNumber(),
-                                             m_midi_learn_slider);
+            m_midi_control_list_slider.emplace(
+                midi_message.getControllerNumber(), m_midi_learn_slider);
             m_midi_learn_slider->setMidiControlActive();
             m_midi_learn_slider_active = false;
             m_midi_learn_slider = nullptr;
+            DBG("Added MIDI control on controller number " +
+                std::to_string(midi_message.getControllerNumber()));
+          }
+          if (m_midi_learn_lrbutton_active) {
+            m_midi_control_list_lrbutton.emplace(
+                midi_message.getControllerNumber(), m_midi_learn_lrbutton);
+            m_midi_learn_lrbutton->setMidiControlActive();
+            m_midi_learn_lrbutton_active = false;
+            m_midi_learn_lrbutton = nullptr;
             DBG("Added MIDI control on controller number " +
                 std::to_string(midi_message.getControllerNumber()));
           }
@@ -306,6 +315,12 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
               control.second->setValue(
                   control.second->proportionOfLengthToValue(
                       (int)midi_message.getControllerValue() / 127.f));
+            }
+          }
+          for (auto const &control : m_midi_control_list_lrbutton) {
+            if (control.first == midi_message.getControllerNumber()) {
+              control.second->setToggleState(
+                  (int)midi_message.getControllerValue() > 64, sendNotificationAsync);
             }
           }
         }
