@@ -314,6 +314,7 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
           // do midi control
           for (auto const &control : m_midi_control_list_knob) {
             if (control.first == midi_message.getControllerNumber()) {
+              const MessageManagerLock mmLock;  
               control.second->setValue(
                   control.second->proportionOfLengthToValue(
                       (int)midi_message.getControllerValue() / 127.f));
@@ -321,6 +322,7 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
           }
           for (auto const &control : m_midi_control_list_slider) {
             if (control.first == midi_message.getControllerNumber()) {
+              const MessageManagerLock mmLock;  
               control.second->setValue(
                   control.second->proportionOfLengthToValue(
                       (int)midi_message.getControllerValue() / 127.f));
@@ -328,12 +330,14 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
           }
           for (auto const &control : m_midi_control_list_lrbutton) {
             if (control.first == midi_message.getControllerNumber()) {
+              const MessageManagerLock mmLock;  
               control.second->setToggleState(
                   (int)midi_message.getControllerValue() > 64, sendNotificationAsync);
             }
           }
           for (auto const &control : m_midi_control_list_odinbutton) {
             if (control.first == midi_message.getControllerNumber()) {
+              const MessageManagerLock mmLock;  
               control.second->setToggleState(
                   (int)midi_message.getControllerValue() > 64, sendNotificationAsync);
             }
