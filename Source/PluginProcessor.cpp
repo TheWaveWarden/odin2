@@ -301,6 +301,15 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
             DBG("Added MIDI control on controller number " +
                 std::to_string(midi_message.getControllerNumber()));
           }
+          if (m_midi_learn_odinbutton_active) {
+            m_midi_control_list_odinbutton.emplace(
+                midi_message.getControllerNumber(), m_midi_learn_odinbutton);
+            m_midi_learn_odinbutton->setMidiControlActive();
+            m_midi_learn_odinbutton_active = false;
+            m_midi_learn_odinbutton = nullptr;
+            DBG("Added MIDI control on controller number " +
+                std::to_string(midi_message.getControllerNumber()));
+          }
 
           // do midi control
           for (auto const &control : m_midi_control_list_knob) {
@@ -318,6 +327,12 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
             }
           }
           for (auto const &control : m_midi_control_list_lrbutton) {
+            if (control.first == midi_message.getControllerNumber()) {
+              control.second->setToggleState(
+                  (int)midi_message.getControllerValue() > 64, sendNotificationAsync);
+            }
+          }
+          for (auto const &control : m_midi_control_list_odinbutton) {
             if (control.first == midi_message.getControllerNumber()) {
               control.second->setToggleState(
                   (int)midi_message.getControllerValue() > 64, sendNotificationAsync);

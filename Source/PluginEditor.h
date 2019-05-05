@@ -235,14 +235,14 @@ private:
   juce::DrawableButton m_filter2_dropdown;
   juce::DrawableButton m_filter3_dropdown;
 
-  juce::DrawableButton m_filleft_button1;
-  juce::DrawableButton m_filleft_button2;
-  juce::DrawableButton m_filleft_button3;
+  OdinButton m_filleft_button1;
+  OdinButton m_filleft_button2;
+  OdinButton m_filleft_button3;
 
-  juce::DrawableButton m_filright_button1;
-  juce::DrawableButton m_filright_button2;
-  juce::DrawableButton m_filright_button3;
-  juce::DrawableButton m_filright_buttonf1;
+  OdinButton m_filright_button1;
+  OdinButton m_filright_button2;
+  OdinButton m_filright_button3;
+  OdinButton m_filright_buttonf1;
 
   FXButtonsSection m_fx_buttons_section;
 

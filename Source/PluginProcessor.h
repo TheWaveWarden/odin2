@@ -29,9 +29,10 @@
 #include "audio/Filters/SEMFilter24.h"
 #include "audio/Oscillators/WavetableContainer.h"
 
-#include "Knob.h"
 #include "DrawableSlider.h"
+#include "Knob.h"
 #include "LeftRightButton.h"
+#include "OdinButton.h"
 
 //==============================================================================
 /**
@@ -86,9 +87,13 @@ public:
     if (m_midi_learn_lrbutton) {
       m_midi_learn_lrbutton->stopMidiLearn();
     }
+    if (m_midi_learn_odinbutton) {
+      m_midi_learn_odinbutton->stopMidiLearn();
+    }
     m_midi_learn_knob = p_knob;
     m_midi_learn_lrbutton_active = false;
     m_midi_learn_slider_active = false;
+    m_midi_learn_odinbutton_active = false;
     m_midi_learn_knob_active = true;
   }
 
@@ -111,9 +116,13 @@ public:
     if (m_midi_learn_lrbutton) {
       m_midi_learn_lrbutton->stopMidiLearn();
     }
+    if (m_midi_learn_odinbutton) {
+      m_midi_learn_odinbutton->stopMidiLearn();
+    }
     m_midi_learn_slider = p_slider;
     m_midi_learn_knob_active = false;
     m_midi_learn_lrbutton_active = false;
+    m_midi_learn_odinbutton_active = false;
     m_midi_learn_slider_active = true;
   }
 
@@ -136,9 +145,13 @@ public:
     if (m_midi_learn_lrbutton) {
       m_midi_learn_lrbutton->stopMidiLearn();
     }
+    if (m_midi_learn_odinbutton) {
+      m_midi_learn_odinbutton->stopMidiLearn();
+    }
     m_midi_learn_lrbutton = p_button;
     m_midi_learn_knob_active = false;
     m_midi_learn_slider_active = false;
+    m_midi_learn_odinbutton_active = false;
     m_midi_learn_lrbutton_active = true;
   }
 
@@ -148,6 +161,46 @@ public:
         m_midi_control_list_lrbutton.erase(control.first);
       }
     }
+  }
+
+  void startMidiLearn(OdinButton *p_button) {
+    DBG("MIDI LEARN WAS SIGNALED");
+    if (m_midi_learn_slider) {
+      m_midi_learn_slider->stopMidiLearn();
+    }
+    if (m_midi_learn_knob) {
+      m_midi_learn_knob->stopMidiLearn();
+    }
+    if (m_midi_learn_lrbutton) {
+      m_midi_learn_lrbutton->stopMidiLearn();
+    }
+    if (m_midi_learn_odinbutton) {
+      m_midi_learn_odinbutton->stopMidiLearn();
+    }
+    m_midi_learn_odinbutton = p_button;
+    m_midi_learn_knob_active = false;
+    m_midi_learn_slider_active = false;
+    m_midi_learn_lrbutton_active = false;
+    m_midi_learn_odinbutton_active = true;
+  }
+
+  void midiForget(OdinButton *p_button) {
+    for (auto const &control : m_midi_control_list_odinbutton) {
+      if (control.second == p_button) {
+        m_midi_control_list_odinbutton.erase(control.first);
+      }
+    }
+  }
+
+  void stopMidiLearn() {
+    m_midi_learn_knob_active = false;
+    m_midi_learn_knob = nullptr;
+    m_midi_learn_slider_active = false;
+    m_midi_learn_slider = nullptr;
+    m_midi_learn_lrbutton_active = false;
+    m_midi_learn_lrbutton = nullptr;
+    m_midi_learn_odinbutton_active = false;
+    m_midi_learn_odinbutton = nullptr;
   }
 
 private:
@@ -162,6 +215,10 @@ private:
   bool m_midi_learn_lrbutton_active = false;
   LeftRightButton *m_midi_learn_lrbutton = nullptr;
   std::multimap<int, LeftRightButton *> m_midi_control_list_lrbutton;
+
+  bool m_midi_learn_odinbutton_active = false;
+  OdinButton *m_midi_learn_odinbutton = nullptr;
+  std::multimap<int, OdinButton *> m_midi_control_list_odinbutton;
 
   float m_osc_vol_smooth[3] = {1.f, 1.f, 1.f};   // factor
   float m_fil_gain_smooth[3] = {1.f, 1.f, 1.f};  // factor

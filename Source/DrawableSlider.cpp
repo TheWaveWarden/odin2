@@ -61,6 +61,7 @@ void DrawableSlider::mouseDown(const MouseEvent &event) {
       midi_learn_menu.addItem(2, "Stop MIDI learn");
       if (midi_learn_menu.show() == 2) {
         stopMidiLearn();
+        m_processor->stopMidiLearn();
       }
     } else {
       midi_learn_menu.addItem(2, "MIDI learn");
@@ -74,6 +75,7 @@ void DrawableSlider::mouseDown(const MouseEvent &event) {
         }
         m_processor->startMidiLearn(this);
         m_midi_learn = true;
+        m_midi_control = false;
         repaint();
       } else if (menu == 3) {
         m_processor->midiForget(this);
