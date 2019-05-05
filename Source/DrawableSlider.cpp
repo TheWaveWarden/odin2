@@ -10,7 +10,9 @@
 
 #include "DrawableSlider.h"
 #include "GlobalIncludes.h"
+#include "PluginProcessor.h"
 
+OdinAudioProcessor *DrawableSlider::m_processor;
 
 //==============================================================================
 DrawableSlider::DrawableSlider()
@@ -35,4 +37,51 @@ void DrawableSlider::paint(Graphics &g)
   g.drawImageAt(m_handle, 0, (1.f - valueToProportionOfLength(getValue())) * (getHeight() - m_handle.getHeight()));
 
   //DBG(getValue());
+  if (m_midi_learn) {
+      g.setColour(Colours::red);
+      g.drawRoundedRectangle(getLocalBounds().getX(), getLocalBounds().getY(),
+                             getLocalBounds().getWidth(),
+                             getLocalBounds().getHeight(), 5,
+                             2); // draw an outline around the component
+    }
+    else if (m_midi_control) {
+      g.setColour(Colours::green);
+      g.drawRoundedRectangle(getLocalBounds().getX(), getLocalBounds().getY(),
+                             getLocalBounds().getWidth(),
+                             getLocalBounds().getHeight(), 5,
+                             2); // draw an outline around the component
+    }
+}
+
+void DrawableSlider::mouseDown(const MouseEvent &event) {
+  if (event.mods.isRightButtonDown()) {
+    DBG("RIGHT");
+    PopupMenu midi_learn_menu;
+    if (m_midi_learn) {
+      midi_learn_menu.addItem(2, "Stop MIDI learn");
+      if (midi_learn_menu.show() == 2) {
+        stopMidiLearn();
+      }
+    } else {
+      midi_learn_menu.addItem(2, "MIDI learn");
+      if (m_midi_control) {
+        midi_learn_menu.addItem(3, "MIDI forget");
+      }
+      int menu = midi_learn_menu.show();
+      if (menu == 2) {
+        if (m_midi_control) {
+          m_processor->midiForget(this);
+        }
+        m_processor->startMidiLearn(this);
+        m_midi_learn = true;
+        repaint();
+      } else if (menu == 3) {
+        m_processor->midiForget(this);
+        m_midi_control = false;
+        repaint();
+      }
+    }
+    return;
+  }
+  Slider::mouseDown(event);
 }

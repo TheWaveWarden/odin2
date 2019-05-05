@@ -30,6 +30,7 @@
 #include "audio/Oscillators/WavetableContainer.h"
 
 #include "Knob.h"
+#include "DrawableSlider.h"
 
 //==============================================================================
 /**
@@ -75,11 +76,15 @@ public:
 
   void startMidiLearn(Knob *p_knob) {
     DBG("MIDI LEARN WAS SIGNALED");
+    if (m_midi_learn_slider) {
+      m_midi_learn_slider->stopMidiLearn();
+    }
     if (m_midi_learn_knob) {
       m_midi_learn_knob->stopMidiLearn();
     }
     m_midi_learn_knob = p_knob;
-    m_midi_learn_active = true;
+    m_midi_learn_knob_active = true;
+    m_midi_learn_slider_active = false;
   }
 
   void midiForget(Knob *p_knob) {
@@ -90,10 +95,35 @@ public:
     }
   }
 
+  void startMidiLearn(DrawableSlider *p_slider) {
+    DBG("MIDI LEARN WAS SIGNALED");
+    if (m_midi_learn_slider) {
+      m_midi_learn_slider->stopMidiLearn();
+    }
+    if (m_midi_learn_knob) {
+      m_midi_learn_knob->stopMidiLearn();
+    }
+    m_midi_learn_slider = p_slider;
+    m_midi_learn_knob_active = false;
+    m_midi_learn_slider_active = true;
+  }
+
+  void midiForget(DrawableSlider *p_slider) {
+    for (auto const &control : m_midi_control_list_slider) {
+      if (control.second == p_slider) {
+        m_midi_control_list_slider.erase(control.first);
+      }
+    }
+  }
+
 private:
-  bool m_midi_learn_active = false;
+  bool m_midi_learn_knob_active = false;
   Knob *m_midi_learn_knob = nullptr;
   std::multimap<int, Knob *> m_midi_control_list_knob;
+
+  bool m_midi_learn_slider_active = false;
+  DrawableSlider *m_midi_learn_slider = nullptr;
+  std::multimap<int, DrawableSlider *> m_midi_control_list_slider;
 
   float m_osc_vol_smooth[3] = {1.f, 1.f, 1.f};   // factor
   float m_fil_gain_smooth[3] = {1.f, 1.f, 1.f};  // factor
