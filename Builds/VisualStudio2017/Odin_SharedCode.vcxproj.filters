@@ -616,6 +616,9 @@
     <ClCompile Include="..\..\Source\IntegerKnob.cpp">
       <Filter>Odin\Source\GUI</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Knob.cpp">
+      <Filter>Odin\Source\GUI</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\LeftRightButton.cpp">
       <Filter>Odin\Source\GUI</Filter>
     </ClCompile>

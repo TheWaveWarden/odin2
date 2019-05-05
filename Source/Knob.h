@@ -52,6 +52,8 @@
 
 #pragma once
 
+class OdinAudioProcessor;
+
 class KnobFeels : public juce::LookAndFeel_V4 {
 public:
   KnobFeels() {
@@ -118,13 +120,48 @@ public:
       g.drawImage(m_filmstrip, 0, 0, m_width, m_height, image_number * m_width,
                   0, m_width, m_height);
     }
+
+    if (m_midi_learn) {
+      g.setColour(Colours::red);
+      g.drawRoundedRectangle(getLocalBounds().getX(), getLocalBounds().getY(),
+                             getLocalBounds().getWidth(),
+                             getLocalBounds().getHeight(), 5,
+                             2); // draw an outline around the component
+    }
+    else if (m_midi_control) {
+      g.setColour(Colours::green);
+      g.drawRoundedRectangle(getLocalBounds().getX(), getLocalBounds().getY(),
+                             getLocalBounds().getWidth(),
+                             getLocalBounds().getHeight(), 5,
+                             2); // draw an outline around the component
+    }
   }
 
   void mouseDoubleClick(const MouseEvent &event) override {}
+  void mouseDown(const MouseEvent &event) override;
 
   void setKnobTooltip(const std::string p_tooltip) { setTooltip(p_tooltip); }
 
+  static void setOdinPointer(OdinAudioProcessor *p_pointer) {
+    m_processor = p_pointer;
+  }
+
+  void stopMidiLearn(){
+    m_midi_learn = false;
+    repaint();
+  }
+
+  void setMidiControlActive(){
+    m_midi_learn = false;
+    m_midi_control = true;
+    repaint();
+  }
+
 private:
+  bool m_midi_learn = false;
+  bool m_midi_control = false;
+
+  static OdinAudioProcessor *m_processor;
   bool m_is_vertical = true;
   std::size_t m_frames, m_width, m_height;
   juce::Image m_filmstrip;

@@ -11,8 +11,9 @@
 #include "OscComponent.h"
 #include "../JuceLibraryCode/JuceHeader.h"
 
+
 //==============================================================================
-OscComponent::OscComponent(AudioProcessorValueTreeState &vts,
+OscComponent::OscComponent(OdinAudioProcessor &p_processor, AudioProcessorValueTreeState &vts,
                            std::string p_osc_number)
     : m_value_tree(vts),
       m_reset("reset_button", juce::DrawableButton::ButtonStyle::ImageRaw),
@@ -107,6 +108,9 @@ OscComponent::OscComponent(AudioProcessorValueTreeState &vts,
       m_value_tree, "osc" + m_osc_number + "_vec_c", m_vec_c));
   m_vec_d_attach.reset(new ComboBoxAttachment(
       m_value_tree, "osc" + m_osc_number + "_vec_d", m_vec_d));
+
+
+  //m_fine.setOdinPointer(&p_processor);
 
   m_vol.setStrip(
       ImageCache::getFromFile(juce::File(
@@ -837,7 +841,7 @@ OscComponent::OscComponent(AudioProcessorValueTreeState &vts,
   m_fm_exp.setImage(fm_exp_right, 2);
   m_fm_exp.setBounds(FM_EXP_POS_X, FM_EXP_POS_Y, fm_exp_left.getWidth(),
                      fm_exp_left.getHeight());
-  m_fm_exp.setToggleState(true, dontSendNotification);
+  m_fm_exp.setToggleState(false, dontSendNotification);
   m_fm_exp.onStateChange = [&]() {
     // setLfo13(m_fm_exp_button.getToggleState());
   };

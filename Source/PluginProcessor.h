@@ -11,6 +11,7 @@
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "ModMatrix.h"
 #include "OdinTreeListener.h"
 #include "Voice.h"
 #include "audio/Amplifier.h"
@@ -27,7 +28,8 @@
 #include "audio/Filters/SEMFilter12.h"
 #include "audio/Filters/SEMFilter24.h"
 #include "audio/Oscillators/WavetableContainer.h"
-#include "ModMatrix.h" 
+
+#include "Knob.h"
 
 //==============================================================================
 /**
@@ -71,7 +73,28 @@ public:
   void getStateInformation(MemoryBlock &destData) override;
   void setStateInformation(const void *data, int sizeInBytes) override;
 
+  void startMidiLearn(Knob *p_knob) {
+    DBG("MIDI LEARN WAS SIGNALED");
+    if (m_midi_learn_knob) {
+      m_midi_learn_knob->stopMidiLearn();
+    }
+    m_midi_learn_knob = p_knob;
+    m_midi_learn_active = true;
+  }
+
+  void midiForget(Knob *p_knob) {
+    for (auto const &control : m_midi_control_list_knob) {
+      if (control.second == p_knob) {
+        m_midi_control_list_knob.erase(control.first);
+      }
+    }
+  }
+
 private:
+  bool m_midi_learn_active = false;
+  Knob *m_midi_learn_knob = nullptr;
+  std::multimap<int, Knob *> m_midi_control_list_knob;
+
   float m_osc_vol_smooth[3] = {1.f, 1.f, 1.f};   // factor
   float m_fil_gain_smooth[3] = {1.f, 1.f, 1.f};  // factor
   float m_osc_vol_control[3] = {1.f, 1.f, 1.f};  // factor
@@ -84,7 +107,7 @@ private:
   float m_x_smooth = 0.f;
   float m_y_smooth = 0.f;
   float m_master_smooth = 1.f;
-  float m_master_control = 1.f; //factor
+  float m_master_control = 1.f; // factor
 
   int m_last_midi_note = -1;
 
@@ -100,7 +123,7 @@ private:
   OversamplingDistortion m_distortion[2];
 
   LadderFilter m_ladder_filter[2];
-  //SEMFilter24 m_SEM_filter_24[2];
+  // SEMFilter24 m_SEM_filter_24[2];
   SEMFilter12 m_SEM_filter_12[2];
   Korg35Filter m_korg_filter[2];
   DiodeFilter m_diode_filter[2];
@@ -120,21 +143,19 @@ private:
   void setModulationPointers();
   void treeValueChanged(const String &p_ID, float p_new_value);
 
-  //MOD SOURCES
+  // MOD SOURCES
   float m_adsr[VOICES][4] = {0.f};
   float m_lfo[VOICES][4] = {0.f};
   float m_filter_output[VOICES][2] = {0.f};
   float m_osc_output[VOICES][3] = {0.f};
   float m_MIDI_aftertouch = 0.f;
   float m_constant = 1.f;
-  //float m_modwheel = 0.f;
-  //float m_pitchwheel = 0.f;
+  // float m_modwheel = 0.f;
+  // float m_pitchwheel = 0.f;
   float m_x = 0.f;
   float m_y = 0.f;
-  //MOD DEST
-  float* m_master_mod;
-
-
+  // MOD DEST
+  float *m_master_mod;
 
   int m_counter = 0; // todo remove
 #include "AudioVarDeclarations.h"

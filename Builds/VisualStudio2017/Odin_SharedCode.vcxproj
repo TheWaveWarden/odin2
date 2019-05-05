@@ -183,6 +183,7 @@
     <ClCompile Include="..\..\Source\GlasDisplay.cpp"/>
     <ClCompile Include="..\..\Source\GlasDropdown.cpp"/>
     <ClCompile Include="..\..\Source\IntegerKnob.cpp"/>
+    <ClCompile Include="..\..\Source\Knob.cpp"/>
     <ClCompile Include="..\..\Source\LeftRightButton.cpp"/>
     <ClCompile Include="..\..\Source\LFOComponent.cpp"/>
     <ClCompile Include="..\..\Source\LFODisplayComponent.cpp"/>

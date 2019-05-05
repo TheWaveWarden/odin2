@@ -13,8 +13,8 @@
 
 //==============================================================================
 OdinAudioProcessorEditor::OdinAudioProcessorEditor(
-    OdinAudioProcessor &p, AudioProcessorValueTreeState &vts)
-    : m_value_tree(vts), AudioProcessorEditor(&p), processor(p),
+    OdinAudioProcessor &p_processor, AudioProcessorValueTreeState &vts)
+    : m_value_tree(vts), AudioProcessorEditor(&p_processor), processor(p_processor),
       m_osc1_dropdown("osc1_dropdown_button",
                       juce::DrawableButton::ButtonStyle::ImageRaw),
       m_osc2_dropdown("osc2_dropdown_button",
@@ -54,8 +54,8 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
                         juce::DrawableButton::ButtonStyle::ImageRaw),
       m_env_13_button("env13_button"), m_env_24_button("env24_button"),
       m_lfo_13_button("lfo13_button"), m_lfo_24_button("lfo24_button"),
-      m_pitch_amount(true), m_osc1(vts, "1"), m_osc2(vts, "2"),
-      m_osc3(vts, "3"), m_fil1_component(vts, "1"), m_fil2_component(vts, "2"),
+      m_pitch_amount(true), m_osc1(p_processor, vts, "1"), m_osc2(p_processor, vts, "2"),
+      m_osc3(p_processor, vts, "3"), m_fil1_component(vts, "1"), m_fil2_component(vts, "2"),
       m_fil3_component(vts, "3"), m_midsection(vts), m_adsr_1(vts, "1"),
       m_adsr_2(vts, "2"), m_adsr_3(vts, "3"), m_adsr_4(vts, "4"),
       m_lfo_1(vts, "1"), m_lfo_2(vts, "2"), m_lfo_3(vts, "3"),
@@ -72,6 +72,9 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
       m_flanger_position_identifier("flanger_position"),
       m_phaser_position_identifier("phaser_position"),
       m_chorus_position_identifier("chorus_position"), m_mod_matrix(vts) {
+
+  Knob::setOdinPointer(&p_processor);
+
   m_osc_dropdown_menu.addItem(1, "None");
   m_osc_dropdown_menu.addItem(2, "Analog Oscillator");
   m_osc_dropdown_menu.addItem(3, "Wavetable Oscillator");

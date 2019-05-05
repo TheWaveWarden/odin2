@@ -167,7 +167,7 @@ public:
 class OdinAudioProcessorEditor  : public AudioProcessorEditor
 {
 public:
-    OdinAudioProcessorEditor (OdinAudioProcessor&, AudioProcessorValueTreeState& vts);
+    OdinAudioProcessorEditor (OdinAudioProcessor& p_processor, AudioProcessorValueTreeState& vts);
     ~OdinAudioProcessorEditor();
 
     //==============================================================================

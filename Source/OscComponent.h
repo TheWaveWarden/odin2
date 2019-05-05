@@ -23,6 +23,9 @@
 #include "WaveformSelectorComponent.h"
 #include "XYPadComponent.h"
 
+//#include "PluginProcessor.h"
+
+
 #define OCT_POS_X 139
 #define SEMI_POS_X 169
 #define FINE_POS_X 199
@@ -131,9 +134,13 @@
 //==============================================================================
 /*
  */
+
+
+
+
 class OscComponent : public Component {
 public:
-  OscComponent(AudioProcessorValueTreeState &vts, std::string p_osc_number);
+  OscComponent(OdinAudioProcessor &p_processor, AudioProcessorValueTreeState &vts, std::string p_osc_number);
   ~OscComponent();
 
   void paint(Graphics &) override;

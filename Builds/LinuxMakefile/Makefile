@@ -128,6 +128,7 @@ OBJECTS_SHARED_CODE := \
   $(JUCE_OBJDIR)/GlasDisplay_2c37b9cc.o \
   $(JUCE_OBJDIR)/GlasDropdown_6b35c191.o \
   $(JUCE_OBJDIR)/IntegerKnob_5e678535.o \
+  $(JUCE_OBJDIR)/Knob_7a6e67ff.o \
   $(JUCE_OBJDIR)/LeftRightButton_b4c6f6c8.o \
   $(JUCE_OBJDIR)/LFOComponent_937e96d1.o \
   $(JUCE_OBJDIR)/LFODisplayComponent_15f00d11.o \
@@ -424,6 +425,11 @@ $(JUCE_OBJDIR)/GlasDropdown_6b35c191.o: ../../Source/GlasDropdown.cpp
 $(JUCE_OBJDIR)/IntegerKnob_5e678535.o: ../../Source/IntegerKnob.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling IntegerKnob.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/Knob_7a6e67ff.o: ../../Source/Knob.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling Knob.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/LeftRightButton_b4c6f6c8.o: ../../Source/LeftRightButton.cpp

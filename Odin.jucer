@@ -252,6 +252,7 @@
               file="Source/GlobalIncludes.h"/>
         <FILE id="rx44he" name="IntegerKnob.cpp" compile="1" resource="0" file="Source/IntegerKnob.cpp"/>
         <FILE id="pKAX8X" name="IntegerKnob.h" compile="0" resource="0" file="Source/IntegerKnob.h"/>
+        <FILE id="nxhniA" name="Knob.cpp" compile="1" resource="0" file="Source/Knob.cpp"/>
         <FILE id="DmvTXS" name="Knob.h" compile="0" resource="0" file="Source/Knob.h"/>
         <FILE id="vQFK0n" name="LeftRightButton.cpp" compile="1" resource="0"
               file="Source/LeftRightButton.cpp"/>

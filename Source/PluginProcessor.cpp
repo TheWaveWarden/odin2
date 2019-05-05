@@ -270,6 +270,30 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
           DBG("UNHANDELED MIDI MESSAGE: " + midi_message.getDescription());
         }
 
+        if ((midi_message.isController() || midi_message.isPitchWheel()) &&
+            !midi_message.isSustainPedalOn() &&
+            !midi_message.isSustainPedalOff()) {
+          DBG("CONTROLLER");
+          if (m_midi_learn_active) {
+            m_midi_control_list_knob.emplace(midi_message.getControllerNumber(),
+                                             m_midi_learn_knob);
+            m_midi_learn_knob->setMidiControlActive();
+            m_midi_learn_active = false;
+            m_midi_learn_knob = nullptr;
+            DBG("Added MIDI control on controller number " +
+                std::to_string(midi_message.getControllerNumber()));
+          }
+
+          // do midi control
+          for (auto const &control : m_midi_control_list_knob) {
+            if (control.first == midi_message.getControllerNumber()) {
+              control.second->setValue(
+                  control.second->proportionOfLengthToValue(
+                      (int)midi_message.getControllerValue() / 127.f));
+            }
+          }
+        }
+
         // get next midi message
         midi_message_remaining =
             midi_iterator.getNextEvent(midi_message, midi_message_sample);
@@ -649,10 +673,12 @@ void OdinAudioProcessor::setModulationPointers() {
           &(m_pitch_bend_smooth_and_applied));
       m_voice[voice].wavetable_osc[osc].setPitchBendPointer(
           &(m_pitch_bend_smooth_and_applied));
-      m_voice[voice].multi_osc[osc].setPitchBendPointer(&(m_pitch_bend_smooth_and_applied));
+      m_voice[voice].multi_osc[osc].setPitchBendPointer(
+          &(m_pitch_bend_smooth_and_applied));
       m_voice[voice].vector_osc[osc].setPitchBendPointer(
           &(m_pitch_bend_smooth_and_applied));
-      m_voice[voice].fm_osc[osc].setPitchBendPointer(&(m_pitch_bend_smooth_and_applied));
+      m_voice[voice].fm_osc[osc].setPitchBendPointer(
+          &(m_pitch_bend_smooth_and_applied));
       m_voice[voice].chiptune_osc[osc].setPitchBendPointer(
           &(m_pitch_bend_smooth_and_applied));
       m_voice[voice].wavedraw_osc[osc].setPitchBendPointer(
