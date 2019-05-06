@@ -224,10 +224,10 @@ protected:
   OdinButton m_specdraw_convert_REMOVE;
   OdinButton m_chipdraw_convert_REMOVE;
   OdinButton m_specdraw_convert;
-  OdinButton m_LED_saw;
-  OdinButton m_LED_pulse;
-  OdinButton m_LED_triangle;
-  OdinButton m_LED_sine;
+  DrawableButton m_LED_saw;
+  DrawableButton m_LED_pulse;
+  DrawableButton m_LED_triangle;
+  DrawableButton m_LED_sine;
 
   OdinButton m_reset;
 
