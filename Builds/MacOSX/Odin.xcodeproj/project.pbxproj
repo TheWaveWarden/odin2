@@ -5,6 +5,10 @@
 	};
 	objectVersion = 46;
 	objects = {
+		E67DF787F12D824332ADF260 = {
+			isa = PBXBuildFile;
+			fileRef = FC12642B755F0EA465F450F1;
+		};
 		2070B7C6E3F47CBD7098C716 = {
 			isa = PBXBuildFile;
 			fileRef = EC0E529B3A008A4BD8268B1E;
@@ -352,6 +356,10 @@
 		8BA1E7A9128CAFE36B18E228 = {
 			isa = PBXBuildFile;
 			fileRef = CC021F6F79221D758074ACC4;
+		};
+		EEDFA8603E81855970E7B6ED = {
+			isa = PBXBuildFile;
+			fileRef = 44F5C3038D816EBA1C4EC507;
 		};
 		746D2D9FE8234F99A26D26C0 = {
 			isa = PBXBuildFile;
@@ -931,6 +939,13 @@
 			lastKnownFileType = sourcecode.c.h;
 			name = "adsr_pow.h";
 			path = "../../Source/audio/LookupTables/adsr_pow.h";
+			sourceTree = "SOURCE_ROOT";
+		};
+		44F5C3038D816EBA1C4EC507 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = "include_juce_audio_plugin_client_VST2.cpp";
+			path = "../../JuceLibraryCode/include_juce_audio_plugin_client_VST2.cpp";
 			sourceTree = "SOURCE_ROOT";
 		};
 		45143FC8F27E8429316896C1 = {
@@ -2039,12 +2054,12 @@
 			path = ../../Source/audio/Oscillators/DriftGenerator.h;
 			sourceTree = "SOURCE_ROOT";
 		};
-		EC0E529B3A008A4BD8268B1E = {
+		EC9AB8AB41E7A54D30AFD38D = {
 			isa = PBXFileReference;
-			explicitFileType = wrapper.cfbundle;
-			includeInIndex = 0;
-			path = Odin.vst3;
-			sourceTree = "BUILT_PRODUCTS_DIR";
+			lastKnownFileType = sourcecode.c.h;
+			name = Additive11.h;
+			path = ../../Source/audio/Oscillators/Wavetables/Additive11.h;
+			sourceTree = "SOURCE_ROOT";
 		};
 		ECACBE8160CFA39B470A6957 = {
 			isa = PBXFileReference;
@@ -2058,6 +2073,13 @@
 			lastKnownFileType = sourcecode.c.h;
 			name = PitchWheel.h;
 			path = ../../Source/PitchWheel.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		EDA78FF6C7C34E3BE3CF945F = {
+			isa = PBXFileReference;
+			lastKnownFileType = text.plist.xml;
+			name = "Info-VST.plist";
+			path = "Info-VST.plist";
 			sourceTree = "SOURCE_ROOT";
 		};
 		EDDCFB136841B4C3E040BD25 = {
@@ -2079,27 +2101,6 @@
 			lastKnownFileType = sourcecode.cpp.cpp;
 			name = PluginProcessor.cpp;
 			path = ../../Source/PluginProcessor.cpp;
-			sourceTree = "SOURCE_ROOT";
-		};
-		F2F8D33D66E229F8F81A7E97 = {
-			isa = PBXFileReference;
-			explicitFileType = wrapper.application;
-			includeInIndex = 0;
-			path = Odin.app;
-			sourceTree = "BUILT_PRODUCTS_DIR";
-		};
-		15821A179AC7F4A6A5912916 = {
-			isa = PBXFileReference;
-			explicitFileType = archive.ar;
-			includeInIndex = 0;
-			path = libOdin.a;
-			sourceTree = "BUILT_PRODUCTS_DIR";
-		};
-		EC9AB8AB41E7A54D30AFD38D = {
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.c.h;
-			name = Additive11.h;
-			path = ../../Source/audio/Oscillators/Wavetables/Additive11.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		F337A655FAE757A10050CBAD = {
@@ -2158,6 +2159,41 @@
 			path = ../../Source/audio/Oscillators/Wavetables/ChiptuneCustom6.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		FB85BBF7D17CE5AFB2B68FE9 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = LFOPyramid4.h;
+			path = ../../Source/audio/Oscillators/Wavetables/LFO/LFOPyramid4.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		FC12642B755F0EA465F450F1 = {
+			isa = PBXFileReference;
+			explicitFileType = wrapper.cfbundle;
+			includeInIndex = 0;
+			path = Odin.vst;
+			sourceTree = "BUILT_PRODUCTS_DIR";
+		};
+		EC0E529B3A008A4BD8268B1E = {
+			isa = PBXFileReference;
+			explicitFileType = wrapper.cfbundle;
+			includeInIndex = 0;
+			path = Odin.vst3;
+			sourceTree = "BUILT_PRODUCTS_DIR";
+		};
+		F2F8D33D66E229F8F81A7E97 = {
+			isa = PBXFileReference;
+			explicitFileType = wrapper.application;
+			includeInIndex = 0;
+			path = Odin.app;
+			sourceTree = "BUILT_PRODUCTS_DIR";
+		};
+		15821A179AC7F4A6A5912916 = {
+			isa = PBXFileReference;
+			explicitFileType = archive.ar;
+			includeInIndex = 0;
+			path = libOdin.a;
+			sourceTree = "BUILT_PRODUCTS_DIR";
+		};
 		FAD89A285E9951E99978A7B1 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -2170,13 +2206,6 @@
 			lastKnownFileType = sourcecode.cpp.cpp;
 			name = LadderFilter.cpp;
 			path = ../../Source/audio/Filters/LadderFilter.cpp;
-			sourceTree = "SOURCE_ROOT";
-		};
-		FB85BBF7D17CE5AFB2B68FE9 = {
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.c.h;
-			name = LFOPyramid4.h;
-			path = ../../Source/audio/Oscillators/Wavetables/LFO/LFOPyramid4.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		FBCF9E75D27BD84459C32376 = {
@@ -2531,6 +2560,7 @@
 				9C02B81B1A6B6E39111FEE57,
 				AF3F813DEC4A889188BB2E2B,
 				CC021F6F79221D758074ACC4,
+				44F5C3038D816EBA1C4EC507,
 				3A380D09989C5607852D4CFD,
 				1449557F9D776C64F4A712A1,
 				4E31961ED84007245E2E1C6F,
@@ -2551,6 +2581,7 @@
 		9086A40B9D6ADFBED1B019DE = {
 			isa = PBXGroup;
 			children = (
+				EDA78FF6C7C34E3BE3CF945F,
 				DCB75CAF7C4F5618D1147A3C,
 				2D45A3695065461D07CCDAB0,
 				9D6FAF4C6B9E08A29875BF33,
@@ -2579,6 +2610,7 @@
 		9AA32ED28F795F4ED70565B7 = {
 			isa = PBXGroup;
 			children = (
+				FC12642B755F0EA465F450F1,
 				EC0E529B3A008A4BD8268B1E,
 				F2F8D33D66E229F8F81A7E97,
 				15821A179AC7F4A6A5912916,
@@ -2611,6 +2643,108 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
+			};
+			name = Release;
+		};
+		88A3B51E38CD9D8BCBAC8DDD = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_LINK_OBJC_RUNTIME = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/build/$(CONFIGURATION)";
+				COPY_PHASE_STRIP = NO;
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = /;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"_DEBUG=1",
+					"DEBUG=1",
+					"JUCER_XCODE_MAC_F6D2F4CF=1",
+					"JUCE_APP_VERSION=2.0.0",
+					"JUCE_APP_VERSION_HEX=0x20000",
+					"JucePlugin_Build_VST=1",
+					"JucePlugin_Build_VST3=0",
+					"JucePlugin_Build_AU=0",
+					"JucePlugin_Build_AUv3=0",
+					"JucePlugin_Build_RTAS=0",
+					"JucePlugin_Build_AAX=0",
+					"JucePlugin_Build_Standalone=0",
+					"JucePlugin_Build_Unity=0",
+				);
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GENERATE_PKGINFO_FILE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(HOME)/JUCE/modules/juce_audio_processors/format_types/VST3_SDK",
+					"../../JuceLibraryCode",
+					"$(HOME)/JUCE/modules",
+					"$(HOME)/JUCE/modules/juce_audio_plugin_client",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = Info-VST.plist;
+				INFOPLIST_PREPROCESS = NO;
+				INSTALL_PATH = "$(HOME)/Library/Audio/Plug-Ins/VST/";
+				LIBRARY_STYLE = Bundle;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				OTHER_LDFLAGS = "-bundle -lOdin";
+				PRODUCT_BUNDLE_IDENTIFIER = com.BommelDSP.Odin;
+				PRODUCT_NAME = "Odin";
+				USE_HEADERMAP = NO;
+				WRAPPER_EXTENSION = vst;
+			};
+			name = Debug;
+		};
+		52E8FA5F2FAD6D673F86A878 = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_LINK_OBJC_RUNTIME = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/build/$(CONFIGURATION)";
+				DEAD_CODE_STRIPPING = YES;
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = /;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"_NDEBUG=1",
+					"NDEBUG=1",
+					"JUCER_XCODE_MAC_F6D2F4CF=1",
+					"JUCE_APP_VERSION=2.0.0",
+					"JUCE_APP_VERSION_HEX=0x20000",
+					"JucePlugin_Build_VST=1",
+					"JucePlugin_Build_VST3=0",
+					"JucePlugin_Build_AU=0",
+					"JucePlugin_Build_AUv3=0",
+					"JucePlugin_Build_RTAS=0",
+					"JucePlugin_Build_AAX=0",
+					"JucePlugin_Build_Standalone=0",
+					"JucePlugin_Build_Unity=0",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GENERATE_PKGINFO_FILE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(HOME)/JUCE/modules/juce_audio_processors/format_types/VST3_SDK",
+					"../../JuceLibraryCode",
+					"$(HOME)/JUCE/modules",
+					"$(HOME)/JUCE/modules/juce_audio_plugin_client",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = Info-VST.plist;
+				INFOPLIST_PREPROCESS = NO;
+				INSTALL_PATH = "$(HOME)/Library/Audio/Plug-Ins/VST/";
+				LIBRARY_STYLE = Bundle;
+				LLVM_LTO = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				OTHER_LDFLAGS = "-bundle -lOdin";
+				PRODUCT_BUNDLE_IDENTIFIER = com.BommelDSP.Odin;
+				PRODUCT_NAME = "Odin";
+				USE_HEADERMAP = NO;
+				WRAPPER_EXTENSION = vst;
 			};
 			name = Release;
 		};
@@ -2823,7 +2957,7 @@
 					"JUCER_XCODE_MAC_F6D2F4CF=1",
 					"JUCE_APP_VERSION=2.0.0",
 					"JUCE_APP_VERSION_HEX=0x20000",
-					"JucePlugin_Build_VST=0",
+					"JucePlugin_Build_VST=1",
 					"JucePlugin_Build_VST3=1",
 					"JucePlugin_Build_AU=0",
 					"JucePlugin_Build_AUv3=0",
@@ -2867,7 +3001,7 @@
 					"JUCER_XCODE_MAC_F6D2F4CF=1",
 					"JUCE_APP_VERSION=2.0.0",
 					"JUCE_APP_VERSION_HEX=0x20000",
-					"JucePlugin_Build_VST=0",
+					"JucePlugin_Build_VST=1",
 					"JucePlugin_Build_VST3=1",
 					"JucePlugin_Build_AU=0",
 					"JucePlugin_Build_AUv3=0",
@@ -2986,6 +3120,10 @@
 			};
 			name = Release;
 		};
+		CA84B774F5E7FE63D0FAFB3B = {
+			isa = PBXTargetDependency;
+			target = C10EFA91273F2AB707C73218;
+		};
 		F33E6CD86761A06A4B22B1A9 = {
 			isa = PBXTargetDependency;
 			target = 9F163A40724A96CDF773E45F;
@@ -3022,12 +3160,73 @@
 			buildPhases = ( );
 			buildRules = ( );
 			dependencies = (
+				CA84B774F5E7FE63D0FAFB3B,
 				F33E6CD86761A06A4B22B1A9,
 				3A1525A37F53C5B5B1B18334,
 				E1A6F6B19AE09D9FD2C301D9,
 			);
 			name = "Odin - All";
 			productName = Odin;
+		};
+		C3A6DEAC87F98A06643197B0 = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				88A3B51E38CD9D8BCBAC8DDD,
+				52E8FA5F2FAD6D673F86A878,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		F30E215BFC651177FC7E9411 = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D875DFC32DF729653D8D982,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7C988F98E9D5FF129347F9F7 = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EEDFA8603E81855970E7B6ED,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9CC43AD4D9B9428F71223756 = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF7712B3177D1CCF957B2B22,
+				DFC51CB79994D61687387C1B,
+				94B52B9B53A6812C4FE783ED,
+				9D31F71B6E3F25EB0B80FB90,
+				4397919FA60DF3C014D67201,
+				9499A27F25E5E4D94C8C529A,
+				48D32F510E57163521E2A0E8,
+				145FC090797872C3E5AA02B3,
+				DE12EBA74BA6F24F83D34420,
+				D079D2FD98A8EFC491FA007D,
+				C74A9E21535766FE7FBBF18E,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C10EFA91273F2AB707C73218 = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C3A6DEAC87F98A06643197B0;
+			buildPhases = (
+				F30E215BFC651177FC7E9411,
+				7C988F98E9D5FF129347F9F7,
+				9CC43AD4D9B9428F71223756,
+			);
+			buildRules = ( );
+			dependencies = (
+				E1A6F6B19AE09D9FD2C301D9,
+			);
+			name = "Odin - VST";
+			productName = Odin;
+			productReference = FC12642B755F0EA465F450F1;
+			productType = "com.apple.product-type.bundle";
 		};
 		899CAFB6FAAD5F2F697542D5 = {
 			isa = XCConfigurationList;
@@ -3263,13 +3462,13 @@
 		972D2ADCB517A148B39F3C8B = {
 			isa = PBXProject;
 			buildConfigurationList = 4446DDAFA46BDD70A50F65AE;
-			attributes = { LastUpgradeCheck = 0930; ORGANIZATIONNAME = "BommelDSP"; TargetAttributes = { DF2DF4521E1705028205EE5E = { SystemCapabilities = {com.apple.ApplicationGroups.iOS = { enabled = 0; }; com.apple.InAppPurchase = { enabled = 0; }; com.apple.InterAppAudio = { enabled = 0; }; com.apple.Push = { enabled = 0; }; com.apple.Sandbox = { enabled = 0; }; com.apple.HardenedRuntime = { enabled = 0; }; }; };9F163A40724A96CDF773E45F = { SystemCapabilities = {com.apple.ApplicationGroups.iOS = { enabled = 0; }; com.apple.InAppPurchase = { enabled = 0; }; com.apple.InterAppAudio = { enabled = 0; }; com.apple.Push = { enabled = 0; }; com.apple.Sandbox = { enabled = 0; }; com.apple.HardenedRuntime = { enabled = 0; }; }; };F1A35AFBCD3C563AFF7ED9EB = { SystemCapabilities = {com.apple.ApplicationGroups.iOS = { enabled = 0; }; com.apple.InAppPurchase = { enabled = 0; }; com.apple.InterAppAudio = { enabled = 0; }; com.apple.Push = { enabled = 0; }; com.apple.Sandbox = { enabled = 0; }; com.apple.HardenedRuntime = { enabled = 0; }; }; };ADED4E2945BA8926563BDC86 = { SystemCapabilities = {com.apple.ApplicationGroups.iOS = { enabled = 0; }; com.apple.InAppPurchase = { enabled = 0; }; com.apple.InterAppAudio = { enabled = 0; }; com.apple.Push = { enabled = 0; }; com.apple.Sandbox = { enabled = 0; }; com.apple.HardenedRuntime = { enabled = 0; }; }; }; }; };
+			attributes = { LastUpgradeCheck = 0930; ORGANIZATIONNAME = "BommelDSP"; TargetAttributes = { DF2DF4521E1705028205EE5E = { SystemCapabilities = {com.apple.ApplicationGroups.iOS = { enabled = 0; }; com.apple.InAppPurchase = { enabled = 0; }; com.apple.InterAppAudio = { enabled = 0; }; com.apple.Push = { enabled = 0; }; com.apple.Sandbox = { enabled = 0; }; com.apple.HardenedRuntime = { enabled = 0; }; }; };C10EFA91273F2AB707C73218 = { SystemCapabilities = {com.apple.ApplicationGroups.iOS = { enabled = 0; }; com.apple.InAppPurchase = { enabled = 0; }; com.apple.InterAppAudio = { enabled = 0; }; com.apple.Push = { enabled = 0; }; com.apple.Sandbox = { enabled = 0; }; com.apple.HardenedRuntime = { enabled = 0; }; }; };9F163A40724A96CDF773E45F = { SystemCapabilities = {com.apple.ApplicationGroups.iOS = { enabled = 0; }; com.apple.InAppPurchase = { enabled = 0; }; com.apple.InterAppAudio = { enabled = 0; }; com.apple.Push = { enabled = 0; }; com.apple.Sandbox = { enabled = 0; }; com.apple.HardenedRuntime = { enabled = 0; }; }; };F1A35AFBCD3C563AFF7ED9EB = { SystemCapabilities = {com.apple.ApplicationGroups.iOS = { enabled = 0; }; com.apple.InAppPurchase = { enabled = 0; }; com.apple.InterAppAudio = { enabled = 0; }; com.apple.Push = { enabled = 0; }; com.apple.Sandbox = { enabled = 0; }; com.apple.HardenedRuntime = { enabled = 0; }; }; };ADED4E2945BA8926563BDC86 = { SystemCapabilities = {com.apple.ApplicationGroups.iOS = { enabled = 0; }; com.apple.InAppPurchase = { enabled = 0; }; com.apple.InterAppAudio = { enabled = 0; }; com.apple.Push = { enabled = 0; }; com.apple.Sandbox = { enabled = 0; }; com.apple.HardenedRuntime = { enabled = 0; }; }; }; }; };
 			compatibilityVersion = "Xcode 3.2";
 			hasScannedForEncodings = 0;
 			mainGroup = D9EE53F6CE08BF3812773775;
 			projectDirPath = "";
 			projectRoot = "";
-			targets = (DF2DF4521E1705028205EE5E, 9F163A40724A96CDF773E45F, F1A35AFBCD3C563AFF7ED9EB, ADED4E2945BA8926563BDC86);
+			targets = (DF2DF4521E1705028205EE5E, C10EFA91273F2AB707C73218, 9F163A40724A96CDF773E45F, F1A35AFBCD3C563AFF7ED9EB, ADED4E2945BA8926563BDC86);
 			knownRegions = (en, Base);
 		};
 	};
