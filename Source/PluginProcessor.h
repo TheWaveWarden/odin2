@@ -98,9 +98,11 @@ public:
   }
 
   void midiForget(Knob *p_knob) {
-    for (auto const &control : m_midi_control_list_knob) {
-      if (control.second == p_knob) {
-        m_midi_control_list_knob.erase(control.first);
+    for (std::multimap<int, Knob*>::iterator iter = m_midi_control_list_knob.begin(); iter != m_midi_control_list_knob.end();) {
+      std::multimap<int, Knob*>::iterator erase_iter = iter++;
+      if (erase_iter->second  == p_knob) {
+        m_midi_control_list_knob.erase(erase_iter);
+        return;
       }
     }
   }
@@ -127,9 +129,11 @@ public:
   }
 
   void midiForget(DrawableSlider *p_slider) {
-    for (auto const &control : m_midi_control_list_slider) {
-      if (control.second == p_slider) {
-        m_midi_control_list_slider.erase(control.first);
+    for (std::multimap<int, DrawableSlider*>::iterator iter = m_midi_control_list_slider.begin(); iter != m_midi_control_list_slider.end();) {
+      std::multimap<int, DrawableSlider*>::iterator erase_iter = iter++;
+      if (erase_iter->second  == p_slider) {
+        m_midi_control_list_slider.erase(erase_iter);
+        return;
       }
     }
   }
@@ -156,9 +160,11 @@ public:
   }
 
   void midiForget(LeftRightButton *p_button) {
-    for (auto const &control : m_midi_control_list_lrbutton) {
-      if (control.second == p_button) {
-        m_midi_control_list_lrbutton.erase(control.first);
+    for (std::multimap<int, LeftRightButton*>::iterator iter = m_midi_control_list_lrbutton.begin(); iter != m_midi_control_list_lrbutton.end();) {
+      std::multimap<int, LeftRightButton*>::iterator erase_iter = iter++;
+      if (erase_iter->second  == p_button) {
+        m_midi_control_list_lrbutton.erase(erase_iter);
+        return;
       }
     }
   }
@@ -185,9 +191,11 @@ public:
   }
 
   void midiForget(OdinButton *p_button) {
-    for (auto const &control : m_midi_control_list_odinbutton) {
-      if (control.second == p_button) {
-        m_midi_control_list_odinbutton.erase(control.first);
+    for (std::multimap<int, OdinButton*>::iterator iter = m_midi_control_list_odinbutton.begin(); iter != m_midi_control_list_odinbutton.end();) {
+      std::multimap<int, OdinButton*>::iterator erase_iter = iter++;
+      if (erase_iter->second  == p_button) {
+        m_midi_control_list_odinbutton.erase(erase_iter);
+        return;
       }
     }
   }
