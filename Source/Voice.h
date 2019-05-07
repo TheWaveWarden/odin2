@@ -124,7 +124,10 @@ struct Voice {
   operator bool() const { return m_voice_active; }
 
   Voice() {
-    env[0].onEnvelopeEnd = [&]() { onEnvelopeEnd(); };
+    // env[0].onEnvelopeEnd = [this]() { 
+    //   onEnvelopeEnd(); 
+    //   //MIDI_key_mod_source = 1.f;
+    //   };
   }
 
   float MIDINoteToFreq(int p_MIDI_note) {
@@ -160,7 +163,7 @@ struct Voice {
     return false;
   }
 
-  bool startRelease() {
+  void startRelease() {
     DBG("Stopping envelopes on key " + std::to_string(m_MIDI_key) +
         " after sustian was released");
     env[0].startRelease();
@@ -438,7 +441,7 @@ struct Voice {
   float MIDI_velocity_mod_source = 0.f;
 
   // called when the envelope ends to signal voice end to voice manager
-  std::function<void()> onEnvelopeEnd = []() {};
+  //std::function<void()> onEnvelopeEnd = []() {};
   bool m_voice_active = false;
   int m_MIDI_key = 0;
 };

@@ -47,7 +47,7 @@ public:
 
   float getBipolarRandom(){
     float white_noise = (float)rand();
-	white_noise          = 2 * (white_noise / RAND_MAX) - 1;
+	  return 2 * (white_noise / RAND_MAX) - 1;
   }
 
   float doSampleHold();

@@ -274,7 +274,10 @@ private:
   void setPitchWheelValue(int p_value);
 
   void setModulationPointers();
-  void treeValueChanged(const String &p_ID, float p_new_value);
+  bool treeValueChangedFirst(const String &p_ID, float p_new_value);
+  bool treeValueChangedSecond(const String &p_ID, float p_new_value);
+  bool treeValueChangedThird(const String &p_ID, float p_new_value);
+  bool treeValueChangedFourth(const String &p_ID, float p_new_value);
 
   // MOD SOURCES
   float m_adsr[VOICES][4] = {0.f};
