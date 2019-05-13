@@ -227,10 +227,6 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
 
     // formant
     m_formant_fil_menu[fil].addItem(
-        300 + 100 * fil + 1, "Filter" + std::to_string(fil + 1) + " Frequency");
-    m_formant_fil_menu[fil].addItem(
-        300 + 100 * fil + 2, "Filter" + std::to_string(fil + 1) + " Resonance");
-    m_formant_fil_menu[fil].addItem(
         300 + 100 * fil + 3, "Filter" + std::to_string(fil + 1) + " Gain");
     m_formant_fil_menu[fil].addItem(300 + 100 * fil + 4,
                                     "Filter" + std::to_string(fil + 1) +
@@ -238,9 +234,6 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
     m_formant_fil_menu[fil].addItem(300 + 100 * fil + 5,
                                     "Filter" + std::to_string(fil + 1) +
                                         " Vel Amount");
-    m_formant_fil_menu[fil].addItem(300 + 100 * fil + 7,
-                                    "Filter" + std::to_string(fil + 1) +
-                                        " Saturation");
     m_formant_fil_menu[fil].addItem(300 + 100 * fil + 20,
                                     "Filter" + std::to_string(fil + 1) +
                                         " Formant Transition");

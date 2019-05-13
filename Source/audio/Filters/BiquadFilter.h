@@ -10,7 +10,7 @@ public:
   void setFilterCoefficients(double p_a1, double p_a2, double p_b0, double p_b1,
                              double p_b2);
 
-  double doFilter(double p_input);
+  virtual double doFilter(double p_input);
 
 protected:
   // direkt form coefficients. note that in the normalized form, a0 is 1

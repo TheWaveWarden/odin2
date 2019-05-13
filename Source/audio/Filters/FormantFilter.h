@@ -43,16 +43,16 @@ protected:
 	int m_vowel_left = 0;
 	int m_vowel_right = 1;
 
-	float m_formant_list [8][2] =
+	float m_formant_list [8][3] =
 	{
-		{1000.f,1400.f},  // A
-		{500.f, 2300.f }, // E
-		{320.f, 3200.f},  // I
-		{500.f, 1000.f},  // O
-		{320.f, 800.f},   // U
-		{700.f, 1800.f},  // Ä
-		{500.f, 1500.f},  // Ö
-		{320.f, 1650.f},  // Ü
+		{1000.f,1400.f,10},  // A
+		{500.f, 2300.f,16 }, // E
+		{320.f, 3200.f,18},  // I
+		{500.f, 1000.f,2.7},  // O
+		{320.f, 800.f,1.5},   // U
+		{700.f, 1800.f,13},  // Ä
+		{500.f, 1500.f,9},  // Ö
+		{320.f, 1650.f,7},  // Ü
 	};
 
 	//for parabola interpolation
@@ -62,6 +62,11 @@ protected:
 	float m_a1;
 	float m_b1;
 	float m_c1;
+	float m_a2;
+	float m_b2;
+	float m_c2;
+
+	float m_volume_scalar = 1.f;
 
 
 	BiquadResonator m_resonator1;
