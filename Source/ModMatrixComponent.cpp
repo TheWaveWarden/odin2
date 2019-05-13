@@ -291,6 +291,9 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
   m_distortion_menu.addItem(950, "Distortion Threshold");
   m_distortion_menu.addItem(951, "Distortion DryWet");
 
+
+  //m_sources_menu.addItem(0, "Disabled");
+  //m_sources_menu.addSeparator();
   m_sources_menu.addItem(100, "Oscillator 1");
   m_sources_menu.addItem(101, "Oscillator 2");
   m_sources_menu.addItem(102, "Oscillator 3");
@@ -382,6 +385,12 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
     m_amount_3[i].setTooltip(
         "Set how much the scale signal scales the modulation");
     m_scale[i].setTooltip("Set the scale signal");
+
+
+    m_source[i].setDefaultText("Source");
+    m_dest_1[i].setDefaultText("Dest 1");
+    m_dest_2[i].setDefaultText("Dest 2");
+    m_scale[i].setDefaultText("Scale");
 
     m_source[i].clear();
     // createMenu(m_source[i].getRootMenu());
@@ -912,6 +921,9 @@ void ModMatrixComponent::createMenu(PopupMenu *p_menu) {
   int fil_type[3];
   getOscFilterTypes(osc_type[0], osc_type[1], osc_type[2], fil_type[0],
                     fil_type[1], fil_type[2]);
+
+  //p_menu->addItem(0, "Disabled");
+  //p_menu->addSeparator();
 
   for (int osc = 0; osc < 3; ++osc) {
     if (osc_type[osc] == OSC_TYPE_ANALOG) {

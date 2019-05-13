@@ -55,9 +55,9 @@ void ModAmountComponent::paint(Graphics &g) {
   stream << std::fixed << std::setprecision(0) << m_value * 100;
   std::string value_string = stream.str();
   g.setColour(Colours::white);
-  //if(value_string == "0"){
-  //  g.setColour(juce::Colours::grey);
-  //}
+  if(value_string == "0"){
+    g.setColour(juce::Colours::grey);
+  }
   g.drawText(value_string, getLocalBounds(), Justification::centred,
              true); 
 

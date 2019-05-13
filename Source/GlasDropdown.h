@@ -28,6 +28,7 @@ public:
   void setColor(juce::Colour p_color) { m_color = p_color; }
   void setGreyFirstElement(bool p_grey){m_grey_first_element = p_grey;}
   void setInlay(int p_inlay) { m_inlay = p_inlay; }
+  void setDefaultText(std::string p_text){m_default_text = p_text;}
   int m_inlay = INLAY_DEFAULT;
 
   void mouseDown(const MouseEvent &event) {
@@ -37,12 +38,14 @@ public:
 
   
   void reset(){
-    setSelectedId(1, sendNotification);
+    setSelectedId(0, sendNotification);
     repaint();
   }
 
   std::function<void()> rearrangeMenu = [](){};
 private:
+
+  std::string m_default_text = "undefined";
 
   bool m_grey_first_element = false;
 
