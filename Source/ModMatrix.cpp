@@ -984,6 +984,10 @@ void ModMatrixRow::setModDestination(int p_destination,
     p_destination_pointers[0] = &(m_destinations->distortion.drywet);
     p_dest_poly = false;
     break;
+  case 999:
+    p_destination_pointers[0] = &(m_destinations->misc.glide);
+    p_dest_poly = false;
+    break;
   case 1000:
     p_destination_pointers[0] = &(m_destinations->misc.master);
     p_dest_poly = false;

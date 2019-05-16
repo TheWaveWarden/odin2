@@ -68,7 +68,6 @@ protected:
 
 	float m_volume_scalar = 1.f;
 
-
 	BiquadResonator m_resonator1;
 	BiquadResonator m_resonator2;
 

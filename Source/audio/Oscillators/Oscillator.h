@@ -77,8 +77,13 @@ public:
     //DBG(m_osc_freq_base);
     //DBG(m_osc_freq_glide_target);
     //DBG("===");
+
+    float glide_input_modded = m_glide + *(m_glide_mod);
+    glide_input_modded = glide_input_modded > 1 ? 1 : glide_input_modded;
+    double glide_modded = calculateGlide(glide_input_modded);
+
     m_osc_freq_base =
-        m_osc_freq_glide_target * (1.f - m_glide) + (m_glide)*m_osc_freq_base;
+        m_osc_freq_glide_target * (1.f - glide_modded) + (glide_modded)*m_osc_freq_base;
 
     // --- do the  complete frequency mod
     m_osc_freq_modded =
@@ -122,10 +127,14 @@ public:
   void setGlidePointer(float *p_pointer) { m_glide_mod = p_pointer; }
 
   void setGlide(float p_glide) {
+    m_glide = p_glide;
+  }
+
+  inline double calculateGlide(float p_glide){
     if (p_glide > 0.01) {
-      m_glide = 0.9985f + p_glide * 0.0014;
+      return 0.9985f + p_glide * 0.0014;
     } else {
-      m_glide = 0.;
+      return 0.;//todo this is correct....?
     }
   }
 
@@ -144,7 +153,7 @@ public:
   double m_mod_freq_lin; // FM modulation input -1 to +1 (not actually used in
                          // Yamaha FM!) */
 
-  double m_glide = 0.;
+  float m_glide = 0.;
   float *m_glide_mod;
 
   float *m_pitch_mod_exp;
