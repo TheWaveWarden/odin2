@@ -17,8 +17,8 @@ public:
 
 	virtual ~WavetableContainer();
 
-	
-	void createWavetables(float p_sample_rate);
+	void loadWavetables(); //assign pointers to wavetables from files directly
+	void createWavetables(float p_sample_rate);//create and allocate memory from coefficients and assign pointers
 	void createLFOtables(float p_sample_rate);
 	void createLFOCoefficientsFromConstSections(int p_table_nr, float p_const_section_values[], int p_number_of_sections, std::string p_table_name);
 	void createLFOCoefficientsFromLinSections(int p_table_nr, float p_const_section_values[], int p_number_of_sections, std::string p_table_name);
@@ -42,6 +42,9 @@ public:
     void writeChipdrawTable(float p_wavedraw_values[WAVEDRAW_STEPS_X], std::string p_name);
     void writeSpecdrawTable(float p_wavedraw_values[WAVEDRAW_STEPS_X], std::string p_name);
 
+	//call this to make wavetablefiles from wavetables coefficients
+	void writeWavetablesToFiles();
+
 
 	//void deleteWavedraw() {
 	//	m_wavedraw_tables = {0};
@@ -50,6 +53,8 @@ private:
 	WavetableContainer();
 
 protected:
+
+	float m_wavetables[NUMBER_OF_WAVETABLES][SUBTABLES_PER_WAVETABLE][WAVETABLE_LENGTH] = {0.f};
 
 
 	float const_segment_one_overtone_sine(float p_start, float p_end, float p_height, int p_harmonic);

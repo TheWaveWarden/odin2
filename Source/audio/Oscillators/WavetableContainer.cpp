@@ -1,14 +1,17 @@
 #include "WavetableContainer.h"
+#include <algorithm>
 #include <cmath>
 #include <cstring>
 #include <ctime>
 #include <fstream>
 #include <iostream>
-#include <algorithm>
 
 #include "../JuceLibraryCode/JuceHeader.h"
 
-WavetableContainer::WavetableContainer() {
+WavetableContainer::WavetableContainer()
+    :
+#include "Wavetables/Tables/WavetableData.h" //include initializer list
+{
 #include "WavetableCoefficients.h"
 
   // create specdraw scalar
@@ -23,12 +26,11 @@ WavetableContainer::~WavetableContainer() {
   }
 }
 
-std::string to_string_no_comma(float p_input){
+std::string to_string_no_comma(float p_input) {
   std::string out = std::to_string(p_input);
-  std::replace( out.begin(), out.end(), ',', '.');
+  std::replace(out.begin(), out.end(), ',', '.');
   return out;
 }
-
 
 void WavetableContainer::createWavetables(float p_sample_rate) {
 
@@ -231,12 +233,12 @@ void WavetableContainer::createLFOCoefficientsFromConstSections(
   for (int harmonic = 0; harmonic < NUMBER_OF_HARMONICS; ++harmonic) {
 
     output_file << "m_LFO_fourier_coeffs[WT_NR][0][" +
-                       std::to_string(harmonic) +
-                       "] = " + to_string_no_comma(LFO_coefficients[0][harmonic]) +
+                       std::to_string(harmonic) + "] = " +
+                       to_string_no_comma(LFO_coefficients[0][harmonic]) +
                        ";\n";
     output_file << "m_LFO_fourier_coeffs[WT_NR][1][" +
-                       std::to_string(harmonic) +
-                       "] = " + to_string_no_comma(LFO_coefficients[1][harmonic]) +
+                       std::to_string(harmonic) + "] = " +
+                       to_string_no_comma(LFO_coefficients[1][harmonic]) +
                        ";\n";
   }
 
@@ -286,12 +288,12 @@ void WavetableContainer::createLFOCoefficientsFromLinSections(
   for (int harmonic = 0; harmonic < NUMBER_OF_HARMONICS; ++harmonic) {
 
     output_file << "m_LFO_fourier_coeffs[WT_NR][0][" +
-                       std::to_string(harmonic) +
-                       "] = " + to_string_no_comma(LFO_coefficients[0][harmonic]) +
+                       std::to_string(harmonic) + "] = " +
+                       to_string_no_comma(LFO_coefficients[0][harmonic]) +
                        ";\n";
     output_file << "m_LFO_fourier_coeffs[WT_NR][1][" +
-                       std::to_string(harmonic) +
-                       "] = " + to_string_no_comma(LFO_coefficients[1][harmonic]) +
+                       std::to_string(harmonic) + "] = " +
+                       to_string_no_comma(LFO_coefficients[1][harmonic]) +
                        ";\n";
   }
 
@@ -510,7 +512,6 @@ void WavetableContainer::writeChipdrawTable(
   // first generate the fourier coefficients
   float wavedraw_coefficients[SIN_AND_COS][NUMBER_OF_HARMONICS];
 
-
   float step_width = 2 * PI / CHIPDRAW_STEPS_X;
 
   for (int harmonic = 1; harmonic < NUMBER_OF_HARMONICS; ++harmonic) {
@@ -612,13 +613,8 @@ void WavetableContainer::writeChipdrawTable(
   output_file.close();
 }
 
-
-
-
-
 void WavetableContainer::writeSpecdrawTable(
     float p_specdraw_values[SPECDRAW_STEPS_X], std::string p_table_name) {
- 
 
   // now create the wavetable from the fourier coefficients
   double seed_freq = 27.5; // A0
@@ -647,7 +643,7 @@ void WavetableContainer::writeSpecdrawTable(
         // fill table with
         // sine harmonics
         wavedraw_tables[index_sub_table][index_position] +=
-            p_specdraw_values[index_harmonics-1] *
+            p_specdraw_values[index_harmonics - 1] *
             sin(2.f * PI * index_position * index_harmonics /
                 (float)WAVETABLE_LENGTH);
       }
@@ -685,7 +681,7 @@ void WavetableContainer::writeSpecdrawTable(
 
     output_file << "m_fourier_coeffs[WT_NR][0][" + std::to_string(harmonic) +
                        "] = " +
-                       to_string_no_comma(p_specdraw_values[harmonic-1]) +
+                       to_string_no_comma(p_specdraw_values[harmonic - 1]) +
                        ";\n";
   }
 
@@ -926,6 +922,7 @@ float WavetableContainer::const_segment_one_overtone_cosine(float p_start,
 }
 
 void WavetableContainer::destroyWavetables() {
+  DBG("TRYING TO DELETE WAVETABLES");
   // delete allocated memory for wavetables
   for (int index_wavetable = 0; index_wavetable < NUMBER_OF_WAVETABLES;
        ++index_wavetable) {
@@ -1010,4 +1007,112 @@ void WavetableContainer::writeScaleFactorsToFile() {
   }
 
   file.close();
+}
+
+void WavetableContainer::loadWavetables() {
+  for (int index_wavetable = 0; index_wavetable < NUMBER_OF_WAVETABLES;
+       ++index_wavetable) {
+
+    for (int index_subtable = 0; index_subtable < SUBTABLES_PER_WAVETABLE;
+         ++index_subtable) {
+
+      m_wavetable_pointers[index_wavetable][index_subtable] = m_wavetables[index_wavetable][index_subtable];
+    }
+    m_name_index_map.insert(std::pair<std::string, int>(
+        m_wavetable_names_1D[index_wavetable], index_wavetable));
+  }
+}
+
+void WavetableContainer::writeWavetablesToFiles() {
+
+  float p_sample_rate = 44100.f;
+  float wavetables[NUMBER_OF_WAVETABLES][SUBTABLES_PER_WAVETABLE]
+                  [WAVETABLE_LENGTH] = {0};
+
+  // //loop over all wavetables
+  for (int index_wavetable = 0; index_wavetable < NUMBER_OF_WAVETABLES;
+       ++index_wavetable) {
+
+    // this flags hackishly if a waveform only uses sine components
+    bool sine_only =
+        m_fourier_coeffs[index_wavetable][0][0] > 0.5f ? true : false;
+
+    double seed_freq = 27.5; // A0
+    float max = 0.f;
+
+    // loop over subtables
+    for (int index_sub_table = 0; index_sub_table < SUBTABLES_PER_WAVETABLE;
+         ++index_sub_table) {
+
+      // how many harmonics are needed for this subtable
+      int number_of_harmonics = (int)((p_sample_rate * 0.5f / seed_freq) - 1);
+
+      // don't allow more than 800 harmonics (for big Samplerates this might
+      // happen)
+      number_of_harmonics = number_of_harmonics > NUMBER_OF_HARMONICS
+                                ? NUMBER_OF_HARMONICS
+                                : number_of_harmonics;
+
+      for (int index_harmonics = 1; index_harmonics < number_of_harmonics;
+           ++index_harmonics) {
+        for (int index_position = 0; index_position < WAVETABLE_LENGTH;
+             ++index_position) {
+
+          // fill table with //sine harmonics
+          wavetables[index_wavetable][index_sub_table][index_position] +=
+              m_fourier_coeffs[index_wavetable][0][index_harmonics] *
+              sin(2.f * PI * index_position * index_harmonics /
+                  (float)WAVETABLE_LENGTH) *
+              m_fourier_coeffs[index_wavetable][1]
+                              [0]; // last term is normalization
+          if (!sine_only) {
+            // cosine
+            wavetables[index_wavetable][index_sub_table][index_position] +=
+                m_fourier_coeffs[index_wavetable][1][index_harmonics] *
+                cos(2.f * PI * index_position * index_harmonics /
+                    (float)WAVETABLE_LENGTH) *
+                m_fourier_coeffs[index_wavetable][1]
+                                [0]; // last term is normalization
+          }
+        }
+      }
+
+      // increment seed frequency by minor third = 2^(3/12)
+      seed_freq *= 1.1892071150;
+    }
+  }
+
+  std::ofstream output_file;
+  output_file.open("/home/frot/odinvst/Source/audio/Oscillators/"
+                   "Wavetables/Tables/WavetableData.h");
+
+  output_file << "m_wavetables{";
+
+  for (int index_wavetable = 0; index_wavetable < NUMBER_OF_WAVETABLES;
+       ++index_wavetable) {
+    output_file << "{";
+
+    for (int index_subtable = 0; index_subtable < SUBTABLES_PER_WAVETABLE;
+         ++index_subtable) {
+      output_file << "{";
+
+      for (int index_position = 0; index_position < WAVETABLE_LENGTH;
+           ++index_position) {
+        output_file
+            << wavetables[index_wavetable][index_subtable][index_position]
+            << ",";
+      }
+      output_file << "}";
+      if (index_subtable != SUBTABLES_PER_WAVETABLE - 1) {
+        output_file << ",";
+      }
+    }
+    output_file << "}";
+    if (index_wavetable != NUMBER_OF_WAVETABLES - 1) {
+      output_file << ",";
+    }
+  }
+  output_file << "}";
+
+  output_file.close();
 }

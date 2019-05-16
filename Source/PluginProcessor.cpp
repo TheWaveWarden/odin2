@@ -63,7 +63,9 @@ OdinAudioProcessor::OdinAudioProcessor()
   initializeModules();
 
   // create wavetables
-  WavetableContainer::getInstance().createWavetables(44100.f); // todo
+  //WavetableContainer::getInstance().createWavetables(44100.f); // todo
+  WavetableContainer::getInstance().loadWavetables();
+  //WavetableContainer::getInstance().writeWavetablesToFiles();//todo remove
 
   // load wavetables into oscs
   for (int i = 0; i < VOICES; ++i) {
@@ -99,7 +101,7 @@ OdinAudioProcessor::OdinAudioProcessor()
 }
 
 OdinAudioProcessor::~OdinAudioProcessor() {
-  WavetableContainer::getInstance().destroyWavetables();
+  //WavetableContainer::getInstance().destroyWavetables();
 }
 
 //==============================================================================

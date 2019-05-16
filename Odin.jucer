@@ -173,6 +173,8 @@
                 file="Source/audio/Oscillators/WavetableOsc2D.cpp"/>
           <FILE id="VTgjWS" name="WavetableOsc2D.h" compile="0" resource="0"
                 file="Source/audio/Oscillators/WavetableOsc2D.h"/>
+          <FILE id="dK6tmG" name="WavetableTables.h" compile="0" resource="0"
+                file="Source/audio/Oscillators/WavetableTables.h"/>
         </GROUP>
         <GROUP id="{C724E5C9-D97D-5F0F-8A81-C41A55596A1D}" name="FX">
           <FILE id="Sd74Ze" name="Bitcrusher.cpp" compile="1" resource="0" file="Source/audio/FX/Bitcrusher.cpp"/>
