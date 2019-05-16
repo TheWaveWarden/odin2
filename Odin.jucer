@@ -6,15 +6,6 @@
               pluginManufacturerCode="BDSP" pluginCode="ODIN" pluginChannelConfigs="{2,2},{2,12}">
   <MAINGROUP id="Tn76b3" name="Odin">
     <GROUP id="{7AF384ED-9FD6-6492-4B8C-5777BB9A2698}" name="Source">
-      <FILE id="FHEIfc" name="LFOStair12.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/LFO/LFOStair12.h"/>
-      <FILE id="mCOjp5" name="LFOStair8.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/LFO/LFOStair8.h"/>
-      <FILE id="oFHNSC" name="LFOStair6.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/LFO/LFOStair6.h"/>
-      <FILE id="NuqWME" name="LFOStair4.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/LFO/LFOStair4.h"/>
-      <FILE id="lDZz09" name="LFOStair3.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/LFO/LFOStair3.h"/>
-      <FILE id="DAeJz8" name="LFOPyramid12.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/LFO/LFOPyramid12.h"/>
-      <FILE id="iNCNLr" name="LFOPyramid8.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/LFO/LFOPyramid8.h"/>
-      <FILE id="Jssr3J" name="LFOPyramid6.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/LFO/LFOPyramid6.h"/>
-      <FILE id="mmZtJa" name="LFOPyramid4.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/LFO/LFOPyramid4.h"/>
       <FILE id="FrUDUI" name="ModMatrix.cpp" compile="1" resource="0" file="Source/ModMatrix.cpp"/>
       <FILE id="GU91Qc" name="ModMatrix.h" compile="0" resource="0" file="Source/ModMatrix.h"/>
       <FILE id="xS4QLp" name="ProcessorInitializerList.h" compile="0" resource="0"
@@ -39,66 +30,97 @@
               file="Source/audio/CheapFunctions.cpp"/>
         <GROUP id="{D6691E6B-37D4-2804-8E68-093C3D0E2F7C}" name="Oscillators">
           <GROUP id="{CC755845-2929-23F1-4554-1FBF3CEE4635}" name="Wavetables">
-            <FILE id="KgSt1J" name="Additive1.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Additive1.h"/>
-            <FILE id="WYWBBf" name="Additive2.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Additive2.h"/>
-            <FILE id="kFAecZ" name="Additive3.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Additive3.h"/>
-            <FILE id="eAgKln" name="Additive4.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Additive4.h"/>
-            <FILE id="iwVE04" name="Additive5.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Additive5.h"/>
-            <FILE id="PtlZWf" name="Additive6.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Additive6.h"/>
-            <FILE id="gxthIi" name="Additive7.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Additive7.h"/>
-            <FILE id="XJvB6n" name="Additive8.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Additive8.h"/>
-            <FILE id="tMd9It" name="Additive9.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Additive9.h"/>
-            <FILE id="GBg194" name="Additive10.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Additive10.h"/>
-            <FILE id="aycUml" name="Additive11.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Additive11.h"/>
-            <FILE id="mEhpPj" name="Additive12.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Additive12.h"/>
-            <FILE id="NsVwa0" name="Additive13.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Additive13.h"/>
-            <FILE id="jAUieB" name="Additive14.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Additive14.h"/>
-            <FILE id="jJHYID" name="Additive15.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Additive15.h"/>
-            <FILE id="xuvj7Z" name="Additive16.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Additive16.h"/>
-            <FILE id="P0B3Ne" name="ChiptuneCustom1.h" compile="0" resource="0"
-                  file="Source/audio/Oscillators/Wavetables/ChiptuneCustom1.h"/>
-            <FILE id="Ql3eoR" name="ChiptuneCustom2.h" compile="0" resource="0"
-                  file="Source/audio/Oscillators/Wavetables/ChiptuneCustom2.h"/>
-            <FILE id="IoIBss" name="ChiptuneCustom3.h" compile="0" resource="0"
-                  file="Source/audio/Oscillators/Wavetables/ChiptuneCustom3.h"/>
-            <FILE id="HNM91g" name="ChiptuneCustom4.h" compile="0" resource="0"
-                  file="Source/audio/Oscillators/Wavetables/ChiptuneCustom4.h"/>
-            <FILE id="m1GzLL" name="ChiptuneCustom5.h" compile="0" resource="0"
-                  file="Source/audio/Oscillators/Wavetables/ChiptuneCustom5.h"/>
-            <FILE id="cqiT6K" name="ChiptuneCustom6.h" compile="0" resource="0"
-                  file="Source/audio/Oscillators/Wavetables/ChiptuneCustom6.h"/>
-            <FILE id="JBB3UP" name="ChiptuneSquare12_5.h" compile="0" resource="0"
-                  file="Source/audio/Oscillators/Wavetables/ChiptuneSquare12_5.h"/>
-            <FILE id="KcGZdN" name="ChiptuneSquare25.h" compile="0" resource="0"
-                  file="Source/audio/Oscillators/Wavetables/ChiptuneSquare25.h"/>
-            <FILE id="Bux6C5" name="ChiptuneSquare50.h" compile="0" resource="0"
-                  file="Source/audio/Oscillators/Wavetables/ChiptuneSquare50.h"/>
-            <FILE id="rHeAVu" name="ChiptuneTriangle.h" compile="0" resource="0"
-                  file="Source/audio/Oscillators/Wavetables/ChiptuneTriangle.h"/>
-            <FILE id="ceC1o2" name="FatSaw.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/FatSaw.h"/>
-            <FILE id="bou18d" name="Harmonics1.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Harmonics1.h"/>
-            <FILE id="djxYTC" name="Harmonics2.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Harmonics2.h"/>
-            <FILE id="cCCPDj" name="Harmonics3.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Harmonics3.h"/>
-            <FILE id="U7ewdq" name="Harmonics4.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Harmonics4.h"/>
-            <FILE id="CxGHIh" name="Harmonics5.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Harmonics5.h"/>
-            <FILE id="R7CCVU" name="Harmonics6.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Harmonics6.h"/>
-            <FILE id="abMe1Q" name="Harmonics7.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Harmonics7.h"/>
-            <FILE id="CVOlhT" name="Harmonics8.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Harmonics8.h"/>
-            <FILE id="xWe5q6" name="Harmonics9.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Harmonics9.h"/>
-            <FILE id="k4Guzo" name="Harmonics10.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Harmonics10.h"/>
-            <FILE id="OaU9wP" name="Harmonics11.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Harmonics11.h"/>
-            <FILE id="UImOtL" name="Harmonics12.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Harmonics12.h"/>
-            <FILE id="gDnluB" name="Harmonics13.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Harmonics13.h"/>
-            <FILE id="tX3CZM" name="Harmonics14.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Harmonics14.h"/>
-            <FILE id="PJCSys" name="Harmonics15.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Harmonics15.h"/>
-            <FILE id="UFZZf2" name="Harmonics16.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Harmonics16.h"/>
-            <FILE id="Uje5wZ" name="Organ1.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Organ1.h"/>
-            <FILE id="Xbe0TV" name="Organ2.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Organ2.h"/>
-            <FILE id="oI5lrN" name="Organ3.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Organ3.h"/>
-            <FILE id="DK81It" name="Organ4.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Organ4.h"/>
-            <FILE id="uha7eN" name="Saw.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Saw.h"/>
-            <FILE id="XsmV7h" name="Sine.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Sine.h"/>
-            <FILE id="UrbZSK" name="Triangle.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Triangle.h"/>
+            <GROUP id="{11160309-4018-9ED9-5050-91CAB8FA48DD}" name="Coefficients">
+              <FILE id="H0ktK6" name="Additive1.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/Additive1.h"/>
+              <FILE id="nsDuXR" name="Additive2.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/Additive2.h"/>
+              <FILE id="np3zoy" name="Additive3.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/Additive3.h"/>
+              <FILE id="bS0EhM" name="Additive4.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/Additive4.h"/>
+              <FILE id="FN23yd" name="Additive5.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/Additive5.h"/>
+              <FILE id="rKduwy" name="Additive6.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/Additive6.h"/>
+              <FILE id="pWcO3j" name="Additive7.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/Additive7.h"/>
+              <FILE id="SLUQE0" name="Additive8.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/Additive8.h"/>
+              <FILE id="ln80Vo" name="Additive9.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/Additive9.h"/>
+              <FILE id="IKpMPA" name="Additive10.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/Additive10.h"/>
+              <FILE id="NxXxKm" name="Additive11.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/Additive11.h"/>
+              <FILE id="HV4wTH" name="Additive12.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/Additive12.h"/>
+              <FILE id="EfcZEG" name="Additive13.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/Additive13.h"/>
+              <FILE id="sz2eDI" name="Additive14.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/Additive14.h"/>
+              <FILE id="d7SXEP" name="Additive15.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/Additive15.h"/>
+              <FILE id="QSytI9" name="Additive16.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/Additive16.h"/>
+              <FILE id="nb1QpD" name="BrokenSine1.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/BrokenSine1.h"/>
+              <FILE id="QSwaA3" name="BrokenSine2.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/BrokenSine2.h"/>
+              <FILE id="HNT1z1" name="BrokenSine3.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/BrokenSine3.h"/>
+              <FILE id="tQtaPa" name="BrokenSine4.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/BrokenSine4.h"/>
+              <FILE id="qnRPsm" name="ChiptuneCustom1.h" compile="0" resource="0"
+                    file="Source/audio/Oscillators/Wavetables/Coefficients/ChiptuneCustom1.h"/>
+              <FILE id="ouc3mf" name="ChiptuneCustom2.h" compile="0" resource="0"
+                    file="Source/audio/Oscillators/Wavetables/Coefficients/ChiptuneCustom2.h"/>
+              <FILE id="PxIxnZ" name="ChiptuneCustom3.h" compile="0" resource="0"
+                    file="Source/audio/Oscillators/Wavetables/Coefficients/ChiptuneCustom3.h"/>
+              <FILE id="fl8fpe" name="ChiptuneCustom4.h" compile="0" resource="0"
+                    file="Source/audio/Oscillators/Wavetables/Coefficients/ChiptuneCustom4.h"/>
+              <FILE id="bwnHCs" name="ChiptuneCustom5.h" compile="0" resource="0"
+                    file="Source/audio/Oscillators/Wavetables/Coefficients/ChiptuneCustom5.h"/>
+              <FILE id="A0gOwT" name="ChiptuneCustom6.h" compile="0" resource="0"
+                    file="Source/audio/Oscillators/Wavetables/Coefficients/ChiptuneCustom6.h"/>
+              <FILE id="gGKUv8" name="ChiptuneSquare12_5.h" compile="0" resource="0"
+                    file="Source/audio/Oscillators/Wavetables/Coefficients/ChiptuneSquare12_5.h"/>
+              <FILE id="YyJtSD" name="ChiptuneSquare25.h" compile="0" resource="0"
+                    file="Source/audio/Oscillators/Wavetables/Coefficients/ChiptuneSquare25.h"/>
+              <FILE id="AVaknP" name="ChiptuneSquare50.h" compile="0" resource="0"
+                    file="Source/audio/Oscillators/Wavetables/Coefficients/ChiptuneSquare50.h"/>
+              <FILE id="Opa72b" name="ChiptuneTriangle.h" compile="0" resource="0"
+                    file="Source/audio/Oscillators/Wavetables/Coefficients/ChiptuneTriangle.h"/>
+              <FILE id="L0agPJ" name="FatSaw.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/FatSaw.h"/>
+              <FILE id="epNLCs" name="Harmonics1.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/Harmonics1.h"/>
+              <FILE id="M1lmHH" name="Harmonics2.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/Harmonics2.h"/>
+              <FILE id="Egc0bH" name="Harmonics3.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/Harmonics3.h"/>
+              <FILE id="Th2yg6" name="Harmonics4.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/Harmonics4.h"/>
+              <FILE id="pg7X5X" name="Harmonics5.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/Harmonics5.h"/>
+              <FILE id="kvjdqj" name="Harmonics6.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/Harmonics6.h"/>
+              <FILE id="Hl1li9" name="Harmonics7.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/Harmonics7.h"/>
+              <FILE id="hlJabW" name="Harmonics8.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/Harmonics8.h"/>
+              <FILE id="KMr8uo" name="Harmonics9.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/Harmonics9.h"/>
+              <FILE id="Up9g8s" name="Harmonics10.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/Harmonics10.h"/>
+              <FILE id="yvA0Qt" name="Harmonics11.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/Harmonics11.h"/>
+              <FILE id="gPEf22" name="Harmonics12.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/Harmonics12.h"/>
+              <FILE id="YMaWN0" name="Harmonics13.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/Harmonics13.h"/>
+              <FILE id="RtAsls" name="Harmonics14.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/Harmonics14.h"/>
+              <FILE id="yuhHKY" name="Harmonics15.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/Harmonics15.h"/>
+              <FILE id="tX1QUg" name="Harmonics16.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/Harmonics16.h"/>
+              <FILE id="zYwjpu" name="LFOPyramid4.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/LFOPyramid4.h"/>
+              <FILE id="YL6Qkm" name="LFOPyramid6.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/LFOPyramid6.h"/>
+              <FILE id="vaxUYd" name="LFOPyramid8.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/LFOPyramid8.h"/>
+              <FILE id="pXbImg" name="LFOPyramid12.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/LFOPyramid12.h"/>
+              <FILE id="qdWTsg" name="LFOSpike.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/LFOSpike.h"/>
+              <FILE id="MT7gzC" name="LFOSquare12.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/LFOSquare12.h"/>
+              <FILE id="igd92b" name="LFOSquare25.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/LFOSquare25.h"/>
+              <FILE id="eSXHaP" name="LFOSquare50.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/LFOSquare50.h"/>
+              <FILE id="goyPjL" name="LFOStair3.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/LFOStair3.h"/>
+              <FILE id="DMVF3W" name="LFOStair4.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/LFOStair4.h"/>
+              <FILE id="AsGdxr" name="LFOStair6.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/LFOStair6.h"/>
+              <FILE id="a0n5Of" name="LFOStair8.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/LFOStair8.h"/>
+              <FILE id="pCgpRC" name="LFOStair12.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/LFOStair12.h"/>
+              <FILE id="g1txPv" name="MultiSaw1.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/MultiSaw1.h"/>
+              <FILE id="P0jiqX" name="MultiSaw2.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/MultiSaw2.h"/>
+              <FILE id="CItGM7" name="MultiSaw3.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/MultiSaw3.h"/>
+              <FILE id="TEJGi4" name="MultiSaw4.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/MultiSaw4.h"/>
+              <FILE id="bCDHnM" name="Organ1.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/Organ1.h"/>
+              <FILE id="Qv9iqZ" name="Organ2.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/Organ2.h"/>
+              <FILE id="Dak3MU" name="Organ3.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/Organ3.h"/>
+              <FILE id="hMBYBt" name="Organ4.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/Organ4.h"/>
+              <FILE id="QrZWtN" name="Saw.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/Saw.h"/>
+              <FILE id="AYTlB1" name="Sine.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/Sine.h"/>
+              <FILE id="Z5LFw4" name="Skyline1.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/Skyline1.h"/>
+              <FILE id="wUxekK" name="Skyline2.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/Skyline2.h"/>
+              <FILE id="mhCdbj" name="Skyline3.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/Skyline3.h"/>
+              <FILE id="V1NKdV" name="Skyline4.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/Skyline4.h"/>
+              <FILE id="L1EYvD" name="Soft1.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/Soft1.h"/>
+              <FILE id="UAm1YN" name="Soft2.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/Soft2.h"/>
+              <FILE id="U7eMaD" name="Soft3.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/Soft3.h"/>
+              <FILE id="IJVGvN" name="Soft4.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/Soft4.h"/>
+              <FILE id="HKd1fO" name="Triangle.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/Triangle.h"/>
+            </GROUP>
           </GROUP>
           <FILE id="PzYVzE" name="AnalogOscillator.cpp" compile="1" resource="0"
                 file="Source/audio/Oscillators/AnalogOscillator.cpp"/>
