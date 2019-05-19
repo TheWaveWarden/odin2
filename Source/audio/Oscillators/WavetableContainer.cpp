@@ -21,9 +21,6 @@ WavetableContainer::WavetableContainer()
 }
 
 WavetableContainer::~WavetableContainer() {
-  if (m_wavetables_created) {
-    destroyWavetables();
-  }
 }
 
 std::string to_string_no_comma(float p_input) {
@@ -53,7 +50,8 @@ void WavetableContainer::createWavetables(float p_sample_rate) {
          ++index_sub_table) {
 
       // allocate memory for actual tables
-      float *next_table = new float[WAVETABLE_LENGTH];
+      //float *next_table = new float[WAVETABLE_LENGTH];
+      float *next_table = m_wavetables[index_wavetable][index_sub_table];
       memset(next_table, 0, WAVETABLE_LENGTH * sizeof(float));
 
       // how many harmonics are needed for this subtable
@@ -921,19 +919,6 @@ float WavetableContainer::const_segment_one_overtone_cosine(float p_start,
          (sin(p_end * (float)p_harmonic) - sin(p_start * (float)p_harmonic));
 }
 
-void WavetableContainer::destroyWavetables() {
-  DBG("TRYING TO DELETE WAVETABLES");
-  // delete allocated memory for wavetables
-  for (int index_wavetable = 0; index_wavetable < NUMBER_OF_WAVETABLES;
-       ++index_wavetable) {
-    for (int index_sub_table = 0; index_sub_table < SUBTABLES_PER_WAVETABLE;
-         ++index_sub_table) {
-      delete[] m_wavetable_pointers[index_wavetable][index_sub_table];
-      m_wavetable_pointers[index_wavetable][index_sub_table] = nullptr;
-    }
-  }
-  m_wavetables_created = false;
-}
 
 float **WavetableContainer::getChipdrawPointer(int p_chipdraw_index) {
   return m_chipdraw_pointers[p_chipdraw_index];
@@ -978,9 +963,6 @@ float **WavetableContainer::getLFOPointers(std::string p_name) {
 }
 
 void WavetableContainer::changeSampleRate(float p_sample_rate) {
-  if (m_wavetables_created) {
-    destroyWavetables();
-  }
   createWavetables(p_sample_rate);
 }
 

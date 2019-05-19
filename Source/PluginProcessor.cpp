@@ -63,9 +63,9 @@ OdinAudioProcessor::OdinAudioProcessor()
   initializeModules();
 
   // create wavetables
-  //WavetableContainer::getInstance().createWavetables(44100.f); // todo
-  WavetableContainer::getInstance().loadWavetables();
-  //WavetableContainer::getInstance().writeWavetablesToFiles();//todo remove
+  WavetableContainer::getInstance().createWavetables(44100.f); //use this to test new tables and load them instantly
+  //WavetableContainer::getInstance().writeWavetablesToFiles();//use this to write the tables to header files
+  //WavetableContainer::getInstance().loadWavetables();        //use this for normal operation
 
   // load wavetables into oscs
   for (int i = 0; i < VOICES; ++i) {

@@ -27,7 +27,6 @@ public:
 	void createSpecdrawTable(int p_table_nr, float p_fourier_values[SPECDRAW_STEPS_X], float p_sample_rate);
 
 
-	void destroyWavetables();
 	void changeSampleRate(float p_sample_rate);
 
 	float** getWavetablePointers(int p_wavetable);
