@@ -9,8 +9,8 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 
 WavetableContainer::WavetableContainer()
-    //:
-//#include "Wavetables/Tables/WavetableData.h" //include initializer list
+    :
+#include "Wavetables/Tables/WavetableData.h" //include initializer list
 {
 #include "WavetableCoefficients.h"
 
@@ -37,6 +37,8 @@ void WavetableContainer::createWavetables(float p_sample_rate) {
   // //loop over all wavetables
   for (int index_wavetable = 0; index_wavetable < NUMBER_OF_WAVETABLES;
        ++index_wavetable) {
+
+        DBG("wavetable: " + std::to_string(index_wavetable));
 
     // this flags hackishly if a waveform only uses sine components
     bool sine_only =

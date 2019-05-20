@@ -918,8 +918,8 @@ void ModMatrixComponent::setStandardMenu(PopupMenu *p_menu) {
 
 void ModMatrixComponent::createMenu(PopupMenu *p_menu) {
   // read osc and filter types from parent
-  int osc_type[3];
-  int fil_type[3];
+  int osc_type[3] = {0};
+  int fil_type[3] = {0};
   getOscFilterTypes(osc_type[0], osc_type[1], osc_type[2], fil_type[0],
                     fil_type[1], fil_type[2]);
 

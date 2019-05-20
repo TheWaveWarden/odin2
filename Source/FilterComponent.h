@@ -125,7 +125,7 @@ protected:
 
   juce::Image m_background;
   juce::Image m_background_bypass;
-  int m_filter_type;
+  int m_filter_type = 0;
 
   std::string m_filter_number;
   AudioProcessorValueTreeState& m_value_tree;
