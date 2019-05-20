@@ -35,13 +35,12 @@ OdinAudioProcessor::OdinAudioProcessor()
 
   // set up the tree listener
   m_tree_listener.onValueChange = [&](const String &p_ID, float p_new_value) {
-    if (!treeValueChangedFirst(p_ID, p_new_value))
-    {
-      if (!treeValueChangedSecond(p_ID, p_new_value)) //no change in first
+    if (!treeValueChangedFirst(p_ID, p_new_value)) {
+      if (!treeValueChangedSecond(p_ID, p_new_value)) // no change in first
       {
-        if (!treeValueChangedThird(p_ID, p_new_value)) //no change in 1st + 2nd
+        if (!treeValueChangedThird(p_ID, p_new_value)) // no change in 1st + 2nd
         {
-          treeValueChangedFourth(p_ID, p_new_value); //nochange in 1+2+3
+          treeValueChangedFourth(p_ID, p_new_value); // nochange in 1+2+3
         }
       }
     }
@@ -55,17 +54,20 @@ OdinAudioProcessor::OdinAudioProcessor()
   //     // m_voice[i].m_voice_active = false;
   //     *ptr_to_voice_active = false;
   //     DBG("Terminated voice " + std::to_string(i));
-  //     //! DEBUG: i seems to be related to the note number. just feeding const 50 in resulted in i = 29...
+  //     //! DEBUG: i seems to be related to the note number. just feeding const
+  //     50 in resulted in i = 29...
   //   };
   // }
 
-  //VoiceManager *ptr_to_voice_manager = &(m_voice_manager);
+  // VoiceManager *ptr_to_voice_manager = &(m_voice_manager);
 
-  // // ! weird as hell: visual studio wont capture loop index properly, so let's do it this way.....
-  // #define CONNECT_VOICE_END_TO_MANAGER(voice) m_voice[voice].env[0].onEnvelopeEnd = [&, ptr_to_voice_manager]() { \
-//   ptr_to_voice_manager->freeVoice(voice);                                                       \
-//   m_voice[voice].m_voice_active = false;                                                  \
-//   DBG("Terminated voice " + std::to_string(voice));                                       \
+  // // ! weird as hell: visual studio wont capture loop index properly, so
+  // let's do it this way.....
+  // #define CONNECT_VOICE_END_TO_MANAGER(voice)
+  // m_voice[voice].env[0].onEnvelopeEnd = [&, ptr_to_voice_manager]() { \
+//   ptr_to_voice_manager->freeVoice(voice); \
+//   m_voice[voice].m_voice_active = false; \
+//   DBG("Terminated voice " + std::to_string(voice)); \
 // };
 
   // CONNECT_VOICE_END_TO_MANAGER(0)
@@ -146,15 +148,16 @@ OdinAudioProcessor::OdinAudioProcessor()
   initializeModules();
 
   // create wavetables
-  WavetableContainer::getInstance().createWavetables(44100.f); //use this to test new tables and load them instantly
-  //WavetableContainer::getInstance().writeWavetablesToFiles();//use this to write the tables to header files
-  //WavetableContainer::getInstance().loadWavetables();        //use this for normal operation
+  WavetableContainer::getInstance().createWavetables(
+      44100.f); // use this to test new tables and load them instantly
+  // WavetableContainer::getInstance().writeWavetablesToFiles();//use this to
+  // write the tables to header files
+  // WavetableContainer::getInstance().loadWavetables();        //use this for
+  // normal operation
 
   // load wavetables into oscs
-  for (int i = 0; i < VOICES; ++i)
-  {
-    for (int osc = 0; osc < 3; ++osc)
-    {
+  for (int i = 0; i < VOICES; ++i) {
+    for (int osc = 0; osc < 3; ++osc) {
       m_voice[i].analog_osc[osc].loadWavetables();
       m_voice[i].wavetable_osc[osc].loadWavetables();
       m_voice[i].chiptune_osc[osc].loadWavetables();
@@ -166,32 +169,31 @@ OdinAudioProcessor::OdinAudioProcessor()
       m_voice[i].specdraw_osc[osc].loadSpecdrawTables(osc);
       m_voice[i].lfo[osc].loadWavetables();
     }
-    for (int mod = 0; mod < 4; ++mod)
-    {
+    for (int mod = 0; mod < 4; ++mod) {
       m_voice[i].lfo[mod].loadWavetables();
     }
   }
-  for (int voice = 0; voice < VOICES; ++voice)
-  {
-    DBG("pointer to manager " + std::to_string(voice) + " is: " + std::to_string((long)&m_voice_manager));
-    DBG("pointer to bool " + std::to_string(voice) + " is: " + std::to_string((long)&(m_voice_manager.voice_busy[voice])));
-    m_voice[voice].env[0].setEnvelopeEndPointers(&(m_voice[voice].m_voice_active), &(m_voice_manager.voice_busy[voice]));
+  for (int voice = 0; voice < VOICES; ++voice) {
+    DBG("pointer to voice " + std::to_string(voice) +
+        " is: " + std::to_string((long)&m_voice[voice]));
+    DBG("pointer to bool " + std::to_string(voice) +
+        " is: " + std::to_string((long)&(m_voice[voice].m_voice_active)));
+    m_voice[voice].env[0].setEnvelopeEndPointers(
+        &(m_voice[voice].m_voice_active), &(m_voice_manager.voice_busy[voice]));
   }
 
   // WavetableContainer::getInstance().createLFOCoefficientsFromLinSections(12,
   // spike, 1000, "Spike");
 }
 
-OdinAudioProcessor::~OdinAudioProcessor()
-{
-  //WavetableContainer::getInstance().destroyWavetables();
+OdinAudioProcessor::~OdinAudioProcessor() {
+  // WavetableContainer::getInstance().destroyWavetables();
 }
 
 //==============================================================================
 const String OdinAudioProcessor::getName() const { return JucePlugin_Name; }
 
-bool OdinAudioProcessor::acceptsMidi() const
-{
+bool OdinAudioProcessor::acceptsMidi() const {
 #if JucePlugin_WantsMidiInput
   return true;
 #else
@@ -199,8 +201,7 @@ bool OdinAudioProcessor::acceptsMidi() const
 #endif
 }
 
-bool OdinAudioProcessor::producesMidi() const
-{
+bool OdinAudioProcessor::producesMidi() const {
 #if JucePlugin_ProducesMidiOutput
   return true;
 #else
@@ -208,8 +209,7 @@ bool OdinAudioProcessor::producesMidi() const
 #endif
 }
 
-bool OdinAudioProcessor::isMidiEffect() const
-{
+bool OdinAudioProcessor::isMidiEffect() const {
 #if JucePlugin_IsMidiEffect
   return true;
 #else
@@ -219,8 +219,7 @@ bool OdinAudioProcessor::isMidiEffect() const
 
 double OdinAudioProcessor::getTailLengthSeconds() const { return 0.0; }
 
-int OdinAudioProcessor::getNumPrograms()
-{
+int OdinAudioProcessor::getNumPrograms() {
   return 1; // NB: some hosts don't cope very well if you tell them there are 0
             // programs, so this should be at least 1, even if you're not really
             // implementing programs.
@@ -235,24 +234,21 @@ const String OdinAudioProcessor::getProgramName(int index) { return {}; }
 void OdinAudioProcessor::changeProgramName(int index, const String &newName) {}
 
 //==============================================================================
-void OdinAudioProcessor::prepareToPlay(double sampleRate, int samplesPerBlock)
-{
+void OdinAudioProcessor::prepareToPlay(double sampleRate, int samplesPerBlock) {
   // Use this method as the place to do any pre-playback
   // initialisation that you need..
   // m_voice[0].start(52, 100);
   // m_amp.setMIDIVelocity(100);
 }
 
-void OdinAudioProcessor::releaseResources()
-{
+void OdinAudioProcessor::releaseResources() {
   // When playback stops, you can use this as an opportunity to free up any
   // spare memory, etc.
 }
 
 #ifndef JucePlugin_PreferredChannelConfigurations
 bool OdinAudioProcessor::isBusesLayoutSupported(
-    const BusesLayout &layouts) const
-{
+    const BusesLayout &layouts) const {
 #if JucePlugin_IsMidiEffect
   ignoreUnused(layouts);
   return true;
@@ -274,8 +270,7 @@ bool OdinAudioProcessor::isBusesLayoutSupported(
 #endif
 
 void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
-                                      MidiBuffer &midiMessages)
-{
+                                      MidiBuffer &midiMessages) {
 
   ScopedNoDenormals noDenormals;
   auto totalNumInputChannels = getTotalNumInputChannels();
@@ -288,12 +283,10 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
       midi_iterator.getNextEvent(midi_message, midi_message_sample);
 
   // loop over samples
-  for (int sample = 0; sample < buffer.getNumSamples(); ++sample)
-  {
+  for (int sample = 0; sample < buffer.getNumSamples(); ++sample) {
 
     //===== SMOOTH CONTROLS ======
-    for (int i = 0; i < 3; ++i)
-    {
+    for (int i = 0; i < 3; ++i) {
       m_osc_vol_smooth[i] = m_osc_vol_smooth[i] * GAIN_SMOOTHIN_FACTOR +
                             (1.f - GAIN_SMOOTHIN_FACTOR) * m_osc_vol_control[i];
       m_fil_gain_smooth[i] =
@@ -322,100 +315,76 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
                       (1 - GAIN_SMOOTHIN_FACTOR) * (m_master_control);
 
     //===== MIDI =====
-    if (midi_message_remaining)
-    {
-      if (midi_message_sample <= sample)
-      {
+    if (midi_message_remaining) {
+      if (midi_message_sample <= sample) {
         // apply midi message
-        if (midi_message.isNoteOn())
-        {
+        if (midi_message.isNoteOn()) {
           int voice_number =
               m_voice_manager.getVoice(midi_message.getNoteNumber());
-          if (voice_number >= 0)
-          { // else is on sustain
-            if (m_last_midi_note == -1)
-            {
+          if (voice_number >= 0) { // else is on sustain
+            if (m_last_midi_note == -1) {
               // first time glide - dont glide
-              //m_last_midi_note = midi_message.getNoteNumber();
+              // m_last_midi_note = midi_message.getNoteNumber();
               m_last_midi_note = 50;
             }
             m_voice[voice_number].start(midi_message.getNoteNumber(),
                                         midi_message.getVelocity(),
                                         m_last_midi_note);
-            DBG("Started Voice Nr. " + std::to_string(voice_number) + " midikey: " + std::to_string(midi_message.getNoteNumber()));
+            DBG("Started Voice Nr. " + std::to_string(voice_number) +
+                " midikey: " + std::to_string(midi_message.getNoteNumber()));
             m_amp.setMIDIVelocity(midi_message.getVelocity());
             m_last_midi_note = midi_message.getNoteNumber();
             m_mod_matrix.setMostRecentVoice(voice_number);
           }
-        }
-        else if (midi_message.isNoteOff())
-        {
-          for (int voice = 0; voice < VOICES; ++voice)
-          {
-            DBG("pointer to manager " + std::to_string(voice) + " is: " + std::to_string((long)&m_voice_manager));
-            DBG("pointer to bool " + std::to_string(voice) + " is: " + std::to_string((long)&(m_voice_manager.voice_busy[voice])));
+        } else if (midi_message.isNoteOff()) {
+          for (int voice = 0; voice < VOICES; ++voice) {
+            DBG("pointer to voice " + std::to_string(voice) +
+                " is: " + std::to_string((long)&m_voice[voice]));
+            DBG("pointer to bool " + std::to_string(voice) + " is: " +
+                std::to_string((long)&(m_voice[voice].m_voice_active)));
           }
 
           DBG("NOTEOFF, key " + std::to_string(midi_message.getNoteNumber()));
 
-          if (!m_voice_manager.getSustainActive())
-          {
-            for (int voice = 0; voice < VOICES; ++voice)
-            {
-              if (m_voice[voice].keyUp(midi_message.getNoteNumber()))
-              {
+          if (!m_voice_manager.getSustainActive()) {
+            for (int voice = 0; voice < VOICES; ++voice) {
+              if (m_voice[voice].keyUp(midi_message.getNoteNumber())) {
                 DBG("KeyUp on voice " + std::to_string(voice));
               }
             }
-          }
-          else
-          {
-            for (int voice = 0; voice < VOICES; ++voice)
-            {
+          } else {
+            for (int voice = 0; voice < VOICES; ++voice) {
               if (m_voice[voice].usesThisMIDIKey(
-                      midi_message.getNoteNumber()))
-              {
+                      midi_message.getNoteNumber())) {
                 m_voice_manager.addToKillList(voice,
                                               midi_message.getNoteNumber());
               }
             }
           }
-        }
-        else if (midi_message.isPitchWheel())
-        {
+        } else if (midi_message.isPitchWheel()) {
           setPitchWheelValue(midi_message.getPitchWheelValue());
-        }
-        else if (midi_message.isSustainPedalOn())
-        {
+        } else if (midi_message.isSustainPedalOn()) {
           m_voice_manager.setSustainActive(true);
           DBG("Sustain pedal pressed");
-        }
-        else if (midi_message.isSustainPedalOff())
-        {
+        } else if (midi_message.isSustainPedalOff()) {
           DBG("Sustain pedal released");
           m_voice_manager.setSustainActive(false);
-          for (int voice = 0; voice < VOICES; ++voice)
-          {
-            if (m_voice_manager.isOnKillList(voice))
-            {
+          for (int voice = 0; voice < VOICES; ++voice) {
+            if (m_voice_manager.isOnKillList(voice)) {
               m_voice[voice].startRelease();
             }
           }
           m_voice_manager.clearKillList();
-        }
-        else
-        {
+        } else {
           DBG("UNHANDELED MIDI MESSAGE: " + midi_message.getDescription());
         }
 
         if ((midi_message.isController() || midi_message.isPitchWheel()) /* &&
             !midi_message.isSustainPedalOn() &&
             !midi_message.isSustainPedalOff()*/
-        )
-        {
+        ) {
           DBG("CONTROLLER");
-          if (m_midi_learn_knob_active)
-          {
+          if (m_midi_learn_knob_active) {
             m_midi_control_list_knob.emplace(midi_message.getControllerNumber(),
                                              m_midi_learn_knob);
             m_midi_learn_knob->setMidiControlActive();
@@ -424,8 +393,7 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
             DBG("Added MIDI control on controller number " +
                 std::to_string(midi_message.getControllerNumber()));
           }
-          if (m_midi_learn_slider_active)
-          {
+          if (m_midi_learn_slider_active) {
             m_midi_control_list_slider.emplace(
                 midi_message.getControllerNumber(), m_midi_learn_slider);
             m_midi_learn_slider->setMidiControlActive();
@@ -434,8 +402,7 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
             DBG("Added MIDI control on controller number " +
                 std::to_string(midi_message.getControllerNumber()));
           }
-          if (m_midi_learn_lrbutton_active)
-          {
+          if (m_midi_learn_lrbutton_active) {
             m_midi_control_list_lrbutton.emplace(
                 midi_message.getControllerNumber(), m_midi_learn_lrbutton);
             m_midi_learn_lrbutton->setMidiControlActive();
@@ -444,8 +411,7 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
             DBG("Added MIDI control on controller number " +
                 std::to_string(midi_message.getControllerNumber()));
           }
-          if (m_midi_learn_odinbutton_active)
-          {
+          if (m_midi_learn_odinbutton_active) {
             m_midi_control_list_odinbutton.emplace(
                 midi_message.getControllerNumber(), m_midi_learn_odinbutton);
             m_midi_learn_odinbutton->setMidiControlActive();
@@ -456,40 +422,32 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
           }
 
           // do midi control
-          for (auto const &control : m_midi_control_list_knob)
-          {
-            if (control.first == midi_message.getControllerNumber())
-            {
+          for (auto const &control : m_midi_control_list_knob) {
+            if (control.first == midi_message.getControllerNumber()) {
               const MessageManagerLock mmLock;
               control.second->setValue(
                   control.second->proportionOfLengthToValue(
                       (int)midi_message.getControllerValue() / 127.f));
             }
           }
-          for (auto const &control : m_midi_control_list_slider)
-          {
-            if (control.first == midi_message.getControllerNumber())
-            {
+          for (auto const &control : m_midi_control_list_slider) {
+            if (control.first == midi_message.getControllerNumber()) {
               const MessageManagerLock mmLock;
               control.second->setValue(
                   control.second->proportionOfLengthToValue(
                       (int)midi_message.getControllerValue() / 127.f));
             }
           }
-          for (auto const &control : m_midi_control_list_lrbutton)
-          {
-            if (control.first == midi_message.getControllerNumber())
-            {
+          for (auto const &control : m_midi_control_list_lrbutton) {
+            if (control.first == midi_message.getControllerNumber()) {
               const MessageManagerLock mmLock;
               control.second->setToggleState(
                   (int)midi_message.getControllerValue() > 64,
                   sendNotificationAsync);
             }
           }
-          for (auto const &control : m_midi_control_list_odinbutton)
-          {
-            if (control.first == midi_message.getControllerNumber())
-            {
+          for (auto const &control : m_midi_control_list_odinbutton) {
+            if (control.first == midi_message.getControllerNumber()) {
               const MessageManagerLock mmLock;
               control.second->setToggleState(
                   (int)midi_message.getControllerValue() > 64,
@@ -519,13 +477,10 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
     float voices_output = 0;
 
     // loop over all voices
-    for (int voice = 0; voice < VOICES; ++voice)
-    {
-      if (m_voice[voice])
-      {
+    for (int voice = 0; voice < VOICES; ++voice) {
+      if (m_voice[voice]) {
 
-        for (int mod = 0; mod < 4; ++mod)
-        {
+        for (int mod = 0; mod < 4; ++mod) {
           //===== ADSR ======
           m_adsr[voice][mod] = m_voice[voice].env[mod].doEnvelope();
 
@@ -539,18 +494,15 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
         // output var for the individual oscs
         memset(m_osc_output, 0, sizeof(float) * VOICES * 3);
 
-        for (int osc = 0; osc < 3; ++osc)
-        {
+        for (int osc = 0; osc < 3; ++osc) {
           // analog osc
-          if (*m_osc_type[osc] == OSC_TYPE_ANALOG)
-          {
+          if (*m_osc_type[osc] == OSC_TYPE_ANALOG) {
             m_voice[voice].analog_osc[osc].update();
             m_osc_output[voice][osc] +=
                 m_voice[voice].analog_osc[osc].doOscillate();
           }
           // wavetable osc
-          else if (*m_osc_type[osc] == OSC_TYPE_WAVETABLE)
-          {
+          else if (*m_osc_type[osc] == OSC_TYPE_WAVETABLE) {
             // m_voice[voice].wavetable_osc[osc].setPosition(0);
             // m_voice[voice].wavetable_osc[osc].selectWavetable(0);
             m_voice[voice].wavetable_osc[osc].update();
@@ -558,55 +510,47 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
                 m_voice[voice].wavetable_osc[osc].doOscillate();
           }
           // multi osc
-          else if (*m_osc_type[osc] == OSC_TYPE_MULTI)
-          {
+          else if (*m_osc_type[osc] == OSC_TYPE_MULTI) {
             m_voice[voice].multi_osc[osc].update();
             m_osc_output[voice][osc] +=
                 m_voice[voice].multi_osc[osc].doOscillate();
           }
           // vector osc
-          else if (*m_osc_type[osc] == OSC_TYPE_VECTOR)
-          {
+          else if (*m_osc_type[osc] == OSC_TYPE_VECTOR) {
             m_voice[voice].vector_osc[osc].update();
             m_osc_output[voice][osc] +=
                 m_voice[voice].vector_osc[osc].doOscillate();
           }
           // chiptune osc
-          else if (*m_osc_type[osc] == OSC_TYPE_CHIPTUNE)
-          {
+          else if (*m_osc_type[osc] == OSC_TYPE_CHIPTUNE) {
             m_voice[voice].chiptune_osc[osc].update();
             m_osc_output[voice][osc] +=
                 m_voice[voice].chiptune_osc[osc].doOscillate();
           }
           // fm osc
-          else if (*m_osc_type[osc] == OSC_TYPE_FM)
-          {
+          else if (*m_osc_type[osc] == OSC_TYPE_FM) {
             m_voice[voice].fm_osc[osc].update();
             m_osc_output[voice][osc] +=
                 m_voice[voice].fm_osc[osc].doOscillate();
           }
           // noise osc
-          else if (*m_osc_type[osc] == OSC_TYPE_NOISE)
-          {
+          else if (*m_osc_type[osc] == OSC_TYPE_NOISE) {
             m_osc_output[voice][osc] += m_voice[voice].noise_osc[osc].doNoise();
           }
           // wavedraw osc
-          else if (*m_osc_type[osc] == OSC_TYPE_WAVEDRAW)
-          {
+          else if (*m_osc_type[osc] == OSC_TYPE_WAVEDRAW) {
             m_voice[voice].wavedraw_osc[osc].update();
             m_osc_output[voice][osc] +=
                 m_voice[voice].wavedraw_osc[osc].doOscillate();
           }
           // chipdraw osc
-          else if (*m_osc_type[osc] == OSC_TYPE_CHIPDRAW)
-          {
+          else if (*m_osc_type[osc] == OSC_TYPE_CHIPDRAW) {
             m_voice[voice].chipdraw_osc[osc].update();
             m_osc_output[voice][osc] +=
                 m_voice[voice].chipdraw_osc[osc].doOscillate();
           }
           // chipdraw osc
-          else if (*m_osc_type[osc] == OSC_TYPE_SPECDRAW)
-          {
+          else if (*m_osc_type[osc] == OSC_TYPE_SPECDRAW) {
             m_voice[voice].specdraw_osc[osc].update();
             m_osc_output[voice][osc] +=
                 m_voice[voice].specdraw_osc[osc].doOscillate();
@@ -621,79 +565,62 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
         memset(m_filter_output, 0, sizeof(float) * VOICES * 2);
         m_voice[voice].setFilterEnvValue(
             m_adsr[voice][1]); // can be split up to individual filters
-        for (int fil = 0; fil < 2; ++fil)
-        {
+        for (int fil = 0; fil < 2; ++fil) {
           // get filter inputs, fil1->fil2 is done at the end of fil1 calc
-          if (*m_fil_osc1[fil])
-          {
+          if (*m_fil_osc1[fil]) {
             filter_input[fil] += m_osc_output[voice][0];
           }
-          if (*m_fil_osc2[fil])
-          {
+          if (*m_fil_osc2[fil]) {
             filter_input[fil] += m_osc_output[voice][1];
           }
-          if (*m_fil_osc3[fil])
-          {
+          if (*m_fil_osc3[fil]) {
             filter_input[fil] += m_osc_output[voice][2];
           }
 
-          if (*m_fil_type[fil] == FILTER_TYPE_NONE)
-          {
+          if (*m_fil_type[fil] == FILTER_TYPE_NONE) {
             m_filter_output[voice][fil] = filter_input[fil];
-          }
-          else if (*m_fil_type[fil] == FILTER_TYPE_LP24 ||
-                   *m_fil_type[fil] == FILTER_TYPE_LP12 ||
-                   *m_fil_type[fil] == FILTER_TYPE_BP24 ||
-                   *m_fil_type[fil] == FILTER_TYPE_BP12 ||
-                   *m_fil_type[fil] == FILTER_TYPE_HP24 ||
-                   *m_fil_type[fil] == FILTER_TYPE_HP12)
-          {
+          } else if (*m_fil_type[fil] == FILTER_TYPE_LP24 ||
+                     *m_fil_type[fil] == FILTER_TYPE_LP12 ||
+                     *m_fil_type[fil] == FILTER_TYPE_BP24 ||
+                     *m_fil_type[fil] == FILTER_TYPE_BP12 ||
+                     *m_fil_type[fil] == FILTER_TYPE_HP24 ||
+                     *m_fil_type[fil] == FILTER_TYPE_HP12) {
             m_voice[voice].ladder_filter[fil].m_freq_base =
                 m_fil_freq_smooth[fil];
             m_voice[voice].ladder_filter[fil].update();
             m_filter_output[voice][fil] =
                 m_voice[voice].ladder_filter[fil].doFilter(filter_input[fil]) *
                 m_fil_gain_smooth[fil];
-          }
-          else if (*m_fil_type[fil] == FILTER_TYPE_SEM12)
-          {
+          } else if (*m_fil_type[fil] == FILTER_TYPE_SEM12) {
             m_voice[voice].SEM_filter_12[fil].m_freq_base =
                 m_fil_freq_smooth[fil];
             m_voice[voice].SEM_filter_12[fil].update();
             m_filter_output[voice][fil] =
                 m_voice[voice].SEM_filter_12[fil].doFilter(filter_input[fil]) *
                 m_fil_gain_smooth[fil];
-          }
-          else if (*m_fil_type[fil] == FILTER_TYPE_KORG_LP ||
-                   *m_fil_type[fil] == FILTER_TYPE_KORG_HP)
-          {
+          } else if (*m_fil_type[fil] == FILTER_TYPE_KORG_LP ||
+                     *m_fil_type[fil] == FILTER_TYPE_KORG_HP) {
             m_voice[voice].korg_filter[fil].m_freq_base =
                 m_fil_freq_smooth[fil];
             m_voice[voice].korg_filter[fil].update();
             m_filter_output[voice][fil] =
                 m_voice[voice].korg_filter[fil].doFilter(filter_input[fil]) *
                 m_fil_gain_smooth[fil];
-          }
-          else if (*m_fil_type[fil] == FILTER_TYPE_DIODE)
-          {
+          } else if (*m_fil_type[fil] == FILTER_TYPE_DIODE) {
             m_voice[voice].diode_filter[fil].m_freq_base =
                 m_fil_freq_smooth[fil];
             m_voice[voice].diode_filter[fil].update();
             m_filter_output[voice][fil] =
                 m_voice[voice].diode_filter[fil].doFilter(filter_input[fil]) *
                 m_fil_gain_smooth[fil];
-          }
-          else if (*m_fil_type[fil] == FILTER_TYPE_FORMANT)
-          {
+          } else if (*m_fil_type[fil] == FILTER_TYPE_FORMANT) {
             m_voice[voice].formant_filter[fil].m_freq_base =
                 m_fil_freq_smooth[fil];
             m_voice[voice].formant_filter[fil].update();
             m_filter_output[voice][fil] =
                 m_voice[voice].formant_filter[fil].doFilter(filter_input[fil]) *
                 m_fil_gain_smooth[fil];
-          }
-          else if (*m_fil_type[fil] == FILTER_TYPE_COMB)
-          {
+          } else if (*m_fil_type[fil] == FILTER_TYPE_COMB) {
             m_voice[voice].comb_filter[fil].setCombFreq(m_fil_freq_smooth[fil]);
             m_filter_output[voice][fil] =
                 m_voice[voice].comb_filter[fil].doFilter(filter_input[fil]) *
@@ -701,18 +628,15 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
           }
 
           // add first filter to second filter input
-          if (fil == 0 && *m_fil2_fil1)
-          {
+          if (fil == 0 && *m_fil2_fil1) {
             filter_input[1] += m_filter_output[voice][0];
           }
         } // filter loop
 
-        if (*m_fil1_to_amp)
-        {
+        if (*m_fil1_to_amp) {
           voices_output += m_filter_output[voice][0] * m_adsr[voice][0];
         }
-        if (*m_fil2_to_amp)
-        {
+        if (*m_fil2_to_amp) {
           voices_output += m_filter_output[voice][1] * m_adsr[voice][0];
         }
 
@@ -725,12 +649,10 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
 
     m_amp.doAmplifier(voices_output, stereo_signal[0], stereo_signal[1]);
 
-    for (int channel = 0; channel < 2; ++channel)
-    {
+    for (int channel = 0; channel < 2; ++channel) {
 
       //===== DISTORTION ======
-      if (*m_dist_on)
-      {
+      if (*m_dist_on) {
         stereo_signal[channel] =
             m_distortion[channel].doDistortion(stereo_signal[channel]);
       }
@@ -741,49 +663,38 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
           *m_fil_type[2] == FILTER_TYPE_BP24 ||
           *m_fil_type[2] == FILTER_TYPE_BP12 ||
           *m_fil_type[2] == FILTER_TYPE_HP24 ||
-          *m_fil_type[2] == FILTER_TYPE_HP12)
-      {
+          *m_fil_type[2] == FILTER_TYPE_HP12) {
         m_ladder_filter[channel].m_freq_base = m_fil_freq_smooth[2];
         m_ladder_filter[channel].update();
         stereo_signal[channel] =
             m_ladder_filter[channel].doFilter(stereo_signal[channel]) *
             m_fil_gain_smooth[2];
-      }
-      else if (*m_fil_type[2] == FILTER_TYPE_SEM12)
-      {
+      } else if (*m_fil_type[2] == FILTER_TYPE_SEM12) {
         m_SEM_filter_12[channel].m_freq_base = m_fil_freq_smooth[2];
         m_SEM_filter_12[channel].update();
         stereo_signal[channel] =
             m_SEM_filter_12[channel].doFilter(stereo_signal[channel]) *
             m_fil_gain_smooth[2];
-      }
-      else if (*m_fil_type[2] == FILTER_TYPE_KORG_LP ||
-               *m_fil_type[2] == FILTER_TYPE_KORG_HP)
-      {
+      } else if (*m_fil_type[2] == FILTER_TYPE_KORG_LP ||
+                 *m_fil_type[2] == FILTER_TYPE_KORG_HP) {
         m_korg_filter[channel].m_freq_base = m_fil_freq_smooth[2];
         m_korg_filter[channel].update();
         stereo_signal[channel] =
             m_korg_filter[channel].doFilter(stereo_signal[channel]) *
             m_fil_gain_smooth[2];
-      }
-      else if (*m_fil_type[2] == FILTER_TYPE_DIODE)
-      {
+      } else if (*m_fil_type[2] == FILTER_TYPE_DIODE) {
         m_diode_filter[channel].m_freq_base = m_fil_freq_smooth[2];
         m_diode_filter[channel].update();
         stereo_signal[channel] =
             m_diode_filter[channel].doFilter(stereo_signal[channel]) *
             m_fil_gain_smooth[2];
-      }
-      else if (*m_fil_type[2] == FILTER_TYPE_FORMANT)
-      {
+      } else if (*m_fil_type[2] == FILTER_TYPE_FORMANT) {
         m_formant_filter[channel].m_freq_base = m_fil_freq_smooth[2];
         m_formant_filter[channel].update();
         stereo_signal[channel] =
             m_formant_filter[channel].doFilter(stereo_signal[channel]) *
             m_fil_gain_smooth[2];
-      }
-      else if (*m_fil_type[2] == FILTER_TYPE_COMB)
-      {
+      } else if (*m_fil_type[2] == FILTER_TYPE_COMB) {
         m_comb_filter[channel].setCombFreq(m_fil_freq_smooth[2]);
         stereo_signal[channel] =
             m_comb_filter[channel].doFilter(stereo_signal[channel]) *
@@ -793,36 +704,24 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
       //==== FX SECTION ====
 
       // ugly solution, yet here we go
-      for (int fx_slot = 0; fx_slot < 4; ++fx_slot)
-      {
-        if ((int)*m_delay_position == fx_slot)
-        {
-          if (*m_delay_on)
-          {
+      for (int fx_slot = 0; fx_slot < 4; ++fx_slot) {
+        if ((int)*m_delay_position == fx_slot) {
+          if (*m_delay_on) {
             stereo_signal[channel] =
                 m_delay[channel].doDelay(stereo_signal[channel]);
           }
-        }
-        else if ((int)*m_phaser_position == fx_slot)
-        {
-          if (*m_phaser_on)
-          {
+        } else if ((int)*m_phaser_position == fx_slot) {
+          if (*m_phaser_on) {
             stereo_signal[channel] =
                 m_phaser[channel].doPhaser(stereo_signal[channel]);
           }
-        }
-        else if ((int)*m_flanger_position == fx_slot)
-        {
-          if (*m_flanger_on)
-          {
+        } else if ((int)*m_flanger_position == fx_slot) {
+          if (*m_flanger_on) {
             stereo_signal[channel] =
                 m_flanger[channel].doFlanger(stereo_signal[channel]);
           }
-        }
-        else if ((int)*m_chorus_position == fx_slot)
-        {
-          if (*m_chorus_on)
-          {
+        } else if ((int)*m_chorus_position == fx_slot) {
+          if (*m_chorus_on) {
             stereo_signal[channel] =
                 m_chorus[channel].doChorus(stereo_signal[channel]);
           }
@@ -846,22 +745,19 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
 //==============================================================================
 bool OdinAudioProcessor::hasEditor() const { return true; }
 
-AudioProcessorEditor *OdinAudioProcessor::createEditor()
-{
+AudioProcessorEditor *OdinAudioProcessor::createEditor() {
   return new OdinAudioProcessorEditor(*this, m_parameters);
 }
 
 //==============================================================================
-void OdinAudioProcessor::getStateInformation(MemoryBlock &destData)
-{
+void OdinAudioProcessor::getStateInformation(MemoryBlock &destData) {
   // You should use this method to store your parameters in the memory block.
   // You could do that either as raw data, or use the XML or ValueTree classes
   // as intermediaries to make it easy to save and load complex data.
 }
 
 void OdinAudioProcessor::setStateInformation(const void *data,
-                                             int sizeInBytes)
-{
+                                             int sizeInBytes) {
   // You should use this method to restore your parameters from this memory
   // block, whose contents will have been created by the getStateInformation()
   // call.
@@ -869,16 +765,13 @@ void OdinAudioProcessor::setStateInformation(const void *data,
 
 //==============================================================================
 // This creates new instances of the plugin..
-AudioProcessor *JUCE_CALLTYPE createPluginFilter()
-{
+AudioProcessor *JUCE_CALLTYPE createPluginFilter() {
   return new OdinAudioProcessor();
 }
 
-void OdinAudioProcessor::setSampleRate(float p_samplerate)
-{
+void OdinAudioProcessor::setSampleRate(float p_samplerate) {
   // todo set ALL samplerates here and check where the host sets them
-  for (int voice = 0; voice < VOICES; ++voice)
-  {
+  for (int voice = 0; voice < VOICES; ++voice) {
     m_voice[voice].setSampleRate(p_samplerate);
   }
 
@@ -892,8 +785,7 @@ void OdinAudioProcessor::setSampleRate(float p_samplerate)
   m_chorus[1].setSamplerate(p_samplerate);
 }
 
-void OdinAudioProcessor::initializeModules()
-{
+void OdinAudioProcessor::initializeModules() {
   m_mod_matrix.setSourcesAndDestinations(&m_mod_sources, &m_mod_destinations);
 
   m_phaser[0].setBaseFreq(18000.f);
@@ -904,14 +796,12 @@ void OdinAudioProcessor::initializeModules()
   setModulationPointers();
 }
 
-void OdinAudioProcessor::setModulationPointers()
-{
+void OdinAudioProcessor::setModulationPointers() {
   //========================================
   //==============  SOURCES  ===============
   //========================================
 
-  for (int voice = 0; voice < VOICES; ++voice)
-  {
+  for (int voice = 0; voice < VOICES; ++voice) {
     m_mod_sources.voice[voice].osc[0] = &(m_osc_output[voice][0]);
     m_mod_sources.voice[voice].osc[1] = &(m_osc_output[voice][1]);
     m_mod_sources.voice[voice].osc[2] = &(m_osc_output[voice][2]);
@@ -939,10 +829,8 @@ void OdinAudioProcessor::setModulationPointers()
   //========================================
   //============= DESTINATIONS =============
   //========================================
-  for (int voice = 0; voice < VOICES; ++voice)
-  {
-    for (int osc = 0; osc < 3; ++osc)
-    {
+  for (int voice = 0; voice < VOICES; ++voice) {
+    for (int osc = 0; osc < 3; ++osc) {
       m_voice[voice].analog_osc[osc].setPitchBendPointer(
           &(m_pitch_bend_smooth_and_applied));
       m_voice[voice].wavetable_osc[osc].setPitchBendPointer(
@@ -1075,8 +963,7 @@ void OdinAudioProcessor::setModulationPointers()
       m_voice[voice].noise_osc[osc].setLPModPointer(
           &(m_mod_destinations.voice[voice].osc[osc].lp_freq));
     }
-    for (int fil = 0; fil < 2; ++fil)
-    {
+    for (int fil = 0; fil < 2; ++fil) {
       m_voice[voice].ladder_filter[fil].setFreqModPointer(
           &(m_mod_destinations.voice[voice].filter[fil].freq));
       m_voice[voice].diode_filter[fil].setFreqModPointer(
@@ -1175,8 +1062,7 @@ void OdinAudioProcessor::setModulationPointers()
           &(m_mod_destinations.voice[voice].filter[fil].formant_transition));
     }
 
-    for (int mod = 0; mod < 4; ++mod)
-    {
+    for (int mod = 0; mod < 4; ++mod) {
       m_voice[voice].lfo[mod].setPitchModExpPointer(
           &(m_mod_destinations.voice[voice].lfo[mod].freq));
 
@@ -1195,8 +1081,7 @@ void OdinAudioProcessor::setModulationPointers()
   m_amp.setPanModPointer(&(m_mod_destinations.amp.pan));
   m_amp.setVelModPointer(&(m_mod_destinations.amp.vel));
 
-  for (int stereo = 0; stereo < 2; ++stereo)
-  {
+  for (int stereo = 0; stereo < 2; ++stereo) {
 
     // todo ADD ALL DESTINATIONS FROM VOICE SECTIONS FOR FILTER3
     m_ladder_filter[stereo].setFreqModPointer(
@@ -1312,8 +1197,7 @@ void OdinAudioProcessor::setModulationPointers()
   }
 }
 
-void OdinAudioProcessor::setPitchWheelValue(int p_value)
-{
+void OdinAudioProcessor::setPitchWheelValue(int p_value) {
   // todo this should update the GUI, lets see after MIDI learn
   *m_pitchbend = (float)(p_value - 8192) / 8192.f;
 }

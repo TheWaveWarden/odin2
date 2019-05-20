@@ -11,6 +11,7 @@ ADSREnvelope::ADSREnvelope() {
 ADSREnvelope::~ADSREnvelope() {}
 
 float ADSREnvelope::doEnvelope() {
+  DBG((long)m_voice_bool_pointer);
   if (m_current_section == -1) {
     m_attack_start_value = 0.f;
     m_current_section = 0; // go to attack
@@ -90,6 +91,7 @@ float ADSREnvelope::doEnvelope() {
       output << "PR: OEE" << std::endl;
       output.close();
       onEnvelopeEnd();
+      DBG("3");
       // if(m_envelope_finish_flag){
       //    *m_envelope_finish_flag = false;
       //}

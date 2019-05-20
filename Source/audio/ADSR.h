@@ -9,8 +9,7 @@
 #define MIN_DECAY_RELEASE_VAL 0.001
 #include <cmath>
 
-class ADSREnvelope
-{
+class ADSREnvelope {
 public:
   ADSREnvelope();
   ~ADSREnvelope();
@@ -26,8 +25,7 @@ public:
   //	m_envelope_finish_flag = p_finish_flag;
   //}
 
-  inline void reset()
-  {
+  inline void reset() {
     m_current_section = -1;
     m_current_value = 0.f;
     m_attack_start_value = 0.f;
@@ -45,16 +43,11 @@ public:
 
   inline void setRelease(float p_release) { m_release = p_release; }
 
-  inline double calcModFactor(double p_mod)
-  {
-    return pow(2, 3 * p_mod);
-  }
+  inline double calcModFactor(double p_mod) { return pow(2, 3 * p_mod); }
 
-  inline double calcDecayFactor(double p_decay)
-  {
-    if (p_decay != m_last_decay)
-    {
-      //DBG("DELAY RECALCULATED");
+  inline double calcDecayFactor(double p_decay) {
+    if (p_decay != m_last_decay) {
+      // DBG("DELAY RECALCULATED");
       m_last_decay_return =
           pow(MIN_DECAY_RELEASE_VAL, 1. / m_samplerate / p_decay);
       m_last_decay = p_decay;
@@ -62,11 +55,9 @@ public:
     return m_last_decay_return;
   }
 
-  inline double calcReleaseFactor(double p_release)
-  {
-    if (p_release != m_last_release)
-    {
-      //DBG("RELEASE RECALCULATED");
+  inline double calcReleaseFactor(double p_release) {
+    if (p_release != m_last_release) {
+      // DBG("RELEASE RECALCULATED");
       m_last_release_return =
           pow(MIN_DECAY_RELEASE_VAL, 1. / m_samplerate / p_release);
       m_last_release = p_release;
@@ -74,55 +65,51 @@ public:
     return m_last_release_return;
   }
 
-  /*inline */ double calcDecayFactorCheap(double p_decay)
-  {
+  /*inline */ double calcDecayFactorCheap(double p_decay) {
     return CheapFunctions::getInstance().cheapADSRPow(m_samplerate * p_decay);
   }
 
+  void setAttackModPointer(float *p_pointer) { m_attack_mod = p_pointer; }
+  void setDecayModPointer(float *p_pointer) { m_decay_mod = p_pointer; }
+  void setSustainModPointer(float *p_pointer) { m_sustain_mod = p_pointer; }
+  void setReleaseModPointer(float *p_pointer) { m_release_mod = p_pointer; }
+
   // used to signal voice endign if this is amp-envelope
   // std::function<void()> onEnvelopeEnd = []() {};
-  void onEnvelopeEnd()
-  {
-    if (m_voice_bool_pointer && m_voice_manager_bool_pointer)
-    {
+  void onEnvelopeEnd() {
+    if (m_voice_bool_pointer && m_voice_manager_bool_pointer) {
+      DBG("1");
       *m_voice_manager_bool_pointer = false;
-      *m_voice_bool_pointer = false;
+      DBG("ENNNND:");
+      DBG((long)m_voice_bool_pointer);
+      DBG((long)m_test);      
+      *m_test = false;
     }
   }
 
-  void setAttackModPointer(float *p_pointer)
-  {
-    m_attack_mod = p_pointer;
-  }
-  void setDecayModPointer(float *p_pointer)
-  {
-    m_decay_mod = p_pointer;
-  }
-  void setSustainModPointer(float *p_pointer)
-  {
-    m_sustain_mod = p_pointer;
-  }
-  void setReleaseModPointer(float *p_pointer)
-  {
-    m_release_mod = p_pointer;
-  }
-
-  //! WEIRD STUFF! 500th workaround for visual studio cant handle my lambda..........
-  void setEnvelopeEndPointers(bool *p_voice, bool *p_manager)
-  {
+  //! WEIRD STUFF! 500th workaround for visual studio cant handle my
+  //! lambda..........
+  void setEnvelopeEndPointers(bool *p_voice, bool *p_manager) {
     m_voice_manager_bool_pointer = p_manager;
     m_voice_bool_pointer = p_voice;
-    //todo remove
+    m_test = p_voice;
+    // todo remove
+
+    DBG("STARRRT:");
+    DBG((long)m_voice_bool_pointer);
+    DBG((long)m_test);
     *m_voice_manager_bool_pointer = false;
-    *m_voice_bool_pointer = false;
+    *m_test = false;
   }
 
 protected:
   // CheapFunctions& m_cheap_functions;
 
-  //! WEIRD STUFF! 500th workaround for visual studio cant handle my lambda..........
+  //! WEIRD STUFF! 500th workaround for visual studio cant handle my
+  //! lambda..........
   bool *m_voice_manager_bool_pointer = nullptr;
   bool *m_voice_bool_pointer = nullptr;
+  bool *m_test = nullptr;
 
   int m_current_section = -1; // before start:-1, A0, D1, S2, R3
   bool m_loop = false;
