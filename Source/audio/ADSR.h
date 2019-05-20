@@ -105,7 +105,8 @@ protected:
   //! WEIRD STUFF! 500th workaround for visual studio cant handle my
   //! lambda..........
   bool *m_voice_manager_bool_pointer = nullptr;
-  bool *m_voice_bool_pointer = nullptr;//TODO PUT BACK IN TO WORK????!!!!
+  //? IF I REMOVE THE FOLLOWING LINE; EVERYTHING GOES DOWN THE FUCK
+  bool *m_voice_bool_pointer = nullptr;
   bool *m_test = nullptr;
 
   int m_current_section = -1; // before start:-1, A0, D1, S2, R3
