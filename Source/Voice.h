@@ -112,9 +112,9 @@ protected:
   //used to determine oldest voice for stealing
   int m_voice_history[VOICES] = {0,1,2,3,4,5,6,7,8,9,10,11};
   bool m_sustain_active = false;
-  bool m_kill_list[VOICES];
+  bool m_kill_list[VOICES] = {0};
   int m_kill_list_note[VOICES];
-  bool voice_busy[VOICES]; // is voice busy
+  bool voice_busy[VOICES] = {0}; // is voice busy
 };
 
 // one voice of the polyphonic voices, i.e. everything up to the amplifier

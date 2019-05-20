@@ -9,8 +9,8 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 
 WavetableContainer::WavetableContainer()
-    :
-#include "Wavetables/Tables/WavetableData.h" //include initializer list
+    //:
+//#include "Wavetables/Tables/WavetableData.h" //include initializer list
 {
 #include "WavetableCoefficients.h"
 
