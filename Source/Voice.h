@@ -108,13 +108,13 @@ public:
     DBG(std::to_string(m_voice_history[0]) + " " + std::to_string(m_voice_history[1]) + " " +std::to_string( m_voice_history[2]) + " " + std::to_string(m_voice_history[3]) + " " + std::to_string(m_voice_history[4]) + " " + std::to_string(m_voice_history[5]) + " " + std::to_string(m_voice_history[6]) + " " + std::to_string(m_voice_history[7]) + " " + std::to_string(m_voice_history[8]) + " " + std::to_string(m_voice_history[9])+ " " + std::to_string(m_voice_history[10]) + " " + std::to_string(m_voice_history[11]));
   }
 
+  bool voice_busy[VOICES] = {0}; // is voice busy
 protected:
   //used to determine oldest voice for stealing
   int m_voice_history[VOICES] = {0,1,2,3,4,5,6,7,8,9,10,11};
   bool m_sustain_active = false;
   bool m_kill_list[VOICES] = {0};
   int m_kill_list_note[VOICES];
-  bool voice_busy[VOICES] = {0}; // is voice busy
 };
 
 // one voice of the polyphonic voices, i.e. everything up to the amplifier

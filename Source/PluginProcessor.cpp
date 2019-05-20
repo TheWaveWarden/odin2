@@ -37,11 +37,11 @@ OdinAudioProcessor::OdinAudioProcessor()
   m_tree_listener.onValueChange = [&](const String &p_ID, float p_new_value) {
     if (!treeValueChangedFirst(p_ID, p_new_value))
     {
-      if (!treeValueChangedSecond(p_ID, p_new_value))
+      if (!treeValueChangedSecond(p_ID, p_new_value)) //no change in first
       {
-        if (!treeValueChangedThird(p_ID, p_new_value))
+        if (!treeValueChangedThird(p_ID, p_new_value)) //no change in 1st + 2nd
         {
-          treeValueChangedFourth(p_ID, p_new_value);
+          treeValueChangedFourth(p_ID, p_new_value); //nochange in 1+2+3
         }
       }
     }
@@ -59,135 +59,127 @@ OdinAudioProcessor::OdinAudioProcessor()
   //   };
   // }
 
-VoiceManager *ptr_to_voice_manager = &(m_voice_manager);
+  //VoiceManager *ptr_to_voice_manager = &(m_voice_manager);
 
-// ! weird as hell: visual studio wont capture loop index properly, so let's do it this way.....
-#define CONNECT_VOICE_END_TO_MANAGER(voice) m_voice[voice].env[0].onEnvelopeEnd = [&, ptr_to_voice_manager]() { \
-  ptr_to_voice_manager->freeVoice(voice);                                                       \
-  m_voice[voice].m_voice_active = false;                                                  \
-  DBG("Terminated voice " + std::to_string(voice));                                       \
-};
-
-CONNECT_VOICE_END_TO_MANAGER(0)
-CONNECT_VOICE_END_TO_MANAGER(1)
-CONNECT_VOICE_END_TO_MANAGER(2)
-CONNECT_VOICE_END_TO_MANAGER(3)
-CONNECT_VOICE_END_TO_MANAGER(4)
-CONNECT_VOICE_END_TO_MANAGER(5)
-CONNECT_VOICE_END_TO_MANAGER(6)
-CONNECT_VOICE_END_TO_MANAGER(7)
-CONNECT_VOICE_END_TO_MANAGER(8)
-CONNECT_VOICE_END_TO_MANAGER(9)
-CONNECT_VOICE_END_TO_MANAGER(10)
-CONNECT_VOICE_END_TO_MANAGER(11)
-
-// m_voice[0].env[0].onEnvelopeEnd = [&]() {
-//   m_voice_manager.freeVoice(0);
-//   m_voice[0].m_voice_active = false;
-//   DBG("Terminated voice " + std::to_string(0));
-// };
-// m_voice[1].env[0].onEnvelopeEnd = [&]() {
-//   m_voice_manager.freeVoice(1);
-//   m_voice[1].m_voice_active = false;
-//   DBG("Terminated voice " + std::to_string(1));
-// };
-// m_voice[2].env[0].onEnvelopeEnd = [&]() {
-//   m_voice_manager.freeVoice(2);
-//   m_voice[2].m_voice_active = false;
-//   DBG("Terminated voice " + std::to_string(2));
-// };
-// m_voice[3].env[0].onEnvelopeEnd = [&]() {
-//   m_voice_manager.freeVoice(3);
-//   m_voice[3].m_voice_active = false;
-//   DBG("Terminated voice " + std::to_string(3));
-// };
-// m_voice[4].env[0].onEnvelopeEnd = [&]() {
-//   m_voice_manager.freeVoice(4);
-//   m_voice[4].m_voice_active = false;
-//   DBG("Terminated voice " + std::to_string(4));
-// };
-// m_voice[5].env[0].onEnvelopeEnd = [&]() {
-//   m_voice_manager.freeVoice(5);
-//   m_voice[5].m_voice_active = false;
-//   DBG("Terminated voice " + std::to_string(5));
-// };
-// m_voice[6].env[0].onEnvelopeEnd = [&]() {
-//   m_voice_manager.freeVoice(6);
-//   m_voice[6].m_voice_active = false;
-//   DBG("Terminated voice " + std::to_string(6));
-// };
-// m_voice[7].env[0].onEnvelopeEnd = [&]() {
-//   m_voice_manager.freeVoice(7);
-//   m_voice[7].m_voice_active = false;
-//   DBG("Terminated voice " + std::to_string(7));
-// };
-// m_voice[8].env[0].onEnvelopeEnd = [&]() {
-//   m_voice_manager.freeVoice(8);
-//   m_voice[8].m_voice_active = false;
-//   DBG("Terminated voice " + std::to_string(8));
-// };
-// m_voice[9].env[0].onEnvelopeEnd = [&]() {
-//   m_voice_manager.freeVoice(9);
-//   m_voice[9].m_voice_active = false;
-//   DBG("Terminated voice " + std::to_string(9));
-// };
-// m_voice[10].env[0].onEnvelopeEnd = [&]() {
-//   m_voice_manager.freeVoice(10);
-//   m_voice[10].m_voice_active = false;
-//   DBG("Terminated voice " + std::to_string(10));
-// };
-// m_voice[11].env[0].onEnvelopeEnd = [&]() {
-//   m_voice_manager.freeVoice(11);
-//   m_voice[11].m_voice_active = false;
-//   DBG("Terminated voice " + std::to_string(11));
+  // // ! weird as hell: visual studio wont capture loop index properly, so let's do it this way.....
+  // #define CONNECT_VOICE_END_TO_MANAGER(voice) m_voice[voice].env[0].onEnvelopeEnd = [&, ptr_to_voice_manager]() { \
+//   ptr_to_voice_manager->freeVoice(voice);                                                       \
+//   m_voice[voice].m_voice_active = false;                                                  \
+//   DBG("Terminated voice " + std::to_string(voice));                                       \
 // };
 
-setSampleRate(44100.f);
-initializeModules();
+  // CONNECT_VOICE_END_TO_MANAGER(0)
+  // CONNECT_VOICE_END_TO_MANAGER(1)
+  // CONNECT_VOICE_END_TO_MANAGER(2)
+  // CONNECT_VOICE_END_TO_MANAGER(3)
+  // CONNECT_VOICE_END_TO_MANAGER(4)
+  // CONNECT_VOICE_END_TO_MANAGER(5)
+  // CONNECT_VOICE_END_TO_MANAGER(6)
+  // CONNECT_VOICE_END_TO_MANAGER(7)
+  // CONNECT_VOICE_END_TO_MANAGER(8)
+  // CONNECT_VOICE_END_TO_MANAGER(9)
+  // CONNECT_VOICE_END_TO_MANAGER(10)
+  // CONNECT_VOICE_END_TO_MANAGER(11)
 
-// create wavetables
-WavetableContainer::getInstance().createWavetables(44100.f); //use this to test new tables and load them instantly
-//WavetableContainer::getInstance().writeWavetablesToFiles();//use this to write the tables to header files
-//WavetableContainer::getInstance().loadWavetables();        //use this for normal operation
+  // m_voice[0].env[0].onEnvelopeEnd = [&]() {
+  //   m_voice_manager.freeVoice(0);
+  //   m_voice[0].m_voice_active = false;
+  //   DBG("Terminated voice " + std::to_string(0));
+  // };
+  // m_voice[1].env[0].onEnvelopeEnd = [&]() {
+  //   m_voice_manager.freeVoice(1);
+  //   m_voice[1].m_voice_active = false;
+  //   DBG("Terminated voice " + std::to_string(1));
+  // };
+  // m_voice[2].env[0].onEnvelopeEnd = [&]() {
+  //   m_voice_manager.freeVoice(2);
+  //   m_voice[2].m_voice_active = false;
+  //   DBG("Terminated voice " + std::to_string(2));
+  // };
+  // m_voice[3].env[0].onEnvelopeEnd = [&]() {
+  //   m_voice_manager.freeVoice(3);
+  //   m_voice[3].m_voice_active = false;
+  //   DBG("Terminated voice " + std::to_string(3));
+  // };
+  // m_voice[4].env[0].onEnvelopeEnd = [&]() {
+  //   m_voice_manager.freeVoice(4);
+  //   m_voice[4].m_voice_active = false;
+  //   DBG("Terminated voice " + std::to_string(4));
+  // };
+  // m_voice[5].env[0].onEnvelopeEnd = [&]() {
+  //   m_voice_manager.freeVoice(5);
+  //   m_voice[5].m_voice_active = false;
+  //   DBG("Terminated voice " + std::to_string(5));
+  // };
+  // m_voice[6].env[0].onEnvelopeEnd = [&]() {
+  //   m_voice_manager.freeVoice(6);
+  //   m_voice[6].m_voice_active = false;
+  //   DBG("Terminated voice " + std::to_string(6));
+  // };
+  // m_voice[7].env[0].onEnvelopeEnd = [&]() {
+  //   m_voice_manager.freeVoice(7);
+  //   m_voice[7].m_voice_active = false;
+  //   DBG("Terminated voice " + std::to_string(7));
+  // };
+  // m_voice[8].env[0].onEnvelopeEnd = [&]() {
+  //   m_voice_manager.freeVoice(8);
+  //   m_voice[8].m_voice_active = false;
+  //   DBG("Terminated voice " + std::to_string(8));
+  // };
+  // m_voice[9].env[0].onEnvelopeEnd = [&]() {
+  //   m_voice_manager.freeVoice(9);
+  //   m_voice[9].m_voice_active = false;
+  //   DBG("Terminated voice " + std::to_string(9));
+  // };
+  // m_voice[10].env[0].onEnvelopeEnd = [&]() {
+  //   m_voice_manager.freeVoice(10);
+  //   m_voice[10].m_voice_active = false;
+  //   DBG("Terminated voice " + std::to_string(10));
+  // };
+  // m_voice[11].env[0].onEnvelopeEnd = [&]() {
+  //   m_voice_manager.freeVoice(11);
+  //   m_voice[11].m_voice_active = false;
+  //   DBG("Terminated voice " + std::to_string(11));
+  // };
 
-// load wavetables into oscs
-for (int i = 0; i < VOICES; ++i)
-{
-  for (int osc = 0; osc < 3; ++osc)
+  setSampleRate(44100.f);
+  initializeModules();
+
+  // create wavetables
+  WavetableContainer::getInstance().createWavetables(44100.f); //use this to test new tables and load them instantly
+  //WavetableContainer::getInstance().writeWavetablesToFiles();//use this to write the tables to header files
+  //WavetableContainer::getInstance().loadWavetables();        //use this for normal operation
+
+  // load wavetables into oscs
+  for (int i = 0; i < VOICES; ++i)
   {
-    m_voice[i].analog_osc[osc].loadWavetables();
-    m_voice[i].wavetable_osc[osc].loadWavetables();
-    m_voice[i].chiptune_osc[osc].loadWavetables();
-    m_voice[i].vector_osc[osc].loadWavetables();
-    m_voice[i].multi_osc[osc].loadWavetables();
-    m_voice[i].fm_osc[osc].loadWavetables();
-    m_voice[i].wavedraw_osc[osc].loadWavedrawTables(osc);
-    m_voice[i].chipdraw_osc[osc].loadChipdrawTables(osc);
-    m_voice[i].specdraw_osc[osc].loadSpecdrawTables(osc);
-    m_voice[i].lfo[osc].loadWavetables();
+    for (int osc = 0; osc < 3; ++osc)
+    {
+      m_voice[i].analog_osc[osc].loadWavetables();
+      m_voice[i].wavetable_osc[osc].loadWavetables();
+      m_voice[i].chiptune_osc[osc].loadWavetables();
+      m_voice[i].vector_osc[osc].loadWavetables();
+      m_voice[i].multi_osc[osc].loadWavetables();
+      m_voice[i].fm_osc[osc].loadWavetables();
+      m_voice[i].wavedraw_osc[osc].loadWavedrawTables(osc);
+      m_voice[i].chipdraw_osc[osc].loadChipdrawTables(osc);
+      m_voice[i].specdraw_osc[osc].loadSpecdrawTables(osc);
+      m_voice[i].lfo[osc].loadWavetables();
+    }
+    for (int mod = 0; mod < 4; ++mod)
+    {
+      m_voice[i].lfo[mod].loadWavetables();
+    }
   }
-  for (int mod = 0; mod < 4; ++mod)
+  for (int voice = 0; voice < VOICES; ++voice)
   {
-    m_voice[i].lfo[mod].loadWavetables();
+    DBG("pointer to manager " + std::to_string(voice) + " is: " + std::to_string((long)&m_voice_manager));
+    DBG("pointer to bool " + std::to_string(voice) + " is: " + std::to_string((long)&(m_voice_manager.voice_busy[voice])));
+    m_voice[voice].env[0].setEnvelopeEndPointers(&(m_voice[voice].m_voice_active), &(m_voice_manager.voice_busy[voice]));
   }
-}
 
-float spike[1001] = {0};
-for (int i = 0; i < 1001; ++i)
-{
-  float x = (float)i / 1000.f * 2 * PI;
-  if (i < 500)
-  {
-    spike[i] = 2.f / PI / PI * x * x - 1;
-  }
-  else
-  {
-    spike[i] = 2.f / PI / PI * (x - 2 * PI) * (x - 2 * PI) - 1;
-  }
-}
-
-// WavetableContainer::getInstance().createLFOCoefficientsFromLinSections(12,
-// spike, 1000, "Spike");
+  // WavetableContainer::getInstance().createLFOCoefficientsFromLinSections(12,
+  // spike, 1000, "Spike");
 }
 
 OdinAudioProcessor::~OdinAudioProcessor()
@@ -358,6 +350,12 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
         }
         else if (midi_message.isNoteOff())
         {
+          for (int voice = 0; voice < VOICES; ++voice)
+          {
+            DBG("pointer to manager " + std::to_string(voice) + " is: " + std::to_string((long)&m_voice_manager));
+            DBG("pointer to bool " + std::to_string(voice) + " is: " + std::to_string((long)&(m_voice_manager.voice_busy[voice])));
+          }
+
           DBG("NOTEOFF, key " + std::to_string(midi_message.getNoteNumber()));
 
           if (!m_voice_manager.getSustainActive())
