@@ -53,7 +53,6 @@ private:
 
 protected:
 
-	float m_wavetables[NUMBER_OF_WAVETABLES][SUBTABLES_PER_WAVETABLE][WAVETABLE_LENGTH] = {0.f};
 
 
 	float const_segment_one_overtone_sine(float p_start, float p_end, float p_height, int p_harmonic);
@@ -88,5 +87,9 @@ protected:
 	std::string m_LFO_names[NUMBER_OF_WAVETABLES];
 
 	bool m_wavetables_created = false;
+
+	float m_wavetables[NUMBER_OF_WAVETABLES][SUBTABLES_PER_WAVETABLE][WAVETABLE_LENGTH] = {0};
+    //#include "Wavetables/Tables/WavetableData.h" //include initializer list
+	
 };
 

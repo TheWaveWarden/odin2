@@ -9,8 +9,8 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 
 WavetableContainer::WavetableContainer()
-    :
-#include "Wavetables/Tables/WavetableData.h" //include initializer list
+//    :
+//#include "Wavetables/Tables/WavetableData.h" //include initializer list
 {
 #include "WavetableCoefficients.h"
 
@@ -976,7 +976,7 @@ void WavetableContainer::writeScaleFactorsToFile() {
     float max = 0.f;
 
     for (int sub = 0; sub < SUBTABLES_PER_WAVETABLE; ++sub) {
-      float *next_table = m_wavetable_pointers[wt][sub];
+      float const *next_table = m_wavetable_pointers[wt][sub];
       for (int pos = 0; pos < WAVETABLE_LENGTH; ++pos) {
         if (fabs(next_table[pos]) > max) {
           max = fabs(next_table[pos]);
