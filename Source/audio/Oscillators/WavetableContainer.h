@@ -4,6 +4,7 @@
 #include "../OdinConstants.h"
 #include <map>
 #include "../../GlobalIncludes.h"
+#include "Wavetables/Tables/WavetableData.h"
 
 class WavetableContainer
 {
@@ -17,7 +18,8 @@ public:
 
 	virtual ~WavetableContainer();
 
-	void loadWavetables(); //assign pointers to wavetables from files directly
+	void loadWavetablesFromConstData(); //assign pointers to wavetables from files directly
+	void loadWavetablesAfterFourierCreation(); //assign pointers to wavetables from files directly
 	void createWavetables(float p_sample_rate);//create and allocate memory from coefficients and assign pointers
 	void createLFOtables(float p_sample_rate);
 	void createLFOCoefficientsFromConstSections(int p_table_nr, float p_const_section_values[], int p_number_of_sections, std::string p_table_name);
@@ -29,8 +31,8 @@ public:
 
 	void changeSampleRate(float p_sample_rate);
 
-	float** getWavetablePointers(int p_wavetable);
-	float** getWavetablePointers(std::string p_name);
+	const float** getWavetablePointers(int p_wavetable);
+	const float** getWavetablePointers(std::string p_name);
 	float** getChipdrawPointer(int p_chipdraw_index);
 	float** getWavedrawPointer(int p_wavedraw_index);
 	float** getSpecdrawPointer(int p_specdraw_index);
@@ -53,7 +55,7 @@ private:
 
 protected:
 
-
+	//const float *[NUMBER_OF_WAVETABLES][SUBTABLES_PER_WAVETABLE][WAVETABLE_LENGTH];
 
 	float const_segment_one_overtone_sine(float p_start, float p_end, float p_height, int p_harmonic);
 	float const_segment_one_overtone_cosine(float p_start, float p_end, float p_height, int p_harmonic);
@@ -62,6 +64,9 @@ protected:
 
 	std::map<std::string, int> m_name_index_map;
 	std::map<std::string, int> m_LFO_name_index_map;
+
+
+	const float* m_const_wavetable_pointers[NUMBER_OF_WAVETABLES][SUBTABLES_PER_WAVETABLE];
 
 	//Wavetable pointers
 	float* m_wavetable_pointers[NUMBER_OF_WAVETABLES][SUBTABLES_PER_WAVETABLE];

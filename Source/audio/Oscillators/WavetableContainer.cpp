@@ -936,11 +936,11 @@ float **WavetableContainer::getSpecdrawPointer(int p_specdraw_index) {
   return m_specdraw_pointers[p_specdraw_index];
 }
 
-float **WavetableContainer::getWavetablePointers(int p_wavetable) {
-  return m_wavetable_pointers[p_wavetable];
+const float **WavetableContainer::getWavetablePointers(int p_wavetable) {
+  return m_const_wavetable_pointers[p_wavetable];
 }
 
-float **WavetableContainer::getWavetablePointers(std::string p_name) {
+const float **WavetableContainer::getWavetablePointers(std::string p_name) {
   // for(int wt = 0; wt < NUMBER_OF_WAVETABLES; ++wt){
   //     if(p_name == m_wavetable_names_1D[wt]){
   //         return m_wavetable_pointers[wt];
@@ -949,10 +949,11 @@ float **WavetableContainer::getWavetablePointers(std::string p_name) {
 
   auto it = m_name_index_map.find(p_name);
   if (it != m_name_index_map.end()) {
-    return m_wavetable_pointers[it->second];
+    return m_const_wavetable_pointers[it->second];
+
   }
   DBG("COULDN'T FIND WAVETABLE WITH NAME " + p_name);
-  return m_wavetable_pointers[0]; // return sine if no wt found
+  return m_const_wavetable_pointers[0]; // return sine if no wt found  
 }
 
 float **WavetableContainer::getLFOPointers(std::string p_name) {
@@ -993,14 +994,30 @@ void WavetableContainer::writeScaleFactorsToFile() {
   file.close();
 }
 
-void WavetableContainer::loadWavetables() {
+void WavetableContainer::loadWavetablesFromConstData() {
+
   for (int index_wavetable = 0; index_wavetable < NUMBER_OF_WAVETABLES;
        ++index_wavetable) {
 
     for (int index_subtable = 0; index_subtable < SUBTABLES_PER_WAVETABLE;
          ++index_subtable) {
+      m_const_wavetable_pointers[index_wavetable][index_subtable] = getOneSubTable(index_wavetable, index_subtable);
+      //m_const_wavetable_pointers[index_wavetable][index_subtable] = m_wavetables[index_wavetable][index_subtable];
+    }
+    m_name_index_map.insert(std::pair<std::string, int>(
+        m_wavetable_names_1D[index_wavetable], index_wavetable));
+  }
+}
 
-      m_wavetable_pointers[index_wavetable][index_subtable] = m_wavetables[index_wavetable][index_subtable];
+void WavetableContainer::loadWavetablesAfterFourierCreation() {
+
+  for (int index_wavetable = 0; index_wavetable < NUMBER_OF_WAVETABLES;
+       ++index_wavetable) {
+
+    for (int index_subtable = 0; index_subtable < SUBTABLES_PER_WAVETABLE;
+         ++index_subtable) {
+      //m_const_wavetable_pointers[index_wavetable][index_subtable] = getOneSubTable(index_wavetable, index_subtable);
+      m_const_wavetable_pointers[index_wavetable][index_subtable] = m_wavetables[index_wavetable][index_subtable];
     }
     m_name_index_map.insert(std::pair<std::string, int>(
         m_wavetable_names_1D[index_wavetable], index_wavetable));

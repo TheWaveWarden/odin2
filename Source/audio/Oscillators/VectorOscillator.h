@@ -43,10 +43,10 @@ protected:
 	float m_XY_pad_x = 0.f;
 	float m_XY_pad_y = 0.f;
 
-	float* m_current_table_vec_0;
-	float* m_current_table_vec_1;
-	float* m_current_table_vec_2;
-	float* m_current_table_vec_3;
+	const float* m_current_table_vec_0;
+	const float* m_current_table_vec_1;
+	const float* m_current_table_vec_2;
+	const float* m_current_table_vec_3;
 
 	int m_wavetable_index_0 = 0;
 	int m_wavetable_index_1 = 0;

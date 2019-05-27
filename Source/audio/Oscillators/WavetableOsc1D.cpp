@@ -74,7 +74,14 @@ float WavetableOsc1D::doOscillate(){
     return doWavetable() * m_volume_factor * vol_mod_factor;
 }
 
-void WavetableOsc1D::setWavetablePointer(int p_wavetable_index, float* p_wavetable_pointers[SUBTABLES_PER_WAVETABLE]){
+void WavetableOsc1D::setWavetablePointer(int p_wavetable_index, const float* p_wavetable_pointers[SUBTABLES_PER_WAVETABLE]){
+    for (int sub_table = 0; sub_table < SUBTABLES_PER_WAVETABLE; sub_table++){
+		m_wavetable_pointers[p_wavetable_index][sub_table] = p_wavetable_pointers[sub_table];
+    }
+}
+
+//todo this no good? only for LFOs right now so things compile
+void WavetableOsc1D::setWavetablePointerNONCONST(int p_wavetable_index, float* p_wavetable_pointers[SUBTABLES_PER_WAVETABLE]){
     for (int sub_table = 0; sub_table < SUBTABLES_PER_WAVETABLE; sub_table++){
 		m_wavetable_pointers[p_wavetable_index][sub_table] = p_wavetable_pointers[sub_table];
     }
@@ -94,16 +101,16 @@ void WavetableOsc1D::loadWavetables(){
 }
 
 void WavetableOsc1D::loadWavedrawTables(int p_osc){
-	setWavetablePointer(0, WavetableContainer::getInstance().getWavedrawPointer(p_osc));
+	setWavetablePointerNONCONST(0, WavetableContainer::getInstance().getWavedrawPointer(p_osc));
     m_nr_of_wavetables = 1;
 }
 
 void WavetableOsc1D::loadSpecdrawTables(int p_osc){
-	setWavetablePointer(0, WavetableContainer::getInstance().getSpecdrawPointer(p_osc));
+	setWavetablePointerNONCONST(0, WavetableContainer::getInstance().getSpecdrawPointer(p_osc));
     m_nr_of_wavetables = 1;
 }
 
 void WavetableOsc1D::loadChipdrawTables(int p_osc){
-	setWavetablePointer(0, WavetableContainer::getInstance().getChipdrawPointer(p_osc));
+	setWavetablePointerNONCONST(0, WavetableContainer::getInstance().getChipdrawPointer(p_osc));
     m_nr_of_wavetables = 1;
 }

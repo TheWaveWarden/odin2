@@ -45,11 +45,11 @@ protected:
 
 	float m_position_2D = 0.f;
 
-	void setWavetablePointer(int p_wavetable_index, int p_2D_sub_table, float* p_wavetable_pointers[SUBTABLES_PER_WAVETABLE]);
+	void setWavetablePointer(int p_wavetable_index, int p_2D_sub_table, const float* p_wavetable_pointers[SUBTABLES_PER_WAVETABLE]);
 	float doWavetable2D();
 	
-	float* m_wavetable_pointers_2D[NUMBER_OF_WAVETABLES_2D][SUBTABLES_PER_WAVETABLE][TABLES_PER_2D_WT];
-	float** m_current_table_2D;
+	const float* m_wavetable_pointers_2D[NUMBER_OF_WAVETABLES_2D][SUBTABLES_PER_WAVETABLE][TABLES_PER_2D_WT];
+	const float** m_current_table_2D;
 
 };
 

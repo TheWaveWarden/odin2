@@ -82,7 +82,7 @@ protected:
 	float m_oscillator_freq_multi[OSCS_PER_MULTIOSC];
 	float m_wavetable_inc_multi[OSCS_PER_MULTIOSC];
 	int m_sub_table_index_multi[OSCS_PER_MULTIOSC];
-	float** m_current_table_2D_multi[OSCS_PER_MULTIOSC];
+	const float** m_current_table_2D_multi[OSCS_PER_MULTIOSC];
 
 	#include "PitchShiftTable.h" //contains 1000 points of pitch shift table for -5 to +5
 };

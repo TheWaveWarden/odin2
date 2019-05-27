@@ -26,9 +26,9 @@ void ChiptuneOscillator::loadWavetables(){
 	setWavetablePointer(8, WavetableContainer::getInstance().getWavetablePointers("ChiptunePiecewiseConstant"));
 	setWavetablePointer(9, WavetableContainer::getInstance().getWavetablePointers("ChiptuneSaw"));
 
-    setWavetablePointer(10, WavetableContainer::getInstance().getChipdrawPointer(0));
-    setWavetablePointer(11, WavetableContainer::getInstance().getChipdrawPointer(1));
-    setWavetablePointer(12, WavetableContainer::getInstance().getChipdrawPointer(2));
+    setWavetablePointerNONCONST(10, WavetableContainer::getInstance().getChipdrawPointer(0));
+    setWavetablePointerNONCONST(11, WavetableContainer::getInstance().getChipdrawPointer(1));
+    setWavetablePointerNONCONST(12, WavetableContainer::getInstance().getChipdrawPointer(2));
 }
 
 float ChiptuneOscillator::doOscillate(){

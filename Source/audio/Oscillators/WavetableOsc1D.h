@@ -30,7 +30,8 @@ public:
 protected:
 	virtual int getTableIndex();
 	
-	void setWavetablePointer(int p_wavetable_index, float* p_wavetable_pointers[SUBTABLES_PER_WAVETABLE]);
+	void setWavetablePointer(int p_wavetable_index, const float* p_wavetable_pointers[SUBTABLES_PER_WAVETABLE]);
+	void setWavetablePointerNONCONST(int p_wavetable_index, float* p_wavetable_pointers[SUBTABLES_PER_WAVETABLE]);
 	
 	inline float linearInterpolation(float p_low, float p_high, float p_distance){
 		return (1.f - p_distance) * p_low + p_distance * p_high;
@@ -53,8 +54,8 @@ protected:
 	double m_wavetable_inc = 0.f;
 
 	//tables
-	float* m_wavetable_pointers[NUMBER_OF_WAVETABLES][SUBTABLES_PER_WAVETABLE];
-	float* m_current_table;
+	const float* m_wavetable_pointers[NUMBER_OF_WAVETABLES][SUBTABLES_PER_WAVETABLE];
+	const float* m_current_table;
 	int m_wavetable_index = 0;
 	int m_sub_table_index = 0;
 	

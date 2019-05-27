@@ -110,7 +110,7 @@ void WavetableOsc2D::update(){
 }
 
 
-void WavetableOsc2D::setWavetablePointer(int p_wavetable_index, int p_2D_sub_table, float* p_wavetable_pointers[SUBTABLES_PER_WAVETABLE]){
+void WavetableOsc2D::setWavetablePointer(int p_wavetable_index, int p_2D_sub_table, const float* p_wavetable_pointers[SUBTABLES_PER_WAVETABLE]){
     for (int sub_table = 0; sub_table < SUBTABLES_PER_WAVETABLE; sub_table++){
 		m_wavetable_pointers_2D[p_wavetable_index][sub_table][p_2D_sub_table] = p_wavetable_pointers[sub_table];
     }
