@@ -16,7 +16,6 @@
   std::make_unique<AudioParameterFloat> ("osc1_multi_position", "Oscillator1 Multi Position", NormalisableRange<float> (0.f, 1.f), 0),
   std::make_unique<AudioParameterFloat> ("osc1_spread", "Oscillator1 Spread", NormalisableRange<float> (0.f, 1.f), 0),
   std::make_unique<AudioParameterInt> ("osc1_wavetable", "Oscillator1 Wavetable", 1, 1000, 1), //todo range
-  std::make_unique<AudioParameterInt> ("osc1_analog_wave", "Oscillator1 Analog Wave", 0, 3, 0),
   std::make_unique<AudioParameterFloat> ("osc1_pulsewidth", "Oscillator1 PulseWidth", NormalisableRange<float> (0.f, 1.f), 0.5f),
   std::make_unique<AudioParameterFloat> ("osc1_drift", "Oscillator1 Drift", NormalisableRange<float> (0.f, 1.f), 0.f),
   std::make_unique<AudioParameterInt> ("osc1_vec_a", "Oscillator1 Vector A", 0, 3, 1),
@@ -54,7 +53,6 @@
   std::make_unique<AudioParameterFloat> ("osc2_multi_position", "Oscillator2 Multi Position", NormalisableRange<float> (0.f, 1.f), 0),
   std::make_unique<AudioParameterFloat> ("osc2_spread", "Oscillator2 Spread", NormalisableRange<float> (0.f, 1.f), 0),
   std::make_unique<AudioParameterInt> ("osc2_wavetable", "Oscillator2 Wavetable", 1, 1000, 1), //todo range
-  std::make_unique<AudioParameterInt> ("osc2_analog_wave", "Oscillator2 Analog Wave", 0, 3, 0),
   std::make_unique<AudioParameterFloat> ("osc2_pulsewidth", "Oscillator2 PulseWidth", NormalisableRange<float> (0.f, 1.f), 0.5f),
   std::make_unique<AudioParameterFloat> ("osc2_drift", "Oscillator2 Drift", NormalisableRange<float> (0.f, 1.f), 0.f),
   std::make_unique<AudioParameterInt> ("osc2_vec_a", "Oscillator2 Vector A", 1, 1000, 1),
@@ -92,7 +90,6 @@
   std::make_unique<AudioParameterFloat> ("osc3_multi_position", "Oscillator3 Multi Position", NormalisableRange<float> (0.f, 1.f), 0),
   std::make_unique<AudioParameterFloat> ("osc3_spread", "Oscillator3 Spread", NormalisableRange<float> (0.f, 1.f), 0),
   std::make_unique<AudioParameterInt> ("osc3_wavetable", "Oscillator3 Wavetable", 1, 1000, 1), //todo range
-  std::make_unique<AudioParameterInt> ("osc3_analog_wave", "Oscillator3 Analog Wave", 0, 3, 0),
   std::make_unique<AudioParameterFloat> ("osc3_pulsewidth", "Oscillator3 PulseWidth", NormalisableRange<float> (0.f, 1.f), 0.5f),
   std::make_unique<AudioParameterFloat> ("osc3_drift", "Oscillator3 Drift", NormalisableRange<float> (0.f, 1.f), 0.f),
   std::make_unique<AudioParameterInt> ("osc3_vec_a", "Oscillator3 Vector A", 1, 1000, 1),
