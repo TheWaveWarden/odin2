@@ -38,6 +38,8 @@ public:
 
 	inline void setFMExponential(bool p_exp){
 		m_FM_is_exponential = p_exp; //else linear
+		//reset oscs to get rid of terrible noise due to out of sync:
+		reset();
 	}
 
 	inline void selectWavetables(int p_wt_carrier, int p_wt_modulator){
