@@ -20,8 +20,7 @@ WavetableContainer::WavetableContainer()
   }
 }
 
-WavetableContainer::~WavetableContainer() {
-}
+WavetableContainer::~WavetableContainer() {}
 
 std::string to_string_no_comma(float p_input) {
   std::string out = std::to_string(p_input);
@@ -38,7 +37,7 @@ void WavetableContainer::createWavetables(float p_sample_rate) {
   for (int index_wavetable = 0; index_wavetable < NUMBER_OF_WAVETABLES;
        ++index_wavetable) {
 
-        DBG("wavetable: " + std::to_string(index_wavetable));
+    DBG("wavetable: " + std::to_string(index_wavetable));
 
     // this flags hackishly if a waveform only uses sine components
     bool sine_only =
@@ -52,7 +51,7 @@ void WavetableContainer::createWavetables(float p_sample_rate) {
          ++index_sub_table) {
 
       // allocate memory for actual tables
-      //float *next_table = new float[WAVETABLE_LENGTH];
+      // float *next_table = new float[WAVETABLE_LENGTH];
       float *next_table = m_wavetables[index_wavetable][index_sub_table];
       memset(next_table, 0, WAVETABLE_LENGTH * sizeof(float));
 
@@ -111,7 +110,6 @@ void WavetableContainer::createWavetables(float p_sample_rate) {
   DBG("Oscillator WT creation took " + std::to_string(elapsed_secs) +
       " seconds. Average: " +
       std::to_string(elapsed_secs / (float)NUMBER_OF_WAVETABLES));
-
 }
 
 void WavetableContainer::createLFOtables(float p_sample_rate) {
@@ -897,7 +895,6 @@ float WavetableContainer::const_segment_one_overtone_cosine(float p_start,
          (sin(p_end * (float)p_harmonic) - sin(p_start * (float)p_harmonic));
 }
 
-
 float **WavetableContainer::getChipdrawPointer(int p_chipdraw_index) {
   return m_chipdraw_pointers[p_chipdraw_index];
 }
@@ -926,19 +923,18 @@ const float **WavetableContainer::getWavetablePointers(std::string p_name) {
   auto it = m_name_index_map.find(p_name);
   if (it != m_name_index_map.end()) {
     return m_const_wavetable_pointers[it->second];
-
   }
   DBG("COULDN'T FIND WAVETABLE WITH NAME " + p_name);
-  return m_const_wavetable_pointers[0]; // return sine if no wt found  
+  return m_const_wavetable_pointers[0]; // return sine if no wt found
 }
 
-float **WavetableContainer::getLFOPointers(std::string p_name) {
+const float **WavetableContainer::getLFOPointers(std::string p_name) {
   auto it = m_LFO_name_index_map.find(p_name);
   if (it != m_LFO_name_index_map.end()) {
-    return m_lfotable_pointers[it->second];
+    return m_const_LFO_pointers[it->second];
   }
   DBG("Couldn't find LFO table");
-  return m_lfotable_pointers[0];
+  return m_const_LFO_pointers[0];
 }
 
 void WavetableContainer::changeSampleRate(float p_sample_rate) {
@@ -977,11 +973,21 @@ void WavetableContainer::loadWavetablesFromConstData() {
 
     for (int index_subtable = 0; index_subtable < SUBTABLES_PER_WAVETABLE;
          ++index_subtable) {
-      m_const_wavetable_pointers[index_wavetable][index_subtable] = getOneSubTable(index_wavetable, index_subtable);
-      //m_const_wavetable_pointers[index_wavetable][index_subtable] = m_wavetables[index_wavetable][index_subtable];
+      m_const_wavetable_pointers[index_wavetable][index_subtable] =
+          getOneSubTable(index_wavetable, index_subtable);
     }
     m_name_index_map.insert(std::pair<std::string, int>(
         m_wavetable_names_1D[index_wavetable], index_wavetable));
+  }
+
+  for (int index_wavetable = 0; index_wavetable < NUMBER_OF_WAVETABLES;
+       ++index_wavetable) {
+
+    int index_subtable = 0;
+    m_const_LFO_pointers[index_wavetable][index_subtable] =
+        getOneLFOTable(index_wavetable);
+    m_LFO_name_index_map.insert(std::pair<std::string, int>(
+        m_LFO_names[index_wavetable], index_wavetable));
   }
 }
 
@@ -992,8 +998,10 @@ void WavetableContainer::loadWavetablesAfterFourierCreation() {
 
     for (int index_subtable = 0; index_subtable < SUBTABLES_PER_WAVETABLE;
          ++index_subtable) {
-      //m_const_wavetable_pointers[index_wavetable][index_subtable] = getOneSubTable(index_wavetable, index_subtable);
-      m_const_wavetable_pointers[index_wavetable][index_subtable] = m_wavetables[index_wavetable][index_subtable];
+      // m_const_wavetable_pointers[index_wavetable][index_subtable] =
+      // getOneSubTable(index_wavetable, index_subtable);
+      m_const_wavetable_pointers[index_wavetable][index_subtable] =
+          m_wavetables[index_wavetable][index_subtable];
     }
     m_name_index_map.insert(std::pair<std::string, int>(
         m_wavetable_names_1D[index_wavetable], index_wavetable));
@@ -1090,6 +1098,115 @@ void WavetableContainer::writeWavetablesToFiles() {
     }
   }
   output_file << "}";
+
+  output_file.close();
+}
+
+void WavetableContainer::writeLFOtablesToFiles() {
+
+  float p_sample_rate = 44100.f;
+  float wavetables[NUMBER_OF_WAVETABLES][1][WAVETABLE_LENGTH] = {0};
+
+  // //loop over all wavetables
+  for (int index_wavetable = 0; index_wavetable < NUMBER_OF_WAVETABLES;
+       ++index_wavetable) {
+
+    // this flags hackishly if a waveform only uses sine components
+    bool sine_only = false;
+
+    double seed_freq = 27.5; // A0
+    float max = 0.f;
+
+    // loop over subtables
+    int index_sub_table = 0;
+
+    // how many harmonics are needed for this subtable
+    int number_of_harmonics = (int)((p_sample_rate * 0.5f / seed_freq) - 1);
+
+    // don't allow more than 800 harmonics (for big Samplerates this might
+    // happen)
+    number_of_harmonics = number_of_harmonics > NUMBER_OF_HARMONICS
+                              ? NUMBER_OF_HARMONICS
+                              : number_of_harmonics;
+
+    for (int index_harmonics = 1; index_harmonics < number_of_harmonics;
+         ++index_harmonics) {
+      for (int index_position = 0; index_position < WAVETABLE_LENGTH;
+           ++index_position) {
+
+        // fill table with //sine harmonics
+        wavetables[index_wavetable][index_sub_table][index_position] +=
+            m_LFO_fourier_coeffs[index_wavetable][0][index_harmonics] *
+            sin(2.f * PI * index_position * index_harmonics /
+                (float)WAVETABLE_LENGTH) *
+            m_LFO_fourier_coeffs[index_wavetable][1]
+                                [0]; // last term is normalization
+        // cosine
+        wavetables[index_wavetable][index_sub_table][index_position] +=
+            m_LFO_fourier_coeffs[index_wavetable][1][index_harmonics] *
+            cos(2.f * PI * index_position * index_harmonics /
+                (float)WAVETABLE_LENGTH) *
+            m_LFO_fourier_coeffs[index_wavetable][1]
+                                [0]; // last term is normalization
+      }
+    }
+  }
+  for (int index_wavetable = 0; index_wavetable < NUMBER_OF_WAVETABLES;
+       ++index_wavetable) {
+    int index_sub_table = 0;
+
+    float max = 0;
+    for (int index_position = 0; index_position < WAVETABLE_LENGTH;
+         ++index_position) {
+      if (fabs(wavetables[index_wavetable][index_sub_table][index_position]) >
+          max) {
+        max =
+            fabs(wavetables[index_wavetable][index_sub_table][index_position]);
+      }
+    }
+
+    // normalize
+    for (int index_position = 0; index_position < WAVETABLE_LENGTH;
+         ++index_position) {
+      wavetables[index_wavetable][index_sub_table][index_position] /= max;
+    }
+  }
+
+  std::ofstream output_file;
+  output_file.open("/home/frot/odinvst/Source/audio/Oscillators/"
+                   "Wavetables/Tables/LFOTableData.cpp");
+
+  output_file << "const float "
+                 "LFO_table_data[NUMBER_OF_LFOTABLES][1][WAVETABLE_LENGTH] = {";
+
+  for (int index_wavetable = 0; index_wavetable < NUMBER_OF_LFOTABLES;
+       ++index_wavetable) {
+    output_file << "{";
+
+    int index_subtable = 0;
+    output_file << "{";
+
+    for (int index_position = 0; index_position < WAVETABLE_LENGTH;
+         ++index_position) {
+      // output_file <<
+      // wavetables[index_wavetable][index_subtable][index_position]
+      output_file << m_lfotable_pointers[index_wavetable][index_subtable]
+                                        [index_position]
+                  << ",";
+    }
+    output_file << "}";
+
+    output_file << "}";
+    if (index_wavetable != NUMBER_OF_LFOTABLES - 1) {
+      output_file << ",";
+    }
+  }
+  output_file
+      << "};\nconst float "
+         "(*getWavetableData())[NUMBER_OF_LFOTABLES][1]["
+         "WAVETABLE_LENGTH]{\n   return &wavetable_data;}\n\nconst float * "
+         "getOneSubTable(int p_wavetable, int p_subtable){\nreturn "
+         "wavetable_data[p_wavetable][p_subtable];\n}";
 
   output_file.close();
 }

@@ -121,6 +121,9 @@
               <FILE id="IJVGvN" name="Soft4.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/Soft4.h"/>
               <FILE id="HKd1fO" name="Triangle.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/Triangle.h"/>
             </GROUP>
+            <FILE id="VZe7pv" name="LFOTableData.cpp" compile="1" resource="0"
+                  file="Source/audio/Oscillators/Wavetables/Tables/LFOTableData.cpp"/>
+            <FILE id="oWjiu4" name="LFOTableData.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Tables/LFOTableData.h"/>
             <FILE id="rlo9wR" name="WavetableData.cpp" compile="1" resource="0"
                   file="Source/audio/Oscillators/Wavetables/Tables/WavetableData.cpp"/>
             <FILE id="dAI3b1" name="WavetableData.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Tables/WavetableData.h"/>

@@ -5,6 +5,7 @@
 #include <map>
 #include "../../GlobalIncludes.h"
 #include "Wavetables/Tables/WavetableData.h"
+#include "Wavetables/Tables/LFOTableData.h"
 
 class WavetableContainer
 {
@@ -36,7 +37,7 @@ public:
 	float** getChipdrawPointer(int p_chipdraw_index);
 	float** getWavedrawPointer(int p_wavedraw_index);
 	float** getSpecdrawPointer(int p_specdraw_index);
-	float** getLFOPointers(std::string p_name);
+	const float** getLFOPointers(std::string p_name);
 	
 	void writeScaleFactorsToFile();
     void writeWavedrawTable(float p_wavedraw_values[WAVEDRAW_STEPS_X], std::string p_name);
@@ -45,6 +46,7 @@ public:
 
 	//call this to make wavetablefiles from wavetables coefficients
 	void writeWavetablesToFiles();
+	void writeLFOtablesToFiles();
 
 
 	//void deleteWavedraw() {
@@ -67,6 +69,7 @@ protected:
 
 
 	const float* m_const_wavetable_pointers[NUMBER_OF_WAVETABLES][SUBTABLES_PER_WAVETABLE];
+	const float* m_const_LFO_pointers[NUMBER_OF_WAVETABLES][1];
 
 	//Wavetable pointers
 	float* m_wavetable_pointers[NUMBER_OF_WAVETABLES][SUBTABLES_PER_WAVETABLE];
