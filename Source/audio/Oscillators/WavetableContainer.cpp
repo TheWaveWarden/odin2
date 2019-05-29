@@ -112,30 +112,6 @@ void WavetableContainer::createWavetables(float p_sample_rate) {
       " seconds. Average: " +
       std::to_string(elapsed_secs / (float)NUMBER_OF_WAVETABLES));
 
-  // create draw tables as well
-  // create sine array
-  float draw_values[WAVEDRAW_STEPS_X];
-  float spec_values[SPECDRAW_STEPS_X] = {0};
-  spec_values[0] = 1.f;
-  for (int i = 0; i < WAVEDRAW_STEPS_X; ++i) {
-    draw_values[i] = sin((float)i * 2 * M_PI / WAVEDRAW_STEPS_X) * 0.9;
-  }
-  for (int osc = 0; osc < 3; ++osc) {
-    createWavedrawTable(osc, draw_values, p_sample_rate);
-    createChipdrawTable(osc, draw_values, p_sample_rate);
-    createSpecdrawTable(osc, spec_values, p_sample_rate);
-  }
-
-  begin = std::clock();
-
-  createLFOtables(p_sample_rate);
-
-  end = std::clock();
-  elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
-
-  DBG("LFO creation took " + std::to_string(elapsed_secs) +
-      " seconds. Average: " +
-      std::to_string(elapsed_secs / (float)NUMBER_OF_LFOTABLES));
 }
 
 void WavetableContainer::createLFOtables(float p_sample_rate) {

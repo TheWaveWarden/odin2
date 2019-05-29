@@ -86,12 +86,8 @@ float ADSREnvelope::doEnvelope() {
     if (m_current_value < MIN_DECAY_RELEASE_VAL) {
       // envelope ends here...
       m_current_value = 0.;
-      std::ofstream output;
-      output.open("E:\\odin\\PROEEADSR.txt");
-      output << "PR: OEE" << std::endl;
-      output.close();
       onEnvelopeEnd();
-      DBG("3");
+      //DBG("3");
       // if(m_envelope_finish_flag){
       //    *m_envelope_finish_flag = false;
       //}

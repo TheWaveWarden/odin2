@@ -38,6 +38,7 @@ public:
 
 	inline void setFMExponential(bool p_exp){
 		m_FM_is_exponential = p_exp; //else linear
+		reset();//reset here so things are in "sync"
 	}
 
 	inline void selectWavetables(int p_wt_carrier, int p_wt_modulator){

@@ -78,10 +78,10 @@ public:
   // std::function<void()> onEnvelopeEnd = []() {};
   void onEnvelopeEnd() {
     if (m_test && m_voice_manager_bool_pointer) {
-      DBG("1");
+      //DBG("1");
       *m_voice_manager_bool_pointer = false;
-      DBG("ENNNND:");
-      DBG((long)m_test);      
+      //DBG("ENNNND:");
+      //DBG((long)m_test);      
       *m_test = false;
     }
   }
@@ -93,8 +93,8 @@ public:
     m_test = p_voice;
     // todo remove
 
-    DBG("STARRRT:");
-    DBG((long)m_test);
+    //DBG("STARRRT:");
+    //DBG((long)m_test);
     *m_voice_manager_bool_pointer = false;
     *m_test = false;
   }

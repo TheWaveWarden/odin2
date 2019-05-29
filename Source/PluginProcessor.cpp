@@ -151,13 +151,35 @@ OdinAudioProcessor::OdinAudioProcessor()
   // WavetableContainer::getInstance().writeWavetablesToFiles();//use this to
   // write the tables to header files
 
+  WavetableContainer::getInstance().createWavetables(44100.f);
+  // WavetableContainer::getInstance().loadWavetablesAfterFourierCreation();
+
+  WavetableContainer::getInstance().loadWavetablesFromConstData();
+
+  // create draw tables as well
+  float draw_values[WAVEDRAW_STEPS_X];
+  float spec_values[SPECDRAW_STEPS_X] = {0};
+  float chip_values[CHIPDRAW_STEPS_X] = {0};
+  spec_values[0] = 1.f;
+  for (int i = 0; i < WAVEDRAW_STEPS_X; ++i) {
+    draw_values[i] = sin((float)i * 2 * M_PI / WAVEDRAW_STEPS_X) * 0.9;
+  }
+  for(int i = 0; i < CHIPDRAW_STEPS_X; ++i){
+    if (i < CHIPDRAW_STEPS_X / 2) {
+      chip_values[i] = 1;
+    } else {
+      chip_values[i] = -1;
+    }
+  }
+  for (int osc = 0; osc < 3; ++osc) {
+    WavetableContainer::getInstance().createWavedrawTable(osc, draw_values, 44100);
+    WavetableContainer::getInstance().createChipdrawTable(osc, chip_values, 44100);
+    WavetableContainer::getInstance().createSpecdrawTable(osc, spec_values, 44100);
+  }
 
 
-  //WavetableContainer::getInstance().createWavetables(44100.f);
-  //WavetableContainer::getInstance().loadWavetablesAfterFourierCreation();
+  WavetableContainer::getInstance().createLFOtables(44100.);
 
-  WavetableContainer::getInstance().loadWavetablesFromConstData();    
-  
 
   // load wavetables into oscs
   for (int i = 0; i < VOICES; ++i) {
@@ -178,10 +200,10 @@ OdinAudioProcessor::OdinAudioProcessor()
     }
   }
   for (int voice = 0; voice < VOICES; ++voice) {
-    DBG("pointer to voice " + std::to_string(voice) +
-        " is: " + std::to_string((long)&m_voice[voice]));
-    DBG("pointer to bool " + std::to_string(voice) +
-        " is: " + std::to_string((long)&(m_voice[voice].m_voice_active)));
+    // DBG("pointer to voice " + std::to_string(voice) +
+    //    " is: " + std::to_string((long)&m_voice[voice]));
+    // DBG("pointer to bool " + std::to_string(voice) +
+    //    " is: " + std::to_string((long)&(m_voice[voice].m_voice_active)));
     m_voice[voice].env[0].setEnvelopeEndPointers(
         &(m_voice[voice].m_voice_active), &(m_voice_manager.voice_busy[voice]));
   }
@@ -342,10 +364,10 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
           }
         } else if (midi_message.isNoteOff()) {
           for (int voice = 0; voice < VOICES; ++voice) {
-            DBG("pointer to voice " + std::to_string(voice) +
-                " is: " + std::to_string((long)&m_voice[voice]));
-            DBG("pointer to bool " + std::to_string(voice) + " is: " +
-                std::to_string((long)&(m_voice[voice].m_voice_active)));
+            // DBG("pointer to voice " + std::to_string(voice) +
+            //    " is: " + std::to_string((long)&m_voice[voice]));
+            // DBG("pointer to bool " + std::to_string(voice) + " is: " +
+            //    std::to_string((long)&(m_voice[voice].m_voice_active)));
           }
 
           DBG("NOTEOFF, key " + std::to_string(midi_message.getNoteNumber()));
