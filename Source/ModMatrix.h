@@ -119,6 +119,7 @@ struct ModSourceVoice {
   float* lfo[4];
   float* MIDI_key;
   float* MIDI_velocity;
+  float* random;
 };
 
 struct ModSources {

@@ -32,6 +32,8 @@
 
 #include "audio/ADSR.h"
 
+#include <cstdlib>
+
 class VoiceManager {
 public:
   // returns free voice index or steals one and sets it busy
@@ -128,6 +130,12 @@ struct Voice {
     //   onEnvelopeEnd(); 
     //   //MIDI_key_mod_source = 1.f;
     //   };
+    std::srand(std::time(nullptr));
+    generateNewRandomValue();
+  }
+
+  void generateNewRandomValue(){
+    random_modulation = 2.f * ((float)rand() / (float)RAND_MAX) - 1.f;
   }
 
   float MIDINoteToFreq(int p_MIDI_note) {
@@ -145,6 +153,9 @@ struct Voice {
     for (int mod = 0; mod < 4; ++mod) {
       env[mod].reset();
     }
+    generateNewRandomValue();
+
+
     DBG("Started voice");
   }
 
@@ -439,6 +450,7 @@ struct Voice {
   // modulation values
   float MIDI_key_mod_source = 0.f;
   float MIDI_velocity_mod_source = 0.f;
+  float random_modulation;
 
   // called when the envelope ends to signal voice end to voice manager
   //std::function<void()> onEnvelopeEnd = []() {};
