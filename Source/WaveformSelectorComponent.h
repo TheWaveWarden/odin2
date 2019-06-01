@@ -60,6 +60,12 @@ public:
     m_menu.addSeparator();
   }
 
+  void addMapEntry(std::string p_name, int p_index, int p_next, int p_last){
+    m_menu_map.insert(std::pair<int, std::string>(p_index, p_name));
+      m_inc_map.insert(std::pair<int, int>(p_index, p_next));
+      m_dec_map.insert(std::pair<int, int>(p_index, p_last));
+  }
+
   void applySubmenu(int p_submenu, const std::string &p_name){
     if (p_submenu >= 0 && p_submenu < N_SUBMENUS)
     {

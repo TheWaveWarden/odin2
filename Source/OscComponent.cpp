@@ -775,8 +775,6 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor, AudioProcessorValueT
   juce::PopupMenu wavetable_submenu;
   juce::PopupMenu wavetable_recycle_menu;
 
-  fm_and_vector_menu.addItem(1, "Sine");
-  fm_and_vector_menu.addSeparator();
 
 #define ADD_WAVETABLE_SUB_MENU(name, number) wavetable_recycle_menu.clear();\
 wavetable_recycle_menu.addItem(number + 1,(std::string)name + (std::string)" 1");\
@@ -785,13 +783,37 @@ wavetable_recycle_menu.addItem(number + 3,(std::string)name + (std::string)" 3")
 wavetable_recycle_menu.addItem(number + 4,(std::string)name + (std::string)" 4");\
 wavetable_submenu.addSubMenu(name, wavetable_recycle_menu);
 
+#define ADD_MAP_ENTRY(name, number, selector) selector.addMapEntry((std::string)name + (std::string)" 1", number+1, number+2, number - 6);\
+selector.addMapEntry((std::string)name + (std::string)" 2", number+2, number+3, number + 1);\
+selector.addMapEntry((std::string)name + (std::string)" 3", number+3, number+4, number + 2);\
+selector.addMapEntry((std::string)name + (std::string)" 4", number+4, number+11, number + 3);\
+
+  juce::PopupMenu chiptune_submenu;
+  chiptune_submenu.addItem(401, "Square 50");
+  chiptune_submenu.addItem(402, "Square 25");
+  chiptune_submenu.addItem(403, "Square 12.5");
+  chiptune_submenu.addItem(404, "ChipTriangle");
+  chiptune_submenu.addItem(405, "TODO");
+  juce::PopupMenu wavedraw_submenu;
+  wavedraw_submenu.addItem(501, "WaveDraw Osc1");
+  wavedraw_submenu.addItem(502, "WaveDraw Osc2");
+  wavedraw_submenu.addItem(503, "WaveDraw Osc3");
+  juce::PopupMenu chipdraw_submenu;
+  chipdraw_submenu.addItem(601, "ChipDraw Osc1");
+  chipdraw_submenu.addItem(602, "ChipDraw Osc2");
+  chipdraw_submenu.addItem(603, "ChipDraw Osc3");
+  juce::PopupMenu specdraw_submenu;
+  specdraw_submenu.addItem(701, "SpecDraw Osc1");
+  specdraw_submenu.addItem(702, "SpecDraw Osc2");
+  specdraw_submenu.addItem(703, "SpecDraw Osc3");
+
+  //now add all menus
   wavetable_recycle_menu.addItem(101, "Saw");
   wavetable_recycle_menu.addItem(102, "Square");
   wavetable_recycle_menu.addItem(103, "Triangle");
   wavetable_recycle_menu.addItem(104, "Sine");
-  wavetable_submenu.addSubMenu("Classic Analog", wavetable_recycle_menu); 
 
-  //ADD_WAVETABLE_SUB_MENU("Classic", 100)
+  wavetable_submenu.addSubMenu("Classic Analog", wavetable_recycle_menu); 
   ADD_WAVETABLE_SUB_MENU("Additive 1", 110)
   ADD_WAVETABLE_SUB_MENU("Additive 2", 120)
   ADD_WAVETABLE_SUB_MENU("Additive 3" ,130)
@@ -816,28 +838,8 @@ wavetable_submenu.addSubMenu(name, wavetable_recycle_menu);
   ADD_WAVETABLE_SUB_MENU("Wave23", 320)
   ADD_WAVETABLE_SUB_MENU("Last", 330)
 
-
-
-  juce::PopupMenu chiptune_submenu;
-  chiptune_submenu.addItem(20, "Square 50");
-  chiptune_submenu.addItem(20, "Square 25");
-  chiptune_submenu.addItem(20, "Square 12.5");
-  chiptune_submenu.addItem(20, "ChipTriangle");
-  chiptune_submenu.addItem(20, "TODO");
-  juce::PopupMenu wavedraw_submenu;
-  wavedraw_submenu.addItem(501, "WaveDraw Osc1");
-  wavedraw_submenu.addItem(502, "WaveDraw Osc2");
-  wavedraw_submenu.addItem(503, "WaveDraw Osc3");
-  juce::PopupMenu chipdraw_submenu;
-  chipdraw_submenu.addItem(601, "ChipDraw Osc1");
-  chipdraw_submenu.addItem(602, "ChipDraw Osc2");
-  chipdraw_submenu.addItem(603, "ChipDraw Osc3");
-  juce::PopupMenu specdraw_submenu;
-  specdraw_submenu.addItem(701, "SpecDraw Osc1");
-  specdraw_submenu.addItem(702, "SpecDraw Osc2");
-  specdraw_submenu.addItem(703, "SpecDraw Osc3");
-
-  //now add all menus
+  fm_and_vector_menu.addItem(1, "Sine");
+  fm_and_vector_menu.addSeparator();
   fm_and_vector_menu.addSubMenu("Wavetables", wavetable_submenu);
   fm_and_vector_menu.addSeparator();
   fm_and_vector_menu.addSubMenu("Chiptune", chiptune_submenu);
@@ -846,7 +848,144 @@ wavetable_submenu.addSubMenu(name, wavetable_recycle_menu);
   fm_and_vector_menu.addSubMenu("ChipDraw", chipdraw_submenu);
   fm_and_vector_menu.addSubMenu("SpecDraw", specdraw_submenu);
 
+
+//====================
+//=== COPY & PASTA ===
+//====================
+
+
+  ADD_MAP_ENTRY("Additive 1", 110, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Additive 2", 120, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Additive 3" ,130, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Additive 4" ,140, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Harmonics 1",150, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Harmonics 2", 160, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Harmonics 3", 170, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Harmonics 4", 180, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Organ", 190, m_carrier_waveselector)
+  ADD_MAP_ENTRY("BrokenSine", 200, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Skyline", 210, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Soft", 220, m_carrier_waveselector)
+  ADD_MAP_ENTRY("MultiSaw", 230, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Wave15", 240, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Wave16", 250, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Wave17", 260, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Wave18", 270, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Wave19", 280, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Wave20", 290, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Wave21", 300, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Wave22", 310, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Wave23", 320, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Last", 330, m_carrier_waveselector)
+
+  m_carrier_waveselector.setDecrementValue(101,1);
+  m_carrier_waveselector.setIncrementValue(334, 401);
+  m_carrier_waveselector.addMapEntry("Sine", 1,101,1);
+  m_carrier_waveselector.addMapEntry("Saw", 101, 102, 1);
+  m_carrier_waveselector.addMapEntry("Square", 102,103,101);
+  m_carrier_waveselector.addMapEntry("Triangle", 103,104,102);
+  m_carrier_waveselector.addMapEntry("Sine", 104,111,103);
+
+  m_carrier_waveselector.addMapEntry("Square 50", 401,402,334);
+  m_carrier_waveselector.addMapEntry("Square 25", 402,403,401);
+  m_carrier_waveselector.addMapEntry("Square 12.5", 403,404,402);
+  m_carrier_waveselector.addMapEntry("ChipTriangle", 404,405,403);
+  m_carrier_waveselector.addMapEntry("TODO", 405,501,404);
+
+  m_carrier_waveselector.addMapEntry("WaveDraw Osc1", 501, 502, 405);
+  m_carrier_waveselector.addMapEntry("WaveDraw Osc2", 502, 503, 501);
+  m_carrier_waveselector.addMapEntry("WaveDraw Osc3", 503, 601, 502);
+
+  m_carrier_waveselector.addMapEntry("ChipDraw Osc1", 601, 602, 503);
+  m_carrier_waveselector.addMapEntry("ChipDraw Osc2", 602, 603, 601);
+  m_carrier_waveselector.addMapEntry("ChipDraw Osc3", 603, 701, 602);
+
+  m_carrier_waveselector.addMapEntry("SpecDraw Osc1", 701, 702, 603);
+  m_carrier_waveselector.addMapEntry("SpecDraw Osc2", 702, 703, 701);
+  m_carrier_waveselector.addMapEntry("SpecDraw Osc3", 703, 703, 702);
+
   m_carrier_waveselector.m_menu = fm_and_vector_menu;
+
+
+
+
+
+
+
+
+
+  ADD_MAP_ENTRY("Additive 1", 110, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Additive 2", 120, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Additive 3" ,130, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Additive 4" ,140, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Harmonics 1",150, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Harmonics 2", 160, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Harmonics 3", 170, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Harmonics 4", 180, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Organ", 190, m_modulator_waveselector)
+  ADD_MAP_ENTRY("BrokenSine", 200, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Skyline", 210, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Soft", 220, m_modulator_waveselector)
+  ADD_MAP_ENTRY("MultiSaw", 230, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Wave15", 240, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Wave16", 250, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Wave17", 260, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Wave18", 270, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Wave19", 280, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Wave20", 290, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Wave21", 300, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Wave22", 310, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Wave23", 320, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Last", 330, m_modulator_waveselector)
+
+  m_modulator_waveselector.setDecrementValue(101,1);
+  m_modulator_waveselector.setIncrementValue(334, 401);
+  m_modulator_waveselector.addMapEntry("Sine", 1,101,1);
+  m_modulator_waveselector.addMapEntry("Saw", 101, 102, 1);
+  m_modulator_waveselector.addMapEntry("Square", 102,103,101);
+  m_modulator_waveselector.addMapEntry("Triangle", 103,104,102);
+  m_modulator_waveselector.addMapEntry("Sine", 104,111,103);
+
+  m_modulator_waveselector.addMapEntry("Square 50", 401,402,334);
+  m_modulator_waveselector.addMapEntry("Square 25", 402,403,401);
+  m_modulator_waveselector.addMapEntry("Square 12.5", 403,404,402);
+  m_modulator_waveselector.addMapEntry("ChipTriangle", 404,405,403);
+  m_modulator_waveselector.addMapEntry("TODO", 405,501,404);
+
+  m_modulator_waveselector.addMapEntry("WaveDraw Osc1", 501, 502, 405);
+  m_modulator_waveselector.addMapEntry("WaveDraw Osc2", 502, 503, 501);
+  m_modulator_waveselector.addMapEntry("WaveDraw Osc3", 503, 601, 502);
+
+  m_modulator_waveselector.addMapEntry("ChipDraw Osc1", 601, 602, 503);
+  m_modulator_waveselector.addMapEntry("ChipDraw Osc2", 602, 603, 601);
+  m_modulator_waveselector.addMapEntry("ChipDraw Osc3", 603, 701, 602);
+
+  m_modulator_waveselector.addMapEntry("SpecDraw Osc1", 701, 702, 603);
+  m_modulator_waveselector.addMapEntry("SpecDraw Osc2", 702, 703, 701);
+  m_modulator_waveselector.addMapEntry("SpecDraw Osc3", 703, 703, 702);
+
+  m_modulator_waveselector.m_menu = fm_and_vector_menu;
+
+
+
+  *(m_vec_a.getRootMenu()) = fm_and_vector_menu;
+  *(m_vec_b.getRootMenu()) = fm_and_vector_menu;
+  *(m_vec_c.getRootMenu()) = fm_and_vector_menu;
+  *(m_vec_d.getRootMenu()) = fm_and_vector_menu;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   m_carrier_waveselector.OnValueChange = [&](int p_new_value) {
     m_value_tree.getParameter(m_carrier_wave_identifier)
         ->setValueNotifyingHost(((float)p_new_value - 0.5f) / 1000.f);
@@ -899,11 +1038,6 @@ wavetable_submenu.addSubMenu(name, wavetable_recycle_menu);
   };
   m_modulator_waveselector.setTopLeftPosition(WAVE_MODULATOR_POS_X,
                                               WAVE_MODULATOR_POS_Y);
-  m_modulator_waveselector.addWave(1, "Saw");
-  m_modulator_waveselector.addWave(2, "Pulse");
-  m_modulator_waveselector.addWave(3, "WOW");
-  m_modulator_waveselector.addWave(4, "henlo");
-  m_modulator_waveselector.addWave(5, "MODULATOR");
   m_modulator_waveselector.setColor(fm_color);
   m_modulator_waveselector.setValue(1);
   m_modulator_waveselector.setTooltip("Selects the wave for the modulator osc");
@@ -1008,10 +1142,6 @@ wavetable_submenu.addSubMenu(name, wavetable_recycle_menu);
       juce::File(GRAPHICS_PATH + "cropped/glaspanel_big.png"));
   m_vec_a.setImage(glas_panel_vecwave);
   m_vec_a.setInlay(1);
-  m_vec_a.addItem("Saw", 1);
-  m_vec_a.addItem("Square", 2);
-  m_vec_a.addItem("Triangle", 3);
-  m_vec_a.addItem("Sine", 4);
   m_vec_a.setEditableText(false);
   m_vec_a.setSelectedId(1, dontSendNotification);
   m_vec_a.setBounds(VEC_WAVE_X, VEC_WAVE_Y, glas_panel_vecwave.getWidth(),
@@ -1022,10 +1152,6 @@ wavetable_submenu.addSubMenu(name, wavetable_recycle_menu);
 
   m_vec_b.setImage(glas_panel_vecwave);
   m_vec_b.setInlay(1);
-  m_vec_b.addItem("Saw", 1);
-  m_vec_b.addItem("Square", 2);
-  m_vec_b.addItem("Triangle", 3);
-  m_vec_b.addItem("Sine", 4);
   m_vec_b.setEditableText(false);
   m_vec_b.setSelectedId(2, dontSendNotification);
   m_vec_b.setBounds(VEC_WAVE_X, VEC_WAVE_Y + 1 * VEC_WAVE_OFFSET,
@@ -1037,10 +1163,6 @@ wavetable_submenu.addSubMenu(name, wavetable_recycle_menu);
 
   m_vec_c.setImage(glas_panel_vecwave);
   m_vec_c.setInlay(1);
-  m_vec_c.addItem("Saw", 1);
-  m_vec_c.addItem("Square", 2);
-  m_vec_c.addItem("Triangle", 3);
-  m_vec_c.addItem("Sine", 4);
   m_vec_c.setEditableText(false);
   m_vec_c.setSelectedId(3, dontSendNotification);
   m_vec_c.setBounds(VEC_WAVE_X, VEC_WAVE_Y + 2 * VEC_WAVE_OFFSET,
@@ -1052,10 +1174,6 @@ wavetable_submenu.addSubMenu(name, wavetable_recycle_menu);
 
   m_vec_d.setImage(glas_panel_vecwave);
   m_vec_d.setInlay(1);
-  m_vec_d.addItem("Saw", 1);
-  m_vec_d.addItem("Square", 2);
-  m_vec_d.addItem("Triangle", 3);
-  m_vec_d.addItem("Sine", 4);
   m_vec_d.setEditableText(false);
   m_vec_d.setSelectedId(4, dontSendNotification);
   m_vec_d.setBounds(VEC_WAVE_X, VEC_WAVE_Y + 3 * VEC_WAVE_OFFSET,
