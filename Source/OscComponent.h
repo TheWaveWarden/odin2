@@ -281,10 +281,10 @@ protected:
   std::unique_ptr<ButtonAttachment> m_chipnoise_attach;
   std::unique_ptr<ButtonAttachment> m_exp_fm_attach;
 
-  std::unique_ptr<ComboBoxAttachment> m_vec_a_attach;
-  std::unique_ptr<ComboBoxAttachment> m_vec_b_attach;
-  std::unique_ptr<ComboBoxAttachment> m_vec_c_attach;
-  std::unique_ptr<ComboBoxAttachment> m_vec_d_attach;
+  //std::unique_ptr<ComboBoxAttachment> m_vec_a_attach;
+  //std::unique_ptr<ComboBoxAttachment> m_vec_b_attach;
+  //std::unique_ptr<ComboBoxAttachment> m_vec_c_attach;
+  //std::unique_ptr<ComboBoxAttachment> m_vec_d_attach;
 
   Identifier m_wavetable_identifier;
   Identifier m_chipwave_identifier;
