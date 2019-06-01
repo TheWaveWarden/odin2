@@ -56,6 +56,10 @@ public:
     }
   }
 
+  void addSeparator(){
+    m_menu.addSeparator();
+  }
+
   void applySubmenu(int p_submenu, const std::string &p_name){
     if (p_submenu >= 0 && p_submenu < N_SUBMENUS)
     {

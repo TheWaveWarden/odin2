@@ -48,7 +48,7 @@ public:
   ~DrawableSlider();
 
   void setTextValueSuffix(const String &suffix) {
-    setNumDecimalPlacesToDisplay(3);
+    //setNumDecimalPlacesToDisplay(20);
     Slider::setTextValueSuffix(suffix);
   }
 
