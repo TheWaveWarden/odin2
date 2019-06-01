@@ -837,7 +837,7 @@ selector.addMapEntry((std::string)name + (std::string)" 4", number+4, number+11,
   ADD_WAVETABLE_SUB_MENU("Wave21", 300)
   ADD_WAVETABLE_SUB_MENU("Wave22", 310)
   ADD_WAVETABLE_SUB_MENU("Wave23", 320)
-  ADD_WAVETABLE_SUB_MENU("Last", 330)
+  ADD_WAVETABLE_SUB_MENU("Last", 996)
 
   fm_menu.addItem(1, "Sine");
   fm_menu.addSeparator();
@@ -885,7 +885,7 @@ selector.addMapEntry((std::string)name + (std::string)" 4", number+4, number+11,
   ADD_MAP_ENTRY("Wave21", 300, m_carrier_waveselector)
   ADD_MAP_ENTRY("Wave22", 310, m_carrier_waveselector)
   ADD_MAP_ENTRY("Wave23", 320, m_carrier_waveselector)
-  ADD_MAP_ENTRY("Last", 330, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Last", 996, m_carrier_waveselector)//last entry 996-1000
 
   m_carrier_waveselector.setDecrementValue(101,1);
   m_carrier_waveselector.setIncrementValue(334, 401);
@@ -946,6 +946,8 @@ selector.addMapEntry((std::string)name + (std::string)" 4", number+4, number+11,
   ADD_MAP_ENTRY("Wave22", 310, m_modulator_waveselector)
   ADD_MAP_ENTRY("Wave23", 320, m_modulator_waveselector)
   ADD_MAP_ENTRY("Last", 330, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Last", 996, m_carrier_waveselector)//last entry 996-1000
+
 
   m_modulator_waveselector.setDecrementValue(101,1);
   m_modulator_waveselector.setIncrementValue(334, 401);
