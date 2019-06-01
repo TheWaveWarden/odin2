@@ -771,7 +771,8 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor, AudioProcessorValueT
 
   juce::Colour fm_color(90, 40, 40);
 
-  juce::PopupMenu fm_and_vector_menu;
+  juce::PopupMenu fm_menu;
+  juce::PopupMenu vector_menu;
   juce::PopupMenu wavetable_submenu;
   juce::PopupMenu wavetable_recycle_menu;
 
@@ -838,15 +839,23 @@ selector.addMapEntry((std::string)name + (std::string)" 4", number+4, number+11,
   ADD_WAVETABLE_SUB_MENU("Wave23", 320)
   ADD_WAVETABLE_SUB_MENU("Last", 330)
 
-  fm_and_vector_menu.addItem(1, "Sine");
-  fm_and_vector_menu.addSeparator();
-  fm_and_vector_menu.addSubMenu("Wavetables", wavetable_submenu);
-  fm_and_vector_menu.addSeparator();
-  fm_and_vector_menu.addSubMenu("Chiptune", chiptune_submenu);
-  fm_and_vector_menu.addSeparator();
-  fm_and_vector_menu.addSubMenu("WaveDraw", wavedraw_submenu);
-  fm_and_vector_menu.addSubMenu("ChipDraw", chipdraw_submenu);
-  fm_and_vector_menu.addSubMenu("SpecDraw", specdraw_submenu);
+  fm_menu.addItem(1, "Sine");
+  fm_menu.addSeparator();
+  fm_menu.addSubMenu("Wavetables", wavetable_submenu);
+  fm_menu.addSeparator();
+  fm_menu.addSubMenu("Chiptune", chiptune_submenu);
+  fm_menu.addSeparator();
+  fm_menu.addSubMenu("WaveDraw", wavedraw_submenu);
+  fm_menu.addSubMenu("ChipDraw", chipdraw_submenu);
+  fm_menu.addSubMenu("SpecDraw", specdraw_submenu);
+
+  vector_menu.addSubMenu("Wavetables", wavetable_submenu);
+  vector_menu.addSeparator();
+  vector_menu.addSubMenu("Chiptune", chiptune_submenu);
+  vector_menu.addSeparator();
+  vector_menu.addSubMenu("WaveDraw", wavedraw_submenu);
+  vector_menu.addSubMenu("ChipDraw", chipdraw_submenu);
+  vector_menu.addSubMenu("SpecDraw", specdraw_submenu);
 
 
 //====================
@@ -904,7 +913,7 @@ selector.addMapEntry((std::string)name + (std::string)" 4", number+4, number+11,
   m_carrier_waveselector.addMapEntry("SpecDraw Osc2", 702, 703, 701);
   m_carrier_waveselector.addMapEntry("SpecDraw Osc3", 703, 703, 702);
 
-  m_carrier_waveselector.m_menu = fm_and_vector_menu;
+  m_carrier_waveselector.m_menu = fm_menu;
 
 
 
@@ -964,14 +973,14 @@ selector.addMapEntry((std::string)name + (std::string)" 4", number+4, number+11,
   m_modulator_waveselector.addMapEntry("SpecDraw Osc2", 702, 703, 701);
   m_modulator_waveselector.addMapEntry("SpecDraw Osc3", 703, 703, 702);
 
-  m_modulator_waveselector.m_menu = fm_and_vector_menu;
+  m_modulator_waveselector.m_menu = fm_menu;
 
 
 
-  *(m_vec_a.getRootMenu()) = fm_and_vector_menu;
-  *(m_vec_b.getRootMenu()) = fm_and_vector_menu;
-  *(m_vec_c.getRootMenu()) = fm_and_vector_menu;
-  *(m_vec_d.getRootMenu()) = fm_and_vector_menu;
+  *(m_vec_a.getRootMenu()) = vector_menu;
+  *(m_vec_b.getRootMenu()) = vector_menu;
+  *(m_vec_c.getRootMenu()) = vector_menu;
+  *(m_vec_d.getRootMenu()) = vector_menu;
 
 
 
@@ -1143,7 +1152,7 @@ selector.addMapEntry((std::string)name + (std::string)" 4", number+4, number+11,
   m_vec_a.setImage(glas_panel_vecwave);
   m_vec_a.setInlay(1);
   m_vec_a.setEditableText(false);
-  m_vec_a.setSelectedId(1, dontSendNotification);
+  m_vec_a.setSelectedId(101, dontSendNotification);
   m_vec_a.setBounds(VEC_WAVE_X, VEC_WAVE_Y, glas_panel_vecwave.getWidth(),
                     glas_panel_vecwave.getHeight());
   m_vec_a.setColor(vector_color);
@@ -1153,7 +1162,7 @@ selector.addMapEntry((std::string)name + (std::string)" 4", number+4, number+11,
   m_vec_b.setImage(glas_panel_vecwave);
   m_vec_b.setInlay(1);
   m_vec_b.setEditableText(false);
-  m_vec_b.setSelectedId(2, dontSendNotification);
+  m_vec_b.setSelectedId(102, dontSendNotification);
   m_vec_b.setBounds(VEC_WAVE_X, VEC_WAVE_Y + 1 * VEC_WAVE_OFFSET,
                     glas_panel_vecwave.getWidth(),
                     glas_panel_vecwave.getHeight());
@@ -1164,7 +1173,7 @@ selector.addMapEntry((std::string)name + (std::string)" 4", number+4, number+11,
   m_vec_c.setImage(glas_panel_vecwave);
   m_vec_c.setInlay(1);
   m_vec_c.setEditableText(false);
-  m_vec_c.setSelectedId(3, dontSendNotification);
+  m_vec_c.setSelectedId(103, dontSendNotification);
   m_vec_c.setBounds(VEC_WAVE_X, VEC_WAVE_Y + 2 * VEC_WAVE_OFFSET,
                     glas_panel_vecwave.getWidth(),
                     glas_panel_vecwave.getHeight());
@@ -1175,7 +1184,7 @@ selector.addMapEntry((std::string)name + (std::string)" 4", number+4, number+11,
   m_vec_d.setImage(glas_panel_vecwave);
   m_vec_d.setInlay(1);
   m_vec_d.setEditableText(false);
-  m_vec_d.setSelectedId(4, dontSendNotification);
+  m_vec_d.setSelectedId(104, dontSendNotification);
   m_vec_d.setBounds(VEC_WAVE_X, VEC_WAVE_Y + 3 * VEC_WAVE_OFFSET,
                     glas_panel_vecwave.getWidth(),
                     glas_panel_vecwave.getHeight());
