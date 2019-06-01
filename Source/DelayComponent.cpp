@@ -75,7 +75,7 @@ DelayComponent::DelayComponent(AudioProcessorValueTreeState &vts)
   m_time.setSkewFactorFromMidPoint(TIME_MID);
   m_time.setValue(TIME_DEFAULT);
   m_time.setTextValueSuffix(" s");
-  m_time.setNumDecimalPlacesToDisplay(2);
+  m_time.setNumDecimalPlacesToDisplay(5);
   m_time.setDoubleClickReturnValue(true, TIME_DEFAULT,
                                    ModifierKeys::ctrlModifier);
   m_time.setKnobTooltip("The time for the \nsignal to echo back");

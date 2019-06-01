@@ -402,6 +402,9 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
             }
           }
           m_voice_manager.clearKillList();
+        } else if (midi_message.isAftertouch()){
+          //todo this is untested, are values set back to zero, or need to do it manually?
+          m_MIDI_aftertouch = (float)midi_message.getAfterTouchValue() / 127.f;
         } else {
           DBG("UNHANDELED MIDI MESSAGE: " + midi_message.getDescription());
         }
