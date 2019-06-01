@@ -101,6 +101,7 @@ public:
   std::function<void(int)>OnValueChange = [](int){};
 
 
+  juce::PopupMenu m_menu;
 private:
   void increment()
   {
@@ -122,7 +123,6 @@ private:
 
 
   GlasDisplay m_display;
-  juce::PopupMenu m_menu;
   juce::PopupMenu m_submenu[N_SUBMENUS];
   std::map<int, std::string> m_menu_map; //to get string names from menu indices
   std::map<int, int> m_inc_map;          //which value to go to on increment()

@@ -771,17 +771,89 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor, AudioProcessorValueT
 
   juce::Colour fm_color(90, 40, 40);
 
+  juce::PopupMenu fm_and_vector_menu;
+  juce::PopupMenu wavetable_submenu;
+  juce::PopupMenu wavetable_recycle_menu;
+
+  fm_and_vector_menu.addItem(1, "Sine");
+  fm_and_vector_menu.addSeparator();
+
+#define ADD_WAVETABLE_SUB_MENU(name, number) wavetable_recycle_menu.clear();\
+wavetable_recycle_menu.addItem(number + 1,(std::string)name + (std::string)" 1");\
+wavetable_recycle_menu.addItem(number + 2,(std::string)name + (std::string)" 2");\
+wavetable_recycle_menu.addItem(number + 3,(std::string)name + (std::string)" 3");\
+wavetable_recycle_menu.addItem(number + 4,(std::string)name + (std::string)" 4");\
+wavetable_submenu.addSubMenu(name, wavetable_recycle_menu);
+
+  wavetable_recycle_menu.addItem(101, "Saw");
+  wavetable_recycle_menu.addItem(102, "Square");
+  wavetable_recycle_menu.addItem(103, "Triangle");
+  wavetable_recycle_menu.addItem(104, "Sine");
+  wavetable_submenu.addSubMenu("Classic Analog", wavetable_recycle_menu); 
+
+  //ADD_WAVETABLE_SUB_MENU("Classic", 100)
+  ADD_WAVETABLE_SUB_MENU("Additive 1", 110)
+  ADD_WAVETABLE_SUB_MENU("Additive 2", 120)
+  ADD_WAVETABLE_SUB_MENU("Additive 3" ,130)
+  ADD_WAVETABLE_SUB_MENU("Additive 4" ,140)
+  ADD_WAVETABLE_SUB_MENU("Harmonics 1",150)
+  ADD_WAVETABLE_SUB_MENU("Harmonics 2", 160)
+  ADD_WAVETABLE_SUB_MENU("Harmonics 3", 170)
+  ADD_WAVETABLE_SUB_MENU("Harmonics 4", 180)
+  ADD_WAVETABLE_SUB_MENU("Organ", 190)
+  ADD_WAVETABLE_SUB_MENU("BrokenSine", 200)
+  ADD_WAVETABLE_SUB_MENU("Skyline", 210)
+  ADD_WAVETABLE_SUB_MENU("Soft", 220)
+  ADD_WAVETABLE_SUB_MENU("MultiSaw", 230)
+  ADD_WAVETABLE_SUB_MENU("Wave15", 240)
+  ADD_WAVETABLE_SUB_MENU("Wave16", 250)
+  ADD_WAVETABLE_SUB_MENU("Wave17", 260)
+  ADD_WAVETABLE_SUB_MENU("Wave18", 270)
+  ADD_WAVETABLE_SUB_MENU("Wave19", 280)
+  ADD_WAVETABLE_SUB_MENU("Wave20", 290)
+  ADD_WAVETABLE_SUB_MENU("Wave21", 300)
+  ADD_WAVETABLE_SUB_MENU("Wave22", 310)
+  ADD_WAVETABLE_SUB_MENU("Wave23", 320)
+  ADD_WAVETABLE_SUB_MENU("Last", 330)
+
+
+
+  juce::PopupMenu chiptune_submenu;
+  chiptune_submenu.addItem(20, "Square 50");
+  chiptune_submenu.addItem(20, "Square 25");
+  chiptune_submenu.addItem(20, "Square 12.5");
+  chiptune_submenu.addItem(20, "ChipTriangle");
+  chiptune_submenu.addItem(20, "TODO");
+  juce::PopupMenu wavedraw_submenu;
+  wavedraw_submenu.addItem(501, "WaveDraw Osc1");
+  wavedraw_submenu.addItem(502, "WaveDraw Osc2");
+  wavedraw_submenu.addItem(503, "WaveDraw Osc3");
+  juce::PopupMenu chipdraw_submenu;
+  chipdraw_submenu.addItem(601, "ChipDraw Osc1");
+  chipdraw_submenu.addItem(602, "ChipDraw Osc2");
+  chipdraw_submenu.addItem(603, "ChipDraw Osc3");
+  juce::PopupMenu specdraw_submenu;
+  specdraw_submenu.addItem(701, "SpecDraw Osc1");
+  specdraw_submenu.addItem(702, "SpecDraw Osc2");
+  specdraw_submenu.addItem(703, "SpecDraw Osc3");
+
+  //now add all menus
+  fm_and_vector_menu.addSubMenu("Wavetables", wavetable_submenu);
+  fm_and_vector_menu.addSeparator();
+  fm_and_vector_menu.addSubMenu("Chiptune", chiptune_submenu);
+  fm_and_vector_menu.addSeparator();
+  fm_and_vector_menu.addSubMenu("WaveDraw", wavedraw_submenu);
+  fm_and_vector_menu.addSubMenu("ChipDraw", chipdraw_submenu);
+  fm_and_vector_menu.addSubMenu("SpecDraw", specdraw_submenu);
+
+  m_carrier_waveselector.m_menu = fm_and_vector_menu;
   m_carrier_waveselector.OnValueChange = [&](int p_new_value) {
     m_value_tree.getParameter(m_carrier_wave_identifier)
         ->setValueNotifyingHost(((float)p_new_value - 0.5f) / 1000.f);
   };
   m_carrier_waveselector.setTopLeftPosition(WAVE_CARRIER_POS_X,
                                             WAVE_CARRIER_POS_Y);
-  m_carrier_waveselector.addWave(1, "Saw");
-  m_carrier_waveselector.addWave(2, "Pulse");
-  m_carrier_waveselector.addWave(3, "WOW");
-  m_carrier_waveselector.addWave(4, "henlo");
-  m_carrier_waveselector.addWave(5, "CARRIER");
+  
   m_carrier_waveselector.setValue(1);
   m_carrier_waveselector.setColor(fm_color);
   m_carrier_waveselector.setTooltip("Selects the wave for the carrier osc");
