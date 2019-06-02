@@ -26,10 +26,9 @@ std::string getFileNameFromAbsolute(const std::string &s) {
 
     std::string erase = ".odin";
     size_t pos = ret.find(erase);
-	if (pos != std::string::npos)
-	{
-		ret.erase(pos, erase.length());
-	}
+    if (pos != std::string::npos) {
+      ret.erase(pos, erase.length());
+    }
     return ret;
   }
 
@@ -143,8 +142,7 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts)
   addAndMakeVisible(m_patch);
 
   m_save.onClick = [&]() {
-    DBG(m_value_tree.state.toXmlString());
-
+    // DBG(m_value_tree.state.toXmlString());
     File fileToSave(File::getCurrentWorkingDirectory().getFullPathName() +
                     "/my_patch.odin");
 
@@ -164,16 +162,52 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts)
                                       ? result.getLocalFile().getFullPathName()
                                       : result.toString(true));
 
-          std::ofstream output_file;
-          output_file.open(file_name.toStdString());
-          output_file << m_value_tree.state.toXmlString().toStdString();
-          output_file.close();
+          File file_to_write(file_name);
+          FileOutputStream file_stream(file_to_write);
+          m_value_tree.state.writeToStream(file_stream);
 
           m_patch.setText(getFileNameFromAbsolute(file_name.toStdString()));
 
-          // AlertWindow::showMessageBoxAsync(
-          //    AlertWindow::InfoIcon, "File Chooser...", "You picked: " +
-          //    file_name);
+          DBG("Wrote file to " + file_name);
+        });
+  };
+
+  m_load.onClick = [&]() {
+    m_filechooser.reset(new FileChooser("Choose a file to open...",
+                                        File::getCurrentWorkingDirectory(), "*",
+                                        true));
+
+    m_filechooser->launchAsync(
+        FileBrowserComponent::canSelectMultipleItems |
+            FileBrowserComponent::openMode |
+            FileBrowserComponent::canSelectFiles,
+        [this](const FileChooser &chooser) {
+          String file_name;
+          auto results = chooser.getURLResults();
+
+          for (auto result : results)
+            file_name << (result.isLocalFile()
+                              ? result.getLocalFile().getFullPathName()
+                              : result.toString(false))
+                      << "\n";
+
+          File file_to_read(file_name);
+          DBG((int)file_to_read.exists());
+
+
+          FileInputStream file_stream(file_to_read);
+          if (file_stream.openedOk()) {
+            m_value_tree.state.readFromStream(file_stream);
+          } else {
+            DBG("Failed to open stream. Error message: " + file_stream.getStatus().getErrorMessage().toStdString());
+            DBG(file_name);
+          }
+
+          m_patch.setText(getFileNameFromAbsolute(file_name.toStdString()));
+
+          AlertWindow::showMessageBoxAsync(AlertWindow::InfoIcon,
+                                           "File Chooser...",
+                                           "You picked: " + file_name);
         });
   };
 }
