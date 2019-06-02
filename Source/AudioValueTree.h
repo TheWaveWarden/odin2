@@ -82,7 +82,7 @@
   std::make_unique<AudioParameterInt> ("osc3_oct", "Oscillator3 Octave", -3, 3, 0),
   std::make_unique<AudioParameterInt> ("osc3_semi", "Oscillator3 Semitones", -7, 7, 0),
   std::make_unique<AudioParameterInt> ("osc3_analog_wave", "Oscillator3 Analog Waveform", 1, 4, 1),  
-  std::make_unique<AudioParameterFloat> ("osc3_fine", "Oscillator3 Finetune", NourmalisableRange<float> (-50.0f, 50.0f), 0),
+  std::make_unique<AudioParameterFloat> ("osc3_fine", "Oscillator3 Finetune", NormalisableRange<float> (-50.0f, 50.0f), 0),
   std::make_unique<AudioParameterFloat> ("osc3_vol", "Oscillator3 Volume", NormalisableRange<float> (-20.0f, 12.0f), 0),
   std::make_unique<AudioParameterInt> ("osc3_reset", "Oscillator3 Reset", 0, 1, 0),
   std::make_unique<AudioParameterFloat> ("osc3_position", "Oscillator3 Position", NormalisableRange<float> (0.f, 1.f), 0),
