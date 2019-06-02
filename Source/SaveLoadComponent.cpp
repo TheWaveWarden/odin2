@@ -41,7 +41,7 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts)
       m_load("load", juce::DrawableButton::ButtonStyle::ImageRaw),
       m_reset("reset", juce::DrawableButton::ButtonStyle::ImageRaw),
       m_random("random", juce::DrawableButton::ButtonStyle::ImageRaw),
-      m_value_tree(vts){
+      m_value_tree(vts) {
   juce::Image save_1 = ImageCache::getFromFile(
       juce::File(GRAPHICS_PATH + "cropped/buttons/buttonsave_2.png"));
   juce::Image save_2 = ImageCache::getFromFile(
@@ -142,7 +142,7 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts)
   addAndMakeVisible(m_patch);
 
   m_save.onClick = [&]() {
-     DBG(m_value_tree.state.toXmlString());
+    DBG(m_value_tree.state.toXmlString());
     File fileToSave(File::getCurrentWorkingDirectory().getFullPathName() +
                     "/my_patch.odin");
 
@@ -164,9 +164,15 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts)
 
           File file_to_write(file_name);
           FileOutputStream file_stream(file_to_write);
-          m_value_tree.state.writeToStream(file_stream);
+          if (file_stream.openedOk()) {
+            //use this to overwrite old content
+            file_stream.setPosition(0);
+            file_stream.truncate();
 
-          m_patch.setText(getFileNameFromAbsolute(file_name.toStdString()));
+            m_value_tree.state.writeToStream(file_stream);
+            m_patch.setText(getFileNameFromAbsolute(file_name.toStdString()));
+          }
+
 
           DBG("Wrote patch to " + file_name);
         });
@@ -178,9 +184,7 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts)
                                         true));
 
     m_filechooser->launchAsync(
-        FileBrowserComponent::canSelectMultipleItems |
-            FileBrowserComponent::openMode |
-            FileBrowserComponent::canSelectFiles,
+        FileBrowserComponent::openMode | FileBrowserComponent::canSelectFiles,
         [this](const FileChooser &chooser) {
           String file_name;
           auto results = chooser.getURLResults();
@@ -194,7 +198,8 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts)
 
           FileInputStream file_stream(file_to_read);
           if (file_stream.openedOk()) {
-            m_value_tree.state.copyPropertiesAndChildrenFrom(m_value_tree.state.readFromStream(file_stream), nullptr);
+            m_value_tree.state.copyPropertiesAndChildrenFrom(
+                m_value_tree.state.readFromStream(file_stream), nullptr);
             m_patch.setText(
                 file_to_read.getFileNameWithoutExtension().toStdString());
             DBG("Loaded patch " + file_name);
