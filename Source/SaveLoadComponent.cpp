@@ -10,14 +10,39 @@
 
 #include "SaveLoadComponent.h"
 #include "../JuceLibraryCode/JuceHeader.h"
+#include <fstream>
 
+std::string getFileNameFromAbsolute(const std::string &s) {
+
+  char sep = '/';
+
+#ifdef ODIN_WIN
+  sep = '\\';
+#endif
+
+  size_t i = s.rfind(sep, s.length());
+  if (i != std::string::npos) {
+    std::string ret = s.substr(i + 1, s.length() - i);
+
+    std::string erase = ".odin";
+    size_t pos = ret.find(erase);
+	if (pos != std::string::npos)
+	{
+		ret.erase(pos, erase.length());
+	}
+    return ret;
+  }
+
+  return ("");
+}
 
 //==============================================================================
-SaveLoadComponent::SaveLoadComponent()
+SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts)
     : m_save("save", juce::DrawableButton::ButtonStyle::ImageRaw),
       m_load("load", juce::DrawableButton::ButtonStyle::ImageRaw),
       m_reset("reset", juce::DrawableButton::ButtonStyle::ImageRaw),
-      m_random("random", juce::DrawableButton::ButtonStyle::ImageRaw) {
+      m_random("random", juce::DrawableButton::ButtonStyle::ImageRaw),
+      m_value_tree(vts) {
   juce::Image save_1 = ImageCache::getFromFile(
       juce::File(GRAPHICS_PATH + "cropped/buttons/buttonsave_2.png"));
   juce::Image save_2 = ImageCache::getFromFile(
@@ -62,10 +87,10 @@ SaveLoadComponent::SaveLoadComponent()
   m_load.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId,
                    juce::Colour());
 
-  juce::Image reset_1 = ImageCache::getFromFile(juce::File(
-      GRAPHICS_PATH + "cropped/buttons/buttonreset_global_2.png"));
-  juce::Image reset_2 = ImageCache::getFromFile(juce::File(
-      GRAPHICS_PATH + "cropped/buttons/buttonreset_global_1.png"));
+  juce::Image reset_1 = ImageCache::getFromFile(
+      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonreset_global_2.png"));
+  juce::Image reset_2 = ImageCache::getFromFile(
+      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonreset_global_1.png"));
 
   juce::DrawableImage reset_draw1;
   juce::DrawableImage reset_draw2;
@@ -106,8 +131,8 @@ SaveLoadComponent::SaveLoadComponent()
   m_random.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId,
                      juce::Colour());
   m_random.setTooltip("Generate a random patch");
-  
-juce::Image glas_panel = ImageCache::getFromFile(
+
+  juce::Image glas_panel = ImageCache::getFromFile(
       juce::File(GRAPHICS_PATH + "cropped/glaspanel_big.png"));
 
   m_patch.setImage(glas_panel);
@@ -116,6 +141,41 @@ juce::Image glas_panel = ImageCache::getFromFile(
   m_patch_size_y = glas_panel.getHeight();
   m_patch.setText("Init Patch");
   addAndMakeVisible(m_patch);
+
+  m_save.onClick = [&]() {
+    DBG(m_value_tree.state.toXmlString());
+
+    File fileToSave(File::getCurrentWorkingDirectory().getFullPathName() +
+                    "/my_patch.odin");
+
+    m_filechooser.reset(
+        new FileChooser("Choose a file to save...",
+                        File::getCurrentWorkingDirectory().getChildFile(
+                            fileToSave.getFileName()),
+                        "*", true));
+
+    m_filechooser->launchAsync(
+        FileBrowserComponent::saveMode | FileBrowserComponent::canSelectFiles,
+        [fileToSave, this](const FileChooser &chooser) {
+          auto result = chooser.getURLResult();
+          auto file_name = result.isEmpty()
+                               ? String()
+                               : (result.isLocalFile()
+                                      ? result.getLocalFile().getFullPathName()
+                                      : result.toString(true));
+
+          std::ofstream output_file;
+          output_file.open(file_name.toStdString());
+          output_file << m_value_tree.state.toXmlString().toStdString();
+          output_file.close();
+
+          m_patch.setText(getFileNameFromAbsolute(file_name.toStdString()));
+
+          // AlertWindow::showMessageBoxAsync(
+          //    AlertWindow::InfoIcon, "File Chooser...", "You picked: " +
+          //    file_name);
+        });
+  };
 }
 
 SaveLoadComponent::~SaveLoadComponent() {}

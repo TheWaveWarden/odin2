@@ -30,13 +30,18 @@
  */
 class SaveLoadComponent : public Component {
 public:
-  SaveLoadComponent();
+  SaveLoadComponent(AudioProcessorValueTreeState &vts);
   ~SaveLoadComponent();
 
   void paint(Graphics &) override {}
   void resized() override;
 
 private:
+  std::unique_ptr<FileChooser> m_filechooser;
+
+  AudioProcessorValueTreeState &m_value_tree;
+  
+
   juce::DrawableButton m_save;
   juce::DrawableButton m_load;
   juce::DrawableButton m_reset;
