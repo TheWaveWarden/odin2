@@ -100,14 +100,14 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor, AudioProcessorValueT
   m_exp_fm_attach.reset(new ButtonAttachment(
       m_value_tree, "osc" + m_osc_number + "_exp_fm", m_fm_exp));
 
-  m_vec_a_attach.reset(new ComboBoxAttachment(
-      m_value_tree, "osc" + m_osc_number + "_vec_a", m_vec_a));
-  m_vec_b_attach.reset(new ComboBoxAttachment(
-      m_value_tree, "osc" + m_osc_number + "_vec_b", m_vec_b));
-  m_vec_c_attach.reset(new ComboBoxAttachment(
-      m_value_tree, "osc" + m_osc_number + "_vec_c", m_vec_c));
-  m_vec_d_attach.reset(new ComboBoxAttachment(
-      m_value_tree, "osc" + m_osc_number + "_vec_d", m_vec_d));
+  //m_vec_a_attach.reset(new ComboBoxAttachment(
+  //    m_value_tree, "osc" + m_osc_number + "_vec_a", m_vec_a));
+  //m_vec_b_attach.reset(new ComboBoxAttachment(
+  //    m_value_tree, "osc" + m_osc_number + "_vec_b", m_vec_b));
+  //m_vec_c_attach.reset(new ComboBoxAttachment(
+  //    m_value_tree, "osc" + m_osc_number + "_vec_c", m_vec_c));
+  //m_vec_d_attach.reset(new ComboBoxAttachment(
+  //    m_value_tree, "osc" + m_osc_number + "_vec_d", m_vec_d));
 
 
   //m_fine.setOdinPointer(&p_processor);
@@ -719,7 +719,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor, AudioProcessorValueT
 
   m_chiptune_waveselector.OnValueChange = [&](int p_new_value) {
     m_value_tree.getParameter(m_chipwave_identifier)
-        ->setValueNotifyingHost(((float)p_new_value) / 5.f);
+        ->setValueNotifyingHost(((float)p_new_value - 0.5) / 403.f);
   };
   m_chiptune_waveselector.setTopLeftPosition(WAVE_CHIPTUNE_POS_X,
                                              WAVE_CHIPTUNE_POS_Y);
@@ -727,7 +727,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor, AudioProcessorValueT
   m_chiptune_waveselector.setDecrementValue(1, 1);
   m_chiptune_waveselector.addWave(2, "Pulse 25");
   m_chiptune_waveselector.addWave(3, "Pulse 12.5");
-  m_chiptune_waveselector.addWave(4, "Triangle");
+  m_chiptune_waveselector.addWave(4, "ChipTriangle");
   m_chiptune_waveselector.addWave(5, "custom1");
   m_chiptune_waveselector.addWave(6, "custom2");
   m_chiptune_waveselector.addWave(7, "custom3");
@@ -1159,6 +1159,10 @@ selector.addMapEntry((std::string)name + (std::string)" 4", number+4, number+11,
                     glas_panel_vecwave.getHeight());
   m_vec_a.setColor(vector_color);
   m_vec_a.setTooltip("Select the waveform to the bottom left of the XY pad");
+  m_vec_a.onChange = [&]() {
+    m_value_tree.getParameter(m_carrier_wave_identifier)
+        ->setValueNotifyingHost(((float)m_vec_a.getSelectedId() - 0.5f) / 1000.f);
+  };
   addChildComponent(m_vec_a);
 
   m_vec_b.setImage(glas_panel_vecwave);
@@ -1170,6 +1174,10 @@ selector.addMapEntry((std::string)name + (std::string)" 4", number+4, number+11,
                     glas_panel_vecwave.getHeight());
   m_vec_b.setColor(vector_color);
   m_vec_b.setTooltip("Select the waveform to the top left of the XY pad");
+  m_vec_b.onChange = [&]() {
+    m_value_tree.getParameter(m_carrier_wave_identifier)
+        ->setValueNotifyingHost(((float)m_vec_b.getSelectedId() - 0.5f) / 1000.f);
+  };
   addChildComponent(m_vec_b);
 
   m_vec_c.setImage(glas_panel_vecwave);
@@ -1181,6 +1189,10 @@ selector.addMapEntry((std::string)name + (std::string)" 4", number+4, number+11,
                     glas_panel_vecwave.getHeight());
   m_vec_c.setColor(vector_color);
   m_vec_c.setTooltip("Select the waveform to the top right of the XY pad");
+  m_vec_c.onChange = [&]() {
+    m_value_tree.getParameter(m_carrier_wave_identifier)
+        ->setValueNotifyingHost(((float)m_vec_c.getSelectedId() - 0.5f) / 1000.f);
+  };
   addChildComponent(m_vec_c);
 
   m_vec_d.setImage(glas_panel_vecwave);
@@ -1192,6 +1204,10 @@ selector.addMapEntry((std::string)name + (std::string)" 4", number+4, number+11,
                     glas_panel_vecwave.getHeight());
   m_vec_d.setColor(vector_color);
   m_vec_d.setTooltip("Select the waveform to the bottom right of the XY pad");
+  m_vec_d.onChange = [&]() {
+    m_value_tree.getParameter(m_carrier_wave_identifier)
+        ->setValueNotifyingHost(((float)m_vec_d.getSelectedId() - 0.5f) / 1000.f);
+  };
   addChildComponent(m_vec_d);
 
   m_xy_x.setStrip(

@@ -71,7 +71,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
       m_delay_position_identifier("delay_position"),
       m_flanger_position_identifier("flanger_position"),
       m_phaser_position_identifier("phaser_position"),
-      m_chorus_position_identifier("chorus_position"), m_mod_matrix(vts) {
+      m_chorus_position_identifier("chorus_position"), m_mod_matrix(vts), m_save_load(vts) {
 
   Knob::setOdinPointer(&p_processor);
   DrawableSlider::setOdinPointer(&p_processor);

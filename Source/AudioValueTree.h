@@ -31,7 +31,7 @@
   std::make_unique<AudioParameterInt> ("osc1_arp_on", "Oscillator1 Arpeggiator On", 0, 1, 0),
   std::make_unique<AudioParameterInt> ("osc1_step_3_on", "Oscillator1 Step3 On", 0, 1, 0),
   std::make_unique<AudioParameterInt> ("osc1_chipnoise", "Oscillator1 Chipnoise", 0, 1, 0),
-  std::make_unique<AudioParameterInt> ("osc1_chipwave", "Oscillator1 Chiptune wave", 1, 5, 1),
+  std::make_unique<AudioParameterInt> ("osc1_chipwave", "Oscillator1 Chiptune wave", 1, 403, 1),
   std::make_unique<AudioParameterInt> ("osc1_carrier_wave", "Oscillator1 Carrier Wave", 1, 1000, 1),
   std::make_unique<AudioParameterInt> ("osc1_modulator_wave", "Oscillator1 Modulator Wave", 1, 1000, 1),
   std::make_unique<AudioParameterInt> ("osc1_carrier_ratio", "Oscillator1 Carrier Ratio", 1, 12, 1),
