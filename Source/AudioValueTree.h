@@ -344,6 +344,9 @@
   std::make_unique<AudioParameterInt> ("scale_[6]", "scale_[6]", 0,1000,0), 
   std::make_unique<AudioParameterInt> ("scale_[7]", "scale_[7]", 0,1000,0), 
   std::make_unique<AudioParameterInt> ("scale_[8]", "scale_[8]", 0,1000,0),  
+
+  //include geneerated code for drawtables
+  #include "GeneratedAudioValueCode.h"
 }
 
 

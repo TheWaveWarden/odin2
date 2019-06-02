@@ -48,6 +48,8 @@ public:
 	void writeWavetablesToFiles();
 	void writeLFOtablesToFiles();
 
+	void generateAudioValueCode();
+
 
 	//void deleteWavedraw() {
 	//	m_wavedraw_tables = {0};
