@@ -276,8 +276,14 @@ public:
       positionButtons(p_button_name);
   }
 
+
+  void forceValueTreeOntoComponents(ValueTree p_tree){}
+    
+
   std::function<void(std::map<std::string,int>)> onButtonArrange;
   std::function<void(std::string)> setHighlighted;
+
+
 
 private:
   DragButton m_flanger_button;

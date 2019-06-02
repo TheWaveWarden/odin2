@@ -41,7 +41,7 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts)
       m_load("load", juce::DrawableButton::ButtonStyle::ImageRaw),
       m_reset("reset", juce::DrawableButton::ButtonStyle::ImageRaw),
       m_random("random", juce::DrawableButton::ButtonStyle::ImageRaw),
-      m_value_tree(vts) {
+      m_value_tree(vts){
   juce::Image save_1 = ImageCache::getFromFile(
       juce::File(GRAPHICS_PATH + "cropped/buttons/buttonsave_2.png"));
   juce::Image save_2 = ImageCache::getFromFile(
@@ -207,6 +207,8 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts)
                                              "Failed to open file!");
           }
           DBG(m_value_tree.state.toXmlString());
+
+          forceValueTreeLambda();
         });
   };
 }

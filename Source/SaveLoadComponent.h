@@ -25,6 +25,7 @@
 #define RANDOM_POS_X 218
 #define RANDOM_POS_Y LOAD_POS_Y
 
+
 //==============================================================================
 /*
  */
@@ -36,7 +37,10 @@ public:
   void paint(Graphics &) override {}
   void resized() override;
 
+  std::function<void()> forceValueTreeLambda;
+
 private:
+
   std::unique_ptr<FileChooser> m_filechooser;
 
   AudioProcessorValueTreeState &m_value_tree;

@@ -58,6 +58,9 @@ public:
   DelayComponent(AudioProcessorValueTreeState& vts);
   ~DelayComponent();
 
+  void forceValueTreeOntoComponents(ValueTree p_tree);
+  
+
   void paint(Graphics &) override;
   void resized() override;
 

@@ -1020,3 +1020,6 @@ void ModMatrixComponent::createMenu(PopupMenu *p_menu) {
   p_menu->addItem(999, "Glide");
   p_menu->addItem(1000, "Master");
 }
+
+
+  void ModMatrixComponent::forceValueTreeOntoComponents(ValueTree p_tree){}

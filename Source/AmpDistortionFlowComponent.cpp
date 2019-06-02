@@ -12,7 +12,8 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 
 //==============================================================================
-AmpDistortionFlowComponent::AmpDistortionFlowComponent(AudioProcessorValueTreeState& vts)
+AmpDistortionFlowComponent::AmpDistortionFlowComponent(
+    AudioProcessorValueTreeState &vts)
     : m_flow_left("flow_left", juce::DrawableButton::ButtonStyle::ImageRaw),
       m_flow_right("flow_right", juce::DrawableButton::ButtonStyle::ImageRaw),
       m_distortion("distortion", juce::DrawableButton::ButtonStyle::ImageRaw),
@@ -77,20 +78,21 @@ AmpDistortionFlowComponent::AmpDistortionFlowComponent(AudioProcessorValueTreeSt
   m_flow_right.setBounds(FLOW_RIGHT_POS_X, FLOW_POS_Y, flow_right_1.getWidth(),
                          flow_right_1.getHeight());
   addAndMakeVisible(m_flow_right);
-  m_flow_right.setTooltip("Routes filter 1 into the amplifier.\n Note that filter 1 can also\nbe routed into filter 2");
+  m_flow_right.setTooltip("Routes filter 1 into the amplifier.\n Note that "
+                          "filter 1 can also\nbe routed into filter 2");
   m_flow_right.setAlwaysOnTop(true);
   m_flow_right.setTriggeredOnMouseDown(true);
   m_flow_right.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId,
                          juce::Colour());
 
-  juce::Image distortion_1 = ImageCache::getFromFile(juce::File(
-      GRAPHICS_PATH + "cropped/buttons/buttondistortion_1.png"));
-  juce::Image distortion_2 = ImageCache::getFromFile(juce::File(
-      GRAPHICS_PATH + "cropped/buttons/buttondistortion_2.png"));
-  juce::Image distortion_3 = ImageCache::getFromFile(juce::File(
-      GRAPHICS_PATH + "cropped/buttons/buttondistortion_3.png"));
-  juce::Image distortion_4 = ImageCache::getFromFile(juce::File(
-      GRAPHICS_PATH + "cropped/buttons/buttondistortion_4.png"));
+  juce::Image distortion_1 = ImageCache::getFromFile(
+      juce::File(GRAPHICS_PATH + "cropped/buttons/buttondistortion_1.png"));
+  juce::Image distortion_2 = ImageCache::getFromFile(
+      juce::File(GRAPHICS_PATH + "cropped/buttons/buttondistortion_2.png"));
+  juce::Image distortion_3 = ImageCache::getFromFile(
+      juce::File(GRAPHICS_PATH + "cropped/buttons/buttondistortion_3.png"));
+  juce::Image distortion_4 = ImageCache::getFromFile(
+      juce::File(GRAPHICS_PATH + "cropped/buttons/buttondistortion_4.png"));
 
   juce::DrawableImage distortion_draw1;
   juce::DrawableImage distortion_draw2;
@@ -116,17 +118,17 @@ AmpDistortionFlowComponent::AmpDistortionFlowComponent(AudioProcessorValueTreeSt
   m_distortion.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId,
                          juce::Colour());
 
-  juce::Image metal_knob_big = ImageCache::getFromFile(juce::File(
-      GRAPHICS_PATH + "cropped/knobs/metal3/metal_knob_big.png"));
-  juce::Image black_knob_mid = ImageCache::getFromFile(juce::File(
-      GRAPHICS_PATH + "cropped/knobs/black3/black_knob_mid.png"));
+  juce::Image metal_knob_big = ImageCache::getFromFile(
+      juce::File(GRAPHICS_PATH + "cropped/knobs/metal3/metal_knob_big.png"));
+  juce::Image black_knob_mid = ImageCache::getFromFile(
+      juce::File(GRAPHICS_PATH + "cropped/knobs/black3/black_knob_mid.png"));
   juce::Image round_knob = ImageCache::getFromFile(
       juce::File(GRAPHICS_PATH + "cropped/knobs/round/round_knob.png"));
 
   m_amp_gain.setStrip(metal_knob_big, N_KNOB_FRAMES);
   m_amp_gain.setSliderStyle(Slider::RotaryVerticalDrag);
   m_amp_gain.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-  m_amp_gain.setRange(AMP_GAIN_MIN,AMP_GAIN_MAX);
+  m_amp_gain.setRange(AMP_GAIN_MIN, AMP_GAIN_MAX);
   m_amp_gain.setValue(AMP_GAIN_DEFAULT);
   m_amp_gain.setTextValueSuffix(" dB");
   m_amp_gain.setNumDecimalPlacesToDisplay(1);
@@ -145,22 +147,26 @@ AmpDistortionFlowComponent::AmpDistortionFlowComponent(AudioProcessorValueTreeSt
   m_amp_vel.setStrip(black_knob_mid, N_KNOB_FRAMES);
   m_amp_vel.setSliderStyle(Slider::RotaryVerticalDrag);
   m_amp_vel.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-  m_amp_vel.setKnobTooltip("How much the MIDI velocity\naffects the amplifier gain");
+  m_amp_vel.setKnobTooltip(
+      "How much the MIDI velocity\naffects the amplifier gain");
   addAndMakeVisible(m_amp_vel);
 
   m_threshold.setStrip(round_knob, N_KNOB_FRAMES);
   m_threshold.setSliderStyle(Slider::RotaryVerticalDrag);
   m_threshold.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-  m_threshold.setDoubleClickReturnValue(true, THRESHOLD_DEFAULT, ModifierKeys::ctrlModifier);
+  m_threshold.setDoubleClickReturnValue(true, THRESHOLD_DEFAULT,
+                                        ModifierKeys::ctrlModifier);
   m_threshold.setValue(THRESHOLD_DEFAULT);
-  m_threshold.setKnobTooltip("The threshold to\n be reached before the\n algorithm cuts the\n waveform");
+  m_threshold.setKnobTooltip("The threshold to\n be reached before the\n "
+                             "algorithm cuts the\n waveform");
   addAndMakeVisible(m_threshold);
 
   m_dry_wet.setStrip(round_knob, N_KNOB_FRAMES);
   m_dry_wet.setSliderStyle(Slider::RotaryVerticalDrag);
   m_dry_wet.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
   m_dry_wet.setValue(DRYWET_DIST_DEFAULT);
-  m_dry_wet.setDoubleClickReturnValue(true, DRYWET_DIST_DEFAULT, ModifierKeys::ctrlModifier);
+  m_dry_wet.setDoubleClickReturnValue(true, DRYWET_DIST_DEFAULT,
+                                      ModifierKeys::ctrlModifier);
   m_dry_wet.setKnobTooltip("The ratio of processed\nand unprocessed sound");
   addAndMakeVisible(m_dry_wet);
 
@@ -173,24 +179,33 @@ AmpDistortionFlowComponent::AmpDistortionFlowComponent(AudioProcessorValueTreeSt
   m_distortion_algo.addItem("Zero", 3);
   m_distortion_algo.setEditableText(false);
   m_distortion_algo.setSelectedId(1, dontSendNotification);
-  m_distortion_algo.setBounds(DIST_ALGO_POS_X, DIST_ALGO_POS_Y, glas_panel.getWidth(), glas_panel.getHeight());
+  m_distortion_algo.setBounds(DIST_ALGO_POS_X, DIST_ALGO_POS_Y,
+                              glas_panel.getWidth(), glas_panel.getHeight());
 
   m_distortion_algo.setColor(juce::STANDARD_DISPLAY_COLOR);
   m_distortion_algo.setTooltip("Select the distortion\nalgorithm to be used");
   addAndMakeVisible(m_distortion_algo);
 
-  m_amp_vel_attach.reset (new SliderAttachment (m_value_tree, "amp_vel", m_amp_vel));
-  m_amp_gain_attach.reset (new SliderAttachment (m_value_tree, "amp_gain", m_amp_gain));
-  m_amp_pan_attach.reset (new SliderAttachment (m_value_tree, "amp_pan", m_amp_pan));
-  m_dist_threshold_attach.reset (new SliderAttachment (m_value_tree, "dist_threshold", m_threshold));
-  m_dist_drywet_attach.reset (new SliderAttachment (m_value_tree, "dist_drywet", m_dry_wet));
+  m_amp_vel_attach.reset(
+      new SliderAttachment(m_value_tree, "amp_vel", m_amp_vel));
+  m_amp_gain_attach.reset(
+      new SliderAttachment(m_value_tree, "amp_gain", m_amp_gain));
+  m_amp_pan_attach.reset(
+      new SliderAttachment(m_value_tree, "amp_pan", m_amp_pan));
+  m_dist_threshold_attach.reset(
+      new SliderAttachment(m_value_tree, "dist_threshold", m_threshold));
+  m_dist_drywet_attach.reset(
+      new SliderAttachment(m_value_tree, "dist_drywet", m_dry_wet));
 
-  m_dist_on_attach.reset (new ButtonAttachment (m_value_tree, "dist_on", m_distortion));
-  m_fil1_to_amp_attach.reset (new ButtonAttachment (m_value_tree, "fil1_to_amp", m_flow_right));
-  m_fil2_to_amp_attach.reset (new ButtonAttachment (m_value_tree, "fil2_to_amp", m_flow_left));
+  m_dist_on_attach.reset(
+      new ButtonAttachment(m_value_tree, "dist_on", m_distortion));
+  m_fil1_to_amp_attach.reset(
+      new ButtonAttachment(m_value_tree, "fil1_to_amp", m_flow_right));
+  m_fil2_to_amp_attach.reset(
+      new ButtonAttachment(m_value_tree, "fil2_to_amp", m_flow_left));
 
-  m_dist_algo_attach.reset(new ComboBoxAttachment(m_value_tree, "dist_algo", m_distortion_algo));
-
+  m_dist_algo_attach.reset(
+      new ComboBoxAttachment(m_value_tree, "dist_algo", m_distortion_algo));
 }
 
 AmpDistortionFlowComponent::~AmpDistortionFlowComponent() {}
@@ -218,5 +233,6 @@ void AmpDistortionFlowComponent::resized() {
   m_amp_vel.setBounds(area_vel);
   m_threshold.setBounds(area_bias);
   m_dry_wet.setBounds(area_threshold);
-
 }
+
+void AmpDistortionFlowComponent::forceValueTreeOntoComponents(ValueTree p_tree) {}

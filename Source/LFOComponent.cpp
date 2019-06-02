@@ -144,3 +144,5 @@ void LFOComponent::resized() {
   m_freq.setBounds(LFO_FREQ_POS_X, LFO_FREQ_POS_Y, BLACK_KNOB_SMALL_SIZE_Y,
                    BLACK_KNOB_SMALL_SIZE_Y);
 }
+
+  void LFOComponent::forceValueTreeOntoComponents(ValueTree p_tree){}

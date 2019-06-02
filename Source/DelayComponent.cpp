@@ -159,3 +159,5 @@ void DelayComponent::resized() {
   m_wet.setBounds(WET_POS_X, WET_POS_Y, BLACK_KNOB_MID_SIZE_X,
                   BLACK_KNOB_MID_SIZE_Y);
 }
+
+void DelayComponent::forceValueTreeOntoComponents(ValueTree p_tree) {}

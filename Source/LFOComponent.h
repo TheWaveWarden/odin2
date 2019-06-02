@@ -51,6 +51,7 @@ public:
   LFOComponent(AudioProcessorValueTreeState& vts, std::string p_lfo_number);
   ~LFOComponent();
 
+  void forceValueTreeOntoComponents(ValueTree p_tree);
   
 
   void paint(Graphics &) override;

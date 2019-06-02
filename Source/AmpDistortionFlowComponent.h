@@ -53,6 +53,9 @@ public:
   AmpDistortionFlowComponent(AudioProcessorValueTreeState& vts);
   ~AmpDistortionFlowComponent();
 
+  void forceValueTreeOntoComponents(ValueTree p_tree);
+
+
   void paint(Graphics &) override {}
   void resized() override;
 

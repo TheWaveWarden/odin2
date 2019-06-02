@@ -173,3 +173,8 @@ void FXComponent::setSyncEnabled(bool p_sync) {
     repaint();
   }
 }
+
+
+  void FXComponent::forceValueTreeOntoComponents(ValueTree p_tree){}
+
+
