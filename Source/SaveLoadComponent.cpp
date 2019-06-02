@@ -188,26 +188,25 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts)
           for (auto result : results)
             file_name << (result.isLocalFile()
                               ? result.getLocalFile().getFullPathName()
-                              : result.toString(false))
-                      << "\n";
+                              : result.toString(false));
 
           File file_to_read(file_name);
-          DBG((int)file_to_read.exists());
-
 
           FileInputStream file_stream(file_to_read);
           if (file_stream.openedOk()) {
-            m_value_tree.state.readFromStream(file_stream);
+            m_value_tree.state.copyPropertiesAndChildrenFrom(m_value_tree.state.readFromStream(file_stream), nullptr);
+            m_patch.setText(
+                file_to_read.getFileNameWithoutExtension().toStdString());
+            DBG("Loaded patch " + file_name);
           } else {
-            DBG("Failed to open stream. Error message: " + file_stream.getStatus().getErrorMessage().toStdString());
+            DBG("Failed to open stream. Error message: " +
+                file_stream.getStatus().getErrorMessage().toStdString());
             DBG(file_name);
+            AlertWindow::showMessageBoxAsync(AlertWindow::InfoIcon,
+                                             "File Chooser...",
+                                             "Failed to open file!");
           }
-
-          m_patch.setText(getFileNameFromAbsolute(file_name.toStdString()));
-
-          AlertWindow::showMessageBoxAsync(AlertWindow::InfoIcon,
-                                           "File Chooser...",
-                                           "You picked: " + file_name);
+          DBG(m_value_tree.state.toXmlString());
         });
   };
 }
