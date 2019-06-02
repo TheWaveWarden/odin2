@@ -1566,3 +1566,5 @@ void OscComponent::writeChipdrawTableToFile() {
   WavetableContainer::getInstance().writeChipdrawTable(
       m_chipdraw.getDrawnTable(), REMOVE_EDITOR.getText().toStdString());
 }
+
+  void OscComponent::forceValueTreeOntoComponents(ValueTree p_tree, int index){}

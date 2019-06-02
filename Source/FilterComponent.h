@@ -107,6 +107,9 @@ public:
   void showSEMFilterComponents();
   void showCombFilterComponents();
   void showFormantFilterComponents();
+
+  void forceValueTreeOntoComponents(ValueTree p_tree, int index);
+  
 protected:
   Knob m_vel;
   Knob m_kbd;

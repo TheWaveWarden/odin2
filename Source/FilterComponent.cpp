@@ -404,3 +404,6 @@ void FilterComponent::showFormantFilterComponents() {
   m_formant_transition.setVisible(true);
   // todo set smaller filter bounds
 }
+  void FilterComponent::forceValueTreeOntoComponents(ValueTree p_tree, int index){
+    
+  }

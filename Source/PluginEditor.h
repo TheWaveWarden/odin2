@@ -177,6 +177,8 @@ public:
   void arrangeFXOnButtons(std::map<std::string, int> p_map);
   void setActiveFXPanel(std::string p_name);
 
+  void forceValueTreeOntoComponents(ValueTree p_tree);
+
 private:
     // This reference is provided as a quick way for your editor to
     // access the processor object that created it.
@@ -305,6 +307,9 @@ private:
   void setEnv24(bool p_env24);
   void setLfo13(bool p_lfo13);
   void setLfo24(bool p_lfo24);
+
+
+
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (OdinAudioProcessorEditor)
 };

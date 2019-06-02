@@ -1062,3 +1062,8 @@ void OdinAudioProcessorEditor::setTooltipEnabled(bool p_enabled) {
     m_tooltip.hideTip();
   }
 }
+
+
+void OdinAudioProcessorEditor::forceValueTreeOntoComponents(ValueTree p_tree){
+
+}

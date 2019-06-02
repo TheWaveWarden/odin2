@@ -188,6 +188,8 @@ public:
   void createChipdrawTables();
   void createSpecdrawTables();
 
+  void forceValueTreeOntoComponents(ValueTree p_tree, int p_index);
+
 protected:
 
   TextEditor REMOVE_EDITOR;
