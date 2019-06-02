@@ -11,9 +11,9 @@
 #include "OscComponent.h"
 #include "../JuceLibraryCode/JuceHeader.h"
 
-
 //==============================================================================
-OscComponent::OscComponent(OdinAudioProcessor &p_processor, AudioProcessorValueTreeState &vts,
+OscComponent::OscComponent(OdinAudioProcessor &p_processor,
+                           AudioProcessorValueTreeState &vts,
                            std::string p_osc_number)
     : m_value_tree(vts),
       m_reset("reset_button", juce::DrawableButton::ButtonStyle::ImageRaw),
@@ -100,17 +100,16 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor, AudioProcessorValueT
   m_exp_fm_attach.reset(new ButtonAttachment(
       m_value_tree, "osc" + m_osc_number + "_exp_fm", m_fm_exp));
 
-  //m_vec_a_attach.reset(new ComboBoxAttachment(
+  // m_vec_a_attach.reset(new ComboBoxAttachment(
   //    m_value_tree, "osc" + m_osc_number + "_vec_a", m_vec_a));
-  //m_vec_b_attach.reset(new ComboBoxAttachment(
+  // m_vec_b_attach.reset(new ComboBoxAttachment(
   //    m_value_tree, "osc" + m_osc_number + "_vec_b", m_vec_b));
-  //m_vec_c_attach.reset(new ComboBoxAttachment(
+  // m_vec_c_attach.reset(new ComboBoxAttachment(
   //    m_value_tree, "osc" + m_osc_number + "_vec_c", m_vec_c));
-  //m_vec_d_attach.reset(new ComboBoxAttachment(
+  // m_vec_d_attach.reset(new ComboBoxAttachment(
   //    m_value_tree, "osc" + m_osc_number + "_vec_d", m_vec_d));
 
-
-  //m_fine.setOdinPointer(&p_processor);
+  // m_fine.setOdinPointer(&p_processor);
 
   m_vol.setStrip(
       ImageCache::getFromFile(juce::File(
@@ -776,18 +775,27 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor, AudioProcessorValueT
   juce::PopupMenu wavetable_submenu;
   juce::PopupMenu wavetable_recycle_menu;
 
+#define ADD_WAVETABLE_SUB_MENU(name, number)                                   \
+  wavetable_recycle_menu.clear();                                              \
+  wavetable_recycle_menu.addItem(number + 1,                                   \
+                                 (std::string)name + (std::string) " 1");      \
+  wavetable_recycle_menu.addItem(number + 2,                                   \
+                                 (std::string)name + (std::string) " 2");      \
+  wavetable_recycle_menu.addItem(number + 3,                                   \
+                                 (std::string)name + (std::string) " 3");      \
+  wavetable_recycle_menu.addItem(number + 4,                                   \
+                                 (std::string)name + (std::string) " 4");      \
+  wavetable_submenu.addSubMenu(name, wavetable_recycle_menu);
 
-#define ADD_WAVETABLE_SUB_MENU(name, number) wavetable_recycle_menu.clear();\
-wavetable_recycle_menu.addItem(number + 1,(std::string)name + (std::string)" 1");\
-wavetable_recycle_menu.addItem(number + 2,(std::string)name + (std::string)" 2");\
-wavetable_recycle_menu.addItem(number + 3,(std::string)name + (std::string)" 3");\
-wavetable_recycle_menu.addItem(number + 4,(std::string)name + (std::string)" 4");\
-wavetable_submenu.addSubMenu(name, wavetable_recycle_menu);
-
-#define ADD_MAP_ENTRY(name, number, selector) selector.addMapEntry((std::string)name + (std::string)" 1", number+1, number+2, number - 6);\
-selector.addMapEntry((std::string)name + (std::string)" 2", number+2, number+3, number + 1);\
-selector.addMapEntry((std::string)name + (std::string)" 3", number+3, number+4, number + 2);\
-selector.addMapEntry((std::string)name + (std::string)" 4", number+4, number+11, number + 3);\
+#define ADD_MAP_ENTRY(name, number, selector)                                  \
+  selector.addMapEntry((std::string)name + (std::string) " 1", number + 1,     \
+                       number + 2, number - 6);                                \
+  selector.addMapEntry((std::string)name + (std::string) " 2", number + 2,     \
+                       number + 3, number + 1);                                \
+  selector.addMapEntry((std::string)name + (std::string) " 3", number + 3,     \
+                       number + 4, number + 2);                                \
+  selector.addMapEntry((std::string)name + (std::string) " 4", number + 4,     \
+                       number + 11, number + 3);
 
   juce::PopupMenu chiptune_submenu;
   chiptune_submenu.addItem(401, "Square 50");
@@ -808,18 +816,18 @@ selector.addMapEntry((std::string)name + (std::string)" 4", number+4, number+11,
   specdraw_submenu.addItem(702, "SpecDraw Osc2");
   specdraw_submenu.addItem(703, "SpecDraw Osc3");
 
-  //now add all menus
+  // now add all menus
   wavetable_recycle_menu.addItem(101, "Saw");
   wavetable_recycle_menu.addItem(102, "Square");
   wavetable_recycle_menu.addItem(103, "Triangle");
   wavetable_recycle_menu.addItem(104, "Sine");
 
-  wavetable_submenu.addSubMenu("Classic Analog", wavetable_recycle_menu); 
+  wavetable_submenu.addSubMenu("Classic Analog", wavetable_recycle_menu);
   ADD_WAVETABLE_SUB_MENU("Additive 1", 110)
   ADD_WAVETABLE_SUB_MENU("Additive 2", 120)
-  ADD_WAVETABLE_SUB_MENU("Additive 3" ,130)
-  ADD_WAVETABLE_SUB_MENU("Additive 4" ,140)
-  ADD_WAVETABLE_SUB_MENU("Harmonics 1",150)
+  ADD_WAVETABLE_SUB_MENU("Additive 3", 130)
+  ADD_WAVETABLE_SUB_MENU("Additive 4", 140)
+  ADD_WAVETABLE_SUB_MENU("Harmonics 1", 150)
   ADD_WAVETABLE_SUB_MENU("Harmonics 2", 160)
   ADD_WAVETABLE_SUB_MENU("Harmonics 3", 170)
   ADD_WAVETABLE_SUB_MENU("Harmonics 4", 180)
@@ -857,17 +865,15 @@ selector.addMapEntry((std::string)name + (std::string)" 4", number+4, number+11,
   vector_menu.addSubMenu("ChipDraw", chipdraw_submenu);
   vector_menu.addSubMenu("SpecDraw", specdraw_submenu);
 
-
-//====================
-//=== COPY & PASTA ===
-//====================
-
+  //====================
+  //=== COPY & PASTA ===
+  //====================
 
   ADD_MAP_ENTRY("Additive 1", 110, m_carrier_waveselector)
   ADD_MAP_ENTRY("Additive 2", 120, m_carrier_waveselector)
-  ADD_MAP_ENTRY("Additive 3" ,130, m_carrier_waveselector)
-  ADD_MAP_ENTRY("Additive 4" ,140, m_carrier_waveselector)
-  ADD_MAP_ENTRY("Harmonics 1",150, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Additive 3", 130, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Additive 4", 140, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Harmonics 1", 150, m_carrier_waveselector)
   ADD_MAP_ENTRY("Harmonics 2", 160, m_carrier_waveselector)
   ADD_MAP_ENTRY("Harmonics 3", 170, m_carrier_waveselector)
   ADD_MAP_ENTRY("Harmonics 4", 180, m_carrier_waveselector)
@@ -885,21 +891,21 @@ selector.addMapEntry((std::string)name + (std::string)" 4", number+4, number+11,
   ADD_MAP_ENTRY("Wave21", 300, m_carrier_waveselector)
   ADD_MAP_ENTRY("Wave22", 310, m_carrier_waveselector)
   ADD_MAP_ENTRY("Wave23", 320, m_carrier_waveselector)
-  ADD_MAP_ENTRY("Last", 996, m_carrier_waveselector)//last entry 996-1000
+  ADD_MAP_ENTRY("Last", 996, m_carrier_waveselector) // last entry 996-1000
 
-  m_carrier_waveselector.setDecrementValue(101,1);
+  m_carrier_waveselector.setDecrementValue(101, 1);
   m_carrier_waveselector.setIncrementValue(334, 401);
-  m_carrier_waveselector.addMapEntry("Sine", 1,101,1);
+  m_carrier_waveselector.addMapEntry("Sine", 1, 101, 1);
   m_carrier_waveselector.addMapEntry("Saw", 101, 102, 1);
-  m_carrier_waveselector.addMapEntry("Square", 102,103,101);
-  m_carrier_waveselector.addMapEntry("Triangle", 103,104,102);
-  m_carrier_waveselector.addMapEntry("Sine", 104,111,103);
+  m_carrier_waveselector.addMapEntry("Square", 102, 103, 101);
+  m_carrier_waveselector.addMapEntry("Triangle", 103, 104, 102);
+  m_carrier_waveselector.addMapEntry("Sine", 104, 111, 103);
 
-  m_carrier_waveselector.addMapEntry("Square 50", 401,402,334);
-  m_carrier_waveselector.addMapEntry("Square 25", 402,403,401);
-  m_carrier_waveselector.addMapEntry("Square 12.5", 403,404,402);
-  m_carrier_waveselector.addMapEntry("ChipTriangle", 404,405,403);
-  m_carrier_waveselector.addMapEntry("TODO", 405,501,404);
+  m_carrier_waveselector.addMapEntry("Square 50", 401, 402, 334);
+  m_carrier_waveselector.addMapEntry("Square 25", 402, 403, 401);
+  m_carrier_waveselector.addMapEntry("Square 12.5", 403, 404, 402);
+  m_carrier_waveselector.addMapEntry("ChipTriangle", 404, 405, 403);
+  m_carrier_waveselector.addMapEntry("TODO", 405, 501, 404);
 
   m_carrier_waveselector.addMapEntry("WaveDraw Osc1", 501, 502, 405);
   m_carrier_waveselector.addMapEntry("WaveDraw Osc2", 502, 503, 501);
@@ -915,19 +921,11 @@ selector.addMapEntry((std::string)name + (std::string)" 4", number+4, number+11,
 
   m_carrier_waveselector.m_menu = fm_menu;
 
-
-
-
-
-
-
-
-
   ADD_MAP_ENTRY("Additive 1", 110, m_modulator_waveselector)
   ADD_MAP_ENTRY("Additive 2", 120, m_modulator_waveselector)
-  ADD_MAP_ENTRY("Additive 3" ,130, m_modulator_waveselector)
-  ADD_MAP_ENTRY("Additive 4" ,140, m_modulator_waveselector)
-  ADD_MAP_ENTRY("Harmonics 1",150, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Additive 3", 130, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Additive 4", 140, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Harmonics 1", 150, m_modulator_waveselector)
   ADD_MAP_ENTRY("Harmonics 2", 160, m_modulator_waveselector)
   ADD_MAP_ENTRY("Harmonics 3", 170, m_modulator_waveselector)
   ADD_MAP_ENTRY("Harmonics 4", 180, m_modulator_waveselector)
@@ -946,22 +944,21 @@ selector.addMapEntry((std::string)name + (std::string)" 4", number+4, number+11,
   ADD_MAP_ENTRY("Wave22", 310, m_modulator_waveselector)
   ADD_MAP_ENTRY("Wave23", 320, m_modulator_waveselector)
   ADD_MAP_ENTRY("Last", 330, m_modulator_waveselector)
-  ADD_MAP_ENTRY("Last", 996, m_carrier_waveselector)//last entry 996-1000
+  ADD_MAP_ENTRY("Last", 996, m_carrier_waveselector) // last entry 996-1000
 
-
-  m_modulator_waveselector.setDecrementValue(101,1);
+  m_modulator_waveselector.setDecrementValue(101, 1);
   m_modulator_waveselector.setIncrementValue(334, 401);
-  m_modulator_waveselector.addMapEntry("Sine", 1,101,1);
+  m_modulator_waveselector.addMapEntry("Sine", 1, 101, 1);
   m_modulator_waveselector.addMapEntry("Saw", 101, 102, 1);
-  m_modulator_waveselector.addMapEntry("Square", 102,103,101);
-  m_modulator_waveselector.addMapEntry("Triangle", 103,104,102);
-  m_modulator_waveselector.addMapEntry("Sine", 104,111,103);
+  m_modulator_waveselector.addMapEntry("Square", 102, 103, 101);
+  m_modulator_waveselector.addMapEntry("Triangle", 103, 104, 102);
+  m_modulator_waveselector.addMapEntry("Sine", 104, 111, 103);
 
-  m_modulator_waveselector.addMapEntry("Square 50", 401,402,334);
-  m_modulator_waveselector.addMapEntry("Square 25", 402,403,401);
-  m_modulator_waveselector.addMapEntry("Square 12.5", 403,404,402);
-  m_modulator_waveselector.addMapEntry("ChipTriangle", 404,405,403);
-  m_modulator_waveselector.addMapEntry("TODO", 405,501,404);
+  m_modulator_waveselector.addMapEntry("Square 50", 401, 402, 334);
+  m_modulator_waveselector.addMapEntry("Square 25", 402, 403, 401);
+  m_modulator_waveselector.addMapEntry("Square 12.5", 403, 404, 402);
+  m_modulator_waveselector.addMapEntry("ChipTriangle", 404, 405, 403);
+  m_modulator_waveselector.addMapEntry("TODO", 405, 501, 404);
 
   m_modulator_waveselector.addMapEntry("WaveDraw Osc1", 501, 502, 405);
   m_modulator_waveselector.addMapEntry("WaveDraw Osc2", 502, 503, 501);
@@ -977,25 +974,10 @@ selector.addMapEntry((std::string)name + (std::string)" 4", number+4, number+11,
 
   m_modulator_waveselector.m_menu = fm_menu;
 
-
-
   *(m_vec_a.getRootMenu()) = vector_menu;
   *(m_vec_b.getRootMenu()) = vector_menu;
   *(m_vec_c.getRootMenu()) = vector_menu;
   *(m_vec_d.getRootMenu()) = vector_menu;
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   m_carrier_waveselector.OnValueChange = [&](int p_new_value) {
     m_value_tree.getParameter(m_carrier_wave_identifier)
@@ -1003,7 +985,7 @@ selector.addMapEntry((std::string)name + (std::string)" 4", number+4, number+11,
   };
   m_carrier_waveselector.setTopLeftPosition(WAVE_CARRIER_POS_X,
                                             WAVE_CARRIER_POS_Y);
-  
+
   m_carrier_waveselector.setValue(1);
   m_carrier_waveselector.setColor(fm_color);
   m_carrier_waveselector.setTooltip("Selects the wave for the carrier osc");
@@ -1161,7 +1143,8 @@ selector.addMapEntry((std::string)name + (std::string)" 4", number+4, number+11,
   m_vec_a.setTooltip("Select the waveform to the bottom left of the XY pad");
   m_vec_a.onChange = [&]() {
     m_value_tree.getParameter(m_carrier_wave_identifier)
-        ->setValueNotifyingHost(((float)m_vec_a.getSelectedId() - 0.5f) / 1000.f);
+        ->setValueNotifyingHost(((float)m_vec_a.getSelectedId() - 0.5f) /
+                                1000.f);
   };
   addChildComponent(m_vec_a);
 
@@ -1176,7 +1159,8 @@ selector.addMapEntry((std::string)name + (std::string)" 4", number+4, number+11,
   m_vec_b.setTooltip("Select the waveform to the top left of the XY pad");
   m_vec_b.onChange = [&]() {
     m_value_tree.getParameter(m_carrier_wave_identifier)
-        ->setValueNotifyingHost(((float)m_vec_b.getSelectedId() - 0.5f) / 1000.f);
+        ->setValueNotifyingHost(((float)m_vec_b.getSelectedId() - 0.5f) /
+                                1000.f);
   };
   addChildComponent(m_vec_b);
 
@@ -1191,7 +1175,8 @@ selector.addMapEntry((std::string)name + (std::string)" 4", number+4, number+11,
   m_vec_c.setTooltip("Select the waveform to the top right of the XY pad");
   m_vec_c.onChange = [&]() {
     m_value_tree.getParameter(m_carrier_wave_identifier)
-        ->setValueNotifyingHost(((float)m_vec_c.getSelectedId() - 0.5f) / 1000.f);
+        ->setValueNotifyingHost(((float)m_vec_c.getSelectedId() - 0.5f) /
+                                1000.f);
   };
   addChildComponent(m_vec_c);
 
@@ -1206,7 +1191,8 @@ selector.addMapEntry((std::string)name + (std::string)" 4", number+4, number+11,
   m_vec_d.setTooltip("Select the waveform to the bottom right of the XY pad");
   m_vec_d.onChange = [&]() {
     m_value_tree.getParameter(m_carrier_wave_identifier)
-        ->setValueNotifyingHost(((float)m_vec_d.getSelectedId() - 0.5f) / 1000.f);
+        ->setValueNotifyingHost(((float)m_vec_d.getSelectedId() - 0.5f) /
+                                1000.f);
   };
   addChildComponent(m_vec_d);
 
@@ -1215,28 +1201,25 @@ selector.addMapEntry((std::string)name + (std::string)" 4", number+4, number+11,
           GRAPHICS_PATH + "cropped/knobs/black1/black_knob_very_small.png")),
       256);
   m_xy_x.setBounds(X_POS_X, X_POS_Y, BLACK_KNOB_VERY_SMALL_SIZE_X,
-                    BLACK_KNOB_VERY_SMALL_SIZE_Y);
+                   BLACK_KNOB_VERY_SMALL_SIZE_Y);
   m_xy_x.setSliderStyle(Slider::RotaryVerticalDrag);
   m_xy_x.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-  m_xy_x.setDoubleClickReturnValue(true, 0,
-                                    ModifierKeys::ctrlModifier);
+  m_xy_x.setDoubleClickReturnValue(true, 0, ModifierKeys::ctrlModifier);
   m_xy_x.setNumDecimalPlacesToDisplay(3);
   m_xy_x.setKnobTooltip("X part of the XY pad");
   m_xy_x.onValueChange = [&] { m_xy.setX(m_xy_x.getValue()); };
-  
-  addChildComponent(m_xy_x);
 
+  addChildComponent(m_xy_x);
 
   m_xy_y.setStrip(
       ImageCache::getFromFile(juce::File(
           GRAPHICS_PATH + "cropped/knobs/black1/black_knob_very_small.png")),
       256);
   m_xy_y.setBounds(Y_POS_X, Y_POS_Y, BLACK_KNOB_VERY_SMALL_SIZE_X,
-                    BLACK_KNOB_VERY_SMALL_SIZE_Y);
+                   BLACK_KNOB_VERY_SMALL_SIZE_Y);
   m_xy_y.setSliderStyle(Slider::RotaryVerticalDrag);
   m_xy_y.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-  m_xy_y.setDoubleClickReturnValue(true, 0,
-                                    ModifierKeys::ctrlModifier);
+  m_xy_y.setDoubleClickReturnValue(true, 0, ModifierKeys::ctrlModifier);
   m_xy_y.setNumDecimalPlacesToDisplay(3);
   m_xy_y.setKnobTooltip("X part of the XY pad");
   m_xy_y.onValueChange = [&] { m_xy.setY(m_xy_y.getValue()); };
@@ -1537,9 +1520,15 @@ void OscComponent::showNoiseComponents() {
 }
 
 void OscComponent::createWavedrawTables() {
-  // todo sampling freqencies
   WavetableContainer::getInstance().createWavedrawTable(
       std::stoi(m_osc_number) - 1, m_wavedraw.getDrawnTable(), 44100.f);
+
+  //write values to audiovaluetree
+  float *table = m_wavedraw.getDrawnTable();
+  for(int i = 0; i < WAVEDRAW_STEPS_X; ++i){
+    m_value_tree.getParameter("osc" + m_osc_number + "_wavedraw[" + std::to_string(i) + "]")
+        ->setValueNotifyingHost(table[i]);
+  }
 }
 
 void OscComponent::createChipdrawTables() {
@@ -1550,6 +1539,7 @@ void OscComponent::createChipdrawTables() {
 void OscComponent::createSpecdrawTables() {
   WavetableContainer::getInstance().createSpecdrawTable(
       std::stoi(m_osc_number) - 1, m_specdraw.getDrawnTable(), 44100.f);
+  
 }
 
 void OscComponent::writeWavedrawTableToFile() {
@@ -1567,4 +1557,21 @@ void OscComponent::writeChipdrawTableToFile() {
       m_chipdraw.getDrawnTable(), REMOVE_EDITOR.getText().toStdString());
 }
 
-  void OscComponent::forceValueTreeOntoComponents(ValueTree p_tree, int index){}
+void OscComponent::forceValueTreeOntoComponents(ValueTree p_tree, int p_index) {
+  std::string index = std::to_string(p_index);
+
+  float wavedraw_values[WAVEDRAW_STEPS_X];
+  for (int i = 0; i < WAVEDRAW_STEPS_X; ++i) {
+    wavedraw_values[i] =
+        m_value_tree
+            .getParameterAsValue("osc" + index + "_wavedraw[" +
+                                 std::to_string(i) + "]")
+            .getValue();
+  }
+  m_wavedraw.setDrawnTable(wavedraw_values);
+
+
+
+
+  createWavedrawTables();
+}

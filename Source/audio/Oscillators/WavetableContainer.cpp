@@ -1220,7 +1220,7 @@ void WavetableContainer::generateAudioValueCode() {
   output_file << "//WAVEDRAW\n\n";
 
   for (int i = 0; i < WAVEDRAW_STEPS_X; ++i) {
-    float val = sin(2 * M_PI * i / (float)WAVEDRAW_STEPS_X);
+    float val = sin(2 * M_PI * i / (float)WAVEDRAW_STEPS_X) * 0.9;
     output_file << "std::make_unique<AudioParameterFloat> (\"osc1_wavedraw[" +
                        std::to_string(i) + "]\",\"osc1_wavedraw[" +
                        std::to_string(i) + "]\",-1,1," + std::to_string(val) +

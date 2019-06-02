@@ -42,6 +42,14 @@ public:
   void mouseInteraction();
 
   float* getDrawnTable();
+  
+  void setDrawnTable(float p_table[WAVEDRAW_STEPS_X]){
+    for(int i = 0; i < WAVEDRAW_STEPS_X; ++i){
+      //DBG(p_table[i]);
+      m_draw_values[i] = p_table[i];
+    }
+    repaint();
+  }
 
   
 
@@ -55,7 +63,7 @@ private:
   juce::Colour m_color = juce::Colours::black;
   juce::Colour m_draw_color = juce::Colours::white;
 
-  float m_draw_values[WAVEDRAW_STEPS_X] = {0.f, 0.5f, -0.9f};
+  float m_draw_values[WAVEDRAW_STEPS_X] = {0};
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (WavedrawDisplay)
 };

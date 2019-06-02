@@ -142,7 +142,7 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts)
   addAndMakeVisible(m_patch);
 
   m_save.onClick = [&]() {
-    // DBG(m_value_tree.state.toXmlString());
+     DBG(m_value_tree.state.toXmlString());
     File fileToSave(File::getCurrentWorkingDirectory().getFullPathName() +
                     "/my_patch.odin");
 
@@ -168,7 +168,7 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts)
 
           m_patch.setText(getFileNameFromAbsolute(file_name.toStdString()));
 
-          DBG("Wrote file to " + file_name);
+          DBG("Wrote patch to " + file_name);
         });
   };
 
