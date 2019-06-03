@@ -128,8 +128,8 @@
   std::make_unique<AudioParameterFloat> ("fil1_saturation", "Filter1 Saturation", NormalisableRange<float> (0.f, 1.f), 0.f),
   std::make_unique<AudioParameterFloat> ("fil1_sem_transition", "Filter1 SEM Transition", NormalisableRange<float> (-1.f, 1.f), 0.f),
   std::make_unique<AudioParameterFloat> ("fil1_formant_transition", "Filter1 Formant Transition", NormalisableRange<float> (0.f, 1.f), 0.f),
-  std::make_unique<AudioParameterInt> ("fil1_vowel_left", "Filter1 Left Vowel", 1, 8, 1),
-  std::make_unique<AudioParameterInt> ("fil1_vowel_right", "Filter1 Right Vowel", 1, 8, 2),
+  std::make_unique<AudioParameterInt> ("fil1_vowel_left", "Filter1 Left Vowel", 0, 7, 0),
+  std::make_unique<AudioParameterInt> ("fil1_vowel_right", "Filter1 Right Vowel", 0, 7, 2),
   std::make_unique<AudioParameterInt> ("fil1_comb_polarity", "Filter1 Comb Polarity", 0, 1, 0),
   //Filter2
   std::make_unique<AudioParameterInt> ("fil2_osc1", "Filter2 Osc1 Input", 0, 1, 0),    
@@ -146,8 +146,8 @@
   std::make_unique<AudioParameterFloat> ("fil2_saturation", "Filter2 Saturation", NormalisableRange<float> (0.f, 1.f), 0.f),
   std::make_unique<AudioParameterFloat> ("fil2_sem_transition", "Filter2 SEM Transition", NormalisableRange<float> (-1.f, 1.f), 0.f),
   std::make_unique<AudioParameterFloat> ("fil2_formant_transition", "Filter2 Formant Transition", NormalisableRange<float> (0.f, 1.f), 0.f),
-  std::make_unique<AudioParameterInt> ("fil2_vowel_left", "Filter2 Left Vowel", 1, 8, 1),
-  std::make_unique<AudioParameterInt> ("fil2_vowel_right", "Filter2 Right Vowel", 1, 8, 2),
+  std::make_unique<AudioParameterInt> ("fil2_vowel_left", "Filter2 Left Vowel", 0, 7, 0),
+  std::make_unique<AudioParameterInt> ("fil2_vowel_right", "Filter2 Right Vowel", 0, 7, 2),
   std::make_unique<AudioParameterInt> ("fil2_comb_polarity", "Filter2 Comb Polarity", 0, 1, 0),
   //Filter3
   std::make_unique<AudioParameterInt> ("fil3_type", "Filter3 Type", 1, 13, 1),  
@@ -160,8 +160,8 @@
   std::make_unique<AudioParameterFloat> ("fil3_saturation", "Filter3 Saturation", NormalisableRange<float> (0.f, 1.f), 0.f),
   std::make_unique<AudioParameterFloat> ("fil3_sem_transition", "Filter3 SEM Transition", NormalisableRange<float> (-1.f, 1.f), 0.f),
   std::make_unique<AudioParameterFloat> ("fil3_formant_transition", "Filter3 Formant Transition", NormalisableRange<float> (0.f, 1.f), 0.f),
-  std::make_unique<AudioParameterInt> ("fil3_vowel_left", "Filter3 Left Vowel", 1, 8, 1),
-  std::make_unique<AudioParameterInt> ("fil3_vowel_right", "Filter3 Right Vowel", 1, 8, 2),
+  std::make_unique<AudioParameterInt> ("fil3_vowel_left", "Filter3 Left Vowel", 0, 7, 0),
+  std::make_unique<AudioParameterInt> ("fil3_vowel_right", "Filter3 Right Vowel", 0, 7, 2),
   std::make_unique<AudioParameterInt> ("fil3_comb_polarity", "Filter3 Comb Polarity", 0, 1, 0),
   //Amp
   std::make_unique<AudioParameterFloat> ("amp_vel", "Amplifier Velocity Amount", NormalisableRange<float> (0.f, 1.f), 0.f),

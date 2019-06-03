@@ -404,6 +404,15 @@ void FilterComponent::showFormantFilterComponents() {
   m_formant_transition.setVisible(true);
   // todo set smaller filter bounds
 }
-  void FilterComponent::forceValueTreeOntoComponents(ValueTree p_tree, int index){
-    
-  }
+void FilterComponent::forceValueTreeOntoComponents(ValueTree p_tree,
+                                                   int p_index) {
+  m_comb_plus_minus.setValue(
+      m_value_tree
+          .getParameterAsValue("fil" + m_filter_number + "_comb_polarity")
+          .getValue());
+
+  m_vowel_left.setValue(
+      m_value_tree.getParameterAsValue(m_vowel_left_identifier).getValue());
+  m_vowel_right.setValue(
+      m_value_tree.getParameterAsValue(m_vowel_right_identifier).getValue());
+}

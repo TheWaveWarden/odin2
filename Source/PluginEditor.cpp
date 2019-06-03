@@ -83,6 +83,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
   OdinButton::setOdinPointer(&p_processor);
 
   m_osc_dropdown_menu.addItem(1, "None");
+  m_osc_dropdown_menu.addSeparator();
   m_osc_dropdown_menu.addItem(2, "Analog Oscillator");
   m_osc_dropdown_menu.addItem(3, "Wavetable Oscillator");
   m_osc_dropdown_menu.addItem(4, "Multi Oscillator");
@@ -96,16 +97,19 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
   m_osc_dropdown_menu.addItem(11, "Specdraw Oscillator");
 
   m_filter_dropdown_menu.addItem(1, "Bypass");
+  m_filter_dropdown_menu.addSeparator();
   m_filter_dropdown_menu.addItem(2, "Lowpass 24");
   m_filter_dropdown_menu.addItem(3, "Lowpass 12");
   m_filter_dropdown_menu.addItem(4, "Bandpass 24");
   m_filter_dropdown_menu.addItem(5, "Bandpass 12");
   m_filter_dropdown_menu.addItem(6, "Highpass 24");
   m_filter_dropdown_menu.addItem(7, "Highpass 12");
+  m_filter_dropdown_menu.addSeparator();  
   m_filter_dropdown_menu.addItem(8, "Oberheim 12");
   m_filter_dropdown_menu.addItem(9, "Diode Ladder");
   m_filter_dropdown_menu.addItem(10, "Korg 35 LP");
   m_filter_dropdown_menu.addItem(11, "Korg 35 HP");
+  m_filter_dropdown_menu.addSeparator();
   m_filter_dropdown_menu.addItem(12, "Comb Filter");
   m_filter_dropdown_menu.addItem(13, "Formant Filter");
 

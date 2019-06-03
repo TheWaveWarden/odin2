@@ -917,21 +917,21 @@ bool OdinAudioProcessor::treeValueChangedThird(const String &p_ID,
   {
     for (int voice = 0; voice < VOICES; ++voice)
     {
-      m_voice[voice].formant_filter[0].setVowelLeft((int)p_new_value - 1);
+      m_voice[voice].formant_filter[0].setVowelLeft((int)p_new_value);
     }
   }
   else if (id == m_fil2_vowel_left_identifier)
   {
     for (int voice = 0; voice < VOICES; ++voice)
     {
-      m_voice[voice].formant_filter[1].setVowelLeft((int)p_new_value - 1);
+      m_voice[voice].formant_filter[1].setVowelLeft((int)p_new_value);
     }
   }
   else if (id == m_fil1_vowel_right_identifier)
   {
     for (int voice = 0; voice < VOICES; ++voice)
     {
-      m_voice[voice].formant_filter[0].setVowelRight((int)p_new_value - 1);
+      m_voice[voice].formant_filter[0].setVowelRight((int)p_new_value);
     }
   }
   else if (id == m_fil2_vowel_right_identifier)
@@ -1125,13 +1125,13 @@ bool OdinAudioProcessor::treeValueChangedThird(const String &p_ID,
   }
   else if (id == m_fil3_vowel_left_identifier)
   {
-    m_formant_filter[0].setVowelLeft((int)p_new_value - 1);
-    m_formant_filter[1].setVowelLeft((int)p_new_value - 1);
+    m_formant_filter[0].setVowelLeft((int)p_new_value);
+    m_formant_filter[1].setVowelLeft((int)p_new_value);
   }
   else if (id == m_fil3_vowel_right_identifier)
   {
-    m_formant_filter[0].setVowelRight((int)p_new_value - 1);
-    m_formant_filter[1].setVowelRight((int)p_new_value - 1);
+    m_formant_filter[0].setVowelRight((int)p_new_value);
+    m_formant_filter[1].setVowelRight((int)p_new_value);
   }
   else if (id == m_fil3_formant_transition_identifier)
   {
