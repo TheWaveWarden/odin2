@@ -41,6 +41,8 @@ public:
 
 private:
 
+  bool m_reset_warning_was_shown = false;
+
   std::unique_ptr<FileChooser> m_filechooser;
 
   AudioProcessorValueTreeState &m_value_tree;
