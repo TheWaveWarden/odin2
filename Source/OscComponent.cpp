@@ -1532,21 +1532,35 @@ void OscComponent::createWavedrawTables() {
         .getParameter("osc" + m_osc_number + "_wavedraw[" + std::to_string(i) +
                       "]")
         ->setValueNotifyingHost(table[i] * 0.5 + 0.5);
-    if (i < 20) {
-      //DBG("osc" + m_osc_number + "_wavedraw[" + std::to_string(i) + "]");
-      //DBG(table[i]);
-    }
   }
 }
 
 void OscComponent::createChipdrawTables() {
   WavetableContainer::getInstance().createChipdrawTable(
       std::stoi(m_osc_number) - 1, m_chipdraw.getDrawnTable(), 44100.f);
+
+
+  // write values to audiovaluetree
+  float *table = m_chipdraw.getDrawnTable();
+  for (int i = 0; i < CHIPDRAW_STEPS_X; ++i) {
+    m_value_tree
+        .getParameter("osc" + m_osc_number + "_chipdraw[" + std::to_string(i) +
+                      "]")
+        ->setValueNotifyingHost(table[i] * 0.5 + 0.5);
+  }
 }
 
 void OscComponent::createSpecdrawTables() {
   WavetableContainer::getInstance().createSpecdrawTable(
       std::stoi(m_osc_number) - 1, m_specdraw.getDrawnTable(), 44100.f);
+  // write values to audiovaluetree
+  float *table = m_specdraw.getDrawnTable();
+  for (int i = 0; i < SPECDRAW_STEPS_X; ++i) {
+    m_value_tree
+        .getParameter("osc" + m_osc_number + "_specdraw[" + std::to_string(i) +
+                      "]")
+        ->setValueNotifyingHost(table[i]);
+  }
 }
 
 void OscComponent::writeWavedrawTableToFile() {
@@ -1567,9 +1581,8 @@ void OscComponent::writeChipdrawTableToFile() {
 void OscComponent::forceValueTreeOntoComponents(ValueTree p_tree, int p_index) {
   std::string index = std::to_string(p_index);
 
-  //DBG("ONFORCE" + index);
-  //m_wavedraw.DBGTable();
-
+  
+  //wavedraw
   float wavedraw_values[WAVEDRAW_STEPS_X];
   for (int i = 0; i < WAVEDRAW_STEPS_X; ++i) {
     wavedraw_values[i] = m_value_tree
@@ -1577,11 +1590,26 @@ void OscComponent::forceValueTreeOntoComponents(ValueTree p_tree, int p_index) {
                                                   std::to_string(i) + "]")
                              .getValue();
   }
-
   m_wavedraw.setDrawnTable(wavedraw_values);
-
-  //DBG("AFTERSET" + index);
-  //m_wavedraw.DBGTable();
-
   createWavedrawTables();
+
+  //chipdraw
+  for (int i = 0; i < CHIPDRAW_STEPS_X; ++i) {
+    wavedraw_values[i] = m_value_tree
+                             .getParameterAsValue("osc" + index + "_chipdraw[" +
+                                                  std::to_string(i) + "]")
+                             .getValue();
+  }
+  m_chipdraw.setDrawnTable(wavedraw_values);
+  createChipdrawTables();
+
+  //specdraw
+  for (int i = 0; i < SPECDRAW_STEPS_X; ++i) {
+    wavedraw_values[i] = m_value_tree
+                             .getParameterAsValue("osc" + index + "_specdraw[" +
+                                                  std::to_string(i) + "]")
+                             .getValue();
+  }
+  m_specdraw.setDrawnTable(wavedraw_values);
+  createSpecdrawTables();
 }

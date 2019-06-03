@@ -51,11 +51,11 @@ public:
     repaint();
   }
 
-  void DBGTable(){
-    for(int i = 0; i < 20; ++i){
-      DBG(m_draw_values[i]);
-    }
-  }
+  // void DBGTable(){
+  //   for(int i = 0; i < 20; ++i){
+  //     DBG(m_draw_values[i]);
+  //   }
+  // }
 
   std::function<void()> onDraw= []() {};
 private:

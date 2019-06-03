@@ -42,6 +42,14 @@ public:
   std::function<void()> onDraw= []() {};
 
   float* getDrawnTable();
+
+  void setDrawnTable(float p_table[CHIPDRAW_STEPS_X]){
+    for(int i = 0; i < CHIPDRAW_STEPS_X; ++i){
+      //DBG(p_table[i]);
+      m_draw_values[i] = p_table[i];
+    }
+    repaint();
+  }
   
 private:
   int m_inlay = INLAY_DEFAULT_CHIPDRAW;
