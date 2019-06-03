@@ -614,6 +614,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
     m_chipdraw_convert.setToggleState(true, sendNotification);
     createChipdrawTables();
   };
+  m_chipdraw_convert.setToggleState(true, sendNotification);
   m_chipdraw_convert.setTooltip(
       "Converts the waveform drawn\nin the window. You won't hear\nany changes "
       "before you press\nthis button");
@@ -635,6 +636,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
     m_wavedraw_convert.setToggleState(true, sendNotification);
     createWavedrawTables();
   };
+  m_wavedraw_convert.setToggleState(true, sendNotification);
   m_wavedraw_convert.setTooltip(
       "Converts the waveform drawn\nin the window. You won't hear\nany changes "
       "before you press\nthis button");
@@ -713,6 +715,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
     m_specdraw_convert.setToggleState(true, sendNotification);
     createSpecdrawTables();
   };
+  m_specdraw_convert.setToggleState(true, sendNotification);
   m_specdraw_convert.setTooltip(
       "Converts the waveform drawn\nin the window. You won't hear\nany changes "
       "before you press\nthis button");
@@ -722,7 +725,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 
   m_chiptune_waveselector.OnValueChange = [&](int p_new_value) {
     m_value_tree.getParameter(m_chipwave_identifier)
-        ->setValueNotifyingHost(((float)p_new_value - 0.5) / 403.f);
+        ->setValueNotifyingHost(((float)p_new_value - 0.5) / 1000.f);
   };
   m_chiptune_waveselector.setTopLeftPosition(WAVE_CHIPTUNE_POS_X,
                                              WAVE_CHIPTUNE_POS_Y);
@@ -1612,8 +1615,15 @@ void OscComponent::forceValueTreeOntoComponents(ValueTree p_tree, int p_index) {
   m_vec_c.setSelectedId(m_value_tree.getParameterAsValue(m_vec_c_identifier).getValue());
   m_vec_d.setSelectedId(m_value_tree.getParameterAsValue(m_vec_d_identifier).getValue());
 
+  //fm
   m_carrier_waveselector.setValue(m_value_tree.getParameterAsValue(m_carrier_wave_identifier).getValue());
   m_modulator_waveselector.setValue(m_value_tree.getParameterAsValue(m_modulator_wave_identifier).getValue());
+  m_carrier_ratio.setValue(m_value_tree.getParameterAsValue(m_carrier_ratio_identifier).getValue());
+  m_modulator_ratio.setValue(m_value_tree.getParameterAsValue(m_modulator_ratio_identifier).getValue());
+  m_fm_exp.setValue(m_value_tree.getParameterAsValue("osc" + m_osc_number + "_exp_fm").getValue());
+
+  //chiptune
+  m_chiptune_waveselector.setValue(m_value_tree.getParameterAsValue("osc" + m_osc_number + "_chipwave").getValue());
   
 
   // wavedraw
@@ -1626,6 +1636,7 @@ void OscComponent::forceValueTreeOntoComponents(ValueTree p_tree, int p_index) {
   }
   m_wavedraw.setDrawnTable(wavedraw_values);
   createWavedrawTables();
+  m_wavedraw_convert.setToggleState(true, dontSendNotification);
 
   // chipdraw
   for (int i = 0; i < CHIPDRAW_STEPS_X; ++i) {
@@ -1635,6 +1646,7 @@ void OscComponent::forceValueTreeOntoComponents(ValueTree p_tree, int p_index) {
                              .getValue();
   }
   m_chipdraw.setDrawnTable(wavedraw_values);
+  m_chipdraw_convert.setToggleState(true, dontSendNotification);
   createChipdrawTables();
 
   // specdraw
@@ -1645,5 +1657,6 @@ void OscComponent::forceValueTreeOntoComponents(ValueTree p_tree, int p_index) {
                              .getValue();
   }
   m_specdraw.setDrawnTable(wavedraw_values);
+  m_specdraw_convert.setToggleState(true, dontSendNotification);
   createSpecdrawTables();
 }

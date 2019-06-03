@@ -1238,7 +1238,7 @@ void WavetableContainer::generateAudioValueCode() {
   output_file << "\n//CHIPDRAW\n\n";
 
   for (int i = 0; i < CHIPDRAW_STEPS_X; ++i) {
-    float val = i < CHIPDRAW_STEPS_X / 2 ? 1 : -1;
+    float val = i < CHIPDRAW_STEPS_X / 2 ? 0.875f : -0.875f;
     output_file << "std::make_unique<AudioParameterFloat> (\"osc1_chipdraw[" +
                        std::to_string(i) + "]\",\"osc1_chipdraw[" +
                        std::to_string(i) + "]\",-1,1," + std::to_string(val) +
