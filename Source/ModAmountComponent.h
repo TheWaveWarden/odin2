@@ -29,6 +29,11 @@ public:
   void setColor(juce::Colour p_color) { m_color = p_color; }
   void setColorBar(juce::Colour p_color) { m_color_bar = p_color; }
 
+  void setValue(float p_amount){
+    m_value = p_amount;
+    repaint();
+  }
+
   void reset(){
     m_value = 0;
     repaint();

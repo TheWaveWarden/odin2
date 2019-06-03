@@ -31,8 +31,7 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
                       juce::DrawableButton::ButtonStyle::ImageRaw),
       m_clear_button8("clear_button",
                       juce::DrawableButton::ButtonStyle::ImageRaw),
-      m_value_tree(vts), 
-      m_amount_1_identifier0("amount_1_[0]"),
+      m_value_tree(vts), m_amount_1_identifier0("amount_1_[0]"),
       m_amount_2_identifier0("amount_2_[0]"),
       m_amount_3_identifier0("amount_3_[0]"),
       m_amount_1_identifier1("amount_1_[1]"),
@@ -277,9 +276,9 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
   m_phaser_menu.addItem(752, "Phaser Amount");
   m_phaser_menu.addItem(753, "Phaser DryWet");
 
-  m_flanger_menu.addItem(801, "Phaser Freq");
-  m_flanger_menu.addItem(802, "Phaser Amount");
-  m_flanger_menu.addItem(803, "Phaser DryWet");
+  m_flanger_menu.addItem(801, "Flaser Freq");
+  m_flanger_menu.addItem(802, "Flaser Amount");
+  m_flanger_menu.addItem(803, "Flaser DryWet");
 
   m_chorus_menu.addItem(851, "Chorus Freq");
   m_chorus_menu.addItem(852, "Chorus Amount");
@@ -292,9 +291,8 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
   m_distortion_menu.addItem(950, "Distortion Threshold");
   m_distortion_menu.addItem(951, "Distortion DryWet");
 
-
-  //m_sources_menu.addItem(0, "Disabled");
-  //m_sources_menu.addSeparator();
+  // m_sources_menu.addItem(0, "Disabled");
+  // m_sources_menu.addSeparator();
   m_sources_menu.addItem(100, "Oscillator 1");
   m_sources_menu.addItem(101, "Oscillator 2");
   m_sources_menu.addItem(102, "Oscillator 3");
@@ -386,7 +384,6 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
     m_amount_3[i].setTooltip(
         "Set how much the scale signal scales the modulation");
     m_scale[i].setTooltip("Set the scale signal");
-
 
     m_source[i].setDefaultText("Source");
     m_dest_1[i].setDefaultText("Dest 1");
@@ -923,8 +920,8 @@ void ModMatrixComponent::createMenu(PopupMenu *p_menu) {
   getOscFilterTypes(osc_type[0], osc_type[1], osc_type[2], fil_type[0],
                     fil_type[1], fil_type[2]);
 
-  //p_menu->addItem(0, "Disabled");
-  //p_menu->addSeparator();
+  // p_menu->addItem(0, "Disabled");
+  // p_menu->addSeparator();
 
   for (int osc = 0; osc < 3; ++osc) {
     if (osc_type[osc] == OSC_TYPE_ANALOG) {
@@ -1021,5 +1018,37 @@ void ModMatrixComponent::createMenu(PopupMenu *p_menu) {
   p_menu->addItem(1000, "Master");
 }
 
+void ModMatrixComponent::forceValueTreeOntoComponents(ValueTree p_tree) {
+  for (int row = 0; row < N_ROWS; ++row) {
+    m_source[row].setValue(
+        m_value_tree.getParameterAsValue("source_[" + std::to_string(row) + "]")
+            .getValue());
 
-  void ModMatrixComponent::forceValueTreeOntoComponents(ValueTree p_tree){}
+    m_dest_1[row].rearrangeMenu();
+    m_dest_1[row].setValue(
+        m_value_tree.getParameterAsValue("dest_1_[" + std::to_string(row) + "]")
+            .getValue());
+
+    m_dest_2[row].rearrangeMenu();
+    m_dest_2[row].setValue(
+        m_value_tree.getParameterAsValue("dest_2_[" + std::to_string(row) + "]")
+            .getValue());
+
+    m_scale[row].setValue(
+        m_value_tree.getParameterAsValue("scale_[" + std::to_string(row) + "]")
+            .getValue());
+
+    m_amount_1[row].setValue(
+        m_value_tree
+            .getParameterAsValue("amount_1_[" + std::to_string(row) + "]")
+            .getValue());
+    m_amount_2[row].setValue(
+        m_value_tree
+            .getParameterAsValue("amount_2_[" + std::to_string(row) + "]")
+            .getValue());
+    m_amount_3[row].setValue(
+        m_value_tree
+            .getParameterAsValue("amount_3_[" + std::to_string(row) + "]")
+            .getValue());
+  }
+}

@@ -161,8 +161,6 @@ private:
 
   PopupMenu m_sources_menu;
 
-  
-
   int m_panel_height;
   int m_small_panel_width;
   int m_big_panel_width;
