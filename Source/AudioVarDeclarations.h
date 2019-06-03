@@ -136,6 +136,10 @@
     float* m_phaser_on;
     float* m_flanger_on;
     float* m_chorus_on;
+    float* m_delay_selected;
+    float* m_phaser_selected;
+    float* m_flanger_selected;
+    float* m_chorus_selected;
     float* m_fil_osc1[2];
     float* m_fil_osc2[2];
     float* m_fil_osc3[2];
@@ -410,6 +414,10 @@
     Identifier m_phaser_on_identifier;
     Identifier m_flanger_on_identifier;
     Identifier m_chorus_on_identifier;
+    Identifier m_delay_selected_identifier;
+    Identifier m_phaser_selected_identifier;
+    Identifier m_flanger_selected_identifier;
+    Identifier m_chorus_selected_identifier;
     Identifier m_fil1_osc1_identifier;
     Identifier m_fil1_osc2_identifier;
     Identifier m_fil1_osc3_identifier;

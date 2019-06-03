@@ -19,19 +19,27 @@
  */
 class FXButtonsSection : public Component {
 public:
-  FXButtonsSection()
-      : m_phaser_button("phaser",
-                        juce::DrawableButton::ButtonStyle::ImageRaw,
+  FXButtonsSection(AudioProcessorValueTreeState &vts)
+      : m_value_tree(vts),
+        m_phaser_button("phaser", juce::DrawableButton::ButtonStyle::ImageRaw,
                         &m_constrainer, "phaser"),
-        m_flanger_button("flanger",
-                         juce::DrawableButton::ButtonStyle::ImageRaw,
+        m_flanger_button("flanger", juce::DrawableButton::ButtonStyle::ImageRaw,
                          &m_constrainer, "flanger"),
-        m_chorus_button("chorus",
-                        juce::DrawableButton::ButtonStyle::ImageRaw,
+        m_chorus_button("chorus", juce::DrawableButton::ButtonStyle::ImageRaw,
                         &m_constrainer, "chorus"),
-        m_delay_button("delay",
-                       juce::DrawableButton::ButtonStyle::ImageRaw,
+        m_delay_button("delay", juce::DrawableButton::ButtonStyle::ImageRaw,
                        &m_constrainer, "delay") {
+
+    // m_delay_selected_attachment.reset(
+    //    new ButtonAttachment(m_value_tree, "delay_selected", m_delay_button));
+    // m_phaser_selected_attachment.reset(
+    //    new ButtonAttachment(m_value_tree, "phaser_selected",
+    //    m_phaser_button));
+    // m_flanger_selected_attachment.reset(new ButtonAttachment(
+    //    m_value_tree, "flanger_selected", m_flanger_button));
+    // m_chorus_selected_attachment.reset(
+    //    new ButtonAttachment(m_value_tree, "chorus_selected",
+    //    m_chorus_button));
 
     juce::Image phaser_button_1 = ImageCache::getFromFile(
         juce::File(GRAPHICS_PATH + "cropped/buttons/buttonphaser_1.png"));
@@ -59,9 +67,10 @@ public:
     m_phaser_button.setClickingTogglesState(true);
     m_phaser_button.setBounds(0, 0, phaser_button_1.getWidth(),
                               phaser_button_1.getHeight());
-    m_phaser_button.setTooltip("Shows the phaser.\nDrag and Drop this to\nrearrange the FX order");
+    m_phaser_button.setTooltip(
+        "Shows the phaser.\nDrag and Drop this to\nrearrange the FX order");
     addAndMakeVisible(m_phaser_button);
-    //m_phaser_button.setAlwaysOnTop(true);
+    // m_phaser_button.setAlwaysOnTop(true);
     m_phaser_button.setTriggeredOnMouseDown(true);
     m_phaser_button.setColour(
         juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
@@ -95,9 +104,10 @@ public:
     m_flanger_button.setClickingTogglesState(true);
     m_flanger_button.setBounds(FX_BUTTON_OFFSET, 0, flanger_button_1.getWidth(),
                                flanger_button_1.getHeight());
-    m_flanger_button.setTooltip("Shows the flanger.\nDrag and Drop this to\nrearrange the FX order");
+    m_flanger_button.setTooltip(
+        "Shows the flanger.\nDrag and Drop this to\nrearrange the FX order");
     addAndMakeVisible(m_flanger_button);
-    //m_flanger_button.setAlwaysOnTop(true);
+    // m_flanger_button.setAlwaysOnTop(true);
     m_flanger_button.setTriggeredOnMouseDown(true);
     m_flanger_button.setColour(
         juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
@@ -132,9 +142,10 @@ public:
     m_chorus_button.setBounds(2 * FX_BUTTON_OFFSET, 0,
                               chorus_button_1.getWidth(),
                               chorus_button_1.getHeight());
-    m_chorus_button.setTooltip("Shows the chorus.\nDrag and Drop this to\nrearrange the FX order");
+    m_chorus_button.setTooltip(
+        "Shows the chorus.\nDrag and Drop this to\nrearrange the FX order");
     addAndMakeVisible(m_chorus_button);
-    //m_chorus_button.setOnTop(true);
+    // m_chorus_button.setOnTop(true);
     m_chorus_button.setTriggeredOnMouseDown(true);
     m_chorus_button.setColour(
         juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
@@ -167,9 +178,10 @@ public:
     m_delay_button.setClickingTogglesState(true);
     m_delay_button.setBounds(3 * FX_BUTTON_OFFSET, 0, delay_button_1.getWidth(),
                              delay_button_1.getHeight());
-    m_delay_button.setTooltip("Shows the delay.\nDrag and Drop this to\nrearrange the FX order");
+    m_delay_button.setTooltip(
+        "Shows the delay.\nDrag and Drop this to\nrearrange the FX order");
     addAndMakeVisible(m_delay_button);
-    //m_delay_button.setAlwaysOnTop(true);
+    // m_delay_button.setAlwaysOnTop(true);
     m_delay_button.setTriggeredOnMouseDown(true);
     m_delay_button.setColour(
         juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
@@ -177,50 +189,44 @@ public:
     m_delay_button.setToggleState(true, dontSendNotification);
     m_delay_button.onClick = [&]() { /*setFX(4);*/ };
 
-    m_phaser_button.lambdaMouseDrag = [&](int p_position){
-        changeMapPosition("phaser", p_position);
+    m_phaser_button.lambdaMouseDrag = [&](int p_position) {
+      changeMapPosition("phaser", p_position);
     };
-    m_phaser_button.lambdaMouseUp = [&](){
-        positionButtons();
-    };
-    m_phaser_button.lambdaMouseDown = [&](){
-        setHighlighted("phaser");
-    };
-
-    m_flanger_button.lambdaMouseDrag = [&](int p_position){
-        changeMapPosition("flanger", p_position);
-    };
-    m_flanger_button.lambdaMouseUp = [&](){
-        positionButtons();
-    };
-    m_flanger_button.lambdaMouseDown = [&](){
-        setHighlighted("flanger");
+    m_phaser_button.lambdaMouseUp = [&]() { positionButtons(); };
+    m_phaser_button.lambdaMouseDown = [&]() {
+      setHighlighted("phaser");
+      setHighlightedToValueTree(1);
     };
 
-    m_chorus_button.lambdaMouseDrag = [&](int p_position){
-        changeMapPosition("chorus", p_position);
+    m_flanger_button.lambdaMouseDrag = [&](int p_position) {
+      changeMapPosition("flanger", p_position);
     };
-    m_chorus_button.lambdaMouseUp = [&](){
-        positionButtons();
-    };
-    m_chorus_button.lambdaMouseDown = [&](){
-        setHighlighted("chorus");
-    };
-
-    m_delay_button.lambdaMouseDrag = [&](int p_position){
-        changeMapPosition("delay", p_position);
-    };
-    m_delay_button.lambdaMouseUp = [&](){
-        positionButtons();
-    };
-    m_delay_button.lambdaMouseDown = [&](){
-        setHighlighted("delay");
+    m_flanger_button.lambdaMouseUp = [&]() { positionButtons(); };
+    m_flanger_button.lambdaMouseDown = [&]() {
+      setHighlighted("flanger");
+      setHighlightedToValueTree(2);
     };
 
-    setSize(FX_BUTTON_OFFSET * 4+1, delay_button_1.getHeight());
+    m_chorus_button.lambdaMouseDrag = [&](int p_position) {
+      changeMapPosition("chorus", p_position);
+    };
+    m_chorus_button.lambdaMouseUp = [&]() { positionButtons(); };
+    m_chorus_button.lambdaMouseDown = [&]() {
+      setHighlighted("chorus");
+      setHighlightedToValueTree(3);
+    };
+
+    m_delay_button.lambdaMouseDrag = [&](int p_position) {
+      changeMapPosition("delay", p_position);
+    };
+    m_delay_button.lambdaMouseUp = [&]() { positionButtons(); };
+    m_delay_button.lambdaMouseDown = [&]() {
+      setHighlighted("delay");
+      setHighlightedToValueTree(0);
+    };
+
+    setSize(FX_BUTTON_OFFSET * 4 + 1, delay_button_1.getHeight());
   }
-
-  
 
   void parentSizeChanged() override {
     auto newBounds = getBoundsInParent();
@@ -252,44 +258,121 @@ public:
     onButtonArrange(m_position_map);
   }
 
-  void changeMapPosition(std::string p_button_name, int p_new_position){
-      //return if already in right position
-      if(m_position_map.find(p_button_name)->second == p_new_position){
-          return;
-      }
+  void changeMapPosition(std::string p_button_name, int p_new_position) {
+    // return if already in right position
+    if (m_position_map.find(p_button_name)->second == p_new_position) {
+      return;
+    }
 
-      //move other button to old position first
-      if(m_position_map.find("flanger")->second == p_new_position){
-          m_position_map.find("flanger")->second = m_position_map.find(p_button_name)->second;
-      }
-      if(m_position_map.find("phaser")->second == p_new_position){
-          m_position_map.find("phaser")->second = m_position_map.find(p_button_name)->second;
-      }
-      if(m_position_map.find("chorus")->second == p_new_position){
-          m_position_map.find("chorus")->second = m_position_map.find(p_button_name)->second;
-      }
-      if(m_position_map.find("delay")->second == p_new_position){
-          m_position_map.find("delay")->second = m_position_map.find(p_button_name)->second;
-      }
-      //move button to new position
-      m_position_map.find(p_button_name)->second = p_new_position;
-      positionButtons(p_button_name);
+    // move other button to old position first
+    if (m_position_map.find("flanger")->second == p_new_position) {
+      m_position_map.find("flanger")->second =
+          m_position_map.find(p_button_name)->second;
+    }
+    if (m_position_map.find("phaser")->second == p_new_position) {
+      m_position_map.find("phaser")->second =
+          m_position_map.find(p_button_name)->second;
+    }
+    if (m_position_map.find("chorus")->second == p_new_position) {
+      m_position_map.find("chorus")->second =
+          m_position_map.find(p_button_name)->second;
+    }
+    if (m_position_map.find("delay")->second == p_new_position) {
+      m_position_map.find("delay")->second =
+          m_position_map.find(p_button_name)->second;
+    }
+    // move button to new position
+    m_position_map.find(p_button_name)->second = p_new_position;
+    positionButtons(p_button_name);
   }
 
+  void setHighlightedToValueTree(int p_fx_number) {
+    DBG(p_fx_number);
+    switch (p_fx_number) {
+    case 0:
+      m_value_tree.getParameter("delay_selected")->setValueNotifyingHost(1.f);
+      m_value_tree.getParameter("phaser_selected")->setValueNotifyingHost(0.f);
+      m_value_tree.getParameter("flanger_selected")->setValueNotifyingHost(0.f);
+      m_value_tree.getParameter("chorus_selected")->setValueNotifyingHost(0.f);
+      break;
+    case 1:
+      m_value_tree.getParameter("delay_selected")->setValueNotifyingHost(0.f);
+      m_value_tree.getParameter("phaser_selected")->setValueNotifyingHost(1.f);
+      m_value_tree.getParameter("flanger_selected")->setValueNotifyingHost(0.f);
+      m_value_tree.getParameter("chorus_selected")->setValueNotifyingHost(0.f);
+      break;
+    case 2:
+      m_value_tree.getParameter("delay_selected")->setValueNotifyingHost(0.f);
+      m_value_tree.getParameter("phaser_selected")->setValueNotifyingHost(0.f);
+      m_value_tree.getParameter("flanger_selected")->setValueNotifyingHost(1.f);
+      m_value_tree.getParameter("chorus_selected")->setValueNotifyingHost(0.f);
+      break;
+    case 3:
+      m_value_tree.getParameter("delay_selected")->setValueNotifyingHost(0.f);
+      m_value_tree.getParameter("phaser_selected")->setValueNotifyingHost(0.f);
+      m_value_tree.getParameter("flanger_selected")->setValueNotifyingHost(0.f);
+      m_value_tree.getParameter("chorus_selected")->setValueNotifyingHost(1.f);
+      break;
+    default:
+      break;
+    }
+  }
 
-  void forceValueTreeOntoComponents(ValueTree p_tree){}
-    
+  void forceValueTreeOntoComponents(ValueTree p_tree) {
+    if ((int)m_value_tree.getParameterAsValue("delay_selected").getValue() == 1){
+              setHighlighted("delay");
+              m_delay_button.setToggleState(true, dontSendNotification);
+              m_phaser_button.setToggleState(false, dontSendNotification);
+              m_flanger_button.setToggleState(false, dontSendNotification);
+              m_chorus_button.setToggleState(false, dontSendNotification);
+    }
+    else if ((int)m_value_tree.getParameterAsValue("phaser_selected")
+                 .getValue() == 1){
+              setHighlighted("phaser");
+              m_delay_button.setToggleState(false, dontSendNotification);
+              m_phaser_button.setToggleState(true, dontSendNotification);
+              m_flanger_button.setToggleState(false, dontSendNotification);
+              m_chorus_button.setToggleState(false, dontSendNotification);
+    }
+    else if ((int)m_value_tree.getParameterAsValue("flanger_selected")
+                 .getValue() == 1){
+              setHighlighted("flanger");
+              m_delay_button.setToggleState(false, dontSendNotification);
+              m_phaser_button.setToggleState(false, dontSendNotification);
+              m_flanger_button.setToggleState(true, dontSendNotification);
+              m_chorus_button.setToggleState(false, dontSendNotification);
+    }
+    else if ((int)m_value_tree.getParameterAsValue("chorus_selected")
+                 .getValue() == 1){
+              setHighlighted("chorus");
+              m_delay_button.setToggleState(false, dontSendNotification);
+              m_phaser_button.setToggleState(false, dontSendNotification);
+              m_flanger_button.setToggleState(false, dontSendNotification);
+              m_chorus_button.setToggleState(true, dontSendNotification);
+    }
 
-  std::function<void(std::map<std::string,int>)> onButtonArrange;
+    m_position_map.find("delay")->second = m_value_tree.getParameterAsValue("delay_position").getValue();
+    m_position_map.find("phaser")->second = m_value_tree.getParameterAsValue("phaser_position").getValue();
+    m_position_map.find("flanger")->second = m_value_tree.getParameterAsValue("flanger_position").getValue();
+    m_position_map.find("chorus")->second = m_value_tree.getParameterAsValue("chorus_position").getValue();
+    positionButtons();
+  }
+
+  std::function<void(std::map<std::string, int>)> onButtonArrange;
   std::function<void(std::string)> setHighlighted;
 
-
-
 private:
+  // std::unique_ptr<ButtonAttachment> m_phaser_selected_attachment;
+  // std::unique_ptr<ButtonAttachment> m_flanger_selected_attachment;
+  // std::unique_ptr<ButtonAttachment> m_delay_selected_attachment;
+  // std::unique_ptr<ButtonAttachment> m_chorus_selected_attachment;
+
   DragButton m_flanger_button;
   DragButton m_phaser_button;
   DragButton m_chorus_button;
   DragButton m_delay_button;
+
+  AudioProcessorValueTreeState &m_value_tree;
 
   std::map<std::string, int> m_position_map = {
       {"flanger", 3}, {"phaser", 1}, {"chorus", 2}, {"delay", 0}};

@@ -37,7 +37,10 @@ public:
   }
 
 
-  
+  void setValue(int p_value){
+    setSelectedId(p_value, sendNotification);
+    repaint();
+  }
   
   void reset(){
     setSelectedId(0, sendNotification);

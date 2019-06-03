@@ -26,7 +26,7 @@ public:
   void resized() override;
 
   void setValue(int p_value){
-    if(p_value < m_display.getNrOfWaves() && p_value > 0){
+    if(p_value < m_display.getNrOfWaves() && p_value >= 0){
       m_value = p_value;
       m_display.setValue(p_value);
       OnValueChange(p_value);

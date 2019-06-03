@@ -14,7 +14,8 @@
 //==============================================================================
 OdinAudioProcessorEditor::OdinAudioProcessorEditor(
     OdinAudioProcessor &p_processor, AudioProcessorValueTreeState &vts)
-    : m_value_tree(vts), AudioProcessorEditor(&p_processor), processor(p_processor),
+    : m_value_tree(vts), m_fx_buttons_section(vts),
+    AudioProcessorEditor(&p_processor), processor(p_processor),
       m_osc1_dropdown("osc1_dropdown_button",
                       juce::DrawableButton::ButtonStyle::ImageRaw),
       m_osc2_dropdown("osc2_dropdown_button",
@@ -1076,7 +1077,7 @@ void OdinAudioProcessorEditor::setTooltipEnabled(bool p_enabled) {
 void OdinAudioProcessorEditor::forceValueTreeOntoComponents(){
     DBG("FORCE");
     //DBG(m_value_tree.state.toXmlString());
-
+    m_pitch_amount.setValue(m_value_tree.getParameterAsValue("pitchbend_amount").getValue());
 
     setOsc1Plate(m_value_tree.getParameterAsValue("osc1_type").getValue());
     setOsc2Plate(m_value_tree.getParameterAsValue("osc2_type").getValue());
@@ -1102,5 +1103,6 @@ void OdinAudioProcessorEditor::forceValueTreeOntoComponents(){
     m_chorus.forceValueTreeOntoComponents(m_value_tree.state);
     m_delay.forceValueTreeOntoComponents(m_value_tree.state);
     m_midsection.forceValueTreeOntoComponents(m_value_tree.state);
+    m_fx_buttons_section.forceValueTreeOntoComponents(m_value_tree.state);
 
 }

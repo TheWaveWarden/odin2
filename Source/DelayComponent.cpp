@@ -130,11 +130,14 @@ DelayComponent::DelayComponent(AudioProcessorValueTreeState &vts)
   m_wet.setKnobTooltip("Volume of the delayed signal only");
   addAndMakeVisible(m_wet);
 
+  m_sync_attach.reset(
+      new ButtonAttachment(m_value_tree, "delay_sync", m_sync));
+
   m_sync_time.OnValueChange = [&](int p_left, int p_right) {
     m_value_tree.getParameter(m_delay_synctime_numerator_identifier)
-        ->setValueNotifyingHost(((float)p_left) / 20.f);
+        ->setValueNotifyingHost(((float)p_left) / 7.f);
     m_value_tree.getParameter(m_delay_synctime_denominator_identifier)
-        ->setValueNotifyingHost(((float)p_right) / 20.f);
+        ->setValueNotifyingHost(((float)p_right) / 8.f);
   };
   m_sync_time.setTopLeftPosition(SYNC_TIME_DELAY_POS_X, SYNC_TIME_DELAY_POS_Y);
   m_sync_time.setTooltip("Set the delay time in sync to your track");
@@ -160,4 +163,12 @@ void DelayComponent::resized() {
                   BLACK_KNOB_MID_SIZE_Y);
 }
 
-void DelayComponent::forceValueTreeOntoComponents(ValueTree p_tree) {}
+void DelayComponent::forceValueTreeOntoComponents(ValueTree p_tree) {
+  m_sync_time.setValueLeft(
+      m_value_tree.getParameterAsValue(m_delay_synctime_numerator_identifier)
+          .getValue());
+
+  m_sync_time.setValueRight(
+      m_value_tree.getParameterAsValue(m_delay_synctime_denominator_identifier)
+          .getValue());
+}

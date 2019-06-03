@@ -210,9 +210,9 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts)
       m_patch.setText(file_to_read.getFileNameWithoutExtension().toStdString());
       DBG("Loaded patch " + file_name);
     }
-    forceValueTreeLambda();//todo this is duplicate
+    forceValueTreeLambda(); // todo this is duplicate
     // TODOTODOTODOT
-
+    //DBG(m_value_tree.state.toXmlString());
     /*       } else {
              DBG("Failed to open stream. Error message: " +
                  file_stream.getStatus().getErrorMessage().toStdString());

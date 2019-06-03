@@ -184,6 +184,11 @@ m_flanger_on = m_parameters.getRawParameterValue("flanger_on");
 m_delay_on = m_parameters.getRawParameterValue("delay_on");
 m_chorus_on = m_parameters.getRawParameterValue("chorus_on");
 
+m_phaser_selected = m_parameters.getRawParameterValue("phaser_selected");
+m_flanger_selected = m_parameters.getRawParameterValue("flanger_selected");
+m_delay_selected = m_parameters.getRawParameterValue("delay_selected");
+m_chorus_selected = m_parameters.getRawParameterValue("chorus_selected");
+
 for (int fil = 0; fil < 2; ++fil) {
   m_fil_osc1[fil] = m_parameters.getRawParameterValue(
       "fil" + std::to_string(fil + 1) + "_osc1");
@@ -462,6 +467,11 @@ m_parameters.addParameterListener("phaser_on", &m_tree_listener);
 m_parameters.addParameterListener("flanger_on", &m_tree_listener);
 m_parameters.addParameterListener("delay_on", &m_tree_listener);
 m_parameters.addParameterListener("chorus_on", &m_tree_listener);
+
+m_parameters.addParameterListener("phaser_selected", &m_tree_listener);
+m_parameters.addParameterListener("flanger_selected", &m_tree_listener);
+m_parameters.addParameterListener("delay_selected", &m_tree_listener);
+m_parameters.addParameterListener("chorus_selected", &m_tree_listener);
 
 for (int fil = 0; fil < 2; ++fil) {
   m_parameters.addParameterListener("fil" + std::to_string(fil + 1) + "_osc1",

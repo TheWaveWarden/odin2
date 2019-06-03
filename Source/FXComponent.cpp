@@ -130,15 +130,15 @@ FXComponent::FXComponent(AudioProcessorValueTreeState &vts,
   m_sync.setTooltip("Syncs the internal LFOs\nspeed to your track");
   addAndMakeVisible(m_sync);
 
-  m_synctime.OnValueChange = [&](int p_left, int p_right) {
+  m_sync_time.OnValueChange = [&](int p_left, int p_right) {
     m_value_tree.getParameter(m_fx_synctime_numerator_identifier)
-        ->setValueNotifyingHost(((float)p_left) / 20.f);
+        ->setValueNotifyingHost(((float)p_left) / 8.f);
     m_value_tree.getParameter(m_fx_synctime_denominator_identifier)
-        ->setValueNotifyingHost(((float)p_right) / 20.f);
+        ->setValueNotifyingHost(((float)p_right) / 7.f);
   };
-  m_synctime.setTopLeftPosition(SYNC_TIME_FX_POS_X, SYNC_TIME_FX_POS_Y);
-  m_synctime.setTooltip("Set the delay time in sync to your track");
-  addChildComponent(m_synctime);
+  m_sync_time.setTopLeftPosition(SYNC_TIME_FX_POS_X, SYNC_TIME_FX_POS_Y);
+  m_sync_time.setTooltip("Set the delay time in sync to your track");
+  addChildComponent(m_sync_time);
 }
 
 FXComponent::~FXComponent() {}
@@ -165,16 +165,21 @@ void FXComponent::setSyncEnabled(bool p_sync) {
     m_sync_enabled = p_sync;
     if (m_sync_enabled) {
       m_freq.setVisible(false);
-      m_synctime.setVisible(true);
+      m_sync_time.setVisible(true);
     } else {
       m_freq.setVisible(true);
-      m_synctime.setVisible(false);
+      m_sync_time.setVisible(false);
     }
     repaint();
   }
 }
 
+void FXComponent::forceValueTreeOntoComponents(ValueTree p_tree) {
+  m_sync_time.setValueLeft(
+      m_value_tree.getParameterAsValue(m_fx_synctime_numerator_identifier)
+          .getValue());
 
-  void FXComponent::forceValueTreeOntoComponents(ValueTree p_tree){}
-
-
+  m_sync_time.setValueRight(
+      m_value_tree.getParameterAsValue(m_fx_synctime_denominator_identifier)
+          .getValue());
+}

@@ -52,7 +52,7 @@ public:
   void resized() override;
   
   void setSyncTimeColor(juce::Colour p_color){
-    m_synctime.setColor(p_color);
+    m_sync_time.setColor(p_color);
   }
 
   void setImage(juce::Image p_background, bool p_sync) {
@@ -76,7 +76,7 @@ private:
   juce::Image m_background_sync;
   juce::Image m_background_no_sync;
 
-  SyncTimeSelector m_synctime;
+  SyncTimeSelector m_sync_time;
 
   bool m_sync_enabled = false;
 

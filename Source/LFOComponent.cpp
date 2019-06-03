@@ -118,9 +118,9 @@ LFOComponent::LFOComponent(AudioProcessorValueTreeState &vts,
 
   m_sync_time.OnValueChange = [&](int p_left, int p_right) {
     m_value_tree.getParameter(m_lfo_synctime_numerator_identifier)
-        ->setValueNotifyingHost(((float)p_left) / 20.f);
+        ->setValueNotifyingHost(((float)p_left) / 7.f);
     m_value_tree.getParameter(m_lfo_synctime_denominator_identifier)
-        ->setValueNotifyingHost(((float)p_right) / 20.f);
+        ->setValueNotifyingHost(((float)p_right) /8.f);
   };
   m_sync_time.setTopLeftPosition(SYNC_TIME_POS_X, SYNC_TIME_POS_Y);
   m_sync_time.setTooltip("Set the frequency in sync to your track.");
@@ -145,4 +145,17 @@ void LFOComponent::resized() {
                    BLACK_KNOB_SMALL_SIZE_Y);
 }
 
-  void LFOComponent::forceValueTreeOntoComponents(ValueTree p_tree){}
+void LFOComponent::forceValueTreeOntoComponents(ValueTree p_tree) {
+
+  m_selector.setValue(
+      m_value_tree.getParameterAsValue(m_lfo_wave_identifier).getValue());
+
+
+  m_sync_time.setValueLeft(
+      m_value_tree.getParameterAsValue(m_lfo_synctime_numerator_identifier)
+          .getValue());
+
+  m_sync_time.setValueRight(
+      m_value_tree.getParameterAsValue(m_lfo_synctime_denominator_identifier)
+          .getValue());
+}

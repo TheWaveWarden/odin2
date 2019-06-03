@@ -235,4 +235,8 @@ void AmpDistortionFlowComponent::resized() {
   m_dry_wet.setBounds(area_threshold);
 }
 
-void AmpDistortionFlowComponent::forceValueTreeOntoComponents(ValueTree p_tree) {}
+void AmpDistortionFlowComponent::forceValueTreeOntoComponents(ValueTree p_tree) {
+
+    m_distortion_algo.setValue(m_value_tree.getParameterAsValue("dist_algo").getValue());
+
+}
