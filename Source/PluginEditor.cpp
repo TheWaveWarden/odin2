@@ -1071,7 +1071,7 @@ void OdinAudioProcessorEditor::setTooltipEnabled(bool p_enabled) {
 
 void OdinAudioProcessorEditor::forceValueTreeOntoComponents(){
     DBG("FORCE");
-    DBG(m_value_tree.state.toXmlString());
+    //DBG(m_value_tree.state.toXmlString());
 
 
     setOsc1Plate(m_value_tree.getParameterAsValue("osc1_type").getValue());
@@ -1083,11 +1083,11 @@ void OdinAudioProcessorEditor::forceValueTreeOntoComponents(){
     
 
     m_osc1.forceValueTreeOntoComponents(m_value_tree.state, 1);
-    m_osc1.forceValueTreeOntoComponents(m_value_tree.state, 2);
-    m_osc1.forceValueTreeOntoComponents(m_value_tree.state, 3);
+    m_osc2.forceValueTreeOntoComponents(m_value_tree.state, 2);
+    m_osc3.forceValueTreeOntoComponents(m_value_tree.state, 3);
     m_fil1_component.forceValueTreeOntoComponents(m_value_tree.state, 1);
-    m_fil1_component.forceValueTreeOntoComponents(m_value_tree.state, 2);
-    m_fil1_component.forceValueTreeOntoComponents(m_value_tree.state, 3);
+    m_fil2_component.forceValueTreeOntoComponents(m_value_tree.state, 2);
+    m_fil3_component.forceValueTreeOntoComponents(m_value_tree.state, 3);
     m_mod_matrix.forceValueTreeOntoComponents(m_value_tree.state);
     m_lfo_1.forceValueTreeOntoComponents(m_value_tree.state);
     m_lfo_2.forceValueTreeOntoComponents(m_value_tree.state);
