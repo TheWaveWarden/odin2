@@ -295,6 +295,10 @@ protected:
   Identifier m_modulator_ratio_identifier;
   Identifier m_carrier_ratio_identifier;
   Identifier m_analog_wave_identifier;
+  Identifier m_vec_a_identifier;
+  Identifier m_vec_b_identifier;
+  Identifier m_vec_c_identifier;
+  Identifier m_vec_d_identifier;
 
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(OscComponent)
 };

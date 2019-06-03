@@ -47,7 +47,11 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
       m_carrier_wave_identifier("osc" + p_osc_number + "_carrier_wave"),
       m_modulator_ratio_identifier("osc" + p_osc_number + "_modulator_ratio"),
       m_carrier_ratio_identifier("osc" + p_osc_number + "_carrier_ratio"),
-      m_analog_wave_identifier("osc" + p_osc_number + "_analog_wave") {
+      m_analog_wave_identifier("osc" + p_osc_number + "_analog_wave"),
+      m_vec_a_identifier("osc" + p_osc_number + "_vec_a"),
+      m_vec_b_identifier("osc" + p_osc_number + "_vec_b"),
+      m_vec_c_identifier("osc" + p_osc_number + "_vec_c"),
+      m_vec_d_identifier("osc" + p_osc_number + "_vec_d"){
 
   m_oct_attach.reset(
       new SliderAttachment(m_value_tree, "osc" + m_osc_number + "_oct", m_oct));
@@ -1142,7 +1146,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_vec_a.setColor(vector_color);
   m_vec_a.setTooltip("Select the waveform to the bottom left of the XY pad");
   m_vec_a.onChange = [&]() {
-    m_value_tree.getParameter(m_carrier_wave_identifier)
+    m_value_tree.getParameter(m_vec_a_identifier)
         ->setValueNotifyingHost(((float)m_vec_a.getSelectedId() - 0.5f) /
                                 1000.f);
   };
@@ -1158,7 +1162,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_vec_b.setColor(vector_color);
   m_vec_b.setTooltip("Select the waveform to the top left of the XY pad");
   m_vec_b.onChange = [&]() {
-    m_value_tree.getParameter(m_carrier_wave_identifier)
+    m_value_tree.getParameter(m_vec_b_identifier)
         ->setValueNotifyingHost(((float)m_vec_b.getSelectedId() - 0.5f) /
                                 1000.f);
   };
@@ -1174,7 +1178,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_vec_c.setColor(vector_color);
   m_vec_c.setTooltip("Select the waveform to the top right of the XY pad");
   m_vec_c.onChange = [&]() {
-    m_value_tree.getParameter(m_carrier_wave_identifier)
+    m_value_tree.getParameter(m_vec_c_identifier)
         ->setValueNotifyingHost(((float)m_vec_c.getSelectedId() - 0.5f) /
                                 1000.f);
   };
@@ -1190,7 +1194,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_vec_d.setColor(vector_color);
   m_vec_d.setTooltip("Select the waveform to the bottom right of the XY pad");
   m_vec_d.onChange = [&]() {
-    m_value_tree.getParameter(m_carrier_wave_identifier)
+    m_value_tree.getParameter(m_vec_d_identifier)
         ->setValueNotifyingHost(((float)m_vec_d.getSelectedId() - 0.5f) /
                                 1000.f);
   };
@@ -1520,8 +1524,8 @@ void OscComponent::showNoiseComponents() {
 }
 
 void OscComponent::createWavedrawTables() {
-    //DBG("CREATEWAVETABLES OSC\n\n");
-    //DBG(m_osc_number);
+  // DBG("CREATEWAVETABLES OSC\n\n");
+  // DBG(m_osc_number);
   WavetableContainer::getInstance().createWavedrawTable(
       std::stoi(m_osc_number) - 1, m_wavedraw.getDrawnTable(), 44100.f);
 
@@ -1538,7 +1542,6 @@ void OscComponent::createWavedrawTables() {
 void OscComponent::createChipdrawTables() {
   WavetableContainer::getInstance().createChipdrawTable(
       std::stoi(m_osc_number) - 1, m_chipdraw.getDrawnTable(), 44100.f);
-
 
   // write values to audiovaluetree
   float *table = m_chipdraw.getDrawnTable();
@@ -1581,8 +1584,39 @@ void OscComponent::writeChipdrawTableToFile() {
 void OscComponent::forceValueTreeOntoComponents(ValueTree p_tree, int p_index) {
   std::string index = std::to_string(p_index);
 
+  //analog waveform
+  switch (
+      (int)m_value_tree.getParameterAsValue(m_analog_wave_identifier).getValue()) {
+  case 1:
+    m_LED_saw.setToggleState(true, sendNotification);
+    break;
+  case 2:
+    m_LED_pulse.setToggleState(true, sendNotification);
+    break;
+  case 3:
+    m_LED_triangle.setToggleState(true, sendNotification);
+    break;
+  case 4:
+    m_LED_sine.setToggleState(true, sendNotification);
+    break;
+  default:
+    break;
+  }
+
+  //wavetable waveselctor
+  m_wavetable_waveselector.setValue(m_value_tree.getParameterAsValue(m_wavetable_identifier).getValue());
+
+  //vector
+  m_vec_a.setSelectedId(m_value_tree.getParameterAsValue(m_vec_a_identifier).getValue());
+  m_vec_b.setSelectedId(m_value_tree.getParameterAsValue(m_vec_b_identifier).getValue());
+  m_vec_c.setSelectedId(m_value_tree.getParameterAsValue(m_vec_c_identifier).getValue());
+  m_vec_d.setSelectedId(m_value_tree.getParameterAsValue(m_vec_d_identifier).getValue());
+
+  m_carrier_waveselector.setValue(m_value_tree.getParameterAsValue(m_carrier_wave_identifier).getValue());
+  m_modulator_waveselector.setValue(m_value_tree.getParameterAsValue(m_modulator_wave_identifier).getValue());
   
-  //wavedraw
+
+  // wavedraw
   float wavedraw_values[WAVEDRAW_STEPS_X];
   for (int i = 0; i < WAVEDRAW_STEPS_X; ++i) {
     wavedraw_values[i] = m_value_tree
@@ -1593,7 +1627,7 @@ void OscComponent::forceValueTreeOntoComponents(ValueTree p_tree, int p_index) {
   m_wavedraw.setDrawnTable(wavedraw_values);
   createWavedrawTables();
 
-  //chipdraw
+  // chipdraw
   for (int i = 0; i < CHIPDRAW_STEPS_X; ++i) {
     wavedraw_values[i] = m_value_tree
                              .getParameterAsValue("osc" + index + "_chipdraw[" +
@@ -1603,7 +1637,7 @@ void OscComponent::forceValueTreeOntoComponents(ValueTree p_tree, int p_index) {
   m_chipdraw.setDrawnTable(wavedraw_values);
   createChipdrawTables();
 
-  //specdraw
+  // specdraw
   for (int i = 0; i < SPECDRAW_STEPS_X; ++i) {
     wavedraw_values[i] = m_value_tree
                              .getParameterAsValue("osc" + index + "_specdraw[" +

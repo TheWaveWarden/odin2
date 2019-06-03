@@ -142,7 +142,10 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts)
   addAndMakeVisible(m_patch);
 
   m_save.onClick = [&]() {
-    //DBG(m_value_tree.state.toXmlString());
+    // DBG(m_value_tree.state.toXmlString());
+    // TODOTODOTODOT
+
+    /*
     File fileToSave(File::getCurrentWorkingDirectory().getFullPathName() +
                     "/my_patch.odin");
 
@@ -160,61 +163,69 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts)
                                ? String()
                                : (result.isLocalFile()
                                       ? result.getLocalFile().getFullPathName()
-                                      : result.toString(true));
+                                      : result.toString(true));*/
+    String file_name = "/home/frot/odinvst/Builds/LinuxMakefile/autopatch";
 
-          File file_to_write(file_name);
-          FileOutputStream file_stream(file_to_write);
-          if (file_stream.openedOk()) {
-            //use this to overwrite old content
-            file_stream.setPosition(0);
-            file_stream.truncate();
+    File file_to_write(file_name);
+    FileOutputStream file_stream(file_to_write);
+    if (file_stream.openedOk()) {
+      // use this to overwrite old content
+      file_stream.setPosition(0);
+      file_stream.truncate();
 
-            m_value_tree.state.writeToStream(file_stream);
-            m_patch.setText(getFileNameFromAbsolute(file_name.toStdString()));
-          }
+      m_value_tree.state.writeToStream(file_stream);
+      m_patch.setText(getFileNameFromAbsolute(file_name.toStdString()));
+    }
+    // TODOTODOTODOT
+    /*
+              //DBG("Wrote patch to " + file_name);
+            });
 
-
-          //DBG("Wrote patch to " + file_name);
-        });
+            */
   };
 
   m_load.onClick = [&]() {
-    m_filechooser.reset(new FileChooser("Choose a file to open...",
-                                        File::getCurrentWorkingDirectory(), "*",
-                                        true));
+    /*m_filechooser.reset(new FileChooser("Choose a file to open...",
+                                        File::getCurrentWorkingDirectory(),
+                                        "*", true));
+    // TODOTODOTODOT
 
     m_filechooser->launchAsync(
-        FileBrowserComponent::openMode | FileBrowserComponent::canSelectFiles,
-        [this](const FileChooser &chooser) {
-          String file_name;
-          auto results = chooser.getURLResults();
+        FileBrowserComponent::openMode |
+       FileBrowserComponent::canSelectFiles, [this](const FileChooser
+       &chooser) { String file_name; auto results = chooser.getURLResults();
 
           for (auto result : results)
             file_name << (result.isLocalFile()
                               ? result.getLocalFile().getFullPathName()
                               : result.toString(false));
+*/
+    String file_name = "/home/frot/odinvst/Builds/LinuxMakefile/autopatch";
+    File file_to_read(file_name);
 
-          File file_to_read(file_name);
+    FileInputStream file_stream(file_to_read);
+    if (file_stream.openedOk()) {
+      m_value_tree.state.copyPropertiesAndChildrenFrom(
+          m_value_tree.state.readFromStream(file_stream), nullptr);
+      m_patch.setText(file_to_read.getFileNameWithoutExtension().toStdString());
+      DBG("Loaded patch " + file_name);
+    }
+    forceValueTreeLambda();//todo this is duplicate
+    // TODOTODOTODOT
 
-          FileInputStream file_stream(file_to_read);
-          if (file_stream.openedOk()) {
-            m_value_tree.state.copyPropertiesAndChildrenFrom(
-                m_value_tree.state.readFromStream(file_stream), nullptr);
-            m_patch.setText(
-                file_to_read.getFileNameWithoutExtension().toStdString());
-            DBG("Loaded patch " + file_name);
-          } else {
-            DBG("Failed to open stream. Error message: " +
-                file_stream.getStatus().getErrorMessage().toStdString());
-            DBG(file_name);
-            AlertWindow::showMessageBoxAsync(AlertWindow::InfoIcon,
-                                             "File Chooser...",
-                                             "Failed to open file!");
-          }
-          //DBG(m_value_tree.state.toXmlString());
+    /*       } else {
+             DBG("Failed to open stream. Error message: " +
+                 file_stream.getStatus().getErrorMessage().toStdString());
+             DBG(file_name);
+             //AlertWindow::showMessageBoxAsync(AlertWindow::InfoIcon,
+             //                                 "File Chooser...",
+             //                                 "Failed to open file!");
+           }
+           //DBG(m_value_tree.state.toXmlString());
 
-          forceValueTreeLambda();
-        });
+           forceValueTreeLambda();
+         });
+         */
   };
 }
 
