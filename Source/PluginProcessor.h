@@ -98,9 +98,11 @@ public:
   }
 
   void midiForget(Knob *p_knob) {
-    for (std::multimap<int, Knob*>::iterator iter = m_midi_control_list_knob.begin(); iter != m_midi_control_list_knob.end();) {
-      std::multimap<int, Knob*>::iterator erase_iter = iter++;
-      if (erase_iter->second  == p_knob) {
+    for (std::multimap<int, Knob *>::iterator iter =
+             m_midi_control_list_knob.begin();
+         iter != m_midi_control_list_knob.end();) {
+      std::multimap<int, Knob *>::iterator erase_iter = iter++;
+      if (erase_iter->second == p_knob) {
         m_midi_control_list_knob.erase(erase_iter);
         return;
       }
@@ -129,9 +131,11 @@ public:
   }
 
   void midiForget(DrawableSlider *p_slider) {
-    for (std::multimap<int, DrawableSlider*>::iterator iter = m_midi_control_list_slider.begin(); iter != m_midi_control_list_slider.end();) {
-      std::multimap<int, DrawableSlider*>::iterator erase_iter = iter++;
-      if (erase_iter->second  == p_slider) {
+    for (std::multimap<int, DrawableSlider *>::iterator iter =
+             m_midi_control_list_slider.begin();
+         iter != m_midi_control_list_slider.end();) {
+      std::multimap<int, DrawableSlider *>::iterator erase_iter = iter++;
+      if (erase_iter->second == p_slider) {
         m_midi_control_list_slider.erase(erase_iter);
         return;
       }
@@ -160,9 +164,11 @@ public:
   }
 
   void midiForget(LeftRightButton *p_button) {
-    for (std::multimap<int, LeftRightButton*>::iterator iter = m_midi_control_list_lrbutton.begin(); iter != m_midi_control_list_lrbutton.end();) {
-      std::multimap<int, LeftRightButton*>::iterator erase_iter = iter++;
-      if (erase_iter->second  == p_button) {
+    for (std::multimap<int, LeftRightButton *>::iterator iter =
+             m_midi_control_list_lrbutton.begin();
+         iter != m_midi_control_list_lrbutton.end();) {
+      std::multimap<int, LeftRightButton *>::iterator erase_iter = iter++;
+      if (erase_iter->second == p_button) {
         m_midi_control_list_lrbutton.erase(erase_iter);
         return;
       }
@@ -191,9 +197,11 @@ public:
   }
 
   void midiForget(OdinButton *p_button) {
-    for (std::multimap<int, OdinButton*>::iterator iter = m_midi_control_list_odinbutton.begin(); iter != m_midi_control_list_odinbutton.end();) {
-      std::multimap<int, OdinButton*>::iterator erase_iter = iter++;
-      if (erase_iter->second  == p_button) {
+    for (std::multimap<int, OdinButton *>::iterator iter =
+             m_midi_control_list_odinbutton.begin();
+         iter != m_midi_control_list_odinbutton.end();) {
+      std::multimap<int, OdinButton *>::iterator erase_iter = iter++;
+      if (erase_iter->second == p_button) {
         m_midi_control_list_odinbutton.erase(erase_iter);
         return;
       }
@@ -210,6 +218,11 @@ public:
     m_midi_learn_odinbutton_active = false;
     m_midi_learn_odinbutton = nullptr;
   }
+
+  std::function<void()> onSetStateInformation = []() {
+    DBG("ATTENTION: onSetStateInformation() was not set yet, but "
+        "called!\n\n\n");
+  };
 
 private:
   bool m_midi_learn_knob_active = false;

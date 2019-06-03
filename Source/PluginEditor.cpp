@@ -74,6 +74,10 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
       m_phaser_position_identifier("phaser_position"),
       m_chorus_position_identifier("chorus_position"), m_mod_matrix(vts), m_save_load(vts) {
 
+  p_processor.onSetStateInformation = [&](){
+      forceValueTreeOntoComponents();
+  };
+
   m_save_load.forceValueTreeLambda = [&](){
       forceValueTreeOntoComponents();
   };

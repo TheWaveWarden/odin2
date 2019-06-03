@@ -151,10 +151,9 @@ OdinAudioProcessor::OdinAudioProcessor()
   // WavetableContainer::getInstance().writeWavetablesToFiles();//use this to
   // write the tables to header files
 
-  //WavetableContainer::getInstance().createWavetables(44100.f);
+  // WavetableContainer::getInstance().createWavetables(44100.f);
   // WavetableContainer::getInstance().loadWavetablesAfterFourierCreation();
-  //WavetableContainer::getInstance().generateAudioValueCode();
-  
+  // WavetableContainer::getInstance().generateAudioValueCode();
 
   WavetableContainer::getInstance().loadWavetablesFromConstData();
 
@@ -166,7 +165,7 @@ OdinAudioProcessor::OdinAudioProcessor()
   for (int i = 0; i < WAVEDRAW_STEPS_X; ++i) {
     draw_values[i] = sin((float)i * 2 * M_PI / WAVEDRAW_STEPS_X) * 0.9;
   }
-  for(int i = 0; i < CHIPDRAW_STEPS_X; ++i){
+  for (int i = 0; i < CHIPDRAW_STEPS_X; ++i) {
     if (i < CHIPDRAW_STEPS_X / 2) {
       chip_values[i] = 1;
     } else {
@@ -174,15 +173,17 @@ OdinAudioProcessor::OdinAudioProcessor()
     }
   }
   for (int osc = 0; osc < 3; ++osc) {
-    WavetableContainer::getInstance().createWavedrawTable(osc, draw_values, 44100);
-    WavetableContainer::getInstance().createChipdrawTable(osc, chip_values, 44100);
-    WavetableContainer::getInstance().createSpecdrawTable(osc, spec_values, 44100);
+    WavetableContainer::getInstance().createWavedrawTable(osc, draw_values,
+                                                          44100);
+    WavetableContainer::getInstance().createChipdrawTable(osc, chip_values,
+                                                          44100);
+    WavetableContainer::getInstance().createSpecdrawTable(osc, spec_values,
+                                                          44100);
   }
 
+  // WavetableContainer::getInstance().createLFOtables(44100.);
 
-  //WavetableContainer::getInstance().createLFOtables(44100.);
-
-  //WavetableContainer::getInstance().writeLFOtablesToFiles();//use this to
+  // WavetableContainer::getInstance().writeLFOtablesToFiles();//use this to
 
   // load wavetables into oscs
   for (int i = 0; i < VOICES; ++i) {
@@ -404,8 +405,9 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
             }
           }
           m_voice_manager.clearKillList();
-        } else if (midi_message.isAftertouch()){
-          //todo this is untested, are values set back to zero, or need to do it manually?
+        } else if (midi_message.isAftertouch()) {
+          // todo this is untested, are values set back to zero, or need to do
+          // it manually?
           m_MIDI_aftertouch = (float)midi_message.getAfterTouchValue() / 127.f;
         } else {
           DBG("UNHANDELED MIDI MESSAGE: " + midi_message.getDescription());
@@ -786,6 +788,9 @@ void OdinAudioProcessor::getStateInformation(MemoryBlock &destData) {
   // You should use this method to store your parameters in the memory block.
   // You could do that either as raw data, or use the XML or ValueTree classes
   // as intermediaries to make it easy to save and load complex data.
+  auto state = m_parameters.copyState();
+  std::unique_ptr<XmlElement> xml(state.createXml());
+  copyXmlToBinary(*xml, destData);
 }
 
 void OdinAudioProcessor::setStateInformation(const void *data,
@@ -793,6 +798,14 @@ void OdinAudioProcessor::setStateInformation(const void *data,
   // You should use this method to restore your parameters from this memory
   // block, whose contents will have been created by the getStateInformation()
   // call.
+  std::unique_ptr<XmlElement> xmlState(getXmlFromBinary(data, sizeInBytes));
+  if (xmlState.get() != nullptr) {
+    if (xmlState->hasTagName(m_parameters.state.getType()))
+      m_parameters.replaceState(ValueTree::fromXml(*xmlState));
+      //force values on GUI
+      onSetStateInformation();
+
+  }
 }
 
 //==============================================================================
