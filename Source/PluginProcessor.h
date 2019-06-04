@@ -307,6 +307,8 @@ private:
   float *m_master_mod;
 
   int m_counter = 0; // todo remove
+
+  bool m_force_values_onto_gui = false;//used for loading state and then remembering to force values once the editor was created
 #include "AudioVarDeclarations.h"
   //==============================================================================
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(OdinAudioProcessor)

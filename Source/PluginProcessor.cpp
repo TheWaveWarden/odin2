@@ -8,6 +8,8 @@
   ==============================================================================
 */
 
+#include <typeinfo>
+
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 
@@ -780,7 +782,12 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
 bool OdinAudioProcessor::hasEditor() const { return true; }
 
 AudioProcessorEditor *OdinAudioProcessor::createEditor() {
-  return new OdinAudioProcessorEditor(*this, m_parameters);
+  AudioProcessorEditor *editor =
+      new OdinAudioProcessorEditor(*this, m_parameters);
+  if (m_force_values_onto_gui) {
+    onSetStateInformation();
+  }
+  return editor;
 }
 
 //==============================================================================
@@ -791,6 +798,7 @@ void OdinAudioProcessor::getStateInformation(MemoryBlock &destData) {
   auto state = m_parameters.copyState();
   std::unique_ptr<XmlElement> xml(state.createXml());
   copyXmlToBinary(*xml, destData);
+  DBG("SET BINARY STATE!!");
 }
 
 void OdinAudioProcessor::setStateInformation(const void *data,
@@ -798,13 +806,25 @@ void OdinAudioProcessor::setStateInformation(const void *data,
   // You should use this method to restore your parameters from this memory
   // block, whose contents will have been created by the getStateInformation()
   // call.
+
+  //if(JUCEApplicationBase::isStandaloneApplication()){
+  //    return;
+  //}
+  if(typeid(wrapperType) == typeid(wrapperType_Standalone)){
+      return;
+  }
+  wrapperType;
+
+
   std::unique_ptr<XmlElement> xmlState(getXmlFromBinary(data, sizeInBytes));
   if (xmlState.get() != nullptr) {
     if (xmlState->hasTagName(m_parameters.state.getType()))
       m_parameters.replaceState(ValueTree::fromXml(*xmlState));
-      //force values on GUI
-      onSetStateInformation();
-
+    // force values on GUI
+    m_force_values_onto_gui = true;
+    DBG("LOADED BINARY STATE!!");
+    
+    //onSetStateInformation();
   }
 }
 

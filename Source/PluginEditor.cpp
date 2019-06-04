@@ -75,6 +75,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
       m_chorus_position_identifier("chorus_position"), m_mod_matrix(vts), m_save_load(vts) {
 
   p_processor.onSetStateInformation = [&](){
+      DBG("ONSETSTATEINFORMATION!\n\n\n\n");
       forceValueTreeOntoComponents();
   };
 
