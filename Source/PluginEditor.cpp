@@ -13,7 +13,7 @@
 
 //==============================================================================
 OdinAudioProcessorEditor::OdinAudioProcessorEditor(
-    OdinAudioProcessor &p_processor, AudioProcessorValueTreeState &vts)
+    OdinAudioProcessor &p_processor, AudioProcessorValueTreeState &vts, bool p_is_standalone) 
     : m_value_tree(vts), m_fx_buttons_section(vts),
       AudioProcessorEditor(&p_processor), processor(p_processor),
       m_osc1_dropdown("osc1_dropdown_button",
@@ -60,9 +60,9 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
       m_fil1_component(vts, "1"), m_fil2_component(vts, "2"),
       m_fil3_component(vts, "3"), m_midsection(vts), m_adsr_1(vts, "1"),
       m_adsr_2(vts, "2"), m_adsr_3(vts, "3"), m_adsr_4(vts, "4"),
-      m_lfo_1(vts, "1"), m_lfo_2(vts, "2"), m_lfo_3(vts, "3"),
-      m_lfo_4(vts, "4"), m_delay(vts), m_phaser(vts, "phaser"),
-      m_flanger(vts, "flanger"), m_chorus(vts, "chorus"),
+      m_lfo_1(vts, "1", p_is_standalone), m_lfo_2(vts, "2", p_is_standalone), m_lfo_3(vts, "3", p_is_standalone),
+      m_lfo_4(vts, "4", p_is_standalone), m_delay(vts, p_is_standalone), m_phaser(vts, "phaser", p_is_standalone),
+      m_flanger(vts, "flanger", p_is_standalone), m_chorus(vts, "chorus", p_is_standalone),
       m_xy_section(vts, "xy"), m_osc1_type_indentifier("osc1_type"),
       m_osc2_type_indentifier("osc2_type"),
       m_osc3_type_indentifier("osc3_type"),
@@ -74,6 +74,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
       m_flanger_position_identifier("flanger_position"),
       m_phaser_position_identifier("phaser_position"),
       m_chorus_position_identifier("chorus_position"), m_mod_matrix(vts), m_tooltip(nullptr, 2047483647),
+      m_is_standalone_plugin(p_is_standalone),
       m_save_load(vts) {
 
   //disable tooltip first? it kept popping up on startup

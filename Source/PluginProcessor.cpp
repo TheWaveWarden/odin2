@@ -783,7 +783,7 @@ bool OdinAudioProcessor::hasEditor() const { return true; }
 
 AudioProcessorEditor *OdinAudioProcessor::createEditor() {
   AudioProcessorEditor *editor =
-      new OdinAudioProcessorEditor(*this, m_parameters);
+      new OdinAudioProcessorEditor(*this, m_parameters, typeid(wrapperType) == typeid(wrapperType_Standalone));
   if (m_force_values_onto_gui) {
     onSetStateInformation();
   }

@@ -7,13 +7,14 @@
 
   ==============================================================================
 */
+#include <typeinfo>
 
-#include "LFOComponent.h"
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "LFOComponent.h"
 
 //==============================================================================
 LFOComponent::LFOComponent(AudioProcessorValueTreeState &vts,
-                           std::string p_lfo_number)
+                           std::string p_lfo_number, bool p_is_standalone)
     : m_value_tree(vts), m_lfo_number(p_lfo_number),
       m_reset("reset", juce::DrawableButton::ButtonStyle::ImageRaw),
       m_sync("sync", juce::DrawableButton::ButtonStyle::ImageRaw),
@@ -21,13 +22,12 @@ LFOComponent::LFOComponent(AudioProcessorValueTreeState &vts,
       m_lfo_synctime_denominator_identifier("lfo" + p_lfo_number +
                                             "_synctime_denominator"),
       m_lfo_synctime_numerator_identifier("lfo" + p_lfo_number +
-                                          "_synctime_numerator") {
+                                          "_synctime_numerator"),
+      m_is_standalone_plugin(p_is_standalone) {
 
   m_freq_attach.reset(new SliderAttachment(
       m_value_tree, "lfo" + m_lfo_number + "_freq", m_freq));
 
-  m_sync_attach.reset(new ButtonAttachment(
-      m_value_tree, "lfo" + m_lfo_number + "_sync", m_sync));
   m_reset_attach.reset(new ButtonAttachment(
       m_value_tree, "lfo" + m_lfo_number + "_reset", m_reset));
 
@@ -80,17 +80,26 @@ LFOComponent::LFOComponent(AudioProcessorValueTreeState &vts,
   sync_draw3.setImage(sync_3);
   sync_draw4.setImage(sync_4);
 
-  m_sync.setImages(&sync_draw2, &sync_draw2, &sync_draw1, &sync_draw1,
-                   &sync_draw4, &sync_draw4, &sync_draw3, &sync_draw3);
-  m_sync.setClickingTogglesState(true);
-  m_sync.setBounds(SYNC_POS_X, SYNC_POS_Y, sync_1.getWidth(),
-                   sync_1.getHeight());
-  m_sync.setTriggeredOnMouseDown(true);
-  m_sync.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId,
-                   juce::Colour());
-  m_sync.onClick = [&]() { setSync(m_sync.getToggleState()); };
-  m_sync.setTooltip("Enables syncing the LFO\nto the speed of your track");
-  addAndMakeVisible(m_sync);
+  if (!m_is_standalone_plugin) {
+    m_sync_attach.reset(new ButtonAttachment(
+        m_value_tree, "lfo" + m_lfo_number + "_sync", m_sync));
+    m_sync.setImages(&sync_draw2, &sync_draw2, &sync_draw1, &sync_draw1,
+                     &sync_draw4, &sync_draw4, &sync_draw3, &sync_draw3);
+    m_sync.setClickingTogglesState(true);
+    m_sync.setBounds(SYNC_POS_X, SYNC_POS_Y, sync_1.getWidth(),
+                     sync_1.getHeight());
+    m_sync.setTriggeredOnMouseDown(true);
+    m_sync.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId,
+                     juce::Colour());
+    addAndMakeVisible(m_sync);
+    m_sync.setTooltip("Enables syncing the LFO\nto the speed of your track");
+  }
+  m_sync.onClick = [&]() {
+    if (!m_is_standalone_plugin) {
+      setSync(m_sync.getToggleState());
+    }
+  };
+
   juce::Image black_knob_small = ImageCache::getFromFile(
       juce::File(GRAPHICS_PATH + "cropped/knobs/black2/black_knob_small.png"));
 
@@ -120,7 +129,7 @@ LFOComponent::LFOComponent(AudioProcessorValueTreeState &vts,
     m_value_tree.getParameter(m_lfo_synctime_numerator_identifier)
         ->setValueNotifyingHost(((float)p_left) / 7.f);
     m_value_tree.getParameter(m_lfo_synctime_denominator_identifier)
-        ->setValueNotifyingHost(((float)p_right) /8.f);
+        ->setValueNotifyingHost(((float)p_right) / 8.f);
   };
   m_sync_time.setTopLeftPosition(SYNC_TIME_POS_X, SYNC_TIME_POS_Y);
   m_sync_time.setTooltip("Set the frequency in sync to your track.");
@@ -149,7 +158,6 @@ void LFOComponent::forceValueTreeOntoComponents(ValueTree p_tree) {
 
   m_selector.setValue(
       m_value_tree.getParameterAsValue(m_lfo_wave_identifier).getValue());
-
 
   m_sync_time.setValueLeft(
       m_value_tree.getParameterAsValue(m_lfo_synctime_numerator_identifier)

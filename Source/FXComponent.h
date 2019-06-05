@@ -42,7 +42,7 @@
  */
 class FXComponent : public Component {
 public:
-  FXComponent(AudioProcessorValueTreeState &vts, std::string p_fx_name);
+  FXComponent(AudioProcessorValueTreeState &vts, std::string p_fx_name, bool p_is_standalone);
   ~FXComponent();
 
   void forceValueTreeOntoComponents(ValueTree p_tree);
@@ -66,6 +66,8 @@ public:
   void setSyncEnabled(bool p_sync);
 
 private:
+  bool m_is_standalone_plugin;
+
   Knob m_freq;
   Knob m_amount;
   Knob m_dry_wet;

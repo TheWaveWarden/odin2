@@ -48,7 +48,7 @@
  */
 class LFOComponent : public Component {
 public:
-  LFOComponent(AudioProcessorValueTreeState& vts, std::string p_lfo_number);
+  LFOComponent(AudioProcessorValueTreeState& vts, std::string p_lfo_number, bool p_is_standalone);
   ~LFOComponent();
 
   void forceValueTreeOntoComponents(ValueTree p_tree);
@@ -100,6 +100,8 @@ private:
   Identifier m_lfo_wave_identifier;
   Identifier m_lfo_synctime_numerator_identifier;
   Identifier m_lfo_synctime_denominator_identifier;
+
+  bool m_is_standalone_plugin;
 
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(LFOComponent)
 };

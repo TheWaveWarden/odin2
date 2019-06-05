@@ -168,7 +168,7 @@ public:
 class OdinAudioProcessorEditor  : public AudioProcessorEditor
 {
 public:
-    OdinAudioProcessorEditor (OdinAudioProcessor& p_processor, AudioProcessorValueTreeState& vts);
+    OdinAudioProcessorEditor (OdinAudioProcessor& p_processor, AudioProcessorValueTreeState& vts, bool p_is_standalone);
     ~OdinAudioProcessorEditor();
 
     //==============================================================================
@@ -308,6 +308,8 @@ private:
   void setEnv24(bool p_env24);
   void setLfo13(bool p_lfo13);
   void setLfo24(bool p_lfo24);
+
+  bool m_is_standalone_plugin;
 
 
 

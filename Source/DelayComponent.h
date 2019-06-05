@@ -55,7 +55,7 @@
 class DelayComponent : public Component
 {
 public:
-  DelayComponent(AudioProcessorValueTreeState& vts);
+  DelayComponent(AudioProcessorValueTreeState& vts, bool p_is_standalone);
   ~DelayComponent();
 
   void forceValueTreeOntoComponents(ValueTree p_tree);
@@ -93,6 +93,7 @@ public:
   }
 
 private:
+  bool m_is_standalone_plugin;
   bool m_sync_on = false;
 
   juce::Image m_background;

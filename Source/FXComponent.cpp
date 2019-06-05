@@ -14,8 +14,9 @@
 
 //==============================================================================
 FXComponent::FXComponent(AudioProcessorValueTreeState &vts,
-                         std::string p_fx_name)
+                         std::string p_fx_name, bool p_is_standalone)
     : m_value_tree(vts), m_fx_name(p_fx_name),
+      m_is_standalone_plugin(p_is_standalone),
       m_sync("sync", juce::DrawableButton::ButtonStyle::ImageRaw),
       m_reset("reset", juce::DrawableButton::ButtonStyle::ImageRaw),
       m_fx_synctime_denominator_identifier(p_fx_name + "_synctime_denominator"),
@@ -28,8 +29,6 @@ FXComponent::FXComponent(AudioProcessorValueTreeState &vts,
   m_drywet_attach.reset(
       new SliderAttachment(m_value_tree, m_fx_name + "_drywet", m_dry_wet));
 
-  m_sync_attach.reset(
-      new ButtonAttachment(m_value_tree, m_fx_name + "_sync", m_sync));
   m_reset_attach.reset(
       new ButtonAttachment(m_value_tree, m_fx_name + "_reset", m_reset));
 
@@ -118,17 +117,25 @@ FXComponent::FXComponent(AudioProcessorValueTreeState &vts,
   sync_draw3.setImage(sync_3);
   sync_draw4.setImage(sync_4);
 
-  m_sync.setImages(&sync_draw2, &sync_draw2, &sync_draw1, &sync_draw1,
-                   &sync_draw4, &sync_draw4, &sync_draw3, &sync_draw3);
-  m_sync.setClickingTogglesState(true);
-  m_sync.setBounds(FX_SYNC_POS_X, FX_SYNC_POS_Y, sync_1.getWidth(),
-                   sync_1.getHeight());
-  m_sync.setTriggeredOnMouseDown(true);
-  m_sync.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId,
-                   juce::Colour());
-  m_sync.onStateChange = [&]() { setSyncEnabled(m_sync.getToggleState()); };
-  m_sync.setTooltip("Syncs the internal LFOs\nspeed to your track");
-  addAndMakeVisible(m_sync);
+  if (!m_is_standalone_plugin) {
+    m_sync_attach.reset(
+        new ButtonAttachment(m_value_tree, m_fx_name + "_sync", m_sync));
+    m_sync.setImages(&sync_draw2, &sync_draw2, &sync_draw1, &sync_draw1,
+                     &sync_draw4, &sync_draw4, &sync_draw3, &sync_draw3);
+    m_sync.setClickingTogglesState(true);
+    m_sync.setBounds(FX_SYNC_POS_X, FX_SYNC_POS_Y, sync_1.getWidth(),
+                     sync_1.getHeight());
+    m_sync.setTriggeredOnMouseDown(true);
+    m_sync.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId,
+                     juce::Colour());
+    m_sync.setTooltip("Syncs the internal LFOs\nspeed to your track");
+    addAndMakeVisible(m_sync);
+  }
+  m_sync.onStateChange = [&]() {
+    if (!m_is_standalone_plugin) {
+      setSyncEnabled(m_sync.getToggleState());
+    }
+  };
 
   m_sync_time.OnValueChange = [&](int p_left, int p_right) {
     m_value_tree.getParameter(m_fx_synctime_numerator_identifier)

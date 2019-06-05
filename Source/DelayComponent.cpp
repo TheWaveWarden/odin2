@@ -12,11 +12,13 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 
 //==============================================================================
-DelayComponent::DelayComponent(AudioProcessorValueTreeState &vts)
+DelayComponent::DelayComponent(AudioProcessorValueTreeState &vts,
+                               bool p_is_standalone)
     : m_sync("sync", juce::DrawableButton::ButtonStyle::ImageRaw),
       m_value_tree(vts),
       m_delay_synctime_denominator_identifier("delay_synctime_denominator"),
-      m_delay_synctime_numerator_identifier("delay_synctime_numerator") {
+      m_delay_synctime_numerator_identifier("delay_synctime_numerator"),
+      m_is_standalone_plugin(p_is_standalone) {
 
   m_delay_time_attach.reset(
       new SliderAttachment(m_value_tree, "delay_time", m_time));
@@ -30,39 +32,44 @@ DelayComponent::DelayComponent(AudioProcessorValueTreeState &vts)
   m_delay_wet_attach.reset(
       new SliderAttachment(m_value_tree, "delay_wet", m_wet));
 
-  m_sync_attach.reset(new ButtonAttachment(m_value_tree, "", m_sync));
+  if (!m_is_standalone_plugin) {
+    m_sync_attach.reset(new ButtonAttachment(m_value_tree, "", m_sync));
 
-  juce::Image sync_1 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonsync_1.png"));
-  juce::Image sync_2 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonsync_2.png"));
-  juce::Image sync_3 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonsync_3.png"));
-  juce::Image sync_4 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonsync_4.png"));
+    juce::Image sync_1 = ImageCache::getFromFile(
+        juce::File(GRAPHICS_PATH + "cropped/buttons/buttonsync_1.png"));
+    juce::Image sync_2 = ImageCache::getFromFile(
+        juce::File(GRAPHICS_PATH + "cropped/buttons/buttonsync_2.png"));
+    juce::Image sync_3 = ImageCache::getFromFile(
+        juce::File(GRAPHICS_PATH + "cropped/buttons/buttonsync_3.png"));
+    juce::Image sync_4 = ImageCache::getFromFile(
+        juce::File(GRAPHICS_PATH + "cropped/buttons/buttonsync_4.png"));
 
-  juce::DrawableImage sync_draw1;
-  juce::DrawableImage sync_draw2;
-  juce::DrawableImage sync_draw3;
-  juce::DrawableImage sync_draw4;
+    juce::DrawableImage sync_draw1;
+    juce::DrawableImage sync_draw2;
+    juce::DrawableImage sync_draw3;
+    juce::DrawableImage sync_draw4;
 
-  sync_draw1.setImage(sync_1);
-  sync_draw2.setImage(sync_2);
-  sync_draw3.setImage(sync_3);
-  sync_draw4.setImage(sync_4);
+    sync_draw1.setImage(sync_1);
+    sync_draw2.setImage(sync_2);
+    sync_draw3.setImage(sync_3);
+    sync_draw4.setImage(sync_4);
 
-  m_sync.setImages(&sync_draw2, &sync_draw2, &sync_draw1, &sync_draw1,
-                   &sync_draw4, &sync_draw4, &sync_draw3, &sync_draw3);
-  m_sync.setClickingTogglesState(true);
-  m_sync.setBounds(DELAY_SYNC_POS_X, DELAY_SYNC_POS_Y, sync_1.getWidth(),
-                   sync_1.getHeight());
-  m_sync.setTriggeredOnMouseDown(true);
-  m_sync.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId,
-                   juce::Colour());
-  m_sync.onStateChange = [&]() { setSync(m_sync.getToggleState()); };
-  m_sync.setTooltip("Syncs the delay time to your track");
-  addAndMakeVisible(m_sync);
-
+    m_sync.setImages(&sync_draw2, &sync_draw2, &sync_draw1, &sync_draw1,
+                     &sync_draw4, &sync_draw4, &sync_draw3, &sync_draw3);
+    m_sync.setClickingTogglesState(true);
+    m_sync.setBounds(DELAY_SYNC_POS_X, DELAY_SYNC_POS_Y, sync_1.getWidth(),
+                     sync_1.getHeight());
+    m_sync.setTriggeredOnMouseDown(true);
+    m_sync.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId,
+                     juce::Colour());
+    m_sync.setTooltip("Syncs the delay time to your track");
+    addAndMakeVisible(m_sync);
+  }
+  m_sync.onStateChange = [&]() {
+    if (!m_is_standalone_plugin) {
+      setSync(m_sync.getToggleState());
+    }
+  };
   juce::Image metal_knob_big = ImageCache::getFromFile(
       juce::File(GRAPHICS_PATH + "cropped/knobs/metal3/metal_knob_big.png"));
   juce::Image black_knob_mid = ImageCache::getFromFile(
@@ -130,8 +137,7 @@ DelayComponent::DelayComponent(AudioProcessorValueTreeState &vts)
   m_wet.setKnobTooltip("Volume of the delayed signal only");
   addAndMakeVisible(m_wet);
 
-  m_sync_attach.reset(
-      new ButtonAttachment(m_value_tree, "delay_sync", m_sync));
+  m_sync_attach.reset(new ButtonAttachment(m_value_tree, "delay_sync", m_sync));
 
   m_sync_time.OnValueChange = [&](int p_left, int p_right) {
     m_value_tree.getParameter(m_delay_synctime_numerator_identifier)
