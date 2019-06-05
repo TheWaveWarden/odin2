@@ -1018,7 +1018,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_wavetable_waveselector.addWave(12, "Skyline");
   m_wavetable_waveselector.addWave(13, "Soft");
   m_wavetable_waveselector.addWave(14, "MultiSaw");
-  m_wavetable_waveselector.addWave(15, "Wave15");
+  m_wavetable_waveselector.addWave(15, "Recangular");
   m_wavetable_waveselector.addWave(16, "Wave16");
   m_wavetable_waveselector.addWave(17, "Wave17");
   m_wavetable_waveselector.addWave(18, "Wave18");

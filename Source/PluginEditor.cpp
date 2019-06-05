@@ -15,7 +15,7 @@
 OdinAudioProcessorEditor::OdinAudioProcessorEditor(
     OdinAudioProcessor &p_processor, AudioProcessorValueTreeState &vts)
     : m_value_tree(vts), m_fx_buttons_section(vts),
-    AudioProcessorEditor(&p_processor), processor(p_processor),
+      AudioProcessorEditor(&p_processor), processor(p_processor),
       m_osc1_dropdown("osc1_dropdown_button",
                       juce::DrawableButton::ButtonStyle::ImageRaw),
       m_osc2_dropdown("osc2_dropdown_button",
@@ -55,8 +55,9 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
                         juce::DrawableButton::ButtonStyle::ImageRaw),
       m_env_13_button("env13_button"), m_env_24_button("env24_button"),
       m_lfo_13_button("lfo13_button"), m_lfo_24_button("lfo24_button"),
-      m_pitch_amount(true), m_osc1(p_processor, vts, "1"), m_osc2(p_processor, vts, "2"),
-      m_osc3(p_processor, vts, "3"), m_fil1_component(vts, "1"), m_fil2_component(vts, "2"),
+      m_pitch_amount(true), m_osc1(p_processor, vts, "1"),
+      m_osc2(p_processor, vts, "2"), m_osc3(p_processor, vts, "3"),
+      m_fil1_component(vts, "1"), m_fil2_component(vts, "2"),
       m_fil3_component(vts, "3"), m_midsection(vts), m_adsr_1(vts, "1"),
       m_adsr_2(vts, "2"), m_adsr_3(vts, "3"), m_adsr_4(vts, "4"),
       m_lfo_1(vts, "1"), m_lfo_2(vts, "2"), m_lfo_3(vts, "3"),
@@ -72,16 +73,19 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
       m_delay_position_identifier("delay_position"),
       m_flanger_position_identifier("flanger_position"),
       m_phaser_position_identifier("phaser_position"),
-      m_chorus_position_identifier("chorus_position"), m_mod_matrix(vts), m_save_load(vts) {
+      m_chorus_position_identifier("chorus_position"), m_mod_matrix(vts), m_tooltip(nullptr, 2047483647),
+      m_save_load(vts) {
 
-  p_processor.onSetStateInformation = [&](){
-      DBG("ONSETSTATEINFORMATION!\n\n\n\n");
-      forceValueTreeOntoComponents();
+  //disable tooltip first? it kept popping up on startup
+  //m_tooltip.setMillisecondsBeforeTipAppears(2047483647);
+  //m_tooltip.hideTip();
+
+  p_processor.onSetStateInformation = [&]() {
+    // DBG("ONSETSTATEINFORMATION!\n\");
+    forceValueTreeOntoComponents();
   };
 
-  m_save_load.forceValueTreeLambda = [&](){
-      forceValueTreeOntoComponents();
-  };
+  m_save_load.forceValueTreeLambda = [&]() { forceValueTreeOntoComponents(); };
 
   Knob::setOdinPointer(&p_processor);
   DrawableSlider::setOdinPointer(&p_processor);
@@ -110,7 +114,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
   m_filter_dropdown_menu.addItem(5, "Bandpass 12");
   m_filter_dropdown_menu.addItem(6, "Highpass 24");
   m_filter_dropdown_menu.addItem(7, "Highpass 12");
-  m_filter_dropdown_menu.addSeparator();  
+  m_filter_dropdown_menu.addSeparator();
   m_filter_dropdown_menu.addItem(8, "Oberheim 12");
   m_filter_dropdown_menu.addItem(9, "Diode Ladder");
   m_filter_dropdown_menu.addItem(10, "Korg 35 LP");
@@ -917,7 +921,7 @@ void OdinAudioProcessorEditor::resized() {
 }
 
 void OdinAudioProcessorEditor::setOsc1Plate(int p_osc_type) {
-    DBG(p_osc_type);
+  DBG(p_osc_type);
   if (p_osc_type == 0) {
     return;
   }
@@ -1078,36 +1082,34 @@ void OdinAudioProcessorEditor::setTooltipEnabled(bool p_enabled) {
   }
 }
 
+void OdinAudioProcessorEditor::forceValueTreeOntoComponents() {
+  DBG("FORCE");
+  // DBG(m_value_tree.state.toXmlString());
+  m_pitch_amount.setValue(
+      m_value_tree.getParameterAsValue("pitchbend_amount").getValue());
 
-void OdinAudioProcessorEditor::forceValueTreeOntoComponents(){
-    DBG("FORCE");
-    //DBG(m_value_tree.state.toXmlString());
-    m_pitch_amount.setValue(m_value_tree.getParameterAsValue("pitchbend_amount").getValue());
+  setOsc1Plate(m_value_tree.getParameterAsValue("osc1_type").getValue());
+  setOsc2Plate(m_value_tree.getParameterAsValue("osc2_type").getValue());
+  setOsc3Plate(m_value_tree.getParameterAsValue("osc3_type").getValue());
+  setFilter1Plate(m_value_tree.getParameterAsValue("fil1_type").getValue());
+  setFilter2Plate(m_value_tree.getParameterAsValue("fil2_type").getValue());
+  setFilter3Plate(m_value_tree.getParameterAsValue("fil3_type").getValue());
 
-    setOsc1Plate(m_value_tree.getParameterAsValue("osc1_type").getValue());
-    setOsc2Plate(m_value_tree.getParameterAsValue("osc2_type").getValue());
-    setOsc3Plate(m_value_tree.getParameterAsValue("osc3_type").getValue());
-    setFilter1Plate(m_value_tree.getParameterAsValue("fil1_type").getValue());
-    setFilter2Plate(m_value_tree.getParameterAsValue("fil2_type").getValue());
-    setFilter3Plate(m_value_tree.getParameterAsValue("fil3_type").getValue());
-    
-
-    m_osc1.forceValueTreeOntoComponents(m_value_tree.state, 1);
-    m_osc2.forceValueTreeOntoComponents(m_value_tree.state, 2);
-    m_osc3.forceValueTreeOntoComponents(m_value_tree.state, 3);
-    m_fil1_component.forceValueTreeOntoComponents(m_value_tree.state, 1);
-    m_fil2_component.forceValueTreeOntoComponents(m_value_tree.state, 2);
-    m_fil3_component.forceValueTreeOntoComponents(m_value_tree.state, 3);
-    m_mod_matrix.forceValueTreeOntoComponents(m_value_tree.state);
-    m_lfo_1.forceValueTreeOntoComponents(m_value_tree.state);
-    m_lfo_2.forceValueTreeOntoComponents(m_value_tree.state);
-    m_lfo_3.forceValueTreeOntoComponents(m_value_tree.state);
-    m_lfo_4.forceValueTreeOntoComponents(m_value_tree.state);
-    m_flanger.forceValueTreeOntoComponents(m_value_tree.state);
-    m_phaser.forceValueTreeOntoComponents(m_value_tree.state);
-    m_chorus.forceValueTreeOntoComponents(m_value_tree.state);
-    m_delay.forceValueTreeOntoComponents(m_value_tree.state);
-    m_midsection.forceValueTreeOntoComponents(m_value_tree.state);
-    m_fx_buttons_section.forceValueTreeOntoComponents(m_value_tree.state);
-
+  m_osc1.forceValueTreeOntoComponents(m_value_tree.state, 1);
+  m_osc2.forceValueTreeOntoComponents(m_value_tree.state, 2);
+  m_osc3.forceValueTreeOntoComponents(m_value_tree.state, 3);
+  m_fil1_component.forceValueTreeOntoComponents(m_value_tree.state, 1);
+  m_fil2_component.forceValueTreeOntoComponents(m_value_tree.state, 2);
+  m_fil3_component.forceValueTreeOntoComponents(m_value_tree.state, 3);
+  m_mod_matrix.forceValueTreeOntoComponents(m_value_tree.state);
+  m_lfo_1.forceValueTreeOntoComponents(m_value_tree.state);
+  m_lfo_2.forceValueTreeOntoComponents(m_value_tree.state);
+  m_lfo_3.forceValueTreeOntoComponents(m_value_tree.state);
+  m_lfo_4.forceValueTreeOntoComponents(m_value_tree.state);
+  m_flanger.forceValueTreeOntoComponents(m_value_tree.state);
+  m_phaser.forceValueTreeOntoComponents(m_value_tree.state);
+  m_chorus.forceValueTreeOntoComponents(m_value_tree.state);
+  m_delay.forceValueTreeOntoComponents(m_value_tree.state);
+  m_midsection.forceValueTreeOntoComponents(m_value_tree.state);
+  m_fx_buttons_section.forceValueTreeOntoComponents(m_value_tree.state);
 }

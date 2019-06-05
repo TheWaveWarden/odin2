@@ -297,6 +297,7 @@ private:
 
   TooltipWindow m_tooltip;
   TooltipFeels m_tooltip_feels;
+  
   void setOsc1Plate(int p_osc_type);
   void setOsc2Plate(int p_osc_type);
   void setOsc3Plate(int p_osc_type);

@@ -152,12 +152,12 @@ OdinAudioProcessor::OdinAudioProcessor()
   // create wavetables
   // WavetableContainer::getInstance().writeWavetablesToFiles();//use this to
   // write the tables to header files
-
-  // WavetableContainer::getInstance().createWavetables(44100.f);
-  // WavetableContainer::getInstance().loadWavetablesAfterFourierCreation();
   // WavetableContainer::getInstance().generateAudioValueCode();
 
   WavetableContainer::getInstance().loadWavetablesFromConstData();
+
+  WavetableContainer::getInstance().createWavetables(44100.f);
+  WavetableContainer::getInstance().loadWavetablesAfterFourierCreation();
 
   // create draw tables as well
   float draw_values[WAVEDRAW_STEPS_X];
@@ -771,7 +771,7 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
 
       auto *channelData = buffer.getWritePointer(channel);
       channelData[sample] =
-          stereo_signal[channel] * m_master_smooth * master_mod_factor * 0.1;
+          stereo_signal[channel] * m_master_smooth * master_mod_factor;
       // DBG(m_master_smooth);
 
     } // stereo loop
@@ -795,6 +795,12 @@ void OdinAudioProcessor::getStateInformation(MemoryBlock &destData) {
   // You should use this method to store your parameters in the memory block.
   // You could do that either as raw data, or use the XML or ValueTree classes
   // as intermediaries to make it easy to save and load complex data.
+
+  //disable for standalone plugins
+  if(typeid(wrapperType) == typeid(wrapperType_Standalone)){
+      return;
+  }
+
   auto state = m_parameters.copyState();
   std::unique_ptr<XmlElement> xml(state.createXml());
   copyXmlToBinary(*xml, destData);
@@ -807,14 +813,10 @@ void OdinAudioProcessor::setStateInformation(const void *data,
   // block, whose contents will have been created by the getStateInformation()
   // call.
 
-  //if(JUCEApplicationBase::isStandaloneApplication()){
-  //    return;
-  //}
+  //disable for standalone plugins
   if(typeid(wrapperType) == typeid(wrapperType_Standalone)){
       return;
   }
-  wrapperType;
-
 
   std::unique_ptr<XmlElement> xmlState(getXmlFromBinary(data, sizeInBytes));
   if (xmlState.get() != nullptr) {

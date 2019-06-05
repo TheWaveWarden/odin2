@@ -72,6 +72,11 @@
 #include "Wavetables/Coefficients/MultiSaw3.h"//64
 #include "Wavetables/Coefficients/MultiSaw4.h"//65
 
+#include "Wavetables/Coefficients/Rectangular1.h"//66
+#include "Wavetables/Coefficients/Rectangular2.h"//67
+#include "Wavetables/Coefficients/Rectangular3.h"//68
+#include "Wavetables/Coefficients/Rectangular4.h"//69
+
 // #include "Wavetables/Coefficients/1.h"//
 // #include "Wavetables/Coefficients/2.h"//
 // #include "Wavetables/Coefficients/3.h"//
