@@ -10,8 +10,8 @@
 
 #include <typeinfo>
 
-#include "PluginProcessor.h"
 #include "PluginEditor.h"
+#include "PluginProcessor.h"
 
 // this file contains implementation
 #include "ValueChange.h"
@@ -156,8 +156,8 @@ OdinAudioProcessor::OdinAudioProcessor()
 
   WavetableContainer::getInstance().loadWavetablesFromConstData();
 
-  //WavetableContainer::getInstance().createWavetables(44100.f);
-  //WavetableContainer::getInstance().loadWavetablesAfterFourierCreation();
+  // WavetableContainer::getInstance().createWavetables(44100.f);
+  // WavetableContainer::getInstance().loadWavetablesAfterFourierCreation();
 
   // create draw tables as well
   float draw_values[WAVEDRAW_STEPS_X];
@@ -351,48 +351,11 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
       if (midi_message_sample <= sample) {
         // apply midi message
         if (midi_message.isNoteOn()) {
-          int voice_number =
-              m_voice_manager.getVoice(midi_message.getNoteNumber());
-          if (voice_number >= 0) { // else is on sustain
-            if (m_last_midi_note == -1) {
-              // first time glide - dont glide
-              m_last_midi_note = midi_message.getNoteNumber();
-              //m_last_midi_note = 50;
-            }
-            m_voice[voice_number].start(midi_message.getNoteNumber(),
-                                        midi_message.getVelocity(),
-                                        m_last_midi_note);
-            DBG("Started Voice Nr. " + std::to_string(voice_number) +
-                " midikey: " + std::to_string(midi_message.getNoteNumber()));
-            m_amp.setMIDIVelocity(midi_message.getVelocity());
-            m_last_midi_note = midi_message.getNoteNumber();
-            m_mod_matrix.setMostRecentVoice(voice_number);
-          }
+          midiNoteOn(midi_message.getNoteNumber(), midi_message.getVelocity());
         } else if (midi_message.isNoteOff()) {
-          for (int voice = 0; voice < VOICES; ++voice) {
-            // DBG("pointer to voice " + std::to_string(voice) +
-            //    " is: " + std::to_string((long)&m_voice[voice]));
-            // DBG("pointer to bool " + std::to_string(voice) + " is: " +
-            //    std::to_string((long)&(m_voice[voice].m_voice_active)));
-          }
 
-          DBG("NOTEOFF, key " + std::to_string(midi_message.getNoteNumber()));
+          midiNoteOff(midi_message.getNoteNumber());
 
-          if (!m_voice_manager.getSustainActive()) {
-            for (int voice = 0; voice < VOICES; ++voice) {
-              if (m_voice[voice].keyUp(midi_message.getNoteNumber())) {
-                DBG("KeyUp on voice " + std::to_string(voice));
-              }
-            }
-          } else {
-            for (int voice = 0; voice < VOICES; ++voice) {
-              if (m_voice[voice].usesThisMIDIKey(
-                      midi_message.getNoteNumber())) {
-                m_voice_manager.addToKillList(voice,
-                                              midi_message.getNoteNumber());
-              }
-            }
-          }
         } else if (midi_message.isPitchWheel()) {
           setPitchWheelValue(midi_message.getPitchWheelValue());
         } else if (midi_message.isSustainPedalOn()) {
@@ -782,8 +745,9 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
 bool OdinAudioProcessor::hasEditor() const { return true; }
 
 AudioProcessorEditor *OdinAudioProcessor::createEditor() {
-  AudioProcessorEditor *editor =
-      new OdinAudioProcessorEditor(*this, m_parameters, typeid(wrapperType) == typeid(wrapperType_Standalone));
+  AudioProcessorEditor *editor = new OdinAudioProcessorEditor(
+      *this, m_parameters,
+      typeid(wrapperType) == typeid(wrapperType_Standalone));
   if (m_force_values_onto_gui) {
     onSetStateInformation();
   }
@@ -796,9 +760,9 @@ void OdinAudioProcessor::getStateInformation(MemoryBlock &destData) {
   // You could do that either as raw data, or use the XML or ValueTree classes
   // as intermediaries to make it easy to save and load complex data.
 
-  //disable for standalone plugins
-  if(typeid(wrapperType) == typeid(wrapperType_Standalone)){
-      return;
+  // disable for standalone plugins
+  if (typeid(wrapperType) == typeid(wrapperType_Standalone)) {
+    return;
   }
 
   auto state = m_parameters.copyState();
@@ -813,9 +777,9 @@ void OdinAudioProcessor::setStateInformation(const void *data,
   // block, whose contents will have been created by the getStateInformation()
   // call.
 
-  //disable for standalone plugins
-  if(typeid(wrapperType) == typeid(wrapperType_Standalone)){
-      return;
+  // disable for standalone plugins
+  if (typeid(wrapperType) == typeid(wrapperType_Standalone)) {
+    return;
   }
 
   std::unique_ptr<XmlElement> xmlState(getXmlFromBinary(data, sizeInBytes));
@@ -825,8 +789,8 @@ void OdinAudioProcessor::setStateInformation(const void *data,
     // force values on GUI
     m_force_values_onto_gui = true;
     DBG("LOADED BINARY STATE!!");
-    
-    //onSetStateInformation();
+
+    // onSetStateInformation();
   }
 }
 
@@ -1268,4 +1232,39 @@ void OdinAudioProcessor::setModulationPointers() {
 void OdinAudioProcessor::setPitchWheelValue(int p_value) {
   // todo this should update the GUI, lets see after MIDI learn
   *m_pitchbend = (float)(p_value - 8192) / 8192.f;
+}
+
+void OdinAudioProcessor::midiNoteOff(int p_midi_note) {
+  DBG("NOTEOFF, key " + std::to_string(p_midi_note));
+
+  if (!m_voice_manager.getSustainActive()) {
+    for (int voice = 0; voice < VOICES; ++voice) {
+      if (m_voice[voice].keyUp(p_midi_note)) {
+        DBG("KeyUp on voice " + std::to_string(voice));
+      }
+    }
+  } else {
+    for (int voice = 0; voice < VOICES; ++voice) {
+      if (m_voice[voice].usesThisMIDIKey(p_midi_note)) {
+        m_voice_manager.addToKillList(voice, p_midi_note);
+      }
+    }
+  }
+}
+
+void OdinAudioProcessor::midiNoteOn(int p_midi_note, int p_midi_velocity) {
+
+  int voice_number = m_voice_manager.getVoice(p_midi_note);
+  if (voice_number >= 0) { // else is on sustain
+    if (m_last_midi_note == -1) {
+      // first time glide - dont glide
+      m_last_midi_note = p_midi_note;
+    }
+    m_voice[voice_number].start(p_midi_note, p_midi_velocity, m_last_midi_note);
+    DBG("Started Voice Nr. " + std::to_string(voice_number) +
+        " midikey: " + std::to_string(p_midi_note));
+    m_amp.setMIDIVelocity(p_midi_velocity);
+    m_last_midi_note = p_midi_note;
+    m_mod_matrix.setMostRecentVoice(voice_number);
+  }
 }

@@ -284,6 +284,8 @@ private:
   ModSources m_mod_sources;
   ModDestinations m_mod_destinations;
 
+  void midiNoteOff(int p_midi_note);
+  void midiNoteOn(int p_midi_note, int p_midi_velocity);
   void setPitchWheelValue(int p_value);
 
   void setModulationPointers();
