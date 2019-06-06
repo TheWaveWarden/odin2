@@ -11,7 +11,11 @@
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "DrawableSlider.h"
+#include "Knob.h"
+#include "LeftRightButton.h"
 #include "ModMatrix.h"
+#include "OdinButton.h"
 #include "OdinTreeListener.h"
 #include "Voice.h"
 #include "audio/Amplifier.h"
@@ -28,11 +32,6 @@
 #include "audio/Filters/SEMFilter12.h"
 #include "audio/Filters/SEMFilter24.h"
 #include "audio/Oscillators/WavetableContainer.h"
-
-#include "DrawableSlider.h"
-#include "Knob.h"
-#include "LeftRightButton.h"
-#include "OdinButton.h"
 
 //==============================================================================
 /**
@@ -224,6 +223,9 @@ public:
         "called!\n\n\n");
   };
 
+  void midiNoteOff(int p_midi_note);
+  void midiNoteOn(int p_midi_note, int p_midi_velocity);
+
 private:
   bool m_midi_learn_knob_active = false;
   Knob *m_midi_learn_knob = nullptr;
@@ -284,8 +286,6 @@ private:
   ModSources m_mod_sources;
   ModDestinations m_mod_destinations;
 
-  void midiNoteOff(int p_midi_note);
-  void midiNoteOn(int p_midi_note, int p_midi_velocity);
   void setPitchWheelValue(int p_value);
 
   void setModulationPointers();
@@ -310,7 +310,9 @@ private:
 
   int m_counter = 0; // todo remove
 
-  bool m_force_values_onto_gui = false;//used for loading state and then remembering to force values once the editor was created
+  bool m_force_values_onto_gui =
+      false; // used for loading state and then remembering to force values once
+             // the editor was created
 #include "AudioVarDeclarations.h"
   //==============================================================================
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(OdinAudioProcessor)

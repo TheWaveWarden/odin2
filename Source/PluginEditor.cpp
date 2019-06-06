@@ -13,7 +13,8 @@
 
 //==============================================================================
 OdinAudioProcessorEditor::OdinAudioProcessorEditor(
-    OdinAudioProcessor &p_processor, AudioProcessorValueTreeState &vts, bool p_is_standalone) 
+    OdinAudioProcessor &p_processor, AudioProcessorValueTreeState &vts,
+    bool p_is_standalone)
     : m_value_tree(vts), m_fx_buttons_section(vts),
       AudioProcessorEditor(&p_processor), processor(p_processor),
       m_osc1_dropdown("osc1_dropdown_button",
@@ -60,10 +61,12 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
       m_fil1_component(vts, "1"), m_fil2_component(vts, "2"),
       m_fil3_component(vts, "3"), m_midsection(vts), m_adsr_1(vts, "1"),
       m_adsr_2(vts, "2"), m_adsr_3(vts, "3"), m_adsr_4(vts, "4"),
-      m_lfo_1(vts, "1", p_is_standalone), m_lfo_2(vts, "2", p_is_standalone), m_lfo_3(vts, "3", p_is_standalone),
-      m_lfo_4(vts, "4", p_is_standalone), m_delay(vts, p_is_standalone), m_phaser(vts, "phaser", p_is_standalone),
-      m_flanger(vts, "flanger", p_is_standalone), m_chorus(vts, "chorus", p_is_standalone),
-      m_xy_section(vts, "xy"), m_osc1_type_indentifier("osc1_type"),
+      m_lfo_1(vts, "1", p_is_standalone), m_lfo_2(vts, "2", p_is_standalone),
+      m_lfo_3(vts, "3", p_is_standalone), m_lfo_4(vts, "4", p_is_standalone),
+      m_delay(vts, p_is_standalone), m_phaser(vts, "phaser", p_is_standalone),
+      m_flanger(vts, "flanger", p_is_standalone),
+      m_chorus(vts, "chorus", p_is_standalone), m_xy_section(vts, "xy"),
+      m_osc1_type_indentifier("osc1_type"),
       m_osc2_type_indentifier("osc2_type"),
       m_osc3_type_indentifier("osc3_type"),
       m_fil1_type_indentifier("fil1_type"),
@@ -73,13 +76,12 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
       m_delay_position_identifier("delay_position"),
       m_flanger_position_identifier("flanger_position"),
       m_phaser_position_identifier("phaser_position"),
-      m_chorus_position_identifier("chorus_position"), m_mod_matrix(vts), m_tooltip(nullptr, 2047483647),
-      m_is_standalone_plugin(p_is_standalone),
+      m_chorus_position_identifier("chorus_position"), m_mod_matrix(vts),
+      m_tooltip(nullptr, 2047483647), m_is_standalone_plugin(p_is_standalone),
       m_save_load(vts) {
-
-  //disable tooltip first? it kept popping up on startup
-  //m_tooltip.setMillisecondsBeforeTipAppears(2047483647);
-  //m_tooltip.hideTip();
+  if (m_is_standalone_plugin) {
+    addKeyListener(this);
+  }
 
   p_processor.onSetStateInformation = [&]() {
     // DBG("ONSETSTATEINFORMATION!\n\");
@@ -424,7 +426,8 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
   m_question_button.setColour(
       juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
   m_question_button.onStateChange = [&] {
-    //this function is reason for tooltip subclass, else the tooltip will show after window creation for some reason...
+    // this function is reason for tooltip subclass, else the tooltip will show
+    // after window creation for some reason...
     m_tooltip.activate();
     setTooltipEnabled(m_question_button.getToggleState());
   };
@@ -1115,4 +1118,148 @@ void OdinAudioProcessorEditor::forceValueTreeOntoComponents() {
   m_delay.forceValueTreeOntoComponents(m_value_tree.state);
   m_midsection.forceValueTreeOntoComponents(m_value_tree.state);
   m_fx_buttons_section.forceValueTreeOntoComponents(m_value_tree.state);
+}
+
+bool OdinAudioProcessorEditor::keyStateChanged(
+    bool isKeyDown, Component *originatingComponent) {
+
+  if (m_is_standalone_plugin) {
+
+    if (KeyPress::isKeyCurrentlyDown(65) != m_A_down) {
+      m_A_down = KeyPress::isKeyCurrentlyDown(65);
+      if (m_A_down) {
+        processor.midiNoteOn(48 + m_octave_shift * 12, 100);
+      } else {
+        processor.midiNoteOff(48 + m_octave_shift * 12);
+      }
+    }
+    if (KeyPress::isKeyCurrentlyDown(87) != m_W_down) {
+      m_W_down = KeyPress::isKeyCurrentlyDown(87);
+      if (m_W_down) {
+        processor.midiNoteOn(49 + m_octave_shift * 12, 100);
+      } else {
+        processor.midiNoteOff(49 + m_octave_shift * 12);
+      }
+    }
+    if (KeyPress::isKeyCurrentlyDown(83) != m_S_down) {
+      m_S_down = KeyPress::isKeyCurrentlyDown(83);
+      if (m_S_down) {
+        processor.midiNoteOn(50 + m_octave_shift * 12, 100);
+      } else {
+        processor.midiNoteOff(50 + m_octave_shift * 12);
+      }
+    }
+    if (KeyPress::isKeyCurrentlyDown(69) != m_E_down) {
+      m_E_down = KeyPress::isKeyCurrentlyDown(69);
+      if (m_E_down) {
+        processor.midiNoteOn(51 + m_octave_shift * 12, 100);
+      } else {
+        processor.midiNoteOff(51 + m_octave_shift * 12);
+      }
+    }
+    if (KeyPress::isKeyCurrentlyDown(68) != m_D_down) {
+      m_D_down = KeyPress::isKeyCurrentlyDown(68);
+      if (m_D_down) {
+        processor.midiNoteOn(52 + m_octave_shift * 12, 100);
+      } else {
+        processor.midiNoteOff(52 + m_octave_shift * 12);
+      }
+    }
+    if (KeyPress::isKeyCurrentlyDown(70) != m_F_down) {
+      m_F_down = KeyPress::isKeyCurrentlyDown(70);
+      if (m_F_down) {
+        processor.midiNoteOn(53 + m_octave_shift * 12, 100);
+      } else {
+        processor.midiNoteOff(53 + m_octave_shift * 12);
+      }
+    }
+    if (KeyPress::isKeyCurrentlyDown(84) != m_T_down) {
+      m_T_down = KeyPress::isKeyCurrentlyDown(84);
+      if (m_T_down) {
+        processor.midiNoteOn(54 + m_octave_shift * 12, 100);
+      } else {
+        processor.midiNoteOff(54 + m_octave_shift * 12);
+      }
+    }
+    if (KeyPress::isKeyCurrentlyDown(71) != m_G_down) {
+      m_G_down = KeyPress::isKeyCurrentlyDown(71);
+      if (m_G_down) {
+        processor.midiNoteOn(55 + m_octave_shift * 12, 100);
+      } else {
+        processor.midiNoteOff(55 + m_octave_shift * 12);
+      }
+    }
+    if (KeyPress::isKeyCurrentlyDown(90) != m_Z_down) {
+      m_Z_down = KeyPress::isKeyCurrentlyDown(90);
+      if (m_Z_down) {
+        processor.midiNoteOn(56 + m_octave_shift * 12, 100);
+      } else {
+        processor.midiNoteOff(56 + m_octave_shift * 12);
+      }
+    }
+    if (KeyPress::isKeyCurrentlyDown(72) != m_H_down) {
+      m_H_down = KeyPress::isKeyCurrentlyDown(72);
+      if (m_H_down) {
+        processor.midiNoteOn(57 + m_octave_shift * 12, 100);
+      } else {
+        processor.midiNoteOff(57 + m_octave_shift * 12);
+      }
+    }
+    if (KeyPress::isKeyCurrentlyDown(85) != m_U_down) {
+      m_U_down = KeyPress::isKeyCurrentlyDown(85);
+      if (m_U_down) {
+        processor.midiNoteOn(58 + m_octave_shift * 12, 100);
+      } else {
+        processor.midiNoteOff(58 + m_octave_shift * 12);
+      }
+    }
+    if (KeyPress::isKeyCurrentlyDown(74) != m_J_down) {
+      m_J_down = KeyPress::isKeyCurrentlyDown(74);
+      if (m_J_down) {
+        processor.midiNoteOn(59 + m_octave_shift * 12, 100);
+      } else {
+        processor.midiNoteOff(59 + m_octave_shift * 12);
+      }
+    }
+    if (KeyPress::isKeyCurrentlyDown(75) != m_K_down) {
+      m_K_down = KeyPress::isKeyCurrentlyDown(75);
+      if (m_K_down) {
+        processor.midiNoteOn(60 + m_octave_shift * 12, 100);
+      } else {
+        processor.midiNoteOff(60 + m_octave_shift * 12);
+      }
+    }
+    if (KeyPress::isKeyCurrentlyDown(79) != m_O_down) {
+      m_O_down = KeyPress::isKeyCurrentlyDown(79);
+      if (m_O_down) {
+        processor.midiNoteOn(61 + m_octave_shift * 12, 100);
+      } else {
+        processor.midiNoteOff(61 + m_octave_shift * 12);
+      }
+    }
+    if (KeyPress::isKeyCurrentlyDown(76) != m_L_down) {
+      m_L_down = KeyPress::isKeyCurrentlyDown(76);
+      if (m_L_down) {
+        processor.midiNoteOn(62 + m_octave_shift * 12, 100);
+      } else {
+        processor.midiNoteOff(62 + m_octave_shift * 12);
+      }
+    }
+    if (KeyPress::isKeyCurrentlyDown(80) != m_P_down) {
+      m_P_down = KeyPress::isKeyCurrentlyDown(80);
+      if (m_P_down) {
+        processor.midiNoteOn(63 + m_octave_shift * 12, 100);
+      } else {
+        processor.midiNoteOff(63 + m_octave_shift * 12);
+      }
+    }
+  }
+  return false;
+}
+
+void OdinAudioProcessorEditor::allMidiKeysOff() {
+    //TODO this is the SHITTIEST implementation ever
+    for(int note = 0; note < 127; ++note){
+        processor.midiNoteOff(note);
+    }
 }
