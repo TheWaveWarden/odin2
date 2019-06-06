@@ -56,6 +56,8 @@ public:
 		memset(circular_buffer, 0, CIRCULAR_BUFFER_LENGTH * sizeof(float));
 
 		m_highpass.reset();
+
+		m_delay_time_smooth = m_delay_time_control;
 	}
 
 	inline void setDry(float p_dry){
@@ -117,7 +119,7 @@ public:
 	//need to be init by synth
 	float m_delay_time_control = 0.5f;
 	float m_delay_time_smooth = 0.5f;//todo what value here?
-	float m_feedback = 0.7;
+	float m_feedback = 0.6;
 	float m_samplerate;
 	float m_dry = 1.f;
 	float m_wet = 0.7f;

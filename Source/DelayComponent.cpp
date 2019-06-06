@@ -92,7 +92,9 @@ DelayComponent::DelayComponent(AudioProcessorValueTreeState &vts,
   m_feedback.setSliderStyle(Slider::RotaryVerticalDrag);
   m_feedback.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
   m_feedback.setSkewFactorFromMidPoint(FEEDBACK_MID);
+  m_feedback.setValue(0.6f);
   m_feedback.setKnobTooltip("How much to echo back");
+  
   addAndMakeVisible(m_feedback);
 
   m_HP.setStrip(black_knob_mid, N_KNOB_FRAMES);

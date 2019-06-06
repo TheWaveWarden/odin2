@@ -522,7 +522,7 @@
       std::make_unique<AudioParameterFloat>("delay_time", "Delay Time", 0.01f,
                                             3.f, 1.f),
       std::make_unique<AudioParameterFloat>("delay_feedback", "Delay Feedback",
-                                            0.f, 1.f, 0.f),
+                                            0.f, 1.f, 0.6f),
       std::make_unique<AudioParameterFloat>(
           "delay_hp", "Delay Highpass Frequency", 80.f, 18000.f, 80.f),
       std::make_unique<AudioParameterFloat>("delay_ducking", "Delay Ducking",
