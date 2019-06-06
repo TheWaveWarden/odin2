@@ -356,8 +356,8 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
           if (voice_number >= 0) { // else is on sustain
             if (m_last_midi_note == -1) {
               // first time glide - dont glide
-              // m_last_midi_note = midi_message.getNoteNumber();
-              m_last_midi_note = 50;
+              m_last_midi_note = midi_message.getNoteNumber();
+              //m_last_midi_note = 50;
             }
             m_voice[voice_number].start(midi_message.getNoteNumber(),
                                         midi_message.getVelocity(),
