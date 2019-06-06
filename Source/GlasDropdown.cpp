@@ -35,7 +35,7 @@ void GlasDropdown::paint(Graphics &g) {
   g.setColour(Colours::white);
 
   if (getSelectedId() == 0 && m_grey_first_element) {
-    g.setColour(Colours::grey);
+    g.setColour(Colours::lightgrey);
   }
 
   // g.setFont(bfont);Font current_font = g.getCurrentFont();

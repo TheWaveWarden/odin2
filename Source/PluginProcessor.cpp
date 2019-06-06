@@ -156,8 +156,8 @@ OdinAudioProcessor::OdinAudioProcessor()
 
   WavetableContainer::getInstance().loadWavetablesFromConstData();
 
-  WavetableContainer::getInstance().createWavetables(44100.f);
-  WavetableContainer::getInstance().loadWavetablesAfterFourierCreation();
+  //WavetableContainer::getInstance().createWavetables(44100.f);
+  //WavetableContainer::getInstance().loadWavetablesAfterFourierCreation();
 
   // create draw tables as well
   float draw_values[WAVEDRAW_STEPS_X];

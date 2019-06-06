@@ -372,7 +372,12 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
   m_scale[N_ROWS - 1].setImage(glas_right_down);
 
   juce::Colour modmatrix_color = STANDARD_DISPLAY_COLOR;
-  juce::Colour modmatrix_color_bar(90, 150, 180);
+  //juce::Colour modmatrix_color_bar(90, 150, 180);
+
+
+  juce::Colour modmatrix_color_bar(60, 130, 160);
+  juce::Colour modmatrix_color_bar_negative(230, 80, 110);
+
   m_color = modmatrix_color;
 
   for (int i = 0; i < N_ROWS; ++i) {
@@ -401,7 +406,7 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
     addAndMakeVisible(m_source[i]);
 
     m_amount_1[i].setColor(modmatrix_color);
-    m_amount_1[i].setColorBar(modmatrix_color_bar);
+    m_amount_1[i].setColorBars(modmatrix_color_bar, modmatrix_color_bar_negative);
     addAndMakeVisible(m_amount_1[i]);
 
     m_dest_1[i].rearrangeMenu = [&, i]() {
@@ -416,7 +421,7 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
     addAndMakeVisible(m_dest_1[i]);
 
     m_amount_2[i].setColor(modmatrix_color);
-    m_amount_2[i].setColorBar(modmatrix_color_bar);
+    m_amount_2[i].setColorBars(modmatrix_color_bar, modmatrix_color_bar_negative);
 
     addAndMakeVisible(m_amount_2[i]);
 
@@ -432,7 +437,7 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
     addAndMakeVisible(m_dest_2[i]);
 
     m_amount_3[i].setColor(modmatrix_color);
-    m_amount_3[i].setColorBar(modmatrix_color_bar);
+    m_amount_3[i].setColorBars(modmatrix_color_bar, modmatrix_color_bar_negative);
     addAndMakeVisible(m_amount_3[i]);
 
     m_scale[i].clear();
