@@ -1236,6 +1236,21 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   REMOVE_EDITOR.setBounds(0, 0, 100, 25);
   addChildComponent(REMOVE_EDITOR);
 
+
+  m_vol.setNumDecimalPlacesToDisplay(2);
+  m_pw.setNumDecimalPlacesToDisplay(3);
+  m_drift.setNumDecimalPlacesToDisplay(3);
+  m_position.setNumDecimalPlacesToDisplay(3);
+  m_position_multi.setNumDecimalPlacesToDisplay(3);
+  m_spread.setNumDecimalPlacesToDisplay(3);
+  m_detune.setNumDecimalPlacesToDisplay(3);
+  m_speed.setNumDecimalPlacesToDisplay(2);
+  m_fm.setNumDecimalPlacesToDisplay(3);
+  m_lp.setNumDecimalPlacesToDisplay(1);
+  m_hp.setNumDecimalPlacesToDisplay(1);
+
+
+
   setSize(247, 145);
 }
 

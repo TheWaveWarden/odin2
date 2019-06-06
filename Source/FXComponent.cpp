@@ -146,6 +146,10 @@ FXComponent::FXComponent(AudioProcessorValueTreeState &vts,
   m_sync_time.setTopLeftPosition(SYNC_TIME_FX_POS_X, SYNC_TIME_FX_POS_Y);
   m_sync_time.setTooltip("Set the delay time in sync to your track");
   addChildComponent(m_sync_time);
+
+  m_freq.setNumDecimalPlacesToDisplay(3);
+  m_amount.setNumDecimalPlacesToDisplay(3);
+  m_dry_wet.setNumDecimalPlacesToDisplay(3);
 }
 
 FXComponent::~FXComponent() {}

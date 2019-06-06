@@ -93,6 +93,9 @@ public:
     setNumDecimalPlacesToDisplay(3);
     Slider::setTextValueSuffix(suffix);
   }
+
+  String getTextFromValue(double value) override;
+
   void setStrip(juce::Image p_strip, size_t p_frames,
                 bool p_is_vertical = true) {
     m_is_vertical = p_is_vertical;
@@ -127,8 +130,7 @@ public:
                              getLocalBounds().getWidth(),
                              getLocalBounds().getHeight(), 5,
                              2); // draw an outline around the component
-    }
-    else if (m_midi_control) {
+    } else if (m_midi_control) {
       g.setColour(Colours::green);
       g.drawRoundedRectangle(getLocalBounds().getX(), getLocalBounds().getY(),
                              getLocalBounds().getWidth(),
@@ -146,12 +148,12 @@ public:
     m_processor = p_pointer;
   }
 
-  void stopMidiLearn(){
+  void stopMidiLearn() {
     m_midi_learn = false;
     repaint();
   }
 
-  void setMidiControlActive(){
+  void setMidiControlActive() {
     m_midi_learn = false;
     m_midi_control = true;
     repaint();

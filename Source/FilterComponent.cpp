@@ -193,6 +193,14 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts,
   m_comb_plus_minus.setTooltip(
       "Whether to add or subtrackt the feedback\n in the internal delay line");
   addChildComponent(m_comb_plus_minus);
+
+
+  m_res.setNumDecimalPlacesToDisplay(3);
+  m_saturation.setNumDecimalPlacesToDisplay(3);
+  m_gain.setNumDecimalPlacesToDisplay(2);
+  m_vel.setNumDecimalPlacesToDisplay(3);
+  m_kbd.setNumDecimalPlacesToDisplay(3);
+  m_formant_transition.setNumDecimalPlacesToDisplay(3);
 }
 
 FilterComponent::~FilterComponent() {}

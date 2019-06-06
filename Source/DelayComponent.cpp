@@ -150,6 +150,12 @@ DelayComponent::DelayComponent(AudioProcessorValueTreeState &vts,
   m_sync_time.setTopLeftPosition(SYNC_TIME_DELAY_POS_X, SYNC_TIME_DELAY_POS_Y);
   m_sync_time.setTooltip("Set the delay time in sync to your track");
   addChildComponent(m_sync_time);
+
+  m_feedback.setNumDecimalPlacesToDisplay(3);
+  m_ducking.setNumDecimalPlacesToDisplay(3);
+  m_dry.setNumDecimalPlacesToDisplay(3);
+  m_wet.setNumDecimalPlacesToDisplay(3);
+
 }
 
 DelayComponent::~DelayComponent() {}

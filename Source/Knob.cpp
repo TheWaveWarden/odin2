@@ -8,6 +8,9 @@
   ==============================================================================
 */
 
+#include <iomanip> // setprecision
+#include <sstream> // stringstream
+
 #include "Knob.h"
 #include "PluginProcessor.h"
 
@@ -46,4 +49,10 @@ void Knob::mouseDown(const MouseEvent &event) {
     return;
   }
   Slider::mouseDown(event);
+}
+
+String Knob::getTextFromValue(double value) {
+  //todo?
+  https://forum.juce.com/t/setnumdecimalplacestodisplay-not-behaving-solved/33686/2
+  return String(value, getNumDecimalPlacesToDisplay()) + getTextValueSuffix();
 }

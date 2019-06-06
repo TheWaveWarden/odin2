@@ -25,11 +25,6 @@ ADSRComponent::ADSRComponent(AudioProcessorValueTreeState &vts,
       m_value_tree, "env" + m_adsr_number + "_sustain", m_sustain));
   m_release_attach.reset(new SliderAttachment(
       m_value_tree, "env" + m_adsr_number + "_release", m_release));
-  //set all textvaluesuffixes to zero so numDecimalPlacesWorks again
-  //todo WTF
-  m_attack.textFromValueFunction = nullptr;
-  m_attack.setNumDecimalPlacesToDisplay(3);
-
 
   juce::Image loop_1 = ImageCache::getFromFile(
       juce::File(GRAPHICS_PATH + "cropped/buttons/buttonloop_1.png"));
@@ -108,6 +103,12 @@ ADSRComponent::ADSRComponent(AudioProcessorValueTreeState &vts,
 
   m_loop_attach.reset(new ButtonAttachment(
       m_value_tree, "env" + m_adsr_number + "_loop", m_loop));
+
+  m_attack.setNumDecimalPlacesToDisplay(3);
+  m_decay.setNumDecimalPlacesToDisplay(3);
+  m_sustain.setNumDecimalPlacesToDisplay(3);
+  m_release.setNumDecimalPlacesToDisplay(3);
+
 }
 
 ADSRComponent::~ADSRComponent() {}

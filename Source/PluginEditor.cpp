@@ -828,6 +828,11 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
   m_pitchbend_attachment.reset(
       new SliderAttachment(m_value_tree, "pitchbend", m_pitchwheel));
 
+
+  m_master.setNumDecimalPlacesToDisplay(2);
+  m_glide.setNumDecimalPlacesToDisplay(3);
+  m_modwheel.setNumDecimalPlacesToDisplay(3);
+
   setSize(800, 600);
 }
 

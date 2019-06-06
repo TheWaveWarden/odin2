@@ -160,7 +160,9 @@ AmpDistortionFlowComponent::AmpDistortionFlowComponent(
   m_threshold.setValue(THRESHOLD_DEFAULT);
   m_threshold.setKnobTooltip("The threshold to\n be reached before the\n "
                              "algorithm cuts the\n waveform");
+  m_threshold.setNumDecimalPlacesToDisplay(3);
   addAndMakeVisible(m_threshold);
+
 
   m_dry_wet.setStrip(round_knob, N_KNOB_FRAMES);
   m_dry_wet.setSliderStyle(Slider::RotaryVerticalDrag);
@@ -207,6 +209,14 @@ AmpDistortionFlowComponent::AmpDistortionFlowComponent(
 
   m_dist_algo_attach.reset(
       new ComboBoxAttachment(m_value_tree, "dist_algo", m_distortion_algo));
+
+  //m_threshold.textFromValueFunction = nullptr;
+  m_threshold.setNumDecimalPlacesToDisplay(3);
+  m_amp_gain.setNumDecimalPlacesToDisplay(2);
+  m_dry_wet.setNumDecimalPlacesToDisplay(3);
+  m_amp_vel.setNumDecimalPlacesToDisplay(3);
+  m_amp_pan.setNumDecimalPlacesToDisplay(3);
+      
 }
 
 AmpDistortionFlowComponent::~AmpDistortionFlowComponent() {}
