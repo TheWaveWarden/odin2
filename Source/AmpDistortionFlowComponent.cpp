@@ -45,7 +45,8 @@ AmpDistortionFlowComponent::AmpDistortionFlowComponent(
   m_flow_left.setBounds(FLOW_LEFT_POS_X, FLOW_POS_Y, flow_left_1.getWidth(),
                         flow_left_1.getHeight());
   addAndMakeVisible(m_flow_left);
-  m_flow_left.setTooltip("Routes filter 2 into the amplifier");
+//   m_flow_left.setTooltip("Routes filter 2 into the amplifier");
+  m_flow_left.setTooltip("");
   m_flow_left.setAlwaysOnTop(true);
   m_flow_left.setTriggeredOnMouseDown(true);
   m_flow_left.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId,

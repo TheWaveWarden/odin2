@@ -424,6 +424,8 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
   m_question_button.setColour(
       juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
   m_question_button.onStateChange = [&] {
+    //this function is reason for tooltip subclass, else the tooltip will show after window creation for some reason...
+    m_tooltip.activate();
     setTooltipEnabled(m_question_button.getToggleState());
   };
   m_question_button.setTooltip(

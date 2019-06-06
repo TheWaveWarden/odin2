@@ -31,6 +31,7 @@
 #include "SaveLoadComponent.h"
 #include "OdinButton.h"
 #include "XYSectionComponent.h"
+#include "OdinTooltipWindow.h"
 
 #define GLIDE_POS_X 117
 #define GLIDE_POS_Y 522
@@ -295,7 +296,7 @@ private:
   Identifier m_chorus_position_identifier;
 
 
-  TooltipWindow m_tooltip;
+  OdinTooltipWindow m_tooltip;
   TooltipFeels m_tooltip_feels;
   
   void setOsc1Plate(int p_osc_type);
