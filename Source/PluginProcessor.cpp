@@ -1215,9 +1215,12 @@ void OdinAudioProcessor::setModulationPointers() {
     m_delay[stereo].setDryModPointer(&(m_mod_destinations.delay.dry));
     m_delay[stereo].setWetModPointer(&(m_mod_destinations.delay.wet));
 
-    m_phaser.setFreqModPointer(&(m_mod_destinations.phaser.freq));
+    m_phaser.setRateModPointer(&(m_mod_destinations.phaser.rate));
     m_phaser.setAmountModPointer(&(m_mod_destinations.phaser.amount));
     m_phaser.setDryWetModPointer(&(m_mod_destinations.phaser.drywet));
+    m_phaser.setFreqModPointer(&(m_mod_destinations.phaser.freq));
+    m_phaser.setFeedbackModPointer(&(m_mod_destinations.phaser.feedback));
+
 
     m_flanger[stereo].setFreqModPointer(&(m_mod_destinations.flanger.freq));
     m_flanger[stereo].setAmountModPointer(&(m_mod_destinations.flanger.amount));

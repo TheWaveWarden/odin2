@@ -80,7 +80,10 @@ void Phaser::setDryWet(float p_amount){
 float Phaser::doPhaserLeft(float p_input){
 
     //apply feedback
-    float input_with_feedback = p_input + m_store_output_left * m_feedback;
+    float feedback_modded = m_feedback + *m_feedback_mod;
+    feedback_modded = feedback_modded > 0.97f ? 0.97f : feedback_modded;
+    feedback_modded = feedback_modded < 0 ? 0 : feedback_modded;
+    float input_with_feedback = p_input + m_store_output_left * feedback_modded;
 
     incrementLFOLeft();
     float LFO = doLFOLeft();
@@ -89,7 +92,11 @@ float Phaser::doPhaserLeft(float p_input){
     amount_modded = amount_modded < 0 ? 0 : amount_modded;
     amount_modded = amount_modded > 1.5f ? 1.5f : amount_modded;
 
-    setFrequencyLeft(m_base_freq + (LFO) * amount_modded * PHASER_MAX_LFO_AMPLITUDE);
+    float base_freq_modded = m_base_freq + *m_freq_mod * 2000;
+    base_freq_modded = base_freq_modded > 8000 ? 8000 : base_freq_modded;
+    base_freq_modded = base_freq_modded < 400 ? 400 : base_freq_modded;
+
+    setFrequencyLeft(base_freq_modded + (LFO) * amount_modded * PHASER_MAX_LFO_AMPLITUDE);
 
     double phase_shifted = m_AP1_left.doFilter(m_AP2_left.doFilter(m_AP3_left.doFilter(input_with_feedback)));
     phase_shifted = m_AP4_left.doFilter(m_AP5_left.doFilter(m_AP6_left.doFilter(phase_shifted)));
@@ -109,7 +116,10 @@ float Phaser::doPhaserLeft(float p_input){
 float Phaser::doPhaserRight(float p_input){
 
     //apply feedback
-    float input_with_feedback = p_input + m_store_output_right * m_feedback;
+    float feedback_modded = m_feedback + *m_feedback_mod;
+    feedback_modded = feedback_modded > 0.97f ? 0.97f : feedback_modded;
+    feedback_modded = feedback_modded < 0 ? 0 : feedback_modded;
+    float input_with_feedback = p_input + m_store_output_right * feedback_modded;
 
     incrementLFORight();
     float LFO = doLFORight();
@@ -118,7 +128,11 @@ float Phaser::doPhaserRight(float p_input){
     amount_modded = amount_modded < 0 ? 0 : amount_modded;
     amount_modded = amount_modded > 1.5f ? 1.5f : amount_modded;
 
-    setFrequencyRight(m_base_freq + (LFO) * amount_modded * PHASER_MAX_LFO_AMPLITUDE);
+    float base_freq_modded = m_base_freq + *m_freq_mod * 2000;
+    base_freq_modded = base_freq_modded > 8000 ? 8000 : base_freq_modded;
+    base_freq_modded = base_freq_modded < 400 ? 400 : base_freq_modded;
+
+    setFrequencyRight(base_freq_modded + (LFO) * amount_modded * PHASER_MAX_LFO_AMPLITUDE);
 
     double phase_shifted = m_AP1_right.doFilter(m_AP2_right.doFilter(m_AP3_right.doFilter(input_with_feedback)));
     phase_shifted = m_AP4_right.doFilter(m_AP5_right.doFilter(m_AP6_right.doFilter(phase_shifted)));

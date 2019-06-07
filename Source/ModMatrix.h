@@ -72,8 +72,10 @@ struct ModDestDelay {
 
 struct ModDestPhaser {
   float amount;
-  float freq;
+  float rate;
   float drywet;
+  float freq;
+  float feedback;
 };
 
 struct ModDestFlanger {

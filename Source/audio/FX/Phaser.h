@@ -99,26 +99,30 @@ public:
 
   //void setWidth(float p_width){m_width = p_width * 2.5f;}
 
-  void setFreqModPointer(float *p_pointer) { m_freq_mod = p_pointer; }
+  void setRateModPointer(float *p_pointer) { m_rate_mod = p_pointer; }
   void setAmountModPointer(float *p_pointer) { m_amount_mod = p_pointer; }
   void setDryWetModPointer(float *p_pointer) { m_drywet_mod = p_pointer; }
-
+  void setFreqModPointer(float *p_pointer) { m_freq_mod = p_pointer; }
+  void setFeedbackModPointer(float *p_pointer) { m_feedback_mod = p_pointer; }
+  
   void setFeedback(float p_feedback){
     m_feedback = p_feedback * 0.97;
   }
 
 protected:
-  float *m_freq_mod;
+  float *m_rate_mod;
   float *m_drywet_mod;
   float *m_amount_mod;
+  float *m_freq_mod;
+  float *m_feedback_mod;
 
   float m_width = 1.f;
 
 
   inline void incrementLFOLeft() {
     float increment_modded = m_increment_sine;
-    if (*m_freq_mod) {
-      increment_modded *= pow(4, *m_freq_mod);
+    if (*m_rate_mod) {
+      increment_modded *= pow(4, *m_rate_mod);
     }
     m_index_sine_left += increment_modded;
     while (m_index_sine_left > 1) {
@@ -129,8 +133,8 @@ protected:
 
   inline void incrementLFORight() {
     float increment_modded = m_increment_sine;
-    if (*m_freq_mod) {
-      increment_modded *= pow(4, *m_freq_mod);
+    if (*m_rate_mod) {
+      increment_modded *= pow(4, *m_rate_mod);
     }
     m_index_sine_right += increment_modded;
     while (m_index_sine_right > 1) {
