@@ -19,7 +19,7 @@ public:
 	setLFOFreq(1.f);
    }
 
-  inline void setAmount(float p_amount) { m_amount = p_amount; }
+  inline void setAmount(float p_amount) { m_amount = p_amount * p_amount; }
 
   inline void setDryWet(float p_dry_wet) { m_dry_wet = p_dry_wet; }
 
