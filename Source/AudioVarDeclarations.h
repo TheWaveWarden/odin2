@@ -163,6 +163,8 @@
     float* m_phaser_reset;
     float* m_phaser_sync;
     float* m_phaser_rate;
+    float* m_phaser_freq;
+    float* m_phaser_width;
     float* m_phaser_mod;
     float* m_phaser_drywet;
     float* m_phaser_synctime_numerator;
@@ -441,6 +443,8 @@
     Identifier m_phaser_reset_identifier;
     Identifier m_phaser_sync_identifier;
     Identifier m_phaser_rate_identifier;
+    Identifier m_phaser_freq_identifier;
+    Identifier m_phaser_width_identifier;
     Identifier m_phaser_mod_identifier;
     Identifier m_phaser_drywet_identifier;
     Identifier m_phaser_synctime_numerator_identifier;

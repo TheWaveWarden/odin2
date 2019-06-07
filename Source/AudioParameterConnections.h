@@ -220,6 +220,8 @@ m_delay_synctime_denominator =
     m_parameters.getRawParameterValue("delay_synctime_denominator");
 
 m_phaser_rate = m_parameters.getRawParameterValue("phaser_rate");
+m_phaser_freq = m_parameters.getRawParameterValue("phaser_freq");
+m_phaser_width = m_parameters.getRawParameterValue("phaser_width");
 m_phaser_mod = m_parameters.getRawParameterValue("phaser_mod");
 m_phaser_drywet = m_parameters.getRawParameterValue("phaser_drywet");
 m_phaser_sync = m_parameters.getRawParameterValue("phaser_sync");
@@ -503,6 +505,8 @@ m_parameters.addParameterListener("delay_synctime_denominator",
                                   &m_tree_listener);
 
 m_parameters.addParameterListener("phaser_rate", &m_tree_listener);
+m_parameters.addParameterListener("phaser_freq", &m_tree_listener);
+m_parameters.addParameterListener("phaser_width", &m_tree_listener);
 m_parameters.addParameterListener("phaser_mod", &m_tree_listener);
 m_parameters.addParameterListener("phaser_drywet", &m_tree_listener);
 m_parameters.addParameterListener("phaser_sync", &m_tree_listener);

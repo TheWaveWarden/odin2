@@ -104,6 +104,8 @@ private:
   AudioProcessorValueTreeState &m_value_tree;
 
   std::unique_ptr<SliderAttachment> m_rate_attach;
+  std::unique_ptr<SliderAttachment> m_width_attach;
+  std::unique_ptr<SliderAttachment> m_freq_attach;
   std::unique_ptr<SliderAttachment> m_mod_attach;
   std::unique_ptr<SliderAttachment> m_drywet_attach;
 

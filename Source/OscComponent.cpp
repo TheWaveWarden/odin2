@@ -1256,7 +1256,10 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   setSize(247, 145);
 }
 
-OscComponent::~OscComponent() {}
+OscComponent::~OscComponent() {
+  m_carrier_waveselector.m_menu.setLookAndFeel(nullptr);
+  m_modulator_waveselector.m_menu.setLookAndFeel(nullptr);
+}
 
 void OscComponent::paint(Graphics &g) { g.drawImageAt(m_background, 0, 0); }
 

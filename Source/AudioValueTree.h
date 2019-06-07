@@ -544,6 +544,8 @@
       std::make_unique<AudioParameterInt>("phaser_reset", "Phaser Reset", 0, 1,
                                           0),
       std::make_unique<AudioParameterInt>("phaser_on", "Phaser On", 0, 1, 0),
+      std::make_unique<AudioParameterFloat>("phaser_freq", "Phaser Frequency", 80, 18000, 2000),
+      std::make_unique<AudioParameterFloat>("phaser_width", "Phaser Width", 0,1,0.5f),
       std::make_unique<AudioParameterInt>("phaser_selected", "Phaser Selected", 0, 1, 0),
       std::make_unique<AudioParameterFloat>(
           "phaser_rate", "Phaser Frequency", 0.05f, 20.f, 1.f),

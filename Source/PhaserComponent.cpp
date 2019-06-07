@@ -24,6 +24,10 @@ PhaserComponent::PhaserComponent(AudioProcessorValueTreeState &vts,
 
   m_rate_attach.reset(
       new SliderAttachment(m_value_tree, m_fx_name + "_rate", m_rate));
+      m_freq_attach.reset(
+      new SliderAttachment(m_value_tree, m_fx_name + "_freq", m_freq));
+      m_width_attach.reset(
+      new SliderAttachment(m_value_tree, m_fx_name + "_width", m_width));
   m_mod_attach.reset(
       new SliderAttachment(m_value_tree, m_fx_name + "_mod", m_mod));
   m_drywet_attach.reset(
