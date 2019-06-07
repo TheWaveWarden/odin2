@@ -300,5 +300,7 @@ protected:
   Identifier m_vec_c_identifier;
   Identifier m_vec_d_identifier;
 
+  OdinMenuFeels m_menu_feels;
+
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(OscComponent)
 };

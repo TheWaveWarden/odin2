@@ -164,7 +164,7 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts,
       "The vowel to\nthe left side of\nthe transition knob");
   addChildComponent(m_vowel_left);
   m_vowel_left.setValue(0);
-  // m_vowel_left.setColor(Colour(70, 30, 40));
+  m_vowel_left.setColor(Colour(90, 40, 40));
 
   m_vowel_right.OnValueChange = [&](int p_new_value) {
     m_value_tree.getParameter(m_vowel_right_identifier)
@@ -176,7 +176,7 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts,
       "The vowel to\nthe right side of\nthe transition knob");
   addChildComponent(m_vowel_right);
   m_vowel_right.setValue(2);
-  m_vowel_right.setColor(Colour(60, 20, 18));
+  m_vowel_right.setColor(Colour(90, 40, 40));
 
   juce::Image comb_plus = ImageCache::getFromFile(
       juce::File(GRAPHICS_PATH + "cropped/buttons/buttonplusminus_1.png"));

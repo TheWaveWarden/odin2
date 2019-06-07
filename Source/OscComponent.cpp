@@ -864,6 +864,8 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   fm_menu.addSubMenu("ChipDraw", chipdraw_submenu);
   fm_menu.addSubMenu("SpecDraw", specdraw_submenu);
 
+  fm_menu.setLookAndFeel(&m_menu_feels);
+
   vector_menu.addSubMenu("Wavetables", wavetable_submenu);
   vector_menu.addSeparator();
   vector_menu.addSubMenu("Chiptune", chiptune_submenu);
