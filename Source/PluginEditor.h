@@ -32,6 +32,7 @@
 #include "PitchWheel.h"
 #include "SaveLoadComponent.h"
 #include "XYSectionComponent.h"
+#include "PhaserComponent.h"
 
 #define GLIDE_POS_X 117
 #define GLIDE_POS_Y 522
@@ -246,7 +247,7 @@ private:
   LFOComponent m_lfo_4;
 
   FXComponent m_flanger;
-  FXComponent m_phaser;
+  PhaserComponent m_phaser;
   FXComponent m_chorus;
   DelayComponent m_delay;
 

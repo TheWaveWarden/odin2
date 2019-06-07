@@ -12,12 +12,20 @@ float Delay::doDelay(float p_input) {
 
   // TODO implement sync mode
   // todo audio bug when increasing delay_time
-
-  m_delay_time_smooth = (m_delay_time_smooth - m_delay_time_control) * 0.9999 +
-                        m_delay_time_control;
+  if (m_delay_time_smooth > m_delay_time_control) {
+    m_delay_time_smooth =
+        (m_delay_time_smooth - m_delay_time_control) * 0.99994 +
+        m_delay_time_control;
+  } else if (m_delay_time_smooth < m_delay_time_control) {
+    if (m_delay_time_control - m_delay_time_smooth < 0.5f / m_samplerate) {
+      m_delay_time_smooth = m_delay_time_control;
+    } else {
+      m_delay_time_smooth += 0.5f / m_samplerate;
+    }
+  }
   float delay_time_modded = m_delay_time_smooth;
   if (*m_time_mod) {
-      delay_time_modded *= pow(3,*m_time_mod);
+    delay_time_modded *= pow(3, *m_time_mod);
   }
 
   m_highpass.update(); // needs to be done only for modding later
@@ -28,19 +36,19 @@ float Delay::doDelay(float p_input) {
   int read_index_next = read_index_trunc + 1;
   float frac = read_index - (float)read_index_trunc;
 
-//   read_index_trunc = 
-//                          read_index_trunc + CIRCULAR_BUFFER_LENGTH
-//                          : read_index_trunc;
-//   read_index_next = read_index_next < 0
-//                         read_index_next + CIRCULAR_BUFFER_LENGTH
-//                          read_index_next;
+  //   read_index_trunc =
+  //                          read_index_trunc + CIRCULAR_BUFFER_LENGTH
+  //                          : read_index_trunc;
+  //   read_index_next = read_index_next < 0
+  //                         read_index_next + CIRCULAR_BUFFER_LENGTH
+  //                          read_index_next;
 
   // check boundaries
-  while(read_index_trunc < 0) {
-      read_index_trunc += CIRCULAR_BUFFER_LENGTH;
+  while (read_index_trunc < 0) {
+    read_index_trunc += CIRCULAR_BUFFER_LENGTH;
   }
-  while(read_index_next < 0) {
-      read_index_next += CIRCULAR_BUFFER_LENGTH;
+  while (read_index_next < 0) {
+    read_index_next += CIRCULAR_BUFFER_LENGTH;
   }
 
   float output = linearInterpolation(circular_buffer[read_index_trunc],
@@ -67,7 +75,6 @@ float Delay::doDelay(float p_input) {
   wet_modded = wet_modded > 1 ? 1 : wet_modded;
   wet_modded = wet_modded < 0 ? 0 : wet_modded;
 
-  
   float dry_modded = m_dry + *m_dry_mod;
   dry_modded = dry_modded > 1 ? 1 : dry_modded;
   dry_modded = dry_modded < 0 ? 0 : dry_modded;

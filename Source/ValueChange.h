@@ -1193,12 +1193,12 @@ bool OdinAudioProcessor::treeValueChangedFourth(const String &p_ID,
 {
   Identifier id(p_ID);
 
-  if (id == m_phaser_amount_identifier)
+  if (id == m_phaser_mod_identifier)
   {
     m_phaser[0].setLFOAmplitude(p_new_value);
     m_phaser[1].setLFOAmplitude(p_new_value);
   }
-  else if (id == m_phaser_frequency_identifier)
+  else if (id == m_phaser_rate_identifier)
   {
     m_phaser[0].setLFOFreq(p_new_value);
     m_phaser[1].setLFOFreq(p_new_value);

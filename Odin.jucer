@@ -318,6 +318,10 @@
         <FILE id="zWGLzS" name="OscComponent.cpp" compile="1" resource="0"
               file="Source/OscComponent.cpp"/>
         <FILE id="MVOzDk" name="OscComponent.h" compile="0" resource="0" file="Source/OscComponent.h"/>
+        <FILE id="xMFAVw" name="PhaserComponent.cpp" compile="1" resource="0"
+              file="Source/PhaserComponent.cpp"/>
+        <FILE id="bzAudk" name="PhaserComponent.h" compile="0" resource="0"
+              file="Source/PhaserComponent.h"/>
         <FILE id="iiqCGQ" name="PitchWheel.h" compile="0" resource="0" file="Source/PitchWheel.h"/>
         <FILE id="Szl1N3" name="SaveLoadComponent.cpp" compile="1" resource="0"
               file="Source/SaveLoadComponent.cpp"/>

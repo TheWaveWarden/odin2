@@ -546,8 +546,8 @@
       std::make_unique<AudioParameterInt>("phaser_on", "Phaser On", 0, 1, 0),
       std::make_unique<AudioParameterInt>("phaser_selected", "Phaser Selected", 0, 1, 0),
       std::make_unique<AudioParameterFloat>(
-          "phaser_frequency", "Phaser Frequency", 0.05f, 20.f, 1.f),
-      std::make_unique<AudioParameterFloat>("phaser_amount", "Phaser Amount",
+          "phaser_rate", "Phaser Frequency", 0.05f, 20.f, 1.f),
+      std::make_unique<AudioParameterFloat>("phaser_mod", "Phaser Amount",
                                             0.f, 1.f, 0.3f),
       std::make_unique<AudioParameterFloat>("phaser_drywet", "Phaser DryWet",
                                             0.f, 1.f, 1.f),
