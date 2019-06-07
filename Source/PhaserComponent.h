@@ -50,8 +50,8 @@
 #define PHASER_MOD_POS_Y PHASER_RATE_POS_Y
 #define PHASER_FREQ_POS_X 15 + 61 * 2
 #define PHASER_FREQ_POS_Y PHASER_RATE_POS_Y
-#define PHASER_WIDTH_POS_X PHASER_FREQ_POS_X
-#define PHASER_WIDTH_POS_Y 60
+#define phaser_feedback_POS_X PHASER_FREQ_POS_X
+#define phaser_feedback_POS_Y 60
 #define PHASER_DRY_WET_POS_X 190
 #define PHASER_DRY_WET_POS_Y 36
 
@@ -87,7 +87,7 @@ private:
   Knob m_rate;
   Knob m_mod;
   Knob m_freq;
-  Knob m_width;
+  Knob m_feedback;
   Knob m_dry_wet;
 
   OdinButton m_sync;
@@ -104,7 +104,7 @@ private:
   AudioProcessorValueTreeState &m_value_tree;
 
   std::unique_ptr<SliderAttachment> m_rate_attach;
-  std::unique_ptr<SliderAttachment> m_width_attach;
+  std::unique_ptr<SliderAttachment> m_feedback_attach;
   std::unique_ptr<SliderAttachment> m_freq_attach;
   std::unique_ptr<SliderAttachment> m_mod_attach;
   std::unique_ptr<SliderAttachment> m_drywet_attach;

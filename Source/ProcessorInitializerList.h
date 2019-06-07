@@ -241,7 +241,7 @@
     m_phaser_sync_identifier("phaser_sync"),
     m_phaser_rate_identifier("phaser_rate"),
     m_phaser_freq_identifier("phaser_freq"),
-    m_phaser_width_identifier("phaser_width"),
+    m_phaser_feedback_identifier("phaser_feedback"),
     m_phaser_mod_identifier("phaser_mod"),
     m_phaser_drywet_identifier("phaser_drywet"),
     m_phaser_synctime_numerator_identifier("phaser_synctime_numerator"),

@@ -1195,18 +1195,21 @@ bool OdinAudioProcessor::treeValueChangedFourth(const String &p_ID,
 
   if (id == m_phaser_mod_identifier)
   {
-    m_phaser[0].setLFOAmplitude(p_new_value);
-    m_phaser[1].setLFOAmplitude(p_new_value);
+    m_phaser.setLFOAmplitude(p_new_value);
+  }
+  else if(id == m_phaser_feedback_identifier){
+    m_phaser.setFeedback(p_new_value);
+  }
+  else if(id == m_phaser_freq_identifier){
+    m_phaser.setBaseFreq(p_new_value);
   }
   else if (id == m_phaser_rate_identifier)
   {
-    m_phaser[0].setLFOFreq(p_new_value);
-    m_phaser[1].setLFOFreq(p_new_value);
+    m_phaser.setLFOFreq(p_new_value);
   }
   else if (id == m_phaser_drywet_identifier)
   {
-    m_phaser[0].setAmount(p_new_value);
-    m_phaser[1].setAmount(p_new_value);
+    m_phaser.setDryWet(p_new_value);
   }
   else if (id == m_flanger_amount_identifier)
   {
