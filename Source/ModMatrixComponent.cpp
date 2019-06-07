@@ -274,9 +274,9 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
 
   m_phaser_menu.addItem(751, "Phaser Rate");
   m_phaser_menu.addItem(752, "Phaser Amount");
-  m_phaser_menu.addItem(753, "Phaser DryWet");
-  m_phaser_menu.addItem(754, "Phaser Freq");
-  m_phaser_menu.addItem(755, "Phaser Feedback");
+  m_phaser_menu.addItem(753, "Phaser Freq");
+  m_phaser_menu.addItem(754, "Phaser Feedback");
+  m_phaser_menu.addItem(755, "Phaser DryWet");
 
   m_flanger_menu.addItem(801, "Flaser Freq");
   m_flanger_menu.addItem(802, "Flaser Amount");

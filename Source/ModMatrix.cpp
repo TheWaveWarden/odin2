@@ -932,15 +932,15 @@ void ModMatrixRow::setModDestination(int p_destination,
     p_dest_poly = false;
     break;
   case 753:
-    p_destination_pointers[0] = &(m_destinations->phaser.drywet);
-    p_dest_poly = false;
-    break;
-  case 754:
     p_destination_pointers[0] = &(m_destinations->phaser.freq);
     p_dest_poly = false;
     break;
-  case 755:
+  case 754:
     p_destination_pointers[0] = &(m_destinations->phaser.feedback);
+    p_dest_poly = false;
+    break;
+  case 755:
+    p_destination_pointers[0] = &(m_destinations->phaser.drywet);
     p_dest_poly = false;
     break;
 

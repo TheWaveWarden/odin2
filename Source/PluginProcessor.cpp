@@ -269,7 +269,7 @@ void OdinAudioProcessor::changeProgramName(int index, const String &newName) {}
 void OdinAudioProcessor::prepareToPlay(double sampleRate, int samplesPerBlock) {
   // Use this method as the place to do any pre-playback
   // initialisation that you need..
-  m_voice[0].start(52, 100, 10);
+  //m_voice[0].start(52, 100, 10);
   // m_amp.setMIDIVelocity(100);
 }
 
