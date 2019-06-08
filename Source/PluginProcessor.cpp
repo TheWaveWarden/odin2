@@ -48,104 +48,6 @@ OdinAudioProcessor::OdinAudioProcessor()
     }
   };
 
-  // connect voice end to voice manager
-  // for (int i = 0; i < VOICES; ++i) {
-  //   bool *ptr_to_voice_active = &m_voice[i].m_voice_active;
-  //   m_voice[i].env[0].onEnvelopeEnd = [&, i, ptr_to_voice_active]() {
-  //     m_voice_manager.freeVoice(i);
-  //     // m_voice[i].m_voice_active = false;
-  //     *ptr_to_voice_active = false;
-  //     DBG("Terminated voice " + std::to_string(i));
-  //     //! DEBUG: i seems to be related to the note number. just feeding const
-  //     50 in resulted in i = 29...
-  //   };
-  // }
-
-  // VoiceManager *ptr_to_voice_manager = &(m_voice_manager);
-
-  // // ! weird as hell: visual studio wont capture loop index properly, so
-  // let's do it this way.....
-  // #define CONNECT_VOICE_END_TO_MANAGER(voice)
-  // m_voice[voice].env[0].onEnvelopeEnd = [&, ptr_to_voice_manager]() { \
-//   ptr_to_voice_manager->freeVoice(voice); \
-//   m_voice[voice].m_voice_active = false; \
-//   DBG("Terminated voice " + std::to_string(voice)); \
-// };
-
-  // CONNECT_VOICE_END_TO_MANAGER(0)
-  // CONNECT_VOICE_END_TO_MANAGER(1)
-  // CONNECT_VOICE_END_TO_MANAGER(2)
-  // CONNECT_VOICE_END_TO_MANAGER(3)
-  // CONNECT_VOICE_END_TO_MANAGER(4)
-  // CONNECT_VOICE_END_TO_MANAGER(5)
-  // CONNECT_VOICE_END_TO_MANAGER(6)
-  // CONNECT_VOICE_END_TO_MANAGER(7)
-  // CONNECT_VOICE_END_TO_MANAGER(8)
-  // CONNECT_VOICE_END_TO_MANAGER(9)
-  // CONNECT_VOICE_END_TO_MANAGER(10)
-  // CONNECT_VOICE_END_TO_MANAGER(11)
-
-  // m_voice[0].env[0].onEnvelopeEnd = [&]() {
-  //   m_voice_manager.freeVoice(0);
-  //   m_voice[0].m_voice_active = false;
-  //   DBG("Terminated voice " + std::to_string(0));
-  // };
-  // m_voice[1].env[0].onEnvelopeEnd = [&]() {
-  //   m_voice_manager.freeVoice(1);
-  //   m_voice[1].m_voice_active = false;
-  //   DBG("Terminated voice " + std::to_string(1));
-  // };
-  // m_voice[2].env[0].onEnvelopeEnd = [&]() {
-  //   m_voice_manager.freeVoice(2);
-  //   m_voice[2].m_voice_active = false;
-  //   DBG("Terminated voice " + std::to_string(2));
-  // };
-  // m_voice[3].env[0].onEnvelopeEnd = [&]() {
-  //   m_voice_manager.freeVoice(3);
-  //   m_voice[3].m_voice_active = false;
-  //   DBG("Terminated voice " + std::to_string(3));
-  // };
-  // m_voice[4].env[0].onEnvelopeEnd = [&]() {
-  //   m_voice_manager.freeVoice(4);
-  //   m_voice[4].m_voice_active = false;
-  //   DBG("Terminated voice " + std::to_string(4));
-  // };
-  // m_voice[5].env[0].onEnvelopeEnd = [&]() {
-  //   m_voice_manager.freeVoice(5);
-  //   m_voice[5].m_voice_active = false;
-  //   DBG("Terminated voice " + std::to_string(5));
-  // };
-  // m_voice[6].env[0].onEnvelopeEnd = [&]() {
-  //   m_voice_manager.freeVoice(6);
-  //   m_voice[6].m_voice_active = false;
-  //   DBG("Terminated voice " + std::to_string(6));
-  // };
-  // m_voice[7].env[0].onEnvelopeEnd = [&]() {
-  //   m_voice_manager.freeVoice(7);
-  //   m_voice[7].m_voice_active = false;
-  //   DBG("Terminated voice " + std::to_string(7));
-  // };
-  // m_voice[8].env[0].onEnvelopeEnd = [&]() {
-  //   m_voice_manager.freeVoice(8);
-  //   m_voice[8].m_voice_active = false;
-  //   DBG("Terminated voice " + std::to_string(8));
-  // };
-  // m_voice[9].env[0].onEnvelopeEnd = [&]() {
-  //   m_voice_manager.freeVoice(9);
-  //   m_voice[9].m_voice_active = false;
-  //   DBG("Terminated voice " + std::to_string(9));
-  // };
-  // m_voice[10].env[0].onEnvelopeEnd = [&]() {
-  //   m_voice_manager.freeVoice(10);
-  //   m_voice[10].m_voice_active = false;
-  //   DBG("Terminated voice " + std::to_string(10));
-  // };
-  // m_voice[11].env[0].onEnvelopeEnd = [&]() {
-  //   m_voice_manager.freeVoice(11);
-  //   m_voice[11].m_voice_active = false;
-  //   DBG("Terminated voice " + std::to_string(11));
-  // };
-
   setSampleRate(44100.f);
   initializeModules();
 
@@ -201,9 +103,7 @@ OdinAudioProcessor::OdinAudioProcessor()
       m_voice[i].specdraw_osc[osc].loadSpecdrawTables(osc);
       m_voice[i].lfo[osc].loadWavetables();
     }
-    for (int mod = 0; mod < 4; ++mod) {
-      m_voice[i].lfo[mod].loadWavetables();
-    }
+    m_global_lfo.loadWavetables();
   }
   for (int voice = 0; voice < VOICES; ++voice) {
     // DBG("pointer to voice " + std::to_string(voice) +
@@ -304,6 +204,7 @@ bool OdinAudioProcessor::isBusesLayoutSupported(
 void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
                                       MidiBuffer &midiMessages) {
 
+
   ScopedNoDenormals noDenormals;
   auto totalNumInputChannels = getTotalNumInputChannels();
   auto totalNumOutputChannels = getTotalNumOutputChannels();
@@ -370,6 +271,7 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
             }
           }
           m_voice_manager.clearKillList();
+          checkEndGlobalEnvelope();
         } else if (midi_message.isAftertouch()) {
           // todo this is untested, are values set back to zero, or need to do
           // it manually?
@@ -474,12 +376,19 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
 
     // we will write to this before the amplifier section
     float voices_output = 0;
+    
+    // global lfo and envelope
+    m_global_env_mod_source = m_global_env.doEnvelope();
+    DBG(m_global_env_mod_source);
+
+    m_global_lfo.update();
+    m_global_lfo_mod_source = m_global_lfo.doOscillate();
 
     // loop over all voices
     for (int voice = 0; voice < VOICES; ++voice) {
       if (m_voice[voice]) {
 
-        for (int mod = 0; mod < 4; ++mod) {
+        for (int mod = 0; mod < 3; ++mod) {
           //===== ADSR ======
           m_adsr[voice][mod] = m_voice[voice].env[mod].doEnvelope();
 
@@ -811,6 +720,9 @@ void OdinAudioProcessor::setSampleRate(float p_samplerate) {
     m_voice[voice].setSampleRate(p_samplerate);
   }
 
+  m_global_env.setSamplerate(p_samplerate);
+  m_global_lfo.setSampleRate(p_samplerate);
+
   m_delay[0].setSampleRate(p_samplerate);
   m_delay[1].setSampleRate(p_samplerate);
   m_phaser.setSamplerate(p_samplerate);
@@ -821,6 +733,9 @@ void OdinAudioProcessor::setSampleRate(float p_samplerate) {
 }
 
 void OdinAudioProcessor::initializeModules() {
+  m_global_env.reset();
+  m_global_env.setEnvelopeOff();//so it doesn't start by itself
+
   m_mod_matrix.setSourcesAndDestinations(&m_mod_sources, &m_mod_destinations);
 
   m_phaser.setRadiusBase(1.25f);
@@ -842,16 +757,16 @@ void OdinAudioProcessor::setModulationPointers() {
     m_mod_sources.voice[voice].adsr[0] = &(m_adsr[voice][0]);
     m_mod_sources.voice[voice].adsr[1] = &(m_adsr[voice][1]);
     m_mod_sources.voice[voice].adsr[2] = &(m_adsr[voice][2]);
-    m_mod_sources.voice[voice].adsr[3] = &(m_adsr[voice][3]);
     m_mod_sources.voice[voice].lfo[0] = &(m_lfo[voice][0]);
     m_mod_sources.voice[voice].lfo[1] = &(m_lfo[voice][1]);
     m_mod_sources.voice[voice].lfo[2] = &(m_lfo[voice][2]);
-    m_mod_sources.voice[voice].lfo[3] = &(m_lfo[voice][3]);
     m_mod_sources.voice[voice].MIDI_key = &(m_voice[voice].MIDI_key_mod_source);
     m_mod_sources.voice[voice].MIDI_velocity =
         &(m_voice[voice].MIDI_velocity_mod_source);
     m_mod_sources.voice[voice].random = &(m_voice[voice].random_modulation);
   }
+  m_mod_sources.global_adsr = &m_global_env_mod_source;
+  m_mod_sources.global_lfo = &m_global_lfo_mod_source;
   m_mod_sources.MIDI_aftertouch = &(m_MIDI_aftertouch);
   m_mod_sources.x = &m_x_smooth;
   m_mod_sources.y = &m_y_smooth;
@@ -1097,7 +1012,7 @@ void OdinAudioProcessor::setModulationPointers() {
           &(m_mod_destinations.voice[voice].filter[fil].formant_transition));
     }
 
-    for (int mod = 0; mod < 4; ++mod) {
+    for (int mod = 0; mod < 3; ++mod) {
       m_voice[voice].lfo[mod].setPitchModExpPointer(
           &(m_mod_destinations.voice[voice].lfo[mod].freq));
 
@@ -1110,6 +1025,13 @@ void OdinAudioProcessor::setModulationPointers() {
       m_voice[voice].env[mod].setReleaseModPointer(
           &(m_mod_destinations.voice[voice].adsr[mod].release));
     }
+    m_global_lfo.setPitchModExpPointer(&(m_mod_destinations.global_lfo.freq));
+    m_global_env.setAttackModPointer(&(m_mod_destinations.global_adsr.attack));
+    m_global_env.setDecayModPointer(&(m_mod_destinations.global_adsr.decay));
+    m_global_env.setSustainModPointer(
+        &(m_mod_destinations.global_adsr.sustain));
+    m_global_env.setReleaseModPointer(
+        &(m_mod_destinations.global_adsr.release));
   }
 
   m_amp.setGainModPointer(&(m_mod_destinations.amp.gain));
@@ -1224,12 +1146,14 @@ void OdinAudioProcessor::setModulationPointers() {
 
     m_flanger[stereo].setFreqModPointer(&(m_mod_destinations.flanger.freq));
     m_flanger[stereo].setAmountModPointer(&(m_mod_destinations.flanger.amount));
-    m_flanger[stereo].setFeedbackModPointer(&(m_mod_destinations.flanger.feedback));
+    m_flanger[stereo].setFeedbackModPointer(
+        &(m_mod_destinations.flanger.feedback));
     m_flanger[stereo].setDryWetModPointer(&(m_mod_destinations.flanger.drywet));
 
     m_chorus[stereo].setFreqModPointer(&(m_mod_destinations.chorus.freq));
     m_chorus[stereo].setAmountModPointer(&(m_mod_destinations.chorus.amount));
-    m_chorus[stereo].setFeedbackModPointer(&(m_mod_destinations.chorus.feedback));
+    m_chorus[stereo].setFeedbackModPointer(
+        &(m_mod_destinations.chorus.feedback));
     m_chorus[stereo].setDryWetModPointer(&(m_mod_destinations.chorus.drywet));
 
     m_master_mod = &(m_mod_destinations.misc.master);
@@ -1257,23 +1181,38 @@ void OdinAudioProcessor::midiNoteOff(int p_midi_note) {
       }
     }
   }
+
+  checkEndGlobalEnvelope();
 }
+
+void OdinAudioProcessor::checkEndGlobalEnvelope(){
+  for(int voice = 0; voice < VOICES; ++voice){
+    if(m_voice[voice] && m_voice[voice].env[0].isBeforeRelease()){
+        //dont kill it
+        return;
+      }
+    }
+  //kill it
+  m_global_env.startRelease();
+  DBG("kill global env");
+  }
+
 
 void OdinAudioProcessor::midiNoteOn(int p_midi_note, int p_midi_velocity) {
 
-  if(*m_phaser_reset){
+  m_global_env.restartEnvelope();
+
+  if (*m_phaser_reset) {
     m_phaser.resetLFO();
   }
-  if(*m_flanger_reset){
+  if (*m_flanger_reset) {
     m_flanger[0].resetLFO();
     m_flanger[1].resetLFO();
   }
-  if(*m_chorus_reset){
+  if (*m_chorus_reset) {
     m_chorus[0].resetLFO();
     m_chorus[1].resetLFO();
   }
-
-
 
   int voice_number = m_voice_manager.getVoice(p_midi_note);
   if (voice_number >= 0) { // else is on sustain

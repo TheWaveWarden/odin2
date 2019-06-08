@@ -25,10 +25,25 @@ public:
   //	m_envelope_finish_flag = p_finish_flag;
   //}
 
+  void restartEnvelope() {
+    // todo
+    //m_attack_start_value = m_current_value;
+    m_current_value = m_last_actual_value;
+    m_current_section = 0;
+  }
+
+  void setEnvelopeOff() {
+    m_current_section = 4; // like after release
+  }
+
   inline void reset() {
     m_current_section = -1;
     m_current_value = 0.f;
     m_attack_start_value = 0.f;
+  }
+
+  bool isBeforeRelease() {
+    return (m_current_section < 3 && m_current_section > -1);
   }
 
   inline void setLoop(bool p_loop) { m_loop = p_loop; }
@@ -78,10 +93,10 @@ public:
   // std::function<void()> onEnvelopeEnd = []() {};
   void onEnvelopeEnd() {
     if (m_test && m_voice_manager_bool_pointer) {
-      //DBG("1");
+      // DBG("1");
       *m_voice_manager_bool_pointer = false;
-      //DBG("ENNNND:");
-      //DBG((long)m_test);      
+      // DBG("ENNNND:");
+      // DBG((long)m_test);
       *m_test = false;
     }
   }
@@ -93,8 +108,8 @@ public:
     m_test = p_voice;
     // todo remove
 
-    //DBG("STARRRT:");
-    //DBG((long)m_test);
+    // DBG("STARRRT:");
+    // DBG((long)m_test);
     *m_voice_manager_bool_pointer = false;
     *m_test = false;
   }
@@ -117,6 +132,8 @@ protected:
   double m_last_decay_return = 0.f;
   double m_last_release = 0.f;
   double m_last_release_return = 0.f;
+
+  float m_last_actual_value = 0.f;
 
   float *m_attack_mod;
   float *m_decay_mod;

@@ -1274,10 +1274,7 @@ bool OdinAudioProcessor::treeValueChangedFourth(const String &p_ID,
   }
   else if (id == m_env4_attack_identifier)
   {
-    for (int voice = 0; voice < VOICES; ++voice)
-    {
-      m_voice[voice].env[3].setAttack(p_new_value);
-    }
+      m_global_env.setAttack(p_new_value);
   }
   else if (id == m_env1_decay_identifier)
   {
@@ -1302,10 +1299,7 @@ bool OdinAudioProcessor::treeValueChangedFourth(const String &p_ID,
   }
   else if (id == m_env4_decay_identifier)
   {
-    for (int voice = 0; voice < VOICES; ++voice)
-    {
-      m_voice[voice].env[3].setDecay(p_new_value);
-    }
+      m_global_env.setDecay(p_new_value);
   }
   else if (id == m_env1_sustain_identifier)
   {
@@ -1330,10 +1324,7 @@ bool OdinAudioProcessor::treeValueChangedFourth(const String &p_ID,
   }
   else if (id == m_env4_sustain_identifier)
   {
-    for (int voice = 0; voice < VOICES; ++voice)
-    {
-      m_voice[voice].env[3].setSustain(p_new_value);
-    }
+      m_global_env.setSustain(p_new_value);
   }
   else if (id == m_env1_release_identifier)
   {
@@ -1358,10 +1349,7 @@ bool OdinAudioProcessor::treeValueChangedFourth(const String &p_ID,
   }
   else if (id == m_env4_release_identifier)
   {
-    for (int voice = 0; voice < VOICES; ++voice)
-    {
-      m_voice[voice].env[3].setRelease(p_new_value);
-    }
+      m_global_env.setRelease(p_new_value);
   }
   else if (id == m_env1_loop_identifier)
   {
@@ -1386,10 +1374,7 @@ bool OdinAudioProcessor::treeValueChangedFourth(const String &p_ID,
   }
   else if (id == m_env4_loop_identifier)
   {
-    for (int voice = 0; voice < VOICES; ++voice)
-    {
-      m_voice[voice].env[3].setLoop(p_new_value);
-    }
+      m_global_env.setLoop(p_new_value);
   }
   else if (id == m_lfo1_freq_identifier)
   {
@@ -1414,10 +1399,7 @@ bool OdinAudioProcessor::treeValueChangedFourth(const String &p_ID,
   }
   else if (id == m_lfo4_freq_identifier)
   {
-    for (int voice = 0; voice < VOICES; ++voice)
-    {
-      m_voice[voice].lfo[3].setBaseFrequency(p_new_value);
-    }
+      m_global_lfo.setBaseFrequency(p_new_value);
   }
   else if (id == m_lfo1_reset_identifier)
   {
@@ -1442,10 +1424,7 @@ bool OdinAudioProcessor::treeValueChangedFourth(const String &p_ID,
   }
   else if (id == m_lfo4_reset_identifier)
   {
-    for (int voice = 0; voice < VOICES; ++voice)
-    {
-      m_voice[voice].lfo[3].setResetActive(p_new_value > 0.5f);
-    }
+      m_global_lfo.setResetActive(p_new_value > 0.5f);
   }
 
   else if (id == m_osc1_vol_identifier)
@@ -1534,23 +1513,20 @@ bool OdinAudioProcessor::treeValueChangedFourth(const String &p_ID,
   }
   else if (id == m_lfo4_wave_identifier)
   {
-    for (int voice = 0; voice < VOICES; ++voice)
-    {
       if (p_new_value < 6.5f)
       {
-        m_voice[voice].lfo[3].selectWavetable(p_new_value);
-        m_voice[voice].lfo[3].setSHActive(false);
+        m_global_lfo.selectWavetable(p_new_value);
+        m_global_lfo.setSHActive(false);
       }
       else if (p_new_value > 7.5f)
       {
-        m_voice[voice].lfo[3].selectWavetable((int)p_new_value - 1);
-        m_voice[voice].lfo[3].setSHActive(false);
+        m_global_lfo.selectWavetable((int)p_new_value - 1);
+        m_global_lfo.setSHActive(false);
       }
       else
       {
-        m_voice[voice].lfo[3].setSHActive(true);
+        m_global_lfo.setSHActive(true);
       }
-    }
   }
   else if (id == m_glide_identifier)
   {

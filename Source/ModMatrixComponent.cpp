@@ -250,10 +250,10 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
       env_name = "Filter Env";
       break;
     case 2:
-      env_name = "Env3";
+      env_name = "Mod Env";
       break;
     case 3:
-      env_name = "Env4";
+      env_name = "Global Env";
       break;
     }
 
@@ -262,8 +262,13 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
     m_adsr_menu[mod].addItem(600 + 10 * mod + 3, env_name + " Sustain");
     m_adsr_menu[mod].addItem(600 + 10 * mod + 4, env_name + " Release");
 
-    m_lfo_menu[mod].addItem(650 + 10 * mod + 1,
-                            "LFO" + std::to_string(mod + 1) + " Freq");
+    if (mod < 3) {
+      m_lfo_menu[mod].addItem(650 + 10 * mod + 1,
+                              "LFO" + std::to_string(mod + 1) + " Freq");
+    } else {
+      m_lfo_menu[mod].addItem(650 + 10 * mod + 1,
+                              "Global LFO Freq");
+    }
   }
 
   m_delay_menu.addItem(701, "Delay Time");
@@ -305,13 +310,13 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
   m_sources_menu.addSeparator();
   m_sources_menu.addItem(200, "Amp Envelope");
   m_sources_menu.addItem(201, "Filter Envelope");
-  m_sources_menu.addItem(202, "Envelope 3");
-  m_sources_menu.addItem(203, "Envelope 4");
+  m_sources_menu.addItem(202, "Mod Envelope");
+  m_sources_menu.addItem(203, "Global Envelope");
   m_sources_menu.addSeparator();
   m_sources_menu.addItem(300, "LFO 1");
   m_sources_menu.addItem(301, "LFO 2");
   m_sources_menu.addItem(302, "LFO 3");
-  m_sources_menu.addItem(303, "LFO 4");
+  m_sources_menu.addItem(303, "Global LFO");
   m_sources_menu.addSeparator();
   m_sources_menu.addItem(400, "X");
   m_sources_menu.addItem(401, "Y");
@@ -376,8 +381,7 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
   m_scale[N_ROWS - 1].setImage(glas_right_down);
 
   juce::Colour modmatrix_color = STANDARD_DISPLAY_COLOR;
-  //juce::Colour modmatrix_color_bar(90, 150, 180);
-
+  // juce::Colour modmatrix_color_bar(90, 150, 180);
 
   juce::Colour modmatrix_color_bar(60, 130, 160);
   juce::Colour modmatrix_color_bar_negative(230, 80, 110);
@@ -410,7 +414,8 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
     addAndMakeVisible(m_source[i]);
 
     m_amount_1[i].setColor(modmatrix_color);
-    m_amount_1[i].setColorBars(modmatrix_color_bar, modmatrix_color_bar_negative);
+    m_amount_1[i].setColorBars(modmatrix_color_bar,
+                               modmatrix_color_bar_negative);
     addAndMakeVisible(m_amount_1[i]);
 
     m_dest_1[i].rearrangeMenu = [&, i]() {
@@ -425,7 +430,8 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
     addAndMakeVisible(m_dest_1[i]);
 
     m_amount_2[i].setColor(modmatrix_color);
-    m_amount_2[i].setColorBars(modmatrix_color_bar, modmatrix_color_bar_negative);
+    m_amount_2[i].setColorBars(modmatrix_color_bar,
+                               modmatrix_color_bar_negative);
 
     addAndMakeVisible(m_amount_2[i]);
 
@@ -441,7 +447,8 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
     addAndMakeVisible(m_dest_2[i]);
 
     m_amount_3[i].setColor(modmatrix_color);
-    m_amount_3[i].setColorBars(modmatrix_color_bar, modmatrix_color_bar_negative);
+    m_amount_3[i].setColorBars(modmatrix_color_bar,
+                               modmatrix_color_bar_negative);
     addAndMakeVisible(m_amount_3[i]);
 
     m_scale[i].clear();
@@ -1004,15 +1011,15 @@ void ModMatrixComponent::createMenu(PopupMenu *p_menu) {
 
   p_menu->addSubMenu("Amp Env", m_adsr_menu[0], true);
   p_menu->addSubMenu("Filter Env", m_adsr_menu[1], true);
-  p_menu->addSubMenu("Envelope 3", m_adsr_menu[2], true);
-  p_menu->addSubMenu("Envelope 4", m_adsr_menu[3], true);
+  p_menu->addSubMenu("Mod Env", m_adsr_menu[2], true);
+  p_menu->addSubMenu("Global Env", m_adsr_menu[3], true);
 
   p_menu->addSeparator();
 
   p_menu->addSubMenu("LFO 1", m_lfo_menu[0], true);
   p_menu->addSubMenu("LFO 2", m_lfo_menu[1], true);
   p_menu->addSubMenu("LFO 3", m_lfo_menu[2], true);
-  p_menu->addSubMenu("LFO 4", m_lfo_menu[3], true);
+  p_menu->addSubMenu("Global LFO", m_lfo_menu[3], true);
 
   p_menu->addSeparator();
 

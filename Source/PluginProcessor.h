@@ -282,11 +282,15 @@ private:
   Flanger m_flanger[2];
   Chorus m_chorus[2];
 
+  LFO m_global_lfo;
+  ADSREnvelope m_global_env;
+
   ModMatrix m_mod_matrix;
   ModSources m_mod_sources;
   ModDestinations m_mod_destinations;
 
   void setPitchWheelValue(int p_value);
+  void checkEndGlobalEnvelope();
 
   void setModulationPointers();
   bool treeValueChangedFirst(const String &p_ID, float p_new_value);
@@ -295,8 +299,10 @@ private:
   bool treeValueChangedFourth(const String &p_ID, float p_new_value);
 
   // MOD SOURCES
-  float m_adsr[VOICES][4] = {0.f};
-  float m_lfo[VOICES][4] = {0.f};
+  float m_adsr[VOICES][3] = {0.f};
+  float m_lfo[VOICES][3] = {0.f};
+  float m_global_env_mod_source = 0;
+  float m_global_lfo_mod_source = 0;
   float m_filter_output[VOICES][2] = {0.f};
   float m_osc_output[VOICES][3] = {0.f};
   float m_MIDI_aftertouch = 0.f;

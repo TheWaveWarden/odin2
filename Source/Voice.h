@@ -99,7 +99,7 @@ public:
       ++index;
     }
 
-    //p_next_voice was at position index, move all above on down:
+    //p_next_voice was at position index, move all above one down:
     for(int voice = index; voice > 0; --voice){
       m_voice_history[voice] = m_voice_history[voice - 1];
     }
@@ -126,10 +126,6 @@ struct Voice {
   operator bool() const { return m_voice_active; }
 
   Voice() {
-    // env[0].onEnvelopeEnd = [this]() { 
-    //   onEnvelopeEnd(); 
-    //   //MIDI_key_mod_source = 1.f;
-    //   };
     std::srand(std::time(nullptr));
     generateNewRandomValue();
   }
@@ -150,7 +146,7 @@ struct Voice {
     m_MIDI_key = p_MIDI_key;
     MIDI_key_mod_source = (float)p_MIDI_key / 127.f;
     MIDI_velocity_mod_source = (float)p_MIDI_velocity / 127.f;
-    for (int mod = 0; mod < 4; ++mod) {
+    for (int mod = 0; mod < 3; ++mod) {
       env[mod].reset();
     }
     generateNewRandomValue();
@@ -167,7 +163,6 @@ struct Voice {
       env[0].startRelease();
       env[1].startRelease();
       env[2].startRelease();
-      env[3].startRelease();
 
       return true;
     }
@@ -180,7 +175,6 @@ struct Voice {
     env[0].startRelease();
     env[1].startRelease();
     env[2].startRelease();
-    env[3].startRelease();
   }
 
   bool usesThisMIDIKey(int p_MIDI_key) {
@@ -303,7 +297,7 @@ struct Voice {
       specdraw_osc[osc].voiceStart();
       chipdraw_osc[osc].voiceStart();
     }
-    for (int mod = 0; mod < 4; ++mod) {
+    for (int mod = 0; mod < 3; ++mod) {
       lfo[mod].voiceStart();
     }
     for (int fil = 0; fil < 2; ++fil) {
@@ -417,7 +411,6 @@ struct Voice {
     env[0].setSamplerate(p_samplerate);
     env[1].setSamplerate(p_samplerate);
     env[2].setSamplerate(p_samplerate);
-    env[3].setSamplerate(p_samplerate);
   }
 
   // oscs
@@ -441,8 +434,8 @@ struct Voice {
   FormantFilter formant_filter[2];
   CombFilter comb_filter[2];
   // ADSRs
-  ADSREnvelope env[4];
-  LFO lfo[4];
+  ADSREnvelope env[3];
+  LFO lfo[3];
 
   // LFOs
   // todo

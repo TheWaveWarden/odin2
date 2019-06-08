@@ -100,12 +100,14 @@ struct ModDestMisc {
 struct ModDestVoice {
   ModDestOsc osc[3];
   ModDestFilter filter[2];
-  ModDestADSR adsr[4];
-  ModDestLFO lfo[4];
+  ModDestADSR adsr[3];
+  ModDestLFO lfo[3];
 };
 
 struct ModDestinations {
   ModDestVoice voice[VOICES];
+  ModDestADSR global_adsr;
+  ModDestLFO global_lfo;
   ModDestAmp amp;
   ModDestDistortion distortion;
   ModDestFilter filter3;
@@ -119,8 +121,8 @@ struct ModDestinations {
 struct ModSourceVoice {
   float* osc[3];
   float* filter[2];
-  float* adsr[4];
-  float* lfo[4];
+  float* adsr[3];
+  float* lfo[3];
   float* MIDI_key;
   float* MIDI_velocity;
   float* random;
@@ -128,6 +130,8 @@ struct ModSourceVoice {
 
 struct ModSources {
   ModSourceVoice voice[VOICES];
+  float* global_lfo;
+  float* global_adsr;
   float* filter3;
   float* modwheel;
   float* pitchwheel;

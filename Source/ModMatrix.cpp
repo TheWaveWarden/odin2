@@ -155,7 +155,7 @@ void ModMatrixRow::setModSource(int p_source, float **p_source_pointers,
     break;
   case 203:
     for (int voice = 0; voice < VOICES; ++voice) {
-      p_source_pointers[voice] = m_sources->voice[voice].adsr[3];
+      p_source_pointers[voice] = m_sources->global_adsr;
     }
     break;
   case 300:
@@ -175,7 +175,7 @@ void ModMatrixRow::setModSource(int p_source, float **p_source_pointers,
     break;
   case 303:
     for (int voice = 0; voice < VOICES; ++voice) {
-      p_source_pointers[voice] = m_sources->voice[voice].lfo[3];
+      p_source_pointers[voice] = m_sources->global_lfo;
     }
     break;
 
@@ -232,9 +232,6 @@ void ModMatrixRow::setModSource(int p_source, float **p_source_pointers,
   }
   // DBG(p_source);
 
-  // for(int voice = 0;  voice < VOICES; ++voice){
-  //  p_source_pointers[voice] = &(m_sources->voice[voice].adsr[3]);
-  //}
 
   p_source_store = p_source;
 
@@ -783,11 +780,8 @@ void ModMatrixRow::setModDestination(int p_destination,
     p_dest_poly = true;
     break;
   case 631:
-    for (int voice = 0; voice < VOICES; ++voice) {
-      p_destination_pointers[voice] =
-          &(m_destinations->voice[voice].adsr[3].attack);
-    }
-    p_dest_poly = true;
+    p_destination_pointers[0] = &(m_destinations->global_adsr.attack);
+    p_dest_poly = false;
     break;
 
   case 602:
@@ -812,11 +806,8 @@ void ModMatrixRow::setModDestination(int p_destination,
     p_dest_poly = true;
     break;
   case 632:
-    for (int voice = 0; voice < VOICES; ++voice) {
-      p_destination_pointers[voice] =
-          &(m_destinations->voice[voice].adsr[3].decay);
-    }
-    p_dest_poly = true;
+    p_destination_pointers[0] = &(m_destinations->global_adsr.decay);
+    p_dest_poly = false;
     break;
 
   case 603:
@@ -841,11 +832,8 @@ void ModMatrixRow::setModDestination(int p_destination,
     p_dest_poly = true;
     break;
   case 633:
-    for (int voice = 0; voice < VOICES; ++voice) {
-      p_destination_pointers[voice] =
-          &(m_destinations->voice[voice].adsr[3].sustain);
-    }
-    p_dest_poly = true;
+    p_destination_pointers[0] = &(m_destinations->global_adsr.sustain);
+    p_dest_poly = false;
     break;
 
   case 604:
@@ -870,11 +858,8 @@ void ModMatrixRow::setModDestination(int p_destination,
     p_dest_poly = true;
     break;
   case 634:
-    for (int voice = 0; voice < VOICES; ++voice) {
-      p_destination_pointers[voice] =
-          &(m_destinations->voice[voice].adsr[3].release);
-    }
-    p_dest_poly = true;
+    p_destination_pointers[0] = &(m_destinations->global_adsr.release);
+    p_dest_poly = false;
     break;
 
   case 651:
@@ -899,11 +884,8 @@ void ModMatrixRow::setModDestination(int p_destination,
     p_dest_poly = true;
     break;
   case 681:
-    for (int voice = 0; voice < VOICES; ++voice) {
-      p_destination_pointers[voice] =
-          &(m_destinations->voice[voice].lfo[3].freq);
-    }
-    p_dest_poly = true;
+    p_destination_pointers[0] = &(m_destinations->global_lfo.freq);
+    p_dest_poly = false;
     break;
 
   case 701:
