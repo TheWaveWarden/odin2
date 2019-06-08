@@ -1261,6 +1261,20 @@ void OdinAudioProcessor::midiNoteOff(int p_midi_note) {
 
 void OdinAudioProcessor::midiNoteOn(int p_midi_note, int p_midi_velocity) {
 
+  if(*m_phaser_reset){
+    m_phaser.resetLFO();
+  }
+  if(*m_flanger_reset){
+    m_flanger[0].resetLFO();
+    m_flanger[1].resetLFO();
+  }
+  if(*m_chorus_reset){
+    m_chorus[0].resetLFO();
+    m_chorus[1].resetLFO();
+  }
+
+
+
   int voice_number = m_voice_manager.getVoice(p_midi_note);
   if (voice_number >= 0) { // else is on sustain
     if (m_last_midi_note == -1) {

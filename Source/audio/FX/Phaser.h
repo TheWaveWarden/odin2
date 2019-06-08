@@ -115,7 +115,11 @@ public:
   void setFeedback(float p_feedback){
     m_feedback = p_feedback * 0.97;
   }
-
+  void resetLFO(){
+    m_index_sine_left = 0;
+    m_index_sine_right = 0.5;
+  }
+  
 protected:
   float *m_rate_mod;
   float *m_drywet_mod;
@@ -126,6 +130,8 @@ protected:
   float m_width = 1.f;
 
   bool m_LFO_freq_set = false;
+
+
 
 
   inline void incrementLFOLeft() {

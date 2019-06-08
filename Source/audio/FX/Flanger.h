@@ -34,6 +34,10 @@ public:
     }
   }
 
+  void resetLFO(){
+    m_index_sine = 0;
+  }
+
   void setFeedback(float p_feedback){
     p_feedback = p_feedback > 0.98 ? 0.98 : p_feedback;
     p_feedback = p_feedback < -0.98 ? -0.98 : p_feedback;
