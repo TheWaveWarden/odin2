@@ -1216,7 +1216,7 @@ bool OdinAudioProcessor::treeValueChangedFourth(const String &p_ID,
     m_flanger[0].setLFOAmount(p_new_value);
     m_flanger[1].setLFOAmount(p_new_value);
   }
-  else if (id == m_flanger_frequency_identifier)
+  else if (id == m_flanger_rate_identifier)
   {
     m_flanger[0].setLFOFreq(p_new_value);
     m_flanger[1].setLFOFreq(p_new_value);
@@ -1231,7 +1231,7 @@ bool OdinAudioProcessor::treeValueChangedFourth(const String &p_ID,
     m_chorus[0].setAmount(p_new_value);
     m_chorus[1].setAmount(p_new_value);
   }
-  else if (id == m_chorus_frequency_identifier)
+  else if (id == m_chorus_rate_identifier)
   {
     m_chorus[0].setLFOFreq(p_new_value);
     m_chorus[1].setLFOFreq(p_new_value);

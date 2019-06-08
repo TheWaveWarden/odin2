@@ -172,16 +172,18 @@
     //flanger
     float* m_flanger_reset;
     float* m_flanger_sync;
-    float* m_flanger_frequency;
+    float* m_flanger_rate;
     float* m_flanger_amount;
     float* m_flanger_drywet;
+    float* m_flanger_feedback;
     float* m_flanger_synctime_numerator;
     float* m_flanger_synctime_denominator;
     //chorus
     float* m_chorus_reset;
     float* m_chorus_sync;
-    float* m_chorus_frequency;
+    float* m_chorus_rate;
     float* m_chorus_amount;
+    float* m_chorus_feedback;
     float* m_chorus_drywet;
     float* m_chorus_synctime_numerator;
     float* m_chorus_synctime_denominator;
@@ -451,16 +453,18 @@
     Identifier m_phaser_synctime_denominator_identifier;
     Identifier m_flanger_reset_identifier;
     Identifier m_flanger_sync_identifier;
-    Identifier m_flanger_frequency_identifier;
+    Identifier m_flanger_rate_identifier;
     Identifier m_flanger_amount_identifier;
+    Identifier m_flanger_feedback_identifier;
     Identifier m_flanger_drywet_identifier;
     Identifier m_flanger_synctime_numerator_identifier;
     Identifier m_flanger_synctime_denominator_identifier;
     Identifier m_chorus_reset_identifier;
     Identifier m_chorus_sync_identifier;
-    Identifier m_chorus_frequency_identifier;
+    Identifier m_chorus_rate_identifier;
     Identifier m_chorus_amount_identifier;
     Identifier m_chorus_drywet_identifier;
+    Identifier m_chorus_feedback_identifier;
     Identifier m_chorus_synctime_numerator_identifier;
     Identifier m_chorus_synctime_denominator_identifier;
     Identifier m_amount_1_row_1_identifier;

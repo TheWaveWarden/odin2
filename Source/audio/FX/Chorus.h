@@ -1,7 +1,7 @@
 #pragma once
 
-#include <cstring>
 #include <cmath>
+#include <cstring>
 
 #define CHORUS_BUFFER_LENGTH 44100
 #define CHORUS_MIN_DISTANCE                                                    \
@@ -15,9 +15,17 @@ public:
 
   float doChorus(float p_input);
 
-  inline void setSamplerate(float p_samplerate) { m_samplerate = p_samplerate; 
-	setLFOFreq(1.f);
-   }
+  inline void setSamplerate(float p_samplerate) {
+    // store LFO freq
+    float LFO_freq = m_LFO_inc / 2.f / m_samplerate;
+    m_samplerate = p_samplerate;
+    if (!m_LFO_freq_set) {
+      setLFOFreq(LFO_freq);
+      m_LFO_freq_set = true;
+    } else {
+      setLFOFreq(0.2f); // this is initial
+    }
+  }
 
   inline void setAmount(float p_amount) { m_amount = p_amount * p_amount; }
 
@@ -33,7 +41,7 @@ public:
   }
 
   inline void incLFO() {
-	float increment_modded = m_LFO_inc;
+    float increment_modded = m_LFO_inc;
     if (*m_freq_mod) {
       increment_modded *= pow(4, *m_freq_mod);
     }
@@ -83,4 +91,6 @@ protected:
   float m_LFO_pos = 0;
   float m_amount = 0.3f;
   int m_write_index = 0;
+
+  bool m_LFO_freq_set = false;
 };

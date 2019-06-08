@@ -231,21 +231,23 @@ m_phaser_synctime_numerator =
 m_phaser_synctime_denominator =
     m_parameters.getRawParameterValue("phaser_synctime_denominator");
 
-m_flanger_frequency = m_parameters.getRawParameterValue("flanger_frequency");
+m_flanger_rate = m_parameters.getRawParameterValue("flanger_rate");
 m_flanger_amount = m_parameters.getRawParameterValue("flanger_amount");
 m_flanger_drywet = m_parameters.getRawParameterValue("flanger_drywet");
 m_flanger_sync = m_parameters.getRawParameterValue("flanger_sync");
 m_flanger_reset = m_parameters.getRawParameterValue("flanger_reset");
+m_flanger_feedback = m_parameters.getRawParameterValue("flanger_feedback");
 m_flanger_synctime_numerator =
     m_parameters.getRawParameterValue("flanger_synctime_numerator");
 m_flanger_synctime_denominator =
     m_parameters.getRawParameterValue("flanger_synctime_denominator");
 
-m_chorus_frequency = m_parameters.getRawParameterValue("chorus_frequency");
+m_chorus_rate = m_parameters.getRawParameterValue("chorus_rate");
 m_chorus_amount = m_parameters.getRawParameterValue("chorus_amount");
 m_chorus_drywet = m_parameters.getRawParameterValue("chorus_drywet");
 m_chorus_sync = m_parameters.getRawParameterValue("chorus_sync");
 m_chorus_reset = m_parameters.getRawParameterValue("chorus_reset");
+m_chorus_feedback = m_parameters.getRawParameterValue("chorus_feedback");
 m_chorus_synctime_numerator =
     m_parameters.getRawParameterValue("chorus_synctime_numerator");
 m_chorus_synctime_denominator =
@@ -516,9 +518,10 @@ m_parameters.addParameterListener("phaser_synctime_numerator",
 m_parameters.addParameterListener("phaser_synctime_denominator",
                                   &m_tree_listener);
 
-m_parameters.addParameterListener("flanger_frequency", &m_tree_listener);
+m_parameters.addParameterListener("flanger_rate", &m_tree_listener);
 m_parameters.addParameterListener("flanger_amount", &m_tree_listener);
 m_parameters.addParameterListener("flanger_drywet", &m_tree_listener);
+m_parameters.addParameterListener("flanger_feedback", &m_tree_listener);
 m_parameters.addParameterListener("flanger_sync", &m_tree_listener);
 m_parameters.addParameterListener("flanger_reset", &m_tree_listener);
 m_parameters.addParameterListener("flanger_synctime_numerator",
@@ -526,9 +529,10 @@ m_parameters.addParameterListener("flanger_synctime_numerator",
 m_parameters.addParameterListener("flanger_synctime_denominator",
                                   &m_tree_listener);
 
-m_parameters.addParameterListener("chorus_frequency", &m_tree_listener);
+m_parameters.addParameterListener("chorus_rate", &m_tree_listener);
 m_parameters.addParameterListener("chorus_amount", &m_tree_listener);
 m_parameters.addParameterListener("chorus_drywet", &m_tree_listener);
+m_parameters.addParameterListener("chorus_feedback", &m_tree_listener);
 m_parameters.addParameterListener("chorus_sync", &m_tree_listener);
 m_parameters.addParameterListener("chorus_reset", &m_tree_listener);
 m_parameters.addParameterListener("chorus_synctime_numerator",

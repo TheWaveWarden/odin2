@@ -23,8 +23,15 @@ public:
   }
 
   void setSamplerate (float p_samplerate) override {
-	  m_samplerate = p_samplerate;
-	  setLFOFreq(1.f);//todo bad point to set this
+    // store LFO freq
+    float LFO_freq = m_increment_sine / 2.f / m_samplerate;
+    m_samplerate = p_samplerate;
+    if (!m_LFO_freq_set) {
+      setLFOFreq(LFO_freq);
+      m_LFO_freq_set = true;
+    } else {
+      setLFOFreq(0.2f); // this is initial value
+    }
   }
 
   inline void setLFOAmount(float p_LFO_amount) { m_LFO_amount = p_LFO_amount; }
@@ -38,6 +45,8 @@ protected:
   float *m_freq_mod;
   float *m_amount_mod;
   float *m_drywet_mod;
+
+  bool m_LFO_freq_set = false;
 
   inline void incrementLFO() {
     float increment_modded = m_increment_sine;

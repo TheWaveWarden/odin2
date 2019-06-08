@@ -1,6 +1,9 @@
 #include "CombFilter.h"
 
-CombFilter::CombFilter() {}
+CombFilter::CombFilter() {
+  m_feedback = 1.0;
+
+}
 
 CombFilter::~CombFilter() {}
 

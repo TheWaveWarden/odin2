@@ -12,7 +12,15 @@ public:
   ~Phaser();
 
   inline void setSamplerate(float p_samplerate) {
+    // store LFO freq
+    float LFO_freq = m_increment_sine / 2.f / m_samplerate;
     m_samplerate = p_samplerate;
+    if (!m_LFO_freq_set) {
+      setLFOFreq(LFO_freq);
+      m_LFO_freq_set = true;
+    } else {
+      setLFOFreq(0.25f); // this is initial
+    }
 
     m_AP1_left.setSamplerate(p_samplerate);
     m_AP2_left.setSamplerate(p_samplerate);
@@ -40,7 +48,6 @@ public:
     m_AP11_right.setSamplerate(p_samplerate);
     m_AP12_right.setSamplerate(p_samplerate);
 
-	  setLFOFreq(0.25f);
   }
 
   inline void reset() {
@@ -117,6 +124,8 @@ protected:
   float *m_feedback_mod;
 
   float m_width = 1.f;
+
+  bool m_LFO_freq_set = false;
 
 
   inline void incrementLFOLeft() {
