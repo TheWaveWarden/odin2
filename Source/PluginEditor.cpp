@@ -77,9 +77,8 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
       m_flanger_position_identifier("flanger_position"),
       m_phaser_position_identifier("phaser_position"),
       m_chorus_position_identifier("chorus_position"), m_mod_matrix(vts),
-      m_legato_button("legato"),
-      m_tooltip(nullptr, 2047483647), m_is_standalone_plugin(p_is_standalone),
-      m_save_load(vts) {
+      m_legato_button("legato"), m_tooltip(nullptr, 2047483647),
+      m_is_standalone_plugin(p_is_standalone), m_save_load(vts) {
   if (m_is_standalone_plugin) {
     addKeyListener(this);
   }
@@ -772,9 +771,16 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
                             legato_left.getHeight());
   m_legato_button.setToggleState(true, sendNotification);
   m_legato_button.onStateChange = [&]() {
-    //TODO reset entire synth here
+    // TODO reset entire synth here
+
+    // notify voice manager
+    processor.setPolyLegato(m_legato_button.getToggleState());
   };
-  m_legato_button.setTooltip("Sets the synth to legato or polyphonic mode. In poly mode you have 12 voices, in legato you only have one and the envelopes tie together.");
+  m_legato_button.setTooltip(
+      "Sets the synth to legato or polyphonic mode. In poly mode you have 12 "
+      "voices, in legato you only have one and the envelopes tied together. "
+      "This can be usefull for melodies, since notes don't overlap and there's "
+      "no hard envelope reset when transitioning from one note to another.");
   addAndMakeVisible(m_legato_button);
 
   juce::Image lfo13_sync_background = ImageCache::getFromFile(
@@ -845,7 +851,6 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
       new SliderAttachment(m_value_tree, "modwheel", m_modwheel));
   m_pitchbend_attachment.reset(
       new SliderAttachment(m_value_tree, "pitchbend", m_pitchwheel));
-
 
   m_master.setNumDecimalPlacesToDisplay(2);
   m_glide.setNumDecimalPlacesToDisplay(3);
@@ -1281,8 +1286,8 @@ bool OdinAudioProcessorEditor::keyStateChanged(
 }
 
 void OdinAudioProcessorEditor::allMidiKeysOff() {
-    //TODO this is the SHITTIEST implementation ever
-    for(int note = 0; note < 127; ++note){
-        processor.midiNoteOff(note);
-    }
+  // TODO this is the SHITTIEST implementation ever
+  for (int note = 0; note < 127; ++note) {
+    processor.midiNoteOff(note);
+  }
 }

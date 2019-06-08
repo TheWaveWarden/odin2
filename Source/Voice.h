@@ -38,6 +38,11 @@ class VoiceManager {
 public:
   // returns free voice index or steals one and sets it busy
   int getVoice(int p_note) {
+    // in legato mode there's only one voice
+    if (m_is_legato) {
+      return 0;
+    }
+
     // first check if the note to be played is on the sustain list:
     if (m_sustain_active) {
       for (int voice = 0; voice < VOICES; ++voice) {
@@ -93,27 +98,41 @@ public:
     }
   }
 
-  void updateVoiceHistory(int p_next_voice){
+  void updateVoiceHistory(int p_next_voice) {
     int index = 0;
-    while(p_next_voice != m_voice_history[index]){
+    while (p_next_voice != m_voice_history[index]) {
       ++index;
     }
 
-    //p_next_voice was at position index, move all above one down:
-    for(int voice = index; voice > 0; --voice){
+    // p_next_voice was at position index, move all above one down:
+    for (int voice = index; voice > 0; --voice) {
       m_voice_history[voice] = m_voice_history[voice - 1];
     }
 
-    //now set new as newest value:
+    // now set new as newest value:
     m_voice_history[0] = p_next_voice;
 
-    DBG(std::to_string(m_voice_history[0]) + " " + std::to_string(m_voice_history[1]) + " " +std::to_string( m_voice_history[2]) + " " + std::to_string(m_voice_history[3]) + " " + std::to_string(m_voice_history[4]) + " " + std::to_string(m_voice_history[5]) + " " + std::to_string(m_voice_history[6]) + " " + std::to_string(m_voice_history[7]) + " " + std::to_string(m_voice_history[8]) + " " + std::to_string(m_voice_history[9])+ " " + std::to_string(m_voice_history[10]) + " " + std::to_string(m_voice_history[11]));
+    DBG(std::to_string(m_voice_history[0]) + " " +
+        std::to_string(m_voice_history[1]) + " " +
+        std::to_string(m_voice_history[2]) + " " +
+        std::to_string(m_voice_history[3]) + " " +
+        std::to_string(m_voice_history[4]) + " " +
+        std::to_string(m_voice_history[5]) + " " +
+        std::to_string(m_voice_history[6]) + " " +
+        std::to_string(m_voice_history[7]) + " " +
+        std::to_string(m_voice_history[8]) + " " +
+        std::to_string(m_voice_history[9]) + " " +
+        std::to_string(m_voice_history[10]) + " " +
+        std::to_string(m_voice_history[11]));
   }
+
+  void setPolyLegato(bool p_is_poly) { m_is_legato = !p_is_poly; }
 
   bool voice_busy[VOICES] = {0}; // is voice busy
 protected:
-  //used to determine oldest voice for stealing
-  int m_voice_history[VOICES] = {0,1,2,3,4,5,6,7,8,9,10,11};
+  bool m_is_legato = false;
+  // used to determine oldest voice for stealing
+  int m_voice_history[VOICES] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
   bool m_sustain_active = false;
   bool m_kill_list[VOICES] = {0};
   int m_kill_list_note[VOICES];
@@ -130,7 +149,9 @@ struct Voice {
     generateNewRandomValue();
   }
 
-  void generateNewRandomValue(){
+  void setPolyLegato(bool p_is_poly) { m_is_legato = !p_is_poly; }
+
+  void generateNewRandomValue() {
     random_modulation = 2.f * ((float)rand() / (float)RAND_MAX) - 1.f;
   }
 
@@ -146,11 +167,16 @@ struct Voice {
     m_MIDI_key = p_MIDI_key;
     MIDI_key_mod_source = (float)p_MIDI_key / 127.f;
     MIDI_velocity_mod_source = (float)p_MIDI_velocity / 127.f;
-    for (int mod = 0; mod < 3; ++mod) {
-      env[mod].reset();
+    if (m_is_legato) {
+      for (int mod = 0; mod < 3; ++mod) {
+        env[mod].restartEnvelope();
+      }
+    } else {
+      for (int mod = 0; mod < 3; ++mod) {
+        env[mod].reset();
+      }
     }
     generateNewRandomValue();
-
 
     DBG("Started voice");
   }
@@ -235,15 +261,15 @@ struct Voice {
   }
 
   void killGlide(int p_osc) {
-      analog_osc[p_osc].killGlide();
-      wavedraw_osc[p_osc].killGlide();
-      chipdraw_osc[p_osc].killGlide();
-      specdraw_osc[p_osc].killGlide();
-      wavetable_osc[p_osc].killGlide();
-      multi_osc[p_osc].killGlide();
-      vector_osc[p_osc].killGlide();
-      chiptune_osc[p_osc].killGlide();
-      fm_osc[p_osc].killGlide();
+    analog_osc[p_osc].killGlide();
+    wavedraw_osc[p_osc].killGlide();
+    chipdraw_osc[p_osc].killGlide();
+    specdraw_osc[p_osc].killGlide();
+    wavetable_osc[p_osc].killGlide();
+    multi_osc[p_osc].killGlide();
+    vector_osc[p_osc].killGlide();
+    chiptune_osc[p_osc].killGlide();
+    fm_osc[p_osc].killGlide();
   }
 
   void setReset(bool p_reset, int p_osc) {
@@ -282,8 +308,23 @@ struct Voice {
   }
 
   void reset() {
+    resetLegato();
+    if (!m_is_legato) {
+      for (int mod = 0; mod < 3; ++mod) {
+        lfo[mod].voiceStart();
+      }
+      for (int fil = 0; fil < 2; ++fil) {
+        ladder_filter[fil].reset();
+        diode_filter[fil].reset();
+        formant_filter[fil].reset();
+        korg_filter[fil].reset();
+        SEM_filter_12[fil].reset();
+      }
+    }
+  }
+  void resetLegato() {
     for (int osc = 0; osc < 3; ++osc) {
-      //use start voice, oscs will reset if reset is active
+      // use start voice, oscs will reset if reset is active
       analog_osc[osc].voiceStart();
       wavetable_osc[osc].voiceStart();
       wavedraw_osc[osc].voiceStart();
@@ -299,13 +340,6 @@ struct Voice {
     }
     for (int mod = 0; mod < 3; ++mod) {
       lfo[mod].voiceStart();
-    }
-    for (int fil = 0; fil < 2; ++fil) {
-      ladder_filter[fil].reset();
-      diode_filter[fil].reset();
-      formant_filter[fil].reset();
-      korg_filter[fil].reset();
-      SEM_filter_12[fil].reset();
     }
   }
 
@@ -440,13 +474,14 @@ struct Voice {
   // LFOs
   // todo
 
+  bool m_is_legato = false;
   // modulation values
   float MIDI_key_mod_source = 0.f;
   float MIDI_velocity_mod_source = 0.f;
   float random_modulation;
 
   // called when the envelope ends to signal voice end to voice manager
-  //std::function<void()> onEnvelopeEnd = []() {};
+  // std::function<void()> onEnvelopeEnd = []() {};
   bool m_voice_active = false;
   int m_MIDI_key = 0;
 };

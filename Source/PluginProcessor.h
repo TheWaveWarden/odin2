@@ -225,6 +225,10 @@ public:
 
   void midiNoteOff(int p_midi_note);
   void midiNoteOn(int p_midi_note, int p_midi_velocity);
+  void setPolyLegato(bool p_is_poly) {
+    m_voice_manager.setPolyLegato(p_is_poly);
+    m_voice[0].setPolyLegato(p_is_poly);
+  }
 
 private:
   bool m_midi_learn_knob_active = false;
@@ -278,7 +282,7 @@ private:
   FormantFilter m_formant_filter[2];
   CombFilter m_comb_filter[2];
   Delay m_delay[2];
-  Phaser m_phaser;//is stereo phaser
+  Phaser m_phaser; // is stereo phaser
   Flanger m_flanger[2];
   Chorus m_chorus[2];
 
