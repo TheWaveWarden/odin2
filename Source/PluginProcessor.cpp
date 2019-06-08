@@ -269,7 +269,7 @@ void OdinAudioProcessor::changeProgramName(int index, const String &newName) {}
 void OdinAudioProcessor::prepareToPlay(double sampleRate, int samplesPerBlock) {
   // Use this method as the place to do any pre-playback
   // initialisation that you need..
-  //m_voice[0].start(52, 100, 10);
+  // m_voice[0].start(52, 100, 10);
   // m_amp.setMIDIVelocity(100);
 }
 
@@ -711,14 +711,13 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
           }
         } else if ((int)*m_phaser_position == fx_slot) {
           if (*m_phaser_on) {
-            if(channel == 0){
+            if (channel == 0) {
               stereo_signal[channel] =
-                m_phaser.doPhaserLeft(stereo_signal[channel]);
+                  m_phaser.doPhaserLeft(stereo_signal[channel]);
             } else {
               stereo_signal[channel] =
-                m_phaser.doPhaserRight(stereo_signal[channel]);
+                  m_phaser.doPhaserRight(stereo_signal[channel]);
             }
-
           }
         } else if ((int)*m_flanger_position == fx_slot) {
           if (*m_flanger_on) {
@@ -1066,6 +1065,8 @@ void OdinAudioProcessor::setModulationPointers() {
       //       &(m_mod_destinations.voice[voice].filter[fil].vel_amount));
       m_voice[voice].comb_filter[fil].setVelModPointer(
           &(m_mod_destinations.voice[voice].filter[fil].vel_amount));
+      m_voice[voice].formant_filter[fil].setVelModPointer(
+          &(m_mod_destinations.voice[voice].filter[fil].vel_amount));
 
       m_voice[voice].ladder_filter[fil].setKbdModPointer(
           &(m_mod_destinations.voice[voice].filter[fil].kbd_amount));
@@ -1220,7 +1221,6 @@ void OdinAudioProcessor::setModulationPointers() {
     m_phaser.setDryWetModPointer(&(m_mod_destinations.phaser.drywet));
     m_phaser.setFreqModPointer(&(m_mod_destinations.phaser.freq));
     m_phaser.setFeedbackModPointer(&(m_mod_destinations.phaser.feedback));
-
 
     m_flanger[stereo].setFreqModPointer(&(m_mod_destinations.flanger.freq));
     m_flanger[stereo].setAmountModPointer(&(m_mod_destinations.flanger.amount));

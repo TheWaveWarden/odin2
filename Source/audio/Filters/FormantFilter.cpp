@@ -31,9 +31,15 @@ void FormantFilter::reset() {
 }
 
 void FormantFilter::update() {
-  Filter::update();
+  // Filter::update();
 
-  float transition_modded = m_transition + *m_transition_mod;
+  float vel_modded = m_vel_mod_amount + *m_vel_mod_mod < 0
+                         ? 0
+                         : m_vel_mod_amount + *m_vel_mod_mod;
+
+  float transition_modded = m_transition + *m_transition_mod +
+                            vel_modded * (float)m_MIDI_velocity / 127.f +
+                            (m_env_mod_amount + *m_env_mod_mod) * m_env_value;
   transition_modded = transition_modded > 1 ? 1 : transition_modded;
   transition_modded = transition_modded < 0 ? 0 : transition_modded;
 

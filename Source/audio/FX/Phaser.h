@@ -196,7 +196,7 @@ protected:
   float m_radius_base;//is initialized to 1.25
   float m_samplerate;
 
-  float m_feedback = 0;
+  float m_feedback = 0.25f * 0.97f;
   float m_store_output_left = 0;
   float m_store_output_right = 0;
 };

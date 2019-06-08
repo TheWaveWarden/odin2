@@ -79,7 +79,7 @@ PhaserComponent::PhaserComponent(AudioProcessorValueTreeState &vts,
   m_feedback.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
   m_feedback.setRange(0, 1);
   m_feedback.setNumDecimalPlacesToDisplay(2);
-  m_feedback.setValue(0);
+  m_feedback.setValue(0.25f);
   m_feedback.setDoubleClickReturnValue(true, 0, ModifierKeys::ctrlModifier);
   m_feedback.setKnobTooltip("The spreading of the internal allpass filters");
   addAndMakeVisible(m_feedback);
