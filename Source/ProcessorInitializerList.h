@@ -204,6 +204,7 @@
     m_lfo4_synctime_denominator_identifier("lfo4_synctime_denominator"),
     m_glide_identifier("glide"),
     m_master_identifier("master"),
+    m_legato_identifier("legato"),
     m_modwheel_identifier("modwheel"),
     m_pitchbend_identifier("pitchbend"),
     m_pitchbend_amount_identifier("pitchbend_amount"),

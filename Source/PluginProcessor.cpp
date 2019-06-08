@@ -379,7 +379,7 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
     
     // global lfo and envelope
     m_global_env_mod_source = m_global_env.doEnvelope();
-    DBG(m_global_env_mod_source);
+    //DBG(m_global_env_mod_source);
 
     m_global_lfo.update();
     m_global_lfo_mod_source = m_global_lfo.doOscillate();

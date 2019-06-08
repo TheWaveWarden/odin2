@@ -143,7 +143,7 @@
     float* m_fil_osc1[2];
     float* m_fil_osc2[2];
     float* m_fil_osc3[2];
-
+    float* m_legato;
     float* m_fil2_fil1;
     float* m_delay_position;
     float* m_flanger_position;
@@ -414,6 +414,7 @@
     Identifier m_pitchbend_amount_identifier;
     Identifier m_xy_x_identifier;
     Identifier m_xy_y_identifier;
+    Identifier m_legato_identifier;
     Identifier m_delay_on_identifier;
     Identifier m_phaser_on_identifier;
     Identifier m_flanger_on_identifier;

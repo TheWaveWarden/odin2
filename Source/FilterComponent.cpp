@@ -186,7 +186,7 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts,
   m_comb_plus_minus.setImage(comb_minus, 2);
   m_comb_plus_minus.setBounds(COMB_PLUS_POS_X, COMB_PLUS_POS_Y,
                               comb_plus.getWidth(), comb_plus.getHeight());
-  m_comb_plus_minus.setToggleState(true, dontSendNotification);
+  m_comb_plus_minus.setToggleState(false, dontSendNotification);
   m_comb_plus_minus.onStateChange = [&]() {
     // setLfo13(m_comb_plus_minus_button.getToggleState());
   };

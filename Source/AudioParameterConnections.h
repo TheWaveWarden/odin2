@@ -258,6 +258,8 @@ m_flanger_position = m_parameters.getRawParameterValue("flanger_position");
 m_phaser_position = m_parameters.getRawParameterValue("phaser_position");
 m_chorus_position = m_parameters.getRawParameterValue("chorus_position");
 
+m_legato = m_parameters.getRawParameterValue("legato");
+
 for (int i = 0; i < 9; ++i) {
   m_amount_1[i] =
       m_parameters.getRawParameterValue("amount_1_[" + std::to_string(i) + "]");
@@ -535,6 +537,7 @@ m_parameters.addParameterListener("chorus_drywet", &m_tree_listener);
 m_parameters.addParameterListener("chorus_feedback", &m_tree_listener);
 m_parameters.addParameterListener("chorus_sync", &m_tree_listener);
 m_parameters.addParameterListener("chorus_reset", &m_tree_listener);
+m_parameters.addParameterListener("legato", &m_tree_listener);
 m_parameters.addParameterListener("chorus_synctime_numerator",
                                   &m_tree_listener);
 m_parameters.addParameterListener("chorus_synctime_denominator",

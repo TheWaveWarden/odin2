@@ -536,21 +536,25 @@
       std::make_unique<AudioParameterInt>(
           "delay_synctime_denominator", "Delay SyncTime Denominator", 1, 9, 6),
       std::make_unique<AudioParameterInt>("delay_on", "Delay On", 0, 1, 0),
-      std::make_unique<AudioParameterInt>("delay_selected", "Delay Selected", 0, 1, 1),
-      
+      std::make_unique<AudioParameterInt>("delay_selected", "Delay Selected", 0,
+                                          1, 1),
+
       // Phaser
       std::make_unique<AudioParameterInt>("phaser_sync", "Phaser Sync", 0, 1,
                                           0),
       std::make_unique<AudioParameterInt>("phaser_reset", "Phaser Reset", 0, 1,
                                           0),
       std::make_unique<AudioParameterInt>("phaser_on", "Phaser On", 0, 1, 0),
-      std::make_unique<AudioParameterFloat>("phaser_freq", "Phaser Frequency", 400, 8000, 4000),
-      std::make_unique<AudioParameterFloat>("phaser_feedback", "Phaser Feedback", 0,1,0.25f),
-      std::make_unique<AudioParameterInt>("phaser_selected", "Phaser Selected", 0, 1, 0),
-      std::make_unique<AudioParameterFloat>(
-          "phaser_rate", "Phaser Rate", 0.05f, 20.f, 0.25f),
-      std::make_unique<AudioParameterFloat>("phaser_mod", "Phaser Amount",
-                                            0.f, 1.f, 0.3f),
+      std::make_unique<AudioParameterFloat>("phaser_freq", "Phaser Frequency",
+                                            400, 8000, 4000),
+      std::make_unique<AudioParameterFloat>("phaser_feedback",
+                                            "Phaser Feedback", 0, 1, 0.25f),
+      std::make_unique<AudioParameterInt>("phaser_selected", "Phaser Selected",
+                                          0, 1, 0),
+      std::make_unique<AudioParameterFloat>("phaser_rate", "Phaser Rate", 0.05f,
+                                            20.f, 0.25f),
+      std::make_unique<AudioParameterFloat>("phaser_mod", "Phaser Amount", 0.f,
+                                            1.f, 0.3f),
       std::make_unique<AudioParameterFloat>("phaser_drywet", "Phaser DryWet",
                                             0.f, 1.f, 1.f),
       std::make_unique<AudioParameterInt>("phaser_synctime_numerator",
@@ -564,10 +568,11 @@
       std::make_unique<AudioParameterInt>("flanger_reset", "Flanger Reset", 0,
                                           1, 0),
       std::make_unique<AudioParameterInt>("flanger_on", "Flanger On", 0, 1, 0),
-      std::make_unique<AudioParameterInt>("flanger_selected", "Flanger Selected", 0, 1, 0),
-      
-      std::make_unique<AudioParameterFloat>(
-          "flanger_rate", "Flanger Rate", 0.05f, 20.f, 0.2f),    
+      std::make_unique<AudioParameterInt>("flanger_selected",
+                                          "Flanger Selected", 0, 1, 0),
+
+      std::make_unique<AudioParameterFloat>("flanger_rate", "Flanger Rate",
+                                            0.05f, 20.f, 0.2f),
       std::make_unique<AudioParameterFloat>(
           "flanger_feedback", "Flanger Feedback", -1.f, 1.f, 0.6f),
       std::make_unique<AudioParameterFloat>("flanger_amount", "Flanger Amount",
@@ -585,14 +590,15 @@
       std::make_unique<AudioParameterInt>("chorus_reset", "Chorus Reset", 0, 1,
                                           0),
       std::make_unique<AudioParameterInt>("chorus_on", "Chorus On", 0, 1, 0),
-      std::make_unique<AudioParameterInt>("chorus_selected", "Chorus Selected", 0, 1, 0),
-      
-      std::make_unique<AudioParameterFloat>(
-          "chorus_rate", "Chorus Frequency", 0.05f, 20.f, 0.2f),
+      std::make_unique<AudioParameterInt>("chorus_selected", "Chorus Selected",
+                                          0, 1, 0),
+
+      std::make_unique<AudioParameterFloat>("chorus_rate", "Chorus Frequency",
+                                            0.05f, 20.f, 0.2f),
       std::make_unique<AudioParameterFloat>("chorus_amount", "Chorus Amount",
                                             0.f, 1.f, 0.3f),
-      std::make_unique<AudioParameterFloat>(
-          "chorus_feedback", "Chorus Feedback", -1.f, 1.f, 0.f),
+      std::make_unique<AudioParameterFloat>("chorus_feedback",
+                                            "Chorus Feedback", -1.f, 1.f, 0.f),
       std::make_unique<AudioParameterFloat>("chorus_feedback", "Chorus DryWet",
                                             0.f, 1.f, 1.f),
       std::make_unique<AudioParameterInt>("chorus_synctime_numerator",
@@ -600,6 +606,9 @@
       std::make_unique<AudioParameterInt>("chorus_synctime_denominator",
                                           "Chorus SyncTime Denominator", 1, 9,
                                           6),
+      std::make_unique<AudioParameterInt>("legato",
+                                          "LegatoPoly", 0, 1,
+                                          1),
       // ModMatrix
       std::make_unique<AudioParameterFloat>("amount_1_[0]", "amount_1_[0]", -1,
                                             1, 0),

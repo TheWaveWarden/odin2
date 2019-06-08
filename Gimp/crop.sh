@@ -231,6 +231,13 @@ convert FilterButtonsRaw.png -crop 49x19+102+331 cropped/buttons/buttonexplin_4.
 
 convert -append cropped/buttons/buttonexplin_1.png  cropped/buttons/buttonexplin_2.png cropped/buttons/buttonexplin_3.png  cropped/buttons/buttonexplin_4.png cropped/buttons/buttonexplinfilmstrip.png 
 
+convert FilterButtonsRaw.png -crop 71x19+7+256 cropped/buttons/buttonlegato_1.png
+convert FilterButtonsRaw.png -crop 71x19+7+281 cropped/buttons/buttonlegato_2.png
+convert FilterButtonsRaw.png -crop 71x19+7+306 cropped/buttons/buttonlegato_3.png
+convert FilterButtonsRaw.png -crop 71x19+7+331 cropped/buttons/buttonlegato_4.png
+
+convert -append cropped/buttons/buttonlegato_1.png  cropped/buttons/buttonlegato_2.png cropped/buttons/buttonlegato_3.png  cropped/buttons/buttonlegato_4.png cropped/buttons/buttonlegatofilmstrip.png 
+
 convert FilterButtonsRaw.png -crop 44x19+157+256 cropped/buttons/buttonplusminus_1.png
 convert FilterButtonsRaw.png -crop 44x19+157+281 cropped/buttons/buttonplusminus_2.png
 convert FilterButtonsRaw.png -crop 44x19+157+306 cropped/buttons/buttonplusminus_3.png

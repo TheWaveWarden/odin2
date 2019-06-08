@@ -77,6 +77,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
       m_flanger_position_identifier("flanger_position"),
       m_phaser_position_identifier("phaser_position"),
       m_chorus_position_identifier("chorus_position"), m_mod_matrix(vts),
+      m_legato_button("legato"),
       m_tooltip(nullptr, 2047483647), m_is_standalone_plugin(p_is_standalone),
       m_save_load(vts) {
   if (m_is_standalone_plugin) {
@@ -761,6 +762,21 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
   m_lfo_24_button.setTooltip("Shows LFO 2 or LFO 4");
   addAndMakeVisible(m_lfo_24_button);
 
+  juce::Image legato_left = ImageCache::getFromFile(
+      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonlegato_1.png"));
+  juce::Image legato_right = ImageCache::getFromFile(
+      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonlegato_3.png"));
+  m_legato_button.setImage(legato_left, 1);
+  m_legato_button.setImage(legato_right, 2);
+  m_legato_button.setBounds(LEGATO_POS_X, LEGATO_POS_Y, legato_left.getWidth(),
+                            legato_left.getHeight());
+  m_legato_button.setToggleState(true, sendNotification);
+  m_legato_button.onStateChange = [&]() {
+    //TODO reset entire synth here
+  };
+  m_legato_button.setTooltip("Sets the synth to legato or polyphonic mode. In poly mode you have 12 voices, in legato you only have one and the envelopes tie together.");
+  addAndMakeVisible(m_legato_button);
+
   juce::Image lfo13_sync_background = ImageCache::getFromFile(
       juce::File(GRAPHICS_PATH + "cropped/lfo13_sync_background.png"));
 
@@ -818,6 +834,8 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
       new ButtonAttachment(m_value_tree, "fil2_osc3", m_filright_button3));
   m_fil2_fil1_attachment.reset(
       new ButtonAttachment(m_value_tree, "fil2_fil1", m_filright_buttonf1));
+  m_legato_attachment.reset(
+      new ButtonAttachment(m_value_tree, "legato", m_legato_button));
 
   m_glide_attachment.reset(
       new SliderAttachment(m_value_tree, "glide", m_glide));

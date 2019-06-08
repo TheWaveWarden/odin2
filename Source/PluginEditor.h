@@ -110,6 +110,9 @@
 #define SAVE_LOAD_SIZE_X 288
 #define SAVE_LOAD_SIZE_Y 25
 
+#define LEGATO_POS_X 670
+#define LEGATO_POS_Y 7
+
 #define ENV13_POS_X 30
 #define ENV13_POS_Y 313
 #define ENV24_POS_X 158
@@ -293,6 +296,8 @@ private:
   LeftRightButton m_lfo_13_button;
   LeftRightButton m_lfo_24_button;
 
+  LeftRightButton m_legato_button;
+
   AudioProcessorValueTreeState &m_value_tree;
 
   std::unique_ptr<ButtonAttachment> m_phaser_on_attachment;
@@ -306,6 +311,7 @@ private:
   std::unique_ptr<ButtonAttachment> m_fil2_osc2_attachment;
   std::unique_ptr<ButtonAttachment> m_fil2_osc3_attachment;
   std::unique_ptr<ButtonAttachment> m_fil2_fil1_attachment;
+  std::unique_ptr<ButtonAttachment> m_legato_attachment;
 
   std::unique_ptr<SliderAttachment> m_glide_attachment;
   std::unique_ptr<SliderAttachment> m_master_attachment;
