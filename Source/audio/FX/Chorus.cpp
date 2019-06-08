@@ -73,7 +73,7 @@ float Chorus::doChorus(float p_input) {
                         : read_index_next;
   output += linearInterpolation(m_circular_buffer[read_index_trunc],
                                 m_circular_buffer[read_index_next], frac);
-
+  
   // Delayline 4
   read_index =
       (float)m_write_index - CHORUS_MIN_DISTANCE -
@@ -92,12 +92,14 @@ float Chorus::doChorus(float p_input) {
   output += linearInterpolation(m_circular_buffer[read_index_trunc],
                                 m_circular_buffer[read_index_next], frac);
 
-  m_circular_buffer[m_write_index] = p_input;
+  output *= 0.25f;
+
+  m_circular_buffer[m_write_index] = p_input + output * m_feedback;
   incWriteIndex();
 
   float drywet_modded = m_dry_wet + *m_drywet_mod;
   drywet_modded = drywet_modded > 1 ? 1 : drywet_modded;
   drywet_modded = drywet_modded < 0 ? 0 : drywet_modded;
 
-  return output * 0.25f * drywet_modded + (1.f - drywet_modded) * p_input;
+  return output * drywet_modded + (1.f - drywet_modded) * p_input;
 }

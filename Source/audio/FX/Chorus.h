@@ -75,6 +75,10 @@ public:
     calc_pos = LFO2_pos > 1 ? LFO2_pos - 1 : LFO2_pos;
     pi_LFO2 = 4.f * (calc_pos * (1.f - calc_pos)) * LFO_sign;
   }
+  void setFeedback(float p_feedback){
+    m_feedback = p_feedback;
+  }
+
   void setFreqModPointer(float *p_pointer) { m_freq_mod = p_pointer; }
   void setAmountModPointer(float *p_pointer) { m_amount_mod = p_pointer; }
   void setDryWetModPointer(float *p_pointer) { m_drywet_mod = p_pointer; }
@@ -91,6 +95,6 @@ protected:
   float m_LFO_pos = 0;
   float m_amount = 0.3f;
   int m_write_index = 0;
-
+  float m_feedback = 0;
   bool m_LFO_freq_set = false;
 };

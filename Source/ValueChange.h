@@ -1221,6 +1221,11 @@ bool OdinAudioProcessor::treeValueChangedFourth(const String &p_ID,
     m_flanger[0].setLFOFreq(p_new_value);
     m_flanger[1].setLFOFreq(p_new_value);
   }
+  else if (id == m_flanger_feedback_identifier)
+  {
+    m_flanger[0].setFeedback(p_new_value);
+    m_flanger[1].setFeedback(p_new_value);
+  }
   else if (id == m_flanger_drywet_identifier)
   {
     m_flanger[0].setDryWet(p_new_value);
@@ -1235,6 +1240,11 @@ bool OdinAudioProcessor::treeValueChangedFourth(const String &p_ID,
   {
     m_chorus[0].setLFOFreq(p_new_value);
     m_chorus[1].setLFOFreq(p_new_value);
+  }
+  else if (id == m_chorus_feedback_identifier)
+  {
+    m_chorus[0].setFeedback(p_new_value);
+    m_chorus[1].setFeedback(p_new_value);
   }
   else if (id == m_chorus_drywet_identifier)
   {

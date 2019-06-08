@@ -41,8 +41,8 @@ PhaserComponent::PhaserComponent(AudioProcessorValueTreeState &vts,
   m_mod.setStrip(metal_knob_mid, N_KNOB_FRAMES);
   m_mod.setSliderStyle(Slider::RotaryVerticalDrag);
   m_mod.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-  m_mod.setValue(FX_AMOUNT_DEFAULT);
-  m_mod.setDoubleClickReturnValue(true, FX_AMOUNT_DEFAULT,
+  m_mod.setValue(PHASER_AMOUNT_DEFAULT);
+  m_mod.setDoubleClickReturnValue(true, PHASER_AMOUNT_DEFAULT,
                                   ModifierKeys::ctrlModifier);
   m_mod.setKnobTooltip(
       "How much the internal\nLFO modulates the\nfrequency of this effect");
@@ -51,12 +51,12 @@ PhaserComponent::PhaserComponent(AudioProcessorValueTreeState &vts,
   m_rate.setStrip(metal_knob_mid, N_KNOB_FRAMES);
   m_rate.setSliderStyle(Slider::RotaryVerticalDrag);
   m_rate.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-  m_rate.setRange(FX_FREQ_MIN, FX_FREQ_MAX);
-  m_rate.setSkewFactorFromMidPoint(FX_FREQ_MID);
+  m_rate.setRange(PHASER_FREQ_MIN, PHASER_FREQ_MAX);
+  m_rate.setSkewFactorFromMidPoint(PHASER_FREQ_MID);
   m_rate.setTextValueSuffix(" Hz");
   m_rate.setNumDecimalPlacesToDisplay(2);
   m_rate.setValue(0.25);
-  m_rate.setDoubleClickReturnValue(true, FX_FREQ_DEFAULT,
+  m_rate.setDoubleClickReturnValue(true, PHASER_FREQ_DEFAULT,
                                    ModifierKeys::ctrlModifier);
   m_rate.setKnobTooltip("The frequency of the internal LFO");
   addAndMakeVisible(m_rate);
@@ -87,8 +87,8 @@ PhaserComponent::PhaserComponent(AudioProcessorValueTreeState &vts,
   m_dry_wet.setStrip(metal_knob_mid, N_KNOB_FRAMES);
   m_dry_wet.setSliderStyle(Slider::RotaryVerticalDrag);
   m_dry_wet.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-  m_dry_wet.setValue(FX_DRYWET_DEFAULT);
-  m_dry_wet.setDoubleClickReturnValue(true, FX_DRYWET_DEFAULT,
+  m_dry_wet.setValue(PHASER_DRYWET_DEFAULT);
+  m_dry_wet.setDoubleClickReturnValue(true, PHASER_DRYWET_DEFAULT,
                                       ModifierKeys::ctrlModifier);
 
   m_dry_wet.setKnobTooltip("The mix of processed and\n unprocessed signals");

@@ -34,6 +34,12 @@ public:
     }
   }
 
+  void setFeedback(float p_feedback){
+    p_feedback = p_feedback > 0.98 ? 0.98 : p_feedback;
+    p_feedback = p_feedback < -0.98 ? -0.98 : p_feedback;
+    setResonance(p_feedback);
+  }
+
   inline void setLFOAmount(float p_LFO_amount) { m_LFO_amount = p_LFO_amount; }
 
   inline void setDryWet(float p_dry_wet) { m_dry_wet = p_dry_wet; }
@@ -68,7 +74,7 @@ protected:
   int m_LFO_sign = 1;
 
   float m_base_time = 0.0105;
-  float m_LFO_freq = 1.f;
+  float m_LFO_freq;
   float m_LFO_amount = 0.3f;
 
   float m_index_sine = 0;

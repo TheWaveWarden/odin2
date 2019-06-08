@@ -570,7 +570,7 @@
           "flanger_rate", "Flanger Rate", 0.05f, 20.f, 0.2f),    
       std::make_unique<AudioParameterFloat>(
           "flanger_feedback", "Flanger Feedback", -1.f, 1.f, 0.6f),
-      std::make_unique<AudioParameterFloat>("flanger_feedback", "Flanger Amount",
+      std::make_unique<AudioParameterFloat>("flanger_amount", "Flanger Amount",
                                             0.f, 1.f, 0.3f),
       std::make_unique<AudioParameterFloat>("flanger_drywet", "Flanger DryWet",
                                             0.f, 1.f, 1.f),

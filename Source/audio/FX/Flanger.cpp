@@ -1,6 +1,8 @@
 #include "Flanger.h"
 
-Flanger::Flanger() {}
+Flanger::Flanger() {
+  setResonance(0.6);//initial value
+}
 
 Flanger::~Flanger() {}
 
