@@ -953,6 +953,10 @@ void ModMatrixRow::setModDestination(int p_destination,
     p_dest_poly = false;
     break;
   case 803:
+    p_destination_pointers[0] = &(m_destinations->flanger.feedback);
+    p_dest_poly = false;
+    break;
+  case 804:
     p_destination_pointers[0] = &(m_destinations->flanger.drywet);
     p_dest_poly = false;
     break;
@@ -966,6 +970,10 @@ void ModMatrixRow::setModDestination(int p_destination,
     p_dest_poly = false;
     break;
   case 853:
+    p_destination_pointers[0] = &(m_destinations->chorus.feedback);
+    p_dest_poly = false;
+    break;
+  case 854:
     p_destination_pointers[0] = &(m_destinations->chorus.drywet);
     p_dest_poly = false;
     break;

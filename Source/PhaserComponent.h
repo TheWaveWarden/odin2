@@ -17,18 +17,18 @@
 #include "SyncTimeSelector.h"
 
 
-#define AMOUNT_POS_X 103
-#define AMOUNT_POS_Y 43
-#define FREQ_POS_X 31
-#define FREQ_POS_Y 17
-#define DRY_WET_POS_X 175
-#define DRY_WET_POS_Y (FREQ_POS_Y)
-#define PHASER_SYNC_POS_X 37
-#define PHASER_SYNC_POS_Y 79
-#define PHASER_RESET_POS_X 176
-#define PHASER_RESET_POS_Y PHASER_SYNC_POS_Y
-#define SYNC_TIME_PHASER_POS_X 16
-#define SYNC_TIME_PHASER_POS_Y 35
+// #define AMOUNT_POS_X 103
+// #define AMOUNT_POS_Y 43
+// #define FREQ_POS_X 31
+// #define FREQ_POS_Y 17
+// #define DRY_WET_POS_X 175
+// #define DRY_WET_POS_Y (FREQ_POS_Y)
+// #define PHASER_SYNC_POS_X 37
+// #define PHASER_SYNC_POS_Y 79
+// #define PHASER_RESET_POS_X 176
+// #define PHASER_RESET_POS_Y PHASER_SYNC_POS_Y
+// #define SYNC_TIME_PHASER_POS_X 16
+// #define SYNC_TIME_PHASER_POS_Y 35
 
 #define PHASER_FREQ_MIN 0.05
 #define PHASER_FREQ_MAX 20

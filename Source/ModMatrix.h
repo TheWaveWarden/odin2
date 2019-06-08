@@ -81,12 +81,14 @@ struct ModDestPhaser {
 struct ModDestFlanger {
   float amount;
   float freq;
+  float feedback;
   float drywet;
 };
 
 struct ModDestChorus {
   float amount;
   float freq;
+  float feedback;
   float drywet;
 };
 

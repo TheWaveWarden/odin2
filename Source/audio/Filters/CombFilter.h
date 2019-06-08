@@ -75,7 +75,8 @@ public:
   float* m_kbd_mod_mod = &m_zero_modulation_dummy;
 
   float m_zero_modulation_dummy = 0.f;
-
+  float m_feedback_lower_limit = 0.f;//used for resonance modulation down (is -1 in flanger)
+  float m_feedback_higher_limit = 1.f;//used for resonance modulation down (is 0.97 in flanger)
   // buffer length is 4 seks at 192kHz or ~17s at 44.1Khz...
   float circular_buffer[COMB_BUFFER_LENGTH] = {0};
 
@@ -83,8 +84,8 @@ public:
   int m_positive_comb = 1;
 
   // need to be init by synth
-  double m_delay_time_control = 1. / 440.f;
-  double m_delay_time_smooth = 1. / 440.f; // todo what value here?
+  double m_delay_time_control = 1. / 2000.f;
+  double m_delay_time_smooth = 1. / 2000.f;
   float m_feedback = 0;
   float m_samplerate = 44100;
 };

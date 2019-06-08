@@ -46,11 +46,12 @@ public:
   void setFreqModPointer(float *p_pointer) { m_freq_mod = p_pointer; }
   void setAmountModPointer(float *p_pointer) { m_amount_mod = p_pointer; }
   void setDryWetModPointer(float *p_pointer) { m_drywet_mod = p_pointer; }
-
+  void setFeedbackModPointer(float *p_pointer) { m_res_mod = p_pointer; }
 protected:
   float *m_freq_mod;
   float *m_amount_mod;
   float *m_drywet_mod;
+  float *m_feedback_mod;
 
   bool m_LFO_freq_set = false;
 

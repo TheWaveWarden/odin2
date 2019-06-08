@@ -94,7 +94,11 @@ float Chorus::doChorus(float p_input) {
 
   output *= 0.25f;
 
-  m_circular_buffer[m_write_index] = p_input + output * m_feedback;
+  float feedback_modded = m_feedback + *m_feedback_mod;
+  feedback_modded = feedback_modded > 1 ? 1: feedback_modded;
+  feedback_modded = feedback_modded < -1 ? -1: feedback_modded;
+
+  m_circular_buffer[m_write_index] = p_input + output * feedback_modded;
   incWriteIndex();
 
   float drywet_modded = m_dry_wet + *m_drywet_mod;

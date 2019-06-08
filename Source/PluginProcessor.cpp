@@ -1224,10 +1224,12 @@ void OdinAudioProcessor::setModulationPointers() {
 
     m_flanger[stereo].setFreqModPointer(&(m_mod_destinations.flanger.freq));
     m_flanger[stereo].setAmountModPointer(&(m_mod_destinations.flanger.amount));
+    m_flanger[stereo].setFeedbackModPointer(&(m_mod_destinations.flanger.feedback));
     m_flanger[stereo].setDryWetModPointer(&(m_mod_destinations.flanger.drywet));
 
     m_chorus[stereo].setFreqModPointer(&(m_mod_destinations.chorus.freq));
     m_chorus[stereo].setAmountModPointer(&(m_mod_destinations.chorus.amount));
+    m_chorus[stereo].setFeedbackModPointer(&(m_mod_destinations.chorus.feedback));
     m_chorus[stereo].setDryWetModPointer(&(m_mod_destinations.chorus.drywet));
 
     m_master_mod = &(m_mod_destinations.misc.master);
