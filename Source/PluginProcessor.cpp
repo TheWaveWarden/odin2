@@ -1199,6 +1199,10 @@ void OdinAudioProcessor::checkEndGlobalEnvelope() {
 void OdinAudioProcessor::midiNoteOn(int p_midi_note, int p_midi_velocity) {
 
   m_global_env.restartEnvelope();
+  if(*m_lfo4_reset){
+    m_global_lfo.voiceStart();
+  }
+
 
   if (*m_phaser_reset) {
     m_phaser.resetLFO();
