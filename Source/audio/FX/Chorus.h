@@ -1,4 +1,5 @@
 #pragma once
+#include "../JuceLibraryCode/JuceHeader.h"
 
 #include <cmath>
 #include <cstring>
@@ -17,13 +18,16 @@ public:
 
   inline void setSamplerate(float p_samplerate) {
     // store LFO freq
-    float LFO_freq = m_LFO_inc / 2.f / m_samplerate;
+    float LFO_freq;
+    if (m_LFO_freq_set) {
+      float LFO_freq = m_LFO_inc / 2.f / m_samplerate;
+    }
     m_samplerate = p_samplerate;
-    if (!m_LFO_freq_set) {
+    if (m_LFO_freq_set) {
       setLFOFreq(LFO_freq);
-      m_LFO_freq_set = true;
     } else {
       setLFOFreq(0.2f); // this is initial
+      m_LFO_freq_set = true;
     }
   }
 
@@ -64,6 +68,7 @@ public:
 
   // calc cheap sine and cosine (2-periodic)
   inline void doLFO(float &pi_LFO1, float &pi_LFO2) {
+
     float LFO2_pos = m_LFO_pos + 0.5f;
     LFO2_pos = LFO2_pos > 2.f ? LFO2_pos - 2.f : LFO2_pos;
 

@@ -35,8 +35,10 @@ OdinAudioProcessor::OdinAudioProcessor()
 {
 #include "AudioParameterConnections.h" // constains the connection between raw float pointers and their ValueTree counter
 
-  m_is_standalone_plugin =
-      typeid(wrapperType) == typeid(wrapperType_Standalone);
+  m_is_standalone_plugin = (wrapperType == wrapperType_Standalone);
+  DBG("standalone plugin? " + std::to_string((int)m_is_standalone_plugin));
+  // DBG(typeid(wrapperType));
+  // DBG(typeid(wrapperType_Standalone));
 
   // set up the tree listener
   m_tree_listener.onValueChange = [&](const String &p_ID, float p_new_value) {
@@ -669,9 +671,10 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
 bool OdinAudioProcessor::hasEditor() const { return true; }
 
 AudioProcessorEditor *OdinAudioProcessor::createEditor() {
-  AudioProcessorEditor *editor = new OdinAudioProcessorEditor(
-      *this, m_parameters,
-      typeid(wrapperType) == typeid(wrapperType_Standalone));
+  AudioProcessorEditor *editor =
+      new OdinAudioProcessorEditor(*this, m_parameters, m_is_standalone_plugin);
+
+  // typeid(wrapperType) == typeid(wrapperType_Standalone));
   if (m_force_values_onto_gui) {
     onSetStateInformation();
   }
@@ -1272,22 +1275,22 @@ void OdinAudioProcessor::setBPM(float p_BPM) {
   for (int voice = 0; voice < VOICES; ++voice) {
     m_voice[voice].setBPM(p_BPM, *m_lfo1_sync, *m_lfo2_sync, *m_lfo3_sync);
   }
-  if(*m_delay_sync){
+  if (*m_delay_sync) {
     m_delay[0].setFreqBPM(p_BPM);
     m_delay[1].setFreqBPM(p_BPM);
   }
-  if(*m_phaser_sync){
+  if (*m_phaser_sync) {
     m_phaser.setFreqBPM(p_BPM);
   }
-  if(*m_flanger_sync){
+  if (*m_flanger_sync) {
     m_flanger[0].setFreqBPM(p_BPM);
     m_flanger[1].setFreqBPM(p_BPM);
   }
-  if(*m_chorus_sync){
+  if (*m_chorus_sync) {
     m_chorus[0].setFreqBPM(p_BPM);
     m_chorus[1].setFreqBPM(p_BPM);
   }
-  if(*m_lfo4_sync){
+  if (*m_lfo4_sync) {
     m_global_lfo.setFreqBPM(p_BPM);
   }
 }

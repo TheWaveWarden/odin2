@@ -1,36 +1,35 @@
 #define DEBUG_VARIABLES
 
-
-float valueToDenomintaor(int p_value){
-  switch(p_value){
-    case 1:
+float valueToDenomintaor(int p_value) {
+  switch (p_value) {
+  case 1:
     return 1.f;
     break;
-    case 2:
+  case 2:
     return 2.f;
     break;
-    case 3:
+  case 3:
     return 4.f;
     break;
-    case 4:
+  case 4:
     return 8.f;
     break;
-    case 5:
+  case 5:
     return 12.f;
     break;
-    case 6:
+  case 6:
     return 16.f;
     break;
-    case 7:
+  case 7:
     return 24.f;
     break;
-    case 8:
+  case 8:
     return 32.f;
     break;
-    case 9:
+  case 9:
     return 48.f;
     break;
-    default:
+  default:
     return 16.f;
     break;
   }
@@ -904,13 +903,55 @@ bool OdinAudioProcessor::treeValueChangedFourth(const String &p_ID,
     }
   } else if (id == m_lfo4_reset_identifier) {
     m_global_lfo.setResetActive(p_new_value > 0.5f);
+  } else if (id == m_lfo1_sync_identifier) {
+    if (!p_new_value) {
+      for (int voice = 0; voice < VOICES; ++voice) {
+        m_voice[voice].lfo[0].setBaseFrequency(*m_lfo1_freq);
+      }
+    }
+  } else if (id == m_lfo2_sync_identifier) {
+    if (!p_new_value) {
+      for (int voice = 0; voice < VOICES; ++voice) {
+        m_voice[voice].lfo[1].setBaseFrequency(*m_lfo2_freq);
+      }
+    }
+  } else if (id == m_lfo3_sync_identifier) {
+    if (!p_new_value) {
+      for (int voice = 0; voice < VOICES; ++voice) {
+        m_voice[voice].lfo[2].setBaseFrequency(*m_lfo3_freq);
+      }
+    }
+  } else if (id == m_lfo4_sync_identifier) {
+    if (!p_new_value) {
+      m_global_lfo.setBaseFrequency(*m_lfo4_freq);
+    }
+  } else if (id == m_delay_sync_identifier) {
+    if (!p_new_value) {
+      m_delay[0].setDelayTime(*m_delay_time);
+      m_delay[1].setDelayTime(*m_delay_time);
+    }
+  } else if (id == m_phaser_sync_identifier) {
+    if (!p_new_value) {
+      m_phaser.setLFOFreq(*m_phaser_rate);
+    }
+  } else if (id == m_flanger_sync_identifier) {
+    if (!p_new_value) {
+      m_flanger[0].setLFOFreq(*m_flanger_rate);
+      m_flanger[1].setLFOFreq(*m_flanger_rate);
+    }
+  } else if (id == m_chorus_sync_identifier) {
+    if (!p_new_value) {
+      m_chorus[0].setLFOFreq(*m_chorus_rate);
+      m_chorus[1].setLFOFreq(*m_chorus_rate);
+    }
   } else if (id == m_lfo1_synctime_numerator_identifier) {
     for (int voice = 0; voice < VOICES; ++voice) {
       m_voice[voice].lfo[0].setSynctimeNumerator(p_new_value);
     }
   } else if (id == m_lfo1_synctime_denominator_identifier) {
     for (int voice = 0; voice < VOICES; ++voice) {
-      m_voice[voice].lfo[0].setSynctimeDenominator(valueToDenomintaor(p_new_value));
+      m_voice[voice].lfo[0].setSynctimeDenominator(
+          valueToDenomintaor(p_new_value));
     }
   } else if (id == m_lfo2_synctime_numerator_identifier) {
     for (int voice = 0; voice < VOICES; ++voice) {
@@ -918,7 +959,8 @@ bool OdinAudioProcessor::treeValueChangedFourth(const String &p_ID,
     }
   } else if (id == m_lfo2_synctime_denominator_identifier) {
     for (int voice = 0; voice < VOICES; ++voice) {
-      m_voice[voice].lfo[1].setSynctimeDenominator(valueToDenomintaor(p_new_value));
+      m_voice[voice].lfo[1].setSynctimeDenominator(
+          valueToDenomintaor(p_new_value));
     }
   } else if (id == m_lfo3_synctime_numerator_identifier) {
     for (int voice = 0; voice < VOICES; ++voice) {
@@ -926,7 +968,8 @@ bool OdinAudioProcessor::treeValueChangedFourth(const String &p_ID,
     }
   } else if (id == m_lfo3_synctime_denominator_identifier) {
     for (int voice = 0; voice < VOICES; ++voice) {
-      m_voice[voice].lfo[2].setSynctimeDenominator(valueToDenomintaor(p_new_value));
+      m_voice[voice].lfo[2].setSynctimeDenominator(
+          valueToDenomintaor(p_new_value));
     }
   } else if (id == m_lfo4_synctime_numerator_identifier) {
     m_global_lfo.setSynctimeNumerator(p_new_value);

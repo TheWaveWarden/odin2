@@ -6,7 +6,6 @@ Chorus::Chorus() {}
 Chorus::~Chorus() {}
 
 float Chorus::doChorus(float p_input) {
-
   float LFO_sine;
   float LFO_cosine;
   incLFO();
@@ -73,7 +72,7 @@ float Chorus::doChorus(float p_input) {
                         : read_index_next;
   output += linearInterpolation(m_circular_buffer[read_index_trunc],
                                 m_circular_buffer[read_index_next], frac);
-  
+
   // Delayline 4
   read_index =
       (float)m_write_index - CHORUS_MIN_DISTANCE -
@@ -95,8 +94,8 @@ float Chorus::doChorus(float p_input) {
   output *= 0.25f;
 
   float feedback_modded = m_feedback + *m_feedback_mod;
-  feedback_modded = feedback_modded > 1 ? 1: feedback_modded;
-  feedback_modded = feedback_modded < -1 ? -1: feedback_modded;
+  feedback_modded = feedback_modded > 1 ? 1 : feedback_modded;
+  feedback_modded = feedback_modded < -1 ? -1 : feedback_modded;
 
   m_circular_buffer[m_write_index] = p_input + output * feedback_modded;
   incWriteIndex();

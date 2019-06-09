@@ -24,13 +24,16 @@ public:
 
   void setSamplerate(float p_samplerate) override {
     // store LFO freq
-    float LFO_freq = m_increment_sine / 2.f / m_samplerate;
+    float LFO_freq;
+    if (m_LFO_freq_set) {
+      LFO_freq = m_increment_sine / 2.f / m_samplerate;
+    }
     m_samplerate = p_samplerate;
-    if (!m_LFO_freq_set) {
+    if (m_LFO_freq_set) {
       setLFOFreq(LFO_freq);
-      m_LFO_freq_set = true;
     } else {
-      setLFOFreq(0.2f); // this is initial value
+      setLFOFreq(0.2f); // this is initial
+      m_LFO_freq_set = true;
     }
   }
 

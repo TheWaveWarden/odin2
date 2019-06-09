@@ -13,13 +13,16 @@ public:
 
   inline void setSamplerate(float p_samplerate) {
     // store LFO freq
-    float LFO_freq = m_increment_sine / 2.f / m_samplerate;
+    float LFO_freq;
+    if (m_LFO_freq_set) {
+      LFO_freq = m_increment_sine / 2.f / m_samplerate;
+    }
     m_samplerate = p_samplerate;
-    if (!m_LFO_freq_set) {
+    if (m_LFO_freq_set) {
       setLFOFreq(LFO_freq);
-      m_LFO_freq_set = true;
     } else {
       setLFOFreq(0.25f); // this is initial
+      m_LFO_freq_set = true;
     }
 
     m_AP1_left.setSamplerate(p_samplerate);
@@ -114,9 +117,7 @@ public:
     m_index_sine_left = 0;
     m_index_sine_right = 0.5;
   }
-  void setFreqBPM(float p_BPM) {
-    setLFOFreq(15.f * m_synctime_ratio / p_BPM);
-  }
+  void setFreqBPM(float p_BPM) { setLFOFreq(15.f * m_synctime_ratio / p_BPM); }
   void setSynctimeNumerator(float p_value) {
     m_synctime_numerator = p_value;
     m_synctime_ratio = p_value / m_synctime_denominator;
@@ -130,7 +131,7 @@ protected:
   float m_synctime_numerator = 3.f;
   float m_synctime_denominator = 16.f;
   float m_synctime_ratio = 3.f / 16.f;
-  
+
   float *m_rate_mod;
   float *m_drywet_mod;
   float *m_amount_mod;
