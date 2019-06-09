@@ -228,7 +228,15 @@ public:
   void setPolyLegato(bool p_is_poly) {
     m_voice_manager.setPolyLegato(p_is_poly);
     m_voice[0].setPolyLegato(p_is_poly);
+    
+    //reset engine here to get rid of trailing notes
+    resetAudioEngine();
   }
+
+  // this should be called when patches are loaded and legato
+  // enabled. it doesn't change values but clears all buffer
+  // and makes it "untouched"
+  void resetAudioEngine();
 
 private:
   bool m_midi_learn_knob_active = false;

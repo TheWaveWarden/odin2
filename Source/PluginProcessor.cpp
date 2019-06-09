@@ -204,7 +204,6 @@ bool OdinAudioProcessor::isBusesLayoutSupported(
 void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
                                       MidiBuffer &midiMessages) {
 
-
   ScopedNoDenormals noDenormals;
   auto totalNumInputChannels = getTotalNumInputChannels();
   auto totalNumOutputChannels = getTotalNumOutputChannels();
@@ -376,10 +375,10 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
 
     // we will write to this before the amplifier section
     float voices_output = 0;
-    
+
     // global lfo and envelope
     m_global_env_mod_source = m_global_env.doEnvelope();
-    //DBG(m_global_env_mod_source);
+    // DBG(m_global_env_mod_source);
 
     m_global_lfo.update();
     m_global_lfo_mod_source = m_global_lfo.doOscillate();
@@ -734,7 +733,7 @@ void OdinAudioProcessor::setSampleRate(float p_samplerate) {
 
 void OdinAudioProcessor::initializeModules() {
   m_global_env.reset();
-  m_global_env.setEnvelopeOff();//so it doesn't start by itself
+  m_global_env.setEnvelopeOff(); // so it doesn't start by itself
 
   m_mod_matrix.setSourcesAndDestinations(&m_mod_sources, &m_mod_destinations);
 
@@ -1185,18 +1184,17 @@ void OdinAudioProcessor::midiNoteOff(int p_midi_note) {
   checkEndGlobalEnvelope();
 }
 
-void OdinAudioProcessor::checkEndGlobalEnvelope(){
-  for(int voice = 0; voice < VOICES; ++voice){
-    if(m_voice[voice] && m_voice[voice].env[0].isBeforeRelease()){
-        //dont kill it
-        return;
-      }
+void OdinAudioProcessor::checkEndGlobalEnvelope() {
+  for (int voice = 0; voice < VOICES; ++voice) {
+    if (m_voice[voice] && m_voice[voice].env[0].isBeforeRelease()) {
+      // dont kill it
+      return;
     }
-  //kill it
+  }
+  // kill it
   m_global_env.startRelease();
   DBG("kill global env");
-  }
-
+}
 
 void OdinAudioProcessor::midiNoteOn(int p_midi_note, int p_midi_velocity) {
 
@@ -1227,4 +1225,30 @@ void OdinAudioProcessor::midiNoteOn(int p_midi_note, int p_midi_velocity) {
     m_last_midi_note = p_midi_note;
     m_mod_matrix.setMostRecentVoice(voice_number);
   }
+}
+
+void OdinAudioProcessor::resetAudioEngine() {
+  for (int voice = 0; voice < VOICES; ++voice) {
+    m_voice[voice].hardReset();
+  }
+  for (int stereo = 0; stereo < 2; ++stereo) {
+    m_distortion[stereo].reset();
+
+    m_ladder_filter[stereo].reset();
+    m_SEM_filter_12[stereo].reset();
+    m_korg_filter[stereo].reset();
+    m_diode_filter[stereo].reset();
+    m_formant_filter[stereo].reset();
+    m_comb_filter[stereo].reset();
+
+    m_delay[stereo].reset();
+    m_flanger[stereo].reset();
+    m_chorus[stereo].reset();
+  }
+
+  m_phaser.reset();
+  m_global_lfo.reset();
+  m_global_env.reset();
+
+  m_voice_manager.reset();
 }

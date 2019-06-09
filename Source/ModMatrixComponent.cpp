@@ -983,6 +983,7 @@ void ModMatrixComponent::createMenu(PopupMenu *p_menu) {
         fil_type[fil] == FILTER_TYPE_BP24 ||
         fil_type[fil] == FILTER_TYPE_BP12 ||
         fil_type[fil] == FILTER_TYPE_HP12 ||
+        fil_type[fil] == FILTER_TYPE_HP24 ||
         fil_type[fil] == FILTER_TYPE_KORG_LP ||
         fil_type[fil] == FILTER_TYPE_KORG_HP ||
         fil_type[fil] == FILTER_TYPE_DIODE) {

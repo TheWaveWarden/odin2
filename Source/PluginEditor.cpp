@@ -1117,7 +1117,11 @@ void OdinAudioProcessorEditor::setTooltipEnabled(bool p_enabled) {
 }
 
 void OdinAudioProcessorEditor::forceValueTreeOntoComponents() {
-  DBG("FORCE");
+
+  //reset audioengine
+  processor.resetAudioEngine();
+
+  DBG("FORCEVALUETREEONTOCOMPONENTS");
   // DBG(m_value_tree.state.toXmlString());
   m_pitch_amount.setValue(
       m_value_tree.getParameterAsValue("pitchbend_amount").getValue());

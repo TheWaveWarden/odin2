@@ -38,6 +38,7 @@ class VoiceManager {
 public:
   // returns free voice index or steals one and sets it busy
   int getVoice(int p_note) {
+
     // in legato mode there's only one voice
     if (m_is_legato) {
       return 0;
@@ -50,11 +51,13 @@ public:
           // note is on sustain... just remove it from kill list and be done
           m_kill_list[voice] = false;
           DBG("Note " + std::to_string(p_note) +
-              " is already ins sustain on voice " + std::to_string(voice));
+              " is already in sustain on voice " + std::to_string(voice));
           return -1;
         }
       }
     }
+
+    // look for next free voice
     for (int i = 0; i < VOICES; ++i) {
       if (!voice_busy[i]) {
         voice_busy[i] = true;
@@ -64,7 +67,8 @@ public:
         return i;
       }
     }
-    // TODO all voices busy, steal
+
+    // if threre's no free voice, steal the oldest
     DBG("Voice manager STOLE voice " + std::to_string(m_voice_history[11]));
     removeFromKillList(m_voice_history[11]);
     int ret = m_voice_history[11];
@@ -128,6 +132,15 @@ public:
 
   void setPolyLegato(bool p_is_poly) { m_is_legato = !p_is_poly; }
 
+  void reset() {
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_voice_history[voice] = voice;
+      voice_busy[voice] = false;
+      m_kill_list[voice] = false;
+    }
+    m_sustain_active = false;
+  }
+
   bool voice_busy[VOICES] = {0}; // is voice busy
 protected:
   bool m_is_legato = false;
@@ -157,6 +170,34 @@ struct Voice {
 
   float MIDINoteToFreq(int p_MIDI_note) {
     return 27.5f * pow(2.f, (float)(p_MIDI_note - 21) / 12.f);
+  }
+
+  void hardReset() {
+    for (int fil = 0; fil < 2; ++fil) {
+      ladder_filter[fil].reset();
+      diode_filter[fil].reset();
+      formant_filter[fil].reset();
+      korg_filter[fil].reset();
+      SEM_filter_12[fil].reset();
+      comb_filter[fil].reset();
+    }
+    for (int osc = 0; osc < 3; ++osc) {
+      // use start voice, oscs will reset if reset is active
+      analog_osc[osc].reset();
+      wavetable_osc[osc].reset();
+      wavedraw_osc[osc].reset();
+      chipdraw_osc[osc].reset();
+      specdraw_osc[osc].reset();
+      multi_osc[osc].reset();
+      vector_osc[osc].reset();
+      chiptune_osc[osc].reset();
+      fm_osc[osc].reset();
+      wavedraw_osc[osc].reset();
+      specdraw_osc[osc].reset();
+      chipdraw_osc[osc].reset();
+      lfo[osc].reset();
+    }
+    m_voice_active = false;
   }
 
   void start(int p_MIDI_key, int p_MIDI_velocity, int p_last_MIDI_key) {
@@ -310,15 +351,13 @@ struct Voice {
   void reset() {
     resetLegato();
     if (!m_is_legato) {
-      for (int mod = 0; mod < 3; ++mod) {
-        lfo[mod].voiceStart();
-      }
       for (int fil = 0; fil < 2; ++fil) {
         ladder_filter[fil].reset();
         diode_filter[fil].reset();
         formant_filter[fil].reset();
         korg_filter[fil].reset();
         SEM_filter_12[fil].reset();
+        comb_filter[fil].reset();
       }
     }
   }
@@ -337,9 +376,7 @@ struct Voice {
       wavedraw_osc[osc].voiceStart();
       specdraw_osc[osc].voiceStart();
       chipdraw_osc[osc].voiceStart();
-    }
-    for (int mod = 0; mod < 3; ++mod) {
-      lfo[mod].voiceStart();
+      lfo[osc].voiceStart();
     }
   }
 
