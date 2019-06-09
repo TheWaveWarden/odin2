@@ -52,7 +52,21 @@ public:
 
   float doSampleHold();
 
+  void setFreqBPM(float p_BPM){
+    setBaseFrequency(15.f * m_synctime_ratio / p_BPM);
+  }
+  void setSynctimeNumerator(float p_value){
+    m_synctime_numerator = p_value;
+    m_synctime_ratio = p_value / m_synctime_denominator;
+  }
+  void setSynctimeDenominator(float p_value){
+    m_synctime_denominator = p_value;
+    m_synctime_ratio = m_synctime_numerator / p_value;
+  }
 protected:
+  float m_synctime_numerator = 3.f;
+  float m_synctime_denominator = 16.f;
+  float m_synctime_ratio = 3.f/16.f;
 
   float m_SH_active = false;
   float m_SH_value;

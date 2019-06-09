@@ -172,6 +172,18 @@ struct Voice {
     return 27.5f * pow(2.f, (float)(p_MIDI_note - 21) / 12.f);
   }
 
+  void setBPM(float p_BPM, bool p_LFO1_reset, bool p_LFO2_reset, bool p_LFO3_reset){
+    if(p_LFO1_reset){
+      lfo[0].setFreqBPM(p_BPM);
+    }
+    if(p_LFO2_reset){
+      lfo[1].setFreqBPM(p_BPM);
+    }
+    if(p_LFO3_reset){
+      lfo[2].setFreqBPM(p_BPM);
+    }
+  }
+
   void hardReset() {
     for (int fil = 0; fil < 2; ++fil) {
       ladder_filter[fil].reset();

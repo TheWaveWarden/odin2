@@ -35,6 +35,9 @@ OdinAudioProcessor::OdinAudioProcessor()
 {
 #include "AudioParameterConnections.h" // constains the connection between raw float pointers and their ValueTree counter
 
+  m_is_standalone_plugin =
+      typeid(wrapperType) == typeid(wrapperType_Standalone);
+
   // set up the tree listener
   m_tree_listener.onValueChange = [&](const String &p_ID, float p_new_value) {
     if (!treeValueChangedFirst(p_ID, p_new_value)) {
@@ -204,6 +207,14 @@ bool OdinAudioProcessor::isBusesLayoutSupported(
 void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
                                       MidiBuffer &midiMessages) {
 
+  // get BPM info from host
+  if (!m_is_standalone_plugin) {
+    if (AudioPlayHead *playhead = getPlayHead()) {
+      AudioPlayHead::CurrentPositionInfo current_position_info;
+      playhead->getCurrentPosition(current_position_info);
+      setBPM(current_position_info.bpm);
+    }
+  }
   ScopedNoDenormals noDenormals;
   auto totalNumInputChannels = getTotalNumInputChannels();
   auto totalNumOutputChannels = getTotalNumOutputChannels();
@@ -664,6 +675,7 @@ AudioProcessorEditor *OdinAudioProcessor::createEditor() {
   if (m_force_values_onto_gui) {
     onSetStateInformation();
   }
+
   return editor;
 }
 
@@ -1199,10 +1211,9 @@ void OdinAudioProcessor::checkEndGlobalEnvelope() {
 void OdinAudioProcessor::midiNoteOn(int p_midi_note, int p_midi_velocity) {
 
   m_global_env.restartEnvelope();
-  if(*m_lfo4_reset){
+  if (*m_lfo4_reset) {
     m_global_lfo.voiceStart();
   }
-
 
   if (*m_phaser_reset) {
     m_phaser.resetLFO();
@@ -1255,4 +1266,28 @@ void OdinAudioProcessor::resetAudioEngine() {
   m_global_env.reset();
 
   m_voice_manager.reset();
+}
+
+void OdinAudioProcessor::setBPM(float p_BPM) {
+  for (int voice = 0; voice < VOICES; ++voice) {
+    m_voice[voice].setBPM(p_BPM, *m_lfo1_sync, *m_lfo2_sync, *m_lfo3_sync);
+  }
+  if(*m_delay_sync){
+    m_delay[0].setFreqBPM(p_BPM);
+    m_delay[1].setFreqBPM(p_BPM);
+  }
+  if(*m_phaser_sync){
+    m_phaser.setFreqBPM(p_BPM);
+  }
+  if(*m_flanger_sync){
+    m_flanger[0].setFreqBPM(p_BPM);
+    m_flanger[1].setFreqBPM(p_BPM);
+  }
+  if(*m_chorus_sync){
+    m_chorus[0].setFreqBPM(p_BPM);
+    m_chorus[1].setFreqBPM(p_BPM);
+  }
+  if(*m_lfo4_sync){
+    m_global_lfo.setFreqBPM(p_BPM);
+  }
 }

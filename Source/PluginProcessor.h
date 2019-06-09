@@ -228,8 +228,8 @@ public:
   void setPolyLegato(bool p_is_poly) {
     m_voice_manager.setPolyLegato(p_is_poly);
     m_voice[0].setPolyLegato(p_is_poly);
-    
-    //reset engine here to get rid of trailing notes
+
+    // reset engine here to get rid of trailing notes
     resetAudioEngine();
   }
 
@@ -239,6 +239,8 @@ public:
   void resetAudioEngine();
 
 private:
+  void setBPM(float BPM);
+
   bool m_midi_learn_knob_active = false;
   Knob *m_midi_learn_knob = nullptr;
   std::multimap<int, Knob *> m_midi_control_list_knob;
@@ -327,6 +329,8 @@ private:
   float *m_master_mod;
 
   int m_counter = 0; // todo remove
+  bool m_is_standalone_plugin =
+      true; // set true since is is only set after createEditor()
 
   bool m_force_values_onto_gui =
       false; // used for loading state and then remembering to force values once

@@ -22,7 +22,7 @@ public:
     m_increment_sine = p_LFO_freq / m_samplerate * 2;
   }
 
-  void setSamplerate (float p_samplerate) override {
+  void setSamplerate(float p_samplerate) override {
     // store LFO freq
     float LFO_freq = m_increment_sine / 2.f / m_samplerate;
     m_samplerate = p_samplerate;
@@ -34,11 +34,9 @@ public:
     }
   }
 
-  void resetLFO(){
-    m_index_sine = 0;
-  }
+  void resetLFO() { m_index_sine = 0; }
 
-  void setFeedback(float p_feedback){
+  void setFeedback(float p_feedback) {
     p_feedback = p_feedback > 0.98 ? 0.98 : p_feedback;
     p_feedback = p_feedback < -0.98 ? -0.98 : p_feedback;
     setResonance(p_feedback);
@@ -51,7 +49,24 @@ public:
   void setAmountModPointer(float *p_pointer) { m_amount_mod = p_pointer; }
   void setDryWetModPointer(float *p_pointer) { m_drywet_mod = p_pointer; }
   void setFeedbackModPointer(float *p_pointer) { m_res_mod = p_pointer; }
+
+  void setFreqBPM(float p_BPM) { setLFOFreq(15.f * m_synctime_ratio / p_BPM); }
+
+  void setSynctimeNumerator(float p_value) {
+    m_synctime_numerator = p_value;
+    m_synctime_ratio = p_value / m_synctime_denominator;
+  }
+
+  void setSynctimeDenominator(float p_value) {
+    m_synctime_denominator = p_value;
+    m_synctime_ratio = m_synctime_numerator / p_value;
+  }
+
 protected:
+  float m_synctime_numerator = 3.f;
+  float m_synctime_denominator = 16.f;
+  float m_synctime_ratio = 3.f / 16.f;
+
   float *m_freq_mod;
   float *m_amount_mod;
   float *m_drywet_mod;
