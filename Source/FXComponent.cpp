@@ -157,11 +157,11 @@ FXComponent::FXComponent(AudioProcessorValueTreeState &vts,
   };
 
   m_sync_time.OnValueChange = [&](int p_left, int p_right) {
-    m_value_tree.getParameter(m_fx_synctime_numerator_identifier)
-        ->setValueNotifyingHost(((float)p_left) / 7.f);
-    m_value_tree.getParameter(m_fx_synctime_denominator_identifier)
-        ->setValueNotifyingHost(((float)p_right) / 8.f);
+    auto node = m_value_tree.state.getOrCreateChildWithName("NO_PARAM", nullptr);
+    node.setProperty(m_fx_synctime_numerator_identifier, p_left, nullptr);
+    node.setProperty(m_fx_synctime_denominator_identifier, p_right, nullptr);
   };
+
   m_sync_time.setTopLeftPosition(FX_SYNC_TIME_FX_POS_X, FX_SYNC_TIME_FX_POS_Y);
   m_sync_time.setTooltip("Set the delay time in sync to your track");
   addChildComponent(m_sync_time);

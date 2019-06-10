@@ -2,31 +2,31 @@
 
 float valueToDenomintaor(int p_value) {
   switch (p_value) {
-  case 1:
+  case 0:
     return 1.f;
     break;
-  case 2:
+  case 1:
     return 2.f;
     break;
-  case 3:
+  case 2:
     return 4.f;
     break;
-  case 4:
+  case 3:
     return 8.f;
     break;
-  case 5:
+  case 4:
     return 12.f;
     break;
-  case 6:
+  case 5:
     return 16.f;
     break;
-  case 7:
+  case 6:
     return 24.f;
     break;
-  case 8:
+  case 7:
     return 32.f;
     break;
-  case 9:
+  case 8:
     return 48.f;
     break;
   default:
@@ -944,67 +944,6 @@ bool OdinAudioProcessor::treeValueChangedFourth(const String &p_ID,
       m_chorus[0].setLFOFreq(*m_chorus_rate);
       m_chorus[1].setLFOFreq(*m_chorus_rate);
     }
-  } else if (id == m_lfo1_synctime_numerator_identifier) {
-    for (int voice = 0; voice < VOICES; ++voice) {
-      m_voice[voice].lfo[0].setSynctimeNumerator(p_new_value);
-    }
-  } else if (id == m_lfo1_synctime_denominator_identifier) {
-    for (int voice = 0; voice < VOICES; ++voice) {
-      m_voice[voice].lfo[0].setSynctimeDenominator(
-          valueToDenomintaor(p_new_value));
-    }
-  } else if (id == m_lfo2_synctime_numerator_identifier) {
-    for (int voice = 0; voice < VOICES; ++voice) {
-      m_voice[voice].lfo[1].setSynctimeNumerator(p_new_value);
-    }
-  } else if (id == m_lfo2_synctime_denominator_identifier) {
-    for (int voice = 0; voice < VOICES; ++voice) {
-      m_voice[voice].lfo[1].setSynctimeDenominator(
-          valueToDenomintaor(p_new_value));
-    }
-  } else if (id == m_lfo3_synctime_numerator_identifier) {
-    for (int voice = 0; voice < VOICES; ++voice) {
-      m_voice[voice].lfo[2].setSynctimeNumerator(p_new_value);
-    }
-  } else if (id == m_lfo3_synctime_denominator_identifier) {
-    for (int voice = 0; voice < VOICES; ++voice) {
-      m_voice[voice].lfo[2].setSynctimeDenominator(
-          valueToDenomintaor(p_new_value));
-    }
-  } else if (id == m_lfo4_synctime_numerator_identifier) {
-    m_global_lfo.setSynctimeNumerator(p_new_value);
-  } else if (id == m_lfo4_synctime_denominator_identifier) {
-    m_global_lfo.setSynctimeDenominator(valueToDenomintaor(p_new_value));
-  }
-
-  else if (id == m_delay_synctime_numerator_identifier) {
-    for (int stereo = 0; stereo < 2; ++stereo) {
-      m_delay[stereo].setSynctimeNumerator(p_new_value);
-    }
-  } else if (id == m_delay_synctime_denominator_identifier) {
-    for (int stereo = 0; stereo < 2; ++stereo) {
-      m_delay[stereo].setSynctimeDenominator(valueToDenomintaor(p_new_value));
-    }
-  } else if (id == m_flanger_synctime_numerator_identifier) {
-    for (int stereo = 0; stereo < 2; ++stereo) {
-      m_flanger[stereo].setSynctimeNumerator(p_new_value);
-    }
-  } else if (id == m_flanger_synctime_denominator_identifier) {
-    for (int stereo = 0; stereo < 2; ++stereo) {
-      m_flanger[stereo].setSynctimeDenominator(valueToDenomintaor(p_new_value));
-    }
-  } else if (id == m_chorus_synctime_numerator_identifier) {
-    for (int stereo = 0; stereo < 2; ++stereo) {
-      m_chorus[stereo].setSynctimeNumerator(p_new_value);
-    }
-  } else if (id == m_chorus_synctime_denominator_identifier) {
-    for (int stereo = 0; stereo < 2; ++stereo) {
-      m_chorus[stereo].setSynctimeDenominator(valueToDenomintaor(p_new_value));
-    }
-  } else if (id == m_phaser_synctime_numerator_identifier) {
-    m_phaser.setSynctimeNumerator(p_new_value);
-  } else if (id == m_phaser_synctime_denominator_identifier) {
-    m_phaser.setSynctimeDenominator(valueToDenomintaor(p_new_value));
   }
 
   else if (id == m_osc1_vol_identifier) {
@@ -1210,4 +1149,74 @@ bool OdinAudioProcessor::treeValueChangedFourth(const String &p_ID,
     return false;
   }
   return true;
+}
+
+void OdinAudioProcessor::treeValueChangedNonParam(ValueTree &tree,
+                                                  const Identifier &id) {
+
+  float p_new_value = (float)tree[id];
+  DBG(id.toString() + ": " + std::to_string(p_new_value));
+
+  if (id == m_flanger_synctime_numerator_identifier) {
+    for (int stereo = 0; stereo < 2; ++stereo) {
+      m_flanger[stereo].setSynctimeNumerator(p_new_value + 1);
+    }
+  } else if (id == m_flanger_synctime_denominator_identifier) {
+    for (int stereo = 0; stereo < 2; ++stereo) {
+      m_flanger[stereo].setSynctimeDenominator(valueToDenomintaor(p_new_value));
+    }
+  } else if (id == m_chorus_synctime_numerator_identifier) {
+    for (int stereo = 0; stereo < 2; ++stereo) {
+      m_chorus[stereo].setSynctimeNumerator(p_new_value + 1);
+    }
+  } else if (id == m_chorus_synctime_denominator_identifier) {
+    for (int stereo = 0; stereo < 2; ++stereo) {
+      m_chorus[stereo].setSynctimeDenominator(valueToDenomintaor(p_new_value));
+    }
+  } else if (id == m_delay_synctime_numerator_identifier) {
+    for (int stereo = 0; stereo < 2; ++stereo) {
+      m_delay[stereo].setSynctimeNumerator(p_new_value + 1);
+    }
+  } else if (id == m_delay_synctime_denominator_identifier) {
+    for (int stereo = 0; stereo < 2; ++stereo) {
+      m_delay[stereo].setSynctimeDenominator(valueToDenomintaor(p_new_value));
+    }
+  } else if (id == m_phaser_synctime_numerator_identifier) {
+    m_phaser.setSynctimeNumerator(p_new_value + 1);
+  } else if (id == m_phaser_synctime_denominator_identifier) {
+    m_phaser.setSynctimeDenominator(valueToDenomintaor(p_new_value));
+  }
+
+  else if (id == m_lfo1_synctime_numerator_identifier) {
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_voice[voice].lfo[0].setSynctimeNumerator(p_new_value + 1);
+    }
+  } else if (id == m_lfo1_synctime_denominator_identifier) {
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_voice[voice].lfo[0].setSynctimeDenominator(
+          valueToDenomintaor(p_new_value));
+    }
+  } else if (id == m_lfo2_synctime_numerator_identifier) {
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_voice[voice].lfo[1].setSynctimeNumerator(p_new_value + 1);
+    }
+  } else if (id == m_lfo2_synctime_denominator_identifier) {
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_voice[voice].lfo[1].setSynctimeDenominator(
+          valueToDenomintaor(p_new_value));
+    }
+  } else if (id == m_lfo3_synctime_numerator_identifier) {
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_voice[voice].lfo[2].setSynctimeNumerator(p_new_value + 1);
+    }
+  } else if (id == m_lfo3_synctime_denominator_identifier) {
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_voice[voice].lfo[2].setSynctimeDenominator(
+          valueToDenomintaor(p_new_value));
+    }
+  } else if (id == m_lfo4_synctime_numerator_identifier) {
+    m_global_lfo.setSynctimeNumerator(p_new_value + 1);
+  } else if (id == m_lfo4_synctime_denominator_identifier) {
+    m_global_lfo.setSynctimeDenominator(valueToDenomintaor(p_new_value));
+  }
 }

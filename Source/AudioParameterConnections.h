@@ -147,37 +147,23 @@ m_lfo1_freq = m_parameters.getRawParameterValue("lfo1_freq");
 m_lfo1_reset = m_parameters.getRawParameterValue("lfo1_reset");
 m_lfo1_sync = m_parameters.getRawParameterValue("lfo1_sync");
 m_lfo1_wave = m_parameters.getRawParameterValue("lfo1_wave");
-m_lfo1_synctime_numerator =
-    m_parameters.getRawParameterValue("lfo1_synctime_numerator");
-m_lfo1_synctime_denominator =
-    m_parameters.getRawParameterValue("lfo1_synctime_denominator");
+
 
 m_lfo2_freq = m_parameters.getRawParameterValue("lfo2_freq");
 m_lfo2_reset = m_parameters.getRawParameterValue("lfo2_reset");
 m_lfo2_sync = m_parameters.getRawParameterValue("lfo2_sync");
 m_lfo2_wave = m_parameters.getRawParameterValue("lfo2_wave");
-m_lfo2_synctime_numerator =
-    m_parameters.getRawParameterValue("lfo2_synctime_numerator");
-m_lfo2_synctime_denominator =
-    m_parameters.getRawParameterValue("lfo2_synctime_denominator");
+
 
 m_lfo3_freq = m_parameters.getRawParameterValue("lfo3_freq");
 m_lfo3_reset = m_parameters.getRawParameterValue("lfo3_reset");
 m_lfo3_sync = m_parameters.getRawParameterValue("lfo3_sync");
 m_lfo3_wave = m_parameters.getRawParameterValue("lfo3_wave");
-m_lfo3_synctime_numerator =
-    m_parameters.getRawParameterValue("lfo3_synctime_numerator");
-m_lfo3_synctime_denominator =
-    m_parameters.getRawParameterValue("lfo3_synctime_denominator");
 
 m_lfo4_freq = m_parameters.getRawParameterValue("lfo4_freq");
 m_lfo4_reset = m_parameters.getRawParameterValue("lfo4_reset");
 m_lfo4_sync = m_parameters.getRawParameterValue("lfo4_sync");
 m_lfo4_wave = m_parameters.getRawParameterValue("lfo4_wave");
-m_lfo4_synctime_numerator =
-    m_parameters.getRawParameterValue("lfo4_synctime_numerator");
-m_lfo4_synctime_denominator =
-    m_parameters.getRawParameterValue("lfo4_synctime_denominator");
 
 m_phaser_on = m_parameters.getRawParameterValue("phaser_on");
 m_flanger_on = m_parameters.getRawParameterValue("flanger_on");
@@ -214,10 +200,7 @@ m_delay_ducking = m_parameters.getRawParameterValue("delay_ducking");
 m_delay_dry = m_parameters.getRawParameterValue("delay_dry");
 m_delay_wet = m_parameters.getRawParameterValue("delay_wet");
 m_delay_sync = m_parameters.getRawParameterValue("delay_sync");
-m_delay_synctime_numerator =
-    m_parameters.getRawParameterValue("delay_synctime_numerator");
-m_delay_synctime_denominator =
-    m_parameters.getRawParameterValue("delay_synctime_denominator");
+
 
 m_phaser_rate = m_parameters.getRawParameterValue("phaser_rate");
 m_phaser_freq = m_parameters.getRawParameterValue("phaser_freq");
@@ -226,10 +209,6 @@ m_phaser_mod = m_parameters.getRawParameterValue("phaser_mod");
 m_phaser_drywet = m_parameters.getRawParameterValue("phaser_drywet");
 m_phaser_sync = m_parameters.getRawParameterValue("phaser_sync");
 m_phaser_reset = m_parameters.getRawParameterValue("phaser_reset");
-m_phaser_synctime_numerator =
-    m_parameters.getRawParameterValue("phaser_synctime_numerator");
-m_phaser_synctime_denominator =
-    m_parameters.getRawParameterValue("phaser_synctime_denominator");
 
 m_flanger_rate = m_parameters.getRawParameterValue("flanger_rate");
 m_flanger_amount = m_parameters.getRawParameterValue("flanger_amount");
@@ -237,10 +216,7 @@ m_flanger_drywet = m_parameters.getRawParameterValue("flanger_drywet");
 m_flanger_sync = m_parameters.getRawParameterValue("flanger_sync");
 m_flanger_reset = m_parameters.getRawParameterValue("flanger_reset");
 m_flanger_feedback = m_parameters.getRawParameterValue("flanger_feedback");
-m_flanger_synctime_numerator =
-    m_parameters.getRawParameterValue("flanger_synctime_numerator");
-m_flanger_synctime_denominator =
-    m_parameters.getRawParameterValue("flanger_synctime_denominator");
+
 
 m_chorus_rate = m_parameters.getRawParameterValue("chorus_rate");
 m_chorus_amount = m_parameters.getRawParameterValue("chorus_amount");
@@ -248,10 +224,7 @@ m_chorus_drywet = m_parameters.getRawParameterValue("chorus_drywet");
 m_chorus_sync = m_parameters.getRawParameterValue("chorus_sync");
 m_chorus_reset = m_parameters.getRawParameterValue("chorus_reset");
 m_chorus_feedback = m_parameters.getRawParameterValue("chorus_feedback");
-m_chorus_synctime_numerator =
-    m_parameters.getRawParameterValue("chorus_synctime_numerator");
-m_chorus_synctime_denominator =
-    m_parameters.getRawParameterValue("chorus_synctime_denominator");
+
 
 m_delay_position = m_parameters.getRawParameterValue("delay_position");
 m_flanger_position = m_parameters.getRawParameterValue("flanger_position");
@@ -295,6 +268,9 @@ for (int i = 0; i < 9; ++i) {
 //============================================================================
 //============================================================================
 //============================================================================
+
+//first attach non param listener
+m_parameters.state.addListener(&m_non_param_listener);
 
 for (int osc = 0; osc < 3; ++osc) {
   m_parameters.addParameterListener("osc" + std::to_string(osc + 1) + "_type",
@@ -441,33 +417,21 @@ m_parameters.addParameterListener("lfo1_freq", &m_tree_listener);
 m_parameters.addParameterListener("lfo1_reset", &m_tree_listener);
 m_parameters.addParameterListener("lfo1_sync", &m_tree_listener);
 m_parameters.addParameterListener("lfo1_wave", &m_tree_listener);
-m_parameters.addParameterListener("lfo1_synctime_numerator", &m_tree_listener);
-m_parameters.addParameterListener("lfo1_synctime_denominator",
-                                  &m_tree_listener);
 
 m_parameters.addParameterListener("lfo2_freq", &m_tree_listener);
 m_parameters.addParameterListener("lfo2_reset", &m_tree_listener);
 m_parameters.addParameterListener("lfo2_sync", &m_tree_listener);
 m_parameters.addParameterListener("lfo2_wave", &m_tree_listener);
-m_parameters.addParameterListener("lfo2_synctime_numerator", &m_tree_listener);
-m_parameters.addParameterListener("lfo2_synctime_denominator",
-                                  &m_tree_listener);
 
 m_parameters.addParameterListener("lfo3_freq", &m_tree_listener);
 m_parameters.addParameterListener("lfo3_reset", &m_tree_listener);
 m_parameters.addParameterListener("lfo3_sync", &m_tree_listener);
 m_parameters.addParameterListener("lfo3_wave", &m_tree_listener);
-m_parameters.addParameterListener("lfo3_synctime_numerator", &m_tree_listener);
-m_parameters.addParameterListener("lfo3_synctime_denominator",
-                                  &m_tree_listener);
 
 m_parameters.addParameterListener("lfo4_freq", &m_tree_listener);
 m_parameters.addParameterListener("lfo4_reset", &m_tree_listener);
 m_parameters.addParameterListener("lfo4_sync", &m_tree_listener);
 m_parameters.addParameterListener("lfo4_wave", &m_tree_listener);
-m_parameters.addParameterListener("lfo4_synctime_numerator", &m_tree_listener);
-m_parameters.addParameterListener("lfo4_synctime_denominator",
-                                  &m_tree_listener);
 
 m_parameters.addParameterListener("phaser_on", &m_tree_listener);
 m_parameters.addParameterListener("flanger_on", &m_tree_listener);
@@ -504,9 +468,6 @@ m_parameters.addParameterListener("delay_ducking", &m_tree_listener);
 m_parameters.addParameterListener("delay_dry", &m_tree_listener);
 m_parameters.addParameterListener("delay_wet", &m_tree_listener);
 m_parameters.addParameterListener("delay_sync", &m_tree_listener);
-m_parameters.addParameterListener("delay_synctime_numerator", &m_tree_listener);
-m_parameters.addParameterListener("delay_synctime_denominator",
-                                  &m_tree_listener);
 
 m_parameters.addParameterListener("phaser_rate", &m_tree_listener);
 m_parameters.addParameterListener("phaser_freq", &m_tree_listener);
@@ -515,10 +476,6 @@ m_parameters.addParameterListener("phaser_mod", &m_tree_listener);
 m_parameters.addParameterListener("phaser_drywet", &m_tree_listener);
 m_parameters.addParameterListener("phaser_sync", &m_tree_listener);
 m_parameters.addParameterListener("phaser_reset", &m_tree_listener);
-m_parameters.addParameterListener("phaser_synctime_numerator",
-                                  &m_tree_listener);
-m_parameters.addParameterListener("phaser_synctime_denominator",
-                                  &m_tree_listener);
 
 m_parameters.addParameterListener("flanger_rate", &m_tree_listener);
 m_parameters.addParameterListener("flanger_amount", &m_tree_listener);
@@ -526,10 +483,6 @@ m_parameters.addParameterListener("flanger_drywet", &m_tree_listener);
 m_parameters.addParameterListener("flanger_feedback", &m_tree_listener);
 m_parameters.addParameterListener("flanger_sync", &m_tree_listener);
 m_parameters.addParameterListener("flanger_reset", &m_tree_listener);
-m_parameters.addParameterListener("flanger_synctime_numerator",
-                                  &m_tree_listener);
-m_parameters.addParameterListener("flanger_synctime_denominator",
-                                  &m_tree_listener);
 
 m_parameters.addParameterListener("chorus_rate", &m_tree_listener);
 m_parameters.addParameterListener("chorus_amount", &m_tree_listener);
@@ -538,10 +491,6 @@ m_parameters.addParameterListener("chorus_feedback", &m_tree_listener);
 m_parameters.addParameterListener("chorus_sync", &m_tree_listener);
 m_parameters.addParameterListener("chorus_reset", &m_tree_listener);
 m_parameters.addParameterListener("legato", &m_tree_listener);
-m_parameters.addParameterListener("chorus_synctime_numerator",
-                                  &m_tree_listener);
-m_parameters.addParameterListener("chorus_synctime_denominator",
-                                  &m_tree_listener);
 
 m_parameters.addParameterListener("delay_position", &m_tree_listener);
 m_parameters.addParameterListener("flanger_position", &m_tree_listener);

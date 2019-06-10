@@ -126,10 +126,8 @@ LFOComponent::LFOComponent(AudioProcessorValueTreeState &vts,
   addAndMakeVisible(m_selector);
 
   m_sync_time.OnValueChange = [&](int p_left, int p_right) {
-    m_value_tree.getParameter(m_lfo_synctime_numerator_identifier)
-        ->setValueNotifyingHost(((float)p_left) / 7.f);
-    m_value_tree.getParameter(m_lfo_synctime_denominator_identifier)
-        ->setValueNotifyingHost(((float)p_right) / 8.f);
+    m_value_tree.state.setProperty(m_lfo_synctime_numerator_identifier, p_left, nullptr);
+    m_value_tree.state.setProperty(m_lfo_synctime_denominator_identifier, p_right, nullptr);
   };
   m_sync_time.setTopLeftPosition(SYNC_TIME_POS_X, SYNC_TIME_POS_Y);
   m_sync_time.setTooltip("Set the frequency in sync to your track.");

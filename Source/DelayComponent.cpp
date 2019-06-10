@@ -94,7 +94,7 @@ DelayComponent::DelayComponent(AudioProcessorValueTreeState &vts,
   m_feedback.setSkewFactorFromMidPoint(FEEDBACK_MID);
   m_feedback.setValue(0.6f);
   m_feedback.setKnobTooltip("How much to echo back");
-  
+
   addAndMakeVisible(m_feedback);
 
   m_HP.setStrip(black_knob_mid, N_KNOB_FRAMES);
@@ -142,10 +142,10 @@ DelayComponent::DelayComponent(AudioProcessorValueTreeState &vts,
   m_sync_attach.reset(new ButtonAttachment(m_value_tree, "delay_sync", m_sync));
 
   m_sync_time.OnValueChange = [&](int p_left, int p_right) {
-    m_value_tree.getParameter(m_delay_synctime_numerator_identifier)
-        ->setValueNotifyingHost(((float)p_left) / 7.f);
-    m_value_tree.getParameter(m_delay_synctime_denominator_identifier)
-        ->setValueNotifyingHost(((float)p_right) / 8.f);
+    m_value_tree.state.setProperty(m_delay_synctime_numerator_identifier,
+                                   p_left, nullptr);
+    m_value_tree.state.setProperty(m_delay_synctime_denominator_identifier,
+                                   p_right, nullptr);
   };
   m_sync_time.setTopLeftPosition(SYNC_TIME_DELAY_POS_X, SYNC_TIME_DELAY_POS_Y);
   m_sync_time.setTooltip("Set the delay time in sync to your track");
@@ -155,7 +155,6 @@ DelayComponent::DelayComponent(AudioProcessorValueTreeState &vts,
   m_ducking.setNumDecimalPlacesToDisplay(3);
   m_dry.setNumDecimalPlacesToDisplay(3);
   m_wet.setNumDecimalPlacesToDisplay(3);
-
 }
 
 DelayComponent::~DelayComponent() {}

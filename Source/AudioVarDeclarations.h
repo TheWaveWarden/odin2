@@ -101,29 +101,21 @@
     float* m_lfo1_reset;
     float* m_lfo1_sync;
     float* m_lfo1_wave;
-    float* m_lfo1_synctime_numerator;
-    float* m_lfo1_synctime_denominator;
     //lfo2
     float* m_lfo2_freq;
     float* m_lfo2_reset;
     float* m_lfo2_sync;
     float* m_lfo2_wave;
-    float* m_lfo2_synctime_numerator;
-    float* m_lfo2_synctime_denominator;
     //lfo3
     float* m_lfo3_freq;
     float* m_lfo3_reset;
     float* m_lfo3_sync;
     float* m_lfo3_wave;
-    float* m_lfo3_synctime_numerator;
-    float* m_lfo3_synctime_denominator;
     //lfo4
     float* m_lfo4_freq;
     float* m_lfo4_reset;
     float* m_lfo4_sync;
     float* m_lfo4_wave;
-    float* m_lfo4_synctime_numerator;
-    float* m_lfo4_synctime_denominator;
     //main
     float* m_glide;
     float* m_master;
@@ -157,8 +149,6 @@
     float* m_delay_dry;
     float* m_delay_wet;
     float* m_delay_sync;
-    float* m_delay_synctime_numerator;
-    float* m_delay_synctime_denominator;
     //phaser
     float* m_phaser_reset;
     float* m_phaser_sync;
@@ -167,8 +157,6 @@
     float* m_phaser_feedback;
     float* m_phaser_mod;
     float* m_phaser_drywet;
-    float* m_phaser_synctime_numerator;
-    float* m_phaser_synctime_denominator;
     //flanger
     float* m_flanger_reset;
     float* m_flanger_sync;
@@ -176,8 +164,6 @@
     float* m_flanger_amount;
     float* m_flanger_drywet;
     float* m_flanger_feedback;
-    float* m_flanger_synctime_numerator;
-    float* m_flanger_synctime_denominator;
     //chorus
     float* m_chorus_reset;
     float* m_chorus_sync;
@@ -185,8 +171,6 @@
     float* m_chorus_amount;
     float* m_chorus_feedback;
     float* m_chorus_drywet;
-    float* m_chorus_synctime_numerator;
-    float* m_chorus_synctime_denominator;
     //modmatrix
     float* m_amount_1[9];
     float* m_amount_2[9];

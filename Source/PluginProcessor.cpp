@@ -54,6 +54,10 @@ OdinAudioProcessor::OdinAudioProcessor()
       }
     }
   };
+  m_non_param_listener.onValueChange = [&](ValueTree &tree,
+                                      const Identifier &identifier) {
+    treeValueChangedNonParam(tree, identifier);
+  };
 
   setSampleRate(44100.f);
   initializeModules();
@@ -1303,22 +1307,50 @@ void OdinAudioProcessor::addNonAudioParametersToTree() {
   for (int i = 0; i < WAVEDRAW_STEPS_X; ++i) {
     float val = sin(2 * M_PI * i / (float)WAVEDRAW_STEPS_X) * 0.9;
     // do braces in the beginnning to speed up identification!?
-    node.setProperty(String("[" + std::to_string(i) + "]osc1_wavedraw"), val, nullptr);
-    node.setProperty(String("[" + std::to_string(i) + "]osc2_wavedraw"), val, nullptr);
-    node.setProperty(String("[" + std::to_string(i) + "]osc3_wavedraw"), val, nullptr);
+    node.setProperty(String("[" + std::to_string(i) + "]osc1_wavedraw"), val,
+                     nullptr);
+    node.setProperty(String("[" + std::to_string(i) + "]osc2_wavedraw"), val,
+                     nullptr);
+    node.setProperty(String("[" + std::to_string(i) + "]osc3_wavedraw"), val,
+                     nullptr);
   }
   for (int i = 0; i < CHIPDRAW_STEPS_X; ++i) {
     float val = i < CHIPDRAW_STEPS_X / 2 ? 0.875f : -0.875f;
     // do braces in the beginnning to speed up identification!?
-    node.setProperty(String("[" + std::to_string(i) + "]osc1_chipdraw"), val, nullptr);
-    node.setProperty(String("[" + std::to_string(i) + "]osc2_chipdraw"), val, nullptr);
-    node.setProperty(String("[" + std::to_string(i) + "]osc3_chipdraw"), val, nullptr);
+    node.setProperty(String("[" + std::to_string(i) + "]osc1_chipdraw"), val,
+                     nullptr);
+    node.setProperty(String("[" + std::to_string(i) + "]osc2_chipdraw"), val,
+                     nullptr);
+    node.setProperty(String("[" + std::to_string(i) + "]osc3_chipdraw"), val,
+                     nullptr);
   }
   for (int i = 0; i < SPECDRAW_STEPS_X; ++i) {
     float val = i == 0 ? 1 : 0;
     // do braces in the beginnning to speed up identification!?
-    node.setProperty(String("[" + std::to_string(i) + "]osc1_specdraw"), val, nullptr);
-    node.setProperty(String("[" + std::to_string(i) + "]osc2_specdraw"), val, nullptr);
-    node.setProperty(String("[" + std::to_string(i) + "]osc3_specdraw"), val, nullptr);
+    node.setProperty(String("[" + std::to_string(i) + "]osc1_specdraw"), val,
+                     nullptr);
+    node.setProperty(String("[" + std::to_string(i) + "]osc2_specdraw"), val,
+                     nullptr);
+    node.setProperty(String("[" + std::to_string(i) + "]osc3_specdraw"), val,
+                     nullptr);
   }
+
+  node.setProperty("delay_synctime_numerator", 2, nullptr);
+  node.setProperty("delay_synctime_denominator", 5, nullptr);
+  node.setProperty("phaser_synctime_numerator", 2, nullptr);
+  node.setProperty("phaser_synctime_denominator", 5, nullptr);
+  node.setProperty("flanger_synctime_numerator", 2, nullptr);
+  node.setProperty("flanger_synctime_denominator", 5, nullptr);
+  node.setProperty("chorus_synctime_numerator", 2, nullptr);
+  node.setProperty("chorus_synctime_denominator", 5, nullptr);
+
+  node.setProperty("lfo1_synctime_numerator", 2, nullptr);
+  node.setProperty("lfo1_synctime_denominator", 5, nullptr);
+  node.setProperty("lfo2_synctime_numerator", 2, nullptr);
+  node.setProperty("lfo2_synctime_denominator", 5, nullptr);
+  node.setProperty("lfo3_synctime_numerator", 2, nullptr);
+  node.setProperty("lfo3_synctime_denominator", 5, nullptr);
+  node.setProperty("lfo4_synctime_numerator", 2, nullptr);
+  node.setProperty("lfo4_synctime_denominator", 5, nullptr);
+  
 }

@@ -278,7 +278,10 @@ private:
 
   VoiceManager m_voice_manager;
   AudioProcessorValueTreeState m_parameters;
-  OdinTreeListener m_tree_listener;
+  OdinTreeListener m_tree_listener; // TODO create more of these and listen to
+                                    // subcategory only
+  OdinTreeListenerNonParam
+      m_non_param_listener; // this listens to non automatable vars
 
   Voice m_voice[VOICES];
   Amplifier m_amp;
@@ -311,9 +314,9 @@ private:
   bool treeValueChangedSecond(const String &p_ID, float p_new_value);
   bool treeValueChangedThird(const String &p_ID, float p_new_value);
   bool treeValueChangedFourth(const String &p_ID, float p_new_value);
+  void treeValueChangedNonParam(ValueTree &tree, const Identifier &identifier);
 
   void addNonAudioParametersToTree();
-
 
   // MOD SOURCES
   float m_adsr[VOICES][3] = {0.f};
