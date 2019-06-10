@@ -51,7 +51,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
       m_vec_a_identifier("osc" + p_osc_number + "_vec_a"),
       m_vec_b_identifier("osc" + p_osc_number + "_vec_b"),
       m_vec_c_identifier("osc" + p_osc_number + "_vec_c"),
-      m_vec_d_identifier("osc" + p_osc_number + "_vec_d"){
+      m_vec_d_identifier("osc" + p_osc_number + "_vec_d") {
 
   m_oct_attach.reset(
       new SliderAttachment(m_value_tree, "osc" + m_osc_number + "_oct", m_oct));
@@ -1238,7 +1238,6 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   REMOVE_EDITOR.setBounds(0, 0, 100, 25);
   addChildComponent(REMOVE_EDITOR);
 
-
   m_vol.setNumDecimalPlacesToDisplay(2);
   m_pw.setNumDecimalPlacesToDisplay(3);
   m_drift.setNumDecimalPlacesToDisplay(3);
@@ -1250,8 +1249,6 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_fm.setNumDecimalPlacesToDisplay(3);
   m_lp.setNumDecimalPlacesToDisplay(1);
   m_hp.setNumDecimalPlacesToDisplay(1);
-
-
 
   setSize(247, 145);
 }
@@ -1554,11 +1551,11 @@ void OscComponent::createWavedrawTables() {
 
   // write values to audiovaluetree
   float *table = m_wavedraw.getDrawnTable();
+  auto node = m_value_tree.state.getOrCreateChildWithName("NO_PARAM", nullptr);
   for (int i = 0; i < WAVEDRAW_STEPS_X; ++i) {
-    m_value_tree
-        .getParameter("osc" + m_osc_number + "_wavedraw[" + std::to_string(i) +
-                      "]")
-        ->setValueNotifyingHost(table[i] * 0.5 + 0.5);
+    node.setProperty(
+        String("[" + std::to_string(i) + "]osc" + m_osc_number + "_wavedraw"),
+        table[i] * 0.5 + 0.5, nullptr);
   }
 }
 
@@ -1568,12 +1565,19 @@ void OscComponent::createChipdrawTables() {
 
   // write values to audiovaluetree
   float *table = m_chipdraw.getDrawnTable();
+  auto node = m_value_tree.state.getOrCreateChildWithName("NO_PARAM", nullptr);
   for (int i = 0; i < CHIPDRAW_STEPS_X; ++i) {
-    m_value_tree
-        .getParameter("osc" + m_osc_number + "_chipdraw[" + std::to_string(i) +
-                      "]")
-        ->setValueNotifyingHost(table[i] * 0.5 + 0.5);
+    node.setProperty(
+        String("[" + std::to_string(i) + "]osc" + m_osc_number + "_chipdraw"),
+        table[i] * 0.5 + 0.5, nullptr);
   }
+  // for (int i = 0; i < CHIPDRAW_STEPS_X; ++i) {
+  //   m_value_tree
+  //       .getParameter("osc" + m_osc_number + "_chipdraw[" + std::to_string(i)
+  //       +
+  //                     "]")
+  //       ->setValueNotifyingHost(table[i] * 0.5 + 0.5);
+  // }
 }
 
 void OscComponent::createSpecdrawTables() {
@@ -1581,12 +1585,19 @@ void OscComponent::createSpecdrawTables() {
       std::stoi(m_osc_number) - 1, m_specdraw.getDrawnTable(), 44100.f);
   // write values to audiovaluetree
   float *table = m_specdraw.getDrawnTable();
+  auto node = m_value_tree.state.getOrCreateChildWithName("NO_PARAM", nullptr);
   for (int i = 0; i < SPECDRAW_STEPS_X; ++i) {
-    m_value_tree
-        .getParameter("osc" + m_osc_number + "_specdraw[" + std::to_string(i) +
-                      "]")
-        ->setValueNotifyingHost(table[i]);
+    node.setProperty(
+        String("[" + std::to_string(i) + "]osc" + m_osc_number + "_specdraw"),
+        table[i], nullptr);
   }
+  // for (int i = 0; i < SPECDRAW_STEPS_X; ++i) {
+  //   m_value_tree
+  //       .getParameter("osc" + m_osc_number + "_specdraw[" + std::to_string(i)
+  //       +
+  //                     "]")
+  //       ->setValueNotifyingHost(table[i]);
+  // }
 }
 
 void OscComponent::writeWavedrawTableToFile() {
@@ -1607,9 +1618,9 @@ void OscComponent::writeChipdrawTableToFile() {
 void OscComponent::forceValueTreeOntoComponents(ValueTree p_tree, int p_index) {
   std::string index = std::to_string(p_index);
 
-  //analog waveform
-  switch (
-      (int)m_value_tree.getParameterAsValue(m_analog_wave_identifier).getValue()) {
+  // analog waveform
+  switch ((int)m_value_tree.getParameterAsValue(m_analog_wave_identifier)
+              .getValue()) {
   case 1:
     m_LED_saw.setToggleState(true, sendNotification);
     break;
@@ -1626,33 +1637,45 @@ void OscComponent::forceValueTreeOntoComponents(ValueTree p_tree, int p_index) {
     break;
   }
 
-  //wavetable waveselctor
-  m_wavetable_waveselector.setValue(m_value_tree.getParameterAsValue(m_wavetable_identifier).getValue());
+  // wavetable waveselctor
+  m_wavetable_waveselector.setValue(
+      m_value_tree.getParameterAsValue(m_wavetable_identifier).getValue());
 
-  //vector
-  m_vec_a.setSelectedId(m_value_tree.getParameterAsValue(m_vec_a_identifier).getValue());
-  m_vec_b.setSelectedId(m_value_tree.getParameterAsValue(m_vec_b_identifier).getValue());
-  m_vec_c.setSelectedId(m_value_tree.getParameterAsValue(m_vec_c_identifier).getValue());
-  m_vec_d.setSelectedId(m_value_tree.getParameterAsValue(m_vec_d_identifier).getValue());
+  // vector
+  m_vec_a.setSelectedId(
+      m_value_tree.getParameterAsValue(m_vec_a_identifier).getValue());
+  m_vec_b.setSelectedId(
+      m_value_tree.getParameterAsValue(m_vec_b_identifier).getValue());
+  m_vec_c.setSelectedId(
+      m_value_tree.getParameterAsValue(m_vec_c_identifier).getValue());
+  m_vec_d.setSelectedId(
+      m_value_tree.getParameterAsValue(m_vec_d_identifier).getValue());
 
-  //fm
-  m_carrier_waveselector.setValue(m_value_tree.getParameterAsValue(m_carrier_wave_identifier).getValue());
-  m_modulator_waveselector.setValue(m_value_tree.getParameterAsValue(m_modulator_wave_identifier).getValue());
-  m_carrier_ratio.setValue(m_value_tree.getParameterAsValue(m_carrier_ratio_identifier).getValue());
-  m_modulator_ratio.setValue(m_value_tree.getParameterAsValue(m_modulator_ratio_identifier).getValue());
-  m_fm_exp.setValue(m_value_tree.getParameterAsValue("osc" + m_osc_number + "_exp_fm").getValue());
+  // fm
+  m_carrier_waveselector.setValue(
+      m_value_tree.getParameterAsValue(m_carrier_wave_identifier).getValue());
+  m_modulator_waveselector.setValue(
+      m_value_tree.getParameterAsValue(m_modulator_wave_identifier).getValue());
+  m_carrier_ratio.setValue(
+      m_value_tree.getParameterAsValue(m_carrier_ratio_identifier).getValue());
+  m_modulator_ratio.setValue(
+      m_value_tree.getParameterAsValue(m_modulator_ratio_identifier)
+          .getValue());
+  m_fm_exp.setValue(
+      m_value_tree.getParameterAsValue("osc" + m_osc_number + "_exp_fm")
+          .getValue());
 
-  //chiptune
-  m_chiptune_waveselector.setValue(m_value_tree.getParameterAsValue("osc" + m_osc_number + "_chipwave").getValue());
-  
+  // chiptune
+  m_chiptune_waveselector.setValue(
+      m_value_tree.getParameterAsValue("osc" + m_osc_number + "_chipwave")
+          .getValue());
 
+  auto node = m_value_tree.state.getOrCreateChildWithName("NO_PARAM", nullptr);
+      
   // wavedraw
   float wavedraw_values[WAVEDRAW_STEPS_X];
   for (int i = 0; i < WAVEDRAW_STEPS_X; ++i) {
-    wavedraw_values[i] = m_value_tree
-                             .getParameterAsValue("osc" + index + "_wavedraw[" +
-                                                  std::to_string(i) + "]")
-                             .getValue();
+      wavedraw_values[i] = (float)node[String("[" + std::to_string(i) + "]osc" + m_osc_number + "_wavedraw")] * 2 - 1;
   }
   m_wavedraw.setDrawnTable(wavedraw_values);
   createWavedrawTables();
@@ -1660,10 +1683,7 @@ void OscComponent::forceValueTreeOntoComponents(ValueTree p_tree, int p_index) {
 
   // chipdraw
   for (int i = 0; i < CHIPDRAW_STEPS_X; ++i) {
-    wavedraw_values[i] = m_value_tree
-                             .getParameterAsValue("osc" + index + "_chipdraw[" +
-                                                  std::to_string(i) + "]")
-                             .getValue();
+      wavedraw_values[i] = (float)node[String("[" + std::to_string(i) + "]osc" + m_osc_number + "_chipdraw")] * 2 - 1;
   }
   m_chipdraw.setDrawnTable(wavedraw_values);
   m_chipdraw_convert.setToggleState(true, dontSendNotification);
@@ -1671,10 +1691,7 @@ void OscComponent::forceValueTreeOntoComponents(ValueTree p_tree, int p_index) {
 
   // specdraw
   for (int i = 0; i < SPECDRAW_STEPS_X; ++i) {
-    wavedraw_values[i] = m_value_tree
-                             .getParameterAsValue("osc" + index + "_specdraw[" +
-                                                  std::to_string(i) + "]")
-                             .getValue();
+      wavedraw_values[i] = (float)node[String("[" + std::to_string(i) + "]osc" + m_osc_number + "_specdraw")];
   }
   m_specdraw.setDrawnTable(wavedraw_values);
   m_specdraw_convert.setToggleState(true, dontSendNotification);

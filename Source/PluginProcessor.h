@@ -312,6 +312,9 @@ private:
   bool treeValueChangedThird(const String &p_ID, float p_new_value);
   bool treeValueChangedFourth(const String &p_ID, float p_new_value);
 
+  void addNonAudioParametersToTree();
+
+
   // MOD SOURCES
   float m_adsr[VOICES][3] = {0.f};
   float m_lfo[VOICES][3] = {0.f};

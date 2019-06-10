@@ -35,6 +35,9 @@
         "typeinfo": "cpp",
         "utility": "cpp",
         "algorithm": "cpp",
-        "optional": "cpp"
+        "optional": "cpp",
+        "deque": "cpp",
+        "new": "cpp",
+        "string_view": "cpp"
     }
 }

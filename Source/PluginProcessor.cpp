@@ -35,6 +35,8 @@ OdinAudioProcessor::OdinAudioProcessor()
 {
 #include "AudioParameterConnections.h" // constains the connection between raw float pointers and their ValueTree counter
 
+  addNonAudioParametersToTree();
+
   m_is_standalone_plugin = (wrapperType == wrapperType_Standalone);
   DBG("standalone plugin? " + std::to_string((int)m_is_standalone_plugin));
   // DBG(typeid(wrapperType));
@@ -1292,5 +1294,31 @@ void OdinAudioProcessor::setBPM(float p_BPM) {
   }
   if (*m_lfo4_sync) {
     m_global_lfo.setFreqBPM(p_BPM);
+  }
+}
+
+void OdinAudioProcessor::addNonAudioParametersToTree() {
+
+  auto node = m_parameters.state.getOrCreateChildWithName("NO_PARAM", nullptr);
+  for (int i = 0; i < WAVEDRAW_STEPS_X; ++i) {
+    float val = sin(2 * M_PI * i / (float)WAVEDRAW_STEPS_X) * 0.9;
+    // do braces in the beginnning to speed up identification!?
+    node.setProperty(String("[" + std::to_string(i) + "]osc1_wavedraw"), val, nullptr);
+    node.setProperty(String("[" + std::to_string(i) + "]osc2_wavedraw"), val, nullptr);
+    node.setProperty(String("[" + std::to_string(i) + "]osc3_wavedraw"), val, nullptr);
+  }
+  for (int i = 0; i < CHIPDRAW_STEPS_X; ++i) {
+    float val = i < CHIPDRAW_STEPS_X / 2 ? 0.875f : -0.875f;
+    // do braces in the beginnning to speed up identification!?
+    node.setProperty(String("[" + std::to_string(i) + "]osc1_chipdraw"), val, nullptr);
+    node.setProperty(String("[" + std::to_string(i) + "]osc2_chipdraw"), val, nullptr);
+    node.setProperty(String("[" + std::to_string(i) + "]osc3_chipdraw"), val, nullptr);
+  }
+  for (int i = 0; i < SPECDRAW_STEPS_X; ++i) {
+    float val = i == 0 ? 1 : 0;
+    // do braces in the beginnning to speed up identification!?
+    node.setProperty(String("[" + std::to_string(i) + "]osc1_specdraw"), val, nullptr);
+    node.setProperty(String("[" + std::to_string(i) + "]osc2_specdraw"), val, nullptr);
+    node.setProperty(String("[" + std::to_string(i) + "]osc3_specdraw"), val, nullptr);
   }
 }

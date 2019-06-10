@@ -733,5 +733,5 @@
       std::make_unique<AudioParameterInt>("scale_[8]", "scale_[8]", 0, 1000, 0),
 
 // include geneerated code for drawtables
-#include "GeneratedAudioValueCode.h"
+// #include "GeneratedAudioValueCode.h"
 }
