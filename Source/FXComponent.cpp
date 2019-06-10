@@ -158,9 +158,9 @@ FXComponent::FXComponent(AudioProcessorValueTreeState &vts,
 
   m_sync_time.OnValueChange = [&](int p_left, int p_right) {
     m_value_tree.getParameter(m_fx_synctime_numerator_identifier)
-        ->setValueNotifyingHost(((float)p_left) / 8.f);
+        ->setValueNotifyingHost(((float)p_left) / 7.f);
     m_value_tree.getParameter(m_fx_synctime_denominator_identifier)
-        ->setValueNotifyingHost(((float)p_right) / 7.f);
+        ->setValueNotifyingHost(((float)p_right) / 8.f);
   };
   m_sync_time.setTopLeftPosition(FX_SYNC_TIME_FX_POS_X, FX_SYNC_TIME_FX_POS_Y);
   m_sync_time.setTooltip("Set the delay time in sync to your track");

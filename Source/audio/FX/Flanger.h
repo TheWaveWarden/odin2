@@ -53,7 +53,7 @@ public:
   void setDryWetModPointer(float *p_pointer) { m_drywet_mod = p_pointer; }
   void setFeedbackModPointer(float *p_pointer) { m_res_mod = p_pointer; }
 
-  void setFreqBPM(float p_BPM) { setLFOFreq(15.f * m_synctime_ratio / p_BPM); }
+  void setFreqBPM(float p_BPM) { setLFOFreq(p_BPM / m_synctime_ratio / 240.f); }
 
   void setSynctimeNumerator(float p_value) {
     m_synctime_numerator = p_value;

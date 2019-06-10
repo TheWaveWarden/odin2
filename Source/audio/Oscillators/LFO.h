@@ -53,7 +53,7 @@ public:
   float doSampleHold();
 
   void setFreqBPM(float p_BPM){
-    setBaseFrequency(15.f * m_synctime_ratio / p_BPM);
+    setBaseFrequency(p_BPM / m_synctime_ratio / 240.f);
   }
   void setSynctimeNumerator(float p_value){
     m_synctime_numerator = p_value;

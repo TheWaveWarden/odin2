@@ -117,7 +117,7 @@ public:
     m_index_sine_left = 0;
     m_index_sine_right = 0.5;
   }
-  void setFreqBPM(float p_BPM) { setLFOFreq(15.f * m_synctime_ratio / p_BPM); }
+  void setFreqBPM(float p_BPM) { setLFOFreq(p_BPM / m_synctime_ratio / 240.f); }
   void setSynctimeNumerator(float p_value) {
     m_synctime_numerator = p_value;
     m_synctime_ratio = p_value / m_synctime_denominator;

@@ -165,10 +165,11 @@ PhaserComponent::PhaserComponent(AudioProcessorValueTreeState &vts,
   };
 
   m_sync_time.OnValueChange = [&](int p_left, int p_right) {
+    //DBG(p_left);
     m_value_tree.getParameter(m_fx_synctime_numerator_identifier)
-        ->setValueNotifyingHost(((float)p_left) / 8.f);
+        ->setValueNotifyingHost(((float)(p_left)) / 7.f);
     m_value_tree.getParameter(m_fx_synctime_denominator_identifier)
-        ->setValueNotifyingHost(((float)p_right) / 7.f);
+        ->setValueNotifyingHost(((float)p_right) / 8.f);
   };
   m_sync_time.setTopLeftPosition(PHASER_SYNC_TIME_POS_X,
                                  PHASER_SYNC_TIME_POS_Y);
