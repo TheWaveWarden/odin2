@@ -1043,11 +1043,7 @@ bool OdinAudioProcessor::treeValueChangedThird(const String &p_ID,
     m_distortion[0].setThreshold(p_new_value);
     m_distortion[1].setThreshold(p_new_value);
   }
-  else if (id == m_dist_algo_identifier)
-  {
-    m_distortion[0].setAlgorithm((int)p_new_value);
-    m_distortion[1].setAlgorithm((int)p_new_value);
-  }
+  
   else if (id == m_fil3_freq_identifier)
   {
     m_fil_freq_control[2] = p_new_value;
@@ -2024,5 +2020,10 @@ void OdinAudioProcessor::treeValueChangedNonParam(ValueTree &tree,
   else if (id == m_scale_row_9_identifier)
   {
     m_mod_matrix.setModScale(8, p_new_value);
+  }
+  else if (id == m_dist_algo_identifier)
+  {
+    m_distortion[0].setAlgorithm((int)p_new_value);
+    m_distortion[1].setAlgorithm((int)p_new_value);
   }
 }
