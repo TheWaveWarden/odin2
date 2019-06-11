@@ -578,156 +578,120 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
   };
 
   m_source[0].onChange = [&]() {
-    m_value_tree.getParameter(m_source_identifier0)
-        ->setValueNotifyingHost(m_source[0].getSelectedId() / 1000.f);
+    m_value_tree.state.setProperty(m_source_identifier0, m_source[0].getSelectedId(), nullptr);
   };
   m_dest_1[0].onChange = [&]() {
-    m_value_tree.getParameter(m_dest_1_identifier0)
-        ->setValueNotifyingHost(m_dest_1[0].getSelectedId() / 1000.f);
+    m_value_tree.state.setProperty(m_dest_1_identifier0, m_dest_1[0].getSelectedId(), nullptr);
   };
   m_dest_2[0].onChange = [&]() {
-    m_value_tree.getParameter(m_dest_2_identifier0)
-        ->setValueNotifyingHost(m_dest_2[0].getSelectedId() / 1000.f);
+    m_value_tree.state.setProperty(m_dest_2_identifier0, m_dest_2[0].getSelectedId(), nullptr);
   };
   m_scale[0].onChange = [&]() {
-    m_value_tree.getParameter(m_scale_identifier0)
-        ->setValueNotifyingHost(m_scale[0].getSelectedId() / 1000.f);
+    m_value_tree.state.setProperty(m_scale_identifier0, m_scale[0].getSelectedId(), nullptr);
   };
 
   m_source[1].onChange = [&]() {
-    m_value_tree.getParameter(m_source_identifier1)
-        ->setValueNotifyingHost(m_source[1].getSelectedId() / 1000.f);
+    m_value_tree.state.setProperty(m_source_identifier1, m_source[1].getSelectedId(), nullptr);
   };
   m_dest_1[1].onChange = [&]() {
-    m_value_tree.getParameter(m_dest_1_identifier1)
-        ->setValueNotifyingHost(m_dest_1[1].getSelectedId() / 1000.f);
+    m_value_tree.state.setProperty(m_dest_1_identifier1, m_dest_1[1].getSelectedId(), nullptr);
   };
   m_dest_2[1].onChange = [&]() {
-    m_value_tree.getParameter(m_dest_2_identifier1)
-        ->setValueNotifyingHost(m_dest_2[1].getSelectedId() / 1000.f);
+    m_value_tree.state.setProperty(m_dest_2_identifier1, m_dest_2[1].getSelectedId(), nullptr);
   };
   m_scale[1].onChange = [&]() {
-    m_value_tree.getParameter(m_scale_identifier1)
-        ->setValueNotifyingHost(m_scale[1].getSelectedId() / 1000.f);
+    m_value_tree.state.setProperty(m_scale_identifier1, m_scale[1].getSelectedId(), nullptr);
   };
 
   m_source[2].onChange = [&]() {
-    m_value_tree.getParameter(m_source_identifier2)
-        ->setValueNotifyingHost(m_source[2].getSelectedId() / 1000.f);
+    m_value_tree.state.setProperty(m_source_identifier2, m_source[2].getSelectedId(), nullptr);
   };
   m_dest_1[2].onChange = [&]() {
-    m_value_tree.getParameter(m_dest_1_identifier2)
-        ->setValueNotifyingHost(m_dest_1[2].getSelectedId() / 1000.f);
+    m_value_tree.state.setProperty(m_dest_1_identifier2, m_dest_1[2].getSelectedId(), nullptr);
   };
   m_dest_2[2].onChange = [&]() {
-    m_value_tree.getParameter(m_dest_2_identifier2)
-        ->setValueNotifyingHost(m_dest_2[2].getSelectedId() / 1000.f);
+    m_value_tree.state.setProperty(m_dest_2_identifier2, m_dest_2[2].getSelectedId(), nullptr);
   };
   m_scale[2].onChange = [&]() {
-    m_value_tree.getParameter(m_scale_identifier2)
-        ->setValueNotifyingHost(m_scale[2].getSelectedId() / 1000.f);
+    m_value_tree.state.setProperty(m_scale_identifier2, m_scale[2].getSelectedId(), nullptr);
   };
 
   m_source[3].onChange = [&]() {
-    m_value_tree.getParameter(m_source_identifier3)
-        ->setValueNotifyingHost(m_source[3].getSelectedId() / 1000.f);
+    m_value_tree.state.setProperty(m_source_identifier3, m_source[3].getSelectedId(), nullptr);
   };
   m_dest_1[3].onChange = [&]() {
-    m_value_tree.getParameter(m_dest_1_identifier3)
-        ->setValueNotifyingHost(m_dest_1[3].getSelectedId() / 1000.f);
+    m_value_tree.state.setProperty(m_dest_1_identifier3, m_dest_1[3].getSelectedId(), nullptr);
   };
   m_dest_2[3].onChange = [&]() {
-    m_value_tree.getParameter(m_dest_2_identifier3)
-        ->setValueNotifyingHost(m_dest_2[3].getSelectedId() / 1000.f);
+    m_value_tree.state.setProperty(m_dest_2_identifier3, m_dest_2[3].getSelectedId(), nullptr);
   };
   m_scale[3].onChange = [&]() {
-    m_value_tree.getParameter(m_scale_identifier3)
-        ->setValueNotifyingHost(m_scale[3].getSelectedId() / 1000.f);
+    m_value_tree.state.setProperty(m_scale_identifier3, m_scale[3].getSelectedId(), nullptr);
   };
 
   m_source[4].onChange = [&]() {
-    m_value_tree.getParameter(m_source_identifier4)
-        ->setValueNotifyingHost(m_source[4].getSelectedId() / 1000.f);
+    m_value_tree.state.setProperty(m_source_identifier4, m_source[4].getSelectedId(), nullptr);
   };
   m_dest_1[4].onChange = [&]() {
-    m_value_tree.getParameter(m_dest_1_identifier4)
-        ->setValueNotifyingHost(m_dest_1[4].getSelectedId() / 1000.f);
+    m_value_tree.state.setProperty(m_dest_1_identifier4, m_dest_1[4].getSelectedId(), nullptr);
   };
   m_dest_2[4].onChange = [&]() {
-    m_value_tree.getParameter(m_dest_2_identifier4)
-        ->setValueNotifyingHost(m_dest_2[4].getSelectedId() / 1000.f);
+    m_value_tree.state.setProperty(m_dest_2_identifier4, m_dest_2[4].getSelectedId(), nullptr);
   };
   m_scale[4].onChange = [&]() {
-    m_value_tree.getParameter(m_scale_identifier4)
-        ->setValueNotifyingHost(m_scale[4].getSelectedId() / 1000.f);
+    m_value_tree.state.setProperty(m_scale_identifier4, m_scale[4].getSelectedId(), nullptr);
   };
 
   m_source[5].onChange = [&]() {
-    m_value_tree.getParameter(m_source_identifier5)
-        ->setValueNotifyingHost(m_source[5].getSelectedId() / 1000.f);
+    m_value_tree.state.setProperty(m_source_identifier5, m_source[5].getSelectedId(), nullptr);
   };
   m_dest_1[5].onChange = [&]() {
-    m_value_tree.getParameter(m_dest_1_identifier5)
-        ->setValueNotifyingHost(m_dest_1[5].getSelectedId() / 1000.f);
+    m_value_tree.state.setProperty(m_dest_1_identifier5, m_dest_1[5].getSelectedId(), nullptr);
   };
   m_dest_2[5].onChange = [&]() {
-    m_value_tree.getParameter(m_dest_2_identifier5)
-        ->setValueNotifyingHost(m_dest_2[5].getSelectedId() / 1000.f);
+    m_value_tree.state.setProperty(m_dest_2_identifier5, m_dest_2[5].getSelectedId(), nullptr);
   };
   m_scale[5].onChange = [&]() {
-    m_value_tree.getParameter(m_scale_identifier5)
-        ->setValueNotifyingHost(m_scale[5].getSelectedId() / 1000.f);
+    m_value_tree.state.setProperty(m_scale_identifier5, m_scale[5].getSelectedId(), nullptr);
   };
 
   m_source[6].onChange = [&]() {
-    m_value_tree.getParameter(m_source_identifier6)
-        ->setValueNotifyingHost(m_source[6].getSelectedId() / 1000.f);
+    m_value_tree.state.setProperty(m_source_identifier6, m_source[6].getSelectedId(), nullptr);
   };
   m_dest_1[6].onChange = [&]() {
-    m_value_tree.getParameter(m_dest_1_identifier6)
-        ->setValueNotifyingHost(m_dest_1[6].getSelectedId() / 1000.f);
+    m_value_tree.state.setProperty(m_dest_1_identifier6, m_dest_1[6].getSelectedId(), nullptr);
   };
   m_dest_2[6].onChange = [&]() {
-    m_value_tree.getParameter(m_dest_2_identifier6)
-        ->setValueNotifyingHost(m_dest_2[6].getSelectedId() / 1000.f);
+    m_value_tree.state.setProperty(m_dest_2_identifier6, m_dest_2[6].getSelectedId(), nullptr);
   };
   m_scale[6].onChange = [&]() {
-    m_value_tree.getParameter(m_scale_identifier6)
-        ->setValueNotifyingHost(m_scale[6].getSelectedId() / 1000.f);
+    m_value_tree.state.setProperty(m_scale_identifier6, m_scale[6].getSelectedId(), nullptr);
   };
 
   m_source[7].onChange = [&]() {
-    m_value_tree.getParameter(m_source_identifier7)
-        ->setValueNotifyingHost(m_source[7].getSelectedId() / 1000.f);
+    m_value_tree.state.setProperty(m_source_identifier7, m_source[7].getSelectedId(), nullptr);
   };
   m_dest_1[7].onChange = [&]() {
-    m_value_tree.getParameter(m_dest_1_identifier7)
-        ->setValueNotifyingHost(m_dest_1[7].getSelectedId() / 1000.f);
+    m_value_tree.state.setProperty(m_dest_1_identifier7, m_dest_1[7].getSelectedId(), nullptr);
   };
   m_dest_2[7].onChange = [&]() {
-    m_value_tree.getParameter(m_dest_2_identifier7)
-        ->setValueNotifyingHost(m_dest_2[7].getSelectedId() / 1000.f);
+    m_value_tree.state.setProperty(m_dest_2_identifier7, m_dest_2[7].getSelectedId(), nullptr);
   };
   m_scale[7].onChange = [&]() {
-    m_value_tree.getParameter(m_scale_identifier7)
-        ->setValueNotifyingHost(m_scale[7].getSelectedId() / 1000.f);
+    m_value_tree.state.setProperty(m_scale_identifier7, m_scale[7].getSelectedId(), nullptr);
   };
 
   m_source[8].onChange = [&]() {
-    m_value_tree.getParameter(m_source_identifier8)
-        ->setValueNotifyingHost(m_source[8].getSelectedId() / 1000.f);
+    m_value_tree.state.setProperty(m_source_identifier8, m_source[8].getSelectedId(), nullptr);
   };
   m_dest_1[8].onChange = [&]() {
-    m_value_tree.getParameter(m_dest_1_identifier8)
-        ->setValueNotifyingHost(m_dest_1[8].getSelectedId() / 1000.f);
+    m_value_tree.state.setProperty(m_dest_1_identifier8, m_dest_1[8].getSelectedId(), nullptr);
   };
   m_dest_2[8].onChange = [&]() {
-    m_value_tree.getParameter(m_dest_2_identifier8)
-        ->setValueNotifyingHost(m_dest_2[8].getSelectedId() / 1000.f);
+    m_value_tree.state.setProperty(m_dest_2_identifier8, m_dest_2[8].getSelectedId(), nullptr);
   };
   m_scale[8].onChange = [&]() {
-    m_value_tree.getParameter(m_scale_identifier8)
-        ->setValueNotifyingHost(m_scale[8].getSelectedId() / 1000.f);
+    m_value_tree.state.setProperty(m_scale_identifier8, m_scale[8].getSelectedId(), nullptr);
   };
 
   m_small_panel_width = glas_small_down.getWidth();
@@ -1038,22 +1002,18 @@ void ModMatrixComponent::createMenu(PopupMenu *p_menu) {
 void ModMatrixComponent::forceValueTreeOntoComponents(ValueTree p_tree) {
   for (int row = 0; row < N_ROWS; ++row) {
     m_source[row].setValue(
-        m_value_tree.getParameterAsValue("source_[" + std::to_string(row) + "]")
-            .getValue());
+        m_value_tree.state[String("source_[" + std::to_string(row) + "]")]);
 
     m_dest_1[row].rearrangeMenu();
     m_dest_1[row].setValue(
-        m_value_tree.getParameterAsValue("dest_1_[" + std::to_string(row) + "]")
-            .getValue());
+        m_value_tree.state[String("dest_1_[" + std::to_string(row) + "]")]);
 
     m_dest_2[row].rearrangeMenu();
     m_dest_2[row].setValue(
-        m_value_tree.getParameterAsValue("dest_2_[" + std::to_string(row) + "]")
-            .getValue());
+        m_value_tree.state[String("dest_2_[" + std::to_string(row) + "]")]);
 
     m_scale[row].setValue(
-        m_value_tree.getParameterAsValue("scale_[" + std::to_string(row) + "]")
-            .getValue());
+        m_value_tree.state[String("scale_[" + std::to_string(row) + "]")]);
 
     m_amount_1[row].setValue(
         m_value_tree

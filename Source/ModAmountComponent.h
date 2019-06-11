@@ -43,6 +43,7 @@ public:
   void reset()
   {
     m_value = 0;
+    onValueChange(0);
     repaint();
   }
 
