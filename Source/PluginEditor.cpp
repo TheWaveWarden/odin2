@@ -15,7 +15,7 @@
 OdinAudioProcessorEditor::OdinAudioProcessorEditor(
     OdinAudioProcessor &p_processor, AudioProcessorValueTreeState &vts,
     bool p_is_standalone)
-    : m_value_tree(vts), m_fx_buttons_section(vts),
+    : m_value_tree(vts), m_fx_buttons_section(vts, p_processor),
       AudioProcessorEditor(&p_processor), processor(p_processor),
       m_osc1_dropdown("osc1_dropdown_button",
                       juce::DrawableButton::ButtonStyle::ImageRaw),

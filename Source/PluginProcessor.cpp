@@ -1354,4 +1354,9 @@ void OdinAudioProcessor::addNonAudioParametersToTree() {
   node.setProperty("lfo4_synctime_denominator", 5, nullptr);
 
   node.setProperty("legato", 1, nullptr);//this is actually "poly" or "!legato"
+
+  node.setProperty("delay_selected", 1, nullptr);
+  node.setProperty("phaser_selected", 0, nullptr);
+  node.setProperty("flanger_selected", 0, nullptr);
+  node.setProperty("chorus_selected", 0, nullptr);
 }
