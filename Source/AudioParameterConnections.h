@@ -234,14 +234,6 @@ for (int i = 0; i < 9; ++i) {
       m_value_tree.getRawParameterValue("amount_2_[" + std::to_string(i) + "]");
   m_amount_3[i] =
       m_value_tree.getRawParameterValue("amount_3_[" + std::to_string(i) + "]");
-  m_source[i] =
-      m_value_tree.getRawParameterValue("source_[" + std::to_string(i) + "]");
-  m_dest_1[i] =
-      m_value_tree.getRawParameterValue("dest_1_[" + std::to_string(i) + "]");
-  m_dest_2[i] =
-      m_value_tree.getRawParameterValue("dest_2_[" + std::to_string(i) + "]");
-  m_scale[i] =
-      m_value_tree.getRawParameterValue("scale_[" + std::to_string(i) + "]");
 }
 
 //============================================================================
@@ -492,13 +484,5 @@ for (int i = 0; i < 9; ++i) {
   m_value_tree.addParameterListener("amount_2_[" + std::to_string(i) + "]",
                                     &m_tree_listener);
   m_value_tree.addParameterListener("amount_3_[" + std::to_string(i) + "]",
-                                    &m_tree_listener);
-  m_value_tree.addParameterListener("source_[" + std::to_string(i) + "]",
-                                    &m_tree_listener);
-  m_value_tree.addParameterListener("dest_1_[" + std::to_string(i) + "]",
-                                    &m_tree_listener);
-  m_value_tree.addParameterListener("dest_2_[" + std::to_string(i) + "]",
-                                    &m_tree_listener);
-  m_value_tree.addParameterListener("scale_[" + std::to_string(i) + "]",
                                     &m_tree_listener);
 }
