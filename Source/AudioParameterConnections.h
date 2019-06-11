@@ -10,8 +10,6 @@
 
 #pragma once
 for (int osc = 0; osc < 3; ++osc) {
-  m_osc_type[osc] = m_value_tree.getRawParameterValue(
-      "osc" + std::to_string(osc + 1) + "_type");
   m_osc_oct[osc] = m_value_tree.getRawParameterValue(
       "osc" + std::to_string(osc + 1) + "_oct");
   m_osc_semi[osc] = m_value_tree.getRawParameterValue(
@@ -79,8 +77,6 @@ for (int osc = 0; osc < 3; ++osc) {
 }
 
 for (int fil = 0; fil < 3; ++fil) {
-  m_fil_type[fil] = m_value_tree.getRawParameterValue(
-      "fil" + std::to_string(fil + 1) + "_type");
   m_fil_vel[fil] = m_value_tree.getRawParameterValue(
       "fil" + std::to_string(fil + 1) + "_vel");
   m_fil_env[fil] = m_value_tree.getRawParameterValue(
@@ -145,12 +141,10 @@ m_lfo1_reset = m_value_tree.getRawParameterValue("lfo1_reset");
 m_lfo1_sync = m_value_tree.getRawParameterValue("lfo1_sync");
 m_lfo1_wave = m_value_tree.getRawParameterValue("lfo1_wave");
 
-
 m_lfo2_freq = m_value_tree.getRawParameterValue("lfo2_freq");
 m_lfo2_reset = m_value_tree.getRawParameterValue("lfo2_reset");
 m_lfo2_sync = m_value_tree.getRawParameterValue("lfo2_sync");
 m_lfo2_wave = m_value_tree.getRawParameterValue("lfo2_wave");
-
 
 m_lfo3_freq = m_value_tree.getRawParameterValue("lfo3_freq");
 m_lfo3_reset = m_value_tree.getRawParameterValue("lfo3_reset");
@@ -193,7 +187,6 @@ m_delay_dry = m_value_tree.getRawParameterValue("delay_dry");
 m_delay_wet = m_value_tree.getRawParameterValue("delay_wet");
 m_delay_sync = m_value_tree.getRawParameterValue("delay_sync");
 
-
 m_phaser_rate = m_value_tree.getRawParameterValue("phaser_rate");
 m_phaser_freq = m_value_tree.getRawParameterValue("phaser_freq");
 m_phaser_feedback = m_value_tree.getRawParameterValue("phaser_feedback");
@@ -208,7 +201,6 @@ m_flanger_drywet = m_value_tree.getRawParameterValue("flanger_drywet");
 m_flanger_sync = m_value_tree.getRawParameterValue("flanger_sync");
 m_flanger_reset = m_value_tree.getRawParameterValue("flanger_reset");
 m_flanger_feedback = m_value_tree.getRawParameterValue("flanger_feedback");
-
 
 m_chorus_rate = m_value_tree.getRawParameterValue("chorus_rate");
 m_chorus_amount = m_value_tree.getRawParameterValue("chorus_amount");
@@ -245,12 +237,10 @@ for (int i = 0; i < 9; ++i) {
 //============================================================================
 //============================================================================
 
-//first attach non param listener
+// first attach non param listener
 m_value_tree.state.addListener(&m_non_param_listener);
 
 for (int osc = 0; osc < 3; ++osc) {
-  m_value_tree.addParameterListener("osc" + std::to_string(osc + 1) + "_type",
-                                    &m_tree_listener);
   m_value_tree.addParameterListener("osc" + std::to_string(osc + 1) + "_oct",
                                     &m_tree_listener);
   m_value_tree.addParameterListener("osc" + std::to_string(osc + 1) + "_semi",
@@ -320,10 +310,7 @@ for (int osc = 0; osc < 3; ++osc) {
   m_value_tree.addParameterListener(
       "osc" + std::to_string(osc + 1) + "_wavetable", &m_tree_listener);
 }
-
 for (int fil = 0; fil < 3; ++fil) {
-  m_value_tree.addParameterListener("fil" + std::to_string(fil + 1) + "_type",
-                                    &m_tree_listener);
   m_value_tree.addParameterListener("fil" + std::to_string(fil + 1) + "_vel",
                                     &m_tree_listener);
   m_value_tree.addParameterListener("fil" + std::to_string(fil + 1) + "_env",
@@ -410,7 +397,6 @@ m_value_tree.addParameterListener("phaser_on", &m_tree_listener);
 m_value_tree.addParameterListener("flanger_on", &m_tree_listener);
 m_value_tree.addParameterListener("delay_on", &m_tree_listener);
 m_value_tree.addParameterListener("chorus_on", &m_tree_listener);
-
 
 for (int fil = 0; fil < 2; ++fil) {
   m_value_tree.addParameterListener("fil" + std::to_string(fil + 1) + "_osc1",

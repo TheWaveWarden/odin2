@@ -97,34 +97,34 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
 
   m_osc_dropdown_menu.addItem(1, "None");
   m_osc_dropdown_menu.addSeparator();
-  m_osc_dropdown_menu.addItem(2, "Analog Oscillator");
-  m_osc_dropdown_menu.addItem(3, "Wavetable Oscillator");
-  m_osc_dropdown_menu.addItem(4, "Multi Oscillator");
-  m_osc_dropdown_menu.addItem(5, "Vector Oscillator");
-  m_osc_dropdown_menu.addItem(6, "Chiptune Oscillator");
-  m_osc_dropdown_menu.addItem(7, "FM Oscillator");
-  m_osc_dropdown_menu.addItem(8, "Noise Oscillator");
+  m_osc_dropdown_menu.addItem(OSC_TYPE_ANALOG, "Analog Oscillator");
+  m_osc_dropdown_menu.addItem(OSC_TYPE_WAVETABLE, "Wavetable Oscillator");
+  m_osc_dropdown_menu.addItem(OSC_TYPE_MULTI, "Multi Oscillator");
+  m_osc_dropdown_menu.addItem(OSC_TYPE_VECTOR, "Vector Oscillator");
+  m_osc_dropdown_menu.addItem(OSC_TYPE_CHIPTUNE, "Chiptune Oscillator");
+  m_osc_dropdown_menu.addItem(OSC_TYPE_FM, "FM Oscillator");
+  m_osc_dropdown_menu.addItem(OSC_TYPE_NOISE, "Noise Oscillator");
   m_osc_dropdown_menu.addSeparator();
-  m_osc_dropdown_menu.addItem(9, "Wavedraw Oscillator");
-  m_osc_dropdown_menu.addItem(10, "Chipdraw Oscillator");
-  m_osc_dropdown_menu.addItem(11, "Specdraw Oscillator");
+  m_osc_dropdown_menu.addItem(OSC_TYPE_WAVEDRAW, "Wavedraw Oscillator");
+  m_osc_dropdown_menu.addItem(OSC_TYPE_CHIPDRAW, "Chipdraw Oscillator");
+  m_osc_dropdown_menu.addItem(OSC_TYPE_SPECDRAW, "Specdraw Oscillator");
 
   m_filter_dropdown_menu.addItem(1, "Bypass");
   m_filter_dropdown_menu.addSeparator();
-  m_filter_dropdown_menu.addItem(2, "Lowpass 24");
-  m_filter_dropdown_menu.addItem(3, "Lowpass 12");
-  m_filter_dropdown_menu.addItem(4, "Bandpass 24");
-  m_filter_dropdown_menu.addItem(5, "Bandpass 12");
-  m_filter_dropdown_menu.addItem(6, "Highpass 24");
-  m_filter_dropdown_menu.addItem(7, "Highpass 12");
+  m_filter_dropdown_menu.addItem(FILTER_TYPE_LP24, "Lowpass 24");
+  m_filter_dropdown_menu.addItem(FILTER_TYPE_LP12, "Lowpass 12");
+  m_filter_dropdown_menu.addItem(FILTER_TYPE_BP24, "Bandpass 24");
+  m_filter_dropdown_menu.addItem(FILTER_TYPE_BP12, "Bandpass 12");
+  m_filter_dropdown_menu.addItem(FILTER_TYPE_HP24, "Highpass 24");
+  m_filter_dropdown_menu.addItem(FILTER_TYPE_HP12, "Highpass 12");
   m_filter_dropdown_menu.addSeparator();
-  m_filter_dropdown_menu.addItem(8, "Oberheim 12");
-  m_filter_dropdown_menu.addItem(9, "Diode Ladder");
-  m_filter_dropdown_menu.addItem(10, "Korg 35 LP");
-  m_filter_dropdown_menu.addItem(11, "Korg 35 HP");
+  m_filter_dropdown_menu.addItem(FILTER_TYPE_SEM12, "Oberheim 12");
+  m_filter_dropdown_menu.addItem(FILTER_TYPE_DIODE, "Diode Ladder");
+  m_filter_dropdown_menu.addItem(FILTER_TYPE_KORG_LP, "Korg 35 LP");
+  m_filter_dropdown_menu.addItem(FILTER_TYPE_KORG_HP, "Korg 35 HP");
   m_filter_dropdown_menu.addSeparator();
-  m_filter_dropdown_menu.addItem(12, "Comb Filter");
-  m_filter_dropdown_menu.addItem(13, "Formant Filter");
+  m_filter_dropdown_menu.addItem(FILTER_TYPE_COMB, "Comb Filter");
+  m_filter_dropdown_menu.addItem(FILTER_TYPE_FORMANT, "Formant Filter");
 
   juce::Image dropdown_button1 = ImageCache::getFromFile(
       juce::File(GRAPHICS_PATH + "cropped/buttons/buttondropdown_1.png"));
@@ -640,7 +640,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
   addAndMakeVisible(m_modwheel);
 
   m_osc1.setBackgroundBypass(bypass_osc1_plate);
-  m_osc1.setOscType(2); // analog
+  m_osc1.setOscType(OSC_TYPE_ANALOG); // analog
   addAndMakeVisible(m_osc1);
   m_osc2.setBackgroundBypass(bypass_osc2_plate);
   m_osc2.setOscType(1); // chiptune
@@ -650,7 +650,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
   addAndMakeVisible(m_osc3);
 
   m_fil1_component.setBackgroundBypass(bypass_fil1_plate);
-  m_fil1_component.setFilterType(2); // LP
+  m_fil1_component.setFilterType(FILTER_TYPE_LP24); // LP
   addAndMakeVisible(m_fil1_component);
   m_fil2_component.setBackgroundBypass(bypass_fil2_plate);
   m_fil2_component.setFilterType(1); // bypass
@@ -962,8 +962,7 @@ void OdinAudioProcessorEditor::setOsc1Plate(int p_osc_type) {
     return;
   }
   m_osc1.setOscType(p_osc_type);
-  m_value_tree.getParameter(m_osc1_type_indentifier)
-      ->setValueNotifyingHost(((float)p_osc_type - 0.5f) / 11.f);
+  m_value_tree.state.setProperty(m_osc1_type_indentifier, p_osc_type, nullptr);
 }
 
 void OdinAudioProcessorEditor::setOsc2Plate(int p_osc_type) {
@@ -971,8 +970,7 @@ void OdinAudioProcessorEditor::setOsc2Plate(int p_osc_type) {
     return;
   }
   m_osc2.setOscType(p_osc_type);
-  m_value_tree.getParameter(m_osc2_type_indentifier)
-      ->setValueNotifyingHost(((float)p_osc_type - 0.5f) / 11.f);
+  m_value_tree.state.setProperty(m_osc2_type_indentifier, p_osc_type, nullptr);
 }
 
 void OdinAudioProcessorEditor::setOsc3Plate(int p_osc_type) {
@@ -980,8 +978,7 @@ void OdinAudioProcessorEditor::setOsc3Plate(int p_osc_type) {
     return;
   }
   m_osc3.setOscType(p_osc_type);
-  m_value_tree.getParameter(m_osc3_type_indentifier)
-      ->setValueNotifyingHost(((float)p_osc_type - 0.5f) / 11.f);
+  m_value_tree.state.setProperty(m_osc3_type_indentifier, p_osc_type, nullptr);
 }
 
 void OdinAudioProcessorEditor::setFilter1Plate(int p_osc_type) {
@@ -989,8 +986,7 @@ void OdinAudioProcessorEditor::setFilter1Plate(int p_osc_type) {
     return;
   }
   m_fil1_component.setFilterType(p_osc_type);
-  m_value_tree.getParameter(m_fil1_type_indentifier)
-      ->setValueNotifyingHost(((float)p_osc_type - 0.5f) / 13.f);
+  m_value_tree.state.setProperty(m_fil1_type_indentifier, p_osc_type, nullptr);
 }
 
 void OdinAudioProcessorEditor::setFilter2Plate(int p_osc_type) {
@@ -998,8 +994,7 @@ void OdinAudioProcessorEditor::setFilter2Plate(int p_osc_type) {
     return;
   }
   m_fil2_component.setFilterType(p_osc_type);
-  m_value_tree.getParameter(m_fil2_type_indentifier)
-      ->setValueNotifyingHost(((float)p_osc_type - 0.5f) / 13.f);
+  m_value_tree.state.setProperty(m_fil2_type_indentifier, p_osc_type, nullptr);
 }
 
 void OdinAudioProcessorEditor::setFilter3Plate(int p_osc_type) {
@@ -1007,8 +1002,7 @@ void OdinAudioProcessorEditor::setFilter3Plate(int p_osc_type) {
     return;
   }
   m_fil3_component.setFilterType(p_osc_type);
-  m_value_tree.getParameter(m_fil3_type_indentifier)
-      ->setValueNotifyingHost(((float)p_osc_type - 0.5f) / 13.f);
+  m_value_tree.state.setProperty(m_fil3_type_indentifier, p_osc_type, nullptr);
 }
 
 void OdinAudioProcessorEditor::setEnv13(bool p_env1) {
@@ -1068,17 +1062,18 @@ void OdinAudioProcessorEditor::arrangeFXOnButtons(
       FX_ON_BUTTON_Y);
 
   m_value_tree.state.setProperty(m_delay_position_identifier,
-                           (float)p_map.find("delay")->second, nullptr);
+                                 (float)p_map.find("delay")->second, nullptr);
   m_value_tree.state.setProperty(m_phaser_position_identifier,
-                           (float)p_map.find("phaser")->second, nullptr);
+                                 (float)p_map.find("phaser")->second, nullptr);
   m_value_tree.state.setProperty(m_flanger_position_identifier,
-                           (float)p_map.find("flanger")->second, nullptr);
+                                 (float)p_map.find("flanger")->second, nullptr);
   m_value_tree.state.setProperty(m_chorus_position_identifier,
-                           (float)p_map.find("chorus")->second, nullptr);
+                                 (float)p_map.find("chorus")->second, nullptr);
 
-  processor.setFXButtonsPosition(
-      (float)p_map.find("delay")->second, (float)p_map.find("phaser")->second,
-      (float)p_map.find("flanger")->second, (float)p_map.find("chorus")->second);
+  processor.setFXButtonsPosition((float)p_map.find("delay")->second,
+                                 (float)p_map.find("phaser")->second,
+                                 (float)p_map.find("flanger")->second,
+                                 (float)p_map.find("chorus")->second);
 }
 
 void OdinAudioProcessorEditor::setActiveFXPanel(std::string p_name) {
@@ -1132,12 +1127,12 @@ void OdinAudioProcessorEditor::forceValueTreeOntoComponents() {
   m_pitch_amount.setValue(
       m_value_tree.getParameterAsValue("pitchbend_amount").getValue());
 
-  setOsc1Plate(m_value_tree.getParameterAsValue("osc1_type").getValue());
-  setOsc2Plate(m_value_tree.getParameterAsValue("osc2_type").getValue());
-  setOsc3Plate(m_value_tree.getParameterAsValue("osc3_type").getValue());
-  setFilter1Plate(m_value_tree.getParameterAsValue("fil1_type").getValue());
-  setFilter2Plate(m_value_tree.getParameterAsValue("fil2_type").getValue());
-  setFilter3Plate(m_value_tree.getParameterAsValue("fil3_type").getValue());
+  setOsc1Plate(m_value_tree.state["osc1_type"]);
+  setOsc2Plate(m_value_tree.state["osc2_type"]);
+  setOsc3Plate(m_value_tree.state["osc3_type"]);
+  setFilter1Plate(m_value_tree.state["fil1_type"]);
+  setFilter2Plate(m_value_tree.state["fil2_type"]);
+  setFilter3Plate(m_value_tree.state["fil3_type"]);
 
   m_osc1.forceValueTreeOntoComponents(m_value_tree.state, 1);
   m_osc2.forceValueTreeOntoComponents(m_value_tree.state, 2);

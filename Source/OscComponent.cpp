@@ -1281,34 +1281,34 @@ void OscComponent::setOscType(int p_osc_type) {
   case 1:
     setOscTypeBypass();
     break;
-  case 2:
+  case OSC_TYPE_ANALOG:
     setOscTypeAnalog();
     break;
-  case 3:
+  case OSC_TYPE_WAVETABLE:
     setOscTypeWavetable();
     break;
-  case 4:
+  case OSC_TYPE_MULTI:
     setOscTypeMulti();
     break;
-  case 5:
+  case OSC_TYPE_VECTOR:
     setOscTypeVector();
     break;
-  case 6:
+  case OSC_TYPE_CHIPTUNE:
     setOscTypeChiptune();
     break;
-  case 7:
+  case OSC_TYPE_FM:
     setOscTypeFM();
     break;
-  case 8:
+  case OSC_TYPE_NOISE:
     setOscTypeNoise();
     break;
-  case 9:
+  case OSC_TYPE_WAVEDRAW:
     setOscTypeWavedraw();
     break;
-  case 10:
+  case OSC_TYPE_CHIPDRAW:
     setOscTypeChipdraw();
     break;
-  case 11:
+  case OSC_TYPE_SPECDRAW:
     setOscTypeSpecdraw();
     break;
   default:

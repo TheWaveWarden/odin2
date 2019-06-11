@@ -2,8 +2,6 @@
 
 {
   // Oscillator 1
-  std::make_unique<AudioParameterInt>("osc1_type", "Oscillator1 Type", 1, 11,
-                                      2),
       std::make_unique<AudioParameterInt>("osc1_oct", "Oscillator1 Octave", -3,
                                           3, 0),
       std::make_unique<AudioParameterInt>("osc1_semi", "Oscillator1 Semitones",
@@ -87,8 +85,6 @@
           "osc1_hp", "Oscillator1 Noise Highpass",
           NormalisableRange<float>(80.f, 18000.f), 80.f),
       // Oscillator 2
-      std::make_unique<AudioParameterInt>("osc2_type", "Oscillator2 Type", 1,
-                                          11, 1),
       std::make_unique<AudioParameterInt>("osc2_oct", "Oscillator2 Octave", -3,
                                           3, 0),
       std::make_unique<AudioParameterInt>("osc2_semi", "Oscillator2 Semitones",
@@ -172,8 +168,6 @@
           "osc2_hp", "Oscillator2 Noise Highpass",
           NormalisableRange<float>(80.f, 18000.f), 80.f),
       // Oscillator 3
-      std::make_unique<AudioParameterInt>("osc3_type", "Oscillator3 Type", 1,
-                                          11, 1),
       std::make_unique<AudioParameterInt>("osc3_oct", "Oscillator3 Octave", -3,
                                           3, 0),
       std::make_unique<AudioParameterInt>("osc3_semi", "Oscillator3 Semitones",
@@ -263,8 +257,6 @@
                                           1, 1),
       std::make_unique<AudioParameterInt>("fil1_osc3", "Filter1 Osc3 Input", 0,
                                           1, 1),
-      std::make_unique<AudioParameterInt>("fil1_type", "Filter1 Type", 1, 13,
-                                          2),
       std::make_unique<AudioParameterFloat>(
           "fil1_vel", "Filter1 Velocity Amount",
           NormalisableRange<float>(0.f, 1.f), 0.f),
@@ -307,8 +299,6 @@
                                           1, 0),
       std::make_unique<AudioParameterInt>("fil2_fil1", "Filter2 Filter1 Input",
                                           0, 1, 1),
-      std::make_unique<AudioParameterInt>("fil2_type", "Filter2 Type", 1, 13,
-                                          1),
       std::make_unique<AudioParameterFloat>(
           "fil2_vel", "Filter2 Velocity Amount",
           NormalisableRange<float>(0.f, 1.f), 0.f),
@@ -343,8 +333,6 @@
       std::make_unique<AudioParameterInt>("fil2_comb_polarity",
                                           "Filter2 Comb Polarity", 0, 1, 0),
       // Filter3
-      std::make_unique<AudioParameterInt>("fil3_type", "Filter3 Type", 1, 13,
-                                          1),
       std::make_unique<AudioParameterFloat>(
           "fil3_vel", "Filter3 Velocity Amount",
           NormalisableRange<float>(0.f, 1.f), 0.f),

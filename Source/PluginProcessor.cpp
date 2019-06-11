@@ -421,13 +421,13 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
 
         for (int osc = 0; osc < 3; ++osc) {
           // analog osc
-          if (*m_osc_type[osc] == OSC_TYPE_ANALOG) {
+          if (m_osc_type[osc] == OSC_TYPE_ANALOG) {
             m_voice[voice].analog_osc[osc].update();
             m_osc_output[voice][osc] +=
                 m_voice[voice].analog_osc[osc].doOscillate();
           }
           // wavetable osc
-          else if (*m_osc_type[osc] == OSC_TYPE_WAVETABLE) {
+          else if (m_osc_type[osc] == OSC_TYPE_WAVETABLE) {
             // m_voice[voice].wavetable_osc[osc].setPosition(0);
             // m_voice[voice].wavetable_osc[osc].selectWavetable(0);
             m_voice[voice].wavetable_osc[osc].update();
@@ -435,47 +435,47 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
                 m_voice[voice].wavetable_osc[osc].doOscillate();
           }
           // multi osc
-          else if (*m_osc_type[osc] == OSC_TYPE_MULTI) {
+          else if (m_osc_type[osc] == OSC_TYPE_MULTI) {
             m_voice[voice].multi_osc[osc].update();
             m_osc_output[voice][osc] +=
                 m_voice[voice].multi_osc[osc].doOscillate();
           }
           // vector osc
-          else if (*m_osc_type[osc] == OSC_TYPE_VECTOR) {
+          else if (m_osc_type[osc] == OSC_TYPE_VECTOR) {
             m_voice[voice].vector_osc[osc].update();
             m_osc_output[voice][osc] +=
                 m_voice[voice].vector_osc[osc].doOscillate();
           }
           // chiptune osc
-          else if (*m_osc_type[osc] == OSC_TYPE_CHIPTUNE) {
+          else if (m_osc_type[osc] == OSC_TYPE_CHIPTUNE) {
             m_voice[voice].chiptune_osc[osc].update();
             m_osc_output[voice][osc] +=
                 m_voice[voice].chiptune_osc[osc].doOscillate();
           }
           // fm osc
-          else if (*m_osc_type[osc] == OSC_TYPE_FM) {
+          else if (m_osc_type[osc] == OSC_TYPE_FM) {
             m_voice[voice].fm_osc[osc].update();
             m_osc_output[voice][osc] +=
                 m_voice[voice].fm_osc[osc].doOscillate();
           }
           // noise osc
-          else if (*m_osc_type[osc] == OSC_TYPE_NOISE) {
+          else if (m_osc_type[osc] == OSC_TYPE_NOISE) {
             m_osc_output[voice][osc] += m_voice[voice].noise_osc[osc].doNoise();
           }
           // wavedraw osc
-          else if (*m_osc_type[osc] == OSC_TYPE_WAVEDRAW) {
+          else if (m_osc_type[osc] == OSC_TYPE_WAVEDRAW) {
             m_voice[voice].wavedraw_osc[osc].update();
             m_osc_output[voice][osc] +=
                 m_voice[voice].wavedraw_osc[osc].doOscillate();
           }
           // chipdraw osc
-          else if (*m_osc_type[osc] == OSC_TYPE_CHIPDRAW) {
+          else if (m_osc_type[osc] == OSC_TYPE_CHIPDRAW) {
             m_voice[voice].chipdraw_osc[osc].update();
             m_osc_output[voice][osc] +=
                 m_voice[voice].chipdraw_osc[osc].doOscillate();
           }
           // chipdraw osc
-          else if (*m_osc_type[osc] == OSC_TYPE_SPECDRAW) {
+          else if (m_osc_type[osc] == OSC_TYPE_SPECDRAW) {
             m_voice[voice].specdraw_osc[osc].update();
             m_osc_output[voice][osc] +=
                 m_voice[voice].specdraw_osc[osc].doOscillate();
@@ -502,50 +502,50 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
             filter_input[fil] += m_osc_output[voice][2];
           }
 
-          if (*m_fil_type[fil] == FILTER_TYPE_NONE) {
+          if (m_fil_type[fil] == FILTER_TYPE_NONE) {
             m_filter_output[voice][fil] = filter_input[fil];
-          } else if (*m_fil_type[fil] == FILTER_TYPE_LP24 ||
-                     *m_fil_type[fil] == FILTER_TYPE_LP12 ||
-                     *m_fil_type[fil] == FILTER_TYPE_BP24 ||
-                     *m_fil_type[fil] == FILTER_TYPE_BP12 ||
-                     *m_fil_type[fil] == FILTER_TYPE_HP24 ||
-                     *m_fil_type[fil] == FILTER_TYPE_HP12) {
+          } else if (m_fil_type[fil] == FILTER_TYPE_LP24 ||
+                     m_fil_type[fil] == FILTER_TYPE_LP12 ||
+                     m_fil_type[fil] == FILTER_TYPE_BP24 ||
+                     m_fil_type[fil] == FILTER_TYPE_BP12 ||
+                     m_fil_type[fil] == FILTER_TYPE_HP24 ||
+                     m_fil_type[fil] == FILTER_TYPE_HP12) {
             m_voice[voice].ladder_filter[fil].m_freq_base =
                 m_fil_freq_smooth[fil];
             m_voice[voice].ladder_filter[fil].update();
             m_filter_output[voice][fil] =
                 m_voice[voice].ladder_filter[fil].doFilter(filter_input[fil]) *
                 m_fil_gain_smooth[fil];
-          } else if (*m_fil_type[fil] == FILTER_TYPE_SEM12) {
+          } else if (m_fil_type[fil] == FILTER_TYPE_SEM12) {
             m_voice[voice].SEM_filter_12[fil].m_freq_base =
                 m_fil_freq_smooth[fil];
             m_voice[voice].SEM_filter_12[fil].update();
             m_filter_output[voice][fil] =
                 m_voice[voice].SEM_filter_12[fil].doFilter(filter_input[fil]) *
                 m_fil_gain_smooth[fil];
-          } else if (*m_fil_type[fil] == FILTER_TYPE_KORG_LP ||
-                     *m_fil_type[fil] == FILTER_TYPE_KORG_HP) {
+          } else if (m_fil_type[fil] == FILTER_TYPE_KORG_LP ||
+                     m_fil_type[fil] == FILTER_TYPE_KORG_HP) {
             m_voice[voice].korg_filter[fil].m_freq_base =
                 m_fil_freq_smooth[fil];
             m_voice[voice].korg_filter[fil].update();
             m_filter_output[voice][fil] =
                 m_voice[voice].korg_filter[fil].doFilter(filter_input[fil]) *
                 m_fil_gain_smooth[fil];
-          } else if (*m_fil_type[fil] == FILTER_TYPE_DIODE) {
+          } else if (m_fil_type[fil] == FILTER_TYPE_DIODE) {
             m_voice[voice].diode_filter[fil].m_freq_base =
                 m_fil_freq_smooth[fil];
             m_voice[voice].diode_filter[fil].update();
             m_filter_output[voice][fil] =
                 m_voice[voice].diode_filter[fil].doFilter(filter_input[fil]) *
                 m_fil_gain_smooth[fil];
-          } else if (*m_fil_type[fil] == FILTER_TYPE_FORMANT) {
+          } else if (m_fil_type[fil] == FILTER_TYPE_FORMANT) {
             m_voice[voice].formant_filter[fil].m_freq_base =
                 m_fil_freq_smooth[fil];
             m_voice[voice].formant_filter[fil].update();
             m_filter_output[voice][fil] =
                 m_voice[voice].formant_filter[fil].doFilter(filter_input[fil]) *
                 m_fil_gain_smooth[fil];
-          } else if (*m_fil_type[fil] == FILTER_TYPE_COMB) {
+          } else if (m_fil_type[fil] == FILTER_TYPE_COMB) {
             m_voice[voice].comb_filter[fil].setCombFreq(m_fil_freq_smooth[fil]);
             m_filter_output[voice][fil] =
                 m_voice[voice].comb_filter[fil].doFilter(filter_input[fil]) *
@@ -583,43 +583,43 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
       }
 
       //===== FILTER 3 ======
-      if (*m_fil_type[2] == FILTER_TYPE_LP24 ||
-          *m_fil_type[2] == FILTER_TYPE_LP12 ||
-          *m_fil_type[2] == FILTER_TYPE_BP24 ||
-          *m_fil_type[2] == FILTER_TYPE_BP12 ||
-          *m_fil_type[2] == FILTER_TYPE_HP24 ||
-          *m_fil_type[2] == FILTER_TYPE_HP12) {
+      if (m_fil_type[2] == FILTER_TYPE_LP24 ||
+          m_fil_type[2] == FILTER_TYPE_LP12 ||
+          m_fil_type[2] == FILTER_TYPE_BP24 ||
+          m_fil_type[2] == FILTER_TYPE_BP12 ||
+          m_fil_type[2] == FILTER_TYPE_HP24 ||
+          m_fil_type[2] == FILTER_TYPE_HP12) {
         m_ladder_filter[channel].m_freq_base = m_fil_freq_smooth[2];
         m_ladder_filter[channel].update();
         stereo_signal[channel] =
             m_ladder_filter[channel].doFilter(stereo_signal[channel]) *
             m_fil_gain_smooth[2];
-      } else if (*m_fil_type[2] == FILTER_TYPE_SEM12) {
+      } else if (m_fil_type[2] == FILTER_TYPE_SEM12) {
         m_SEM_filter_12[channel].m_freq_base = m_fil_freq_smooth[2];
         m_SEM_filter_12[channel].update();
         stereo_signal[channel] =
             m_SEM_filter_12[channel].doFilter(stereo_signal[channel]) *
             m_fil_gain_smooth[2];
-      } else if (*m_fil_type[2] == FILTER_TYPE_KORG_LP ||
-                 *m_fil_type[2] == FILTER_TYPE_KORG_HP) {
+      } else if (m_fil_type[2] == FILTER_TYPE_KORG_LP ||
+                 m_fil_type[2] == FILTER_TYPE_KORG_HP) {
         m_korg_filter[channel].m_freq_base = m_fil_freq_smooth[2];
         m_korg_filter[channel].update();
         stereo_signal[channel] =
             m_korg_filter[channel].doFilter(stereo_signal[channel]) *
             m_fil_gain_smooth[2];
-      } else if (*m_fil_type[2] == FILTER_TYPE_DIODE) {
+      } else if (m_fil_type[2] == FILTER_TYPE_DIODE) {
         m_diode_filter[channel].m_freq_base = m_fil_freq_smooth[2];
         m_diode_filter[channel].update();
         stereo_signal[channel] =
             m_diode_filter[channel].doFilter(stereo_signal[channel]) *
             m_fil_gain_smooth[2];
-      } else if (*m_fil_type[2] == FILTER_TYPE_FORMANT) {
+      } else if (m_fil_type[2] == FILTER_TYPE_FORMANT) {
         m_formant_filter[channel].m_freq_base = m_fil_freq_smooth[2];
         m_formant_filter[channel].update();
         stereo_signal[channel] =
             m_formant_filter[channel].doFilter(stereo_signal[channel]) *
             m_fil_gain_smooth[2];
-      } else if (*m_fil_type[2] == FILTER_TYPE_COMB) {
+      } else if (m_fil_type[2] == FILTER_TYPE_COMB) {
         m_comb_filter[channel].setCombFreq(m_fil_freq_smooth[2]);
         stereo_signal[channel] =
             m_comb_filter[channel].doFilter(stereo_signal[channel]) *
@@ -1407,6 +1407,14 @@ void OdinAudioProcessor::addNonAudioParametersToTree() {
   node.setProperty("osc1_analog_wave", 0, nullptr);
   node.setProperty("osc2_analog_wave", 0, nullptr);
   node.setProperty("osc3_analog_wave", 0, nullptr);
+
+  node.setProperty("osc1_type", OSC_TYPE_ANALOG, nullptr);
+  node.setProperty("osc2_type", 1, nullptr);
+  node.setProperty("osc3_type", 1, nullptr);
+  node.setProperty("fil1_type", FILTER_TYPE_LP24, nullptr);
+  node.setProperty("fil2_type", 1, nullptr);
+  node.setProperty("fil3_type", 1, nullptr);
+
 }
 
 void OdinAudioProcessor::setFXButtonsPosition(int p_delay, int p_phaser,

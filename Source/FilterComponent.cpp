@@ -225,40 +225,40 @@ void FilterComponent::setFilterType(int p_filter_type) {
   case 1:
     setFilterBypass();
     break;
-  case 2:
+  case FILTER_TYPE_LP24:
     setFilterLP24();
     break;
-  case 3:
+  case FILTER_TYPE_LP12:
     setFilterLP12();
     break;
-  case 4:
+  case FILTER_TYPE_BP24:
     setFilterBP24();
     break;
-  case 5:
+  case FILTER_TYPE_BP12:
     setFilterBP12();
     break;
-  case 6:
+  case FILTER_TYPE_HP24:
     setFilterHP24();
     break;
-  case 7:
+  case FILTER_TYPE_HP12:
     setFilterHP12();
     break;
-  case 8:
+  case FILTER_TYPE_SEM12:
     setFilterSEM12();
     break;
-  case 9:
+  case FILTER_TYPE_DIODE:
     setFilterDiode();
     break;
-  case 10:
+  case FILTER_TYPE_KORG_LP:
     setFilterKorgLP();
     break;
-  case 11:
+  case FILTER_TYPE_KORG_HP:
     setFilterKorgLP();
     break;
-  case 12:
+  case FILTER_TYPE_COMB:
     setFilterComb();
     break;
-  case 13:
+  case FILTER_TYPE_FORMANT:
     setFilterFormant();
     break;
   default:

@@ -10,7 +10,6 @@
 
 #pragma once
 //osc1
-    float* m_osc_type[3];
     float* m_osc_oct[3];
     float* m_osc_semi[3];
     float* m_osc_fine[3];
@@ -47,7 +46,6 @@
     float* m_osc_wavetable[3];
     
     //filters
-    float* m_fil_type[3];
     float* m_fil_vel[3];
     float* m_fil_kbd[3];
     float* m_fil_env[3];
