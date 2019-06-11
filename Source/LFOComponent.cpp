@@ -157,11 +157,7 @@ void LFOComponent::forceValueTreeOntoComponents(ValueTree p_tree) {
   m_selector.setValue(
       m_value_tree.getParameterAsValue(m_lfo_wave_identifier).getValue());
 
-  m_sync_time.setValueLeft(
-      m_value_tree.getParameterAsValue(m_lfo_synctime_numerator_identifier)
-          .getValue());
-
-  m_sync_time.setValueRight(
-      m_value_tree.getParameterAsValue(m_lfo_synctime_denominator_identifier)
-          .getValue());
+  m_sync_time.setValues(
+      m_value_tree.state[m_lfo_synctime_numerator_identifier],
+      m_value_tree.state[m_lfo_synctime_denominator_identifier]);
 }
