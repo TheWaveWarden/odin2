@@ -28,8 +28,8 @@ OdinAudioProcessor::OdinAudioProcessor()
 #endif
                          ),
 #endif
-    : m_parameters(*this, nullptr, Identifier("Odin"),
-#include "AudioValueTree.h" //contains the definition of audiotree. WATCH CLOSELY: is IN m_parameters constructor
+    : m_value_tree(*this, nullptr, Identifier("Odin"),
+#include "AudioValueTree.h" //contains the definition of audiotree. WATCH CLOSELY: is IN m_value_tree constructor
                    ),
 #include "ProcessorInitializerList.h" //contains the connection of Identifiers with their strings
 {
@@ -678,7 +678,7 @@ bool OdinAudioProcessor::hasEditor() const { return true; }
 
 AudioProcessorEditor *OdinAudioProcessor::createEditor() {
   AudioProcessorEditor *editor =
-      new OdinAudioProcessorEditor(*this, m_parameters, m_is_standalone_plugin);
+      new OdinAudioProcessorEditor(*this, m_value_tree, m_is_standalone_plugin);
 
   // typeid(wrapperType) == typeid(wrapperType_Standalone));
   if (m_force_values_onto_gui) {
@@ -699,7 +699,7 @@ void OdinAudioProcessor::getStateInformation(MemoryBlock &destData) {
     return;
   }
 
-  auto state = m_parameters.copyState();
+  auto state = m_value_tree.copyState();
   std::unique_ptr<XmlElement> xml(state.createXml());
   copyXmlToBinary(*xml, destData);
   DBG("SET BINARY STATE!!");
@@ -718,8 +718,8 @@ void OdinAudioProcessor::setStateInformation(const void *data,
 
   std::unique_ptr<XmlElement> xmlState(getXmlFromBinary(data, sizeInBytes));
   if (xmlState.get() != nullptr) {
-    if (xmlState->hasTagName(m_parameters.state.getType()))
-      m_parameters.replaceState(ValueTree::fromXml(*xmlState));
+    if (xmlState->hasTagName(m_value_tree.state.getType()))
+      m_value_tree.replaceState(ValueTree::fromXml(*xmlState));
     // force values on GUI
     m_force_values_onto_gui = true;
     DBG("LOADED BINARY STATE!!");
@@ -1303,7 +1303,7 @@ void OdinAudioProcessor::setBPM(float p_BPM) {
 
 void OdinAudioProcessor::addNonAudioParametersToTree() {
 
-  auto node = m_parameters.state.getOrCreateChildWithName("NO_PARAM", nullptr);
+  auto node = m_value_tree.state.getOrCreateChildWithName("NO_PARAM", nullptr);
   for (int i = 0; i < WAVEDRAW_STEPS_X; ++i) {
     float val = sin(2 * M_PI * i / (float)WAVEDRAW_STEPS_X) * 0.9;
     // do braces in the beginnning to speed up identification!?
@@ -1352,5 +1352,6 @@ void OdinAudioProcessor::addNonAudioParametersToTree() {
   node.setProperty("lfo3_synctime_denominator", 5, nullptr);
   node.setProperty("lfo4_synctime_numerator", 2, nullptr);
   node.setProperty("lfo4_synctime_denominator", 5, nullptr);
-  
+
+  node.setProperty("legato", 1, nullptr);//this is actually "poly" or "!legato"
 }

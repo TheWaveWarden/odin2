@@ -772,7 +772,9 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
   m_legato_button.setToggleState(true, sendNotification);
   m_legato_button.onStateChange = [&]() {
     // TODO reset entire synth here
-
+    // set value in audiovaluetree
+    m_value_tree.state.setProperty("legato",
+                                   m_legato_button.getToggleState(), nullptr);
     // notify voice manager
     processor.setPolyLegato(m_legato_button.getToggleState());
   };
@@ -840,8 +842,8 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
       new ButtonAttachment(m_value_tree, "fil2_osc3", m_filright_button3));
   m_fil2_fil1_attachment.reset(
       new ButtonAttachment(m_value_tree, "fil2_fil1", m_filright_buttonf1));
-  m_legato_attachment.reset(
-      new ButtonAttachment(m_value_tree, "legato", m_legato_button));
+  // m_legato_attachment.reset(
+  //    new ButtonAttachment(m_value_tree, "legato", m_legato_button));
 
   m_glide_attachment.reset(
       new SliderAttachment(m_value_tree, "glide", m_glide));
@@ -1118,7 +1120,7 @@ void OdinAudioProcessorEditor::setTooltipEnabled(bool p_enabled) {
 
 void OdinAudioProcessorEditor::forceValueTreeOntoComponents() {
 
-  //reset audioengine
+  // reset audioengine
   processor.resetAudioEngine();
 
   DBG("FORCEVALUETREEONTOCOMPONENTS");
@@ -1150,6 +1152,10 @@ void OdinAudioProcessorEditor::forceValueTreeOntoComponents() {
   m_delay.forceValueTreeOntoComponents(m_value_tree.state);
   m_midsection.forceValueTreeOntoComponents(m_value_tree.state);
   m_fx_buttons_section.forceValueTreeOntoComponents(m_value_tree.state);
+
+  m_legato_button.setToggleState((float)m_value_tree.state["legato"] > 0.5, dontSendNotification);
+  processor.setPolyLegato(m_legato_button.getToggleState());
+
 }
 
 bool OdinAudioProcessorEditor::keyStateChanged(

@@ -135,7 +135,6 @@
     float* m_fil_osc1[2];
     float* m_fil_osc2[2];
     float* m_fil_osc3[2];
-    float* m_legato;
     float* m_fil2_fil1;
     float* m_delay_position;
     float* m_flanger_position;

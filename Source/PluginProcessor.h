@@ -277,7 +277,7 @@ private:
   void initializeModules();
 
   VoiceManager m_voice_manager;
-  AudioProcessorValueTreeState m_parameters;
+  AudioProcessorValueTreeState m_value_tree;
   OdinTreeListener m_tree_listener; // TODO create more of these and listen to
                                     // subcategory only
   OdinTreeListenerNonParam

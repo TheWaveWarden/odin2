@@ -571,9 +571,6 @@
       std::make_unique<AudioParameterFloat>("chorus_feedback", "Chorus DryWet",
                                             0.f, 1.f, 1.f),
       
-      std::make_unique<AudioParameterInt>("legato",
-                                          "LegatoPoly", 0, 1,
-                                          1),
       // ModMatrix
       std::make_unique<AudioParameterFloat>("amount_1_[0]", "amount_1_[0]", -1,
                                             1, 0),
