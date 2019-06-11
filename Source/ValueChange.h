@@ -132,21 +132,6 @@ bool OdinAudioProcessor::treeValueChangedFirst(const String &p_ID,
     for (int voice = 0; voice < VOICES; ++voice) {
       m_voice[voice].wavetable_osc[2].setPosition(p_new_value);
     }
-  } else if (id == m_osc1_wavetable_identifier) {
-    for (int voice = 0; voice < VOICES; ++voice) {
-      m_voice[voice].wavetable_osc[0].selectWavetable((int)p_new_value - 1);
-      m_voice[voice].multi_osc[0].selectWavetable((int)p_new_value - 1);
-    }
-  } else if (id == m_osc2_wavetable_identifier) {
-    for (int voice = 0; voice < VOICES; ++voice) {
-      m_voice[voice].wavetable_osc[1].selectWavetable((int)p_new_value - 1);
-      m_voice[voice].multi_osc[1].selectWavetable((int)p_new_value - 1);
-    }
-  } else if (id == m_osc3_wavetable_identifier) {
-    for (int voice = 0; voice < VOICES; ++voice) {
-      m_voice[voice].wavetable_osc[2].selectWavetable((int)p_new_value - 1);
-      m_voice[voice].multi_osc[2].selectWavetable((int)p_new_value - 1);
-    }
   } else if (id == m_osc1_detune_identifier) {
     for (int voice = 0; voice < VOICES; ++voice) {
       m_voice[voice].multi_osc[0].setDetune(p_new_value);
@@ -183,54 +168,6 @@ bool OdinAudioProcessor::treeValueChangedFirst(const String &p_ID,
     for (int voice = 0; voice < VOICES; ++voice) {
       m_voice[voice].multi_osc[2].setWavetableMultiSpread(p_new_value);
     }
-  } else if (id == m_osc1_vec_a_identifier) {
-    for (int voice = 0; voice < VOICES; ++voice) {
-      m_voice[voice].vector_osc[0].selectWavetable(p_new_value, 0);
-    }
-  } else if (id == m_osc2_vec_a_identifier) {
-    for (int voice = 0; voice < VOICES; ++voice) {
-      m_voice[voice].vector_osc[1].selectWavetable(p_new_value, 0);
-    }
-  } else if (id == m_osc3_vec_a_identifier) {
-    for (int voice = 0; voice < VOICES; ++voice) {
-      m_voice[voice].vector_osc[2].selectWavetable(p_new_value, 0);
-    }
-  } else if (id == m_osc1_vec_b_identifier) {
-    for (int voice = 0; voice < VOICES; ++voice) {
-      m_voice[voice].vector_osc[0].selectWavetable(p_new_value, 1);
-    }
-  } else if (id == m_osc2_vec_b_identifier) {
-    for (int voice = 0; voice < VOICES; ++voice) {
-      m_voice[voice].vector_osc[1].selectWavetable(p_new_value, 1);
-    }
-  } else if (id == m_osc3_vec_b_identifier) {
-    for (int voice = 0; voice < VOICES; ++voice) {
-      m_voice[voice].vector_osc[2].selectWavetable(p_new_value, 1);
-    }
-  } else if (id == m_osc1_vec_c_identifier) {
-    for (int voice = 0; voice < VOICES; ++voice) {
-      m_voice[voice].vector_osc[0].selectWavetable(p_new_value, 2);
-    }
-  } else if (id == m_osc2_vec_c_identifier) {
-    for (int voice = 0; voice < VOICES; ++voice) {
-      m_voice[voice].vector_osc[1].selectWavetable(p_new_value, 2);
-    }
-  } else if (id == m_osc3_vec_c_identifier) {
-    for (int voice = 0; voice < VOICES; ++voice) {
-      m_voice[voice].vector_osc[2].selectWavetable(p_new_value, 2);
-    }
-  } else if (id == m_osc1_vec_d_identifier) {
-    for (int voice = 0; voice < VOICES; ++voice) {
-      m_voice[voice].vector_osc[0].selectWavetable(p_new_value, 3);
-    }
-  } else if (id == m_osc2_vec_d_identifier) {
-    for (int voice = 0; voice < VOICES; ++voice) {
-      m_voice[voice].vector_osc[1].selectWavetable(p_new_value, 3);
-    }
-  } else if (id == m_osc3_vec_d_identifier) {
-    for (int voice = 0; voice < VOICES; ++voice) {
-      m_voice[voice].vector_osc[2].selectWavetable(p_new_value, 3);
-    }
   } else if (id == m_osc1_vec_x_identifier) {
     for (int voice = 0; voice < VOICES; ++voice) {
       m_voice[voice].vector_osc[0].setX(p_new_value);
@@ -254,18 +191,6 @@ bool OdinAudioProcessor::treeValueChangedFirst(const String &p_ID,
   } else if (id == m_osc3_vec_y_identifier) {
     for (int voice = 0; voice < VOICES; ++voice) {
       m_voice[voice].vector_osc[2].setY(p_new_value);
-    }
-  } else if (id == m_osc1_chipwave_identifier) {
-    for (int voice = 0; voice < VOICES; ++voice) {
-      m_voice[voice].chiptune_osc[0].selectWavetable(p_new_value);
-    }
-  } else if (id == m_osc2_chipwave_identifier) {
-    for (int voice = 0; voice < VOICES; ++voice) {
-      m_voice[voice].chiptune_osc[1].selectWavetable(p_new_value);
-    }
-  } else if (id == m_osc3_chipwave_identifier) {
-    for (int voice = 0; voice < VOICES; ++voice) {
-      m_voice[voice].chiptune_osc[2].selectWavetable(p_new_value);
     }
   } else if (id == m_osc1_chipnoise_identifier) {
     for (int voice = 0; voice < VOICES; ++voice) {
@@ -399,30 +324,6 @@ bool OdinAudioProcessor::treeValueChangedSecond(const String &p_ID,
   } else if (id == m_osc3_modulator_ratio_identifier) {
     for (int voice = 0; voice < VOICES; ++voice) {
       m_voice[voice].fm_osc[2].setModulatorRatio(p_new_value);
-    }
-  } else if (id == m_osc1_carrier_wave_identifier) {
-    for (int voice = 0; voice < VOICES; ++voice) {
-      m_voice[voice].fm_osc[0].selectCarrierWavetable(p_new_value);
-    }
-  } else if (id == m_osc2_carrier_wave_identifier) {
-    for (int voice = 0; voice < VOICES; ++voice) {
-      m_voice[voice].fm_osc[1].selectCarrierWavetable(p_new_value);
-    }
-  } else if (id == m_osc3_carrier_wave_identifier) {
-    for (int voice = 0; voice < VOICES; ++voice) {
-      m_voice[voice].fm_osc[2].selectCarrierWavetable(p_new_value);
-    }
-  } else if (id == m_osc1_modulator_wave_identifier) {
-    for (int voice = 0; voice < VOICES; ++voice) {
-      m_voice[voice].fm_osc[0].selectModulatorWavetable(p_new_value);
-    }
-  } else if (id == m_osc2_modulator_wave_identifier) {
-    for (int voice = 0; voice < VOICES; ++voice) {
-      m_voice[voice].fm_osc[1].selectModulatorWavetable(p_new_value);
-    }
-  } else if (id == m_osc3_modulator_wave_identifier) {
-    for (int voice = 0; voice < VOICES; ++voice) {
-      m_voice[voice].fm_osc[2].selectModulatorWavetable(p_new_value);
     }
   } else if (id == m_osc1_exp_fm_identifier) {
     for (int voice = 0; voice < VOICES; ++voice) {
@@ -1232,6 +1133,105 @@ void OdinAudioProcessor::treeValueChangedNonParam(ValueTree &tree,
     } else if ((int)p_new_value == FILTER_TYPE_KORG_HP) {
       m_korg_filter[0].setFilterType(false);
       m_korg_filter[1].setFilterType(false);
+    }
+  } else if (id == m_osc1_wavetable_identifier) {
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_voice[voice].wavetable_osc[0].selectWavetable((int)p_new_value - 1);
+      m_voice[voice].multi_osc[0].selectWavetable((int)p_new_value - 1);
+    }
+  } else if (id == m_osc2_wavetable_identifier) {
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_voice[voice].wavetable_osc[1].selectWavetable((int)p_new_value - 1);
+      m_voice[voice].multi_osc[1].selectWavetable((int)p_new_value - 1);
+    }
+  } else if (id == m_osc3_wavetable_identifier) {
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_voice[voice].wavetable_osc[2].selectWavetable((int)p_new_value - 1);
+      m_voice[voice].multi_osc[2].selectWavetable((int)p_new_value - 1);
+    }
+  } else if (id == m_osc1_vec_a_identifier) {
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_voice[voice].vector_osc[0].selectWavetable(p_new_value, 0);
+    }
+  } else if (id == m_osc2_vec_a_identifier) {
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_voice[voice].vector_osc[1].selectWavetable(p_new_value, 0);
+    }
+  } else if (id == m_osc3_vec_a_identifier) {
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_voice[voice].vector_osc[2].selectWavetable(p_new_value, 0);
+    }
+  } else if (id == m_osc1_vec_b_identifier) {
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_voice[voice].vector_osc[0].selectWavetable(p_new_value, 1);
+    }
+  } else if (id == m_osc2_vec_b_identifier) {
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_voice[voice].vector_osc[1].selectWavetable(p_new_value, 1);
+    }
+  } else if (id == m_osc3_vec_b_identifier) {
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_voice[voice].vector_osc[2].selectWavetable(p_new_value, 1);
+    }
+  } else if (id == m_osc1_vec_c_identifier) {
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_voice[voice].vector_osc[0].selectWavetable(p_new_value, 2);
+    }
+  } else if (id == m_osc2_vec_c_identifier) {
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_voice[voice].vector_osc[1].selectWavetable(p_new_value, 2);
+    }
+  } else if (id == m_osc3_vec_c_identifier) {
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_voice[voice].vector_osc[2].selectWavetable(p_new_value, 2);
+    }
+  } else if (id == m_osc1_vec_d_identifier) {
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_voice[voice].vector_osc[0].selectWavetable(p_new_value, 3);
+    }
+  } else if (id == m_osc2_vec_d_identifier) {
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_voice[voice].vector_osc[1].selectWavetable(p_new_value, 3);
+    }
+  } else if (id == m_osc3_vec_d_identifier) {
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_voice[voice].vector_osc[2].selectWavetable(p_new_value, 3);
+    }
+  } else if (id == m_osc1_chipwave_identifier) {
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_voice[voice].chiptune_osc[0].selectWavetable(p_new_value);
+    }
+  } else if (id == m_osc2_chipwave_identifier) {
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_voice[voice].chiptune_osc[1].selectWavetable(p_new_value);
+    }
+  } else if (id == m_osc3_chipwave_identifier) {
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_voice[voice].chiptune_osc[2].selectWavetable(p_new_value);
+    }
+  } else if (id == m_osc1_carrier_wave_identifier) {
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_voice[voice].fm_osc[0].selectCarrierWavetable(p_new_value);
+    }
+  } else if (id == m_osc2_carrier_wave_identifier) {
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_voice[voice].fm_osc[1].selectCarrierWavetable(p_new_value);
+    }
+  } else if (id == m_osc3_carrier_wave_identifier) {
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_voice[voice].fm_osc[2].selectCarrierWavetable(p_new_value);
+    }
+  } else if (id == m_osc1_modulator_wave_identifier) {
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_voice[voice].fm_osc[0].selectModulatorWavetable(p_new_value);
+    }
+  } else if (id == m_osc2_modulator_wave_identifier) {
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_voice[voice].fm_osc[1].selectModulatorWavetable(p_new_value);
+    }
+  } else if (id == m_osc3_modulator_wave_identifier) {
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_voice[voice].fm_osc[2].selectModulatorWavetable(p_new_value);
     }
   }
 }

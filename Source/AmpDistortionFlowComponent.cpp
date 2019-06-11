@@ -250,5 +250,7 @@ void AmpDistortionFlowComponent::resized() {
 void AmpDistortionFlowComponent::forceValueTreeOntoComponents(ValueTree p_tree) {
 
     m_distortion_algo.setValue(m_value_tree.state["dist_algo"]);
+    DBG("ALGORIIDIM");
+    DBG((int)m_value_tree.state["dist_algo"]);
 
 }

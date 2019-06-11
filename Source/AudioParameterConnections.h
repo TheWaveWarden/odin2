@@ -56,24 +56,12 @@ for (int osc = 0; osc < 3; ++osc) {
       "osc" + std::to_string(osc + 1) + "_step_3_on");
   m_osc_chipnoise[osc] = m_value_tree.getRawParameterValue(
       "osc" + std::to_string(osc + 1) + "_chipnoise");
-  m_osc_chipwave[osc] = m_value_tree.getRawParameterValue(
-      "osc" + std::to_string(osc + 1) + "_chipwave");
   m_osc_exp_fm[osc] = m_value_tree.getRawParameterValue(
       "osc" + std::to_string(osc + 1) + "_exp_fm");
-  m_osc_vec_a[osc] = m_value_tree.getRawParameterValue(
-      "osc" + std::to_string(osc + 1) + "_vec_a");
-  m_osc_vec_b[osc] = m_value_tree.getRawParameterValue(
-      "osc" + std::to_string(osc + 1) + "_vec_b");
-  m_osc_vec_c[osc] = m_value_tree.getRawParameterValue(
-      "osc" + std::to_string(osc + 1) + "_vec_c");
-  m_osc_vec_d[osc] = m_value_tree.getRawParameterValue(
-      "osc" + std::to_string(osc + 1) + "_vec_d");
   m_osc_vec_x[osc] = m_value_tree.getRawParameterValue(
       "osc" + std::to_string(osc + 1) + "_vec_x");
   m_osc_vec_y[osc] = m_value_tree.getRawParameterValue(
       "osc" + std::to_string(osc + 1) + "_vec_y");
-  m_osc_wavetable[osc] = m_value_tree.getRawParameterValue(
-      "osc" + std::to_string(osc + 1) + "_wavetable");
 }
 
 for (int fil = 0; fil < 3; ++fil) {
@@ -275,10 +263,6 @@ for (int osc = 0; osc < 3; ++osc) {
       "osc" + std::to_string(osc + 1) + "_carrier_ratio", &m_tree_listener);
   m_value_tree.addParameterListener(
       "osc" + std::to_string(osc + 1) + "_modulator_ratio", &m_tree_listener);
-  m_value_tree.addParameterListener(
-      "osc" + std::to_string(osc + 1) + "_carrier_wave", &m_tree_listener);
-  m_value_tree.addParameterListener(
-      "osc" + std::to_string(osc + 1) + "_modulator_wave", &m_tree_listener);
   m_value_tree.addParameterListener("osc" + std::to_string(osc + 1) + "_lp",
                                     &m_tree_listener);
   m_value_tree.addParameterListener("osc" + std::to_string(osc + 1) + "_hp",
@@ -295,20 +279,10 @@ for (int osc = 0; osc < 3; ++osc) {
       "osc" + std::to_string(osc + 1) + "_chipwave", &m_tree_listener);
   m_value_tree.addParameterListener("osc" + std::to_string(osc + 1) + "_exp_fm",
                                     &m_tree_listener);
-  m_value_tree.addParameterListener("osc" + std::to_string(osc + 1) + "_vec_a",
-                                    &m_tree_listener);
-  m_value_tree.addParameterListener("osc" + std::to_string(osc + 1) + "_vec_b",
-                                    &m_tree_listener);
-  m_value_tree.addParameterListener("osc" + std::to_string(osc + 1) + "_vec_c",
-                                    &m_tree_listener);
-  m_value_tree.addParameterListener("osc" + std::to_string(osc + 1) + "_vec_d",
-                                    &m_tree_listener);
   m_value_tree.addParameterListener("osc" + std::to_string(osc + 1) + "_vec_x",
                                     &m_tree_listener);
   m_value_tree.addParameterListener("osc" + std::to_string(osc + 1) + "_vec_y",
                                     &m_tree_listener);
-  m_value_tree.addParameterListener(
-      "osc" + std::to_string(osc + 1) + "_wavetable", &m_tree_listener);
 }
 for (int fil = 0; fil < 3; ++fil) {
   m_value_tree.addParameterListener("fil" + std::to_string(fil + 1) + "_vel",

@@ -27,23 +27,15 @@
     float* m_osc_fm[3];
     float* m_osc_carrier_ratio[3];
     float* m_osc_modulator_ratio[3];
-    float* m_osc_carrier_wave[3];
-    float* m_osc_modulator_wave[3];
     float* m_osc_lp[3];
     float* m_osc_hp[3];
     float* m_osc_reset[3];
     float* m_osc_arp_on[3];
     float* m_osc_step_3_on[3];
     float* m_osc_chipnoise[3];
-    float* m_osc_chipwave[3];
     float* m_osc_exp_fm[3];
-    float* m_osc_vec_a[3];
-    float* m_osc_vec_b[3];
-    float* m_osc_vec_c[3];
-    float* m_osc_vec_d[3];
     float* m_osc_vec_x[3];
     float* m_osc_vec_y[3];
-    float* m_osc_wavetable[3];
     
     //filters
     float* m_fil_vel[3];

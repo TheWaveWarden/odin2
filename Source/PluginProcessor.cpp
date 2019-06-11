@@ -1415,6 +1415,31 @@ void OdinAudioProcessor::addNonAudioParametersToTree() {
   node.setProperty("fil2_type", 1, nullptr);
   node.setProperty("fil3_type", 1, nullptr);
 
+  node.setProperty("osc1_wavetable",1,nullptr);
+  node.setProperty("osc2_wavetable",1,nullptr);
+  node.setProperty("osc3_wavetable",1,nullptr);
+  node.setProperty("osc1_vec_a",1,nullptr);
+  node.setProperty("osc2_vec_a",1,nullptr);
+  node.setProperty("osc3_vec_a",1,nullptr);
+  node.setProperty("osc1_vec_b",2,nullptr);
+  node.setProperty("osc2_vec_b",2,nullptr);
+  node.setProperty("osc3_vec_b",2,nullptr);
+  node.setProperty("osc1_vec_c",3,nullptr);
+  node.setProperty("osc2_vec_c",3,nullptr);
+  node.setProperty("osc3_vec_c",3,nullptr);
+  node.setProperty("osc1_vec_d",4,nullptr);
+  node.setProperty("osc2_vec_d",4,nullptr);
+  node.setProperty("osc3_vec_d",4,nullptr);
+  node.setProperty("osc1_chipwave",1,nullptr);
+  node.setProperty("osc2_chipwave",1,nullptr);
+  node.setProperty("osc3_chipwave",1,nullptr);
+  node.setProperty("osc1_modulator_wave",1,nullptr);
+  node.setProperty("osc2_modulator_wave",1,nullptr);
+  node.setProperty("osc3_modulator_wave",1,nullptr);
+  node.setProperty("osc1_carrier_wave",1,nullptr);
+  node.setProperty("osc2_carrier_wave",1,nullptr);
+  node.setProperty("osc3_carrier_wave",1,nullptr);
+
 }
 
 void OdinAudioProcessor::setFXButtonsPosition(int p_delay, int p_phaser,

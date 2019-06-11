@@ -720,8 +720,8 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   juce::Colour chip_color(102, 93, 79);
 
   m_chiptune_waveselector.OnValueChange = [&](int p_new_value) {
-    m_value_tree.getParameter(m_chipwave_identifier)
-        ->setValueNotifyingHost(((float)p_new_value - 0.5) / 1000.f);
+    m_value_tree.state.setProperty(m_chipwave_identifier, (float)p_new_value,
+                                   nullptr);
   };
   m_chiptune_waveselector.setTopLeftPosition(WAVE_CHIPTUNE_POS_X,
                                              WAVE_CHIPTUNE_POS_Y);
@@ -985,8 +985,8 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   *(m_vec_d.getRootMenu()) = vector_menu;
 
   m_carrier_waveselector.OnValueChange = [&](int p_new_value) {
-    m_value_tree.getParameter(m_carrier_wave_identifier)
-        ->setValueNotifyingHost(((float)p_new_value - 0.5f) / 1000.f);
+    m_value_tree.state.setProperty(m_carrier_wave_identifier,
+                                   (float)p_new_value, nullptr);
   };
   m_carrier_waveselector.setTopLeftPosition(WAVE_CARRIER_POS_X,
                                             WAVE_CARRIER_POS_Y);
@@ -997,8 +997,8 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   addChildComponent(m_carrier_waveselector);
 
   m_wavetable_waveselector.OnValueChange = [&](int p_new_value) {
-    m_value_tree.getParameter(m_wavetable_identifier)
-        ->setValueNotifyingHost(((float)p_new_value - 0.5f) / 1000.f);
+    m_value_tree.state.setProperty(m_wavetable_identifier, (float)p_new_value,
+                                   nullptr);
   };
   m_wavetable_waveselector.setTopLeftPosition(WAVE_CARRIER_POS_X,
                                               WAVE_CARRIER_POS_Y);
@@ -1031,8 +1031,8 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   addChildComponent(m_wavetable_waveselector);
 
   m_modulator_waveselector.OnValueChange = [&](int p_new_value) {
-    m_value_tree.getParameter(m_modulator_wave_identifier)
-        ->setValueNotifyingHost(((float)p_new_value - 0.5f) / 1000.f);
+    m_value_tree.state.setProperty(m_modulator_wave_identifier,
+                                   (float)p_new_value, nullptr);
   };
   m_modulator_waveselector.setTopLeftPosition(WAVE_MODULATOR_POS_X,
                                               WAVE_MODULATOR_POS_Y);
@@ -1042,8 +1042,8 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   addChildComponent(m_modulator_waveselector);
 
   m_carrier_ratio.OnValueChange = [&](int p_new_value) {
-    m_value_tree.getParameter(m_carrier_ratio_identifier)
-        ->setValueNotifyingHost(((float)p_new_value - 0.5f) / 12.f);
+    m_value_tree.state.setProperty(m_carrier_ratio_identifier,
+                                   (float)p_new_value, nullptr);
   };
   m_carrier_ratio.setTopLeftPosition(RATIO_CARRIER_POS_X, RATIO_CARRIER_POS_Y);
   m_carrier_ratio.setRange(1, 12);
@@ -1147,9 +1147,8 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_vec_a.setColor(vector_color);
   m_vec_a.setTooltip("Select the waveform to the bottom left of the XY pad");
   m_vec_a.onChange = [&]() {
-    m_value_tree.getParameter(m_vec_a_identifier)
-        ->setValueNotifyingHost(((float)m_vec_a.getSelectedId() - 0.5f) /
-                                1000.f);
+    m_value_tree.state.setProperty(m_vec_a_identifier,
+                                   (float)m_vec_a.getSelectedId(), nullptr);
   };
   addChildComponent(m_vec_a);
 
@@ -1163,9 +1162,8 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_vec_b.setColor(vector_color);
   m_vec_b.setTooltip("Select the waveform to the top left of the XY pad");
   m_vec_b.onChange = [&]() {
-    m_value_tree.getParameter(m_vec_b_identifier)
-        ->setValueNotifyingHost(((float)m_vec_b.getSelectedId() - 0.5f) /
-                                1000.f);
+    m_value_tree.state.setProperty(m_vec_b_identifier,
+                                   (float)m_vec_b.getSelectedId(), nullptr);
   };
   addChildComponent(m_vec_b);
 
@@ -1179,9 +1177,8 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_vec_c.setColor(vector_color);
   m_vec_c.setTooltip("Select the waveform to the top right of the XY pad");
   m_vec_c.onChange = [&]() {
-    m_value_tree.getParameter(m_vec_c_identifier)
-        ->setValueNotifyingHost(((float)m_vec_c.getSelectedId() - 0.5f) /
-                                1000.f);
+    m_value_tree.state.setProperty(m_vec_c_identifier,
+                                   (float)m_vec_c.getSelectedId(), nullptr);
   };
   addChildComponent(m_vec_c);
 
@@ -1195,9 +1192,8 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_vec_d.setColor(vector_color);
   m_vec_d.setTooltip("Select the waveform to the bottom right of the XY pad");
   m_vec_d.onChange = [&]() {
-    m_value_tree.getParameter(m_vec_d_identifier)
-        ->setValueNotifyingHost(((float)m_vec_d.getSelectedId() - 0.5f) /
-                                1000.f);
+    m_value_tree.state.setProperty(m_vec_d_identifier,
+                                   (float)m_vec_d.getSelectedId(), nullptr);
   };
   addChildComponent(m_vec_d);
 
@@ -1633,24 +1629,20 @@ void OscComponent::forceValueTreeOntoComponents(ValueTree p_tree, int p_index) {
   }
 
   // wavetable waveselctor
-  m_wavetable_waveselector.setValue(
-      m_value_tree.getParameterAsValue(m_wavetable_identifier).getValue());
+  m_wavetable_waveselector.setValue(m_value_tree.state[m_wavetable_identifier]);
 
   // vector
-  m_vec_a.setSelectedId(
-      m_value_tree.getParameterAsValue(m_vec_a_identifier).getValue());
-  m_vec_b.setSelectedId(
-      m_value_tree.getParameterAsValue(m_vec_b_identifier).getValue());
-  m_vec_c.setSelectedId(
-      m_value_tree.getParameterAsValue(m_vec_c_identifier).getValue());
-  m_vec_d.setSelectedId(
-      m_value_tree.getParameterAsValue(m_vec_d_identifier).getValue());
+  m_vec_a.setSelectedId(m_value_tree.state[m_vec_a_identifier]);
+  m_vec_b.setSelectedId(m_value_tree.state[m_vec_b_identifier]);
+  m_vec_c.setSelectedId(m_value_tree.state[m_vec_c_identifier]);
+  m_vec_d.setSelectedId(m_value_tree.state[m_vec_d_identifier]);
 
   // fm
   m_carrier_waveselector.setValue(
-      m_value_tree.getParameterAsValue(m_carrier_wave_identifier).getValue());
+      m_value_tree.state[m_carrier_wave_identifier]);
   m_modulator_waveselector.setValue(
-      m_value_tree.getParameterAsValue(m_modulator_wave_identifier).getValue());
+      m_value_tree.state[m_modulator_wave_identifier]);
+
   m_carrier_ratio.setValue(
       m_value_tree.getParameterAsValue(m_carrier_ratio_identifier).getValue());
   m_modulator_ratio.setValue(
@@ -1662,8 +1654,7 @@ void OscComponent::forceValueTreeOntoComponents(ValueTree p_tree, int p_index) {
 
   // chiptune
   m_chiptune_waveselector.setValue(
-      m_value_tree.getParameterAsValue("osc" + m_osc_number + "_chipwave")
-          .getValue());
+      m_value_tree.state[String("osc" + m_osc_number + "_chipwave")]);
 
   auto node = m_value_tree.state.getOrCreateChildWithName("NO_PARAM", nullptr);
 

@@ -26,22 +26,12 @@
       std::make_unique<AudioParameterFloat>("osc1_spread", "Oscillator1 Spread",
                                             NormalisableRange<float>(0.f, 1.f),
                                             0),
-      std::make_unique<AudioParameterInt>(
-          "osc1_wavetable", "Oscillator1 Wavetable", 1, 1000, 1), // todo range
       std::make_unique<AudioParameterFloat>(
           "osc1_pulsewidth", "Oscillator1 PulseWidth",
           NormalisableRange<float>(0.f, 1.f), 0.5f),
       std::make_unique<AudioParameterFloat>("osc1_drift", "Oscillator1 Drift",
                                             NormalisableRange<float>(0.f, 1.f),
                                             0.f),
-      std::make_unique<AudioParameterInt>("osc1_vec_a", "Oscillator1 Vector A",
-                                          1, 1000, 101),
-      std::make_unique<AudioParameterInt>("osc1_vec_b", "Oscillator1 Vector B",
-                                          1, 1000, 102),
-      std::make_unique<AudioParameterInt>("osc1_vec_c", "Oscillator1 Vector C",
-                                          1, 1000, 103),
-      std::make_unique<AudioParameterInt>("osc1_vec_d", "Oscillator1 Vector D",
-                                          1, 1000, 104),
       std::make_unique<AudioParameterFloat>(
           "osc1_vec_x", "Oscillator1 Vector X",
           NormalisableRange<float>(0.f, 1.f), 0.f),
@@ -63,12 +53,6 @@
                                           "Oscillator1 Step3 On", 0, 1, 0),
       std::make_unique<AudioParameterInt>("osc1_chipnoise",
                                           "Oscillator1 Chipnoise", 0, 1, 0),
-      std::make_unique<AudioParameterInt>(
-          "osc1_chipwave", "Oscillator1 Chiptune wave", 1, 1000, 1),
-      std::make_unique<AudioParameterInt>(
-          "osc1_carrier_wave", "Oscillator1 Carrier Wave", 1, 1000, 1),
-      std::make_unique<AudioParameterInt>(
-          "osc1_modulator_wave", "Oscillator1 Modulator Wave", 1, 1000, 1),
       std::make_unique<AudioParameterInt>(
           "osc1_carrier_ratio", "Oscillator1 Carrier Ratio", 1, 12, 1),
       std::make_unique<AudioParameterInt>(
@@ -109,22 +93,12 @@
       std::make_unique<AudioParameterFloat>("osc2_spread", "Oscillator2 Spread",
                                             NormalisableRange<float>(0.f, 1.f),
                                             0),
-      std::make_unique<AudioParameterInt>(
-          "osc2_wavetable", "Oscillator2 Wavetable", 1, 1000, 1), // todo range
       std::make_unique<AudioParameterFloat>(
           "osc2_pulsewidth", "Oscillator2 PulseWidth",
           NormalisableRange<float>(0.f, 1.f), 0.5f),
       std::make_unique<AudioParameterFloat>("osc2_drift", "Oscillator2 Drift",
                                             NormalisableRange<float>(0.f, 1.f),
                                             0.f),
-      std::make_unique<AudioParameterInt>("osc2_vec_a", "Oscillator2 Vector A",
-                                          1, 1000, 101),
-      std::make_unique<AudioParameterInt>("osc2_vec_b", "Oscillator2 Vector B",
-                                          1, 1000, 102),
-      std::make_unique<AudioParameterInt>("osc2_vec_c", "Oscillator2 Vector C",
-                                          1, 1000, 103),
-      std::make_unique<AudioParameterInt>("osc2_vec_d", "Oscillator2 Vector D",
-                                          1, 1000, 104),
       std::make_unique<AudioParameterFloat>(
           "osc2_vec_x", "Oscillator2 Vector X",
           NormalisableRange<float>(0.f, 1.f), 0.f),
@@ -146,12 +120,6 @@
                                           "Oscillator2 Step3 On", 0, 1, 0),
       std::make_unique<AudioParameterInt>("osc2_chipnoise",
                                           "Oscillator2 Chipnoise", 0, 1, 0),
-      std::make_unique<AudioParameterInt>(
-          "osc2_chipwave", "Oscillator2 Chiptune wave", 1, 1000, 1),
-      std::make_unique<AudioParameterInt>(
-          "osc2_carrier_wave", "Oscillator2 Carrier Wave", 1, 1000, 1),
-      std::make_unique<AudioParameterInt>(
-          "osc2_modulator_wave", "Oscillator2 Modulator Wave", 1, 1000, 1),
       std::make_unique<AudioParameterInt>(
           "osc2_carrier_ratio", "Oscillator2 Carrier Ratio", 1, 12, 1),
       std::make_unique<AudioParameterInt>(
@@ -192,22 +160,12 @@
       std::make_unique<AudioParameterFloat>("osc3_spread", "Oscillator3 Spread",
                                             NormalisableRange<float>(0.f, 1.f),
                                             0),
-      std::make_unique<AudioParameterInt>(
-          "osc3_wavetable", "Oscillator3 Wavetable", 1, 1000, 1), // todo range
       std::make_unique<AudioParameterFloat>(
           "osc3_pulsewidth", "Oscillator3 PulseWidth",
           NormalisableRange<float>(0.f, 1.f), 0.5f),
       std::make_unique<AudioParameterFloat>("osc3_drift", "Oscillator3 Drift",
                                             NormalisableRange<float>(0.f, 1.f),
                                             0.f),
-      std::make_unique<AudioParameterInt>("osc3_vec_a", "Oscillator3 Vector A",
-                                          1, 1000, 101),
-      std::make_unique<AudioParameterInt>("osc3_vec_b", "Oscillator3 Vector B",
-                                          1, 1000, 102),
-      std::make_unique<AudioParameterInt>("osc3_vec_c", "Oscillator3 Vector C",
-                                          1, 1000, 103),
-      std::make_unique<AudioParameterInt>("osc3_vec_d", "Oscillator3 Vector D",
-                                          1, 1000, 104),
       std::make_unique<AudioParameterFloat>(
           "osc3_vec_x", "Oscillator3 Vector X",
           NormalisableRange<float>(0.f, 1.f), 0.f),
@@ -229,12 +187,6 @@
                                           "Oscillator3 Step3 On", 0, 1, 0),
       std::make_unique<AudioParameterInt>("osc3_chipnoise",
                                           "Oscillator3 Chipnoise", 0, 1, 0),
-      std::make_unique<AudioParameterInt>(
-          "osc3_chipwave", "Oscillator3 Chiptune wave", 1, 1000, 1),
-      std::make_unique<AudioParameterInt>(
-          "osc3_carrier_wave", "Oscillator3 Carrier Wave", 1, 1000, 1),
-      std::make_unique<AudioParameterInt>(
-          "osc3_modulator_wave", "Oscillator3 Modulator Wave", 1, 1000, 1),
       std::make_unique<AudioParameterInt>(
           "osc3_carrier_ratio", "Oscillator3 Carrier Ratio", 1, 12, 1),
       std::make_unique<AudioParameterInt>(
