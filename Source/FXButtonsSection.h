@@ -346,13 +346,14 @@ public:
     }
 
     m_position_map.find("delay")->second =
-        m_value_tree.getParameterAsValue("delay_position").getValue();
+        m_value_tree.state["delay_position"];
     m_position_map.find("phaser")->second =
-        m_value_tree.getParameterAsValue("phaser_position").getValue();
+        m_value_tree.state["phaser_position"];
     m_position_map.find("flanger")->second =
-        m_value_tree.getParameterAsValue("flanger_position").getValue();
+        m_value_tree.state["flanger_position"];
     m_position_map.find("chorus")->second =
-        m_value_tree.getParameterAsValue("chorus_position").getValue();
+        m_value_tree.state["chorus_position"];
+        
     positionButtons();
   }
 

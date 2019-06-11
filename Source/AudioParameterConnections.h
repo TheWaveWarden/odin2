@@ -220,13 +220,6 @@ m_chorus_sync = m_value_tree.getRawParameterValue("chorus_sync");
 m_chorus_reset = m_value_tree.getRawParameterValue("chorus_reset");
 m_chorus_feedback = m_value_tree.getRawParameterValue("chorus_feedback");
 
-
-m_delay_position = m_value_tree.getRawParameterValue("delay_position");
-m_flanger_position = m_value_tree.getRawParameterValue("flanger_position");
-m_phaser_position = m_value_tree.getRawParameterValue("phaser_position");
-m_chorus_position = m_value_tree.getRawParameterValue("chorus_position");
-
-
 for (int i = 0; i < 9; ++i) {
   m_amount_1[i] =
       m_value_tree.getRawParameterValue("amount_1_[" + std::to_string(i) + "]");
@@ -472,11 +465,6 @@ m_value_tree.addParameterListener("chorus_drywet", &m_tree_listener);
 m_value_tree.addParameterListener("chorus_feedback", &m_tree_listener);
 m_value_tree.addParameterListener("chorus_sync", &m_tree_listener);
 m_value_tree.addParameterListener("chorus_reset", &m_tree_listener);
-
-m_value_tree.addParameterListener("delay_position", &m_tree_listener);
-m_value_tree.addParameterListener("flanger_position", &m_tree_listener);
-m_value_tree.addParameterListener("phaser_position", &m_tree_listener);
-m_value_tree.addParameterListener("chorus_position", &m_tree_listener);
 
 for (int i = 0; i < 9; ++i) {
   m_value_tree.addParameterListener("amount_1_[" + std::to_string(i) + "]",

@@ -238,6 +238,9 @@ public:
   // and makes it "untouched"
   void resetAudioEngine();
 
+  void setFXButtonsPosition(int p_delay, int p_phaser, int p_flanger,
+                            int p_chorus);
+
 private:
   void setBPM(float BPM);
 
@@ -318,7 +321,6 @@ private:
 
   void addNonAudioParametersToTree();
 
-
   // MOD SOURCES
   float m_adsr[VOICES][3] = {0.f};
   float m_lfo[VOICES][3] = {0.f};
@@ -335,7 +337,11 @@ private:
   // MOD DEST
   float *m_master_mod;
 
-  int m_counter = 0; // todo remove
+  int m_delay_position = 0;
+  int m_phaser_position = 1;
+  int m_chorus_position = 2;
+  int m_flanger_position = 3;
+
   bool m_is_standalone_plugin =
       true; // set true since is is only set after createEditor()
 

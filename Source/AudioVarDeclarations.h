@@ -132,10 +132,6 @@
     float* m_fil_osc2[2];
     float* m_fil_osc3[2];
     float* m_fil2_fil1;
-    float* m_delay_position;
-    float* m_flanger_position;
-    float* m_phaser_position;
-    float* m_chorus_position;
     //delay
     float* m_delay_time;
     float* m_delay_feedback;

@@ -773,8 +773,8 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
   m_legato_button.onStateChange = [&]() {
     // TODO reset entire synth here
     // set value in audiovaluetree
-    m_value_tree.state.setProperty("legato",
-                                   m_legato_button.getToggleState(), nullptr);
+    m_value_tree.state.setProperty("legato", m_legato_button.getToggleState(),
+                                   nullptr);
     // notify voice manager
     processor.setPolyLegato(m_legato_button.getToggleState());
   };
@@ -1067,14 +1067,18 @@ void OdinAudioProcessorEditor::arrangeFXOnButtons(
       FX_ON_BUTTON_X + p_map.find("delay")->second * FX_BUTTON_OFFSET,
       FX_ON_BUTTON_Y);
 
-  m_value_tree.getParameter(m_delay_position_identifier)
-      ->setValueNotifyingHost(((float)p_map.find("delay")->second) / 3.f);
-  m_value_tree.getParameter(m_phaser_position_identifier)
-      ->setValueNotifyingHost(((float)p_map.find("phaser")->second) / 3.f);
-  m_value_tree.getParameter(m_flanger_position_identifier)
-      ->setValueNotifyingHost(((float)p_map.find("flanger")->second) / 3.f);
-  m_value_tree.getParameter(m_chorus_position_identifier)
-      ->setValueNotifyingHost(((float)p_map.find("chorus")->second) / 3.f);
+  m_value_tree.state.setProperty(m_delay_position_identifier,
+                           (float)p_map.find("delay")->second, nullptr);
+  m_value_tree.state.setProperty(m_phaser_position_identifier,
+                           (float)p_map.find("phaser")->second, nullptr);
+  m_value_tree.state.setProperty(m_flanger_position_identifier,
+                           (float)p_map.find("flanger")->second, nullptr);
+  m_value_tree.state.setProperty(m_chorus_position_identifier,
+                           (float)p_map.find("chorus")->second, nullptr);
+
+  processor.setFXButtonsPosition(
+      (float)p_map.find("delay")->second, (float)p_map.find("phaser")->second,
+      (float)p_map.find("flanger")->second, (float)p_map.find("chorus")->second);
 }
 
 void OdinAudioProcessorEditor::setActiveFXPanel(std::string p_name) {
@@ -1153,9 +1157,9 @@ void OdinAudioProcessorEditor::forceValueTreeOntoComponents() {
   m_midsection.forceValueTreeOntoComponents(m_value_tree.state);
   m_fx_buttons_section.forceValueTreeOntoComponents(m_value_tree.state);
 
-  m_legato_button.setToggleState((float)m_value_tree.state["legato"] > 0.5, dontSendNotification);
+  m_legato_button.setToggleState((float)m_value_tree.state["legato"] > 0.5,
+                                 dontSendNotification);
   processor.setPolyLegato(m_legato_button.getToggleState());
-
 }
 
 bool OdinAudioProcessorEditor::keyStateChanged(
