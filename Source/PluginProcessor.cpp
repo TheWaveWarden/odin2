@@ -1403,6 +1403,10 @@ void OdinAudioProcessor::addNonAudioParametersToTree() {
   node.setProperty("flanger_position", 3, nullptr);
 
   node.setProperty("dist_algo", 1, nullptr);
+
+  node.setProperty("osc1_analog_wave", 0, nullptr);
+  node.setProperty("osc2_analog_wave", 0, nullptr);
+  node.setProperty("osc3_analog_wave", 0, nullptr);
 }
 
 void OdinAudioProcessor::setFXButtonsPosition(int p_delay, int p_phaser,

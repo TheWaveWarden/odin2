@@ -49,28 +49,8 @@ bool OdinAudioProcessor::treeValueChangedFirst(const String &p_ID,
   DBG(p_ID + ": " + std::to_string(p_new_value));
 #endif
 
-  if (id == m_osc1_analog_wave_identifier)
-  {
-    for (int voice = 0; voice < VOICES; ++voice)
-    {
-      m_voice[voice].analog_osc[0].selectWavetable((int)p_new_value - 1);
-    }
-  }
-  else if (id == m_osc2_analog_wave_identifier)
-  {
-    for (int voice = 0; voice < VOICES; ++voice)
-    {
-      m_voice[voice].analog_osc[1].selectWavetable((int)p_new_value - 1);
-    }
-  }
-  else if (id == m_osc3_analog_wave_identifier)
-  {
-    for (int voice = 0; voice < VOICES; ++voice)
-    {
-      m_voice[voice].analog_osc[2].selectWavetable((int)p_new_value - 1);
-    }
-  }
-  else if (id == m_osc1_oct_identifier)
+  
+  if (id == m_osc1_oct_identifier)
   {
     for (int voice = 0; voice < VOICES; ++voice)
     {
@@ -2025,5 +2005,26 @@ void OdinAudioProcessor::treeValueChangedNonParam(ValueTree &tree,
   {
     m_distortion[0].setAlgorithm((int)p_new_value);
     m_distortion[1].setAlgorithm((int)p_new_value);
+  }
+  else if (id == m_osc1_analog_wave_identifier)
+  {
+    for (int voice = 0; voice < VOICES; ++voice)
+    {
+      m_voice[voice].analog_osc[0].selectWavetable((int)p_new_value);
+    }
+  }
+  else if (id == m_osc2_analog_wave_identifier)
+  {
+    for (int voice = 0; voice < VOICES; ++voice)
+    {
+      m_voice[voice].analog_osc[1].selectWavetable((int)p_new_value);
+    }
+  }
+  else if (id == m_osc3_analog_wave_identifier)
+  {
+    for (int voice = 0; voice < VOICES; ++voice)
+    {
+      m_voice[voice].analog_osc[2].selectWavetable((int)p_new_value);
+    }
   }
 }

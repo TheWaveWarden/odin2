@@ -236,8 +236,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_LED_saw.setTooltip("Select the saw wave");
   m_LED_saw.onStateChange = [&]() {
     if (m_LED_saw.getToggleState()) {
-      m_value_tree.getParameter(m_analog_wave_identifier)
-          ->setValueNotifyingHost(0);
+      m_value_tree.state.setProperty(m_analog_wave_identifier, 0, nullptr);
     }
   };
   addChildComponent(m_LED_saw);
@@ -256,8 +255,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_LED_pulse.setTooltip("Select the pulse wave");
   m_LED_pulse.onStateChange = [&]() {
     if (m_LED_pulse.getToggleState()) {
-      m_value_tree.getParameter(m_analog_wave_identifier)
-          ->setValueNotifyingHost(2.f / 4.f);
+      m_value_tree.state.setProperty(m_analog_wave_identifier, 1, nullptr);
     }
   };
   addChildComponent(m_LED_pulse);
@@ -277,8 +275,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   // m_LED_triangle.setClickingTogglesState(true);
   m_LED_triangle.onStateChange = [&]() {
     if (m_LED_triangle.getToggleState()) {
-      m_value_tree.getParameter(m_analog_wave_identifier)
-          ->setValueNotifyingHost(3.f / 4.f);
+      m_value_tree.state.setProperty(m_analog_wave_identifier, 2, nullptr);
     }
   };
   addChildComponent(m_LED_triangle);
@@ -297,8 +294,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_LED_sine.setTooltip("Select the sine wave");
   m_LED_sine.onStateChange = [&]() {
     if (m_LED_sine.getToggleState()) {
-      m_value_tree.getParameter(m_analog_wave_identifier)
-          ->setValueNotifyingHost(1);
+      m_value_tree.state.setProperty(m_analog_wave_identifier, 3, nullptr);
     }
   };
   addChildComponent(m_LED_sine);
@@ -1619,18 +1615,17 @@ void OscComponent::forceValueTreeOntoComponents(ValueTree p_tree, int p_index) {
   std::string index = std::to_string(p_index);
 
   // analog waveform
-  switch ((int)m_value_tree.getParameterAsValue(m_analog_wave_identifier)
-              .getValue()) {
-  case 1:
+  switch ((int)m_value_tree.state[m_analog_wave_identifier]) {
+  case 0:
     m_LED_saw.setToggleState(true, sendNotification);
     break;
-  case 2:
+  case 1:
     m_LED_pulse.setToggleState(true, sendNotification);
     break;
-  case 3:
+  case 2:
     m_LED_triangle.setToggleState(true, sendNotification);
     break;
-  case 4:
+  case 3:
     m_LED_sine.setToggleState(true, sendNotification);
     break;
   default:
@@ -1671,11 +1666,14 @@ void OscComponent::forceValueTreeOntoComponents(ValueTree p_tree, int p_index) {
           .getValue());
 
   auto node = m_value_tree.state.getOrCreateChildWithName("NO_PARAM", nullptr);
-      
+
   // wavedraw
   float wavedraw_values[WAVEDRAW_STEPS_X];
   for (int i = 0; i < WAVEDRAW_STEPS_X; ++i) {
-      wavedraw_values[i] = (float)node[String("[" + std::to_string(i) + "]osc" + m_osc_number + "_wavedraw")] * 2 - 1;
+    wavedraw_values[i] = (float)node[String("[" + std::to_string(i) + "]osc" +
+                                            m_osc_number + "_wavedraw")] *
+                             2 -
+                         1;
   }
   m_wavedraw.setDrawnTable(wavedraw_values);
   createWavedrawTables();
@@ -1683,7 +1681,10 @@ void OscComponent::forceValueTreeOntoComponents(ValueTree p_tree, int p_index) {
 
   // chipdraw
   for (int i = 0; i < CHIPDRAW_STEPS_X; ++i) {
-      wavedraw_values[i] = (float)node[String("[" + std::to_string(i) + "]osc" + m_osc_number + "_chipdraw")] * 2 - 1;
+    wavedraw_values[i] = (float)node[String("[" + std::to_string(i) + "]osc" +
+                                            m_osc_number + "_chipdraw")] *
+                             2 -
+                         1;
   }
   m_chipdraw.setDrawnTable(wavedraw_values);
   m_chipdraw_convert.setToggleState(true, dontSendNotification);
@@ -1691,7 +1692,8 @@ void OscComponent::forceValueTreeOntoComponents(ValueTree p_tree, int p_index) {
 
   // specdraw
   for (int i = 0; i < SPECDRAW_STEPS_X; ++i) {
-      wavedraw_values[i] = (float)node[String("[" + std::to_string(i) + "]osc" + m_osc_number + "_specdraw")];
+    wavedraw_values[i] = (float)node[String("[" + std::to_string(i) + "]osc" +
+                                            m_osc_number + "_specdraw")];
   }
   m_specdraw.setDrawnTable(wavedraw_values);
   m_specdraw_convert.setToggleState(true, dontSendNotification);

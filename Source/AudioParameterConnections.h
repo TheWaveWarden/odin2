@@ -16,8 +16,6 @@ for (int osc = 0; osc < 3; ++osc) {
       "osc" + std::to_string(osc + 1) + "_oct");
   m_osc_semi[osc] = m_value_tree.getRawParameterValue(
       "osc" + std::to_string(osc + 1) + "_semi");
-  m_osc_analog_wave[osc] = m_value_tree.getRawParameterValue(
-      "osc" + std::to_string(osc + 1) + "_analog_wave");
   m_osc_fine[osc] = m_value_tree.getRawParameterValue(
       "osc" + std::to_string(osc + 1) + "_fine");
   m_osc_vol[osc] = m_value_tree.getRawParameterValue(
@@ -259,8 +257,6 @@ for (int osc = 0; osc < 3; ++osc) {
                                     &m_tree_listener);
   m_value_tree.addParameterListener("osc" + std::to_string(osc + 1) + "_fine",
                                     &m_tree_listener);
-  m_value_tree.addParameterListener(
-      "osc" + std::to_string(osc + 1) + "_analog_wave", &m_tree_listener);
   m_value_tree.addParameterListener("osc" + std::to_string(osc + 1) + "_vol",
                                     &m_tree_listener);
   m_value_tree.addParameterListener(

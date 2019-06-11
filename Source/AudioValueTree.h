@@ -8,8 +8,6 @@
                                           3, 0),
       std::make_unique<AudioParameterInt>("osc1_semi", "Oscillator1 Semitones",
                                           -7, 7, 0),
-      std::make_unique<AudioParameterInt>(
-          "osc1_analog_wave", "Oscillator1 Analog Waveform", 1, 4, 1),
       std::make_unique<AudioParameterFloat>(
           "osc1_fine", "Oscillator1 Finetune",
           NormalisableRange<float>(-50.0f, 50.0f), 0),
@@ -95,8 +93,6 @@
                                           3, 0),
       std::make_unique<AudioParameterInt>("osc2_semi", "Oscillator2 Semitones",
                                           -7, 7, 0),
-      std::make_unique<AudioParameterInt>(
-          "osc2_analog_wave", "Oscillator2 Analog Waveform", 1, 4, 1),
       std::make_unique<AudioParameterFloat>(
           "osc2_fine", "Oscillator2 Finetune",
           NormalisableRange<float>(-50.0f, 50.0f), 0),
@@ -182,8 +178,6 @@
                                           3, 0),
       std::make_unique<AudioParameterInt>("osc3_semi", "Oscillator3 Semitones",
                                           -7, 7, 0),
-      std::make_unique<AudioParameterInt>(
-          "osc3_analog_wave", "Oscillator3 Analog Waveform", 1, 4, 1),
       std::make_unique<AudioParameterFloat>(
           "osc3_fine", "Oscillator3 Finetune",
           NormalisableRange<float>(-50.0f, 50.0f), 0),
