@@ -22,8 +22,8 @@ DrawableSlider::DrawableSlider()
   setPopupDisplayEnabled(true, false, nullptr);
   setNumDecimalPlacesToDisplay(3);
 
-  m_handle = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/slider_handle.png"));
+  m_handle = ImageCache::getFromMemory(
+      BinaryData::slider_handle_png, BinaryData::slider_handle_pngSize);
   //setRange(1,2);
 }
 

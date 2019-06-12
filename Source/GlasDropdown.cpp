@@ -21,9 +21,6 @@ GlasDropdown::GlasDropdown() {
 GlasDropdown::~GlasDropdown() { setLookAndFeel(nullptr); }
 
 void GlasDropdown::paint(Graphics &g) {
-  // Font bfont (juce::Font (Typeface::createSystemTypefaceFor
-  // (BinaryData::bfont_ttf  ,
-  //                                                            BinaryData::bfont_ttfSize)));
 
   g.setColour(m_color);
   juce::Point<int> top_left = getLocalBounds().getTopLeft();

@@ -330,30 +330,30 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
   m_sources_menu.addItem(1000, "Constant");
   // 1000 must be highest value
 
-  juce::Image glas_left_down = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/modpanelbig_left_down.png"));
-  juce::Image glas_left_mid = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/modpanelbig_left_mid.png"));
-  juce::Image glas_left_up = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/modpanelbig_left_up.png"));
-  juce::Image glas_mid_down = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/modpanelbig_mid_down.png"));
-  juce::Image glas_mid_mid = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/modpanelbig_mid_mid.png"));
-  juce::Image glas_mid_up = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/modpanelbig_mid_up.png"));
-  juce::Image glas_right_down = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/modpanelbig_right_down.png"));
-  juce::Image glas_right_mid = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/modpanelbig_right_mid.png"));
-  juce::Image glas_right_up = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/modpanelbig_right_up.png"));
-  juce::Image glas_small_down = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/modpanelsmall_down.png"));
-  juce::Image glas_small_mid = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/modpanelsmall_mid.png"));
-  juce::Image glas_small_up = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/modpanelsmall_up.png"));
+  juce::Image glas_left_down = ImageCache::getFromMemory(
+      BinaryData::modpanelbig_left_down_png, BinaryData::modpanelbig_left_down_pngSize);d
+  juce::Image glas_left_mid = ImageCache::getFromMemory(
+      BinaryData::modpanelbig_left_mid_png, BinaryData::modpanelbig_left_mid_pngSize);
+  juce::Image glas_left_up = ImageCache::getFromMemory(
+      BinaryData::modpanelbig_left_up_png, BinaryData::modpanelbig_left_up_pngSize);
+  juce::Image glas_mid_down = ImageCache::getFromMemory(
+      BinaryData::modpanelbig_mid_down_png, BinaryData::modpanelbig_mid_down_pngSize);
+  juce::Image glas_mid_mid = ImageCache::getFromMemory(
+      BinaryData::modpanelbig_mid_mid_png, BinaryData::modpanelbig_mid_mid_pngSize);
+  juce::Image glas_mid_up = ImageCache::getFromMemory(
+      BinaryData::modpanelbig_mid_up_png, BinaryData::modpanelbig_mid_up_pngSize);
+  juce::Image glas_right_down = ImageCache::getFromMemory(
+      BinaryData::modpanelbig_right_down_png, BinaryData::modpanelbig_right_down_pngSize);
+  juce::Image glas_right_mid = ImageCache::getFromMemory(
+      BinaryData::modpanelbig_right_mid_png, BinaryData::modpanelbig_right_mid_pngSize);
+  juce::Image glas_right_up = ImageCache::getFromMemory(
+      BinaryData::modpanelbig_right_up_png, BinaryData::modpanelbig_right_up_pngSize);
+  juce::Image glas_small_down = ImageCache::getFromMemory(
+      BinaryData::modpanelsmall_down_png, BinaryData::modpanelsmall_down_pngSize);
+  juce::Image glas_small_mid = ImageCache::getFromMemory(
+      BinaryData::modpanelsmall_mid_png, BinaryData::modpanelsmall_mid_pngSize);
+  juce::Image glas_small_up = ImageCache::getFromMemory(
+      BinaryData::modpanelsmall_up_png, BinaryData::modpanelsmall_up_pngSize);
 
   m_source[0].setImage(glas_left_up);
   m_amount_1[0].setImage(glas_small_up);
@@ -747,14 +747,14 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
   m_big_panel_width = glas_mid_down.getWidth();
   m_panel_height = glas_left_down.getHeight();
 
-  juce::Image clear_1 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonclear_1.png"));
-  juce::Image clear_2 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonclear_2.png"));
-  juce::Image clearlast_1 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonclearlast_1.png"));
-  juce::Image clearlast_2 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonclearlast_2.png"));
+  juce::Image clear_1 = ImageCache::getFromMemory(
+      BinaryData::buttonclear_1_png, BinaryData::buttonclear_1_pngSize);
+  juce::Image clear_2 = ImageCache::getFromMemory(
+      BinaryData::buttonclear_2_png, BinaryData::buttonclear_2_pngSize);
+  juce::Image clearlast_1 = ImageCache::getFromMemory(
+      BinaryData::buttonclearlast_1_png, BinaryData::buttonclearlast_1_pngSize);
+  juce::Image clearlast_2 = ImageCache::getFromMemory(
+      BinaryData::buttonclearlast_2_png, BinaryData::buttonclearlast_2_pngSize);
 
   juce::DrawableImage clear_draw1;
   juce::DrawableImage clear_draw2;

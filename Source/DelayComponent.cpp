@@ -35,14 +35,14 @@ DelayComponent::DelayComponent(AudioProcessorValueTreeState &vts,
   if (!m_is_standalone_plugin) {
     m_sync_attach.reset(new ButtonAttachment(m_value_tree, "", m_sync));
 
-    juce::Image sync_1 = ImageCache::getFromFile(
-        juce::File(GRAPHICS_PATH + "cropped/buttons/buttonsync_1.png"));
-    juce::Image sync_2 = ImageCache::getFromFile(
-        juce::File(GRAPHICS_PATH + "cropped/buttons/buttonsync_2.png"));
-    juce::Image sync_3 = ImageCache::getFromFile(
-        juce::File(GRAPHICS_PATH + "cropped/buttons/buttonsync_3.png"));
-    juce::Image sync_4 = ImageCache::getFromFile(
-        juce::File(GRAPHICS_PATH + "cropped/buttons/buttonsync_4.png"));
+    juce::Image sync_1 = ImageCache::getFromMemory(
+        BinaryData::buttonsync_1_png, BinaryData::buttonsync_1_pngSize);
+    juce::Image sync_2 = ImageCache::getFromMemory(
+        BinaryData::buttonsync_2_png, BinaryData::buttonsync_2_pngSize);
+    juce::Image sync_3 = ImageCache::getFromMemory(
+        BinaryData::buttonsync_3_png, BinaryData::buttonsync_3_pngSize);
+    juce::Image sync_4 = ImageCache::getFromMemory(
+        BinaryData::buttonsync_4_png, BinaryData::buttonsync_4_pngSize);
 
     juce::DrawableImage sync_draw1;
     juce::DrawableImage sync_draw2;
@@ -70,10 +70,10 @@ DelayComponent::DelayComponent(AudioProcessorValueTreeState &vts,
       setSync(m_sync.getToggleState());
     }
   };
-  juce::Image metal_knob_big = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/knobs/metal3/metal_knob_big.png"));
-  juce::Image black_knob_mid = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/knobs/black3/black_knob_mid.png"));
+  juce::Image metal_knob_big = ImageCache::getFromMemory(
+      BinaryData::metal_knob_big_png, BinaryData::metal_knob_big_pngSize);
+  juce::Image black_knob_mid = ImageCache::getFromMemory(
+      BinaryData::black_knob_mid_png, BinaryData::black_knob_mid_pngSize);
 
   m_time.setStrip(metal_knob_big, N_KNOB_FRAMES);
   m_time.setSliderStyle(Slider::RotaryVerticalDrag);

@@ -20,13 +20,13 @@ SyncTimeSelector::SyncTimeSelector()
       m_up_right("up_right", juce::DrawableButton::ButtonStyle::ImageRaw),
       m_down_right("down_right", juce::DrawableButton::ButtonStyle::ImageRaw) {
 
-  juce::Image up_1 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonup_2.png"));
-  juce::Image up_2 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonup_1.png"));
+  juce::Image up_1 = ImageCache::getFromMemory(
+      BinaryData::buttonup_2_png, BinaryData::buttonup_2_pngSize);
+  juce::Image up_2 = ImageCache::getFromMemory(
+      BinaryData::buttonup_1_png, BinaryData::buttonup_1_pngSize);
 
-  juce::Image glas_panel = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/glaspanel_mid.png"));
+  juce::Image glas_panel = ImageCache::getFromMemory(
+      BinaryData::glaspanel_mid_png, BinaryData::glaspanel_mid_pngSize);
   m_display.setImage(glas_panel);
   m_display.setBounds(up_1.getWidth(), 0, glas_panel.getWidth(),
                       glas_panel.getHeight());
@@ -63,10 +63,10 @@ SyncTimeSelector::SyncTimeSelector()
   m_up_right.onClick = [&]() { incrementRight(); };
   m_up_right.setAlwaysOnTop(true);
 
-  juce::Image down_1 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttondown_2.png"));
-  juce::Image down_2 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttondown_1.png"));
+  juce::Image down_1 = ImageCache::getFromMemory(
+      BinaryData::buttondown_2_png, BinaryData::buttondown_2_pngSize);
+  juce::Image down_2 = ImageCache::getFromMemory(
+      BinaryData::buttondown_1_png, BinaryData::buttondown_1_pngSize);
 
   juce::DrawableImage down_draw1;
   juce::DrawableImage down_draw2;

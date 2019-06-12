@@ -33,14 +33,14 @@ public:
         m_delay_button("delay", juce::DrawableButton::ButtonStyle::ImageRaw,
                        &m_constrainer, "delay") {
 
-    juce::Image phaser_button_1 = ImageCache::getFromFile(
-        juce::File(GRAPHICS_PATH + "cropped/buttons/buttonphaser_1.png"));
-    juce::Image phaser_button_2 = ImageCache::getFromFile(
-        juce::File(GRAPHICS_PATH + "cropped/buttons/buttonphaser_2.png"));
-    juce::Image phaser_button_3 = ImageCache::getFromFile(
-        juce::File(GRAPHICS_PATH + "cropped/buttons/buttonphaser_3.png"));
-    juce::Image phaser_button_4 = ImageCache::getFromFile(
-        juce::File(GRAPHICS_PATH + "cropped/buttons/buttonphaser_4.png"));
+    juce::Image phaser_button_1 = ImageCache::getFromMemory(
+        BinaryData::buttonphaser_1_png, BinaryData::buttonphaser_1_pngSize);
+    juce::Image phaser_button_2 = ImageCache::getFromMemory(
+        BinaryData::buttonphaser_2_png, BinaryData::buttonphaser_2_pngSize);
+    juce::Image phaser_button_3 = ImageCache::getFromMemory(
+        BinaryData::buttonphaser_3_png, BinaryData::buttonphaser_3_pngSize);
+    juce::Image phaser_button_4 = ImageCache::getFromMemory(
+        BinaryData::buttonphaser_4_png, BinaryData::buttonphaser_4_pngSize);
 
     juce::DrawableImage phaser_button_draw1;
     juce::DrawableImage phaser_button_draw2;
@@ -70,14 +70,14 @@ public:
 
     m_phaser_button.onClick = [&]() { /*setFX(1); */ };
 
-    juce::Image flanger_button_1 = ImageCache::getFromFile(
-        juce::File(GRAPHICS_PATH + "cropped/buttons/buttonflanger_1.png"));
-    juce::Image flanger_button_2 = ImageCache::getFromFile(
-        juce::File(GRAPHICS_PATH + "cropped/buttons/buttonflanger_2.png"));
-    juce::Image flanger_button_3 = ImageCache::getFromFile(
-        juce::File(GRAPHICS_PATH + "cropped/buttons/buttonflanger_3.png"));
-    juce::Image flanger_button_4 = ImageCache::getFromFile(
-        juce::File(GRAPHICS_PATH + "cropped/buttons/buttonflanger_4.png"));
+    juce::Image flanger_button_1 = ImageCache::getFromMemory(
+        BinaryData::buttonflanger_1_png, BinaryData::buttonflanger_1_pngSize);
+    juce::Image flanger_button_2 = ImageCache::getFromMemory(
+        BinaryData::buttonflanger_2_png, BinaryData::buttonflanger_2_pngSize);
+    juce::Image flanger_button_3 = ImageCache::getFromMemory(
+        BinaryData::buttonflanger_3_png, BinaryData::buttonflanger_3_pngSize);
+    juce::Image flanger_button_4 = ImageCache::getFromMemory(
+        BinaryData::buttonflanger_4_png, BinaryData::buttonflanger_4_pngSize);
 
     juce::DrawableImage flanger_button_draw1;
     juce::DrawableImage flanger_button_draw2;
@@ -107,14 +107,14 @@ public:
 
     m_flanger_button.onClick = [&]() { /*setFX(2);*/ };
 
-    juce::Image chorus_button_1 = ImageCache::getFromFile(
-        juce::File(GRAPHICS_PATH + "cropped/buttons/buttonchorus_1.png"));
-    juce::Image chorus_button_2 = ImageCache::getFromFile(
-        juce::File(GRAPHICS_PATH + "cropped/buttons/buttonchorus_2.png"));
-    juce::Image chorus_button_3 = ImageCache::getFromFile(
-        juce::File(GRAPHICS_PATH + "cropped/buttons/buttonchorus_3.png"));
-    juce::Image chorus_button_4 = ImageCache::getFromFile(
-        juce::File(GRAPHICS_PATH + "cropped/buttons/buttonchorus_4.png"));
+    juce::Image chorus_button_1 = ImageCache::getFromMemory(
+        BinaryData::buttonchorus_1_png, BinaryData::buttonchorus_1_pngSize);
+    juce::Image chorus_button_2 = ImageCache::getFromMemory(
+        BinaryData::buttonchorus_2_png, BinaryData::buttonchorus_2_pngSize);
+    juce::Image chorus_button_3 = ImageCache::getFromMemory(
+        BinaryData::buttonchorus_3_png, BinaryData::buttonchorus_3_pngSize);
+    juce::Image chorus_button_4 = ImageCache::getFromMemory(
+        BinaryData::buttonchorus_4_png, BinaryData::buttonchorus_4_pngSize);
 
     juce::DrawableImage chorus_button_draw1;
     juce::DrawableImage chorus_button_draw2;
@@ -144,14 +144,14 @@ public:
     m_chorus_button.setRadioGroupId(1221);
     m_chorus_button.onClick = [&]() { /* setFX(3); */ };
 
-    juce::Image delay_button_1 = ImageCache::getFromFile(
-        juce::File(GRAPHICS_PATH + "cropped/buttons/buttondelay_1.png"));
-    juce::Image delay_button_2 = ImageCache::getFromFile(
-        juce::File(GRAPHICS_PATH + "cropped/buttons/buttondelay_2.png"));
-    juce::Image delay_button_3 = ImageCache::getFromFile(
-        juce::File(GRAPHICS_PATH + "cropped/buttons/buttondelay_3.png"));
-    juce::Image delay_button_4 = ImageCache::getFromFile(
-        juce::File(GRAPHICS_PATH + "cropped/buttons/buttondelay_4.png"));
+    juce::Image delay_button_1 = ImageCache::getFromMemory(
+        BinaryData::buttondelay_1_png, BinaryData::buttondelay_1_pngSize);
+    juce::Image delay_button_2 = ImageCache::getFromMemory(
+        BinaryData::buttondelay_2_png, BinaryData::buttondelay_2_pngSize);
+    juce::Image delay_button_3 = ImageCache::getFromMemory(
+        BinaryData::buttondelay_3_png, BinaryData::buttondelay_3_pngSize);
+    juce::Image delay_button_4 = ImageCache::getFromMemory(
+        BinaryData::buttondelay_4_png, BinaryData::buttondelay_4_pngSize);
 
     juce::DrawableImage delay_button_draw1;
     juce::DrawableImage delay_button_draw2;

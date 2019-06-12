@@ -34,8 +34,8 @@ FXComponent::FXComponent(AudioProcessorValueTreeState &vts,
   m_reset_attach.reset(
       new ButtonAttachment(m_value_tree, m_fx_name + "_reset", m_reset));
 
-  juce::Image metal_knob_mid = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/knobs/metal2/metal_knob_mid.png"));
+  juce::Image metal_knob_mid = ImageCache::getFromMemory(
+      BinaryData::metal_knob_mid_png, BinaryData::metal_knob_mid_png));
   m_amount.setStrip(metal_knob_mid, N_KNOB_FRAMES);
   m_amount.setSliderStyle(Slider::RotaryVerticalDrag);
   m_amount.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
@@ -85,14 +85,14 @@ FXComponent::FXComponent(AudioProcessorValueTreeState &vts,
   m_dry_wet.setKnobTooltip("The mix of processed and\n unprocessed signals");
   addAndMakeVisible(m_dry_wet);
 
-  juce::Image reset_1 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonreset_lfo_1.png"));
-  juce::Image reset_2 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonreset_lfo_2.png"));
-  juce::Image reset_3 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonreset_lfo_3.png"));
-  juce::Image reset_4 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonreset_lfo_4.png"));
+  juce::Image reset_1 = ImageCache::getFromMemory(
+      BinaryData::buttonreset_lfo_1_png, BinaryData::buttonreset_lfo_1_pngSize);
+  juce::Image reset_2 = ImageCache::getFromMemory(
+      BinaryData::buttonreset_lfo_2_png, BinaryData::buttonreset_lfo_2_pngSize);
+  juce::Image reset_3 = ImageCache::getFromMemory(
+      BinaryData::buttonreset_lfo_3_png, BinaryData::buttonreset_lfo_3_pngSize);
+  juce::Image reset_4 = ImageCache::getFromMemory(
+      BinaryData::buttonreset_lfo_4_png, BinaryData::buttonreset_lfo_4_pngSize);
 
   juce::DrawableImage reset_draw1;
   juce::DrawableImage reset_draw2;
@@ -116,14 +116,14 @@ FXComponent::FXComponent(AudioProcessorValueTreeState &vts,
   m_reset.setTooltip("Resets the internal\n LFO on every new note");
   addAndMakeVisible(m_reset);
 
-  juce::Image sync_1 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonsync_1.png"));
-  juce::Image sync_2 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonsync_2.png"));
-  juce::Image sync_3 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonsync_3.png"));
-  juce::Image sync_4 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonsync_4.png"));
+  juce::Image sync_1 = ImageCache::getFromMemory(
+      BinaryData::buttonsync_1_png, BinaryData::buttonsync_1_pngSize);
+  juce::Image sync_2 = ImageCache::getFromMemory(
+      BinaryData::buttonsync_2_png, BinaryData::buttonsync_2_pngSize);
+  juce::Image sync_3 = ImageCache::getFromMemory(
+      BinaryData::buttonsync_3_png, BinaryData::buttonsync_3_pngSize);
+  juce::Image sync_4 = ImageCache::getFromMemory(
+      BinaryData::buttonsync_4_png, BinaryData::buttonsync_4_pngSize);
 
   juce::DrawableImage sync_draw1;
   juce::DrawableImage sync_draw2;
@@ -157,7 +157,7 @@ FXComponent::FXComponent(AudioProcessorValueTreeState &vts,
   };
 
   m_sync_time.OnValueChange = [&](int p_left, int p_right) {
-    auto node = m_value_tree.state.getOrCreateChildWithName("NO_PARAM", nullptr);
+    auto node = m_value_tree.state;
     node.setProperty(m_fx_synctime_numerator_identifier, p_left, nullptr);
     node.setProperty(m_fx_synctime_denominator_identifier, p_right, nullptr);
   };
@@ -165,6 +165,11 @@ FXComponent::FXComponent(AudioProcessorValueTreeState &vts,
   m_sync_time.setTopLeftPosition(FX_SYNC_TIME_FX_POS_X, FX_SYNC_TIME_FX_POS_Y);
   m_sync_time.setTooltip("Set the delay time in sync to your track");
   addChildComponent(m_sync_time);
+
+  m_rate.setNumDecimalPlacesToDisplay(3);
+  m_amount.setNumDecimalPlacesToDisplay(3);
+  m_feedback.setNumDecimalPlacesToDisplay(3);
+  m_dry_wet.setNumDecimalPlacesToDisplay(3);
 
   m_amount.setBounds(FX_AMOUNT_POS_X, FX_AMOUNT_POS_Y,
                      metal_knob_mid.getWidth(), metal_knob_mid.getHeight());
@@ -175,10 +180,7 @@ FXComponent::FXComponent(AudioProcessorValueTreeState &vts,
   m_dry_wet.setBounds(FX_DRY_WET_POS_X, FX_DRY_WET_POS_Y,
                       metal_knob_mid.getWidth(), metal_knob_mid.getHeight());
 
-  m_rate.setNumDecimalPlacesToDisplay(3);
-  m_amount.setNumDecimalPlacesToDisplay(3);
-  m_feedback.setNumDecimalPlacesToDisplay(3);
-  m_dry_wet.setNumDecimalPlacesToDisplay(3);
+
 }
 
 FXComponent::~FXComponent() {}

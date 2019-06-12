@@ -116,9 +116,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   // m_fine.setOdinPointer(&p_processor);
 
   m_vol.setStrip(
-      ImageCache::getFromFile(juce::File(
-          GRAPHICS_PATH + "cropped/knobs/black2/black_knob_small.png")),
-      N_KNOB_FRAMES);
+      ImageCache::getFromMemory(BinaryData::black_knob_small_png, BinaryData::black_knob_small_pngSize),N_KNOB_FRAMES);
   m_vol.setSliderStyle(Slider::RotaryVerticalDrag);
   m_vol.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
   m_vol.setRange(VOL_MIN, VOL_MAX);
@@ -133,14 +131,14 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
                        VOL_POS_Y - BLACK_KNOB_SMALL_OFFSET_Y);
   m_vol.setBounds(area_vol);
 
-  juce::Image reset_1 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonreset_osc_1.png"));
-  juce::Image reset_2 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonreset_osc_2.png"));
-  juce::Image reset_3 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonreset_osc_3.png"));
-  juce::Image reset_4 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonreset_osc_4.png"));
+  juce::Image reset_1 = ImageCache::getFromMemory(
+      BinaryData::buttonreset_osc_1_png, BinaryData::buttonreset_osc_1_pngSize);
+  juce::Image reset_2 = ImageCache::getFromMemory(
+      BinaryData::buttonreset_osc_2_png, BinaryData::buttonreset_osc_2_pngSize);
+  juce::Image reset_3 = ImageCache::getFromMemory(
+      BinaryData::buttonreset_osc_3_png, BinaryData::buttonreset_osc_3_pngSize);
+  juce::Image reset_4 = ImageCache::getFromMemory(
+      BinaryData::buttonreset_osc_4_png, BinaryData::buttonreset_osc_4_pngSize);
 
   juce::DrawableImage reset_draw1;
   juce::DrawableImage reset_draw2;
@@ -166,8 +164,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
                     juce::Colour());
 
   m_oct.setStrip(
-      ImageCache::getFromFile(juce::File(
-          GRAPHICS_PATH + "cropped/knobs/black2/black_knob_small.png")),
+      ImageCache::getFromMemory(BinaryData::cropped/knobs/black2/black_knob_small_png, BinaryData::)),
       N_KNOB_FRAMES);
   m_oct.setSliderStyle(Slider::RotaryVerticalDrag);
   m_oct.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
@@ -182,8 +179,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   addChildComponent(m_oct);
 
   m_semi.setStrip(
-      ImageCache::getFromFile(juce::File(
-          GRAPHICS_PATH + "cropped/knobs/black2/black_knob_small.png")),
+      ImageCache::getFromMemory(BinaryData::cropped/knobs/black2/black_knob_small_png, BinaryData::)),
       N_KNOB_FRAMES);
   m_semi.setSliderStyle(Slider::RotaryVerticalDrag);
   m_semi.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
@@ -193,8 +189,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   addChildComponent(m_semi);
 
   m_fine.setStrip(
-      ImageCache::getFromFile(juce::File(
-          GRAPHICS_PATH + "cropped/knobs/black2/black_knob_small.png")),
+      ImageCache::getFromMemory(BinaryData::cropped/knobs/black2/black_knob_small_png, BinaryData::)),
       N_KNOB_FRAMES);
   m_fine.setSliderStyle(Slider::RotaryVerticalDrag);
   m_fine.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
@@ -213,10 +208,10 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_fine.setNumDecimalPlacesToDisplay(1);
   m_fine.setBounds(area_fine);
 
-  juce::Image LED_1 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/LED_1.png"));
-  juce::Image LED_2 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/LED_2.png"));
+  juce::Image LED_1 = ImageCache::getFromMemory(
+      BinaryData::LED_1_png, BinaryData::));
+  juce::Image LED_2 = ImageCache::getFromMemory(
+      BinaryData::LED_2_png, BinaryData::));
   juce::DrawableImage LED_draw1;
   juce::DrawableImage LED_draw2;
   LED_draw1.setImage(LED_1);
@@ -300,8 +295,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   addChildComponent(m_LED_sine);
 
   m_pw.setStrip(
-      ImageCache::getFromFile(juce::File(
-          GRAPHICS_PATH + "cropped/knobs/black2/black_knob_small.png")),
+      ImageCache::getFromMemory(BinaryData::black_knob_small_png, BinaryData::black_knob_small_png)),
       N_KNOB_FRAMES);
   m_pw.setSliderStyle(Slider::RotaryVerticalDrag);
   m_pw.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
@@ -311,8 +305,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   addChildComponent(m_pw);
 
   m_drift.setStrip(
-      ImageCache::getFromFile(juce::File(
-          GRAPHICS_PATH + "cropped/knobs/black4/black_knob_big.png")),
+      ImageCache::getFromMemory(BinaryData::black_knob_big_png, BinaryData::black_knob_big_png)),
       N_KNOB_FRAMES);
   m_drift.setSliderStyle(Slider::RotaryVerticalDrag);
   m_drift.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
@@ -320,14 +313,14 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
                          "analog\noscillator would");
   addChildComponent(m_drift);
 
-  juce::Image arp_1 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonarpeggiator_1.png"));
-  juce::Image arp_2 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonarpeggiator_2.png"));
-  juce::Image arp_3 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonarpeggiator_3.png"));
-  juce::Image arp_4 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonarpeggiator_4.png"));
+  juce::Image arp_1 = ImageCache::getFromMemory(
+      BinaryData::buttonarpeggiator_1_png, BinaryData::buttonarpeggiator_1_pngSize);
+  juce::Image arp_2 = ImageCache::getFromMemory(
+      BinaryData::buttonarpeggiator_2_png, BinaryData::buttonarpeggiator_2_pngSize);
+  juce::Image arp_3 = ImageCache::getFromMemory(
+      BinaryData::buttonarpeggiator_3_png, BinaryData::buttonarpeggiator_3_pngSize);
+  juce::Image arp_4 = ImageCache::getFromMemory(
+      BinaryData::buttonarpeggiator_4_png, BinaryData::buttonarpeggiator_4_pngSize);
 
   juce::DrawableImage arp_draw1;
   juce::DrawableImage arp_draw2;
@@ -350,14 +343,14 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_arp.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId,
                   juce::Colour());
 
-  juce::Image noise_1 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonnoise_1.png"));
-  juce::Image noise_2 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonnoise_2.png"));
-  juce::Image noise_3 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonnoise_3.png"));
-  juce::Image noise_4 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonnoise_4.png"));
+  juce::Image noise_1 = ImageCache::getFromMemory(
+      BinaryData::buttonnoise_1_png, BinaryData::buttonnoise_1_pngSize);
+  juce::Image noise_2 = ImageCache::getFromMemory(
+      BinaryData::buttonnoise_2_png, BinaryData::buttonnoise_2_pngSize);
+  juce::Image noise_3 = ImageCache::getFromMemory(
+      BinaryData::buttonnoise_3_png, BinaryData::buttonnoise_3_pngSize);
+  juce::Image noise_4 = ImageCache::getFromMemory(
+      BinaryData::buttonnoise_4_png, BinaryData::buttonnoise_4_pngSize);
 
   juce::DrawableImage noise_draw1;
   juce::DrawableImage noise_draw2;
@@ -381,14 +374,14 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_noise.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId,
                     juce::Colour());
 
-  juce::Image step_button_1 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonstep_1.png"));
-  juce::Image step_button_2 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonstep_2.png"));
-  juce::Image step_button_3 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonstep_3.png"));
-  juce::Image step_button_4 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonstep_4.png"));
+  juce::Image step_button_1 = ImageCache::getFromMemory(
+      BinaryData::buttonstep_1_png, BinaryData::buttonstep_1_pngSize);
+  juce::Image step_button_2 = ImageCache::getFromMemory(
+      BinaryData::buttonstep_2_png, BinaryData::buttonstep_2_pngSize);
+  juce::Image step_button_3 = ImageCache::getFromMemory(
+      BinaryData::buttonstep_3_png, BinaryData::buttonstep_3_pngSize);
+  juce::Image step_button_4 = ImageCache::getFromMemory(
+      BinaryData::buttonstep_4_png, BinaryData::buttonstep_4_pngSize);
 
   juce::DrawableImage step_button_draw1;
   juce::DrawableImage step_button_draw2;
@@ -415,8 +408,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
                           juce::Colour());
 
   m_step_1.setStrip(
-      ImageCache::getFromFile(juce::File(
-          GRAPHICS_PATH + "cropped/knobs/black2/black_knob_small.png")),
+      ImageCache::getFromMemory(BinaryData::black_knob_small_png, BinaryData::black_knob_small_pngSize),
       256);
   m_step_1.setBounds(STEP_1_POS_X, STEP_1_POS_Y, BLACK_KNOB_SMALL_SIZE_X,
                      BLACK_KNOB_SMALL_SIZE_Y);
@@ -429,8 +421,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   addChildComponent(m_step_1);
 
   m_step_2.setStrip(
-      ImageCache::getFromFile(juce::File(
-          GRAPHICS_PATH + "cropped/knobs/black2/black_knob_small.png")),
+      ImageCache::getFromMemory(BinaryData::black_knob_small_png, BinaryData::black_knob_small_pngSize),
       256);
   m_step_2.setBounds(STEP_2_POS_X, STEP_2_POS_Y, BLACK_KNOB_SMALL_SIZE_X,
                      BLACK_KNOB_SMALL_SIZE_Y);
@@ -446,8 +437,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   addChildComponent(m_step_2);
 
   m_step_3.setStrip(
-      ImageCache::getFromFile(juce::File(
-          GRAPHICS_PATH + "cropped/knobs/black2/black_knob_small.png")),
+      ImageCache::getFromMemory(BinaryData::black_knob_small_png, BinaryData::black_knob_small_pngSize),
       256);
   m_step_3.setBounds(STEP_3_POS_X, STEP_3_POS_Y, BLACK_KNOB_SMALL_SIZE_X,
                      BLACK_KNOB_SMALL_SIZE_Y);
@@ -462,8 +452,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
                                      ModifierKeys::ctrlModifier);
   addChildComponent(m_step_3);
 
-  m_fm.setStrip(ImageCache::getFromFile(juce::File(
-                    GRAPHICS_PATH + "cropped/knobs/metal3/metal_knob_big.png")),
+  m_fm.setStrip(ImageCache::getFromMemory(BinaryData::metal_knob_big_png, BinaryData::metal_knob_big_pngSize),
                 256);
   m_fm.setBounds(FM_POS_X, FM_POS_Y, METAL_KNOB_BIG_SIZE_X,
                  METAL_KNOB_BIG_SIZE_Y);
@@ -473,8 +462,10 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
       "How much the modulator\nmodulates the pitch of\n the carrier wave");
   addChildComponent(m_fm);
 
-  m_lp.setStrip(ImageCache::getFromFile(juce::File(
-                    GRAPHICS_PATH + "cropped/knobs/metal3/metal_knob_big.png")),
+  m_lp.setStrip(ImageCache::getFromMemory(BinaryData::metal_knob_big_png, BinaryData::metal_knob_big_pngSize),buttonstep_1_png
+buttonstep_2_png
+buttonstep_3_png
+buttonstep_4_png
                 256);
   m_lp.setBounds(LP_POS_X, LP_POS_Y, METAL_KNOB_BIG_SIZE_X,
                  METAL_KNOB_BIG_SIZE_Y);
@@ -490,8 +481,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
       "The frequency of\nthe lowpass filter which\nis applied to the noise");
   addChildComponent(m_lp);
 
-  m_hp.setStrip(ImageCache::getFromFile(juce::File(
-                    GRAPHICS_PATH + "cropped/knobs/metal3/metal_knob_big.png")),
+  m_hp.setStrip(ImageCache::getFromMemory(BinaryData::metal_knob_big_png, BinaryData::metal_knob_big_pngSize),
                 256);
   m_hp.setBounds(HP_POS_X, HP_POS_Y, METAL_KNOB_BIG_SIZE_X,
                  METAL_KNOB_BIG_SIZE_Y);
@@ -508,8 +498,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   addChildComponent(m_hp);
 
   m_position.setStrip(
-      ImageCache::getFromFile(juce::File(
-          GRAPHICS_PATH + "cropped/knobs/metal3/metal_knob_big.png")),
+      ImageCache::getFromMemory(BinaryData::metal_knob_big_png, BinaryData::metal_knob_big_pngSize),
       256);
   m_position.setBounds(POSITION_POS_X, POSITION_POS_Y, METAL_KNOB_BIG_SIZE_X,
                        METAL_KNOB_BIG_SIZE_Y);
@@ -520,8 +509,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   addChildComponent(m_position);
 
   m_detune.setStrip(
-      ImageCache::getFromFile(juce::File(
-          GRAPHICS_PATH + "cropped/knobs/metal3/metal_knob_big.png")),
+      ImageCache::getFromMemory(BinaryData::metal_knob_big_png, BinaryData::metal_knob_big_pngSize),
       256);
   m_detune.setBounds(DETUNE_POS_X, DETUNE_POS_Y, METAL_KNOB_BIG_SIZE_X,
                      METAL_KNOB_BIG_SIZE_Y);
@@ -533,8 +521,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   addChildComponent(m_detune);
 
   m_spread.setStrip(
-      ImageCache::getFromFile(juce::File(
-          GRAPHICS_PATH + "cropped/knobs/metal1/metal_knob_small.png")),
+      ImageCache::getFromMemory(BinaryData::metal_knob_small_png, BinaryData::metal_knob_small_pngSize),
       256);
   m_spread.setBounds(SPREAD_POS_X, SPREAD_POS_Y, METAL_KNOB_SMALL_SIZE_X,
                      METAL_KNOB_SMALL_SIZE_Y);
@@ -545,8 +532,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   addChildComponent(m_spread);
 
   m_position_multi.setStrip(
-      ImageCache::getFromFile(juce::File(
-          GRAPHICS_PATH + "cropped/knobs/metal1/metal_knob_small.png")),
+      ImageCache::getFromMemory(BinaryData::metal_knob_small_png, BinaryData::metal_knob_small_pngSize),
       256);
   m_position_multi.setBounds(POSITION_MULTI_POS_X, POSITION_MULTI_POS_Y,
                              METAL_KNOB_SMALL_SIZE_X, METAL_KNOB_SMALL_SIZE_Y);
@@ -558,8 +544,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   addChildComponent(m_position_multi);
 
   m_speed.setStrip(
-      ImageCache::getFromFile(juce::File(
-          GRAPHICS_PATH + "cropped/knobs/black2/black_knob_small.png")),
+      ImageCache::getFromMemory(BinaryData::black_knob_small_png, BinaryData::black_knob_small_pngSize),
       256);
   m_speed.setBounds(SPEED_POS_X, SPEED_POS_Y, BLACK_KNOB_SMALL_SIZE_X,
                     BLACK_KNOB_SMALL_SIZE_Y);
@@ -575,14 +560,14 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_speed.setKnobTooltip("Speed of the arpeggiator");
   addChildComponent(m_speed);
 
-  juce::Image chipdraw_convert_1 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonapply_1.png"));
-  juce::Image chipdraw_convert_2 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonapply_2.png"));
-  juce::Image chipdraw_convert_3 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonapply_3.png"));
-  juce::Image chipdraw_convert_4 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonapply_4.png"));
+  juce::Image chipdraw_convert_1 = ImageCache::getFromMemory(
+      BinaryData::buttonapply_1_png, BinaryData::buttonapply_1_pngSize);
+  juce::Image chipdraw_convert_2 = ImageCache::getFromMemory(
+      BinaryData::buttonapply_2_png, BinaryData::buttonapply_2_pngSize);
+  juce::Image chipdraw_convert_3 = ImageCache::getFromMemory(
+      BinaryData::buttonapply_3_png, BinaryData::buttonapply_3_pngSize);
+  juce::Image chipdraw_convert_4 = ImageCache::getFromMemory(
+      BinaryData::buttonapply_4_png, BinaryData::buttonapply_4_pngSize);
 
   juce::DrawableImage chipdraw_convert_draw1;
   juce::DrawableImage chipdraw_convert_draw2;
@@ -1066,10 +1051,10 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
       "The pitch ratio of the modulator to base frequency");
   addChildComponent(m_modulator_ratio);
 
-  juce::Image fm_exp_left = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonexplin_1.png"));
-  juce::Image fm_exp_right = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonexplin_3.png"));
+  juce::Image fm_exp_left = ImageCache::getFromMemory(
+      BinaryData::buttonexplin_1_png, BinaryData::buttonexplin_1_pngSize);
+  juce::Image fm_exp_right = ImageCache::getFromMemory(
+      BinaryData::buttonexplin_3_png, BinaryData::buttonexplin_3_pngSize);
   m_fm_exp.setImage(fm_exp_left, 1);
   m_fm_exp.setImage(fm_exp_right, 2);
   m_fm_exp.setBounds(FM_EXP_POS_X, FM_EXP_POS_Y, fm_exp_left.getWidth(),
@@ -1124,8 +1109,8 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 
   juce::Colour vector_color(60, 60, 60);
 
-  juce::Image glas_panel = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/vectorpanel.png"));
+  juce::Image glas_panel = ImageCache::getFromMemory(
+      BinaryData::vectorpanel_png, BinaryData::vectorpanel_pngs));
   m_xy.setTopLeftPosition(XY_POS_X, XY_POS_Y);
   m_xy.setSize(glas_panel.getWidth(), glas_panel.getHeight());
   m_xy.setImage(glas_panel);
@@ -1136,8 +1121,8 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
       "waveform, which can be selected by the dropdowns on the right.");
   addAndMakeVisible(m_xy);
 
-  juce::Image glas_panel_vecwave = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/glaspanel_big.png"));
+  juce::Image glas_panel_vecwave = ImageCache::getFromMemory(
+      BinaryData::glaspanel_big_png, BinaryData::glaspanel_big_png));
   m_vec_a.setImage(glas_panel_vecwave);
   m_vec_a.setInlay(1);
   m_vec_a.setEditableText(false);
@@ -1198,8 +1183,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   addChildComponent(m_vec_d);
 
   m_xy_x.setStrip(
-      ImageCache::getFromFile(juce::File(
-          GRAPHICS_PATH + "cropped/knobs/black1/black_knob_very_small.png")),
+      ImageCache::getFromMemory(BinaryData::black_knob_very_small_png, BinaryData::black_knob_very_small_pngSize),
       256);
   m_xy_x.setBounds(X_POS_X, X_POS_Y, BLACK_KNOB_VERY_SMALL_SIZE_X,
                    BLACK_KNOB_VERY_SMALL_SIZE_Y);
@@ -1213,8 +1197,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   addChildComponent(m_xy_x);
 
   m_xy_y.setStrip(
-      ImageCache::getFromFile(juce::File(
-          GRAPHICS_PATH + "cropped/knobs/black1/black_knob_very_small.png")),
+      ImageCache::getFromMemory(BinaryData::black_knob_very_small_png, BinaryData::black_knob_very_small_pngSize),
       256);
   m_xy_y.setBounds(Y_POS_X, Y_POS_Y, BLACK_KNOB_VERY_SMALL_SIZE_X,
                    BLACK_KNOB_VERY_SMALL_SIZE_Y);
@@ -1324,61 +1307,60 @@ void OscComponent::setOscType(int p_osc_type) {
 void OscComponent::setOscTypeBypass() { m_background = m_background_bypass; }
 
 void OscComponent::setOscTypeAnalog() {
-  m_background = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "applied/analog_backdrop.png"));
+  m_background = ImageCache::getFromMemory(BinaryData::analog_backdrop_png, BinaryData::analog_backdrop_pngSize);
   showAnalogComponents();
 }
 void OscComponent::setOscTypeChiptune() {
-  m_background = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "applied/chiptune_backdrop.png"));
+  m_background = ImageCache::getFromMemory(
+      BinaryData::chiptune_backdrop_png, BinaryData::chiptune_backdrop_pngSize);
   showChiptuneComponents();
 }
 
 void OscComponent::setOscTypeFM() {
-  m_background = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "applied/fm_backdrop.png"));
+  m_background = ImageCache::getFromMemory(
+      BinaryData::fm_backdrop_png, BinaryData::fm_backdrop_pngSize);
   showFMComponents();
 }
 
 void OscComponent::setOscTypeChipdraw() {
-  m_background = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "applied/chipdraw_backdrop.png"));
+  m_background = ImageCache::getFromMemory(
+      BinaryData::chipdraw_backdrop_png, BinaryData::chipdraw_backdrop_pngSize);
   showChipdrawComponents();
 }
 
 void OscComponent::setOscTypeWavedraw() {
-  m_background = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "applied/wavedraw_backdrop.png"));
+  m_background = ImageCache::getFromMemory(
+      BinaryData::wavedraw_backdrop_png, BinaryData::wavedraw_backdrop_pngSize);
   showWavedrawComponents();
 }
 
 void OscComponent::setOscTypeSpecdraw() {
-  m_background = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "applied/specdraw_backdrop.png"));
+  m_background = ImageCache::getFromMemory(
+      BinaryData::specdraw_backdrop_png, BinaryData::specdraw_backdrop_pngSize);
   showSpecdrawComponents();
 }
 
 void OscComponent::setOscTypeNoise() {
-  m_background = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "applied/noise_backdrop.png"));
+  m_background = ImageCache::getFromMemory(
+      BinaryData::noise_backdrop_png, BinaryData::noise_backdrop_pngSize);
   showNoiseComponents();
 }
 
 void OscComponent::setOscTypeVector() {
-  m_background = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "applied/vector_backdrop.png"));
+  m_background = ImageCache::getFromMemory(
+      BinaryData::vector_backdrop_png, BinaryData::vector_backdrop_pngSize);
   showVectorComponents();
 }
 
 void OscComponent::setOscTypeWavetable() {
-  m_background = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "applied/wavetable_backdrop.png"));
+  m_background = ImageCache::getFromMemory(
+      BinaryData::wavetable_backdrop_png, BinaryData::wavetable_backdrop_pngSize);
   showWavetableComponents();
 }
 
 void OscComponent::setOscTypeMulti() {
-  m_background = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "applied/multi_backdrop.png"));
+  m_background = ImageCache::getFromMemory(
+      BinaryData::multi_backdrop_png, BinaryData::multi_backdrop_png));
   showMultiComponents();
 }
 

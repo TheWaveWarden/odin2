@@ -83,9 +83,6 @@ public:
     setDoubleClickReturnValue(true, 0, ModifierKeys::ctrlModifier);
 
     setTooltip("henlo");
-    // todo not working
-    // setDoubleClickReturnValue 	(false, 0,
-    // ModifierKeys::ctrlAltCommandModifiers);
   }
 
   ~Knob() { setLookAndFeel(nullptr); }

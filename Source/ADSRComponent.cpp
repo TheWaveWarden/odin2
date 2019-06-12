@@ -26,14 +26,14 @@ ADSRComponent::ADSRComponent(AudioProcessorValueTreeState &vts,
   m_release_attach.reset(new SliderAttachment(
       m_value_tree, "env" + m_adsr_number + "_release", m_release));
 
-  juce::Image loop_1 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonloop_1.png"));
-  juce::Image loop_2 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonloop_2.png"));
-  juce::Image loop_3 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonloop_3.png"));
-  juce::Image loop_4 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonloop_4.png"));
+  juce::Image loop_1 = ImageCache::getFromMemory(
+      BinaryData::buttonloop_1_png, BinaryData::buttonloop_1_png));
+  juce::Image loop_2 = ImageCache::getFromMemory(
+      BinaryData::buttonloop_2_png, BinaryData::buttonloop_2_png));
+  juce::Image loop_3 = ImageCache::getFromMemory(
+      BinaryData::buttonloop_3_png, BinaryData::buttonloop_3_png));
+  juce::Image loop_4 = ImageCache::getFromMemory(
+      BinaryData::buttonloop_4_png, BinaryData::buttonloop_4_png));
 
   juce::DrawableImage loop_draw1;
   juce::DrawableImage loop_draw2;

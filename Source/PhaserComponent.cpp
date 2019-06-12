@@ -24,9 +24,9 @@ PhaserComponent::PhaserComponent(AudioProcessorValueTreeState &vts,
 
   m_rate_attach.reset(
       new SliderAttachment(m_value_tree, m_fx_name + "_rate", m_rate));
-      m_freq_attach.reset(
+  m_freq_attach.reset(
       new SliderAttachment(m_value_tree, m_fx_name + "_freq", m_freq));
-      m_feedback_attach.reset(
+  m_feedback_attach.reset(
       new SliderAttachment(m_value_tree, m_fx_name + "_feedback", m_feedback));
   m_mod_attach.reset(
       new SliderAttachment(m_value_tree, m_fx_name + "_mod", m_mod));
@@ -36,8 +36,8 @@ PhaserComponent::PhaserComponent(AudioProcessorValueTreeState &vts,
   m_reset_attach.reset(
       new ButtonAttachment(m_value_tree, m_fx_name + "_reset", m_reset));
 
-  juce::Image metal_knob_mid = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/knobs/metal2/metal_knob_mid.png"));
+  juce::Image metal_knob_mid = ImageCache::getFromMemory(
+      BinaryData::metal_knob_mid_png, BinaryData::metal_knob_mid_pngSize);
   m_mod.setStrip(metal_knob_mid, N_KNOB_FRAMES);
   m_mod.setSliderStyle(Slider::RotaryVerticalDrag);
   m_mod.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
@@ -94,14 +94,14 @@ PhaserComponent::PhaserComponent(AudioProcessorValueTreeState &vts,
   m_dry_wet.setKnobTooltip("The mix of processed and\n unprocessed signals");
   addAndMakeVisible(m_dry_wet);
 
-  juce::Image reset_1 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonreset_lfo_1.png"));
-  juce::Image reset_2 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonreset_lfo_2.png"));
-  juce::Image reset_3 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonreset_lfo_3.png"));
-  juce::Image reset_4 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonreset_lfo_4.png"));
+  juce::Image reset_1 = ImageCache::getFromMemory(
+      BinaryData::buttonreset_lfo_1_png, BinaryData::buttonreset_lfo_1_pngSize);
+  juce::Image reset_2 = ImageCache::getFromMemory(
+      BinaryData::buttonreset_lfo_2_png, BinaryData::buttonreset_lfo_2_pngSize);
+  juce::Image reset_3 = ImageCache::getFromMemory(
+      BinaryData::buttonreset_lfo_3_png, BinaryData::buttonreset_lfo_3_pngSize);
+  juce::Image reset_4 = ImageCache::getFromMemory(
+      BinaryData::buttonreset_lfo_4_png, BinaryData::buttonreset_lfo_4_pngSize);
 
   juce::DrawableImage reset_draw1;
   juce::DrawableImage reset_draw2;
@@ -125,14 +125,14 @@ PhaserComponent::PhaserComponent(AudioProcessorValueTreeState &vts,
   m_reset.setTooltip("Resets the internal\n LFO on every new note");
   addAndMakeVisible(m_reset);
 
-  juce::Image sync_1 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonsync_1.png"));
-  juce::Image sync_2 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonsync_2.png"));
-  juce::Image sync_3 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonsync_3.png"));
-  juce::Image sync_4 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonsync_4.png"));
+  juce::Image sync_1 = ImageCache::getFromMemory(
+      BinaryData::buttonsync_1_png, BinaryData::buttonsync_1_pngSize);
+  juce::Image sync_2 = ImageCache::getFromMemory(
+      BinaryData::buttonsync_2_png, BinaryData::buttonsync_2_pngSize);
+  juce::Image sync_3 = ImageCache::getFromMemory(
+      BinaryData::buttonsync_3_png, BinaryData::buttonsync_3_pngSize);
+  juce::Image sync_4 = ImageCache::getFromMemory(
+      BinaryData::buttonsync_4_png, BinaryData::buttonsync_4_pngSize);
 
   juce::DrawableImage sync_draw1;
   juce::DrawableImage sync_draw2;

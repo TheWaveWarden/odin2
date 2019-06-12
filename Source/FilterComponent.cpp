@@ -45,12 +45,12 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts,
       m_value_tree, "fil" + m_filter_number + "_comb_polarity",
       m_comb_plus_minus));
 
-  juce::Image metal_knob_big = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/knobs/metal3/metal_knob_big.png"));
-  juce::Image metal_knob_mid = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/knobs/metal2/metal_knob_mid.png"));
-  juce::Image black_knob_small = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/knobs/black2/black_knob_small.png"));
+  juce::Image metal_knob_big = ImageCache::getFromMemory(
+      BinaryData::metal_knob_big_png, BinaryData::metal_knob_big_png));
+  juce::Image metal_knob_mid = ImageCache::getFromMemory(
+      BinaryData::metal_knob_mid_png, BinaryData::metal_knob_mid_png));
+  juce::Image black_knob_small = ImageCache::getFromMemory(
+      BinaryData::black_knob_small_png, BinaryData::black_knob_small_png));
 
   m_vel.setStrip(black_knob_small, N_KNOB_FRAMES);
   m_vel.setSliderStyle(Slider::RotaryVerticalDrag);
@@ -178,10 +178,10 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts,
   m_vowel_right.setValue(2);
   m_vowel_right.setColor(Colour(90, 40, 40));
 
-  juce::Image comb_plus = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonplusminus_1.png"));
-  juce::Image comb_minus = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonplusminus_3.png"));
+  juce::Image comb_plus = ImageCache::getFromMemory(
+      BinaryData::buttonplusminus_1_png, BinaryData::buttonplusminus_1_pngSize);
+  juce::Image comb_minus = ImageCache::getFromMemory(
+      BinaryData::buttonplusminus_3_png, BinaryData::buttonplusminus_3_pngSize);
   m_comb_plus_minus.setImage(comb_plus, 1);
   m_comb_plus_minus.setImage(comb_minus, 2);
   m_comb_plus_minus.setBounds(COMB_PLUS_POS_X, COMB_PLUS_POS_Y,
@@ -201,9 +201,9 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts,
   m_vel.setNumDecimalPlacesToDisplay(3);
   m_kbd.setNumDecimalPlacesToDisplay(3);
   m_formant_transition.setNumDecimalPlacesToDisplay(3);
+kkk
 
-
-
+kkk
   m_vowel_left.setParameterId("fil" + m_filter_number + "_vowel_left");
   m_value_tree.addParameterListener("fil" + m_filter_number + "_vowel_left", &m_vowel_left);
   m_vowel_right.setParameterId("fil" + m_filter_number + "_vowel_right");
@@ -296,80 +296,80 @@ void FilterComponent::hideAllComponents() {
 void FilterComponent::setFilterBypass() { m_background = m_background_bypass; }
 
 void FilterComponent::setFilterLP24() {
-  m_background = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "applied/LP24_backdrop.png"));
+  m_background = ImageCache::getFromMemory(
+      BinaryData::LP24_backdrop_png, BinaryData::));
   showStandardFilterComponents();
 }
 
 void FilterComponent::setFilterLP12() {
-  m_background = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "applied/LP12_backdrop.png"));
+  m_background = ImageCache::getFromMemory(
+      BinaryData::LP12_backdrop_png, BinaryData::));
   showStandardFilterComponents();
 }
 
 void FilterComponent::setFilterBP24() {
-  m_background = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "applied/BP24_backdrop.png"));
+  m_background = ImageCache::getFromMemory(
+      BinaryData::BP24_backdrop_png, BinaryData::));
   showStandardFilterComponents();
 }
 
 void FilterComponent::setFilterBP12() {
-  m_background = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "applied/BP12_backdrop.png"));
+  m_background = ImageCache::getFromMemory(
+      BinaryData::BP12_backdrop_png, BinaryData::));
   showStandardFilterComponents();
 }
 
 void FilterComponent::setFilterHP24() {
-  m_background = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "applied/HP24_backdrop.png"));
+  m_background = ImageCache::getFromMemory(
+      BinaryData::HP24_backdrop_png, BinaryData::));
   showStandardFilterComponents();
 }
 
 void FilterComponent::setFilterHP12() {
-  m_background = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "applied/HP12_backdrop.png"));
+  m_background = ImageCache::getFromMemory(
+      BinaryData::HP12_backdrop_png, BinaryData::));
   showStandardFilterComponents();
 }
 
 void FilterComponent::setFilterSEM24() {
-  m_background = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "applied/SEM24_backdrop.png"));
+  m_background = ImageCache::getFromMemory(
+      BinaryData::SEM24_backdrop_png, BinaryData::));
   showSEMFilterComponents();
 }
 
 void FilterComponent::setFilterSEM12() {
-  m_background = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "applied/SEM12_backdrop.png"));
+  m_background = ImageCache::getFromMemory(
+      BinaryData::SEM12_backdrop_png, BinaryData::));
   showSEMFilterComponents();
 }
 
 void FilterComponent::setFilterDiode() {
-  m_background = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "applied/diode_backdrop.png"));
+  m_background = ImageCache::getFromMemory(
+      BinaryData::diode_backdrop_png, BinaryData::));
   showStandardFilterComponents();
 }
 
 void FilterComponent::setFilterKorgLP() {
-  m_background = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "applied/korg_backdrop.png"));
+  m_background = ImageCache::getFromMemory(
+      BinaryData::korg_backdrop_png, BinaryData::));
   showStandardFilterComponents();
 }
 
 void FilterComponent::setFilterKorgHP() {
-  m_background = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "applied/SEM24_backdrop.png"));
+  m_background = ImageCache::getFromMemory(
+      BinaryData::SEM24_backdrop_png, BinaryData::));
   showStandardFilterComponents();
 }
 
 void FilterComponent::setFilterComb() {
-  m_background = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "applied/comb_backdrop.png"));
+  m_background = ImageCache::getFromMemory(
+      BinaryData::comb_backdrop_png, BinaryData::));
   showCombFilterComponents();
 }
 
 void FilterComponent::setFilterFormant() {
-  m_background = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "applied/formant_backdrop.png"));
+  m_background = ImageCache::getFromMemory(
+      BinaryData::formant_backdrop_png, BinaryData::));
   showFormantFilterComponents();
 }
 

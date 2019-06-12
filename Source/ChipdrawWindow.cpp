@@ -14,8 +14,7 @@
 //==============================================================================
 ChipdrawWindow::ChipdrawWindow()
 {
-    m_glaspanel = ImageCache::getFromFile(juce::File(
-        GRAPHICS_PATH + "cropped/drawpanel.png"));
+    m_glaspanel = ImageCache::getFromMemory(BinaryData::drawpanel_png, BinaryData::drawpanel_pngSize);
 
     setSize(m_glaspanel.getWidth(), m_glaspanel.getHeight());
 
@@ -30,9 +29,6 @@ ChipdrawWindow::~ChipdrawWindow()
 
 void ChipdrawWindow::paint(Graphics &g)
 {
-    //Font bfont(juce::Font(Typeface::createSystemTypefaceFor(BinaryData::bfont_ttf,
-    //                                                       BinaryData::bfont_ttfSize)));
-
     g.setColour(m_color);
     juce::Point<int> top_left = getLocalBounds().getTopLeft();
     top_left.addXY(m_inlay + 1, m_inlay);

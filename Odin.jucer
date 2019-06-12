@@ -1,10 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="vpwEHn" name="Odin" projectType="audioplug" jucerVersion="5.4.3"
-              pluginFormats="buildStandalone,buildVST,buildVST3" version="2.0.0"
-              companyName="BommelDSP" companyWebsite="www.BommelDSP.com" pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn"
-              pluginManufacturerCode="BDSP" pluginCode="ODIN" pluginChannelConfigs="{2,2},{2,12}">
+              pluginFormats="buildStandalone,buildVST3" version="2.0.0" companyName="BommelDSP"
+              companyWebsite="www.BommelDSP.com" pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn"
+              pluginManufacturerCode="BDSP" pluginCode="ODIN" pluginChannelConfigs="{2,2},{2,12}"
+              maxBinaryFileSize="20971520">
   <MAINGROUP id="Tn76b3" name="Odin">
+    <GROUP id="{A5BAEEE4-3FCE-5605-7A4C-F29962266097}" name="Graphics">
+      <FILE id="ugEMgu" name="analog_backdrop_png, BinaryData:: compile="0" resource="1"
+            file="Gimp/applied/analog_backdrop_png, BinaryData::/>
+      <FILE id="vNvob4" name="BP12_backdrop_png, BinaryData:: compile="0" resource="1"
+            file="Gimp/applied/BP12_backdrop_png, BinaryData::/>
+      <FILE id="DR62bd" name="BP24_backdrop_png, BinaryData:: compile="0" resource="1"
+            file="Gimp/applied/BP24_backdrop_png, BinaryData::/>
+      <FILE id="rkmm6y" name="chipdraw_backdrop_png, BinaryData:: compile="0" resource="1"
+            file="Gimp/applied/chipdraw_backdrop_png, BinaryData::/>
+      <FILE id="KUGXnU" name="chiptune_backdrop_png, BinaryData:: compile="0" resource="1"
+            file="Gimp/applied/chiptune_backdrop_png, BinaryData::/>
+      <FILE id="L8ZB6o" name="chorusnosync_png, BinaryData:: compile="0" resource="1"
+            file="Gimp/applied/chorusnosync_png, BinaryData::/>
+      <FILE id="X4LEnG" name="comb_backdrop_png, BinaryData:: compile="0" resource="1"
+            file="Gimp/applied/comb_backdrop_png, BinaryData::/>
+      <FILE id="yRE0Cz" name="delaynosync_png, BinaryData:: compile="0" resource="1" file="Gimp/applied/delaynosync_png, BinaryData::/>
+      <FILE id="rCAeMj" name="delaysync_png, BinaryData:: compile="0" resource="1" file="Gimp/applied/delaysync_png, BinaryData::/>
+      <FILE id="cgrA2L" name="diode_backdrop_png, BinaryData:: compile="0" resource="1"
+            file="Gimp/applied/diode_backdrop_png, BinaryData::/>
+      <FILE id="YmsADM" name="filter1_bypass_png, BinaryData:: compile="0" resource="1"
+            file="Gimp/applied/filter1_bypass_png, BinaryData::/>
+      <FILE id="awPaVE" name="filter2_bypass_png, BinaryData:: compile="0" resource="1"
+            file="Gimp/applied/filter2_bypass_png, BinaryData::/>
+      <FILE id="CH0mxt" name="filter3_bypass_png, BinaryData:: compile="0" resource="1"
+            file="Gimp/applied/filter3_bypass_png, BinaryData::/>
+      <FILE id="u7psMz" name="flangernosync_png, BinaryData:: compile="0" resource="1"
+            file="Gimp/applied/flangernosync_png, BinaryData::/>
+      <FILE id="cqWZEP" name="fm_backdrop_png, BinaryData:: compile="0" resource="1" file="Gimp/applied/fm_backdrop_png, BinaryData::/>
+      <FILE id="GHzvz5" name="formant_backdrop_png, BinaryData:: compile="0" resource="1"
+            file="Gimp/applied/formant_backdrop_png, BinaryData::/>
+      <FILE id="IfVXYV" name="HP12_backdrop_png, BinaryData:: compile="0" resource="1"
+            file="Gimp/applied/HP12_backdrop_png, BinaryData::/>
+      <FILE id="IqntKK" name="HP24_backdrop_png, BinaryData:: compile="0" resource="1"
+            file="Gimp/applied/HP24_backdrop_png, BinaryData::/>
+      <FILE id="tYDvux" name="korg_backdrop_png, BinaryData:: compile="0" resource="1"
+            file="Gimp/applied/korg_backdrop_png, BinaryData::/>
+      <FILE id="M5q59c" name="LP12_backdrop_png, BinaryData:: compile="0" resource="1"
+            file="Gimp/applied/LP12_backdrop_png, BinaryData::/>
+      <FILE id="JhHdx0" name="LP24_backdrop_png, BinaryData:: compile="0" resource="1"
+            file="Gimp/applied/LP24_backdrop_png, BinaryData::/>
+      <FILE id="iDAXHf" name="multi_backdrop_png, BinaryData:: compile="0" resource="1"
+            file="Gimp/applied/multi_backdrop_png, BinaryData::/>
+      <FILE id="YImSyx" name="noise_backdrop_png, BinaryData:: compile="0" resource="1"
+            file="Gimp/applied/noise_backdrop_png, BinaryData::/>
+      <FILE id="I7CZtf" name="odin_backdrop_png, BinaryData:: compile="0" resource="1"
+            file="Gimp/applied/odin_backdrop_png, BinaryData::/>
+      <FILE id="wRc2eq" name="osc1_bypass_png, BinaryData:: compile="0" resource="1" file="Gimp/applied/osc1_bypass_png, BinaryData::/>
+      <FILE id="GXQfu2" name="osc2_bypass_png, BinaryData:: compile="0" resource="1" file="Gimp/applied/osc2_bypass_png, BinaryData::/>
+      <FILE id="tADYmp" name="osc3_bypass_png, BinaryData:: compile="0" resource="1" file="Gimp/applied/osc3_bypass_png, BinaryData::/>
+      <FILE id="MfZGY0" name="phasernosync_png, BinaryData:: compile="0" resource="1"
+            file="Gimp/applied/phasernosync_png, BinaryData::/>
+      <FILE id="LOCzsc" name="SEM12_backdrop_png, BinaryData:: compile="0" resource="1"
+            file="Gimp/applied/SEM12_backdrop_png, BinaryData::/>
+      <FILE id="elrD32" name="SEM24_backdrop_png, BinaryData:: compile="0" resource="1"
+            file="Gimp/applied/SEM24_backdrop_png, BinaryData::/>
+      <FILE id="rMrFXg" name="specdraw_backdrop_png, BinaryData:: compile="0" resource="1"
+            file="Gimp/applied/specdraw_backdrop_png, BinaryData::/>
+      <FILE id="Nbl773" name="vector_backdrop_png, BinaryData:: compile="0" resource="1"
+            file="Gimp/applied/vector_backdrop_png, BinaryData::/>
+      <FILE id="BoEP0X" name="wavedraw_backdrop_png, BinaryData:: compile="0" resource="1"
+            file="Gimp/applied/wavedraw_backdrop_png, BinaryData::/>
+      <FILE id="so7b4o" name="wavetable_backdrop_png, BinaryData:: compile="0" resource="1"
+            file="Gimp/applied/wavetable_backdrop_png, BinaryData::/>
+    </GROUP>
     <GROUP id="{7AF384ED-9FD6-6492-4B8C-5777BB9A2698}" name="Source">
       <FILE id="Od2QUg" name="OdinTooltipWindow.h" compile="0" resource="0"
             file="Source/OdinTooltipWindow.h"/>

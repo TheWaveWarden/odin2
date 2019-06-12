@@ -17,8 +17,8 @@ XYSectionComponent::XYSectionComponent(AudioProcessorValueTreeState &vts,
     : m_value_tree(vts), m_section_name(p_section_name),
       m_xy_pad(m_modx, m_mody) {
 
-  juce::Image glas_panel = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/vectorpanel.png"));
+  juce::Image glas_panel = ImageCache::getFromMemory(
+      BinaryData::vectorpanel_png, BinaryData::vectorpanel_pngSize);
   m_xy_pad.setTopLeftPosition(0, XY_PAD_POSIITON_Y);
   m_xy_pad.setSize(glas_panel.getWidth(), glas_panel.getHeight());
   m_xy_pad.setImage(glas_panel);
@@ -27,9 +27,8 @@ XYSectionComponent::XYSectionComponent(AudioProcessorValueTreeState &vts,
       "An XY pad to be used as a modulation source in the modmatrix.");
   addAndMakeVisible(m_xy_pad);
 
-  juce::Image black_knob_very_small = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/knobs/black1/"
-                                 "black_knob_very_small.png"));
+  juce::Image black_knob_very_small = ImageCache::getFromMemory(
+      BinaryData::black_knob_very_small_png, BinaryData::black_knob_very_small_pngSize);
 
   m_modx.setStrip(black_knob_very_small, N_KNOB_FRAMES);
   m_modx.setSliderStyle(Slider::RotaryVerticalDrag);

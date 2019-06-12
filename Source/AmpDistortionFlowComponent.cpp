@@ -19,14 +19,14 @@ AmpDistortionFlowComponent::AmpDistortionFlowComponent(
       m_distortion("distortion", juce::DrawableButton::ButtonStyle::ImageRaw),
       m_value_tree(vts) {
 
-  juce::Image flow_left_1 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonleft_1.png"));
-  juce::Image flow_left_2 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonleft_2.png"));
-  juce::Image flow_left_3 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonleft_3.png"));
-  juce::Image flow_left_4 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonleft_4.png"));
+  juce::Image flow_left_1 = ImageCache::getFromMemory(
+      BinaryData::buttonleft_1_png, BinaryData::BinaryData::buttonleft_1_pngSize);
+  juce::Image flow_left_2 = ImageCache::getFromMemory(
+      BinaryData::buttonleft_2_png, BinaryData::BinaryData::buttonleft_2_pngSize);
+  juce::Image flow_left_3 = ImageCache::getFromMemory(
+      BinaryData::buttonleft_3_png, BinaryData::BinaryData::buttonleft_3_pngSize);
+  juce::Image flow_left_4 = ImageCache::getFromMemory(
+      BinaryData::buttonleft_4_png, BinaryData::BinaryData::buttonleft_4_pngSize);
 
   juce::DrawableImage flow_left_draw1;
   juce::DrawableImage flow_left_draw2;
@@ -52,14 +52,14 @@ AmpDistortionFlowComponent::AmpDistortionFlowComponent(
   m_flow_left.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId,
                         juce::Colour());
 
-  juce::Image flow_right_1 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonright_1.png"));
-  juce::Image flow_right_2 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonright_2.png"));
-  juce::Image flow_right_3 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonright_3.png"));
-  juce::Image flow_right_4 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonright_4.png"));
+  juce::Image flow_right_1 = ImageCache::getFromMemory(
+      BinaryData::buttonright_1_png, BinaryData::buttonright_1_pngSize);
+  juce::Image flow_right_2 = ImageCache::getFromMemory(
+      BinaryData::buttonright_2_png, BinaryData::buttonright_2_pngSize);
+  juce::Image flow_right_3 = ImageCache::getFromMemory(
+      BinaryData::buttonright_3_png, BinaryData::buttonright_3_pngSize);
+  juce::Image flow_right_4 = ImageCache::getFromMemory(
+      BinaryData::buttonright_4_png, BinaryData::buttonright_4_pngSize);
 
   juce::DrawableImage flow_right_draw1;
   juce::DrawableImage flow_right_draw2;
@@ -86,14 +86,14 @@ AmpDistortionFlowComponent::AmpDistortionFlowComponent(
   m_flow_right.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId,
                          juce::Colour());
 
-  juce::Image distortion_1 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttondistortion_1.png"));
-  juce::Image distortion_2 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttondistortion_2.png"));
-  juce::Image distortion_3 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttondistortion_3.png"));
-  juce::Image distortion_4 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttondistortion_4.png"));
+  juce::Image distortion_1 = ImageCache::getFromMemory(
+      BinaryData::buttondistortion_1_png, BinaryData::buttondistortion_1_pngSize);
+  juce::Image distortion_2 = ImageCache::getFromMemory(
+      BinaryData::buttondistortion_2_png, BinaryData::buttondistortion_2_pngSize);
+  juce::Image distortion_3 = ImageCache::getFromMemory(
+      BinaryData::buttondistortion_3_png, BinaryData::buttondistortion_3_pngSize);
+  juce::Image distortion_4 = ImageCache::getFromMemory(
+      BinaryData::buttondistortion_4_png, BinaryData::buttondistortion_4_pngSize);
 
   juce::DrawableImage distortion_draw1;
   juce::DrawableImage distortion_draw2;
@@ -119,12 +119,12 @@ AmpDistortionFlowComponent::AmpDistortionFlowComponent(
   m_distortion.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId,
                          juce::Colour());
 
-  juce::Image metal_knob_big = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/knobs/metal3/metal_knob_big.png"));
-  juce::Image black_knob_mid = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/knobs/black3/black_knob_mid.png"));
-  juce::Image round_knob = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/knobs/round/round_knob.png"));
+  juce::Image metal_knob_big = ImageCache::getFromMemory(
+      BinaryData::knobs/metal3/metal_knob_big_png, BinaryData::));
+  juce::Image black_knob_mid = ImageCache::getFromMemory(
+      BinaryData::knobs/black3/black_knob_mid_png, BinaryData::));
+  juce::Image round_knob = ImageCache::getFromMemory(
+      BinaryData::knobs/round/round_knob_png, BinaryData::));
 
   m_amp_gain.setStrip(metal_knob_big, N_KNOB_FRAMES);
   m_amp_gain.setSliderStyle(Slider::RotaryVerticalDrag);
@@ -173,8 +173,8 @@ AmpDistortionFlowComponent::AmpDistortionFlowComponent(
   m_dry_wet.setKnobTooltip("The ratio of processed\nand unprocessed sound");
   addAndMakeVisible(m_dry_wet);
 
-  juce::Image glas_panel = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/glaspanel_midbig.png"));
+  juce::Image glas_panel = ImageCache::getFromMemory(
+      BinaryData::glaspanel_midbig_png, BinaryData::));
   m_distortion_algo.setImage(glas_panel);
   m_distortion_algo.setInlay(1);
   m_distortion_algo.addItem("Clamp", 1);

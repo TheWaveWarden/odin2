@@ -13,8 +13,8 @@
 
 //==============================================================================
 SpecdrawDisplay::SpecdrawDisplay() {
-  m_glaspanel = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/drawpanel.png"));
+  m_glaspanel = ImageCache::getFromMemory(
+      BinaryData::drawpanel_png, BinaryData::drawpanel_pngSize);
 
   setSize(m_glaspanel.getWidth(), m_glaspanel.getHeight());
 

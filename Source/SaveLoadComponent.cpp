@@ -43,10 +43,10 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts)
       m_reset("reset", juce::DrawableButton::ButtonStyle::ImageRaw),
       ///m_random("random", juce::DrawableButton::ButtonStyle::ImageRaw),
       m_value_tree(vts) {
-  juce::Image save_1 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonsave_2.png"));
-  juce::Image save_2 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonsave_1.png"));
+  juce::Image save_1 = ImageCache::getFromMemory(
+      BinaryData::buttonsave_2_png, BinaryData::buttonsave_2_pngSize);
+  juce::Image save_2 = ImageCache::getFromMemory(
+      BinaryData::buttonsave_1_png, BinaryData::buttonsave_1_pngSize);
 
   juce::DrawableImage save_draw1;
   juce::DrawableImage save_draw2;
@@ -65,10 +65,10 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts)
   m_save.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId,
                    juce::Colour());
 
-  juce::Image load_1 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonload_2.png"));
-  juce::Image load_2 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonload_1.png"));
+  juce::Image load_1 = ImageCache::getFromMemory(
+      BinaryData::buttonload_2_png, BinaryData::buttonload_2_pngSize);
+  juce::Image load_2 = ImageCache::getFromMemory(
+      BinaryData::buttonload_1_png, BinaryData::buttonload_1_pngSize);
 
   juce::DrawableImage load_draw1;
   juce::DrawableImage load_draw2;
@@ -87,10 +87,10 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts)
   m_load.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId,
                    juce::Colour());
 
-  juce::Image reset_1 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonreset_global_2.png"));
-  juce::Image reset_2 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonreset_global_1.png"));
+  juce::Image reset_1 = ImageCache::getFromMemory(
+      BinaryData::buttonreset_global_2_png, BinaryData::buttonreset_global_2_pngSize);
+  juce::Image reset_2 = ImageCache::getFromMemory(
+      BinaryData::buttonreset_global_1_png, BinaryData::buttonreset_global_1_pngSize);
 
   juce::DrawableImage reset_draw1;
   juce::DrawableImage reset_draw2;
@@ -109,10 +109,10 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts)
   m_reset.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId,
                     juce::Colour());
 
-  juce::Image random_1 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonrandom_2.png"));
-  juce::Image random_2 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonrandom_1.png"));
+  juce::Image random_1 = ImageCache::getFromMemory(
+      BinaryData::buttonrandom_2_png, BinaryData::buttonrandom_2_pngSize);
+  juce::Image random_2 = ImageCache::getFromMemory(
+      BinaryData::buttonrandom_1_png, BinaryData::buttonrandom_1_pngSize);
 
   juce::DrawableImage random_draw1;
   juce::DrawableImage random_draw2;
@@ -132,8 +132,8 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts)
   //                    juce::Colour());
   // m_random.setTooltip("Generate a random patch");
 
-  juce::Image glas_panel = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/glaspanel_big.png"));
+  juce::Image glas_panel = ImageCache::getFromMemory(
+      BinaryData::glaspanel_big_png, BinaryData::glaspanel_big_pngSize);
 
   m_patch.setImage(glas_panel);
   m_patch.setColor(STANDARD_DISPLAY_COLOR);

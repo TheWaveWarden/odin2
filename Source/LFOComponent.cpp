@@ -31,14 +31,14 @@ LFOComponent::LFOComponent(AudioProcessorValueTreeState &vts,
   m_reset_attach.reset(new ButtonAttachment(
       m_value_tree, "lfo" + m_lfo_number + "_reset", m_reset));
 
-  juce::Image reset_1 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonreset_lfo_1.png"));
-  juce::Image reset_2 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonreset_lfo_2.png"));
-  juce::Image reset_3 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonreset_lfo_3.png"));
-  juce::Image reset_4 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonreset_lfo_4.png"));
+  juce::Image reset_1 = ImageCache::getFromMemory(
+      BinaryData::buttonreset_lfo_1_png, BinaryData::buttonreset_lfo_1_pngSize);
+  juce::Image reset_2 = ImageCache::getFromMemory(
+      BinaryData::buttonreset_lfo_2_png, BinaryData::buttonreset_lfo_2_pngSize);
+  juce::Image reset_3 = ImageCache::getFromMemory(
+      BinaryData::buttonreset_lfo_3_png, BinaryData::buttonreset_lfo_3_pngSize);
+  juce::Image reset_4 = ImageCache::getFromMemory(
+      BinaryData::buttonreset_lfo_4_png, BinaryData::buttonreset_lfo_4_pngSize);
 
   juce::DrawableImage reset_draw1;
   juce::DrawableImage reset_draw2;
@@ -61,14 +61,14 @@ LFOComponent::LFOComponent(AudioProcessorValueTreeState &vts,
   m_reset.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId,
                     juce::Colour());
 
-  juce::Image sync_1 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonsync_1.png"));
-  juce::Image sync_2 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonsync_2.png"));
-  juce::Image sync_3 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonsync_3.png"));
-  juce::Image sync_4 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonsync_4.png"));
+  juce::Image sync_1 = ImageCache::getFromMemory(
+      BinaryData::buttonsync_1_png, BinaryData::buttonsync_1_pngSize);
+  juce::Image sync_2 = ImageCache::getFromMemory(
+      BinaryData::buttonsync_2_png, BinaryData::buttonsync_2_pngSize);
+  juce::Image sync_3 = ImageCache::getFromMemory(
+      BinaryData::buttonsync_3_png, BinaryData::buttonsync_3_pngSize);
+  juce::Image sync_4 = ImageCache::getFromMemory(
+      BinaryData::buttonsync_4_png, BinaryData::      BinaryDataSize));
 
   juce::DrawableImage sync_draw1;
   juce::DrawableImage sync_draw2;
@@ -100,8 +100,8 @@ LFOComponent::LFOComponent(AudioProcessorValueTreeState &vts,
     }
   };
 
-  juce::Image black_knob_small = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/knobs/black2/black_knob_small.png"));
+  juce::Image black_knob_small = ImageCache::getFromMemory(
+      BinaryData::black_knob_small_png, BinaryData::black_knob_small_pngSize);
 
   m_freq.setStrip(black_knob_small, N_KNOB_FRAMES);
   m_freq.setSliderStyle(Slider::RotaryVerticalDrag);

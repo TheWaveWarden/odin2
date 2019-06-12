@@ -126,10 +126,10 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
   m_filter_dropdown_menu.addItem(FILTER_TYPE_COMB, "Comb Filter");
   m_filter_dropdown_menu.addItem(FILTER_TYPE_FORMANT, "Formant Filter");
 
-  juce::Image dropdown_button1 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttondropdown_1.png"));
-  juce::Image dropdown_button2 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttondropdown_2.png"));
+  juce::Image dropdown_button1 = ImageCache::getFromMemory(
+      BinaryData::buttondropdown_1_png, BinaryData::buttondropdown_1_pngSize);
+  juce::Image dropdown_button2 = ImageCache::getFromMemory(
+      BinaryData::buttondropdown_2_png, BinaryData::buttondropdown_2_pngSize);
 
   juce::DrawableImage dropdown_draw1;
   juce::DrawableImage dropdown_draw2;
@@ -273,14 +273,14 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
 
   addAndMakeVisible(m_fx_buttons_section);
 
-  juce::Image fx_on_1 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonfxon_1.png"));
-  juce::Image fx_on_2 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonfxon_2.png"));
-  juce::Image fx_on_3 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonfxon_3.png"));
-  juce::Image fx_on_4 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonfxon_4.png"));
+  juce::Image fx_on_1 = ImageCache::getFromMemory(
+      BinaryData::buttonfxon_1_png, BinaryData::buttonfxon_1_pngSize);
+  juce::Image fx_on_2 = ImageCache::getFromMemory(
+      BinaryData::buttonfxon_2_png, BinaryData::buttonfxon_2_pngSize);
+  juce::Image fx_on_3 = ImageCache::getFromMemory(
+      BinaryData::buttonfxon_3_png, BinaryData::buttonfxon_3_pngSize);
+  juce::Image fx_on_4 = ImageCache::getFromMemory(
+      BinaryData::buttonfxon_4_png, BinaryData::buttonfxon_4_pngSize);
 
   juce::DrawableImage fx_on_draw1;
   juce::DrawableImage fx_on_draw2;
@@ -347,14 +347,14 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
   m_delay_on_button.setColour(
       juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
 
-  juce::Image filter_button1_1 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/button1_1.png"));
-  juce::Image filter_button1_2 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/button1_2.png"));
-  juce::Image filter_button1_3 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/button1_3.png"));
-  juce::Image filter_button1_4 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/button1_4.png"));
+  juce::Image filter_button1_1 = ImageCache::getFromMemory(
+      BinaryData::button1_1_png, BinaryData::button1_1_pngSize);
+  juce::Image filter_button1_2 = ImageCache::getFromMemory(
+      BinaryData::button1_2_png, BinaryData::button1_2_pngSize);
+  juce::Image filter_button1_3 = ImageCache::getFromMemory(
+      BinaryData::button1_3_png, BinaryData::button1_3_pngSize);
+  juce::Image filter_button1_4 = ImageCache::getFromMemory(
+      BinaryData::button1_4_png, BinaryData::button1_4_pngSize);
 
   juce::DrawableImage filter_button1_draw1;
   juce::DrawableImage filter_button1_draw2;
@@ -396,14 +396,14 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
       juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
   m_filright_button1.setTooltip("Routes oscillator 1\ninto the filter");
 
-  juce::Image question_button_1 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonpleb_1.png"));
-  juce::Image question_button_2 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonpleb_2.png"));
-  juce::Image question_button_3 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonpleb_3.png"));
-  juce::Image question_button_4 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonpleb_4.png"));
+  juce::Image question_button_1 = ImageCache::getFromMemory(
+      BinaryData::buttonpleb_1_png, BinaryData::buttonpleb_1_pngSize);
+  juce::Image question_button_2 = ImageCache::getFromMemory(
+      BinaryData::buttonpleb_2_png, BinaryData::buttonpleb_2_pngSize);
+  juce::Image question_button_3 = ImageCache::getFromMemory(
+      BinaryData::buttonpleb_3_png, BinaryData::buttonpleb_3_pngSize);
+  juce::Image question_button_4 = ImageCache::getFromMemory(
+      BinaryData::buttonpleb_4_png, BinaryData::buttonpleb_4_pngSize);
 
   juce::DrawableImage question_button_draw1;
   juce::DrawableImage question_button_draw2;
@@ -438,14 +438,14 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
       "dragging and dropping\n the FX selection buttons.");
   addAndMakeVisible(m_question_button);
 
-  juce::Image filter_button2_1 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/button2_1.png"));
-  juce::Image filter_button2_2 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/button2_2.png"));
-  juce::Image filter_button2_3 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/button2_3.png"));
-  juce::Image filter_button2_4 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/button2_4.png"));
+  juce::Image filter_button2_1 = ImageCache::getFromMemory(
+      BinaryData::button2_1_png, BinaryData::button2_1_pngSize);
+  juce::Image filter_button2_2 = ImageCache::getFromMemory(
+      BinaryData::button2_2_png, BinaryData::button2_2_pngSize);
+  juce::Image filter_button2_3 = ImageCache::getFromMemory(
+      BinaryData::button2_3_png, BinaryData::button2_3_pngSize);
+  juce::Image filter_button2_4 = ImageCache::getFromMemory(
+      BinaryData::button2_4_png, BinaryData::button2_4_pngSize);
 
   juce::DrawableImage filter_button2_draw1;
   juce::DrawableImage filter_button2_draw2;
@@ -487,14 +487,14 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
   m_filright_button2.setColour(
       juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
 
-  juce::Image filter_button3_1 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/button3_1.png"));
-  juce::Image filter_button3_2 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/button3_2.png"));
-  juce::Image filter_button3_3 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/button3_3.png"));
-  juce::Image filter_button3_4 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/button3_4.png"));
+  juce::Image filter_button3_1 = ImageCache::getFromMemory(
+      BinaryData::button3_1_png, BinaryData::button3_1_pngSize);
+  juce::Image filter_button3_2 = ImageCache::getFromMemory(
+      BinaryData::button3_2_png, BinaryData::button3_2_pngSize);
+  juce::Image filter_button3_3 = ImageCache::getFromMemory(
+      BinaryData::button3_3_png, BinaryData::button3_3_pngSize);
+  juce::Image filter_button3_4 = ImageCache::getFromMemory(
+      BinaryData::button3_4_png, BinaryData::button3_4_pngSize);
 
   juce::DrawableImage filter_button3_draw1;
   juce::DrawableImage filter_button3_draw2;
@@ -537,14 +537,14 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
   m_filright_button3.setColour(
       juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
 
-  juce::Image filter_buttonf1_1 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonf1_1.png"));
-  juce::Image filter_buttonf1_2 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonf1_2.png"));
-  juce::Image filter_buttonf1_3 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonf1_3.png"));
-  juce::Image filter_buttonf1_4 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonf1_4.png"));
+  juce::Image filter_buttonf1_1 = ImageCache::getFromMemory(
+      BinaryData::buttonf1_1_png, BinaryData::buttonf1_1_pngSize);
+  juce::Image filter_buttonf1_2 = ImageCache::getFromMemory(
+      BinaryData::buttonf1_2_png, BinaryData::buttonf1_2_pngSize);
+  juce::Image filter_buttonf1_3 = ImageCache::getFromMemory(
+      BinaryData::buttonf1_3_png, BinaryData::buttonf1_3_pngSize);
+  juce::Image filter_buttonf1_4 = ImageCache::getFromMemory(
+      BinaryData::buttonf1_4_png, BinaryData::buttonf1_4_pngSize);
 
   juce::DrawableImage filter_buttonf1_draw1;
   juce::DrawableImage filter_buttonf1_draw2;
@@ -575,33 +575,33 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
   // todo load all images through binary
   // load background image
   juce::Image odin_backplate =
-      ImageCache::getFromFile(juce::File(GRAPHICS_PATH + "odin_backplate.png"));
+      ImageCache::getFromMemory(BinaryData::odin_backplate_png, BinaryData::odin_backplate_pngSize);
 
   // load the knob strips
-  juce::Image metal_knob_small = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/knobs/metal1/metal_knob_small.png"));
+  juce::Image metal_knob_small = ImageCache::getFromMemory(
+      BinaryData::knobs/metal1/metal_knob_small_png, BinaryData::metal_knob_small_pngSize);
 
-  juce::Image metal_knob_big = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/knobs/metal3/metal_knob_big.png"));
+  juce::Image metal_knob_big = ImageCache::getFromMemory(
+      BinaryData::knobs/metal3/metal_knob_big_png, BinaryData::metal_knob_big_pngSize);
 
-  juce::Image black_knob_mid = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/knobs/black3/black_knob_mid.png"));
+  juce::Image black_knob_mid = ImageCache::getFromMemory(
+      BinaryData::knobs/black3/black_knob_mid_png, BinaryData::black_knob_mid_pngSize);
 
   // load backplates for osc and filters
 
-  juce::Image bypass_osc1_plate = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "applied/osc1_bypass.png"));
-  juce::Image bypass_osc2_plate = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "applied/osc2_bypass.png"));
-  juce::Image bypass_osc3_plate = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "applied/osc3_bypass.png"));
+  juce::Image bypass_osc1_plate = ImageCache::getFromMemory(
+      BinaryData::osc1_bypass_png, BinaryData::osc1_bypass_pngSize);
+  juce::Image bypass_osc2_plate = ImageCache::getFromMemory(
+      BinaryData::osc2_bypass_png, BinaryData::osc2_bypass_pngSize);
+  juce::Image bypass_osc3_plate = ImageCache::getFromMemory(
+      BinaryData::osc3_bypass_png, BinaryData::osc3_bypass_pngSize);
 
-  juce::Image bypass_fil1_plate = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "applied/filter1_bypass.png"));
-  juce::Image bypass_fil2_plate = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "applied/filter2_bypass.png"));
-  juce::Image bypass_fil3_plate = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "applied/filter3_bypass.png"));
+  juce::Image bypass_fil1_plate = ImageCache::getFromMemory(
+      BinaryData::filter1_bypass_png, BinaryData::filter1_bypass_pngSize);
+  juce::Image bypass_fil2_plate = ImageCache::getFromMemory(
+      BinaryData::filter2_bypass_png, BinaryData::filter2_bypass_pngSize);
+  juce::Image bypass_fil3_plate = ImageCache::getFromMemory(
+      BinaryData::filter3_bypass_png, BinaryData::filter3_bypass_pngSize);
 
   m_glide.setStrip(metal_knob_small, N_KNOB_FRAMES);
   m_glide.setSliderStyle(Slider::RotaryVerticalDrag);
@@ -616,8 +616,8 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
   m_master.setKnobTooltip("The master volume\nof the synth");
   addAndMakeVisible(m_master);
 
-  juce::Image pitchwheel = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "/cropped/knobs/modwheel/modwheel.png"));
+  juce::Image pitchwheel = ImageCache::getFromMemory(
+      BinaryData::modwheel_png, BinaryData::modwheel_pngSize);
 
   m_pitchwheel.setStrip(pitchwheel, N_KNOB_FRAMES, false);
   m_pitchwheel.setSliderStyle(Slider::RotaryVerticalDrag);
@@ -665,35 +665,35 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
   addChildComponent(m_adsr_3);
   addChildComponent(m_adsr_4);
 
-  juce::Image flanger_image = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/flangernosync.png"));
-  juce::Image flanger_image_sync = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/flangersync.png"));
+  juce::Image flanger_image = ImageCache::getFromMemory(
+      BinaryData::flangernosync_png, BinaryData::flangernosync_pngSize);
+  juce::Image flanger_image_sync = ImageCache::getFromMemory(
+      BinaryData::flangersync_png, BinaryData::flangersync_pngSize);
   m_flanger.setImage(flanger_image_sync, true);
   m_flanger.setImage(flanger_image, false);
   m_flanger.setSyncTimeColor(FLANGER_DISPLAY_COLOR);
   addChildComponent(m_flanger);
 
-  juce::Image phaser_image = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/phasernosync.png"));
-  juce::Image phaser_image_sync = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/phasersync.png"));
+  juce::Image phaser_image = ImageCache::getFromMemory(
+      BinaryData::phasernosync_png, BinaryData::phasernosync_pngSize);
+  juce::Image phaser_image_sync = ImageCache::getFromMemory(
+      BinaryData::phasersync_png, BinaryData::phasersync_pngSize);
   m_phaser.setImage(phaser_image_sync, true);
   m_phaser.setImage(phaser_image, false);
   m_phaser.setSyncTimeColor(PHASER_DISPLAY_COLOR);
   addChildComponent(m_phaser);
 
-  juce::Image chorus_image = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/chorusnosync.png"));
-  juce::Image chorus_image_sync = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/chorussync.png"));
+  juce::Image chorus_image = ImageCache::getFromMemory(
+      BinaryData::chorusnosync_png, BinaryData::chorusnosync_pngSize);
+  juce::Image chorus_image_sync = ImageCache::getFromMemory(
+      BinaryData::chorussync_png, BinaryData::chorussync_pngSize);
   m_chorus.setImage(chorus_image_sync, true);
   m_chorus.setImage(chorus_image, false);
   m_chorus.setSyncTimeColor(CHORUS_DISPLAY_COLOR);
   addChildComponent(m_chorus);
 
-  juce::Image delay_image = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/delaynosync.png"));
+  juce::Image delay_image = ImageCache::getFromMemory(
+      BinaryData::delaynosync_png, BinaryData::delaynosync_pngSize);
   m_delay.setImage(delay_image);
   addAndMakeVisible(m_delay);
 
@@ -701,10 +701,10 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
   addAndMakeVisible(m_save_load);
   addAndMakeVisible(m_xy_section);
 
-  juce::Image env13_left = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonenv13_1.png"));
-  juce::Image env13_right = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonenv13_3.png"));
+  juce::Image env13_left = ImageCache::getFromMemory(
+      BinaryData::buttonenv13_1_png, BinaryData::buttonenv13_1_pngSize);
+  juce::Image env13_right = ImageCache::getFromMemory(
+      BinaryData::buttonenv13_3_png, BinaryData::buttonenv13_3_pngSize);
   m_env_13_button.setImage(env13_left, 1);
   m_env_13_button.setImage(env13_right, 2);
   m_env_13_button.setBounds(ENV13_POS_X, ENV13_POS_Y, env13_left.getWidth(),
@@ -716,10 +716,10 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
   m_env_13_button.setTooltip("Shows the amplifier\nenvelope or envelope 3");
   addAndMakeVisible(m_env_13_button);
 
-  juce::Image env24_left = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonenv24_1.png"));
-  juce::Image env24_right = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonenv24_3.png"));
+  juce::Image env24_left = ImageCache::getFromMemory(
+      BinaryData::buttonenv24_1_png, BinaryData::buttonenv24_1_pngSize);
+  juce::Image env24_right = ImageCache::getFromMemory(
+      BinaryData::buttonenv24_3_png, BinaryData::buttonenv24_3_pngSize);
   m_env_24_button.setImage(env24_left, 1);
   m_env_24_button.setImage(env24_right, 2);
   m_env_24_button.setBounds(ENV24_POS_X, ENV24_POS_Y, env24_left.getWidth(),
@@ -731,10 +731,10 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
   m_env_24_button.setTooltip("Shows the filter\nenvelope or envelope 4");
   addAndMakeVisible(m_env_24_button);
 
-  juce::Image lfo13_left = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonlfo13_1.png"));
-  juce::Image lfo13_right = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonlfo13_3.png"));
+  juce::Image lfo13_left = ImageCache::getFromMemory(
+      BinaryData::buttonlfo13_1_png, BinaryData::buttonlfo13_1_pngSize);
+  juce::Image lfo13_right = ImageCache::getFromMemory(
+      BinaryData::buttonlfo13_3_png, BinaryData::buttonlfo13_3_pngSize);
   m_lfo_13_button.setImage(lfo13_left, 1);
   m_lfo_13_button.setImage(lfo13_right, 2);
   m_lfo_13_button.setBounds(LFO13_POS_X, LFO13_POS_Y, lfo13_left.getWidth(),
@@ -746,10 +746,10 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
   m_lfo_13_button.setTooltip("Shows LFO 1 or LFO 3");
   addAndMakeVisible(m_lfo_13_button);
 
-  juce::Image lfo24_left = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonlfo24_1.png"));
-  juce::Image lfo24_right = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonlfo24_3.png"));
+  juce::Image lfo24_left = ImageCache::getFromMemory(
+      BinaryData::buttonlfo24_1_png, BinaryData::buttonlfo24_1_pngSize);
+  juce::Image lfo24_right = ImageCache::getFromMemory(
+      BinaryData::buttonlfo24_3_png, BinaryData::buttonlfo24_3_pngSize);
   m_lfo_24_button.setImage(lfo24_left, 1);
   m_lfo_24_button.setImage(lfo24_right, 2);
   m_lfo_24_button.setBounds(LFO24_POS_X, LFO24_POS_Y, lfo24_left.getWidth(),
@@ -761,10 +761,10 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
   m_lfo_24_button.setTooltip("Shows LFO 2 or LFO 4");
   addAndMakeVisible(m_lfo_24_button);
 
-  juce::Image legato_left = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonlegato_1.png"));
-  juce::Image legato_right = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonlegato_3.png"));
+  juce::Image legato_left = ImageCache::getFromMemory(
+      BinaryData::buttonlegato_1_png, BinaryData::buttonlegato_1_pngSize);
+  juce::Image legato_right = ImageCache::getFromMemory(
+      BinaryData::buttonlegato_3_png, BinaryData::buttonlegato_3_pngSize);
   m_legato_button.setImage(legato_left, 1);
   m_legato_button.setImage(legato_right, 2);
   m_legato_button.setBounds(LEGATO_POS_X, LEGATO_POS_Y, legato_left.getWidth(),
@@ -785,11 +785,11 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
       "no hard envelope reset when transitioning from one note to another.");
   addAndMakeVisible(m_legato_button);
 
-  juce::Image lfo13_sync_background = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/lfo13_sync_background.png"));
+  juce::Image lfo13_sync_background = ImageCache::getFromMemory(
+      BinaryData::lfo13_sync_background_png, BinaryData::lfo13_sync_background_pngSize);
 
-  juce::Image lfo24_sync_background = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/lfo24_sync_background.png"));
+  juce::Image lfo24_sync_background = ImageCache::getFromMemory(
+      BinaryData::lfo24_sync_background_png, BinaryData::lfo24_sync_background_pngSize);
   m_lfo_1.setBounds(LFO_LEFT_POS_X, LFO_LEFT_POS_Y, LFO_SIZE_X, LFO_SIZE_Y);
   m_lfo_1.setSyncOverdraw(lfo13_sync_background);
   addAndMakeVisible(m_lfo_1);
@@ -876,8 +876,8 @@ OdinAudioProcessorEditor::~OdinAudioProcessorEditor() {
 
 //==============================================================================
 void OdinAudioProcessorEditor::paint(Graphics &g) {
-  g.drawImageAt(ImageCache::getFromFile(
-                    juce::File(GRAPHICS_PATH + "applied/odin_backdrop.png")),
+  g.drawImageAt(ImageCache::getFromMemory(
+                    BinaryData::odin_backdrop_png, BinaryData::odin_backdrop_pngSize),
                 0, 0);
 }
 
