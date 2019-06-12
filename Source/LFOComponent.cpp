@@ -134,9 +134,14 @@ LFOComponent::LFOComponent(AudioProcessorValueTreeState &vts,
   addChildComponent(m_sync_time);
 
   setSync(false);
+
+  m_selector.setParameterId("lfo" + m_lfo_number + "_wave");
+  m_value_tree.addParameterListener("lfo" + m_lfo_number + "_wave", &m_selector);
 }
 
-LFOComponent::~LFOComponent() {}
+LFOComponent::~LFOComponent() {
+  m_value_tree.removeParameterListener("lfo" + m_lfo_number + "_wave", &m_selector);
+}
 
 void LFOComponent::paint(Graphics &g) {
   if (m_sync_active) {
