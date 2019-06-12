@@ -19,8 +19,6 @@
 class PitchWheel : public Knob {
 public:
   PitchWheel() {
-    // In your constructor, you should add any child components, and
-    // initialise any special settings that your component needs.
     setRange(-1, 1);
     setNumDecimalPlacesToDisplay(3);
   }
@@ -30,7 +28,6 @@ public:
   void mouseUp(const MouseEvent &e) { 
     Slider::mouseUp(e);
     setValue(0, sendNotification); 
-    //setRange(-1,1);
     }
 
 private:

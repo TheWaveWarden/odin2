@@ -51,7 +51,7 @@ private:
   juce::DrawableButton m_save;
   juce::DrawableButton m_load;
   juce::DrawableButton m_reset;
-  juce::DrawableButton m_random;
+  //juce::DrawableButton m_random;
 
   GlasDisplay m_patch;
   int m_patch_size_x;

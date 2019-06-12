@@ -41,7 +41,7 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts)
     : m_save("save", juce::DrawableButton::ButtonStyle::ImageRaw),
       m_load("load", juce::DrawableButton::ButtonStyle::ImageRaw),
       m_reset("reset", juce::DrawableButton::ButtonStyle::ImageRaw),
-      m_random("random", juce::DrawableButton::ButtonStyle::ImageRaw),
+      ///m_random("random", juce::DrawableButton::ButtonStyle::ImageRaw),
       m_value_tree(vts) {
   juce::Image save_1 = ImageCache::getFromFile(
       juce::File(GRAPHICS_PATH + "cropped/buttons/buttonsave_2.png"));
@@ -120,17 +120,17 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts)
   random_draw1.setImage(random_1);
   random_draw2.setImage(random_2);
 
-  m_random.setImages(&random_draw2, &random_draw2, &random_draw1, &random_draw1,
-                     &random_draw2, &random_draw2, &random_draw1,
-                     &random_draw1);
-  m_random.setClickingTogglesState(true);
-  m_random.setBounds(RANDOM_POS_X, RANDOM_POS_Y, random_1.getWidth(),
-                     random_1.getHeight());
-  addAndMakeVisible(m_random);
-  m_random.setTriggeredOnMouseDown(false);
-  m_random.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId,
-                     juce::Colour());
-  m_random.setTooltip("Generate a random patch");
+  // m_random.setImages(&random_draw2, &random_draw2, &random_draw1, &random_draw1,
+  //                    &random_draw2, &random_draw2, &random_draw1,
+  //                    &random_draw1);
+  // m_random.setClickingTogglesState(true);
+  // m_random.setBounds(RANDOM_POS_X, RANDOM_POS_Y, random_1.getWidth(),
+  //                    random_1.getHeight());
+  // addAndMakeVisible(m_random);
+  // m_random.setTriggeredOnMouseDown(false);
+  // m_random.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId,
+  //                    juce::Colour());
+  // m_random.setTooltip("Generate a random patch");
 
   juce::Image glas_panel = ImageCache::getFromFile(
       juce::File(GRAPHICS_PATH + "cropped/glaspanel_big.png"));
