@@ -27,7 +27,11 @@ public:
 
   ~PitchWheel() {}
 
-  void mouseUp(const MouseEvent &e) { setValue(0, sendNotification); }
+  void mouseUp(const MouseEvent &e) { 
+    Slider::mouseUp(e);
+    setValue(0, sendNotification); 
+    //setRange(-1,1);
+    }
 
 private:
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(PitchWheel)
