@@ -33,6 +33,8 @@
 #include "audio/Filters/SEMFilter24.h"
 #include "audio/Oscillators/WavetableContainer.h"
 
+class OdinAudioProcessorEditor;
+
 //==============================================================================
 /**
  */
@@ -242,6 +244,8 @@ public:
                             int p_chorus);
 
 private:
+  OdinAudioProcessorEditor* m_editor = nullptr;
+
   void setBPM(float BPM);
 
   bool m_midi_learn_knob_active = false;

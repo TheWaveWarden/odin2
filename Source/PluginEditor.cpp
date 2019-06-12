@@ -1300,3 +1300,4 @@ void OdinAudioProcessorEditor::allMidiKeysOff() {
     processor.midiNoteOff(note);
   }
 }
+

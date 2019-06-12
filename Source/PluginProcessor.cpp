@@ -676,7 +676,7 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
 bool OdinAudioProcessor::hasEditor() const { return true; }
 
 AudioProcessorEditor *OdinAudioProcessor::createEditor() {
-  AudioProcessorEditor *editor =
+  m_editor =
       new OdinAudioProcessorEditor(*this, m_value_tree, m_is_standalone_plugin);
 
   // typeid(wrapperType) == typeid(wrapperType_Standalone));
@@ -684,7 +684,7 @@ AudioProcessorEditor *OdinAudioProcessor::createEditor() {
     onSetStateInformation();
   }
 
-  return editor;
+  return m_editor;
 }
 
 //==============================================================================
@@ -1302,7 +1302,8 @@ void OdinAudioProcessor::setBPM(float p_BPM) {
 
 void OdinAudioProcessor::addNonAudioParametersToTree() {
 
-  auto node = m_value_tree.state;//.getOrCreateChildWithName("NO_PARAM", nullptr);
+  auto node =
+      m_value_tree.state; //.getOrCreateChildWithName("NO_PARAM", nullptr);
   for (int i = 0; i < WAVEDRAW_STEPS_X; ++i) {
     float val = sin(2 * M_PI * i / (float)WAVEDRAW_STEPS_X) * 0.9;
     // do braces in the beginnning to speed up identification!?

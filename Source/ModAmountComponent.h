@@ -17,7 +17,7 @@
 //==============================================================================
 /*
  */
-class ModAmountComponent : public Component, public SettableTooltipClient
+class ModAmountComponent : public Component, public SettableTooltipClient, public AudioProcessorValueTreeState::Listener
 {
 public:
   ModAmountComponent();
@@ -57,7 +57,13 @@ public:
   std::function<void()> onMouseDown = []() {}; // overwriteable with lambda
   std::function<void(float)> onValueChange = [](float) {};
 
+  void parameterChanged (const String &parameterID, float newValue) override;
+
+  void setParameterId(String p_id){m_parameter_id = p_id;}
+
 private:
+  String m_parameter_id = "";
+
   juce::Colour m_color_bar;
   juce::Colour m_color_bar_negative;
   juce::Colour m_color = juce::Colours::black;

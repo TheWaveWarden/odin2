@@ -77,3 +77,10 @@ void ModAmountComponent::mouseDrag(const MouseEvent &event) {
   onValueChange(m_value);
   repaint();
 }
+
+
+void ModAmountComponent::parameterChanged (const String &parameterID, float newValue){
+  if(parameterID == m_parameter_id){
+    setValue(newValue);
+  }
+}

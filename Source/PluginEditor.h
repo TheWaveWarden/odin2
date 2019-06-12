@@ -195,6 +195,7 @@ public:
   bool keyStateChanged(bool isKeyDown,
                        Component *originatingComponent) override;
   void allMidiKeysOff();
+
 private:
   bool m_A_down = false; // C
   bool m_W_down = false; // C#
