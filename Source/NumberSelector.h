@@ -11,58 +11,57 @@
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
-#include "GlobalIncludes.h"
 #include "GlasDisplay.h"
+#include "GlobalIncludes.h"
 //==============================================================================
 /*
-*/
-class NumberSelector : public Component
-{
+ */
+class NumberSelector : public Component,
+                       public AudioProcessorValueTreeState::Listener {
 public:
   NumberSelector(bool p_buttons_right);
   ~NumberSelector();
 
+  void parameterChanged(const String &parameterID,
+                                            float newValue) override {
+    if (parameterID == m_parameter_id) {
+      setValue(newValue);
+    }
+  }
+
   void paint(Graphics &) override;
   void resized() override;
 
-  void setColor(juce::Colour p_color){
-    m_display.setColor(p_color);
-  }
+  void setColor(juce::Colour p_color) { m_display.setColor(p_color); }
 
-
-  void setRange(int p_min, int p_max){
+  void setRange(int p_min, int p_max) {
     m_min = p_min;
     m_max = p_max;
   }
 
-  virtual void setValue(int p_value)
-  {
-    if(p_value >= m_min && p_value <= m_max){
+  virtual void setValue(int p_value) {
+    if (p_value >= m_min && p_value <= m_max) {
       m_value = p_value;
       m_display.setText(std::to_string(m_value));
       OnValueChange(p_value);
     }
   }
 
-  void setTooltip(const String p_text){
-    m_display.setTooltip(p_text);
-  }
+  void setTooltip(const String p_text) { m_display.setTooltip(p_text); }
 
-  //void mouseEnter (const MouseEvent&)     { 
+  // void mouseEnter (const MouseEvent&)     {
   //  showTooltip();
   //}
-  std::function<void(int)>OnValueChange = [](int){};
-  
-protected:
-  void increment()
-  {
-    setValue(m_value + 1);
-  }
+  std::function<void(int)> OnValueChange = [](int) {};
 
-  void decrement()
-  {
-    setValue(m_value - 1);
-  }
+  void setParameterId(String p_id) { m_parameter_id = p_id; }
+
+protected:
+  String m_parameter_id;
+
+  void increment() { setValue(m_value + 1); }
+
+  void decrement() { setValue(m_value - 1); }
 
   GlasDisplay m_display;
   int m_min = 1;

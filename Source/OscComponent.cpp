@@ -1242,12 +1242,20 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_lp.setNumDecimalPlacesToDisplay(1);
   m_hp.setNumDecimalPlacesToDisplay(1);
 
+  m_carrier_ratio.setParameterId("osc" + m_osc_number + "_carrier_ratio");
+  m_value_tree.addParameterListener("osc" + m_osc_number + "_carrier_ratio", &m_carrier_ratio);
+  m_modulator_ratio.setParameterId("osc" + m_osc_number + "_modulator_ratio");
+  m_value_tree.addParameterListener("osc" + m_osc_number + "_modulator_ratio", &m_modulator_ratio);
+
   setSize(247, 145);
 }
 
 OscComponent::~OscComponent() {
   m_carrier_waveselector.m_menu.setLookAndFeel(nullptr);
   m_modulator_waveselector.m_menu.setLookAndFeel(nullptr);
+
+  m_value_tree.removeParameterListener("osc" + m_osc_number + "_carrier_ratio", &m_carrier_ratio);
+  m_value_tree.removeParameterListener("osc" + m_osc_number + "_modulator_ratio", &m_modulator_ratio);
 }
 
 void OscComponent::paint(Graphics &g) { g.drawImageAt(m_background, 0, 0); }

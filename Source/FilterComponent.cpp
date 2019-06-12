@@ -201,9 +201,19 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts,
   m_vel.setNumDecimalPlacesToDisplay(3);
   m_kbd.setNumDecimalPlacesToDisplay(3);
   m_formant_transition.setNumDecimalPlacesToDisplay(3);
+
+
+
+  m_vowel_left.setParameterId("fil" + m_filter_number + "_vowel_left");
+  m_value_tree.addParameterListener("fil" + m_filter_number + "_vowel_left", &m_vowel_left);
+  m_vowel_right.setParameterId("fil" + m_filter_number + "_vowel_right");
+  m_value_tree.addParameterListener("fil" + m_filter_number + "_vowel_right", &m_vowel_right);
 }
 
-FilterComponent::~FilterComponent() {}
+FilterComponent::~FilterComponent() {
+  m_value_tree.removeParameterListener("fil" + m_filter_number + "_vowel_left", &m_vowel_left);
+  m_value_tree.removeParameterListener("fil" + m_filter_number + "_vowel_right", &m_vowel_right);
+}
 
 void FilterComponent::paint(Graphics &g) { g.drawImageAt(m_background, 0, 0); }
 

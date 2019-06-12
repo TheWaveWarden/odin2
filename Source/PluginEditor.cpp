@@ -858,6 +858,10 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
   m_glide.setNumDecimalPlacesToDisplay(3);
   m_modwheel.setNumDecimalPlacesToDisplay(3);
 
+
+  m_pitch_amount.setParameterId("pitchbend_amount");
+  m_value_tree.addParameterListener("pitchbend_amount", &m_pitch_amount);
+
   setSize(800, 600);
 }
 
@@ -865,6 +869,9 @@ OdinAudioProcessorEditor::~OdinAudioProcessorEditor() {
   m_osc_dropdown_menu.setLookAndFeel(nullptr);
   m_filter_dropdown_menu.setLookAndFeel(nullptr);
   m_tooltip.setLookAndFeel(nullptr);
+
+  m_value_tree.removeParameterListener("pitchbend_amount", &m_pitch_amount);
+
 }
 
 //==============================================================================
@@ -937,6 +944,7 @@ void OdinAudioProcessorEditor::resized() {
                         SAVE_LOAD_SIZE_Y);
   m_xy_section.setBounds(XY_COMPONENT_POS_X, XY_COMPONENT_POS_Y,
                          XY_COMPONENT_SIZE_X, XY_COMPONENT_SIZE_Y);
+
 
   m_mod_matrix.getOscFilterTypes = [&](int &osc1, int &osc2, int &osc3,
                                        int &fil1, int &fil2, int &fil3) {
