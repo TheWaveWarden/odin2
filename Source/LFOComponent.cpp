@@ -68,7 +68,7 @@ LFOComponent::LFOComponent(AudioProcessorValueTreeState &vts,
   juce::Image sync_3 = ImageCache::getFromMemory(
       BinaryData::buttonsync_3_png, BinaryData::buttonsync_3_pngSize);
   juce::Image sync_4 = ImageCache::getFromMemory(
-      BinaryData::buttonsync_4_png, BinaryData::      BinaryDataSize));
+      BinaryData::buttonsync_4_png, BinaryData::buttonsync_4_pngSize);
 
   juce::DrawableImage sync_draw1;
   juce::DrawableImage sync_draw2;

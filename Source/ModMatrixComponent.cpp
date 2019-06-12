@@ -331,7 +331,7 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
   // 1000 must be highest value
 
   juce::Image glas_left_down = ImageCache::getFromMemory(
-      BinaryData::modpanelbig_left_down_png, BinaryData::modpanelbig_left_down_pngSize);d
+      BinaryData::modpanelbig_left_down_png, BinaryData::modpanelbig_left_down_pngSize);
   juce::Image glas_left_mid = ImageCache::getFromMemory(
       BinaryData::modpanelbig_left_mid_png, BinaryData::modpanelbig_left_mid_pngSize);
   juce::Image glas_left_up = ImageCache::getFromMemory(

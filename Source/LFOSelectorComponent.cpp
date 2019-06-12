@@ -108,9 +108,9 @@ LFOSelectorComponent::LFOSelectorComponent()
   m_up.onClick = [&]() { increment(); };
 
   juce::Image down_1 = ImageCache::getFromMemory(
-      BinaryData::buttondown_2_png, BinaryData::));
+      BinaryData::buttondown_2_png, BinaryData::buttondown_2_pngSize);
   juce::Image down_2 = ImageCache::getFromMemory(
-      BinaryData::buttondown_1_png, BinaryData::));
+      BinaryData::buttondown_1_png, BinaryData::buttondown_1_pngSize);
 
   juce::DrawableImage down_draw1;
   juce::DrawableImage down_draw2;

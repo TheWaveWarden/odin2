@@ -164,7 +164,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
                     juce::Colour());
 
   m_oct.setStrip(
-      ImageCache::getFromMemory(BinaryData::cropped/knobs/black2/black_knob_small_png, BinaryData::)),
+      ImageCache::getFromMemory(BinaryData::black_knob_small_png, BinaryData::black_knob_small_pngSize),
       N_KNOB_FRAMES);
   m_oct.setSliderStyle(Slider::RotaryVerticalDrag);
   m_oct.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
@@ -179,7 +179,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   addChildComponent(m_oct);
 
   m_semi.setStrip(
-      ImageCache::getFromMemory(BinaryData::cropped/knobs/black2/black_knob_small_png, BinaryData::)),
+      ImageCache::getFromMemory(BinaryData::black_knob_small_png, BinaryData::black_knob_small_pngSize),
       N_KNOB_FRAMES);
   m_semi.setSliderStyle(Slider::RotaryVerticalDrag);
   m_semi.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
@@ -189,7 +189,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   addChildComponent(m_semi);
 
   m_fine.setStrip(
-      ImageCache::getFromMemory(BinaryData::cropped/knobs/black2/black_knob_small_png, BinaryData::)),
+      ImageCache::getFromMemory(BinaryData::black_knob_small_png, BinaryData::black_knob_small_pngSize),
       N_KNOB_FRAMES);
   m_fine.setSliderStyle(Slider::RotaryVerticalDrag);
   m_fine.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
@@ -209,9 +209,9 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_fine.setBounds(area_fine);
 
   juce::Image LED_1 = ImageCache::getFromMemory(
-      BinaryData::LED_1_png, BinaryData::));
+      BinaryData::LED_1_png, BinaryData::LED_1_pngSize);
   juce::Image LED_2 = ImageCache::getFromMemory(
-      BinaryData::LED_2_png, BinaryData::));
+      BinaryData::LED_2_png, BinaryData::LED_2_pngSize);
   juce::DrawableImage LED_draw1;
   juce::DrawableImage LED_draw2;
   LED_draw1.setImage(LED_1);
@@ -295,7 +295,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   addChildComponent(m_LED_sine);
 
   m_pw.setStrip(
-      ImageCache::getFromMemory(BinaryData::black_knob_small_png, BinaryData::black_knob_small_png)),
+      ImageCache::getFromMemory(BinaryData::black_knob_small_png, BinaryData::black_knob_small_pngSize),
       N_KNOB_FRAMES);
   m_pw.setSliderStyle(Slider::RotaryVerticalDrag);
   m_pw.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
@@ -305,7 +305,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   addChildComponent(m_pw);
 
   m_drift.setStrip(
-      ImageCache::getFromMemory(BinaryData::black_knob_big_png, BinaryData::black_knob_big_png)),
+      ImageCache::getFromMemory(BinaryData::black_knob_big_png, BinaryData::black_knob_big_pngSize),
       N_KNOB_FRAMES);
   m_drift.setSliderStyle(Slider::RotaryVerticalDrag);
   m_drift.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
@@ -462,10 +462,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
       "How much the modulator\nmodulates the pitch of\n the carrier wave");
   addChildComponent(m_fm);
 
-  m_lp.setStrip(ImageCache::getFromMemory(BinaryData::metal_knob_big_png, BinaryData::metal_knob_big_pngSize),buttonstep_1_png
-buttonstep_2_png
-buttonstep_3_png
-buttonstep_4_png
+  m_lp.setStrip(ImageCache::getFromMemory(BinaryData::metal_knob_big_png, BinaryData::metal_knob_big_pngSize),
                 256);
   m_lp.setBounds(LP_POS_X, LP_POS_Y, METAL_KNOB_BIG_SIZE_X,
                  METAL_KNOB_BIG_SIZE_Y);
@@ -1110,7 +1107,7 @@ buttonstep_4_png
   juce::Colour vector_color(60, 60, 60);
 
   juce::Image glas_panel = ImageCache::getFromMemory(
-      BinaryData::vectorpanel_png, BinaryData::vectorpanel_pngs));
+      BinaryData::vectorpanel_png, BinaryData::vectorpanel_pngSize);
   m_xy.setTopLeftPosition(XY_POS_X, XY_POS_Y);
   m_xy.setSize(glas_panel.getWidth(), glas_panel.getHeight());
   m_xy.setImage(glas_panel);
@@ -1122,7 +1119,7 @@ buttonstep_4_png
   addAndMakeVisible(m_xy);
 
   juce::Image glas_panel_vecwave = ImageCache::getFromMemory(
-      BinaryData::glaspanel_big_png, BinaryData::glaspanel_big_png));
+      BinaryData::glaspanel_big_png, BinaryData::glaspanel_big_pngSize);
   m_vec_a.setImage(glas_panel_vecwave);
   m_vec_a.setInlay(1);
   m_vec_a.setEditableText(false);
@@ -1360,7 +1357,7 @@ void OscComponent::setOscTypeWavetable() {
 
 void OscComponent::setOscTypeMulti() {
   m_background = ImageCache::getFromMemory(
-      BinaryData::multi_backdrop_png, BinaryData::multi_backdrop_png));
+      BinaryData::multi_backdrop_png, BinaryData::multi_backdrop_pngSize);
   showMultiComponents();
 }
 

@@ -579,13 +579,13 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
 
   // load the knob strips
   juce::Image metal_knob_small = ImageCache::getFromMemory(
-      BinaryData::knobs/metal1/metal_knob_small_png, BinaryData::metal_knob_small_pngSize);
+      BinaryData::metal_knob_small_png, BinaryData::metal_knob_small_pngSize);
 
   juce::Image metal_knob_big = ImageCache::getFromMemory(
-      BinaryData::knobs/metal3/metal_knob_big_png, BinaryData::metal_knob_big_pngSize);
+      BinaryData::metal_knob_big_png, BinaryData::metal_knob_big_pngSize);
 
   juce::Image black_knob_mid = ImageCache::getFromMemory(
-      BinaryData::knobs/black3/black_knob_mid_png, BinaryData::black_knob_mid_pngSize);
+      BinaryData::black_knob_mid_png, BinaryData::black_knob_mid_pngSize);
 
   // load backplates for osc and filters
 

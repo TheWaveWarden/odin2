@@ -35,7 +35,7 @@ FXComponent::FXComponent(AudioProcessorValueTreeState &vts,
       new ButtonAttachment(m_value_tree, m_fx_name + "_reset", m_reset));
 
   juce::Image metal_knob_mid = ImageCache::getFromMemory(
-      BinaryData::metal_knob_mid_png, BinaryData::metal_knob_mid_png));
+      BinaryData::metal_knob_mid_png, BinaryData::metal_knob_mid_pngSize);
   m_amount.setStrip(metal_knob_mid, N_KNOB_FRAMES);
   m_amount.setSliderStyle(Slider::RotaryVerticalDrag);
   m_amount.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);

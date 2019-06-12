@@ -46,11 +46,11 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts,
       m_comb_plus_minus));
 
   juce::Image metal_knob_big = ImageCache::getFromMemory(
-      BinaryData::metal_knob_big_png, BinaryData::metal_knob_big_png));
+      BinaryData::metal_knob_big_png, BinaryData::metal_knob_big_pngSize);
   juce::Image metal_knob_mid = ImageCache::getFromMemory(
-      BinaryData::metal_knob_mid_png, BinaryData::metal_knob_mid_png));
+      BinaryData::metal_knob_mid_png, BinaryData::metal_knob_mid_pngSize);
   juce::Image black_knob_small = ImageCache::getFromMemory(
-      BinaryData::black_knob_small_png, BinaryData::black_knob_small_png));
+      BinaryData::black_knob_small_png, BinaryData::black_knob_small_pngSize);
 
   m_vel.setStrip(black_knob_small, N_KNOB_FRAMES);
   m_vel.setSliderStyle(Slider::RotaryVerticalDrag);
@@ -201,9 +201,7 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts,
   m_vel.setNumDecimalPlacesToDisplay(3);
   m_kbd.setNumDecimalPlacesToDisplay(3);
   m_formant_transition.setNumDecimalPlacesToDisplay(3);
-kkk
 
-kkk
   m_vowel_left.setParameterId("fil" + m_filter_number + "_vowel_left");
   m_value_tree.addParameterListener("fil" + m_filter_number + "_vowel_left", &m_vowel_left);
   m_vowel_right.setParameterId("fil" + m_filter_number + "_vowel_right");
@@ -297,79 +295,79 @@ void FilterComponent::setFilterBypass() { m_background = m_background_bypass; }
 
 void FilterComponent::setFilterLP24() {
   m_background = ImageCache::getFromMemory(
-      BinaryData::LP24_backdrop_png, BinaryData::));
+      BinaryData::LP24_backdrop_png, BinaryData::LP24_backdrop_pngSize);
   showStandardFilterComponents();
 }
 
 void FilterComponent::setFilterLP12() {
   m_background = ImageCache::getFromMemory(
-      BinaryData::LP12_backdrop_png, BinaryData::));
+      BinaryData::LP12_backdrop_png, BinaryData::LP12_backdrop_pngSize);
   showStandardFilterComponents();
 }
 
 void FilterComponent::setFilterBP24() {
   m_background = ImageCache::getFromMemory(
-      BinaryData::BP24_backdrop_png, BinaryData::));
+      BinaryData::BP24_backdrop_png, BinaryData::BP24_backdrop_pngSize);
   showStandardFilterComponents();
 }
 
 void FilterComponent::setFilterBP12() {
   m_background = ImageCache::getFromMemory(
-      BinaryData::BP12_backdrop_png, BinaryData::));
+      BinaryData::BP12_backdrop_png, BinaryData::BP12_backdrop_pngSize);
   showStandardFilterComponents();
 }
 
 void FilterComponent::setFilterHP24() {
   m_background = ImageCache::getFromMemory(
-      BinaryData::HP24_backdrop_png, BinaryData::));
+      BinaryData::HP24_backdrop_png, BinaryData::HP24_backdrop_pngSize);
   showStandardFilterComponents();
 }
 
 void FilterComponent::setFilterHP12() {
   m_background = ImageCache::getFromMemory(
-      BinaryData::HP12_backdrop_png, BinaryData::));
+      BinaryData::HP12_backdrop_png, BinaryData::HP12_backdrop_pngSize);
   showStandardFilterComponents();
 }
 
 void FilterComponent::setFilterSEM24() {
   m_background = ImageCache::getFromMemory(
-      BinaryData::SEM24_backdrop_png, BinaryData::));
+      BinaryData::SEM24_backdrop_png, BinaryData::SEM24_backdrop_pngSize);
   showSEMFilterComponents();
 }
 
 void FilterComponent::setFilterSEM12() {
   m_background = ImageCache::getFromMemory(
-      BinaryData::SEM12_backdrop_png, BinaryData::));
+      BinaryData::SEM12_backdrop_png, BinaryData::SEM12_backdrop_pngSize);
   showSEMFilterComponents();
 }
 
 void FilterComponent::setFilterDiode() {
   m_background = ImageCache::getFromMemory(
-      BinaryData::diode_backdrop_png, BinaryData::));
+      BinaryData::diode_backdrop_png, BinaryData::diode_backdrop_pngSize);
   showStandardFilterComponents();
 }
 
 void FilterComponent::setFilterKorgLP() {
   m_background = ImageCache::getFromMemory(
-      BinaryData::korg_backdrop_png, BinaryData::));
+      BinaryData::korg_backdrop_png, BinaryData::korg_backdrop_pngSize);
   showStandardFilterComponents();
 }
 
 void FilterComponent::setFilterKorgHP() {
   m_background = ImageCache::getFromMemory(
-      BinaryData::SEM24_backdrop_png, BinaryData::));
+      BinaryData::SEM24_backdrop_png, BinaryData::SEM24_backdrop_pngSize);
   showStandardFilterComponents();
 }
 
 void FilterComponent::setFilterComb() {
   m_background = ImageCache::getFromMemory(
-      BinaryData::comb_backdrop_png, BinaryData::));
+      BinaryData::comb_backdrop_png, BinaryData::comb_backdrop_pngSize);
   showCombFilterComponents();
 }
 
 void FilterComponent::setFilterFormant() {
   m_background = ImageCache::getFromMemory(
-      BinaryData::formant_backdrop_png, BinaryData::));
+      BinaryData::formant_backdrop_png, BinaryData::formant_backdrop_pngSize);
   showFormantFilterComponents();
 }
 

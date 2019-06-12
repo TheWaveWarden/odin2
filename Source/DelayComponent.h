@@ -77,14 +77,14 @@ public:
       if (p_sync_on)
       {
         m_background =
-            ImageCache::getFromMemory(BinaryData::delaysync_png, BinaryData::::delaysync_png));
+            ImageCache::getFromMemory(BinaryData::delaysync_png, BinaryData::delaysync_pngSize);
         m_time.setVisible(false);
         m_sync_time.setVisible(true);
       }
       else
       {
         m_background =
-            ImageCache::getFromMemory(BinaryData::delaynosync_png, BinaryData::delaynosync_png));
+            ImageCache::getFromMemory(BinaryData::delaynosync_png, BinaryData::delaynosync_pngSize);
         m_time.setVisible(true);
         m_sync_time.setVisible(false);
       }

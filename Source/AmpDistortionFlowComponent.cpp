@@ -20,13 +20,13 @@ AmpDistortionFlowComponent::AmpDistortionFlowComponent(
       m_value_tree(vts) {
 
   juce::Image flow_left_1 = ImageCache::getFromMemory(
-      BinaryData::buttonleft_1_png, BinaryData::BinaryData::buttonleft_1_pngSize);
+      BinaryData::buttonleft_1_png, BinaryData::buttonleft_1_pngSize);
   juce::Image flow_left_2 = ImageCache::getFromMemory(
-      BinaryData::buttonleft_2_png, BinaryData::BinaryData::buttonleft_2_pngSize);
+      BinaryData::buttonleft_2_png, BinaryData::buttonleft_2_pngSize);
   juce::Image flow_left_3 = ImageCache::getFromMemory(
-      BinaryData::buttonleft_3_png, BinaryData::BinaryData::buttonleft_3_pngSize);
+      BinaryData::buttonleft_3_png, BinaryData::buttonleft_3_pngSize);
   juce::Image flow_left_4 = ImageCache::getFromMemory(
-      BinaryData::buttonleft_4_png, BinaryData::BinaryData::buttonleft_4_pngSize);
+      BinaryData::buttonleft_4_png, BinaryData::buttonleft_4_pngSize);
 
   juce::DrawableImage flow_left_draw1;
   juce::DrawableImage flow_left_draw2;
@@ -120,11 +120,11 @@ AmpDistortionFlowComponent::AmpDistortionFlowComponent(
                          juce::Colour());
 
   juce::Image metal_knob_big = ImageCache::getFromMemory(
-      BinaryData::knobs/metal3/metal_knob_big_png, BinaryData::));
+      BinaryData::metal_knob_big_png, BinaryData::metal_knob_big_pngSize);
   juce::Image black_knob_mid = ImageCache::getFromMemory(
-      BinaryData::knobs/black3/black_knob_mid_png, BinaryData::));
+      BinaryData::black_knob_mid_png, BinaryData::black_knob_mid_pngSize);
   juce::Image round_knob = ImageCache::getFromMemory(
-      BinaryData::knobs/round/round_knob_png, BinaryData::));
+      BinaryData::round_knob_png, BinaryData::round_knob_pngSize);
 
   m_amp_gain.setStrip(metal_knob_big, N_KNOB_FRAMES);
   m_amp_gain.setSliderStyle(Slider::RotaryVerticalDrag);
@@ -174,7 +174,7 @@ AmpDistortionFlowComponent::AmpDistortionFlowComponent(
   addAndMakeVisible(m_dry_wet);
 
   juce::Image glas_panel = ImageCache::getFromMemory(
-      BinaryData::glaspanel_midbig_png, BinaryData::));
+      BinaryData::glaspanel_midbig_png, BinaryData::glaspanel_midbig_pngSize);
   m_distortion_algo.setImage(glas_panel);
   m_distortion_algo.setInlay(1);
   m_distortion_algo.addItem("Clamp", 1);

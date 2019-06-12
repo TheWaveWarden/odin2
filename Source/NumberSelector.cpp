@@ -20,7 +20,7 @@ NumberSelector::NumberSelector(bool p_buttons_right = true)
 {
 
     juce::Image glas_panel = ImageCache::getFromMemory(
-        BinaryData::glaspanel_small_png, BinaryData::));
+        BinaryData::glaspanel_small_png, BinaryData::glaspanel_small_pngSize);
     m_display.setImage(glas_panel);
     m_display.setBounds(0, 0, glas_panel.getWidth(), glas_panel.getHeight());
     m_display.setInlay(1);
@@ -48,9 +48,9 @@ NumberSelector::NumberSelector(bool p_buttons_right = true)
     m_up.onClick = [&]() { increment(); };
 
     juce::Image down_1 = ImageCache::getFromMemory(
-        BinaryData::buttondown_2_png, BinaryData::buttondown_2_png));
+        BinaryData::buttondown_2_png, BinaryData::buttondown_2_pngSize);
     juce::Image down_2 = ImageCache::getFromMemory(
-        BinaryData::buttondown_1_png, BinaryData::buttondown_1_png));
+        BinaryData::buttondown_1_png, BinaryData::buttondown_1_pngSize);
 
     juce::DrawableImage down_draw1;
     juce::DrawableImage down_draw2;
