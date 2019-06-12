@@ -1076,7 +1076,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
                      fm_exp_left.getHeight());
   m_fm_exp.setToggleState(false, dontSendNotification);
   m_fm_exp.onStateChange = [&]() {
-    // setLfo13(m_fm_exp_button.getToggleState());
+    // setLfo12(m_fm_exp_button.getToggleState());
   };
   m_fm_exp.setTooltip(
       "Whether to use exponential or linear FM.\nExponential FM has a more "

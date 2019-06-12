@@ -342,8 +342,8 @@ private:
   void setFilter3Plate(int p_osc_type);
   void setEnv13(bool p_env13);
   void setEnv24(bool p_env24);
-  void setLfo13(bool p_lfo13);
-  void setLfo24(bool p_lfo24);
+  void setLfo12(bool p_lfo13);
+  void setLfo34(bool p_lfo24);
   
   int m_octave_shift = 0;
   bool m_is_standalone_plugin;

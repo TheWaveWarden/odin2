@@ -25,12 +25,19 @@ public:
 
   void parameterChanged(const String &parameterID, float newValue) override {
     if (parameterID == m_parameter_id) {
-      setValue(newValue);
+      setValueGUIOnly(newValue);
     }
   }
 
   void paint(Graphics &) override;
   void resized() override;
+
+  void setValueGUIOnly(int p_value){
+    if (p_value < m_display.getNrOfWaves() && p_value >= 0) {
+      m_value = p_value;
+      m_display.setValue(p_value);
+    }
+  }
 
   void setValue(int p_value) {
     if (p_value < m_display.getNrOfWaves() && p_value >= 0) {

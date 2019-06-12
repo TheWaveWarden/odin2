@@ -117,6 +117,8 @@ LFOComponent::LFOComponent(AudioProcessorValueTreeState &vts,
   addAndMakeVisible(m_freq);
 
   m_selector.OnValueChange = [&](int p_new_value) {
+    DBG("LFOWAVE");
+    DBG(p_new_value);
     m_value_tree.getParameter(m_lfo_wave_identifier)
         ->setValueNotifyingHost(((float)p_new_value) / 20.f);
   };
@@ -159,7 +161,7 @@ void LFOComponent::resized() {
 
 void LFOComponent::forceValueTreeOntoComponents(ValueTree p_tree) {
 
-  m_selector.setValue(
+  m_selector.setValueGUIOnly(
       m_value_tree.getParameterAsValue(m_lfo_wave_identifier).getValue());
 
   m_sync_time.setValues(

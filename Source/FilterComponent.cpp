@@ -188,7 +188,7 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts,
                               comb_plus.getWidth(), comb_plus.getHeight());
   m_comb_plus_minus.setToggleState(false, dontSendNotification);
   m_comb_plus_minus.onStateChange = [&]() {
-    // setLfo13(m_comb_plus_minus_button.getToggleState());
+    // setLfo12(m_comb_plus_minus_button.getToggleState());
   };
   m_comb_plus_minus.setTooltip(
       "Whether to add or subtrackt the feedback\n in the internal delay line");

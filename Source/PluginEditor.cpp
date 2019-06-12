@@ -741,7 +741,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
                             lfo13_left.getHeight());
   m_lfo_13_button.setToggleState(true, dontSendNotification);
   m_lfo_13_button.onStateChange = [&]() {
-    setLfo13(m_lfo_13_button.getToggleState());
+    setLfo12(m_lfo_13_button.getToggleState());
   };
   m_lfo_13_button.setTooltip("Shows LFO 1 or LFO 3");
   addAndMakeVisible(m_lfo_13_button);
@@ -756,7 +756,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
                             lfo24_left.getHeight());
   m_lfo_24_button.setToggleState(true, dontSendNotification);
   m_lfo_24_button.onStateChange = [&]() {
-    setLfo24(m_lfo_24_button.getToggleState());
+    setLfo34(m_lfo_24_button.getToggleState());
   };
   m_lfo_24_button.setTooltip("Shows LFO 2 or LFO 4");
   addAndMakeVisible(m_lfo_24_button);
@@ -793,12 +793,12 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
   m_lfo_1.setBounds(LFO_LEFT_POS_X, LFO_LEFT_POS_Y, LFO_SIZE_X, LFO_SIZE_Y);
   m_lfo_1.setSyncOverdraw(lfo13_sync_background);
   addAndMakeVisible(m_lfo_1);
-  m_lfo_2.setBounds(LFO_RIGHT_POS_X, LFO_RIGHT_POS_Y, LFO_SIZE_X, LFO_SIZE_Y);
+  m_lfo_2.setBounds(LFO_LEFT_POS_X, LFO_LEFT_POS_Y, LFO_SIZE_X, LFO_SIZE_Y);
   m_lfo_2.setSyncOverdraw(lfo24_sync_background);
-  addAndMakeVisible(m_lfo_2);
-  m_lfo_3.setBounds(LFO_LEFT_POS_X, LFO_LEFT_POS_Y, LFO_SIZE_X, LFO_SIZE_Y);
+  addChildComponent(m_lfo_2);
+  m_lfo_3.setBounds(LFO_RIGHT_POS_X, LFO_RIGHT_POS_Y, LFO_SIZE_X, LFO_SIZE_Y);
   m_lfo_3.setSyncOverdraw(lfo13_sync_background);
-  addChildComponent(m_lfo_3);
+  addAndMakeVisible(m_lfo_3);
   m_lfo_4.setBounds(LFO_RIGHT_POS_X, LFO_RIGHT_POS_Y, LFO_SIZE_X, LFO_SIZE_Y);
   m_lfo_4.setSyncOverdraw(lfo24_sync_background);
   addChildComponent(m_lfo_4);
@@ -1033,22 +1033,22 @@ void OdinAudioProcessorEditor::setEnv24(bool p_env2) {
   }
 }
 
-void OdinAudioProcessorEditor::setLfo13(bool p_lfo1) {
+void OdinAudioProcessorEditor::setLfo12(bool p_lfo1) {
   if (p_lfo1) {
     m_lfo_1.setVisible(true);
-    m_lfo_3.setVisible(false);
+    m_lfo_2.setVisible(false);
   } else {
     m_lfo_1.setVisible(false);
-    m_lfo_3.setVisible(true);
+    m_lfo_2.setVisible(true);
   }
 }
 
-void OdinAudioProcessorEditor::setLfo24(bool p_lfo2) {
+void OdinAudioProcessorEditor::setLfo34(bool p_lfo2) {
   if (p_lfo2) {
-    m_lfo_2.setVisible(true);
+    m_lfo_3.setVisible(true);
     m_lfo_4.setVisible(false);
   } else {
-    m_lfo_2.setVisible(false);
+    m_lfo_3.setVisible(false);
     m_lfo_4.setVisible(true);
   }
 }
