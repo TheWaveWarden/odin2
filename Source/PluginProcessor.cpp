@@ -221,6 +221,8 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
       AudioPlayHead::CurrentPositionInfo current_position_info;
       playhead->getCurrentPosition(current_position_info);
       m_BPM = current_position_info.bpm;
+      //todo this is expensive???
+      SETVALUE("BPM", m_BPM);
     }
   }
   setBPM(m_BPM);
