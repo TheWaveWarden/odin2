@@ -680,7 +680,7 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
 bool OdinAudioProcessor::hasEditor() const { return true; }
 
 AudioProcessorEditor *OdinAudioProcessor::createEditor() {
-  m_editor =
+  OdinAudioProcessorEditor* editor =
       new OdinAudioProcessorEditor(*this, m_value_tree, m_is_standalone_plugin);
 
   // typeid(wrapperType) == typeid(wrapperType_Standalone));
@@ -688,7 +688,7 @@ AudioProcessorEditor *OdinAudioProcessor::createEditor() {
     onSetStateInformation();
   }
 
-  return m_editor;
+  return editor;
 }
 
 //==============================================================================

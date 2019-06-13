@@ -244,7 +244,7 @@ public:
                             int p_chorus);
 
 private:
-  OdinAudioProcessorEditor* m_editor = nullptr;
+  //OdinAudioProcessorEditor* m_editor = nullptr;
 
   void setBPM(float BPM);
 
