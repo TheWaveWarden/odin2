@@ -55,5 +55,17 @@ void GlasDisplay::resized() {
 
 void 	GlasDisplay::mouseDown (const MouseEvent &event){
   onMouseDown();
+  toParentMouseDown(event);
+  Component::mouseDown(event);
+}
+
+void 	GlasDisplay::mouseDrag (const MouseEvent &event){
+  toParentMouseDrag(event);
+  Component::mouseDrag(event);
+}
+
+void 	GlasDisplay::mouseUp (const MouseEvent &event){
+  toParentMouseUp(event);
+  Component::mouseUp(event);
 }
 

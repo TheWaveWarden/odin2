@@ -1176,6 +1176,8 @@ void OdinAudioProcessorEditor::forceValueTreeOntoComponents() {
   m_legato_button.setToggleState((float)m_value_tree.state["legato"] > 0.5,
                                  dontSendNotification);
   processor.setPolyLegato(m_legato_button.getToggleState());
+
+  m_BPM_selector.setValue(m_value_tree.state["BPM"]);
 }
 
 bool OdinAudioProcessorEditor::keyStateChanged(

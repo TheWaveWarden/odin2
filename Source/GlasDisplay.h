@@ -35,11 +35,19 @@ public:
   void setColor(juce::Colour p_color) { m_color = p_color; }
 
   void mouseDown(const MouseEvent &event) override;
-  std::function<void()> onMouseDown = []() {}; // overwriteable with lambda
+  void mouseDrag(const MouseEvent &event) override;
+  void mouseUp(const MouseEvent &event) override;
   void setTextValueSuffix(std::string p_suffix) {
     m_text_value_suffix = p_suffix;
     m_text = m_text_no_suffix + m_text_value_suffix;
   }
+
+  std::function<void()> onMouseDown = []() {}; // overwriteable with lambda
+  std::function<void(const MouseEvent&)> toParentMouseDown = [](const MouseEvent&){};
+  std::function<void(const MouseEvent&)> toParentMouseDrag = [](const MouseEvent&){};
+  std::function<void(const MouseEvent&)> toParentMouseUp = [](const MouseEvent&){};
+
+  
 
 private:
   std::string m_text_value_suffix = "";

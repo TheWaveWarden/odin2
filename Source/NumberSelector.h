@@ -22,8 +22,7 @@ public:
   NumberSelector(bool p_buttons_right);
   ~NumberSelector();
 
-  void parameterChanged(const String &parameterID,
-                                            float newValue) override {
+  void parameterChanged(const String &parameterID, float newValue) override {
     if (parameterID == m_parameter_id) {
       setValue(newValue);
     }
@@ -56,7 +55,12 @@ public:
 
   void setParameterId(String p_id) { m_parameter_id = p_id; }
 
+  
+
 protected:
+  int mouse_reference_value = 0;
+  int m_drag_initial_value = 0;
+
   String m_parameter_id;
 
   void increment() { setValue(m_value + 1); }
