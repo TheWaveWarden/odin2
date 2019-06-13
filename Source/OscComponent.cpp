@@ -121,7 +121,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_vol.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
   m_vol.setRange(VOL_MIN, VOL_MAX);
   m_vol.setTextValueSuffix(" dB");
-  m_vol.setValue(0);
+  m_vol.setValue(GETAUDIO("osc" + m_osc_number + "_vol"));
   m_vol.setNumDecimalPlacesToDisplay(1);
   m_vol.setKnobTooltip("The volume of the oscillator");
   addChildComponent(m_vol);
@@ -299,7 +299,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
       N_KNOB_FRAMES);
   m_pw.setSliderStyle(Slider::RotaryVerticalDrag);
   m_pw.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-  m_pw.setValue(PW_DEFAULT);
+  m_pw.setValue(GETAUDIO("osc" + m_osc_number + "_pulsewidth"));
   m_pw.setDoubleClickReturnValue(true, PW_DEFAULT, ModifierKeys::ctrlModifier);
   m_pw.setKnobTooltip("The pulse width if\nthe pulse wave is selected");
   addChildComponent(m_pw);
@@ -416,6 +416,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_step_1.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
   m_step_1.setRange(-STEP_RANGE_MAX, STEP_RANGE_MAX);
   m_step_1.setNumDecimalPlacesToDisplay(0);
+  m_step_1.setValue(GETAUDIO("osc" + m_osc_number + "_step_1"));
   m_step_1.setKnobTooltip(
       "The pitch of the\nfirst step of the\narpeggiator in semitones");
   addChildComponent(m_step_1);
@@ -428,7 +429,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_step_2.setSliderStyle(Slider::RotaryVerticalDrag);
   m_step_2.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
   m_step_2.setRange(-STEP_RANGE_MAX, STEP_RANGE_MAX);
-  m_step_2.setValue(STEP_2_DEFAULT);
+  m_step_2.setValue(GETAUDIO("osc" + m_osc_number + "_step_2"));
   m_step_2.setNumDecimalPlacesToDisplay(0);
   m_step_2.setKnobTooltip(
       "The pitch of the\nsecond step of the\narpeggiator in semitones");
@@ -444,7 +445,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_step_3.setSliderStyle(Slider::RotaryVerticalDrag);
   m_step_3.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
   m_step_3.setRange(-STEP_RANGE_MAX, STEP_RANGE_MAX);
-  m_step_3.setValue(STEP_3_DEFAULT);
+  m_step_3.setValue(GETAUDIO("osc" + m_osc_number + "_step_3"));
   m_step_3.setNumDecimalPlacesToDisplay(0);
   m_step_3.setKnobTooltip(
       "The pitch of the\nthird step of the\narpeggiator in semitones");
@@ -460,6 +461,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_fm.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
   m_fm.setKnobTooltip(
       "How much the modulator\nmodulates the pitch of\n the carrier wave");
+  m_fm.setValue(GETAUDIO("osc" + m_osc_number + "_fm"));
   addChildComponent(m_fm);
 
   m_lp.setStrip(ImageCache::getFromMemory(BinaryData::metal_knob_big_png, BinaryData::metal_knob_big_pngSize),
@@ -1033,6 +1035,8 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_carrier_ratio.setColor(fm_color);
   m_carrier_ratio.setTooltip(
       "The pitch ratio of the carrier to base frequency");
+  m_carrier_ratio.setMouseDragDivisor(20.f);
+
   addChildComponent(m_carrier_ratio);
 
   m_modulator_ratio.OnValueChange = [&](int p_new_value) {
@@ -1046,6 +1050,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_modulator_ratio.setColor(fm_color);
   m_modulator_ratio.setTooltip(
       "The pitch ratio of the modulator to base frequency");
+  m_modulator_ratio.setMouseDragDivisor(20.f);
   addChildComponent(m_modulator_ratio);
 
   juce::Image fm_exp_left = ImageCache::getFromMemory(
@@ -1530,7 +1535,7 @@ void OscComponent::createWavedrawTables() {
 
   // write values to audiovaluetree
   float *table = m_wavedraw.getDrawnTable();
-  auto node = m_value_tree.state.getOrCreateChildWithName("NO_PARAM", nullptr);
+  auto node = m_value_tree.state;
   for (int i = 0; i < WAVEDRAW_STEPS_X; ++i) {
     node.setProperty(
         String("[" + std::to_string(i) + "]osc" + m_osc_number + "_wavedraw"),
@@ -1544,7 +1549,7 @@ void OscComponent::createChipdrawTables() {
 
   // write values to audiovaluetree
   float *table = m_chipdraw.getDrawnTable();
-  auto node = m_value_tree.state.getOrCreateChildWithName("NO_PARAM", nullptr);
+  auto node = m_value_tree.state;
   for (int i = 0; i < CHIPDRAW_STEPS_X; ++i) {
     node.setProperty(
         String("[" + std::to_string(i) + "]osc" + m_osc_number + "_chipdraw"),
@@ -1564,7 +1569,7 @@ void OscComponent::createSpecdrawTables() {
       std::stoi(m_osc_number) - 1, m_specdraw.getDrawnTable(), 44100.f);
   // write values to audiovaluetree
   float *table = m_specdraw.getDrawnTable();
-  auto node = m_value_tree.state.getOrCreateChildWithName("NO_PARAM", nullptr);
+  auto node = m_value_tree.state;
   for (int i = 0; i < SPECDRAW_STEPS_X; ++i) {
     node.setProperty(
         String("[" + std::to_string(i) + "]osc" + m_osc_number + "_specdraw"),
@@ -1646,7 +1651,7 @@ void OscComponent::forceValueTreeOntoComponents(ValueTree p_tree, int p_index) {
   m_chiptune_waveselector.setValue(
       m_value_tree.state[String("osc" + m_osc_number + "_chipwave")]);
 
-  auto node = m_value_tree.state.getOrCreateChildWithName("NO_PARAM", nullptr);
+  auto node = m_value_tree.state;
 
   // wavedraw
   float wavedraw_values[WAVEDRAW_STEPS_X];

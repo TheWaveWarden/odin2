@@ -162,6 +162,7 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts,
                                   FORMANT_VOW_LEFT_POS_Y);
   m_vowel_left.setTooltip(
       "The vowel to\nthe left side of\nthe transition knob");
+  m_vowel_left.setMouseDragDivisor(40.f);
   addChildComponent(m_vowel_left);
   m_vowel_left.setValue(0);
   m_vowel_left.setColor(Colour(90, 40, 40));
@@ -174,6 +175,7 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts,
                                    FORMANT_VOW_RIGHT_POS_Y);
   m_vowel_right.setTooltip(
       "The vowel to\nthe right side of\nthe transition knob");
+  m_vowel_right.setMouseDragDivisor(40.f);
   addChildComponent(m_vowel_right);
   m_vowel_right.setValue(2);
   m_vowel_right.setColor(Colour(90, 40, 40));

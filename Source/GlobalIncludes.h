@@ -72,6 +72,7 @@
 
 #define GETVALUE(name) m_value_tree.state[name]
 #define SETVALUE(name, value) m_value_tree.state.setProperty(name, value, nullptr)
+#define GETAUDIO(name)  m_value_tree.getParameterAsValue(name).getValue()
 
 //#define WAVEDRAW_LENGTH 2 //todo
 //#define CHIPDRAW_LENGTH 2 //todo

@@ -32,9 +32,8 @@ NumberSelector::NumberSelector(bool p_buttons_right = true)
   m_display.toParentMouseDrag = [&](const MouseEvent e) {
     float mouse_moved = mouse_reference_value - e.getScreenY();
 
-#define MOUSE_DRAG_DIVIDER 7.f
 
-    int new_value = m_drag_initial_value + mouse_moved / MOUSE_DRAG_DIVIDER;
+    int new_value = m_drag_initial_value + mouse_moved / m_mouse_drag_divisor;
     new_value = new_value > m_max ? m_max : new_value;
     new_value = new_value < m_min ? m_min : new_value;
 

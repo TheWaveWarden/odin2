@@ -812,6 +812,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
   };
   m_pitch_amount.setTopLeftPosition(PITCH_AMOUNT_X, PITCH_AMOUNT_Y);
   addAndMakeVisible(m_pitch_amount);
+  m_pitch_amount.setMouseDragDivisor(20.f);
   m_pitch_amount.setRange(0, 24);
   m_pitch_amount.setValue(12);
   m_pitch_amount.setColor(Colour(10, 40, 50));

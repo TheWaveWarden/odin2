@@ -55,9 +55,12 @@ public:
 
   void setParameterId(String p_id) { m_parameter_id = p_id; }
 
-  
+  void setMouseDragDivisor(float p_divisor) {
+    m_mouse_drag_divisor = p_divisor;
+  }
 
 protected:
+  float m_mouse_drag_divisor = 7.f;
   int mouse_reference_value = 0;
   int m_drag_initial_value = 0;
 

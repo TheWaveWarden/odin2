@@ -155,7 +155,7 @@
 #define FONT_SPACE_Y 4
 #define TOOLTIP_INLAY 10
 
-#define BPM_POS_X 510
+#define BPM_POS_X 585
 #define BPM_POS_Y 6
 
 class TooltipFeels : public LookAndFeel_V4 {

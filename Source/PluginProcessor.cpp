@@ -1308,7 +1308,7 @@ void OdinAudioProcessor::setBPM(float p_BPM) {
 void OdinAudioProcessor::addNonAudioParametersToTree() {
 
   auto node =
-      m_value_tree.state; //.getOrCreateChildWithName("NO_PARAM", nullptr);
+      m_value_tree.state;
   for (int i = 0; i < WAVEDRAW_STEPS_X; ++i) {
     float val = sin(2 * M_PI * i / (float)WAVEDRAW_STEPS_X) * 0.9;
     // do braces in the beginnning to speed up identification!?
