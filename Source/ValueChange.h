@@ -1233,5 +1233,7 @@ void OdinAudioProcessor::treeValueChangedNonParam(ValueTree &tree,
     for (int voice = 0; voice < VOICES; ++voice) {
       m_voice[voice].fm_osc[2].selectModulatorWavetable(p_new_value);
     }
+  } else if (id == m_BPM_identifier){
+    m_BPM = p_new_value;
   }
 }

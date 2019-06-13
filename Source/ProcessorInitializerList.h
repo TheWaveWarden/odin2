@@ -325,4 +325,5 @@
     m_scale_row_6_identifier("scale_[5]"),
     m_scale_row_7_identifier("scale_[6]"),
     m_scale_row_8_identifier("scale_[7]"),
-    m_scale_row_9_identifier("scale_[9]")
+    m_scale_row_9_identifier("scale_[9]"),
+    m_BPM_identifier("BPM")

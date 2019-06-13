@@ -32,7 +32,7 @@ DelayComponent::DelayComponent(AudioProcessorValueTreeState &vts,
   m_delay_wet_attach.reset(
       new SliderAttachment(m_value_tree, "delay_wet", m_wet));
 
-  if (!m_is_standalone_plugin) {
+  //if (!m_is_standalone_plugin) {
     m_sync_attach.reset(new ButtonAttachment(m_value_tree, "", m_sync));
 
     juce::Image sync_1 = ImageCache::getFromMemory(
@@ -64,11 +64,11 @@ DelayComponent::DelayComponent(AudioProcessorValueTreeState &vts,
                      juce::Colour());
     m_sync.setTooltip("Syncs the delay time to your track");
     addAndMakeVisible(m_sync);
-  }
+  //}
   m_sync.onStateChange = [&]() {
-    if (!m_is_standalone_plugin) {
+    //if (!m_is_standalone_plugin) {
       setSync(m_sync.getToggleState());
-    }
+    //}
   };
   juce::Image metal_knob_big = ImageCache::getFromMemory(
       BinaryData::metal_knob_big_png, BinaryData::metal_knob_big_pngSize);

@@ -811,6 +811,7 @@
               resource="0" file="Source/AmpDistortionFlowComponent.cpp"/>
         <FILE id="NeR3PY" name="AmpDistortionFlowComponent.h" compile="0" resource="0"
               file="Source/AmpDistortionFlowComponent.h"/>
+        <FILE id="WvsM2P" name="BPMSelector.h" compile="0" resource="0" file="Source/BPMSelector.h"/>
         <FILE id="nONSmU" name="ChipdrawWindow.cpp" compile="1" resource="0"
               file="Source/ChipdrawWindow.cpp"/>
         <FILE id="ttWLIf" name="ChipdrawWindow.h" compile="0" resource="0"

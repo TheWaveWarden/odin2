@@ -352,6 +352,8 @@ private:
   bool m_is_standalone_plugin =
       true; // set true since is is only set after createEditor()
 
+  float m_BPM = 120;
+
   bool m_force_values_onto_gui =
       false; // used for loading state and then remembering to force values once
              // the editor was created

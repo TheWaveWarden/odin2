@@ -56,7 +56,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
                         juce::DrawableButton::ButtonStyle::ImageRaw),
       m_env_13_button("env13_button"), m_env_24_button("env24_button"),
       m_lfo_13_button("lfo13_button"), m_lfo_24_button("lfo24_button"),
-      m_pitch_amount(true), m_osc1(p_processor, vts, "1"),
+      m_pitch_amount(true), m_BPM_selector(true), m_osc1(p_processor, vts, "1"),
       m_osc2(p_processor, vts, "2"), m_osc3(p_processor, vts, "3"),
       m_fil1_component(vts, "1"), m_fil2_component(vts, "2"),
       m_fil3_component(vts, "3"), m_midsection(vts), m_adsr_1(vts, "1"),
@@ -574,8 +574,8 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
 
   // todo load all images through binary
   // load background image
-  juce::Image odin_backplate =
-      ImageCache::getFromMemory(BinaryData::odin_backplate_png, BinaryData::odin_backplate_pngSize);
+  juce::Image odin_backplate = ImageCache::getFromMemory(
+      BinaryData::odin_backplate_png, BinaryData::odin_backplate_pngSize);
 
   // load the knob strips
   juce::Image metal_knob_small = ImageCache::getFromMemory(
@@ -785,11 +785,13 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
       "no hard envelope reset when transitioning from one note to another.");
   addAndMakeVisible(m_legato_button);
 
-  juce::Image lfo13_sync_background = ImageCache::getFromMemory(
-      BinaryData::lfo13_sync_background_png, BinaryData::lfo13_sync_background_pngSize);
+  juce::Image lfo13_sync_background =
+      ImageCache::getFromMemory(BinaryData::lfo13_sync_background_png,
+                                BinaryData::lfo13_sync_background_pngSize);
 
-  juce::Image lfo24_sync_background = ImageCache::getFromMemory(
-      BinaryData::lfo24_sync_background_png, BinaryData::lfo24_sync_background_pngSize);
+  juce::Image lfo24_sync_background =
+      ImageCache::getFromMemory(BinaryData::lfo24_sync_background_png,
+                                BinaryData::lfo24_sync_background_pngSize);
   m_lfo_1.setBounds(LFO_LEFT_POS_X, LFO_LEFT_POS_Y, LFO_SIZE_X, LFO_SIZE_Y);
   m_lfo_1.setSyncOverdraw(lfo13_sync_background);
   addAndMakeVisible(m_lfo_1);
@@ -804,6 +806,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
   addChildComponent(m_lfo_4);
 
   m_pitch_amount.OnValueChange = [&](int p_new_value) {
+    // todo why is this still audioparamstyle???
     m_value_tree.getParameter(m_pitchbend_amount_identifier)
         ->setValueNotifyingHost(((float)p_new_value) / 24.f);
   };
@@ -814,6 +817,19 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
   m_pitch_amount.setColor(Colour(10, 40, 50));
   m_pitch_amount.setTooltip(
       "The amount of pitchbend for the pitchwheel in semitones");
+
+  m_BPM_selector.OnValueChange = [&](int p_new_value) {
+    m_value_tree.state.setProperty("BPM", p_new_value, nullptr);
+  };
+  m_BPM_selector.setTopLeftPosition(BPM_POS_X, BPM_POS_Y);
+  m_BPM_selector.setRange(10, 240);
+  m_BPM_selector.setValue(120);
+  m_BPM_selector.setColor(Colour(10, 40, 50));
+  m_BPM_selector.setTooltip(
+      "A BPM value for all time synced components in Odin standalone");
+  if (m_is_standalone_plugin) {
+    addAndMakeVisible(m_BPM_selector);
+  }
 
   m_osc_dropdown_menu.setLookAndFeel(&m_menu_feels);
   m_filter_dropdown_menu.setLookAndFeel(&m_menu_feels);
@@ -858,7 +874,6 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
   m_glide.setNumDecimalPlacesToDisplay(3);
   m_modwheel.setNumDecimalPlacesToDisplay(3);
 
-
   m_pitch_amount.setParameterId("pitchbend_amount");
   m_value_tree.addParameterListener("pitchbend_amount", &m_pitch_amount);
 
@@ -871,13 +886,12 @@ OdinAudioProcessorEditor::~OdinAudioProcessorEditor() {
   m_tooltip.setLookAndFeel(nullptr);
 
   m_value_tree.removeParameterListener("pitchbend_amount", &m_pitch_amount);
-
 }
 
 //==============================================================================
 void OdinAudioProcessorEditor::paint(Graphics &g) {
-  g.drawImageAt(ImageCache::getFromMemory(
-                    BinaryData::odin_backdrop_png, BinaryData::odin_backdrop_pngSize),
+  g.drawImageAt(ImageCache::getFromMemory(BinaryData::odin_backdrop_png,
+                                          BinaryData::odin_backdrop_pngSize),
                 0, 0);
 }
 
@@ -944,7 +958,6 @@ void OdinAudioProcessorEditor::resized() {
                         SAVE_LOAD_SIZE_Y);
   m_xy_section.setBounds(XY_COMPONENT_POS_X, XY_COMPONENT_POS_Y,
                          XY_COMPONENT_SIZE_X, XY_COMPONENT_SIZE_Y);
-
 
   m_mod_matrix.getOscFilterTypes = [&](int &osc1, int &osc2, int &osc3,
                                        int &fil1, int &fil2, int &fil3) {
@@ -1308,4 +1321,3 @@ void OdinAudioProcessorEditor::allMidiKeysOff() {
     processor.midiNoteOff(note);
   }
 }
-

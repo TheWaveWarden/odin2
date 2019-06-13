@@ -80,24 +80,24 @@ LFOComponent::LFOComponent(AudioProcessorValueTreeState &vts,
   sync_draw3.setImage(sync_3);
   sync_draw4.setImage(sync_4);
 
-  if (!m_is_standalone_plugin) {
-    m_sync_attach.reset(new ButtonAttachment(
-        m_value_tree, "lfo" + m_lfo_number + "_sync", m_sync));
-    m_sync.setImages(&sync_draw2, &sync_draw2, &sync_draw1, &sync_draw1,
-                     &sync_draw4, &sync_draw4, &sync_draw3, &sync_draw3);
-    m_sync.setClickingTogglesState(true);
-    m_sync.setBounds(SYNC_POS_X, SYNC_POS_Y, sync_1.getWidth(),
-                     sync_1.getHeight());
-    m_sync.setTriggeredOnMouseDown(true);
-    m_sync.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId,
-                     juce::Colour());
-    addAndMakeVisible(m_sync);
-    m_sync.setTooltip("Enables syncing the LFO\nto the speed of your track");
-  }
+  // if (!m_is_standalone_plugin) {
+  m_sync_attach.reset(new ButtonAttachment(
+      m_value_tree, "lfo" + m_lfo_number + "_sync", m_sync));
+  m_sync.setImages(&sync_draw2, &sync_draw2, &sync_draw1, &sync_draw1,
+                   &sync_draw4, &sync_draw4, &sync_draw3, &sync_draw3);
+  m_sync.setClickingTogglesState(true);
+  m_sync.setBounds(SYNC_POS_X, SYNC_POS_Y, sync_1.getWidth(),
+                   sync_1.getHeight());
+  m_sync.setTriggeredOnMouseDown(true);
+  m_sync.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId,
+                   juce::Colour());
+  addAndMakeVisible(m_sync);
+  m_sync.setTooltip("Enables syncing the LFO\nto the speed of your track");
+  //}
   m_sync.onClick = [&]() {
-    if (!m_is_standalone_plugin) {
-      setSync(m_sync.getToggleState());
-    }
+    // if (!m_is_standalone_plugin) {
+    setSync(m_sync.getToggleState());
+    //}
   };
 
   juce::Image black_knob_small = ImageCache::getFromMemory(
@@ -128,8 +128,10 @@ LFOComponent::LFOComponent(AudioProcessorValueTreeState &vts,
   addAndMakeVisible(m_selector);
 
   m_sync_time.OnValueChange = [&](int p_left, int p_right) {
-    m_value_tree.state.setProperty(m_lfo_synctime_numerator_identifier, p_left, nullptr);
-    m_value_tree.state.setProperty(m_lfo_synctime_denominator_identifier, p_right, nullptr);
+    m_value_tree.state.setProperty(m_lfo_synctime_numerator_identifier, p_left,
+                                   nullptr);
+    m_value_tree.state.setProperty(m_lfo_synctime_denominator_identifier,
+                                   p_right, nullptr);
   };
   m_sync_time.setTopLeftPosition(SYNC_TIME_POS_X, SYNC_TIME_POS_Y);
   m_sync_time.setTooltip("Set the frequency in sync to your track.");
@@ -138,11 +140,13 @@ LFOComponent::LFOComponent(AudioProcessorValueTreeState &vts,
   setSync(false);
 
   m_selector.setParameterId("lfo" + m_lfo_number + "_wave");
-  m_value_tree.addParameterListener("lfo" + m_lfo_number + "_wave", &m_selector);
+  m_value_tree.addParameterListener("lfo" + m_lfo_number + "_wave",
+                                    &m_selector);
 }
 
 LFOComponent::~LFOComponent() {
-  m_value_tree.removeParameterListener("lfo" + m_lfo_number + "_wave", &m_selector);
+  m_value_tree.removeParameterListener("lfo" + m_lfo_number + "_wave",
+                                       &m_selector);
 }
 
 void LFOComponent::paint(Graphics &g) {

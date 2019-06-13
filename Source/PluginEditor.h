@@ -33,6 +33,7 @@
 #include "SaveLoadComponent.h"
 #include "XYSectionComponent.h"
 #include "PhaserComponent.h"
+#include "BPMSelector.h"
 
 #define GLIDE_POS_X 117
 #define GLIDE_POS_Y 522
@@ -154,6 +155,9 @@
 #define FONT_SPACE_Y 4
 #define TOOLTIP_INLAY 10
 
+#define BPM_POS_X 510
+#define BPM_POS_Y 6
+
 class TooltipFeels : public LookAndFeel_V4 {
 public:
   TooltipFeels() {
@@ -229,6 +233,8 @@ private:
   PitchWheel m_pitchwheel;
   Knob m_modwheel;
   NumberSelector m_pitch_amount;
+
+  BPMSelector m_BPM_selector;
 
   OscComponent m_osc1;
   OscComponent m_osc2;

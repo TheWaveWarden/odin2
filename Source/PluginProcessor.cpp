@@ -220,9 +220,11 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
     if (AudioPlayHead *playhead = getPlayHead()) {
       AudioPlayHead::CurrentPositionInfo current_position_info;
       playhead->getCurrentPosition(current_position_info);
-      setBPM(current_position_info.bpm);
+      m_BPM = current_position_info.bpm;
     }
   }
+  setBPM(m_BPM);
+
   ScopedNoDenormals noDenormals;
   auto totalNumInputChannels = getTotalNumInputChannels();
   auto totalNumOutputChannels = getTotalNumOutputChannels();
@@ -694,7 +696,7 @@ void OdinAudioProcessor::getStateInformation(MemoryBlock &destData) {
   // as intermediaries to make it easy to save and load complex data.
 
   // disable for standalone plugins
-  if (typeid(wrapperType) == typeid(wrapperType_Standalone)) {
+  if (wrapperType == wrapperType_Standalone) {
     return;
   }
 
@@ -711,7 +713,7 @@ void OdinAudioProcessor::setStateInformation(const void *data,
   // call.
 
   // disable for standalone plugins
-  if (typeid(wrapperType) == typeid(wrapperType_Standalone)) {
+  if (wrapperType == wrapperType_Standalone) {
     return;
   }
 
@@ -1277,6 +1279,7 @@ void OdinAudioProcessor::resetAudioEngine() {
 }
 
 void OdinAudioProcessor::setBPM(float p_BPM) {
+
   for (int voice = 0; voice < VOICES; ++voice) {
     m_voice[voice].setBPM(p_BPM, *m_lfo1_sync, *m_lfo2_sync, *m_lfo3_sync);
   }
@@ -1442,6 +1445,7 @@ void OdinAudioProcessor::addNonAudioParametersToTree() {
   node.setProperty("osc1_carrier_wave", 1, nullptr);
   node.setProperty("osc2_carrier_wave", 1, nullptr);
   node.setProperty("osc3_carrier_wave", 1, nullptr);
+  node.setProperty("BPM", 120, nullptr);
 }
 
 void OdinAudioProcessor::setFXButtonsPosition(int p_delay, int p_phaser,

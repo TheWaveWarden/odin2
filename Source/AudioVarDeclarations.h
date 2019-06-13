@@ -490,3 +490,4 @@
     Identifier m_scale_row_7_identifier;
     Identifier m_scale_row_8_identifier;
     Identifier m_scale_row_9_identifier;
+    Identifier m_BPM_identifier;
