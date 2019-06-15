@@ -21,6 +21,8 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts,
       m_vowel_right_identifier("fil" + p_filter_number + "_vowel_right"),
       m_comb_plus_minus("comb_plus_minus") {
 
+  TIMESTART("FilterConstructor");
+
   m_vel_attach.reset(new SliderAttachment(
       m_value_tree, "fil" + m_filter_number + "_vel", m_vel));
   m_env_attach.reset(new SliderAttachment(
@@ -155,8 +157,9 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts,
   addChildComponent(m_formant_transition);
 
   m_vowel_left.OnValueChange = [&](int p_new_value) {
-    m_value_tree.getParameter(m_vowel_left_identifier)
-        ->setValueNotifyingHost(((float)p_new_value) / 7.f);
+    //m_value_tree.getParameter(m_vowel_left_identifier)
+    //    ->setValueNotifyingHost(((float)p_new_value) / 7.f);
+    SETVALUE(m_vowel_left_identifier, p_new_value);
   };
   m_vowel_left.setTopLeftPosition(FORMANT_VOW_LEFT_POS_X,
                                   FORMANT_VOW_LEFT_POS_Y);
@@ -168,8 +171,9 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts,
   m_vowel_left.setColor(Colour(90, 40, 40));
 
   m_vowel_right.OnValueChange = [&](int p_new_value) {
-    m_value_tree.getParameter(m_vowel_right_identifier)
-        ->setValueNotifyingHost(((float)p_new_value) / 7.f);
+    //m_value_tree.getParameter(m_vowel_right_identifier)
+    //    ->setValueNotifyingHost(((float)p_new_value) / 7.f);
+    SETVALUE(m_vowel_right_identifier, p_new_value);
   };
   m_vowel_right.setTopLeftPosition(FORMANT_VOW_RIGHT_POS_X,
                                    FORMANT_VOW_RIGHT_POS_Y);
@@ -208,6 +212,10 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts,
   m_value_tree.addParameterListener("fil" + m_filter_number + "_vowel_left", &m_vowel_left);
   m_vowel_right.setParameterId("fil" + m_filter_number + "_vowel_right");
   m_value_tree.addParameterListener("fil" + m_filter_number + "_vowel_right", &m_vowel_right);
+
+  forceValueTreeOntoComponents(m_value_tree.state, std::stoi(m_filter_number));
+
+  TIMEEND
 }
 
 FilterComponent::~FilterComponent() {
