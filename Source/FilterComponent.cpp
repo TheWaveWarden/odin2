@@ -437,8 +437,6 @@ void FilterComponent::forceValueTreeOntoComponents(ValueTree p_tree,
           .getParameterAsValue("fil" + m_filter_number + "_comb_polarity")
           .getValue());
 
-  m_vowel_left.setValue(
-      m_value_tree.getParameterAsValue(m_vowel_left_identifier).getValue());
-  m_vowel_right.setValue(
-      m_value_tree.getParameterAsValue(m_vowel_right_identifier).getValue());
+  m_vowel_left.setValue(GETVALUE(m_vowel_left_identifier));
+  m_vowel_right.setValue(GETVALUE(m_vowel_right_identifier));
 }

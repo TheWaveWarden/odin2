@@ -194,7 +194,6 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_semi.setKnobTooltip("The pitch of\nthe oscillator in semitones");
   addChildComponent(m_semi);
 
-  TIMEADD("INBETWEEN");
   
   m_fine.setStrip(
       ImageCache::getFromMemory(BinaryData::black_knob_small_png,
@@ -684,6 +683,8 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   };
   m_chipdraw_convert_REMOVE.setTooltip("R E M O V E");
   addChildComponent(m_chipdraw_convert_REMOVE);
+
+  TIMEADD("chipdraw");
 
   m_specdraw_convert_REMOVE.setImages(
       &chipdraw_convert_draw2, &chipdraw_convert_draw2, &chipdraw_convert_draw1,
@@ -1260,6 +1261,8 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_modulator_ratio.setParameterId("osc" + m_osc_number + "_modulator_ratio");
   m_value_tree.addParameterListener("osc" + m_osc_number + "_modulator_ratio",
                                     &m_modulator_ratio);
+
+  TIMEADD("beforeForceValue")
 
   forceValueTreeOntoComponents(m_value_tree.state, std::stoi(m_osc_number));
 

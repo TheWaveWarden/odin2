@@ -117,23 +117,85 @@ public:
 };
 
 
-#define TIMESTART(name) std::string clock_name = name;\
+#define TIMESTART(name) {\
+std::string clock_name = name;\
 std::vector<std::clock_t> collected_times;\
 std::vector<std::string> collected_names;\
 std::clock_t clock_begin = std::clock();
 
+#define TIMEBARS 40
+#define BARCHARACTER "▄"
 
 #define TIMEADD(name) collected_times.push_back(std::clock());\
 collected_names.push_back(name);
 
 #define TIMEEND std::clock_t clock_end = std::clock();\
-  DBG("\n==================================================");\
-  for(int i = 0;i < collected_times.size(); ++i){\
-    double elapsed = double(collected_times[i] - clock_begin) / CLOCKS_PER_SEC;\
-    DBG("Time until " + collected_names[i] + ": " + std::to_string(elapsed));\
+  DBG("\n======================================================================");\
+  double total_time = double(clock_end - clock_begin) / CLOCKS_PER_SEC;\
+  if(collected_times.size() > 0){\
+    int longest_name = 4;\
+    double longest_time = double(clock_end - collected_times[collected_times.size() - 1]) / CLOCKS_PER_SEC;\
+    for(int i = 0; i < collected_times.size(); ++i){\
+      if(collected_names[i].length() > longest_name){\
+        longest_name = collected_names[i].length();\
+      }\
+      double time_compare;\
+      if(i == 0){\
+        time_compare = double(collected_times[i] - clock_begin) / CLOCKS_PER_SEC;\
+      } else {\
+        time_compare = double(collected_times[i] - collected_times[i - 1]) / CLOCKS_PER_SEC;\
+      }\
+      if(time_compare > longest_time){\
+        longest_time = time_compare;\
+      }\
+    }\
+    int longest_bar = longest_time / total_time * TIMEBARS;\
+    for(int i = 0;i < collected_times.size(); ++i){\
+      std::string message = collected_names[i] + " ";\
+      int spacing = longest_name - collected_names[i].length();\
+      for(int i = 0; i < spacing; ++i){\
+        message += " ";\
+      }\
+      double elapsed;\
+      if(i == 0){\
+        elapsed = double(collected_times[i] - clock_begin) / CLOCKS_PER_SEC;\
+      } else {\
+        elapsed = double(collected_times[i] - collected_times[i - 1]) / CLOCKS_PER_SEC;\
+      }\
+      double percent = elapsed / total_time;\
+      int number_of_bars = percent * TIMEBARS;\
+      for(int i = 0; i < number_of_bars; ++i){\
+        message += BARCHARACTER;\
+      }\
+      int missing_bars = longest_bar - number_of_bars;\
+      for(int i = 0; i < missing_bars; ++i){\
+        message += " ";\
+      }\
+      message += " " + std::to_string(percent * 100) + "%";\
+      DBG(message);\
+    }\
+    std::string message = "rest ";\
+    int spacing = longest_name - 4;\
+      for(int i = 0; i < spacing; ++i){\
+        message += " ";\
+      }\
+    double elapsed = double(clock_end - collected_times[collected_times.size() - 1]) / CLOCKS_PER_SEC;\
+    double percent = elapsed / total_time;\
+    int number_of_bars = percent * TIMEBARS;\
+    for(int i = 0; i < number_of_bars; ++i){\
+      message += BARCHARACTER;\
+    }\
+    int missing_bars = longest_bar - number_of_bars;\
+    for(int i = 0; i < missing_bars; ++i){\
+      message += " ";\
+    }\
+    message += " " + std::to_string(percent * 100) + "%";\
+    DBG(message);\
+    DBG("----------------------------------------------------------------------");\
   }\
-  double elapsed_end = double(clock_end - clock_begin) / CLOCKS_PER_SEC;\
-  DBG("Overall time for " + clock_name + ": " + std::to_string(elapsed_end));\
-  DBG("==================================================\n");
+  DBG("Overall time for " + clock_name + ": " + std::to_string(total_time));\
+  DBG("======================================================================\n");\
+  }
 
-  
+
+
