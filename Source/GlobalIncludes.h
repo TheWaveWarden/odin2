@@ -9,7 +9,7 @@
 */
 #pragma once
 #include "../JuceLibraryCode/JuceHeader.h"
-
+#include "ctime"
 
 #ifdef ODIN_LINUX
   #define GRAPHICS_PATH std::string("/home/frot/odinvst/Gimp/")
@@ -117,3 +117,23 @@ public:
 };
 
 
+#define TIMESTART(name) std::string clock_name = name;\
+std::vector<std::clock_t> collected_times;\
+std::vector<std::string> collected_names;\
+std::clock_t clock_begin = std::clock();
+
+
+#define TIMEADD(name) collected_times.push_back(std::clock());\
+collected_names.push_back(name);
+
+#define TIMEEND std::clock_t clock_end = std::clock();\
+  DBG("\n==================================================");\
+  for(int i = 0;i < collected_times.size(); ++i){\
+    double elapsed = double(collected_times[i] - clock_begin) / CLOCKS_PER_SEC;\
+    DBG("Time until " + collected_names[i] + ": " + std::to_string(elapsed));\
+  }\
+  double elapsed_end = double(clock_end - clock_begin) / CLOCKS_PER_SEC;\
+  DBG("Overall time for " + clock_name + ": " + std::to_string(elapsed_end));\
+  DBG("==================================================\n");
+
+  

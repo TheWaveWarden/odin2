@@ -53,6 +53,8 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
       m_vec_c_identifier("osc" + p_osc_number + "_vec_c"),
       m_vec_d_identifier("osc" + p_osc_number + "_vec_d") {
 
+  TIMESTART("oscconstructor");
+
   m_oct_attach.reset(
       new SliderAttachment(m_value_tree, "osc" + m_osc_number + "_oct", m_oct));
   m_semi_attach.reset(new SliderAttachment(
@@ -192,6 +194,8 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_semi.setKnobTooltip("The pitch of\nthe oscillator in semitones");
   addChildComponent(m_semi);
 
+  TIMEADD("INBETWEEN");
+  
   m_fine.setStrip(
       ImageCache::getFromMemory(BinaryData::black_knob_small_png,
                                 BinaryData::black_knob_small_pngSize),
@@ -1260,6 +1264,8 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   forceValueTreeOntoComponents(m_value_tree.state, std::stoi(m_osc_number));
 
   setSize(247, 145);
+
+  TIMEEND
 }
 
 OscComponent::~OscComponent() {
