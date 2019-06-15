@@ -171,7 +171,10 @@ collected_names.push_back(name);
       for(int i = 0; i < missing_bars; ++i){\
         message += " ";\
       }\
-      message += " " + std::to_string(percent * 100) + "%";\
+      if(percent * 100 < 10){\
+        message += " ";\
+      }\
+      message += " " + std::to_string(percent * 100) + "%, " + std::to_string(elapsed) + " s";\
       DBG(message);\
     }\
     std::string message = "rest ";\
@@ -189,7 +192,10 @@ collected_names.push_back(name);
     for(int i = 0; i < missing_bars; ++i){\
       message += " ";\
     }\
-    message += " " + std::to_string(percent * 100) + "%";\
+    if(percent * 100 < 10){\
+      message += " ";\
+    }\
+    message += " " + std::to_string(percent * 100) + "%, " + std::to_string(elapsed) + " s";\
     DBG(message);\
     DBG("----------------------------------------------------------------------");\
   }\
