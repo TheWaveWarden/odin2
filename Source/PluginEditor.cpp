@@ -79,6 +79,9 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
       m_chorus_position_identifier("chorus_position"), m_mod_matrix(vts),
       m_legato_button("legato"), m_tooltip(nullptr, 2047483647),
       m_is_standalone_plugin(p_is_standalone), m_save_load(vts) {
+
+  TIMESTART("OdinEditor")
+  
   if (m_is_standalone_plugin) {
     addKeyListener(this);
   }
@@ -886,6 +889,8 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
   setFilter3Plate(GETVALUE("fil3_type"));
 
   setSize(800, 600);
+  TIMEEND
+
 }
 
 OdinAudioProcessorEditor::~OdinAudioProcessorEditor() {
