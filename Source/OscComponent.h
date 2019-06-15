@@ -188,7 +188,7 @@ public:
   void createChipdrawTables();
   void createSpecdrawTables();
 
-  void forceValueTreeOntoComponents(ValueTree p_tree, int p_index);
+  void forceValueTreeOntoComponents(ValueTree p_tree, int p_index, bool p_create_wavetables);
 
 protected:
 

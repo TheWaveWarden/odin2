@@ -1168,9 +1168,9 @@ void OdinAudioProcessorEditor::forceValueTreeOntoComponents() {
   setFilter2Plate(m_value_tree.state["fil2_type"]);
   setFilter3Plate(m_value_tree.state["fil3_type"]);
 
-  m_osc1.forceValueTreeOntoComponents(m_value_tree.state, 1);
-  m_osc2.forceValueTreeOntoComponents(m_value_tree.state, 2);
-  m_osc3.forceValueTreeOntoComponents(m_value_tree.state, 3);
+  m_osc1.forceValueTreeOntoComponents(m_value_tree.state, 1, true);
+  m_osc2.forceValueTreeOntoComponents(m_value_tree.state, 2, true);
+  m_osc3.forceValueTreeOntoComponents(m_value_tree.state, 3, true);
   m_fil1_component.forceValueTreeOntoComponents(m_value_tree.state, 1);
   m_fil2_component.forceValueTreeOntoComponents(m_value_tree.state, 2);
   m_fil3_component.forceValueTreeOntoComponents(m_value_tree.state, 3);

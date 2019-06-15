@@ -194,7 +194,6 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_semi.setKnobTooltip("The pitch of\nthe oscillator in semitones");
   addChildComponent(m_semi);
 
-  
   m_fine.setStrip(
       ImageCache::getFromMemory(BinaryData::black_knob_small_png,
                                 BinaryData::black_knob_small_pngSize),
@@ -614,11 +613,11 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_chipdraw_convert.setTriggeredOnMouseDown(true);
   m_chipdraw_convert.setColour(
       juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
+  m_chipdraw_convert.setToggleState(true, sendNotification);
   m_chipdraw_convert.onClick = [&]() {
     m_chipdraw_convert.setToggleState(true, sendNotification);
     createChipdrawTables();
   };
-  m_chipdraw_convert.setToggleState(true, sendNotification);
   m_chipdraw_convert.setTooltip(
       "Converts the waveform drawn\nin the window. You won't hear\nany changes "
       "before you press\nthis button");
@@ -636,11 +635,11 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_wavedraw_convert.setTriggeredOnMouseDown(true);
   m_wavedraw_convert.setColour(
       juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
+  m_wavedraw_convert.setToggleState(true, sendNotification);
   m_wavedraw_convert.onClick = [&]() {
     m_wavedraw_convert.setToggleState(true, sendNotification);
     createWavedrawTables();
   };
-  m_wavedraw_convert.setToggleState(true, sendNotification);
   m_wavedraw_convert.setTooltip(
       "Converts the waveform drawn\nin the window. You won't hear\nany changes "
       "before you press\nthis button");
@@ -717,11 +716,11 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_specdraw_convert.setTriggeredOnMouseDown(true);
   m_specdraw_convert.setColour(
       juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
+  m_specdraw_convert.setToggleState(true, sendNotification);
   m_specdraw_convert.onClick = [&]() {
     m_specdraw_convert.setToggleState(true, sendNotification);
     createSpecdrawTables();
   };
-  m_specdraw_convert.setToggleState(true, sendNotification);
   m_specdraw_convert.setTooltip(
       "Converts the waveform drawn\nin the window. You won't hear\nany changes "
       "before you press\nthis button");
@@ -1067,7 +1066,8 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   addChildComponent(m_carrier_ratio);
 
   m_modulator_ratio.OnValueChange = [&](int p_new_value) {
-    m_value_tree.state.setProperty(m_modulator_ratio_identifier, (float)p_new_value, nullptr);
+    m_value_tree.state.setProperty(m_modulator_ratio_identifier,
+                                   (float)p_new_value, nullptr);
   };
   m_modulator_ratio.setTopLeftPosition(RATIO_MODULATOR_POS_X,
                                        RATIO_MODULATOR_POS_Y);
@@ -1264,7 +1264,8 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 
   TIMEADD("beforeForceValue")
 
-  forceValueTreeOntoComponents(m_value_tree.state, std::stoi(m_osc_number));
+  forceValueTreeOntoComponents(m_value_tree.state, std::stoi(m_osc_number),
+                               false);
 
   setSize(247, 145);
 
@@ -1579,7 +1580,7 @@ void OscComponent::createWavedrawTables() {
   for (int i = 0; i < WAVEDRAW_STEPS_X; ++i) {
     node.setProperty(
         String("[" + std::to_string(i) + "]osc" + m_osc_number + "_wavedraw"),
-        table[i] * 0.5 + 0.5, nullptr);
+        table[i], nullptr);
   }
 }
 
@@ -1593,7 +1594,7 @@ void OscComponent::createChipdrawTables() {
   for (int i = 0; i < CHIPDRAW_STEPS_X; ++i) {
     node.setProperty(
         String("[" + std::to_string(i) + "]osc" + m_osc_number + "_chipdraw"),
-        table[i] * 0.5 + 0.5, nullptr);
+        table[i], nullptr);
   }
   // for (int i = 0; i < CHIPDRAW_STEPS_X; ++i) {
   //   m_value_tree
@@ -1639,7 +1640,8 @@ void OscComponent::writeChipdrawTableToFile() {
       m_chipdraw.getDrawnTable(), REMOVE_EDITOR.getText().toStdString());
 }
 
-void OscComponent::forceValueTreeOntoComponents(ValueTree p_tree, int p_index) {
+void OscComponent::forceValueTreeOntoComponents(ValueTree p_tree, int p_index,
+                                                bool p_create_wavetables) {
   std::string index = std::to_string(p_index);
 
   // analog waveform
@@ -1698,25 +1700,19 @@ void OscComponent::forceValueTreeOntoComponents(ValueTree p_tree, int p_index) {
   float wavedraw_values[WAVEDRAW_STEPS_X];
   for (int i = 0; i < WAVEDRAW_STEPS_X; ++i) {
     wavedraw_values[i] = (float)node[String("[" + std::to_string(i) + "]osc" +
-                                            m_osc_number + "_wavedraw")] *
-                             2 -
-                         1;
+                                            m_osc_number + "_wavedraw")];
   }
 
   m_wavedraw.setDrawnTable(wavedraw_values);
-  createWavedrawTables();
   m_wavedraw_convert.setToggleState(true, dontSendNotification);
 
   // chipdraw
   for (int i = 0; i < CHIPDRAW_STEPS_X; ++i) {
     wavedraw_values[i] = (float)node[String("[" + std::to_string(i) + "]osc" +
-                                            m_osc_number + "_chipdraw")] *
-                             2 -
-                         1;
+                                            m_osc_number + "_chipdraw")];
   }
   m_chipdraw.setDrawnTable(wavedraw_values);
   m_chipdraw_convert.setToggleState(true, dontSendNotification);
-  createChipdrawTables();
 
   // specdraw
   for (int i = 0; i < SPECDRAW_STEPS_X; ++i) {
@@ -1725,5 +1721,10 @@ void OscComponent::forceValueTreeOntoComponents(ValueTree p_tree, int p_index) {
   }
   m_specdraw.setDrawnTable(wavedraw_values);
   m_specdraw_convert.setToggleState(true, dontSendNotification);
-  createSpecdrawTables();
+
+  if (p_create_wavetables) {
+    createWavedrawTables();
+    createChipdrawTables();
+    createSpecdrawTables();
+  }
 }

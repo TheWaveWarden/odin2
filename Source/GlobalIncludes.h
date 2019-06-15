@@ -229,7 +229,8 @@ public:
     DBG("--------------------------------------------------------------------" \
         "--");                                                                 \
   }                                                                            \
-  DBG("Overall time for " + clock_name + ": " + std::to_string(total_time));   \
+  DBG("Overall time for " + clock_name + ": " + std::to_string(total_time) +   \
+      " sek");                                                                 \
   DBG("======================================================================" \
       "\n");                                                                   \
   }
