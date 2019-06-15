@@ -76,7 +76,7 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts,
   m_env.setBounds(ENV_POS_X, ENV_POS_Y, black_knob_small.getWidth(),
                   black_knob_small.getHeight() / N_KNOB_FRAMES);
   m_env.setRange(ENV_MIN, ENV_MAX);
-  m_env.setValue(ENV_DEFAULT);
+  // m_env.setValue(ENV_DEFAULT);
   m_env.setSkewFactor(ENV_SKEW, true);
   m_env.setNumDecimalPlacesToDisplay(3);
   m_env.setKnobTooltip("Filter envelope amount.\nSets how much the "
@@ -89,7 +89,7 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts,
   m_gain.setBounds(GAIN_POS_X, GAIN_POS_Y, black_knob_small.getWidth(),
                    black_knob_small.getHeight() / N_KNOB_FRAMES);
   m_gain.setRange(GAIN_MIN, GAIN_MAX);
-  m_gain.setValue(GAIN_DEFAULT);
+  // m_gain.setValue(GAIN_DEFAULT);
   m_gain.setTextValueSuffix(" dB");
   m_gain.setNumDecimalPlacesToDisplay(1);
   m_gain.setKnobTooltip("The volume of\n the filter");
@@ -104,7 +104,7 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts,
   m_freq.setKnobTooltip("The filter cutoff frequency");
   m_freq.setSkewFactorFromMidPoint(FREQ_MID);
   m_freq.setTextValueSuffix(" Hz");
-  m_freq.setValue(FREQ_DEFAULT);
+  // m_freq.setValue(FREQ_DEFAULT);
   m_freq.setDoubleClickReturnValue(true, FREQ_DEFAULT,
                                    ModifierKeys::ctrlModifier);
   m_freq.setNumDecimalPlacesToDisplay(1);
@@ -135,7 +135,7 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts,
                            metal_knob_mid.getHeight() / N_KNOB_FRAMES);
   m_sem_transition.setTopLeftPosition(TRANSITION_POS_X, TRANSITION_POS_Y);
   m_sem_transition.setRange(TRANSITION_MIN, TRANSITION_MAX);
-  m_sem_transition.setValue(TRANSITION_DEFAULT);
+  // m_sem_transition.setValue(TRANSITION_DEFAULT);
   m_sem_transition.setDoubleClickReturnValue(true, TRANSITION_DEFAULT,
                                              ModifierKeys::ctrlModifier);
   m_sem_transition.setNumDecimalPlacesToDisplay(3);
@@ -164,7 +164,7 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts,
       "The vowel to\nthe left side of\nthe transition knob");
   m_vowel_left.setMouseDragDivisor(40.f);
   addChildComponent(m_vowel_left);
-  m_vowel_left.setValue(0);
+  // m_vowel_left.setValue(0);
   m_vowel_left.setColor(Colour(90, 40, 40));
 
   m_vowel_right.OnValueChange = [&](int p_new_value) {
@@ -177,7 +177,7 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts,
       "The vowel to\nthe right side of\nthe transition knob");
   m_vowel_right.setMouseDragDivisor(40.f);
   addChildComponent(m_vowel_right);
-  m_vowel_right.setValue(2);
+  // m_vowel_right.setValue(2);
   m_vowel_right.setColor(Colour(90, 40, 40));
 
   juce::Image comb_plus = ImageCache::getFromMemory(

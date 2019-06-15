@@ -814,7 +814,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
   addAndMakeVisible(m_pitch_amount);
   m_pitch_amount.setMouseDragDivisor(20.f);
   m_pitch_amount.setRange(0, 24);
-  m_pitch_amount.setValue(12);
+  // m_pitch_amount.setValue(12);
   m_pitch_amount.setColor(Colour(10, 40, 50));
   m_pitch_amount.setTooltip(
       "The amount of pitchbend for the pitchwheel in semitones");
@@ -824,7 +824,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
   };
   m_BPM_selector.setTopLeftPosition(BPM_POS_X, BPM_POS_Y);
   m_BPM_selector.setRange(10, 240);
-  m_BPM_selector.setValue(120);
+  // m_BPM_selector.setValue(120);
   m_BPM_selector.setColor(Colour(10, 40, 50));
   m_BPM_selector.setTooltip(
       "A BPM value for all time synced components in Odin standalone");
@@ -878,6 +878,13 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
   m_pitch_amount.setParameterId("pitchbend_amount");
   m_value_tree.addParameterListener("pitchbend_amount", &m_pitch_amount);
 
+  setOsc1Plate(GETVALUE("osc1_type"));
+  setOsc2Plate(GETVALUE("osc2_type"));
+  setOsc3Plate(GETVALUE("osc3_type"));
+  setFilter1Plate(GETVALUE("fil1_type"));
+  setFilter2Plate(GETVALUE("fil2_type"));
+  setFilter3Plate(GETVALUE("fil3_type"));
+
   setSize(800, 600);
 }
 
@@ -919,7 +926,7 @@ void OdinAudioProcessorEditor::resized() {
   m_glide.setBounds(area_glide);
   m_master.setRange(MASTER_MIN, MASTER_MAX);
   m_master.setTextValueSuffix(" dB");
-  m_master.setValue(MASTER_DEFAULT);
+  // m_master.setValue(MASTER_DEFAULT);
   m_master.setNumDecimalPlacesToDisplay(1);
 
   m_master.setBounds(area_master);

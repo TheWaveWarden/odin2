@@ -116,12 +116,14 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   // m_fine.setOdinPointer(&p_processor);
 
   m_vol.setStrip(
-      ImageCache::getFromMemory(BinaryData::black_knob_small_png, BinaryData::black_knob_small_pngSize),N_KNOB_FRAMES);
+      ImageCache::getFromMemory(BinaryData::black_knob_small_png,
+                                BinaryData::black_knob_small_pngSize),
+      N_KNOB_FRAMES);
   m_vol.setSliderStyle(Slider::RotaryVerticalDrag);
   m_vol.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
   m_vol.setRange(VOL_MIN, VOL_MAX);
   m_vol.setTextValueSuffix(" dB");
-  m_vol.setValue(GETAUDIO("osc" + m_osc_number + "_vol"));
+  // m_vol.setValue(GETAUDIO("osc" + m_osc_number + "_vol"));
   m_vol.setNumDecimalPlacesToDisplay(1);
   m_vol.setKnobTooltip("The volume of the oscillator");
   addChildComponent(m_vol);
@@ -164,7 +166,8 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
                     juce::Colour());
 
   m_oct.setStrip(
-      ImageCache::getFromMemory(BinaryData::black_knob_small_png, BinaryData::black_knob_small_pngSize),
+      ImageCache::getFromMemory(BinaryData::black_knob_small_png,
+                                BinaryData::black_knob_small_pngSize),
       N_KNOB_FRAMES);
   m_oct.setSliderStyle(Slider::RotaryVerticalDrag);
   m_oct.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
@@ -179,7 +182,8 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   addChildComponent(m_oct);
 
   m_semi.setStrip(
-      ImageCache::getFromMemory(BinaryData::black_knob_small_png, BinaryData::black_knob_small_pngSize),
+      ImageCache::getFromMemory(BinaryData::black_knob_small_png,
+                                BinaryData::black_knob_small_pngSize),
       N_KNOB_FRAMES);
   m_semi.setSliderStyle(Slider::RotaryVerticalDrag);
   m_semi.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
@@ -189,7 +193,8 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   addChildComponent(m_semi);
 
   m_fine.setStrip(
-      ImageCache::getFromMemory(BinaryData::black_knob_small_png, BinaryData::black_knob_small_pngSize),
+      ImageCache::getFromMemory(BinaryData::black_knob_small_png,
+                                BinaryData::black_knob_small_pngSize),
       N_KNOB_FRAMES);
   m_fine.setSliderStyle(Slider::RotaryVerticalDrag);
   m_fine.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
@@ -208,10 +213,10 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_fine.setNumDecimalPlacesToDisplay(1);
   m_fine.setBounds(area_fine);
 
-  juce::Image LED_1 = ImageCache::getFromMemory(
-      BinaryData::LED_1_png, BinaryData::LED_1_pngSize);
-  juce::Image LED_2 = ImageCache::getFromMemory(
-      BinaryData::LED_2_png, BinaryData::LED_2_pngSize);
+  juce::Image LED_1 = ImageCache::getFromMemory(BinaryData::LED_1_png,
+                                                BinaryData::LED_1_pngSize);
+  juce::Image LED_2 = ImageCache::getFromMemory(BinaryData::LED_2_png,
+                                                BinaryData::LED_2_pngSize);
   juce::DrawableImage LED_draw1;
   juce::DrawableImage LED_draw2;
   LED_draw1.setImage(LED_1);
@@ -294,18 +299,19 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   };
   addChildComponent(m_LED_sine);
 
-  m_pw.setStrip(
-      ImageCache::getFromMemory(BinaryData::black_knob_small_png, BinaryData::black_knob_small_pngSize),
-      N_KNOB_FRAMES);
+  m_pw.setStrip(ImageCache::getFromMemory(BinaryData::black_knob_small_png,
+                                          BinaryData::black_knob_small_pngSize),
+                N_KNOB_FRAMES);
   m_pw.setSliderStyle(Slider::RotaryVerticalDrag);
   m_pw.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-  m_pw.setValue(GETAUDIO("osc" + m_osc_number + "_pulsewidth"));
+  // m_pw.setValue(GETAUDIO("osc" + m_osc_number + "_pulsewidth"));
   m_pw.setDoubleClickReturnValue(true, PW_DEFAULT, ModifierKeys::ctrlModifier);
   m_pw.setKnobTooltip("The pulse width if\nthe pulse wave is selected");
   addChildComponent(m_pw);
 
   m_drift.setStrip(
-      ImageCache::getFromMemory(BinaryData::black_knob_big_png, BinaryData::black_knob_big_pngSize),
+      ImageCache::getFromMemory(BinaryData::black_knob_big_png,
+                                BinaryData::black_knob_big_pngSize),
       N_KNOB_FRAMES);
   m_drift.setSliderStyle(Slider::RotaryVerticalDrag);
   m_drift.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
@@ -313,14 +319,18 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
                          "analog\noscillator would");
   addChildComponent(m_drift);
 
-  juce::Image arp_1 = ImageCache::getFromMemory(
-      BinaryData::buttonarpeggiator_1_png, BinaryData::buttonarpeggiator_1_pngSize);
-  juce::Image arp_2 = ImageCache::getFromMemory(
-      BinaryData::buttonarpeggiator_2_png, BinaryData::buttonarpeggiator_2_pngSize);
-  juce::Image arp_3 = ImageCache::getFromMemory(
-      BinaryData::buttonarpeggiator_3_png, BinaryData::buttonarpeggiator_3_pngSize);
-  juce::Image arp_4 = ImageCache::getFromMemory(
-      BinaryData::buttonarpeggiator_4_png, BinaryData::buttonarpeggiator_4_pngSize);
+  juce::Image arp_1 =
+      ImageCache::getFromMemory(BinaryData::buttonarpeggiator_1_png,
+                                BinaryData::buttonarpeggiator_1_pngSize);
+  juce::Image arp_2 =
+      ImageCache::getFromMemory(BinaryData::buttonarpeggiator_2_png,
+                                BinaryData::buttonarpeggiator_2_pngSize);
+  juce::Image arp_3 =
+      ImageCache::getFromMemory(BinaryData::buttonarpeggiator_3_png,
+                                BinaryData::buttonarpeggiator_3_pngSize);
+  juce::Image arp_4 =
+      ImageCache::getFromMemory(BinaryData::buttonarpeggiator_4_png,
+                                BinaryData::buttonarpeggiator_4_pngSize);
 
   juce::DrawableImage arp_draw1;
   juce::DrawableImage arp_draw2;
@@ -408,7 +418,8 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
                           juce::Colour());
 
   m_step_1.setStrip(
-      ImageCache::getFromMemory(BinaryData::black_knob_small_png, BinaryData::black_knob_small_pngSize),
+      ImageCache::getFromMemory(BinaryData::black_knob_small_png,
+                                BinaryData::black_knob_small_pngSize),
       256);
   m_step_1.setBounds(STEP_1_POS_X, STEP_1_POS_Y, BLACK_KNOB_SMALL_SIZE_X,
                      BLACK_KNOB_SMALL_SIZE_Y);
@@ -416,20 +427,21 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_step_1.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
   m_step_1.setRange(-STEP_RANGE_MAX, STEP_RANGE_MAX);
   m_step_1.setNumDecimalPlacesToDisplay(0);
-  m_step_1.setValue(GETAUDIO("osc" + m_osc_number + "_step_1"));
+  // m_step_1.setValue(GETAUDIO("osc" + m_osc_number + "_step_1"));
   m_step_1.setKnobTooltip(
       "The pitch of the\nfirst step of the\narpeggiator in semitones");
   addChildComponent(m_step_1);
 
   m_step_2.setStrip(
-      ImageCache::getFromMemory(BinaryData::black_knob_small_png, BinaryData::black_knob_small_pngSize),
+      ImageCache::getFromMemory(BinaryData::black_knob_small_png,
+                                BinaryData::black_knob_small_pngSize),
       256);
   m_step_2.setBounds(STEP_2_POS_X, STEP_2_POS_Y, BLACK_KNOB_SMALL_SIZE_X,
                      BLACK_KNOB_SMALL_SIZE_Y);
   m_step_2.setSliderStyle(Slider::RotaryVerticalDrag);
   m_step_2.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
   m_step_2.setRange(-STEP_RANGE_MAX, STEP_RANGE_MAX);
-  m_step_2.setValue(GETAUDIO("osc" + m_osc_number + "_step_2"));
+  // m_step_2.setValue(GETAUDIO("osc" + m_osc_number + "_step_2"));
   m_step_2.setNumDecimalPlacesToDisplay(0);
   m_step_2.setKnobTooltip(
       "The pitch of the\nsecond step of the\narpeggiator in semitones");
@@ -438,14 +450,15 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   addChildComponent(m_step_2);
 
   m_step_3.setStrip(
-      ImageCache::getFromMemory(BinaryData::black_knob_small_png, BinaryData::black_knob_small_pngSize),
+      ImageCache::getFromMemory(BinaryData::black_knob_small_png,
+                                BinaryData::black_knob_small_pngSize),
       256);
   m_step_3.setBounds(STEP_3_POS_X, STEP_3_POS_Y, BLACK_KNOB_SMALL_SIZE_X,
                      BLACK_KNOB_SMALL_SIZE_Y);
   m_step_3.setSliderStyle(Slider::RotaryVerticalDrag);
   m_step_3.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
   m_step_3.setRange(-STEP_RANGE_MAX, STEP_RANGE_MAX);
-  m_step_3.setValue(GETAUDIO("osc" + m_osc_number + "_step_3"));
+  // m_step_3.setValue(GETAUDIO("osc" + m_osc_number + "_step_3"));
   m_step_3.setNumDecimalPlacesToDisplay(0);
   m_step_3.setKnobTooltip(
       "The pitch of the\nthird step of the\narpeggiator in semitones");
@@ -453,7 +466,8 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
                                      ModifierKeys::ctrlModifier);
   addChildComponent(m_step_3);
 
-  m_fm.setStrip(ImageCache::getFromMemory(BinaryData::metal_knob_big_png, BinaryData::metal_knob_big_pngSize),
+  m_fm.setStrip(ImageCache::getFromMemory(BinaryData::metal_knob_big_png,
+                                          BinaryData::metal_knob_big_pngSize),
                 256);
   m_fm.setBounds(FM_POS_X, FM_POS_Y, METAL_KNOB_BIG_SIZE_X,
                  METAL_KNOB_BIG_SIZE_Y);
@@ -461,10 +475,11 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_fm.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
   m_fm.setKnobTooltip(
       "How much the modulator\nmodulates the pitch of\n the carrier wave");
-  m_fm.setValue(GETAUDIO("osc" + m_osc_number + "_fm"));
+  // m_fm.setValue(GETAUDIO("osc" + m_osc_number + "_fm"));
   addChildComponent(m_fm);
 
-  m_lp.setStrip(ImageCache::getFromMemory(BinaryData::metal_knob_big_png, BinaryData::metal_knob_big_pngSize),
+  m_lp.setStrip(ImageCache::getFromMemory(BinaryData::metal_knob_big_png,
+                                          BinaryData::metal_knob_big_pngSize),
                 256);
   m_lp.setBounds(LP_POS_X, LP_POS_Y, METAL_KNOB_BIG_SIZE_X,
                  METAL_KNOB_BIG_SIZE_Y);
@@ -472,7 +487,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_lp.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
   m_lp.setRange(LP_MIN, LP_MAX);
   m_lp.setSkewFactorFromMidPoint(LP_MID);
-  m_lp.setValue(LP_DEFAULT);
+  // m_lp.setValue(GETAUDIO("osc" + m_osc_number + "_lp"));
   m_lp.setDoubleClickReturnValue(true, LP_DEFAULT, ModifierKeys::ctrlModifier);
   m_lp.setTextValueSuffix(" Hz");
   m_lp.setNumDecimalPlacesToDisplay(0);
@@ -480,7 +495,8 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
       "The frequency of\nthe lowpass filter which\nis applied to the noise");
   addChildComponent(m_lp);
 
-  m_hp.setStrip(ImageCache::getFromMemory(BinaryData::metal_knob_big_png, BinaryData::metal_knob_big_pngSize),
+  m_hp.setStrip(ImageCache::getFromMemory(BinaryData::metal_knob_big_png,
+                                          BinaryData::metal_knob_big_pngSize),
                 256);
   m_hp.setBounds(HP_POS_X, HP_POS_Y, METAL_KNOB_BIG_SIZE_X,
                  METAL_KNOB_BIG_SIZE_Y);
@@ -489,7 +505,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_hp.setRange(HP_MIN, HP_MAX);
   m_hp.setSkewFactorFromMidPoint(HP_MID);
   m_hp.setTextValueSuffix(" Hz");
-  m_hp.setValue(HP_DEFAULT);
+  // m_hp.setValue(GETAUDIO("osc" + m_osc_number + "_hp"));
   m_hp.setDoubleClickReturnValue(true, HP_DEFAULT, ModifierKeys::ctrlModifier);
   m_hp.setNumDecimalPlacesToDisplay(0);
   m_hp.setKnobTooltip(
@@ -497,7 +513,8 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   addChildComponent(m_hp);
 
   m_position.setStrip(
-      ImageCache::getFromMemory(BinaryData::metal_knob_big_png, BinaryData::metal_knob_big_pngSize),
+      ImageCache::getFromMemory(BinaryData::metal_knob_big_png,
+                                BinaryData::metal_knob_big_pngSize),
       256);
   m_position.setBounds(POSITION_POS_X, POSITION_POS_Y, METAL_KNOB_BIG_SIZE_X,
                        METAL_KNOB_BIG_SIZE_Y);
@@ -508,7 +525,8 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   addChildComponent(m_position);
 
   m_detune.setStrip(
-      ImageCache::getFromMemory(BinaryData::metal_knob_big_png, BinaryData::metal_knob_big_pngSize),
+      ImageCache::getFromMemory(BinaryData::metal_knob_big_png,
+                                BinaryData::metal_knob_big_pngSize),
       256);
   m_detune.setBounds(DETUNE_POS_X, DETUNE_POS_Y, METAL_KNOB_BIG_SIZE_X,
                      METAL_KNOB_BIG_SIZE_Y);
@@ -520,7 +538,8 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   addChildComponent(m_detune);
 
   m_spread.setStrip(
-      ImageCache::getFromMemory(BinaryData::metal_knob_small_png, BinaryData::metal_knob_small_pngSize),
+      ImageCache::getFromMemory(BinaryData::metal_knob_small_png,
+                                BinaryData::metal_knob_small_pngSize),
       256);
   m_spread.setBounds(SPREAD_POS_X, SPREAD_POS_Y, METAL_KNOB_SMALL_SIZE_X,
                      METAL_KNOB_SMALL_SIZE_Y);
@@ -531,7 +550,8 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   addChildComponent(m_spread);
 
   m_position_multi.setStrip(
-      ImageCache::getFromMemory(BinaryData::metal_knob_small_png, BinaryData::metal_knob_small_pngSize),
+      ImageCache::getFromMemory(BinaryData::metal_knob_small_png,
+                                BinaryData::metal_knob_small_pngSize),
       256);
   m_position_multi.setBounds(POSITION_MULTI_POS_X, POSITION_MULTI_POS_Y,
                              METAL_KNOB_SMALL_SIZE_X, METAL_KNOB_SMALL_SIZE_Y);
@@ -543,7 +563,8 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   addChildComponent(m_position_multi);
 
   m_speed.setStrip(
-      ImageCache::getFromMemory(BinaryData::black_knob_small_png, BinaryData::black_knob_small_pngSize),
+      ImageCache::getFromMemory(BinaryData::black_knob_small_png,
+                                BinaryData::black_knob_small_pngSize),
       256);
   m_speed.setBounds(SPEED_POS_X, SPEED_POS_Y, BLACK_KNOB_SMALL_SIZE_X,
                     BLACK_KNOB_SMALL_SIZE_Y);
@@ -552,7 +573,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_speed.setTextValueSuffix(" Hz");
   m_speed.setRange(SPEED_MIN, SPEED_MAX);
   m_speed.setSkewFactorFromMidPoint(SPEED_MID);
-  m_speed.setValue(SPEED_DEFAULT);
+  // m_speed./(GETAUDIO("osc" + m_osc_number + "_arp_speed"));
   m_speed.setDoubleClickReturnValue(true, SPEED_DEFAULT,
                                     ModifierKeys::ctrlModifier);
   m_speed.setNumDecimalPlacesToDisplay(1);
@@ -750,7 +771,8 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_chiptune_waveselector.setIncrementValue(403, 403);
   m_chiptune_waveselector.applySubmenu(3, "WaveDraw");
 
-  m_chiptune_waveselector.setValue(1);
+  // m_chiptune_waveselector.setValue(GETAUDIO("osc" + m_osc_number +
+  // "_chiptune_wave"));
   m_chiptune_waveselector.setColor(chip_color);
   m_chiptune_waveselector.setTooltip("Selects the wave for the oscillator");
   addChildComponent(m_chiptune_waveselector);
@@ -975,7 +997,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_carrier_waveselector.setTopLeftPosition(WAVE_CARRIER_POS_X,
                                             WAVE_CARRIER_POS_Y);
 
-  m_carrier_waveselector.setValue(1);
+  // m_carrier_waveselector.setValue(1);
   m_carrier_waveselector.setColor(fm_color);
   m_carrier_waveselector.setTooltip("Selects the wave for the carrier osc");
   addChildComponent(m_carrier_waveselector);
@@ -1010,7 +1032,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_wavetable_waveselector.addWave(22, "Wave22");
   m_wavetable_waveselector.addWave(23, "Wave23");
   m_wavetable_waveselector.addWave(1000, "Last");
-  m_wavetable_waveselector.setValue(1);
+  // m_wavetable_waveselector.setValue(1);
   m_wavetable_waveselector.setTooltip("Selects the wave for the oscillator");
   addChildComponent(m_wavetable_waveselector);
 
@@ -1021,7 +1043,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_modulator_waveselector.setTopLeftPosition(WAVE_MODULATOR_POS_X,
                                               WAVE_MODULATOR_POS_Y);
   m_modulator_waveselector.setColor(fm_color);
-  m_modulator_waveselector.setValue(1);
+  // m_modulator_waveselector.setValue(1);
   m_modulator_waveselector.setTooltip("Selects the wave for the modulator osc");
   addChildComponent(m_modulator_waveselector);
 
@@ -1031,7 +1053,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   };
   m_carrier_ratio.setTopLeftPosition(RATIO_CARRIER_POS_X, RATIO_CARRIER_POS_Y);
   m_carrier_ratio.setRange(1, 12);
-  m_carrier_ratio.setValue(1);
+  // m_carrier_ratio.setValue(1);
   m_carrier_ratio.setColor(fm_color);
   m_carrier_ratio.setTooltip(
       "The pitch ratio of the carrier to base frequency");
@@ -1040,13 +1062,12 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   addChildComponent(m_carrier_ratio);
 
   m_modulator_ratio.OnValueChange = [&](int p_new_value) {
-    m_value_tree.getParameter(m_modulator_ratio_identifier)
-        ->setValueNotifyingHost(((float)p_new_value - 0.5f) / 12.f);
+    m_value_tree.state.setProperty(m_modulator_ratio_identifier, (float)p_new_value, nullptr);
   };
   m_modulator_ratio.setTopLeftPosition(RATIO_MODULATOR_POS_X,
                                        RATIO_MODULATOR_POS_Y);
   m_modulator_ratio.setRange(1, 12);
-  m_modulator_ratio.setValue(1);
+  // m_modulator_ratio.setValue(1);
   m_modulator_ratio.setColor(fm_color);
   m_modulator_ratio.setTooltip(
       "The pitch ratio of the modulator to base frequency");
@@ -1185,7 +1206,8 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   addChildComponent(m_vec_d);
 
   m_xy_x.setStrip(
-      ImageCache::getFromMemory(BinaryData::black_knob_very_small_png, BinaryData::black_knob_very_small_pngSize),
+      ImageCache::getFromMemory(BinaryData::black_knob_very_small_png,
+                                BinaryData::black_knob_very_small_pngSize),
       256);
   m_xy_x.setBounds(X_POS_X, X_POS_Y, BLACK_KNOB_VERY_SMALL_SIZE_X,
                    BLACK_KNOB_VERY_SMALL_SIZE_Y);
@@ -1199,7 +1221,8 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   addChildComponent(m_xy_x);
 
   m_xy_y.setStrip(
-      ImageCache::getFromMemory(BinaryData::black_knob_very_small_png, BinaryData::black_knob_very_small_pngSize),
+      ImageCache::getFromMemory(BinaryData::black_knob_very_small_png,
+                                BinaryData::black_knob_very_small_pngSize),
       256);
   m_xy_y.setBounds(Y_POS_X, Y_POS_Y, BLACK_KNOB_VERY_SMALL_SIZE_X,
                    BLACK_KNOB_VERY_SMALL_SIZE_Y);
@@ -1228,9 +1251,13 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_hp.setNumDecimalPlacesToDisplay(1);
 
   m_carrier_ratio.setParameterId("osc" + m_osc_number + "_carrier_ratio");
-  m_value_tree.addParameterListener("osc" + m_osc_number + "_carrier_ratio", &m_carrier_ratio);
+  m_value_tree.addParameterListener("osc" + m_osc_number + "_carrier_ratio",
+                                    &m_carrier_ratio);
   m_modulator_ratio.setParameterId("osc" + m_osc_number + "_modulator_ratio");
-  m_value_tree.addParameterListener("osc" + m_osc_number + "_modulator_ratio", &m_modulator_ratio);
+  m_value_tree.addParameterListener("osc" + m_osc_number + "_modulator_ratio",
+                                    &m_modulator_ratio);
+
+  forceValueTreeOntoComponents(m_value_tree.state, std::stoi(m_osc_number));
 
   setSize(247, 145);
 }
@@ -1239,8 +1266,10 @@ OscComponent::~OscComponent() {
   m_carrier_waveselector.m_menu.setLookAndFeel(nullptr);
   m_modulator_waveselector.m_menu.setLookAndFeel(nullptr);
 
-  m_value_tree.removeParameterListener("osc" + m_osc_number + "_carrier_ratio", &m_carrier_ratio);
-  m_value_tree.removeParameterListener("osc" + m_osc_number + "_modulator_ratio", &m_modulator_ratio);
+  m_value_tree.removeParameterListener("osc" + m_osc_number + "_carrier_ratio",
+                                       &m_carrier_ratio);
+  m_value_tree.removeParameterListener(
+      "osc" + m_osc_number + "_modulator_ratio", &m_modulator_ratio);
 }
 
 void OscComponent::paint(Graphics &g) { g.drawImageAt(m_background, 0, 0); }
@@ -1309,7 +1338,8 @@ void OscComponent::setOscType(int p_osc_type) {
 void OscComponent::setOscTypeBypass() { m_background = m_background_bypass; }
 
 void OscComponent::setOscTypeAnalog() {
-  m_background = ImageCache::getFromMemory(BinaryData::analog_backdrop_png, BinaryData::analog_backdrop_pngSize);
+  m_background = ImageCache::getFromMemory(BinaryData::analog_backdrop_png,
+                                           BinaryData::analog_backdrop_pngSize);
   showAnalogComponents();
 }
 void OscComponent::setOscTypeChiptune() {
@@ -1319,8 +1349,8 @@ void OscComponent::setOscTypeChiptune() {
 }
 
 void OscComponent::setOscTypeFM() {
-  m_background = ImageCache::getFromMemory(
-      BinaryData::fm_backdrop_png, BinaryData::fm_backdrop_pngSize);
+  m_background = ImageCache::getFromMemory(BinaryData::fm_backdrop_png,
+                                           BinaryData::fm_backdrop_pngSize);
   showFMComponents();
 }
 
@@ -1343,26 +1373,27 @@ void OscComponent::setOscTypeSpecdraw() {
 }
 
 void OscComponent::setOscTypeNoise() {
-  m_background = ImageCache::getFromMemory(
-      BinaryData::noise_backdrop_png, BinaryData::noise_backdrop_pngSize);
+  m_background = ImageCache::getFromMemory(BinaryData::noise_backdrop_png,
+                                           BinaryData::noise_backdrop_pngSize);
   showNoiseComponents();
 }
 
 void OscComponent::setOscTypeVector() {
-  m_background = ImageCache::getFromMemory(
-      BinaryData::vector_backdrop_png, BinaryData::vector_backdrop_pngSize);
+  m_background = ImageCache::getFromMemory(BinaryData::vector_backdrop_png,
+                                           BinaryData::vector_backdrop_pngSize);
   showVectorComponents();
 }
 
 void OscComponent::setOscTypeWavetable() {
-  m_background = ImageCache::getFromMemory(
-      BinaryData::wavetable_backdrop_png, BinaryData::wavetable_backdrop_pngSize);
+  m_background =
+      ImageCache::getFromMemory(BinaryData::wavetable_backdrop_png,
+                                BinaryData::wavetable_backdrop_pngSize);
   showWavetableComponents();
 }
 
 void OscComponent::setOscTypeMulti() {
-  m_background = ImageCache::getFromMemory(
-      BinaryData::multi_backdrop_png, BinaryData::multi_backdrop_pngSize);
+  m_background = ImageCache::getFromMemory(BinaryData::multi_backdrop_png,
+                                           BinaryData::multi_backdrop_pngSize);
   showMultiComponents();
 }
 
@@ -1638,11 +1669,13 @@ void OscComponent::forceValueTreeOntoComponents(ValueTree p_tree, int p_index) {
   m_modulator_waveselector.setValue(
       m_value_tree.state[m_modulator_wave_identifier]);
 
-  m_carrier_ratio.setValue(
-      m_value_tree.getParameterAsValue(m_carrier_ratio_identifier).getValue());
+  m_carrier_ratio.setValue(GETVALUE(String(m_osc_number + "_carrier_ratio")));
+  DBG("2");
+
   m_modulator_ratio.setValue(
-      m_value_tree.getParameterAsValue(m_modulator_ratio_identifier)
-          .getValue());
+      GETVALUE(String(m_osc_number + "_modulator_ratio")));
+  DBG("1");
+
   m_fm_exp.setValue(
       m_value_tree.getParameterAsValue("osc" + m_osc_number + "_exp_fm")
           .getValue());
@@ -1650,7 +1683,6 @@ void OscComponent::forceValueTreeOntoComponents(ValueTree p_tree, int p_index) {
   // chiptune
   m_chiptune_waveselector.setValue(
       m_value_tree.state[String("osc" + m_osc_number + "_chipwave")]);
-
   auto node = m_value_tree.state;
 
   // wavedraw
@@ -1661,6 +1693,7 @@ void OscComponent::forceValueTreeOntoComponents(ValueTree p_tree, int p_index) {
                              2 -
                          1;
   }
+
   m_wavedraw.setDrawnTable(wavedraw_values);
   createWavedrawTables();
   m_wavedraw_convert.setToggleState(true, dontSendNotification);
