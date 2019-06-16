@@ -359,8 +359,8 @@ public:
     positionButtons();
   }
 
-  std::function<void(std::map<std::string, int>)> onButtonArrange;
-  std::function<void(std::string)> setHighlighted;
+  std::function<void(std::map<std::string, int>)> onButtonArrange = [](std::map<std::string, int>){};
+  std::function<void(std::string)> setHighlighted = [](std::string){};
 
 private:
   OdinAudioProcessor &m_processor;
