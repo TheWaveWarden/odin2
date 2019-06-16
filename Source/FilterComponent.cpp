@@ -171,7 +171,6 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts,
   m_vowel_left.setColor(Colour(90, 40, 40));
 
   m_vowel_right.OnValueChange = [&](int p_new_value) {
-    DBG("FORMAN ONLVALUECHNGE");
     m_value_tree.getParameter(m_vowel_right_identifier)
         ->setValueNotifyingHost(((float)p_new_value) / 7.f);
     //SETVALUE(m_vowel_right_identifier, p_new_value);

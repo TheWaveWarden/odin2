@@ -38,9 +38,6 @@ OdinAudioProcessor::OdinAudioProcessor()
   addNonAudioParametersToTree();
 
   m_is_standalone_plugin = (wrapperType == wrapperType_Standalone);
-  DBG("standalone plugin? " + std::to_string((int)m_is_standalone_plugin));
-  // DBG(typeid(wrapperType));
-  // DBG(typeid(wrapperType_Standalone));
 
   // set up the tree listener
   m_tree_listener.onValueChange = [&](const String &p_ID, float p_new_value) {
@@ -1409,8 +1406,6 @@ void OdinAudioProcessor::addNonAudioParametersToTree() {
   node.setProperty("flanger_position", 3, nullptr);
 
   node.setProperty("dist_algo", 1.f, nullptr);
-  DBG("dist algo:");
-  DBG((int)node["dist_algo"]);
 
   node.setProperty("osc1_analog_wave", 0, nullptr);
   node.setProperty("osc2_analog_wave", 0, nullptr);

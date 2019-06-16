@@ -34,7 +34,7 @@ void DrawableSlider::paint(Graphics &g)
   //g.setColour(Colours::grey);
   //g.drawRect(getLocalBounds(), 1); // draw an outline around the component
 
-  DBG(getValue());
+  //DBG(getValue());
   g.drawImageAt(m_handle, 0, (1.f - valueToProportionOfLength(getValue())) * (getHeight() - m_handle.getHeight()));
 
   //DBG(getValue());
@@ -56,7 +56,7 @@ void DrawableSlider::paint(Graphics &g)
 
 void DrawableSlider::mouseDown(const MouseEvent &event) {
   if (event.mods.isRightButtonDown()) {
-    DBG("RIGHT");
+    //DBG("RIGHT");
     PopupMenu midi_learn_menu;
     if (m_midi_learn) {
       midi_learn_menu.addItem(2, "Stop MIDI learn");

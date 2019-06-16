@@ -43,7 +43,7 @@ bool OdinAudioProcessor::treeValueChangedFirst(const String &p_ID,
   Identifier id(p_ID);
 
 #ifdef DEBUG_VARIABLES
-  DBG(p_ID + ": " + std::to_string(p_new_value));
+  DBG("audio: " + p_ID + ": " + std::to_string(p_new_value));
 #endif
 
   if (id == m_osc1_oct_identifier) {
@@ -924,7 +924,7 @@ void OdinAudioProcessor::treeValueChangedNonParam(ValueTree &tree,
                                                   const Identifier &id) {
 
   float p_new_value = (float)tree[id];
-  DBG(id.toString() + ": " + std::to_string(p_new_value));
+  DBG("value: " + id.toString().toStdString() + ": " + std::to_string(p_new_value));
 
   if (id == m_flanger_synctime_numerator_identifier) {
     for (int stereo = 0; stereo < 2; ++stereo) {

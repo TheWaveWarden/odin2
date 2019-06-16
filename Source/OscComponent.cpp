@@ -1677,8 +1677,6 @@ void OscComponent::forceValueTreeOntoComponents(ValueTree p_tree, int p_index,
   m_vec_c.setSelectedId(m_value_tree.state[m_vec_c_identifier]);
   m_vec_d.setSelectedId(m_value_tree.state[m_vec_d_identifier]);
 
-  DBG("vecotrs:");
-  DBG((float)m_value_tree.state[m_vec_d_identifier]);
 
   // fm
   m_carrier_waveselector.setValue(
