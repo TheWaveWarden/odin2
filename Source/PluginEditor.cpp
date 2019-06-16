@@ -889,6 +889,8 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
   setFilter3Plate(GETVALUE("fil3_type"));
 
   setSize(800, 600);
+
+  forceValueTreeOntoComponentsOnlyMainPanel();
   TIMEEND
 
 }
@@ -1151,6 +1153,33 @@ void OdinAudioProcessorEditor::setTooltipEnabled(bool p_enabled) {
   }
 }
 
+
+void OdinAudioProcessorEditor::forceValueTreeOntoComponentsOnlyMainPanel() {
+  m_pitch_amount.setValue(
+      m_value_tree.getParameterAsValue("pitchbend_amount").getValue());
+
+
+ //ugly fix to set highlighted fx panel
+  std::string fx_name = "delay";
+  if((float)GETVALUE("phaser_selected") > 0.5){
+    fx_name = "phaser";
+  } else if((float)GETVALUE("flanger_selected") > 0.5){
+    fx_name = "flanger";
+  } else if((float)GETVALUE("chorus_selected") > 0.5){
+    fx_name = "chorus";
+  } 
+  setActiveFXPanel(fx_name);
+
+
+  m_legato_button.setToggleState((float)m_value_tree.state["legato"] > 0.5,
+                                 dontSendNotification);
+  processor.setPolyLegato(m_legato_button.getToggleState());
+
+  m_BPM_selector.setValue(m_value_tree.state["BPM"]);
+}
+
+
+
 void OdinAudioProcessorEditor::forceValueTreeOntoComponents() {
 
   // reset audioengine
@@ -1158,8 +1187,7 @@ void OdinAudioProcessorEditor::forceValueTreeOntoComponents() {
 
   DBG("FORCEVALUETREEONTOCOMPONENTS");
   // DBG(m_value_tree.state.toXmlString());
-  m_pitch_amount.setValue(
-      m_value_tree.getParameterAsValue("pitchbend_amount").getValue());
+
 
   setOsc1Plate(m_value_tree.state["osc1_type"]);
   setOsc2Plate(m_value_tree.state["osc2_type"]);
@@ -1186,11 +1214,7 @@ void OdinAudioProcessorEditor::forceValueTreeOntoComponents() {
   m_midsection.forceValueTreeOntoComponents(m_value_tree.state);
   m_fx_buttons_section.forceValueTreeOntoComponents(m_value_tree.state);
 
-  m_legato_button.setToggleState((float)m_value_tree.state["legato"] > 0.5,
-                                 dontSendNotification);
-  processor.setPolyLegato(m_legato_button.getToggleState());
-
-  m_BPM_selector.setValue(m_value_tree.state["BPM"]);
+  forceValueTreeOntoComponentsOnlyMainPanel();
 }
 
 bool OdinAudioProcessorEditor::keyStateChanged(

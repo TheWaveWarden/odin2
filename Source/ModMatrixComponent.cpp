@@ -1073,6 +1073,12 @@ void ModMatrixComponent::createMenu(PopupMenu *p_menu) {
 
 void ModMatrixComponent::forceValueTreeOntoComponents(ValueTree p_tree) {
   for (int row = 0; row < N_ROWS; ++row) {
+
+    m_dest_1[row].clear();
+    createMenu(m_dest_1[row].getRootMenu());
+    m_dest_2[row].clear();
+    createMenu(m_dest_2[row].getRootMenu());
+
     m_source[row].setValue(
         m_value_tree.state[String("source_[" + std::to_string(row) + "]")]);
 

@@ -186,6 +186,7 @@ public:
   void setActiveFXPanel(std::string p_name);
 
   void forceValueTreeOntoComponents();
+  void forceValueTreeOntoComponentsOnlyMainPanel();
 
   bool keyPressed(const KeyPress &key, Component *) override { 
     if(key.getKeyCode() == 120){

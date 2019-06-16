@@ -483,7 +483,7 @@
                                             0.f, 1.f, 0.3f),
       std::make_unique<AudioParameterFloat>("chorus_feedback",
                                             "Chorus Feedback", -1.f, 1.f, 0.f),
-      std::make_unique<AudioParameterFloat>("chorus_feedback", "Chorus DryWet",
+      std::make_unique<AudioParameterFloat>("chorus_drywet", "Chorus DryWet",
                                             0.f, 1.f, 1.f),
       
       // ModMatrix
