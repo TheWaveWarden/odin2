@@ -1255,6 +1255,7 @@ void OdinAudioProcessor::midiNoteOn(int p_midi_note, int p_midi_velocity) {
 }
 
 void OdinAudioProcessor::resetAudioEngine() {
+
   for (int voice = 0; voice < VOICES; ++voice) {
     m_voice[voice].hardReset();
   }
@@ -1447,6 +1448,10 @@ void OdinAudioProcessor::addNonAudioParametersToTree() {
   node.setProperty("osc2_carrier_wave", 1, nullptr);
   node.setProperty("osc3_carrier_wave", 1, nullptr);
   node.setProperty("BPM", 120, nullptr);
+  node.setProperty("env_left_selected", 1, nullptr);
+  node.setProperty("env_right_selected", 1, nullptr);
+  node.setProperty("lfo_left_selected", 1, nullptr);
+  node.setProperty("lfo_right_selected", 1, nullptr);
 }
 
 void OdinAudioProcessor::setFXButtonsPosition(int p_delay, int p_phaser,

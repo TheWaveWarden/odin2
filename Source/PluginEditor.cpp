@@ -81,17 +81,17 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
       m_is_standalone_plugin(p_is_standalone), m_save_load(vts) {
 
   TIMESTART("OdinEditor")
-  
+
   if (m_is_standalone_plugin) {
     addKeyListener(this);
   }
 
   p_processor.onSetStateInformation = [&]() {
     // DBG("ONSETSTATEINFORMATION!\n\");
-    forceValueTreeOntoComponents();
+    forceValueTreeOntoComponents(true);
   };
 
-  m_save_load.forceValueTreeLambda = [&]() { forceValueTreeOntoComponents(); };
+  m_save_load.forceValueTreeLambda = [&]() { forceValueTreeOntoComponents(true); };
 
   Knob::setOdinPointer(&p_processor);
   DrawableSlider::setOdinPointer(&p_processor);
@@ -715,6 +715,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
   m_env_13_button.setToggleState(true, dontSendNotification);
   m_env_13_button.onStateChange = [&]() {
     setEnv13(m_env_13_button.getToggleState());
+    SETVALUE("env_left_selected",(int)m_env_13_button.getToggleState());
   };
   m_env_13_button.setTooltip("Shows the amplifier\nenvelope or envelope 3");
   addAndMakeVisible(m_env_13_button);
@@ -730,6 +731,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
   m_env_24_button.setToggleState(true, dontSendNotification);
   m_env_24_button.onStateChange = [&]() {
     setEnv24(m_env_24_button.getToggleState());
+    SETVALUE("env_right_selected",(int)m_env_24_button.getToggleState());
   };
   m_env_24_button.setTooltip("Shows the filter\nenvelope or envelope 4");
   addAndMakeVisible(m_env_24_button);
@@ -745,6 +747,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
   m_lfo_13_button.setToggleState(true, dontSendNotification);
   m_lfo_13_button.onStateChange = [&]() {
     setLfo12(m_lfo_13_button.getToggleState());
+    SETVALUE("lfo_left_selected",(int)m_lfo_13_button.getToggleState());
   };
   m_lfo_13_button.setTooltip("Shows LFO 1 or LFO 3");
   addAndMakeVisible(m_lfo_13_button);
@@ -760,6 +763,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
   m_lfo_24_button.setToggleState(true, dontSendNotification);
   m_lfo_24_button.onStateChange = [&]() {
     setLfo34(m_lfo_24_button.getToggleState());
+    SETVALUE("lfo_right_selected",(int)m_lfo_24_button.getToggleState());
   };
   m_lfo_24_button.setTooltip("Shows LFO 2 or LFO 4");
   addAndMakeVisible(m_lfo_24_button);
@@ -892,7 +896,6 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
 
   forceValueTreeOntoComponentsOnlyMainPanel();
   TIMEEND
-
 }
 
 OdinAudioProcessorEditor::~OdinAudioProcessorEditor() {
@@ -1153,41 +1156,49 @@ void OdinAudioProcessorEditor::setTooltipEnabled(bool p_enabled) {
   }
 }
 
-
 void OdinAudioProcessorEditor::forceValueTreeOntoComponentsOnlyMainPanel() {
   m_pitch_amount.setValue(
       m_value_tree.getParameterAsValue("pitchbend_amount").getValue());
 
-
- //ugly fix to set highlighted fx panel
+  // ugly fix to set highlighted fx panel
   std::string fx_name = "delay";
-  if((float)GETVALUE("phaser_selected") > 0.5){
+  if ((float)GETVALUE("phaser_selected") > 0.5) {
     fx_name = "phaser";
-  } else if((float)GETVALUE("flanger_selected") > 0.5){
+  } else if ((float)GETVALUE("flanger_selected") > 0.5) {
     fx_name = "flanger";
-  } else if((float)GETVALUE("chorus_selected") > 0.5){
+  } else if ((float)GETVALUE("chorus_selected") > 0.5) {
     fx_name = "chorus";
-  } 
+  }
   setActiveFXPanel(fx_name);
-
 
   m_legato_button.setToggleState((float)m_value_tree.state["legato"] > 0.5,
                                  dontSendNotification);
   processor.setPolyLegato(m_legato_button.getToggleState());
 
   m_BPM_selector.setValue(m_value_tree.state["BPM"]);
+
+  m_lfo_13_button.setToggleState((float)GETVALUE("lfo_left_selected") > 0.5, dontSendNotification);
+  setLfo12(m_lfo_13_button.getToggleState());
+  m_lfo_24_button.setToggleState((float)GETVALUE("lfo_right_selected") > 0.5, dontSendNotification);
+  setLfo34(m_lfo_24_button.getToggleState());
+  m_env_13_button.setToggleState((float)GETVALUE("env_left_selected") > 0.5, dontSendNotification);
+  setEnv13(m_env_13_button.getToggleState());
+  m_env_24_button.setToggleState((float)GETVALUE("env_right_selected") > 0.5, dontSendNotification);
+  setEnv24(m_env_24_button.getToggleState());
 }
 
-
-
-void OdinAudioProcessorEditor::forceValueTreeOntoComponents() {
+void OdinAudioProcessorEditor::forceValueTreeOntoComponents(
+    bool p_reset_audio) {
 
   // reset audioengine
-  processor.resetAudioEngine();
+  if (p_reset_audio) {
+    processor.resetAudioEngine();
+  }
 
   DBG("FORCEVALUETREEONTOCOMPONENTS");
   // DBG(m_value_tree.state.toXmlString());
 
+  forceValueTreeOntoComponentsOnlyMainPanel();
 
   setOsc1Plate(m_value_tree.state["osc1_type"]);
   setOsc2Plate(m_value_tree.state["osc2_type"]);
@@ -1213,8 +1224,6 @@ void OdinAudioProcessorEditor::forceValueTreeOntoComponents() {
   m_delay.forceValueTreeOntoComponents(m_value_tree.state);
   m_midsection.forceValueTreeOntoComponents(m_value_tree.state);
   m_fx_buttons_section.forceValueTreeOntoComponents(m_value_tree.state);
-
-  forceValueTreeOntoComponentsOnlyMainPanel();
 }
 
 bool OdinAudioProcessorEditor::keyStateChanged(

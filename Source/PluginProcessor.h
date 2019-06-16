@@ -227,12 +227,15 @@ public:
 
   void midiNoteOff(int p_midi_note);
   void midiNoteOn(int p_midi_note, int p_midi_velocity);
+  
   void setPolyLegato(bool p_is_poly) {
-    m_voice_manager.setPolyLegato(p_is_poly);
+    bool legato_was_changed = m_voice_manager.setPolyLegato(p_is_poly);
     m_voice[0].setPolyLegato(p_is_poly);
 
-    // reset engine here to get rid of trailing notes
-    resetAudioEngine();
+    if (legato_was_changed) {
+      // reset engine here to get rid of trailing notes
+      resetAudioEngine();
+    }
   }
 
   // this should be called when patches are loaded and legato
@@ -244,7 +247,7 @@ public:
                             int p_chorus);
 
 private:
-  //OdinAudioProcessorEditor* m_editor = nullptr;
+  // OdinAudioProcessorEditor* m_editor = nullptr;
 
   void setBPM(float BPM);
 

@@ -130,7 +130,13 @@ public:
         std::to_string(m_voice_history[11]));
   }
 
-  void setPolyLegato(bool p_is_poly) { m_is_legato = !p_is_poly; }
+  bool setPolyLegato(bool p_is_poly) { 
+    if(m_is_legato == p_is_poly){
+      m_is_legato = !p_is_poly;
+      return true;//value was changed
+    }
+    return false;
+  }
 
   void reset() {
     for (int voice = 0; voice < VOICES; ++voice) {

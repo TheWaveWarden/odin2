@@ -472,8 +472,6 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
   }
 
   m_amount_1[0].onValueChange = [&](float p_value) {
-    DBG("POINTER TO COMPONENT");
-    DBG((long)&(m_amount_1[0]));
     m_value_tree.getParameter(m_amount_1_identifier0)
         ->setValueNotifyingHost(((float)p_value + 1.f) / 2.f);
   };

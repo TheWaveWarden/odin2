@@ -185,7 +185,7 @@ public:
   void arrangeFXOnButtons(std::map<std::string, int> p_map);
   void setActiveFXPanel(std::string p_name);
 
-  void forceValueTreeOntoComponents();
+  void forceValueTreeOntoComponents(bool p_reset_audio);
   void forceValueTreeOntoComponentsOnlyMainPanel();
 
   bool keyPressed(const KeyPress &key, Component *) override { 
