@@ -157,9 +157,9 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts,
   addChildComponent(m_formant_transition);
 
   m_vowel_left.OnValueChange = [&](int p_new_value) {
-    //m_value_tree.getParameter(m_vowel_left_identifier)
-    //    ->setValueNotifyingHost(((float)p_new_value) / 7.f);
-    SETVALUE(m_vowel_left_identifier, p_new_value);
+    m_value_tree.getParameter(m_vowel_left_identifier)
+        ->setValueNotifyingHost(((float)p_new_value) / 7.f);
+    //SETVALUE(m_vowel_left_identifier, p_new_value);
   };
   m_vowel_left.setTopLeftPosition(FORMANT_VOW_LEFT_POS_X,
                                   FORMANT_VOW_LEFT_POS_Y);
@@ -171,9 +171,10 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts,
   m_vowel_left.setColor(Colour(90, 40, 40));
 
   m_vowel_right.OnValueChange = [&](int p_new_value) {
-    //m_value_tree.getParameter(m_vowel_right_identifier)
-    //    ->setValueNotifyingHost(((float)p_new_value) / 7.f);
-    SETVALUE(m_vowel_right_identifier, p_new_value);
+    DBG("FORMAN ONLVALUECHNGE");
+    m_value_tree.getParameter(m_vowel_right_identifier)
+        ->setValueNotifyingHost(((float)p_new_value) / 7.f);
+    //SETVALUE(m_vowel_right_identifier, p_new_value);
   };
   m_vowel_right.setTopLeftPosition(FORMANT_VOW_RIGHT_POS_X,
                                    FORMANT_VOW_RIGHT_POS_Y);
@@ -208,10 +209,10 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts,
   m_kbd.setNumDecimalPlacesToDisplay(3);
   m_formant_transition.setNumDecimalPlacesToDisplay(3);
 
-  m_vowel_left.setParameterId("fil" + m_filter_number + "_vowel_left");
-  m_value_tree.addParameterListener("fil" + m_filter_number + "_vowel_left", &m_vowel_left);
-  m_vowel_right.setParameterId("fil" + m_filter_number + "_vowel_right");
-  m_value_tree.addParameterListener("fil" + m_filter_number + "_vowel_right", &m_vowel_right);
+  // m_vowel_left.setParameterId("fil" + m_filter_number + "_vowel_left");
+  // m_value_tree.addParameterListener("fil" + m_filter_number + "_vowel_left", &m_vowel_left);
+  // m_vowel_right.setParameterId("fil" + m_filter_number + "_vowel_right");
+  // m_value_tree.addParameterListener("fil" + m_filter_number + "_vowel_right", &m_vowel_right);
 
   forceValueTreeOntoComponents(m_value_tree.state, std::stoi(m_filter_number));
 
@@ -437,6 +438,6 @@ void FilterComponent::forceValueTreeOntoComponents(ValueTree p_tree,
           .getParameterAsValue("fil" + m_filter_number + "_comb_polarity")
           .getValue());
 
-  m_vowel_left.setValue(GETVALUE(m_vowel_left_identifier));
-  m_vowel_right.setValue(GETVALUE(m_vowel_right_identifier));
+  m_vowel_left.setValueGUIOnly(GETAUDIO(m_vowel_left_identifier));
+  m_vowel_right.setValueGUIOnly(GETAUDIO(m_vowel_right_identifier));
 }

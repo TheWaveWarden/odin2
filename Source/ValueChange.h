@@ -864,7 +864,29 @@ bool OdinAudioProcessor::treeValueChangedFourth(const String &p_ID,
     m_mod_matrix.setScaleAmount(7, p_new_value);
   } else if (id == m_amount_3_row_9_identifier) {
     m_mod_matrix.setScaleAmount(8, p_new_value);
-  }
+  } else if (id == m_fil1_vowel_left_identifier) {
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_voice[voice].formant_filter[0].setVowelLeft((int)p_new_value);
+    }
+  } else if (id == m_fil2_vowel_left_identifier) {
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_voice[voice].formant_filter[1].setVowelLeft((int)p_new_value);
+    }
+  } else if (id == m_fil1_vowel_right_identifier) {
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_voice[voice].formant_filter[0].setVowelRight((int)p_new_value);
+    }
+  } else if (id == m_fil2_vowel_right_identifier) {
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_voice[voice].formant_filter[1].setVowelRight((int)p_new_value - 1);
+    }
+  } else if (id == m_fil3_vowel_left_identifier) {
+    m_formant_filter[0].setVowelLeft((int)p_new_value);
+    m_formant_filter[1].setVowelLeft((int)p_new_value);
+  } else if (id == m_fil3_vowel_right_identifier) {
+    m_formant_filter[0].setVowelRight((int)p_new_value);
+    m_formant_filter[1].setVowelRight((int)p_new_value);
+  } 
 
   else if (id == m_master_identifier) {
     m_master_control = Decibels::decibelsToGain(p_new_value);
@@ -1215,27 +1237,5 @@ void OdinAudioProcessor::treeValueChangedNonParam(ValueTree &tree,
     for (int voice = 0; voice < VOICES; ++voice) {
       m_voice[voice].fm_osc[2].setModulatorRatio(p_new_value);
     }
-  } else if (id == m_fil1_vowel_left_identifier) {
-    for (int voice = 0; voice < VOICES; ++voice) {
-      m_voice[voice].formant_filter[0].setVowelLeft((int)p_new_value);
-    }
-  } else if (id == m_fil2_vowel_left_identifier) {
-    for (int voice = 0; voice < VOICES; ++voice) {
-      m_voice[voice].formant_filter[1].setVowelLeft((int)p_new_value);
-    }
-  } else if (id == m_fil1_vowel_right_identifier) {
-    for (int voice = 0; voice < VOICES; ++voice) {
-      m_voice[voice].formant_filter[0].setVowelRight((int)p_new_value);
-    }
-  } else if (id == m_fil2_vowel_right_identifier) {
-    for (int voice = 0; voice < VOICES; ++voice) {
-      m_voice[voice].formant_filter[1].setVowelRight((int)p_new_value - 1);
-    }
-  } else if (id == m_fil3_vowel_left_identifier) {
-    m_formant_filter[0].setVowelLeft((int)p_new_value);
-    m_formant_filter[1].setVowelLeft((int)p_new_value);
-  } else if (id == m_fil3_vowel_right_identifier) {
-    m_formant_filter[0].setVowelRight((int)p_new_value);
-    m_formant_filter[1].setVowelRight((int)p_new_value);
   } 
 }

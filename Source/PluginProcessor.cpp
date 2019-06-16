@@ -221,7 +221,7 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
       AudioPlayHead::CurrentPositionInfo current_position_info;
       playhead->getCurrentPosition(current_position_info);
       m_BPM = current_position_info.bpm;
-      //todo this is expensive???
+      // todo this is expensive???
       SETVALUE("BPM", m_BPM);
     }
   }
@@ -680,10 +680,10 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
 bool OdinAudioProcessor::hasEditor() const { return true; }
 
 AudioProcessorEditor *OdinAudioProcessor::createEditor() {
-  OdinAudioProcessorEditor* editor =
+
+  OdinAudioProcessorEditor *editor =
       new OdinAudioProcessorEditor(*this, m_value_tree, m_is_standalone_plugin);
 
-  // typeid(wrapperType) == typeid(wrapperType_Standalone));
   if (m_force_values_onto_gui) {
     onSetStateInformation();
   }
@@ -1307,8 +1307,7 @@ void OdinAudioProcessor::setBPM(float p_BPM) {
 
 void OdinAudioProcessor::addNonAudioParametersToTree() {
 
-  auto node =
-      m_value_tree.state;
+  auto node = m_value_tree.state;
   for (int i = 0; i < WAVEDRAW_STEPS_X; ++i) {
     float val = sin(2 * M_PI * i / (float)WAVEDRAW_STEPS_X) * 0.9;
     // do braces in the beginnning to speed up identification!?
