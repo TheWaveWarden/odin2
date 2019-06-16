@@ -25,16 +25,26 @@ public:
 
   ~FormantSelector() {}
 
-  void setValueGUIOnly(int p_value) {
+  // void setValueGUIOnly(int p_value) {
+  //   if (p_value >= m_min && p_value <= m_max) {
+  //     m_value = p_value;
+  //     m_display.setText(m_formant_vector[p_value]);
+  //   }
+  // }
+
+  void setValueNotifyingHost(int p_value){
     if (p_value >= m_min && p_value <= m_max) {
       m_value = p_value;
       m_display.setText(m_formant_vector[p_value]);
+      OnValueChange(p_value);
     }
   }
 
   void setValue(int p_value) override {
+    if(p_value == m_value){
+      return;//avoid infinite loop
+    }
     if (p_value >= m_min && p_value <= m_max) {
-      DBG("FORMANT SETVALUE");
       m_value = p_value;
       m_display.setText(m_formant_vector[p_value]);
       OnValueChange(p_value);

@@ -209,10 +209,10 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts,
   m_kbd.setNumDecimalPlacesToDisplay(3);
   m_formant_transition.setNumDecimalPlacesToDisplay(3);
 
-  // m_vowel_left.setParameterId("fil" + m_filter_number + "_vowel_left");
-  // m_value_tree.addParameterListener("fil" + m_filter_number + "_vowel_left", &m_vowel_left);
-  // m_vowel_right.setParameterId("fil" + m_filter_number + "_vowel_right");
-  // m_value_tree.addParameterListener("fil" + m_filter_number + "_vowel_right", &m_vowel_right);
+  m_vowel_left.setParameterId("fil" + m_filter_number + "_vowel_left");
+  m_value_tree.addParameterListener("fil" + m_filter_number + "_vowel_left", &m_vowel_left);
+  m_vowel_right.setParameterId("fil" + m_filter_number + "_vowel_right");
+  m_value_tree.addParameterListener("fil" + m_filter_number + "_vowel_right", &m_vowel_right);
 
   forceValueTreeOntoComponents(m_value_tree.state, std::stoi(m_filter_number));
 
@@ -438,6 +438,6 @@ void FilterComponent::forceValueTreeOntoComponents(ValueTree p_tree,
           .getParameterAsValue("fil" + m_filter_number + "_comb_polarity")
           .getValue());
 
-  m_vowel_left.setValueGUIOnly(GETAUDIO(m_vowel_left_identifier));
-  m_vowel_right.setValueGUIOnly(GETAUDIO(m_vowel_right_identifier));
+  m_vowel_left.setValue(GETAUDIO(m_vowel_left_identifier));
+  m_vowel_right.setValue(GETAUDIO(m_vowel_right_identifier));
 }
