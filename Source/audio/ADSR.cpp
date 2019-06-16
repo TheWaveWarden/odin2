@@ -95,7 +95,7 @@ float ADSREnvelope::doEnvelope() {
       // envelope ends here...
       m_current_value = 0.;
       onEnvelopeEnd();
-      DBG("RELEASE IS FINISHED");
+      //DBG("RELEASE IS FINISHED");
       m_current_section = 4; // envelope over
       // if(m_envelope_finish_flag){
       //    *m_envelope_finish_flag = false;
