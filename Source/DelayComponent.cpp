@@ -80,7 +80,7 @@ DelayComponent::DelayComponent(AudioProcessorValueTreeState &vts,
   m_time.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
   m_time.setRange(TIME_MIN, TIME_MAX);
   m_time.setSkewFactorFromMidPoint(TIME_MID);
-  m_time.setValue(TIME_DEFAULT);
+  //m_time.setValue(TIME_DEFAULT);
   m_time.setTextValueSuffix(" s");
   m_time.setNumDecimalPlacesToDisplay(3);
   m_time.setDoubleClickReturnValue(true, TIME_DEFAULT,
@@ -92,7 +92,7 @@ DelayComponent::DelayComponent(AudioProcessorValueTreeState &vts,
   m_feedback.setSliderStyle(Slider::RotaryVerticalDrag);
   m_feedback.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
   m_feedback.setSkewFactorFromMidPoint(FEEDBACK_MID);
-  m_feedback.setValue(0.6f);
+  // m_feedback.setValue(0.6f);
   m_feedback.setKnobTooltip("How much to echo back");
 
   addAndMakeVisible(m_feedback);
@@ -104,7 +104,7 @@ DelayComponent::DelayComponent(AudioProcessorValueTreeState &vts,
   m_HP.setSkewFactorFromMidPoint(HP_FREQ_MID);
   m_HP.setDoubleClickReturnValue(true, HP_FREQ_DEFAULT,
                                  ModifierKeys::ctrlModifier);
-  m_HP.setValue(HP_FREQ_DEFAULT);
+  // m_HP.setValue(HP_FREQ_DEFAULT);
   m_HP.setTextValueSuffix(" Hz");
   m_HP.setNumDecimalPlacesToDisplay(1);
   m_HP.setKnobTooltip("The cutoff frequency\n for a highpass filter\n which is "
@@ -123,7 +123,7 @@ DelayComponent::DelayComponent(AudioProcessorValueTreeState &vts,
   m_dry.setSliderStyle(Slider::RotaryVerticalDrag);
   m_dry.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
   m_dry.setSkewFactorFromMidPoint(DRY_WET_MID);
-  m_dry.setValue(DRY_DEFAULT);
+  // m_dry.setValue(DRY_DEFAULT);
   m_dry.setDoubleClickReturnValue(true, DRY_DEFAULT,
                                   ModifierKeys::ctrlModifier);
   m_dry.setKnobTooltip("Volume of the input signal");
@@ -133,7 +133,7 @@ DelayComponent::DelayComponent(AudioProcessorValueTreeState &vts,
   m_wet.setSliderStyle(Slider::RotaryVerticalDrag);
   m_wet.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
   m_wet.setSkewFactorFromMidPoint(DRY_WET_MID);
-  m_wet.setValue(WET_DEFAULT);
+  // m_wet.setValue(WET_DEFAULT);
   m_wet.setDoubleClickReturnValue(true, WET_DEFAULT,
                                   ModifierKeys::ctrlModifier);
   m_wet.setKnobTooltip("Volume of the delayed signal only");
@@ -155,6 +155,8 @@ DelayComponent::DelayComponent(AudioProcessorValueTreeState &vts,
   m_ducking.setNumDecimalPlacesToDisplay(3);
   m_dry.setNumDecimalPlacesToDisplay(3);
   m_wet.setNumDecimalPlacesToDisplay(3);
+
+  forceValueTreeOntoComponents(m_value_tree.state);
 }
 
 DelayComponent::~DelayComponent() {}

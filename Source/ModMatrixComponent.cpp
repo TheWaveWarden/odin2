@@ -905,6 +905,8 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
     m_value_tree.addParameterListener("amount_3_[" + std::to_string(i) + "]",
                                       &(m_amount_3[i]));
   }
+
+  forceValueTreeOntoComponents(m_value_tree.state);
 }
 
 ModMatrixComponent::~ModMatrixComponent() {

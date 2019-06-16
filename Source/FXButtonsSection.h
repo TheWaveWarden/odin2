@@ -218,6 +218,8 @@ public:
     };
 
     setSize(FX_BUTTON_OFFSET * 4 + 1, delay_button_1.getHeight());
+
+    forceValueTreeOntoComponents(m_value_tree.state);
   }
 
   void parentSizeChanged() override {

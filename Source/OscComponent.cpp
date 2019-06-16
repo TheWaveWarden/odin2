@@ -231,7 +231,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 
   m_LED_saw.setBounds(LED_POS_X, LED_POS_Y - LED_1.getHeight(),
                       LED_1.getWidth(), LED_1.getHeight());
-  m_LED_saw.setToggleState(true, dontSendNotification);
+  //m_LED_saw.setToggleState(true, dontSendNotification);
   m_LED_saw.setTriggeredOnMouseDown(false);
   m_LED_saw.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId,
                       juce::Colour());

@@ -41,7 +41,7 @@ PhaserComponent::PhaserComponent(AudioProcessorValueTreeState &vts,
   m_mod.setStrip(metal_knob_mid, N_KNOB_FRAMES);
   m_mod.setSliderStyle(Slider::RotaryVerticalDrag);
   m_mod.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-  m_mod.setValue(PHASER_AMOUNT_DEFAULT);
+  // m_mod.setValue(PHASER_AMOUNT_DEFAULT);
   m_mod.setDoubleClickReturnValue(true, PHASER_AMOUNT_DEFAULT,
                                   ModifierKeys::ctrlModifier);
   m_mod.setKnobTooltip(
@@ -55,7 +55,7 @@ PhaserComponent::PhaserComponent(AudioProcessorValueTreeState &vts,
   m_rate.setSkewFactorFromMidPoint(PHASER_FREQ_MID);
   m_rate.setTextValueSuffix(" Hz");
   m_rate.setNumDecimalPlacesToDisplay(2);
-  m_rate.setValue(0.25);
+  // m_rate.setValue(0.25);
   m_rate.setDoubleClickReturnValue(true, PHASER_FREQ_DEFAULT,
                                    ModifierKeys::ctrlModifier);
   m_rate.setKnobTooltip("The frequency of the internal LFO");
@@ -68,7 +68,7 @@ PhaserComponent::PhaserComponent(AudioProcessorValueTreeState &vts,
   m_freq.setSkewFactorFromMidPoint(2000);
   m_freq.setTextValueSuffix(" Hz");
   m_freq.setNumDecimalPlacesToDisplay(2);
-  m_freq.setValue(2000);
+  // m_freq.setValue(2000);
   m_freq.setDoubleClickReturnValue(true, 2000,
                                    ModifierKeys::ctrlModifier);
   m_freq.setKnobTooltip("The base frequency of the internal allpass filters");
@@ -79,7 +79,7 @@ PhaserComponent::PhaserComponent(AudioProcessorValueTreeState &vts,
   m_feedback.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
   m_feedback.setRange(0, 1);
   m_feedback.setNumDecimalPlacesToDisplay(2);
-  m_feedback.setValue(0.25f);
+  // m_feedback.setValue(0.25f);
   m_feedback.setDoubleClickReturnValue(true, 0, ModifierKeys::ctrlModifier);
   m_feedback.setKnobTooltip("The spreading of the internal allpass filters");
   addAndMakeVisible(m_feedback);
@@ -87,7 +87,7 @@ PhaserComponent::PhaserComponent(AudioProcessorValueTreeState &vts,
   m_dry_wet.setStrip(metal_knob_mid, N_KNOB_FRAMES);
   m_dry_wet.setSliderStyle(Slider::RotaryVerticalDrag);
   m_dry_wet.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-  m_dry_wet.setValue(PHASER_DRYWET_DEFAULT);
+  // m_dry_wet.setValue(PHASER_DRYWET_DEFAULT);
   m_dry_wet.setDoubleClickReturnValue(true, PHASER_DRYWET_DEFAULT,
                                       ModifierKeys::ctrlModifier);
 
@@ -188,6 +188,8 @@ PhaserComponent::PhaserComponent(AudioProcessorValueTreeState &vts,
                    metal_knob_mid.getWidth(), metal_knob_mid.getWidth());
   m_feedback.setBounds(phaser_feedback_POS_X, phaser_feedback_POS_Y,
                    metal_knob_mid.getWidth(), metal_knob_mid.getWidth());
+
+  forceValueTreeOntoComponents(m_value_tree.state);
 }
 
 PhaserComponent::~PhaserComponent() {}

@@ -109,7 +109,7 @@ LFOComponent::LFOComponent(AudioProcessorValueTreeState &vts,
   m_freq.setRange(LFO_FREQ_MIN, LFO_FREQ_MAX);
   m_freq.setTextValueSuffix(" Hz");
   m_freq.setSkewFactorFromMidPoint(LFO_FREQ_MID);
-  m_freq.setValue(LFO_FREQ_DEFAULT);
+  //m_freq.setValue(LFO_FREQ_DEFAULT);
   m_freq.setNumDecimalPlacesToDisplay(2);
   m_freq.setDoubleClickReturnValue(true, LFO_FREQ_DEFAULT,
                                    ModifierKeys::ctrlModifier);
@@ -142,6 +142,8 @@ LFOComponent::LFOComponent(AudioProcessorValueTreeState &vts,
   m_selector.setParameterId("lfo" + m_lfo_number + "_wave");
   m_value_tree.addParameterListener("lfo" + m_lfo_number + "_wave",
                                     &m_selector);
+
+  forceValueTreeOntoComponents(m_value_tree.state);
 }
 
 LFOComponent::~LFOComponent() {

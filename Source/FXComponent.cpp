@@ -39,7 +39,7 @@ FXComponent::FXComponent(AudioProcessorValueTreeState &vts,
   m_amount.setStrip(metal_knob_mid, N_KNOB_FRAMES);
   m_amount.setSliderStyle(Slider::RotaryVerticalDrag);
   m_amount.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-  m_amount.setValue(FX_AMOUNT_DEFAULT);
+  // m_amount.setValue(FX_AMOUNT_DEFAULT);
   m_amount.setDoubleClickReturnValue(true, FX_AMOUNT_DEFAULT,
                                      ModifierKeys::ctrlModifier);
   m_amount.setKnobTooltip(
@@ -53,7 +53,7 @@ FXComponent::FXComponent(AudioProcessorValueTreeState &vts,
   m_rate.setSkewFactorFromMidPoint(FX_FREQ_MID);
   m_rate.setTextValueSuffix(" Hz");
   m_rate.setNumDecimalPlacesToDisplay(2);
-  m_rate.setValue(0.2f);
+  // m_rate.setValue(0.2f);
   m_rate.setDoubleClickReturnValue(true, FX_FREQ_DEFAULT,
                                    ModifierKeys::ctrlModifier);
   m_rate.setKnobTooltip("The frequency of the internal LFO");
@@ -64,10 +64,10 @@ FXComponent::FXComponent(AudioProcessorValueTreeState &vts,
   m_feedback.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
   m_feedback.setRange(-1, 1);
   if (m_fx_name == "chorus") {
-    m_feedback.setValue(0);
+    // m_feedback.setValue(0);
     m_feedback.setDoubleClickReturnValue(true, 0, ModifierKeys::ctrlModifier);
   } else {
-    m_feedback.setValue(0.6);
+    // m_feedback.setValue(0.6);
     m_feedback.setDoubleClickReturnValue(true, 0.6, ModifierKeys::ctrlModifier);
   }
 
@@ -78,7 +78,7 @@ FXComponent::FXComponent(AudioProcessorValueTreeState &vts,
   m_dry_wet.setStrip(metal_knob_mid, N_KNOB_FRAMES);
   m_dry_wet.setSliderStyle(Slider::RotaryVerticalDrag);
   m_dry_wet.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-  m_dry_wet.setValue(FX_DRYWET_DEFAULT);
+  // m_dry_wet.setValue(FX_DRYWET_DEFAULT);
   m_dry_wet.setDoubleClickReturnValue(true, FX_DRYWET_DEFAULT,
                                       ModifierKeys::ctrlModifier);
 
@@ -180,6 +180,7 @@ FXComponent::FXComponent(AudioProcessorValueTreeState &vts,
   m_dry_wet.setBounds(FX_DRY_WET_POS_X, FX_DRY_WET_POS_Y,
                       metal_knob_mid.getWidth(), metal_knob_mid.getHeight());
 
+  forceValueTreeOntoComponents(m_value_tree.state);
 
 }
 

@@ -130,7 +130,7 @@ AmpDistortionFlowComponent::AmpDistortionFlowComponent(
   m_amp_gain.setSliderStyle(Slider::RotaryVerticalDrag);
   m_amp_gain.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
   m_amp_gain.setRange(AMP_GAIN_MIN, AMP_GAIN_MAX);
-  m_amp_gain.setValue(AMP_GAIN_DEFAULT);
+  //m_amp_gain.setValue(AMP_GAIN_DEFAULT);
   m_amp_gain.setTextValueSuffix(" dB");
   m_amp_gain.setNumDecimalPlacesToDisplay(1);
   m_amp_gain.setKnobTooltip("The volume of\nthe amplifier");
@@ -140,7 +140,7 @@ AmpDistortionFlowComponent::AmpDistortionFlowComponent(
   m_amp_pan.setSliderStyle(Slider::RotaryVerticalDrag);
   m_amp_pan.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
   m_amp_pan.setRange(PAN_MIN, PAN_MAX);
-  m_amp_pan.setValue(PAN_DEFAULT);
+  //m_amp_pan.setValue(PAN_DEFAULT);
   m_amp_pan.setNumDecimalPlacesToDisplay(3);
   m_amp_pan.setKnobTooltip("Pans the sound to the\nleft or the right");
   addAndMakeVisible(m_amp_pan);
@@ -157,7 +157,7 @@ AmpDistortionFlowComponent::AmpDistortionFlowComponent(
   m_threshold.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
   m_threshold.setDoubleClickReturnValue(true, THRESHOLD_DEFAULT,
                                         ModifierKeys::ctrlModifier);
-  m_threshold.setValue(THRESHOLD_DEFAULT);
+  //m_threshold.setValue(THRESHOLD_DEFAULT);
   m_threshold.setKnobTooltip("The threshold to\n be reached before the\n "
                              "algorithm cuts the\n waveform");
   m_threshold.setNumDecimalPlacesToDisplay(3);
@@ -167,7 +167,7 @@ AmpDistortionFlowComponent::AmpDistortionFlowComponent(
   m_dry_wet.setStrip(round_knob, N_KNOB_FRAMES);
   m_dry_wet.setSliderStyle(Slider::RotaryVerticalDrag);
   m_dry_wet.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-  m_dry_wet.setValue(DRYWET_DIST_DEFAULT);
+  //m_dry_wet.setValue(DRYWET_DIST_DEFAULT);
   m_dry_wet.setDoubleClickReturnValue(true, DRYWET_DIST_DEFAULT,
                                       ModifierKeys::ctrlModifier);
   m_dry_wet.setKnobTooltip("The ratio of processed\nand unprocessed sound");
@@ -218,6 +218,7 @@ AmpDistortionFlowComponent::AmpDistortionFlowComponent(
   m_amp_vel.setNumDecimalPlacesToDisplay(3);
   m_amp_pan.setNumDecimalPlacesToDisplay(3);
       
+  forceValueTreeOntoComponents(m_value_tree.state);
 }
 
 AmpDistortionFlowComponent::~AmpDistortionFlowComponent() {}
@@ -250,7 +251,6 @@ void AmpDistortionFlowComponent::resized() {
 void AmpDistortionFlowComponent::forceValueTreeOntoComponents(ValueTree p_tree) {
 
     m_distortion_algo.setValue(m_value_tree.state["dist_algo"]);
-    DBG("ALGORIIDIM");
-    DBG((int)m_value_tree.state["dist_algo"]);
+    //DBG((int)m_value_tree.state["dist_algo"]);
 
 }
