@@ -22,6 +22,7 @@ NumberSelector::NumberSelector(bool p_buttons_right = true)
   m_display.setImage(glas_panel);
   m_display.setBounds(0, 0, glas_panel.getWidth(), glas_panel.getHeight());
   m_display.setInlay(1);
+  m_display.setText(std::to_string(m_value));
 
   m_display.toParentMouseDown = [&](const MouseEvent e) {
     mouse_reference_value = e.getScreenY();
