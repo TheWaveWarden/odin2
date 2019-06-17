@@ -267,118 +267,114 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
                       (1 - GAIN_SMOOTHIN_FACTOR) * (m_master_control);
 
     //===== MIDI =====
-    if (midi_message_remaining) {
-      if (midi_message_sample <= sample) {
-        // apply midi message
-        if (midi_message.isNoteOn()) {
-          midiNoteOn(midi_message.getNoteNumber(), midi_message.getVelocity());
-        } else if (midi_message.isNoteOff()) {
+    while (midi_message_remaining && midi_message_sample <= sample) {
+      // apply midi message
+      if (midi_message.isNoteOn()) {
+        midiNoteOn(midi_message.getNoteNumber(), midi_message.getVelocity());
+      } else if (midi_message.isNoteOff()) {
 
-          midiNoteOff(midi_message.getNoteNumber());
-        } else if (midi_message.isPitchWheel()) {
-          setPitchWheelValue(midi_message.getPitchWheelValue());
-        } else if (midi_message.isSustainPedalOn()) {
-          m_voice_manager.setSustainActive(true);
-          DBG("Sustain pedal pressed");
-        } else if (midi_message.isSustainPedalOff()) {
-          DBG("Sustain pedal released");
-          m_voice_manager.setSustainActive(false);
-          for (int voice = 0; voice < VOICES; ++voice) {
-            if (m_voice_manager.isOnKillList(voice)) {
-              m_voice[voice].startRelease();
-            }
-          }
-          m_voice_manager.clearKillList();
-          checkEndGlobalEnvelope();
-        } else if (midi_message.isAftertouch()) {
-          // todo this is untested, are values set back to zero, or need to do
-          // it manually?
-          m_MIDI_aftertouch = (float)midi_message.getAfterTouchValue() / 127.f;
-        } else {
-          DBG("UNHANDELED MIDI MESSAGE: " + midi_message.getDescription());
-        }
-
-        if ((midi_message.isController() || midi_message.isPitchWheel()) /* &&
-            !midi_message.isSustainPedalOn() &&
-            !midi_message.isSustainPedalOff()*/
-        ) {
-          DBG("CONTROLLER");
-          if (m_midi_learn_knob_active) {
-            m_midi_control_list_knob.emplace(midi_message.getControllerNumber(),
-                                             m_midi_learn_knob);
-            m_midi_learn_knob->setMidiControlActive();
-            m_midi_learn_knob_active = false;
-            m_midi_learn_knob = nullptr;
-            DBG("Added MIDI control on controller number " +
-                std::to_string(midi_message.getControllerNumber()));
-          }
-          if (m_midi_learn_slider_active) {
-            m_midi_control_list_slider.emplace(
-                midi_message.getControllerNumber(), m_midi_learn_slider);
-            m_midi_learn_slider->setMidiControlActive();
-            m_midi_learn_slider_active = false;
-            m_midi_learn_slider = nullptr;
-            DBG("Added MIDI control on controller number " +
-                std::to_string(midi_message.getControllerNumber()));
-          }
-          if (m_midi_learn_lrbutton_active) {
-            m_midi_control_list_lrbutton.emplace(
-                midi_message.getControllerNumber(), m_midi_learn_lrbutton);
-            m_midi_learn_lrbutton->setMidiControlActive();
-            m_midi_learn_lrbutton_active = false;
-            m_midi_learn_lrbutton = nullptr;
-            DBG("Added MIDI control on controller number " +
-                std::to_string(midi_message.getControllerNumber()));
-          }
-          if (m_midi_learn_odinbutton_active) {
-            m_midi_control_list_odinbutton.emplace(
-                midi_message.getControllerNumber(), m_midi_learn_odinbutton);
-            m_midi_learn_odinbutton->setMidiControlActive();
-            m_midi_learn_odinbutton_active = false;
-            m_midi_learn_odinbutton = nullptr;
-            DBG("Added MIDI control on controller number " +
-                std::to_string(midi_message.getControllerNumber()));
-          }
-
-          // do midi control
-          for (auto const &control : m_midi_control_list_knob) {
-            if (control.first == midi_message.getControllerNumber()) {
-              const MessageManagerLock mmLock;
-              control.second->setValue(
-                  control.second->proportionOfLengthToValue(
-                      (int)midi_message.getControllerValue() / 127.f));
-            }
-          }
-          for (auto const &control : m_midi_control_list_slider) {
-            if (control.first == midi_message.getControllerNumber()) {
-              const MessageManagerLock mmLock;
-              control.second->setValue(
-                  control.second->proportionOfLengthToValue(
-                      (int)midi_message.getControllerValue() / 127.f));
-            }
-          }
-          for (auto const &control : m_midi_control_list_lrbutton) {
-            if (control.first == midi_message.getControllerNumber()) {
-              const MessageManagerLock mmLock;
-              control.second->setToggleState(
-                  (int)midi_message.getControllerValue() > 64,
-                  sendNotificationAsync);
-            }
-          }
-          for (auto const &control : m_midi_control_list_odinbutton) {
-            if (control.first == midi_message.getControllerNumber()) {
-              const MessageManagerLock mmLock;
-              control.second->setToggleState(
-                  (int)midi_message.getControllerValue() > 64,
-                  sendNotificationAsync);
-            }
+        midiNoteOff(midi_message.getNoteNumber());
+      } else if (midi_message.isPitchWheel()) {
+        setPitchWheelValue(midi_message.getPitchWheelValue());
+      } else if (midi_message.isSustainPedalOn()) {
+        m_voice_manager.setSustainActive(true);
+        DBG("Sustain pedal pressed");
+      } else if (midi_message.isSustainPedalOff()) {
+        DBG("Sustain pedal released");
+        m_voice_manager.setSustainActive(false);
+        for (int voice = 0; voice < VOICES; ++voice) {
+          if (m_voice_manager.isOnKillList(voice)) {
+            m_voice[voice].startRelease();
           }
         }
-
-        // get next midi message
-        midi_message_remaining =
-            midi_iterator.getNextEvent(midi_message, midi_message_sample);
+        m_voice_manager.clearKillList();
+        checkEndGlobalEnvelope();
+      } else if (midi_message.isAftertouch()) {
+        // todo this is untested, are values set back to zero, or need to do
+        // it manually?
+        m_MIDI_aftertouch = (float)midi_message.getAfterTouchValue() / 127.f;
+      } else {
+        DBG("UNHANDELED MIDI MESSAGE: " + midi_message.getDescription());
       }
+
+      if ((midi_message.isController() || midi_message.isPitchWheel()) /* &&
+          !midi_message.isSustainPedalOn() &&
+          !midi_message.isSustainPedalOff()*/
+      ) {
+        DBG("CONTROLLER");
+        if (m_midi_learn_knob_active) {
+          m_midi_control_list_knob.emplace(midi_message.getControllerNumber(),
+                                           m_midi_learn_knob);
+          m_midi_learn_knob->setMidiControlActive();
+          m_midi_learn_knob_active = false;
+          m_midi_learn_knob = nullptr;
+          DBG("Added MIDI control on controller number " +
+              std::to_string(midi_message.getControllerNumber()));
+        }
+        if (m_midi_learn_slider_active) {
+          m_midi_control_list_slider.emplace(midi_message.getControllerNumber(),
+                                             m_midi_learn_slider);
+          m_midi_learn_slider->setMidiControlActive();
+          m_midi_learn_slider_active = false;
+          m_midi_learn_slider = nullptr;
+          DBG("Added MIDI control on controller number " +
+              std::to_string(midi_message.getControllerNumber()));
+        }
+        if (m_midi_learn_lrbutton_active) {
+          m_midi_control_list_lrbutton.emplace(
+              midi_message.getControllerNumber(), m_midi_learn_lrbutton);
+          m_midi_learn_lrbutton->setMidiControlActive();
+          m_midi_learn_lrbutton_active = false;
+          m_midi_learn_lrbutton = nullptr;
+          DBG("Added MIDI control on controller number " +
+              std::to_string(midi_message.getControllerNumber()));
+        }
+        if (m_midi_learn_odinbutton_active) {
+          m_midi_control_list_odinbutton.emplace(
+              midi_message.getControllerNumber(), m_midi_learn_odinbutton);
+          m_midi_learn_odinbutton->setMidiControlActive();
+          m_midi_learn_odinbutton_active = false;
+          m_midi_learn_odinbutton = nullptr;
+          DBG("Added MIDI control on controller number " +
+              std::to_string(midi_message.getControllerNumber()));
+        }
+
+        // do midi control
+        for (auto const &control : m_midi_control_list_knob) {
+          if (control.first == midi_message.getControllerNumber()) {
+            const MessageManagerLock mmLock;
+            control.second->setValue(control.second->proportionOfLengthToValue(
+                (int)midi_message.getControllerValue() / 127.f));
+          }
+        }
+        for (auto const &control : m_midi_control_list_slider) {
+          if (control.first == midi_message.getControllerNumber()) {
+            const MessageManagerLock mmLock;
+            control.second->setValue(control.second->proportionOfLengthToValue(
+                (int)midi_message.getControllerValue() / 127.f));
+          }
+        }
+        for (auto const &control : m_midi_control_list_lrbutton) {
+          if (control.first == midi_message.getControllerNumber()) {
+            const MessageManagerLock mmLock;
+            control.second->setToggleState(
+                (int)midi_message.getControllerValue() > 64,
+                sendNotificationAsync);
+          }
+        }
+        for (auto const &control : m_midi_control_list_odinbutton) {
+          if (control.first == midi_message.getControllerNumber()) {
+            const MessageManagerLock mmLock;
+            control.second->setToggleState(
+                (int)midi_message.getControllerValue() > 64,
+                sendNotificationAsync);
+          }
+        }
+      }
+
+      // get next midi message
+      midi_message_remaining =
+          midi_iterator.getNextEvent(midi_message, midi_message_sample);
     }
 
     //============================================================
