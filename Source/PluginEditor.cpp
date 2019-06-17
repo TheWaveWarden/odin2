@@ -904,7 +904,6 @@ OdinAudioProcessorEditor::~OdinAudioProcessorEditor() {
   m_tooltip.setLookAndFeel(nullptr);
 
   m_value_tree.removeParameterListener("pitchbend_amount", &m_pitch_amount);
-  DBG("maineditor destructor");
 }
 
 //==============================================================================

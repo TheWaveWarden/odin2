@@ -910,8 +910,6 @@ ModMatrixComponent::~ModMatrixComponent() {
     m_value_tree.removeParameterListener("amount_3_[" + std::to_string(i) + "]",
                                          &(m_amount_3[i]));
   }
-
-  DBG("destructor");
 }
 
 void ModMatrixComponent::paint(Graphics &g) {
