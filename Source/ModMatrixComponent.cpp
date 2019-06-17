@@ -77,8 +77,6 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
       m_scale_identifier5("scale_[5]"), m_scale_identifier6("scale_[6]"),
       m_scale_identifier7("scale_[7]"), m_scale_identifier8("scale_[8]") {
 
-        DBG("modconstructor");
-    DBG((float)  m_value_tree.state[String("dest_1_[" + std::to_string(0) + "]")]);
 
   // create submenus to be inserted on demand
   for (int osc = 0; osc < 3; ++osc) {
@@ -241,8 +239,6 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
                                     "Filter" + std::to_string(fil + 1) +
                                         " Formant Transition");
   }
- DBG("modconstructor");
-    DBG((float)  m_value_tree.state[String("dest_1_[" + std::to_string(0) + "]")]);
   for (int mod = 0; mod < 4; ++mod) {
 
     std::string env_name;
@@ -382,8 +378,6 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
   m_dest_2[N_ROWS - 1].setImage(glas_mid_down);
   m_amount_3[N_ROWS - 1].setImage(glas_small_down);
   m_scale[N_ROWS - 1].setImage(glas_right_down);
- DBG("modconstructor");
-    DBG((float)  m_value_tree.state[String("dest_1_[" + std::to_string(0) + "]")]);
   juce::Colour modmatrix_color = STANDARD_DISPLAY_COLOR;
   // juce::Colour modmatrix_color_bar(90, 150, 180);
 
@@ -475,8 +469,6 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
     m_scale[i].setGreyFirstElement(true);
     addAndMakeVisible(m_scale[i]);
   }
- DBG("modconstructor");
-    DBG((float)  m_value_tree.state[String("dest_1_[" + std::to_string(0) + "]")]);
   m_amount_1[0].onValueChange = [&](float p_value) {
     m_value_tree.getParameter(m_amount_1_identifier0)
         ->setValueNotifyingHost(((float)p_value + 1.f) / 2.f);
@@ -610,8 +602,6 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
     m_value_tree.state.setProperty(m_scale_identifier0,
                                    m_scale[0].getSelectedId(), nullptr);
   };
- DBG("modconstructor");
-    DBG((float)  m_value_tree.state[String("dest_1_[" + std::to_string(0) + "]")]);
   m_source[1].onChange = [&]() {
     m_value_tree.state.setProperty(m_source_identifier1,
                                    m_source[1].getSelectedId(), nullptr);
@@ -770,8 +760,6 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
   clear_draw2.setImage(clear_2);
   clearlast_draw1.setImage(clearlast_1);
   clearlast_draw2.setImage(clearlast_2);
- DBG("modconstructor");
-    DBG((float)  m_value_tree.state[String("dest_1_[" + std::to_string(0) + "]")]);
   m_clear_button0.setImages(&clear_draw2, &clear_draw2, &clear_draw1,
                             &clear_draw1, &clear_draw2, &clear_draw2,
                             &clear_draw1, &clear_draw1);
@@ -879,8 +867,6 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
   m_clear_button8.setTriggeredOnMouseDown(false);
   m_clear_button8.setColour(
       juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
- DBG("modconstructor");
-    DBG((float)  m_value_tree.state[String("dest_1_[" + std::to_string(0) + "]")]);
   m_clear_button0.onClick = [&]() { clearRow(0); };
   m_clear_button1.onClick = [&]() { clearRow(1); };
   m_clear_button2.onClick = [&]() { clearRow(2); };
@@ -912,8 +898,6 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
     m_value_tree.addParameterListener("amount_3_[" + std::to_string(i) + "]",
                                       &(m_amount_3[i]));
   }
- DBG("modconstructor");
-    DBG((float)  m_value_tree.state[String("dest_1_[" + std::to_string(0) + "]")]);
   forceValueTreeOntoComponents(m_value_tree.state);
 }
 
@@ -976,11 +960,9 @@ void ModMatrixComponent::setStandardMenu(PopupMenu *p_menu) {
 }
 
 void ModMatrixComponent::createMenu(PopupMenu *p_menu) {
-  // read osc and filter types from parent
+  // read osc and filter types
   int osc_type[3] = {0};
   int fil_type[3] = {0};
-  //getOscFilterTypes(osc_type[0], osc_type[1], osc_type[2], fil_type[0],
-  //                  fil_type[1], fil_type[2]);
 
   osc_type[0] = GETVALUE("osc1_type");
   osc_type[1] = GETVALUE("osc2_type");
@@ -988,16 +970,6 @@ void ModMatrixComponent::createMenu(PopupMenu *p_menu) {
   fil_type[0] = GETVALUE("fil1_type");
   fil_type[1] = GETVALUE("fil2_type");
   fil_type[2] = GETVALUE("fil3_type");
-
-  DBG("\n\n== oscfiltertypes");
-  DBG(osc_type[0]);
-  DBG(osc_type[1]);
-  DBG(osc_type[2]);
-  DBG(fil_type[0]);
-  DBG(fil_type[1]);
-  DBG(fil_type[2]);
-  DBG("==");
-
 
   // p_menu->addItem(0, "Disabled");
   // p_menu->addSeparator();

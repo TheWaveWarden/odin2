@@ -232,7 +232,7 @@
           NormalisableRange<float>(0.f, 1.f), 0.f),
       std::make_unique<AudioParameterFloat>(
           "fil1_sem_transition", "Filter1 SEM Transition",
-          NormalisableRange<float>(-1.f, 1.f), 0.f),
+          NormalisableRange<float>(-1.f, 1.f), -1.f),
       std::make_unique<AudioParameterFloat>(
           "fil1_formant_transition", "Filter1 Formant Transition",
           NormalisableRange<float>(0.f, 1.f), 0.f),
@@ -274,7 +274,7 @@
           NormalisableRange<float>(0.f, 1.f), 0.f),
       std::make_unique<AudioParameterFloat>(
           "fil2_sem_transition", "Filter2 SEM Transition",
-          NormalisableRange<float>(-1.f, 1.f), 0.f),
+          NormalisableRange<float>(-1.f, 1.f), -1.f),
       std::make_unique<AudioParameterFloat>(
           "fil2_formant_transition", "Filter2 Formant Transition",
           NormalisableRange<float>(0.f, 1.f), 0.f),
@@ -308,7 +308,7 @@
           NormalisableRange<float>(0.f, 1.f), 0.f),
       std::make_unique<AudioParameterFloat>(
           "fil3_sem_transition", "Filter3 SEM Transition",
-          NormalisableRange<float>(-1.f, 1.f), 0.f),
+          NormalisableRange<float>(-1.f, 1.f), -1.f),
       std::make_unique<AudioParameterFloat>(
           "fil3_formant_transition", "Filter3 Formant Transition",
           NormalisableRange<float>(0.f, 1.f), 0.f),
