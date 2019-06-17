@@ -172,13 +172,13 @@ FXComponent::FXComponent(AudioProcessorValueTreeState &vts,
   m_dry_wet.setNumDecimalPlacesToDisplay(3);
 
   m_amount.setBounds(FX_AMOUNT_POS_X, FX_AMOUNT_POS_Y,
-                     metal_knob_mid.getWidth(), metal_knob_mid.getHeight());
+                     metal_knob_mid.getWidth(), metal_knob_mid.getHeight() / 256);
   m_rate.setBounds(FX_FREQ_POS_X, FX_FREQ_POS_Y, metal_knob_mid.getWidth(),
-                   metal_knob_mid.getHeight());
+                   metal_knob_mid.getHeight() / 256);
   m_feedback.setBounds(FX_FEEDBACK_POS_X, FX_FEEDBACK_POS_Y,
-                       metal_knob_mid.getWidth(), metal_knob_mid.getHeight());
+                       metal_knob_mid.getWidth(), metal_knob_mid.getHeight() / 256);
   m_dry_wet.setBounds(FX_DRY_WET_POS_X, FX_DRY_WET_POS_Y,
-                      metal_knob_mid.getWidth(), metal_knob_mid.getHeight());
+                      metal_knob_mid.getWidth(), metal_knob_mid.getHeight() / 256);
 
   forceValueTreeOntoComponents(m_value_tree.state);
 
