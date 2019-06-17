@@ -108,7 +108,9 @@ LFOComponent::LFOComponent(AudioProcessorValueTreeState &vts,
   m_freq.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
   m_freq.setRange(LFO_FREQ_MIN, LFO_FREQ_MAX);
   m_freq.setTextValueSuffix(" Hz");
-  m_freq.setSkewFactorFromMidPoint(LFO_FREQ_MID);
+  //m_freq.setSkewFactorFromMidPoint(LFO_FREQ_MID);
+  //skew value printed as 0.196757
+
   //m_freq.setValue(LFO_FREQ_DEFAULT);
   m_freq.setNumDecimalPlacesToDisplay(2);
   m_freq.setDoubleClickReturnValue(true, LFO_FREQ_DEFAULT,

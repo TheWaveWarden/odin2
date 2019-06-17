@@ -79,8 +79,8 @@ DelayComponent::DelayComponent(AudioProcessorValueTreeState &vts,
   m_time.setSliderStyle(Slider::RotaryVerticalDrag);
   m_time.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
   m_time.setRange(TIME_MIN, TIME_MAX);
-  m_time.setSkewFactorFromMidPoint(TIME_MID);
-  //m_time.setValue(TIME_DEFAULT);
+  //m_time.setSkewFactorFromMidPoint(TIME_MID);
+  //skew value printed as 0.627099
   m_time.setTextValueSuffix(" s");
   m_time.setNumDecimalPlacesToDisplay(3);
   m_time.setDoubleClickReturnValue(true, TIME_DEFAULT,
