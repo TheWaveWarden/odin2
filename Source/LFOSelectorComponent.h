@@ -32,7 +32,7 @@ public:
   void paint(Graphics &) override;
   void resized() override;
 
-  void setValueGUIOnly(int p_value){
+  void setValueGUIOnly(int p_value) {
     if (p_value < m_display.getNrOfWaves() && p_value >= 0) {
       m_value = p_value;
       m_display.setValue(p_value);
@@ -53,6 +53,9 @@ public:
   void setParameterId(String p_id) { m_parameter_id = p_id; }
 
 protected:
+  int mouse_reference_value = 0;
+  int m_drag_initial_value = 0;
+
   String m_parameter_id;
   void increment() {
     if (m_value + 1 < m_display.getNrOfWaves()) {

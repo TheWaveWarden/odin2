@@ -27,7 +27,7 @@ NumberSelector::NumberSelector(bool p_buttons_right = true)
   m_display.toParentMouseDown = [&](const MouseEvent e) {
     mouse_reference_value = e.getScreenY();
     m_drag_initial_value = m_value;
-    Component::mouseDown(e);
+    //Component::mouseDown(e);
   };
 
   m_display.toParentMouseDrag = [&](const MouseEvent e) {
@@ -40,10 +40,10 @@ NumberSelector::NumberSelector(bool p_buttons_right = true)
 
     setValue(new_value);
 
-    Component::mouseDrag(e);
+    //Component::mouseDrag(e);
   };
 
-  m_display.toParentMouseUp = [&](const MouseEvent e) { DBG("up"); };
+  m_display.toParentMouseUp = [&](const MouseEvent e) { };
 
   addAndMakeVisible(m_display);
 

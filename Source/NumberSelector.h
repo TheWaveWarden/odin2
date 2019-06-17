@@ -40,28 +40,19 @@ public:
 
   
   virtual void setValue(int p_value) {
-//    DBG("setvalue");
-  //  DBG(p_value);
     if(p_value == m_value){
       return;//avoid infinite loop
     }
-    //DBG("past infinite");
     if (p_value >= m_min && p_value <= m_max) {
       m_value = p_value;
-      //DBG("inside condition");
 
       m_display.setText(std::to_string(m_value));
-      //DBG("befro condition");
       OnValueChange(p_value);
-      //DBG("after condition");
     }
   }
 
   void setTooltip(const String p_text) { m_display.setTooltip(p_text); }
 
-  // void mouseEnter (const MouseEvent&)     {
-  //  showTooltip();
-  //}
   std::function<void(int)> OnValueChange = [](int) {DBG("not set......");};
 
   void setParameterId(String p_id) { m_parameter_id = p_id; }

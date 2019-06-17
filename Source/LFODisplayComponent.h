@@ -32,6 +32,13 @@ public:
     repaint();
   }
 
+  void mouseDown(const MouseEvent &event) override;
+  void mouseDrag(const MouseEvent &event) override;
+  void mouseUp(const MouseEvent &event) override;
+  std::function<void(const MouseEvent&)> toParentMouseDown = [](const MouseEvent&){};
+  std::function<void(const MouseEvent&)> toParentMouseDrag = [](const MouseEvent&){};
+  std::function<void(const MouseEvent&)> toParentMouseUp = [](const MouseEvent&){};
+
 private:
   juce::Image m_panel;
   std::vector<juce::Image> m_waves;
