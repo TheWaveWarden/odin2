@@ -332,9 +332,9 @@
       std::make_unique<AudioParameterFloat>(
           "dist_threshold", "Distortion Threshold",
           NormalisableRange<float>(0.f, 1.f), 0.7f),
-      std::make_unique<AudioParameterFloat>("dist_drywet", "Distortion DryWet",
-                                            NormalisableRange<float>(0.f, 1.f),
-                                            1.f),
+      std::make_unique<AudioParameterFloat>(
+          "dist_drywet", "Distortion DryWet",
+          NormalisableRange<float>(0.f, 1.f, 0.f, 1.f), 1.f),
       std::make_unique<AudioParameterInt>("dist_on", "Distortion Enable", 0, 1,
                                           0),
       // ADSR1
@@ -432,17 +432,23 @@
                                           0, 1, 0),
       std::make_unique<AudioParameterInt>("fil2_to_amp", "Filter2 To Amplifier",
                                           0, 1, 1),
-      std::make_unique<AudioParameterFloat>("glide", "Glide", 0.f, 1.f, 0.f),
+      std::make_unique<AudioParameterFloat>(
+          "glide", "Glide", NormalisableRange<float>(0.f, 1.f, 0.f, 1.f), 0.f),
       std::make_unique<AudioParameterFloat>("master", "Master", -20.f, 12.f,
                                             0.f),
-      std::make_unique<AudioParameterFloat>("modwheel", "Modwheel", 0.f, 1.f,
-                                            0.f),
-      std::make_unique<AudioParameterFloat>("pitchbend", "Pitchbend", -1.f, 1.f,
+      std::make_unique<AudioParameterFloat>(
+          "modwheel", "Modwheel", NormalisableRange<float>(0.f, 1.f, 0.f, 1.f),
+          0.f),
+      std::make_unique<AudioParameterFloat>("pitchbend", "Pitchbend", NormalisableRange<float>(-1.f, 1.f, 0.f, 1.f),
                                             0.f),
       std::make_unique<AudioParameterInt>("pitchbend_amount",
                                           "Pitchbend Semitones", 0, 24, 12),
-      std::make_unique<AudioParameterFloat>("xy_x", "XY Pad X", 0.f, 1.f, 0.f),
-      std::make_unique<AudioParameterFloat>("xy_y", "XY Pad Y", 0.f, 1.f, 0.f),
+      std::make_unique<AudioParameterFloat>(
+          "xy_x", "XY Pad X", NormalisableRange<float>(0.f, 1.f, 0.f, 1.f),
+          0.f),
+      std::make_unique<AudioParameterFloat>(
+          "xy_y", "XY Pad Y", NormalisableRange<float>(0.f, 1.f, 0.f, 1.f),
+          0.f),
       std::make_unique<AudioParameterInt>("delay_sync", "Delay Sync", 0, 1, 0),
       std::make_unique<AudioParameterFloat>(
           "delay_time", "Delay Time",
@@ -453,10 +459,10 @@
       std::make_unique<AudioParameterFloat>(
           "delay_hp", "Delay Highpass Frequency", 80.f, 18000.f, 80.f),
       std::make_unique<AudioParameterFloat>("delay_ducking", "Delay Ducking",
-                                            0.f, 1.f, 0.f),
-      std::make_unique<AudioParameterFloat>("delay_dry", "Delay Dry", 0.f, 1.f,
+                                            NormalisableRange<float>(0.f, 1.f, 0.f, 1.f), 0.f),
+      std::make_unique<AudioParameterFloat>("delay_dry", "Delay Dry", NormalisableRange<float>(0.f, 1.f, 0.f, 0.575717),
                                             1.f),
-      std::make_unique<AudioParameterFloat>("delay_wet", "Delay Wet", 0.f, 1.f,
+      std::make_unique<AudioParameterFloat>("delay_wet", "Delay Wet", NormalisableRange<float>(0.f, 1.f, 0.f, 0.575717),
                                             0.8f),
       std::make_unique<AudioParameterInt>("delay_on", "Delay On", 0, 1, 0),
 
@@ -469,13 +475,15 @@
       std::make_unique<AudioParameterFloat>("phaser_freq", "Phaser Frequency",
                                             400, 8000, 4000),
       std::make_unique<AudioParameterFloat>("phaser_feedback",
-                                            "Phaser Feedback", 0, 1, 0.25f),
+                                            "Phaser Feedback", NormalisableRange<float>(0.f, 1.f, 0.f, 1.f), 0.25f),
       std::make_unique<AudioParameterFloat>("phaser_rate", "Phaser Rate", 0.05f,
                                             20.f, 0.25f),
-      std::make_unique<AudioParameterFloat>("phaser_mod", "Phaser Amount", 0.f,
-                                            1.f, 0.3f),
-      std::make_unique<AudioParameterFloat>("phaser_drywet", "Phaser DryWet",
-                                            0.f, 1.f, 1.f),
+      std::make_unique<AudioParameterFloat>(
+          "phaser_mod", "Phaser Amount",
+          NormalisableRange<float>(0.f, 1.f, 0.f, 1.f), 0.3f),
+      std::make_unique<AudioParameterFloat>(
+          "phaser_drywet", "Phaser DryWet",
+          NormalisableRange<float>(0.f, 1.f, 0.f, 1.f), 1.f),
       // Flanger
       std::make_unique<AudioParameterInt>("flanger_sync", "Flanger Sync", 0, 1,
                                           0),
@@ -488,9 +496,10 @@
       std::make_unique<AudioParameterFloat>(
           "flanger_feedback", "Flanger Feedback", -1.f, 1.f, 0.6f),
       std::make_unique<AudioParameterFloat>("flanger_amount", "Flanger Amount",
-                                            0.f, 1.f, 0.3f),
-      std::make_unique<AudioParameterFloat>("flanger_drywet", "Flanger DryWet",
-                                            0.f, 1.f, 1.f),
+                                            NormalisableRange<float>(0.f, 1.f, 0.f, 1.f), 0.3f),
+      std::make_unique<AudioParameterFloat>(
+          "flanger_drywet", "Flanger DryWet",
+          NormalisableRange<float>(0.f, 1.f, 0.f, 1.f), 1.f),
       std::make_unique<AudioParameterInt>("chorus_sync", "Chorus Sync", 0, 1,
                                           0),
       std::make_unique<AudioParameterInt>("chorus_reset", "Chorus Reset", 0, 1,
@@ -500,11 +509,12 @@
       std::make_unique<AudioParameterFloat>("chorus_rate", "Chorus Frequency",
                                             0.05f, 20.f, 0.2f),
       std::make_unique<AudioParameterFloat>("chorus_amount", "Chorus Amount",
-                                            0.f, 1.f, 0.3f),
+                                            NormalisableRange<float>(0.f, 1.f, 0.f, 1.f), 0.3f),
       std::make_unique<AudioParameterFloat>("chorus_feedback",
                                             "Chorus Feedback", -1.f, 1.f, 0.f),
-      std::make_unique<AudioParameterFloat>("chorus_drywet", "Chorus DryWet",
-                                            0.f, 1.f, 1.f),
+      std::make_unique<AudioParameterFloat>(
+          "chorus_drywet", "Chorus DryWet",
+          NormalisableRange<float>(0.f, 1.f, 0.f, 1.f), 1.f),
 
       // ModMatrix
       std::make_unique<AudioParameterFloat>("amount_1_[0]", "row1_dest1_amount",

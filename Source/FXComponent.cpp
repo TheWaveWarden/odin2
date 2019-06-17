@@ -39,7 +39,7 @@ FXComponent::FXComponent(AudioProcessorValueTreeState &vts,
   m_amount.setStrip(metal_knob_mid, N_KNOB_FRAMES);
   m_amount.setSliderStyle(Slider::RotaryVerticalDrag);
   m_amount.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-  // m_amount.setValue(FX_AMOUNT_DEFAULT);
+
   m_amount.setDoubleClickReturnValue(true, FX_AMOUNT_DEFAULT,
                                      ModifierKeys::ctrlModifier);
   m_amount.setKnobTooltip(

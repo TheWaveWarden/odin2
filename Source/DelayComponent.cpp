@@ -122,8 +122,8 @@ DelayComponent::DelayComponent(AudioProcessorValueTreeState &vts,
   m_dry.setStrip(black_knob_mid, N_KNOB_FRAMES);
   m_dry.setSliderStyle(Slider::RotaryVerticalDrag);
   m_dry.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-  m_dry.setSkewFactorFromMidPoint(DRY_WET_MID);
-  // m_dry.setValue(DRY_DEFAULT);
+  //m_dry.setSkewFactorFromMidPoint(DRY_WET_MID);
+  //skewfactor 0.575717
   m_dry.setDoubleClickReturnValue(true, DRY_DEFAULT,
                                   ModifierKeys::ctrlModifier);
   m_dry.setKnobTooltip("Volume of the input signal");

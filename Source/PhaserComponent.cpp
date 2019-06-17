@@ -177,6 +177,7 @@ PhaserComponent::PhaserComponent(AudioProcessorValueTreeState &vts,
   m_rate.setNumDecimalPlacesToDisplay(3);
   m_mod.setNumDecimalPlacesToDisplay(3);
   m_dry_wet.setNumDecimalPlacesToDisplay(3);
+  m_feedback.setNumDecimalPlacesToDisplay(3);
 
   m_mod.setBounds(PHASER_MOD_POS_X, PHASER_MOD_POS_Y, metal_knob_mid.getWidth(),
                   metal_knob_mid.getWidth());

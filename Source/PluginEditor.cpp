@@ -881,6 +881,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
   m_master.setNumDecimalPlacesToDisplay(2);
   m_glide.setNumDecimalPlacesToDisplay(3);
   m_modwheel.setNumDecimalPlacesToDisplay(3);
+  m_pitchwheel.setNumDecimalPlacesToDisplay(3);
 
   m_pitch_amount.setParameterId("pitchbend_amount");
   m_value_tree.addParameterListener("pitchbend_amount", &m_pitch_amount);
