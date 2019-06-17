@@ -24,7 +24,8 @@ DrawableSlider::DrawableSlider()
 
   m_handle = ImageCache::getFromMemory(
       BinaryData::slider_handle_png, BinaryData::slider_handle_pngSize);
-  //setRange(1,2);
+
+  setVelocityModeParameters(1.0, 1, 0.0, true, ModifierKeys::shiftModifier);
 }
 
 DrawableSlider::~DrawableSlider() { setLookAndFeel(nullptr); }
