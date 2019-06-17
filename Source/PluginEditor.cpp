@@ -904,6 +904,7 @@ OdinAudioProcessorEditor::~OdinAudioProcessorEditor() {
   m_tooltip.setLookAndFeel(nullptr);
 
   m_value_tree.removeParameterListener("pitchbend_amount", &m_pitch_amount);
+  DBG("maineditor destructor");
 }
 
 //==============================================================================
@@ -977,15 +978,15 @@ void OdinAudioProcessorEditor::resized() {
   m_xy_section.setBounds(XY_COMPONENT_POS_X, XY_COMPONENT_POS_Y,
                          XY_COMPONENT_SIZE_X, XY_COMPONENT_SIZE_Y);
 
-  m_mod_matrix.getOscFilterTypes = [&](int &osc1, int &osc2, int &osc3,
-                                       int &fil1, int &fil2, int &fil3) {
-    osc1 = m_osc1.getOscType();
-    osc2 = m_osc2.getOscType();
-    osc3 = m_osc3.getOscType();
-    fil1 = m_fil1_component.getFilterType();
-    fil2 = m_fil2_component.getFilterType();
-    fil3 = m_fil3_component.getFilterType();
-  };
+  // m_mod_matrix.getOscFilterTypes = [&](int &osc1, int &osc2, int &osc3,
+  //                                      int &fil1, int &fil2, int &fil3) {
+  //   osc1 = m_osc1.getOscType();
+  //   osc2 = m_osc2.getOscType();
+  //   osc3 = m_osc3.getOscType();
+  //   fil1 = m_fil1_component.getFilterType();
+  //   fil2 = m_fil2_component.getFilterType();
+  //   fil3 = m_fil3_component.getFilterType();
+  // };
 
   m_tooltip.setBounds(100, 100, 100, 100);
   m_tooltip.setAlwaysOnTop(true);

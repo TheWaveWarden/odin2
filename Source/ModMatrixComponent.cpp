@@ -926,6 +926,8 @@ ModMatrixComponent::~ModMatrixComponent() {
     m_value_tree.removeParameterListener("amount_3_[" + std::to_string(i) + "]",
                                          &(m_amount_3[i]));
   }
+
+  DBG("destructor");
 }
 
 void ModMatrixComponent::paint(Graphics &g) {
@@ -977,8 +979,25 @@ void ModMatrixComponent::createMenu(PopupMenu *p_menu) {
   // read osc and filter types from parent
   int osc_type[3] = {0};
   int fil_type[3] = {0};
-  getOscFilterTypes(osc_type[0], osc_type[1], osc_type[2], fil_type[0],
-                    fil_type[1], fil_type[2]);
+  //getOscFilterTypes(osc_type[0], osc_type[1], osc_type[2], fil_type[0],
+  //                  fil_type[1], fil_type[2]);
+
+  osc_type[0] = GETVALUE("osc1_type");
+  osc_type[1] = GETVALUE("osc2_type");
+  osc_type[2] = GETVALUE("osc3_type");
+  fil_type[0] = GETVALUE("fil1_type");
+  fil_type[1] = GETVALUE("fil2_type");
+  fil_type[2] = GETVALUE("fil3_type");
+
+  DBG("\n\n== oscfiltertypes");
+  DBG(osc_type[0]);
+  DBG(osc_type[1]);
+  DBG(osc_type[2]);
+  DBG(fil_type[0]);
+  DBG(fil_type[1]);
+  DBG(fil_type[2]);
+  DBG("==");
+
 
   // p_menu->addItem(0, "Disabled");
   // p_menu->addSeparator();

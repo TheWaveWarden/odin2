@@ -31,7 +31,7 @@ public:
   void paint(Graphics &) override;
   void resized() override;
 
-  std::function<void(int&, int&, int&, int&, int&, int&)> getOscFilterTypes = [](int&, int&, int&, int&, int&, int&){};
+  //std::function<void(int&, int&, int&, int&, int&, int&)> getOscFilterTypes = [](int&, int&, int&, int&, int&, int&){};
 
 private:
   void clearRow(int p_row);
