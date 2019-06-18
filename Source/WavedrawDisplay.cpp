@@ -14,17 +14,17 @@
 
 //==============================================================================
 WavedrawDisplay::WavedrawDisplay() {
-  m_glaspanel = ImageCache::getFromMemory(
-      BinaryData::drawpanel_png, BinaryData::drawpanel_pngSize);
+  m_glaspanel = ImageCache::getFromMemory(BinaryData::drawpanel_png,
+                                          BinaryData::drawpanel_pngSize);
 
   setSize(m_glaspanel.getWidth(), m_glaspanel.getHeight());
 
-  //for (int i = 0; i < WAVEDRAW_STEPS_X; ++i) {
-  //  m_draw_values[i] = sin((float)i * 2 * M_PI / WAVEDRAW_STEPS_X) * 0.9 * 0.5 + 0.5;
+  // for (int i = 0; i < WAVEDRAW_STEPS_X; ++i) {
+  //  m_draw_values[i] = sin((float)i * 2 * M_PI / WAVEDRAW_STEPS_X) * 0.9 * 0.5
+  //  + 0.5;
   //}
 
   setMouseCursor(MouseCursor::StandardCursorType::CrosshairCursor);
-  
 }
 
 WavedrawDisplay::~WavedrawDisplay() {}
@@ -69,15 +69,17 @@ void WavedrawDisplay::mouseDrag(const MouseEvent &event) { mouseInteraction(); }
 
 void WavedrawDisplay::mouseDown(const MouseEvent &event) { mouseInteraction(); }
 
-int max_int_wavedraw(int a, int b) { return a < b ? b : a; }//shouldnt be here
-int min_int_wavedraw(int a, int b) { return a > b ? b : a; }//shouldnt be here
+int max_int_wavedraw(int a, int b) { return a < b ? b : a; } // shouldnt be here
+int min_int_wavedraw(int a, int b) { return a > b ? b : a; } // shouldnt be here
 
 void WavedrawDisplay::mouseInteraction() {
+
+  // get Mouse data
   juce::Point<int> mouse_pos = getMouseXYRelative();
   float x = mouse_pos.getX();
   float y = mouse_pos.getY();
 
-  // if (x > DRAW_INLAY_LEFT && x < getWidth() - DRAW_INLAY_RIGHT) {
+  // clamp values
   y = y < DRAW_INLAY_UP ? DRAW_INLAY_UP : y;
   y = y > getHeight() - DRAW_INLAY_DOWN ? getHeight() - DRAW_INLAY_DOWN : y;
   x = x > DRAW_INLAY_LEFT ? x : DRAW_INLAY_LEFT + 1;
@@ -90,34 +92,39 @@ void WavedrawDisplay::mouseInteraction() {
   float float_y =
       (y - DRAW_INLAY_UP) / (getHeight() - DRAW_INLAY_UP - DRAW_INLAY_DOWN);
   float_y = 2 * (0.5 - float_y);
-  // float_y = (round(float_y * WAVEDRAW_STEPS_Y))/WAVEDRAW_STEPS_Y;
 
   if (m_mouse_was_down) {
-    for (int i = min_int_wavedraw(step_x, m_last_x_value); i <= max_int_wavedraw(step_x, m_last_x_value);
-         ++i) {
-      m_draw_values[i] = float_y;
+    int min_x = min_int_wavedraw(step_x, m_last_x_value);
+    int max_x = max_int_wavedraw(step_x, m_last_x_value);
+    float range_x = max_x - min_x;
+
+    float min_y = step_x > m_last_x_value ? m_last_y_value : float_y;
+    float max_y = step_x >= m_last_x_value ? float_y : m_last_y_value;
+    float range_y = max_y - min_y;
+
+    if (range_x > 0) {
+      for (int i = min_x; i <= max_x; ++i) {
+        // m_draw_values[i] = float_y;
+        m_draw_values[i] =
+            min_y + (range_y) * (float)(i - min_x) / (float)range_x;
+      }
+    } else {
+      m_draw_values[step_x] = float_y;
     }
   } else {
     m_draw_values[step_x] = float_y;
   }
   m_last_x_value = step_x;
-  //}
+  m_last_y_value = float_y;
+
   onDraw();
   repaint();
-  // if (!m_mouse_was_down) {
+
   m_mouse_was_down = true;
-  //  DBG("MOUSE DOWN!");
-  //}
 }
 
 void WavedrawDisplay::mouseUp(const MouseEvent &event) {
-  // if(m_mouse_was_down){
-  //  m_mouse_was_down = false;
   m_mouse_was_down = false;
-  // DBG("UP!");
-  //}
 }
 
-float* WavedrawDisplay::getDrawnTable(){
-  return m_draw_values;
-}
+float *WavedrawDisplay::getDrawnTable() { return m_draw_values; }

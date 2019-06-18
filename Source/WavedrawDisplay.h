@@ -61,6 +61,7 @@ public:
 private:
   bool m_mouse_was_down = false;
   int m_last_x_value;
+  float m_last_y_value;
 
   int m_inlay = INLAY_DEFAULT_WAVEDRAW;
   juce::Image m_glaspanel;
