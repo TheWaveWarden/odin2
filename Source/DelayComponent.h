@@ -28,7 +28,7 @@
 #define DRY_POS_Y 64
 #define WET_POS_X 200
 #define WET_POS_Y DRY_POS_Y
-#define DELAY_SYNC_POS_X 24
+#define DELAY_SYNC_POS_X 25
 #define DELAY_SYNC_POS_Y 78
 #define SYNC_TIME_DELAY_POS_X 2
 #define SYNC_TIME_DELAY_POS_Y 36
