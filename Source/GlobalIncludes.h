@@ -68,8 +68,9 @@
 #define PWM_SMOOTHIN_FACTOR 0.998
 #define THRESHOLD_SMOOTHIN_FACTOR 0.998
 
-#define WAVEDRAW_STEPS_X                                                       \
-  256 // TODO CRITICAL: cant make smoooth waves right now because first/last
+#define WAVEDRAW_STEPS_X 193
+  
+  //256 // TODO CRITICAL: cant make smoooth waves right now because first/last
       // element is not adjustable
 #define SPECDRAW_STEPS_X                                                       \
   193 //(DISPLAY_WIDTH_SPEC - DRAW_INLAY_LEFT_SPEC - DRAW_INLAY_RIGHT_SPEC)

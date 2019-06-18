@@ -10,7 +10,7 @@
 
 #include "WavedrawDisplay.h"
 #include "../JuceLibraryCode/JuceHeader.h"
-#include <cmath> //todo remove
+//#include <cmath> //todo remove
 
 //==============================================================================
 WavedrawDisplay::WavedrawDisplay() {
