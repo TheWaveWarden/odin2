@@ -150,6 +150,21 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
     m_fm_osc_menu[osc].addItem(100 * osc + 52, "Osc" + std::to_string(osc + 1) +
                                                    " Modulator Ratio");
 
+
+                                                   // fm
+    m_pm_osc_menu[osc].addItem(100 * osc + 1,
+                               "Osc" + std::to_string(osc + 1) + " Pitch Exp");
+    m_pm_osc_menu[osc].addItem(100 * osc + 2,
+                               "Osc" + std::to_string(osc + 1) + " Pitch Lin");
+    m_pm_osc_menu[osc].addItem(100 * osc + 3,
+                               "Osc" + std::to_string(osc + 1) + " Volume");
+    m_pm_osc_menu[osc].addItem(100 * osc + 50,
+                               "Osc" + std::to_string(osc + 1) + " PM Amount");
+    m_pm_osc_menu[osc].addItem(100 * osc + 51, "Osc" + std::to_string(osc + 1) +
+                                                   " Carrier Ratio");
+    m_pm_osc_menu[osc].addItem(100 * osc + 52, "Osc" + std::to_string(osc + 1) +
+                                                   " Modulator Ratio");
+
     // noise
     m_noise_osc_menu[osc].addItem(
         100 * osc + 60, "Osc" + std::to_string(osc + 1) + " LP Frequency");
@@ -987,6 +1002,9 @@ void ModMatrixComponent::createMenu(PopupMenu *p_menu) {
                          m_vector_osc_menu[osc], true);
     } else if (osc_type[osc] == OSC_TYPE_FM) {
       p_menu->addSubMenu("Osc " + std::to_string(osc + 1), m_fm_osc_menu[osc],
+                         true);
+    } else if (osc_type[osc] == OSC_TYPE_PM) {
+      p_menu->addSubMenu("Osc " + std::to_string(osc + 1), m_pm_osc_menu[osc],
                          true);
     } else if (osc_type[osc] == OSC_TYPE_CHIPTUNE) {
       p_menu->addSubMenu("Osc " + std::to_string(osc + 1),

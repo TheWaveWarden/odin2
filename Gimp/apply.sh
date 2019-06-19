@@ -4,6 +4,7 @@ convert -size 247x145+0+0 -background none -page 247x145+0+0 cropped/chiptune_cr
 convert -size 247x145+0+0 -background none -page 247x145+0+0 cropped/wavetable_cropped.png -page +0+0 paths/wavetable_path.png  -layers flatten applied/wavetable_backdrop.png
 convert -size 247x145+0+0 -background none -page 247x145+0+0 cropped/vector_cropped.png -page +0+0 paths/vector_path.png  -layers flatten applied/vector_backdrop.png
 convert -size 247x145+0+0 -background none -page 247x145+0+0 cropped/fm_cropped.png -page +0+0 paths/fm_path.png  -layers flatten applied/fm_backdrop.png
+convert -size 247x145+0+0 -background none -page 247x145+0+0 cropped/pm_cropped.png -page +0+0 paths/fm_path.png  -layers flatten applied/pm_backdrop.png
 convert -size 247x145+0+0 -background none -page 247x145+0+0 cropped/specdraw_cropped.png -page +0+0 paths/specdraw_path.png  -layers flatten applied/specdraw_backdrop.png
 convert -size 247x145+0+0 -background none -page 247x145+0+0 cropped/wavedraw_cropped.png -page +0+0 paths/wavedraw_path.png  -layers flatten applied/wavedraw_backdrop.png
 convert -size 247x145+0+0 -background none -page 247x145+0+0 cropped/chipdraw_cropped.png -page +0+0 paths/chipdraw_path.png  -layers flatten applied/chipdraw_backdrop.png

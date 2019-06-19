@@ -132,6 +132,9 @@
 #define X_POS_Y 27
 #define Y_POS_X 75
 #define Y_POS_Y X_POS_Y
+
+#define FM_COLOR Colour(90, 40, 40)
+#define PM_COLOR Colour(40, 40, 40)
 //==============================================================================
 /*
  */

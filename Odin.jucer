@@ -500,6 +500,7 @@
       <FILE id="bVvaS4" name="phasernosync.png" compile="0" resource="1"
             file="Gimp/applied/phasernosync.png"/>
       <FILE id="JNVBl4" name="phasersync.png" compile="0" resource="1" file="Gimp/cropped/phasersync.png"/>
+      <FILE id="neWmVY" name="pm_backdrop.png" compile="0" resource="1" file="Gimp/applied/pm_backdrop.png"/>
       <FILE id="WTMFtx" name="pyram3.png" compile="0" resource="1" file="Gimp/cropped/lfo/pyram3.png"/>
       <FILE id="qWyFXo" name="pyram4.png" compile="0" resource="1" file="Gimp/cropped/lfo/pyram4.png"/>
       <FILE id="UVT6rf" name="pyram6.png" compile="0" resource="1" file="Gimp/cropped/lfo/pyram6.png"/>

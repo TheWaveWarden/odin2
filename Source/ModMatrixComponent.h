@@ -143,6 +143,7 @@ private:
   PopupMenu m_multi_osc_menu[3];
   PopupMenu m_vector_osc_menu[3];
   PopupMenu m_fm_osc_menu[3];
+  PopupMenu m_pm_osc_menu[3];
   PopupMenu m_noise_osc_menu[3];
   PopupMenu m_draw_osc_menu[3];
   PopupMenu m_chiptune_osc_menu[3];

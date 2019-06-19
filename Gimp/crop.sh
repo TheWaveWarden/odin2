@@ -320,6 +320,7 @@ convert OscRaw.png -crop 247x145+525+1 cropped/noise_cropped.png
 convert OscRaw.png -crop 247x145+29+151 cropped/wavetable_cropped.png
 convert OscRaw.png -crop 247x145+277+151 cropped/vector_cropped.png
 convert OscRaw.png -crop 247x145+525+151 cropped/fm_cropped.png
+convert OscRaw.png -crop 247x145+525+451 cropped/pm_cropped.png
 convert OscRaw.png -crop 247x145+29+301 cropped/specdraw_cropped.png
 convert OscRaw.png -crop 247x145+277+301 cropped/wavedraw_cropped.png
 convert OscRaw.png -crop 247x145+525+301 cropped/chipdraw_cropped.png

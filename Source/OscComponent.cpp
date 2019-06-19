@@ -476,7 +476,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_fm.setSliderStyle(Slider::RotaryVerticalDrag);
   m_fm.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
   m_fm.setKnobTooltip(
-      "How much the modulator\nmodulates the pitch of\n the carrier wave");
+      "How much the modulator modulates the pitch (FM) or the phase (PM) of the carrier wave");
   // m_fm.setValue(GETAUDIO("osc" + m_osc_number + "_fm"));
   addChildComponent(m_fm);
 
@@ -781,7 +781,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_chiptune_waveselector.setTooltip("Selects the wave for the oscillator");
   addChildComponent(m_chiptune_waveselector);
 
-  juce::Colour fm_color(90, 40, 40);
+  //juce::Colour fm_color(90, 40, 40);
 
   juce::PopupMenu fm_menu;
   juce::PopupMenu vector_menu;
@@ -1002,7 +1002,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
                                             WAVE_CARRIER_POS_Y);
 
   // m_carrier_waveselector.setValue(1);
-  m_carrier_waveselector.setColor(fm_color);
+  m_carrier_waveselector.setColor(FM_COLOR);
   m_carrier_waveselector.setTooltip("Selects the wave for the carrier osc");
   addChildComponent(m_carrier_waveselector);
 
@@ -1046,7 +1046,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   };
   m_modulator_waveselector.setTopLeftPosition(WAVE_MODULATOR_POS_X,
                                               WAVE_MODULATOR_POS_Y);
-  m_modulator_waveselector.setColor(fm_color);
+  m_modulator_waveselector.setColor(FM_COLOR);
   // m_modulator_waveselector.setValue(1);
   m_modulator_waveselector.setTooltip("Selects the wave for the modulator osc");
   addChildComponent(m_modulator_waveselector);
@@ -1063,7 +1063,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_carrier_ratio.setTopLeftPosition(RATIO_CARRIER_POS_X, RATIO_CARRIER_POS_Y);
   m_carrier_ratio.setRange(1, 12);
   // m_carrier_ratio.setValue(1);
-  m_carrier_ratio.setColor(fm_color);
+  m_carrier_ratio.setColor(FM_COLOR);
   m_carrier_ratio.setTooltip(
       "The pitch ratio of the carrier to base frequency");
   m_carrier_ratio.setMouseDragDivisor(20.f);
@@ -1079,7 +1079,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
                                        RATIO_MODULATOR_POS_Y);
   m_modulator_ratio.setRange(1, 12);
   // m_modulator_ratio.setValue(1);
-  m_modulator_ratio.setColor(fm_color);
+  m_modulator_ratio.setColor(FM_COLOR);
   m_modulator_ratio.setTooltip(
       "The pitch ratio of the modulator to base frequency");
   m_modulator_ratio.setMouseDragDivisor(20.f);
@@ -1374,8 +1374,8 @@ void OscComponent::setOscTypeFM() {
 }
 
 void OscComponent::setOscTypePM() {
-  m_background = ImageCache::getFromMemory(BinaryData::fm_backdrop_png,
-                                           BinaryData::fm_backdrop_pngSize);
+  m_background = ImageCache::getFromMemory(BinaryData::pm_backdrop_png,
+                                           BinaryData::pm_backdrop_pngSize);
   showPMComponents();
 }
 
@@ -1514,6 +1514,11 @@ void OscComponent::showFMComponents() {
   m_modulator_ratio.setVisible(true);
   m_fm.setVisible(true);
   m_fm_exp.setVisible(true);
+
+  m_carrier_waveselector.setColor(FM_COLOR);
+  m_modulator_waveselector.setColor(FM_COLOR);
+  m_carrier_ratio.setColor(FM_COLOR);
+  m_modulator_ratio.setColor(FM_COLOR);
 }
 
 void OscComponent::showPMComponents() {
@@ -1524,6 +1529,11 @@ void OscComponent::showPMComponents() {
   m_carrier_ratio.setVisible(true);
   m_modulator_ratio.setVisible(true);
   m_fm.setVisible(true);
+
+  m_carrier_waveselector.setColor(PM_COLOR);
+  m_modulator_waveselector.setColor(PM_COLOR);
+  m_carrier_ratio.setColor(PM_COLOR);
+  m_modulator_ratio.setColor(PM_COLOR);
 }
 
 void OscComponent::showChipdrawComponents() {
