@@ -82,6 +82,11 @@
 #include "Wavetables/Coefficients/Cello1.h" //72
 #include "Wavetables/Coefficients/Cello2.h" //73
 
+#include "Wavetables/Coefficients/Piano1.h" //74
+#include "Wavetables/Coefficients/Piano2.h" //75
+#include "Wavetables/Coefficients/Piano3.h" //76
+#include "Wavetables/Coefficients/Piano4.h" //77
+
 // #include "Wavetables/Coefficients/1.h"//
 // #include "Wavetables/Coefficients/2.h"//
 // #include "Wavetables/Coefficients/3.h"//

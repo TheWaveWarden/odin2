@@ -851,7 +851,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   ADD_WAVETABLE_SUB_MENU("MultiSaw", 230)
   ADD_WAVETABLE_SUB_MENU("Rectangular", 240)
   ADD_WAVETABLE_SUB_MENU("Strings", 250)
-  ADD_WAVETABLE_SUB_MENU("Wave17", 260)
+  ADD_WAVETABLE_SUB_MENU("Piano", 260)
   ADD_WAVETABLE_SUB_MENU("Wave18", 270)
   ADD_WAVETABLE_SUB_MENU("Wave19", 280)
   ADD_WAVETABLE_SUB_MENU("Wave20", 290)
@@ -899,7 +899,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   ADD_MAP_ENTRY("MultiSaw", 230, m_carrier_waveselector)
   ADD_MAP_ENTRY("Wave15", 240, m_carrier_waveselector)
   ADD_MAP_ENTRY("Strings", 250, m_carrier_waveselector)
-  ADD_MAP_ENTRY("Wave17", 260, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Piano", 260, m_carrier_waveselector)
   ADD_MAP_ENTRY("Wave18", 270, m_carrier_waveselector)
   ADD_MAP_ENTRY("Wave19", 280, m_carrier_waveselector)
   ADD_MAP_ENTRY("Wave20", 290, m_carrier_waveselector)
@@ -951,7 +951,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   ADD_MAP_ENTRY("MultiSaw", 230, m_modulator_waveselector)
   ADD_MAP_ENTRY("Wave15", 240, m_modulator_waveselector)
   ADD_MAP_ENTRY("Strings", 250, m_modulator_waveselector)
-  ADD_MAP_ENTRY("Wave17", 260, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Piano", 260, m_modulator_waveselector)
   ADD_MAP_ENTRY("Wave18", 270, m_modulator_waveselector)
   ADD_MAP_ENTRY("Wave19", 280, m_modulator_waveselector)
   ADD_MAP_ENTRY("Wave20", 290, m_modulator_waveselector)
@@ -1028,7 +1028,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_wavetable_waveselector.addWave(14, "MultiSaw");
   m_wavetable_waveselector.addWave(15, "Recangular");
   m_wavetable_waveselector.addWave(16, "Strings");
-  m_wavetable_waveselector.addWave(17, "Wave17");
+  m_wavetable_waveselector.addWave(17, "Piano");
   m_wavetable_waveselector.addWave(18, "Wave18");
   m_wavetable_waveselector.addWave(19, "Wave19");
   m_wavetable_waveselector.addWave(20, "Wave20");
