@@ -1723,6 +1723,10 @@ void OscComponent::forceValueTreeOntoComponents(ValueTree p_tree, int p_index,
       m_value_tree.getParameterAsValue("osc" + m_osc_number + "_exp_fm")
           .getValue());
 
+          //DBG("FM\n\n\n");
+          //DBG((float)m_value_tree.getParameterAsValue("osc" + m_osc_number + "_exp_fm")
+          //.getValue());
+
   // chiptune
   m_chiptune_waveselector.setValue(
       m_value_tree.state[String("osc" + m_osc_number + "_chipwave")]);

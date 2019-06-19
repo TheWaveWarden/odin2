@@ -58,7 +58,7 @@
       std::make_unique<AudioParameterInt>(
           "osc1_modulator_ratio", "Osc1 Modulator Ratio", 1, 12, 1),
       std::make_unique<AudioParameterInt>(
-          "osc1_exp_fm", "Osc1 Exponential FM", 0, 1, 1),
+          "osc1_exp_fm", "Osc1 Exponential FM", 0, 1, 0),
       std::make_unique<AudioParameterFloat>("osc1_fm", "Osc1 FM/PM amount",
                                             NormalisableRange<float>(0.f, 1.f),
                                             0.f),
@@ -125,7 +125,7 @@
       std::make_unique<AudioParameterInt>(
           "osc2_modulator_ratio", "Osc2 Modulator Ratio", 1, 12, 1),
       std::make_unique<AudioParameterInt>(
-          "osc2_exp_fm", "Osc2 Exponential FM", 0, 1, 1),
+          "osc2_exp_fm", "Osc2 Exponential FM", 0, 1, 0),
       std::make_unique<AudioParameterFloat>("osc2_fm", "Osc2 FM/PM amount",
                                             NormalisableRange<float>(0.f, 1.f),
                                             0.f),
@@ -192,7 +192,7 @@
       std::make_unique<AudioParameterInt>(
           "osc3_modulator_ratio", "Osc3 Modulator Ratio", 1, 12, 1),
       std::make_unique<AudioParameterInt>(
-          "osc3_exp_fm", "Osc3 Exponential FM", 0, 1, 1),
+          "osc3_exp_fm", "Osc3 Exponential FM", 0, 1, 0),
       std::make_unique<AudioParameterFloat>("osc3_fm", "Osc3 FM/PM amount",
                                             NormalisableRange<float>(0.f, 1.f),
                                             0.f),
