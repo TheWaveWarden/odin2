@@ -156,6 +156,7 @@ public:
   void setOscTypeAnalog();
   void setOscTypeChiptune();
   void setOscTypeFM();
+  void setOscTypePM();
   void setOscTypeChipdraw();
   void setOscTypeWavedraw();
   void setOscTypeSpecdraw();
@@ -171,6 +172,7 @@ public:
   void showAnalogComponents();
   void showChiptuneComponents();
   void showFMComponents();
+  void showPMComponents();
   void showChipdrawComponents();
   void showWavedrawComponents();
   void showSpecdrawComponents();

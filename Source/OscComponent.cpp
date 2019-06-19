@@ -1333,6 +1333,9 @@ void OscComponent::setOscType(int p_osc_type) {
   case OSC_TYPE_FM:
     setOscTypeFM();
     break;
+  case OSC_TYPE_PM:
+    setOscTypePM();
+    break;
   case OSC_TYPE_NOISE:
     setOscTypeNoise();
     break;
@@ -1368,6 +1371,12 @@ void OscComponent::setOscTypeFM() {
   m_background = ImageCache::getFromMemory(BinaryData::fm_backdrop_png,
                                            BinaryData::fm_backdrop_pngSize);
   showFMComponents();
+}
+
+void OscComponent::setOscTypePM() {
+  m_background = ImageCache::getFromMemory(BinaryData::fm_backdrop_png,
+                                           BinaryData::fm_backdrop_pngSize);
+  showPMComponents();
 }
 
 void OscComponent::setOscTypeChipdraw() {
@@ -1505,6 +1514,16 @@ void OscComponent::showFMComponents() {
   m_modulator_ratio.setVisible(true);
   m_fm.setVisible(true);
   m_fm_exp.setVisible(true);
+}
+
+void OscComponent::showPMComponents() {
+  showVolComponent();
+  showPitchComponents();
+  m_carrier_waveselector.setVisible(true);
+  m_modulator_waveselector.setVisible(true);
+  m_carrier_ratio.setVisible(true);
+  m_modulator_ratio.setVisible(true);
+  m_fm.setVisible(true);
 }
 
 void OscComponent::showChipdrawComponents() {
