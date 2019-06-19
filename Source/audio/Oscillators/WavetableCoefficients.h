@@ -87,6 +87,11 @@
 #include "Wavetables/Coefficients/Piano3.h" //76
 #include "Wavetables/Coefficients/Piano4.h" //77
 
+#include "Wavetables/Coefficients/Oboe1.h" //78
+#include "Wavetables/Coefficients/Oboe2.h" //79
+#include "Wavetables/Coefficients/Oboe3.h" //80
+#include "Wavetables/Coefficients/Oboe4.h" //81
+
 // #include "Wavetables/Coefficients/1.h"//
 // #include "Wavetables/Coefficients/2.h"//
 // #include "Wavetables/Coefficients/3.h"//

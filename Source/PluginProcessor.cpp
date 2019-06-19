@@ -64,12 +64,14 @@ OdinAudioProcessor::OdinAudioProcessor()
   // write the tables to header files
   // WavetableContainer::getInstance().generateAudioValueCode();
 
-  WavetableContainer::getInstance().loadWavetablesFromConstData();
 
-  // WavetableContainer::getInstance().writeSampleTableToFile("Piano1.wav");
-  // WavetableContainer::getInstance().writeSampleTableToFile("Piano2.wav");
-  // WavetableContainer::getInstance().writeSampleTableToFile("Piano3.wav");
-  // WavetableContainer::getInstance().writeSampleTableToFile("Piano4.wav");
+  //todo this will crash right now bevause number of wavetbales was increased
+  //WavetableContainer::getInstance().loadWavetablesFromConstData();
+
+  //  WavetableContainer::getInstance().writeSampleTableToFile("Oboe1.wav");
+  //  WavetableContainer::getInstance().writeSampleTableToFile("Oboe2.wav");
+  //  WavetableContainer::getInstance().writeSampleTableToFile("Oboe3.wav");
+  //  WavetableContainer::getInstance().writeSampleTableToFile("Oboe4.wav");
 
 
   WavetableContainer::getInstance().createWavetables(44100.f);
