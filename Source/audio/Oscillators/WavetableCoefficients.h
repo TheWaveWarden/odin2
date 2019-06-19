@@ -98,6 +98,18 @@
 #include "Wavetables/Coefficients/Flute3.h" //84
 #include "Wavetables/Coefficients/Flute4.h" //85
 
+
+#include "Wavetables/Coefficients/Trumpet1.h" //86
+#include "Wavetables/Coefficients/Trumpet2.h" //87
+#include "Wavetables/Coefficients/Trumpet3.h" //88
+#include "Wavetables/Coefficients/Trumpet4.h" //89
+
+
+#include "Wavetables/Coefficients/MusicBox1.h" //90
+#include "Wavetables/Coefficients/MusicBox2.h" //91
+#include "Wavetables/Coefficients/MusicBox3.h" //92
+#include "Wavetables/Coefficients/MusicBox4.h" //93
+
 // #include "Wavetables/Coefficients/1.h"//
 // #include "Wavetables/Coefficients/2.h"//
 // #include "Wavetables/Coefficients/3.h"//

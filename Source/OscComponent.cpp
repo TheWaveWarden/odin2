@@ -854,8 +854,8 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   ADD_WAVETABLE_SUB_MENU("Piano", 260)
   ADD_WAVETABLE_SUB_MENU("Oboe", 270)
   ADD_WAVETABLE_SUB_MENU("Flute", 280)
-  ADD_WAVETABLE_SUB_MENU("Wave20", 290)
-  ADD_WAVETABLE_SUB_MENU("Wave21", 300)
+  ADD_WAVETABLE_SUB_MENU("Trumpet", 290)
+  ADD_WAVETABLE_SUB_MENU("MusicBox", 300)
   ADD_WAVETABLE_SUB_MENU("Wave22", 310)
   ADD_WAVETABLE_SUB_MENU("Wave23", 320)
   ADD_WAVETABLE_SUB_MENU("Last", 996)
@@ -902,8 +902,8 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   ADD_MAP_ENTRY("Piano", 260, m_carrier_waveselector)
   ADD_MAP_ENTRY("Oboe", 270, m_carrier_waveselector)
   ADD_MAP_ENTRY("Flute", 280, m_carrier_waveselector)
-  ADD_MAP_ENTRY("Wave20", 290, m_carrier_waveselector)
-  ADD_MAP_ENTRY("Wave21", 300, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Trumpet", 290, m_carrier_waveselector)
+  ADD_MAP_ENTRY("MusicBox", 300, m_carrier_waveselector)
   ADD_MAP_ENTRY("Wave22", 310, m_carrier_waveselector)
   ADD_MAP_ENTRY("Wave23", 320, m_carrier_waveselector)
   ADD_MAP_ENTRY("Last", 996, m_carrier_waveselector) // last entry 996-1000
@@ -954,8 +954,8 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   ADD_MAP_ENTRY("Piano", 260, m_modulator_waveselector)
   ADD_MAP_ENTRY("Oboe", 270, m_modulator_waveselector)
   ADD_MAP_ENTRY("Flute", 280, m_modulator_waveselector)
-  ADD_MAP_ENTRY("Wave20", 290, m_modulator_waveselector)
-  ADD_MAP_ENTRY("Wave21", 300, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Trumpet", 290, m_modulator_waveselector)
+  ADD_MAP_ENTRY("MusicBox", 300, m_modulator_waveselector)
   ADD_MAP_ENTRY("Wave22", 310, m_modulator_waveselector)
   ADD_MAP_ENTRY("Wave23", 320, m_modulator_waveselector)
   ADD_MAP_ENTRY("Last", 330, m_modulator_waveselector)
@@ -1031,8 +1031,8 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_wavetable_waveselector.addWave(17, "Piano");
   m_wavetable_waveselector.addWave(18, "Oboe");
   m_wavetable_waveselector.addWave(19, "Flute");
-  m_wavetable_waveselector.addWave(20, "Wave20");
-  m_wavetable_waveselector.addWave(21, "Wave21");
+  m_wavetable_waveselector.addWave(20, "Trumpet");
+  m_wavetable_waveselector.addWave(21, "MusicBox");
   m_wavetable_waveselector.addWave(22, "Wave22");
   m_wavetable_waveselector.addWave(23, "Wave23");
   m_wavetable_waveselector.addWave(1000, "Last");

@@ -15,6 +15,6 @@
 #define MAX_DELAY_TIME 4//max delay time at max samplerate in seconds
 
 #define SIN_AND_COS 2 //just here to avoid magic Numbers
-#define NUMBER_OF_WAVETABLES_2D 20
+#define NUMBER_OF_WAVETABLES_2D 24
 #define TABLES_PER_2D_WT 4
 #define PI 3.1415926535897932384626433832795
