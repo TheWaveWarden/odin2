@@ -60,20 +60,20 @@ OdinAudioProcessor::OdinAudioProcessor()
   initializeModules();
 
   // create wavetables
-  // WavetableContainer::getInstance().writeWavetablesToFiles();//use this to
-  // write the tables to header files
   // WavetableContainer::getInstance().generateAudioValueCode();
 
-  // todo this will crash right now bevause number of wavetbales was increased
-  // WavetableContainer::getInstance().loadWavetablesFromConstData();
+  WavetableContainer::getInstance().loadWavetablesFromConstData();
 
   // WavetableContainer::getInstance().writeSampleTableToFile("Trumpet1.wav");
   // WavetableContainer::getInstance().writeSampleTableToFile("Trumpet2.wav");
   // WavetableContainer::getInstance().writeSampleTableToFile("Trumpet3.wav");
   // WavetableContainer::getInstance().writeSampleTableToFile("Trumpet4.wav");
 
-  WavetableContainer::getInstance().createWavetables(44100.f);
-  WavetableContainer::getInstance().loadWavetablesAfterFourierCreation();
+  //WavetableContainer::getInstance().createWavetables(44100.f);
+  //WavetableContainer::getInstance().loadWavetablesAfterFourierCreation();
+  //DBG("0");
+   //WavetableContainer::getInstance().writeWavetablesToFiles();//use this to
+  // write the tables themselves to header files
 
   // create draw tables as well
   float draw_values[WAVEDRAW_STEPS_X];

@@ -1010,6 +1010,8 @@ void WavetableContainer::loadWavetablesAfterFourierCreation() {
 
 void WavetableContainer::writeWavetablesToFiles() {
 
+
+  DBG("1");
   float p_sample_rate = 44100.f;
   float wavetables[NUMBER_OF_WAVETABLES][SUBTABLES_PER_WAVETABLE]
                   [WAVETABLE_LENGTH] = {0};
@@ -1069,9 +1071,13 @@ void WavetableContainer::writeWavetablesToFiles() {
 
   std::ofstream output_file;
   output_file.open("/home/frot/odinvst/Source/audio/Oscillators/"
-                   "Wavetables/Tables/WavetableData.h");
+                   "Wavetables/Tables/WavetableData.cpp");
 
-  output_file << "m_wavetables{";
+  output_file << "#include \"WavetableData.h\"\n\nconst float "
+                 "wavetable_data[NUMBER_OF_WAVETABLES][SUBTABLES_PER_WAVETABLE]"
+                 "[WAVETABLE_LENGTH] = {";
+
+  // output_file << "m_wavetables{";
 
   for (int index_wavetable = 0; index_wavetable < NUMBER_OF_WAVETABLES;
        ++index_wavetable) {
@@ -1084,8 +1090,10 @@ void WavetableContainer::writeWavetablesToFiles() {
       for (int index_position = 0; index_position < WAVETABLE_LENGTH;
            ++index_position) {
         output_file
-            << wavetables[index_wavetable][index_subtable][index_position]
-            << ",";
+            << wavetables[index_wavetable][index_subtable][index_position];
+        if (index_position != WAVETABLE_LENGTH - 1) {
+          output_file << ",";
+        }
       }
       output_file << "}";
       if (index_subtable != SUBTABLES_PER_WAVETABLE - 1) {
@@ -1097,8 +1105,13 @@ void WavetableContainer::writeWavetablesToFiles() {
       output_file << ",";
     }
   }
-  output_file << "}";
 
+  output_file
+      << "};\n\nconst float "
+         "(*getWavetableData())[NUMBER_OF_WAVETABLES][SUBTABLES_PER_WAVETABLE]["
+         "WAVETABLE_LENGTH]{\n    return &wavetable_data;\n}\nconst float * "
+         "getOneSubTable(int p_wavetable, int p_subtable){\n return "
+         "wavetable_data[p_wavetable][p_subtable];\n}";
   output_file.close();
 }
 
@@ -1293,12 +1306,11 @@ void WavetableContainer::writeSampleTableToFile(std::string p_filename) {
   float difference = WAVE[n_samples - 1] - WAVE[0];
 
   for (int i = 0; i < n_samples; ++i) {
-    WAVE[i] -= difference * (cos((2 *M_PI * i) / (float)n_samples) )  * (float)i / (float)(n_samples);
+    WAVE[i] -= difference * (cos((2 * M_PI * i) / (float)n_samples)) *
+               (float)i / (float)(n_samples);
   }
 
-
-  //CREATE WAVEFILE
-
+  // CREATE WAVEFILE
 
   float wavedraw_coefficients[SIN_AND_COS][NUMBER_OF_HARMONICS];
 
@@ -1313,16 +1325,15 @@ void WavetableContainer::writeSampleTableToFile(std::string p_filename) {
       // use either const sections or linear sections
 
       // wrap function value at end to start
-      float segment_end_value = (segment == n_samples - 1)
-                                    ? WAVE[0]
-                                    : WAVE[segment + 1];
+      float segment_end_value =
+          (segment == n_samples - 1) ? WAVE[0] : WAVE[segment + 1];
 
       coeff_sine += lin_segment_one_overtone_sine(
-          segment * step_width, (segment + 1) * step_width,
-          WAVE[segment], segment_end_value, harmonic);
+          segment * step_width, (segment + 1) * step_width, WAVE[segment],
+          segment_end_value, harmonic);
       coeff_cosine += lin_segment_one_overtone_cosine(
-          segment * step_width, (segment + 1) * step_width,
-          WAVE[segment], segment_end_value, harmonic);
+          segment * step_width, (segment + 1) * step_width, WAVE[segment],
+          segment_end_value, harmonic);
     }
     wavedraw_coefficients[0][harmonic] = coeff_sine;
     wavedraw_coefficients[1][harmonic] = coeff_cosine;
@@ -1380,8 +1391,8 @@ void WavetableContainer::writeSampleTableToFile(std::string p_filename) {
   }
 
   std::string p_table_name = p_filename;
-  if(p_filename.find(".wav") != std::string::npos){
-    p_table_name = p_table_name.substr(0, p_table_name.size()-4);
+  if (p_filename.find(".wav") != std::string::npos) {
+    p_table_name = p_table_name.substr(0, p_table_name.size() - 4);
   }
 
   DBG("CREATING TABLE /home/frot/odinvst/Source/audio/Oscillators/"
@@ -1413,6 +1424,4 @@ void WavetableContainer::writeSampleTableToFile(std::string p_filename) {
 
   output_file << "#undef WT_NR\n";
   output_file.close();
-
-
 }
