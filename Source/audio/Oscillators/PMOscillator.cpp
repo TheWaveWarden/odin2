@@ -44,7 +44,7 @@ void PMOscillator::update() {
 
     //set mod and update
     //m_carrier_osc.m_mod_freq_lin = mod_value * 3 * m_osc_freq_base * pm_amount_modded;
-    m_carrier_osc.setPhaseMod(pm_amount_modded);
+    m_carrier_osc.setPhaseMod(pm_amount_modded * mod_value);
     m_carrier_osc.update();
 }
 

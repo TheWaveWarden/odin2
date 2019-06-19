@@ -54,7 +54,7 @@ void FMOscillator::update() {
     if(m_FM_is_exponential){
         m_carrier_osc.m_mod_freq_exp = mod_value * fm_amount_modded * EXP_FM_SEMITONES;
     } else {
-        m_carrier_osc.m_mod_freq_lin = mod_value * 3 * m_osc_freq_base * fm_amount_modded;
+        m_carrier_osc.m_mod_freq_lin = mod_value * 15 * m_osc_freq_base * fm_amount_modded;
     }
     m_carrier_osc.update();
 }
