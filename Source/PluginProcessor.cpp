@@ -72,7 +72,7 @@ OdinAudioProcessor::OdinAudioProcessor()
   //WavetableContainer::getInstance().createWavetables(44100.f);
   //WavetableContainer::getInstance().loadWavetablesAfterFourierCreation();
   //DBG("0");
-   //WavetableContainer::getInstance().writeWavetablesToFiles();//use this to
+  //WavetableContainer::getInstance().writeWavetablesToFile();//use this to
   // write the tables themselves to header files
 
   // create draw tables as well

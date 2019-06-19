@@ -46,8 +46,14 @@ public:
 
 	void writeSampleTableToFile(std::string p_filname);
 
-	//call this to make wavetablefiles from wavetables coefficients
-	void writeWavetablesToFiles();
+	//call this to make wavetablefiles from wavetable coefficients
+	void writeWavetablesToFile();
+    void startWriteWavetablesToFile();
+    void writeWavetableToFile(int index_wavetable);//single table, else stackoverflow
+    void endWriteWavetablesToFile();
+
+
+
 	void writeLFOtablesToFiles();
 
 	void generateAudioValueCode();

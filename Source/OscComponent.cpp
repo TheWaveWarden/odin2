@@ -836,14 +836,14 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   wavetable_recycle_menu.addItem(104, "Sine");
 
   wavetable_submenu.addSubMenu("Classic Analog", wavetable_recycle_menu);
-  ADD_WAVETABLE_SUB_MENU("Additive 1", 110)
-  ADD_WAVETABLE_SUB_MENU("Additive 2", 120)
-  ADD_WAVETABLE_SUB_MENU("Additive 3", 130)
-  ADD_WAVETABLE_SUB_MENU("Additive 4", 140)
-  ADD_WAVETABLE_SUB_MENU("Harmonics 1", 150)
-  ADD_WAVETABLE_SUB_MENU("Harmonics 2", 160)
-  ADD_WAVETABLE_SUB_MENU("Harmonics 3", 170)
-  ADD_WAVETABLE_SUB_MENU("Harmonics 4", 180)
+  ADD_WAVETABLE_SUB_MENU("Additive A", 110)
+  ADD_WAVETABLE_SUB_MENU("Additive B", 120)
+  ADD_WAVETABLE_SUB_MENU("Additive C", 130)
+  ADD_WAVETABLE_SUB_MENU("Additive D", 140)
+  ADD_WAVETABLE_SUB_MENU("Harmonics A", 150)
+  ADD_WAVETABLE_SUB_MENU("Harmonics B", 160)
+  ADD_WAVETABLE_SUB_MENU("Harmonics C", 170)
+  ADD_WAVETABLE_SUB_MENU("Harmonics D", 180)
   ADD_WAVETABLE_SUB_MENU("Organ", 190)
   ADD_WAVETABLE_SUB_MENU("BrokenSine", 200)
   ADD_WAVETABLE_SUB_MENU("Skyline", 210)
@@ -884,14 +884,14 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   //=== COPY & PASTA ===
   //====================
 
-  ADD_MAP_ENTRY("Additive 1", 110, m_carrier_waveselector)
-  ADD_MAP_ENTRY("Additive 2", 120, m_carrier_waveselector)
-  ADD_MAP_ENTRY("Additive 3", 130, m_carrier_waveselector)
-  ADD_MAP_ENTRY("Additive 4", 140, m_carrier_waveselector)
-  ADD_MAP_ENTRY("Harmonics 1", 150, m_carrier_waveselector)
-  ADD_MAP_ENTRY("Harmonics 2", 160, m_carrier_waveselector)
-  ADD_MAP_ENTRY("Harmonics 3", 170, m_carrier_waveselector)
-  ADD_MAP_ENTRY("Harmonics 4", 180, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Additive A", 110, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Additive B", 120, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Additive C", 130, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Additive D", 140, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Harmonics A", 150, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Harmonics B", 160, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Harmonics C", 170, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Harmonics D", 180, m_carrier_waveselector)
   ADD_MAP_ENTRY("Organ", 190, m_carrier_waveselector)
   ADD_MAP_ENTRY("BrokenSine", 200, m_carrier_waveselector)
   ADD_MAP_ENTRY("Skyline", 210, m_carrier_waveselector)
@@ -936,14 +936,14 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 
   m_carrier_waveselector.m_menu = fm_menu;
 
-  ADD_MAP_ENTRY("Additive 1", 110, m_modulator_waveselector)
-  ADD_MAP_ENTRY("Additive 2", 120, m_modulator_waveselector)
-  ADD_MAP_ENTRY("Additive 3", 130, m_modulator_waveselector)
-  ADD_MAP_ENTRY("Additive 4", 140, m_modulator_waveselector)
-  ADD_MAP_ENTRY("Harmonics 1", 150, m_modulator_waveselector)
-  ADD_MAP_ENTRY("Harmonics 2", 160, m_modulator_waveselector)
-  ADD_MAP_ENTRY("Harmonics 3", 170, m_modulator_waveselector)
-  ADD_MAP_ENTRY("Harmonics 4", 180, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Additive A", 110, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Additive B", 120, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Additive C", 130, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Additive D", 140, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Harmonics A", 150, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Harmonics B", 160, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Harmonics C", 170, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Harmonics D", 180, m_modulator_waveselector)
   ADD_MAP_ENTRY("Organ", 190, m_modulator_waveselector)
   ADD_MAP_ENTRY("BrokenSine", 200, m_modulator_waveselector)
   ADD_MAP_ENTRY("Skyline", 210, m_modulator_waveselector)
@@ -1013,10 +1013,10 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_wavetable_waveselector.setTopLeftPosition(WAVE_CARRIER_POS_X,
                                               WAVE_CARRIER_POS_Y);
   m_wavetable_waveselector.addWave(1, "Classic Analog");
-  m_wavetable_waveselector.addWave(2, "Additive 1");
-  m_wavetable_waveselector.addWave(3, "Additive 2");
-  m_wavetable_waveselector.addWave(4, "Additive 3");
-  m_wavetable_waveselector.addWave(5, "Additive 4");
+  m_wavetable_waveselector.addWave(2, "Additive A");
+  m_wavetable_waveselector.addWave(3, "Additive B");
+  m_wavetable_waveselector.addWave(4, "Additive C");
+  m_wavetable_waveselector.addWave(5, "Additive D");
   m_wavetable_waveselector.addWave(6, "Harmonics1");
   m_wavetable_waveselector.addWave(7, "Harmonics2");
   m_wavetable_waveselector.addWave(8, "Harmonics3");
@@ -1035,7 +1035,6 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_wavetable_waveselector.addWave(21, "MusicBox");
   m_wavetable_waveselector.addWave(22, "Wave22");
   m_wavetable_waveselector.addWave(23, "Wave23");
-  m_wavetable_waveselector.addWave(1000, "Last");
   // m_wavetable_waveselector.setValue(1);
   m_wavetable_waveselector.setTooltip("Selects the wave for the oscillator");
   addChildComponent(m_wavetable_waveselector);

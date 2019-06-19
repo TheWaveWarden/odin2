@@ -3,7 +3,7 @@
 #define SUBTABLES_PER_WAVETABLE 40 //there are 40 tables for one "sound"
 
 //TODO this will crash when writign tables to file if set to 120... running out of stack space?
-#define NUMBER_OF_WAVETABLES 100  //number of different 1D WTs
+#define NUMBER_OF_WAVETABLES 120  //number of different 1D WTs
 #define NUMBER_OF_CHIPDRAW_TABLES 3 //number of chipdraw tables (one per osc slot)
 #define NUMBER_OF_WAVEDRAW_TABLES 3 //number of wavedraw tables (one per osc slot)
 #define NUMBER_OF_SPECDRAW_TABLES 3 //number of specdraw tables (one per osc slot)

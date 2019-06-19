@@ -1008,67 +1008,17 @@ void WavetableContainer::loadWavetablesAfterFourierCreation() {
   }
 }
 
-void WavetableContainer::writeWavetablesToFiles() {
 
-
-  DBG("1");
-  float p_sample_rate = 44100.f;
-  float wavetables[NUMBER_OF_WAVETABLES][SUBTABLES_PER_WAVETABLE]
-                  [WAVETABLE_LENGTH] = {0};
-
-  // //loop over all wavetables
-  for (int index_wavetable = 0; index_wavetable < NUMBER_OF_WAVETABLES;
-       ++index_wavetable) {
-
-    // this flags hackishly if a waveform only uses sine components
-    bool sine_only =
-        m_fourier_coeffs[index_wavetable][0][0] > 0.5f ? true : false;
-
-    double seed_freq = 27.5; // A0
-    float max = 0.f;
-
-    // loop over subtables
-    for (int index_sub_table = 0; index_sub_table < SUBTABLES_PER_WAVETABLE;
-         ++index_sub_table) {
-
-      // how many harmonics are needed for this subtable
-      int number_of_harmonics = (int)((p_sample_rate * 0.5f / seed_freq) - 1);
-
-      // don't allow more than 800 harmonics (for big Samplerates this might
-      // happen)
-      number_of_harmonics = number_of_harmonics > NUMBER_OF_HARMONICS
-                                ? NUMBER_OF_HARMONICS
-                                : number_of_harmonics;
-
-      for (int index_harmonics = 1; index_harmonics < number_of_harmonics;
-           ++index_harmonics) {
-        for (int index_position = 0; index_position < WAVETABLE_LENGTH;
-             ++index_position) {
-
-          // fill table with //sine harmonics
-          wavetables[index_wavetable][index_sub_table][index_position] +=
-              m_fourier_coeffs[index_wavetable][0][index_harmonics] *
-              sin(2.f * PI * index_position * index_harmonics /
-                  (float)WAVETABLE_LENGTH) *
-              m_fourier_coeffs[index_wavetable][1]
-                              [0]; // last term is normalization
-          if (!sine_only) {
-            // cosine
-            wavetables[index_wavetable][index_sub_table][index_position] +=
-                m_fourier_coeffs[index_wavetable][1][index_harmonics] *
-                cos(2.f * PI * index_position * index_harmonics /
-                    (float)WAVETABLE_LENGTH) *
-                m_fourier_coeffs[index_wavetable][1]
-                                [0]; // last term is normalization
-          }
-        }
-      }
-
-      // increment seed frequency by minor third = 2^(3/12)
-      seed_freq *= 1.1892071150;
-    }
+void WavetableContainer::writeWavetablesToFile(){
+  startWriteWavetablesToFile();
+  for(int i = 0; i < NUMBER_OF_WAVETABLES; ++i){
+    DBG("Write table to file " + std::to_string(i));
+    writeWavetableToFile(i);
   }
+  endWriteWavetablesToFile();
+}
 
+void WavetableContainer::startWriteWavetablesToFile() {
   std::ofstream output_file;
   output_file.open("/home/frot/odinvst/Source/audio/Oscillators/"
                    "Wavetables/Tables/WavetableData.cpp");
@@ -1076,42 +1026,106 @@ void WavetableContainer::writeWavetablesToFiles() {
   output_file << "#include \"WavetableData.h\"\n\nconst float "
                  "wavetable_data[NUMBER_OF_WAVETABLES][SUBTABLES_PER_WAVETABLE]"
                  "[WAVETABLE_LENGTH] = {";
+}
+
+void WavetableContainer::writeWavetableToFile(int index_wavetable) {
+
+  float p_sample_rate = 44100.f;
+  float wavetables[1][SUBTABLES_PER_WAVETABLE][WAVETABLE_LENGTH] = {0};
+
+  // this flags hackishly if a waveform only uses sine components
+  bool sine_only =
+      m_fourier_coeffs[index_wavetable][0][0] > 0.5f ? true : false;
+
+  double seed_freq = 27.5; // A0
+  float max = 0.f;
+
+  // loop over subtables
+  for (int index_sub_table = 0; index_sub_table < SUBTABLES_PER_WAVETABLE;
+       ++index_sub_table) {
+
+    // how many harmonics are needed for this subtable
+    int number_of_harmonics = (int)((p_sample_rate * 0.5f / seed_freq) - 1);
+
+    // don't allow more than 800 harmonics (for big Samplerates this might
+    // happen)
+    number_of_harmonics = number_of_harmonics > NUMBER_OF_HARMONICS
+                              ? NUMBER_OF_HARMONICS
+                              : number_of_harmonics;
+
+    for (int index_harmonics = 1; index_harmonics < number_of_harmonics;
+         ++index_harmonics) {
+      for (int index_position = 0; index_position < WAVETABLE_LENGTH;
+           ++index_position) {
+
+        // fill table with //sine harmonics
+        wavetables[0][index_sub_table][index_position] +=
+            m_fourier_coeffs[index_wavetable][0][index_harmonics] *
+            sin(2.f * PI * index_position * index_harmonics /
+                (float)WAVETABLE_LENGTH) *
+            m_fourier_coeffs[index_wavetable][1]
+                            [0]; // last term is normalization
+        if (!sine_only) {
+          // cosine
+          wavetables[0][index_sub_table][index_position] +=
+              m_fourier_coeffs[index_wavetable][1][index_harmonics] *
+              cos(2.f * PI * index_position * index_harmonics /
+                  (float)WAVETABLE_LENGTH) *
+              m_fourier_coeffs[index_wavetable][1]
+                              [0]; // last term is normalization
+        }
+      }
+    }
+
+    // increment seed frequency by minor third = 2^(3/12)
+    seed_freq *= 1.1892071150;
+  }
+
+  std::ofstream output_file;
+  output_file.open("/home/frot/odinvst/Source/audio/Oscillators/"
+                   "Wavetables/Tables/WavetableData.cpp",
+                   std::ofstream::out | std::ofstream::app);
 
   // output_file << "m_wavetables{";
 
-  for (int index_wavetable = 0; index_wavetable < NUMBER_OF_WAVETABLES;
-       ++index_wavetable) {
+  output_file << "{";
+
+  for (int index_subtable = 0; index_subtable < SUBTABLES_PER_WAVETABLE;
+       ++index_subtable) {
     output_file << "{";
 
-    for (int index_subtable = 0; index_subtable < SUBTABLES_PER_WAVETABLE;
-         ++index_subtable) {
-      output_file << "{";
-
-      for (int index_position = 0; index_position < WAVETABLE_LENGTH;
-           ++index_position) {
-        output_file
-            << wavetables[index_wavetable][index_subtable][index_position];
-        if (index_position != WAVETABLE_LENGTH - 1) {
-          output_file << ",";
-        }
-      }
-      output_file << "}";
-      if (index_subtable != SUBTABLES_PER_WAVETABLE - 1) {
+    for (int index_position = 0; index_position < WAVETABLE_LENGTH;
+         ++index_position) {
+      output_file << wavetables[0][index_subtable][index_position];
+      if (index_position != WAVETABLE_LENGTH - 1) {
         output_file << ",";
       }
     }
     output_file << "}";
-    if (index_wavetable != NUMBER_OF_WAVETABLES - 1) {
+    if (index_subtable != SUBTABLES_PER_WAVETABLE - 1) {
       output_file << ",";
     }
   }
+  output_file << "}";
+  if (index_wavetable != NUMBER_OF_WAVETABLES - 1) {
+    output_file << ",";
+  }
+  output_file.close();
+}
 
-  output_file
-      << "};\n\nconst float "
-         "(*getWavetableData())[NUMBER_OF_WAVETABLES][SUBTABLES_PER_WAVETABLE]["
-         "WAVETABLE_LENGTH]{\n    return &wavetable_data;\n}\nconst float * "
-         "getOneSubTable(int p_wavetable, int p_subtable){\n return "
-         "wavetable_data[p_wavetable][p_subtable];\n}";
+void WavetableContainer::endWriteWavetablesToFile() {
+  std::ofstream output_file;
+  output_file.open("/home/frot/odinvst/Source/audio/Oscillators/"
+                   "Wavetables/Tables/WavetableData.cpp",
+                   std::ofstream::out | std::ofstream::app);
+
+  output_file << "};\n\nconst float "
+                 "(*getWavetableData())[NUMBER_OF_WAVETABLES][SUBTABLES_PER_"
+                 "WAVETABLE]["
+                 "WAVETABLE_LENGTH]{\n    return &wavetable_data;\n}\nconst "
+                 "float * "
+                 "getOneSubTable(int p_wavetable, int p_subtable){\n return "
+                 "wavetable_data[p_wavetable][p_subtable];\n}";
   output_file.close();
 }
 
@@ -1136,8 +1150,8 @@ void WavetableContainer::writeLFOtablesToFiles() {
     // how many harmonics are needed for this subtable
     int number_of_harmonics = (int)((p_sample_rate * 0.5f / seed_freq) - 1);
 
-    // don't allow more than 800 harmonics (for big Samplerates this might
-    // happen)
+    // don't allow more than 800 harmonics (for big Samplerates this
+    // might happen)
     number_of_harmonics = number_of_harmonics > NUMBER_OF_HARMONICS
                               ? NUMBER_OF_HARMONICS
                               : number_of_harmonics;
@@ -1214,12 +1228,12 @@ void WavetableContainer::writeLFOtablesToFiles() {
       output_file << ",";
     }
   }
-  output_file
-      << "};\nconst float "
-         "(*getWavetableData())[NUMBER_OF_LFOTABLES][1]["
-         "WAVETABLE_LENGTH]{\n   return &wavetable_data;}\n\nconst float * "
-         "getOneSubTable(int p_wavetable, int p_subtable){\nreturn "
-         "wavetable_data[p_wavetable][p_subtable];\n}";
+  output_file << "};\nconst float "
+                 "(*getWavetableData())[NUMBER_OF_LFOTABLES][1]["
+                 "WAVETABLE_LENGTH]{\n   return &wavetable_data;}\n\nconst "
+                 "float * "
+                 "getOneSubTable(int p_wavetable, int p_subtable){\nreturn "
+                 "wavetable_data[p_wavetable][p_subtable];\n}";
 
   output_file.close();
 }
@@ -1352,8 +1366,8 @@ void WavetableContainer::writeSampleTableToFile(std::string p_filename) {
     // how many harmonics are needed for this subtable
     int number_of_harmonics = (int)((p_sample_rate * 0.5f / seed_freq) - 1);
 
-    // don't allow more than 800 harmonics (for big Samplerates this might
-    // happen)
+    // don't allow more than 800 harmonics (for big Samplerates this
+    // might happen)
     number_of_harmonics = number_of_harmonics > NUMBER_OF_HARMONICS
                               ? NUMBER_OF_HARMONICS
                               : number_of_harmonics;
