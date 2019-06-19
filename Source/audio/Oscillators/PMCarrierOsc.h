@@ -52,7 +52,7 @@ class PMCarrierOsc : public WavetableOsc1D {
      float vol_mod_factor = (*m_vol_mod) > 0 ? 1.f + 4 *(*m_vol_mod) : (1.f + *m_vol_mod);
 
      //prepare both sides and interpol value
-    int read_index_trunc = (int) m_read_index + m_phasemod;
+    int read_index_trunc = (int) m_read_index + m_phasemod * WAVETABLE_LENGTH;
     float fractional = m_read_index - (float)read_index_trunc;
     int read_index_next = read_index_trunc + 1;
 

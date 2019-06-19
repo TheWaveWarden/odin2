@@ -30,10 +30,6 @@ void PMOscillator::update() {
     m_carrier_osc.m_osc_freq_glide_target = m_osc_freq_modded;
     m_modulator_osc.m_osc_freq_glide_target = m_modulator_osc.m_osc_freq_base;
 
-    // DBG(m_osc_freq_modded);
-    // DBG(m_osc_freq_base);
-    // DBG("was mod base");
-
     if(*m_carrier_ratio_mod || *m_modulator_ratio_mod){
         m_modulator_osc.m_osc_freq_base *= pitchShiftMultiplier((*m_modulator_ratio_mod - *m_carrier_ratio_mod)* 24);
         m_modulator_osc.m_osc_freq_glide_target = m_modulator_osc.m_osc_freq_base;
@@ -44,10 +40,11 @@ void PMOscillator::update() {
     float mod_value = m_modulator_osc.doOscillate();
 
     float pm_amount_modded = m_PM_amount + *m_pm_mod;
-    pm_amount_modded = pm_amount_modded < 0 ? 0 : pm_amount_modded;
+    //pm_amount_modded = pm_amount_modded < 0 ? 0 : pm_amount_modded;
 
     //set mod and update
-    m_carrier_osc.m_mod_freq_lin = mod_value * 3 * m_osc_freq_base * pm_amount_modded;
+    //m_carrier_osc.m_mod_freq_lin = mod_value * 3 * m_osc_freq_base * pm_amount_modded;
+    m_carrier_osc.setPhaseMod(pm_amount_modded);
     m_carrier_osc.update();
 }
 

@@ -112,6 +112,7 @@ OdinAudioProcessor::OdinAudioProcessor()
       m_voice[i].vector_osc[osc].loadWavetables();
       m_voice[i].multi_osc[osc].loadWavetables();
       m_voice[i].fm_osc[osc].loadWavetables();
+      m_voice[i].pm_osc[osc].loadWavetables();
       m_voice[i].wavedraw_osc[osc].loadWavedrawTables(osc);
       m_voice[i].chipdraw_osc[osc].loadChipdrawTables(osc);
       m_voice[i].specdraw_osc[osc].loadSpecdrawTables(osc);
@@ -460,6 +461,12 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
             m_voice[voice].fm_osc[osc].update();
             m_osc_output[voice][osc] +=
                 m_voice[voice].fm_osc[osc].doOscillate();
+          }
+          // PM osc
+          else if (m_osc_type[osc] == OSC_TYPE_PM) {
+            m_voice[voice].pm_osc[osc].update();
+            m_osc_output[voice][osc] +=
+                m_voice[voice].pm_osc[osc].doOscillate();
           }
           // noise osc
           else if (m_osc_type[osc] == OSC_TYPE_NOISE) {
@@ -811,6 +818,8 @@ void OdinAudioProcessor::setModulationPointers() {
           &(m_pitch_bend_smooth_and_applied));
       m_voice[voice].fm_osc[osc].setPitchBendPointer(
           &(m_pitch_bend_smooth_and_applied));
+      m_voice[voice].pm_osc[osc].setPitchBendPointer(
+          &(m_pitch_bend_smooth_and_applied));
       m_voice[voice].chiptune_osc[osc].setPitchBendPointer(
           &(m_pitch_bend_smooth_and_applied));
       m_voice[voice].wavedraw_osc[osc].setPitchBendPointer(
@@ -829,6 +838,8 @@ void OdinAudioProcessor::setModulationPointers() {
       m_voice[voice].vector_osc[osc].setPitchModExpPointer(
           &(m_mod_destinations.voice[voice].osc[osc].pitch_exponential));
       m_voice[voice].fm_osc[osc].setPitchModExpPointer(
+          &(m_mod_destinations.voice[voice].osc[osc].pitch_exponential));
+      m_voice[voice].pm_osc[osc].setPitchModExpPointer(
           &(m_mod_destinations.voice[voice].osc[osc].pitch_exponential));
       m_voice[voice].chiptune_osc[osc].setPitchModExpPointer(
           &(m_mod_destinations.voice[voice].osc[osc].pitch_exponential));
@@ -849,6 +860,8 @@ void OdinAudioProcessor::setModulationPointers() {
           &(m_mod_destinations.misc.glide));
       m_voice[voice].fm_osc[osc].setGlidePointer(
           &(m_mod_destinations.misc.glide));
+      m_voice[voice].pm_osc[osc].setGlidePointer(
+          &(m_mod_destinations.misc.glide));
       m_voice[voice].chiptune_osc[osc].setGlidePointer(
           &(m_mod_destinations.misc.glide));
       m_voice[voice].wavedraw_osc[osc].setGlidePointer(
@@ -868,6 +881,8 @@ void OdinAudioProcessor::setModulationPointers() {
           &(m_mod_destinations.voice[voice].osc[osc].pitch_linear));
       m_voice[voice].fm_osc[osc].setPitchModLinPointer(
           &(m_mod_destinations.voice[voice].osc[osc].pitch_linear));
+      m_voice[voice].pm_osc[osc].setPitchModLinPointer(
+          &(m_mod_destinations.voice[voice].osc[osc].pitch_linear));
       m_voice[voice].chiptune_osc[osc].setPitchModLinPointer(
           &(m_mod_destinations.voice[voice].osc[osc].pitch_linear));
       m_voice[voice].wavedraw_osc[osc].setPitchModLinPointer(
@@ -886,6 +901,8 @@ void OdinAudioProcessor::setModulationPointers() {
       m_voice[voice].vector_osc[osc].setVolModPointer(
           &(m_mod_destinations.voice[voice].osc[osc].vol));
       m_voice[voice].fm_osc[osc].setVolModPointer(
+          &(m_mod_destinations.voice[voice].osc[osc].vol));
+      m_voice[voice].pm_osc[osc].setVolModPointer(
           &(m_mod_destinations.voice[voice].osc[osc].vol));
       m_voice[voice].chiptune_osc[osc].setVolModPointer(
           &(m_mod_destinations.voice[voice].osc[osc].vol));
@@ -923,9 +940,17 @@ void OdinAudioProcessor::setModulationPointers() {
       m_voice[voice].fm_osc[osc].setFMModPointer(
           &(m_mod_destinations.voice[voice].osc[osc].fm_amount));
 
+      m_voice[voice].pm_osc[osc].setPMModPointer(
+          &(m_mod_destinations.voice[voice].osc[osc].fm_amount));
+
       m_voice[voice].fm_osc[osc].setCarrierRatioModPointer(
           &(m_mod_destinations.voice[voice].osc[osc].carrier_ratio));
       m_voice[voice].fm_osc[osc].setModulatorRatioModPointer(
+          &(m_mod_destinations.voice[voice].osc[osc].modulator_ratio));
+
+      m_voice[voice].pm_osc[osc].setCarrierRatioModPointer(
+          &(m_mod_destinations.voice[voice].osc[osc].carrier_ratio));
+      m_voice[voice].pm_osc[osc].setModulatorRatioModPointer(
           &(m_mod_destinations.voice[voice].osc[osc].modulator_ratio));
 
       m_voice[voice].noise_osc[osc].setHPModPointer(

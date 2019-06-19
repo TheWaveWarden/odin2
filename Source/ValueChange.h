@@ -292,14 +292,17 @@ bool OdinAudioProcessor::treeValueChangedSecond(const String &p_ID,
   } else if (id == m_osc1_fm_identifier) {
     for (int voice = 0; voice < VOICES; ++voice) {
       m_voice[voice].fm_osc[0].setFMAmount(p_new_value);
+      m_voice[voice].pm_osc[0].setPMAmount(p_new_value);
     }
   } else if (id == m_osc2_fm_identifier) {
     for (int voice = 0; voice < VOICES; ++voice) {
       m_voice[voice].fm_osc[1].setFMAmount(p_new_value);
+      m_voice[voice].pm_osc[1].setPMAmount(p_new_value);
     }
   } else if (id == m_osc3_fm_identifier) {
     for (int voice = 0; voice < VOICES; ++voice) {
       m_voice[voice].fm_osc[2].setFMAmount(p_new_value);
+      m_voice[voice].pm_osc[2].setPMAmount(p_new_value);
     }
   }  else if (id == m_osc1_exp_fm_identifier) {
     for (int voice = 0; voice < VOICES; ++voice) {
@@ -389,26 +392,32 @@ bool OdinAudioProcessor::treeValueChangedThird(const String &p_ID,
   }else if (id == m_osc1_carrier_ratio_identifier) {
     for (int voice = 0; voice < VOICES; ++voice) {
       m_voice[voice].fm_osc[0].setCarrierRatio(p_new_value);
+      m_voice[voice].pm_osc[0].setCarrierRatio(p_new_value);
     }
   } else if (id == m_osc2_carrier_ratio_identifier) {
     for (int voice = 0; voice < VOICES; ++voice) {
       m_voice[voice].fm_osc[1].setCarrierRatio(p_new_value);
+      m_voice[voice].pm_osc[1].setCarrierRatio(p_new_value);
     }
   } else if (id == m_osc3_carrier_ratio_identifier) {
     for (int voice = 0; voice < VOICES; ++voice) {
       m_voice[voice].fm_osc[2].setCarrierRatio(p_new_value);
+      m_voice[voice].pm_osc[2].setCarrierRatio(p_new_value);
     }
   } else if (id == m_osc1_modulator_ratio_identifier) {
     for (int voice = 0; voice < VOICES; ++voice) {
       m_voice[voice].fm_osc[0].setModulatorRatio(p_new_value);
+      m_voice[voice].pm_osc[0].setModulatorRatio(p_new_value);
     }
   } else if (id == m_osc2_modulator_ratio_identifier) {
     for (int voice = 0; voice < VOICES; ++voice) {
       m_voice[voice].fm_osc[1].setModulatorRatio(p_new_value);
+      m_voice[voice].pm_osc[1].setModulatorRatio(p_new_value);
     }
   } else if (id == m_osc3_modulator_ratio_identifier) {
     for (int voice = 0; voice < VOICES; ++voice) {
       m_voice[voice].fm_osc[2].setModulatorRatio(p_new_value);
+      m_voice[voice].pm_osc[2].setModulatorRatio(p_new_value);
     }
   } else if (id == m_fil1_env_identifier) {
     for (int voice = 0; voice < VOICES; ++voice) {
@@ -1212,26 +1221,32 @@ void OdinAudioProcessor::treeValueChangedNonParam(ValueTree &tree,
   } else if (id == m_osc1_carrier_wave_identifier) {
     for (int voice = 0; voice < VOICES; ++voice) {
       m_voice[voice].fm_osc[0].selectCarrierWavetable(p_new_value);
+      m_voice[voice].pm_osc[0].selectCarrierWavetable(p_new_value);
     }
   } else if (id == m_osc2_carrier_wave_identifier) {
     for (int voice = 0; voice < VOICES; ++voice) {
       m_voice[voice].fm_osc[1].selectCarrierWavetable(p_new_value);
+      m_voice[voice].pm_osc[1].selectCarrierWavetable(p_new_value);
     }
   } else if (id == m_osc3_carrier_wave_identifier) {
     for (int voice = 0; voice < VOICES; ++voice) {
       m_voice[voice].fm_osc[2].selectCarrierWavetable(p_new_value);
+      m_voice[voice].pm_osc[2].selectCarrierWavetable(p_new_value);
     }
   } else if (id == m_osc1_modulator_wave_identifier) {
     for (int voice = 0; voice < VOICES; ++voice) {
       m_voice[voice].fm_osc[0].selectModulatorWavetable(p_new_value);
+      m_voice[voice].pm_osc[0].selectModulatorWavetable(p_new_value);
     }
   } else if (id == m_osc2_modulator_wave_identifier) {
     for (int voice = 0; voice < VOICES; ++voice) {
       m_voice[voice].fm_osc[1].selectModulatorWavetable(p_new_value);
+      m_voice[voice].pm_osc[1].selectModulatorWavetable(p_new_value);
     }
   } else if (id == m_osc3_modulator_wave_identifier) {
     for (int voice = 0; voice < VOICES; ++voice) {
       m_voice[voice].fm_osc[2].selectModulatorWavetable(p_new_value);
+      m_voice[voice].pm_osc[2].selectModulatorWavetable(p_new_value);
     }
   } else if (id == m_BPM_identifier){
     m_BPM = p_new_value;

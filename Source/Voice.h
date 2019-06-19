@@ -13,6 +13,7 @@
 #include "audio/Oscillators/AnalogOscillator.h"
 #include "audio/Oscillators/ChiptuneOscillator.h"
 #include "audio/Oscillators/FMOscillator.h"
+#include "audio/Oscillators/PMOscillator.h"
 #include "audio/Oscillators/LFO.h"
 #include "audio/Oscillators/MultiOscillator.h"
 #include "audio/Oscillators/NoiseOscillator.h"
@@ -210,6 +211,7 @@ struct Voice {
       vector_osc[osc].reset();
       chiptune_osc[osc].reset();
       fm_osc[osc].reset();
+      pm_osc[osc].reset();
       wavedraw_osc[osc].reset();
       specdraw_osc[osc].reset();
       chipdraw_osc[osc].reset();
@@ -279,6 +281,7 @@ struct Voice {
     vector_osc[p_osc].m_octave = p_octave;
     chiptune_osc[p_osc].m_octave = p_octave;
     fm_osc[p_osc].m_octave = p_octave;
+    pm_osc[p_osc].m_octave = p_octave;
   }
 
   void setSemitones(int p_semi, int p_osc) {
@@ -291,6 +294,7 @@ struct Voice {
     vector_osc[p_osc].m_semitones = p_semi;
     chiptune_osc[p_osc].m_semitones = p_semi;
     fm_osc[p_osc].m_semitones = p_semi;
+    pm_osc[p_osc].m_semitones = p_semi;
   }
 
   void setFinetune(float p_fine, int p_osc) {
@@ -303,6 +307,7 @@ struct Voice {
     vector_osc[p_osc].m_cent = p_fine;
     chiptune_osc[p_osc].m_cent = p_fine;
     fm_osc[p_osc].m_cent = p_fine;
+    pm_osc[p_osc].m_cent = p_fine;
   }
 
   void setGlide(float p_glide) {
@@ -316,6 +321,7 @@ struct Voice {
       vector_osc[osc].setGlide(p_glide);
       chiptune_osc[osc].setGlide(p_glide);
       fm_osc[osc].setGlide(p_glide);
+      pm_osc[osc].setGlide(p_glide);
     }
   }
 
@@ -329,6 +335,7 @@ struct Voice {
     vector_osc[p_osc].killGlide();
     chiptune_osc[p_osc].killGlide();
     fm_osc[p_osc].killGlide();
+    pm_osc[p_osc].killGlide();
   }
 
   void setReset(bool p_reset, int p_osc) {
@@ -341,6 +348,7 @@ struct Voice {
     vector_osc[p_osc].setResetActive(p_reset);
     chiptune_osc[p_osc].setResetActive(p_reset);
     fm_osc[p_osc].setResetActive(p_reset);
+    pm_osc[p_osc].setResetActive(p_reset);
   }
 
   void setOscBaseFreq(float p_freq, float p_last_freq) {
@@ -362,7 +370,9 @@ struct Voice {
       chiptune_osc[osc].setBaseFrequency(p_last_freq);
       chiptune_osc[osc].setGlideTargetFrequency(p_freq);
       fm_osc[osc].setBaseFrequency(p_last_freq);
+      pm_osc[osc].setBaseFrequency(p_last_freq);
       fm_osc[osc].setGlideTargetFrequency(p_freq);
+      pm_osc[osc].setGlideTargetFrequency(p_freq);
     }
   }
 
@@ -391,6 +401,7 @@ struct Voice {
       vector_osc[osc].voiceStart();
       chiptune_osc[osc].voiceStart();
       fm_osc[osc].voiceStart();
+      pm_osc[osc].voiceStart();
       wavedraw_osc[osc].voiceStart();
       specdraw_osc[osc].voiceStart();
       chipdraw_osc[osc].voiceStart();
@@ -509,6 +520,7 @@ struct Voice {
   VectorOscillator vector_osc[3];
   ChiptuneOscillator chiptune_osc[3];
   FMOscillator fm_osc[3];
+  PMOscillator pm_osc[3];
   NoiseOscillator noise_osc[3];
   WavetableOsc1D wavedraw_osc[3];
   WavetableOsc1D chipdraw_osc[3];
