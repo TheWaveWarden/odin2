@@ -66,8 +66,14 @@ OdinAudioProcessor::OdinAudioProcessor()
 
   WavetableContainer::getInstance().loadWavetablesFromConstData();
 
-  // WavetableContainer::getInstance().createWavetables(44100.f);
-  // WavetableContainer::getInstance().loadWavetablesAfterFourierCreation();
+  // WavetableContainer::getInstance().writeSampleTableToFile("Violin1.wav");
+  // WavetableContainer::getInstance().writeSampleTableToFile("Violin2.wav");
+  // WavetableContainer::getInstance().writeSampleTableToFile("Cello1.wav");
+  // WavetableContainer::getInstance().writeSampleTableToFile("Cello2.wav");
+
+
+  WavetableContainer::getInstance().createWavetables(44100.f);
+  WavetableContainer::getInstance().loadWavetablesAfterFourierCreation();
 
   // create draw tables as well
   float draw_values[WAVEDRAW_STEPS_X];

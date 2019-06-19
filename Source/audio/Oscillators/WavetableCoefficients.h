@@ -77,6 +77,11 @@
 #include "Wavetables/Coefficients/Rectangular3.h"//68
 #include "Wavetables/Coefficients/Rectangular4.h"//69
 
+#include "Wavetables/Coefficients/Violin1.h"//70
+#include "Wavetables/Coefficients/Violin2.h"//71
+#include "Wavetables/Coefficients/Cello1.h" //72
+#include "Wavetables/Coefficients/Cello2.h" //73
+
 // #include "Wavetables/Coefficients/1.h"//
 // #include "Wavetables/Coefficients/2.h"//
 // #include "Wavetables/Coefficients/3.h"//

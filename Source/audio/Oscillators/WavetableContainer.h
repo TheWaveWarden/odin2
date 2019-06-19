@@ -44,6 +44,8 @@ public:
     void writeChipdrawTable(float p_wavedraw_values[WAVEDRAW_STEPS_X], std::string p_name);
     void writeSpecdrawTable(float p_wavedraw_values[WAVEDRAW_STEPS_X], std::string p_name);
 
+	void writeSampleTableToFile(std::string p_filname);
+
 	//call this to make wavetablefiles from wavetables coefficients
 	void writeWavetablesToFiles();
 	void writeLFOtablesToFiles();

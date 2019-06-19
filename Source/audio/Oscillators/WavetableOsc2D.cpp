@@ -89,6 +89,11 @@ void WavetableOsc2D::loadWavetables(){
     setWavetablePointer(14, 1, WavetableContainer::getInstance().getWavetablePointers("Rectangular2"));
     setWavetablePointer(14, 2, WavetableContainer::getInstance().getWavetablePointers("Rectangular3"));
     setWavetablePointer(14, 3, WavetableContainer::getInstance().getWavetablePointers("Rectangular4"));
+
+    setWavetablePointer(15, 0, WavetableContainer::getInstance().getWavetablePointers("Violin1"));
+    setWavetablePointer(15, 1, WavetableContainer::getInstance().getWavetablePointers("Violin2"));
+    setWavetablePointer(15, 2, WavetableContainer::getInstance().getWavetablePointers("Cello1"));
+    setWavetablePointer(15, 3, WavetableContainer::getInstance().getWavetablePointers("Cello2"));
 }
 
 
