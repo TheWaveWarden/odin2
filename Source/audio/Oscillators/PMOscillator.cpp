@@ -56,5 +56,8 @@ void PMOscillator::reset() {
 float PMOscillator::doOscillate() {
     float vol_mod_factor = (*m_vol_mod) > 0 ? 1.f + 4 *(*m_vol_mod) : (1.f + *m_vol_mod);
     
-    return m_carrier_osc.doOscillate() * vol_mod_factor;
+    float ret =  m_carrier_osc.doOscillate() * vol_mod_factor;
+    DBG(ret);
+    DBG(vol_mod_factor);
+    return ret;
 }

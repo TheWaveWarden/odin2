@@ -24,6 +24,14 @@ class PMCarrierOsc : public WavetableOsc1D {
 
   int getTableIndex() override {
     //TODO calculate the PM-resulting "real" frequency and select table accordingly
+    //Will Pirkle book 653
+    //instantaneous frequency:
+    //w_i = d(OscArg) / dt = w + d(phaseDiff) / dt = w + phaseVelocity * const
+    //todo: find const!
+
+
+
+
     double seed_freq = 27.5; //A0
     float abs_freq = fabs(m_osc_freq_modded);
     for(int table = 0; table < SUBTABLES_PER_WAVETABLE; table++){
@@ -49,10 +57,9 @@ class PMCarrierOsc : public WavetableOsc1D {
   }
 
   float doOscillate() override {
-     float vol_mod_factor = (*m_vol_mod) > 0 ? 1.f + 4 *(*m_vol_mod) : (1.f + *m_vol_mod);
 
      //prepare both sides and interpol value
-    int read_index_trunc = (int) m_read_index + m_phasemod * WAVETABLE_LENGTH;
+    int read_index_trunc = (int) (m_read_index + m_phasemod * WAVETABLE_LENGTH);
     float fractional = m_read_index - (float)read_index_trunc;
     int read_index_next = read_index_trunc + 1;
 
@@ -69,7 +76,7 @@ class PMCarrierOsc : public WavetableOsc1D {
     m_read_index += m_wavetable_inc;
     checkWrapIndex(m_read_index);
 
-    return output * m_volume_factor * vol_mod_factor;
+    return output;
   }
 
 
