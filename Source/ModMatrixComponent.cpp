@@ -82,30 +82,30 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
   for (int osc = 0; osc < 3; ++osc) {
     // analog oscs
     m_analog_osc_menu[osc].addItem(
-        100 * osc + 1, "Osc" + std::to_string(osc + 1) + "Pitch Exp");
+        100 * osc + 2, "Osc" + std::to_string(osc + 1) + "Pitch Exp");
     m_analog_osc_menu[osc].addItem(
-        100 * osc + 2, "Osc" + std::to_string(osc + 1) + " Pitch Lin");
-    m_analog_osc_menu[osc].addItem(100 * osc + 3,
+        100 * osc + 3, "Osc" + std::to_string(osc + 1) + " Pitch Lin");
+    m_analog_osc_menu[osc].addItem(100 * osc + 4,
                                    "Osc" + std::to_string(osc + 1) + " Volume");
     m_analog_osc_menu[osc].addItem(
         100 * osc + 10, "Osc" + std::to_string(osc + 1) + " Pulse Width");
 
     // wavetable oscs
     m_wavetable_osc_menu[osc].addItem(
-        100 * osc + 1, "Osc" + std::to_string(osc + 1) + " Pitch Exp");
+        100 * osc + 2, "Osc" + std::to_string(osc + 1) + " Pitch Exp");
     m_wavetable_osc_menu[osc].addItem(
-        100 * osc + 2, "Osc" + std::to_string(osc + 1) + " Pitch Lin");
+        100 * osc + 3, "Osc" + std::to_string(osc + 1) + " Pitch Lin");
     m_wavetable_osc_menu[osc].addItem(
-        100 * osc + 3, "Osc" + std::to_string(osc + 1) + " Volume");
+        100 * osc + 4, "Osc" + std::to_string(osc + 1) + " Volume");
     m_wavetable_osc_menu[osc].addItem(
         100 * osc + 20, "Osc" + std::to_string(osc + 1) + " Position");
 
     // multi oscs
     m_multi_osc_menu[osc].addItem(
-        100 * osc + 1, "Osc" + std::to_string(osc + 1) + " Pitch Exp");
+        100 * osc + 2, "Osc" + std::to_string(osc + 1) + " Pitch Exp");
     m_multi_osc_menu[osc].addItem(
-        100 * osc + 2, "Osc" + std::to_string(osc + 1) + " Pitch Lin");
-    m_multi_osc_menu[osc].addItem(100 * osc + 3,
+        100 * osc + 3, "Osc" + std::to_string(osc + 1) + " Pitch Lin");
+    m_multi_osc_menu[osc].addItem(100 * osc + 4,
                                   "Osc" + std::to_string(osc + 1) + " Volume");
     m_multi_osc_menu[osc].addItem(100 * osc + 21,
                                   "Osc" + std::to_string(osc + 1) + " Detune");
@@ -116,10 +116,10 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
 
     // vector oscs
     m_vector_osc_menu[osc].addItem(
-        100 * osc + 1, "Osc" + std::to_string(osc + 1) + " Pitch Exp");
+        100 * osc + 2, "Osc" + std::to_string(osc + 1) + " Pitch Exp");
     m_vector_osc_menu[osc].addItem(
-        100 * osc + 2, "Osc" + std::to_string(osc + 1) + " Pitch Lin");
-    m_vector_osc_menu[osc].addItem(100 * osc + 3,
+        100 * osc + 3, "Osc" + std::to_string(osc + 1) + " Pitch Lin");
+    m_vector_osc_menu[osc].addItem(100 * osc + 4,
                                    "Osc" + std::to_string(osc + 1) + " Volume");
     m_vector_osc_menu[osc].addItem(100 * osc + 30,
                                    "Osc" + std::to_string(osc + 1) + " X");
@@ -128,20 +128,20 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
 
     // chiptune
     m_chiptune_osc_menu[osc].addItem(
-        100 * osc + 1, "Osc" + std::to_string(osc + 1) + " Pitch Exp");
+        100 * osc + 2, "Osc" + std::to_string(osc + 1) + " Pitch Exp");
     m_chiptune_osc_menu[osc].addItem(
-        100 * osc + 2, "Osc" + std::to_string(osc + 1) + " Pitch Lin");
+        100 * osc + 3, "Osc" + std::to_string(osc + 1) + " Pitch Lin");
     m_chiptune_osc_menu[osc].addItem(
-        100 * osc + 3, "Osc" + std::to_string(osc + 1) + " Volume");
+        100 * osc + 4, "Osc" + std::to_string(osc + 1) + " Volume");
     m_chiptune_osc_menu[osc].addItem(
         100 * osc + 40, "Osc" + std::to_string(osc + 1) + " Arp Speed");
 
     // fm
-    m_fm_osc_menu[osc].addItem(100 * osc + 1,
-                               "Osc" + std::to_string(osc + 1) + " Pitch Exp");
     m_fm_osc_menu[osc].addItem(100 * osc + 2,
-                               "Osc" + std::to_string(osc + 1) + " Pitch Lin");
+                               "Osc" + std::to_string(osc + 1) + " Pitch Exp");
     m_fm_osc_menu[osc].addItem(100 * osc + 3,
+                               "Osc" + std::to_string(osc + 1) + " Pitch Lin");
+    m_fm_osc_menu[osc].addItem(100 * osc + 4,
                                "Osc" + std::to_string(osc + 1) + " Volume");
     m_fm_osc_menu[osc].addItem(100 * osc + 50,
                                "Osc" + std::to_string(osc + 1) + " FM Amount");
@@ -152,11 +152,11 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
 
 
                                                    // fm
-    m_pm_osc_menu[osc].addItem(100 * osc + 1,
-                               "Osc" + std::to_string(osc + 1) + " Pitch Exp");
     m_pm_osc_menu[osc].addItem(100 * osc + 2,
-                               "Osc" + std::to_string(osc + 1) + " Pitch Lin");
+                               "Osc" + std::to_string(osc + 1) + " Pitch Exp");
     m_pm_osc_menu[osc].addItem(100 * osc + 3,
+                               "Osc" + std::to_string(osc + 1) + " Pitch Lin");
+    m_pm_osc_menu[osc].addItem(100 * osc + 4,
                                "Osc" + std::to_string(osc + 1) + " Volume");
     m_pm_osc_menu[osc].addItem(100 * osc + 50,
                                "Osc" + std::to_string(osc + 1) + " PM Amount");
@@ -314,8 +314,8 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
   m_distortion_menu.addItem(950, "Distortion Threshold");
   m_distortion_menu.addItem(951, "Distortion DryWet");
 
-  // m_sources_menu.addItem(0, "Disabled");
-  // m_sources_menu.addSeparator();
+  m_sources_menu.addItem(1, "Off");
+  m_sources_menu.addSeparator();
   m_sources_menu.addItem(100, "Oscillator 1");
   m_sources_menu.addItem(101, "Oscillator 2");
   m_sources_menu.addItem(102, "Oscillator 3");
@@ -385,6 +385,11 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
     m_dest_2[i].setImage(glas_mid_mid);
     m_amount_3[i].setImage(glas_small_mid);
     m_scale[i].setImage(glas_right_mid);
+
+    m_source[i].enableOneToZero(true);
+    m_dest_1[i].enableOneToZero(true);
+    m_dest_2[i].enableOneToZero(true);
+    m_scale[i].enableOneToZero(true);
   }
   m_source[N_ROWS - 1].setImage(glas_left_down);
   m_amount_1[N_ROWS - 1].setImage(glas_small_down);
@@ -602,153 +607,261 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
   };
 
   m_source[0].onChange = [&]() {
+    if(m_source[0].getSelectedId() == 1){
+      m_source[0].setSelectedId(0);
+    }
     m_value_tree.state.setProperty(m_source_identifier0,
                                    m_source[0].getSelectedId(), nullptr);
   };
   m_dest_1[0].onChange = [&]() {
+    if(m_dest_1[0].getSelectedId() == 1){
+      m_dest_1[0].setSelectedId(0);
+    }
     m_value_tree.state.setProperty(m_dest_1_identifier0,
                                    m_dest_1[0].getSelectedId(), nullptr);
   };
   m_dest_2[0].onChange = [&]() {
+    if(m_dest_2[0].getSelectedId() == 1){
+      m_dest_2[0].setSelectedId(0);
+    }
     m_value_tree.state.setProperty(m_dest_2_identifier0,
                                    m_dest_2[0].getSelectedId(), nullptr);
   };
   m_scale[0].onChange = [&]() {
+    if(m_scale[0].getSelectedId() == 1){
+      m_scale[0].setSelectedId(0);
+    }
     m_value_tree.state.setProperty(m_scale_identifier0,
                                    m_scale[0].getSelectedId(), nullptr);
   };
   m_source[1].onChange = [&]() {
+    if(m_source[1].getSelectedId() == 1){
+      m_source[1].setSelectedId(0);
+    }
     m_value_tree.state.setProperty(m_source_identifier1,
                                    m_source[1].getSelectedId(), nullptr);
   };
   m_dest_1[1].onChange = [&]() {
+    if(m_dest_1[1].getSelectedId() == 1){
+      m_dest_1[1].setSelectedId(0);
+    }
     m_value_tree.state.setProperty(m_dest_1_identifier1,
                                    m_dest_1[1].getSelectedId(), nullptr);
   };
   m_dest_2[1].onChange = [&]() {
+    if(m_dest_2[1].getSelectedId() == 1){
+      m_dest_2[1].setSelectedId(0);
+    }
     m_value_tree.state.setProperty(m_dest_2_identifier1,
                                    m_dest_2[1].getSelectedId(), nullptr);
   };
   m_scale[1].onChange = [&]() {
+    if(m_scale[1].getSelectedId() == 1){
+      m_scale[1].setSelectedId(0);
+    }
     m_value_tree.state.setProperty(m_scale_identifier1,
                                    m_scale[1].getSelectedId(), nullptr);
   };
 
   m_source[2].onChange = [&]() {
+    if(m_source[2].getSelectedId() == 1){
+      m_source[2].setSelectedId(0);
+    }
     m_value_tree.state.setProperty(m_source_identifier2,
                                    m_source[2].getSelectedId(), nullptr);
   };
   m_dest_1[2].onChange = [&]() {
+    if(m_dest_1[2].getSelectedId() == 1){
+      m_dest_1[2].setSelectedId(0);
+    }
     m_value_tree.state.setProperty(m_dest_1_identifier2,
                                    m_dest_1[2].getSelectedId(), nullptr);
   };
   m_dest_2[2].onChange = [&]() {
+    if(m_dest_2[2].getSelectedId() == 1){
+      m_dest_2[2].setSelectedId(0);
+    }
     m_value_tree.state.setProperty(m_dest_2_identifier2,
                                    m_dest_2[2].getSelectedId(), nullptr);
   };
   m_scale[2].onChange = [&]() {
+    if(m_scale[2].getSelectedId() == 1){
+      m_scale[2].setSelectedId(0);
+    }
     m_value_tree.state.setProperty(m_scale_identifier2,
                                    m_scale[2].getSelectedId(), nullptr);
   };
 
   m_source[3].onChange = [&]() {
+    if(m_source[3].getSelectedId() == 1){
+      m_source[3].setSelectedId(0);
+    }
     m_value_tree.state.setProperty(m_source_identifier3,
                                    m_source[3].getSelectedId(), nullptr);
   };
   m_dest_1[3].onChange = [&]() {
+    if(m_dest_1[3].getSelectedId() == 1){
+      m_dest_1[3].setSelectedId(0);
+    }
     m_value_tree.state.setProperty(m_dest_1_identifier3,
                                    m_dest_1[3].getSelectedId(), nullptr);
   };
   m_dest_2[3].onChange = [&]() {
+    if(m_dest_2[3].getSelectedId() == 1){
+      m_dest_2[3].setSelectedId(0);
+    }
     m_value_tree.state.setProperty(m_dest_2_identifier3,
                                    m_dest_2[3].getSelectedId(), nullptr);
   };
   m_scale[3].onChange = [&]() {
+    if(m_scale[3].getSelectedId() == 1){
+      m_scale[3].setSelectedId(0);
+    }
     m_value_tree.state.setProperty(m_scale_identifier3,
                                    m_scale[3].getSelectedId(), nullptr);
   };
 
   m_source[4].onChange = [&]() {
+    if(m_source[4].getSelectedId() == 1){
+      m_source[4].setSelectedId(0);
+    }
     m_value_tree.state.setProperty(m_source_identifier4,
                                    m_source[4].getSelectedId(), nullptr);
   };
   m_dest_1[4].onChange = [&]() {
+    if(m_dest_1[4].getSelectedId() == 1){
+      m_dest_1[4].setSelectedId(0);
+    }
     m_value_tree.state.setProperty(m_dest_1_identifier4,
                                    m_dest_1[4].getSelectedId(), nullptr);
   };
   m_dest_2[4].onChange = [&]() {
+    if(m_dest_2[4].getSelectedId() == 1){
+      m_dest_2[4].setSelectedId(0);
+    }
     m_value_tree.state.setProperty(m_dest_2_identifier4,
                                    m_dest_2[4].getSelectedId(), nullptr);
   };
   m_scale[4].onChange = [&]() {
+    if(m_scale[4].getSelectedId() == 1){
+      m_scale[4].setSelectedId(0);
+    }
     m_value_tree.state.setProperty(m_scale_identifier4,
                                    m_scale[4].getSelectedId(), nullptr);
   };
 
   m_source[5].onChange = [&]() {
+    if(m_source[5].getSelectedId() == 1){
+      m_source[5].setSelectedId(0);
+    }
     m_value_tree.state.setProperty(m_source_identifier5,
                                    m_source[5].getSelectedId(), nullptr);
   };
   m_dest_1[5].onChange = [&]() {
+    if(m_dest_1[5].getSelectedId() == 1){
+      m_dest_1[5].setSelectedId(0);
+    }
     m_value_tree.state.setProperty(m_dest_1_identifier5,
                                    m_dest_1[5].getSelectedId(), nullptr);
   };
   m_dest_2[5].onChange = [&]() {
+    if(m_dest_2[5].getSelectedId() == 1){
+      m_dest_2[5].setSelectedId(0);
+    }
     m_value_tree.state.setProperty(m_dest_2_identifier5,
                                    m_dest_2[5].getSelectedId(), nullptr);
   };
   m_scale[5].onChange = [&]() {
+    if(m_scale[5].getSelectedId() == 1){
+      m_scale[5].setSelectedId(0);
+    }
     m_value_tree.state.setProperty(m_scale_identifier5,
                                    m_scale[5].getSelectedId(), nullptr);
   };
 
   m_source[6].onChange = [&]() {
+    if(m_source[6].getSelectedId() == 1){
+      m_source[6].setSelectedId(0);
+    }
     m_value_tree.state.setProperty(m_source_identifier6,
                                    m_source[6].getSelectedId(), nullptr);
   };
   m_dest_1[6].onChange = [&]() {
+    if(m_dest_1[6].getSelectedId() == 1){
+      m_dest_1[6].setSelectedId(0);
+    }
     m_value_tree.state.setProperty(m_dest_1_identifier6,
                                    m_dest_1[6].getSelectedId(), nullptr);
   };
   m_dest_2[6].onChange = [&]() {
+    if(m_dest_2[6].getSelectedId() == 1){
+      m_dest_2[6].setSelectedId(0);
+    }
     m_value_tree.state.setProperty(m_dest_2_identifier6,
                                    m_dest_2[6].getSelectedId(), nullptr);
   };
   m_scale[6].onChange = [&]() {
+    if(m_scale[6].getSelectedId() == 1){
+      m_scale[6].setSelectedId(0);
+    }
     m_value_tree.state.setProperty(m_scale_identifier6,
                                    m_scale[6].getSelectedId(), nullptr);
   };
 
   m_source[7].onChange = [&]() {
+    if(m_source[7].getSelectedId() == 1){
+      m_source[7].setSelectedId(0);
+    }
     m_value_tree.state.setProperty(m_source_identifier7,
                                    m_source[7].getSelectedId(), nullptr);
   };
   m_dest_1[7].onChange = [&]() {
+    if(m_dest_1[7].getSelectedId() == 1){
+      m_dest_1[7].setSelectedId(0);
+    }
     m_value_tree.state.setProperty(m_dest_1_identifier7,
                                    m_dest_1[7].getSelectedId(), nullptr);
   };
   m_dest_2[7].onChange = [&]() {
+    if(m_dest_2[7].getSelectedId() == 1){
+      m_dest_2[7].setSelectedId(0);
+    }
     m_value_tree.state.setProperty(m_dest_2_identifier7,
                                    m_dest_2[7].getSelectedId(), nullptr);
   };
   m_scale[7].onChange = [&]() {
+    if(m_scale[7].getSelectedId() == 1){
+      m_scale[7].setSelectedId(0);
+    }
     m_value_tree.state.setProperty(m_scale_identifier7,
                                    m_scale[7].getSelectedId(), nullptr);
   };
 
   m_source[8].onChange = [&]() {
+    if(m_source[8].getSelectedId() == 1){
+      m_source[8].setSelectedId(0);
+    }
     m_value_tree.state.setProperty(m_source_identifier8,
                                    m_source[8].getSelectedId(), nullptr);
   };
   m_dest_1[8].onChange = [&]() {
+    if(m_dest_1[8].getSelectedId() == 1){
+      m_dest_1[8].setSelectedId(0);
+    }
     m_value_tree.state.setProperty(m_dest_1_identifier8,
                                    m_dest_1[8].getSelectedId(), nullptr);
   };
   m_dest_2[8].onChange = [&]() {
+    if(m_dest_2[8].getSelectedId() == 1){
+      m_dest_2[8].setSelectedId(0);
+    }
     m_value_tree.state.setProperty(m_dest_2_identifier8,
                                    m_dest_2[8].getSelectedId(), nullptr);
   };
   m_scale[8].onChange = [&]() {
+    if(m_scale[8].getSelectedId() == 1){
+      m_scale[8].setSelectedId(0);
+    }
     m_value_tree.state.setProperty(m_scale_identifier8,
                                    m_scale[8].getSelectedId(), nullptr);
   };
@@ -984,8 +1097,8 @@ void ModMatrixComponent::createMenu(PopupMenu *p_menu) {
   fil_type[1] = GETVALUE("fil2_type");
   fil_type[2] = GETVALUE("fil3_type");
 
-  // p_menu->addItem(0, "Disabled");
-  // p_menu->addSeparator();
+  p_menu->addItem(1, "Off");
+  p_menu->addSeparator();
 
   for (int osc = 0; osc < 3; ++osc) {
     if (osc_type[osc] == OSC_TYPE_ANALOG) {

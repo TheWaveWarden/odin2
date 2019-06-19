@@ -255,7 +255,7 @@ void ModMatrixRow::setModDestination(int p_destination,
                                      int &p_destination_store) {
 
   switch (p_destination) {
-  case 1:
+  case 2:
     for (int voice = 0; voice < VOICES; ++voice) {
       p_destination_pointers[voice] =
           &(m_destinations->voice[voice].osc[0].pitch_exponential);
@@ -263,7 +263,7 @@ void ModMatrixRow::setModDestination(int p_destination,
     p_dest_poly = true;
     break;
 
-  case 101:
+  case 102:
     for (int voice = 0; voice < VOICES; ++voice) {
       p_destination_pointers[voice] =
           &(m_destinations->voice[voice].osc[1].pitch_exponential);
@@ -271,7 +271,7 @@ void ModMatrixRow::setModDestination(int p_destination,
     p_dest_poly = true;
     break;
 
-  case 201:
+  case 202:
     for (int voice = 0; voice < VOICES; ++voice) {
       p_destination_pointers[voice] =
           &(m_destinations->voice[voice].osc[2].pitch_exponential);
@@ -279,7 +279,7 @@ void ModMatrixRow::setModDestination(int p_destination,
     p_dest_poly = true;
     break;
 
-  case 2:
+  case 3:
     for (int voice = 0; voice < VOICES; ++voice) {
       p_destination_pointers[voice] =
           &(m_destinations->voice[voice].osc[0].pitch_linear);
@@ -287,7 +287,7 @@ void ModMatrixRow::setModDestination(int p_destination,
     p_dest_poly = true;
     break;
 
-  case 102:
+  case 103:
     for (int voice = 0; voice < VOICES; ++voice) {
       p_destination_pointers[voice] =
           &(m_destinations->voice[voice].osc[1].pitch_linear);
@@ -295,7 +295,7 @@ void ModMatrixRow::setModDestination(int p_destination,
     p_dest_poly = true;
     break;
 
-  case 202:
+  case 203:
     for (int voice = 0; voice < VOICES; ++voice) {
       p_destination_pointers[voice] =
           &(m_destinations->voice[voice].osc[2].pitch_linear);
@@ -303,7 +303,7 @@ void ModMatrixRow::setModDestination(int p_destination,
     p_dest_poly = true;
     break;
 
-  case 3:
+  case 4:
     for (int voice = 0; voice < VOICES; ++voice) {
       p_destination_pointers[voice] =
           &(m_destinations->voice[voice].osc[0].vol);
@@ -311,7 +311,7 @@ void ModMatrixRow::setModDestination(int p_destination,
     p_dest_poly = true;
     break;
 
-  case 103:
+  case 104:
     for (int voice = 0; voice < VOICES; ++voice) {
       p_destination_pointers[voice] =
           &(m_destinations->voice[voice].osc[1].vol);
@@ -319,7 +319,7 @@ void ModMatrixRow::setModDestination(int p_destination,
     p_dest_poly = true;
     break;
 
-  case 203:
+  case 204:
     for (int voice = 0; voice < VOICES; ++voice) {
       p_destination_pointers[voice] =
           &(m_destinations->voice[voice].osc[2].vol);
