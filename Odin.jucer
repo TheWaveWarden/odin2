@@ -723,6 +723,10 @@
           <FILE id="qBHAzZ" name="Oscillator.h" compile="0" resource="0" file="Source/audio/Oscillators/Oscillator.h"/>
           <FILE id="SICYHb" name="PitchShiftTable.h" compile="0" resource="0"
                 file="Source/audio/Oscillators/PitchShiftTable.h"/>
+          <FILE id="ObKJvS" name="PMCarrierOsc.h" compile="0" resource="0" file="Source/audio/Oscillators/PMCarrierOsc.h"/>
+          <FILE id="dIkThE" name="PMOscillator.cpp" compile="1" resource="0"
+                file="Source/audio/Oscillators/PMOscillator.cpp"/>
+          <FILE id="hZ3ib8" name="PMOscillator.h" compile="0" resource="0" file="Source/audio/Oscillators/PMOscillator.h"/>
           <FILE id="IYqmHh" name="VectorOscillator.cpp" compile="1" resource="0"
                 file="Source/audio/Oscillators/VectorOscillator.cpp"/>
           <FILE id="PpzmNd" name="VectorOscillator.h" compile="0" resource="0"
