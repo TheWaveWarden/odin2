@@ -60,7 +60,7 @@ class PMCarrierOsc : public WavetableOsc1D {
 
      //prepare both sides and interpol value
     int read_index_trunc = (int) (m_read_index + m_phasemod * WAVETABLE_LENGTH);
-    float fractional = m_read_index - (float)read_index_trunc;
+    float fractional = m_read_index + m_phasemod * WAVETABLE_LENGTH - (float)read_index_trunc;
     int read_index_next = read_index_trunc + 1;
 
     //clamp to zone
@@ -75,7 +75,6 @@ class PMCarrierOsc : public WavetableOsc1D {
 
     m_read_index += m_wavetable_inc;
     checkWrapIndex(m_read_index);
-
     return output;
   }
 
