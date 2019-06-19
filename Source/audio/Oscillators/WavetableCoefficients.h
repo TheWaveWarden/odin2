@@ -92,6 +92,12 @@
 #include "Wavetables/Coefficients/Oboe3.h" //80
 #include "Wavetables/Coefficients/Oboe4.h" //81
 
+
+#include "Wavetables/Coefficients/Flute1.h" //82
+#include "Wavetables/Coefficients/Flute2.h" //83
+#include "Wavetables/Coefficients/Flute3.h" //84
+#include "Wavetables/Coefficients/Flute4.h" //85
+
 // #include "Wavetables/Coefficients/1.h"//
 // #include "Wavetables/Coefficients/2.h"//
 // #include "Wavetables/Coefficients/3.h"//

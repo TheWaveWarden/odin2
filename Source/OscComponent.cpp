@@ -853,7 +853,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   ADD_WAVETABLE_SUB_MENU("Strings", 250)
   ADD_WAVETABLE_SUB_MENU("Piano", 260)
   ADD_WAVETABLE_SUB_MENU("Oboe", 270)
-  ADD_WAVETABLE_SUB_MENU("Wave19", 280)
+  ADD_WAVETABLE_SUB_MENU("Flute", 280)
   ADD_WAVETABLE_SUB_MENU("Wave20", 290)
   ADD_WAVETABLE_SUB_MENU("Wave21", 300)
   ADD_WAVETABLE_SUB_MENU("Wave22", 310)
@@ -901,7 +901,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   ADD_MAP_ENTRY("Strings", 250, m_carrier_waveselector)
   ADD_MAP_ENTRY("Piano", 260, m_carrier_waveselector)
   ADD_MAP_ENTRY("Oboe", 270, m_carrier_waveselector)
-  ADD_MAP_ENTRY("Wave19", 280, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Flute", 280, m_carrier_waveselector)
   ADD_MAP_ENTRY("Wave20", 290, m_carrier_waveselector)
   ADD_MAP_ENTRY("Wave21", 300, m_carrier_waveselector)
   ADD_MAP_ENTRY("Wave22", 310, m_carrier_waveselector)
@@ -953,7 +953,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   ADD_MAP_ENTRY("Strings", 250, m_modulator_waveselector)
   ADD_MAP_ENTRY("Piano", 260, m_modulator_waveselector)
   ADD_MAP_ENTRY("Oboe", 270, m_modulator_waveselector)
-  ADD_MAP_ENTRY("Wave19", 280, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Flute", 280, m_modulator_waveselector)
   ADD_MAP_ENTRY("Wave20", 290, m_modulator_waveselector)
   ADD_MAP_ENTRY("Wave21", 300, m_modulator_waveselector)
   ADD_MAP_ENTRY("Wave22", 310, m_modulator_waveselector)
@@ -1030,7 +1030,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_wavetable_waveselector.addWave(16, "Strings");
   m_wavetable_waveselector.addWave(17, "Piano");
   m_wavetable_waveselector.addWave(18, "Oboe");
-  m_wavetable_waveselector.addWave(19, "Wave19");
+  m_wavetable_waveselector.addWave(19, "Flute");
   m_wavetable_waveselector.addWave(20, "Wave20");
   m_wavetable_waveselector.addWave(21, "Wave21");
   m_wavetable_waveselector.addWave(22, "Wave22");
