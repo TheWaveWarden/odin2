@@ -215,6 +215,8 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts,
 
   forceValueTreeOntoComponents(m_value_tree.state, std::stoi(m_filter_number));
 
+  setWantsKeyboardFocus(true);
+
   TIMEEND
 }
 

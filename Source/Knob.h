@@ -163,6 +163,9 @@ public:
         value_field->setVisible(true);
         Point<int> point_in_parent(getX() + getWidth() / 2 - INPUT_LABEL_SIZE_X / 2, getBottom() + 10);
         Point<int> point_in_editor = editor->getLocalPoint(getParentComponent(), point_in_parent);
+        if(point_in_editor.getY() > 580){
+          point_in_editor -= Point<int>(0,30);
+        }
 
         value_field->setTopLeftPosition(point_in_editor);
         value_field->clear();
