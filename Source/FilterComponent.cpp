@@ -107,7 +107,7 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts,
   m_freq.setSkewFactorFromMidPoint(FREQ_MID);
   m_freq.setTextValueSuffix(" Hz");
   // m_freq.setValue(FREQ_DEFAULT);
-  m_freq.setDoubleClickReturnValue(true, FREQ_DEFAULT,
+  m_freq.setDoubleClickReturnValue(true, m_freq.getDoubleClickReturnValue(),
                                    ModifierKeys::ctrlModifier);
   m_freq.setNumDecimalPlacesToDisplay(1);
   addChildComponent(m_freq);

@@ -887,6 +887,23 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
   m_pitch_amount.setParameterId("pitchbend_amount");
   m_value_tree.addParameterListener("pitchbend_amount", &m_pitch_amount);
 
+  m_value_input.setBounds(0, 0, INPUT_LABEL_SIZE_X, INPUT_LABEL_SIZE_Y);
+  m_value_input.setComponentID("value_input");
+  m_value_input.setAlwaysOnTop(true);
+  m_value_input.onFocusLost = [&](){
+    m_value_input.setVisible(false);
+  };
+  m_value_input.onEscapeKey = [&](){
+    m_value_input.setVisible(false);
+  };
+  m_value_input.onReturnKey = [&](){
+    m_value_input.applyValue();
+    m_value_input.setVisible(false);
+  };
+  m_value_input.setLookAndFeel(&m_input_feels);
+  setComponentID("editor");
+  addChildComponent(m_value_input);
+
   setOsc1Plate(GETVALUE("osc1_type"));
   setOsc2Plate(GETVALUE("osc2_type"));
   setOsc3Plate(GETVALUE("osc3_type"));
@@ -904,6 +921,8 @@ OdinAudioProcessorEditor::~OdinAudioProcessorEditor() {
   m_osc_dropdown_menu.setLookAndFeel(nullptr);
   m_filter_dropdown_menu.setLookAndFeel(nullptr);
   m_tooltip.setLookAndFeel(nullptr);
+  m_value_input.setLookAndFeel(nullptr);
+
 
   m_value_tree.removeParameterListener("pitchbend_amount", &m_pitch_amount);
 }

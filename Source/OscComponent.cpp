@@ -1223,7 +1223,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
                    BLACK_KNOB_VERY_SMALL_SIZE_Y);
   m_xy_x.setSliderStyle(Slider::RotaryVerticalDrag);
   m_xy_x.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-  m_xy_x.setDoubleClickReturnValue(true, 0, ModifierKeys::ctrlModifier);
+  m_xy_x.setDoubleClickReturnValue(true, m_xy_x.getDoubleClickReturnValue(), ModifierKeys::ctrlModifier);
   m_xy_x.setNumDecimalPlacesToDisplay(3);
   m_xy_x.setKnobTooltip("X part of the XY pad");
   m_xy_x.onValueChange = [&] { m_xy.setX(m_xy_x.getValue()); };

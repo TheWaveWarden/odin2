@@ -847,6 +847,7 @@
         <FILE id="Tk1utf" name="GlasDropdown.h" compile="0" resource="0" file="Source/GlasDropdown.h"/>
         <FILE id="zzT1mi" name="GlobalIncludes.h" compile="0" resource="0"
               file="Source/GlobalIncludes.h"/>
+        <FILE id="lT44NX" name="InputField.h" compile="0" resource="0" file="Source/InputField.h"/>
         <FILE id="rx44he" name="IntegerKnob.cpp" compile="1" resource="0" file="Source/IntegerKnob.cpp"/>
         <FILE id="pKAX8X" name="IntegerKnob.h" compile="0" resource="0" file="Source/IntegerKnob.h"/>
         <FILE id="nxhniA" name="Knob.cpp" compile="1" resource="0" file="Source/Knob.cpp"/>

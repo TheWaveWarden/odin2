@@ -8,6 +8,7 @@
   ==============================================================================
 */
 #include "GlobalIncludes.h"
+#include "InputField.h"
 
 #define N_KNOB_FRAMES 256 // todo
 
@@ -136,7 +137,6 @@ public:
     }
   }
 
-  void mouseDoubleClick(const MouseEvent &event) override {}
   void mouseDown(const MouseEvent &event) override;
 
   void setKnobTooltip(const std::string p_tooltip) { setTooltip(p_tooltip); }
@@ -154,6 +154,24 @@ public:
     m_midi_learn = false;
     m_midi_control = true;
     repaint();
+  }
+
+  void mouseDoubleClick(const MouseEvent &e) override {
+    if (auto editor = findParentComponentOfClass<juce::AudioProcessorEditor>()) {
+      if (auto value_field = dynamic_cast<InputField*>(editor->findChildWithID("value_input"))) {
+
+        value_field->setVisible(true);
+        Point<int> point_in_parent(getX() + getWidth() / 2 - INPUT_LABEL_SIZE_X / 2, getBottom() + 10);
+        Point<int> point_in_editor = editor->getLocalPoint(getParentComponent(), point_in_parent);
+
+        value_field->setTopLeftPosition(point_in_editor);
+        value_field->clear();
+        value_field->grabKeyboardFocus();
+        value_field->setAttachedSlider(this);
+
+      }
+    }
+    Component::mouseDoubleClick(e);
   }
 
 private:

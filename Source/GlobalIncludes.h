@@ -70,6 +70,10 @@
 #define THRESHOLD_SMOOTHIN_FACTOR 0.998
 
 #define WAVEDRAW_STEPS_X 193
+
+#define INPUT_LABEL_SIZE_X 70
+#define INPUT_LABEL_SIZE_Y 20
+
   
   //256 // TODO CRITICAL: cant make smoooth waves right now because first/last
       // element is not adjustable

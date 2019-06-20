@@ -34,6 +34,7 @@
 #include "XYSectionComponent.h"
 #include "PhaserComponent.h"
 #include "BPMSelector.h"
+#include "InputField.h"
 
 #define GLIDE_POS_X 117
 #define GLIDE_POS_Y 522
@@ -200,6 +201,9 @@ public:
   bool keyStateChanged(bool isKeyDown,
                        Component *originatingComponent) override;
   void allMidiKeysOff();
+
+  InputField m_value_input;
+  InputFeels m_input_feels;
 
 private:
   bool m_A_down = false; // C
