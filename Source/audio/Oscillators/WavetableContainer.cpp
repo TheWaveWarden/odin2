@@ -28,7 +28,7 @@ std::string to_string_no_comma(float p_input) {
   return out;
 }
 
-void WavetableContainer::createWavetables(float p_sample_rate) {
+void WavetableContainer::createWavetables(float p_samplerate) {
 
   std::clock_t begin = std::clock();
   std::clock_t end = std::clock();
@@ -56,7 +56,7 @@ void WavetableContainer::createWavetables(float p_sample_rate) {
       memset(next_table, 0, WAVETABLE_LENGTH * sizeof(float));
 
       // how many harmonics are needed for this subtable
-      int number_of_harmonics = (int)((p_sample_rate * 0.5f / seed_freq) - 1);
+      int number_of_harmonics = (int)((p_samplerate * 0.5f / seed_freq) - 1);
 
       // don't allow more than 800 harmonics (for big Samplerates this might
       // happen)
@@ -112,7 +112,7 @@ void WavetableContainer::createWavetables(float p_sample_rate) {
       std::to_string(elapsed_secs / (float)NUMBER_OF_WAVETABLES));
 }
 
-void WavetableContainer::createLFOtables(float p_sample_rate) {
+void WavetableContainer::createLFOtables(float p_samplerate) {
 
   // //loop over all wavetables
   for (int index_wavetable = 0; index_wavetable < NUMBER_OF_LFOTABLES;
@@ -126,7 +126,7 @@ void WavetableContainer::createLFOtables(float p_sample_rate) {
     memset(next_table, 0, WAVETABLE_LENGTH * sizeof(float));
 
     // how many harmonics are needed for this subtable
-    int number_of_harmonics = (int)((p_sample_rate * 0.5f / seed_freq) - 1);
+    int number_of_harmonics = (int)((p_samplerate * 0.5f / seed_freq) - 1);
 
     // don't allow more than 800 harmonics (for big Samplerates this might
     // happen)
@@ -277,7 +277,7 @@ void WavetableContainer::createLFOCoefficientsFromLinSections(
 
 void WavetableContainer::createChipdrawTable(
     int p_table_nr, float p_chipdraw_values[CHIPDRAW_STEPS_X],
-    float p_sample_rate) {
+    float p_samplerate) {
 
   // first generate the fourier coefficients
   float chipdraw_coefficients[SIN_AND_COS][NUMBER_OF_HARMONICS];
@@ -314,7 +314,7 @@ void WavetableContainer::createChipdrawTable(
        ++index_sub_table) {
 
     // how many harmonics are needed for this subtable
-    int number_of_harmonics = (int)((p_sample_rate * 0.5f / seed_freq) - 1);
+    int number_of_harmonics = (int)((p_samplerate * 0.5f / seed_freq) - 1);
 
     // don't allow more than 800 harmonics (for big Samplerates this might
     // happen)
@@ -403,14 +403,14 @@ void WavetableContainer::writeWavedrawTable(
   double seed_freq = 27.5; // A0
   float max = 0.f;
   float wavedraw_tables[SUBTABLES_PER_WAVETABLE][WAVETABLE_LENGTH] = {0};
-  float p_sample_rate = 44100;
+  float p_samplerate = 44100;
 
   // loop over subtables
   for (int index_sub_table = 0; index_sub_table < SUBTABLES_PER_WAVETABLE;
        ++index_sub_table) {
 
     // how many harmonics are needed for this subtable
-    int number_of_harmonics = (int)((p_sample_rate * 0.5f / seed_freq) - 1);
+    int number_of_harmonics = (int)((p_samplerate * 0.5f / seed_freq) - 1);
 
     // don't allow more than 800 harmonics (for big Samplerates this might
     // happen)
@@ -509,14 +509,14 @@ void WavetableContainer::writeChipdrawTable(
   double seed_freq = 27.5; // A0
   float max = 0.f;
   float wavedraw_tables[SUBTABLES_PER_WAVETABLE][WAVETABLE_LENGTH] = {0};
-  float p_sample_rate = 44100;
+  float p_samplerate = 44100;
 
   // loop over subtables
   for (int index_sub_table = 0; index_sub_table < SUBTABLES_PER_WAVETABLE;
        ++index_sub_table) {
 
     // how many harmonics are needed for this subtable
-    int number_of_harmonics = (int)((p_sample_rate * 0.5f / seed_freq) - 1);
+    int number_of_harmonics = (int)((p_samplerate * 0.5f / seed_freq) - 1);
 
     // don't allow more than 800 harmonics (for big Samplerates this might
     // happen)
@@ -594,14 +594,14 @@ void WavetableContainer::writeSpecdrawTable(
   double seed_freq = 27.5; // A0
   float max = 0.f;
   float wavedraw_tables[SUBTABLES_PER_WAVETABLE][WAVETABLE_LENGTH] = {0};
-  float p_sample_rate = 44100;
+  float p_samplerate = 44100;
 
   // loop over subtables
   for (int index_sub_table = 0; index_sub_table < SUBTABLES_PER_WAVETABLE;
        ++index_sub_table) {
 
     // how many harmonics are needed for this subtable
-    int number_of_harmonics = (int)((p_sample_rate * 0.5f / seed_freq) - 1);
+    int number_of_harmonics = (int)((p_samplerate * 0.5f / seed_freq) - 1);
 
     // don't allow more than 800 harmonics (for big Samplerates this might
     // happen)
@@ -665,7 +665,7 @@ void WavetableContainer::writeSpecdrawTable(
 
 void WavetableContainer::createWavedrawTable(
     int p_table_nr, float p_wavedraw_values[WAVEDRAW_STEPS_X],
-    float p_sample_rate, bool p_const_sections) {
+    float p_samplerate, bool p_const_sections) {
 
   // first generate the fourier coefficients
   float wavedraw_coefficients[SIN_AND_COS][NUMBER_OF_HARMONICS];
@@ -717,7 +717,7 @@ void WavetableContainer::createWavedrawTable(
        ++index_sub_table) {
 
     // how many harmonics are needed for this subtable
-    int number_of_harmonics = (int)((p_sample_rate * 0.5f / seed_freq) - 1);
+    int number_of_harmonics = (int)((p_samplerate * 0.5f / seed_freq) - 1);
 
     // don't allow more than 800 harmonics (for big Samplerates this might
     // happen)
@@ -774,7 +774,7 @@ void WavetableContainer::createWavedrawTable(
 
 void WavetableContainer::createSpecdrawTable(
     int p_table_nr, float p_specdraw_values[SPECDRAW_STEPS_X],
-    float p_sample_rate) {
+    float p_samplerate) {
   // now create the wavetable from the fourier coefficients
   double seed_freq = 27.5; // A0
   float max = 0.f;
@@ -788,7 +788,7 @@ void WavetableContainer::createSpecdrawTable(
        ++index_sub_table) {
 
     // how many harmonics are needed for this subtable
-    int number_of_harmonics = (int)((p_sample_rate * 0.5f / seed_freq) - 1);
+    int number_of_harmonics = (int)((p_samplerate * 0.5f / seed_freq) - 1);
 
     // don't allow more than 800 harmonics (for big Samplerates this might
     // happen)
@@ -937,8 +937,8 @@ const float **WavetableContainer::getLFOPointers(std::string p_name) {
   return m_const_LFO_pointers[0];
 }
 
-void WavetableContainer::changeSampleRate(float p_sample_rate) {
-  createWavetables(p_sample_rate);
+void WavetableContainer::changeSampleRate(float p_samplerate) {
+  createWavetables(p_samplerate);
 }
 
 void WavetableContainer::writeScaleFactorsToFile() {
@@ -1030,7 +1030,7 @@ void WavetableContainer::startWriteWavetablesToFile() {
 
 void WavetableContainer::writeWavetableToFile(int index_wavetable) {
 
-  float p_sample_rate = 44100.f;
+  float p_samplerate = 44100.f;
   float wavetables[1][SUBTABLES_PER_WAVETABLE][WAVETABLE_LENGTH] = {0};
 
   // this flags hackishly if a waveform only uses sine components
@@ -1045,7 +1045,7 @@ void WavetableContainer::writeWavetableToFile(int index_wavetable) {
        ++index_sub_table) {
 
     // how many harmonics are needed for this subtable
-    int number_of_harmonics = (int)((p_sample_rate * 0.5f / seed_freq) - 1);
+    int number_of_harmonics = (int)((p_samplerate * 0.5f / seed_freq) - 1);
 
     // don't allow more than 800 harmonics (for big Samplerates this might
     // happen)
@@ -1131,7 +1131,7 @@ void WavetableContainer::endWriteWavetablesToFile() {
 
 void WavetableContainer::writeLFOtablesToFiles() {
 
-  float p_sample_rate = 44100.f;
+  float p_samplerate = 44100.f;
   float wavetables[NUMBER_OF_WAVETABLES][1][WAVETABLE_LENGTH] = {0};
 
   // //loop over all wavetables
@@ -1148,7 +1148,7 @@ void WavetableContainer::writeLFOtablesToFiles() {
     int index_sub_table = 0;
 
     // how many harmonics are needed for this subtable
-    int number_of_harmonics = (int)((p_sample_rate * 0.5f / seed_freq) - 1);
+    int number_of_harmonics = (int)((p_samplerate * 0.5f / seed_freq) - 1);
 
     // don't allow more than 800 harmonics (for big Samplerates this
     // might happen)
@@ -1357,14 +1357,14 @@ void WavetableContainer::writeSampleTableToFile(std::string p_filename) {
   double seed_freq = 27.5; // A0
   float max = 0.f;
   float wavedraw_tables[SUBTABLES_PER_WAVETABLE][WAVETABLE_LENGTH] = {0};
-  float p_sample_rate = 44100;
+  float p_samplerate = 44100;
 
   // loop over subtables
   for (int index_sub_table = 0; index_sub_table < SUBTABLES_PER_WAVETABLE;
        ++index_sub_table) {
 
     // how many harmonics are needed for this subtable
-    int number_of_harmonics = (int)((p_sample_rate * 0.5f / seed_freq) - 1);
+    int number_of_harmonics = (int)((p_samplerate * 0.5f / seed_freq) - 1);
 
     // don't allow more than 800 harmonics (for big Samplerates this
     // might happen)

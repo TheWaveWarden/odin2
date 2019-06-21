@@ -35,7 +35,7 @@ class ChiptuneArpeggiator
         m_arp_active = p_arp_on;
     }
 
-    inline void setSamplerate(float p_samplerate){
+    inline void setSampleRate(float p_samplerate){
         m_samplerate = p_samplerate;
         //todo need to update inc etc.
     }

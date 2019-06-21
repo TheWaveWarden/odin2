@@ -1,13 +1,3 @@
-/*
-  ==============================================================================
-
-    This file was auto-generated!
-
-    It contains the basic framework code for a JUCE plugin processor.
-
-  ==============================================================================
-*/
-
 #include <typeinfo>
 
 #include "PluginEditor.h"
@@ -56,7 +46,7 @@ OdinAudioProcessor::OdinAudioProcessor()
     treeValueChangedNonParam(tree, identifier);
   };
 
-  setSampleRate(44100.f);
+  // setSampleRate(44100.f);
   initializeModules();
 
   // create wavetables
@@ -69,9 +59,9 @@ OdinAudioProcessor::OdinAudioProcessor()
   // WavetableContainer::getInstance().writeSampleTableToFile("Trumpet3.wav");
   // WavetableContainer::getInstance().writeSampleTableToFile("Trumpet4.wav");
 
-  //WavetableContainer::getInstance().createWavetables(44100.f);
-  //WavetableContainer::getInstance().loadWavetablesAfterFourierCreation();
-  //WavetableContainer::getInstance().writeWavetablesToFile();//use this to
+  // WavetableContainer::getInstance().createWavetables(44100.f);
+  // WavetableContainer::getInstance().loadWavetablesAfterFourierCreation();
+  // WavetableContainer::getInstance().writeWavetablesToFile();//use this to
   // write the tables themselves to header files
 
   // create draw tables as well
@@ -181,10 +171,7 @@ void OdinAudioProcessor::changeProgramName(int index, const String &newName) {}
 
 //==============================================================================
 void OdinAudioProcessor::prepareToPlay(double sampleRate, int samplesPerBlock) {
-  // Use this method as the place to do any pre-playback
-  // initialisation that you need..
-  // m_voice[0].start(52, 100, 10);
-  // m_amp.setMIDIVelocity(100);
+  setSampleRate(sampleRate);
 }
 
 void OdinAudioProcessor::releaseResources() {
@@ -743,21 +730,27 @@ AudioProcessor *JUCE_CALLTYPE createPluginFilter() {
 }
 
 void OdinAudioProcessor::setSampleRate(float p_samplerate) {
-  // todo set ALL samplerates here and check where the host sets them
+  DBG("SampleRate was set to " + std::to_string((int)p_samplerate) + " Hz!");
+
   for (int voice = 0; voice < VOICES; ++voice) {
     m_voice[voice].setSampleRate(p_samplerate);
   }
+  for (int stereo = 0; stereo < 2; ++stereo) {
+    m_delay[stereo].setSampleRate(p_samplerate);
+    m_flanger[stereo].setSampleRate(p_samplerate);
+    m_chorus[stereo].setSampleRate(p_samplerate);
 
-  m_global_env.setSamplerate(p_samplerate);
+    m_ladder_filter[stereo].setSampleRate(p_samplerate);
+    m_korg_filter[stereo].setSampleRate(p_samplerate);
+    m_diode_filter[stereo].setSampleRate(p_samplerate);
+    m_comb_filter[stereo].setSampleRate(p_samplerate);
+    m_formant_filter[stereo].setSampleRate(p_samplerate);
+    m_SEM_filter_12[stereo].setSampleRate(p_samplerate);
+  }
+
+  m_phaser.setSampleRate(p_samplerate);
+  m_global_env.setSampleRate(p_samplerate);
   m_global_lfo.setSampleRate(p_samplerate);
-
-  m_delay[0].setSampleRate(p_samplerate);
-  m_delay[1].setSampleRate(p_samplerate);
-  m_phaser.setSamplerate(p_samplerate);
-  m_flanger[0].setSamplerate(p_samplerate);
-  m_flanger[1].setSamplerate(p_samplerate);
-  m_chorus[0].setSamplerate(p_samplerate);
-  m_chorus[1].setSamplerate(p_samplerate);
 }
 
 void OdinAudioProcessor::initializeModules() {

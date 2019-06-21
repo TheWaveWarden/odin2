@@ -48,8 +48,8 @@ public:
   // virtual void startOscillator() {m_note_on = true;}
   // virtual void stopOscillator() {m_note_on = false;}
   virtual float doOscillate() = 0;
-  virtual void setSampleRate(float p_sample_rate) {
-    m_samplerate = p_sample_rate;
+  virtual void setSampleRate(float p_samplerate) {
+    m_samplerate = p_samplerate;
   }
   virtual void reset();
 

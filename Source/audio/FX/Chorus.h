@@ -17,7 +17,7 @@ public:
 
   float doChorus(float p_input);
 
-  inline void setSamplerate(float p_samplerate) {
+  inline void setSampleRate(float p_samplerate) {
     // store LFO freq
     float LFO_freq;
     if (m_LFO_freq_set) {

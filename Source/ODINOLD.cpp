@@ -124,15 +124,15 @@ bool __stdcall COdin::initialize()
 	m_wave1D_osc.loadWavetables();
 
 	//WavetableContainer::getInstance().writeScaleFactorsToFile();
-	m_adsr.setSamplerate(44100.f);
+	m_adsr.setSampleRate(44100.f);
 	m_adsr.reset();
 
-	m_delay.setSamplerate(44100.f);
-	m_comb_filter.setSamplerate(44100.f);
-	m_allpass_filter.setSamplerate(44100.f);
-	m_phaser.setSamplerate(44100.f);
-	m_flanger.setSamplerate(44100.f);
-	m_chorus.setSamplerate(44100.f);
+	m_delay.setSampleRate(44100.f);
+	m_comb_filter.setSampleRate(44100.f);
+	m_allpass_filter.setSampleRate(44100.f);
+	m_phaser.setSampleRate(44100.f);
+	m_flanger.setSampleRate(44100.f);
+	m_chorus.setSampleRate(44100.f);
 	//CheapFunctions::getInstance().generateADSRPow();
 	//m_adsr.testADSRPow();
 	//m_adsr.profileCheapPow();

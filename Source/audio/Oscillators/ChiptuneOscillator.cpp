@@ -173,9 +173,9 @@ void ChiptuneOscillator::update() {
   WavetableOsc1D::update();
 }
 
-void ChiptuneOscillator::setSampleRate(float p_sample_rate) {
-  m_samplerate = p_sample_rate;
-  m_chiptune_arp.setSamplerate(p_sample_rate);
+void ChiptuneOscillator::setSampleRate(float p_samplerate) {
+  m_samplerate = p_samplerate;
+  m_chiptune_arp.setSampleRate(p_samplerate);
 }
 
 void ChiptuneOscillator::reset() {

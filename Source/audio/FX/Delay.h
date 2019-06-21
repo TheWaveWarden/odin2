@@ -1,8 +1,8 @@
 #pragma once
 
+#include "../Filters/DCBlockingFilter.h"
 #include "../Filters/VAOnePoleFilter.h"
 #include "../OdinConstants.h"
-#include "../Filters/DCBlockingFilter.h"
 
 //#include <memory>
 #include <cstring>
@@ -26,7 +26,10 @@ public:
 
   inline void setFeedback(float p_feedback) { m_feedback = p_feedback; }
 
-  inline void setSampleRate(float p_samplerate) { m_samplerate = p_samplerate; }
+  inline void setSampleRate(float p_samplerate) {
+    m_samplerate = p_samplerate;
+    m_DC_blocking_filter.setSampleRate(p_samplerate);
+  }
 
   inline void incWriteIndex() {
     if (++m_write_index >= CIRCULAR_BUFFER_LENGTH) {
@@ -83,9 +86,7 @@ public:
 
   void setWetModPointer(float *p_pointer) { m_wet_mod = p_pointer; }
 
-  void setFreqBPM(float p_BPM) {
-    setDelayTime(240 * m_synctime_ratio / p_BPM);
-  }
+  void setFreqBPM(float p_BPM) { setDelayTime(240 * m_synctime_ratio / p_BPM); }
   void setSynctimeNumerator(float p_value) {
     m_synctime_numerator = p_value;
     m_synctime_ratio = p_value / m_synctime_denominator;

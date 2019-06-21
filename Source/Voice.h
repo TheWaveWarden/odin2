@@ -173,8 +173,10 @@ struct Voice {
         chiptune_osc[osc].selectWavetable(
             chiptune_osc[osc].wavetableMappingChiptune(p_input));
       };
-      fm_osc[osc].m_carrier_osc.selectWavetableByMapping = [&,osc](int p_input){
-        DBG("carrier");                                                            fm_osc[osc].m_carrier_osc.selectWavetable(
+      fm_osc[osc].m_carrier_osc.selectWavetableByMapping = [&,
+                                                            osc](int p_input) {
+        DBG("carrier");
+        fm_osc[osc].m_carrier_osc.selectWavetable(
             fm_osc[osc].m_carrier_osc.wavetableMappingFM(p_input));
       };
       fm_osc[osc].m_modulator_osc.selectWavetableByMapping =
@@ -442,21 +444,14 @@ struct Voice {
     p_MIDI_note -= 21;
     p_MIDI_note = p_MIDI_note < 0 ? 0 : p_MIDI_note;
 
-    for (int fil = 0; fil < 3; ++fil) {
+    // TODO WOW... this should be fil < 2?????? WAS THIS THE BUG WITH THE
+    // ADSR?????
+    for (int fil = 0; fil < 2; ++fil) {
       ladder_filter[fil].m_MIDI_note = p_MIDI_note;
       diode_filter[fil].m_MIDI_note = p_MIDI_note;
       korg_filter[fil].m_MIDI_note = p_MIDI_note;
-      // SEM_filter_24[fil].m_MIDI_note = p_MIDI_note;
       SEM_filter_12[fil].m_MIDI_note = p_MIDI_note;
       comb_filter[fil].m_MIDI_note = p_MIDI_note;
-
-      ladder_filter[fil].m_MIDI_velocity = p_MIDI_vel;
-      diode_filter[fil].m_MIDI_velocity = p_MIDI_vel;
-      korg_filter[fil].m_MIDI_velocity = p_MIDI_vel;
-      // SEM_filter_24[fil].m_MIDI_velocity = p_MIDI_vel;
-      SEM_filter_12[fil].m_MIDI_velocity = p_MIDI_vel;
-      comb_filter[fil].m_MIDI_velocity = p_MIDI_vel;
-      formant_filter[fil].m_MIDI_velocity = p_MIDI_vel;
     }
   }
 
@@ -529,16 +524,40 @@ struct Voice {
   void setFilterRes(float p_res, int p_fil) {
     ladder_filter[p_fil].setResControl(p_res);
     SEM_filter_12[p_fil].setResControl(p_res);
-    // SEM_filter_24[p_fil].setResControl(p_res);
     korg_filter[p_fil].setResControl(p_res);
     diode_filter[p_fil].setResControl(p_res);
     comb_filter[p_fil].setResonance(p_res);
   }
 
   void setSampleRate(float p_samplerate) {
-    env[0].setSamplerate(p_samplerate);
-    env[1].setSamplerate(p_samplerate);
-    env[2].setSamplerate(p_samplerate);
+    env[0].setSampleRate(p_samplerate);
+    env[1].setSampleRate(p_samplerate);
+    env[2].setSampleRate(p_samplerate);
+
+    for (int fil = 0; fil < 2; ++fil) {
+      ladder_filter[fil].setSampleRate(p_samplerate);
+      SEM_filter_12[fil].setSampleRate(p_samplerate);
+      korg_filter[fil].setSampleRate(p_samplerate);
+      diode_filter[fil].setSampleRate(p_samplerate);
+      comb_filter[fil].setSampleRate(p_samplerate);
+    }
+
+    for (int osc = 0; osc < 3; ++osc) {
+      analog_osc[osc].setSampleRate(p_samplerate);
+      wavetable_osc[osc].setSampleRate(p_samplerate);
+      wavedraw_osc[osc].setSampleRate(p_samplerate);
+      chipdraw_osc[osc].setSampleRate(p_samplerate);
+      specdraw_osc[osc].setSampleRate(p_samplerate);
+      multi_osc[osc].setSampleRate(p_samplerate);
+      vector_osc[osc].setSampleRate(p_samplerate);
+      chiptune_osc[osc].setSampleRate(p_samplerate);
+      fm_osc[osc].setSampleRate(p_samplerate);
+      pm_osc[osc].setSampleRate(p_samplerate);
+      wavedraw_osc[osc].setSampleRate(p_samplerate);
+      specdraw_osc[osc].setSampleRate(p_samplerate);
+      chipdraw_osc[osc].setSampleRate(p_samplerate);
+      lfo[osc].setSampleRate(p_samplerate);
+    }
   }
 
   // oscs

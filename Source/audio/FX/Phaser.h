@@ -11,7 +11,7 @@ public:
   Phaser();
   ~Phaser();
 
-  inline void setSamplerate(float p_samplerate) {
+  inline void setSampleRate(float p_samplerate) {
     // store LFO freq
     float LFO_freq;
     if (m_LFO_freq_set) {
@@ -25,31 +25,31 @@ public:
       m_LFO_freq_set = true;
     }
 
-    m_AP1_left.setSamplerate(p_samplerate);
-    m_AP2_left.setSamplerate(p_samplerate);
-    m_AP3_left.setSamplerate(p_samplerate);
-    m_AP4_left.setSamplerate(p_samplerate);
-    m_AP5_left.setSamplerate(p_samplerate);
-    m_AP6_left.setSamplerate(p_samplerate);
-    m_AP7_left.setSamplerate(p_samplerate);
-    m_AP8_left.setSamplerate(p_samplerate);
-    m_AP9_left.setSamplerate(p_samplerate);
-    m_AP10_left.setSamplerate(p_samplerate);
-    m_AP11_left.setSamplerate(p_samplerate);
-    m_AP12_left.setSamplerate(p_samplerate);
+    m_AP1_left.setSampleRate(p_samplerate);
+    m_AP2_left.setSampleRate(p_samplerate);
+    m_AP3_left.setSampleRate(p_samplerate);
+    m_AP4_left.setSampleRate(p_samplerate);
+    m_AP5_left.setSampleRate(p_samplerate);
+    m_AP6_left.setSampleRate(p_samplerate);
+    m_AP7_left.setSampleRate(p_samplerate);
+    m_AP8_left.setSampleRate(p_samplerate);
+    m_AP9_left.setSampleRate(p_samplerate);
+    m_AP10_left.setSampleRate(p_samplerate);
+    m_AP11_left.setSampleRate(p_samplerate);
+    m_AP12_left.setSampleRate(p_samplerate);
 
-    m_AP1_right.setSamplerate(p_samplerate);
-    m_AP2_right.setSamplerate(p_samplerate);
-    m_AP3_right.setSamplerate(p_samplerate);
-    m_AP4_right.setSamplerate(p_samplerate);
-    m_AP5_right.setSamplerate(p_samplerate);
-    m_AP6_right.setSamplerate(p_samplerate);
-    m_AP7_right.setSamplerate(p_samplerate);
-    m_AP8_right.setSamplerate(p_samplerate);
-    m_AP9_right.setSamplerate(p_samplerate);
-    m_AP10_right.setSamplerate(p_samplerate);
-    m_AP11_right.setSamplerate(p_samplerate);
-    m_AP12_right.setSamplerate(p_samplerate);
+    m_AP1_right.setSampleRate(p_samplerate);
+    m_AP2_right.setSampleRate(p_samplerate);
+    m_AP3_right.setSampleRate(p_samplerate);
+    m_AP4_right.setSampleRate(p_samplerate);
+    m_AP5_right.setSampleRate(p_samplerate);
+    m_AP6_right.setSampleRate(p_samplerate);
+    m_AP7_right.setSampleRate(p_samplerate);
+    m_AP8_right.setSampleRate(p_samplerate);
+    m_AP9_right.setSampleRate(p_samplerate);
+    m_AP10_right.setSampleRate(p_samplerate);
+    m_AP11_right.setSampleRate(p_samplerate);
+    m_AP12_right.setSampleRate(p_samplerate);
   }
 
   inline void reset() {
