@@ -4,6 +4,7 @@ return out;\
 break;
 
 int WavetableOsc1D::wavetableMappingFM(int p_input) {
+  DBG("fm");
   if (p_input == 1) { // extra sine for FM/PM
     return 0;
   }
@@ -14,7 +15,10 @@ int WavetableOsc1D::wavetableMappingFM(int p_input) {
 int WavetableOsc1D::wavetableMappingVector(int p_input) {
 
   switch (p_input) {
-    MAP(1000,1)
+    MAP(101,11)
+    MAP(102,2)
+    MAP(103,12)
+    MAP(104,0)
   default:
     DBG("ERROR: tried to map unknown wavetable " + std::to_string(p_input) +
         " for vec/fm/pm osc");

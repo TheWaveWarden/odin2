@@ -173,9 +173,8 @@ struct Voice {
         chiptune_osc[osc].selectWavetable(
             chiptune_osc[osc].wavetableMappingChiptune(p_input));
       };
-      fm_osc[osc].m_carrier_osc.selectWavetableByMapping = [&,
-                                                            osc](int p_input) {
-        fm_osc[osc].m_carrier_osc.selectWavetable(
+      fm_osc[osc].m_carrier_osc.selectWavetableByMapping = [&,osc](int p_input){
+        DBG("carrier");                                                            fm_osc[osc].m_carrier_osc.selectWavetable(
             fm_osc[osc].m_carrier_osc.wavetableMappingFM(p_input));
       };
       fm_osc[osc].m_modulator_osc.selectWavetableByMapping =
