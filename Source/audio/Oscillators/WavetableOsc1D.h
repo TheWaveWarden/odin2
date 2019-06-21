@@ -33,6 +33,11 @@ public:
 	void loadChipdrawTables(int p_osc);
 	void loadSpecdrawTables(int p_osc);
 
+	//these shouldn't be here but it seemed the least tedious solution...
+	int wavetableMappingChiptune(int p_input);
+	int wavetableMappingVector(int p_input);
+	int wavetableMappingFM(int p_input);
+
 protected:
 	virtual int getTableIndex();
 	

@@ -4,6 +4,7 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 
+#include "../../WavetableMappings.h"
 
 WavetableOsc1D::WavetableOsc1D(){}
 

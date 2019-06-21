@@ -10,53 +10,7 @@ ChiptuneOscillator::ChiptuneOscillator() {
   // seed random
   std::srand(std::time(nullptr));
 
-  //set the wavetablemapping (all wavetables are loaded)
-  selectWavetableByMapping = [&](int p_input){
-    int output = 0;
-    switch(p_input){
-      case 1:
-      output = 2;
-      break;
-      case 2:
-      output = 3;
-      break;
-      case 3:
-      output = 4;
-      break;
-      case 4:
-      output = 1;
-      break;
-      case 5:
-      output = 99;
-      break;
-      case 6:
-      output = 100;
-      break;
-      case 7:
-      output = 94;
-      break;
-      case 8:
-      output = 95;
-      break;
-      case 9:
-      output = 96;
-      break;
-      case 10:
-      output = 97;
-      break;
-      case 11:
-      output = 98;
-      break;
-      case 12:
-      output = 101;
-      break;
-      default:
-      DBG("ERROR: tried to map unknown wavetable " + std::to_string(p_input) + " for chiptune osc");
-      output = 0;
-      break;
-    }
-    selectWavetable(output);
-  };
+  
 }
 
 ChiptuneOscillator::~ChiptuneOscillator() {}

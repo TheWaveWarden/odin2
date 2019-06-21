@@ -911,6 +911,8 @@
               resource="0" file="Source/WaveformSelectorComponent.cpp"/>
         <FILE id="T4dsUW" name="WaveformSelectorComponent.h" compile="0" resource="0"
               file="Source/WaveformSelectorComponent.h"/>
+        <FILE id="e7CRLL" name="WavetableMappings.h" compile="0" resource="0"
+              file="Source/WavetableMappings.h"/>
         <FILE id="jRAnrN" name="XYPadComponent.cpp" compile="1" resource="0"
               file="Source/XYPadComponent.cpp"/>
         <FILE id="GvMLZk" name="XYPadComponent.h" compile="0" resource="0"

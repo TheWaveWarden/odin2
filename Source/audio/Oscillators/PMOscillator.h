@@ -42,12 +42,12 @@ public:
 		m_modulator_osc.selectWavetable(p_wt_modulator);
 	}
 
-	inline void selectCarrierWavetable(int p_wt_carrier){
-		m_carrier_osc.selectWavetable(p_wt_carrier);
+	inline void selectCarrierWavetableByMapping(int p_wt_carrier){
+		m_carrier_osc.selectWavetableByMapping(p_wt_carrier);
 	}
 
-	inline void selectModulatorWavetable(int p_wt_modulator){
-		m_modulator_osc.selectWavetable(p_wt_modulator);
+	inline void selectModulatorWavetableByMapping(int p_wt_modulator){
+		m_modulator_osc.selectWavetableByMapping(p_wt_modulator);
 	}
 
 	void setPMModPointer(float* p_pointer){
@@ -62,6 +62,8 @@ public:
 		m_modulator_ratio_mod = p_pointer;
 	}
 
+	PMCarrierOsc m_carrier_osc;
+	WavetableOsc1D m_modulator_osc;
 protected:
 
 	float* m_pm_mod;
@@ -76,7 +78,5 @@ protected:
 	//keep this to have a mod pointer for suboscs
 	float m_zero_modulation_dummy = 0.f;
 
-	PMCarrierOsc m_carrier_osc;
-	WavetableOsc1D m_modulator_osc;
 };
 

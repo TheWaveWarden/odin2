@@ -13,10 +13,10 @@
 #include "audio/Oscillators/AnalogOscillator.h"
 #include "audio/Oscillators/ChiptuneOscillator.h"
 #include "audio/Oscillators/FMOscillator.h"
-#include "audio/Oscillators/PMOscillator.h"
 #include "audio/Oscillators/LFO.h"
 #include "audio/Oscillators/MultiOscillator.h"
 #include "audio/Oscillators/NoiseOscillator.h"
+#include "audio/Oscillators/PMOscillator.h"
 #include "audio/Oscillators/VectorOscillator.h"
 #include "audio/Oscillators/WavetableOsc2D.h"
 
@@ -131,10 +131,10 @@ public:
         std::to_string(m_voice_history[11]));
   }
 
-  bool setPolyLegato(bool p_is_poly) { 
-    if(m_is_legato == p_is_poly){
+  bool setPolyLegato(bool p_is_poly) {
+    if (m_is_legato == p_is_poly) {
       m_is_legato = !p_is_poly;
-      return true;//value was changed
+      return true; // value was changed
     }
     return false;
   }
@@ -167,6 +167,34 @@ struct Voice {
   Voice() {
     std::srand(std::time(nullptr));
     generateNewRandomValue();
+
+    for (int osc = 0; osc < 3; ++osc) {
+      chiptune_osc[osc].selectWavetableByMapping = [&, osc](int p_input) {
+        chiptune_osc[osc].selectWavetable(
+            chiptune_osc[osc].wavetableMappingChiptune(p_input));
+      };
+      fm_osc[osc].m_carrier_osc.selectWavetableByMapping = [&,
+                                                            osc](int p_input) {
+        fm_osc[osc].m_carrier_osc.selectWavetable(
+            fm_osc[osc].m_carrier_osc.wavetableMappingFM(p_input));
+      };
+      fm_osc[osc].m_modulator_osc.selectWavetableByMapping =
+          [&, osc](int p_input) {
+            fm_osc[osc].m_modulator_osc.selectWavetable(
+                fm_osc[osc].m_modulator_osc.wavetableMappingFM(p_input));
+          };
+
+      pm_osc[osc].m_carrier_osc.selectWavetableByMapping = [&,
+                                                            osc](int p_input) {
+        pm_osc[osc].m_carrier_osc.selectWavetable(
+            pm_osc[osc].m_carrier_osc.wavetableMappingFM(p_input));
+      };
+      pm_osc[osc].m_modulator_osc.selectWavetableByMapping =
+          [&, osc](int p_input) {
+            pm_osc[osc].m_modulator_osc.selectWavetable(
+                pm_osc[osc].m_modulator_osc.wavetableMappingFM(p_input));
+          };
+    }
   }
 
   void setPolyLegato(bool p_is_poly) { m_is_legato = !p_is_poly; }
@@ -179,14 +207,15 @@ struct Voice {
     return 27.5f * pow(2.f, (float)(p_MIDI_note - 21) / 12.f);
   }
 
-  void setBPM(float p_BPM, bool p_LFO1_reset, bool p_LFO2_reset, bool p_LFO3_reset){
-    if(p_LFO1_reset){
+  void setBPM(float p_BPM, bool p_LFO1_reset, bool p_LFO2_reset,
+              bool p_LFO3_reset) {
+    if (p_LFO1_reset) {
       lfo[0].setFreqBPM(p_BPM);
     }
-    if(p_LFO2_reset){
+    if (p_LFO2_reset) {
       lfo[1].setFreqBPM(p_BPM);
     }
-    if(p_LFO3_reset){
+    if (p_LFO3_reset) {
       lfo[2].setFreqBPM(p_BPM);
     }
   }

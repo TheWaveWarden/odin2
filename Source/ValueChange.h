@@ -1211,6 +1211,7 @@ void OdinAudioProcessor::treeValueChangedNonParam(ValueTree &tree,
     for (int voice = 0; voice < VOICES; ++voice) {
       m_voice[voice].chiptune_osc[0].selectWavetableByMapping(p_new_value);
     }
+    DBG("henlo2");
   } else if (id == m_osc2_chipwave_identifier) {
     for (int voice = 0; voice < VOICES; ++voice) {
       m_voice[voice].chiptune_osc[1].selectWavetableByMapping(p_new_value);
@@ -1221,33 +1222,33 @@ void OdinAudioProcessor::treeValueChangedNonParam(ValueTree &tree,
     }
   } else if (id == m_osc1_carrier_wave_identifier) {
     for (int voice = 0; voice < VOICES; ++voice) {
-      m_voice[voice].fm_osc[0].selectCarrierWavetable(p_new_value);
-      m_voice[voice].pm_osc[0].selectCarrierWavetable(p_new_value);
+      m_voice[voice].fm_osc[0].selectCarrierWavetableByMapping(p_new_value);
+      m_voice[voice].pm_osc[0].selectCarrierWavetableByMapping(p_new_value);
     }
   } else if (id == m_osc2_carrier_wave_identifier) {
     for (int voice = 0; voice < VOICES; ++voice) {
-      m_voice[voice].fm_osc[1].selectCarrierWavetable(p_new_value);
-      m_voice[voice].pm_osc[1].selectCarrierWavetable(p_new_value);
+      m_voice[voice].fm_osc[1].selectCarrierWavetableByMapping(p_new_value);
+      m_voice[voice].pm_osc[1].selectCarrierWavetableByMapping(p_new_value);
     }
   } else if (id == m_osc3_carrier_wave_identifier) {
     for (int voice = 0; voice < VOICES; ++voice) {
-      m_voice[voice].fm_osc[2].selectCarrierWavetable(p_new_value);
-      m_voice[voice].pm_osc[2].selectCarrierWavetable(p_new_value);
+      m_voice[voice].fm_osc[2].selectCarrierWavetableByMapping(p_new_value);
+      m_voice[voice].pm_osc[2].selectCarrierWavetableByMapping(p_new_value);
     }
   } else if (id == m_osc1_modulator_wave_identifier) {
     for (int voice = 0; voice < VOICES; ++voice) {
-      m_voice[voice].fm_osc[0].selectModulatorWavetable(p_new_value);
-      m_voice[voice].pm_osc[0].selectModulatorWavetable(p_new_value);
+      m_voice[voice].fm_osc[0].selectModulatorWavetableByMapping(p_new_value);
+      m_voice[voice].pm_osc[0].selectModulatorWavetableByMapping(p_new_value);
     }
   } else if (id == m_osc2_modulator_wave_identifier) {
     for (int voice = 0; voice < VOICES; ++voice) {
-      m_voice[voice].fm_osc[1].selectModulatorWavetable(p_new_value);
-      m_voice[voice].pm_osc[1].selectModulatorWavetable(p_new_value);
+      m_voice[voice].fm_osc[1].selectModulatorWavetableByMapping(p_new_value);
+      m_voice[voice].pm_osc[1].selectModulatorWavetableByMapping(p_new_value);
     }
   } else if (id == m_osc3_modulator_wave_identifier) {
     for (int voice = 0; voice < VOICES; ++voice) {
-      m_voice[voice].fm_osc[2].selectModulatorWavetable(p_new_value);
-      m_voice[voice].pm_osc[2].selectModulatorWavetable(p_new_value);
+      m_voice[voice].fm_osc[2].selectModulatorWavetableByMapping(p_new_value);
+      m_voice[voice].pm_osc[2].selectModulatorWavetableByMapping(p_new_value);
     }
   } else if (id == m_BPM_identifier){
     m_BPM = p_new_value;
