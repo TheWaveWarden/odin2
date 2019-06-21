@@ -782,6 +782,8 @@
                 file="Source/audio/Filters/BiquadResonator.h"/>
           <FILE id="AB83zF" name="CombFilter.cpp" compile="1" resource="0" file="Source/audio/Filters/CombFilter.cpp"/>
           <FILE id="ktQwAi" name="CombFilter.h" compile="0" resource="0" file="Source/audio/Filters/CombFilter.h"/>
+          <FILE id="FbwIvu" name="DCBlockingFilter.h" compile="0" resource="0"
+                file="Source/audio/Filters/DCBlockingFilter.h"/>
           <FILE id="JHfaPb" name="DiodeFilter.cpp" compile="1" resource="0" file="Source/audio/Filters/DiodeFilter.cpp"/>
           <FILE id="FSMHAJ" name="DiodeFilter.h" compile="0" resource="0" file="Source/audio/Filters/DiodeFilter.h"/>
           <FILE id="gg9mto" name="Filter.cpp" compile="1" resource="0" file="Source/audio/Filters/Filter.cpp"/>

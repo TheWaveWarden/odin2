@@ -74,5 +74,8 @@ float CombFilter::doFilter(float p_input) {
   float vol_mod_factor =
       (*m_vol_mod) > 0 ? 1.f + 4 * (*m_vol_mod) : (1.f + *m_vol_mod);
 
-  return (p_input + output) * 0.5f * vol_mod_factor;
+
+  float ret = (p_input + output) * 0.5f * vol_mod_factor;
+  m_DC_blocking_filter.doFilter(ret);
+  return ret;
 }

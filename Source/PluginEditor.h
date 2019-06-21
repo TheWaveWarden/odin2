@@ -234,9 +234,9 @@ private:
 
   Knob m_glide;
   Knob m_master;
+  Knob m_modwheel;
 
   PitchWheel m_pitchwheel;
-  Knob m_modwheel;
   NumberSelector m_pitch_amount;
 
   BPMSelector m_BPM_selector;

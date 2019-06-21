@@ -2,6 +2,7 @@
 
 #include "../OdinConstants.h"
 #include "Filter.h"
+#include "DCBlockingFilter.h"
 #include <cstring>
 
 #define COMB_BUFFER_LENGTH (MAX_EXPECTED_SAMPLE_RATE / FILTER_FC_MIN)
@@ -88,4 +89,7 @@ public:
   double m_delay_time_smooth = 1. / 2000.f;
   float m_feedback = 0;
   float m_samplerate = 44100;
+
+  protected:
+  DCBlockingFilter m_DC_blocking_filter;
 };

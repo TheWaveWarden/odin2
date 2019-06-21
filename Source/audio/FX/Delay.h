@@ -2,6 +2,7 @@
 
 #include "../Filters/VAOnePoleFilter.h"
 #include "../OdinConstants.h"
+#include "../Filters/DCBlockingFilter.h"
 
 //#include <memory>
 #include <cstring>
@@ -63,7 +64,7 @@ public:
   inline void setDucking(float p_ducking) { m_ducking_amount = p_ducking; }
 
   inline float doAverage(float p_input) {
-    // abs input for pos only
+    // abs inpkut for pos only
     p_input = fabs(p_input);
 
     // do moving average
@@ -95,6 +96,8 @@ public:
   }
 
 protected:
+  DCBlockingFilter m_DC_blocking_filter;
+
   float m_synctime_numerator = 3.f;
   float m_synctime_denominator = 16.f;
   float m_synctime_ratio = 3.f / 16.f;

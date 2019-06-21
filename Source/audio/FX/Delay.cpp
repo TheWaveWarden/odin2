@@ -79,5 +79,6 @@ float Delay::doDelay(float p_input) {
   dry_modded = dry_modded > 1 ? 1 : dry_modded;
   dry_modded = dry_modded < 0 ? 0 : dry_modded;
 
+  output = m_DC_blocking_filter.doFilter(output);
   return output * wet_modded + p_input * dry_modded;
 }
