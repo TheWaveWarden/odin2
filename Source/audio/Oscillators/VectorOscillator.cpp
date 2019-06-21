@@ -2,7 +2,7 @@
 
 VectorOscillator::VectorOscillator()
 {
-    m_nr_of_wavetables = 4;
+    m_nr_of_wavetables = NUMBER_OF_WAVETABLES;
 }
 
 VectorOscillator::~VectorOscillator()
@@ -58,13 +58,13 @@ void VectorOscillator::update()
     m_current_table_vec_3 = m_wavetable_pointers[m_wavetable_index_3][m_sub_table_index];
 }
 
-void VectorOscillator::loadWavetables()
-{
-    setWavetablePointer(0, WavetableContainer::getInstance().getWavetablePointers("ChiptuneTriangle"));
-    setWavetablePointer(1, WavetableContainer::getInstance().getWavetablePointers("Saw"));
-    setWavetablePointer(2, WavetableContainer::getInstance().getWavetablePointers("FatSaw"));
-    setWavetablePointer(3, WavetableContainer::getInstance().getWavetablePointers("ChiptuneSkyline"));
-}
+//void VectorOscillator::loadWavetables()
+//{
+//    setWavetablePointer(0, WavetableContainer::getInstance().getWavetablePointers("ChiptuneTriangle"));
+//    setWavetablePointer(1, WavetableContainer::getInstance().getWavetablePointers("Saw"));
+//   setWavetablePointer(2, WavetableContainer::getInstance().getWavetablePointers("FatSaw"));
+//    setWavetablePointer(3, WavetableContainer::getInstance().getWavetablePointers("ChiptuneSkyline"));
+//}
 
 float VectorOscillator::doVectortable()
 {

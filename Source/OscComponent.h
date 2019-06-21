@@ -195,6 +195,8 @@ public:
 
   void forceValueTreeOntoComponents(ValueTree p_tree, int p_index, bool p_create_wavetables);
 
+  void resetVectorWaves();
+
 protected:
 
   TextEditor REMOVE_EDITOR;

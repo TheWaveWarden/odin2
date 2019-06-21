@@ -1160,43 +1160,43 @@ void OdinAudioProcessor::treeValueChangedNonParam(ValueTree &tree,
     }
   } else if (id == m_osc1_vec_a_identifier) {
     for (int voice = 0; voice < VOICES; ++voice) {
-      m_voice[voice].vector_osc[0].selectWavetable(p_new_value, 0);
+      m_voice[voice].vector_osc[0].selectWavetableByMappingVector(p_new_value, 0);
     }
   } else if (id == m_osc2_vec_a_identifier) {
     for (int voice = 0; voice < VOICES; ++voice) {
-      m_voice[voice].vector_osc[1].selectWavetable(p_new_value, 0);
+      m_voice[voice].vector_osc[1].selectWavetableByMappingVector(p_new_value, 0);
     }
   } else if (id == m_osc3_vec_a_identifier) {
     for (int voice = 0; voice < VOICES; ++voice) {
-      m_voice[voice].vector_osc[2].selectWavetable(p_new_value, 0);
+      m_voice[voice].vector_osc[2].selectWavetableByMappingVector(p_new_value, 0);
     }
   } else if (id == m_osc1_vec_b_identifier) {
     for (int voice = 0; voice < VOICES; ++voice) {
-      m_voice[voice].vector_osc[0].selectWavetable(p_new_value, 1);
+      m_voice[voice].vector_osc[0].selectWavetableByMappingVector(p_new_value, 1);
     }
   } else if (id == m_osc2_vec_b_identifier) {
     for (int voice = 0; voice < VOICES; ++voice) {
-      m_voice[voice].vector_osc[1].selectWavetable(p_new_value, 1);
+      m_voice[voice].vector_osc[1].selectWavetableByMappingVector(p_new_value, 1);
     }
   } else if (id == m_osc3_vec_b_identifier) {
     for (int voice = 0; voice < VOICES; ++voice) {
-      m_voice[voice].vector_osc[2].selectWavetable(p_new_value, 1);
+      m_voice[voice].vector_osc[2].selectWavetableByMappingVector(p_new_value, 1);
     }
   } else if (id == m_osc1_vec_c_identifier) {
     for (int voice = 0; voice < VOICES; ++voice) {
-      m_voice[voice].vector_osc[0].selectWavetable(p_new_value, 2);
+      m_voice[voice].vector_osc[0].selectWavetableByMappingVector(p_new_value, 2);
     }
   } else if (id == m_osc2_vec_c_identifier) {
     for (int voice = 0; voice < VOICES; ++voice) {
-      m_voice[voice].vector_osc[1].selectWavetable(p_new_value, 2);
+      m_voice[voice].vector_osc[1].selectWavetableByMappingVector(p_new_value, 2);
     }
   } else if (id == m_osc3_vec_c_identifier) {
     for (int voice = 0; voice < VOICES; ++voice) {
-      m_voice[voice].vector_osc[2].selectWavetable(p_new_value, 2);
+      m_voice[voice].vector_osc[2].selectWavetableByMappingVector(p_new_value, 2);
     }
   } else if (id == m_osc1_vec_d_identifier) {
     for (int voice = 0; voice < VOICES; ++voice) {
-      m_voice[voice].vector_osc[0].selectWavetable(p_new_value, 3);
+      m_voice[voice].vector_osc[0].selectWavetableByMappingVector(p_new_value, 3);
     }
   } else if (id == m_osc2_vec_d_identifier) {
     for (int voice = 0; voice < VOICES; ++voice) {

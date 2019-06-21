@@ -21,10 +21,13 @@ public:
 	}
 	
 	void selectWavetable(int p_wavetable_index, int p_vector_point);
+	void selectWavetableByMappingVector(int p_wavetable_index, int p_vector_point){
+		selectWavetable(wavetableMappingVector(p_wavetable_index), p_vector_point);
+	}
 
 	virtual float doOscillate() override;
 	virtual void update() override;
-	virtual void loadWavetables() override;
+	//virtual void loadWavetables() override;
 
 	void setXModPointer(float* p_pointer){
 		m_mod_x = p_pointer;

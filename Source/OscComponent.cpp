@@ -1297,6 +1297,8 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   SET_CTR_KEY(m_spread);
   SET_CTR_KEY(m_detune);
 
+  resetVectorWaves();
+
   setSize(247, 145);
 
   TIMEEND
@@ -1310,6 +1312,24 @@ OscComponent::~OscComponent() {
                                        &m_carrier_ratio);
   m_value_tree.removeParameterListener(
       "osc" + m_osc_number + "_modulator_ratio", &m_modulator_ratio);
+}
+
+void OscComponent::resetVectorWaves(){
+  int store = m_vec_a.getSelectedId();
+  m_vec_a.setSelectedId(1);
+  m_vec_a.setSelectedId(store);
+
+  store = m_vec_b.getSelectedId();
+  m_vec_b.setSelectedId(1);
+  m_vec_b.setSelectedId(store);
+
+  store = m_vec_c.getSelectedId();
+  m_vec_c.setSelectedId(1);
+  m_vec_c.setSelectedId(store);
+
+  store = m_vec_d.getSelectedId();
+  m_vec_d.setSelectedId(1);
+  m_vec_d.setSelectedId(store);
 }
 
 void OscComponent::paint(Graphics &g) { g.drawImageAt(m_background, 0, 0); }
