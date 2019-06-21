@@ -1207,16 +1207,17 @@ void OdinAudioProcessor::treeValueChangedNonParam(ValueTree &tree,
       m_voice[voice].vector_osc[2].selectWavetable(p_new_value, 3);
     }
   } else if (id == m_osc1_chipwave_identifier) {
+    DBG("HENLOOOO");
     for (int voice = 0; voice < VOICES; ++voice) {
-      m_voice[voice].chiptune_osc[0].selectWavetable(p_new_value);
+      m_voice[voice].chiptune_osc[0].selectWavetableByMapping(p_new_value);
     }
   } else if (id == m_osc2_chipwave_identifier) {
     for (int voice = 0; voice < VOICES; ++voice) {
-      m_voice[voice].chiptune_osc[1].selectWavetable(p_new_value);
+      m_voice[voice].chiptune_osc[1].selectWavetableByMapping(p_new_value);
     }
   } else if (id == m_osc3_chipwave_identifier) {
     for (int voice = 0; voice < VOICES; ++voice) {
-      m_voice[voice].chiptune_osc[2].selectWavetable(p_new_value);
+      m_voice[voice].chiptune_osc[2].selectWavetableByMapping(p_new_value);
     }
   } else if (id == m_osc1_carrier_wave_identifier) {
     for (int voice = 0; voice < VOICES; ++voice) {

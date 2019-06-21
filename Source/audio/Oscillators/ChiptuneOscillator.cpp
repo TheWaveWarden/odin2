@@ -5,44 +5,97 @@
 #define NOISE_SEGMENT_LENGTH 30
 
 ChiptuneOscillator::ChiptuneOscillator() {
-  m_nr_of_wavetables = NR_CHIPTUNE_WAVETABES + NUMBER_OF_CHIPDRAW_TABLES;
+  m_nr_of_wavetables = NUMBER_OF_WAVETABLES;
 
   // seed random
   std::srand(std::time(nullptr));
+
+  //set the wavetablemapping (all wavetables are loaded)
+  selectWavetableByMapping = [&](int p_input){
+    int output = 0;
+    switch(p_input){
+      case 1:
+      output = 2;
+      break;
+      case 2:
+      output = 3;
+      break;
+      case 3:
+      output = 4;
+      break;
+      case 4:
+      output = 1;
+      break;
+      case 5:
+      output = 99;
+      break;
+      case 6:
+      output = 100;
+      break;
+      case 7:
+      output = 94;
+      break;
+      case 8:
+      output = 95;
+      break;
+      case 9:
+      output = 96;
+      break;
+      case 10:
+      output = 97;
+      break;
+      case 11:
+      output = 98;
+      break;
+      case 12:
+      output = 101;
+      break;
+      default:
+      DBG("ERROR: tried to map unknown wavetable " + std::to_string(p_input) + " for chiptune osc");
+      output = 0;
+      break;
+    }
+    selectWavetable(output);
+  };
 }
 
 ChiptuneOscillator::~ChiptuneOscillator() {}
 
-void ChiptuneOscillator::loadWavetables() {
-  setWavetablePointer(0, WavetableContainer::getInstance().getWavetablePointers(
-                             "ChiptuneTriangle"));
-  setWavetablePointer(1, WavetableContainer::getInstance().getWavetablePointers(
-                             "ChiptuneSquare50"));
-  setWavetablePointer(2, WavetableContainer::getInstance().getWavetablePointers(
-                             "ChiptuneSquare25"));
-  setWavetablePointer(3, WavetableContainer::getInstance().getWavetablePointers(
-                             "ChiptuneSquare12_5"));
+// void ChiptuneOscillator::loadWavetables() {
+//   setWavetablePointer(0, WavetableContainer::getInstance().getWavetablePointers(
+//                              "ChiptuneSquare50"));
+//   setWavetablePointer(1, WavetableContainer::getInstance().getWavetablePointers(
+//                              "ChiptuneSquare25"));
+//   setWavetablePointer(2, WavetableContainer::getInstance().getWavetablePointers(
+//                              "ChiptuneSquare12_5"));
+//   setWavetablePointer(3, WavetableContainer::getInstance().getWavetablePointers(
+//                              "ChiptuneTriangle"));
+//   setWavetablePointer(
+//       4, WavetableContainer::getInstance().getWavetablePointers("ChiptuneSaw"));
+//   setWavetablePointer(
+//       5, WavetableContainer::getInstance().getWavetablePointers("CTSine"));
+//         setWavetablePointer(
+//       6, WavetableContainer::getInstance().getWavetablePointers("CTDiverging"));
+//         setWavetablePointer(
+//       7, WavetableContainer::getInstance().getWavetablePointers("CTHigh1"));
+//         setWavetablePointer(
+//       8, WavetableContainer::getInstance().getWavetablePointers("CTHigh2"));
+//         setWavetablePointer(
+//       9, WavetableContainer::getInstance().getWavetablePointers("CTHigh3"));
+//   setWavetablePointer(
+//       10, WavetableContainer::getInstance().getWavetablePointers("CTRich"));
+//       setWavetablePointer(
+//       11, WavetableContainer::getInstance().getWavetablePointers("CTSoftTune"));
 
-  setWavetablePointer(4, WavetableContainer::getInstance().getWavetablePointers(
-                             "ChiptuneMiddleFinger"));
-  setWavetablePointer(5, WavetableContainer::getInstance().getWavetablePointers(
-                             "ChiptuneSkyline"));
-  setWavetablePointer(6, WavetableContainer::getInstance().getWavetablePointers(
-                             "ChiptuneRoundSaw"));
-  setWavetablePointer(7, WavetableContainer::getInstance().getWavetablePointers(
-                             "ChiptuneRandom"));
-  setWavetablePointer(8, WavetableContainer::getInstance().getWavetablePointers(
-                             "ChiptunePiecewiseConstant"));
-  setWavetablePointer(
-      9, WavetableContainer::getInstance().getWavetablePointers("ChiptuneSaw"));
+  
 
-  setWavetablePointerNONCONST(
-      10, WavetableContainer::getInstance().getChipdrawPointer(0));
-  setWavetablePointerNONCONST(
-      11, WavetableContainer::getInstance().getChipdrawPointer(1));
-  setWavetablePointerNONCONST(
-      12, WavetableContainer::getInstance().getChipdrawPointer(2));
-}
+//   setWavetablePointerNONCONST(
+//       10, WavetableContainer::getInstance().getChipdrawPointer(0));
+//   setWavetablePointerNONCONST(
+//       11, WavetableContainer::getInstance().getChipdrawPointer(1));
+//   setWavetablePointerNONCONST(
+//       12, WavetableContainer::getInstance().getChipdrawPointer(2));
+// }
 
 float ChiptuneOscillator::doOscillate() {
   // if(!m_note_on){
