@@ -573,7 +573,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_speed.setSliderStyle(Slider::RotaryVerticalDrag);
   m_speed.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
   m_speed.setTextValueSuffix(" Hz");
-  m_speed.setRange(SPEED_MIN, SPEED_MAX);
+  //m_speed.setRange(SPEED_MIN, SPEED_MAX);
   m_speed.setSkewFactorFromMidPoint(SPEED_MID);
   // m_speed./(GETAUDIO("osc" + m_osc_number + "_arp_speed"));
   m_speed.setDoubleClickReturnValue(true, SPEED_DEFAULT,

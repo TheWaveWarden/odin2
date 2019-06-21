@@ -40,7 +40,7 @@
           NormalisableRange<float>(0.f, 1.f), 0.f),
       std::make_unique<AudioParameterFloat>(
           "osc1_arp_speed", "Osc1 Arpeggiator Speed",
-          NormalisableRange<float>(1.f, 60.f), 20.f),
+          NormalisableRange<float>(1.f, 100.f), 20.f),
       std::make_unique<AudioParameterInt>("osc1_step_1", "Osc1 Step1",
                                           -12, 12, 0),
       std::make_unique<AudioParameterInt>("osc1_step_2", "Osc1 Step2",
@@ -107,7 +107,7 @@
           NormalisableRange<float>(0.f, 1.f), 0.f),
       std::make_unique<AudioParameterFloat>(
           "osc2_arp_speed", "Osc2 Arpeggiator Speed",
-          NormalisableRange<float>(1.f, 60.f), 20.f),
+          NormalisableRange<float>(1.f, 100.f), 20.f),
       std::make_unique<AudioParameterInt>("osc2_step_1", "Osc2 Step1",
                                           -12, 12, 0),
       std::make_unique<AudioParameterInt>("osc2_step_2", "Osc2 Step2",
@@ -174,7 +174,7 @@
           NormalisableRange<float>(0.f, 1.f), 0.f),
       std::make_unique<AudioParameterFloat>(
           "osc3_arp_speed", "Osc3 Arpeggiator Speed",
-          NormalisableRange<float>(1.f, 60.f), 20.f),
+          NormalisableRange<float>(1.f, 100.f), 20.f),
       std::make_unique<AudioParameterInt>("osc3_step_1", "Osc3 Step1",
                                           -12, 12, 0),
       std::make_unique<AudioParameterInt>("osc3_step_2", "Osc3 Step2",
