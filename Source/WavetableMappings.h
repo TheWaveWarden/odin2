@@ -1,16 +1,28 @@
 
-int WavetableOsc1D::wavetableMappingFM(int p_input){
-  if(p_input == 1){// extra sine for FM/PM
+#define MAP(inp, out) case inp :\
+return out;\
+break;
+
+int WavetableOsc1D::wavetableMappingFM(int p_input) {
+  if (p_input == 1) { // extra sine for FM/PM
     return 0;
   }
-  //apart from the extra sine, vec/fm mappings are identical
+  // apart from the extra sine, vec/fm mappings are identical
   return wavetableMappingVector(p_input);
 }
 
-int WavetableOsc1D::wavetableMappingVector(int p_input){
+int WavetableOsc1D::wavetableMappingVector(int p_input) {
+
+  switch (p_input) {
+    MAP(1000,1)
+  default:
+    DBG("ERROR: tried to map unknown wavetable " + std::to_string(p_input) +
+        " for vec/fm/pm osc");
+    return 0;
+    break;
+  }
   return 0;
 }
-
 
 int WavetableOsc1D::wavetableMappingChiptune(int p_input) {
   int output = 0;
@@ -57,5 +69,5 @@ int WavetableOsc1D::wavetableMappingChiptune(int p_input) {
     output = 0;
     break;
   }
-  selectWavetable(output);
+  return 0;
 }
