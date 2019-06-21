@@ -1,6 +1,6 @@
-#define WT_NR 
+#define WT_NR 100
 
-m_wavetable_names_1D[WT_NR] = "CTsine";
+m_wavetable_names_1D[WT_NR] = "CTSine";
 
 m_fourier_coeffs[WT_NR][1][0] = 0.310267;//scalar
 

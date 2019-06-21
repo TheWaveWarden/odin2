@@ -1,6 +1,6 @@
-#define WT_NR 
+#define WT_NR 98
 
-m_wavetable_names_1D[WT_NR] = "CTrich";
+m_wavetable_names_1D[WT_NR] = "CTRich";
 
 m_fourier_coeffs[WT_NR][1][0] = 0.197124;//scalar
 

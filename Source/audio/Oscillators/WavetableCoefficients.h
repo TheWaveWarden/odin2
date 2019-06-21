@@ -110,6 +110,15 @@
 #include "Wavetables/Coefficients/MusicBox3.h" //92
 #include "Wavetables/Coefficients/MusicBox4.h" //93
 
+#include "Wavetables/Coefficients/CTDiverging.h"//94
+#include "Wavetables/Coefficients/CTHigh.h"//95
+#include "Wavetables/Coefficients/CTHigh2.h"//96
+#include "Wavetables/Coefficients/CTHigh3.h"//97
+#include "Wavetables/Coefficients/CTRich.h"//98
+#include "Wavetables/Coefficients/CTSaw.h"//99
+#include "Wavetables/Coefficients/CTSine.h"//100
+#include "Wavetables/Coefficients/CTSoftTune.h"//101
+
 // #include "Wavetables/Coefficients/1.h"//
 // #include "Wavetables/Coefficients/2.h"//
 // #include "Wavetables/Coefficients/3.h"//
