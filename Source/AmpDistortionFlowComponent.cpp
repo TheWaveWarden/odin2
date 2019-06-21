@@ -155,8 +155,8 @@ AmpDistortionFlowComponent::AmpDistortionFlowComponent(
   m_threshold.setStrip(round_knob, N_KNOB_FRAMES);
   m_threshold.setSliderStyle(Slider::RotaryVerticalDrag);
   m_threshold.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-  m_threshold.setDoubleClickReturnValue(true, THRESHOLD_DEFAULT,
-                                        ModifierKeys::ctrlModifier);
+//   m_threshold.setDoubleClickReturnValue(true, THRESHOLD_DEFAULT,
+                   //                     ModifierKeys::ctrlModifier);
   //m_threshold.setValue(THRESHOLD_DEFAULT);
   m_threshold.setKnobTooltip("The threshold to\n be reached before the\n "
                              "algorithm cuts the\n waveform");
@@ -168,8 +168,8 @@ AmpDistortionFlowComponent::AmpDistortionFlowComponent(
   m_dry_wet.setSliderStyle(Slider::RotaryVerticalDrag);
   m_dry_wet.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
   //m_dry_wet.setValue(DRYWET_DIST_DEFAULT);
-  m_dry_wet.setDoubleClickReturnValue(true, DRYWET_DIST_DEFAULT,
-                                      ModifierKeys::ctrlModifier);
+//   m_dry_wet.setDoubleClickReturnValue(true, DRYWET_DIST_DEFAULT,
+                           //           ModifierKeys::ctrlModifier);
   m_dry_wet.setKnobTooltip("The ratio of processed\nand unprocessed sound");
   addAndMakeVisible(m_dry_wet);
 
@@ -217,6 +217,12 @@ AmpDistortionFlowComponent::AmpDistortionFlowComponent(
   m_dry_wet.setNumDecimalPlacesToDisplay(3);
   m_amp_vel.setNumDecimalPlacesToDisplay(3);
   m_amp_pan.setNumDecimalPlacesToDisplay(3);
+
+  SET_CTR_KEY(m_amp_gain);
+  SET_CTR_KEY(m_amp_pan);
+  SET_CTR_KEY(m_amp_vel);
+  SET_CTR_KEY(m_threshold);
+  SET_CTR_KEY(m_dry_wet);
       
   forceValueTreeOntoComponents(m_value_tree.state);
 }

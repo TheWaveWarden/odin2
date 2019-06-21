@@ -128,6 +128,10 @@ public:
   Colour m_highlight_text_color = MENU_HIGHLIGHT_FONT_COLOR;
 };
 
+#define SET_CTR_KEY(name) name.setDoubleClickReturnValue(true, name.getDoubleClickReturnValue(), ModifierKeys::ctrlModifier)
+
+
+
 #define TIMESTART(name)                                                        \
   {                                                                            \
     std::string clock_name = name;                                             \

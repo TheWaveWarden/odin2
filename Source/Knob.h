@@ -81,7 +81,7 @@ public:
     setPopupDisplayEnabled(true, false, nullptr);
     setNumDecimalPlacesToDisplay(3);
     setVelocityModeParameters(1.0, 1, 0.0, true, ModifierKeys::shiftModifier);
-    setDoubleClickReturnValue(true, 0, ModifierKeys::ctrlModifier);
+    // RsetDoubleClicketurnValue(true, 0, ModifierKeys::ctrlModifier);
 
     setTooltip("henlo");
   }

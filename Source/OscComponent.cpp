@@ -307,7 +307,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_pw.setSliderStyle(Slider::RotaryVerticalDrag);
   m_pw.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
   // m_pw.setValue(GETAUDIO("osc" + m_osc_number + "_pulsewidth"));
-  m_pw.setDoubleClickReturnValue(true, PW_DEFAULT, ModifierKeys::ctrlModifier);
+  // m_pw.setDoubleClickReturnValue(true, PW_DEFAULT, ModifierKeys::ctrlModifier);
   m_pw.setKnobTooltip("The pulse width if\nthe pulse wave is selected");
   addChildComponent(m_pw);
 
@@ -447,8 +447,8 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_step_2.setNumDecimalPlacesToDisplay(0);
   m_step_2.setKnobTooltip(
       "The pitch of the\nsecond step of the\narpeggiator in semitones");
-  m_step_2.setDoubleClickReturnValue(true, STEP_2_DEFAULT,
-                                     ModifierKeys::ctrlModifier);
+  // m_step_2.setDoubleClickReturnValue(true, STEP_2_DEFAULT,
+                     //               ModifierKeys::ctrlModifier);
   addChildComponent(m_step_2);
 
   m_step_3.setStrip(
@@ -464,8 +464,8 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_step_3.setNumDecimalPlacesToDisplay(0);
   m_step_3.setKnobTooltip(
       "The pitch of the\nthird step of the\narpeggiator in semitones");
-  m_step_3.setDoubleClickReturnValue(true, STEP_2_DEFAULT,
-                                     ModifierKeys::ctrlModifier);
+  // m_step_3.setDoubleClickReturnValue(true, STEP_2_DEFAULT,
+                            //         ModifierKeys::ctrlModifier);
   addChildComponent(m_step_3);
 
   m_fm.setStrip(ImageCache::getFromMemory(BinaryData::metal_knob_big_png,
@@ -490,7 +490,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_lp.setRange(LP_MIN, LP_MAX);
   m_lp.setSkewFactorFromMidPoint(LP_MID);
   // m_lp.setValue(GETAUDIO("osc" + m_osc_number + "_lp"));
-  m_lp.setDoubleClickReturnValue(true, LP_DEFAULT, ModifierKeys::ctrlModifier);
+  // m_lp.setDoubleClickReturnValue(true, LP_DEFAULT, ModifierKeys::ctrlModifier);
   m_lp.setTextValueSuffix(" Hz");
   m_lp.setNumDecimalPlacesToDisplay(0);
   m_lp.setKnobTooltip(
@@ -508,7 +508,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_hp.setSkewFactorFromMidPoint(HP_MID);
   m_hp.setTextValueSuffix(" Hz");
   // m_hp.setValue(GETAUDIO("osc" + m_osc_number + "_hp"));
-  m_hp.setDoubleClickReturnValue(true, HP_DEFAULT, ModifierKeys::ctrlModifier);
+  // m_hp.setDoubleClickReturnValue(true, HP_DEFAULT, ModifierKeys::ctrlModifier);
   m_hp.setNumDecimalPlacesToDisplay(0);
   m_hp.setKnobTooltip(
       "The frequency of\nthe highspass filter which\nis applied to the noise");
@@ -576,8 +576,8 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   //m_speed.setRange(SPEED_MIN, SPEED_MAX);
   m_speed.setSkewFactorFromMidPoint(SPEED_MID);
   // m_speed./(GETAUDIO("osc" + m_osc_number + "_arp_speed"));
-  m_speed.setDoubleClickReturnValue(true, SPEED_DEFAULT,
-                                    ModifierKeys::ctrlModifier);
+  // m_speed.setDoubleClickReturnValue(true, SPEED_DEFAULT,
+          //                          ModifierKeys::ctrlModifier);
   m_speed.setNumDecimalPlacesToDisplay(1);
   m_speed.setKnobTooltip("Speed of the arpeggiator");
   addChildComponent(m_speed);
@@ -1226,7 +1226,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
                    BLACK_KNOB_VERY_SMALL_SIZE_Y);
   m_xy_x.setSliderStyle(Slider::RotaryVerticalDrag);
   m_xy_x.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-  m_xy_x.setDoubleClickReturnValue(true, m_xy_x.getDoubleClickReturnValue(), ModifierKeys::ctrlModifier);
+  // m_xy_x.setDoubleClickReturnValue(true, m_xy_x.getDoubleClickReturnValue(), ModifierKeys::ctrlModifier);
   m_xy_x.setNumDecimalPlacesToDisplay(3);
   m_xy_x.setKnobTooltip("X part of the XY pad");
   m_xy_x.onValueChange = [&] { m_xy.setX(m_xy_x.getValue()); };
@@ -1241,7 +1241,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
                    BLACK_KNOB_VERY_SMALL_SIZE_Y);
   m_xy_y.setSliderStyle(Slider::RotaryVerticalDrag);
   m_xy_y.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-  m_xy_y.setDoubleClickReturnValue(true, 0, ModifierKeys::ctrlModifier);
+  // m_xy_y.setDoubleClickReturnValue(true, 0, ModifierKeys::ctrlModifier);
   m_xy_y.setNumDecimalPlacesToDisplay(3);
   m_xy_y.setKnobTooltip("X part of the XY pad");
   m_xy_y.onValueChange = [&] { m_xy.setY(m_xy_y.getValue()); };
@@ -1274,6 +1274,26 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 
   forceValueTreeOntoComponents(m_value_tree.state, std::stoi(m_osc_number),
                                false);
+
+
+
+  SET_CTR_KEY(m_oct);
+  SET_CTR_KEY(m_semi);
+  SET_CTR_KEY(m_fine);
+  SET_CTR_KEY(m_vol);
+  SET_CTR_KEY(m_pw);
+  SET_CTR_KEY(m_drift);
+  SET_CTR_KEY(m_step_1);
+  SET_CTR_KEY(m_step_2);
+  SET_CTR_KEY(m_step_3);
+  SET_CTR_KEY(m_fm);
+  SET_CTR_KEY(m_speed);
+  SET_CTR_KEY(m_lp);
+  SET_CTR_KEY(m_hp);
+  SET_CTR_KEY(m_position);
+  SET_CTR_KEY(m_position_multi);
+  SET_CTR_KEY(m_spread);
+  SET_CTR_KEY(m_detune);
 
   setSize(247, 145);
 

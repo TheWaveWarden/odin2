@@ -40,8 +40,8 @@ FXComponent::FXComponent(AudioProcessorValueTreeState &vts,
   m_amount.setSliderStyle(Slider::RotaryVerticalDrag);
   m_amount.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
 
-  m_amount.setDoubleClickReturnValue(true, FX_AMOUNT_DEFAULT,
-                                     ModifierKeys::ctrlModifier);
+  // m_amount.setDoubleClickReturnValue(true, FX_AMOUNT_DEFAULT,
+                                    //  ModifierKeys::ctrlModifier);
   m_amount.setKnobTooltip(
       "How much the internal\nLFO modulates the\nfrequency of this effect");
   addAndMakeVisible(m_amount);
@@ -54,8 +54,8 @@ FXComponent::FXComponent(AudioProcessorValueTreeState &vts,
   m_rate.setTextValueSuffix(" Hz");
   m_rate.setNumDecimalPlacesToDisplay(2);
   // m_rate.setValue(0.2f);
-  m_rate.setDoubleClickReturnValue(true, FX_FREQ_DEFAULT,
-                                   ModifierKeys::ctrlModifier);
+  // m_rate.setDoubleClickReturnValue(true, FX_FREQ_DEFAULT,
+                                  //  ModifierKeys::ctrlModifier);
   m_rate.setKnobTooltip("The frequency of the internal LFO");
   addAndMakeVisible(m_rate);
 
@@ -65,10 +65,10 @@ FXComponent::FXComponent(AudioProcessorValueTreeState &vts,
   m_feedback.setRange(-1, 1);
   if (m_fx_name == "chorus") {
     // m_feedback.setValue(0);
-    m_feedback.setDoubleClickReturnValue(true, 0, ModifierKeys::ctrlModifier);
+    // m_feedback.setDoubleClickReturnValue(true, 0, ModifierKeys::ctrlModifier);
   } else {
     // m_feedback.setValue(0.6);
-    m_feedback.setDoubleClickReturnValue(true, 0.6, ModifierKeys::ctrlModifier);
+    // m_feedback.setDoubleClickReturnValue(true, 0.6, ModifierKeys::ctrlModifier);
   }
 
   m_feedback.setKnobTooltip(
@@ -79,8 +79,8 @@ FXComponent::FXComponent(AudioProcessorValueTreeState &vts,
   m_dry_wet.setSliderStyle(Slider::RotaryVerticalDrag);
   m_dry_wet.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
   // m_dry_wet.setValue(FX_DRYWET_DEFAULT);
-  m_dry_wet.setDoubleClickReturnValue(true, FX_DRYWET_DEFAULT,
-                                      ModifierKeys::ctrlModifier);
+  // m_dry_wet. kReturnValue(true, FX_DRYWET_DEFAULT,
+                                      // ModifierKeys::ctrlModifier);
 
   m_dry_wet.setKnobTooltip("The mix of processed and\n unprocessed signals");
   addAndMakeVisible(m_dry_wet);
@@ -179,6 +179,11 @@ FXComponent::FXComponent(AudioProcessorValueTreeState &vts,
                        metal_knob_mid.getWidth(), metal_knob_mid.getHeight() / 256);
   m_dry_wet.setBounds(FX_DRY_WET_POS_X, FX_DRY_WET_POS_Y,
                       metal_knob_mid.getWidth(), metal_knob_mid.getHeight() / 256);
+
+  SET_CTR_KEY(m_rate);
+  SET_CTR_KEY(m_amount);
+  SET_CTR_KEY(m_feedback);
+  SET_CTR_KEY(m_dry_wet);
 
   forceValueTreeOntoComponents(m_value_tree.state);
 

@@ -107,8 +107,8 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts,
   m_freq.setSkewFactorFromMidPoint(FREQ_MID);
   m_freq.setTextValueSuffix(" Hz");
   // m_freq.setValue(FREQ_DEFAULT);
-  m_freq.setDoubleClickReturnValue(true, m_freq.getDoubleClickReturnValue(),
-                                   ModifierKeys::ctrlModifier);
+  // m_freq.setDoubleClickReturnValue(true, m_freq.getDoubleClickReturnValue(),
+                                  //  ModifierKeys::ctrlModifier);
   m_freq.setNumDecimalPlacesToDisplay(1);
   addChildComponent(m_freq);
 
@@ -138,8 +138,8 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts,
   m_sem_transition.setTopLeftPosition(TRANSITION_POS_X, TRANSITION_POS_Y);
   m_sem_transition.setRange(TRANSITION_MIN, TRANSITION_MAX);
   // m_sem_transition.setValue(TRANSITION_DEFAULT);
-  m_sem_transition.setDoubleClickReturnValue(true, TRANSITION_DEFAULT,
-                                             ModifierKeys::ctrlModifier);
+  // m_sem_transition.setDoubleClickReturnValue(true, TRANSITION_DEFAULT,
+                                            //  ModifierKeys::ctrlModifier);
   m_sem_transition.setNumDecimalPlacesToDisplay(3);
   m_sem_transition.setKnobTooltip("Sets the filter characteristic\nfrom a "
                                   "lowpass over a\nnotch to a highpass");
@@ -213,9 +213,24 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts,
   m_vowel_right.setParameterId("fil" + m_filter_number + "_vowel_right");
   m_value_tree.addParameterListener("fil" + m_filter_number + "_vowel_right", &m_vowel_right);
 
+  SET_CTR_KEY(m_vel);
+  SET_CTR_KEY(m_kbd);
+  SET_CTR_KEY(m_env);
+  SET_CTR_KEY(m_gain);
+  SET_CTR_KEY(m_freq);
+  SET_CTR_KEY(m_res);
+  SET_CTR_KEY(m_saturation);
+  SET_CTR_KEY(m_sem_transition);
+  SET_CTR_KEY(m_formant_transition);
+
+
   forceValueTreeOntoComponents(m_value_tree.state, std::stoi(m_filter_number));
 
+
+
   setWantsKeyboardFocus(true);
+
+
 
   TIMEEND
 }

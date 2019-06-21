@@ -83,8 +83,8 @@ DelayComponent::DelayComponent(AudioProcessorValueTreeState &vts,
   //skew value printed as 0.627099
   m_time.setTextValueSuffix(" s");
   m_time.setNumDecimalPlacesToDisplay(3);
-  m_time.setDoubleClickReturnValue(true, TIME_DEFAULT,
-                                   ModifierKeys::ctrlModifier);
+  // m_time.setDoubleClickReturnValue(true, TIME_DEFAULT,
+            //                       ModifierKeys::ctrlModifier);
   m_time.setKnobTooltip("The time for the \nsignal to echo back");
   addAndMakeVisible(m_time);
 
@@ -102,8 +102,8 @@ DelayComponent::DelayComponent(AudioProcessorValueTreeState &vts,
   m_HP.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
   m_HP.setRange(HP_FREQ_MIN, HP_FREQ_MAX);
   m_HP.setSkewFactorFromMidPoint(HP_FREQ_MID);
-  m_HP.setDoubleClickReturnValue(true, HP_FREQ_DEFAULT,
-                                 ModifierKeys::ctrlModifier);
+  // m_HP.setDoubleClickReturnValue(true, HP_FREQ_DEFAULT,
+              //                   ModifierKeys::ctrlModifier);
   // m_HP.setValue(HP_FREQ_DEFAULT);
   m_HP.setTextValueSuffix(" Hz");
   m_HP.setNumDecimalPlacesToDisplay(1);
@@ -124,8 +124,8 @@ DelayComponent::DelayComponent(AudioProcessorValueTreeState &vts,
   m_dry.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
   //m_dry.setSkewFactorFromMidPoint(DRY_WET_MID);
   //skewfactor 0.575717
-  m_dry.setDoubleClickReturnValue(true, DRY_DEFAULT,
-                                  ModifierKeys::ctrlModifier);
+  // m_dry.setDoubleClickReturnValue(true, DRY_DEFAULT,
+                //                  ModifierKeys::ctrlModifier);
   m_dry.setKnobTooltip("Volume of the input signal");
   addAndMakeVisible(m_dry);
 
@@ -134,8 +134,8 @@ DelayComponent::DelayComponent(AudioProcessorValueTreeState &vts,
   m_wet.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
   m_wet.setSkewFactorFromMidPoint(DRY_WET_MID);
   // m_wet.setValue(WET_DEFAULT);
-  m_wet.setDoubleClickReturnValue(true, WET_DEFAULT,
-                                  ModifierKeys::ctrlModifier);
+  // m_wet.setDoubleClickReturnValue(true, WET_DEFAULT,
+                  //                ModifierKeys::ctrlModifier);
   m_wet.setKnobTooltip("Volume of the delayed signal only");
   addAndMakeVisible(m_wet);
 
@@ -155,6 +155,13 @@ DelayComponent::DelayComponent(AudioProcessorValueTreeState &vts,
   m_ducking.setNumDecimalPlacesToDisplay(3);
   m_dry.setNumDecimalPlacesToDisplay(3);
   m_wet.setNumDecimalPlacesToDisplay(3);
+
+  SET_CTR_KEY(m_time);
+  SET_CTR_KEY(m_feedback);
+  SET_CTR_KEY(m_HP);
+  SET_CTR_KEY(m_ducking);
+  SET_CTR_KEY(m_dry);
+  SET_CTR_KEY(m_wet);
 
   forceValueTreeOntoComponents(m_value_tree.state);
 }

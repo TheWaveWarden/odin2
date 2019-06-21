@@ -49,7 +49,8 @@ XYSectionComponent::XYSectionComponent(AudioProcessorValueTreeState &vts,
   m_x_attach.reset (new SliderAttachment (m_value_tree, "xy_x", m_modx));
   m_y_attach.reset (new SliderAttachment (m_value_tree, "xy_y", m_mody));
 
-
+  SET_CTR_KEY(m_modx);
+  SET_CTR_KEY(m_mody);
 
   m_modx.setNumDecimalPlacesToDisplay(3);
   m_mody.setNumDecimalPlacesToDisplay(3);

@@ -113,8 +113,8 @@ LFOComponent::LFOComponent(AudioProcessorValueTreeState &vts,
 
   //m_freq.setValue(LFO_FREQ_DEFAULT);
   m_freq.setNumDecimalPlacesToDisplay(2);
-  m_freq.setDoubleClickReturnValue(true, LFO_FREQ_DEFAULT,
-                                   ModifierKeys::ctrlModifier);
+  // m_freq.setDoubleClickReturnValue(true, LFO_FREQ_DEFAULT,
+         ///                         ModifierKeys::ctrlModifier);
   m_freq.setKnobTooltip("The frequency of the LFO");
   addAndMakeVisible(m_freq);
 
@@ -142,6 +142,8 @@ LFOComponent::LFOComponent(AudioProcessorValueTreeState &vts,
   m_selector.setParameterId("lfo" + m_lfo_number + "_wave");
   m_value_tree.addParameterListener("lfo" + m_lfo_number + "_wave",
                                     &m_selector);
+
+  SET_CTR_KEY(m_freq);
 
   forceValueTreeOntoComponents(m_value_tree.state);
 }

@@ -911,6 +911,10 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
   setFilter2Plate(GETVALUE("fil2_type"));
   setFilter3Plate(GETVALUE("fil3_type"));
 
+  SET_CTR_KEY(m_glide);
+  SET_CTR_KEY(m_master);
+  SET_CTR_KEY(m_modwheel);
+
   setSize(800, 600);
 
   forceValueTreeOntoComponentsOnlyMainPanel();

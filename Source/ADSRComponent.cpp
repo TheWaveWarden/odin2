@@ -67,8 +67,8 @@ ADSRComponent::ADSRComponent(AudioProcessorValueTreeState &vts,
   addAndMakeVisible(m_release);
 
   m_attack.setRange(A_LOW_LIMIT, A_HIGH_LIMIT);
-  m_attack.setDoubleClickReturnValue(true, A_DEFAULT,
-                                     ModifierKeys::ctrlModifier);
+//   m_attack.setDoubleClickReturnValue(true, A_DEFAULT,
+       //                              ModifierKeys::ctrlModifier);
   m_attack.setTooltip(
       "Attack\nDefines how long the envelope\ntakes to reach the top peak");
   m_attack.setTextValueSuffix(" s");
@@ -81,8 +81,8 @@ ADSRComponent::ADSRComponent(AudioProcessorValueTreeState &vts,
 
   m_decay.setRange(D_LOW_LIMIT, D_HIGH_LIMIT);
   m_decay.setSkewFactorFromMidPoint(D_MID_VALUE);
-  m_decay.setDoubleClickReturnValue(true, D_DEFAULT,
-                                    ModifierKeys::ctrlModifier);
+//   m_decay.setDoubleClickReturnValue(true, D_DEFAULT,
+         //                           ModifierKeys::ctrlModifier);
   m_decay.setTextValueSuffix(" s");
   m_decay.setTooltip("Decay\nDefines how long the\n envelope takes to fall "
                      "from the top\n peak to the sustain level");
@@ -90,16 +90,16 @@ ADSRComponent::ADSRComponent(AudioProcessorValueTreeState &vts,
   m_sustain.setRange(S_LOW_LIMIT, S_HIGH_LIMIT);
   //m_sustain.setSkewFactorFromMidPoint(S_MID_VALUE);
   //skewvalue printed as 0.575717
-  m_sustain.setDoubleClickReturnValue(true, S_DEFAULT,
-                                      ModifierKeys::ctrlModifier);
+//   m_sustain.setDoubleClickReturnValue(true, S_DEFAULT,
+           //                           ModifierKeys::ctrlModifier);
   m_sustain.setNumDecimalPlacesToDisplay(3);
   m_sustain.setTooltip("Sustain\nDefines the height of the evelope\nafter the "
                        "decay section is finished");
 
   m_release.setRange(R_LOW_LIMIT, R_HIGH_LIMIT);
   m_release.setSkewFactorFromMidPoint(R_MID_VALUE);
-  m_release.setDoubleClickReturnValue(true, R_DEFAULT,
-                                      ModifierKeys::ctrlModifier);
+//   m_release.setDoubleClickReturnValue(true, R_DEFAULT,
+             //                         ModifierKeys::ctrlModifier);
   m_release.setTextValueSuffix(" s");
   m_release.setTooltip("Release\nDefines how long the envelope takes\n to fall "
                        "back to zero after\nthe key is released");
