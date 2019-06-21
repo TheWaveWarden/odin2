@@ -140,12 +140,14 @@ protected:
   float *m_sustain_mod;
   float *m_release_mod;
 
-  double m_attack = 0.3f;
-  double m_attack_start_value = 0.f;
+  //these are the initial values for the algorithm as well
+  double m_attack = 0.01f;
   double m_decay = 1.f;
-  double m_decay_factor = 0.9998;
   double m_sustain = 0.5f;
-  double m_release = 1.f;
+  double m_release = 0.01f;
+
+  double m_attack_start_value = 0.f;
+  double m_decay_factor = 0.9998;
   double m_release_factor = 0.9998;
   double m_release_start_value = 1.;
 

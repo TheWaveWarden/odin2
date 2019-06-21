@@ -112,6 +112,11 @@ ADSRComponent::ADSRComponent(AudioProcessorValueTreeState &vts,
   m_sustain.setNumDecimalPlacesToDisplay(3);
   m_release.setNumDecimalPlacesToDisplay(3);
 
+  SET_CTR_KEY(m_attack);
+  SET_CTR_KEY(m_decay);
+  SET_CTR_KEY(m_sustain);
+  SET_CTR_KEY(m_release);
+
 }
 
 ADSRComponent::~ADSRComponent() {}
