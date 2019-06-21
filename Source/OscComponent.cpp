@@ -739,16 +739,19 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_chiptune_waveselector.addWave(2, "Pulse 25");
   m_chiptune_waveselector.addWave(3, "Pulse 12.5");
   m_chiptune_waveselector.addWave(4, "ChipTriangle");
-  m_chiptune_waveselector.addWave(5, "custom1");
-  m_chiptune_waveselector.addWave(6, "custom2");
-  m_chiptune_waveselector.addWave(7, "custom3");
-  m_chiptune_waveselector.addWave(8, "custom4");
-  m_chiptune_waveselector.addWave(9, "custom5");
+  m_chiptune_waveselector.addWave(5, "ChipSaw");
+  m_chiptune_waveselector.addWave(6, "ChipSine");
+  m_chiptune_waveselector.addWave(7, "Diverging");
+  m_chiptune_waveselector.addWave(8, "High A");
+  m_chiptune_waveselector.addWave(9, "High B");
+  m_chiptune_waveselector.addWave(10, "High C");
+  m_chiptune_waveselector.addWave(11, "Rich");
+  m_chiptune_waveselector.addWave(12, "SoftTune");
   m_chiptune_waveselector.addSeparator();
   // normal wavetable submenu
-  m_chiptune_waveselector.setIncrementValue(9, 100);
+  m_chiptune_waveselector.setIncrementValue(12, 100);
   m_chiptune_waveselector.addWaveToSubmenu(100, "henlo", 0);
-  m_chiptune_waveselector.setDecrementValue(100, 9);
+  m_chiptune_waveselector.setDecrementValue(100, 12);
   m_chiptune_waveselector.addWaveToSubmenu(101, "henlo2", 0);
   m_chiptune_waveselector.setIncrementValue(101, 201);
   m_chiptune_waveselector.applySubmenu(0, "Wavetables");
