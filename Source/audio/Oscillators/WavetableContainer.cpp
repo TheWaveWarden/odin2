@@ -1491,8 +1491,8 @@ void WavetableContainer::writeSampleTableToFile(std::string p_filename) {
 }
 
 void WavetableContainer::mutateWavetable(std::string p_table_name,
-                                         int number_of_mutations,
-                                         float percent) {
+                                         int number_of_mutations, float percent,
+                                         bool p_consecutive_mutation) {
 
   auto it = m_name_index_map.find(p_table_name);
   if (it == m_name_index_map.end()) {
@@ -1501,6 +1501,14 @@ void WavetableContainer::mutateWavetable(std::string p_table_name,
     return;
   }
 
+  float consecutive_store[SIN_AND_COS][NUMBER_OF_HARMONICS] = {0};
+  if (p_consecutive_mutation) {
+    for (int i = 0; i < NUMBER_OF_HARMONICS; ++i) {
+      for (int j = 0; j < SIN_AND_COS; ++j) {
+        consecutive_store[j][i] = m_fourier_coeffs[it->second][j][i];
+      }
+    }
+  }
   // m_fourier_coeffs[it->second];
 
   // seed random
@@ -1517,7 +1525,12 @@ void WavetableContainer::mutateWavetable(std::string p_table_name,
         random *= percent / 100.f;
         random = 1.f + random;
 
-        p_specdraw_values[j][i] = m_fourier_coeffs[it->second][j][i] * random;
+        if (p_consecutive_mutation) {
+          p_specdraw_values[j][i] = consecutive_store[j][i] * random;
+          consecutive_store[j][i] = p_specdraw_values[j][i];
+        } else {
+          p_specdraw_values[j][i] = m_fourier_coeffs[it->second][j][i] * random;
+        }
       }
     }
 

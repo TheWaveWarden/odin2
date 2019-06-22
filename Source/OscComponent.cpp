@@ -1040,7 +1040,12 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_wavetable_waveselector.addWave(20, "Trumpet");
   m_wavetable_waveselector.addWave(21, "MusicBox");
   m_wavetable_waveselector.addWave(22, "Sparse");
-  m_wavetable_waveselector.addWave(23, "Wave23");
+  m_wavetable_waveselector.addWave(23, "SawMutated");
+  m_wavetable_waveselector.addWave(24, "FatSawMutA");
+  m_wavetable_waveselector.addWave(25, "FatSawMutB");
+  m_wavetable_waveselector.addWave(26, "Wave26");
+  m_wavetable_waveselector.addWave(27, "Wave27");
+  m_wavetable_waveselector.addWave(28, "Wave28");
   // m_wavetable_waveselector.setValue(1);
   m_wavetable_waveselector.setTooltip("Selects the wave for the oscillator");
   addChildComponent(m_wavetable_waveselector);

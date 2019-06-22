@@ -151,3 +151,14 @@ m_highest_loaded_table = 105;
 #include "Wavetables/Coefficients/SawMutated1.h" //106
 #include "Wavetables/Coefficients/SawMutated2.h" //107
 #include "Wavetables/Coefficients/SawMutated3.h" //108
+
+
+
+#include "Wavetables/Coefficients/FatSawMutated1.h" //109
+#include "Wavetables/Coefficients/FatSawMutated2.h" //110
+#include "Wavetables/Coefficients/FatSawMutated3.h" //111
+#include "Wavetables/Coefficients/FatSawMutated4.h" //112
+#include "Wavetables/Coefficients/FatSawMutated5.h" //113
+#include "Wavetables/Coefficients/FatSawMutated6.h" //114
+#include "Wavetables/Coefficients/FatSawMutated7.h" //115
+#include "Wavetables/Coefficients/FatSawMutated8.h" //116

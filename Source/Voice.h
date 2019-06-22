@@ -175,7 +175,6 @@ struct Voice {
       };
       fm_osc[osc].m_carrier_osc.selectWavetableByMapping = [&,
                                                             osc](int p_input) {
-        DBG("carrier");
         fm_osc[osc].m_carrier_osc.selectWavetable(
             fm_osc[osc].m_carrier_osc.wavetableMappingFM(p_input));
       };

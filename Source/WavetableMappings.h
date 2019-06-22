@@ -5,7 +5,6 @@
     break;
 
 int WavetableOsc1D::wavetableMappingFM(int p_input) {
-  DBG("fm");
   if (p_input == 1) { // extra sine for FM/PM
     return 0;
   }
