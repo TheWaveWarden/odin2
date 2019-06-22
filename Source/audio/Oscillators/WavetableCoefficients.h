@@ -162,3 +162,12 @@ m_highest_loaded_table = 105;
 #include "Wavetables/Coefficients/FatSawMutated6.h" //114
 #include "Wavetables/Coefficients/FatSawMutated7.h" //115
 #include "Wavetables/Coefficients/FatSawMutated8.h" //116
+
+#include "Wavetables/Coefficients/ChiptuneSquare50Mutated1.h" //117
+#include "Wavetables/Coefficients/ChiptuneSquare50Mutated2.h" //118
+#include "Wavetables/Coefficients/ChiptuneSquare50Mutated3.h" //119
+#include "Wavetables/Coefficients/ChiptuneSquare50Mutated4.h" //120
+#include "Wavetables/Coefficients/ChiptuneSquare50Mutated5.h" //121
+#include "Wavetables/Coefficients/ChiptuneSquare50Mutated6.h" //122
+#include "Wavetables/Coefficients/ChiptuneSquare50Mutated7.h" //123
+#include "Wavetables/Coefficients/ChiptuneSquare50Mutated8.h" //124

@@ -37,7 +37,7 @@ void WavetableContainer::createWavetables(float p_samplerate) {
   for (int index_wavetable = 0; index_wavetable < NUMBER_OF_WAVETABLES;
        ++index_wavetable) {
 
-    DBG("wavetable: " + std::to_string(index_wavetable));
+    DBG("generating wavetable: " + std::to_string(index_wavetable));
 
     // this flags hackishly if a waveform only uses sine components
     bool sine_only =

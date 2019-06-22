@@ -140,6 +140,16 @@ void WavetableOsc2D::loadWavetables(){
     setWavetablePointer(24, 2, WavetableContainer::getInstance().getWavetablePointers("FatSawMutated7"));
     setWavetablePointer(24, 3, WavetableContainer::getInstance().getWavetablePointers("FatSawMutated8"));
 
+    setWavetablePointer(25, 0, WavetableContainer::getInstance().getWavetablePointers("ChiptuneSquare50Mutated1"));
+    setWavetablePointer(25, 1, WavetableContainer::getInstance().getWavetablePointers("ChiptuneSquare50Mutated2"));
+    setWavetablePointer(25, 2, WavetableContainer::getInstance().getWavetablePointers("ChiptuneSquare50Mutated3"));
+    setWavetablePointer(25, 3, WavetableContainer::getInstance().getWavetablePointers("ChiptuneSquare50Mutated4"));
+    
+    setWavetablePointer(26, 0, WavetableContainer::getInstance().getWavetablePointers("ChiptuneSquare50Mutated5"));
+    setWavetablePointer(26, 1, WavetableContainer::getInstance().getWavetablePointers("ChiptuneSquare50Mutated6"));
+    setWavetablePointer(26, 2, WavetableContainer::getInstance().getWavetablePointers("ChiptuneSquare50Mutated7"));
+    setWavetablePointer(26, 3, WavetableContainer::getInstance().getWavetablePointers("ChiptuneSquare50Mutated8"));
+
 }
 
 

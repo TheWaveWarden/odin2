@@ -59,11 +59,11 @@ OdinAudioProcessor::OdinAudioProcessor()
   // WavetableContainer::getInstance().writeSampleTableToFile("Trumpet3.wav");
   // WavetableContainer::getInstance().writeSampleTableToFile("Trumpet4.wav");
 
-  WavetableContainer::getInstance().createWavetables(44100.f);
-  WavetableContainer::getInstance().loadWavetablesAfterFourierCreation();
+  //WavetableContainer::getInstance().createWavetables(44100.f);
+  //WavetableContainer::getInstance().loadWavetablesAfterFourierCreation();
   //WavetableContainer::getInstance().writeWavetablesToFile(); // use this to
 
-  //WavetableContainer::getInstance().mutateWavetable("FatSaw", 8, 100, true);
+  //WavetableContainer::getInstance().mutateWavetable("ChiptuneSquare50", 8, 100, true);
 
 
   // create draw tables as well
