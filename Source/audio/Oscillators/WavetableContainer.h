@@ -52,6 +52,9 @@ public:
     void writeWavetableToFile(int index_wavetable);//single table, else stackoverflow
     void endWriteWavetablesToFile();
 
+    void mutateWavetable(std::string p_table_name, int number_of_mutations, float percent);
+
+
 
 
 	void writeLFOtablesToFiles();
@@ -66,6 +69,8 @@ private:
 	WavetableContainer();
 
 protected:
+
+	int m_highest_loaded_table = 0;
 
 	//const float *[NUMBER_OF_WAVETABLES][SUBTABLES_PER_WAVETABLE][WAVETABLE_LENGTH];
 

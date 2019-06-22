@@ -1,3 +1,25 @@
+
+//====================
+//======= LFOS =======
+//====================
+
+#include "Wavetables/Coefficients/LFOPyramid4.h"
+#include "Wavetables/Coefficients/LFOPyramid6.h"
+#include "Wavetables/Coefficients/LFOPyramid8.h"
+#include "Wavetables/Coefficients/LFOPyramid12.h"
+#include "Wavetables/Coefficients/LFOStair3.h"
+#include "Wavetables/Coefficients/LFOStair4.h"
+#include "Wavetables/Coefficients/LFOStair6.h"
+#include "Wavetables/Coefficients/LFOStair8.h"
+#include "Wavetables/Coefficients/LFOStair12.h"
+#include "Wavetables/Coefficients/LFOSquare50.h"
+#include "Wavetables/Coefficients/LFOSquare25.h"
+#include "Wavetables/Coefficients/LFOSquare12.h"
+#include "Wavetables/Coefficients/LFOSpike.h"
+
+
+
+
 #include "Wavetables/Coefficients/Sine.h"                //0
 #include "Wavetables/Coefficients/ChiptuneTriangle.h"    //1
 #include "Wavetables/Coefficients/ChiptuneSquare50.h"    //2
@@ -119,50 +141,13 @@
 #include "Wavetables/Coefficients/CTSine.h"//100
 #include "Wavetables/Coefficients/CTSoftTune.h"//101
 
-// #include "Wavetables/Coefficients/1.h"//
-// #include "Wavetables/Coefficients/2.h"//
-// #include "Wavetables/Coefficients/3.h"//
-// #include "Wavetables/Coefficients/4.h"//
 
+#include "Wavetables/Coefficients/Sparse1.h" //102
+#include "Wavetables/Coefficients/Sparse2.h" //103
+#include "Wavetables/Coefficients/Sparse3.h" //104
+#include "Wavetables/Coefficients/Sparse4.h" //105
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//====================
-//======= LFOS =======
-//====================
-
-#include "Wavetables/Coefficients/LFOPyramid4.h"
-#include "Wavetables/Coefficients/LFOPyramid6.h"
-#include "Wavetables/Coefficients/LFOPyramid8.h"
-#include "Wavetables/Coefficients/LFOPyramid12.h"
-#include "Wavetables/Coefficients/LFOStair3.h"
-#include "Wavetables/Coefficients/LFOStair4.h"
-#include "Wavetables/Coefficients/LFOStair6.h"
-#include "Wavetables/Coefficients/LFOStair8.h"
-#include "Wavetables/Coefficients/LFOStair12.h"
-#include "Wavetables/Coefficients/LFOSquare50.h"
-#include "Wavetables/Coefficients/LFOSquare25.h"
-#include "Wavetables/Coefficients/LFOSquare12.h"
-#include "Wavetables/Coefficients/LFOSpike.h"
-//#include "Wavetables/Coefficients/ChiptuneCustom9999.h"
-
-
+m_highest_loaded_table = 105;
+#include "Wavetables/Coefficients/SawMutated1.h" //106
+#include "Wavetables/Coefficients/SawMutated2.h" //107
+#include "Wavetables/Coefficients/SawMutated3.h" //108
