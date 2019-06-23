@@ -49,9 +49,9 @@
 #define PHASER_MOD_POS_X  15 + 61 * 1 
 #define PHASER_MOD_POS_Y PHASER_RATE_POS_Y
 #define PHASER_FREQ_POS_X 15 + 61 * 2
-#define PHASER_FREQ_POS_Y PHASER_RATE_POS_Y
+#define PHASER_FREQ_POS_Y 59
 #define phaser_feedback_POS_X PHASER_FREQ_POS_X
-#define phaser_feedback_POS_Y 60
+#define phaser_feedback_POS_Y PHASER_RATE_POS_Y
 #define PHASER_DRY_WET_POS_X 190
 #define PHASER_DRY_WET_POS_Y 36
 
