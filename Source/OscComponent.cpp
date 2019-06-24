@@ -1046,6 +1046,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_wavetable_waveselector.addWave(26, "SquareMutA");
   m_wavetable_waveselector.addWave(27, "SquareMutB");
   m_wavetable_waveselector.addWave(28, "Wave28");
+  m_wavetable_waveselector.addWave(29, "Wave29");
   // m_wavetable_waveselector.setValue(1);
   m_wavetable_waveselector.setTooltip("Selects the wave for the oscillator");
   addChildComponent(m_wavetable_waveselector);

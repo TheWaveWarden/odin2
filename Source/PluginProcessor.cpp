@@ -63,7 +63,7 @@ OdinAudioProcessor::OdinAudioProcessor()
   //WavetableContainer::getInstance().loadWavetablesAfterFourierCreation();
   //WavetableContainer::getInstance().writeWavetablesToFile(); // use this to
 
-  //WavetableContainer::getInstance().mutateWavetable("ChiptuneSquare50", 8, 100, true);
+  //WavetableContainer::getInstance().mutateWavetable("Saw", 20, 100, true);
 
 
   // create draw tables as well

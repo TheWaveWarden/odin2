@@ -25,17 +25,17 @@ void ModMatrixRow::applyModulation() {
         if (m_scale) {
           if (m_scale_amount >= 0) {
             *(m_destination_1_value[voice]) +=
-                (*m_source_value[voice]) * m_mod_amount_1 *
+                (*m_source_value[voice]) * m_mod_amount_1  * fabs(m_mod_amount_1)*
                 (1 + (*m_scale_value[voice] - 1) * m_scale_amount);
           } else {
             *(m_destination_1_value[voice]) +=
-                (*m_source_value[voice]) * m_mod_amount_1 *
+                (*m_source_value[voice]) * m_mod_amount_1 * fabs(m_mod_amount_1) *
                 (1 + fabs(*m_scale_value[voice]) * m_scale_amount);
           }
         } else {
           // DBG("MOD SLOT ACTIVE");
           *(m_destination_1_value[voice]) +=
-              (*m_source_value[voice]) * m_mod_amount_1;
+              (*m_source_value[voice]) * m_mod_amount_1* fabs(m_mod_amount_1);
         }
       }
     } else // mono destination
@@ -45,16 +45,16 @@ void ModMatrixRow::applyModulation() {
       if (m_scale) {
         if (m_scale_amount >= 0) {
           *(m_destination_1_value[0]) +=
-              (*m_source_value[m_most_recent_voice]) * m_mod_amount_1 *
+              (*m_source_value[m_most_recent_voice]) * m_mod_amount_1* fabs(m_mod_amount_1) *
               (1 + (*m_scale_value[m_most_recent_voice] - 1) * m_scale_amount);
         } else {
           *(m_destination_1_value[0]) +=
-              (*m_source_value[m_most_recent_voice]) * m_mod_amount_1 *
+              (*m_source_value[m_most_recent_voice]) * m_mod_amount_1 * fabs(m_mod_amount_1)*
               (1 + fabs(*m_scale_value[m_most_recent_voice]) * m_scale_amount);
         }
       } else {
         *(m_destination_1_value[0]) +=
-            (*m_source_value[m_most_recent_voice]) * m_mod_amount_1;
+            (*m_source_value[m_most_recent_voice]) * m_mod_amount_1* fabs(m_mod_amount_1);
       }
     }
   }
@@ -66,17 +66,17 @@ void ModMatrixRow::applyModulation() {
         if (m_scale) {
           if (m_scale_amount >= 0) {
             *(m_destination_2_value[voice]) +=
-                (*m_source_value[voice]) * m_mod_amount_2 *
+                (*m_source_value[voice]) * m_mod_amount_2* fabs(m_mod_amount_2) *
                 (1 + (*m_scale_value[voice] - 1) * m_scale_amount);
           } else {
             *(m_destination_2_value[voice]) +=
-                (*m_source_value[voice]) * m_mod_amount_2 *
+                (*m_source_value[voice]) * m_mod_amount_2* fabs(m_mod_amount_2) *
                 (1 + fabs(*m_scale_value[voice]) * m_scale_amount);
           }
         } else {
           // DBG("MOD SLOT ACTIVE");
           *(m_destination_2_value[voice]) +=
-              (*m_source_value[voice]) * m_mod_amount_2;
+              (*m_source_value[voice]) * m_mod_amount_2* fabs(m_mod_amount_2);
         }
       }
     } else // mono destination
@@ -86,16 +86,16 @@ void ModMatrixRow::applyModulation() {
       if (m_scale) {
         if (m_scale_amount >= 0) {
           *(m_destination_2_value[0]) +=
-              (*m_source_value[m_most_recent_voice]) * m_mod_amount_2 *
+              (*m_source_value[m_most_recent_voice]) * m_mod_amount_2 * fabs(m_mod_amount_2)*
               (1 + (*m_scale_value[m_most_recent_voice] - 1) * m_scale_amount);
         } else {
           *(m_destination_2_value[0]) +=
-              (*m_source_value[m_most_recent_voice]) * m_mod_amount_2 *
+              (*m_source_value[m_most_recent_voice]) * m_mod_amount_2 * fabs(m_mod_amount_2)*
               (1 + fabs(*m_scale_value[m_most_recent_voice]) * m_scale_amount);
         }
       } else {
         *(m_destination_2_value[0]) +=
-            (*m_source_value[m_most_recent_voice]) * m_mod_amount_2;
+            (*m_source_value[m_most_recent_voice]) * m_mod_amount_2* fabs(m_mod_amount_2);
       }
     }
   }
