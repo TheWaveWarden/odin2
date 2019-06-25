@@ -59,12 +59,15 @@ OdinAudioProcessor::OdinAudioProcessor()
   // WavetableContainer::getInstance().writeSampleTableToFile("Trumpet3.wav");
   // WavetableContainer::getInstance().writeSampleTableToFile("Trumpet4.wav");
 
-  //WavetableContainer::getInstance().createWavetables(44100.f);
-  //WavetableContainer::getInstance().loadWavetablesAfterFourierCreation();
-  //WavetableContainer::getInstance().writeWavetablesToFile(); // use this to
+   WavetableContainer::getInstance().createWavetables(44100.f);
+   WavetableContainer::getInstance().loadWavetablesAfterFourierCreation();
+   //WavetableContainer::getInstance().writeWavetablesToFile();
 
-  //WavetableContainer::getInstance().mutateWavetable("Saw", 20, 100, true);
-
+  //  WavetableContainer::getInstance().mutateWavetable("Saw", 20, 100, true);
+    // WavetableContainer::getInstance().writePerlinTableToFile("Perlin1", 5, 50);
+    // WavetableContainer::getInstance().writePerlinTableToFile("Perlin2", 100, 50);
+    // WavetableContainer::getInstance().writePerlinTableToFile("Perlin3", 500, 50);
+    // WavetableContainer::getInstance().writePerlinTableToFile("Perlin4", 1000, 50);
 
   // create draw tables as well
   float draw_values[WAVEDRAW_STEPS_X];

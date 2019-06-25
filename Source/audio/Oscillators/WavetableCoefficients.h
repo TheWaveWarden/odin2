@@ -180,3 +180,8 @@ m_highest_loaded_table = 105;
 #include "Wavetables/Coefficients/SawMutated18.h" //130
 #include "Wavetables/Coefficients/SawMutated19.h" //131
 #include "Wavetables/Coefficients/SawMutated20.h" //132
+
+#include "Wavetables/Coefficients/Perlin1.h" //133
+#include "Wavetables/Coefficients/Perlin2.h" //134
+#include "Wavetables/Coefficients/Perlin3.h" //135
+#include "Wavetables/Coefficients/Perlin4.h" //136

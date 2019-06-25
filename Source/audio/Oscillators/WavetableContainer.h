@@ -60,6 +60,8 @@ public:
                           std::string p_name);
 
   void writeSampleTableToFile(std::string p_filname);
+  void writePerlinTableToFile(std::string p_filename, int p_steps,
+                              float p_percent);
 
   // call this to make wavetablefiles from wavetable coefficients
   void writeWavetablesToFile();
@@ -82,6 +84,9 @@ private:
   WavetableContainer();
 
 protected:
+  void seedRandom();
+  bool m_random_seeded = false;
+
   int m_highest_loaded_table = 0;
 
   // const float

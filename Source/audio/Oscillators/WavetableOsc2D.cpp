@@ -155,15 +155,11 @@ void WavetableOsc2D::loadWavetables(){
     setWavetablePointer(26, 2, WavetableContainer::getInstance().getWavetablePointers("ChiptuneSquare50Mutated7"));
     setWavetablePointer(26, 3, WavetableContainer::getInstance().getWavetablePointers("ChiptuneSquare50Mutated8"));
 
-    setWavetablePointer(27, 0, WavetableContainer::getInstance().getWavetablePointers("SawMutated13"));
-    setWavetablePointer(27, 1, WavetableContainer::getInstance().getWavetablePointers("SawMutated14"));
-    setWavetablePointer(27, 2, WavetableContainer::getInstance().getWavetablePointers("SawMutated15"));
-    setWavetablePointer(27, 3, WavetableContainer::getInstance().getWavetablePointers("SawMutated16"));
+    setWavetablePointer(27, 0, WavetableContainer::getInstance().getWavetablePointers("Perlin1"));
+    setWavetablePointer(27, 1, WavetableContainer::getInstance().getWavetablePointers("Perlin2"));
+    setWavetablePointer(27, 2, WavetableContainer::getInstance().getWavetablePointers("Perlin3"));
+    setWavetablePointer(27, 3, WavetableContainer::getInstance().getWavetablePointers("Perlin4"));
 
-    setWavetablePointer(28, 0, WavetableContainer::getInstance().getWavetablePointers("SawMutated17"));
-    setWavetablePointer(28, 1, WavetableContainer::getInstance().getWavetablePointers("SawMutated18"));
-    setWavetablePointer(28, 2, WavetableContainer::getInstance().getWavetablePointers("SawMutated19"));
-    setWavetablePointer(28, 3, WavetableContainer::getInstance().getWavetablePointers("SawMutated20"));
 
 }
 

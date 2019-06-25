@@ -1512,7 +1512,7 @@ void WavetableContainer::mutateWavetable(std::string p_table_name,
   // m_fourier_coeffs[it->second];
 
   // seed random
-  std::srand(std::time(nullptr));
+  seedRandom();
 
   for (int mutation = 1; mutation <= number_of_mutations; ++mutation) {
     float p_specdraw_values[SIN_AND_COS][NUMBER_OF_HARMONICS] = {0};
@@ -1626,4 +1626,218 @@ void WavetableContainer::mutateWavetable(std::string p_table_name,
     output_file << "#undef WT_NR\n";
     output_file.close();
   }
+}
+
+void WavetableContainer::seedRandom() {
+  if (!m_random_seeded) {
+    std::srand(std::time(nullptr));
+    m_random_seeded = true;
+  }
+}
+
+// interpolates by cosine, frac in [0,1]
+float cosInterpol(float p_left, float p_right, float p_frac) {
+  float cosine = 0.5f - 0.5f * cos(M_PI * p_frac);
+  return p_left + (p_right - p_left) * cosine;
+}
+
+void WavetableContainer::writePerlinTableToFile(std ::string p_table_name,
+                                                int p_steps, float p_percent) {
+  seedRandom();
+
+  // first generate the grid:
+  std::vector<float> grid = {0.f};
+  std::vector<float> step_length;
+  std::vector<float> values = {0.f}; // first value is zero (and last)
+
+  float grid_step_size = 1.f / (float)p_steps;
+
+  bool grid_finished = false;
+
+  while (!grid_finished) {
+    // generate next grid point with variation
+    float random = (float)rand();
+    random = 2.f * ((float)random / (float)RAND_MAX) - 1.f;
+    random *= p_percent / 100.f;
+    random = 1.f + random;
+
+    float this_step_size = grid_step_size * random;
+
+    // cap it in case of end reached:
+    if (grid[grid.size() - 1] + this_step_size > 1) {
+      this_step_size = 1.f - grid[grid.size() - 1];
+      grid_finished = true;
+    }
+
+    // push data on vectors
+    grid.push_back(grid[grid.size() - 1] + this_step_size);
+    step_length.push_back(this_step_size);
+  }
+
+  // next generate the values on the grid (start and endpoint are zero)
+  for (int i = 1; i < grid.size() - 1; ++i) {
+    float random = (float)rand();
+    random = 2.f * ((float)random / (float)RAND_MAX) - 1.f;
+    values.push_back(random);
+  }
+  values.push_back(0.f);
+
+  DBG("gridsize: " + std::to_string(grid.size()));
+  DBG("stepsize: " + std::to_string(step_length.size()));
+  DBG("valuesize: " + std::to_string(values.size()));
+  DBG("======");
+
+#define PERLIN_STEPS_X 10000
+
+  // now fill table with perlin noise
+  float perlin_table[PERLIN_STEPS_X] = {0};
+
+  // std::ofstream perlin_file;
+  // perlin_file.open("/home/frot/odinvst/Source/audio/Oscillators/"
+  //                  "Wavetables/Coefficients/" +
+  //                  p_table_name + ".csv");
+
+  // perlin_file << "axis" << ";" << "data" << ";\n";
+
+  for (int i = 0; i < PERLIN_STEPS_X; ++i) {
+    float x = (float)i / (float)PERLIN_STEPS_X;
+
+    int segment = 0;
+    for (int seg = 0; seg < grid.size(); ++seg) {
+      if (x < grid[seg]) {
+        segment = seg - 1;
+        break;
+      }
+    }
+
+    float left = values[segment];
+    float right = values[segment + 1];
+    float frac = (x - grid[segment]) / step_length[segment];
+
+    perlin_table[i] = cosInterpol(left, right, frac);
+    // perlin_file << i << ";" << perlin_table[i] << ";\n";
+  }
+
+  // perlin_file.close();
+
+  float wavedraw_coefficients[SIN_AND_COS][NUMBER_OF_HARMONICS];
+
+  float step_width = 2 * PI / PERLIN_STEPS_X;
+
+  for (int harmonic = 1; harmonic < NUMBER_OF_HARMONICS; ++harmonic) {
+
+    float coeff_sine = 0.f;
+    float coeff_cosine = 0.f;
+
+    for (int segment = 0; segment < PERLIN_STEPS_X; ++segment) {
+      // use either const sections or linear sections
+
+      // wrap function value at end to start
+      float segment_end_value = (segment == PERLIN_STEPS_X - 1)
+                                    ? perlin_table[0]
+                                    : perlin_table[segment + 1];
+
+      coeff_sine += lin_segment_one_overtone_sine(
+          segment * step_width, (segment + 1) * step_width,
+          perlin_table[segment], segment_end_value, harmonic);
+      coeff_cosine += lin_segment_one_overtone_cosine(
+          segment * step_width, (segment + 1) * step_width,
+          perlin_table[segment], segment_end_value, harmonic);
+    }
+    wavedraw_coefficients[0][harmonic] = coeff_sine;
+    wavedraw_coefficients[1][harmonic] = coeff_cosine;
+  }
+
+  // now create the wavetable from the fourier coefficients
+  double seed_freq = 27.5; // A0
+  float max = 0.f;
+  float wavedraw_tables[SUBTABLES_PER_WAVETABLE][WAVETABLE_LENGTH] = {0};
+  float p_samplerate = 44100;
+
+  // loop over subtables
+  for (int index_sub_table = 0; index_sub_table < SUBTABLES_PER_WAVETABLE;
+       ++index_sub_table) {
+
+    // how many harmonics are needed for this subtable
+    int number_of_harmonics = (int)((p_samplerate * 0.5f / seed_freq) - 1);
+
+    // don't allow more than 800 harmonics (for big Samplerates this might
+    // happen)
+    number_of_harmonics = number_of_harmonics > NUMBER_OF_HARMONICS
+                              ? NUMBER_OF_HARMONICS
+                              : number_of_harmonics;
+
+    for (int index_position = 0; index_position < WAVETABLE_LENGTH;
+         ++index_position) {
+      for (int index_harmonics = 1; index_harmonics < number_of_harmonics;
+           ++index_harmonics) {
+
+        // fill table with
+        // sine harmonics
+        wavedraw_tables[index_sub_table][index_position] +=
+            wavedraw_coefficients[0][index_harmonics] *
+            sin(2.f * PI * index_position * index_harmonics /
+                (float)WAVETABLE_LENGTH);
+        // cosine
+        wavedraw_tables[index_sub_table][index_position] +=
+            wavedraw_coefficients[1][index_harmonics] *
+            cos(2.f * PI * index_position * index_harmonics /
+                (float)WAVETABLE_LENGTH);
+      }
+      // find max among all tables
+      if (fabs(wavedraw_tables[index_sub_table][index_position]) > max) {
+        max = fabs(wavedraw_tables[index_sub_table][index_position]);
+      }
+    }
+    // increment seed frequency by minor third = 2^(3/12)
+    seed_freq *= 1.1892071150;
+  }
+
+  // do another round to scale the table
+  // avoid division by 0
+  if (max > 1e-5) {
+    max = 1.f / max; // for faster computation
+  }
+
+  std::ofstream container;
+  container.open(
+      "/home/frot/odinvst/Source/audio//Oscillators/WavetableCoefficients.h",
+      std::ofstream::out | std::ofstream::app);
+
+  container << "#include \"Wavetables/Coefficients/" + p_table_name +
+                   ".h\" //" + std::to_string(m_highest_loaded_table + 1) +
+                   "\n";
+  container.close();
+
+  DBG("CREATING PERLIN TABLE /home/frot/odinvst/Source/audio/Oscillators/"
+      "Wavetables/Coefficients/" +
+      p_table_name + ".h " + std::to_string(m_highest_loaded_table + 1));
+
+  std::ofstream output_file;
+  output_file.open("/home/frot/odinvst/Source/audio/Oscillators/"
+                   "Wavetables/Coefficients/" +
+                   p_table_name + ".h");
+
+  output_file << "#define WT_NR " << ++m_highest_loaded_table << "\n\n";
+  output_file << "m_highest_loaded_table = WT_NR > m_highest_loaded_table ? "
+                 "WT_NR : m_highest_loaded_table;\n";
+  output_file << "m_wavetable_names_1D[WT_NR] = \"" + p_table_name + "\";\n\n";
+
+  output_file << "m_fourier_coeffs[WT_NR][1][0] = " + to_string_no_comma(max) +
+                     ";//scalar\n\n";
+
+  for (int harmonic = 1; harmonic < NUMBER_OF_HARMONICS; ++harmonic) {
+
+    output_file << "m_fourier_coeffs[WT_NR][0][" + std::to_string(harmonic) +
+                       "] = " +
+                       to_string_no_comma(wavedraw_coefficients[0][harmonic]) +
+                       ";\n";
+    output_file << "m_fourier_coeffs[WT_NR][1][" + std::to_string(harmonic) +
+                       "] = " +
+                       to_string_no_comma(wavedraw_coefficients[1][harmonic]) +
+                       ";\n";
+  }
+
+  output_file << "#undef WT_NR\n";
+  output_file.close();
 }
