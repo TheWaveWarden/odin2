@@ -1459,6 +1459,16 @@ void WavetableContainer::writeSampleTableToFile(std::string p_filename) {
     p_table_name = p_table_name.substr(0, p_table_name.size() - 4);
   }
 
+  std::ofstream container;
+  container.open(
+      "/home/frot/odinvst/Source/audio//Oscillators/WavetableCoefficients.h",
+      std::ofstream::out | std::ofstream::app);
+
+  container << "#include \"Wavetables/Coefficients/" + p_table_name +
+                   ".h\" //" + std::to_string(m_highest_loaded_table + 1) +
+                   "\n";
+  container.close();
+
   DBG("CREATING TABLE /home/frot/odinvst/Source/audio/Oscillators/"
       "Wavetables/Coefficients/" +
       p_table_name + ".h");
@@ -1468,9 +1478,10 @@ void WavetableContainer::writeSampleTableToFile(std::string p_filename) {
                    "Wavetables/Coefficients/" +
                    p_table_name + ".h");
 
-  output_file << "#define WT_NR \n\n";
+  output_file << "#define WT_NR " << ++m_highest_loaded_table << "\n\n";
   output_file << "m_wavetable_names_1D[WT_NR] = \"" + p_table_name + "\";\n\n";
-
+  output_file << "m_highest_loaded_table = WT_NR > m_highest_loaded_table ? "
+                 "WT_NR : m_highest_loaded_table;\n";
   output_file << "m_fourier_coeffs[WT_NR][1][0] = " + to_string_no_comma(max) +
                      ";//scalar\n\n";
 

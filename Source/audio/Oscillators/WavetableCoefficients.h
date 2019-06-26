@@ -185,3 +185,34 @@ m_highest_loaded_table = 105;
 #include "Wavetables/Coefficients/Perlin2.h" //134
 #include "Wavetables/Coefficients/Perlin3.h" //135
 #include "Wavetables/Coefficients/Perlin4.h" //136
+
+#include "Wavetables/Coefficients/Perlin5.h" //137
+#include "Wavetables/Coefficients/Perlin6.h" //138
+#include "Wavetables/Coefficients/Perlin7.h" //139
+#include "Wavetables/Coefficients/Perlin8.h" //140
+#include "Wavetables/Coefficients/Perlin9.h" //141
+#include "Wavetables/Coefficients/Perlin10.h" //142
+#include "Wavetables/Coefficients/Perlin11.h" //143
+#include "Wavetables/Coefficients/Perlin12.h" //144
+
+
+#include "Wavetables/Coefficients/AKWF_hvoice_0002.h" //145
+#include "Wavetables/Coefficients/AKWF_hvoice_0010.h" //146
+#include "Wavetables/Coefficients/AKWF_hvoice_0014.h" //147
+#include "Wavetables/Coefficients/AKWF_hvoice_0019.h" //148
+#include "Wavetables/Coefficients/AKWF_hvoice_0020.h" //149
+#include "Wavetables/Coefficients/AKWF_hvoice_0021.h" //150
+#include "Wavetables/Coefficients/AKWF_hvoice_0029.h" //151
+#include "Wavetables/Coefficients/AKWF_hvoice_0032.h" //152
+#include "Wavetables/Coefficients/AKWF_hvoice_0037.h" //153
+#include "Wavetables/Coefficients/AKWF_hvoice_0041.h" //154
+#include "Wavetables/Coefficients/AKWF_hvoice_0047.h" //155
+#include "Wavetables/Coefficients/AKWF_hvoice_0049.h" //156
+#include "Wavetables/Coefficients/AKWF_hvoice_0056.h" //157
+#include "Wavetables/Coefficients/AKWF_hvoice_0064.h" //158
+#include "Wavetables/Coefficients/AKWF_hvoice_0071.h" //159
+#include "Wavetables/Coefficients/AKWF_hvoice_0093.h" //160
+#include "Wavetables/Coefficients/AKWF_fmsynth_0011.h" //161
+#include "Wavetables/Coefficients/AKWF_fmsynth_0032.h" //162
+#include "Wavetables/Coefficients/AKWF_fmsynth_0034.h" //163
+#include "Wavetables/Coefficients/AKWF_fmsynth_0081.h" //164
