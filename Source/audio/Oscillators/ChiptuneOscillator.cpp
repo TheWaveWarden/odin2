@@ -15,41 +15,7 @@ ChiptuneOscillator::ChiptuneOscillator() {
 
 ChiptuneOscillator::~ChiptuneOscillator() {}
 
-// void ChiptuneOscillator::loadWavetables() {
-//   setWavetablePointer(0, WavetableContainer::getInstance().getWavetablePointers(
-//                              "ChiptuneSquare50"));
-//   setWavetablePointer(1, WavetableContainer::getInstance().getWavetablePointers(
-//                              "ChiptuneSquare25"));
-//   setWavetablePointer(2, WavetableContainer::getInstance().getWavetablePointers(
-//                              "ChiptuneSquare12_5"));
-//   setWavetablePointer(3, WavetableContainer::getInstance().getWavetablePointers(
-//                              "ChiptuneTriangle"));
-//   setWavetablePointer(
-//       4, WavetableContainer::getInstance().getWavetablePointers("ChiptuneSaw"));
-//   setWavetablePointer(
-//       5, WavetableContainer::getInstance().getWavetablePointers("CTSine"));
-//         setWavetablePointer(
-//       6, WavetableContainer::getInstance().getWavetablePointers("CTDiverging"));
-//         setWavetablePointer(
-//       7, WavetableContainer::getInstance().getWavetablePointers("CTHigh1"));
-//         setWavetablePointer(
-//       8, WavetableContainer::getInstance().getWavetablePointers("CTHigh2"));
-//         setWavetablePointer(
-//       9, WavetableContainer::getInstance().getWavetablePointers("CTHigh3"));
-//   setWavetablePointer(
-//       10, WavetableContainer::getInstance().getWavetablePointers("CTRich"));
-//       setWavetablePointer(
-//       11, WavetableContainer::getInstance().getWavetablePointers("CTSoftTune"));
 
-  
-
-//   setWavetablePointerNONCONST(
-//       10, WavetableContainer::getInstance().getChipdrawPointer(0));
-//   setWavetablePointerNONCONST(
-//       11, WavetableContainer::getInstance().getChipdrawPointer(1));
-//   setWavetablePointerNONCONST(
-//       12, WavetableContainer::getInstance().getChipdrawPointer(2));
-// }
 
 float ChiptuneOscillator::doOscillate() {
   // if(!m_note_on){

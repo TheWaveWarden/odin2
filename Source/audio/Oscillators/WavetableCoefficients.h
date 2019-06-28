@@ -25,12 +25,9 @@
 #include "Wavetables/Coefficients/ChiptuneSquare50.h"    //2
 #include "Wavetables/Coefficients/ChiptuneSquare25.h"    //3
 #include "Wavetables/Coefficients/ChiptuneSquare12_5.h"  //4
-#include "Wavetables/Coefficients/ChiptuneCustom1.h"     //5
-#include "Wavetables/Coefficients/ChiptuneCustom2.h"     //6
-#include "Wavetables/Coefficients/ChiptuneCustom3.h"     //7
-#include "Wavetables/Coefficients/ChiptuneCustom4.h"     //8
-#include "Wavetables/Coefficients/ChiptuneCustom5.h"     //9
-#include "Wavetables/Coefficients/ChiptuneCustom6.h"     //10
+
+//todo hole
+
 #include "Wavetables/Coefficients/Saw.h"                 //11
 #include "Wavetables/Coefficients/Triangle.h"            //12
 #include "Wavetables/Coefficients/FatSaw.h"                //13
@@ -84,10 +81,7 @@
 #include "Wavetables/Coefficients/Skyline3.h"//56
 #include "Wavetables/Coefficients/Skyline4.h"//57
 
-#include "Wavetables/Coefficients/Soft1.h"//58
-#include "Wavetables/Coefficients/Soft2.h"//59
-#include "Wavetables/Coefficients/Soft3.h"//60
-#include "Wavetables/Coefficients/Soft4.h"//61
+//TODO
 
 #include "Wavetables/Coefficients/MultiSaw1.h"//62
 #include "Wavetables/Coefficients/MultiSaw2.h"//63
@@ -126,12 +120,10 @@
 #include "Wavetables/Coefficients/Trumpet3.h" //88
 #include "Wavetables/Coefficients/Trumpet4.h" //89
 
+//todo hole
 
-#include "Wavetables/Coefficients/MusicBox1.h" //90
-#include "Wavetables/Coefficients/MusicBox2.h" //91
-#include "Wavetables/Coefficients/MusicBox3.h" //92
-#include "Wavetables/Coefficients/MusicBox4.h" //93
 
+//these are all referenced in chiptune wavetable mapping:
 #include "Wavetables/Coefficients/CTDiverging.h"//94
 #include "Wavetables/Coefficients/CTHigh.h"//95
 #include "Wavetables/Coefficients/CTHigh2.h"//96
@@ -148,11 +140,6 @@
 #include "Wavetables/Coefficients/Sparse4.h" //105
 
 m_highest_loaded_table = 105;
-#include "Wavetables/Coefficients/SawMutated1.h" //106
-#include "Wavetables/Coefficients/SawMutated2.h" //107
-#include "Wavetables/Coefficients/SawMutated3.h" //108
-
-
 
 #include "Wavetables/Coefficients/FatSawMutated1.h" //109
 #include "Wavetables/Coefficients/FatSawMutated2.h" //110
@@ -172,20 +159,11 @@ m_highest_loaded_table = 105;
 #include "Wavetables/Coefficients/ChiptuneSquare50Mutated7.h" //123
 #include "Wavetables/Coefficients/ChiptuneSquare50Mutated8.h" //124
 
-#include "Wavetables/Coefficients/SawMutated13.h" //125
-#include "Wavetables/Coefficients/SawMutated14.h" //126
-#include "Wavetables/Coefficients/SawMutated15.h" //127
-#include "Wavetables/Coefficients/SawMutated16.h" //128
-#include "Wavetables/Coefficients/SawMutated17.h" //129
-#include "Wavetables/Coefficients/SawMutated18.h" //130
-#include "Wavetables/Coefficients/SawMutated19.h" //131
-#include "Wavetables/Coefficients/SawMutated20.h" //132
 
 #include "Wavetables/Coefficients/Perlin1.h" //133
 #include "Wavetables/Coefficients/Perlin2.h" //134
 #include "Wavetables/Coefficients/Perlin3.h" //135
 #include "Wavetables/Coefficients/Perlin4.h" //136
-
 #include "Wavetables/Coefficients/Perlin5.h" //137
 #include "Wavetables/Coefficients/Perlin6.h" //138
 #include "Wavetables/Coefficients/Perlin7.h" //139
@@ -224,10 +202,6 @@ m_highest_loaded_table = 105;
 #include "Wavetables/Coefficients/AKWF_bitreduced_0003.h" //170
 #include "Wavetables/Coefficients/AKWF_bitreduced_0006.h" //171
 #include "Wavetables/Coefficients/AKWF_bitreduced_0011.h" //172
-#include "Wavetables/Coefficients/AKWF_raw_0027.h" //173
-#include "Wavetables/Coefficients/AKWF_raw_0025.h" //174
-#include "Wavetables/Coefficients/AKWF_raw_0029.h" //175
-#include "Wavetables/Coefficients/AKWF_raw_0034.h" //176
 
 #include "Wavetables/Coefficients/PerlinReplace1.h" //177
 #include "Wavetables/Coefficients/PerlinReplace2.h" //178
