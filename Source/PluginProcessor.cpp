@@ -54,49 +54,12 @@ OdinAudioProcessor::OdinAudioProcessor()
 
   WavetableContainer::getInstance().loadWavetablesFromConstData();
 
-  // WavetableContainer::getInstance().writeSampleTableToFile("Trumpet1.wav");
-  // WavetableContainer::getInstance().writeSampleTableToFile("Trumpet2.wav");
-  // WavetableContainer::getInstance().writeSampleTableToFile("Trumpet3.wav");
-  // // WavetableContainer::getInstance().writeSampleTableToFile("Trumpet4.wav");
-
-  // WavetableContainer::getInstance().writeSampleTableToFile("AKWF_hvoice_0002.wav");
-  // WavetableContainer::getInstance().writeSampleTableToFile("AKWF_hvoice_0010.wav");
-  // WavetableContainer::getInstance().writeSampleTableToFile("AKWF_hvoice_0014.wav");
-  // WavetableContainer::getInstance().writeSampleTableToFile("AKWF_hvoice_0019.wav");
-  // WavetableContainer::getInstance().writeSampleTableToFile("AKWF_hvoice_0020.wav");
-  // WavetableContainer::getInstance().writeSampleTableToFile("AKWF_hvoice_0021.wav");
-  // WavetableContainer::getInstance().writeSampleTableToFile("AKWF_hvoice_0029.wav");
-  // WavetableContainer::getInstance().writeSampleTableToFile("AKWF_hvoice_0032.wav");
-  // WavetableContainer::getInstance().writeSampleTableToFile("AKWF_hvoice_0037.wav");
-  // WavetableContainer::getInstance().writeSampleTableToFile("AKWF_hvoice_0041.wav");
-  // WavetableContainer::getInstance().writeSampleTableToFile("AKWF_hvoice_0047.wav");
-  // WavetableContainer::getInstance().writeSampleTableToFile("AKWF_hvoice_0049.wav");
-  // WavetableContainer::getInstance().writeSampleTableToFile("AKWF_hvoice_0056.wav");
-  // WavetableContainer::getInstance().writeSampleTableToFile("AKWF_hvoice_0064.wav");
-  // WavetableContainer::getInstance().writeSampleTableToFile("AKWF_hvoice_0071.wav");
-  // WavetableContainer::getInstance().writeSampleTableToFile("AKWF_hvoice_0093.wav");
-  // WavetableContainer::getInstance().writeSampleTableToFile("AKWF_fmsynth_0011.wav");
-  // WavetableContainer::getInstance().writeSampleTableToFile("AKWF_fmsynth_0032.wav");
-  // WavetableContainer::getInstance().writeSampleTableToFile("AKWF_fmsynth_0034.wav");
-  // WavetableContainer::getInstance().writeSampleTableToFile("AKWF_fmsynth_0081.wav");
-
-
-  
-
-   //WavetableContainer::getInstance().createWavetables(44100.f);
-   //WavetableContainer::getInstance().loadWavetablesAfterFourierCreation();
-   //WavetableContainer::getInstance().writeWavetablesToFile();
+  //WavetableContainer::getInstance().createWavetables(44100.f);
+  //WavetableContainer::getInstance().loadWavetablesAfterFourierCreation();
+  //WavetableContainer::getInstance().writeWavetablesToFile();
 
   //  WavetableContainer::getInstance().mutateWavetable("Saw", 20, 100, true);
-    // WavetableContainer::getInstance().writePerlinTableToFile("Perlin1", 5, 50);
-    // WavetableContainer::getInstance().writePerlinTableToFile("Perlin2", 100, 50);
-    // WavetableContainer::getInstance().writePerlinTableToFile("Perlin3", 500, 50);
-    // WavetableContainer::getInstance().writePerlinTableToFile("Perlin4", 1000, 50);
-
-    //  WavetableContainer::getInstance().writePerlinTableToFile("Perlin9", 50, 95);
-    //  WavetableContainer::getInstance().writePerlinTableToFile("Perlin10", 50, 95);
-    //  WavetableContainer::getInstance().writePerlinTableToFile("Perlin11", 50, 95);
-    //  WavetableContainer::getInstance().writePerlinTableToFile("Perlin12", 50, 95);
+  // WavetableContainer::getInstance().writePerlinTableToFile("Perlin1", 5, 50);
 
   // create draw tables as well
   float draw_values[WAVEDRAW_STEPS_X];

@@ -216,3 +216,15 @@ m_highest_loaded_table = 105;
 #include "Wavetables/Coefficients/AKWF_fmsynth_0032.h" //162
 #include "Wavetables/Coefficients/AKWF_fmsynth_0034.h" //163
 #include "Wavetables/Coefficients/AKWF_fmsynth_0081.h" //164
+#include "Wavetables/Coefficients/AKWF_birds_0010.h" //165
+#include "Wavetables/Coefficients/AKWF_birds_0011.h" //166
+#include "Wavetables/Coefficients/AKWF_birds_0014.h" //167
+#include "Wavetables/Coefficients/AKWF_birds_0004.h" //168
+#include "Wavetables/Coefficients/AKWF_bitreduced_0002.h" //169
+#include "Wavetables/Coefficients/AKWF_bitreduced_0003.h" //170
+#include "Wavetables/Coefficients/AKWF_bitreduced_0006.h" //171
+#include "Wavetables/Coefficients/AKWF_bitreduced_0011.h" //172
+#include "Wavetables/Coefficients/AKWF_raw_0027.h" //173
+#include "Wavetables/Coefficients/AKWF_raw_0025.h" //174
+#include "Wavetables/Coefficients/AKWF_raw_0029.h" //175
+#include "Wavetables/Coefficients/AKWF_raw_0034.h" //176

@@ -195,6 +195,21 @@ void WavetableOsc2D::loadWavetables(){
   setWavetablePointer(34, 2, WavetableContainer::getInstance().getWavetablePointers("AKWF_fmsynth_0034"));
   setWavetablePointer(34, 3, WavetableContainer::getInstance().getWavetablePointers("AKWF_fmsynth_0081"));
 
+  
+  setWavetablePointer(35, 0, WavetableContainer::getInstance().getWavetablePointers("AKWF_birds_0010"));
+  setWavetablePointer(35, 1, WavetableContainer::getInstance().getWavetablePointers("AKWF_birds_0011"));
+  setWavetablePointer(35, 2, WavetableContainer::getInstance().getWavetablePointers("AKWF_birds_0014"));
+  setWavetablePointer(35, 3, WavetableContainer::getInstance().getWavetablePointers("AKWF_birds_0004"));
+  
+  setWavetablePointer(36, 0, WavetableContainer::getInstance().getWavetablePointers("AKWF_bitreduced_0002"));
+  setWavetablePointer(36, 1, WavetableContainer::getInstance().getWavetablePointers("AKWF_bitreduced_0003"));
+  setWavetablePointer(36, 2, WavetableContainer::getInstance().getWavetablePointers("AKWF_bitreduced_0006"));
+  setWavetablePointer(36, 3, WavetableContainer::getInstance().getWavetablePointers("AKWF_bitreduced_0011"));
+  
+  setWavetablePointer(37, 0, WavetableContainer::getInstance().getWavetablePointers("AKWF_raw_0027"));
+  setWavetablePointer(37, 1, WavetableContainer::getInstance().getWavetablePointers("AKWF_raw_0025"));
+  setWavetablePointer(37, 2, WavetableContainer::getInstance().getWavetablePointers("AKWF_raw_0029"));
+  setWavetablePointer(37, 3, WavetableContainer::getInstance().getWavetablePointers("AKWF_raw_0034"));
 
 }
 

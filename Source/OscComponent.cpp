@@ -1053,9 +1053,9 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_wavetable_waveselector.addWave(33, "Voice C");
   m_wavetable_waveselector.addWave(34, "Voice D");
   m_wavetable_waveselector.addWave(35, "FM");
-  m_wavetable_waveselector.addWave(36, "Wave36");
-  m_wavetable_waveselector.addWave(37, "Wave37");
-  m_wavetable_waveselector.addWave(38, "Wave38");
+  m_wavetable_waveselector.addWave(36, "Nasal");
+  m_wavetable_waveselector.addWave(37, "Bitreduced");
+  m_wavetable_waveselector.addWave(38, "Raw");
   m_wavetable_waveselector.addWave(39, "Wave39");
   // m_wavetable_waveselector.setValue(1);
   m_wavetable_waveselector.setTooltip("Selects the wave for the oscillator");
