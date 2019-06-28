@@ -228,3 +228,12 @@ m_highest_loaded_table = 105;
 #include "Wavetables/Coefficients/AKWF_raw_0025.h" //174
 #include "Wavetables/Coefficients/AKWF_raw_0029.h" //175
 #include "Wavetables/Coefficients/AKWF_raw_0034.h" //176
+
+#include "Wavetables/Coefficients/PerlinReplace1.h" //177
+#include "Wavetables/Coefficients/PerlinReplace2.h" //178
+#include "Wavetables/Coefficients/PerlinReplace3.h" //179
+#include "Wavetables/Coefficients/PerlinReplace4.h" //180
+#include "Wavetables/Coefficients/PerlinReplace5.h" //181
+#include "Wavetables/Coefficients/PerlinReplace6.h" //182
+#include "Wavetables/Coefficients/PerlinReplace7.h" //183
+#include "Wavetables/Coefficients/PerlinReplace8.h" //184

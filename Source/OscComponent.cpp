@@ -817,23 +817,23 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
                        number + 11, number + 3);
 
   juce::PopupMenu chiptune_submenu;
-  chiptune_submenu.addItem(401, "Square 50");
-  chiptune_submenu.addItem(402, "Square 25");
-  chiptune_submenu.addItem(403, "Square 12.5");
-  chiptune_submenu.addItem(404, "ChipTriangle");
-  chiptune_submenu.addItem(405, "TODO");
+  chiptune_submenu.addItem(501, "Square 50");
+  chiptune_submenu.addItem(502, "Square 25");
+  chiptune_submenu.addItem(503, "Square 12.5");
+  chiptune_submenu.addItem(504, "ChipTriangle");
+  chiptune_submenu.addItem(505, "TODO");
   juce::PopupMenu wavedraw_submenu;
-  wavedraw_submenu.addItem(501, "WaveDraw Osc1");
-  wavedraw_submenu.addItem(502, "WaveDraw Osc2");
-  wavedraw_submenu.addItem(503, "WaveDraw Osc3");
+  wavedraw_submenu.addItem(601, "WaveDraw Osc1");
+  wavedraw_submenu.addItem(602, "WaveDraw Osc2");
+  wavedraw_submenu.addItem(603, "WaveDraw Osc3");
   juce::PopupMenu chipdraw_submenu;
-  chipdraw_submenu.addItem(601, "ChipDraw Osc1");
-  chipdraw_submenu.addItem(602, "ChipDraw Osc2");
-  chipdraw_submenu.addItem(603, "ChipDraw Osc3");
+  chipdraw_submenu.addItem(701, "ChipDraw Osc1");
+  chipdraw_submenu.addItem(702, "ChipDraw Osc2");
+  chipdraw_submenu.addItem(703, "ChipDraw Osc3");
   juce::PopupMenu specdraw_submenu;
-  specdraw_submenu.addItem(701, "SpecDraw Osc1");
-  specdraw_submenu.addItem(702, "SpecDraw Osc2");
-  specdraw_submenu.addItem(703, "SpecDraw Osc3");
+  specdraw_submenu.addItem(801, "SpecDraw Osc1");
+  specdraw_submenu.addItem(802, "SpecDraw Osc2");
+  specdraw_submenu.addItem(803, "SpecDraw Osc3");
 
   // now add all menus
   wavetable_recycle_menu.addItem(101, "Saw");
@@ -842,29 +842,41 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   wavetable_recycle_menu.addItem(104, "Sine");
 
   wavetable_submenu.addSubMenu("Classic Analog", wavetable_recycle_menu);
-  ADD_WAVETABLE_SUB_MENU("Additive A", 110)
-  ADD_WAVETABLE_SUB_MENU("Additive B", 120)
-  ADD_WAVETABLE_SUB_MENU("Additive C", 130)
-  ADD_WAVETABLE_SUB_MENU("Additive D", 140)
-  ADD_WAVETABLE_SUB_MENU("Harmonics A", 150)
-  ADD_WAVETABLE_SUB_MENU("Harmonics B", 160)
-  ADD_WAVETABLE_SUB_MENU("Harmonics C", 170)
-  ADD_WAVETABLE_SUB_MENU("Harmonics D", 180)
-  ADD_WAVETABLE_SUB_MENU("Organ", 190)
-  ADD_WAVETABLE_SUB_MENU("BrokenSine", 200)
-  ADD_WAVETABLE_SUB_MENU("Skyline", 210)
-  ADD_WAVETABLE_SUB_MENU("Soft", 220)
-  ADD_WAVETABLE_SUB_MENU("MultiSaw", 230)
-  ADD_WAVETABLE_SUB_MENU("Rectangular", 240)
-  ADD_WAVETABLE_SUB_MENU("Strings", 250)
-  ADD_WAVETABLE_SUB_MENU("Piano", 260)
-  ADD_WAVETABLE_SUB_MENU("Oboe", 270)
-  ADD_WAVETABLE_SUB_MENU("Flute", 280)
-  ADD_WAVETABLE_SUB_MENU("Trumpet", 290)
-  ADD_WAVETABLE_SUB_MENU("MusicBox", 300)
-  ADD_WAVETABLE_SUB_MENU("Sparse", 310)
-  ADD_WAVETABLE_SUB_MENU("Wave23", 320)
-  ADD_WAVETABLE_SUB_MENU("Last", 996)
+
+  ADD_WAVETABLE_SUB_MENU("BrokenSine", 120);
+  ADD_WAVETABLE_SUB_MENU("Harsh", 130);
+  ADD_WAVETABLE_SUB_MENU("Mean", 140);
+  ADD_WAVETABLE_SUB_MENU("Rectangular", 150);
+  ADD_WAVETABLE_SUB_MENU("Nasal", 160);
+  ADD_WAVETABLE_SUB_MENU("ReplacePerlinB", 170);
+  ADD_WAVETABLE_SUB_MENU("FM", 180);
+  ADD_WAVETABLE_SUB_MENU("Sparse", 190);
+  ADD_WAVETABLE_SUB_MENU("Bitreduced", 200);
+  ADD_WAVETABLE_SUB_MENU("Strings", 210);
+  ADD_WAVETABLE_SUB_MENU("Piano", 220);
+  ADD_WAVETABLE_SUB_MENU("Organ", 230);
+  ADD_WAVETABLE_SUB_MENU("Oboe", 240);
+  ADD_WAVETABLE_SUB_MENU("Flute", 250);
+  ADD_WAVETABLE_SUB_MENU("Trumpet", 260);
+  ADD_WAVETABLE_SUB_MENU("Voice A", 270);
+  ADD_WAVETABLE_SUB_MENU("Voice B", 280);
+  ADD_WAVETABLE_SUB_MENU("Voice C", 290);
+  ADD_WAVETABLE_SUB_MENU("Voice D", 300);
+  ADD_WAVETABLE_SUB_MENU("Additive A", 310);
+  ADD_WAVETABLE_SUB_MENU("Additive B", 320);
+  ADD_WAVETABLE_SUB_MENU("Additive C", 330);
+  ADD_WAVETABLE_SUB_MENU("Additive D", 340);
+  ADD_WAVETABLE_SUB_MENU("Harmonics A", 350);
+  ADD_WAVETABLE_SUB_MENU("Harmonics B", 360);
+  ADD_WAVETABLE_SUB_MENU("Harmonics C", 370);
+  ADD_WAVETABLE_SUB_MENU("Harmonics D", 380);
+  ADD_WAVETABLE_SUB_MENU("MutatedSaw A", 390);
+  ADD_WAVETABLE_SUB_MENU("MutatedSaw B", 400);
+  ADD_WAVETABLE_SUB_MENU("MutatedSquare A", 410);
+  ADD_WAVETABLE_SUB_MENU("MutatedSquare B", 420);
+  ADD_WAVETABLE_SUB_MENU("Perlin A", 430);
+  ADD_WAVETABLE_SUB_MENU("Perlin B", 440);
+  ADD_WAVETABLE_SUB_MENU("Perlin C", 450);
 
   fm_menu.addItem(1, "Sine");
   fm_menu.addSeparator();
@@ -890,110 +902,134 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   //=== COPY & PASTA ===
   //====================
 
-  ADD_MAP_ENTRY("Additive A", 110, m_carrier_waveselector)
-  ADD_MAP_ENTRY("Additive B", 120, m_carrier_waveselector)
-  ADD_MAP_ENTRY("Additive C", 130, m_carrier_waveselector)
-  ADD_MAP_ENTRY("Additive D", 140, m_carrier_waveselector)
-  ADD_MAP_ENTRY("Harmonics A", 150, m_carrier_waveselector)
-  ADD_MAP_ENTRY("Harmonics B", 160, m_carrier_waveselector)
-  ADD_MAP_ENTRY("Harmonics C", 170, m_carrier_waveselector)
-  ADD_MAP_ENTRY("Harmonics D", 180, m_carrier_waveselector)
-  ADD_MAP_ENTRY("Organ", 190, m_carrier_waveselector)
-  ADD_MAP_ENTRY("BrokenSine", 200, m_carrier_waveselector)
-  ADD_MAP_ENTRY("Skyline", 210, m_carrier_waveselector)
-  ADD_MAP_ENTRY("Soft", 220, m_carrier_waveselector)
-  ADD_MAP_ENTRY("MultiSaw", 230, m_carrier_waveselector)
-  ADD_MAP_ENTRY("Wave15", 240, m_carrier_waveselector)
-  ADD_MAP_ENTRY("Strings", 250, m_carrier_waveselector)
-  ADD_MAP_ENTRY("Piano", 260, m_carrier_waveselector)
-  ADD_MAP_ENTRY("Oboe", 270, m_carrier_waveselector)
-  ADD_MAP_ENTRY("Flute", 280, m_carrier_waveselector)
-  ADD_MAP_ENTRY("Trumpet", 290, m_carrier_waveselector)
-  ADD_MAP_ENTRY("MusicBox", 300, m_carrier_waveselector)
-  ADD_MAP_ENTRY("Sparse", 310, m_carrier_waveselector)
-  ADD_MAP_ENTRY("Wave23", 320, m_carrier_waveselector)
-  ADD_MAP_ENTRY("Last", 996, m_carrier_waveselector) // last entry 996-1000
 
-  m_carrier_waveselector.setDecrementValue(101, 1);
-  m_carrier_waveselector.setIncrementValue(334, 401);
+  ADD_MAP_ENTRY("BrokenSine", 120, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Harsh", 130, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Mean", 140, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Rectangular", 150, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Nasal", 160, m_carrier_waveselector)
+  ADD_MAP_ENTRY("ReplacePerlinB", 170, m_carrier_waveselector)
+  ADD_MAP_ENTRY("FM", 180, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Sparse", 190, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Bitreduced", 200, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Strings", 210, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Piano", 220, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Organ", 230, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Oboe", 240, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Flute", 250, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Trumpet", 260, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Voice A", 270, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Voice B", 280, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Voice C", 290, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Voice D", 300, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Additive A", 310, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Additive B", 320, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Additive C", 330, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Additive D", 340, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Harmonics A", 350, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Harmonics B", 360, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Harmonics C", 370, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Harmonics D", 380, m_carrier_waveselector)
+  ADD_MAP_ENTRY("MutatedSaw A", 390, m_carrier_waveselector)
+  ADD_MAP_ENTRY("MutatedSaw B", 400, m_carrier_waveselector)
+  ADD_MAP_ENTRY("MutatedSquare A", 410, m_carrier_waveselector)
+  ADD_MAP_ENTRY("MutatedSquare B", 420, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Perlin A", 430, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Perlin B", 440, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Perlin C", 450, m_carrier_waveselector)
+
+  m_carrier_waveselector.setDecrementValue(121, 104);
+  m_carrier_waveselector.setIncrementValue(454, 501);
   m_carrier_waveselector.addMapEntry("Sine", 1, 101, 1);
   m_carrier_waveselector.addMapEntry("Saw", 101, 102, 1);
   m_carrier_waveselector.addMapEntry("Square", 102, 103, 101);
   m_carrier_waveselector.addMapEntry("Triangle", 103, 104, 102);
-  m_carrier_waveselector.addMapEntry("Sine", 104, 111, 103);
+  m_carrier_waveselector.addMapEntry("Sine", 104, 121, 103);
 
-  m_carrier_waveselector.addMapEntry("Square 50", 401, 402, 334);
-  m_carrier_waveselector.addMapEntry("Square 25", 402, 403, 401);
-  m_carrier_waveselector.addMapEntry("Square 12.5", 403, 404, 402);
-  m_carrier_waveselector.addMapEntry("ChipTriangle", 404, 405, 403);
-  m_carrier_waveselector.addMapEntry("TODO", 405, 501, 404);
+  m_carrier_waveselector.addMapEntry("Square 50", 501, 502, 454);
+  m_carrier_waveselector.addMapEntry("Square 25", 502, 503, 501);
+  m_carrier_waveselector.addMapEntry("Square 12.5", 503, 504, 502);
+  m_carrier_waveselector.addMapEntry("ChipTriangle", 504, 505, 503);
+  m_carrier_waveselector.addMapEntry("TODO", 505, 601, 504);
 
-  m_carrier_waveselector.addMapEntry("WaveDraw Osc1", 501, 502, 405);
-  m_carrier_waveselector.addMapEntry("WaveDraw Osc2", 502, 503, 501);
-  m_carrier_waveselector.addMapEntry("WaveDraw Osc3", 503, 601, 502);
+  m_carrier_waveselector.addMapEntry("WaveDraw Osc1", 601, 602, 505);
+  m_carrier_waveselector.addMapEntry("WaveDraw Osc2", 602, 603, 601);
+  m_carrier_waveselector.addMapEntry("WaveDraw Osc3", 603, 701, 602);
 
-  m_carrier_waveselector.addMapEntry("ChipDraw Osc1", 601, 602, 503);
-  m_carrier_waveselector.addMapEntry("ChipDraw Osc2", 602, 603, 601);
-  m_carrier_waveselector.addMapEntry("ChipDraw Osc3", 603, 701, 602);
+  m_carrier_waveselector.addMapEntry("ChipDraw Osc1", 701, 702, 603);
+  m_carrier_waveselector.addMapEntry("ChipDraw Osc2", 702, 703, 701);
+  m_carrier_waveselector.addMapEntry("ChipDraw Osc3", 703, 801, 702);
 
-  m_carrier_waveselector.addMapEntry("SpecDraw Osc1", 701, 702, 603);
-  m_carrier_waveselector.addMapEntry("SpecDraw Osc2", 702, 703, 701);
-  m_carrier_waveselector.addMapEntry("SpecDraw Osc3", 703, 703, 702);
+  m_carrier_waveselector.addMapEntry("SpecDraw Osc1", 801, 802, 703);
+  m_carrier_waveselector.addMapEntry("SpecDraw Osc2", 802, 803, 801);
+  m_carrier_waveselector.addMapEntry("SpecDraw Osc3", 803, 803, 802);
 
   m_carrier_waveselector.m_menu = fm_menu;
 
-  ADD_MAP_ENTRY("Additive A", 110, m_modulator_waveselector)
-  ADD_MAP_ENTRY("Additive B", 120, m_modulator_waveselector)
-  ADD_MAP_ENTRY("Additive C", 130, m_modulator_waveselector)
-  ADD_MAP_ENTRY("Additive D", 140, m_modulator_waveselector)
-  ADD_MAP_ENTRY("Harmonics A", 150, m_modulator_waveselector)
-  ADD_MAP_ENTRY("Harmonics B", 160, m_modulator_waveselector)
-  ADD_MAP_ENTRY("Harmonics C", 170, m_modulator_waveselector)
-  ADD_MAP_ENTRY("Harmonics D", 180, m_modulator_waveselector)
-  ADD_MAP_ENTRY("Organ", 190, m_modulator_waveselector)
-  ADD_MAP_ENTRY("BrokenSine", 200, m_modulator_waveselector)
-  ADD_MAP_ENTRY("Skyline", 210, m_modulator_waveselector)
-  ADD_MAP_ENTRY("Soft", 220, m_modulator_waveselector)
-  ADD_MAP_ENTRY("MultiSaw", 230, m_modulator_waveselector)
-  ADD_MAP_ENTRY("Wave15", 240, m_modulator_waveselector)
-  ADD_MAP_ENTRY("Strings", 250, m_modulator_waveselector)
-  ADD_MAP_ENTRY("Piano", 260, m_modulator_waveselector)
-  ADD_MAP_ENTRY("Oboe", 270, m_modulator_waveselector)
-  ADD_MAP_ENTRY("Flute", 280, m_modulator_waveselector)
-  ADD_MAP_ENTRY("Trumpet", 290, m_modulator_waveselector)
-  ADD_MAP_ENTRY("MusicBox", 300, m_modulator_waveselector)
-  ADD_MAP_ENTRY("Sparse", 310, m_modulator_waveselector)
-  ADD_MAP_ENTRY("Wave23", 320, m_modulator_waveselector)
-  ADD_MAP_ENTRY("Last", 330, m_modulator_waveselector)
-  ADD_MAP_ENTRY("Last", 996, m_carrier_waveselector) // last entry 996-1000
+  ADD_MAP_ENTRY("BrokenSine", 120, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Harsh", 130, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Mean", 140, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Rectangular", 150, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Nasal", 160, m_modulator_waveselector)
+  ADD_MAP_ENTRY("ReplacePerlinB", 170, m_modulator_waveselector)
+  ADD_MAP_ENTRY("FM", 180, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Sparse", 190, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Bitreduced", 200, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Strings", 210, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Piano", 220, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Organ", 230, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Oboe", 240, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Flute", 250, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Trumpet", 260, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Voice A", 270, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Voice B", 280, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Voice C", 290, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Voice D", 300, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Additive A", 310, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Additive B", 320, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Additive C", 330, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Additive D", 340, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Harmonics A", 350, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Harmonics B", 360, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Harmonics C", 370, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Harmonics D", 380, m_modulator_waveselector)
+  ADD_MAP_ENTRY("MutatedSaw A", 390, m_modulator_waveselector)
+  ADD_MAP_ENTRY("MutatedSaw B", 400, m_modulator_waveselector)
+  ADD_MAP_ENTRY("MutatedSquare A", 410, m_modulator_waveselector)
+  ADD_MAP_ENTRY("MutatedSquare B", 420, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Perlin A", 430, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Perlin B", 440, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Perlin C", 450, m_modulator_waveselector)
 
-  m_modulator_waveselector.setDecrementValue(101, 1);
-  m_modulator_waveselector.setIncrementValue(334, 401);
+  m_modulator_waveselector.setDecrementValue(121, 104);
+  m_modulator_waveselector.setIncrementValue(454, 501);
   m_modulator_waveselector.addMapEntry("Sine", 1, 101, 1);
   m_modulator_waveselector.addMapEntry("Saw", 101, 102, 1);
   m_modulator_waveselector.addMapEntry("Square", 102, 103, 101);
   m_modulator_waveselector.addMapEntry("Triangle", 103, 104, 102);
-  m_modulator_waveselector.addMapEntry("Sine", 104, 111, 103);
+  m_modulator_waveselector.addMapEntry("Sine", 104, 121, 103);
 
-  m_modulator_waveselector.addMapEntry("Square 50", 401, 402, 334);
-  m_modulator_waveselector.addMapEntry("Square 25", 402, 403, 401);
-  m_modulator_waveselector.addMapEntry("Square 12.5", 403, 404, 402);
-  m_modulator_waveselector.addMapEntry("ChipTriangle", 404, 405, 403);
-  m_modulator_waveselector.addMapEntry("TODO", 405, 501, 404);
+  m_modulator_waveselector.addMapEntry("Square 50", 501, 502, 454);
+  m_modulator_waveselector.addMapEntry("Square 25", 502, 503, 501);
+  m_modulator_waveselector.addMapEntry("Square 12.5", 503, 504, 502);
+  m_modulator_waveselector.addMapEntry("ChipTriangle", 504, 505, 503);
+  m_modulator_waveselector.addMapEntry("TODO", 505, 601, 504);
 
-  m_modulator_waveselector.addMapEntry("WaveDraw Osc1", 501, 502, 405);
-  m_modulator_waveselector.addMapEntry("WaveDraw Osc2", 502, 503, 501);
-  m_modulator_waveselector.addMapEntry("WaveDraw Osc3", 503, 601, 502);
+  m_modulator_waveselector.addMapEntry("WaveDraw Osc1", 601, 602, 505);
+  m_modulator_waveselector.addMapEntry("WaveDraw Osc2", 602, 603, 601);
+  m_modulator_waveselector.addMapEntry("WaveDraw Osc3", 603, 701, 602);
 
-  m_modulator_waveselector.addMapEntry("ChipDraw Osc1", 601, 602, 503);
-  m_modulator_waveselector.addMapEntry("ChipDraw Osc2", 602, 603, 601);
-  m_modulator_waveselector.addMapEntry("ChipDraw Osc3", 603, 701, 602);
+  m_modulator_waveselector.addMapEntry("ChipDraw Osc1", 701, 702, 603);
+  m_modulator_waveselector.addMapEntry("ChipDraw Osc2", 702, 703, 701);
+  m_modulator_waveselector.addMapEntry("ChipDraw Osc3", 703, 801, 702);
 
-  m_modulator_waveselector.addMapEntry("SpecDraw Osc1", 701, 702, 603);
-  m_modulator_waveselector.addMapEntry("SpecDraw Osc2", 702, 703, 701);
-  m_modulator_waveselector.addMapEntry("SpecDraw Osc3", 703, 703, 702);
+  m_modulator_waveselector.addMapEntry("SpecDraw Osc1", 801, 802, 703);
+  m_modulator_waveselector.addMapEntry("SpecDraw Osc2", 802, 803, 801);
+  m_modulator_waveselector.addMapEntry("SpecDraw Osc3", 803, 803, 802);
 
   m_modulator_waveselector.m_menu = fm_menu;
+
+  
 
   *(m_vec_a.getRootMenu()) = vector_menu;
   *(m_vec_b.getRootMenu()) = vector_menu;
@@ -1019,45 +1055,41 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_wavetable_waveselector.setTopLeftPosition(WAVE_CARRIER_POS_X,
                                               WAVE_CARRIER_POS_Y);
   m_wavetable_waveselector.addWave(1, "Classic Analog");
-  m_wavetable_waveselector.addWave(2, "Additive A");
-  m_wavetable_waveselector.addWave(3, "Additive B");
-  m_wavetable_waveselector.addWave(4, "Additive C");
-  m_wavetable_waveselector.addWave(5, "Additive D");
-  m_wavetable_waveselector.addWave(6, "Harmonics A");
-  m_wavetable_waveselector.addWave(7, "Harmonics B");
-  m_wavetable_waveselector.addWave(8, "Harmonics C");
-  m_wavetable_waveselector.addWave(9, "Harmonics D");
-  m_wavetable_waveselector.addWave(10, "Organ");
-  m_wavetable_waveselector.addWave(11, "BrokenSine");
-  m_wavetable_waveselector.addWave(12, "Skyline");
-  m_wavetable_waveselector.addWave(13, "Imperfect");
-  m_wavetable_waveselector.addWave(14, "MultiSaw");
-  m_wavetable_waveselector.addWave(15, "Rectangular");
-  m_wavetable_waveselector.addWave(16, "Strings");
-  m_wavetable_waveselector.addWave(17, "Piano");
-  m_wavetable_waveselector.addWave(18, "Oboe");
-  m_wavetable_waveselector.addWave(19, "Flute");
-  m_wavetable_waveselector.addWave(20, "Trumpet");
-  m_wavetable_waveselector.addWave(21, "Soft");
-  m_wavetable_waveselector.addWave(22, "Sparse");
-  m_wavetable_waveselector.addWave(23, "SawMutated");
-  m_wavetable_waveselector.addWave(24, "MutatedSaw A");
-  m_wavetable_waveselector.addWave(25, "MutatedSaw B");
-  m_wavetable_waveselector.addWave(26, "MutatedSquare A");
-  m_wavetable_waveselector.addWave(27, "MutatedSquare B");
-  m_wavetable_waveselector.addWave(28, "Perlin A");
-  m_wavetable_waveselector.addWave(29, "Perlin B");
-  m_wavetable_waveselector.addWave(30, "Perlin C");
-  m_wavetable_waveselector.addWave(31, "Voice A");
-  m_wavetable_waveselector.addWave(32, "Voice B");
-  m_wavetable_waveselector.addWave(33, "Voice C");
-  m_wavetable_waveselector.addWave(34, "Voice D");
-  m_wavetable_waveselector.addWave(35, "FM");
-  m_wavetable_waveselector.addWave(36, "Nasal");
-  m_wavetable_waveselector.addWave(37, "Bitreduced");
-  m_wavetable_waveselector.addWave(38, "Raw");
-  m_wavetable_waveselector.addWave(39, "Wave39");
-  // m_wavetable_waveselector.setValue(1);
+  m_wavetable_waveselector.addWave(2, "BrokenSine");
+  m_wavetable_waveselector.addWave(3, "Harsh");
+  m_wavetable_waveselector.addWave(4, "Mean");
+  m_wavetable_waveselector.addWave(5, "Rectangular");
+  m_wavetable_waveselector.addWave(6, "Nasal");
+  m_wavetable_waveselector.addWave(7, "ReplacePerlinB");
+  m_wavetable_waveselector.addWave(8, "FM");
+  m_wavetable_waveselector.addWave(9, "Sparse");
+  m_wavetable_waveselector.addWave(10, "Bitreduced");
+  m_wavetable_waveselector.addWave(11, "Strings");
+  m_wavetable_waveselector.addWave(12, "Piano");
+  m_wavetable_waveselector.addWave(13, "Organ");
+  m_wavetable_waveselector.addWave(14, "Oboe");
+  m_wavetable_waveselector.addWave(15, "Flute");
+  m_wavetable_waveselector.addWave(16, "Trumpet");
+  m_wavetable_waveselector.addWave(17, "Voice A");
+  m_wavetable_waveselector.addWave(18, "Voice B");
+  m_wavetable_waveselector.addWave(19, "Voice C");
+  m_wavetable_waveselector.addWave(20, "Voice D");
+  m_wavetable_waveselector.addWave(21, "Additive A");
+  m_wavetable_waveselector.addWave(22, "Additive B");
+  m_wavetable_waveselector.addWave(23, "Additive C");
+  m_wavetable_waveselector.addWave(24, "Additive D");
+  m_wavetable_waveselector.addWave(25, "Harmonics A");
+  m_wavetable_waveselector.addWave(26, "Harmonics B");
+  m_wavetable_waveselector.addWave(27, "Harmonics C");
+  m_wavetable_waveselector.addWave(28, "Harmonics D");
+  m_wavetable_waveselector.addWave(29, "MutatedSaw A");
+  m_wavetable_waveselector.addWave(30, "MutatedSaw B");
+  m_wavetable_waveselector.addWave(31, "MutatedSquare A");
+  m_wavetable_waveselector.addWave(32, "MutatedSquare B");
+  m_wavetable_waveselector.addWave(33, "Perlin A");
+  m_wavetable_waveselector.addWave(34, "Perlin B");
+  m_wavetable_waveselector.addWave(35, "Perlin C");
+
   m_wavetable_waveselector.setTooltip("Selects the wave for the oscillator");
   addChildComponent(m_wavetable_waveselector);
 
