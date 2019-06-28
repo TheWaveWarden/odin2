@@ -1,4 +1,4 @@
-#define WT_NR 50
+#define WT_NR 44
 
 m_wavetable_names_1D[WT_NR] = "BrokenSine1";
 

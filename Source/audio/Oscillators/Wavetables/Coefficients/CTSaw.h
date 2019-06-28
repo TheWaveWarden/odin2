@@ -1,4 +1,4 @@
-#define WT_NR 99
+#define WT_NR 85
 
 m_wavetable_names_1D[WT_NR] = "CTSaw";
 

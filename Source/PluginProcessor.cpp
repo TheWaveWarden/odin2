@@ -58,6 +58,11 @@ OdinAudioProcessor::OdinAudioProcessor()
   //WavetableContainer::getInstance().loadWavetablesAfterFourierCreation();
   //WavetableContainer::getInstance().writeWavetablesToFile();
 
+  //WavetableContainer::getInstance().fixWavetableCoefficientFile();
+  //WavetableContainer::getInstance().fixWavetableIndexInFiles();
+
+
+
   //  WavetableContainer::getInstance().mutateWavetable("Saw", 20, 100, true);
   // WavetableContainer::getInstance().writePerlinTableToFile("PerlinReplace1", 100, 50);
   // WavetableContainer::getInstance().writePerlinTableToFile("PerlinReplace2", 150, 50);

@@ -1,4 +1,4 @@
-#define WT_NR 149
+#define WT_NR 124
 
 m_wavetable_names_1D[WT_NR] = "AKWF_hvoice_0020";
 

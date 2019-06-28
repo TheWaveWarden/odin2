@@ -1,4 +1,4 @@
-#define WT_NR 98
+#define WT_NR 84
 
 m_wavetable_names_1D[WT_NR] = "CTRich";
 

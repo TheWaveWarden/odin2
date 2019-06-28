@@ -1,4 +1,4 @@
-#define WT_NR 104
+#define WT_NR 90
 	
 m_wavetable_names_1D[WT_NR] = "Sparse3";
 m_fourier_coeffs[WT_NR][0][0] = 1.f; //signals sine only

@@ -18,6 +18,10 @@ public:
 
   virtual ~WavetableContainer();
 
+  void fixWavetableCoefficientFile();
+  void fixWavetableIndexInFiles();
+  void fixWavetableIndexInSingleFile(std::string p_filename, int p_number);
+
   void loadWavetablesFromConstData(); // assign pointers to wavetables from
                                       // files directly
   void loadWavetablesAfterFourierCreation(); // assign pointers to wavetables

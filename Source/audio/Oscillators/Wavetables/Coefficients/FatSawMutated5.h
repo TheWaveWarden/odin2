@@ -1,4 +1,4 @@
-#define WT_NR 113
+#define WT_NR 96
 
 m_highest_loaded_table = WT_NR > m_highest_loaded_table ? WT_NR : m_highest_loaded_table;
 m_wavetable_names_1D[WT_NR] = "FatSawMutated5";

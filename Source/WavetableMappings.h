@@ -31,10 +31,10 @@ int WavetableOsc1D::wavetableMappingVector(int p_input) {
 int WavetableOsc1D::wavetableMappingChiptune(int p_input) {
   int output = 0;
   switch (p_input) {
-    MAP(1, 2)
+    MAP(1, 2)//squares
     MAP(2, 3)
     MAP(3, 4)
-    MAP(4, 1)
+    MAP(4, 1)//triangle
     MAP(5, 99)
     MAP(6, 100)
     MAP(7, 94)

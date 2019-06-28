@@ -1,4 +1,4 @@
-#define WT_NR 88
+#define WT_NR 78
 
 m_wavetable_names_1D[WT_NR] = "Trumpet3";
 

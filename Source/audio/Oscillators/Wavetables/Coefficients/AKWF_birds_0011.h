@@ -1,4 +1,4 @@
-#define WT_NR 166
+#define WT_NR 141
 
 m_wavetable_names_1D[WT_NR] = "AKWF_birds_0011";
 

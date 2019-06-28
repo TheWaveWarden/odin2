@@ -1,4 +1,4 @@
-#define WT_NR 73
+#define WT_NR 63
 
 m_wavetable_names_1D[WT_NR] = "Cello2";
 

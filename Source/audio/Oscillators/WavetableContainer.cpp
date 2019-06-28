@@ -1852,3 +1852,86 @@ void WavetableContainer::writePerlinTableToFile(std ::string p_table_name,
   output_file << "#undef WT_NR\n";
   output_file.close();
 }
+
+std::string to_string_padded(int input) {
+  std::string out = std::to_string(input);
+  if (input < 10) {
+    out = "0" + out;
+  }
+  if (input < 100) {
+    out = "0" + out;
+  }
+  return out;
+}
+
+void WavetableContainer::fixWavetableCoefficientFile() {
+
+  int highest_table = 4;
+
+  std::ifstream filein("/home/frot/odinvst/Source/audio//Oscillators/"
+                       "WavetableCoefficients.h"); // File to read from
+  std::ofstream fileout(
+      "/home/frot/odinvst/Source/audio//Oscillators/TEMPORARY.h"); // Temporary
+                                                                   // file
+  if (!filein || !fileout) {
+    DBG("Error opening files!");
+    return;
+  }
+
+  std::string line;
+  while (getline(filein, line)) {
+    if (line.find("->") != std::string::npos) {
+      line += to_string_padded(++highest_table);
+    }
+    line += "\n";
+    fileout << line;
+  }
+}
+
+void WavetableContainer::fixWavetableIndexInFiles() {
+  std::ifstream filein("/home/frot/odinvst/Source/audio//Oscillators/"
+                       "WavetableCoefficients.h"); // File to read from
+
+  if (!filein) {
+    DBG("Error opening files!");
+    return;
+  }
+
+  std::string line;
+  while (getline(filein, line)) {
+    if (line.find("->") != std::string::npos) {
+      unsigned first = line.find("Coefficients/");
+      unsigned last = line.find(".h");
+      std::string strNew = line.substr(first, last - first);    
+      std::string number = line.substr(line.length() - 3, 3);
+      DBG("name is: " + strNew);
+      DBG("new number is: " + number);
+      fixWavetableIndexInSingleFile(strNew, std::stoi(number));
+    }
+  }
+
+  
+}
+
+void WavetableContainer::fixWavetableIndexInSingleFile(std::string p_filename, int p_number){
+  std::ifstream filein("/home/frot/odinvst/Source/audio/Oscillators/Wavetables/" + p_filename + ".h"); // File to read from
+  std::ofstream fileout("/home/frot/odinvst/Source/audio/Oscillators/Wavetables/TEMP/" + p_filename + ".h");
+
+
+  if (!filein || !fileout) {
+    DBG("Error opening files!");
+    return;
+  }
+
+  std::string line;
+  while (getline(filein, line)) {
+    if(line.find("#define WT_NR") != std::string::npos){
+      line = "#define WT_NR " + std::to_string(p_number);
+    }
+    line += "\n";
+    fileout << line;
+  }
+
+
+}
+

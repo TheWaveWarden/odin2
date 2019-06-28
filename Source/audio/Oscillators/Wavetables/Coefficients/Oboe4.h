@@ -1,4 +1,4 @@
-#define WT_NR 81
+#define WT_NR 71
 
 m_wavetable_names_1D[WT_NR] = "Oboe4";
 

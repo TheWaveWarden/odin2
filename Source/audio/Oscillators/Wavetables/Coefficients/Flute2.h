@@ -1,4 +1,4 @@
-#define WT_NR 83
+#define WT_NR 73
 
 m_wavetable_names_1D[WT_NR] = "Flute2";
 

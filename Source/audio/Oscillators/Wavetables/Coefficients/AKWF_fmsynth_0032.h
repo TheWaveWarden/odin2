@@ -1,4 +1,4 @@
-#define WT_NR 162
+#define WT_NR 137
 
 m_wavetable_names_1D[WT_NR] = "AKWF_fmsynth_0032";
 

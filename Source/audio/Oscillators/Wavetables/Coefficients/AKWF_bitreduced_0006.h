@@ -1,4 +1,4 @@
-#define WT_NR 171
+#define WT_NR 146
 
 m_wavetable_names_1D[WT_NR] = "AKWF_bitreduced_0006";
 

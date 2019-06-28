@@ -1,4 +1,4 @@
-#define WT_NR 13
+#define WT_NR 7
 
 //TODO is kind of silent due to scalar...
 	

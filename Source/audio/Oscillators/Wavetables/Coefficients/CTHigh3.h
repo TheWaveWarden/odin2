@@ -1,4 +1,4 @@
-#define WT_NR 97
+#define WT_NR 83
 
 m_wavetable_names_1D[WT_NR] = "CTHigh3";
 

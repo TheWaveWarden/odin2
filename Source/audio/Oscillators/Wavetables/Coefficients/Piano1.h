@@ -1,4 +1,4 @@
-#define WT_NR 74
+#define WT_NR 64
 
 m_wavetable_names_1D[WT_NR] = "Piano1";
 
