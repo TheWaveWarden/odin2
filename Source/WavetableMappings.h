@@ -155,6 +155,23 @@ int WavetableOsc1D::wavetableMappingVector(int p_input) {
     MAP(452,117)
     MAP(453,118)
     MAP(454,119)
+    //chiptune
+    MAP(501, 2)//squares
+    MAP(502, 3)
+    MAP(503, 4)
+    MAP(504, 1)//triangle
+    MAP(505, 99)
+    MAP(506, 100)
+    MAP(507, 94)
+    MAP(508, 95)
+    MAP(509, 96)
+    MAP(510, 97)
+    MAP(511, 98)
+    MAP(512, 101)
+    MAP(513, 156)
+    MAP(514, 157)
+    MAP(515, 158)
+    MAP(516, 159)
     //wavedraw
     MAP(601, NUMBER_OF_WAVETABLES)
     MAP(602, NUMBER_OF_WAVETABLES+1)
@@ -192,6 +209,10 @@ int WavetableOsc1D::wavetableMappingChiptune(int p_input) {
     MAP(10, 97)
     MAP(11, 98)
     MAP(12, 101)
+    MAP(13, 156)
+    MAP(14, 157)
+    MAP(15, 158)
+    MAP(16, 159)
     //wavtables
      MAP(101, 5)
     MAP(102, 2)

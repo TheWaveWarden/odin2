@@ -210,3 +210,8 @@ m_highest_loaded_table = 105;
 #include "Wavetables/Coefficients/PerlinReplace6.h" //182->153
 #include "Wavetables/Coefficients/PerlinReplace7.h" //183->154
 #include "Wavetables/Coefficients/PerlinReplace8.h" //184->155
+
+#include "Wavetables/Coefficients/ChiptuneReplace1.h" //156
+#include "Wavetables/Coefficients/ChiptuneReplace2.h" //157
+#include "Wavetables/Coefficients/ChiptuneReplace3.h" //158
+#include "Wavetables/Coefficients/ChiptuneReplace4.h" //159
