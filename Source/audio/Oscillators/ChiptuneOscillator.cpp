@@ -5,7 +5,7 @@
 #define NOISE_SEGMENT_LENGTH 30
 
 ChiptuneOscillator::ChiptuneOscillator() {
-  m_nr_of_wavetables = NUMBER_OF_WAVETABLES;
+  m_nr_of_wavetables = NUMBER_OF_WAVETABLES  + 9;//+9 for draw tables
 
   // seed random
   std::srand(std::time(nullptr));

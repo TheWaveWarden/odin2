@@ -737,49 +737,49 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   };
   m_chiptune_waveselector.setTopLeftPosition(WAVE_CHIPTUNE_POS_X,
                                              WAVE_CHIPTUNE_POS_Y);
-  m_chiptune_waveselector.addWave(1, "Pulse 50");
-  m_chiptune_waveselector.setDecrementValue(1, 1);
-  m_chiptune_waveselector.addWave(2, "Pulse 25");
-  m_chiptune_waveselector.addWave(3, "Pulse 12.5");
-  m_chiptune_waveselector.addWave(4, "ChipTriangle");
-  m_chiptune_waveselector.addWave(5, "ChipSaw");
-  m_chiptune_waveselector.addWave(6, "ChipSine");
-  m_chiptune_waveselector.addWave(7, "Diverging");
-  m_chiptune_waveselector.addWave(8, "High A");
-  m_chiptune_waveselector.addWave(9, "High B");
-  m_chiptune_waveselector.addWave(10, "High C");
-  m_chiptune_waveselector.addWave(11, "Rich");
-  m_chiptune_waveselector.addWave(12, "SoftTune");
-  m_chiptune_waveselector.addSeparator();
-  // normal wavetable submenu
-  m_chiptune_waveselector.setIncrementValue(12, 100);
-  m_chiptune_waveselector.addWaveToSubmenu(100, "henlo", 0);
-  m_chiptune_waveselector.setDecrementValue(100, 12);
-  m_chiptune_waveselector.addWaveToSubmenu(101, "henlo2", 0);
-  m_chiptune_waveselector.setIncrementValue(101, 201);
-  m_chiptune_waveselector.applySubmenu(0, "Wavetables");
-  m_chiptune_waveselector.addSeparator();
-  // chipdraw menu
-  m_chiptune_waveselector.addWaveToSubmenu(201, "ChipDraw Osc1", 1);
-  m_chiptune_waveselector.setDecrementValue(201, 101);
-  m_chiptune_waveselector.addWaveToSubmenu(202, "ChipDraw Osc2", 1);
-  m_chiptune_waveselector.addWaveToSubmenu(203, "ChipDraw Osc3", 1);
-  m_chiptune_waveselector.setIncrementValue(203, 301);
-  m_chiptune_waveselector.applySubmenu(1, "ChipDraw");
-  // wavedraw menu
-  m_chiptune_waveselector.addWaveToSubmenu(301, "WaveDraw Osc 1", 2);
-  m_chiptune_waveselector.setDecrementValue(301, 203);
-  m_chiptune_waveselector.addWaveToSubmenu(302, "WaveDraw Osc 2", 2);
-  m_chiptune_waveselector.addWaveToSubmenu(303, "WaveDraw Osc 3", 2);
-  m_chiptune_waveselector.setIncrementValue(303, 401);
-  m_chiptune_waveselector.applySubmenu(2, "WaveDraw");
-  // specdraw menu
-  m_chiptune_waveselector.addWaveToSubmenu(401, "SpecDraw Osc 1", 3);
-  m_chiptune_waveselector.setDecrementValue(401, 303);
-  m_chiptune_waveselector.addWaveToSubmenu(402, "SpecDraw Osc 2", 3);
-  m_chiptune_waveselector.addWaveToSubmenu(403, "SpecDraw Osc 3", 3);
-  m_chiptune_waveselector.setIncrementValue(403, 403);
-  m_chiptune_waveselector.applySubmenu(3, "WaveDraw");
+  // m_chiptune_waveselector.addWave(1, "Pulse 50");
+  // m_chiptune_waveselector.setDecrementValue(1, 1);
+  // m_chiptune_waveselector.addWave(2, "Pulse 25");
+  // m_chiptune_waveselector.addWave(3, "Pulse 12.5");
+  // m_chiptune_waveselector.addWave(4, "ChipTriangle");
+  // m_chiptune_waveselector.addWave(5, "ChipSaw");
+  // m_chiptune_waveselector.addWave(6, "ChipSine");
+  // m_chiptune_waveselector.addWave(7, "Diverging");
+  // m_chiptune_waveselector.addWave(8, "High A");
+  // m_chiptune_waveselector.addWave(9, "High B");
+  // m_chiptune_waveselector.addWave(10, "High C");
+  // m_chiptune_waveselector.addWave(11, "Rich");
+  // m_chiptune_waveselector.addWave(12, "SoftTune");
+  // m_chiptune_waveselector.addSeparator();
+  // // normal wavetable submenu
+  // m_chiptune_waveselector.setIncrementValue(12, 100);
+  // m_chiptune_waveselector.addWaveToSubmenu(100, "henlo", 0);
+  // m_chiptune_waveselector.setDecrementValue(100, 12);
+  // m_chiptune_waveselector.addWaveToSubmenu(101, "henlo2", 0);
+  // m_chiptune_waveselector.setIncrementValue(101, 201);
+  // m_chiptune_waveselector.applySubmenu(0, "Wavetables");
+  // m_chiptune_waveselector.addSeparator();
+  // // chipdraw menu
+  // m_chiptune_waveselector.addWaveToSubmenu(601, "ChipDraw Osc1", 1);
+  // m_chiptune_waveselector.setDecrementValue(601, 501);
+  // m_chiptune_waveselector.addWaveToSubmenu(602, "ChipDraw Osc2", 1);
+  // m_chiptune_waveselector.addWaveToSubmenu(603, "ChipDraw Osc3", 1);
+  // m_chiptune_waveselector.setIncrementValue(603, 701);
+  // m_chiptune_waveselector.applySubmenu(1, "ChipDraw");
+  // // wavedraw menu
+  // m_chiptune_waveselector.addWaveToSubmenu(701, "WaveDraw Osc 1", 2);
+  // m_chiptune_waveselector.setDecrementValue(701, 603);
+  // m_chiptune_waveselector.addWaveToSubmenu(702, "WaveDraw Osc 2", 2);
+  // m_chiptune_waveselector.addWaveToSubmenu(703, "WaveDraw Osc 3", 2);
+  // m_chiptune_waveselector.setIncrementValue(703, 801);
+  // m_chiptune_waveselector.applySubmenu(2, "WaveDraw");
+  // // specdraw menu
+  // m_chiptune_waveselector.addWaveToSubmenu(801, "SpecDraw Osc 1", 3);
+  // m_chiptune_waveselector.setDecrementValue(801, 703);
+  // m_chiptune_waveselector.addWaveToSubmenu(802, "SpecDraw Osc 2", 3);
+  // m_chiptune_waveselector.addWaveToSubmenu(803, "SpecDraw Osc 3", 3);
+  // m_chiptune_waveselector.setIncrementValue(803, 803);
+  // m_chiptune_waveselector.applySubmenu(3, "WaveDraw");
 
   // m_chiptune_waveselector.setValue(GETAUDIO("osc" + m_osc_number +
   // "_chiptune_wave"));
@@ -790,6 +790,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   // juce::Colour fm_color(90, 40, 40);
 
   juce::PopupMenu fm_menu;
+  juce::PopupMenu chip_menu;
   juce::PopupMenu vector_menu;
   juce::PopupMenu wavetable_submenu;
   juce::PopupMenu wavetable_recycle_menu;
@@ -897,6 +898,25 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   vector_menu.addSubMenu("WaveDraw", wavedraw_submenu);
   vector_menu.addSubMenu("ChipDraw", chipdraw_submenu);
   vector_menu.addSubMenu("SpecDraw", specdraw_submenu);
+
+  chip_menu.addItem(1, "Pulse 50");
+  chip_menu.addItem(2, "Pulse 25");
+  chip_menu.addItem(3, "Pulse 12.5");
+  chip_menu.addItem(4, "ChipTriangle");
+  chip_menu.addItem(5, "ChipSaw");
+  chip_menu.addItem(6, "ChipSine");
+  chip_menu.addItem(7, "Diverging");
+  chip_menu.addItem(8, "High A");
+  chip_menu.addItem(9, "High B");
+  chip_menu.addItem(10, "High C");
+  chip_menu.addItem(11, "Rich");
+  chip_menu.addItem(12, "SoftTune");
+  chip_menu.addSeparator();
+  chip_menu.addSubMenu("Wavetables", wavetable_submenu);
+  chip_menu.addSeparator();
+  chip_menu.addSubMenu("WaveDraw", wavedraw_submenu);
+  chip_menu.addSubMenu("ChipDraw", chipdraw_submenu);
+  chip_menu.addSubMenu("SpecDraw", specdraw_submenu);
 
   //====================
   //=== COPY & PASTA ===
@@ -1035,6 +1055,79 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   *(m_vec_b.getRootMenu()) = vector_menu;
   *(m_vec_c.getRootMenu()) = vector_menu;
   *(m_vec_d.getRootMenu()) = vector_menu;
+
+
+  ADD_MAP_ENTRY("BrokenSine", 120, m_chiptune_waveselector)
+  ADD_MAP_ENTRY("Harsh", 130, m_chiptune_waveselector)
+  ADD_MAP_ENTRY("Mean", 140, m_chiptune_waveselector)
+  ADD_MAP_ENTRY("Rectangular", 150, m_chiptune_waveselector)
+  ADD_MAP_ENTRY("Nasal", 160, m_chiptune_waveselector)
+  ADD_MAP_ENTRY("ReplacePerlinB", 170, m_chiptune_waveselector)
+  ADD_MAP_ENTRY("FM", 180, m_chiptune_waveselector)
+  ADD_MAP_ENTRY("Sparse", 190, m_chiptune_waveselector)
+  ADD_MAP_ENTRY("Bitreduced", 200, m_chiptune_waveselector)
+  ADD_MAP_ENTRY("Strings", 210, m_chiptune_waveselector)
+  ADD_MAP_ENTRY("Piano", 220, m_chiptune_waveselector)
+  ADD_MAP_ENTRY("Organ", 230, m_chiptune_waveselector)
+  ADD_MAP_ENTRY("Oboe", 240, m_chiptune_waveselector)
+  ADD_MAP_ENTRY("Flute", 250, m_chiptune_waveselector)
+  ADD_MAP_ENTRY("Trumpet", 260, m_chiptune_waveselector)
+  ADD_MAP_ENTRY("Voice A", 270, m_chiptune_waveselector)
+  ADD_MAP_ENTRY("Voice B", 280, m_chiptune_waveselector)
+  ADD_MAP_ENTRY("Voice C", 290, m_chiptune_waveselector)
+  ADD_MAP_ENTRY("Voice D", 300, m_chiptune_waveselector)
+  ADD_MAP_ENTRY("Additive A", 310, m_chiptune_waveselector)
+  ADD_MAP_ENTRY("Additive B", 320, m_chiptune_waveselector)
+  ADD_MAP_ENTRY("Additive C", 330, m_chiptune_waveselector)
+  ADD_MAP_ENTRY("Additive D", 340, m_chiptune_waveselector)
+  ADD_MAP_ENTRY("Harmonics A", 350, m_chiptune_waveselector)
+  ADD_MAP_ENTRY("Harmonics B", 360, m_chiptune_waveselector)
+  ADD_MAP_ENTRY("Harmonics C", 370, m_chiptune_waveselector)
+  ADD_MAP_ENTRY("Harmonics D", 380, m_chiptune_waveselector)
+  ADD_MAP_ENTRY("MutatedSaw A", 390, m_chiptune_waveselector)
+  ADD_MAP_ENTRY("MutatedSaw B", 400, m_chiptune_waveselector)
+  ADD_MAP_ENTRY("MutatedSquare A", 410, m_chiptune_waveselector)
+  ADD_MAP_ENTRY("MutatedSquare B", 420, m_chiptune_waveselector)
+  ADD_MAP_ENTRY("Perlin A", 430, m_chiptune_waveselector)
+  ADD_MAP_ENTRY("Perlin B", 440, m_chiptune_waveselector)
+  ADD_MAP_ENTRY("Perlin C", 450, m_chiptune_waveselector)
+
+  m_chiptune_waveselector.setDecrementValue(121, 104);
+  m_chiptune_waveselector.setIncrementValue(454, 601);
+
+  m_chiptune_waveselector.addMapEntry("Pulse 50",1, 2, 1);
+  m_chiptune_waveselector.addMapEntry("Pulse 25",2, 3 , 1);
+  m_chiptune_waveselector.addMapEntry("Pulse 12.5",3, 4 , 2);
+  m_chiptune_waveselector.addMapEntry("ChipTriangle",4, 5, 3);
+  m_chiptune_waveselector.addMapEntry("ChipSaw",5, 6, 4);
+  m_chiptune_waveselector.addMapEntry("ChipSine",6, 7, 5);
+  m_chiptune_waveselector.addMapEntry("Diverging",7, 8, 6);
+  m_chiptune_waveselector.addMapEntry("High A",8, 9, 7);
+  m_chiptune_waveselector.addMapEntry("High B",9, 10, 8);
+  m_chiptune_waveselector.addMapEntry("High C",10, 11, 9);
+  m_chiptune_waveselector.addMapEntry("Rich",11, 12, 10);
+  m_chiptune_waveselector.addMapEntry("SoftTune",12, 101, 11);
+
+  m_chiptune_waveselector.addMapEntry("Saw", 101, 102, 12);
+  m_chiptune_waveselector.addMapEntry("Square", 102, 103, 101);
+  m_chiptune_waveselector.addMapEntry("Triangle", 103, 104, 102);
+  m_chiptune_waveselector.addMapEntry("Sine", 104, 121, 103);
+
+  m_chiptune_waveselector.addMapEntry("WaveDraw Osc1", 601, 602, 454);
+  m_chiptune_waveselector.addMapEntry("WaveDraw Osc2", 602, 603, 601);
+  m_chiptune_waveselector.addMapEntry("WaveDraw Osc3", 603, 701, 602);
+
+  m_chiptune_waveselector.addMapEntry("ChipDraw Osc1", 701, 702, 603);
+  m_chiptune_waveselector.addMapEntry("ChipDraw Osc2", 702, 703, 701);
+  m_chiptune_waveselector.addMapEntry("ChipDraw Osc3", 703, 801, 702);
+
+  m_chiptune_waveselector.addMapEntry("SpecDraw Osc1", 801, 802, 703);
+  m_chiptune_waveselector.addMapEntry("SpecDraw Osc2", 802, 803, 801);
+  m_chiptune_waveselector.addMapEntry("SpecDraw Osc3", 803, 803, 802);
+
+
+  chip_menu.setLookAndFeel(&m_menu_feels);
+  m_chiptune_waveselector.m_menu = chip_menu;
 
   m_carrier_waveselector.OnValueChange = [&](int p_new_value) {
     m_value_tree.state.setProperty(m_carrier_wave_identifier,
