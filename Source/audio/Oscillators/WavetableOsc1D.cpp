@@ -99,6 +99,14 @@ void WavetableOsc1D::loadWavetables(){
     for(int wavetable = 0; wavetable < NUMBER_OF_WAVETABLES; ++wavetable){
 		setWavetablePointer(wavetable, WavetableContainer::getInstance().getWavetablePointers(wavetable));
 	}
+    for(int i = 0; i < 3; ++i){
+        //wavedraw
+		setWavetablePointerNONCONST(NUMBER_OF_WAVETABLES + i, WavetableContainer::getInstance().getWavedrawPointer(i));
+        //chipdraw
+		setWavetablePointerNONCONST(NUMBER_OF_WAVETABLES + i + 3, WavetableContainer::getInstance().getChipdrawPointer(i));
+        //specdraw
+		setWavetablePointerNONCONST(NUMBER_OF_WAVETABLES + i + 6, WavetableContainer::getInstance().getSpecdrawPointer(i));
+    }
 }
 
 void WavetableOsc1D::loadWavedrawTables(int p_osc){

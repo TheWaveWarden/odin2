@@ -155,6 +155,18 @@ int WavetableOsc1D::wavetableMappingVector(int p_input) {
     MAP(452,117)
     MAP(453,118)
     MAP(454,119)
+    //wavedraw
+    MAP(601, NUMBER_OF_WAVETABLES)
+    MAP(602, NUMBER_OF_WAVETABLES+1)
+    MAP(603, NUMBER_OF_WAVETABLES+2)
+    //chipdraw
+    MAP(701, NUMBER_OF_WAVETABLES+3)
+    MAP(702, NUMBER_OF_WAVETABLES+4)
+    MAP(703, NUMBER_OF_WAVETABLES+5)
+    //spec
+    MAP(801, NUMBER_OF_WAVETABLES+6)
+    MAP(802, NUMBER_OF_WAVETABLES+7)
+    MAP(803, NUMBER_OF_WAVETABLES+8)
   default:
     DBG("ERROR: tried to map unknown wavetable " + std::to_string(p_input) +
         " for vec/fm/pm osc");

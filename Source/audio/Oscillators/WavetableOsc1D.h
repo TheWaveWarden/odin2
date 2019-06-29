@@ -65,12 +65,12 @@ protected:
 	double m_wavetable_inc = 0.f;
 
 	//tables
-	const float* m_wavetable_pointers[NUMBER_OF_WAVETABLES][SUBTABLES_PER_WAVETABLE];
+	const float* m_wavetable_pointers[NUMBER_OF_WAVETABLES + 9][SUBTABLES_PER_WAVETABLE];
 	const float* m_current_table;
 	int m_wavetable_index = 0;
 	int m_sub_table_index = 0;
 	
-	int m_nr_of_wavetables = NUMBER_OF_WAVETABLES;//can be overwritten in child classes 
+	int m_nr_of_wavetables = NUMBER_OF_WAVETABLES + 9;//can be overwritten in child classes 
 
 	//std::ofstream debug_stream; //todo
 
