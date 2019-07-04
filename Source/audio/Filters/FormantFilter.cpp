@@ -1,5 +1,7 @@
 #include "FormantFilter.h"
 
+#define FORMANT_OUTPUT_SCALAR 0.5f
+
 FormantFilter::FormantFilter() {
   // m_BPF1.m_filter_type = LadderFilter::FILTERTYPE::LP2;//todo?
   // m_BPF2.m_filter_type = LadderFilter::FILTERTYPE::BP2;
@@ -113,5 +115,5 @@ double FormantFilter::doFilter(double p_input) {
   float vol_mod_factor =
       (*m_vol_mod) > 0 ? 1.f + 4 * (*m_vol_mod) : (1.f + *m_vol_mod);
 
-  return out * vol_mod_factor * m_volume_scalar;
+  return out * vol_mod_factor * m_volume_scalar * FORMANT_OUTPUT_SCALAR;
 }
