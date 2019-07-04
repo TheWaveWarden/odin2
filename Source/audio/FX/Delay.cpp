@@ -10,8 +10,6 @@ Delay::~Delay() {}
 
 float Delay::doDelay(float p_input) {
 
-  // TODO implement sync mode
-  // todo audio bug when increasing delay_time
   if (m_delay_time_smooth > m_delay_time_control) {
     m_delay_time_smooth =
         (m_delay_time_smooth - m_delay_time_control) * 0.99994 +
@@ -35,13 +33,6 @@ float Delay::doDelay(float p_input) {
   int read_index_trunc = (int)read_index;
   int read_index_next = read_index_trunc + 1;
   float frac = read_index - (float)read_index_trunc;
-
-  //   read_index_trunc =
-  //                          read_index_trunc + CIRCULAR_BUFFER_LENGTH
-  //                          : read_index_trunc;
-  //   read_index_next = read_index_next < 0
-  //                         read_index_next + CIRCULAR_BUFFER_LENGTH
-  //                          read_index_next;
 
   // check boundaries
   while (read_index_trunc < 0) {

@@ -26,14 +26,17 @@ class PMCarrierOsc : public WavetableOsc1D {
     //TODO calculate the PM-resulting "real" frequency and select table accordingly
     //Will Pirkle book 653
     //instantaneous frequency:
+
     //w_i = d(OscArg) / dt = w + d(phaseDiff) / dt = w + phaseVelocity * const
-    //todo: find const!
 
-
-
+    // const = SR (?) 
+    // derived from thought where freq = 0Hz and PM signal is f(t) = t
+    // then WT gets run through once per sample and hence freq = SR,
+    // the phaseVelocity for f(t) = t is 1 Sample and therefore 1 * const = SR,
+    // hence const = SR
 
     double seed_freq = 27.5; //A0
-    float abs_freq = fabs(m_osc_freq_modded);
+    float abs_freq = fabs(m_osc_freq_modded + m_phase_velocity * m_samplerate);
     for(int table = 0; table < SUBTABLES_PER_WAVETABLE; table++){
         if(abs_freq < seed_freq){
             return table;
