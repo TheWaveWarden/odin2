@@ -18,15 +18,9 @@ public:
   void startRelease();
   int getCurrentSection();
 
-  void testADSRPow();
-  void profileCheapPow();
-
-  // void setFinishFlag(bool* p_finish_flag){
-  //	m_envelope_finish_flag = p_finish_flag;
-  //}
-
   void restartEnvelope() {
     // todo
+    // todo was? plz elaborate nex tym...
     //m_attack_start_value = m_current_value;
     m_current_value = m_last_actual_value;
     m_current_section = 0;
@@ -62,7 +56,6 @@ public:
 
   inline double calcDecayFactor(double p_decay) {
     if (p_decay != m_last_decay) {
-      // DBG("DELAY RECALCULATED");
       m_last_decay_return =
           pow(MIN_DECAY_RELEASE_VAL, 1. / m_samplerate / p_decay);
       m_last_decay = p_decay;
@@ -72,7 +65,6 @@ public:
 
   inline double calcReleaseFactor(double p_release) {
     if (p_release != m_last_release) {
-      // DBG("RELEASE RECALCULATED");
       m_last_release_return =
           pow(MIN_DECAY_RELEASE_VAL, 1. / m_samplerate / p_release);
       m_last_release = p_release;
@@ -93,10 +85,7 @@ public:
   // std::function<void()> onEnvelopeEnd = []() {};
   void onEnvelopeEnd() {
     if (m_test && m_voice_manager_bool_pointer) {
-      // DBG("1");
       *m_voice_manager_bool_pointer = false;
-      // DBG("ENNNND:");
-      // DBG((long)m_test);
       *m_test = false;
     }
   }
@@ -107,9 +96,6 @@ public:
     m_voice_manager_bool_pointer = p_manager;
     m_test = p_voice;
     // todo remove
-
-    // DBG("STARRRT:");
-    // DBG((long)m_test);
     *m_voice_manager_bool_pointer = false;
     *m_test = false;
   }

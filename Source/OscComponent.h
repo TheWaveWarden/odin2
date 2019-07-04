@@ -199,7 +199,7 @@ public:
 
 protected:
 
-  TextEditor REMOVE_EDITOR;
+  //TextEditor REMOVE_EDITOR;
 
   int m_osc_type = 0;
 
@@ -229,9 +229,9 @@ protected:
   OdinButton m_noise;
   OdinButton m_chipdraw_convert;
   OdinButton m_wavedraw_convert;
-  OdinButton m_wavedraw_convert_REMOVE;
-  OdinButton m_specdraw_convert_REMOVE;
-  OdinButton m_chipdraw_convert_REMOVE;
+  //OdinButton m_wavedraw_convert_REMOVE;
+  //OdinButton m_specdraw_convert_REMOVE;
+  //OdinButton m_chipdraw_convert_REMOVE;
   OdinButton m_specdraw_convert;
   DrawableButton m_LED_saw;
   DrawableButton m_LED_pulse;

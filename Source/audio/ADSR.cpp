@@ -1,8 +1,6 @@
 #include "ADSR.h"
 
-// todo remove for profiling only
 #include "../JuceLibraryCode/JuceHeader.h"
-#include <ctime>
 
 ADSREnvelope::ADSREnvelope() {
   // m_cheap_functions = CheapFunctions::getInstance();
@@ -28,7 +26,6 @@ float ADSREnvelope::doEnvelope() {
       attack_modded *= calcModFactor(*m_attack_mod);
     }
     m_current_value += 1. / m_samplerate / attack_modded;
-    //(1. - m_attack_start_value) / m_samplerate / attack_modded;
     if (m_current_value >= 1) {
       m_current_value = 1;
       m_current_section = 1; // move to decay
@@ -95,11 +92,7 @@ float ADSREnvelope::doEnvelope() {
       // envelope ends here...
       m_current_value = 0.;
       onEnvelopeEnd();
-      //DBG("RELEASE IS FINISHED");
       m_current_section = 4; // envelope over
-      // if(m_envelope_finish_flag){
-      //    *m_envelope_finish_flag = false;
-      //}
     }
     m_last_actual_value = m_current_value * m_release_start_value;
     return m_last_actual_value;
@@ -130,42 +123,3 @@ void ADSREnvelope::startRelease() {
 
 int ADSREnvelope::getCurrentSection() { return m_current_section; }
 
-void ADSREnvelope::testADSRPow() {
-  std::ofstream output;
-  output.open("E:\\odin\\DEBUG.txt");
-  for (size_t i = 0; i < 10000; ++i) {
-    output << calcDecayFactor(((double)i + 0.5) * 0.001) -
-                  calcDecayFactorCheap(((double)i + 0.5) * 0.001)
-           << "," << calcDecayFactor(((double)i + 0.5) * 0.001) << ","
-           << calcDecayFactorCheap(((double)i + 0.5) * 0.001) << ","
-           << ((double)i + 0.5) * 0.001 << "\n";
-  }
-  output.close();
-}
-
-void ADSREnvelope::profileCheapPow() {
-
-  using namespace std;
-  clock_t cheap_begin = clock();
-  for (size_t i = 0; i < 1000000000; ++i) {
-    calcDecayFactorCheap((double)i / 10000000.);
-  }
-  clock_t cheap_end = clock();
-
-  clock_t pow_begin = clock();
-  for (size_t i = 0; i < 1000000000; ++i) {
-    calcDecayFactor((double)i / 10000000.);
-  }
-  clock_t pow_end = clock();
-
-  double elapsed_cheap = double(cheap_end - cheap_begin) / CLOCKS_PER_SEC;
-  double elapsed_pow = double(pow_end - pow_begin) / CLOCKS_PER_SEC;
-
-  std::ofstream output;
-  output.open("E:\\odin\\DEBUG.txt");
-
-  output << "Table: " << elapsed_cheap << " sek\n";
-  output << "Pow: " << elapsed_pow << " sek\n";
-
-  output.close();
-}
