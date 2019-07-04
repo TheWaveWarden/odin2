@@ -529,6 +529,8 @@ struct Voice {
   }
 
   void setSampleRate(float p_samplerate) {
+     
+  DBG("SetSampleRate VOICE\n\n");
     env[0].setSampleRate(p_samplerate);
     env[1].setSampleRate(p_samplerate);
     env[2].setSampleRate(p_samplerate);

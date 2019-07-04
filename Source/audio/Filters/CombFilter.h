@@ -45,6 +45,8 @@ public:
   inline void setResonance(float p_feedback) { m_feedback = p_feedback; }
 
   inline virtual void setSampleRate(float p_samplerate) {
+     
+  DBG("SetSampleRate comb");
     m_samplerate = p_samplerate;
     m_DC_blocking_filter.setSampleRate(p_samplerate);
   }

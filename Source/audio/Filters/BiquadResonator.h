@@ -23,7 +23,8 @@ public:
     m_radius = p_radius;
     recalculateFilterCoefficients();
   }
-  void setSampleRate(float p_sr) {
+  void setSampleRate(float p_sr) { 
+  DBG("SetSampleRate biquadres");
     m_samplerate = p_sr;
     recalculateFilterCoefficients();
   }

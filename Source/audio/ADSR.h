@@ -42,7 +42,8 @@ public:
 
   inline void setLoop(bool p_loop) { m_loop = p_loop; }
 
-  inline void setSampleRate(float p_samplerate) { m_samplerate = p_samplerate; }
+  inline void setSampleRate(float p_samplerate) { m_samplerate = p_samplerate; 
+  DBG("SetSampleRate adsr");}
 
   inline void setAttack(float p_attack) { m_attack = p_attack; }
 

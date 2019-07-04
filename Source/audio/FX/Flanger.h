@@ -22,7 +22,8 @@ public:
     m_increment_sine = p_LFO_freq / m_samplerate * 2;
   }
 
-  void setSampleRate(float p_samplerate) override {
+  void setSampleRate(float p_samplerate) override { 
+  DBG("SetSampleRate flanger");
     // store LFO freq
     float LFO_freq;
     if (m_LFO_freq_set) {

@@ -12,6 +12,8 @@ public:
   ~Phaser();
 
   inline void setSampleRate(float p_samplerate) {
+     
+  DBG("SetSampleRate phaser");
     // store LFO freq
     float LFO_freq;
     if (m_LFO_freq_set) {

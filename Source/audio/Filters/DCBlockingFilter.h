@@ -1,5 +1,7 @@
 #pragma once
 
+#include "../JuceLibraryCode/JuceHeader.h"
+
 
 //found at https://www.dsprelated.com/freebooks/filters/DC_Blocker.html
 class DCBlockingFilter {
@@ -12,6 +14,8 @@ class DCBlockingFilter {
   }
 
   void setSampleRate(float p_samplerate){
+     
+    DBG("SetSampleRate DCBlock");
     //we gettin REAL dirty here...
     R = 0.995;
     if(p_samplerate > 90000){
