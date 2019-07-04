@@ -6,9 +6,8 @@
 #include <cstring>
 
 #define CHORUS_BUFFER_LENGTH 44100
-#define CHORUS_MIN_DISTANCE                                                    \
-  2 // min distance in samples the read index is behind the write index
-#define CHORUS_AMOUNT_RANGE 0.02 // empiric value
+#define CHORUS_MIN_DISTANCE 0.01 // chorus is at leas 10ms behind signal 
+#define CHORUS_AMOUNT_RANGE 0.02 // then further modulation up to 30 ms
 
 class Chorus {
 public:
