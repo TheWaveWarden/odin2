@@ -1,6 +1,8 @@
 #include "AnalogOscillator.h"
 #include <cstdlib>
 
+#define SQUARE_VOLUME_SCALAR 0.3
+
 #define DRIFT_NOISE_SMOOTH_FACTOR 0.0001
 
 AnalogOscillator::AnalogOscillator() { m_nr_of_wavetables = 4; }
@@ -93,9 +95,6 @@ float AnalogOscillator::doSquare() {
 #define MAX(a, b) (a) > (b) ? (a) : (b)
 
   float square_scale = 2 * (MAX(1 - duty_modded, duty_modded));
-  //DBG(square_scale);
-  //DBG(duty_modded);
-  //DBG("===");
 
-  return (output - output_offset) * square_scale;
+  return (output - output_offset) * square_scale * SQUARE_VOLUME_SCALAR;
 }
