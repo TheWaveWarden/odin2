@@ -600,19 +600,25 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
       &chipdraw_convert_draw2, &chipdraw_convert_draw2, &chipdraw_convert_draw1,
       &chipdraw_convert_draw1, &chipdraw_convert_draw4, &chipdraw_convert_draw4,
       &chipdraw_convert_draw3, &chipdraw_convert_draw3);
-  m_chipdraw_convert.setClickingTogglesState(true);
+  //m_chipdraw_convert.setTriggeredOnMouseDown(false);
   m_chipdraw_convert.setBounds(CONVERT_POS_X, CONVERT_POS_Y,
                                chipdraw_convert_1.getWidth(),
                                chipdraw_convert_1.getHeight());
   m_chipdraw_convert.setAlwaysOnTop(true);
-  m_chipdraw_convert.setTriggeredOnMouseDown(true);
   m_chipdraw_convert.setColour(
       juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
+
   m_chipdraw_convert.setToggleState(true, sendNotification);
+  
+  m_chipdraw_convert.setClickingTogglesState(true);
+  m_chipdraw_convert.setTriggeredOnMouseDown(false);
   m_chipdraw_convert.onClick = [&]() {
-    m_chipdraw_convert.setToggleState(true, sendNotification);
-    createChipdrawTables();
+    if (m_chipdraw_convert.getToggleState()) {
+      createChipdrawTables();
+    }
+    m_chipdraw_convert.setToggleState(true, dontSendNotification);
   };
+
   m_chipdraw_convert.setTooltip(
       "Converts the waveform drawn\nin the window. You won't hear\nany changes "
       "before you press\nthis button");
@@ -627,13 +633,16 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
                                chipdraw_convert_1.getWidth(),
                                chipdraw_convert_1.getHeight());
   m_wavedraw_convert.setAlwaysOnTop(true);
-  m_wavedraw_convert.setTriggeredOnMouseDown(true);
   m_wavedraw_convert.setColour(
       juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
   m_wavedraw_convert.setToggleState(true, sendNotification);
+  m_wavedraw_convert.setClickingTogglesState(true);
+  m_wavedraw_convert.setTriggeredOnMouseDown(false);
   m_wavedraw_convert.onClick = [&]() {
-    m_wavedraw_convert.setToggleState(true, sendNotification);
-    createWavedrawTables();
+    if (m_wavedraw_convert.getToggleState()) {
+      createWavedrawTables();
+    }
+    m_wavedraw_convert.setToggleState(true, dontSendNotification);
   };
   m_wavedraw_convert.setTooltip(
       "Converts the waveform drawn\nin the window. You won't hear\nany changes "
@@ -649,13 +658,16 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
                                chipdraw_convert_1.getWidth(),
                                chipdraw_convert_1.getHeight());
   m_specdraw_convert.setAlwaysOnTop(true);
-  m_specdraw_convert.setTriggeredOnMouseDown(true);
   m_specdraw_convert.setColour(
       juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
   m_specdraw_convert.setToggleState(true, sendNotification);
+  m_specdraw_convert.setClickingTogglesState(true);
+  m_specdraw_convert.setTriggeredOnMouseDown(false);
   m_specdraw_convert.onClick = [&]() {
-    m_specdraw_convert.setToggleState(true, sendNotification);
-    createSpecdrawTables();
+    if (m_specdraw_convert.getToggleState()) {
+      createSpecdrawTables();
+    }
+    m_specdraw_convert.setToggleState(true, dontSendNotification);
   };
   m_specdraw_convert.setTooltip(
       "Converts the waveform drawn\nin the window. You won't hear\nany changes "
@@ -710,18 +722,18 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   chiptune_submenu.addItem(503, "Square 12.5");
   chiptune_submenu.addItem(504, "ChipTriangle");
 
-  chiptune_submenu.addItem( 505,"ChipSaw");
-  chiptune_submenu.addItem( 506,"ChipSine");
-  chiptune_submenu.addItem( 507,"Diverging");
-  chiptune_submenu.addItem( 508, "High A");
-  chiptune_submenu.addItem( 509, "High B");
-  chiptune_submenu.addItem( 510, "High C");
-  chiptune_submenu.addItem( 511,"Rich");
-  chiptune_submenu.addItem( 512,"SoftTune");
-  chiptune_submenu.addItem( 513,"ChiptuneReplace1");
-  chiptune_submenu.addItem( 514,"ChiptuneReplace2");
-  chiptune_submenu.addItem( 515,"ChiptuneReplace3");
-  chiptune_submenu.addItem( 516,"ChiptuneReplace4");
+  chiptune_submenu.addItem(505, "ChipSaw");
+  chiptune_submenu.addItem(506, "ChipSine");
+  chiptune_submenu.addItem(507, "Diverging");
+  chiptune_submenu.addItem(508, "High A");
+  chiptune_submenu.addItem(509, "High B");
+  chiptune_submenu.addItem(510, "High C");
+  chiptune_submenu.addItem(511, "Rich");
+  chiptune_submenu.addItem(512, "SoftTune");
+  chiptune_submenu.addItem(513, "ChiptuneReplace1");
+  chiptune_submenu.addItem(514, "ChiptuneReplace2");
+  chiptune_submenu.addItem(515, "ChiptuneReplace3");
+  chiptune_submenu.addItem(516, "ChiptuneReplace4");
 
   juce::PopupMenu wavedraw_submenu;
   wavedraw_submenu.addItem(601, "WaveDraw Osc1");
@@ -1705,6 +1717,8 @@ void OscComponent::createWavedrawTables() {
 }
 
 void OscComponent::createChipdrawTables() {
+
+  DBG("CREATECHIPDRAWTABLES!!!!\n\n");
   WavetableContainer::getInstance().createChipdrawTable(
       std::stoi(m_osc_number) - 1, m_chipdraw.getDrawnTable(), 44100.f);
 
