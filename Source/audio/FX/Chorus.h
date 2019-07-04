@@ -19,18 +19,8 @@ public:
 
   inline void setSampleRate(float p_samplerate) { 
   DBG("SetSampleRate chorus");
-    // store LFO freq
-    float LFO_freq;
-    if (m_LFO_freq_set) {
-      float LFO_freq = m_LFO_inc / 2.f / m_samplerate;
-    }
     m_samplerate = p_samplerate;
-    if (m_LFO_freq_set) {
-      setLFOFreq(LFO_freq);
-    } else {
-      setLFOFreq(0.2f); // this is initial
-      m_LFO_freq_set = true;
-    }
+    setLFOFreq(m_LFO_freq);
   }
 
   inline void setAmount(float p_amount) { m_amount = p_amount * p_amount; }
@@ -39,6 +29,7 @@ public:
 
   inline void setLFOFreq(float p_LFO_freq) {
     m_LFO_inc = 2 * p_LFO_freq / m_samplerate;
+    m_LFO_freq = p_LFO_freq;
   }
 
   inline void reset() {
@@ -115,10 +106,11 @@ protected:
   float *m_feedback_mod;
 
   float m_circular_buffer[CHORUS_BUFFER_LENGTH] = {0};
-  float m_samplerate;
+  float m_samplerate = 44100;
   float m_dry_wet = 1.f;
   float m_LFO_inc;
   float m_LFO_pos = 0;
+  float m_LFO_freq = 0.2;
   float m_amount = 0.04f;//0.2^2
   int m_write_index = 0;
   float m_feedback = 0;

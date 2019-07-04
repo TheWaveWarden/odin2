@@ -12,20 +12,10 @@ public:
   ~Phaser();
 
   inline void setSampleRate(float p_samplerate) {
-     
-  DBG("SetSampleRate phaser");
-    // store LFO freq
-    float LFO_freq;
-    if (m_LFO_freq_set) {
-      LFO_freq = m_increment_sine / 2.f / m_samplerate;
-    }
+
+    DBG("SetSampleRate phaser");
     m_samplerate = p_samplerate;
-    if (m_LFO_freq_set) {
-      setLFOFreq(LFO_freq);
-    } else {
-      setLFOFreq(0.25f); // this is initial
-      m_LFO_freq_set = true;
-    }
+    setLFOFreq(m_LFO_freq);
 
     m_AP1_left.setSampleRate(p_samplerate);
     m_AP2_left.setSampleRate(p_samplerate);
@@ -98,6 +88,7 @@ public:
 
   inline void setLFOFreq(float p_freq) {
     m_increment_sine = 2 * p_freq / m_samplerate;
+    m_LFO_freq = p_freq;
   }
 
   inline void setLFOAmplitude(float p_amplitude) { m_amount = p_amplitude; }
@@ -214,6 +205,9 @@ protected:
       1; // switches from the positive to the negative proportion of the LFO
   int m_LFO_sign_right =
       1; // switches from the positive to the negative proportion of the LFO
+
+  float m_LFO_freq = 0.25;
+
   float m_amount = 0.3f;
   float m_index_sine_left = 0;
   float m_index_sine_right = 0.5; // quarter phase shifted

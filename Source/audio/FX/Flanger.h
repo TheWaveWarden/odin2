@@ -20,22 +20,13 @@ public:
 
   inline void setLFOFreq(float p_LFO_freq) {
     m_increment_sine = p_LFO_freq / m_samplerate * 2;
+    m_LFO_freq = p_LFO_freq;
   }
 
   void setSampleRate(float p_samplerate) override { 
   DBG("SetSampleRate flanger");
-    // store LFO freq
-    float LFO_freq;
-    if (m_LFO_freq_set) {
-      LFO_freq = m_increment_sine / 2.f / m_samplerate;
-    }
     m_samplerate = p_samplerate;
-    if (m_LFO_freq_set) {
-      setLFOFreq(LFO_freq);
-    } else {
-      setLFOFreq(0.2f); // this is initial
-      m_LFO_freq_set = true;
-    }
+    setLFOFreq(m_LFO_freq);
   }
 
   void resetLFO() { m_index_sine = 0; }
@@ -98,7 +89,7 @@ protected:
   int m_LFO_sign = 1;
 
   float m_base_time = 0.0105;
-  float m_LFO_freq;
+  float m_LFO_freq = 0.2;
   float m_LFO_amount = 0.3f;
 
   float m_index_sine = 0;
