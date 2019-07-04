@@ -27,12 +27,11 @@ NumberSelector::NumberSelector(bool p_buttons_right = true)
   m_display.toParentMouseDown = [&](const MouseEvent e) {
     mouse_reference_value = e.getScreenY();
     m_drag_initial_value = m_value;
-    //Component::mouseDown(e);
+    // Component::mouseDown(e);
   };
 
   m_display.toParentMouseDrag = [&](const MouseEvent e) {
     float mouse_moved = mouse_reference_value - e.getScreenY();
-
 
     int new_value = m_drag_initial_value + mouse_moved / m_mouse_drag_divisor;
     new_value = new_value > m_max ? m_max : new_value;
@@ -40,10 +39,10 @@ NumberSelector::NumberSelector(bool p_buttons_right = true)
 
     setValue(new_value);
 
-    //Component::mouseDrag(e);
+    // Component::mouseDrag(e);
   };
 
-  m_display.toParentMouseUp = [&](const MouseEvent e) { };
+  m_display.toParentMouseUp = [&](const MouseEvent e) {};
 
   addAndMakeVisible(m_display);
 
@@ -110,7 +109,8 @@ NumberSelector::NumberSelector(bool p_buttons_right = true)
   m_display_width = glas_panel.getWidth();
   m_buttons_right = p_buttons_right;
 
-  // setTooltip("HENLO");
+  m_up.setRepeatSpeed(BUTTON_REPEAT_INITIAL_DELAY, BUTTON_REPEAT_DELAY);
+  m_down.setRepeatSpeed(BUTTON_REPEAT_INITIAL_DELAY, BUTTON_REPEAT_DELAY);
 
   setValue(1);
 }

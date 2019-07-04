@@ -152,6 +152,9 @@ LFOSelectorComponent::LFOSelectorComponent()
   };
 
   m_display.toParentMouseUp = [&](const MouseEvent e) {};
+
+  m_up.setRepeatSpeed(BUTTON_REPEAT_INITIAL_DELAY, BUTTON_REPEAT_DELAY);
+  m_down.setRepeatSpeed(BUTTON_REPEAT_INITIAL_DELAY, BUTTON_REPEAT_DELAY);
 }
 
 LFOSelectorComponent::~LFOSelectorComponent() {}

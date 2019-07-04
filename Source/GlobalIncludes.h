@@ -73,6 +73,8 @@
 #define INPUT_LABEL_SIZE_X 70
 #define INPUT_LABEL_SIZE_Y 20
 
+#define BUTTON_REPEAT_INITIAL_DELAY 500
+#define BUTTON_REPEAT_DELAY 200
   
 #define WAVEDRAW_STEPS_X 193
 #define SPECDRAW_STEPS_X                                                       \

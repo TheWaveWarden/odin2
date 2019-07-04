@@ -92,6 +92,9 @@ WaveformSelectorComponent::WaveformSelectorComponent(bool p_buttons_right = true
 
     m_menu.setLookAndFeel(&m_menu_feels);
 
+    m_up.setRepeatSpeed(BUTTON_REPEAT_INITIAL_DELAY, BUTTON_REPEAT_DELAY);
+    m_down.setRepeatSpeed(BUTTON_REPEAT_INITIAL_DELAY, BUTTON_REPEAT_DELAY);
+
     setValue(1);
 }
 

@@ -1718,7 +1718,6 @@ void OscComponent::createWavedrawTables() {
 
 void OscComponent::createChipdrawTables() {
 
-  DBG("CREATECHIPDRAWTABLES!!!!\n\n");
   WavetableContainer::getInstance().createChipdrawTable(
       std::stoi(m_osc_number) - 1, m_chipdraw.getDrawnTable(), 44100.f);
 
