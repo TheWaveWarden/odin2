@@ -58,6 +58,8 @@ public:
     m_highpass.reset();
 
     m_delay_time_smooth = m_delay_time_control;
+
+    m_DC_blocking_filter.reset();
   }
 
   inline void setDry(float p_dry) { m_dry = p_dry; }

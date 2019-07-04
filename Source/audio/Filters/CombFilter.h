@@ -63,6 +63,7 @@ public:
   inline virtual void reset() {
     m_write_index = 0;
     memset(circular_buffer, 0, COMB_BUFFER_LENGTH * sizeof(float));
+    m_DC_blocking_filter.reset();
   }
 
   void setResModPointer(float *p_pointer) { m_res_mod = p_pointer; }

@@ -12,7 +12,19 @@ class DCBlockingFilter {
   }
 
   void setSampleRate(float p_samplerate){
-    //TODO doSomethingWithR()
+    //we gettin REAL dirty here...
+    R = 0.995;
+    if(p_samplerate > 90000){
+      R = 0.9965;
+    }
+    if(p_samplerate > 120000){
+      R = 0.997;
+    }
+  }
+
+  void reset(){
+    xm1 = 0;
+    ym1 = 0;
   }
 
   protected:
