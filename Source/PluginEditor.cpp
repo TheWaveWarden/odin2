@@ -80,8 +80,6 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
       m_legato_button("legato"), m_tooltip(nullptr, 2047483647),
       m_is_standalone_plugin(p_is_standalone), m_save_load(vts) {
 
-  TIMESTART("OdinEditor")
-
   if (m_is_standalone_plugin) {
     addKeyListener(this);
   }
@@ -918,7 +916,6 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
   setSize(800, 600);
 
   forceValueTreeOntoComponentsOnlyMainPanel();
-  TIMEEND
 }
 
 OdinAudioProcessorEditor::~OdinAudioProcessorEditor() {
@@ -1021,7 +1018,7 @@ void OdinAudioProcessorEditor::resized() {
 }
 
 void OdinAudioProcessorEditor::setOsc1Plate(int p_osc_type) {
-  DBG(p_osc_type);
+  //DBG(p_osc_type);
   if (p_osc_type == 0) {
     return;
   }

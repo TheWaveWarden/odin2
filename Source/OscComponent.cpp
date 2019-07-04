@@ -47,8 +47,6 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
       m_vec_c_identifier("osc" + p_osc_number + "_vec_c"),
       m_vec_d_identifier("osc" + p_osc_number + "_vec_d") {
 
-  TIMESTART("oscconstructor");
-
   m_oct_attach.reset(
       new SliderAttachment(m_value_tree, "osc" + m_osc_number + "_oct", m_oct));
   m_semi_attach.reset(new SliderAttachment(
@@ -642,8 +640,6 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
       "before you press\nthis button");
   addChildComponent(m_wavedraw_convert);
 
-  TIMEADD("chipdraw");
-
   m_specdraw_convert.setImages(
       &chipdraw_convert_draw2, &chipdraw_convert_draw2, &chipdraw_convert_draw1,
       &chipdraw_convert_draw1, &chipdraw_convert_draw4, &chipdraw_convert_draw4,
@@ -674,52 +670,6 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   };
   m_chiptune_waveselector.setTopLeftPosition(WAVE_CHIPTUNE_POS_X,
                                              WAVE_CHIPTUNE_POS_Y);
-  // m_chiptune_waveselector.addWave(1, "Pulse 50");
-  // m_chiptune_waveselector.setDecrementValue(1, 1);
-  // m_chiptune_waveselector.addWave(2, "Pulse 25");
-  // m_chiptune_waveselector.addWave(3, "Pulse 12.5");
-  // m_chiptune_waveselector.addWave(4, "ChipTriangle");
-  // m_chiptune_waveselector.addWave(5, "ChipSaw");
-  // m_chiptune_waveselector.addWave(6, "ChipSine");
-  // m_chiptune_waveselector.addWave(7, "Diverging");
-  // m_chiptune_waveselector.addWave(8, "High A");
-  // m_chiptune_waveselector.addWave(9, "High B");
-  // m_chiptune_waveselector.addWave(10, "High C");
-  // m_chiptune_waveselector.addWave(11, "Rich");
-  // m_chiptune_waveselector.addWave(12, "SoftTune");
-  // m_chiptune_waveselector.addSeparator();
-  // // normal wavetable submenu
-  // m_chiptune_waveselector.setIncrementValue(12, 100);
-  // m_chiptune_waveselector.addWaveToSubmenu(100, "henlo", 0);
-  // m_chiptune_waveselector.setDecrementValue(100, 12);
-  // m_chiptune_waveselector.addWaveToSubmenu(101, "henlo2", 0);
-  // m_chiptune_waveselector.setIncrementValue(101, 201);
-  // m_chiptune_waveselector.applySubmenu(0, "Wavetables");
-  // m_chiptune_waveselector.addSeparator();
-  // // chipdraw menu
-  // m_chiptune_waveselector.addWaveToSubmenu(601, "ChipDraw Osc1", 1);
-  // m_chiptune_waveselector.setDecrementValue(601, 501);
-  // m_chiptune_waveselector.addWaveToSubmenu(602, "ChipDraw Osc2", 1);
-  // m_chiptune_waveselector.addWaveToSubmenu(603, "ChipDraw Osc3", 1);
-  // m_chiptune_waveselector.setIncrementValue(603, 701);
-  // m_chiptune_waveselector.applySubmenu(1, "ChipDraw");
-  // // wavedraw menu
-  // m_chiptune_waveselector.addWaveToSubmenu(701, "WaveDraw Osc 1", 2);
-  // m_chiptune_waveselector.setDecrementValue(701, 603);
-  // m_chiptune_waveselector.addWaveToSubmenu(702, "WaveDraw Osc 2", 2);
-  // m_chiptune_waveselector.addWaveToSubmenu(703, "WaveDraw Osc 3", 2);
-  // m_chiptune_waveselector.setIncrementValue(703, 801);
-  // m_chiptune_waveselector.applySubmenu(2, "WaveDraw");
-  // // specdraw menu
-  // m_chiptune_waveselector.addWaveToSubmenu(801, "SpecDraw Osc 1", 3);
-  // m_chiptune_waveselector.setDecrementValue(801, 703);
-  // m_chiptune_waveselector.addWaveToSubmenu(802, "SpecDraw Osc 2", 3);
-  // m_chiptune_waveselector.addWaveToSubmenu(803, "SpecDraw Osc 3", 3);
-  // m_chiptune_waveselector.setIncrementValue(803, 803);
-  // m_chiptune_waveselector.applySubmenu(3, "WaveDraw");
-
-  // m_chiptune_waveselector.setValue(GETAUDIO("osc" + m_osc_number +
-  // "_chiptune_wave"));
   m_chiptune_waveselector.setColor(chip_color);
   m_chiptune_waveselector.setTooltip("Selects the wave for the oscillator");
   addChildComponent(m_chiptune_waveselector);
@@ -1171,13 +1121,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   addChildComponent(m_modulator_waveselector);
 
   m_carrier_ratio.OnValueChange = [&](int p_new_value) {
-    // m_value_tree.state.setProperty(m_carrier_ratio_identifier,
-    //                               (float)p_new_value, nullptr);
-    DBG("setratio");
-    DBG(p_new_value);
     SETAUDIO(m_carrier_ratio_identifier, (p_new_value - 1) / 11.f);
-    // m_value_tree.getParameter(m_vowel_left_identifier)
-    //     ->setValueNotifyingHost(((float)p_new_value) / 7.f);
   };
   m_carrier_ratio.setTopLeftPosition(RATIO_CARRIER_POS_X, RATIO_CARRIER_POS_Y);
   m_carrier_ratio.setRange(1, 12);
@@ -1384,8 +1328,6 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_value_tree.addParameterListener("osc" + m_osc_number + "_modulator_ratio",
                                     &m_modulator_ratio);
 
-  TIMEADD("beforeForceValue")
-
   forceValueTreeOntoComponents(m_value_tree.state, std::stoi(m_osc_number),
                                false);
 
@@ -1410,8 +1352,6 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   resetVectorWaves();
 
   setSize(247, 145);
-
-  TIMEEND
 }
 
 OscComponent::~OscComponent() {

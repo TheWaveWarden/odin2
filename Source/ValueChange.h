@@ -1207,11 +1207,9 @@ void OdinAudioProcessor::treeValueChangedNonParam(ValueTree &tree,
       m_voice[voice].vector_osc[2].selectWavetable(p_new_value, 3);
     }
   } else if (id == m_osc1_chipwave_identifier) {
-    DBG("HENLOOOO");
     for (int voice = 0; voice < VOICES; ++voice) {
       m_voice[voice].chiptune_osc[0].selectWavetableByMapping(p_new_value);
     }
-    DBG("henlo2");
   } else if (id == m_osc2_chipwave_identifier) {
     for (int voice = 0; voice < VOICES; ++voice) {
       m_voice[voice].chiptune_osc[1].selectWavetableByMapping(p_new_value);

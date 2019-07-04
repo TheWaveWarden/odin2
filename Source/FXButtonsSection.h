@@ -281,7 +281,7 @@ public:
   }
 
   void setHighlightedToValueTree(int p_fx_number) {
-    DBG(p_fx_number);
+    //DBG(p_fx_number);
     switch (p_fx_number) {
     case 0:
       m_value_tree.state.setProperty("delay_selected", 1.f, nullptr);

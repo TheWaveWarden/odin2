@@ -21,8 +21,6 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts,
       m_vowel_right_identifier("fil" + p_filter_number + "_vowel_right"),
       m_comb_plus_minus("comb_plus_minus") {
 
-  TIMESTART("FilterConstructor");
-
   m_vel_attach.reset(new SliderAttachment(
       m_value_tree, "fil" + m_filter_number + "_vel", m_vel));
   m_env_attach.reset(new SliderAttachment(
@@ -232,7 +230,6 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts,
 
 
 
-  TIMEEND
 }
 
 FilterComponent::~FilterComponent() {

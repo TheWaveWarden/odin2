@@ -215,14 +215,7 @@ private:
 
 class ModMatrix {
 public:
-  ModMatrix(){
-    TIMESTART("Modmatrix")
-    TIMEADD("henlo")
-    TIMEADD("henlo2")
-    TIMEADD("henlo3")
-    TIMEEND
-  }
-  //ModMatrix(ModSources *p_source, ModDestinations *p_destination);
+  ModMatrix(){}
 
   void setSourcesAndDestinations(ModSources *p_source, ModDestinations *p_destination);
 
