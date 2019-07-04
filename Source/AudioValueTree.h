@@ -507,9 +507,9 @@
       std::make_unique<AudioParameterInt>("chorus_on", "Chorus On", 0, 1, 0),
 
       std::make_unique<AudioParameterFloat>("chorus_rate", "Chorus Frequency",
-                                            0.05f, 20.f, 0.2f),
+                                            0.05f, 20.f, 0.15f),
       std::make_unique<AudioParameterFloat>("chorus_amount", "Chorus Amount",
-                                            NormalisableRange<float>(0.f, 1.f, 0.f, 1.f), 0.2f),
+                                            NormalisableRange<float>(0.f, 1.f, 0.f, 1.f), 0.3f),
       std::make_unique<AudioParameterFloat>("chorus_feedback",
                                             "Chorus Feedback", -1.f, 1.f, 0.f),
       std::make_unique<AudioParameterFloat>(
