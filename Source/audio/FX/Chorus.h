@@ -8,7 +8,7 @@
 #define CHORUS_BUFFER_LENGTH 44100
 #define CHORUS_MIN_DISTANCE                                                    \
   2 // min distance in samples the read index is behind the write index
-#define CHORUS_AMOUNT_RANGE 0.035 // empiric value
+#define CHORUS_AMOUNT_RANGE 0.02 // empiric value
 
 class Chorus {
 public:
@@ -118,7 +118,7 @@ protected:
   float m_dry_wet = 1.f;
   float m_LFO_inc;
   float m_LFO_pos = 0;
-  float m_amount = 0.3f;
+  float m_amount = 0.09f;//0.3^2
   int m_write_index = 0;
   float m_feedback = 0;
   bool m_LFO_freq_set = false;

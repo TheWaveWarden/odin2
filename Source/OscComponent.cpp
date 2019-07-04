@@ -1484,6 +1484,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 OscComponent::~OscComponent() {
   m_carrier_waveselector.m_menu.setLookAndFeel(nullptr);
   m_modulator_waveselector.m_menu.setLookAndFeel(nullptr);
+  m_chiptune_waveselector.m_menu.setLookAndFeel(nullptr);
 
   m_value_tree.removeParameterListener("osc" + m_osc_number + "_carrier_ratio",
                                        &m_carrier_ratio);
