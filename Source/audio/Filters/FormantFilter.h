@@ -1,6 +1,6 @@
 #pragma once
+
 #include "Filter.h"
-//#include "LadderFilter.h"
 #include "BiquadResonator.h"
 
 class FormantFilter : public Filter {
@@ -9,7 +9,6 @@ public:
   ~FormantFilter();
 
   void update() override;
-  // void setResControl(double p_res) override;
   double doFilter(double p_input) override;
   void reset() override;
   void setTransition(float p_trans);
@@ -66,7 +65,4 @@ protected:
 
   BiquadResonator m_resonator1;
   BiquadResonator m_resonator2;
-
-  // LadderFilter m_BPF1;
-  // LadderFilter m_BPF2;
 };
