@@ -11,7 +11,11 @@ public:
 
   inline void reset() override {
     CombFilter::reset();
-    m_index_sine = 0;
+    resetLFO();
+  }
+
+  inline void resetLFO(){
+    m_index_sine = m_LFO_reset_pos;
   }
 
   float doFlanger(float p_input);
@@ -28,8 +32,6 @@ public:
     m_samplerate = p_samplerate;
     setLFOFreq(m_LFO_freq);
   }
-
-  void resetLFO() { m_index_sine = 0; }
 
   void setFeedback(float p_feedback) {
     p_feedback = p_feedback > 0.98 ? 0.98 : p_feedback;
@@ -57,6 +59,11 @@ public:
     m_synctime_ratio = m_synctime_numerator / p_value;
   }
 
+  void setLFOResetPos(float p_pos){
+    m_LFO_reset_pos = p_pos;
+    resetLFO();
+  }
+  
 protected:
   float m_synctime_numerator = 3.f;
   float m_synctime_denominator = 16.f;
@@ -86,6 +93,7 @@ protected:
     return 4 * (m_index_sine * (1 - m_index_sine)) * m_LFO_sign;
   }
 
+
   int m_LFO_sign = 1;
 
   float m_base_time = 0.0105;
@@ -93,7 +101,9 @@ protected:
   float m_LFO_amount = 0.3f;
 
   float m_index_sine = 0;
+  float m_LFO_reset_pos = 0;
   float m_increment_sine;
+
 
   float m_dry_wet = 1.f;
 };
