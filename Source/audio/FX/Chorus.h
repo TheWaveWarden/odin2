@@ -74,7 +74,7 @@ public:
   }
   void setFeedback(float p_feedback) { m_feedback = p_feedback; }
 
-  void resetLFO() { m_LFO_pos = 0; }
+  void resetLFO() { m_LFO_pos = m_LFO_reset_pos; }
 
   void setFreqModPointer(float *p_pointer) { m_freq_mod = p_pointer; }
   void setAmountModPointer(float *p_pointer) { m_amount_mod = p_pointer; }
@@ -94,6 +94,11 @@ public:
     DBG(m_synctime_ratio);
   }
 
+  void setLFOResetPos(float p_pos){
+    m_LFO_reset_pos = p_pos;
+    resetLFO();
+  }
+
 protected:
   float m_synctime_numerator = 3.f;
   float m_synctime_denominator = 16.f;
@@ -110,7 +115,8 @@ protected:
   float m_LFO_inc;
   float m_LFO_pos = 0;
   float m_LFO_freq = 0.15;
-  float m_amount = 0.09f;//0.3^2
+  float m_LFO_reset_pos = 0;
+  float m_amount = 0.16f;//0.4^2
   int m_write_index = 0;
   float m_feedback = 0;
   bool m_LFO_freq_set = false;

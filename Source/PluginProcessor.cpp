@@ -772,6 +772,9 @@ void OdinAudioProcessor::initializeModules() {
 
   m_phaser.setRadiusBase(1.25f);
 
+  //make "stereo" chorus
+  m_chorus[1].setLFOResetPos(0.25);
+
   setModulationPointers();
 }
 
