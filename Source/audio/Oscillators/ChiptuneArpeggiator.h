@@ -54,7 +54,7 @@ class ChiptuneArpeggiator
     float m_inc;
     float m_position_in_step = 0.f;
     int m_current_step = 0;
-    int m_step_semitones[3] = {0, 12, 8};
+    int m_step_semitones[3] = {0, 12, 7};
     bool m_step_three_active = false;
     bool m_arp_active = false;
     //float m_frequency = 0.01f; //doesn't necessarily need to be in Hz
