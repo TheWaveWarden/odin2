@@ -39,21 +39,21 @@
 #define PHASER_DRYWET_DEFAULT 1
 
 #define PHASER_SYNC_TIME_POS_X 27
-#define PHASER_SYNC_TIME_POS_Y 83
-#define PHASER_SYNC_POS_X 19
-#define PHASER_SYNC_POS_Y 62
-#define PHASER_RESET_POS_X 74
-#define PHASER_RESET_POS_Y PHASER_SYNC_POS_Y
-#define PHASER_RATE_POS_X 15 + 61*0
+#define PHASER_SYNC_TIME_POS_Y 21
+#define PHASER_SYNC_POS_X 23
+#define PHASER_SYNC_POS_Y 69
+#define PHASER_RESET_POS_X 185
+#define PHASER_RESET_POS_Y 22
+#define PHASER_RATE_POS_X 20
 #define PHASER_RATE_POS_Y 9
-#define PHASER_MOD_POS_X  15 + 61 * 1 
-#define PHASER_MOD_POS_Y PHASER_RATE_POS_Y
 #define PHASER_FREQ_POS_X 15 + 61 * 2
 #define PHASER_FREQ_POS_Y 59
 #define phaser_feedback_POS_X PHASER_FREQ_POS_X
 #define phaser_feedback_POS_Y PHASER_RATE_POS_Y
 #define PHASER_DRY_WET_POS_X 190
-#define PHASER_DRY_WET_POS_Y 36
+#define PHASER_DRY_WET_POS_Y PHASER_FREQ_POS_Y
+#define PHASER_MOD_POS_X  15 + 61 * 1 
+#define PHASER_MOD_POS_Y PHASER_FREQ_POS_Y
 
 //==============================================================================
 /*
