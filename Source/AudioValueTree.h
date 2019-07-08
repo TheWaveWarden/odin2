@@ -357,10 +357,10 @@
           NormalisableRange<float>(0.001f, 10.f, 0.f, 0.300912), 0.01f),
       std::make_unique<AudioParameterFloat>(
           "env2_decay", "FilterEnv Decay",
-          NormalisableRange<float>(0.001f, 10.f, 0.f, 0.300912), 1.f),
+          NormalisableRange<float>(0.001f, 10.f, 0.f, 0.300912), 0.8f),
       std::make_unique<AudioParameterFloat>(
           "env2_sustain", "FilterEnv Sustain",
-          NormalisableRange<float>(0.f, 1.f, 0.f, 0.575717), 0.5f),
+          NormalisableRange<float>(0.f, 1.f, 0.f, 0.575717), 0.f),
       std::make_unique<AudioParameterFloat>(
           "env2_release", "FilterEnv Release",
           NormalisableRange<float>(0.001f, 10.f, 0.f, 0.300912), 0.01f),

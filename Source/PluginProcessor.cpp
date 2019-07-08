@@ -127,6 +127,11 @@ OdinAudioProcessor::OdinAudioProcessor()
     m_voice[i].ring_mod[1].loadWavetables();
     m_voice[i].ring_mod[0].selectWavetable(0);
     m_voice[i].ring_mod[1].selectWavetable(0);
+
+    //set different initial values for filter env here....not best solution
+    m_voice[i].env[1].setDecay(0.8f);
+    m_voice[i].env[1].setSustain(0);
+
   }
   m_ring_mod[0].loadWavetables();
   m_ring_mod[1].loadWavetables();
@@ -134,7 +139,7 @@ OdinAudioProcessor::OdinAudioProcessor()
   m_ring_mod[1].selectWavetable(0);
 
   m_global_lfo.loadWavetables();
-  
+
   for (int voice = 0; voice < VOICES; ++voice) {
     m_voice[voice].env[0].setEnvelopeEndPointers(
         &(m_voice[voice].m_voice_active), &(m_voice_manager.voice_busy[voice]));
