@@ -353,6 +353,8 @@ convert FiltersRaw.png -crop 247x134+525+317 cropped/SEM12_cropped.png
 convert FiltersRaw.png -crop 247x134+29+459 cropped/diode_cropped.png
 convert FiltersRaw.png -crop 247x134+277+459 cropped/korg_cropped.png
 convert FiltersRaw.png -crop 247x134+525+459 cropped/SEM24_cropped.png
+convert OscRaw.png -crop 247x134+29+459 cropped/ringmod_cropped.png
+
 
 echo 'cropping filter knobs'
 

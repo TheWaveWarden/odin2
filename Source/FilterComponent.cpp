@@ -401,7 +401,7 @@ void FilterComponent::setFilterFormant() {
 void FilterComponent::setFilterRingMod() {
   //todo
   m_background = ImageCache::getFromMemory(
-      BinaryData::formant_backdrop_png, BinaryData::formant_backdrop_pngSize);
+      BinaryData::ringmod_backdrop_png, BinaryData::ringmod_backdrop_pngSize);
   showRingModFilterComponents();
 }
 
@@ -461,6 +461,7 @@ void FilterComponent::showRingModFilterComponents() {
   m_env.setVisible(true);
   m_gain.setVisible(true);
   m_freq.setVisible(true);
+  m_freq.setTopLeftPosition(FORMANT_TRANSITION_X, FORMANT_TRANSITION_Y);
 }
 
 

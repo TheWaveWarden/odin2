@@ -541,6 +541,7 @@ struct Voice {
       korg_filter[fil].setSampleRate(p_samplerate);
       diode_filter[fil].setSampleRate(p_samplerate);
       comb_filter[fil].setSampleRate(p_samplerate);
+      ring_mod[fil].setSampleRate(p_samplerate);
     }
 
     for (int osc = 0; osc < 3; ++osc) {

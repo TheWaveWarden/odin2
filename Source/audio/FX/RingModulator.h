@@ -12,5 +12,7 @@ public:
   void reset() override;
 
 protected:
+  int getTableIndex() override;
+
    float m_modulation_dummy = 0;
 };

@@ -506,6 +506,8 @@
       <FILE id="UVT6rf" name="pyram6.png" compile="0" resource="1" file="Gimp/cropped/lfo/pyram6.png"/>
       <FILE id="c8Yhus" name="pyram8.png" compile="0" resource="1" file="Gimp/cropped/lfo/pyram8.png"/>
       <FILE id="dMJmtg" name="pyram12.png" compile="0" resource="1" file="Gimp/cropped/lfo/pyram12.png"/>
+      <FILE id="EynjA3" name="ringmod_backdrop.png" compile="0" resource="1"
+            file="Gimp/applied/ringmod_backdrop.png"/>
       <FILE id="oBTTxl" name="round_knob.png" compile="0" resource="1" file="Gimp/cropped/knobs/round/round_knob.png"/>
       <FILE id="XuqLC9" name="saw.png" compile="0" resource="1" file="Gimp/cropped/lfo/saw.png"/>
       <FILE id="kT1Nzc" name="select_filmstrip.png" compile="0" resource="1"

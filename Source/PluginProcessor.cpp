@@ -120,6 +120,8 @@ OdinAudioProcessor::OdinAudioProcessor()
     }
     m_voice[i].ring_mod[0].loadWavetables();
     m_voice[i].ring_mod[1].loadWavetables();
+    m_voice[i].ring_mod[0].selectWavetable(0);
+    m_voice[i].ring_mod[1].selectWavetable(0);
   }
   m_global_lfo.loadWavetables();
   for (int voice = 0; voice < VOICES; ++voice) {
@@ -561,6 +563,8 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
                 m_fil_gain_smooth[fil];
           } else if (m_fil_type[fil] == FILTER_TYPE_RINGMOD) {
             m_voice[voice].ring_mod[fil].setBaseFrequency(m_fil_freq_smooth[fil]);
+            m_voice[voice].ring_mod[fil].setGlideTargetFrequency(m_fil_freq_smooth[fil]);
+
             m_voice[voice].ring_mod[fil].update();
             m_filter_output[voice][fil] =
                 m_voice[voice].ring_mod[fil].doRingModulator(filter_input[fil]) *

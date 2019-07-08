@@ -15,12 +15,14 @@ RingModulator::RingModulator(){
 
 float RingModulator::doRingModulator(float p_input){
   float out = p_input * doOscillate();
-  DBG(out);
-  DBG(p_input);
   return out;
-  
 }
 
 void RingModulator::reset() {
 
+}
+
+int RingModulator::getTableIndex() {
+  //sine is always the same
+  return 0;
 }
