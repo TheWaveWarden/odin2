@@ -768,6 +768,9 @@
           <FILE id="bipTNG" name="QuarticShaper.cpp" compile="1" resource="0"
                 file="Source/audio/FX/QuarticShaper.cpp"/>
           <FILE id="OIBYdF" name="QuarticShaper.h" compile="0" resource="0" file="Source/audio/FX/QuarticShaper.h"/>
+          <FILE id="tvMs3q" name="RingModulator.cpp" compile="1" resource="0"
+                file="Source/audio/FX/RingModulator.cpp"/>
+          <FILE id="jfaMKu" name="RingModulator.h" compile="0" resource="0" file="Source/audio/FX/RingModulator.h"/>
         </GROUP>
         <GROUP id="{A1F58DC9-32D9-511A-BCD5-B1084A4E1EFD}" name="Filters">
           <FILE id="QRF8aB" name="BiquadAllpass.cpp" compile="1" resource="0"

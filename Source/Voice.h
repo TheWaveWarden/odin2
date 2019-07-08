@@ -29,7 +29,7 @@
 #include "audio/Filters/Korg35Filter.h"
 #include "audio/Filters/LadderFilter.h"
 #include "audio/Filters/SEMFilter12.h"
-//#include "audio/Filters/SEMFilter24.h"
+#include "audio/FX/RingModulator.h"
 
 #include "audio/ADSR.h"
 
@@ -577,11 +577,11 @@ struct Voice {
   // filter
   LadderFilter ladder_filter[2];
   SEMFilter12 SEM_filter_12[2];
-  // SEMFilter24 SEM_filter_24[2];
   Korg35Filter korg_filter[2];
   DiodeFilter diode_filter[2];
   FormantFilter formant_filter[2];
   CombFilter comb_filter[2];
+  RingModulator ring_mod[2];
   // ADSRs
   ADSREnvelope env[3];
   LFO lfo[3];

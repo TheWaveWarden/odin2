@@ -102,11 +102,13 @@ public:
   void setFilterKorgHP();
   void setFilterComb();
   void setFilterFormant();
+  void setFilterRingMod();
 
   void showStandardFilterComponents();
   void showSEMFilterComponents();
   void showCombFilterComponents();
   void showFormantFilterComponents();
+  void showRingModFilterComponents();
 
   void forceValueTreeOntoComponents(ValueTree p_tree, int index);
   

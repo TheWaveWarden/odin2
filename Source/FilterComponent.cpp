@@ -293,6 +293,9 @@ void FilterComponent::setFilterType(int p_filter_type) {
   case FILTER_TYPE_FORMANT:
     setFilterFormant();
     break;
+  case FILTER_TYPE_RINGMOD:
+    setFilterRingMod();
+    break;
   default:
     setFilterBypass();
     break;
@@ -395,6 +398,13 @@ void FilterComponent::setFilterFormant() {
   showFormantFilterComponents();
 }
 
+void FilterComponent::setFilterRingMod() {
+  //todo
+  m_background = ImageCache::getFromMemory(
+      BinaryData::formant_backdrop_png, BinaryData::formant_backdrop_pngSize);
+  showRingModFilterComponents();
+}
+
 void FilterComponent::showSEMFilterComponents() {
   m_vel.setVisible(true);
   m_kbd.setVisible(true);
@@ -444,6 +454,16 @@ void FilterComponent::showFormantFilterComponents() {
   m_formant_transition.setVisible(true);
   // todo set smaller filter bounds
 }
+
+void FilterComponent::showRingModFilterComponents() {
+  m_kbd.setVisible(true);
+  m_vel.setVisible(true);
+  m_env.setVisible(true);
+  m_gain.setVisible(true);
+  m_freq.setVisible(true);
+}
+
+
 void FilterComponent::forceValueTreeOntoComponents(ValueTree p_tree,
                                                    int p_index) {
   m_comb_plus_minus.setValue(

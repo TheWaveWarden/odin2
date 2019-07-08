@@ -118,8 +118,10 @@ OdinAudioProcessor::OdinAudioProcessor()
       m_voice[i].specdraw_osc[osc].loadSpecdrawTables(osc);
       m_voice[i].lfo[osc].loadWavetables();
     }
-    m_global_lfo.loadWavetables();
+    m_voice[i].ring_mod[0].loadWavetables();
+    m_voice[i].ring_mod[1].loadWavetables();
   }
+  m_global_lfo.loadWavetables();
   for (int voice = 0; voice < VOICES; ++voice) {
     // DBG("pointer to voice " + std::to_string(voice) +
     //    " is: " + std::to_string((long)&m_voice[voice]));
@@ -556,6 +558,12 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
             m_voice[voice].comb_filter[fil].setCombFreq(m_fil_freq_smooth[fil]);
             m_filter_output[voice][fil] =
                 m_voice[voice].comb_filter[fil].doFilter(filter_input[fil]) *
+                m_fil_gain_smooth[fil];
+          } else if (m_fil_type[fil] == FILTER_TYPE_RINGMOD) {
+            m_voice[voice].ring_mod[fil].setBaseFrequency(m_fil_freq_smooth[fil]);
+            m_voice[voice].ring_mod[fil].update();
+            m_filter_output[voice][fil] =
+                m_voice[voice].ring_mod[fil].doRingModulator(filter_input[fil]) *
                 m_fil_gain_smooth[fil];
           }
 

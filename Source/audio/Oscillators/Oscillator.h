@@ -81,6 +81,7 @@ public:
     //DBG("===");
 
     float glide_input_modded = m_glide + *(m_glide_mod);
+
     glide_input_modded = glide_input_modded > 1 ? 1 : glide_input_modded;
     double glide_modded = calculateGlide(glide_input_modded);
 
