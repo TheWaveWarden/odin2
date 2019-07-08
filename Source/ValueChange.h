@@ -507,45 +507,45 @@ bool OdinAudioProcessor::treeValueChangedThird(const String &p_ID,
   else if (id == m_fil3_kbd_identifier) {
     m_ladder_filter[0].m_kbd_mod_amount = p_new_value;
     m_SEM_filter_12[0].m_kbd_mod_amount = p_new_value;
-    // m_SEM_filter_24[0].m_kbd_mod_amount = p_new_value;
     m_korg_filter[0].m_kbd_mod_amount = p_new_value;
     m_diode_filter[0].m_kbd_mod_amount = p_new_value;
     m_comb_filter[0].m_kbd_mod_amount = p_new_value;
+    m_ring_mod[0].m_kbd_mod_amount = p_new_value;
     m_ladder_filter[1].m_kbd_mod_amount = p_new_value;
     m_SEM_filter_12[1].m_kbd_mod_amount = p_new_value;
-    // m_SEM_filter_24[1].m_kbd_mod_amount = p_new_value;
     m_korg_filter[1].m_kbd_mod_amount = p_new_value;
     m_diode_filter[1].m_kbd_mod_amount = p_new_value;
     m_comb_filter[1].m_kbd_mod_amount = p_new_value;
+    m_ring_mod[1].m_kbd_mod_amount = p_new_value;
   } else if (id == m_fil3_vel_identifier) {
     m_ladder_filter[0].m_vel_mod_amount = p_new_value;
     m_SEM_filter_12[0].m_vel_mod_amount = p_new_value;
-    // m_SEM_filter_24[0].m_vel_mod_amount = p_new_value;
     m_korg_filter[0].m_vel_mod_amount = p_new_value;
     m_diode_filter[0].m_vel_mod_amount = p_new_value;
     m_comb_filter[0].m_vel_mod_amount = p_new_value;
+    m_ring_mod[0].m_vel_mod_amount = p_new_value;
     m_formant_filter[0].m_vel_mod_amount = p_new_value;
     m_ladder_filter[1].m_vel_mod_amount = p_new_value;
     m_SEM_filter_12[1].m_vel_mod_amount = p_new_value;
-    // m_SEM_filter_24[1].m_vel_mod_amount = p_new_value;
     m_korg_filter[1].m_vel_mod_amount = p_new_value;
     m_diode_filter[1].m_vel_mod_amount = p_new_value;
     m_comb_filter[1].m_vel_mod_amount = p_new_value;
+    m_ring_mod[1].m_vel_mod_amount = p_new_value;
     m_formant_filter[1].m_vel_mod_amount = p_new_value;
   } else if (id == m_fil3_env_identifier) {
     m_ladder_filter[0].m_env_mod_amount = p_new_value;
     m_SEM_filter_12[0].m_env_mod_amount = p_new_value;
-    // m_SEM_filter_24[0].m_env_mod_amount = p_new_value;
     m_korg_filter[0].m_env_mod_amount = p_new_value;
     m_diode_filter[0].m_env_mod_amount = p_new_value;
     m_comb_filter[0].m_env_mod_amount = p_new_value;
+    m_ring_mod[0].m_env_mod_amount = p_new_value;
     m_formant_filter[0].m_env_mod_amount = p_new_value;
     m_ladder_filter[1].m_env_mod_amount = p_new_value;
     m_SEM_filter_12[1].m_env_mod_amount = p_new_value;
-    // m_SEM_filter_24[1].m_env_mod_amount = p_new_value;
     m_korg_filter[1].m_env_mod_amount = p_new_value;
     m_diode_filter[1].m_env_mod_amount = p_new_value;
     m_comb_filter[1].m_env_mod_amount = p_new_value;
+    m_ring_mod[1].m_env_mod_amount = p_new_value;
     m_formant_filter[1].m_env_mod_amount = p_new_value;
   } else if (id == m_fil3_saturation_identifier) {
     m_ladder_filter[0].m_overdrive = p_new_value * 2;

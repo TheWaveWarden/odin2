@@ -77,6 +77,10 @@ public:
     return ret;
   }
 
+  int getNewestVoiceIndex(){
+    return m_voice_history[0];
+  }
+
   // marks a voice as free again
   void freeVoice(int p_voice) {
     voice_busy[p_voice] = false;

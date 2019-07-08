@@ -24,6 +24,7 @@
 #include "audio/FX/Flanger.h"
 #include "audio/FX/OversamplingDistortion.h"
 #include "audio/FX/Phaser.h"
+#include "audio/FX/RingModulator.h"
 #include "audio/Filters/CombFilter.h"
 #include "audio/Filters/DiodeFilter.h"
 #include "audio/Filters/FormantFilter.h"
@@ -227,7 +228,7 @@ public:
 
   void midiNoteOff(int p_midi_note);
   void midiNoteOn(int p_midi_note, int p_midi_velocity);
-  
+
   void setPolyLegato(bool p_is_poly) {
     bool legato_was_changed = m_voice_manager.setPolyLegato(p_is_poly);
     m_voice[0].setPolyLegato(p_is_poly);
@@ -248,6 +249,7 @@ public:
 
 private:
   // OdinAudioProcessorEditor* m_editor = nullptr;
+  void setFilter3EnvValue();
 
   void setBPM(float BPM);
 
@@ -304,6 +306,7 @@ private:
   DiodeFilter m_diode_filter[2];
   FormantFilter m_formant_filter[2];
   CombFilter m_comb_filter[2];
+  RingModulator m_ring_mod[2];
   Delay m_delay[2];
   Phaser m_phaser; // is stereo phaser
   Flanger m_flanger[2];
