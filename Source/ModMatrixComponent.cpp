@@ -201,6 +201,21 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
                                      "Filter" + std::to_string(fil + 1) +
                                          " Saturation");
 
+
+    m_ringmod_fil_menu[fil].addItem(
+        300 + 100 * fil + 1, "Filter" + std::to_string(fil + 1) + " Frequency");
+    m_ringmod_fil_menu[fil].addItem(
+        300 + 100 * fil + 3, "Filter" + std::to_string(fil + 1) + " Gain");
+    m_ringmod_fil_menu[fil].addItem(300 + 100 * fil + 4,
+                                     "Filter" + std::to_string(fil + 1) +
+                                         " Env Amount");
+    m_ringmod_fil_menu[fil].addItem(300 + 100 * fil + 5,
+                                     "Filter" + std::to_string(fil + 1) +
+                                         " Vel Amount");
+    m_ringmod_fil_menu[fil].addItem(300 + 100 * fil + 6,
+                                     "Filter" + std::to_string(fil + 1) +
+                                         " Kbd Amount");
+
     // comb
     m_comb_fil_menu[fil].addItem(
         300 + 100 * fil + 1, "Filter" + std::to_string(fil + 1) + " Frequency");
@@ -1162,6 +1177,9 @@ void ModMatrixComponent::createMenu(PopupMenu *p_menu) {
     } else if (fil_type[fil] == FILTER_TYPE_COMB) {
       p_menu->addSubMenu("Filter " + std::to_string(fil + 1),
                          m_comb_fil_menu[fil]);
+    } else if (fil_type[fil] == FILTER_TYPE_RINGMOD) {
+      p_menu->addSubMenu("Filter " + std::to_string(fil + 1),
+                         m_ringmod_fil_menu[fil]);
     } else {
       p_menu->addItem(998, "Filter " + std::to_string(fil + 1), false);
     }

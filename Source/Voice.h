@@ -451,6 +451,14 @@ struct Voice {
       korg_filter[fil].m_MIDI_note = p_MIDI_note;
       SEM_filter_12[fil].m_MIDI_note = p_MIDI_note;
       comb_filter[fil].m_MIDI_note = p_MIDI_note;
+      ring_mod[fil].m_MIDI_note = p_MIDI_note;
+
+      ladder_filter[fil].m_MIDI_velocity = p_MIDI_vel;
+      diode_filter[fil].m_MIDI_velocity = p_MIDI_vel;
+      korg_filter[fil].m_MIDI_velocity = p_MIDI_vel;
+      SEM_filter_12[fil].m_MIDI_velocity = p_MIDI_vel;
+      comb_filter[fil].m_MIDI_velocity = p_MIDI_vel;
+      ring_mod[fil].m_MIDI_velocity = p_MIDI_vel;
     }
   }
 
@@ -461,6 +469,7 @@ struct Voice {
     korg_filter[p_fil].m_kbd_mod_amount = p_kbd;
     diode_filter[p_fil].m_kbd_mod_amount = p_kbd;
     comb_filter[p_fil].m_kbd_mod_amount = p_kbd;
+    ring_mod[p_fil].m_kbd_mod_amount = p_kbd;
   }
 
   void setVelModAmount(float p_vel, int p_fil) {
@@ -471,6 +480,7 @@ struct Voice {
     diode_filter[p_fil].m_vel_mod_amount = p_vel;
     comb_filter[p_fil].m_vel_mod_amount = p_vel;
     formant_filter[p_fil].m_vel_mod_amount = p_vel;
+    ring_mod[p_fil].m_vel_mod_amount = p_vel;
   }
 
   void setSaturation(float p_sat, int p_fil) {
@@ -490,6 +500,7 @@ struct Voice {
     diode_filter[p_fil].m_env_mod_amount = p_env;
     comb_filter[p_fil].m_env_mod_amount = p_env;
     formant_filter[p_fil].m_env_mod_amount = p_env;
+    ring_mod[p_fil].m_env_mod_amount = p_env;
   }
 
   void setFilterEnvValue(float p_env) {
@@ -500,6 +511,7 @@ struct Voice {
     diode_filter[0].m_env_value = p_env;
     comb_filter[0].m_env_value = p_env;
     formant_filter[0].m_env_value = p_env;
+    ring_mod[0].m_env_value = p_env;
 
     ladder_filter[1].m_env_value = p_env;
     SEM_filter_12[1].m_env_value = p_env;
@@ -508,6 +520,7 @@ struct Voice {
     diode_filter[1].m_env_value = p_env;
     comb_filter[1].m_env_value = p_env;
     formant_filter[1].m_env_value = p_env;
+    ring_mod[1].m_env_value = p_env;
   }
 
   void setFilterFreq(float p_freq, int p_fil) {

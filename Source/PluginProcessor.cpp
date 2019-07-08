@@ -988,8 +988,8 @@ void OdinAudioProcessor::setModulationPointers() {
           &(m_mod_destinations.voice[voice].filter[fil].freq));
       m_voice[voice].SEM_filter_12[fil].setFreqModPointer(
           &(m_mod_destinations.voice[voice].filter[fil].freq));
-      //   m_voice[voice].SEM_filter_24[fil].setFreqModPointer(
-      //       &(m_mod_destinations.voice[voice].filter[fil].freq));
+      m_voice[voice].ring_mod[fil].setPitchModExpPointer(
+          &(m_mod_destinations.voice[voice].filter[fil].freq));
 
       m_voice[voice].ladder_filter[fil].setResModPointer(
           &(m_mod_destinations.voice[voice].filter[fil].res));
@@ -999,8 +999,6 @@ void OdinAudioProcessor::setModulationPointers() {
           &(m_mod_destinations.voice[voice].filter[fil].res));
       m_voice[voice].SEM_filter_12[fil].setResModPointer(
           &(m_mod_destinations.voice[voice].filter[fil].res));
-      // m_voice[voice].SEM_filter_24[fil].setResModPointer(
-      //    &(m_mod_destinations.voice[voice].filter[fil].res));
       m_voice[voice].comb_filter[fil].setResModPointer(
           &(m_mod_destinations.voice[voice].filter[fil].res));
 
@@ -1012,11 +1010,11 @@ void OdinAudioProcessor::setModulationPointers() {
           &(m_mod_destinations.voice[voice].filter[fil].gain));
       m_voice[voice].SEM_filter_12[fil].setVolModPointer(
           &(m_mod_destinations.voice[voice].filter[fil].gain));
-      //   m_voice[voice].SEM_filter_24[fil].setVolModPointer(
-      //       &(m_mod_destinations.voice[voice].filter[fil].gain));
       m_voice[voice].comb_filter[fil].setVolModPointer(
           &(m_mod_destinations.voice[voice].filter[fil].gain));
       m_voice[voice].formant_filter[fil].setVolModPointer(
+          &(m_mod_destinations.voice[voice].filter[fil].gain));
+      m_voice[voice].ring_mod[fil].setVolModPointer(
           &(m_mod_destinations.voice[voice].filter[fil].gain));
 
       m_voice[voice].ladder_filter[fil].setEnvModPointer(
@@ -1027,11 +1025,11 @@ void OdinAudioProcessor::setModulationPointers() {
           &(m_mod_destinations.voice[voice].filter[fil].env_amount));
       m_voice[voice].SEM_filter_12[fil].setEnvModPointer(
           &(m_mod_destinations.voice[voice].filter[fil].env_amount));
-      //   m_voice[voice].SEM_filter_24[fil].setEnvModPointer(
-      //       &(m_mod_destinations.voice[voice].filter[fil].env_amount));
       m_voice[voice].comb_filter[fil].setEnvModPointer(
           &(m_mod_destinations.voice[voice].filter[fil].env_amount));
       m_voice[voice].formant_filter[fil].setEnvModPointer(
+          &(m_mod_destinations.voice[voice].filter[fil].env_amount));
+      m_voice[voice].ring_mod[fil].setEnvModPointer(
           &(m_mod_destinations.voice[voice].filter[fil].env_amount));
 
       m_voice[voice].ladder_filter[fil].setVelModPointer(
@@ -1042,11 +1040,11 @@ void OdinAudioProcessor::setModulationPointers() {
           &(m_mod_destinations.voice[voice].filter[fil].vel_amount));
       m_voice[voice].SEM_filter_12[fil].setVelModPointer(
           &(m_mod_destinations.voice[voice].filter[fil].vel_amount));
-      //   m_voice[voice].SEM_filter_24[fil].setVelModPointer(
-      //       &(m_mod_destinations.voice[voice].filter[fil].vel_amount));
       m_voice[voice].comb_filter[fil].setVelModPointer(
           &(m_mod_destinations.voice[voice].filter[fil].vel_amount));
       m_voice[voice].formant_filter[fil].setVelModPointer(
+          &(m_mod_destinations.voice[voice].filter[fil].vel_amount));
+      m_voice[voice].ring_mod[fil].setVelModPointer(
           &(m_mod_destinations.voice[voice].filter[fil].vel_amount));
 
       m_voice[voice].ladder_filter[fil].setKbdModPointer(
@@ -1057,11 +1055,11 @@ void OdinAudioProcessor::setModulationPointers() {
           &(m_mod_destinations.voice[voice].filter[fil].kbd_amount));
       m_voice[voice].SEM_filter_12[fil].setKbdModPointer(
           &(m_mod_destinations.voice[voice].filter[fil].kbd_amount));
-      //   m_voice[voice].SEM_filter_24[fil].setKbdModPointer(
-      //       &(m_mod_destinations.voice[voice].filter[fil].kbd_amount));
       m_voice[voice].comb_filter[fil].setKbdModPointer(
           &(m_mod_destinations.voice[voice].filter[fil].kbd_amount));
       m_voice[voice].formant_filter[fil].setKbdModPointer(
+          &(m_mod_destinations.voice[voice].filter[fil].kbd_amount));
+      m_voice[voice].ring_mod[fil].setKbdModPointer(
           &(m_mod_destinations.voice[voice].filter[fil].kbd_amount));
 
       m_voice[voice].ladder_filter[fil].setSaturationModPointer(
