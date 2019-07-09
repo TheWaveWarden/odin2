@@ -17,7 +17,7 @@ convert -size 247x145+0+0 -background none -page 247x134+0+0 cropped/BP24_croppe
 convert -size 247x145+0+0 -background none -page 247x134+0+0 cropped/HP12_cropped.png -page +0+0 paths/HP_path.png  -layers flatten applied/HP12_backdrop.png
 convert -size 247x145+0+0 -background none -page 247x134+0+0 cropped/HP24_cropped.png -page +0+0 paths/HP_path.png  -layers flatten applied/HP24_backdrop.png
 convert -size 247x145+0+0 -background none -page 247x134+0+0 cropped/formant_cropped.png -page +0+0 paths/formant_path.png  -layers flatten applied/formant_backdrop.png
-convert -size 247x145+0+0 -background none -page 247x134+0+0 cropped/ringmod_cropped.png -page +0+0 paths/formant_path.png  -layers flatten applied/ringmod_backdrop.png
+convert -size 247x145+0+0 -background none -page 247x134+0+0 cropped/ringmod_cropped.png -page +0+0 paths/ringmod_path.png  -layers flatten applied/ringmod_backdrop.png
 convert -size 247x145+0+0 -background none -page 247x134+0+0 cropped/comb_cropped.png -page +0+0 paths/comb_path.png  -layers flatten applied/comb_backdrop.png
 convert -size 247x145+0+0 -background none -page 247x134+0+0 cropped/SEM12_cropped.png -page +0+0 paths/SEM_path.png  -layers flatten applied/SEM12_backdrop.png
 convert -size 247x145+0+0 -background none -page 247x134+0+0 cropped/SEM24_cropped.png -page +0+0 paths/SEM_path.png  -layers flatten applied/SEM24_backdrop.png

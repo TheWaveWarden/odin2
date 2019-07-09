@@ -35,6 +35,7 @@ struct ModDestFilter {
   float kbd_amount;
   float SEM_transition;
   float formant_transition;
+  float ringmod_amount;
 };
 
 // contains all modulation destinations for an envelope

@@ -443,6 +443,14 @@ bool OdinAudioProcessor::treeValueChangedThird(const String &p_ID,
     for (int voice = 0; voice < VOICES; ++voice) {
       m_voice[voice].formant_filter[1].setTransition(p_new_value);
     }
+  } else if (id == m_fil1_ring_mod_amount_identifier) {
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_voice[voice].ring_mod[0].setAmount(p_new_value);
+    }
+  } else if (id == m_fil2_ring_mod_amount_identifier) {
+    for (int voice = 0; voice < VOICES; ++voice) {
+      m_voice[voice].ring_mod[1].setAmount(p_new_value);
+    }
   } else if (id == m_fil1_comb_polarity_identifier) {
     for (int voice = 0; voice < VOICES; ++voice) {
       m_voice[voice].comb_filter[0].setPositive(p_new_value);
@@ -477,28 +485,14 @@ bool OdinAudioProcessor::treeValueChangedThird(const String &p_ID,
 
   else if (id == m_fil3_freq_identifier) {
     m_fil_freq_control[2] = p_new_value;
-    // m_ladder_filter[0].m_freq_base = p_new_value;
-    // m_SEM_filter_12[0].m_freq_base = p_new_value;
-    // m_SEM_filter_24[0].m_freq_base = p_new_value;
-    // m_korg_filter[0].m_freq_base = p_new_value;
-    // m_diode_filter[0].m_freq_base = p_new_value;
-    // m_comb_filter[0].setCombFreq(p_new_value);
-    // m_ladder_filter[1].m_freq_base = p_new_value;
-    // m_SEM_filter_12[1].m_freq_base = p_new_value;
-    // m_SEM_filter_24[1].m_freq_base = p_new_value;
-    // m_korg_filter[1].m_freq_base = p_new_value;
-    // m_diode_filter[1].m_freq_base = p_new_value;
-    // m_comb_filter[1].setCombFreq(p_new_value);
   } else if (id == m_fil3_res_identifier) {
     m_ladder_filter[0].setResControl(p_new_value);
     m_SEM_filter_12[0].setResControl(p_new_value);
-    // m_SEM_filter_24[0].setResControl(p_new_value);
     m_korg_filter[0].setResControl(p_new_value);
     m_diode_filter[0].setResControl(p_new_value);
     m_comb_filter[0].setResonance(p_new_value);
     m_ladder_filter[1].setResControl(p_new_value);
     m_SEM_filter_12[1].setResControl(p_new_value);
-    // m_SEM_filter_24[1].setResControl(p_new_value);
     m_korg_filter[1].setResControl(p_new_value);
     m_diode_filter[1].setResControl(p_new_value);
     m_comb_filter[1].setResonance(p_new_value);
@@ -564,6 +558,9 @@ bool OdinAudioProcessor::treeValueChangedThird(const String &p_ID,
   } else if (id == m_fil3_formant_transition_identifier) {
     m_formant_filter[0].setTransition(p_new_value);
     m_formant_filter[1].setTransition(p_new_value);
+  } else if (id == m_fil3_ring_mod_amount_identifier) {
+    m_ring_mod[0].setAmount(p_new_value);
+    m_ring_mod[1].setAmount(p_new_value);
   } else if (id == m_fil3_comb_polarity_identifier) {
     m_comb_filter[0].setPositive(p_new_value);
     m_comb_filter[1].setPositive(p_new_value);

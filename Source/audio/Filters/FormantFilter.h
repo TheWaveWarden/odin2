@@ -26,6 +26,12 @@ public:
     m_transition_mod = p_pointer;
   }
 
+  void setSampleRate(double p_sr) override{
+    Filter::setSampleRate(p_sr);
+    m_resonator1.setSampleRate(p_sr);
+    m_resonator2.setSampleRate(p_sr);
+  }
+
   float m_MIDI_velocity = 0.f;
 
 protected:

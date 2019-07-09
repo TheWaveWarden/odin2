@@ -15,6 +15,11 @@ public:
   virtual void setVelModPointer(float *p_pointer) { m_vel_mod_mod = p_pointer; }
   virtual void setKbdModPointer(float *p_pointer) { m_kbd_mod_mod = p_pointer; }
   virtual void setEnvModPointer(float *p_pointer) { m_env_mod_mod = p_pointer; }
+  virtual void setRingModAmountModPointer(float *p_pointer) { m_ringmod_amount_mod = p_pointer; }
+  
+  void setAmount(float p_amount){
+    m_amount = p_amount;
+  }
 
   float m_kbd_mod_amount = 0;
   int m_MIDI_note = 0;
@@ -32,6 +37,9 @@ protected:
   float *m_vel_mod_mod;
   float *m_kbd_mod_mod;
   float *m_env_mod_mod;
+  float *m_ringmod_amount_mod;
+  
+  float m_amount = 1;
 
 
 };

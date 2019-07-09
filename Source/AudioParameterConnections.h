@@ -81,6 +81,8 @@ for (int fil = 0; fil < 3; ++fil) {
       "fil" + std::to_string(fil + 1) + "_saturation");
   m_fil_formant_transition[fil] = m_value_tree.getRawParameterValue(
       "fil" + std::to_string(fil + 1) + "_formant_transition");
+  m_fil_ring_mod_amount[fil] = m_value_tree.getRawParameterValue(
+      "fil" + std::to_string(fil + 1) + "_ring_mod_amount");
   m_fil_sem_transition[fil] = m_value_tree.getRawParameterValue(
       "fil" + std::to_string(fil + 1) + "_sem_transition");
   m_fil_vowel_left[fil] = m_value_tree.getRawParameterValue(
@@ -301,6 +303,9 @@ for (int fil = 0; fil < 3; ++fil) {
       "fil" + std::to_string(fil + 1) + "_saturation", &m_tree_listener);
   m_value_tree.addParameterListener("fil" + std::to_string(fil + 1) +
                                         "_formant_transition",
+                                    &m_tree_listener);
+m_value_tree.addParameterListener("fil" + std::to_string(fil + 1) +
+                                        "_ring_mod_amount",
                                     &m_tree_listener);
   m_value_tree.addParameterListener(
       "fil" + std::to_string(fil + 1) + "_sem_transition", &m_tree_listener);

@@ -215,6 +215,8 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
     m_ringmod_fil_menu[fil].addItem(300 + 100 * fil + 6,
                                      "Filter" + std::to_string(fil + 1) +
                                          " Kbd Amount");
+    m_ringmod_fil_menu[fil].addItem(
+        300 + 100 * fil + 30, "Filter" + std::to_string(fil + 1) + " RingMod Amount");
 
     // comb
     m_comb_fil_menu[fil].addItem(

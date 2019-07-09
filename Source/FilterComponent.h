@@ -47,6 +47,12 @@
 #define COMB_PLUS_POS_X 152
 #define COMB_PLUS_POS_Y 105
 
+#define RINGMOD_AMOUNT_X 148
+#define RINGMOD_AMOUNT_Y FORMANT_TRANSITION_Y
+#define RINGMOD_FREQ_X 58
+#define RINGMOD_FREQ_Y RINGMOD_AMOUNT_Y
+
+
 #define FREQ_MIN 80
 #define FREQ_MAX 18000
 #define FREQ_MID 640
@@ -122,6 +128,7 @@ protected:
   Knob m_saturation;
   Knob m_sem_transition;
   Knob m_formant_transition;
+  Knob m_ring_mod_amount;
 
   FormantSelector m_vowel_left;
   FormantSelector m_vowel_right;
@@ -143,6 +150,7 @@ protected:
   std::unique_ptr<SliderAttachment> m_res_attach;
   std::unique_ptr<SliderAttachment> m_saturation_attach;
   std::unique_ptr<SliderAttachment> m_formant_transition_attach;
+  std::unique_ptr<SliderAttachment> m_ring_mod_amount_attach;
   std::unique_ptr<SliderAttachment> m_sem_transition_attach;
 
   std::unique_ptr<ButtonAttachment> m_comb_polarity_attach;

@@ -2,63 +2,58 @@
 
 {
   // Osc 1
-  std::make_unique<AudioParameterInt>("osc1_oct", "Osc1 Octave", -3, 3,
-                                      0),
-      std::make_unique<AudioParameterInt>("osc1_semi", "Osc1 Semitones",
-                                          -7, 7, 0),
+  std::make_unique<AudioParameterInt>("osc1_oct", "Osc1 Octave", -3, 3, 0),
+      std::make_unique<AudioParameterInt>("osc1_semi", "Osc1 Semitones", -7, 7,
+                                          0),
       std::make_unique<AudioParameterFloat>(
-          "osc1_fine", "Osc1 Finetune",
-          NormalisableRange<float>(-50.0f, 50.0f), 0),
+          "osc1_fine", "Osc1 Finetune", NormalisableRange<float>(-50.0f, 50.0f),
+          0),
       std::make_unique<AudioParameterFloat>(
-          "osc1_vol", "Osc1 Volume",
-          NormalisableRange<float>(-20.0f, 12.0f), 0),
-      std::make_unique<AudioParameterInt>("osc1_reset", "Osc1 Reset", 0,
-                                          1, 0),
-      std::make_unique<AudioParameterFloat>(
-          "osc1_position", "Osc1 Position",
-          NormalisableRange<float>(0.f, 1.f), 0),
-      std::make_unique<AudioParameterFloat>("osc1_detune", "Osc1 Detune",
+          "osc1_vol", "Osc1 Volume", NormalisableRange<float>(-20.0f, 12.0f),
+          0),
+      std::make_unique<AudioParameterInt>("osc1_reset", "Osc1 Reset", 0, 1, 0),
+      std::make_unique<AudioParameterFloat>("osc1_position", "Osc1 Position",
                                             NormalisableRange<float>(0.f, 1.f),
                                             0),
+      std::make_unique<AudioParameterFloat>(
+          "osc1_detune", "Osc1 Detune", NormalisableRange<float>(0.f, 1.f), 0),
       std::make_unique<AudioParameterFloat>(
           "osc1_multi_position", "Osc1 Multi Position",
           NormalisableRange<float>(0.f, 1.f), 0),
-      std::make_unique<AudioParameterFloat>("osc1_spread", "Osc1 Spread",
-                                            NormalisableRange<float>(0.f, 1.f),
-                                            0),
+      std::make_unique<AudioParameterFloat>(
+          "osc1_spread", "Osc1 Spread", NormalisableRange<float>(0.f, 1.f), 0),
       std::make_unique<AudioParameterFloat>(
           "osc1_pulsewidth", "Osc1 PulseWidth",
           NormalisableRange<float>(0.f, 1.f), 0.5f),
-      std::make_unique<AudioParameterFloat>("osc1_drift", "Osc1 Drift",
+      std::make_unique<AudioParameterFloat>(
+          "osc1_drift", "Osc1 Drift", NormalisableRange<float>(0.f, 1.f), 0.f),
+      std::make_unique<AudioParameterFloat>("osc1_vec_x", "Osc1 Vector X",
+                                            NormalisableRange<float>(0.f, 1.f),
+                                            0.f),
+      std::make_unique<AudioParameterFloat>("osc1_vec_y", "Osc1 Vector Y",
                                             NormalisableRange<float>(0.f, 1.f),
                                             0.f),
       std::make_unique<AudioParameterFloat>(
-          "osc1_vec_x", "Osc1 Vector X",
-          NormalisableRange<float>(0.f, 1.f), 0.f),
-      std::make_unique<AudioParameterFloat>(
-          "osc1_vec_y", "Osc1 Vector Y",
-          NormalisableRange<float>(0.f, 1.f), 0.f),
-      std::make_unique<AudioParameterFloat>(
           "osc1_arp_speed", "Osc1 Arpeggiator Speed",
           NormalisableRange<float>(1.f, 100.f), 20.f),
-      std::make_unique<AudioParameterInt>("osc1_step_1", "Osc1 Step1",
-                                          -12, 12, 0),
-      std::make_unique<AudioParameterInt>("osc1_step_2", "Osc1 Step2",
-                                          -12, 12, 12),
-      std::make_unique<AudioParameterInt>("osc1_step_3", "Osc1 Step3",
-                                          -12, 12, 7),
-      std::make_unique<AudioParameterInt>(
-          "osc1_arp_on", "Osc1 Arpeggiator On", 0, 1, 0),
-      std::make_unique<AudioParameterInt>("osc1_step_3_on",
-                                          "Osc1 Step3 On", 0, 1, 0),
-      std::make_unique<AudioParameterInt>("osc1_chipnoise",
-                                          "Osc1 Chipnoise", 0, 1, 0),
-      std::make_unique<AudioParameterInt>(
-          "osc1_carrier_ratio", "Osc1 Carrier Ratio", 1, 12, 1),
-      std::make_unique<AudioParameterInt>(
-          "osc1_modulator_ratio", "Osc1 Modulator Ratio", 1, 12, 1),
-      std::make_unique<AudioParameterInt>(
-          "osc1_exp_fm", "Osc1 Exponential FM", 0, 1, 0),
+      std::make_unique<AudioParameterInt>("osc1_step_1", "Osc1 Step1", -12, 12,
+                                          0),
+      std::make_unique<AudioParameterInt>("osc1_step_2", "Osc1 Step2", -12, 12,
+                                          12),
+      std::make_unique<AudioParameterInt>("osc1_step_3", "Osc1 Step3", -12, 12,
+                                          7),
+      std::make_unique<AudioParameterInt>("osc1_arp_on", "Osc1 Arpeggiator On",
+                                          0, 1, 0),
+      std::make_unique<AudioParameterInt>("osc1_step_3_on", "Osc1 Step3 On", 0,
+                                          1, 0),
+      std::make_unique<AudioParameterInt>("osc1_chipnoise", "Osc1 Chipnoise", 0,
+                                          1, 0),
+      std::make_unique<AudioParameterInt>("osc1_carrier_ratio",
+                                          "Osc1 Carrier Ratio", 1, 12, 1),
+      std::make_unique<AudioParameterInt>("osc1_modulator_ratio",
+                                          "Osc1 Modulator Ratio", 1, 12, 1),
+      std::make_unique<AudioParameterInt>("osc1_exp_fm", "Osc1 Exponential FM",
+                                          0, 1, 0),
       std::make_unique<AudioParameterFloat>("osc1_fm", "Osc1 FM/PM amount",
                                             NormalisableRange<float>(0.f, 1.f),
                                             0.f),
@@ -69,63 +64,58 @@
           "osc1_hp", "Osc1 Noise Highpass",
           NormalisableRange<float>(80.f, 18000.f), 80.f),
       // Osc 2
-      std::make_unique<AudioParameterInt>("osc2_oct", "Osc2 Octave", -3,
-                                          3, 0),
-      std::make_unique<AudioParameterInt>("osc2_semi", "Osc2 Semitones",
-                                          -7, 7, 0),
+      std::make_unique<AudioParameterInt>("osc2_oct", "Osc2 Octave", -3, 3, 0),
+      std::make_unique<AudioParameterInt>("osc2_semi", "Osc2 Semitones", -7, 7,
+                                          0),
       std::make_unique<AudioParameterFloat>(
-          "osc2_fine", "Osc2 Finetune",
-          NormalisableRange<float>(-50.0f, 50.0f), 0),
+          "osc2_fine", "Osc2 Finetune", NormalisableRange<float>(-50.0f, 50.0f),
+          0),
       std::make_unique<AudioParameterFloat>(
-          "osc2_vol", "Osc2 Volume",
-          NormalisableRange<float>(-20.0f, 12.0f), 0),
-      std::make_unique<AudioParameterInt>("osc2_reset", "Osc2 Reset", 0,
-                                          1, 0),
-      std::make_unique<AudioParameterFloat>(
-          "osc2_position", "Osc2 Position",
-          NormalisableRange<float>(0.f, 1.f), 0),
-      std::make_unique<AudioParameterFloat>("osc2_detune", "Osc2 Detune",
+          "osc2_vol", "Osc2 Volume", NormalisableRange<float>(-20.0f, 12.0f),
+          0),
+      std::make_unique<AudioParameterInt>("osc2_reset", "Osc2 Reset", 0, 1, 0),
+      std::make_unique<AudioParameterFloat>("osc2_position", "Osc2 Position",
                                             NormalisableRange<float>(0.f, 1.f),
                                             0),
+      std::make_unique<AudioParameterFloat>(
+          "osc2_detune", "Osc2 Detune", NormalisableRange<float>(0.f, 1.f), 0),
       std::make_unique<AudioParameterFloat>(
           "osc2_multi_position", "Osc2 Multi Position",
           NormalisableRange<float>(0.f, 1.f), 0),
-      std::make_unique<AudioParameterFloat>("osc2_spread", "Osc2 Spread",
-                                            NormalisableRange<float>(0.f, 1.f),
-                                            0),
+      std::make_unique<AudioParameterFloat>(
+          "osc2_spread", "Osc2 Spread", NormalisableRange<float>(0.f, 1.f), 0),
       std::make_unique<AudioParameterFloat>(
           "osc2_pulsewidth", "Osc2 PulseWidth",
           NormalisableRange<float>(0.f, 1.f), 0.5f),
-      std::make_unique<AudioParameterFloat>("osc2_drift", "Osc2 Drift",
+      std::make_unique<AudioParameterFloat>(
+          "osc2_drift", "Osc2 Drift", NormalisableRange<float>(0.f, 1.f), 0.f),
+      std::make_unique<AudioParameterFloat>("osc2_vec_x", "Osc2 Vector X",
+                                            NormalisableRange<float>(0.f, 1.f),
+                                            0.f),
+      std::make_unique<AudioParameterFloat>("osc2_vec_y", "Osc2 Vector Y",
                                             NormalisableRange<float>(0.f, 1.f),
                                             0.f),
       std::make_unique<AudioParameterFloat>(
-          "osc2_vec_x", "Osc2 Vector X",
-          NormalisableRange<float>(0.f, 1.f), 0.f),
-      std::make_unique<AudioParameterFloat>(
-          "osc2_vec_y", "Osc2 Vector Y",
-          NormalisableRange<float>(0.f, 1.f), 0.f),
-      std::make_unique<AudioParameterFloat>(
           "osc2_arp_speed", "Osc2 Arpeggiator Speed",
           NormalisableRange<float>(1.f, 100.f), 20.f),
-      std::make_unique<AudioParameterInt>("osc2_step_1", "Osc2 Step1",
-                                          -12, 12, 0),
-      std::make_unique<AudioParameterInt>("osc2_step_2", "Osc2 Step2",
-                                          -12, 12, 12),
-      std::make_unique<AudioParameterInt>("osc2_step_3", "Osc2 Step3",
-                                          -12, 12, 7),
-      std::make_unique<AudioParameterInt>(
-          "osc2_arp_on", "Osc2 Arpeggiator On", 0, 1, 0),
-      std::make_unique<AudioParameterInt>("osc2_step_3_on",
-                                          "Osc2 Step3 On", 0, 1, 0),
-      std::make_unique<AudioParameterInt>("osc2_chipnoise",
-                                          "Osc2 Chipnoise", 0, 1, 0),
-      std::make_unique<AudioParameterInt>(
-          "osc2_carrier_ratio", "Osc2 Carrier Ratio", 1, 12, 1),
-      std::make_unique<AudioParameterInt>(
-          "osc2_modulator_ratio", "Osc2 Modulator Ratio", 1, 12, 1),
-      std::make_unique<AudioParameterInt>(
-          "osc2_exp_fm", "Osc2 Exponential FM", 0, 1, 0),
+      std::make_unique<AudioParameterInt>("osc2_step_1", "Osc2 Step1", -12, 12,
+                                          0),
+      std::make_unique<AudioParameterInt>("osc2_step_2", "Osc2 Step2", -12, 12,
+                                          12),
+      std::make_unique<AudioParameterInt>("osc2_step_3", "Osc2 Step3", -12, 12,
+                                          7),
+      std::make_unique<AudioParameterInt>("osc2_arp_on", "Osc2 Arpeggiator On",
+                                          0, 1, 0),
+      std::make_unique<AudioParameterInt>("osc2_step_3_on", "Osc2 Step3 On", 0,
+                                          1, 0),
+      std::make_unique<AudioParameterInt>("osc2_chipnoise", "Osc2 Chipnoise", 0,
+                                          1, 0),
+      std::make_unique<AudioParameterInt>("osc2_carrier_ratio",
+                                          "Osc2 Carrier Ratio", 1, 12, 1),
+      std::make_unique<AudioParameterInt>("osc2_modulator_ratio",
+                                          "Osc2 Modulator Ratio", 1, 12, 1),
+      std::make_unique<AudioParameterInt>("osc2_exp_fm", "Osc2 Exponential FM",
+                                          0, 1, 0),
       std::make_unique<AudioParameterFloat>("osc2_fm", "Osc2 FM/PM amount",
                                             NormalisableRange<float>(0.f, 1.f),
                                             0.f),
@@ -136,63 +126,58 @@
           "osc2_hp", "Osc2 Noise Highpass",
           NormalisableRange<float>(80.f, 18000.f), 80.f),
       // Osc 3
-      std::make_unique<AudioParameterInt>("osc3_oct", "Osc3 Octave", -3,
-                                          3, 0),
-      std::make_unique<AudioParameterInt>("osc3_semi", "Osc3 Semitones",
-                                          -7, 7, 0),
+      std::make_unique<AudioParameterInt>("osc3_oct", "Osc3 Octave", -3, 3, 0),
+      std::make_unique<AudioParameterInt>("osc3_semi", "Osc3 Semitones", -7, 7,
+                                          0),
       std::make_unique<AudioParameterFloat>(
-          "osc3_fine", "Osc3 Finetune",
-          NormalisableRange<float>(-50.0f, 50.0f), 0),
+          "osc3_fine", "Osc3 Finetune", NormalisableRange<float>(-50.0f, 50.0f),
+          0),
       std::make_unique<AudioParameterFloat>(
-          "osc3_vol", "Osc3 Volume",
-          NormalisableRange<float>(-20.0f, 12.0f), 0),
-      std::make_unique<AudioParameterInt>("osc3_reset", "Osc3 Reset", 0,
-                                          1, 0),
-      std::make_unique<AudioParameterFloat>(
-          "osc3_position", "Osc3 Position",
-          NormalisableRange<float>(0.f, 1.f), 0),
-      std::make_unique<AudioParameterFloat>("osc3_detune", "Osc3 Detune",
+          "osc3_vol", "Osc3 Volume", NormalisableRange<float>(-20.0f, 12.0f),
+          0),
+      std::make_unique<AudioParameterInt>("osc3_reset", "Osc3 Reset", 0, 1, 0),
+      std::make_unique<AudioParameterFloat>("osc3_position", "Osc3 Position",
                                             NormalisableRange<float>(0.f, 1.f),
                                             0),
+      std::make_unique<AudioParameterFloat>(
+          "osc3_detune", "Osc3 Detune", NormalisableRange<float>(0.f, 1.f), 0),
       std::make_unique<AudioParameterFloat>(
           "osc3_multi_position", "Osc3 Multi Position",
           NormalisableRange<float>(0.f, 1.f), 0),
-      std::make_unique<AudioParameterFloat>("osc3_spread", "Osc3 Spread",
-                                            NormalisableRange<float>(0.f, 1.f),
-                                            0),
+      std::make_unique<AudioParameterFloat>(
+          "osc3_spread", "Osc3 Spread", NormalisableRange<float>(0.f, 1.f), 0),
       std::make_unique<AudioParameterFloat>(
           "osc3_pulsewidth", "Osc3 PulseWidth",
           NormalisableRange<float>(0.f, 1.f), 0.5f),
-      std::make_unique<AudioParameterFloat>("osc3_drift", "Osc3 Drift",
+      std::make_unique<AudioParameterFloat>(
+          "osc3_drift", "Osc3 Drift", NormalisableRange<float>(0.f, 1.f), 0.f),
+      std::make_unique<AudioParameterFloat>("osc3_vec_x", "Osc3 Vector X",
+                                            NormalisableRange<float>(0.f, 1.f),
+                                            0.f),
+      std::make_unique<AudioParameterFloat>("osc3_vec_y", "Osc3 Vector Y",
                                             NormalisableRange<float>(0.f, 1.f),
                                             0.f),
       std::make_unique<AudioParameterFloat>(
-          "osc3_vec_x", "Osc3 Vector X",
-          NormalisableRange<float>(0.f, 1.f), 0.f),
-      std::make_unique<AudioParameterFloat>(
-          "osc3_vec_y", "Osc3 Vector Y",
-          NormalisableRange<float>(0.f, 1.f), 0.f),
-      std::make_unique<AudioParameterFloat>(
           "osc3_arp_speed", "Osc3 Arpeggiator Speed",
           NormalisableRange<float>(1.f, 100.f), 20.f),
-      std::make_unique<AudioParameterInt>("osc3_step_1", "Osc3 Step1",
-                                          -12, 12, 0),
-      std::make_unique<AudioParameterInt>("osc3_step_2", "Osc3 Step2",
-                                          -12, 12, 12),
-      std::make_unique<AudioParameterInt>("osc3_step_3", "Osc3 Step3",
-                                          -12, 12, 7),
-      std::make_unique<AudioParameterInt>(
-          "osc3_arp_on", "Osc3 Arpeggiator On", 0, 1, 0),
-      std::make_unique<AudioParameterInt>("osc3_step_3_on",
-                                          "Osc3 Step3 On", 0, 1, 0),
-      std::make_unique<AudioParameterInt>("osc3_chipnoise",
-                                          "Osc3 Chipnoise", 0, 1, 0),
-      std::make_unique<AudioParameterInt>(
-          "osc3_carrier_ratio", "Osc3 Carrier Ratio", 1, 12, 1),
-      std::make_unique<AudioParameterInt>(
-          "osc3_modulator_ratio", "Osc3 Modulator Ratio", 1, 12, 1),
-      std::make_unique<AudioParameterInt>(
-          "osc3_exp_fm", "Osc3 Exponential FM", 0, 1, 0),
+      std::make_unique<AudioParameterInt>("osc3_step_1", "Osc3 Step1", -12, 12,
+                                          0),
+      std::make_unique<AudioParameterInt>("osc3_step_2", "Osc3 Step2", -12, 12,
+                                          12),
+      std::make_unique<AudioParameterInt>("osc3_step_3", "Osc3 Step3", -12, 12,
+                                          7),
+      std::make_unique<AudioParameterInt>("osc3_arp_on", "Osc3 Arpeggiator On",
+                                          0, 1, 0),
+      std::make_unique<AudioParameterInt>("osc3_step_3_on", "Osc3 Step3 On", 0,
+                                          1, 0),
+      std::make_unique<AudioParameterInt>("osc3_chipnoise", "Osc3 Chipnoise", 0,
+                                          1, 0),
+      std::make_unique<AudioParameterInt>("osc3_carrier_ratio",
+                                          "Osc3 Carrier Ratio", 1, 12, 1),
+      std::make_unique<AudioParameterInt>("osc3_modulator_ratio",
+                                          "Osc3 Modulator Ratio", 1, 12, 1),
+      std::make_unique<AudioParameterInt>("osc3_exp_fm", "Osc3 Exponential FM",
+                                          0, 1, 0),
       std::make_unique<AudioParameterFloat>("osc3_fm", "Osc3 FM/PM amount",
                                             NormalisableRange<float>(0.f, 1.f),
                                             0.f),
@@ -236,6 +221,9 @@
       std::make_unique<AudioParameterFloat>(
           "fil1_formant_transition", "Filter1 Formant Transition",
           NormalisableRange<float>(0.f, 1.f), 0.f),
+      std::make_unique<AudioParameterFloat>(
+          "fil1_ring_mod_amount", "Filter1 RingMod Amount",
+          NormalisableRange<float>(0.f, 1.f), 1.f),
       std::make_unique<AudioParameterInt>("fil1_vowel_left",
                                           "Filter1 Left Vowel", 0, 7, 0),
       std::make_unique<AudioParameterInt>("fil1_vowel_right",
@@ -278,6 +266,9 @@
       std::make_unique<AudioParameterFloat>(
           "fil2_formant_transition", "Filter2 Formant Transition",
           NormalisableRange<float>(0.f, 1.f), 0.f),
+      std::make_unique<AudioParameterFloat>(
+          "fil2_ring_mod_amount", "Filter2 RingMod Amount",
+          NormalisableRange<float>(0.f, 1.f), 1.f),
       std::make_unique<AudioParameterInt>("fil2_vowel_left",
                                           "Filter2 Left Vowel", 0, 7, 0),
       std::make_unique<AudioParameterInt>("fil2_vowel_right",
@@ -312,6 +303,9 @@
       std::make_unique<AudioParameterFloat>(
           "fil3_formant_transition", "Filter3 Formant Transition",
           NormalisableRange<float>(0.f, 1.f), 0.f),
+      std::make_unique<AudioParameterFloat>(
+          "fil3_ring_mod_amount", "Filter3 RingMod Amount",
+          NormalisableRange<float>(0.f, 1.f), 1.f),
       std::make_unique<AudioParameterInt>("fil3_vowel_left",
                                           "Filter3 Left Vowel", 0, 7, 0),
       std::make_unique<AudioParameterInt>("fil3_vowel_right",
@@ -439,8 +433,9 @@
       std::make_unique<AudioParameterFloat>(
           "modwheel", "Modwheel", NormalisableRange<float>(0.f, 1.f, 0.f, 1.f),
           0.f),
-      std::make_unique<AudioParameterFloat>("pitchbend", "Pitchbend", NormalisableRange<float>(-1.f, 1.f, 0.f, 1.f),
-                                            0.f),
+      std::make_unique<AudioParameterFloat>(
+          "pitchbend", "Pitchbend",
+          NormalisableRange<float>(-1.f, 1.f, 0.f, 1.f), 0.f),
       std::make_unique<AudioParameterInt>("pitchbend_amount",
                                           "Pitchbend Semitones", 0, 24, 12),
       std::make_unique<AudioParameterFloat>(
@@ -458,12 +453,15 @@
           NormalisableRange<float>(0.f, 1.f, 0.f, 0.575717), 0.6f),
       std::make_unique<AudioParameterFloat>(
           "delay_hp", "Delay Highpass Frequency", 80.f, 18000.f, 80.f),
-      std::make_unique<AudioParameterFloat>("delay_ducking", "Delay Ducking",
-                                            NormalisableRange<float>(0.f, 1.f, 0.f, 1.f), 0.f),
-      std::make_unique<AudioParameterFloat>("delay_dry", "Delay Dry", NormalisableRange<float>(0.f, 1.f, 0.f, 0.575717),
-                                            1.f),
-      std::make_unique<AudioParameterFloat>("delay_wet", "Delay Wet", NormalisableRange<float>(0.f, 1.f, 0.f, 0.575717),
-                                            0.8f),
+      std::make_unique<AudioParameterFloat>(
+          "delay_ducking", "Delay Ducking",
+          NormalisableRange<float>(0.f, 1.f, 0.f, 1.f), 0.f),
+      std::make_unique<AudioParameterFloat>(
+          "delay_dry", "Delay Dry",
+          NormalisableRange<float>(0.f, 1.f, 0.f, 0.575717), 1.f),
+      std::make_unique<AudioParameterFloat>(
+          "delay_wet", "Delay Wet",
+          NormalisableRange<float>(0.f, 1.f, 0.f, 0.575717), 0.8f),
       std::make_unique<AudioParameterInt>("delay_on", "Delay On", 0, 1, 0),
 
       // Phaser
@@ -474,8 +472,9 @@
       std::make_unique<AudioParameterInt>("phaser_on", "Phaser On", 0, 1, 0),
       std::make_unique<AudioParameterFloat>("phaser_freq", "Phaser Frequency",
                                             400, 8000, 4000),
-      std::make_unique<AudioParameterFloat>("phaser_feedback",
-                                            "Phaser Feedback", NormalisableRange<float>(0.f, 1.f, 0.f, 1.f), 0.25f),
+      std::make_unique<AudioParameterFloat>(
+          "phaser_feedback", "Phaser Feedback",
+          NormalisableRange<float>(0.f, 1.f, 0.f, 1.f), 0.25f),
       std::make_unique<AudioParameterFloat>("phaser_rate", "Phaser Rate", 0.05f,
                                             20.f, 0.25f),
       std::make_unique<AudioParameterFloat>(
@@ -495,8 +494,9 @@
                                             0.05f, 20.f, 0.2f),
       std::make_unique<AudioParameterFloat>(
           "flanger_feedback", "Flanger Feedback", -1.f, 1.f, 0.6f),
-      std::make_unique<AudioParameterFloat>("flanger_amount", "Flanger Amount",
-                                            NormalisableRange<float>(0.f, 1.f, 0.f, 1.f), 0.3f),
+      std::make_unique<AudioParameterFloat>(
+          "flanger_amount", "Flanger Amount",
+          NormalisableRange<float>(0.f, 1.f, 0.f, 1.f), 0.3f),
       std::make_unique<AudioParameterFloat>(
           "flanger_drywet", "Flanger DryWet",
           NormalisableRange<float>(0.f, 1.f, 0.f, 1.f), 1.f),
@@ -508,8 +508,9 @@
 
       std::make_unique<AudioParameterFloat>("chorus_rate", "Chorus Frequency",
                                             0.05f, 20.f, 0.15f),
-      std::make_unique<AudioParameterFloat>("chorus_amount", "Chorus Amount",
-                                            NormalisableRange<float>(0.f, 1.f, 0.f, 1.f), 0.4f),
+      std::make_unique<AudioParameterFloat>(
+          "chorus_amount", "Chorus Amount",
+          NormalisableRange<float>(0.f, 1.f, 0.f, 1.f), 0.4f),
       std::make_unique<AudioParameterFloat>("chorus_feedback",
                                             "Chorus Feedback", -1.f, 1.f, 0.f),
       std::make_unique<AudioParameterFloat>(

@@ -46,6 +46,7 @@
     float* m_fil_res[3];
     float* m_fil_saturation[3];
     float* m_fil_formant_transition[3];
+    float* m_fil_ring_mod_amount[3];
     float* m_fil_sem_transition[3];
     float* m_fil_vowel_left[3];
     float* m_fil_vowel_right[3];
@@ -301,6 +302,9 @@
     Identifier m_fil1_formant_transition_identifier;
     Identifier m_fil2_formant_transition_identifier;
     Identifier m_fil3_formant_transition_identifier;
+    Identifier m_fil1_ring_mod_amount_identifier;
+    Identifier m_fil2_ring_mod_amount_identifier;
+    Identifier m_fil3_ring_mod_amount_identifier;
     Identifier m_fil1_sem_transition_identifier;
     Identifier m_fil2_sem_transition_identifier;
     Identifier m_fil3_sem_transition_identifier;

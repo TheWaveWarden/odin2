@@ -127,6 +127,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
   m_filter_dropdown_menu.addSeparator();
   m_filter_dropdown_menu.addItem(FILTER_TYPE_COMB, "Comb Filter");
   m_filter_dropdown_menu.addItem(FILTER_TYPE_FORMANT, "Formant Filter");
+  m_filter_dropdown_menu.addSeparator();
   m_filter_dropdown_menu.addItem(FILTER_TYPE_RINGMOD, "Ring Modulator");
 
   juce::Image dropdown_button1 = ImageCache::getFromMemory(

@@ -38,6 +38,9 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts,
   m_formant_transition_attach.reset(new SliderAttachment(
       m_value_tree, "fil" + m_filter_number + "_formant_transition",
       m_formant_transition));
+  m_ring_mod_amount_attach.reset(new SliderAttachment(
+      m_value_tree, "fil" + m_filter_number + "_ring_mod_amount",
+      m_ring_mod_amount));
   m_sem_transition_attach.reset(new SliderAttachment(
       m_value_tree, "fil" + m_filter_number + "_sem_transition",
       m_sem_transition));
@@ -154,6 +157,17 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts,
       "Transitions from the vowel on the\nleft to the one on the right");
   addChildComponent(m_formant_transition);
 
+  m_ring_mod_amount.setStrip(metal_knob_big, N_KNOB_FRAMES);
+  m_ring_mod_amount.setSliderStyle(Slider::RotaryVerticalDrag);
+  m_ring_mod_amount.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
+  m_ring_mod_amount.setSize(metal_knob_big.getWidth(),
+                               metal_knob_big.getHeight() / N_KNOB_FRAMES);
+  m_ring_mod_amount.setTopLeftPosition(RINGMOD_AMOUNT_X,
+                                          RINGMOD_AMOUNT_Y);
+  m_ring_mod_amount.setKnobTooltip(
+      "How much ring modulation is applied to the signal");
+  addChildComponent(m_ring_mod_amount);
+
   m_vowel_left.OnValueChange = [&](int p_new_value) {
     m_value_tree.getParameter(m_vowel_left_identifier)
         ->setValueNotifyingHost(((float)p_new_value) / 7.f);
@@ -205,6 +219,7 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts,
   m_vel.setNumDecimalPlacesToDisplay(3);
   m_kbd.setNumDecimalPlacesToDisplay(3);
   m_formant_transition.setNumDecimalPlacesToDisplay(3);
+  m_ring_mod_amount.setNumDecimalPlacesToDisplay(3);
 
   m_vowel_left.setParameterId("fil" + m_filter_number + "_vowel_left");
   m_value_tree.addParameterListener("fil" + m_filter_number + "_vowel_left", &m_vowel_left);
@@ -220,6 +235,7 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts,
   SET_CTR_KEY(m_saturation);
   SET_CTR_KEY(m_sem_transition);
   SET_CTR_KEY(m_formant_transition);
+  SET_CTR_KEY(m_ring_mod_amount);
 
 
   forceValueTreeOntoComponents(m_value_tree.state, std::stoi(m_filter_number));
@@ -313,6 +329,7 @@ void FilterComponent::hideAllComponents() {
   m_saturation.setVisible(false);
   m_sem_transition.setVisible(false);
   m_formant_transition.setVisible(false);
+  m_ring_mod_amount.setVisible(false);
   m_vowel_left.setVisible(false);
   m_vowel_right.setVisible(false);
   m_comb_plus_minus.setVisible(false);
@@ -461,7 +478,8 @@ void FilterComponent::showRingModFilterComponents() {
   m_env.setVisible(true);
   m_gain.setVisible(true);
   m_freq.setVisible(true);
-  m_freq.setTopLeftPosition(FORMANT_TRANSITION_X, FORMANT_TRANSITION_Y);
+  m_ring_mod_amount.setVisible(true);
+  m_freq.setTopLeftPosition(RINGMOD_FREQ_X, RINGMOD_FREQ_Y);
 }
 
 

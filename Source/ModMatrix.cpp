@@ -758,6 +758,25 @@ void ModMatrixRow::setModDestination(int p_destination,
     p_dest_poly = false;
     break;
 
+  case 330:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      p_destination_pointers[voice] =
+          &(m_destinations->voice[voice].filter[0].ringmod_amount);
+    }
+    p_dest_poly = true;
+    break;
+  case 430:
+    for (int voice = 0; voice < VOICES; ++voice) {
+      p_destination_pointers[voice] =
+          &(m_destinations->voice[voice].filter[1].ringmod_amount);
+    }
+    p_dest_poly = true;
+    break;
+  case 530:
+    p_destination_pointers[0] = &(m_destinations->filter3.ringmod_amount);
+    p_dest_poly = false;
+    break;
+
   case 601:
     for (int voice = 0; voice < VOICES; ++voice) {
       p_destination_pointers[voice] =

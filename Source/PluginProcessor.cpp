@@ -1099,6 +1099,9 @@ void OdinAudioProcessor::setModulationPointers() {
 
       m_voice[voice].formant_filter[fil].setTransitionModPointer(
           &(m_mod_destinations.voice[voice].filter[fil].formant_transition));
+
+      m_voice[voice].ring_mod[fil].setRingModAmountModPointer(
+          &(m_mod_destinations.voice[voice].filter[fil].ringmod_amount));
     }
 
     for (int mod = 0; mod < 3; ++mod) {
@@ -1212,6 +1215,9 @@ void OdinAudioProcessor::setModulationPointers() {
 
     m_formant_filter[stereo].setTransitionModPointer(
         &(m_mod_destinations.filter3.formant_transition));
+
+    m_ring_mod[stereo].setRingModAmountModPointer(
+        &(m_mod_destinations.filter3.ringmod_amount));
 
     m_distortion[stereo].setThresholdModPointer(
         &(m_mod_destinations.distortion.threshold));
