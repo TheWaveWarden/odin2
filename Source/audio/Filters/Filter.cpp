@@ -12,7 +12,6 @@ Filter::Filter(void)
 	// --- clear
 	m_mod_frequency = 0.0;
 	m_aux_control = 0.0; 
-	m_overdrive = 1.0;
 }
 
 Filter::~Filter(void){}

@@ -38,7 +38,7 @@ public:
       // interpolate here so we have possibility of pure linear Processing
       pio_input = pio_input * (1. - overdrive_modded) +
                   overdrive_modded * fasttanh(pio_input, p_tanh_factor);
-    } else if (overdrive_modded > 1.f) {
+    } else if (overdrive_modded >= 1.f) {
       pio_input = fasttanh(overdrive_modded * pio_input, p_tanh_factor);
     }
   }
