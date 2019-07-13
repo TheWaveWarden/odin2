@@ -52,7 +52,7 @@ void LeftRightButton::paintButton(Graphics &g,
 
 void LeftRightButton::mouseDown(const MouseEvent &p_event) {
   if (p_event.mods.isRightButtonDown()) {
-    DBG("RIGHT");
+    //DBG("RIGHT");
     PopupMenu midi_learn_menu;
     if (m_midi_learn) {
       midi_learn_menu.addItem(2, "Stop MIDI learn");
