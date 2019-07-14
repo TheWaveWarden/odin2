@@ -34,26 +34,26 @@ float Chorus::doChorus(float p_input) {
   read_index_next = read_index_next >= CHORUS_BUFFER_LENGTH
                         ? read_index_next - CHORUS_BUFFER_LENGTH
                         : read_index_next;
-  float output = linearInterpolation(m_circular_buffer[read_index_trunc],
-                                     m_circular_buffer[read_index_next], frac);
+  float output = m_allpass1.doFilter(m_allpass2.doFilter(linearInterpolation(m_circular_buffer[read_index_trunc],
+                                     m_circular_buffer[read_index_next], frac)));
 
   // Delayline 2
-  read_index =
-      (float)m_write_index - 
-      (CHORUS_MIN_DISTANCE +LFO_cosine * CHORUS_AMOUNT_RANGE * amount_modded) * m_samplerate;
-  read_index_trunc = floor(read_index);
-  read_index_next = read_index_trunc + 1;
-  frac = read_index - (float)read_index_trunc;
-  read_index_trunc = read_index_trunc < 0
-                         ? read_index_trunc + CHORUS_BUFFER_LENGTH
-                         : read_index_trunc;
-  read_index_next = read_index_next < 0 ? read_index_next + CHORUS_BUFFER_LENGTH
-                                        : read_index_next;
-  read_index_next = read_index_next >= CHORUS_BUFFER_LENGTH
-                        ? read_index_next - CHORUS_BUFFER_LENGTH
-                        : read_index_next;
-  output += linearInterpolation(m_circular_buffer[read_index_trunc],
-                                m_circular_buffer[read_index_next], frac);
+//   read_index =
+//       (float)m_write_index - 
+//       (CHORUS_MIN_DISTANCE +LFO_cosine * CHORUS_AMOUNT_RANGE * amount_modded) * m_samplerate;
+//   read_index_trunc = floor(read_index);
+//   read_index_next = read_index_trunc + 1;
+//   frac = read_index - (float)read_index_trunc;
+//   read_index_trunc = read_index_trunc < 0
+//                          ? read_index_trunc + CHORUS_BUFFER_LENGTH
+//                          : read_index_trunc;
+//   read_index_next = read_index_next < 0 ? read_index_next + CHORUS_BUFFER_LENGTH
+//                                         : read_index_next;
+//   read_index_next = read_index_next >= CHORUS_BUFFER_LENGTH
+//                         ? read_index_next - CHORUS_BUFFER_LENGTH
+//                         : read_index_next;
+  //output += linearInterpolation(m_circular_buffer[read_index_trunc],
+  //                              m_circular_buffer[read_index_next], frac);
 
   // Delayline 3
   read_index =
@@ -70,28 +70,29 @@ float Chorus::doChorus(float p_input) {
   read_index_next = read_index_next >= CHORUS_BUFFER_LENGTH
                         ? read_index_next - CHORUS_BUFFER_LENGTH
                         : read_index_next;
-  output += linearInterpolation(m_circular_buffer[read_index_trunc],
+  output -= linearInterpolation(m_circular_buffer[read_index_trunc],
                                 m_circular_buffer[read_index_next], frac);
 
   // Delayline 4
-  read_index =
-      (float)m_write_index - 
-      (CHORUS_MIN_DISTANCE +(1 - LFO_cosine) * CHORUS_AMOUNT_RANGE * amount_modded) * m_samplerate;
-  read_index_trunc = floor(read_index);
-  read_index_next = read_index_trunc + 1;
-  frac = read_index - (float)read_index_trunc;
-  read_index_trunc = read_index_trunc < 0
-                         ? read_index_trunc + CHORUS_BUFFER_LENGTH
-                         : read_index_trunc;
-  read_index_next = read_index_next < 0 ? read_index_next + CHORUS_BUFFER_LENGTH
-                                        : read_index_next;
-  read_index_next = read_index_next >= CHORUS_BUFFER_LENGTH
-                        ? read_index_next - CHORUS_BUFFER_LENGTH
-                        : read_index_next;
-  output += linearInterpolation(m_circular_buffer[read_index_trunc],
-                                m_circular_buffer[read_index_next], frac);
+//   read_index =
+//       (float)m_write_index - 
+//       (CHORUS_MIN_DISTANCE +(1 - LFO_cosine) * CHORUS_AMOUNT_RANGE * amount_modded) * m_samplerate;
+//   read_index_trunc = floor(read_index);
+//   read_index_next = read_index_trunc + 1;
+//   frac = read_index - (float)read_index_trunc;
+//   read_index_trunc = read_index_trunc < 0
+//                          ? read_index_trunc + CHORUS_BUFFER_LENGTH
+//                          : read_index_trunc;
+//   read_index_next = read_index_next < 0 ? read_index_next + CHORUS_BUFFER_LENGTH
+//                                         : read_index_next;
+//   read_index_next = read_index_next >= CHORUS_BUFFER_LENGTH
+//                         ? read_index_next - CHORUS_BUFFER_LENGTH
+ //                       : read_index_next;
+  //output -= linearInterpolation(m_circular_buffer[read_index_trunc],
+  //                              m_circular_buffer[read_index_next], frac);
 
-  output *= 0.25f;
+  output += p_input * 0.5;
+  output *= 0.4f;
 
   float feedback_modded = m_feedback + *m_feedback_mod;
   feedback_modded = feedback_modded > 1 ? 1 : feedback_modded;

@@ -1,6 +1,7 @@
 
 #pragma once
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "../Filters/BiquadAllpass.h"
 
 #include <cmath>
 #include <cstring>
@@ -20,6 +21,12 @@ public:
   DBG("SetSampleRate chorus");
     m_samplerate = p_samplerate;
     setLFOFreq(m_LFO_freq);
+    m_allpass1.setSampleRate(p_samplerate);
+    m_allpass1.setRadius(1.25);
+    m_allpass1.setFrequency(1000);
+    m_allpass2.setSampleRate(p_samplerate);
+    m_allpass2.setRadius(1.3);
+    m_allpass2.setFrequency(5000);
   }
 
   inline void setAmount(float p_amount) { m_amount = p_amount * p_amount; }
@@ -33,6 +40,8 @@ public:
 
   inline void reset() {
     memset(m_circular_buffer, 0, CHORUS_BUFFER_LENGTH * sizeof(float));
+    m_allpass1.reset();
+    m_allpass2.reset();
     m_LFO_pos = 0;
   }
 
@@ -100,6 +109,9 @@ public:
   }
 
 protected:
+  BiquadAllpass m_allpass1;
+  BiquadAllpass m_allpass2;
+
   float m_synctime_numerator = 3.f;
   float m_synctime_denominator = 16.f;
   float m_synctime_ratio = 3.f / 16.f;
