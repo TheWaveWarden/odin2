@@ -6,6 +6,11 @@ Chorus::Chorus() {}
 Chorus::~Chorus() {}
 
 float Chorus::doChorus(float p_input) {
+
+  //param smoothing
+  m_amount = (m_amount - m_amount_control) * 0.995 +
+                        m_amount_control;
+
   float LFO_sine;
   float LFO_cosine;
   incLFO();

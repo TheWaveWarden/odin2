@@ -15,6 +15,7 @@ float Delay::doDelayLeft(float p_left) {
 
   float input_left = p_left;
 
+  //todo something wrong with smoothing, sometimes exactly octave down??
   // smooth only in left delay line
   if (m_delay_time_smooth > m_delay_time_control) {
     m_delay_time_smooth =

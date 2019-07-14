@@ -30,7 +30,7 @@ public:
     m_allpass2.setFrequency(5000);
   }
 
-  inline void setAmount(float p_amount) { m_amount = p_amount * p_amount; }
+  inline void setAmount(float p_amount) { m_amount_control = p_amount * p_amount; }
 
   inline void setDryWet(float p_dry_wet) { m_dry_wet = p_dry_wet; }
 
@@ -44,6 +44,7 @@ public:
     m_allpass1.reset();
     m_allpass2.reset();
     m_LFO_pos = 0;
+    m_amount = m_amount_control;
   }
 
   inline void incLFO() {
@@ -130,6 +131,7 @@ protected:
   float m_LFO_freq = 0.15;
   float m_LFO_reset_pos = 0;
   float m_amount = 0.16f;//0.4^2
+  float m_amount_control = 0.16f;//0.4^2
   int m_write_index = 0;
   float m_feedback = 0;
   bool m_LFO_freq_set = false;
