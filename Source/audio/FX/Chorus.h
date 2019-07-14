@@ -7,7 +7,8 @@
 #include <cstring>
 
 #define CHORUS_BUFFER_LENGTH 44100
-#define CHORUS_MIN_DISTANCE 0.015 // chorus is at leas 10ms behind signal 
+#define CHORUS_MIN_DISTANCE_1 0.015 // line1 is at leas 15ms behind signal 
+#define CHORUS_MIN_DISTANCE_2 0.011 // line2 is at leas 17ms behind signal 
 #define CHORUS_AMOUNT_RANGE 0.02 // then further modulation up to 30 ms
 
 class Chorus {
