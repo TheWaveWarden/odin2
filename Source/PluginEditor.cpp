@@ -778,7 +778,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
   m_legato_button.setBounds(LEGATO_POS_X, LEGATO_POS_Y, legato_left.getWidth(),
                             legato_left.getHeight());
   m_legato_button.setToggleState(true, sendNotification);
-  m_legato_button.onStateChange = [&]() {
+  m_legato_button.onClick = [&]() {
     // TODO reset entire synth here
     // set value in audiovaluetree
     m_value_tree.state.setProperty("legato", m_legato_button.getToggleState(),
