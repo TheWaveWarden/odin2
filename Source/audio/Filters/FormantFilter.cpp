@@ -1,6 +1,6 @@
 #include "FormantFilter.h"
 
-#define FORMANT_OUTPUT_SCALAR 0.5f
+#define FORMANT_OUTPUT_SCALAR 0.35f
 
 FormantFilter::FormantFilter() {
   reset();
@@ -33,9 +33,6 @@ void FormantFilter::update() {
   m_resonator2.setFrequency(m_a1 * transition_modded * transition_modded +
                             m_b1 * transition_modded + m_c1);
   
-  //set volume from parabola
-  m_volume_scalar = m_a2 * transition_modded * transition_modded +
-                    m_b2 * transition_modded + m_c2;
 }
 
 void FormantFilter::updateParabolas() {
@@ -54,26 +51,15 @@ void FormantFilter::updateParabolas() {
   m_a1 = 2 * f1 - 4 * f2 + 2 * f0;
   m_b1 = 4 * f2 - 3 * f0 - f1;
   m_c1 = f0;
-
-  // last one is for volume
-  f0 = m_formant_list[m_vowel_left][2];
-  f1 = m_formant_list[m_vowel_right][2];
-  f2 = f0 * pow(f1 / f0, 0.5);
-
-  m_a2 = 2 * f1 - 4 * f2 + 2 * f0;
-  m_b2 = 4 * f2 - 3 * f0 - f1;
-  m_c2 = f0;
 }
 
 void FormantFilter::setTransition(float p_trans) { m_transition = p_trans; }
 
 double FormantFilter::doFilter(double p_input) {
 
-  //double out = m_resonator1.doFilter(m_resonator2.doFilter(p_input));
-  double out = m_resonator1.doFilter(1);
-  DBG(out);
+  double out = m_resonator1.doFilter(m_resonator2.doFilter(p_input));
   float vol_mod_factor =
       (*m_vol_mod) > 0 ? 1.f + 4 * (*m_vol_mod) : (1.f + *m_vol_mod);
 
-  return out * vol_mod_factor * m_volume_scalar * FORMANT_OUTPUT_SCALAR;
+  return out * vol_mod_factor * m_samplerate_gain_compensation * FORMANT_OUTPUT_SCALAR;
 }

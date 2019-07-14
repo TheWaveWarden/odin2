@@ -5,12 +5,17 @@
 
 #include <cmath>
 
+#define RESONATOR_GAIN_FACTOR 0.08
+
 class BiquadResonator : public BiquadFilter {
 public:
   BiquadResonator() {
-    m_b0 = 0.005;
+    //m_b0 = 0.005;
+    m_b0 = RESONATOR_GAIN_FACTOR;
     m_b1 = 0;
-    m_b2 = 0;
+    //this factor implements additional zeros at 0 and nyquist to normalize peak gain as taken from
+    //https://ccrma.stanford.edu/~jos/filters/Time_Varying_Two_Pole_Filters.html
+    m_b2 = -RESONATOR_GAIN_FACTOR;
   }
   ~BiquadResonator() {}
 
