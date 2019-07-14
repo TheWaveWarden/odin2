@@ -565,26 +565,19 @@ bool OdinAudioProcessor::treeValueChangedThird(const String &p_ID,
     m_comb_filter[0].setPositive(p_new_value);
     m_comb_filter[1].setPositive(p_new_value);
   } else if (id == m_delay_time_identifier) {
-    m_delay[0].setDelayTime(p_new_value);
-    m_delay[1].setDelayTime(p_new_value);
+    m_delay.setDelayTime(p_new_value);
   } else if (id == m_delay_feedback_identifier) {
-    m_delay[0].setFeedback(p_new_value);
-    m_delay[1].setFeedback(p_new_value);
+    m_delay.setFeedback(p_new_value);
   } else if (id == m_delay_hp_identifier) {
-    m_delay[0].setHPFreq(p_new_value);
-    m_delay[1].setHPFreq(p_new_value);
+    m_delay.setHPFreq(p_new_value);
   } else if (id == m_delay_ducking_identifier) {
-    m_delay[0].setDucking(p_new_value);
-    m_delay[1].setDucking(p_new_value);
+    m_delay.setDucking(p_new_value);
   } else if (id == m_delay_dry_identifier) {
-    m_delay[0].setDry(p_new_value);
-    m_delay[1].setDry(p_new_value);
+    m_delay.setDry(p_new_value);
   } else if (id == m_delay_wet_identifier) {
-    m_delay[0].setWet(p_new_value);
-    m_delay[1].setWet(p_new_value);
+    m_delay.setWet(p_new_value);
   } else if (id == m_delay_on_identifier) {
-    m_delay[0].reset();
-    m_delay[1].reset();
+    m_delay.reset();
   } else {
     return false;
   }
@@ -752,10 +745,11 @@ bool OdinAudioProcessor::treeValueChangedFourth(const String &p_ID,
     if (!p_new_value) {
       m_global_lfo.setBaseFrequency(*m_lfo4_freq);
     }
+  } else if (id == m_delay_pingpong_identifier) {
+      m_delay.setPingPong(*m_delay_pingpong > 0.5f);
   } else if (id == m_delay_sync_identifier) {
     if (!p_new_value) {
-      m_delay[0].setDelayTime(*m_delay_time);
-      m_delay[1].setDelayTime(*m_delay_time);
+      m_delay.setDelayTime(*m_delay_time);
     }
   } else if (id == m_phaser_sync_identifier) {
     if (!p_new_value) {
@@ -949,13 +943,9 @@ void OdinAudioProcessor::treeValueChangedNonParam(ValueTree &tree,
       m_chorus[stereo].setSynctimeDenominator(valueToDenomintaor(p_new_value));
     }
   } else if (id == m_delay_synctime_numerator_identifier) {
-    for (int stereo = 0; stereo < 2; ++stereo) {
-      m_delay[stereo].setSynctimeNumerator(p_new_value + 1);
-    }
+      m_delay.setSynctimeNumerator(p_new_value + 1);
   } else if (id == m_delay_synctime_denominator_identifier) {
-    for (int stereo = 0; stereo < 2; ++stereo) {
-      m_delay[stereo].setSynctimeDenominator(valueToDenomintaor(p_new_value));
-    }
+      m_delay.setSynctimeDenominator(valueToDenomintaor(p_new_value));
   } else if (id == m_phaser_synctime_numerator_identifier) {
     m_phaser.setSynctimeNumerator(p_new_value + 1);
   } else if (id == m_phaser_synctime_denominator_identifier) {

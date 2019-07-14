@@ -438,7 +438,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
   m_question_button.setTooltip(
       "Shows a tooltip for every\nparameter in the synth. Simply\n hover your "
       "mouse over it!\n\nGENERAL TIPS:\n\nHold shift to finetune knobs\n\nCtr "
-      "+ click to reset knobs\n\nThe order of FX can be rearranged\nby "
+      "+ click to reset knobs\n\nDouble click to enter values\n\nRight click to access MIDI-learn\n\nThe order of FX can be rearranged\nby "
       "dragging and dropping\n the FX selection buttons.");
   addAndMakeVisible(m_question_button);
 

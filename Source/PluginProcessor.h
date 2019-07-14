@@ -307,7 +307,7 @@ private:
   FormantFilter m_formant_filter[2];
   CombFilter m_comb_filter[2];
   RingModulator m_ring_mod[2];
-  Delay m_delay[2];
+  Delay m_delay; //is stereo delay
   Phaser m_phaser; // is stereo phaser
   Flanger m_flanger[2];
   Chorus m_chorus[2];

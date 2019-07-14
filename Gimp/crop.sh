@@ -252,6 +252,13 @@ convert FilterButtonsRaw.png -crop 46x18+113+446 cropped/buttons/buttonreset_lfo
 
 convert -append cropped/buttons/buttonreset_lfo_1.png  cropped/buttons/buttonreset_lfo_2.png cropped/buttons/buttonreset_lfo_3.png  cropped/buttons/buttonreset_lfo_4.png cropped/buttons/buttonreset_lfofilmstrip.png 
 
+convert FilterButtonsRaw.png -crop 46x18+56+371 cropped/buttons/buttonpingpong_1.png
+convert FilterButtonsRaw.png -crop 46x18+56+396 cropped/buttons/buttonpingpong_2.png
+convert FilterButtonsRaw.png -crop 46x18+56+421 cropped/buttons/buttonpingpong_3.png
+convert FilterButtonsRaw.png -crop 46x18+56+446 cropped/buttons/buttonpingpong_4.png
+
+convert -append cropped/buttons/buttonpingpong_1.png  cropped/buttons/buttonpingpong_2.png cropped/buttons/buttonpingpong_3.png  cropped/buttons/buttonpingpong_4.png cropped/buttons/buttonpingpongfilmstrip.png 
+
 convert FilterButtonsRaw.png -crop 33x18+223+419 cropped/buttons/buttonsync_1.png
 convert FilterButtonsRaw.png -crop 33x18+223+444 cropped/buttons/buttonsync_2.png
 convert FilterButtonsRaw.png -crop 33x18+223+469 cropped/buttons/buttonsync_3.png

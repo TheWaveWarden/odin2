@@ -129,6 +129,7 @@
     float* m_delay_dry;
     float* m_delay_wet;
     float* m_delay_sync;
+    float* m_delay_pingpong;
     //phaser
     float* m_phaser_reset;
     float* m_phaser_sync;
@@ -404,6 +405,7 @@
     Identifier m_delay_dry_identifier;
     Identifier m_delay_wet_identifier;
     Identifier m_delay_sync_identifier;
+    Identifier m_delay_pingpong_identifier;
     Identifier m_delay_synctime_numerator_identifier;
     Identifier m_delay_synctime_denominator_identifier;
     Identifier m_phaser_reset_identifier;

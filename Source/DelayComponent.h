@@ -30,6 +30,8 @@
 #define WET_POS_Y DRY_POS_Y
 #define DELAY_SYNC_POS_X 25
 #define DELAY_SYNC_POS_Y 78
+#define DELAY_PINGPONG_POS_X 85
+#define DELAY_PINGPONG_POS_Y 10
 #define SYNC_TIME_DELAY_POS_X 2
 #define SYNC_TIME_DELAY_POS_Y 36
 
@@ -108,6 +110,7 @@ private:
   SyncTimeSelector m_sync_time;
 
   OdinButton m_sync;
+  OdinButton m_pingpong;
 
   AudioProcessorValueTreeState& m_value_tree;
 
@@ -119,6 +122,7 @@ private:
   std::unique_ptr<SliderAttachment> m_delay_wet_attach;
 
   std::unique_ptr<ButtonAttachment> m_sync_attach;
+  std::unique_ptr<ButtonAttachment> m_pingpong_attach;
 
   Identifier m_delay_synctime_numerator_identifier;
   Identifier m_delay_synctime_denominator_identifier;

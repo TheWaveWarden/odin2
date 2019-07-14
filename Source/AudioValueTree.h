@@ -445,6 +445,7 @@
           "xy_y", "XY Pad Y", NormalisableRange<float>(0.f, 1.f, 0.f, 1.f),
           0.f),
       std::make_unique<AudioParameterInt>("delay_sync", "Delay Sync", 0, 1, 0),
+      std::make_unique<AudioParameterInt>("delay_pingpong", "Delay PingPong", 0, 1, 0),
       std::make_unique<AudioParameterFloat>(
           "delay_time", "Delay Time",
           NormalisableRange<float>(0.01f, 3.f, 0.f, 0.627099), 1.f),

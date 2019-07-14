@@ -676,8 +676,13 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
       for (int fx_slot = 0; fx_slot < 4; ++fx_slot) {
         if (m_delay_position == fx_slot) {
           if (*m_delay_on) {
-            stereo_signal[channel] =
-                m_delay[channel].doDelay(stereo_signal[channel]);
+            if (channel == 0) {
+              stereo_signal[channel] =
+                  m_delay.doDelayLeft(stereo_signal[channel]);
+            } else {
+              stereo_signal[channel] =
+                  m_delay.doDelayRight(stereo_signal[channel]);
+            }
           }
         } else if (m_phaser_position == fx_slot) {
           if (*m_phaser_on) {
@@ -784,7 +789,6 @@ void OdinAudioProcessor::setSampleRate(float p_samplerate) {
     m_voice[voice].setSampleRate(p_samplerate);
   }
   for (int stereo = 0; stereo < 2; ++stereo) {
-    m_delay[stereo].setSampleRate(p_samplerate);
     m_flanger[stereo].setSampleRate(p_samplerate);
     m_chorus[stereo].setSampleRate(p_samplerate);
 
@@ -796,6 +800,7 @@ void OdinAudioProcessor::setSampleRate(float p_samplerate) {
     m_SEM_filter_12[stereo].setSampleRate(p_samplerate);
   }
 
+  m_delay.setSampleRate(p_samplerate);
   m_phaser.setSampleRate(p_samplerate);
   m_global_env.setSampleRate(p_samplerate);
   m_global_lfo.setSampleRate(p_samplerate);
@@ -1224,11 +1229,11 @@ void OdinAudioProcessor::setModulationPointers() {
     m_distortion[stereo].setDryWetModPointer(
         &(m_mod_destinations.distortion.drywet));
 
-    m_delay[stereo].setTimeModPointer(&(m_mod_destinations.delay.time));
-    m_delay[stereo].setFeedbackModPointer(&(m_mod_destinations.delay.feedback));
-    m_delay[stereo].setHPFreqModPointer(&(m_mod_destinations.delay.hp_freq));
-    m_delay[stereo].setDryModPointer(&(m_mod_destinations.delay.dry));
-    m_delay[stereo].setWetModPointer(&(m_mod_destinations.delay.wet));
+    m_delay.setTimeModPointer(&(m_mod_destinations.delay.time));
+    m_delay.setFeedbackModPointer(&(m_mod_destinations.delay.feedback));
+    m_delay.setHPFreqModPointer(&(m_mod_destinations.delay.hp_freq));
+    m_delay.setDryModPointer(&(m_mod_destinations.delay.dry));
+    m_delay.setWetModPointer(&(m_mod_destinations.delay.wet));
 
     m_flanger[stereo].setFreqModPointer(&(m_mod_destinations.flanger.freq));
     m_flanger[stereo].setAmountModPointer(&(m_mod_destinations.flanger.amount));
@@ -1354,11 +1359,11 @@ void OdinAudioProcessor::resetAudioEngine() {
     m_formant_filter[stereo].reset();
     m_comb_filter[stereo].reset();
 
-    m_delay[stereo].reset();
     m_flanger[stereo].reset();
     m_chorus[stereo].reset();
   }
 
+  m_delay.reset();
   m_phaser.reset();
   m_global_lfo.reset();
   m_global_env.reset();
@@ -1372,8 +1377,7 @@ void OdinAudioProcessor::setBPM(float p_BPM) {
     m_voice[voice].setBPM(p_BPM, *m_lfo1_sync, *m_lfo2_sync, *m_lfo3_sync);
   }
   if (*m_delay_sync) {
-    m_delay[0].setFreqBPM(p_BPM);
-    m_delay[1].setFreqBPM(p_BPM);
+    m_delay.setFreqBPM(p_BPM);
   }
   if (*m_phaser_sync) {
     m_phaser.setFreqBPM(p_BPM);

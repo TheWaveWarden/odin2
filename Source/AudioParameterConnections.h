@@ -176,6 +176,7 @@ m_delay_ducking = m_value_tree.getRawParameterValue("delay_ducking");
 m_delay_dry = m_value_tree.getRawParameterValue("delay_dry");
 m_delay_wet = m_value_tree.getRawParameterValue("delay_wet");
 m_delay_sync = m_value_tree.getRawParameterValue("delay_sync");
+m_delay_pingpong = m_value_tree.getRawParameterValue("delay_pingpong");
 
 m_phaser_rate = m_value_tree.getRawParameterValue("phaser_rate");
 m_phaser_freq = m_value_tree.getRawParameterValue("phaser_freq");
@@ -402,6 +403,7 @@ m_value_tree.addParameterListener("delay_ducking", &m_tree_listener);
 m_value_tree.addParameterListener("delay_dry", &m_tree_listener);
 m_value_tree.addParameterListener("delay_wet", &m_tree_listener);
 m_value_tree.addParameterListener("delay_sync", &m_tree_listener);
+m_value_tree.addParameterListener("delay_pingpong", &m_tree_listener);
 
 m_value_tree.addParameterListener("phaser_rate", &m_tree_listener);
 m_value_tree.addParameterListener("phaser_freq", &m_tree_listener);
