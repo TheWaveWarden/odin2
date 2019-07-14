@@ -50,13 +50,13 @@ OdinAudioProcessor::OdinAudioProcessor()
   initializeModules();
 
   // create wavetables
-  // WavetableContainer::getInstance().generateAudioValueCode();
+   //WavetableContainer::getInstance().generateAudioValueCode();
 
   WavetableContainer::getInstance().loadWavetablesFromConstData();
 
-  // WavetableContainer::getInstance().createWavetables(44100.f);
-  // WavetableContainer::getInstance().loadWavetablesAfterFourierCreation();
-  // WavetableContainer::getInstance().writeWavetablesToFile();
+  //WavetableContainer::getInstance().createWavetables(44100.f);
+  //WavetableContainer::getInstance().loadWavetablesAfterFourierCreation();
+  //WavetableContainer::getInstance().writeWavetablesToFile();
 
   // WavetableContainer::getInstance().fixWavetableCoefficientFile();
   // WavetableContainer::getInstance().fixWavetableIndexInFiles();

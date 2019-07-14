@@ -1,6 +1,6 @@
 #pragma once
 
-#define SUBTABLES_PER_WAVETABLE 40 //there are 40 tables for one "sound"
+#define SUBTABLES_PER_WAVETABLE 33 //there are 40 tables for one "sound"
 
 //TODO this will crash when writign tables to file if set to 120... running out of stack space?
 #define NUMBER_OF_WAVETABLES 160  //number of different 1D WTs
