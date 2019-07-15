@@ -492,7 +492,7 @@
       std::make_unique<AudioParameterInt>("flanger_on", "Flanger On", 0, 1, 0),
 
       std::make_unique<AudioParameterFloat>("flanger_rate", "Flanger Rate",
-                                            0.05f, 20.f, 0.2f),
+                                            NormalisableRange<float>(0.05f, 20.f,0,0.211267), 0.15f),
       std::make_unique<AudioParameterFloat>(
           "flanger_feedback", "Flanger Feedback", -1.f, 1.f, 0.6f),
       std::make_unique<AudioParameterFloat>(
@@ -508,7 +508,7 @@
       std::make_unique<AudioParameterInt>("chorus_on", "Chorus On", 0, 1, 0),
 
       std::make_unique<AudioParameterFloat>("chorus_rate", "Chorus Frequency",
-                                            0.05f, 20.f, 0.15f),
+                                            NormalisableRange<float>(0.05f, 20.f,0,0.211267), 0.15f),
       std::make_unique<AudioParameterFloat>(
           "chorus_amount", "Chorus Amount",
           NormalisableRange<float>(0.f, 1.f, 0.f, 1.f), 0.4f),
