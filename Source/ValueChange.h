@@ -1187,11 +1187,11 @@ void OdinAudioProcessor::treeValueChangedNonParam(ValueTree &tree,
     }
   } else if (id == m_osc2_vec_d_identifier) {
     for (int voice = 0; voice < VOICES; ++voice) {
-      m_voice[voice].vector_osc[1].selectWavetable(p_new_value, 3);
+      m_voice[voice].vector_osc[1].selectWavetableByMappingVector(p_new_value, 3);
     }
   } else if (id == m_osc3_vec_d_identifier) {
     for (int voice = 0; voice < VOICES; ++voice) {
-      m_voice[voice].vector_osc[2].selectWavetable(p_new_value, 3);
+      m_voice[voice].vector_osc[2].selectWavetableByMappingVector(p_new_value, 3);
     }
   } else if (id == m_osc1_chipwave_identifier) {
     for (int voice = 0; voice < VOICES; ++voice) {
