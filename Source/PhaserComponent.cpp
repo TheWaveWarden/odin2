@@ -81,7 +81,7 @@ PhaserComponent::PhaserComponent(AudioProcessorValueTreeState &vts,
   m_feedback.setNumDecimalPlacesToDisplay(2);
   // m_feedback.setValue(0.25f);
   // m_feedback.{{setDoubleClick}}ReturnValue(true, 0, ModifierKeys::ctrlModifier);
-  m_feedback.setKnobTooltip("The spreading of the internal allpass filters");
+  m_feedback.setKnobTooltip("How much filtered signal is fed back to the input");
   addAndMakeVisible(m_feedback);
 
   m_dry_wet.setStrip(metal_knob_mid, N_KNOB_FRAMES);
@@ -187,7 +187,7 @@ PhaserComponent::PhaserComponent(AudioProcessorValueTreeState &vts,
                       metal_knob_mid.getWidth(), metal_knob_mid.getWidth());
   m_freq.setBounds(PHASER_FREQ_POS_X, PHASER_FREQ_POS_Y,
                    metal_knob_mid.getWidth(), metal_knob_mid.getWidth());
-  m_feedback.setBounds(phaser_feedback_POS_X, phaser_feedback_POS_Y,
+  m_feedback.setBounds(PHASER_FEEDBACK_POS_X, PHASER_FEEDBACK_POS_Y,
                    metal_knob_mid.getWidth(), metal_knob_mid.getWidth());
 
 
