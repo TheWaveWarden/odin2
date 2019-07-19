@@ -50,13 +50,13 @@ OdinAudioProcessor::OdinAudioProcessor()
   initializeModules();
 
   // create wavetables
-   //WavetableContainer::getInstance().generateAudioValueCode();
+  // WavetableContainer::getInstance().generateAudioValueCode();
 
   WavetableContainer::getInstance().loadWavetablesFromConstData();
 
-  //WavetableContainer::getInstance().createWavetables(44100.f);
-  //WavetableContainer::getInstance().loadWavetablesAfterFourierCreation();
-  //WavetableContainer::getInstance().writeWavetablesToFile();
+  // WavetableContainer::getInstance().createWavetables(44100.f);
+  // WavetableContainer::getInstance().loadWavetablesAfterFourierCreation();
+  // WavetableContainer::getInstance().writeWavetablesToFile();
 
   // WavetableContainer::getInstance().fixWavetableCoefficientFile();
   // WavetableContainer::getInstance().fixWavetableIndexInFiles();
@@ -128,10 +128,9 @@ OdinAudioProcessor::OdinAudioProcessor()
     m_voice[i].ring_mod[0].selectWavetable(0);
     m_voice[i].ring_mod[1].selectWavetable(0);
 
-    //set different initial values for filter env here....not best solution
+    // set different initial values for filter env here....not best solution
     m_voice[i].env[1].setDecay(0.8f);
     m_voice[i].env[1].setSustain(0);
-
   }
   m_ring_mod[0].loadWavetables();
   m_ring_mod[1].loadWavetables();
@@ -314,13 +313,12 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
         // it manually?
         m_MIDI_aftertouch = (float)midi_message.getAfterTouchValue() / 127.f;
       } else {
-        DBG("UNHANDELED MIDI MESSAGE: " + midi_message.getDescription());
+        if (!midi_message.isMidiClock()) {
+          DBG("UNHANDELED MIDI MESSAGE: " + midi_message.getDescription());
+        }
       }
 
-      if ((midi_message.isController() || midi_message.isPitchWheel()) /* &&
-          !midi_message.isSustainPedalOn() &&
-          !midi_message.isSustainPedalOff()*/
-      ) {
+      if ((midi_message.isController() || midi_message.isPitchWheel())) {
         DBG("CONTROLLER");
         if (m_midi_learn_knob_active) {
           m_midi_control_list_knob.emplace(midi_message.getControllerNumber(),
