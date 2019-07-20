@@ -998,7 +998,7 @@ void ModMatrixRow::setModDestination(int p_destination,
     break;
 
   case 950:
-    p_destination_pointers[0] = &(m_destinations->distortion.threshold);
+    p_destination_pointers[0] = &(m_destinations->distortion.boost);
     p_dest_poly = false;
     break;
   case 951:

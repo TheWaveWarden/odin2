@@ -152,16 +152,15 @@ AmpDistortionFlowComponent::AmpDistortionFlowComponent(
       "How much the MIDI velocity\naffects the amplifier gain");
   addAndMakeVisible(m_amp_vel);
 
-  m_threshold.setStrip(round_knob, N_KNOB_FRAMES);
-  m_threshold.setSliderStyle(Slider::RotaryVerticalDrag);
-  m_threshold.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-//   m_threshold.setDoubleClickReturnValue(true, THRESHOLD_DEFAULT,
+  m_boost.setStrip(round_knob, N_KNOB_FRAMES);
+  m_boost.setSliderStyle(Slider::RotaryVerticalDrag);
+  m_boost.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
+//   m_boost.setDoubleClickReturnValue(true, THRESHOLD_DEFAULT,
                    //                     ModifierKeys::ctrlModifier);
-  //m_threshold.setValue(THRESHOLD_DEFAULT);
-  m_threshold.setKnobTooltip("The threshold to\n be reached before the\n "
-                             "algorithm cuts the\n waveform");
-  m_threshold.setNumDecimalPlacesToDisplay(3);
-  addAndMakeVisible(m_threshold);
+  //m_boost.setValue(THRESHOLD_DEFAULT);
+  m_boost.setKnobTooltip("Boosts the signal to apply more damage");
+  m_boost.setNumDecimalPlacesToDisplay(3);
+  addAndMakeVisible(m_boost);
 
 
   m_dry_wet.setStrip(round_knob, N_KNOB_FRAMES);
@@ -199,7 +198,7 @@ AmpDistortionFlowComponent::AmpDistortionFlowComponent(
   m_amp_pan_attach.reset(
       new SliderAttachment(m_value_tree, "amp_pan", m_amp_pan));
   m_dist_threshold_attach.reset(
-      new SliderAttachment(m_value_tree, "dist_threshold", m_threshold));
+      new SliderAttachment(m_value_tree, "dist_boost", m_boost));
   m_dist_drywet_attach.reset(
       new SliderAttachment(m_value_tree, "dist_drywet", m_dry_wet));
 
@@ -211,8 +210,8 @@ AmpDistortionFlowComponent::AmpDistortionFlowComponent(
       new ButtonAttachment(m_value_tree, "fil2_to_amp", m_flow_left));
 
 
-  //m_threshold.textFromValueFunction = nullptr;
-  m_threshold.setNumDecimalPlacesToDisplay(3);
+  //m_boost.textFromValueFunction = nullptr;
+  m_boost.setNumDecimalPlacesToDisplay(3);
   m_amp_gain.setNumDecimalPlacesToDisplay(2);
   m_dry_wet.setNumDecimalPlacesToDisplay(3);
   m_amp_vel.setNumDecimalPlacesToDisplay(3);
@@ -221,7 +220,7 @@ AmpDistortionFlowComponent::AmpDistortionFlowComponent(
   SET_CTR_KEY(m_amp_gain);
   SET_CTR_KEY(m_amp_pan);
   SET_CTR_KEY(m_amp_vel);
-  SET_CTR_KEY(m_threshold);
+  SET_CTR_KEY(m_boost);
   SET_CTR_KEY(m_dry_wet);
       
   forceValueTreeOntoComponents(m_value_tree.state);
@@ -250,7 +249,7 @@ void AmpDistortionFlowComponent::resized() {
   m_amp_gain.setBounds(area_amp);
   m_amp_pan.setBounds(area_pan);
   m_amp_vel.setBounds(area_vel);
-  m_threshold.setBounds(area_bias);
+  m_boost.setBounds(area_bias);
   m_dry_wet.setBounds(area_threshold);
 }
 

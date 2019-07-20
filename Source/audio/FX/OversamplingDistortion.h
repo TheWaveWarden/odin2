@@ -1,6 +1,7 @@
 #pragma once
 
 #define THRESHOLD_MIN 0.05f
+#define DISTORTION_OUTPUT_SCALAR 0.6
 
 class OversamplingDistortion {
 public:
@@ -12,6 +13,7 @@ public:
   double doDistortion(double p_input);
 
   inline void setThreshold(float p_threshold) { 
+    p_threshold = 1.f - p_threshold;
     m_threshold = p_threshold * p_threshold * p_threshold; 
   }
 
@@ -47,8 +49,8 @@ protected:
 
   double m_last_input = 0.f;
   float m_bias = 0.f;
-  float m_threshold = 0.343f;        //0.7^3
-  float m_threshold_smooth = 0.343f; //0.7^3
+  float m_threshold = 0.343f;        //(1-0.3)^3
+  float m_threshold_smooth = 0.343f; //(1-0.3)^3
   float m_drywet = 1.f;
 
   // IIR Filter buffers for downsampling

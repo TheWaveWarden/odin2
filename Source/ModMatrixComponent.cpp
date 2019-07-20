@@ -328,7 +328,7 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
   m_amp_menu.addItem(901, "Amp Pan");
   m_amp_menu.addItem(902, "Amp Velocity");
 
-  m_distortion_menu.addItem(950, "Distortion Threshold");
+  m_distortion_menu.addItem(950, "Distortion Boost");
   m_distortion_menu.addItem(951, "Distortion DryWet");
 
   m_sources_menu.addItem(1, "Off");

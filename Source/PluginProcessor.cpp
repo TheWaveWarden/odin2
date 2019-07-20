@@ -1223,7 +1223,7 @@ void OdinAudioProcessor::setModulationPointers() {
         &(m_mod_destinations.filter3.ringmod_amount));
 
     m_distortion[stereo].setThresholdModPointer(
-        &(m_mod_destinations.distortion.threshold));
+        &(m_mod_destinations.distortion.boost));
     m_distortion[stereo].setDryWetModPointer(
         &(m_mod_destinations.distortion.drywet));
 

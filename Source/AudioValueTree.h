@@ -324,8 +324,8 @@
           0.f),
       // Distortion
       std::make_unique<AudioParameterFloat>(
-          "dist_threshold", "Distortion Threshold",
-          NormalisableRange<float>(0.f, 1.f), 0.7f),
+          "dist_boost", "Distortion Boost",
+          NormalisableRange<float>(0.f, 1.f), 0.3f),
       std::make_unique<AudioParameterFloat>(
           "dist_drywet", "Distortion DryWet",
           NormalisableRange<float>(0.f, 1.f, 0.f, 1.f), 1.f),

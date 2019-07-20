@@ -58,7 +58,7 @@ struct ModDestAmp {
 };
 
 struct ModDestDistortion {
-  float threshold;
+  float boost;
   float drywet;
 };
 

@@ -63,7 +63,7 @@ private:
   Knob m_amp_gain;
   Knob m_amp_pan;
   Knob m_amp_vel;
-  Knob m_threshold;
+  Knob m_boost;
   Knob m_dry_wet;
 
   OdinButton m_flow_left;

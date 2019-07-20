@@ -18,7 +18,8 @@ double OversamplingDistortion::doDistortion(double p_input) {
 m_threshold_smooth = m_threshold_smooth * THRESHOLD_SMOOTHIN_FACTOR +
                           (1 - THRESHOLD_SMOOTHIN_FACTOR) * (m_threshold);
 
-  float threshold_modded = (m_threshold_smooth + *m_threshold_mod) * (1.f - THRESHOLD_MIN) + THRESHOLD_MIN;
+  //theshold is now boost, so we need to subtract mod (control setter is inverted as well)
+  float threshold_modded = (m_threshold_smooth - *m_threshold_mod) * (1.f - THRESHOLD_MIN) + THRESHOLD_MIN;
   threshold_modded = threshold_modded > 1 ? 1 : threshold_modded;
   threshold_modded = threshold_modded < THRESHOLD_MIN ? THRESHOLD_MIN : threshold_modded;
 
@@ -147,5 +148,5 @@ m_threshold_smooth = m_threshold_smooth * THRESHOLD_SMOOTHIN_FACTOR +
   drywet_modded = drywet_modded < 0 ? 0 : drywet_modded;
 
   // return only the last of the three samples
-  return yv[9] * drywet_modded + p_input * (1.f - drywet_modded);
+  return yv[9] * drywet_modded / threshold_modded * DISTORTION_OUTPUT_SCALAR + p_input * (1.f - drywet_modded);
 }

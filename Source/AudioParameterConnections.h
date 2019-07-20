@@ -96,7 +96,7 @@ for (int fil = 0; fil < 3; ++fil) {
 m_amp_pan = m_value_tree.getRawParameterValue("amp_pan");
 m_amp_gain = m_value_tree.getRawParameterValue("amp_gain");
 m_amp_vel = m_value_tree.getRawParameterValue("amp_vel");
-m_dist_threshold = m_value_tree.getRawParameterValue("dist_threshold");
+m_dist_threshold = m_value_tree.getRawParameterValue("dist_boost");
 m_dist_drywet = m_value_tree.getRawParameterValue("dist_drywet");
 m_dist_on = m_value_tree.getRawParameterValue("dist_on");
 m_fil1_to_amp = m_value_tree.getRawParameterValue("fil1_to_amp");
@@ -323,7 +323,7 @@ m_value_tree.addParameterListener("fil" + std::to_string(fil + 1) +
 m_value_tree.addParameterListener("amp_pan", &m_tree_listener);
 m_value_tree.addParameterListener("amp_gain", &m_tree_listener);
 m_value_tree.addParameterListener("amp_vel", &m_tree_listener);
-m_value_tree.addParameterListener("dist_threshold", &m_tree_listener);
+m_value_tree.addParameterListener("dist_boost", &m_tree_listener);
 m_value_tree.addParameterListener("dist_drywet", &m_tree_listener);
 m_value_tree.addParameterListener("dist_on", &m_tree_listener);
 m_value_tree.addParameterListener("fil1_to_amp", &m_tree_listener);
