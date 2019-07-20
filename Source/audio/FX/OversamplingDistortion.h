@@ -1,4 +1,7 @@
 #pragma once
+
+#define THRESHOLD_MIN 0.05f
+
 class OversamplingDistortion {
 public:
   OversamplingDistortion();
@@ -8,7 +11,9 @@ public:
 
   double doDistortion(double p_input);
 
-  inline void setThreshold(float p_threshold) { m_threshold = p_threshold; }
+  inline void setThreshold(float p_threshold) { 
+    m_threshold = p_threshold * p_threshold * p_threshold; 
+  }
 
   // inline void setBias(float p_bias){
   //	m_bias = p_bias;
@@ -30,6 +35,7 @@ public:
     for (int i = 0; i < 10; ++i) {
       xv[i] = yv[i] = 0;
     }
+    m_threshold_smooth = m_threshold;
   }
 
 protected:
@@ -41,8 +47,8 @@ protected:
 
   double m_last_input = 0.f;
   float m_bias = 0.f;
-  float m_threshold = 0.7f;
-  float m_threshold_smooth = 0.7f;
+  float m_threshold = 0.343f;        //0.7^3
+  float m_threshold_smooth = 0.343f; //0.7^3
   float m_drywet = 1.f;
 
   // IIR Filter buffers for downsampling
