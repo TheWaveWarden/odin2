@@ -1,6 +1,10 @@
 #include "Flanger.h"
 
-Flanger::Flanger() {}
+Flanger::Flanger() {
+  setResonance(0.6);//initial value
+  m_feedback_lower_limit = -0.97f;
+  m_feedback_higher_limit = 0.97f;
+}
 
 Flanger::~Flanger() {}
 

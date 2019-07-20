@@ -39,8 +39,8 @@ void FMOscillator::update() {
     // DBG("was mod base");
 
     if(*m_carrier_ratio_mod || *m_modulator_ratio_mod){
-        //DBG("EXPENSIVE MODULATION");
         m_modulator_osc.m_osc_freq_base *= pitchShiftMultiplier((*m_modulator_ratio_mod - *m_carrier_ratio_mod)* 24);
+        m_modulator_osc.m_osc_freq_glide_target = m_modulator_osc.m_osc_freq_base;
     }
 
     //now do modulator osc so we can use it as modultion
@@ -54,7 +54,7 @@ void FMOscillator::update() {
     if(m_FM_is_exponential){
         m_carrier_osc.m_mod_freq_exp = mod_value * fm_amount_modded * EXP_FM_SEMITONES;
     } else {
-        m_carrier_osc.m_mod_freq_lin = mod_value * 2 * m_osc_freq_base * fm_amount_modded;
+        m_carrier_osc.m_mod_freq_lin = mod_value * 15 * m_osc_freq_base * fm_amount_modded;
     }
     m_carrier_osc.update();
 }

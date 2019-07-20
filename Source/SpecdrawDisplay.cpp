@@ -13,8 +13,8 @@
 
 //==============================================================================
 SpecdrawDisplay::SpecdrawDisplay() {
-  m_glaspanel = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/drawpanel.png"));
+  m_glaspanel = ImageCache::getFromMemory(BinaryData::drawpanel_png,
+                                          BinaryData::drawpanel_pngSize);
 
   setSize(m_glaspanel.getWidth(), m_glaspanel.getHeight());
 
@@ -34,7 +34,8 @@ void SpecdrawDisplay::paint(Graphics &g) {
 
   g.setColour(m_draw_color);
 
-  float height = (float)(getHeight() - DRAW_INLAY_UP_SPEC - DRAW_INLAY_DOWN_SPEC);
+  float height =
+      (float)(getHeight() - DRAW_INLAY_UP_SPEC - DRAW_INLAY_DOWN_SPEC);
 
   for (int i = 0; i < SPECDRAW_STEPS_X; ++i) {
     g.drawLine(DRAW_INLAY_LEFT_SPEC + i,
@@ -61,28 +62,38 @@ void SpecdrawDisplay::mouseInteraction() {
 
   // if (x > DRAW_INLAY_LEFT_SPEC && x < getWidth() - DRAW_INLAY_RIGHT_SPEC) {
   y = y < DRAW_INLAY_UP_SPEC ? DRAW_INLAY_UP_SPEC : y;
-  y = y > getHeight() - DRAW_INLAY_DOWN_SPEC ? getHeight() - DRAW_INLAY_DOWN_SPEC : y;
+  y = y > getHeight() - DRAW_INLAY_DOWN_SPEC
+          ? getHeight() - DRAW_INLAY_DOWN_SPEC
+          : y;
   x = x > DRAW_INLAY_LEFT_SPEC ? x : DRAW_INLAY_LEFT_SPEC + 1;
-  x = x < getWidth() - DRAW_INLAY_RIGHT_SPEC ? x : getWidth() - DRAW_INLAY_RIGHT_SPEC - 1;
+  x = x < getWidth() - DRAW_INLAY_RIGHT_SPEC
+          ? x
+          : getWidth() - DRAW_INLAY_RIGHT_SPEC - 1;
   x -= DRAW_INLAY_LEFT_SPEC + 1;
 
   float float_y = (getHeight() - DRAW_INLAY_DOWN_SPEC - y) /
                   (getHeight() - DRAW_INLAY_UP_SPEC - DRAW_INLAY_DOWN_SPEC);
   // float_y = (round(float_y * SPECDRAW_STEPS_Y))/SPECDRAW_STEPS_Y;
   if (m_mouse_was_down) {
-    /*float left_y_value;
-    float right_y_value;
-    if(min_int(x, m_last_x_value) == x){
-      left_y_value = float_y;
-      right_y_value = m_last_y_value;
-    }
-    if(max_int(x, m_last_x_value) == x){
-      right_y_value = float_y;
-      left_y_value = m_last_y_value;
-    }*/
-    for (int i = min_int(x, m_last_x_value); i <= max_int(x, m_last_x_value);
-         ++i) {
-      m_draw_values[i] = float_y;//left_y_value  + (right_y_value - left_y_value)*(float)(i - min_int(x, m_last_x_value))/(max_int(x, m_last_x_value)- min_int(x, m_last_x_value));
+
+    int max_x = max_int(x, m_last_x_value);
+    int min_x = min_int(x, m_last_x_value);
+    int range_x = max_x - min_x;
+
+    float min_y = x > m_last_x_value ? m_last_y_value : float_y;
+    float max_y = x >= m_last_x_value ? float_y : m_last_y_value;
+    float range_y = max_y - min_y;
+
+    if (range_x > 0) {
+      for (int i = min_x; i <= max_x; ++i) {
+        // m_draw_values[i] = float_y;//left_y_value  + (right_y_value -
+        // left_y_value)*(float)(i - min_int(x, m_last_x_value))/(max_int(x,
+        // m_last_x_value)- min_int(x, m_last_x_value));
+        m_draw_values[i] =
+            min_y + (range_y) * (float)(i - min_x) / (float)range_x;
+      }
+    } else {
+      m_draw_values[x] = float_y;
     }
   } else {
     m_draw_values[x] = float_y;
@@ -102,12 +113,8 @@ void SpecdrawDisplay::mouseUp(const MouseEvent &event) {
   // if(m_mouse_was_down){
   //  m_mouse_was_down = false;
   m_mouse_was_down = false;
-  //DBG("UP!");
+  // DBG("UP!");
   //}
 }
 
-
-
-float* SpecdrawDisplay::getDrawnTable(){
-  return m_draw_values;
-}
+float *SpecdrawDisplay::getDrawnTable() { return m_draw_values; }

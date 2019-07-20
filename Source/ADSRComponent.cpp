@@ -26,14 +26,14 @@ ADSRComponent::ADSRComponent(AudioProcessorValueTreeState &vts,
   m_release_attach.reset(new SliderAttachment(
       m_value_tree, "env" + m_adsr_number + "_release", m_release));
 
-  juce::Image loop_1 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonloop_1.png"));
-  juce::Image loop_2 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonloop_2.png"));
-  juce::Image loop_3 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonloop_3.png"));
-  juce::Image loop_4 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonloop_4.png"));
+  juce::Image loop_1 = ImageCache::getFromMemory(
+      BinaryData::buttonloop_1_png, BinaryData::buttonloop_1_pngSize);
+  juce::Image loop_2 = ImageCache::getFromMemory(
+      BinaryData::buttonloop_2_png, BinaryData::buttonloop_2_pngSize);
+  juce::Image loop_3 = ImageCache::getFromMemory(
+      BinaryData::buttonloop_3_png, BinaryData::buttonloop_3_pngSize);
+  juce::Image loop_4 = ImageCache::getFromMemory(
+      BinaryData::buttonloop_4_png, BinaryData::buttonloop_4_pngSize);
 
   juce::DrawableImage loop_draw1;
   juce::DrawableImage loop_draw2;
@@ -67,42 +67,56 @@ ADSRComponent::ADSRComponent(AudioProcessorValueTreeState &vts,
   addAndMakeVisible(m_release);
 
   m_attack.setRange(A_LOW_LIMIT, A_HIGH_LIMIT);
-  m_attack.setValue(A_DEFAULT, sendNotification);
-  m_attack.setDoubleClickReturnValue(true, A_DEFAULT,
-                                     ModifierKeys::ctrlModifier);
+//   m_attack.setDoubleClickReturnValue(true, A_DEFAULT,
+       //                              ModifierKeys::ctrlModifier);
   m_attack.setTooltip(
       "Attack\nDefines how long the envelope\ntakes to reach the top peak");
-  m_attack.setSkewFactorFromMidPoint(A_MID_VALUE);
+  m_attack.setTextValueSuffix(" s");
+
+  //m_attack.setSkewFactorFromMidPoint(A_MID_VALUE);
+
+  //SKEW was printed and is:
+  //0.300912
+
 
   m_decay.setRange(D_LOW_LIMIT, D_HIGH_LIMIT);
   m_decay.setSkewFactorFromMidPoint(D_MID_VALUE);
-  m_decay.setValue(D_DEFAULT, sendNotification);
-  m_decay.setDoubleClickReturnValue(true, D_DEFAULT,
-                                    ModifierKeys::ctrlModifier);
+//   m_decay.setDoubleClickReturnValue(true, D_DEFAULT,
+         //                           ModifierKeys::ctrlModifier);
   m_decay.setTextValueSuffix(" s");
   m_decay.setTooltip("Decay\nDefines how long the\n envelope takes to fall "
                      "from the top\n peak to the sustain level");
 
   m_sustain.setRange(S_LOW_LIMIT, S_HIGH_LIMIT);
-  m_sustain.setSkewFactorFromMidPoint(S_MID_VALUE);
-  m_sustain.setValue(S_DEFAULT, sendNotification);
-  m_sustain.setDoubleClickReturnValue(true, S_DEFAULT,
-                                      ModifierKeys::ctrlModifier);
+  //m_sustain.setSkewFactorFromMidPoint(S_MID_VALUE);
+  //skewvalue printed as 0.575717
+//   m_sustain.setDoubleClickReturnValue(true, S_DEFAULT,
+           //                           ModifierKeys::ctrlModifier);
   m_sustain.setNumDecimalPlacesToDisplay(3);
   m_sustain.setTooltip("Sustain\nDefines the height of the evelope\nafter the "
                        "decay section is finished");
 
   m_release.setRange(R_LOW_LIMIT, R_HIGH_LIMIT);
   m_release.setSkewFactorFromMidPoint(R_MID_VALUE);
-  m_release.setValue(R_DEFAULT, sendNotification);
-  m_release.setDoubleClickReturnValue(true, R_DEFAULT,
-                                      ModifierKeys::ctrlModifier);
+//   m_release.setDoubleClickReturnValue(true, R_DEFAULT,
+             //                         ModifierKeys::ctrlModifier);
   m_release.setTextValueSuffix(" s");
   m_release.setTooltip("Release\nDefines how long the envelope takes\n to fall "
                        "back to zero after\nthe key is released");
 
   m_loop_attach.reset(new ButtonAttachment(
       m_value_tree, "env" + m_adsr_number + "_loop", m_loop));
+
+  m_attack.setNumDecimalPlacesToDisplay(3);
+  m_decay.setNumDecimalPlacesToDisplay(3);
+  m_sustain.setNumDecimalPlacesToDisplay(3);
+  m_release.setNumDecimalPlacesToDisplay(3);
+
+  SET_CTR_KEY(m_attack);
+  SET_CTR_KEY(m_decay);
+  SET_CTR_KEY(m_sustain);
+  SET_CTR_KEY(m_release);
+
 }
 
 ADSRComponent::~ADSRComponent() {}

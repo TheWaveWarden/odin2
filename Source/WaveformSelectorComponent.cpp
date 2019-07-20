@@ -19,17 +19,17 @@ WaveformSelectorComponent::WaveformSelectorComponent(bool p_buttons_right = true
       m_down("down", juce::DrawableButton::ButtonStyle::ImageRaw)
 {
 
-    juce::Image glas_panel = ImageCache::getFromFile(
-        juce::File(GRAPHICS_PATH + "cropped/glaspanel_big.png"));
+    juce::Image glas_panel = ImageCache::getFromMemory(
+        BinaryData::glaspanel_big_png, BinaryData::glaspanel_big_pngSize);
     m_display.setImage(glas_panel);
     m_display.setBounds(0, 0, glas_panel.getWidth(), glas_panel.getHeight());
     m_display.setInlay(1);
     addAndMakeVisible(m_display);
 
-    juce::Image up_1 = ImageCache::getFromFile(
-        juce::File(GRAPHICS_PATH + "cropped/buttons/buttonup_2.png"));
-    juce::Image up_2 = ImageCache::getFromFile(
-        juce::File(GRAPHICS_PATH + "cropped/buttons/buttonup_1.png"));
+    juce::Image up_1 = ImageCache::getFromMemory(
+        BinaryData::buttonup_2_png, BinaryData::buttonup_2_pngSize);
+    juce::Image up_2 = ImageCache::getFromMemory(
+        BinaryData::buttonup_1_png, BinaryData::buttonup_1_pngSize);
 
     juce::DrawableImage up_draw1;
     juce::DrawableImage up_draw2;
@@ -47,10 +47,10 @@ WaveformSelectorComponent::WaveformSelectorComponent(bool p_buttons_right = true
                    juce::Colour());
     m_up.onClick = [&]() { decrement(); };
 
-    juce::Image down_1 = ImageCache::getFromFile(
-        juce::File(GRAPHICS_PATH + "cropped/buttons/buttondown_2.png"));
-    juce::Image down_2 = ImageCache::getFromFile(
-        juce::File(GRAPHICS_PATH + "cropped/buttons/buttondown_1.png"));
+    juce::Image down_1 = ImageCache::getFromMemory(
+        BinaryData::buttondown_2_png, BinaryData::buttondown_2_pngSize);
+    juce::Image down_2 = ImageCache::getFromMemory(
+        BinaryData::buttondown_1_png, BinaryData::buttondown_1_pngSize);
 
     juce::DrawableImage down_draw1;
     juce::DrawableImage down_draw2;
@@ -91,6 +91,9 @@ WaveformSelectorComponent::WaveformSelectorComponent(bool p_buttons_right = true
     m_buttons_right = p_buttons_right;
 
     m_menu.setLookAndFeel(&m_menu_feels);
+
+    m_up.setRepeatSpeed(BUTTON_REPEAT_INITIAL_DELAY, BUTTON_REPEAT_DELAY);
+    m_down.setRepeatSpeed(BUTTON_REPEAT_INITIAL_DELAY, BUTTON_REPEAT_DELAY);
 
     setValue(1);
 }

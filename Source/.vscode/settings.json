@@ -34,6 +34,10 @@
         "tuple": "cpp",
         "typeinfo": "cpp",
         "utility": "cpp",
-        "algorithm": "cpp"
+        "algorithm": "cpp",
+        "optional": "cpp",
+        "deque": "cpp",
+        "new": "cpp",
+        "string_view": "cpp"
     }
 }

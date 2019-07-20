@@ -12,11 +12,14 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 
 //==============================================================================
-DelayComponent::DelayComponent(AudioProcessorValueTreeState &vts)
+DelayComponent::DelayComponent(AudioProcessorValueTreeState &vts,
+                               bool p_is_standalone)
     : m_sync("sync", juce::DrawableButton::ButtonStyle::ImageRaw),
+      m_pingpong("pingpong", juce::DrawableButton::ButtonStyle::ImageRaw),
       m_value_tree(vts),
       m_delay_synctime_denominator_identifier("delay_synctime_denominator"),
-      m_delay_synctime_numerator_identifier("delay_synctime_numerator") {
+      m_delay_synctime_numerator_identifier("delay_synctime_numerator"),
+      m_is_standalone_plugin(p_is_standalone) {
 
   m_delay_time_attach.reset(
       new SliderAttachment(m_value_tree, "delay_time", m_time));
@@ -30,16 +33,15 @@ DelayComponent::DelayComponent(AudioProcessorValueTreeState &vts)
   m_delay_wet_attach.reset(
       new SliderAttachment(m_value_tree, "delay_wet", m_wet));
 
-  m_sync_attach.reset(new ButtonAttachment(m_value_tree, "", m_sync));
 
-  juce::Image sync_1 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonsync_1.png"));
-  juce::Image sync_2 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonsync_2.png"));
-  juce::Image sync_3 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonsync_3.png"));
-  juce::Image sync_4 = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/buttonsync_4.png"));
+  juce::Image sync_1 = ImageCache::getFromMemory(
+      BinaryData::buttonsync_1_png, BinaryData::buttonsync_1_pngSize);
+  juce::Image sync_2 = ImageCache::getFromMemory(
+      BinaryData::buttonsync_2_png, BinaryData::buttonsync_2_pngSize);
+  juce::Image sync_3 = ImageCache::getFromMemory(
+      BinaryData::buttonsync_3_png, BinaryData::buttonsync_3_pngSize);
+  juce::Image sync_4 = ImageCache::getFromMemory(
+      BinaryData::buttonsync_4_png, BinaryData::buttonsync_4_pngSize);
 
   juce::DrawableImage sync_draw1;
   juce::DrawableImage sync_draw2;
@@ -59,33 +61,68 @@ DelayComponent::DelayComponent(AudioProcessorValueTreeState &vts)
   m_sync.setTriggeredOnMouseDown(true);
   m_sync.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId,
                    juce::Colour());
-  m_sync.onStateChange = [&]() { setSync(m_sync.getToggleState()); };
   m_sync.setTooltip("Syncs the delay time to your track");
   addAndMakeVisible(m_sync);
+  m_sync.onStateChange = [&]() {
+    setSync(m_sync.getToggleState());
+  };
 
-  juce::Image metal_knob_big = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/knobs/metal3/metal_knob_big.png"));
-  juce::Image black_knob_mid = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/knobs/black3/black_knob_mid.png"));
+  juce::Image pingpong_1 = ImageCache::getFromMemory(
+      BinaryData::buttonpingpong_1_png, BinaryData::buttonpingpong_1_pngSize);
+  juce::Image pingpong_2 = ImageCache::getFromMemory(
+      BinaryData::buttonpingpong_2_png, BinaryData::buttonpingpong_2_pngSize);
+  juce::Image pingpong_3 = ImageCache::getFromMemory(
+      BinaryData::buttonpingpong_3_png, BinaryData::buttonpingpong_3_pngSize);
+  juce::Image pingpong_4 = ImageCache::getFromMemory(
+      BinaryData::buttonpingpong_4_png, BinaryData::buttonpingpong_4_pngSize);
+
+  juce::DrawableImage pingpong_draw1;
+  juce::DrawableImage pingpong_draw2;
+  juce::DrawableImage pingpong_draw3;
+  juce::DrawableImage pingpong_draw4;
+
+  pingpong_draw1.setImage(pingpong_1);
+  pingpong_draw2.setImage(pingpong_2);
+  pingpong_draw3.setImage(pingpong_3);
+  pingpong_draw4.setImage(pingpong_4);
+
+  m_pingpong.setImages(&pingpong_draw2, &pingpong_draw2, &pingpong_draw1,
+                       &pingpong_draw1, &pingpong_draw4, &pingpong_draw4,
+                       &pingpong_draw3, &pingpong_draw3);
+  m_pingpong.setClickingTogglesState(true);
+  m_pingpong.setBounds(DELAY_PINGPONG_POS_X, DELAY_PINGPONG_POS_Y,
+                       pingpong_1.getWidth(), pingpong_1.getHeight());
+  m_pingpong.setTriggeredOnMouseDown(true);
+  m_pingpong.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId,
+                       juce::Colour());
+  m_pingpong.setTooltip("Makes the left and right delay channels cross their feedback");
+  addAndMakeVisible(m_pingpong);
+  //}
+  juce::Image metal_knob_big = ImageCache::getFromMemory(
+      BinaryData::metal_knob_big_png, BinaryData::metal_knob_big_pngSize);
+  juce::Image black_knob_mid = ImageCache::getFromMemory(
+      BinaryData::black_knob_mid_png, BinaryData::black_knob_mid_pngSize);
 
   m_time.setStrip(metal_knob_big, N_KNOB_FRAMES);
   m_time.setSliderStyle(Slider::RotaryVerticalDrag);
   m_time.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
   m_time.setRange(TIME_MIN, TIME_MAX);
-  m_time.setSkewFactorFromMidPoint(TIME_MID);
-  m_time.setValue(TIME_DEFAULT);
+  // m_time.setSkewFactorFromMidPoint(TIME_MID);
+  // skew value printed as 0.627099
   m_time.setTextValueSuffix(" s");
-  m_time.setNumDecimalPlacesToDisplay(2);
-  m_time.setDoubleClickReturnValue(true, TIME_DEFAULT,
-                                   ModifierKeys::ctrlModifier);
+  m_time.setNumDecimalPlacesToDisplay(3);
+  // m_time.setDoubleClickReturnValue(true, TIME_DEFAULT,
+  //                       ModifierKeys::ctrlModifier);
   m_time.setKnobTooltip("The time for the \nsignal to echo back");
   addAndMakeVisible(m_time);
 
   m_feedback.setStrip(metal_knob_big, N_KNOB_FRAMES);
   m_feedback.setSliderStyle(Slider::RotaryVerticalDrag);
   m_feedback.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-  m_feedback.setSkewFactorFromMidPoint(FEEDBACK_MID);
+  // m_feedback.setSkewFactorFromMidPoint(FEEDBACK_MID);
+  // skew value was printed: 0.575717
   m_feedback.setKnobTooltip("How much to echo back");
+
   addAndMakeVisible(m_feedback);
 
   m_HP.setStrip(black_knob_mid, N_KNOB_FRAMES);
@@ -93,9 +130,9 @@ DelayComponent::DelayComponent(AudioProcessorValueTreeState &vts)
   m_HP.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
   m_HP.setRange(HP_FREQ_MIN, HP_FREQ_MAX);
   m_HP.setSkewFactorFromMidPoint(HP_FREQ_MID);
-  m_HP.setDoubleClickReturnValue(true, HP_FREQ_DEFAULT,
-                                 ModifierKeys::ctrlModifier);
-  m_HP.setValue(HP_FREQ_DEFAULT);
+  // m_HP.setDoubleClickReturnValue(true, HP_FREQ_DEFAULT,
+  //                   ModifierKeys::ctrlModifier);
+  // m_HP.setValue(HP_FREQ_DEFAULT);
   m_HP.setTextValueSuffix(" Hz");
   m_HP.setNumDecimalPlacesToDisplay(1);
   m_HP.setKnobTooltip("The cutoff frequency\n for a highpass filter\n which is "
@@ -113,10 +150,10 @@ DelayComponent::DelayComponent(AudioProcessorValueTreeState &vts)
   m_dry.setStrip(black_knob_mid, N_KNOB_FRAMES);
   m_dry.setSliderStyle(Slider::RotaryVerticalDrag);
   m_dry.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-  m_dry.setSkewFactorFromMidPoint(DRY_WET_MID);
-  m_dry.setValue(DRY_DEFAULT);
-  m_dry.setDoubleClickReturnValue(true, DRY_DEFAULT,
-                                  ModifierKeys::ctrlModifier);
+  // m_dry.setSkewFactorFromMidPoint(DRY_WET_MID);
+  // skewfactor 0.575717
+  // m_dry.setDoubleClickReturnValue(true, DRY_DEFAULT,
+  //                  ModifierKeys::ctrlModifier);
   m_dry.setKnobTooltip("Volume of the input signal");
   addAndMakeVisible(m_dry);
 
@@ -124,21 +161,38 @@ DelayComponent::DelayComponent(AudioProcessorValueTreeState &vts)
   m_wet.setSliderStyle(Slider::RotaryVerticalDrag);
   m_wet.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
   m_wet.setSkewFactorFromMidPoint(DRY_WET_MID);
-  m_wet.setValue(WET_DEFAULT);
-  m_wet.setDoubleClickReturnValue(true, WET_DEFAULT,
-                                  ModifierKeys::ctrlModifier);
+  // m_wet.setValue(WET_DEFAULT);
+  // m_wet.setDoubleClickReturnValue(true, WET_DEFAULT,
+  //                ModifierKeys::ctrlModifier);
   m_wet.setKnobTooltip("Volume of the delayed signal only");
   addAndMakeVisible(m_wet);
 
+  m_sync_attach.reset(new ButtonAttachment(m_value_tree, "delay_sync", m_sync));
+  m_pingpong_attach.reset(new ButtonAttachment(m_value_tree, "delay_pingpong", m_pingpong));
+
   m_sync_time.OnValueChange = [&](int p_left, int p_right) {
-    m_value_tree.getParameter(m_delay_synctime_numerator_identifier)
-        ->setValueNotifyingHost(((float)p_left) / 20.f);
-    m_value_tree.getParameter(m_delay_synctime_denominator_identifier)
-        ->setValueNotifyingHost(((float)p_right) / 20.f);
+    m_value_tree.state.setProperty(m_delay_synctime_numerator_identifier,
+                                   p_left, nullptr);
+    m_value_tree.state.setProperty(m_delay_synctime_denominator_identifier,
+                                   p_right, nullptr);
   };
   m_sync_time.setTopLeftPosition(SYNC_TIME_DELAY_POS_X, SYNC_TIME_DELAY_POS_Y);
   m_sync_time.setTooltip("Set the delay time in sync to your track");
   addChildComponent(m_sync_time);
+
+  m_feedback.setNumDecimalPlacesToDisplay(3);
+  m_ducking.setNumDecimalPlacesToDisplay(3);
+  m_dry.setNumDecimalPlacesToDisplay(3);
+  m_wet.setNumDecimalPlacesToDisplay(3);
+
+  SET_CTR_KEY(m_time);
+  SET_CTR_KEY(m_feedback);
+  SET_CTR_KEY(m_HP);
+  SET_CTR_KEY(m_ducking);
+  SET_CTR_KEY(m_dry);
+  SET_CTR_KEY(m_wet);
+
+  forceValueTreeOntoComponents(m_value_tree.state);
 }
 
 DelayComponent::~DelayComponent() {}
@@ -158,4 +212,10 @@ void DelayComponent::resized() {
                   BLACK_KNOB_MID_SIZE_Y);
   m_wet.setBounds(WET_POS_X, WET_POS_Y, BLACK_KNOB_MID_SIZE_X,
                   BLACK_KNOB_MID_SIZE_Y);
+}
+
+void DelayComponent::forceValueTreeOntoComponents(ValueTree p_tree) {
+  m_sync_time.setValues(
+      m_value_tree.state[m_delay_synctime_numerator_identifier],
+      m_value_tree.state[m_delay_synctime_denominator_identifier]);
 }

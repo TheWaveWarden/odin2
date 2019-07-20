@@ -1,4 +1,4 @@
-#define WT_NR 56
+#define WT_NR 50
 
 m_wavetable_names_1D[WT_NR] = "Skyline3";
 

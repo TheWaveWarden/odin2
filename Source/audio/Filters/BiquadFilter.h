@@ -1,5 +1,8 @@
 #pragma once
 
+#include "../JuceLibraryCode/JuceHeader.h"
+
+
 class BiquadFilter {
 public:
   BiquadFilter();

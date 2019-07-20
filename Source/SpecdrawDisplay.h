@@ -42,6 +42,14 @@ public:
 
   float *getDrawnTable();
 
+  void setDrawnTable(float p_table[SPECDRAW_STEPS_X]){
+    for(int i = 0; i < SPECDRAW_STEPS_X; ++i){
+      //DBG(p_table[i]);
+      m_draw_values[i] = p_table[i];
+    }
+    repaint();
+  }
+
   std::function<void()> onDraw = []() {};
 
 private:

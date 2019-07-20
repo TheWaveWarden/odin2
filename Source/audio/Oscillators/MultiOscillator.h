@@ -19,7 +19,7 @@ public:
 	}
 
 	inline void setDetune(float p_detune){
-		m_detune = p_detune;
+		m_detune = p_detune * p_detune;
 	}
 
 	inline void setWavetableMultiSpread(float p_wt_spread){

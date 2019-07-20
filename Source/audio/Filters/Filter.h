@@ -38,11 +38,10 @@ public:
       // interpolate here so we have possibility of pure linear Processing
       pio_input = pio_input * (1. - overdrive_modded) +
                   overdrive_modded * fasttanh(pio_input, p_tanh_factor);
-    } else if (overdrive_modded > 1.f) {
+    } else if (overdrive_modded >= 1.f) {
       pio_input = fasttanh(overdrive_modded * pio_input, p_tanh_factor);
     }
   }
-
   double m_freq_base;
   double m_res_base;
 
@@ -87,8 +86,8 @@ public:
         pitchShiftMultiplier( // todo m_mod_frequency needed still?
             *m_freq_mod * FILTER_FREQ_MOD_RANGE_SEMITONES + m_mod_frequency +
             kbd_modded * m_MIDI_note +
-            m_env_value *
-                (m_env_mod_amount + *m_env_mod_mod +
+            (m_env_value *
+                (m_env_mod_amount + *m_env_mod_mod) +
                  vel_modded * (float)m_MIDI_velocity / 127.f) *
                 FILTER_ENV_MOD_SEMITONES_MAX);
 

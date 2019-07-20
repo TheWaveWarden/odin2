@@ -1,5 +1,7 @@
 #pragma once
 
+#include "../JuceLibraryCode/JuceHeader.h"
+
 #define STEP_LENGTH 1
 
 class ChiptuneArpeggiator
@@ -27,7 +29,6 @@ class ChiptuneArpeggiator
     inline void setFrequency(float p_frequency)
     {
         m_frequency = p_frequency;
-        //m_inc = p_frequency / m_samplerate;
     }
 
     inline void setArpeggiatorOn(bool p_arp_on)
@@ -35,9 +36,9 @@ class ChiptuneArpeggiator
         m_arp_active = p_arp_on;
     }
 
-    inline void setSamplerate(float p_samplerate){
+    inline void setSampleRate(float p_samplerate){
+         
         m_samplerate = p_samplerate;
-        //todo need to update inc etc.
     }
 
     int doArpeggiator();
@@ -50,10 +51,10 @@ class ChiptuneArpeggiator
     float* m_freq_mod;
     float m_frequency = 20.f;
     float m_samplerate = 44100;
-    float m_inc = 20./ 44100.f;
+    float m_inc;
     float m_position_in_step = 0.f;
     int m_current_step = 0;
-    int m_step_semitones[3] = {0, 12, 8};
+    int m_step_semitones[3] = {0, 12, 7};
     bool m_step_three_active = false;
     bool m_arp_active = false;
     //float m_frequency = 0.01f; //doesn't necessarily need to be in Hz

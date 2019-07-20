@@ -25,22 +25,33 @@
 #define RANDOM_POS_X 218
 #define RANDOM_POS_Y LOAD_POS_Y
 
+
 //==============================================================================
 /*
  */
 class SaveLoadComponent : public Component {
 public:
-  SaveLoadComponent();
+  SaveLoadComponent(AudioProcessorValueTreeState &vts);
   ~SaveLoadComponent();
 
   void paint(Graphics &) override {}
   void resized() override;
 
+  std::function<void()> forceValueTreeLambda;
+
 private:
+
+  bool m_reset_warning_was_shown = false;
+
+  std::unique_ptr<FileChooser> m_filechooser;
+
+  AudioProcessorValueTreeState &m_value_tree;
+  
+
   juce::DrawableButton m_save;
   juce::DrawableButton m_load;
   juce::DrawableButton m_reset;
-  juce::DrawableButton m_random;
+  //juce::DrawableButton m_random;
 
   GlasDisplay m_patch;
   int m_patch_size_x;

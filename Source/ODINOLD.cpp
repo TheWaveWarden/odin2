@@ -124,15 +124,15 @@ bool __stdcall COdin::initialize()
 	m_wave1D_osc.loadWavetables();
 
 	//WavetableContainer::getInstance().writeScaleFactorsToFile();
-	m_adsr.setSamplerate(44100.f);
+	m_adsr.setSampleRate(44100.f);
 	m_adsr.reset();
 
-	m_delay.setSamplerate(44100.f);
-	m_comb_filter.setSamplerate(44100.f);
-	m_allpass_filter.setSamplerate(44100.f);
-	m_phaser.setSamplerate(44100.f);
-	m_flanger.setSamplerate(44100.f);
-	m_chorus.setSamplerate(44100.f);
+	m_delay.setSampleRate(44100.f);
+	m_comb_filter.setSampleRate(44100.f);
+	m_allpass_filter.setSampleRate(44100.f);
+	m_phaser.setSampleRate(44100.f);
+	m_flanger.setSampleRate(44100.f);
+	m_chorus.setSampleRate(44100.f);
 	//CheapFunctions::getInstance().generateADSRPow();
 	//m_adsr.testADSRPow();
 	//m_adsr.profileCheapPow();
@@ -363,7 +363,7 @@ bool __stdcall COdin::processAudioFrame(float* pInputBuffer, float* pOutputBuffe
 	m_adsr.setLoop(m_env_loop != 0);
 	pOutputBuffer[0] *= m_adsr.doEnvelope();
 
-	m_phaser.setAmount(m_phaser_amount);
+	m_phaser.setAmount(m_phaser_mod);
 	m_phaser.setBaseFreq(m_filter_freq);
 	m_phaser.setRadiusBase(m_allpass_radius);
 	m_phaser.setLFOAmplitude(m_phaser_lfo_amplitude);
@@ -468,7 +468,7 @@ UIList Index	Variable Name					Control Index
 36				m_noise_lp                        121
 37				m_phaser_lfo_freq                 122
 38				m_phaser_lfo_amplitude            123
-39				m_phaser_amount                   124
+39				m_phaser_mod                   124
 40				m_use_allpass                     125
 41				m_comb_positive                   126
 42				m_allpass_radius                  127

@@ -16,18 +16,23 @@
 #include "Knob.h"
 #include "SyncTimeSelector.h"
 
-#define AMOUNT_POS_X 103
-#define AMOUNT_POS_Y 43
-#define FREQ_POS_X 31
-#define FREQ_POS_Y 17
-#define DRY_WET_POS_X 175
-#define DRY_WET_POS_Y (FREQ_POS_Y)
-#define FX_SYNC_POS_X 37
-#define FX_SYNC_POS_Y 79
-#define FX_RESET_POS_X 176
+#define SPACING 56
+
+
+#define FX_FREQ_POS_X 20
+#define FX_FREQ_POS_Y 15
+#define FX_AMOUNT_POS_X FX_FREQ_POS_X + 1 * SPACING
+#define FX_AMOUNT_POS_Y 52
+#define FX_FEEDBACK_POS_X FX_FREQ_POS_X + 2 * SPACING
+#define FX_FEEDBACK_POS_Y FX_FREQ_POS_Y
+#define FX_DRY_WET_POS_X FX_FREQ_POS_X + 3 * SPACING
+#define FX_DRY_WET_POS_Y FX_AMOUNT_POS_Y
+#define FX_SYNC_POS_X 24
+#define FX_SYNC_POS_Y 70
+#define FX_RESET_POS_X 129
 #define FX_RESET_POS_Y FX_SYNC_POS_Y
-#define SYNC_TIME_FX_POS_X 16
-#define SYNC_TIME_FX_POS_Y 35
+#define FX_SYNC_TIME_FX_POS_X 5
+#define FX_SYNC_TIME_FX_POS_Y 20
 
 #define FX_FREQ_MIN 0.05
 #define FX_FREQ_MAX 20
@@ -42,14 +47,17 @@
  */
 class FXComponent : public Component {
 public:
-  FXComponent(AudioProcessorValueTreeState &vts, std::string p_fx_name);
+  FXComponent(AudioProcessorValueTreeState &vts, std::string p_fx_name, bool p_is_standalone);
   ~FXComponent();
+
+  void forceValueTreeOntoComponents(ValueTree p_tree);
+  
 
   void paint(Graphics &) override;
   void resized() override;
   
   void setSyncTimeColor(juce::Colour p_color){
-    m_synctime.setColor(p_color);
+    m_sync_time.setColor(p_color);
   }
 
   void setImage(juce::Image p_background, bool p_sync) {
@@ -63,8 +71,11 @@ public:
   void setSyncEnabled(bool p_sync);
 
 private:
-  Knob m_freq;
+  bool m_is_standalone_plugin;
+
+  Knob m_rate;
   Knob m_amount;
+  Knob m_feedback;
   Knob m_dry_wet;
 
   OdinButton m_sync;
@@ -73,16 +84,17 @@ private:
   juce::Image m_background_sync;
   juce::Image m_background_no_sync;
 
-  SyncTimeSelector m_synctime;
+  SyncTimeSelector m_sync_time;
 
   bool m_sync_enabled = false;
 
   std::string m_fx_name;
   AudioProcessorValueTreeState &m_value_tree;
 
-  std::unique_ptr<SliderAttachment> m_frequency_attach;
+  std::unique_ptr<SliderAttachment> m_rate_attach;
   std::unique_ptr<SliderAttachment> m_amount_attach;
   std::unique_ptr<SliderAttachment> m_drywet_attach;
+  std::unique_ptr<SliderAttachment> m_feedback_attach;
 
   std::unique_ptr<ButtonAttachment> m_sync_attach;
   std::unique_ptr<ButtonAttachment> m_reset_attach;

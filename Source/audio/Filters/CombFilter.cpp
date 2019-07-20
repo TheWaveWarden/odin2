@@ -55,8 +55,16 @@ float CombFilter::doFilter(float p_input) {
   float output = linearInterpolation(circular_buffer[read_index_trunc],
                                      circular_buffer[read_index_next], frac);
 
+  float feedback_modded = m_feedback + *m_res_mod;
+  feedback_modded = feedback_modded > m_feedback_higher_limit
+                        ? m_feedback_higher_limit
+                        : feedback_modded;
+  feedback_modded = feedback_modded < m_feedback_lower_limit
+                        ? m_feedback_lower_limit
+                        : feedback_modded;
+
   circular_buffer[m_write_index] =
-      p_input + output * m_feedback * m_positive_comb;
+      p_input + output * feedback_modded * m_positive_comb;
   incWriteIndex();
 
   // set sample behind readindex to zero to avoid reading that signal when
@@ -66,5 +74,8 @@ float CombFilter::doFilter(float p_input) {
   float vol_mod_factor =
       (*m_vol_mod) > 0 ? 1.f + 4 * (*m_vol_mod) : (1.f + *m_vol_mod);
 
-  return (p_input + output) * 0.5f * vol_mod_factor;
+
+  float ret = (p_input + output) * 0.5f * vol_mod_factor;
+  m_DC_blocking_filter.doFilter(ret);
+  return ret;
 }

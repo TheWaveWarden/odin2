@@ -143,7 +143,7 @@ public:
     // --- Oberheim variations
     double output = m_a * dU + m_b * dLP1 + m_c * dLP2 + m_d * dLP3 + m_e * dLP4;
 
-	applyOverdrive(output);
+	  applyOverdrive(output);
 
     float vol_mod_factor =
         (*m_vol_mod) > 0 ? 1.f + 4 * (*m_vol_mod) : (1.f + *m_vol_mod);

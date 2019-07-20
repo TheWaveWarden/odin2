@@ -9,7 +9,8 @@ public:
 	BiquadAllpass();
 	~BiquadAllpass();
 
-	inline void setSamplerate(float p_samplerate){
+	inline void setSampleRate(float p_samplerate){ 
+  DBG("SetSampleRate biquad");
 		m_samplerate = p_samplerate;
 	}
 

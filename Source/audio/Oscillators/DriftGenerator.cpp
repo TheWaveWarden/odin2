@@ -44,7 +44,8 @@ float DriftGenerator::doDrift(){
     return (m_next_value - m_last_value) * (float)m_counter / m_drift_length + m_last_value ;
 }
 
-void DriftGenerator::setSamplerate(float p_samplerate){
+void DriftGenerator::setSampleRate(float p_samplerate){ 
+  DBG("SetSampleRate driftgen");
     m_samplerate = p_samplerate;
     m_drift_length = (int)(DRIFT_LENGTH_SECONDS * p_samplerate);
 }

@@ -1,4 +1,4 @@
-#define WT_NR 35
+#define WT_NR 29
 
 m_wavetable_names_1D[WT_NR] = "Harmonics6";
 

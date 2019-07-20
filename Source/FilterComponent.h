@@ -37,15 +37,21 @@
 #define COMB_FREQ_POS_X 130
 #define COMB_RES_POS_X 61
 #define FORMANT_VOW_LEFT_POS_X 44
-#define FORMANT_VOW_LEFT_POS_Y 73
+#define FORMANT_VOW_LEFT_POS_Y 66
 #define FORMANT_VOW_RIGHT_POS_X 161
 #define FORMANT_VOW_RIGHT_POS_Y FORMANT_VOW_LEFT_POS_Y
 #define FORMANT_TRANSITION_X 102
-#define FORMANT_TRANSITION_Y 63
+#define FORMANT_TRANSITION_Y 56
 #define TRANSITION_POS_X 166
 #define TRANSITION_POS_Y (RES_POS_Y + 2)
 #define COMB_PLUS_POS_X 152
 #define COMB_PLUS_POS_Y 105
+
+#define RINGMOD_AMOUNT_X 148
+#define RINGMOD_AMOUNT_Y FORMANT_TRANSITION_Y
+#define RINGMOD_FREQ_X 58
+#define RINGMOD_FREQ_Y RINGMOD_AMOUNT_Y
+
 
 #define FREQ_MIN 80
 #define FREQ_MAX 18000
@@ -102,11 +108,16 @@ public:
   void setFilterKorgHP();
   void setFilterComb();
   void setFilterFormant();
+  void setFilterRingMod();
 
   void showStandardFilterComponents();
   void showSEMFilterComponents();
   void showCombFilterComponents();
   void showFormantFilterComponents();
+  void showRingModFilterComponents();
+
+  void forceValueTreeOntoComponents(ValueTree p_tree, int index);
+  
 protected:
   Knob m_vel;
   Knob m_kbd;
@@ -117,6 +128,7 @@ protected:
   Knob m_saturation;
   Knob m_sem_transition;
   Knob m_formant_transition;
+  Knob m_ring_mod_amount;
 
   FormantSelector m_vowel_left;
   FormantSelector m_vowel_right;
@@ -138,6 +150,7 @@ protected:
   std::unique_ptr<SliderAttachment> m_res_attach;
   std::unique_ptr<SliderAttachment> m_saturation_attach;
   std::unique_ptr<SliderAttachment> m_formant_transition_attach;
+  std::unique_ptr<SliderAttachment> m_ring_mod_amount_attach;
   std::unique_ptr<SliderAttachment> m_sem_transition_attach;
 
   std::unique_ptr<ButtonAttachment> m_comb_polarity_attach;

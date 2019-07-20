@@ -132,6 +132,9 @@
 #define X_POS_Y 27
 #define Y_POS_X 75
 #define Y_POS_Y X_POS_Y
+
+#define FM_COLOR Colour(90, 40, 40)
+#define PM_COLOR Colour(40, 40, 40)
 //==============================================================================
 /*
  */
@@ -156,6 +159,7 @@ public:
   void setOscTypeAnalog();
   void setOscTypeChiptune();
   void setOscTypeFM();
+  void setOscTypePM();
   void setOscTypeChipdraw();
   void setOscTypeWavedraw();
   void setOscTypeSpecdraw();
@@ -171,6 +175,7 @@ public:
   void showAnalogComponents();
   void showChiptuneComponents();
   void showFMComponents();
+  void showPMComponents();
   void showChipdrawComponents();
   void showWavedrawComponents();
   void showSpecdrawComponents();
@@ -188,9 +193,13 @@ public:
   void createChipdrawTables();
   void createSpecdrawTables();
 
+  void forceValueTreeOntoComponents(ValueTree p_tree, int p_index, bool p_create_wavetables);
+
+  void resetVectorWaves();
+
 protected:
 
-  TextEditor REMOVE_EDITOR;
+  //TextEditor REMOVE_EDITOR;
 
   int m_osc_type = 0;
 
@@ -220,9 +229,9 @@ protected:
   OdinButton m_noise;
   OdinButton m_chipdraw_convert;
   OdinButton m_wavedraw_convert;
-  OdinButton m_wavedraw_convert_REMOVE;
-  OdinButton m_specdraw_convert_REMOVE;
-  OdinButton m_chipdraw_convert_REMOVE;
+  //OdinButton m_wavedraw_convert_REMOVE;
+  //OdinButton m_specdraw_convert_REMOVE;
+  //OdinButton m_chipdraw_convert_REMOVE;
   OdinButton m_specdraw_convert;
   DrawableButton m_LED_saw;
   DrawableButton m_LED_pulse;
@@ -281,10 +290,10 @@ protected:
   std::unique_ptr<ButtonAttachment> m_chipnoise_attach;
   std::unique_ptr<ButtonAttachment> m_exp_fm_attach;
 
-  std::unique_ptr<ComboBoxAttachment> m_vec_a_attach;
-  std::unique_ptr<ComboBoxAttachment> m_vec_b_attach;
-  std::unique_ptr<ComboBoxAttachment> m_vec_c_attach;
-  std::unique_ptr<ComboBoxAttachment> m_vec_d_attach;
+  //std::unique_ptr<ComboBoxAttachment> m_vec_a_attach;
+  //std::unique_ptr<ComboBoxAttachment> m_vec_b_attach;
+  //std::unique_ptr<ComboBoxAttachment> m_vec_c_attach;
+  //std::unique_ptr<ComboBoxAttachment> m_vec_d_attach;
 
   Identifier m_wavetable_identifier;
   Identifier m_chipwave_identifier;
@@ -293,6 +302,12 @@ protected:
   Identifier m_modulator_ratio_identifier;
   Identifier m_carrier_ratio_identifier;
   Identifier m_analog_wave_identifier;
+  Identifier m_vec_a_identifier;
+  Identifier m_vec_b_identifier;
+  Identifier m_vec_c_identifier;
+  Identifier m_vec_d_identifier;
+
+  OdinMenuFeels m_menu_feels;
 
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(OscComponent)
 };

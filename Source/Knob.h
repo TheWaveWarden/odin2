@@ -8,6 +8,7 @@
   ==============================================================================
 */
 #include "GlobalIncludes.h"
+#include "InputField.h"
 
 #define N_KNOB_FRAMES 256 // todo
 
@@ -80,12 +81,9 @@ public:
     setPopupDisplayEnabled(true, false, nullptr);
     setNumDecimalPlacesToDisplay(3);
     setVelocityModeParameters(1.0, 1, 0.0, true, ModifierKeys::shiftModifier);
-    setDoubleClickReturnValue(true, 0, ModifierKeys::ctrlModifier);
+    // RsetDoubleClicketurnValue(true, 0, ModifierKeys::ctrlModifier);
 
     setTooltip("henlo");
-    // todo not working
-    // setDoubleClickReturnValue 	(false, 0,
-    // ModifierKeys::ctrlAltCommandModifiers);
   }
 
   ~Knob() { setLookAndFeel(nullptr); }
@@ -93,6 +91,9 @@ public:
     setNumDecimalPlacesToDisplay(3);
     Slider::setTextValueSuffix(suffix);
   }
+
+  String getTextFromValue(double value) override;
+
   void setStrip(juce::Image p_strip, size_t p_frames,
                 bool p_is_vertical = true) {
     m_is_vertical = p_is_vertical;
@@ -127,8 +128,7 @@ public:
                              getLocalBounds().getWidth(),
                              getLocalBounds().getHeight(), 5,
                              2); // draw an outline around the component
-    }
-    else if (m_midi_control) {
+    } else if (m_midi_control) {
       g.setColour(Colours::green);
       g.drawRoundedRectangle(getLocalBounds().getX(), getLocalBounds().getY(),
                              getLocalBounds().getWidth(),
@@ -137,7 +137,6 @@ public:
     }
   }
 
-  void mouseDoubleClick(const MouseEvent &event) override {}
   void mouseDown(const MouseEvent &event) override;
 
   void setKnobTooltip(const std::string p_tooltip) { setTooltip(p_tooltip); }
@@ -146,15 +145,36 @@ public:
     m_processor = p_pointer;
   }
 
-  void stopMidiLearn(){
+  void stopMidiLearn() {
     m_midi_learn = false;
     repaint();
   }
 
-  void setMidiControlActive(){
+  void setMidiControlActive() {
     m_midi_learn = false;
     m_midi_control = true;
     repaint();
+  }
+
+  void mouseDoubleClick(const MouseEvent &e) override {
+    if (auto editor = findParentComponentOfClass<juce::AudioProcessorEditor>()) {
+      if (auto value_field = dynamic_cast<InputField*>(editor->findChildWithID("value_input"))) {
+
+        value_field->setVisible(true);
+        Point<int> point_in_parent(getX() + getWidth() / 2 - INPUT_LABEL_SIZE_X / 2, getBottom() + 10);
+        Point<int> point_in_editor = editor->getLocalPoint(getParentComponent(), point_in_parent);
+        if(point_in_editor.getY() > 580){
+          point_in_editor -= Point<int>(0,30);
+        }
+
+        value_field->setTopLeftPosition(point_in_editor);
+        value_field->clear();
+        value_field->grabKeyboardFocus();
+        value_field->setAttachedSlider(this);
+
+      }
+    }
+    Component::mouseDoubleClick(e);
   }
 
 private:

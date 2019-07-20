@@ -42,7 +42,7 @@ void ModAmountComponent::paint(Graphics &g) {
     bottom_right.addXY(-(getWidth() - m_inlay * 2) * (1.f - m_value), -m_inlay);
     g.fillRect(juce::Rectangle<int>(top_left, bottom_right));
   } else {
-    g.setColour(m_color_bar);
+    g.setColour(m_color_bar_negative);
     top_left.addXY((getWidth() - m_inlay * 2) * (1 +m_value), m_inlay);
     g.fillRect(juce::Rectangle<int>(top_left, bottom_right));
   }
@@ -56,7 +56,7 @@ void ModAmountComponent::paint(Graphics &g) {
   std::string value_string = stream.str();
   g.setColour(Colours::white);
   if(value_string == "0"){
-    g.setColour(juce::Colours::grey);
+    g.setColour(juce::Colours::lightgrey);
   }
   g.drawText(value_string, getLocalBounds(), Justification::centred,
              true); 
@@ -76,4 +76,11 @@ void ModAmountComponent::mouseDrag(const MouseEvent &event) {
   m_value = m_value < -1 ? -1 : m_value;
   onValueChange(m_value);
   repaint();
+}
+
+
+void ModAmountComponent::parameterChanged (const String &parameterID, float newValue){
+  if(parameterID == m_parameter_id){
+    setValue(newValue);
+  }
 }

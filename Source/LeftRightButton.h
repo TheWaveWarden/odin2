@@ -52,6 +52,11 @@ public:
     repaint();
   }
 
+  void setValue(bool p_on){
+    setToggleState(p_on, sendNotification);
+    repaint();
+  }
+
 private:
   bool m_midi_learn = false;
   bool m_midi_control = false;

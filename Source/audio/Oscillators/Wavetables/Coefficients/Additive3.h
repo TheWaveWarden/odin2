@@ -1,4 +1,4 @@
-#define WT_NR 16
+#define WT_NR 10
 
 m_wavetable_names_1D[WT_NR] = "Additive3";
 

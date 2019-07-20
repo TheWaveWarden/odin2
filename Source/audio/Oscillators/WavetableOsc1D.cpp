@@ -4,6 +4,7 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 
+#include "../../WavetableMappings.h"
 
 WavetableOsc1D::WavetableOsc1D(){}
 
@@ -69,6 +70,7 @@ float WavetableOsc1D::doOscillate(){
     //if(!m_note_on){
     //    return 0.f;
     //}
+    
     float vol_mod_factor = (*m_vol_mod) > 0 ? 1.f + 4 *(*m_vol_mod) : (1.f + *m_vol_mod);
     
     return doWavetable() * m_volume_factor * vol_mod_factor;
@@ -98,6 +100,14 @@ void WavetableOsc1D::loadWavetables(){
     for(int wavetable = 0; wavetable < NUMBER_OF_WAVETABLES; ++wavetable){
 		setWavetablePointer(wavetable, WavetableContainer::getInstance().getWavetablePointers(wavetable));
 	}
+    for(int i = 0; i < 3; ++i){
+        //wavedraw
+		setWavetablePointerNONCONST(NUMBER_OF_WAVETABLES + i, WavetableContainer::getInstance().getWavedrawPointer(i));
+        //chipdraw
+		setWavetablePointerNONCONST(NUMBER_OF_WAVETABLES + i + 3, WavetableContainer::getInstance().getChipdrawPointer(i));
+        //specdraw
+		setWavetablePointerNONCONST(NUMBER_OF_WAVETABLES + i + 6, WavetableContainer::getInstance().getSpecdrawPointer(i));
+    }
 }
 
 void WavetableOsc1D::loadWavedrawTables(int p_osc){

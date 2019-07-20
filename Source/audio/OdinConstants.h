@@ -1,7 +1,9 @@
 #pragma once
 
-#define SUBTABLES_PER_WAVETABLE 40 //there are 40 tables for one "sound"
-#define NUMBER_OF_WAVETABLES 80  //number of different 1D WTs
+#define SUBTABLES_PER_WAVETABLE 33 //there are 40 tables for one "sound"
+
+//TODO this will crash when writign tables to file if set to 120... running out of stack space?
+#define NUMBER_OF_WAVETABLES 160  //number of different 1D WTs
 #define NUMBER_OF_CHIPDRAW_TABLES 3 //number of chipdraw tables (one per osc slot)
 #define NUMBER_OF_WAVEDRAW_TABLES 3 //number of wavedraw tables (one per osc slot)
 #define NUMBER_OF_SPECDRAW_TABLES 3 //number of specdraw tables (one per osc slot)
@@ -15,6 +17,6 @@
 #define MAX_DELAY_TIME 4//max delay time at max samplerate in seconds
 
 #define SIN_AND_COS 2 //just here to avoid magic Numbers
-#define NUMBER_OF_WAVETABLES_2D 20
+#define NUMBER_OF_WAVETABLES_2D 40
 #define TABLES_PER_2D_WT 4
 #define PI 3.1415926535897932384626433832795

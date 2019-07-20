@@ -28,8 +28,10 @@
 #define DRY_POS_Y 64
 #define WET_POS_X 200
 #define WET_POS_Y DRY_POS_Y
-#define DELAY_SYNC_POS_X 24
+#define DELAY_SYNC_POS_X 25
 #define DELAY_SYNC_POS_Y 78
+#define DELAY_PINGPONG_POS_X 85
+#define DELAY_PINGPONG_POS_Y 10
 #define SYNC_TIME_DELAY_POS_X 2
 #define SYNC_TIME_DELAY_POS_Y 36
 
@@ -55,8 +57,11 @@
 class DelayComponent : public Component
 {
 public:
-  DelayComponent(AudioProcessorValueTreeState& vts);
+  DelayComponent(AudioProcessorValueTreeState& vts, bool p_is_standalone);
   ~DelayComponent();
+
+  void forceValueTreeOntoComponents(ValueTree p_tree);
+  
 
   void paint(Graphics &) override;
   void resized() override;
@@ -74,14 +79,14 @@ public:
       if (p_sync_on)
       {
         m_background =
-            ImageCache::getFromFile(juce::File(GRAPHICS_PATH + "cropped/delaysync.png"));
+            ImageCache::getFromMemory(BinaryData::delaysync_png, BinaryData::delaysync_pngSize);
         m_time.setVisible(false);
         m_sync_time.setVisible(true);
       }
       else
       {
         m_background =
-            ImageCache::getFromFile(juce::File(GRAPHICS_PATH + "cropped/delaynosync.png"));
+            ImageCache::getFromMemory(BinaryData::delaynosync_png, BinaryData::delaynosync_pngSize);
         m_time.setVisible(true);
         m_sync_time.setVisible(false);
       }
@@ -90,6 +95,7 @@ public:
   }
 
 private:
+  bool m_is_standalone_plugin;
   bool m_sync_on = false;
 
   juce::Image m_background;
@@ -104,6 +110,7 @@ private:
   SyncTimeSelector m_sync_time;
 
   OdinButton m_sync;
+  OdinButton m_pingpong;
 
   AudioProcessorValueTreeState& m_value_tree;
 
@@ -115,6 +122,7 @@ private:
   std::unique_ptr<SliderAttachment> m_delay_wet_attach;
 
   std::unique_ptr<ButtonAttachment> m_sync_attach;
+  std::unique_ptr<ButtonAttachment> m_pingpong_attach;
 
   Identifier m_delay_synctime_numerator_identifier;
   Identifier m_delay_synctime_denominator_identifier;

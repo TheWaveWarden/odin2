@@ -26,11 +26,15 @@
 #include "LeftRightButton.h"
 #include "ModMatrixComponent.h"
 #include "NumberSelector.h"
+#include "OdinButton.h"
+#include "OdinTooltipWindow.h"
 #include "OscComponent.h"
 #include "PitchWheel.h"
 #include "SaveLoadComponent.h"
-#include "OdinButton.h"
 #include "XYSectionComponent.h"
+#include "PhaserComponent.h"
+#include "BPMSelector.h"
+#include "InputField.h"
 
 #define GLIDE_POS_X 117
 #define GLIDE_POS_Y 522
@@ -108,6 +112,9 @@
 #define SAVE_LOAD_SIZE_X 288
 #define SAVE_LOAD_SIZE_Y 25
 
+#define LEGATO_POS_X 670
+#define LEGATO_POS_Y 7
+
 #define ENV13_POS_X 30
 #define ENV13_POS_Y 313
 #define ENV24_POS_X 158
@@ -149,6 +156,8 @@
 #define FONT_SPACE_Y 4
 #define TOOLTIP_INLAY 10
 
+#define BPM_POS_X 585
+#define BPM_POS_Y 6
 
 class TooltipFeels : public LookAndFeel_V4 {
 public:
@@ -160,39 +169,77 @@ public:
   }
 };
 
-
-
 //==============================================================================
 /**
-*/
-class OdinAudioProcessorEditor  : public AudioProcessorEditor
-{
+ */
+class OdinAudioProcessorEditor : public AudioProcessorEditor,
+                                 public KeyListener {
 public:
-    OdinAudioProcessorEditor (OdinAudioProcessor& p_processor, AudioProcessorValueTreeState& vts);
-    ~OdinAudioProcessorEditor();
+  OdinAudioProcessorEditor(OdinAudioProcessor &p_processor,
+                           AudioProcessorValueTreeState &vts,
+                           bool p_is_standalone);
+  ~OdinAudioProcessorEditor();
 
-    //==============================================================================
-   void paint(Graphics &) override;
+  //==============================================================================
+  void paint(Graphics &) override;
   void resized() override;
   void arrangeFXOnButtons(std::map<std::string, int> p_map);
   void setActiveFXPanel(std::string p_name);
 
+  void forceValueTreeOntoComponents(bool p_reset_audio);
+  void forceValueTreeOntoComponentsOnlyMainPanel();
+
+  bool keyPressed(const KeyPress &key, Component *) override { 
+    if(key.getKeyCode() == 120){
+      ++m_octave_shift;
+      allMidiKeysOff();
+    } else if(key == 121){
+      --m_octave_shift;
+      allMidiKeysOff();
+    }
+    return false; }
+  bool keyStateChanged(bool isKeyDown,
+                       Component *originatingComponent) override;
+  void allMidiKeysOff();
+
+  InputField m_value_input;
+  InputFeels m_input_feels;
+
 private:
-    // This reference is provided as a quick way for your editor to
-    // access the processor object that created it.
-    OdinAudioProcessor& processor;
-    
-    void setTooltipEnabled(bool p_enabled);
+  bool m_A_down = false; // C
+  bool m_W_down = false; // C#
+  bool m_S_down = false; // D
+  bool m_E_down = false; // D#
+  bool m_D_down = false; // E
+  bool m_F_down = false; // F
+  bool m_T_down = false; // F#
+  bool m_G_down = false; // G
+  bool m_Z_down = false; // G#
+  bool m_H_down = false; // A
+  bool m_U_down = false; // A#
+  bool m_J_down = false; // B
+  bool m_K_down = false; // C
+  bool m_O_down = false; // C#
+  bool m_L_down = false; // D
+  bool m_P_down = false; // D#
+
+  // This reference is provided as a quick way for your editor to
+  // access the processor object that created it.
+  OdinAudioProcessor &processor;
+
+  void setTooltipEnabled(bool p_enabled);
   //==============================================================================
   // Your private member variables go here...
   OdinMenuFeels m_menu_feels;
 
   Knob m_glide;
   Knob m_master;
+  Knob m_modwheel;
 
   PitchWheel m_pitchwheel;
-  Knob m_modwheel;
   NumberSelector m_pitch_amount;
+
+  BPMSelector m_BPM_selector;
 
   OscComponent m_osc1;
   OscComponent m_osc2;
@@ -215,7 +262,7 @@ private:
   LFOComponent m_lfo_4;
 
   FXComponent m_flanger;
-  FXComponent m_phaser;
+  PhaserComponent m_phaser;
   FXComponent m_chorus;
   DelayComponent m_delay;
 
@@ -261,7 +308,9 @@ private:
   LeftRightButton m_lfo_13_button;
   LeftRightButton m_lfo_24_button;
 
-  AudioProcessorValueTreeState& m_value_tree;
+  LeftRightButton m_legato_button;
+
+  AudioProcessorValueTreeState &m_value_tree;
 
   std::unique_ptr<ButtonAttachment> m_phaser_on_attachment;
   std::unique_ptr<ButtonAttachment> m_flanger_on_attachment;
@@ -274,27 +323,28 @@ private:
   std::unique_ptr<ButtonAttachment> m_fil2_osc2_attachment;
   std::unique_ptr<ButtonAttachment> m_fil2_osc3_attachment;
   std::unique_ptr<ButtonAttachment> m_fil2_fil1_attachment;
+  std::unique_ptr<ButtonAttachment> m_legato_attachment;
 
   std::unique_ptr<SliderAttachment> m_glide_attachment;
   std::unique_ptr<SliderAttachment> m_master_attachment;
   std::unique_ptr<SliderAttachment> m_modwheel_attachment;
   std::unique_ptr<SliderAttachment> m_pitchbend_attachment;
-  
-  Identifier m_osc1_type_indentifier; 
-  Identifier m_osc2_type_indentifier; 
-  Identifier m_osc3_type_indentifier; 
-  Identifier m_fil1_type_indentifier; 
-  Identifier m_fil2_type_indentifier; 
-  Identifier m_fil3_type_indentifier; 
-  Identifier m_pitchbend_amount_identifier; 
+
+  Identifier m_osc1_type_indentifier;
+  Identifier m_osc2_type_indentifier;
+  Identifier m_osc3_type_indentifier;
+  Identifier m_fil1_type_indentifier;
+  Identifier m_fil2_type_indentifier;
+  Identifier m_fil3_type_indentifier;
+  Identifier m_pitchbend_amount_identifier;
   Identifier m_delay_position_identifier;
   Identifier m_phaser_position_identifier;
   Identifier m_flanger_position_identifier;
   Identifier m_chorus_position_identifier;
 
-
-  TooltipWindow m_tooltip;
+  OdinTooltipWindow m_tooltip;
   TooltipFeels m_tooltip_feels;
+
   void setOsc1Plate(int p_osc_type);
   void setOsc2Plate(int p_osc_type);
   void setOsc3Plate(int p_osc_type);
@@ -303,8 +353,11 @@ private:
   void setFilter3Plate(int p_osc_type);
   void setEnv13(bool p_env13);
   void setEnv24(bool p_env24);
-  void setLfo13(bool p_lfo13);
-  void setLfo24(bool p_lfo24);
+  void setLfo12(bool p_lfo13);
+  void setLfo34(bool p_lfo24);
+  
+  int m_octave_shift = 0;
+  bool m_is_standalone_plugin;
 
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (OdinAudioProcessorEditor)
+  JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(OdinAudioProcessorEditor)
 };

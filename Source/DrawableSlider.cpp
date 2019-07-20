@@ -22,9 +22,10 @@ DrawableSlider::DrawableSlider()
   setPopupDisplayEnabled(true, false, nullptr);
   setNumDecimalPlacesToDisplay(3);
 
-  m_handle = ImageCache::getFromFile(
-      juce::File(GRAPHICS_PATH + "cropped/buttons/slider_handle.png"));
-  //setRange(1,2);
+  m_handle = ImageCache::getFromMemory(
+      BinaryData::slider_handle_png, BinaryData::slider_handle_pngSize);
+
+  setVelocityModeParameters(1.0, 1, 0.0, true, ModifierKeys::shiftModifier);
 }
 
 DrawableSlider::~DrawableSlider() { setLookAndFeel(nullptr); }
@@ -34,6 +35,7 @@ void DrawableSlider::paint(Graphics &g)
   //g.setColour(Colours::grey);
   //g.drawRect(getLocalBounds(), 1); // draw an outline around the component
 
+  //DBG(getValue());
   g.drawImageAt(m_handle, 0, (1.f - valueToProportionOfLength(getValue())) * (getHeight() - m_handle.getHeight()));
 
   //DBG(getValue());
@@ -55,7 +57,7 @@ void DrawableSlider::paint(Graphics &g)
 
 void DrawableSlider::mouseDown(const MouseEvent &event) {
   if (event.mods.isRightButtonDown()) {
-    DBG("RIGHT");
+    //DBG("RIGHT");
     PopupMenu midi_learn_menu;
     if (m_midi_learn) {
       midi_learn_menu.addItem(2, "Stop MIDI learn");
@@ -86,4 +88,10 @@ void DrawableSlider::mouseDown(const MouseEvent &event) {
     return;
   }
   Slider::mouseDown(event);
+}
+
+String DrawableSlider::getTextFromValue(double value) {
+  //todo?
+  //https://forum.juce.com/t/setnumdecimalplacestodisplay-not-behaving-solved/33686/2
+  return String(value, getNumDecimalPlacesToDisplay()) + getTextValueSuffix();
 }

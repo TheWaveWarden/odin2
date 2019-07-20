@@ -25,10 +25,13 @@ public:
   ModMatrixComponent(AudioProcessorValueTreeState& vts);
   ~ModMatrixComponent();
 
+  void forceValueTreeOntoComponents(ValueTree p_tree);
+  
+
   void paint(Graphics &) override;
   void resized() override;
 
-  std::function<void(int&, int&, int&, int&, int&, int&)> getOscFilterTypes = [](int&, int&, int&, int&, int&, int&){};
+  //std::function<void(int&, int&, int&, int&, int&, int&)> getOscFilterTypes = [](int&, int&, int&, int&, int&, int&){};
 
 private:
   void clearRow(int p_row);
@@ -140,10 +143,12 @@ private:
   PopupMenu m_multi_osc_menu[3];
   PopupMenu m_vector_osc_menu[3];
   PopupMenu m_fm_osc_menu[3];
+  PopupMenu m_pm_osc_menu[3];
   PopupMenu m_noise_osc_menu[3];
   PopupMenu m_draw_osc_menu[3];
   PopupMenu m_chiptune_osc_menu[3];
   PopupMenu m_standard_fil_menu[3];
+  PopupMenu m_ringmod_fil_menu[3];
   PopupMenu m_SEM_fil_menu[3];
   PopupMenu m_comb_fil_menu[3];
   PopupMenu m_formant_fil_menu[3];
@@ -157,8 +162,6 @@ private:
   PopupMenu m_chorus_menu;
 
   PopupMenu m_sources_menu;
-
-  
 
   int m_panel_height;
   int m_small_panel_width;

@@ -12,6 +12,7 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "GlobalIncludes.h"
+#include "InputField.h"
 
 //==============================================================================
 /*
@@ -47,8 +48,12 @@ public:
   DrawableSlider();
   ~DrawableSlider();
 
+  //TODO slider "wobble" when moved to very low params...
+
+  String getTextFromValue(double value) override;
+
   void setTextValueSuffix(const String &suffix) {
-    setNumDecimalPlacesToDisplay(3);
+    //setNumDecimalPlacesToDisplay(20);
     Slider::setTextValueSuffix(suffix);
   }
 
@@ -74,6 +79,23 @@ public:
 
   void mouseDown(const MouseEvent &event) override;
   
+  void mouseDoubleClick(const MouseEvent &e) override {
+    if (auto editor = findParentComponentOfClass<juce::AudioProcessorEditor>()) {
+      if (auto value_field = dynamic_cast<InputField*>(editor->findChildWithID("value_input"))) {
+
+        value_field->setVisible(true);
+        Point<int> point_in_parent(getX() + getWidth() / 2 - INPUT_LABEL_SIZE_X / 2, getBottom() + 10);
+        Point<int> point_in_editor = editor->getLocalPoint(getParentComponent(), point_in_parent);
+
+        value_field->setTopLeftPosition(point_in_editor);
+        value_field->clear();
+        value_field->grabKeyboardFocus();
+        value_field->setAttachedSlider(this);
+
+      }
+    }
+    Component::mouseDoubleClick(e);
+  }
 
 private:
   bool m_midi_learn = false;

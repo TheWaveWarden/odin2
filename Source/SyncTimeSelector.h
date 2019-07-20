@@ -28,7 +28,7 @@ public:
   }
 
   void setValueLeft(int p_value) {
-    if (p_value < m_left_values.size() && p_value > 0) {
+    if (p_value < m_left_values.size() && p_value >= 0) {
       m_value_left = p_value;
       updateDisplay();
       OnValueChange(m_value_left, m_value_right);
@@ -36,11 +36,18 @@ public:
   }
 
   void setValueRight(int p_value) {
-    if (p_value < m_right_values.size() && p_value > 0) {
+    if (p_value < m_right_values.size() && p_value >= 0) {
       m_value_right = p_value;
       updateDisplay();
       OnValueChange(m_value_left, m_value_right);
     }
+  }
+
+  void setValues(int p_left, int p_right){
+    m_value_left = p_left;
+    m_value_right = p_right;
+    updateDisplay();
+    OnValueChange(m_value_left, m_value_right);
   }
 
   void setTooltip(const String p_text) { m_display.setTooltip(p_text); }
@@ -96,8 +103,8 @@ private:
   juce::DrawableButton m_up_right;
   juce::DrawableButton m_down_right;
 
-  int m_value_left = 0;
-  int m_value_right = 0;
+  int m_value_left = 2;
+  int m_value_right = 5;
 
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(SyncTimeSelector)
 };

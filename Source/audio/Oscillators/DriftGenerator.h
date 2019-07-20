@@ -11,7 +11,7 @@ public:
 
 	float doDrift();
 	void initialize(float p_samplerate);
-	void setSamplerate(float p_samplerate);
+	void setSampleRate(float p_samplerate);
 protected:
 
 	float getRand();

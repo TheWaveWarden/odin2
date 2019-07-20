@@ -11,10 +11,10 @@ public:
 	ChiptuneOscillator();
 	virtual ~ChiptuneOscillator();
 
-    virtual void loadWavetables() override;
+    //virtual void loadWavetables() override;
     virtual float doOscillate() override;
     virtual void update() override;
-    virtual void setSampleRate(float p_sample_rate) override;
+    virtual void setSampleRate(float p_samplerate) override;
     virtual void reset() override;
     //virtual void startOscillator() override;
 

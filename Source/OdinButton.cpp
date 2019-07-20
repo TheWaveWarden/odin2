@@ -15,7 +15,7 @@ OdinAudioProcessor *OdinButton::m_processor;
 
 void OdinButton::mouseDown(const MouseEvent &event) {
   if (event.mods.isRightButtonDown()) {
-    DBG("RIGHT");
+    //DBG("RIGHT");
     PopupMenu midi_learn_menu;
     if (m_midi_learn) {
       midi_learn_menu.addItem(2, "Stop MIDI learn");

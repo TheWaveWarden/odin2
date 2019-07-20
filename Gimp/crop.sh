@@ -231,6 +231,13 @@ convert FilterButtonsRaw.png -crop 49x19+102+331 cropped/buttons/buttonexplin_4.
 
 convert -append cropped/buttons/buttonexplin_1.png  cropped/buttons/buttonexplin_2.png cropped/buttons/buttonexplin_3.png  cropped/buttons/buttonexplin_4.png cropped/buttons/buttonexplinfilmstrip.png 
 
+convert FilterButtonsRaw.png -crop 71x19+7+256 cropped/buttons/buttonlegato_1.png
+convert FilterButtonsRaw.png -crop 71x19+7+281 cropped/buttons/buttonlegato_2.png
+convert FilterButtonsRaw.png -crop 71x19+7+306 cropped/buttons/buttonlegato_3.png
+convert FilterButtonsRaw.png -crop 71x19+7+331 cropped/buttons/buttonlegato_4.png
+
+convert -append cropped/buttons/buttonlegato_1.png  cropped/buttons/buttonlegato_2.png cropped/buttons/buttonlegato_3.png  cropped/buttons/buttonlegato_4.png cropped/buttons/buttonlegatofilmstrip.png 
+
 convert FilterButtonsRaw.png -crop 44x19+157+256 cropped/buttons/buttonplusminus_1.png
 convert FilterButtonsRaw.png -crop 44x19+157+281 cropped/buttons/buttonplusminus_2.png
 convert FilterButtonsRaw.png -crop 44x19+157+306 cropped/buttons/buttonplusminus_3.png
@@ -244,6 +251,13 @@ convert FilterButtonsRaw.png -crop 46x18+113+421 cropped/buttons/buttonreset_lfo
 convert FilterButtonsRaw.png -crop 46x18+113+446 cropped/buttons/buttonreset_lfo_4.png
 
 convert -append cropped/buttons/buttonreset_lfo_1.png  cropped/buttons/buttonreset_lfo_2.png cropped/buttons/buttonreset_lfo_3.png  cropped/buttons/buttonreset_lfo_4.png cropped/buttons/buttonreset_lfofilmstrip.png 
+
+convert FilterButtonsRaw.png -crop 46x18+56+371 cropped/buttons/buttonpingpong_1.png
+convert FilterButtonsRaw.png -crop 46x18+56+396 cropped/buttons/buttonpingpong_2.png
+convert FilterButtonsRaw.png -crop 46x18+56+421 cropped/buttons/buttonpingpong_3.png
+convert FilterButtonsRaw.png -crop 46x18+56+446 cropped/buttons/buttonpingpong_4.png
+
+convert -append cropped/buttons/buttonpingpong_1.png  cropped/buttons/buttonpingpong_2.png cropped/buttons/buttonpingpong_3.png  cropped/buttons/buttonpingpong_4.png cropped/buttons/buttonpingpongfilmstrip.png 
 
 convert FilterButtonsRaw.png -crop 33x18+223+419 cropped/buttons/buttonsync_1.png
 convert FilterButtonsRaw.png -crop 33x18+223+444 cropped/buttons/buttonsync_2.png
@@ -313,6 +327,7 @@ convert OscRaw.png -crop 247x145+525+1 cropped/noise_cropped.png
 convert OscRaw.png -crop 247x145+29+151 cropped/wavetable_cropped.png
 convert OscRaw.png -crop 247x145+277+151 cropped/vector_cropped.png
 convert OscRaw.png -crop 247x145+525+151 cropped/fm_cropped.png
+convert OscRaw.png -crop 247x145+525+451 cropped/pm_cropped.png
 convert OscRaw.png -crop 247x145+29+301 cropped/specdraw_cropped.png
 convert OscRaw.png -crop 247x145+277+301 cropped/wavedraw_cropped.png
 convert OscRaw.png -crop 247x145+525+301 cropped/chipdraw_cropped.png
@@ -345,6 +360,8 @@ convert FiltersRaw.png -crop 247x134+525+317 cropped/SEM12_cropped.png
 convert FiltersRaw.png -crop 247x134+29+459 cropped/diode_cropped.png
 convert FiltersRaw.png -crop 247x134+277+459 cropped/korg_cropped.png
 convert FiltersRaw.png -crop 247x134+525+459 cropped/SEM24_cropped.png
+convert OscRaw.png -crop 247x134+29+459 cropped/ringmod_cropped.png
+
 
 echo 'cropping filter knobs'
 
@@ -393,68 +410,5 @@ convert -append cropped/buttons/selectbutton0.png cropped/buttons/selectbutton1.
 rm cropped/buttons/selectbutt*
 
 
-echo 'cropping knob frames'
-
-#zero padded loop 1 to 256
-for i in $(seq -f "%04g" 1 256)
-do
-    echo $i
-    convert knobs/raw/frame$i.png -crop 33x35+32+110 cropped/knobs/metal1/frame$i.png
-    convert knobs/raw/frame$i.png -crop 39x42+129+58 cropped/knobs/metal2/frame$i.png
-    convert knobs/raw/frame$i.png -crop 45x48+75+55 cropped/knobs/metal3/frame$i.png
-    convert knobs/raw/frame$i.png -crop 21x24+89+114 cropped/knobs/black1/frame$i.png
-    convert knobs/raw/frame$i.png -crop 27x30+36+62 cropped/knobs/black2/frame$i.png
-    convert knobs/raw/frame$i.png -crop 29x32+85+11 cropped/knobs/black3/frame$i.png
-    convert knobs/raw/frame$i.png -crop 32x35+33+10 cropped/knobs/black4/frame$i.png
-    convert knobs/raw/frame$i.png -crop 36x39+131+8 cropped/knobs/round/frame$i.png
-    convert knobs/raw/frame$i.png -crop 17x78+180+36 cropped/knobs/modwheel/frame$i.png
-done  
-
-echo 'make film strips'
-
-convert -append cropped/knobs/metal1/frame0001.png cropped/knobs/metal1/frame0002.png cropped/knobs/metal1/metal_knob_small.png 
-convert -append cropped/knobs/metal2/frame0001.png cropped/knobs/metal2/frame0002.png cropped/knobs/metal2/metal_knob_mid.png 
-convert -append cropped/knobs/metal3/frame0001.png cropped/knobs/metal3/frame0002.png cropped/knobs/metal3/metal_knob_big.png 
-convert -append cropped/knobs/black1/frame0001.png cropped/knobs/black1/frame0002.png cropped/knobs/black1/black_knob_very_small.png 
-convert -append cropped/knobs/black2/frame0001.png cropped/knobs/black2/frame0002.png cropped/knobs/black2/black_knob_small.png 
-convert -append cropped/knobs/black3/frame0001.png cropped/knobs/black3/frame0002.png cropped/knobs/black3/black_knob_mid.png 
-convert -append cropped/knobs/black4/frame0001.png cropped/knobs/black4/frame0002.png cropped/knobs/black4/black_knob_big.png 
-convert -append cropped/knobs/round/frame0001.png cropped/knobs/round/frame0002.png cropped/knobs/round/round_knob.png 
-convert +append cropped/knobs/modwheel/frame0001.png cropped/knobs/modwheel/frame0002.png cropped/knobs/modwheel/modwheel.png 
-
-
-for i in $(seq -f "%04g" 3 256)
-do
-     echo $i    
-     convert -append cropped/knobs/metal1/metal_knob_small.png cropped/knobs/metal1/frame$i.png cropped/knobs/metal1/metal_knob_small.png 
-     convert -append cropped/knobs/metal2/metal_knob_mid.png cropped/knobs/metal2/frame$i.png cropped/knobs/metal2/metal_knob_mid.png 
-     convert -append cropped/knobs/metal3/metal_knob_big.png cropped/knobs/metal3/frame$i.png cropped/knobs/metal3/metal_knob_big.png
-     convert -append cropped/knobs/black1/black_knob_very_small.png cropped/knobs/black1/frame$i.png cropped/knobs/black1/black_knob_very_small.png 
-     convert -append cropped/knobs/black2/black_knob_small.png cropped/knobs/black2/frame$i.png cropped/knobs/black2/black_knob_small.png 
-     convert -append cropped/knobs/black3/black_knob_mid.png cropped/knobs/black3/frame$i.png cropped/knobs/black3/black_knob_mid.png 
-     convert -append cropped/knobs/black4/black_knob_big.png cropped/knobs/black4/frame$i.png cropped/knobs/black4/black_knob_big.png 
-     convert -append cropped/knobs/round/round_knob.png cropped/knobs/round/frame$i.png cropped/knobs/round/round_knob.png 
-     convert +append cropped/knobs/modwheel/modwheel.png cropped/knobs/modwheel/frame$i.png cropped/knobs/modwheel/modwheel.png 
-#    convert knobs/raw/frame_$i.png -crop 33x35+32+110 cropped/knobs/metal1/frame_$i.png
-#    convert knobs/raw/frame_$i.png -crop 39x42+129+58 cropped/knobs/metal2/frame_$i.png
-#    convert knobs/raw/frame_$i.png -crop 45x48+75+55 cropped/knobs/metal3/frame_$i.png
-#    convert knobs/raw/frame_$i.png -crop 21x24+89+114 cropped/knobs/black1/frame_$i.png
-#    convert knobs/raw/frame_$i.png -crop 27x30+36+62 cropped/knobs/black2/frame_$i.png
-#    convert knobs/raw/frame_$i.png -crop 29x32+85+11 cropped/knobs/black3/frame_$i.png
-#    convert knobs/raw/frame_$i.png -crop 32x35+33+10 cropped/knobs/black4/frame_$i.png
-#    convert knobs/raw/frame_$i.png -crop 36x39+131+8 cropped/knobs/round/frame_$i.png
-#    convert knobs/raw/frame_$i.png -crop 23x94+175+28 cropped/knobs/modwheel/frame_$i.png
-done  
-
-
-rm cropped/knobs/metal1/frame*
-rm cropped/knobs/metal2/frame*
-rm cropped/knobs/metal3/frame*
-rm cropped/knobs/black1/frame*
-rm cropped/knobs/black2/frame*
-rm cropped/knobs/black3/frame*
-rm cropped/knobs/black4/frame*
-rm cropped/knobs/round/frame*
-rm cropped/knobs/modwheel/frame*
 
 
