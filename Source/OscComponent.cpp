@@ -1202,7 +1202,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   addChildComponent(m_wavedraw);
 
   juce::Colour spec_color(61, 80, 70);
-  juce::Colour spec_draw_color(116, 147, 147);
+  juce::Colour spec_draw_color(116, 180, 147);
 
   m_specdraw.setTopLeftPosition(CHIPDRAW_POSITION_X, CHIPDRAW_POSITION_Y);
   m_specdraw.setColor(spec_color);

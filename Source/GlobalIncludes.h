@@ -80,7 +80,7 @@
 #define WAVEDRAW_STEPS_X 193
 #define SPECDRAW_STEPS_X                                                       \
   193 //(DISPLAY_WIDTH_SPEC - DRAW_INLAY_LEFT_SPEC - DRAW_INLAY_RIGHT_SPEC)
-#define CHIPDRAW_STEPS_X 25
+#define CHIPDRAW_STEPS_X 32
 
 #define MODMATRIX_ROWS 9
 
