@@ -5,17 +5,13 @@
 #define NOISE_SEGMENT_LENGTH 30
 
 ChiptuneOscillator::ChiptuneOscillator() {
-  m_nr_of_wavetables = NUMBER_OF_WAVETABLES  + 9;//+9 for draw tables
+  m_nr_of_wavetables = NUMBER_OF_WAVETABLES + 9; //+9 for draw tables
 
   // seed random
   std::srand(std::time(nullptr));
-
-  
 }
 
 ChiptuneOscillator::~ChiptuneOscillator() {}
-
-
 
 float ChiptuneOscillator::doOscillate() {
   // if(!m_note_on){
@@ -23,6 +19,10 @@ float ChiptuneOscillator::doOscillate() {
   /*}else*/
   float vol_mod_factor =
       (*m_vol_mod) > 0 ? 1.f + 4 * (*m_vol_mod) : (1.f + *m_vol_mod);
+  vol_mod_factor = vol_mod_factor > VOL_MOD_UPPER_LIMIT ? VOL_MOD_UPPER_LIMIT
+                                                        : vol_mod_factor;
+  vol_mod_factor = vol_mod_factor > VOL_MOD_UPPER_LIMIT ? VOL_MOD_UPPER_LIMIT
+                                                        : vol_mod_factor;
 
   if (m_generate_noise) {
     return generateChipNoise() * m_volume_factor * vol_mod_factor;
@@ -140,7 +140,7 @@ void ChiptuneOscillator::update() {
 }
 
 void ChiptuneOscillator::setSampleRate(float p_samplerate) {
-   
+
   DBG("SetSampleRate chiptuneosc");
   m_samplerate = p_samplerate;
   m_chiptune_arp.setSampleRate(p_samplerate);
@@ -154,7 +154,7 @@ void ChiptuneOscillator::reset() {
   m_chiptune_arp.reset();
   m_read_index = 0.0;
 
-  //reset downsamplingfilter buffers
+  // reset downsamplingfilter buffers
   for (int i = 0; i < 10; ++i) {
     xv[i] = yv[i] = 0;
   }

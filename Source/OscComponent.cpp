@@ -159,6 +159,11 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_reset.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId,
                     juce::Colour());
 
+  //TODO REMOVE!!!
+  m_reset.onClick = [&](){
+    writeChipdrawTableToFile();
+  };
+
   m_oct.setStrip(
       ImageCache::getFromMemory(BinaryData::black_knob_small_png,
                                 BinaryData::black_knob_small_pngSize),
@@ -1364,6 +1369,9 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   resetVectorWaves();
 
   setSize(247, 145);
+
+  REMOVE_EDITOR.setBounds(0,10,80,25);
+  addAndMakeVisible(REMOVE_EDITOR);
 }
 
 OscComponent::~OscComponent() {
@@ -1768,10 +1776,10 @@ void OscComponent::createSpecdrawTables() {
 //       m_specdraw.getDrawnTable(), REMOVE_EDITOR.getText().toStdString());
 // }
 
-// void OscComponent::writeChipdrawTableToFile() {
-//   WavetableContainer::getInstance().writeChipdrawTable(
-//       m_chipdraw.getDrawnTable(), REMOVE_EDITOR.getText().toStdString());
-// }
+ void OscComponent::writeChipdrawTableToFile() {
+   WavetableContainer::getInstance().writeChipdrawTable(
+       m_chipdraw.getDrawnTable(), REMOVE_EDITOR.getText().toStdString());
+ }
 
 void OscComponent::forceValueTreeOntoComponents(ValueTree p_tree, int p_index,
                                                 bool p_create_wavetables) {

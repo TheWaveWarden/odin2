@@ -141,17 +141,18 @@ public:
     double dLP4 = m_LPF4.doFilter(dLP3);
 
     // --- Oberheim variations
-    double output = m_a * dU + m_b * dLP1 + m_c * dLP2 + m_d * dLP3 + m_e * dLP4;
+    double output =
+        m_a * dU + m_b * dLP1 + m_c * dLP2 + m_d * dLP3 + m_e * dLP4;
 
-	  applyOverdrive(output);
+    applyOverdrive(output);
 
     float vol_mod_factor =
         (*m_vol_mod) > 0 ? 1.f + 4 * (*m_vol_mod) : (1.f + *m_vol_mod);
+    vol_mod_factor = vol_mod_factor > VOL_MOD_UPPER_LIMIT ? VOL_MOD_UPPER_LIMIT
+                                                          : vol_mod_factor;
 
     return output * vol_mod_factor;
   }
-
-  
 
   inline void setFilterType(int p_filtertype) {
     m_filter_type = (FILTERTYPE)p_filtertype;

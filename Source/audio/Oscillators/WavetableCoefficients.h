@@ -215,3 +215,9 @@ m_highest_loaded_table = 105;
 #include "Wavetables/Coefficients/ChiptuneReplace2.h" //157
 #include "Wavetables/Coefficients/ChiptuneReplace3.h" //158
 #include "Wavetables/Coefficients/ChiptuneReplace4.h" //159
+#include "Wavetables/Coefficients/TEST.h" //160
+#include "Wavetables/Coefficients/TEST.h" //161
+#include "Wavetables/Coefficients/ChipSawREAL.h" //162
+#include "Wavetables/Coefficients/hhhhhhhhhhhhhhhhhhhhhhhjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjdd.h" //163
+#include "Wavetables/Coefficients/hhhhhhhhhhhhhhhhhhhhhhhjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjdd.h" //164
+#include "Wavetables/Coefficients/hhhhhhhhhhhhhhhhhhhhhhhjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjdd.h" //165

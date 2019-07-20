@@ -199,7 +199,7 @@ public:
 
 protected:
 
-  //TextEditor REMOVE_EDITOR;
+  TextEditor REMOVE_EDITOR;
 
   int m_osc_type = 0;
 
