@@ -122,10 +122,11 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_vol.setKnobTooltip("The volume of the oscillator");
   addChildComponent(m_vol);
 
-  Rectangle<int> area_vol(BLACK_KNOB_SMALL_SIZE_X, BLACK_KNOB_SMALL_SIZE_Y);
-  area_vol.setPosition(VOL_POS_X - BLACK_KNOB_SMALL_OFFSET_X,
-                       VOL_POS_Y - BLACK_KNOB_SMALL_OFFSET_Y);
-  m_vol.setBounds(area_vol);
+  // Rectangle<int> area_vol(BLACK_KNOB_SMALL_SIZE_X, BLACK_KNOB_SMALL_SIZE_Y);
+  // area_vol.setPosition(VOL_POS_X - BLACK_KNOB_SMALL_OFFSET_X,
+  //                      VOL_POS_Y - BLACK_KNOB_SMALL_OFFSET_Y);
+  m_vol.setBounds(VOL_POS_X- BLACK_KNOB_SMALL_OFFSET_X, VOL_POS_Y- BLACK_KNOB_SMALL_OFFSET_Y, BLACK_KNOB_SMALL_SIZE_X,
+                  BLACK_KNOB_SMALL_SIZE_Y);
 
   juce::Image reset_1 = ImageCache::getFromMemory(
       BinaryData::buttonreset_osc_1_png, BinaryData::buttonreset_osc_1_pngSize);
@@ -159,10 +160,8 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_reset.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId,
                     juce::Colour());
 
-  //TODO REMOVE!!!
-  m_reset.onClick = [&](){
-    writeChipdrawTableToFile();
-  };
+  // TODO REMOVE!!!
+  m_reset.onClick = [&]() { writeChipdrawTableToFile(); };
 
   m_oct.setStrip(
       ImageCache::getFromMemory(BinaryData::black_knob_small_png,
@@ -170,10 +169,11 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
       N_KNOB_FRAMES);
   m_oct.setSliderStyle(Slider::RotaryVerticalDrag);
   m_oct.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-  Rectangle<int> area_oct(BLACK_KNOB_SMALL_SIZE_X, BLACK_KNOB_SMALL_SIZE_Y);
-  area_oct.setPosition(OCT_POS_X - BLACK_KNOB_SMALL_OFFSET_X,
-                       PITCH_POS_Y - BLACK_KNOB_SMALL_OFFSET_Y);
-  m_oct.setBounds(area_oct);
+  // Rectangle<int> area_oct(BLACK_KNOB_SMALL_SIZE_X, BLACK_KNOB_SMALL_SIZE_Y);
+  // area_oct.setPosition(OCT_POS_X - BLACK_KNOB_SMALL_OFFSET_X,
+  //                      PITCH_POS_Y - BLACK_KNOB_SMALL_OFFSET_Y);
+  m_oct.setBounds(OCT_POS_X- BLACK_KNOB_SMALL_OFFSET_X, PITCH_POS_Y- BLACK_KNOB_SMALL_OFFSET_Y, BLACK_KNOB_SMALL_SIZE_X,
+                  BLACK_KNOB_SMALL_SIZE_Y);
   m_oct.setRange(-OCT_RANGE_MAX, OCT_RANGE_MAX);
   m_oct.setNumDecimalPlacesToDisplay(0);
   m_oct.setKnobTooltip("The pitch of\nthe oscillator in octaves");
@@ -200,17 +200,19 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_fine.setKnobTooltip("The pitch of\nthe oscillator in cents");
   addChildComponent(m_fine);
 
-  Rectangle<int> area_semi(BLACK_KNOB_SMALL_SIZE_X, BLACK_KNOB_SMALL_SIZE_Y);
-  area_semi.setPosition(SEMI_POS_X - BLACK_KNOB_SMALL_OFFSET_X,
-                        PITCH_POS_Y - BLACK_KNOB_SMALL_OFFSET_Y);
-  m_semi.setBounds(area_semi);
+  // Rectangle<int> area_semi(BLACK_KNOB_SMALL_SIZE_X, BLACK_KNOB_SMALL_SIZE_Y);
+  // area_semi.setPosition(SEMI_POS_X - BLACK_KNOB_SMALL_OFFSET_X,
+  //                       PITCH_POS_Y - BLACK_KNOB_SMALL_OFFSET_Y);
+  m_semi.setBounds(SEMI_POS_X- BLACK_KNOB_SMALL_OFFSET_X, PITCH_POS_Y- BLACK_KNOB_SMALL_OFFSET_Y, BLACK_KNOB_SMALL_SIZE_X,
+                   BLACK_KNOB_SMALL_SIZE_Y);
 
   Rectangle<int> area_fine(BLACK_KNOB_SMALL_SIZE_X, BLACK_KNOB_SMALL_SIZE_Y);
-  area_fine.setPosition(FINE_POS_X - BLACK_KNOB_SMALL_OFFSET_X,
-                        PITCH_POS_Y - BLACK_KNOB_SMALL_OFFSET_Y);
-  m_fine.setRange(-FINE_RANGE_MAX, FINE_RANGE_MAX);
-  m_fine.setNumDecimalPlacesToDisplay(1);
-  m_fine.setBounds(area_fine);
+  // area_fine.setPosition(FINE_POS_X - BLACK_KNOB_SMALL_OFFSET_X,
+  //                       PITCH_POS_Y - BLACK_KNOB_SMALL_OFFSET_Y);
+  // m_fine.setRange(-FINE_RANGE_MAX, FINE_RANGE_MAX);
+  // m_fine.setNumDecimalPlacesToDisplay(1);
+  m_fine.setBounds(FINE_POS_X- BLACK_KNOB_SMALL_OFFSET_X, PITCH_POS_Y- BLACK_KNOB_SMALL_OFFSET_Y, BLACK_KNOB_SMALL_SIZE_X,
+                   BLACK_KNOB_SMALL_SIZE_Y);
 
   juce::Image LED_1 = ImageCache::getFromMemory(BinaryData::LED_1_png,
                                                 BinaryData::LED_1_pngSize);
@@ -605,7 +607,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
       &chipdraw_convert_draw2, &chipdraw_convert_draw2, &chipdraw_convert_draw1,
       &chipdraw_convert_draw1, &chipdraw_convert_draw4, &chipdraw_convert_draw4,
       &chipdraw_convert_draw3, &chipdraw_convert_draw3);
-  //m_chipdraw_convert.setTriggeredOnMouseDown(false);
+  // m_chipdraw_convert.setTriggeredOnMouseDown(false);
   m_chipdraw_convert.setBounds(CONVERT_POS_X, CONVERT_POS_Y,
                                chipdraw_convert_1.getWidth(),
                                chipdraw_convert_1.getHeight());
@@ -614,7 +616,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
       juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
 
   m_chipdraw_convert.setToggleState(true, sendNotification);
-  
+
   m_chipdraw_convert.setClickingTogglesState(true);
   m_chipdraw_convert.setTriggeredOnMouseDown(false);
   m_chipdraw_convert.onClick = [&]() {
@@ -1370,7 +1372,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 
   setSize(247, 145);
 
-  REMOVE_EDITOR.setBounds(0,10,80,25);
+  REMOVE_EDITOR.setBounds(0, 10, 80, 25);
   addAndMakeVisible(REMOVE_EDITOR);
 }
 
@@ -1406,15 +1408,16 @@ void OscComponent::resetVectorWaves() {
 void OscComponent::paint(Graphics &g) { g.drawImageAt(m_background, 0, 0); }
 
 void OscComponent::resized() {
-  Rectangle<int> area_pw(BLACK_KNOB_SMALL_SIZE_X, BLACK_KNOB_SMALL_SIZE_Y);
-  area_pw.setPosition(PW_POS_X - BLACK_KNOB_SMALL_OFFSET_X,
-                      PW_POS_Y - BLACK_KNOB_SMALL_OFFSET_Y);
-  m_pw.setBounds(area_pw);
+  // Rectangle<int> area_pw(BLACK_KNOB_SMALL_SIZE_X, BLACK_KNOB_SMALL_SIZE_Y);
+  // area_pw.setPosition(PW_POS_X - BLACK_KNOB_SMALL_OFFSET_X,
+  //                     PW_POS_Y - BLACK_KNOB_SMALL_OFFSET_Y);
+  m_pw.setBounds(PW_POS_X- BLACK_KNOB_SMALL_OFFSET_X, PW_POS_Y- BLACK_KNOB_SMALL_OFFSET_Y, BLACK_KNOB_SMALL_SIZE_X,
+                 BLACK_KNOB_SMALL_SIZE_Y);
 
-  Rectangle<int> area_drift(BLACK_KNOB_BIG_SIZE_X, BLACK_KNOB_BIG_SIZE_Y);
-  area_drift.setPosition(DRIFT_POS_X - BLACK_KNOB_BIG_OFFSET_X,
-                         DRIFT_POS_Y - BLACK_KNOB_BIG_OFFSET_Y);
-  m_drift.setBounds(area_drift);
+  // Rectangle<int> area_drift(BLACK_KNOB_BIG_SIZE_X, BLACK_KNOB_BIG_SIZE_Y);
+  // area_drift.setPosition(DRIFT_POS_X - BLACK_KNOB_BIG_OFFSET_X,
+  //                        DRIFT_POS_Y - BLACK_KNOB_BIG_OFFSET_Y);
+  m_drift.setBounds(DRIFT_POS_X- BLACK_KNOB_BIG_OFFSET_X,DRIFT_POS_Y- BLACK_KNOB_BIG_OFFSET_Y, BLACK_KNOB_BIG_SIZE_X, BLACK_KNOB_BIG_SIZE_Y);
 }
 
 void OscComponent::setOscType(int p_osc_type) {
@@ -1776,10 +1779,10 @@ void OscComponent::createSpecdrawTables() {
 //       m_specdraw.getDrawnTable(), REMOVE_EDITOR.getText().toStdString());
 // }
 
- void OscComponent::writeChipdrawTableToFile() {
-   WavetableContainer::getInstance().writeChipdrawTable(
-       m_chipdraw.getDrawnTable(), REMOVE_EDITOR.getText().toStdString());
- }
+void OscComponent::writeChipdrawTableToFile() {
+  WavetableContainer::getInstance().writeChipdrawTable(
+      m_chipdraw.getDrawnTable(), REMOVE_EDITOR.getText().toStdString());
+}
 
 void OscComponent::forceValueTreeOntoComponents(ValueTree p_tree, int p_index,
                                                 bool p_create_wavetables) {

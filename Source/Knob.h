@@ -124,17 +124,26 @@ public:
 
     if (m_midi_learn) {
       g.setColour(Colours::red);
-      g.drawRoundedRectangle(getLocalBounds().getX(), getLocalBounds().getY(),
-                             getLocalBounds().getWidth(),
+      g.drawRoundedRectangle(getLocalBounds().getX() + m_midi_learn_left_offset,
+                             getLocalBounds().getY(),
+                             getLocalBounds().getWidth() -
+                                 m_midi_learn_left_offset,
                              getLocalBounds().getHeight(), 5,
                              2); // draw an outline around the component
     } else if (m_midi_control) {
       g.setColour(Colours::green);
-      g.drawRoundedRectangle(getLocalBounds().getX(), getLocalBounds().getY(),
-                             getLocalBounds().getWidth(),
+      g.drawRoundedRectangle(getLocalBounds().getX() + m_midi_learn_left_offset,
+                             getLocalBounds().getY(),
+                             getLocalBounds().getWidth() -
+                                 m_midi_learn_left_offset,
                              getLocalBounds().getHeight(), 5,
                              2); // draw an outline around the component
     }
+  }
+
+  //this does not override, but hide
+  void setBounds(int x, int y, int width, int height) {
+    Slider::setBounds(x,y,width,height);
   }
 
   void mouseDown(const MouseEvent &event) override;
@@ -157,21 +166,24 @@ public:
   }
 
   void mouseDoubleClick(const MouseEvent &e) override {
-    if (auto editor = findParentComponentOfClass<juce::AudioProcessorEditor>()) {
-      if (auto value_field = dynamic_cast<InputField*>(editor->findChildWithID("value_input"))) {
+    if (auto editor =
+            findParentComponentOfClass<juce::AudioProcessorEditor>()) {
+      if (auto value_field = dynamic_cast<InputField *>(
+              editor->findChildWithID("value_input"))) {
 
         value_field->setVisible(true);
-        Point<int> point_in_parent(getX() + getWidth() / 2 - INPUT_LABEL_SIZE_X / 2, getBottom() + 10);
-        Point<int> point_in_editor = editor->getLocalPoint(getParentComponent(), point_in_parent);
-        if(point_in_editor.getY() > 580){
-          point_in_editor -= Point<int>(0,30);
+        Point<int> point_in_parent(
+            getX() + getWidth() / 2 - INPUT_LABEL_SIZE_X / 2, getBottom() + 10);
+        Point<int> point_in_editor =
+            editor->getLocalPoint(getParentComponent(), point_in_parent);
+        if (point_in_editor.getY() > 580) {
+          point_in_editor -= Point<int>(0, 30);
         }
 
         value_field->setTopLeftPosition(point_in_editor);
         value_field->clear();
         value_field->grabKeyboardFocus();
         value_field->setAttachedSlider(this);
-
       }
     }
     Component::mouseDoubleClick(e);
@@ -180,6 +192,8 @@ public:
 private:
   bool m_midi_learn = false;
   bool m_midi_control = false;
+
+  int m_midi_learn_left_offset = 0;
 
   static OdinAudioProcessor *m_processor;
   bool m_is_vertical = true;
