@@ -7,6 +7,8 @@
 
   ==============================================================================
 */
+#pragma once
+
 #include "GlobalIncludes.h"
 #include "InputField.h"
 
@@ -37,10 +39,15 @@
 #define METAL_KNOB_SMALL_OFFSET_X 18
 #define METAL_KNOB_SMALL_OFFSET_Y 16
 
+#define METAL_KNOB_MID_SIZE_X 39
+#define METAL_KNOB_MID_SIZE_Y 42
+
 #define METAL_KNOB_BIG_SIZE_X 45
 #define METAL_KNOB_BIG_SIZE_Y 48
 #define METAL_KNOB_BIG_OFFSET_X 25
 #define METAL_KNOB_BIG_OFFSET_Y 20
+
+#define WHEEL_SIZE_X 17
 
 #define ROUND_KNOB_SIZE_X 36
 #define ROUND_KNOB_SIZE_Y 39
@@ -51,7 +58,24 @@
 #define LABEL_SIZE_X 90
 #define LABEL_SIZE_Y 40
 
-#pragma once
+#define BLACK_KNOB_VERY_SMALL_LEFT_OFFSET 1
+#define BLACK_KNOB_SMALL_LEFT_OFFSET 2
+#define BLACK_KNOB_MID_LEFT_OFFSET 1
+#define BLACK_KNOB_BIG_LEFT_OFFSET 2
+#define METAL_KNOB_SMALL_LEFT_OFFSET 2
+#define METAL_KNOB_MID_LEFT_OFFSET 2
+#define METAL_KNOB_BIG_LEFT_OFFSET 4
+#define ROUND_KNOB_LEFT_OFFSET 2
+#define WHEEL_LEFT_OFFSET 3
+
+#define BLACK_KNOB_VERY_SMALL_BOTTOM_OFFSET 1
+#define BLACK_KNOB_SMALL_BOTTOM_OFFSET 3
+#define BLACK_KNOB_MID_BOTTOM_OFFSET 3
+#define BLACK_KNOB_BIG_BOTTOM_OFFSET 4
+#define METAL_KNOB_SMALL_BOTTOM_OFFSET 2
+#define METAL_KNOB_MID_BOTTOM_OFFSET 5
+#define METAL_KNOB_BIG_BOTTOM_OFFSET 6
+#define ROUND_KNOB_BOTTOM_OFFSET 4
 
 class OdinAudioProcessor;
 
@@ -124,26 +148,67 @@ public:
 
     if (m_midi_learn) {
       g.setColour(Colours::red);
-      g.drawRoundedRectangle(getLocalBounds().getX() + m_midi_learn_left_offset,
-                             getLocalBounds().getY(),
-                             getLocalBounds().getWidth() -
-                                 m_midi_learn_left_offset,
-                             getLocalBounds().getHeight(), 5,
-                             2); // draw an outline around the component
+      g.drawRoundedRectangle(
+          getLocalBounds().getX() + m_midi_learn_left_offset,
+          getLocalBounds().getY(),
+          getLocalBounds().getWidth() - m_midi_learn_left_offset,
+          getLocalBounds().getHeight() - m_midi_learn_bottom_offset, 5,
+          2); // draw an outline around the component
     } else if (m_midi_control) {
       g.setColour(Colours::green);
-      g.drawRoundedRectangle(getLocalBounds().getX() + m_midi_learn_left_offset,
-                             getLocalBounds().getY(),
-                             getLocalBounds().getWidth() -
-                                 m_midi_learn_left_offset,
-                             getLocalBounds().getHeight(), 5,
-                             2); // draw an outline around the component
+      g.drawRoundedRectangle(
+          getLocalBounds().getX() + m_midi_learn_left_offset,
+          getLocalBounds().getY(),
+          getLocalBounds().getWidth() - m_midi_learn_left_offset,
+          getLocalBounds().getHeight() - m_midi_learn_bottom_offset, 5,
+          2); // draw an outline around the component
     }
   }
 
-  //this does not override, but hide
+  // this does not override, but hide (hides other variants as well)
   void setBounds(int x, int y, int width, int height) {
-    Slider::setBounds(x,y,width,height);
+    switch (width) {
+    case ROUND_KNOB_SIZE_X:
+      m_midi_learn_left_offset = ROUND_KNOB_LEFT_OFFSET;
+      m_midi_learn_bottom_offset = ROUND_KNOB_BOTTOM_OFFSET;
+      break;
+    case METAL_KNOB_SMALL_SIZE_X:
+      m_midi_learn_left_offset = METAL_KNOB_SMALL_LEFT_OFFSET;
+      m_midi_learn_bottom_offset = METAL_KNOB_SMALL_BOTTOM_OFFSET;
+      break;
+    case METAL_KNOB_MID_SIZE_X:
+      m_midi_learn_left_offset = METAL_KNOB_MID_LEFT_OFFSET;
+      m_midi_learn_bottom_offset = METAL_KNOB_MID_BOTTOM_OFFSET;
+      break;
+    case METAL_KNOB_BIG_SIZE_X:
+      m_midi_learn_left_offset = METAL_KNOB_BIG_LEFT_OFFSET;
+      m_midi_learn_bottom_offset = METAL_KNOB_BIG_BOTTOM_OFFSET;
+      break;
+    case BLACK_KNOB_VERY_SMALL_SIZE_X:
+      m_midi_learn_left_offset = BLACK_KNOB_VERY_SMALL_LEFT_OFFSET;
+      m_midi_learn_bottom_offset = BLACK_KNOB_VERY_SMALL_BOTTOM_OFFSET;
+      break;
+    case BLACK_KNOB_SMALL_SIZE_X:
+      m_midi_learn_left_offset = BLACK_KNOB_SMALL_LEFT_OFFSET;
+      m_midi_learn_bottom_offset = BLACK_KNOB_SMALL_BOTTOM_OFFSET;
+      break;
+    case BLACK_KNOB_MID_SIZE_X:
+      m_midi_learn_left_offset = BLACK_KNOB_MID_LEFT_OFFSET;
+      m_midi_learn_bottom_offset = BLACK_KNOB_MID_BOTTOM_OFFSET;
+      break;
+    case BLACK_KNOB_BIG_SIZE_X:
+      m_midi_learn_left_offset = BLACK_KNOB_BIG_LEFT_OFFSET;
+      m_midi_learn_bottom_offset = BLACK_KNOB_BIG_BOTTOM_OFFSET;
+      break;
+    case WHEEL_SIZE_X:
+      m_midi_learn_left_offset = WHEEL_LEFT_OFFSET;
+      break;
+    default:
+      DBG("FOUND UNKNOWN KNOB WIDTH " + std::to_string(width) +
+          "in Knob::setBounds()\n\n\n\n\n\n");
+      break;
+    }
+    Slider::setBounds(x, y, width, height);
   }
 
   void mouseDown(const MouseEvent &event) override;
@@ -194,6 +259,7 @@ private:
   bool m_midi_control = false;
 
   int m_midi_learn_left_offset = 0;
+  int m_midi_learn_bottom_offset = 0;
 
   static OdinAudioProcessor *m_processor;
   bool m_is_vertical = true;

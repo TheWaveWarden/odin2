@@ -101,23 +101,24 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts,
   m_freq.setStrip(metal_knob_big, N_KNOB_FRAMES);
   m_freq.setSliderStyle(Slider::RotaryVerticalDrag);
   m_freq.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-  m_freq.setSize(metal_knob_big.getWidth(),
-                 metal_knob_big.getHeight() / N_KNOB_FRAMES);
+  m_freq.setBounds(FILTER_FREQ_POS_X, FILTER_FREQ_POS_Y,
+                   metal_knob_big.getWidth(),
+                   metal_knob_big.getHeight() / N_KNOB_FRAMES);
   m_freq.setRange(FREQ_MIN, FREQ_MAX);
   m_freq.setKnobTooltip("The filter cutoff frequency");
   m_freq.setSkewFactorFromMidPoint(FREQ_MID);
   m_freq.setTextValueSuffix(" Hz");
   // m_freq.setValue(FREQ_DEFAULT);
   // m_freq.setDoubleClickReturnValue(true, m_freq.getDoubleClickReturnValue(),
-                                  //  ModifierKeys::ctrlModifier);
+  //  ModifierKeys::ctrlModifier);
   m_freq.setNumDecimalPlacesToDisplay(1);
   addChildComponent(m_freq);
 
   m_res.setStrip(metal_knob_mid, N_KNOB_FRAMES);
   m_res.setSliderStyle(Slider::RotaryVerticalDrag);
   m_res.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-  m_res.setSize(metal_knob_mid.getWidth(),
-                metal_knob_mid.getHeight() / N_KNOB_FRAMES);
+  m_res.setBounds(RES_POS_X, RES_POS_Y, metal_knob_mid.getWidth(),
+                  metal_knob_mid.getHeight() / N_KNOB_FRAMES);
   m_res.setKnobTooltip("Creates a resonant peak at the cutoff "
                        "frequency.\nFilters will not\n self oscillate");
   addChildComponent(m_res);
@@ -125,7 +126,7 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts,
   m_saturation.setStrip(black_knob_small, N_KNOB_FRAMES);
   m_saturation.setSliderStyle(Slider::RotaryVerticalDrag);
   m_saturation.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-  m_saturation.setSize(black_knob_small.getWidth(),
+  m_saturation.setBounds(SATURATION_POS_X, SATURATION_POS_Y, black_knob_small.getWidth(),
                        black_knob_small.getHeight() / N_KNOB_FRAMES);
   m_saturation.setKnobTooltip(
       "Saturates the filter\nand introduces a\nslight distortion");
@@ -134,13 +135,13 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts,
   m_sem_transition.setStrip(metal_knob_mid, N_KNOB_FRAMES);
   m_sem_transition.setSliderStyle(Slider::RotaryVerticalDrag);
   m_sem_transition.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-  m_sem_transition.setSize(metal_knob_mid.getWidth(),
+  m_sem_transition.setBounds(TRANSITION_POS_X, TRANSITION_POS_Y, metal_knob_mid.getWidth(),
                            metal_knob_mid.getHeight() / N_KNOB_FRAMES);
   m_sem_transition.setTopLeftPosition(TRANSITION_POS_X, TRANSITION_POS_Y);
   m_sem_transition.setRange(TRANSITION_MIN, TRANSITION_MAX);
   // m_sem_transition.setValue(TRANSITION_DEFAULT);
   // m_sem_transition.setDoubleClickReturnValue(true, TRANSITION_DEFAULT,
-                                            //  ModifierKeys::ctrlModifier);
+  //  ModifierKeys::ctrlModifier);
   m_sem_transition.setNumDecimalPlacesToDisplay(3);
   m_sem_transition.setKnobTooltip("Sets the filter characteristic\nfrom a "
                                   "lowpass over a\nnotch to a highpass");
@@ -149,7 +150,7 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts,
   m_formant_transition.setStrip(metal_knob_big, N_KNOB_FRAMES);
   m_formant_transition.setSliderStyle(Slider::RotaryVerticalDrag);
   m_formant_transition.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-  m_formant_transition.setSize(metal_knob_big.getWidth(),
+  m_formant_transition.setBounds(FORMANT_TRANSITION_X, FORMANT_TRANSITION_Y, metal_knob_big.getWidth(),
                                metal_knob_big.getHeight() / N_KNOB_FRAMES);
   m_formant_transition.setTopLeftPosition(FORMANT_TRANSITION_X,
                                           FORMANT_TRANSITION_Y);
@@ -160,10 +161,9 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts,
   m_ring_mod_amount.setStrip(metal_knob_big, N_KNOB_FRAMES);
   m_ring_mod_amount.setSliderStyle(Slider::RotaryVerticalDrag);
   m_ring_mod_amount.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-  m_ring_mod_amount.setSize(metal_knob_big.getWidth(),
-                               metal_knob_big.getHeight() / N_KNOB_FRAMES);
-  m_ring_mod_amount.setTopLeftPosition(RINGMOD_AMOUNT_X,
-                                          RINGMOD_AMOUNT_Y);
+  m_ring_mod_amount.setBounds(RINGMOD_AMOUNT_X, RINGMOD_AMOUNT_Y, metal_knob_big.getWidth(),
+                            metal_knob_big.getHeight() / N_KNOB_FRAMES);
+  m_ring_mod_amount.setTopLeftPosition(RINGMOD_AMOUNT_X, RINGMOD_AMOUNT_Y);
   m_ring_mod_amount.setKnobTooltip(
       "How much ring modulation is applied to the signal");
   addChildComponent(m_ring_mod_amount);
@@ -171,7 +171,7 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts,
   m_vowel_left.OnValueChange = [&](int p_new_value) {
     m_value_tree.getParameter(m_vowel_left_identifier)
         ->setValueNotifyingHost(((float)p_new_value) / 7.f);
-    //SETVALUE(m_vowel_left_identifier, p_new_value);
+    // SETVALUE(m_vowel_left_identifier, p_new_value);
   };
   m_vowel_left.setTopLeftPosition(FORMANT_VOW_LEFT_POS_X,
                                   FORMANT_VOW_LEFT_POS_Y);
@@ -185,7 +185,7 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts,
   m_vowel_right.OnValueChange = [&](int p_new_value) {
     m_value_tree.getParameter(m_vowel_right_identifier)
         ->setValueNotifyingHost(((float)p_new_value) / 7.f);
-    //SETVALUE(m_vowel_right_identifier, p_new_value);
+    // SETVALUE(m_vowel_right_identifier, p_new_value);
   };
   m_vowel_right.setTopLeftPosition(FORMANT_VOW_RIGHT_POS_X,
                                    FORMANT_VOW_RIGHT_POS_Y);
@@ -204,14 +204,13 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts,
   m_comb_plus_minus.setImage(comb_minus, 2);
   m_comb_plus_minus.setBounds(COMB_PLUS_POS_X, COMB_PLUS_POS_Y,
                               comb_plus.getWidth(), comb_plus.getHeight());
-  //m_comb_plus_minus.setToggleState(false, dontSendNotification);
+  // m_comb_plus_minus.setToggleState(false, dontSendNotification);
   m_comb_plus_minus.onStateChange = [&]() {
     // setLfo12(m_comb_plus_minus_button.getToggleState());
   };
   m_comb_plus_minus.setTooltip(
       "Whether to add or subtrackt the feedback\n in the internal delay line");
   addChildComponent(m_comb_plus_minus);
-
 
   m_res.setNumDecimalPlacesToDisplay(3);
   m_saturation.setNumDecimalPlacesToDisplay(3);
@@ -222,9 +221,11 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts,
   m_ring_mod_amount.setNumDecimalPlacesToDisplay(3);
 
   m_vowel_left.setParameterId("fil" + m_filter_number + "_vowel_left");
-  m_value_tree.addParameterListener("fil" + m_filter_number + "_vowel_left", &m_vowel_left);
+  m_value_tree.addParameterListener("fil" + m_filter_number + "_vowel_left",
+                                    &m_vowel_left);
   m_vowel_right.setParameterId("fil" + m_filter_number + "_vowel_right");
-  m_value_tree.addParameterListener("fil" + m_filter_number + "_vowel_right", &m_vowel_right);
+  m_value_tree.addParameterListener("fil" + m_filter_number + "_vowel_right",
+                                    &m_vowel_right);
 
   SET_CTR_KEY(m_vel);
   SET_CTR_KEY(m_kbd);
@@ -237,20 +238,16 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts,
   SET_CTR_KEY(m_formant_transition);
   SET_CTR_KEY(m_ring_mod_amount);
 
-
   forceValueTreeOntoComponents(m_value_tree.state, std::stoi(m_filter_number));
 
-
-
   setWantsKeyboardFocus(true);
-
-
-
 }
 
 FilterComponent::~FilterComponent() {
-  m_value_tree.removeParameterListener("fil" + m_filter_number + "_vowel_left", &m_vowel_left);
-  m_value_tree.removeParameterListener("fil" + m_filter_number + "_vowel_right", &m_vowel_right);
+  m_value_tree.removeParameterListener("fil" + m_filter_number + "_vowel_left",
+                                       &m_vowel_left);
+  m_value_tree.removeParameterListener("fil" + m_filter_number + "_vowel_right",
+                                       &m_vowel_right);
 }
 
 void FilterComponent::paint(Graphics &g) { g.drawImageAt(m_background, 0, 0); }
@@ -338,74 +335,74 @@ void FilterComponent::hideAllComponents() {
 void FilterComponent::setFilterBypass() { m_background = m_background_bypass; }
 
 void FilterComponent::setFilterLP24() {
-  m_background = ImageCache::getFromMemory(
-      BinaryData::LP24_backdrop_png, BinaryData::LP24_backdrop_pngSize);
+  m_background = ImageCache::getFromMemory(BinaryData::LP24_backdrop_png,
+                                           BinaryData::LP24_backdrop_pngSize);
   showStandardFilterComponents();
 }
 
 void FilterComponent::setFilterLP12() {
-  m_background = ImageCache::getFromMemory(
-      BinaryData::LP12_backdrop_png, BinaryData::LP12_backdrop_pngSize);
+  m_background = ImageCache::getFromMemory(BinaryData::LP12_backdrop_png,
+                                           BinaryData::LP12_backdrop_pngSize);
   showStandardFilterComponents();
 }
 
 void FilterComponent::setFilterBP24() {
-  m_background = ImageCache::getFromMemory(
-      BinaryData::BP24_backdrop_png, BinaryData::BP24_backdrop_pngSize);
+  m_background = ImageCache::getFromMemory(BinaryData::BP24_backdrop_png,
+                                           BinaryData::BP24_backdrop_pngSize);
   showStandardFilterComponents();
 }
 
 void FilterComponent::setFilterBP12() {
-  m_background = ImageCache::getFromMemory(
-      BinaryData::BP12_backdrop_png, BinaryData::BP12_backdrop_pngSize);
+  m_background = ImageCache::getFromMemory(BinaryData::BP12_backdrop_png,
+                                           BinaryData::BP12_backdrop_pngSize);
   showStandardFilterComponents();
 }
 
 void FilterComponent::setFilterHP24() {
-  m_background = ImageCache::getFromMemory(
-      BinaryData::HP24_backdrop_png, BinaryData::HP24_backdrop_pngSize);
+  m_background = ImageCache::getFromMemory(BinaryData::HP24_backdrop_png,
+                                           BinaryData::HP24_backdrop_pngSize);
   showStandardFilterComponents();
 }
 
 void FilterComponent::setFilterHP12() {
-  m_background = ImageCache::getFromMemory(
-      BinaryData::HP12_backdrop_png, BinaryData::HP12_backdrop_pngSize);
+  m_background = ImageCache::getFromMemory(BinaryData::HP12_backdrop_png,
+                                           BinaryData::HP12_backdrop_pngSize);
   showStandardFilterComponents();
 }
 
 void FilterComponent::setFilterSEM24() {
-  m_background = ImageCache::getFromMemory(
-      BinaryData::SEM24_backdrop_png, BinaryData::SEM24_backdrop_pngSize);
+  m_background = ImageCache::getFromMemory(BinaryData::SEM24_backdrop_png,
+                                           BinaryData::SEM24_backdrop_pngSize);
   showSEMFilterComponents();
 }
 
 void FilterComponent::setFilterSEM12() {
-  m_background = ImageCache::getFromMemory(
-      BinaryData::SEM12_backdrop_png, BinaryData::SEM12_backdrop_pngSize);
+  m_background = ImageCache::getFromMemory(BinaryData::SEM12_backdrop_png,
+                                           BinaryData::SEM12_backdrop_pngSize);
   showSEMFilterComponents();
 }
 
 void FilterComponent::setFilterDiode() {
-  m_background = ImageCache::getFromMemory(
-      BinaryData::diode_backdrop_png, BinaryData::diode_backdrop_pngSize);
+  m_background = ImageCache::getFromMemory(BinaryData::diode_backdrop_png,
+                                           BinaryData::diode_backdrop_pngSize);
   showStandardFilterComponents();
 }
 
 void FilterComponent::setFilterKorgLP() {
-  m_background = ImageCache::getFromMemory(
-      BinaryData::korg_backdrop_png, BinaryData::korg_backdrop_pngSize);
+  m_background = ImageCache::getFromMemory(BinaryData::korg_backdrop_png,
+                                           BinaryData::korg_backdrop_pngSize);
   showStandardFilterComponents();
 }
 
 void FilterComponent::setFilterKorgHP() {
-  m_background = ImageCache::getFromMemory(
-      BinaryData::SEM24_backdrop_png, BinaryData::SEM24_backdrop_pngSize);
+  m_background = ImageCache::getFromMemory(BinaryData::SEM24_backdrop_png,
+                                           BinaryData::SEM24_backdrop_pngSize);
   showStandardFilterComponents();
 }
 
 void FilterComponent::setFilterComb() {
-  m_background = ImageCache::getFromMemory(
-      BinaryData::comb_backdrop_png, BinaryData::comb_backdrop_pngSize);
+  m_background = ImageCache::getFromMemory(BinaryData::comb_backdrop_png,
+                                           BinaryData::comb_backdrop_pngSize);
   showCombFilterComponents();
 }
 
@@ -416,7 +413,7 @@ void FilterComponent::setFilterFormant() {
 }
 
 void FilterComponent::setFilterRingMod() {
-  //todo
+  // todo
   m_background = ImageCache::getFromMemory(
       BinaryData::ringmod_backdrop_png, BinaryData::ringmod_backdrop_pngSize);
   showRingModFilterComponents();
@@ -481,7 +478,6 @@ void FilterComponent::showRingModFilterComponents() {
   m_ring_mod_amount.setVisible(true);
   m_freq.setTopLeftPosition(RINGMOD_FREQ_X, RINGMOD_FREQ_Y);
 }
-
 
 void FilterComponent::forceValueTreeOntoComponents(ValueTree p_tree,
                                                    int p_index) {

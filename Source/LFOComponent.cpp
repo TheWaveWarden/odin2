@@ -143,6 +143,9 @@ LFOComponent::LFOComponent(AudioProcessorValueTreeState &vts,
   m_value_tree.addParameterListener("lfo" + m_lfo_number + "_wave",
                                     &m_selector);
 
+  m_freq.setBounds(LFO_FREQ_POS_X, LFO_FREQ_POS_Y, BLACK_KNOB_SMALL_SIZE_X,
+                   BLACK_KNOB_SMALL_SIZE_Y);
+
   SET_CTR_KEY(m_freq);
 
   forceValueTreeOntoComponents(m_value_tree.state);
@@ -163,8 +166,7 @@ void LFOComponent::paint(Graphics &g) {
 }
 
 void LFOComponent::resized() {
-  m_freq.setBounds(LFO_FREQ_POS_X, LFO_FREQ_POS_Y, BLACK_KNOB_SMALL_SIZE_Y,
-                   BLACK_KNOB_SMALL_SIZE_Y);
+  
 }
 
 void LFOComponent::forceValueTreeOntoComponents(ValueTree p_tree) {
