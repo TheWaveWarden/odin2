@@ -969,7 +969,7 @@ const float **WavetableContainer::getLFOPointers(std::string p_name) {
   if (it != m_LFO_name_index_map.end()) {
     return m_const_LFO_pointers[it->second];
   }
-  DBG("Couldn't find LFO table");
+  DBG("Couldn't find LFO table " + p_name);
   return m_const_LFO_pointers[0];
 }
 
