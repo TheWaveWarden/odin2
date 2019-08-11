@@ -294,6 +294,7 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
 
         midiNoteOff(midi_message.getNoteNumber());
       } else if (midi_message.isPitchWheel()) {
+        //DBG(midi_message.getPitchWheelValue());
         setPitchWheelValue(midi_message.getPitchWheelValue());
       } else if (midi_message.isSustainPedalOn()) {
         m_voice_manager.setSustainActive(true);
@@ -318,7 +319,7 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
         }
       }
 
-      if ((midi_message.isController() || midi_message.isPitchWheel())) {
+      if ((midi_message.isController() /*|| midi_message.isPitchWheel()*/)) {
         DBG("CONTROLLER");
         if (m_midi_learn_knob_active) {
           m_midi_control_list_knob.emplace(midi_message.getControllerNumber(),
