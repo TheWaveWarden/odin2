@@ -226,6 +226,11 @@ public:
         "called!\n\n\n");
   };
 
+  std::function<void(float)> updatePitchWheelGUI = [](float p_value) {
+    DBG("ATTENTION: updatePitchWheelGUI() was not set yet, but "
+        "called!\n\n\n");
+  };
+
   void midiNoteOff(int p_midi_note);
   void midiNoteOn(int p_midi_note, int p_midi_velocity);
 

@@ -355,7 +355,8 @@ private:
   void setEnv24(bool p_env24);
   void setLfo12(bool p_lfo13);
   void setLfo34(bool p_lfo24);
-  
+  void updatePitchWheel(float p_value);
+
   int m_octave_shift = 0;
   bool m_is_standalone_plugin;
 

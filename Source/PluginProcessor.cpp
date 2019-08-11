@@ -294,7 +294,6 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
 
         midiNoteOff(midi_message.getNoteNumber());
       } else if (midi_message.isPitchWheel()) {
-        //DBG(midi_message.getPitchWheelValue());
         setPitchWheelValue(midi_message.getPitchWheelValue());
       } else if (midi_message.isSustainPedalOn()) {
         m_voice_manager.setSustainActive(true);
@@ -1256,8 +1255,8 @@ void OdinAudioProcessor::setModulationPointers() {
 }
 
 void OdinAudioProcessor::setPitchWheelValue(int p_value) {
-  // todo this should update the GUI, lets see after MIDI learn
   *m_pitchbend = (float)(p_value - 8192) / 8192.f;
+  updatePitchWheelGUI(*m_pitchbend);
 }
 
 void OdinAudioProcessor::midiNoteOff(int p_midi_note) {
