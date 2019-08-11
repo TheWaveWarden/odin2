@@ -295,6 +295,8 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
         midiNoteOff(midi_message.getNoteNumber());
       } else if (midi_message.isPitchWheel()) {
         setPitchWheelValue(midi_message.getPitchWheelValue());
+      } else if (midi_message.isController() && midi_message.getControllerNumber() == 1) { //modwheel
+        setModWheelValue(midi_message.getControllerValue());
       } else if (midi_message.isSustainPedalOn()) {
         m_voice_manager.setSustainActive(true);
         DBG("Sustain pedal pressed");
@@ -315,11 +317,14 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
       } else {
         if (!midi_message.isMidiClock()) {
           DBG("UNHANDELED MIDI MESSAGE: " + midi_message.getDescription());
+          if(midi_message.isController()){
+            DBG("\nController with number: " + std::to_string(midi_message.getControllerNumber()));
+          }
         }
       }
 
       if ((midi_message.isController() /*|| midi_message.isPitchWheel()*/)) {
-        DBG("CONTROLLER");
+        //DBG("CONTROLLER");
         if (m_midi_learn_knob_active) {
           m_midi_control_list_knob.emplace(midi_message.getControllerNumber(),
                                            m_midi_learn_knob);
@@ -1257,6 +1262,11 @@ void OdinAudioProcessor::setModulationPointers() {
 void OdinAudioProcessor::setPitchWheelValue(int p_value) {
   *m_pitchbend = (float)(p_value - 8192) / 8192.f;
   updatePitchWheelGUI(*m_pitchbend);
+}
+
+void OdinAudioProcessor::setModWheelValue(int p_value) {
+  *m_modwheel = (float)(p_value) / 128.f;
+  updateModWheelGUI(*m_modwheel);
 }
 
 void OdinAudioProcessor::midiNoteOff(int p_midi_note) {

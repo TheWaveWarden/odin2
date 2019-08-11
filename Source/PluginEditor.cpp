@@ -93,6 +93,10 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
     updatePitchWheel(p_value);
   };
 
+  p_processor.updateModWheelGUI = [&](float p_value) {
+    updateModWheel(p_value);
+  };
+
   m_save_load.forceValueTreeLambda = [&]() {
     forceValueTreeOntoComponents(true);
   };
@@ -1406,4 +1410,9 @@ void OdinAudioProcessorEditor::allMidiKeysOff() {
 void OdinAudioProcessorEditor::updatePitchWheel(float p_value){
   const MessageManagerLock mmLock;
   m_pitchwheel.setValue(p_value);
+}
+
+void OdinAudioProcessorEditor::updateModWheel(float p_value){
+  const MessageManagerLock mmLock;
+  m_modwheel.setValue(p_value, sendNotificationSync);
 }

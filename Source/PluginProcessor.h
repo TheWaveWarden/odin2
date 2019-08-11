@@ -231,6 +231,11 @@ public:
         "called!\n\n\n");
   };
 
+  std::function<void(float)> updateModWheelGUI = [](float p_value) {
+    DBG("ATTENTION: updateModWheelGUI() was not set yet, but "
+        "called!\n\n\n");
+  };
+
   void midiNoteOff(int p_midi_note);
   void midiNoteOn(int p_midi_note, int p_midi_velocity);
 
@@ -325,6 +330,7 @@ private:
   ModDestinations m_mod_destinations;
 
   void setPitchWheelValue(int p_value);
+  void setModWheelValue(int p_value);
   void checkEndGlobalEnvelope();
 
   void setModulationPointers();
