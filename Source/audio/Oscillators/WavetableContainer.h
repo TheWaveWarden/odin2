@@ -148,7 +148,9 @@ protected:
 
   bool m_wavetables_created = false;
 
-  float m_wavetables[NUMBER_OF_WAVETABLES][SUBTABLES_PER_WAVETABLE]
-                    [WAVETABLE_LENGTH] = {0};
+  //float m_wavetables[NUMBER_OF_WAVETABLES][SUBTABLES_PER_WAVETABLE]
+  //                  [WAVETABLE_LENGTH] = {0};
+  float*** m_wavetables;//dynamic allocation
+  
   //#include "Wavetables/Tables/WavetableData.h" //include initializer list
 };

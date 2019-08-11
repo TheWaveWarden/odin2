@@ -14,13 +14,34 @@ WavetableContainer::WavetableContainer()
 {
 #include "WavetableCoefficients.h"
 
+  //dynamically allocate wavetables
+  //m_wavetables = new float[NUMBER_OF_WAVETABLES][SUBTABLES_PER_WAVETABLE][WAVETABLE_LENGTH];
+  m_wavetables = new float**[NUMBER_OF_WAVETABLES];
+  for(int table = 0; table < NUMBER_OF_WAVETABLES; ++table){
+    m_wavetables[table] = new float*[SUBTABLES_PER_WAVETABLE];
+    for(int sub = 0; sub < SUBTABLES_PER_WAVETABLE; ++sub){
+      m_wavetables[table][sub] = new float[WAVETABLE_LENGTH];
+    }
+  }
+
+
+
   // create specdraw scalar
   for (int harmonic = 1; harmonic < SPECDRAW_STEPS_X + 1; ++harmonic) {
     m_specdraw_scalar[harmonic - 1] = 1.f / sqrtf((float)harmonic);
   }
 }
 
-WavetableContainer::~WavetableContainer() {}
+WavetableContainer::~WavetableContainer() {
+  //delete wavetables
+  for(int table = 0; table < NUMBER_OF_WAVETABLES; ++table){
+    for(int sub = 0; sub < SUBTABLES_PER_WAVETABLE; ++sub){
+      delete[] m_wavetables[table][sub];
+    }
+    delete[] m_wavetables[table];
+  }
+  delete[] m_wavetables;
+}
 
 std::string to_string_no_comma(float p_input) {
   std::string out = std::to_string(p_input);
