@@ -342,6 +342,9 @@ private:
 
   void addNonAudioParametersToTree();
 
+  bool m_render_LFO[4] = {0};
+  bool m_render_ADSR[2] = {0};// 0 = mod, 1 = global
+
   // MOD SOURCES
   float m_adsr[VOICES][3] = {0.f};
   float m_lfo[VOICES][3] = {0.f};

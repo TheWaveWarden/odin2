@@ -185,9 +185,9 @@ public:
   void showMultiComponents();
 
 
-  void writeWavedrawTableToFile();
-  void writeChipdrawTableToFile();
-  void writeSpecdrawTableToFile();
+  //void writeWavedrawTableToFile();
+  //void writeChipdrawTableToFile();
+  //void writeSpecdrawTableToFile();
 
   void createWavedrawTables();
   void createChipdrawTables();
@@ -199,7 +199,7 @@ public:
 
 protected:
 
-  TextEditor REMOVE_EDITOR;
+  //TextEditor REMOVE_EDITOR;
 
   int m_osc_type = 0;
 

@@ -161,7 +161,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
                     juce::Colour());
 
   // TODO REMOVE!!!
-  m_reset.onClick = [&]() { writeChipdrawTableToFile(); };
+  //m_reset.onClick = [&]() { writeChipdrawTableToFile(); };
 
   m_oct.setStrip(
       ImageCache::getFromMemory(BinaryData::black_knob_small_png,
@@ -824,7 +824,11 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   chip_menu.addItem(4, "ChipTriangle");
   chip_menu.addItem(5, "ChipSaw");
   chip_menu.addItem(6, "ChipSine");
-  chip_menu.addItem(7, "Diverging");
+  chip_menu.addSeparator();
+  chip_menu.addItem(701, "ChipDraw 1");
+  chip_menu.addItem(702, "ChipDraw 2");
+  chip_menu.addItem(703, "ChipDraw 3");
+  /*chip_menu.addItem(7, "Diverging");
   chip_menu.addItem(8, "High A");
   chip_menu.addItem(9, "High B");
   chip_menu.addItem(10, "High C");
@@ -839,7 +843,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   chip_menu.addSeparator();
   chip_menu.addSubMenu("WaveDraw", wavedraw_submenu);
   chip_menu.addSubMenu("ChipDraw", chipdraw_submenu);
-  chip_menu.addSubMenu("SpecDraw", specdraw_submenu);
+  chip_menu.addSubMenu("SpecDraw", specdraw_submenu);*/
 
   //====================
   //=== COPY & PASTA ===
@@ -996,7 +1000,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   *(m_vec_c.getRootMenu()) = vector_menu;
   *(m_vec_d.getRootMenu()) = vector_menu;
 
-  ADD_MAP_ENTRY("BrokenSine", 120, m_chiptune_waveselector)
+  /*ADD_MAP_ENTRY("BrokenSine", 120, m_chiptune_waveselector)
   ADD_MAP_ENTRY("Harsh", 130, m_chiptune_waveselector)
   ADD_MAP_ENTRY("Mean", 140, m_chiptune_waveselector)
   ADD_MAP_ENTRY("Rectangular", 150, m_chiptune_waveselector)
@@ -1029,7 +1033,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   ADD_MAP_ENTRY("MutatedSquare B", 420, m_chiptune_waveselector)
   ADD_MAP_ENTRY("Perlin A", 430, m_chiptune_waveselector)
   ADD_MAP_ENTRY("Perlin B", 440, m_chiptune_waveselector)
-  ADD_MAP_ENTRY("Perlin C", 450, m_chiptune_waveselector)
+  ADD_MAP_ENTRY("Perlin C", 450, m_chiptune_waveselector)*/
 
   m_chiptune_waveselector.setDecrementValue(121, 104);
   m_chiptune_waveselector.setIncrementValue(454, 601);
@@ -1039,8 +1043,8 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_chiptune_waveselector.addMapEntry("Pulse 12.5", 3, 4, 2);
   m_chiptune_waveselector.addMapEntry("ChipTriangle", 4, 5, 3);
   m_chiptune_waveselector.addMapEntry("ChipSaw", 5, 6, 4);
-  m_chiptune_waveselector.addMapEntry("ChipSine", 6, 7, 5);
-  m_chiptune_waveselector.addMapEntry("Diverging", 7, 8, 6);
+  m_chiptune_waveselector.addMapEntry("ChipSine", 6, 701, 5);
+  /*m_chiptune_waveselector.addMapEntry("Diverging", 7, 8, 6);
   m_chiptune_waveselector.addMapEntry("High A", 8, 9, 7);
   m_chiptune_waveselector.addMapEntry("High B", 9, 10, 8);
   m_chiptune_waveselector.addMapEntry("High C", 10, 11, 9);
@@ -1060,13 +1064,13 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_chiptune_waveselector.addMapEntry("WaveDraw Osc2", 602, 603, 601);
   m_chiptune_waveselector.addMapEntry("WaveDraw Osc3", 603, 701, 602);
 
-  m_chiptune_waveselector.addMapEntry("ChipDraw Osc1", 701, 702, 603);
-  m_chiptune_waveselector.addMapEntry("ChipDraw Osc2", 702, 703, 701);
-  m_chiptune_waveselector.addMapEntry("ChipDraw Osc3", 703, 801, 702);
-
   m_chiptune_waveselector.addMapEntry("SpecDraw Osc1", 801, 802, 703);
   m_chiptune_waveselector.addMapEntry("SpecDraw Osc2", 802, 803, 801);
-  m_chiptune_waveselector.addMapEntry("SpecDraw Osc3", 803, 803, 802);
+  m_chiptune_waveselector.addMapEntry("SpecDraw Osc3", 803, 803, 802);*/
+
+  m_chiptune_waveselector.addMapEntry("ChipDraw Osc1", 701, 702, 6);
+  m_chiptune_waveselector.addMapEntry("ChipDraw Osc2", 702, 703, 701);
+  m_chiptune_waveselector.addMapEntry("ChipDraw Osc3", 703, 703, 702);
 
   chip_menu.setLookAndFeel(&m_menu_feels);
   m_chiptune_waveselector.m_menu = chip_menu;
@@ -1372,8 +1376,8 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 
   setSize(247, 145);
 
-  REMOVE_EDITOR.setBounds(0, 10, 80, 25);
-  addAndMakeVisible(REMOVE_EDITOR);
+  //REMOVE_EDITOR.setBounds(0, 10, 80, 25);
+  //addAndMakeVisible(REMOVE_EDITOR);
 }
 
 OscComponent::~OscComponent() {
@@ -1779,10 +1783,10 @@ void OscComponent::createSpecdrawTables() {
 //       m_specdraw.getDrawnTable(), REMOVE_EDITOR.getText().toStdString());
 // }
 
-void OscComponent::writeChipdrawTableToFile() {
-  WavetableContainer::getInstance().writeChipdrawTable(
-      m_chipdraw.getDrawnTable(), REMOVE_EDITOR.getText().toStdString());
-}
+//void OscComponent::writeChipdrawTableToFile() {
+//  WavetableContainer::getInstance().writeChipdrawTable(
+//      m_chipdraw.getDrawnTable(), REMOVE_EDITOR.getText().toStdString());
+//}
 
 void OscComponent::forceValueTreeOntoComponents(ValueTree p_tree, int p_index,
                                                 bool p_create_wavetables) {

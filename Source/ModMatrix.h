@@ -185,6 +185,12 @@ public:
   void setModDestination1(int p_destination);
   void setModDestination2(int p_destination);
 
+  bool usesLFO0();
+  bool usesLFO1();
+  bool usesLFO2();
+  bool usesLFO3();//global
+  bool usesADSR0();//mod
+  bool usesADSR1();//global
 
 private:
   int m_most_recent_voice;
@@ -235,9 +241,13 @@ public:
       m_row[row].setMostRecentVoice(p_voice);
     }
   }
+  void checkWhichSourceToRender();
+
 
   void zeroAllSources();
   void zeroAllDestinations();
+
+  std::function<void(bool, bool, bool, bool, bool, bool)> setSourcesToRender;
 private:
   int m_most_recent_voice = 0;
   ModMatrixRow m_row[MODMATRIX_ROWS];
