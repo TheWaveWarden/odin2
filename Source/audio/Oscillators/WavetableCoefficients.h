@@ -128,8 +128,8 @@
 #include "Wavetables/Coefficients/CTHigh2.h"//96->082
 #include "Wavetables/Coefficients/CTHigh3.h"//97->083
 #include "Wavetables/Coefficients/CTRich.h"//98->084
-#include "Wavetables/Coefficients/CTSaw.h"//99->085
-#include "Wavetables/Coefficients/CTSine.h"//100->086
+#include "Wavetables/Coefficients/ChipSaw.h"//99->085
+#include "Wavetables/Coefficients/ChipSine.h"//100->086
 #include "Wavetables/Coefficients/CTSoftTune.h"//101->087
 
 
@@ -215,3 +215,5 @@ m_highest_loaded_table = 105;
 #include "Wavetables/Coefficients/ChiptuneReplace2.h" //157
 #include "Wavetables/Coefficients/ChiptuneReplace3.h" //158
 #include "Wavetables/Coefficients/ChiptuneReplace4.h" //159
+
+

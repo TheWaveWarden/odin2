@@ -201,8 +201,8 @@ int WavetableOsc1D::wavetableMappingChiptune(int p_input) {
     MAP(2, 3)
     MAP(3, 4)
     MAP(4, 1)//triangle
-    MAP(5, 99)
-    MAP(6, 100)
+    MAP(5, 85)//saw
+    MAP(6, 86)//sine
     MAP(7, 94)
     MAP(8, 95)
     MAP(9, 96)
