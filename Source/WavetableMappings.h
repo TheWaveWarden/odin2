@@ -160,9 +160,9 @@ int WavetableOsc1D::wavetableMappingVector(int p_input) {
     MAP(502, 3)
     MAP(503, 4)
     MAP(504, 1)//triangle
-    MAP(505, 99)
-    MAP(506, 100)
-    MAP(507, 94)
+    MAP(505, 85)//chipsaw
+    MAP(506, 86)//chipsine
+    /*MAP(507, 94)
     MAP(508, 95)
     MAP(509, 96)
     MAP(510, 97)
@@ -171,7 +171,7 @@ int WavetableOsc1D::wavetableMappingVector(int p_input) {
     MAP(513, 156)
     MAP(514, 157)
     MAP(515, 158)
-    MAP(516, 159)
+    MAP(516, 159)*/
     //wavedraw
     MAP(601, NUMBER_OF_WAVETABLES)
     MAP(602, NUMBER_OF_WAVETABLES+1)
@@ -203,7 +203,7 @@ int WavetableOsc1D::wavetableMappingChiptune(int p_input) {
     MAP(4, 1)//triangle
     MAP(5, 85)//saw
     MAP(6, 86)//sine
-    MAP(7, 94)
+    /*MAP(7, 94)
     MAP(8, 95)
     MAP(9, 96)
     MAP(10, 97)
@@ -357,15 +357,15 @@ int WavetableOsc1D::wavetableMappingChiptune(int p_input) {
     //wavedraw
     MAP(601, NUMBER_OF_WAVETABLES)
     MAP(602, NUMBER_OF_WAVETABLES+1)
-    MAP(603, NUMBER_OF_WAVETABLES+2)
+    MAP(603, NUMBER_OF_WAVETABLES+2)*/
     //chipdraw
     MAP(701, NUMBER_OF_WAVETABLES+3)
     MAP(702, NUMBER_OF_WAVETABLES+4)
     MAP(703, NUMBER_OF_WAVETABLES+5)
     //spec
-    MAP(801, NUMBER_OF_WAVETABLES+6)
+    /*MAP(801, NUMBER_OF_WAVETABLES+6)
     MAP(802, NUMBER_OF_WAVETABLES+7)
-    MAP(803, NUMBER_OF_WAVETABLES+8)
+    MAP(803, NUMBER_OF_WAVETABLES+8)*/
   default:
     DBG("ERROR: tried to map unknown wavetable " + std::to_string(p_input) +
         " for chiptune osc");
