@@ -55,7 +55,7 @@ OdinAudioProcessor::OdinAudioProcessor()
   WavetableContainer::getInstance().loadWavetablesFromConstData();
 
   //WavetableContainer::getInstance().createWavetables(44100.f);
-  //WavetableContainer::getInstance().loadWavetablesAfterFourierCreation();
+  //uWavetableContainer::getInstance().loadWavetablesAfterFourierCreation();
   //WavetableContainer::getInstance().writeWavetablesToFile();
 
   // WavetableContainer::getInstance().fixWavetableCoefficientFile();
