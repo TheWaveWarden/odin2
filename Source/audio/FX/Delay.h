@@ -139,8 +139,8 @@ protected:
   float m_last_mean = 0.f;
 
   // need to be init by synth
-  float m_delay_time_control = 0.5f;
-  float m_delay_time_smooth = 0.5f; // todo what value here?
+  float m_delay_time_control = 1.f;
+  float m_delay_time_smooth = 1.f; // todo what value here?
   float m_feedback = 0.6;
   float m_samplerate;
   float m_dry = 1.f;
