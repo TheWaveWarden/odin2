@@ -25,6 +25,7 @@ void FMOscillator::update() {
   Oscillator::update();
 
   // use modded freq of this osc for basefreq of child oscs
+  //DBG(m_osc_freq_modded);
   m_carrier_osc.m_osc_freq_base = m_osc_freq_modded;
   m_modulator_osc.m_osc_freq_base =
       m_osc_freq_modded * m_modulator_ratio / m_carrier_ratio;

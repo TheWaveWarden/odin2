@@ -115,6 +115,7 @@ public:
   }
 
   inline virtual void setBaseFrequency(float p_freq) {
+    //DBG(p_freq);
     m_osc_freq_base = p_freq;
   }
 
@@ -177,7 +178,6 @@ public:
 protected:
   double m_samplerate;      // fs
   double m_osc_freq_modded; // current (actual) frequency of oscillator
-
   double m_mod_pitch_bend; // modulation input -1 to +1 */
   double m_mod_amp; // output amplitude modulation for AM 0 to +1 (not dB)*/
   float m_mod_exp_other =

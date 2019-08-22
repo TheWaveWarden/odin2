@@ -55,6 +55,13 @@ public:
 		m_modulator_osc.selectWavetableByMapping(p_wt_modulator);
 	}
 
+	void setSampleRate(float p_sr) override {
+		DBG("SETSAMPLERATE FM");
+		Oscillator::setSampleRate(p_sr);
+		m_carrier_osc.setSampleRate(p_sr);
+		m_modulator_osc.setSampleRate(p_sr);
+	}
+
 	void setFMModPointer(float* p_pointer){
 		m_fm_mod = p_pointer;
 	}
