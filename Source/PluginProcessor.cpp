@@ -218,9 +218,9 @@ WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Chiptun
 WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("ChiptuneReplace4");
 */
 
-  WavetableContainer::getInstance().createWavetables(44100.f);
-  WavetableContainer::getInstance().loadWavetablesAfterFourierCreation();
-  WavetableContainer::getInstance().writeWavetablesToFile();
+  //WavetableContainer::getInstance().createWavetables(44100.f);
+  //WavetableContainer::getInstance().loadWavetablesAfterFourierCreation();
+  //WavetableContainer::getInstance().writeWavetablesToFile();
 
   // WavetableContainer::getInstance().fixWavetableCoefficientFile();
   // WavetableContainer::getInstance().fixWavetableIndexInFiles();
