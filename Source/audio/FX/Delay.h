@@ -28,7 +28,7 @@ public:
   inline void setFeedback(float p_feedback) { m_feedback = p_feedback; }
 
   inline void setSampleRate(float p_samplerate) { 
-  DBG("SetSampleRate delay");
+  //DBG("setsamplerate delay");
     m_samplerate = p_samplerate;
     m_DC_blocking_filter_left.setSampleRate(p_samplerate);
     m_DC_blocking_filter_right.setSampleRate(p_samplerate);

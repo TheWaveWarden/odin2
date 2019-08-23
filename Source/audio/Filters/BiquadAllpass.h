@@ -10,7 +10,7 @@ public:
 	~BiquadAllpass();
 
 	inline void setSampleRate(float p_samplerate){ 
-  DBG("SetSampleRate biquad");
+  ////DBG("setsamplerate biquad");
 		m_samplerate = p_samplerate;
 	}
 

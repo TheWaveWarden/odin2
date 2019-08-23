@@ -56,7 +56,7 @@ public:
 	}
 
 	void setSampleRate(float p_sr) override {
-		DBG("SETSAMPLERATE FM");
+		//DBG("setsamplerate FM");
 		Oscillator::setSampleRate(p_sr);
 		m_carrier_osc.setSampleRate(p_sr);
 		m_modulator_osc.setSampleRate(p_sr);

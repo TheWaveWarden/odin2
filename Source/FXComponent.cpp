@@ -49,7 +49,7 @@ FXComponent::FXComponent(AudioProcessorValueTreeState &vts,
   m_rate.setStrip(metal_knob_mid, N_KNOB_FRAMES);
   m_rate.setSliderStyle(Slider::RotaryVerticalDrag);
   m_rate.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-  DBG(m_rate.getSkewFactor());
+  //DBG(m_rate.getSkewFactor());
   m_rate.setTextValueSuffix(" Hz");
   m_rate.setNumDecimalPlacesToDisplay(2);
   // m_rate.setValue(0.2f);

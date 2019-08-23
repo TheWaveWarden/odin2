@@ -25,7 +25,7 @@ public:
   }
   void setSampleRate(float p_sr) { 
 
-    DBG("SetSampleRate biquadres");
+    //DBG("setsamplerate biquadres");
     m_samplerate = p_sr;
     recalculateFilterCoefficients();
   }

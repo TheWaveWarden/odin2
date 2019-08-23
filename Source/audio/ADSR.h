@@ -3,7 +3,6 @@
 #include "../../JuceLibraryCode/JuceHeader.h"
 
 #include "CheapFunctions.h"
-#include <fstream> //todo  delay
 #include <functional>
 
 #define MIN_DECAY_RELEASE_VAL 0.001
@@ -19,9 +18,7 @@ public:
   int getCurrentSection();
 
   void restartEnvelope() {
-    // todo
-    // todo was? plz elaborate nex tym...
-    //m_attack_start_value = m_current_value;
+    // m_attack_start_value = m_current_value;
     m_current_value = m_last_actual_value;
     m_current_section = 0;
   }
@@ -42,8 +39,10 @@ public:
 
   inline void setLoop(bool p_loop) { m_loop = p_loop; }
 
-  inline void setSampleRate(float p_samplerate) { m_samplerate = p_samplerate; 
-  DBG("SetSampleRate adsr");}
+  inline void setSampleRate(float p_samplerate) {
+    m_samplerate = p_samplerate;
+    ////DBG("setsamplerate adsr");
+  }
 
   inline void setAttack(float p_attack) { m_attack = p_attack; }
 
@@ -127,7 +126,7 @@ protected:
   float *m_sustain_mod;
   float *m_release_mod;
 
-  //these are the initial values for the algorithm as well
+  // these are the initial values for the algorithm as well
   double m_attack = 0.01f;
   double m_decay = 1.f;
   double m_sustain = 0.5f;

@@ -49,9 +49,9 @@ public:
     float samplerate_db_compenstaion = m * p_sr + b;
     m_samplerate_gain_compensation = Decibels::decibelsToGain(samplerate_db_compenstaion);
 
-    DBG("SAMPLERATEFACTOR: ");
-    DBG(samplerate_db_compenstaion);
-    DBG(m_samplerate_gain_compensation);
+    //DBG("SAMPLERATEFACTOR: ");
+    //DBG(samplerate_db_compenstaion);
+    //DBG(m_samplerate_gain_compensation);
   }
 
   float m_MIDI_velocity = 0.f;

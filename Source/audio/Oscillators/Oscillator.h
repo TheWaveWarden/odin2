@@ -50,7 +50,7 @@ public:
   virtual float doOscillate() = 0;
   virtual void setSampleRate(float p_samplerate) {
      
-  DBG("SetSampleRate baseosc");
+  //DBG("setsamplerate baseosc");
     m_samplerate = p_samplerate;
   }
   virtual void reset();

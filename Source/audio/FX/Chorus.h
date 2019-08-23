@@ -19,7 +19,7 @@ public:
   float doChorus(float p_input);
 
   inline void setSampleRate(float p_samplerate) { 
-  DBG("SetSampleRate chorus");
+  //DBG("setsamplerate chorus");
     m_samplerate = p_samplerate;
     setLFOFreq(m_LFO_freq);
     m_allpass1.setSampleRate(p_samplerate);
@@ -102,7 +102,7 @@ public:
   void setSynctimeDenominator(float p_value) {
     m_synctime_denominator = p_value;
     m_synctime_ratio = m_synctime_numerator / p_value;
-    DBG(m_synctime_ratio);
+    //DBG(m_synctime_ratio);
   }
 
   void setLFOResetPos(float p_pos){

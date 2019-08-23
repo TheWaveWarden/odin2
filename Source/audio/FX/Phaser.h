@@ -13,7 +13,7 @@ public:
 
   inline void setSampleRate(float p_samplerate) {
 
-    DBG("SetSampleRate phaser");
+    //DBG("setsamplerate phaser");
     m_samplerate = p_samplerate;
     setLFOFreq(m_LFO_freq);
 

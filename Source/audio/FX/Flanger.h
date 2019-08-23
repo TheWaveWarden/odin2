@@ -28,7 +28,7 @@ public:
   }
 
   void setSampleRate(float p_samplerate) override { 
-  DBG("SetSampleRate flanger");
+  //DBG("setsamplerate flanger");
     m_samplerate = p_samplerate;
     setLFOFreq(m_LFO_freq);
   }

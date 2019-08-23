@@ -32,7 +32,7 @@ public:
 class InputField : public TextEditor {
 public:
   void applyValue() {
-    DBG("APPLYVALUE!!!!");
+    //DBG("APPLYVALUE!!!!");
 
     // val to store parsed floating type number
     try {
