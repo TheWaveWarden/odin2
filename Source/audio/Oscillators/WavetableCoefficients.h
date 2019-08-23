@@ -18,7 +18,8 @@
 #include "Wavetables/Coefficients/LFOSpike.h"
 
 
-
+//NOTE: All wavetables must be phasecorrected. Use
+//WavetableContainer::eliminatePhaseInWavetableCoefficients() to do so!
 
 #include "Wavetables/Coefficients/Sine.h"                //0
 #include "Wavetables/Coefficients/ChiptuneTriangle.h"    //1

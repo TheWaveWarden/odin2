@@ -14,17 +14,16 @@ WavetableContainer::WavetableContainer()
 {
 #include "WavetableCoefficients.h"
 
-  //dynamically allocate wavetables
-  //m_wavetables = new float[NUMBER_OF_WAVETABLES][SUBTABLES_PER_WAVETABLE][WAVETABLE_LENGTH];
-  m_wavetables = new float**[NUMBER_OF_WAVETABLES];
-  for(int table = 0; table < NUMBER_OF_WAVETABLES; ++table){
-    m_wavetables[table] = new float*[SUBTABLES_PER_WAVETABLE];
-    for(int sub = 0; sub < SUBTABLES_PER_WAVETABLE; ++sub){
+  // dynamically allocate wavetables
+  // m_wavetables = new
+  // float[NUMBER_OF_WAVETABLES][SUBTABLES_PER_WAVETABLE][WAVETABLE_LENGTH];
+  m_wavetables = new float **[NUMBER_OF_WAVETABLES];
+  for (int table = 0; table < NUMBER_OF_WAVETABLES; ++table) {
+    m_wavetables[table] = new float *[SUBTABLES_PER_WAVETABLE];
+    for (int sub = 0; sub < SUBTABLES_PER_WAVETABLE; ++sub) {
       m_wavetables[table][sub] = new float[WAVETABLE_LENGTH];
     }
   }
-
-
 
   // create specdraw scalar
   for (int harmonic = 1; harmonic < SPECDRAW_STEPS_X + 1; ++harmonic) {
@@ -33,9 +32,9 @@ WavetableContainer::WavetableContainer()
 }
 
 WavetableContainer::~WavetableContainer() {
-  //delete wavetables
-  for(int table = 0; table < NUMBER_OF_WAVETABLES; ++table){
-    for(int sub = 0; sub < SUBTABLES_PER_WAVETABLE; ++sub){
+  // delete wavetables
+  for (int table = 0; table < NUMBER_OF_WAVETABLES; ++table) {
+    for (int sub = 0; sub < SUBTABLES_PER_WAVETABLE; ++sub) {
       delete[] m_wavetables[table][sub];
     }
     delete[] m_wavetables[table];
@@ -1923,21 +1922,23 @@ void WavetableContainer::fixWavetableIndexInFiles() {
     if (line.find("->") != std::string::npos) {
       unsigned first = line.find("Coefficients/");
       unsigned last = line.find(".h");
-      std::string strNew = line.substr(first, last - first);    
+      std::string strNew = line.substr(first, last - first);
       std::string number = line.substr(line.length() - 3, 3);
       DBG("name is: " + strNew);
       DBG("new number is: " + number);
       fixWavetableIndexInSingleFile(strNew, std::stoi(number));
     }
   }
-
-  
 }
 
-void WavetableContainer::fixWavetableIndexInSingleFile(std::string p_filename, int p_number){
-  std::ifstream filein("/home/frot/odinvst/Source/audio/Oscillators/Wavetables/" + p_filename + ".h"); // File to read from
-  std::ofstream fileout("/home/frot/odinvst/Source/audio/Oscillators/Wavetables/TEMP/" + p_filename + ".h");
-
+void WavetableContainer::fixWavetableIndexInSingleFile(std::string p_filename,
+                                                       int p_number) {
+  std::ifstream filein(
+      "/home/frot/odinvst/Source/audio/Oscillators/Wavetables/" + p_filename +
+      ".h"); // File to read from
+  std::ofstream fileout(
+      "/home/frot/odinvst/Source/audio/Oscillators/Wavetables/TEMP/" +
+      p_filename + ".h");
 
   if (!filein || !fileout) {
     DBG("Error opening files!");
@@ -1946,13 +1947,225 @@ void WavetableContainer::fixWavetableIndexInSingleFile(std::string p_filename, i
 
   std::string line;
   while (getline(filein, line)) {
-    if(line.find("#define WT_NR") != std::string::npos){
+    if (line.find("#define WT_NR") != std::string::npos) {
       line = "#define WT_NR " + std::to_string(p_number);
     }
     line += "\n";
     fileout << line;
   }
-
-
 }
 
+float sgn(float x) { return x < 0 ? -1 : 1; }
+
+std::string giveSectionAfterDelimiter(std::string const &str,
+                                      const char delim) {
+  size_t start;
+  size_t end = 0;
+
+  std::string out;
+
+  while ((start = str.find_first_not_of(delim, end)) != std::string::npos) {
+    end = str.find(delim, start);
+    out = str.substr(start, end - start);
+  }
+
+  return out;
+}
+
+std::string makeFloatCorrectOutput(float p_input){
+  std::string out = std::to_string(p_input);
+  if(out.find(".") == std::string::npos){
+    out = out + ".";
+  }
+  out = out + "f;";
+  return out;
+}
+
+void WavetableContainer::eliminatePhaseInWavetableCoefficients(  std::string p_filename) {
+
+  DBG("ELIMINATING PHASE IN WT FILE " + p_filename);
+  // see whether files open
+  {
+    std::ifstream filein(
+        "/home/frot/odinvst/Source/audio/Oscillators/Wavetables/Coefficients/" +
+        p_filename + ".h"); // File to read from
+    std::ofstream fileout("/home/frot/odinvst/Source/audio/Oscillators/"
+                          "Wavetables/Coefficients/PhaseEliminated/" +
+                          p_filename + ".h");
+    if (!filein) {
+      DBG("Error opening input file!");
+      return;
+    }
+    if (!fileout) {
+      DBG("Error opening output file!");
+      return;
+    }
+  }
+
+  // create arrays
+  float sin_coeffs[NUMBER_OF_HARMONICS] = {0};
+  float cos_coeffs[NUMBER_OF_HARMONICS] = {0};
+
+  const char delimiter = '=';
+
+  // find all sin coeffs
+  for (int i = 1; i < NUMBER_OF_HARMONICS; ++i) {
+    std::ifstream filein(
+        "/home/frot/odinvst/Source/audio/Oscillators/Wavetables/Coefficients/" +
+        p_filename + ".h"); // File to read from
+
+    std::string string_to_find =
+        "m_fourier_coeffs[WT_NR][0][" + std::to_string(i) + "]";
+
+    std::string line;
+    while (getline(filein, line)) {
+      // DBG(line);
+      if (line.find(string_to_find) != std::string::npos) {
+        // get section after "="
+        std::string number_as_string =
+            giveSectionAfterDelimiter(line, delimiter);
+
+        // remove ";" and possible trailing whitespaces
+        while (number_as_string.find(";") != std::string::npos) {
+          number_as_string =
+              number_as_string.substr(0, number_as_string.size() - 1);
+        }
+
+        // remove "f"
+        while (number_as_string.find("f") != std::string::npos) {
+          number_as_string =
+              number_as_string.substr(0, number_as_string.size() - 1);
+        }
+
+        // remove whitespaces at beginning
+        while (number_as_string.find(" ") != std::string::npos) {
+          number_as_string =
+              number_as_string.substr(1, number_as_string.size());
+        }
+
+        sin_coeffs[i] = std::stof(number_as_string);
+
+        // DBG(sin_coeffs[i]);
+      }
+    }
+  }
+
+  // find all cos coeffs
+  for (int i = 1; i < NUMBER_OF_HARMONICS; ++i) {
+    std::ifstream filein(
+        "/home/frot/odinvst/Source/audio/Oscillators/Wavetables/Coefficients/" +
+        p_filename + ".h"); // File to read from
+
+    std::string string_to_find =
+        "m_fourier_coeffs[WT_NR][1][" + std::to_string(i) + "]";
+
+    std::string line;
+    while (getline(filein, line)) {
+      // DBG(line);
+      if (line.find(string_to_find) != std::string::npos) {
+        // get section after "="
+        std::string number_as_string =
+            giveSectionAfterDelimiter(line, delimiter);
+
+        // remove ";" and possible trailing whitespaces
+        while (number_as_string.find(";") != std::string::npos) {
+          number_as_string =
+              number_as_string.substr(0, number_as_string.size() - 1);
+        }
+
+        // remove "f"
+        while (number_as_string.find("f") != std::string::npos) {
+          number_as_string =
+              number_as_string.substr(0, number_as_string.size() - 1);
+        }
+
+        // remove whitespaces at beginning
+        while (number_as_string.find(" ") != std::string::npos) {
+          number_as_string =
+              number_as_string.substr(1, number_as_string.size());
+        }
+
+        cos_coeffs[i] = std::stof(number_as_string);
+
+        // DBG(sin_coeffs[i]);
+      }
+    }
+  }
+
+  float scalar = 1;
+  {
+    std::ifstream filein(
+        "/home/frot/odinvst/Source/audio/Oscillators/Wavetables/Coefficients/" +
+        p_filename + ".h"); // File to read from
+
+    std::string string_to_find = "m_fourier_coeffs[WT_NR][1][0]";
+
+    std::string line;
+    while (getline(filein, line)) {
+      // DBG(line);
+      if (line.find(string_to_find) != std::string::npos) {
+        // get section after "="
+        std::string number_as_string =
+            giveSectionAfterDelimiter(line, delimiter);
+
+        // remove ";" and possible trailing whitespaces
+        while (number_as_string.find(";") != std::string::npos) {
+          number_as_string =
+              number_as_string.substr(0, number_as_string.size() - 1);
+        }
+
+        // remove "f"
+        while (number_as_string.find("f") != std::string::npos) {
+          number_as_string =
+              number_as_string.substr(0, number_as_string.size() - 1);
+        }
+
+        // remove whitespaces at beginning
+        while (number_as_string.find(" ") != std::string::npos) {
+          number_as_string =
+              number_as_string.substr(1, number_as_string.size());
+        }
+        scalar = std::stof(number_as_string);
+      }
+    }
+  }
+
+  // now write to file
+  std::ifstream filein(
+      "/home/frot/odinvst/Source/audio/Oscillators/Wavetables/Coefficients/" +
+      p_filename + ".h"); // File to read from
+
+  std::ofstream fileout("/home/frot/odinvst/Source/audio/Oscillators/"
+                        "Wavetables/Coefficients/PhaseEliminated/" +
+                        p_filename + ".h");
+
+
+  //write the first few lines which are not coefficients
+  std::string line;
+  while (getline(filein, line)) {
+    if (line.find("coeffs[WT_NR]") == std::string::npos && line.find("undef") == std::string::npos) {
+      line += "\n";
+      fileout << line;
+    }
+  }
+
+  //write the scalar
+  fileout << "\n\nm_fourier_coeffs[WT_NR][1][0] = " + makeFloatCorrectOutput(scalar) + " // scalar\n\n";
+
+  //write the actual table to file
+  for(int i = 1; i < NUMBER_OF_HARMONICS; ++i){
+    
+    //calc new coeff. 
+    //see https://de.wikipedia.org/wiki/Formelsammlung_Trigonometrie
+    //section "Sinusoid und Linearkombination mit gleicher Phase"
+    //note: ommiting sgn(x)
+
+    float new_coefficient = sqrt((sin_coeffs[i])*(sin_coeffs[i])+(cos_coeffs[i])*(cos_coeffs[i]));
+
+    fileout << "m_fourier_coeffs[WT_NR][0][" + std::to_string(i) + "] = " + makeFloatCorrectOutput(new_coefficient) + "\n";
+  }
+
+  //write undef 
+  fileout << "\n\n#undef WT_NR";
+
+}

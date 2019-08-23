@@ -67,6 +67,9 @@ public:
   void writePerlinTableToFile(std::string p_filename, int p_steps,
                               float p_percent);
 
+  //this will calculate the amplitude of the wave which arises from a sin + b cos and use it for sin, b = 0
+  void eliminatePhaseInWavetableCoefficients(std::string p_filename);
+
   // call this to make wavetablefiles from wavetable coefficients
   void writeWavetablesToFile();
   void startWriteWavetablesToFile();
