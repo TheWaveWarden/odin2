@@ -218,6 +218,14 @@ WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Chiptun
 WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("ChiptuneReplace4");
 */
 
+// WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("BagPipe");
+// WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("BagPipeMutated1");
+// WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("BagPipeMutated2");
+// WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("BagPipeMutated3");
+// WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("BagPipeMutated4");
+// WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("BagPipeMutated5");
+
+
   //WavetableContainer::getInstance().createWavetables(44100.f);
   //WavetableContainer::getInstance().loadWavetablesAfterFourierCreation();
   //WavetableContainer::getInstance().writeWavetablesToFile();
@@ -225,7 +233,7 @@ WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Chiptun
   // WavetableContainer::getInstance().fixWavetableCoefficientFile();
   // WavetableContainer::getInstance().fixWavetableIndexInFiles();
 
-  //  WavetableContainer::getInstance().mutateWavetable("Saw", 20, 100, true);
+    //WavetableContainer::getInstance().mutateWavetable("BagPipe", 5, 100, true);
   // WavetableContainer::getInstance().writePerlinTableToFile("PerlinReplace1",
   // 100, 50);
   // WavetableContainer::getInstance().writePerlinTableToFile("PerlinReplace2",
@@ -243,6 +251,8 @@ WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Chiptun
   // 18, 50);
   // WavetableContainer::getInstance().writePerlinTableToFile("PerlinReplace8",
   // 22, 50);
+
+  //WavetableContainer::getInstance().writeSampleTableToFile("mario.wav");
 
   // create draw tables as well
   float draw_values[WAVEDRAW_STEPS_X];

@@ -207,10 +207,17 @@ m_highest_loaded_table = 105;
 #include "Wavetables/Coefficients/PerlinReplace2.h" //178->149
 #include "Wavetables/Coefficients/PerlinReplace3.h" //179->150
 #include "Wavetables/Coefficients/PerlinReplace4.h" //180->151
-#include "Wavetables/Coefficients/PerlinReplace5.h" //181->152
-#include "Wavetables/Coefficients/PerlinReplace6.h" //182->153
-#include "Wavetables/Coefficients/PerlinReplace7.h" //183->154
-#include "Wavetables/Coefficients/PerlinReplace8.h" //184->155
+
+//#include "Wavetables/Coefficients/PerlinReplace5.h" //181->152
+//#include "Wavetables/Coefficients/PerlinReplace6.h" //182->153
+//#include "Wavetables/Coefficients/PerlinReplace7.h" //183->154
+//#include "Wavetables/Coefficients/PerlinReplace8.h" //184->155
+
+#include "Wavetables/Coefficients/BagPipe.h" //152 
+#include "Wavetables/Coefficients/BagPipeMutated1.h" //153
+#include "Wavetables/Coefficients/BagPipeMutated5.h" //154
+#include "Wavetables/Coefficients/BagPipeMutated4.h" //155
+
 
 #include "Wavetables/Coefficients/ChiptuneReplace1.h" //156
 #include "Wavetables/Coefficients/ChiptuneReplace2.h" //157

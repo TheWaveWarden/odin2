@@ -80,16 +80,16 @@ void WavetableOsc2D::loadWavetables() {
 
   setWavetablePointer(
       6, 0,
-      WavetableContainer::getInstance().getWavetablePointers("PerlinReplace5"));
+      WavetableContainer::getInstance().getWavetablePointers("BagPipe"));
   setWavetablePointer(
       6, 1,
-      WavetableContainer::getInstance().getWavetablePointers("PerlinReplace6"));
+      WavetableContainer::getInstance().getWavetablePointers("BagPipeMutated1"));
   setWavetablePointer(
       6, 2,
-      WavetableContainer::getInstance().getWavetablePointers("PerlinReplace7"));
+      WavetableContainer::getInstance().getWavetablePointers("BagPipeMutated5"));
   setWavetablePointer(
       6, 3,
-      WavetableContainer::getInstance().getWavetablePointers("PerlinReplace8"));
+      WavetableContainer::getInstance().getWavetablePointers("BagPipeMutated4"));
 
   setWavetablePointer(7, 0,
                       WavetableContainer::getInstance().getWavetablePointers(

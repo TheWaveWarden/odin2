@@ -768,7 +768,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   ADD_WAVETABLE_SUB_MENU("Mean", 140);
   ADD_WAVETABLE_SUB_MENU("Rectangular", 150);
   ADD_WAVETABLE_SUB_MENU("Nasal", 160);
-  ADD_WAVETABLE_SUB_MENU("ReplacePerlinB", 170);
+  ADD_WAVETABLE_SUB_MENU("Reed", 170);
   ADD_WAVETABLE_SUB_MENU("FM", 180);
   ADD_WAVETABLE_SUB_MENU("Sparse", 190);
   ADD_WAVETABLE_SUB_MENU("Bitreduced", 200);
@@ -854,7 +854,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   ADD_MAP_ENTRY("Mean", 140, m_carrier_waveselector)
   ADD_MAP_ENTRY("Rectangular", 150, m_carrier_waveselector)
   ADD_MAP_ENTRY("Nasal", 160, m_carrier_waveselector)
-  ADD_MAP_ENTRY("ReplacePerlinB", 170, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Reed", 170, m_carrier_waveselector)
   ADD_MAP_ENTRY("FM", 180, m_carrier_waveselector)
   ADD_MAP_ENTRY("Sparse", 190, m_carrier_waveselector)
   ADD_MAP_ENTRY("Bitreduced", 200, m_carrier_waveselector)
@@ -928,7 +928,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   ADD_MAP_ENTRY("Mean", 140, m_modulator_waveselector)
   ADD_MAP_ENTRY("Rectangular", 150, m_modulator_waveselector)
   ADD_MAP_ENTRY("Nasal", 160, m_modulator_waveselector)
-  ADD_MAP_ENTRY("ReplacePerlinB", 170, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Reed", 170, m_modulator_waveselector)
   ADD_MAP_ENTRY("FM", 180, m_modulator_waveselector)
   ADD_MAP_ENTRY("Sparse", 190, m_modulator_waveselector)
   ADD_MAP_ENTRY("Bitreduced", 200, m_modulator_waveselector)
@@ -1005,7 +1005,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   ADD_MAP_ENTRY("Mean", 140, m_chiptune_waveselector)
   ADD_MAP_ENTRY("Rectangular", 150, m_chiptune_waveselector)
   ADD_MAP_ENTRY("Nasal", 160, m_chiptune_waveselector)
-  ADD_MAP_ENTRY("ReplacePerlinB", 170, m_chiptune_waveselector)
+  ADD_MAP_ENTRY("Reed", 170, m_chiptune_waveselector)
   ADD_MAP_ENTRY("FM", 180, m_chiptune_waveselector)
   ADD_MAP_ENTRY("Sparse", 190, m_chiptune_waveselector)
   ADD_MAP_ENTRY("Bitreduced", 200, m_chiptune_waveselector)
@@ -1099,7 +1099,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_wavetable_waveselector.addWave(4, "Mean");
   m_wavetable_waveselector.addWave(5, "Rectangular");
   m_wavetable_waveselector.addWave(6, "Nasal");
-  m_wavetable_waveselector.addWave(7, "ReplacePerlinB");
+  m_wavetable_waveselector.addWave(7, "Reed");
   m_wavetable_waveselector.addWave(8, "FM");
   m_wavetable_waveselector.addWave(9, "Sparse");
   m_wavetable_waveselector.addWave(10, "Bitreduced");
