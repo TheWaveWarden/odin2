@@ -2169,3 +2169,13 @@ void WavetableContainer::eliminatePhaseInWavetableCoefficients(  std::string p_f
   fileout << "\n\n#undef WT_NR";
 
 }
+
+
+int WavetableContainer::getWavetableIndexFromName(std::string p_name){
+  auto it = m_name_index_map.find(p_name);
+  if (it != m_name_index_map.end()) {
+    return it->second;
+  }
+  DBG("getWavetableIndexFromName(): COULDNT FIND WT WITH NAME " + p_name);
+  return 0;
+}

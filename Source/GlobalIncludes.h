@@ -24,6 +24,10 @@
 #define M_PI 3.14159265359
 #endif
 
+
+#define WTGEN
+
+
 #define MENU_BACKGROUND_COLOR Colour(35, 35, 35)
 #define MENU_FONT_COLOR Colours::lightgrey
 #define MENU_HIGHLIGHT_FONT_COLOR Colour(62, 103, 117)

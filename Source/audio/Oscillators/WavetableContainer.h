@@ -67,7 +67,8 @@ public:
   void writePerlinTableToFile(std::string p_filename, int p_steps,
                               float p_percent);
 
-  //this will calculate the amplitude of the wave which arises from a sin + b cos and use it for sin, b = 0
+  // this will calculate the amplitude of the wave which arises from a sin + b
+  // cos and use it for sin, b = 0
   void eliminatePhaseInWavetableCoefficients(std::string p_filename);
 
   // call this to make wavetablefiles from wavetable coefficients
@@ -84,13 +85,38 @@ public:
 
   void generateAudioValueCode();
 
+  int getWavetableIndexFromName(std::string p_name);
+
   // void deleteWavedraw() {
   //	m_wavedraw_tables = {0};
   //}
+
+  #ifdef WTGEN //must be public to be accessed by SpectrumDisplay
+  float m_fourier_coeffs[NUMBER_OF_WAVETABLES][SIN_AND_COS]
+                        [NUMBER_OF_HARMONICS] = {
+                            0}; // index [x][1][0] will store scalar, since it
+                                // is usually constant offset
+  #endif
+
 private:
   WavetableContainer();
 
+
+
 protected:
+// Fourrier Coefficients
+#ifndef WTGEN
+  float m_fourier_coeffs[NUMBER_OF_WAVETABLES][SIN_AND_COS]
+                        [NUMBER_OF_HARMONICS] = {
+                            0}; // index [x][1][0] will store scalar, since it
+                                // is usually constant offset
+#endif
+
+  float m_LFO_fourier_coeffs[NUMBER_OF_LFOTABLES][SIN_AND_COS]
+                            [NUMBER_OF_HARMONICS] = {
+                                0}; // index [x][1][0] will store scalar, since
+                                    // it is usually constant offset
+
   void seedRandom();
   bool m_random_seeded = false;
 
@@ -125,16 +151,6 @@ protected:
       *m_specdraw_pointers[NUMBER_OF_SPECDRAW_TABLES][SUBTABLES_PER_WAVETABLE];
   float *m_lfotable_pointers[NUMBER_OF_LFOTABLES][1];
 
-  // Fourrier Coefficients
-  float m_fourier_coeffs[NUMBER_OF_WAVETABLES][SIN_AND_COS]
-                        [NUMBER_OF_HARMONICS] = {
-                            0}; // index [x][1][0] will store scalar, since it
-                                // is usually constant offset
-  float m_LFO_fourier_coeffs[NUMBER_OF_LFOTABLES][SIN_AND_COS]
-                            [NUMBER_OF_HARMONICS] = {
-                                0}; // index [x][1][0] will store scalar, since
-                                    // it is usually constant offset
-
   // drawn tables
   float m_chipdraw_tables[NUMBER_OF_CHIPDRAW_TABLES][SUBTABLES_PER_WAVETABLE]
                          [WAVETABLE_LENGTH];
@@ -151,9 +167,9 @@ protected:
 
   bool m_wavetables_created = false;
 
-  //float m_wavetables[NUMBER_OF_WAVETABLES][SUBTABLES_PER_WAVETABLE]
+  // float m_wavetables[NUMBER_OF_WAVETABLES][SUBTABLES_PER_WAVETABLE]
   //                  [WAVETABLE_LENGTH] = {0};
-  float*** m_wavetables;//dynamic allocation
-  
+  float ***m_wavetables; // dynamic allocation
+
   //#include "Wavetables/Tables/WavetableData.h" //include initializer list
 };

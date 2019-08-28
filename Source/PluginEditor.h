@@ -36,6 +36,11 @@
 #include "BPMSelector.h"
 #include "InputField.h"
 
+#ifdef WTGEN
+#include "WavetableDisplay.h"
+#include "SpectrumDisplay.h"
+#endif
+
 #define GLIDE_POS_X 117
 #define GLIDE_POS_Y 522
 #define MASTER_POS_X GLIDE_POS_X
@@ -205,6 +210,12 @@ public:
   InputField m_value_input;
   InputFeels m_input_feels;
 
+#ifdef WTGEN
+  WavetableDisplay m_wavetable_display;
+  SpectrumDisplay m_spectrum_display;
+#endif
+
+
 private:
   bool m_A_down = false; // C
   bool m_W_down = false; // C#
@@ -231,6 +242,9 @@ private:
   //==============================================================================
   // Your private member variables go here...
   OdinMenuFeels m_menu_feels;
+
+
+
 
   Knob m_glide;
   Knob m_master;

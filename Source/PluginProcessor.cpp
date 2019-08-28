@@ -27,6 +27,18 @@ OdinAudioProcessor::OdinAudioProcessor()
 
   addNonAudioParametersToTree();
 
+#ifdef WTGEN
+  m_voice[0].wavetable_osc[0].passVariablesToWTDisplay =
+      [&](int p_lower, int p_higher, float p_interpol) {
+        if (m_editor_pointer) {
+          m_editor_pointer->m_wavetable_display.setVariables(p_lower, p_higher,
+                                                             p_interpol);
+          m_editor_pointer->m_spectrum_display.setVariables(p_lower, p_higher,
+                                                             p_interpol);
+        }
+      };
+#endif
+
   m_is_standalone_plugin = (wrapperType == wrapperType_Standalone);
 
   // set up the tree listener
@@ -54,186 +66,183 @@ OdinAudioProcessor::OdinAudioProcessor()
 
   WavetableContainer::getInstance().loadWavetablesFromConstData();
 
+  /*WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Sine");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("ChiptuneTriangle");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("ChiptuneSquare50");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("ChiptuneSquare25");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("ChiptuneSquare12_5");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Saw");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Triangle");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("FatSaw");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Additive1");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Additive2");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Additive3");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Additive4");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Additive5");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Additive6");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Additive7");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Additive8");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Additive9");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Additive10");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Additive11");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Additive12");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Additive13");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Additive14");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Additive15");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Additive16");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Harmonics1");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Harmonics2");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Harmonics3");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Harmonics4");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Harmonics5");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Harmonics6");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Harmonics7");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Harmonics8");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Harmonics9");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Harmonics10");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Harmonics11");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Harmonics12");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Harmonics13");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Harmonics14");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Harmonics15");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Harmonics16");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Organ1");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Organ2");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Organ3");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Organ4");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("BrokenSine1");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("BrokenSine2");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("BrokenSine3");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("BrokenSine4");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Skyline1");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Skyline2");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Skyline3");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Skyline4");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("MultiSaw1");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("MultiSaw2");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("MultiSaw3");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("MultiSaw4");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Rectangular1");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Rectangular2");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Rectangular3");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Rectangular4");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Violin1");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Violin2");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Cello1");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Cello2");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Piano1");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Piano2");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Piano3");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Piano4");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Oboe1");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Oboe2");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Oboe3");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Oboe4");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Flute1");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Flute2");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Flute3");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Flute4");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Trumpet1");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Trumpet2");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Trumpet3");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Trumpet4");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("CTDiverging");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("CTHigh");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("CTHigh2");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("CTHigh3");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("CTRich");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("ChipSaw");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("ChipSine");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("CTSoftTune");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Sparse1");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Sparse2");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Sparse3");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Sparse4");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("FatSawMutated1");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("FatSawMutated2");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("FatSawMutated3");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("FatSawMutated4");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("FatSawMutated5");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("FatSawMutated6");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("FatSawMutated7");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("FatSawMutated8");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("ChiptuneSquare50Mutated1");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("ChiptuneSquare50Mutated2");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("ChiptuneSquare50Mutated3");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("ChiptuneSquare50Mutated4");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("ChiptuneSquare50Mutated5");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("ChiptuneSquare50Mutated6");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("ChiptuneSquare50Mutated7");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("ChiptuneSquare50Mutated8");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Perlin1");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Perlin2");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Perlin3");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Perlin4");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Perlin5");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Perlin6");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Perlin7");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Perlin8");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Perlin9");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Perlin10");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Perlin11");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Perlin12");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("AKWF_hvoice_0002");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("AKWF_hvoice_0010");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("AKWF_hvoice_0014");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("AKWF_hvoice_0019");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("AKWF_hvoice_0020");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("AKWF_hvoice_0021");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("AKWF_hvoice_0029");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("AKWF_hvoice_0032");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("AKWF_hvoice_0037");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("AKWF_hvoice_0041");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("AKWF_hvoice_0047");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("AKWF_hvoice_0049");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("AKWF_hvoice_0056");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("AKWF_hvoice_0064");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("AKWF_hvoice_0071");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("AKWF_hvoice_0093");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("AKWF_fmsynth_0011");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("AKWF_fmsynth_0032");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("AKWF_fmsynth_0034");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("AKWF_fmsynth_0081");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("AKWF_birds_0010");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("AKWF_birds_0011");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("AKWF_birds_0014");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("AKWF_birds_0004");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("AKWF_bitreduced_0002");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("AKWF_bitreduced_0003");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("AKWF_bitreduced_0006");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("AKWF_bitreduced_0011");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("PerlinReplace1");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("PerlinReplace2");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("PerlinReplace3");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("PerlinReplace4");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("PerlinReplace5");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("PerlinReplace6");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("PerlinReplace7");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("PerlinReplace8");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("ChiptuneReplace1");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("ChiptuneReplace2");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("ChiptuneReplace3");
+  WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("ChiptuneReplace4");
+  */
 
+  // WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("BagPipe");
+  // WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("BagPipeMutated1");
+  // WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("BagPipeMutated2");
+  // WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("BagPipeMutated3");
+  // WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("BagPipeMutated4");
+  // WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("BagPipeMutated5");
 
-/*WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Sine");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("ChiptuneTriangle");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("ChiptuneSquare50");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("ChiptuneSquare25");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("ChiptuneSquare12_5");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Saw");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Triangle");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("FatSaw");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Additive1");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Additive2");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Additive3");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Additive4");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Additive5");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Additive6");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Additive7");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Additive8");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Additive9");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Additive10");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Additive11");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Additive12");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Additive13");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Additive14");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Additive15");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Additive16");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Harmonics1");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Harmonics2");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Harmonics3");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Harmonics4");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Harmonics5");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Harmonics6");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Harmonics7");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Harmonics8");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Harmonics9");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Harmonics10");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Harmonics11");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Harmonics12");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Harmonics13");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Harmonics14");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Harmonics15");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Harmonics16");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Organ1");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Organ2");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Organ3");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Organ4");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("BrokenSine1");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("BrokenSine2");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("BrokenSine3");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("BrokenSine4");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Skyline1");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Skyline2");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Skyline3");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Skyline4");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("MultiSaw1");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("MultiSaw2");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("MultiSaw3");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("MultiSaw4");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Rectangular1");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Rectangular2");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Rectangular3");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Rectangular4");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Violin1");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Violin2");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Cello1");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Cello2");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Piano1");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Piano2");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Piano3");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Piano4");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Oboe1");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Oboe2");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Oboe3");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Oboe4");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Flute1");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Flute2");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Flute3");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Flute4");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Trumpet1");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Trumpet2");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Trumpet3");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Trumpet4");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("CTDiverging");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("CTHigh");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("CTHigh2");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("CTHigh3");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("CTRich");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("ChipSaw");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("ChipSine");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("CTSoftTune");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Sparse1");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Sparse2");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Sparse3");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Sparse4");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("FatSawMutated1");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("FatSawMutated2");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("FatSawMutated3");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("FatSawMutated4");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("FatSawMutated5");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("FatSawMutated6");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("FatSawMutated7");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("FatSawMutated8");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("ChiptuneSquare50Mutated1");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("ChiptuneSquare50Mutated2");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("ChiptuneSquare50Mutated3");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("ChiptuneSquare50Mutated4");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("ChiptuneSquare50Mutated5");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("ChiptuneSquare50Mutated6");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("ChiptuneSquare50Mutated7");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("ChiptuneSquare50Mutated8");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Perlin1");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Perlin2");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Perlin3");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Perlin4");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Perlin5");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Perlin6");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Perlin7");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Perlin8");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Perlin9");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Perlin10");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Perlin11");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Perlin12");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("AKWF_hvoice_0002");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("AKWF_hvoice_0010");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("AKWF_hvoice_0014");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("AKWF_hvoice_0019");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("AKWF_hvoice_0020");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("AKWF_hvoice_0021");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("AKWF_hvoice_0029");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("AKWF_hvoice_0032");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("AKWF_hvoice_0037");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("AKWF_hvoice_0041");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("AKWF_hvoice_0047");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("AKWF_hvoice_0049");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("AKWF_hvoice_0056");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("AKWF_hvoice_0064");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("AKWF_hvoice_0071");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("AKWF_hvoice_0093");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("AKWF_fmsynth_0011");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("AKWF_fmsynth_0032");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("AKWF_fmsynth_0034");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("AKWF_fmsynth_0081");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("AKWF_birds_0010");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("AKWF_birds_0011");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("AKWF_birds_0014");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("AKWF_birds_0004");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("AKWF_bitreduced_0002");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("AKWF_bitreduced_0003");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("AKWF_bitreduced_0006");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("AKWF_bitreduced_0011");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("PerlinReplace1");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("PerlinReplace2");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("PerlinReplace3");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("PerlinReplace4");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("PerlinReplace5");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("PerlinReplace6");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("PerlinReplace7");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("PerlinReplace8");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("ChiptuneReplace1");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("ChiptuneReplace2");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("ChiptuneReplace3");
-WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("ChiptuneReplace4");
-*/
-
-// WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("BagPipe");
-// WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("BagPipeMutated1");
-// WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("BagPipeMutated2");
-// WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("BagPipeMutated3");
-// WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("BagPipeMutated4");
-// WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("BagPipeMutated5");
-
-
-  //WavetableContainer::getInstance().createWavetables(44100.f);
-  //WavetableContainer::getInstance().loadWavetablesAfterFourierCreation();
-  //WavetableContainer::getInstance().writeWavetablesToFile();
+  // WavetableContainer::getInstance().createWavetables(44100.f);
+  // WavetableContainer::getInstance().loadWavetablesAfterFourierCreation();
+  // WavetableContainer::getInstance().writeWavetablesToFile();
 
   // WavetableContainer::getInstance().fixWavetableCoefficientFile();
   // WavetableContainer::getInstance().fixWavetableIndexInFiles();
 
-    //WavetableContainer::getInstance().mutateWavetable("BagPipe", 5, 100, true);
+  // WavetableContainer::getInstance().mutateWavetable("BagPipe", 5, 100, true);
   // WavetableContainer::getInstance().writePerlinTableToFile("PerlinReplace1",
   // 100, 50);
   // WavetableContainer::getInstance().writePerlinTableToFile("PerlinReplace2",
@@ -252,7 +261,7 @@ WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Chiptun
   // WavetableContainer::getInstance().writePerlinTableToFile("PerlinReplace8",
   // 22, 50);
 
-  //WavetableContainer::getInstance().writeSampleTableToFile("mario.wav");
+  // WavetableContainer::getInstance().writeSampleTableToFile("mario.wav");
 
   // create draw tables as well
   float draw_values[WAVEDRAW_STEPS_X];
@@ -287,7 +296,8 @@ WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Chiptun
     //chip_values[i] = sin(2*M_PI*i/(float)CHIPDRAW_STEPS_X);
     chip_values[i] = (float)i/(float)CHIPDRAW_STEPS_X;
   }*/
-  //WavetableContainer::getInstance().writeChipdrawTable(chip_values, "ChipSaw");
+  // WavetableContainer::getInstance().writeChipdrawTable(chip_values,
+  // "ChipSaw");
 
   // WavetableContainer::getInstance().createLFOtables(44100.);
 
@@ -943,6 +953,8 @@ AudioProcessorEditor *OdinAudioProcessor::createEditor() {
   if (m_force_values_onto_gui) {
     onSetStateInformation();
   }
+
+  m_editor_pointer = editor;
 
   return editor;
 }

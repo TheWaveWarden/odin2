@@ -366,6 +366,8 @@ private:
   int m_chorus_position = 2;
   int m_flanger_position = 3;
 
+  OdinAudioProcessorEditor* m_editor_pointer;
+
   int m_osc_type[3] = {OSC_TYPE_ANALOG, 1, 1};
   int m_fil_type[3] = {FILTER_TYPE_LP24, 1, 1};
 

@@ -912,6 +912,10 @@
               file="Source/SpecdrawDisplay.cpp"/>
         <FILE id="BZ0TVo" name="SpecdrawDisplay.h" compile="0" resource="0"
               file="Source/SpecdrawDisplay.h"/>
+        <FILE id="TO3zMi" name="SpectrumDisplay.cpp" compile="1" resource="0"
+              file="Source/SpectrumDisplay.cpp"/>
+        <FILE id="qbKx89" name="SpectrumDisplay.h" compile="0" resource="0"
+              file="Source/SpectrumDisplay.h"/>
         <FILE id="jWVk1F" name="SyncTimeSelector.cpp" compile="1" resource="0"
               file="Source/SyncTimeSelector.cpp"/>
         <FILE id="dGTCvN" name="SyncTimeSelector.h" compile="0" resource="0"
@@ -924,6 +928,10 @@
               resource="0" file="Source/WaveformSelectorComponent.cpp"/>
         <FILE id="T4dsUW" name="WaveformSelectorComponent.h" compile="0" resource="0"
               file="Source/WaveformSelectorComponent.h"/>
+        <FILE id="HiPhJu" name="WavetableDisplay.cpp" compile="1" resource="0"
+              file="Source/WavetableDisplay.cpp"/>
+        <FILE id="d5J1uJ" name="WavetableDisplay.h" compile="0" resource="0"
+              file="Source/WavetableDisplay.h"/>
         <FILE id="e7CRLL" name="WavetableMappings.h" compile="0" resource="0"
               file="Source/WavetableMappings.h"/>
         <FILE id="jRAnrN" name="XYPadComponent.cpp" compile="1" resource="0"

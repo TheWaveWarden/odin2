@@ -79,17 +79,16 @@ void WavetableOsc2D::loadWavetables() {
                           "AKWF_birds_0004"));
 
   setWavetablePointer(
-      6, 0,
-      WavetableContainer::getInstance().getWavetablePointers("BagPipe"));
-  setWavetablePointer(
-      6, 1,
-      WavetableContainer::getInstance().getWavetablePointers("BagPipeMutated1"));
-  setWavetablePointer(
-      6, 2,
-      WavetableContainer::getInstance().getWavetablePointers("BagPipeMutated5"));
-  setWavetablePointer(
-      6, 3,
-      WavetableContainer::getInstance().getWavetablePointers("BagPipeMutated4"));
+      6, 0, WavetableContainer::getInstance().getWavetablePointers("BagPipe"));
+  setWavetablePointer(6, 1,
+                      WavetableContainer::getInstance().getWavetablePointers(
+                          "BagPipeMutated1"));
+  setWavetablePointer(6, 2,
+                      WavetableContainer::getInstance().getWavetablePointers(
+                          "BagPipeMutated5"));
+  setWavetablePointer(6, 3,
+                      WavetableContainer::getInstance().getWavetablePointers(
+                          "BagPipeMutated4"));
 
   setWavetablePointer(7, 0,
                       WavetableContainer::getInstance().getWavetablePointers(
@@ -421,6 +420,753 @@ void WavetableOsc2D::loadWavetables() {
   setWavetablePointer(
       34, 3,
       WavetableContainer::getInstance().getWavetablePointers("Perlin12"));
+}
+
+std::string WavetableOsc2D::getWavetableName(int p_wt_2D, int sub_table_2D) {
+
+  switch (p_wt_2D) {
+
+  case 0:
+    switch (sub_table_2D) {
+    case 0:
+      return "Saw";
+      break;
+    case 1:
+      return "ChiptuneSquare50";
+      break;
+    case 2:
+      return "Triangle";
+      break;
+    case 3:
+      return "Sine";
+      break;
+    default:
+      DBG("Tried to get name for illegal table combination (" +
+          std::to_string(p_wt_2D) + "," + std::to_string(sub_table_2D) + ")");
+      return "UNDEFINED";
+      break;
+    }
+    break;
+  case 1:
+    switch (sub_table_2D) {
+    case 0:
+      return "BrokenSine1";
+      break;
+    case 1:
+      return "BrokenSine2";
+      break;
+    case 2:
+      return "BrokenSine3";
+      break;
+    case 3:
+      return "BrokenSine4";
+      break;
+    default:
+      DBG("Tried to get name for illegal table combination (" +
+          std::to_string(p_wt_2D) + "," + std::to_string(sub_table_2D) + ")");
+      return "UNDEFINED";
+      break;
+    }
+    break;
+  case 2:
+    switch (sub_table_2D) {
+    case 0:
+      return "Skyline1";
+      break;
+    case 1:
+      return "Skyline2";
+      break;
+    case 2:
+      return "Skyline3";
+      break;
+    case 3:
+      return "Skyline4";
+      break;
+    default:
+      DBG("Tried to get name for illegal table combination (" +
+          std::to_string(p_wt_2D) + "," + std::to_string(sub_table_2D) + ")");
+      return "UNDEFINED";
+      break;
+    }
+    break;
+  case 3:
+    switch (sub_table_2D) {
+    case 0:
+      return "PerlinReplace1";
+      break;
+    case 1:
+      return "PerlinReplace2";
+      break;
+    case 2:
+      return "PerlinReplace3";
+      break;
+    case 3:
+      return "PerlinReplace4";
+      break;
+    default:
+      DBG("Tried to get name for illegal table combination (" +
+          std::to_string(p_wt_2D) + "," + std::to_string(sub_table_2D) + ")");
+      return "UNDEFINED";
+      break;
+    }
+    break;
+  case 4:
+    switch (sub_table_2D) {
+    case 0:
+      return "Rectangular1";
+      break;
+    case 1:
+      return "Rectangular2";
+      break;
+    case 2:
+      return "Rectangular3";
+      break;
+    case 3:
+      return "Rectangular4";
+      break;
+    default:
+      DBG("Tried to get name for illegal table combination (" +
+          std::to_string(p_wt_2D) + "," + std::to_string(sub_table_2D) + ")");
+      return "UNDEFINED";
+      break;
+    }
+    break;
+  case 5:
+    switch (sub_table_2D) {
+    case 0:
+      return "AKWF_birds_0010";
+      break;
+    case 1:
+      return "AKWF_birds_0011";
+      break;
+    case 2:
+      return "AKWF_birds_0014";
+      break;
+    case 3:
+      return "AKWF_birds_0004";
+      break;
+    default:
+      DBG("Tried to get name for illegal table combination (" +
+          std::to_string(p_wt_2D) + "," + std::to_string(sub_table_2D) + ")");
+      return "UNDEFINED";
+      break;
+    }
+    break;
+  case 6:
+    switch (sub_table_2D) {
+    case 0:
+      return "BagPipe";
+      break;
+    case 1:
+      return "BagPipeMutated1";
+      break;
+    case 2:
+      return "BagPipeMutated5";
+      break;
+    case 3:
+      return "BagPipeMutated4";
+      break;
+    default:
+      DBG("Tried to get name for illegal table combination (" +
+          std::to_string(p_wt_2D) + "," + std::to_string(sub_table_2D) + ")");
+      return "UNDEFINED";
+      break;
+    }
+    break;
+  case 7:
+    switch (sub_table_2D) {
+    case 0:
+      return "AKWF_fmsynth_0011";
+      break;
+    case 1:
+      return "AKWF_fmsynth_0032";
+      break;
+    case 2:
+      return "AKWF_fmsynth_0034";
+      break;
+    case 3:
+      return "AKWF_fmsynth_0081";
+      break;
+    default:
+      DBG("Tried to get name for illegal table combination (" +
+          std::to_string(p_wt_2D) + "," + std::to_string(sub_table_2D) + ")");
+      return "UNDEFINED";
+      break;
+    }
+    break;
+  case 8:
+    switch (sub_table_2D) {
+    case 0:
+      return "Sparse1";
+      break;
+    case 1:
+      return "Sparse2";
+      break;
+    case 2:
+      return "Sparse3";
+      break;
+    case 3:
+      return "Sparse4";
+      break;
+    default:
+      DBG("Tried to get name for illegal table combination (" +
+          std::to_string(p_wt_2D) + "," + std::to_string(sub_table_2D) + ")");
+      return "UNDEFINED";
+      break;
+    }
+    break;
+  case 9:
+    switch (sub_table_2D) {
+    case 0:
+      return "AKWF_bitreduced_0002";
+      break;
+    case 1:
+      return "AKWF_bitreduced_0003";
+      break;
+    case 2:
+      return "AKWF_bitreduced_0006";
+      break;
+    case 3:
+      return "AKWF_bitreduced_0011";
+      break;
+    default:
+      DBG("Tried to get name for illegal table combination (" +
+          std::to_string(p_wt_2D) + "," + std::to_string(sub_table_2D) + ")");
+      return "UNDEFINED";
+      break;
+    }
+    break;
+  case 10:
+    switch (sub_table_2D) {
+    case 0:
+      return "Violin1";
+      break;
+    case 1:
+      return "Violin2";
+      break;
+    case 2:
+      return "Cello1";
+      break;
+    case 3:
+      return "Cello2";
+      break;
+    default:
+      DBG("Tried to get name for illegal table combination (" +
+          std::to_string(p_wt_2D) + "," + std::to_string(sub_table_2D) + ")");
+      return "UNDEFINED";
+      break;
+    }
+    break;
+  case 11:
+    switch (sub_table_2D) {
+    case 0:
+      return "Piano1";
+      break;
+    case 1:
+      return "Piano2";
+      break;
+    case 2:
+      return "Piano3";
+      break;
+    case 3:
+      return "Piano4";
+      break;
+    default:
+      DBG("Tried to get name for illegal table combination (" +
+          std::to_string(p_wt_2D) + "," + std::to_string(sub_table_2D) + ")");
+      return "UNDEFINED";
+      break;
+    }
+    break;
+  case 12:
+    switch (sub_table_2D) {
+    case 0:
+      return "Organ1";
+      break;
+    case 1:
+      return "Organ2";
+      break;
+    case 2:
+      return "Organ3";
+      break;
+    case 3:
+      return "Organ4";
+      break;
+    default:
+      DBG("Tried to get name for illegal table combination (" +
+          std::to_string(p_wt_2D) + "," + std::to_string(sub_table_2D) + ")");
+      return "UNDEFINED";
+      break;
+    }
+    break;
+  case 13:
+    switch (sub_table_2D) {
+    case 0:
+      return "Oboe1";
+      break;
+    case 1:
+      return "Oboe2";
+      break;
+    case 2:
+      return "Oboe3";
+      break;
+    case 3:
+      return "Oboe4";
+      break;
+    default:
+      DBG("Tried to get name for illegal table combination (" +
+          std::to_string(p_wt_2D) + "," + std::to_string(sub_table_2D) + ")");
+      return "UNDEFINED";
+      break;
+    }
+    break;
+  case 14:
+    switch (sub_table_2D) {
+    case 0:
+      return "Flute1";
+      break;
+    case 1:
+      return "Flute2";
+      break;
+    case 2:
+      return "Flute3";
+      break;
+    case 3:
+      return "Flute4";
+      break;
+    default:
+      DBG("Tried to get name for illegal table combination (" +
+          std::to_string(p_wt_2D) + "," + std::to_string(sub_table_2D) + ")");
+      return "UNDEFINED";
+      break;
+    }
+    break;
+  case 15:
+    switch (sub_table_2D) {
+    case 0:
+      return "Trumpet1";
+      break;
+    case 1:
+      return "Trumpet2";
+      break;
+    case 2:
+      return "Trumpet3";
+      break;
+    case 3:
+      return "Trumpet4";
+      break;
+    default:
+      DBG("Tried to get name for illegal table combination (" +
+          std::to_string(p_wt_2D) + "," + std::to_string(sub_table_2D) + ")");
+      return "UNDEFINED";
+      break;
+    }
+    break;
+  case 16:
+    switch (sub_table_2D) {
+    case 0:
+      return "AKWF_hvoice_0002";
+      break;
+    case 1:
+      return "AKWF_hvoice_0010";
+      break;
+    case 2:
+      return "AKWF_hvoice_0014";
+      break;
+    case 3:
+      return "AKWF_hvoice_0019";
+      break;
+    default:
+      DBG("Tried to get name for illegal table combination (" +
+          std::to_string(p_wt_2D) + "," + std::to_string(sub_table_2D) + ")");
+      return "UNDEFINED";
+      break;
+    }
+    break;
+  case 17:
+    switch (sub_table_2D) {
+    case 0:
+      return "AKWF_hvoice_0020";
+      break;
+    case 1:
+      return "AKWF_hvoice_0021";
+      break;
+    case 2:
+      return "AKWF_hvoice_0029";
+      break;
+    case 3:
+      return "AKWF_hvoice_0032";
+      break;
+    default:
+      DBG("Tried to get name for illegal table combination (" +
+          std::to_string(p_wt_2D) + "," + std::to_string(sub_table_2D) + ")");
+      return "UNDEFINED";
+      break;
+    }
+    break;
+  case 18:
+    switch (sub_table_2D) {
+    case 0:
+      return "AKWF_hvoice_0037";
+      break;
+    case 1:
+      return "AKWF_hvoice_0041";
+      break;
+    case 2:
+      return "AKWF_hvoice_0047";
+      break;
+    case 3:
+      return "AKWF_hvoice_0049";
+      break;
+    default:
+      DBG("Tried to get name for illegal table combination (" +
+          std::to_string(p_wt_2D) + "," + std::to_string(sub_table_2D) + ")");
+      return "UNDEFINED";
+      break;
+    }
+    break;
+  case 19:
+    switch (sub_table_2D) {
+    case 0:
+      return "AKWF_hvoice_0056";
+      break;
+    case 1:
+      return "AKWF_hvoice_0064";
+      break;
+    case 2:
+      return "AKWF_hvoice_0071";
+      break;
+    case 3:
+      return "AKWF_hvoice_0093";
+      break;
+    default:
+      DBG("Tried to get name for illegal table combination (" +
+          std::to_string(p_wt_2D) + "," + std::to_string(sub_table_2D) + ")");
+      return "UNDEFINED";
+      break;
+    }
+    break;
+  case 20:
+    switch (sub_table_2D) {
+    case 0:
+      return "Additive1";
+      break;
+    case 1:
+      return "Additive2";
+      break;
+    case 2:
+      return "Additive3";
+      break;
+    case 3:
+      return "Additive4";
+      break;
+    default:
+      DBG("Tried to get name for illegal table combination (" +
+          std::to_string(p_wt_2D) + "," + std::to_string(sub_table_2D) + ")");
+      return "UNDEFINED";
+      break;
+    }
+    break;
+  case 21:
+    switch (sub_table_2D) {
+    case 0:
+      return "Additive5";
+      break;
+    case 1:
+      return "Additive6";
+      break;
+    case 2:
+      return "Additive7";
+      break;
+    case 3:
+      return "Additive8";
+      break;
+    default:
+      DBG("Tried to get name for illegal table combination (" +
+          std::to_string(p_wt_2D) + "," + std::to_string(sub_table_2D) + ")");
+      return "UNDEFINED";
+      break;
+    }
+    break;
+  case 22:
+    switch (sub_table_2D) {
+    case 0:
+      return "Additive9";
+      break;
+    case 1:
+      return "Additive10";
+      break;
+    case 2:
+      return "Additive11";
+      break;
+    case 3:
+      return "Additive12";
+      break;
+    default:
+      DBG("Tried to get name for illegal table combination (" +
+          std::to_string(p_wt_2D) + "," + std::to_string(sub_table_2D) + ")");
+      return "UNDEFINED";
+      break;
+    }
+    break;
+  case 23:
+    switch (sub_table_2D) {
+    case 0:
+      return "Additive13";
+      break;
+    case 1:
+      return "Additive14";
+      break;
+    case 2:
+      return "Additive15";
+      break;
+    case 3:
+      return "Additive16";
+      break;
+    default:
+      DBG("Tried to get name for illegal table combination (" +
+          std::to_string(p_wt_2D) + "," + std::to_string(sub_table_2D) + ")");
+      return "UNDEFINED";
+      break;
+    }
+    break;
+  case 24:
+    switch (sub_table_2D) {
+    case 0:
+      return "Harmonics9";
+      break;
+    case 1:
+      return "Harmonics10";
+      break;
+    case 2:
+      return "Harmonics11";
+      break;
+    case 3:
+      return "Harmonics12";
+      break;
+    default:
+      DBG("Tried to get name for illegal table combination (" +
+          std::to_string(p_wt_2D) + "," + std::to_string(sub_table_2D) + ")");
+      return "UNDEFINED";
+      break;
+    }
+    break;
+  case 25:
+    switch (sub_table_2D) {
+    case 0:
+      return "Harmonics13";
+      break;
+    case 1:
+      return "Harmonics14";
+      break;
+    case 2:
+      return "Harmonics15";
+      break;
+    case 3:
+      return "Harmonics16";
+      break;
+    default:
+      DBG("Tried to get name for illegal table combination (" +
+          std::to_string(p_wt_2D) + "," + std::to_string(sub_table_2D) + ")");
+      return "UNDEFINED";
+      break;
+    }
+    break;
+  case 26:
+    switch (sub_table_2D) {
+    case 0:
+      return "Harmonics5";
+      break;
+    case 1:
+      return "Harmonics6";
+      break;
+    case 2:
+      return "Harmonics7";
+      break;
+    case 3:
+      return "Harmonics8";
+      break;
+    default:
+      DBG("Tried to get name for illegal table combination (" +
+          std::to_string(p_wt_2D) + "," + std::to_string(sub_table_2D) + ")");
+      return "UNDEFINED";
+      break;
+    }
+    break;
+  case 27:
+    switch (sub_table_2D) {
+    case 0:
+      return "Harmonics1";
+      break;
+    case 1:
+      return "Harmonics2";
+      break;
+    case 2:
+      return "Harmonics3";
+      break;
+    case 3:
+      return "Harmonics4";
+      break;
+    default:
+      DBG("Tried to get name for illegal table combination (" +
+          std::to_string(p_wt_2D) + "," + std::to_string(sub_table_2D) + ")");
+      return "UNDEFINED";
+      break;
+    }
+    break;
+  case 28:
+    switch (sub_table_2D) {
+    case 0:
+      return "FatSawMutated1";
+      break;
+    case 1:
+      return "FatSawMutated2";
+      break;
+    case 2:
+      return "FatSawMutated3";
+      break;
+    case 3:
+      return "FatSawMutated5";
+      break;
+    default:
+      DBG("Tried to get name for illegal table combination (" +
+          std::to_string(p_wt_2D) + "," + std::to_string(sub_table_2D) + ")");
+      return "UNDEFINED";
+      break;
+    }
+    break;
+  case 29:
+    switch (sub_table_2D) {
+    case 0:
+      return "FatSawMutated5";
+      break;
+    case 1:
+      return "FatSawMutated6";
+      break;
+    case 2:
+      return "FatSawMutated7";
+      break;
+    case 3:
+      return "FatSawMutated8";
+      break;
+    default:
+      DBG("Tried to get name for illegal table combination (" +
+          std::to_string(p_wt_2D) + "," + std::to_string(sub_table_2D) + ")");
+      return "UNDEFINED";
+      break;
+    }
+    break;
+  case 30:
+    switch (sub_table_2D) {
+    case 0:
+      return "ChiptuneSquare50Mutated1";
+      break;
+    case 1:
+      return "ChiptuneSquare50Mutated2";
+      break;
+    case 2:
+      return "ChiptuneSquare50Mutated3";
+      break;
+    case 3:
+      return "ChiptuneSquare50Mutated4";
+      break;
+    default:
+      DBG("Tried to get name for illegal table combination (" +
+          std::to_string(p_wt_2D) + "," + std::to_string(sub_table_2D) + ")");
+      return "UNDEFINED";
+      break;
+    }
+    break;
+  case 31:
+    switch (sub_table_2D) {
+    case 0:
+      return "ChiptuneSquare50Mutated5";
+      break;
+    case 1:
+      return "ChiptuneSquare50Mutated6";
+      break;
+    case 2:
+      return "ChiptuneSquare50Mutated7";
+      break;
+    case 3:
+      return "ChiptuneSquare50Mutated8";
+      break;
+    default:
+      DBG("Tried to get name for illegal table combination (" +
+          std::to_string(p_wt_2D) + "," + std::to_string(sub_table_2D) + ")");
+      return "UNDEFINED";
+      break;
+    }
+    break;
+  case 32:
+    switch (sub_table_2D) {
+    case 0:
+      return "Perlin1";
+      break;
+    case 1:
+      return "Perlin2";
+      break;
+    case 2:
+      return "Perlin3";
+      break;
+    case 3:
+      return "Perlin4";
+      break;
+    default:
+      DBG("Tried to get name for illegal table combination (" +
+          std::to_string(p_wt_2D) + "," + std::to_string(sub_table_2D) + ")");
+      return "UNDEFINED";
+      break;
+    }
+    break;
+  case 33:
+    switch (sub_table_2D) {
+    case 0:
+      return "Perlin5";
+      break;
+    case 1:
+      return "Perlin6";
+      break;
+    case 2:
+      return "Perlin7";
+      break;
+    case 3:
+      return "Perlin8";
+      break;
+    default:
+      DBG("Tried to get name for illegal table combination (" +
+          std::to_string(p_wt_2D) + "," + std::to_string(sub_table_2D) + ")");
+      return "UNDEFINED";
+      break;
+    }
+    break;
+  case 34:
+    switch (sub_table_2D) {
+    case 0:
+      return "Perlin9";
+      break;
+    case 1:
+      return "Perlin10";
+      break;
+    case 2:
+      return "Perlin11";
+      break;
+    case 3:
+      return "Perlin12";
+      break;
+    default:
+      DBG("Tried to get name for illegal table combination (" +
+          std::to_string(p_wt_2D) + "," + std::to_string(sub_table_2D) + ")");
+      return "UNDEFINED";
+      break;
+    }
+    break;
+  default:
+    DBG("Tried to get name for illegal table combination (" +
+        std::to_string(p_wt_2D) + "," + std::to_string(sub_table_2D) + ")");
+    return "UNDEFINED";
+    break;
+  }
 }
 
 float WavetableOsc2D::doOscillate() {

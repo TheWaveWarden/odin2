@@ -922,6 +922,27 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
   SET_CTR_KEY(m_master);
   SET_CTR_KEY(m_modwheel);
 
+
+#ifdef WTGEN
+  m_spectrum_display.setTopLeftPosition(800-512-2*6, 400-2*6);
+  addAndMakeVisible(m_wavetable_display);
+  m_wavetable_display.setTopLeftPosition(800-512-2*6, 400-4*6-200);
+  addAndMakeVisible(m_spectrum_display);
+  m_wavetable_display.setAlwaysOnTop(true);
+  m_spectrum_display.setAlwaysOnTop(true);
+#endif
+
+
+
+
+
+
+
+
+
+
+
+
   setSize(800, 600);
 
   forceValueTreeOntoComponentsOnlyMainPanel();
