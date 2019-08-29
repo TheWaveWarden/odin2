@@ -61,7 +61,7 @@ private:
 
         //for moving out of the way:
     bool m_position_left = true;
-    float m_position_offset = 512;
+    float m_position_offset = 505;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (WavetableDisplay)
 };
