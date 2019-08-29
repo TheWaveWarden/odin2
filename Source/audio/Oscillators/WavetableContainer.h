@@ -18,6 +18,7 @@ public:
 
   virtual ~WavetableContainer();
 
+  void fixTooHighHarmonics(std::string p_filename);
   void fixWavetableCoefficientFile();
   void fixWavetableIndexInFiles();
   void fixWavetableIndexInSingleFile(std::string p_filename, int p_number);

@@ -475,9 +475,9 @@ void WavetableContainer::writeWavedrawTable(
       "/home/frot/odinvst/Source/audio//Oscillators/WavetableCoefficients.h",
       std::ofstream::out | std::ofstream::app);
 
-  container << "#include \"Wavetables/Coefficients/" + p_table_name +
-                   ".h\" //" + std::to_string(m_highest_loaded_table + 1) +
-                   "\n";
+  // container << "#include \"Wavetables/Coefficients/" + p_table_name +
+  //                 ".h\" //" + std::to_string(m_highest_loaded_table + 1) +
+  //                 "\n";
   container.close();
 
   DBG("CREATING TABLE /home/frot/odinvst/Source/audio/Oscillators/"
@@ -593,9 +593,9 @@ void WavetableContainer::writeChipdrawTable(
       "/home/frot/odinvst/Source/audio//Oscillators/WavetableCoefficients.h",
       std::ofstream::out | std::ofstream::app);
 
-  container << "#include \"Wavetables/Coefficients/" + p_table_name +
-                   ".h\" //" + std::to_string(m_highest_loaded_table + 1) +
-                   "\n";
+  // container << "#include \"Wavetables/Coefficients/" + p_table_name +
+  //                 ".h\" //" + std::to_string(m_highest_loaded_table + 1) +
+  //                 "\n";
   container.close();
 
   DBG("CREATING TABLE /home/frot/odinvst/Source/audio/Oscillators/"
@@ -685,9 +685,9 @@ void WavetableContainer::writeSpecdrawTable(
       "/home/frot/odinvst/Source/audio//Oscillators/WavetableCoefficients.h",
       std::ofstream::out | std::ofstream::app);
 
-  container << "#include \"Wavetables/Coefficients/" + p_table_name +
-                   ".h\" //" + std::to_string(m_highest_loaded_table + 1) +
-                   "\n";
+  // container << "#include \"Wavetables/Coefficients/" + p_table_name +
+  //                 ".h\" //" + std::to_string(m_highest_loaded_table + 1) +
+  //                 "\n";
   container.close();
 
   DBG("CREATING TABLE /home/frot/odinvst/Source/audio/Oscillators/"
@@ -1484,9 +1484,9 @@ void WavetableContainer::writeSampleTableToFile(std::string p_filename) {
       "/home/frot/odinvst/Source/audio//Oscillators/WavetableCoefficients.h",
       std::ofstream::out | std::ofstream::app);
 
-  container << "#include \"Wavetables/Coefficients/" + p_table_name +
-                   ".h\" //" + std::to_string(m_highest_loaded_table + 1) +
-                   "\n";
+  // container << "#include \"Wavetables/Coefficients/" + p_table_name +
+  //                 ".h\" //" + std::to_string(m_highest_loaded_table + 1) +
+  //                 "\n";
   container.close();
 
   DBG("CREATING TABLE /home/frot/odinvst/Source/audio/Oscillators/"
@@ -1618,9 +1618,9 @@ void WavetableContainer::mutateWavetable(std::string p_table_name,
         "/home/frot/odinvst/Source/audio//Oscillators/WavetableCoefficients.h",
         std::ofstream::out | std::ofstream::app);
 
-    container << "#include \"Wavetables/Coefficients/" + p_table_name +
-                     "Mutated" + std::to_string(mutation) + ".h\" //" +
-                     std::to_string(m_highest_loaded_table + 1) + "\n";
+    // container << "#include \"Wavetables/Coefficients/" + p_table_name +
+    //                 "Mutated" + std::to_string(mutation) + ".h\" //" +
+    //                 std::to_string(m_highest_loaded_table + 1) + "\n";
     container.close();
 
     DBG("CREATING TABLE /home/frot/odinvst/Source/audio/Oscillators/"
@@ -1835,9 +1835,9 @@ void WavetableContainer::writePerlinTableToFile(std ::string p_table_name,
       "/home/frot/odinvst/Source/audio//Oscillators/WavetableCoefficients.h",
       std::ofstream::out | std::ofstream::app);
 
-  container << "#include \"Wavetables/Coefficients/" + p_table_name +
-                   ".h\" //" + std::to_string(m_highest_loaded_table + 1) +
-                   "\n";
+  // container << "#include \"Wavetables/Coefficients/" + p_table_name +
+  //                 ".h\" //" + std::to_string(m_highest_loaded_table + 1) +
+  //                 "\n";
   container.close();
 
   DBG("CREATING PERLIN TABLE /home/frot/odinvst/Source/audio/Oscillators/"
@@ -1972,16 +1972,17 @@ std::string giveSectionAfterDelimiter(std::string const &str,
   return out;
 }
 
-std::string makeFloatCorrectOutput(float p_input){
+std::string makeFloatCorrectOutput(float p_input) {
   std::string out = std::to_string(p_input);
-  if(out.find(".") == std::string::npos){
+  if (out.find(".") == std::string::npos) {
     out = out + ".";
   }
   out = out + "f;";
   return out;
 }
 
-void WavetableContainer::eliminatePhaseInWavetableCoefficients(  std::string p_filename) {
+void WavetableContainer::eliminatePhaseInWavetableCoefficients(
+    std::string p_filename) {
 
   DBG("ELIMINATING PHASE IN WT FILE " + p_filename);
   // see whether files open
@@ -2139,43 +2140,79 @@ void WavetableContainer::eliminatePhaseInWavetableCoefficients(  std::string p_f
                         "Wavetables/Coefficients/PhaseEliminated/" +
                         p_filename + ".h");
 
-
-  //write the first few lines which are not coefficients
+  // write the first few lines which are not coefficients
   std::string line;
   while (getline(filein, line)) {
-    if (line.find("coeffs[WT_NR]") == std::string::npos && line.find("undef") == std::string::npos) {
+    if (line.find("coeffs[WT_NR]") == std::string::npos &&
+        line.find("undef") == std::string::npos) {
       line += "\n";
       fileout << line;
     }
   }
 
-  //write the scalar
-  fileout << "\n\nm_fourier_coeffs[WT_NR][1][0] = " + makeFloatCorrectOutput(scalar) + " // scalar\n\n";
+  // write the scalar
+  fileout << "\n\nm_fourier_coeffs[WT_NR][1][0] = " +
+                 makeFloatCorrectOutput(scalar) + " // scalar\n\n";
 
-  //write the actual table to file
-  for(int i = 1; i < NUMBER_OF_HARMONICS; ++i){
-    
-    //calc new coeff. 
-    //see https://de.wikipedia.org/wiki/Formelsammlung_Trigonometrie
-    //section "Sinusoid und Linearkombination mit gleicher Phase"
-    //note: ommiting sgn(x)
+  // write the actual table to file
+  for (int i = 1; i < NUMBER_OF_HARMONICS; ++i) {
 
-    float new_coefficient = sqrt((sin_coeffs[i])*(sin_coeffs[i])+(cos_coeffs[i])*(cos_coeffs[i]));
+    // calc new coeff.
+    // see https://de.wikipedia.org/wiki/Formelsammlung_Trigonometrie
+    // section "Sinusoid und Linearkombination mit gleicher Phase"
+    // note: ommiting sgn(x)
 
-    fileout << "m_fourier_coeffs[WT_NR][0][" + std::to_string(i) + "] = " + makeFloatCorrectOutput(new_coefficient) + "\n";
+    float new_coefficient = sqrt((sin_coeffs[i]) * (sin_coeffs[i]) +
+                                 (cos_coeffs[i]) * (cos_coeffs[i]));
+
+    fileout << "m_fourier_coeffs[WT_NR][0][" + std::to_string(i) +
+                   "] = " + makeFloatCorrectOutput(new_coefficient) + "\n";
   }
 
-  //write undef 
+  // write undef
   fileout << "\n\n#undef WT_NR";
-
 }
 
-
-int WavetableContainer::getWavetableIndexFromName(std::string p_name){
+int WavetableContainer::getWavetableIndexFromName(std::string p_name) {
   auto it = m_name_index_map.find(p_name);
   if (it != m_name_index_map.end()) {
     return it->second;
   }
   DBG("getWavetableIndexFromName(): COULDNT FIND WT WITH NAME " + p_name);
   return 0;
+}
+
+bool containsTooHighHarmonics(std::string p_input){
+  //return true if it contains "[500]" for example
+  for(int i = 257; i < 802; ++i){
+    if(p_input.find("[" + std::to_string(i) + "]") != std::string::npos){
+      return true;
+    }
+  }
+  return false;
+}
+
+void WavetableContainer::fixTooHighHarmonics(std::string p_filename) {
+  DBG("REMOVING TOO HIGH HARMONICS IN " + p_filename);
+
+  std::ifstream filein(
+      "/home/frot/odinvst/Source/audio/Oscillators/Wavetables/Coefficients/" + p_filename +
+      ".h"); // File to read from
+  std::ofstream fileout(
+      "/home/frot/odinvst/Source/audio/Oscillators/Wavetables/Coefficients/TEMP/" +
+      p_filename + ".h");
+
+  if (!filein || !fileout) {
+    DBG("Error opening files!");
+    return;
+  }
+
+  std::string line;
+  while (getline(filein, line)) {
+    if (!containsTooHighHarmonics(line)) {
+      fileout << line;
+    }
+  }
+
+  fileout.close();
 }

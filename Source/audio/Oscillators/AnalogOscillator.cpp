@@ -14,7 +14,7 @@ void AnalogOscillator::loadWavetables() {
   setWavetablePointer(0, WavetableContainer::getInstance().getWavetablePointers(
                              "FatSaw")); // TODO FATSAW
   setWavetablePointer(
-      1, WavetableContainer::getInstance().getWavetablePointers("Saw"));
+      1, WavetableContainer::getInstance().getWavetablePointers("FatSaw"));
   setWavetablePointer(
       2, WavetableContainer::getInstance().getWavetablePointers("Triangle"));
   setWavetablePointer(

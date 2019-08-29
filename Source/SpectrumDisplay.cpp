@@ -23,7 +23,7 @@ SpectrumDisplay::~SpectrumDisplay() {}
 float fabs(float p_input) { return p_input > 0 ? p_input : -p_input; }
 
 void SpectrumDisplay::paint(Graphics &g) {
-
+#ifdef WTGEN
   g.fillAll(getLookAndFeel().findColour(
       ResizableWindow::backgroundColourId)); // clear the background
 
@@ -45,7 +45,7 @@ void SpectrumDisplay::paint(Graphics &g) {
       WavetableContainer::getInstance().m_fourier_coeffs[m_lower_wt][1][0];
   float *spectrum_right =
       WavetableContainer::getInstance().m_fourier_coeffs[m_higher_wt][0];
-    float scale_right =
+  float scale_right =
       WavetableContainer::getInstance().m_fourier_coeffs[m_higher_wt][1][0];
 
   float inverse_polation = 1.f - m_interpolation;
@@ -55,7 +55,7 @@ void SpectrumDisplay::paint(Graphics &g) {
   for (int i = 1; i < WTDISPLAY_SIZE_X / SPECTRUM_LINE_WIDTH; ++i) {
 
     float draw_value = spectrum_left[i] * scale_left * inverse_polation +
-                       spectrum_right[i] *scale_right * m_interpolation;
+                       spectrum_right[i] * scale_right * m_interpolation;
 
     draw_value = fabs(draw_value);
     draw_value = pow(draw_value, 0.5);
@@ -71,4 +71,5 @@ void SpectrumDisplay::paint(Graphics &g) {
                WTDISPLAY_INLAY + (i)*SPECTRUM_LINE_WIDTH,
                WTDISPLAY_INLAY + height, SPECTRUM_LINE_WIDTH);
   }
+#endif
 }

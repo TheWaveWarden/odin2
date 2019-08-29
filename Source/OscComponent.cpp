@@ -160,9 +160,13 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_reset.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId,
                     juce::Colour());
 
-  // TODO REMOVE!!!
-  //m_reset.onClick = [&]() { writeChipdrawTableToFile(); };
-
+#ifdef WTGEN
+  m_reset.onClick = [&]() { 
+    writeChipdrawTableToFile(); 
+    writeWavedrawTableToFile(); 
+    writeSpecdrawTableToFile();   
+  };
+#endif
   m_oct.setStrip(
       ImageCache::getFromMemory(BinaryData::black_knob_small_png,
                                 BinaryData::black_knob_small_pngSize),
@@ -1773,20 +1777,22 @@ void OscComponent::createSpecdrawTables() {
   // }
 }
 
-// void OscComponent::writeWavedrawTableToFile() {
-//   WavetableContainer::getInstance().writeWavedrawTable(
-//       m_wavedraw.getDrawnTable(), REMOVE_EDITOR.getText().toStdString());
-// }
+#ifdef WTGEN
+ void OscComponent::writeWavedrawTableToFile() {
+   WavetableContainer::getInstance().writeWavedrawTable(
+       m_wavedraw.getDrawnTable(), "WAVEDRAW_TABLE");
+ }
 
-// void OscComponent::writeSpecdrawTableToFile() {
-//   WavetableContainer::getInstance().writeSpecdrawTable(
-//       m_specdraw.getDrawnTable(), REMOVE_EDITOR.getText().toStdString());
-// }
+ void OscComponent::writeSpecdrawTableToFile() {
+   WavetableContainer::getInstance().writeSpecdrawTable(
+       m_specdraw.getDrawnTable(), "SPECDRAW_TABLE");
+ }
 
-//void OscComponent::writeChipdrawTableToFile() {
-//  WavetableContainer::getInstance().writeChipdrawTable(
-//      m_chipdraw.getDrawnTable(), REMOVE_EDITOR.getText().toStdString());
-//}
+void OscComponent::writeChipdrawTableToFile() {
+  WavetableContainer::getInstance().writeChipdrawTable(
+      m_chipdraw.getDrawnTable(), "CHIPDRAW_TABLE");
+}
+#endif
 
 void OscComponent::forceValueTreeOntoComponents(ValueTree p_tree, int p_index,
                                                 bool p_create_wavetables) {

@@ -57,7 +57,12 @@ private:
   juce::Colour m_color = juce::Colours::black;
   juce::Colour m_draw_color = juce::Colours::black;
 
+#ifndef WTGEN
   float m_draw_values[CHIPDRAW_STEPS_X] = {0.875f, 0.875f, 0.875f, 0.875f, 0.875f, 0.875f, 0.875f, 0.875f, -0.875f, -0.875f, -0.875f, -0.875f, -0.875f, -0.875f, -0.875f, -0.875f};
+#endif
+#ifdef WTGEN
+  float m_draw_values[CHIPDRAW_STEPS_X] = {0};
+#endif
 
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(ChipdrawWindow)
 };

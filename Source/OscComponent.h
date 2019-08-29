@@ -184,10 +184,11 @@ public:
   void showWavetableComponents();
   void showMultiComponents();
 
-
-  //void writeWavedrawTableToFile();
-  //void writeChipdrawTableToFile();
-  //void writeSpecdrawTableToFile();
+#ifdef WTGEN
+  void writeWavedrawTableToFile();
+  void writeChipdrawTableToFile();
+  void writeSpecdrawTableToFile();
+#endif
 
   void createWavedrawTables();
   void createChipdrawTables();
@@ -229,9 +230,11 @@ protected:
   OdinButton m_noise;
   OdinButton m_chipdraw_convert;
   OdinButton m_wavedraw_convert;
+
   //OdinButton m_wavedraw_convert_REMOVE;
   //OdinButton m_specdraw_convert_REMOVE;
   //OdinButton m_chipdraw_convert_REMOVE;
+  
   OdinButton m_specdraw_convert;
   DrawableButton m_LED_saw;
   DrawableButton m_LED_pulse;
