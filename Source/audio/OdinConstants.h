@@ -11,7 +11,7 @@
 //#define CHIPDRAW_LENGTH 32 //how many samples we draw in the chipdraw window
 //#define WAVEDRAW_LENGTH 256 //how many samples we draw in the wavedraw window
 //#define SPECDRAW_LENGTH 100
-#define NUMBER_OF_HARMONICS 801 //maximum harmonics used
+#define NUMBER_OF_HARMONICS 256 //maximum harmonics used (Wavetable length is 512 -> nyquist -> 256)
 #define WAVETABLE_LENGTH 512 //how long the actual wavetable is
 #define MAX_EXPECTED_SAMPLE_RATE 192000 //use this for calculation of Delaylength
 #define MAX_DELAY_TIME 4//max delay time at max samplerate in seconds

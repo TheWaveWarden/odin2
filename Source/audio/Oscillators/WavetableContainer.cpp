@@ -2184,7 +2184,7 @@ int WavetableContainer::getWavetableIndexFromName(std::string p_name) {
 
 bool containsTooHighHarmonics(std::string p_input){
   //return true if it contains "[500]" for example
-  for(int i = 257; i < 802; ++i){
+  for(int i = 256; i < 802; ++i){
     if(p_input.find("[" + std::to_string(i) + "]") != std::string::npos){
       return true;
     }
@@ -2210,7 +2210,7 @@ void WavetableContainer::fixTooHighHarmonics(std::string p_filename) {
   std::string line;
   while (getline(filein, line)) {
     if (!containsTooHighHarmonics(line)) {
-      fileout << line;
+      fileout << line << "\n";
     }
   }
 
