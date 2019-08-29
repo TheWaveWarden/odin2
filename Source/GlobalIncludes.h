@@ -82,8 +82,8 @@
 #define BUTTON_REPEAT_DELAY 200
   
 #define WAVEDRAW_STEPS_X 193
-#define SPECDRAW_STEPS_X                                                       \
-  193 //(DISPLAY_WIDTH_SPEC - DRAW_INLAY_LEFT_SPEC - DRAW_INLAY_RIGHT_SPEC)
+//#define SPECDRAW_STEPS_X 193 //(DISPLAY_WIDTH_SPEC - DRAW_INLAY_LEFT_SPEC - DRAW_INLAY_RIGHT_SPEC)
+#define SPECDRAW_STEPS_X 49//just enough so it fits the display
 #define CHIPDRAW_STEPS_X 32
 
 #define MODMATRIX_ROWS 9

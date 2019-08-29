@@ -37,10 +37,13 @@ void SpecdrawDisplay::paint(Graphics &g) {
   float height =
       (float)(getHeight() - DRAW_INLAY_UP_SPEC - DRAW_INLAY_DOWN_SPEC);
 
+  float width = SPECDRAW_THICCNESS;
+
   for (int i = 0; i < SPECDRAW_STEPS_X; ++i) {
-    g.drawLine(DRAW_INLAY_LEFT_SPEC + i,
+    g.drawLine(DRAW_INLAY_LEFT_SPEC + i * width,
                getHeight() - DRAW_INLAY_DOWN_SPEC - m_draw_values[i] * height,
-               DRAW_INLAY_LEFT_SPEC + i, getHeight() - DRAW_INLAY_DOWN_SPEC);
+               DRAW_INLAY_LEFT_SPEC + i * width,
+               getHeight() - DRAW_INLAY_DOWN_SPEC, 2.8f);
   }
 
   g.drawImageAt(m_glaspanel, 0, 0);
@@ -57,25 +60,21 @@ int min_int(int a, int b) { return a > b ? b : a; }
 
 void SpecdrawDisplay::mouseInteraction() {
   juce::Point<int> mouse_pos = getMouseXYRelative();
-  int x = mouse_pos.getX();
+  int x = mouse_pos.getX() / SPECDRAW_THICCNESS;
   float y = mouse_pos.getY();
 
-  // if (x > DRAW_INLAY_LEFT_SPEC && x < getWidth() - DRAW_INLAY_RIGHT_SPEC) {
   y = y < DRAW_INLAY_UP_SPEC ? DRAW_INLAY_UP_SPEC : y;
   y = y > getHeight() - DRAW_INLAY_DOWN_SPEC
           ? getHeight() - DRAW_INLAY_DOWN_SPEC
           : y;
-  x = x > DRAW_INLAY_LEFT_SPEC ? x : DRAW_INLAY_LEFT_SPEC + 1;
-  x = x < getWidth() - DRAW_INLAY_RIGHT_SPEC
-          ? x
-          : getWidth() - DRAW_INLAY_RIGHT_SPEC - 1;
-  x -= DRAW_INLAY_LEFT_SPEC + 1;
+  x = x < 0 ? 0 : x;
+  x = x > SPECDRAW_STEPS_X ? SPECDRAW_STEPS_X - 1 : x;
 
   float float_y = (getHeight() - DRAW_INLAY_DOWN_SPEC - y) /
                   (getHeight() - DRAW_INLAY_UP_SPEC - DRAW_INLAY_DOWN_SPEC);
-  // float_y = (round(float_y * SPECDRAW_STEPS_Y))/SPECDRAW_STEPS_Y;
   if (m_mouse_was_down) {
 
+    DBG(std::to_string(x) + ", " + std::to_string(m_last_x_value));
     int max_x = max_int(x, m_last_x_value);
     int min_x = min_int(x, m_last_x_value);
     int range_x = max_x - min_x;
@@ -86,9 +85,6 @@ void SpecdrawDisplay::mouseInteraction() {
 
     if (range_x > 0) {
       for (int i = min_x; i <= max_x; ++i) {
-        // m_draw_values[i] = float_y;//left_y_value  + (right_y_value -
-        // left_y_value)*(float)(i - min_int(x, m_last_x_value))/(max_int(x,
-        // m_last_x_value)- min_int(x, m_last_x_value));
         m_draw_values[i] =
             min_y + (range_y) * (float)(i - min_x) / (float)range_x;
       }

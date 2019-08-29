@@ -15,11 +15,11 @@
 
 #define INLAY_DEFAULT_SPECDRAW 2
 
-#define DRAW_INLAY_LEFT_SPEC 6
+#define DRAW_INLAY_LEFT_SPEC 7
 #define DRAW_INLAY_RIGHT_SPEC 6
-#define DRAW_INLAY_UP_SPEC 5
-#define DRAW_INLAY_DOWN_SPEC 7
-#define SPECDRAW_THICCNESS 2
+#define DRAW_INLAY_UP_SPEC 7
+#define DRAW_INLAY_DOWN_SPEC 6
+#define SPECDRAW_THICCNESS 4
 #define DISPLAY_WIDTH_SPEC 205
 //==============================================================================
 /*

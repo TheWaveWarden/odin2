@@ -69,7 +69,7 @@ void SpectrumDisplay::paint(Graphics &g) {
     g.drawLine(WTDISPLAY_INLAY + (i)*SPECTRUM_LINE_WIDTH,
                WTDISPLAY_INLAY + height - draw_value * height,
                WTDISPLAY_INLAY + (i)*SPECTRUM_LINE_WIDTH,
-               WTDISPLAY_INLAY + height, SPECTRUM_LINE_WIDTH);
+               WTDISPLAY_INLAY + height, SPECTRUM_LINE_WIDTH-0.2);
   }
 #endif
 }

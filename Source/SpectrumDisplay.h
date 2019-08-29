@@ -39,11 +39,32 @@ public:
       m_interpolation = p_interpol;
       repaint();
     }
+
+    void togglePosition(){
+      if(m_position_left){
+        m_position_left = false;
+        setTopLeftPosition(getX() + m_position_offset, getY());
+      } else {
+        m_position_left = true;
+        setTopLeftPosition(getX() - m_position_offset, getY());
+      }
+    }
+
+    void mouseUp(const MouseEvent& e) override{
+      togglePosition();
+      Component::mouseUp(e);
+    }
+
+
     
 private:
     int m_lower_wt = 5; //saw
     int m_higher_wt = 2; //ChipSquare50
     float m_interpolation = 0;
+
+    //for moving out of the way:
+    bool m_position_left = true;
+    float m_position_offset = 512;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SpectrumDisplay)
 };
