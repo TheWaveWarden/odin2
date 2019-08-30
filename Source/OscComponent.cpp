@@ -790,10 +790,10 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   ADD_WAVETABLE_SUB_MENU("Additive B", 320);
   ADD_WAVETABLE_SUB_MENU("Additive C", 330);
   ADD_WAVETABLE_SUB_MENU("Additive D", 340);
-  ADD_WAVETABLE_SUB_MENU("Harmonics A", 350);
-  ADD_WAVETABLE_SUB_MENU("Harmonics B", 360);
-  ADD_WAVETABLE_SUB_MENU("Harmonics C", 370);
-  ADD_WAVETABLE_SUB_MENU("Harmonics D", 380);
+  ADD_WAVETABLE_SUB_MENU("Overtones A", 350);
+  ADD_WAVETABLE_SUB_MENU("Overtones B", 360);
+  ADD_WAVETABLE_SUB_MENU("Harmonics A", 370);
+  ADD_WAVETABLE_SUB_MENU("Harmonics B", 380);
   ADD_WAVETABLE_SUB_MENU("MutatedSaw A", 390);
   ADD_WAVETABLE_SUB_MENU("MutatedSaw B", 400);
   ADD_WAVETABLE_SUB_MENU("MutatedSquare A", 410);
@@ -876,10 +876,10 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   ADD_MAP_ENTRY("Additive B", 320, m_carrier_waveselector)
   ADD_MAP_ENTRY("Additive C", 330, m_carrier_waveselector)
   ADD_MAP_ENTRY("Additive D", 340, m_carrier_waveselector)
-  ADD_MAP_ENTRY("Harmonics A", 350, m_carrier_waveselector)
-  ADD_MAP_ENTRY("Harmonics B", 360, m_carrier_waveselector)
-  ADD_MAP_ENTRY("Harmonics C", 370, m_carrier_waveselector)
-  ADD_MAP_ENTRY("Harmonics D", 380, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Overtones A", 350, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Overtones B", 360, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Harmonics A", 370, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Harmonics B", 380, m_carrier_waveselector)
   ADD_MAP_ENTRY("MutatedSaw A", 390, m_carrier_waveselector)
   ADD_MAP_ENTRY("MutatedSaw B", 400, m_carrier_waveselector)
   ADD_MAP_ENTRY("MutatedSquare A", 410, m_carrier_waveselector)
@@ -950,10 +950,10 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   ADD_MAP_ENTRY("Additive B", 320, m_modulator_waveselector)
   ADD_MAP_ENTRY("Additive C", 330, m_modulator_waveselector)
   ADD_MAP_ENTRY("Additive D", 340, m_modulator_waveselector)
-  ADD_MAP_ENTRY("Harmonics A", 350, m_modulator_waveselector)
-  ADD_MAP_ENTRY("Harmonics B", 360, m_modulator_waveselector)
-  ADD_MAP_ENTRY("Harmonics C", 370, m_modulator_waveselector)
-  ADD_MAP_ENTRY("Harmonics D", 380, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Overtones A", 350, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Overtones B", 360, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Harmonics A", 370, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Harmonics B", 380, m_modulator_waveselector)
   ADD_MAP_ENTRY("MutatedSaw A", 390, m_modulator_waveselector)
   ADD_MAP_ENTRY("MutatedSaw B", 400, m_modulator_waveselector)
   ADD_MAP_ENTRY("MutatedSquare A", 410, m_modulator_waveselector)
@@ -1121,10 +1121,10 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_wavetable_waveselector.addWave(22, "Additive B");
   m_wavetable_waveselector.addWave(23, "Additive C");
   m_wavetable_waveselector.addWave(24, "Additive D");
-  m_wavetable_waveselector.addWave(25, "Harmonics A");
-  m_wavetable_waveselector.addWave(26, "Harmonics B");
-  m_wavetable_waveselector.addWave(27, "Harmonics C");
-  m_wavetable_waveselector.addWave(28, "Harmonics D");
+  m_wavetable_waveselector.addWave(25, "Overtones A");
+  m_wavetable_waveselector.addWave(26, "Overtones B");
+  m_wavetable_waveselector.addWave(27, "Harmonics A");
+  m_wavetable_waveselector.addWave(28, "Harmonics B");
   m_wavetable_waveselector.addWave(29, "MutatedSaw A");
   m_wavetable_waveselector.addWave(30, "MutatedSaw B");
   m_wavetable_waveselector.addWave(31, "MutatedSquare A");
