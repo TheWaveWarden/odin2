@@ -39,6 +39,8 @@
 #define DRIFT_POS_Y 86
 #define RESET_POS_X 214
 #define RESET_POS_Y 70
+#define OSC_SYNC_POS_X RESET_POS_X
+#define OSC_SYNC_POS_Y 92
 #define LED_POS_X (82 - 29)
 #define LED_POS_Y (105 - 29)
 #define STEP_1_POS_X 23

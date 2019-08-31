@@ -126,8 +126,9 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   // Rectangle<int> area_vol(BLACK_KNOB_SMALL_SIZE_X, BLACK_KNOB_SMALL_SIZE_Y);
   // area_vol.setPosition(VOL_POS_X - BLACK_KNOB_SMALL_OFFSET_X,
   //                      VOL_POS_Y - BLACK_KNOB_SMALL_OFFSET_Y);
-  m_vol.setBounds(VOL_POS_X- BLACK_KNOB_SMALL_OFFSET_X, VOL_POS_Y- BLACK_KNOB_SMALL_OFFSET_Y, BLACK_KNOB_SMALL_SIZE_X,
-                  BLACK_KNOB_SMALL_SIZE_Y);
+  m_vol.setBounds(VOL_POS_X - BLACK_KNOB_SMALL_OFFSET_X,
+                  VOL_POS_Y - BLACK_KNOB_SMALL_OFFSET_Y,
+                  BLACK_KNOB_SMALL_SIZE_X, BLACK_KNOB_SMALL_SIZE_Y);
 
   juce::Image reset_1 = ImageCache::getFromMemory(
       BinaryData::buttonreset_osc_1_png, BinaryData::buttonreset_osc_1_pngSize);
@@ -162,12 +163,53 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
                     juce::Colour());
 
 #ifdef WTGEN
-  m_reset.onClick = [&]() { 
-    writeChipdrawTableToFile(); 
-    writeWavedrawTableToFile(); 
-    writeSpecdrawTableToFile();   
+  m_reset.onClick = [&]() {
+    writeChipdrawTableToFile();
+    writeWavedrawTableToFile();
+    writeSpecdrawTableToFile();
   };
 #endif
+
+  // sync button only for osc 2 & 3
+  if (std::stoi(m_osc_number) != 1) {
+
+    juce::Image sync_1 =
+        ImageCache::getFromMemory(BinaryData::buttonsync_osc_1_png,
+                                  BinaryData::buttonsync_osc_1_pngSize);
+    juce::Image sync_2 =
+        ImageCache::getFromMemory(BinaryData::buttonsync_osc_2_png,
+                                  BinaryData::buttonsync_osc_2_pngSize);
+    juce::Image sync_3 =
+        ImageCache::getFromMemory(BinaryData::buttonsync_osc_3_png,
+                                  BinaryData::buttonsync_osc_3_pngSize);
+    juce::Image sync_4 =
+        ImageCache::getFromMemory(BinaryData::buttonsync_osc_4_png,
+                                  BinaryData::buttonsync_osc_4_pngSize);
+
+    juce::DrawableImage sync_draw1;
+    juce::DrawableImage sync_draw2;
+    juce::DrawableImage sync_draw3;
+    juce::DrawableImage sync_draw4;
+
+    sync_draw1.setImage(sync_1);
+    sync_draw2.setImage(sync_2);
+    sync_draw3.setImage(sync_3);
+    sync_draw4.setImage(sync_4);
+
+    m_sync.setImages(&sync_draw2, &sync_draw2, &sync_draw1, &sync_draw1,
+                      &sync_draw4, &sync_draw4, &sync_draw3, &sync_draw3);
+    m_sync.setClickingTogglesState(true);
+    m_sync.setBounds(OSC_SYNC_POS_X, OSC_SYNC_POS_Y, sync_1.getWidth(),
+                      sync_1.getHeight());
+    m_sync.setTooltip(
+        "Syncs this osc to osc1, so it will start over when osc1 completes a cycle.");
+    addChildComponent(m_sync);
+    m_sync.setAlwaysOnTop(true);
+    m_sync.setTriggeredOnMouseDown(true);
+    m_sync.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId,
+                      juce::Colour());
+  }
+
   m_oct.setStrip(
       ImageCache::getFromMemory(BinaryData::black_knob_small_png,
                                 BinaryData::black_knob_small_pngSize),
@@ -177,8 +219,9 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   // Rectangle<int> area_oct(BLACK_KNOB_SMALL_SIZE_X, BLACK_KNOB_SMALL_SIZE_Y);
   // area_oct.setPosition(OCT_POS_X - BLACK_KNOB_SMALL_OFFSET_X,
   //                      PITCH_POS_Y - BLACK_KNOB_SMALL_OFFSET_Y);
-  m_oct.setBounds(OCT_POS_X- BLACK_KNOB_SMALL_OFFSET_X, PITCH_POS_Y- BLACK_KNOB_SMALL_OFFSET_Y, BLACK_KNOB_SMALL_SIZE_X,
-                  BLACK_KNOB_SMALL_SIZE_Y);
+  m_oct.setBounds(OCT_POS_X - BLACK_KNOB_SMALL_OFFSET_X,
+                  PITCH_POS_Y - BLACK_KNOB_SMALL_OFFSET_Y,
+                  BLACK_KNOB_SMALL_SIZE_X, BLACK_KNOB_SMALL_SIZE_Y);
   m_oct.setRange(-OCT_RANGE_MAX, OCT_RANGE_MAX);
   m_oct.setNumDecimalPlacesToDisplay(0);
   m_oct.setKnobTooltip("The pitch of\nthe oscillator in octaves");
@@ -208,16 +251,18 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   // Rectangle<int> area_semi(BLACK_KNOB_SMALL_SIZE_X, BLACK_KNOB_SMALL_SIZE_Y);
   // area_semi.setPosition(SEMI_POS_X - BLACK_KNOB_SMALL_OFFSET_X,
   //                       PITCH_POS_Y - BLACK_KNOB_SMALL_OFFSET_Y);
-  m_semi.setBounds(SEMI_POS_X- BLACK_KNOB_SMALL_OFFSET_X, PITCH_POS_Y- BLACK_KNOB_SMALL_OFFSET_Y, BLACK_KNOB_SMALL_SIZE_X,
-                   BLACK_KNOB_SMALL_SIZE_Y);
+  m_semi.setBounds(SEMI_POS_X - BLACK_KNOB_SMALL_OFFSET_X,
+                   PITCH_POS_Y - BLACK_KNOB_SMALL_OFFSET_Y,
+                   BLACK_KNOB_SMALL_SIZE_X, BLACK_KNOB_SMALL_SIZE_Y);
 
   Rectangle<int> area_fine(BLACK_KNOB_SMALL_SIZE_X, BLACK_KNOB_SMALL_SIZE_Y);
   // area_fine.setPosition(FINE_POS_X - BLACK_KNOB_SMALL_OFFSET_X,
   //                       PITCH_POS_Y - BLACK_KNOB_SMALL_OFFSET_Y);
   // m_fine.setRange(-FINE_RANGE_MAX, FINE_RANGE_MAX);
   // m_fine.setNumDecimalPlacesToDisplay(1);
-  m_fine.setBounds(FINE_POS_X- BLACK_KNOB_SMALL_OFFSET_X, PITCH_POS_Y- BLACK_KNOB_SMALL_OFFSET_Y, BLACK_KNOB_SMALL_SIZE_X,
-                   BLACK_KNOB_SMALL_SIZE_Y);
+  m_fine.setBounds(FINE_POS_X - BLACK_KNOB_SMALL_OFFSET_X,
+                   PITCH_POS_Y - BLACK_KNOB_SMALL_OFFSET_Y,
+                   BLACK_KNOB_SMALL_SIZE_X, BLACK_KNOB_SMALL_SIZE_Y);
 
   juce::Image LED_1 = ImageCache::getFromMemory(BinaryData::LED_1_png,
                                                 BinaryData::LED_1_pngSize);
@@ -1381,8 +1426,8 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 
   setSize(247, 145);
 
-  //REMOVE_EDITOR.setBounds(0, 10, 80, 25);
-  //addAndMakeVisible(REMOVE_EDITOR);
+  // REMOVE_EDITOR.setBounds(0, 10, 80, 25);
+  // addAndMakeVisible(REMOVE_EDITOR);
 }
 
 OscComponent::~OscComponent() {
@@ -1420,13 +1465,16 @@ void OscComponent::resized() {
   // Rectangle<int> area_pw(BLACK_KNOB_SMALL_SIZE_X, BLACK_KNOB_SMALL_SIZE_Y);
   // area_pw.setPosition(PW_POS_X - BLACK_KNOB_SMALL_OFFSET_X,
   //                     PW_POS_Y - BLACK_KNOB_SMALL_OFFSET_Y);
-  m_pw.setBounds(PW_POS_X- BLACK_KNOB_SMALL_OFFSET_X, PW_POS_Y- BLACK_KNOB_SMALL_OFFSET_Y, BLACK_KNOB_SMALL_SIZE_X,
+  m_pw.setBounds(PW_POS_X - BLACK_KNOB_SMALL_OFFSET_X,
+                 PW_POS_Y - BLACK_KNOB_SMALL_OFFSET_Y, BLACK_KNOB_SMALL_SIZE_X,
                  BLACK_KNOB_SMALL_SIZE_Y);
 
   // Rectangle<int> area_drift(BLACK_KNOB_BIG_SIZE_X, BLACK_KNOB_BIG_SIZE_Y);
   // area_drift.setPosition(DRIFT_POS_X - BLACK_KNOB_BIG_OFFSET_X,
   //                        DRIFT_POS_Y - BLACK_KNOB_BIG_OFFSET_Y);
-  m_drift.setBounds(DRIFT_POS_X- BLACK_KNOB_BIG_OFFSET_X,DRIFT_POS_Y- BLACK_KNOB_BIG_OFFSET_Y, BLACK_KNOB_BIG_SIZE_X, BLACK_KNOB_BIG_SIZE_Y);
+  m_drift.setBounds(DRIFT_POS_X - BLACK_KNOB_BIG_OFFSET_X,
+                    DRIFT_POS_Y - BLACK_KNOB_BIG_OFFSET_Y,
+                    BLACK_KNOB_BIG_SIZE_X, BLACK_KNOB_BIG_SIZE_Y);
 }
 
 void OscComponent::setOscType(int p_osc_type) {
@@ -1595,8 +1643,10 @@ void OscComponent::hideAllComponents() {
   m_spread.setVisible(false);
   m_detune.setVisible(false);
   m_wavetable_waveselector.setVisible(false);
+  m_sync.setVisible(false);
 }
 void OscComponent::showVolComponent() { m_vol.setVisible(true); }
+
 void OscComponent::showPitchComponents() {
   m_oct.setVisible(true);
   m_semi.setVisible(true);
@@ -1613,6 +1663,7 @@ void OscComponent::showAnalogComponents() {
   m_LED_pulse.setVisible(true);
   m_LED_triangle.setVisible(true);
   m_LED_sine.setVisible(true);
+  m_sync.setVisible(true);
 }
 
 void OscComponent::showChiptuneComponents() {
@@ -1626,6 +1677,7 @@ void OscComponent::showChiptuneComponents() {
   m_step_button.setVisible(true);
   m_noise.setVisible(true);
   m_chiptune_waveselector.setVisible(true);
+  m_sync.setVisible(true);
 }
 
 void OscComponent::showFMComponents() {
@@ -1664,6 +1716,7 @@ void OscComponent::showChipdrawComponents() {
   showPitchComponents();
   m_chipdraw.setVisible(true);
   m_chipdraw_convert.setVisible(true);
+  m_sync.setVisible(true);
 }
 
 void OscComponent::showWavedrawComponents() {
@@ -1671,6 +1724,7 @@ void OscComponent::showWavedrawComponents() {
   showPitchComponents();
   m_wavedraw.setVisible(true);
   m_wavedraw_convert.setVisible(true);
+  m_sync.setVisible(true);
 }
 
 void OscComponent::showSpecdrawComponents() {
@@ -1678,6 +1732,7 @@ void OscComponent::showSpecdrawComponents() {
   showPitchComponents();
   m_specdraw.setVisible(true);
   m_specdraw_convert.setVisible(true);
+  m_sync.setVisible(true);
 }
 
 void OscComponent::showVectorComponents() {
@@ -1690,6 +1745,7 @@ void OscComponent::showVectorComponents() {
   m_vec_d.setVisible(true);
   m_xy_x.setVisible(true);
   m_xy_y.setVisible(true);
+  m_sync.setVisible(true);
 }
 
 void OscComponent::showWavetableComponents() {
@@ -1700,6 +1756,7 @@ void OscComponent::showWavetableComponents() {
                                               WAVETABLE_WAVE_Y);
   m_position.setVisible(true);
   m_wavetable_waveselector.setVisible(true);
+  m_sync.setVisible(true);
 }
 
 void OscComponent::showMultiComponents() {
@@ -1712,6 +1769,7 @@ void OscComponent::showMultiComponents() {
 
   m_wavetable_waveselector.setTopLeftPosition(MULTI_WAVE_X, MULTI_WAVE_Y);
   m_wavetable_waveselector.setVisible(true);
+  m_sync.setVisible(true);
 }
 
 void OscComponent::showNoiseComponents() {
@@ -1779,15 +1837,15 @@ void OscComponent::createSpecdrawTables() {
 }
 
 #ifdef WTGEN
- void OscComponent::writeWavedrawTableToFile() {
-   WavetableContainer::getInstance().writeWavedrawTable(
-       m_wavedraw.getDrawnTable(), "WAVEDRAW_TABLE");
- }
+void OscComponent::writeWavedrawTableToFile() {
+  WavetableContainer::getInstance().writeWavedrawTable(
+      m_wavedraw.getDrawnTable(), "WAVEDRAW_TABLE");
+}
 
- void OscComponent::writeSpecdrawTableToFile() {
-   WavetableContainer::getInstance().writeSpecdrawTable(
-       m_specdraw.getDrawnTable(), "SPECDRAW_TABLE");
- }
+void OscComponent::writeSpecdrawTableToFile() {
+  WavetableContainer::getInstance().writeSpecdrawTable(
+      m_specdraw.getDrawnTable(), "SPECDRAW_TABLE");
+}
 
 void OscComponent::writeChipdrawTableToFile() {
   WavetableContainer::getInstance().writeChipdrawTable(

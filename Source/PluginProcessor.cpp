@@ -34,7 +34,7 @@ OdinAudioProcessor::OdinAudioProcessor()
           m_editor_pointer->m_wavetable_display.setVariables(p_lower, p_higher,
                                                              p_interpol);
           m_editor_pointer->m_spectrum_display.setVariables(p_lower, p_higher,
-                                                             p_interpol);
+                                                            p_interpol);
         }
       };
 #endif
@@ -66,8 +66,7 @@ OdinAudioProcessor::OdinAudioProcessor()
 
   WavetableContainer::getInstance().loadWavetablesFromConstData();
 
-  
-  //WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("BrokenSine3");
+  // WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("BrokenSine3");
 
   // WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("BagPipe");
   // WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("BagPipeMutated1");
@@ -76,9 +75,9 @@ OdinAudioProcessor::OdinAudioProcessor()
   // WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("BagPipeMutated4");
   // WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("BagPipeMutated5");
 
-  WavetableContainer::getInstance().createWavetables(44100.f);
-  WavetableContainer::getInstance().loadWavetablesAfterFourierCreation();
-  //WavetableContainer::getInstance().writeWavetablesToFile();
+  // WavetableContainer::getInstance().createWavetables(44100.f);
+  // WavetableContainer::getInstance().loadWavetablesAfterFourierCreation();
+  // WavetableContainer::getInstance().writeWavetablesToFile();
 
   // WavetableContainer::getInstance().fixWavetableCoefficientFile();
   // WavetableContainer::getInstance().fixWavetableIndexInFiles();
@@ -499,71 +498,63 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
         memset(m_osc_output, 0, sizeof(float) * VOICES * 3);
 
         for (int osc = 0; osc < 3; ++osc) {
-          // analog osc
-          if (m_osc_type[osc] == OSC_TYPE_ANALOG) {
+
+          switch (m_osc_type[osc]) {
+          case OSC_TYPE_ANALOG:
             m_voice[voice].analog_osc[osc].update();
             m_osc_output[voice][osc] +=
-                m_voice[voice].analog_osc[osc].doOscillate();
-          }
-          // wavetable osc
-          else if (m_osc_type[osc] == OSC_TYPE_WAVETABLE) {
-            // m_voice[voice].wavetable_osc[osc].setPosition(0);
-            // m_voice[voice].wavetable_osc[osc].selectWavetable(0);
+                m_voice[voice].analog_osc[osc].doOscillateWithSync();
+            break;
+          case OSC_TYPE_WAVETABLE:
             m_voice[voice].wavetable_osc[osc].update();
             m_osc_output[voice][osc] +=
                 m_voice[voice].wavetable_osc[osc].doOscillate();
-          }
-          // multi osc
-          else if (m_osc_type[osc] == OSC_TYPE_MULTI) {
+            break;
+          case OSC_TYPE_MULTI:
             m_voice[voice].multi_osc[osc].update();
             m_osc_output[voice][osc] +=
                 m_voice[voice].multi_osc[osc].doOscillate();
-          }
-          // vector osc
-          else if (m_osc_type[osc] == OSC_TYPE_VECTOR) {
+            break;
+          case OSC_TYPE_VECTOR:
             m_voice[voice].vector_osc[osc].update();
             m_osc_output[voice][osc] +=
                 m_voice[voice].vector_osc[osc].doOscillate();
-          }
-          // chiptune osc
-          else if (m_osc_type[osc] == OSC_TYPE_CHIPTUNE) {
+            break;
+          case OSC_TYPE_CHIPTUNE:
             m_voice[voice].chiptune_osc[osc].update();
             m_osc_output[voice][osc] +=
                 m_voice[voice].chiptune_osc[osc].doOscillate();
-          }
-          // fm osc
-          else if (m_osc_type[osc] == OSC_TYPE_FM) {
+            break;
+          case OSC_TYPE_FM:
             m_voice[voice].fm_osc[osc].update();
             m_osc_output[voice][osc] +=
                 m_voice[voice].fm_osc[osc].doOscillate();
-          }
-          // PM osc
-          else if (m_osc_type[osc] == OSC_TYPE_PM) {
+            break;
+          case OSC_TYPE_PM:
             m_voice[voice].pm_osc[osc].update();
             m_osc_output[voice][osc] +=
                 m_voice[voice].pm_osc[osc].doOscillate();
-          }
-          // noise osc
-          else if (m_osc_type[osc] == OSC_TYPE_NOISE) {
+            break;
+          case OSC_TYPE_NOISE:
             m_osc_output[voice][osc] += m_voice[voice].noise_osc[osc].doNoise();
-          }
-          // wavedraw osc
-          else if (m_osc_type[osc] == OSC_TYPE_WAVEDRAW) {
+            break;
+          case OSC_TYPE_WAVEDRAW:
             m_voice[voice].wavedraw_osc[osc].update();
             m_osc_output[voice][osc] +=
                 m_voice[voice].wavedraw_osc[osc].doOscillate();
-          }
-          // chipdraw osc
-          else if (m_osc_type[osc] == OSC_TYPE_CHIPDRAW) {
+            break;
+          case OSC_TYPE_CHIPDRAW:
             m_voice[voice].chipdraw_osc[osc].update();
             m_osc_output[voice][osc] +=
                 m_voice[voice].chipdraw_osc[osc].doOscillate();
-          }
-          // chipdraw osc
-          else if (m_osc_type[osc] == OSC_TYPE_SPECDRAW) {
+            break;
+          case OSC_TYPE_SPECDRAW:
             m_voice[voice].specdraw_osc[osc].update();
             m_osc_output[voice][osc] +=
                 m_voice[voice].specdraw_osc[osc].doOscillate();
+            break;
+          default:
+            break;
           }
           // apply volume
           m_osc_output[voice][osc] *= m_osc_vol_smooth[osc];
@@ -883,6 +874,11 @@ void OdinAudioProcessor::initializeModules() {
   m_flanger[1].setLFOResetPos(0.5);
 
   setModulationPointers();
+
+  for (int voice = 0; voice < VOICES; ++voice) {
+    m_voice[voice].analog_osc[1].setSyncOscillator(
+        &(m_voice[voice].analog_osc[0]));
+  }
 }
 
 void OdinAudioProcessor::setModulationPointers() {

@@ -342,6 +342,14 @@
             file="Gimp/cropped/buttons/buttonsync_3.png"/>
       <FILE id="ovOFmO" name="buttonsync_4.png" compile="0" resource="1"
             file="Gimp/cropped/buttons/buttonsync_4.png"/>
+      <FILE id="Ccg2CV" name="buttonsync_osc_1.png" compile="0" resource="1"
+            file="Gimp/cropped/buttons/buttonsync_osc_1.png"/>
+      <FILE id="TRXLwf" name="buttonsync_osc_2.png" compile="0" resource="1"
+            file="Gimp/cropped/buttons/buttonsync_osc_2.png"/>
+      <FILE id="bkFgTP" name="buttonsync_osc_3.png" compile="0" resource="1"
+            file="Gimp/cropped/buttons/buttonsync_osc_3.png"/>
+      <FILE id="mW2W0I" name="buttonsync_osc_4.png" compile="0" resource="1"
+            file="Gimp/cropped/buttons/buttonsync_osc_4.png"/>
       <FILE id="k1txfX" name="buttonsyncfilmstrip.png" compile="0" resource="1"
             file="Gimp/cropped/buttons/buttonsyncfilmstrip.png"/>
       <FILE id="BJhst5" name="buttonup_1.png" compile="0" resource="1" file="Gimp/cropped/buttons/buttonup_1.png"/>
