@@ -219,6 +219,13 @@ convert FilterButtonsRaw.png -crop 26x19+261+201 cropped/buttons/buttonreset_osc
 
 convert -append cropped/buttons/buttonreset_osc_1.png  cropped/buttons/buttonreset_osc_2.png cropped/buttons/buttonreset_osc_3.png  cropped/buttons/buttonreset_osc_4.png cropped/buttons/buttonreset_oscfilmstrip.png 
 
+convert FilterButtonsRaw.png -crop 26x19+324+126 cropped/buttons/buttonsync_osc_1.png
+convert FilterButtonsRaw.png -crop 26x19+324+151 cropped/buttons/buttonsync_osc_2.png
+convert FilterButtonsRaw.png -crop 26x19+324+176 cropped/buttons/buttonsync_osc_3.png
+convert FilterButtonsRaw.png -crop 26x19+324+201 cropped/buttons/buttonsync_osc_4.png
+
+convert -append cropped/buttons/buttonsync_osc_1.png  cropped/buttons/buttonsync_osc_2.png cropped/buttons/buttonsync_osc_3.png  cropped/buttons/buttonsync_osc_4.png cropped/buttons/buttonsync_oscfilmstrip.png 
+
 convert FilterButtonsRaw.png -crop 23x14+167+148 cropped/buttons/buttondropdown_1.png
 convert FilterButtonsRaw.png -crop 23x14+167+173 cropped/buttons/buttondropdown_2.png
 

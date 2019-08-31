@@ -17,6 +17,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
                            std::string p_osc_number)
     : m_value_tree(vts),
       m_reset("reset_button", juce::DrawableButton::ButtonStyle::ImageRaw),
+      m_sync("osc_sync_button", juce::DrawableButton::ButtonStyle::ImageRaw),
       m_LED_saw("LED_Saw", juce::DrawableButton::ButtonStyle::ImageRaw),
       m_LED_pulse("LED_pulse", juce::DrawableButton::ButtonStyle::ImageRaw),
       m_LED_triangle("LED_triangle",

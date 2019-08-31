@@ -76,8 +76,8 @@ OdinAudioProcessor::OdinAudioProcessor()
   // WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("BagPipeMutated4");
   // WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("BagPipeMutated5");
 
-  //WavetableContainer::getInstance().createWavetables(44100.f);
-  //WavetableContainer::getInstance().loadWavetablesAfterFourierCreation();
+  WavetableContainer::getInstance().createWavetables(44100.f);
+  WavetableContainer::getInstance().loadWavetablesAfterFourierCreation();
   //WavetableContainer::getInstance().writeWavetablesToFile();
 
   // WavetableContainer::getInstance().fixWavetableCoefficientFile();

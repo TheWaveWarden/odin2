@@ -242,6 +242,7 @@ protected:
   DrawableButton m_LED_sine;
 
   OdinButton m_reset;
+  OdinButton m_sync;
 
   WaveformSelectorComponent m_chiptune_waveselector;
   WaveformSelectorComponent m_carrier_waveselector;
