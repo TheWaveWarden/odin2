@@ -513,7 +513,7 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
           case OSC_TYPE_MULTI:
             m_voice[voice].multi_osc[osc].update();
             m_osc_output[voice][osc] +=
-                m_voice[voice].multi_osc[osc].doOscillateWithSync();
+                m_voice[voice].multi_osc[osc].doOscillate();
             break;
           case OSC_TYPE_VECTOR:
             m_voice[voice].vector_osc[osc].update();

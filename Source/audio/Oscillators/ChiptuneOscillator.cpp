@@ -140,10 +140,10 @@ void ChiptuneOscillator::update() {
 }
 
 void ChiptuneOscillator::setSampleRate(float p_samplerate) {
-
-  //DBG("setsamplerate chiptuneosc");
+  WavetableOsc1D::setSampleRate(p_samplerate);
   m_samplerate = p_samplerate;
   m_chiptune_arp.setSampleRate(p_samplerate);
+  m_dc_blocking_filter.reset();
 }
 
 void ChiptuneOscillator::reset() {

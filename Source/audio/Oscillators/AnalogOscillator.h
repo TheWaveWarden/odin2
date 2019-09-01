@@ -32,6 +32,11 @@ public:
 		m_duty_smooth = m_duty;
 	}
 
+	void setSampleRate(float p_sr) override {
+		WavetableOsc1D::setSampleRate(p_sr);
+		m_drift_generator.setSampleRate(p_sr);
+	}
+
 protected:
 
 	float* pwm_mod;

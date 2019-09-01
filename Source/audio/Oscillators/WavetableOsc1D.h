@@ -2,6 +2,7 @@
 #include "Oscillator.h"
 #include "../OdinConstants.h"
 #include "WavetableContainer.h"
+#include "../Filters/DCBlockingFilter.h"
 #include <fstream>//todo
 
 
@@ -55,6 +56,11 @@ public:
 		m_sync_enabled = p_sync;
 	}
 
+	void setSampleRate(float p_sr) override {
+		Oscillator::setSampleRate(p_sr);
+		m_dc_blocking_filter.setSampleRate(p_sr);
+	}
+
 protected:
 	virtual void initiateSync();
 
@@ -82,6 +88,9 @@ protected:
 	}
 
 	float doWavetable();
+
+	//for sync
+	DCBlockingFilter m_dc_blocking_filter;
 
 	bool m_sync_enabled = true;
 
