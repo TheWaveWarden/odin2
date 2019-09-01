@@ -74,7 +74,7 @@ void SpecdrawDisplay::mouseInteraction() {
                   (getHeight() - DRAW_INLAY_UP_SPEC - DRAW_INLAY_DOWN_SPEC);
   if (m_mouse_was_down) {
 
-    DBG(std::to_string(x) + ", " + std::to_string(m_last_x_value));
+    //DBG(std::to_string(x) + ", " + std::to_string(m_last_x_value));
     int max_x = max_int(x, m_last_x_value);
     int min_x = min_int(x, m_last_x_value);
     int range_x = max_x - min_x;

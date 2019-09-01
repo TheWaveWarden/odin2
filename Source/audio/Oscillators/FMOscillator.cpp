@@ -72,7 +72,11 @@ float FMOscillator::doOscillate() {
   vol_mod_factor = vol_mod_factor > VOL_MOD_UPPER_LIMIT ? VOL_MOD_UPPER_LIMIT
                                                         : vol_mod_factor;
 
-  return m_carrier_osc.doOscillate() * vol_mod_factor;
+  float out = m_carrier_osc.doOscillate() * vol_mod_factor;
+
+  m_reset_flag = m_carrier_osc.m_reset_flag;
+  
+  return out;
 }
 
 // void FMOscillator::startOscillator(){

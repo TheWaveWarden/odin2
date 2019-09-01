@@ -32,7 +32,6 @@ float ChiptuneOscillator::doOscillate() {
 }
 
 float ChiptuneOscillator::generateChipNoise() {
-  // TODO is heavily aliased right now...
 
   // do 3x oversampling here to avoid aliasing
   m_read_index += m_wavetable_inc;
