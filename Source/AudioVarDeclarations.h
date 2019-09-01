@@ -30,6 +30,7 @@
     float* m_osc_lp[3];
     float* m_osc_hp[3];
     float* m_osc_reset[3];
+    float* m_osc_sync[3];
     float* m_osc_arp_on[3];
     float* m_osc_step_3_on[3];
     float* m_osc_chipnoise[3];
@@ -240,6 +241,8 @@
     Identifier m_osc1_reset_identifier;
     Identifier m_osc2_reset_identifier;
     Identifier m_osc3_reset_identifier;
+    Identifier m_osc2_sync_identifier;
+    Identifier m_osc3_sync_identifier;
     Identifier m_osc1_arp_on_identifier;
     Identifier m_osc2_arp_on_identifier;
     Identifier m_osc3_arp_on_identifier;

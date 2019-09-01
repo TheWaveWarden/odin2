@@ -201,6 +201,16 @@ struct Voice {
     }
   }
 
+  void setOscSyncEnabled(bool p_enabled, int p_osc){
+    analog_osc[p_osc].setSyncEnabled(p_enabled);
+    wavetable_osc[p_osc].setSyncEnabled(p_enabled);
+    multi_osc[p_osc].setSyncEnabled(p_enabled);
+    wavedraw_osc[p_osc].setSyncEnabled(p_enabled);
+    specdraw_osc[p_osc].setSyncEnabled(p_enabled);
+    chipdraw_osc[p_osc].setSyncEnabled(p_enabled);
+    chiptune_osc[p_osc].setSyncEnabled(p_enabled);
+  }
+
   void setPolyLegato(bool p_is_poly) { m_is_legato = !p_is_poly; }
 
   void generateNewRandomValue() {

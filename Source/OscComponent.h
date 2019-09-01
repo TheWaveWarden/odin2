@@ -291,6 +291,7 @@ protected:
   std::unique_ptr<SliderAttachment> m_y_attach;
 
   std::unique_ptr<ButtonAttachment> m_reset_attach;
+  std::unique_ptr<ButtonAttachment> m_sync_attach;
   std::unique_ptr<ButtonAttachment> m_arp_on_attach;
   std::unique_ptr<ButtonAttachment> m_step_3_on_attach;
   std::unique_ptr<ButtonAttachment> m_chipnoise_attach;

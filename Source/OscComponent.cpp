@@ -90,6 +90,10 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 
   m_reset_attach.reset(new ButtonAttachment(
       m_value_tree, "osc" + m_osc_number + "_reset", m_reset));
+  if (std::stoi(m_osc_number) != 1) {
+    m_sync_attach.reset(new ButtonAttachment(
+        m_value_tree, "osc" + m_osc_number + "_sync", m_sync));
+  }
   m_arp_on_attach.reset(new ButtonAttachment(
       m_value_tree, "osc" + m_osc_number + "_arp_on", m_arp));
   m_step_3_on_attach.reset(new ButtonAttachment(
@@ -173,18 +177,14 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   // sync button only for osc 2 & 3
   if (std::stoi(m_osc_number) != 1) {
 
-    juce::Image sync_1 =
-        ImageCache::getFromMemory(BinaryData::buttonsync_osc_1_png,
-                                  BinaryData::buttonsync_osc_1_pngSize);
-    juce::Image sync_2 =
-        ImageCache::getFromMemory(BinaryData::buttonsync_osc_2_png,
-                                  BinaryData::buttonsync_osc_2_pngSize);
-    juce::Image sync_3 =
-        ImageCache::getFromMemory(BinaryData::buttonsync_osc_3_png,
-                                  BinaryData::buttonsync_osc_3_pngSize);
-    juce::Image sync_4 =
-        ImageCache::getFromMemory(BinaryData::buttonsync_osc_4_png,
-                                  BinaryData::buttonsync_osc_4_pngSize);
+    juce::Image sync_1 = ImageCache::getFromMemory(
+        BinaryData::buttonsync_osc_1_png, BinaryData::buttonsync_osc_1_pngSize);
+    juce::Image sync_2 = ImageCache::getFromMemory(
+        BinaryData::buttonsync_osc_2_png, BinaryData::buttonsync_osc_2_pngSize);
+    juce::Image sync_3 = ImageCache::getFromMemory(
+        BinaryData::buttonsync_osc_3_png, BinaryData::buttonsync_osc_3_pngSize);
+    juce::Image sync_4 = ImageCache::getFromMemory(
+        BinaryData::buttonsync_osc_4_png, BinaryData::buttonsync_osc_4_pngSize);
 
     juce::DrawableImage sync_draw1;
     juce::DrawableImage sync_draw2;
@@ -197,17 +197,17 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
     sync_draw4.setImage(sync_4);
 
     m_sync.setImages(&sync_draw2, &sync_draw2, &sync_draw1, &sync_draw1,
-                      &sync_draw4, &sync_draw4, &sync_draw3, &sync_draw3);
+                     &sync_draw4, &sync_draw4, &sync_draw3, &sync_draw3);
     m_sync.setClickingTogglesState(true);
     m_sync.setBounds(OSC_SYNC_POS_X, OSC_SYNC_POS_Y, sync_1.getWidth(),
-                      sync_1.getHeight());
-    m_sync.setTooltip(
-        "Syncs this osc to osc1, so it will start over when osc1 completes a cycle.");
+                     sync_1.getHeight());
+    m_sync.setTooltip("Syncs this osc to osc1, so it will start over when osc1 "
+                      "completes a cycle.");
     addChildComponent(m_sync);
     m_sync.setAlwaysOnTop(true);
     m_sync.setTriggeredOnMouseDown(true);
     m_sync.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId,
-                      juce::Colour());
+                     juce::Colour());
   }
 
   m_oct.setStrip(

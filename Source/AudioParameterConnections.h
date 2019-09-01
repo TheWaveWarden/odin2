@@ -50,6 +50,10 @@ for (int osc = 0; osc < 3; ++osc) {
       "osc" + std::to_string(osc + 1) + "_hp");
   m_osc_reset[osc] = m_value_tree.getRawParameterValue(
       "osc" + std::to_string(osc + 1) + "_reset");
+  if (osc != 0) {
+    m_osc_sync[osc] = m_value_tree.getRawParameterValue(
+        "osc" + std::to_string(osc + 1) + "_sync");
+  }
   m_osc_arp_on[osc] = m_value_tree.getRawParameterValue(
       "osc" + std::to_string(osc + 1) + "_arp_on");
   m_osc_step_3_on[osc] = m_value_tree.getRawParameterValue(
@@ -272,6 +276,10 @@ for (int osc = 0; osc < 3; ++osc) {
                                     &m_tree_listener);
   m_value_tree.addParameterListener("osc" + std::to_string(osc + 1) + "_reset",
                                     &m_tree_listener);
+  if (osc != 0) {
+    m_value_tree.addParameterListener("osc" + std::to_string(osc + 1) + "_sync",
+                                      &m_tree_listener);
+  }
   m_value_tree.addParameterListener("osc" + std::to_string(osc + 1) + "_arp_on",
                                     &m_tree_listener);
   m_value_tree.addParameterListener(
@@ -305,9 +313,8 @@ for (int fil = 0; fil < 3; ++fil) {
   m_value_tree.addParameterListener("fil" + std::to_string(fil + 1) +
                                         "_formant_transition",
                                     &m_tree_listener);
-m_value_tree.addParameterListener("fil" + std::to_string(fil + 1) +
-                                        "_ring_mod_amount",
-                                    &m_tree_listener);
+  m_value_tree.addParameterListener(
+      "fil" + std::to_string(fil + 1) + "_ring_mod_amount", &m_tree_listener);
   m_value_tree.addParameterListener(
       "fil" + std::to_string(fil + 1) + "_sem_transition", &m_tree_listener);
   m_value_tree.addParameterListener(

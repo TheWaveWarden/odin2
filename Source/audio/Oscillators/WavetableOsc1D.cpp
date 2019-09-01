@@ -162,8 +162,9 @@ float WavetableOsc1D::doOscillateWithSync() {
 
     //do smoothing if we just had a sync
     if (m_sync_in_progress) {
+      //DBG("SYNC_IN_PROGRESS");
       // we smooth from the last value to zero at the beginning of the wave
-      float cosine_index = m_read_index * SYNC_PORTION_OF_TABLE;
+      float cosine_index = m_read_index * SYNC_PORTION_OF_TABLE / WAVETABLE_LENGTH;
 
       // stop if needed
       if (cosine_index > 1) {
@@ -175,7 +176,9 @@ float WavetableOsc1D::doOscillateWithSync() {
       float smoothing_value = cheapCosInterpol(cosine_index) * m_value_before_sync;
 
       // return osc + smoothing
-      return doOscillate() + m_value_before_sync;
+      return doOscillate() + smoothing_value;
+    } else {
+      //DBG("SYNC END");
     }
 
     //if we didn't just have a sync, just carry on as normal:
