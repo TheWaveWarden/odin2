@@ -1769,7 +1769,6 @@ void OscComponent::showMultiComponents() {
 
   m_wavetable_waveselector.setTopLeftPosition(MULTI_WAVE_X, MULTI_WAVE_Y);
   m_wavetable_waveselector.setVisible(true);
-  m_sync.setVisible(true);
 }
 
 void OscComponent::showNoiseComponents() {

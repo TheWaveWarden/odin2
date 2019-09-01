@@ -46,7 +46,15 @@ public:
 	//}
 
 protected:
-	
+
+	virtual void initiateSync() override {
+		for (int subosc = 0; subosc < OSCS_PER_MULTIOSC; ++subosc){
+			m_read_index_multi[subosc] = 0;
+		}
+		m_read_index = 0;
+	}
+
+
 	float* m_detune_mod;
 	float* m_spread_mod;
 

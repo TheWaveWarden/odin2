@@ -56,6 +56,8 @@ public:
 	}
 
 protected:
+	virtual void initiateSync();
+
 	virtual int getTableIndex();
 	
 	void setWavetablePointer(int p_wavetable_index, const float* p_wavetable_pointers[SUBTABLES_PER_WAVETABLE]);

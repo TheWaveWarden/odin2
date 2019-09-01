@@ -508,22 +508,22 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
           case OSC_TYPE_WAVETABLE:
             m_voice[voice].wavetable_osc[osc].update();
             m_osc_output[voice][osc] +=
-                m_voice[voice].wavetable_osc[osc].doOscillate();
+                m_voice[voice].wavetable_osc[osc].doOscillateWithSync();
             break;
           case OSC_TYPE_MULTI:
             m_voice[voice].multi_osc[osc].update();
             m_osc_output[voice][osc] +=
-                m_voice[voice].multi_osc[osc].doOscillate();
+                m_voice[voice].multi_osc[osc].doOscillateWithSync();
             break;
           case OSC_TYPE_VECTOR:
             m_voice[voice].vector_osc[osc].update();
             m_osc_output[voice][osc] +=
-                m_voice[voice].vector_osc[osc].doOscillate();
+                m_voice[voice].vector_osc[osc].doOscillateWithSync();
             break;
           case OSC_TYPE_CHIPTUNE:
             m_voice[voice].chiptune_osc[osc].update();
             m_osc_output[voice][osc] +=
-                m_voice[voice].chiptune_osc[osc].doOscillate();
+                m_voice[voice].chiptune_osc[osc].doOscillateWithSync();
             break;
           case OSC_TYPE_FM:
             m_voice[voice].fm_osc[osc].update();
@@ -541,17 +541,17 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
           case OSC_TYPE_WAVEDRAW:
             m_voice[voice].wavedraw_osc[osc].update();
             m_osc_output[voice][osc] +=
-                m_voice[voice].wavedraw_osc[osc].doOscillate();
+                m_voice[voice].wavedraw_osc[osc].doOscillateWithSync();
             break;
           case OSC_TYPE_CHIPDRAW:
             m_voice[voice].chipdraw_osc[osc].update();
             m_osc_output[voice][osc] +=
-                m_voice[voice].chipdraw_osc[osc].doOscillate();
+                m_voice[voice].chipdraw_osc[osc].doOscillateWithSync();
             break;
           case OSC_TYPE_SPECDRAW:
             m_voice[voice].specdraw_osc[osc].update();
             m_osc_output[voice][osc] +=
-                m_voice[voice].specdraw_osc[osc].doOscillate();
+                m_voice[voice].specdraw_osc[osc].doOscillateWithSync();
             break;
           default:
             break;
@@ -875,9 +875,10 @@ void OdinAudioProcessor::initializeModules() {
 
   setModulationPointers();
 
+
+  //set analog osc as sync osc for start
   for (int voice = 0; voice < VOICES; ++voice) {
-    m_voice[voice].analog_osc[1].setSyncOscillator(
-        &(m_voice[voice].analog_osc[0]));
+    m_voice[voice].setOscSyncOscillator(&(m_voice[voice].analog_osc[0]));
   }
 }
 

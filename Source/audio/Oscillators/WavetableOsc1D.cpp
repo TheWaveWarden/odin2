@@ -149,14 +149,20 @@ float cheapCosInterpol(float p_x) {
   return 2 * p_x * p_x * p_x - 3 * p_x * p_x + 1;
 }
 
+
+void WavetableOsc1D::initiateSync() {
+  m_read_index = 0;
+}
+
 float WavetableOsc1D::doOscillateWithSync() {
+  
   // do sync shit....
   if (m_sync_enabled && m_sync_oscillator) {
     //check if a new reset flag was set:
     if (m_sync_oscillator->m_reset_flag) {
       // just let it osc once more to get the value...
       m_value_before_sync = doOscillate();
-      m_read_index = 0;
+      initiateSync();
       m_sync_in_progress = true;
     }
 
