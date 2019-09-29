@@ -46,6 +46,8 @@ public:
     }
 
     // first check if the note to be played is on the sustain list:
+    // NO! we want notes to be playable again during sustain (duplicate)
+    /*
     if (m_sustain_active) {
       for (int voice = 0; voice < VOICES; ++voice) {
         if (m_kill_list[voice] && m_kill_list_note[voice] == p_note) {
@@ -54,6 +56,19 @@ public:
           DBG("Note " + std::to_string(p_note) +
               " is already in sustain on voice " + std::to_string(voice));
           return -1;
+        }
+      }
+    }
+    */
+   // RIP note if it is in sustain?
+   if (m_sustain_active) {
+      for (int voice = 0; voice < VOICES; ++voice) {
+        if (m_kill_list[voice] && m_kill_list_note[voice] == p_note) {
+          // note is on sustain... remove it from kill list, reset voice and use that one
+          m_kill_list[voice] = false;
+          DBG("Note " + std::to_string(p_note) +
+              " stole note " + std::to_string(voice) + " out of sustain!");
+          return voice;
         }
       }
     }
