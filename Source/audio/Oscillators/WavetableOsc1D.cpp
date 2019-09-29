@@ -162,7 +162,9 @@ float WavetableOsc1D::doOscillateWithSync() {
     //check if a new reset flag was set:
     if (m_sync_oscillator->m_reset_flag) {
       // just let it osc once more to get the value...
-      m_value_before_sync = m_dc_blocking_filter.doFilter(doOscillate());
+      m_value_before_sync = doOscillate();
+      DBG("Value before Sync: " + std::to_string(m_value_before_sync));
+      DBG("Wavetable index: "+std::to_string(m_read_index));
       initiateSync();
       m_sync_in_progress = true;
     }
@@ -183,11 +185,8 @@ float WavetableOsc1D::doOscillateWithSync() {
       float smoothing_value = cheapCosInterpol(cosine_index) * m_value_before_sync;
 
       // return osc + smoothing
-      return m_dc_blocking_filter.doFilter(doOscillate()) + smoothing_value;
-    } else {
-      //DBG("SYNC END");
-    }
-
+      return m_dc_blocking_filter.doFilter(doOscillate() + smoothing_value);
+    } 
     //if we didn't just have a sync, just carry on as normal:
     return m_dc_blocking_filter.doFilter(doOscillate());
   } else {

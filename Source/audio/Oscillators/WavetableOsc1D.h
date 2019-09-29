@@ -6,7 +6,7 @@
 #include <fstream>//todo
 
 
-#define SYNC_PORTION_OF_TABLE 32 //sync smoothing takes place 1/32th of a table
+#define SYNC_PORTION_OF_TABLE 16 //sync smoothing takes place 1/16th of a table
 
 
 class WavetableOsc1D :
