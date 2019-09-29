@@ -102,6 +102,8 @@ protected:
 	Oscillator* m_sync_oscillator = nullptr;
 	bool m_sync_in_progress = false;
 	float m_value_before_sync = 0;
+	//this points to the falling edge section which is used to transition on sync event
+	//float** m_sync_table = nullptr;
 
 
 	//tables

@@ -87,7 +87,10 @@ public:
     DBG("Voice manager freed voice " + std::to_string(p_voice));
   }
 
-  void setSustainActive(bool p_active) { m_sustain_active = p_active; }
+  void setSustainActive(bool p_active) { 
+    m_sustain_active = p_active; 
+    m_sustain_active_float = p_active ? 1.f : 0.f;  
+  }
 
   bool getSustainActive() { return m_sustain_active; }
 
@@ -150,14 +153,19 @@ public:
       m_kill_list[voice] = false;
     }
     m_sustain_active = false;
+    m_sustain_active_float = 0.f;
   }
 
   bool voice_busy[VOICES] = {0}; // is voice busy
+
+  float m_sustain_active_float = 0;//for modulation, "copy" of the bool
 protected:
+  bool m_sustain_active = false;
+
   bool m_is_legato = false;
   // used to determine oldest voice for stealing
   int m_voice_history[VOICES] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
-  bool m_sustain_active = false;
+  
   bool m_kill_list[VOICES] = {0};
   int m_kill_list_note[VOICES];
 };

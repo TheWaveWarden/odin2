@@ -273,6 +273,18 @@ void ModMatrixRow::setModSource(int p_source, float **p_source_pointers,
       p_source_pointers[voice] = m_sources->MIDI_aftertouch;
     }
     break;
+  case 440:
+    for (int voice = 0; voice < VOICES; ++voice)
+    {
+      p_source_pointers[voice] = m_sources->sustain_pedal;
+    }
+    break;
+  case 450:
+    for (int voice = 0; voice < VOICES; ++voice)
+    {
+      p_source_pointers[voice] = m_sources->soft_pedal;
+    }
+    break;
   case 999:
     for (int voice = 0; voice < VOICES; ++voice)
     {

@@ -354,13 +354,12 @@ private:
   float m_osc_output[VOICES][3] = {0.f};
   float m_MIDI_aftertouch = 0.f;
   float m_constant = 1.f;
-  // float m_modwheel = 0.f;
-  // float m_pitchwheel = 0.f;
+  float m_soft_pedal = 0.f;
   float m_x = 0.f;
   float m_y = 0.f;
+
   // MOD DEST
   float *m_master_mod;
-
   int m_delay_position = 0;
   int m_phaser_position = 1;
   int m_chorus_position = 2;

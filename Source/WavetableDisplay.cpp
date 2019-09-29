@@ -38,10 +38,15 @@ void WavetableDisplay::paint(Graphics &g) {
 
   if (m_position_left) {
 
-    const float *left_table =
-        WavetableContainer::getInstance().getWavetablePointers(m_lower_wt)[0];
-    const float *right_table =
-        WavetableContainer::getInstance().getWavetablePointers(m_higher_wt)[0];
+     const float *left_table =
+         WavetableContainer::getInstance().getWavetablePointers(m_lower_wt)[0];
+     const float *right_table =
+         WavetableContainer::getInstance().getWavetablePointers(m_higher_wt)[0];
+
+    // const float *left_table =
+    //     WavetableContainer::getInstance().getWavetablePointers(2)[0];
+    // const float *right_table =
+    //     WavetableContainer::getInstance().getWavetablePointers(2)[SUBTABLES_PER_WAVETABLE-20];
 
     float inverse_polation = 1.f - m_interpolation;
 
@@ -50,6 +55,11 @@ void WavetableDisplay::paint(Graphics &g) {
     float mid = (float)WTDISPLAY_SIZE_Y / 2.f;
 
     for (int i = 0; i < WTDISPLAY_SIZE_X; ++i) {
+
+      g.setColour(Colours::white);
+      // if(i >= 256 - 16 && i <= 256 + 16){
+      //   g.setColour(Colours::red);
+      // }
 
       float draw_value =
           left_table[i] * inverse_polation + right_table[i] * m_interpolation;

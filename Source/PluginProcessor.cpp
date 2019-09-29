@@ -363,7 +363,13 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
         // todo this is untested, are values set back to zero, or need to do
         // it manually?
         m_MIDI_aftertouch = (float)midi_message.getAfterTouchValue() / 127.f;
-      } else {
+      } else if (midi_message.isSoftPedalOn()){
+        m_soft_pedal = 1.f;
+      } else if (midi_message.isSoftPedalOff()){
+        m_soft_pedal = 0.f;
+      }
+      
+      else {
         if (!midi_message.isMidiClock()) {
           DBG("UNHANDELED MIDI MESSAGE: " + midi_message.getDescription());
           if (midi_message.isController()) {
@@ -912,6 +918,8 @@ void OdinAudioProcessor::setModulationPointers() {
   m_mod_sources.modwheel = &m_modwheel_smooth;
   m_mod_sources.pitchwheel = &m_pitch_bend_smooth;
   m_mod_sources.constant = &(m_constant);
+  m_mod_sources.sustain_pedal = &(m_voice_manager.m_sustain_active_float);
+  m_mod_sources.soft_pedal = &(m_soft_pedal);
 
   //========================================
   //============= DESTINATIONS =============

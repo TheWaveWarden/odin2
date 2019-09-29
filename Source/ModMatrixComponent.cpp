@@ -336,6 +336,7 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
   m_sources_menu.addItem(100, "Oscillator 1");
   m_sources_menu.addItem(101, "Oscillator 2");
   m_sources_menu.addItem(102, "Oscillator 3");
+  m_sources_menu.addSeparator();
   m_sources_menu.addItem(110, "Filter 1 Out");
   m_sources_menu.addItem(111, "Filter 2 Out");
   m_sources_menu.addSeparator();
@@ -354,9 +355,13 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
   m_sources_menu.addSeparator();
   m_sources_menu.addItem(402, "ModWheel");
   m_sources_menu.addItem(403, "PitchBend");
+  m_sources_menu.addSeparator();
   m_sources_menu.addItem(404, "MIDI note");
   m_sources_menu.addItem(405, "MIDI velocity");
   m_sources_menu.addItem(406, "MIDI aftertouch");
+  m_sources_menu.addSeparator();
+  m_sources_menu.addItem(440, "Sustain Pedal");
+  m_sources_menu.addItem(450, "Soft Pedal");
   m_sources_menu.addSeparator();
   m_sources_menu.addItem(999, "Random");
   m_sources_menu.addItem(1000, "Constant");

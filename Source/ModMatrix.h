@@ -140,6 +140,8 @@ struct ModSources {
   float* y;
   float* MIDI_aftertouch;
   float* constant;
+  float* soft_pedal;
+  float* sustain_pedal;
 };
 
 class ModMatrixRow {
