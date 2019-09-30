@@ -84,6 +84,7 @@ protected:
 		while(p_index >= WAVETABLE_LENGTH){
 			p_index -= WAVETABLE_LENGTH;
 			m_reset_flag = true;
+			m_reset_position = p_index;
 		}
 	}
 

@@ -152,7 +152,7 @@ float cheapCosInterpol(float p_x) {
 
 
 void WavetableOsc1D::initiateSync() {
-  m_read_index = 0;
+  m_read_index = m_sync_oscillator->m_reset_position;
 }
 
 float WavetableOsc1D::doOscillateWithSync() {

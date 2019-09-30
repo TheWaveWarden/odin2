@@ -114,6 +114,7 @@ public:
 
 public:
   bool m_reset_flag = false; // this is used by other oscs to know when to sync
+  float m_reset_position = 0.f;//this is used by other oscs to know which pos to sync to
 
   bool m_reset_active = false;
   double m_osc_freq_glide_target; // the target freq after glide from MIDI note

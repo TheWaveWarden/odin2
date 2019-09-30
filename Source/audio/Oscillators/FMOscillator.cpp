@@ -75,6 +75,9 @@ float FMOscillator::doOscillate() {
   float out = m_carrier_osc.doOscillate() * vol_mod_factor;
 
   m_reset_flag = m_carrier_osc.m_reset_flag;
+  if(m_reset_flag){
+    m_reset_position = m_carrier_osc.m_reset_position;
+  }
   
   return out;
 }
