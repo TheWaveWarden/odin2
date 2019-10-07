@@ -5,6 +5,11 @@ m_wavetable_names_1D[WT_NR] = "Skyline1";
 
 
 
+
+
+
+
+
 m_fourier_coeffs[WT_NR][1][0] = 0.254210f; // scalar
 
 m_fourier_coeffs[WT_NR][0][1] = 1.087539f;

@@ -5,14 +5,19 @@ m_wavetable_names_1D[WT_NR] = "Skyline3";
 
 
 
+
+
+
+
+
 m_fourier_coeffs[WT_NR][1][0] = 0.262321f; // scalar
 
-m_fourier_coeffs[WT_NR][0][1] = 0.460529f;
+m_fourier_coeffs[WT_NR][0][1] = 0.960529f;
 m_fourier_coeffs[WT_NR][0][2] = 0.630917f;
 m_fourier_coeffs[WT_NR][0][3] = 0.413931f;
 m_fourier_coeffs[WT_NR][0][4] = 0.421843f;
-m_fourier_coeffs[WT_NR][0][5] = 1.185767f;
-m_fourier_coeffs[WT_NR][0][6] = 1.419428f;
+m_fourier_coeffs[WT_NR][0][5] = 2.985767f;
+m_fourier_coeffs[WT_NR][0][6] = 2.419428f;
 m_fourier_coeffs[WT_NR][0][7] = 0.814944f;
 m_fourier_coeffs[WT_NR][0][8] = 0.595562f;
 m_fourier_coeffs[WT_NR][0][9] = 0.115586f;

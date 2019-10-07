@@ -8,9 +8,9 @@ m_wavetable_names_1D[WT_NR] = "PerlinReplace4";
 
 m_fourier_coeffs[WT_NR][1][0] = 0.268250f; // scalar
 
-m_fourier_coeffs[WT_NR][0][1] = 0.123917f;
-m_fourier_coeffs[WT_NR][0][2] = 0.089138f;
-m_fourier_coeffs[WT_NR][0][3] = 0.257477f;
+m_fourier_coeffs[WT_NR][0][1] = 0.f;
+m_fourier_coeffs[WT_NR][0][2] = 0.0138f;
+m_fourier_coeffs[WT_NR][0][3] = 0.f;
 m_fourier_coeffs[WT_NR][0][4] = 0.192154f;
 m_fourier_coeffs[WT_NR][0][5] = 0.109209f;
 m_fourier_coeffs[WT_NR][0][6] = 0.054596f;

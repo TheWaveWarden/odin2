@@ -5,19 +5,24 @@ m_wavetable_names_1D[WT_NR] = "Skyline4";
 
 
 
+
+
+
+
+
 m_fourier_coeffs[WT_NR][1][0] = 0.255831f; // scalar
 
-m_fourier_coeffs[WT_NR][0][1] = 0.636889f;
-m_fourier_coeffs[WT_NR][0][2] = 1.273824f;
-m_fourier_coeffs[WT_NR][0][3] = 1.086959f;
-m_fourier_coeffs[WT_NR][0][4] = 0.557013f;
-m_fourier_coeffs[WT_NR][0][5] = 1.454195f;
-m_fourier_coeffs[WT_NR][0][6] = 0.513753f;
+m_fourier_coeffs[WT_NR][0][1] = 0.136889f;
+m_fourier_coeffs[WT_NR][0][2] = 0.373824f;
+m_fourier_coeffs[WT_NR][0][3] = 0.086959f;
+m_fourier_coeffs[WT_NR][0][4] = 0.257013f;
+m_fourier_coeffs[WT_NR][0][5] = 0.454195f;
+m_fourier_coeffs[WT_NR][0][6] = 0.213753f;
 m_fourier_coeffs[WT_NR][0][7] = 0.144747f;
-m_fourier_coeffs[WT_NR][0][8] = 0.400974f;
-m_fourier_coeffs[WT_NR][0][9] = 0.473605f;
-m_fourier_coeffs[WT_NR][0][10] = 0.354315f;
-m_fourier_coeffs[WT_NR][0][11] = 0.652259f;
+m_fourier_coeffs[WT_NR][0][8] = 0.200974f;
+m_fourier_coeffs[WT_NR][0][9] = 0.273605f;
+m_fourier_coeffs[WT_NR][0][10] = 0.254315f;
+m_fourier_coeffs[WT_NR][0][11] = 0.352259f;
 m_fourier_coeffs[WT_NR][0][12] = 0.222064f;
 m_fourier_coeffs[WT_NR][0][13] = 0.338712f;
 m_fourier_coeffs[WT_NR][0][14] = 0.181946f;
