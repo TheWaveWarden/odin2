@@ -911,10 +911,13 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
   setComponentID("editor");
   addChildComponent(m_value_input);
 
-  setOsc1Plate(GETVALUE("osc1_type"));
+  //TODO REMOVE!!!!
+//setOsc1Plate(GETVALUE("osc1_type"));
+  setOsc1Plate(OSC_TYPE_WAVETABLE);
   setOsc2Plate(GETVALUE("osc2_type"));
   setOsc3Plate(GETVALUE("osc3_type"));
-  setFilter1Plate(GETVALUE("fil1_type"));
+  //setFilter1Plate(GETVALUE("fil1_type"));
+  setFilter1Plate(FILTER_TYPE_NONE);
   setFilter2Plate(GETVALUE("fil2_type"));
   setFilter3Plate(GETVALUE("fil3_type"));
 
@@ -1257,6 +1260,7 @@ void OdinAudioProcessorEditor::forceValueTreeOntoComponents(
 
   forceValueTreeOntoComponentsOnlyMainPanel();
 
+  //TODO the following block is a duplicate? also set at the end of constructor, these seems to have no influence
   setOsc1Plate(m_value_tree.state["osc1_type"]);
   setOsc2Plate(m_value_tree.state["osc2_type"]);
   setOsc3Plate(m_value_tree.state["osc3_type"]);

@@ -263,16 +263,16 @@ void WavetableOsc2D::loadWavetables() {
 
   setWavetablePointer(
       22, 0,
-      WavetableContainer::getInstance().getWavetablePointers("Additive9"));
-  setWavetablePointer(
-      22, 1,
       WavetableContainer::getInstance().getWavetablePointers("Additive10"));
   setWavetablePointer(
-      22, 2,
+      22, 1,
       WavetableContainer::getInstance().getWavetablePointers("Additive11"));
   setWavetablePointer(
-      22, 3,
+      22, 2,
       WavetableContainer::getInstance().getWavetablePointers("Additive12"));
+  setWavetablePointer(
+      22, 3,
+      WavetableContainer::getInstance().getWavetablePointers("Additive9"));
 
   setWavetablePointer(
       23, 0,
@@ -891,16 +891,16 @@ std::string WavetableOsc2D::getWavetableName(int p_wt_2D, int sub_table_2D) {
   case 22:
     switch (sub_table_2D) {
     case 0:
-      return "Additive9";
-      break;
-    case 1:
       return "Additive10";
       break;
-    case 2:
+    case 1:
       return "Additive11";
       break;
-    case 3:
+    case 2:
       return "Additive12";
+      break;
+    case 3:
+      return "Additive9";
       break;
     default:
       DBG("Tried to get name for illegal table combination (" +

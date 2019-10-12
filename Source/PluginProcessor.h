@@ -367,8 +367,11 @@ private:
 
   OdinAudioProcessorEditor* m_editor_pointer;
 
-  int m_osc_type[3] = {OSC_TYPE_ANALOG, 1, 1};
-  int m_fil_type[3] = {FILTER_TYPE_LP24, 1, 1};
+// TODO back to normal!
+//  int m_osc_type[3] = {OSC_TYPE_ANALOG, 1, 1};
+  int m_osc_type[3] = {OSC_TYPE_WAVETABLE, 1, 1};
+//  int m_fil_type[3] = {FILTER_TYPE_LP24, 1, 1};
+  int m_fil_type[3] = {1, 1, 1};
 
   bool m_is_standalone_plugin =
       true; // set true since is is only set after createEditor()
