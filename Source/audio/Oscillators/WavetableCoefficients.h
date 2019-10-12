@@ -134,10 +134,10 @@
 #include "Wavetables/Coefficients/CTSoftTune.h"//101->087
 
 
-#include "Wavetables/Coefficients/Sparse1.h" //102->088
-#include "Wavetables/Coefficients/Sparse2.h" //103->089
-#include "Wavetables/Coefficients/Sparse3.h" //104->090
-#include "Wavetables/Coefficients/Sparse4.h" //105->091
+#include "Wavetables/Coefficients/Glass.h" //102->088
+#include "Wavetables/Coefficients/GlassMutated1.h" //103->089
+#include "Wavetables/Coefficients/GlassMutated2.h" //104->090
+#include "Wavetables/Coefficients/GlassMutated3.h" //105->091
 
 m_highest_loaded_table = 105;
 

@@ -9,8 +9,8 @@ m_wavetable_names_1D[WT_NR] = "FatSawMutated6";
 m_fourier_coeffs[WT_NR][1][0] = 0.466842f; // scalar
 
 m_fourier_coeffs[WT_NR][0][1] = 0.216445f;
-m_fourier_coeffs[WT_NR][0][2] = 0.243283f;
-m_fourier_coeffs[WT_NR][0][3] = 0.191263f;
+m_fourier_coeffs[WT_NR][0][2] = 0.0243283f;
+m_fourier_coeffs[WT_NR][0][3] = 0.0191263f;
 m_fourier_coeffs[WT_NR][0][4] = 0.116775f;
 m_fourier_coeffs[WT_NR][0][5] = 0.010620f;
 m_fourier_coeffs[WT_NR][0][6] = 0.074799f;

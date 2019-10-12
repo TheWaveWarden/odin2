@@ -80,7 +80,7 @@ public:
   void endWriteWavetablesToFile();
 
   void mutateWavetable(std::string p_table_name, int number_of_mutations,
-                       float percent, bool p_consecutive_mutation);
+                       float percent, bool p_consecutive_mutation, int p_start_id);
 
   void writeLFOtablesToFiles();
 

@@ -108,12 +108,12 @@ void WavetableContainer::createWavetables(float p_samplerate) {
         }
       }
 
-      // for(int index_position = 0; index_position < WAVETABLE_LENGTH;
-      // ++index_position){
-      //     if(fabs(next_table[index_position]) > max){
-      //         max = fabs(next_table[index_position]);
-      //     }
-      // }
+      for (int index_position = 0; index_position < WAVETABLE_LENGTH;
+           ++index_position) {
+        if (fabs(next_table[index_position]) > max) {
+          max = fabs(next_table[index_position]);
+        }
+      }
 
       // assign array to corresponding pointer
       m_wavetable_pointers[index_wavetable][index_sub_table] = next_table;
@@ -121,6 +121,17 @@ void WavetableContainer::createWavetables(float p_samplerate) {
       // increment seed frequency by minor third = 2^(3/12)
       seed_freq *= 1.1892071150;
     }
+
+    //normalize
+    if (max > 0) {
+      DBG("max " + std::to_string(max));
+      for (int sub = 0; sub < SUBTABLES_PER_WAVETABLE; ++sub) {
+        for (int pos = 0; pos < WAVETABLE_LENGTH; ++pos) {
+          m_wavetable_pointers[index_wavetable][sub][pos] /= max;
+        }
+      }
+    }
+
     m_name_index_map.insert(std::pair<std::string, int>(
         m_wavetable_names_1D[index_wavetable], index_wavetable));
   }
@@ -1523,7 +1534,7 @@ void WavetableContainer::writeSampleTableToFile(std::string p_filename) {
 
 void WavetableContainer::mutateWavetable(std::string p_table_name,
                                          int number_of_mutations, float percent,
-                                         bool p_consecutive_mutation) {
+                                         bool p_consecutive_mutation, int p_start_id) {
 
   auto it = m_name_index_map.find(p_table_name);
   if (it == m_name_index_map.end()) {
@@ -1593,7 +1604,7 @@ void WavetableContainer::mutateWavetable(std::string p_table_name,
             // fill table with
             // sine harmonics
             wavedraw_tables[index_sub_table][index_position] +=
-                p_specdraw_values[index_sin][index_harmonics - 1] *
+                p_specdraw_values[index_sin][index_harmonics] *
                 sin(2.f * PI * index_position * index_harmonics /
                     (float)WAVETABLE_LENGTH);
           }
@@ -1625,8 +1636,8 @@ void WavetableContainer::mutateWavetable(std::string p_table_name,
 
     DBG("CREATING TABLE /home/frot/odinvst/Source/audio/Oscillators/"
         "Wavetables/Coefficients/" +
-        p_table_name + "Mutated" + std::to_string(mutation) + ".h " +
-        std::to_string(m_highest_loaded_table + 1));
+        p_table_name + "Mutated" + std::to_string(mutation) + ".h   WT_NR = " +
+        std::to_string(p_start_id));
 
     std::ofstream output_file;
     output_file.open("/home/frot/odinvst/Source/audio/Oscillators/"
@@ -1634,7 +1645,7 @@ void WavetableContainer::mutateWavetable(std::string p_table_name,
                      p_table_name + "Mutated" + std::to_string(mutation) +
                      ".h");
 
-    output_file << "#define WT_NR " << ++m_highest_loaded_table << "\n\n";
+    output_file << "#define WT_NR " << p_start_id++ << "\n\n";
     output_file << "m_highest_loaded_table = WT_NR > m_highest_loaded_table ? "
                    "WT_NR : m_highest_loaded_table;\n";
     output_file << "m_wavetable_names_1D[WT_NR] = \"" + p_table_name +
@@ -1649,7 +1660,7 @@ void WavetableContainer::mutateWavetable(std::string p_table_name,
         output_file << "m_fourier_coeffs[WT_NR][" + std::to_string(index_sin) +
                            "][" + std::to_string(harmonic) + "] = " +
                            to_string_no_comma(
-                               p_specdraw_values[index_sin][harmonic - 1]) +
+                               p_specdraw_values[index_sin][harmonic]) +
                            ";\n";
       }
     }
@@ -2182,10 +2193,10 @@ int WavetableContainer::getWavetableIndexFromName(std::string p_name) {
   return 0;
 }
 
-bool containsTooHighHarmonics(std::string p_input){
-  //return true if it contains "[500]" for example
-  for(int i = 256; i < 802; ++i){
-    if(p_input.find("[" + std::to_string(i) + "]") != std::string::npos){
+bool containsTooHighHarmonics(std::string p_input) {
+  // return true if it contains "[500]" for example
+  for (int i = 256; i < 802; ++i) {
+    if (p_input.find("[" + std::to_string(i) + "]") != std::string::npos) {
       return true;
     }
   }
@@ -2196,11 +2207,11 @@ void WavetableContainer::fixTooHighHarmonics(std::string p_filename) {
   DBG("REMOVING TOO HIGH HARMONICS IN " + p_filename);
 
   std::ifstream filein(
-      "/home/frot/odinvst/Source/audio/Oscillators/Wavetables/Coefficients/" + p_filename +
-      ".h"); // File to read from
-  std::ofstream fileout(
-      "/home/frot/odinvst/Source/audio/Oscillators/Wavetables/Coefficients/TEMP/" +
-      p_filename + ".h");
+      "/home/frot/odinvst/Source/audio/Oscillators/Wavetables/Coefficients/" +
+      p_filename + ".h"); // File to read from
+  std::ofstream fileout("/home/frot/odinvst/Source/audio/Oscillators/"
+                        "Wavetables/Coefficients/TEMP/" +
+                        p_filename + ".h");
 
   if (!filein || !fileout) {
     DBG("Error opening files!");

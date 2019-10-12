@@ -1,56 +1,57 @@
-#define WT_NR 26
-
-m_wavetable_names_1D[WT_NR] = "Harmonics3";
-
+#define WT_NR 88
+m_wavetable_names_1D[WT_NR] = "Glass";
 
 
 
-m_fourier_coeffs[WT_NR][1][0] = 0.165863f; // scalar
+
+
+
+m_fourier_coeffs[WT_NR][1][0] = 1.000000f; // scalar
 
 m_fourier_coeffs[WT_NR][0][1] = 0.000000f;
-m_fourier_coeffs[WT_NR][0][2] = 0.000000f;
-// m_fourier_coeffs[WT_NR][0][3] = 0.891304f;
+m_fourier_coeffs[WT_NR][0][2] = 0.102138f;
+m_fourier_coeffs[WT_NR][0][3] = 0.000000f;
 m_fourier_coeffs[WT_NR][0][4] = 0.000000f;
-m_fourier_coeffs[WT_NR][0][5] = 0.000000f;
+m_fourier_coeffs[WT_NR][0][5] = 0.030642f;
 m_fourier_coeffs[WT_NR][0][6] = 0.000000f;
 m_fourier_coeffs[WT_NR][0][7] = 0.000000f;
 m_fourier_coeffs[WT_NR][0][8] = 0.000000f;
-m_fourier_coeffs[WT_NR][0][9] = 0.945652f;
+m_fourier_coeffs[WT_NR][0][9] = 0.000000f;
 m_fourier_coeffs[WT_NR][0][10] = 0.000000f;
 m_fourier_coeffs[WT_NR][0][11] = 0.000000f;
 m_fourier_coeffs[WT_NR][0][12] = 0.000000f;
 m_fourier_coeffs[WT_NR][0][13] = 0.000000f;
-m_fourier_coeffs[WT_NR][0][14] = 0.000000f;
-// m_fourier_coeffs[WT_NR][0][15] = 0.771739f;
+m_fourier_coeffs[WT_NR][0][14] = 0.013363f;
+m_fourier_coeffs[WT_NR][0][15] = 0.000000f;
 m_fourier_coeffs[WT_NR][0][16] = 0.000000f;
 m_fourier_coeffs[WT_NR][0][17] = 0.000000f;
-m_fourier_coeffs[WT_NR][0][18] = 0.554348f;
-m_fourier_coeffs[WT_NR][0][19] = 0.391304f;
-// m_fourier_coeffs[WT_NR][0][20] = 0.391304f;
-m_fourier_coeffs[WT_NR][0][21] = 0.000000f;
+m_fourier_coeffs[WT_NR][0][18] = 0.000000f;
+m_fourier_coeffs[WT_NR][0][19] = 0.000000f;
+m_fourier_coeffs[WT_NR][0][20] = 0.000000f;
+m_fourier_coeffs[WT_NR][0][21] = 0.011719f;
 m_fourier_coeffs[WT_NR][0][22] = 0.000000f;
 m_fourier_coeffs[WT_NR][0][23] = 0.000000f;
 m_fourier_coeffs[WT_NR][0][24] = 0.000000f;
 m_fourier_coeffs[WT_NR][0][25] = 0.000000f;
-m_fourier_coeffs[WT_NR][0][26] = 0.782609f;
+m_fourier_coeffs[WT_NR][0][26] = 0.000000f;
 m_fourier_coeffs[WT_NR][0][27] = 0.000000f;
 m_fourier_coeffs[WT_NR][0][28] = 0.000000f;
-// m_fourier_coeffs[WT_NR][0][29] = 0.673913f;
+m_fourier_coeffs[WT_NR][0][29] = 0.000000f;
 m_fourier_coeffs[WT_NR][0][30] = 0.000000f;
-m_fourier_coeffs[WT_NR][0][31] = 0.673913f;
+m_fourier_coeffs[WT_NR][0][31] = 0.000000f;
 m_fourier_coeffs[WT_NR][0][32] = 0.000000f;
 m_fourier_coeffs[WT_NR][0][33] = 0.000000f;
 m_fourier_coeffs[WT_NR][0][34] = 0.000000f;
-m_fourier_coeffs[WT_NR][0][35] = 0.000000f;
-m_fourier_coeffs[WT_NR][0][36] = 0.847826f;
+m_fourier_coeffs[WT_NR][0][35] = 0.011895f;
+m_fourier_coeffs[WT_NR][0][36] = 0.000000f;
 m_fourier_coeffs[WT_NR][0][37] = 0.000000f;
 m_fourier_coeffs[WT_NR][0][38] = 0.000000f;
 m_fourier_coeffs[WT_NR][0][39] = 0.000000f;
 m_fourier_coeffs[WT_NR][0][40] = 0.000000f;
 m_fourier_coeffs[WT_NR][0][41] = 0.000000f;
 m_fourier_coeffs[WT_NR][0][42] = 0.000000f;
-// m_fourier_coeffs[WT_NR][0][43] = 0.510870f;
-m_fourier_coeffs[WT_NR][0][44] = 0.000000f;
+m_fourier_coeffs[WT_NR][0][43] = 0.000000f;
+m_fourier_coeffs[WT_NR][0][44] = 0.005304f;
 m_fourier_coeffs[WT_NR][0][45] = 0.000000f;
 m_fourier_coeffs[WT_NR][0][46] = 0.000000f;
 m_fourier_coeffs[WT_NR][0][47] = 0.000000f;
@@ -58,8 +59,8 @@ m_fourier_coeffs[WT_NR][0][48] = 0.000000f;
 m_fourier_coeffs[WT_NR][0][49] = 0.000000f;
 m_fourier_coeffs[WT_NR][0][50] = 0.000000f;
 m_fourier_coeffs[WT_NR][0][51] = 0.000000f;
-// m_fourier_coeffs[WT_NR][0][52] = 0.576087f;
-m_fourier_coeffs[WT_NR][0][53] = 0.445652f;
+m_fourier_coeffs[WT_NR][0][52] = 0.001027f;
+m_fourier_coeffs[WT_NR][0][53] = 0.000000f;
 m_fourier_coeffs[WT_NR][0][54] = 0.000000f;
 m_fourier_coeffs[WT_NR][0][55] = 0.000000f;
 m_fourier_coeffs[WT_NR][0][56] = 0.000000f;
@@ -67,7 +68,7 @@ m_fourier_coeffs[WT_NR][0][57] = 0.000000f;
 m_fourier_coeffs[WT_NR][0][58] = 0.000000f;
 m_fourier_coeffs[WT_NR][0][59] = 0.000000f;
 m_fourier_coeffs[WT_NR][0][60] = 0.000000f;
-m_fourier_coeffs[WT_NR][0][61] = 0.000000f;
+m_fourier_coeffs[WT_NR][0][61] = 0.008536f;
 m_fourier_coeffs[WT_NR][0][62] = 0.000000f;
 m_fourier_coeffs[WT_NR][0][63] = 0.000000f;
 m_fourier_coeffs[WT_NR][0][64] = 0.000000f;
@@ -75,7 +76,7 @@ m_fourier_coeffs[WT_NR][0][65] = 0.000000f;
 m_fourier_coeffs[WT_NR][0][66] = 0.000000f;
 m_fourier_coeffs[WT_NR][0][67] = 0.000000f;
 m_fourier_coeffs[WT_NR][0][68] = 0.000000f;
-// m_fourier_coeffs[WT_NR][0][69] = 0.326087f;
+m_fourier_coeffs[WT_NR][0][69] = 0.000000f;
 m_fourier_coeffs[WT_NR][0][70] = 0.000000f;
 m_fourier_coeffs[WT_NR][0][71] = 0.000000f;
 m_fourier_coeffs[WT_NR][0][72] = 0.000000f;

@@ -99,6 +99,7 @@ void MultiOscillator::update() {
 }
 
 void MultiOscillator::reset() {
+  WavetableOsc2D::reset();
   for (int subosc = 0; subosc < OSCS_PER_MULTIOSC; ++subosc) {
     m_read_index_multi[subosc] = 0;
   }

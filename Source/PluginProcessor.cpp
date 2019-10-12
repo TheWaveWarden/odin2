@@ -68,7 +68,7 @@ OdinAudioProcessor::OdinAudioProcessor()
 
   // WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("BrokenSine3");
 
-  // WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("BagPipe");
+  // WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Glass");
   // WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("BagPipeMutated1");
   // WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("BagPipeMutated2");
   // WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("BagPipeMutated3");
@@ -87,7 +87,7 @@ OdinAudioProcessor::OdinAudioProcessor()
   // WavetableContainer::getInstance().fixWavetableCoefficientFile();
   // WavetableContainer::getInstance().fixWavetableIndexInFiles();
 
-  // WavetableContainer::getInstance().mutateWavetable("BagPipe", 5, 100, true);
+  //WavetableContainer::getInstance().mutateWavetable("Glass", 3, 100, true, 89);
   // WavetableContainer::getInstance().writePerlinTableToFile("PerlinReplace1",
   // 100, 50);
   // WavetableContainer::getInstance().writePerlinTableToFile("PerlinReplace2",

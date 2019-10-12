@@ -104,13 +104,13 @@ void WavetableOsc2D::loadWavetables() {
                           "AKWF_fmsynth_0081"));
 
   setWavetablePointer(
-      8, 0, WavetableContainer::getInstance().getWavetablePointers("Sparse1"));
+      8, 0, WavetableContainer::getInstance().getWavetablePointers("Glass"));
   setWavetablePointer(
-      8, 1, WavetableContainer::getInstance().getWavetablePointers("Sparse2"));
+      8, 1, WavetableContainer::getInstance().getWavetablePointers("GlassMutated1"));
   setWavetablePointer(
-      8, 2, WavetableContainer::getInstance().getWavetablePointers("Sparse3"));
+      8, 2, WavetableContainer::getInstance().getWavetablePointers("GlassMutated2"));
   setWavetablePointer(
-      8, 3, WavetableContainer::getInstance().getWavetablePointers("Sparse4"));
+      8, 3, WavetableContainer::getInstance().getWavetablePointers("GlassMutated3"));
 
   setWavetablePointer(9, 0,
                       WavetableContainer::getInstance().getWavetablePointers(
@@ -135,13 +135,13 @@ void WavetableOsc2D::loadWavetables() {
       10, 3, WavetableContainer::getInstance().getWavetablePointers("Cello2"));
 
   setWavetablePointer(
-      11, 0, WavetableContainer::getInstance().getWavetablePointers("Piano1"));
+      11, 0, WavetableContainer::getInstance().getWavetablePointers("Piano2"));
   setWavetablePointer(
-      11, 1, WavetableContainer::getInstance().getWavetablePointers("Piano2"));
+      11, 1, WavetableContainer::getInstance().getWavetablePointers("Piano3"));
   setWavetablePointer(
-      11, 2, WavetableContainer::getInstance().getWavetablePointers("Piano3"));
+      11, 2, WavetableContainer::getInstance().getWavetablePointers("Piano4"));
   setWavetablePointer(
-      11, 3, WavetableContainer::getInstance().getWavetablePointers("Piano4"));
+      11, 3, WavetableContainer::getInstance().getWavetablePointers("Piano1"));
 
   setWavetablePointer(
       12, 0, WavetableContainer::getInstance().getWavetablePointers("Organ1"));
@@ -597,16 +597,16 @@ std::string WavetableOsc2D::getWavetableName(int p_wt_2D, int sub_table_2D) {
   case 8:
     switch (sub_table_2D) {
     case 0:
-      return "Sparse1";
+      return "Glass";
       break;
     case 1:
-      return "Sparse2";
+      return "GlassMutated1";
       break;
     case 2:
-      return "Sparse3";
+      return "GlassMutated2";
       break;
     case 3:
-      return "Sparse4";
+      return "GlassMutated3";
       break;
     default:
       DBG("Tried to get name for illegal table combination (" +
@@ -660,16 +660,16 @@ std::string WavetableOsc2D::getWavetableName(int p_wt_2D, int sub_table_2D) {
   case 11:
     switch (sub_table_2D) {
     case 0:
-      return "Piano1";
-      break;
-    case 1:
       return "Piano2";
       break;
-    case 2:
+    case 1:
       return "Piano3";
       break;
-    case 3:
+    case 2:
       return "Piano4";
+      break;
+    case 3:
+      return "Piano1";
       break;
     default:
       DBG("Tried to get name for illegal table combination (" +
