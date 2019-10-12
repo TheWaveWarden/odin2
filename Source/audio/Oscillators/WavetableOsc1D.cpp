@@ -21,6 +21,11 @@ void WavetableOsc1D::reset() {
 
   m_read_index = 0.0;
   m_dc_blocking_filter.reset();
+
+  // downsampling filter buffers
+  for (int i = 0; i < 10; ++i) {
+    xv[i] = yv[i] = 0;
+  }
 }
 
 void WavetableOsc1D::update() {
@@ -62,7 +67,7 @@ float WavetableOsc1D::doWavetable() {
       linearInterpolation(m_current_table[read_index_trunc],
                           m_current_table[read_index_next], fractional);
 
-  m_read_index += m_wavetable_inc;
+  m_read_index += m_wavetable_inc * m_sync_anti_aliasing_inc_factor;
   checkWrapIndex(m_read_index);
 
   return output;
@@ -144,53 +149,109 @@ void WavetableOsc1D::loadChipdrawTables(int p_osc) {
   m_nr_of_wavetables = 1;
 }
 
-// mimics 0.5 * cos(pi * x) + 0.5 in the range [0,1]
-// f(0) = 1, f'(0) = 0, f(1) = 0, f'(1) = 0
-float cheapCosInterpol(float p_x) {
-  return 2 * p_x * p_x * p_x - 3 * p_x * p_x + 1;
-}
-
-
 void WavetableOsc1D::initiateSync() {
+  // todo better set to 0?
   m_read_index = m_sync_oscillator->m_reset_position;
 }
 
 float WavetableOsc1D::doOscillateWithSync() {
-  
-  // do sync shit....
+
+  // do sync shit: 3x oversampling for AA
   if (m_sync_enabled && m_sync_oscillator) {
-    //check if a new reset flag was set:
+    // check if a new reset flag was set:
     if (m_sync_oscillator->m_reset_flag) {
-      // just let it osc once more to get the value...
-      m_value_before_sync = doOscillate();
-      DBG("Value before Sync: " + std::to_string(m_value_before_sync));
-      DBG("Wavetable index: "+std::to_string(m_read_index));
       initiateSync();
-      m_sync_in_progress = true;
     }
+    m_sync_anti_aliasing_inc_factor = 0.3333333f;
 
-    //do smoothing if we just had a sync
-    if (m_sync_in_progress) {
-      //DBG("SYNC_IN_PROGRESS");
-      // we smooth from the last value to zero at the beginning of the wave
-      float cosine_index = m_read_index * SYNC_PORTION_OF_TABLE / WAVETABLE_LENGTH;
+    float input_upsampled[3] = {doOscillate(), doOscillate(), doOscillate()};
 
-      // stop if needed
-      if (cosine_index > 1) {
-        m_sync_in_progress = false;
-        return m_dc_blocking_filter.doFilter(doOscillate());
-      }
+    xv[0] = xv[1];
+    xv[1] = xv[2];
+    xv[2] = xv[3];
+    xv[3] = xv[4];
+    xv[4] = xv[5];
+    xv[5] = xv[6];
+    xv[6] = xv[7];
+    xv[7] = xv[8];
+    xv[8] = xv[9];
+    xv[9] = input_upsampled[0] * 0.019966841051093;
+    yv[0] = yv[1];
+    yv[1] = yv[2];
+    yv[2] = yv[3];
+    yv[3] = yv[4];
+    yv[4] = yv[5];
+    yv[5] = yv[6];
+    yv[6] = yv[7];
+    yv[7] = yv[8];
+    yv[8] = yv[9];
+    yv[9] = (xv[0] + xv[9]) + 9 * (xv[1] + xv[8]) + 36 * (xv[2] + xv[7]) +
+            84 * (xv[3] + xv[6]) + 126 * (xv[4] + xv[5]) +
+            (-0.0003977153 * yv[0]) + (-0.0064474617 * yv[1]) +
+            (-0.0476997403 * yv[2]) + (-0.2185829743 * yv[3]) +
+            (-0.6649234123 * yv[4]) + (-1.4773657709 * yv[5]) +
+            (-2.2721421641 * yv[6]) + (-2.6598673212 * yv[7]) +
+            (-1.8755960587 * yv[8]);
+    // next output value = yv[9];
+    xv[0] = xv[1];
+    xv[1] = xv[2];
+    xv[2] = xv[3];
+    xv[3] = xv[4];
+    xv[4] = xv[5];
+    xv[5] = xv[6];
+    xv[6] = xv[7];
+    xv[7] = xv[8];
+    xv[8] = xv[9];
+    xv[9] = input_upsampled[1] * 0.019966841051093;
+    yv[0] = yv[1];
+    yv[1] = yv[2];
+    yv[2] = yv[3];
+    yv[3] = yv[4];
+    yv[4] = yv[5];
+    yv[5] = yv[6];
+    yv[6] = yv[7];
+    yv[7] = yv[8];
+    yv[8] = yv[9];
+    yv[9] = (xv[0] + xv[9]) + 9 * (xv[1] + xv[8]) + 36 * (xv[2] + xv[7]) +
+            84 * (xv[3] + xv[6]) + 126 * (xv[4] + xv[5]) +
+            (-0.0003977153 * yv[0]) + (-0.0064474617 * yv[1]) +
+            (-0.0476997403 * yv[2]) + (-0.2185829743 * yv[3]) +
+            (-0.6649234123 * yv[4]) + (-1.4773657709 * yv[5]) +
+            (-2.2721421641 * yv[6]) + (-2.6598673212 * yv[7]) +
+            (-1.8755960587 * yv[8]);
+    // next output value = yv[9];
+    xv[0] = xv[1];
+    xv[1] = xv[2];
+    xv[2] = xv[3];
+    xv[3] = xv[4];
+    xv[4] = xv[5];
+    xv[5] = xv[6];
+    xv[6] = xv[7];
+    xv[7] = xv[8];
+    xv[8] = xv[9];
+    xv[9] = input_upsampled[2] * 0.019966841051093;
+    yv[0] = yv[1];
+    yv[1] = yv[2];
+    yv[2] = yv[3];
+    yv[3] = yv[4];
+    yv[4] = yv[5];
+    yv[5] = yv[6];
+    yv[6] = yv[7];
+    yv[7] = yv[8];
+    yv[8] = yv[9];
+    yv[9] = (xv[0] + xv[9]) + 9 * (xv[1] + xv[8]) + 36 * (xv[2] + xv[7]) +
+            84 * (xv[3] + xv[6]) + 126 * (xv[4] + xv[5]) +
+            (-0.0003977153 * yv[0]) + (-0.0064474617 * yv[1]) +
+            (-0.0476997403 * yv[2]) + (-0.2185829743 * yv[3]) +
+            (-0.6649234123 * yv[4]) + (-1.4773657709 * yv[5]) +
+            (-2.2721421641 * yv[6]) + (-2.6598673212 * yv[7]) +
+            (-1.8755960587 * yv[8]);
 
-      //calc the smoothing
-      float smoothing_value = cheapCosInterpol(cosine_index) * m_value_before_sync;
+    return m_dc_blocking_filter.doFilter(yv[9]);
 
-      // return osc + smoothing
-      return m_dc_blocking_filter.doFilter(doOscillate() + smoothing_value);
-    } 
-    //if we didn't just have a sync, just carry on as normal:
-    return m_dc_blocking_filter.doFilter(doOscillate());
   } else {
-    //either sync off or syncosc not set:
+    // either sync off or syncosc not set:
+    m_sync_anti_aliasing_inc_factor = 1.f;
     return doOscillate();
   }
 }

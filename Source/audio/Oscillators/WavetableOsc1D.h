@@ -52,7 +52,6 @@ public:
 	}
 
 	void setSyncEnabled(bool p_sync){
-		DBG("SETSYNCENABLED" + std::to_string((int)p_sync));
 		m_sync_enabled = p_sync;
 	}
 
@@ -93,7 +92,7 @@ protected:
 	//for sync
 	DCBlockingFilter m_dc_blocking_filter;
 
-	bool m_sync_enabled = true;
+	bool m_sync_enabled = false;
 
 	float m_volume_factor = 1.f;
 
@@ -101,11 +100,11 @@ protected:
 	double m_wavetable_inc = 0.f;
 
 	Oscillator* m_sync_oscillator = nullptr;
-	bool m_sync_in_progress = false;
-	float m_value_before_sync = 0;
-	//this points to the falling edge section which is used to transition on sync event
-	//float** m_sync_table = nullptr;
+	float m_sync_anti_aliasing_inc_factor = 1.f;
 
+	//downsampling filter (see distortion for details)
+	double xv[10] = {0.};
+	double yv[10] = {0.};
 
 	//tables
 	const float* m_wavetable_pointers[NUMBER_OF_WAVETABLES + 9][SUBTABLES_PER_WAVETABLE];

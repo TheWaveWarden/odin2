@@ -60,7 +60,7 @@ public:
       }
     }
     */
-   // RIP note if it is in sustain?
+   // RIP note if it is in sustain
    if (m_sustain_active) {
       for (int voice = 0; voice < VOICES; ++voice) {
         if (m_kill_list[voice] && m_kill_list_note[voice] == p_note) {
