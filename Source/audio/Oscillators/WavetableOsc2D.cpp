@@ -1204,6 +1204,10 @@ void WavetableOsc2D::setWavetablePointer(
 }
 
 float WavetableOsc2D::doWavetable2D() {
+  //smooth position value
+  m_position_2D_smooth += (m_position_2D - m_position_2D_smooth) * 0.001;
+
+
   // prepare both sides and interpol value
   int read_index_trunc = (int)m_read_index;
   float fractional = m_read_index - (float)read_index_trunc;
@@ -1214,7 +1218,7 @@ float WavetableOsc2D::doWavetable2D() {
   int left_table;
   int right_table;
   float interpolation_value;
-  float position_modded = m_position_2D + (*m_pos_mod);
+  float position_modded = m_position_2D_smooth + (*m_pos_mod);
   position_modded = position_modded > 1 ? 1 : position_modded;
   position_modded = position_modded < 0 ? 0 : position_modded;
   getTableIndicesAndInterpolation(left_table, right_table, interpolation_value,

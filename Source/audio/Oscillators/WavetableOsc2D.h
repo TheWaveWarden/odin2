@@ -8,6 +8,11 @@ public:
   virtual float doOscillate() override;
   virtual void update() override;
 
+  virtual void reset() override{
+    WavetableOsc1D::reset();
+    m_position_2D_smooth = m_position_2D;
+  }
+
   inline void setPosition(float p_position) {
     m_position_2D = p_position;
 #ifdef WTGEN
@@ -84,6 +89,7 @@ protected:
   float *m_pos_mod;
 
   float m_position_2D = 0.f;
+  float m_position_2D_smooth = 0.f;
 
   void setWavetablePointer(
       int p_wavetable_index, int p_2D_sub_table,
