@@ -151,7 +151,7 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
                                                    " Modulator Ratio");
 
 
-                                                   // fm
+    // pm
     m_pm_osc_menu[osc].addItem(100 * osc + 2,
                                "Osc" + std::to_string(osc + 1) + " Pitch Exp");
     m_pm_osc_menu[osc].addItem(100 * osc + 3,
@@ -173,10 +173,10 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
 
     // draw
     m_draw_osc_menu[osc].addItem(
-        100 * osc + 1, "Osc" + std::to_string(osc + 1) + " Pitch Exp");
+        100 * osc + 2, "Osc" + std::to_string(osc + 1) + " Pitch Exp");
     m_draw_osc_menu[osc].addItem(
-        100 * osc + 2, "Osc" + std::to_string(osc + 1) + " Pitch Lin");
-    m_draw_osc_menu[osc].addItem(100 * osc + 3,
+        100 * osc + 3, "Osc" + std::to_string(osc + 1) + " Pitch Lin");
+    m_draw_osc_menu[osc].addItem(100 * osc + 4,
                                  "Osc" + std::to_string(osc + 1) + " Volume");
   }
   for (int fil = 0; fil < 3; ++fil) {
