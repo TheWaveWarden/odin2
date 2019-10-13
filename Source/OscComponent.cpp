@@ -781,16 +781,6 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 
   chiptune_submenu.addItem(505, "ChipSaw");
   chiptune_submenu.addItem(506, "ChipSine");
-  /*chiptune_submenu.addItem(507, "Diverging");
-  chiptune_submenu.addItem(508, "High A");
-  chiptune_submenu.addItem(509, "High B");
-  chiptune_submenu.addItem(510, "High C");
-  chiptune_submenu.addItem(511, "Rich");
-  chiptune_submenu.addItem(512, "SoftTune");
-  chiptune_submenu.addItem(513, "ChiptuneReplace1");
-  chiptune_submenu.addItem(514, "ChiptuneReplace2");
-  chiptune_submenu.addItem(515, "ChiptuneReplace3");
-  chiptune_submenu.addItem(516, "ChiptuneReplace4");*/
 
   juce::PopupMenu wavedraw_submenu;
   wavedraw_submenu.addItem(601, "WaveDraw Osc1");
@@ -933,16 +923,6 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_carrier_waveselector.addMapEntry("ChipTriangle", 504, 505, 503);
   m_carrier_waveselector.addMapEntry("ChipSaw", 505, 506, 504);
   m_carrier_waveselector.addMapEntry("ChipSine", 506, 601, 505);
-  /*m_carrier_waveselector.addMapEntry("Diverging", 507, 508, 506);
-  m_carrier_waveselector.addMapEntry("High A", 508, 509, 507);
-  m_carrier_waveselector.addMapEntry("High B", 509, 510, 508);
-  m_carrier_waveselector.addMapEntry("High C", 510, 511, 509);
-  m_carrier_waveselector.addMapEntry("Rich", 511, 512, 510);
-  m_carrier_waveselector.addMapEntry("SoftTune", 512, 513, 511);
-  m_carrier_waveselector.addMapEntry("ChiptuneReplace1", 513, 514, 512);
-  m_carrier_waveselector.addMapEntry("ChiptuneReplace2", 514, 515, 513);
-  m_carrier_waveselector.addMapEntry("ChiptuneReplace3", 515, 516, 514);
-  m_carrier_waveselector.addMapEntry("ChiptuneReplace4", 516, 601, 515);*/
 
   m_carrier_waveselector.addMapEntry("WaveDraw Osc1", 601, 602, 506);
   m_carrier_waveselector.addMapEntry("WaveDraw Osc2", 602, 603, 601);
@@ -1006,16 +986,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_modulator_waveselector.addMapEntry("ChipTriangle", 504, 505, 503);
   m_modulator_waveselector.addMapEntry("ChipSaw", 505, 506, 504);
   m_modulator_waveselector.addMapEntry("ChipSine", 506, 601, 505);
-  /*m_modulator_waveselector.addMapEntry("Diverging", 507, 508, 506);
-  m_modulator_waveselector.addMapEntry("High A", 508, 509, 507);
-  m_modulator_waveselector.addMapEntry("High B", 509, 510, 508);
-  m_modulator_waveselector.addMapEntry("High C", 510, 511, 509);
-  m_modulator_waveselector.addMapEntry("Rich", 511, 512, 510);
-  m_modulator_waveselector.addMapEntry("SoftTune", 512, 513, 511);
-  m_modulator_waveselector.addMapEntry("ChiptuneReplace1", 513, 514, 512);
-  m_modulator_waveselector.addMapEntry("ChiptuneReplace2", 514, 515, 513);
-  m_modulator_waveselector.addMapEntry("ChiptuneReplace3", 515, 516, 514);
-  m_modulator_waveselector.addMapEntry("ChiptuneReplace4", 516, 601, 515);*/
+
   m_modulator_waveselector.addMapEntry("WaveDraw Osc1", 601, 602, 506);
   m_modulator_waveselector.addMapEntry("WaveDraw Osc2", 602, 603, 601);
   m_modulator_waveselector.addMapEntry("WaveDraw Osc3", 603, 701, 602);
