@@ -25,7 +25,8 @@
 #endif
 
 
-#define WTGEN
+// shows the spectrum and wave display for wavetable osc 1
+//#define WTGEN
 
 
 #define MENU_BACKGROUND_COLOR Colour(35, 35, 35)

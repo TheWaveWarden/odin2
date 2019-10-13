@@ -86,11 +86,11 @@ OdinAudioProcessor::OdinAudioProcessor()
   // WavetableContainer::getInstance().convertWTFromOdin1(24, 108, "LegAdd8");
   // WavetableContainer::getInstance().convertWTFromOdin1(23, 109, "LegSharp");
   // WavetableContainer::getInstance().convertWTFromOdin1(25, 110, "LegPiano");
-  // WavetableContainer::getInstance().convertWTFromOdin1(26, 111, "LegUuh");
+  // WavetableContainer::getInstance().convertWTFromOdin1(33, 111, "LegAdd1");
 
   // WavetableContainer::getInstance().convertWTFromOdin1(32, 112, "LegCello");
-  // WavetableContainer::getInstance().convertWTFromOdin1(31, 113, "LegEBass");
-  // WavetableContainer::getInstance().convertWTFromOdin1(17, 114, "LegAdd6");
+  // WavetableContainer::getInstance().convertWTFromOdin1(27, 113, "LegAah");
+  // WavetableContainer::getInstance().convertWTFromOdin1(18, 114, "LegHarm2");
   // WavetableContainer::getInstance().convertWTFromOdin1(20, 115, "LegNoBass");
 
   // WavetableContainer::getInstance().convertWTFromOdin1(8, 116, "LegBags");
@@ -98,9 +98,9 @@ OdinAudioProcessor::OdinAudioProcessor()
   // WavetableContainer::getInstance().convertWTFromOdin1(6, 118, "LegTriQuad");
   // WavetableContainer::getInstance().convertWTFromOdin1(2, 119, "LegAdd3");
 
-  WavetableContainer::getInstance().createWavetables(44100.f);
-  WavetableContainer::getInstance().loadWavetablesAfterFourierCreation();
-  // WavetableContainer::getInstance().writeWavetablesToFile();
+  //WavetableContainer::getInstance().createWavetables(44100.f);
+  //WavetableContainer::getInstance().loadWavetablesAfterFourierCreation();
+  //WavetableContainer::getInstance().writeWavetablesToFile();
 
   // WavetableContainer::getInstance().fixWavetableCoefficientFile();
   // WavetableContainer::getInstance().fixWavetableIndexInFiles();

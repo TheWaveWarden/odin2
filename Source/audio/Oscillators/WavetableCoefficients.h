@@ -158,10 +158,10 @@ m_highest_loaded_table = 105;
 #include "Wavetables/Coefficients/LegAdd8.h"  //108
 #include "Wavetables/Coefficients/LegSharp.h" //109
 #include "Wavetables/Coefficients/LegPiano.h" //110
-#include "Wavetables/Coefficients/LegUuh.h"   //111
+#include "Wavetables/Coefficients/LegAdd1.h"   //111
 #include "Wavetables/Coefficients/LegCello.h" //112
-#include "Wavetables/Coefficients/LegEBass.h" //113
-#include "Wavetables/Coefficients/LegAdd6.h"  //114
+#include "Wavetables/Coefficients/LegAah.h" //113
+#include "Wavetables/Coefficients/LegHarm2.h"  //114
 #include "Wavetables/Coefficients/LegNoBass.h"//115
 #include "Wavetables/Coefficients/LegBags.h"  //116
 #include "Wavetables/Coefficients/LegOrgan.h" //117
