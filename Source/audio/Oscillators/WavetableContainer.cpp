@@ -2283,14 +2283,42 @@ void WavetableContainer::convertWTFromOdin1(int p_odin_1_nr, int p_odin_2_nr,
 
   eliminatePhaseInWavetableCoefficients(p_name);
 
-  std::ifstream  src("/home/frot/odinvst/Source/audio/Oscillators/"
-                          "Wavetables/Coefficients/PhaseEliminated/" +
-                          p_name + ".h", std::ios::binary);
-  std::ofstream  dst("/home/frot/odinvst/Source/audio/Oscillators/"
-                          "Wavetables/Coefficients/" +
-                          p_name + ".h",   std::ios::binary);
+  std::ifstream src("/home/frot/odinvst/Source/audio/Oscillators/"
+                    "Wavetables/Coefficients/PhaseEliminated/" +
+                        p_name + ".h",
+                    std::ios::binary);
+  std::ofstream dst("/home/frot/odinvst/Source/audio/Oscillators/"
+                    "Wavetables/Coefficients/" +
+                        p_name + ".h",
+                    std::ios::binary);
 
   dst << src.rdbuf();
 
   dst.close();
+}
+
+void WavetableContainer::printWTsNotUsedAsCoeffs() {
+
+  std::vector<std::string> string_vec =
+  { "INSERT ALL WAVETABLE FILENAMES IN THIS VECTOR (without dir)" };
+
+  for (auto const& wavetable_name : string_vec) {
+    std::ifstream filein("/home/frot/odinvst/Source/audio/Oscillators/WavetableCoefficients.h"); // File to read from
+
+    if (!filein) {
+      DBG("Error opening file!");
+      return;
+    }
+
+    std::string line;
+    bool found_string = false;
+    while (getline(filein, line)) {
+      if (line.find(wavetable_name) != std::string::npos) {
+        found_string = true;
+      }
+    }
+    if (!found_string) {
+      std::cout << "USELESS WT: " << wavetable_name << "\n";
+    }
+  }
 }
