@@ -23,7 +23,6 @@ class PMCarrierOsc : public WavetableOsc1D {
   }
 
   int getTableIndex() override {
-    //TODO calculate the PM-resulting "real" frequency and select table accordingly
     //Will Pirkle book 653
     //instantaneous frequency:
 
@@ -67,7 +66,6 @@ class PMCarrierOsc : public WavetableOsc1D {
     int read_index_next = read_index_trunc + 1;
 
     //clamp to zone
-    //todo can do with mod % ?
     while(read_index_trunc >= WAVETABLE_LENGTH){ read_index_trunc -= WAVETABLE_LENGTH;}
     while(read_index_next >= WAVETABLE_LENGTH){ read_index_next -= WAVETABLE_LENGTH;}
     while(read_index_trunc < WAVETABLE_LENGTH){ read_index_trunc += WAVETABLE_LENGTH;}

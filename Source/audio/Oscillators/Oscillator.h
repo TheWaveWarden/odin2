@@ -22,7 +22,7 @@ public:
   // --- increment the modulo counters
   inline void incModulo() { m_modulo += m_increment; }
 
-  // todo potential bottleneck
+  // ! bottleneck
   float pitchShiftMultiplier(float p_semitones) {
     return pow(2.f, p_semitones / 12.f);
   }
@@ -105,7 +105,7 @@ public:
     if (p_glide > 0.01) {
       return 0.9985f + p_glide * 0.0014;
     } else {
-      return 0.; // todo this is correct....?
+      return 0.;
     }
   }
 

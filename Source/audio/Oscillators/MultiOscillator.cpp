@@ -63,7 +63,6 @@ void MultiOscillator::update() {
   float detune_modded = m_detune + *m_detune_mod;
   detune_modded = detune_modded < 0 ? 0 : detune_modded;
 
-  // TODO THIS IS VERY BAD!!!!!
   m_oscillator_freq_multi[0] =
       m_osc_freq_modded * cheapPitchShiftMultiplier(-1.f * detune_modded) +
       m_mod_freq_lin;
@@ -145,7 +144,6 @@ float MultiOscillator::doWavetableMulti() {
             : read_index_trunc_multi[osc] + 1;
 
     // spread oscs over wavetable
-    // TODO range... now is +-0.75
     m_position_2D_multi[osc] =
         m_position_2D +
         ((float)osc - 1.5f) * (m_wavetable_multi_spread + (*m_spread_mod)) *

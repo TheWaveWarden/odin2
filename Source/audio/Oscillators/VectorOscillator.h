@@ -1,5 +1,8 @@
 #pragma once
 #include "WavetableOsc1D.h"
+
+#define VECTOR_EDGES 4
+
 class VectorOscillator : public WavetableOsc1D {
 public:
   VectorOscillator();
@@ -53,13 +56,6 @@ protected:
   float m_XY_pad_x_smooth = 0.f;
   float m_XY_pad_y_smooth = 0.f;
 
-  const float *m_current_table_vec_0;
-  const float *m_current_table_vec_1;
-  const float *m_current_table_vec_2;
-  const float *m_current_table_vec_3;
-
-  int m_wavetable_index_0 = 0;
-  int m_wavetable_index_1 = 0;
-  int m_wavetable_index_2 = 0;
-  int m_wavetable_index_3 = 0;
+  const float *m_current_table_vec[VECTOR_EDGES];
+  int m_wavetable_index[VECTOR_EDGES];
 };
