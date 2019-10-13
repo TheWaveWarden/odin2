@@ -1,9 +1,9 @@
 #pragma once
 
-#include "../../GlobalIncludes.h"
-#include "../OdinConstants.h"
-#include "Wavetables/Tables/LFOTableData.h"
-#include "Wavetables/Tables/WavetableData.h"
+#include "GlobalIncludes.h"
+#include "audio/OdinConstants.h"
+#include "audio/Oscillators/Wavetables/Tables/LFOTableData.h"
+#include "audio/Oscillators/Wavetables/Tables/WavetableData.h"
 #include <map>
 #include <string>
 

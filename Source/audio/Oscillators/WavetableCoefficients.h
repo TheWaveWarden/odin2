@@ -113,10 +113,11 @@
 #include "Wavetables/Coefficients/Trumpet4.h" //89->079
 
 // these are all referenced in chiptune wavetable mapping:
-#include "Wavetables/Coefficients/CTDiverging.h" //94->080
+
+//#include "Wavetables/Coefficients/CTDiverging.h" //94->080
 #include "Wavetables/Coefficients/CTHigh.h"      //95->081
 #include "Wavetables/Coefficients/CTHigh2.h"     //96->082
-#include "Wavetables/Coefficients/CTHigh3.h"     //97->083
+//#include "Wavetables/Coefficients/CTHigh3.h"     //97->083
 #include "Wavetables/Coefficients/CTRich.h"      //98->084
 #include "Wavetables/Coefficients/CTSoftTune.h"  //101->087
 #include "Wavetables/Coefficients/ChipSaw.h"     //99->085
@@ -144,7 +145,6 @@
 #include "Wavetables/Coefficients/ChiptuneSquare50Mutated6.h" //122->105
 #include "Wavetables/Coefficients/ChiptuneSquare50Mutated7.h" //123->106
 #include "Wavetables/Coefficients/ChiptuneSquare50Mutated8.h" //124->107
-
 
 #include "Wavetables/Coefficients/LegAdd8.h"  //108
 #include "Wavetables/Coefficients/LegSharp.h" //109
@@ -199,19 +199,14 @@
 #include "Wavetables/Coefficients/PerlinReplace1.h" //177->148
 #include "Wavetables/Coefficients/PerlinReplace2.h" //178->149
 #include "Wavetables/Coefficients/PerlinReplace3.h" //179->150
-#include "Wavetables/Coefficients/PerlinReplace4.h" //180->151
-
-//#include "Wavetables/Coefficients/PerlinReplace5.h" //181->152
-//#include "Wavetables/Coefficients/PerlinReplace6.h" //182->153
-//#include "Wavetables/Coefficients/PerlinReplace7.h" //183->154
-//#include "Wavetables/Coefficients/PerlinReplace8.h" //184->155
+#include "Wavetables/Coefficients/PerlinReplace4.h" //180->15
 
 #include "Wavetables/Coefficients/BagPipe.h"         //152
 #include "Wavetables/Coefficients/BagPipeMutated1.h" //153
 #include "Wavetables/Coefficients/BagPipeMutated5.h" //154
 #include "Wavetables/Coefficients/BagPipeMutated4.h" //155
 
-#include "Wavetables/Coefficients/ChiptuneReplace1.h" //156
-#include "Wavetables/Coefficients/ChiptuneReplace2.h" //157
-#include "Wavetables/Coefficients/ChiptuneReplace3.h" //158
-#include "Wavetables/Coefficients/ChiptuneReplace4.h" //159
+//#include "Wavetables/Coefficients/ChiptuneReplace1.h" //156
+//#include "Wavetables/Coefficients/ChiptuneReplace2.h" //157
+//#include "Wavetables/Coefficients/ChiptuneReplace3.h" //158
+//#include "Wavetables/Coefficients/ChiptuneReplace4.h" //159

@@ -23,6 +23,8 @@
 #include "WaveformSelectorComponent.h"
 #include "OdinButton.h"
 #include "XYPadComponent.h"
+#include "Utilities.h"
+
 
 //#include "PluginProcessor.h"
 

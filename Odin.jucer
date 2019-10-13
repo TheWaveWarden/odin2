@@ -584,6 +584,8 @@
             file="Gimp/cropped/wavetable_knob_cropped.png"/>
     </GROUP>
     <GROUP id="{7AF384ED-9FD6-6492-4B8C-5777BB9A2698}" name="Source">
+      <FILE id="hf2LpP" name="Utilities.cpp" compile="1" resource="0" file="Source/Utilities.cpp"/>
+      <FILE id="R1tTJD" name="Utilities.h" compile="0" resource="0" file="Source/Utilities.h"/>
       <FILE id="Od2QUg" name="OdinTooltipWindow.h" compile="0" resource="0"
             file="Source/OdinTooltipWindow.h"/>
       <FILE id="FrUDUI" name="ModMatrix.cpp" compile="1" resource="0" file="Source/ModMatrix.cpp"/>

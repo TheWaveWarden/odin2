@@ -813,40 +813,6 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 
   wavetable_submenu.addSubMenu("Classic Analog", wavetable_recycle_menu);
 
-  // ADD_WAVETABLE_SUB_MENU("BrokenSine", 120);
-  // ADD_WAVETABLE_SUB_MENU("Harsh", 130);
-  // ADD_WAVETABLE_SUB_MENU("Mean", 140);
-  // ADD_WAVETABLE_SUB_MENU("Rectangular", 150);
-  // ADD_WAVETABLE_SUB_MENU("Nasal", 160);
-  // ADD_WAVETABLE_SUB_MENU("Reed", 170);
-  // ADD_WAVETABLE_SUB_MENU("FM", 180);
-  // ADD_WAVETABLE_SUB_MENU("Glass", 190);
-  // ADD_WAVETABLE_SUB_MENU("Bitreduced", 200);
-  // ADD_WAVETABLE_SUB_MENU("Strings", 210);
-  // ADD_WAVETABLE_SUB_MENU("Piano", 220);
-  // ADD_WAVETABLE_SUB_MENU("Organ", 230);
-  // ADD_WAVETABLE_SUB_MENU("Oboe", 240);
-  // ADD_WAVETABLE_SUB_MENU("MixedWaves A", 250);
-  // ADD_WAVETABLE_SUB_MENU("Trumpet", 260);
-  // ADD_WAVETABLE_SUB_MENU("Voice A", 270);
-  // ADD_WAVETABLE_SUB_MENU("Voice B", 280);
-  // ADD_WAVETABLE_SUB_MENU("Voice C", 290);
-  // ADD_WAVETABLE_SUB_MENU("Voice D", 300);
-  // ADD_WAVETABLE_SUB_MENU("Additive A", 310);
-  // ADD_WAVETABLE_SUB_MENU("Additive B", 320);
-  // ADD_WAVETABLE_SUB_MENU("Additive C", 330);
-  // ADD_WAVETABLE_SUB_MENU("Additive D", 340);
-  // ADD_WAVETABLE_SUB_MENU("Overtones A", 350);
-  // ADD_WAVETABLE_SUB_MENU("Overtones B", 360);
-  // ADD_WAVETABLE_SUB_MENU("Harmonics A", 370);
-  // ADD_WAVETABLE_SUB_MENU("Harmonics B", 380);
-  // ADD_WAVETABLE_SUB_MENU("MutatedSaw A", 390);
-  // ADD_WAVETABLE_SUB_MENU("MutatedSaw B", 400);
-  // ADD_WAVETABLE_SUB_MENU("MutatedSquare A", 410);
-  // ADD_WAVETABLE_SUB_MENU("MutatedSquare B", 420);
-  // ADD_WAVETABLE_SUB_MENU("MixedWaves B", 430);
-  // ADD_WAVETABLE_SUB_MENU("MixedWaves C", 440);
-  // ADD_WAVETABLE_SUB_MENU("MixedWaves D", 450);
 
   ADD_WAVETABLE_SUB_MENU("Nasal", 120);
   ADD_WAVETABLE_SUB_MENU("Reed", 130);
@@ -910,64 +876,13 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   chip_menu.addItem(5, "ChipSaw");
   chip_menu.addItem(6, "ChipSine");
   chip_menu.addSeparator();
-  chip_menu.addItem(701, "ChipDraw 1");
-  chip_menu.addItem(702, "ChipDraw 2");
-  chip_menu.addItem(703, "ChipDraw 3");
-  /*chip_menu.addItem(7, "Diverging");
-  chip_menu.addItem(8, "High A");
-  chip_menu.addItem(9, "High B");
-  chip_menu.addItem(10, "High C");
-  chip_menu.addItem(11, "Rich");
-  chip_menu.addItem(12, "SoftTune");
-  chip_menu.addItem(13, "ChiptuneReplace1");
-  chip_menu.addItem(14, "ChiptuneReplace2");
-  chip_menu.addItem(15, "ChiptuneReplace3");
-  chip_menu.addItem(16, "ChiptuneReplace4");
-  chip_menu.addSeparator();
-  chip_menu.addSubMenu("Wavetables", wavetable_submenu);
-  chip_menu.addSeparator();
-  chip_menu.addSubMenu("WaveDraw", wavedraw_submenu);
-  chip_menu.addSubMenu("ChipDraw", chipdraw_submenu);
-  chip_menu.addSubMenu("SpecDraw", specdraw_submenu);*/
+  chip_menu.addItem(701, "ChipDraw Osc1");
+  chip_menu.addItem(702, "ChipDraw Osc2");
+  chip_menu.addItem(703, "ChipDraw Osc3");
 
   //====================
   //=== COPY & PASTA ===
   //====================
-
-  // ADD_MAP_ENTRY("BrokenSine", 120, m_carrier_waveselector)
-  // ADD_MAP_ENTRY("Harsh", 130, m_carrier_waveselector)
-  // ADD_MAP_ENTRY("Mean", 140, m_carrier_waveselector)
-  // ADD_MAP_ENTRY("Rectangular", 150, m_carrier_waveselector)
-  // ADD_MAP_ENTRY("Nasal", 160, m_carrier_waveselector)
-  // ADD_MAP_ENTRY("Reed", 170, m_carrier_waveselector)
-  // ADD_MAP_ENTRY("FM", 180, m_carrier_waveselector)
-  // ADD_MAP_ENTRY("Glass", 190, m_carrier_waveselector)
-  // ADD_MAP_ENTRY("Bitreduced", 200, m_carrier_waveselector)
-  // ADD_MAP_ENTRY("Strings", 210, m_carrier_waveselector)
-  // ADD_MAP_ENTRY("Piano", 220, m_carrier_waveselector)
-  // ADD_MAP_ENTRY("Organ", 230, m_carrier_waveselector)
-  // ADD_MAP_ENTRY("Oboe", 240, m_carrier_waveselector)
-  // ADD_MAP_ENTRY("MixedWaves A", 250, m_carrier_waveselector)
-  // ADD_MAP_ENTRY("Trumpet", 260, m_carrier_waveselector)
-  // ADD_MAP_ENTRY("Voice A", 270, m_carrier_waveselector)
-  // ADD_MAP_ENTRY("Voice B", 280, m_carrier_waveselector)
-  // ADD_MAP_ENTRY("Voice C", 290, m_carrier_waveselector)
-  // ADD_MAP_ENTRY("Voice D", 300, m_carrier_waveselector)
-  // ADD_MAP_ENTRY("Additive A", 310, m_carrier_waveselector)
-  // ADD_MAP_ENTRY("Additive B", 320, m_carrier_waveselector)
-  // ADD_MAP_ENTRY("Additive C", 330, m_carrier_waveselector)
-  // ADD_MAP_ENTRY("Additive D", 340, m_carrier_waveselector)
-  // ADD_MAP_ENTRY("Overtones A", 350, m_carrier_waveselector)
-  // ADD_MAP_ENTRY("Overtones B", 360, m_carrier_waveselector)
-  // ADD_MAP_ENTRY("Harmonics A", 370, m_carrier_waveselector)
-  // ADD_MAP_ENTRY("Harmonics B", 380, m_carrier_waveselector)
-  // ADD_MAP_ENTRY("MutatedSaw A", 390, m_carrier_waveselector)
-  // ADD_MAP_ENTRY("MutatedSaw B", 400, m_carrier_waveselector)
-  // ADD_MAP_ENTRY("MutatedSquare A", 410, m_carrier_waveselector)
-  // ADD_MAP_ENTRY("MutatedSquare B", 420, m_carrier_waveselector)
-  // ADD_MAP_ENTRY("MixedWaves B", 430, m_carrier_waveselector)
-  // ADD_MAP_ENTRY("MixedWaves C", 440, m_carrier_waveselector)
-  // ADD_MAP_ENTRY("MixedWaves D", 450, m_carrier_waveselector)
 
   ADD_MAP_ENTRY("Nasal", 120, m_carrier_waveselector)
   ADD_MAP_ENTRY("Reed", 130, m_carrier_waveselector)
@@ -1120,41 +1035,6 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   *(m_vec_c.getRootMenu()) = vector_menu;
   *(m_vec_d.getRootMenu()) = vector_menu;
 
-  /*ADD_MAP_ENTRY("BrokenSine", 120, m_chiptune_waveselector)
-  ADD_MAP_ENTRY("Harsh", 130, m_chiptune_waveselector)
-  ADD_MAP_ENTRY("Mean", 140, m_chiptune_waveselector)
-  ADD_MAP_ENTRY("Rectangular", 150, m_chiptune_waveselector)
-  ADD_MAP_ENTRY("Nasal", 160, m_chiptune_waveselector)
-  ADD_MAP_ENTRY("Reed", 170, m_chiptune_waveselector)
-  ADD_MAP_ENTRY("FM", 180, m_chiptune_waveselector)
-  ADD_MAP_ENTRY("Glass", 190, m_chiptune_waveselector)
-  ADD_MAP_ENTRY("Bitreduced", 200, m_chiptune_waveselector)
-  ADD_MAP_ENTRY("Strings", 210, m_chiptune_waveselector)
-  ADD_MAP_ENTRY("Piano", 220, m_chiptune_waveselector)
-  ADD_MAP_ENTRY("Organ", 230, m_chiptune_waveselector)
-  ADD_MAP_ENTRY("Oboe", 240, m_chiptune_waveselector)
-  ADD_MAP_ENTRY("MixedWaves A", 250, m_chiptune_waveselector)
-  ADD_MAP_ENTRY("Trumpet", 260, m_chiptune_waveselector)
-  ADD_MAP_ENTRY("Voice A", 270, m_chiptune_waveselector)
-  ADD_MAP_ENTRY("Voice B", 280, m_chiptune_waveselector)
-  ADD_MAP_ENTRY("Voice C", 290, m_chiptune_waveselector)
-  ADD_MAP_ENTRY("Voice D", 300, m_chiptune_waveselector)
-  ADD_MAP_ENTRY("Additive A", 310, m_chiptune_waveselector)
-  ADD_MAP_ENTRY("Additive B", 320, m_chiptune_waveselector)
-  ADD_MAP_ENTRY("Additive C", 330, m_chiptune_waveselector)
-  ADD_MAP_ENTRY("Additive D", 340, m_chiptune_waveselector)
-  ADD_MAP_ENTRY("Harmonics A", 350, m_chiptune_waveselector)
-  ADD_MAP_ENTRY("Harmonics B", 360, m_chiptune_waveselector)
-  ADD_MAP_ENTRY("Harmonics C", 370, m_chiptune_waveselector)
-  ADD_MAP_ENTRY("Harmonics D", 380, m_chiptune_waveselector)
-  ADD_MAP_ENTRY("MutatedSaw A", 390, m_chiptune_waveselector)
-  ADD_MAP_ENTRY("MutatedSaw B", 400, m_chiptune_waveselector)
-  ADD_MAP_ENTRY("MutatedSquare A", 410, m_chiptune_waveselector)
-  ADD_MAP_ENTRY("MutatedSquare B", 420, m_chiptune_waveselector)
-  ADD_MAP_ENTRY("MixedWaves B", 430, m_chiptune_waveselector)
-  ADD_MAP_ENTRY("MixedWaves C", 440, m_chiptune_waveselector)
-  ADD_MAP_ENTRY("MixedWaves D", 450, m_chiptune_waveselector)*/
-
   m_chiptune_waveselector.setDecrementValue(121, 104);
   m_chiptune_waveselector.setIncrementValue(454, 601);
 
@@ -1163,31 +1043,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_chiptune_waveselector.addMapEntry("Pulse 12.5", 3, 4, 2);
   m_chiptune_waveselector.addMapEntry("ChipTriangle", 4, 5, 3);
   m_chiptune_waveselector.addMapEntry("ChipSaw", 5, 6, 4);
-  m_chiptune_waveselector.addMapEntry("ChipSine", 6, 701, 5);
-  /*m_chiptune_waveselector.addMapEntry("Diverging", 7, 8, 6);
-  m_chiptune_waveselector.addMapEntry("High A", 8, 9, 7);
-  m_chiptune_waveselector.addMapEntry("High B", 9, 10, 8);
-  m_chiptune_waveselector.addMapEntry("High C", 10, 11, 9);
-  m_chiptune_waveselector.addMapEntry("Rich", 11, 12, 10);
-  m_chiptune_waveselector.addMapEntry("SoftTune", 12, 13, 11);
-  m_chiptune_waveselector.addMapEntry("ChiptuneReplace1", 13, 14, 12);
-  m_chiptune_waveselector.addMapEntry("ChiptuneReplace2", 14, 15, 13);
-  m_chiptune_waveselector.addMapEntry("ChiptuneReplace3", 15, 16, 14);
-  m_chiptune_waveselector.addMapEntry("ChiptuneReplace4", 16, 101, 15);
-
-  m_chiptune_waveselector.addMapEntry("Saw", 101, 102, 16);
-  m_chiptune_waveselector.addMapEntry("Square", 102, 103, 101);
-  m_chiptune_waveselector.addMapEntry("Triangle", 103, 104, 102);
-  m_chiptune_waveselector.addMapEntry("Sine", 104, 121, 103);
-
-  m_chiptune_waveselector.addMapEntry("WaveDraw Osc1", 601, 602, 454);
-  m_chiptune_waveselector.addMapEntry("WaveDraw Osc2", 602, 603, 601);
-  m_chiptune_waveselector.addMapEntry("WaveDraw Osc3", 603, 701, 602);
-
-  m_chiptune_waveselector.addMapEntry("SpecDraw Osc1", 801, 802, 703);
-  m_chiptune_waveselector.addMapEntry("SpecDraw Osc2", 802, 803, 801);
-  m_chiptune_waveselector.addMapEntry("SpecDraw Osc3", 803, 803, 802);*/
-
+  m_chiptune_waveselector.addMapEntry("ChipSine", 6, 701, 5);  
   m_chiptune_waveselector.addMapEntry("ChipDraw Osc1", 701, 702, 6);
   m_chiptune_waveselector.addMapEntry("ChipDraw Osc2", 702, 703, 701);
   m_chiptune_waveselector.addMapEntry("ChipDraw Osc3", 703, 703, 702);
@@ -1907,17 +1763,17 @@ void OscComponent::createSpecdrawTables() {
 
 #ifdef WTGEN
 void OscComponent::writeWavedrawTableToFile() {
-  WavetableContainer::getInstance().writeWavedrawTable(
+  Utilities::getInstance().writeWavedrawTable(
       m_wavedraw.getDrawnTable(), "WAVEDRAW_TABLE");
 }
 
 void OscComponent::writeSpecdrawTableToFile() {
-  WavetableContainer::getInstance().writeSpecdrawTable(
+  Utilities::getInstance().writeSpecdrawTable(
       m_specdraw.getDrawnTable(), "SPECDRAW_TABLE");
 }
 
 void OscComponent::writeChipdrawTableToFile() {
-  WavetableContainer::getInstance().writeChipdrawTable(
+  Utilities::getInstance().writeChipdrawTable(
       m_chipdraw.getDrawnTable(), "CHIPDRAW_TABLE");
 }
 #endif

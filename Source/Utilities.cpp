@@ -12,7 +12,7 @@ Utilities::Utilities()
 //    :
 //#include "Wavetables/Tables/WavetableData.h" //include initializer list
 {
-#include "WavetableCoefficients.h"
+#include "audio/Oscillators/WavetableCoefficients.h"
 
   // dynamically allocate wavetables
   // m_wavetables = new
@@ -306,9 +306,9 @@ void Utilities::createLFOCoefficientsFromLinSections(
   output_file.close();
 }
 
-void Utilities::createChipdrawTable(
-    int p_table_nr, float p_chipdraw_values[CHIPDRAW_STEPS_X],
-    float p_samplerate) {
+void Utilities::createChipdrawTable(int p_table_nr,
+                                    float p_chipdraw_values[CHIPDRAW_STEPS_X],
+                                    float p_samplerate) {
 
   // first generate the fourier coefficients
   float chipdraw_coefficients[SIN_AND_COS][NUMBER_OF_HARMONICS];
@@ -399,8 +399,8 @@ void Utilities::createChipdrawTable(
   }
 }
 
-void Utilities::writeWavedrawTable(
-    float p_wavedraw_values[WAVEDRAW_STEPS_X], std::string p_table_name) {
+void Utilities::writeWavedrawTable(float p_wavedraw_values[WAVEDRAW_STEPS_X],
+                                   std::string p_table_name) {
   // first generate the fourier coefficients
   float wavedraw_coefficients[SIN_AND_COS][NUMBER_OF_HARMONICS];
 
@@ -524,8 +524,8 @@ void Utilities::writeWavedrawTable(
   output_file.close();
 }
 
-void Utilities::writeChipdrawTable(
-    float p_chipdraw_values[WAVEDRAW_STEPS_X], std::string p_table_name) {
+void Utilities::writeChipdrawTable(float p_chipdraw_values[WAVEDRAW_STEPS_X],
+                                   std::string p_table_name) {
   // first generate the fourier coefficients
   float wavedraw_coefficients[SIN_AND_COS][NUMBER_OF_HARMONICS];
 
@@ -599,29 +599,23 @@ void Utilities::writeChipdrawTable(
     max = 1.f / max; // for faster computation
   }
 
-  std::ofstream container;
-  container.open(
-      "/home/frot/odinvst/Source/audio//Oscillators/WavetableCoefficients.h",
-      std::ofstream::out | std::ofstream::app);
+  seedRandom();
 
-  // container << "#include \"Wavetables/Coefficients/" + p_table_name +
-  //                 ".h\" //" + std::to_string(m_highest_loaded_table + 1) +
-  //                 "\n";
-  container.close();
+  std::string random_string = std::to_string(rand());
 
-  DBG("CREATING TABLE /home/frot/odinvst/Source/audio/Oscillators/"
-      "Wavetables/Coefficients/" +
-      p_table_name + ".h " + std::to_string(m_highest_loaded_table + 1));
+      DBG("CREATING TABLE /home/frot/odinvst/Source/audio/Oscillators/"
+          "Wavetables/Coefficients/" + p_table_name +
+          random_string + ".h " + std::to_string(m_highest_loaded_table + 1));
 
   std::ofstream output_file;
   output_file.open("/home/frot/odinvst/Source/audio/Oscillators/"
                    "Wavetables/Coefficients/" +
-                   p_table_name + ".h");
+                   p_table_name + random_string + ".h");
 
-  output_file << "#define WT_NR " << ++m_highest_loaded_table << "\n\n";
+  output_file << "#define WT_NR "  << "\n\n";
   output_file << "m_highest_loaded_table = WT_NR > m_highest_loaded_table ? "
                  "WT_NR : m_highest_loaded_table;\n";
-  output_file << "m_wavetable_names_1D[WT_NR] = \"" + p_table_name + "\";\n\n";
+  output_file << "m_wavetable_names_1D[WT_NR] = \"" + p_table_name + random_string +"\";\n\n";
 
   output_file << "m_fourier_coeffs[WT_NR][1][0] = " + to_string_no_comma(max) +
                      ";//scalar\n\n";
@@ -642,8 +636,8 @@ void Utilities::writeChipdrawTable(
   output_file.close();
 }
 
-void Utilities::writeSpecdrawTable(
-    float p_specdraw_values[SPECDRAW_STEPS_X], std::string p_table_name) {
+void Utilities::writeSpecdrawTable(float p_specdraw_values[SPECDRAW_STEPS_X],
+                                   std::string p_table_name) {
 
   // now create the wavetable from the fourier coefficients
   double seed_freq = 27.5; // A0
@@ -730,9 +724,9 @@ void Utilities::writeSpecdrawTable(
   output_file.close();
 }
 
-void Utilities::createWavedrawTable(
-    int p_table_nr, float p_wavedraw_values[WAVEDRAW_STEPS_X],
-    float p_samplerate, bool p_const_sections) {
+void Utilities::createWavedrawTable(int p_table_nr,
+                                    float p_wavedraw_values[WAVEDRAW_STEPS_X],
+                                    float p_samplerate, bool p_const_sections) {
 
   // first generate the fourier coefficients
   float wavedraw_coefficients[SIN_AND_COS][NUMBER_OF_HARMONICS];
@@ -839,9 +833,9 @@ void Utilities::createWavedrawTable(
   }
 }
 
-void Utilities::createSpecdrawTable(
-    int p_table_nr, float p_specdraw_values[SPECDRAW_STEPS_X],
-    float p_samplerate) {
+void Utilities::createSpecdrawTable(int p_table_nr,
+                                    float p_specdraw_values[SPECDRAW_STEPS_X],
+                                    float p_samplerate) {
   // now create the wavetable from the fourier coefficients
   double seed_freq = 27.5; // A0
   float max = 0.f;
@@ -905,9 +899,8 @@ void Utilities::createSpecdrawTable(
   }
 }
 
-float Utilities::lin_segment_one_overtone_sine(float p_a, float p_b,
-                                                        float p_fa, float p_fb,
-                                                        int p_ot) {
+float Utilities::lin_segment_one_overtone_sine(float p_a, float p_b, float p_fa,
+                                               float p_fb, int p_ot) {
 
   float m = (p_fb - p_fa) / (p_b - p_a); // slope of linear function
   float c = p_fa - m * p_a;              // const offset of linear function
@@ -923,9 +916,8 @@ float Utilities::lin_segment_one_overtone_sine(float p_a, float p_b,
 }
 
 float Utilities::lin_segment_one_overtone_cosine(float p_a, float p_b,
-                                                          float p_fa,
-                                                          float p_fb,
-                                                          int p_ot) {
+                                                 float p_fa, float p_fb,
+                                                 int p_ot) {
 
   if (p_ot == 0) {
     // todo this aint zero
@@ -940,10 +932,9 @@ float Utilities::lin_segment_one_overtone_cosine(float p_a, float p_b,
          p_ot / p_ot;
 }
 
-float Utilities::const_segment_one_overtone_sine(float p_start,
-                                                          float p_end,
-                                                          float p_height,
-                                                          int p_harmonic) {
+float Utilities::const_segment_one_overtone_sine(float p_start, float p_end,
+                                                 float p_height,
+                                                 int p_harmonic) {
   if (p_harmonic == 0) {
     return 0;
   }
@@ -951,10 +942,9 @@ float Utilities::const_segment_one_overtone_sine(float p_start,
          (cos(p_start * (float)p_harmonic) - cos(p_end * (float)p_harmonic));
 }
 
-float Utilities::const_segment_one_overtone_cosine(float p_start,
-                                                            float p_end,
-                                                            float p_height,
-                                                            int p_harmonic) {
+float Utilities::const_segment_one_overtone_cosine(float p_start, float p_end,
+                                                   float p_height,
+                                                   int p_harmonic) {
   if (p_harmonic == 0) {
     return (p_end - p_start) * p_height;
   }
@@ -1529,9 +1519,8 @@ void Utilities::writeSampleTableToFile(std::string p_filename) {
 }
 
 void Utilities::mutateWavetable(std::string p_table_name,
-                                         int number_of_mutations, float percent,
-                                         bool p_consecutive_mutation,
-                                         int p_start_id) {
+                                int number_of_mutations, float percent,
+                                bool p_consecutive_mutation, int p_start_id) {
 
   auto it = m_name_index_map.find(p_table_name);
   if (it == m_name_index_map.end()) {
@@ -1680,8 +1669,8 @@ float cosInterpol(float p_left, float p_right, float p_frac) {
   return p_left + (p_right - p_left) * cosine;
 }
 
-void Utilities::writePerlinTableToFile(std ::string p_table_name,
-                                                int p_steps, float p_percent) {
+void Utilities::writePerlinTableToFile(std ::string p_table_name, int p_steps,
+                                       float p_percent) {
   seedRandom();
 
   // first generate the grid:
@@ -1940,7 +1929,7 @@ void Utilities::fixWavetableIndexInFiles() {
 }
 
 void Utilities::fixWavetableIndexInSingleFile(std::string p_filename,
-                                                       int p_number) {
+                                              int p_number) {
   std::ifstream filein(
       "/home/frot/odinvst/Source/audio/Oscillators/Wavetables/" + p_filename +
       ".h"); // File to read from
@@ -1989,8 +1978,7 @@ std::string makeFloatCorrectOutput(float p_input) {
   return out;
 }
 
-void Utilities::eliminatePhaseInWavetableCoefficients(
-    std::string p_filename) {
+void Utilities::eliminatePhaseInWavetableCoefficients(std::string p_filename) {
 
   DBG("ELIMINATING PHASE IN WT FILE " + p_filename);
   // see whether files open
@@ -2226,7 +2214,7 @@ void Utilities::fixTooHighHarmonics(std::string p_filename) {
 }
 
 void Utilities::convertWTFromOdin1(int p_odin_1_nr, int p_odin_2_nr,
-                                            std::string p_name) {
+                                   std::string p_name) {
 
   // see whether files open
 
