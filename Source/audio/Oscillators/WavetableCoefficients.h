@@ -26,7 +26,8 @@
 #include "Wavetables/Coefficients/ChiptuneTriangle.h"   //1
 #include "Wavetables/Coefficients/Sine.h"               //0
 
-// todo hole
+// ! HOLE
+
 #include "Wavetables/Coefficients/FatSaw.h"   //13->007
 #include "Wavetables/Coefficients/Saw.h"      //11->005
 #include "Wavetables/Coefficients/Triangle.h" //12->006

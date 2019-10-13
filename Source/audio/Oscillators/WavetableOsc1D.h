@@ -1,120 +1,115 @@
 #pragma once
-#include "Oscillator.h"
-#include "../OdinConstants.h"
-#include "WavetableContainer.h"
 #include "../Filters/DCBlockingFilter.h"
-#include <fstream>//todo
+#include "../OdinConstants.h"
+#include "Oscillator.h"
+#include "WavetableContainer.h"
 
+#define SYNC_PORTION_OF_TABLE 16 // sync smoothing takes place 1/16th of a table
 
-#define SYNC_PORTION_OF_TABLE 16 //sync smoothing takes place 1/16th of a table
-
-
-class WavetableOsc1D :
-	public Oscillator
-{
+class WavetableOsc1D : public Oscillator {
 public:
-    //this shall map wavetables properly.
-	//Input: wavetable index from valueTree (propably from dropdown menu)
-	//Ouptut: wavetable index as it was set in loadWavetables()
-    std::function<void(int)> selectWavetableByMapping = [](int){
-		DBG("\n\n\nERROR: setWavetableByMapping() not set!!!!\n\n\n");
-	};
+  // this shall map wavetables properly.
+  // Input: wavetable index from valueTree (propably from dropdown menu)
+  // Ouptut: wavetable index as it was set in loadWavetables()
+  std::function<void(int)> selectWavetableByMapping = [](int) {
+    DBG("\n\n\nERROR: setWavetableByMapping() not set!!!!\n\n\n");
+  };
 
-	WavetableOsc1D();
-	virtual ~WavetableOsc1D();
+  WavetableOsc1D();
+  virtual ~WavetableOsc1D();
 
-	void setVoldB(float dB);
-	virtual void selectWavetable(int p_wavetable_index);
+  void setVoldB(float dB);
+  virtual void selectWavetable(int p_wavetable_index);
 
-	//overrides
-	virtual void reset() override;
-	virtual float doOscillate() override;
-	virtual void update() override;
+  // overrides
+  virtual void reset() override;
+  virtual float doOscillate() override;
+  virtual void update() override;
 
-	//this function is used to support sync for all deriving classes.
-	//It does the sync stuff and then calls doOscillate (from child classes)
-	float doOscillateWithSync();
+  // this function is used to support sync for all deriving classes.
+  // It does the sync stuff and then calls doOscillate (from child classes)
+  float doOscillateWithSync();
 
-	//used to load wavetables can be overwritten by child classes
-	virtual void loadWavetables();
+  // used to load wavetables can be overwritten by child classes
+  virtual void loadWavetables();
 
-	void loadWavedrawTables(int p_osc);
-	void loadChipdrawTables(int p_osc);
-	void loadSpecdrawTables(int p_osc);
+  void loadWavedrawTables(int p_osc);
+  void loadChipdrawTables(int p_osc);
+  void loadSpecdrawTables(int p_osc);
 
-	//these shouldn't be here but it seemed the least tedious solution...
-	int wavetableMappingChiptune(int p_input);
-	int wavetableMappingVector(int p_input);
-	int wavetableMappingFM(int p_input);
+  // these shouldn't be here but it seemed the least tedious solution...
+  int wavetableMappingChiptune(int p_input);
+  int wavetableMappingVector(int p_input);
+  int wavetableMappingFM(int p_input);
 
-	void setSyncOscillator(Oscillator* p_osc){
-		m_sync_oscillator = p_osc;
-	}
+  void setSyncOscillator(Oscillator *p_osc) { m_sync_oscillator = p_osc; }
 
-	void setSyncEnabled(bool p_sync){
-		m_sync_enabled = p_sync;
-	}
+  void setSyncEnabled(bool p_sync) { m_sync_enabled = p_sync; }
 
-	void setSampleRate(float p_sr) override {
-		Oscillator::setSampleRate(p_sr);
-		m_dc_blocking_filter.setSampleRate(p_sr);
-	}
+  void setSampleRate(float p_sr) override {
+    Oscillator::setSampleRate(p_sr);
+    m_dc_blocking_filter.setSampleRate(p_sr);
+  }
 
 protected:
-	virtual void initiateSync();
+  virtual void initiateSync();
 
-	virtual int getTableIndex();
-	
-	void setWavetablePointer(int p_wavetable_index, const float* p_wavetable_pointers[SUBTABLES_PER_WAVETABLE]);
-	void setWavetablePointerNONCONST(int p_wavetable_index, float* p_wavetable_pointers[SUBTABLES_PER_WAVETABLE]);
-	
-	inline float linearInterpolation(float p_low, float p_high, float p_distance){
-		return (1.f - p_distance) * p_low + p_distance * p_high;
-	}
+  virtual int getTableIndex();
 
-	inline void checkWrapIndex(double &p_index){
+  void setWavetablePointer(
+      int p_wavetable_index,
+      const float *p_wavetable_pointers[SUBTABLES_PER_WAVETABLE]);
+  void setWavetablePointerNONCONST(
+      int p_wavetable_index,
+      float *p_wavetable_pointers[SUBTABLES_PER_WAVETABLE]);
 
-		m_reset_flag = false;
-		
-		while(p_index < 0){
-			p_index += WAVETABLE_LENGTH;
-		}
-		
-		while(p_index >= WAVETABLE_LENGTH){
-			p_index -= WAVETABLE_LENGTH;
-			m_reset_flag = true;
-			m_reset_position = p_index;
-		}
-	}
+  inline float linearInterpolation(float p_low, float p_high,
+                                   float p_distance) {
+    return (1.f - p_distance) * p_low + p_distance * p_high;
+  }
 
-	float doWavetable();
+  inline void checkWrapIndex(double &p_index) {
 
-	//for sync
-	DCBlockingFilter m_dc_blocking_filter;
+    m_reset_flag = false;
 
-	bool m_sync_enabled = false;
+    while (p_index < 0) {
+      p_index += WAVETABLE_LENGTH;
+    }
 
-	float m_volume_factor = 1.f;
+    while (p_index >= WAVETABLE_LENGTH) {
+      p_index -= WAVETABLE_LENGTH;
+      m_reset_flag = true;
+      m_reset_position = p_index;
+    }
+  }
 
-	double m_read_index = 0.f;
-	double m_wavetable_inc = 0.f;
+  float doWavetable();
 
-	Oscillator* m_sync_oscillator = nullptr;
-	float m_sync_anti_aliasing_inc_factor = 1.f;
+  // for sync
+  DCBlockingFilter m_dc_blocking_filter;
 
-	//downsampling filter (see distortion for details)
-	double xv[10] = {0.};
-	double yv[10] = {0.};
+  bool m_sync_enabled = false;
 
-	//tables
-	const float* m_wavetable_pointers[NUMBER_OF_WAVETABLES + 9][SUBTABLES_PER_WAVETABLE];
-	const float* m_current_table;
-	int m_wavetable_index = 0;
-	int m_sub_table_index = 0;
-	
-	int m_nr_of_wavetables = NUMBER_OF_WAVETABLES + 9;//can be overwritten in child classes 
+  float m_volume_factor = 1.f;
 
-	//std::ofstream debug_stream; //todo
+  double m_read_index = 0.f;
+  double m_wavetable_inc = 0.f;
 
+  Oscillator *m_sync_oscillator = nullptr;
+  float m_sync_anti_aliasing_inc_factor = 1.f;
+
+  // downsampling filter (see distortion for details)
+  double xv[10] = {0.};
+  double yv[10] = {0.};
+
+  // tables
+  const float
+      *m_wavetable_pointers[NUMBER_OF_WAVETABLES + 9] //+ 9 for drawtables
+                           [SUBTABLES_PER_WAVETABLE];
+  const float *m_current_table;
+  int m_wavetable_index = 0;
+  int m_sub_table_index = 0;
+
+  int m_nr_of_wavetables =      // + 9 for draw pointers
+      NUMBER_OF_WAVETABLES + 9; // can be overwritten in child classes
 };
-

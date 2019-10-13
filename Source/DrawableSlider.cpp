@@ -91,7 +91,7 @@ void DrawableSlider::mouseDown(const MouseEvent &event) {
 }
 
 String DrawableSlider::getTextFromValue(double value) {
-  //todo?
+  //apparently there's a better solution:
   //https://forum.juce.com/t/setnumdecimalplacestodisplay-not-behaving-solved/33686/2
   return String(value, getNumDecimalPlacesToDisplay()) + getTextValueSuffix();
 }

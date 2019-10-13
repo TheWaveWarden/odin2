@@ -483,8 +483,6 @@ struct Voice {
     p_MIDI_note -= 21;
     p_MIDI_note = p_MIDI_note < 0 ? 0 : p_MIDI_note;
 
-    // TODO WOW... this should be fil < 2?????? WAS THIS THE BUG WITH THE
-    // ADSR?????
     for (int fil = 0; fil < 2; ++fil) {
       ladder_filter[fil].m_MIDI_note = p_MIDI_note;
       diode_filter[fil].m_MIDI_note = p_MIDI_note;
@@ -640,9 +638,6 @@ struct Voice {
   // ADSRs
   ADSREnvelope env[3];
   LFO lfo[3];
-
-  // LFOs
-  // todo
 
   bool m_is_legato = false;
   // modulation values

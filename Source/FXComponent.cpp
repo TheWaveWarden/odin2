@@ -134,8 +134,6 @@ FXComponent::FXComponent(AudioProcessorValueTreeState &vts,
   sync_draw3.setImage(sync_3);
   sync_draw4.setImage(sync_4);
 
-  // TODO
-  // if (!m_is_standalone_plugin) {
   m_sync_attach.reset(
       new ButtonAttachment(m_value_tree, m_fx_name + "_sync", m_sync));
   m_sync.setImages(&sync_draw2, &sync_draw2, &sync_draw1, &sync_draw1,
@@ -148,11 +146,8 @@ FXComponent::FXComponent(AudioProcessorValueTreeState &vts,
                    juce::Colour());
   m_sync.setTooltip("Syncs the internal LFOs\nspeed to your track");
   addAndMakeVisible(m_sync);
-  //}
   m_sync.onStateChange = [&]() {
-    // if (!m_is_standalone_plugin) {
     setSyncEnabled(m_sync.getToggleState());
-    //}
   };
 
   m_sync_time.OnValueChange = [&](int p_left, int p_right) {

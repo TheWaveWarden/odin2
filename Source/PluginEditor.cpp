@@ -587,7 +587,6 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
   m_filright_buttonf1.setColour(
       juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
 
-  // todo load all images through binary
   // load background image
   juce::Image odin_backplate = ImageCache::getFromMemory(
       BinaryData::odin_backplate_png, BinaryData::odin_backplate_pngSize);
@@ -790,11 +789,10 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
                             legato_left.getHeight());
   m_legato_button.setToggleState(true, sendNotification);
   m_legato_button.onClick = [&]() {
-    // TODO reset entire synth here
     // set value in audiovaluetree
     m_value_tree.state.setProperty("legato", m_legato_button.getToggleState(),
                                    nullptr);
-    // notify voice manager
+    // notify voice manager this will reset synth
     processor.setPolyLegato(m_legato_button.getToggleState());
   };
   m_legato_button.setTooltip(
@@ -825,7 +823,6 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
   addChildComponent(m_lfo_4);
 
   m_pitch_amount.OnValueChange = [&](int p_new_value) {
-    // todo why is this still audioparamstyle???
     m_value_tree.getParameter(m_pitchbend_amount_identifier)
         ->setValueNotifyingHost(((float)p_new_value) / 24.f);
   };
@@ -1194,7 +1191,7 @@ void OdinAudioProcessorEditor::setTooltipEnabled(bool p_enabled) {
   if (p_enabled) {
     m_tooltip.setMillisecondsBeforeTipAppears(0);
   } else {
-    // todo unelegant af solution
+    //unelegant solution
     m_tooltip.setMillisecondsBeforeTipAppears(2047483647);
     m_tooltip.hideTip();
   }
@@ -1248,7 +1245,6 @@ void OdinAudioProcessorEditor::forceValueTreeOntoComponents(
 
   forceValueTreeOntoComponentsOnlyMainPanel();
 
-  // TODO the following block is a duplicate? also set at the end of
   // constructor, these seems to have no influence
   setOsc1Plate(m_value_tree.state["osc1_type"]);
   setOsc2Plate(m_value_tree.state["osc2_type"]);
@@ -1414,7 +1410,9 @@ bool OdinAudioProcessorEditor::keyStateChanged(
 }
 
 void OdinAudioProcessorEditor::allMidiKeysOff() {
-  // TODO this is the SHITTIEST implementation ever
+  // this is the SHITTIEST implementation ever
+  // but it gets the job done and is called every moon :-)
+  // (gets called only for (PC-)keyboard octave change)
   for (int note = 0; note < 127; ++note) {
     processor.midiNoteOff(note);
   }

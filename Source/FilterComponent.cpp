@@ -413,7 +413,6 @@ void FilterComponent::setFilterFormant() {
 }
 
 void FilterComponent::setFilterRingMod() {
-  // todo
   m_background = ImageCache::getFromMemory(
       BinaryData::ringmod_backdrop_png, BinaryData::ringmod_backdrop_pngSize);
   showRingModFilterComponents();
@@ -466,7 +465,6 @@ void FilterComponent::showFormantFilterComponents() {
   m_vowel_right.setVisible(true);
   m_vowel_left.setVisible(true);
   m_formant_transition.setVisible(true);
-  // todo set smaller filter bounds
 }
 
 void FilterComponent::showRingModFilterComponents() {

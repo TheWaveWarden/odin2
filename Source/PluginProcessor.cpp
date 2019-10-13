@@ -310,7 +310,7 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
       AudioPlayHead::CurrentPositionInfo current_position_info;
       playhead->getCurrentPosition(current_position_info);
       m_BPM = current_position_info.bpm;
-      // todo this is expensive???
+      // ! bottleneck
       SETVALUE("BPM", m_BPM);
     }
   }
@@ -385,8 +385,7 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
         m_voice_manager.clearKillList();
         checkEndGlobalEnvelope();
       } else if (midi_message.isAftertouch()) {
-        // todo this is untested, are values set back to zero, or need to do
-        // it manually?
+        // todo this is untested
         m_MIDI_aftertouch = (float)midi_message.getAfterTouchValue() / 127.f;
       } else if (midi_message.isSoftPedalOn()) {
         m_soft_pedal = 1.f;

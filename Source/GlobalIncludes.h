@@ -97,10 +97,6 @@
 #define GETAUDIO(name) m_value_tree.getParameterAsValue(name).getValue()
 #define SETAUDIO(name, value) m_value_tree.getParameter(name)->setValueNotifyingHost(((float)value))
 
-//#define WAVEDRAW_LENGTH 2 //todo
-//#define CHIPDRAW_LENGTH 2 //todo
-//#define SPECDRAW_LENGTH 2 //todo
-
 typedef AudioProcessorValueTreeState::SliderAttachment SliderAttachment;
 typedef AudioProcessorValueTreeState::ButtonAttachment ButtonAttachment;
 typedef AudioProcessorValueTreeState::ComboBoxAttachment ComboBoxAttachment;

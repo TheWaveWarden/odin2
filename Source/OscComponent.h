@@ -18,16 +18,14 @@
 #include "Knob.h"
 #include "LeftRightButton.h"
 #include "NumberSelector.h"
+#include "OdinButton.h"
 #include "SpecdrawDisplay.h"
+#include "Utilities.h"
 #include "WavedrawDisplay.h"
 #include "WaveformSelectorComponent.h"
-#include "OdinButton.h"
 #include "XYPadComponent.h"
-#include "Utilities.h"
-
 
 //#include "PluginProcessor.h"
-
 
 #define OCT_POS_X 139
 #define SEMI_POS_X 169
@@ -143,12 +141,10 @@
 /*
  */
 
-
-
-
 class OscComponent : public Component {
 public:
-  OscComponent(OdinAudioProcessor &p_processor, AudioProcessorValueTreeState &vts, std::string p_osc_number);
+  OscComponent(OdinAudioProcessor &p_processor,
+               AudioProcessorValueTreeState &vts, std::string p_osc_number);
   ~OscComponent();
 
   void paint(Graphics &) override;
@@ -198,13 +194,13 @@ public:
   void createChipdrawTables();
   void createSpecdrawTables();
 
-  void forceValueTreeOntoComponents(ValueTree p_tree, int p_index, bool p_create_wavetables);
+  void forceValueTreeOntoComponents(ValueTree p_tree, int p_index,
+                                    bool p_create_wavetables);
 
   void resetVectorWaves();
 
 protected:
-
-  //TextEditor REMOVE_EDITOR;
+  // TextEditor REMOVE_EDITOR;
 
   int m_osc_type = 0;
 
@@ -235,10 +231,10 @@ protected:
   OdinButton m_chipdraw_convert;
   OdinButton m_wavedraw_convert;
 
-  //OdinButton m_wavedraw_convert_REMOVE;
-  //OdinButton m_specdraw_convert_REMOVE;
-  //OdinButton m_chipdraw_convert_REMOVE;
-  
+  // OdinButton m_wavedraw_convert_REMOVE;
+  // OdinButton m_specdraw_convert_REMOVE;
+  // OdinButton m_chipdraw_convert_REMOVE;
+
   OdinButton m_specdraw_convert;
   DrawableButton m_LED_saw;
   DrawableButton m_LED_pulse;
@@ -262,8 +258,8 @@ protected:
   SpecdrawDisplay m_specdraw;
 
   XYPadComponent m_xy;
-  Knob m_xy_x; // todo not seen, but for automation??
-  Knob m_xy_y; // todo not seen, but for automation??
+  Knob m_xy_x;
+  Knob m_xy_y;
   GlasDropdown m_vec_a;
   GlasDropdown m_vec_b;
   GlasDropdown m_vec_c;
@@ -299,10 +295,10 @@ protected:
   std::unique_ptr<ButtonAttachment> m_chipnoise_attach;
   std::unique_ptr<ButtonAttachment> m_exp_fm_attach;
 
-  //std::unique_ptr<ComboBoxAttachment> m_vec_a_attach;
-  //std::unique_ptr<ComboBoxAttachment> m_vec_b_attach;
-  //std::unique_ptr<ComboBoxAttachment> m_vec_c_attach;
-  //std::unique_ptr<ComboBoxAttachment> m_vec_d_attach;
+  // std::unique_ptr<ComboBoxAttachment> m_vec_a_attach;
+  // std::unique_ptr<ComboBoxAttachment> m_vec_b_attach;
+  // std::unique_ptr<ComboBoxAttachment> m_vec_c_attach;
+  // std::unique_ptr<ComboBoxAttachment> m_vec_d_attach;
 
   Identifier m_wavetable_identifier;
   Identifier m_chipwave_identifier;

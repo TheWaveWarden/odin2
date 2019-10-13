@@ -12,7 +12,7 @@
 #include "GlobalIncludes.h"
 #include "InputField.h"
 
-#define N_KNOB_FRAMES 256 // todo
+#define N_KNOB_FRAMES 256
 
 #define BLACK_KNOB_VERY_SMALL_SIZE_X 21
 #define BLACK_KNOB_VERY_SMALL_SIZE_Y 24
@@ -81,10 +81,8 @@ class OdinAudioProcessor;
 
 class KnobFeels : public juce::LookAndFeel_V4 {
 public:
-  KnobFeels() {
-    // setColour(Slider::ColourIds::textBoxTextColourId, MENU_FONT_COLOR);
-    // //todo no effect...
-  }
+  KnobFeels() {}
+  
   void drawBubble(Graphics &g, BubbleComponent &b,
                   const Point<float> &positionOfTip,
                   const Rectangle<float> &body) override {

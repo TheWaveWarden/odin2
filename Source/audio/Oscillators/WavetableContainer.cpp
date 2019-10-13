@@ -486,7 +486,7 @@ float WavetableContainer::lin_segment_one_overtone_cosine(float p_a, float p_b,
                                                           int p_ot) {
 
   if (p_ot == 0) {
-    // todo this aint zero
+    // is actually not zero, but idgaf since const offsets are not used
     return 0;
   }
 

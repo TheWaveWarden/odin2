@@ -920,7 +920,7 @@ float Utilities::lin_segment_one_overtone_cosine(float p_a, float p_b,
                                                  int p_ot) {
 
   if (p_ot == 0) {
-    // todo this aint zero
+    // this isn't actually zero but const offsets (cos(0*x)) are ignored anyway
     return 0;
   }
 

@@ -48,8 +48,6 @@ public:
   DrawableSlider();
   ~DrawableSlider();
 
-  //TODO slider "wobble" when moved to very low params...
-
   String getTextFromValue(double value) override;
 
   void setTextValueSuffix(const String &suffix) {

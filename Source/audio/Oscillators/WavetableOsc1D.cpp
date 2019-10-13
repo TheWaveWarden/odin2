@@ -10,7 +10,7 @@ WavetableOsc1D::WavetableOsc1D() {}
 WavetableOsc1D::~WavetableOsc1D() {}
 
 void WavetableOsc1D::setVoldB(float dB) {
-  // TODO lookup table
+  // ! bottleneck
   m_volume_factor = pow(10, dB / 20);
 }
 
@@ -92,7 +92,7 @@ void WavetableOsc1D::setWavetablePointer(
   }
 }
 
-// todo this no good? only for LFOs right now so things compile
+// nonconst is needed for draw tables
 void WavetableOsc1D::setWavetablePointerNONCONST(
     int p_wavetable_index,
     float *p_wavetable_pointers[SUBTABLES_PER_WAVETABLE]) {
@@ -150,7 +150,6 @@ void WavetableOsc1D::loadChipdrawTables(int p_osc) {
 }
 
 void WavetableOsc1D::initiateSync() {
-  // todo better set to 0?
   m_read_index = m_sync_oscillator->m_reset_position;
 }
 

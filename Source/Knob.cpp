@@ -52,8 +52,8 @@ void Knob::mouseDown(const MouseEvent &event) {
 }
 
 String Knob::getTextFromValue(double value) {
-  //todo?
-  https://forum.juce.com/t/setnumdecimalplacestodisplay-not-behaving-solved/33686/2
+  //apparently there's a better solution....
+  //https://forum.juce.com/t/setnumdecimalplacestodisplay-not-behaving-solved/33686/2
   //DBG(String(value, getNumDecimalPlacesToDisplay()) + getTextValueSuffix());
   return String(value, getNumDecimalPlacesToDisplay()) + getTextValueSuffix();
 }

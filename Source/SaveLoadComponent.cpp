@@ -41,7 +41,7 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts)
     : m_save("save", juce::DrawableButton::ButtonStyle::ImageRaw),
       m_load("load", juce::DrawableButton::ButtonStyle::ImageRaw),
       m_reset("reset", juce::DrawableButton::ButtonStyle::ImageRaw),
-      ///m_random("random", juce::DrawableButton::ButtonStyle::ImageRaw),
+      /// m_random("random", juce::DrawableButton::ButtonStyle::ImageRaw),
       m_value_tree(vts) {
   juce::Image save_1 = ImageCache::getFromMemory(
       BinaryData::buttonsave_2_png, BinaryData::buttonsave_2_pngSize);
@@ -87,10 +87,12 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts)
   m_load.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId,
                    juce::Colour());
 
-  juce::Image reset_1 = ImageCache::getFromMemory(
-      BinaryData::buttonreset_global_2_png, BinaryData::buttonreset_global_2_pngSize);
-  juce::Image reset_2 = ImageCache::getFromMemory(
-      BinaryData::buttonreset_global_1_png, BinaryData::buttonreset_global_1_pngSize);
+  juce::Image reset_1 =
+      ImageCache::getFromMemory(BinaryData::buttonreset_global_2_png,
+                                BinaryData::buttonreset_global_2_pngSize);
+  juce::Image reset_2 =
+      ImageCache::getFromMemory(BinaryData::buttonreset_global_1_png,
+                                BinaryData::buttonreset_global_1_pngSize);
 
   juce::DrawableImage reset_draw1;
   juce::DrawableImage reset_draw2;
@@ -120,7 +122,8 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts)
   random_draw1.setImage(random_1);
   random_draw2.setImage(random_2);
 
-  // m_random.setImages(&random_draw2, &random_draw2, &random_draw1, &random_draw1,
+  // m_random.setImages(&random_draw2, &random_draw2, &random_draw1,
+  // &random_draw1,
   //                    &random_draw2, &random_draw2, &random_draw1,
   //                    &random_draw1);
   // m_random.setClickingTogglesState(true);
@@ -144,8 +147,6 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts)
 
   m_save.onClick = [&]() {
     DBG(m_value_tree.state.toXmlString());
-    
-
 
     File fileToSave(File::getCurrentWorkingDirectory().getFullPathName() +
                     "/my_patch.odin");
@@ -210,8 +211,6 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts)
             m_patch.setText(
                 file_to_read.getFileNameWithoutExtension().toStdString());
             DBG("Loaded patch " + file_name);
-            //}
-            // forceValueTreeLambda(); // todo this is duplicate
             // DBG(m_value_tree.state.toXmlString());
           } else {
             DBG("Failed to open stream. Error message: " +
@@ -221,7 +220,7 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts)
             //                                 "File Chooser...",
             //                                 "Failed to open file!");
           }
-          //DBG(m_value_tree.state.toXmlString());
+          // DBG(m_value_tree.state.toXmlString());
 
           forceValueTreeLambda();
         });

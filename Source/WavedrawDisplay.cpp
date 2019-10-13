@@ -10,7 +10,6 @@
 
 #include "WavedrawDisplay.h"
 #include "../JuceLibraryCode/JuceHeader.h"
-//#include <cmath> //todo remove
 
 //==============================================================================
 WavedrawDisplay::WavedrawDisplay() {
@@ -18,11 +17,6 @@ WavedrawDisplay::WavedrawDisplay() {
                                           BinaryData::drawpanel_pngSize);
 
   setSize(m_glaspanel.getWidth(), m_glaspanel.getHeight());
-
-  // for (int i = 0; i < WAVEDRAW_STEPS_X; ++i) {
-  //  m_draw_values[i] = sin((float)i * 2 * M_PI / WAVEDRAW_STEPS_X) * 0.9 * 0.5
-  //  + 0.5;
-  //}
 
   setMouseCursor(MouseCursor::StandardCursorType::CrosshairCursor);
 }
