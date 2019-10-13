@@ -78,11 +78,5 @@ void RingModulator::update() {
 
   // set wavetable pointer
   m_current_table = m_wavetable_pointers[m_wavetable_index][m_sub_table_index];
-
-  // float pitch_shift = m_freq_base * pitchShiftMultiplier(
-  //                       *m_freq_mod * FILTER_FREQ_MOD_RANGE_SEMITONES +
-  //                       m_mod_frequency + kbd_modded * m_MIDI_note +
-  //                       (m_env_value * (m_env_mod_amount + *m_env_mod_mod) +
-  //                        vel_modded * (float)m_MIDI_velocity / 127.f) *
-  //                           FILTER_ENV_MOD_SEMITONES_MAX);
+  
 }

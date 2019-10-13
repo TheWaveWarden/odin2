@@ -5,14 +5,12 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #include <cmath>
 
-// 46.881879936465680 semitones = semitonesBetweenFrequencies(80, 18000.0)/2.0
-#define FILTER_FC_MOD_RANGE 46.881879936465680
 #define FILTER_FC_MIN 80        // 80Hz
 #define FILTER_FC_MAX 18000     // 18kHz
 #define FILTER_FC_DEFAULT 10000 // 10kHz
 #define FILTER_Q_DEFAULT 0.707  // Butterworth
-#define FILTER_ENV_MOD_SEMITONES_MAX 48
-#define FILTER_FREQ_MOD_RANGE_SEMITONES 48
+#define FILTER_ENV_MOD_SEMITONES_MAX 64
+#define FILTER_FREQ_MOD_RANGE_SEMITONES 64
 
 // Filter Abastract Base Class for all filters
 class Filter {
@@ -83,8 +81,8 @@ public:
 
     m_freq_modded =
         m_freq_base *
-        pitchShiftMultiplier( // todo m_mod_frequency needed still?
-            *m_freq_mod * FILTER_FREQ_MOD_RANGE_SEMITONES + m_mod_frequency +
+        pitchShiftMultiplier(
+            *m_freq_mod * FILTER_FREQ_MOD_RANGE_SEMITONES +
             kbd_modded * m_MIDI_note +
             (m_env_value *
                 (m_env_mod_amount + *m_env_mod_mod) +

@@ -61,7 +61,7 @@
 #define ENV_MIN -1
 #define ENV_MAX 1
 #define ENV_DEFAULT 0
-#define ENV_SKEW 0.3
+#define ENV_SKEW 0.7
 
 #define GAIN_MIN -12
 #define GAIN_MAX 12
