@@ -17,103 +17,103 @@ void WavetableOsc2D::loadWavetables() {
   setWavetablePointer(
       0, 3, WavetableContainer::getInstance().getWavetablePointers("Sine"));
 
-  setWavetablePointer(
-      1, 0,
-      WavetableContainer::getInstance().getWavetablePointers("BrokenSine1"));
-  setWavetablePointer(
-      1, 1,
-      WavetableContainer::getInstance().getWavetablePointers("BrokenSine2"));
-  setWavetablePointer(
-      1, 2,
-      WavetableContainer::getInstance().getWavetablePointers("BrokenSine3"));
-  setWavetablePointer(
-      1, 3,
-      WavetableContainer::getInstance().getWavetablePointers("BrokenSine4"));
-
-  setWavetablePointer(
-      2, 0, WavetableContainer::getInstance().getWavetablePointers("Skyline1"));
-  setWavetablePointer(
-      2, 1, WavetableContainer::getInstance().getWavetablePointers("Skyline2"));
-  setWavetablePointer(
-      2, 2, WavetableContainer::getInstance().getWavetablePointers("Skyline3"));
-  setWavetablePointer(
-      2, 3, WavetableContainer::getInstance().getWavetablePointers("Skyline4"));
-
-  setWavetablePointer(
-      3, 0,
-      WavetableContainer::getInstance().getWavetablePointers("PerlinReplace1"));
-  setWavetablePointer(
-      3, 1,
-      WavetableContainer::getInstance().getWavetablePointers("PerlinReplace2"));
-  setWavetablePointer(
-      3, 2,
-      WavetableContainer::getInstance().getWavetablePointers("PerlinReplace3"));
-  setWavetablePointer(
-      3, 3,
-      WavetableContainer::getInstance().getWavetablePointers("PerlinReplace4"));
-
-  setWavetablePointer(
-      4, 0,
-      WavetableContainer::getInstance().getWavetablePointers("Rectangular1"));
-  setWavetablePointer(
-      4, 1,
-      WavetableContainer::getInstance().getWavetablePointers("Rectangular2"));
-  setWavetablePointer(
-      4, 2,
-      WavetableContainer::getInstance().getWavetablePointers("Rectangular3"));
-  setWavetablePointer(
-      4, 3,
-      WavetableContainer::getInstance().getWavetablePointers("Rectangular4"));
-
-  setWavetablePointer(5, 0,
+  setWavetablePointer(1, 0,
                       WavetableContainer::getInstance().getWavetablePointers(
                           "AKWF_birds_0010"));
-  setWavetablePointer(5, 1,
+  setWavetablePointer(1, 1,
                       WavetableContainer::getInstance().getWavetablePointers(
                           "AKWF_birds_0011"));
-  setWavetablePointer(5, 2,
+  setWavetablePointer(1, 2,
                       WavetableContainer::getInstance().getWavetablePointers(
                           "AKWF_birds_0014"));
-  setWavetablePointer(5, 3,
+  setWavetablePointer(1, 3,
                       WavetableContainer::getInstance().getWavetablePointers(
                           "AKWF_birds_0004"));
 
   setWavetablePointer(
-      6, 0, WavetableContainer::getInstance().getWavetablePointers("BagPipe"));
-  setWavetablePointer(6, 1,
+      2, 0, WavetableContainer::getInstance().getWavetablePointers("BagPipe"));
+  setWavetablePointer(2, 1,
                       WavetableContainer::getInstance().getWavetablePointers(
                           "BagPipeMutated1"));
-  setWavetablePointer(6, 2,
+  setWavetablePointer(2, 2,
                       WavetableContainer::getInstance().getWavetablePointers(
                           "BagPipeMutated5"));
-  setWavetablePointer(6, 3,
+  setWavetablePointer(2, 3,
                       WavetableContainer::getInstance().getWavetablePointers(
                           "BagPipeMutated4"));
 
-  setWavetablePointer(7, 0,
+  setWavetablePointer(
+      3, 0, WavetableContainer::getInstance().getWavetablePointers("Glass"));
+  setWavetablePointer(
+      3, 1,
+      WavetableContainer::getInstance().getWavetablePointers("GlassMutated1"));
+  setWavetablePointer(
+      3, 2,
+      WavetableContainer::getInstance().getWavetablePointers("GlassMutated2"));
+  setWavetablePointer(
+      3, 3,
+      WavetableContainer::getInstance().getWavetablePointers("GlassMutated3"));
+
+  setWavetablePointer(4, 0,
                       WavetableContainer::getInstance().getWavetablePointers(
                           "AKWF_fmsynth_0011"));
-  setWavetablePointer(7, 1,
+  setWavetablePointer(4, 1,
                       WavetableContainer::getInstance().getWavetablePointers(
                           "AKWF_fmsynth_0032"));
-  setWavetablePointer(7, 2,
+  setWavetablePointer(4, 2,
                       WavetableContainer::getInstance().getWavetablePointers(
                           "AKWF_fmsynth_0034"));
-  setWavetablePointer(7, 3,
+  setWavetablePointer(4, 3,
                       WavetableContainer::getInstance().getWavetablePointers(
                           "AKWF_fmsynth_0081"));
 
   setWavetablePointer(
-      8, 0, WavetableContainer::getInstance().getWavetablePointers("Glass"));
+      5, 0,
+      WavetableContainer::getInstance().getWavetablePointers("BrokenSine1"));
+  setWavetablePointer(
+      5, 1,
+      WavetableContainer::getInstance().getWavetablePointers("BrokenSine2"));
+  setWavetablePointer(
+      5, 2,
+      WavetableContainer::getInstance().getWavetablePointers("BrokenSine3"));
+  setWavetablePointer(
+      5, 3,
+      WavetableContainer::getInstance().getWavetablePointers("BrokenSine4"));
+
+  setWavetablePointer(
+      6, 0, WavetableContainer::getInstance().getWavetablePointers("Skyline1"));
+  setWavetablePointer(
+      6, 1, WavetableContainer::getInstance().getWavetablePointers("Skyline2"));
+  setWavetablePointer(
+      6, 2, WavetableContainer::getInstance().getWavetablePointers("Skyline3"));
+  setWavetablePointer(
+      6, 3, WavetableContainer::getInstance().getWavetablePointers("Skyline4"));
+
+  setWavetablePointer(
+      7, 0,
+      WavetableContainer::getInstance().getWavetablePointers("PerlinReplace1"));
+  setWavetablePointer(
+      7, 1,
+      WavetableContainer::getInstance().getWavetablePointers("PerlinReplace2"));
+  setWavetablePointer(
+      7, 2,
+      WavetableContainer::getInstance().getWavetablePointers("PerlinReplace3"));
+  setWavetablePointer(
+      7, 3,
+      WavetableContainer::getInstance().getWavetablePointers("PerlinReplace4"));
+
+  setWavetablePointer(
+      8, 0,
+      WavetableContainer::getInstance().getWavetablePointers("Rectangular1"));
   setWavetablePointer(
       8, 1,
-      WavetableContainer::getInstance().getWavetablePointers("GlassMutated1"));
+      WavetableContainer::getInstance().getWavetablePointers("Rectangular2"));
   setWavetablePointer(
       8, 2,
-      WavetableContainer::getInstance().getWavetablePointers("GlassMutated2"));
+      WavetableContainer::getInstance().getWavetablePointers("Rectangular3"));
   setWavetablePointer(
       8, 3,
-      WavetableContainer::getInstance().getWavetablePointers("GlassMutated3"));
+      WavetableContainer::getInstance().getWavetablePointers("Rectangular4"));
 
   setWavetablePointer(9, 0,
                       WavetableContainer::getInstance().getWavetablePointers(
@@ -177,7 +177,6 @@ void WavetableOsc2D::loadWavetables() {
       14, 3,
       WavetableContainer::getInstance().getWavetablePointers("Trumpet4"));
 
-
   setWavetablePointer(
       15, 0,
       WavetableContainer::getInstance().getWavetablePointers("LegToyBox"));
@@ -188,6 +187,7 @@ void WavetableOsc2D::loadWavetables() {
   setWavetablePointer(
       15, 3,
       WavetableContainer::getInstance().getWavetablePointers("LegBarbedWire"));
+
 
 
   setWavetablePointer(
@@ -201,16 +201,22 @@ void WavetableOsc2D::loadWavetables() {
   setWavetablePointer(
       16, 3, WavetableContainer::getInstance().getWavetablePointers("LegAdd1"));
 
+
+
   setWavetablePointer(
       17, 0,
       WavetableContainer::getInstance().getWavetablePointers("LegCello"));
   setWavetablePointer(
       17, 1, WavetableContainer::getInstance().getWavetablePointers("LegAah"));
   setWavetablePointer(
-      17, 2, WavetableContainer::getInstance().getWavetablePointers("LegHarm2"));
+      17, 2,
+      WavetableContainer::getInstance().getWavetablePointers("LegHarm2"));
   setWavetablePointer(
       17, 3,
       WavetableContainer::getInstance().getWavetablePointers("LegNoBass"));
+
+
+
 
   setWavetablePointer(
       18, 0, WavetableContainer::getInstance().getWavetablePointers("LegBags"));
@@ -457,91 +463,8 @@ std::string WavetableOsc2D::getWavetableName(int p_wt_2D, int sub_table_2D) {
       break;
     }
     break;
+
   case 1:
-    switch (sub_table_2D) {
-    case 0:
-      return "BrokenSine1";
-      break;
-    case 1:
-      return "BrokenSine2";
-      break;
-    case 2:
-      return "BrokenSine3";
-      break;
-    case 3:
-      return "BrokenSine4";
-      break;
-    default:
-      DBG("Tried to get name for illegal table combination (" +
-          std::to_string(p_wt_2D) + "," + std::to_string(sub_table_2D) + ")");
-      return "UNDEFINED";
-      break;
-    }
-    break;
-  case 2:
-    switch (sub_table_2D) {
-    case 0:
-      return "Skyline1";
-      break;
-    case 1:
-      return "Skyline2";
-      break;
-    case 2:
-      return "Skyline3";
-      break;
-    case 3:
-      return "Skyline4";
-      break;
-    default:
-      DBG("Tried to get name for illegal table combination (" +
-          std::to_string(p_wt_2D) + "," + std::to_string(sub_table_2D) + ")");
-      return "UNDEFINED";
-      break;
-    }
-    break;
-  case 3:
-    switch (sub_table_2D) {
-    case 0:
-      return "PerlinReplace1";
-      break;
-    case 1:
-      return "PerlinReplace2";
-      break;
-    case 2:
-      return "PerlinReplace3";
-      break;
-    case 3:
-      return "PerlinReplace4";
-      break;
-    default:
-      DBG("Tried to get name for illegal table combination (" +
-          std::to_string(p_wt_2D) + "," + std::to_string(sub_table_2D) + ")");
-      return "UNDEFINED";
-      break;
-    }
-    break;
-  case 4:
-    switch (sub_table_2D) {
-    case 0:
-      return "Rectangular1";
-      break;
-    case 1:
-      return "Rectangular2";
-      break;
-    case 2:
-      return "Rectangular3";
-      break;
-    case 3:
-      return "Rectangular4";
-      break;
-    default:
-      DBG("Tried to get name for illegal table combination (" +
-          std::to_string(p_wt_2D) + "," + std::to_string(sub_table_2D) + ")");
-      return "UNDEFINED";
-      break;
-    }
-    break;
-  case 5:
     switch (sub_table_2D) {
     case 0:
       return "AKWF_birds_0010";
@@ -562,7 +485,7 @@ std::string WavetableOsc2D::getWavetableName(int p_wt_2D, int sub_table_2D) {
       break;
     }
     break;
-  case 6:
+  case 2:
     switch (sub_table_2D) {
     case 0:
       return "BagPipe";
@@ -583,28 +506,7 @@ std::string WavetableOsc2D::getWavetableName(int p_wt_2D, int sub_table_2D) {
       break;
     }
     break;
-  case 7:
-    switch (sub_table_2D) {
-    case 0:
-      return "AKWF_fmsynth_0011";
-      break;
-    case 1:
-      return "AKWF_fmsynth_0032";
-      break;
-    case 2:
-      return "AKWF_fmsynth_0034";
-      break;
-    case 3:
-      return "AKWF_fmsynth_0081";
-      break;
-    default:
-      DBG("Tried to get name for illegal table combination (" +
-          std::to_string(p_wt_2D) + "," + std::to_string(sub_table_2D) + ")");
-      return "UNDEFINED";
-      break;
-    }
-    break;
-  case 8:
+  case 3:
     switch (sub_table_2D) {
     case 0:
       return "Glass";
@@ -625,6 +527,113 @@ std::string WavetableOsc2D::getWavetableName(int p_wt_2D, int sub_table_2D) {
       break;
     }
     break;
+  case 4:
+    switch (sub_table_2D) {
+    case 0:
+      return "AKWF_fmsynth_0011";
+      break;
+    case 1:
+      return "AKWF_fmsynth_0032";
+      break;
+    case 2:
+      return "AKWF_fmsynth_0034";
+      break;
+    case 3:
+      return "AKWF_fmsynth_0081";
+      break;
+    default:
+      DBG("Tried to get name for illegal table combination (" +
+          std::to_string(p_wt_2D) + "," + std::to_string(sub_table_2D) + ")");
+      return "UNDEFINED";
+      break;
+    }
+    break;
+
+  case 5:
+    switch (sub_table_2D) {
+    case 0:
+      return "BrokenSine1";
+      break;
+    case 1:
+      return "BrokenSine2";
+      break;
+    case 2:
+      return "BrokenSine3";
+      break;
+    case 3:
+      return "BrokenSine4";
+      break;
+    default:
+      DBG("Tried to get name for illegal table combination (" +
+          std::to_string(p_wt_2D) + "," + std::to_string(sub_table_2D) + ")");
+      return "UNDEFINED";
+      break;
+    }
+    break;
+  case 6:
+    switch (sub_table_2D) {
+    case 0:
+      return "Skyline1";
+      break;
+    case 1:
+      return "Skyline2";
+      break;
+    case 2:
+      return "Skyline3";
+      break;
+    case 3:
+      return "Skyline4";
+      break;
+    default:
+      DBG("Tried to get name for illegal table combination (" +
+          std::to_string(p_wt_2D) + "," + std::to_string(sub_table_2D) + ")");
+      return "UNDEFINED";
+      break;
+    }
+    break;
+  case 7:
+    switch (sub_table_2D) {
+    case 0:
+      return "PerlinReplace1";
+      break;
+    case 1:
+      return "PerlinReplace2";
+      break;
+    case 2:
+      return "PerlinReplace3";
+      break;
+    case 3:
+      return "PerlinReplace4";
+      break;
+    default:
+      DBG("Tried to get name for illegal table combination (" +
+          std::to_string(p_wt_2D) + "," + std::to_string(sub_table_2D) + ")");
+      return "UNDEFINED";
+      break;
+    }
+    break;
+  case 8:
+    switch (sub_table_2D) {
+    case 0:
+      return "Rectangular1";
+      break;
+    case 1:
+      return "Rectangular2";
+      break;
+    case 2:
+      return "Rectangular3";
+      break;
+    case 3:
+      return "Rectangular4";
+      break;
+    default:
+      DBG("Tried to get name for illegal table combination (" +
+          std::to_string(p_wt_2D) + "," + std::to_string(sub_table_2D) + ")");
+      return "UNDEFINED";
+      break;
+    }
+    break;
+
   case 9:
     switch (sub_table_2D) {
     case 0:

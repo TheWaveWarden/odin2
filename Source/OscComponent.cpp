@@ -813,40 +813,75 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 
   wavetable_submenu.addSubMenu("Classic Analog", wavetable_recycle_menu);
 
-  ADD_WAVETABLE_SUB_MENU("BrokenSine", 120);
-  ADD_WAVETABLE_SUB_MENU("Harsh", 130);
-  ADD_WAVETABLE_SUB_MENU("Mean", 140);
-  ADD_WAVETABLE_SUB_MENU("Rectangular", 150);
-  ADD_WAVETABLE_SUB_MENU("Nasal", 160);
-  ADD_WAVETABLE_SUB_MENU("Reed", 170);
-  ADD_WAVETABLE_SUB_MENU("FM", 180);
-  ADD_WAVETABLE_SUB_MENU("Glass", 190);
+  // ADD_WAVETABLE_SUB_MENU("BrokenSine", 120);
+  // ADD_WAVETABLE_SUB_MENU("Harsh", 130);
+  // ADD_WAVETABLE_SUB_MENU("Mean", 140);
+  // ADD_WAVETABLE_SUB_MENU("Rectangular", 150);
+  // ADD_WAVETABLE_SUB_MENU("Nasal", 160);
+  // ADD_WAVETABLE_SUB_MENU("Reed", 170);
+  // ADD_WAVETABLE_SUB_MENU("FM", 180);
+  // ADD_WAVETABLE_SUB_MENU("Glass", 190);
+  // ADD_WAVETABLE_SUB_MENU("Bitreduced", 200);
+  // ADD_WAVETABLE_SUB_MENU("Strings", 210);
+  // ADD_WAVETABLE_SUB_MENU("Piano", 220);
+  // ADD_WAVETABLE_SUB_MENU("Organ", 230);
+  // ADD_WAVETABLE_SUB_MENU("Oboe", 240);
+  // ADD_WAVETABLE_SUB_MENU("MixedWaves A", 250);
+  // ADD_WAVETABLE_SUB_MENU("Trumpet", 260);
+  // ADD_WAVETABLE_SUB_MENU("Voice A", 270);
+  // ADD_WAVETABLE_SUB_MENU("Voice B", 280);
+  // ADD_WAVETABLE_SUB_MENU("Voice C", 290);
+  // ADD_WAVETABLE_SUB_MENU("Voice D", 300);
+  // ADD_WAVETABLE_SUB_MENU("Additive A", 310);
+  // ADD_WAVETABLE_SUB_MENU("Additive B", 320);
+  // ADD_WAVETABLE_SUB_MENU("Additive C", 330);
+  // ADD_WAVETABLE_SUB_MENU("Additive D", 340);
+  // ADD_WAVETABLE_SUB_MENU("Overtones A", 350);
+  // ADD_WAVETABLE_SUB_MENU("Overtones B", 360);
+  // ADD_WAVETABLE_SUB_MENU("Harmonics A", 370);
+  // ADD_WAVETABLE_SUB_MENU("Harmonics B", 380);
+  // ADD_WAVETABLE_SUB_MENU("MutatedSaw A", 390);
+  // ADD_WAVETABLE_SUB_MENU("MutatedSaw B", 400);
+  // ADD_WAVETABLE_SUB_MENU("MutatedSquare A", 410);
+  // ADD_WAVETABLE_SUB_MENU("MutatedSquare B", 420);
+  // ADD_WAVETABLE_SUB_MENU("MixedWaves B", 430);
+  // ADD_WAVETABLE_SUB_MENU("MixedWaves C", 440);
+  // ADD_WAVETABLE_SUB_MENU("MixedWaves D", 450);
+
+  ADD_WAVETABLE_SUB_MENU("Nasal", 120);
+  ADD_WAVETABLE_SUB_MENU("Reed", 130);
+  ADD_WAVETABLE_SUB_MENU("Glass", 140);
+  ADD_WAVETABLE_SUB_MENU("FM", 150);
+  ADD_WAVETABLE_SUB_MENU("BrokenSine", 160);
+  ADD_WAVETABLE_SUB_MENU("Harsh", 170);
+  ADD_WAVETABLE_SUB_MENU("Mean", 180);
+  ADD_WAVETABLE_SUB_MENU("Rectangular", 190);
   ADD_WAVETABLE_SUB_MENU("Bitreduced", 200);
   ADD_WAVETABLE_SUB_MENU("Strings", 210);
   ADD_WAVETABLE_SUB_MENU("Piano", 220);
   ADD_WAVETABLE_SUB_MENU("Organ", 230);
   ADD_WAVETABLE_SUB_MENU("Oboe", 240);
-  ADD_WAVETABLE_SUB_MENU("MixedWaves A", 250);
-  ADD_WAVETABLE_SUB_MENU("Trumpet", 260);
-  ADD_WAVETABLE_SUB_MENU("Voice A", 270);
-  ADD_WAVETABLE_SUB_MENU("Voice B", 280);
-  ADD_WAVETABLE_SUB_MENU("Voice C", 290);
-  ADD_WAVETABLE_SUB_MENU("Voice D", 300);
-  ADD_WAVETABLE_SUB_MENU("Additive A", 310);
-  ADD_WAVETABLE_SUB_MENU("Additive B", 320);
-  ADD_WAVETABLE_SUB_MENU("Additive C", 330);
-  ADD_WAVETABLE_SUB_MENU("Additive D", 340);
-  ADD_WAVETABLE_SUB_MENU("Overtones A", 350);
-  ADD_WAVETABLE_SUB_MENU("Overtones B", 360);
-  ADD_WAVETABLE_SUB_MENU("Harmonics A", 370);
-  ADD_WAVETABLE_SUB_MENU("Harmonics B", 380);
-  ADD_WAVETABLE_SUB_MENU("MutatedSaw A", 390);
-  ADD_WAVETABLE_SUB_MENU("MutatedSaw B", 400);
-  ADD_WAVETABLE_SUB_MENU("MutatedSquare A", 410);
-  ADD_WAVETABLE_SUB_MENU("MutatedSquare B", 420);
-  ADD_WAVETABLE_SUB_MENU("MixedWaves B", 430);
-  ADD_WAVETABLE_SUB_MENU("MixedWaves C", 440);
-  ADD_WAVETABLE_SUB_MENU("MixedWaves D", 450);
+  ADD_WAVETABLE_SUB_MENU("Trumpet", 250);
+  ADD_WAVETABLE_SUB_MENU("MixedWaves A", 260);
+  ADD_WAVETABLE_SUB_MENU("MixedWaves B", 270);
+  ADD_WAVETABLE_SUB_MENU("MixedWaves C", 280);
+  ADD_WAVETABLE_SUB_MENU("MixedWaves D", 290);
+  ADD_WAVETABLE_SUB_MENU("Voice A", 300);
+  ADD_WAVETABLE_SUB_MENU("Voice B", 310);
+  ADD_WAVETABLE_SUB_MENU("Voice C", 320);
+  ADD_WAVETABLE_SUB_MENU("Voice D", 330);
+  ADD_WAVETABLE_SUB_MENU("Additive A", 340);
+  ADD_WAVETABLE_SUB_MENU("Additive B", 350);
+  ADD_WAVETABLE_SUB_MENU("Additive C", 360);
+  ADD_WAVETABLE_SUB_MENU("Additive D", 370);
+  ADD_WAVETABLE_SUB_MENU("Overtones A", 380);
+  ADD_WAVETABLE_SUB_MENU("Overtones B", 390);
+  ADD_WAVETABLE_SUB_MENU("Harmonics A", 400);
+  ADD_WAVETABLE_SUB_MENU("Harmonics B", 410);
+  ADD_WAVETABLE_SUB_MENU("MutantSaw A", 420);
+  ADD_WAVETABLE_SUB_MENU("MutantSaw B", 430);
+  ADD_WAVETABLE_SUB_MENU("MutantSquare A", 440);
+  ADD_WAVETABLE_SUB_MENU("MutantSquare B", 450);
 
   fm_menu.addItem(1, "Sine");
   fm_menu.addSeparator();
@@ -899,40 +934,75 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   //=== COPY & PASTA ===
   //====================
 
-  ADD_MAP_ENTRY("BrokenSine", 120, m_carrier_waveselector)
-  ADD_MAP_ENTRY("Harsh", 130, m_carrier_waveselector)
-  ADD_MAP_ENTRY("Mean", 140, m_carrier_waveselector)
-  ADD_MAP_ENTRY("Rectangular", 150, m_carrier_waveselector)
-  ADD_MAP_ENTRY("Nasal", 160, m_carrier_waveselector)
-  ADD_MAP_ENTRY("Reed", 170, m_carrier_waveselector)
-  ADD_MAP_ENTRY("FM", 180, m_carrier_waveselector)
-  ADD_MAP_ENTRY("Glass", 190, m_carrier_waveselector)
+  // ADD_MAP_ENTRY("BrokenSine", 120, m_carrier_waveselector)
+  // ADD_MAP_ENTRY("Harsh", 130, m_carrier_waveselector)
+  // ADD_MAP_ENTRY("Mean", 140, m_carrier_waveselector)
+  // ADD_MAP_ENTRY("Rectangular", 150, m_carrier_waveselector)
+  // ADD_MAP_ENTRY("Nasal", 160, m_carrier_waveselector)
+  // ADD_MAP_ENTRY("Reed", 170, m_carrier_waveselector)
+  // ADD_MAP_ENTRY("FM", 180, m_carrier_waveselector)
+  // ADD_MAP_ENTRY("Glass", 190, m_carrier_waveselector)
+  // ADD_MAP_ENTRY("Bitreduced", 200, m_carrier_waveselector)
+  // ADD_MAP_ENTRY("Strings", 210, m_carrier_waveselector)
+  // ADD_MAP_ENTRY("Piano", 220, m_carrier_waveselector)
+  // ADD_MAP_ENTRY("Organ", 230, m_carrier_waveselector)
+  // ADD_MAP_ENTRY("Oboe", 240, m_carrier_waveselector)
+  // ADD_MAP_ENTRY("MixedWaves A", 250, m_carrier_waveselector)
+  // ADD_MAP_ENTRY("Trumpet", 260, m_carrier_waveselector)
+  // ADD_MAP_ENTRY("Voice A", 270, m_carrier_waveselector)
+  // ADD_MAP_ENTRY("Voice B", 280, m_carrier_waveselector)
+  // ADD_MAP_ENTRY("Voice C", 290, m_carrier_waveselector)
+  // ADD_MAP_ENTRY("Voice D", 300, m_carrier_waveselector)
+  // ADD_MAP_ENTRY("Additive A", 310, m_carrier_waveselector)
+  // ADD_MAP_ENTRY("Additive B", 320, m_carrier_waveselector)
+  // ADD_MAP_ENTRY("Additive C", 330, m_carrier_waveselector)
+  // ADD_MAP_ENTRY("Additive D", 340, m_carrier_waveselector)
+  // ADD_MAP_ENTRY("Overtones A", 350, m_carrier_waveselector)
+  // ADD_MAP_ENTRY("Overtones B", 360, m_carrier_waveselector)
+  // ADD_MAP_ENTRY("Harmonics A", 370, m_carrier_waveselector)
+  // ADD_MAP_ENTRY("Harmonics B", 380, m_carrier_waveselector)
+  // ADD_MAP_ENTRY("MutatedSaw A", 390, m_carrier_waveselector)
+  // ADD_MAP_ENTRY("MutatedSaw B", 400, m_carrier_waveselector)
+  // ADD_MAP_ENTRY("MutatedSquare A", 410, m_carrier_waveselector)
+  // ADD_MAP_ENTRY("MutatedSquare B", 420, m_carrier_waveselector)
+  // ADD_MAP_ENTRY("MixedWaves B", 430, m_carrier_waveselector)
+  // ADD_MAP_ENTRY("MixedWaves C", 440, m_carrier_waveselector)
+  // ADD_MAP_ENTRY("MixedWaves D", 450, m_carrier_waveselector)
+
+  ADD_MAP_ENTRY("Nasal", 120, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Reed", 130, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Glass", 140, m_carrier_waveselector)
+  ADD_MAP_ENTRY("FM", 150, m_carrier_waveselector)
+  ADD_MAP_ENTRY("BrokenSine", 160, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Harsh", 170, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Mean", 180, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Rectangular", 190, m_carrier_waveselector)
   ADD_MAP_ENTRY("Bitreduced", 200, m_carrier_waveselector)
   ADD_MAP_ENTRY("Strings", 210, m_carrier_waveselector)
   ADD_MAP_ENTRY("Piano", 220, m_carrier_waveselector)
   ADD_MAP_ENTRY("Organ", 230, m_carrier_waveselector)
   ADD_MAP_ENTRY("Oboe", 240, m_carrier_waveselector)
-  ADD_MAP_ENTRY("MixedWaves A", 250, m_carrier_waveselector)
-  ADD_MAP_ENTRY("Trumpet", 260, m_carrier_waveselector)
-  ADD_MAP_ENTRY("Voice A", 270, m_carrier_waveselector)
-  ADD_MAP_ENTRY("Voice B", 280, m_carrier_waveselector)
-  ADD_MAP_ENTRY("Voice C", 290, m_carrier_waveselector)
-  ADD_MAP_ENTRY("Voice D", 300, m_carrier_waveselector)
-  ADD_MAP_ENTRY("Additive A", 310, m_carrier_waveselector)
-  ADD_MAP_ENTRY("Additive B", 320, m_carrier_waveselector)
-  ADD_MAP_ENTRY("Additive C", 330, m_carrier_waveselector)
-  ADD_MAP_ENTRY("Additive D", 340, m_carrier_waveselector)
-  ADD_MAP_ENTRY("Overtones A", 350, m_carrier_waveselector)
-  ADD_MAP_ENTRY("Overtones B", 360, m_carrier_waveselector)
-  ADD_MAP_ENTRY("Harmonics A", 370, m_carrier_waveselector)
-  ADD_MAP_ENTRY("Harmonics B", 380, m_carrier_waveselector)
-  ADD_MAP_ENTRY("MutatedSaw A", 390, m_carrier_waveselector)
-  ADD_MAP_ENTRY("MutatedSaw B", 400, m_carrier_waveselector)
-  ADD_MAP_ENTRY("MutatedSquare A", 410, m_carrier_waveselector)
-  ADD_MAP_ENTRY("MutatedSquare B", 420, m_carrier_waveselector)
-  ADD_MAP_ENTRY("MixedWaves B", 430, m_carrier_waveselector)
-  ADD_MAP_ENTRY("MixedWaves C", 440, m_carrier_waveselector)
-  ADD_MAP_ENTRY("MixedWaves D", 450, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Trumpet", 250, m_carrier_waveselector)
+  ADD_MAP_ENTRY("MixedWaves A", 260, m_carrier_waveselector)
+  ADD_MAP_ENTRY("MixedWaves B", 270, m_carrier_waveselector)
+  ADD_MAP_ENTRY("MixedWaves C", 280, m_carrier_waveselector)
+  ADD_MAP_ENTRY("MixedWaves D", 290, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Voice A", 300, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Voice B", 310, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Voice C", 320, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Voice D", 330, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Additive A", 340, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Additive B", 350, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Additive C", 360, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Additive D", 370, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Overtones A", 380, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Overtones B", 390, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Harmonics A", 400, m_carrier_waveselector)
+  ADD_MAP_ENTRY("Harmonics B", 410, m_carrier_waveselector)
+  ADD_MAP_ENTRY("MutantSaw A", 420, m_carrier_waveselector)
+  ADD_MAP_ENTRY("MutantSaw B", 430, m_carrier_waveselector)
+  ADD_MAP_ENTRY("MutantSquare A", 440, m_carrier_waveselector)
+  ADD_MAP_ENTRY("MutantSquare B", 450, m_carrier_waveselector)
 
   m_carrier_waveselector.setDecrementValue(121, 104);
   m_carrier_waveselector.setIncrementValue(454, 501);
@@ -973,40 +1043,40 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 
   m_carrier_waveselector.m_menu = fm_menu;
 
-  ADD_MAP_ENTRY("BrokenSine", 120, m_modulator_waveselector)
-  ADD_MAP_ENTRY("Harsh", 130, m_modulator_waveselector)
-  ADD_MAP_ENTRY("Mean", 140, m_modulator_waveselector)
-  ADD_MAP_ENTRY("Rectangular", 150, m_modulator_waveselector)
-  ADD_MAP_ENTRY("Nasal", 160, m_modulator_waveselector)
-  ADD_MAP_ENTRY("Reed", 170, m_modulator_waveselector)
-  ADD_MAP_ENTRY("FM", 180, m_modulator_waveselector)
-  ADD_MAP_ENTRY("Glass", 190, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Nasal", 120, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Reed", 130, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Glass", 140, m_modulator_waveselector)
+  ADD_MAP_ENTRY("FM", 150, m_modulator_waveselector)
+  ADD_MAP_ENTRY("BrokenSine", 160, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Harsh", 170, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Mean", 180, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Rectangular", 190, m_modulator_waveselector)
   ADD_MAP_ENTRY("Bitreduced", 200, m_modulator_waveselector)
   ADD_MAP_ENTRY("Strings", 210, m_modulator_waveselector)
   ADD_MAP_ENTRY("Piano", 220, m_modulator_waveselector)
   ADD_MAP_ENTRY("Organ", 230, m_modulator_waveselector)
   ADD_MAP_ENTRY("Oboe", 240, m_modulator_waveselector)
-  ADD_MAP_ENTRY("MixedWaves A", 250, m_modulator_waveselector)
-  ADD_MAP_ENTRY("Trumpet", 260, m_modulator_waveselector)
-  ADD_MAP_ENTRY("Voice A", 270, m_modulator_waveselector)
-  ADD_MAP_ENTRY("Voice B", 280, m_modulator_waveselector)
-  ADD_MAP_ENTRY("Voice C", 290, m_modulator_waveselector)
-  ADD_MAP_ENTRY("Voice D", 300, m_modulator_waveselector)
-  ADD_MAP_ENTRY("Additive A", 310, m_modulator_waveselector)
-  ADD_MAP_ENTRY("Additive B", 320, m_modulator_waveselector)
-  ADD_MAP_ENTRY("Additive C", 330, m_modulator_waveselector)
-  ADD_MAP_ENTRY("Additive D", 340, m_modulator_waveselector)
-  ADD_MAP_ENTRY("Overtones A", 350, m_modulator_waveselector)
-  ADD_MAP_ENTRY("Overtones B", 360, m_modulator_waveselector)
-  ADD_MAP_ENTRY("Harmonics A", 370, m_modulator_waveselector)
-  ADD_MAP_ENTRY("Harmonics B", 380, m_modulator_waveselector)
-  ADD_MAP_ENTRY("MutatedSaw A", 390, m_modulator_waveselector)
-  ADD_MAP_ENTRY("MutatedSaw B", 400, m_modulator_waveselector)
-  ADD_MAP_ENTRY("MutatedSquare A", 410, m_modulator_waveselector)
-  ADD_MAP_ENTRY("MutatedSquare B", 420, m_modulator_waveselector)
-  ADD_MAP_ENTRY("MixedWaves B", 430, m_modulator_waveselector)
-  ADD_MAP_ENTRY("MixedWaves C", 440, m_modulator_waveselector)
-  ADD_MAP_ENTRY("MixedWaves D", 450, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Trumpet", 250, m_modulator_waveselector)
+  ADD_MAP_ENTRY("MixedWaves A", 260, m_modulator_waveselector)
+  ADD_MAP_ENTRY("MixedWaves B", 270, m_modulator_waveselector)
+  ADD_MAP_ENTRY("MixedWaves C", 280, m_modulator_waveselector)
+  ADD_MAP_ENTRY("MixedWaves D", 290, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Voice A", 300, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Voice B", 310, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Voice C", 320, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Voice D", 330, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Additive A", 340, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Additive B", 350, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Additive C", 360, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Additive D", 370, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Overtones A", 380, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Overtones B", 390, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Harmonics A", 400, m_modulator_waveselector)
+  ADD_MAP_ENTRY("Harmonics B", 410, m_modulator_waveselector)
+  ADD_MAP_ENTRY("MutantSaw A", 420, m_modulator_waveselector)
+  ADD_MAP_ENTRY("MutantSaw B", 430, m_modulator_waveselector)
+  ADD_MAP_ENTRY("MutantSquare A", 440, m_modulator_waveselector)
+  ADD_MAP_ENTRY("MutantSquare B", 450, m_modulator_waveselector)
 
   m_modulator_waveselector.setDecrementValue(121, 104);
   m_modulator_waveselector.setIncrementValue(454, 501);
@@ -1144,14 +1214,14 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_wavetable_waveselector.setTopLeftPosition(WAVE_CARRIER_POS_X,
                                               WAVE_CARRIER_POS_Y);
   m_wavetable_waveselector.addWave(1, "Classic Analog");
-  m_wavetable_waveselector.addWave(2, "BrokenSine");
-  m_wavetable_waveselector.addWave(3, "Harsh");
-  m_wavetable_waveselector.addWave(4, "Mean");
-  m_wavetable_waveselector.addWave(5, "Rectangular");
-  m_wavetable_waveselector.addWave(6, "Nasal");
-  m_wavetable_waveselector.addWave(7, "Reed");
-  m_wavetable_waveselector.addWave(8, "FM");
-  m_wavetable_waveselector.addWave(9, "Glass");
+  m_wavetable_waveselector.addWave(2, "Nasal");
+  m_wavetable_waveselector.addWave(3, "Reed");
+  m_wavetable_waveselector.addWave(4, "Glass");
+  m_wavetable_waveselector.addWave(5, "FM");
+  m_wavetable_waveselector.addWave(6, "BrokenSine");
+  m_wavetable_waveselector.addWave(7, "Harsh");
+  m_wavetable_waveselector.addWave(8, "Mean");
+  m_wavetable_waveselector.addWave(9, "Rectangular");
   m_wavetable_waveselector.addWave(10, "Bitreduced");
   m_wavetable_waveselector.addWave(11, "Strings");
   m_wavetable_waveselector.addWave(12, "Piano");
@@ -1174,10 +1244,10 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_wavetable_waveselector.addWave(29, "Overtones B");
   m_wavetable_waveselector.addWave(30, "Harmonics A");
   m_wavetable_waveselector.addWave(31, "Harmonics B");
-  m_wavetable_waveselector.addWave(32, "MutatedSaw A");
-  m_wavetable_waveselector.addWave(33, "MutatedSaw B");
-  m_wavetable_waveselector.addWave(34, "MutatedSquare A");
-  m_wavetable_waveselector.addWave(35, "MutatedSquare B");
+  m_wavetable_waveselector.addWave(32, "MutantSaw A");
+  m_wavetable_waveselector.addWave(33, "MutantSaw B");
+  m_wavetable_waveselector.addWave(34, "MutantSquare A");
+  m_wavetable_waveselector.addWave(35, "MutantSquare B");
 
   m_wavetable_waveselector.setTooltip("Selects the wave for the oscillator");
   addChildComponent(m_wavetable_waveselector);

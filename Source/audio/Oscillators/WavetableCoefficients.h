@@ -32,13 +32,6 @@
 #include "Wavetables/Coefficients/Triangle.h" //12->006
 
 #include "Wavetables/Coefficients/Additive1.h"  //14->008
-#include "Wavetables/Coefficients/Additive10.h" //23->017
-#include "Wavetables/Coefficients/Additive11.h" //24->018
-#include "Wavetables/Coefficients/Additive12.h" //25->019
-#include "Wavetables/Coefficients/Additive13.h" //26->020
-#include "Wavetables/Coefficients/Additive14.h" //27->021
-#include "Wavetables/Coefficients/Additive15.h" //28->022
-#include "Wavetables/Coefficients/Additive16.h" //29->023
 #include "Wavetables/Coefficients/Additive2.h"  //15->009
 #include "Wavetables/Coefficients/Additive3.h"  //16->010
 #include "Wavetables/Coefficients/Additive4.h"  //17->011
@@ -47,15 +40,15 @@
 #include "Wavetables/Coefficients/Additive7.h"  //20->014
 #include "Wavetables/Coefficients/Additive8.h"  //21->015
 #include "Wavetables/Coefficients/Additive9.h"  //22->016
+#include "Wavetables/Coefficients/Additive10.h" //23->017
+#include "Wavetables/Coefficients/Additive11.h" //24->018
+#include "Wavetables/Coefficients/Additive12.h" //25->019
+#include "Wavetables/Coefficients/Additive13.h" //26->020
+#include "Wavetables/Coefficients/Additive14.h" //27->021
+#include "Wavetables/Coefficients/Additive15.h" //28->022
+#include "Wavetables/Coefficients/Additive16.h" //29->023
 
 #include "Wavetables/Coefficients/Harmonics1.h"  //30->024
-#include "Wavetables/Coefficients/Harmonics10.h" //39->033
-#include "Wavetables/Coefficients/Harmonics11.h" //40->034
-#include "Wavetables/Coefficients/Harmonics12.h" //41->035
-#include "Wavetables/Coefficients/Harmonics13.h" //42->036
-#include "Wavetables/Coefficients/Harmonics14.h" //43->037
-#include "Wavetables/Coefficients/Harmonics15.h" //44->038
-#include "Wavetables/Coefficients/Harmonics16.h" //45->039
 #include "Wavetables/Coefficients/Harmonics2.h"  //31->025
 #include "Wavetables/Coefficients/Harmonics3.h"  //32->026
 #include "Wavetables/Coefficients/Harmonics4.h"  //33->027
@@ -64,6 +57,13 @@
 #include "Wavetables/Coefficients/Harmonics7.h"  //36->030
 #include "Wavetables/Coefficients/Harmonics8.h"  //37->031
 #include "Wavetables/Coefficients/Harmonics9.h"  //38->032
+#include "Wavetables/Coefficients/Harmonics10.h" //39->033
+#include "Wavetables/Coefficients/Harmonics11.h" //40->034
+#include "Wavetables/Coefficients/Harmonics12.h" //41->035
+#include "Wavetables/Coefficients/Harmonics13.h" //42->036
+#include "Wavetables/Coefficients/Harmonics14.h" //43->037
+#include "Wavetables/Coefficients/Harmonics15.h" //44->038
+#include "Wavetables/Coefficients/Harmonics16.h" //45->039
 
 #include "Wavetables/Coefficients/Organ1.h" //46->040
 #include "Wavetables/Coefficients/Organ2.h" //47->041
@@ -159,39 +159,47 @@ m_highest_loaded_table = 105;
 #include "Wavetables/Coefficients/LegSharp.h" //109
 #include "Wavetables/Coefficients/LegPiano.h" //110
 #include "Wavetables/Coefficients/LegAdd1.h"   //111
+
 #include "Wavetables/Coefficients/LegCello.h" //112
 #include "Wavetables/Coefficients/LegAah.h" //113
 #include "Wavetables/Coefficients/LegHarm2.h"  //114
 #include "Wavetables/Coefficients/LegNoBass.h"//115
+
 #include "Wavetables/Coefficients/LegBags.h"  //116
 #include "Wavetables/Coefficients/LegOrgan.h" //117
 #include "Wavetables/Coefficients/LegTriQuad.h"//118
 #include "Wavetables/Coefficients/LegAdd3.h"  //119
 
-#include "Wavetables/Coefficients/AKWF_birds_0004.h"      //168->143
 #include "Wavetables/Coefficients/AKWF_birds_0010.h"      //165->140
 #include "Wavetables/Coefficients/AKWF_birds_0011.h"      //166->141
 #include "Wavetables/Coefficients/AKWF_birds_0014.h"      //167->142
+#include "Wavetables/Coefficients/AKWF_birds_0004.h"      //birds168->143
+
 #include "Wavetables/Coefficients/AKWF_bitreduced_0002.h" //169->144
 #include "Wavetables/Coefficients/AKWF_bitreduced_0003.h" //170->145
 #include "Wavetables/Coefficients/AKWF_bitreduced_0006.h" //171->146
 #include "Wavetables/Coefficients/AKWF_bitreduced_0011.h" //172->147
+
 #include "Wavetables/Coefficients/AKWF_fmsynth_0011.h"    //161->136
 #include "Wavetables/Coefficients/AKWF_fmsynth_0032.h"    //162->137
 #include "Wavetables/Coefficients/AKWF_fmsynth_0034.h"    //163->138
 #include "Wavetables/Coefficients/AKWF_fmsynth_0081.h"    //164->139
+
 #include "Wavetables/Coefficients/AKWF_hvoice_0002.h"     //145->120
 #include "Wavetables/Coefficients/AKWF_hvoice_0010.h"     //146->121
 #include "Wavetables/Coefficients/AKWF_hvoice_0014.h"     //147->122
 #include "Wavetables/Coefficients/AKWF_hvoice_0019.h"     //148->123
+
 #include "Wavetables/Coefficients/AKWF_hvoice_0020.h"     //149->124
 #include "Wavetables/Coefficients/AKWF_hvoice_0021.h"     //150->125
 #include "Wavetables/Coefficients/AKWF_hvoice_0029.h"     //151->126
 #include "Wavetables/Coefficients/AKWF_hvoice_0032.h"     //152->127
+
 #include "Wavetables/Coefficients/AKWF_hvoice_0037.h"     //153->128
 #include "Wavetables/Coefficients/AKWF_hvoice_0041.h"     //154->129
 #include "Wavetables/Coefficients/AKWF_hvoice_0047.h"     //155->130
 #include "Wavetables/Coefficients/AKWF_hvoice_0049.h"     //156->131
+
 #include "Wavetables/Coefficients/AKWF_hvoice_0056.h"     //157->132
 #include "Wavetables/Coefficients/AKWF_hvoice_0064.h"     //158->133
 #include "Wavetables/Coefficients/AKWF_hvoice_0071.h"     //159->134
@@ -209,8 +217,8 @@ m_highest_loaded_table = 105;
 
 #include "Wavetables/Coefficients/BagPipe.h"         //152
 #include "Wavetables/Coefficients/BagPipeMutated1.h" //153
-#include "Wavetables/Coefficients/BagPipeMutated4.h" //155
 #include "Wavetables/Coefficients/BagPipeMutated5.h" //154
+#include "Wavetables/Coefficients/BagPipeMutated4.h" //155
 
 #include "Wavetables/Coefficients/ChiptuneReplace1.h" //156
 #include "Wavetables/Coefficients/ChiptuneReplace2.h" //157

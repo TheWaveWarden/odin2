@@ -49,7 +49,7 @@
 #define OSC1_POS_X 29
 #define OSC2_POS_X 277
 #define OSC3_POS_X 525
-#define OSC_POS_Y 29 // todo
+#define OSC_POS_Y 29
 #define OSC_SIZE_X 247
 #define OSC_SIZE_Y 145
 

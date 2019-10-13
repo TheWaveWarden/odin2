@@ -14,7 +14,7 @@ class WavetableOsc1D :
 {
 public:
     //this shall map wavetables properly.
-	//Input: wavetable index from vlaueTree (propably from dropdown menu)
+	//Input: wavetable index from valueTree (propably from dropdown menu)
 	//Ouptut: wavetable index as it was set in loadWavetables()
     std::function<void(int)> selectWavetableByMapping = [](int){
 		DBG("\n\n\nERROR: setWavetableByMapping() not set!!!!\n\n\n");

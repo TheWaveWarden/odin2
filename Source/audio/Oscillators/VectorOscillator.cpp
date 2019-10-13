@@ -56,6 +56,11 @@ void VectorOscillator::update() {
 }
 
 float VectorOscillator::doVectortable() {
+
+  //smooth controls
+  m_XY_pad_x_smooth += (m_XY_pad_x - m_XY_pad_x_smooth) * 0.001;
+  m_XY_pad_y_smooth += (m_XY_pad_y - m_XY_pad_y_smooth) * 0.001;
+
   // prepare both sides and interpol value
   int read_index_trunc = (int)m_read_index;
   float fractional = m_read_index - (float)read_index_trunc;
@@ -76,10 +81,10 @@ float VectorOscillator::doVectortable() {
       linearInterpolation(m_current_table_vec_3[read_index_trunc],
                           m_current_table_vec_3[read_index_next], fractional);
 
-  float x_modded = m_XY_pad_x + *m_mod_x;
+  float x_modded = m_XY_pad_x_smooth + *m_mod_x;
   x_modded = x_modded > 1 ? 1 : x_modded;
   x_modded = x_modded < 0 ? 0 : x_modded;
-  float y_modded = m_XY_pad_y + *m_mod_y;
+  float y_modded = m_XY_pad_y_smooth + *m_mod_y;
   y_modded = y_modded > 1 ? 1 : y_modded;
   y_modded = y_modded < 0 ? 0 : y_modded;
 

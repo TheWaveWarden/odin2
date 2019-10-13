@@ -911,13 +911,10 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
   setComponentID("editor");
   addChildComponent(m_value_input);
 
-  //TODO REMOVE!!!!
-//setOsc1Plate(GETVALUE("osc1_type"));
-  setOsc1Plate(OSC_TYPE_WAVETABLE);
+  setOsc1Plate(GETVALUE("osc1_type"));
   setOsc2Plate(GETVALUE("osc2_type"));
   setOsc3Plate(GETVALUE("osc3_type"));
-  //setFilter1Plate(GETVALUE("fil1_type"));
-  setFilter1Plate(FILTER_TYPE_NONE);
+  setFilter1Plate(GETVALUE("fil1_type"));
   setFilter2Plate(GETVALUE("fil2_type"));
   setFilter3Plate(GETVALUE("fil3_type"));
 
@@ -925,26 +922,14 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(
   SET_CTR_KEY(m_master);
   SET_CTR_KEY(m_modwheel);
 
-
 #ifdef WTGEN
-  m_spectrum_display.setTopLeftPosition(800-512-2*6, 400-2*6);
+  m_spectrum_display.setTopLeftPosition(800 - 512 - 2 * 6, 400 - 2 * 6);
   addAndMakeVisible(m_wavetable_display);
-  m_wavetable_display.setTopLeftPosition(800-512-2*6, 400-4*6-200);
+  m_wavetable_display.setTopLeftPosition(800 - 512 - 2 * 6, 400 - 4 * 6 - 200);
   addAndMakeVisible(m_spectrum_display);
   m_wavetable_display.setAlwaysOnTop(true);
   m_spectrum_display.setAlwaysOnTop(true);
 #endif
-
-
-
-
-
-
-
-
-
-
-
 
   setSize(800, 600);
 
@@ -968,8 +953,9 @@ void OdinAudioProcessorEditor::paint(Graphics &g) {
 }
 
 void OdinAudioProcessorEditor::resized() {
-  // Rectangle<int> area_glide(METAL_KNOB_SMALL_SIZE_X, METAL_KNOB_SMALL_SIZE_Y);
-  // Rectangle<int> area_master(METAL_KNOB_SMALL_SIZE_X, METAL_KNOB_SMALL_SIZE_Y);
+  // Rectangle<int> area_glide(METAL_KNOB_SMALL_SIZE_X,
+  // METAL_KNOB_SMALL_SIZE_Y); Rectangle<int>
+  // area_master(METAL_KNOB_SMALL_SIZE_X, METAL_KNOB_SMALL_SIZE_Y);
   Rectangle<int> area_osc_1(OSC_SIZE_X, OSC_SIZE_Y);
   Rectangle<int> area_osc_2(OSC_SIZE_X, OSC_SIZE_Y);
   Rectangle<int> area_osc_3(OSC_SIZE_X, OSC_SIZE_Y);
@@ -987,15 +973,17 @@ void OdinAudioProcessorEditor::resized() {
   area_fil_1.setPosition(FIL1_POS_X, FIL1_POS_Y);
   area_midsection.setPosition(MIDSECTION_POS_X, MIDSECTION_POS_Y);
 
-  m_glide.setBounds(GLIDE_POS_X- METAL_KNOB_SMALL_OFFSET_X, GLIDE_POS_Y- METAL_KNOB_SMALL_OFFSET_Y, METAL_KNOB_SMALL_SIZE_X,
-                    METAL_KNOB_SMALL_SIZE_Y);
+  m_glide.setBounds(GLIDE_POS_X - METAL_KNOB_SMALL_OFFSET_X,
+                    GLIDE_POS_Y - METAL_KNOB_SMALL_OFFSET_Y,
+                    METAL_KNOB_SMALL_SIZE_X, METAL_KNOB_SMALL_SIZE_Y);
   m_master.setRange(MASTER_MIN, MASTER_MAX);
   m_master.setTextValueSuffix(" dB");
   // m_master.setValue(MASTER_DEFAULT);
   m_master.setNumDecimalPlacesToDisplay(1);
 
-  m_master.setBounds(MASTER_POS_X- METAL_KNOB_SMALL_OFFSET_X, MASTER_POS_Y- METAL_KNOB_SMALL_OFFSET_Y, METAL_KNOB_SMALL_SIZE_X,
-                     METAL_KNOB_SMALL_SIZE_Y);
+  m_master.setBounds(MASTER_POS_X - METAL_KNOB_SMALL_OFFSET_X,
+                     MASTER_POS_Y - METAL_KNOB_SMALL_OFFSET_Y,
+                     METAL_KNOB_SMALL_SIZE_X, METAL_KNOB_SMALL_SIZE_Y);
 
   m_osc1.setBounds(area_osc_1);
   m_osc2.setBounds(area_osc_2);
@@ -1260,7 +1248,8 @@ void OdinAudioProcessorEditor::forceValueTreeOntoComponents(
 
   forceValueTreeOntoComponentsOnlyMainPanel();
 
-  //TODO the following block is a duplicate? also set at the end of constructor, these seems to have no influence
+  // TODO the following block is a duplicate? also set at the end of
+  // constructor, these seems to have no influence
   setOsc1Plate(m_value_tree.state["osc1_type"]);
   setOsc2Plate(m_value_tree.state["osc2_type"]);
   setOsc3Plate(m_value_tree.state["osc3_type"]);
@@ -1431,13 +1420,12 @@ void OdinAudioProcessorEditor::allMidiKeysOff() {
   }
 }
 
-
-void OdinAudioProcessorEditor::updatePitchWheel(float p_value){
+void OdinAudioProcessorEditor::updatePitchWheel(float p_value) {
   const MessageManagerLock mmLock;
   m_pitchwheel.setValue(p_value);
 }
 
-void OdinAudioProcessorEditor::updateModWheel(float p_value){
+void OdinAudioProcessorEditor::updateModWheel(float p_value) {
   const MessageManagerLock mmLock;
   m_modwheel.setValue(p_value, sendNotificationSync);
 }
