@@ -78,7 +78,25 @@ OdinAudioProcessor::OdinAudioProcessor()
   // WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Skyline1");
   // WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Skyline4");
 
+  // WavetableContainer::getInstance().convertWTFromOdin1(9, 72, "LegToyBox");
+  // WavetableContainer::getInstance().convertWTFromOdin1(14, 73, "LegRip2");
+  // WavetableContainer::getInstance().convertWTFromOdin1(19, 74, "LegMale");
+  // WavetableContainer::getInstance().convertWTFromOdin1(22, 75, "LegBarbedWire");
 
+  // WavetableContainer::getInstance().convertWTFromOdin1(24, 108, "LegAdd8");
+  // WavetableContainer::getInstance().convertWTFromOdin1(23, 109, "LegSharp");
+  // WavetableContainer::getInstance().convertWTFromOdin1(25, 110, "LegPiano");
+  // WavetableContainer::getInstance().convertWTFromOdin1(26, 111, "LegUuh");
+
+  // WavetableContainer::getInstance().convertWTFromOdin1(32, 112, "LegCello");
+  // WavetableContainer::getInstance().convertWTFromOdin1(31, 113, "LegEBass");
+  // WavetableContainer::getInstance().convertWTFromOdin1(17, 114, "LegAdd6");
+  // WavetableContainer::getInstance().convertWTFromOdin1(20, 115, "LegNoBass");
+
+  // WavetableContainer::getInstance().convertWTFromOdin1(8, 116, "LegBags");
+  // WavetableContainer::getInstance().convertWTFromOdin1(7, 117, "LegOrgan");
+  // WavetableContainer::getInstance().convertWTFromOdin1(6, 118, "LegTriQuad");
+  // WavetableContainer::getInstance().convertWTFromOdin1(2, 119, "LegAdd3");
 
   WavetableContainer::getInstance().createWavetables(44100.f);
   WavetableContainer::getInstance().loadWavetablesAfterFourierCreation();
@@ -87,7 +105,8 @@ OdinAudioProcessor::OdinAudioProcessor()
   // WavetableContainer::getInstance().fixWavetableCoefficientFile();
   // WavetableContainer::getInstance().fixWavetableIndexInFiles();
 
-  //WavetableContainer::getInstance().mutateWavetable("Glass", 3, 100, true, 89);
+  // WavetableContainer::getInstance().mutateWavetable("Glass", 3, 100, true,
+  // 89);
   // WavetableContainer::getInstance().writePerlinTableToFile("PerlinReplace1",
   // 100, 50);
   // WavetableContainer::getInstance().writePerlinTableToFile("PerlinReplace2",
@@ -368,12 +387,12 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer,
         // todo this is untested, are values set back to zero, or need to do
         // it manually?
         m_MIDI_aftertouch = (float)midi_message.getAfterTouchValue() / 127.f;
-      } else if (midi_message.isSoftPedalOn()){
+      } else if (midi_message.isSoftPedalOn()) {
         m_soft_pedal = 1.f;
-      } else if (midi_message.isSoftPedalOff()){
+      } else if (midi_message.isSoftPedalOff()) {
         m_soft_pedal = 0.f;
       }
-      
+
       else {
         if (!midi_message.isMidiClock()) {
           DBG("UNHANDELED MIDI MESSAGE: " + midi_message.getDescription());
@@ -886,8 +905,7 @@ void OdinAudioProcessor::initializeModules() {
 
   setModulationPointers();
 
-
-  //set analog osc as sync osc for start
+  // set analog osc as sync osc for start
   for (int voice = 0; voice < VOICES; ++voice) {
     m_voice[voice].setOscSyncOscillator(&(m_voice[voice].analog_osc[0]));
   }

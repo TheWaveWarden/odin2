@@ -162,13 +162,13 @@ void WavetableOsc2D::loadWavetables() {
       13, 3, WavetableContainer::getInstance().getWavetablePointers("Oboe4"));
 
   setWavetablePointer(
-      14, 0, WavetableContainer::getInstance().getWavetablePointers("Flute1"));
+      14, 0, WavetableContainer::getInstance().getWavetablePointers("LegToyBox"));
   setWavetablePointer(
-      14, 1, WavetableContainer::getInstance().getWavetablePointers("Flute2"));
+      14, 1, WavetableContainer::getInstance().getWavetablePointers("LegRip2"));
   setWavetablePointer(
-      14, 2, WavetableContainer::getInstance().getWavetablePointers("Flute3"));
+      14, 2, WavetableContainer::getInstance().getWavetablePointers("LegMale"));
   setWavetablePointer(
-      14, 3, WavetableContainer::getInstance().getWavetablePointers("Flute4"));
+      14, 3, WavetableContainer::getInstance().getWavetablePointers("LegBarbedWire"));
 
   setWavetablePointer(
       15, 0,
@@ -392,34 +392,34 @@ void WavetableOsc2D::loadWavetables() {
                           "ChiptuneSquare50Mutated8"));
 
   setWavetablePointer(
-      32, 0, WavetableContainer::getInstance().getWavetablePointers("Perlin1"));
+      32, 0, WavetableContainer::getInstance().getWavetablePointers("LegAdd8"));
   setWavetablePointer(
-      32, 1, WavetableContainer::getInstance().getWavetablePointers("Perlin2"));
+      32, 1, WavetableContainer::getInstance().getWavetablePointers("LegSharp"));
   setWavetablePointer(
-      32, 2, WavetableContainer::getInstance().getWavetablePointers("Perlin3"));
+      32, 2, WavetableContainer::getInstance().getWavetablePointers("LegPiano"));
   setWavetablePointer(
-      32, 3, WavetableContainer::getInstance().getWavetablePointers("Perlin4"));
+      32, 3, WavetableContainer::getInstance().getWavetablePointers("LegUuh"));
 
   setWavetablePointer(
-      33, 0, WavetableContainer::getInstance().getWavetablePointers("Perlin5"));
+      33, 0, WavetableContainer::getInstance().getWavetablePointers("LegCello"));
   setWavetablePointer(
-      33, 1, WavetableContainer::getInstance().getWavetablePointers("Perlin6"));
+      33, 1, WavetableContainer::getInstance().getWavetablePointers("LegEBass"));
   setWavetablePointer(
-      33, 2, WavetableContainer::getInstance().getWavetablePointers("Perlin7"));
+      33, 2, WavetableContainer::getInstance().getWavetablePointers("LegAdd6"));
   setWavetablePointer(
-      33, 3, WavetableContainer::getInstance().getWavetablePointers("Perlin8"));
+      33, 3, WavetableContainer::getInstance().getWavetablePointers("LegNoBass"));
 
   setWavetablePointer(
-      34, 0, WavetableContainer::getInstance().getWavetablePointers("Perlin9"));
+      34, 0, WavetableContainer::getInstance().getWavetablePointers("LegBags"));
   setWavetablePointer(
       34, 1,
-      WavetableContainer::getInstance().getWavetablePointers("Perlin10"));
+      WavetableContainer::getInstance().getWavetablePointers("LegOrgan"));
   setWavetablePointer(
       34, 2,
-      WavetableContainer::getInstance().getWavetablePointers("Perlin11"));
+      WavetableContainer::getInstance().getWavetablePointers("LegTriQuad"));
   setWavetablePointer(
       34, 3,
-      WavetableContainer::getInstance().getWavetablePointers("Perlin12"));
+      WavetableContainer::getInstance().getWavetablePointers("LegAdd3"));
 }
 
 std::string WavetableOsc2D::getWavetableName(int p_wt_2D, int sub_table_2D) {
@@ -723,16 +723,16 @@ std::string WavetableOsc2D::getWavetableName(int p_wt_2D, int sub_table_2D) {
   case 14:
     switch (sub_table_2D) {
     case 0:
-      return "Flute1";
+      return "LegToyBox";
       break;
     case 1:
-      return "Flute2";
+      return "LegRip2";
       break;
     case 2:
-      return "Flute3";
+      return "LegMale";
       break;
     case 3:
-      return "Flute4";
+      return "LegBarbedWire";
       break;
     default:
       DBG("Tried to get name for illegal table combination (" +
@@ -1101,16 +1101,16 @@ std::string WavetableOsc2D::getWavetableName(int p_wt_2D, int sub_table_2D) {
   case 32:
     switch (sub_table_2D) {
     case 0:
-      return "Perlin1";
+      return "LegAdd8";
       break;
     case 1:
-      return "Perlin2";
+      return "LegSharp";
       break;
     case 2:
-      return "Perlin3";
+      return "LegPiano";
       break;
     case 3:
-      return "Perlin4";
+      return "LegUuh";
       break;
     default:
       DBG("Tried to get name for illegal table combination (" +
@@ -1122,16 +1122,16 @@ std::string WavetableOsc2D::getWavetableName(int p_wt_2D, int sub_table_2D) {
   case 33:
     switch (sub_table_2D) {
     case 0:
-      return "Perlin5";
+      return "LegCello";
       break;
     case 1:
-      return "Perlin6";
+      return "LegEBass";
       break;
     case 2:
-      return "Perlin7";
+      return "LegAdd6";
       break;
     case 3:
-      return "Perlin8";
+      return "LegNoBass";
       break;
     default:
       DBG("Tried to get name for illegal table combination (" +
@@ -1143,16 +1143,16 @@ std::string WavetableOsc2D::getWavetableName(int p_wt_2D, int sub_table_2D) {
   case 34:
     switch (sub_table_2D) {
     case 0:
-      return "Perlin9";
+      return "LegBags";
       break;
     case 1:
-      return "Perlin10";
+      return "LegOrgan";
       break;
     case 2:
-      return "Perlin11";
+      return "LegTriQuad";
       break;
     case 3:
-      return "Perlin12";
+      return "LegAdd3";
       break;
     default:
       DBG("Tried to get name for illegal table combination (" +

@@ -122,7 +122,7 @@ void WavetableContainer::createWavetables(float p_samplerate) {
       seed_freq *= 1.1892071150;
     }
 
-    //normalize
+    // normalize
     if (max > 0) {
       DBG("max " + std::to_string(max));
       for (int sub = 0; sub < SUBTABLES_PER_WAVETABLE; ++sub) {
@@ -1534,7 +1534,8 @@ void WavetableContainer::writeSampleTableToFile(std::string p_filename) {
 
 void WavetableContainer::mutateWavetable(std::string p_table_name,
                                          int number_of_mutations, float percent,
-                                         bool p_consecutive_mutation, int p_start_id) {
+                                         bool p_consecutive_mutation,
+                                         int p_start_id) {
 
   auto it = m_name_index_map.find(p_table_name);
   if (it == m_name_index_map.end()) {
@@ -1636,8 +1637,8 @@ void WavetableContainer::mutateWavetable(std::string p_table_name,
 
     DBG("CREATING TABLE /home/frot/odinvst/Source/audio/Oscillators/"
         "Wavetables/Coefficients/" +
-        p_table_name + "Mutated" + std::to_string(mutation) + ".h   WT_NR = " +
-        std::to_string(p_start_id));
+        p_table_name + "Mutated" + std::to_string(mutation) +
+        ".h   WT_NR = " + std::to_string(p_start_id));
 
     std::ofstream output_file;
     output_file.open("/home/frot/odinvst/Source/audio/Oscillators/"
@@ -2226,4 +2227,70 @@ void WavetableContainer::fixTooHighHarmonics(std::string p_filename) {
   }
 
   fileout.close();
+}
+
+void WavetableContainer::convertWTFromOdin1(int p_odin_1_nr, int p_odin_2_nr,
+                                            std::string p_name) {
+
+  // see whether files open
+
+  std::ifstream filein(
+      "/home/frot/odinvst/odin_1_wavetables.h"); // File to read from
+  std::ofstream fileout("/home/frot/odinvst/Source/audio/Oscillators/"
+                        "Wavetables/Coefficients/" +
+                        p_name + ".h");
+  if (!filein) {
+    DBG("Error opening input file!");
+    return;
+  }
+  if (!fileout) {
+    DBG("Error opening output file!");
+    return;
+  }
+
+  // customWT27CoeffsEven[787] = -0.000000;
+
+  fileout << "#define WT_NR " << p_odin_2_nr << "\n\n";
+  fileout << "m_wavetable_names_1D[WT_NR] = \"" + p_name + "\";\n\n";
+  fileout << "m_fourier_coeffs[WT_NR][1][0] = 1;//scalar\n\n";
+
+  std::string line;
+  while (getline(filein, line)) {
+    if (line.find("customWT" + std::to_string(p_odin_1_nr) + "Coeffs") !=
+            std::string::npos &&
+        !containsTooHighHarmonics(line)) {
+      // here line is below 256 and is desired wavetable
+      // now replace name
+      int number_size = p_odin_1_nr >= 10 ? 2 : 1;
+      if (line.find("Even") != std::string::npos) {
+        line = line.substr(18 + number_size);
+        line = "m_fourier_coeffs[WT_NR][1]" + line;
+      }
+      if (line.find("Odd") != std::string::npos) {
+        line = line.substr(17 + number_size);
+        line = "m_fourier_coeffs[WT_NR][0]" + line;
+      }
+      if (line.find("[1][0]") == std::string::npos) {
+        fileout << line << "\n";
+      }
+    }
+  }
+
+  // write undef
+  fileout << "\n\n#undef WT_NR";
+
+  fileout.close();
+
+  eliminatePhaseInWavetableCoefficients(p_name);
+
+  std::ifstream  src("/home/frot/odinvst/Source/audio/Oscillators/"
+                          "Wavetables/Coefficients/PhaseEliminated/" +
+                          p_name + ".h", std::ios::binary);
+  std::ofstream  dst("/home/frot/odinvst/Source/audio/Oscillators/"
+                          "Wavetables/Coefficients/" +
+                          p_name + ".h",   std::ios::binary);
+
+  dst << src.rdbuf();
+
+  dst.close();
 }

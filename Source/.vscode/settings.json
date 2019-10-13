@@ -38,6 +38,16 @@
         "optional": "cpp",
         "deque": "cpp",
         "new": "cpp",
-        "string_view": "cpp"
+        "string_view": "cpp",
+        "cstdarg": "cpp",
+        "atomic": "cpp",
+        "list": "cpp",
+        "numeric": "cpp",
+        "cinttypes": "cpp",
+        "iterator": "cpp",
+        "map": "cpp",
+        "memory_resource": "cpp",
+        "random": "cpp",
+        "string": "cpp"
     }
 }

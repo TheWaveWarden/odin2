@@ -826,7 +826,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   ADD_WAVETABLE_SUB_MENU("Piano", 220);
   ADD_WAVETABLE_SUB_MENU("Organ", 230);
   ADD_WAVETABLE_SUB_MENU("Oboe", 240);
-  ADD_WAVETABLE_SUB_MENU("Flute", 250);
+  ADD_WAVETABLE_SUB_MENU("MixedWaves A", 250);
   ADD_WAVETABLE_SUB_MENU("Trumpet", 260);
   ADD_WAVETABLE_SUB_MENU("Voice A", 270);
   ADD_WAVETABLE_SUB_MENU("Voice B", 280);
@@ -844,9 +844,9 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   ADD_WAVETABLE_SUB_MENU("MutatedSaw B", 400);
   ADD_WAVETABLE_SUB_MENU("MutatedSquare A", 410);
   ADD_WAVETABLE_SUB_MENU("MutatedSquare B", 420);
-  ADD_WAVETABLE_SUB_MENU("Perlin A", 430);
-  ADD_WAVETABLE_SUB_MENU("Perlin B", 440);
-  ADD_WAVETABLE_SUB_MENU("Perlin C", 450);
+  ADD_WAVETABLE_SUB_MENU("MixedWaves B", 430);
+  ADD_WAVETABLE_SUB_MENU("MixedWaves C", 440);
+  ADD_WAVETABLE_SUB_MENU("MixedWaves D", 450);
 
   fm_menu.addItem(1, "Sine");
   fm_menu.addSeparator();
@@ -912,7 +912,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   ADD_MAP_ENTRY("Piano", 220, m_carrier_waveselector)
   ADD_MAP_ENTRY("Organ", 230, m_carrier_waveselector)
   ADD_MAP_ENTRY("Oboe", 240, m_carrier_waveselector)
-  ADD_MAP_ENTRY("Flute", 250, m_carrier_waveselector)
+  ADD_MAP_ENTRY("MixedWaves A", 250, m_carrier_waveselector)
   ADD_MAP_ENTRY("Trumpet", 260, m_carrier_waveselector)
   ADD_MAP_ENTRY("Voice A", 270, m_carrier_waveselector)
   ADD_MAP_ENTRY("Voice B", 280, m_carrier_waveselector)
@@ -930,9 +930,9 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   ADD_MAP_ENTRY("MutatedSaw B", 400, m_carrier_waveselector)
   ADD_MAP_ENTRY("MutatedSquare A", 410, m_carrier_waveselector)
   ADD_MAP_ENTRY("MutatedSquare B", 420, m_carrier_waveselector)
-  ADD_MAP_ENTRY("Perlin A", 430, m_carrier_waveselector)
-  ADD_MAP_ENTRY("Perlin B", 440, m_carrier_waveselector)
-  ADD_MAP_ENTRY("Perlin C", 450, m_carrier_waveselector)
+  ADD_MAP_ENTRY("MixedWaves B", 430, m_carrier_waveselector)
+  ADD_MAP_ENTRY("MixedWaves C", 440, m_carrier_waveselector)
+  ADD_MAP_ENTRY("MixedWaves D", 450, m_carrier_waveselector)
 
   m_carrier_waveselector.setDecrementValue(121, 104);
   m_carrier_waveselector.setIncrementValue(454, 501);
@@ -986,7 +986,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   ADD_MAP_ENTRY("Piano", 220, m_modulator_waveselector)
   ADD_MAP_ENTRY("Organ", 230, m_modulator_waveselector)
   ADD_MAP_ENTRY("Oboe", 240, m_modulator_waveselector)
-  ADD_MAP_ENTRY("Flute", 250, m_modulator_waveselector)
+  ADD_MAP_ENTRY("MixedWaves A", 250, m_modulator_waveselector)
   ADD_MAP_ENTRY("Trumpet", 260, m_modulator_waveselector)
   ADD_MAP_ENTRY("Voice A", 270, m_modulator_waveselector)
   ADD_MAP_ENTRY("Voice B", 280, m_modulator_waveselector)
@@ -1004,9 +1004,9 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   ADD_MAP_ENTRY("MutatedSaw B", 400, m_modulator_waveselector)
   ADD_MAP_ENTRY("MutatedSquare A", 410, m_modulator_waveselector)
   ADD_MAP_ENTRY("MutatedSquare B", 420, m_modulator_waveselector)
-  ADD_MAP_ENTRY("Perlin A", 430, m_modulator_waveselector)
-  ADD_MAP_ENTRY("Perlin B", 440, m_modulator_waveselector)
-  ADD_MAP_ENTRY("Perlin C", 450, m_modulator_waveselector)
+  ADD_MAP_ENTRY("MixedWaves B", 430, m_modulator_waveselector)
+  ADD_MAP_ENTRY("MixedWaves C", 440, m_modulator_waveselector)
+  ADD_MAP_ENTRY("MixedWaves D", 450, m_modulator_waveselector)
 
   m_modulator_waveselector.setDecrementValue(121, 104);
   m_modulator_waveselector.setIncrementValue(454, 501);
@@ -1063,7 +1063,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   ADD_MAP_ENTRY("Piano", 220, m_chiptune_waveselector)
   ADD_MAP_ENTRY("Organ", 230, m_chiptune_waveselector)
   ADD_MAP_ENTRY("Oboe", 240, m_chiptune_waveselector)
-  ADD_MAP_ENTRY("Flute", 250, m_chiptune_waveselector)
+  ADD_MAP_ENTRY("MixedWaves A", 250, m_chiptune_waveselector)
   ADD_MAP_ENTRY("Trumpet", 260, m_chiptune_waveselector)
   ADD_MAP_ENTRY("Voice A", 270, m_chiptune_waveselector)
   ADD_MAP_ENTRY("Voice B", 280, m_chiptune_waveselector)
@@ -1081,9 +1081,9 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   ADD_MAP_ENTRY("MutatedSaw B", 400, m_chiptune_waveselector)
   ADD_MAP_ENTRY("MutatedSquare A", 410, m_chiptune_waveselector)
   ADD_MAP_ENTRY("MutatedSquare B", 420, m_chiptune_waveselector)
-  ADD_MAP_ENTRY("Perlin A", 430, m_chiptune_waveselector)
-  ADD_MAP_ENTRY("Perlin B", 440, m_chiptune_waveselector)
-  ADD_MAP_ENTRY("Perlin C", 450, m_chiptune_waveselector)*/
+  ADD_MAP_ENTRY("MixedWaves B", 430, m_chiptune_waveselector)
+  ADD_MAP_ENTRY("MixedWaves C", 440, m_chiptune_waveselector)
+  ADD_MAP_ENTRY("MixedWaves D", 450, m_chiptune_waveselector)*/
 
   m_chiptune_waveselector.setDecrementValue(121, 104);
   m_chiptune_waveselector.setIncrementValue(454, 601);
@@ -1157,7 +1157,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_wavetable_waveselector.addWave(12, "Piano");
   m_wavetable_waveselector.addWave(13, "Organ");
   m_wavetable_waveselector.addWave(14, "Oboe");
-  m_wavetable_waveselector.addWave(15, "Flute");
+  m_wavetable_waveselector.addWave(15, "MixedWaves A");
   m_wavetable_waveselector.addWave(16, "Trumpet");
   m_wavetable_waveselector.addWave(17, "Voice A");
   m_wavetable_waveselector.addWave(18, "Voice B");
@@ -1175,9 +1175,9 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
   m_wavetable_waveselector.addWave(30, "MutatedSaw B");
   m_wavetable_waveselector.addWave(31, "MutatedSquare A");
   m_wavetable_waveselector.addWave(32, "MutatedSquare B");
-  m_wavetable_waveselector.addWave(33, "Perlin A");
-  m_wavetable_waveselector.addWave(34, "Perlin B");
-  m_wavetable_waveselector.addWave(35, "Perlin C");
+  m_wavetable_waveselector.addWave(33, "MixedWaves B");
+  m_wavetable_waveselector.addWave(34, "MixedWaves C");
+  m_wavetable_waveselector.addWave(35, "MixedWaves D");
 
   m_wavetable_waveselector.setTooltip("Selects the wave for the oscillator");
   addChildComponent(m_wavetable_waveselector);

@@ -71,6 +71,7 @@ public:
   // this will calculate the amplitude of the wave which arises from a sin + b
   // cos and use it for sin, b = 0
   void eliminatePhaseInWavetableCoefficients(std::string p_filename);
+  void convertWTFromOdin1(int p_odin_1_nr, int p_odin_2_nr, std::string p_name);
 
   // call this to make wavetablefiles from wavetable coefficients
   void writeWavetablesToFile();

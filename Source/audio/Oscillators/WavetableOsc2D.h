@@ -5,10 +5,16 @@ public:
   WavetableOsc2D();
   ~WavetableOsc2D();
 
+  virtual void setBaseFrequency(float p_freq) override {
+    WavetableOsc1D::setBaseFrequency(p_freq);
+    //this means osc-restart so we will set pos_smooth to pos here (= hack)
+    m_position_2D_smooth = m_position_2D;
+  }
+
   virtual float doOscillate() override;
   virtual void update() override;
 
-  virtual void reset() override{
+  virtual void reset() override {
     WavetableOsc1D::reset();
     m_position_2D_smooth = m_position_2D;
   }
@@ -52,15 +58,15 @@ public:
     int higher = WavetableContainer::getInstance().getWavetableIndexFromName(
         getWavetableName(m_wavetable_index, p_right_table));
 
-	//pass to lambda
+    // pass to lambda
     passVariablesToWTDisplay(lower, higher, interpol);
   }
 
   void selectWavetable(int p_wavetable_index) override {
-	  WavetableOsc1D::selectWavetable(p_wavetable_index);
-	  passVariablesToWTDisplayInternal();
+    WavetableOsc1D::selectWavetable(p_wavetable_index);
+    passVariablesToWTDisplayInternal();
   }
-  
+
 #endif
 protected:
   std::string getWavetableName(int p_wt_2D, int sub_table_2D);
