@@ -2,7 +2,6 @@
 
 #include "../../JuceLibraryCode/JuceHeader.h"
 
-#include "CheapFunctions.h"
 #include <functional>
 
 #define MIN_DECAY_RELEASE_VAL 0.001
@@ -72,9 +71,9 @@ public:
     return m_last_release_return;
   }
 
-  /*inline */ double calcDecayFactorCheap(double p_decay) {
-    return CheapFunctions::getInstance().cheapADSRPow(m_samplerate * p_decay);
-  }
+  // /*inline */ double calcDecayFactorCheap(double p_decay) {
+  //   return CheapFunctions::getInstance().cheapADSRPow(m_samplerate * p_decay);
+  // }
 
   void setAttackModPointer(float *p_pointer) { m_attack_mod = p_pointer; }
   void setDecayModPointer(float *p_pointer) { m_decay_mod = p_pointer; }
@@ -101,8 +100,6 @@ public:
   }
 
 protected:
-  // CheapFunctions& m_cheap_functions;
-
   //! WEIRD STUFF! 500th workaround for visual studio cant handle my
   //! lambda..........
   bool *m_voice_manager_bool_pointer = nullptr;

@@ -1,5 +1,4 @@
 #include "ChiptuneOscillator.h"
-#include <cstdlib> //todo double
 #include <ctime>
 
 #define NOISE_SEGMENT_LENGTH 30

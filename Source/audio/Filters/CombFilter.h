@@ -1,14 +1,12 @@
 #pragma once
 
-#include "../OdinConstants.h"
 #include "../../GlobalIncludes.h"
+#include "../OdinConstants.h"
 #include "DCBlockingFilter.h"
 #include "Filter.h"
 #include <cstring>
 
 #define COMB_BUFFER_LENGTH (MAX_EXPECTED_SAMPLE_RATE / FILTER_FC_MIN)
-
-//#include "../JuceLibraryCode/JuceHeader.h"//todo remove
 
 class CombFilter {
 public:
@@ -38,16 +36,13 @@ public:
     m_positive_comb = p_positive ? 1 : -1;
   }
 
-  inline void setCombFreq(float p_freq) {
-    // TODO check for too long time... here? no bc gets modded later
-    m_delay_time_control = 1.f / p_freq;
-  }
+  inline void setCombFreq(float p_freq) { m_delay_time_control = 1.f / p_freq; }
 
   inline void setResonance(float p_feedback) { m_feedback = p_feedback; }
 
   inline virtual void setSampleRate(float p_samplerate) {
-     
-  //DBG("setsamplerate comb");
+
+    // DBG("setsamplerate comb");
     m_samplerate = p_samplerate;
     m_DC_blocking_filter.setSampleRate(p_samplerate);
   }

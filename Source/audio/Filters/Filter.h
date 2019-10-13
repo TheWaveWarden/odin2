@@ -18,11 +18,11 @@ public:
   Filter(void);
   ~Filter(void);
 
-  // todo potential bottleneck
+  // ! bottleneck
   float pitchShiftMultiplier(float p_semitones) {
     return pow(2.f, p_semitones / 12.f);
   }
-  // todo
+  // ! bottleneck
   float fasttanh(float p_input, float p_tanh_factor) {
     // idea2: use curveable x^3
     // tanh(3x)

@@ -15,8 +15,8 @@ float Flanger::doFlanger(float p_input) {
 
   float amount_modded = m_LFO_amount + *m_amount_mod;
   amount_modded = amount_modded < 0 ? 0 : amount_modded;
+  amount_modded = amount_modded > 1 ? 1 : amount_modded;
 
-  // todo amount mod still blows up... limit?
   m_delay_time_control =
       m_base_time + LFO * amount_modded * FLANGER_LFO_MAX_RANGE;
 

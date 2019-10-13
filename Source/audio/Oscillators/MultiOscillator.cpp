@@ -74,7 +74,7 @@ void MultiOscillator::update() {
       m_osc_freq_modded * cheapPitchShiftMultiplier(0.238 * detune_modded) +
       m_mod_freq_lin;
   m_oscillator_freq_multi[3] =
-      m_osc_freq_modded * cheapPitchShiftMultiplier(1.f * detune_modded) +
+      m_osc_freq_modded * cheapPitchShiftMultiplier(0.97f * detune_modded) +
       m_mod_freq_lin;
 
   // apply pitch mod to multioscs here...
@@ -183,24 +183,38 @@ float MultiOscillator::doWavetableMulti() {
   return output * 0.25f;
 }
 
-double MultiOscillator::cheapPitchShiftMultiplier(double p_semitones) {
+float MultiOscillator::cheapPitchShiftMultiplier(float p_semitones) {
 
-  if (p_semitones > 5. || p_semitones < -5.) {
-    // function is only suited for -5 to 5
-    return pitchShiftMultiplier(p_semitones);
-  }
+  //2^(x/12) = e^(ln(2)/12*x)
+  //ln(2)/12 = 0.057762265f
+  p_semitones *= 0.057762265f;
 
-  float index = (p_semitones + 5.) * 100.;
-  int index_trunc = (int)index;
-  int index_next = index + 1;
-  float interpolation = index - (float)index_trunc;
+  // use taylor series for e^x, O(n^4)
+  // https://www.wolframalpha.com/input/?i=1+%2B+x+%2B+x%C2%B2%2F2+%2B+x%C2%B3%2F6+%2B+x%E2%81%B4%2F24
 
-  // never trust floating point operations
-  index_trunc = index_trunc > 1000 ? 1000 : index_trunc;
-  index_next = index_next > 1000 ? 1000 : index_next;
-  index_trunc = index_trunc < 0 ? 0 : index_trunc;
-  index_next = index_next < 0 ? 0 : index_next;
+  float pot = p_semitones;
+  float ret = 1 + p_semitones; // O(1)
+  pot *= p_semitones;
+  ret += pot * 0.5f; // O(2)
+  pot *= p_semitones;
+  ret += pot * 0.16666f + pot * p_semitones * 0.041666667f; // O(3) & O(4)
 
-  return linearInterpolation(m_pitch_shift_table[index_trunc],
-                             m_pitch_shift_table[index_next], interpolation);
+  // if (p_semitones > 5. || p_semitones < -5.) {
+  //   // function is only suited for -5 to 5
+  //   return pitchShiftMultiplier(p_semitones);
+  // }
+
+  // float index = (p_semitones + 5.) * 100.;
+  // int index_trunc = (int)index;
+  // int index_next = index + 1;
+  // float interpolation = index - (float)index_trunc;
+
+  // // never trust floating point operations
+  // index_trunc = index_trunc > 1000 ? 1000 : index_trunc;
+  // index_next = index_next > 1000 ? 1000 : index_next;
+  // index_trunc = index_trunc < 0 ? 0 : index_trunc;
+  // index_next = index_next < 0 ? 0 : index_next;
+
+  // return linearInterpolation(m_pitch_shift_table[index_trunc],
+  //                            m_pitch_shift_table[index_next], interpolation);
 }

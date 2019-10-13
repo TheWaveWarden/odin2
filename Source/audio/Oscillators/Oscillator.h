@@ -49,9 +49,6 @@ public:
   inline void setResetActive(bool p_reset) { m_reset_active = p_reset; }
 
   inline virtual void update() {
-    // DBG(m_osc_freq_base);
-    // DBG(m_osc_freq_glide_target);
-    // DBG("===");
 
     float glide_input_modded = m_glide + *(m_glide_mod);
 

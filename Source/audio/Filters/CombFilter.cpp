@@ -6,8 +6,6 @@ CombFilter::~CombFilter() {}
 
 float CombFilter::doFilter(float p_input) {
 
-  // todo audio bug when increasing delay_time
-
   m_delay_time_smooth = (m_delay_time_smooth - m_delay_time_control) * 0.999 +
                         m_delay_time_control;
 
@@ -30,19 +28,6 @@ float CombFilter::doFilter(float p_input) {
   int read_index_next = read_index_trunc + 1;
   float frac = read_index - (float)read_index_trunc;
 
-  // check boundaries
-  // while(read_index_trunc < 0){
-  //    read_index_trunc += COMB_BUFFER_LENGTH;
-  //}
-  // while(read_index_next < 0){
-  //    read_index_next += COMB_BUFFER_LENGTH;
-  //}
-  // while(read_index_trunc >= COMB_BUFFER_LENGTH ){
-  //   read_index_trunc -= COMB_BUFFER_LENGTH;
-  //}
-  // while(read_index_next >= COMB_BUFFER_LENGTH ){
-  //    read_index_next -= COMB_BUFFER_LENGTH;
-  //}
   read_index_trunc = read_index_trunc < 0
                          ? read_index_trunc + COMB_BUFFER_LENGTH
                          : read_index_trunc;
@@ -66,10 +51,6 @@ float CombFilter::doFilter(float p_input) {
   circular_buffer[m_write_index] =
       p_input + output * feedback_modded * m_positive_comb;
   incWriteIndex();
-
-  // set sample behind readindex to zero to avoid reading that signal when
-  // increasing delay time circular_buffer[read_index_trunc] = 0.f; // todo not
-  // enough? (time jumps over this)
 
   float vol_mod_factor =
       (*m_vol_mod) > 0 ? 1.f + 4 * (*m_vol_mod) : (1.f + *m_vol_mod);

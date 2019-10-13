@@ -54,11 +54,6 @@ float Delay::doDelayLeft(float p_left) {
     circular_buffer_left[m_write_index] = input_left + p_left * feedback_modded;
   }
 
-  // set sample behind readindex to zero to avoid reading that signal when
-  // increasing delay time
-  // TODO this is bullshit? when increasing bigger than a sample we get jumps?
-  circular_buffer_left[read_index_trunc] = 0.f;
-
   // apply HP filter
   p_left = m_highpass_left.doFilter(p_left);
 
@@ -122,10 +117,6 @@ float Delay::doDelayRight(float p_right) {
   // inc only in right delay line
   incWriteIndex();
 
-  // set sample behind readindex to zero to avoid reading that signal when
-  // increasing delay time
-  // TODO this is bullshit? when increasing bigger than a sample we get jumps?
-  circular_buffer_right[read_index_trunc] = 0.f;
 
   // apply HP filter
   p_right = m_highpass_right.doFilter(p_right);

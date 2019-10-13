@@ -21,7 +21,6 @@ public:
   float doDelayRight(float p_right);
 
   inline void setDelayTime(float p_delay_time) {
-    // TODO check for too long time... here?
     m_delay_time_control = p_delay_time;
   }
 
@@ -140,7 +139,7 @@ protected:
 
   // need to be init by synth
   float m_delay_time_control = 1.f;
-  float m_delay_time_smooth = 1.f; // todo what value here?
+  float m_delay_time_smooth = 1.f;
   float m_feedback = 0.6;
   float m_samplerate;
   float m_dry = 1.f;

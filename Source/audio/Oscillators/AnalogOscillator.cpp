@@ -12,7 +12,7 @@ AnalogOscillator::~AnalogOscillator() {}
 void AnalogOscillator::loadWavetables() {
   // load the saw table for square as well since PWM is generated from saw
   setWavetablePointer(0, WavetableContainer::getInstance().getWavetablePointers(
-                             "FatSaw")); // TODO FATSAW
+                             "FatSaw"));
   setWavetablePointer(
       1, WavetableContainer::getInstance().getWavetablePointers("FatSaw"));
   setWavetablePointer(
@@ -22,15 +22,6 @@ void AnalogOscillator::loadWavetables() {
 
   // init drift generator
   m_drift_generator.initialize(m_samplerate);
-  // TODO ALL OSCILLATORS MUST RECEIVE SAMPLE RATE WHICH THEY DONT
-
-  // std::ofstream out;
-  // out.open("E:\\odin\\DEBUG.txt");
-  // out << "pos;DATA;\n";
-  // for(size_t i = 0; i < 200000; ++i){
-  //     out << i << ";" << m_drift_generator.doDrift() << ";\n";
-  // }
-  // out.close();
 }
 
 float AnalogOscillator::generateDrift() { return m_drift_generator.doDrift(); }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT id="vpwEHn" name="Odin2" projectType="audioplug" jucerVersion="5.4.3"
+<JUCERPROJECT id="vpwEHn" name="Odin2" projectType="audioplug" jucerVersion="5.4.4"
               pluginFormats="buildStandalone,buildVST3" version="2.0.0" companyName="BommelDSP"
               companyWebsite="www.BommelDSP.com" pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn"
               pluginManufacturerCode="BDSP" pluginCode="ODIN" pluginChannelConfigs="{2,2},{2,12}">
@@ -606,10 +606,6 @@
         </GROUP>
         <FILE id="kbJgTr" name="Amplifier.cpp" compile="1" resource="0" file="Source/audio/Amplifier.cpp"/>
         <FILE id="gD2con" name="Amplifier.h" compile="0" resource="0" file="Source/audio/Amplifier.h"/>
-        <FILE id="s5TOXG" name="CheapFunctions.h" compile="0" resource="0"
-              file="Source/audio/CheapFunctions.h"/>
-        <FILE id="GWD8r7" name="CheapFunctions.cpp" compile="1" resource="0"
-              file="Source/audio/CheapFunctions.cpp"/>
         <GROUP id="{D6691E6B-37D4-2804-8E68-093C3D0E2F7C}" name="Oscillators">
           <GROUP id="{CC755845-2929-23F1-4554-1FBF3CEE4635}" name="Wavetables">
             <GROUP id="{11160309-4018-9ED9-5050-91CAB8FA48DD}" name="Coefficients">
@@ -773,8 +769,6 @@
           <FILE id="peP7jn" name="Bitcrusher.h" compile="0" resource="0" file="Source/audio/FX/Bitcrusher.h"/>
           <FILE id="FUhLIK" name="Chorus.cpp" compile="1" resource="0" file="Source/audio/FX/Chorus.cpp"/>
           <FILE id="u4iPMH" name="Chorus.h" compile="0" resource="0" file="Source/audio/FX/Chorus.h"/>
-          <FILE id="RBH9bS" name="CubicShaper.cpp" compile="1" resource="0" file="Source/audio/FX/CubicShaper.cpp"/>
-          <FILE id="L42AwZ" name="CubicShaper.h" compile="0" resource="0" file="Source/audio/FX/CubicShaper.h"/>
           <FILE id="bvAs10" name="Delay.cpp" compile="1" resource="0" file="Source/audio/FX/Delay.cpp"/>
           <FILE id="awSILU" name="Delay.h" compile="0" resource="0" file="Source/audio/FX/Delay.h"/>
           <FILE id="OuZeMw" name="Flanger.cpp" compile="1" resource="0" file="Source/audio/FX/Flanger.cpp"/>
@@ -785,9 +779,6 @@
                 file="Source/audio/FX/OversamplingDistortion.h"/>
           <FILE id="JA6dF1" name="Phaser.cpp" compile="1" resource="0" file="Source/audio/FX/Phaser.cpp"/>
           <FILE id="w0t2yJ" name="Phaser.h" compile="0" resource="0" file="Source/audio/FX/Phaser.h"/>
-          <FILE id="bipTNG" name="QuarticShaper.cpp" compile="1" resource="0"
-                file="Source/audio/FX/QuarticShaper.cpp"/>
-          <FILE id="OIBYdF" name="QuarticShaper.h" compile="0" resource="0" file="Source/audio/FX/QuarticShaper.h"/>
           <FILE id="tvMs3q" name="RingModulator.cpp" compile="1" resource="0"
                 file="Source/audio/FX/RingModulator.cpp"/>
           <FILE id="jfaMKu" name="RingModulator.h" compile="0" resource="0" file="Source/audio/FX/RingModulator.h"/>

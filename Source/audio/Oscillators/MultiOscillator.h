@@ -36,15 +36,6 @@ public:
 		m_spread_mod = p_pointer;
 	}
 	
-	//inline virtual void startOscillator() override{
-	//	//m_note_on = true;
-	//	if(m_reset_active){
-	//		for(int osc = 0; osc < OSCS_PER_MULTIOSC; ++osc){
-	//			m_read_index_multi[osc] = 0.f;
-	//		}
-	//	}
-	//}
-
 protected:
 
 	virtual void initiateSync() override {
@@ -58,7 +49,7 @@ protected:
 	float* m_detune_mod;
 	float* m_spread_mod;
 
-	double cheapPitchShiftMultiplier(double p_semitones);
+	float cheapPitchShiftMultiplier(float p_semitones);
 
 	virtual int getTableIndex() override;
 	float doWavetableMulti();
@@ -92,6 +83,6 @@ protected:
 	int m_sub_table_index_multi[OSCS_PER_MULTIOSC];
 	const float** m_current_table_2D_multi[OSCS_PER_MULTIOSC];
 
-	#include "PitchShiftTable.h" //contains 1000 points of pitch shift table for -5 to +5
+	//#include "PitchShiftTable.h" //contains 1000 points of pitch shift table for -5 to +5
 };
 

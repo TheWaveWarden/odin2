@@ -13,7 +13,6 @@ public:
     BP2 = 3,
     HP4 = 4,
     HP2 = 5
-    // todo bandstop?
   };
 
   LadderFilter(void);
@@ -125,10 +124,6 @@ public:
     double dSigma = m_LPF1.getFeedbackOutput() + m_LPF2.getFeedbackOutput() +
                     m_LPF3.getFeedbackOutput() + m_LPF4.getFeedbackOutput();
 
-    // --- for passband gain compensation
-    //     you can connect this to a GUI control
-    //     and let user choose instead
-    // todo wut?
     xn *= 1.0 + m_aux_control * m_k_modded;
 
     // calculate input to first filter

@@ -1,6 +1,4 @@
 #include "DiodeFilter.h"
-#include "../JuceLibraryCode/JuceHeader.h"//todo remove
-
 
 DiodeFilter::DiodeFilter(void)
 {
