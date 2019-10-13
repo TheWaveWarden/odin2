@@ -314,12 +314,12 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
   m_phaser_menu.addItem(754, "Phaser Feedback");
   m_phaser_menu.addItem(755, "Phaser DryWet");
 
-  m_flanger_menu.addItem(801, "Flanger Freq");
+  m_flanger_menu.addItem(801, "Flanger Rate");
   m_flanger_menu.addItem(802, "Flanger Amount");
   m_flanger_menu.addItem(803, "Flanger Feedback");
   m_flanger_menu.addItem(804, "Flanger DryWet");
 
-  m_chorus_menu.addItem(851, "Chorus Freq");
+  m_chorus_menu.addItem(851, "Chorus Rate");
   m_chorus_menu.addItem(852, "Chorus Amount");
   m_chorus_menu.addItem(853, "Chorus Feedback");
   m_chorus_menu.addItem(854, "Chorus DryWet");

@@ -1,3 +1,4 @@
+
 #pragma once
 
 #include "../../GlobalIncludes.h"
@@ -18,12 +19,6 @@ public:
 
   virtual ~WavetableContainer();
 
-  void fixTooHighHarmonics(std::string p_filename);
-  void fixWavetableCoefficientFile();
-  void fixWavetableIndexInFiles();
-  void fixWavetableIndexInSingleFile(std::string p_filename, int p_number);
-  void printWTsNotUsedAsCoeffs();
-
   void loadWavetablesFromConstData(); // assign pointers to wavetables from
                                       // files directly
   void loadWavetablesAfterFourierCreation(); // assign pointers to wavetables
@@ -31,14 +26,7 @@ public:
   void createWavetables(float p_samplerate); // create and allocate memory from
                                              // coefficients and assign pointers
   void createLFOtables(float p_samplerate);
-  void createLFOCoefficientsFromConstSections(int p_table_nr,
-                                              float p_const_section_values[],
-                                              int p_number_of_sections,
-                                              std::string p_table_name);
-  void createLFOCoefficientsFromLinSections(int p_table_nr,
-                                            float p_const_section_values[],
-                                            int p_number_of_sections,
-                                            std::string p_table_name);
+
   void createChipdrawTable(int p_table_nr, float p_chipdraw_values[32],
                            float p_samplerate);
   void createWavedrawTable(int p_table_nr,
@@ -48,8 +36,6 @@ public:
                            float p_fourier_values[SPECDRAW_STEPS_X],
                            float p_samplerate);
 
-  void changeSampleRate(float p_samplerate);
-
   const float **getWavetablePointers(int p_wavetable);
   const float **getWavetablePointers(std::string p_name);
   float **getChipdrawPointer(int p_chipdraw_index);
@@ -57,54 +43,17 @@ public:
   float **getSpecdrawPointer(int p_specdraw_index);
   const float **getLFOPointers(std::string p_name);
 
-  void writeScaleFactorsToFile();
-  void writeWavedrawTable(float p_wavedraw_values[WAVEDRAW_STEPS_X],
-                          std::string p_name);
-  void writeChipdrawTable(float p_wavedraw_values[WAVEDRAW_STEPS_X],
-                          std::string p_name);
-  void writeSpecdrawTable(float p_wavedraw_values[WAVEDRAW_STEPS_X],
-                          std::string p_name);
-
-  void writeSampleTableToFile(std::string p_filname);
-  void writePerlinTableToFile(std::string p_filename, int p_steps,
-                              float p_percent);
-
-  // this will calculate the amplitude of the wave which arises from a sin + b
-  // cos and use it for sin, b = 0
-  void eliminatePhaseInWavetableCoefficients(std::string p_filename);
-  void convertWTFromOdin1(int p_odin_1_nr, int p_odin_2_nr, std::string p_name);
-
-  // call this to make wavetablefiles from wavetable coefficients
-  void writeWavetablesToFile();
-  void startWriteWavetablesToFile();
-  void
-  writeWavetableToFile(int index_wavetable); // single table, else stackoverflow
-  void endWriteWavetablesToFile();
-
-  void mutateWavetable(std::string p_table_name, int number_of_mutations,
-                       float percent, bool p_consecutive_mutation, int p_start_id);
-
-  void writeLFOtablesToFiles();
-
-  void generateAudioValueCode();
-
   int getWavetableIndexFromName(std::string p_name);
 
-  // void deleteWavedraw() {
-  //	m_wavedraw_tables = {0};
-  //}
-
-  #ifdef WTGEN //must be public to be accessed by SpectrumDisplay
+#ifdef WTGEN // must be public to be accessed by SpectrumDisplay
   float m_fourier_coeffs[NUMBER_OF_WAVETABLES][SIN_AND_COS]
                         [NUMBER_OF_HARMONICS] = {
                             0}; // index [x][1][0] will store scalar, since it
                                 // is usually constant offset
-  #endif
+#endif
 
 private:
   WavetableContainer();
-
-
 
 protected:
 // Fourrier Coefficients
@@ -114,19 +63,6 @@ protected:
                             0}; // index [x][1][0] will store scalar, since it
                                 // is usually constant offset
 #endif
-
-  float m_LFO_fourier_coeffs[NUMBER_OF_LFOTABLES][SIN_AND_COS]
-                            [NUMBER_OF_HARMONICS] = {
-                                0}; // index [x][1][0] will store scalar, since
-                                    // it is usually constant offset
-
-  void seedRandom();
-  bool m_random_seeded = false;
-
-  int m_highest_loaded_table = 0;
-
-  // const float
-  // *[NUMBER_OF_WAVETABLES][SUBTABLES_PER_WAVETABLE][WAVETABLE_LENGTH];
 
   float const_segment_one_overtone_sine(float p_start, float p_end,
                                         float p_height, int p_harmonic);
@@ -139,6 +75,11 @@ protected:
 
   std::map<std::string, int> m_name_index_map;
   std::map<std::string, int> m_LFO_name_index_map;
+
+  float m_LFO_fourier_coeffs[NUMBER_OF_LFOTABLES][SIN_AND_COS]
+                            [NUMBER_OF_HARMONICS] = {
+                                0}; // index [x][1][0] will store scalar, since
+                                    // it is usually constant offset
 
   const float *m_const_wavetable_pointers[NUMBER_OF_WAVETABLES]
                                          [SUBTABLES_PER_WAVETABLE];
