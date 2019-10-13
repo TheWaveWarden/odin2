@@ -2299,11 +2299,11 @@ void WavetableContainer::convertWTFromOdin1(int p_odin_1_nr, int p_odin_2_nr,
 
 void WavetableContainer::printWTsNotUsedAsCoeffs() {
 
-  std::vector<std::string> string_vec =
-  { "INSERT ALL WAVETABLE FILENAMES IN THIS VECTOR (without dir)" };
+  std::vector<std::string> string_vec = {"lol"};
 
-  for (auto const& wavetable_name : string_vec) {
-    std::ifstream filein("/home/frot/odinvst/Source/audio/Oscillators/WavetableCoefficients.h"); // File to read from
+  for (auto const &wavetable_name : string_vec) {
+    std::ifstream filein("/home/frot/odinvst/Source/audio/Oscillators/"
+                         "WavetableOsc2D.cpp"); // File to read from
 
     if (!filein) {
       DBG("Error opening file!");

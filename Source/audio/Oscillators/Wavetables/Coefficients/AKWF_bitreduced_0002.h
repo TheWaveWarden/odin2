@@ -2,7 +2,7 @@
 
 m_wavetable_names_1D[WT_NR] = "AKWF_bitreduced_0002";
 
-m_highest_loaded_table = WT_NR > m_highest_loaded_table ? WT_NR : m_highest_loaded_table;
+
 
 
 

@@ -67,6 +67,7 @@ OdinAudioProcessor::OdinAudioProcessor()
   WavetableContainer::getInstance().loadWavetablesFromConstData();
 
   // WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("BrokenSine3");
+  // WavetableContainer::getInstance().printWTsNotUsedAsCoeffs();
 
   // WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("Glass");
   // WavetableContainer::getInstance().eliminatePhaseInWavetableCoefficients("BagPipeMutated1");

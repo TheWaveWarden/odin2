@@ -1,6 +1,6 @@
 #define WT_NR 101
 
-m_highest_loaded_table = WT_NR > m_highest_loaded_table ? WT_NR : m_highest_loaded_table;
+
 m_wavetable_names_1D[WT_NR] = "ChiptuneSquare50Mutated2";
 
 

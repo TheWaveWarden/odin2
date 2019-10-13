@@ -1,6 +1,6 @@
 #define WT_NR 4
 
-m_highest_loaded_table = WT_NR > m_highest_loaded_table ? WT_NR : m_highest_loaded_table;
+
 m_wavetable_names_1D[WT_NR] = "ChiptuneSquare12_5";
 
 m_fourier_coeffs[WT_NR][1][0] = 0.151378;//scalar

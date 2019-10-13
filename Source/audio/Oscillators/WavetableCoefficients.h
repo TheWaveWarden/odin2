@@ -80,12 +80,7 @@
 #include "Wavetables/Coefficients/Skyline3.h" //56->050
 #include "Wavetables/Coefficients/Skyline4.h" //57->051
 
-// TODO multisaw isded
-
-#include "Wavetables/Coefficients/MultiSaw1.h" //62->052
-#include "Wavetables/Coefficients/MultiSaw2.h" //63->053
-#include "Wavetables/Coefficients/MultiSaw3.h" //64->054
-#include "Wavetables/Coefficients/MultiSaw4.h" //65->055
+// ! HOLE
 
 #include "Wavetables/Coefficients/Rectangular1.h" //66->056
 #include "Wavetables/Coefficients/Rectangular2.h" //67->057
@@ -117,8 +112,6 @@
 #include "Wavetables/Coefficients/Trumpet3.h" //88->078
 #include "Wavetables/Coefficients/Trumpet4.h" //89->079
 
-// todo hole
-
 // these are all referenced in chiptune wavetable mapping:
 #include "Wavetables/Coefficients/CTDiverging.h" //94->080
 #include "Wavetables/Coefficients/CTHigh.h"      //95->081
@@ -133,8 +126,6 @@
 #include "Wavetables/Coefficients/GlassMutated1.h" //103->089
 #include "Wavetables/Coefficients/GlassMutated2.h" //104->090
 #include "Wavetables/Coefficients/GlassMutated3.h" //105->091
-
-m_highest_loaded_table = 105;
 
 #include "Wavetables/Coefficients/FatSawMutated1.h" //109->092
 #include "Wavetables/Coefficients/FatSawMutated2.h" //110->093

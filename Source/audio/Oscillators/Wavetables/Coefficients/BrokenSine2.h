@@ -1,6 +1,6 @@
 #define WT_NR 45
 
-m_highest_loaded_table = WT_NR > m_highest_loaded_table ? WT_NR : m_highest_loaded_table;
+
 m_wavetable_names_1D[WT_NR] = "BrokenSine2";
 
 m_fourier_coeffs[WT_NR][1][0] = 0.326350;//scalar
