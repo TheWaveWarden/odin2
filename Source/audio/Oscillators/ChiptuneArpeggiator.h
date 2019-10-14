@@ -6,9 +6,9 @@
 
 class ChiptuneArpeggiator
 {
-  public:
-    ChiptuneArpeggiator(){}
-    ~ChiptuneArpeggiator(){}
+public:
+    ChiptuneArpeggiator() {}
+    ~ChiptuneArpeggiator() {}
 
     inline void reset()
     {
@@ -36,19 +36,21 @@ class ChiptuneArpeggiator
         m_arp_active = p_arp_on;
     }
 
-    inline void setSampleRate(float p_samplerate){
-         
+    inline void setSampleRate(float p_samplerate)
+    {
+
         m_samplerate = p_samplerate;
     }
 
     int doArpeggiator();
 
-    void setFreqModPointer(float* p_pointer){
+    void setFreqModPointer(float *p_pointer)
+    {
         m_freq_mod = p_pointer;
     }
-    
-  protected:
-    float* m_freq_mod;
+
+protected:
+    float *m_freq_mod;
     float m_frequency = 20.f;
     float m_samplerate = 44100;
     float m_inc;

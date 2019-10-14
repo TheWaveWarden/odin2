@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="vpwEHn" name="Odin2" projectType="audioplug" jucerVersion="5.4.3"
-              pluginFormats="buildStandalone,buildVST3" version="2.0.0" companyName="BommelDSP"
-              companyWebsite="www.BommelDSP.com" pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn"
+              pluginFormats="buildStandalone,buildVST,buildVST3" version="2.0.0"
+              companyName="BommelDSP" companyWebsite="www.BommelDSP.com" pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn"
               pluginManufacturerCode="BDSP" pluginCode="ODIN" pluginChannelConfigs="{2,2},{2,12}">
   <MAINGROUP id="Tn76b3" name="Odin2">
     <GROUP id="{A5BAEEE4-3FCE-5605-7A4C-F29962266097}" name="Graphics">

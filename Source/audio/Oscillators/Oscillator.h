@@ -85,7 +85,6 @@ public:
   }
 
   inline virtual void setBaseFrequency(float p_freq) {
-    // DBG(p_freq);
     m_osc_freq_base = p_freq;
   }
 

@@ -11,6 +11,11 @@ public:
 	ChiptuneOscillator();
 	virtual ~ChiptuneOscillator();
 
+    inline virtual void setBaseFrequency(float p_freq) override {
+        WavetableOsc1D::setBaseFrequency(p_freq);
+        m_chiptune_arp.reset();
+    }
+
     //virtual void loadWavetables() override;
     virtual float doOscillate() override;
     virtual void update() override;
