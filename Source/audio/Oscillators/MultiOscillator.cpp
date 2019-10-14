@@ -195,7 +195,7 @@ float MultiOscillator::cheapPitchShiftMultiplier(float p_semitones) {
   pot *= p_semitones;
   ret += pot * 0.5f; // O(2)
   pot *= p_semitones;
-  ret += pot * 0.16666f + pot * p_semitones * 0.041666667f; // O(3) & O(4)
+  return ret + pot * 0.16666f + pot * p_semitones * 0.041666667f; // O(3) & O(4)
 
   // if (p_semitones > 5. || p_semitones < -5.) {
   //   // function is only suited for -5 to 5

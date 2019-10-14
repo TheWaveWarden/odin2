@@ -20,7 +20,7 @@ SpectrumDisplay::SpectrumDisplay() {
 
 SpectrumDisplay::~SpectrumDisplay() {}
 
-float fabs(float p_input) { return p_input > 0 ? p_input : -p_input; }
+float floatabs(float p_input) { return p_input > 0 ? p_input : -p_input; }
 
 void SpectrumDisplay::paint(Graphics &g) {
 #ifdef WTGEN
@@ -57,7 +57,7 @@ void SpectrumDisplay::paint(Graphics &g) {
       float draw_value = spectrum_left[i] * scale_left * inverse_polation +
                          spectrum_right[i] * scale_right * m_interpolation;
 
-      draw_value = fabs(draw_value);
+      draw_value = floatabs(draw_value);
       draw_value = pow(draw_value, 0.5);
 
       if (draw_value > 1) {
