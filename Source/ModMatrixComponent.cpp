@@ -429,14 +429,14 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
   m_color = modmatrix_color;
 
   for (int i = 0; i < N_ROWS; ++i) {
-    // m_amount_1[i].setParameterId("amount_1_row_" + std::to_string(i) + "]");
-    // m_amount_2[i].setParameterId("amount_2_row_" + std::to_string(i) + "]");
-    // m_amount_3[i].setParameterId("amount_3_row_" + std::to_string(i) + "]");
-    // m_value_tree.addParameterListener("amount_1_row_" + std::to_string(i) + "]",
+    // m_amount_1[i].setParameterId("amount_1_row_" + std::to_string(i));
+    // m_amount_2[i].setParameterId("amount_2_row_" + std::to_string(i));
+    // m_amount_3[i].setParameterId("amount_3_row_" + std::to_string(i));
+    // m_value_tree.addParameterListener("amount_1_row_" + std::to_string(i),
     //                                   &(m_amount_1[i]));
-    // m_value_tree.addParameterListener("amount_2_row_" + std::to_string(i) + "]",
+    // m_value_tree.addParameterListener("amount_2_row_" + std::to_string(i),
     //                                   &(m_amount_2[i]));
-    // m_value_tree.addParameterListener("amount_3_row_" + std::to_string(i) + "]",
+    // m_value_tree.addParameterListener("amount_3_row_" + std::to_string(i),
     //                                   &(m_amount_3[i]));
     //DBG("POINTER TO COMPONENT");
     //DBG((long)&(m_amount_2[i]));
@@ -1038,14 +1038,14 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
   m_clear_button8.setTooltip("Clear the entire modmatrix row");
 
   for (int i = 0; i < N_ROWS; ++i) {
-    m_amount_1[i].setParameterId("amount_1_row_" + std::to_string(i) + "]");
-    m_amount_2[i].setParameterId("amount_2_row_" + std::to_string(i) + "]");
-    m_amount_3[i].setParameterId("amount_3_row_" + std::to_string(i) + "]");
-    m_value_tree.addParameterListener("amount_1_row_" + std::to_string(i) + "]",
+    m_amount_1[i].setParameterId("amount_1_row_" + std::to_string(i));
+    m_amount_2[i].setParameterId("amount_2_row_" + std::to_string(i));
+    m_amount_3[i].setParameterId("amount_3_row_" + std::to_string(i));
+    m_value_tree.addParameterListener("amount_1_row_" + std::to_string(i),
                                       &(m_amount_1[i]));
-    m_value_tree.addParameterListener("amount_2_row_" + std::to_string(i) + "]",
+    m_value_tree.addParameterListener("amount_2_row_" + std::to_string(i),
                                       &(m_amount_2[i]));
-    m_value_tree.addParameterListener("amount_3_row_" + std::to_string(i) + "]",
+    m_value_tree.addParameterListener("amount_3_row_" + std::to_string(i),
                                       &(m_amount_3[i]));
   }
   forceValueTreeOntoComponents(m_value_tree.state);
@@ -1053,11 +1053,11 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
 
 ModMatrixComponent::~ModMatrixComponent() {
   for (int i = 0; i < N_ROWS; ++i) {
-    m_value_tree.removeParameterListener("amount_1_row_" + std::to_string(i) + "]",
+    m_value_tree.removeParameterListener("amount_1_row_" + std::to_string(i),
                                          &(m_amount_1[i]));
-    m_value_tree.removeParameterListener("amount_2_row_" + std::to_string(i) + "]",
+    m_value_tree.removeParameterListener("amount_2_row_" + std::to_string(i),
                                          &(m_amount_2[i]));
-    m_value_tree.removeParameterListener("amount_3_row_" + std::to_string(i) + "]",
+    m_value_tree.removeParameterListener("amount_3_row_" + std::to_string(i),
                                          &(m_amount_3[i]));
   }
 }

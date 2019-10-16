@@ -206,11 +206,11 @@ m_chorus_feedback = m_value_tree.getRawParameterValue("chorus_feedback");
 
 for (int i = 0; i < 9; ++i) {
   m_amount_1[i] =
-      m_value_tree.getRawParameterValue("amount_1_row_" + std::to_string(i) + "]");
+      m_value_tree.getRawParameterValue("amount_1_row_" + std::to_string(i));
   m_amount_2[i] =
-      m_value_tree.getRawParameterValue("amount_2_row_" + std::to_string(i) + "]");
+      m_value_tree.getRawParameterValue("amount_2_row_" + std::to_string(i));
   m_amount_3[i] =
-      m_value_tree.getRawParameterValue("amount_3_row_" + std::to_string(i) + "]");
+      m_value_tree.getRawParameterValue("amount_3_row_" + std::to_string(i));
 }
 
 //============================================================================
@@ -435,10 +435,10 @@ m_value_tree.addParameterListener("chorus_sync", &m_tree_listener);
 m_value_tree.addParameterListener("chorus_reset", &m_tree_listener);
 
 for (int i = 0; i < 9; ++i) {
-  m_value_tree.addParameterListener("amount_1_row_" + std::to_string(i) + "]",
+  m_value_tree.addParameterListener("amount_1_row_" + std::to_string(i) ,
                                     &m_tree_listener);
-  m_value_tree.addParameterListener("amount_2_row_" + std::to_string(i) + "]",
+  m_value_tree.addParameterListener("amount_2_row_" + std::to_string(i),
                                     &m_tree_listener);
-  m_value_tree.addParameterListener("amount_3_row_" + std::to_string(i) + "]",
+  m_value_tree.addParameterListener("amount_3_row_" + std::to_string(i),
                                     &m_tree_listener);
 }

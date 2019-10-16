@@ -1410,6 +1410,7 @@ void OdinAudioProcessor::midiNoteOn(int p_midi_note, int p_midi_velocity) {
   }
 
   int voice_number = m_voice_manager.getVoice(p_midi_note);
+  //todo "else is on sustain".... u sure...? (recent changes to sustain)
   if (voice_number >= 0) { // else is on sustain
     if (m_last_midi_note == -1) {
       // first time glide - dont glide

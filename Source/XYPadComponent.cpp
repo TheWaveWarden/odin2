@@ -14,10 +14,6 @@
 //==============================================================================
 XYPadComponent::XYPadComponent(Knob &p_x, Knob &p_y, bool p_vector_pad)
     : m_knob_x(p_x), m_knob_y(p_y), m_vector_pad(p_vector_pad) {
-  // In your constructor, you should add any child components, and
-  // initialise any special settings that your component needs.
-  //m_knob_x.setTooltip("The X proportion\nin the XY pad");
-  //m_knob_y.setTooltip("The Y proportion\nin the XY pad");
 }
 
 XYPadComponent::~XYPadComponent() {}
@@ -80,8 +76,8 @@ void XYPadComponent::mouseInteraction() {
   m_value_y = m_value_y < 0 ? 0 : m_value_y;
   m_value_y = m_value_y > 1 ? 1 : m_value_y;
 
-  m_knob_x.setValue(m_value_x, sendNotification);
-  m_knob_y.setValue(m_value_y, sendNotification);
+  m_knob_x.setValue(m_value_x, /*dontSendNotification*/);
+  m_knob_y.setValue(m_value_y, /*dontSendNotification*/);
 
   repaint();
 }

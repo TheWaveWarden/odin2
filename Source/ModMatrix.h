@@ -172,7 +172,6 @@ public:
   }
 
   void setModAmount2(float p_mod_amount){
-    DBG("AMOUNT: " + std::to_string(p_mod_amount));
     m_mod_amount_2 = p_mod_amount;
   }
 
@@ -195,7 +194,7 @@ public:
   bool usesADSR1();//global
 
 private:
-  int m_most_recent_voice;
+  int m_most_recent_voice = 0;
 
   int m_source = 0;
   int m_destination_1 = 0;

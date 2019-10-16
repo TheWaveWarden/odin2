@@ -97,7 +97,6 @@ bool OdinAudioProcessor::treeValueChangedFirst(const String &p_ID,
       m_voice[voice].setReset(p_new_value, 2);
     }
   } else if (id == m_osc2_sync_identifier) {
-    DBG("henlo");
     for (int voice = 0; voice < VOICES; ++voice) {
       m_voice[voice].setOscSyncEnabled(p_new_value, 1);
     }
