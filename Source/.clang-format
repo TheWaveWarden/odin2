@@ -1,0 +1,24 @@
+Language: Cpp
+ColumnLimit: 120
+IndentWidth: 4
+TabWidth: 4
+UseTab: ForIndentation
+
+AccessModifierOffset: -4
+AlignAfterOpenBracket: Align
+AlignTrailingComments: true
+AlignConsecutiveAssignments: true
+AlignConsecutiveDeclarations: false
+AllowShortFunctionsOnASingleLine: false
+AllowShortIfStatementsOnASingleLine: false
+AllowShortLoopsOnASingleLine: false
+BinPackArguments: false
+BinPackParameters: false
+BreakConstructorInitializers: AfterColon
+FixNamespaceComments: true
+NamespaceIndentation: None
+PenaltyReturnTypeOnItsOwnLine: 500
+PenaltyExcessCharacter: 100
+PointerAlignment: Right
+ReflowComments: false
+SortIncludes: true
