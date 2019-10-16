@@ -31,51 +31,51 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
                       juce::DrawableButton::ButtonStyle::ImageRaw),
       m_clear_button8("clear_button",
                       juce::DrawableButton::ButtonStyle::ImageRaw),
-      m_value_tree(vts), m_amount_1_identifier0("amount_1_[0]"),
-      m_amount_2_identifier0("amount_2_[0]"),
-      m_amount_3_identifier0("amount_3_[0]"),
-      m_amount_1_identifier1("amount_1_[1]"),
-      m_amount_2_identifier1("amount_2_[1]"),
-      m_amount_3_identifier1("amount_3_[1]"),
-      m_amount_1_identifier2("amount_1_[2]"),
-      m_amount_2_identifier2("amount_2_[2]"),
-      m_amount_3_identifier2("amount_3_[2]"),
-      m_amount_1_identifier3("amount_1_[3]"),
-      m_amount_2_identifier3("amount_2_[3]"),
-      m_amount_3_identifier3("amount_3_[3]"),
-      m_amount_1_identifier4("amount_1_[4]"),
-      m_amount_2_identifier4("amount_2_[4]"),
-      m_amount_3_identifier4("amount_3_[4]"),
-      m_amount_1_identifier5("amount_1_[5]"),
-      m_amount_2_identifier5("amount_2_[5]"),
-      m_amount_3_identifier5("amount_3_[5]"),
-      m_amount_1_identifier6("amount_1_[6]"),
-      m_amount_2_identifier6("amount_2_[6]"),
-      m_amount_3_identifier6("amount_3_[6]"),
-      m_amount_1_identifier7("amount_1_[7]"),
-      m_amount_2_identifier7("amount_2_[7]"),
-      m_amount_3_identifier7("amount_3_[7]"),
-      m_amount_1_identifier8("amount_1_[8]"),
-      m_amount_2_identifier8("amount_2_[8]"),
-      m_amount_3_identifier8("amount_3_[8]"),
-      m_source_identifier0("source_[0]"), m_source_identifier1("source_[1]"),
-      m_source_identifier2("source_[2]"), m_source_identifier3("source_[3]"),
-      m_source_identifier4("source_[4]"), m_source_identifier5("source_[5]"),
-      m_source_identifier6("source_[6]"), m_source_identifier7("source_[7]"),
-      m_source_identifier8("source_[8]"), m_dest_1_identifier0("dest_1_[0]"),
-      m_dest_1_identifier1("dest_1_[1]"), m_dest_1_identifier2("dest_1_[2]"),
-      m_dest_1_identifier3("dest_1_[3]"), m_dest_1_identifier4("dest_1_[4]"),
-      m_dest_1_identifier5("dest_1_[5]"), m_dest_1_identifier6("dest_1_[6]"),
-      m_dest_1_identifier7("dest_1_[7]"), m_dest_1_identifier8("dest_1_[8]"),
-      m_dest_2_identifier0("dest_2_[0]"), m_dest_2_identifier1("dest_2_[1]"),
-      m_dest_2_identifier2("dest_2_[2]"), m_dest_2_identifier3("dest_2_[3]"),
-      m_dest_2_identifier4("dest_2_[4]"), m_dest_2_identifier5("dest_2_[5]"),
-      m_dest_2_identifier6("dest_2_[6]"), m_dest_2_identifier7("dest_2_[7]"),
-      m_dest_2_identifier8("dest_2_[8]"), m_scale_identifier0("scale_[0]"),
-      m_scale_identifier1("scale_[2]"), m_scale_identifier2("scale_[2]"),
-      m_scale_identifier3("scale_[3]"), m_scale_identifier4("scale_[4]"),
-      m_scale_identifier5("scale_[5]"), m_scale_identifier6("scale_[6]"),
-      m_scale_identifier7("scale_[7]"), m_scale_identifier8("scale_[8]") {
+      m_value_tree(vts), m_amount_1_identifier0("amount_1_row_0"),
+      m_amount_2_identifier0("amount_2_row_0"),
+      m_amount_3_identifier0("amount_3_row_0"),
+      m_amount_1_identifier1("amount_1_row_1"),
+      m_amount_2_identifier1("amount_2_row_1"),
+      m_amount_3_identifier1("amount_3_row_1"),
+      m_amount_1_identifier2("amount_1_row_2"),
+      m_amount_2_identifier2("amount_2_row_2"),
+      m_amount_3_identifier2("amount_3_row_2"),
+      m_amount_1_identifier3("amount_1_row_3"),
+      m_amount_2_identifier3("amount_2_row_3"),
+      m_amount_3_identifier3("amount_3_row_3"),
+      m_amount_1_identifier4("amount_1_row_4"),
+      m_amount_2_identifier4("amount_2_row_4"),
+      m_amount_3_identifier4("amount_3_row_4"),
+      m_amount_1_identifier5("amount_1_row_5"),
+      m_amount_2_identifier5("amount_2_row_5"),
+      m_amount_3_identifier5("amount_3_row_5"),
+      m_amount_1_identifier6("amount_1_row_6"),
+      m_amount_2_identifier6("amount_2_row_6"),
+      m_amount_3_identifier6("amount_3_row_6"),
+      m_amount_1_identifier7("amount_1_row_7"),
+      m_amount_2_identifier7("amount_2_row_7"),
+      m_amount_3_identifier7("amount_3_row_7"),
+      m_amount_1_identifier8("amount_1_row_8"),
+      m_amount_2_identifier8("amount_2_row_8"),
+      m_amount_3_identifier8("amount_3_row_8"),
+      m_source_identifier0("source_row_0"), m_source_identifier1("source_row_1"),
+      m_source_identifier2("source_row_2"), m_source_identifier3("source_row_3"),
+      m_source_identifier4("source_row_4"), m_source_identifier5("source_row_5"),
+      m_source_identifier6("source_row_6"), m_source_identifier7("source_row_7"),
+      m_source_identifier8("source_row_8"), m_dest_1_identifier0("dest_1_row_0"),
+      m_dest_1_identifier1("dest_1_row_1"), m_dest_1_identifier2("dest_1_row_2"),
+      m_dest_1_identifier3("dest_1_row_3"), m_dest_1_identifier4("dest_1_row_4"),
+      m_dest_1_identifier5("dest_1_row_5"), m_dest_1_identifier6("dest_1_row_6"),
+      m_dest_1_identifier7("dest_1_row_7"), m_dest_1_identifier8("dest_1_row_8"),
+      m_dest_2_identifier0("dest_2_row_0"), m_dest_2_identifier1("dest_2_row_1"),
+      m_dest_2_identifier2("dest_2_row_2"), m_dest_2_identifier3("dest_2_row_3"),
+      m_dest_2_identifier4("dest_2_row_4"), m_dest_2_identifier5("dest_2_row_5"),
+      m_dest_2_identifier6("dest_2_row_6"), m_dest_2_identifier7("dest_2_row_7"),
+      m_dest_2_identifier8("dest_2_row_8"), m_scale_identifier0("scale_row_0"),
+      m_scale_identifier1("scale_row_1"), m_scale_identifier2("scale_row_2"),
+      m_scale_identifier3("scale_row_3"), m_scale_identifier4("scale_row_4"),
+      m_scale_identifier5("scale_row_5"), m_scale_identifier6("scale_row_6"),
+      m_scale_identifier7("scale_row_7"), m_scale_identifier8("scale_row_8") {
 
 
   // create submenus to be inserted on demand
@@ -429,14 +429,14 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
   m_color = modmatrix_color;
 
   for (int i = 0; i < N_ROWS; ++i) {
-    // m_amount_1[i].setParameterId("amount_1_[" + std::to_string(i) + "]");
-    // m_amount_2[i].setParameterId("amount_2_[" + std::to_string(i) + "]");
-    // m_amount_3[i].setParameterId("amount_3_[" + std::to_string(i) + "]");
-    // m_value_tree.addParameterListener("amount_1_[" + std::to_string(i) + "]",
+    // m_amount_1[i].setParameterId("amount_1_row_" + std::to_string(i) + "]");
+    // m_amount_2[i].setParameterId("amount_2_row_" + std::to_string(i) + "]");
+    // m_amount_3[i].setParameterId("amount_3_row_" + std::to_string(i) + "]");
+    // m_value_tree.addParameterListener("amount_1_row_" + std::to_string(i) + "]",
     //                                   &(m_amount_1[i]));
-    // m_value_tree.addParameterListener("amount_2_[" + std::to_string(i) + "]",
+    // m_value_tree.addParameterListener("amount_2_row_" + std::to_string(i) + "]",
     //                                   &(m_amount_2[i]));
-    // m_value_tree.addParameterListener("amount_3_[" + std::to_string(i) + "]",
+    // m_value_tree.addParameterListener("amount_3_row_" + std::to_string(i) + "]",
     //                                   &(m_amount_3[i]));
     //DBG("POINTER TO COMPONENT");
     //DBG((long)&(m_amount_2[i]));
@@ -1038,14 +1038,14 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
   m_clear_button8.setTooltip("Clear the entire modmatrix row");
 
   for (int i = 0; i < N_ROWS; ++i) {
-    m_amount_1[i].setParameterId("amount_1_[" + std::to_string(i) + "]");
-    m_amount_2[i].setParameterId("amount_2_[" + std::to_string(i) + "]");
-    m_amount_3[i].setParameterId("amount_3_[" + std::to_string(i) + "]");
-    m_value_tree.addParameterListener("amount_1_[" + std::to_string(i) + "]",
+    m_amount_1[i].setParameterId("amount_1_row_" + std::to_string(i) + "]");
+    m_amount_2[i].setParameterId("amount_2_row_" + std::to_string(i) + "]");
+    m_amount_3[i].setParameterId("amount_3_row_" + std::to_string(i) + "]");
+    m_value_tree.addParameterListener("amount_1_row_" + std::to_string(i) + "]",
                                       &(m_amount_1[i]));
-    m_value_tree.addParameterListener("amount_2_[" + std::to_string(i) + "]",
+    m_value_tree.addParameterListener("amount_2_row_" + std::to_string(i) + "]",
                                       &(m_amount_2[i]));
-    m_value_tree.addParameterListener("amount_3_[" + std::to_string(i) + "]",
+    m_value_tree.addParameterListener("amount_3_row_" + std::to_string(i) + "]",
                                       &(m_amount_3[i]));
   }
   forceValueTreeOntoComponents(m_value_tree.state);
@@ -1053,11 +1053,11 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
 
 ModMatrixComponent::~ModMatrixComponent() {
   for (int i = 0; i < N_ROWS; ++i) {
-    m_value_tree.removeParameterListener("amount_1_[" + std::to_string(i) + "]",
+    m_value_tree.removeParameterListener("amount_1_row_" + std::to_string(i) + "]",
                                          &(m_amount_1[i]));
-    m_value_tree.removeParameterListener("amount_2_[" + std::to_string(i) + "]",
+    m_value_tree.removeParameterListener("amount_2_row_" + std::to_string(i) + "]",
                                          &(m_amount_2[i]));
-    m_value_tree.removeParameterListener("amount_3_[" + std::to_string(i) + "]",
+    m_value_tree.removeParameterListener("amount_3_row_" + std::to_string(i) + "]",
                                          &(m_amount_3[i]));
   }
 }
@@ -1234,30 +1234,30 @@ void ModMatrixComponent::forceValueTreeOntoComponents(ValueTree p_tree) {
     createMenu(m_dest_2[row].getRootMenu());
 
     m_source[row].setValue(
-        m_value_tree.state[String("source_[" + std::to_string(row) + "]")]);
+        m_value_tree.state[String("source_row_" + std::to_string(row))]);
 
     m_dest_1[row].rearrangeMenu();
     m_dest_1[row].setValue(
-        m_value_tree.state[String("dest_1_[" + std::to_string(row) + "]")]);
+        m_value_tree.state[String("dest_1_row_" + std::to_string(row))]);
 
     m_dest_2[row].rearrangeMenu();
     m_dest_2[row].setValue(
-        m_value_tree.state[String("dest_2_[" + std::to_string(row) + "]")]);
+        m_value_tree.state[String("dest_2_row_" + std::to_string(row))]);
 
     m_scale[row].setValue(
-        m_value_tree.state[String("scale_[" + std::to_string(row) + "]")]);
+        m_value_tree.state[String("scale_row_" + std::to_string(row))]);
 
     m_amount_1[row].setValue(
         m_value_tree
-            .getParameterAsValue("amount_1_[" + std::to_string(row) + "]")
+            .getParameterAsValue("amount_1_row_" + std::to_string(row))
             .getValue());
     m_amount_2[row].setValue(
         m_value_tree
-            .getParameterAsValue("amount_2_[" + std::to_string(row) + "]")
+            .getParameterAsValue("amount_2_row_" + std::to_string(row))
             .getValue());
     m_amount_3[row].setValue(
         m_value_tree
-            .getParameterAsValue("amount_3_[" + std::to_string(row) + "]")
+            .getParameterAsValue("amount_3_row_" + std::to_string(row))
             .getValue());
   }
 }
