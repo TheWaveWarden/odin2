@@ -25,3 +25,4 @@ convert -size 247x145+0+0 -background none -page 247x134+0+0 cropped/korg_croppe
 convert -size 247x145+0+0 -background none -page 247x134+0+0 cropped/diode_cropped.png -page +0+0 paths/diode_path.png  -layers flatten applied/diode_backdrop.png
 
 convert -size 800x600+0+0 -background none -page 800x600+0+0 OdinRaw.png -page +0+0 paths/odin_path.png -layers flatten applied/odin_backdrop.png
+convert -size 800x600+0+0 -background none -page 800x600+0+0 BypassRaw.png -page +0+0 paths/bypass_path.png -layers flatten BypassApplied.png
