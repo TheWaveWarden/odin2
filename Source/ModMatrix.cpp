@@ -51,14 +51,14 @@ void ModMatrixRow::applyModulation() {
 					                               (1 + fabs(*m_scale_value[m_most_recent_voice]) * m_scale_amount);
 				}
 			} else {
-        //DBG("dest before: " + std::to_string(*(m_destination_1_value[0])));
-        //DBG("mod amount: " + std::to_string(m_mod_amount_1));
-        //DBG("rec voice: " + std::to_string(m_most_recent_voice));
-        //DBG("source: " + std::to_string((*m_source_value[m_most_recent_voice])));
+				//DBG("dest before: " + std::to_string(*(m_destination_1_value[0])));
+				//DBG("mod amount: " + std::to_string(m_mod_amount_1));
+				//DBG("rec voice: " + std::to_string(m_most_recent_voice));
+				//DBG("source: " + std::to_string((*m_source_value[m_most_recent_voice])));
 
 				*(m_destination_1_value[0]) +=
 				    (*m_source_value[m_most_recent_voice]) * m_mod_amount_1 * fabs(m_mod_amount_1);
-        //DBG("dest after: " + std::to_string(*(m_destination_1_value[0])));
+				//DBG("dest after: " + std::to_string(*(m_destination_1_value[0])));
 			}
 		}
 	}
@@ -237,8 +237,12 @@ void ModMatrixRow::setModSource(int p_source, float **p_source_pointers, int &p_
 			p_source_pointers[voice] = m_sources->constant;
 		}
 		break;
-
+	case 0:
+		//none
+		break;
 	default:
+		//use const as default fallback (avoid segfaults down the line...):
+		DBG("ERROR: Unknown modulation source was set: " + std::to_string(p_source));
 		for (int voice = 0; voice < VOICES; ++voice) {
 			p_source_pointers[voice] = m_sources->constant;
 		}
@@ -949,9 +953,18 @@ void ModMatrixRow::setModDestination(int p_destination,
 		p_destination_pointers[0] = &(m_destinations->misc.master);
 		p_dest_poly               = false;
 		break;
-  default:
-    DBG("ERROR: Unknown modulation dest was set: " + std::to_string(p_destination));
-    break;
+	case 0:
+		//none
+		break;
+	default:
+		DBG("ERROR: Unknown modulation dest was set: " + std::to_string(p_destination));
+		// use osc3 spread as fallback (the most obscure I could find :D )
+		for (int voice = 0; voice < VOICES; ++voice) {
+			p_destination_pointers[voice] = &(m_destinations->voice[voice].osc[2].spread);
+		}
+		p_dest_poly = true;
+		break;
+		break;
 	}
 	p_destination_store = p_destination;
 
