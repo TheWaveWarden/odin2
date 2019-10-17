@@ -38,8 +38,8 @@ convert OdinKnobRaw.png -crop 24x11+63+374 cropped/buttons/slider_handle.png
 
 
 
-convert OscKnobRaw.png -crop 61x19+82+58 cropped/buttons/LED_1.png
-convert OscKnobRaw.png -crop 61x19+82+115 cropped/buttons/LED_2.png
+convert LEDRaw.png -crop 61x19+82+58 cropped/buttons/LED_1.png
+convert LEDRaw.png -crop 61x19+82+115 cropped/buttons/LED_2.png
 
 
 convert FilterButtonsRaw.png -crop 24x22+338+256 cropped/buttons/button1_1.png

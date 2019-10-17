@@ -1138,6 +1138,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 
 	m_vol.setNumDecimalPlacesToDisplay(2);
 	m_pw.setNumDecimalPlacesToDisplay(3);
+	m_fine.setNumDecimalPlacesToDisplay(2);
 	m_drift.setNumDecimalPlacesToDisplay(3);
 	m_position.setNumDecimalPlacesToDisplay(3);
 	m_position_multi.setNumDecimalPlacesToDisplay(3);
