@@ -146,7 +146,9 @@ DelayComponent::DelayComponent(AudioProcessorValueTreeState &vts, bool p_is_stan
 	m_wet.setStrip(black_knob_mid, N_KNOB_FRAMES);
 	m_wet.setSliderStyle(Slider::RotaryVerticalDrag);
 	m_wet.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-	m_wet.setSkewFactorFromMidPoint(DRY_WET_MID);
+	//m_wet.setSkewFactorFromMidPoint(DRY_WET_MID);
+    //DBG("DELAYWET");
+    //SETSKEWREPLACEMENT(m_wet, DRY_WET_MID);
 	// m_wet.setValue(WET_DEFAULT);
 	// m_wet.setDoubleClickReturnValue(true, WET_DEFAULT,
 	//                ModifierKeys::ctrlModifier);

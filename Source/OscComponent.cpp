@@ -489,7 +489,11 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 	m_detune.setSliderStyle(Slider::RotaryVerticalDrag);
 	m_detune.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
 	m_detune.setKnobTooltip("How much the individual\noscillators are detuned\n against each other");
-	m_detune.setSkewFactorFromMidPoint(0.3);
+	
+	//m_detune.setSkewFactorFromMidPoint(0.3);
+	DBG("detune");
+	SETSKEWREPLACEMENT(m_detune, 0.3);
+	
 	addChildComponent(m_detune);
 
 	m_spread.setStrip(ImageCache::getFromMemory(BinaryData::metal_knob_small_png, BinaryData::metal_knob_small_pngSize),
@@ -517,7 +521,10 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 	m_speed.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
 	m_speed.setTextValueSuffix(" Hz");
 	// m_speed.setRange(SPEED_MIN, SPEED_MAX);
-	m_speed.setSkewFactorFromMidPoint(SPEED_MID);
+	//m_speed.setSkewFactorFromMidPoint(SPEED_MID);
+
+
+	//SETSKEWREPLACEMENT(m_speed, SPEED_MID);
 	// m_speed./(GETAUDIO("osc" + m_osc_number + "_arp_speed"));
 	// m_speed.setDoubleClickReturnValue(true, SPEED_DEFAULT,
 	//                          ModifierKeys::ctrlModifier);

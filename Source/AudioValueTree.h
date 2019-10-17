@@ -35,7 +35,7 @@
                                             0.f),
       std::make_unique<AudioParameterFloat>(
           "osc1_arp_speed", "Osc1 Arpeggiator Speed",
-          NormalisableRange<float>(1.f, 100.f), 20.f),
+          NormalisableRange<float>(1.000000, 100.000000, 0, 0.354358), 20.f),
       std::make_unique<AudioParameterInt>("osc1_step_1", "Osc1 Step1", -12, 12,
                                           0),
       std::make_unique<AudioParameterInt>("osc1_step_2", "Osc1 Step2", -12, 12,
@@ -98,7 +98,7 @@
                                             0.f),
       std::make_unique<AudioParameterFloat>(
           "osc2_arp_speed", "Osc2 Arpeggiator Speed",
-          NormalisableRange<float>(1.f, 100.f), 20.f),
+          NormalisableRange<float>(1.000000, 100.000000, 0, 0.354358), 20.f),
       std::make_unique<AudioParameterInt>("osc2_step_1", "Osc2 Step1", -12, 12,
                                           0),
       std::make_unique<AudioParameterInt>("osc2_step_2", "Osc2 Step2", -12, 12,
@@ -161,7 +161,7 @@
                                             0.f),
       std::make_unique<AudioParameterFloat>(
           "osc3_arp_speed", "Osc3 Arpeggiator Speed",
-          NormalisableRange<float>(1.f, 100.f), 20.f),
+          NormalisableRange<float>(1.000000, 100.000000, 0, 0.354358), 20.f),
       std::make_unique<AudioParameterInt>("osc3_step_1", "Osc3 Step1", -12, 12,
                                           0),
       std::make_unique<AudioParameterInt>("osc3_step_2", "Osc3 Step2", -12, 12,
@@ -474,12 +474,11 @@
                                           0),
       std::make_unique<AudioParameterInt>("phaser_on", "Phaser On", 0, 1, 0),
       std::make_unique<AudioParameterFloat>("phaser_freq", "Phaser Frequency",
-                                            400, 8000, 4000),
+                                            NormalisableRange<float>(40.000000, 8000.000000, 0, 0.444854), 4000),
       std::make_unique<AudioParameterFloat>(
           "phaser_feedback", "Phaser Feedback",
           NormalisableRange<float>(0.f, 1.f, 0.f, 1.f), 0.25f),
-      std::make_unique<AudioParameterFloat>("phaser_rate", "Phaser Rate", 0.05f,
-                                            20.f, 0.25f),
+      std::make_unique<AudioParameterFloat>("phaser_rate", "Phaser Rate", NormalisableRange<float>(0.050000, 20.000000, 0, 0.211267), 0.25f),
       std::make_unique<AudioParameterFloat>(
           "phaser_mod", "Phaser Amount",
           NormalisableRange<float>(0.f, 1.f, 0.f, 1.f), 0.3f),

@@ -79,15 +79,15 @@ ADSRComponent::ADSRComponent(AudioProcessorValueTreeState &vts,
   //0.300912
 
 
-  m_decay.setRange(D_LOW_LIMIT, D_HIGH_LIMIT);
-  m_decay.setSkewFactorFromMidPoint(D_MID_VALUE);
+  //m_decay.setRange(D_LOW_LIMIT, D_HIGH_LIMIT);
+  //m_decay.setSkewFactorFromMidPoint(D_MID_VALUE);
 //   m_decay.setDoubleClickReturnValue(true, D_DEFAULT,
          //                           ModifierKeys::ctrlModifier);
   m_decay.setTextValueSuffix(" s");
   m_decay.setTooltip("Decay\nDefines how long the\n envelope takes to fall "
                      "from the top\n peak to the sustain level");
 
-  m_sustain.setRange(S_LOW_LIMIT, S_HIGH_LIMIT);
+  //m_sustain.setRange(S_LOW_LIMIT, S_HIGH_LIMIT);
   //m_sustain.setSkewFactorFromMidPoint(S_MID_VALUE);
   //skewvalue printed as 0.575717
 //   m_sustain.setDoubleClickReturnValue(true, S_DEFAULT,
@@ -96,8 +96,8 @@ ADSRComponent::ADSRComponent(AudioProcessorValueTreeState &vts,
   m_sustain.setTooltip("Sustain\nDefines the height of the evelope\nafter the "
                        "decay section is finished");
 
-  m_release.setRange(R_LOW_LIMIT, R_HIGH_LIMIT);
-  m_release.setSkewFactorFromMidPoint(R_MID_VALUE);
+  //m_release.setRange(R_LOW_LIMIT, R_HIGH_LIMIT);
+  //m_release.setSkewFactorFromMidPoint(R_MID_VALUE);
 //   m_release.setDoubleClickReturnValue(true, R_DEFAULT,
              //                         ModifierKeys::ctrlModifier);
   m_release.setTextValueSuffix(" s");

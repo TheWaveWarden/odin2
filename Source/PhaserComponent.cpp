@@ -52,7 +52,9 @@ PhaserComponent::PhaserComponent(AudioProcessorValueTreeState &vts,
   m_rate.setSliderStyle(Slider::RotaryVerticalDrag);
   m_rate.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
   m_rate.setRange(PHASER_FREQ_MIN, PHASER_FREQ_MAX);
-  m_rate.setSkewFactorFromMidPoint(PHASER_FREQ_MID);
+  //m_rate.setSkewFactorFromMidPoint(PHASER_FREQ_MID);
+
+
   m_rate.setTextValueSuffix(" Hz");
   m_rate.setNumDecimalPlacesToDisplay(2);
   // m_rate.setValue(0.25);
@@ -64,8 +66,7 @@ PhaserComponent::PhaserComponent(AudioProcessorValueTreeState &vts,
   m_freq.setStrip(metal_knob_mid, N_KNOB_FRAMES);
   m_freq.setSliderStyle(Slider::RotaryVerticalDrag);
   m_freq.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-  m_freq.setRange(400, 8000);
-  m_freq.setSkewFactorFromMidPoint(2000);
+
   m_freq.setTextValueSuffix(" Hz");
   m_freq.setNumDecimalPlacesToDisplay(2);
   // m_freq.setValue(2000);

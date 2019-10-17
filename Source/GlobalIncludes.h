@@ -24,10 +24,8 @@
 #define M_PI 3.14159265359
 #endif
 
-
 // shows the spectrum and wave display for wavetable osc 1
 //#define WTGEN
-
 
 #define MENU_BACKGROUND_COLOR Colour(35, 35, 35)
 #define MENU_FONT_COLOR Colours::lightgrey
@@ -81,16 +79,15 @@
 #define PWM_SMOOTHIN_FACTOR 0.998
 #define THRESHOLD_SMOOTHIN_FACTOR 0.998
 
-
 #define INPUT_LABEL_SIZE_X 70
 #define INPUT_LABEL_SIZE_Y 20
 
 #define BUTTON_REPEAT_INITIAL_DELAY 500
 #define BUTTON_REPEAT_DELAY 200
-  
+
 #define WAVEDRAW_STEPS_X 193
 //#define SPECDRAW_STEPS_X 193 //(DISPLAY_WIDTH_SPEC - DRAW_INLAY_LEFT_SPEC - DRAW_INLAY_RIGHT_SPEC)
-#define SPECDRAW_STEPS_X 49//just enough so it fits the display
+#define SPECDRAW_STEPS_X 49 //just enough so it fits the display
 #define CHIPDRAW_STEPS_X 32
 
 #define MODMATRIX_ROWS 9
@@ -98,10 +95,14 @@
 #define VOL_MOD_UPPER_LIMIT 100
 
 #define GETVALUE(name) m_value_tree.state[name]
-#define SETVALUE(name, value)                                                  \
-  m_value_tree.state.setProperty(name, value, nullptr)
+#define SETVALUE(name, value) m_value_tree.state.setProperty(name, value, nullptr)
 #define GETAUDIO(name) m_value_tree.getParameterAsValue(name).getValue()
 #define SETAUDIO(name, value) m_value_tree.getParameter(name)->setValueNotifyingHost(((float)value))
+
+#define SETSKEWREPLACEMENT(component, mid_value)                                                                       \
+	component.setSkewFactorFromMidPoint(mid_value);                                                                    \
+	DBG("REPLACE SKEW:  NormalisableRange<float>(" + std::to_string(component.getMinimum()) + ", " +                   \
+	    std::to_string(component.getMaximum()) + ", 0, " + std::to_string(component.getSkewFactor()) + ")");
 
 typedef AudioProcessorValueTreeState::SliderAttachment SliderAttachment;
 typedef AudioProcessorValueTreeState::ButtonAttachment ButtonAttachment;
@@ -109,149 +110,162 @@ typedef AudioProcessorValueTreeState::ComboBoxAttachment ComboBoxAttachment;
 
 class OdinMenuFeels : public LookAndFeel_V4 {
 public:
-  void drawPopupMenuBackground(Graphics &g, int width, int height) override {
-    g.fillAll(MENU_BACKGROUND_COLOR);
-    g.setColour(MENU_FONT_COLOR);
-    g.drawRect(0, 0, width, height);
-  }
+	void drawPopupMenuBackground(Graphics &g, int width, int height) override {
+		g.fillAll(MENU_BACKGROUND_COLOR);
+		g.setColour(MENU_FONT_COLOR);
+		g.drawRect(0, 0, width, height);
+	}
 
-  void drawPopupMenuItem(Graphics &g, const Rectangle<int> &area,
-                         bool isSeparator, bool isActive, bool isHighlighted,
-                         bool isTicked, bool hasSubMenu, const String &text,
-                         const String &shortcutKeyText, const Drawable *icon,
-                         const Colour *textColour) override {
-    if (!isHighlighted) {
-      LookAndFeel_V4::drawPopupMenuItem(
-          g, area, isSeparator, isActive, isHighlighted, isTicked, hasSubMenu,
-          text, shortcutKeyText, icon, &m_text_color);
-    } else {
-      if (!isSeparator) {
-        g.setColour(MENU_HIGHLIGHT_BACKGROUND_COLOR);
-        g.fillRect(area);
-        g.setColour(MENU_FONT_COLOR);
-        g.drawRect(area);
-      }
-      LookAndFeel_V4::drawPopupMenuItem(
-          g, area, isSeparator, isActive, false, isTicked, hasSubMenu, text,
-          shortcutKeyText, icon, &m_highlight_text_color);
-    }
-  }
-  Colour m_text_color = MENU_FONT_COLOR;
-  Colour m_highlight_text_color = MENU_HIGHLIGHT_FONT_COLOR;
+	void drawPopupMenuItem(Graphics &g,
+	                       const Rectangle<int> &area,
+	                       bool isSeparator,
+	                       bool isActive,
+	                       bool isHighlighted,
+	                       bool isTicked,
+	                       bool hasSubMenu,
+	                       const String &text,
+	                       const String &shortcutKeyText,
+	                       const Drawable *icon,
+	                       const Colour *textColour) override {
+		if (!isHighlighted) {
+			LookAndFeel_V4::drawPopupMenuItem(g,
+			                                  area,
+			                                  isSeparator,
+			                                  isActive,
+			                                  isHighlighted,
+			                                  isTicked,
+			                                  hasSubMenu,
+			                                  text,
+			                                  shortcutKeyText,
+			                                  icon,
+			                                  &m_text_color);
+		} else {
+			if (!isSeparator) {
+				g.setColour(MENU_HIGHLIGHT_BACKGROUND_COLOR);
+				g.fillRect(area);
+				g.setColour(MENU_FONT_COLOR);
+				g.drawRect(area);
+			}
+			LookAndFeel_V4::drawPopupMenuItem(g,
+			                                  area,
+			                                  isSeparator,
+			                                  isActive,
+			                                  false,
+			                                  isTicked,
+			                                  hasSubMenu,
+			                                  text,
+			                                  shortcutKeyText,
+			                                  icon,
+			                                  &m_highlight_text_color);
+		}
+	}
+	Colour m_text_color           = MENU_FONT_COLOR;
+	Colour m_highlight_text_color = MENU_HIGHLIGHT_FONT_COLOR;
 };
 
-#define SET_CTR_KEY(name) name.setDoubleClickReturnValue(true, name.getDoubleClickReturnValue(), ModifierKeys::ctrlModifier)
+#define SET_CTR_KEY(name)                                                                                              \
+	name.setDoubleClickReturnValue(true, name.getDoubleClickReturnValue(), ModifierKeys::ctrlModifier)
 
-
-
-#define TIMESTART(name)                                                        \
-  {                                                                            \
-    std::string clock_name = name;                                             \
-    std::vector<std::clock_t> collected_times;                                 \
-    std::vector<std::string> collected_names;                                  \
-    std::clock_t clock_begin = std::clock();
+#define TIMESTART(name)                                                                                                \
+	{                                                                                                                  \
+		std::string clock_name = name;                                                                                 \
+		std::vector<std::clock_t> collected_times;                                                                     \
+		std::vector<std::string> collected_names;                                                                      \
+		std::clock_t clock_begin = std::clock();
 
 #define TIMEBARS 40
 #define BARCHARACTER "▄"
 
-#define TIMEADD(name)                                                          \
-  collected_times.push_back(std::clock());                                     \
-  collected_names.push_back(name);
+#define TIMEADD(name)                                                                                                  \
+	collected_times.push_back(std::clock());                                                                           \
+	collected_names.push_back(name);
 
-#define TIMEEND                                                                \
-  std::clock_t clock_end = std::clock();                                       \
-  DBG("\n====================================================================" \
-      "==");                                                                   \
-  double total_time = double(clock_end - clock_begin) / CLOCKS_PER_SEC;        \
-  if (collected_times.size() > 0) {                                            \
-    int longest_name = 4;                                                      \
-    double longest_time =                                                      \
-        double(clock_end - collected_times[collected_times.size() - 1]) /      \
-        CLOCKS_PER_SEC;                                                        \
-    for (int i = 0; i < collected_times.size(); ++i) {                         \
-      if (collected_names[i].length() > longest_name) {                        \
-        longest_name = collected_names[i].length();                            \
-      }                                                                        \
-      double time_compare;                                                     \
-      if (i == 0) {                                                            \
-        time_compare =                                                         \
-            double(collected_times[i] - clock_begin) / CLOCKS_PER_SEC;         \
-      } else {                                                                 \
-        time_compare = double(collected_times[i] - collected_times[i - 1]) /   \
-                       CLOCKS_PER_SEC;                                         \
-      }                                                                        \
-      if (time_compare > longest_time) {                                       \
-        longest_time = time_compare;                                           \
-      }                                                                        \
-    }                                                                          \
-    int longest_bar = longest_time / total_time * TIMEBARS;                    \
-    for (int i = 0; i < collected_times.size(); ++i) {                         \
-      std::string message = collected_names[i] + " ";                          \
-      int spacing = longest_name - collected_names[i].length();                \
-      for (int i = 0; i < spacing; ++i) {                                      \
-        message += " ";                                                        \
-      }                                                                        \
-      double elapsed;                                                          \
-      if (i == 0) {                                                            \
-        elapsed = double(collected_times[i] - clock_begin) / CLOCKS_PER_SEC;   \
-      } else {                                                                 \
-        elapsed = double(collected_times[i] - collected_times[i - 1]) /        \
-                  CLOCKS_PER_SEC;                                              \
-      }                                                                        \
-      double percent = elapsed / total_time;                                   \
-      int number_of_bars = percent * TIMEBARS;                                 \
-      for (int i = 0; i < number_of_bars; ++i) {                               \
-        message += BARCHARACTER;                                               \
-      }                                                                        \
-      int missing_bars = longest_bar - number_of_bars;                         \
-      for (int i = 0; i < missing_bars; ++i) {                                 \
-        message += " ";                                                        \
-      }                                                                        \
-      if (percent * 100 < 10) {                                                \
-        message += " ";                                                        \
-      }                                                                        \
-      std::stringstream stream;                                                \
-      stream << std::fixed << std::setprecision(2) << percent * 100;           \
-      std::string percent_decimal = stream.str();                              \
-      std::stringstream stream_elapsed;                                        \
-      stream_elapsed << std::fixed << std::setprecision(4) << elapsed;         \
-      std::string elapsed_decimal = stream_elapsed.str();                      \
-      message += " " + percent_decimal + "%, " + elapsed_decimal + " sek";     \
-      DBG(message);                                                            \
-    }                                                                          \
-    std::string message = "rest ";                                             \
-    int spacing = longest_name - 4;                                            \
-    for (int i = 0; i < spacing; ++i) {                                        \
-      message += " ";                                                          \
-    }                                                                          \
-    double elapsed =                                                           \
-        double(clock_end - collected_times[collected_times.size() - 1]) /      \
-        CLOCKS_PER_SEC;                                                        \
-    double percent = elapsed / total_time;                                     \
-    int number_of_bars = percent * TIMEBARS;                                   \
-    for (int i = 0; i < number_of_bars; ++i) {                                 \
-      message += BARCHARACTER;                                                 \
-    }                                                                          \
-    int missing_bars = longest_bar - number_of_bars;                           \
-    for (int i = 0; i < missing_bars; ++i) {                                   \
-      message += " ";                                                          \
-    }                                                                          \
-    if (percent * 100 < 10) {                                                  \
-      message += " ";                                                          \
-    }                                                                          \
-    std::stringstream stream;                                                  \
-    stream << std::fixed << std::setprecision(2) << percent * 100;             \
-    std::string percent_decimal = stream.str();                                \
-    std::stringstream stream_elapsed;                                          \
-    stream_elapsed << std::fixed << std::setprecision(4) << elapsed;           \
-    std::string elapsed_decimal = stream_elapsed.str();                        \
-    message += " " + percent_decimal + "%, " + elapsed_decimal + " sek";       \
-    DBG(message);                                                              \
-    DBG("--------------------------------------------------------------------" \
-        "--");                                                                 \
-  }                                                                            \
-  DBG("Overall time for " + clock_name + ": " + std::to_string(total_time) +   \
-      " sek");                                                                 \
-  DBG("======================================================================" \
-      "\n");                                                                   \
-  }
+#define TIMEEND                                                                                                        \
+	std::clock_t clock_end = std::clock();                                                                             \
+	DBG("\n===================================================================="                                       \
+	    "==");                                                                                                         \
+	double total_time = double(clock_end - clock_begin) / CLOCKS_PER_SEC;                                              \
+	if (collected_times.size() > 0) {                                                                                  \
+		int longest_name    = 4;                                                                                       \
+		double longest_time = double(clock_end - collected_times[collected_times.size() - 1]) / CLOCKS_PER_SEC;        \
+		for (int i = 0; i < collected_times.size(); ++i) {                                                             \
+			if (collected_names[i].length() > longest_name) {                                                          \
+				longest_name = collected_names[i].length();                                                            \
+			}                                                                                                          \
+			double time_compare;                                                                                       \
+			if (i == 0) {                                                                                              \
+				time_compare = double(collected_times[i] - clock_begin) / CLOCKS_PER_SEC;                              \
+			} else {                                                                                                   \
+				time_compare = double(collected_times[i] - collected_times[i - 1]) / CLOCKS_PER_SEC;                   \
+			}                                                                                                          \
+			if (time_compare > longest_time) {                                                                         \
+				longest_time = time_compare;                                                                           \
+			}                                                                                                          \
+		}                                                                                                              \
+		int longest_bar = longest_time / total_time * TIMEBARS;                                                        \
+		for (int i = 0; i < collected_times.size(); ++i) {                                                             \
+			std::string message = collected_names[i] + " ";                                                            \
+			int spacing         = longest_name - collected_names[i].length();                                          \
+			for (int i = 0; i < spacing; ++i) {                                                                        \
+				message += " ";                                                                                        \
+			}                                                                                                          \
+			double elapsed;                                                                                            \
+			if (i == 0) {                                                                                              \
+				elapsed = double(collected_times[i] - clock_begin) / CLOCKS_PER_SEC;                                   \
+			} else {                                                                                                   \
+				elapsed = double(collected_times[i] - collected_times[i - 1]) / CLOCKS_PER_SEC;                        \
+			}                                                                                                          \
+			double percent     = elapsed / total_time;                                                                 \
+			int number_of_bars = percent * TIMEBARS;                                                                   \
+			for (int i = 0; i < number_of_bars; ++i) {                                                                 \
+				message += BARCHARACTER;                                                                               \
+			}                                                                                                          \
+			int missing_bars = longest_bar - number_of_bars;                                                           \
+			for (int i = 0; i < missing_bars; ++i) {                                                                   \
+				message += " ";                                                                                        \
+			}                                                                                                          \
+			if (percent * 100 < 10) {                                                                                  \
+				message += " ";                                                                                        \
+			}                                                                                                          \
+			std::stringstream stream;                                                                                  \
+			stream << std::fixed << std::setprecision(2) << percent * 100;                                             \
+			std::string percent_decimal = stream.str();                                                                \
+			std::stringstream stream_elapsed;                                                                          \
+			stream_elapsed << std::fixed << std::setprecision(4) << elapsed;                                           \
+			std::string elapsed_decimal = stream_elapsed.str();                                                        \
+			message += " " + percent_decimal + "%, " + elapsed_decimal + " sek";                                       \
+			DBG(message);                                                                                              \
+		}                                                                                                              \
+		std::string message = "rest ";                                                                                 \
+		int spacing         = longest_name - 4;                                                                        \
+		for (int i = 0; i < spacing; ++i) {                                                                            \
+			message += " ";                                                                                            \
+		}                                                                                                              \
+		double elapsed     = double(clock_end - collected_times[collected_times.size() - 1]) / CLOCKS_PER_SEC;         \
+		double percent     = elapsed / total_time;                                                                     \
+		int number_of_bars = percent * TIMEBARS;                                                                       \
+		for (int i = 0; i < number_of_bars; ++i) {                                                                     \
+			message += BARCHARACTER;                                                                                   \
+		}                                                                                                              \
+		int missing_bars = longest_bar - number_of_bars;                                                               \
+		for (int i = 0; i < missing_bars; ++i) {                                                                       \
+			message += " ";                                                                                            \
+		}                                                                                                              \
+		if (percent * 100 < 10) {                                                                                      \
+			message += " ";                                                                                            \
+		}                                                                                                              \
+		std::stringstream stream;                                                                                      \
+		stream << std::fixed << std::setprecision(2) << percent * 100;                                                 \
+		std::string percent_decimal = stream.str();                                                                    \
+		std::stringstream stream_elapsed;                                                                              \
+		stream_elapsed << std::fixed << std::setprecision(4) << elapsed;                                               \
+		std::string elapsed_decimal = stream_elapsed.str();                                                            \
+		message += " " + percent_decimal + "%, " + elapsed_decimal + " sek";                                           \
+		DBG(message);                                                                                                  \
+		DBG("--------------------------------------------------------------------"                                     \
+		    "--");                                                                                                     \
+	}                                                                                                                  \
+	DBG("Overall time for " + clock_name + ": " + std::to_string(total_time) + " sek");                                \
+	DBG("======================================================================"                                       \
+	    "\n");                                                                                                         \
+	}
