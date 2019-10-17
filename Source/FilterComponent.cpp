@@ -106,7 +106,9 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts,
                    metal_knob_big.getHeight() / N_KNOB_FRAMES);
   m_freq.setRange(FREQ_MIN, FREQ_MAX);
   m_freq.setKnobTooltip("The filter cutoff frequency");
-  m_freq.setSkewFactorFromMidPoint(FREQ_MID);
+  //m_freq.setSkewFactorFromMidPoint(FREQ_MID);
+
+  
   m_freq.setTextValueSuffix(" Hz");
   // m_freq.setValue(FREQ_DEFAULT);
   // m_freq.setDoubleClickReturnValue(true, m_freq.getDoubleClickReturnValue(),

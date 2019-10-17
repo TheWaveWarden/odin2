@@ -450,8 +450,8 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 	m_lp.setBounds(LP_POS_X, LP_POS_Y, METAL_KNOB_BIG_SIZE_X, METAL_KNOB_BIG_SIZE_Y);
 	m_lp.setSliderStyle(Slider::RotaryVerticalDrag);
 	m_lp.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-	m_lp.setRange(LP_MIN, LP_MAX);
-	m_lp.setSkewFactorFromMidPoint(LP_MID);
+	//m_lp.setRange(LP_MIN, LP_MAX);
+	//m_lp.setSkewFactorFromMidPoint(LP_MID);
 	// m_lp.setValue(GETAUDIO("osc" + m_osc_number + "_lp"));
 	// m_lp.setDoubleClickReturnValue(true, LP_DEFAULT,
 	// ModifierKeys::ctrlModifier);
@@ -464,8 +464,8 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 	m_hp.setBounds(HP_POS_X, HP_POS_Y, METAL_KNOB_BIG_SIZE_X, METAL_KNOB_BIG_SIZE_Y);
 	m_hp.setSliderStyle(Slider::RotaryVerticalDrag);
 	m_hp.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-	m_hp.setRange(HP_MIN, HP_MAX);
-	m_hp.setSkewFactorFromMidPoint(HP_MID);
+	//m_hp.setRange(HP_MIN, HP_MAX);
+	//m_hp.setSkewFactorFromMidPoint(HP_MID);
 	m_hp.setTextValueSuffix(" Hz");
 	// m_hp.setValue(GETAUDIO("osc" + m_osc_number + "_hp"));
 	// m_hp.setDoubleClickReturnValue(true, HP_DEFAULT,

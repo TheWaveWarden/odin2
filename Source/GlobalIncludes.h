@@ -68,6 +68,12 @@
 #define FILTER_TYPE_FORMANT 35
 #define FILTER_TYPE_RINGMOD 40
 
+// midpoint for filters:
+// https://www.wolframalpha.com/input/?i=80*e%5E%28ln%2818000%2F80%29*0.5%29
+// skew for filters:
+// https://www.wolframalpha.com/input/?i=ln%280.5%29%2F%28ln%28%281200-80%29%2F%2818000-80%29%29%29
+#define FILTER_SKEW_DEFAULT 0.25f
+
 #define GAIN_SMOOTHIN_FACTOR 0.995
 #define PITCHBEND_SMOOTHIN_FACTOR 0.998
 #define FILTER_FREQ_SMOOTHING_FACTOR 0.998

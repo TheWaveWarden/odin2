@@ -59,10 +59,10 @@
                                             0.f),
       std::make_unique<AudioParameterFloat>(
           "osc1_lp", "Osc1 Noise Lowpass",
-          NormalisableRange<float>(80.f, 18000.f), 18000.f),
+          NormalisableRange<float>(80.f, 18000.f, 0.f, FILTER_SKEW_DEFAULT), 18000.f),
       std::make_unique<AudioParameterFloat>(
           "osc1_hp", "Osc1 Noise Highpass",
-          NormalisableRange<float>(80.f, 18000.f), 80.f),
+          NormalisableRange<float>(80.f, 18000.f, 0.f, FILTER_SKEW_DEFAULT), 80.f),
       // Osc 2
       std::make_unique<AudioParameterInt>("osc2_oct", "Osc2 Octave", -3, 3, 0),
       std::make_unique<AudioParameterInt>("osc2_semi", "Osc2 Semitones", -7, 7,
@@ -122,10 +122,10 @@
                                             0.f),
       std::make_unique<AudioParameterFloat>(
           "osc2_lp", "Osc2 Noise Lowpass",
-          NormalisableRange<float>(80.f, 18000.f), 18000.f),
+          NormalisableRange<float>(80.f, 18000.f, 0.f, FILTER_SKEW_DEFAULT), 18000.f),
       std::make_unique<AudioParameterFloat>(
           "osc2_hp", "Osc2 Noise Highpass",
-          NormalisableRange<float>(80.f, 18000.f), 80.f),
+          NormalisableRange<float>(80.f, 18000.f, 0.f, FILTER_SKEW_DEFAULT), 80.f),
       // Osc 3
       std::make_unique<AudioParameterInt>("osc3_oct", "Osc3 Octave", -3, 3, 0),
       std::make_unique<AudioParameterInt>("osc3_semi", "Osc3 Semitones", -7, 7,
@@ -185,10 +185,10 @@
                                             0.f),
       std::make_unique<AudioParameterFloat>(
           "osc3_lp", "Osc3 Noise Lowpass",
-          NormalisableRange<float>(80.f, 18000.f), 18000.f),
+          NormalisableRange<float>(80.f, 18000.f, 0.f, FILTER_SKEW_DEFAULT), 18000.f),
       std::make_unique<AudioParameterFloat>(
           "osc3_hp", "Osc3 Noise Highpass",
-          NormalisableRange<float>(80.f, 18000.f), 80.f),
+          NormalisableRange<float>(80.f, 18000.f, 0.f, FILTER_SKEW_DEFAULT), 80.f),
       // Filter1
       std::make_unique<AudioParameterInt>("fil1_osc1", "Filter1 Osc1 Input", 0,
                                           1, 1),
@@ -210,7 +210,7 @@
           0.f),
       std::make_unique<AudioParameterFloat>(
           "fil1_freq", "Filter1 Frequency",
-          NormalisableRange<float>(80.f, 18000.f), 2000.f),
+          NormalisableRange<float>(80.f, 18000.f, 0.f, FILTER_SKEW_DEFAULT), 2000.f),
       std::make_unique<AudioParameterFloat>("fil1_res", "Filter1 Resonance",
                                             NormalisableRange<float>(0.f, 1.f),
                                             0.f),
@@ -255,7 +255,7 @@
           0.f),
       std::make_unique<AudioParameterFloat>(
           "fil2_freq", "Filter2 Frequency",
-          NormalisableRange<float>(80.f, 18000.f), 2000.f),
+          NormalisableRange<float>(80.f, 18000.f, 0.f, FILTER_SKEW_DEFAULT), 2000.f),
       std::make_unique<AudioParameterFloat>("fil2_res", "Filter2 Resonance",
                                             NormalisableRange<float>(0.f, 1.f),
                                             0.f),
@@ -292,7 +292,7 @@
           0.f),
       std::make_unique<AudioParameterFloat>(
           "fil3_freq", "Filter3 Frequency",
-          NormalisableRange<float>(80.f, 18000.f), 2000.f),
+          NormalisableRange<float>(80.f, 18000.f, 0.f, FILTER_SKEW_DEFAULT), 2000.f),
       std::make_unique<AudioParameterFloat>("fil3_res", "Filter3 Resonance",
                                             NormalisableRange<float>(0.f, 1.f),
                                             0.f),
@@ -455,7 +455,7 @@
           "delay_feedback", "Delay Feedback",
           NormalisableRange<float>(0.f, 1.f, 0.f, 0.575717), 0.6f),
       std::make_unique<AudioParameterFloat>(
-          "delay_hp", "Delay Highpass Frequency", 80.f, 18000.f, 80.f),
+          "delay_hp", "Delay Highpass Frequency", NormalisableRange<float>(80.f, 18000.f, 0.f, FILTER_SKEW_DEFAULT), 80.f),
       std::make_unique<AudioParameterFloat>(
           "delay_ducking", "Delay Ducking",
           NormalisableRange<float>(0.f, 1.f, 0.f, 1.f), 0.f),
