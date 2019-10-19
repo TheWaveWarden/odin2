@@ -37,7 +37,8 @@
 #define STANDARD_DISPLAY_COLOR Colour(25, 44, 53)
 #define PHASER_DISPLAY_COLOR Colour(20, 60, 30)
 #define FLANGER_DISPLAY_COLOR Colour(40, 20, 53)
-#define CHORUS_DISPLAY_COLOR Colour(60, 20, 20)
+#define MULTI_DROPDOWN_COLOR juce::Colour(61, 48, 48)
+#define CHORUS_DISPLAY_COLOR MULTI_DROPDOWN_COLOR
 #define VOICES 12
 
 // leave spare values for future additions :hype:
