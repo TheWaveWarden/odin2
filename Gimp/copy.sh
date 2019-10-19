@@ -1,2 +1,0 @@
-cp -r ../Gimp/ ../../odinvst/
- 

@@ -366,11 +366,8 @@
             file="Gimp/cropped/chiptune_cropped.png"/>
       <FILE id="BJBBdW" name="chiptune_knob_cropped.png" compile="0" resource="1"
             file="Gimp/cropped/chiptune_knob_cropped.png"/>
-      <FILE id="poI0Du" name="chorus.png" compile="0" resource="1" file="Gimp/cropped/chorus.png"/>
       <FILE id="bpcN1J" name="chorusnosync.png" compile="0" resource="1"
             file="Gimp/cropped/chorusnosync.png"/>
-      <FILE id="X1NaYc" name="chorusnosync.png" compile="0" resource="1"
-            file="Gimp/applied/chorusnosync.png"/>
       <FILE id="jn79Ng" name="chorussync.png" compile="0" resource="1" file="Gimp/cropped/chorussync.png"/>
       <FILE id="oL8iSK" name="comb_backdrop.png" compile="0" resource="1"
             file="Gimp/applied/comb_backdrop.png"/>
@@ -378,11 +375,8 @@
             file="Gimp/cropped/comb_cropped.png"/>
       <FILE id="J3JQ0J" name="comb_knobs_cropped.png" compile="0" resource="1"
             file="Gimp/cropped/comb_knobs_cropped.png"/>
-      <FILE id="de9EwP" name="delay.png" compile="0" resource="1" file="Gimp/cropped/delay.png"/>
       <FILE id="P5gsU2" name="delaynosync.png" compile="0" resource="1" file="Gimp/cropped/delaynosync.png"/>
-      <FILE id="OEr6aX" name="delaynosync.png" compile="0" resource="1" file="Gimp/applied/delaynosync.png"/>
       <FILE id="Y6UcJq" name="delaysync.png" compile="0" resource="1" file="Gimp/cropped/delaysync.png"/>
-      <FILE id="SlGmgc" name="delaysync.png" compile="0" resource="1" file="Gimp/applied/delaysync.png"/>
       <FILE id="cAmlKZ" name="diode_backdrop.png" compile="0" resource="1"
             file="Gimp/applied/diode_backdrop.png"/>
       <FILE id="pSWt1M" name="diode_cropped.png" compile="0" resource="1"
@@ -390,18 +384,14 @@
       <FILE id="NgKFME" name="diode_knobs_cropped.png" compile="0" resource="1"
             file="Gimp/cropped/diode_knobs_cropped.png"/>
       <FILE id="NzmqWX" name="drawpanel.png" compile="0" resource="1" file="Gimp/cropped/drawpanel.png"/>
-      <FILE id="SZj6ex" name="filmstrip.png" compile="0" resource="1" file="Gimp/cropped/knobs/metal1/filmstrip.png"/>
       <FILE id="gb7EgU" name="filter1_bypass.png" compile="0" resource="1"
             file="Gimp/applied/filter1_bypass.png"/>
       <FILE id="bQ9iQ8" name="filter2_bypass.png" compile="0" resource="1"
             file="Gimp/applied/filter2_bypass.png"/>
       <FILE id="wnGJGd" name="filter3_bypass.png" compile="0" resource="1"
             file="Gimp/applied/filter3_bypass.png"/>
-      <FILE id="w3wDrU" name="flanger.png" compile="0" resource="1" file="Gimp/cropped/flanger.png"/>
       <FILE id="ewiote" name="flangernosync.png" compile="0" resource="1"
             file="Gimp/cropped/flangernosync.png"/>
-      <FILE id="rAyt6e" name="flangernosync.png" compile="0" resource="1"
-            file="Gimp/applied/flangernosync.png"/>
       <FILE id="t00lo4" name="flangersync.png" compile="0" resource="1" file="Gimp/cropped/flangersync.png"/>
       <FILE id="c36QRO" name="fm_backdrop.png" compile="0" resource="1" file="Gimp/applied/fm_backdrop.png"/>
       <FILE id="U5AMPr" name="fm_cropped.png" compile="0" resource="1" file="Gimp/cropped/fm_cropped.png"/>
@@ -451,8 +441,6 @@
             file="Gimp/cropped/LP12_cropped.png"/>
       <FILE id="EM9xrJ" name="LP12_knobs_cropped.png" compile="0" resource="1"
             file="Gimp/cropped/LP12_knobs_cropped.png"/>
-      <FILE id="BbNz8P" name="LP22_knobs_cropped.png" compile="0" resource="1"
-            file="Gimp/cropped/LP22_knobs_cropped.png"/>
       <FILE id="r5vli5" name="LP24_backdrop.png" compile="0" resource="1"
             file="Gimp/applied/LP24_backdrop.png"/>
       <FILE id="sik9Xc" name="LP24_cropped.png" compile="0" resource="1"
@@ -509,12 +497,8 @@
       <FILE id="oT00nH" name="osc1_bypass.png" compile="0" resource="1" file="Gimp/applied/osc1_bypass.png"/>
       <FILE id="rD5zc6" name="osc2_bypass.png" compile="0" resource="1" file="Gimp/applied/osc2_bypass.png"/>
       <FILE id="KxSSn1" name="osc3_bypass.png" compile="0" resource="1" file="Gimp/applied/osc3_bypass.png"/>
-      <FILE id="djms4C" name="peak.png" compile="0" resource="1" file="Gimp/cropped/lfo/peak.png"/>
-      <FILE id="C1zVin" name="phaser.png" compile="0" resource="1" file="Gimp/cropped/phaser.png"/>
       <FILE id="ZvZ83z" name="phasernosync.png" compile="0" resource="1"
             file="Gimp/cropped/phasernosync.png"/>
-      <FILE id="bVvaS4" name="phasernosync.png" compile="0" resource="1"
-            file="Gimp/applied/phasernosync.png"/>
       <FILE id="JNVBl4" name="phasersync.png" compile="0" resource="1" file="Gimp/cropped/phasersync.png"/>
       <FILE id="neWmVY" name="pm_backdrop.png" compile="0" resource="1" file="Gimp/applied/pm_backdrop.png"/>
       <FILE id="WTMFtx" name="pyram3.png" compile="0" resource="1" file="Gimp/cropped/lfo/pyram3.png"/>
@@ -900,6 +884,7 @@
         <FILE id="zWGLzS" name="OscComponent.cpp" compile="1" resource="0"
               file="Source/OscComponent.cpp"/>
         <FILE id="MVOzDk" name="OscComponent.h" compile="0" resource="0" file="Source/OscComponent.h"/>
+        <FILE id="JpIQdx" name="peak.png" compile="0" resource="1" file="Gimp/cropped/lfo/peak.png"/>
         <FILE id="xMFAVw" name="PhaserComponent.cpp" compile="1" resource="0"
               file="Source/PhaserComponent.cpp"/>
         <FILE id="bzAudk" name="PhaserComponent.h" compile="0" resource="0"
