@@ -1511,7 +1511,11 @@ void OscComponent::showMultiComponents() {
 	m_position_multi.setVisible(true);
 	m_spread.setVisible(true);
 	m_detune.setVisible(true);
-	m_wavetable_waveselector.setColor(juce::Colour(10, 50, 40));
+
+#define MULTI_DROPDOWN_COLOR juce::Colour(61, 48, 48)
+//#define MULTI_DROPDOWN_COLOR juce::Colour(55, 43, 43)
+
+	m_wavetable_waveselector.setColor(MULTI_DROPDOWN_COLOR);
 
 	m_wavetable_waveselector.setTopLeftPosition(MULTI_WAVE_X, MULTI_WAVE_Y);
 	m_wavetable_waveselector.setVisible(true);
