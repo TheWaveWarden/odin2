@@ -210,6 +210,9 @@ public:
   InputField m_value_input;
   InputFeels m_input_feels;
 
+
+  ColourSelector m_color_picker;
+
 #ifdef WTGEN
   WavetableDisplay m_wavetable_display;
   SpectrumDisplay m_spectrum_display;

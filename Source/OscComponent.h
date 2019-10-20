@@ -135,7 +135,8 @@
 #define Y_POS_X 75
 #define Y_POS_Y X_POS_Y
 
-#define FM_COLOR Colour(90, 40, 40)
+//#define FM_COLOR Colour(90, 40, 40)
+#define FM_COLOR Colour(93, 41, 41)
 #define PM_COLOR Colour(40, 40, 40)
 //==============================================================================
 /*
@@ -199,8 +200,16 @@ public:
 
   void resetVectorWaves();
 
+  //todo remove
+  void setColorPickerPointer(juce::ColourSelector* picker){
+    REMOVE_color_picker = picker;
+  }
+
 protected:
   // TextEditor REMOVE_EDITOR;
+
+  //todo remove
+  juce::ColourSelector* REMOVE_color_picker;
 
   int m_osc_type = 0;
 

@@ -858,6 +858,17 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	SET_CTR_KEY(m_master);
 	SET_CTR_KEY(m_modwheel);
 
+	m_color_picker.setTopLeftPosition(ADSR_LEFT_POS_X, ADSR_LEFT_POS_Y);
+	m_color_picker.setSize(3*ADSR_SIZE_X, 3*ADSR_SIZE_Y);
+
+	addAndMakeVisible(m_color_picker);
+	m_color_picker.setAlwaysOnTop(true);
+	m_color_picker.setSwatchColour(1,juce::Colour(71, 92, 108));
+
+	m_osc1.setColorPickerPointer(&m_color_picker);
+	m_osc2.setColorPickerPointer(&m_color_picker);
+	m_osc3.setColorPickerPointer(&m_color_picker);
+
 #ifdef WTGEN
 	m_spectrum_display.setTopLeftPosition(800 - 512 - 2 * 6, 400 - 2 * 6);
 	addAndMakeVisible(m_wavetable_display);

@@ -129,12 +129,38 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 	m_reset.setTriggeredOnMouseDown(true);
 	m_reset.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
 
+	m_reset.onClick =
+	    [&]() {
+			juce::Colour col = REMOVE_color_picker->getCurrentColour();
+
+		    m_xy.setColor(col);
+		    m_vec_a.setColor(col);
+		    m_vec_b.setColor(col);
+		    m_vec_c.setColor(col);
+		    m_vec_d.setColor(col);
+
+			m_wavedraw.setColor(col);
+
+			m_wavetable_waveselector.setColor(col);
+
+			m_carrier_waveselector.setColor(col);
+			m_modulator_waveselector.setColor(col);
+			m_carrier_ratio.setColor(col);
+			m_modulator_ratio.setColor(col);
+
+			m_chiptune_waveselector.setColor(col);
+			m_chipdraw.setDrawColor(col);
+
+			repaint();
+			DBG("(" + std::to_string((int)col.getRed()) + ", " + std::to_string((int)col.getGreen()) + ", " + std::to_string((int)col.getBlue()) + ")");
+	    };
+
 #ifdef WTGEN
-	m_reset.onClick = [&]() {
-		writeChipdrawTableToFile();
-		writeWavedrawTableToFile();
-		writeSpecdrawTableToFile();
-	};
+	    m_reset.onClick = [&]() {
+		    writeChipdrawTableToFile();
+		    writeWavedrawTableToFile();
+		    writeSpecdrawTableToFile();
+	    };
 #endif
 
 	// sync button only for osc 2 & 3
@@ -489,11 +515,11 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 	m_detune.setSliderStyle(Slider::RotaryVerticalDrag);
 	m_detune.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
 	m_detune.setKnobTooltip("How much the individual\noscillators are detuned\n against each other");
-	
+
 	//m_detune.setSkewFactorFromMidPoint(0.3);
 	DBG("detune");
 	SETSKEWREPLACEMENT(m_detune, 0.3);
-	
+
 	addChildComponent(m_detune);
 
 	m_spread.setStrip(ImageCache::getFromMemory(BinaryData::metal_knob_small_png, BinaryData::metal_knob_small_pngSize),
@@ -522,7 +548,6 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 	m_speed.setTextValueSuffix(" Hz");
 	// m_speed.setRange(SPEED_MIN, SPEED_MAX);
 	//m_speed.setSkewFactorFromMidPoint(SPEED_MID);
-
 
 	//SETSKEWREPLACEMENT(m_speed, SPEED_MID);
 	// m_speed./(GETAUDIO("osc" + m_osc_number + "_arp_speed"));
@@ -632,7 +657,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 	                              "before you press\nthis button");
 	addChildComponent(m_specdraw_convert);
 
-	juce::Colour chip_color(102, 93, 79);
+	juce::Colour chip_color(93, 81, 63);
 
 	m_chiptune_waveselector.OnValueChange = [&](int p_new_value) {
 		m_value_tree.state.setProperty(m_chipwave_identifier, (float)p_new_value, nullptr);
@@ -1016,7 +1041,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 
 	m_chipdraw.setTopLeftPosition(CHIPDRAW_POSITION_X, CHIPDRAW_POSITION_Y);
 	m_chipdraw.setColor(chip_color);
-	m_chipdraw.setDrawColor(juce::Colours::white);
+	m_chipdraw.setDrawColor(juce::Colour(238, 230, 217));
 	m_chipdraw.onDraw = [&]() { m_chipdraw_convert.setToggleState(false, dontSendNotification); };
 	m_chipdraw.setTooltip("Draw a custom 4Bit waveform.\n\nDon't forget to apply "
 	                      "your waveform with the button on the bottom right.");
@@ -1045,7 +1070,8 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 	                      "on the bottom right.");
 	addChildComponent(m_specdraw);
 
-	juce::Colour vector_color(60, 60, 60);
+	//juce::Colour vector_color(54, 61, 63);
+	juce::Colour vector_color(35, 50, 42);
 
 	juce::Image glas_panel = ImageCache::getFromMemory(BinaryData::vectorpanel_png, BinaryData::vectorpanel_pngSize);
 	m_xy.setTopLeftPosition(XY_POS_X, XY_POS_Y);
@@ -1498,7 +1524,7 @@ void OscComponent::showVectorComponents() {
 void OscComponent::showWavetableComponents() {
 	showVolComponent();
 	showPitchComponents();
-	m_wavetable_waveselector.setColor(juce::Colour(10, 40, 50));
+	m_wavetable_waveselector.setColor(WAVETABLE_DROPDOWN_COLOR);
 	m_wavetable_waveselector.setTopLeftPosition(WAVETABLE_WAVE_X, WAVETABLE_WAVE_Y);
 	m_position.setVisible(true);
 	m_wavetable_waveselector.setVisible(true);
