@@ -235,13 +235,20 @@ for (int i = 0; i < 9; ++i) {
 // first attach non param listener
 m_value_tree.state.addListener(&m_non_param_listener);
 
+
+//osc base listener:
 for (int osc = 0; osc < 3; ++osc) {
   m_value_tree.addParameterListener("osc" + std::to_string(osc + 1) + "_oct",
-                                    &m_tree_listener);
+                                    &m_tree_listener_osc_base);
   m_value_tree.addParameterListener("osc" + std::to_string(osc + 1) + "_semi",
-                                    &m_tree_listener);
+                                    &m_tree_listener_osc_base);
   m_value_tree.addParameterListener("osc" + std::to_string(osc + 1) + "_fine",
-                                    &m_tree_listener);
+                                    &m_tree_listener_osc_base);
+
+
+
+
+                                    
   m_value_tree.addParameterListener("osc" + std::to_string(osc + 1) + "_vol",
                                     &m_tree_listener);
   m_value_tree.addParameterListener(
