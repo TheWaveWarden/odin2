@@ -35,11 +35,11 @@
 #define MENU_HIGHLIGHT_BACKGROUND_COLOR Colour(50, 50, 50)
 //#define STANDARD_DISPLAY_COLOR Colour(10,40,50)
 #define STANDARD_DISPLAY_COLOR Colour(25, 44, 53)
-#define PHASER_DISPLAY_COLOR Colour(20, 60, 30)
+#define PHASER_DISPLAY_COLOR Colour(11, 41, 19)
 #define FLANGER_DISPLAY_COLOR Colour(40, 20, 53)
 #define MULTI_DROPDOWN_COLOR juce::Colour(61, 48, 48)
 #define WAVETABLE_DROPDOWN_COLOR juce::Colour(48, 65, 60)
-#define CHORUS_DISPLAY_COLOR MULTI_DROPDOWN_COLOR
+#define CHORUS_DISPLAY_COLOR Colour(69, 39, 38)
 #define VOICES 12
 
 // leave spare values for future additions :hype:
