@@ -302,6 +302,10 @@ private:
   AudioProcessorValueTreeState m_value_tree;
   OdinTreeListener m_tree_listener; // TODO create more of these and listen to
                                     // subcategory only
+  OdinTreeListener m_tree_listener_osc_base;
+
+
+
   OdinTreeListenerNonParam
       m_non_param_listener; // this listens to non automatable vars
 
@@ -334,6 +338,9 @@ private:
   void checkEndGlobalEnvelope();
 
   void setModulationPointers();
+
+  void treeValueChangedOscBase(const String &p_ID, float p_new_value);
+
   bool treeValueChangedFirst(const String &p_ID, float p_new_value);
   bool treeValueChangedSecond(const String &p_ID, float p_new_value);
   bool treeValueChangedThird(const String &p_ID, float p_new_value);

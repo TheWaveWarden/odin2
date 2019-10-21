@@ -36,6 +36,15 @@ float valueToDenomintaor(int p_value) {
   return 16.f;
 }
 
+
+void OdinAudioProcessor::treeValueChangedOscBase(const String &p_ID, float p_new_value) {
+
+}
+
+
+
+
+
 bool OdinAudioProcessor::treeValueChangedFirst(const String &p_ID,
                                                float p_new_value) {
 

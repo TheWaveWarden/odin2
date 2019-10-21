@@ -41,6 +41,11 @@ OdinAudioProcessor::OdinAudioProcessor()
 
   m_is_standalone_plugin = (wrapperType == wrapperType_Standalone);
 
+
+
+
+
+
   // set up the tree listener
   m_tree_listener.onValueChange = [&](const String &p_ID, float p_new_value) {
     if (!treeValueChangedFirst(p_ID, p_new_value)) {
@@ -53,6 +58,17 @@ OdinAudioProcessor::OdinAudioProcessor()
       }
     }
   };
+  
+  m_tree_listener_osc_base.onValueChange = [&](const String &p_ID, float p_new_value) {
+    treeValueChangedOscBase(p_ID, p_new_value);
+  };
+
+
+
+
+
+
+
   m_non_param_listener.onValueChange = [&](ValueTree &tree,
                                            const Identifier &identifier) {
     treeValueChangedNonParam(tree, identifier);
