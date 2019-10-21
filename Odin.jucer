@@ -6,566 +6,574 @@
               pluginManufacturerCode="BDSP" pluginCode="ODIN" pluginChannelConfigs="{2,2},{2,12}">
   <MAINGROUP id="Tn76b3" name="Odin2">
     <GROUP id="{A5BAEEE4-3FCE-5605-7A4C-F29962266097}" name="Graphics">
-      <FILE id="Ge7MyD" name="analog_backdrop.png" compile="0" resource="1"
-            file="Gimp/applied/analog_backdrop.png"/>
-      <FILE id="ZRyfuZ" name="analog_cropped.png" compile="0" resource="1"
-            file="Gimp/cropped/analog_cropped.png"/>
-      <FILE id="hbLuNp" name="analog_knob_cropped.png" compile="0" resource="1"
-            file="Gimp/cropped/analog_knob_cropped.png"/>
-      <FILE id="Kx6w8v" name="black_knob_big.png" compile="0" resource="1"
-            file="Gimp/cropped/knobs/black4/black_knob_big.png"/>
-      <FILE id="Q2Tvlb" name="black_knob_mid.png" compile="0" resource="1"
-            file="Gimp/cropped/knobs/black3/black_knob_mid.png"/>
-      <FILE id="eilqvc" name="black_knob_small.png" compile="0" resource="1"
-            file="Gimp/cropped/knobs/black2/black_knob_small.png"/>
-      <FILE id="XHYGKb" name="black_knob_very_small.png" compile="0" resource="1"
-            file="Gimp/cropped/knobs/black1/black_knob_very_small.png"/>
-      <FILE id="AXng9L" name="BP12_backdrop.png" compile="0" resource="1"
-            file="Gimp/applied/BP12_backdrop.png"/>
-      <FILE id="Em5RRA" name="BP12_cropped.png" compile="0" resource="1"
-            file="Gimp/cropped/BP12_cropped.png"/>
-      <FILE id="AgZ6Mp" name="BP12_knobs_cropped.png" compile="0" resource="1"
-            file="Gimp/cropped/BP12_knobs_cropped.png"/>
-      <FILE id="fzHIXf" name="BP24_backdrop.png" compile="0" resource="1"
-            file="Gimp/applied/BP24_backdrop.png"/>
-      <FILE id="hNaq1P" name="BP24_cropped.png" compile="0" resource="1"
-            file="Gimp/cropped/BP24_cropped.png"/>
-      <FILE id="YZiVnD" name="BP24_knobs_cropped.png" compile="0" resource="1"
-            file="Gimp/cropped/BP24_knobs_cropped.png"/>
-      <FILE id="nmTFLD" name="button1_1.png" compile="0" resource="1" file="Gimp/cropped/buttons/button1_1.png"/>
-      <FILE id="WFIg6z" name="button1_2.png" compile="0" resource="1" file="Gimp/cropped/buttons/button1_2.png"/>
-      <FILE id="rlyR5Q" name="button1_3.png" compile="0" resource="1" file="Gimp/cropped/buttons/button1_3.png"/>
-      <FILE id="fIZh3u" name="button1_4.png" compile="0" resource="1" file="Gimp/cropped/buttons/button1_4.png"/>
-      <FILE id="lJ05Vd" name="button1filmstrip.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/button1filmstrip.png"/>
-      <FILE id="EtfpVn" name="button2_1.png" compile="0" resource="1" file="Gimp/cropped/buttons/button2_1.png"/>
-      <FILE id="f7FZGf" name="button2_2.png" compile="0" resource="1" file="Gimp/cropped/buttons/button2_2.png"/>
-      <FILE id="VMM2Ag" name="button2_3.png" compile="0" resource="1" file="Gimp/cropped/buttons/button2_3.png"/>
-      <FILE id="B8QGQs" name="button2_4.png" compile="0" resource="1" file="Gimp/cropped/buttons/button2_4.png"/>
-      <FILE id="sDIq1N" name="button2filmstrip.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/button2filmstrip.png"/>
-      <FILE id="hYZgQv" name="button3_1.png" compile="0" resource="1" file="Gimp/cropped/buttons/button3_1.png"/>
-      <FILE id="xuGteN" name="button3_2.png" compile="0" resource="1" file="Gimp/cropped/buttons/button3_2.png"/>
-      <FILE id="GL2Mzh" name="button3_3.png" compile="0" resource="1" file="Gimp/cropped/buttons/button3_3.png"/>
-      <FILE id="PUuqph" name="button3_4.png" compile="0" resource="1" file="Gimp/cropped/buttons/button3_4.png"/>
-      <FILE id="bo6KF5" name="button3filmstrip.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/button3filmstrip.png"/>
-      <FILE id="wmZcst" name="buttonapply_1.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonapply_1.png"/>
-      <FILE id="YyOlJ9" name="buttonapply_2.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonapply_2.png"/>
-      <FILE id="zATDEW" name="buttonapply_3.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonapply_3.png"/>
-      <FILE id="kVL5fQ" name="buttonapply_4.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonapply_4.png"/>
-      <FILE id="MtFnbO" name="buttonapplyfilmstrip.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonapplyfilmstrip.png"/>
-      <FILE id="nv2yrJ" name="buttonarpeggiator_1.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonarpeggiator_1.png"/>
-      <FILE id="pXSzeD" name="buttonarpeggiator_2.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonarpeggiator_2.png"/>
-      <FILE id="OGWqPg" name="buttonarpeggiator_3.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonarpeggiator_3.png"/>
-      <FILE id="OQymqR" name="buttonarpeggiator_4.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonarpeggiator_4.png"/>
-      <FILE id="bauPrE" name="buttonarpeggiatorfilmstrip.png" compile="0"
-            resource="1" file="Gimp/cropped/buttons/buttonarpeggiatorfilmstrip.png"/>
-      <FILE id="saNlQ2" name="buttonchorus_1.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonchorus_1.png"/>
-      <FILE id="kVlr1O" name="buttonchorus_2.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonchorus_2.png"/>
-      <FILE id="dpMnEF" name="buttonchorus_3.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonchorus_3.png"/>
-      <FILE id="W9uLtN" name="buttonchorus_4.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonchorus_4.png"/>
-      <FILE id="Keh1rn" name="buttonchorusfilmstrip.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonchorusfilmstrip.png"/>
-      <FILE id="rTwzhj" name="buttonclear_1.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonclear_1.png"/>
-      <FILE id="aRpb3Y" name="buttonclear_2.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonclear_2.png"/>
-      <FILE id="wVcAKi" name="buttonclearlast_1.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonclearlast_1.png"/>
-      <FILE id="tFIXmc" name="buttonclearlast_2.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonclearlast_2.png"/>
-      <FILE id="bfkRfG" name="buttondelay_1.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttondelay_1.png"/>
-      <FILE id="x1wtZn" name="buttondelay_2.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttondelay_2.png"/>
-      <FILE id="z1quwE" name="buttondelay_3.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttondelay_3.png"/>
-      <FILE id="Ip9yvt" name="buttondelay_4.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttondelay_4.png"/>
-      <FILE id="SWlAhq" name="buttondelayfilmstrip.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttondelayfilmstrip.png"/>
-      <FILE id="ulDkar" name="buttondistortion_1.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttondistortion_1.png"/>
-      <FILE id="WYr80K" name="buttondistortion_2.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttondistortion_2.png"/>
-      <FILE id="MpBdKx" name="buttondistortion_3.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttondistortion_3.png"/>
-      <FILE id="dRoxhb" name="buttondistortion_4.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttondistortion_4.png"/>
-      <FILE id="zpFU6x" name="buttondistortionfilmstrip.png" compile="0"
-            resource="1" file="Gimp/cropped/buttons/buttondistortionfilmstrip.png"/>
-      <FILE id="zhHl37" name="buttondown_1.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttondown_1.png"/>
-      <FILE id="qAXBbD" name="buttondown_2.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttondown_2.png"/>
-      <FILE id="uJTRSh" name="buttondropdown_1.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttondropdown_1.png"/>
-      <FILE id="bCQw7l" name="buttondropdown_2.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttondropdown_2.png"/>
-      <FILE id="NvBUEN" name="buttondropdownfilmstrip.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttondropdownfilmstrip.png"/>
-      <FILE id="BJOot5" name="buttonenv13_1.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonenv13_1.png"/>
-      <FILE id="P1Of7G" name="buttonenv13_2.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonenv13_2.png"/>
-      <FILE id="bJD09O" name="buttonenv13_3.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonenv13_3.png"/>
-      <FILE id="OYYv8K" name="buttonenv13_4.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonenv13_4.png"/>
-      <FILE id="KySHSm" name="buttonenv13filmstrip.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonenv13filmstrip.png"/>
-      <FILE id="InMLJt" name="buttonenv24_1.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonenv24_1.png"/>
-      <FILE id="REwLBH" name="buttonenv24_2.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonenv24_2.png"/>
-      <FILE id="NVq05i" name="buttonenv24_3.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonenv24_3.png"/>
-      <FILE id="YsWh5R" name="buttonenv24_4.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonenv24_4.png"/>
-      <FILE id="eSulDm" name="buttonenv24filmstrip.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonenv24filmstrip.png"/>
-      <FILE id="wLwSie" name="buttonexplin_1.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonexplin_1.png"/>
-      <FILE id="PNy03Z" name="buttonexplin_2.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonexplin_2.png"/>
-      <FILE id="VB9oT5" name="buttonexplin_3.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonexplin_3.png"/>
-      <FILE id="zUa7ou" name="buttonexplin_4.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonexplin_4.png"/>
-      <FILE id="RlEJRc" name="buttonexplinfilmstrip.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonexplinfilmstrip.png"/>
-      <FILE id="MTdHwB" name="buttonf1_1.png" compile="0" resource="1" file="Gimp/cropped/buttons/buttonf1_1.png"/>
-      <FILE id="p3qTKr" name="buttonf1_2.png" compile="0" resource="1" file="Gimp/cropped/buttons/buttonf1_2.png"/>
-      <FILE id="AvQOCC" name="buttonf1_3.png" compile="0" resource="1" file="Gimp/cropped/buttons/buttonf1_3.png"/>
-      <FILE id="qxo4zo" name="buttonf1_4.png" compile="0" resource="1" file="Gimp/cropped/buttons/buttonf1_4.png"/>
-      <FILE id="O61kKz" name="buttonf1filmstrip.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonf1filmstrip.png"/>
-      <FILE id="KHgX6P" name="buttonflanger_1.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonflanger_1.png"/>
-      <FILE id="N2cEQw" name="buttonflanger_2.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonflanger_2.png"/>
-      <FILE id="hvREbZ" name="buttonflanger_3.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonflanger_3.png"/>
-      <FILE id="EWTdZl" name="buttonflanger_4.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonflanger_4.png"/>
-      <FILE id="mL4mL8" name="buttonflangerfilmstrip.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonflangerfilmstrip.png"/>
-      <FILE id="CGyk9Y" name="buttonfxon_1.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonfxon_1.png"/>
-      <FILE id="EK9LB2" name="buttonfxon_2.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonfxon_2.png"/>
-      <FILE id="u4l2u2" name="buttonfxon_3.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonfxon_3.png"/>
-      <FILE id="pL78Nq" name="buttonfxon_4.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonfxon_4.png"/>
-      <FILE id="cqqyk7" name="buttonfxonfilmstrip.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonfxonfilmstrip.png"/>
-      <FILE id="bT4xfi" name="buttonleft_1.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonleft_1.png"/>
-      <FILE id="vjTpI5" name="buttonleft_2.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonleft_2.png"/>
-      <FILE id="hgpBF4" name="buttonleft_3.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonleft_3.png"/>
-      <FILE id="B1jS43" name="buttonleft_4.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonleft_4.png"/>
-      <FILE id="bropss" name="buttonleftfilmstrip.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonleftfilmstrip.png"/>
-      <FILE id="qlPlTV" name="buttonlegato_1.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonlegato_1.png"/>
-      <FILE id="MH6pk5" name="buttonlegato_2.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonlegato_2.png"/>
-      <FILE id="COWlD3" name="buttonlegato_3.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonlegato_3.png"/>
-      <FILE id="jUkCme" name="buttonlegato_4.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonlegato_4.png"/>
-      <FILE id="qVbOJn" name="buttonlegatofilmstrip.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonlegatofilmstrip.png"/>
-      <FILE id="dR3UaX" name="buttonlfo13_1.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonlfo13_1.png"/>
-      <FILE id="XFMNXl" name="buttonlfo13_2.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonlfo13_2.png"/>
-      <FILE id="h8y2UU" name="buttonlfo13_3.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonlfo13_3.png"/>
-      <FILE id="Uwl07y" name="buttonlfo13_4.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonlfo13_4.png"/>
-      <FILE id="CEvhnW" name="buttonlfo13filmstrip.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonlfo13filmstrip.png"/>
-      <FILE id="fFMdvr" name="buttonlfo24_1.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonlfo24_1.png"/>
-      <FILE id="LrqknE" name="buttonlfo24_2.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonlfo24_2.png"/>
-      <FILE id="pFRbvi" name="buttonlfo24_3.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonlfo24_3.png"/>
-      <FILE id="KlK8Eo" name="buttonlfo24_4.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonlfo24_4.png"/>
-      <FILE id="FE0odD" name="buttonlfo24filmstrip.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonlfo24filmstrip.png"/>
-      <FILE id="m27TY1" name="buttonload_1.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonload_1.png"/>
-      <FILE id="b8ufbA" name="buttonload_2.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonload_2.png"/>
-      <FILE id="vQinmj" name="buttonloadfilmstrip.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonloadfilmstrip.png"/>
-      <FILE id="U5wBJP" name="buttonloop_1.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonloop_1.png"/>
-      <FILE id="WNp1jE" name="buttonloop_2.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonloop_2.png"/>
-      <FILE id="GvyBYQ" name="buttonloop_3.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonloop_3.png"/>
-      <FILE id="dFbyhG" name="buttonloop_4.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonloop_4.png"/>
-      <FILE id="VxKPKi" name="buttonloopfilmstrip.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonloopfilmstrip.png"/>
-      <FILE id="GUf35x" name="buttonnoise_1.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonnoise_1.png"/>
-      <FILE id="G9XLMp" name="buttonnoise_2.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonnoise_2.png"/>
-      <FILE id="Jhf5Pl" name="buttonnoise_3.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonnoise_3.png"/>
-      <FILE id="XTUEUc" name="buttonnoise_4.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonnoise_4.png"/>
-      <FILE id="yW18Qi" name="buttonnoisefilmstrip.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonnoisefilmstrip.png"/>
-      <FILE id="krzCGM" name="buttonphaser_1.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonphaser_1.png"/>
-      <FILE id="kseZEc" name="buttonphaser_2.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonphaser_2.png"/>
-      <FILE id="oZcWgp" name="buttonphaser_3.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonphaser_3.png"/>
-      <FILE id="UtFzl6" name="buttonphaser_4.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonphaser_4.png"/>
-      <FILE id="JMTD6W" name="buttonphaserfilmstrip.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonphaserfilmstrip.png"/>
-      <FILE id="grlqfk" name="buttonpingpong_1.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonpingpong_1.png"/>
-      <FILE id="k828Vw" name="buttonpingpong_2.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonpingpong_2.png"/>
-      <FILE id="WUYe3h" name="buttonpingpong_3.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonpingpong_3.png"/>
-      <FILE id="oK3vQe" name="buttonpingpong_4.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonpingpong_4.png"/>
-      <FILE id="x5raFR" name="buttonpleb_1.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonpleb_1.png"/>
-      <FILE id="aPKxBw" name="buttonpleb_2.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonpleb_2.png"/>
-      <FILE id="kuZdFt" name="buttonpleb_3.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonpleb_3.png"/>
-      <FILE id="lcVw6E" name="buttonpleb_4.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonpleb_4.png"/>
-      <FILE id="WwdyP9" name="buttonplusminus_1.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonplusminus_1.png"/>
-      <FILE id="b8O8cX" name="buttonplusminus_2.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonplusminus_2.png"/>
-      <FILE id="gE5fnW" name="buttonplusminus_3.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonplusminus_3.png"/>
-      <FILE id="Ey7Mix" name="buttonplusminus_4.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonplusminus_4.png"/>
-      <FILE id="vyTxLE" name="buttonplusminusfilmstrip.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonplusminusfilmstrip.png"/>
-      <FILE id="YtSU73" name="buttonrandom_1.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonrandom_1.png"/>
-      <FILE id="hPW9Bm" name="buttonrandom_2.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonrandom_2.png"/>
-      <FILE id="WgIcCR" name="buttonrandomfilmstrip.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonrandomfilmstrip.png"/>
-      <FILE id="nZnnfl" name="buttonreset_global_1.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonreset_global_1.png"/>
-      <FILE id="aod1i4" name="buttonreset_global_2.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonreset_global_2.png"/>
-      <FILE id="ZWTBN8" name="buttonreset_globalfilmstrip.png" compile="0"
-            resource="1" file="Gimp/cropped/buttons/buttonreset_globalfilmstrip.png"/>
-      <FILE id="mFU3Tu" name="buttonreset_lfo_1.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonreset_lfo_1.png"/>
-      <FILE id="yob1R8" name="buttonreset_lfo_2.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonreset_lfo_2.png"/>
-      <FILE id="AIVhmw" name="buttonreset_lfo_3.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonreset_lfo_3.png"/>
-      <FILE id="mhVZqo" name="buttonreset_lfo_4.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonreset_lfo_4.png"/>
-      <FILE id="YyMfaD" name="buttonreset_lfofilmstrip.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonreset_lfofilmstrip.png"/>
-      <FILE id="qDsTfp" name="buttonreset_osc_1.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonreset_osc_1.png"/>
-      <FILE id="W4GGYn" name="buttonreset_osc_2.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonreset_osc_2.png"/>
-      <FILE id="jICC9C" name="buttonreset_osc_3.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonreset_osc_3.png"/>
-      <FILE id="oteql6" name="buttonreset_osc_4.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonreset_osc_4.png"/>
-      <FILE id="C0gbsG" name="buttonreset_oscfilmstrip.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonreset_oscfilmstrip.png"/>
-      <FILE id="RfQXe8" name="buttonright_1.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonright_1.png"/>
-      <FILE id="HuizXi" name="buttonright_2.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonright_2.png"/>
-      <FILE id="Ue4CVW" name="buttonright_3.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonright_3.png"/>
-      <FILE id="etx0Gs" name="buttonright_4.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonright_4.png"/>
-      <FILE id="arH3NT" name="buttonrightfilmstrip.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonrightfilmstrip.png"/>
-      <FILE id="gOwNKh" name="buttonsave_1.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonsave_1.png"/>
-      <FILE id="Kkfv1q" name="buttonsave_2.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonsave_2.png"/>
-      <FILE id="Yz1d9W" name="buttonsavefilmstrip.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonsavefilmstrip.png"/>
-      <FILE id="Xh0cvQ" name="buttonstep_1.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonstep_1.png"/>
-      <FILE id="y2GFCp" name="buttonstep_2.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonstep_2.png"/>
-      <FILE id="zs0vkK" name="buttonstep_3.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonstep_3.png"/>
-      <FILE id="A7Sbns" name="buttonstep_4.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonstep_4.png"/>
-      <FILE id="muAFkW" name="buttonstepfilmstrip.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonstepfilmstrip.png"/>
-      <FILE id="kDCqRy" name="buttonsync_1.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonsync_1.png"/>
-      <FILE id="z1UtxI" name="buttonsync_2.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonsync_2.png"/>
-      <FILE id="u1VGKT" name="buttonsync_3.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonsync_3.png"/>
-      <FILE id="ovOFmO" name="buttonsync_4.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonsync_4.png"/>
-      <FILE id="Ccg2CV" name="buttonsync_osc_1.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonsync_osc_1.png"/>
-      <FILE id="TRXLwf" name="buttonsync_osc_2.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonsync_osc_2.png"/>
-      <FILE id="bkFgTP" name="buttonsync_osc_3.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonsync_osc_3.png"/>
-      <FILE id="mW2W0I" name="buttonsync_osc_4.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonsync_osc_4.png"/>
-      <FILE id="k1txfX" name="buttonsyncfilmstrip.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/buttonsyncfilmstrip.png"/>
-      <FILE id="BJhst5" name="buttonup_1.png" compile="0" resource="1" file="Gimp/cropped/buttons/buttonup_1.png"/>
-      <FILE id="Y2GxgQ" name="buttonup_2.png" compile="0" resource="1" file="Gimp/cropped/buttons/buttonup_2.png"/>
-      <FILE id="cGxYoQ" name="chipdraw_backdrop.png" compile="0" resource="1"
-            file="Gimp/applied/chipdraw_backdrop.png"/>
-      <FILE id="nBeobP" name="chipdraw_cropped.png" compile="0" resource="1"
-            file="Gimp/cropped/chipdraw_cropped.png"/>
-      <FILE id="T8fPdD" name="chipdraw_knob_cropped.png" compile="0" resource="1"
-            file="Gimp/cropped/chipdraw_knob_cropped.png"/>
-      <FILE id="ajBwg8" name="chiptune_backdrop.png" compile="0" resource="1"
-            file="Gimp/applied/chiptune_backdrop.png"/>
-      <FILE id="VeuO7s" name="chiptune_cropped.png" compile="0" resource="1"
-            file="Gimp/cropped/chiptune_cropped.png"/>
-      <FILE id="BJBBdW" name="chiptune_knob_cropped.png" compile="0" resource="1"
-            file="Gimp/cropped/chiptune_knob_cropped.png"/>
-      <FILE id="bpcN1J" name="chorusnosync.png" compile="0" resource="1"
-            file="Gimp/cropped/chorusnosync.png"/>
-      <FILE id="jn79Ng" name="chorussync.png" compile="0" resource="1" file="Gimp/cropped/chorussync.png"/>
-      <FILE id="oL8iSK" name="comb_backdrop.png" compile="0" resource="1"
-            file="Gimp/applied/comb_backdrop.png"/>
-      <FILE id="K7qiuC" name="comb_cropped.png" compile="0" resource="1"
-            file="Gimp/cropped/comb_cropped.png"/>
-      <FILE id="J3JQ0J" name="comb_knobs_cropped.png" compile="0" resource="1"
-            file="Gimp/cropped/comb_knobs_cropped.png"/>
-      <FILE id="P5gsU2" name="delaynosync.png" compile="0" resource="1" file="Gimp/cropped/delaynosync.png"/>
-      <FILE id="Y6UcJq" name="delaysync.png" compile="0" resource="1" file="Gimp/cropped/delaysync.png"/>
-      <FILE id="cAmlKZ" name="diode_backdrop.png" compile="0" resource="1"
-            file="Gimp/applied/diode_backdrop.png"/>
-      <FILE id="pSWt1M" name="diode_cropped.png" compile="0" resource="1"
-            file="Gimp/cropped/diode_cropped.png"/>
-      <FILE id="NgKFME" name="diode_knobs_cropped.png" compile="0" resource="1"
-            file="Gimp/cropped/diode_knobs_cropped.png"/>
-      <FILE id="NzmqWX" name="drawpanel.png" compile="0" resource="1" file="Gimp/cropped/drawpanel.png"/>
-      <FILE id="gb7EgU" name="filter1_bypass.png" compile="0" resource="1"
-            file="Gimp/applied/filter1_bypass.png"/>
-      <FILE id="bQ9iQ8" name="filter2_bypass.png" compile="0" resource="1"
-            file="Gimp/applied/filter2_bypass.png"/>
-      <FILE id="wnGJGd" name="filter3_bypass.png" compile="0" resource="1"
-            file="Gimp/applied/filter3_bypass.png"/>
-      <FILE id="ewiote" name="flangernosync.png" compile="0" resource="1"
-            file="Gimp/cropped/flangernosync.png"/>
-      <FILE id="t00lo4" name="flangersync.png" compile="0" resource="1" file="Gimp/cropped/flangersync.png"/>
-      <FILE id="c36QRO" name="fm_backdrop.png" compile="0" resource="1" file="Gimp/applied/fm_backdrop.png"/>
-      <FILE id="U5AMPr" name="fm_cropped.png" compile="0" resource="1" file="Gimp/cropped/fm_cropped.png"/>
-      <FILE id="FaaIu7" name="fm_knob_cropped.png" compile="0" resource="1"
-            file="Gimp/cropped/fm_knob_cropped.png"/>
-      <FILE id="jtDQc5" name="formant_backdrop.png" compile="0" resource="1"
-            file="Gimp/applied/formant_backdrop.png"/>
-      <FILE id="bHjxb8" name="formant_cropped.png" compile="0" resource="1"
-            file="Gimp/cropped/formant_cropped.png"/>
-      <FILE id="hvqGr1" name="formant_knobs_cropped.png" compile="0" resource="1"
-            file="Gimp/cropped/formant_knobs_cropped.png"/>
-      <FILE id="HyUC29" name="glaspanel_big.png" compile="0" resource="1"
-            file="Gimp/cropped/glaspanel_big.png"/>
-      <FILE id="WJ4cGi" name="glaspanel_mid.png" compile="0" resource="1"
-            file="Gimp/cropped/glaspanel_mid.png"/>
-      <FILE id="HWBbZ8" name="glaspanel_midbig.png" compile="0" resource="1"
-            file="Gimp/cropped/glaspanel_midbig.png"/>
-      <FILE id="t0XTr7" name="glaspanel_small.png" compile="0" resource="1"
-            file="Gimp/cropped/glaspanel_small.png"/>
-      <FILE id="a10fpi" name="HP12_backdrop.png" compile="0" resource="1"
-            file="Gimp/applied/HP12_backdrop.png"/>
-      <FILE id="iGZR9s" name="HP12_cropped.png" compile="0" resource="1"
-            file="Gimp/cropped/HP12_cropped.png"/>
-      <FILE id="w0VMMZ" name="HP12_knobs_cropped.png" compile="0" resource="1"
-            file="Gimp/cropped/HP12_knobs_cropped.png"/>
-      <FILE id="WQXbRX" name="HP24_backdrop.png" compile="0" resource="1"
-            file="Gimp/applied/HP24_backdrop.png"/>
-      <FILE id="NNnmS0" name="HP24_cropped.png" compile="0" resource="1"
-            file="Gimp/cropped/HP24_cropped.png"/>
-      <FILE id="ayVfSn" name="HP24_knobs_cropped.png" compile="0" resource="1"
-            file="Gimp/cropped/HP24_knobs_cropped.png"/>
-      <FILE id="eWthCa" name="korg_backdrop.png" compile="0" resource="1"
-            file="Gimp/applied/korg_backdrop.png"/>
-      <FILE id="fr697h" name="korg_cropped.png" compile="0" resource="1"
-            file="Gimp/cropped/korg_cropped.png"/>
-      <FILE id="z6sjP1" name="korg_knobs_cropped.png" compile="0" resource="1"
-            file="Gimp/cropped/korg_knobs_cropped.png"/>
-      <FILE id="GRbOiu" name="LED_1.png" compile="0" resource="1" file="Gimp/cropped/buttons/LED_1.png"/>
-      <FILE id="iJbFf4" name="LED_2.png" compile="0" resource="1" file="Gimp/cropped/buttons/LED_2.png"/>
-      <FILE id="ZEJfMJ" name="lfo13_sync_background.png" compile="0" resource="1"
-            file="Gimp/cropped/lfo13_sync_background.png"/>
-      <FILE id="uBRGCP" name="lfo24_sync_background.png" compile="0" resource="1"
-            file="Gimp/cropped/lfo24_sync_background.png"/>
-      <FILE id="WA7Xc9" name="LP12_backdrop.png" compile="0" resource="1"
-            file="Gimp/applied/LP12_backdrop.png"/>
-      <FILE id="hHnE1y" name="LP12_cropped.png" compile="0" resource="1"
-            file="Gimp/cropped/LP12_cropped.png"/>
-      <FILE id="EM9xrJ" name="LP12_knobs_cropped.png" compile="0" resource="1"
-            file="Gimp/cropped/LP12_knobs_cropped.png"/>
-      <FILE id="r5vli5" name="LP24_backdrop.png" compile="0" resource="1"
-            file="Gimp/applied/LP24_backdrop.png"/>
-      <FILE id="sik9Xc" name="LP24_cropped.png" compile="0" resource="1"
-            file="Gimp/cropped/LP24_cropped.png"/>
-      <FILE id="hj7avC" name="LP24_knobs_cropped.png" compile="0" resource="1"
-            file="Gimp/cropped/LP24_knobs_cropped.png"/>
-      <FILE id="Ywz3Sv" name="metal_knob_big.png" compile="0" resource="1"
-            file="Gimp/cropped/knobs/metal3/metal_knob_big.png"/>
-      <FILE id="zp6MjD" name="metal_knob_mid.png" compile="0" resource="1"
-            file="Gimp/cropped/knobs/metal2/metal_knob_mid.png"/>
-      <FILE id="npm65N" name="metal_knob_small.png" compile="0" resource="1"
-            file="Gimp/cropped/knobs/metal1/metal_knob_small.png"/>
-      <FILE id="qtzzFm" name="modpanelbig_left_down.png" compile="0" resource="1"
-            file="Gimp/cropped/modpanelbig_left_down.png"/>
-      <FILE id="fuhzCN" name="modpanelbig_left_mid.png" compile="0" resource="1"
-            file="Gimp/cropped/modpanelbig_left_mid.png"/>
-      <FILE id="LBWaUD" name="modpanelbig_left_up.png" compile="0" resource="1"
-            file="Gimp/cropped/modpanelbig_left_up.png"/>
-      <FILE id="RvSaAe" name="modpanelbig_mid_down.png" compile="0" resource="1"
-            file="Gimp/cropped/modpanelbig_mid_down.png"/>
-      <FILE id="SpAR3X" name="modpanelbig_mid_mid.png" compile="0" resource="1"
-            file="Gimp/cropped/modpanelbig_mid_mid.png"/>
-      <FILE id="yOoh3N" name="modpanelbig_mid_up.png" compile="0" resource="1"
-            file="Gimp/cropped/modpanelbig_mid_up.png"/>
-      <FILE id="seYwD8" name="modpanelbig_right_down.png" compile="0" resource="1"
-            file="Gimp/cropped/modpanelbig_right_down.png"/>
-      <FILE id="Hb2pMR" name="modpanelbig_right_mid.png" compile="0" resource="1"
-            file="Gimp/cropped/modpanelbig_right_mid.png"/>
-      <FILE id="pRQzkU" name="modpanelbig_right_up.png" compile="0" resource="1"
-            file="Gimp/cropped/modpanelbig_right_up.png"/>
-      <FILE id="WKTk1T" name="modpanelsmall_down.png" compile="0" resource="1"
-            file="Gimp/cropped/modpanelsmall_down.png"/>
-      <FILE id="RWiwwe" name="modpanelsmall_mid.png" compile="0" resource="1"
-            file="Gimp/cropped/modpanelsmall_mid.png"/>
-      <FILE id="QWXeB1" name="modpanelsmall_up.png" compile="0" resource="1"
-            file="Gimp/cropped/modpanelsmall_up.png"/>
-      <FILE id="ZEDzUj" name="modwheel.png" compile="0" resource="1" file="Gimp/cropped/knobs/modwheel/modwheel.png"/>
-      <FILE id="KFJtqz" name="multi_backdrop.png" compile="0" resource="1"
-            file="Gimp/applied/multi_backdrop.png"/>
-      <FILE id="JkCKd6" name="multi_cropped.png" compile="0" resource="1"
-            file="Gimp/cropped/multi_cropped.png"/>
-      <FILE id="g04LWi" name="multi_knob_cropped.png" compile="0" resource="1"
-            file="Gimp/cropped/multi_knob_cropped.png"/>
-      <FILE id="a2RtIr" name="noise_backdrop.png" compile="0" resource="1"
-            file="Gimp/applied/noise_backdrop.png"/>
-      <FILE id="YJlRoX" name="noise_cropped.png" compile="0" resource="1"
-            file="Gimp/cropped/noise_cropped.png"/>
-      <FILE id="e5Czoy" name="noise_knob_cropped.png" compile="0" resource="1"
-            file="Gimp/cropped/noise_knob_cropped.png"/>
-      <FILE id="SM4gsl" name="odin_backdrop.png" compile="0" resource="1"
-            file="Gimp/applied/odin_backdrop.png"/>
-      <FILE id="BoIu3O" name="odin_backplate.png" compile="0" resource="1"
-            file="Gimp/odin_backplate.png"/>
-      <FILE id="oT00nH" name="osc1_bypass.png" compile="0" resource="1" file="Gimp/applied/osc1_bypass.png"/>
-      <FILE id="rD5zc6" name="osc2_bypass.png" compile="0" resource="1" file="Gimp/applied/osc2_bypass.png"/>
-      <FILE id="KxSSn1" name="osc3_bypass.png" compile="0" resource="1" file="Gimp/applied/osc3_bypass.png"/>
-      <FILE id="ZvZ83z" name="phasernosync.png" compile="0" resource="1"
-            file="Gimp/cropped/phasernosync.png"/>
-      <FILE id="JNVBl4" name="phasersync.png" compile="0" resource="1" file="Gimp/cropped/phasersync.png"/>
-      <FILE id="neWmVY" name="pm_backdrop.png" compile="0" resource="1" file="Gimp/applied/pm_backdrop.png"/>
-      <FILE id="WTMFtx" name="pyram3.png" compile="0" resource="1" file="Gimp/cropped/lfo/pyram3.png"/>
-      <FILE id="qWyFXo" name="pyram4.png" compile="0" resource="1" file="Gimp/cropped/lfo/pyram4.png"/>
-      <FILE id="UVT6rf" name="pyram6.png" compile="0" resource="1" file="Gimp/cropped/lfo/pyram6.png"/>
-      <FILE id="c8Yhus" name="pyram8.png" compile="0" resource="1" file="Gimp/cropped/lfo/pyram8.png"/>
-      <FILE id="dMJmtg" name="pyram12.png" compile="0" resource="1" file="Gimp/cropped/lfo/pyram12.png"/>
-      <FILE id="EynjA3" name="ringmod_backdrop.png" compile="0" resource="1"
-            file="Gimp/applied/ringmod_backdrop.png"/>
-      <FILE id="oBTTxl" name="round_knob.png" compile="0" resource="1" file="Gimp/cropped/knobs/round/round_knob.png"/>
-      <FILE id="XuqLC9" name="saw.png" compile="0" resource="1" file="Gimp/cropped/lfo/saw.png"/>
-      <FILE id="kT1Nzc" name="select_filmstrip.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/select_filmstrip.png"/>
-      <FILE id="qZuP1s" name="SEM12_backdrop.png" compile="0" resource="1"
-            file="Gimp/applied/SEM12_backdrop.png"/>
-      <FILE id="ajclsm" name="SEM12_cropped.png" compile="0" resource="1"
-            file="Gimp/cropped/SEM12_cropped.png"/>
-      <FILE id="ieZY7A" name="SEM12_knobs_cropped.png" compile="0" resource="1"
-            file="Gimp/cropped/SEM12_knobs_cropped.png"/>
-      <FILE id="Vd5Jug" name="SEM24_backdrop.png" compile="0" resource="1"
-            file="Gimp/applied/SEM24_backdrop.png"/>
-      <FILE id="fKnqKB" name="SEM24_cropped.png" compile="0" resource="1"
-            file="Gimp/cropped/SEM24_cropped.png"/>
-      <FILE id="FWVRQx" name="SEM24_knobs_cropped.png" compile="0" resource="1"
-            file="Gimp/cropped/SEM24_knobs_cropped.png"/>
-      <FILE id="eln7mW" name="SH.png" compile="0" resource="1" file="Gimp/cropped/lfo/SH.png"/>
-      <FILE id="MiUKG0" name="sine.png" compile="0" resource="1" file="Gimp/cropped/lfo/sine.png"/>
-      <FILE id="TBEQok" name="slider_handle.png" compile="0" resource="1"
-            file="Gimp/cropped/buttons/slider_handle.png"/>
-      <FILE id="TG6fHs" name="specdraw_backdrop.png" compile="0" resource="1"
-            file="Gimp/applied/specdraw_backdrop.png"/>
-      <FILE id="O9SUSc" name="specdraw_cropped.png" compile="0" resource="1"
-            file="Gimp/cropped/specdraw_cropped.png"/>
-      <FILE id="eJJ0bw" name="specdraw_knob_cropped.png" compile="0" resource="1"
-            file="Gimp/cropped/specdraw_knob_cropped.png"/>
-      <FILE id="wEdvtX" name="square.png" compile="0" resource="1" file="Gimp/cropped/lfo/square.png"/>
-      <FILE id="lNycP9" name="square12.png" compile="0" resource="1" file="Gimp/cropped/lfo/square12.png"/>
-      <FILE id="CMnkft" name="square25.png" compile="0" resource="1" file="Gimp/cropped/lfo/square25.png"/>
-      <FILE id="hy7muQ" name="square50.png" compile="0" resource="1" file="Gimp/cropped/lfo/square50.png"/>
-      <FILE id="QLCT0M" name="stair3.png" compile="0" resource="1" file="Gimp/cropped/lfo/stair3.png"/>
-      <FILE id="vbGfBs" name="stair4.png" compile="0" resource="1" file="Gimp/cropped/lfo/stair4.png"/>
-      <FILE id="ASkPhz" name="stair6.png" compile="0" resource="1" file="Gimp/cropped/lfo/stair6.png"/>
-      <FILE id="anDgDq" name="stair8.png" compile="0" resource="1" file="Gimp/cropped/lfo/stair8.png"/>
-      <FILE id="L59Mh6" name="stair12.png" compile="0" resource="1" file="Gimp/cropped/lfo/stair12.png"/>
-      <FILE id="T1Woac" name="triangle.png" compile="0" resource="1" file="Gimp/cropped/lfo/triangle.png"/>
-      <FILE id="PpHwjm" name="vector_backdrop.png" compile="0" resource="1"
-            file="Gimp/applied/vector_backdrop.png"/>
-      <FILE id="AbG2vc" name="vector_cropped.png" compile="0" resource="1"
-            file="Gimp/cropped/vector_cropped.png"/>
-      <FILE id="FVdk8t" name="vector_knob_cropped.png" compile="0" resource="1"
-            file="Gimp/cropped/vector_knob_cropped.png"/>
-      <FILE id="qlP1Ey" name="vectorpanel.png" compile="0" resource="1" file="Gimp/cropped/vectorpanel.png"/>
-      <FILE id="z4GnHp" name="wavedraw_backdrop.png" compile="0" resource="1"
-            file="Gimp/applied/wavedraw_backdrop.png"/>
-      <FILE id="RBWfCk" name="wavedraw_cropped.png" compile="0" resource="1"
-            file="Gimp/cropped/wavedraw_cropped.png"/>
-      <FILE id="VAy8is" name="wavedraw_knob_cropped.png" compile="0" resource="1"
-            file="Gimp/cropped/wavedraw_knob_cropped.png"/>
-      <FILE id="RQxduU" name="wavedraw1.png" compile="0" resource="1" file="Gimp/cropped/lfo/wavedraw1.png"/>
-      <FILE id="OcDsNH" name="wavedraw2.png" compile="0" resource="1" file="Gimp/cropped/lfo/wavedraw2.png"/>
-      <FILE id="Z4JBeF" name="wavedraw3.png" compile="0" resource="1" file="Gimp/cropped/lfo/wavedraw3.png"/>
-      <FILE id="lUQ22y" name="wavetable_backdrop.png" compile="0" resource="1"
-            file="Gimp/applied/wavetable_backdrop.png"/>
-      <FILE id="X9CfAf" name="wavetable_cropped.png" compile="0" resource="1"
-            file="Gimp/cropped/wavetable_cropped.png"/>
-      <FILE id="wlYA0j" name="wavetable_knob_cropped.png" compile="0" resource="1"
-            file="Gimp/cropped/wavetable_knob_cropped.png"/>
+      <FILE id="v9w1LN" name="analog_backdrop.png" compile="0" resource="1"
+            file="Graphics/applied/analog_backdrop.png"/>
+      <FILE id="eJR0jy" name="analog_cropped.png" compile="0" resource="1"
+            file="Graphics/cropped/analog_cropped.png"/>
+      <FILE id="UmfDCJ" name="analog_knob_cropped.png" compile="0" resource="1"
+            file="Graphics/cropped/analog_knob_cropped.png"/>
+      <FILE id="otbqLv" name="black_knob_big.png" compile="0" resource="1"
+            file="Graphics/cropped/knobs/black4/black_knob_big.png"/>
+      <FILE id="aCM8pT" name="black_knob_mid.png" compile="0" resource="1"
+            file="Graphics/cropped/knobs/black3/black_knob_mid.png"/>
+      <FILE id="au8kMp" name="black_knob_small.png" compile="0" resource="1"
+            file="Graphics/cropped/knobs/black2/black_knob_small.png"/>
+      <FILE id="WOVba9" name="black_knob_very_small.png" compile="0" resource="1"
+            file="Graphics/cropped/knobs/black1/black_knob_very_small.png"/>
+      <FILE id="D6jZku" name="BP12_backdrop.png" compile="0" resource="1"
+            file="Graphics/applied/BP12_backdrop.png"/>
+      <FILE id="eiJxM3" name="BP12_cropped.png" compile="0" resource="1"
+            file="Graphics/cropped/BP12_cropped.png"/>
+      <FILE id="zxe7B7" name="BP12_knobs_cropped.png" compile="0" resource="1"
+            file="Graphics/cropped/BP12_knobs_cropped.png"/>
+      <FILE id="uZc4qc" name="BP24_backdrop.png" compile="0" resource="1"
+            file="Graphics/applied/BP24_backdrop.png"/>
+      <FILE id="vrJeI1" name="BP24_cropped.png" compile="0" resource="1"
+            file="Graphics/cropped/BP24_cropped.png"/>
+      <FILE id="bV07JL" name="BP24_knobs_cropped.png" compile="0" resource="1"
+            file="Graphics/cropped/BP24_knobs_cropped.png"/>
+      <FILE id="nfO9Sm" name="button1_1.png" compile="0" resource="1" file="Graphics/cropped/buttons/button1_1.png"/>
+      <FILE id="hfNU9E" name="button1_2.png" compile="0" resource="1" file="Graphics/cropped/buttons/button1_2.png"/>
+      <FILE id="mVO3CT" name="button1_3.png" compile="0" resource="1" file="Graphics/cropped/buttons/button1_3.png"/>
+      <FILE id="UFaAbN" name="button1_4.png" compile="0" resource="1" file="Graphics/cropped/buttons/button1_4.png"/>
+      <FILE id="jvxRbd" name="button1filmstrip.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/button1filmstrip.png"/>
+      <FILE id="O3ZgOg" name="button2_1.png" compile="0" resource="1" file="Graphics/cropped/buttons/button2_1.png"/>
+      <FILE id="y7LRzz" name="button2_2.png" compile="0" resource="1" file="Graphics/cropped/buttons/button2_2.png"/>
+      <FILE id="TezEjn" name="button2_3.png" compile="0" resource="1" file="Graphics/cropped/buttons/button2_3.png"/>
+      <FILE id="Q6L89S" name="button2_4.png" compile="0" resource="1" file="Graphics/cropped/buttons/button2_4.png"/>
+      <FILE id="na674L" name="button2filmstrip.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/button2filmstrip.png"/>
+      <FILE id="JR5YTi" name="button3_1.png" compile="0" resource="1" file="Graphics/cropped/buttons/button3_1.png"/>
+      <FILE id="KRYVrB" name="button3_2.png" compile="0" resource="1" file="Graphics/cropped/buttons/button3_2.png"/>
+      <FILE id="kGmKPJ" name="button3_3.png" compile="0" resource="1" file="Graphics/cropped/buttons/button3_3.png"/>
+      <FILE id="sTW92p" name="button3_4.png" compile="0" resource="1" file="Graphics/cropped/buttons/button3_4.png"/>
+      <FILE id="Iwlw90" name="button3filmstrip.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/button3filmstrip.png"/>
+      <FILE id="mBAgR8" name="buttonapply_1.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonapply_1.png"/>
+      <FILE id="nPbr4G" name="buttonapply_2.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonapply_2.png"/>
+      <FILE id="XtMW7J" name="buttonapply_3.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonapply_3.png"/>
+      <FILE id="pbySnc" name="buttonapply_4.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonapply_4.png"/>
+      <FILE id="N6Y3D1" name="buttonapplyfilmstrip.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonapplyfilmstrip.png"/>
+      <FILE id="oPsQmi" name="buttonarpeggiator_1.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonarpeggiator_1.png"/>
+      <FILE id="zxfTLh" name="buttonarpeggiator_2.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonarpeggiator_2.png"/>
+      <FILE id="IVTukr" name="buttonarpeggiator_3.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonarpeggiator_3.png"/>
+      <FILE id="sq1Ccs" name="buttonarpeggiator_4.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonarpeggiator_4.png"/>
+      <FILE id="LwJxaB" name="buttonarpeggiatorfilmstrip.png" compile="0"
+            resource="1" file="Graphics/cropped/buttons/buttonarpeggiatorfilmstrip.png"/>
+      <FILE id="QQUkhl" name="buttonchorus_1.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonchorus_1.png"/>
+      <FILE id="uHiUHB" name="buttonchorus_2.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonchorus_2.png"/>
+      <FILE id="eMHSYc" name="buttonchorus_3.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonchorus_3.png"/>
+      <FILE id="CVJd0P" name="buttonchorus_4.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonchorus_4.png"/>
+      <FILE id="r5J4cw" name="buttonchorusfilmstrip.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonchorusfilmstrip.png"/>
+      <FILE id="tT6wXO" name="buttonclear_1.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonclear_1.png"/>
+      <FILE id="R7bZg3" name="buttonclear_2.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonclear_2.png"/>
+      <FILE id="kzoOEe" name="buttonclearlast_1.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonclearlast_1.png"/>
+      <FILE id="vQxYs5" name="buttonclearlast_2.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonclearlast_2.png"/>
+      <FILE id="hrLEmd" name="buttondelay_1.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttondelay_1.png"/>
+      <FILE id="w7fbIT" name="buttondelay_2.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttondelay_2.png"/>
+      <FILE id="YuyvPi" name="buttondelay_3.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttondelay_3.png"/>
+      <FILE id="nhVc5o" name="buttondelay_4.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttondelay_4.png"/>
+      <FILE id="Xd5zku" name="buttondelayfilmstrip.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttondelayfilmstrip.png"/>
+      <FILE id="v76U9V" name="buttondistortion_1.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttondistortion_1.png"/>
+      <FILE id="luejmb" name="buttondistortion_2.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttondistortion_2.png"/>
+      <FILE id="cFDXHx" name="buttondistortion_3.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttondistortion_3.png"/>
+      <FILE id="zVJOK1" name="buttondistortion_4.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttondistortion_4.png"/>
+      <FILE id="wzSvYC" name="buttondistortionfilmstrip.png" compile="0"
+            resource="1" file="Graphics/cropped/buttons/buttondistortionfilmstrip.png"/>
+      <FILE id="LeesXc" name="buttondown_1.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttondown_1.png"/>
+      <FILE id="eIKVQv" name="buttondown_2.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttondown_2.png"/>
+      <FILE id="hdEedu" name="buttondropdown_1.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttondropdown_1.png"/>
+      <FILE id="Kh2HQZ" name="buttondropdown_2.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttondropdown_2.png"/>
+      <FILE id="Z58mFh" name="buttondropdownfilmstrip.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttondropdownfilmstrip.png"/>
+      <FILE id="ZicvEv" name="buttonenv13_1.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonenv13_1.png"/>
+      <FILE id="cnVmPI" name="buttonenv13_2.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonenv13_2.png"/>
+      <FILE id="URAprj" name="buttonenv13_3.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonenv13_3.png"/>
+      <FILE id="FS9F3z" name="buttonenv13_4.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonenv13_4.png"/>
+      <FILE id="T9EPJd" name="buttonenv13filmstrip.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonenv13filmstrip.png"/>
+      <FILE id="ZbnFj3" name="buttonenv24_1.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonenv24_1.png"/>
+      <FILE id="pfHB9V" name="buttonenv24_2.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonenv24_2.png"/>
+      <FILE id="TbaIY9" name="buttonenv24_3.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonenv24_3.png"/>
+      <FILE id="bBFW8Z" name="buttonenv24_4.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonenv24_4.png"/>
+      <FILE id="eBHwmr" name="buttonenv24filmstrip.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonenv24filmstrip.png"/>
+      <FILE id="oFNcYF" name="buttonexplin_1.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonexplin_1.png"/>
+      <FILE id="mkIgtT" name="buttonexplin_2.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonexplin_2.png"/>
+      <FILE id="GrtY14" name="buttonexplin_3.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonexplin_3.png"/>
+      <FILE id="ZdggBD" name="buttonexplin_4.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonexplin_4.png"/>
+      <FILE id="UNlxxM" name="buttonexplinfilmstrip.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonexplinfilmstrip.png"/>
+      <FILE id="EmNb0A" name="buttonf1_1.png" compile="0" resource="1" file="Graphics/cropped/buttons/buttonf1_1.png"/>
+      <FILE id="cbLMVx" name="buttonf1_2.png" compile="0" resource="1" file="Graphics/cropped/buttons/buttonf1_2.png"/>
+      <FILE id="xmQD8P" name="buttonf1_3.png" compile="0" resource="1" file="Graphics/cropped/buttons/buttonf1_3.png"/>
+      <FILE id="aNzGwS" name="buttonf1_4.png" compile="0" resource="1" file="Graphics/cropped/buttons/buttonf1_4.png"/>
+      <FILE id="FLMWC1" name="buttonf1filmstrip.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonf1filmstrip.png"/>
+      <FILE id="Kpzsey" name="buttonflanger_1.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonflanger_1.png"/>
+      <FILE id="DNcPnr" name="buttonflanger_2.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonflanger_2.png"/>
+      <FILE id="BhbFOc" name="buttonflanger_3.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonflanger_3.png"/>
+      <FILE id="LCnVhe" name="buttonflanger_4.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonflanger_4.png"/>
+      <FILE id="RnyzLk" name="buttonflangerfilmstrip.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonflangerfilmstrip.png"/>
+      <FILE id="OHCHCb" name="buttonfxon_1.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonfxon_1.png"/>
+      <FILE id="kjRgly" name="buttonfxon_2.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonfxon_2.png"/>
+      <FILE id="cZLKFr" name="buttonfxon_3.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonfxon_3.png"/>
+      <FILE id="NvDSn3" name="buttonfxon_4.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonfxon_4.png"/>
+      <FILE id="j1tXka" name="buttonfxonfilmstrip.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonfxonfilmstrip.png"/>
+      <FILE id="j8N0tz" name="buttonleft_1.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonleft_1.png"/>
+      <FILE id="kvr2Wu" name="buttonleft_2.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonleft_2.png"/>
+      <FILE id="ZmgkZf" name="buttonleft_3.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonleft_3.png"/>
+      <FILE id="TbAfja" name="buttonleft_4.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonleft_4.png"/>
+      <FILE id="M4FTSA" name="buttonleftfilmstrip.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonleftfilmstrip.png"/>
+      <FILE id="aDpq3P" name="buttonlegato_1.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonlegato_1.png"/>
+      <FILE id="wKTvmv" name="buttonlegato_2.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonlegato_2.png"/>
+      <FILE id="XreUeN" name="buttonlegato_3.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonlegato_3.png"/>
+      <FILE id="jCLte0" name="buttonlegato_4.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonlegato_4.png"/>
+      <FILE id="ZMAhwa" name="buttonlegatofilmstrip.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonlegatofilmstrip.png"/>
+      <FILE id="p7eFAc" name="buttonlfo13_1.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonlfo13_1.png"/>
+      <FILE id="f9TDnZ" name="buttonlfo13_2.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonlfo13_2.png"/>
+      <FILE id="dz7lPw" name="buttonlfo13_3.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonlfo13_3.png"/>
+      <FILE id="hVMRSt" name="buttonlfo13_4.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonlfo13_4.png"/>
+      <FILE id="geBwnI" name="buttonlfo13filmstrip.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonlfo13filmstrip.png"/>
+      <FILE id="HSOg2C" name="buttonlfo24_1.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonlfo24_1.png"/>
+      <FILE id="LGgDMN" name="buttonlfo24_2.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonlfo24_2.png"/>
+      <FILE id="eWo8EP" name="buttonlfo24_3.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonlfo24_3.png"/>
+      <FILE id="rrIy5Y" name="buttonlfo24_4.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonlfo24_4.png"/>
+      <FILE id="XuJK1R" name="buttonlfo24filmstrip.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonlfo24filmstrip.png"/>
+      <FILE id="oPtp6I" name="buttonload_1.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonload_1.png"/>
+      <FILE id="Kz5t6k" name="buttonload_2.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonload_2.png"/>
+      <FILE id="pUZwlq" name="buttonloadfilmstrip.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonloadfilmstrip.png"/>
+      <FILE id="TjoJiP" name="buttonloop_1.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonloop_1.png"/>
+      <FILE id="RuAdpa" name="buttonloop_2.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonloop_2.png"/>
+      <FILE id="ppRkD1" name="buttonloop_3.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonloop_3.png"/>
+      <FILE id="KYFOVj" name="buttonloop_4.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonloop_4.png"/>
+      <FILE id="Lpbotq" name="buttonloopfilmstrip.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonloopfilmstrip.png"/>
+      <FILE id="MzO5RQ" name="buttonnoise_1.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonnoise_1.png"/>
+      <FILE id="h2GFqp" name="buttonnoise_2.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonnoise_2.png"/>
+      <FILE id="J78Mx2" name="buttonnoise_3.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonnoise_3.png"/>
+      <FILE id="RbM1Px" name="buttonnoise_4.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonnoise_4.png"/>
+      <FILE id="PA36oF" name="buttonnoisefilmstrip.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonnoisefilmstrip.png"/>
+      <FILE id="pd8RD0" name="buttonphaser_1.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonphaser_1.png"/>
+      <FILE id="SOkxK5" name="buttonphaser_2.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonphaser_2.png"/>
+      <FILE id="tNgx8m" name="buttonphaser_3.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonphaser_3.png"/>
+      <FILE id="a1rSvX" name="buttonphaser_4.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonphaser_4.png"/>
+      <FILE id="y71oLD" name="buttonphaserfilmstrip.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonphaserfilmstrip.png"/>
+      <FILE id="fnEkEB" name="buttonpingpong_1.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonpingpong_1.png"/>
+      <FILE id="HFLXCr" name="buttonpingpong_2.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonpingpong_2.png"/>
+      <FILE id="KYoc3N" name="buttonpingpong_3.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonpingpong_3.png"/>
+      <FILE id="ALvStP" name="buttonpingpong_4.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonpingpong_4.png"/>
+      <FILE id="rl4Vhf" name="buttonpingpongfilmstrip.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonpingpongfilmstrip.png"/>
+      <FILE id="CIEj9p" name="buttonpleb_1.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonpleb_1.png"/>
+      <FILE id="hZPo5x" name="buttonpleb_2.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonpleb_2.png"/>
+      <FILE id="z7FZmt" name="buttonpleb_3.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonpleb_3.png"/>
+      <FILE id="X3Ez49" name="buttonpleb_4.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonpleb_4.png"/>
+      <FILE id="a8eN4U" name="buttonplusminus_1.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonplusminus_1.png"/>
+      <FILE id="RMhagb" name="buttonplusminus_2.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonplusminus_2.png"/>
+      <FILE id="nvxjLB" name="buttonplusminus_3.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonplusminus_3.png"/>
+      <FILE id="S4P6Wy" name="buttonplusminus_4.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonplusminus_4.png"/>
+      <FILE id="YoPSiM" name="buttonplusminusfilmstrip.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonplusminusfilmstrip.png"/>
+      <FILE id="fIcNwU" name="buttonrandom_1.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonrandom_1.png"/>
+      <FILE id="hS7mUo" name="buttonrandom_2.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonrandom_2.png"/>
+      <FILE id="beTH1S" name="buttonrandomfilmstrip.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonrandomfilmstrip.png"/>
+      <FILE id="BLFK7Z" name="buttonreset_global_1.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonreset_global_1.png"/>
+      <FILE id="LaGC6u" name="buttonreset_global_2.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonreset_global_2.png"/>
+      <FILE id="WKrLaz" name="buttonreset_globalfilmstrip.png" compile="0"
+            resource="1" file="Graphics/cropped/buttons/buttonreset_globalfilmstrip.png"/>
+      <FILE id="VztLfV" name="buttonreset_lfo_1.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonreset_lfo_1.png"/>
+      <FILE id="TIqMTH" name="buttonreset_lfo_2.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonreset_lfo_2.png"/>
+      <FILE id="w03LIV" name="buttonreset_lfo_3.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonreset_lfo_3.png"/>
+      <FILE id="vvERwB" name="buttonreset_lfo_4.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonreset_lfo_4.png"/>
+      <FILE id="OeKLpH" name="buttonreset_lfofilmstrip.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonreset_lfofilmstrip.png"/>
+      <FILE id="kDeoue" name="buttonreset_osc_1.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonreset_osc_1.png"/>
+      <FILE id="Dpfxlg" name="buttonreset_osc_2.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonreset_osc_2.png"/>
+      <FILE id="dIYJkd" name="buttonreset_osc_3.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonreset_osc_3.png"/>
+      <FILE id="veTV6v" name="buttonreset_osc_4.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonreset_osc_4.png"/>
+      <FILE id="r4pDkK" name="buttonreset_oscfilmstrip.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonreset_oscfilmstrip.png"/>
+      <FILE id="NJvidF" name="buttonright_1.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonright_1.png"/>
+      <FILE id="VP1uGt" name="buttonright_2.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonright_2.png"/>
+      <FILE id="wjbG04" name="buttonright_3.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonright_3.png"/>
+      <FILE id="vNDEpN" name="buttonright_4.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonright_4.png"/>
+      <FILE id="kgJOY8" name="buttonrightfilmstrip.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonrightfilmstrip.png"/>
+      <FILE id="yMkePP" name="buttonsave_1.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonsave_1.png"/>
+      <FILE id="Arguce" name="buttonsave_2.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonsave_2.png"/>
+      <FILE id="Ty1FNN" name="buttonsavefilmstrip.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonsavefilmstrip.png"/>
+      <FILE id="fw6uNr" name="buttonstep_1.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonstep_1.png"/>
+      <FILE id="IDMltp" name="buttonstep_2.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonstep_2.png"/>
+      <FILE id="ANwx4d" name="buttonstep_3.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonstep_3.png"/>
+      <FILE id="UOROJ5" name="buttonstep_4.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonstep_4.png"/>
+      <FILE id="Fd6QjX" name="buttonstepfilmstrip.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonstepfilmstrip.png"/>
+      <FILE id="FVqNMS" name="buttonsync_1.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonsync_1.png"/>
+      <FILE id="yT5htb" name="buttonsync_2.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonsync_2.png"/>
+      <FILE id="S1tEt0" name="buttonsync_3.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonsync_3.png"/>
+      <FILE id="yk3OgE" name="buttonsync_4.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonsync_4.png"/>
+      <FILE id="KtJ4TJ" name="buttonsync_osc_1.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonsync_osc_1.png"/>
+      <FILE id="jbGuxt" name="buttonsync_osc_2.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonsync_osc_2.png"/>
+      <FILE id="uiDWXm" name="buttonsync_osc_3.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonsync_osc_3.png"/>
+      <FILE id="mhPp4l" name="buttonsync_osc_4.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonsync_osc_4.png"/>
+      <FILE id="inQDys" name="buttonsync_oscfilmstrip.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonsync_oscfilmstrip.png"/>
+      <FILE id="SqEicO" name="buttonsyncfilmstrip.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonsyncfilmstrip.png"/>
+      <FILE id="aYW38Y" name="buttonup_1.png" compile="0" resource="1" file="Graphics/cropped/buttons/buttonup_1.png"/>
+      <FILE id="A6ZiJ5" name="buttonup_2.png" compile="0" resource="1" file="Graphics/cropped/buttons/buttonup_2.png"/>
+      <FILE id="pqkOAs" name="chipdraw_backdrop.png" compile="0" resource="1"
+            file="Graphics/applied/chipdraw_backdrop.png"/>
+      <FILE id="l5JndU" name="chipdraw_cropped.png" compile="0" resource="1"
+            file="Graphics/cropped/chipdraw_cropped.png"/>
+      <FILE id="Ty8x0n" name="chipdraw_knob_cropped.png" compile="0" resource="1"
+            file="Graphics/cropped/chipdraw_knob_cropped.png"/>
+      <FILE id="XEXSW5" name="chiptune_backdrop.png" compile="0" resource="1"
+            file="Graphics/applied/chiptune_backdrop.png"/>
+      <FILE id="p9GrU4" name="chiptune_cropped.png" compile="0" resource="1"
+            file="Graphics/cropped/chiptune_cropped.png"/>
+      <FILE id="pNgpXI" name="chiptune_knob_cropped.png" compile="0" resource="1"
+            file="Graphics/cropped/chiptune_knob_cropped.png"/>
+      <FILE id="nx3ndp" name="chorusnosync.png" compile="0" resource="1"
+            file="Graphics/cropped/chorusnosync.png"/>
+      <FILE id="xVgWtv" name="chorussync.png" compile="0" resource="1" file="Graphics/cropped/chorussync.png"/>
+      <FILE id="Ga4Io9" name="comb_backdrop.png" compile="0" resource="1"
+            file="Graphics/applied/comb_backdrop.png"/>
+      <FILE id="bd9tFu" name="comb_cropped.png" compile="0" resource="1"
+            file="Graphics/cropped/comb_cropped.png"/>
+      <FILE id="FCxzxx" name="comb_knobs_cropped.png" compile="0" resource="1"
+            file="Graphics/cropped/comb_knobs_cropped.png"/>
+      <FILE id="iMAd6g" name="delaynosync.png" compile="0" resource="1" file="Graphics/cropped/delaynosync.png"/>
+      <FILE id="RvOwCH" name="delaysync.png" compile="0" resource="1" file="Graphics/cropped/delaysync.png"/>
+      <FILE id="fdkBpY" name="diode_backdrop.png" compile="0" resource="1"
+            file="Graphics/applied/diode_backdrop.png"/>
+      <FILE id="ZbxEPP" name="diode_cropped.png" compile="0" resource="1"
+            file="Graphics/cropped/diode_cropped.png"/>
+      <FILE id="LMxExi" name="diode_knobs_cropped.png" compile="0" resource="1"
+            file="Graphics/cropped/diode_knobs_cropped.png"/>
+      <FILE id="jQIeVv" name="drawpanel.png" compile="0" resource="1" file="Graphics/cropped/drawpanel.png"/>
+      <FILE id="WUM4cj" name="filter1_bypass.png" compile="0" resource="1"
+            file="Graphics/applied/filter1_bypass.png"/>
+      <FILE id="jeP8AT" name="filter2_bypass.png" compile="0" resource="1"
+            file="Graphics/applied/filter2_bypass.png"/>
+      <FILE id="DszXZe" name="filter3_bypass.png" compile="0" resource="1"
+            file="Graphics/applied/filter3_bypass.png"/>
+      <FILE id="KOm7a0" name="flangernosync.png" compile="0" resource="1"
+            file="Graphics/cropped/flangernosync.png"/>
+      <FILE id="tFhaiL" name="flangersync.png" compile="0" resource="1" file="Graphics/cropped/flangersync.png"/>
+      <FILE id="FtrdRc" name="fm_backdrop.png" compile="0" resource="1" file="Graphics/applied/fm_backdrop.png"/>
+      <FILE id="DF9y0k" name="fm_cropped.png" compile="0" resource="1" file="Graphics/cropped/fm_cropped.png"/>
+      <FILE id="Ewec4t" name="fm_knob_cropped.png" compile="0" resource="1"
+            file="Graphics/cropped/fm_knob_cropped.png"/>
+      <FILE id="KBJ5KS" name="formant_backdrop.png" compile="0" resource="1"
+            file="Graphics/applied/formant_backdrop.png"/>
+      <FILE id="prB5qV" name="formant_cropped.png" compile="0" resource="1"
+            file="Graphics/cropped/formant_cropped.png"/>
+      <FILE id="KoTFxZ" name="formant_knobs_cropped.png" compile="0" resource="1"
+            file="Graphics/cropped/formant_knobs_cropped.png"/>
+      <FILE id="S2nxUR" name="glaspanel_big.png" compile="0" resource="1"
+            file="Graphics/cropped/glaspanel_big.png"/>
+      <FILE id="kGoKr4" name="glaspanel_mid.png" compile="0" resource="1"
+            file="Graphics/cropped/glaspanel_mid.png"/>
+      <FILE id="tJ1ZZS" name="glaspanel_midbig.png" compile="0" resource="1"
+            file="Graphics/cropped/glaspanel_midbig.png"/>
+      <FILE id="pomy6t" name="glaspanel_small.png" compile="0" resource="1"
+            file="Graphics/cropped/glaspanel_small.png"/>
+      <FILE id="drVfDB" name="HP12_backdrop.png" compile="0" resource="1"
+            file="Graphics/applied/HP12_backdrop.png"/>
+      <FILE id="a5hROw" name="HP12_cropped.png" compile="0" resource="1"
+            file="Graphics/cropped/HP12_cropped.png"/>
+      <FILE id="Pzb7m3" name="HP12_knobs_cropped.png" compile="0" resource="1"
+            file="Graphics/cropped/HP12_knobs_cropped.png"/>
+      <FILE id="CSKl3z" name="HP24_backdrop.png" compile="0" resource="1"
+            file="Graphics/applied/HP24_backdrop.png"/>
+      <FILE id="l4fZxI" name="HP24_cropped.png" compile="0" resource="1"
+            file="Graphics/cropped/HP24_cropped.png"/>
+      <FILE id="gZogvG" name="HP24_knobs_cropped.png" compile="0" resource="1"
+            file="Graphics/cropped/HP24_knobs_cropped.png"/>
+      <FILE id="X1OKlx" name="korg_backdrop.png" compile="0" resource="1"
+            file="Graphics/applied/korg_backdrop.png"/>
+      <FILE id="NuuGWR" name="korg_cropped.png" compile="0" resource="1"
+            file="Graphics/cropped/korg_cropped.png"/>
+      <FILE id="bXAUcA" name="korg_knobs_cropped.png" compile="0" resource="1"
+            file="Graphics/cropped/korg_knobs_cropped.png"/>
+      <FILE id="VTFKQl" name="LED_1.png" compile="0" resource="1" file="Graphics/cropped/buttons/LED_1.png"/>
+      <FILE id="nzhyL8" name="LED_2.png" compile="0" resource="1" file="Graphics/cropped/buttons/LED_2.png"/>
+      <FILE id="bBG0Ae" name="lfo13_sync_background.png" compile="0" resource="1"
+            file="Graphics/cropped/lfo13_sync_background.png"/>
+      <FILE id="uPXOOC" name="lfo24_sync_background.png" compile="0" resource="1"
+            file="Graphics/cropped/lfo24_sync_background.png"/>
+      <FILE id="jo8ym7" name="LP12_backdrop.png" compile="0" resource="1"
+            file="Graphics/applied/LP12_backdrop.png"/>
+      <FILE id="uj2laJ" name="LP12_cropped.png" compile="0" resource="1"
+            file="Graphics/cropped/LP12_cropped.png"/>
+      <FILE id="WxI7jm" name="LP12_knobs_cropped.png" compile="0" resource="1"
+            file="Graphics/cropped/LP12_knobs_cropped.png"/>
+      <FILE id="OQO09K" name="LP24_backdrop.png" compile="0" resource="1"
+            file="Graphics/applied/LP24_backdrop.png"/>
+      <FILE id="Ac5Shl" name="LP24_cropped.png" compile="0" resource="1"
+            file="Graphics/cropped/LP24_cropped.png"/>
+      <FILE id="OgccpJ" name="LP24_knobs_cropped.png" compile="0" resource="1"
+            file="Graphics/cropped/LP24_knobs_cropped.png"/>
+      <FILE id="FOYuHS" name="metal_knob_big.png" compile="0" resource="1"
+            file="Graphics/cropped/knobs/metal3/metal_knob_big.png"/>
+      <FILE id="iV65wa" name="metal_knob_mid.png" compile="0" resource="1"
+            file="Graphics/cropped/knobs/metal2/metal_knob_mid.png"/>
+      <FILE id="KJguKv" name="metal_knob_small.png" compile="0" resource="1"
+            file="Graphics/cropped/knobs/metal1/metal_knob_small.png"/>
+      <FILE id="Xd0wfy" name="modpanelbig_left_down.png" compile="0" resource="1"
+            file="Graphics/cropped/modpanelbig_left_down.png"/>
+      <FILE id="jlZxBT" name="modpanelbig_left_mid.png" compile="0" resource="1"
+            file="Graphics/cropped/modpanelbig_left_mid.png"/>
+      <FILE id="QS9L4H" name="modpanelbig_left_up.png" compile="0" resource="1"
+            file="Graphics/cropped/modpanelbig_left_up.png"/>
+      <FILE id="m0TJmc" name="modpanelbig_mid_down.png" compile="0" resource="1"
+            file="Graphics/cropped/modpanelbig_mid_down.png"/>
+      <FILE id="ZV36Xr" name="modpanelbig_mid_mid.png" compile="0" resource="1"
+            file="Graphics/cropped/modpanelbig_mid_mid.png"/>
+      <FILE id="USnKBF" name="modpanelbig_mid_up.png" compile="0" resource="1"
+            file="Graphics/cropped/modpanelbig_mid_up.png"/>
+      <FILE id="Z8hyy7" name="modpanelbig_right_down.png" compile="0" resource="1"
+            file="Graphics/cropped/modpanelbig_right_down.png"/>
+      <FILE id="Lml7sl" name="modpanelbig_right_mid.png" compile="0" resource="1"
+            file="Graphics/cropped/modpanelbig_right_mid.png"/>
+      <FILE id="kkUy6T" name="modpanelbig_right_up.png" compile="0" resource="1"
+            file="Graphics/cropped/modpanelbig_right_up.png"/>
+      <FILE id="Yg7rO2" name="modpanelsmall_down.png" compile="0" resource="1"
+            file="Graphics/cropped/modpanelsmall_down.png"/>
+      <FILE id="lekfLq" name="modpanelsmall_mid.png" compile="0" resource="1"
+            file="Graphics/cropped/modpanelsmall_mid.png"/>
+      <FILE id="b0C9Wo" name="modpanelsmall_up.png" compile="0" resource="1"
+            file="Graphics/cropped/modpanelsmall_up.png"/>
+      <FILE id="xWfnQ6" name="modwheel.png" compile="0" resource="1" file="Graphics/cropped/knobs/modwheel/modwheel.png"/>
+      <FILE id="FtiPpP" name="multi_backdrop.png" compile="0" resource="1"
+            file="Graphics/applied/multi_backdrop.png"/>
+      <FILE id="gHHjEa" name="multi_cropped.png" compile="0" resource="1"
+            file="Graphics/cropped/multi_cropped.png"/>
+      <FILE id="e2pqg0" name="multi_knob_cropped.png" compile="0" resource="1"
+            file="Graphics/cropped/multi_knob_cropped.png"/>
+      <FILE id="gw5wUj" name="noise_backdrop.png" compile="0" resource="1"
+            file="Graphics/applied/noise_backdrop.png"/>
+      <FILE id="SkCoVd" name="noise_cropped.png" compile="0" resource="1"
+            file="Graphics/cropped/noise_cropped.png"/>
+      <FILE id="cIxgZ0" name="noise_knob_cropped.png" compile="0" resource="1"
+            file="Graphics/cropped/noise_knob_cropped.png"/>
+      <FILE id="FQtPLE" name="odin_backdrop.png" compile="0" resource="1"
+            file="Graphics/applied/odin_backdrop.png"/>
+      <FILE id="YoUsho" name="odin_backplate.png" compile="0" resource="1"
+            file="Graphics/odin_backplate.png"/>
+      <FILE id="CbsyKq" name="osc1_bypass.png" compile="0" resource="1" file="Graphics/applied/osc1_bypass.png"/>
+      <FILE id="GsrAH0" name="osc2_bypass.png" compile="0" resource="1" file="Graphics/applied/osc2_bypass.png"/>
+      <FILE id="GKUnsQ" name="osc3_bypass.png" compile="0" resource="1" file="Graphics/applied/osc3_bypass.png"/>
+      <FILE id="uFus9Q" name="peak.png" compile="0" resource="1" file="Graphics/cropped/lfo/peak.png"/>
+      <FILE id="dqIaYV" name="phasernosync.png" compile="0" resource="1"
+            file="Graphics/cropped/phasernosync.png"/>
+      <FILE id="NBsEBg" name="phasersync.png" compile="0" resource="1" file="Graphics/cropped/phasersync.png"/>
+      <FILE id="Ffe7Xy" name="pm_backdrop.png" compile="0" resource="1" file="Graphics/applied/pm_backdrop.png"/>
+      <FILE id="u6xdqg" name="pm_cropped.png" compile="0" resource="1" file="Graphics/cropped/pm_cropped.png"/>
+      <FILE id="NHDSkB" name="pyram3.png" compile="0" resource="1" file="Graphics/cropped/lfo/pyram3.png"/>
+      <FILE id="OQD86Y" name="pyram4.png" compile="0" resource="1" file="Graphics/cropped/lfo/pyram4.png"/>
+      <FILE id="go3V5s" name="pyram6.png" compile="0" resource="1" file="Graphics/cropped/lfo/pyram6.png"/>
+      <FILE id="xIufJd" name="pyram8.png" compile="0" resource="1" file="Graphics/cropped/lfo/pyram8.png"/>
+      <FILE id="k45nl4" name="pyram12.png" compile="0" resource="1" file="Graphics/cropped/lfo/pyram12.png"/>
+      <FILE id="DMKYAC" name="ringmod_backdrop.png" compile="0" resource="1"
+            file="Graphics/applied/ringmod_backdrop.png"/>
+      <FILE id="qyhruV" name="ringmod_cropped.png" compile="0" resource="1"
+            file="Graphics/cropped/ringmod_cropped.png"/>
+      <FILE id="BGfOH4" name="round_knob.png" compile="0" resource="1" file="Graphics/cropped/knobs/round/round_knob.png"/>
+      <FILE id="fKbbkk" name="saw.png" compile="0" resource="1" file="Graphics/cropped/lfo/saw.png"/>
+      <FILE id="W7qMCr" name="select_filmstrip.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/select_filmstrip.png"/>
+      <FILE id="oWwfqb" name="SEM12_backdrop.png" compile="0" resource="1"
+            file="Graphics/applied/SEM12_backdrop.png"/>
+      <FILE id="N3uA1k" name="SEM12_cropped.png" compile="0" resource="1"
+            file="Graphics/cropped/SEM12_cropped.png"/>
+      <FILE id="l0bqW6" name="SEM12_knobs_cropped.png" compile="0" resource="1"
+            file="Graphics/cropped/SEM12_knobs_cropped.png"/>
+      <FILE id="eeS0nd" name="SEM24_backdrop.png" compile="0" resource="1"
+            file="Graphics/applied/SEM24_backdrop.png"/>
+      <FILE id="KBPkzZ" name="SEM24_cropped.png" compile="0" resource="1"
+            file="Graphics/cropped/SEM24_cropped.png"/>
+      <FILE id="PhyAaF" name="SEM24_knobs_cropped.png" compile="0" resource="1"
+            file="Graphics/cropped/SEM24_knobs_cropped.png"/>
+      <FILE id="SQvh4g" name="SH.png" compile="0" resource="1" file="Graphics/cropped/lfo/SH.png"/>
+      <FILE id="pErLg9" name="sine.png" compile="0" resource="1" file="Graphics/cropped/lfo/sine.png"/>
+      <FILE id="FhRClW" name="slider_handle.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/slider_handle.png"/>
+      <FILE id="WbNyRv" name="specdraw_backdrop.png" compile="0" resource="1"
+            file="Graphics/applied/specdraw_backdrop.png"/>
+      <FILE id="wqCY9d" name="specdraw_cropped.png" compile="0" resource="1"
+            file="Graphics/cropped/specdraw_cropped.png"/>
+      <FILE id="kh26lF" name="specdraw_knob_cropped.png" compile="0" resource="1"
+            file="Graphics/cropped/specdraw_knob_cropped.png"/>
+      <FILE id="b24ZQA" name="square.png" compile="0" resource="1" file="Graphics/cropped/lfo/square.png"/>
+      <FILE id="lEMgBV" name="square12.png" compile="0" resource="1" file="Graphics/cropped/lfo/square12.png"/>
+      <FILE id="YYZK9k" name="square25.png" compile="0" resource="1" file="Graphics/cropped/lfo/square25.png"/>
+      <FILE id="L01Iwk" name="square50.png" compile="0" resource="1" file="Graphics/cropped/lfo/square50.png"/>
+      <FILE id="EIbhzr" name="stair3.png" compile="0" resource="1" file="Graphics/cropped/lfo/stair3.png"/>
+      <FILE id="zMKvkV" name="stair4.png" compile="0" resource="1" file="Graphics/cropped/lfo/stair4.png"/>
+      <FILE id="Iwo8Sm" name="stair6.png" compile="0" resource="1" file="Graphics/cropped/lfo/stair6.png"/>
+      <FILE id="JyaSiD" name="stair8.png" compile="0" resource="1" file="Graphics/cropped/lfo/stair8.png"/>
+      <FILE id="oEwrco" name="stair12.png" compile="0" resource="1" file="Graphics/cropped/lfo/stair12.png"/>
+      <FILE id="PYAFKl" name="triangle.png" compile="0" resource="1" file="Graphics/cropped/lfo/triangle.png"/>
+      <FILE id="Kkj10e" name="vector_backdrop.png" compile="0" resource="1"
+            file="Graphics/applied/vector_backdrop.png"/>
+      <FILE id="uVHaw9" name="vector_cropped.png" compile="0" resource="1"
+            file="Graphics/cropped/vector_cropped.png"/>
+      <FILE id="NCOubJ" name="vector_knob_cropped.png" compile="0" resource="1"
+            file="Graphics/cropped/vector_knob_cropped.png"/>
+      <FILE id="NDdTog" name="vectorpanel.png" compile="0" resource="1" file="Graphics/cropped/vectorpanel.png"/>
+      <FILE id="rEXSmz" name="wavedraw_backdrop.png" compile="0" resource="1"
+            file="Graphics/applied/wavedraw_backdrop.png"/>
+      <FILE id="jtbV2j" name="wavedraw_cropped.png" compile="0" resource="1"
+            file="Graphics/cropped/wavedraw_cropped.png"/>
+      <FILE id="C6n9bd" name="wavedraw_knob_cropped.png" compile="0" resource="1"
+            file="Graphics/cropped/wavedraw_knob_cropped.png"/>
+      <FILE id="SWWpAf" name="wavedraw1.png" compile="0" resource="1" file="Graphics/cropped/lfo/wavedraw1.png"/>
+      <FILE id="D0oiYX" name="wavedraw2.png" compile="0" resource="1" file="Graphics/cropped/lfo/wavedraw2.png"/>
+      <FILE id="cmzwJi" name="wavedraw3.png" compile="0" resource="1" file="Graphics/cropped/lfo/wavedraw3.png"/>
+      <FILE id="Fbyaop" name="wavetable_backdrop.png" compile="0" resource="1"
+            file="Graphics/applied/wavetable_backdrop.png"/>
+      <FILE id="Z4FlPP" name="wavetable_cropped.png" compile="0" resource="1"
+            file="Graphics/cropped/wavetable_cropped.png"/>
+      <FILE id="sj2lXX" name="wavetable_knob_cropped.png" compile="0" resource="1"
+            file="Graphics/cropped/wavetable_knob_cropped.png"/>
     </GROUP>
     <GROUP id="{7AF384ED-9FD6-6492-4B8C-5777BB9A2698}" name="Source">
       <FILE id="hf2LpP" name="Utilities.cpp" compile="1" resource="0" file="Source/Utilities.cpp"/>
@@ -884,7 +892,6 @@
         <FILE id="zWGLzS" name="OscComponent.cpp" compile="1" resource="0"
               file="Source/OscComponent.cpp"/>
         <FILE id="MVOzDk" name="OscComponent.h" compile="0" resource="0" file="Source/OscComponent.h"/>
-        <FILE id="JpIQdx" name="peak.png" compile="0" resource="1" file="Gimp/cropped/lfo/peak.png"/>
         <FILE id="xMFAVw" name="PhaserComponent.cpp" compile="1" resource="0"
               file="Source/PhaserComponent.cpp"/>
         <FILE id="bzAudk" name="PhaserComponent.h" compile="0" resource="0"
