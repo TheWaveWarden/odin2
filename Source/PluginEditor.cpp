@@ -861,7 +861,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	m_color_picker.setTopLeftPosition(ADSR_LEFT_POS_X, ADSR_LEFT_POS_Y);
 	m_color_picker.setSize(3*ADSR_SIZE_X, 3*ADSR_SIZE_Y);
 
-	addAndMakeVisible(m_color_picker);
+	//addAndMakeVisible(m_color_picker);
 	m_color_picker.setAlwaysOnTop(true);
 	m_color_picker.setSwatchColour(1,juce::Colour(71, 92, 108));
 
