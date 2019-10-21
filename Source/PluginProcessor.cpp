@@ -856,8 +856,6 @@ void OdinAudioProcessor::setStateInformation(const void *data,
     // force values on GUI
     m_force_values_onto_gui = true;
     DBG("LOADED BINARY STATE!!");
-
-    // onSetStateInformation();
   }
 }
 

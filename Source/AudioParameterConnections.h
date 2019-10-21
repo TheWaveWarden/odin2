@@ -325,8 +325,6 @@ for (int fil = 0; fil < 3; ++fil) {
       "fil" + std::to_string(fil + 1) + "_comb_polarity", &m_tree_listener);
 }
 
-// m_value_tree.addParameterListener("osc1_oct", &m_tree_listener);
-
 m_value_tree.addParameterListener("amp_pan", &m_tree_listener);
 m_value_tree.addParameterListener("amp_gain", &m_tree_listener);
 m_value_tree.addParameterListener("amp_vel", &m_tree_listener);
