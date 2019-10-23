@@ -1041,7 +1041,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 
 	m_chipdraw.setTopLeftPosition(CHIPDRAW_POSITION_X, CHIPDRAW_POSITION_Y);
 	m_chipdraw.setColor(chip_color);
-	m_chipdraw.setDrawColor(juce::Colour(238, 230, 217));
+	m_chipdraw.setDrawColor(juce::Colour(238, 230, 217)); 
 	m_chipdraw.onDraw = [&]() { m_chipdraw_convert.setToggleState(false, dontSendNotification); };
 	m_chipdraw.setTooltip("Draw a custom 4Bit waveform.\n\nDon't forget to apply "
 	                      "your waveform with the button on the bottom right.");
