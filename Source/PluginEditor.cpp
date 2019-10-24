@@ -12,20 +12,21 @@
 #include "PluginProcessor.h"
 
 bool writeComponentImageToFile(Component &comp) {
-	juce::File file("/home/frederik_siepe/odinvst/screenshot.png");
+	juce::File file("/home/frot/odinvst/screenshot.png");
 	Rectangle<int> subArea = comp.getBounds();
 	if (ImageFileFormat *format = ImageFileFormat::findImageFormatForFileExtension(file)) {
 		FileOutputStream out(file);
 
 		if (out.openedOk())
+			out.setPosition (0);
+    		out.truncate();
 			return format->writeImageToStream(comp.createComponentSnapshot(subArea), out);
 	}
-	DBG("Failed to create GUI screenshot");
 	return false;
 }
 
 void writeValueTreeToFile(const ValueTree &tree) {
-	File file("/home/frederik_siepe/odinvst/ValueTree.txt");
+	File file("/home/frot/odinvst/ValueTree.txt");
 	String text = tree.toXmlString();
 	file.replaceWithText(text);
 }
@@ -961,7 +962,9 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 
 	forceValueTreeOntoComponentsOnlyMainPanel();
 
-	writeComponentImageToFile(*this);
+	if(!writeComponentImageToFile(*this)){
+		DBG("Failed to create GUI screenshot");
+	} 
 	writeValueTreeToFile(m_value_tree.state);
 }
 
