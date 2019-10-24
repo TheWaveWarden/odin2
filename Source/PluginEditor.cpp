@@ -11,16 +11,34 @@
 #include "PluginEditor.h"
 #include "PluginProcessor.h"
 
+#include <ctime> //todo ifdef debug
+
 bool writeComponentImageToFile(Component &comp) {
+	time_t rawtime;
+	struct tm *timeinfo;
+	char buffer[80];
+
+	time(&rawtime);
+	timeinfo = localtime(&rawtime);
+
+	strftime(buffer, sizeof(buffer), "%d-%m-%Y %H:%M:%S", timeinfo);
+	std::string date(buffer);
+
 	juce::File file("/home/frot/odinvst/screenshot.png");
+	juce::File file2("/home/frot/gui_saves_odin/screenshot" + date + ".png");
 	Rectangle<int> subArea = comp.getBounds();
 	if (ImageFileFormat *format = ImageFileFormat::findImageFormatForFileExtension(file)) {
 		FileOutputStream out(file);
+		FileOutputStream out2(file2);
+		if (out2.openedOk()) {
+			format->writeImageToStream(comp.createComponentSnapshot(subArea), out2);
+		}
 
-		if (out.openedOk())
-			out.setPosition (0);
-    		out.truncate();
+		if (out.openedOk()) {
+			out.setPosition(0);
+			out.truncate();
 			return format->writeImageToStream(comp.createComponentSnapshot(subArea), out);
+		}
 	}
 	return false;
 }
@@ -962,9 +980,9 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 
 	forceValueTreeOntoComponentsOnlyMainPanel();
 
-	if(!writeComponentImageToFile(*this)){
+	if (!writeComponentImageToFile(*this)) {
 		DBG("Failed to create GUI screenshot");
-	} 
+	}
 	writeValueTreeToFile(m_value_tree.state);
 }
 
