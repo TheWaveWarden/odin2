@@ -1178,18 +1178,19 @@ void OdinAudioProcessorEditor::forceValueTreeOntoComponentsOnlyMainPanel() {
 
 	m_BPM_selector.setValue(m_value_tree.state.getChildWithName("misc")["BPM"]);
 
+	m_env_13_button.setToggleState((float)m_value_tree.state.getChildWithName("misc")["env_left_selected"] > 0.5,
+	                               dontSendNotification);
+	setEnv13(m_env_13_button.getToggleState());
+	m_env_24_button.setToggleState((float)m_value_tree.state.getChildWithName("misc")["env_right_selected"] > 0.5,
+	                               dontSendNotification);
+	setEnv24(m_env_24_button.getToggleState());
+	
 	m_lfo_13_button.setToggleState((float)m_value_tree.state.getChildWithName("lfo")["lfo_left_selected"] > 0.5,
 	                               dontSendNotification);
 	setLfo12(m_lfo_13_button.getToggleState());
 	m_lfo_24_button.setToggleState((float)m_value_tree.state.getChildWithName("lfo")["lfo_right_selected"] > 0.5,
 	                               dontSendNotification);
 	setLfo34(m_lfo_24_button.getToggleState());
-	m_env_13_button.setToggleState((float)m_value_tree.state.getChildWithName("lfo")["env_left_selected"] > 0.5,
-	                               dontSendNotification);
-	setEnv13(m_env_13_button.getToggleState());
-	m_env_24_button.setToggleState((float)m_value_tree.state.getChildWithName("lfo")["env_right_selected"] > 0.5,
-	                               dontSendNotification);
-	setEnv24(m_env_24_button.getToggleState());
 }
 
 void OdinAudioProcessorEditor::forceValueTreeOntoComponents(bool p_reset_audio) {
