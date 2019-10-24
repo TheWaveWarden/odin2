@@ -673,7 +673,12 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	m_chorus.setSyncTimeColor(CHORUS_DISPLAY_COLOR);
 	addChildComponent(m_chorus);
 
-	juce::Image delay_image = ImageCache::getFromMemory(BinaryData::delaynosync_png, BinaryData::delaynosync_pngSize);
+	juce::Image delay_image;
+	if ((float)m_value_tree.state.getChildWithName("fx")["delay_sync"] < 0.5f) {
+		delay_image = ImageCache::getFromMemory(BinaryData::delaynosync_png, BinaryData::delaynosync_pngSize);
+	} else {
+		delay_image = ImageCache::getFromMemory(BinaryData::delaysync_png, BinaryData::delaysync_pngSize);
+	}
 	m_delay.setImage(delay_image);
 	addAndMakeVisible(m_delay);
 
@@ -691,7 +696,8 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	m_env_13_button.setToggleState(true, dontSendNotification);
 	m_env_13_button.onStateChange = [&]() {
 		setEnv13(m_env_13_button.getToggleState());
-		m_value_tree.state.getChildWithName("misc").setProperty("env_left_selected", (int)m_env_13_button.getToggleState(), nullptr);
+		m_value_tree.state.getChildWithName("misc").setProperty(
+		    "env_left_selected", (int)m_env_13_button.getToggleState(), nullptr);
 	};
 	m_env_13_button.setTooltip("Shows the amplifier\nenvelope or envelope 3");
 	addAndMakeVisible(m_env_13_button);
@@ -706,7 +712,8 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	m_env_24_button.setToggleState(true, dontSendNotification);
 	m_env_24_button.onStateChange = [&]() {
 		setEnv24(m_env_24_button.getToggleState());
-		m_value_tree.state.getChildWithName("misc").setProperty("env_right_selected", (int)m_env_24_button.getToggleState(), nullptr);
+		m_value_tree.state.getChildWithName("misc").setProperty(
+		    "env_right_selected", (int)m_env_24_button.getToggleState(), nullptr);
 	};
 	m_env_24_button.setTooltip("Shows the filter\nenvelope or envelope 4");
 	addAndMakeVisible(m_env_24_button);
@@ -721,7 +728,8 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	m_lfo_13_button.setToggleState(true, dontSendNotification);
 	m_lfo_13_button.onStateChange = [&]() {
 		setLfo12(m_lfo_13_button.getToggleState());
-		m_value_tree.state.getChildWithName("lfo").setProperty("lfo_left_selected", (int)m_lfo_13_button.getToggleState(), nullptr);
+		m_value_tree.state.getChildWithName("lfo").setProperty(
+		    "lfo_left_selected", (int)m_lfo_13_button.getToggleState(), nullptr);
 	};
 	m_lfo_13_button.setTooltip("Shows LFO 1 or LFO 3");
 	addAndMakeVisible(m_lfo_13_button);
@@ -736,7 +744,8 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	m_lfo_24_button.setToggleState(true, dontSendNotification);
 	m_lfo_24_button.onStateChange = [&]() {
 		setLfo34(m_lfo_24_button.getToggleState());
-		m_value_tree.state.getChildWithName("lfo").setProperty("lfo_right_selected", (int)m_lfo_24_button.getToggleState(), nullptr);
+		m_value_tree.state.getChildWithName("lfo").setProperty(
+		    "lfo_right_selected", (int)m_lfo_24_button.getToggleState(), nullptr);
 	};
 	m_lfo_24_button.setTooltip("Shows LFO 2 or LFO 4");
 	addAndMakeVisible(m_lfo_24_button);
@@ -857,11 +866,11 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	SET_CTR_KEY(m_modwheel);
 
 	m_color_picker.setTopLeftPosition(ADSR_LEFT_POS_X, ADSR_LEFT_POS_Y);
-	m_color_picker.setSize(3*ADSR_SIZE_X, 3*ADSR_SIZE_Y);
+	m_color_picker.setSize(3 * ADSR_SIZE_X, 3 * ADSR_SIZE_Y);
 
 	//addAndMakeVisible(m_color_picker);
 	m_color_picker.setAlwaysOnTop(true);
-	m_color_picker.setSwatchColour(1,juce::Colour(71, 92, 108));
+	m_color_picker.setSwatchColour(1, juce::Colour(71, 92, 108));
 
 	m_osc1.setColorPickerPointer(&m_color_picker);
 	m_osc2.setColorPickerPointer(&m_color_picker);
@@ -1071,10 +1080,14 @@ void OdinAudioProcessorEditor::arrangeFXOnButtons(std::map<std::string, int> p_m
 	m_delay_on_button.setTopLeftPosition(FX_ON_BUTTON_X + p_map.find("delay")->second * FX_BUTTON_OFFSET,
 	                                     FX_ON_BUTTON_Y);
 
-	m_value_tree.state.getChildWithName("fx").setProperty(m_delay_position_identifier, (float)p_map.find("delay")->second, nullptr);
-	m_value_tree.state.getChildWithName("fx").setProperty(m_phaser_position_identifier, (float)p_map.find("phaser")->second, nullptr);
-	m_value_tree.state.getChildWithName("fx").setProperty(m_flanger_position_identifier, (float)p_map.find("flanger")->second, nullptr);
-	m_value_tree.state.getChildWithName("fx").setProperty(m_chorus_position_identifier, (float)p_map.find("chorus")->second, nullptr);
+	m_value_tree.state.getChildWithName("fx").setProperty(
+	    m_delay_position_identifier, (float)p_map.find("delay")->second, nullptr);
+	m_value_tree.state.getChildWithName("fx").setProperty(
+	    m_phaser_position_identifier, (float)p_map.find("phaser")->second, nullptr);
+	m_value_tree.state.getChildWithName("fx").setProperty(
+	    m_flanger_position_identifier, (float)p_map.find("flanger")->second, nullptr);
+	m_value_tree.state.getChildWithName("fx").setProperty(
+	    m_chorus_position_identifier, (float)p_map.find("chorus")->second, nullptr);
 
 	processor.setFXButtonsPosition((float)p_map.find("delay")->second,
 	                               (float)p_map.find("phaser")->second,
@@ -1137,18 +1150,23 @@ void OdinAudioProcessorEditor::forceValueTreeOntoComponentsOnlyMainPanel() {
 	}
 	setActiveFXPanel(fx_name);
 
-	m_legato_button.setToggleState((float)m_value_tree.state.getChildWithName("misc")["legato"] > 0.5, dontSendNotification);
+	m_legato_button.setToggleState((float)m_value_tree.state.getChildWithName("misc")["legato"] > 0.5,
+	                               dontSendNotification);
 	processor.setPolyLegato(m_legato_button.getToggleState());
 
 	m_BPM_selector.setValue(m_value_tree.state.getChildWithName("misc")["BPM"]);
 
-	m_lfo_13_button.setToggleState((float)m_value_tree.state.getChildWithName("lfo")["lfo_left_selected"] > 0.5, dontSendNotification);
+	m_lfo_13_button.setToggleState((float)m_value_tree.state.getChildWithName("lfo")["lfo_left_selected"] > 0.5,
+	                               dontSendNotification);
 	setLfo12(m_lfo_13_button.getToggleState());
-	m_lfo_24_button.setToggleState((float)m_value_tree.state.getChildWithName("lfo")["lfo_right_selected"] > 0.5, dontSendNotification);
+	m_lfo_24_button.setToggleState((float)m_value_tree.state.getChildWithName("lfo")["lfo_right_selected"] > 0.5,
+	                               dontSendNotification);
 	setLfo34(m_lfo_24_button.getToggleState());
-	m_env_13_button.setToggleState((float)m_value_tree.state.getChildWithName("lfo")["env_left_selected"] > 0.5, dontSendNotification);
+	m_env_13_button.setToggleState((float)m_value_tree.state.getChildWithName("lfo")["env_left_selected"] > 0.5,
+	                               dontSendNotification);
 	setEnv13(m_env_13_button.getToggleState());
-	m_env_24_button.setToggleState((float)m_value_tree.state.getChildWithName("lfo")["env_right_selected"] > 0.5, dontSendNotification);
+	m_env_24_button.setToggleState((float)m_value_tree.state.getChildWithName("lfo")["env_right_selected"] > 0.5,
+	                               dontSendNotification);
 	setEnv24(m_env_24_button.getToggleState());
 }
 

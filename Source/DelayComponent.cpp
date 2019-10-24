@@ -136,22 +136,12 @@ DelayComponent::DelayComponent(AudioProcessorValueTreeState &vts, bool p_is_stan
 	m_dry.setStrip(black_knob_mid, N_KNOB_FRAMES);
 	m_dry.setSliderStyle(Slider::RotaryVerticalDrag);
 	m_dry.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-	// m_dry.setSkewFactorFromMidPoint(DRY_WET_MID);
-	// skewfactor 0.575717
-	// m_dry.setDoubleClickReturnValue(true, DRY_DEFAULT,
-	//                  ModifierKeys::ctrlModifier);
 	m_dry.setKnobTooltip("Volume of the input signal");
 	addAndMakeVisible(m_dry);
 
 	m_wet.setStrip(black_knob_mid, N_KNOB_FRAMES);
 	m_wet.setSliderStyle(Slider::RotaryVerticalDrag);
 	m_wet.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-	//m_wet.setSkewFactorFromMidPoint(DRY_WET_MID);
-    //DBG("DELAYWET");
-    //SETSKEWREPLACEMENT(m_wet, DRY_WET_MID);
-	// m_wet.setValue(WET_DEFAULT);
-	// m_wet.setDoubleClickReturnValue(true, WET_DEFAULT,
-	//                ModifierKeys::ctrlModifier);
 	m_wet.setKnobTooltip("Volume of the delayed signal only");
 	addAndMakeVisible(m_wet);
 

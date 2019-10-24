@@ -18,6 +18,8 @@ public:
     m_gain_smooth = m_gain_smooth * GAIN_SMOOTHIN_FACTOR +
                     (1 - GAIN_SMOOTHIN_FACTOR) * (m_gain);
 
+    m_pan_smooth = m_pan_smooth * PAN_SMOOTHIN_FACTOR + (1 - PAN_SMOOTHIN_FACTOR) * m_pan;
+
     p_in *= m_gain_smooth * gain_mod_factor;
 
     // apply velocity
@@ -27,7 +29,7 @@ public:
     p_in *= 1.f - vel_modded * 1.f + vel_modded * m_MIDI_vel;
 
     // do panning
-    float pan_modded = m_pan + *m_pan_mod;
+    float pan_modded = m_pan_smooth + *m_pan_mod;
     pan_modded = pan_modded < -1 ? -1 : pan_modded;
     pan_modded = pan_modded > 1 ? 1 : pan_modded;
     if (pan_modded >= 0.f) {
@@ -68,4 +70,5 @@ protected:
   float m_gain = 1.f; // this is a multiplicator, not a dB value
   float m_gain_smooth = 1.f;
   float m_pan = 0.f;
+  float m_pan_smooth = 0.f;
 };
