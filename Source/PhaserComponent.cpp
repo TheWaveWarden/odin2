@@ -166,9 +166,8 @@ PhaserComponent::PhaserComponent(AudioProcessorValueTreeState &vts,
   };
 
   m_sync_time.OnValueChange = [&](int p_left, int p_right) {
-    //DBG(p_left);
-    m_value_tree.state.setProperty(m_fx_synctime_numerator_identifier, p_left, nullptr);
-    m_value_tree.state.setProperty(m_fx_synctime_denominator_identifier, p_right, nullptr);
+    m_value_tree.state.getChildWithName("fx").setProperty(m_fx_synctime_numerator_identifier, p_left, nullptr);
+    m_value_tree.state.getChildWithName("fx").setProperty(m_fx_synctime_denominator_identifier, p_right, nullptr);
   };
   m_sync_time.setTopLeftPosition(PHASER_SYNC_TIME_POS_X,
                                  PHASER_SYNC_TIME_POS_Y);
@@ -229,6 +228,6 @@ void PhaserComponent::setSyncEnabled(bool p_sync) {
 
 void PhaserComponent::forceValueTreeOntoComponents(ValueTree p_tree) {
   m_sync_time.setValues(
-      m_value_tree.state[m_fx_synctime_numerator_identifier],
-      m_value_tree.state[m_fx_synctime_denominator_identifier]);
+      m_value_tree.state.getChildWithName("fx")[m_fx_synctime_numerator_identifier],
+      m_value_tree.state.getChildWithName("fx")[m_fx_synctime_denominator_identifier]);
 }

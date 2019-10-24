@@ -190,7 +190,7 @@ AmpDistortionFlowComponent::AmpDistortionFlowComponent(
   m_distortion_algo.setColor(juce::STANDARD_DISPLAY_COLOR);
   m_distortion_algo.setTooltip("Selects the distortion algorithm to be used");
   m_distortion_algo.onChange = [&]() {
-    m_value_tree.state.setProperty("dist_algo",
+    m_value_tree.state.getChildWithName("misc").setProperty("dist_algo",
                                    m_distortion_algo.getSelectedId(), nullptr);
   };
   addAndMakeVisible(m_distortion_algo);
@@ -274,6 +274,5 @@ void AmpDistortionFlowComponent::resized() {
 void AmpDistortionFlowComponent::forceValueTreeOntoComponents(
     ValueTree p_tree) {
 
-  m_distortion_algo.setValue(m_value_tree.state["dist_algo"]);
-  // DBG((int)m_value_tree.state["dist_algo"]);
+  m_distortion_algo.setValue(m_value_tree.state.getChildWithName("misc")["dist_algo"]);
 }

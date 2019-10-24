@@ -327,8 +327,25 @@ private:
 	OdinTreeListener m_tree_listener_amount3;
 	OdinTreeListener m_tree_listener_general_misc;
 
-	void treeValueChangedNonParam(ValueTree &tree, const Identifier &identifier);
-	OdinTreeListenerNonParam m_non_param_listener; // this listens to non automatable vars
+	ValueTree m_value_tree_draw;
+	ValueTree m_value_tree_fx;
+	ValueTree m_value_tree_lfo;
+	ValueTree m_value_tree_misc;
+	ValueTree m_value_tree_mod;
+	ValueTree m_value_tree_osc;
+
+	// these listens to non automatable vars
+	OdinTreeListenerNonParam m_non_param_listener_fx;
+	OdinTreeListenerNonParam m_non_param_listener_lfo;
+	OdinTreeListenerNonParam m_non_param_listener_misc;
+	OdinTreeListenerNonParam m_non_param_listener_mod;
+	OdinTreeListenerNonParam m_non_param_listener_osc;
+
+	void treeValueChangedNonParamFX(ValueTree &tree, const Identifier &identifier);
+	void treeValueChangedNonParamLFO(ValueTree &tree, const Identifier &identifier);
+	void treeValueChangedNonParamMisc(ValueTree &tree, const Identifier &identifier);
+	void treeValueChangedNonParamMod(ValueTree &tree, const Identifier &identifier);
+	void treeValueChangedNonParamOsc(ValueTree &tree, const Identifier &identifier);
 
 	void treeValueChangedOscPitch(const String &p_ID, float p_new_value);
 	void treeValueChangedOscAnalog(const String &p_ID, float p_new_value);

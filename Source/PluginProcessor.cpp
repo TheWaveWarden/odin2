@@ -20,12 +20,11 @@ OdinAudioProcessor::OdinAudioProcessor()
                        ),
 #endif
     : m_value_tree(*this, nullptr, Identifier("Odin"),
-#include "AudioValueTree.h" //contains the definition of audiotree. WATCH CLOSELY: is IN m_value_tree constructor
+#include "AudioValueTree.h" //contains the definition of audiotree. WATCH CLOSELY: is IN m_value_tree constructor brackets
                    ),
 #include "ProcessorInitializerList.h" //contains the connection of Identifiers with their strings
 {
 #include "AudioParameterConnections.h" // constains the connection between raw float pointers and their ValueTree counter
-
 	addNonAudioParametersToTree();
 
 #ifdef WTGEN
@@ -129,8 +128,20 @@ OdinAudioProcessor::OdinAudioProcessor()
 	m_tree_listener_general_misc.onValueChange = [&](const String &p_ID, float p_new_value) {
 		treeValueChangedGeneralMisc(p_ID, p_new_value);
 	};
-	m_non_param_listener.onValueChange = [&](ValueTree &tree, const Identifier &identifier) {
-		treeValueChangedNonParam(tree, identifier);
+	m_non_param_listener_fx.onValueChange = [&](ValueTree &tree, const Identifier &identifier) {
+		treeValueChangedNonParamFX(tree, identifier);
+	};
+	m_non_param_listener_lfo.onValueChange = [&](ValueTree &tree, const Identifier &identifier) {
+		treeValueChangedNonParamLFO(tree, identifier);
+	};
+	m_non_param_listener_misc.onValueChange = [&](ValueTree &tree, const Identifier &identifier) {
+		treeValueChangedNonParamMisc(tree, identifier);
+	};
+	m_non_param_listener_mod.onValueChange = [&](ValueTree &tree, const Identifier &identifier) {
+		treeValueChangedNonParamMod(tree, identifier);
+	};
+	m_non_param_listener_osc.onValueChange = [&](ValueTree &tree, const Identifier &identifier) {
+		treeValueChangedNonParamOsc(tree, identifier);
 	};
 
 	initializeModules();
@@ -308,7 +319,7 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 			playhead->getCurrentPosition(current_position_info);
 			m_BPM = current_position_info.bpm;
 			// ! bottleneck
-			SETVALUE("BPM", m_BPM);
+			m_value_tree.state.getChildWithName("misc").setProperty("BPM", m_BPM, nullptr);
 		}
 	}
 	setBPM(m_BPM);
@@ -1305,7 +1316,8 @@ void OdinAudioProcessor::setBPM(float p_BPM) {
 
 void OdinAudioProcessor::addNonAudioParametersToTree() {
 
-	auto node = m_value_tree.state;
+	auto node = m_value_tree_draw;
+
 	for (int i = 0; i < WAVEDRAW_STEPS_X; ++i) {
 		float val = sin(2 * M_PI * i / (float)WAVEDRAW_STEPS_X) * 0.9;
 		node.setProperty(String("osc1_wavedraw_values_" + std::to_string(i)), val, nullptr);
@@ -1325,6 +1337,8 @@ void OdinAudioProcessor::addNonAudioParametersToTree() {
 		node.setProperty(String("osc3_specdraw_values_" + std::to_string(i)), val, nullptr);
 	}
 
+	//DBG("IS VALID0: " + std::to_string((int)m_value_tree.state.getChildWithName("fx").isValid()));
+	node = m_value_tree_fx;
 	node.setProperty("delay_synctime_numerator", 2, nullptr);
 	node.setProperty("delay_synctime_denominator", 5, nullptr);
 	node.setProperty("phaser_synctime_numerator", 2, nullptr);
@@ -1333,7 +1347,16 @@ void OdinAudioProcessor::addNonAudioParametersToTree() {
 	node.setProperty("flanger_synctime_denominator", 5, nullptr);
 	node.setProperty("chorus_synctime_numerator", 2, nullptr);
 	node.setProperty("chorus_synctime_denominator", 5, nullptr);
+	node.setProperty("delay_selected", 1, nullptr);
+	node.setProperty("phaser_selected", 0, nullptr);
+	node.setProperty("flanger_selected", 0, nullptr);
+	node.setProperty("chorus_selected", 0, nullptr);
+	node.setProperty("delay_position", 0, nullptr);
+	node.setProperty("phaser_position", 1, nullptr);
+	node.setProperty("chorus_position", 2, nullptr);
+	node.setProperty("flanger_position", 3, nullptr);
 
+	node = m_value_tree_lfo;
 	node.setProperty("lfo1_synctime_numerator", 2, nullptr);
 	node.setProperty("lfo1_synctime_denominator", 5, nullptr);
 	node.setProperty("lfo2_synctime_numerator", 2, nullptr);
@@ -1342,15 +1365,20 @@ void OdinAudioProcessor::addNonAudioParametersToTree() {
 	node.setProperty("lfo3_synctime_denominator", 5, nullptr);
 	node.setProperty("lfo4_synctime_numerator", 2, nullptr);
 	node.setProperty("lfo4_synctime_denominator", 5, nullptr);
+	node.setProperty("lfo_left_selected", 1, nullptr);
+	node.setProperty("lfo_right_selected", 1, nullptr);
 
-	node.setProperty("legato", 1, nullptr); // this is actually "poly" or
-	                                        // "!legato"
+	node = m_value_tree_misc;
+	node.setProperty("legato", 1, nullptr); // this is actually "poly" or !legato"
+	node.setProperty("dist_algo", 1.f, nullptr);
+	node.setProperty("BPM", 120, nullptr);
+	node.setProperty("env_left_selected", 1, nullptr);
+	node.setProperty("env_right_selected", 1, nullptr);
+	node.setProperty("fil1_type", FILTER_TYPE_LP24, nullptr);
+	node.setProperty("fil2_type", 1, nullptr);
+	node.setProperty("fil3_type", 1, nullptr);
 
-	node.setProperty("delay_selected", 1, nullptr);
-	node.setProperty("phaser_selected", 0, nullptr);
-	node.setProperty("flanger_selected", 0, nullptr);
-	node.setProperty("chorus_selected", 0, nullptr);
-
+	node = m_value_tree_mod;
 	node.setProperty("source_row_0", 0, nullptr);
 	node.setProperty("source_row_1", 0, nullptr);
 	node.setProperty("source_row_2", 0, nullptr);
@@ -1388,24 +1416,13 @@ void OdinAudioProcessor::addNonAudioParametersToTree() {
 	node.setProperty("scale_row_7", 0, nullptr);
 	node.setProperty("scale_row_8", 0, nullptr);
 
-	node.setProperty("delay_position", 0, nullptr);
-	node.setProperty("phaser_position", 1, nullptr);
-	node.setProperty("chorus_position", 2, nullptr);
-	node.setProperty("flanger_position", 3, nullptr);
-
-	node.setProperty("dist_algo", 1.f, nullptr);
-
+	node = m_value_tree_osc;
 	node.setProperty("osc1_analog_wave", 0, nullptr);
 	node.setProperty("osc2_analog_wave", 0, nullptr);
 	node.setProperty("osc3_analog_wave", 0, nullptr);
-
 	node.setProperty("osc1_type", OSC_TYPE_ANALOG, nullptr);
 	node.setProperty("osc2_type", 1, nullptr);
 	node.setProperty("osc3_type", 1, nullptr);
-	node.setProperty("fil1_type", FILTER_TYPE_LP24, nullptr);
-	node.setProperty("fil2_type", 1, nullptr);
-	node.setProperty("fil3_type", 1, nullptr);
-
 	node.setProperty("osc1_wavetable", 1, nullptr);
 	node.setProperty("osc2_wavetable", 1, nullptr);
 	node.setProperty("osc3_wavetable", 1, nullptr);
@@ -1430,11 +1447,6 @@ void OdinAudioProcessor::addNonAudioParametersToTree() {
 	node.setProperty("osc1_carrier_wave", 1, nullptr);
 	node.setProperty("osc2_carrier_wave", 1, nullptr);
 	node.setProperty("osc3_carrier_wave", 1, nullptr);
-	node.setProperty("BPM", 120, nullptr);
-	node.setProperty("env_left_selected", 1, nullptr);
-	node.setProperty("env_right_selected", 1, nullptr);
-	node.setProperty("lfo_left_selected", 1, nullptr);
-	node.setProperty("lfo_right_selected", 1, nullptr);
 }
 
 void OdinAudioProcessor::setFXButtonsPosition(int p_delay, int p_phaser, int p_flanger, int p_chorus) {

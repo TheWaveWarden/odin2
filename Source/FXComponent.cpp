@@ -151,9 +151,8 @@ FXComponent::FXComponent(AudioProcessorValueTreeState &vts,
   };
 
   m_sync_time.OnValueChange = [&](int p_left, int p_right) {
-    auto node = m_value_tree.state;
-    node.setProperty(m_fx_synctime_numerator_identifier, p_left, nullptr);
-    node.setProperty(m_fx_synctime_denominator_identifier, p_right, nullptr);
+    m_value_tree.state.getChildWithName("fx").setProperty(m_fx_synctime_numerator_identifier, p_left, nullptr);
+    m_value_tree.state.getChildWithName("fx").setProperty(m_fx_synctime_denominator_identifier, p_right, nullptr);
   };
 
   m_sync_time.setTopLeftPosition(FX_SYNC_TIME_FX_POS_X, FX_SYNC_TIME_FX_POS_Y);
@@ -211,6 +210,6 @@ void FXComponent::setSyncEnabled(bool p_sync) {
 
 void FXComponent::forceValueTreeOntoComponents(ValueTree p_tree) {
   m_sync_time.setValues(
-      m_value_tree.state[m_fx_synctime_numerator_identifier],
-      m_value_tree.state[m_fx_synctime_denominator_identifier]);
+      m_value_tree.state.getChildWithName("fx")[m_fx_synctime_numerator_identifier],
+      m_value_tree.state.getChildWithName("fx")[m_fx_synctime_denominator_identifier]);
 }

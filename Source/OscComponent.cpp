@@ -266,7 +266,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 	m_LED_saw.setTooltip("Select the saw wave");
 	m_LED_saw.onStateChange = [&]() {
 		if (m_LED_saw.getToggleState()) {
-			m_value_tree.state.setProperty(m_analog_wave_identifier, 0, nullptr);
+			m_value_tree.state.getChildWithName("osc").setProperty(m_analog_wave_identifier, 0, nullptr);
 		}
 	};
 	addChildComponent(m_LED_saw);
@@ -282,7 +282,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 	m_LED_pulse.setTooltip("Select the pulse wave");
 	m_LED_pulse.onStateChange = [&]() {
 		if (m_LED_pulse.getToggleState()) {
-			m_value_tree.state.setProperty(m_analog_wave_identifier, 1, nullptr);
+			m_value_tree.state.getChildWithName("osc").setProperty(m_analog_wave_identifier, 1, nullptr);
 		}
 	};
 	addChildComponent(m_LED_pulse);
@@ -299,7 +299,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 	// m_LED_triangle.setClickingTogglesState(true);
 	m_LED_triangle.onStateChange = [&]() {
 		if (m_LED_triangle.getToggleState()) {
-			m_value_tree.state.setProperty(m_analog_wave_identifier, 2, nullptr);
+			m_value_tree.state.getChildWithName("osc").setProperty(m_analog_wave_identifier, 2, nullptr);
 		}
 	};
 	addChildComponent(m_LED_triangle);
@@ -315,7 +315,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 	m_LED_sine.setTooltip("Select the sine wave");
 	m_LED_sine.onStateChange = [&]() {
 		if (m_LED_sine.getToggleState()) {
-			m_value_tree.state.setProperty(m_analog_wave_identifier, 3, nullptr);
+			m_value_tree.state.getChildWithName("osc").setProperty(m_analog_wave_identifier, 3, nullptr);
 		}
 	};
 	addChildComponent(m_LED_sine);
@@ -660,7 +660,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 	juce::Colour chip_color(93, 81, 63);
 
 	m_chiptune_waveselector.OnValueChange = [&](int p_new_value) {
-		m_value_tree.state.setProperty(m_chipwave_identifier, (float)p_new_value, nullptr);
+		m_value_tree.state.getChildWithName("osc").setProperty(m_chipwave_identifier, (float)p_new_value, nullptr);
 	};
 	m_chiptune_waveselector.setTopLeftPosition(WAVE_CHIPTUNE_POS_X, WAVE_CHIPTUNE_POS_Y);
 	m_chiptune_waveselector.setColor(chip_color);
@@ -938,7 +938,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 	m_chiptune_waveselector.m_menu = chip_menu;
 
 	m_carrier_waveselector.OnValueChange = [&](int p_new_value) {
-		m_value_tree.state.setProperty(m_carrier_wave_identifier, (float)p_new_value, nullptr);
+		m_value_tree.state.getChildWithName("osc").setProperty(m_carrier_wave_identifier, (float)p_new_value, nullptr);
 	};
 	m_carrier_waveselector.setTopLeftPosition(WAVE_CARRIER_POS_X, WAVE_CARRIER_POS_Y);
 
@@ -948,7 +948,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 	addChildComponent(m_carrier_waveselector);
 
 	m_wavetable_waveselector.OnValueChange = [&](int p_new_value) {
-		m_value_tree.state.setProperty(m_wavetable_identifier, (float)p_new_value, nullptr);
+		m_value_tree.state.getChildWithName("osc").setProperty(m_wavetable_identifier, (float)p_new_value, nullptr);
 	};
 	m_wavetable_waveselector.setTopLeftPosition(WAVE_CARRIER_POS_X, WAVE_CARRIER_POS_Y);
 	m_wavetable_waveselector.addWave(1, "Classic Analog");
@@ -991,7 +991,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 	addChildComponent(m_wavetable_waveselector);
 
 	m_modulator_waveselector.OnValueChange = [&](int p_new_value) {
-		m_value_tree.state.setProperty(m_modulator_wave_identifier, (float)p_new_value, nullptr);
+		m_value_tree.state.getChildWithName("osc").setProperty(m_modulator_wave_identifier, (float)p_new_value, nullptr);
 	};
 	m_modulator_waveselector.setTopLeftPosition(WAVE_MODULATOR_POS_X, WAVE_MODULATOR_POS_Y);
 	m_modulator_waveselector.setColor(FM_COLOR);
@@ -1012,7 +1012,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 	addChildComponent(m_carrier_ratio);
 
 	m_modulator_ratio.OnValueChange = [&](int p_new_value) {
-		// m_value_tree.state.setProperty(m_modulator_ratio_identifier,
+		// m_value_tree.state.getChildWithName("osc").setProperty(m_modulator_ratio_identifier,
 		//                               (float)p_new_value, nullptr);
 		SETAUDIO(m_modulator_ratio_identifier, (p_new_value - 1) / 11.f);
 	};
@@ -1093,7 +1093,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 	m_vec_a.setColor(vector_color);
 	m_vec_a.setTooltip("Select the waveform to the bottom left of the XY pad");
 	m_vec_a.onChange = [&]() {
-		m_value_tree.state.setProperty(m_vec_a_identifier, (float)m_vec_a.getSelectedId(), nullptr);
+		m_value_tree.state.getChildWithName("osc").setProperty(m_vec_a_identifier, (float)m_vec_a.getSelectedId(), nullptr);
 	};
 	addChildComponent(m_vec_a);
 
@@ -1106,7 +1106,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 	m_vec_b.setColor(vector_color);
 	m_vec_b.setTooltip("Select the waveform to the top left of the XY pad");
 	m_vec_b.onChange = [&]() {
-		m_value_tree.state.setProperty(m_vec_b_identifier, (float)m_vec_b.getSelectedId(), nullptr);
+		m_value_tree.state.getChildWithName("osc").setProperty(m_vec_b_identifier, (float)m_vec_b.getSelectedId(), nullptr);
 	};
 	addChildComponent(m_vec_b);
 
@@ -1119,7 +1119,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 	m_vec_c.setColor(vector_color);
 	m_vec_c.setTooltip("Select the waveform to the top right of the XY pad");
 	m_vec_c.onChange = [&]() {
-		m_value_tree.state.setProperty(m_vec_c_identifier, (float)m_vec_c.getSelectedId(), nullptr);
+		m_value_tree.state.getChildWithName("osc").setProperty(m_vec_c_identifier, (float)m_vec_c.getSelectedId(), nullptr);
 	};
 	addChildComponent(m_vec_c);
 
@@ -1132,7 +1132,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 	m_vec_d.setColor(vector_color);
 	m_vec_d.setTooltip("Select the waveform to the bottom right of the XY pad");
 	m_vec_d.onChange = [&]() {
-		m_value_tree.state.setProperty(m_vec_d_identifier, (float)m_vec_d.getSelectedId(), nullptr);
+		m_value_tree.state.getChildWithName("osc").setProperty(m_vec_d_identifier, (float)m_vec_d.getSelectedId(), nullptr);
 	};
 	addChildComponent(m_vec_d);
 
@@ -1558,7 +1558,7 @@ void OscComponent::createWavedrawTables() {
 
 	// write values to audiovaluetree
 	float *table = m_wavedraw.getDrawnTable();
-	auto node    = m_value_tree.state;
+	auto node    = m_value_tree.state.getChildWithName("draw");
 	for (int i = 0; i < WAVEDRAW_STEPS_X; ++i) {
 		node.setProperty(String("osc" + m_osc_number + "_wavedraw_values_" + std::to_string(i)), table[i], nullptr);
 	}
@@ -1571,7 +1571,7 @@ void OscComponent::createChipdrawTables() {
 
 	// write values to audiovaluetree
 	float *table = m_chipdraw.getDrawnTable();
-	auto node    = m_value_tree.state;
+	auto node    = m_value_tree.state.getChildWithName("draw");
 	for (int i = 0; i < CHIPDRAW_STEPS_X; ++i) {
 		node.setProperty(String("osc" + m_osc_number + "_chipdraw_values_" + std::to_string(i)), table[i], nullptr);
 	}
@@ -1582,7 +1582,7 @@ void OscComponent::createSpecdrawTables() {
 	    std::stoi(m_osc_number) - 1, m_specdraw.getDrawnTable(), 44100.f);
 	// write values to audiovaluetree
 	float *table = m_specdraw.getDrawnTable();
-	auto node    = m_value_tree.state;
+	auto node    = m_value_tree.state.getChildWithName("draw");
 	for (int i = 0; i < SPECDRAW_STEPS_X; ++i) {
 		node.setProperty(String("osc" + m_osc_number + "_specdraw_values_" + std::to_string(i)), table[i], nullptr);
 	}
@@ -1606,7 +1606,7 @@ void OscComponent::forceValueTreeOntoComponents(ValueTree p_tree, int p_index, b
 	std::string index = std::to_string(p_index);
 
 	// analog waveform
-	switch ((int)m_value_tree.state[m_analog_wave_identifier]) {
+	switch ((int)m_value_tree.state.getChildWithName("osc")[m_analog_wave_identifier]) {
 	case 0:
 		m_LED_saw.setToggleState(true, sendNotification);
 		break;
@@ -1624,33 +1624,30 @@ void OscComponent::forceValueTreeOntoComponents(ValueTree p_tree, int p_index, b
 	}
 
 	// wavetable waveselctor
-	m_wavetable_waveselector.setValue(m_value_tree.state[m_wavetable_identifier]);
+	m_wavetable_waveselector.setValue(m_value_tree.state.getChildWithName("osc")[m_wavetable_identifier]);
 
 	// vector
-	m_vec_a.setSelectedId(m_value_tree.state[m_vec_a_identifier]);
-	m_vec_b.setSelectedId(m_value_tree.state[m_vec_b_identifier]);
-	m_vec_c.setSelectedId(m_value_tree.state[m_vec_c_identifier]);
-	m_vec_d.setSelectedId(m_value_tree.state[m_vec_d_identifier]);
+	m_vec_a.setSelectedId(m_value_tree.state.getChildWithName("osc")[m_vec_a_identifier]);
+	m_vec_b.setSelectedId(m_value_tree.state.getChildWithName("osc")[m_vec_b_identifier]);
+	m_vec_c.setSelectedId(m_value_tree.state.getChildWithName("osc")[m_vec_c_identifier]);
+	m_vec_d.setSelectedId(m_value_tree.state.getChildWithName("osc")[m_vec_d_identifier]);
 
 	// fm
-	m_carrier_waveselector.setValue(m_value_tree.state[m_carrier_wave_identifier]);
-	m_modulator_waveselector.setValue(m_value_tree.state[m_modulator_wave_identifier]);
+	m_carrier_waveselector.setValue(m_value_tree.state.getChildWithName("osc")[m_carrier_wave_identifier]);
+	m_modulator_waveselector.setValue(m_value_tree.state.getChildWithName("osc")[m_modulator_wave_identifier]);
 
 	m_carrier_ratio.setValue(GETAUDIO(m_carrier_ratio_identifier));
-	// DBG((float GETAUDIO(m_carrier_ratio_identifier)));
 
 	m_modulator_ratio.setValue(GETAUDIO(m_modulator_ratio_identifier));
-	// DBG("1");
 
 	m_fm_exp.setValue(m_value_tree.getParameterAsValue("osc" + m_osc_number + "_exp_fm").getValue());
 
-	// DBG("FM\n\n\n");
-	// DBG((float)m_value_tree.getParameterAsValue("osc" + m_osc_number +
-	// "_exp_fm") .getValue());
-
 	// chiptune
-	m_chiptune_waveselector.setValue(m_value_tree.state[String("osc" + m_osc_number + "_chipwave")]);
+	m_chiptune_waveselector.setValue(m_value_tree.state.getChildWithName("osc")[String("osc" + m_osc_number + "_chipwave")]);
 	auto node = m_value_tree.state;
+
+
+	node = m_value_tree.state.getChildWithName("draw");
 
 	// wavedraw
 	float wavedraw_values[WAVEDRAW_STEPS_X];

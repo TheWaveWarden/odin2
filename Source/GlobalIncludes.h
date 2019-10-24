@@ -98,8 +98,6 @@
 
 #define VOL_MOD_UPPER_LIMIT 100
 
-#define GETVALUE(name) m_value_tree.state[name]
-#define SETVALUE(name, value) m_value_tree.state.setProperty(name, value, nullptr)
 #define GETAUDIO(name) m_value_tree.getParameterAsValue(name).getValue()
 #define SETAUDIO(name, value) m_value_tree.getParameter(name)->setValueNotifyingHost(((float)value))
 

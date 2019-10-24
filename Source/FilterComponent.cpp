@@ -173,7 +173,6 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts,
   m_vowel_left.OnValueChange = [&](int p_new_value) {
     m_value_tree.getParameter(m_vowel_left_identifier)
         ->setValueNotifyingHost(((float)p_new_value) / 7.f);
-    // SETVALUE(m_vowel_left_identifier, p_new_value);
   };
   m_vowel_left.setTopLeftPosition(FORMANT_VOW_LEFT_POS_X,
                                   FORMANT_VOW_LEFT_POS_Y);
@@ -187,7 +186,6 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts,
   m_vowel_right.OnValueChange = [&](int p_new_value) {
     m_value_tree.getParameter(m_vowel_right_identifier)
         ->setValueNotifyingHost(((float)p_new_value) / 7.f);
-    // SETVALUE(m_vowel_right_identifier, p_new_value);
   };
   m_vowel_right.setTopLeftPosition(FORMANT_VOW_RIGHT_POS_X,
                                    FORMANT_VOW_RIGHT_POS_Y);

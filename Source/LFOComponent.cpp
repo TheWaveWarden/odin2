@@ -128,9 +128,9 @@ LFOComponent::LFOComponent(AudioProcessorValueTreeState &vts,
   addAndMakeVisible(m_selector);
 
   m_sync_time.OnValueChange = [&](int p_left, int p_right) {
-    m_value_tree.state.setProperty(m_lfo_synctime_numerator_identifier, p_left,
+    m_value_tree.state.getChildWithName("lfo").setProperty(m_lfo_synctime_numerator_identifier, p_left,
                                    nullptr);
-    m_value_tree.state.setProperty(m_lfo_synctime_denominator_identifier,
+    m_value_tree.state.getChildWithName("lfo").setProperty(m_lfo_synctime_denominator_identifier,
                                    p_right, nullptr);
   };
   m_sync_time.setTopLeftPosition(SYNC_TIME_POS_X, SYNC_TIME_POS_Y);
@@ -175,6 +175,6 @@ void LFOComponent::forceValueTreeOntoComponents(ValueTree p_tree) {
       m_value_tree.getParameterAsValue(m_lfo_wave_identifier).getValue());
 
   m_sync_time.setValues(
-      m_value_tree.state[m_lfo_synctime_numerator_identifier],
-      m_value_tree.state[m_lfo_synctime_denominator_identifier]);
+      m_value_tree.state.getChildWithName("lfo")[m_lfo_synctime_numerator_identifier],
+      m_value_tree.state.getChildWithName("lfo")[m_lfo_synctime_denominator_identifier]);
 }

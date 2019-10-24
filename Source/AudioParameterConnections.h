@@ -174,23 +174,27 @@ for (int i = 0; i < 9; ++i) {
 //============================================================================
 //============================================================================
 //============================================================================
-//============================================================================
-//============================================================================
-//============================================================================
-//============================================================================
-//============================================================================
 //======================== ATTACH TO LISTENER ================================
 //============================================================================
 //============================================================================
 //============================================================================
 //============================================================================
-//============================================================================
-//============================================================================
-//============================================================================
-//============================================================================
 
-// first attach non param listener
-m_value_tree.state.addListener(&m_non_param_listener);
+// attach subtrees 
+m_value_tree.state.appendChild(m_value_tree_draw, nullptr);
+m_value_tree.state.appendChild(m_value_tree_fx, nullptr);
+m_value_tree.state.appendChild(m_value_tree_lfo, nullptr);
+m_value_tree.state.appendChild(m_value_tree_misc, nullptr);
+m_value_tree.state.appendChild(m_value_tree_mod, nullptr);
+m_value_tree.state.appendChild(m_value_tree_osc, nullptr);
+// attach non param listeners
+m_value_tree_fx.addListener(&m_non_param_listener_fx);
+m_value_tree_lfo.addListener(&m_non_param_listener_lfo);
+m_value_tree_misc.addListener(&m_non_param_listener_misc);
+m_value_tree_mod.addListener(&m_non_param_listener_mod);
+m_value_tree_osc.addListener(&m_non_param_listener_osc);
+
+DBG("IS VALID: " + std::to_string((int)m_value_tree.state.getChildWithName("fx").isValid()));
 
 for (int osc = 0; osc < 3; ++osc) {
 	//osc pitch listener:

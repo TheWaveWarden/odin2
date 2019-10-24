@@ -159,8 +159,8 @@ DelayComponent::DelayComponent(AudioProcessorValueTreeState &vts, bool p_is_stan
 	m_pingpong_attach.reset(new ButtonAttachment(m_value_tree, "delay_pingpong", m_pingpong));
 
 	m_sync_time.OnValueChange = [&](int p_left, int p_right) {
-		m_value_tree.state.setProperty(m_delay_synctime_numerator_identifier, p_left, nullptr);
-		m_value_tree.state.setProperty(m_delay_synctime_denominator_identifier, p_right, nullptr);
+		m_value_tree.state.getChildWithName("fx").setProperty(m_delay_synctime_numerator_identifier, p_left, nullptr);
+		m_value_tree.state.getChildWithName("fx").setProperty(m_delay_synctime_denominator_identifier, p_right, nullptr);
 	};
 	m_sync_time.setTopLeftPosition(SYNC_TIME_DELAY_POS_X, SYNC_TIME_DELAY_POS_Y);
 	m_sync_time.setTooltip("Set the delay time in sync to your track");
@@ -198,6 +198,6 @@ void DelayComponent::resized() {
 }
 
 void DelayComponent::forceValueTreeOntoComponents(ValueTree p_tree) {
-	m_sync_time.setValues(m_value_tree.state[m_delay_synctime_numerator_identifier],
-	                      m_value_tree.state[m_delay_synctime_denominator_identifier]);
+	m_sync_time.setValues(m_value_tree.state.getChildWithName("fx")[m_delay_synctime_numerator_identifier],
+	                      m_value_tree.state.getChildWithName("fx")[m_delay_synctime_denominator_identifier]);
 }

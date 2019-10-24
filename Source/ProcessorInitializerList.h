@@ -298,4 +298,10 @@ m_osc1_type_identifier("osc1_type"), m_osc2_type_identifier("osc2_type"),
     m_scale_row_6_identifier("scale_row_5"),
     m_scale_row_7_identifier("scale_row_6"),
     m_scale_row_8_identifier("scale_row_7"),
-    m_scale_row_9_identifier("scale_row_8"), m_BPM_identifier("BPM")
+    m_scale_row_9_identifier("scale_row_8"), m_BPM_identifier("BPM"), 
+    m_value_tree_draw("draw"),
+	m_value_tree_fx("fx"),
+	m_value_tree_lfo("lfo"),
+	m_value_tree_misc("misc"),
+	m_value_tree_mod("mod"),
+	m_value_tree_osc("osc")

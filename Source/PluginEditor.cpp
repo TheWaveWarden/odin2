@@ -691,7 +691,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	m_env_13_button.setToggleState(true, dontSendNotification);
 	m_env_13_button.onStateChange = [&]() {
 		setEnv13(m_env_13_button.getToggleState());
-		SETVALUE("env_left_selected", (int)m_env_13_button.getToggleState());
+		m_value_tree.state.getChildWithName("misc").setProperty("env_left_selected", (int)m_env_13_button.getToggleState(), nullptr);
 	};
 	m_env_13_button.setTooltip("Shows the amplifier\nenvelope or envelope 3");
 	addAndMakeVisible(m_env_13_button);
@@ -706,7 +706,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	m_env_24_button.setToggleState(true, dontSendNotification);
 	m_env_24_button.onStateChange = [&]() {
 		setEnv24(m_env_24_button.getToggleState());
-		SETVALUE("env_right_selected", (int)m_env_24_button.getToggleState());
+		m_value_tree.state.getChildWithName("misc").setProperty("env_right_selected", (int)m_env_24_button.getToggleState(), nullptr);
 	};
 	m_env_24_button.setTooltip("Shows the filter\nenvelope or envelope 4");
 	addAndMakeVisible(m_env_24_button);
@@ -721,7 +721,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	m_lfo_13_button.setToggleState(true, dontSendNotification);
 	m_lfo_13_button.onStateChange = [&]() {
 		setLfo12(m_lfo_13_button.getToggleState());
-		SETVALUE("lfo_left_selected", (int)m_lfo_13_button.getToggleState());
+		m_value_tree.state.getChildWithName("lfo").setProperty("lfo_left_selected", (int)m_lfo_13_button.getToggleState(), nullptr);
 	};
 	m_lfo_13_button.setTooltip("Shows LFO 1 or LFO 3");
 	addAndMakeVisible(m_lfo_13_button);
@@ -736,7 +736,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	m_lfo_24_button.setToggleState(true, dontSendNotification);
 	m_lfo_24_button.onStateChange = [&]() {
 		setLfo34(m_lfo_24_button.getToggleState());
-		SETVALUE("lfo_right_selected", (int)m_lfo_24_button.getToggleState());
+		m_value_tree.state.getChildWithName("lfo").setProperty("lfo_right_selected", (int)m_lfo_24_button.getToggleState(), nullptr);
 	};
 	m_lfo_24_button.setTooltip("Shows LFO 2 or LFO 4");
 	addAndMakeVisible(m_lfo_24_button);
@@ -751,7 +751,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	m_legato_button.setToggleState(true, sendNotification);
 	m_legato_button.onClick = [&]() {
 		// set value in audiovaluetree
-		m_value_tree.state.setProperty("legato", m_legato_button.getToggleState(), nullptr);
+		m_value_tree.state.getChildWithName("misc").setProperty("legato", m_legato_button.getToggleState(), nullptr);
 		// notify voice manager this will reset synth
 		processor.setPolyLegato(m_legato_button.getToggleState());
 	};
@@ -791,7 +791,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	m_pitch_amount.setTooltip("The amount of pitchbend for the pitchwheel in semitones");
 
 	m_BPM_selector.OnValueChange = [&](int p_new_value) {
-		m_value_tree.state.setProperty("BPM", p_new_value, nullptr);
+		m_value_tree.state.getChildWithName("misc").setProperty("BPM", p_new_value, nullptr);
 	};
 	m_BPM_selector.setTopLeftPosition(BPM_POS_X, BPM_POS_Y);
 	m_BPM_selector.setRange(10, 240);
@@ -818,8 +818,6 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	m_fil2_osc2_attachment.reset(new ButtonAttachment(m_value_tree, "fil2_osc2", m_filright_button2));
 	m_fil2_osc3_attachment.reset(new ButtonAttachment(m_value_tree, "fil2_osc3", m_filright_button3));
 	m_fil2_fil1_attachment.reset(new ButtonAttachment(m_value_tree, "fil2_fil1", m_filright_buttonf1));
-	// m_legato_attachment.reset(
-	//    new ButtonAttachment(m_value_tree, "legato", m_legato_button));
 
 	m_glide_attachment.reset(new SliderAttachment(m_value_tree, "glide", m_glide));
 	m_master_attachment.reset(new SliderAttachment(m_value_tree, "master", m_master));
@@ -847,12 +845,12 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	setComponentID("editor");
 	addChildComponent(m_value_input);
 
-	setOsc1Plate(GETVALUE("osc1_type"));
-	setOsc2Plate(GETVALUE("osc2_type"));
-	setOsc3Plate(GETVALUE("osc3_type"));
-	setFilter1Plate(GETVALUE("fil1_type"));
-	setFilter2Plate(GETVALUE("fil2_type"));
-	setFilter3Plate(GETVALUE("fil3_type"));
+	setOsc1Plate(m_value_tree.state.getChildWithName("osc")["osc1_type"]);
+	setOsc2Plate(m_value_tree.state.getChildWithName("osc")["osc2_type"]);
+	setOsc3Plate(m_value_tree.state.getChildWithName("osc")["osc3_type"]);
+	setFilter1Plate(m_value_tree.state.getChildWithName("misc")["fil1_type"]);
+	setFilter2Plate(m_value_tree.state.getChildWithName("misc")["fil2_type"]);
+	setFilter3Plate(m_value_tree.state.getChildWithName("misc")["fil3_type"]);
 
 	SET_CTR_KEY(m_glide);
 	SET_CTR_KEY(m_master);
@@ -979,7 +977,7 @@ void OdinAudioProcessorEditor::setOsc1Plate(int p_osc_type) {
 		return;
 	}
 	m_osc1.setOscType(p_osc_type);
-	m_value_tree.state.setProperty(m_osc1_type_indentifier, p_osc_type, nullptr);
+	m_value_tree.state.getChildWithName("osc").setProperty(m_osc1_type_indentifier, p_osc_type, nullptr);
 }
 
 void OdinAudioProcessorEditor::setOsc2Plate(int p_osc_type) {
@@ -987,7 +985,7 @@ void OdinAudioProcessorEditor::setOsc2Plate(int p_osc_type) {
 		return;
 	}
 	m_osc2.setOscType(p_osc_type);
-	m_value_tree.state.setProperty(m_osc2_type_indentifier, p_osc_type, nullptr);
+	m_value_tree.state.getChildWithName("osc").setProperty(m_osc2_type_indentifier, p_osc_type, nullptr);
 }
 
 void OdinAudioProcessorEditor::setOsc3Plate(int p_osc_type) {
@@ -995,7 +993,7 @@ void OdinAudioProcessorEditor::setOsc3Plate(int p_osc_type) {
 		return;
 	}
 	m_osc3.setOscType(p_osc_type);
-	m_value_tree.state.setProperty(m_osc3_type_indentifier, p_osc_type, nullptr);
+	m_value_tree.state.getChildWithName("osc").setProperty(m_osc3_type_indentifier, p_osc_type, nullptr);
 }
 
 void OdinAudioProcessorEditor::setFilter1Plate(int p_osc_type) {
@@ -1003,7 +1001,7 @@ void OdinAudioProcessorEditor::setFilter1Plate(int p_osc_type) {
 		return;
 	}
 	m_fil1_component.setFilterType(p_osc_type);
-	m_value_tree.state.setProperty(m_fil1_type_indentifier, p_osc_type, nullptr);
+	m_value_tree.state.getChildWithName("misc").setProperty(m_fil1_type_indentifier, p_osc_type, nullptr);
 }
 
 void OdinAudioProcessorEditor::setFilter2Plate(int p_osc_type) {
@@ -1011,7 +1009,7 @@ void OdinAudioProcessorEditor::setFilter2Plate(int p_osc_type) {
 		return;
 	}
 	m_fil2_component.setFilterType(p_osc_type);
-	m_value_tree.state.setProperty(m_fil2_type_indentifier, p_osc_type, nullptr);
+	m_value_tree.state.getChildWithName("misc").setProperty(m_fil2_type_indentifier, p_osc_type, nullptr);
 }
 
 void OdinAudioProcessorEditor::setFilter3Plate(int p_osc_type) {
@@ -1019,7 +1017,7 @@ void OdinAudioProcessorEditor::setFilter3Plate(int p_osc_type) {
 		return;
 	}
 	m_fil3_component.setFilterType(p_osc_type);
-	m_value_tree.state.setProperty(m_fil3_type_indentifier, p_osc_type, nullptr);
+	m_value_tree.state.getChildWithName("misc").setProperty(m_fil3_type_indentifier, p_osc_type, nullptr);
 }
 
 void OdinAudioProcessorEditor::setEnv13(bool p_env1) {
@@ -1073,10 +1071,10 @@ void OdinAudioProcessorEditor::arrangeFXOnButtons(std::map<std::string, int> p_m
 	m_delay_on_button.setTopLeftPosition(FX_ON_BUTTON_X + p_map.find("delay")->second * FX_BUTTON_OFFSET,
 	                                     FX_ON_BUTTON_Y);
 
-	m_value_tree.state.setProperty(m_delay_position_identifier, (float)p_map.find("delay")->second, nullptr);
-	m_value_tree.state.setProperty(m_phaser_position_identifier, (float)p_map.find("phaser")->second, nullptr);
-	m_value_tree.state.setProperty(m_flanger_position_identifier, (float)p_map.find("flanger")->second, nullptr);
-	m_value_tree.state.setProperty(m_chorus_position_identifier, (float)p_map.find("chorus")->second, nullptr);
+	m_value_tree.state.getChildWithName("fx").setProperty(m_delay_position_identifier, (float)p_map.find("delay")->second, nullptr);
+	m_value_tree.state.getChildWithName("fx").setProperty(m_phaser_position_identifier, (float)p_map.find("phaser")->second, nullptr);
+	m_value_tree.state.getChildWithName("fx").setProperty(m_flanger_position_identifier, (float)p_map.find("flanger")->second, nullptr);
+	m_value_tree.state.getChildWithName("fx").setProperty(m_chorus_position_identifier, (float)p_map.find("chorus")->second, nullptr);
 
 	processor.setFXButtonsPosition((float)p_map.find("delay")->second,
 	                               (float)p_map.find("phaser")->second,
@@ -1130,27 +1128,27 @@ void OdinAudioProcessorEditor::forceValueTreeOntoComponentsOnlyMainPanel() {
 
 	// ugly fix to set highlighted fx panel
 	std::string fx_name = "delay";
-	if ((float)GETVALUE("phaser_selected") > 0.5) {
+	if ((float)m_value_tree.state.getChildWithName("fx")["phaser_selected"] > 0.5) {
 		fx_name = "phaser";
-	} else if ((float)GETVALUE("flanger_selected") > 0.5) {
+	} else if ((float)m_value_tree.state.getChildWithName("fx")["flanger_selected"] > 0.5) {
 		fx_name = "flanger";
-	} else if ((float)GETVALUE("chorus_selected") > 0.5) {
+	} else if ((float)m_value_tree.state.getChildWithName("fx")["chorus_selected"] > 0.5) {
 		fx_name = "chorus";
 	}
 	setActiveFXPanel(fx_name);
 
-	m_legato_button.setToggleState((float)m_value_tree.state["legato"] > 0.5, dontSendNotification);
+	m_legato_button.setToggleState((float)m_value_tree.state.getChildWithName("misc")["legato"] > 0.5, dontSendNotification);
 	processor.setPolyLegato(m_legato_button.getToggleState());
 
-	m_BPM_selector.setValue(m_value_tree.state["BPM"]);
+	m_BPM_selector.setValue(m_value_tree.state.getChildWithName("misc")["BPM"]);
 
-	m_lfo_13_button.setToggleState((float)GETVALUE("lfo_left_selected") > 0.5, dontSendNotification);
+	m_lfo_13_button.setToggleState((float)m_value_tree.state.getChildWithName("lfo")["lfo_left_selected"] > 0.5, dontSendNotification);
 	setLfo12(m_lfo_13_button.getToggleState());
-	m_lfo_24_button.setToggleState((float)GETVALUE("lfo_right_selected") > 0.5, dontSendNotification);
+	m_lfo_24_button.setToggleState((float)m_value_tree.state.getChildWithName("lfo")["lfo_right_selected"] > 0.5, dontSendNotification);
 	setLfo34(m_lfo_24_button.getToggleState());
-	m_env_13_button.setToggleState((float)GETVALUE("env_left_selected") > 0.5, dontSendNotification);
+	m_env_13_button.setToggleState((float)m_value_tree.state.getChildWithName("lfo")["env_left_selected"] > 0.5, dontSendNotification);
 	setEnv13(m_env_13_button.getToggleState());
-	m_env_24_button.setToggleState((float)GETVALUE("env_right_selected") > 0.5, dontSendNotification);
+	m_env_24_button.setToggleState((float)m_value_tree.state.getChildWithName("lfo")["env_right_selected"] > 0.5, dontSendNotification);
 	setEnv24(m_env_24_button.getToggleState());
 }
 
@@ -1167,12 +1165,12 @@ void OdinAudioProcessorEditor::forceValueTreeOntoComponents(bool p_reset_audio) 
 	forceValueTreeOntoComponentsOnlyMainPanel();
 
 	// constructor, these seems to have no influence
-	setOsc1Plate(m_value_tree.state["osc1_type"]);
-	setOsc2Plate(m_value_tree.state["osc2_type"]);
-	setOsc3Plate(m_value_tree.state["osc3_type"]);
-	setFilter1Plate(m_value_tree.state["fil1_type"]);
-	setFilter2Plate(m_value_tree.state["fil2_type"]);
-	setFilter3Plate(m_value_tree.state["fil3_type"]);
+	setOsc1Plate(m_value_tree.state.getChildWithName("osc")["osc1_type"]);
+	setOsc2Plate(m_value_tree.state.getChildWithName("osc")["osc2_type"]);
+	setOsc3Plate(m_value_tree.state.getChildWithName("osc")["osc3_type"]);
+	setFilter1Plate(m_value_tree.state.getChildWithName("misc")["fil1_type"]);
+	setFilter2Plate(m_value_tree.state.getChildWithName("misc")["fil2_type"]);
+	setFilter3Plate(m_value_tree.state.getChildWithName("misc")["fil3_type"]);
 
 	m_osc1.forceValueTreeOntoComponents(m_value_tree.state, 1, true);
 	m_osc2.forceValueTreeOntoComponents(m_value_tree.state, 2, true);

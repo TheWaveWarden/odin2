@@ -568,8 +568,8 @@ void OdinAudioProcessor::treeValueChangedFilCenter(const String &p_ID, float p_n
 		m_diode_filter[0].m_overdrive  = p_new_value * 2;
 		m_ladder_filter[1].m_overdrive = p_new_value * 2;
 		m_SEM_filter_12[1].m_overdrive = p_new_value * 2;
-		m_korg_filter[1].m_overdrive  = p_new_value * 2;
-		m_diode_filter[1].m_overdrive = p_new_value * 2;
+		m_korg_filter[1].m_overdrive   = p_new_value * 2;
+		m_diode_filter[1].m_overdrive  = p_new_value * 2;
 	}
 }
 
@@ -1112,16 +1112,23 @@ void OdinAudioProcessor::treeValueChangedGeneralMisc(const String &p_ID, float p
 		for (int voice = 0; voice < VOICES; ++voice) {
 			m_voice[voice].setGlide(p_new_value);
 		}
-	}
-	else if (id == m_master_identifier) {
+	} else if (id == m_master_identifier) {
 		m_master_control = Decibels::decibelsToGain(p_new_value);
 	}
 }
 
-void OdinAudioProcessor::treeValueChangedNonParam(ValueTree &tree, const Identifier &id) {
+
+// void OdinAudioProcessor::treeValueChangedNonParam(ValueTree &tree, const Identifier &id) {
+
+// 	float p_new_value = (float)tree[id];
+// 	DBG("DELETE ME: " + id.toString().toStdString() + ": " + std::to_string(p_new_value));
+// }
+
+
+void OdinAudioProcessor::treeValueChangedNonParamFX(ValueTree &tree, const Identifier &id) {
 
 	float p_new_value = (float)tree[id];
-	DBG("value: " + id.toString().toStdString() + ": " + std::to_string(p_new_value));
+	DBG("nonparam_fx: " + id.toString().toStdString() + ": " + std::to_string(p_new_value));
 
 	if (id == m_flanger_synctime_numerator_identifier) {
 		for (int stereo = 0; stereo < 2; ++stereo) {
@@ -1148,8 +1155,13 @@ void OdinAudioProcessor::treeValueChangedNonParam(ValueTree &tree, const Identif
 	} else if (id == m_phaser_synctime_denominator_identifier) {
 		m_phaser.setSynctimeDenominator(valueToDenomintaor(p_new_value));
 	}
+}
 
-	else if (id == m_lfo1_synctime_numerator_identifier) {
+void OdinAudioProcessor::treeValueChangedNonParamLFO(ValueTree &tree, const Identifier &id) {
+	float p_new_value = (float)tree[id];
+	DBG("nonparam_lfo: " + id.toString().toStdString() + ": " + std::to_string(p_new_value));
+
+	if (id == m_lfo1_synctime_numerator_identifier) {
 		for (int voice = 0; voice < VOICES; ++voice) {
 			m_voice[voice].lfo[0].setSynctimeNumerator(p_new_value + 1);
 		}
@@ -1177,84 +1189,184 @@ void OdinAudioProcessor::treeValueChangedNonParam(ValueTree &tree, const Identif
 		m_global_lfo.setSynctimeNumerator(p_new_value + 1);
 	} else if (id == m_lfo4_synctime_denominator_identifier) {
 		m_global_lfo.setSynctimeDenominator(valueToDenomintaor(p_new_value));
-	} else if (id == m_source_row_1_identifier) {
+	}
+}
+
+void OdinAudioProcessor::treeValueChangedNonParamMod(ValueTree &tree, const Identifier &id) {
+	float p_new_value = (float)tree[id];
+	DBG("nonparam_mod: " + id.toString().toStdString() + ": " + std::to_string(p_new_value));
+
+	if (id == m_source_row_1_identifier) {
 		m_mod_matrix.setModSource(0, p_new_value);
-	} else if (id == m_dest_1_row_1_identifier) {
+	}
+	else if (id == m_dest_1_row_1_identifier) {
 		m_mod_matrix.setModDestination1(0, p_new_value);
-	} else if (id == m_source_row_2_identifier) {
+	}
+	else if (id == m_source_row_2_identifier) {
 		m_mod_matrix.setModSource(1, p_new_value);
-	} else if (id == m_dest_1_row_2_identifier) {
+	}
+	else if (id == m_dest_1_row_2_identifier) {
 		m_mod_matrix.setModDestination1(1, p_new_value);
-	} else if (id == m_source_row_3_identifier) {
+	}
+	else if (id == m_source_row_3_identifier) {
 		m_mod_matrix.setModSource(2, p_new_value);
-	} else if (id == m_dest_1_row_3_identifier) {
+	}
+	else if (id == m_dest_1_row_3_identifier) {
 		m_mod_matrix.setModDestination1(2, p_new_value);
-	} else if (id == m_source_row_4_identifier) {
+	}
+	else if (id == m_source_row_4_identifier) {
 		m_mod_matrix.setModSource(3, p_new_value);
-	} else if (id == m_dest_1_row_4_identifier) {
+	}
+	else if (id == m_dest_1_row_4_identifier) {
 		m_mod_matrix.setModDestination1(3, p_new_value);
-	} else if (id == m_source_row_5_identifier) {
+	}
+	else if (id == m_source_row_5_identifier) {
 		m_mod_matrix.setModSource(4, p_new_value);
-	} else if (id == m_dest_1_row_5_identifier) {
+	}
+	else if (id == m_dest_1_row_5_identifier) {
 		m_mod_matrix.setModDestination1(4, p_new_value);
-	} else if (id == m_source_row_6_identifier) {
+	}
+	else if (id == m_source_row_6_identifier) {
 		m_mod_matrix.setModSource(5, p_new_value);
-	} else if (id == m_dest_1_row_6_identifier) {
+	}
+	else if (id == m_dest_1_row_6_identifier) {
 		m_mod_matrix.setModDestination1(5, p_new_value);
-	} else if (id == m_source_row_7_identifier) {
+	}
+	else if (id == m_source_row_7_identifier) {
 		m_mod_matrix.setModSource(6, p_new_value);
-	} else if (id == m_dest_1_row_7_identifier) {
+	}
+	else if (id == m_dest_1_row_7_identifier) {
 		m_mod_matrix.setModDestination1(6, p_new_value);
-	} else if (id == m_source_row_8_identifier) {
+	}
+	else if (id == m_source_row_8_identifier) {
 		m_mod_matrix.setModSource(7, p_new_value);
-	} else if (id == m_dest_1_row_8_identifier) {
+	}
+	else if (id == m_dest_1_row_8_identifier) {
 		m_mod_matrix.setModDestination1(7, p_new_value);
-	} else if (id == m_source_row_9_identifier) {
+	}
+	else if (id == m_source_row_9_identifier) {
 		m_mod_matrix.setModSource(8, p_new_value);
-	} else if (id == m_dest_1_row_9_identifier) {
+	}
+	else if (id == m_dest_1_row_9_identifier) {
 		m_mod_matrix.setModDestination1(8, p_new_value);
-	} else if (id == m_dest_2_row_1_identifier) {
+	}
+	else if (id == m_dest_2_row_1_identifier) {
 		m_mod_matrix.setModDestination2(0, p_new_value);
-	} else if (id == m_dest_2_row_2_identifier) {
+	}
+	else if (id == m_dest_2_row_2_identifier) {
 		m_mod_matrix.setModDestination2(1, p_new_value);
-	} else if (id == m_dest_2_row_3_identifier) {
+	}
+	else if (id == m_dest_2_row_3_identifier) {
 		m_mod_matrix.setModDestination2(2, p_new_value);
-	} else if (id == m_dest_2_row_4_identifier) {
+	}
+	else if (id == m_dest_2_row_4_identifier) {
 		m_mod_matrix.setModDestination2(3, p_new_value);
-	} else if (id == m_dest_2_row_5_identifier) {
+	}
+	else if (id == m_dest_2_row_5_identifier) {
 		m_mod_matrix.setModDestination2(4, p_new_value);
-	} else if (id == m_dest_2_row_6_identifier) {
+	}
+	else if (id == m_dest_2_row_6_identifier) {
 		m_mod_matrix.setModDestination2(5, p_new_value);
-	} else if (id == m_dest_2_row_7_identifier) {
+	}
+	else if (id == m_dest_2_row_7_identifier) {
 		m_mod_matrix.setModDestination2(6, p_new_value);
-	} else if (id == m_dest_2_row_8_identifier) {
+	}
+	else if (id == m_dest_2_row_8_identifier) {
 		m_mod_matrix.setModDestination2(7, p_new_value);
-	} else if (id == m_dest_2_row_9_identifier) {
+	}
+	else if (id == m_dest_2_row_9_identifier) {
 		m_mod_matrix.setModDestination2(8, p_new_value);
 	}
 
 	else if (id == m_scale_row_1_identifier) {
 		m_mod_matrix.setModScale(0, p_new_value);
-	} else if (id == m_scale_row_2_identifier) {
+	}
+	else if (id == m_scale_row_2_identifier) {
 		m_mod_matrix.setModScale(1, p_new_value);
-	} else if (id == m_scale_row_3_identifier) {
+	}
+	else if (id == m_scale_row_3_identifier) {
 		m_mod_matrix.setModScale(2, p_new_value);
-	} else if (id == m_scale_row_4_identifier) {
+	}
+	else if (id == m_scale_row_4_identifier) {
 		m_mod_matrix.setModScale(3, p_new_value);
-	} else if (id == m_scale_row_5_identifier) {
+	}
+	else if (id == m_scale_row_5_identifier) {
 		m_mod_matrix.setModScale(4, p_new_value);
-	} else if (id == m_scale_row_6_identifier) {
+	}
+	else if (id == m_scale_row_6_identifier) {
 		m_mod_matrix.setModScale(5, p_new_value);
-	} else if (id == m_scale_row_7_identifier) {
+	}
+	else if (id == m_scale_row_7_identifier) {
 		m_mod_matrix.setModScale(6, p_new_value);
-	} else if (id == m_scale_row_8_identifier) {
+	}
+	else if (id == m_scale_row_8_identifier) {
 		m_mod_matrix.setModScale(7, p_new_value);
-	} else if (id == m_scale_row_9_identifier) {
+	}
+	else if (id == m_scale_row_9_identifier) {
 		m_mod_matrix.setModScale(8, p_new_value);
-	} else if (id == m_dist_algo_identifier) {
+	}
+}
+
+void OdinAudioProcessor::treeValueChangedNonParamMisc(ValueTree &tree, const Identifier &id) {
+	float p_new_value = (float)tree[id];
+	DBG("nonparam_misc: " + id.toString().toStdString() + ": " + std::to_string(p_new_value));
+
+	if (id == m_dist_algo_identifier) {
 		m_distortion[0].setAlgorithm((int)p_new_value);
 		m_distortion[1].setAlgorithm((int)p_new_value);
-	} else if (id == m_osc1_analog_wave_identifier) {
+	} else if (id == m_fil1_type_identifier) {
+		m_fil_type[0] = p_new_value;
+		if (p_new_value < 7.5f && p_new_value > 1.5f) {
+			for (int voice = 0; voice < VOICES; ++voice) {
+				m_voice[voice].ladder_filter[0].setFilterType((int)p_new_value - 2);
+			}
+		} else if ((int)p_new_value == FILTER_TYPE_KORG_LP) {
+			for (int voice = 0; voice < VOICES; ++voice) {
+				m_voice[voice].korg_filter[0].setFilterType(true);
+			}
+		} else if ((int)p_new_value == FILTER_TYPE_KORG_HP) {
+			for (int voice = 0; voice < VOICES; ++voice) {
+				m_voice[voice].korg_filter[0].setFilterType(false);
+			}
+		}
+	} else if (id == m_fil2_type_identifier) {
+		m_fil_type[1] = p_new_value;
+
+		if (p_new_value < 7.5f && p_new_value > 1.5f) {
+			for (int voice = 0; voice < VOICES; ++voice) {
+				m_voice[voice].ladder_filter[1].setFilterType((int)p_new_value - 2);
+			}
+		} else if ((int)p_new_value == FILTER_TYPE_KORG_LP) {
+			for (int voice = 0; voice < VOICES; ++voice) {
+				m_voice[voice].korg_filter[1].setFilterType(true);
+			}
+		} else if ((int)p_new_value == FILTER_TYPE_KORG_HP) {
+			for (int voice = 0; voice < VOICES; ++voice) {
+				m_voice[voice].korg_filter[1].setFilterType(false);
+			}
+		}
+	} else if (id == m_fil3_type_identifier) {
+		m_fil_type[2] = p_new_value;
+		if (p_new_value < 7.5f && p_new_value > 1.5f) {
+			m_ladder_filter[0].setFilterType((int)p_new_value - 2);
+			m_ladder_filter[1].setFilterType((int)p_new_value - 2);
+		} else if ((int)p_new_value == FILTER_TYPE_KORG_LP) {
+			m_korg_filter[0].setFilterType(true);
+			m_korg_filter[1].setFilterType(true);
+		} else if ((int)p_new_value == FILTER_TYPE_KORG_HP) {
+			m_korg_filter[0].setFilterType(false);
+			m_korg_filter[1].setFilterType(false);
+		} else if (id == m_BPM_identifier) {
+			m_BPM = p_new_value;
+		}
+	}
+}
+
+void OdinAudioProcessor::treeValueChangedNonParamOsc(ValueTree &tree, const Identifier &id) {
+	float p_new_value = (float)tree[id];
+	DBG("nonparam_osc: " + id.toString().toStdString() + ": " + std::to_string(p_new_value));
+
+	if (id == m_osc1_analog_wave_identifier) {
 		for (int voice = 0; voice < VOICES; ++voice) {
 			m_voice[voice].analog_osc[0].selectWavetable((int)p_new_value);
 		}
@@ -1317,49 +1429,6 @@ void OdinAudioProcessor::treeValueChangedNonParam(ValueTree &tree, const Identif
 		for (int voice = 0; voice < VOICES; ++voice) {
 			m_voice[voice].killGlide(2);
 			m_osc_type[2] = p_new_value;
-		}
-	} else if (id == m_fil1_type_identifier) {
-		m_fil_type[0] = p_new_value;
-		if (p_new_value < 7.5f && p_new_value > 1.5f) {
-			for (int voice = 0; voice < VOICES; ++voice) {
-				m_voice[voice].ladder_filter[0].setFilterType((int)p_new_value - 2);
-			}
-		} else if ((int)p_new_value == FILTER_TYPE_KORG_LP) {
-			for (int voice = 0; voice < VOICES; ++voice) {
-				m_voice[voice].korg_filter[0].setFilterType(true);
-			}
-		} else if ((int)p_new_value == FILTER_TYPE_KORG_HP) {
-			for (int voice = 0; voice < VOICES; ++voice) {
-				m_voice[voice].korg_filter[0].setFilterType(false);
-			}
-		}
-	} else if (id == m_fil2_type_identifier) {
-		m_fil_type[1] = p_new_value;
-
-		if (p_new_value < 7.5f && p_new_value > 1.5f) {
-			for (int voice = 0; voice < VOICES; ++voice) {
-				m_voice[voice].ladder_filter[1].setFilterType((int)p_new_value - 2);
-			}
-		} else if ((int)p_new_value == FILTER_TYPE_KORG_LP) {
-			for (int voice = 0; voice < VOICES; ++voice) {
-				m_voice[voice].korg_filter[1].setFilterType(true);
-			}
-		} else if ((int)p_new_value == FILTER_TYPE_KORG_HP) {
-			for (int voice = 0; voice < VOICES; ++voice) {
-				m_voice[voice].korg_filter[1].setFilterType(false);
-			}
-		}
-	} else if (id == m_fil3_type_identifier) {
-		m_fil_type[2] = p_new_value;
-		if (p_new_value < 7.5f && p_new_value > 1.5f) {
-			m_ladder_filter[0].setFilterType((int)p_new_value - 2);
-			m_ladder_filter[1].setFilterType((int)p_new_value - 2);
-		} else if ((int)p_new_value == FILTER_TYPE_KORG_LP) {
-			m_korg_filter[0].setFilterType(true);
-			m_korg_filter[1].setFilterType(true);
-		} else if ((int)p_new_value == FILTER_TYPE_KORG_HP) {
-			m_korg_filter[0].setFilterType(false);
-			m_korg_filter[1].setFilterType(false);
 		}
 	} else if (id == m_osc1_wavetable_identifier) {
 		for (int voice = 0; voice < VOICES; ++voice) {
@@ -1466,7 +1535,5 @@ void OdinAudioProcessor::treeValueChangedNonParam(ValueTree &tree, const Identif
 			m_voice[voice].fm_osc[2].selectModulatorWavetableByMapping(p_new_value);
 			m_voice[voice].pm_osc[2].selectModulatorWavetableByMapping(p_new_value);
 		}
-	} else if (id == m_BPM_identifier) {
-		m_BPM = p_new_value;
 	}
 }
