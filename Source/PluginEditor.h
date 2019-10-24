@@ -237,6 +237,7 @@ private:
   bool m_L_down = false; // D
   bool m_P_down = false; // D#
 
+  bool m_screenshot_saved = false;
   // This reference is provided as a quick way for your editor to
   // access the processor object that created it.
   OdinAudioProcessor &processor;
