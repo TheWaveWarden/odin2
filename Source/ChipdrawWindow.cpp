@@ -53,8 +53,6 @@ void ChipdrawWindow::paint(Graphics &g) {
   g.drawImageAt(m_glaspanel, 0, 0);
 }
 
-void ChipdrawWindow::resized() {}
-
 void ChipdrawWindow::mouseDrag(const MouseEvent &event) { mouseInteraction(); }
 
 void ChipdrawWindow::mouseDown(const MouseEvent &event) { mouseInteraction(); }

@@ -904,42 +904,11 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	m_spectrum_display.setAlwaysOnTop(true);
 #endif
 
-	setSize(800, 600);
-
-	forceValueTreeOntoComponentsOnlyMainPanel();
-
-	writeComponentImageToFile(*this);
-	writeValueTreeToFile(m_value_tree.state);
-}
-
-OdinAudioProcessorEditor::~OdinAudioProcessorEditor() {
-	m_osc_dropdown_menu.setLookAndFeel(nullptr);
-	m_filter_dropdown_menu.setLookAndFeel(nullptr);
-	m_tooltip.setLookAndFeel(nullptr);
-	m_value_input.setLookAndFeel(nullptr);
-
-	m_value_tree.removeParameterListener("pitchbend_amount", &m_pitch_amount);
-}
-
-//==============================================================================
-void OdinAudioProcessorEditor::paint(Graphics &g) {
-	g.drawImageAt(ImageCache::getFromMemory(BinaryData::odin_backdrop_png, BinaryData::odin_backdrop_pngSize), 0, 0);
-}
-
-void OdinAudioProcessorEditor::resized() {
-	// Rectangle<int> area_glide(METAL_KNOB_SMALL_SIZE_X,
-	// METAL_KNOB_SMALL_SIZE_Y); Rectangle<int>
-	// area_master(METAL_KNOB_SMALL_SIZE_X, METAL_KNOB_SMALL_SIZE_Y);
 	Rectangle<int> area_osc_1(OSC_SIZE_X, OSC_SIZE_Y);
 	Rectangle<int> area_osc_2(OSC_SIZE_X, OSC_SIZE_Y);
 	Rectangle<int> area_osc_3(OSC_SIZE_X, OSC_SIZE_Y);
 	Rectangle<int> area_fil_1(FILTER_SIZE_X, FILTER_SIZE_Y);
 	Rectangle<int> area_midsection(MIDSECTION_SIZE_X, MIDSECTION_SIZE_Y);
-
-	// area_glide.setPosition(GLIDE_POS_X - METAL_KNOB_SMALL_OFFSET_X,
-	//                        GLIDE_POS_Y - METAL_KNOB_SMALL_OFFSET_Y);
-	// area_master.setPosition(MASTER_POS_X - METAL_KNOB_SMALL_OFFSET_X,
-	//                         MASTER_POS_Y - METAL_KNOB_SMALL_OFFSET_Y);
 
 	area_osc_1.setPosition(OSC1_POS_X, OSC_POS_Y);
 	area_osc_2.setPosition(OSC2_POS_X, OSC_POS_Y);
@@ -953,7 +922,6 @@ void OdinAudioProcessorEditor::resized() {
 	                  METAL_KNOB_SMALL_SIZE_Y);
 	m_master.setRange(MASTER_MIN, MASTER_MAX);
 	m_master.setTextValueSuffix(" dB");
-	// m_master.setValue(MASTER_DEFAULT);
 	m_master.setNumDecimalPlacesToDisplay(1);
 
 	m_master.setBounds(MASTER_POS_X - METAL_KNOB_SMALL_OFFSET_X,
@@ -984,21 +952,35 @@ void OdinAudioProcessorEditor::resized() {
 	m_save_load.setBounds(SAVE_LOAD_POS_X, SAVE_LOAD_POS_Y, SAVE_LOAD_SIZE_X, SAVE_LOAD_SIZE_Y);
 	m_xy_section.setBounds(XY_COMPONENT_POS_X, XY_COMPONENT_POS_Y, XY_COMPONENT_SIZE_X, XY_COMPONENT_SIZE_Y);
 
-	// m_mod_matrix.getOscFilterTypes = [&](int &osc1, int &osc2, int &osc3,
-	//                                      int &fil1, int &fil2, int &fil3) {
-	//   osc1 = m_osc1.getOscType();
-	//   osc2 = m_osc2.getOscType();
-	//   osc3 = m_osc3.getOscType();
-	//   fil1 = m_fil1_component.getFilterType();
-	//   fil2 = m_fil2_component.getFilterType();
-	//   fil3 = m_fil3_component.getFilterType();
-	// };
-
 	m_tooltip.setBounds(900, 100, 100, 100);
 	m_tooltip.setAlwaysOnTop(true);
 	setTooltipEnabled(false);
 	addAndMakeVisible(m_tooltip);
 
+	setSize(800, 600);
+
+	forceValueTreeOntoComponentsOnlyMainPanel();
+
+	writeComponentImageToFile(*this);
+	writeValueTreeToFile(m_value_tree.state);
+}
+
+OdinAudioProcessorEditor::~OdinAudioProcessorEditor() {
+	m_osc_dropdown_menu.setLookAndFeel(nullptr);
+	m_filter_dropdown_menu.setLookAndFeel(nullptr);
+	m_tooltip.setLookAndFeel(nullptr);
+	m_value_input.setLookAndFeel(nullptr);
+
+	m_value_tree.removeParameterListener("pitchbend_amount", &m_pitch_amount);
+}
+
+//==============================================================================
+void OdinAudioProcessorEditor::paint(Graphics &g) {
+	g.drawImageAt(ImageCache::getFromMemory(BinaryData::odin_backdrop_png, BinaryData::odin_backdrop_pngSize), 0, 0);
+}
+
+void OdinAudioProcessorEditor::resized() {
+	//this is the only valid call to resized, since this window is not allowed to change size
 	setSize(800, 600);
 }
 
@@ -1184,7 +1166,7 @@ void OdinAudioProcessorEditor::forceValueTreeOntoComponentsOnlyMainPanel() {
 	m_env_24_button.setToggleState((float)m_value_tree.state.getChildWithName("misc")["env_right_selected"] > 0.5,
 	                               dontSendNotification);
 	setEnv24(m_env_24_button.getToggleState());
-	
+
 	m_lfo_13_button.setToggleState((float)m_value_tree.state.getChildWithName("lfo")["lfo_left_selected"] > 0.5,
 	                               dontSendNotification);
 	setLfo12(m_lfo_13_button.getToggleState());

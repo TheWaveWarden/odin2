@@ -63,10 +63,6 @@ void ModAmountComponent::paint(Graphics &g) {
 	g.drawImageAt(m_glas_panel, 0, 0);
 }
 
-void ModAmountComponent::resized() {
-	// This method is where you should set the bounds of any child
-	// components that your component contains..
-}
 
 void ModAmountComponent::mouseDrag(const MouseEvent &event) {
 	m_value = m_drag_start_value + (m_drag_start_y - getMouseXYRelative().getY()) * DRAG_SCALAR;

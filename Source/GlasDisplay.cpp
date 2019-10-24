@@ -48,11 +48,6 @@ void GlasDisplay::paint(Graphics &g) {
 
 }
 
-void GlasDisplay::resized() {
-  // This method is where you should set the bounds of any child
-  // components that your component contains..
-}
-
 void 	GlasDisplay::mouseDown (const MouseEvent &event){
   onMouseDown();
   toParentMouseDown(event);

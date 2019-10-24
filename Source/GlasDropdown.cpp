@@ -51,8 +51,3 @@ void GlasDropdown::paint(Graphics &g) {
   }
   g.drawImageAt(m_glaspanel, 0, 0);
 }
-
-void GlasDropdown::resized() {
-  // This method is where you should set the bounds of any child
-  // components that your component contains..
-}

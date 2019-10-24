@@ -29,7 +29,6 @@ public:
   }
 
   void paint(Graphics &) override;
-  void resized() override;
 
   void setColor(juce::Colour p_color) { m_display.setColor(p_color); }
 

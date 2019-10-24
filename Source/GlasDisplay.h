@@ -23,7 +23,6 @@ public:
   ~GlasDisplay();
 
   void paint(Graphics &) override;
-  void resized() override;
   void setImage(juce::Image p_panel) { m_glas_panel = p_panel; }
   void setText(std::string p_text) {
     m_text_no_suffix = p_text;

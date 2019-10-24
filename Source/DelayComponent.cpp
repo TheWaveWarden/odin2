@@ -168,6 +168,13 @@ DelayComponent::DelayComponent(AudioProcessorValueTreeState &vts, bool p_is_stan
 	SET_CTR_KEY(m_dry);
 	SET_CTR_KEY(m_wet);
 
+	m_time.setBounds(TIME_POS_X, TIME_POS_Y, METAL_KNOB_BIG_SIZE_X, METAL_KNOB_BIG_SIZE_Y);
+	m_feedback.setBounds(FEEDBACK_POS_X, FEEDBACK_POS_Y, METAL_KNOB_BIG_SIZE_X, METAL_KNOB_BIG_SIZE_Y);
+	m_HP.setBounds(DELAY_HP_POS_X, DELAY_HP_POS_Y, BLACK_KNOB_MID_SIZE_X, BLACK_KNOB_MID_SIZE_Y);
+	m_ducking.setBounds(DUCKING_POS_X, DUCKING_POS_Y, BLACK_KNOB_MID_SIZE_X, BLACK_KNOB_MID_SIZE_Y);
+	m_dry.setBounds(DRY_POS_X, DRY_POS_Y, BLACK_KNOB_MID_SIZE_X, BLACK_KNOB_MID_SIZE_Y);
+	m_wet.setBounds(WET_POS_X, WET_POS_Y, BLACK_KNOB_MID_SIZE_X, BLACK_KNOB_MID_SIZE_Y);
+
 	forceValueTreeOntoComponents(m_value_tree.state);
 }
 
@@ -176,15 +183,6 @@ DelayComponent::~DelayComponent() {
 
 void DelayComponent::paint(Graphics &g) {
 	g.drawImageAt(m_background, 0, 0);
-}
-
-void DelayComponent::resized() {
-	m_time.setBounds(TIME_POS_X, TIME_POS_Y, METAL_KNOB_BIG_SIZE_X, METAL_KNOB_BIG_SIZE_Y);
-	m_feedback.setBounds(FEEDBACK_POS_X, FEEDBACK_POS_Y, METAL_KNOB_BIG_SIZE_X, METAL_KNOB_BIG_SIZE_Y);
-	m_HP.setBounds(DELAY_HP_POS_X, DELAY_HP_POS_Y, BLACK_KNOB_MID_SIZE_X, BLACK_KNOB_MID_SIZE_Y);
-	m_ducking.setBounds(DUCKING_POS_X, DUCKING_POS_Y, BLACK_KNOB_MID_SIZE_X, BLACK_KNOB_MID_SIZE_Y);
-	m_dry.setBounds(DRY_POS_X, DRY_POS_Y, BLACK_KNOB_MID_SIZE_X, BLACK_KNOB_MID_SIZE_Y);
-	m_wet.setBounds(WET_POS_X, WET_POS_Y, BLACK_KNOB_MID_SIZE_X, BLACK_KNOB_MID_SIZE_Y);
 }
 
 void DelayComponent::forceValueTreeOntoComponents(ValueTree p_tree) {

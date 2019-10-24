@@ -23,7 +23,7 @@ public:
   ~GlasDropdown();
 
   void paint(Graphics &) override;
-  void resized() override;
+  void resized() override {}//note without this function, screen text will be drawn double.... no idea..
   void setImage(juce::Image p_panel) { m_glaspanel = p_panel; }
   void setColor(juce::Colour p_color) { m_color = p_color; }
   void setGreyFirstElement(bool p_grey) { m_grey_first_element = p_grey; }

@@ -30,7 +30,6 @@ public:
 	~XYPadComponent();
 
 	void paint(Graphics &) override;
-	void resized() override;
 	void mouseDrag(const MouseEvent &event) override;
 	void mouseDown(const MouseEvent &event) override;
   void mouseUp(const MouseEvent &event) override;

@@ -26,7 +26,6 @@ public:
 
   void paintButton(Graphics &g, bool shouldDrawButtonAsHighlighted,
                    bool shouldDrawButtonAsDown) override;
-  void resized() override;
   void setImage(juce::Image p_image, int p_frame) {
     if (p_frame == 1) {
       m_image_left = p_image;

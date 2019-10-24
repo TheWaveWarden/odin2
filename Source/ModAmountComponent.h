@@ -24,7 +24,6 @@ public:
   ~ModAmountComponent();
 
   void paint(Graphics &) override;
-  void resized() override;
   void setImage(juce::Image p_panel) { m_glas_panel = p_panel; }
   void setInlay(int p_inlay) { m_inlay = p_inlay; }
   void setColor(juce::Colour p_color) { m_color = p_color; }

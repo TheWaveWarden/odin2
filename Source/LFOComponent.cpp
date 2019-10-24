@@ -165,10 +165,6 @@ void LFOComponent::paint(Graphics &g) {
   }
 }
 
-void LFOComponent::resized() {
-  
-}
-
 void LFOComponent::forceValueTreeOntoComponents(ValueTree p_tree) {
 
   m_selector.setValueGUIOnly(

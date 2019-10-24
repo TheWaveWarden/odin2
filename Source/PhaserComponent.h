@@ -75,7 +75,6 @@ public:
   void forceValueTreeOntoComponents(ValueTree p_tree);
 
   void paint(Graphics &) override;
-  void resized() override;
 
   void setSyncTimeColor(juce::Colour p_color) { m_sync_time.setColor(p_color); }
 

@@ -109,20 +109,7 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts) :
 
 	random_draw1.setImage(random_1);
 	random_draw2.setImage(random_2);
-
-	// m_random.setImages(&random_draw2, &random_draw2, &random_draw1,
-	// &random_draw1,
-	//                    &random_draw2, &random_draw2, &random_draw1,
-	//                    &random_draw1);
-	// m_random.setClickingTogglesState(true);
-	// m_random.setBounds(RANDOM_POS_X, RANDOM_POS_Y, random_1.getWidth(),
-	//                    random_1.getHeight());
-	// addAndMakeVisible(m_random);
-	// m_random.setTriggeredOnMouseDown(false);
-	// m_random.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId,
-	//                    juce::Colour());
-	// m_random.setTooltip("Generate a random patch");
-
+	
 	juce::Image glas_panel =
 	    ImageCache::getFromMemory(BinaryData::glaspanel_big_png, BinaryData::glaspanel_big_pngSize);
 
@@ -235,11 +222,10 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts) :
 			forceValueTreeLambda();
 		}
 	};
+
+	m_patch.setBounds(PATCH_POS_X, PATCH_POS_Y, m_patch_size_x, m_patch_size_y);
 }
 
 SaveLoadComponent::~SaveLoadComponent() {
 }
 
-void SaveLoadComponent::resized() {
-	m_patch.setBounds(PATCH_POS_X, PATCH_POS_Y, m_patch_size_x, m_patch_size_y);
-}

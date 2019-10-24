@@ -192,8 +192,6 @@ void FXComponent::paint(Graphics &g) {
   }
 }
 
-void FXComponent::resized() {}
-
 void FXComponent::setSyncEnabled(bool p_sync) {
   if (m_sync_enabled != p_sync) {
     m_sync_enabled = p_sync;

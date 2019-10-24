@@ -53,15 +53,7 @@ XYSectionComponent::XYSectionComponent(AudioProcessorValueTreeState &vts, std::s
 
 	m_modx.setNumDecimalPlacesToDisplay(3);
 	m_mody.setNumDecimalPlacesToDisplay(3);
-}
 
-XYSectionComponent::~XYSectionComponent() {
-}
-
-void XYSectionComponent::paint(Graphics &g) {
-}
-
-void XYSectionComponent::resized() {
 	m_modx.setBounds(MODX_POS_X - BLACK_KNOB_VERY_SMALL_OFFSET_X,
 	                 MODX_POS_Y - BLACK_KNOB_VERY_SMALL_OFFSET_Y,
 	                 BLACK_KNOB_VERY_SMALL_SIZE_X,
@@ -70,4 +62,10 @@ void XYSectionComponent::resized() {
 	                 MODY_POS_Y - BLACK_KNOB_VERY_SMALL_OFFSET_Y,
 	                 BLACK_KNOB_VERY_SMALL_SIZE_X,
 	                 BLACK_KNOB_VERY_SMALL_SIZE_Y);
+}
+
+XYSectionComponent::~XYSectionComponent() {
+}
+
+void XYSectionComponent::paint(Graphics &g) {
 }

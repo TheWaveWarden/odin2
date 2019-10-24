@@ -57,7 +57,6 @@ public:
 
 
   void paint(Graphics &) override {}
-  void resized() override;
 
 private:
   Knob m_amp_gain;

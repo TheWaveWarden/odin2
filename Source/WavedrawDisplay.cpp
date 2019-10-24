@@ -57,8 +57,6 @@ void WavedrawDisplay::paint(Graphics &g) {
   g.drawImageAt(m_glaspanel, 0, 0);
 }
 
-void WavedrawDisplay::resized() {}
-
 void WavedrawDisplay::mouseDrag(const MouseEvent &event) { mouseInteraction(); }
 
 void WavedrawDisplay::mouseDown(const MouseEvent &event) { mouseInteraction(); }

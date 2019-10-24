@@ -64,7 +64,6 @@ public:
   
 
   void paint(Graphics &) override;
-  void resized() override;
 
   void setImage(juce::Image p_background)
   {

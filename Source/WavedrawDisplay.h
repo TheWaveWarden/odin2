@@ -30,7 +30,6 @@ public:
     ~WavedrawDisplay();
 
   void paint(Graphics &) override;
-  void resized() override;
   void setInlay(int p_inlay) { m_inlay = p_inlay; }
   void setColor(juce::Colour p_color) { m_color = p_color; }
   void setDrawColor(juce::Colour p_draw_color) { m_draw_color = p_draw_color; }

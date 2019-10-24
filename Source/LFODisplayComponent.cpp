@@ -36,11 +36,6 @@ void LFODisplayComponent::paint(Graphics &g) {
   g.drawImageAt(m_panel, 0, 0);
 }
 
-void LFODisplayComponent::resized() {
-  // This method is where you should set the bounds of any child
-  // components that your component contains..
-}
-
 void LFODisplayComponent::addWave(juce::Image p_wave) {
   m_waves.push_back(p_wave.createCopy());
 }

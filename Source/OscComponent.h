@@ -149,7 +149,6 @@ public:
   ~OscComponent();
 
   void paint(Graphics &) override;
-  void resized() override;
   void setBackground(juce::Image p_background) { m_background = p_background; }
   void setBackgroundBypass(juce::Image p_background) {
     m_background_bypass = p_background;

@@ -55,7 +55,6 @@ public:
   
 
   void paint(Graphics &) override;
-  void resized() override;
   void setSync(bool p_sync){
     if(m_sync_active != p_sync){
       m_sync_active = p_sync;

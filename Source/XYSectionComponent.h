@@ -30,7 +30,6 @@ public:
   ~XYSectionComponent();
 
   void paint(Graphics &) override;
-  void resized() override;
 
 private:
   std::string m_section_name;

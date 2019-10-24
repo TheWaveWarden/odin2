@@ -22,7 +22,6 @@ public:
   ~LFODisplayComponent();
 
   void paint(Graphics &) override;
-  void resized() override;
   void setImage(juce::Image p_panel) { m_panel = p_panel; }
   void addWave(juce::Image p_wave);
   void setInlay(int p_inlay) { m_inlay = p_inlay; }

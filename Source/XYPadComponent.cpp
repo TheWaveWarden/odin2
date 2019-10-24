@@ -51,11 +51,6 @@ void XYPadComponent::paint(Graphics &g) {
 	g.drawImageAt(m_panel, 0, 0);
 }
 
-void XYPadComponent::resized() {
-	// This method is where you should set the bounds of any child
-	// components that your component contains..
-}
-
 void XYPadComponent::mouseDrag(const MouseEvent &event) {
 	mouseInteraction();
 }

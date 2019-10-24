@@ -29,9 +29,6 @@ public:
   
 
   void paint(Graphics &) override;
-  void resized() override;
-
-  //std::function<void(int&, int&, int&, int&, int&, int&)> getOscFilterTypes = [](int&, int&, int&, int&, int&, int&){};
 
 private:
   void clearRow(int p_row);
@@ -46,16 +43,6 @@ private:
   GlasDropdown m_dest_2[N_ROWS];
   ModAmountComponent m_amount_3[N_ROWS];
   GlasDropdown m_scale[N_ROWS];
-
-//  Identifier m_source_identifier;
-//  Identifier m_dest_1_identifier;
-//  Identifier m_dest_2_identifier;
-//  Identifier m_scale_identifier;
-
-  //std::unique_ptr<ComboBoxAttachment> m_source_attach[N_ROWS];
-  //std::unique_ptr<ComboBoxAttachment> m_dest_1_attach[N_ROWS];
-  //std::unique_ptr<ComboBoxAttachment> m_dest_2_attach[N_ROWS];
-  //std::unique_ptr<ComboBoxAttachment> m_scale_attach[N_ROWS];
 
   Identifier m_source_identifier0;
   Identifier m_source_identifier1;

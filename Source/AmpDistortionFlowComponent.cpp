@@ -247,30 +247,6 @@ AmpDistortionFlowComponent::AmpDistortionFlowComponent(
 
 AmpDistortionFlowComponent::~AmpDistortionFlowComponent() {}
 
-void AmpDistortionFlowComponent::resized() {
-  //   Rectangle<int> area_amp(METAL_KNOB_BIG_SIZE_X, METAL_KNOB_BIG_SIZE_Y);
-  //   Rectangle<int> area_pan(BLACK_KNOB_MID_SIZE_X, BLACK_KNOB_MID_SIZE_Y);
-  //   Rectangle<int> area_vel(BLACK_KNOB_MID_SIZE_X, BLACK_KNOB_MID_SIZE_Y);
-  //   Rectangle<int> area_bias(ROUND_KNOB_SIZE_X, ROUND_KNOB_SIZE_Y);
-  //   Rectangle<int> area_threshold(ROUND_KNOB_SIZE_X, ROUND_KNOB_SIZE_Y);
-
-  //   area_amp.setPosition(AMP_GAIN_POS_X - METAL_KNOB_BIG_OFFSET_X,
-  //                        AMP_GAIN_POS_Y - METAL_KNOB_BIG_OFFSET_Y);
-  //   area_pan.setPosition(AMP_PAN_POS_X - BLACK_KNOB_MID_OFFSET_X,
-  //                        AMP_PAN_POS_Y - BLACK_KNOB_MID_OFFSET_Y);
-  //   area_vel.setPosition(AMP_VEL_POS_X - BLACK_KNOB_MID_OFFSET_X,
-  //                        AMP_VEL_POS_Y - BLACK_KNOB_MID_OFFSET_Y);
-  //   area_bias.setPosition(BIAS_POS_X - ROUND_KNOB_OFFSET_X,
-  //                         BIAS_POS_Y - ROUND_KNOB_OFFSET_Y);
-  //   area_threshold.setPosition(THRESHOLD_POS_X - ROUND_KNOB_OFFSET_X,
-  //                              THRESHOLD_POS_Y - ROUND_KNOB_OFFSET_Y);
-
-  //   m_amp_pan.setBounds(area_pan);
-  //   m_amp_vel.setBounds(area_vel);
-  //   m_boost.setBounds(area_bias);
-  //   m_dry_wet.setBounds(area_threshold);
-}
-
 void AmpDistortionFlowComponent::forceValueTreeOntoComponents(
     ValueTree p_tree) {
 

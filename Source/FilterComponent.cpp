@@ -252,11 +252,6 @@ FilterComponent::~FilterComponent() {
 
 void FilterComponent::paint(Graphics &g) { g.drawImageAt(m_background, 0, 0); }
 
-void FilterComponent::resized() {
-  // This method is where you should set the bounds of any child
-  // components that your component contains..
-}
-
 void FilterComponent::setFilterType(int p_filter_type) {
   if (p_filter_type == 0) {
     return;

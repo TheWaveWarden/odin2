@@ -210,8 +210,6 @@ void PhaserComponent::paint(Graphics &g) {
   }
 }
 
-void PhaserComponent::resized() {}
-
 void PhaserComponent::setSyncEnabled(bool p_sync) {
   if (m_sync_enabled != p_sync) {
     m_sync_enabled = p_sync;

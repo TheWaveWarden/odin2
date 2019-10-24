@@ -49,8 +49,6 @@ void SpecdrawDisplay::paint(Graphics &g) {
   g.drawImageAt(m_glaspanel, 0, 0);
 }
 
-void SpecdrawDisplay::resized() {}
-
 void SpecdrawDisplay::mouseDrag(const MouseEvent &event) { mouseInteraction(); }
 
 void SpecdrawDisplay::mouseDown(const MouseEvent &event) { mouseInteraction(); }

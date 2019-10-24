@@ -30,7 +30,6 @@ public:
   }
 
   void paint(Graphics &) override;
-  void resized() override;
 
   void setValueGUIOnly(int p_value) {
     if (p_value < m_display.getNrOfWaves() && p_value >= 0) {

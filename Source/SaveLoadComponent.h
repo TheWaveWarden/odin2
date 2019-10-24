@@ -35,7 +35,6 @@ public:
   ~SaveLoadComponent();
 
   void paint(Graphics &) override {}
-  void resized() override;
 
   std::function<void()> forceValueTreeLambda;
 

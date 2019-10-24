@@ -1048,28 +1048,7 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
     m_value_tree.addParameterListener("amount_3_row_" + std::to_string(i),
                                       &(m_amount_3[i]));
   }
-  forceValueTreeOntoComponents(m_value_tree.state);
-}
 
-ModMatrixComponent::~ModMatrixComponent() {
-  for (int i = 0; i < N_ROWS; ++i) {
-    m_value_tree.removeParameterListener("amount_1_row_" + std::to_string(i),
-                                         &(m_amount_1[i]));
-    m_value_tree.removeParameterListener("amount_2_row_" + std::to_string(i),
-                                         &(m_amount_2[i]));
-    m_value_tree.removeParameterListener("amount_3_row_" + std::to_string(i),
-                                         &(m_amount_3[i]));
-  }
-}
-
-void ModMatrixComponent::paint(Graphics &g) {
-  g.setColour(m_color);
-  auto background = getLocalBounds();
-  background.removeFromRight(19);
-  g.fillRect(background);
-}
-
-void ModMatrixComponent::resized() {
 
   for (int i = 0; i < N_ROWS; ++i) {
     m_source[i].setBounds(0, i * m_panel_height, m_big_panel_width,
@@ -1091,7 +1070,28 @@ void ModMatrixComponent::resized() {
     m_scale[i].setBounds(3 * m_big_panel_width + 3 * m_small_panel_width,
                          i * m_panel_height, m_big_panel_width, m_panel_height);
   }
+
+  forceValueTreeOntoComponents(m_value_tree.state);
 }
+
+ModMatrixComponent::~ModMatrixComponent() {
+  for (int i = 0; i < N_ROWS; ++i) {
+    m_value_tree.removeParameterListener("amount_1_row_" + std::to_string(i),
+                                         &(m_amount_1[i]));
+    m_value_tree.removeParameterListener("amount_2_row_" + std::to_string(i),
+                                         &(m_amount_2[i]));
+    m_value_tree.removeParameterListener("amount_3_row_" + std::to_string(i),
+                                         &(m_amount_3[i]));
+  }
+}
+
+void ModMatrixComponent::paint(Graphics &g) {
+  g.setColour(m_color);
+  auto background = getLocalBounds();
+  background.removeFromRight(19);
+  g.fillRect(background);
+}
+
 
 void ModMatrixComponent::clearRow(int p_row) {
   m_source[p_row].reset();

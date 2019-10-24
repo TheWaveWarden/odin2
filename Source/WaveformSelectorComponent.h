@@ -26,7 +26,6 @@ public:
   ~WaveformSelectorComponent();
 
   void paint(Graphics &) override;
-  void resized() override;
 
   void setTooltip(const String p_text){
     m_display.setTooltip(p_text);
