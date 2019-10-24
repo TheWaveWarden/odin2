@@ -589,11 +589,11 @@ void OdinAudioProcessor::treeValueChangedFilMisc(const String &p_ID, float p_new
 		}
 	} else if (id == m_fil1_comb_polarity_identifier) {
 		for (int voice = 0; voice < VOICES; ++voice) {
-			m_voice[voice].comb_filter[0].setPositive(p_new_value);
+			m_voice[voice].comb_filter[0].setPositive(!((bool)p_new_value));
 		}
 	} else if (id == m_fil2_comb_polarity_identifier) {
 		for (int voice = 0; voice < VOICES; ++voice) {
-			m_voice[voice].comb_filter[1].setPositive(p_new_value);
+			m_voice[voice].comb_filter[1].setPositive(!((bool)p_new_value));
 		}
 	} else if (id == m_fil1_sem_transition_identifier) {
 		for (int voice = 0; voice < VOICES; ++voice) {
@@ -612,8 +612,8 @@ void OdinAudioProcessor::treeValueChangedFilMisc(const String &p_ID, float p_new
 		m_ring_mod[0].setAmount(p_new_value);
 		m_ring_mod[1].setAmount(p_new_value);
 	} else if (id == m_fil3_comb_polarity_identifier) {
-		m_comb_filter[0].setPositive(p_new_value);
-		m_comb_filter[1].setPositive(p_new_value);
+		m_comb_filter[0].setPositive(!((bool)p_new_value));
+		m_comb_filter[1].setPositive(!((bool)p_new_value));
 	}
 }
 
