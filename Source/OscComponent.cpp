@@ -1651,7 +1651,7 @@ void OscComponent::forceValueTreeOntoComponents(ValueTree p_tree, int p_index, b
 
 	// specdraw
 	for (int i = 0; i < SPECDRAW_STEPS_X; ++i) {
-		wavedraw_values[i] = (float)node[String("osc" + m_osc_number + "_fs_" + std::to_string(i))];
+		wavedraw_values[i] = (float)node[String("osc" + m_osc_number + "_specdraw_values_" + std::to_string(i))];
 	}
 	m_specdraw.setDrawnTable(wavedraw_values);
 	m_specdraw_convert.setToggleState(true, dontSendNotification);
