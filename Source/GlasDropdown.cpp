@@ -29,10 +29,10 @@ void GlasDropdown::paint(Graphics &g) {
   bottom_right.addXY(-m_inlay - 1, -m_inlay);
   g.fillRect(juce::Rectangle<int>(top_left, bottom_right)); //
 
-  g.setColour(Colours::white);
+  g.setColour(m_font_color);
 
   if (getSelectedId() == 0 && m_grey_first_element) {
-    g.setColour(Colours::lightgrey);
+    g.setColour(m_grey_color);
   }
 
   // g.setFont(bfont);Font current_font = g.getCurrentFont();

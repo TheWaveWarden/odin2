@@ -29,7 +29,7 @@ void XYPadComponent::paint(Graphics &g) {
 	g.fillRect(juce::Rectangle<int>(top_left, bottom_right)); //
 
 	if (m_vector_pad) {
-		g.setColour(juce::Colours::grey);
+		g.setColour(juce::Colours::lightgrey);
 		g.setFont(12.0f);
 		g.drawText("A", VECTOR_LEFT, VECTOR_DOWN, 8, 15, Justification::topLeft);
 		g.drawText("B", VECTOR_LEFT, VECTOR_UP, 8, 15, Justification::topLeft);

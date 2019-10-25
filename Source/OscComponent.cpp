@@ -129,31 +129,31 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 	m_reset.setTriggeredOnMouseDown(true);
 	m_reset.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
 
-	m_reset.onClick = [&]() {
-		juce::Colour col = REMOVE_color_picker->getCurrentColour();
+	// m_reset.onClick = [&]() {
+	// 	juce::Colour col = REMOVE_color_picker->getCurrentColour();
 
-		m_xy.setColor(col);
-		m_vec_a.setColor(col);
-		m_vec_b.setColor(col);
-		m_vec_c.setColor(col);
-		m_vec_d.setColor(col);
+	// 	m_xy.setColor(col);
+	// 	m_vec_a.setColor(col);
+	// 	m_vec_b.setColor(col);
+	// 	m_vec_c.setColor(col);
+	// 	m_vec_d.setColor(col);
 
-		m_wavedraw.setColor(col);
+	// 	m_wavedraw.setColor(col);
 
-		m_wavetable_waveselector.setColor(col);
+	// 	m_wavetable_waveselector.setColor(col);
 
-		m_carrier_waveselector.setColor(col);
-		m_modulator_waveselector.setColor(col);
-		m_carrier_ratio.setColor(col);
-		m_modulator_ratio.setColor(col);
+	// 	m_carrier_waveselector.setColor(col);
+	// 	m_modulator_waveselector.setColor(col);
+	// 	m_carrier_ratio.setColor(col);
+	// 	m_modulator_ratio.setColor(col);
 
-		m_chiptune_waveselector.setColor(col);
-		m_chipdraw.setDrawColor(col);
+	// 	m_chiptune_waveselector.setColor(col);
+	// 	m_chipdraw.setDrawColor(col);
 
-		repaint();
-		DBG("(" + std::to_string((int)col.getRed()) + ", " + std::to_string((int)col.getGreen()) + ", " +
-		    std::to_string((int)col.getBlue()) + ")");
-	};
+	// 	repaint();
+	// 	DBG("(" + std::to_string((int)col.getRed()) + ", " + std::to_string((int)col.getGreen()) + ", " +
+	// 	    std::to_string((int)col.getBlue()) + ")");
+	// };
 
 #ifdef WTGEN
 	m_reset.onClick = [&]() {
@@ -1651,7 +1651,7 @@ void OscComponent::forceValueTreeOntoComponents(ValueTree p_tree, int p_index, b
 
 	// specdraw
 	for (int i = 0; i < SPECDRAW_STEPS_X; ++i) {
-		wavedraw_values[i] = (float)node[String("osc" + m_osc_number + "_specdraw_values_" + std::to_string(i))];
+		wavedraw_values[i] = (float)node[String("osc" + m_osc_number + "_fs_" + std::to_string(i))];
 	}
 	m_specdraw.setDrawnTable(wavedraw_values);
 	m_specdraw_convert.setToggleState(true, dontSendNotification);

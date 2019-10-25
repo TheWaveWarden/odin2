@@ -211,7 +211,7 @@ public:
   InputFeels m_input_feels;
 
 
-  ColourSelector m_color_picker;
+  //ColourSelector m_color_picker;
 
 #ifdef WTGEN
   WavetableDisplay m_wavetable_display;
