@@ -21,7 +21,8 @@ bool writeComponentImageToFile(Component &comp) {
 	time(&rawtime);
 	timeinfo = localtime(&rawtime);
 
-	strftime(buffer, sizeof(buffer), "%d-%m-%Y %H:%M:%S", timeinfo);
+	//strftime(buffer, sizeof(buffer), "%d-%m-%Y %H:%M:%S", timeinfo);
+	strftime(buffer, sizeof(buffer), "%Y-%m-%d %H:%M:%S", timeinfo);
 	std::string date(buffer);
 
 	juce::File file("/home/frot/odinvst/screenshot.png");

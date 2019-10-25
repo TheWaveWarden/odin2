@@ -32,9 +32,8 @@ XYSectionComponent::XYSectionComponent(AudioProcessorValueTreeState &vts, std::s
 	m_modx.setRange(0, 1);
 	m_modx.onValueChange = [&] {
 		m_xy_pad.setX(m_modx.getValue());
-		DBG("SETX was called from knob!!!!");
 	};
-	m_modx.setTooltip("The X value\nof the XY pad");
+	m_modx.setTooltip("The X coordinate\nof the XY pad");
 	addAndMakeVisible(m_modx);
 
 	m_mody.setStrip(black_knob_very_small, N_KNOB_FRAMES);
@@ -42,7 +41,7 @@ XYSectionComponent::XYSectionComponent(AudioProcessorValueTreeState &vts, std::s
 	m_mody.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
 	m_mody.setRange(0, 1);
 	m_mody.onValueChange = [&] { m_xy_pad.setY(m_mody.getValue()); };
-	m_mody.setTooltip("The Y value\nof the XY pad");
+	m_mody.setTooltip("The Y coordinate\nof the XY pad");
 	addAndMakeVisible(m_mody);
 
 	m_x_attach.reset(new SliderAttachment(m_value_tree, "xy_x", m_modx));
