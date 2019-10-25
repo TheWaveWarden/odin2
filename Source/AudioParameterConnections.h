@@ -194,8 +194,6 @@ m_value_tree_misc.addListener(&m_non_param_listener_misc);
 m_value_tree_mod.addListener(&m_non_param_listener_mod);
 m_value_tree_osc.addListener(&m_non_param_listener_osc);
 
-DBG("IS VALID: " + std::to_string((int)m_value_tree.state.getChildWithName("fx").isValid()));
-
 for (int osc = 0; osc < 3; ++osc) {
 	//osc pitch listener:
 	m_value_tree.addParameterListener("osc" + std::to_string(osc + 1) + "_oct", &m_tree_listener_osc_pitch);

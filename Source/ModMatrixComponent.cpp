@@ -456,7 +456,7 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
     m_source[i].setSelectedId(1, dontSendNotification);
     m_source[i].setColor(modmatrix_color);
     m_source[i].setGreyFirstElement(true);
-    m_source[i].setGreyColor(juce::Colours::white);
+    m_source[i].setGreyColor(juce::Colours::lightgrey);
     addAndMakeVisible(m_source[i]);
 
     m_amount_1[i].setColor(modmatrix_color);
@@ -473,7 +473,7 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
     m_dest_1[i].setSelectedId(1, dontSendNotification);
     m_dest_1[i].setColor(modmatrix_color);
     m_dest_1[i].setGreyFirstElement(true);
-    m_dest_1[i].setGreyColor(juce::Colours::white);
+    m_dest_1[i].setGreyColor(juce::Colours::lightgrey);
     addAndMakeVisible(m_dest_1[i]);
 
     m_amount_2[i].setColor(modmatrix_color);
@@ -491,7 +491,7 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
     m_dest_2[i].setSelectedId(1, dontSendNotification);
     m_dest_2[i].setColor(modmatrix_color);
     m_dest_2[i].setGreyFirstElement(true);
-    m_dest_2[i].setGreyColor(juce::Colours::white);
+    m_dest_2[i].setGreyColor(juce::Colours::lightgrey);
     addAndMakeVisible(m_dest_2[i]);
 
     m_amount_3[i].setColor(modmatrix_color);
@@ -505,7 +505,7 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
     m_scale[i].setSelectedId(1, dontSendNotification);
     m_scale[i].setColor(modmatrix_color);
     m_scale[i].setGreyFirstElement(true);
-    m_scale[i].setGreyColor(juce::Colours::white);
+    m_scale[i].setGreyColor(juce::Colours::lightgrey);
     addAndMakeVisible(m_scale[i]);
   }
   m_amount_1[0].onValueChange = [&](float p_value) {

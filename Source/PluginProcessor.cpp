@@ -1334,11 +1334,10 @@ void OdinAudioProcessor::addNonAudioParametersToTree() {
 		float val = i == 0 ? 1 : 0;
 		node.setProperty(String("osc1_specdraw_values_" + std::to_string(i)), val, nullptr);
 		node.setProperty(String("osc2_specdraw_values_" + std::to_string(i)), val, nullptr);
-//		node.setProperty(String("osc3_specdraw_values_" + std::to_string(i)), val, nullptr);
-		node.setProperty(String("osc3_specdraw_values_" + std::to_string(i)), 0.5f-i*0.005+cos(i*0.2f)*0.5f*(1.f-i*0.02), nullptr);
+		node.setProperty(String("osc3_specdraw_values_" + std::to_string(i)), val, nullptr);
+//		node.setProperty(String("osc3_specdraw_values_" + std::to_string(i)), 0.5f-i*0.005+cos(i*0.2f)*0.5f*(1.f-i*0.02), nullptr);
 	}
 
-	//DBG("IS VALID0: " + std::to_string((int)m_value_tree.state.getChildWithName("fx").isValid()));
 	node = m_value_tree_fx;
 	node.setProperty("delay_synctime_numerator", 2, nullptr);
 	node.setProperty("delay_synctime_denominator", 5, nullptr);
