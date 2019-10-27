@@ -9,18 +9,7 @@
 #include "ValueChange.h"
 
 OdinAudioProcessor::OdinAudioProcessor()
-#ifndef JucePlugin_PreferredChannelConfigurations
-    :
-    AudioProcessor(BusesProperties()
-#if !JucePlugin_IsMidiEffect
-#if !JucePlugin_IsSynth
-                       .withInput("Input", AudioChannelSet::stereo(), true)
-#endif
-                       .withOutput("Output", AudioChannelSet::stereo(), true)
-#endif
-                       ),
-#endif
-    : m_value_tree(*this, nullptr, Identifier("Odin"),
+    : AudioProcessor(BusesProperties().withOutput("Output", AudioChannelSet::stereo(), true)), m_value_tree(*this, nullptr, Identifier("Odin"), 
 #include "AudioValueTree.h" //contains the definition of audiotree. WATCH CLOSELY: is IN m_value_tree constructor brackets
                    ),
 #include "ProcessorInitializerList.h" //contains the connection of Identifiers with their strings
@@ -663,14 +652,12 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 		float stereo_signal[2];
 
 		m_amp.doAmplifier(voices_output, stereo_signal[0], stereo_signal[1]);
-		//DBGAUDIO("ampout: " + std::to_string(stereo_signal[0]) + ", " + std::to_string(stereo_signal[1]))
 
 		for (int channel = 0; channel < 2; ++channel) {
 
 			//===== DISTORTION ======
 			if (*m_dist_on) {
 				stereo_signal[channel] = m_distortion[channel].doDistortion(stereo_signal[channel]);
-				//DBGAUDIO("distout[" + std::to_string(channel) + "]: " + std::to_string(stereo_signal[channel]))
 			}
 
 			//===== FILTER 3 ======
@@ -728,7 +715,6 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 			default:
 				break;
 			}
-			//DBGAUDIO("fil3out[" + std::to_string(channel) + "]: " + std::to_string(stereo_signal[channel]))
 
 			//==== FX SECTION ====
 
@@ -760,7 +746,6 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 					}
 				}
 			}
-			//DBGAUDIO("fxout[" + std::to_string(channel) + "]: " + std::to_string(stereo_signal[channel]))
 
 			//===== OUTPUT ======
 
@@ -768,10 +753,6 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 
 			auto *channelData   = buffer.getWritePointer(channel);
 			channelData[sample] = stereo_signal[channel] * m_master_smooth * master_mod_factor;
-
-			//DBGAUDIO("masterout[" + std::to_string(channel) + "]: " + std::to_string(stereo_signal[channel]))
-
-			// DBG(m_master_smooth);
 
 		} // stereo loop
 	}     // sample loop

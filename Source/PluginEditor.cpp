@@ -981,10 +981,12 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 
 	forceValueTreeOntoComponentsOnlyMainPanel();
 
+#ifdef ODIN_LINUX
 	if (!writeComponentImageToFile(*this)) {
 		DBG("Failed to create GUI screenshot");
 	}
 	writeValueTreeToFile(m_value_tree.state);
+#endif
 }
 
 OdinAudioProcessorEditor::~OdinAudioProcessorEditor() {
