@@ -249,8 +249,8 @@ public:
 	// enabled. it doesn't change values but clears all buffer
 	// and makes it "untouched"
 	void resetAudioEngine();
-
 	void setFXButtonsPosition(int p_delay, int p_phaser, int p_flanger, int p_chorus);
+    void attachNonParamListeners();
 
 private:
 	// OdinAudioProcessorEditor* m_editor = nullptr;
@@ -378,6 +378,8 @@ private:
 	void treeValueChangedAmount3(const String &p_ID, float p_new_value);
 	void treeValueChangedGeneralMisc(const String &p_ID, float p_new_value);
 
+	void retriggerAllListeners();
+
 	Voice m_voice[VOICES];
 	Amplifier m_amp;
 	OversamplingDistortion m_distortion[2];
@@ -408,6 +410,7 @@ private:
 	void setModulationPointers();
 
 	void addNonAudioParametersToTree();
+
 
 	bool m_render_LFO[4]  = {0};
 	bool m_render_ADSR[2] = {0}; // 0 = mod, 1 = global

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT id="vpwEHn" name="Odin2" projectType="audioplug" jucerVersion="5.4.4"
+<JUCERPROJECT id="vpwEHn" name="Odin2" projectType="audioplug" jucerVersion="5.4.3"
               pluginFormats="buildStandalone,buildVST3" version="2.0.0" companyName="BommelDSP"
               companyWebsite="www.BommelDSP.com" pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn"
               pluginManufacturerCode="BDSP" pluginCode="ODIN" pluginChannelConfigs="{2,2},{2,12}">
@@ -576,6 +576,10 @@
             file="Graphics/cropped/wavetable_knob_cropped.png"/>
     </GROUP>
     <GROUP id="{7AF384ED-9FD6-6492-4B8C-5777BB9A2698}" name="Source">
+      <FILE id="QuKD1K" name="SetModulationPointers.h" compile="0" resource="0"
+            file="Source/SetModulationPointers.h"/>
+      <FILE id="XMTBp2" name="RetriggerAllListeners.h" compile="0" resource="0"
+            file="Source/RetriggerAllListeners.h"/>
       <FILE id="hf2LpP" name="Utilities.cpp" compile="1" resource="0" file="Source/Utilities.cpp"/>
       <FILE id="R1tTJD" name="Utilities.h" compile="0" resource="0" file="Source/Utilities.h"/>
       <FILE id="Od2QUg" name="OdinTooltipWindow.h" compile="0" resource="0"

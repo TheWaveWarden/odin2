@@ -991,7 +991,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 	addChildComponent(m_modulator_waveselector);
 
 	m_carrier_ratio.OnValueChange = [&](int p_new_value) {
-		SETAUDIO(m_carrier_ratio_identifier, (p_new_value - 1) / 11.f);
+		SETAUDIOFULLRANGE(m_carrier_ratio_identifier, p_new_value);
 	};
 	m_carrier_ratio.setTopLeftPosition(RATIO_CARRIER_POS_X, RATIO_CARRIER_POS_Y);
 	m_carrier_ratio.setRange(1, 12);
@@ -1005,7 +1005,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 	m_modulator_ratio.OnValueChange = [&](int p_new_value) {
 		// m_value_tree.state.getChildWithName("osc").setProperty(m_modulator_ratio_identifier,
 		//                               (float)p_new_value, nullptr);
-		SETAUDIO(m_modulator_ratio_identifier, (p_new_value - 1) / 11.f);
+		SETAUDIOFULLRANGE(m_modulator_ratio_identifier, p_new_value);
 	};
 	m_modulator_ratio.setTopLeftPosition(RATIO_MODULATOR_POS_X, RATIO_MODULATOR_POS_Y);
 	m_modulator_ratio.setRange(1, 12);

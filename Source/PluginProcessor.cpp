@@ -2,11 +2,12 @@
 
 #include "PluginEditor.h"
 #include "PluginProcessor.h"
-
-// this file contains implementation
+#include "RetriggerAllListeners.h"
+// these file contains implementation to avoid clutter in this file
+#include "AddNonAudioParametersToValueTree.h"
+#include "SetModulationPointers.h"
 #include "ValueChange.h"
 
-//==============================================================================
 OdinAudioProcessor::OdinAudioProcessor()
 #ifndef JucePlugin_PreferredChannelConfigurations
     :
@@ -217,8 +218,7 @@ OdinAudioProcessor::OdinAudioProcessor()
 		    m_render_ADSR[1] = p_ADSR_1;
 	    };
 
-	// WavetableContainer::getInstance().createLFOCoefficientsFromLinSections(12,
-	// spike, 1000, "Spike");
+	//retriggerAllListeners();
 }
 
 OdinAudioProcessor::~OdinAudioProcessor() {
@@ -442,27 +442,27 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 					if (control.first == midi_message.getControllerNumber()) {
 						const MessageManagerLock mmLock;
 						control.second->setValue(
-						    control.second->proportionOfLengthToValue((int)midi_message.getControllerValue() / 127.f));
+						    control.second->proportionOfLengthToValue((float)midi_message.getControllerValue() / 127.f));
 					}
 				}
 				for (auto const &control : m_midi_control_list_slider) {
 					if (control.first == midi_message.getControllerNumber()) {
 						const MessageManagerLock mmLock;
 						control.second->setValue(
-						    control.second->proportionOfLengthToValue((int)midi_message.getControllerValue() / 127.f));
+						    control.second->proportionOfLengthToValue((float)midi_message.getControllerValue() / 127.f));
 					}
 				}
 				for (auto const &control : m_midi_control_list_lrbutton) {
 					if (control.first == midi_message.getControllerNumber()) {
 						const MessageManagerLock mmLock;
-						control.second->setToggleState((int)midi_message.getControllerValue() > 64,
+						control.second->setToggleState(midi_message.getControllerValue() > 64,
 						                               sendNotificationAsync);
 					}
 				}
 				for (auto const &control : m_midi_control_list_odinbutton) {
 					if (control.first == midi_message.getControllerNumber()) {
 						const MessageManagerLock mmLock;
-						control.second->setToggleState((int)midi_message.getControllerValue() > 64,
+						control.second->setToggleState(midi_message.getControllerValue() > 64,
 						                               sendNotificationAsync);
 					}
 				}
@@ -588,49 +588,60 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 					if (*m_fil_osc3[fil]) {
 						filter_input[fil] += m_osc_output[voice][2];
 					}
-
-					if (m_fil_type[fil] == FILTER_TYPE_NONE) {
+					switch (m_fil_type[fil]) {
+					case FILTER_TYPE_NONE:
+					default:
 						m_filter_output[voice][fil] = filter_input[fil];
-					} else if (m_fil_type[fil] == FILTER_TYPE_LP24 || m_fil_type[fil] == FILTER_TYPE_LP12 ||
-					           m_fil_type[fil] == FILTER_TYPE_BP24 || m_fil_type[fil] == FILTER_TYPE_BP12 ||
-					           m_fil_type[fil] == FILTER_TYPE_HP24 || m_fil_type[fil] == FILTER_TYPE_HP12) {
+						break;
+					case FILTER_TYPE_LP24:
+					case FILTER_TYPE_LP12:
+					case FILTER_TYPE_BP24:
+					case FILTER_TYPE_BP12:
+					case FILTER_TYPE_HP24:
+					case FILTER_TYPE_HP12:
 						m_voice[voice].ladder_filter[fil].m_freq_base = m_fil_freq_smooth[fil];
 						m_voice[voice].ladder_filter[fil].update();
 						m_filter_output[voice][fil] =
 						    m_voice[voice].ladder_filter[fil].doFilter(filter_input[fil]) * m_fil_gain_smooth[fil];
-					} else if (m_fil_type[fil] == FILTER_TYPE_SEM12) {
+						break;
+					case FILTER_TYPE_SEM12:
 						m_voice[voice].SEM_filter_12[fil].m_freq_base = m_fil_freq_smooth[fil];
 						m_voice[voice].SEM_filter_12[fil].update();
 						m_filter_output[voice][fil] =
 						    m_voice[voice].SEM_filter_12[fil].doFilter(filter_input[fil]) * m_fil_gain_smooth[fil];
-					} else if (m_fil_type[fil] == FILTER_TYPE_KORG_LP || m_fil_type[fil] == FILTER_TYPE_KORG_HP) {
+						break;
+					case FILTER_TYPE_KORG_LP:
+					case FILTER_TYPE_KORG_HP:
 						m_voice[voice].korg_filter[fil].m_freq_base = m_fil_freq_smooth[fil];
 						m_voice[voice].korg_filter[fil].update();
 						m_filter_output[voice][fil] =
 						    m_voice[voice].korg_filter[fil].doFilter(filter_input[fil]) * m_fil_gain_smooth[fil];
-					} else if (m_fil_type[fil] == FILTER_TYPE_DIODE) {
+						break;
+					case FILTER_TYPE_DIODE:
 						m_voice[voice].diode_filter[fil].m_freq_base = m_fil_freq_smooth[fil];
 						m_voice[voice].diode_filter[fil].update();
 						m_filter_output[voice][fil] =
 						    m_voice[voice].diode_filter[fil].doFilter(filter_input[fil]) * m_fil_gain_smooth[fil];
-					} else if (m_fil_type[fil] == FILTER_TYPE_FORMANT) {
+						break;
+					case FILTER_TYPE_FORMANT:
 						m_voice[voice].formant_filter[fil].m_freq_base = m_fil_freq_smooth[fil];
 						m_voice[voice].formant_filter[fil].update();
 						m_filter_output[voice][fil] =
 						    m_voice[voice].formant_filter[fil].doFilter(filter_input[fil]) * m_fil_gain_smooth[fil];
-					} else if (m_fil_type[fil] == FILTER_TYPE_COMB) {
+						break;
+					case FILTER_TYPE_COMB:
 						m_voice[voice].comb_filter[fil].setCombFreq(m_fil_freq_smooth[fil]);
 						m_filter_output[voice][fil] =
 						    m_voice[voice].comb_filter[fil].doFilter(filter_input[fil]) * m_fil_gain_smooth[fil];
-					} else if (m_fil_type[fil] == FILTER_TYPE_RINGMOD) {
+						break;
+					case FILTER_TYPE_RINGMOD:
 						m_voice[voice].ring_mod[fil].setBaseFrequency(m_fil_freq_smooth[fil]);
 						m_voice[voice].ring_mod[fil].setGlideTargetFrequency(m_fil_freq_smooth[fil]);
-
 						m_voice[voice].ring_mod[fil].update();
 						m_filter_output[voice][fil] =
 						    m_voice[voice].ring_mod[fil].doRingModulator(filter_input[fil]) * m_fil_gain_smooth[fil];
+						break;
 					}
-
 					// add first filter to second filter input
 					if (fil == 0 && *m_fil2_fil1) {
 						filter_input[1] += m_filter_output[voice][0];
@@ -652,54 +663,72 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 		float stereo_signal[2];
 
 		m_amp.doAmplifier(voices_output, stereo_signal[0], stereo_signal[1]);
+		//DBGAUDIO("ampout: " + std::to_string(stereo_signal[0]) + ", " + std::to_string(stereo_signal[1]))
 
 		for (int channel = 0; channel < 2; ++channel) {
 
 			//===== DISTORTION ======
 			if (*m_dist_on) {
 				stereo_signal[channel] = m_distortion[channel].doDistortion(stereo_signal[channel]);
+				//DBGAUDIO("distout[" + std::to_string(channel) + "]: " + std::to_string(stereo_signal[channel]))
 			}
 
 			//===== FILTER 3 ======
 
 			setFilter3EnvValue();
-			if (m_fil_type[2] == FILTER_TYPE_LP24 || m_fil_type[2] == FILTER_TYPE_LP12 ||
-			    m_fil_type[2] == FILTER_TYPE_BP24 || m_fil_type[2] == FILTER_TYPE_BP12 ||
-			    m_fil_type[2] == FILTER_TYPE_HP24 || m_fil_type[2] == FILTER_TYPE_HP12) {
+
+			switch (m_fil_type[2]) {
+			case FILTER_TYPE_LP24:
+			case FILTER_TYPE_LP12:
+			case FILTER_TYPE_BP24:
+			case FILTER_TYPE_BP12:
+			case FILTER_TYPE_HP24:
+			case FILTER_TYPE_HP12:
 				m_ladder_filter[channel].m_freq_base = m_fil_freq_smooth[2];
 				m_ladder_filter[channel].update();
 				stereo_signal[channel] =
 				    m_ladder_filter[channel].doFilter(stereo_signal[channel]) * m_fil_gain_smooth[2];
-			} else if (m_fil_type[2] == FILTER_TYPE_SEM12) {
+				break;
+			case FILTER_TYPE_SEM12:
 				m_SEM_filter_12[channel].m_freq_base = m_fil_freq_smooth[2];
 				m_SEM_filter_12[channel].update();
 				stereo_signal[channel] =
 				    m_SEM_filter_12[channel].doFilter(stereo_signal[channel]) * m_fil_gain_smooth[2];
-			} else if (m_fil_type[2] == FILTER_TYPE_KORG_LP || m_fil_type[2] == FILTER_TYPE_KORG_HP) {
+				break;
+			case FILTER_TYPE_KORG_LP:
+			case FILTER_TYPE_KORG_HP:
 				m_korg_filter[channel].m_freq_base = m_fil_freq_smooth[2];
 				m_korg_filter[channel].update();
 				stereo_signal[channel] = m_korg_filter[channel].doFilter(stereo_signal[channel]) * m_fil_gain_smooth[2];
-			} else if (m_fil_type[2] == FILTER_TYPE_DIODE) {
+				break;
+			case FILTER_TYPE_DIODE:
 				m_diode_filter[channel].m_freq_base = m_fil_freq_smooth[2];
 				m_diode_filter[channel].update();
 				stereo_signal[channel] =
 				    m_diode_filter[channel].doFilter(stereo_signal[channel]) * m_fil_gain_smooth[2];
-			} else if (m_fil_type[2] == FILTER_TYPE_FORMANT) {
+				break;
+			case FILTER_TYPE_FORMANT:
 				m_formant_filter[channel].m_freq_base = m_fil_freq_smooth[2];
 				m_formant_filter[channel].update();
 				stereo_signal[channel] =
 				    m_formant_filter[channel].doFilter(stereo_signal[channel]) * m_fil_gain_smooth[2];
-			} else if (m_fil_type[2] == FILTER_TYPE_COMB) {
+				break;
+			case FILTER_TYPE_COMB:
 				m_comb_filter[channel].setCombFreq(m_fil_freq_smooth[2]);
 				stereo_signal[channel] = m_comb_filter[channel].doFilter(stereo_signal[channel]) * m_fil_gain_smooth[2];
-			} else if (m_fil_type[2] == FILTER_TYPE_RINGMOD) {
+				break;
+			case FILTER_TYPE_RINGMOD:
 				m_ring_mod[channel].setBaseFrequency(m_fil_freq_smooth[2]);
 				m_ring_mod[channel].setGlideTargetFrequency(m_fil_freq_smooth[2]);
 
 				m_ring_mod[channel].update();
 				stereo_signal[channel] =
 				    m_ring_mod[channel].doRingModulator(stereo_signal[channel]) * m_fil_gain_smooth[2];
+				break;
+			default:
+				break;
 			}
+			//DBGAUDIO("fil3out[" + std::to_string(channel) + "]: " + std::to_string(stereo_signal[channel]))
 
 			//==== FX SECTION ====
 
@@ -731,6 +760,7 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 					}
 				}
 			}
+			//DBGAUDIO("fxout[" + std::to_string(channel) + "]: " + std::to_string(stereo_signal[channel]))
 
 			//===== OUTPUT ======
 
@@ -738,6 +768,9 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 
 			auto *channelData   = buffer.getWritePointer(channel);
 			channelData[sample] = stereo_signal[channel] * m_master_smooth * master_mod_factor;
+
+			//DBGAUDIO("masterout[" + std::to_string(channel) + "]: " + std::to_string(stereo_signal[channel]))
+
 			// DBG(m_master_smooth);
 
 		} // stereo loop
@@ -776,7 +809,7 @@ void OdinAudioProcessor::getStateInformation(MemoryBlock &destData) {
 	auto state = m_value_tree.copyState();
 	std::unique_ptr<XmlElement> xml(state.createXml());
 	copyXmlToBinary(*xml, destData);
-	DBG("SET BINARY STATE!!");
+	DBG("GET BINARY STATE!!");
 }
 
 void OdinAudioProcessor::setStateInformation(const void *data, int sizeInBytes) {
@@ -791,11 +824,13 @@ void OdinAudioProcessor::setStateInformation(const void *data, int sizeInBytes) 
 
 	std::unique_ptr<XmlElement> xmlState(getXmlFromBinary(data, sizeInBytes));
 	if (xmlState.get() != nullptr) {
-		if (xmlState->hasTagName(m_value_tree.state.getType()))
+		if (xmlState->hasTagName(m_value_tree.state.getType())) {
 			m_value_tree.replaceState(ValueTree::fromXml(*xmlState));
-		// force values on GUI
-		m_force_values_onto_gui = true;
-		DBG("LOADED BINARY STATE!!");
+			attachNonParamListeners();
+			m_force_values_onto_gui = true;
+			DBG("LOADED BINARY STATE!!");
+			retriggerAllListeners();
+		}
 	}
 }
 
@@ -849,333 +884,14 @@ void OdinAudioProcessor::initializeModules() {
 	}
 }
 
-void OdinAudioProcessor::setModulationPointers() {
-	//========================================
-	//==============  SOURCES  ===============
-	//========================================
-
-	for (int voice = 0; voice < VOICES; ++voice) {
-		m_mod_sources.voice[voice].osc[0]        = &(m_osc_output[voice][0]);
-		m_mod_sources.voice[voice].osc[1]        = &(m_osc_output[voice][1]);
-		m_mod_sources.voice[voice].osc[2]        = &(m_osc_output[voice][2]);
-		m_mod_sources.voice[voice].filter[0]     = &(m_filter_output[voice][0]);
-		m_mod_sources.voice[voice].filter[1]     = &(m_filter_output[voice][1]);
-		m_mod_sources.voice[voice].adsr[0]       = &(m_adsr[voice][0]);
-		m_mod_sources.voice[voice].adsr[1]       = &(m_adsr[voice][1]);
-		m_mod_sources.voice[voice].adsr[2]       = &(m_adsr[voice][2]);
-		m_mod_sources.voice[voice].lfo[0]        = &(m_lfo[voice][0]);
-		m_mod_sources.voice[voice].lfo[1]        = &(m_lfo[voice][1]);
-		m_mod_sources.voice[voice].lfo[2]        = &(m_lfo[voice][2]);
-		m_mod_sources.voice[voice].MIDI_key      = &(m_voice[voice].MIDI_key_mod_source);
-		m_mod_sources.voice[voice].MIDI_velocity = &(m_voice[voice].MIDI_velocity_mod_source);
-		m_mod_sources.voice[voice].random        = &(m_voice[voice].random_modulation);
-	}
-	m_mod_sources.global_adsr     = &m_global_env_mod_source;
-	m_mod_sources.global_lfo      = &m_global_lfo_mod_source;
-	m_mod_sources.MIDI_aftertouch = &(m_MIDI_aftertouch);
-	m_mod_sources.x               = &m_x_smooth;
-	m_mod_sources.y               = &m_y_smooth;
-	m_mod_sources.modwheel        = &m_modwheel_smooth;
-	m_mod_sources.pitchwheel      = &m_pitch_bend_smooth;
-	m_mod_sources.constant        = &(m_constant);
-	m_mod_sources.sustain_pedal   = &(m_voice_manager.m_sustain_active_float);
-	m_mod_sources.soft_pedal      = &(m_soft_pedal);
-
-	//========================================
-	//============= DESTINATIONS =============
-	//========================================
-	for (int voice = 0; voice < VOICES; ++voice) {
-		for (int osc = 0; osc < 3; ++osc) {
-			m_voice[voice].analog_osc[osc].setPitchBendPointer(&(m_pitch_bend_smooth_and_applied));
-			m_voice[voice].wavetable_osc[osc].setPitchBendPointer(&(m_pitch_bend_smooth_and_applied));
-			m_voice[voice].multi_osc[osc].setPitchBendPointer(&(m_pitch_bend_smooth_and_applied));
-			m_voice[voice].vector_osc[osc].setPitchBendPointer(&(m_pitch_bend_smooth_and_applied));
-			m_voice[voice].fm_osc[osc].setPitchBendPointer(&(m_pitch_bend_smooth_and_applied));
-			m_voice[voice].pm_osc[osc].setPitchBendPointer(&(m_pitch_bend_smooth_and_applied));
-			m_voice[voice].chiptune_osc[osc].setPitchBendPointer(&(m_pitch_bend_smooth_and_applied));
-			m_voice[voice].wavedraw_osc[osc].setPitchBendPointer(&(m_pitch_bend_smooth_and_applied));
-			m_voice[voice].chipdraw_osc[osc].setPitchBendPointer(&(m_pitch_bend_smooth_and_applied));
-			m_voice[voice].specdraw_osc[osc].setPitchBendPointer(&(m_pitch_bend_smooth_and_applied));
-
-			m_voice[voice].analog_osc[osc].setPitchModExpPointer(
-			    &(m_mod_destinations.voice[voice].osc[osc].pitch_exponential));
-			m_voice[voice].wavetable_osc[osc].setPitchModExpPointer(
-			    &(m_mod_destinations.voice[voice].osc[osc].pitch_exponential));
-			m_voice[voice].multi_osc[osc].setPitchModExpPointer(
-			    &(m_mod_destinations.voice[voice].osc[osc].pitch_exponential));
-			m_voice[voice].vector_osc[osc].setPitchModExpPointer(
-			    &(m_mod_destinations.voice[voice].osc[osc].pitch_exponential));
-			m_voice[voice].fm_osc[osc].setPitchModExpPointer(
-			    &(m_mod_destinations.voice[voice].osc[osc].pitch_exponential));
-			m_voice[voice].pm_osc[osc].setPitchModExpPointer(
-			    &(m_mod_destinations.voice[voice].osc[osc].pitch_exponential));
-			m_voice[voice].chiptune_osc[osc].setPitchModExpPointer(
-			    &(m_mod_destinations.voice[voice].osc[osc].pitch_exponential));
-			m_voice[voice].wavedraw_osc[osc].setPitchModExpPointer(
-			    &(m_mod_destinations.voice[voice].osc[osc].pitch_exponential));
-			m_voice[voice].chipdraw_osc[osc].setPitchModExpPointer(
-			    &(m_mod_destinations.voice[voice].osc[osc].pitch_exponential));
-			m_voice[voice].specdraw_osc[osc].setPitchModExpPointer(
-			    &(m_mod_destinations.voice[voice].osc[osc].pitch_exponential));
-
-			m_voice[voice].analog_osc[osc].setGlidePointer(&(m_mod_destinations.misc.glide));
-			m_voice[voice].wavetable_osc[osc].setGlidePointer(&(m_mod_destinations.misc.glide));
-			m_voice[voice].multi_osc[osc].setGlidePointer(&(m_mod_destinations.misc.glide));
-			m_voice[voice].vector_osc[osc].setGlidePointer(&(m_mod_destinations.misc.glide));
-			m_voice[voice].fm_osc[osc].setGlidePointer(&(m_mod_destinations.misc.glide));
-			m_voice[voice].pm_osc[osc].setGlidePointer(&(m_mod_destinations.misc.glide));
-			m_voice[voice].chiptune_osc[osc].setGlidePointer(&(m_mod_destinations.misc.glide));
-			m_voice[voice].wavedraw_osc[osc].setGlidePointer(&(m_mod_destinations.misc.glide));
-			m_voice[voice].chipdraw_osc[osc].setGlidePointer(&(m_mod_destinations.misc.glide));
-			m_voice[voice].specdraw_osc[osc].setGlidePointer(&(m_mod_destinations.misc.glide));
-
-			m_voice[voice].analog_osc[osc].setPitchModLinPointer(
-			    &(m_mod_destinations.voice[voice].osc[osc].pitch_linear));
-			m_voice[voice].wavetable_osc[osc].setPitchModLinPointer(
-			    &(m_mod_destinations.voice[voice].osc[osc].pitch_linear));
-			m_voice[voice].multi_osc[osc].setPitchModLinPointer(
-			    &(m_mod_destinations.voice[voice].osc[osc].pitch_linear));
-			m_voice[voice].vector_osc[osc].setPitchModLinPointer(
-			    &(m_mod_destinations.voice[voice].osc[osc].pitch_linear));
-			m_voice[voice].fm_osc[osc].setPitchModLinPointer(&(m_mod_destinations.voice[voice].osc[osc].pitch_linear));
-			m_voice[voice].pm_osc[osc].setPitchModLinPointer(&(m_mod_destinations.voice[voice].osc[osc].pitch_linear));
-			m_voice[voice].chiptune_osc[osc].setPitchModLinPointer(
-			    &(m_mod_destinations.voice[voice].osc[osc].pitch_linear));
-			m_voice[voice].wavedraw_osc[osc].setPitchModLinPointer(
-			    &(m_mod_destinations.voice[voice].osc[osc].pitch_linear));
-			m_voice[voice].chipdraw_osc[osc].setPitchModLinPointer(
-			    &(m_mod_destinations.voice[voice].osc[osc].pitch_linear));
-			m_voice[voice].specdraw_osc[osc].setPitchModLinPointer(
-			    &(m_mod_destinations.voice[voice].osc[osc].pitch_linear));
-
-			m_voice[voice].analog_osc[osc].setVolModPointer(&(m_mod_destinations.voice[voice].osc[osc].vol));
-			m_voice[voice].wavetable_osc[osc].setVolModPointer(&(m_mod_destinations.voice[voice].osc[osc].vol));
-			m_voice[voice].multi_osc[osc].setVolModPointer(&(m_mod_destinations.voice[voice].osc[osc].vol));
-			m_voice[voice].vector_osc[osc].setVolModPointer(&(m_mod_destinations.voice[voice].osc[osc].vol));
-			m_voice[voice].fm_osc[osc].setVolModPointer(&(m_mod_destinations.voice[voice].osc[osc].vol));
-			m_voice[voice].pm_osc[osc].setVolModPointer(&(m_mod_destinations.voice[voice].osc[osc].vol));
-			m_voice[voice].chiptune_osc[osc].setVolModPointer(&(m_mod_destinations.voice[voice].osc[osc].vol));
-			m_voice[voice].wavedraw_osc[osc].setVolModPointer(&(m_mod_destinations.voice[voice].osc[osc].vol));
-			m_voice[voice].chipdraw_osc[osc].setVolModPointer(&(m_mod_destinations.voice[voice].osc[osc].vol));
-			m_voice[voice].specdraw_osc[osc].setVolModPointer(&(m_mod_destinations.voice[voice].osc[osc].vol));
-			m_voice[voice].noise_osc[osc].setVolModPointer(&(m_mod_destinations.voice[voice].osc[osc].vol));
-
-			m_voice[voice].analog_osc[osc].setPWMModPointer(&(m_mod_destinations.voice[voice].osc[osc].pulse_width));
-
-			m_voice[voice].wavetable_osc[osc].setPosModPointer(&(m_mod_destinations.voice[voice].osc[osc].position));
-			m_voice[voice].multi_osc[osc].setPosModPointer(&(m_mod_destinations.voice[voice].osc[osc].position));
-
-			m_voice[voice].multi_osc[osc].setDetuneModPointer(&(m_mod_destinations.voice[voice].osc[osc].detune));
-
-			m_voice[voice].multi_osc[osc].setSpreadModPointer(&(m_mod_destinations.voice[voice].osc[osc].spread));
-
-			m_voice[voice].vector_osc[osc].setXModPointer(&(m_mod_destinations.voice[voice].osc[osc].x));
-			m_voice[voice].vector_osc[osc].setYModPointer(&(m_mod_destinations.voice[voice].osc[osc].y));
-
-			m_voice[voice].chiptune_osc[osc].setArpSpeedModPointer(
-			    &(m_mod_destinations.voice[voice].osc[osc].arp_speed));
-
-			m_voice[voice].fm_osc[osc].setFMModPointer(&(m_mod_destinations.voice[voice].osc[osc].fm_amount));
-
-			m_voice[voice].pm_osc[osc].setPMModPointer(&(m_mod_destinations.voice[voice].osc[osc].fm_amount));
-
-			m_voice[voice].fm_osc[osc].setCarrierRatioModPointer(
-			    &(m_mod_destinations.voice[voice].osc[osc].carrier_ratio));
-			m_voice[voice].fm_osc[osc].setModulatorRatioModPointer(
-			    &(m_mod_destinations.voice[voice].osc[osc].modulator_ratio));
-
-			m_voice[voice].pm_osc[osc].setCarrierRatioModPointer(
-			    &(m_mod_destinations.voice[voice].osc[osc].carrier_ratio));
-			m_voice[voice].pm_osc[osc].setModulatorRatioModPointer(
-			    &(m_mod_destinations.voice[voice].osc[osc].modulator_ratio));
-
-			m_voice[voice].noise_osc[osc].setHPModPointer(&(m_mod_destinations.voice[voice].osc[osc].hp_freq));
-			m_voice[voice].noise_osc[osc].setLPModPointer(&(m_mod_destinations.voice[voice].osc[osc].lp_freq));
-		}
-		for (int fil = 0; fil < 2; ++fil) {
-			m_voice[voice].ladder_filter[fil].setFreqModPointer(&(m_mod_destinations.voice[voice].filter[fil].freq));
-			m_voice[voice].diode_filter[fil].setFreqModPointer(&(m_mod_destinations.voice[voice].filter[fil].freq));
-			m_voice[voice].korg_filter[fil].setFreqModPointer(&(m_mod_destinations.voice[voice].filter[fil].freq));
-			m_voice[voice].comb_filter[fil].setFreqModPointer(&(m_mod_destinations.voice[voice].filter[fil].freq));
-			m_voice[voice].SEM_filter_12[fil].setFreqModPointer(&(m_mod_destinations.voice[voice].filter[fil].freq));
-			m_voice[voice].ring_mod[fil].setPitchModExpPointer(&(m_mod_destinations.voice[voice].filter[fil].freq));
-
-			m_voice[voice].ladder_filter[fil].setResModPointer(&(m_mod_destinations.voice[voice].filter[fil].res));
-			m_voice[voice].diode_filter[fil].setResModPointer(&(m_mod_destinations.voice[voice].filter[fil].res));
-			m_voice[voice].korg_filter[fil].setResModPointer(&(m_mod_destinations.voice[voice].filter[fil].res));
-			m_voice[voice].SEM_filter_12[fil].setResModPointer(&(m_mod_destinations.voice[voice].filter[fil].res));
-			m_voice[voice].comb_filter[fil].setResModPointer(&(m_mod_destinations.voice[voice].filter[fil].res));
-
-			m_voice[voice].ladder_filter[fil].setVolModPointer(&(m_mod_destinations.voice[voice].filter[fil].gain));
-			m_voice[voice].diode_filter[fil].setVolModPointer(&(m_mod_destinations.voice[voice].filter[fil].gain));
-			m_voice[voice].korg_filter[fil].setVolModPointer(&(m_mod_destinations.voice[voice].filter[fil].gain));
-			m_voice[voice].SEM_filter_12[fil].setVolModPointer(&(m_mod_destinations.voice[voice].filter[fil].gain));
-			m_voice[voice].comb_filter[fil].setVolModPointer(&(m_mod_destinations.voice[voice].filter[fil].gain));
-			m_voice[voice].formant_filter[fil].setVolModPointer(&(m_mod_destinations.voice[voice].filter[fil].gain));
-			m_voice[voice].ring_mod[fil].setVolModPointer(&(m_mod_destinations.voice[voice].filter[fil].gain));
-
-			m_voice[voice].ladder_filter[fil].setEnvModPointer(
-			    &(m_mod_destinations.voice[voice].filter[fil].env_amount));
-			m_voice[voice].diode_filter[fil].setEnvModPointer(
-			    &(m_mod_destinations.voice[voice].filter[fil].env_amount));
-			m_voice[voice].korg_filter[fil].setEnvModPointer(&(m_mod_destinations.voice[voice].filter[fil].env_amount));
-			m_voice[voice].SEM_filter_12[fil].setEnvModPointer(
-			    &(m_mod_destinations.voice[voice].filter[fil].env_amount));
-			m_voice[voice].comb_filter[fil].setEnvModPointer(&(m_mod_destinations.voice[voice].filter[fil].env_amount));
-			m_voice[voice].formant_filter[fil].setEnvModPointer(
-			    &(m_mod_destinations.voice[voice].filter[fil].env_amount));
-			m_voice[voice].ring_mod[fil].setEnvModPointer(&(m_mod_destinations.voice[voice].filter[fil].env_amount));
-
-			m_voice[voice].ladder_filter[fil].setVelModPointer(
-			    &(m_mod_destinations.voice[voice].filter[fil].vel_amount));
-			m_voice[voice].diode_filter[fil].setVelModPointer(
-			    &(m_mod_destinations.voice[voice].filter[fil].vel_amount));
-			m_voice[voice].korg_filter[fil].setVelModPointer(&(m_mod_destinations.voice[voice].filter[fil].vel_amount));
-			m_voice[voice].SEM_filter_12[fil].setVelModPointer(
-			    &(m_mod_destinations.voice[voice].filter[fil].vel_amount));
-			m_voice[voice].comb_filter[fil].setVelModPointer(&(m_mod_destinations.voice[voice].filter[fil].vel_amount));
-			m_voice[voice].formant_filter[fil].setVelModPointer(
-			    &(m_mod_destinations.voice[voice].filter[fil].vel_amount));
-			m_voice[voice].ring_mod[fil].setVelModPointer(&(m_mod_destinations.voice[voice].filter[fil].vel_amount));
-
-			m_voice[voice].ladder_filter[fil].setKbdModPointer(
-			    &(m_mod_destinations.voice[voice].filter[fil].kbd_amount));
-			m_voice[voice].diode_filter[fil].setKbdModPointer(
-			    &(m_mod_destinations.voice[voice].filter[fil].kbd_amount));
-			m_voice[voice].korg_filter[fil].setKbdModPointer(&(m_mod_destinations.voice[voice].filter[fil].kbd_amount));
-			m_voice[voice].SEM_filter_12[fil].setKbdModPointer(
-			    &(m_mod_destinations.voice[voice].filter[fil].kbd_amount));
-			m_voice[voice].comb_filter[fil].setKbdModPointer(&(m_mod_destinations.voice[voice].filter[fil].kbd_amount));
-			m_voice[voice].formant_filter[fil].setKbdModPointer(
-			    &(m_mod_destinations.voice[voice].filter[fil].kbd_amount));
-			m_voice[voice].ring_mod[fil].setKbdModPointer(&(m_mod_destinations.voice[voice].filter[fil].kbd_amount));
-
-			m_voice[voice].ladder_filter[fil].setSaturationModPointer(
-			    &(m_mod_destinations.voice[voice].filter[fil].saturation));
-			m_voice[voice].diode_filter[fil].setSaturationModPointer(
-			    &(m_mod_destinations.voice[voice].filter[fil].saturation));
-			m_voice[voice].korg_filter[fil].setSaturationModPointer(
-			    &(m_mod_destinations.voice[voice].filter[fil].saturation));
-
-			m_voice[voice].SEM_filter_12[fil].setTransitionModPointer(
-			    &(m_mod_destinations.voice[voice].filter[fil].SEM_transition));
-
-			m_voice[voice].formant_filter[fil].setTransitionModPointer(
-			    &(m_mod_destinations.voice[voice].filter[fil].formant_transition));
-
-			m_voice[voice].ring_mod[fil].setRingModAmountModPointer(
-			    &(m_mod_destinations.voice[voice].filter[fil].ringmod_amount));
-		}
-
-		for (int mod = 0; mod < 3; ++mod) {
-			m_voice[voice].lfo[mod].setPitchModExpPointer(&(m_mod_destinations.voice[voice].lfo[mod].freq));
-
-			m_voice[voice].env[mod].setAttackModPointer(&(m_mod_destinations.voice[voice].adsr[mod].attack));
-			m_voice[voice].env[mod].setDecayModPointer(&(m_mod_destinations.voice[voice].adsr[mod].decay));
-			m_voice[voice].env[mod].setSustainModPointer(&(m_mod_destinations.voice[voice].adsr[mod].sustain));
-			m_voice[voice].env[mod].setReleaseModPointer(&(m_mod_destinations.voice[voice].adsr[mod].release));
-		}
-		m_global_lfo.setPitchModExpPointer(&(m_mod_destinations.global_lfo.freq));
-		m_global_env.setAttackModPointer(&(m_mod_destinations.global_adsr.attack));
-		m_global_env.setDecayModPointer(&(m_mod_destinations.global_adsr.decay));
-		m_global_env.setSustainModPointer(&(m_mod_destinations.global_adsr.sustain));
-		m_global_env.setReleaseModPointer(&(m_mod_destinations.global_adsr.release));
-	}
-
-	m_amp.setGainModPointer(&(m_mod_destinations.amp.gain));
-	m_amp.setPanModPointer(&(m_mod_destinations.amp.pan));
-	m_amp.setVelModPointer(&(m_mod_destinations.amp.vel));
-
-	for (int stereo = 0; stereo < 2; ++stereo) {
-
-		m_ladder_filter[stereo].setFreqModPointer(&(m_mod_destinations.filter3.freq));
-		m_diode_filter[stereo].setFreqModPointer(&(m_mod_destinations.filter3.freq));
-		m_korg_filter[stereo].setFreqModPointer(&(m_mod_destinations.filter3.freq));
-		m_comb_filter[stereo].setFreqModPointer(&(m_mod_destinations.filter3.freq));
-		m_SEM_filter_12[stereo].setFreqModPointer(&(m_mod_destinations.filter3.freq));
-		m_ring_mod[stereo].setPitchModExpPointer(&(m_mod_destinations.filter3.freq));
-
-		m_ladder_filter[stereo].setResModPointer(&(m_mod_destinations.filter3.res));
-		m_diode_filter[stereo].setResModPointer(&(m_mod_destinations.filter3.res));
-		m_korg_filter[stereo].setResModPointer(&(m_mod_destinations.filter3.res));
-		m_SEM_filter_12[stereo].setResModPointer(&(m_mod_destinations.filter3.res));
-		m_comb_filter[stereo].setResModPointer(&(m_mod_destinations.filter3.res));
-
-		m_ladder_filter[stereo].setVolModPointer(&(m_mod_destinations.filter3.gain));
-		m_diode_filter[stereo].setVolModPointer(&(m_mod_destinations.filter3.gain));
-		m_korg_filter[stereo].setVolModPointer(&(m_mod_destinations.filter3.gain));
-		m_SEM_filter_12[stereo].setVolModPointer(&(m_mod_destinations.filter3.gain));
-		m_comb_filter[stereo].setVolModPointer(&(m_mod_destinations.filter3.gain));
-		m_formant_filter[stereo].setVolModPointer(&(m_mod_destinations.filter3.gain));
-		m_ring_mod[stereo].setVolModPointer(&(m_mod_destinations.filter3.gain));
-
-		m_ladder_filter[stereo].setEnvModPointer(&(m_mod_destinations.filter3.env_amount));
-		m_diode_filter[stereo].setEnvModPointer(&(m_mod_destinations.filter3.env_amount));
-		m_korg_filter[stereo].setEnvModPointer(&(m_mod_destinations.filter3.env_amount));
-		m_SEM_filter_12[stereo].setEnvModPointer(&(m_mod_destinations.filter3.env_amount));
-		m_comb_filter[stereo].setEnvModPointer(&(m_mod_destinations.filter3.env_amount));
-		m_formant_filter[stereo].setEnvModPointer(&(m_mod_destinations.filter3.env_amount));
-		m_ring_mod[stereo].setEnvModPointer(&(m_mod_destinations.filter3.env_amount));
-
-		m_ladder_filter[stereo].setVelModPointer(&(m_mod_destinations.filter3.vel_amount));
-		m_diode_filter[stereo].setVelModPointer(&(m_mod_destinations.filter3.vel_amount));
-		m_korg_filter[stereo].setVelModPointer(&(m_mod_destinations.filter3.vel_amount));
-		m_SEM_filter_12[stereo].setVelModPointer(&(m_mod_destinations.filter3.vel_amount));
-		m_comb_filter[stereo].setVelModPointer(&(m_mod_destinations.filter3.vel_amount));
-		m_ring_mod[stereo].setVelModPointer(&(m_mod_destinations.filter3.vel_amount));
-
-		m_ladder_filter[stereo].setKbdModPointer(&(m_mod_destinations.filter3.kbd_amount));
-		m_diode_filter[stereo].setKbdModPointer(&(m_mod_destinations.filter3.kbd_amount));
-		m_korg_filter[stereo].setKbdModPointer(&(m_mod_destinations.filter3.kbd_amount));
-		m_SEM_filter_12[stereo].setKbdModPointer(&(m_mod_destinations.filter3.kbd_amount));
-		m_comb_filter[stereo].setKbdModPointer(&(m_mod_destinations.filter3.kbd_amount));
-		m_formant_filter[stereo].setKbdModPointer(&(m_mod_destinations.filter3.kbd_amount));
-		m_ring_mod[stereo].setKbdModPointer(&(m_mod_destinations.filter3.kbd_amount));
-
-		m_ladder_filter[stereo].setSaturationModPointer(&(m_mod_destinations.filter3.saturation));
-		m_diode_filter[stereo].setSaturationModPointer(&(m_mod_destinations.filter3.saturation));
-		m_korg_filter[stereo].setSaturationModPointer(&(m_mod_destinations.filter3.saturation));
-
-		m_SEM_filter_12[stereo].setTransitionModPointer(&(m_mod_destinations.filter3.SEM_transition));
-
-		m_formant_filter[stereo].setTransitionModPointer(&(m_mod_destinations.filter3.formant_transition));
-
-		m_ring_mod[stereo].setRingModAmountModPointer(&(m_mod_destinations.filter3.ringmod_amount));
-
-		m_distortion[stereo].setThresholdModPointer(&(m_mod_destinations.distortion.boost));
-		m_distortion[stereo].setDryWetModPointer(&(m_mod_destinations.distortion.drywet));
-
-		m_delay.setTimeModPointer(&(m_mod_destinations.delay.time));
-		m_delay.setFeedbackModPointer(&(m_mod_destinations.delay.feedback));
-		m_delay.setHPFreqModPointer(&(m_mod_destinations.delay.hp_freq));
-		m_delay.setDryModPointer(&(m_mod_destinations.delay.dry));
-		m_delay.setWetModPointer(&(m_mod_destinations.delay.wet));
-
-		m_flanger[stereo].setFreqModPointer(&(m_mod_destinations.flanger.freq));
-		m_flanger[stereo].setAmountModPointer(&(m_mod_destinations.flanger.amount));
-		m_flanger[stereo].setFeedbackModPointer(&(m_mod_destinations.flanger.feedback));
-		m_flanger[stereo].setDryWetModPointer(&(m_mod_destinations.flanger.drywet));
-
-		m_chorus[stereo].setFreqModPointer(&(m_mod_destinations.chorus.freq));
-		m_chorus[stereo].setAmountModPointer(&(m_mod_destinations.chorus.amount));
-		m_chorus[stereo].setFeedbackModPointer(&(m_mod_destinations.chorus.feedback));
-		m_chorus[stereo].setDryWetModPointer(&(m_mod_destinations.chorus.drywet));
-
-		m_master_mod = &(m_mod_destinations.misc.master);
-	}
-	m_phaser.setRateModPointer(&(m_mod_destinations.phaser.rate));
-	m_phaser.setAmountModPointer(&(m_mod_destinations.phaser.amount));
-	m_phaser.setDryWetModPointer(&(m_mod_destinations.phaser.drywet));
-	m_phaser.setFreqModPointer(&(m_mod_destinations.phaser.freq));
-	m_phaser.setFeedbackModPointer(&(m_mod_destinations.phaser.feedback));
-}
-
 void OdinAudioProcessor::setPitchWheelValue(int p_value) {
+	//todo is this set on valuetree?
 	*m_pitchbend = (float)(p_value - 8192) / 8192.f;
 	updatePitchWheelGUI(*m_pitchbend);
 }
 
 void OdinAudioProcessor::setModWheelValue(int p_value) {
+	//todo is set on valuetree?
 	*m_modwheel = (float)(p_value) / 128.f;
 	updateModWheelGUI(*m_modwheel);
 }
@@ -1314,141 +1030,6 @@ void OdinAudioProcessor::setBPM(float p_BPM) {
 	}
 }
 
-void OdinAudioProcessor::addNonAudioParametersToTree() {
-
-	auto node = m_value_tree_draw;
-
-	for (int i = 0; i < WAVEDRAW_STEPS_X; ++i) {
-		float val = sin(2 * M_PI * i / (float)WAVEDRAW_STEPS_X) * 0.9;
-		node.setProperty(String("osc1_wavedraw_values_" + std::to_string(i)), val, nullptr);
-		node.setProperty(String("osc2_wavedraw_values_" + std::to_string(i)), val, nullptr);
-		node.setProperty(String("osc3_wavedraw_values_" + std::to_string(i)), val, nullptr);
-	}
-	for (int i = 0; i < CHIPDRAW_STEPS_X; ++i) {
-		float val = i < CHIPDRAW_STEPS_X / 2 ? 0.875f : -0.875f;
-		node.setProperty(String("osc1_chipdraw_values_" + std::to_string(i)), val, nullptr);
-		node.setProperty(String("osc2_chipdraw_values_" + std::to_string(i)), val, nullptr);
-		node.setProperty(String("osc3_chipdraw_values_" + std::to_string(i)), val, nullptr);
-	}
-	for (int i = 0; i < SPECDRAW_STEPS_X; ++i) {
-		float val = i == 0 ? 1 : 0;
-		node.setProperty(String("osc1_specdraw_values_" + std::to_string(i)), val, nullptr);
-		node.setProperty(String("osc2_specdraw_values_" + std::to_string(i)), val, nullptr);
-//		node.setProperty(String("osc3_specdraw_values_" + std::to_string(i)), val, nullptr);
-		node.setProperty(String("osc3_specdraw_values_" + std::to_string(i)), 0.5f-i*0.005+cos(i*0.2f)*0.5f*(1.f-i*0.02), nullptr);
-	}
-
-	node = m_value_tree_fx;
-	node.setProperty("delay_synctime_numerator", 2, nullptr);
-	node.setProperty("delay_synctime_denominator", 5, nullptr);
-	node.setProperty("phaser_synctime_numerator", 2, nullptr);
-	node.setProperty("phaser_synctime_denominator", 5, nullptr);
-	node.setProperty("flanger_synctime_numerator", 2, nullptr);
-	node.setProperty("flanger_synctime_denominator", 5, nullptr);
-	node.setProperty("chorus_synctime_numerator", 2, nullptr);
-	node.setProperty("chorus_synctime_denominator", 5, nullptr);
-	node.setProperty("delay_selected", 1, nullptr);
-	node.setProperty("phaser_selected", 0, nullptr);
-	node.setProperty("flanger_selected", 0, nullptr);
-	node.setProperty("chorus_selected", 0, nullptr);
-	node.setProperty("delay_position", 0, nullptr);
-	node.setProperty("phaser_position", 1, nullptr);
-	node.setProperty("chorus_position", 2, nullptr);
-	node.setProperty("flanger_position", 3, nullptr);
-
-	node = m_value_tree_lfo;
-	node.setProperty("lfo1_synctime_numerator", 2, nullptr);
-	node.setProperty("lfo1_synctime_denominator", 5, nullptr);
-	node.setProperty("lfo2_synctime_numerator", 2, nullptr);
-	node.setProperty("lfo2_synctime_denominator", 5, nullptr);
-	node.setProperty("lfo3_synctime_numerator", 2, nullptr);
-	node.setProperty("lfo3_synctime_denominator", 5, nullptr);
-	node.setProperty("lfo4_synctime_numerator", 2, nullptr);
-	node.setProperty("lfo4_synctime_denominator", 5, nullptr);
-	node.setProperty("lfo_left_selected", 1, nullptr);
-	node.setProperty("lfo_right_selected", 1, nullptr);
-
-	node = m_value_tree_misc;
-	node.setProperty("legato", 1, nullptr); // this is actually "poly" or !legato"
-	node.setProperty("dist_algo", 1.f, nullptr);
-	node.setProperty("BPM", 120, nullptr);
-	node.setProperty("env_left_selected", 1, nullptr);
-	node.setProperty("env_right_selected", 1, nullptr);
-	node.setProperty("fil1_type", FILTER_TYPE_LP24, nullptr);
-	node.setProperty("fil2_type", 1, nullptr);
-	node.setProperty("fil3_type", 1, nullptr);
-
-	node = m_value_tree_mod;
-	node.setProperty("source_row_0", 0, nullptr);
-	node.setProperty("source_row_1", 0, nullptr);
-	node.setProperty("source_row_2", 0, nullptr);
-	node.setProperty("source_row_3", 0, nullptr);
-	node.setProperty("source_row_4", 0, nullptr);
-	node.setProperty("source_row_5", 0, nullptr);
-	node.setProperty("source_row_6", 0, nullptr);
-	node.setProperty("source_row_7", 0, nullptr);
-	node.setProperty("source_row_8", 0, nullptr);
-	node.setProperty("dest_1_row_0", 0, nullptr);
-	node.setProperty("dest_1_row_1", 0, nullptr);
-	node.setProperty("dest_1_row_2", 0, nullptr);
-	node.setProperty("dest_1_row_3", 0, nullptr);
-	node.setProperty("dest_1_row_4", 0, nullptr);
-	node.setProperty("dest_1_row_5", 0, nullptr);
-	node.setProperty("dest_1_row_6", 0, nullptr);
-	node.setProperty("dest_1_row_7", 0, nullptr);
-	node.setProperty("dest_1_row_8", 0, nullptr);
-	node.setProperty("dest_2_row_0", 0, nullptr);
-	node.setProperty("dest_2_row_1", 0, nullptr);
-	node.setProperty("dest_2_row_2", 0, nullptr);
-	node.setProperty("dest_2_row_3", 0, nullptr);
-	node.setProperty("dest_2_row_4", 0, nullptr);
-	node.setProperty("dest_2_row_5", 0, nullptr);
-	node.setProperty("dest_2_row_6", 0, nullptr);
-	node.setProperty("dest_2_row_7", 0, nullptr);
-	node.setProperty("dest_2_row_8", 0, nullptr);
-	node.setProperty("scale_row_0", 0, nullptr);
-	node.setProperty("scale_row_1", 0, nullptr);
-	node.setProperty("scale_row_2", 0, nullptr);
-	node.setProperty("scale_row_3", 0, nullptr);
-	node.setProperty("scale_row_4", 0, nullptr);
-	node.setProperty("scale_row_5", 0, nullptr);
-	node.setProperty("scale_row_6", 0, nullptr);
-	node.setProperty("scale_row_7", 0, nullptr);
-	node.setProperty("scale_row_8", 0, nullptr);
-
-	node = m_value_tree_osc;
-	node.setProperty("osc1_analog_wave", 0, nullptr);
-	node.setProperty("osc2_analog_wave", 0, nullptr);
-	node.setProperty("osc3_analog_wave", 0, nullptr);
-	node.setProperty("osc1_type", OSC_TYPE_ANALOG, nullptr);
-	node.setProperty("osc2_type", 1, nullptr);
-	node.setProperty("osc3_type", 1, nullptr);
-	node.setProperty("osc1_wavetable", 1, nullptr);
-	node.setProperty("osc2_wavetable", 1, nullptr);
-	node.setProperty("osc3_wavetable", 1, nullptr);
-	node.setProperty("osc1_vec_a", 101, nullptr);
-	node.setProperty("osc2_vec_a", 101, nullptr);
-	node.setProperty("osc3_vec_a", 101, nullptr);
-	node.setProperty("osc1_vec_b", 102, nullptr);
-	node.setProperty("osc2_vec_b", 102, nullptr);
-	node.setProperty("osc3_vec_b", 102, nullptr);
-	node.setProperty("osc1_vec_c", 103, nullptr);
-	node.setProperty("osc2_vec_c", 103, nullptr);
-	node.setProperty("osc3_vec_c", 103, nullptr);
-	node.setProperty("osc1_vec_d", 104, nullptr);
-	node.setProperty("osc2_vec_d", 104, nullptr);
-	node.setProperty("osc3_vec_d", 104, nullptr);
-	node.setProperty("osc1_chipwave", 1, nullptr);
-	node.setProperty("osc2_chipwave", 1, nullptr);
-	node.setProperty("osc3_chipwave", 1, nullptr);
-	node.setProperty("osc1_modulator_wave", 1, nullptr);
-	node.setProperty("osc2_modulator_wave", 1, nullptr);
-	node.setProperty("osc3_modulator_wave", 1, nullptr);
-	node.setProperty("osc1_carrier_wave", 1, nullptr);
-	node.setProperty("osc2_carrier_wave", 1, nullptr);
-	node.setProperty("osc3_carrier_wave", 1, nullptr);
-}
-
 void OdinAudioProcessor::setFXButtonsPosition(int p_delay, int p_phaser, int p_flanger, int p_chorus) {
 
 	m_delay_position   = p_delay;
@@ -1476,4 +1057,13 @@ void OdinAudioProcessor::setFilter3EnvValue() {
 	m_comb_filter[1].m_env_value    = env_value;
 	m_formant_filter[1].m_env_value = env_value;
 	m_ring_mod[1].m_env_value       = env_value;
+}
+
+void OdinAudioProcessor::attachNonParamListeners() {
+	m_value_tree_fx   = m_value_tree.state.getChildWithName("fx");
+	m_value_tree_osc  = m_value_tree.state.getChildWithName("osc");
+	m_value_tree_mod  = m_value_tree.state.getChildWithName("mod");
+	m_value_tree_misc = m_value_tree.state.getChildWithName("misc");
+	m_value_tree_lfo  = m_value_tree.state.getChildWithName("lfo");
+	m_value_tree_draw = m_value_tree.state.getChildWithName("draw");
 }
