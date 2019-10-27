@@ -101,6 +101,10 @@
 
 #define GETAUDIO(name) m_value_tree.getParameterAsValue(name).getValue()
 #define SETAUDIO(name, value) m_value_tree.getParameter(name)->setValueNotifyingHost(((float)value))
+#define SETAUDIOFULLRANGE(name, value) m_value_tree.getParameter(name)->setValueNotifyingHost(m_value_tree.getParameter(name)->convertTo0to1((float)value))
+#define RETRIGGERAUDIO(name) SETAUDIOFULLRANGE(name, GETAUDIO(name))
+
+#define DBGAUDIO(string) if(sample == 0){DBG(string);}
 
 #define SETSKEWREPLACEMENT(component, mid_value)                                                                       \
 	component.setSkewFactorFromMidPoint(mid_value);                                                                    \

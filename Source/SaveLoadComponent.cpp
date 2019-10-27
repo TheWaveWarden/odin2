@@ -37,12 +37,12 @@ std::string getFileNameFromAbsolute(const std::string &s) {
 }
 
 //==============================================================================
-SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts) :
+SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts, OdinAudioProcessor& p_processor) :
     m_save("save", juce::DrawableButton::ButtonStyle::ImageRaw),
     m_load("load", juce::DrawableButton::ButtonStyle::ImageRaw),
     m_reset("reset", juce::DrawableButton::ButtonStyle::ImageRaw),
     /// m_random("random", juce::DrawableButton::ButtonStyle::ImageRaw),
-    m_value_tree(vts) {
+    m_value_tree(vts), m_audio_processor(p_processor) {
 	juce::Image save_1 = ImageCache::getFromMemory(BinaryData::buttonsave_2_png, BinaryData::buttonsave_2_pngSize);
 	juce::Image save_2 = ImageCache::getFromMemory(BinaryData::buttonsave_1_png, BinaryData::buttonsave_1_pngSize);
 
@@ -109,7 +109,7 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts) :
 
 	random_draw1.setImage(random_1);
 	random_draw2.setImage(random_2);
-	
+
 	juce::Image glas_panel =
 	    ImageCache::getFromMemory(BinaryData::glaspanel_big_png, BinaryData::glaspanel_big_pngSize);
 
@@ -133,39 +133,40 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts) :
 		                                    true));
 
 		//launch filechooser
-		m_filechooser->launchAsync(
-		    FileBrowserComponent::saveMode | FileBrowserComponent::canSelectFiles,
-		    [fileToSave, this](const FileChooser &chooser) {
-			    auto result    = chooser.getURLResult();
-			    auto file_name = result.isEmpty() ? String()
-			                                      : (result.isLocalFile() ? result.getLocalFile().getFullPathName()
-			                                                              : result.toString(true));
+		m_filechooser->launchAsync(FileBrowserComponent::saveMode | FileBrowserComponent::canSelectFiles,
+		                           [fileToSave, this](const FileChooser &chooser) {
+			                           auto result = chooser.getURLResult();
+			                           auto file_name =
+			                               result.isEmpty()
+			                                   ? String()
+			                                   : (result.isLocalFile() ? result.getLocalFile().getFullPathName()
+			                                                           : result.toString(true));
 
-			    File file_to_write(file_name);
+			                           File file_to_write(file_name);
 
-			    //check whether file already exists
-			    if (file_to_write.existsAsFile()) {
-				    if (AlertWindow::showOkCancelBox(AlertWindow::InfoIcon,
-				                                     "File already exists!",
-				                                     "Are you sure you want to overwrite it?",
-				                                     {},
-				                                     {},
-				                                     {})) {
+			                           //check whether file already exists
+			                           if (file_to_write.existsAsFile()) {
+				                           if (!(AlertWindow::showOkCancelBox(AlertWindow::InfoIcon,
+				                                                              "File already exists!",
+				                                                              "Are you sure you want to overwrite it?",
+				                                                              {},
+				                                                              {},
+				                                                              {}))) {
+					                           //user selected cancel
+					                           return;
+				                           }
+			                           }
+			                           FileOutputStream file_stream(file_to_write);
+			                           if (file_stream.openedOk()) {
+				                           // use this to overwrite old content
+				                           file_stream.setPosition(0);
+				                           file_stream.truncate();
 
-					    FileOutputStream file_stream(file_to_write);
-					    if (file_stream.openedOk()) {
-						    // use this to overwrite old content
-						    file_stream.setPosition(0);
-						    file_stream.truncate();
-
-						    m_value_tree.state.writeToStream(file_stream);
-						    m_patch.setText(getFileNameFromAbsolute(file_name.toStdString()));
-					    }
-				    }
-			    }
-
-			    // DBG("Wrote patch to " + file_name);
-		    });
+				                           m_value_tree.state.writeToStream(file_stream);
+				                           m_patch.setText(getFileNameFromAbsolute(file_name.toStdString()));
+				                           DBG("Wrote patch to " + file_name);
+			                           }
+		                           });
 	};
 
 	m_load.onClick = [&]() {
@@ -180,26 +181,26 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts) :
 				                           file_name << (result.isLocalFile() ? result.getLocalFile().getFullPathName()
 				                                                              : result.toString(false));
 
-			                           // String file_name =
-			                           // "/home/frot/odinvst/Builds/LinuxMakefile/autopatch";
 			                           File file_to_read(file_name);
 
 			                           FileInputStream file_stream(file_to_read);
 			                           if (file_stream.openedOk()) {
-				                           m_value_tree.state.copyPropertiesAndChildrenFrom(
-				                               m_value_tree.state.readFromStream(file_stream), nullptr);
+				                           //TODO BIG OOF: this will copy the valuetree and hence all non-param listeners are lost
+				                               //m_value_tree.state.copyPropertiesAndChildrenFrom(
+				                               //    ValueTree::readFromStream(file_stream), nullptr);
+				                           m_value_tree.replaceState(ValueTree::readFromStream(file_stream));
+										   //m_value_tree_fx = m_value_tree.state.getChildWithName("fx");
+											m_audio_processor.attachNonParamListeners();
+
+
 				                           m_patch.setText(file_to_read.getFileNameWithoutExtension().toStdString());
 				                           DBG("Loaded patch " + file_name);
-				                           // DBG(m_value_tree.state.toXmlString());
 			                           } else {
 				                           DBG("Failed to open stream. Error message: " +
 				                               file_stream.getStatus().getErrorMessage().toStdString());
 				                           DBG(file_name);
-				                           // AlertWindow::showMessageBoxAsync(AlertWindow::InfoIcon,
-				                           //                                 "File Chooser...",
-				                           //                                 "Failed to open file!");
 			                           }
-			                           // DBG(m_value_tree.state.toXmlString());
+			                           DBG(m_value_tree.state.toXmlString());
 
 			                           forceValueTreeLambda();
 		                           });
@@ -216,7 +217,8 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts) :
 		                                 {})) {
 			m_reset_warning_was_shown = true;
 			MemoryInputStream init_stream(BinaryData::init_patch_odin, BinaryData::init_patch_odinSize, false);
-			m_value_tree.state.copyPropertiesAndChildrenFrom(m_value_tree.state.readFromStream(init_stream), nullptr);
+			m_value_tree.replaceState(ValueTree::readFromStream(init_stream));
+			m_audio_processor.attachNonParamListeners();
 			m_patch.setText("init patch");
 			DBG("Loaded init patch");
 			forceValueTreeLambda();
@@ -228,4 +230,3 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts) :
 
 SaveLoadComponent::~SaveLoadComponent() {
 }
-

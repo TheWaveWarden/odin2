@@ -13,6 +13,7 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "GlobalIncludes.h"
 #include "GlasDisplay.h"
+#include "PluginProcessor.h"
 
 #define LOAD_POS_X 134
 #define LOAD_POS_Y 5
@@ -31,7 +32,7 @@
  */
 class SaveLoadComponent : public Component {
 public:
-  SaveLoadComponent(AudioProcessorValueTreeState &vts);
+  SaveLoadComponent(AudioProcessorValueTreeState &vts, OdinAudioProcessor& p_processor);
   ~SaveLoadComponent();
 
   void paint(Graphics &) override {}
@@ -40,10 +41,10 @@ public:
 
 private:
 
+  OdinAudioProcessor& m_audio_processor;
+
   bool m_reset_warning_was_shown = false;
-
   std::unique_ptr<FileChooser> m_filechooser;
-
   AudioProcessorValueTreeState &m_value_tree;
   
 
