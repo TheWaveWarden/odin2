@@ -189,6 +189,8 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts, OdinAudi
 				                           m_audio_processor.attachNonParamListeners();
 
 				                           m_patch.setText(file_to_read.getFileNameWithoutExtension().toStdString());
+			                           	   forceValueTreeLambda();
+							    		   m_audio_processor.retriggerAllListeners();
 				                           DBG("Loaded patch " + file_name);
 			                           } else {
 				                           DBG("Failed to open stream. Error message: " +
@@ -197,7 +199,6 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts, OdinAudi
 			                           }
 			                           DBG(m_value_tree.state.toXmlString());
 
-			                           forceValueTreeLambda();
 		                           });
 	};
 
@@ -214,9 +215,10 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts, OdinAudi
 			MemoryInputStream init_stream(BinaryData::init_patch_odin, BinaryData::init_patch_odinSize, false);
 			m_value_tree.replaceState(ValueTree::readFromStream(init_stream));
 			m_audio_processor.attachNonParamListeners();
+			forceValueTreeLambda();
+			m_audio_processor.retriggerAllListeners();			
 			m_patch.setText("init patch");
 			DBG("Loaded init patch");
-			forceValueTreeLambda();
 		}
 	};
 

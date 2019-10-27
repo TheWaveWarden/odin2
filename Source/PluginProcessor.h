@@ -251,6 +251,7 @@ public:
 	void resetAudioEngine();
 	void setFXButtonsPosition(int p_delay, int p_phaser, int p_flanger, int p_chorus);
     void attachNonParamListeners();
+	void retriggerAllListeners();
 
 private:
 	// OdinAudioProcessorEditor* m_editor = nullptr;
@@ -378,7 +379,6 @@ private:
 	void treeValueChangedAmount3(const String &p_ID, float p_new_value);
 	void treeValueChangedGeneralMisc(const String &p_ID, float p_new_value);
 
-	void retriggerAllListeners();
 
 	Voice m_voice[VOICES];
 	Amplifier m_amp;
