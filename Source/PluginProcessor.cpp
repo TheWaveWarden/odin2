@@ -217,7 +217,8 @@ OdinAudioProcessor::OdinAudioProcessor()
 		    m_render_ADSR[0] = p_ADSR_0;
 		    m_render_ADSR[1] = p_ADSR_1;
 	    };
-	retriggerAllListeners();
+
+	//retriggerAllListeners();
 }
 
 OdinAudioProcessor::~OdinAudioProcessor() {
@@ -441,27 +442,27 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 					if (control.first == midi_message.getControllerNumber()) {
 						const MessageManagerLock mmLock;
 						control.second->setValue(
-						    control.second->proportionOfLengthToValue((int)midi_message.getControllerValue() / 127.f));
+						    control.second->proportionOfLengthToValue((float)midi_message.getControllerValue() / 127.f));
 					}
 				}
 				for (auto const &control : m_midi_control_list_slider) {
 					if (control.first == midi_message.getControllerNumber()) {
 						const MessageManagerLock mmLock;
 						control.second->setValue(
-						    control.second->proportionOfLengthToValue((int)midi_message.getControllerValue() / 127.f));
+						    control.second->proportionOfLengthToValue((float)midi_message.getControllerValue() / 127.f));
 					}
 				}
 				for (auto const &control : m_midi_control_list_lrbutton) {
 					if (control.first == midi_message.getControllerNumber()) {
 						const MessageManagerLock mmLock;
-						control.second->setToggleState((int)midi_message.getControllerValue() > 64,
+						control.second->setToggleState(midi_message.getControllerValue() > 64,
 						                               sendNotificationAsync);
 					}
 				}
 				for (auto const &control : m_midi_control_list_odinbutton) {
 					if (control.first == midi_message.getControllerNumber()) {
 						const MessageManagerLock mmLock;
-						control.second->setToggleState((int)midi_message.getControllerValue() > 64,
+						control.second->setToggleState(midi_message.getControllerValue() > 64,
 						                               sendNotificationAsync);
 					}
 				}
@@ -808,7 +809,7 @@ void OdinAudioProcessor::getStateInformation(MemoryBlock &destData) {
 	auto state = m_value_tree.copyState();
 	std::unique_ptr<XmlElement> xml(state.createXml());
 	copyXmlToBinary(*xml, destData);
-	DBG("SET BINARY STATE!!");
+	DBG("GET BINARY STATE!!");
 }
 
 void OdinAudioProcessor::setStateInformation(const void *data, int sizeInBytes) {
@@ -828,10 +829,9 @@ void OdinAudioProcessor::setStateInformation(const void *data, int sizeInBytes) 
 			attachNonParamListeners();
 			m_force_values_onto_gui = true;
 			DBG("LOADED BINARY STATE!!");
+			retriggerAllListeners();
 		}
 	}
-
-	retriggerAllListeners();
 }
 
 //==============================================================================
@@ -885,6 +885,7 @@ void OdinAudioProcessor::initializeModules() {
 }
 
 void OdinAudioProcessor::setPitchWheelValue(int p_value) {
+	//todo is this set on valuetree?
 	*m_pitchbend = (float)(p_value - 8192) / 8192.f;
 	updatePitchWheelGUI(*m_pitchbend);
 }

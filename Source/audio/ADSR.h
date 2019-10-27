@@ -5,6 +5,14 @@
 #include <functional>
 
 #define MIN_DECAY_RELEASE_VAL 0.001
+
+#define ADSR_SECTION_INIT -1
+#define ADSR_SECTION_ATTACK 0
+#define ADSR_SECTION_DECAY 1
+#define ADSR_SECTION_SUSTAIN 2
+#define ADSR_SECTION_RELEASE 3
+#define ADSR_SECTION_FINISHED 4
+
 #include <cmath>
 
 class ADSREnvelope {
@@ -133,6 +141,12 @@ protected:
   double m_decay_factor = 0.9998;
   double m_release_factor = 0.9998;
   double m_release_start_value = 1.;
+
+  //todo these are added because you can't declare vars in case statement???
+  double m_attack_modded = 0.;
+  double m_decay_modded = 0.;
+  double m_sustain_modded = 0.;
+  double m_release_modded = 0.;
 
   double m_current_value = 0.f;
   double m_samplerate;
