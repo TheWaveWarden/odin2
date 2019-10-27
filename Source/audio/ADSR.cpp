@@ -18,8 +18,8 @@ float ADSREnvelope::doEnvelope() {
 
 	case ADSR_SECTION_INIT:
 		m_attack_start_value = 0.f;
-		m_current_section    = ADSR_SECTION_ATTACK; // go to attack
 		m_current_value      = 0.;
+		m_current_section    = ADSR_SECTION_ATTACK;
 		// ! no break is intentional
 	case ADSR_SECTION_ATTACK:
 		m_attack_modded = m_attack;
@@ -29,7 +29,7 @@ float ADSREnvelope::doEnvelope() {
 		m_current_value += 1. / m_samplerate / m_attack_modded;
 		if (m_current_value >= 1) {
 			m_current_value   = 1;
-			m_current_section = 1; // move to decay
+			m_current_section = ADSR_SECTION_DECAY;
 		}
 		m_last_actual_value = m_current_value;
 
@@ -50,14 +50,14 @@ float ADSREnvelope::doEnvelope() {
 		m_sustain_modded        = m_sustain_modded > 1 ? 1 : m_sustain_modded;
 		if (m_current_value < MIN_DECAY_RELEASE_VAL) {
 			if (m_loop) {
-				m_current_section    = 0; // go back to attack
+				m_current_section    = ADSR_SECTION_ATTACK;
 				m_attack_start_value = m_sustain_modded;
 				m_current_value      = m_sustain_modded + (1 - m_sustain_modded) * m_current_value;
 
 				m_last_actual_value = m_sustain_modded;
 				return m_last_actual_value;
 			} else {
-				m_current_section = 2; // go to sustain
+				m_current_section = ADSR_SECTION_SUSTAIN;
 				m_current_value   = 0; // why?
 			}
 		}
@@ -71,7 +71,7 @@ float ADSREnvelope::doEnvelope() {
 		m_sustain_modded        = m_sustain_modded > 1 ? 1 : m_sustain_modded;
 		// just return sustain here
 		if (m_loop) {
-			m_current_section    = 0; // go back to attack
+			m_current_section    = ADSR_SECTION_ATTACK;
 			m_attack_start_value = m_sustain_modded;
 			m_current_value      = m_sustain_modded + (1 - m_sustain_modded) * m_current_value;
 		}
@@ -92,7 +92,7 @@ float ADSREnvelope::doEnvelope() {
 			// envelope ends here...
 			m_current_value = 0.;
 			onEnvelopeEnd();
-			m_current_section = ADSR_SECTION_FINISHED; // envelope over
+			m_current_section = ADSR_SECTION_FINISHED;
 		}
 		m_last_actual_value = m_current_value * m_release_start_value;
 		return m_last_actual_value;
@@ -119,7 +119,7 @@ void ADSREnvelope::startRelease() {
 	}
 
 	m_current_value   = 1.;
-	m_current_section = ADSR_SECTION_RELEASE; // set to release
+	m_current_section = ADSR_SECTION_RELEASE;
 }
 
 int ADSREnvelope::getCurrentSection() {
