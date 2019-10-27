@@ -3,12 +3,6 @@ void OdinAudioProcessor::retriggerAllListeners() {
 
 	DBG("\n\n\n\n\n\n\n");
 	//todo draw values are not turned into wavetables on startup...?
-	// ValueTree m_value_tree_draw;
-	// ValueTree m_value_tree_fx;
-	// ValueTree m_value_tree_lfo;
-	// ValueTree m_value_tree_misc;
-	// ValueTree m_value_tree_mod;
-	// ValueTree m_value_tree_osc;
 
 	for (int i = 0; i < m_value_tree_osc.getNumProperties(); ++i) {
 		m_value_tree_osc.sendPropertyChangeMessage((m_value_tree_osc.getPropertyName(i)));
@@ -26,19 +20,6 @@ void OdinAudioProcessor::retriggerAllListeners() {
 		m_value_tree_mod.sendPropertyChangeMessage((m_value_tree_mod.getPropertyName(i)));
 	}
 	DBG("value tree standard:");
-	//for (int i = 0; i < m_value_tree.state.getNumProperties(); ++i) {
-	//	DBG("NAME: " + m_value_tree.state.getPropertyName(i));
-	//	m_value_tree.state.sendPropertyChangeMessage((m_value_tree.state.getPropertyName(i)));
-	//}
-
-
-  //DBG((int)m_value_tree.state.hasProperty("amount_1_row_0"));
-  DBG((int)m_value_tree.state.getNumProperties());
-  DBG(m_value_tree.getParameter("amount_1_row_0")->getParameterIndex());
-
-  DBG((float)GETAUDIO("fil1_freq"));
-  RETRIGGERAUDIO("fil1_freq");
-  DBG((float)GETAUDIO("fil1_freq"));
 
 
   RETRIGGERAUDIO("amount_1_row_0");
