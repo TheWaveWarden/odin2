@@ -37,7 +37,7 @@ std::string getFileNameFromAbsolute(const std::string &s) {
 }
 
 //==============================================================================
-SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts, OdinAudioProcessor& p_processor) :
+SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts, OdinAudioProcessor &p_processor) :
     m_save("save", juce::DrawableButton::ButtonStyle::ImageRaw),
     m_load("load", juce::DrawableButton::ButtonStyle::ImageRaw),
     m_reset("reset", juce::DrawableButton::ButtonStyle::ImageRaw),
@@ -146,7 +146,7 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts, OdinAudi
 
 			                           //check whether file already exists
 			                           if (file_to_write.existsAsFile()) {
-				                           if (!(AlertWindow::showOkCancelBox(AlertWindow::InfoIcon,
+				                           if (!(AlertWindow::showOkCancelBox(AlertWindow::WarningIcon,
 				                                                              "File already exists!",
 				                                                              "Are you sure you want to overwrite it?",
 				                                                              {},
@@ -185,13 +185,8 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts, OdinAudi
 
 			                           FileInputStream file_stream(file_to_read);
 			                           if (file_stream.openedOk()) {
-				                           //TODO BIG OOF: this will copy the valuetree and hence all non-param listeners are lost
-				                               //m_value_tree.state.copyPropertiesAndChildrenFrom(
-				                               //    ValueTree::readFromStream(file_stream), nullptr);
 				                           m_value_tree.replaceState(ValueTree::readFromStream(file_stream));
-										   //m_value_tree_fx = m_value_tree.state.getChildWithName("fx");
-											m_audio_processor.attachNonParamListeners();
-
+				                           m_audio_processor.attachNonParamListeners();
 
 				                           m_patch.setText(file_to_read.getFileNameWithoutExtension().toStdString());
 				                           DBG("Loaded patch " + file_name);
@@ -207,15 +202,15 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts, OdinAudi
 	};
 
 	m_reset.onClick = [&]() {
-		if (m_reset_warning_was_shown ||
-		    AlertWindow::showOkCancelBox(AlertWindow::InfoIcon,
+		if (/*m_reset_warning_was_shown ||*/
+		    AlertWindow::showOkCancelBox(AlertWindow::WarningIcon,
 		                                 "Reset Synth",
 		                                 "This will reset the synth to its initial state and you will lose "
-		                                 "your patch!\nThis warning is only shown once!",
+		                                 "your patch!",
 		                                 {},
 		                                 {},
 		                                 {})) {
-			m_reset_warning_was_shown = true;
+			//m_reset_warning_was_shown = true;
 			MemoryInputStream init_stream(BinaryData::init_patch_odin, BinaryData::init_patch_odinSize, false);
 			m_value_tree.replaceState(ValueTree::readFromStream(init_stream));
 			m_audio_processor.attachNonParamListeners();

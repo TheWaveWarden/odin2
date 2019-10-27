@@ -4,9 +4,9 @@
 #include "PluginProcessor.h"
 #include "RetriggerAllListeners.h"
 // these file contains implementation to avoid clutter in this file
-#include "ValueChange.h"
-#include "SetModulationPointers.h"
 #include "AddNonAudioParametersToValueTree.h"
+#include "SetModulationPointers.h"
+#include "ValueChange.h"
 
 OdinAudioProcessor::OdinAudioProcessor()
 #ifndef JucePlugin_PreferredChannelConfigurations
@@ -662,14 +662,14 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 		float stereo_signal[2];
 
 		m_amp.doAmplifier(voices_output, stereo_signal[0], stereo_signal[1]);
-		DBGAUDIO("ampout: " + std::to_string(stereo_signal[0]) + ", " + std::to_string(stereo_signal[1]))
+		//DBGAUDIO("ampout: " + std::to_string(stereo_signal[0]) + ", " + std::to_string(stereo_signal[1]))
 
 		for (int channel = 0; channel < 2; ++channel) {
 
 			//===== DISTORTION ======
 			if (*m_dist_on) {
 				stereo_signal[channel] = m_distortion[channel].doDistortion(stereo_signal[channel]);
-				DBGAUDIO("distout[" + std::to_string(channel) + "]: " + std::to_string(stereo_signal[channel]))
+				//DBGAUDIO("distout[" + std::to_string(channel) + "]: " + std::to_string(stereo_signal[channel]))
 			}
 
 			//===== FILTER 3 ======
@@ -727,7 +727,7 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 			default:
 				break;
 			}
-			DBGAUDIO("fil3out[" + std::to_string(channel) + "]: " + std::to_string(stereo_signal[channel]))
+			//DBGAUDIO("fil3out[" + std::to_string(channel) + "]: " + std::to_string(stereo_signal[channel]))
 
 			//==== FX SECTION ====
 
@@ -759,7 +759,7 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 					}
 				}
 			}
-			DBGAUDIO("fxout[" + std::to_string(channel) + "]: " + std::to_string(stereo_signal[channel]))
+			//DBGAUDIO("fxout[" + std::to_string(channel) + "]: " + std::to_string(stereo_signal[channel]))
 
 			//===== OUTPUT ======
 
@@ -768,7 +768,7 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 			auto *channelData   = buffer.getWritePointer(channel);
 			channelData[sample] = stereo_signal[channel] * m_master_smooth * master_mod_factor;
 
-			DBGAUDIO("masterout[" + std::to_string(channel) + "]: " + std::to_string(stereo_signal[channel]))
+			//DBGAUDIO("masterout[" + std::to_string(channel) + "]: " + std::to_string(stereo_signal[channel]))
 
 			// DBG(m_master_smooth);
 
@@ -823,11 +823,12 @@ void OdinAudioProcessor::setStateInformation(const void *data, int sizeInBytes) 
 
 	std::unique_ptr<XmlElement> xmlState(getXmlFromBinary(data, sizeInBytes));
 	if (xmlState.get() != nullptr) {
-		if (xmlState->hasTagName(m_value_tree.state.getType()))
+		if (xmlState->hasTagName(m_value_tree.state.getType())) {
 			m_value_tree.replaceState(ValueTree::fromXml(*xmlState));
-		// force values on GUI
-		m_force_values_onto_gui = true;
-		DBG("LOADED BINARY STATE!!");
+			attachNonParamListeners();
+			m_force_values_onto_gui = true;
+			DBG("LOADED BINARY STATE!!");
+		}
 	}
 
 	retriggerAllListeners();
@@ -882,7 +883,6 @@ void OdinAudioProcessor::initializeModules() {
 		m_voice[voice].setOscSyncOscillator(&(m_voice[voice].analog_osc[0]));
 	}
 }
-
 
 void OdinAudioProcessor::setPitchWheelValue(int p_value) {
 	*m_pitchbend = (float)(p_value - 8192) / 8192.f;
