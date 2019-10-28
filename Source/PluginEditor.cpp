@@ -87,20 +87,18 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
     m_pitchbend_amount_identifier("pitchbend_amount"), m_delay_position_identifier("delay_position"),
     m_flanger_position_identifier("flanger_position"), m_phaser_position_identifier("phaser_position"),
     m_chorus_position_identifier("chorus_position"), m_mod_matrix(vts), m_legato_button("legato"),
-    m_tooltip(nullptr, 2047483647), m_is_standalone_plugin(p_is_standalone), m_save_load(vts, p_processor) {
+    m_tooltip(nullptr, 2047483647), m_is_standalone_plugin(p_is_standalone), m_save_load(vts, p_processor),
+    m_processor(p_processor) {
 
 	if (m_is_standalone_plugin) {
 		addKeyListener(this);
 	}
 
-	p_processor.onSetStateInformation = [&]() {
-		// DBG("ONSETSTATEINFORMATION!\n\");
-		forceValueTreeOntoComponents(true);
-	};
-
-	p_processor.updatePitchWheelGUI = [&](float p_value) { updatePitchWheel(p_value); };
-
-	p_processor.updateModWheelGUI = [&](float p_value) { updateModWheel(p_value); };
+	//these functions need to be deleted in the destructor, since after editor
+	//destruction the pointers are invalid
+	p_processor.onSetStateInformation = [&]() { forceValueTreeOntoComponents(true); };
+	p_processor.updatePitchWheelGUI   = [&](float p_value) { updatePitchWheel(p_value); };
+	p_processor.updateModWheelGUI     = [&](float p_value) { updateModWheel(p_value); };
 
 	m_save_load.forceValueTreeLambda = [&]() { forceValueTreeOntoComponents(true); };
 
@@ -454,7 +452,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	                                         "mouse over it!\n\nGENERAL TIPS:\n\nHold shift to finetune knobs\n\nCtr "
 	                                         "+ click to reset knobs\n\nDouble click to enter values\n\nRight click "
 	                                         "to access MIDI-learn\n\nThe order of FX can be rearranged\nby "
-	                                         "dragging and dropping\n the FX selection buttons.\n\n") +
+	                                         "dragging and dropping\n the FX selection buttons.\n\nVersion: ") +
 	                             ODIN_VERSION_STRING);
 	addAndMakeVisible(m_question_button);
 
@@ -990,12 +988,19 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 }
 
 OdinAudioProcessorEditor::~OdinAudioProcessorEditor() {
+	//remove lookandfeels
 	m_osc_dropdown_menu.setLookAndFeel(nullptr);
 	m_filter_dropdown_menu.setLookAndFeel(nullptr);
 	m_tooltip.setLookAndFeel(nullptr);
 	m_value_input.setLookAndFeel(nullptr);
 
+	// todo whatever the reason behind this was, m_vlaue_tree doesn't even have a member pitchbend_amount, bc was moved to subtree
 	m_value_tree.removeParameterListener("pitchbend_amount", &m_pitch_amount);
+
+	// remove lambdas which are invalid after the editor was closed
+	m_processor.onSetStateInformation = [&]() {};
+	m_processor.updatePitchWheelGUI   = [&](float p_value) {};
+	m_processor.updateModWheelGUI     = [&](float p_value) {};
 }
 
 //==============================================================================
@@ -1390,5 +1395,5 @@ void OdinAudioProcessorEditor::updatePitchWheel(float p_value) {
 
 void OdinAudioProcessorEditor::updateModWheel(float p_value) {
 	const MessageManagerLock mmLock;
-	m_modwheel.setValue(p_value, sendNotificationSync);
+	m_modwheel.setValue(p_value);
 }

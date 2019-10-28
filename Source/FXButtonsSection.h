@@ -288,28 +288,24 @@ public:
       m_value_tree.state.getChildWithName("fx").setProperty("phaser_selected", 0.f, nullptr);
       m_value_tree.state.getChildWithName("fx").setProperty("flanger_selected", 0.f, nullptr);
       m_value_tree.state.getChildWithName("fx").setProperty("chorus_selected", 0.f, nullptr);
-      //m_processor.setFXOrder(1, 0, 0, 0);
       break;
     case 1:
       m_value_tree.state.getChildWithName("fx").setProperty("delay_selected", 0.f, nullptr);
       m_value_tree.state.getChildWithName("fx").setProperty("phaser_selected", 1.f, nullptr);
       m_value_tree.state.getChildWithName("fx").setProperty("flanger_selected", 0.f, nullptr);
       m_value_tree.state.getChildWithName("fx").setProperty("chorus_selected", 0.f, nullptr);
-      //m_processor.setFXOrder(0, 1, 0, 0);
       break;
     case 2:
       m_value_tree.state.getChildWithName("fx").setProperty("delay_selected", 0.f, nullptr);
       m_value_tree.state.getChildWithName("fx").setProperty("phaser_selected", 0.f, nullptr);
       m_value_tree.state.getChildWithName("fx").setProperty("flanger_selected", 1.f, nullptr);
       m_value_tree.state.getChildWithName("fx").setProperty("chorus_selected", 0.f, nullptr);
-      //m_processor.setFXOrder(0, 0, 1, 0);
       break;
     case 3:
       m_value_tree.state.getChildWithName("fx").setProperty("delay_selected", 0.f, nullptr);
       m_value_tree.state.getChildWithName("fx").setProperty("phaser_selected", 0.f, nullptr);
       m_value_tree.state.getChildWithName("fx").setProperty("flanger_selected", 0.f, nullptr);
       m_value_tree.state.getChildWithName("fx").setProperty("chorus_selected", 1.f, nullptr);
-      //m_processor.setFXOrder(0, 0, 0, 1);
       break;
     default:
       break;
@@ -323,28 +319,24 @@ public:
       m_phaser_button.setToggleState(false, dontSendNotification);
       m_flanger_button.setToggleState(false, dontSendNotification);
       m_chorus_button.setToggleState(false, dontSendNotification);
-      //m_processor.setFXOrder(1, 0, 0, 0);
     } else if ((int)m_value_tree.state.getChildWithName("fx")["phaser_selected"] == 1) {
       setHighlighted("phaser");
       m_delay_button.setToggleState(false, dontSendNotification);
       m_phaser_button.setToggleState(true, dontSendNotification);
       m_flanger_button.setToggleState(false, dontSendNotification);
       m_chorus_button.setToggleState(false, dontSendNotification);
-      //m_processor.setFXOrder(0, 1, 0, 0);
     } else if ((int)m_value_tree.state.getChildWithName("fx")["flanger_selected"] == 1) {
       setHighlighted("flanger");
       m_delay_button.setToggleState(false, dontSendNotification);
       m_phaser_button.setToggleState(false, dontSendNotification);
       m_flanger_button.setToggleState(true, dontSendNotification);
       m_chorus_button.setToggleState(false, dontSendNotification);
-      //m_processor.setFXOrder(0, 0, 1, 0);
     } else if ((int)m_value_tree.state.getChildWithName("fx")["chorus_selected"] == 1) {
       setHighlighted("chorus");
       m_delay_button.setToggleState(false, dontSendNotification);
       m_phaser_button.setToggleState(false, dontSendNotification);
       m_flanger_button.setToggleState(false, dontSendNotification);
       m_chorus_button.setToggleState(true, dontSendNotification);
-      //m_processor.setFXOrder(0, 0, 0, 1);
     }
 
     m_position_map.find("delay")->second =

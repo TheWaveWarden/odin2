@@ -362,6 +362,8 @@ private:
   OdinTooltipWindow m_tooltip;
   TooltipFeels m_tooltip_feels;
 
+  OdinAudioProcessor& m_processor;
+
   void setOsc1Plate(int p_osc_type);
   void setOsc2Plate(int p_osc_type);
   void setOsc3Plate(int p_osc_type);
