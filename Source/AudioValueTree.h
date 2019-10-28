@@ -574,7 +574,4 @@
                                             -1, 1, 0),
       std::make_unique<AudioParameterFloat>("amount_3_row_8", "row9_scale_amount",
                                             -1, 1, 0),
-
-  // include geneerated code for drawtables
-  // #include "GeneratedAudioValueCode.h"
 }

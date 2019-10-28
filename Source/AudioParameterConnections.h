@@ -378,6 +378,8 @@ for (int i = 0; i < 9; ++i) {
 //general misc
 m_value_tree.addParameterListener("glide", &m_tree_listener_general_misc);
 m_value_tree.addParameterListener("master", &m_tree_listener_general_misc);
+//todo check if the following values are stored and retrieved correctly
+//m_value_tree.addParameterListener("pitchbend_amount", &m_tree_listener_general_misc);
 
 
 // m_value_tree.addParameterListener("fil1_to_amp", &m_tree_listener);

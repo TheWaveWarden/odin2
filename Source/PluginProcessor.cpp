@@ -8,10 +8,11 @@
 #include "SetModulationPointers.h"
 #include "ValueChange.h"
 
-OdinAudioProcessor::OdinAudioProcessor()
-    : AudioProcessor(BusesProperties().withOutput("Output", AudioChannelSet::stereo(), true)), m_value_tree(*this, nullptr, Identifier("Odin"), 
+OdinAudioProcessor::OdinAudioProcessor() :
+    AudioProcessor(BusesProperties().withOutput("Output", AudioChannelSet::stereo(), true)),
+    m_value_tree(*this, nullptr, Identifier("Odin"),
 #include "AudioValueTree.h" //contains the definition of audiotree. WATCH CLOSELY: is IN m_value_tree constructor brackets
-                   ),
+                 ),
 #include "ProcessorInitializerList.h" //contains the connection of Identifiers with their strings
 {
 #include "AudioParameterConnections.h" // constains the connection between raw float pointers and their ValueTree counter
@@ -430,29 +431,27 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 				for (auto const &control : m_midi_control_list_knob) {
 					if (control.first == midi_message.getControllerNumber()) {
 						const MessageManagerLock mmLock;
-						control.second->setValue(
-						    control.second->proportionOfLengthToValue((float)midi_message.getControllerValue() / 127.f));
+						control.second->setValue(control.second->proportionOfLengthToValue(
+						    (float)midi_message.getControllerValue() / 127.f));
 					}
 				}
 				for (auto const &control : m_midi_control_list_slider) {
 					if (control.first == midi_message.getControllerNumber()) {
 						const MessageManagerLock mmLock;
-						control.second->setValue(
-						    control.second->proportionOfLengthToValue((float)midi_message.getControllerValue() / 127.f));
+						control.second->setValue(control.second->proportionOfLengthToValue(
+						    (float)midi_message.getControllerValue() / 127.f));
 					}
 				}
 				for (auto const &control : m_midi_control_list_lrbutton) {
 					if (control.first == midi_message.getControllerNumber()) {
 						const MessageManagerLock mmLock;
-						control.second->setToggleState(midi_message.getControllerValue() > 64,
-						                               sendNotificationAsync);
+						control.second->setToggleState(midi_message.getControllerValue() > 64, sendNotificationAsync);
 					}
 				}
 				for (auto const &control : m_midi_control_list_odinbutton) {
 					if (control.first == midi_message.getControllerNumber()) {
 						const MessageManagerLock mmLock;
-						control.second->setToggleState(midi_message.getControllerValue() > 64,
-						                               sendNotificationAsync);
+						control.second->setToggleState(midi_message.getControllerValue() > 64, sendNotificationAsync);
 					}
 				}
 			}
