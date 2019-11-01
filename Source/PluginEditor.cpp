@@ -975,6 +975,8 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 
 	forceValueTreeOntoComponentsOnlyMainPanel();
 
+	DBG("Display_Scale: " + std::to_string(Desktop::getInstance().getDisplays().getMainDisplay().scale));
+
 #ifdef ODIN_LINUX
 	if (!writeComponentImageToFile(*this)) {
 		DBG("Failed to create GUI screenshot");
