@@ -14,7 +14,7 @@
 
 
 //==============================================================================
-WaveformSelectorComponent::WaveformSelectorComponent(bool p_buttons_right = true)
+WaveformSelectorComponent::WaveformSelectorComponent(bool p_buttons_right)
     : m_up("up", juce::DrawableButton::ButtonStyle::ImageRaw),
       m_down("down", juce::DrawableButton::ButtonStyle::ImageRaw)
 {

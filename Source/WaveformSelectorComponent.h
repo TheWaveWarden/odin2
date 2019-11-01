@@ -22,6 +22,7 @@
 class WaveformSelectorComponent : public Component
 {
 public:
+    WaveformSelectorComponent() = delete;
   WaveformSelectorComponent(bool p_buttons_right);
   ~WaveformSelectorComponent();
 

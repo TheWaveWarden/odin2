@@ -19,6 +19,7 @@
 class NumberSelector : public Component,
                        public AudioProcessorValueTreeState::Listener {
 public:
+                           NumberSelector() = delete;
   NumberSelector(bool p_buttons_right);
   ~NumberSelector();
 

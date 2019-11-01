@@ -13,7 +13,7 @@
 #include "GlobalIncludes.h"
 
 //==============================================================================
-NumberSelector::NumberSelector(bool p_buttons_right = true)
+NumberSelector::NumberSelector(bool p_buttons_right)
     : m_up("up", juce::DrawableButton::ButtonStyle::ImageRaw),
       m_down("down", juce::DrawableButton::ButtonStyle::ImageRaw) {
 
