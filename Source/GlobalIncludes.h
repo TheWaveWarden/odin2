@@ -8,7 +8,9 @@
   ==============================================================================
 */
 #pragma once
+#ifndef BENCHMARK
 #include "../JuceLibraryCode/JuceHeader.h"
+#endif
 
 // these 3 belong to the profiling macro
 #include "ctime"
@@ -111,6 +113,8 @@
 	DBG("REPLACE SKEW:  NormalisableRange<float>(" + std::to_string(component.getMinimum()) + ", " +                   \
 	    std::to_string(component.getMaximum()) + ", 0, " + std::to_string(component.getSkewFactor()) + ")");
 
+#ifndef BENCHMARK
+
 typedef AudioProcessorValueTreeState::SliderAttachment SliderAttachment;
 typedef AudioProcessorValueTreeState::ButtonAttachment ButtonAttachment;
 typedef AudioProcessorValueTreeState::ComboBoxAttachment ComboBoxAttachment;
@@ -169,6 +173,9 @@ public:
 	Colour m_text_color           = MENU_FONT_COLOR;
 	Colour m_highlight_text_color = MENU_HIGHLIGHT_FONT_COLOR;
 };
+
+#endif
+
 
 #define SET_CTR_KEY(name)                                                                                              \
 	name.setDoubleClickReturnValue(true, name.getDoubleClickReturnValue(), ModifierKeys::ctrlModifier)

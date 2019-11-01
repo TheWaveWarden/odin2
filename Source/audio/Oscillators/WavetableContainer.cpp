@@ -6,7 +6,11 @@
 #include <fstream>
 #include <iostream>
 
+#ifndef BENCHMARK
 #include "../JuceLibraryCode/JuceHeader.h"
+#else
+#define DBG(text) (void)(text)
+#endif
 
 WavetableContainer::WavetableContainer()
 //    :

@@ -1,5 +1,5 @@
 #include "NoiseOscillator.h"
-#include "../JuceLibraryCode/JuceHeader.h"
+//#include "../JuceLibraryCode/JuceHeader.h"
 #include "stdlib.h"
 
 NoiseOscillator::NoiseOscillator() {

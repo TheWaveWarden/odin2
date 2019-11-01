@@ -1,7 +1,7 @@
 #pragma once
 //#include "../pluginconstants.h"
 //#include "../synthfunctions.h"
-#include "../JuceLibraryCode/JuceHeader.h"
+// #include "../JuceLibraryCode/JuceHeader.h"
 #include <cmath>
 
 #define OSC_FO_MOD_RANGE 2          // 2 semitone default
@@ -22,11 +22,6 @@ public:
   // --- increment the modulo counters
   inline void incModulo() { m_modulo += m_increment; }
 
-  // ! bottleneck
-  float pitchShiftMultiplier(float p_semitones) {
-    return pow(2.f, p_semitones / 12.f);
-  }
-
   // --- reset the modulo (required for master->slave operations)
   inline void resetModulo(double d = 0.0) { m_modulo = d; }
   inline void setPitchBendMod(double dMod) { m_mod_pitch_bend = dMod; }
@@ -45,6 +40,15 @@ public:
       reset();
     }
   }
+
+
+  // ! bottleneck
+  float pitchShiftMultiplier(float p_semitones) {
+	  //0.05776226504 = ln(2)/12
+	  //apparently pow(a,b) is calculated as exp(ln(a)*b), hence this is faster
+    return std::exp(0.05776226504 * p_semitones);
+  }
+
 
   inline void setResetActive(bool p_reset) { m_reset_active = p_reset; }
 

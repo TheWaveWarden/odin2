@@ -3,6 +3,12 @@
 #include "../OdinConstants.h"
 #include "Oscillator.h"
 #include "WavetableContainer.h"
+#include <functional>
+
+#ifdef BENCHMARK
+#define DBG(text) (void)(text)
+#endif
+
 
 #define SYNC_PORTION_OF_TABLE 16 // sync smoothing takes place 1/16th of a table
 

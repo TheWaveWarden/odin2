@@ -860,6 +860,7 @@ void OdinAudioProcessor::initializeModules() {
 
 	// set analog osc as sync osc for start
 	for (int voice = 0; voice < VOICES; ++voice) {
+		//todo these are probably set wrongly on plugin load....
 		m_voice[voice].setOscSyncOscillator(&(m_voice[voice].analog_osc[0]));
 	}
 }

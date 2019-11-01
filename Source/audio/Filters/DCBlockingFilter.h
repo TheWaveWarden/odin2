@@ -1,8 +1,5 @@
 #pragma once
 
-#include "../JuceLibraryCode/JuceHeader.h"
-
-
 //found at https://www.dsprelated.com/freebooks/filters/DC_Blocker.html
 class DCBlockingFilter {
   public:

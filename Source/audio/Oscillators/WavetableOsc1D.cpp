@@ -1,7 +1,7 @@
 #include "WavetableOsc1D.h"
 #include <cmath>
 
-#include "../JuceLibraryCode/JuceHeader.h"
+//#include "../JuceLibraryCode/JuceHeader.h"
 
 #include "../../WavetableMappings.h"
 
@@ -61,6 +61,7 @@ float WavetableOsc1D::doWavetable() {
   float fractional = m_read_index - (float)read_index_trunc;
   int read_index_next =
       read_index_trunc + 1 >= WAVETABLE_LENGTH ? 0 : read_index_trunc + 1;
+
 
   // do linear interpolation
   float output =
