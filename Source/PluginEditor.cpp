@@ -598,10 +598,6 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	m_filright_buttonf1.setTriggeredOnMouseDown(true);
 	m_filright_buttonf1.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
 
-	// load background image
-	juce::Image odin_backplate =
-	    ImageCache::getFromMemory(BinaryData::odin_backplate_png, BinaryData::odin_backplate_pngSize);
-
 	// load the knob strips
 	juce::Image metal_knob_small =
 	    ImageCache::getFromMemory(BinaryData::metal_knob_small_png, BinaryData::metal_knob_small_pngSize);

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT id="vpwEHn" name="Odin2" projectType="audioplug" jucerVersion="5.4.5"
-              pluginFormats="buildStandalone,buildVST3" version="2.0.0" companyName="BommelDSP"
-              companyWebsite="www.BommelDSP.com" pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn"
+<JUCERPROJECT id="vpwEHn" name="Odin2" projectType="audioplug" jucerVersion="5.4.4"
+              pluginFormats="buildStandalone,buildVST,buildVST3" version="2.0.0"
+              companyName="BommelDSP" companyWebsite="www.BommelDSP.com" pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn"
               pluginManufacturerCode="BDSP" pluginCode="ODIN" pluginChannelConfigs="{0,2}">
   <MAINGROUP id="Tn76b3" name="Odin2">
     <GROUP id="{A5BAEEE4-3FCE-5605-7A4C-F29962266097}" name="Graphics">
@@ -496,8 +496,6 @@
             file="Graphics/cropped/noise_knob_cropped.png"/>
       <FILE id="FQtPLE" name="odin_backdrop.png" compile="0" resource="1"
             file="Graphics/applied/odin_backdrop.png"/>
-      <FILE id="YoUsho" name="odin_backplate.png" compile="0" resource="1"
-            file="Graphics/odin_backplate.png"/>
       <FILE id="CbsyKq" name="osc1_bypass.png" compile="0" resource="1" file="Graphics/applied/osc1_bypass.png"/>
       <FILE id="GsrAH0" name="osc2_bypass.png" compile="0" resource="1" file="Graphics/applied/osc2_bypass.png"/>
       <FILE id="GKUnsQ" name="osc3_bypass.png" compile="0" resource="1" file="Graphics/applied/osc3_bypass.png"/>
