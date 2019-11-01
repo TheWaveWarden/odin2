@@ -8,12 +8,7 @@
 #include "../Source/audio/Oscillators/AnalogOscillator.h"
 #include "../Source/audio/Oscillators/MultiOscillator.h"
 #include "../Source/audio/Oscillators/NoiseOscillator.h"
-
-#define SIZE_MAP 12
-#define CONST_FREQ_ARRAY                                                       \
-  { 440, 440, 440, 440, 440, 440, 440, 440, 440, 440, 440, 440 }
-#define VAR_FREQ_ARRAY                                                         \
-  { 27.5, 55, 110, 220, 440, 880, 1760, 3520, 7040, 14080, 600, 170}
+#include "../Source/audio/Oscillators/FMOscillator.h"
 
 void activateOscillator(Oscillator &p_osc, float *p_mod_dummy) {
   p_osc.setSampleRate(44100);
@@ -40,8 +35,6 @@ BENCHMARK(VarModPure);
 static void AnaOscConstMod(benchmark::State &state) {
   WavetableContainer::getInstance().loadWavetablesFromConstData();
   float mod_dummy = 0.f;
-  int index = 0;
-  float freq_map[SIZE_MAP] = CONST_FREQ_ARRAY;
 
   AnalogOscillator osc;
   activateOscillator(osc, &mod_dummy);
@@ -136,6 +129,45 @@ static void MultiOscConstMod(benchmark::State &state) {
 }
 BENCHMARK(MultiOscConstMod);
 
+static void MultiOscUpdateOnly(benchmark::State &state) {
+  WavetableContainer::getInstance().loadWavetablesFromConstData();
+  float mod_dummy = 0.f;
+
+  MultiOscillator osc;
+  activateOscillator(osc, &mod_dummy);
+  osc.loadWavetables();
+  osc.setDetuneModPointer(&mod_dummy);
+  osc.setPosModPointer(&mod_dummy);
+  osc.setSpreadModPointer(&mod_dummy);
+  osc.setDetune(1.f);
+  osc.setWavetableMultiSpread(1.f);
+
+  for (auto _ : state) {
+    osc.update();
+  }
+}
+BENCHMARK(MultiOscUpdateOnly);
+
+static void MultiOscillateOnly(benchmark::State &state) {
+  WavetableContainer::getInstance().loadWavetablesFromConstData();
+  float mod_dummy = 0.f;
+
+  MultiOscillator osc;
+  activateOscillator(osc, &mod_dummy);
+  osc.loadWavetables();
+  osc.setDetuneModPointer(&mod_dummy);
+  osc.setPosModPointer(&mod_dummy);
+  osc.setSpreadModPointer(&mod_dummy);
+  osc.setDetune(1.f);
+  osc.setWavetableMultiSpread(1.f);
+  osc.update();
+
+  for (auto _ : state) {
+    osc.doOscillate();
+  }
+}
+BENCHMARK(MultiOscillateOnly);
+
 static void MultiOscVarMod(benchmark::State &state) {
   WavetableContainer::getInstance().loadWavetablesFromConstData();
   float mod_dummy = 0.f;
@@ -188,6 +220,44 @@ static void NoiseOscVarMod(benchmark::State &state) {
 }
 BENCHMARK(NoiseOscVarMod);
 
+static void FMOscVarMod(benchmark::State &state) {
+  WavetableContainer::getInstance().loadWavetablesFromConstData();
+  float mod_dummy = 0.f;
+  std::srand(std::time(nullptr));
+
+  FMOscillator osc;
+  activateOscillator(osc, &mod_dummy);
+  osc.loadWavetables();
+  osc.setCarrierRatioModPointer(&mod_dummy);
+  osc.setModulatorRatioModPointer(&mod_dummy);
+  osc.setFMModPointer(&mod_dummy);
+
+  for (auto _ : state) {
+    mod_dummy = (float)std::rand()/RAND_MAX;
+    osc.update();
+    osc.doOscillate();
+  }
+}
+BENCHMARK(FMOscVarMod);
+
+
+static void FMOscConstMod(benchmark::State &state) {
+  WavetableContainer::getInstance().loadWavetablesFromConstData();
+  float mod_dummy = 0.f;
+
+  FMOscillator osc;
+  activateOscillator(osc, &mod_dummy);
+  osc.loadWavetables();
+  osc.setCarrierRatioModPointer(&mod_dummy);
+  osc.setModulatorRatioModPointer(&mod_dummy);
+  osc.setFMModPointer(&mod_dummy);
+
+  for (auto _ : state) {
+    osc.update();
+    osc.doOscillate();
+  }
+}
+BENCHMARK(FMOscConstMod);
 
 
 

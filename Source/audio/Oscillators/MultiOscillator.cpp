@@ -2,33 +2,9 @@
 
 MultiOscillator::MultiOscillator() {
   m_nr_of_wavetables = 99;
-
-  // generate table for cheap pitchshiftfunction
-
-  // std::ofstream output;
-  // output.open("E:\\odin\\pitchshift.h");
-  // output << "double m_pitch_shift_table[1001] = {";
-  // for(size_t x = 0; x < 1001; ++x){
-  //     // use 100 points per semitone from -5 to +5
-  //     output << pitchShiftMultiplier(((float)x - 500.f)/100.f) << ", ";
-  // }
-  // output << "};\n";
-  // output.close();
 }
 
 MultiOscillator::~MultiOscillator() {}
-
-// void MultiOscillator::loadWavetables()
-// {
-//     setWavetablePointer(0, 0,
-//     WavetableContainer::getInstance().getWavetablePointers("Saw"));
-//     setWavetablePointer(0, 1,
-//     WavetableContainer::getInstance().getWavetablePointers("ChiptuneSquare50"));
-//     setWavetablePointer(0, 2,
-//     WavetableContainer::getInstance().getWavetablePointers("Triangle"));
-//     setWavetablePointer(0, 3,
-//     WavetableContainer::getInstance().getWavetablePointers("Sine"));
-// }
 
 float MultiOscillator::doOscillate() {
   // if (!m_note_on)
@@ -196,23 +172,4 @@ float MultiOscillator::cheapPitchShiftMultiplier(float p_semitones) {
   ret += pot * 0.5f; // O(2)
   pot *= p_semitones;
   return ret + pot * 0.16666f + pot * p_semitones * 0.041666667f; // O(3) & O(4)
-
-  // if (p_semitones > 5. || p_semitones < -5.) {
-  //   // function is only suited for -5 to 5
-  //   return pitchShiftMultiplier(p_semitones);
-  // }
-
-  // float index = (p_semitones + 5.) * 100.;
-  // int index_trunc = (int)index;
-  // int index_next = index + 1;
-  // float interpolation = index - (float)index_trunc;
-
-  // // never trust floating point operations
-  // index_trunc = index_trunc > 1000 ? 1000 : index_trunc;
-  // index_next = index_next > 1000 ? 1000 : index_next;
-  // index_trunc = index_trunc < 0 ? 0 : index_trunc;
-  // index_next = index_next < 0 ? 0 : index_next;
-
-  // return linearInterpolation(m_pitch_shift_table[index_trunc],
-  //                            m_pitch_shift_table[index_next], interpolation);
 }
