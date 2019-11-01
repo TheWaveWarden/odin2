@@ -422,8 +422,8 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts)
   m_scale[N_ROWS - 1].setImage(glas_right_down);
   juce::Colour modmatrix_color = STANDARD_DISPLAY_COLOR;
 
-  juce::Colour modmatrix_color_bar(60, 130, 160);
-  juce::Colour modmatrix_color_bar_negative(230, 80, 110);
+  juce::Colour modmatrix_color_bar(46, 136, 174);
+  juce::Colour modmatrix_color_bar_negative(252, 58, 97);
   juce::Colour modmatrix_font_selected_color = Colour(126, 182, 206);
 
   m_color = modmatrix_color;
