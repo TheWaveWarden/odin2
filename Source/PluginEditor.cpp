@@ -971,10 +971,13 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	setTooltipEnabled(false);
 	addAndMakeVisible(m_tooltip);
 
-	setSize(800, 600);
 
 	forceValueTreeOntoComponentsOnlyMainPanel();
 
+	Desktop::getInstance().setGlobalScaleFactor(1.5);
+	//setSize(800, 600);
+	setResizable(true, true);
+	setSize(1200, 900);
 	DBG("Display_Scale: " + std::to_string(Desktop::getInstance().getDisplays().getMainDisplay().scale));
 
 #ifdef ODIN_LINUX
@@ -1008,7 +1011,7 @@ void OdinAudioProcessorEditor::paint(Graphics &g) {
 
 void OdinAudioProcessorEditor::resized() {
 	//this is the only valid call to resized, since this window is not allowed to change size
-	setSize(800, 600);
+	//setSize(800, 600);
 }
 
 void OdinAudioProcessorEditor::setOsc1Plate(int p_osc_type) {
