@@ -453,7 +453,14 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	                                         "+ click to reset knobs\n\nDouble click to enter values\n\nRight click "
 	                                         "to access MIDI-learn\n\nThe order of FX can be rearranged\nby "
 	                                         "dragging and dropping\n the FX selection buttons.\n\nVersion: ") +
-	                             ODIN_VERSION_STRING);
+	                             ODIN_VERSION_STRING
+								 #ifdef ODIN_RELEASE
+								 + " Release"
+								 #endif
+								 #ifdef ODIN_DEBUG
+								 + " Debug"
+								 #endif
+								 );
 	addAndMakeVisible(m_question_button);
 
 	juce::Image filter_button2_1 = ImageCache::getFromMemory(BinaryData::button2_1_png, BinaryData::button2_1_pngSize);
@@ -974,10 +981,10 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 
 	forceValueTreeOntoComponentsOnlyMainPanel();
 
-	Desktop::getInstance().setGlobalScaleFactor(1.5);
-	//setSize(800, 600);
-	setResizable(true, true);
-	setSize(1200, 900);
+	//Desktop::getInstance().setGlobalScaleFactor(1);
+	setSize(800, 600);
+	//setResizable(true, true);
+	//setSize(1200, 900);
 	DBG("Display_Scale: " + std::to_string(Desktop::getInstance().getDisplays().getMainDisplay().scale));
 
 #ifdef ODIN_LINUX
