@@ -4,3 +4,6 @@
 # 1.9.4
 - now saving last save/load location
 - default save location was changed to "Documents" Folder
+# 1.9.5
+- show only .odin files in save and load window
+- automatically append .odin on file save
