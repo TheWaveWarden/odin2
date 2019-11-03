@@ -448,7 +448,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 		m_tooltip.activate();
 		setTooltipEnabled(m_question_button.getToggleState());
 	};
-	m_question_button.setTooltip(std::string("Shows a tooltip for every\nparameter in the synth. Simply\n hover your "
+	m_question_button.setTooltip(std::string("Activating this button shows a\ntooltipfor every parameter in\nthe synth. Simply hover your\n"
 	                                         "mouse over it!\n\nGENERAL TIPS:\n\nHold shift to finetune knobs\n\nCtr "
 	                                         "+ click to reset knobs\n\nDouble click to enter values\n\nRight click "
 	                                         "to access MIDI-learn\n\nThe order of FX can be rearranged\nby "
