@@ -150,7 +150,8 @@ DelayComponent::DelayComponent(AudioProcessorValueTreeState &vts, bool p_is_stan
 
 	m_sync_time.OnValueChange = [&](int p_left, int p_right) {
 		m_value_tree.state.getChildWithName("fx").setProperty(m_delay_synctime_numerator_identifier, p_left, nullptr);
-		m_value_tree.state.getChildWithName("fx").setProperty(m_delay_synctime_denominator_identifier, p_right, nullptr);
+		m_value_tree.state.getChildWithName("fx").setProperty(
+		    m_delay_synctime_denominator_identifier, p_right, nullptr);
 	};
 	m_sync_time.setTopLeftPosition(SYNC_TIME_DELAY_POS_X, SYNC_TIME_DELAY_POS_Y);
 	m_sync_time.setTooltip("Set the delay time in sync to your track");
@@ -182,10 +183,16 @@ DelayComponent::~DelayComponent() {
 }
 
 void DelayComponent::paint(Graphics &g) {
+	if (m_sync_on) {
+		m_background = ImageCache::getFromMemory(BinaryData::delaysync_png, BinaryData::delaysync_pngSize);
+	} else {
+		m_background = ImageCache::getFromMemory(BinaryData::delaynosync_png, BinaryData::delaynosync_pngSize);
+	}
 	g.drawImageAt(m_background, 0, 0);
 }
 
 void DelayComponent::forceValueTreeOntoComponents(ValueTree p_tree) {
 	m_sync_time.setValues(m_value_tree.state.getChildWithName("fx")[m_delay_synctime_numerator_identifier],
 	                      m_value_tree.state.getChildWithName("fx")[m_delay_synctime_denominator_identifier]);
+	setSync((float)GETAUDIO("delay_sync") > 0.5f);
 }

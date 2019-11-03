@@ -61,6 +61,7 @@ void OdinAudioProcessor::addNonAudioParametersToTree() {
 	node.setProperty("fil1_type", FILTER_TYPE_LP24, nullptr);
 	node.setProperty("fil2_type", 1, nullptr);
 	node.setProperty("fil3_type", 1, nullptr);
+	node.setProperty("patch_name", String("init_patch"), nullptr);
 
 	node = m_value_tree_mod;
 	node.setProperty("source_row_0", 0, nullptr);

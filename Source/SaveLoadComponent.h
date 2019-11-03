@@ -36,6 +36,7 @@ public:
   ~SaveLoadComponent();
 
   void paint(Graphics &) override {}
+  void forceValueTreeOntoComponents(ValueTree p_tree);
 
   std::function<void()> forceValueTreeLambda;
 

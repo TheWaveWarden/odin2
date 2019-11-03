@@ -1249,6 +1249,7 @@ void OdinAudioProcessorEditor::forceValueTreeOntoComponents(bool p_reset_audio) 
 	m_delay.forceValueTreeOntoComponents(m_value_tree.state);
 	m_midsection.forceValueTreeOntoComponents(m_value_tree.state);
 	m_fx_buttons_section.forceValueTreeOntoComponents(m_value_tree.state);
+	m_save_load.forceValueTreeOntoComponents(m_value_tree.state);
 }
 
 bool OdinAudioProcessorEditor::keyStateChanged(bool isKeyDown, Component *originatingComponent) {

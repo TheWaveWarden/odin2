@@ -133,40 +133,40 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts, OdinAudi
 		                                    true));
 
 		//launch filechooser
-		m_filechooser->launchAsync(FileBrowserComponent::saveMode | FileBrowserComponent::canSelectFiles,
-		                           [fileToSave, this](const FileChooser &chooser) {
-			                           auto result = chooser.getURLResult();
-			                           auto file_name =
-			                               result.isEmpty()
-			                                   ? String()
-			                                   : (result.isLocalFile() ? result.getLocalFile().getFullPathName()
-			                                                           : result.toString(true));
+		m_filechooser->launchAsync(
+		    FileBrowserComponent::saveMode | FileBrowserComponent::canSelectFiles,
+		    [fileToSave, this](const FileChooser &chooser) {
+			    auto result    = chooser.getURLResult();
+			    auto file_name = result.isEmpty() ? String()
+			                                      : (result.isLocalFile() ? result.getLocalFile().getFullPathName()
+			                                                              : result.toString(true));
 
-			                           File file_to_write(file_name);
+			    File file_to_write(file_name);
 
-			                           //check whether file already exists
-			                           if (file_to_write.existsAsFile()) {
-				                           if (!(AlertWindow::showOkCancelBox(AlertWindow::WarningIcon,
-				                                                              "File already exists!",
-				                                                              "Are you sure you want to overwrite it?",
-				                                                              {},
-				                                                              {},
-				                                                              {}))) {
-					                           //user selected cancel
-					                           return;
-				                           }
-			                           }
-			                           FileOutputStream file_stream(file_to_write);
-			                           if (file_stream.openedOk()) {
-				                           // use this to overwrite old content
-				                           file_stream.setPosition(0);
-				                           file_stream.truncate();
+			    //check whether file already exists
+			    if (file_to_write.existsAsFile()) {
+				    if (!(AlertWindow::showOkCancelBox(AlertWindow::WarningIcon,
+				                                       "File already exists!",
+				                                       "Are you sure you want to overwrite it?",
+				                                       {},
+				                                       {},
+				                                       {}))) {
+					    //user selected cancel
+					    return;
+				    }
+			    }
+			    FileOutputStream file_stream(file_to_write);
+			    if (file_stream.openedOk()) {
+				    // use this to overwrite old content
+				    file_stream.setPosition(0);
+				    file_stream.truncate();
 
-				                           m_value_tree.state.writeToStream(file_stream);
-				                           m_patch.setText(getFileNameFromAbsolute(file_name.toStdString()));
-				                           DBG("Wrote patch to " + file_name);
-			                           }
-		                           });
+				    m_value_tree.state.writeToStream(file_stream);
+				    m_patch.setText(getFileNameFromAbsolute(file_name.toStdString()));
+				    m_value_tree.state.getChildWithName("misc").setProperty("patch_name", file_name, nullptr);
+				    DBG("Wrote patch to " + file_name);
+			    }
+		    });
 	};
 
 	m_load.onClick = [&]() {
@@ -189,8 +189,10 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts, OdinAudi
 				                           m_audio_processor.attachNonParamListeners();
 
 				                           m_patch.setText(file_to_read.getFileNameWithoutExtension().toStdString());
-			                           	   forceValueTreeLambda();
-							    		   m_audio_processor.retriggerAllListeners();
+				                           forceValueTreeLambda();
+				                           m_audio_processor.retriggerAllListeners();
+				                           m_value_tree.state.getChildWithName("misc").setProperty(
+				                               "patch_name", file_to_read.getFileNameWithoutExtension(), nullptr);
 				                           DBG("Loaded patch " + file_name);
 			                           } else {
 				                           DBG("Failed to open stream. Error message: " +
@@ -198,7 +200,6 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts, OdinAudi
 				                           DBG(file_name);
 			                           }
 			                           DBG(m_value_tree.state.toXmlString());
-
 		                           });
 	};
 
@@ -216,8 +217,9 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts, OdinAudi
 			m_value_tree.replaceState(ValueTree::readFromStream(init_stream));
 			m_audio_processor.attachNonParamListeners();
 			forceValueTreeLambda();
-			m_audio_processor.retriggerAllListeners();			
+			m_audio_processor.retriggerAllListeners();
 			m_patch.setText("init patch");
+			m_value_tree.state.getChildWithName("misc").setProperty("patch_name", (String)"init_patch", nullptr);
 			DBG("Loaded init patch");
 		}
 	};
@@ -226,4 +228,8 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts, OdinAudi
 }
 
 SaveLoadComponent::~SaveLoadComponent() {
+}
+
+void SaveLoadComponent::forceValueTreeOntoComponents(ValueTree p_tree) {
+	m_patch.setText((p_tree.getChildWithName("misc")["patch_name"]).toString().toStdString());
 }

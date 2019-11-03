@@ -10,8 +10,8 @@
 
 #pragma once
 
-#include "GlobalIncludes.h"
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "GlobalIncludes.h"
 #include "Knob.h"
 #include "OdinButton.h"
 #include "SyncTimeSelector.h"
@@ -54,78 +54,65 @@
 //==============================================================================
 /*
 */
-class DelayComponent : public Component
-{
+class DelayComponent : public Component {
 public:
-  DelayComponent(AudioProcessorValueTreeState& vts, bool p_is_standalone);
-  ~DelayComponent();
+	DelayComponent(AudioProcessorValueTreeState &vts, bool p_is_standalone);
+	~DelayComponent();
 
-  void forceValueTreeOntoComponents(ValueTree p_tree);
-  
+	void forceValueTreeOntoComponents(ValueTree p_tree);
 
-  void paint(Graphics &) override;
+	void paint(Graphics &) override;
 
-  void setImage(juce::Image p_background)
-  {
-    m_background = p_background;
-  }
+	void setImage(juce::Image p_background) {
+		m_background = p_background;
+	}
 
-  void setSync(bool p_sync_on)
-  {
-    if (p_sync_on != m_sync_on)
-    {
-      m_sync_on = p_sync_on;
-      if (p_sync_on)
-      {
-        m_background =
-            ImageCache::getFromMemory(BinaryData::delaysync_png, BinaryData::delaysync_pngSize);
-        m_time.setVisible(false);
-        m_sync_time.setVisible(true);
-      }
-      else
-      {
-        m_background =
-            ImageCache::getFromMemory(BinaryData::delaynosync_png, BinaryData::delaynosync_pngSize);
-        m_time.setVisible(true);
-        m_sync_time.setVisible(false);
-      }
-      repaint();
-    }
-  }
+	void setSync(bool p_sync_on) {
+		if (p_sync_on != m_sync_on) {
+			m_sync_on = p_sync_on;
+			if (p_sync_on) {
+				m_time.setVisible(false);
+				m_sync_time.setVisible(true);
+			} else {
+				m_time.setVisible(true);
+				m_sync_time.setVisible(false);
+			}
+			repaint();
+		}
+	}
 
 private:
-  bool m_is_standalone_plugin;
-  bool m_sync_on = false;
+	bool m_is_standalone_plugin;
+	bool m_sync_on = false;
 
-  juce::Image m_background;
+	juce::Image m_background;
 
-  Knob m_time;
-  Knob m_feedback;
-  Knob m_HP;
-  Knob m_ducking;
-  Knob m_dry;
-  Knob m_wet;
+	Knob m_time;
+	Knob m_feedback;
+	Knob m_HP;
+	Knob m_ducking;
+	Knob m_dry;
+	Knob m_wet;
 
-  SyncTimeSelector m_sync_time;
+	SyncTimeSelector m_sync_time;
 
-  OdinButton m_sync;
-  OdinButton m_pingpong;
+	OdinButton m_sync;
+	OdinButton m_pingpong;
 
-  AudioProcessorValueTreeState& m_value_tree;
+	AudioProcessorValueTreeState &m_value_tree;
 
-  std::unique_ptr<SliderAttachment> m_delay_time_attach;
-  std::unique_ptr<SliderAttachment> m_delay_feedback_attach;
-  std::unique_ptr<SliderAttachment> m_delay_hp_attach;
-  std::unique_ptr<SliderAttachment> m_delay_ducking_attach;
-  std::unique_ptr<SliderAttachment> m_delay_dry_attach;
-  std::unique_ptr<SliderAttachment> m_delay_wet_attach;
+	std::unique_ptr<SliderAttachment> m_delay_time_attach;
+	std::unique_ptr<SliderAttachment> m_delay_feedback_attach;
+	std::unique_ptr<SliderAttachment> m_delay_hp_attach;
+	std::unique_ptr<SliderAttachment> m_delay_ducking_attach;
+	std::unique_ptr<SliderAttachment> m_delay_dry_attach;
+	std::unique_ptr<SliderAttachment> m_delay_wet_attach;
 
-  std::unique_ptr<ButtonAttachment> m_sync_attach;
-  std::unique_ptr<ButtonAttachment> m_pingpong_attach;
+	std::unique_ptr<ButtonAttachment> m_sync_attach;
+	std::unique_ptr<ButtonAttachment> m_pingpong_attach;
 
-  Identifier m_delay_synctime_numerator_identifier;
-  Identifier m_delay_synctime_denominator_identifier;
-  
+	Identifier m_delay_synctime_numerator_identifier;
+	Identifier m_delay_synctime_denominator_identifier;
 
-  JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(DelayComponent)
+	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(DelayComponent)
 };
