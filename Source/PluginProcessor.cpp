@@ -403,10 +403,7 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 					m_midi_learn_control          = nullptr;
 					//add control to value tree
 					m_value_tree.state.getChildWithName("midi_learn")
-					    .setProperty(
-					        m_midi_learn_parameter_ID,
-					        midi_message.getControllerNumber(),
-					        nullptr);
+					    .setProperty(m_midi_learn_parameter_ID, midi_message.getControllerNumber(), nullptr);
 
 					DBG(m_value_tree.state.toXmlString());
 
@@ -788,6 +785,17 @@ void OdinAudioProcessor::setStateInformation(const void *data, int sizeInBytes) 
 			m_force_values_onto_gui = true;
 			DBG("LOADED BINARY STATE!!");
 			retriggerAllListeners();
+
+			//create midi learn map from valuetree
+			for (int i = 0; i < m_value_tree_midi_learn.getNumProperties(); ++i) {
+
+				//map<int, RangedAudioParam*>
+				//<midi_learn fil1_freq="17"/>
+
+				m_midi_control_param_map.emplace(
+				    (int)m_value_tree_midi_learn[m_value_tree_midi_learn.getPropertyName(i)],
+				    m_value_tree.getParameter(m_value_tree_midi_learn.getPropertyName(i)));
+			}
 		}
 	}
 }
