@@ -120,13 +120,16 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts, OdinAudi
 	//m_patch.setText("init_patch");
 	addAndMakeVisible(m_patch);
 
+	//set initial save/load location to "Documents"
+	m_last_directory = File::getSpecialLocation(File::SpecialLocationType::userDocumentsDirectory).getFullPathName();
+
 	m_save.onClick = [&]() {
 		//suggestion where to save
-		File fileToSave(File::getCurrentWorkingDirectory().getFullPathName() + "/my_patch.odin");
+		File fileToSave(m_last_directory + "/my_patch.odin");
 
 		// set up filechooser
 		m_filechooser.reset(new FileChooser("Choose a file to save...",
-		                                    File::getCurrentWorkingDirectory().getChildFile(fileToSave.getFileName()),
+		                                    fileToSave,
 		                                    "*",
 		                                    true));
 
@@ -171,6 +174,9 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts, OdinAudi
 				                           //set label
 				                           m_patch.setText(m_value_tree.state.getChildWithName("misc")["patch_name"].toString().toStdString());
 
+										   //save load directory
+										   m_last_directory = file_to_write.getParentDirectory().getFullPathName();
+
 				                           DBG(m_value_tree.state.toXmlString());
 				                           DBG("Wrote above patch to " + file_name);
 			                           }
@@ -178,7 +184,7 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts, OdinAudi
 	};
 
 	m_load.onClick = [&]() {
-		m_filechooser.reset(new FileChooser("Choose a file to open...", File::getCurrentWorkingDirectory(), "*", true));
+		m_filechooser.reset(new FileChooser("Choose a file to open...", m_last_directory, "*", true));
 
 		m_filechooser->launchAsync(
 		    FileBrowserComponent::openMode | FileBrowserComponent::canSelectFiles, [this](const FileChooser &chooser) {
@@ -205,12 +211,18 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts, OdinAudi
 				    //retrigger all listeners to distribute values to DSP engine
 				    m_audio_processor.retriggerAllListeners();
 
+					//save load directory
+					m_last_directory = file_to_read.getParentDirectory().getFullPathName();
+
 				    DBG("Loaded patch " + m_value_tree.state.getChildWithName("misc")["patch_name"].toString() +
 				        "  from " + file_name);
 			    } else {
-				    DBG("Failed to open stream. Error message: " +
-				        file_stream.getStatus().getErrorMessage().toStdString());
-				    DBG(file_name);
+					if(file_name != ""){
+						AlertWindow::showMessageBoxAsync(AlertWindow::InfoIcon,
+				                                                              "File not found!",
+				                                                              "Path: " + file_name,
+				                                                              "Ok");
+					}
 			    }
 			    //DBG(m_value_tree.state.toXmlString());
 		    });

@@ -48,10 +48,10 @@ private:
 
   OdinAudioProcessor& m_audio_processor;
 
-  //bool m_reset_warning_was_shown = false;
   std::unique_ptr<FileChooser> m_filechooser;
   AudioProcessorValueTreeState &m_value_tree;
   
+  String m_last_directory;
 
   juce::DrawableButton m_save;
   juce::DrawableButton m_load;
