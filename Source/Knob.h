@@ -219,12 +219,14 @@ public:
 
   void stopMidiLearn() {
     m_midi_learn = false;
+	  const MessageManagerLock mmLock;
     repaint();
   }
 
   void setMidiControlActive() {
     m_midi_learn = false;
     m_midi_control = true;
+	  const MessageManagerLock mmLock;
     repaint();
   }
 
