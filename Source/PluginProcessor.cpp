@@ -1027,10 +1027,11 @@ void OdinAudioProcessor::setFilter3EnvValue() {
 }
 
 void OdinAudioProcessor::attachNonParamListeners() {
-	m_value_tree_fx   = m_value_tree.state.getChildWithName("fx");
-	m_value_tree_osc  = m_value_tree.state.getChildWithName("osc");
-	m_value_tree_mod  = m_value_tree.state.getChildWithName("mod");
-	m_value_tree_misc = m_value_tree.state.getChildWithName("misc");
-	m_value_tree_lfo  = m_value_tree.state.getChildWithName("lfo");
-	m_value_tree_draw = m_value_tree.state.getChildWithName("draw");
+	m_value_tree_fx         = m_value_tree.state.getChildWithName("fx");
+	m_value_tree_osc        = m_value_tree.state.getChildWithName("osc");
+	m_value_tree_mod        = m_value_tree.state.getChildWithName("mod");
+	m_value_tree_misc       = m_value_tree.state.getChildWithName("misc");
+	m_value_tree_lfo        = m_value_tree.state.getChildWithName("lfo");
+	m_value_tree_draw       = m_value_tree.state.getChildWithName("draw");
+	m_value_tree_midi_learn = m_value_tree.state.getChildWithName("midi_learn");
 }

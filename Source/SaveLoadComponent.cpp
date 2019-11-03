@@ -157,8 +157,12 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts, OdinAudi
 				                               "patch_name", file_to_write.getFileNameWithoutExtension(), nullptr);
 				                           DBG(m_value_tree.state.getChildWithName("misc")["patch_name"].toString());
 
+										   //make a deep copy and remove the midi_learn part
+										   ValueTree copy_without_midi_learn = m_value_tree.state.createCopy();
+										   copy_without_midi_learn.removeChild(copy_without_midi_learn.getChildWithName("midi_learn"), nullptr);
+
 				                           //write valuetree into file
-				                           m_value_tree.state.writeToStream(file_stream);
+				                           copy_without_midi_learn.writeToStream(file_stream);
 
 				                           //set label
 				                           m_patch.setText(m_value_tree.state.getChildWithName("misc")["patch_name"].toString().toStdString());
@@ -166,7 +170,7 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts, OdinAudi
 										   //save load directory
 										   m_last_directory = file_to_write.getParentDirectory().getFullPathName();
 
-				                           DBG(m_value_tree.state.toXmlString());
+				                           DBG(copy_without_midi_learn.toXmlString());
 				                           DBG("Wrote above patch to " + file_name);
 			                           }
 		                           });
@@ -188,8 +192,14 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts, OdinAudi
 
 			    FileInputStream file_stream(file_to_read);
 			    if (file_stream.openedOk()) {
-				    //read tree from file
+					//save midi learn tree
+				    ValueTree midi_learn_tree = m_value_tree.state.getChildWithName("midi_learn");
+					
+					//read tree from file
 				    m_value_tree.replaceState(ValueTree::readFromStream(file_stream));
+
+					//reappend midi learn tree
+					m_value_tree.state.appendChild(midi_learn_tree, nullptr);
 
 				    //reattach the non_param listeners
 				    m_audio_processor.attachNonParamListeners();

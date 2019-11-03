@@ -111,7 +111,7 @@ public:
 		int counter = 1;
 		DBG("=========");
 		for (auto const &control : m_midi_control_param_map) {
-			DBG(std::to_string(counter++) + ": " + control.second->getName(100).toStdString());
+			DBG(std::to_string(counter++) + ": " + control.second->paramID.toStdString());
 		}
 		DBG("=========");
 #endif
