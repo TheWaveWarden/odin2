@@ -58,7 +58,7 @@ void DrawableSlider::paint(Graphics &g) {
 }
 
 void DrawableSlider::mouseDown(const MouseEvent &event) {
-	if (event.mods.isRightButtonDown()&& m_midi_learn_possible) {
+	if (event.mods.isRightButtonDown() && m_midi_learn_possible) {
 		//DBG("RIGHT");
 		PopupMenu midi_learn_menu;
 		if (m_midi_learn) {

@@ -82,188 +82,190 @@ class OdinAudioProcessor;
 
 class KnobFeels : public juce::LookAndFeel_V4 {
 public:
-  KnobFeels() {}
-  
-  void drawBubble(Graphics &g, BubbleComponent &b,
-                  const Point<float> &positionOfTip,
-                  const Rectangle<float> &body) override {
-    g.setColour(MENU_BACKGROUND_COLOR);
-    g.fillRect(body); // pmai
-    g.setColour(Colour(50, 50, 50));
-    g.drawRect(body); // pmai
-  }
-  int getSliderPopupPlacement(Slider &slider) { return 2; }
+	KnobFeels() {
+	}
+
+	void drawBubble(Graphics &g,
+	                BubbleComponent &b,
+	                const Point<float> &positionOfTip,
+	                const Rectangle<float> &body) override {
+		g.setColour(MENU_BACKGROUND_COLOR);
+		g.fillRect(body); // pmai
+		g.setColour(Colour(50, 50, 50));
+		g.drawRect(body); // pmai
+	}
+	int getSliderPopupPlacement(Slider &slider) {
+		return 2;
+	}
 };
 
-class Knob : public juce::Slider , public OdinMidiLearnBase{
+class Knob : public juce::Slider, public OdinMidiLearnBase {
 public:
-  Knob() : m_label("henlo", "texttt") {
-    setLookAndFeel(&m_knob_feels);
-    setRange(0, 1);
+	Knob() : m_label("henlo", "texttt") {
+		setLookAndFeel(&m_knob_feels);
+		setRange(0, 1);
 
-    setPopupDisplayEnabled(true, false, nullptr);
-    setNumDecimalPlacesToDisplay(3);
-    setVelocityModeParameters(1.0, 1, 0.0, true, ModifierKeys::shiftModifier);
+		setPopupDisplayEnabled(true, false, nullptr);
+		setNumDecimalPlacesToDisplay(3);
+		setVelocityModeParameters(1.0, 1, 0.0, true, ModifierKeys::shiftModifier);
 
-    setTooltip("henlo");
-  }
+		setTooltip("henlo");
+	}
 
-  ~Knob() { setLookAndFeel(nullptr); }
-  void setTextValueSuffix(const String &suffix) {
-    setNumDecimalPlacesToDisplay(3);
-    Slider::setTextValueSuffix(suffix);
-  }
+	~Knob() {
+		setLookAndFeel(nullptr);
+	}
+	void setTextValueSuffix(const String &suffix) {
+		setNumDecimalPlacesToDisplay(3);
+		Slider::setTextValueSuffix(suffix);
+	}
 
-  String getTextFromValue(double value) override;
+	String getTextFromValue(double value) override;
 
-  void setStrip(juce::Image p_strip, size_t p_frames,
-                bool p_is_vertical = true) {
-    m_is_vertical = p_is_vertical;
-    m_filmstrip = p_strip;
-    if (m_is_vertical) {
-      m_width = p_strip.getWidth();
-      m_height = p_strip.getHeight() / p_frames;
-    } else {
-      m_width = p_strip.getWidth() / p_frames;
-      m_height = p_strip.getHeight();
-    }
-    m_frames = p_frames;
+	void setStrip(juce::Image p_strip, size_t p_frames, bool p_is_vertical = true) {
+		m_is_vertical = p_is_vertical;
+		m_filmstrip   = p_strip;
+		if (m_is_vertical) {
+			m_width  = p_strip.getWidth();
+			m_height = p_strip.getHeight() / p_frames;
+		} else {
+			m_width  = p_strip.getWidth() / p_frames;
+			m_height = p_strip.getHeight();
+		}
+		m_frames = p_frames;
 
-    // m_drag_label.setVisible(false);
-  }
+		// m_drag_label.setVisible(false);
+	}
 
-  void paint(juce::Graphics &g) override {
-    std::size_t image_number = static_cast<std::size_t>(
-        // 0.5 + (getValue() - getMinimum()) / (getMaximum() - getMinimum()) *
-        valueToProportionOfLength(getValue()) * (m_frames - 1));
-    if (m_is_vertical) {
-      g.drawImage(m_filmstrip, 0, 0, m_width, m_height, 0,
-                  image_number * m_height, m_width, m_height);
-    } else {
-      g.drawImage(m_filmstrip, 0, 0, m_width, m_height, image_number * m_width,
-                  0, m_width, m_height);
-    }
+	void paint(juce::Graphics &g) override {
+		std::size_t image_number = static_cast<std::size_t>(
+		    // 0.5 + (getValue() - getMinimum()) / (getMaximum() - getMinimum()) *
+		    valueToProportionOfLength(getValue()) * (m_frames - 1));
+		if (m_is_vertical) {
+			g.drawImage(m_filmstrip, 0, 0, m_width, m_height, 0, image_number * m_height, m_width, m_height);
+		} else {
+			g.drawImage(m_filmstrip, 0, 0, m_width, m_height, image_number * m_width, 0, m_width, m_height);
+		}
 
-    if (m_midi_learn) {
-      g.setColour(Colours::red);
-      g.drawRoundedRectangle(
-          getLocalBounds().getX() + m_midi_learn_left_offset,
-          getLocalBounds().getY(),
-          getLocalBounds().getWidth() - m_midi_learn_left_offset,
-          getLocalBounds().getHeight() - m_midi_learn_bottom_offset, 5,
-          2); // draw an outline around the component
-    } else if (m_midi_control) {
-      g.setColour(Colours::green);
-      g.drawRoundedRectangle(
-          getLocalBounds().getX() + m_midi_learn_left_offset,
-          getLocalBounds().getY(),
-          getLocalBounds().getWidth() - m_midi_learn_left_offset,
-          getLocalBounds().getHeight() - m_midi_learn_bottom_offset, 5,
-          2); // draw an outline around the component
-    }
-  }
+		if (m_midi_learn) {
+			g.setColour(Colours::red);
+			g.drawRoundedRectangle(getLocalBounds().getX() + m_midi_learn_left_offset,
+			                       getLocalBounds().getY(),
+			                       getLocalBounds().getWidth() - m_midi_learn_left_offset,
+			                       getLocalBounds().getHeight() - m_midi_learn_bottom_offset,
+			                       5,
+			                       2); // draw an outline around the component
+		} else if (m_midi_control) {
+			g.setColour(Colours::green);
+			g.drawRoundedRectangle(getLocalBounds().getX() + m_midi_learn_left_offset,
+			                       getLocalBounds().getY(),
+			                       getLocalBounds().getWidth() - m_midi_learn_left_offset,
+			                       getLocalBounds().getHeight() - m_midi_learn_bottom_offset,
+			                       5,
+			                       2); // draw an outline around the component
+		}
+	}
 
-  // this does not override, but hide (hides other variants as well)
-  void setBounds(int x, int y, int width, int height) {
-    switch (width) {
-    case ROUND_KNOB_SIZE_X:
-      m_midi_learn_left_offset = ROUND_KNOB_LEFT_OFFSET;
-      m_midi_learn_bottom_offset = ROUND_KNOB_BOTTOM_OFFSET;
-      break;
-    case METAL_KNOB_SMALL_SIZE_X:
-      m_midi_learn_left_offset = METAL_KNOB_SMALL_LEFT_OFFSET;
-      m_midi_learn_bottom_offset = METAL_KNOB_SMALL_BOTTOM_OFFSET;
-      break;
-    case METAL_KNOB_MID_SIZE_X:
-      m_midi_learn_left_offset = METAL_KNOB_MID_LEFT_OFFSET;
-      m_midi_learn_bottom_offset = METAL_KNOB_MID_BOTTOM_OFFSET;
-      break;
-    case METAL_KNOB_BIG_SIZE_X:
-      m_midi_learn_left_offset = METAL_KNOB_BIG_LEFT_OFFSET;
-      m_midi_learn_bottom_offset = METAL_KNOB_BIG_BOTTOM_OFFSET;
-      break;
-    case BLACK_KNOB_VERY_SMALL_SIZE_X:
-      m_midi_learn_left_offset = BLACK_KNOB_VERY_SMALL_LEFT_OFFSET;
-      m_midi_learn_bottom_offset = BLACK_KNOB_VERY_SMALL_BOTTOM_OFFSET;
-      break;
-    case BLACK_KNOB_SMALL_SIZE_X:
-      m_midi_learn_left_offset = BLACK_KNOB_SMALL_LEFT_OFFSET;
-      m_midi_learn_bottom_offset = BLACK_KNOB_SMALL_BOTTOM_OFFSET;
-      break;
-    case BLACK_KNOB_MID_SIZE_X:
-      m_midi_learn_left_offset = BLACK_KNOB_MID_LEFT_OFFSET;
-      m_midi_learn_bottom_offset = BLACK_KNOB_MID_BOTTOM_OFFSET;
-      break;
-    case BLACK_KNOB_BIG_SIZE_X:
-      m_midi_learn_left_offset = BLACK_KNOB_BIG_LEFT_OFFSET;
-      m_midi_learn_bottom_offset = BLACK_KNOB_BIG_BOTTOM_OFFSET;
-      break;
-    case WHEEL_SIZE_X:
-      m_midi_learn_left_offset = WHEEL_LEFT_OFFSET;
-      break;
-    default:
-      DBG("FOUND UNKNOWN KNOB WIDTH " + std::to_string(width) +
-          "in Knob::setBounds()\n\n\n\n\n\n");
-      break;
-    }
-    Slider::setBounds(x, y, width, height);
-  }
+	// this does not override, but hide (hides other variants as well)
+	void setBounds(int x, int y, int width, int height) {
+		switch (width) {
+		case ROUND_KNOB_SIZE_X:
+			m_midi_learn_left_offset   = ROUND_KNOB_LEFT_OFFSET;
+			m_midi_learn_bottom_offset = ROUND_KNOB_BOTTOM_OFFSET;
+			break;
+		case METAL_KNOB_SMALL_SIZE_X:
+			m_midi_learn_left_offset   = METAL_KNOB_SMALL_LEFT_OFFSET;
+			m_midi_learn_bottom_offset = METAL_KNOB_SMALL_BOTTOM_OFFSET;
+			break;
+		case METAL_KNOB_MID_SIZE_X:
+			m_midi_learn_left_offset   = METAL_KNOB_MID_LEFT_OFFSET;
+			m_midi_learn_bottom_offset = METAL_KNOB_MID_BOTTOM_OFFSET;
+			break;
+		case METAL_KNOB_BIG_SIZE_X:
+			m_midi_learn_left_offset   = METAL_KNOB_BIG_LEFT_OFFSET;
+			m_midi_learn_bottom_offset = METAL_KNOB_BIG_BOTTOM_OFFSET;
+			break;
+		case BLACK_KNOB_VERY_SMALL_SIZE_X:
+			m_midi_learn_left_offset   = BLACK_KNOB_VERY_SMALL_LEFT_OFFSET;
+			m_midi_learn_bottom_offset = BLACK_KNOB_VERY_SMALL_BOTTOM_OFFSET;
+			break;
+		case BLACK_KNOB_SMALL_SIZE_X:
+			m_midi_learn_left_offset   = BLACK_KNOB_SMALL_LEFT_OFFSET;
+			m_midi_learn_bottom_offset = BLACK_KNOB_SMALL_BOTTOM_OFFSET;
+			break;
+		case BLACK_KNOB_MID_SIZE_X:
+			m_midi_learn_left_offset   = BLACK_KNOB_MID_LEFT_OFFSET;
+			m_midi_learn_bottom_offset = BLACK_KNOB_MID_BOTTOM_OFFSET;
+			break;
+		case BLACK_KNOB_BIG_SIZE_X:
+			m_midi_learn_left_offset   = BLACK_KNOB_BIG_LEFT_OFFSET;
+			m_midi_learn_bottom_offset = BLACK_KNOB_BIG_BOTTOM_OFFSET;
+			break;
+		case WHEEL_SIZE_X:
+			m_midi_learn_left_offset = WHEEL_LEFT_OFFSET;
+			break;
+		default:
+			DBG("FOUND UNKNOWN KNOB WIDTH " + std::to_string(width) + "in Knob::setBounds()\n\n\n\n\n\n");
+			break;
+		}
+		Slider::setBounds(x, y, width, height);
+	}
 
-  void mouseDown(const MouseEvent &event) override;
+	void mouseDown(const MouseEvent &event) override;
 
-  void setKnobTooltip(const std::string p_tooltip) { setTooltip(p_tooltip); }
+	void setKnobTooltip(const std::string p_tooltip) {
+		setTooltip(p_tooltip);
+	}
 
-  static void setOdinPointer(OdinAudioProcessor *p_pointer) {
-    m_processor = p_pointer;
-  }
+	static void setOdinPointer(OdinAudioProcessor *p_pointer) {
+		m_processor = p_pointer;
+	}
 
-  void stopMidiLearn() override {
-    m_midi_learn = false;
-	  const MessageManagerLock mmLock;
-    repaint();
-  }
+	void stopMidiLearn() override {
+		m_midi_learn = false;
+		const MessageManagerLock mmLock;
+		repaint();
+	}
 
-  void setMidiControlActive() override {
-    m_midi_learn = false;
-    m_midi_control = true;
-	  const MessageManagerLock mmLock;
-    repaint();
-  }
+	void setMidiControlActive() override {
+		m_midi_learn   = false;
+		m_midi_control = true;
+		const MessageManagerLock mmLock;
+		repaint();
+	}
 
-  void mouseDoubleClick(const MouseEvent &e) override {
-    if (auto editor =
-            findParentComponentOfClass<juce::AudioProcessorEditor>()) {
-      if (auto value_field = dynamic_cast<InputField *>(
-              editor->findChildWithID("value_input"))) {
+	void mouseDoubleClick(const MouseEvent &e) override {
+		if (!e.mods.isRightButtonDown()) {
+			if (auto editor = findParentComponentOfClass<juce::AudioProcessorEditor>()) {
+				if (auto value_field = dynamic_cast<InputField *>(editor->findChildWithID("value_input"))) {
 
-        value_field->setVisible(true);
-        Point<int> point_in_parent(
-            getX() + getWidth() / 2 - INPUT_LABEL_SIZE_X / 2, getBottom() + 10);
-        Point<int> point_in_editor =
-            editor->getLocalPoint(getParentComponent(), point_in_parent);
-        if (point_in_editor.getY() > 580) {
-          point_in_editor -= Point<int>(0, 30);
-        }
+					value_field->setVisible(true);
+					Point<int> point_in_parent(getX() + getWidth() / 2 - INPUT_LABEL_SIZE_X / 2, getBottom() + 10);
+					Point<int> point_in_editor = editor->getLocalPoint(getParentComponent(), point_in_parent);
+					if (point_in_editor.getY() > 580) {
+						point_in_editor -= Point<int>(0, 30);
+					}
 
-        value_field->setTopLeftPosition(point_in_editor);
-        value_field->clear();
-        value_field->grabKeyboardFocus();
-        value_field->setAttachedSlider(this);
-      }
-    }
-    Component::mouseDoubleClick(e);
-  }
+					value_field->setTopLeftPosition(point_in_editor);
+					value_field->clear();
+					value_field->grabKeyboardFocus();
+					value_field->setAttachedSlider(this);
+				}
+			}
+		}
+		Component::mouseDoubleClick(e);
+	}
 
 private:
-  int m_midi_learn_left_offset = 0;
-  int m_midi_learn_bottom_offset = 0;
+	int m_midi_learn_left_offset   = 0;
+	int m_midi_learn_bottom_offset = 0;
 
-  static OdinAudioProcessor *m_processor;
-  bool m_is_vertical = true;
-  std::size_t m_frames, m_width, m_height;
-  juce::Image m_filmstrip;
+	static OdinAudioProcessor *m_processor;
+	bool m_is_vertical = true;
+	std::size_t m_frames, m_width, m_height;
+	juce::Image m_filmstrip;
 
-  KnobFeels m_knob_feels;
+	KnobFeels m_knob_feels;
 
-  Label m_label;
+	Label m_label;
 };
