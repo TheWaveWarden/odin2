@@ -98,7 +98,7 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts, OdinAudi
 	addAndMakeVisible(m_reset);
 	m_reset.setTriggeredOnMouseDown(false);
 	m_reset.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
-	
+
 	juce::Image glas_panel =
 	    ImageCache::getFromMemory(BinaryData::glaspanel_big_png, BinaryData::glaspanel_big_pngSize);
 
@@ -117,63 +117,60 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts, OdinAudi
 		File fileToSave(m_last_directory + "/my_patch.odin");
 
 		// set up filechooser
-		m_filechooser.reset(new FileChooser("Choose a file to save...",
-		                                    fileToSave,
-		                                    "*.odin",
-		                                    true));
+		m_filechooser.reset(new FileChooser("Choose a file to save...", fileToSave, "*.odin", true));
 
 		//launch filechooser
-		m_filechooser->launchAsync(FileBrowserComponent::saveMode | FileBrowserComponent::canSelectFiles,
-		                           [fileToSave, this](const FileChooser &chooser) {
-			                           auto result = chooser.getURLResult();
-			                           auto file_name =
-			                               result.isEmpty()
-			                                   ? String()
-			                                   : (result.isLocalFile() ? result.getLocalFile().getFullPathName()
-			                                                           : result.toString(true));
+		m_filechooser->launchAsync(
+		    FileBrowserComponent::saveMode | FileBrowserComponent::canSelectFiles,
+		    [fileToSave, this](const FileChooser &chooser) {
+			    auto result    = chooser.getURLResult();
+			    auto file_name = result.isEmpty() ? String()
+			                                      : (result.isLocalFile() ? result.getLocalFile().getFullPathName()
+			                                                              : result.toString(true));
 
-			                           File file_to_write(file_name);
+			    File file_to_write(file_name);
 
-			                           //check whether file already exists
-			                           if (file_to_write.existsAsFile()) {
-				                           if (!(AlertWindow::showOkCancelBox(AlertWindow::WarningIcon,
-				                                                              "File already exists!",
-				                                                              "Are you sure you want to overwrite it?",
-				                                                              {},
-				                                                              {},
-				                                                              {}))) {
-					                           //user selected cancel
-					                           return;
-				                           }
-			                           }
-			                           FileOutputStream file_stream(file_to_write);
-			                           if (file_stream.openedOk()) {
-				                           // use this to overwrite old content
-				                           file_stream.setPosition(0);
-				                           file_stream.truncate();
+			    //check whether file already exists
+			    if (file_to_write.existsAsFile()) {
+				    if (!(AlertWindow::showOkCancelBox(AlertWindow::WarningIcon,
+				                                       "File already exists!",
+				                                       "Are you sure you want to overwrite it?",
+				                                       {},
+				                                       {},
+				                                       {}))) {
+					    //user selected cancel
+					    return;
+				    }
+			    }
+			    FileOutputStream file_stream(file_to_write);
+			    if (file_stream.openedOk()) {
+				    // use this to overwrite old content
+				    file_stream.setPosition(0);
+				    file_stream.truncate();
 
-				                           //write patch name onto valuetree
-				                           m_value_tree.state.getChildWithName("misc").setProperty(
-				                               "patch_name", file_to_write.getFileNameWithoutExtension(), nullptr);
-				                           DBG(m_value_tree.state.getChildWithName("misc")["patch_name"].toString());
+				    //write patch name onto valuetree
+				    m_value_tree.state.getChildWithName("misc").setProperty(
+				        "patch_name", file_to_write.getFileNameWithoutExtension(), nullptr);
+				    DBG(m_value_tree.state.getChildWithName("misc")["patch_name"].toString());
 
-										   //make a deep copy and remove the midi_learn part
-										   ValueTree copy_without_midi_learn = m_value_tree.state.createCopy();
-										   copy_without_midi_learn.removeChild(copy_without_midi_learn.getChildWithName("midi_learn"), nullptr);
+				    //make a deep copy and remove the midi_learn part
+				    ValueTree copy_without_midi_learn = m_value_tree.state.createCopy();
+				    copy_without_midi_learn.removeChild(copy_without_midi_learn.getChildWithName("midi_learn"),
+				                                        nullptr);
 
-				                           //write valuetree into file
-				                           copy_without_midi_learn.writeToStream(file_stream);
+				    //write valuetree into file
+				    copy_without_midi_learn.writeToStream(file_stream);
 
-				                           //set label
-				                           m_patch.setText(m_value_tree.state.getChildWithName("misc")["patch_name"].toString().toStdString());
+				    //set label
+				    m_patch.setText(m_value_tree.state.getChildWithName("misc")["patch_name"].toString().toStdString());
 
-										   //save load directory
-										   m_last_directory = file_to_write.getParentDirectory().getFullPathName();
+				    //save load directory
+				    m_last_directory = file_to_write.getParentDirectory().getFullPathName();
 
-				                           DBG(copy_without_midi_learn.toXmlString());
-				                           DBG("Wrote above patch to " + file_name);
-			                           }
-		                           });
+				    DBG(copy_without_midi_learn.toXmlString());
+				    DBG("Wrote above patch to " + file_name);
+			    }
+		    });
 	};
 
 	m_load.onClick = [&]() {
@@ -192,14 +189,14 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts, OdinAudi
 
 			    FileInputStream file_stream(file_to_read);
 			    if (file_stream.openedOk()) {
-					//save midi learn tree
+				    //save midi learn tree
 				    ValueTree midi_learn_tree = m_value_tree.state.getChildWithName("midi_learn");
-					
-					//read tree from file
+
+				    //read tree from file
 				    m_value_tree.replaceState(ValueTree::readFromStream(file_stream));
 
-					//reappend midi learn tree
-					m_value_tree.state.appendChild(midi_learn_tree, nullptr);
+				    //reappend midi learn tree
+				    m_value_tree.state.appendChild(midi_learn_tree, nullptr);
 
 				    //reattach the non_param listeners
 				    m_audio_processor.attachNonParamListeners();
@@ -210,18 +207,17 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts, OdinAudi
 				    //retrigger all listeners to distribute values to DSP engine
 				    m_audio_processor.retriggerAllListeners();
 
-					//save load directory
-					m_last_directory = file_to_read.getParentDirectory().getFullPathName();
+				    //save load directory
+				    m_last_directory = file_to_read.getParentDirectory().getFullPathName();
 
-				    DBG("Loaded patch " + m_value_tree.state.getChildWithName("misc")["patch_name"].toString() +
+				    DBG(m_value_tree.state.toXmlString());
+				    DBG("Loaded above patch " + m_value_tree.state.getChildWithName("misc")["patch_name"].toString() +
 				        "  from " + file_name);
 			    } else {
-					if(file_name != ""){
-						AlertWindow::showMessageBoxAsync(AlertWindow::InfoIcon,
-				                                                              "File not found!",
-				                                                              "Path: " + file_name,
-				                                                              "Ok");
-					}
+				    if (file_name != "") {
+					    AlertWindow::showMessageBoxAsync(
+					        AlertWindow::InfoIcon, "File not found!", "Path: " + file_name, "Ok");
+				    }
 			    }
 			    //DBG(m_value_tree.state.toXmlString());
 		    });
@@ -236,9 +232,16 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts, OdinAudi
 		                                 {},
 		                                 {},
 		                                 {})) {
+
+			//save midi learn tree
+			ValueTree midi_learn_tree = m_value_tree.state.getChildWithName("midi_learn");
+
 			// replace stream with patch from binary data
 			MemoryInputStream init_stream(BinaryData::init_patch_odin, BinaryData::init_patch_odinSize, false);
 			m_value_tree.replaceState(ValueTree::readFromStream(init_stream));
+
+			//reappend midi learn tree
+			m_value_tree.state.appendChild(midi_learn_tree, nullptr);
 
 			//reattach non param listeners
 			m_audio_processor.attachNonParamListeners();
