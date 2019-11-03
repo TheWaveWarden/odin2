@@ -78,29 +78,11 @@ public:
 	void getStateInformation(MemoryBlock &destData) override;
 	void setStateInformation(const void *data, int sizeInBytes) override;
 
-	// void startMidiLearn(Knob *p_knob) {
-	// 	DBG("MIDI LEARN WAS SIGNALED");
-	// 	if (m_midi_learn_slider) {
-	// 		m_midi_learn_slider->stopMidiLearn();
-	// 	}
-	// 	if (m_midi_learn_knob) {
-	// 		m_midi_learn_knob->stopMidiLearn();
-	// 	}
-	// 	if (m_midi_learn_lrbutton) {
-	// 		m_midi_learn_lrbutton->stopMidiLearn();
-	// 	}
-	// 	if (m_midi_learn_odinbutton) {
-	// 		m_midi_learn_odinbutton->stopMidiLearn();
-	// 	}
-	// 	m_midi_learn_knob              = p_knob;
-	// 	m_midi_learn_lrbutton_active   = false;
-	// 	m_midi_learn_slider_active     = false;
-	// 	m_midi_learn_odinbutton_active = false;
-	// 	m_midi_learn_knob_active       = true;
-	// }
-
 	void startMidiLearn(const String &p_parameter_ID, OdinMidiLearnBase *p_GUI_control) {
 		DBG("MIDI LEARN FOR PARAMETER " + p_parameter_ID + " WAS SIGNALED!");
+		if (m_midi_learn_parameter_active) {
+			m_midi_learn_control->stopMidiLearn();
+		}
 		m_midi_learn_parameter_ID     = p_parameter_ID;
 		m_midi_learn_parameter_active = true;
 		m_midi_learn_control          = p_GUI_control;
@@ -111,7 +93,9 @@ public:
 			std::multimap<int, RangedAudioParameter *>::iterator erase_iter = iter++;
 			if (erase_iter->second == m_value_tree.getParameter(p_parameter_ID)) {
 				m_midi_control_param_map.erase(erase_iter);
+#ifndef ODIN_DEBUG
 				return;
+#endif
 			}
 		}
 
@@ -119,131 +103,17 @@ public:
 		int counter = 1;
 		DBG("=========");
 		for (auto const &control : m_midi_control_param_map) {
-			DBG(std::to_string(counter) + ": " + control.second->getName(100).toStdString());
+			DBG(std::to_string(counter++) + ": " + control.second->getName(100).toStdString());
 		}
 		DBG("=========");
 #endif
 	}
 
-	// void midiForget(Knob *p_knob) {
-	// 	for (std::multimap<int, Knob *>::iterator iter = m_midi_control_list_knob.begin();
-	// 	     iter != m_midi_control_list_knob.end();) {
-	// 		std::multimap<int, Knob *>::iterator erase_iter = iter++;
-	// 		if (erase_iter->second == p_knob) {
-	// 			m_midi_control_list_knob.erase(erase_iter);
-	// 			return;
-	// 		}
-	// 	}
-	// }
-
-	// void startMidiLearn(DrawableSlider *p_slider) {
-	// 	DBG("MIDI LEARN WAS SIGNALED");
-	// 	if (m_midi_learn_slider) {
-	// 		m_midi_learn_slider->stopMidiLearn();
-	// 	}
-	// 	if (m_midi_learn_knob) {
-	// 		m_midi_learn_knob->stopMidiLearn();
-	// 	}
-	// 	if (m_midi_learn_lrbutton) {
-	// 		m_midi_learn_lrbutton->stopMidiLearn();
-	// 	}
-	// 	if (m_midi_learn_odinbutton) {
-	// 		m_midi_learn_odinbutton->stopMidiLearn();
-	// 	}
-	// 	m_midi_learn_slider            = p_slider;
-	// 	m_midi_learn_knob_active       = false;
-	// 	m_midi_learn_lrbutton_active   = false;
-	// 	m_midi_learn_odinbutton_active = false;
-	// 	m_midi_learn_slider_active     = true;
-	// }
-
-	// void midiForget(DrawableSlider *p_slider) {
-	// 	for (std::multimap<int, DrawableSlider *>::iterator iter = m_midi_control_list_slider.begin();
-	// 	     iter != m_midi_control_list_slider.end();) {
-	// 		std::multimap<int, DrawableSlider *>::iterator erase_iter = iter++;
-	// 		if (erase_iter->second == p_slider) {
-	// 			m_midi_control_list_slider.erase(erase_iter);
-	// 			return;
-	// 		}
-	// 	}
-	// }
-
-	// void startMidiLearn(LeftRightButton *p_button) {
-	// 	DBG("MIDI LEARN WAS SIGNALED");
-	// 	if (m_midi_learn_slider) {
-	// 		m_midi_learn_slider->stopMidiLearn();
-	// 	}
-	// 	if (m_midi_learn_knob) {
-	// 		m_midi_learn_knob->stopMidiLearn();
-	// 	}
-	// 	if (m_midi_learn_lrbutton) {
-	// 		m_midi_learn_lrbutton->stopMidiLearn();
-	// 	}
-	// 	if (m_midi_learn_odinbutton) {
-	// 		m_midi_learn_odinbutton->stopMidiLearn();
-	// 	}
-	// 	m_midi_learn_lrbutton          = p_button;
-	// 	m_midi_learn_knob_active       = false;
-	// 	m_midi_learn_slider_active     = false;
-	// 	m_midi_learn_odinbutton_active = false;
-	// 	m_midi_learn_lrbutton_active   = true;
-	// }
-
-	// void midiForget(LeftRightButton *p_button) {
-	// 	for (std::multimap<int, LeftRightButton *>::iterator iter = m_midi_control_list_lrbutton.begin();
-	// 	     iter != m_midi_control_list_lrbutton.end();) {
-	// 		std::multimap<int, LeftRightButton *>::iterator erase_iter = iter++;
-	// 		if (erase_iter->second == p_button) {
-	// 			m_midi_control_list_lrbutton.erase(erase_iter);
-	// 			return;
-	// 		}
-	// 	}
-	// }
-
-	// void startMidiLearn(OdinButton *p_button) {
-	// 	DBG("MIDI LEARN WAS SIGNALED");
-	// 	if (m_midi_learn_slider) {
-	// 		m_midi_learn_slider->stopMidiLearn();
-	// 	}
-	// 	if (m_midi_learn_knob) {
-	// 		m_midi_learn_knob->stopMidiLearn();
-	// 	}
-	// 	if (m_midi_learn_lrbutton) {
-	// 		m_midi_learn_lrbutton->stopMidiLearn();
-	// 	}
-	// 	if (m_midi_learn_odinbutton) {
-	// 		m_midi_learn_odinbutton->stopMidiLearn();
-	// 	}
-	// 	m_midi_learn_odinbutton        = p_button;
-	// 	m_midi_learn_knob_active       = false;
-	// 	m_midi_learn_slider_active     = false;
-	// 	m_midi_learn_lrbutton_active   = false;
-	// 	m_midi_learn_odinbutton_active = true;
-	// }
-
-	// void midiForget(OdinButton *p_button) {
-	// 	for (std::multimap<int, OdinButton *>::iterator iter = m_midi_control_list_odinbutton.begin();
-	// 	     iter != m_midi_control_list_odinbutton.end();) {
-	// 		std::multimap<int, OdinButton *>::iterator erase_iter = iter++;
-	// 		if (erase_iter->second == p_button) {
-	// 			m_midi_control_list_odinbutton.erase(erase_iter);
-	// 			return;
-	// 		}
-	// 	}
-	// }
-
 	void stopMidiLearn() {
-		// m_midi_learn_knob_active       = false;
-		// m_midi_learn_knob              = nullptr;
-		// m_midi_learn_slider_active     = false;
-		// m_midi_learn_slider            = nullptr;
-		// m_midi_learn_lrbutton_active   = false;
-		// m_midi_learn_lrbutton          = nullptr;
-		// m_midi_learn_odinbutton_active = false;
-		// m_midi_learn_odinbutton        = nullptr;
+
 		m_midi_learn_parameter_active = false;
-		m_midi_learn_parameter_ID = "";
-		m_midi_learn_control = nullptr;
+		m_midi_learn_parameter_ID     = "";
+		m_midi_learn_control          = nullptr;
 	}
 
 	std::function<void()> onSetStateInformation = []() {
@@ -287,22 +157,6 @@ private:
 	void setFilter3EnvValue();
 
 	void setBPM(float BPM);
-
-	bool m_midi_learn_knob_active = false;
-	Knob *m_midi_learn_knob       = nullptr;
-	std::multimap<int, Knob *> m_midi_control_list_knob;
-
-	bool m_midi_learn_slider_active     = false;
-	DrawableSlider *m_midi_learn_slider = nullptr;
-	std::multimap<int, DrawableSlider *> m_midi_control_list_slider;
-
-	bool m_midi_learn_lrbutton_active      = false;
-	LeftRightButton *m_midi_learn_lrbutton = nullptr;
-	std::multimap<int, LeftRightButton *> m_midi_control_list_lrbutton;
-
-	bool m_midi_learn_odinbutton_active = false;
-	OdinButton *m_midi_learn_odinbutton = nullptr;
-	std::multimap<int, OdinButton *> m_midi_control_list_odinbutton;
 
 	bool m_midi_learn_parameter_active      = false;
 	OdinMidiLearnBase *m_midi_learn_control = nullptr;

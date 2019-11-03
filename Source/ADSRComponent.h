@@ -13,6 +13,7 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "DrawableSlider.h"
 #include "OdinButton.h"
+#include "OdinControlAttachments.h"
 
 #define SLIDER_SIZE_X 23
 #define SLIDER_SIZE_Y 79
@@ -63,12 +64,12 @@ private:
   std::string m_adsr_number;
   AudioProcessorValueTreeState& m_value_tree;
 
-  std::unique_ptr<SliderAttachment> m_attack_attach;
-  std::unique_ptr<SliderAttachment> m_decay_attach;
-  std::unique_ptr<SliderAttachment> m_sustain_attach;
-  std::unique_ptr<SliderAttachment> m_release_attach;
+  std::unique_ptr<OdinSliderAttachment> m_attack_attach;
+  std::unique_ptr<OdinSliderAttachment> m_decay_attach;
+  std::unique_ptr<OdinSliderAttachment> m_sustain_attach;
+  std::unique_ptr<OdinSliderAttachment> m_release_attach;
 
-  std::unique_ptr<ButtonAttachment> m_loop_attach;
+  std::unique_ptr<OdinButtonAttachment> m_loop_attach;
 
 
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(ADSRComponent)

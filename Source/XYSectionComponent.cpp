@@ -44,8 +44,8 @@ XYSectionComponent::XYSectionComponent(AudioProcessorValueTreeState &vts, std::s
 	m_mody.setTooltip("The Y coordinate\nof the XY pad");
 	addAndMakeVisible(m_mody);
 
-	m_x_attach.reset(new SliderAttachment(m_value_tree, "xy_x", m_modx));
-	m_y_attach.reset(new SliderAttachment(m_value_tree, "xy_y", m_mody));
+	m_x_attach.reset(new OdinKnobAttachment(m_value_tree, "xy_x", m_modx));
+	m_y_attach.reset(new OdinKnobAttachment(m_value_tree, "xy_y", m_mody));
 
 	SET_CTR_KEY(m_modx);
 	SET_CTR_KEY(m_mody);

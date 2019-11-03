@@ -196,22 +196,22 @@ AmpDistortionFlowComponent::AmpDistortionFlowComponent(
   addAndMakeVisible(m_distortion_algo);
 
   m_amp_vel_attach.reset(
-      new SliderAttachment(m_value_tree, "amp_vel", m_amp_vel));
+      new OdinKnobAttachment(m_value_tree, "amp_vel", m_amp_vel));
   m_amp_gain_attach.reset(
-      new SliderAttachment(m_value_tree, "amp_gain", m_amp_gain));
+      new OdinKnobAttachment(m_value_tree, "amp_gain", m_amp_gain));
   m_amp_pan_attach.reset(
-      new SliderAttachment(m_value_tree, "amp_pan", m_amp_pan));
+      new OdinKnobAttachment(m_value_tree, "amp_pan", m_amp_pan));
   m_dist_threshold_attach.reset(
-      new SliderAttachment(m_value_tree, "dist_boost", m_boost));
+      new OdinKnobAttachment(m_value_tree, "dist_boost", m_boost));
   m_dist_drywet_attach.reset(
-      new SliderAttachment(m_value_tree, "dist_drywet", m_dry_wet));
+      new OdinKnobAttachment(m_value_tree, "dist_drywet", m_dry_wet));
 
   m_dist_on_attach.reset(
-      new ButtonAttachment(m_value_tree, "dist_on", m_distortion));
+      new OdinButtonAttachment(m_value_tree, "dist_on", m_distortion));
   m_fil1_to_amp_attach.reset(
-      new ButtonAttachment(m_value_tree, "fil1_to_amp", m_flow_right));
+      new OdinButtonAttachment(m_value_tree, "fil1_to_amp", m_flow_right));
   m_fil2_to_amp_attach.reset(
-      new ButtonAttachment(m_value_tree, "fil2_to_amp", m_flow_left));
+      new OdinButtonAttachment(m_value_tree, "fil2_to_amp", m_flow_left));
 
   m_amp_gain.setBounds(AMP_GAIN_POS_X - METAL_KNOB_BIG_OFFSET_X,
                        AMP_GAIN_POS_Y - METAL_KNOB_BIG_OFFSET_Y,

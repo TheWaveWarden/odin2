@@ -741,6 +741,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	};
 	m_env_13_button.setTooltip("Shows the amplifier\nenvelope or envelope 3");
 	addAndMakeVisible(m_env_13_button);
+	m_env_13_button.disableMidiLearn();
 
 	juce::Image env24_left =
 	    ImageCache::getFromMemory(BinaryData::buttonenv24_1_png, BinaryData::buttonenv24_1_pngSize);
@@ -757,6 +758,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	};
 	m_env_24_button.setTooltip("Shows the filter\nenvelope or envelope 4");
 	addAndMakeVisible(m_env_24_button);
+	m_env_24_button.disableMidiLearn();
 
 	juce::Image lfo13_left =
 	    ImageCache::getFromMemory(BinaryData::buttonlfo13_1_png, BinaryData::buttonlfo13_1_pngSize);
@@ -773,6 +775,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	};
 	m_lfo_13_button.setTooltip("Shows LFO 1 or LFO 3");
 	addAndMakeVisible(m_lfo_13_button);
+	m_lfo_13_button.disableMidiLearn();
 
 	juce::Image lfo24_left =
 	    ImageCache::getFromMemory(BinaryData::buttonlfo24_1_png, BinaryData::buttonlfo24_1_pngSize);
@@ -788,6 +791,8 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 		    "lfo_right_selected", (int)m_lfo_24_button.getToggleState(), nullptr);
 	};
 	m_lfo_24_button.setTooltip("Shows LFO 2 or LFO 4");
+	m_lfo_24_button.disableMidiLearn();
+
 	addAndMakeVisible(m_lfo_24_button);
 
 	juce::Image legato_left =
@@ -809,6 +814,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	                           "This can be usefull for melodies, since notes don't overlap and there's "
 	                           "no hard envelope reset when transitioning from one note to another.");
 	addAndMakeVisible(m_legato_button);
+	m_legato_button.disableMidiLearn();
 
 	juce::Image lfo13_sync_background =
 	    ImageCache::getFromMemory(BinaryData::lfo13_sync_background_png, BinaryData::lfo13_sync_background_pngSize);
@@ -856,22 +862,22 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 
 	m_tooltip.setLookAndFeel(&m_tooltip_feels);
 
-	m_phaser_on_attachment.reset(new ButtonAttachment(m_value_tree, "phaser_on", m_phaser_on_button));
-	m_flanger_on_attachment.reset(new ButtonAttachment(m_value_tree, "flanger_on", m_flanger_on_button));
-	m_delay_on_attachment.reset(new ButtonAttachment(m_value_tree, "delay_on", m_delay_on_button));
-	m_chorus_on_attachment.reset(new ButtonAttachment(m_value_tree, "chorus_on", m_chorus_on_button));
-	m_fil1_osc1_attachment.reset(new ButtonAttachment(m_value_tree, "fil1_osc1", m_filleft_button1));
-	m_fil1_osc2_attachment.reset(new ButtonAttachment(m_value_tree, "fil1_osc2", m_filleft_button2));
-	m_fil1_osc3_attachment.reset(new ButtonAttachment(m_value_tree, "fil1_osc3", m_filleft_button3));
-	m_fil2_osc1_attachment.reset(new ButtonAttachment(m_value_tree, "fil2_osc1", m_filright_button1));
-	m_fil2_osc2_attachment.reset(new ButtonAttachment(m_value_tree, "fil2_osc2", m_filright_button2));
-	m_fil2_osc3_attachment.reset(new ButtonAttachment(m_value_tree, "fil2_osc3", m_filright_button3));
-	m_fil2_fil1_attachment.reset(new ButtonAttachment(m_value_tree, "fil2_fil1", m_filright_buttonf1));
+	m_phaser_on_attachment.reset(new OdinButtonAttachment(m_value_tree, "phaser_on", m_phaser_on_button));
+	m_flanger_on_attachment.reset(new OdinButtonAttachment(m_value_tree, "flanger_on", m_flanger_on_button));
+	m_delay_on_attachment.reset(new OdinButtonAttachment(m_value_tree, "delay_on", m_delay_on_button));
+	m_chorus_on_attachment.reset(new OdinButtonAttachment(m_value_tree, "chorus_on", m_chorus_on_button));
+	m_fil1_osc1_attachment.reset(new OdinButtonAttachment(m_value_tree, "fil1_osc1", m_filleft_button1));
+	m_fil1_osc2_attachment.reset(new OdinButtonAttachment(m_value_tree, "fil1_osc2", m_filleft_button2));
+	m_fil1_osc3_attachment.reset(new OdinButtonAttachment(m_value_tree, "fil1_osc3", m_filleft_button3));
+	m_fil2_osc1_attachment.reset(new OdinButtonAttachment(m_value_tree, "fil2_osc1", m_filright_button1));
+	m_fil2_osc2_attachment.reset(new OdinButtonAttachment(m_value_tree, "fil2_osc2", m_filright_button2));
+	m_fil2_osc3_attachment.reset(new OdinButtonAttachment(m_value_tree, "fil2_osc3", m_filright_button3));
+	m_fil2_fil1_attachment.reset(new OdinButtonAttachment(m_value_tree, "fil2_fil1", m_filright_buttonf1));
 
-	m_glide_attachment.reset(new SliderAttachment(m_value_tree, "glide", m_glide));
-	m_master_attachment.reset(new SliderAttachment(m_value_tree, "master", m_master));
-	m_modwheel_attachment.reset(new SliderAttachment(m_value_tree, "modwheel", m_modwheel));
-	m_pitchbend_attachment.reset(new SliderAttachment(m_value_tree, "pitchbend", m_pitchwheel));
+	m_glide_attachment.reset(new OdinKnobAttachment(m_value_tree, "glide", m_glide));
+	m_master_attachment.reset(new OdinKnobAttachment(m_value_tree, "master", m_master));
+	m_modwheel_attachment.reset(new OdinKnobAttachment(m_value_tree, "modwheel", m_modwheel));
+	m_pitchbend_attachment.reset(new OdinKnobAttachment(m_value_tree, "pitchbend", m_pitchwheel));
 
 	m_master.setNumDecimalPlacesToDisplay(2);
 	m_glide.setNumDecimalPlacesToDisplay(3);

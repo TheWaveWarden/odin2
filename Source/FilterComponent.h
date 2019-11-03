@@ -144,7 +144,7 @@ protected:
   std::unique_ptr<OdinKnobAttachment> m_ring_mod_amount_attach;
   std::unique_ptr<OdinKnobAttachment> m_sem_transition_attach;
 
-  std::unique_ptr<ButtonAttachment> m_comb_polarity_attach;
+  std::unique_ptr<OdinButtonAttachment> m_comb_polarity_attach;
 
   Identifier m_vowel_left_identifier;  
   Identifier m_vowel_right_identifier;  

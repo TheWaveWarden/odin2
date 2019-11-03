@@ -23,16 +23,16 @@ FXComponent::FXComponent(AudioProcessorValueTreeState &vts,
       m_fx_synctime_numerator_identifier(p_fx_name + "_synctime_numerator") {
 
   m_rate_attach.reset(
-      new SliderAttachment(m_value_tree, m_fx_name + "_rate", m_rate));
+      new OdinKnobAttachment(m_value_tree, m_fx_name + "_rate", m_rate));
   m_amount_attach.reset(
-      new SliderAttachment(m_value_tree, m_fx_name + "_amount", m_amount));
+      new OdinKnobAttachment(m_value_tree, m_fx_name + "_amount", m_amount));
   m_drywet_attach.reset(
-      new SliderAttachment(m_value_tree, m_fx_name + "_drywet", m_dry_wet));
+      new OdinKnobAttachment(m_value_tree, m_fx_name + "_drywet", m_dry_wet));
   m_feedback_attach.reset(
-      new SliderAttachment(m_value_tree, m_fx_name + "_feedback", m_feedback));
+      new OdinKnobAttachment(m_value_tree, m_fx_name + "_feedback", m_feedback));
 
   m_reset_attach.reset(
-      new ButtonAttachment(m_value_tree, m_fx_name + "_reset", m_reset));
+      new OdinButtonAttachment(m_value_tree, m_fx_name + "_reset", m_reset));
 
   juce::Image metal_knob_mid = ImageCache::getFromMemory(
       BinaryData::metal_knob_mid_png, BinaryData::metal_knob_mid_pngSize);
@@ -135,7 +135,7 @@ FXComponent::FXComponent(AudioProcessorValueTreeState &vts,
   sync_draw4.setImage(sync_4);
 
   m_sync_attach.reset(
-      new ButtonAttachment(m_value_tree, m_fx_name + "_sync", m_sync));
+      new OdinButtonAttachment(m_value_tree, m_fx_name + "_sync", m_sync));
   m_sync.setImages(&sync_draw2, &sync_draw2, &sync_draw1, &sync_draw1,
                    &sync_draw4, &sync_draw4, &sync_draw3, &sync_draw3);
   m_sync.setClickingTogglesState(true);

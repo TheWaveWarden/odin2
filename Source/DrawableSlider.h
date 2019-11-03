@@ -13,6 +13,7 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "GlobalIncludes.h"
 #include "InputField.h"
+#include "OdinMidiLearnBase.h"
 
 //==============================================================================
 /*
@@ -43,7 +44,7 @@ public:
 
 class OdinAudioProcessor;
 
-class DrawableSlider : public juce::Slider {
+class DrawableSlider : public juce::Slider, public OdinMidiLearnBase {
 public:
   DrawableSlider();
   ~DrawableSlider();
@@ -63,12 +64,12 @@ public:
     m_processor = p_pointer;
   }
 
-  void stopMidiLearn() {
+  void stopMidiLearn() override {
     m_midi_learn = false;
     repaint();
   }
 
-  void setMidiControlActive() {
+  void setMidiControlActive() override {
     m_midi_learn = false;
     m_midi_control = true;
     repaint();
@@ -95,9 +96,6 @@ public:
   }
 
 private:
-  bool m_midi_learn = false;
-  bool m_midi_control = false;
-
   static OdinAudioProcessor *m_processor;
   ADSRFeels m_feels;
   juce::Image m_handle;

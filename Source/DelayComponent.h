@@ -15,6 +15,8 @@
 #include "Knob.h"
 #include "OdinButton.h"
 #include "SyncTimeSelector.h"
+#include "OdinControlAttachments.h"
+
 
 #define TIME_POS_X 17
 #define TIME_POS_Y 21
@@ -101,15 +103,15 @@ private:
 
 	AudioProcessorValueTreeState &m_value_tree;
 
-	std::unique_ptr<SliderAttachment> m_delay_time_attach;
-	std::unique_ptr<SliderAttachment> m_delay_feedback_attach;
-	std::unique_ptr<SliderAttachment> m_delay_hp_attach;
-	std::unique_ptr<SliderAttachment> m_delay_ducking_attach;
-	std::unique_ptr<SliderAttachment> m_delay_dry_attach;
-	std::unique_ptr<SliderAttachment> m_delay_wet_attach;
+	std::unique_ptr<OdinKnobAttachment> m_delay_time_attach;
+	std::unique_ptr<OdinKnobAttachment> m_delay_feedback_attach;
+	std::unique_ptr<OdinKnobAttachment> m_delay_hp_attach;
+	std::unique_ptr<OdinKnobAttachment> m_delay_ducking_attach;
+	std::unique_ptr<OdinKnobAttachment> m_delay_dry_attach;
+	std::unique_ptr<OdinKnobAttachment> m_delay_wet_attach;
 
-	std::unique_ptr<ButtonAttachment> m_sync_attach;
-	std::unique_ptr<ButtonAttachment> m_pingpong_attach;
+	std::unique_ptr<OdinButtonAttachment> m_sync_attach;
+	std::unique_ptr<OdinButtonAttachment> m_pingpong_attach;
 
 	Identifier m_delay_synctime_numerator_identifier;
 	Identifier m_delay_synctime_denominator_identifier;

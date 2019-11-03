@@ -24,6 +24,7 @@
 #include "WavedrawDisplay.h"
 #include "WaveformSelectorComponent.h"
 #include "XYPadComponent.h"
+#include "OdinControlAttachments.h"
 
 //#include "PluginProcessor.h"
 
@@ -276,32 +277,32 @@ protected:
   std::string m_osc_number;
   AudioProcessorValueTreeState &m_value_tree;
 
-  std::unique_ptr<SliderAttachment> m_oct_attach;
-  std::unique_ptr<SliderAttachment> m_semi_attach;
-  std::unique_ptr<SliderAttachment> m_fine_attach;
-  std::unique_ptr<SliderAttachment> m_vol_attach;
-  std::unique_ptr<SliderAttachment> m_position_attach;
-  std::unique_ptr<SliderAttachment> m_detune_attach;
-  std::unique_ptr<SliderAttachment> m_multi_position_attach;
-  std::unique_ptr<SliderAttachment> m_spread_attach;
-  std::unique_ptr<SliderAttachment> m_pulsewidth_attach;
-  std::unique_ptr<SliderAttachment> m_drift_attach;
-  std::unique_ptr<SliderAttachment> m_arp_speed_attach;
-  std::unique_ptr<SliderAttachment> m_step_1_attach;
-  std::unique_ptr<SliderAttachment> m_step_2_attach;
-  std::unique_ptr<SliderAttachment> m_step_3_attach;
-  std::unique_ptr<SliderAttachment> m_fm_attach;
-  std::unique_ptr<SliderAttachment> m_lp_attach;
-  std::unique_ptr<SliderAttachment> m_hp_attach;
-  std::unique_ptr<SliderAttachment> m_x_attach;
-  std::unique_ptr<SliderAttachment> m_y_attach;
+  std::unique_ptr<OdinKnobAttachment> m_oct_attach;
+  std::unique_ptr<OdinKnobAttachment> m_semi_attach;
+  std::unique_ptr<OdinKnobAttachment> m_fine_attach;
+  std::unique_ptr<OdinKnobAttachment> m_vol_attach;
+  std::unique_ptr<OdinKnobAttachment> m_position_attach;
+  std::unique_ptr<OdinKnobAttachment> m_detune_attach;
+  std::unique_ptr<OdinKnobAttachment> m_multi_position_attach;
+  std::unique_ptr<OdinKnobAttachment> m_spread_attach;
+  std::unique_ptr<OdinKnobAttachment> m_pulsewidth_attach;
+  std::unique_ptr<OdinKnobAttachment> m_drift_attach;
+  std::unique_ptr<OdinKnobAttachment> m_arp_speed_attach;
+  std::unique_ptr<OdinKnobAttachment> m_step_1_attach;
+  std::unique_ptr<OdinKnobAttachment> m_step_2_attach;
+  std::unique_ptr<OdinKnobAttachment> m_step_3_attach;
+  std::unique_ptr<OdinKnobAttachment> m_fm_attach;
+  std::unique_ptr<OdinKnobAttachment> m_lp_attach;
+  std::unique_ptr<OdinKnobAttachment> m_hp_attach;
+  std::unique_ptr<OdinKnobAttachment> m_x_attach;
+  std::unique_ptr<OdinKnobAttachment> m_y_attach;
 
-  std::unique_ptr<ButtonAttachment> m_reset_attach;
-  std::unique_ptr<ButtonAttachment> m_sync_attach;
-  std::unique_ptr<ButtonAttachment> m_arp_on_attach;
-  std::unique_ptr<ButtonAttachment> m_step_3_on_attach;
-  std::unique_ptr<ButtonAttachment> m_chipnoise_attach;
-  std::unique_ptr<ButtonAttachment> m_exp_fm_attach;
+  std::unique_ptr<OdinButtonAttachment> m_reset_attach;
+  std::unique_ptr<OdinButtonAttachment> m_sync_attach;
+  std::unique_ptr<OdinButtonAttachment> m_arp_on_attach;
+  std::unique_ptr<OdinButtonAttachment> m_step_3_on_attach;
+  std::unique_ptr<OdinButtonAttachment> m_chipnoise_attach;
+  std::unique_ptr<OdinButtonAttachment> m_exp_fm_attach;
 
   // std::unique_ptr<ComboBoxAttachment> m_vec_a_attach;
   // std::unique_ptr<ComboBoxAttachment> m_vec_b_attach;

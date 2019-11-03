@@ -17,13 +17,13 @@ ADSRComponent::ADSRComponent(AudioProcessorValueTreeState &vts,
     : m_loop("loop_button", juce::DrawableButton::ButtonStyle::ImageRaw),
       m_value_tree(vts), m_adsr_number(p_adsr_number) {
 
-  m_attack_attach.reset(new SliderAttachment(
-      m_value_tree, "env" + m_adsr_number + "_attack", m_attack));
-  m_decay_attach.reset(new SliderAttachment(
+  m_attack_attach.reset(new OdinSliderAttachment(
+      m_value_tree, ("env" + m_adsr_number + "_attack"), m_attack));
+  m_decay_attach.reset(new OdinSliderAttachment(
       m_value_tree, "env" + m_adsr_number + "_decay", m_decay));
-  m_sustain_attach.reset(new SliderAttachment(
+  m_sustain_attach.reset(new OdinSliderAttachment(
       m_value_tree, "env" + m_adsr_number + "_sustain", m_sustain));
-  m_release_attach.reset(new SliderAttachment(
+  m_release_attach.reset(new OdinSliderAttachment(
       m_value_tree, "env" + m_adsr_number + "_release", m_release));
 
   juce::Image loop_1 = ImageCache::getFromMemory(
@@ -83,7 +83,7 @@ ADSRComponent::ADSRComponent(AudioProcessorValueTreeState &vts,
   m_release.setTooltip("Release\nDefines how long the envelope takes\n to fall "
                        "back to zero after\nthe key is released");
 
-  m_loop_attach.reset(new ButtonAttachment(
+  m_loop_attach.reset(new OdinButtonAttachment(
       m_value_tree, "env" + m_adsr_number + "_loop", m_loop));
 
   m_attack.setNumDecimalPlacesToDisplay(3);

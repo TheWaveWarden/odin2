@@ -51,7 +51,8 @@ void LeftRightButton::paintButton(Graphics &g,
 }
 
 void LeftRightButton::mouseDown(const MouseEvent &p_event) {
-  if (p_event.mods.isRightButtonDown()) {
+  if (p_event.mods.isRightButtonDown() && m_midi_learn_possible) {
+
     //DBG("RIGHT");
     PopupMenu midi_learn_menu;
     if (m_midi_learn) {
@@ -68,14 +69,14 @@ void LeftRightButton::mouseDown(const MouseEvent &p_event) {
       int menu = midi_learn_menu.show();
       if (menu == 2) {
         if (m_midi_control) {
-          m_processor->midiForget(this);
+          m_processor->midiForget(m_parameter_ID, this);
         }
-        m_processor->startMidiLearn(this);
+        m_processor->startMidiLearn(m_parameter_ID, this);
         m_midi_learn = true;
         m_midi_control = false;
         repaint();
       } else if (menu == 3) {
-        m_processor->midiForget(this);
+        m_processor->midiForget(m_parameter_ID, this);
         m_midi_control = false;
         repaint();
       }

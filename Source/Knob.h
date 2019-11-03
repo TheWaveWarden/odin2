@@ -217,7 +217,7 @@ public:
     m_processor = p_pointer;
   }
 
-  void stopMidiLearn() {
+  void stopMidiLearn() override {
     m_midi_learn = false;
 	  const MessageManagerLock mmLock;
     repaint();
@@ -255,10 +255,6 @@ public:
   }
 
 private:
-
-  bool m_midi_learn = false;
-  bool m_midi_control = false;
-
   int m_midi_learn_left_offset = 0;
   int m_midi_learn_bottom_offset = 0;
 

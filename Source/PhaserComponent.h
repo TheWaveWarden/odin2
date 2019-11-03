@@ -15,7 +15,7 @@
 #include "Knob.h"
 #include "OdinButton.h"
 #include "SyncTimeSelector.h"
-
+#include "OdinControlAttachments.h"
 
 // #define AMOUNT_POS_X 103
 // #define AMOUNT_POS_Y 43
@@ -110,14 +110,14 @@ private:
   std::string m_fx_name;
   AudioProcessorValueTreeState &m_value_tree;
 
-  std::unique_ptr<SliderAttachment> m_rate_attach;
-  std::unique_ptr<SliderAttachment> m_feedback_attach;
-  std::unique_ptr<SliderAttachment> m_freq_attach;
-  std::unique_ptr<SliderAttachment> m_mod_attach;
-  std::unique_ptr<SliderAttachment> m_drywet_attach;
+  std::unique_ptr<OdinKnobAttachment> m_rate_attach;
+  std::unique_ptr<OdinKnobAttachment> m_feedback_attach;
+  std::unique_ptr<OdinKnobAttachment> m_freq_attach;
+  std::unique_ptr<OdinKnobAttachment> m_mod_attach;
+  std::unique_ptr<OdinKnobAttachment> m_drywet_attach;
 
-  std::unique_ptr<ButtonAttachment> m_sync_attach;
-  std::unique_ptr<ButtonAttachment> m_reset_attach;
+  std::unique_ptr<OdinButtonAttachment> m_sync_attach;
+  std::unique_ptr<OdinButtonAttachment> m_reset_attach;
 
   Identifier m_fx_synctime_numerator_identifier;
   Identifier m_fx_synctime_denominator_identifier;

@@ -1,10 +1,11 @@
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "OdinMidiLearnBase.h"
 
 class OdinAudioProcessor;
 
-class OdinButton : public DrawableButton {
+class OdinButton : public DrawableButton, public OdinMidiLearnBase {
 public:
   OdinButton(const String &buttonName, ButtonStyle buttonStyle)
       : DrawableButton(buttonName, buttonStyle) {}
@@ -31,21 +32,19 @@ public:
     m_processor = p_pointer;
   }
 
-  void stopMidiLearn() {
+  void stopMidiLearn() override {
     m_midi_learn = false;
     m_midi_control = false;
     repaint();
   }
 
-  void setMidiControlActive() {
+  void setMidiControlActive() override {
     m_midi_learn = false;
     m_midi_control = true;
     repaint();
   }
 
 private:
-  bool m_midi_learn = false;
-  bool m_midi_control = false;
 
   static OdinAudioProcessor *m_processor;
 };

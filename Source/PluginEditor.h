@@ -329,23 +329,23 @@ private:
 
   AudioProcessorValueTreeState &m_value_tree;
 
-  std::unique_ptr<ButtonAttachment> m_phaser_on_attachment;
-  std::unique_ptr<ButtonAttachment> m_flanger_on_attachment;
-  std::unique_ptr<ButtonAttachment> m_delay_on_attachment;
-  std::unique_ptr<ButtonAttachment> m_chorus_on_attachment;
-  std::unique_ptr<ButtonAttachment> m_fil1_osc1_attachment;
-  std::unique_ptr<ButtonAttachment> m_fil1_osc2_attachment;
-  std::unique_ptr<ButtonAttachment> m_fil1_osc3_attachment;
-  std::unique_ptr<ButtonAttachment> m_fil2_osc1_attachment;
-  std::unique_ptr<ButtonAttachment> m_fil2_osc2_attachment;
-  std::unique_ptr<ButtonAttachment> m_fil2_osc3_attachment;
-  std::unique_ptr<ButtonAttachment> m_fil2_fil1_attachment;
-  std::unique_ptr<ButtonAttachment> m_legato_attachment;
+  std::unique_ptr<OdinButtonAttachment> m_phaser_on_attachment;
+  std::unique_ptr<OdinButtonAttachment> m_flanger_on_attachment;
+  std::unique_ptr<OdinButtonAttachment> m_delay_on_attachment;
+  std::unique_ptr<OdinButtonAttachment> m_chorus_on_attachment;
+  std::unique_ptr<OdinButtonAttachment> m_fil1_osc1_attachment;
+  std::unique_ptr<OdinButtonAttachment> m_fil1_osc2_attachment;
+  std::unique_ptr<OdinButtonAttachment> m_fil1_osc3_attachment;
+  std::unique_ptr<OdinButtonAttachment> m_fil2_osc1_attachment;
+  std::unique_ptr<OdinButtonAttachment> m_fil2_osc2_attachment;
+  std::unique_ptr<OdinButtonAttachment> m_fil2_osc3_attachment;
+  std::unique_ptr<OdinButtonAttachment> m_fil2_fil1_attachment;
+  std::unique_ptr<OdinButtonAttachment> m_legato_attachment;
 
-  std::unique_ptr<SliderAttachment> m_glide_attachment;
-  std::unique_ptr<SliderAttachment> m_master_attachment;
-  std::unique_ptr<SliderAttachment> m_modwheel_attachment;
-  std::unique_ptr<SliderAttachment> m_pitchbend_attachment;
+  std::unique_ptr<OdinKnobAttachment> m_glide_attachment;
+  std::unique_ptr<OdinKnobAttachment> m_master_attachment;
+  std::unique_ptr<OdinKnobAttachment> m_modwheel_attachment;
+  std::unique_ptr<OdinKnobAttachment> m_pitchbend_attachment;
 
   Identifier m_osc1_type_identifier;
   Identifier m_osc2_type_identifier;

@@ -15,6 +15,7 @@
 #include "Knob.h"
 #include "OdinButton.h"
 #include "GlasDropdown.h"
+#include "OdinControlAttachments.h"
 
 #define AMP_GAIN_POS_X (400 - 275)
 #define AMP_GAIN_POS_Y (222 - 175)
@@ -73,15 +74,15 @@ private:
 
   AudioProcessorValueTreeState& m_value_tree;
 
-  std::unique_ptr<SliderAttachment> m_amp_pan_attach;
-  std::unique_ptr<SliderAttachment> m_amp_gain_attach;
-  std::unique_ptr<SliderAttachment> m_amp_vel_attach;
-  std::unique_ptr<SliderAttachment> m_dist_threshold_attach;
-  std::unique_ptr<SliderAttachment> m_dist_drywet_attach;
+  std::unique_ptr<OdinKnobAttachment> m_amp_pan_attach;
+  std::unique_ptr<OdinKnobAttachment> m_amp_gain_attach;
+  std::unique_ptr<OdinKnobAttachment> m_amp_vel_attach;
+  std::unique_ptr<OdinKnobAttachment> m_dist_threshold_attach;
+  std::unique_ptr<OdinKnobAttachment> m_dist_drywet_attach;
 
-  std::unique_ptr<ButtonAttachment> m_dist_on_attach;
-  std::unique_ptr<ButtonAttachment> m_fil1_to_amp_attach;
-  std::unique_ptr<ButtonAttachment> m_fil2_to_amp_attach;
+  std::unique_ptr<OdinButtonAttachment> m_dist_on_attach;
+  std::unique_ptr<OdinButtonAttachment> m_fil1_to_amp_attach;
+  std::unique_ptr<OdinButtonAttachment> m_fil2_to_amp_attach;
 
   std::unique_ptr<ComboBoxAttachment> m_dist_algo_attach;
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(AmpDistortionFlowComponent)

@@ -18,12 +18,12 @@ DelayComponent::DelayComponent(AudioProcessorValueTreeState &vts, bool p_is_stan
     m_delay_synctime_denominator_identifier("delay_synctime_denominator"),
     m_delay_synctime_numerator_identifier("delay_synctime_numerator"), m_is_standalone_plugin(p_is_standalone) {
 
-	m_delay_time_attach.reset(new SliderAttachment(m_value_tree, "delay_time", m_time));
-	m_delay_feedback_attach.reset(new SliderAttachment(m_value_tree, "delay_feedback", m_feedback));
-	m_delay_hp_attach.reset(new SliderAttachment(m_value_tree, "delay_hp", m_HP));
-	m_delay_ducking_attach.reset(new SliderAttachment(m_value_tree, "delay_ducking", m_ducking));
-	m_delay_dry_attach.reset(new SliderAttachment(m_value_tree, "delay_dry", m_dry));
-	m_delay_wet_attach.reset(new SliderAttachment(m_value_tree, "delay_wet", m_wet));
+	m_delay_time_attach.reset(new OdinKnobAttachment(m_value_tree, "delay_time", m_time));
+	m_delay_feedback_attach.reset(new OdinKnobAttachment(m_value_tree, "delay_feedback", m_feedback));
+	m_delay_hp_attach.reset(new OdinKnobAttachment(m_value_tree, "delay_hp", m_HP));
+	m_delay_ducking_attach.reset(new OdinKnobAttachment(m_value_tree, "delay_ducking", m_ducking));
+	m_delay_dry_attach.reset(new OdinKnobAttachment(m_value_tree, "delay_dry", m_dry));
+	m_delay_wet_attach.reset(new OdinKnobAttachment(m_value_tree, "delay_wet", m_wet));
 
 	juce::Image sync_1 = ImageCache::getFromMemory(BinaryData::buttonsync_1_png, BinaryData::buttonsync_1_pngSize);
 	juce::Image sync_2 = ImageCache::getFromMemory(BinaryData::buttonsync_2_png, BinaryData::buttonsync_2_pngSize);
@@ -145,8 +145,8 @@ DelayComponent::DelayComponent(AudioProcessorValueTreeState &vts, bool p_is_stan
 	m_wet.setKnobTooltip("Volume of the delayed signal only");
 	addAndMakeVisible(m_wet);
 
-	m_sync_attach.reset(new ButtonAttachment(m_value_tree, "delay_sync", m_sync));
-	m_pingpong_attach.reset(new ButtonAttachment(m_value_tree, "delay_pingpong", m_pingpong));
+	m_sync_attach.reset(new OdinButtonAttachment(m_value_tree, "delay_sync", m_sync));
+	m_pingpong_attach.reset(new OdinButtonAttachment(m_value_tree, "delay_pingpong", m_pingpong));
 
 	m_sync_time.OnValueChange = [&](int p_left, int p_right) {
 		m_value_tree.state.getChildWithName("fx").setProperty(m_delay_synctime_numerator_identifier, p_left, nullptr);

@@ -20,9 +20,9 @@ LFOComponent::LFOComponent(AudioProcessorValueTreeState &vts, std::string p_lfo_
     m_lfo_synctime_numerator_identifier("lfo" + p_lfo_number + "_synctime_numerator"),
     m_is_standalone_plugin(p_is_standalone) {
 
-	m_freq_attach.reset(new SliderAttachment(m_value_tree, "lfo" + m_lfo_number + "_freq", m_freq));
+	m_freq_attach.reset(new OdinKnobAttachment(m_value_tree, "lfo" + m_lfo_number + "_freq", m_freq));
 
-	m_reset_attach.reset(new ButtonAttachment(m_value_tree, "lfo" + m_lfo_number + "_reset", m_reset));
+	m_reset_attach.reset(new OdinButtonAttachment(m_value_tree, "lfo" + m_lfo_number + "_reset", m_reset));
 
 	juce::Image reset_1 =
 	    ImageCache::getFromMemory(BinaryData::buttonreset_lfo_1_png, BinaryData::buttonreset_lfo_1_pngSize);
@@ -68,7 +68,7 @@ LFOComponent::LFOComponent(AudioProcessorValueTreeState &vts, std::string p_lfo_
 	sync_draw4.setImage(sync_4);
 
 	// if (!m_is_standalone_plugin) {
-	m_sync_attach.reset(new ButtonAttachment(m_value_tree, "lfo" + m_lfo_number + "_sync", m_sync));
+	m_sync_attach.reset(new OdinButtonAttachment(m_value_tree, "lfo" + m_lfo_number + "_sync", m_sync));
 	m_sync.setImages(
 	    &sync_draw2, &sync_draw2, &sync_draw1, &sync_draw1, &sync_draw4, &sync_draw4, &sync_draw3, &sync_draw3);
 	m_sync.setClickingTogglesState(true);

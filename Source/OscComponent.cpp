@@ -40,35 +40,35 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
     m_vec_a_identifier("osc" + p_osc_number + "_vec_a"), m_vec_b_identifier("osc" + p_osc_number + "_vec_b"),
     m_vec_c_identifier("osc" + p_osc_number + "_vec_c"), m_vec_d_identifier("osc" + p_osc_number + "_vec_d") {
 
-	m_oct_attach.reset(new SliderAttachment(m_value_tree, "osc" + m_osc_number + "_oct", m_oct));
-	m_semi_attach.reset(new SliderAttachment(m_value_tree, "osc" + m_osc_number + "_semi", m_semi));
-	m_fine_attach.reset(new SliderAttachment(m_value_tree, "osc" + m_osc_number + "_fine", m_fine));
-	m_vol_attach.reset(new SliderAttachment(m_value_tree, "osc" + m_osc_number + "_vol", m_vol));
-	m_position_attach.reset(new SliderAttachment(m_value_tree, "osc" + m_osc_number + "_position", m_position));
-	m_detune_attach.reset(new SliderAttachment(m_value_tree, "osc" + m_osc_number + "_detune", m_detune));
+	m_oct_attach.reset(new OdinKnobAttachment(m_value_tree, "osc" + m_osc_number + "_oct", m_oct));
+	m_semi_attach.reset(new OdinKnobAttachment(m_value_tree, "osc" + m_osc_number + "_semi", m_semi));
+	m_fine_attach.reset(new OdinKnobAttachment(m_value_tree, "osc" + m_osc_number + "_fine", m_fine));
+	m_vol_attach.reset(new OdinKnobAttachment(m_value_tree, "osc" + m_osc_number + "_vol", m_vol));
+	m_position_attach.reset(new OdinKnobAttachment(m_value_tree, "osc" + m_osc_number + "_position", m_position));
+	m_detune_attach.reset(new OdinKnobAttachment(m_value_tree, "osc" + m_osc_number + "_detune", m_detune));
 	m_multi_position_attach.reset(
-	    new SliderAttachment(m_value_tree, "osc" + m_osc_number + "_multi_position", m_position_multi));
-	m_spread_attach.reset(new SliderAttachment(m_value_tree, "osc" + m_osc_number + "_spread", m_spread));
-	m_pulsewidth_attach.reset(new SliderAttachment(m_value_tree, "osc" + m_osc_number + "_pulsewidth", m_pw));
-	m_drift_attach.reset(new SliderAttachment(m_value_tree, "osc" + m_osc_number + "_drift", m_drift));
-	m_arp_speed_attach.reset(new SliderAttachment(m_value_tree, "osc" + m_osc_number + "_arp_speed", m_speed));
-	m_step_1_attach.reset(new SliderAttachment(m_value_tree, "osc" + m_osc_number + "_step_1", m_step_1));
-	m_step_2_attach.reset(new SliderAttachment(m_value_tree, "osc" + m_osc_number + "_step_2", m_step_2));
-	m_step_3_attach.reset(new SliderAttachment(m_value_tree, "osc" + m_osc_number + "_step_3", m_step_3));
-	m_fm_attach.reset(new SliderAttachment(m_value_tree, "osc" + m_osc_number + "_fm", m_fm));
-	m_lp_attach.reset(new SliderAttachment(m_value_tree, "osc" + m_osc_number + "_lp", m_lp));
-	m_hp_attach.reset(new SliderAttachment(m_value_tree, "osc" + m_osc_number + "_hp", m_hp));
-	m_x_attach.reset(new SliderAttachment(m_value_tree, "osc" + m_osc_number + "_vec_x", m_xy_x));
-	m_y_attach.reset(new SliderAttachment(m_value_tree, "osc" + m_osc_number + "_vec_y", m_xy_y));
+	    new OdinKnobAttachment(m_value_tree, "osc" + m_osc_number + "_multi_position", m_position_multi));
+	m_spread_attach.reset(new OdinKnobAttachment(m_value_tree, "osc" + m_osc_number + "_spread", m_spread));
+	m_pulsewidth_attach.reset(new OdinKnobAttachment(m_value_tree, "osc" + m_osc_number + "_pulsewidth", m_pw));
+	m_drift_attach.reset(new OdinKnobAttachment(m_value_tree, "osc" + m_osc_number + "_drift", m_drift));
+	m_arp_speed_attach.reset(new OdinKnobAttachment(m_value_tree, "osc" + m_osc_number + "_arp_speed", m_speed));
+	m_step_1_attach.reset(new OdinKnobAttachment(m_value_tree, "osc" + m_osc_number + "_step_1", m_step_1));
+	m_step_2_attach.reset(new OdinKnobAttachment(m_value_tree, "osc" + m_osc_number + "_step_2", m_step_2));
+	m_step_3_attach.reset(new OdinKnobAttachment(m_value_tree, "osc" + m_osc_number + "_step_3", m_step_3));
+	m_fm_attach.reset(new OdinKnobAttachment(m_value_tree, "osc" + m_osc_number + "_fm", m_fm));
+	m_lp_attach.reset(new OdinKnobAttachment(m_value_tree, "osc" + m_osc_number + "_lp", m_lp));
+	m_hp_attach.reset(new OdinKnobAttachment(m_value_tree, "osc" + m_osc_number + "_hp", m_hp));
+	m_x_attach.reset(new OdinKnobAttachment(m_value_tree, "osc" + m_osc_number + "_vec_x", m_xy_x));
+	m_y_attach.reset(new OdinKnobAttachment(m_value_tree, "osc" + m_osc_number + "_vec_y", m_xy_y));
 
-	m_reset_attach.reset(new ButtonAttachment(m_value_tree, "osc" + m_osc_number + "_reset", m_reset));
+	m_reset_attach.reset(new OdinButtonAttachment(m_value_tree, "osc" + m_osc_number + "_reset", m_reset));
 	if (std::stoi(m_osc_number) != 1) {
-		m_sync_attach.reset(new ButtonAttachment(m_value_tree, "osc" + m_osc_number + "_sync", m_sync));
+		m_sync_attach.reset(new OdinButtonAttachment(m_value_tree, "osc" + m_osc_number + "_sync", m_sync));
 	}
-	m_arp_on_attach.reset(new ButtonAttachment(m_value_tree, "osc" + m_osc_number + "_arp_on", m_arp));
-	m_step_3_on_attach.reset(new ButtonAttachment(m_value_tree, "osc" + m_osc_number + "_step_3_on", m_step_button));
-	m_chipnoise_attach.reset(new ButtonAttachment(m_value_tree, "osc" + m_osc_number + "_chipnoise", m_noise));
-	m_exp_fm_attach.reset(new ButtonAttachment(m_value_tree, "osc" + m_osc_number + "_exp_fm", m_fm_exp));
+	m_arp_on_attach.reset(new OdinButtonAttachment(m_value_tree, "osc" + m_osc_number + "_arp_on", m_arp));
+	m_step_3_on_attach.reset(new OdinButtonAttachment(m_value_tree, "osc" + m_osc_number + "_step_3_on", m_step_button));
+	m_chipnoise_attach.reset(new OdinButtonAttachment(m_value_tree, "osc" + m_osc_number + "_chipnoise", m_noise));
+	m_exp_fm_attach.reset(new OdinButtonAttachment(m_value_tree, "osc" + m_osc_number + "_exp_fm", m_fm_exp));
 
 	m_vol.setStrip(ImageCache::getFromMemory(BinaryData::black_knob_small_png, BinaryData::black_knob_small_pngSize),
 	               N_KNOB_FRAMES);

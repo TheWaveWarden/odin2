@@ -387,46 +387,14 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 				if (!midi_message.isMidiClock()) {
 					//DBG("UNHANDELED MIDI MESSAGE: " + midi_message.getDescription());
 					if (midi_message.isController()) {
-						DBG("Controller with number: " + std::to_string(midi_message.getControllerNumber()));
+						//DBG("Controller with number: " + std::to_string(midi_message.getControllerNumber()));
 					}
 				}
 			}
 
 			if ((midi_message.isController() /*|| midi_message.isPitchWheel()*/)) {
-				// DBG("CONTROLLER");
-				// if (m_midi_learn_knob_active) {
-				// 	m_midi_control_list_knob.emplace(midi_message.getControllerNumber(), m_midi_learn_knob);
-				// 	m_midi_learn_knob->setMidiControlActive();
-				// 	m_midi_learn_knob_active = false;
-				// 	m_midi_learn_knob        = nullptr;
-				// 	DBG("Added MIDI control on controller number " +
-				// 	    std::to_string(midi_message.getControllerNumber()));
-				// }
-				// if (m_midi_learn_slider_active) {
-				// 	m_midi_control_list_slider.emplace(midi_message.getControllerNumber(), m_midi_learn_slider);
-				// 	m_midi_learn_slider->setMidiControlActive();
-				// 	m_midi_learn_slider_active = false;
-				// 	m_midi_learn_slider        = nullptr;
-				// 	DBG("Added MIDI control on controller number " +
-				// 	    std::to_string(midi_message.getControllerNumber()));
-				// }
-				// if (m_midi_learn_lrbutton_active) {
-				// 	m_midi_control_list_lrbutton.emplace(midi_message.getControllerNumber(), m_midi_learn_lrbutton);
-				// 	m_midi_learn_lrbutton->setMidiControlActive();
-				// 	m_midi_learn_lrbutton_active = false;
-				// 	m_midi_learn_lrbutton        = nullptr;
-				// 	DBG("Added MIDI control on controller number " +
-				// 	    std::to_string(midi_message.getControllerNumber()));
-				// }
-				// if (m_midi_learn_odinbutton_active) {
-				// 	m_midi_control_list_odinbutton.emplace(midi_message.getControllerNumber(), m_midi_learn_odinbutton);
-				// 	m_midi_learn_odinbutton->setMidiControlActive();
-				// 	m_midi_learn_odinbutton_active = false;
-				// 	m_midi_learn_odinbutton        = nullptr;
-				// 	DBG("Added MIDI control on controller number " +
-				// 	    std::to_string(midi_message.getControllerNumber()));
-				// }
 
+				// midi learn
 				if (m_midi_learn_parameter_active) {
 					m_midi_control_param_map.emplace(midi_message.getControllerNumber(),
 					                                 m_value_tree.getParameter(m_midi_learn_parameter_ID));
@@ -441,44 +409,18 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 					int counter = 1;
 					DBG("=========");
 					for (auto const &control : m_midi_control_param_map) {
-						DBG(std::to_string(counter) + ": " + control.second->getName(100).toStdString());
+						DBG(std::to_string(counter++) + ": " + control.second->getName(100).toStdString());
 					}
 					DBG("=========");
 #endif
 				}
+
+				// do midi control
 				for (auto const &control : m_midi_control_param_map) {
 					if (control.first == midi_message.getControllerNumber()) {
 						const MessageManagerLock mmLock;
 						control.second->setValueNotifyingHost(/*control.second->convertFrom0to1(*/
 						                                      (float)midi_message.getControllerValue() / 127.f); //));
-					}
-				}
-
-				// do midi control
-				for (auto const &control : m_midi_control_list_knob) {
-					if (control.first == midi_message.getControllerNumber()) {
-						const MessageManagerLock mmLock;
-						control.second->setValue(control.second->proportionOfLengthToValue(
-						    (float)midi_message.getControllerValue() / 127.f));
-					}
-				}
-				for (auto const &control : m_midi_control_list_slider) {
-					if (control.first == midi_message.getControllerNumber()) {
-						const MessageManagerLock mmLock;
-						control.second->setValue(control.second->proportionOfLengthToValue(
-						    (float)midi_message.getControllerValue() / 127.f));
-					}
-				}
-				for (auto const &control : m_midi_control_list_lrbutton) {
-					if (control.first == midi_message.getControllerNumber()) {
-						const MessageManagerLock mmLock;
-						control.second->setToggleState(midi_message.getControllerValue() > 64, sendNotificationAsync);
-					}
-				}
-				for (auto const &control : m_midi_control_list_odinbutton) {
-					if (control.first == midi_message.getControllerNumber()) {
-						const MessageManagerLock mmLock;
-						control.second->setToggleState(midi_message.getControllerValue() > 64, sendNotificationAsync);
 					}
 				}
 			}

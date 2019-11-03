@@ -14,6 +14,7 @@
 #include "GlobalIncludes.h"
 #include "XYPadComponent.h"
 #include "Knob.h"
+#include "OdinControlAttachments.h"
 
 #define MODX_POS_X (264 - 150)
 #define MODX_POS_Y (564 - 502)
@@ -38,8 +39,8 @@ private:
   Knob m_modx;
   Knob m_mody;
 
-  std::unique_ptr<SliderAttachment> m_x_attach;
-  std::unique_ptr<SliderAttachment> m_y_attach;
+  std::unique_ptr<OdinKnobAttachment> m_x_attach;
+  std::unique_ptr<OdinKnobAttachment> m_y_attach;
 
   XYPadComponent m_xy_pad;
 

@@ -1,4 +1,4 @@
-#define DEBUG_VARIABLES
+//#define DEBUG_VARIABLES
 
 float valueToDenomintaor(int p_value) {
 	switch (p_value) {

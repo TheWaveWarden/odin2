@@ -98,18 +98,7 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts, OdinAudi
 	addAndMakeVisible(m_reset);
 	m_reset.setTriggeredOnMouseDown(false);
 	m_reset.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
-
-	juce::Image random_1 =
-	    ImageCache::getFromMemory(BinaryData::buttonrandom_2_png, BinaryData::buttonrandom_2_pngSize);
-	juce::Image random_2 =
-	    ImageCache::getFromMemory(BinaryData::buttonrandom_1_png, BinaryData::buttonrandom_1_pngSize);
-
-	juce::DrawableImage random_draw1;
-	juce::DrawableImage random_draw2;
-
-	random_draw1.setImage(random_1);
-	random_draw2.setImage(random_2);
-
+	
 	juce::Image glas_panel =
 	    ImageCache::getFromMemory(BinaryData::glaspanel_big_png, BinaryData::glaspanel_big_pngSize);
 

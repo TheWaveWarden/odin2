@@ -44,7 +44,7 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts,
   m_sem_transition_attach.reset(new OdinKnobAttachment(
       m_value_tree, "fil" + m_filter_number + "_sem_transition",
       m_sem_transition));
-  m_comb_polarity_attach.reset(new ButtonAttachment(
+  m_comb_polarity_attach.reset(new OdinButtonAttachment(
       m_value_tree, "fil" + m_filter_number + "_comb_polarity",
       m_comb_plus_minus));
 
