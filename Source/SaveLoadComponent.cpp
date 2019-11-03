@@ -130,7 +130,7 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts, OdinAudi
 		// set up filechooser
 		m_filechooser.reset(new FileChooser("Choose a file to save...",
 		                                    fileToSave,
-		                                    "*",
+		                                    "*.odin",
 		                                    true));
 
 		//launch filechooser
@@ -184,7 +184,7 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts, OdinAudi
 	};
 
 	m_load.onClick = [&]() {
-		m_filechooser.reset(new FileChooser("Choose a file to open...", m_last_directory, "*", true));
+		m_filechooser.reset(new FileChooser("Choose a file to open...", m_last_directory, "*.odin", true));
 
 		m_filechooser->launchAsync(
 		    FileBrowserComponent::openMode | FileBrowserComponent::canSelectFiles, [this](const FileChooser &chooser) {
