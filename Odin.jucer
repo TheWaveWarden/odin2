@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT id="vpwEHn" name="Odin2" projectType="audioplug" jucerVersion="5.4.3"
+<JUCERPROJECT id="vpwEHn" name="Odin2" projectType="audioplug" jucerVersion="5.4.4"
               pluginFormats="buildStandalone,buildVST,buildVST3" version="2.0.0"
               companyName="BommelDSP" companyWebsite="www.BommelDSP.com" pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn"
               pluginManufacturerCode="BDSP" pluginCode="ODIN" pluginChannelConfigs="{0,2}">
@@ -891,6 +891,12 @@
               file="Source/NumberSelector.h"/>
         <FILE id="TUdZK1" name="OdinButton.cpp" compile="1" resource="0" file="Source/OdinButton.cpp"/>
         <FILE id="PQdLa2" name="OdinButton.h" compile="0" resource="0" file="Source/OdinButton.h"/>
+        <FILE id="Ea8ODz" name="OdinControlAttachments.cpp" compile="1" resource="0"
+              file="Source/OdinControlAttachments.cpp"/>
+        <FILE id="WQl9fE" name="OdinControlAttachments.h" compile="0" resource="0"
+              file="Source/OdinControlAttachments.h"/>
+        <FILE id="q97nym" name="OdinMidiLearnBase.h" compile="0" resource="0"
+              file="Source/OdinMidiLearnBase.h"/>
         <FILE id="zWGLzS" name="OscComponent.cpp" compile="1" resource="0"
               file="Source/OscComponent.cpp"/>
         <FILE id="MVOzDk" name="OscComponent.h" compile="0" resource="0" file="Source/OscComponent.h"/>

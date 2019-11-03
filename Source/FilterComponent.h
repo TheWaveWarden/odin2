@@ -1,17 +1,9 @@
-/*
-  ==============================================================================
-
-    FilterComponent.h
-    Created: 25 Feb 2019 10:06:59am
-    Author:  frot
-
-  ==============================================================================
-*/
 
 #pragma once
 
 #include "GlobalIncludes.h"
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "OdinControlAttachments.h"
 #include "Knob.h"
 #include "FormantSelector.h"
 #include "LeftRightButton.h"
@@ -141,16 +133,16 @@ protected:
   std::string m_filter_number;
   AudioProcessorValueTreeState& m_value_tree;
 
-  std::unique_ptr<SliderAttachment> m_vel_attach;
-  std::unique_ptr<SliderAttachment> m_kbd_attach;
-  std::unique_ptr<SliderAttachment> m_env_attach;
-  std::unique_ptr<SliderAttachment> m_gain_attach;
-  std::unique_ptr<SliderAttachment> m_freq_attach;
-  std::unique_ptr<SliderAttachment> m_res_attach;
-  std::unique_ptr<SliderAttachment> m_saturation_attach;
-  std::unique_ptr<SliderAttachment> m_formant_transition_attach;
-  std::unique_ptr<SliderAttachment> m_ring_mod_amount_attach;
-  std::unique_ptr<SliderAttachment> m_sem_transition_attach;
+  std::unique_ptr<OdinKnobAttachment> m_vel_attach;
+  std::unique_ptr<OdinKnobAttachment> m_kbd_attach;
+  std::unique_ptr<OdinKnobAttachment> m_env_attach;
+  std::unique_ptr<OdinKnobAttachment> m_gain_attach;
+  std::unique_ptr<OdinKnobAttachment> m_freq_attach;
+  std::unique_ptr<OdinKnobAttachment> m_res_attach;
+  std::unique_ptr<OdinKnobAttachment> m_saturation_attach;
+  std::unique_ptr<OdinKnobAttachment> m_formant_transition_attach;
+  std::unique_ptr<OdinKnobAttachment> m_ring_mod_amount_attach;
+  std::unique_ptr<OdinKnobAttachment> m_sem_transition_attach;
 
   std::unique_ptr<ButtonAttachment> m_comb_polarity_attach;
 

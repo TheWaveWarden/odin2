@@ -36,12 +36,12 @@ void Knob::mouseDown(const MouseEvent &event) {
         if (m_midi_control) {
           m_processor->midiForget(this);
         }
-        m_processor->startMidiLearn(this);
+        m_processor->startMidiLearn(m_parameter_ID, this);
         m_midi_learn = true;
         m_midi_control = false;
         repaint();
       } else if (menu == 3) {
-        m_processor->midiForget(this);
+        m_processor->midiForget(m_parameter_ID, this);
         m_midi_control = false;
         repaint();
       }

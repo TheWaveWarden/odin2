@@ -21,27 +21,27 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts,
       m_vowel_right_identifier("fil" + p_filter_number + "_vowel_right"),
       m_comb_plus_minus("comb_plus_minus") {
 
-  m_vel_attach.reset(new SliderAttachment(
+  m_vel_attach.reset(new OdinKnobAttachment(
       m_value_tree, "fil" + m_filter_number + "_vel", m_vel));
-  m_env_attach.reset(new SliderAttachment(
+  m_env_attach.reset(new OdinKnobAttachment(
       m_value_tree, "fil" + m_filter_number + "_env", m_env));
-  m_kbd_attach.reset(new SliderAttachment(
+  m_kbd_attach.reset(new OdinKnobAttachment(
       m_value_tree, "fil" + m_filter_number + "_kbd", m_kbd));
-  m_gain_attach.reset(new SliderAttachment(
+  m_gain_attach.reset(new OdinKnobAttachment(
       m_value_tree, "fil" + m_filter_number + "_gain", m_gain));
-  m_freq_attach.reset(new SliderAttachment(
+  m_freq_attach.reset(new OdinKnobAttachment(
       m_value_tree, "fil" + m_filter_number + "_freq", m_freq));
-  m_res_attach.reset(new SliderAttachment(
+  m_res_attach.reset(new OdinKnobAttachment(
       m_value_tree, "fil" + m_filter_number + "_res", m_res));
-  m_saturation_attach.reset(new SliderAttachment(
+  m_saturation_attach.reset(new OdinKnobAttachment(
       m_value_tree, "fil" + m_filter_number + "_saturation", m_saturation));
-  m_formant_transition_attach.reset(new SliderAttachment(
+  m_formant_transition_attach.reset(new OdinKnobAttachment(
       m_value_tree, "fil" + m_filter_number + "_formant_transition",
       m_formant_transition));
-  m_ring_mod_amount_attach.reset(new SliderAttachment(
+  m_ring_mod_amount_attach.reset(new OdinKnobAttachment(
       m_value_tree, "fil" + m_filter_number + "_ring_mod_amount",
       m_ring_mod_amount));
-  m_sem_transition_attach.reset(new SliderAttachment(
+  m_sem_transition_attach.reset(new OdinKnobAttachment(
       m_value_tree, "fil" + m_filter_number + "_sem_transition",
       m_sem_transition));
   m_comb_polarity_attach.reset(new ButtonAttachment(

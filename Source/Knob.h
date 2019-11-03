@@ -11,6 +11,7 @@
 
 #include "GlobalIncludes.h"
 #include "InputField.h"
+#include "OdinMidiLearnBase.h"
 
 #define N_KNOB_FRAMES 256
 
@@ -94,7 +95,7 @@ public:
   int getSliderPopupPlacement(Slider &slider) { return 2; }
 };
 
-class Knob : public juce::Slider {
+class Knob : public juce::Slider , public OdinMidiLearnBase{
 public:
   Knob() : m_label("henlo", "texttt") {
     setLookAndFeel(&m_knob_feels);
@@ -103,7 +104,6 @@ public:
     setPopupDisplayEnabled(true, false, nullptr);
     setNumDecimalPlacesToDisplay(3);
     setVelocityModeParameters(1.0, 1, 0.0, true, ModifierKeys::shiftModifier);
-    // RsetDoubleClicketurnValue(true, 0, ModifierKeys::ctrlModifier);
 
     setTooltip("henlo");
   }
@@ -223,7 +223,7 @@ public:
     repaint();
   }
 
-  void setMidiControlActive() {
+  void setMidiControlActive() override {
     m_midi_learn = false;
     m_midi_control = true;
 	  const MessageManagerLock mmLock;
@@ -255,6 +255,7 @@ public:
   }
 
 private:
+
   bool m_midi_learn = false;
   bool m_midi_control = false;
 
