@@ -7,3 +7,6 @@
 # 1.9.5
 - show only .odin files in save and load window
 - automatically append .odin on file save
+# 1.9.6
+- complete rewrite of the midi learn functionality
+- thereby crashes when midi learn is active and GUI is not
