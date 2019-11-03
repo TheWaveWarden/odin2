@@ -93,6 +93,14 @@ public:
 			std::multimap<int, RangedAudioParameter *>::iterator erase_iter = iter++;
 			if (erase_iter->second == m_value_tree.getParameter(p_parameter_ID)) {
 				m_midi_control_param_map.erase(erase_iter);
+
+				//remove the control from the list in valuetree
+				if (m_value_tree.state.getChildWithName("midi_learn").hasProperty(p_parameter_ID)) {
+					m_value_tree.state.getChildWithName("midi_learn").removeProperty(p_parameter_ID, nullptr);
+				}
+
+				DBG(m_value_tree.state.toXmlString());
+
 #ifndef ODIN_DEBUG
 				return;
 #endif
@@ -222,6 +230,7 @@ private:
 	ValueTree m_value_tree_misc;
 	ValueTree m_value_tree_mod;
 	ValueTree m_value_tree_osc;
+	ValueTree m_value_tree_midi_learn;
 
 	// these listens to non automatable vars
 	OdinTreeListenerNonParam m_non_param_listener_fx;

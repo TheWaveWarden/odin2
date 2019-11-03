@@ -304,4 +304,5 @@ m_osc1_type_identifier("osc1_type"), m_osc2_type_identifier("osc2_type"),
 	m_value_tree_lfo("lfo"),
 	m_value_tree_misc("misc"),
 	m_value_tree_mod("mod"),
-	m_value_tree_osc("osc")
+	m_value_tree_osc("osc"),
+    m_value_tree_midi_learn("midi_learn")

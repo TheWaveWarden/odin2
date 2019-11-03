@@ -187,6 +187,7 @@ m_value_tree.state.appendChild(m_value_tree_lfo, nullptr);
 m_value_tree.state.appendChild(m_value_tree_misc, nullptr);
 m_value_tree.state.appendChild(m_value_tree_mod, nullptr);
 m_value_tree.state.appendChild(m_value_tree_osc, nullptr);
+m_value_tree.state.appendChild(m_value_tree_midi_learn, nullptr);
 // attach non param listeners
 m_value_tree_fx.addListener(&m_non_param_listener_fx);
 m_value_tree_lfo.addListener(&m_non_param_listener_lfo);

@@ -527,8 +527,8 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 	    CONVERT_POS_X, CONVERT_POS_Y, chipdraw_convert_1.getWidth(), chipdraw_convert_1.getHeight());
 	m_chipdraw_convert.setAlwaysOnTop(true);
 	m_chipdraw_convert.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
-
 	m_chipdraw_convert.setToggleState(true, sendNotification);
+	m_chipdraw_convert.disableMidiLearn();
 
 	m_chipdraw_convert.setClickingTogglesState(true);
 	m_chipdraw_convert.setTriggeredOnMouseDown(false);
@@ -568,6 +568,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 	m_wavedraw_convert.setTooltip("Converts the waveform drawn\nin the window. You won't hear\nany changes "
 	                              "before you press\nthis button");
 	addChildComponent(m_wavedraw_convert);
+	m_wavedraw_convert.disableMidiLearn();
 
 	m_specdraw_convert.setImages(&chipdraw_convert_draw2,
 	                             &chipdraw_convert_draw2,
@@ -594,6 +595,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 	m_specdraw_convert.setTooltip("Converts the waveform drawn\nin the window. You won't hear\nany changes "
 	                              "before you press\nthis button");
 	addChildComponent(m_specdraw_convert);
+	m_specdraw_convert.disableMidiLearn();
 
 	juce::Colour chip_color(93, 81, 63);
 

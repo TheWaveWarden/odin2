@@ -401,15 +401,24 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 					m_midi_learn_control->setMidiControlActive();
 					m_midi_learn_parameter_active = false;
 					m_midi_learn_control          = nullptr;
-					m_midi_learn_parameter_ID     = "";
+					//add control to value tree
+					m_value_tree.state.getChildWithName("midi_learn")
+					    .setProperty(
+					        m_midi_learn_parameter_ID,
+					        midi_message.getControllerNumber(),
+					        nullptr);
+
+					DBG(m_value_tree.state.toXmlString());
+
 					DBG("Added MIDI control for parameter " +
-					    m_midi_control_param_map.find(midi_message.getControllerNumber())->second->getName(100) +
+					    m_midi_control_param_map.find(midi_message.getControllerNumber())->second->paramID +
 					    " on controller number " + std::to_string(midi_message.getControllerNumber()));
+					m_midi_learn_parameter_ID = "";
 #ifdef ODIN_DEBUG
 					int counter = 1;
 					DBG("=========");
 					for (auto const &control : m_midi_control_param_map) {
-						DBG(std::to_string(counter++) + ": " + control.second->getName(100).toStdString());
+						DBG(std::to_string(counter++) + ": " + control.second->paramID.toStdString());
 					}
 					DBG("=========");
 #endif
