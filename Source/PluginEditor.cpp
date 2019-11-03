@@ -980,6 +980,8 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 
 
 	forceValueTreeOntoComponentsOnlyMainPanel();
+	m_save_load.resetPatchText();
+	//forceValueTreeOntoComponents(false);
 
 	//Desktop::getInstance().setGlobalScaleFactor(1);
 	setSize(800, 600);

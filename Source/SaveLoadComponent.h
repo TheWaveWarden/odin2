@@ -40,6 +40,10 @@ public:
 
   std::function<void()> forceValueTreeLambda;
 
+  void resetPatchText(){
+    m_patch.setText(m_value_tree.state.getChildWithName("misc")["patch_name"].toString().toStdString());
+  }
+
 private:
 
   OdinAudioProcessor& m_audio_processor;

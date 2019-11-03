@@ -9,7 +9,7 @@
 #ifndef BENCHMARK
 #include "../JuceLibraryCode/JuceHeader.h"
 #else
-#define DBG(text) (void)(text)
+#define DBG(text) 
 #endif
 
 WavetableContainer::WavetableContainer()

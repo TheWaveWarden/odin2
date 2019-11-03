@@ -6,7 +6,7 @@
 #include <functional>
 
 #ifdef BENCHMARK
-#define DBG(text) (void)(text)
+#define DBG(text) 
 #endif
 
 
