@@ -2,6 +2,7 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "OdinMidiLearnBase.h"
+#include "GlobalIncludes.h"
 
 class OdinAudioProcessor;
 
