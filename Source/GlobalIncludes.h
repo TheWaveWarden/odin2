@@ -106,6 +106,13 @@
 #define SETAUDIOFULLRANGE(name, value) m_value_tree.getParameter(name)->setValueNotifyingHost(m_value_tree.getParameter(name)->convertTo0to1((float)value))
 #define RETRIGGERAUDIO(name) SETAUDIOFULLRANGE(name, GETAUDIO(name))
 
+#ifdef ODIN_MAC
+#define INTERPOLATION_QUALITY Graphics::ResamplingQuality::lowResamplingQuality
+#define MAC_INTERPOLATION_QUALITY(graphics) graphics.setImageResamplingQuality(INTERPOLATION_QUALITY);
+#else
+#define MAC_INTERPOLATION_QUALITY(graphics) 
+#endif
+
 #define DBGAUDIO(string) if(sample == 0){DBG(string);}
 
 #define SETSKEWREPLACEMENT(component, mid_value)                                                                       \

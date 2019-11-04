@@ -185,6 +185,7 @@ FXComponent::FXComponent(AudioProcessorValueTreeState &vts,
 FXComponent::~FXComponent() {}
 
 void FXComponent::paint(Graphics &g) {
+    MAC_INTERPOLATION_QUALITY(g)
   if (m_sync_enabled) {
     g.drawImageAt(m_background_sync, 0, 0);
   } else {

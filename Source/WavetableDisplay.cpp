@@ -20,6 +20,7 @@ WavetableDisplay::WavetableDisplay() {
 WavetableDisplay::~WavetableDisplay() {}
 
 void WavetableDisplay::paint(Graphics &g) {
+    MAC_INTERPOLATION_QUALITY(g)
 
   g.fillAll(getLookAndFeel().findColour(
       ResizableWindow::backgroundColourId)); // clear the background

@@ -23,12 +23,8 @@ GlasDisplay::~GlasDisplay() {
 }
 
 void GlasDisplay::paint(Graphics &g) {
-  /* This demo code just fills the component's background and
-     draws some placeholder text to get you started.
+  MAC_INTERPOLATION_QUALITY(g)
 
-     You should replace everything in this method with your own
-     drawing code..
-  */
   g.setColour(m_color);
   juce::Point<int> top_left = getLocalBounds().getTopLeft();
   top_left.addXY(m_inlay, m_inlay);

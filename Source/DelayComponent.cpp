@@ -183,6 +183,7 @@ DelayComponent::~DelayComponent() {
 }
 
 void DelayComponent::paint(Graphics &g) {
+    MAC_INTERPOLATION_QUALITY(g)
 	if (m_sync_on) {
 		m_background = ImageCache::getFromMemory(BinaryData::delaysync_png, BinaryData::delaysync_pngSize);
 	} else {
