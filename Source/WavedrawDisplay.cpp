@@ -96,7 +96,6 @@ void WavedrawDisplay::mouseInteraction() {
 
     if (range_x > 0) {
       for (int i = min_x; i <= max_x; ++i) {
-        // m_draw_values[i] = float_y;
         m_draw_values[i] =
             min_y + (range_y) * (float)(i - min_x) / (float)range_x;
       }

@@ -36,6 +36,8 @@ public:
 
   void mouseDrag(const MouseEvent &event) override;
   void mouseDown(const MouseEvent &event) override;
+  void mouseUp(const MouseEvent &event) override;
+
   void mouseInteraction();
 
   std::function<void()> onDraw= []() {};
@@ -51,6 +53,10 @@ public:
   }
   
 private:
+  bool m_mouse_was_down = false;
+  int m_last_x_value;
+  float m_last_y_value;
+
   int m_inlay = INLAY_DEFAULT_CHIPDRAW;
   juce::Image m_glaspanel;
   juce::Colour m_color = juce::Colours::black;
