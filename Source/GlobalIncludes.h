@@ -29,7 +29,7 @@
 // shows the spectrum and wave display for wavetable osc 1
 //#define WTGEN
 
-#define ODIN_VERSION_STRING "Odin 1.9.6"
+#define ODIN_VERSION_STRING "Odin 1.9.7"
 
 #define MENU_BACKGROUND_COLOR Colour(35, 35, 35)
 #define MENU_FONT_COLOR Colours::lightgrey
@@ -105,6 +105,18 @@
 #define SETAUDIO0TO1(name, value) m_value_tree.getParameter(name)->setValueNotifyingHost(((float)value))
 #define SETAUDIOFULLRANGE(name, value) m_value_tree.getParameter(name)->setValueNotifyingHost(m_value_tree.getParameter(name)->convertTo0to1((float)value))
 #define RETRIGGERAUDIO(name) SETAUDIOFULLRANGE(name, GETAUDIO(name))
+
+#define INTERPOLATION_QUALITY_LOW Graphics::ResamplingQuality::lowResamplingQuality
+#define INTERPOLATION_QUALITY_HIGH Graphics::ResamplingQuality::highResamplingQuality
+
+//set interpolation value to 'none' for integer scaling, else to high
+#define SET_INTERPOLATION_QUALITY(graphics) \
+float desktop_scale = Desktop::getInstance().Desktop::getInstance().getDisplays().getMainDisplay().scale;\
+if((fabs(desktop_scale - 1.f) < 1e-4) || (fabs(desktop_scale - 2.f) < 1e-4)){\
+graphics.setImageResamplingQuality(INTERPOLATION_QUALITY_LOW);\
+} else {\
+graphics.setImageResamplingQuality(INTERPOLATION_QUALITY_HIGH);\
+}
 
 #define DBGAUDIO(string) if(sample == 0){DBG(string);}
 

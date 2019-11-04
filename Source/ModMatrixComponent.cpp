@@ -1083,6 +1083,8 @@ ModMatrixComponent::~ModMatrixComponent() {
 }
 
 void ModMatrixComponent::paint(Graphics &g) {
+    SET_INTERPOLATION_QUALITY(g)
+
   g.setColour(m_color);
   auto background = getLocalBounds();
   background.removeFromRight(19);

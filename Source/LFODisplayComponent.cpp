@@ -21,6 +21,8 @@ LFODisplayComponent::LFODisplayComponent() {
 LFODisplayComponent::~LFODisplayComponent() {}
 
 void LFODisplayComponent::paint(Graphics &g) {
+    SET_INTERPOLATION_QUALITY(g)
+
   g.setColour(STANDARD_DISPLAY_COLOR);
   juce::Point<int> top_left = getLocalBounds().getTopLeft();
   top_left.addXY(m_inlay+1, m_inlay);

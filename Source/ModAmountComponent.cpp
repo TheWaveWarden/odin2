@@ -10,6 +10,7 @@
 
 #include "ModAmountComponent.h"
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "GlobalIncludes.h"
 #include <iomanip> // setprecision
 #include <sstream> // stringstream
 
@@ -24,12 +25,7 @@ ModAmountComponent::~ModAmountComponent() {
 }
 
 void ModAmountComponent::paint(Graphics &g) {
-	/* This demo code just fills the component's background and
-     draws some placeholder text to get you started.
-
-     You should replace everything in this method with your own
-     drawing code..
-  */
+    SET_INTERPOLATION_QUALITY(g)
 	g.setColour(m_color);
 	juce::Point<int> top_left = getLocalBounds().getTopLeft();
 	top_left.addXY(m_inlay, m_inlay);
