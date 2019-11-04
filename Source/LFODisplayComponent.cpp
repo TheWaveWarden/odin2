@@ -21,7 +21,7 @@ LFODisplayComponent::LFODisplayComponent() {
 LFODisplayComponent::~LFODisplayComponent() {}
 
 void LFODisplayComponent::paint(Graphics &g) {
-    MAC_INTERPOLATION_QUALITY(g)
+    SET_INTERPOLATION_QUALITY(g)
 
   g.setColour(STANDARD_DISPLAY_COLOR);
   juce::Point<int> top_left = getLocalBounds().getTopLeft();

@@ -1176,7 +1176,7 @@ void OscComponent::resetVectorWaves() {
 }
 
 void OscComponent::paint(Graphics &g) {
-    MAC_INTERPOLATION_QUALITY(g)
+    SET_INTERPOLATION_QUALITY(g)
 	g.drawImageAt(m_background, 0, 0);
 }
 

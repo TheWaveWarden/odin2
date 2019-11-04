@@ -23,7 +23,7 @@ SpectrumDisplay::~SpectrumDisplay() {}
 float floatabs(float p_input) { return p_input > 0 ? p_input : -p_input; }
 
 void SpectrumDisplay::paint(Graphics &g) {
-    MAC_INTERPOLATION_QUALITY(g)
+    SET_INTERPOLATION_QUALITY(g)
 
 #ifdef WTGEN
   g.fillAll(getLookAndFeel().findColour(

@@ -24,7 +24,7 @@ SpecdrawDisplay::SpecdrawDisplay() {
 SpecdrawDisplay::~SpecdrawDisplay() {}
 
 void SpecdrawDisplay::paint(Graphics &g) {
-    MAC_INTERPOLATION_QUALITY(g)
+    SET_INTERPOLATION_QUALITY(g)
   g.setColour(m_color);
   juce::Point<int> top_left = getLocalBounds().getTopLeft();
   top_left.addXY(m_inlay + 1, m_inlay);

@@ -20,7 +20,7 @@ XYPadComponent::~XYPadComponent() {
 }
 
 void XYPadComponent::paint(Graphics &g) {
-    MAC_INTERPOLATION_QUALITY(g)
+    SET_INTERPOLATION_QUALITY(g)
 
 	g.setColour(m_color);
 	juce::Point<int> top_left = getLocalBounds().getTopLeft();

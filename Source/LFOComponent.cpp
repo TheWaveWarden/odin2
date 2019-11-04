@@ -122,7 +122,7 @@ LFOComponent::~LFOComponent() {
 }
 
 void LFOComponent::paint(Graphics &g) {
-    MAC_INTERPOLATION_QUALITY(g)
+    SET_INTERPOLATION_QUALITY(g)
 	if (m_sync_active) {
 		g.drawImageAt(m_freq_overdraw, OVERDRAW_POS_X, OVERDRAW_POS_Y);
 	}

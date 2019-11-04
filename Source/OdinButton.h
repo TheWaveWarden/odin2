@@ -12,7 +12,7 @@ public:
       : DrawableButton(buttonName, buttonStyle) {}
 
   void paint(juce::Graphics &g) override {
-    MAC_INTERPOLATION_QUALITY(g)
+    SET_INTERPOLATION_QUALITY(g)
 
     DrawableButton::paint(g);
     if (m_midi_learn) {

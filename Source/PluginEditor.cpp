@@ -1021,7 +1021,7 @@ OdinAudioProcessorEditor::~OdinAudioProcessorEditor() {
 
 //==============================================================================
 void OdinAudioProcessorEditor::paint(Graphics &g) {
-    MAC_INTERPOLATION_QUALITY(g)
+    SET_INTERPOLATION_QUALITY(g)
 	g.drawImageAt(ImageCache::getFromMemory(BinaryData::odin_backdrop_png, BinaryData::odin_backdrop_pngSize), 0, 0);
 }
 
