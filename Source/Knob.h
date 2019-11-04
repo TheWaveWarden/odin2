@@ -138,6 +138,8 @@ public:
 	}
 
 	void paint(juce::Graphics &g) override {
+		MAC_INTERPOLATION_QUALITY(g)
+
 		std::size_t image_number = static_cast<std::size_t>(
 		    // 0.5 + (getValue() - getMinimum()) / (getMaximum() - getMinimum()) *
 		    valueToProportionOfLength(getValue()) * (m_frames - 1));

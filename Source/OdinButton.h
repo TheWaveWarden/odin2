@@ -11,6 +11,8 @@ public:
       : DrawableButton(buttonName, buttonStyle) {}
 
   void paint(juce::Graphics &g) override {
+    MAC_INTERPOLATION_QUALITY(g)
+
     DrawableButton::paint(g);
     if (m_midi_learn) {
       g.setColour(Colours::red);
