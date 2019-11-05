@@ -387,6 +387,8 @@
             file="Graphics/cropped/diode_cropped.png"/>
       <FILE id="LMxExi" name="diode_knobs_cropped.png" compile="0" resource="1"
             file="Graphics/cropped/diode_knobs_cropped.png"/>
+      <FILE id="t2O7Ls" name="distortion_on.png" compile="0" resource="1"
+            file="Graphics/applied/distortion_on.png"/>
       <FILE id="jQIeVv" name="drawpanel.png" compile="0" resource="1" file="Graphics/cropped/drawpanel.png"/>
       <FILE id="WUM4cj" name="filter1_bypass.png" compile="0" resource="1"
             file="Graphics/applied/filter1_bypass.png"/>

@@ -27,7 +27,7 @@ void GlasDisplay::paint(Graphics &g) {
 
   g.setColour(m_color);
   juce::Point<int> top_left = getLocalBounds().getTopLeft();
-  top_left.addXY(m_inlay, m_inlay);
+  top_left.addXY(m_inlay + 1, m_inlay);
   juce::Point<int> bottom_right = getLocalBounds().getBottomRight();
   bottom_right.addXY(-m_inlay, -m_inlay);
   g.fillRect(juce::Rectangle<int>(top_left, bottom_right)); //pmai

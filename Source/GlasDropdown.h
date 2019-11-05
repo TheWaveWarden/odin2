@@ -13,7 +13,7 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "GlobalIncludes.h"
 #include <functional>
-#define INLAY_DEFAULT 0
+#define INLAY_DEFAULT 1
 //==============================================================================
 /*
  */

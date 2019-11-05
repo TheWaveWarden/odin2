@@ -68,7 +68,6 @@ public:
         juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
     m_phaser_button.setRadioGroupId(1221);
 
-    m_phaser_button.onClick = [&]() { /*setFX(1); */ };
 
     juce::Image flanger_button_1 = ImageCache::getFromMemory(
         BinaryData::buttonflanger_1_png, BinaryData::buttonflanger_1_pngSize);
@@ -105,7 +104,6 @@ public:
         juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
     m_flanger_button.setRadioGroupId(1221);
 
-    m_flanger_button.onClick = [&]() { /*setFX(2);*/ };
 
     juce::Image chorus_button_1 = ImageCache::getFromMemory(
         BinaryData::buttonchorus_1_png, BinaryData::buttonchorus_1_pngSize);
@@ -142,7 +140,6 @@ public:
     m_chorus_button.setColour(
         juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
     m_chorus_button.setRadioGroupId(1221);
-    m_chorus_button.onClick = [&]() { /* setFX(3); */ };
 
     juce::Image delay_button_1 = ImageCache::getFromMemory(
         BinaryData::buttondelay_1_png, BinaryData::buttondelay_1_pngSize);
@@ -179,7 +176,6 @@ public:
         juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
     m_delay_button.setRadioGroupId(1221);
     m_delay_button.setToggleState(true, dontSendNotification);
-    m_delay_button.onClick = [&]() { /*setFX(4);*/ };
 
     m_phaser_button.lambdaMouseDrag = [&](int p_position) {
       changeMapPosition("phaser", p_position);

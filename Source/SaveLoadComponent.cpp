@@ -103,7 +103,7 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts, OdinAudi
 	    ImageCache::getFromMemory(BinaryData::glaspanel_big_png, BinaryData::glaspanel_big_pngSize);
 
 	m_patch.setImage(glas_panel);
-	m_patch.setColor(STANDARD_DISPLAY_COLOR);
+	m_patch.setColor(DARKGREY);
 	m_patch_size_x = glas_panel.getWidth();
 	m_patch_size_y = glas_panel.getHeight();
 	//m_patch.setText("init_patch");
