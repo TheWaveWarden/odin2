@@ -1,3 +1,7 @@
+# 1.9.8
+- all notes of can no longer trigger MIDI learn
+- destortion now has two panels for on/off
+- chipdraw now interpolating correctly on fast draws
 # 1.9.7
 - now dynamically deciding which interpolation function to use depending on desktop scale
 # 1.9.6
