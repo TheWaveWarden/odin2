@@ -326,7 +326,9 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 	// loop over samples
 	for (int sample = 0; sample < buffer.getNumSamples(); ++sample) {
 
-		//===== SMOOTH CONTROLS ======
+		//============================================================
+		//======================= SMOOTHING ==========================
+		//============================================================
 		for (int i = 0; i < 3; ++i) {
 			m_osc_vol_smooth[i] =
 			    m_osc_vol_smooth[i] * GAIN_SMOOTHIN_FACTOR + (1.f - GAIN_SMOOTHIN_FACTOR) * m_osc_vol_control[i];
@@ -349,88 +351,11 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 
 		m_master_smooth = m_master_smooth * GAIN_SMOOTHIN_FACTOR + (1 - GAIN_SMOOTHIN_FACTOR) * (m_master_control);
 
-		//===== MIDI =====
+		//============================================================
+		//========================== MIDI ============================
+		//============================================================
 		while (midi_message_remaining && midi_message_sample <= sample) {
-			// apply midi message
-			if (midi_message.isNoteOn()) {
-				midiNoteOn(midi_message.getNoteNumber(), midi_message.getVelocity());
-			} else if (midi_message.isNoteOff()) {
-
-				midiNoteOff(midi_message.getNoteNumber());
-			} else if (midi_message.isPitchWheel()) {
-				setPitchWheelValue(midi_message.getPitchWheelValue());
-			} else if (midi_message.isController() && midi_message.getControllerNumber() == 1) { // modwheel
-				setModWheelValue(midi_message.getControllerValue());
-			} else if (midi_message.isSustainPedalOn()) {
-				m_voice_manager.setSustainActive(true);
-				DBG("Sustain pedal pressed");
-			} else if (midi_message.isSustainPedalOff()) {
-				DBG("Sustain pedal released");
-				m_voice_manager.setSustainActive(false);
-				for (int voice = 0; voice < VOICES; ++voice) {
-					if (m_voice_manager.isOnKillList(voice)) {
-						m_voice[voice].startRelease();
-					}
-				}
-				m_voice_manager.clearKillList();
-				checkEndGlobalEnvelope();
-			} else if (midi_message.isAftertouch()) {
-				// todo this is untested
-				m_MIDI_aftertouch = (float)midi_message.getAfterTouchValue() / 127.f;
-			} else if (midi_message.isSoftPedalOn()) {
-				m_soft_pedal = 1.f;
-			} else if (midi_message.isSoftPedalOff()) {
-				m_soft_pedal = 0.f;
-			}
-
-			else {
-				if (!midi_message.isMidiClock()) {
-					//DBG("UNHANDELED MIDI MESSAGE: " + midi_message.getDescription());
-					if (midi_message.isController()) {
-						//DBG("Controller with number: " + std::to_string(midi_message.getControllerNumber()));
-					}
-				}
-			}
-
-			if ((midi_message.isController() /*|| midi_message.isPitchWheel()*/)) {
-
-				// midi learn
-				if (m_midi_learn_parameter_active) {
-					m_midi_control_param_map.emplace(midi_message.getControllerNumber(),
-					                                 m_value_tree.getParameter(m_midi_learn_parameter_ID));
-					m_midi_learn_control->setMidiControlActive();
-					m_midi_learn_parameter_active = false;
-					m_midi_learn_control          = nullptr;
-					//add control to value tree
-					m_value_tree.state.getChildWithName("midi_learn")
-					    .setProperty(m_midi_learn_parameter_ID, midi_message.getControllerNumber(), nullptr);
-
-					DBG(m_value_tree.state.toXmlString());
-
-					DBG("Added MIDI control for parameter " +
-					    m_midi_control_param_map.find(midi_message.getControllerNumber())->second->paramID +
-					    " on controller number " + std::to_string(midi_message.getControllerNumber()));
-					m_midi_learn_parameter_ID = "";
-#ifdef ODIN_DEBUG
-					int counter = 1;
-					DBG("=========");
-					for (auto const &control : m_midi_control_param_map) {
-						DBG(std::to_string(counter++) + ": " + control.second->paramID.toStdString());
-					}
-					DBG("=========");
-#endif
-				}
-
-				// do midi control
-				for (auto const &control : m_midi_control_param_map) {
-					if (control.first == midi_message.getControllerNumber()) {
-						const MessageManagerLock mmLock;
-						control.second->setValueNotifyingHost(/*control.second->convertFrom0to1(*/
-						                                      (float)midi_message.getControllerValue() / 127.f); //));
-					}
-				}
-			}
-
+			handleMidiMessage(midi_message);
 			// get next midi message
 			midi_message_remaining = midi_iterator.getNextEvent(midi_message, midi_message_sample);
 		}
@@ -1034,4 +959,86 @@ void OdinAudioProcessor::attachNonParamListeners() {
 	m_value_tree_lfo        = m_value_tree.state.getChildWithName("lfo");
 	m_value_tree_draw       = m_value_tree.state.getChildWithName("draw");
 	m_value_tree_midi_learn = m_value_tree.state.getChildWithName("midi_learn");
+}
+
+void OdinAudioProcessor::handleMidiMessage(const MidiMessage &p_midi_message) {
+	// apply midi message
+	if (p_midi_message.isNoteOn()) {
+		midiNoteOn(p_midi_message.getNoteNumber(), p_midi_message.getVelocity());
+	} else if (p_midi_message.isNoteOff()) {
+
+		midiNoteOff(p_midi_message.getNoteNumber());
+	} else if (p_midi_message.isPitchWheel()) {
+		setPitchWheelValue(p_midi_message.getPitchWheelValue());
+	} else if (p_midi_message.isController() && p_midi_message.getControllerNumber() == 1) { // modwheel
+		setModWheelValue(p_midi_message.getControllerValue());
+	} else if (p_midi_message.isSustainPedalOn()) {
+		m_voice_manager.setSustainActive(true);
+		DBG("Sustain pedal pressed");
+	} else if (p_midi_message.isSustainPedalOff()) {
+		DBG("Sustain pedal released");
+		m_voice_manager.setSustainActive(false);
+		for (int voice = 0; voice < VOICES; ++voice) {
+			if (m_voice_manager.isOnKillList(voice)) {
+				m_voice[voice].startRelease();
+			}
+		}
+		m_voice_manager.clearKillList();
+		checkEndGlobalEnvelope();
+	} else if (p_midi_message.isAftertouch()) {
+		// todo this is untested
+		m_MIDI_aftertouch = (float)p_midi_message.getAfterTouchValue() / 127.f;
+	} else if (p_midi_message.isSoftPedalOn()) {
+		m_soft_pedal = 1.f;
+	} else if (p_midi_message.isSoftPedalOff()) {
+		m_soft_pedal = 0.f;
+	}
+
+	else {
+		if (!p_midi_message.isMidiClock()) {
+			//DBG("UNHANDELED MIDI MESSAGE: " + p_midi_message.getDescription());
+			if (p_midi_message.isController()) {
+				//DBG("Controller with number: " + std::to_string(p_midi_message.getControllerNumber()));
+			}
+		}
+	}
+
+	if ((p_midi_message.isController() && !(p_midi_message.isAllNotesOff()))) {
+
+		// midi learn
+		if (m_midi_learn_parameter_active) {
+			m_midi_control_param_map.emplace(p_midi_message.getControllerNumber(),
+			                                 m_value_tree.getParameter(m_midi_learn_parameter_ID));
+			m_midi_learn_control->setMidiControlActive();
+			m_midi_learn_parameter_active = false;
+			m_midi_learn_control          = nullptr;
+			//add control to value tree
+			m_value_tree.state.getChildWithName("midi_learn")
+			    .setProperty(m_midi_learn_parameter_ID, p_midi_message.getControllerNumber(), nullptr);
+
+			DBG(m_value_tree.state.toXmlString());
+
+			DBG("Added MIDI control for parameter " +
+			    m_midi_control_param_map.find(p_midi_message.getControllerNumber())->second->paramID +
+			    " on controller number " + std::to_string(p_midi_message.getControllerNumber()));
+			m_midi_learn_parameter_ID = "";
+#ifdef ODIN_DEBUG
+			int counter = 1;
+			DBG("=========");
+			for (auto const &control : m_midi_control_param_map) {
+				DBG(std::to_string(counter++) + ": " + control.second->paramID.toStdString());
+			}
+			DBG("=========");
+#endif
+		}
+
+		// do midi control
+		for (auto const &control : m_midi_control_param_map) {
+			if (control.first == p_midi_message.getControllerNumber()) {
+				const MessageManagerLock mmLock;
+				control.second->setValueNotifyingHost(/*control.second->convertFrom0to1(*/
+				                                      (float)p_midi_message.getControllerValue() / 127.f); //));
+			}
+		}
+	}
 }

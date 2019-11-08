@@ -163,8 +163,13 @@ public:
 private:
 	// OdinAudioProcessorEditor* m_editor = nullptr;
 	void setFilter3EnvValue();
-
 	void setBPM(float BPM);
+	void setPitchWheelValue(int p_value);
+	void setModWheelValue(int p_value);
+	void checkEndGlobalEnvelope();
+	void setModulationPointers();
+	void addNonAudioParametersToTree();
+	void handleMidiMessage(const MidiMessage &p_midi_message);
 
 	bool m_midi_learn_parameter_active      = false;
 	OdinMidiLearnBase *m_midi_learn_control = nullptr;
@@ -299,13 +304,6 @@ private:
 	ModSources m_mod_sources;
 	ModDestinations m_mod_destinations;
 
-	void setPitchWheelValue(int p_value);
-	void setModWheelValue(int p_value);
-	void checkEndGlobalEnvelope();
-
-	void setModulationPointers();
-
-	void addNonAudioParametersToTree();
 
 	bool m_render_LFO[4]  = {0};
 	bool m_render_ADSR[2] = {0}; // 0 = mod, 1 = global
