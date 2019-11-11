@@ -40,16 +40,16 @@ void MultiOscillator::update() {
   detune_modded = detune_modded < 0 ? 0 : detune_modded;
 
   m_oscillator_freq_multi[0] =
-      m_osc_freq_modded * cheapPitchShiftMultiplier(-1.f * detune_modded) +
+      m_osc_freq_modded * cheapPitchShiftMultiplier(0.97f * detune_modded) +
       m_mod_freq_lin;
   m_oscillator_freq_multi[1] =
-      m_osc_freq_modded * cheapPitchShiftMultiplier(-0.348 * detune_modded) +
+      m_osc_freq_modded * cheapPitchShiftMultiplier(-0.348f * detune_modded) +
       m_mod_freq_lin;
   m_oscillator_freq_multi[2] =
-      m_osc_freq_modded * cheapPitchShiftMultiplier(0.238 * detune_modded) +
+      m_osc_freq_modded * cheapPitchShiftMultiplier(0.238f * detune_modded) +
       m_mod_freq_lin;
   m_oscillator_freq_multi[3] =
-      m_osc_freq_modded * cheapPitchShiftMultiplier(0.97f * detune_modded) +
+      m_osc_freq_modded * cheapPitchShiftMultiplier(-1.f * detune_modded) +
       m_mod_freq_lin;
 
   // apply pitch mod to multioscs here...
@@ -63,13 +63,13 @@ void MultiOscillator::update() {
         m_oscillator_freq_multi[osc] / m_samplerate * WAVETABLE_LENGTH;
   }
 
-  // use derived getTableIndex which gets all four
-  getTableIndex();
+  // use derived getTableIndex which gets only table for the highest multiosc
+  int table_index = getTableIndex(m_oscillator_freq_multi[0]);
 
   for (int osc = 0; osc < OSCS_PER_MULTIOSC; ++osc) {
     m_current_table_2D_multi[osc] =
         m_wavetable_pointers_2D[m_wavetable_index]
-                               [m_sub_table_index_multi[osc]];
+                               [table_index];
   }
 }
 
@@ -80,21 +80,29 @@ void MultiOscillator::reset() {
   }
 }
 
-int MultiOscillator::getTableIndex() {
-  bool table_found[OSCS_PER_MULTIOSC] = {false};
-  double seed_freq = 27.5; // A0
-
+int MultiOscillator::getTableIndex(float p_freq) {
+  float seed_freq = 27.5; // A0
   for (int table = 0; table < SUBTABLES_PER_WAVETABLE; table++) {
-    for (int osc = 0; osc < OSCS_PER_MULTIOSC; ++osc) {
-      if (!table_found[osc] && m_oscillator_freq_multi[osc] < seed_freq) {
-        m_sub_table_index_multi[osc] = table;
-        table_found[osc] = true;
-      }
+    if (p_freq < seed_freq) {
+      return table;
     }
-    seed_freq *= 1.1892071150; // minor third up
+    seed_freq *= 1.1892f; // minor third up
   }
-  return 0; // return doesn't matter here
+  return SUBTABLES_PER_WAVETABLE - 1; // never gets here
 }
+//int MultiOscillator::getTableIndex() {
+//  for (int osc = 0; osc < OSCS_PER_MULTIOSC; ++osc) {
+//    float seed_freq = 27.5f; // Key A0
+//    for (int table = 0; table < SUBTABLES_PER_WAVETABLE; table++) {
+//      if (m_oscillator_freq_multi[osc] < seed_freq) {
+//        m_sub_table_index_multi[osc] = table;
+//        break;
+//      }
+//      seed_freq *= 1.18920f; // minor third up
+//    }
+// }
+//  return 0; // return doesn't matter here
+//}
 
 float MultiOscillator::doWavetableMulti() {
   // set up all multiple variables, so we can run through osc loop
@@ -163,13 +171,17 @@ float MultiOscillator::cheapPitchShiftMultiplier(float p_semitones) {
   //ln(2)/12 = 0.057762265f
   p_semitones *= 0.057762265f;
 
-  // use taylor series for e^x, O(n^4)
-  // https://www.wolframalpha.com/input/?i=1+%2B+x+%2B+x%C2%B2%2F2+%2B+x%C2%B3%2F6+%2B+x%E2%81%B4%2F24
+  // use taylor series for e^x, O(n^4):
+  // https://www.wolframalpha.com/input/?i=1+%2B+x+%2B+x%5E2%2F2%2B+x%5E3+%2F+6+%2B+x%5E4+%2F+24
+  // use horners scheme for evaluating  x^4 function efficiently:
+  // https://en.wikipedia.org/wiki/Horner%27s_method
+  return 1.f + p_semitones * (1.f + p_semitones * (0.5f + p_semitones * (0.1666666f + p_semitones * 0.04166666)));
 
-  float pot = p_semitones;
-  float ret = 1 + p_semitones; // O(1)
-  pot *= p_semitones;
-  ret += pot * 0.5f; // O(2)
-  pot *= p_semitones;
-  return ret + pot * 0.16666f + pot * p_semitones * 0.041666667f; // O(3) & O(4)
+
+  //float pot = p_semitones;
+  //float ret = 1 + p_semitones; // O(1)
+  //pot *= p_semitones;
+  //ret += pot * 0.5f; // O(2)
+  //pot *= p_semitones;
+  //return ret + pot * 0.16666f + pot * p_semitones * 0.041666667f; // O(3) & O(4)
 }

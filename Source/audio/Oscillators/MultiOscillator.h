@@ -51,7 +51,7 @@ protected:
 
 	float cheapPitchShiftMultiplier(float p_semitones);
 
-	virtual int getTableIndex() override;
+	int getTableIndex(float p_freq);
 	float doWavetableMulti();
 
 	inline void getTableIndicesAndInterpolation(int& p_left_table, int& p_right_table, float& p_interpolation_value, float p_position_2D){

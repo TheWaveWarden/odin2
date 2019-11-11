@@ -36,21 +36,20 @@ void WavetableOsc1D::update() {
   m_wavetable_inc = WAVETABLE_LENGTH * m_increment;
   m_sub_table_index = getTableIndex();
 
-  // set wavetable pointer
+  // set wavetable pointerd
   m_current_table = m_wavetable_pointers[m_wavetable_index][m_sub_table_index];
 }
 
 int WavetableOsc1D::getTableIndex() {
 
-  double seed_freq = 27.5; // A0
+  float seed_freq = 27.5; // A0
   float abs_freq = fabs(m_osc_freq_modded);
   for (int table = 0; table < SUBTABLES_PER_WAVETABLE; table++) {
     if (abs_freq < seed_freq) {
       return table;
     }
-    seed_freq *= 1.1892071150; // minor third up
+    seed_freq *= 1.189207f; // minor third up
   }
-
   return SUBTABLES_PER_WAVETABLE - 1; // never gets here
 }
 
