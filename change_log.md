@@ -1,3 +1,5 @@
+# 1.9.9
+- major performance upgrade for multiosc
 # 1.9.8
 - all notes of can no longer trigger MIDI learn
 - destortion now has two panels for on/off
