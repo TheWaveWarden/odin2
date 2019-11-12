@@ -22,6 +22,22 @@ public:
   virtual void reset() override;
   virtual void setResControl(double p_res) override;
 
+  // //todo remove
+  // float m_max_tan_input = -9000;
+  // float m_min_tan_input = 9000;
+  // inline float fastTan(float p_input){
+  //   if(p_input > m_max_tan_input){
+  //     m_max_tan_input = p_input;
+  //     DBG("tan_input: (" + std::to_string(m_min_tan_input) + ", " + std::to_string(m_max_tan_input) + ")");
+  //   }
+  //   if(p_input < m_min_tan_input){
+  //     m_min_tan_input = p_input;
+  //     DBG("tan_input: (" + std::to_string(m_min_tan_input) + ", " + std::to_string(m_max_tan_input) + ")");
+  //   }
+  //   return tan(p_input);
+  // }
+
+
   inline virtual void update() {
 
     m_k_modded = m_k + 4 * (*m_res_mod);
@@ -34,7 +50,10 @@ public:
     // prewarp for BZT
     double wd = 2 * M_PI * m_freq_modded;
     double T = 1 / m_samplerate;
-    double wa = (2 / T) * tan(wd * T / 2);
+
+    //note: measured input to tan function, it seemed limited to (0.005699, 1.282283). 
+    //input for fasttan shall be limited to (-pi/2, pi/2) according to documentation
+    double wa = (2 / T) * juce::dsp::FastMathApproximations::tan(wd * T / 2);
     double g = wa * T / 2;
 
     // G - the feedforward coeff in the VA One Pole
