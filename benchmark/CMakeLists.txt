@@ -1,5 +1,8 @@
 add_definitions(-DBENCHMARK)
 
+add_executable(mathapprox
+    mathapprox.cpp)
+
 add_executable (odin_benchmark 
     odin_benchmark.cpp
     ../Source/audio/Oscillators/AnalogOscillator.cpp
