@@ -35,7 +35,7 @@ public:
   }
 
   void recalculateFilterCoefficients() {
-    m_a1 = -2 * m_radius * cos(2 * M_PI * m_freq / m_samplerate);
+    m_a1 = -2 * m_radius * juce::dsp::FastMathApproximations::cos(2 * M_PI * m_freq / m_samplerate);
     m_a2 = m_radius * m_radius;
   }
 

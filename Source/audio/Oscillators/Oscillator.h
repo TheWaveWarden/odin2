@@ -51,9 +51,9 @@ public:
 	float pitchShiftMultiplier(float p_semitones) {
 #ifndef BENCHMARK
 		//note: fastexp was tested and showed a deviation of 0.75 cents in this range
-		//if (p_semitones < 48.f && p_semitones > 48.f) {
-		//	return juce::dsp::FastMathApproximations::exp(0.05776226504 * p_semitones);
-		//}
+		if (p_semitones < 48.f && p_semitones > -48.f) {
+			return juce::dsp::FastMathApproximations::exp(0.05776226504 * p_semitones);
+		}
 #endif
 		//0.05776226504 = ln(2)/12
 		//apparently pow(a,b) is calculated as exp(ln(a)*b), hence this is faster

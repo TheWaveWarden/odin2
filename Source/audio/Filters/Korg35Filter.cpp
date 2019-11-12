@@ -30,7 +30,7 @@ void Korg35Filter::update() {
   // BZT
   double wd = 2 * 3.141592653 * m_freq_modded;
   double t = 1.0 / m_samplerate;
-  double wa = (2.0 / t) * tan(wd * t / 2.0);
+  double wa = (2.0 / t) * juce::dsp::FastMathApproximations::tan(wd * t / 2.0);
   double g = wa * t / 2.0;
 
   double G = g / (1.0 + g);

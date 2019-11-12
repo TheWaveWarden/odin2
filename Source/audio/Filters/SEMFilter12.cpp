@@ -25,7 +25,7 @@ void SEMFilter12::update() {
 
   double wd = 2 * M_PI * m_freq_modded;
   double T = 1.0 / m_samplerate;
-  double wa = (2 / T) * tan(wd * T / 2);
+  double wa = (2 / T) * juce::dsp::FastMathApproximations::tan(wd * T / 2);
   double g = wa * T / 2;
 
   m_resonance_modded = m_resonance + (*m_res_mod) * 24.5;
