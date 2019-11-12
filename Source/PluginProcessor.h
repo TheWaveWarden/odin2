@@ -34,6 +34,8 @@
 #include "audio/Filters/SEMFilter24.h"
 #include "audio/Oscillators/WavetableContainer.h"
 
+#define ODIN_PROFILING
+
 class OdinAudioProcessorEditor;
 
 //==============================================================================
@@ -161,6 +163,10 @@ public:
 	void retriggerAllListeners();
 
 private:
+#ifdef ODIN_PROFILING
+#define PROFILING_SAMPLES 44100
+	int m_profiling_counter = 0;
+#endif
 	// OdinAudioProcessorEditor* m_editor = nullptr;
 	void setFilter3EnvValue();
 	void setBPM(float BPM);

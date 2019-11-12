@@ -21,13 +21,12 @@ public:
 	Filter(void);
 	~Filter(void);
 
-	// ! bottleneck
-	float pitchShiftMultiplier(float p_semitones) {
+	inline float pitchShiftMultiplier(float p_semitones) {
 		//0.05776226504 = ln(2)/12
 		//apparently pow(a,b) is calculated as exp(ln(a)*b), hence this is faster
-		return std::exp(0.05776226504 * p_semitones);
+		return juce::dsp::FastMathApproximations::exp(0.057762f * p_semitones);
+		//return std::exp(0.05776226504 * p_semitones);
 	}
-	// ! bottleneck
 	float fasttanh(float p_input, float p_tanh_factor) {
 // idea2: use curveable x^3
 // tanh(3x)

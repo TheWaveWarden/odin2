@@ -302,6 +302,31 @@ bool OdinAudioProcessor::isBusesLayoutSupported(const BusesLayout &layouts) cons
 
 void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &midiMessages) {
 
+#ifdef ODIN_PROFILING
+	if(m_profiling_counter == 0){
+		//load patch
+		File file_to_read("E:\\odinvst\\benchmark_patch.odin");
+		FileInputStream file_stream(file_to_read);
+
+		//read tree from file
+		m_value_tree.replaceState(ValueTree::readFromStream(file_stream));
+
+		//reattach the non_param listeners
+		attachNonParamListeners();
+
+		//retrigger all listeners to distribute values to DSP engine
+	    retriggerAllListeners();
+
+		//start all voices
+		for(int voice = 0; voice < 12; ++voice){
+			midiNoteOn(30 + 8 * voice, 100);
+		}
+
+
+		DBG("start profiling");
+	}
+#endif
+
 	// get BPM info from host
 	if (!m_is_standalone_plugin) {
 		if (AudioPlayHead *playhead = getPlayHead()) {
@@ -325,6 +350,15 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 
 	// loop over samples
 	for (int sample = 0; sample < buffer.getNumSamples(); ++sample) {
+
+#ifdef ODIN_PROFILING
+	if(++m_profiling_counter == PROFILING_SAMPLES){
+		DBG("end profiling");
+		for(int voice = 0; voice < 12; ++voice){
+			midiNoteOff(30 + 8 * voice);
+		}
+	}
+#endif
 
 		//============================================================
 		//======================= SMOOTHING ==========================

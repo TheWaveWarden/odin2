@@ -22,22 +22,6 @@ public:
   virtual void reset() override;
   virtual void setResControl(double p_res) override;
 
-  // //todo remove
-  // float m_max_tan_input = -9000;
-  // float m_min_tan_input = 9000;
-  // inline float fastTan(float p_input){
-  //   if(p_input > m_max_tan_input){
-  //     m_max_tan_input = p_input;
-  //     DBG("tan_input: (" + std::to_string(m_min_tan_input) + ", " + std::to_string(m_max_tan_input) + ")");
-  //   }
-  //   if(p_input < m_min_tan_input){
-  //     m_min_tan_input = p_input;
-  //     DBG("tan_input: (" + std::to_string(m_min_tan_input) + ", " + std::to_string(m_max_tan_input) + ")");
-  //   }
-  //   return tan(p_input);
-  // }
-
-
   inline virtual void update() {
 
     m_k_modded = m_k + 4 * (*m_res_mod);
