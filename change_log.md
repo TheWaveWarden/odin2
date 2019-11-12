@@ -1,3 +1,5 @@
+# 1.9.10
+- major performance upgrade for ALL filters
 # 1.9.9
 - major performance upgrade for multiosc
 # 1.9.8
