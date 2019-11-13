@@ -1086,12 +1086,6 @@ void ModMatrix::checkWhichSourceToRender() {
 		render_ADSR[1] = m_row[row].usesADSR1() ? true : render_ADSR[1];
 	}
 
-	// DBG("RENDERING MODSOURCES:");
-	// DBG("LFO: " + std::to_string((int)render_LFO[0]) + " "
-	// +std::to_string((int)render_LFO[1]) + " "
-	// +std::to_string((int)render_LFO[2]) + " " +
-	// std::to_string((int)render_LFO[3]) + " ADSR: " +
-	// std::to_string((int)render_ADSR[0]) + " " +
-	// std::to_string((int)render_ADSR[1]));
+
 	setSourcesToRender(render_LFO[0], render_LFO[1], render_LFO[2], render_LFO[3], render_ADSR[0], render_ADSR[1]);
 }

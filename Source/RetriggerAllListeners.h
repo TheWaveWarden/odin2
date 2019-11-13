@@ -170,6 +170,7 @@ void OdinAudioProcessor::retriggerAllListeners() {
   RETRIGGERAUDIO("osc1_carrier_ratio");
   RETRIGGERAUDIO("osc1_chipnoise");
   RETRIGGERAUDIO("osc1_detune");
+  RETRIGGERAUDIO("osc1_pos_env");
   RETRIGGERAUDIO("osc1_drift");
   RETRIGGERAUDIO("osc1_exp_fm");
   RETRIGGERAUDIO("osc1_fine");
@@ -196,6 +197,7 @@ void OdinAudioProcessor::retriggerAllListeners() {
   RETRIGGERAUDIO("osc2_carrier_ratio");
   RETRIGGERAUDIO("osc2_chipnoise");
   RETRIGGERAUDIO("osc2_detune");
+  RETRIGGERAUDIO("osc2_pos_env");
   RETRIGGERAUDIO("osc2_drift");
   RETRIGGERAUDIO("osc2_exp_fm");
   RETRIGGERAUDIO("osc2_fine");
@@ -223,6 +225,7 @@ void OdinAudioProcessor::retriggerAllListeners() {
   RETRIGGERAUDIO("osc3_carrier_ratio");
   RETRIGGERAUDIO("osc3_chipnoise");
   RETRIGGERAUDIO("osc3_detune");
+  RETRIGGERAUDIO("osc3_pos_env");
   RETRIGGERAUDIO("osc3_drift");
   RETRIGGERAUDIO("osc3_exp_fm");
   RETRIGGERAUDIO("osc3_fine");

@@ -18,6 +18,8 @@
       std::make_unique<AudioParameterFloat>(
           "osc1_detune", "Osc1 Detune", NormalisableRange<float>(0.f, 1.f), 0),
       std::make_unique<AudioParameterFloat>(
+          "osc1_pos_env", "Osc1 Position Env", NormalisableRange<float>(-1.f, 1.f), 0),
+      std::make_unique<AudioParameterFloat>(
           "osc1_multi_position", "Osc1 Multi Position",
           NormalisableRange<float>(0.f, 1.f), 0),
       std::make_unique<AudioParameterFloat>(
@@ -80,6 +82,8 @@
                                             0),
       std::make_unique<AudioParameterFloat>(
           "osc2_detune", "Osc2 Detune", NormalisableRange<float>(0.f, 1.f), 0),
+          std::make_unique<AudioParameterFloat>(
+          "osc2_pos_env", "Osc2 Position Env", NormalisableRange<float>(-1.f, 1.f), 0),
       std::make_unique<AudioParameterFloat>(
           "osc2_multi_position", "Osc2 Multi Position",
           NormalisableRange<float>(0.f, 1.f), 0),
@@ -143,6 +147,8 @@
                                             0),
       std::make_unique<AudioParameterFloat>(
           "osc3_detune", "Osc3 Detune", NormalisableRange<float>(0.f, 1.f), 0),
+      std::make_unique<AudioParameterFloat>(
+          "osc3_pos_env", "Osc3 Position Env", NormalisableRange<float>(-1.f, 1.f), 0),
       std::make_unique<AudioParameterFloat>(
           "osc3_multi_position", "Osc3 Multi Position",
           NormalisableRange<float>(0.f, 1.f), 0),
@@ -368,10 +374,10 @@
           NormalisableRange<float>(0.001f, 10.f, 0.f, 0.300912), 0.01f),
       std::make_unique<AudioParameterFloat>(
           "env3_decay", "ModEnv Decay",
-          NormalisableRange<float>(0.001f, 10.f, 0.f, 0.300912), 1.f),
+          NormalisableRange<float>(0.001f, 10.f, 0.f, 0.300912), 0.8f),
       std::make_unique<AudioParameterFloat>(
           "env3_sustain", "ModEnv Sustain",
-          NormalisableRange<float>(0.f, 1.f, 0.f, 0.575717), 0.5f),
+          NormalisableRange<float>(0.f, 1.f, 0.f, 0.575717), 0.f),
       std::make_unique<AudioParameterFloat>(
           "env3_release", "ModEnv Release",
           NormalisableRange<float>(0.001f, 10.f, 0.f, 0.300912), 0.01f),

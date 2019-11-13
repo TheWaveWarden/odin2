@@ -92,6 +92,8 @@
 
 #define POSITION_POS_X 24
 #define POSITION_POS_Y 63
+#define POS_ENV_POS_X 24
+#define POS_ENV_POS_Y 20
 #define DETUNE_POS_X 100
 #define DETUNE_POS_Y 50
 #define SPREAD_POS_X 33
@@ -233,6 +235,7 @@ protected:
   Knob m_position_multi;
   Knob m_spread;
   Knob m_detune;
+  Knob m_pos_env;
 
   OdinButton m_arp;
   OdinButton m_step_button;
@@ -296,6 +299,7 @@ protected:
   std::unique_ptr<OdinKnobAttachment> m_hp_attach;
   std::unique_ptr<OdinKnobAttachment> m_x_attach;
   std::unique_ptr<OdinKnobAttachment> m_y_attach;
+  std::unique_ptr<OdinKnobAttachment> m_pos_env_attach;
 
   std::unique_ptr<OdinButtonAttachment> m_reset_attach;
   std::unique_ptr<OdinButtonAttachment> m_sync_attach;
@@ -320,6 +324,7 @@ protected:
   Identifier m_vec_b_identifier;
   Identifier m_vec_c_identifier;
   Identifier m_vec_d_identifier;
+  Identifier m_pos_env_identifier;
 
   OdinMenuFeels m_menu_feels;
 

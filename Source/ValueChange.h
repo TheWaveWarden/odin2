@@ -1,4 +1,4 @@
-//#define DEBUG_VARIABLES
+#define DEBUG_VARIABLES
 
 float valueToDenomintaor(int p_value) {
 	switch (p_value) {
@@ -203,7 +203,19 @@ void OdinAudioProcessor::treeValueChangedOscMulti(const String &p_ID, float p_ne
 		for (int voice = 0; voice < VOICES; ++voice) {
 			m_voice[voice].multi_osc[2].setWavetableMultiSpread(p_new_value);
 		}
-	}
+	} else if (id == m_osc1_pos_env_identifier) {
+		for (int voice = 0; voice < VOICES; ++voice) {
+			m_voice[voice].wavetable_osc[0].setPosEnvAmount(p_new_value);
+		}
+	} else if (id == m_osc2_pos_env_identifier) {
+		for (int voice = 0; voice < VOICES; ++voice) {
+			m_voice[voice].wavetable_osc[1].setPosEnvAmount(p_new_value);
+		}
+	} else if (id == m_osc3_pos_env_identifier) {
+		for (int voice = 0; voice < VOICES; ++voice) {
+			m_voice[voice].wavetable_osc[2].setPosEnvAmount(p_new_value);
+		}
+	} 
 }
 
 void OdinAudioProcessor::treeValueChangedOscXY(const String &p_ID, float p_new_value) {
@@ -1420,16 +1432,22 @@ void OdinAudioProcessor::treeValueChangedNonParamOsc(ValueTree &tree, const Iden
 				break;
 			}
 		}
+		//check which sources to render for wavetable env mod:
+		m_mod_matrix.checkWhichSourceToRender();
 	} else if (id == m_osc2_type_identifier) {
 		for (int voice = 0; voice < VOICES; ++voice) {
 			m_voice[voice].killGlide(1);
 			m_osc_type[1] = p_new_value;
 		}
+		//check which sources to render for wavetable env mod:
+		m_mod_matrix.checkWhichSourceToRender();
 	} else if (id == m_osc3_type_identifier) {
 		for (int voice = 0; voice < VOICES; ++voice) {
 			m_voice[voice].killGlide(2);
 			m_osc_type[2] = p_new_value;
 		}
+		//check which sources to render for wavetable env mod:
+		m_mod_matrix.checkWhichSourceToRender();
 	} else if (id == m_osc1_wavetable_identifier) {
 		for (int voice = 0; voice < VOICES; ++voice) {
 			m_voice[voice].wavetable_osc[0].selectWavetable((int)p_new_value - 1);

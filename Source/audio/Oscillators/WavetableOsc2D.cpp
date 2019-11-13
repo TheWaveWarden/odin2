@@ -1235,7 +1235,8 @@ float WavetableOsc2D::doWavetable2D() {
   int left_table;
   int right_table;
   float interpolation_value;
-  float position_modded = m_position_2D_smooth + (*m_pos_mod);
+
+  float position_modded = m_position_2D_smooth + *m_pos_mod + m_pos_env * m_env_value;
   position_modded = position_modded > 1 ? 1 : position_modded;
   position_modded = position_modded < 0 ? 0 : position_modded;
   getTableIndicesAndInterpolation(left_table, right_table, interpolation_value,

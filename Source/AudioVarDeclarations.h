@@ -16,6 +16,7 @@
     float* m_osc_vol[3];
     float* m_osc_position[3];
     float* m_osc_detune[3];
+    float* m_osc_pos_env[3];
     float* m_osc_multi_position[3];
     float* m_osc_spread[3];
     float* m_osc_pulsewidth[3];
@@ -193,6 +194,9 @@
     Identifier m_osc1_detune_identifier;
     Identifier m_osc2_detune_identifier;
     Identifier m_osc3_detune_identifier;
+    Identifier m_osc1_pos_env_identifier;
+    Identifier m_osc2_pos_env_identifier;
+    Identifier m_osc3_pos_env_identifier;
     Identifier m_osc1_multi_position_identifier;
     Identifier m_osc2_multi_position_identifier;
     Identifier m_osc3_multi_position_identifier;

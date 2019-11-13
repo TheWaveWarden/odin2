@@ -29,6 +29,13 @@ public:
   virtual void loadWavetables() override;
 
   void setPosModPointer(float *p_pointer) { m_pos_mod = p_pointer; }
+  void setPosEnvAmount(float p_pos_env){
+    m_pos_env = p_pos_env;
+  }
+  inline void setEnvValue(float p_env){
+    m_env_value = p_env;
+  }
+
 
 #ifdef WTGEN
   std::function<void(int, int, float)> passVariablesToWTDisplay = [](int, int,
@@ -96,11 +103,15 @@ protected:
 
   float m_position_2D = 0.f;
   float m_position_2D_smooth = 0.f;
-
+  //how much modenv is applied to position
+  float m_pos_env = 0.f;
+  float m_env_value;
   void setWavetablePointer(
       int p_wavetable_index, int p_2D_sub_table,
       const float *p_wavetable_pointers[SUBTABLES_PER_WAVETABLE]);
   float doWavetable2D();
+
+
 
   const float
       *m_wavetable_pointers_2D[NUMBER_OF_WAVETABLES_2D][SUBTABLES_PER_WAVETABLE]

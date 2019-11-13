@@ -38,7 +38,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
     m_carrier_ratio_identifier("osc" + p_osc_number + "_carrier_ratio"),
     m_analog_wave_identifier("osc" + p_osc_number + "_analog_wave"),
     m_vec_a_identifier("osc" + p_osc_number + "_vec_a"), m_vec_b_identifier("osc" + p_osc_number + "_vec_b"),
-    m_vec_c_identifier("osc" + p_osc_number + "_vec_c"), m_vec_d_identifier("osc" + p_osc_number + "_vec_d") {
+    m_vec_c_identifier("osc" + p_osc_number + "_vec_c"), m_vec_d_identifier("osc" + p_osc_number + "_vec_d"), m_pos_env_identifier("osc" + p_osc_number + "_pos_env") {
 
 	m_oct_attach.reset(new OdinKnobAttachment(m_value_tree, "osc" + m_osc_number + "_oct", m_oct));
 	m_semi_attach.reset(new OdinKnobAttachment(m_value_tree, "osc" + m_osc_number + "_semi", m_semi));
@@ -46,6 +46,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 	m_vol_attach.reset(new OdinKnobAttachment(m_value_tree, "osc" + m_osc_number + "_vol", m_vol));
 	m_position_attach.reset(new OdinKnobAttachment(m_value_tree, "osc" + m_osc_number + "_position", m_position));
 	m_detune_attach.reset(new OdinKnobAttachment(m_value_tree, "osc" + m_osc_number + "_detune", m_detune));
+	m_pos_env_attach.reset(new OdinKnobAttachment(m_value_tree, "osc" + m_osc_number + "_pos_env", m_pos_env));
 	m_multi_position_attach.reset(
 	    new OdinKnobAttachment(m_value_tree, "osc" + m_osc_number + "_multi_position", m_position_multi));
 	m_spread_attach.reset(new OdinKnobAttachment(m_value_tree, "osc" + m_osc_number + "_spread", m_spread));
@@ -466,6 +467,16 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 	m_detune.setKnobTooltip("How much the individual\noscillators are detuned\n against each other");
 
 	addChildComponent(m_detune);
+
+	m_pos_env.setStrip(ImageCache::getFromMemory(BinaryData::black_knob_big_png, BinaryData::black_knob_big_pngSize),
+	                  256);
+	m_pos_env.setBounds(POS_ENV_POS_X, POS_ENV_POS_Y, BLACK_KNOB_BIG_SIZE_X, BLACK_KNOB_BIG_SIZE_Y);
+	m_pos_env.setSliderStyle(Slider::RotaryVerticalDrag);
+	m_pos_env.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
+	m_pos_env.setKnobTooltip("Applies modulation from the ModEnvelope to the osc position");
+	addChildComponent(m_pos_env);
+
+
 
 	m_spread.setStrip(ImageCache::getFromMemory(BinaryData::metal_knob_small_png, BinaryData::metal_knob_small_pngSize),
 	                  256);
@@ -1103,6 +1114,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 	m_position_multi.setNumDecimalPlacesToDisplay(3);
 	m_spread.setNumDecimalPlacesToDisplay(3);
 	m_detune.setNumDecimalPlacesToDisplay(3);
+	m_pos_env.setNumDecimalPlacesToDisplay(3);
 	m_speed.setNumDecimalPlacesToDisplay(2);
 	m_fm.setNumDecimalPlacesToDisplay(3);
 	m_lp.setNumDecimalPlacesToDisplay(1);
@@ -1132,6 +1144,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 	SET_CTR_KEY(m_position_multi);
 	SET_CTR_KEY(m_spread);
 	SET_CTR_KEY(m_detune);
+	SET_CTR_KEY(m_pos_env);
 
 	resetVectorWaves();
 
@@ -1338,6 +1351,7 @@ void OscComponent::hideAllComponents() {
 	m_detune.setVisible(false);
 	m_wavetable_waveselector.setVisible(false);
 	m_sync.setVisible(false);
+	m_pos_env.setVisible(false);
 }
 void OscComponent::showVolComponent() {
 	m_vol.setVisible(true);
@@ -1452,6 +1466,7 @@ void OscComponent::showWavetableComponents() {
 	m_position.setVisible(true);
 	m_wavetable_waveselector.setVisible(true);
 	m_sync.setVisible(true);
+	m_pos_env.setVisible(true);
 }
 
 void OscComponent::showMultiComponents() {

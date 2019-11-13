@@ -34,7 +34,7 @@
 #include "audio/Filters/SEMFilter24.h"
 #include "audio/Oscillators/WavetableContainer.h"
 
-#define ODIN_PROFILING
+//#define ODIN_PROFILING
 
 class OdinAudioProcessorEditor;
 

@@ -28,11 +28,10 @@ OdinAudioProcessor::OdinAudioProcessor() :
 #endif
 	DBG("\n\n\n");
 	double seed_freq = 27.5 / 1.09050773267;
-  	for (int table = 0; table < SUBTABLES_PER_WAVETABLE; ++table) {
+	for (int table = 0; table < SUBTABLES_PER_WAVETABLE; ++table) {
 		DBG(1.f / seed_freq);
-    	seed_freq *= 1.189207f; // minor third up
-  	}
-
+		seed_freq *= 1.189207f; // minor third up
+	}
 
 	m_is_standalone_plugin = (wrapperType == wrapperType_Standalone);
 
@@ -211,8 +210,16 @@ OdinAudioProcessor::OdinAudioProcessor() :
 		    m_render_LFO[2] = p_LFO_2;
 		    m_render_LFO[3] = p_LFO_3;
 
-		    m_render_ADSR[0] = p_ADSR_0;
+		    //wavetable oscs need ModEnv as well
+		    m_render_ADSR[0] = p_ADSR_0 || m_osc_type[0] == OSC_TYPE_WAVETABLE || m_osc_type[1] == OSC_TYPE_WAVETABLE ||
+		                       m_osc_type[2] == OSC_TYPE_WAVETABLE;
+		    ;
 		    m_render_ADSR[1] = p_ADSR_1;
+
+		    // DBG("RENDERING MODSOURCES:");
+		    // DBG("LFO: " + std::to_string((int)m_render_LFO[0]) + " " + std::to_string((int)m_render_LFO[1]) + " " +
+		    //     std::to_string((int)m_render_LFO[2]) + " " + std::to_string((int)m_render_LFO[3]) +
+		    //     " ADSR: " + std::to_string((int)m_render_ADSR[0]) + " " + std::to_string((int)m_render_ADSR[1]));
 	    };
 
 	//retriggerAllListeners();
@@ -310,7 +317,7 @@ bool OdinAudioProcessor::isBusesLayoutSupported(const BusesLayout &layouts) cons
 void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &midiMessages) {
 
 #ifdef ODIN_PROFILING
-	if(m_profiling_counter == 0){
+	if (m_profiling_counter == 0) {
 		//load patch
 		File file_to_read("E:\\odinvst\\benchmark_patch.odin");
 		FileInputStream file_stream(file_to_read);
@@ -322,13 +329,12 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 		attachNonParamListeners();
 
 		//retrigger all listeners to distribute values to DSP engine
-	    retriggerAllListeners();
+		retriggerAllListeners();
 
 		//start all voices
-		for(int voice = 0; voice < 12; ++voice){
+		for (int voice = 0; voice < 12; ++voice) {
 			midiNoteOn(30 + 8 * voice, 100);
 		}
-
 
 		DBG("start profiling");
 	}
@@ -359,12 +365,12 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 	for (int sample = 0; sample < buffer.getNumSamples(); ++sample) {
 
 #ifdef ODIN_PROFILING
-	if(++m_profiling_counter == PROFILING_SAMPLES){
-		DBG("end profiling");
-		for(int voice = 0; voice < 12; ++voice){
-			midiNoteOff(30 + 8 * voice);
+		if (++m_profiling_counter == PROFILING_SAMPLES) {
+			DBG("end profiling");
+			for (int voice = 0; voice < 12; ++voice) {
+				midiNoteOff(30 + 8 * voice);
+			}
 		}
-	}
 #endif
 
 		//============================================================
@@ -457,6 +463,8 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 						break;
 					case OSC_TYPE_WAVETABLE:
 						m_voice[voice].wavetable_osc[osc].update();
+						//set mod envelope
+						m_voice[voice].wavetable_osc[osc].setEnvValue(m_adsr[voice][2]);
 						m_osc_output[voice][osc] += m_voice[voice].wavetable_osc[osc].doOscillateWithSync();
 						break;
 					case OSC_TYPE_MULTI:
