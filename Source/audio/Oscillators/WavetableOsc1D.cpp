@@ -9,9 +9,10 @@ WavetableOsc1D::WavetableOsc1D() {}
 
 WavetableOsc1D::~WavetableOsc1D() {}
 
-void WavetableOsc1D::setVoldB(float dB) {
-  // ! bottleneck
-  m_volume_factor = pow(10, dB / 20);
+void WavetableOsc1D::setVoldB(float p_dB) {
+  //m_volume_factor = pow(10, dB / 20);
+  //ln(10) / 20 = 0.11512f
+  m_volume_factor = juce::dsp::FastMathApproximations::exp(0.1151292 * p_dB);
 }
 
 void WavetableOsc1D::reset() {
