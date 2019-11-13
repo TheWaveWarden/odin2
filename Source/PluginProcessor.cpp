@@ -26,6 +26,13 @@ OdinAudioProcessor::OdinAudioProcessor() :
 		}
 	};
 #endif
+	DBG("\n\n\n");
+	double seed_freq = 27.5 / 1.09050773267;
+  	for (int table = 0; table < SUBTABLES_PER_WAVETABLE; ++table) {
+		DBG(1.f / seed_freq);
+    	seed_freq *= 1.189207f; // minor third up
+  	}
+
 
 	m_is_standalone_plugin = (wrapperType == wrapperType_Standalone);
 

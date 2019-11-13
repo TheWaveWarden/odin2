@@ -118,4 +118,13 @@ protected:
 
   int m_nr_of_wavetables =      // + 9 for draw pointers
       NUMBER_OF_WAVETABLES + 9; // can be overwritten in child classes
+
+  //for optimization
+  int m_last_table_index;
+  float m_one_over_last_mid_freq = 0.f;
+  //for each minor third interval, this array holds 1 / f, so we can efficiently calculate if we are still in the minor third interval
+  const float m_table_one_over_mid_freq_values[SUBTABLES_PER_WAVETABLE] = {0.0396548, 0.0333456, 0.0280402, 0.0235789, 0.0198274, 0.0166728, 0.0140201, 0.0117895, 0.00991372, 0.00833641, 0.00701006, 0.00589473, 0.00495686, 0.00416821, 0.00350503, 0.00294737, 0.00247843, 0.0020841, 0.00175252, 0.00147369, 0.00123922, 0.00104205, 0.000876259, 0.000736843, 0.000619609, 0.000521027, 0.00043813, 0.000368422, 0.000309804, 0.000260514, 0.000219065, 0.000184211, 0.000154902};
+
+#define ROOT_OF_MINOR_THIRD 1.09050f
+#define ONE_OVER_ROOT_OF_MINOR_THIRD 0.917004f
 };
