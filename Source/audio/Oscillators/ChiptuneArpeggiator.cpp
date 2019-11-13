@@ -14,10 +14,10 @@ int ChiptuneArpeggiator::doArpeggiator() {
 		return 0;
 	}
 
-	if (*m_freq_mod != 0) {
-		m_inc = m_frequency / m_samplerate * pitchShiftMultiplier(*m_freq_mod * 24);
+	if (*m_freq_mod) {
+		m_inc = m_frequency * m_one_over_samplerate * pitchShiftMultiplier(*m_freq_mod * 24);
 	} else {
-		m_inc = m_frequency / m_samplerate;
+		m_inc = m_frequency * m_one_over_samplerate;
 	}
 
 	// inc & wrap position inside step

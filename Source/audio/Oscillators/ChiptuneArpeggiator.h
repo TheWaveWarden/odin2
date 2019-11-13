@@ -38,8 +38,8 @@ public:
 
     inline void setSampleRate(float p_samplerate)
     {
-
         m_samplerate = p_samplerate;
+        m_one_over_samplerate = 1. / p_samplerate;
     }
 
     int doArpeggiator();
@@ -52,7 +52,8 @@ public:
 protected:
     float *m_freq_mod;
     float m_frequency = 20.f;
-    float m_samplerate = 44100;
+    float m_samplerate;
+    float m_one_over_samplerate;
     float m_inc;
     float m_position_in_step = 0.f;
     int m_current_step = 0;

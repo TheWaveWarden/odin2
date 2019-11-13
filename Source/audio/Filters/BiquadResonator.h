@@ -27,6 +27,7 @@ public:
 
     //DBG("setsamplerate biquadres");
     m_samplerate = p_sr;
+	  m_one_over_samplerate = p_sr;
     recalculateFilterCoefficients();
   }
   void setFrequency(float p_freq) {
@@ -35,7 +36,7 @@ public:
   }
 
   void recalculateFilterCoefficients() {
-    m_a1 = -2 * m_radius * juce::dsp::FastMathApproximations::cos(2 * M_PI * m_freq / m_samplerate);
+    m_a1 = -2 * m_radius * juce::dsp::FastMathApproximations::cos(2 * M_PI * m_freq * m_one_over_samplerate);
     m_a2 = m_radius * m_radius;
   }
 
@@ -45,5 +46,6 @@ protected:
 
   float m_radius = 0.996;
   float m_freq = 2000;
-  float m_samplerate = 48000.f;
+  float m_samplerate;
+  float m_one_over_samplerate;
 };

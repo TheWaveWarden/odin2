@@ -72,7 +72,7 @@ void RingModulator::update() {
     m_osc_freq_modded = -OSC_FO_MAX;
 
   // --- calculate increment (a.k.a. phase a.m_k.a. phaseIncrement, etc...)
-  m_increment = m_osc_freq_modded / m_samplerate;
+  m_increment = m_osc_freq_modded * m_one_over_samplerate;
   m_wavetable_inc = WAVETABLE_LENGTH * m_increment;
   m_sub_table_index = getTableIndex();
 

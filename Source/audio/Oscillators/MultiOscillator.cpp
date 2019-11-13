@@ -60,7 +60,7 @@ void MultiOscillator::update() {
       m_oscillator_freq_multi[osc] = -OSC_FO_MAX;
 
     m_wavetable_inc_multi[osc] =
-        m_oscillator_freq_multi[osc] / m_samplerate * WAVETABLE_LENGTH;
+        m_oscillator_freq_multi[osc] * m_one_over_samplerate * WAVETABLE_LENGTH;
   }
 
   // use derived getTableIndex which gets only table for the highest multiosc

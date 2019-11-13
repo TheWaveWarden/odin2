@@ -64,7 +64,7 @@ public:
   inline double calcDecayFactor(double p_decay) {
     if (p_decay != m_last_decay) {
       m_last_decay_return =
-          pow(MIN_DECAY_RELEASE_VAL, 1. / m_samplerate / p_decay);
+          pow(MIN_DECAY_RELEASE_VAL, 1. / (m_samplerate * p_decay));
       m_last_decay = p_decay;
     }
     return m_last_decay_return;
@@ -73,7 +73,7 @@ public:
   inline double calcReleaseFactor(double p_release) {
     if (p_release != m_last_release) {
       m_last_release_return =
-          pow(MIN_DECAY_RELEASE_VAL, 1. / m_samplerate / p_release);
+          pow(MIN_DECAY_RELEASE_VAL, 1. / (m_samplerate * p_release));
       m_last_release = p_release;
     }
     return m_last_release_return;

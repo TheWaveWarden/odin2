@@ -607,6 +607,7 @@ struct Voice {
       chiptune_osc[osc].setSampleRate(p_samplerate);
       fm_osc[osc].setSampleRate(p_samplerate);
       pm_osc[osc].setSampleRate(p_samplerate);
+      noise_osc[osc].setSampleRate(p_samplerate);
       wavedraw_osc[osc].setSampleRate(p_samplerate);
       specdraw_osc[osc].setSampleRate(p_samplerate);
       chipdraw_osc[osc].setSampleRate(p_samplerate);

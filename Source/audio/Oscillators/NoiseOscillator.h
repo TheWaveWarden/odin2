@@ -17,6 +17,11 @@ public:
 		m_vol_mod = p_pointer;
 	}
 
+	void setSampleRate(float p_samplerate){
+  		m_lowpass.setSampleRate(p_samplerate);
+  		m_highpass.setSampleRate(p_samplerate);
+	}
+
 	void setHPModPointer(float* p_pointer){
 		m_highpass.setFreqModPointer(p_pointer);
 	}

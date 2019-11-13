@@ -38,6 +38,7 @@ public:
 
 		// DBG("setsamplerate baseosc");
 		m_samplerate = p_samplerate;
+		m_one_over_samplerate = 1. / p_samplerate;
 	}
 	virtual void reset();
 
@@ -89,7 +90,7 @@ public:
 			m_osc_freq_modded = -OSC_FO_MAX;
 
 		// --- calculate increment (a.k.a. phase a.m_k.a. phaseIncrement, etc...)
-		m_increment = m_osc_freq_modded / m_samplerate;
+		m_increment = m_osc_freq_modded * m_one_over_samplerate;
 	}
 
 	inline virtual void setGlideTargetFrequency(float p_freq) {
@@ -169,6 +170,7 @@ public:
 
 protected:
 	double m_samplerate;         // fs
+	double m_one_over_samplerate;
 	double m_osc_freq_modded;    // current (actual) frequency of oscillator
 	double m_mod_pitch_bend;     // modulation input -1 to +1 */
 	double m_mod_amp;            // output amplitude modulation for AM 0 to +1 (not dB)*/

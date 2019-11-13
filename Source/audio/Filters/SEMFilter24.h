@@ -40,9 +40,9 @@ class SEMFilter24 : public Filter
 
 		//PRE WARP FOR BZT
 		double wd = 2 * M_PI * m_freq_modded;
-		double T = 1.0 / m_samplerate;
-		double wa = (2 / T) * tan(wd * T / 2);
-		double g = wa * T / 2;
+		//double T = 1.0 / m_samplerate;
+		double wa = (2 * m_samplerate) * tan(wd * m_one_over_samplerate * 0.5);
+		double g = wa * m_one_over_samplerate * 0.5;
 
 		float resonance_modded = m_resonance + (*m_res_mod) * 20.5 * 0.2;
     resonance_modded = resonance_modded > 21*0.2 ? 21*0.2 : resonance_modded;

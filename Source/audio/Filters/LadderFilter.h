@@ -33,12 +33,12 @@ public:
 
     // prewarp for BZT
     double wd = 2 * M_PI * m_freq_modded;
-    double T = 1 / m_samplerate;
+    //double T = 1 / m_samplerate;
 
     //note: measured input to tan function, it seemed limited to (0.005699, 1.282283). 
     //input for fasttan shall be limited to (-pi/2, pi/2) according to documentation
-    double wa = (2 / T) * juce::dsp::FastMathApproximations::tan(wd * T / 2);
-    double g = wa * T / 2;
+    double wa = (2 * m_samplerate) * juce::dsp::FastMathApproximations::tan(wd * m_one_over_samplerate * 0.5);
+    double g = wa * m_one_over_samplerate * 0.5;
 
     // G - the feedforward coeff in the VA One Pole
     //     same for LPF, HPF

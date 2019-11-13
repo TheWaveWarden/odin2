@@ -41,9 +41,9 @@ void DiodeFilter::update()
 
 	//calc alphas
 	double wd = 2 * 3.141592653 * m_freq_modded;
-	double t = 1.0 / m_samplerate;
-	double wa = (2.0 / t) * juce::dsp::FastMathApproximations::tan(wd * t / 2.0);
-	double g = wa * t / 2.0;
+	//double t = 1.0 / m_samplerate;
+	double wa = (2.0 * m_samplerate) * juce::dsp::FastMathApproximations::tan(wd * m_one_over_samplerate * 0.5);
+	double g = wa * m_one_over_samplerate / 2.0;
 
 	double G4 = 0.5 * g / (1.0 + g);
 	double G3 = 0.5 * g / (1.0 + g - 0.5 * g * G4);

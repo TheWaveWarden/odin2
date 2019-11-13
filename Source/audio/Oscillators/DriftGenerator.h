@@ -25,6 +25,7 @@ protected:
 	//float m_b = 0.f;
 	//float m_c = 0.f;
 
-	float m_samplerate = 44100.f;
+	float m_samplerate;
+	float m_one_over_samplerate;
 };
 

@@ -26,7 +26,7 @@ float ADSREnvelope::doEnvelope() {
 		if (*m_attack_mod) {
 			m_attack_modded *= calcModFactor(*m_attack_mod);
 		}
-		m_current_value += 1. / m_samplerate / m_attack_modded;
+		m_current_value += 1. / (m_samplerate * m_attack_modded);
 		if (m_current_value >= 1) {
 			m_current_value   = 1;
 			m_current_section = ADSR_SECTION_DECAY;

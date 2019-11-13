@@ -26,6 +26,7 @@ float DriftGenerator::doDrift() {
 
 void DriftGenerator::setSampleRate(float p_samplerate) {
   m_samplerate = p_samplerate;
+  m_one_over_samplerate = 1. / p_samplerate;
   m_drift_length = (int)(DRIFT_LENGTH_SECONDS * p_samplerate);
 }
 

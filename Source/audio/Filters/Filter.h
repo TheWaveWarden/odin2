@@ -91,6 +91,7 @@ public:
 	virtual double doFilter(double xn) = 0;
 	inline virtual void setSampleRate(double d) {
 		m_samplerate = d;
+		m_one_over_samplerate = 1.f / d;
 	}
 	virtual void reset();
 	virtual void setResControl(double p_res) {
@@ -127,6 +128,7 @@ protected:
 	float m_mod_dummy_zero = 0;
 
 	double m_samplerate;
+	double m_one_over_samplerate;
 	double m_freq_modded;
 	double m_res_modded;
 };

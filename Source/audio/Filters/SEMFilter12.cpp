@@ -24,9 +24,9 @@ void SEMFilter12::update() {
   Filter::update();
 
   double wd = 2 * M_PI * m_freq_modded;
-  double T = 1.0 / m_samplerate;
-  double wa = (2 / T) * juce::dsp::FastMathApproximations::tan(wd * T / 2);
-  double g = wa * T / 2;
+  //double T = 1.0 / m_samplerate;
+  double wa = (2 * m_samplerate) * juce::dsp::FastMathApproximations::tan(wd * m_one_over_samplerate * 0.5);
+  double g = wa * m_one_over_samplerate * 0.5;
 
   m_resonance_modded = m_resonance + (*m_res_mod) * 24.5;
   m_resonance_modded = m_resonance_modded > 25 ? 25 : m_resonance_modded;
