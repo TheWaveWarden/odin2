@@ -236,6 +236,9 @@
     Identifier m_osc1_modulator_wave_identifier;
     Identifier m_osc2_modulator_wave_identifier;
     Identifier m_osc3_modulator_wave_identifier;
+    Identifier m_osc1_modulation_source_identifier;
+    Identifier m_osc2_modulation_source_identifier;
+    Identifier m_osc3_modulation_source_identifier;
     Identifier m_osc1_lp_identifier;
     Identifier m_osc2_lp_identifier;
     Identifier m_osc3_lp_identifier;

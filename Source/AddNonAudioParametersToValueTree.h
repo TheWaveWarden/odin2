@@ -132,4 +132,7 @@ void OdinAudioProcessor::addNonAudioParametersToTree() {
 	node.setProperty("osc1_carrier_wave", 1, nullptr);
 	node.setProperty("osc2_carrier_wave", 1, nullptr);
 	node.setProperty("osc3_carrier_wave", 1, nullptr);
+	node.setProperty("osc1_mod_source", 1, nullptr);
+	node.setProperty("osc2_mod_source", 1, nullptr);
+	node.setProperty("osc3_mod_source", 1, nullptr);
 }

@@ -91,9 +91,9 @@
 #define VEC_WAVE_OFFSET 21
 
 #define POSITION_POS_X 24
-#define POSITION_POS_Y 63
+#define POSITION_POS_Y 93
 #define POS_ENV_POS_X 24
-#define POS_ENV_POS_Y 20
+#define POS_ENV_POS_Y 48
 #define DETUNE_POS_X 100
 #define DETUNE_POS_Y 50
 #define SPREAD_POS_X 33
@@ -101,8 +101,8 @@
 #define POSITION_MULTI_POS_X SPREAD_POS_X
 #define POSITION_MULTI_POS_Y 90
 
-#define WAVETABLE_WAVE_X 84
-#define WAVETABLE_WAVE_Y 73
+#define WAVETABLE_WAVE_X 92
+#define WAVETABLE_WAVE_Y 103
 #define MULTI_WAVE_X 80
 #define MULTI_WAVE_Y 103
 
@@ -235,7 +235,7 @@ protected:
   Knob m_position_multi;
   Knob m_spread;
   Knob m_detune;
-  Knob m_pos_env;
+  Knob m_pos_mod;
 
   OdinButton m_arp;
   OdinButton m_step_button;
@@ -260,6 +260,8 @@ protected:
   WaveformSelectorComponent m_carrier_waveselector;
   WaveformSelectorComponent m_modulator_waveselector;
   WaveformSelectorComponent m_wavetable_waveselector;
+  WaveformSelectorComponent m_modulation_source;
+
   NumberSelector m_carrier_ratio;
   NumberSelector m_modulator_ratio;
 
@@ -299,7 +301,7 @@ protected:
   std::unique_ptr<OdinKnobAttachment> m_hp_attach;
   std::unique_ptr<OdinKnobAttachment> m_x_attach;
   std::unique_ptr<OdinKnobAttachment> m_y_attach;
-  std::unique_ptr<OdinKnobAttachment> m_pos_env_attach;
+  std::unique_ptr<OdinKnobAttachment> m_pos_mod_attach;
 
   std::unique_ptr<OdinButtonAttachment> m_reset_attach;
   std::unique_ptr<OdinButtonAttachment> m_sync_attach;
@@ -314,6 +316,7 @@ protected:
   // std::unique_ptr<ComboBoxAttachment> m_vec_d_attach;
 
   Identifier m_wavetable_identifier;
+  Identifier m_modulation_source_identifier;
   Identifier m_chipwave_identifier;
   Identifier m_modulator_wave_identifier;
   Identifier m_carrier_wave_identifier;
@@ -324,7 +327,7 @@ protected:
   Identifier m_vec_b_identifier;
   Identifier m_vec_c_identifier;
   Identifier m_vec_d_identifier;
-  Identifier m_pos_env_identifier;
+  Identifier m_pos_mod_identifier;
 
   OdinMenuFeels m_menu_feels;
 

@@ -186,9 +186,11 @@ OdinAudioProcessor::OdinAudioProcessor() :
 		m_voice[i].ring_mod[0].selectWavetable(0);
 		m_voice[i].ring_mod[1].selectWavetable(0);
 
-		// set different initial values for filter env here....not best solution
+		// set different initial values for filter and mod env here....not best solution
 		m_voice[i].env[1].setDecay(0.8f);
 		m_voice[i].env[1].setSustain(0);
+		m_voice[i].env[2].setDecay(0.8f);
+		m_voice[i].env[2].setSustain(0);
 	}
 	m_ring_mod[0].loadWavetables();
 	m_ring_mod[1].loadWavetables();
@@ -205,21 +207,27 @@ OdinAudioProcessor::OdinAudioProcessor() :
 	// set mod sources to render from modmatrix
 	m_mod_matrix.setSourcesToRender =
 	    [&](bool p_LFO_0, bool p_LFO_1, bool p_LFO_2, bool p_LFO_3, bool p_ADSR_0, bool p_ADSR_1) {
-		    m_render_LFO[0] = p_LFO_0;
+		    
+			//wavetable oscs might need LFO1
+			m_render_LFO[0] = p_LFO_0
+			|| (m_osc_type[0] == OSC_TYPE_WAVETABLE && m_osc_wavetable_source_lfo[0])
+			|| (m_osc_type[1] == OSC_TYPE_WAVETABLE && m_osc_wavetable_source_lfo[1])
+			|| (m_osc_type[2] == OSC_TYPE_WAVETABLE && m_osc_wavetable_source_lfo[2]);
 		    m_render_LFO[1] = p_LFO_1;
 		    m_render_LFO[2] = p_LFO_2;
 		    m_render_LFO[3] = p_LFO_3;
 
-		    //wavetable oscs need ModEnv as well
-		    m_render_ADSR[0] = p_ADSR_0 || m_osc_type[0] == OSC_TYPE_WAVETABLE || m_osc_type[1] == OSC_TYPE_WAVETABLE ||
-		                       m_osc_type[2] == OSC_TYPE_WAVETABLE;
-		    ;
+		    //wavetable oscs might need ModEnv
+		    m_render_ADSR[0] = p_ADSR_0 
+			|| (m_osc_type[0] == OSC_TYPE_WAVETABLE && !m_osc_wavetable_source_lfo[0])
+			|| (m_osc_type[1] == OSC_TYPE_WAVETABLE && !m_osc_wavetable_source_lfo[1])
+			|| (m_osc_type[2] == OSC_TYPE_WAVETABLE && !m_osc_wavetable_source_lfo[2]);
 		    m_render_ADSR[1] = p_ADSR_1;
 
-		    // DBG("RENDERING MODSOURCES:");
-		    // DBG("LFO: " + std::to_string((int)m_render_LFO[0]) + " " + std::to_string((int)m_render_LFO[1]) + " " +
-		    //     std::to_string((int)m_render_LFO[2]) + " " + std::to_string((int)m_render_LFO[3]) +
-		    //     " ADSR: " + std::to_string((int)m_render_ADSR[0]) + " " + std::to_string((int)m_render_ADSR[1]));
+		     DBG("RENDERING MODSOURCES:");
+		     DBG("LFO: " + std::to_string((int)m_render_LFO[0]) + " " + std::to_string((int)m_render_LFO[1]) + " " +
+		         std::to_string((int)m_render_LFO[2]) + " " + std::to_string((int)m_render_LFO[3]) +
+		         " ADSR: " + std::to_string((int)m_render_ADSR[0]) + " " + std::to_string((int)m_render_ADSR[1]));
 	    };
 
 	//retriggerAllListeners();
@@ -463,8 +471,8 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 						break;
 					case OSC_TYPE_WAVETABLE:
 						m_voice[voice].wavetable_osc[osc].update();
-						//set mod envelope
-						m_voice[voice].wavetable_osc[osc].setEnvValue(m_adsr[voice][2]);
+						//set modulation envelope/lfo
+						m_voice[voice].wavetable_osc[osc].setPosModValue(m_osc_wavetable_source_lfo[osc] ? m_lfo[voice][0] : m_adsr[voice][2]);
 						m_osc_output[voice][osc] += m_voice[voice].wavetable_osc[osc].doOscillateWithSync();
 						break;
 					case OSC_TYPE_MULTI:

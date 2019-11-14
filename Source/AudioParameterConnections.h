@@ -16,7 +16,7 @@ for (int osc = 0; osc < 3; ++osc) {
 	m_osc_vol[osc]            = m_value_tree.getRawParameterValue("osc" + std::to_string(osc + 1) + "_vol");
 	m_osc_position[osc]       = m_value_tree.getRawParameterValue("osc" + std::to_string(osc + 1) + "_position");
 	m_osc_detune[osc]         = m_value_tree.getRawParameterValue("osc" + std::to_string(osc + 1) + "_detune");
-	m_osc_pos_env[osc]         = m_value_tree.getRawParameterValue("osc" + std::to_string(osc + 1) + "_pos_env");
+	m_osc_pos_env[osc]         = m_value_tree.getRawParameterValue("osc" + std::to_string(osc + 1) + "_pos_mod");
 	m_osc_multi_position[osc] = m_value_tree.getRawParameterValue("osc" + std::to_string(osc + 1) + "_multi_position");
 	m_osc_spread[osc]         = m_value_tree.getRawParameterValue("osc" + std::to_string(osc + 1) + "_spread");
 	m_osc_pulsewidth[osc]     = m_value_tree.getRawParameterValue("osc" + std::to_string(osc + 1) + "_pulsewidth");
@@ -216,7 +216,7 @@ for (int osc = 0; osc < 3; ++osc) {
 	//osc multi listener
 	m_value_tree.addParameterListener("osc" + std::to_string(osc + 1) + "_position", &m_tree_listener_osc_multi);
 	m_value_tree.addParameterListener("osc" + std::to_string(osc + 1) + "_detune", &m_tree_listener_osc_multi);
-	m_value_tree.addParameterListener("osc" + std::to_string(osc + 1) + "_pos_env", &m_tree_listener_osc_multi);
+	m_value_tree.addParameterListener("osc" + std::to_string(osc + 1) + "_pos_mod", &m_tree_listener_osc_multi);
 	m_value_tree.addParameterListener("osc" + std::to_string(osc + 1) + "_multi_position", &m_tree_listener_osc_multi);
 	m_value_tree.addParameterListener("osc" + std::to_string(osc + 1) + "_spread", &m_tree_listener_osc_multi);
 
