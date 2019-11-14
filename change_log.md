@@ -1,3 +1,5 @@
+# 1.9.12
+- added modsource dropdown to wavetable oscillator
 # 1.9.11
 - WavetableOsc now has native modenv control
 - performance improvement for oscs and filters
