@@ -1,6 +1,7 @@
 # 1.9.11
 - WavetableOsc now has native modenv control
 - performance improvement for oscs and filters
+- fixed issue with modamount on big display
 # 1.9.10
 - major performance upgrade for ALL filters
 # 1.9.9
