@@ -90,19 +90,7 @@ int MultiOscillator::getTableIndex(float p_freq) {
   }
   return SUBTABLES_PER_WAVETABLE - 1; // never gets here
 }
-//int MultiOscillator::getTableIndex() {
-//  for (int osc = 0; osc < OSCS_PER_MULTIOSC; ++osc) {
-//    float seed_freq = 27.5f; // Key A0
-//    for (int table = 0; table < SUBTABLES_PER_WAVETABLE; table++) {
-//      if (m_oscillator_freq_multi[osc] < seed_freq) {
-//        m_sub_table_index_multi[osc] = table;
-//        break;
-//      }
-//      seed_freq *= 1.18920f; // minor third up
-//    }
-// }
-//  return 0; // return doesn't matter here
-//}
+
 
 float MultiOscillator::doWavetableMulti() {
   // set up all multiple variables, so we can run through osc loop
@@ -176,12 +164,4 @@ float MultiOscillator::cheapPitchShiftMultiplier(float p_semitones) {
   // use horners scheme for evaluating  x^4 function efficiently:
   // https://en.wikipedia.org/wiki/Horner%27s_method
   return 1.f + p_semitones * (1.f + p_semitones * (0.5f + p_semitones * (0.1666666f + p_semitones * 0.04166666)));
-
-
-  //float pot = p_semitones;
-  //float ret = 1 + p_semitones; // O(1)
-  //pot *= p_semitones;
-  //ret += pot * 0.5f; // O(2)
-  //pot *= p_semitones;
-  //return ret + pot * 0.16666f + pot * p_semitones * 0.041666667f; // O(3) & O(4)
 }
