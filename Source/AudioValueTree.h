@@ -18,7 +18,7 @@
       std::make_unique<AudioParameterFloat>(
           "osc1_detune", "Osc1 Detune", NormalisableRange<float>(0.f, 1.f), 0),
       std::make_unique<AudioParameterFloat>(
-          "osc1_pos_env", "Osc1 Position Env", NormalisableRange<float>(-1.f, 1.f), 0),
+          "osc1_pos_mod", "Osc1 Position Modulation", NormalisableRange<float>(-1.f, 1.f), 0),
       std::make_unique<AudioParameterFloat>(
           "osc1_multi_position", "Osc1 Multi Position",
           NormalisableRange<float>(0.f, 1.f), 0),
@@ -83,7 +83,7 @@
       std::make_unique<AudioParameterFloat>(
           "osc2_detune", "Osc2 Detune", NormalisableRange<float>(0.f, 1.f), 0),
           std::make_unique<AudioParameterFloat>(
-          "osc2_pos_env", "Osc2 Position Env", NormalisableRange<float>(-1.f, 1.f), 0),
+          "osc2_pos_mod", "Osc2 Position Modulation", NormalisableRange<float>(-1.f, 1.f), 0),
       std::make_unique<AudioParameterFloat>(
           "osc2_multi_position", "Osc2 Multi Position",
           NormalisableRange<float>(0.f, 1.f), 0),
@@ -148,7 +148,7 @@
       std::make_unique<AudioParameterFloat>(
           "osc3_detune", "Osc3 Detune", NormalisableRange<float>(0.f, 1.f), 0),
       std::make_unique<AudioParameterFloat>(
-          "osc3_pos_env", "Osc3 Position Env", NormalisableRange<float>(-1.f, 1.f), 0),
+          "osc3_pos_mod", "Osc3 Position Modulation", NormalisableRange<float>(-1.f, 1.f), 0),
       std::make_unique<AudioParameterFloat>(
           "osc3_multi_position", "Osc3 Multi Position",
           NormalisableRange<float>(0.f, 1.f), 0),

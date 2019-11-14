@@ -205,15 +205,15 @@ void OdinAudioProcessor::treeValueChangedOscMulti(const String &p_ID, float p_ne
 		}
 	} else if (id == m_osc1_pos_env_identifier) {
 		for (int voice = 0; voice < VOICES; ++voice) {
-			m_voice[voice].wavetable_osc[0].setPosEnvAmount(p_new_value);
+			m_voice[voice].wavetable_osc[0].setPosModAmount(p_new_value);
 		}
 	} else if (id == m_osc2_pos_env_identifier) {
 		for (int voice = 0; voice < VOICES; ++voice) {
-			m_voice[voice].wavetable_osc[1].setPosEnvAmount(p_new_value);
+			m_voice[voice].wavetable_osc[1].setPosModAmount(p_new_value);
 		}
 	} else if (id == m_osc3_pos_env_identifier) {
 		for (int voice = 0; voice < VOICES; ++voice) {
-			m_voice[voice].wavetable_osc[2].setPosEnvAmount(p_new_value);
+			m_voice[voice].wavetable_osc[2].setPosModAmount(p_new_value);
 		}
 	} 
 }
@@ -1129,13 +1129,11 @@ void OdinAudioProcessor::treeValueChangedGeneralMisc(const String &p_ID, float p
 	}
 }
 
-
 // void OdinAudioProcessor::treeValueChangedNonParam(ValueTree &tree, const Identifier &id) {
 
 // 	float p_new_value = (float)tree[id];
 // 	DBG("DELETE ME: " + id.toString().toStdString() + ": " + std::to_string(p_new_value));
 // }
-
 
 void OdinAudioProcessor::treeValueChangedNonParamFX(ValueTree &tree, const Identifier &id) {
 
@@ -1210,111 +1208,77 @@ void OdinAudioProcessor::treeValueChangedNonParamMod(ValueTree &tree, const Iden
 
 	if (id == m_source_row_1_identifier) {
 		m_mod_matrix.setModSource(0, p_new_value);
-	}
-	else if (id == m_dest_1_row_1_identifier) {
+	} else if (id == m_dest_1_row_1_identifier) {
 		m_mod_matrix.setModDestination1(0, p_new_value);
-	}
-	else if (id == m_source_row_2_identifier) {
+	} else if (id == m_source_row_2_identifier) {
 		m_mod_matrix.setModSource(1, p_new_value);
-	}
-	else if (id == m_dest_1_row_2_identifier) {
+	} else if (id == m_dest_1_row_2_identifier) {
 		m_mod_matrix.setModDestination1(1, p_new_value);
-	}
-	else if (id == m_source_row_3_identifier) {
+	} else if (id == m_source_row_3_identifier) {
 		m_mod_matrix.setModSource(2, p_new_value);
-	}
-	else if (id == m_dest_1_row_3_identifier) {
+	} else if (id == m_dest_1_row_3_identifier) {
 		m_mod_matrix.setModDestination1(2, p_new_value);
-	}
-	else if (id == m_source_row_4_identifier) {
+	} else if (id == m_source_row_4_identifier) {
 		m_mod_matrix.setModSource(3, p_new_value);
-	}
-	else if (id == m_dest_1_row_4_identifier) {
+	} else if (id == m_dest_1_row_4_identifier) {
 		m_mod_matrix.setModDestination1(3, p_new_value);
-	}
-	else if (id == m_source_row_5_identifier) {
+	} else if (id == m_source_row_5_identifier) {
 		m_mod_matrix.setModSource(4, p_new_value);
-	}
-	else if (id == m_dest_1_row_5_identifier) {
+	} else if (id == m_dest_1_row_5_identifier) {
 		m_mod_matrix.setModDestination1(4, p_new_value);
-	}
-	else if (id == m_source_row_6_identifier) {
+	} else if (id == m_source_row_6_identifier) {
 		m_mod_matrix.setModSource(5, p_new_value);
-	}
-	else if (id == m_dest_1_row_6_identifier) {
+	} else if (id == m_dest_1_row_6_identifier) {
 		m_mod_matrix.setModDestination1(5, p_new_value);
-	}
-	else if (id == m_source_row_7_identifier) {
+	} else if (id == m_source_row_7_identifier) {
 		m_mod_matrix.setModSource(6, p_new_value);
-	}
-	else if (id == m_dest_1_row_7_identifier) {
+	} else if (id == m_dest_1_row_7_identifier) {
 		m_mod_matrix.setModDestination1(6, p_new_value);
-	}
-	else if (id == m_source_row_8_identifier) {
+	} else if (id == m_source_row_8_identifier) {
 		m_mod_matrix.setModSource(7, p_new_value);
-	}
-	else if (id == m_dest_1_row_8_identifier) {
+	} else if (id == m_dest_1_row_8_identifier) {
 		m_mod_matrix.setModDestination1(7, p_new_value);
-	}
-	else if (id == m_source_row_9_identifier) {
+	} else if (id == m_source_row_9_identifier) {
 		m_mod_matrix.setModSource(8, p_new_value);
-	}
-	else if (id == m_dest_1_row_9_identifier) {
+	} else if (id == m_dest_1_row_9_identifier) {
 		m_mod_matrix.setModDestination1(8, p_new_value);
-	}
-	else if (id == m_dest_2_row_1_identifier) {
+	} else if (id == m_dest_2_row_1_identifier) {
 		m_mod_matrix.setModDestination2(0, p_new_value);
-	}
-	else if (id == m_dest_2_row_2_identifier) {
+	} else if (id == m_dest_2_row_2_identifier) {
 		m_mod_matrix.setModDestination2(1, p_new_value);
-	}
-	else if (id == m_dest_2_row_3_identifier) {
+	} else if (id == m_dest_2_row_3_identifier) {
 		m_mod_matrix.setModDestination2(2, p_new_value);
-	}
-	else if (id == m_dest_2_row_4_identifier) {
+	} else if (id == m_dest_2_row_4_identifier) {
 		m_mod_matrix.setModDestination2(3, p_new_value);
-	}
-	else if (id == m_dest_2_row_5_identifier) {
+	} else if (id == m_dest_2_row_5_identifier) {
 		m_mod_matrix.setModDestination2(4, p_new_value);
-	}
-	else if (id == m_dest_2_row_6_identifier) {
+	} else if (id == m_dest_2_row_6_identifier) {
 		m_mod_matrix.setModDestination2(5, p_new_value);
-	}
-	else if (id == m_dest_2_row_7_identifier) {
+	} else if (id == m_dest_2_row_7_identifier) {
 		m_mod_matrix.setModDestination2(6, p_new_value);
-	}
-	else if (id == m_dest_2_row_8_identifier) {
+	} else if (id == m_dest_2_row_8_identifier) {
 		m_mod_matrix.setModDestination2(7, p_new_value);
-	}
-	else if (id == m_dest_2_row_9_identifier) {
+	} else if (id == m_dest_2_row_9_identifier) {
 		m_mod_matrix.setModDestination2(8, p_new_value);
 	}
 
 	else if (id == m_scale_row_1_identifier) {
 		m_mod_matrix.setModScale(0, p_new_value);
-	}
-	else if (id == m_scale_row_2_identifier) {
+	} else if (id == m_scale_row_2_identifier) {
 		m_mod_matrix.setModScale(1, p_new_value);
-	}
-	else if (id == m_scale_row_3_identifier) {
+	} else if (id == m_scale_row_3_identifier) {
 		m_mod_matrix.setModScale(2, p_new_value);
-	}
-	else if (id == m_scale_row_4_identifier) {
+	} else if (id == m_scale_row_4_identifier) {
 		m_mod_matrix.setModScale(3, p_new_value);
-	}
-	else if (id == m_scale_row_5_identifier) {
+	} else if (id == m_scale_row_5_identifier) {
 		m_mod_matrix.setModScale(4, p_new_value);
-	}
-	else if (id == m_scale_row_6_identifier) {
+	} else if (id == m_scale_row_6_identifier) {
 		m_mod_matrix.setModScale(5, p_new_value);
-	}
-	else if (id == m_scale_row_7_identifier) {
+	} else if (id == m_scale_row_7_identifier) {
 		m_mod_matrix.setModScale(6, p_new_value);
-	}
-	else if (id == m_scale_row_8_identifier) {
+	} else if (id == m_scale_row_8_identifier) {
 		m_mod_matrix.setModScale(7, p_new_value);
-	}
-	else if (id == m_scale_row_9_identifier) {
+	} else if (id == m_scale_row_9_identifier) {
 		m_mod_matrix.setModScale(8, p_new_value);
 	}
 }
@@ -1553,5 +1517,18 @@ void OdinAudioProcessor::treeValueChangedNonParamOsc(ValueTree &tree, const Iden
 			m_voice[voice].fm_osc[2].selectModulatorWavetableByMapping(p_new_value);
 			m_voice[voice].pm_osc[2].selectModulatorWavetableByMapping(p_new_value);
 		}
+	} else if (id == m_osc1_modulation_source_identifier) {
+		m_osc_wavetable_source_lfo[0] = (p_new_value == 10);
+		//check which sources to render for wavetable pos mod:
+		DBG("henlo");
+		m_mod_matrix.checkWhichSourceToRender();
+	} else if (id == m_osc2_modulation_source_identifier) {
+		m_osc_wavetable_source_lfo[1] = (p_new_value == 10);
+		//check which sources to render for wavetable pos mod:
+		m_mod_matrix.checkWhichSourceToRender();
+	} else if (id == m_osc3_modulation_source_identifier) {
+		m_osc_wavetable_source_lfo[2] = (p_new_value == 10);
+		//check which sources to render for wavetable pos mod:
+		m_mod_matrix.checkWhichSourceToRender();
 	}
 }

@@ -310,6 +310,7 @@ private:
 	ModSources m_mod_sources;
 	ModDestinations m_mod_destinations;
 
+	bool m_osc_wavetable_source_lfo[3] = {0};//false <=> envelope
 
 	bool m_render_LFO[4]  = {0};
 	bool m_render_ADSR[2] = {0}; // 0 = mod, 1 = global
