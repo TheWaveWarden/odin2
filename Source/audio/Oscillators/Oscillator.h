@@ -128,10 +128,10 @@ public:
 	}
 
 	inline double calculateGlide(float p_glide) {
-		if (p_glide > 0.01) {
-			return 0.9985f + p_glide * 0.0014;
-		} else {
+		if (p_glide < 0.01) {
 			return 0.;
+		} else {
+			return 0.9985f + p_glide * 0.0014;
 		}
 	}
 
