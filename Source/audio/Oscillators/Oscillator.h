@@ -17,19 +17,10 @@ class Oscillator {
 public:
 	Oscillator(void);
 	virtual ~Oscillator(void);
-	//
-	// --- modulo functions for master/slave operation
-	// --- increment the modulo counters
-	inline void incModulo() {
-		m_modulo += m_increment;
-	}
 
 	// --- reset the modulo (required for master->slave operations)
 	inline void resetModulo(double d = 0.0) {
 		m_modulo = d;
-	}
-	inline void setPitchBendMod(double dMod) {
-		m_mod_pitch_bend = dMod;
 	}
 	// virtual void startOscillator() {m_note_on = true;}
 	// virtual void stopOscillator() {m_note_on = false;}
@@ -37,7 +28,7 @@ public:
 	virtual void setSampleRate(float p_samplerate) {
 
 		// DBG("setsamplerate baseosc");
-		m_samplerate = p_samplerate;
+		m_samplerate          = p_samplerate;
 		m_one_over_samplerate = 1. / p_samplerate;
 	}
 	virtual void reset();
@@ -48,8 +39,7 @@ public:
 		}
 	}
 
-	// ! bottleneck
-	float pitchShiftMultiplier(float p_semitones) {
+	static float pitchShiftMultiplier(float p_semitones) {
 #ifndef BENCHMARK
 		//note: fastexp was tested and showed a deviation of 0.75 cents in this range
 		if (p_semitones < 48.f && p_semitones > -48.f) {
@@ -74,11 +64,14 @@ public:
 
 		m_osc_freq_base = m_osc_freq_glide_target * (1.f - glide_modded) + (glide_modded)*m_osc_freq_base;
 
-		// --- do the  complete frequency mod
-		m_osc_freq_modded =
-		    m_osc_freq_base *
-		    pitchShiftMultiplier(*(m_pitchbend) + (*m_pitch_mod_exp) * OSC_EXP_MOD_RANGE + m_mod_freq_exp +
-		                         m_mod_exp_other + m_mod_pitch_bend + m_octave * 12.0 + m_semitones + m_cent * 0.01f);
+		// just multiply the controls on
+		m_osc_freq_modded = m_osc_freq_base * m_pitch_control_multiplier;
+		// and only use pitchshift if needed!
+		if ((*m_pitchbend) + (*m_pitch_mod_exp) + m_mod_freq_exp + m_mod_exp_other) {
+			m_osc_freq_modded *= pitchShiftMultiplier((*m_pitchbend) + (*m_pitch_mod_exp) * OSC_EXP_MOD_RANGE +
+			                                          m_mod_freq_exp + m_mod_exp_other);
+		}
+
 		// --- apply linear FM (not used in book projects)
 		m_osc_freq_modded += (*m_pitch_mod_lin) * m_osc_freq_modded * 2 + m_mod_freq_lin;
 
@@ -142,13 +135,11 @@ public:
 	bool m_reset_active = false;
 	double m_osc_freq_glide_target; // the target freq after glide from MIDI note
 	double m_osc_freq_base;         // oscillator frequency which glides towards glide target
-	double m_amplitude;             // 0->1 from GUI
 	double m_modulo;                // modulo counter 0->1
 	double m_increment;             // phase inc = fo/fs
 
-	double m_mod_freq_exp; // modulation input -1 to +1 */
-	double m_mod_freq_lin; // FM modulation input -1 to +1 (not actually used in
-	                       // Yamaha FM!) */
+	double m_mod_freq_exp = 0; // exp freq modulation input
+	double m_mod_freq_lin = 0; // lin freq modulation input
 
 	float m_glide = 0.;
 	float *m_glide_mod;
@@ -158,21 +149,33 @@ public:
 	float *m_vol_mod;
 	float *m_pitchbend;
 
-	int m_octave;    // octave tweak
-	int m_semitones; // semitones tweak
-	int m_cent;      // cents tweak
+	void setOctaveMultiplier(float p_octave_multiplier) {
+		m_octave_multiplier        = p_octave_multiplier;
+		m_pitch_control_multiplier = m_octave_multiplier * m_semitone_multiplier * m_cent_multiplier;
+	}
 
-	// bool m_reset = false; // if this is true, osc will reset on noteon
+	void setSemitoneMultiplier(float p_semitone_multiplier) {
+		m_semitone_multiplier      = p_semitone_multiplier;
+		m_pitch_control_multiplier = m_octave_multiplier * m_semitone_multiplier * m_cent_multiplier;
+	}
 
-	bool m_is_master_osc; // flag indicating we are a master oscillator
-
-	Oscillator *m_buddy_oscillator;
+	void setCentMultiplier(float p_cent_mutliplier) {
+		m_cent_multiplier          = p_cent_mutliplier;
+		m_pitch_control_multiplier = m_octave_multiplier * m_semitone_multiplier * m_cent_multiplier;
+	}
 
 protected:
-	double m_samplerate;         // fs
+	float m_octave_multiplier        = 1.f;
+	float m_semitone_multiplier      = 1.f;
+	float m_cent_multiplier          = 1.f;
+	float m_pitch_control_multiplier = 1.f; //all of above multiplied together
+
+	//int m_octave;    // octave tweak
+	//int m_semitones; // semitones tweak
+	//int m_cent;      // cents tweak
+
+	double m_samplerate; // fs
 	double m_one_over_samplerate;
 	double m_osc_freq_modded;    // current (actual) frequency of oscillator
-	double m_mod_pitch_bend;     // modulation input -1 to +1 */
-	double m_mod_amp;            // output amplitude modulation for AM 0 to +1 (not dB)*/
 	float m_mod_exp_other = 0.f; // can be used for whatever (Chiptune Arp uses it)
 };

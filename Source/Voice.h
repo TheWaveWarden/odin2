@@ -62,7 +62,7 @@ public:
     for (int i = 0; i < VOICES; ++i) {
       if (!voice_busy[i]) {
         voice_busy[i] = true;
-        DBG("Voice manager returned voice " + std::to_string(i));
+        //DBG("Voice manager returned voice " + std::to_string(i));
         removeFromKillList(i);
         updateVoiceHistory(i);
         return i;
@@ -124,18 +124,18 @@ public:
     // now set new as newest value:
     m_voice_history[0] = p_next_voice;
 
-    DBG(std::to_string(m_voice_history[0]) + " " +
-        std::to_string(m_voice_history[1]) + " " +
-        std::to_string(m_voice_history[2]) + " " +
-        std::to_string(m_voice_history[3]) + " " +
-        std::to_string(m_voice_history[4]) + " " +
-        std::to_string(m_voice_history[5]) + " " +
-        std::to_string(m_voice_history[6]) + " " +
-        std::to_string(m_voice_history[7]) + " " +
-        std::to_string(m_voice_history[8]) + " " +
-        std::to_string(m_voice_history[9]) + " " +
-        std::to_string(m_voice_history[10]) + " " +
-        std::to_string(m_voice_history[11]));
+    // DBG(std::to_string(m_voice_history[0]) + " " +
+    //     std::to_string(m_voice_history[1]) + " " +
+    //     std::to_string(m_voice_history[2]) + " " +
+    //     std::to_string(m_voice_history[3]) + " " +
+    //     std::to_string(m_voice_history[4]) + " " +
+    //     std::to_string(m_voice_history[5]) + " " +
+    //     std::to_string(m_voice_history[6]) + " " +
+    //     std::to_string(m_voice_history[7]) + " " +
+    //     std::to_string(m_voice_history[8]) + " " +
+    //     std::to_string(m_voice_history[9]) + " " +
+    //     std::to_string(m_voice_history[10]) + " " +
+    //     std::to_string(m_voice_history[11]));
   }
 
   bool setPolyLegato(bool p_is_poly) {
@@ -308,14 +308,14 @@ struct Voice {
     }
     generateNewRandomValue();
 
-    DBG("Started voice");
+    //DBG("Started voice");
   }
 
   // starts release on envelopes if this is the key that was pressed
   // returns true if the voice was actually stopped
   bool keyUp(int p_MIDI_key) {
     if (m_MIDI_key == p_MIDI_key) {
-      DBG("Stopping envelopes on key " + std::to_string(m_MIDI_key));
+      //DBG("Stopping envelopes on key " + std::to_string(m_MIDI_key));
       env[0].startRelease();
       env[1].startRelease();
       env[2].startRelease();
@@ -326,8 +326,8 @@ struct Voice {
   }
 
   void startRelease() {
-    DBG("Stopping envelopes on key " + std::to_string(m_MIDI_key) +
-        " after sustian was released");
+    //DBG("Stopping envelopes on key " + std::to_string(m_MIDI_key) +
+    //    " after sustian was released");
     env[0].startRelease();
     env[1].startRelease();
     env[2].startRelease();
@@ -341,42 +341,48 @@ struct Voice {
   }
 
   void setOctave(int p_octave, int p_osc) {
-    analog_osc[p_osc].m_octave = p_octave;
-    wavedraw_osc[p_osc].m_octave = p_octave;
-    chipdraw_osc[p_osc].m_octave = p_octave;
-    specdraw_osc[p_osc].m_octave = p_octave;
-    wavetable_osc[p_osc].m_octave = p_octave;
-    multi_osc[p_osc].m_octave = p_octave;
-    vector_osc[p_osc].m_octave = p_octave;
-    chiptune_osc[p_osc].m_octave = p_octave;
-    fm_osc[p_osc].m_octave = p_octave;
-    pm_osc[p_osc].m_octave = p_octave;
+    float pitch_multiplier = Oscillator::pitchShiftMultiplier(p_octave * 12);
+
+    analog_osc[p_osc].setOctaveMultiplier(pitch_multiplier);
+    wavedraw_osc[p_osc].setOctaveMultiplier(pitch_multiplier);
+    chipdraw_osc[p_osc].setOctaveMultiplier(pitch_multiplier);
+    specdraw_osc[p_osc].setOctaveMultiplier(pitch_multiplier);
+    wavetable_osc[p_osc].setOctaveMultiplier(pitch_multiplier);
+    multi_osc[p_osc].setOctaveMultiplier(pitch_multiplier);
+    vector_osc[p_osc].setOctaveMultiplier(pitch_multiplier);
+    chiptune_osc[p_osc].setOctaveMultiplier(pitch_multiplier);
+    fm_osc[p_osc].setOctaveMultiplier(pitch_multiplier);
+    pm_osc[p_osc].setOctaveMultiplier(pitch_multiplier);
   }
 
   void setSemitones(int p_semi, int p_osc) {
-    analog_osc[p_osc].m_semitones = p_semi;
-    wavedraw_osc[p_osc].m_semitones = p_semi;
-    chipdraw_osc[p_osc].m_semitones = p_semi;
-    specdraw_osc[p_osc].m_semitones = p_semi;
-    wavetable_osc[p_osc].m_semitones = p_semi;
-    multi_osc[p_osc].m_semitones = p_semi;
-    vector_osc[p_osc].m_semitones = p_semi;
-    chiptune_osc[p_osc].m_semitones = p_semi;
-    fm_osc[p_osc].m_semitones = p_semi;
-    pm_osc[p_osc].m_semitones = p_semi;
+    float pitch_multiplier = Oscillator::pitchShiftMultiplier(p_semi);
+
+    analog_osc[p_osc].setSemitoneMultiplier(pitch_multiplier);
+    wavedraw_osc[p_osc].setSemitoneMultiplier(pitch_multiplier);
+    chipdraw_osc[p_osc].setSemitoneMultiplier(pitch_multiplier);
+    specdraw_osc[p_osc].setSemitoneMultiplier(pitch_multiplier);
+    wavetable_osc[p_osc].setSemitoneMultiplier(pitch_multiplier);
+    multi_osc[p_osc].setSemitoneMultiplier(pitch_multiplier);
+    vector_osc[p_osc].setSemitoneMultiplier(pitch_multiplier);
+    chiptune_osc[p_osc].setSemitoneMultiplier(pitch_multiplier);
+    fm_osc[p_osc].setSemitoneMultiplier(pitch_multiplier);
+    pm_osc[p_osc].setSemitoneMultiplier(pitch_multiplier);
   }
 
   void setFinetune(float p_fine, int p_osc) {
-    analog_osc[p_osc].m_cent = p_fine;
-    wavedraw_osc[p_osc].m_cent = p_fine;
-    chipdraw_osc[p_osc].m_cent = p_fine;
-    specdraw_osc[p_osc].m_cent = p_fine;
-    wavetable_osc[p_osc].m_cent = p_fine;
-    multi_osc[p_osc].m_cent = p_fine;
-    vector_osc[p_osc].m_cent = p_fine;
-    chiptune_osc[p_osc].m_cent = p_fine;
-    fm_osc[p_osc].m_cent = p_fine;
-    pm_osc[p_osc].m_cent = p_fine;
+    float pitch_multiplier = Oscillator::pitchShiftMultiplier(p_fine * 0.01f);
+
+    analog_osc[p_osc].setCentMultiplier(pitch_multiplier);
+    wavedraw_osc[p_osc].setCentMultiplier(pitch_multiplier);
+    chipdraw_osc[p_osc].setCentMultiplier(pitch_multiplier);
+    specdraw_osc[p_osc].setCentMultiplier(pitch_multiplier);
+    wavetable_osc[p_osc].setCentMultiplier(pitch_multiplier);
+    multi_osc[p_osc].setCentMultiplier(pitch_multiplier);
+    vector_osc[p_osc].setCentMultiplier(pitch_multiplier);
+    chiptune_osc[p_osc].setCentMultiplier(pitch_multiplier);
+    fm_osc[p_osc].setCentMultiplier(pitch_multiplier);
+    pm_osc[p_osc].setCentMultiplier(pitch_multiplier);
   }
 
   void setGlide(float p_glide) {

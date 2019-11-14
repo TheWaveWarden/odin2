@@ -473,7 +473,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 	m_pos_mod.setBounds(POS_ENV_POS_X, POS_ENV_POS_Y, METAL_KNOB_MID_SIZE_X, METAL_KNOB_MID_SIZE_Y);
 	m_pos_mod.setSliderStyle(Slider::RotaryVerticalDrag);
 	m_pos_mod.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-	m_pos_mod.setKnobTooltip("Applies modulation from the ModEnvelope to the osc position");
+	m_pos_mod.setKnobTooltip("Controls the depth of modulation from the selected modsource to the osc position");
 	addChildComponent(m_pos_mod);
 
 
@@ -483,7 +483,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 	m_spread.setBounds(SPREAD_POS_X, SPREAD_POS_Y, METAL_KNOB_SMALL_SIZE_X, METAL_KNOB_SMALL_SIZE_Y);
 	m_spread.setSliderStyle(Slider::RotaryVerticalDrag);
 	m_spread.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-	m_spread.setKnobTooltip("Spreads the oscillators to\n different positions in the\n wavetable");
+	m_spread.setKnobTooltip("Spreads the sub-oscillators to\n different positions in the\n wavetable");
 	addChildComponent(m_spread);
 
 	m_position_multi.setStrip(
@@ -938,10 +938,10 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 	m_wavetable_waveselector.addWave(35, "MutantSquare B");
 
 
-	m_wavetable_waveselector.setTooltip("Selects the wave for the oscillator");
+	m_wavetable_waveselector.setTooltip("Selects the waveform for the oscillator");
 	addChildComponent(m_wavetable_waveselector);
 	
-	m_modulation_source.setTopLeftPosition(WAVETABLE_WAVE_X, WAVETABLE_WAVE_Y - 45);
+	m_modulation_source.setTopLeftPosition(WAVETABLE_WAVE_X, WAVETABLE_WAVE_Y - 50);
 	m_modulation_source.addWave(1, "ModEnvelope");
 	m_modulation_source.addWave(10, "LFO 1");
 	//just toggle for this one
@@ -949,7 +949,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 	m_modulation_source.setIncrementValue(10,1);
 	m_modulation_source.setDecrementValue(1,10);
 	m_modulation_source.setDecrementValue(10,1);
-	m_modulation_source.setTooltip("Select wich modulation source modulates the wavetable position");
+	m_modulation_source.setTooltip("Select wich source modulates the wavetable position");
 	m_modulation_source.OnValueChange = [&](int p_new_value) {
 		m_value_tree.state.getChildWithName("osc").setProperty(m_modulation_source_identifier, (float)p_new_value, nullptr);
 	};
@@ -961,7 +961,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 	};
 	m_modulator_waveselector.setTopLeftPosition(WAVE_MODULATOR_POS_X, WAVE_MODULATOR_POS_Y);
 	m_modulator_waveselector.setColor(FM_COLOR);
-	m_modulator_waveselector.setTooltip("Selects the wave for the modulator osc");
+	m_modulator_waveselector.setTooltip("Selects the waveform for the modulator osc");
 	addChildComponent(m_modulator_waveselector);
 
 	m_carrier_ratio.OnValueChange = [&](int p_new_value) {

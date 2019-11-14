@@ -26,12 +26,12 @@ OdinAudioProcessor::OdinAudioProcessor() :
 		}
 	};
 #endif
-	DBG("\n\n\n");
-	double seed_freq = 27.5 / 1.09050773267;
-	for (int table = 0; table < SUBTABLES_PER_WAVETABLE; ++table) {
-		DBG(1.f / seed_freq);
-		seed_freq *= 1.189207f; // minor third up
-	}
+	// DBG("\n\n\n");
+	// double seed_freq = 27.5 / 1.09050773267;
+	// for (int table = 0; table < SUBTABLES_PER_WAVETABLE; ++table) {
+	// 	DBG(1.f / seed_freq);
+	// 	seed_freq *= 1.189207f; // minor third up
+	// }
 
 	m_is_standalone_plugin = (wrapperType == wrapperType_Standalone);
 
@@ -846,12 +846,12 @@ void OdinAudioProcessor::setModWheelValue(int p_value) {
 }
 
 void OdinAudioProcessor::midiNoteOff(int p_midi_note) {
-	DBG("NOTEOFF, key " + std::to_string(p_midi_note));
+	DBG("NoteOff, key " + std::to_string(p_midi_note));
 
 	if (!m_voice_manager.getSustainActive()) {
 		for (int voice = 0; voice < VOICES; ++voice) {
 			if (m_voice[voice].keyUp(p_midi_note)) {
-				DBG("KeyUp on voice " + std::to_string(voice));
+				//DBG("KeyUp on voice " + std::to_string(voice));
 			}
 		}
 	} else {
@@ -874,7 +874,7 @@ void OdinAudioProcessor::checkEndGlobalEnvelope() {
 	}
 	// kill it
 	m_global_env.startRelease();
-	DBG("kill global env");
+	//DBG("kill global env");
 }
 
 void OdinAudioProcessor::midiNoteOn(int p_midi_note, int p_midi_velocity) {
@@ -904,7 +904,7 @@ void OdinAudioProcessor::midiNoteOn(int p_midi_note, int p_midi_velocity) {
 			m_last_midi_note = p_midi_note;
 		}
 		m_voice[voice_number].start(p_midi_note, p_midi_velocity, m_last_midi_note);
-		DBG("Started Voice Nr. " + std::to_string(voice_number) + " midikey: " + std::to_string(p_midi_note));
+		DBG("NoteOn,  key " + std::to_string(p_midi_note) + ", voice " + std::to_string(voice_number));
 		m_amp.setMIDIVelocity(p_midi_velocity);
 		m_last_midi_note = p_midi_note;
 		m_mod_matrix.setMostRecentVoice(voice_number);
