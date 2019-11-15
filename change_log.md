@@ -1,3 +1,5 @@
+# 1.9.13
+- major performance update for ALL oscs
 # 1.9.12
 - added modsource dropdown to wavetable oscillator
 # 1.9.11
