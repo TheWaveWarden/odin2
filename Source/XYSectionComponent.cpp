@@ -30,9 +30,7 @@ XYSectionComponent::XYSectionComponent(AudioProcessorValueTreeState &vts, std::s
 	m_modx.setSliderStyle(Slider::RotaryVerticalDrag);
 	m_modx.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
 	m_modx.setRange(0, 1);
-	m_modx.onValueChange = [&] {
-		m_xy_pad.setX(m_modx.getValue());
-	};
+	m_modx.onValueChange = [&] { m_xy_pad.setX(m_modx.getValue()); };
 	m_modx.setTooltip("The X coordinate\nof the XY pad");
 	addAndMakeVisible(m_modx);
 

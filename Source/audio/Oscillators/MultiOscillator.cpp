@@ -28,7 +28,8 @@ void MultiOscillator::update() {
 	m_osc_freq_modded = m_osc_freq_base * m_pitch_control_multiplier;
 
 	if (*m_pitchbend + (*m_pitch_mod_exp) + m_mod_freq_exp + m_mod_exp_other) {
-		m_osc_freq_modded *= pitchShiftMultiplier(*m_pitchbend + (*m_pitch_mod_exp) * OSC_EXP_MOD_RANGE + m_mod_freq_exp + m_mod_exp_other);
+		m_osc_freq_modded *= pitchShiftMultiplier(*m_pitchbend + (*m_pitch_mod_exp) * OSC_EXP_MOD_RANGE +
+		                                          m_mod_freq_exp + m_mod_exp_other);
 	}
 
 	m_osc_freq_modded += (*m_pitch_mod_lin) * m_osc_freq_modded * 2;

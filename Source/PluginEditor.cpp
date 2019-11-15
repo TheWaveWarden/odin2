@@ -448,19 +448,20 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 		m_tooltip.activate();
 		setTooltipEnabled(m_question_button.getToggleState());
 	};
-	m_question_button.setTooltip(std::string("Activating this button shows a\ntooltipfor every parameter in\nthe synth. Simply hover your\n"
-	                                         "mouse over it!\n\nGENERAL TIPS:\n\nHold shift to finetune knobs\n\nCtr "
-	                                         "+ click to reset knobs\n\nDouble click to enter values\n\nRight click "
-	                                         "to access MIDI-learn\n\nThe order of FX can be rearranged\nby "
-	                                         "dragging and dropping\n the FX selection buttons.\n\nVersion: ") +
-	                             ODIN_VERSION_STRING
-								 #ifdef ODIN_RELEASE
-								 + " Release"
-								 #endif
-								 #ifdef ODIN_DEBUG
-								 + " Debug"
-								 #endif
-								 );
+	m_question_button.setTooltip(
+	    std::string("Activating this button shows a\ntooltipfor every parameter in\nthe synth. Simply hover your\n"
+	                "mouse over it!\n\nGENERAL TIPS:\n\nHold shift to finetune knobs\n\nCtr "
+	                "+ click to reset knobs\n\nDouble click to enter values\n\nRight click "
+	                "to access MIDI-learn\n\nThe order of FX can be rearranged\nby "
+	                "dragging and dropping\n the FX selection buttons.\n\nVersion: ") +
+	    ODIN_VERSION_STRING
+#ifdef ODIN_RELEASE
+	    + " Release"
+#endif
+#ifdef ODIN_DEBUG
+	    + " Debug"
+#endif
+	);
 	addAndMakeVisible(m_question_button);
 
 	juce::Image filter_button2_1 = ImageCache::getFromMemory(BinaryData::button2_1_png, BinaryData::button2_1_pngSize);
@@ -984,7 +985,6 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	setTooltipEnabled(false);
 	addAndMakeVisible(m_tooltip);
 
-
 	forceValueTreeOntoComponentsOnlyMainPanel();
 	m_save_load.resetPatchText();
 	//forceValueTreeOntoComponents(false);
@@ -1021,7 +1021,7 @@ OdinAudioProcessorEditor::~OdinAudioProcessorEditor() {
 
 //==============================================================================
 void OdinAudioProcessorEditor::paint(Graphics &g) {
-    SET_INTERPOLATION_QUALITY(g)
+	SET_INTERPOLATION_QUALITY(g)
 	g.drawImageAt(ImageCache::getFromMemory(BinaryData::odin_backdrop_png, BinaryData::odin_backdrop_pngSize), 0, 0);
 }
 

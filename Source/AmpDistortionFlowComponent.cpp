@@ -244,7 +244,7 @@ void AmpDistortionFlowComponent::forceValueTreeOntoComponents(ValueTree p_tree) 
 }
 
 void AmpDistortionFlowComponent::setDistortionPanelActive(bool p_active) {
-	#define DISTORTION_ON_COLOR juce::Colour(30, 53, 43)
+#define DISTORTION_ON_COLOR juce::Colour(30, 53, 43)
 	m_distortion_algo.setColor(p_active ? DISTORTION_ON_COLOR : DARKGREY);
 	m_distortion_on = p_active;
 	repaint();

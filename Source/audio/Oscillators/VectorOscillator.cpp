@@ -1,82 +1,77 @@
 #include "VectorOscillator.h"
 
 VectorOscillator::VectorOscillator() {
-  m_nr_of_wavetables = NUMBER_OF_WAVETABLES + 9; // 9 extra for drawtables
+	m_nr_of_wavetables = NUMBER_OF_WAVETABLES + 9; // 9 extra for drawtables
 }
 
-VectorOscillator::~VectorOscillator() {}
+VectorOscillator::~VectorOscillator() {
+}
 
-void VectorOscillator::selectWavetable(int p_wavetable_index,
-                                       int p_vector_point) {
-  if (p_wavetable_index < m_nr_of_wavetables) {
-    m_wavetable_index[p_vector_point] = p_wavetable_index;
-
-  }
+void VectorOscillator::selectWavetable(int p_wavetable_index, int p_vector_point) {
+	if (p_wavetable_index < m_nr_of_wavetables) {
+		m_wavetable_index[p_vector_point] = p_wavetable_index;
+	}
 }
 
 float VectorOscillator::doOscillate() {
 
-  float vol_mod_factor =
-      (*m_vol_mod) > 0 ? 1.f + 4 * (*m_vol_mod) : (1.f + *m_vol_mod);
-  vol_mod_factor = vol_mod_factor > VOL_MOD_UPPER_LIMIT ? VOL_MOD_UPPER_LIMIT
-                                                        : vol_mod_factor;
+	float vol_mod_factor = (*m_vol_mod) > 0 ? 1.f + 4 * (*m_vol_mod) : (1.f + *m_vol_mod);
+	vol_mod_factor       = vol_mod_factor > VOL_MOD_UPPER_LIMIT ? VOL_MOD_UPPER_LIMIT : vol_mod_factor;
 
-  return doVectortable() * vol_mod_factor;
+	return doVectortable() * vol_mod_factor;
 }
 
 void VectorOscillator::update() {
-  Oscillator::update();
+	Oscillator::update();
 
-  m_wavetable_inc = WAVETABLE_LENGTH * m_increment;
-  m_sub_table_index = getTableIndex();
+	m_wavetable_inc   = WAVETABLE_LENGTH * m_increment;
+	m_sub_table_index = getTableIndex();
 
-  for (int i = 0; i < VECTOR_EDGES; ++i) {
-    m_current_table_vec[i] =
-        m_wavetable_pointers[m_wavetable_index[i]][m_sub_table_index];
-  }
+	for (int i = 0; i < VECTOR_EDGES; ++i) {
+		m_current_table_vec[i] = m_wavetable_pointers[m_wavetable_index[i]][m_sub_table_index];
+	}
 }
 
 float VectorOscillator::doVectortable() {
 
-  // smooth controls
-  m_XY_pad_x_smooth += (m_XY_pad_x - m_XY_pad_x_smooth) * 0.001;
-  m_XY_pad_y_smooth += (m_XY_pad_y - m_XY_pad_y_smooth) * 0.001;
+	// smooth controls
+	m_XY_pad_x_smooth += (m_XY_pad_x - m_XY_pad_x_smooth) * 0.001;
+	m_XY_pad_y_smooth += (m_XY_pad_y - m_XY_pad_y_smooth) * 0.001;
 
-  // prepare both sides and interpol value
-  int read_index_trunc = (int)m_read_index;
-  float fractional = m_read_index - (float)read_index_trunc;
-  int read_index_next =
-      read_index_trunc + 1 >= WAVETABLE_LENGTH ? 0 : read_index_trunc + 1;
+	// prepare both sides and interpol value
+	int read_index_trunc = (int)m_read_index;
+	float fractional     = m_read_index - (float)read_index_trunc;
+	int read_index_next  = read_index_trunc + 1 >= WAVETABLE_LENGTH ? 0 : read_index_trunc + 1;
 
-  // do linear interpolation
-  float output[VECTOR_EDGES] = {
-      linearInterpolation(m_current_table_vec[0][read_index_trunc],
-                          m_current_table_vec[0][read_index_next], fractional),
-      linearInterpolation(m_current_table_vec[1][read_index_trunc],
-                          m_current_table_vec[1][read_index_next], fractional),
-      linearInterpolation(m_current_table_vec[2][read_index_trunc],
-                          m_current_table_vec[2][read_index_next], fractional),
-      linearInterpolation(m_current_table_vec[3][read_index_trunc],
-                          m_current_table_vec[3][read_index_next], fractional)};
+	// do linear interpolation
+	float output[VECTOR_EDGES] = {
+	    linearInterpolation(
+	        m_current_table_vec[0][read_index_trunc], m_current_table_vec[0][read_index_next], fractional),
+	    linearInterpolation(
+	        m_current_table_vec[1][read_index_trunc], m_current_table_vec[1][read_index_next], fractional),
+	    linearInterpolation(
+	        m_current_table_vec[2][read_index_trunc], m_current_table_vec[2][read_index_next], fractional),
+	    linearInterpolation(
+	        m_current_table_vec[3][read_index_trunc], m_current_table_vec[3][read_index_next], fractional)};
 
-  float x_modded = m_XY_pad_x_smooth + *m_mod_x;
-  x_modded = x_modded > 1 ? 1 : x_modded;
-  x_modded = x_modded < 0 ? 0 : x_modded;
-  float y_modded = m_XY_pad_y_smooth + *m_mod_y;
-  y_modded = y_modded > 1 ? 1 : y_modded;
-  y_modded = y_modded < 0 ? 0 : y_modded;
+	float x_modded = m_XY_pad_x_smooth + *m_mod_x;
+	x_modded       = x_modded > 1 ? 1 : x_modded;
+	x_modded       = x_modded < 0 ? 0 : x_modded;
+	float y_modded = m_XY_pad_y_smooth + *m_mod_y;
+	y_modded       = y_modded > 1 ? 1 : y_modded;
+	y_modded       = y_modded < 0 ? 0 : y_modded;
 
-  // 1---2
-  // |   |
-  // 0---3
+	// 1---2
+	// |   |
+	// 0---3
 
-  // reuse 0 as "lower" and 1 as "upper"
-  output[0] = (1.f - x_modded) * output[0] + x_modded * output[3];
-  output[1] = (1.f - x_modded) * output[1] + x_modded * output[2];
+	// reuse 0 as "lower" and 1 as "upper"
+	output[0] = (1.f - x_modded) * output[0] + x_modded * output[3];
+	output[1] = (1.f - x_modded) * output[1] + x_modded * output[2];
 
-  m_read_index += m_wavetable_inc * m_sync_anti_aliasing_inc_factor;
-  checkWrapIndex(m_read_index);
+	m_read_index += m_wavetable_inc * m_sync_anti_aliasing_inc_factor;
+	checkWrapIndex(m_read_index);
 
-  // return interpolation between "upper" and "lower"
-  return (1.f - y_modded) * output[0] + y_modded * output[1];
+	// return interpolation between "upper" and "lower"
+	return (1.f - y_modded) * output[0] + y_modded * output[1];
 }

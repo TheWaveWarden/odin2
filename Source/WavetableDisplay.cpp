@@ -13,22 +13,21 @@
 
 //==============================================================================
 WavetableDisplay::WavetableDisplay() {
-  setSize(2 * WTDISPLAY_INLAY + WTDISPLAY_SIZE_X,
-          2 * WTDISPLAY_INLAY + WTDISPLAY_SIZE_Y);
+	setSize(2 * WTDISPLAY_INLAY + WTDISPLAY_SIZE_X, 2 * WTDISPLAY_INLAY + WTDISPLAY_SIZE_Y);
 }
 
-WavetableDisplay::~WavetableDisplay() {}
+WavetableDisplay::~WavetableDisplay() {
+}
 
 void WavetableDisplay::paint(Graphics &g) {
-    SET_INTERPOLATION_QUALITY(g)
+	SET_INTERPOLATION_QUALITY(g)
 
-  g.fillAll(getLookAndFeel().findColour(
-      ResizableWindow::backgroundColourId)); // clear the background
+	g.fillAll(getLookAndFeel().findColour(ResizableWindow::backgroundColourId)); // clear the background
 
-  g.setColour(Colours::grey);
-  g.drawRect(getLocalBounds(), 1); // draw an outline around the component
-  g.setColour(Colours::white);
-  /*
+	g.setColour(Colours::grey);
+	g.drawRect(getLocalBounds(), 1); // draw an outline around the component
+	g.setColour(Colours::white);
+	/*
       g.setFont (14.0f);
       g.drawText ("LOWER WT: " + std::to_string(m_lower_wt) + "\nHIGHER WT:" +
       std::to_string(m_higher_wt) + "\nINTERPOLATION: " +
@@ -37,55 +36,49 @@ void WavetableDisplay::paint(Graphics &g) {
 
   */
 
-  if (m_position_left) {
+	if (m_position_left) {
 
-     const float *left_table =
-         WavetableContainer::getInstance().getWavetablePointers(m_lower_wt)[0];
-     const float *right_table =
-         WavetableContainer::getInstance().getWavetablePointers(m_higher_wt)[0];
+		const float *left_table  = WavetableContainer::getInstance().getWavetablePointers(m_lower_wt)[0];
+		const float *right_table = WavetableContainer::getInstance().getWavetablePointers(m_higher_wt)[0];
 
-    // const float *left_table =
-    //     WavetableContainer::getInstance().getWavetablePointers(2)[0];
-    // const float *right_table =
-    //     WavetableContainer::getInstance().getWavetablePointers(2)[SUBTABLES_PER_WAVETABLE-20];
+		// const float *left_table =
+		//     WavetableContainer::getInstance().getWavetablePointers(2)[0];
+		// const float *right_table =
+		//     WavetableContainer::getInstance().getWavetablePointers(2)[SUBTABLES_PER_WAVETABLE-20];
 
-    float inverse_polation = 1.f - m_interpolation;
+		float inverse_polation = 1.f - m_interpolation;
 
-    float width = 1; // step size 1
-    float height = WTDISPLAY_SIZE_Y / 2;
-    float mid = (float)WTDISPLAY_SIZE_Y / 2.f;
+		float width  = 1; // step size 1
+		float height = WTDISPLAY_SIZE_Y / 2;
+		float mid    = (float)WTDISPLAY_SIZE_Y / 2.f;
 
-    for (int i = 0; i < WTDISPLAY_SIZE_X; ++i) {
+		for (int i = 0; i < WTDISPLAY_SIZE_X; ++i) {
 
-      g.setColour(Colours::white);
-      // if(i >= 256 - 16 && i <= 256 + 16){
-      //   g.setColour(Colours::red);
-      // }
+			g.setColour(Colours::white);
+			// if(i >= 256 - 16 && i <= 256 + 16){
+			//   g.setColour(Colours::red);
+			// }
 
-      float draw_value =
-          left_table[i] * inverse_polation + right_table[i] * m_interpolation;
+			float draw_value = left_table[i] * inverse_polation + right_table[i] * m_interpolation;
 
-      if (i != WTDISPLAY_SIZE_X) {
-        float draw_value_next = left_table[i + 1] * inverse_polation +
-                                right_table[i + 1] * m_interpolation;
-        g.drawLine(WTDISPLAY_INLAY + (i)*width,
-                   WTDISPLAY_INLAY + mid - draw_value * height,
-                   WTDISPLAY_INLAY + (i + 1) * width,
-                   WTDISPLAY_INLAY + mid - draw_value_next * height,
-                   WAVEDISPLAY_THICCNESS);
-      } else {
-        float draw_value_next =
-            left_table[0] * inverse_polation + right_table[0] * m_interpolation;
-        g.drawLine(WTDISPLAY_INLAY + (i)*width,
-                   WTDISPLAY_INLAY + mid - draw_value * height,
-                   WTDISPLAY_INLAY + (i + 1) * width,
-                   WTDISPLAY_INLAY + mid - draw_value_next * height,
-                   WAVEDISPLAY_THICCNESS);
-      }
-    }
-  } else {
-    g.setColour(Colours::grey);
-    g.drawArrow(Line<float>(17, getHeight() / 2, 7, getHeight() / 2), 0, 30,
-                15);
-  }
+			if (i != WTDISPLAY_SIZE_X) {
+				float draw_value_next = left_table[i + 1] * inverse_polation + right_table[i + 1] * m_interpolation;
+				g.drawLine(WTDISPLAY_INLAY + (i)*width,
+				           WTDISPLAY_INLAY + mid - draw_value * height,
+				           WTDISPLAY_INLAY + (i + 1) * width,
+				           WTDISPLAY_INLAY + mid - draw_value_next * height,
+				           WAVEDISPLAY_THICCNESS);
+			} else {
+				float draw_value_next = left_table[0] * inverse_polation + right_table[0] * m_interpolation;
+				g.drawLine(WTDISPLAY_INLAY + (i)*width,
+				           WTDISPLAY_INLAY + mid - draw_value * height,
+				           WTDISPLAY_INLAY + (i + 1) * width,
+				           WTDISPLAY_INLAY + mid - draw_value_next * height,
+				           WAVEDISPLAY_THICCNESS);
+			}
+		}
+	} else {
+		g.setColour(Colours::grey);
+		g.drawArrow(Line<float>(17, getHeight() / 2, 7, getHeight() / 2), 0, 30, 15);
+	}
 }

@@ -1,9 +1,8 @@
 #include "DiodeFilter.h"
 
-DiodeFilter::DiodeFilter(void)
-{
+DiodeFilter::DiodeFilter(void) {
 	// init
-	m_k = 0.0;
+	m_k     = 0.0;
 	m_gamma = 0.0;
 
 	// feedback scalars
@@ -22,18 +21,17 @@ DiodeFilter::DiodeFilter(void)
 	reset();
 }
 
-DiodeFilter::~DiodeFilter(void){}
+DiodeFilter::~DiodeFilter(void) {
+}
 
-void DiodeFilter::reset()
-{
+void DiodeFilter::reset() {
 	m_LPF1.reset();
 	m_LPF2.reset();
 	m_LPF3.reset();
 	m_LPF4.reset();
 }
 
-void DiodeFilter::update()
-{
+void DiodeFilter::update() {
 	//modulation
 	Filter::update();
 
@@ -41,7 +39,7 @@ void DiodeFilter::update()
 	// filter freq changed
 	// sample rate changed (m_last_freq_modded set to -1)
 
-	if(m_last_freq_modded == m_freq_modded){
+	if (m_last_freq_modded == m_freq_modded) {
 		return;
 	}
 	m_last_freq_modded = m_freq_modded;
@@ -50,13 +48,13 @@ void DiodeFilter::update()
 	double wd = 2 * 3.141592653 * m_freq_modded;
 	//double t = 1.0 / m_samplerate;
 	double wa = (2.0 * m_samplerate) * juce::dsp::FastMathApproximations::tan(wd * m_one_over_samplerate * 0.5);
-	double g = wa * m_one_over_samplerate / 2.0;
+	double g  = wa * m_one_over_samplerate / 2.0;
 
 	double G4 = 0.5 * g / (1.0 + g);
 	double G3 = 0.5 * g / (1.0 + g - 0.5 * g * G4);
 	double G2 = 0.5 * g / (1.0 + g - 0.5 * g * G3);
 	double G1 = g / (1.0 + g - g * G2);
-	m_gamma = G4 * G3 * G2 * G1;
+	m_gamma   = G4 * G3 * G2 * G1;
 
 	m_sg1 = G4 * G3 * G2;
 	m_sg2 = G4 * G3;
@@ -96,38 +94,35 @@ void DiodeFilter::update()
 	m_LPF4.m_a_0 = 0.5;
 }
 
-double DiodeFilter::doFilter(double xn)
-{
+double DiodeFilter::doFilter(double xn) {
 	m_LPF4.m_feedback = 0.0;
 	m_LPF3.m_feedback = m_LPF4.getFeedbackOutput();
 	m_LPF2.m_feedback = m_LPF3.getFeedbackOutput();
 	m_LPF1.m_feedback = m_LPF2.getFeedbackOutput();
 
-	double sigma = m_sg1 * m_LPF1.getFeedbackOutput() + m_sg2 * m_LPF2.getFeedbackOutput() + m_sg3 * m_LPF3.getFeedbackOutput() + m_sg4 * m_LPF4.getFeedbackOutput();
+	double sigma = m_sg1 * m_LPF1.getFeedbackOutput() + m_sg2 * m_LPF2.getFeedbackOutput() +
+	               m_sg3 * m_LPF3.getFeedbackOutput() + m_sg4 * m_LPF4.getFeedbackOutput();
 
 	float k_modded = m_k + *m_res_mod * 16;
-	k_modded = k_modded > 16 ? 16 : k_modded;
-	k_modded = k_modded < 0 ? 0 : k_modded;
-
+	k_modded       = k_modded > 16 ? 16 : k_modded;
+	k_modded       = k_modded < 0 ? 0 : k_modded;
 
 	// for passband gain compensation:
 	xn *= 1.0f + 0.3f * k_modded;
 
 	double u = (xn - k_modded * sigma) / (1.0 + k_modded * m_gamma);
 
-
 	double output = m_LPF4.doFilter(m_LPF3.doFilter(m_LPF2.doFilter(m_LPF1.doFilter(u))));
 
 	applyOverdrive(output);
 
-    float vol_mod_factor = (*m_vol_mod) > 0 ? 1.f + 4 *(*m_vol_mod) : (1.f + *m_vol_mod);	
-    vol_mod_factor = vol_mod_factor > VOL_MOD_UPPER_LIMIT ? VOL_MOD_UPPER_LIMIT : vol_mod_factor;
+	float vol_mod_factor = (*m_vol_mod) > 0 ? 1.f + 4 * (*m_vol_mod) : (1.f + *m_vol_mod);
+	vol_mod_factor       = vol_mod_factor > VOL_MOD_UPPER_LIMIT ? VOL_MOD_UPPER_LIMIT : vol_mod_factor;
 
 	return output * vol_mod_factor;
 }
 
-void DiodeFilter::setResControl(double res)
-{
+void DiodeFilter::setResControl(double res) {
 	m_k = 16.0 * res;
 }
 
@@ -135,4 +130,3 @@ void DiodeFilter::setSampleRate(double p_sr) {
 	Filter::setSampleRate(p_sr);
 	m_last_freq_modded = -1; //to signal recalcualtion of filter coeffs in update()
 }
-

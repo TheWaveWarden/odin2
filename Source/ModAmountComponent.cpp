@@ -25,7 +25,7 @@ ModAmountComponent::~ModAmountComponent() {
 }
 
 void ModAmountComponent::paint(Graphics &g) {
-    SET_INTERPOLATION_QUALITY(g)
+	SET_INTERPOLATION_QUALITY(g)
 	g.setColour(m_color);
 	juce::Point<int> top_left = getLocalBounds().getTopLeft();
 	top_left.addXY(m_inlay, m_inlay);
@@ -58,7 +58,6 @@ void ModAmountComponent::paint(Graphics &g) {
 
 	g.drawImageAt(m_glas_panel, 0, 0);
 }
-
 
 void ModAmountComponent::mouseDrag(const MouseEvent &event) {
 	m_value = m_drag_start_value + (m_drag_start_y - getMouseXYRelative().getY()) * DRAG_SCALAR;
