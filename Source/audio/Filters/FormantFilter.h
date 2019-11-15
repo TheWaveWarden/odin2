@@ -2,6 +2,7 @@
 
 #include "Filter.h"
 #include "BiquadResonator.h"
+#include "../../GlobalIncludes.h"
 
 #define FORMANT_DB_AT_88KHZ -11
 #define FORMANT_DB_AT_192KHZ -18

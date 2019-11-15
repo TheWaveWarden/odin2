@@ -122,6 +122,8 @@ graphics.setImageResamplingQuality(INTERPOLATION_QUALITY_LOW);\
 graphics.setImageResamplingQuality(INTERPOLATION_QUALITY_HIGH);\
 }
 
+#define CLAMP(low, clamp, high) clamp = clamp < low ? low : clamp > high ? high : clamp
+
 #define DBGAUDIO(string) if(sample == 0){DBG(string);}
 
 #define SETSKEWREPLACEMENT(component, mid_value)                                                                       \

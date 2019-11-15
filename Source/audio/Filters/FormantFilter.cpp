@@ -22,8 +22,8 @@ void FormantFilter::update() {
 
 	float transition_modded = m_transition + *m_transition_mod + vel_modded * (float)m_MIDI_velocity / 127.f +
 	                          (m_env_mod_amount + *m_env_mod_mod) * m_env_value;
-	transition_modded = transition_modded > 1 ? 1 : transition_modded;
-	transition_modded = transition_modded < 0 ? 0 : transition_modded;
+							  
+	CLAMP(0, transition_modded, 1);
 
 	// set freq from parabolas
 	m_resonator1.setFrequency(m_a0 * transition_modded * transition_modded + m_b0 * transition_modded + m_c0);

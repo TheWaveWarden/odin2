@@ -24,10 +24,9 @@ public:
     recalculateFilterCoefficients();
   }
   void setSampleRate(float p_sr) { 
-
     //DBG("setsamplerate biquadres");
     m_samplerate = p_sr;
-	  m_one_over_samplerate = p_sr;
+	  m_one_over_samplerate = 1. / p_sr;
     recalculateFilterCoefficients();
   }
   void setFrequency(float p_freq) {
