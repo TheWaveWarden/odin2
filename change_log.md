@@ -1,3 +1,7 @@
+# 1.9.17
+- Valuetree & patches now with version number
+- fixed sync-backrops in LFO
+- Korg HP now has distinct panel
 # 1.9.16
 - performance improvements filters and phaser
 # 1.9.15
