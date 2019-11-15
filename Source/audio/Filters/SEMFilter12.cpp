@@ -23,6 +23,16 @@ void SEMFilter12::reset() {
 void SEMFilter12::update() {
   Filter::update();
 
+  //recalc coeffs only if
+  // freq changed
+  // res modded
+  // res changed (m_last_freq_modded = -1)
+  // res samplerate (m_last_freq_modded = -1)
+  if(m_freq_modded == m_last_freq_modded && !(*m_res_mod)){
+    return;
+  }
+  m_last_freq_modded = m_freq_modded;
+
   double wd = 2 * M_PI * m_freq_modded;
   //double T = 1.0 / m_samplerate;
   double wa = (2 * m_samplerate) * juce::dsp::FastMathApproximations::tan(wd * m_one_over_samplerate * 0.5);
@@ -70,4 +80,10 @@ double SEMFilter12::doFilter(double xn) {
 
 void SEMFilter12::setResControl(double p_res) {
   m_resonance = 24.5 * p_res * p_res * p_res * p_res + 0.5;
+  m_last_freq_modded = -1; // to signal recalculation of filter coeffs in update()
+}
+
+void SEMFilter12::setSampleRate(double p_sr){
+  Filter::setSampleRate(p_sr);
+  m_last_freq_modded = -1; // to signal recalculation of filter coeffs in update()
 }

@@ -22,8 +22,11 @@ public:
 	void setTransitionModPointer(float* p_pointer){
 		m_transition_mod = p_pointer;
 	}
+	void setSampleRate(double p_sr) override;
 
 protected:
+	double m_last_freq_modded = -1;
+
 	float* m_transition_mod = &m_mod_dummy_zero;
 
 	double m_z_1;
