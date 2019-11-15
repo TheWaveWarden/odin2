@@ -1,3 +1,5 @@
+# 1.9.15
+- big performance improvement for all VA Filters
 # 1.9.14
 - performance improvement in linterpol
 - performance improvement in all filters
