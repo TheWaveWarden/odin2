@@ -338,7 +338,7 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 
 		//start all voices
 		for (int voice = 0; voice < 12; ++voice) {
-			midiNoteOn(30 + 8 * voice, 100);
+			//midiNoteOn(30 + 8 * voice, 100);
 		}
 
 		DBG("start profiling");
@@ -346,14 +346,13 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 #endif
 
 	// get BPM info from host
-	if (!m_is_standalone_plugin) {
-		if (AudioPlayHead *playhead = getPlayHead()) {
-			AudioPlayHead::CurrentPositionInfo current_position_info;
-			playhead->getCurrentPosition(current_position_info);
-			m_BPM = current_position_info.bpm;
-			// ! bottleneck
+	if (AudioPlayHead *playhead = getPlayHead()) {
+		AudioPlayHead::CurrentPositionInfo current_position_info;
+		playhead->getCurrentPosition(current_position_info);
+		if(m_BPM != current_position_info.bpm){
 			m_value_tree.state.getChildWithName("misc").setProperty("BPM", m_BPM, nullptr);
 		}
+		m_BPM = current_position_info.bpm;
 	}
 	setBPM(m_BPM);
 

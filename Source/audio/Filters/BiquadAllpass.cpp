@@ -16,7 +16,7 @@ void BiquadAllpass::setFrequency(float p_frequency) {
 	//convert freq to radial freq
 	float freq_rad = p_frequency * m_one_over_samplerate * 2 * PI;
 
-	m_b1 = -2.f / m_radius * cos(freq_rad);
+	m_b1 = -2.f / m_radius * juce::dsp::FastMathApproximations::cos(freq_rad);
 	m_a1 = m_b1;
 	m_b0 = 1.f / (m_radius * m_radius);
 	m_a2 = m_b0;

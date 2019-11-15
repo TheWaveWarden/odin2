@@ -25,7 +25,8 @@ double OversamplingDistortion::doDistortion(double p_input) {
 	threshold_modded       = threshold_modded < THRESHOLD_MIN ? THRESHOLD_MIN : threshold_modded;
 
 	// do distortion
-	if (m_algorithm == Clamp) {
+	switch(m_algorithm){
+		case Clamp:
 		for (int sample = 0; sample < 3; ++sample) {
 			if (input_upsampled[sample] > m_bias && input_upsampled[sample] > m_bias + threshold_modded) {
 				input_upsampled[sample] = m_bias + threshold_modded;
@@ -33,7 +34,8 @@ double OversamplingDistortion::doDistortion(double p_input) {
 				input_upsampled[sample] = m_bias - threshold_modded;
 			}
 		}
-	} else if (m_algorithm == Zero) {
+		break;
+		case Zero:
 		for (int sample = 0; sample < 3; ++sample) {
 			if (input_upsampled[sample] > m_bias && input_upsampled[sample] > m_bias + threshold_modded) {
 				input_upsampled[sample] = 0.;
@@ -41,7 +43,8 @@ double OversamplingDistortion::doDistortion(double p_input) {
 				input_upsampled[sample] = 0.;
 			}
 		}
-	} else { //m_algorithm == Fold
+		break;
+		default: // == Fold
 		for (int sample = 0; sample < 3; ++sample) {
 			//threshold_modded = threshold_modded < 0.05 ? 0.05 : threshold_modded;
 			while (fabs(input_upsampled[sample]) > threshold_modded) {
