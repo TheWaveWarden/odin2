@@ -42,4 +42,5 @@ void LadderFilter::setResControl(double p_res)
 {
     // this maps dQControl = 0->1 to 0-4 * 0.97 to avoid clippy self oscillation
     m_k = 3.88 * p_res;
+    m_last_freq_modded = -1;//to signal recalculation of coeffs in update()
 }

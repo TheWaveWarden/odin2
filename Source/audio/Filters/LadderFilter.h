@@ -21,15 +21,32 @@ public:
   // -- Filter Overrides --
   virtual void reset() override;
   virtual void setResControl(double p_res) override;
+  virtual void setSampleRate(double p_sr) override {
+    Filter::setSampleRate(p_sr);
+    m_last_freq_modded = -1; //to signal recalculation of coeffs in update()
+  }
 
   inline virtual void update() {
+
+    // do any modulation first
+    Filter::update();
+
+    //! only recalc filter-coefficients if:
+    // freq changed
+    // res modded
+    // res changed (m_last_freq_modded wil be set to -1)
+    // sample rate changed (set to -1)
+    // filter type was changed (set to -1)
+
+    if(m_last_freq_modded == m_freq_modded && !(*m_res_mod) ){
+      return;
+    }
+    m_last_freq_modded = m_freq_modded;
+
 
     m_k_modded = m_k + 4 * (*m_res_mod);
     m_k_modded = m_k_modded > 3.88 ? 3.88 : m_k_modded;
     m_k_modded = m_k_modded < 0 ? 0 : m_k_modded;
-
-    // do any modulation first
-    Filter::update();
 
     // prewarp for BZT
     double wd = 2 * M_PI * m_freq_modded;
@@ -120,14 +137,14 @@ public:
     }
   }
 
-  inline void enablePassBandCompensation() { m_aux_control = 1.f; }
+  //inline void enablePassBandCompensation() { m_aux_control = 1.f; }
 
   inline virtual double doFilter(double xn) {
 
     double dSigma = m_LPF1.getFeedbackOutput() + m_LPF2.getFeedbackOutput() +
                     m_LPF3.getFeedbackOutput() + m_LPF4.getFeedbackOutput();
 
-    xn *= 1.0 + m_aux_control * m_k_modded;
+    //xn *= 1.0 + m_aux_control * m_k_modded;
 
     // calculate input to first filter
     double dU = (xn - m_k_modded * dSigma) * m_alpha_0;
@@ -154,6 +171,7 @@ public:
 
   inline void setFilterType(int p_filtertype) {
     m_filter_type = (FILTERTYPE)p_filtertype;
+    m_last_freq_modded = -1; //to signal recalculation of coeffs in update()
   }
 
   VAOnePoleFilter m_LPF1;
@@ -162,6 +180,8 @@ public:
   VAOnePoleFilter m_LPF4;
 
   FILTERTYPE m_filter_type = FILTERTYPE::LP4;
+
+  double m_last_freq_modded = -1;
 
   // variables
   double m_k; // K, set with Q
