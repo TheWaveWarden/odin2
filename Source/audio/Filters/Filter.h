@@ -18,8 +18,8 @@
 // Filter Abastract Base Class for all filters
 class Filter {
 public:
-	Filter(void);
-	~Filter(void);
+	Filter();
+	~Filter();
 
 	inline float pitchShiftMultiplier(float p_semitones) {
 		//0.05776226504 = ln(2)/12
@@ -37,7 +37,7 @@ public:
 #endif
 	}
 
-	inline void applyOverdrive(double &pio_input, float p_tanh_factor = 3.5) {
+	inline void applyOverdrive(double &pio_input, float p_tanh_factor = 3.5f) {
 		float overdrive_modded = m_overdrive + 2 * (*m_saturation_mod);
 		overdrive_modded       = overdrive_modded < 0 ? 0 : overdrive_modded;
 		if (overdrive_modded > 0.01f && overdrive_modded < 1.f) {
@@ -47,19 +47,6 @@ public:
 			pio_input = fasttanh(overdrive_modded * pio_input, p_tanh_factor);
 		}
 	}
-	double m_freq_base;
-	double m_res_base;
-
-	int m_MIDI_note     = 0;
-	int m_MIDI_velocity = 0;
-
-	float m_kbd_mod_amount = 0;
-	float m_vel_mod_amount = 0;
-	float m_env_mod_amount = 0;
-	float m_env_value      = 0.f;
-
-	double m_overdrive = 0.;
-
 	virtual void setFreqModPointer(float *p_pointer) {
 		m_freq_mod = p_pointer;
 	}
@@ -82,7 +69,6 @@ public:
 		m_env_mod_mod = p_pointer;
 	}
 
-public:
 	virtual double doFilter(double xn) = 0;
 	inline virtual void setSampleRate(double d) {
 		m_samplerate = d;
@@ -110,6 +96,20 @@ public:
 		if (m_freq_modded < FILTER_FC_MIN)
 			m_freq_modded = FILTER_FC_MIN;
 	}
+
+	double m_freq_base;
+	double m_res_base;
+
+	int m_MIDI_note     = 0;
+	int m_MIDI_velocity = 0;
+
+	float m_kbd_mod_amount = 0;
+	float m_vel_mod_amount = 0;
+	float m_env_mod_amount = 0;
+	float m_env_value      = 0.f;
+
+	float m_overdrive = 0.;
+
 
 	double m_mod_frequency = 0;
 
