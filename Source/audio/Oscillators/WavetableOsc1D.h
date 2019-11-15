@@ -73,7 +73,7 @@ protected:
                                    float p_distance) {
     //return (1.f - p_distance) * p_low + p_distance * p_high;
     //p_low - p_distance * p_low + p_distance * p_high;
-    p_distance * (p_high - p_low) + p_low;
+    return p_distance * (p_high - p_low) + p_low;
   }
 
   inline void checkWrapIndex(double &p_index) {
