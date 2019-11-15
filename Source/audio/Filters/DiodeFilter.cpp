@@ -17,7 +17,7 @@ DiodeFilter::DiodeFilter(void)
 	m_LPF3.setLP(); //LP
 	m_LPF4.setLP(); //LP
 
-	m_aux_control = 0.3;
+	//m_aux_control = 0.3;
 
 	reset();
 }
@@ -111,7 +111,7 @@ double DiodeFilter::doFilter(double xn)
 
 
 	// for passband gain compensation:
-	xn *= 1.0 + m_aux_control * k_modded;
+	xn *= 1.0f + 0.3f * k_modded;
 
 	double u = (xn - k_modded * sigma) / (1.0 + k_modded * m_gamma);
 

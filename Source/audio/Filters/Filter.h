@@ -58,11 +58,6 @@ public:
 	float m_env_mod_amount = 0;
 	float m_env_value      = 0.f;
 
-	// --- for an aux filter specific like SEM BSF
-	//     control or paasband gain comp (Moog)
-	double m_aux_control;
-	// --- for NLP - Non Linear Procssing
-	// bool m_NLP;
 	double m_overdrive = 0.;
 
 	virtual void setFreqModPointer(float *p_pointer) {

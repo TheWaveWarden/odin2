@@ -11,7 +11,6 @@ Filter::Filter(void)
 	m_freq_base = FILTER_FC_DEFAULT;
 	// --- clear
 	m_mod_frequency = 0.0;
-	m_aux_control = 0.0; 
 }
 
 Filter::~Filter(void){}

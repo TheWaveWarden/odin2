@@ -4,7 +4,6 @@ SEMFilter12::SEMFilter12() {
   m_alpha_0 = 1.0;
   m_alpha = 1.0;
   m_rho = 1.0;
-  m_aux_control = 0.5;
 
   reset();
 

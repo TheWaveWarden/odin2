@@ -137,14 +137,10 @@ public:
     }
   }
 
-  //inline void enablePassBandCompensation() { m_aux_control = 1.f; }
-
   inline virtual double doFilter(double xn) {
 
     double dSigma = m_LPF1.getFeedbackOutput() + m_LPF2.getFeedbackOutput() +
                     m_LPF3.getFeedbackOutput() + m_LPF4.getFeedbackOutput();
-
-    //xn *= 1.0 + m_aux_control * m_k_modded;
 
     // calculate input to first filter
     double dU = (xn - m_k_modded * dSigma) * m_alpha_0;
