@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT id="vpwEHn" name="Odin2" projectType="audioplug" jucerVersion="5.4.5"
+<JUCERPROJECT id="vpwEHn" name="Odin2" projectType="audioplug" jucerVersion="5.4.4"
               pluginFormats="buildStandalone,buildVST,buildVST3" version="2.0.0"
               companyName="BommelDSP" companyWebsite="www.BommelDSP.com" pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn"
               pluginManufacturerCode="BDSP" pluginCode="ODIN" pluginChannelConfigs="{0,2}">
@@ -435,6 +435,8 @@
             file="Graphics/cropped/korg_cropped.png"/>
       <FILE id="bXAUcA" name="korg_knobs_cropped.png" compile="0" resource="1"
             file="Graphics/cropped/korg_knobs_cropped.png"/>
+      <FILE id="SSPSRV" name="korgHP_backdrop.png" compile="0" resource="1"
+            file="Graphics/applied/korgHP_backdrop.png"/>
       <FILE id="VTFKQl" name="LED_1.png" compile="0" resource="1" file="Graphics/cropped/buttons/LED_1.png"/>
       <FILE id="nzhyL8" name="LED_2.png" compile="0" resource="1" file="Graphics/cropped/buttons/LED_2.png"/>
       <FILE id="bBG0Ae" name="lfo13_sync_background.png" compile="0" resource="1"

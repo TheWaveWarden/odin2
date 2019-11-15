@@ -260,7 +260,7 @@ void FilterComponent::setFilterType(int p_filter_type) {
 		setFilterKorgLP();
 		break;
 	case FILTER_TYPE_KORG_HP:
-		setFilterKorgLP();
+		setFilterKorgHP();
 		break;
 	case FILTER_TYPE_COMB:
 		setFilterComb();
@@ -349,7 +349,7 @@ void FilterComponent::setFilterKorgLP() {
 }
 
 void FilterComponent::setFilterKorgHP() {
-	m_background = ImageCache::getFromMemory(BinaryData::SEM24_backdrop_png, BinaryData::SEM24_backdrop_pngSize);
+	m_background = ImageCache::getFromMemory(BinaryData::korgHP_backdrop_png, BinaryData::korgHP_backdrop_pngSize);
 	showStandardFilterComponents();
 }
 
