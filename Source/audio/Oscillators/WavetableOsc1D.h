@@ -71,7 +71,9 @@ protected:
 
   inline float linearInterpolation(float p_low, float p_high,
                                    float p_distance) {
-    return (1.f - p_distance) * p_low + p_distance * p_high;
+    //return (1.f - p_distance) * p_low + p_distance * p_high;
+    //p_low - p_distance * p_low + p_distance * p_high;
+    p_distance * (p_high - p_low) + p_low;
   }
 
   inline void checkWrapIndex(double &p_index) {

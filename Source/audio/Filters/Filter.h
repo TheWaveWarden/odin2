@@ -102,11 +102,13 @@ public:
 		float kbd_modded = m_kbd_mod_amount + *m_kbd_mod_mod < 0 ? 0 : m_kbd_mod_amount + *m_kbd_mod_mod;
 		float vel_modded = m_vel_mod_amount + *m_vel_mod_mod < 0 ? 0 : m_vel_mod_amount + *m_vel_mod_mod;
 
-		m_freq_modded = m_freq_base *
-		                pitchShiftMultiplier(*m_freq_mod * FILTER_FREQ_MOD_RANGE_SEMITONES + kbd_modded * m_MIDI_note +
+		m_freq_modded = m_freq_base;
+		if(*m_freq_mod + kbd_modded + m_env_mod_amount + *m_env_mod_mod +  vel_modded ){
+		    m_freq_modded *= pitchShiftMultiplier(*m_freq_mod * FILTER_FREQ_MOD_RANGE_SEMITONES + kbd_modded * m_MIDI_note +
 		                                     (m_env_value * (m_env_mod_amount + *m_env_mod_mod) +
 		                                      vel_modded * (float)m_MIDI_velocity / 127.f) *
 		                                         FILTER_ENV_MOD_SEMITONES_MAX);
+		}
 
 		if (m_freq_modded > FILTER_FC_MAX)
 			m_freq_modded = FILTER_FC_MAX;

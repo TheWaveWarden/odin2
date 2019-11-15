@@ -26,7 +26,7 @@ public:
 	float pitchShiftMultiplier(float p_semitones) {
 		//0.05776226504 = ln(2)/12
 		//apparently pow(a,b) is calculated as exp(ln(a)*b), hence this is faster
-		return std::exp(0.05776226504 * p_semitones);
+		return juce::dsp::FastMathApproximations::exp(0.05776226504 * p_semitones);
 	}
 
 	void setFreqModPointer(float *p_pointer) {
