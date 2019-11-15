@@ -27,6 +27,18 @@ void Korg35Filter::reset() {
 void Korg35Filter::update() {
   Filter::update();
 
+  //recalc filter coeffs only if 
+  // freq_modded changed
+  // resonance modulation
+  // sample rate hast changed (m_last_freq_modded = -1)
+  // resonance changed (... = -1)
+  // filter type has changed (... = -1)
+
+  if(m_freq_modded == m_last_freq_modded && !(*m_res_mod)){
+    return;
+  }
+  m_last_freq_modded = m_freq_modded;
+
   // BZT
   double wd = 2 * 3.141592653 * m_freq_modded;
   //double t = 1.0 / m_samplerate;
@@ -93,4 +105,10 @@ void Korg35Filter::setResControl(double res) {
   // note: m_k must never be zero else division by zero
   // note2 original was 1.99 but dont want self oscillation
   m_k = res * 1.95 + 0.01;
+  m_last_freq_modded = -1; // to signal recalculation of filter coeffs in update()
+}
+
+void Korg35Filter::setSampleRate(double p_sr){
+  Filter::setSampleRate(p_sr);
+  m_last_freq_modded = -1; // to signal recalculation of filter coeffs in update()
 }

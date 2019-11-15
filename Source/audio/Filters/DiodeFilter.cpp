@@ -22,9 +22,7 @@ DiodeFilter::DiodeFilter(void)
 	reset();
 }
 
-DiodeFilter::~DiodeFilter(void)
-{
-}
+DiodeFilter::~DiodeFilter(void){}
 
 void DiodeFilter::reset()
 {
@@ -38,6 +36,15 @@ void DiodeFilter::update()
 {
 	//modulation
 	Filter::update();
+
+	//recalculate filter coefficients only if:
+	// filter freq changed
+	// sample rate changed (m_last_freq_modded set to -1)
+
+	if(m_last_freq_modded == m_freq_modded){
+		return;
+	}
+	m_last_freq_modded = m_freq_modded;
 
 	//calc alphas
 	double wd = 2 * 3.141592653 * m_freq_modded;
@@ -123,3 +130,9 @@ void DiodeFilter::setResControl(double res)
 {
 	m_k = 16.0 * res;
 }
+
+void DiodeFilter::setSampleRate(double p_sr) {
+	Filter::setSampleRate(p_sr);
+	m_last_freq_modded = -1; //to signal recalcualtion of filter coeffs in update()
+}
+

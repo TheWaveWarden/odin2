@@ -15,9 +15,14 @@ public:
 
 	inline void setFilterType(bool p_is_lowpass){
 		m_is_lowpass = p_is_lowpass;//else HP
+  		m_last_freq_modded = -1; // to signal recalculation of filter coeffs in update()
 	}
+
+	void setSampleRate(double p_sr) override;
 	
-private:
+protected:
+    double m_last_freq_modded = -1;
+
 	double m_k;
 	double m_k_modded;
 	double m_alpha;

@@ -11,8 +11,12 @@ public:
 	void update() override;
 	double doFilter(double xn) override;
 	void setResControl(double res) override;
+	void setSampleRate(double p_sr) override;
 
-private:
+protected:
+
+	double m_last_freq_modded = -1;
+
 	double m_k;
 	double m_gamma;
 	double m_sg1;
