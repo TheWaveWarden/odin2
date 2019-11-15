@@ -46,8 +46,8 @@ float ADSREnvelope::doEnvelope() {
 		m_decay_factor = calcDecayFactor(m_decay_modded);
 		m_current_value *= m_decay_factor;
 		m_sustain_modded = m_sustain + *m_sustain_mod;
-		m_sustain_modded        = m_sustain_modded < 0 ? 0 : m_sustain_modded;
-		m_sustain_modded        = m_sustain_modded > 1 ? 1 : m_sustain_modded;
+		m_sustain_modded = m_sustain_modded < 0 ? 0 : m_sustain_modded;
+		m_sustain_modded = m_sustain_modded > 1 ? 1 : m_sustain_modded;
 		if (m_current_value < MIN_DECAY_RELEASE_VAL) {
 			if (m_loop) {
 				m_current_section    = ADSR_SECTION_ATTACK;
@@ -67,8 +67,8 @@ float ADSREnvelope::doEnvelope() {
 
 	case ADSR_SECTION_SUSTAIN:
 		m_sustain_modded = m_sustain + *m_sustain_mod;
-		m_sustain_modded        = m_sustain_modded < 0 ? 0 : m_sustain_modded;
-		m_sustain_modded        = m_sustain_modded > 1 ? 1 : m_sustain_modded;
+		m_sustain_modded = m_sustain_modded < 0 ? 0 : m_sustain_modded;
+		m_sustain_modded = m_sustain_modded > 1 ? 1 : m_sustain_modded;
 		// just return sustain here
 		if (m_loop) {
 			m_current_section    = ADSR_SECTION_ATTACK;
@@ -108,8 +108,8 @@ void ADSREnvelope::startRelease() {
 		return;
 	}
 	m_sustain_modded = m_sustain + *m_sustain_mod;
-	m_sustain_modded        = m_sustain_modded < 0 ? 0 : m_sustain_modded;
-	m_sustain_modded        = m_sustain_modded > 1 ? 1 : m_sustain_modded;
+	m_sustain_modded = m_sustain_modded < 0 ? 0 : m_sustain_modded;
+	m_sustain_modded = m_sustain_modded > 1 ? 1 : m_sustain_modded;
 	if (m_current_section == ADSR_SECTION_DECAY) {
 		m_release_start_value = m_current_value * (1. - m_sustain_modded) + m_sustain_modded;
 	} else if (m_current_section == ADSR_SECTION_SUSTAIN) {

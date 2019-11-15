@@ -20,7 +20,7 @@ XYPadComponent::~XYPadComponent() {
 }
 
 void XYPadComponent::paint(Graphics &g) {
-    SET_INTERPOLATION_QUALITY(g)
+	SET_INTERPOLATION_QUALITY(g)
 
 	g.setColour(m_color);
 	juce::Point<int> top_left = getLocalBounds().getTopLeft();
@@ -58,7 +58,7 @@ void XYPadComponent::mouseDrag(const MouseEvent &event) {
 
 void XYPadComponent::mouseDown(const MouseEvent &event) {
 	mouseInteraction();
-  m_lock_set_XY_while_drawing = true;
+	m_lock_set_XY_while_drawing = true;
 }
 
 void XYPadComponent::mouseInteraction() {
@@ -80,6 +80,6 @@ void XYPadComponent::mouseInteraction() {
 }
 
 void XYPadComponent::mouseUp(const MouseEvent &event) {
-  m_lock_set_XY_while_drawing = false;
-  Component::mouseUp(event);
+	m_lock_set_XY_while_drawing = false;
+	Component::mouseUp(event);
 }
