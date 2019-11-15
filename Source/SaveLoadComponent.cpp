@@ -189,6 +189,8 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts, OdinAudi
 
 			    FileInputStream file_stream(file_to_read);
 			    if (file_stream.openedOk()) {
+				    //todo check for version compatibility
+
 				    //save midi learn tree
 				    ValueTree midi_learn_tree = m_value_tree.state.getChildWithName("midi_learn");
 
@@ -200,6 +202,12 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts, OdinAudi
 
 				    //reattach the non_param listeners
 				    m_audio_processor.attachNonParamListeners();
+
+				    //set the correct Version number again
+				    m_value_tree.state.getChildWithName("misc").setProperty(
+				        "version_minor", ODIN_MINOR_VERSION, nullptr);
+					m_value_tree.state.getChildWithName("misc").setProperty(
+				        "version_patch", ODIN_PATCH_VERSION, nullptr);
 
 				    //this forces values onto the GUI (patch label as well)
 				    forceValueTreeLambda();
