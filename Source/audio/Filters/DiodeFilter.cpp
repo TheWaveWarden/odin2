@@ -17,8 +17,6 @@ DiodeFilter::DiodeFilter(void)
 	m_LPF3.setLP(); //LP
 	m_LPF4.setLP(); //LP
 
-	//m_aux_control = 0.3;
-
 	reset();
 }
 
