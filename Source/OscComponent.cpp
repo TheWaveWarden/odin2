@@ -1030,7 +1030,6 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 	                      "on the bottom right.");
 	addChildComponent(m_specdraw);
 
-	//juce::Colour vector_color(35, 50, 42);
 	juce::Colour vector_color(25, 50, 60);
 
 	juce::Image glas_panel = ImageCache::getFromMemory(BinaryData::vectorpanel_png, BinaryData::vectorpanel_pngSize);
