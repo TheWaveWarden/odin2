@@ -941,7 +941,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 	m_wavetable_waveselector.setTooltip("Selects the waveform for the oscillator");
 	addChildComponent(m_wavetable_waveselector);
 
-	m_modulation_source.setTopLeftPosition(WAVETABLE_WAVE_X, WAVETABLE_WAVE_Y - 50);
+	m_modulation_source.setTopLeftPosition(POS_MODULATION_X, POS_MODULATION_Y);
 	m_modulation_source.addWave(1, "ModEnvelope");
 	m_modulation_source.addWave(10, "LFO 1");
 	//just toggle for this one
