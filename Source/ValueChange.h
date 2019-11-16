@@ -1,4 +1,4 @@
-#define DEBUG_VARIABLES
+//#define DEBUG_VARIABLES
 
 float valueToDenomintaor(int p_value) {
 	switch (p_value) {
@@ -1285,8 +1285,9 @@ void OdinAudioProcessor::treeValueChangedNonParamMod(ValueTree &tree, const Iden
 
 void OdinAudioProcessor::treeValueChangedNonParamMisc(ValueTree &tree, const Identifier &id) {
 	float p_new_value = (float)tree[id];
+#ifdef DEBUG_VARIABLES
 	DBG("nonparam_misc: " + id.toString().toStdString() + ": " + std::to_string(p_new_value));
-
+#endif
 	if (id == m_dist_algo_identifier) {
 		m_distortion[0].setAlgorithm((int)p_new_value);
 		m_distortion[1].setAlgorithm((int)p_new_value);
@@ -1340,8 +1341,9 @@ void OdinAudioProcessor::treeValueChangedNonParamMisc(ValueTree &tree, const Ide
 
 void OdinAudioProcessor::treeValueChangedNonParamOsc(ValueTree &tree, const Identifier &id) {
 	float p_new_value = (float)tree[id];
+#ifdef DEBUG_VARIABLES
 	DBG("nonparam_osc: " + id.toString().toStdString() + ": " + std::to_string(p_new_value));
-
+#endif
 	if (id == m_osc1_analog_wave_identifier) {
 		for (int voice = 0; voice < VOICES; ++voice) {
 			m_voice[voice].analog_osc[0].selectWavetable((int)p_new_value);

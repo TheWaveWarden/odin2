@@ -1031,7 +1031,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 	addChildComponent(m_specdraw);
 
 	//juce::Colour vector_color(35, 50, 42);
-	juce::Colour vector_color = WAVETABLE_DROPDOWN_COLOR;
+	juce::Colour vector_color(25, 50, 60);
 
 	juce::Image glas_panel = ImageCache::getFromMemory(BinaryData::vectorpanel_png, BinaryData::vectorpanel_pngSize);
 	m_xy.setTopLeftPosition(XY_POS_X, XY_POS_Y);

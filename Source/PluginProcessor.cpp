@@ -221,10 +221,10 @@ OdinAudioProcessor::OdinAudioProcessor() :
 		                       (m_osc_type[2] == OSC_TYPE_WAVETABLE && !m_osc_wavetable_source_lfo[2]);
 		    m_render_ADSR[1] = p_ADSR_1;
 
-		    DBG("RENDERING MODSOURCES:");
-		    DBG("LFO: " + std::to_string((int)m_render_LFO[0]) + " " + std::to_string((int)m_render_LFO[1]) + " " +
-		        std::to_string((int)m_render_LFO[2]) + " " + std::to_string((int)m_render_LFO[3]) +
-		        " ADSR: " + std::to_string((int)m_render_ADSR[0]) + " " + std::to_string((int)m_render_ADSR[1]));
+		    //DBG("RENDERING MODSOURCES:");
+		    //DBG("LFO: " + std::to_string((int)m_render_LFO[0]) + " " + std::to_string((int)m_render_LFO[1]) + " " +
+		    //    std::to_string((int)m_render_LFO[2]) + " " + std::to_string((int)m_render_LFO[3]) +
+		    //    " ADSR: " + std::to_string((int)m_render_ADSR[0]) + " " + std::to_string((int)m_render_ADSR[1]));
 	    };
 
 	//retriggerAllListeners();
