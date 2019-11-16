@@ -42,7 +42,7 @@
 #define STANDARD_DISPLAY_COLOR Colour(21, 45, 56)
 #define PHASER_DISPLAY_COLOR Colour(11, 41, 19)
 #define FLANGER_DISPLAY_COLOR Colour(40, 20, 53)
-#define MULTI_DROPDOWN_COLOR juce::Colour(61, 48, 48)
+#define MULTI_DROPDOWN_COLOR juce::Colour(39, 58, 48)
 #define WAVETABLE_DROPDOWN_COLOR juce::Colour(48, 65, 60)
 #define DARKGREY juce::Colour(30, 30, 30)
 #define CHORUS_DISPLAY_COLOR Colour(69, 39, 38)

@@ -954,6 +954,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 		m_value_tree.state.getChildWithName("osc").setProperty(
 		    m_modulation_source_identifier, (float)p_new_value, nullptr);
 	};
+	m_modulation_source.setColor(WAVETABLE_DROPDOWN_COLOR);
 	addChildComponent(m_modulation_source);
 
 	m_modulator_waveselector.OnValueChange = [&](int p_new_value) {
@@ -1029,7 +1030,8 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 	                      "on the bottom right.");
 	addChildComponent(m_specdraw);
 
-	juce::Colour vector_color(35, 50, 42);
+	//juce::Colour vector_color(35, 50, 42);
+	juce::Colour vector_color = WAVETABLE_DROPDOWN_COLOR;
 
 	juce::Image glas_panel = ImageCache::getFromMemory(BinaryData::vectorpanel_png, BinaryData::vectorpanel_pngSize);
 	m_xy.setTopLeftPosition(XY_POS_X, XY_POS_Y);
@@ -1482,7 +1484,6 @@ void OscComponent::showWavetableComponents() {
 	m_wavetable_waveselector.setVisible(true);
 	m_sync.setVisible(true);
 	m_pos_mod.setVisible(true);
-	m_modulation_source.setColor(WAVETABLE_DROPDOWN_COLOR);
 	m_modulation_source.setVisible(true);
 }
 
