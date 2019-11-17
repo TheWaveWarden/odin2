@@ -12,12 +12,10 @@ public:
 	FMOscillator();
 	~FMOscillator();
 
-	virtual void update() override;
-	virtual void reset() override;
-	virtual float doOscillate() override;
-	virtual void loadWavetables();
-	//virtual void startOscillator() override;
-	//virtual void stopOscillator() override;
+	void update() override;
+	void reset() override;
+	float doOscillate() override;
+	void loadWavetables();
 	
 	inline void setFMAmount(float p_fm_amount){
 		m_FM_amount = p_fm_amount;

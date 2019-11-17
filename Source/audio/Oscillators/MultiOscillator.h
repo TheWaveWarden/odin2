@@ -10,9 +10,9 @@ public:
 	MultiOscillator();
 	~MultiOscillator();
 
-	virtual float doOscillate() override;
-	virtual void update() override;
-	virtual void reset() override;
+	float doOscillate() override;
+	void update() override;
+	void reset() override;
 
 	inline void setPosition(float p_position){
 		m_position_2D = p_position;
@@ -26,8 +26,6 @@ public:
 		m_wavetable_multi_spread = p_wt_spread;
 	}
 
-	//virtual void loadWavetables() override; 
-
 	void setDetuneModPointer(float* p_pointer){
 		m_detune_mod = p_pointer;
 	}
@@ -37,8 +35,8 @@ public:
 	}
 	
 protected:
-
-	virtual void initiateSync() override {
+	
+	void initiateSync() override {
 		for (int subosc = 0; subosc < OSCS_PER_MULTIOSC; ++subosc){
 			m_read_index_multi[subosc] = 0;
 		}

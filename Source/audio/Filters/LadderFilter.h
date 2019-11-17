@@ -19,14 +19,14 @@ public:
   ~LadderFilter(void);
 
   // -- Filter Overrides --
-  virtual void reset() override;
-  virtual void setResControl(double p_res) override;
-  virtual void setSampleRate(double p_sr) override {
+  void reset() override;
+  void setResControl(double p_res) override;
+  void setSampleRate(double p_sr) override {
     Filter::setSampleRate(p_sr);
     m_last_freq_modded = -1; //to signal recalculation of coeffs in update()
   }
 
-  inline virtual void update() {
+  inline void update() {
 
     // do any modulation first
     Filter::update();
@@ -137,7 +137,7 @@ public:
     }
   }
 
-  inline virtual double doFilter(double xn) {
+  inline double doFilter(double xn) {
 
     double dSigma = m_LPF1.getFeedbackOutput() + m_LPF2.getFeedbackOutput() +
                     m_LPF3.getFeedbackOutput() + m_LPF4.getFeedbackOutput();

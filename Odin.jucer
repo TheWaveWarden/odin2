@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT id="vpwEHn" name="Odin2" projectType="audioplug" jucerVersion="5.4.4"
+<JUCERPROJECT id="vpwEHn" name="Odin2" projectType="audioplug" jucerVersion="5.4.5"
               pluginFormats="buildStandalone,buildVST,buildVST3" version="2.0.0"
               companyName="BommelDSP" companyWebsite="www.BommelDSP.com" pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn"
               pluginManufacturerCode="BDSP" pluginCode="ODIN" pluginChannelConfigs="{0,2}">
@@ -811,8 +811,6 @@
           <FILE id="wpKP9V" name="LadderFilter.h" compile="0" resource="0" file="Source/audio/Filters/LadderFilter.h"/>
           <FILE id="z8dMj5" name="SEMFilter12.cpp" compile="1" resource="0" file="Source/audio/Filters/SEMFilter12.cpp"/>
           <FILE id="nOpc0Z" name="SEMFilter12.h" compile="0" resource="0" file="Source/audio/Filters/SEMFilter12.h"/>
-          <FILE id="Y2t4NA" name="SEMFilter24.cpp" compile="1" resource="0" file="Source/audio/Filters/SEMFilter24.cpp"/>
-          <FILE id="nmWYyd" name="SEMFilter24.h" compile="0" resource="0" file="Source/audio/Filters/SEMFilter24.h"/>
           <FILE id="atXb4h" name="VAOnePoleFilter.cpp" compile="1" resource="0"
                 file="Source/audio/Filters/VAOnePoleFilter.cpp"/>
           <FILE id="pLRS0p" name="VAOnePoleFilter.h" compile="0" resource="0"

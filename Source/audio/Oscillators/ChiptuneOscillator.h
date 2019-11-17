@@ -9,19 +9,17 @@
 class ChiptuneOscillator : public WavetableOsc1D{
 public:
 	ChiptuneOscillator();
-	virtual ~ChiptuneOscillator();
+	~ChiptuneOscillator();
 
-    inline virtual void setBaseFrequency(float p_freq) override {
+    inline void setBaseFrequency(float p_freq) override {
         WavetableOsc1D::setBaseFrequency(p_freq);
         m_chiptune_arp.reset();
     }
 
-    //virtual void loadWavetables() override;
-    virtual float doOscillate() override;
-    virtual void update() override;
-    virtual void setSampleRate(float p_samplerate) override;
-    virtual void reset() override;
-    //virtual void startOscillator() override;
+    float doOscillate() override;
+    void update() override;
+    void setSampleRate(float p_samplerate) override;
+    void reset() override;
 
     float generateChipNoise();
 

@@ -22,8 +22,7 @@ public:
 	inline void resetModulo(double d = 0.0) {
 		m_modulo = d;
 	}
-	// virtual void startOscillator() {m_note_on = true;}
-	// virtual void stopOscillator() {m_note_on = false;}
+	
 	virtual float doOscillate() = 0;
 	virtual void setSampleRate(float p_samplerate) {
 

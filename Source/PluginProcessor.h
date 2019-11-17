@@ -31,7 +31,6 @@
 #include "audio/Filters/Korg35Filter.h"
 #include "audio/Filters/LadderFilter.h"
 #include "audio/Filters/SEMFilter12.h"
-#include "audio/Filters/SEMFilter24.h"
 #include "audio/Oscillators/WavetableContainer.h"
 
 //#define ODIN_PROFILING

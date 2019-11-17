@@ -21,9 +21,9 @@ public:
 		m_duty = m_duty < 0.02f ? 0.02f : m_duty;
 	}
 
-	virtual float doOscillate() override;
-	virtual void update() override;
-	virtual void loadWavetables() override;
+	float doOscillate() override;
+	void update() override;
+	void loadWavetables() override;
 	void setPWMModPointer(float* p_pointer){
 		pwm_mod = p_pointer;
 	}

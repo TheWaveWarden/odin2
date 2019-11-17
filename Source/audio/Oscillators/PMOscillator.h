@@ -12,12 +12,10 @@ public:
   PMOscillator();
   ~PMOscillator();
 
-  virtual void update() override;
-  virtual void reset() override;
-  virtual float doOscillate() override;
-  virtual void loadWavetables();
-  // virtual void startOscillator() override;
-  // virtual void stopOscillator() override;
+  void update() override;
+  void reset() override;
+  float doOscillate() override;
+  void loadWavetables();
 
   void setSampleRate(float p_sr) override {
 	  Oscillator::setSampleRate(p_sr);

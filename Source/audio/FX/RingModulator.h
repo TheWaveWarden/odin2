@@ -11,11 +11,11 @@ public:
   void reset() override;
   void update() override;
 
-  virtual void setVolModPointer(float *p_pointer) { m_vol_mod = p_pointer; }
-  virtual void setVelModPointer(float *p_pointer) { m_vel_mod_mod = p_pointer; }
-  virtual void setKbdModPointer(float *p_pointer) { m_kbd_mod_mod = p_pointer; }
-  virtual void setEnvModPointer(float *p_pointer) { m_env_mod_mod = p_pointer; }
-  virtual void setRingModAmountModPointer(float *p_pointer) { m_ringmod_amount_mod = p_pointer; }
+  void setVolModPointer(float *p_pointer) { m_vol_mod = p_pointer; }
+  void setVelModPointer(float *p_pointer) { m_vel_mod_mod = p_pointer; }
+  void setKbdModPointer(float *p_pointer) { m_kbd_mod_mod = p_pointer; }
+  void setEnvModPointer(float *p_pointer) { m_env_mod_mod = p_pointer; }
+  void setRingModAmountModPointer(float *p_pointer) { m_ringmod_amount_mod = p_pointer; }
   
   void setAmount(float p_amount){
     m_amount = p_amount;

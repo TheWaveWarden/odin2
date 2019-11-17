@@ -8,14 +8,14 @@ public:
   VectorOscillator();
   ~VectorOscillator();
 
-  virtual void setBaseFrequency(float p_freq) override {
+  void setBaseFrequency(float p_freq) override {
     WavetableOsc1D::setBaseFrequency(p_freq);
     // this means osc-restart so we will set pos_smooth to pos here (= hack)
     m_XY_pad_x_smooth = m_XY_pad_x;
     m_XY_pad_y_smooth = m_XY_pad_y;
   }
 
-  virtual void reset() override {
+  void reset() override {
     WavetableOsc1D::reset();
 
     m_XY_pad_x_smooth = m_XY_pad_x;
@@ -37,9 +37,8 @@ public:
     selectWavetable(wavetableMappingVector(p_wavetable_index), p_vector_point);
   }
 
-  virtual float doOscillate() override;
-  virtual void update() override;
-  // virtual void loadWavetables() override;
+  float doOscillate() override;
+  void update() override;
 
   void setXModPointer(float *p_pointer) { m_mod_x = p_pointer; }
   void setYModPointer(float *p_pointer) { m_mod_y = p_pointer; }

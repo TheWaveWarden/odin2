@@ -18,9 +18,9 @@ public:
 	double m_feedback;		// our own feedback coeff from S 
 	void setFeedback(double fb){m_feedback = fb;}
 	double getFeedbackOutput(){return m_beta*(m_z_1 + m_feedback*m_delta);}
-	virtual void reset(){m_z_1 = 0; m_feedback = 0;}
-	virtual void update();
-	virtual double doFilter(double xn);
+	void reset(){m_z_1 = 0; m_feedback = 0;}
+	inline void update();
+	inline idouble doFilter(double xn);
 	inline void setLP(){m_is_lowpass = true;}
 	inline void setHP(){m_is_lowpass = false;}
 protected:
