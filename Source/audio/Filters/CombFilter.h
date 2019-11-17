@@ -57,7 +57,7 @@ public:
 		m_feedback = p_feedback;
 	}
 
-	inline void setSampleRate(float p_samplerate) {
+	virtual void setSampleRate(float p_samplerate) {
 
 		// DBG("setsamplerate comb");
 		m_samplerate = p_samplerate;
@@ -74,7 +74,7 @@ public:
 		return (1.f - p_distance) * p_low + p_distance * p_high;
 	}
 
-	inline void reset() {
+	virtual void reset() {
 		m_write_index = 0;
 		memset(circular_buffer, 0, COMB_BUFFER_LENGTH * sizeof(float));
 		m_DC_blocking_filter.reset();

@@ -19,8 +19,8 @@ public:
 	void setFeedback(double fb){m_feedback = fb;}
 	double getFeedbackOutput(){return m_beta*(m_z_1 + m_feedback*m_delta);}
 	void reset(){m_z_1 = 0; m_feedback = 0;}
-	inline void update();
-	inline idouble doFilter(double xn);
+	void update();
+	double doFilter(double xn);
 	inline void setLP(){m_is_lowpass = true;}
 	inline void setHP(){m_is_lowpass = false;}
 protected:
