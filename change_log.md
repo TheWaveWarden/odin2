@@ -1,3 +1,7 @@
+# 1.9.18
+- changed vector, multi, distortion panels
+- fixed formant filter not working
+- code / peformance improvement (removed unnecessary "virtual" classifiers)
 # 1.9.17
 - Valuetree & patches now with version number
 - fixed sync-backrops in LFO
