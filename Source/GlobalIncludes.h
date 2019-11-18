@@ -29,7 +29,7 @@
 // shows the spectrum and wave display for wavetable osc 1
 //#define WTGEN
 
-#define ODIN_VERSION_STRING "Odin 1.9.18"
+#define ODIN_VERSION_STRING "Odin 2.0.0 alpha"
 #define ODIN_MAJOR_VERSION 2
 #define ODIN_MINOR_VERSION 0
 #define ODIN_PATCH_VERSION 0

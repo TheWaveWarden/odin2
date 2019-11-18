@@ -1,3 +1,5 @@
+# 2.0.0 alpha
+- added patches folder and first patch
 # 1.9.18
 - changed vector, multi, distortion panels
 - fixed formant filter not working
