@@ -1,18 +1,7 @@
-/*
-  ==============================================================================
-
-    WavedrawDisplay.h
-    Created: 2 Mar 2019 1:38:37am
-    Author:  frot
-
-  ==============================================================================
-*/
-
 #pragma once
 
 #include "GlobalIncludes.h"
 #include "../JuceLibraryCode/JuceHeader.h"
-#include "audio/Oscillators/WavetableContainer.h"
 #define INLAY_DEFAULT_WAVEDRAW 2
 
 #define DRAW_INLAY_LEFT 3
@@ -37,7 +26,6 @@ public:
   void mouseDrag(const MouseEvent &event) override;
   void mouseDown(const MouseEvent &event) override;
   void mouseUp(const MouseEvent &event) override;
-  
   void mouseInteraction();
 
   float* getDrawnTable();

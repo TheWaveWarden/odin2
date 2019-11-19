@@ -1,18 +1,7 @@
-/*
-  ==============================================================================
-
-    SpecdrawDisplay.h
-    Created: 2 Mar 2019 11:00:22am
-    Author:  frot
-
-  ==============================================================================
-*/
-
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "GlobalIncludes.h"
-
 #define INLAY_DEFAULT_SPECDRAW 2
 
 #define DRAW_INLAY_LEFT_SPEC 7

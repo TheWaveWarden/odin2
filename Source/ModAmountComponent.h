@@ -35,6 +35,7 @@ public:
 
   void setValue(float p_amount)
   {
+	  // ! TODO LOCK!!!!!
     m_value = p_amount;
     repaint();
   }

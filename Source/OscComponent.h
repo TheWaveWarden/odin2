@@ -205,16 +205,16 @@ public:
 
   void resetVectorWaves();
 
-  //todo remove
-  void setColorPickerPointer(juce::ColourSelector* picker){
-    REMOVE_color_picker = picker;
-  }
+  // //todo remove
+  // void setColorPickerPointer(juce::ColourSelector* picker){
+  //   REMOVE_color_picker = picker;
+  // }
 
 protected:
   // TextEditor REMOVE_EDITOR;
 
-  //todo remove
-  juce::ColourSelector* REMOVE_color_picker;
+  // //todo remove
+  // juce::ColourSelector* REMOVE_color_picker;
 
   int m_osc_type = 0;
 

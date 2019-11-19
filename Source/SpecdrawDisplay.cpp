@@ -1,17 +1,6 @@
-/*
-  ==============================================================================
-
-    SpecdrawDisplay.cpp
-    Created: 2 Mar 2019 11:00:22am
-    Author:  frot
-
-  ==============================================================================
-*/
-
 #include "SpecdrawDisplay.h"
 #include "../JuceLibraryCode/JuceHeader.h"
 
-//==============================================================================
 SpecdrawDisplay::SpecdrawDisplay() {
 	m_glaspanel = ImageCache::getFromMemory(BinaryData::drawpanel_png, BinaryData::drawpanel_pngSize);
 
@@ -72,7 +61,7 @@ void SpecdrawDisplay::mouseInteraction() {
 	y = y < DRAW_INLAY_UP_SPEC ? DRAW_INLAY_UP_SPEC : y;
 	y = y > getHeight() - DRAW_INLAY_DOWN_SPEC ? getHeight() - DRAW_INLAY_DOWN_SPEC : y;
 	x = x < 0 ? 0 : x;
-	x = x > SPECDRAW_STEPS_X ? SPECDRAW_STEPS_X - 1 : x;
+	x = x >= SPECDRAW_STEPS_X ? SPECDRAW_STEPS_X - 1 : x;
 
 	float float_y =
 	    (getHeight() - DRAW_INLAY_DOWN_SPEC - y) / (getHeight() - DRAW_INLAY_UP_SPEC - DRAW_INLAY_DOWN_SPEC);
@@ -99,21 +88,15 @@ void SpecdrawDisplay::mouseInteraction() {
 	}
 	m_last_x_value = x;
 	m_last_y_value = float_y;
-	//}
+
 	onDraw();
 	repaint();
-	// if (!m_mouse_was_down) {
+
 	m_mouse_was_down = true;
-	//  DBG("MOUSE DOWN!");
-	//}
 }
 
 void SpecdrawDisplay::mouseUp(const MouseEvent &event) {
-	// if(m_mouse_was_down){
-	//  m_mouse_was_down = false;
 	m_mouse_was_down = false;
-	// DBG("UP!");
-	//}
 }
 
 float *SpecdrawDisplay::getDrawnTable() {
