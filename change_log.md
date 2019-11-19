@@ -1,3 +1,5 @@
+# 2.0.1 alpha
+- fixed crash in specdraw osc
 # 2.0.0 alpha
 - added patches folder and first patch
 # 1.9.18
