@@ -10,6 +10,7 @@
 
 #include "OscComponent.h"
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "audio/Oscillators/WavetableContainer.h"
 
 //==============================================================================
 OscComponent::OscComponent(OdinAudioProcessor &p_processor,
