@@ -142,14 +142,7 @@ protected:
   double m_release_factor = 0.9998;
   double m_release_start_value = 1.;
 
-  //todo these are added because you can't declare vars in case statement???
-  double m_attack_modded = 0.;
-  double m_decay_modded = 0.;
-  double m_sustain_modded = 0.;
-  double m_release_modded = 0.;
-
   double m_current_value = 0.f;
   double m_samplerate;
-
   // bool* m_envelope_finish_flag = nullptr;
 };
