@@ -32,7 +32,9 @@
 #define ODIN_VERSION_STRING "Odin 2.0.1 alpha"
 #define ODIN_MAJOR_VERSION 2
 #define ODIN_MINOR_VERSION 0
-#define ODIN_PATCH_VERSION 0
+#define ODIN_PATCH_VERSION 1
+// ! this is for migrating patches from older version, not to be confused with above
+#define ODIN_PATCH_MIGRATION_VERSION 2
 
 #define MENU_BACKGROUND_COLOR Colour(35, 35, 35)
 #define MENU_FONT_COLOR Colours::lightgrey

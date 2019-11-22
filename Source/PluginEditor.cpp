@@ -11,8 +11,6 @@
 #include "PluginEditor.h"
 #include "PluginProcessor.h"
 
-#include <ctime> //todo ifdef debug
-
 bool writeComponentImageToFile(Component &comp) {
 	time_t rawtime;
 	struct tm *timeinfo;
@@ -1010,7 +1008,7 @@ OdinAudioProcessorEditor::~OdinAudioProcessorEditor() {
 	m_tooltip.setLookAndFeel(nullptr);
 	m_value_input.setLookAndFeel(nullptr);
 
-	// todo whatever the reason behind this was, m_vlaue_tree doesn't even have a member pitchbend_amount, bc was moved to subtree
+	// todo what is the reasoning behind this???
 	m_value_tree.removeParameterListener("pitchbend_amount", &m_pitch_amount);
 
 	// remove lambdas which are invalid after the editor was closed

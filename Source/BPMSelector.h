@@ -85,8 +85,6 @@ public:
     m_display_width = glas_panel.getWidth();
     m_buttons_right = p_buttons_right;
 
-    // setTooltip("HENLO");
-
     setValue(1);
   }
 };

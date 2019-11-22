@@ -1,7 +1,6 @@
 
 void OdinAudioProcessor::retriggerAllListeners() {
 
-	DBG("\n\n\n\n\n\n\n");
 	//todo draw values are not turned into wavetables on startup...?
 
 	for (int i = 0; i < m_value_tree_osc.getNumProperties(); ++i) {

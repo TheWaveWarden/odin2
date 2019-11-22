@@ -637,7 +637,7 @@
        lfo_right_selected="1"/>
   <misc legato="1" dist_algo="1.0" BPM="120" env_left_selected="1" env_right_selected="1"
         fil1_type="2" fil2_type="1" fil3_type="1" patch_name="init_patch"
-        verison_minor="0" verison_patch="0"/>
+        version_minor="0" version_patch="1" patch_migration_version="2"/>
   <mod source_row_0="0" source_row_1="0" source_row_2="0" source_row_3="0"
        source_row_4="0" source_row_5="0" source_row_6="0" source_row_7="0"
        source_row_8="0" dest_1_row_0="0" dest_1_row_1="0" dest_1_row_2="0"

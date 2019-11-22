@@ -1522,7 +1522,6 @@ void OdinAudioProcessor::treeValueChangedNonParamOsc(ValueTree &tree, const Iden
 	} else if (id == m_osc1_modulation_source_identifier) {
 		m_osc_wavetable_source_lfo[0] = (p_new_value == 10);
 		//check which sources to render for wavetable pos mod:
-		DBG("henlo");
 		m_mod_matrix.checkWhichSourceToRender();
 	} else if (id == m_osc2_modulation_source_identifier) {
 		m_osc_wavetable_source_lfo[1] = (p_new_value == 10);

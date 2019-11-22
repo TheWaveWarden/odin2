@@ -189,13 +189,20 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts, OdinAudi
 
 			    FileInputStream file_stream(file_to_read);
 			    if (file_stream.openedOk()) {
-				    //todo check for version compatibility
+
+				    //first see if the patch is of a higher version than we know about:
+				   // if (checkForBiggerVersion(ValueTree::readFromStream(file_stream))) {
+					    //abort with icon
+				    //}
 
 				    //save midi learn tree
 				    ValueTree midi_learn_tree = m_value_tree.state.getChildWithName("midi_learn");
 
 				    //read tree from file
 				    m_value_tree.replaceState(ValueTree::readFromStream(file_stream));
+
+				    //if we read an old patch, we might need to add parameters
+				    versionMigrate();
 
 				    //reappend midi learn tree
 				    m_value_tree.state.appendChild(midi_learn_tree, nullptr);
@@ -206,8 +213,10 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts, OdinAudi
 				    //set the correct Version number again
 				    m_value_tree.state.getChildWithName("misc").setProperty(
 				        "version_minor", ODIN_MINOR_VERSION, nullptr);
-					m_value_tree.state.getChildWithName("misc").setProperty(
+				    m_value_tree.state.getChildWithName("misc").setProperty(
 				        "version_patch", ODIN_PATCH_VERSION, nullptr);
+				    m_value_tree.state.getChildWithName("misc").setProperty(
+				        "patch_migration_version", ODIN_PATCH_MIGRATION_VERSION, nullptr);
 
 				    //this forces values onto the GUI (patch label as well)
 				    forceValueTreeLambda();
@@ -273,4 +282,23 @@ SaveLoadComponent::~SaveLoadComponent() {
 void SaveLoadComponent::forceValueTreeOntoComponents(ValueTree p_tree) {
 	DBG("SAVELOADFORCEVALUETREE\n\n\n");
 	m_patch.setText((p_tree.getChildWithName("misc")["patch_name"]).toString().toStdString());
+}
+
+void SaveLoadComponent::versionMigrate() {
+	//we just replaced the value tree with the patch
+	//we also read the version from the patch which is now in m_value_tree
+
+	int minor_version           = m_value_tree.state.getChildWithName("misc")["version_minor"];
+	int patch_version           = m_value_tree.state.getChildWithName("misc")["version_patch"];
+	int patch_migration_version = m_value_tree.state.getChildWithName("misc")["patch_migration_version"];
+
+	DBG("Read patch from version 2." + std::to_string(minor_version) + "." + std::to_string(patch_version));
+	DBG("Current version is: 2." + std::to_string(ODIN_MINOR_VERSION) + "." + std::to_string(ODIN_PATCH_VERSION));
+	DBG("Read patch migration version " + std::to_string(patch_migration_version) + " current version is " +
+	    std::to_string(ODIN_PATCH_MIGRATION_VERSION));
+}
+
+bool SaveLoadComponent::checkForBiggerVersion(const ValueTree &p_tree) {
+	int patch_version = p_tree.getChildWithName("misc")["patch_migration_version"];
+	return (patch_version > ODIN_PATCH_MIGRATION_VERSION);
 }

@@ -46,6 +46,9 @@ public:
 
 private:
 
+  bool checkForBiggerVersion(const ValueTree &p_tree);
+  void versionMigrate();
+
   OdinAudioProcessor& m_audio_processor;
 
   std::unique_ptr<FileChooser> m_filechooser;

@@ -831,13 +831,11 @@ void OdinAudioProcessor::initializeModules() {
 }
 
 void OdinAudioProcessor::setPitchWheelValue(int p_value) {
-	//todo is this set on valuetree?
 	*m_pitchbend = (float)(p_value - 8192) / 8192.f;
 	updatePitchWheelGUI(*m_pitchbend);
 }
 
 void OdinAudioProcessor::setModWheelValue(int p_value) {
-	//todo is set on valuetree?
 	*m_modwheel = (float)(p_value) / 128.f;
 	updateModWheelGUI(*m_modwheel);
 }
