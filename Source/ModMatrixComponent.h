@@ -36,7 +36,6 @@ private:
   void createMenu(PopupMenu* p_menu);
   void setStandardMenu(PopupMenu *p_menu);
 
-  //todo test will calling clear set the values on the valuetree (i.e. call the listeners?)
   GlasDropdown m_source[N_ROWS];
   ModAmountComponent m_amount_1[N_ROWS];
   GlasDropdown m_dest_1[N_ROWS];

@@ -37,7 +37,7 @@ void PMOscillator::update() {
 	}
 
 	// now do modulator osc so we can use it as modultion
-	m_modulator_osc.update(); // TODO this uses pitchshiftmodulator although it needn't
+	m_modulator_osc.update();
 	float mod_value = m_modulator_osc.doOscillate();
 
 	float pm_amount_modded = m_PM_amount + *m_pm_mod;
