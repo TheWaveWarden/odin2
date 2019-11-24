@@ -1,3 +1,6 @@
+# 2.0.2 alpha
+- newer patch-versions than current can not be loaded anymore
+- changed distortion panel to stripe pattern
 # 2.0.1 alpha
 - fixed crash in specdraw osc
 # 2.0.0 alpha
