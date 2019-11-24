@@ -160,7 +160,7 @@ public:
 	void setFXButtonsPosition(int p_delay, int p_phaser, int p_flanger, int p_chorus);
 	void attachNonParamListeners();
 	void retriggerAllListeners();
-
+	void migratePatch(int p_patch_version_to_migrate_from);
 private:
 #ifdef ODIN_PROFILING
 #define PROFILING_SAMPLES 44100

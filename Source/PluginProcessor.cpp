@@ -5,6 +5,7 @@
 #include "RetriggerAllListeners.h"
 // these file contains implementation to avoid clutter in this file
 #include "AddNonAudioParametersToValueTree.h"
+#include "MigratePatch.h"
 #include "SetModulationPointers.h"
 #include "ValueChange.h"
 
@@ -349,7 +350,7 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 	if (AudioPlayHead *playhead = getPlayHead()) {
 		AudioPlayHead::CurrentPositionInfo current_position_info;
 		playhead->getCurrentPosition(current_position_info);
-		if(m_BPM != current_position_info.bpm){
+		if (m_BPM != current_position_info.bpm) {
 			m_value_tree.state.getChildWithName("misc").setProperty("BPM", m_BPM, nullptr);
 		}
 		m_BPM = current_position_info.bpm;
@@ -731,9 +732,7 @@ AudioProcessorEditor *OdinAudioProcessor::createEditor() {
 
 //==============================================================================
 void OdinAudioProcessor::getStateInformation(MemoryBlock &destData) {
-	// You should use this method to store your parameters in the memory block.
-	// You could do that either as raw data, or use the XML or ValueTree classes
-	// as intermediaries to make it easy to save and load complex data.
+	// this is called when DAW saves a file
 
 	// disable for standalone plugins
 	if (wrapperType == wrapperType_Standalone) {
@@ -747,9 +746,7 @@ void OdinAudioProcessor::getStateInformation(MemoryBlock &destData) {
 }
 
 void OdinAudioProcessor::setStateInformation(const void *data, int sizeInBytes) {
-	// You should use this method to restore your parameters from this memory
-	// block, whose contents will have been created by the getStateInformation()
-	// call.
+	//this is called when DAW restores a file
 
 	// disable for standalone plugins
 	if (wrapperType == wrapperType_Standalone) {
@@ -759,7 +756,18 @@ void OdinAudioProcessor::setStateInformation(const void *data, int sizeInBytes) 
 	std::unique_ptr<XmlElement> xmlState(getXmlFromBinary(data, sizeInBytes));
 	if (xmlState.get() != nullptr) {
 		if (xmlState->hasTagName(m_value_tree.state.getType())) {
+			//load data
 			m_value_tree.replaceState(ValueTree::fromXml(*xmlState));
+			
+			//migrate patch in case the version has changed
+			migratePatch((int)m_value_tree.state.getChildWithName("misc")["patch_migration_version"]);
+			
+			//set the correct version since an old one was maybe set from patch
+			m_value_tree.state.getChildWithName("misc").setProperty("version_minor", ODIN_MINOR_VERSION, nullptr);
+			m_value_tree.state.getChildWithName("misc").setProperty("version_patch", ODIN_PATCH_VERSION, nullptr);
+			m_value_tree.state.getChildWithName("misc").setProperty(
+			    "patch_migration_version", ODIN_PATCH_MIGRATION_VERSION, nullptr);
+
 			attachNonParamListeners();
 			m_force_values_onto_gui = true;
 			DBG("LOADED BINARY STATE!!");

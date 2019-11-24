@@ -194,7 +194,7 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts, OdinAudi
 					std::string version_string;
 				    if (checkForBiggerVersion(file_stream, version_string)) {
 					    //abort with icon
-						AlertWindow::showMessageBox(AlertWindow::AlertIconType::WarningIcon, "Can't load patch!", "You're trying to load a patch from version Odin " + version_string + ", but your Version is " + ODIN_VERSION_STRING + ". Please go to TODO.com and download the latest version of Odin2 to use this patch!", "Ok");
+						AlertWindow::showMessageBox(AlertWindow::AlertIconType::WarningIcon, "Cannot load patch!", "The bad news: You cannot load this patch, because you are on version " + ODIN_VERSION_STRING + ".\nThe good news: The patch you're trying to load was created on version " + version_string + ". So go to TODO.com already and download the latest version of Odin2!", "Thanks, I will!");
 						return;
 				    }
 					//reset stream position
@@ -300,6 +300,9 @@ void SaveLoadComponent::versionMigrate() {
 	DBG("Current version is: 2." + std::to_string(ODIN_MINOR_VERSION) + "." + std::to_string(ODIN_PATCH_VERSION));
 	DBG("Read patch migration version " + std::to_string(patch_migration_version) + " current version is " +
 	    std::to_string(ODIN_PATCH_MIGRATION_VERSION));
+
+	//actual migration takes place in audioprocessor
+	m_audio_processor.migratePatch(patch_migration_version);
 }
 
 bool SaveLoadComponent::checkForBiggerVersion(FileInputStream &p_file_stream, std::string &p_version_string) {
