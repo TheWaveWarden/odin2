@@ -1138,8 +1138,9 @@ void OdinAudioProcessor::treeValueChangedGeneralMisc(const String &p_ID, float p
 void OdinAudioProcessor::treeValueChangedNonParamFX(ValueTree &tree, const Identifier &id) {
 
 	float p_new_value = (float)tree[id];
+#ifdef DEBUG_VARIABLES
 	DBG("nonparam_fx: " + id.toString().toStdString() + ": " + std::to_string(p_new_value));
-
+#endif
 	if (id == m_flanger_synctime_numerator_identifier) {
 		for (int stereo = 0; stereo < 2; ++stereo) {
 			m_flanger[stereo].setSynctimeNumerator(p_new_value + 1);
@@ -1169,8 +1170,9 @@ void OdinAudioProcessor::treeValueChangedNonParamFX(ValueTree &tree, const Ident
 
 void OdinAudioProcessor::treeValueChangedNonParamLFO(ValueTree &tree, const Identifier &id) {
 	float p_new_value = (float)tree[id];
+#ifdef DEBUG_VARIABLES
 	DBG("nonparam_lfo: " + id.toString().toStdString() + ": " + std::to_string(p_new_value));
-
+#endif
 	if (id == m_lfo1_synctime_numerator_identifier) {
 		for (int voice = 0; voice < VOICES; ++voice) {
 			m_voice[voice].lfo[0].setSynctimeNumerator(p_new_value + 1);
@@ -1204,8 +1206,9 @@ void OdinAudioProcessor::treeValueChangedNonParamLFO(ValueTree &tree, const Iden
 
 void OdinAudioProcessor::treeValueChangedNonParamMod(ValueTree &tree, const Identifier &id) {
 	float p_new_value = (float)tree[id];
+#ifdef DEBUG_VARIABLES
 	DBG("nonparam_mod: " + id.toString().toStdString() + ": " + std::to_string(p_new_value));
-
+#endif
 	if (id == m_source_row_1_identifier) {
 		m_mod_matrix.setModSource(0, p_new_value);
 	} else if (id == m_dest_1_row_1_identifier) {

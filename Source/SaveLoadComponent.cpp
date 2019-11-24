@@ -191,9 +191,14 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts, OdinAudi
 			    if (file_stream.openedOk()) {
 
 				    //first see if the patch is of a higher version than we know about:
-				   // if (checkForBiggerVersion(ValueTree::readFromStream(file_stream))) {
+					std::string version_string;
+				    if (checkForBiggerVersion(file_stream, version_string)) {
 					    //abort with icon
-				    //}
+						AlertWindow::showMessageBox(AlertWindow::AlertIconType::WarningIcon, "Can't load patch!", "You're trying to load a patch from version Odin " + version_string + ", but your Version is " + ODIN_VERSION_STRING + ". Please go to TODO.com and download the latest version of Odin2 to use this patch!", "Ok");
+						return;
+				    }
+					//reset stream position
+					file_stream.setPosition(0);
 
 				    //save midi learn tree
 				    ValueTree midi_learn_tree = m_value_tree.state.getChildWithName("midi_learn");
@@ -227,16 +232,15 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts, OdinAudi
 				    //save load directory
 				    m_last_directory = file_to_read.getParentDirectory().getFullPathName();
 
-				    DBG(m_value_tree.state.toXmlString());
-				    DBG("Loaded above patch " + m_value_tree.state.getChildWithName("misc")["patch_name"].toString() +
-				        "  from " + file_name);
+				    //DBG(m_value_tree.state.toXmlString());
+				    //DBG("Loaded above patch " + m_value_tree.state.getChildWithName("misc")["patch_name"].toString() +
+				    //    "  from " + file_name);
 			    } else {
 				    if (file_name != "") {
 					    AlertWindow::showMessageBoxAsync(
 					        AlertWindow::InfoIcon, "File not found!", "Path: " + file_name, "Ok");
 				    }
 			    }
-			    //DBG(m_value_tree.state.toXmlString());
 		    });
 	};
 
@@ -280,7 +284,7 @@ SaveLoadComponent::~SaveLoadComponent() {
 }
 
 void SaveLoadComponent::forceValueTreeOntoComponents(ValueTree p_tree) {
-	DBG("SAVELOADFORCEVALUETREE\n\n\n");
+	//DBG("SAVELOADFORCEVALUETREE\n\n\n");
 	m_patch.setText((p_tree.getChildWithName("misc")["patch_name"]).toString().toStdString());
 }
 
@@ -298,7 +302,12 @@ void SaveLoadComponent::versionMigrate() {
 	    std::to_string(ODIN_PATCH_MIGRATION_VERSION));
 }
 
-bool SaveLoadComponent::checkForBiggerVersion(const ValueTree &p_tree) {
-	int patch_version = p_tree.getChildWithName("misc")["patch_migration_version"];
-	return (patch_version > ODIN_PATCH_MIGRATION_VERSION);
+bool SaveLoadComponent::checkForBiggerVersion(FileInputStream &p_file_stream, std::string &p_version_string) {
+	auto value_tree_read = ValueTree::readFromStream(p_file_stream);
+	int patch_version = value_tree_read.getChildWithName("misc")["patch_migration_version"];
+	if (patch_version > ODIN_PATCH_MIGRATION_VERSION) {
+		p_version_string = "2." + std::to_string((int)value_tree_read.getChildWithName("misc")["version_minor"]) + "." + std::to_string((int)value_tree_read.getChildWithName("misc")["version_patch"]);
+		return true;
+	}
+	return false;
 }

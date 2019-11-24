@@ -18,8 +18,6 @@ void OdinAudioProcessor::retriggerAllListeners() {
 	for (int i = 0; i < m_value_tree_mod.getNumProperties(); ++i) {
 		m_value_tree_mod.sendPropertyChangeMessage((m_value_tree_mod.getPropertyName(i)));
 	}
-	DBG("value tree standard:");
-
 
   RETRIGGERAUDIO("amount_1_row_0");
   RETRIGGERAUDIO("amount_1_row_1");
@@ -261,5 +259,5 @@ void OdinAudioProcessor::retriggerAllListeners() {
   RETRIGGERAUDIO("xy_y");
 
 
-  DBG("RETRIGGER ALL LISTENERS\n\n\n\n\n");
+  //DBG("RETRIGGER ALL LISTENERS\n\n\n\n\n");
 }

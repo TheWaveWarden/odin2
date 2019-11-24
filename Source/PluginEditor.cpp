@@ -1226,7 +1226,7 @@ void OdinAudioProcessorEditor::forceValueTreeOntoComponents(bool p_reset_audio) 
 		processor.resetAudioEngine();
 	}
 
-	DBG("FORCEVALUETREEONTOCOMPONENTS");
+	//DBG("FORCEVALUETREEONTOCOMPONENTS");
 	// DBG(m_value_tree.state.toXmlString());
 
 	forceValueTreeOntoComponentsOnlyMainPanel();
