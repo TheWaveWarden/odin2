@@ -58,7 +58,16 @@ public:
 		m_color = p_color;
 	}
 
+	void setLogoImage(juce::Image p_image){
+		m_logo = p_image;
+		m_draw_logo = true;
+	}
+
 private:
+
+
+	bool m_draw_logo = false;
+
 	//this resolves the issue where the pad updates the knob, which updates the pad again
 	bool m_lock_set_XY_while_drawing = false;
 
@@ -67,6 +76,7 @@ private:
 
 	int m_inlay;
 	juce::Image m_panel;
+	juce::Image m_logo;
 
 	Knob &m_knob_x;
 	Knob &m_knob_y;

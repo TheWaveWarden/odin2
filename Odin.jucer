@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT id="vpwEHn" name="Odin2" projectType="audioplug" jucerVersion="5.4.5"
+<JUCERPROJECT id="vpwEHn" name="Odin2" projectType="audioplug" jucerVersion="5.4.4"
               pluginFormats="buildStandalone,buildVST,buildVST3" version="2.0.0"
               companyName="BommelDSP" companyWebsite="www.BommelDSP.com" pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn"
               pluginManufacturerCode="BDSP" pluginCode="ODIN" pluginChannelConfigs="{0,2}">
@@ -534,6 +534,7 @@
             file="Graphics/cropped/SEM24_cropped.png"/>
       <FILE id="PhyAaF" name="SEM24_knobs_cropped.png" compile="0" resource="1"
             file="Graphics/cropped/SEM24_knobs_cropped.png"/>
+      <FILE id="QdlRpI" name="SF_logo_XY.png" compile="0" resource="1" file="Graphics/applied/SF_logo_XY.png"/>
       <FILE id="SQvh4g" name="SH.png" compile="0" resource="1" file="Graphics/cropped/lfo/SH.png"/>
       <FILE id="pErLg9" name="sine.png" compile="0" resource="1" file="Graphics/cropped/lfo/sine.png"/>
       <FILE id="FhRClW" name="slider_handle.png" compile="0" resource="1"
