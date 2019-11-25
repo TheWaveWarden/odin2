@@ -14,7 +14,7 @@
    viewBox="0 0 400 500"
    version="1.1"
    id="svg8"
-   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
    sodipodi:docname="spectral_factory.svg">
   <defs
      id="defs2" />
@@ -25,15 +25,15 @@
      borderopacity="1.0"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.2431126"
-     inkscape:cx="-157.06302"
-     inkscape:cy="698.61975"
+     inkscape:zoom="0.60935335"
+     inkscape:cx="759.34739"
+     inkscape:cy="633.0535"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="true"
-     inkscape:window-width="1366"
-     inkscape:window-height="704"
-     inkscape:window-x="0"
+     inkscape:window-width="2560"
+     inkscape:window-height="1376"
+     inkscape:window-x="1920"
      inkscape:window-y="27"
      inkscape:window-maximized="1">
     <inkscape:grid
@@ -50,7 +50,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -179,7 +179,7 @@
        sodipodi:nodetypes="ccccccc" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:12.64312363px;line-height:1.25;font-family:'Tibetan Machine Uni';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.47411713;-inkscape-font-specification:'Tibetan Machine Uni';font-stretch:normal;font-variant:normal;"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.64312363px;line-height:1.25;font-family:'Tibetan Machine Uni';-inkscape-font-specification:'Tibetan Machine Uni';letter-spacing:0px;word-spacing:0px;fill:#ff1f1f;fill-opacity:0.31358888;stroke:#ff0606;stroke-width:1.274;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
        x="46.77058"
        y="191.13567"
        id="text4709"
@@ -188,18 +188,18 @@
          id="tspan4707"
          x="46.77058"
          y="191.13567"
-         style="font-weight:normal;font-size:45.51524353px;fill:#ff0000;stroke-width:0.47411713;-inkscape-font-specification:'Tibetan Machine Uni';font-family:'Tibetan Machine Uni';font-style:normal;font-stretch:normal;font-variant:normal;">SPECTRAL</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:45.51524353px;font-family:'Tibetan Machine Uni';-inkscape-font-specification:'Tibetan Machine Uni';fill:#ff1f1f;fill-opacity:0.31358888;stroke:#ff0606;stroke-width:1.274;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none">SPECTRAL</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:13.7211113px;line-height:1.25;font-family:'Tibetan Machine Uni';letter-spacing:0px;word-spacing:0px;fill:#ff0000;fill-opacity:1;stroke:none;stroke-width:0.51454169;-inkscape-font-specification:'Tibetan Machine Uni';font-stretch:normal;font-variant:normal;"
-       x="43.360962"
-       y="245.21976"
-       id="text4709-9"
-       transform="scale(1.0698882,0.93467708)"><tspan
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.3224411px;line-height:1.25;font-family:'Tibetan Machine Uni';-inkscape-font-specification:'Tibetan Machine Uni';letter-spacing:0px;word-spacing:0px;fill:#ff1f1f;fill-opacity:0.31358888;stroke:#ff0606;stroke-width:1.23700001;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       x="47.982933"
+       y="231.67915"
+       id="text4709-3"
+       transform="scale(0.99675326,1.0032573)"><tspan
          sodipodi:role="line"
-         id="tspan4707-2"
-         x="43.360962"
-         y="245.21976"
-         style="font-weight:normal;font-size:49.39600372px;fill:#ff0000;stroke-width:0.51454169;-inkscape-font-specification:'Tibetan Machine Uni';font-family:'Tibetan Machine Uni';font-style:normal;font-stretch:normal;font-variant:normal;">FACTORY</tspan></text>
+         id="tspan4707-6"
+         x="47.982933"
+         y="231.67915"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:51.5607872px;font-family:'Tibetan Machine Uni';-inkscape-font-specification:'Tibetan Machine Uni';fill:#ff1f1f;fill-opacity:0.31358888;stroke:#ff0606;stroke-width:1.23700001;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none">FACTORY</tspan></text>
   </g>
 </svg>
