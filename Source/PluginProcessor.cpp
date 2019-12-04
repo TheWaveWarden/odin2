@@ -809,6 +809,7 @@ void OdinAudioProcessor::setSampleRate(float p_samplerate) {
 		m_comb_filter[stereo].setSampleRate(p_samplerate);
 		m_formant_filter[stereo].setSampleRate(p_samplerate);
 		m_SEM_filter_12[stereo].setSampleRate(p_samplerate);
+		m_ring_mod[stereo].setSampleRate(p_samplerate);
 	}
 
 	m_delay.setSampleRate(p_samplerate);
