@@ -104,8 +104,8 @@
 #define POS_MODULATION_Y 101
 #define POSITION_POS_X 122
 #define POSITION_POS_Y 49
-#define POS_ENV_POS_X 167
-#define POS_ENV_POS_Y 95
+#define POS_ENV_POS_X 173
+#define POS_ENV_POS_Y 98
 #define MULTI_WAVE_X 80
 #define MULTI_WAVE_Y 103
 

@@ -472,9 +472,9 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 
 	addChildComponent(m_detune);
 
-	m_pos_mod.setStrip(ImageCache::getFromMemory(BinaryData::metal_knob_mid_png, BinaryData::metal_knob_mid_pngSize),
+	m_pos_mod.setStrip(ImageCache::getFromMemory(BinaryData::black_knob_mid_png, BinaryData::black_knob_mid_pngSize),
 	                   256);
-	m_pos_mod.setBounds(POS_ENV_POS_X, POS_ENV_POS_Y, METAL_KNOB_MID_SIZE_X, METAL_KNOB_MID_SIZE_Y);
+	m_pos_mod.setBounds(POS_ENV_POS_X, POS_ENV_POS_Y, BLACK_KNOB_MID_SIZE_X, BLACK_KNOB_MID_SIZE_Y);
 	m_pos_mod.setSliderStyle(Slider::RotaryVerticalDrag);
 	m_pos_mod.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
 	m_pos_mod.setKnobTooltip("Controls the depth of modulation from the selected modsource to the osc position");

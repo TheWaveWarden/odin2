@@ -59,7 +59,6 @@ int WavetableOsc1D::getTableIndex() {
 			//we save the inverse midfreq of last found interval to use a few lines up
 			m_one_over_last_mid_freq = m_table_one_over_mid_freq_values[table];
 			m_last_table_index       = table;
-			DBG("GETTABLEINDEXPENSIVE()!!!");
 			return table;
 		}
 		seed_freq *= 1.189207f; // minor third up
