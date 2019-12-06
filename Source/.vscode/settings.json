@@ -49,5 +49,6 @@
         "memory_resource": "cpp",
         "random": "cpp",
         "string": "cpp"
-    }
+    },
+    "cquery.cacheDirectory": "${workspaceFolder}/.vscode/cquery_cached_index/"
 }
