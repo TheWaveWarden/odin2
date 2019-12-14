@@ -8,6 +8,7 @@
 #include "MigratePatch.h"
 #include "SetModulationPointers.h"
 #include "ValueChange.h"
+#include "ScopedNoDenormals.h"
 
 OdinAudioProcessor::OdinAudioProcessor() :
     AudioProcessor(BusesProperties().withOutput("Output", AudioChannelSet::stereo(), true)),
@@ -321,6 +322,10 @@ bool OdinAudioProcessor::isBusesLayoutSupported(const BusesLayout &layouts) cons
 #endif
 
 void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &midiMessages) {
+
+	//avoid denormals
+	//https://forum.juce.com/t/state-of-the-art-denormal-prevention/16802
+	ScopedNoDenormals snd;
 
 	//todo remove clock
 	//std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
