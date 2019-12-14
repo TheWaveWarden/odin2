@@ -325,7 +325,7 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 
 	//avoid denormals
 	//https://forum.juce.com/t/state-of-the-art-denormal-prevention/16802
-	ScopedNoDenormals snd;
+	denormals::ScopedNoDenormals snd;
 
 	//todo remove clock
 	//std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();

@@ -35,7 +35,7 @@ public:
 
   void setValue(float p_amount)
   {
-		const MessageManagerLock mmLock;
+		//const MessageManagerLock mmLock;
     m_value = p_amount;
     repaint();
   }
