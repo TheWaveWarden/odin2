@@ -1,7 +1,13 @@
+# 2.0.4 alpha
+- fixed modamount component crashing on win build
+- taken measures to avoid denormals
 # 2.0.3 alpha
 - using optimization option for Win build
 - added flag for using AVX in Win build
 - using link time optimization in Win build
+- fixed missing tooltip for left routing button
+- fixed ringmod in filter3 not working
+- introduced patchversion 1
 # 2.0.2 alpha
 - newer patch-versions than current can not be loaded anymore
 - changed distortion panel to stripe pattern

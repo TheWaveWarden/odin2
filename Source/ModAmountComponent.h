@@ -35,6 +35,7 @@ public:
 
   void setValue(float p_amount)
   {
+    //using a lock here will crash win build on usage...
 		//const MessageManagerLock mmLock;
     m_value = p_amount;
     repaint();
