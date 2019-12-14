@@ -1,3 +1,7 @@
+# 2.0.3 alpha
+- using optimization option for Win build
+- added flag for using AVX in Win build
+- using link time optimization in Win build
 # 2.0.2 alpha
 - newer patch-versions than current can not be loaded anymore
 - changed distortion panel to stripe pattern

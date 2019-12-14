@@ -322,6 +322,9 @@ bool OdinAudioProcessor::isBusesLayoutSupported(const BusesLayout &layouts) cons
 
 void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &midiMessages) {
 
+	//todo remove clock
+	//std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
+
 #ifdef ODIN_PROFILING
 	if (m_profiling_counter == 0) {
 		//load patch
@@ -710,6 +713,22 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 
 		} // stereo loop
 	}     // sample loop
+
+	//todo remove
+	//std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
+
+	//float duration = (float)std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count();
+	//if(duration > m_max_buffer_time){
+	//	m_max_buffer_time = duration;
+	//} 
+	//if(duration < m_min_buffer_time){
+	//	m_min_buffer_time = duration;
+	//} 
+	//if(duration > 1000){
+		//just a dummy to have some code executed here
+	//	m_min_buffer_time = 700;
+	//}
+
 }
 
 //==============================================================================

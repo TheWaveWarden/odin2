@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="vpwEHn" name="Odin2" projectType="audioplug" jucerVersion="5.4.5"
-              pluginFormats="buildStandalone,buildVST3" version="2.0.0" companyName="BommelDSP"
-              companyWebsite="www.BommelDSP.com" pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn"
+              pluginFormats="buildStandalone,buildVST,buildVST3" version="2.0.0"
+              companyName="BommelDSP" companyWebsite="www.BommelDSP.com" pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn"
               pluginManufacturerCode="BDSP" pluginCode="ODIN" pluginChannelConfigs="{0,2}">
   <MAINGROUP id="Tn76b3" name="Odin2">
     <GROUP id="{A5BAEEE4-3FCE-5605-7A4C-F29962266097}" name="Graphics">
@@ -1008,11 +1008,11 @@
         <MODULEPATH id="juce_dsp" path="../JUCE/modules"/>
       </MODULEPATHS>
     </LINUX_MAKE>
-    <VS2019 targetFolder="Builds/VisualStudio2019">
+    <VS2019 targetFolder="Builds/VisualStudio2019" extraCompilerFlags="/arch:AVX">
       <CONFIGURATIONS>
         <CONFIGURATION isDebug="1" name="Debug" defines="ODIN_WIN&#10;ODIN_DEBUG" headerPath="E:\odin2\Odin\Source&#10;E:\JUCE2\JUCE\VST2_SDK"/>
         <CONFIGURATION name="Release" defines="ODIN_WIN&#10;ODIN_RELEASE" headerPath="E:\odin2\Odin\Source&#10;E:\JUCE2\JUCE\VST2_SDK"
-                       isDebug="1"/>
+                       isDebug="1" optimisation="4" linkTimeOptimisation="1"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_opengl"/>

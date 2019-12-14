@@ -33,6 +33,9 @@
 #include "audio/Filters/SEMFilter12.h"
 #include "audio/Oscillators/WavetableContainer.h"
 
+//todo remove
+#include <chrono>
+
 //#define ODIN_PROFILING
 
 class OdinAudioProcessorEditor;
@@ -333,6 +336,10 @@ private:
 	int m_phaser_position  = 1;
 	int m_chorus_position  = 2;
 	int m_flanger_position = 3;
+
+	//todo remove
+	//float m_max_buffer_time = 0;
+	//float m_min_buffer_time = 9999999999;
 
 	OdinAudioProcessorEditor *m_editor_pointer;
 
