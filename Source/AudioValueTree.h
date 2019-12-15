@@ -324,7 +324,7 @@
       std::make_unique<AudioParameterFloat>(
           "amp_vel", "Amplifier Velocity Amount",
           NormalisableRange<float>(0.f, 1.f), 0.f),
-      std::make_unique<AudioParameterFloat>("amp_pan", "Amplifier Panorama",
+      std::make_unique<AudioParameterFloat>("amp_pan", "Pan",
                                             NormalisableRange<float>(-1.f, 1.f),
                                             0.f),
       std::make_unique<AudioParameterFloat>(
