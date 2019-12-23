@@ -19,12 +19,13 @@ void Amplifier::doAmplifier(float p_in, float &po_left_out, float &po_right_out)
     m_pan_smooth = m_pan_smooth * PAN_SMOOTHIN_FACTOR + (1 - PAN_SMOOTHIN_FACTOR) * m_pan;
 
     p_in *= m_gain_smooth * gain_mod_factor;
+    m_width_delay_buffer[m_write_index] = p_in;
 
     // apply velocity
-    float vel_modded = m_vel_amount + *(m_vel_mod);
-    vel_modded = vel_modded < 0 ? 0 : vel_modded;
-    vel_modded = vel_modded > 1 ? 1 : vel_modded;
-    p_in *= 1.f - vel_modded * 1.f + vel_modded * m_MIDI_vel;
+    //float vel_modded = m_vel_amount + *(m_vel_mod);
+    //vel_modded = vel_modded < 0 ? 0 : vel_modded;
+    //vel_modded = vel_modded > 1 ? 1 : vel_modded;
+    //p_in *= 1.f - vel_modded * 1.f + vel_modded * m_MIDI_vel;
 
     //do width
 	  float read_index     = (float)m_write_index - m_width_seconds * m_samplerate;
@@ -38,8 +39,6 @@ void Amplifier::doAmplifier(float p_in, float &po_left_out, float &po_right_out)
 		  read_index_next += WIDTH_DELAY_SAMPLES;
 	  }
 	  float width_delayed = linearInterpolation(m_width_delay_buffer[read_index_trunc], m_width_delay_buffer[read_index_next], frac);
-
-    m_width_delay_buffer[m_write_index] = p_in;
 	  incWriteIndex();
 
 

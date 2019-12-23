@@ -6,7 +6,7 @@
 
 #define MIDI_VEL_MAX 127.f
 #define WIDTH_DELAY_SAMPLES 1000
-#define WIDTH_MAX_DELAY_SECONDS 0.002
+#define WIDTH_MAX_DELAY_SECONDS 0.008
 
 class Amplifier {
 
