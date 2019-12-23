@@ -5,6 +5,7 @@
 
 
 #define MIDI_VEL_MAX 127.f
+#define WIDTH_DELAY_SAMPLES 1000
 
 class Amplifier {
 
@@ -28,6 +29,9 @@ public:
     vel_modded = vel_modded > 1 ? 1 : vel_modded;
     p_in *= 1.f - vel_modded * 1.f + vel_modded * m_MIDI_vel;
 
+    //do width
+
+
     // do panning
     float pan_modded = m_pan_smooth + *m_pan_mod;
     pan_modded = pan_modded < -1 ? -1 : pan_modded;
@@ -39,6 +43,14 @@ public:
       po_right_out = (pan_modded + 1.f) * p_in;
       po_left_out = p_in;
     }
+  }
+
+  void setWidth(float p_width){
+    m_width = p_width;
+  }
+
+  void setSampleRate(float p_samplerate){
+    m_samplerate = p_samplerate;
   }
 
   inline void setGainDecibels(float p_dB) {
@@ -64,6 +76,10 @@ protected:
   float *m_gain_mod;
   float *m_pan_mod;
   float *m_vel_mod;
+
+  float m_width = 0;
+  float m_width_delay_buffer[WIDTH_DELAY_SAMPLES] = {0};
+  float m_samplerate;
 
   float m_MIDI_vel = 0.f;
   float m_vel_amount = 0.f;
