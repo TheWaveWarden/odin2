@@ -840,6 +840,7 @@ void OdinAudioProcessor::setSampleRate(float p_samplerate) {
 	m_phaser.setSampleRate(p_samplerate);
 	m_global_env.setSampleRate(p_samplerate);
 	m_global_lfo.setSampleRate(p_samplerate);
+	m_amp.setSampleRate(p_samplerate);
 }
 
 void OdinAudioProcessor::initializeModules() {
