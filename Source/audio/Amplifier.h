@@ -3,10 +3,11 @@
 #include "../JuceLibraryCode/JuceHeader.h" //for db to gain
 #include "../GlobalIncludes.h"
 
-
 #define MIDI_VEL_MAX 127.f
 #define WIDTH_DELAY_SAMPLES 1000
 #define WIDTH_MAX_DELAY_SECONDS 0.008
+#define WIDTH_SMOOTHIN_FACTOR 0.995
+#define WIDTH_TO_PAN_FACTOR 1
 
 class Amplifier {
 
@@ -17,6 +18,7 @@ public:
 
 
   void setWidth(float p_width){
+    m_width_to_pan = p_width * WIDTH_TO_PAN_FACTOR;
     m_width_seconds = p_width * WIDTH_MAX_DELAY_SECONDS;
   }
 
@@ -34,7 +36,8 @@ public:
   // this is for the knob
   inline void setVelocityAmount(float p_vel) { 
     //m_vel_amount = p_vel; 
-    m_width_seconds = p_vel * WIDTH_MAX_DELAY_SECONDS;
+    //m_width_seconds = p_vel * WIDTH_MAX_DELAY_SECONDS;
+    setWidth(p_vel);
   }
 
   // this is for the keypress value
@@ -52,11 +55,16 @@ protected:
     return (1.f - p_distance) * p_low + p_distance * p_high;
   }
 
+  float l_max = 0;
+  float r_max = 0;
+
   float *m_gain_mod;
   float *m_pan_mod;
   float *m_vel_mod;
 
   float m_width_seconds = 0;
+  float m_width_smooth = 0;
+  float m_width_to_pan = 0;
   float m_width_delay_buffer[WIDTH_DELAY_SAMPLES] = {0};
   float m_samplerate;
   int m_write_index = 0;
