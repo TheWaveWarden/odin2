@@ -30,7 +30,7 @@
   <PARAM id="amount_3_row_8" value="0.0"/>
   <PARAM id="amp_gain" value="0.0"/>
   <PARAM id="amp_pan" value="0.0"/>
-  <PARAM id="amp_vel" value="0.0"/>
+  <PARAM id="amp_width" value="0.0"/>
   <PARAM id="chorus_amount" value="0.4000000059604645"/>
   <PARAM id="chorus_drywet" value="1.0"/>
   <PARAM id="chorus_feedback" value="0.0"/>

@@ -48,7 +48,7 @@ void OdinAudioProcessor::retriggerAllListeners() {
   RETRIGGERAUDIO("amount_3_row_8");
   RETRIGGERAUDIO("amp_gain");
   RETRIGGERAUDIO("amp_pan");
-  RETRIGGERAUDIO("amp_vel");
+  RETRIGGERAUDIO("amp_width");
   RETRIGGERAUDIO("chorus_amount");
   RETRIGGERAUDIO("chorus_drywet");
   RETRIGGERAUDIO("chorus_feedback");

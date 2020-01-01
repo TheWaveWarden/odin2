@@ -5,8 +5,8 @@
 
 #define MIDI_VEL_MAX 127.f
 #define WIDTH_DELAY_SAMPLES 1000
-#define WIDTH_MAX_DELAY_SECONDS 0.008
-#define WIDTH_SMOOTHIN_FACTOR 0.995
+#define WIDTH_MAX_DELAY_SECONDS 0.02
+#define WIDTH_SMOOTHIN_FACTOR 0.998
 #define WIDTH_TO_PAN_FACTOR 1
 
 class Amplifier {
@@ -18,8 +18,9 @@ public:
 
 
   void setWidth(float p_width){
-    m_width_to_pan = p_width * WIDTH_TO_PAN_FACTOR;
-    m_width_seconds = p_width * WIDTH_MAX_DELAY_SECONDS;
+    //m_width_to_pan = p_width * WIDTH_TO_PAN_FACTOR;
+    m_width_seconds = fabs(p_width) * WIDTH_MAX_DELAY_SECONDS;
+    m_width_left = p_width > 0;//todo direction
   }
 
   void setSampleRate(float p_samplerate){
@@ -64,8 +65,10 @@ protected:
 
   float m_width_seconds = 0;
   float m_width_smooth = 0;
-  float m_width_to_pan = 0;
-  float m_width_delay_buffer[WIDTH_DELAY_SAMPLES] = {0};
+  bool m_width_left = true;
+  //float m_width_to_pan = 0;
+  float m_width_delay_buffer_left[WIDTH_DELAY_SAMPLES] = {0};
+  float m_width_delay_buffer_right[WIDTH_DELAY_SAMPLES] = {0};
   float m_samplerate;
   int m_write_index = 0;
 

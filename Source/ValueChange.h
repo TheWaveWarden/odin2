@@ -681,7 +681,7 @@ void OdinAudioProcessor::treeValueChangedAmp(const String &p_ID, float p_new_val
 		m_amp.setPan(p_new_value);
 	} else if (id == m_amp_gain_identifier) {
 		m_amp.setGainDecibels(p_new_value);
-	} else if (id == m_amp_vel_identifier) {
+	} else if (id == m_amp_width_identifier) {
 		m_amp.setVelocityAmount(p_new_value);
 	} else if (id == m_dist_drywet_identifier) {
 		m_distortion[0].setDryWet(p_new_value);

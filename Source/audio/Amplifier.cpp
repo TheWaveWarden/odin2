@@ -21,7 +21,8 @@ void Amplifier::doAmplifier(float p_in, float &po_left_out, float &po_right_out)
     m_width_smooth = m_width_smooth * WIDTH_SMOOTHIN_FACTOR + (1 - WIDTH_SMOOTHIN_FACTOR) * m_width_seconds;
 
     p_in *= m_gain_smooth * gain_mod_factor;
-    m_width_delay_buffer[m_write_index] = p_in;
+    m_width_delay_buffer_left[m_write_index] = p_in;
+    m_width_delay_buffer_right[m_write_index] = p_in;
 
     // apply velocity
     //float vel_modded = m_vel_amount + *(m_vel_mod);
@@ -40,21 +41,35 @@ void Amplifier::doAmplifier(float p_in, float &po_left_out, float &po_right_out)
 	  while (read_index_next < 0) {
 		  read_index_next += WIDTH_DELAY_SAMPLES;
 	  }
-	  float width_delayed = linearInterpolation(m_width_delay_buffer[read_index_trunc], m_width_delay_buffer[read_index_next], frac);
-	  incWriteIndex();
-
-
-
-
-    // do panning
-    float pan_modded = m_pan_smooth + *m_pan_mod + m_width_to_pan;
-    pan_modded = pan_modded < -1 ? -1 : pan_modded;
-    pan_modded = pan_modded > 1 ? 1 : pan_modded;
-    if (pan_modded >= 0.f) {
-      po_right_out = width_delayed;
-      po_left_out = (1.f - pan_modded) * p_in;
+	  float width_delayed;
+    if(m_width_left){
+	    float width_delayed = linearInterpolation(m_width_delay_buffer_left[read_index_trunc], m_width_delay_buffer_left[read_index_next], frac);
+	    incWriteIndex();
+      // do panning
+      float pan_modded = m_pan_smooth + *m_pan_mod;
+      pan_modded = pan_modded < -1 ? -1 : pan_modded;
+      pan_modded = pan_modded > 1 ? 1 : pan_modded;
+      if (pan_modded >= 0.f) {
+        po_right_out = width_delayed;
+        po_left_out = (1.f - pan_modded) * p_in;
+      } else {
+        po_right_out = (pan_modded + 1.f) * width_delayed;
+        po_left_out = p_in;
+      }
     } else {
-      po_right_out = (pan_modded + 1.f) * width_delayed;
-      po_left_out = p_in;
+      float width_delayed = linearInterpolation(m_width_delay_buffer_right[read_index_trunc], m_width_delay_buffer_right[read_index_next], frac);
+      incWriteIndex();
+      // do panning
+      float pan_modded = m_pan_smooth + *m_pan_mod;
+      pan_modded = pan_modded < -1 ? -1 : pan_modded;
+      pan_modded = pan_modded > 1 ? 1 : pan_modded;
+      if (pan_modded >= 0.f) {
+        po_right_out = p_in;
+        po_left_out = (1.f - pan_modded) * width_delayed;
+      } else {
+        po_right_out = (pan_modded + 1.f) * p_in;
+        po_left_out = width_delayed;
+      }
     }
+
   }
