@@ -1,3 +1,6 @@
+# 2.0.5 alpha
+- replaced amp velocity with amp width
+- linux now using AVX but no AVX2
 # 2.0.4 alpha
 - fixed modamount component crashing on win build
 - taken measures to avoid denormals
