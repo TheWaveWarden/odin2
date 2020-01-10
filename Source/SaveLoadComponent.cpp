@@ -198,8 +198,6 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts, OdinAudi
 						return;
 				    }
 
-				    //todo check midi learn tree
-
 					// if we're reading an older patch version we set the default patch first
 					// since new params might not exist and will only be set
 					if(checkForSmallerVersion(file_stream, version_string)) {

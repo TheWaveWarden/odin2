@@ -1,3 +1,7 @@
+# 2.0.6 alpha
+- major overhaul of save-load system
+- backwards compatibility for patches now guaranteed
+- removed amp velocity as modulation target
 # 2.0.5 alpha
 - replaced amp velocity with amp width
 - linux now using AVX but no AVX2
