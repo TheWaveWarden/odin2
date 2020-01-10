@@ -111,7 +111,14 @@
 #define GETAUDIO(name) m_value_tree.getParameterAsValue(name).getValue()
 #define SETAUDIO0TO1(name, value) m_value_tree.getParameter(name)->setValueNotifyingHost(((float)value))
 #define SETAUDIOFULLRANGE(name, value) m_value_tree.getParameter(name)->setValueNotifyingHost(m_value_tree.getParameter(name)->convertTo0to1((float)value))
+#define SETAUDIOFULLRANGESAFE(name, value) if(m_value_tree.getParameter(name)){\
+m_value_tree.getParameter(name)->setValueNotifyingHost(m_value_tree.getParameter(name)->convertTo0to1((float)value));}\
+else {\
+DBG("TRIED TO ACCESS UNKOWN PARAMETER:");\
+DBG(name);\
+} 
 #define RETRIGGERAUDIO(name) SETAUDIOFULLRANGE(name, GETAUDIO(name))
+#define SETAUDIOVALUEPATCH(name)
 
 #define INTERPOLATION_QUALITY_LOW Graphics::ResamplingQuality::lowResamplingQuality
 #define INTERPOLATION_QUALITY_HIGH Graphics::ResamplingQuality::highResamplingQuality

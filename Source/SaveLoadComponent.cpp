@@ -197,23 +197,20 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts, OdinAudi
 						AlertWindow::showMessageBox(AlertWindow::AlertIconType::WarningIcon, "Cannot load patch!", "The bad news: You cannot load this patch, because you are on version " + ODIN_VERSION_STRING + ".\nThe good news: The patch you're trying to load was created on version " + version_string + ". So go to TODO.com already and download the latest version of Odin2!", "Thanks, I will!");
 						return;
 				    }
+
+				    //todo check midi learn tree
+
+					// if we're reading an older patch version we set the default patch first
+					// since new params might not exist and will only be set
+					if(checkForSmallerVersion(file_stream, version_string)) {
+						DBG("Reading older patch, setting init patch first");
+						MemoryInputStream init_stream(BinaryData::init_patch_odin, BinaryData::init_patch_odinSize, false);
+						m_audio_processor.readPatch(ValueTree::readFromStream(init_stream));
+					}
+
 					//reset stream position
 					file_stream.setPosition(0);
-
-				    //save midi learn tree
-				    ValueTree midi_learn_tree = m_value_tree.state.getChildWithName("midi_learn");
-
-				    //read tree from file
-				    m_value_tree.replaceState(ValueTree::readFromStream(file_stream));
-
-				    //if we read an old patch, we might need to add parameters
-				    versionMigrate();
-
-				    //reappend midi learn tree
-				    m_value_tree.state.appendChild(midi_learn_tree, nullptr);
-
-				    //reattach the non_param listeners
-				    m_audio_processor.attachNonParamListeners();
+					m_audio_processor.readPatch(ValueTree::readFromStream(file_stream));
 
 				    //set the correct Version number again
 				    m_value_tree.state.getChildWithName("misc").setProperty(
@@ -225,9 +222,6 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts, OdinAudi
 
 				    //this forces values onto the GUI (patch label as well)
 				    forceValueTreeLambda();
-
-				    //retrigger all listeners to distribute values to DSP engine
-				    m_audio_processor.retriggerAllListeners();
 
 				    //save load directory
 				    m_last_directory = file_to_read.getParentDirectory().getFullPathName();
@@ -254,24 +248,12 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts, OdinAudi
 		                                 {},
 		                                 {})) {
 
-			//save midi learn tree
-			ValueTree midi_learn_tree = m_value_tree.state.getChildWithName("midi_learn");
-
 			// replace stream with patch from binary data
 			MemoryInputStream init_stream(BinaryData::init_patch_odin, BinaryData::init_patch_odinSize, false);
-			m_value_tree.replaceState(ValueTree::readFromStream(init_stream));
-
-			//reappend midi learn tree
-			m_value_tree.state.appendChild(midi_learn_tree, nullptr);
-
-			//reattach non param listeners
-			m_audio_processor.attachNonParamListeners();
+			m_audio_processor.readPatch(ValueTree::readFromStream(init_stream));
 
 			//this forces values onto the GUI (patch label as well)
 			forceValueTreeLambda();
-
-			//retrigger all listeners to distribute values to DSP engine
-			m_audio_processor.retriggerAllListeners();
 
 			DBG("Loaded init patch");
 		}
@@ -288,27 +270,22 @@ void SaveLoadComponent::forceValueTreeOntoComponents(ValueTree p_tree) {
 	m_patch.setText((p_tree.getChildWithName("misc")["patch_name"]).toString().toStdString());
 }
 
-void SaveLoadComponent::versionMigrate() {
-	//we just replaced the value tree with the patch
-	//we also read the version from the patch which is now in m_value_tree
-
-	int minor_version           = m_value_tree.state.getChildWithName("misc")["version_minor"];
-	int patch_version           = m_value_tree.state.getChildWithName("misc")["version_patch"];
-	int patch_migration_version = m_value_tree.state.getChildWithName("misc")["patch_migration_version"];
-
-	DBG("Read patch from version 2." + std::to_string(minor_version) + "." + std::to_string(patch_version));
-	DBG("Current version is: 2." + std::to_string(ODIN_MINOR_VERSION) + "." + std::to_string(ODIN_PATCH_VERSION));
-	DBG("Read patch migration version " + std::to_string(patch_migration_version) + " current version is " +
-	    std::to_string(ODIN_PATCH_MIGRATION_VERSION));
-
-	//actual migration takes place in audioprocessor
-	m_audio_processor.migratePatch(patch_migration_version);
-}
-
 bool SaveLoadComponent::checkForBiggerVersion(FileInputStream &p_file_stream, std::string &p_version_string) {
+	p_file_stream.setPosition(0);
 	auto value_tree_read = ValueTree::readFromStream(p_file_stream);
 	int patch_version = value_tree_read.getChildWithName("misc")["patch_migration_version"];
 	if (patch_version > ODIN_PATCH_MIGRATION_VERSION) {
+		p_version_string = "2." + std::to_string((int)value_tree_read.getChildWithName("misc")["version_minor"]) + "." + std::to_string((int)value_tree_read.getChildWithName("misc")["version_patch"]);
+		return true;
+	}
+	return false;
+}
+
+bool SaveLoadComponent::checkForSmallerVersion(FileInputStream &p_file_stream, std::string &p_version_string) {
+	p_file_stream.setPosition(0);
+	auto value_tree_read = ValueTree::readFromStream(p_file_stream);
+	int patch_version = value_tree_read.getChildWithName("misc")["patch_migration_version"];
+	if (patch_version < ODIN_PATCH_MIGRATION_VERSION) {
 		p_version_string = "2." + std::to_string((int)value_tree_read.getChildWithName("misc")["version_minor"]) + "." + std::to_string((int)value_tree_read.getChildWithName("misc")["version_patch"]);
 		return true;
 	}
