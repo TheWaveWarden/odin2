@@ -76,7 +76,7 @@ private:
 
 	Knob m_amp_gain;
 	Knob m_amp_pan;
-	Knob m_amp_vel;
+	Knob m_amp_width;
 	Knob m_boost;
 	Knob m_dry_wet;
 
@@ -90,7 +90,7 @@ private:
 
 	std::unique_ptr<OdinKnobAttachment> m_amp_pan_attach;
 	std::unique_ptr<OdinKnobAttachment> m_amp_gain_attach;
-	std::unique_ptr<OdinKnobAttachment> m_amp_vel_attach;
+	std::unique_ptr<OdinKnobAttachment> m_amp_width_attach;
 	std::unique_ptr<OdinKnobAttachment> m_dist_threshold_attach;
 	std::unique_ptr<OdinKnobAttachment> m_dist_drywet_attach;
 

@@ -57,7 +57,7 @@
     //midsection
     float* m_amp_pan;
     float* m_amp_gain;
-    float* m_amp_vel;
+    float* m_amp_width;
     float* m_dist_threshold;
     float* m_dist_drywet;
     float* m_dist_on;
@@ -330,7 +330,7 @@
     Identifier m_fil3_comb_polarity_identifier;
     Identifier m_amp_pan_identifier;
     Identifier m_amp_gain_identifier;
-    Identifier m_amp_vel_identifier;
+    Identifier m_amp_width_identifier;
     Identifier m_dist_threshold_identifier;
     Identifier m_dist_drywet_identifier;
     Identifier m_dist_on_identifier;

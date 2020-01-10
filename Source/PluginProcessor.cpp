@@ -2,13 +2,13 @@
 
 #include "PluginEditor.h"
 #include "PluginProcessor.h"
-#include "RetriggerAllListeners.h"
 // these file contains implementation to avoid clutter in this file
 #include "AddNonAudioParametersToValueTree.h"
 #include "MigratePatch.h"
 #include "SetModulationPointers.h"
 #include "ValueChange.h"
 #include "ScopedNoDenormals.h"
+#include "ReadPatch.h"
 
 OdinAudioProcessor::OdinAudioProcessor() :
     AudioProcessor(BusesProperties().withOutput("Output", AudioChannelSet::stereo(), true)),
@@ -343,7 +343,7 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 		attachNonParamListeners();
 
 		//retrigger all listeners to distribute values to DSP engine
-		retriggerAllListeners();
+		//retriggerAllListeners();
 
 		//start all voices
 		for (int voice = 0; voice < 12; ++voice) {
@@ -769,8 +769,8 @@ void OdinAudioProcessor::getStateInformation(MemoryBlock &destData) {
 	DBG("GET BINARY STATE!!");
 }
 
+//this is called when DAW restores a file
 void OdinAudioProcessor::setStateInformation(const void *data, int sizeInBytes) {
-	//this is called when DAW restores a file
 
 	// disable for standalone plugins
 	if (wrapperType == wrapperType_Standalone) {
@@ -780,11 +780,16 @@ void OdinAudioProcessor::setStateInformation(const void *data, int sizeInBytes) 
 	std::unique_ptr<XmlElement> xmlState(getXmlFromBinary(data, sizeInBytes));
 	if (xmlState.get() != nullptr) {
 		if (xmlState->hasTagName(m_value_tree.state.getType())) {
-			//load data
-			m_value_tree.replaceState(ValueTree::fromXml(*xmlState));
+
+			//avoid reading from newer patch versions
+			int patch_migration_version_read = xmlState->getChildByName("misc")->getIntAttribute("patch_migration_version");
+			if(patch_migration_version_read > ODIN_PATCH_MIGRATION_VERSION) {
+				AlertWindow::showMessageBox(AlertWindow::AlertIconType::WarningIcon, "You are trying to load a project which was saved with a newer Version of Odin2. Please go to todo.com and download the newest version to properly use this project!", "Thanks, I will!");
+				return;
+			}
 			
-			//migrate patch in case the version has changed
-			migratePatch((int)m_value_tree.state.getChildWithName("misc")["patch_migration_version"]);
+			//load data
+			readPatch(ValueTree::fromXml(*xmlState));
 			
 			//set the correct version since an old one was maybe set from patch
 			m_value_tree.state.getChildWithName("misc").setProperty("version_minor", ODIN_MINOR_VERSION, nullptr);
@@ -792,17 +797,11 @@ void OdinAudioProcessor::setStateInformation(const void *data, int sizeInBytes) 
 			m_value_tree.state.getChildWithName("misc").setProperty(
 			    "patch_migration_version", ODIN_PATCH_MIGRATION_VERSION, nullptr);
 
-			attachNonParamListeners();
 			m_force_values_onto_gui = true;
 			DBG("LOADED BINARY STATE!!");
-			retriggerAllListeners();
 
 			//create midi learn map from valuetree
 			for (int i = 0; i < m_value_tree_midi_learn.getNumProperties(); ++i) {
-
-				//map<int, RangedAudioParam*>
-				//<midi_learn fil1_freq="17"/>
-
 				m_midi_control_param_map.emplace(
 				    (int)m_value_tree_midi_learn[m_value_tree_midi_learn.getPropertyName(i)],
 				    m_value_tree.getParameter(m_value_tree_midi_learn.getPropertyName(i)));

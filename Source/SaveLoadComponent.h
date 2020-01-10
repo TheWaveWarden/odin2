@@ -47,6 +47,7 @@ public:
 private:
 
   bool checkForBiggerVersion(FileInputStream &p_file_stream, std::string &p_version_string);
+  bool checkForSmallerVersion(FileInputStream &p_file_stream, std::string &p_version_string);
   void versionMigrate();
 
   OdinAudioProcessor& m_audio_processor;
