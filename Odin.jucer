@@ -1014,7 +1014,7 @@
       <CONFIGURATIONS>
         <CONFIGURATION isDebug="1" name="Debug" defines="ODIN_WIN&#10;ODIN_DEBUG" headerPath="E:\odin2\Odin\Source&#10;E:\JUCE2\JUCE\VST2_SDK"/>
         <CONFIGURATION name="Release" defines="ODIN_WIN&#10;ODIN_RELEASE" headerPath="E:\odin2\Odin\Source&#10;E:\JUCE2\JUCE\VST2_SDK"
-                       isDebug="1" optimisation="4" linkTimeOptimisation="1"/>
+                       isDebug="0" optimisation="4" linkTimeOptimisation="1"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_opengl"/>
