@@ -164,6 +164,11 @@
 #define BPM_POS_X 585
 #define BPM_POS_Y 6
 
+#define MIDI_KEYBOARD_SIZE 85
+
+#define ODIN_EDITOR_SIZE_X 800
+#define ODIN_EDITOR_SIZE_Y 600
+
 class TooltipFeels : public LookAndFeel_V4 {
 public:
   TooltipFeels() {
@@ -247,7 +252,8 @@ private:
   OdinMenuFeels m_menu_feels;
 
 
-
+  MidiKeyboardComponent m_midi_keyboard;
+  MidiKeyboardState m_midi_keyboard_state;
 
   Knob m_glide;
   Knob m_master;

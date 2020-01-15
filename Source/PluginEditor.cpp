@@ -1,13 +1,3 @@
-/*
-  ==============================================================================
-
-    This file was auto-generated!
-
-    It contains the basic framework code for a JUCE plugin editor.
-
-  ==============================================================================
-*/
-
 #include "PluginEditor.h"
 #include "PluginProcessor.h"
 
@@ -86,7 +76,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
     m_flanger_position_identifier("flanger_position"), m_phaser_position_identifier("phaser_position"),
     m_chorus_position_identifier("chorus_position"), m_mod_matrix(vts), m_legato_button("legato"),
     m_tooltip(nullptr, 2047483647), m_is_standalone_plugin(p_is_standalone), m_save_load(vts, p_processor),
-    m_processor(p_processor) {
+    m_processor(p_processor), m_midi_keyboard(m_midi_keyboard_state, MidiKeyboardComponent::Orientation::horizontalKeyboard) {
 
 	if (m_is_standalone_plugin) {
 		addKeyListener(this);
@@ -922,9 +912,9 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	//m_osc3.setColorPickerPointer(&m_color_picker);
 
 #ifdef WTGEN
-	m_spectrum_display.setTopLeftPosition(800 - 512 - 2 * 6, 400 - 2 * 6);
+	m_spectrum_display.setTopLeftPosition(ODIN_EDITOR_SIZE_X - 512 - 2 * 6, 400 - 2 * 6);
 	addAndMakeVisible(m_wavetable_display);
-	m_wavetable_display.setTopLeftPosition(800 - 512 - 2 * 6, 400 - 4 * 6 - 200);
+	m_wavetable_display.setTopLeftPosition(ODIN_EDITOR_SIZE_X - 512 - 2 * 6, 400 - 4 * 6 - 200);
 	addAndMakeVisible(m_spectrum_display);
 	m_wavetable_display.setAlwaysOnTop(true);
 	m_spectrum_display.setAlwaysOnTop(true);
@@ -988,7 +978,19 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	//forceValueTreeOntoComponents(false);
 
 	//Desktop::getInstance().setGlobalScaleFactor(1);
-	setSize(800, 600);
+	if(!m_is_standalone_plugin){
+		setSize(ODIN_EDITOR_SIZE_X, ODIN_EDITOR_SIZE_Y);
+	} else {
+		//add MIDI keyboard to bottom
+		m_midi_keyboard.setColour(MidiKeyboardComponent::ColourIds::blackNoteColourId, Colour(110,110,110));
+		m_midi_keyboard.setColour(MidiKeyboardComponent::ColourIds::whiteNoteColourId, Colour(40,40,40));
+		m_midi_keyboard.setColour(MidiKeyboardComponent::ColourIds::mouseOverKeyOverlayColourId, Colour(100,130,200));
+		m_midi_keyboard.setColour(MidiKeyboardComponent::ColourIds::textLabelColourId, Colour(100,130,200));
+		m_midi_keyboard.setSize(ODIN_EDITOR_SIZE_X, MIDI_KEYBOARD_SIZE);
+		m_midi_keyboard.setTopLeftPosition(0, ODIN_EDITOR_SIZE_Y);
+		addAndMakeVisible(m_midi_keyboard);
+		setSize(ODIN_EDITOR_SIZE_X, ODIN_EDITOR_SIZE_Y + MIDI_KEYBOARD_SIZE);
+	}
 	//setResizable(true, true);
 	//setSize(1200, 900);
 	DBG("Display_Scale: " + std::to_string(Desktop::getInstance().getDisplays().getMainDisplay().scale));
@@ -1024,8 +1026,6 @@ void OdinAudioProcessorEditor::paint(Graphics &g) {
 }
 
 void OdinAudioProcessorEditor::resized() {
-	//this is the only valid call to resized, since this window is not allowed to change size
-	//setSize(800, 600);
 }
 
 void OdinAudioProcessorEditor::setOsc1Plate(int p_osc_type) {

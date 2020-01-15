@@ -73,7 +73,7 @@ void WavetableContainer::createWavetables(float p_samplerate) {
 			// how many harmonics are needed for this subtable
 			int number_of_harmonics = (int)((p_samplerate * 0.5f / seed_freq) - 1);
 
-			// don't allow more than 800 harmonics (for big Samplerates this might
+			// don't allow more than 256 harmonics (for big Samplerates this might
 			// happen)
 			number_of_harmonics = number_of_harmonics > NUMBER_OF_HARMONICS ? NUMBER_OF_HARMONICS : number_of_harmonics;
 
@@ -142,7 +142,7 @@ void WavetableContainer::createLFOtables(float p_samplerate) {
 		// how many harmonics are needed for this subtable
 		int number_of_harmonics = (int)((p_samplerate * 0.5f / seed_freq) - 1);
 
-		// don't allow more than 800 harmonics (for big Samplerates this might
+		// don't allow more than 256 harmonics (for big Samplerates this might
 		// happen)
 		number_of_harmonics = number_of_harmonics > NUMBER_OF_HARMONICS ? NUMBER_OF_HARMONICS : number_of_harmonics;
 
@@ -209,7 +209,7 @@ void WavetableContainer::createChipdrawTable(int p_table_nr,
 		// how many harmonics are needed for this subtable
 		int number_of_harmonics = (int)((p_samplerate * 0.5f / seed_freq) - 1);
 
-		// don't allow more than 800 harmonics (for big Samplerates this might
+		// don't allow more than 256 harmonics (for big Samplerates this might
 		// happen)
 		number_of_harmonics = number_of_harmonics > NUMBER_OF_HARMONICS ? NUMBER_OF_HARMONICS : number_of_harmonics;
 
@@ -306,7 +306,7 @@ void WavetableContainer::createWavedrawTable(int p_table_nr,
 		// how many harmonics are needed for this subtable
 		int number_of_harmonics = (int)((p_samplerate * 0.5f / seed_freq) - 1);
 
-		// don't allow more than 800 harmonics (for big Samplerates this might
+		// don't allow more than 256 harmonics (for big Samplerates this might
 		// happen)
 		number_of_harmonics = number_of_harmonics > NUMBER_OF_HARMONICS ? NUMBER_OF_HARMONICS : number_of_harmonics;
 
@@ -364,8 +364,6 @@ void WavetableContainer::createSpecdrawTable(int p_table_nr,
 		// how many harmonics are needed for this subtable
 		int number_of_harmonics = (int)((p_samplerate * 0.5f / seed_freq) - 1);
 
-		// don't allow more than 800 harmonics (for big Samplerates this might
-		// happen)
 		number_of_harmonics = number_of_harmonics > SPECDRAW_STEPS_X + 1 ? SPECDRAW_STEPS_X + 1 : number_of_harmonics;
 
 		for (int index_position = 0; index_position < WAVETABLE_LENGTH; ++index_position) {

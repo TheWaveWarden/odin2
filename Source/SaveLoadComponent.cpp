@@ -1,13 +1,3 @@
-/*
-  ==============================================================================
-
-    SaveLoadComponent.cpp
-    Created: 27 Feb 2019 11:01:28am
-    Author:  frot
-
-  ==============================================================================
-*/
-
 #include "SaveLoadComponent.h"
 #include "../JuceLibraryCode/BinaryData.h"
 #include "../JuceLibraryCode/JuceHeader.h"
