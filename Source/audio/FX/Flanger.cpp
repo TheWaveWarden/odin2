@@ -10,6 +10,7 @@ Flanger::~Flanger() {
 }
 
 float Flanger::doFlanger(float p_input) {
+    jassert(m_samplerate > 0);
 
 	incrementLFO();
 	float LFO = doLFO();

@@ -9,11 +9,6 @@ public:
 	BiquadAllpass();
 	~BiquadAllpass();
 
-	inline void setSampleRate(float p_samplerate){ 
-		m_samplerate = p_samplerate;
-		m_one_over_samplerate = 1. / p_samplerate;
-	}
-
 	inline void setRadius(float p_radius){
 		m_radius = p_radius;
 	}
@@ -23,7 +18,7 @@ public:
 
 protected:
 
-	float m_samplerate;
+	float m_samplerate = -1;
 	float m_one_over_samplerate;
 	float m_radius;
 };

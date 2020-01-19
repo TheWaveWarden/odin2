@@ -17,6 +17,8 @@ void DriftGenerator::initialize(float p_samlerate) {
 }
 
 float DriftGenerator::doDrift() {
+    jassert(m_samplerate > 0);
+
 	if (++m_counter > m_drift_length) {
 		m_counter = 0;
 		calcNewCoeffs();

@@ -38,6 +38,8 @@ void VAOnePoleFilter::update() {
 
 // do the filter
 double VAOnePoleFilter::doFilter(double xn) {
+    jassert(m_samplerate > 0);
+
 	// for diode filter support
 	xn = xn * m_gamma + m_feedback + m_epsilon * getFeedbackOutput();
 	// calculate v(n)

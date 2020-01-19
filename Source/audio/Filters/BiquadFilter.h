@@ -15,6 +15,11 @@ public:
 
   virtual double doFilter(double p_input);
 
+  inline void setSampleRate(float p_samplerate){ 
+		m_samplerate = p_samplerate;
+		m_one_over_samplerate = 1. / p_samplerate;
+	}
+
 protected:
   // direkt form coefficients. note that in the normalized form, a0 is 1
   double m_a1;
@@ -26,4 +31,7 @@ protected:
   // buffer elements
   double m_z1 = 0.;
   double m_z2 = 0.;
+
+  float m_samplerate = -1;
+  float m_one_over_samplerate;
 };

@@ -10,6 +10,8 @@ ADSREnvelope::~ADSREnvelope() {
 }
 
 float ADSREnvelope::doEnvelope() {
+    jassert(m_samplerate > 0);
+
 	switch (m_current_section) {
 	case ADSR_SECTION_FINISHED:
 		m_last_actual_value = 0.f;

@@ -8,10 +8,8 @@ MultiOscillator::~MultiOscillator() {
 }
 
 float MultiOscillator::doOscillate() {
-	// if (!m_note_on)
-	//{
-	//    return 0.f;
-	//}
+    jassert(m_samplerate > 0);
+
 	float vol_mod_factor = (*m_vol_mod) > 0 ? 1.f + 4 * (*m_vol_mod) : (1.f + *m_vol_mod);
 	vol_mod_factor       = vol_mod_factor > VOL_MOD_UPPER_LIMIT ? VOL_MOD_UPPER_LIMIT : vol_mod_factor;
 
@@ -90,6 +88,8 @@ int MultiOscillator::getTableIndex(float p_freq) {
 }
 
 float MultiOscillator::doWavetableMulti() {
+    jassert(m_samplerate > 0);
+
 	// set up all multiple variables, so we can run through osc loop
 	int read_index_trunc_multi[OSCS_PER_MULTIOSC];
 	int read_index_next_multi[OSCS_PER_MULTIOSC];

@@ -34,6 +34,8 @@ void AnalogOscillator::update() {
 }
 
 float AnalogOscillator::doOscillate() {
+    jassert(m_samplerate > 0);
+
 	// if (!m_note_on){
 	//    return 0.f;
 	//}

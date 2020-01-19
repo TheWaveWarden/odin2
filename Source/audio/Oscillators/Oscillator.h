@@ -173,7 +173,7 @@ protected:
 	//int m_semitones; // semitones tweak
 	//int m_cent;      // cents tweak
 
-	double m_samplerate; // fs
+	double m_samplerate = -1; // fs
 	double m_one_over_samplerate;
 	double m_osc_freq_modded;    // current (actual) frequency of oscillator
 	float m_mod_exp_other = 0.f; // can be used for whatever (Chiptune Arp uses it)

@@ -1,4 +1,5 @@
 #pragma once
+#include "../JuceLibraryCode/JuceHeader.h"
 
 #define DRIFT_LENGTH_SECONDS 5
 
@@ -25,7 +26,7 @@ protected:
 	//float m_b = 0.f;
 	//float m_c = 0.f;
 
-	float m_samplerate;
+	float m_samplerate = -1;
 	float m_one_over_samplerate;
 };
 

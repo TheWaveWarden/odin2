@@ -8,6 +8,7 @@ void Amplifier::incWriteIndex() {
 }
 
 void Amplifier::doAmplifier(float p_in, float &po_left_out, float &po_right_out) {
+    jassert(m_samplerate > 0);
 
     // appply gain
     float gain_mod_factor =

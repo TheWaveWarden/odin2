@@ -53,6 +53,7 @@ void FormantFilter::setTransition(float p_trans) {
 }
 
 double FormantFilter::doFilter(double p_input) {
+    jassert(m_samplerate > 0);
 
 	double out           = m_resonator1.doFilter(m_resonator2.doFilter(p_input));
 	float vol_mod_factor = (*m_vol_mod) > 0 ? 1.f + 4 * (*m_vol_mod) : (1.f + *m_vol_mod);

@@ -10,6 +10,8 @@ float pitchShiftMultiplier(float p_semitones) {
 }
 
 int ChiptuneArpeggiator::doArpeggiator() {
+    jassert(m_samplerate > 0);
+
 	if (!m_arp_active) {
 		return 0;
 	}

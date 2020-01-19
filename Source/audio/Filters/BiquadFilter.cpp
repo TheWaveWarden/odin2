@@ -15,6 +15,7 @@ void BiquadFilter::setFilterCoefficients(double p_a1, double p_a2, double p_b0, 
 }
 
 double BiquadFilter::doFilter(double p_input) {
+    jassert(m_samplerate > 0);
 
 	//this uses direct form 2 from wikipedia page
 	//https://en.wikipedia.org/wiki/Digital_biquad_filter

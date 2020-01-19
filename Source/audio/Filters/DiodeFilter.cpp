@@ -93,6 +93,8 @@ void DiodeFilter::update() {
 }
 
 double DiodeFilter::doFilter(double xn) {
+    jassert(m_samplerate > 0);
+
 	m_LPF4.m_feedback = 0.0;
 	m_LPF3.m_feedback = m_LPF4.getFeedbackOutput();
 	m_LPF2.m_feedback = m_LPF3.getFeedbackOutput();
@@ -126,5 +128,9 @@ void DiodeFilter::setResControl(double res) {
 
 void DiodeFilter::setSampleRate(double p_sr) {
 	Filter::setSampleRate(p_sr);
+	m_LPF1.setSampleRate(p_sr);
+	m_LPF2.setSampleRate(p_sr);
+	m_LPF3.setSampleRate(p_sr);
+	m_LPF4.setSampleRate(p_sr);
 	m_last_freq_modded = -1; //to signal recalcualtion of filter coeffs in update()
 }

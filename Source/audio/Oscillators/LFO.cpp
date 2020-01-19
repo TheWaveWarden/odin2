@@ -45,6 +45,8 @@ void LFO::loadWavetables() {
 }
 
 float LFO::doOscillate() {
+    jassert(m_samplerate > 0);
+
 	if (!m_SH_active) {
 		return doWavetable();
 	} else {
@@ -53,6 +55,7 @@ float LFO::doOscillate() {
 }
 
 float LFO::doSampleHold() {
+    jassert(m_samplerate > 0);
 
 	m_read_index += m_wavetable_inc;
 

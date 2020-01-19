@@ -23,6 +23,10 @@ public:
   void setResControl(double p_res) override;
   void setSampleRate(double p_sr) override {
     Filter::setSampleRate(p_sr);
+    m_LPF1.setSampleRate(p_sr);
+    m_LPF2.setSampleRate(p_sr);
+    m_LPF3.setSampleRate(p_sr);
+    m_LPF4.setSampleRate(p_sr);
     m_last_freq_modded = -1; //to signal recalculation of coeffs in update()
   }
 
@@ -138,6 +142,7 @@ public:
   }
 
   inline double doFilter(double xn) {
+    jassert(m_samplerate > 0);
 
     double dSigma = m_LPF1.getFeedbackOutput() + m_LPF2.getFeedbackOutput() +
                     m_LPF3.getFeedbackOutput() + m_LPF4.getFeedbackOutput();

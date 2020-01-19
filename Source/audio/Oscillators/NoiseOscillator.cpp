@@ -17,10 +17,6 @@ NoiseOscillator::~NoiseOscillator() {
 }
 
 float NoiseOscillator::doNoise() {
-	// if(!m_note_on){
-	//    return 0.f;
-	//}
-
 	m_lowpass.update();
 	m_highpass.update();
 

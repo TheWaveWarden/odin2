@@ -14,6 +14,7 @@ void VectorOscillator::selectWavetable(int p_wavetable_index, int p_vector_point
 }
 
 float VectorOscillator::doOscillate() {
+    jassert(m_samplerate > 0);
 
 	float vol_mod_factor = (*m_vol_mod) > 0 ? 1.f + 4 * (*m_vol_mod) : (1.f + *m_vol_mod);
 	vol_mod_factor       = vol_mod_factor > VOL_MOD_UPPER_LIMIT ? VOL_MOD_UPPER_LIMIT : vol_mod_factor;
@@ -33,6 +34,7 @@ void VectorOscillator::update() {
 }
 
 float VectorOscillator::doVectortable() {
+    jassert(m_samplerate > 0);
 
 	// smooth controls
 	m_XY_pad_x_smooth += (m_XY_pad_x - m_XY_pad_x_smooth) * 0.001;

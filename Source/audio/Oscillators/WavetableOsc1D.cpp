@@ -67,6 +67,7 @@ int WavetableOsc1D::getTableIndex() {
 }
 
 float WavetableOsc1D::doWavetable() {
+    jassert(m_samplerate > 0);
 
 	// prepare both sides and interpol value
 	int read_index_trunc = (int)m_read_index;
@@ -83,6 +84,7 @@ float WavetableOsc1D::doWavetable() {
 }
 
 float WavetableOsc1D::doOscillate() {
+    jassert(m_samplerate > 0);
 
 	float vol_mod_factor = (*m_vol_mod) > 0 ? 1.f + 4 * (*m_vol_mod) : (1.f + *m_vol_mod);
 	vol_mod_factor       = vol_mod_factor > VOL_MOD_UPPER_LIMIT ? VOL_MOD_UPPER_LIMIT : vol_mod_factor;
@@ -148,6 +150,7 @@ void WavetableOsc1D::initiateSync() {
 }
 
 float WavetableOsc1D::doOscillateWithSync() {
+    jassert(m_samplerate > 0);
 
 	// do sync shit: 3x oversampling for AA
 	if (m_sync_enabled && m_sync_oscillator) {

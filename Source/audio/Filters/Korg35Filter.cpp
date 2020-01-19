@@ -73,6 +73,8 @@ void Korg35Filter::update() {
 }
 
 double Korg35Filter::doFilter(double xn) {
+    jassert(m_samplerate > 0);
+
 	double y;
 	if (m_is_lowpass) {
 		double y1  = m_LPF1.doFilter(xn);
@@ -109,5 +111,9 @@ void Korg35Filter::setResControl(double res) {
 
 void Korg35Filter::setSampleRate(double p_sr) {
 	Filter::setSampleRate(p_sr);
+	m_LPF1.setSampleRate(p_sr);
+	m_LPF2.setSampleRate(p_sr);
+	m_HPF1.setSampleRate(p_sr);
+	m_HPF2.setSampleRate(p_sr);
 	m_last_freq_modded = -1; // to signal recalculation of filter coeffs in update()
 }

@@ -69,7 +69,7 @@ protected:
   //float m_width_to_pan = 0;
   float m_width_delay_buffer_left[WIDTH_DELAY_SAMPLES] = {0};
   float m_width_delay_buffer_right[WIDTH_DELAY_SAMPLES] = {0};
-  float m_samplerate;
+  float m_samplerate = -1;
   int m_write_index = 0;
 
   float m_MIDI_vel = 0.f;

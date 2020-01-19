@@ -50,6 +50,8 @@ void SEMFilter12::update() {
 }
 
 double SEMFilter12::doFilter(double xn) {
+    jassert(m_samplerate > 0);
+
 	double hpf = m_alpha_0 * (xn - m_rho * m_z_1 - m_z_2);
 	double bpf = m_alpha * hpf + m_z_1;
 

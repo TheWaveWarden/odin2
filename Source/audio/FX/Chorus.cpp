@@ -8,6 +8,7 @@ Chorus::~Chorus() {
 }
 
 float Chorus::doChorus(float p_input) {
+    jassert(m_samplerate > 0);
 
 	//param smoothing
 	m_amount = (m_amount - m_amount_control) * 0.995 + m_amount_control;

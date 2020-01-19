@@ -73,6 +73,8 @@ void Phaser::setDryWet(float p_amount) {
 }
 
 float Phaser::doPhaserLeft(float p_input) {
+    jassert(m_samplerate > 0);
+
 	//apply feedback
 	float feedback_modded     = m_feedback + *m_feedback_mod;
 	feedback_modded           = feedback_modded > 0.97f ? 0.97f : feedback_modded;

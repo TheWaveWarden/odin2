@@ -936,9 +936,8 @@ std::string WavetableOsc2D::getWavetableName(int p_wt_2D, int sub_table_2D) {
 }
 
 float WavetableOsc2D::doOscillate() {
-	// if(!m_note_on){
-	//    return 0.f;
-	//}
+    jassert(m_samplerate > 0);
+
 	float vol_mod_factor = (*m_vol_mod) > 0 ? 1.f + 4 * (*m_vol_mod) : (1.f + *m_vol_mod);
 	vol_mod_factor       = vol_mod_factor > VOL_MOD_UPPER_LIMIT ? VOL_MOD_UPPER_LIMIT : vol_mod_factor;
 
@@ -966,6 +965,8 @@ void WavetableOsc2D::setWavetablePointer(int p_wavetable_index,
 }
 
 float WavetableOsc2D::doWavetable2D() {
+    jassert(m_samplerate > 0);
+
 	// smooth position value
 	m_position_2D_smooth += (m_position_2D - m_position_2D_smooth) * 0.001;
 

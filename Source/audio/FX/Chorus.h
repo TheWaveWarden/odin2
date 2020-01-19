@@ -124,7 +124,7 @@ protected:
   float *m_feedback_mod;
 
   float m_circular_buffer[CHORUS_BUFFER_LENGTH] = {0};
-  float m_samplerate = 44100;
+  float m_samplerate = -1;
   float m_dry_wet = 1.f;
   float m_LFO_inc;
   float m_LFO_pos = 0;

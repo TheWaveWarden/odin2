@@ -7,6 +7,7 @@ CombFilter::~CombFilter() {
 }
 
 float CombFilter::doFilter(float p_input) {
+    jassert(m_samplerate > 0);
 
 	m_delay_time_smooth = (m_delay_time_smooth - m_delay_time_control) * 0.999 + m_delay_time_control;
 

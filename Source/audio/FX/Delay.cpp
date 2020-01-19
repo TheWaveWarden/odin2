@@ -13,6 +13,7 @@ Delay::~Delay() {
 }
 
 float Delay::doDelayLeft(float p_left) {
+    jassert(m_samplerate > 0);
 
 	float input_left = p_left;
 

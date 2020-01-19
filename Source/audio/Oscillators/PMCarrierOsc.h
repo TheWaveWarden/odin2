@@ -59,6 +59,7 @@ class PMCarrierOsc : public WavetableOsc1D {
   }
 
   float doOscillate() override {
+    jassert(m_samplerate > 0);
 
      //prepare both sides and interpol value
     int read_index_trunc = (int) (m_read_index + m_phasemod * WAVETABLE_LENGTH);

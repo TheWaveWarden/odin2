@@ -104,7 +104,7 @@ public:
 	double m_delay_time_control = 1. / 2000.f;
 	double m_delay_time_smooth  = 1. / 2000.f;
 	float m_feedback            = 0;
-	float m_samplerate          = 44100;
+	float m_samplerate          = -1;
 
 protected:
 	DCBlockingFilter m_DC_blocking_filter;

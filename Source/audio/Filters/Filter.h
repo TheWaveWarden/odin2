@@ -124,7 +124,7 @@ protected:
 
 	float m_mod_dummy_zero = 0;
 
-	double m_samplerate;
+	double m_samplerate = -1;
 	double m_one_over_samplerate;
 	double m_freq_modded;
 	double m_res_modded;
