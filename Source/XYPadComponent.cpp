@@ -14,6 +14,7 @@
 //==============================================================================
 XYPadComponent::XYPadComponent(Knob &p_x, Knob &p_y, bool p_vector_pad) :
     m_knob_x(p_x), m_knob_y(p_y), m_vector_pad(p_vector_pad) {
+	m_color = juce::Colour(30,30,30);
 }
 
 XYPadComponent::~XYPadComponent() {

@@ -83,7 +83,7 @@ private:
 
 	bool m_vector_pad;
 
-	juce::Colour m_color = STANDARD_DISPLAY_COLOR;
+	juce::Colour m_color;
 
 	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(XYPadComponent)
 };
