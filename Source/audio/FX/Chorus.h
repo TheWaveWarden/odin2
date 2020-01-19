@@ -50,7 +50,7 @@ public:
   inline void incLFO() {
     float increment_modded = m_LFO_inc;
     if (*m_freq_mod) {
-      increment_modded *= pow(4, *m_freq_mod);
+      increment_modded *= pow(4, *m_freq_mod * 2);
     }
     m_LFO_pos += increment_modded;
     while (m_LFO_pos > 2.f) {

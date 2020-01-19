@@ -79,7 +79,8 @@ protected:
   inline void incrementLFO() {
     float increment_modded = m_increment_sine;
     if (*m_freq_mod) {
-      increment_modded *= pow(4, *m_freq_mod);
+      //factor 1 / 16 to 16
+      increment_modded *= pow(4, *m_freq_mod * 2);
     }
     m_index_sine += increment_modded;
     while (m_index_sine > 1) {

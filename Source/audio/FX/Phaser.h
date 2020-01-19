@@ -150,7 +150,8 @@ protected:
   inline void incrementLFORight() {
     float increment_modded = m_increment_sine;
     if (*m_rate_mod) {
-      increment_modded *= pow(4, *m_rate_mod);
+      //factor 1/16 to 16
+      increment_modded *= pow(4, *m_rate_mod * 2);
     }
     m_index_sine_right += increment_modded;
     while (m_index_sine_right > 1) {

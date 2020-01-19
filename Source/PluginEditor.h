@@ -251,10 +251,6 @@ private:
   // Your private member variables go here...
   OdinMenuFeels m_menu_feels;
 
-
-  MidiKeyboardComponent m_midi_keyboard;
-  MidiKeyboardState m_midi_keyboard_state;
-
   Knob m_glide;
   Knob m_master;
   Knob m_modwheel;
