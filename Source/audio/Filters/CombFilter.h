@@ -6,7 +6,7 @@
 #include "Filter.h"
 #include <cstring>
 
-#define COMB_BUFFER_LENGTH (MAX_EXPECTED_SAMPLE_RATE / FILTER_FC_MIN)
+#define COMB_BUFFER_LENGTH ((size_t)(MAX_EXPECTED_SAMPLE_RATE / FILTER_FC_MIN * 1.1f))
 
 class CombFilter {
 public:

@@ -28,9 +28,15 @@ float CombFilter::doFilter(float p_input) {
 	int read_index_next  = read_index_trunc + 1;
 	float frac           = read_index - (float)read_index_trunc;
 
-	read_index_trunc = read_index_trunc < 0 ? read_index_trunc + COMB_BUFFER_LENGTH : read_index_trunc;
-	read_index_next  = read_index_next < 0 ? read_index_next + COMB_BUFFER_LENGTH : read_index_next;
-	read_index_next  = read_index_next >= COMB_BUFFER_LENGTH ? read_index_next - COMB_BUFFER_LENGTH : read_index_next;
+	while (read_index_trunc < 0) {
+		read_index_trunc = read_index_trunc + COMB_BUFFER_LENGTH;
+	}
+	while(read_index_next < 0) {
+		read_index_next = read_index_next + COMB_BUFFER_LENGTH;
+	}
+	while(read_index_next >= COMB_BUFFER_LENGTH) {
+		read_index_next = read_index_next - COMB_BUFFER_LENGTH;
+	}
 
 	float output = linearInterpolation(circular_buffer[read_index_trunc], circular_buffer[read_index_next], frac);
 
