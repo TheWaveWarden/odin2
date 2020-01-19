@@ -1,2 +1,3 @@
 bitwig linux: crashes when using reset button... is only on i3..
-multi osc: spread is not very well labeled (can be confused with stereo spread)
+multi osc: relabel spread and position to wt-spread and wt-position in blender
+wavetable osc: renname position to WT-positoin in blender

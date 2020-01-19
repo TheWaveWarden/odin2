@@ -1,3 +1,6 @@
+# 2.0.7 alpha
+- increased modulation depth on phaser-, flanger- and chorus- rate
+- fixed bug where flanger would glitch on high sample rates
 # 2.0.6 alpha
 - major overhaul of save-load system
 - backwards compatibility for patches now guaranteed

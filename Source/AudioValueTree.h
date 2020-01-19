@@ -12,7 +12,7 @@
           "osc1_vol", "Osc1 Volume", NormalisableRange<float>(-20.0f, 12.0f),
           0),
       std::make_unique<AudioParameterInt>("osc1_reset", "Osc1 Reset", 0, 1, 0),
-      std::make_unique<AudioParameterFloat>("osc1_position", "Osc1 Position",
+      std::make_unique<AudioParameterFloat>("osc1_position", "Osc1 Wavetble Position",
                                             NormalisableRange<float>(0.f, 1.f),
                                             0),
       std::make_unique<AudioParameterFloat>(
@@ -23,7 +23,7 @@
           "osc1_multi_position", "Osc1 Multi Position",
           NormalisableRange<float>(0.f, 1.f), 0),
       std::make_unique<AudioParameterFloat>(
-          "osc1_spread", "Osc1 Spread", NormalisableRange<float>(0.f, 1.f), 0),
+          "osc1_spread", "Osc1 Wavetable Spread", NormalisableRange<float>(0.f, 1.f), 0),
       std::make_unique<AudioParameterFloat>(
           "osc1_pulsewidth", "Osc1 PulseWidth",
           NormalisableRange<float>(0.f, 1.f), 0.5f),
@@ -77,7 +77,7 @@
           0),
       std::make_unique<AudioParameterInt>("osc2_reset", "Osc2 Reset", 0, 1, 0),
       std::make_unique<AudioParameterInt>("osc2_sync", "Osc2 Sync", 0, 1, 0),
-      std::make_unique<AudioParameterFloat>("osc2_position", "Osc2 Position",
+      std::make_unique<AudioParameterFloat>("osc2_position", "Osc2 Wavetable Position",
                                             NormalisableRange<float>(0.f, 1.f),
                                             0),
       std::make_unique<AudioParameterFloat>(
@@ -88,7 +88,7 @@
           "osc2_multi_position", "Osc2 Multi Position",
           NormalisableRange<float>(0.f, 1.f), 0),
       std::make_unique<AudioParameterFloat>(
-          "osc2_spread", "Osc2 Spread", NormalisableRange<float>(0.f, 1.f), 0),
+          "osc2_spread", "Osc2 Wavetable Spread", NormalisableRange<float>(0.f, 1.f), 0),
       std::make_unique<AudioParameterFloat>(
           "osc2_pulsewidth", "Osc2 PulseWidth",
           NormalisableRange<float>(0.f, 1.f), 0.5f),
@@ -142,7 +142,7 @@
           0),
       std::make_unique<AudioParameterInt>("osc3_reset", "Osc3 Reset", 0, 1, 0),
       std::make_unique<AudioParameterInt>("osc3_sync", "Osc3 Sync", 0, 1, 0),
-      std::make_unique<AudioParameterFloat>("osc3_position", "Osc3 Position",
+      std::make_unique<AudioParameterFloat>("osc3_position", "Osc3 Wavetable Position",
                                             NormalisableRange<float>(0.f, 1.f),
                                             0),
       std::make_unique<AudioParameterFloat>(
@@ -153,7 +153,7 @@
           "osc3_multi_position", "Osc3 Multi Position",
           NormalisableRange<float>(0.f, 1.f), 0),
       std::make_unique<AudioParameterFloat>(
-          "osc3_spread", "Osc3 Spread", NormalisableRange<float>(0.f, 1.f), 0),
+          "osc3_spread", "Osc3 Wavetable Spread", NormalisableRange<float>(0.f, 1.f), 0),
       std::make_unique<AudioParameterFloat>(
           "osc3_pulsewidth", "Osc3 PulseWidth",
           NormalisableRange<float>(0.f, 1.f), 0.5f),

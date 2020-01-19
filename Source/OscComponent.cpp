@@ -459,8 +459,8 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 	m_position.setBounds(POSITION_POS_X, POSITION_POS_Y, METAL_KNOB_MID_SIZE_X, METAL_KNOB_MID_SIZE_Y);
 	m_position.setSliderStyle(Slider::RotaryVerticalDrag);
 	m_position.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-	m_position.setKnobTooltip("The position in the\nwavetable used. There "
-	                          "are\nfour tables through which\nyou can sweep");
+	m_position.setKnobTooltip("The position in the wavetable used. There "
+	                          "are four tables through which you can sweep");
 	addChildComponent(m_position);
 
 	m_detune.setStrip(ImageCache::getFromMemory(BinaryData::metal_knob_big_png, BinaryData::metal_knob_big_pngSize),
@@ -485,7 +485,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 	m_spread.setBounds(SPREAD_POS_X, SPREAD_POS_Y, METAL_KNOB_SMALL_SIZE_X, METAL_KNOB_SMALL_SIZE_Y);
 	m_spread.setSliderStyle(Slider::RotaryVerticalDrag);
 	m_spread.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-	m_spread.setKnobTooltip("Spreads the sub-oscillators to\n different positions in the\n wavetable");
+	m_spread.setKnobTooltip("Spreads the sub-oscillators to different positions in the wavetable");
 	addChildComponent(m_spread);
 
 	m_position_multi.setStrip(
