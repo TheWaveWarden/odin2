@@ -27,6 +27,7 @@ public:
   void setImage(juce::Image p_panel) { m_glaspanel = p_panel; }
   void setColor(juce::Colour p_color) { m_color = p_color; }
   void setGreyColor(juce::Colour p_color) {m_grey_color = p_color;}
+  void setGreyBackgroundColor(juce::Colour p_color) {m_grey_background_color = p_color;}
   void setFontColor(juce::Colour p_color) {m_font_color = p_color;}
   void setGreyFirstElement(bool p_grey) { m_grey_first_element = p_grey; }
   void setInlay(int p_inlay) { m_inlay = p_inlay; }
@@ -65,6 +66,7 @@ private:
   juce::Image m_glaspanel;
   juce::Colour m_color;
   juce::Colour m_grey_color = juce::Colours::lightgrey;
+  juce::Colour m_grey_background_color = juce::Colours::black;
   juce::Colour m_font_color = juce::Colours::white;
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(GlasDropdown)
 
