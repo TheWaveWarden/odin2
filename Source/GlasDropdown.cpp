@@ -25,7 +25,11 @@ GlasDropdown::~GlasDropdown() {
 void GlasDropdown::paint(Graphics &g) {
 	SET_INTERPOLATION_QUALITY(g)
 
-	g.setColour(m_color);
+	if (getSelectedId() == 0 && m_grey_first_element) {
+		g.setColour(m_grey_background_color);
+	} else {
+		g.setColour(m_color);
+	}
 	juce::Point<int> top_left = getLocalBounds().getTopLeft();
 	top_left.addXY(m_inlay /*+ 1*/, m_inlay);
 	juce::Point<int> bottom_right = getLocalBounds().getBottomRight();
