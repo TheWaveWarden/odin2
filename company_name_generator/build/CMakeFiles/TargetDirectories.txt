@@ -1,0 +1,3 @@
+/home/frederik_siepe/odinvst/company_name_generator/build/CMakeFiles/rebuild_cache.dir
+/home/frederik_siepe/odinvst/company_name_generator/build/CMakeFiles/helloDemo.dir
+/home/frederik_siepe/odinvst/company_name_generator/build/CMakeFiles/edit_cache.dir
