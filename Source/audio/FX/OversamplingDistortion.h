@@ -8,7 +8,7 @@ public:
   OversamplingDistortion();
   ~OversamplingDistortion();
 
-  enum DistortionAlgorithm { Clamp = 1, Fold = 2, Zero = 3 };
+  enum DistortionAlgorithm { Clamp = 1, Fold = 2, Zero = 3, Sine = 4, Cube = 5};
 
   double doDistortion(double p_input);
 
