@@ -47,14 +47,14 @@
   <PARAM id="delay_sync" value="0.0"/>
   <PARAM id="delay_time" value="1.0"/>
   <PARAM id="delay_wet" value="0.7999999523162842"/>
-  <PARAM id="dist_boost" value="0.300000011920929"/>
+  <PARAM id="dist_boost" value="1.0"/>
   <PARAM id="dist_drywet" value="1.0"/>
-  <PARAM id="dist_on" value="0.0"/>
+  <PARAM id="dist_on" value="1.0"/>
   <PARAM id="env1_attack" value="0.009999999776482582"/>
   <PARAM id="env1_decay" value="0.9999998807907104"/>
   <PARAM id="env1_loop" value="0.0"/>
   <PARAM id="env1_release" value="0.009999999776482582"/>
-  <PARAM id="env1_sustain" value="0.5"/>
+  <PARAM id="env1_sustain" value="1.0"/>
   <PARAM id="env2_attack" value="0.009999999776482582"/>
   <PARAM id="env2_decay" value="0.800000011920929"/>
   <PARAM id="env2_loop" value="0.0"/>
@@ -125,7 +125,7 @@
   <PARAM id="flanger_rate" value="0.1500000208616257"/>
   <PARAM id="flanger_reset" value="0.0"/>
   <PARAM id="flanger_sync" value="0.0"/>
-  <PARAM id="glide" value="0.0"/>
+  <PARAM id="glide" value="0.5759999752044678"/>
   <PARAM id="lfo1_freq" value="1.000000357627869"/>
   <PARAM id="lfo1_reset" value="0.0"/>
   <PARAM id="lfo1_sync" value="0.0"/>
@@ -635,8 +635,8 @@
        lfo2_synctime_denominator="5" lfo3_synctime_numerator="2" lfo3_synctime_denominator="5"
        lfo4_synctime_numerator="2" lfo4_synctime_denominator="5" lfo_left_selected="1"
        lfo_right_selected="1"/>
-  <misc legato="1" dist_algo="1.0" BPM="120" env_left_selected="1" env_right_selected="1"
-        fil1_type="2" fil2_type="1" fil3_type="1" patch_name="init_patch"
+  <misc legato="0" dist_algo="4" BPM="120" env_left_selected="1" env_right_selected="1"
+        fil1_type="1" fil2_type="1" fil3_type="1" patch_name="init_patch"
         version_minor="0" version_patch="7" patch_migration_version="2"/>
   <mod source_row_0="0" source_row_1="0" source_row_2="0" source_row_3="0"
        source_row_4="0" source_row_5="0" source_row_6="0" source_row_7="0"
@@ -649,13 +649,13 @@
        scale_row_5="0" scale_row_6="0" scale_row_7="0" scale_row_8="0"/>
   <osc osc1_analog_wave="0" osc2_analog_wave="0" osc3_analog_wave="0"
        osc1_type="2" osc2_type="1" osc3_type="1" osc1_wavetable="1.0"
-       osc2_wavetable="1.0" osc3_wavetable="1.0" osc1_vec_a="101" osc2_vec_a="101"
-       osc3_vec_a="101" osc1_vec_b="102" osc2_vec_b="102" osc3_vec_b="102"
-       osc1_vec_c="103" osc2_vec_c="103" osc3_vec_c="103" osc1_vec_d="104"
-       osc2_vec_d="104" osc3_vec_d="104" osc1_chipwave="1.0" osc2_chipwave="1.0"
-       osc3_chipwave="1.0" osc1_modulator_wave="1.0" osc2_modulator_wave="1.0"
-       osc3_modulator_wave="1.0" osc1_carrier_wave="1.0" osc2_carrier_wave="1.0"
-       osc3_carrier_wave="1.0" osc1_mod_source="1.0" osc2_mod_source="1.0"
-       osc3_mod_source="1.0"/>
+       osc2_wavetable="1.0" osc3_wavetable="1.0" osc1_vec_a="101.0"
+       osc2_vec_a="101.0" osc3_vec_a="101.0" osc1_vec_b="102.0" osc2_vec_b="102.0"
+       osc3_vec_b="102.0" osc1_vec_c="103.0" osc2_vec_c="103.0" osc3_vec_c="103.0"
+       osc1_vec_d="104.0" osc2_vec_d="104.0" osc3_vec_d="104.0" osc1_chipwave="1.0"
+       osc2_chipwave="1.0" osc3_chipwave="1.0" osc1_modulator_wave="1.0"
+       osc2_modulator_wave="1.0" osc3_modulator_wave="1.0" osc1_carrier_wave="1.0"
+       osc2_carrier_wave="1.0" osc3_carrier_wave="1.0" osc1_mod_source="1.0"
+       osc2_mod_source="1.0" osc3_mod_source="1.0"/>
   <midi_learn/>
 </Odin>

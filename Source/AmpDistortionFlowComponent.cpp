@@ -177,6 +177,8 @@ AmpDistortionFlowComponent::AmpDistortionFlowComponent(AudioProcessorValueTreeSt
 	m_distortion_algo.addItem("Clamp", 1);
 	m_distortion_algo.addItem("Fold", 2);
 	m_distortion_algo.addItem("Zero", 3);
+	m_distortion_algo.addItem("Sine", 4);
+	m_distortion_algo.addItem("Cube", 5);
 	m_distortion_algo.setEditableText(false);
 	m_distortion_algo.setSelectedId(1, dontSendNotification);
 	m_distortion_algo.setBounds(DIST_ALGO_POS_X, DIST_ALGO_POS_Y, glas_panel.getWidth(), glas_panel.getHeight());

@@ -46,12 +46,12 @@ double OversamplingDistortion::doDistortion(double p_input) {
 		break;
 		case Sine:
 		for (int sample = 0; sample < 3; ++sample) {
-			input_upsampled[sample] = sin(input_upsampled[sample] / threshold_modded);
+			input_upsampled[sample] = sin(input_upsampled[sample] /*/ threshold_modded*/);
 			
 		}
 		case Cube:
 		for (int sample = 0; sample < 3; ++sample) {
-			input_upsampled[sample] /= threshold_modded;
+			//input_upsampled[sample] /= threshold_modded;
 			input_upsampled[sample] *= input_upsampled[sample] * input_upsampled[sample];
 		}
 		break;
@@ -149,5 +149,13 @@ double OversamplingDistortion::doDistortion(double p_input) {
 	drywet_modded       = drywet_modded < 0 ? 0 : drywet_modded;
 
 	// return only the last of the three samples
-	return yv[9] * drywet_modded / threshold_modded * DISTORTION_OUTPUT_SCALAR + p_input * (1.f - drywet_modded);
+	switch(m_algorithm){
+		case Clamp:
+		case Fold:
+		case Zero:
+		return yv[9] * drywet_modded / threshold_modded * DISTORTION_OUTPUT_SCALAR + p_input * (1.f - drywet_modded);
+		case Sine:
+		case Cube:
+		return yv[9] * drywet_modded + p_input * (1.f - drywet_modded);
+	}
 }
