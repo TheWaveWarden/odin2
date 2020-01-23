@@ -307,7 +307,7 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts) :
 	juce::Colour modmatrix_color_bar_negative(252, 58, 97);
 	juce::Colour modmatrix_font_selected_color = Colour(126, 182, 206);
 
-	m_color = modmatrix_color;
+	m_color = modmatrix_grey_color;
 
 	for (int i = 0; i < N_ROWS; ++i) {
 		m_source[i].setFontColor(modmatrix_font_selected_color);
