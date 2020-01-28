@@ -143,7 +143,8 @@
 
 //#define FM_COLOR Colour(90, 40, 40)
 #define FM_COLOR Colour(93, 41, 41)
-#define PM_COLOR Colour(40, 40, 40)
+//#define PM_COLOR Colour(40, 40, 40)
+#define PM_COLOR Colour(30, 30, 30)
 //==============================================================================
 /*
  */
