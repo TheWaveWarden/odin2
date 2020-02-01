@@ -113,10 +113,12 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts, OdinAudi
 		m_filechooser->launchAsync(
 		    FileBrowserComponent::saveMode | FileBrowserComponent::canSelectFiles,
 		    [fileToSave, this](const FileChooser &chooser) {
-			    auto result    = chooser.getURLResult();
-			    auto file_name = result.isEmpty() ? String()
-			                                      : (result.isLocalFile() ? result.getLocalFile().getFullPathName()
-			                                                              : result.toString(true));
+			    auto result      = chooser.getURLResult();
+			    String file_name = result.isEmpty() ? String()
+			                                        : (result.isLocalFile() ? result.getLocalFile().getFullPathName()
+			                                                                : result.toString(true));
+			    //append .odin if not already there
+				file_name = file_name.endsWith(".odin") ? file_name : file_name + ".odin";
 
 			    File file_to_write(file_name);
 
@@ -181,24 +183,40 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts, OdinAudi
 			    if (file_stream.openedOk()) {
 
 				    //first see if the patch is of a higher version than we know about:
-					std::string version_string;
+				    std::string version_string;
 				    if (checkForBiggerVersion(file_stream, version_string)) {
 					    //abort with icon
-						AlertWindow::showMessageBox(AlertWindow::AlertIconType::WarningIcon, "Cannot load patch!", "The bad news: You cannot load this patch, because you are on version " + ODIN_VERSION_STRING + ".\nThe good news: The patch you're trying to load was created on version " + version_string + ". So go to TODO.com already and download the latest version of Odin2!", "Thanks, I will!");
-						return;
+					    AlertWindow::showMessageBox(
+					        AlertWindow::AlertIconType::WarningIcon,
+					        "Cannot load patch!",
+					        "The bad news: You cannot load this patch, because you are on version " +
+					            ODIN_VERSION_STRING +
+					            ".\nThe good news: The patch you're trying to load was created on version " +
+					            version_string +
+					            ". So go to TODO.com already and download the latest version of Odin2!",
+					        "Thanks, I will!");
+					    return;
 				    }
 
-					// if we're reading an older patch version we set the default patch first
-					// since new params might not exist and will only be set
-					if(checkForSmallerVersion(file_stream, version_string)) {
-						DBG("Reading older patch, setting init patch first");
-						MemoryInputStream init_stream(BinaryData::init_patch_odin, BinaryData::init_patch_odinSize, false);
-						m_audio_processor.readPatch(ValueTree::readFromStream(init_stream));
-					}
+				    // if we're reading an older patch version we set the default patch first
+				    // since new params might not exist and will only be set
+				    if (checkForSmallerVersion(file_stream, version_string)) {
+					    DBG("Reading older patch, setting init patch first");
+					    MemoryInputStream init_stream(
+					        BinaryData::init_patch_odin, BinaryData::init_patch_odinSize, false);
+					    m_audio_processor.readPatch(ValueTree::readFromStream(init_stream));
+				    }
 
-					//reset stream position
-					file_stream.setPosition(0);
-					m_audio_processor.readPatch(ValueTree::readFromStream(file_stream));
+				    DBG("PATCH TO BE LOADED:\n\n\n\n");
+				    file_stream.setPosition(0);
+				    ValueTree copy_read = ValueTree::readFromStream(file_stream).createCopy();
+				    DBG(copy_read.toXmlString());
+				    DBG("PATCH AFTER LOAD:");
+
+				    //reset stream position
+				    file_stream.setPosition(0);
+				    m_audio_processor.readPatch(ValueTree::readFromStream(file_stream).createCopy());
+				    forceValueTreeLambda();
 
 				    //set the correct Version number again
 				    m_value_tree.state.getChildWithName("misc").setProperty(
@@ -214,7 +232,7 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts, OdinAudi
 				    //save load directory
 				    m_last_directory = file_to_read.getParentDirectory().getFullPathName();
 
-				    //DBG(m_value_tree.state.toXmlString());
+				    DBG(m_value_tree.state.toXmlString());
 				    //DBG("Loaded above patch " + m_value_tree.state.getChildWithName("misc")["patch_name"].toString() +
 				    //    "  from " + file_name);
 			    } else {
@@ -261,9 +279,10 @@ void SaveLoadComponent::forceValueTreeOntoComponents(ValueTree p_tree) {
 bool SaveLoadComponent::checkForBiggerVersion(FileInputStream &p_file_stream, std::string &p_version_string) {
 	p_file_stream.setPosition(0);
 	auto value_tree_read = ValueTree::readFromStream(p_file_stream);
-	int patch_version = value_tree_read.getChildWithName("misc")["patch_migration_version"];
+	int patch_version    = value_tree_read.getChildWithName("misc")["patch_migration_version"];
 	if (patch_version > ODIN_PATCH_MIGRATION_VERSION) {
-		p_version_string = "2." + std::to_string((int)value_tree_read.getChildWithName("misc")["version_minor"]) + "." + std::to_string((int)value_tree_read.getChildWithName("misc")["version_patch"]);
+		p_version_string = "2." + std::to_string((int)value_tree_read.getChildWithName("misc")["version_minor"]) + "." +
+		                   std::to_string((int)value_tree_read.getChildWithName("misc")["version_patch"]);
 		return true;
 	}
 	return false;
@@ -272,9 +291,10 @@ bool SaveLoadComponent::checkForBiggerVersion(FileInputStream &p_file_stream, st
 bool SaveLoadComponent::checkForSmallerVersion(FileInputStream &p_file_stream, std::string &p_version_string) {
 	p_file_stream.setPosition(0);
 	auto value_tree_read = ValueTree::readFromStream(p_file_stream);
-	int patch_version = value_tree_read.getChildWithName("misc")["patch_migration_version"];
+	int patch_version    = value_tree_read.getChildWithName("misc")["patch_migration_version"];
 	if (patch_version < ODIN_PATCH_MIGRATION_VERSION) {
-		p_version_string = "2." + std::to_string((int)value_tree_read.getChildWithName("misc")["version_minor"]) + "." + std::to_string((int)value_tree_read.getChildWithName("misc")["version_patch"]);
+		p_version_string = "2." + std::to_string((int)value_tree_read.getChildWithName("misc")["version_minor"]) + "." +
+		                   std::to_string((int)value_tree_read.getChildWithName("misc")["version_patch"]);
 		return true;
 	}
 	return false;
