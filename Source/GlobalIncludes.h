@@ -110,14 +110,21 @@
 #define VOL_MOD_UPPER_LIMIT 100
 
 #define GETAUDIO(name) m_value_tree.getParameterAsValue(name).getValue()
+
 #define SETAUDIO0TO1(name, value) m_value_tree.getParameter(name)->setValueNotifyingHost(((float)value))
-#define SETAUDIOFULLRANGE(name, value) m_value_tree.getParameter(name)->setValueNotifyingHost(m_value_tree.getParameter(name)->convertTo0to1((float)value))
+
+#define SETAUDIOFULLRANGE(name, value) m_value_tree.getParameter(name)->beginChangeGesture();\
+m_value_tree.getParameter(name)->setValueNotifyingHost(m_value_tree.getParameter(name)->convertTo0to1((float)value));\
+m_value_tree.getParameter(name)->endChangeGesture();
+
 #define SETAUDIOFULLRANGESAFE(name, value) if(m_value_tree.getParameter(name)){\
-m_value_tree.getParameter(name)->setValueNotifyingHost(m_value_tree.getParameter(name)->convertTo0to1((float)value));}\
+SETAUDIOFULLRANGE(name, value)\
+DBG("Set parameter " + (name) + " to value " + (value).toString());}\
 else {\
 DBG("TRIED TO ACCESS UNKOWN PARAMETER:");\
 DBG(name);\
 } 
+
 #define RETRIGGERAUDIO(name) SETAUDIOFULLRANGE(name, GETAUDIO(name))
 #define SETAUDIOVALUEPATCH(name)
 

@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/frederik_siepe/odinvst/company_name_generator/main.cpp
+/home/frot/odinvst/company_name_generator/main.cpp
 iostream
 -
 vector

@@ -157,5 +157,9 @@ double OversamplingDistortion::doDistortion(double p_input) {
 		case Sine:
 		case Cube:
 		return yv[9] * drywet_modded + p_input * (1.f - drywet_modded);
+		default: 
+		return p_input;
+		break;
 	}
+	
 }
