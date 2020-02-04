@@ -2,6 +2,7 @@
 #include "../JuceLibraryCode/BinaryData.h"
 #include "../JuceLibraryCode/JuceHeader.h"
 #include <fstream>
+#include <unistd.h>
 
 std::string getFileNameFromAbsolute(const std::string &s) {
 
@@ -207,11 +208,11 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts, OdinAudi
 					    m_audio_processor.readPatch(ValueTree::readFromStream(init_stream));
 				    }
 
-				    DBG("PATCH TO BE LOADED:\n\n\n\n");
-				    file_stream.setPosition(0);
-				    ValueTree copy_read = ValueTree::readFromStream(file_stream).createCopy();
-				    DBG(copy_read.toXmlString());
-				    DBG("PATCH AFTER LOAD:");
+				    //DBG("PATCH TO BE LOADED:\n\n\n\n");
+				    //file_stream.setPosition(0);
+				    //ValueTree copy_read = ValueTree::readFromStream(file_stream).createCopy();
+				    //DBG(copy_read.toXmlString());
+				    //DBG("PATCH AFTER LOAD:");
 
 				    //reset stream position
 				    file_stream.setPosition(0);
@@ -227,20 +228,27 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts, OdinAudi
 				        "patch_migration_version", ODIN_PATCH_MIGRATION_VERSION, nullptr);
 
 				    //this forces values onto the GUI (patch label as well)
+					//DBG("Modmatrix: " + std::to_string((float)GETAUDIO("amount_1_row_0")));
+					//DBG("Attack: " + std::to_string((float)GETAUDIO("env2_attack")));
 				    forceValueTreeLambda();
 
 				    //save load directory
 				    m_last_directory = file_to_read.getParentDirectory().getFullPathName();
 
-				    DBG(m_value_tree.state.toXmlString());
+				    //DBG(m_value_tree.state.toXmlString());
 				    //DBG("Loaded above patch " + m_value_tree.state.getChildWithName("misc")["patch_name"].toString() +
 				    //    "  from " + file_name);
+
+					//usleep(1000*1000);
+					//DBG("Modmatrix: " + std::to_string((float)GETAUDIO("amount_1_row_0")));
+					//DBG("Attack: " + std::to_string((float)GETAUDIO("env2_attack")));
 			    } else {
 				    if (file_name != "") {
 					    AlertWindow::showMessageBoxAsync(
 					        AlertWindow::InfoIcon, "File not found!", "Path: " + file_name, "Ok");
 				    }
 			    }
+				
 		    });
 	};
 
@@ -263,6 +271,9 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts, OdinAudi
 
 			DBG("Loaded init patch");
 		}
+		//usleep(1000*1000);
+		//DBG("Modmatrix: " + std::to_string((float)GETAUDIO("amount_1_row_0")));
+  		//DBG("Attack: " + std::to_string((float)GETAUDIO("env2_attack")));
 	};
 
 	m_patch.setBounds(PATCH_POS_X, PATCH_POS_Y, m_patch_size_x, m_patch_size_y);

@@ -51,6 +51,10 @@ void OdinAudioProcessor::addNonAudioParametersToTree() {
 	node.setProperty("lfo4_synctime_denominator", 5, nullptr);
 	node.setProperty("lfo_left_selected", 1, nullptr);
 	node.setProperty("lfo_right_selected", 1, nullptr);
+	node.setProperty("lfo1_wave", 0, nullptr);
+	node.setProperty("lfo2_wave", 0, nullptr);
+	node.setProperty("lfo3_wave", 0, nullptr);
+	node.setProperty("lfo4_wave", 0, nullptr);
 
 	node = m_value_tree_misc;
 	node.setProperty("legato", 1, nullptr); // this is actually "poly" or !legato"
@@ -105,6 +109,12 @@ void OdinAudioProcessor::addNonAudioParametersToTree() {
 	node.setProperty("scale_row_6", 0, nullptr);
 	node.setProperty("scale_row_7", 0, nullptr);
 	node.setProperty("scale_row_8", 0, nullptr);
+	
+	for (int row = 0; row < 9; ++row) {
+		for (int horizontal = 0; horizontal < 3; ++horizontal) {
+			node.setProperty(Identifier("amount_" + std::to_string(horizontal) + "_row_" + std::to_string(row)), 0, nullptr);
+		}
+	}
 
 	node = m_value_tree_osc;
 	node.setProperty("osc1_analog_wave", 0, nullptr);

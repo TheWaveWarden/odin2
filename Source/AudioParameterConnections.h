@@ -97,22 +97,22 @@ m_env4_loop    = m_value_tree.getRawParameterValue("env4_loop");
 m_lfo1_freq  = m_value_tree.getRawParameterValue("lfo1_freq");
 m_lfo1_reset = m_value_tree.getRawParameterValue("lfo1_reset");
 m_lfo1_sync  = m_value_tree.getRawParameterValue("lfo1_sync");
-m_lfo1_wave  = m_value_tree.getRawParameterValue("lfo1_wave");
+//m_lfo1_wave  = m_value_tree.getRawParameterValue("lfo1_wave");
 
 m_lfo2_freq  = m_value_tree.getRawParameterValue("lfo2_freq");
 m_lfo2_reset = m_value_tree.getRawParameterValue("lfo2_reset");
 m_lfo2_sync  = m_value_tree.getRawParameterValue("lfo2_sync");
-m_lfo2_wave  = m_value_tree.getRawParameterValue("lfo2_wave");
+// m_lfo2_wave  = m_value_tree.getRawParameterValue("lfo2_wave");
 
 m_lfo3_freq  = m_value_tree.getRawParameterValue("lfo3_freq");
 m_lfo3_reset = m_value_tree.getRawParameterValue("lfo3_reset");
 m_lfo3_sync  = m_value_tree.getRawParameterValue("lfo3_sync");
-m_lfo3_wave  = m_value_tree.getRawParameterValue("lfo3_wave");
+// m_lfo3_wave  = m_value_tree.getRawParameterValue("lfo3_wave");
 
 m_lfo4_freq  = m_value_tree.getRawParameterValue("lfo4_freq");
 m_lfo4_reset = m_value_tree.getRawParameterValue("lfo4_reset");
 m_lfo4_sync  = m_value_tree.getRawParameterValue("lfo4_sync");
-m_lfo4_wave  = m_value_tree.getRawParameterValue("lfo4_wave");
+// m_lfo4_wave  = m_value_tree.getRawParameterValue("lfo4_wave");
 
 m_phaser_on  = m_value_tree.getRawParameterValue("phaser_on");
 m_flanger_on = m_value_tree.getRawParameterValue("flanger_on");
@@ -165,11 +165,11 @@ m_chorus_sync     = m_value_tree.getRawParameterValue("chorus_sync");
 m_chorus_reset    = m_value_tree.getRawParameterValue("chorus_reset");
 m_chorus_feedback = m_value_tree.getRawParameterValue("chorus_feedback");
 
-for (int i = 0; i < 9; ++i) {
-	m_amount_1[i] = m_value_tree.getRawParameterValue("amount_1_row_" + std::to_string(i));
-	m_amount_2[i] = m_value_tree.getRawParameterValue("amount_2_row_" + std::to_string(i));
-	m_amount_3[i] = m_value_tree.getRawParameterValue("amount_3_row_" + std::to_string(i));
-}
+// for (int i = 0; i < 9; ++i) {
+// 	m_amount_1[i] = m_value_tree.getRawParameterValue("amount_1_row_" + std::to_string(i));
+// 	m_amount_2[i] = m_value_tree.getRawParameterValue("amount_2_row_" + std::to_string(i));
+// 	m_amount_3[i] = m_value_tree.getRawParameterValue("amount_3_row_" + std::to_string(i));
+// }
 
 //============================================================================
 //============================================================================
@@ -349,34 +349,34 @@ m_value_tree.addParameterListener("env4_loop", &m_tree_listener_adsr4);
 m_value_tree.addParameterListener("lfo1_freq", &m_tree_listener_lfo1);
 m_value_tree.addParameterListener("lfo1_reset", &m_tree_listener_lfo1);
 m_value_tree.addParameterListener("lfo1_sync", &m_tree_listener_lfo1);
-m_value_tree.addParameterListener("lfo1_wave", &m_tree_listener_lfo1);
+// m_value_tree.addParameterListener("lfo1_wave", &m_tree_listener_lfo1);
 
 //lfo2 listener
 m_value_tree.addParameterListener("lfo2_freq", &m_tree_listener_lfo2);
 m_value_tree.addParameterListener("lfo2_reset", &m_tree_listener_lfo2);
 m_value_tree.addParameterListener("lfo2_sync", &m_tree_listener_lfo2);
-m_value_tree.addParameterListener("lfo2_wave", &m_tree_listener_lfo2);
+// m_value_tree.addParameterListener("lfo2_wave", &m_tree_listener_lfo2);
 
 //lfo3 listener
 m_value_tree.addParameterListener("lfo3_freq", &m_tree_listener_lfo3);
 m_value_tree.addParameterListener("lfo3_reset", &m_tree_listener_lfo3);
 m_value_tree.addParameterListener("lfo3_sync", &m_tree_listener_lfo3);
-m_value_tree.addParameterListener("lfo3_wave", &m_tree_listener_lfo3);
+// m_value_tree.addParameterListener("lfo3_wave", &m_tree_listener_lfo3);
 
 //lfo4 listener
 m_value_tree.addParameterListener("lfo4_freq", &m_tree_listener_lfo4);
 m_value_tree.addParameterListener("lfo4_reset", &m_tree_listener_lfo4);
 m_value_tree.addParameterListener("lfo4_sync", &m_tree_listener_lfo4);
-m_value_tree.addParameterListener("lfo4_wave", &m_tree_listener_lfo4);
+// m_value_tree.addParameterListener("lfo4_wave", &m_tree_listener_lfo4);
 
-for (int i = 0; i < 9; ++i) {
-	//amount 1 listener
-	m_value_tree.addParameterListener("amount_1_row_" + std::to_string(i), &m_tree_listener_amount1);
-	//amount 2 listener
-	m_value_tree.addParameterListener("amount_2_row_" + std::to_string(i), &m_tree_listener_amount2);
-	//amount 3 listener
-	m_value_tree.addParameterListener("amount_3_row_" + std::to_string(i), &m_tree_listener_amount3);
-}
+// for (int i = 0; i < 9; ++i) {
+// 	//amount 1 listener
+// 	m_value_tree.addParameterListener("amount_1_row_" + std::to_string(i), &m_tree_listener_amount1);
+// 	//amount 2 listener
+// 	m_value_tree.addParameterListener("amount_2_row_" + std::to_string(i), &m_tree_listener_amount2);
+// 	//amount 3 listener
+// 	m_value_tree.addParameterListener("amount_3_row_" + std::to_string(i), &m_tree_listener_amount3);
+// }
 
 //general misc
 m_value_tree.addParameterListener("glide", &m_tree_listener_general_misc);

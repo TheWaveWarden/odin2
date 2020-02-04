@@ -232,9 +232,9 @@ private:
 	OdinTreeListener m_tree_listener_lfo2;
 	OdinTreeListener m_tree_listener_lfo3;
 	OdinTreeListener m_tree_listener_lfo4;
-	OdinTreeListener m_tree_listener_amount1;
-	OdinTreeListener m_tree_listener_amount2;
-	OdinTreeListener m_tree_listener_amount3;
+	//OdinTreeListener m_tree_listener_amount1;
+	//OdinTreeListener m_tree_listener_amount2;
+	//OdinTreeListener m_tree_listener_amount3;
 	OdinTreeListener m_tree_listener_general_misc;
 
 	ValueTree m_value_tree_draw;
@@ -284,9 +284,9 @@ private:
 	void treeValueChangedLFO2(const String &p_ID, float p_new_value);
 	void treeValueChangedLFO3(const String &p_ID, float p_new_value);
 	void treeValueChangedLFO4(const String &p_ID, float p_new_value);
-	void treeValueChangedAmount1(const String &p_ID, float p_new_value);
-	void treeValueChangedAmount2(const String &p_ID, float p_new_value);
-	void treeValueChangedAmount3(const String &p_ID, float p_new_value);
+	//void treeValueChangedAmount1(const String &p_ID, float p_new_value);
+	//void treeValueChangedAmount2(const String &p_ID, float p_new_value);
+	//void treeValueChangedAmount3(const String &p_ID, float p_new_value);
 	void treeValueChangedGeneralMisc(const String &p_ID, float p_new_value);
 
 	Voice m_voice[VOICES];

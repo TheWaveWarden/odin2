@@ -33,7 +33,7 @@ bool writeComponentImageToFile(Component &comp) {
 }
 
 void writeValueTreeToFile(const ValueTree &tree) {
-	File file("/home/frot/odinvst/ValueTree.txt");
+	File file("/home/frederik_siepe/odinvst/ValueTree.txt");
 	String text = tree.toXmlString();
 	file.replaceWithText(text);
 }
@@ -450,6 +450,12 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	    + " Debug"
 #endif
 	);
+
+	//m_question_button.onClick = [&](){
+	//	DBG("Modmatrix: " + std::to_string((float)GETAUDIO("amount_1_row_0")));
+	//	DBG("Attack: " + std::to_string((float)GETAUDIO("env2_attack")));
+	//};
+
 	addAndMakeVisible(m_question_button);
 
 	juce::Image filter_button2_1 = ImageCache::getFromMemory(BinaryData::button2_1_png, BinaryData::button2_1_pngSize);
