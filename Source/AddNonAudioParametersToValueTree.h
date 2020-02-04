@@ -105,6 +105,12 @@ void OdinAudioProcessor::addNonAudioParametersToTree() {
 	node.setProperty("scale_row_6", 0, nullptr);
 	node.setProperty("scale_row_7", 0, nullptr);
 	node.setProperty("scale_row_8", 0, nullptr);
+	
+	for (int row = 0; row < 9; ++row) {
+		for (int horizontal = 0; horizontal < 3; ++horizontal) {
+			node.setProperty(Identifier("amount_" + std::to_string(horizontal) + "_row_" + std::to_string(row)), 0, nullptr);
+		}
+	}
 
 	node = m_value_tree_osc;
 	node.setProperty("osc1_analog_wave", 0, nullptr);

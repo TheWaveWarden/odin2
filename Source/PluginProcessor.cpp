@@ -115,15 +115,15 @@ OdinAudioProcessor::OdinAudioProcessor() :
 	m_tree_listener_lfo4.onValueChange = [&](const String &p_ID, float p_new_value) {
 		treeValueChangedLFO4(p_ID, p_new_value);
 	};
-	m_tree_listener_amount1.onValueChange = [&](const String &p_ID, float p_new_value) {
-		treeValueChangedAmount1(p_ID, p_new_value);
-	};
-	m_tree_listener_amount2.onValueChange = [&](const String &p_ID, float p_new_value) {
-		treeValueChangedAmount2(p_ID, p_new_value);
-	};
-	m_tree_listener_amount3.onValueChange = [&](const String &p_ID, float p_new_value) {
-		treeValueChangedAmount3(p_ID, p_new_value);
-	};
+	// m_tree_listener_amount1.onValueChange = [&](const String &p_ID, float p_new_value) {
+	// 	treeValueChangedAmount1(p_ID, p_new_value);
+	// };
+	// m_tree_listener_amount2.onValueChange = [&](const String &p_ID, float p_new_value) {
+	// 	treeValueChangedAmount2(p_ID, p_new_value);
+	// };
+	// m_tree_listener_amount3.onValueChange = [&](const String &p_ID, float p_new_value) {
+	// 	treeValueChangedAmount3(p_ID, p_new_value);
+	// };
 	m_tree_listener_general_misc.onValueChange = [&](const String &p_ID, float p_new_value) {
 		treeValueChangedGeneralMisc(p_ID, p_new_value);
 	};

@@ -33,7 +33,7 @@ bool writeComponentImageToFile(Component &comp) {
 }
 
 void writeValueTreeToFile(const ValueTree &tree) {
-	File file("/home/frot/odinvst/ValueTree.txt");
+	File file("/home/frederik_siepe/odinvst/ValueTree.txt");
 	String text = tree.toXmlString();
 	file.replaceWithText(text);
 }
