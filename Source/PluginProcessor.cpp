@@ -323,6 +323,9 @@ bool OdinAudioProcessor::isBusesLayoutSupported(const BusesLayout &layouts) cons
 
 void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &midiMessages) {
 
+	//DBG("Modmatrix: " + std::to_string((float)GETAUDIO("amount_1_row_0")));
+	//DBG("Attack: " + std::to_string((float)GETAUDIO("env2_attack")));
+
 	//avoid denormals
 	//https://forum.juce.com/t/state-of-the-art-denormal-prevention/16802
 	denormals::ScopedNoDenormals snd;
