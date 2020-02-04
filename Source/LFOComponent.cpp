@@ -92,7 +92,8 @@ LFOComponent::LFOComponent(AudioProcessorValueTreeState &vts, std::string p_lfo_
 	addAndMakeVisible(m_freq);
 
 	m_selector.OnValueChange = [&](int p_new_value) {
-		m_value_tree.getParameter(m_lfo_wave_identifier)->setValueNotifyingHost(((float)p_new_value) / 20.f);
+		//m_value_tree.getParameter(m_lfo_wave_identifier)->setValueNotifyingHost(((float)p_new_value) / 20.f);
+		m_value_tree.state.getChildWithName("lfo").setProperty(m_lfo_wave_identifier, p_new_value, nullptr);
 	};
 	m_selector.setTopLeftPosition(SELECTOR_POS_X, SELECTOR_POS_Y);
 	m_selector.setTooltip("The waveform to be used for this LFO. WD1-3 are using "
@@ -130,7 +131,9 @@ void LFOComponent::paint(Graphics &g) {
 
 void LFOComponent::forceValueTreeOntoComponents(ValueTree p_tree) {
 
-	m_selector.setValueGUIOnly(m_value_tree.getParameterAsValue(m_lfo_wave_identifier).getValue());
+	//m_selector.setValueGUIOnly(m_value_tree.getParameterAsValue(m_lfo_wave_identifier).getValue());
+	m_selector.setValueGUIOnly(m_value_tree.state.getChildWithName("lfo")[m_lfo_synctime_numerator_identifier]);
+
 
 	m_sync_time.setValues(m_value_tree.state.getChildWithName("lfo")[m_lfo_synctime_numerator_identifier],
 	                      m_value_tree.state.getChildWithName("lfo")[m_lfo_synctime_denominator_identifier]);

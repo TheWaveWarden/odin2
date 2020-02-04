@@ -102,19 +102,15 @@
   <PARAM id="lfo1_freq" value="1.000000357627869"/>
   <PARAM id="lfo1_reset" value="0"/>
   <PARAM id="lfo1_sync" value="0"/>
-  <PARAM id="lfo1_wave" value="0"/>
   <PARAM id="lfo2_freq" value="1.000000357627869"/>
   <PARAM id="lfo2_reset" value="0"/>
   <PARAM id="lfo2_sync" value="0"/>
-  <PARAM id="lfo2_wave" value="0"/>
   <PARAM id="lfo3_freq" value="1.000000357627869"/>
   <PARAM id="lfo3_reset" value="0"/>
   <PARAM id="lfo3_sync" value="0"/>
-  <PARAM id="lfo3_wave" value="0"/>
   <PARAM id="lfo4_freq" value="1.000000357627869"/>
   <PARAM id="lfo4_reset" value="0"/>
   <PARAM id="lfo4_sync" value="0"/>
-  <PARAM id="lfo4_wave" value="0"/>
   <PARAM id="master" value="0"/>
   <PARAM id="modwheel" value="0"/>
   <PARAM id="osc1_arp_on" value="0"/>
@@ -607,7 +603,8 @@
   <lfo lfo1_synctime_numerator="2" lfo1_synctime_denominator="5" lfo2_synctime_numerator="2"
        lfo2_synctime_denominator="5" lfo3_synctime_numerator="2" lfo3_synctime_denominator="5"
        lfo4_synctime_numerator="2" lfo4_synctime_denominator="5" lfo_left_selected="1"
-       lfo_right_selected="1"/>
+       lfo_right_selected="1" lfo1_wave="0" lfo2_wave="0" lfo3_wave="0"
+       lfo4_wave="0"/>
   <misc legato="1" dist_algo="1" BPM="120" env_left_selected="1" env_right_selected="1"
         fil1_type="2" fil2_type="1" fil3_type="1" patch_name="init_patch"
         version_minor="0" version_patch="7" patch_migration_version="2"/>

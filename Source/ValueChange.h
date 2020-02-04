@@ -919,20 +919,6 @@ void OdinAudioProcessor::treeValueChangedLFO1(const String &p_ID, float p_new_va
 			}
 		}
 	}
-
-	else if (id == m_lfo1_wave_identifier) {
-		for (int voice = 0; voice < VOICES; ++voice) {
-			if (p_new_value < 6.5f) {
-				m_voice[voice].lfo[0].selectWavetable(p_new_value);
-				m_voice[voice].lfo[0].setSHActive(false);
-			} else if (p_new_value > 7.5f) {
-				m_voice[voice].lfo[0].selectWavetable((int)p_new_value - 1);
-				m_voice[voice].lfo[0].setSHActive(false);
-			} else {
-				m_voice[voice].lfo[0].setSHActive(true);
-			}
-		}
-	}
 }
 
 void OdinAudioProcessor::treeValueChangedLFO2(const String &p_ID, float p_new_value) {
@@ -953,20 +939,6 @@ void OdinAudioProcessor::treeValueChangedLFO2(const String &p_ID, float p_new_va
 		if (!p_new_value) {
 			for (int voice = 0; voice < VOICES; ++voice) {
 				m_voice[voice].lfo[1].setBaseFrequency(*m_lfo2_freq);
-			}
-		}
-	}
-
-	else if (id == m_lfo2_wave_identifier) {
-		for (int voice = 0; voice < VOICES; ++voice) {
-			if (p_new_value < 6.5f) {
-				m_voice[voice].lfo[1].selectWavetable(p_new_value);
-				m_voice[voice].lfo[1].setSHActive(false);
-			} else if (p_new_value > 7.5f) {
-				m_voice[voice].lfo[1].selectWavetable((int)p_new_value - 1);
-				m_voice[voice].lfo[1].setSHActive(false);
-			} else {
-				m_voice[voice].lfo[1].setSHActive(true);
 			}
 		}
 	}
@@ -992,19 +964,7 @@ void OdinAudioProcessor::treeValueChangedLFO3(const String &p_ID, float p_new_va
 				m_voice[voice].lfo[2].setBaseFrequency(*m_lfo3_freq);
 			}
 		}
-	} else if (id == m_lfo3_wave_identifier) {
-		for (int voice = 0; voice < VOICES; ++voice) {
-			if (p_new_value < 6.5f) {
-				m_voice[voice].lfo[2].selectWavetable(p_new_value);
-				m_voice[voice].lfo[2].setSHActive(false);
-			} else if (p_new_value > 7.5f) {
-				m_voice[voice].lfo[2].selectWavetable((int)p_new_value - 1);
-				m_voice[voice].lfo[2].setSHActive(false);
-			} else {
-				m_voice[voice].lfo[2].setSHActive(true);
-			}
-		}
-	}
+	} 
 }
 
 void OdinAudioProcessor::treeValueChangedLFO4(const String &p_ID, float p_new_value) {
@@ -1021,17 +981,7 @@ void OdinAudioProcessor::treeValueChangedLFO4(const String &p_ID, float p_new_va
 		if (!p_new_value) {
 			m_global_lfo.setBaseFrequency(*m_lfo4_freq);
 		}
-	} else if (id == m_lfo4_wave_identifier) {
-		if (p_new_value < 6.5f) {
-			m_global_lfo.selectWavetable(p_new_value);
-			m_global_lfo.setSHActive(false);
-		} else if (p_new_value > 7.5f) {
-			m_global_lfo.selectWavetable((int)p_new_value - 1);
-			m_global_lfo.setSHActive(false);
-		} else {
-			m_global_lfo.setSHActive(true);
-		}
-	}
+	} 
 }
 
 // void OdinAudioProcessor::treeValueChangedAmount1(const String &p_ID, float p_new_value) {
@@ -1130,6 +1080,56 @@ void OdinAudioProcessor::treeValueChangedNonParamLFO(ValueTree &tree, const Iden
 		m_global_lfo.setSynctimeNumerator(p_new_value + 1);
 	} else if (id == m_lfo4_synctime_denominator_identifier) {
 		m_global_lfo.setSynctimeDenominator(valueToDenomintaor(p_new_value));
+	}
+
+
+
+	else if (id == m_lfo1_wave_identifier) {
+		for (int voice = 0; voice < VOICES; ++voice) {
+			if (p_new_value < 6.5f) {
+				m_voice[voice].lfo[0].selectWavetable(p_new_value);
+				m_voice[voice].lfo[0].setSHActive(false);
+			} else if (p_new_value > 7.5f) {
+				m_voice[voice].lfo[0].selectWavetable((int)p_new_value - 1);
+				m_voice[voice].lfo[0].setSHActive(false);
+			} else {
+				m_voice[voice].lfo[0].setSHActive(true);
+			}
+		}
+	} else if (id == m_lfo2_wave_identifier) {
+		for (int voice = 0; voice < VOICES; ++voice) {
+			if (p_new_value < 6.5f) {
+				m_voice[voice].lfo[1].selectWavetable(p_new_value);
+				m_voice[voice].lfo[1].setSHActive(false);
+			} else if (p_new_value > 7.5f) {
+				m_voice[voice].lfo[1].selectWavetable((int)p_new_value - 1);
+				m_voice[voice].lfo[1].setSHActive(false);
+			} else {
+				m_voice[voice].lfo[1].setSHActive(true);
+			}
+		}
+	} else if (id == m_lfo3_wave_identifier) {
+		for (int voice = 0; voice < VOICES; ++voice) {
+			if (p_new_value < 6.5f) {
+				m_voice[voice].lfo[2].selectWavetable(p_new_value);
+				m_voice[voice].lfo[2].setSHActive(false);
+			} else if (p_new_value > 7.5f) {
+				m_voice[voice].lfo[2].selectWavetable((int)p_new_value - 1);
+				m_voice[voice].lfo[2].setSHActive(false);
+			} else {
+				m_voice[voice].lfo[2].setSHActive(true);
+			}
+		}
+	} else if (id == m_lfo4_wave_identifier) {
+		if (p_new_value < 6.5f) {
+			m_global_lfo.selectWavetable(p_new_value);
+			m_global_lfo.setSHActive(false);
+		} else if (p_new_value > 7.5f) {
+			m_global_lfo.selectWavetable((int)p_new_value - 1);
+			m_global_lfo.setSHActive(false);
+		} else {
+			m_global_lfo.setSHActive(true);
+		}
 	}
 }
 

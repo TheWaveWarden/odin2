@@ -400,32 +400,32 @@
       // LFO1
       std::make_unique<AudioParameterInt>("lfo1_reset", "LFO1 Reset", 0, 1, 0),
       std::make_unique<AudioParameterInt>("lfo1_sync", "LFO1 Sync", 0, 1, 0),
-      std::make_unique<AudioParameterInt>("lfo1_wave", "LFO1 Waveform", 0, 20,
-                                          0),
+      //std::make_unique<AudioParameterInt>("lfo1_wave", "LFO1 Waveform", 0, 20,
+      //                                    0),
       std::make_unique<AudioParameterFloat>(
           "lfo1_freq", "LFO1 Frequency",
           NormalisableRange<float>(0.05f, 100.f, 0.f, 0.196757), 1),
       // LFO2
       std::make_unique<AudioParameterInt>("lfo2_reset", "LFO2 Reset", 0, 1, 0),
       std::make_unique<AudioParameterInt>("lfo2_sync", "LFO2 Sync", 0, 1, 0),
-      std::make_unique<AudioParameterInt>("lfo2_wave", "LFO2 Waveform", 0, 20,
-                                          0),
+      //std::make_unique<AudioParameterInt>("lfo2_wave", "LFO2 Waveform", 0, 20,
+      //                                    0),
       std::make_unique<AudioParameterFloat>(
           "lfo2_freq", "LFO2 Frequency",
           NormalisableRange<float>(0.05f, 100.f, 0.f, 0.196757), 1),
       // LFO3
       std::make_unique<AudioParameterInt>("lfo3_reset", "LFO3 Reset", 0, 1, 0),
       std::make_unique<AudioParameterInt>("lfo3_sync", "LFO3 Sync", 0, 1, 0),
-      std::make_unique<AudioParameterInt>("lfo3_wave", "LFO3 Waveform", 0, 20,
-                                          0),
+      //std::make_unique<AudioParameterInt>("lfo3_wave", "LFO3 Waveform", 0, 20,
+      //                                    0),
       std::make_unique<AudioParameterFloat>(
           "lfo3_freq", "LFO3 Frequency",
           NormalisableRange<float>(0.05f, 100.f, 0.f, 0.196757), 1),
       // LFO4
       std::make_unique<AudioParameterInt>("lfo4_reset", "LFO4 Reset", 0, 1, 0),
       std::make_unique<AudioParameterInt>("lfo4_sync", "LFO4 Sync", 0, 1, 0),
-      std::make_unique<AudioParameterInt>("lfo4_wave", "LFO4 Waveform", 0, 20,
-                                          0),
+      //std::make_unique<AudioParameterInt>("lfo4_wave", "LFO4 Waveform", 0, 20,
+      //                                    0),
       std::make_unique<AudioParameterFloat>(
           "lfo4_freq", "LFO4 Frequency",
           NormalisableRange<float>(0.05f, 100.f, 0.f, 0.196757), 1),
