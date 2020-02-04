@@ -113,22 +113,12 @@
 
 #define SETAUDIO0TO1(name, value) m_value_tree.getParameter(name)->setValueNotifyingHost(((float)value))
 
-<<<<<<< HEAD
-#define SETAUDIOFULLRANGE(name, value) m_value_tree.getParameter(name)->beginChangeGesture();\
-m_value_tree.getParameter(name)->setValueNotifyingHost(m_value_tree.getParameter(name)->convertTo0to1((float)value));\
-m_value_tree.getParameter(name)->endChangeGesture();
-
-#define SETAUDIOFULLRANGESAFE(name, value) if(m_value_tree.getParameter(name)){\
-SETAUDIOFULLRANGE(name, value)\
-DBG("Set parameter " + (name) + " to value " + (value).toString());}\
-=======
 #define SETAUDIOFULLRANGE(name, value) /*m_value_tree.getParameter(name)->beginChangeGesture();*/\
 m_value_tree.getParameter(name)->setValueNotifyingHost(m_value_tree.getParameter(name)->convertTo0to1((float)value));\
 //m_value_tree.getParameter(name)->endChangeGesture();
 
 #define SETAUDIOFULLRANGESAFE(name, value) if(m_value_tree.getParameter(name)){\
 SETAUDIOFULLRANGE(name, value)}\
->>>>>>> faecb60dc01c584a6f91dd2ee43ac5b26a1c954e
 else {\
 DBG("TRIED TO ACCESS UNKOWN PARAMETER:");\
 DBG(name);\

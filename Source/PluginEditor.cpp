@@ -451,10 +451,10 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 #endif
 	);
 
-	//m_question_button.onClick = [&](){
-	//	DBG("Modmatrix: " + std::to_string((float)GETAUDIO("amount_1_row_0")));
-	//	DBG("Attack: " + std::to_string((float)GETAUDIO("env2_attack")));
-	//};
+	m_question_button.onClick = [&](){
+		//DBG("Modmatrix: " + std::to_string((float)GETAUDIO("amount_1_row_0")));
+		DBG(std::to_string((int)m_value_tree.state.getChildWithName("lfo")["lfo1_wave"]));
+	};
 
 	addAndMakeVisible(m_question_button);
 
