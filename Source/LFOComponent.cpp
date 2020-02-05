@@ -135,11 +135,11 @@ void LFOComponent::paint(Graphics &g) {
 
 void LFOComponent::forceValueTreeOntoComponents(ValueTree p_tree) {
 
-	//m_selector.setValueGUIOnly(m_value_tree.getParameterAsValue(m_lfo_wave_identifier).getValue());
 	m_selector.setValueGUIOnly(m_value_tree.state.getChildWithName("lfo")[m_lfo_wave_identifier]);
 
 
 	m_sync_time.setValues(m_value_tree.state.getChildWithName("lfo")[m_lfo_synctime_numerator_identifier],
 	                      m_value_tree.state.getChildWithName("lfo")[m_lfo_synctime_denominator_identifier]);
 	//setSync((float)GETAUDIO("lfo" + m_lfo_number + "_sync") > 0.5f);
+	setSync((float)m_value_tree.state.getChildWithName("lfo")[(Identifier)("lfo" + m_lfo_number + "_sync")] > 0.5f);
 }

@@ -10,19 +10,16 @@
   <PARAM id="chorus_on" value="0"/>
   <PARAM id="chorus_rate" value="1.500000208616257e-1"/>
   <PARAM id="chorus_reset" value="0"/>
-  <PARAM id="chorus_sync" value="0"/>
   <PARAM id="delay_dry" value="1"/>
   <PARAM id="delay_ducking" value="0"/>
   <PARAM id="delay_feedback" value="5.999999642372131e-1"/>
   <PARAM id="delay_hp" value="8e1"/>
   <PARAM id="delay_on" value="0"/>
   <PARAM id="delay_pingpong" value="0"/>
-  <PARAM id="delay_sync" value="0"/>
   <PARAM id="delay_time" value="1"/>
   <PARAM id="delay_wet" value="7.999999523162842e-1"/>
   <PARAM id="dist_boost" value="3.00000011920929e-1"/>
   <PARAM id="dist_drywet" value="1"/>
-  <PARAM id="dist_on" value="0"/>
   <PARAM id="env1_attack" value="9.999999776482582e-3"/>
   <PARAM id="env1_decay" value="9.999998807907104e-1"/>
   <PARAM id="env1_loop" value="0"/>
@@ -97,20 +94,15 @@
   <PARAM id="flanger_on" value="0"/>
   <PARAM id="flanger_rate" value="1.500000208616257e-1"/>
   <PARAM id="flanger_reset" value="0"/>
-  <PARAM id="flanger_sync" value="0"/>
   <PARAM id="glide" value="0"/>
   <PARAM id="lfo1_freq" value="1.000000357627869"/>
   <PARAM id="lfo1_reset" value="0"/>
-  <PARAM id="lfo1_sync" value="0"/>
   <PARAM id="lfo2_freq" value="1.000000357627869"/>
   <PARAM id="lfo2_reset" value="0"/>
-  <PARAM id="lfo2_sync" value="0"/>
   <PARAM id="lfo3_freq" value="1.000000357627869"/>
   <PARAM id="lfo3_reset" value="0"/>
-  <PARAM id="lfo3_sync" value="0"/>
   <PARAM id="lfo4_freq" value="1.000000357627869"/>
   <PARAM id="lfo4_reset" value="0"/>
-  <PARAM id="lfo4_sync" value="0"/>
   <PARAM id="master" value="0"/>
   <PARAM id="modwheel" value="0"/>
   <PARAM id="osc1_arp_on" value="0"/>
@@ -203,7 +195,6 @@
   <PARAM id="phaser_on" value="0"/>
   <PARAM id="phaser_rate" value="2.500000596046448e-1"/>
   <PARAM id="phaser_reset" value="0"/>
-  <PARAM id="phaser_sync" value="0"/>
   <PARAM id="pitchbend" value="0"/>
   <PARAM id="pitchbend_amount" value="1.2e1"/>
   <PARAM id="xy_x" value="0"/>
@@ -599,15 +590,17 @@
       flanger_synctime_denominator="5" chorus_synctime_numerator="2"
       chorus_synctime_denominator="5" delay_selected="1" phaser_selected="0"
       flanger_selected="0" chorus_selected="0" delay_position="0" phaser_position="1"
-      chorus_position="2" flanger_position="3"/>
+      chorus_position="2" flanger_position="3" delay_sync="0" phaser_sync="0"
+      flanger_sync="0" chorus_sync="0"/>
   <lfo lfo1_synctime_numerator="2" lfo1_synctime_denominator="5" lfo2_synctime_numerator="2"
        lfo2_synctime_denominator="5" lfo3_synctime_numerator="2" lfo3_synctime_denominator="5"
        lfo4_synctime_numerator="2" lfo4_synctime_denominator="5" lfo_left_selected="1"
        lfo_right_selected="1" lfo1_wave="0" lfo2_wave="0" lfo3_wave="0"
-       lfo4_wave="0"/>
+       lfo4_wave="0" lfo1_sync="0" lfo2_sync="0" lfo3_sync="0" lfo4_sync="0"/>
   <misc legato="1" dist_algo="1" BPM="120" env_left_selected="1" env_right_selected="1"
         fil1_type="2" fil2_type="1" fil3_type="1" patch_name="init_patch"
-        version_minor="0" version_patch="7" patch_migration_version="2"/>
+        version_minor="0" version_patch="7" patch_migration_version="2"
+        dist_on="0"/>
   <mod source_row_0="0" source_row_1="0" source_row_2="0" source_row_3="0"
        source_row_4="0" source_row_5="0" source_row_6="0" source_row_7="0"
        source_row_8="0" dest_1_row_0="0" dest_1_row_1="0" dest_1_row_2="0"

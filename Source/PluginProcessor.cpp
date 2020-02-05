@@ -987,27 +987,26 @@ void OdinAudioProcessor::resetAudioEngine() {
 }
 
 void OdinAudioProcessor::setBPM(float p_BPM) {
-	//todo
-	//for (int voice = 0; voice < VOICES; ++voice) {
-		//m_voice[voice].setBPM(p_BPM, *m_lfo1_sync, *m_lfo2_sync, *m_lfo3_sync);
-	//}
-	//if (*m_delay_sync) {
-	//	m_delay.setFreqBPM(p_BPM);
-	//}
-	//if (*m_phaser_sync) {
-	//	m_phaser.setFreqBPM(p_BPM);
-	//}
-	//if (*m_flanger_sync) {
-	//	m_flanger[0].setFreqBPM(p_BPM);
-	//	m_flanger[1].setFreqBPM(p_BPM);
-	//}
-	//if (*m_chorus_sync) {
-	//	m_chorus[0].setFreqBPM(p_BPM);
-	//	m_chorus[1].setFreqBPM(p_BPM);
-	//}
-	//if (*m_lfo4_sync) {
-	//	m_global_lfo.setFreqBPM(p_BPM);
-	//}
+	for (int voice = 0; voice < VOICES; ++voice) {
+		m_voice[voice].setBPM(p_BPM, m_lfo1_sync, m_lfo2_sync, m_lfo3_sync);
+	}
+	if (m_delay_sync) {
+		m_delay.setFreqBPM(p_BPM);
+	}
+	if (m_phaser_sync) {
+		m_phaser.setFreqBPM(p_BPM);
+	}
+	if (m_flanger_sync) {
+		m_flanger[0].setFreqBPM(p_BPM);
+		m_flanger[1].setFreqBPM(p_BPM);
+	}
+	if (m_chorus_sync) {
+		m_chorus[0].setFreqBPM(p_BPM);
+		m_chorus[1].setFreqBPM(p_BPM);
+	}
+	if (m_lfo4_sync) {
+		m_global_lfo.setFreqBPM(p_BPM);
+	}
 }
 
 void OdinAudioProcessor::setFXButtonsPosition(int p_delay, int p_phaser, int p_flanger, int p_chorus) {

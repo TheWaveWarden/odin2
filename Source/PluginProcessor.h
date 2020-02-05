@@ -313,6 +313,15 @@ private:
 	ModDestinations m_mod_destinations;
 
 	bool m_dist_on = false;
+	bool m_lfo1_sync = false;
+	bool m_lfo2_sync = false;
+	bool m_lfo3_sync = false;
+	bool m_lfo4_sync = false;
+	bool m_delay_sync = false;
+	bool m_chorus_sync = false;
+	bool m_phaser_sync = false;
+	bool m_flanger_sync = false;
+
 	bool m_osc_wavetable_source_lfo[3] = {0};//false <=> envelope
 
 	bool m_render_LFO[4]  = {0};

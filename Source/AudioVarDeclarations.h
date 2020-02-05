@@ -130,11 +130,11 @@
     float* m_delay_ducking;
     float* m_delay_dry;
     float* m_delay_wet;
-    float* m_delay_sync;
+    //float* m_delay_sync;
     float* m_delay_pingpong;
     //phaser
     float* m_phaser_reset;
-    float* m_phaser_sync;
+    //float* m_phaser_sync;
     float* m_phaser_rate;
     float* m_phaser_freq;
     float* m_phaser_feedback;
@@ -142,14 +142,14 @@
     float* m_phaser_drywet;
     //flanger
     float* m_flanger_reset;
-    float* m_flanger_sync;
+    //float* m_flanger_sync;
     float* m_flanger_rate;
     float* m_flanger_amount;
     float* m_flanger_drywet;
     float* m_flanger_feedback;
     //chorus
     float* m_chorus_reset;
-    float* m_chorus_sync;
+    //float* m_chorus_sync;
     float* m_chorus_rate;
     float* m_chorus_amount;
     float* m_chorus_feedback;
