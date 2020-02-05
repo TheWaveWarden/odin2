@@ -116,7 +116,7 @@ private:
   std::unique_ptr<OdinKnobAttachment> m_mod_attach;
   std::unique_ptr<OdinKnobAttachment> m_drywet_attach;
 
-  std::unique_ptr<OdinButtonAttachment> m_sync_attach;
+  //std::unique_ptr<OdinButtonAttachment> m_sync_attach;
   std::unique_ptr<OdinButtonAttachment> m_reset_attach;
 
   Identifier m_fx_synctime_numerator_identifier;

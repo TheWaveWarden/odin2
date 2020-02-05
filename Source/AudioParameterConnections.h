@@ -96,22 +96,22 @@ m_env4_loop    = m_value_tree.getRawParameterValue("env4_loop");
 
 m_lfo1_freq  = m_value_tree.getRawParameterValue("lfo1_freq");
 m_lfo1_reset = m_value_tree.getRawParameterValue("lfo1_reset");
-m_lfo1_sync  = m_value_tree.getRawParameterValue("lfo1_sync");
+//m_lfo1_sync  = m_value_tree.getRawParameterValue("lfo1_sync");
 //m_lfo1_wave  = m_value_tree.getRawParameterValue("lfo1_wave");
 
 m_lfo2_freq  = m_value_tree.getRawParameterValue("lfo2_freq");
 m_lfo2_reset = m_value_tree.getRawParameterValue("lfo2_reset");
-m_lfo2_sync  = m_value_tree.getRawParameterValue("lfo2_sync");
+//m_lfo2_sync  = m_value_tree.getRawParameterValue("lfo2_sync");
 // m_lfo2_wave  = m_value_tree.getRawParameterValue("lfo2_wave");
 
 m_lfo3_freq  = m_value_tree.getRawParameterValue("lfo3_freq");
 m_lfo3_reset = m_value_tree.getRawParameterValue("lfo3_reset");
-m_lfo3_sync  = m_value_tree.getRawParameterValue("lfo3_sync");
+//m_lfo3_sync  = m_value_tree.getRawParameterValue("lfo3_sync");
 // m_lfo3_wave  = m_value_tree.getRawParameterValue("lfo3_wave");
 
 m_lfo4_freq  = m_value_tree.getRawParameterValue("lfo4_freq");
 m_lfo4_reset = m_value_tree.getRawParameterValue("lfo4_reset");
-m_lfo4_sync  = m_value_tree.getRawParameterValue("lfo4_sync");
+//m_lfo4_sync  = m_value_tree.getRawParameterValue("lfo4_sync");
 // m_lfo4_wave  = m_value_tree.getRawParameterValue("lfo4_wave");
 
 m_phaser_on  = m_value_tree.getRawParameterValue("phaser_on");
@@ -140,7 +140,7 @@ m_delay_hp       = m_value_tree.getRawParameterValue("delay_hp");
 m_delay_ducking  = m_value_tree.getRawParameterValue("delay_ducking");
 m_delay_dry      = m_value_tree.getRawParameterValue("delay_dry");
 m_delay_wet      = m_value_tree.getRawParameterValue("delay_wet");
-m_delay_sync     = m_value_tree.getRawParameterValue("delay_sync");
+//m_delay_sync     = m_value_tree.getRawParameterValue("delay_sync");
 m_delay_pingpong = m_value_tree.getRawParameterValue("delay_pingpong");
 
 m_phaser_rate     = m_value_tree.getRawParameterValue("phaser_rate");
@@ -148,20 +148,20 @@ m_phaser_freq     = m_value_tree.getRawParameterValue("phaser_freq");
 m_phaser_feedback = m_value_tree.getRawParameterValue("phaser_feedback");
 m_phaser_mod      = m_value_tree.getRawParameterValue("phaser_mod");
 m_phaser_drywet   = m_value_tree.getRawParameterValue("phaser_drywet");
-m_phaser_sync     = m_value_tree.getRawParameterValue("phaser_sync");
+//m_phaser_sync     = m_value_tree.getRawParameterValue("phaser_sync");
 m_phaser_reset    = m_value_tree.getRawParameterValue("phaser_reset");
 
 m_flanger_rate     = m_value_tree.getRawParameterValue("flanger_rate");
 m_flanger_amount   = m_value_tree.getRawParameterValue("flanger_amount");
 m_flanger_drywet   = m_value_tree.getRawParameterValue("flanger_drywet");
-m_flanger_sync     = m_value_tree.getRawParameterValue("flanger_sync");
+//m_flanger_sync     = m_value_tree.getRawParameterValue("flanger_sync");
 m_flanger_reset    = m_value_tree.getRawParameterValue("flanger_reset");
 m_flanger_feedback = m_value_tree.getRawParameterValue("flanger_feedback");
 
 m_chorus_rate     = m_value_tree.getRawParameterValue("chorus_rate");
 m_chorus_amount   = m_value_tree.getRawParameterValue("chorus_amount");
 m_chorus_drywet   = m_value_tree.getRawParameterValue("chorus_drywet");
-m_chorus_sync     = m_value_tree.getRawParameterValue("chorus_sync");
+//m_chorus_sync     = m_value_tree.getRawParameterValue("chorus_sync");
 m_chorus_reset    = m_value_tree.getRawParameterValue("chorus_reset");
 m_chorus_feedback = m_value_tree.getRawParameterValue("chorus_feedback");
 
@@ -285,7 +285,7 @@ m_value_tree.addParameterListener("delay_hp", &m_tree_listener_delay);
 m_value_tree.addParameterListener("delay_ducking", &m_tree_listener_delay);
 m_value_tree.addParameterListener("delay_dry", &m_tree_listener_delay);
 m_value_tree.addParameterListener("delay_wet", &m_tree_listener_delay);
-m_value_tree.addParameterListener("delay_sync", &m_tree_listener_delay);
+//m_value_tree.addParameterListener("delay_sync", &m_tree_listener_delay);
 m_value_tree.addParameterListener("delay_pingpong", &m_tree_listener_delay);
 m_value_tree.addParameterListener("delay_on", &m_tree_listener_delay);
 
@@ -294,7 +294,7 @@ m_value_tree.addParameterListener("chorus_rate", &m_tree_listener_chorus);
 m_value_tree.addParameterListener("chorus_amount", &m_tree_listener_chorus);
 m_value_tree.addParameterListener("chorus_drywet", &m_tree_listener_chorus);
 m_value_tree.addParameterListener("chorus_feedback", &m_tree_listener_chorus);
-m_value_tree.addParameterListener("chorus_sync", &m_tree_listener_chorus);
+//m_value_tree.addParameterListener("chorus_sync", &m_tree_listener_chorus);
 m_value_tree.addParameterListener("chorus_reset", &m_tree_listener_chorus);
 m_value_tree.addParameterListener("chorus_on", &m_tree_listener_chorus);
 
@@ -304,7 +304,7 @@ m_value_tree.addParameterListener("phaser_freq", &m_tree_listener_phaser);
 m_value_tree.addParameterListener("phaser_feedback", &m_tree_listener_phaser);
 m_value_tree.addParameterListener("phaser_mod", &m_tree_listener_phaser);
 m_value_tree.addParameterListener("phaser_drywet", &m_tree_listener_phaser);
-m_value_tree.addParameterListener("phaser_sync", &m_tree_listener_phaser);
+//m_value_tree.addParameterListener("phaser_sync", &m_tree_listener_phaser);
 m_value_tree.addParameterListener("phaser_reset", &m_tree_listener_phaser);
 m_value_tree.addParameterListener("phaser_on", &m_tree_listener_phaser);
 
@@ -313,7 +313,7 @@ m_value_tree.addParameterListener("flanger_rate", &m_tree_listener_flanger);
 m_value_tree.addParameterListener("flanger_amount", &m_tree_listener_flanger);
 m_value_tree.addParameterListener("flanger_drywet", &m_tree_listener_flanger);
 m_value_tree.addParameterListener("flanger_feedback", &m_tree_listener_flanger);
-m_value_tree.addParameterListener("flanger_sync", &m_tree_listener_flanger);
+//m_value_tree.addParameterListener("flanger_sync", &m_tree_listener_flanger);
 m_value_tree.addParameterListener("flanger_reset", &m_tree_listener_flanger);
 m_value_tree.addParameterListener("flanger_on", &m_tree_listener_flanger);
 
@@ -348,25 +348,25 @@ m_value_tree.addParameterListener("env4_loop", &m_tree_listener_adsr4);
 //lfo1 listener
 m_value_tree.addParameterListener("lfo1_freq", &m_tree_listener_lfo1);
 m_value_tree.addParameterListener("lfo1_reset", &m_tree_listener_lfo1);
-m_value_tree.addParameterListener("lfo1_sync", &m_tree_listener_lfo1);
+//m_value_tree.addParameterListener("lfo1_sync", &m_tree_listener_lfo1);
 // m_value_tree.addParameterListener("lfo1_wave", &m_tree_listener_lfo1);
 
 //lfo2 listener
 m_value_tree.addParameterListener("lfo2_freq", &m_tree_listener_lfo2);
 m_value_tree.addParameterListener("lfo2_reset", &m_tree_listener_lfo2);
-m_value_tree.addParameterListener("lfo2_sync", &m_tree_listener_lfo2);
+//m_value_tree.addParameterListener("lfo2_sync", &m_tree_listener_lfo2);
 // m_value_tree.addParameterListener("lfo2_wave", &m_tree_listener_lfo2);
 
 //lfo3 listener
 m_value_tree.addParameterListener("lfo3_freq", &m_tree_listener_lfo3);
 m_value_tree.addParameterListener("lfo3_reset", &m_tree_listener_lfo3);
-m_value_tree.addParameterListener("lfo3_sync", &m_tree_listener_lfo3);
+//m_value_tree.addParameterListener("lfo3_sync", &m_tree_listener_lfo3);
 // m_value_tree.addParameterListener("lfo3_wave", &m_tree_listener_lfo3);
 
 //lfo4 listener
 m_value_tree.addParameterListener("lfo4_freq", &m_tree_listener_lfo4);
 m_value_tree.addParameterListener("lfo4_reset", &m_tree_listener_lfo4);
-m_value_tree.addParameterListener("lfo4_sync", &m_tree_listener_lfo4);
+//m_value_tree.addParameterListener("lfo4_sync", &m_tree_listener_lfo4);
 // m_value_tree.addParameterListener("lfo4_wave", &m_tree_listener_lfo4);
 
 // for (int i = 0; i < 9; ++i) {

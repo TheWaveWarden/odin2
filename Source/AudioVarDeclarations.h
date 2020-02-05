@@ -90,23 +90,23 @@
     //lfo1
     float* m_lfo1_freq;
     float* m_lfo1_reset;
-    float* m_lfo1_sync;
-    float* m_lfo1_wave;
+    //float* m_lfo1_sync;
+    //float* m_lfo1_wave;
     //lfo2
     float* m_lfo2_freq;
     float* m_lfo2_reset;
-    float* m_lfo2_sync;
-    float* m_lfo2_wave;
+    //float* m_lfo2_sync;
+    //float* m_lfo2_wave;
     //lfo3
     float* m_lfo3_freq;
     float* m_lfo3_reset;
-    float* m_lfo3_sync;
-    float* m_lfo3_wave;
+    //float* m_lfo3_sync;
+    //float* m_lfo3_wave;
     //lfo4
     float* m_lfo4_freq;
     float* m_lfo4_reset;
-    float* m_lfo4_sync;
-    float* m_lfo4_wave;
+    //float* m_lfo4_sync;
+    //float* m_lfo4_wave;
     //main
     float* m_glide;
     float* m_master;

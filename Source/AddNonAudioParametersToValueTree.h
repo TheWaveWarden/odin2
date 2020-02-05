@@ -39,6 +39,10 @@ void OdinAudioProcessor::addNonAudioParametersToTree() {
 	node.setProperty("phaser_position", 1, nullptr);
 	node.setProperty("chorus_position", 2, nullptr);
 	node.setProperty("flanger_position", 3, nullptr);
+	node.setProperty("delay_sync", 0, nullptr);
+	node.setProperty("phaser_sync", 0, nullptr);
+	node.setProperty("flanger_sync", 0, nullptr);
+	node.setProperty("chorus_sync", 0, nullptr);
 
 	node = m_value_tree_lfo;
 	node.setProperty("lfo1_synctime_numerator", 2, nullptr);
@@ -55,6 +59,10 @@ void OdinAudioProcessor::addNonAudioParametersToTree() {
 	node.setProperty("lfo2_wave", 0, nullptr);
 	node.setProperty("lfo3_wave", 0, nullptr);
 	node.setProperty("lfo4_wave", 0, nullptr);
+	node.setProperty("lfo1_sync", 0, nullptr);
+	node.setProperty("lfo2_sync", 0, nullptr);
+	node.setProperty("lfo3_sync", 0, nullptr);
+	node.setProperty("lfo4_sync", 0, nullptr);
 
 	node = m_value_tree_misc;
 	node.setProperty("legato", 1, nullptr); // this is actually "poly" or !legato"

@@ -130,7 +130,7 @@ PhaserComponent::PhaserComponent(AudioProcessorValueTreeState &vts, std::string 
 	sync_draw4.setImage(sync_4);
 
 	// if (!m_is_standalone_plugin) {
-	m_sync_attach.reset(new OdinButtonAttachment(m_value_tree, m_fx_name + "_sync", m_sync));
+	//m_sync_attach.reset(new OdinButtonAttachment(m_value_tree, m_fx_name + "_sync", m_sync));
 	m_sync.setImages(
 	    &sync_draw2, &sync_draw2, &sync_draw1, &sync_draw1, &sync_draw4, &sync_draw4, &sync_draw3, &sync_draw3);
 	m_sync.setClickingTogglesState(true);

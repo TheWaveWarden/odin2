@@ -145,7 +145,7 @@ DelayComponent::DelayComponent(AudioProcessorValueTreeState &vts, bool p_is_stan
 	m_wet.setKnobTooltip("Volume of the delayed signal only");
 	addAndMakeVisible(m_wet);
 
-	m_sync_attach.reset(new OdinButtonAttachment(m_value_tree, "delay_sync", m_sync));
+	//m_sync_attach.reset(new OdinButtonAttachment(m_value_tree, "delay_sync", m_sync));
 	m_pingpong_attach.reset(new OdinButtonAttachment(m_value_tree, "delay_pingpong", m_pingpong));
 
 	m_sync_time.OnValueChange = [&](int p_left, int p_right) {
@@ -195,5 +195,5 @@ void DelayComponent::paint(Graphics &g) {
 void DelayComponent::forceValueTreeOntoComponents(ValueTree p_tree) {
 	m_sync_time.setValues(m_value_tree.state.getChildWithName("fx")[m_delay_synctime_numerator_identifier],
 	                      m_value_tree.state.getChildWithName("fx")[m_delay_synctime_denominator_identifier]);
-	setSync((float)GETAUDIO("delay_sync") > 0.5f);
+	//setSync((float)GETAUDIO("delay_sync") > 0.5f);
 }

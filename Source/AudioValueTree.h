@@ -399,7 +399,7 @@
                                           0),
       // LFO1
       std::make_unique<AudioParameterInt>("lfo1_reset", "LFO1 Reset", 0, 1, 0),
-      std::make_unique<AudioParameterInt>("lfo1_sync", "LFO1 Sync", 0, 1, 0),
+      //std::make_unique<AudioParameterInt>("lfo1_sync", "LFO1 Sync", 0, 1, 0),
       //std::make_unique<AudioParameterInt>("lfo1_wave", "LFO1 Waveform", 0, 20,
       //                                    0),
       std::make_unique<AudioParameterFloat>(
@@ -407,7 +407,7 @@
           NormalisableRange<float>(0.05f, 100.f, 0.f, 0.196757), 1),
       // LFO2
       std::make_unique<AudioParameterInt>("lfo2_reset", "LFO2 Reset", 0, 1, 0),
-      std::make_unique<AudioParameterInt>("lfo2_sync", "LFO2 Sync", 0, 1, 0),
+      //std::make_unique<AudioParameterInt>("lfo2_sync", "LFO2 Sync", 0, 1, 0),
       //std::make_unique<AudioParameterInt>("lfo2_wave", "LFO2 Waveform", 0, 20,
       //                                    0),
       std::make_unique<AudioParameterFloat>(
@@ -415,7 +415,7 @@
           NormalisableRange<float>(0.05f, 100.f, 0.f, 0.196757), 1),
       // LFO3
       std::make_unique<AudioParameterInt>("lfo3_reset", "LFO3 Reset", 0, 1, 0),
-      std::make_unique<AudioParameterInt>("lfo3_sync", "LFO3 Sync", 0, 1, 0),
+      //std::make_unique<AudioParameterInt>("lfo3_sync", "LFO3 Sync", 0, 1, 0),
       //std::make_unique<AudioParameterInt>("lfo3_wave", "LFO3 Waveform", 0, 20,
       //                                    0),
       std::make_unique<AudioParameterFloat>(
@@ -423,7 +423,7 @@
           NormalisableRange<float>(0.05f, 100.f, 0.f, 0.196757), 1),
       // LFO4
       std::make_unique<AudioParameterInt>("lfo4_reset", "LFO4 Reset", 0, 1, 0),
-      std::make_unique<AudioParameterInt>("lfo4_sync", "LFO4 Sync", 0, 1, 0),
+      //std::make_unique<AudioParameterInt>("lfo4_sync", "LFO4 Sync", 0, 1, 0),
       //std::make_unique<AudioParameterInt>("lfo4_wave", "LFO4 Waveform", 0, 20,
       //                                    0),
       std::make_unique<AudioParameterFloat>(
@@ -452,7 +452,7 @@
       std::make_unique<AudioParameterFloat>(
           "xy_y", "XY Pad Y", NormalisableRange<float>(0.f, 1.f, 0.f, 1.f),
           0.f),
-      std::make_unique<AudioParameterInt>("delay_sync", "Delay Sync", 0, 1, 0),
+      //std::make_unique<AudioParameterInt>("delay_sync", "Delay Sync", 0, 1, 0),
       std::make_unique<AudioParameterInt>("delay_pingpong", "Delay PingPong", 0, 1, 0),
       std::make_unique<AudioParameterFloat>(
           "delay_time", "Delay Time",
@@ -474,8 +474,8 @@
       std::make_unique<AudioParameterInt>("delay_on", "Delay On", 0, 1, 0),
 
       // Phaser
-      std::make_unique<AudioParameterInt>("phaser_sync", "Phaser Sync", 0, 1,
-                                          0),
+      //std::make_unique<AudioParameterInt>("phaser_sync", "Phaser Sync", 0, 1,
+      //                                          0),
       std::make_unique<AudioParameterInt>("phaser_reset", "Phaser Reset", 0, 1,
                                           0),
       std::make_unique<AudioParameterInt>("phaser_on", "Phaser On", 0, 1, 0),
@@ -492,8 +492,8 @@
           "phaser_drywet", "Phaser DryWet",
           NormalisableRange<float>(0.f, 1.f, 0.f, 1.f), 1.f),
       // Flanger
-      std::make_unique<AudioParameterInt>("flanger_sync", "Flanger Sync", 0, 1,
-                                          0),
+      //std::make_unique<AudioParameterInt>("flanger_sync", "Flanger Sync", 0, 1,
+    //                                 0),
       std::make_unique<AudioParameterInt>("flanger_reset", "Flanger Reset", 0,
                                           1, 0),
       std::make_unique<AudioParameterInt>("flanger_on", "Flanger On", 0, 1, 0),
@@ -508,8 +508,8 @@
       std::make_unique<AudioParameterFloat>(
           "flanger_drywet", "Flanger DryWet",
           NormalisableRange<float>(0.f, 1.f, 0.f, 1.f), 1.f),
-      std::make_unique<AudioParameterInt>("chorus_sync", "Chorus Sync", 0, 1,
-                                          0),
+      //std::make_unique<AudioParameterInt>("chorus_sync", "Chorus Sync", 0, 1,
+      //                                    0),
       std::make_unique<AudioParameterInt>("chorus_reset", "Chorus Reset", 0, 1,
                                           0),
       std::make_unique<AudioParameterInt>("chorus_on", "Chorus On", 0, 1, 0),

@@ -68,7 +68,7 @@ LFOComponent::LFOComponent(AudioProcessorValueTreeState &vts, std::string p_lfo_
 	sync_draw4.setImage(sync_4);
 
 	// if (!m_is_standalone_plugin) {
-	m_sync_attach.reset(new OdinButtonAttachment(m_value_tree, "lfo" + m_lfo_number + "_sync", m_sync));
+	//m_sync_attach.reset(new OdinButtonAttachment(m_value_tree, "lfo" + m_lfo_number + "_sync", m_sync));
 	m_sync.setImages(
 	    &sync_draw2, &sync_draw2, &sync_draw1, &sync_draw1, &sync_draw4, &sync_draw4, &sync_draw3, &sync_draw3);
 	m_sync.setClickingTogglesState(true);
@@ -77,7 +77,11 @@ LFOComponent::LFOComponent(AudioProcessorValueTreeState &vts, std::string p_lfo_
 	m_sync.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
 	addAndMakeVisible(m_sync);
 	m_sync.setTooltip("Enables syncing the LFO\nto the speed of your track");
-	m_sync.onClick = [&]() { setSync(m_sync.getToggleState()); };
+	m_sync.onClick = [&]() { 
+		setSync(m_sync.getToggleState()); 
+		m_value_tree.state.getChildWithName("lfo").setProperty((Identifier)("lfo" + m_lfo_number + "_sync"), m_sync.getToggleState() ? 1.f : 0.f, nullptr);
+		m_value_tree.state.getChildWithName("lfo").sendPropertyChangeMessage((Identifier)("lfo" + m_lfo_number + "_sync"));
+	};
 
 	juce::Image black_knob_small =
 	    ImageCache::getFromMemory(BinaryData::black_knob_small_png, BinaryData::black_knob_small_pngSize);
@@ -137,5 +141,5 @@ void LFOComponent::forceValueTreeOntoComponents(ValueTree p_tree) {
 
 	m_sync_time.setValues(m_value_tree.state.getChildWithName("lfo")[m_lfo_synctime_numerator_identifier],
 	                      m_value_tree.state.getChildWithName("lfo")[m_lfo_synctime_denominator_identifier]);
-	setSync((float)GETAUDIO("lfo" + m_lfo_number + "_sync") > 0.5f);
+	//setSync((float)GETAUDIO("lfo" + m_lfo_number + "_sync") > 0.5f);
 }

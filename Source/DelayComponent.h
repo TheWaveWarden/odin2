@@ -110,7 +110,7 @@ private:
 	std::unique_ptr<OdinKnobAttachment> m_delay_dry_attach;
 	std::unique_ptr<OdinKnobAttachment> m_delay_wet_attach;
 
-	std::unique_ptr<OdinButtonAttachment> m_sync_attach;
+	//std::unique_ptr<OdinButtonAttachment> m_sync_attach;
 	std::unique_ptr<OdinButtonAttachment> m_pingpong_attach;
 
 	Identifier m_delay_synctime_numerator_identifier;

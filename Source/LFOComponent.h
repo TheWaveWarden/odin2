@@ -93,7 +93,7 @@ private:
 
   std::unique_ptr<OdinKnobAttachment> m_freq_attach;
 
-  std::unique_ptr<OdinButtonAttachment> m_sync_attach;
+  //std::unique_ptr<OdinButtonAttachment> m_sync_attach;
   std::unique_ptr<OdinButtonAttachment> m_reset_attach;
 
   Identifier m_lfo_wave_identifier;
