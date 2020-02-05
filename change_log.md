@@ -1,3 +1,10 @@
+# 2.0.8 alpha
+- fixed load functionality in modmatrix, lfo- & fx sync, distortion panel, lfo wave
+- made several parameters non-audio
+- fixed .odin not being appended to filenames
+- set main-font to runestyle
+- changed various panel colors
+- changed modmatrix and XY pad colors
 # 2.0.7 alpha
 - increased modulation depth on phaser-, flanger- and chorus- rate
 - fixed bug where flanger would glitch on high sample rates
