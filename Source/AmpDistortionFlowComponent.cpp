@@ -118,7 +118,12 @@ AmpDistortionFlowComponent::AmpDistortionFlowComponent(AudioProcessorValueTreeSt
 	m_distortion.setAlwaysOnTop(true);
 	m_distortion.setTriggeredOnMouseDown(true);
 	m_distortion.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
-	m_distortion.onClick = [&]() { setDistortionPanelActive(m_distortion.getToggleState()); };
+	m_distortion.onClick = [&]() {
+		setDistortionPanelActive(m_distortion.getToggleState());
+		m_value_tree.state.getChildWithName("misc").setProperty(
+		    "dist_on", m_distortion.getToggleState() ? 1.f : 0.f, nullptr);
+		m_value_tree.state.getChildWithName("misc").sendPropertyChangeMessage("dist_on");
+	};
 
 	juce::Image metal_knob_big =
 	    ImageCache::getFromMemory(BinaryData::metal_knob_big_png, BinaryData::metal_knob_big_pngSize);
@@ -197,7 +202,7 @@ AmpDistortionFlowComponent::AmpDistortionFlowComponent(AudioProcessorValueTreeSt
 	m_dist_threshold_attach.reset(new OdinKnobAttachment(m_value_tree, "dist_boost", m_boost));
 	m_dist_drywet_attach.reset(new OdinKnobAttachment(m_value_tree, "dist_drywet", m_dry_wet));
 
-	m_dist_on_attach.reset(new OdinButtonAttachment(m_value_tree, "dist_on", m_distortion));
+	//m_dist_on_attach.reset(new OdinButtonAttachment(m_value_tree, "dist_on", m_distortion));
 	m_fil1_to_amp_attach.reset(new OdinButtonAttachment(m_value_tree, "fil1_to_amp", m_flow_right));
 	m_fil2_to_amp_attach.reset(new OdinButtonAttachment(m_value_tree, "fil2_to_amp", m_flow_left));
 
@@ -210,9 +215,9 @@ AmpDistortionFlowComponent::AmpDistortionFlowComponent(AudioProcessorValueTreeSt
 	                    BLACK_KNOB_MID_SIZE_X,
 	                    BLACK_KNOB_MID_SIZE_Y);
 	m_amp_width.setBounds(AMP_VEL_POS_X - BLACK_KNOB_MID_OFFSET_X,
-	                    AMP_VEL_POS_Y - BLACK_KNOB_MID_OFFSET_Y,
-	                    BLACK_KNOB_MID_SIZE_X,
-	                    BLACK_KNOB_MID_SIZE_Y);
+	                      AMP_VEL_POS_Y - BLACK_KNOB_MID_OFFSET_Y,
+	                      BLACK_KNOB_MID_SIZE_X,
+	                      BLACK_KNOB_MID_SIZE_Y);
 	m_boost.setBounds(
 	    BIAS_POS_X - ROUND_KNOB_OFFSET_X, BIAS_POS_Y - ROUND_KNOB_OFFSET_Y, ROUND_KNOB_SIZE_X, ROUND_KNOB_SIZE_Y);
 	m_dry_wet.setBounds(THRESHOLD_POS_X - ROUND_KNOB_OFFSET_X,
@@ -241,10 +246,12 @@ AmpDistortionFlowComponent::~AmpDistortionFlowComponent() {
 
 void AmpDistortionFlowComponent::forceValueTreeOntoComponents(ValueTree p_tree) {
 	m_distortion_algo.setValue(m_value_tree.state.getChildWithName("misc")["dist_algo"]);
-	setDistortionPanelActive((float)GETAUDIO("dist_on") > 0.5);
+	setDistortionPanelActive((float)m_value_tree.state.getChildWithName("misc")["dist_on"] > 0.5f);
+	m_distortion.setToggleState((float)m_value_tree.state.getChildWithName("misc")["dist_on"] > 0.5f, dontSendNotification);
 }
 
 void AmpDistortionFlowComponent::setDistortionPanelActive(bool p_active) {
+	//DBG("SetDistortionPanelActive: " + std::to_string(p_active));
 #define DISTORTION_ON_COLOR juce::Colour(14, 35, 50)
 	m_distortion_algo.setColor(p_active ? DISTORTION_ON_COLOR : DARKGREY);
 	m_distortion_on = p_active;

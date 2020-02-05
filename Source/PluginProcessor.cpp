@@ -621,7 +621,7 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 		for (int channel = 0; channel < 2; ++channel) {
 
 			//===== DISTORTION ======
-			if (*m_dist_on) {
+			if (m_dist_on) {
 				stereo_signal[channel] = m_distortion[channel].doDistortion(stereo_signal[channel]);
 			}
 

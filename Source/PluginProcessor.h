@@ -312,6 +312,7 @@ private:
 	ModSources m_mod_sources;
 	ModDestinations m_mod_destinations;
 
+	bool m_dist_on = false;
 	bool m_osc_wavetable_source_lfo[3] = {0};//false <=> envelope
 
 	bool m_render_LFO[4]  = {0};

@@ -1,4 +1,4 @@
-#define DEBUG_VARIABLES
+//#define DEBUG_VARIABLES
 
 float valueToDenomintaor(int p_value) {
 	switch (p_value) {
@@ -1005,7 +1005,7 @@ void OdinAudioProcessor::treeValueChangedGeneralMisc(const String &p_ID, float p
 		}
 	} else if (id == m_master_identifier) {
 		m_master_control = Decibels::decibelsToGain(p_new_value);
-	}
+	} 
 }
 
 // void OdinAudioProcessor::treeValueChangedNonParam(ValueTree &tree, const Identifier &id) {
@@ -1044,7 +1044,7 @@ void OdinAudioProcessor::treeValueChangedNonParamFX(ValueTree &tree, const Ident
 		m_phaser.setSynctimeNumerator(p_new_value + 1);
 	} else if (id == m_phaser_synctime_denominator_identifier) {
 		m_phaser.setSynctimeDenominator(valueToDenomintaor(p_new_value));
-	}
+	} 
 }
 
 void OdinAudioProcessor::treeValueChangedNonParamLFO(ValueTree &tree, const Identifier &id) {
@@ -1327,6 +1327,8 @@ void OdinAudioProcessor::treeValueChangedNonParamMisc(ValueTree &tree, const Ide
 		} else if (id == m_BPM_identifier) {
 			m_BPM = p_new_value;
 		}
+	} else if (id == m_dist_on_identifier) {
+		m_dist_on = p_new_value > 0.5f;
 	}
 }
 

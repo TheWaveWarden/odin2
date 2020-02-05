@@ -337,8 +337,8 @@
       std::make_unique<AudioParameterFloat>(
           "dist_drywet", "Distortion DryWet",
           NormalisableRange<float>(0.f, 1.f, 0.f, 1.f), 1.f),
-      std::make_unique<AudioParameterInt>("dist_on", "Distortion Enable", 0, 1,
-                                          0),
+      //std::make_unique<AudioParameterInt>("dist_on", "Distortion Enable", 0, 1,
+      //                                    0),
       // ADSR1
       std::make_unique<AudioParameterFloat>(
           "env1_attack", "AmpEnv Attack",

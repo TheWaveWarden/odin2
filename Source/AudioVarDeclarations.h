@@ -60,7 +60,7 @@
     float* m_amp_width;
     float* m_dist_threshold;
     float* m_dist_drywet;
-    float* m_dist_on;
+    //float* m_dist_on;
     float* m_fil1_to_amp;
     float* m_fil2_to_amp;
     //env1

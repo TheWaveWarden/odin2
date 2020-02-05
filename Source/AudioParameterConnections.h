@@ -66,7 +66,7 @@ m_amp_gain       = m_value_tree.getRawParameterValue("amp_gain");
 m_amp_width        = m_value_tree.getRawParameterValue("amp_width");
 m_dist_threshold = m_value_tree.getRawParameterValue("dist_boost");
 m_dist_drywet    = m_value_tree.getRawParameterValue("dist_drywet");
-m_dist_on        = m_value_tree.getRawParameterValue("dist_on");
+//m_dist_on        = m_value_tree.getRawParameterValue("dist_on");
 m_fil1_to_amp    = m_value_tree.getRawParameterValue("fil1_to_amp");
 m_fil2_to_amp    = m_value_tree.getRawParameterValue("fil2_to_amp");
 

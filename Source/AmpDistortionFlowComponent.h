@@ -94,7 +94,7 @@ private:
 	std::unique_ptr<OdinKnobAttachment> m_dist_threshold_attach;
 	std::unique_ptr<OdinKnobAttachment> m_dist_drywet_attach;
 
-	std::unique_ptr<OdinButtonAttachment> m_dist_on_attach;
+	//std::unique_ptr<OdinButtonAttachment> m_dist_on_attach;
 	std::unique_ptr<OdinButtonAttachment> m_fil1_to_amp_attach;
 	std::unique_ptr<OdinButtonAttachment> m_fil2_to_amp_attach;
 
