@@ -128,7 +128,11 @@ FXComponent::FXComponent(AudioProcessorValueTreeState &vts, std::string p_fx_nam
 	m_sync.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
 	m_sync.setTooltip("Syncs the internal LFOs\nspeed to your track");
 	addAndMakeVisible(m_sync);
-	m_sync.onStateChange = [&]() { setSyncEnabled(m_sync.getToggleState()); };
+	m_sync.onClick = [&]() { 
+		setSyncEnabled(m_sync.getToggleState()); 
+		m_value_tree.state.getChildWithName("fx").setProperty((Identifier)(m_fx_name + "_sync"), m_sync.getToggleState() ? 1.f : 0.f, nullptr);
+		m_value_tree.state.getChildWithName("fx").sendPropertyChangeMessage((Identifier)(m_fx_name + "_sync"));
+	};
 
 	m_sync_time.OnValueChange = [&](int p_left, int p_right) {
 		m_value_tree.state.getChildWithName("fx").setProperty(m_fx_synctime_numerator_identifier, p_left, nullptr);
@@ -190,4 +194,5 @@ void FXComponent::forceValueTreeOntoComponents(ValueTree p_tree) {
 	                      m_value_tree.state.getChildWithName("fx")[m_fx_synctime_denominator_identifier]);
 
 	//setSyncEnabled((float)GETAUDIO(m_fx_name + "_sync") > 0.5f);
+	setSyncEnabled((float)m_value_tree.state.getChildWithName("fx")[(Identifier)(m_fx_name + "_sync")] > 0.5f);
 }
