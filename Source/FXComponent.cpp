@@ -193,6 +193,8 @@ void FXComponent::forceValueTreeOntoComponents(ValueTree p_tree) {
 	m_sync_time.setValues(m_value_tree.state.getChildWithName("fx")[m_fx_synctime_numerator_identifier],
 	                      m_value_tree.state.getChildWithName("fx")[m_fx_synctime_denominator_identifier]);
 
-	//setSyncEnabled((float)GETAUDIO(m_fx_name + "_sync") > 0.5f);
+	m_sync.setToggleState((float)m_value_tree.state.getChildWithName("fx")[(Identifier)(m_fx_name + "_sync")] > 0.5f, dontSendNotification);
 	setSyncEnabled((float)m_value_tree.state.getChildWithName("fx")[(Identifier)(m_fx_name + "_sync")] > 0.5f);
+	//send change message to set member in processor
+	m_value_tree.state.getChildWithName("fx").sendPropertyChangeMessage(((Identifier)(m_fx_name + "_sync")));
 }

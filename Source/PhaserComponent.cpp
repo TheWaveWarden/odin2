@@ -140,10 +140,11 @@ PhaserComponent::PhaserComponent(AudioProcessorValueTreeState &vts, std::string 
 	m_sync.setTooltip("Syncs the internal LFOs\nspeed to your track");
 	addAndMakeVisible(m_sync);
 	//}
-	m_sync.onStateChange = [&]() {
-		// if (!m_is_standalone_plugin) {
+	m_sync.onClick = [&]() {
 		setSyncEnabled(m_sync.getToggleState());
-		//}
+		m_value_tree.state.getChildWithName("fx").setProperty(
+		    (Identifier)("phaser_sync"), m_sync.getToggleState() ? 1.f : 0.f, nullptr);
+		m_value_tree.state.getChildWithName("fx").sendPropertyChangeMessage("phaser_sync");
 	};
 
 	m_sync_time.OnValueChange = [&](int p_left, int p_right) {
@@ -206,5 +207,8 @@ void PhaserComponent::forceValueTreeOntoComponents(ValueTree p_tree) {
 	m_sync_time.setValues(m_value_tree.state.getChildWithName("fx")[m_fx_synctime_numerator_identifier],
 	                      m_value_tree.state.getChildWithName("fx")[m_fx_synctime_denominator_identifier]);
 
-	setSyncEnabled((float)GETAUDIO("phaser_sync") > 0.5f);
+	m_sync.setToggleState((float)m_value_tree.state.getChildWithName("fx")["phaser_sync"] > 0.5f, dontSendNotification);
+	setSyncEnabled((float)m_value_tree.state.getChildWithName("fx")["phaser_sync"] > 0.5f);
+	//send change message to set member in processor
+	m_value_tree.state.getChildWithName("fx").sendPropertyChangeMessage((Identifier)("phaser_sync"));
 }

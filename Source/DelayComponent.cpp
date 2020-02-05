@@ -48,7 +48,12 @@ DelayComponent::DelayComponent(AudioProcessorValueTreeState &vts, bool p_is_stan
 	m_sync.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
 	m_sync.setTooltip("Syncs the delay time to your track");
 	addAndMakeVisible(m_sync);
-	m_sync.onStateChange = [&]() { setSync(m_sync.getToggleState()); };
+	m_sync.onClick = [&]() {
+		setSync(m_sync.getToggleState());
+		m_value_tree.state.getChildWithName("fx").setProperty(
+		    (Identifier)("delay_sync"), m_sync.getToggleState() ? 1.f : 0.f, nullptr);
+		m_value_tree.state.getChildWithName("fx").sendPropertyChangeMessage((Identifier)("delay_sync"));
+	};
 
 	juce::Image pingpong_1 =
 	    ImageCache::getFromMemory(BinaryData::buttonpingpong_1_png, BinaryData::buttonpingpong_1_pngSize);
@@ -195,5 +200,8 @@ void DelayComponent::paint(Graphics &g) {
 void DelayComponent::forceValueTreeOntoComponents(ValueTree p_tree) {
 	m_sync_time.setValues(m_value_tree.state.getChildWithName("fx")[m_delay_synctime_numerator_identifier],
 	                      m_value_tree.state.getChildWithName("fx")[m_delay_synctime_denominator_identifier]);
-	//setSync((float)GETAUDIO("delay_sync") > 0.5f);
+	m_sync.setToggleState((float)m_value_tree.state.getChildWithName("fx")["delay_sync"] > 0.5f, dontSendNotification);
+	setSync((float)m_value_tree.state.getChildWithName("fx")["delay_sync"] > 0.5f);
+	//send change message to set member in processor
+	m_value_tree.state.getChildWithName("fx").sendPropertyChangeMessage((Identifier)("delay_sync"));
 }
