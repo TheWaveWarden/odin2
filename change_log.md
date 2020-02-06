@@ -1,3 +1,7 @@
+# 2.0.9 alpha
+- fixed load functionality for draw-oscs, comb polarity and formant vowels
+- changed backdrop panels for korg and diode filters
+- fixed issue with bright formant panel on mac
 # 2.0.8 alpha
 - fixed load functionality in modmatrix, lfo- & fx sync, distortion panel, lfo wave
 - made several parameters non-audio
