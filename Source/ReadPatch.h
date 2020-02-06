@@ -12,6 +12,15 @@ void OdinAudioProcessor::readPatch(const ValueTree &newState){
 	    std::to_string(ODIN_PATCH_MIGRATION_VERSION));
 
 
+  const ValueTree &draw_tree = newState.getChildWithName("draw");  
+  for (int i = 0; i < m_value_tree_draw.getNumProperties(); ++i) {
+    if(draw_tree.hasProperty(m_value_tree_draw.getPropertyName(i))){
+        m_value_tree_draw.setProperty(m_value_tree_draw.getPropertyName(i), draw_tree.getProperty(m_value_tree_draw.getPropertyName(i)), nullptr);
+        m_value_tree_draw.sendPropertyChangeMessage((m_value_tree_draw.getPropertyName(i)));
+    } else {
+        DBG("Didn't find property " + m_value_tree_draw.getPropertyName(i).toString().toStdString());
+    }
+  }
   const ValueTree &osc_tree = newState.getChildWithName("osc");  
   for (int i = 0; i < m_value_tree_osc.getNumProperties(); ++i) {
     if(osc_tree.hasProperty(m_value_tree_osc.getPropertyName(i))){

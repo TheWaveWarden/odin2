@@ -294,6 +294,7 @@ bool SaveLoadComponent::checkForBiggerVersion(FileInputStream &p_file_stream, st
 	if (patch_version > ODIN_PATCH_MIGRATION_VERSION) {
 		p_version_string = "2." + std::to_string((int)value_tree_read.getChildWithName("misc")["version_minor"]) + "." +
 		                   std::to_string((int)value_tree_read.getChildWithName("misc")["version_patch"]);
+		DBG("Trying to load PMV " + std::to_string(patch_version) +  ", current PMV is " + std::to_string(ODIN_PATCH_MIGRATION_VERSION));
 		return true;
 	}
 	return false;
