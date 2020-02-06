@@ -32,8 +32,8 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts, std::string 
 	    new OdinKnobAttachment(m_value_tree, "fil" + m_filter_number + "_ring_mod_amount", m_ring_mod_amount));
 	m_sem_transition_attach.reset(
 	    new OdinKnobAttachment(m_value_tree, "fil" + m_filter_number + "_sem_transition", m_sem_transition));
-	m_comb_polarity_attach.reset(
-	    new OdinButtonAttachment(m_value_tree, "fil" + m_filter_number + "_comb_polarity", m_comb_plus_minus));
+	//m_comb_polarity_attach.reset(
+	//    new OdinButtonAttachment(m_value_tree, "fil" + m_filter_number + "_comb_polarity", m_comb_plus_minus));
 
 	juce::Image metal_knob_big =
 	    ImageCache::getFromMemory(BinaryData::metal_knob_big_png, BinaryData::metal_knob_big_pngSize);
@@ -175,7 +175,12 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts, std::string 
 	m_comb_plus_minus.setImage(comb_plus, 1);
 	m_comb_plus_minus.setImage(comb_minus, 2);
 	m_comb_plus_minus.setBounds(COMB_PLUS_POS_X, COMB_PLUS_POS_Y, comb_plus.getWidth(), comb_plus.getHeight());
-	m_comb_plus_minus.onStateChange = [&]() {};
+	m_comb_plus_minus.onClick = [&]() {
+		m_value_tree.state.getChildWithName("misc").setProperty(
+		    (Identifier)("fil" + m_filter_number + "_comb_polarity"), m_comb_plus_minus.getToggleState(), nullptr);
+		m_value_tree.state.getChildWithName("misc").sendPropertyChangeMessage(
+		    (Identifier)("fil" + m_filter_number + "_comb_polarity"));
+	};
 
 	m_comb_plus_minus.setTooltip("Whether to add or subtract the feedback\n in the internal delay line");
 	addChildComponent(m_comb_plus_minus);
@@ -428,7 +433,9 @@ void FilterComponent::showRingModFilterComponents() {
 }
 
 void FilterComponent::forceValueTreeOntoComponents(ValueTree p_tree, int p_index) {
-	m_comb_plus_minus.setValue(m_value_tree.getParameterAsValue("fil" + m_filter_number + "_comb_polarity").getValue());
+	//DBG("COMB:" + std::to_string((float)m_value_tree.getParameterAsValue("fil" + m_filter_number + "_comb_polarity").getValue()));
+	m_comb_plus_minus.setValue(
+	    m_value_tree.state.getChildWithName("misc")[(Identifier)("fil" + m_filter_number + "_comb_polarity")]);
 
 	m_vowel_left.setValue(GETAUDIO(m_vowel_left_identifier));
 	m_vowel_right.setValue(GETAUDIO(m_vowel_right_identifier));

@@ -70,8 +70,8 @@ void OdinAudioProcessor::readPatch(const ValueTree &newState){
   for(int i = 0; i < newState.getNumChildren(); ++i){
       // all children which are an audio param have two properties (name and value)
       if(newState.getChild(i).getNumProperties() == 2){
-        DBG(newState.getChild(i).getProperty(newState.getChild(i).getPropertyName(0)).toString());
-        DBG(newState.getChild(i).getProperty(newState.getChild(i).getPropertyName(1)).toString());
+        //DBG(newState.getChild(i).getProperty(newState.getChild(i).getPropertyName(0)).toString());
+        //DBG(newState.getChild(i).getProperty(newState.getChild(i).getPropertyName(1)).toString());
         String name = newState.getChild(i).getProperty(newState.getChild(i).getPropertyName(0)).toString();
         SETAUDIOFULLRANGESAFE(newState.getChild(i).getProperty(newState.getChild(i).getPropertyName(0)).toString(),newState.getChild(i).getProperty(newState.getChild(i).getPropertyName(1)));
         //DBG("Value on tree is now: is now:" + m_value_tree.getParameterAsValue(name).getValue().toString());

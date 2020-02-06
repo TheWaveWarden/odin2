@@ -40,7 +40,6 @@
   <PARAM id="env4_loop" value="0"/>
   <PARAM id="env4_release" value="9.999999776482582e-3"/>
   <PARAM id="env4_sustain" value="5e-1"/>
-  <PARAM id="fil1_comb_polarity" value="0"/>
   <PARAM id="fil1_env" value="0"/>
   <PARAM id="fil1_formant_transition" value="0"/>
   <PARAM id="fil1_freq" value="1.999999877929688e3"/>
@@ -57,7 +56,6 @@
   <PARAM id="fil1_vel" value="0"/>
   <PARAM id="fil1_vowel_left" value="0"/>
   <PARAM id="fil1_vowel_right" value="2"/>
-  <PARAM id="fil2_comb_polarity" value="0"/>
   <PARAM id="fil2_env" value="0"/>
   <PARAM id="fil2_fil1" value="1"/>
   <PARAM id="fil2_formant_transition" value="0"/>
@@ -75,7 +73,6 @@
   <PARAM id="fil2_vel" value="0"/>
   <PARAM id="fil2_vowel_left" value="0"/>
   <PARAM id="fil2_vowel_right" value="2"/>
-  <PARAM id="fil3_comb_polarity" value="0"/>
   <PARAM id="fil3_env" value="0"/>
   <PARAM id="fil3_formant_transition" value="0"/>
   <PARAM id="fil3_freq" value="1.999999877929688e3"/>
@@ -600,7 +597,7 @@
   <misc legato="1" dist_algo="1" BPM="120" env_left_selected="1" env_right_selected="1"
         fil1_type="2" fil2_type="1" fil3_type="1" patch_name="init_patch"
         version_minor="0" version_patch="8" patch_migration_version="1"
-        dist_on="0"/>
+        dist_on="0" fil1_comb_polarity="0" fil2_comb_polarity="0" fil3_comb_polarity="0"/>
   <mod source_row_0="0" source_row_1="0" source_row_2="0" source_row_3="0"
        source_row_4="0" source_row_5="0" source_row_6="0" source_row_7="0"
        source_row_8="0" dest_1_row_0="0" dest_1_row_1="0" dest_1_row_2="0"

@@ -1,4 +1,4 @@
-//#define DEBUG_VARIABLES
+#define DEBUG_VARIABLES
 
 float valueToDenomintaor(int p_value) {
 	switch (p_value) {
@@ -599,14 +599,6 @@ void OdinAudioProcessor::treeValueChangedFilMisc(const String &p_ID, float p_new
 		for (int voice = 0; voice < VOICES; ++voice) {
 			m_voice[voice].ring_mod[1].setAmount(p_new_value);
 		}
-	} else if (id == m_fil1_comb_polarity_identifier) {
-		for (int voice = 0; voice < VOICES; ++voice) {
-			m_voice[voice].comb_filter[0].setPositive(!((bool)p_new_value));
-		}
-	} else if (id == m_fil2_comb_polarity_identifier) {
-		for (int voice = 0; voice < VOICES; ++voice) {
-			m_voice[voice].comb_filter[1].setPositive(!((bool)p_new_value));
-		}
 	} else if (id == m_fil1_sem_transition_identifier) {
 		for (int voice = 0; voice < VOICES; ++voice) {
 			m_voice[voice].SEM_filter_12[0].m_transition = p_new_value;
@@ -623,9 +615,6 @@ void OdinAudioProcessor::treeValueChangedFilMisc(const String &p_ID, float p_new
 	else if (id == m_fil3_ring_mod_amount_identifier) {
 		m_ring_mod[0].setAmount(p_new_value);
 		m_ring_mod[1].setAmount(p_new_value);
-	} else if (id == m_fil3_comb_polarity_identifier) {
-		m_comb_filter[0].setPositive(!((bool)p_new_value));
-		m_comb_filter[1].setPositive(!((bool)p_new_value));
 	}
 }
 
@@ -1337,6 +1326,17 @@ void OdinAudioProcessor::treeValueChangedNonParamMisc(ValueTree &tree, const Ide
 		}
 	} else if (id == m_dist_on_identifier) {
 		m_dist_on = p_new_value > 0.5f;
+	} else if (id == m_fil1_comb_polarity_identifier) {
+		for (int voice = 0; voice < VOICES; ++voice) {
+			m_voice[voice].comb_filter[0].setPositive(!((bool)p_new_value));
+		}
+	} else if (id == m_fil2_comb_polarity_identifier) {
+		for (int voice = 0; voice < VOICES; ++voice) {
+			m_voice[voice].comb_filter[1].setPositive(!((bool)p_new_value));
+		}
+	} else if (id == m_fil3_comb_polarity_identifier) {
+		m_comb_filter[0].setPositive(!((bool)p_new_value));
+		m_comb_filter[1].setPositive(!((bool)p_new_value));
 	}
 }
 

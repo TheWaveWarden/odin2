@@ -236,8 +236,8 @@
                                           "Filter1 Left Vowel", 0, 7, 0),
       std::make_unique<AudioParameterInt>("fil1_vowel_right",
                                           "Filter1 Right Vowel", 0, 7, 2),
-      std::make_unique<AudioParameterInt>("fil1_comb_polarity",
-                                          "Filter1 Comb Polarity", 0, 1, 0),
+      //std::make_unique<AudioParameterInt>("fil1_comb_polarity",
+      //                                    "Filter1 Comb Polarity", 0, 1, 0),
       // Filter2
       std::make_unique<AudioParameterInt>("fil2_osc1", "Filter2 Osc1 Input", 0,
                                           1, 0),
@@ -281,8 +281,8 @@
                                           "Filter2 Left Vowel", 0, 7, 0),
       std::make_unique<AudioParameterInt>("fil2_vowel_right",
                                           "Filter2 Right Vowel", 0, 7, 2),
-      std::make_unique<AudioParameterInt>("fil2_comb_polarity",
-                                          "Filter2 Comb Polarity", 0, 1, 0),
+      //std::make_unique<AudioParameterInt>("fil2_comb_polarity",
+      //                                    "Filter2 Comb Polarity", 0, 1, 0),
       // Filter3
       std::make_unique<AudioParameterFloat>(
           "fil3_vel", "Filter3 Velocity Amount",
@@ -318,8 +318,8 @@
                                           "Filter3 Left Vowel", 0, 7, 0),
       std::make_unique<AudioParameterInt>("fil3_vowel_right",
                                           "Filter3 Right Vowel", 0, 7, 2),
-      std::make_unique<AudioParameterInt>("fil3_comb_polarity",
-                                          "Filter3 Comb Polarity", 0, 1, 0),
+      //std::make_unique<AudioParameterInt>("fil3_comb_polarity",
+      //                                    "Filter3 Comb Polarity", 0, 1, 0),
       // Amp
       std::make_unique<AudioParameterFloat>(
           "amp_width", "Amplifier Stereo Width",

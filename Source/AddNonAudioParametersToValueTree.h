@@ -80,6 +80,9 @@ void OdinAudioProcessor::addNonAudioParametersToTree() {
 	// this is patch version
 	node.setProperty("patch_migration_version", ODIN_PATCH_MIGRATION_VERSION, nullptr);
 	node.setProperty("dist_on", 0, nullptr);
+	node.setProperty("fil1_comb_polarity", 0, nullptr);
+	node.setProperty("fil2_comb_polarity", 0, nullptr);
+	node.setProperty("fil3_comb_polarity", 0, nullptr);
 
 	node = m_value_tree_mod;
 	node.setProperty("source_row_0", 0, nullptr);
