@@ -31,7 +31,7 @@
 
 #define ODIN_MAJOR_VERSION 2
 #define ODIN_MINOR_VERSION 0
-#define ODIN_PATCH_VERSION 8
+#define ODIN_PATCH_VERSION 9
 #define ODIN_VERSION_STRING ("Odin 2." + std::to_string(ODIN_MINOR_VERSION) + "." + std::to_string(ODIN_PATCH_VERSION) + " alpha")
 
 // ! this is for migrating patches from older version, not to be confused with above
