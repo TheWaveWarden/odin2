@@ -149,7 +149,8 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts, std::string 
 	addChildComponent(m_ring_mod_amount);
 
 	m_vowel_left.OnValueChange = [&](int p_new_value) {
-		m_value_tree.getParameter(m_vowel_left_identifier)->setValueNotifyingHost(((float)p_new_value) / 7.f);
+		m_value_tree.state.getChildWithName("misc").setProperty(m_vowel_left_identifier, p_new_value, nullptr);
+		m_value_tree.state.getChildWithName("misc").sendPropertyChangeMessage(m_vowel_left_identifier);
 	};
 	m_vowel_left.setTopLeftPosition(FORMANT_VOW_LEFT_POS_X, FORMANT_VOW_LEFT_POS_Y);
 	m_vowel_left.setTooltip("The vowel to\nthe left side of\nthe transition knob");
@@ -159,7 +160,8 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts, std::string 
 	m_vowel_left.setColor(Colour(90, 40, 40));
 
 	m_vowel_right.OnValueChange = [&](int p_new_value) {
-		m_value_tree.getParameter(m_vowel_right_identifier)->setValueNotifyingHost(((float)p_new_value) / 7.f);
+		m_value_tree.state.getChildWithName("misc").setProperty(m_vowel_right_identifier, p_new_value, nullptr);
+		m_value_tree.state.getChildWithName("misc").sendPropertyChangeMessage(m_vowel_right_identifier);
 	};
 	m_vowel_right.setTopLeftPosition(FORMANT_VOW_RIGHT_POS_X, FORMANT_VOW_RIGHT_POS_Y);
 	m_vowel_right.setTooltip("The vowel to\nthe right side of\nthe transition knob");
@@ -194,9 +196,9 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts, std::string 
 	m_ring_mod_amount.setNumDecimalPlacesToDisplay(3);
 
 	m_vowel_left.setParameterId("fil" + m_filter_number + "_vowel_left");
-	m_value_tree.addParameterListener("fil" + m_filter_number + "_vowel_left", &m_vowel_left);
+	//m_value_tree.addParameterListener("fil" + m_filter_number + "_vowel_left", &m_vowel_left);
 	m_vowel_right.setParameterId("fil" + m_filter_number + "_vowel_right");
-	m_value_tree.addParameterListener("fil" + m_filter_number + "_vowel_right", &m_vowel_right);
+	//m_value_tree.addParameterListener("fil" + m_filter_number + "_vowel_right", &m_vowel_right);
 
 	SET_CTR_KEY(m_vel);
 	SET_CTR_KEY(m_kbd);
@@ -433,10 +435,9 @@ void FilterComponent::showRingModFilterComponents() {
 }
 
 void FilterComponent::forceValueTreeOntoComponents(ValueTree p_tree, int p_index) {
-	//DBG("COMB:" + std::to_string((float)m_value_tree.getParameterAsValue("fil" + m_filter_number + "_comb_polarity").getValue()));
 	m_comb_plus_minus.setValue(
 	    m_value_tree.state.getChildWithName("misc")[(Identifier)("fil" + m_filter_number + "_comb_polarity")]);
 
-	m_vowel_left.setValue(GETAUDIO(m_vowel_left_identifier));
-	m_vowel_right.setValue(GETAUDIO(m_vowel_right_identifier));
+	m_vowel_left.setValue(m_value_tree.state.getChildWithName("misc")[m_vowel_left_identifier]);
+	m_vowel_right.setValue(m_value_tree.state.getChildWithName("misc")[m_vowel_right_identifier]);
 }

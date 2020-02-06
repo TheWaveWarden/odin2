@@ -50,8 +50,8 @@
     float* m_fil_formant_transition[3];
     float* m_fil_ring_mod_amount[3];
     float* m_fil_sem_transition[3];
-    float* m_fil_vowel_left[3];
-    float* m_fil_vowel_right[3];
+    //float* m_fil_vowel_left[3];
+    //float* m_fil_vowel_right[3];
     //float* m_fil_comb_polarity[3];
 
     //midsection

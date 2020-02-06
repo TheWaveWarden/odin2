@@ -83,6 +83,12 @@ void OdinAudioProcessor::addNonAudioParametersToTree() {
 	node.setProperty("fil1_comb_polarity", 0, nullptr);
 	node.setProperty("fil2_comb_polarity", 0, nullptr);
 	node.setProperty("fil3_comb_polarity", 0, nullptr);
+	node.setProperty("fil1_vowel_left", 0, nullptr);
+	node.setProperty("fil2_vowel_left", 0, nullptr);
+	node.setProperty("fil3_vowel_left", 0, nullptr);
+	node.setProperty("fil1_vowel_right", 2, nullptr);
+	node.setProperty("fil2_vowel_right", 2, nullptr);
+	node.setProperty("fil3_vowel_right", 2, nullptr);
 
 	node = m_value_tree_mod;
 	node.setProperty("source_row_0", 0, nullptr);

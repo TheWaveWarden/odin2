@@ -232,10 +232,10 @@
       std::make_unique<AudioParameterFloat>(
           "fil1_ring_mod_amount", "Filter1 RingMod Amount",
           NormalisableRange<float>(0.f, 1.f), 1.f),
-      std::make_unique<AudioParameterInt>("fil1_vowel_left",
-                                          "Filter1 Left Vowel", 0, 7, 0),
-      std::make_unique<AudioParameterInt>("fil1_vowel_right",
-                                          "Filter1 Right Vowel", 0, 7, 2),
+      //std::make_unique<AudioParameterInt>("fil1_vowel_left",
+      //                                    "Filter1 Left Vowel", 0, 7, 0),
+      //std::make_unique<AudioParameterInt>("fil1_vowel_right",
+      //                                    "Filter1 Right Vowel", 0, 7, 2),
       //std::make_unique<AudioParameterInt>("fil1_comb_polarity",
       //                                    "Filter1 Comb Polarity", 0, 1, 0),
       // Filter2
@@ -277,10 +277,10 @@
       std::make_unique<AudioParameterFloat>(
           "fil2_ring_mod_amount", "Filter2 RingMod Amount",
           NormalisableRange<float>(0.f, 1.f), 1.f),
-      std::make_unique<AudioParameterInt>("fil2_vowel_left",
-                                          "Filter2 Left Vowel", 0, 7, 0),
-      std::make_unique<AudioParameterInt>("fil2_vowel_right",
-                                          "Filter2 Right Vowel", 0, 7, 2),
+      //std::make_unique<AudioParameterInt>("fil2_vowel_left",
+      //                                    "Filter2 Left Vowel", 0, 7, 0),
+      //std::make_unique<AudioParameterInt>("fil2_vowel_right",
+      //                                    "Filter2 Right Vowel", 0, 7, 2),
       //std::make_unique<AudioParameterInt>("fil2_comb_polarity",
       //                                    "Filter2 Comb Polarity", 0, 1, 0),
       // Filter3
@@ -314,10 +314,10 @@
       std::make_unique<AudioParameterFloat>(
           "fil3_ring_mod_amount", "Filter3 RingMod Amount",
           NormalisableRange<float>(0.f, 1.f), 1.f),
-      std::make_unique<AudioParameterInt>("fil3_vowel_left",
-                                          "Filter3 Left Vowel", 0, 7, 0),
-      std::make_unique<AudioParameterInt>("fil3_vowel_right",
-                                          "Filter3 Right Vowel", 0, 7, 2),
+      //std::make_unique<AudioParameterInt>("fil3_vowel_left",
+      //                                    "Filter3 Left Vowel", 0, 7, 0),
+      //std::make_unique<AudioParameterInt>("fil3_vowel_right",
+      //                                    "Filter3 Right Vowel", 0, 7, 2),
       //std::make_unique<AudioParameterInt>("fil3_comb_polarity",
       //                                    "Filter3 Comb Polarity", 0, 1, 0),
       // Amp

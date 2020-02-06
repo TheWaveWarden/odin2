@@ -56,8 +56,8 @@ for (int fil = 0; fil < 3; ++fil) {
 	m_fil_ring_mod_amount[fil] =
 	    m_value_tree.getRawParameterValue("fil" + std::to_string(fil + 1) + "_ring_mod_amount");
 	m_fil_sem_transition[fil] = m_value_tree.getRawParameterValue("fil" + std::to_string(fil + 1) + "_sem_transition");
-	m_fil_vowel_left[fil]     = m_value_tree.getRawParameterValue("fil" + std::to_string(fil + 1) + "_vowel_left");
-	m_fil_vowel_right[fil]    = m_value_tree.getRawParameterValue("fil" + std::to_string(fil + 1) + "_vowel_right");
+	//m_fil_vowel_left[fil]     = m_value_tree.getRawParameterValue("fil" + std::to_string(fil + 1) + "_vowel_left");
+	//m_fil_vowel_right[fil]    = m_value_tree.getRawParameterValue("fil" + std::to_string(fil + 1) + "_vowel_right");
 	//m_fil_comb_polarity[fil]  = m_value_tree.getRawParameterValue("fil" + std::to_string(fil + 1) + "_comb_polarity");
 }
 
@@ -266,8 +266,8 @@ for (int fil = 0; fil < 3; ++fil) {
 	//fil formant listener
 	m_value_tree.addParameterListener("fil" + std::to_string(fil + 1) + "_formant_transition",
 	                                  &m_tree_listener_fil_formant);
-	m_value_tree.addParameterListener("fil" + std::to_string(fil + 1) + "_vowel_left", &m_tree_listener_fil_formant);
-	m_value_tree.addParameterListener("fil" + std::to_string(fil + 1) + "_vowel_right", &m_tree_listener_fil_formant);
+	//m_value_tree.addParameterListener("fil" + std::to_string(fil + 1) + "_vowel_left", &m_tree_listener_fil_formant);
+	//m_value_tree.addParameterListener("fil" + std::to_string(fil + 1) + "_vowel_right", &m_tree_listener_fil_formant);
 }
 
 //amp listener
