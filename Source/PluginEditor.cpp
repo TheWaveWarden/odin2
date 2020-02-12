@@ -981,7 +981,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	setTooltipEnabled(false);
 	addAndMakeVisible(m_tooltip);
 
-	forceValueTreeOntoComponentsOnlyMainPanel();
+	forceValueTreeOntoComponents(false);
 	m_save_load.resetPatchText();
 
 	setSize(ODIN_EDITOR_SIZE_X, ODIN_EDITOR_SIZE_Y);
@@ -994,6 +994,9 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	}
 	writeValueTreeToFile(m_value_tree.state);
 #endif
+
+
+
 }
 
 OdinAudioProcessorEditor::~OdinAudioProcessorEditor() {
@@ -1213,6 +1216,7 @@ void OdinAudioProcessorEditor::forceValueTreeOntoComponentsOnlyMainPanel() {
 }
 
 void OdinAudioProcessorEditor::forceValueTreeOntoComponents(bool p_reset_audio) {
+
 
 	// reset audioengine
 	if (p_reset_audio) {

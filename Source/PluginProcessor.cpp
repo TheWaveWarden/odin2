@@ -749,7 +749,7 @@ AudioProcessorEditor *OdinAudioProcessor::createEditor() {
 	OdinAudioProcessorEditor *editor = new OdinAudioProcessorEditor(*this, m_value_tree, m_is_standalone_plugin);
 
 	if (m_force_values_onto_gui) {
-		onSetStateInformation();
+		//onSetStateInformation();
 	}
 
 	m_editor_pointer = editor;
@@ -762,9 +762,9 @@ void OdinAudioProcessor::getStateInformation(MemoryBlock &destData) {
 	// this is called when DAW saves a file
 
 	// disable for standalone plugins
-	if (wrapperType == wrapperType_Standalone) {
-		return;
-	}
+	//if (wrapperType == wrapperType_Standalone) {
+	//	return;
+	//}
 
 	auto state = m_value_tree.copyState();
 	std::unique_ptr<XmlElement> xml(state.createXml());
@@ -776,9 +776,9 @@ void OdinAudioProcessor::getStateInformation(MemoryBlock &destData) {
 void OdinAudioProcessor::setStateInformation(const void *data, int sizeInBytes) {
 
 	// disable for standalone plugins
-	if (wrapperType == wrapperType_Standalone) {
-		return;
-	}
+	//if (wrapperType == wrapperType_Standalone) {
+	//	return;
+	//}
 
 	std::unique_ptr<XmlElement> xmlState(getXmlFromBinary(data, sizeInBytes));
 	if (xmlState.get() != nullptr) {
@@ -808,6 +808,10 @@ void OdinAudioProcessor::setStateInformation(const void *data, int sizeInBytes) 
 				m_midi_control_param_map.emplace(
 				    (int)m_value_tree_midi_learn[m_value_tree_midi_learn.getPropertyName(i)],
 				    m_value_tree.getParameter(m_value_tree_midi_learn.getPropertyName(i)));
+			}
+
+			if(m_editor_pointer){
+				m_editor_pointer->forceValueTreeOntoComponents(false);
 			}
 		}
 	}

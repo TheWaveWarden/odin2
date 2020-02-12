@@ -351,7 +351,8 @@ private:
 	//float m_max_buffer_time = 0;
 	//float m_min_buffer_time = 9999999999;
 
-	OdinAudioProcessorEditor *m_editor_pointer;
+	//todo make unique pointer???
+	OdinAudioProcessorEditor *m_editor_pointer = nullptr;
 
 	int m_osc_type[3] = {OSC_TYPE_ANALOG, 1, 1};
 	int m_fil_type[3] = {FILTER_TYPE_LP24, 1, 1};

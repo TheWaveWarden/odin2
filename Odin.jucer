@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT id="vpwEHn" name="Odin2" projectType="audioplug" jucerVersion="5.4.3"
+<JUCERPROJECT id="vpwEHn" name="Odin2" projectType="audioplug" jucerVersion="5.4.5"
               pluginFormats="buildStandalone,buildVST,buildVST3" version="2.0.0"
               companyName="BommelDSP" companyWebsite="www.BommelDSP.com" pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn"
               pluginManufacturerCode="BDSP" pluginCode="ODIN" pluginChannelConfigs="{0,2}">
@@ -1012,7 +1012,8 @@
     </LINUX_MAKE>
     <VS2019 targetFolder="Builds/VisualStudio2019" extraCompilerFlags="/arch:AVX">
       <CONFIGURATIONS>
-        <CONFIGURATION isDebug="1" name="Debug" defines="ODIN_WIN&#10;ODIN_DEBUG" headerPath="E:\odin2\Odin\Source&#10;E:\JUCE2\JUCE\VST2_SDK"/>
+        <CONFIGURATION isDebug="1" name="Debug" defines="ODIN_WIN&#10;ODIN_DEBUG" headerPath="E:\odin2\Odin\Source&#10;E:\JUCE2\JUCE\VST2_SDK"
+                       targetName="Odin2DEBUG"/>
         <CONFIGURATION name="Release" defines="ODIN_WIN&#10;ODIN_RELEASE" headerPath="E:\odin2\Odin\Source&#10;E:\JUCE2\JUCE\VST2_SDK"
                        isDebug="0" optimisation="4" linkTimeOptimisation="1"/>
       </CONFIGURATIONS>
