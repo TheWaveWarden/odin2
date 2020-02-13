@@ -986,7 +986,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 
 	setSize(ODIN_EDITOR_SIZE_X, ODIN_EDITOR_SIZE_Y);
 	
-	DBG("Display_Scale: " + std::to_string(Desktop::getInstance().getDisplays().getMainDisplay().scale));
+	//DBG("Display_Scale: " + std::to_string(Desktop::getInstance().getDisplays().getMainDisplay().scale));
 
 #ifdef ODIN_LINUX
 	if (!writeComponentImageToFile(*this)) {

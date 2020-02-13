@@ -1,596 +1,596 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <Odin>
-  <PARAM id="amp_gain" value="0"/>
-  <PARAM id="amp_pan" value="0"/>
-  <PARAM id="amp_width" value="0"/>
-  <PARAM id="chorus_amount" value="4.000000059604645e-1"/>
-  <PARAM id="chorus_drywet" value="1"/>
-  <PARAM id="chorus_feedback" value="0"/>
-  <PARAM id="chorus_on" value="0"/>
-  <PARAM id="chorus_rate" value="1.500000208616257e-1"/>
-  <PARAM id="chorus_reset" value="0"/>
-  <PARAM id="delay_dry" value="1"/>
-  <PARAM id="delay_ducking" value="0"/>
-  <PARAM id="delay_feedback" value="5.999999642372131e-1"/>
-  <PARAM id="delay_hp" value="8e1"/>
-  <PARAM id="delay_on" value="0"/>
-  <PARAM id="delay_pingpong" value="0"/>
-  <PARAM id="delay_time" value="1"/>
-  <PARAM id="delay_wet" value="7.999999523162842e-1"/>
-  <PARAM id="dist_boost" value="3.00000011920929e-1"/>
-  <PARAM id="dist_drywet" value="1"/>
-  <PARAM id="env1_attack" value="9.999999776482582e-3"/>
-  <PARAM id="env1_decay" value="9.999998807907104e-1"/>
-  <PARAM id="env1_loop" value="0"/>
-  <PARAM id="env1_release" value="9.999999776482582e-3"/>
-  <PARAM id="env1_sustain" value="5e-1"/>
-  <PARAM id="env2_attack" value="9.999999776482582e-3"/>
-  <PARAM id="env2_decay" value="8.00000011920929e-1"/>
-  <PARAM id="env2_loop" value="0"/>
-  <PARAM id="env2_release" value="9.999999776482582e-3"/>
-  <PARAM id="env2_sustain" value="0"/>
-  <PARAM id="env3_attack" value="9.999999776482582e-3"/>
-  <PARAM id="env3_decay" value="8.00000011920929e-1"/>
-  <PARAM id="env3_loop" value="0"/>
-  <PARAM id="env3_release" value="9.999999776482582e-3"/>
-  <PARAM id="env3_sustain" value="0"/>
-  <PARAM id="env4_attack" value="9.999999776482582e-3"/>
-  <PARAM id="env4_decay" value="9.999998807907104e-1"/>
-  <PARAM id="env4_loop" value="0"/>
-  <PARAM id="env4_release" value="9.999999776482582e-3"/>
-  <PARAM id="env4_sustain" value="5e-1"/>
-  <PARAM id="fil1_env" value="0"/>
-  <PARAM id="fil1_formant_transition" value="0"/>
-  <PARAM id="fil1_freq" value="1.999999877929688e3"/>
-  <PARAM id="fil1_gain" value="0"/>
-  <PARAM id="fil1_kbd" value="0"/>
-  <PARAM id="fil1_osc1" value="1"/>
-  <PARAM id="fil1_osc2" value="1"/>
-  <PARAM id="fil1_osc3" value="1"/>
-  <PARAM id="fil1_res" value="0"/>
-  <PARAM id="fil1_ring_mod_amount" value="1"/>
-  <PARAM id="fil1_saturation" value="0"/>
-  <PARAM id="fil1_sem_transition" value="-1"/>
-  <PARAM id="fil1_to_amp" value="0"/>
-  <PARAM id="fil1_vel" value="0"/>
-  <PARAM id="fil2_env" value="0"/>
-  <PARAM id="fil2_fil1" value="1"/>
-  <PARAM id="fil2_formant_transition" value="0"/>
-  <PARAM id="fil2_freq" value="1.999999877929688e3"/>
-  <PARAM id="fil2_gain" value="0"/>
-  <PARAM id="fil2_kbd" value="0"/>
-  <PARAM id="fil2_osc1" value="0"/>
-  <PARAM id="fil2_osc2" value="0"/>
-  <PARAM id="fil2_osc3" value="0"/>
-  <PARAM id="fil2_res" value="0"/>
-  <PARAM id="fil2_ring_mod_amount" value="1"/>
-  <PARAM id="fil2_saturation" value="0"/>
-  <PARAM id="fil2_sem_transition" value="-1"/>
-  <PARAM id="fil2_to_amp" value="1"/>
-  <PARAM id="fil2_vel" value="0"/>
-  <PARAM id="fil3_env" value="0"/>
-  <PARAM id="fil3_formant_transition" value="0"/>
-  <PARAM id="fil3_freq" value="1.999999877929688e3"/>
-  <PARAM id="fil3_gain" value="0"/>
-  <PARAM id="fil3_kbd" value="0"/>
-  <PARAM id="fil3_res" value="0"/>
-  <PARAM id="fil3_ring_mod_amount" value="1"/>
-  <PARAM id="fil3_saturation" value="0"/>
-  <PARAM id="fil3_sem_transition" value="-1"/>
-  <PARAM id="fil3_vel" value="0"/>
-  <PARAM id="flanger_amount" value="3.00000011920929e-1"/>
-  <PARAM id="flanger_drywet" value="1"/>
-  <PARAM id="flanger_feedback" value="5.999999046325684e-1"/>
-  <PARAM id="flanger_on" value="0"/>
-  <PARAM id="flanger_rate" value="1.500000208616257e-1"/>
-  <PARAM id="flanger_reset" value="0"/>
-  <PARAM id="glide" value="0"/>
+  <PARAM id="amp_gain" value="0.0"/>
+  <PARAM id="amp_pan" value="0.0"/>
+  <PARAM id="amp_width" value="0.0"/>
+  <PARAM id="chorus_amount" value="0.4000000059604645"/>
+  <PARAM id="chorus_drywet" value="1.0"/>
+  <PARAM id="chorus_feedback" value="0.0"/>
+  <PARAM id="chorus_on" value="0.0"/>
+  <PARAM id="chorus_rate" value="0.1500000208616257"/>
+  <PARAM id="chorus_reset" value="0.0"/>
+  <PARAM id="delay_dry" value="1.0"/>
+  <PARAM id="delay_ducking" value="0.0"/>
+  <PARAM id="delay_feedback" value="0.5999999642372131"/>
+  <PARAM id="delay_hp" value="80.0"/>
+  <PARAM id="delay_on" value="0.0"/>
+  <PARAM id="delay_pingpong" value="0.0"/>
+  <PARAM id="delay_time" value="1.0"/>
+  <PARAM id="delay_wet" value="0.7999999523162842"/>
+  <PARAM id="dist_boost" value="0.300000011920929"/>
+  <PARAM id="dist_drywet" value="1.0"/>
+  <PARAM id="env1_attack" value="0.009999999776482582"/>
+  <PARAM id="env1_decay" value="0.9999998807907104"/>
+  <PARAM id="env1_loop" value="0.0"/>
+  <PARAM id="env1_release" value="0.009999999776482582"/>
+  <PARAM id="env1_sustain" value="0.5"/>
+  <PARAM id="env2_attack" value="0.009999999776482582"/>
+  <PARAM id="env2_decay" value="0.800000011920929"/>
+  <PARAM id="env2_loop" value="0.0"/>
+  <PARAM id="env2_release" value="0.009999999776482582"/>
+  <PARAM id="env2_sustain" value="0.0"/>
+  <PARAM id="env3_attack" value="0.009999999776482582"/>
+  <PARAM id="env3_decay" value="0.800000011920929"/>
+  <PARAM id="env3_loop" value="0.0"/>
+  <PARAM id="env3_release" value="0.009999999776482582"/>
+  <PARAM id="env3_sustain" value="0.0"/>
+  <PARAM id="env4_attack" value="0.009999999776482582"/>
+  <PARAM id="env4_decay" value="0.9999998807907104"/>
+  <PARAM id="env4_loop" value="0.0"/>
+  <PARAM id="env4_release" value="0.009999999776482582"/>
+  <PARAM id="env4_sustain" value="0.5"/>
+  <PARAM id="fil1_env" value="0.0"/>
+  <PARAM id="fil1_formant_transition" value="0.0"/>
+  <PARAM id="fil1_freq" value="1999.999877929688"/>
+  <PARAM id="fil1_gain" value="0.0"/>
+  <PARAM id="fil1_kbd" value="0.0"/>
+  <PARAM id="fil1_osc1" value="1.0"/>
+  <PARAM id="fil1_osc2" value="1.0"/>
+  <PARAM id="fil1_osc3" value="1.0"/>
+  <PARAM id="fil1_res" value="0.0"/>
+  <PARAM id="fil1_ring_mod_amount" value="1.0"/>
+  <PARAM id="fil1_saturation" value="0.0"/>
+  <PARAM id="fil1_sem_transition" value="-1.0"/>
+  <PARAM id="fil1_to_amp" value="0.0"/>
+  <PARAM id="fil1_vel" value="0.0"/>
+  <PARAM id="fil2_env" value="0.0"/>
+  <PARAM id="fil2_fil1" value="1.0"/>
+  <PARAM id="fil2_formant_transition" value="0.0"/>
+  <PARAM id="fil2_freq" value="1999.999877929688"/>
+  <PARAM id="fil2_gain" value="0.0"/>
+  <PARAM id="fil2_kbd" value="0.0"/>
+  <PARAM id="fil2_osc1" value="0.0"/>
+  <PARAM id="fil2_osc2" value="0.0"/>
+  <PARAM id="fil2_osc3" value="0.0"/>
+  <PARAM id="fil2_res" value="0.0"/>
+  <PARAM id="fil2_ring_mod_amount" value="1.0"/>
+  <PARAM id="fil2_saturation" value="0.0"/>
+  <PARAM id="fil2_sem_transition" value="-1.0"/>
+  <PARAM id="fil2_to_amp" value="1.0"/>
+  <PARAM id="fil2_vel" value="0.0"/>
+  <PARAM id="fil3_env" value="0.0"/>
+  <PARAM id="fil3_formant_transition" value="0.0"/>
+  <PARAM id="fil3_freq" value="1999.999877929688"/>
+  <PARAM id="fil3_gain" value="0.0"/>
+  <PARAM id="fil3_kbd" value="0.0"/>
+  <PARAM id="fil3_res" value="0.0"/>
+  <PARAM id="fil3_ring_mod_amount" value="1.0"/>
+  <PARAM id="fil3_saturation" value="0.0"/>
+  <PARAM id="fil3_sem_transition" value="-1.0"/>
+  <PARAM id="fil3_vel" value="0.0"/>
+  <PARAM id="flanger_amount" value="0.300000011920929"/>
+  <PARAM id="flanger_drywet" value="1.0"/>
+  <PARAM id="flanger_feedback" value="0.5999999046325684"/>
+  <PARAM id="flanger_on" value="0.0"/>
+  <PARAM id="flanger_rate" value="0.1500000208616257"/>
+  <PARAM id="flanger_reset" value="0.0"/>
+  <PARAM id="glide" value="0.0"/>
   <PARAM id="lfo1_freq" value="1.000000357627869"/>
-  <PARAM id="lfo1_reset" value="0"/>
+  <PARAM id="lfo1_reset" value="0.0"/>
   <PARAM id="lfo2_freq" value="1.000000357627869"/>
-  <PARAM id="lfo2_reset" value="0"/>
+  <PARAM id="lfo2_reset" value="0.0"/>
   <PARAM id="lfo3_freq" value="1.000000357627869"/>
-  <PARAM id="lfo3_reset" value="0"/>
+  <PARAM id="lfo3_reset" value="0.0"/>
   <PARAM id="lfo4_freq" value="1.000000357627869"/>
-  <PARAM id="lfo4_reset" value="0"/>
-  <PARAM id="master" value="0"/>
-  <PARAM id="modwheel" value="0"/>
-  <PARAM id="osc1_arp_on" value="0"/>
-  <PARAM id="osc1_arp_speed" value="2e1"/>
-  <PARAM id="osc1_carrier_ratio" value="1"/>
-  <PARAM id="osc1_chipnoise" value="0"/>
-  <PARAM id="osc1_detune" value="0"/>
-  <PARAM id="osc1_drift" value="0"/>
-  <PARAM id="osc1_exp_fm" value="0"/>
-  <PARAM id="osc1_fine" value="0"/>
-  <PARAM id="osc1_fm" value="0"/>
-  <PARAM id="osc1_hp" value="8e1"/>
-  <PARAM id="osc1_lp" value="1.8e4"/>
-  <PARAM id="osc1_modulator_ratio" value="1"/>
-  <PARAM id="osc1_multi_position" value="0"/>
-  <PARAM id="osc1_oct" value="0"/>
-  <PARAM id="osc1_pos_mod" value="0"/>
-  <PARAM id="osc1_position" value="0"/>
-  <PARAM id="osc1_pulsewidth" value="5e-1"/>
-  <PARAM id="osc1_reset" value="0"/>
-  <PARAM id="osc1_semi" value="0"/>
-  <PARAM id="osc1_spread" value="0"/>
-  <PARAM id="osc1_step_1" value="0"/>
-  <PARAM id="osc1_step_2" value="1.2e1"/>
-  <PARAM id="osc1_step_3" value="7"/>
-  <PARAM id="osc1_step_3_on" value="0"/>
-  <PARAM id="osc1_vec_x" value="0"/>
-  <PARAM id="osc1_vec_y" value="0"/>
-  <PARAM id="osc1_vol" value="0"/>
-  <PARAM id="osc2_arp_on" value="0"/>
-  <PARAM id="osc2_arp_speed" value="2e1"/>
-  <PARAM id="osc2_carrier_ratio" value="1"/>
-  <PARAM id="osc2_chipnoise" value="0"/>
-  <PARAM id="osc2_detune" value="0"/>
-  <PARAM id="osc2_drift" value="0"/>
-  <PARAM id="osc2_exp_fm" value="0"/>
-  <PARAM id="osc2_fine" value="0"/>
-  <PARAM id="osc2_fm" value="0"/>
-  <PARAM id="osc2_hp" value="8e1"/>
-  <PARAM id="osc2_lp" value="1.8e4"/>
-  <PARAM id="osc2_modulator_ratio" value="1"/>
-  <PARAM id="osc2_multi_position" value="0"/>
-  <PARAM id="osc2_oct" value="0"/>
-  <PARAM id="osc2_pos_mod" value="0"/>
-  <PARAM id="osc2_position" value="0"/>
-  <PARAM id="osc2_pulsewidth" value="5e-1"/>
-  <PARAM id="osc2_reset" value="0"/>
-  <PARAM id="osc2_semi" value="0"/>
-  <PARAM id="osc2_spread" value="0"/>
-  <PARAM id="osc2_step_1" value="0"/>
-  <PARAM id="osc2_step_2" value="1.2e1"/>
-  <PARAM id="osc2_step_3" value="7"/>
-  <PARAM id="osc2_step_3_on" value="0"/>
-  <PARAM id="osc2_sync" value="0"/>
-  <PARAM id="osc2_vec_x" value="0"/>
-  <PARAM id="osc2_vec_y" value="0"/>
-  <PARAM id="osc2_vol" value="0"/>
-  <PARAM id="osc3_arp_on" value="0"/>
-  <PARAM id="osc3_arp_speed" value="2e1"/>
-  <PARAM id="osc3_carrier_ratio" value="1"/>
-  <PARAM id="osc3_chipnoise" value="0"/>
-  <PARAM id="osc3_detune" value="0"/>
-  <PARAM id="osc3_drift" value="0"/>
-  <PARAM id="osc3_exp_fm" value="0"/>
-  <PARAM id="osc3_fine" value="0"/>
-  <PARAM id="osc3_fm" value="0"/>
-  <PARAM id="osc3_hp" value="8e1"/>
-  <PARAM id="osc3_lp" value="1.8e4"/>
-  <PARAM id="osc3_modulator_ratio" value="1"/>
-  <PARAM id="osc3_multi_position" value="0"/>
-  <PARAM id="osc3_oct" value="0"/>
-  <PARAM id="osc3_pos_mod" value="0"/>
-  <PARAM id="osc3_position" value="0"/>
-  <PARAM id="osc3_pulsewidth" value="5e-1"/>
-  <PARAM id="osc3_reset" value="0"/>
-  <PARAM id="osc3_semi" value="0"/>
-  <PARAM id="osc3_spread" value="0"/>
-  <PARAM id="osc3_step_1" value="0"/>
-  <PARAM id="osc3_step_2" value="1.2e1"/>
-  <PARAM id="osc3_step_3" value="7"/>
-  <PARAM id="osc3_step_3_on" value="0"/>
-  <PARAM id="osc3_sync" value="0"/>
-  <PARAM id="osc3_vec_x" value="0"/>
-  <PARAM id="osc3_vec_y" value="0"/>
-  <PARAM id="osc3_vol" value="0"/>
-  <PARAM id="phaser_drywet" value="1"/>
-  <PARAM id="phaser_feedback" value="2.5e-1"/>
-  <PARAM id="phaser_freq" value="3.999999755859375e3"/>
-  <PARAM id="phaser_mod" value="3.00000011920929e-1"/>
-  <PARAM id="phaser_on" value="0"/>
-  <PARAM id="phaser_rate" value="2.500000596046448e-1"/>
-  <PARAM id="phaser_reset" value="0"/>
-  <PARAM id="pitchbend" value="0"/>
-  <PARAM id="pitchbend_amount" value="1.2e1"/>
-  <PARAM id="xy_x" value="0"/>
-  <PARAM id="xy_y" value="0"/>
-  <draw osc1_wavedraw_values_0="0" osc2_wavedraw_values_0="0" osc3_wavedraw_values_0="0"
-        osc1_wavedraw_values_1="2.929465286433697e-2" osc2_wavedraw_values_1="2.929465286433697e-2"
-        osc3_wavedraw_values_1="2.929465286433697e-2" osc1_wavedraw_values_2="5.855825915932655e-2"
-        osc2_wavedraw_values_2="5.855825915932655e-2" osc3_wavedraw_values_2="5.855825915932655e-2"
-        osc1_wavedraw_values_3="8.775980770587921e-2" osc2_wavedraw_values_3="8.775980770587921e-2"
-        osc3_wavedraw_values_3="8.775980770587921e-2" osc1_wavedraw_values_4="1.168683543801308e-1"
-        osc2_wavedraw_values_4="1.168683543801308e-1" osc3_wavedraw_values_4="1.168683543801308e-1"
-        osc1_wavedraw_values_5="1.458530426025391e-1" osc2_wavedraw_values_5="1.458530426025391e-1"
-        osc3_wavedraw_values_5="1.458530426025391e-1" osc1_wavedraw_values_6="1.746831685304642e-1"
-        osc2_wavedraw_values_6="1.746831685304642e-1" osc3_wavedraw_values_6="1.746831685304642e-1"
-        osc1_wavedraw_values_7="2.033281773328781e-1" osc2_wavedraw_values_7="2.033281773328781e-1"
-        osc3_wavedraw_values_7="2.033281773328781e-1" osc1_wavedraw_values_8="2.317577004432678e-1"
-        osc2_wavedraw_values_8="2.317577004432678e-1" osc3_wavedraw_values_8="2.317577004432678e-1"
-        osc1_wavedraw_values_9="2.599416077136993e-1" osc2_wavedraw_values_9="2.599416077136993e-1"
-        osc3_wavedraw_values_9="2.599416077136993e-1" osc1_wavedraw_values_10="2.878500521183014e-1"
-        osc2_wavedraw_values_10="2.878500521183014e-1" osc3_wavedraw_values_10="2.878500521183014e-1"
-        osc1_wavedraw_values_11="3.15453439950943e-1" osc2_wavedraw_values_11="3.15453439950943e-1"
-        osc3_wavedraw_values_11="3.15453439950943e-1" osc1_wavedraw_values_12="3.427225351333618e-1"
-        osc2_wavedraw_values_12="3.427225351333618e-1" osc3_wavedraw_values_12="3.427225351333618e-1"
-        osc1_wavedraw_values_13="3.696284294128418e-1" osc2_wavedraw_values_13="3.696284294128418e-1"
-        osc3_wavedraw_values_13="3.696284294128418e-1" osc1_wavedraw_values_14="3.961425721645355e-1"
-        osc2_wavedraw_values_14="3.961425721645355e-1" osc3_wavedraw_values_14="3.961425721645355e-1"
-        osc1_wavedraw_values_15="4.222369194030762e-1" osc2_wavedraw_values_15="4.222369194030762e-1"
-        osc3_wavedraw_values_15="4.222369194030762e-1" osc1_wavedraw_values_16="4.47883814573288e-1"
-        osc2_wavedraw_values_16="4.47883814573288e-1" osc3_wavedraw_values_16="4.47883814573288e-1"
-        osc1_wavedraw_values_17="4.730560481548309e-1" osc2_wavedraw_values_17="4.730560481548309e-1"
-        osc3_wavedraw_values_17="4.730560481548309e-1" osc1_wavedraw_values_18="4.977269470691681e-1"
-        osc2_wavedraw_values_18="4.977269470691681e-1" osc3_wavedraw_values_18="4.977269470691681e-1"
-        osc1_wavedraw_values_19="5.218703746795654e-1" osc2_wavedraw_values_19="5.218703746795654e-1"
-        osc3_wavedraw_values_19="5.218703746795654e-1" osc1_wavedraw_values_20="5.454607605934143e-1"
-        osc2_wavedraw_values_20="5.454607605934143e-1" osc3_wavedraw_values_20="5.454607605934143e-1"
-        osc1_wavedraw_values_21="5.684731006622314e-1" osc2_wavedraw_values_21="5.684731006622314e-1"
-        osc3_wavedraw_values_21="5.684731006622314e-1" osc1_wavedraw_values_22="5.908829569816589e-1"
-        osc2_wavedraw_values_22="5.908829569816589e-1" osc3_wavedraw_values_22="5.908829569816589e-1"
-        osc1_wavedraw_values_23="6.126666665077209e-1" osc2_wavedraw_values_23="6.126666665077209e-1"
-        osc3_wavedraw_values_23="6.126666665077209e-1" osc1_wavedraw_values_24="6.338011026382446e-1"
-        osc2_wavedraw_values_24="6.338011026382446e-1" osc3_wavedraw_values_24="6.338011026382446e-1"
-        osc1_wavedraw_values_25="6.542637944221497e-1" osc2_wavedraw_values_25="6.542637944221497e-1"
-        osc3_wavedraw_values_25="6.542637944221497e-1" osc1_wavedraw_values_26="6.740331649780273e-1"
-        osc2_wavedraw_values_26="6.740331649780273e-1" osc3_wavedraw_values_26="6.740331649780273e-1"
-        osc1_wavedraw_values_27="6.930882334709167e-1" osc2_wavedraw_values_27="6.930882334709167e-1"
-        osc3_wavedraw_values_27="6.930882334709167e-1" osc1_wavedraw_values_28="7.11408793926239e-1"
-        osc2_wavedraw_values_28="7.11408793926239e-1" osc3_wavedraw_values_28="7.11408793926239e-1"
-        osc1_wavedraw_values_29="7.289754152297974e-1" osc2_wavedraw_values_29="7.289754152297974e-1"
-        osc3_wavedraw_values_29="7.289754152297974e-1" osc1_wavedraw_values_30="7.457695007324219e-1"
-        osc2_wavedraw_values_30="7.457695007324219e-1" osc3_wavedraw_values_30="7.457695007324219e-1"
-        osc1_wavedraw_values_31="7.617732882499695e-1" osc2_wavedraw_values_31="7.617732882499695e-1"
-        osc3_wavedraw_values_31="7.617732882499695e-1" osc1_wavedraw_values_32="7.769697308540344e-1"
-        osc2_wavedraw_values_32="7.769697308540344e-1" osc3_wavedraw_values_32="7.769697308540344e-1"
-        osc1_wavedraw_values_33="7.913427948951721e-1" osc2_wavedraw_values_33="7.913427948951721e-1"
-        osc3_wavedraw_values_33="7.913427948951721e-1" osc1_wavedraw_values_34="8.048772215843201e-1"
-        osc2_wavedraw_values_34="8.048772215843201e-1" osc3_wavedraw_values_34="8.048772215843201e-1"
-        osc1_wavedraw_values_35="8.175587058067322e-1" osc2_wavedraw_values_35="8.175587058067322e-1"
-        osc3_wavedraw_values_35="8.175587058067322e-1" osc1_wavedraw_values_36="8.293737173080444e-1"
-        osc2_wavedraw_values_36="8.293737173080444e-1" osc3_wavedraw_values_36="8.293737173080444e-1"
-        osc1_wavedraw_values_37="8.403098583221436e-1" osc2_wavedraw_values_37="8.403098583221436e-1"
-        osc3_wavedraw_values_37="8.403098583221436e-1" osc1_wavedraw_values_38="8.503554463386536e-1"
-        osc2_wavedraw_values_38="8.503554463386536e-1" osc3_wavedraw_values_38="8.503554463386536e-1"
-        osc1_wavedraw_values_39="8.594998717308044e-1" osc2_wavedraw_values_39="8.594998717308044e-1"
-        osc3_wavedraw_values_39="8.594998717308044e-1" osc1_wavedraw_values_40="8.677334189414978e-1"
-        osc2_wavedraw_values_40="8.677334189414978e-1" osc3_wavedraw_values_40="8.677334189414978e-1"
-        osc1_wavedraw_values_41="8.750473856925964e-1" osc2_wavedraw_values_41="8.750473856925964e-1"
-        osc3_wavedraw_values_41="8.750473856925964e-1" osc1_wavedraw_values_42="8.814339637756348e-1"
-        osc2_wavedraw_values_42="8.814339637756348e-1" osc3_wavedraw_values_42="8.814339637756348e-1"
-        osc1_wavedraw_values_43="8.868864774703979e-1" osc2_wavedraw_values_43="8.868864774703979e-1"
-        osc3_wavedraw_values_43="8.868864774703979e-1" osc1_wavedraw_values_44="8.913991451263428e-1"
-        osc2_wavedraw_values_44="8.913991451263428e-1" osc3_wavedraw_values_44="8.913991451263428e-1"
-        osc1_wavedraw_values_45="8.949670791625977e-1" osc2_wavedraw_values_45="8.949670791625977e-1"
-        osc3_wavedraw_values_45="8.949670791625977e-1" osc1_wavedraw_values_46="8.975865840911865e-1"
-        osc2_wavedraw_values_46="8.975865840911865e-1" osc3_wavedraw_values_46="8.975865840911865e-1"
-        osc1_wavedraw_values_47="8.992549180984497e-1" osc2_wavedraw_values_47="8.992549180984497e-1"
-        osc3_wavedraw_values_47="8.992549180984497e-1" osc1_wavedraw_values_48="8.999701738357544e-1"
-        osc2_wavedraw_values_48="8.999701738357544e-1" osc3_wavedraw_values_48="8.999701738357544e-1"
-        osc1_wavedraw_values_49="8.997317552566528e-1" osc2_wavedraw_values_49="8.997317552566528e-1"
-        osc3_wavedraw_values_49="8.997317552566528e-1" osc1_wavedraw_values_50="8.985397815704346e-1"
-        osc2_wavedraw_values_50="8.985397815704346e-1" osc3_wavedraw_values_50="8.985397815704346e-1"
-        osc1_wavedraw_values_51="8.963956236839294e-1" osc2_wavedraw_values_51="8.963956236839294e-1"
-        osc3_wavedraw_values_51="8.963956236839294e-1" osc1_wavedraw_values_52="8.933014273643494e-1"
-        osc2_wavedraw_values_52="8.933014273643494e-1" osc3_wavedraw_values_52="8.933014273643494e-1"
-        osc1_wavedraw_values_53="8.892605900764465e-1" osc2_wavedraw_values_53="8.892605900764465e-1"
-        osc3_wavedraw_values_53="8.892605900764465e-1" osc1_wavedraw_values_54="8.842774033546448e-1"
-        osc2_wavedraw_values_54="8.842774033546448e-1" osc3_wavedraw_values_54="8.842774033546448e-1"
-        osc1_wavedraw_values_55="8.783570528030396e-1" osc2_wavedraw_values_55="8.783570528030396e-1"
-        osc3_wavedraw_values_55="8.783570528030396e-1" osc1_wavedraw_values_56="8.715058565139771e-1"
-        osc2_wavedraw_values_56="8.715058565139771e-1" osc3_wavedraw_values_56="8.715058565139771e-1"
-        osc1_wavedraw_values_57="8.637310266494751e-1" osc2_wavedraw_values_57="8.637310266494751e-1"
-        osc3_wavedraw_values_57="8.637310266494751e-1" osc1_wavedraw_values_58="8.550409078598022e-1"
-        osc2_wavedraw_values_58="8.550409078598022e-1" osc3_wavedraw_values_58="8.550409078598022e-1"
-        osc1_wavedraw_values_59="8.454446196556091e-1" osc2_wavedraw_values_59="8.454446196556091e-1"
-        osc3_wavedraw_values_59="8.454446196556091e-1" osc1_wavedraw_values_60="8.349524140357971e-1"
-        osc2_wavedraw_values_60="8.349524140357971e-1" osc3_wavedraw_values_60="8.349524140357971e-1"
-        osc1_wavedraw_values_61="8.235753178596497e-1" osc2_wavedraw_values_61="8.235753178596497e-1"
-        osc3_wavedraw_values_61="8.235753178596497e-1" osc1_wavedraw_values_62="8.113254308700562e-1"
-        osc2_wavedraw_values_62="8.113254308700562e-1" osc3_wavedraw_values_62="8.113254308700562e-1"
-        osc1_wavedraw_values_63="7.982158064842224e-1" osc2_wavedraw_values_63="7.982158064842224e-1"
-        osc3_wavedraw_values_63="7.982158064842224e-1" osc1_wavedraw_values_64="7.842601537704468e-1"
-        osc2_wavedraw_values_64="7.842601537704468e-1" osc3_wavedraw_values_64="7.842601537704468e-1"
-        osc1_wavedraw_values_65="7.694734334945679e-1" osc2_wavedraw_values_65="7.694734334945679e-1"
-        osc3_wavedraw_values_65="7.694734334945679e-1" osc1_wavedraw_values_66="7.538712620735168e-1"
-        osc2_wavedraw_values_66="7.538712620735168e-1" osc3_wavedraw_values_66="7.538712620735168e-1"
-        osc1_wavedraw_values_67="7.374701499938965e-1" osc2_wavedraw_values_67="7.374701499938965e-1"
-        osc3_wavedraw_values_67="7.374701499938965e-1" osc1_wavedraw_values_68="7.20287561416626e-1"
-        osc2_wavedraw_values_68="7.20287561416626e-1" osc3_wavedraw_values_68="7.20287561416626e-1"
-        osc1_wavedraw_values_69="7.023415565490723e-1" osc2_wavedraw_values_69="7.023415565490723e-1"
-        osc3_wavedraw_values_69="7.023415565490723e-1" osc1_wavedraw_values_70="6.836512684822083e-1"
-        osc2_wavedraw_values_70="6.836512684822083e-1" osc3_wavedraw_values_70="6.836512684822083e-1"
-        osc1_wavedraw_values_71="6.642364859580994e-1" osc2_wavedraw_values_71="6.642364859580994e-1"
-        osc3_wavedraw_values_71="6.642364859580994e-1" osc1_wavedraw_values_72="6.441177725791931e-1"
-        osc2_wavedraw_values_72="6.441177725791931e-1" osc3_wavedraw_values_72="6.441177725791931e-1"
-        osc1_wavedraw_values_73="6.233164668083191e-1" osc2_wavedraw_values_73="6.233164668083191e-1"
-        osc3_wavedraw_values_73="6.233164668083191e-1" osc1_wavedraw_values_74="6.018545627593994e-1"
-        osc2_wavedraw_values_74="6.018545627593994e-1" osc3_wavedraw_values_74="6.018545627593994e-1"
-        osc1_wavedraw_values_75="5.797548294067383e-1" osc2_wavedraw_values_75="5.797548294067383e-1"
-        osc3_wavedraw_values_75="5.797548294067383e-1" osc1_wavedraw_values_76="5.570407509803772e-1"
-        osc2_wavedraw_values_76="5.570407509803772e-1" osc3_wavedraw_values_76="5.570407509803772e-1"
-        osc1_wavedraw_values_77="5.337362885475159e-1" osc2_wavedraw_values_77="5.337362885475159e-1"
-        osc3_wavedraw_values_77="5.337362885475159e-1" osc1_wavedraw_values_78="5.098662376403809e-1"
-        osc2_wavedraw_values_78="5.098662376403809e-1" osc3_wavedraw_values_78="5.098662376403809e-1"
-        osc1_wavedraw_values_79="4.854558110237122e-1" osc2_wavedraw_values_79="4.854558110237122e-1"
-        osc3_wavedraw_values_79="4.854558110237122e-1" osc1_wavedraw_values_80="4.605309367179871e-1"
-        osc2_wavedraw_values_80="4.605309367179871e-1" osc3_wavedraw_values_80="4.605309367179871e-1"
-        osc1_wavedraw_values_81="4.351180195808411e-1" osc2_wavedraw_values_81="4.351180195808411e-1"
-        osc3_wavedraw_values_81="4.351180195808411e-1" osc1_wavedraw_values_82="4.092439711093903e-1"
-        osc2_wavedraw_values_82="4.092439711093903e-1" osc3_wavedraw_values_82="4.092439711093903e-1"
-        osc1_wavedraw_values_83="3.829362392425537e-1" osc2_wavedraw_values_83="3.829362392425537e-1"
-        osc3_wavedraw_values_83="3.829362392425537e-1" osc1_wavedraw_values_84="3.562226593494415e-1"
-        osc2_wavedraw_values_84="3.562226593494415e-1" osc3_wavedraw_values_84="3.562226593494415e-1"
-        osc1_wavedraw_values_85="3.291316032409668e-1" osc2_wavedraw_values_85="3.291316032409668e-1"
-        osc3_wavedraw_values_85="3.291316032409668e-1" osc1_wavedraw_values_86="3.016917109489441e-1"
-        osc2_wavedraw_values_86="3.016917109489441e-1" osc3_wavedraw_values_86="3.016917109489441e-1"
-        osc1_wavedraw_values_87="2.739321291446686e-1" osc2_wavedraw_values_87="2.739321291446686e-1"
-        osc3_wavedraw_values_87="2.739321291446686e-1" osc1_wavedraw_values_88="2.458822280168533e-1"
-        osc2_wavedraw_values_88="2.458822280168533e-1" osc3_wavedraw_values_88="2.458822280168533e-1"
-        osc1_wavedraw_values_89="2.175717651844025e-1" osc2_wavedraw_values_89="2.175717651844025e-1"
-        osc3_wavedraw_values_89="2.175717651844025e-1" osc1_wavedraw_values_90="1.89030721783638e-1"
-        osc2_wavedraw_values_90="1.89030721783638e-1" osc3_wavedraw_values_90="1.89030721783638e-1"
-        osc1_wavedraw_values_91="1.602893471717834e-1" osc2_wavedraw_values_91="1.602893471717834e-1"
-        osc3_wavedraw_values_91="1.602893471717834e-1" osc1_wavedraw_values_92="1.31378099322319e-1"
-        osc2_wavedraw_values_92="1.31378099322319e-1" osc3_wavedraw_values_92="1.31378099322319e-1"
-        osc1_wavedraw_values_93="1.023276373744011e-1" osc2_wavedraw_values_93="1.023276373744011e-1"
-        osc3_wavedraw_values_93="1.023276373744011e-1" osc1_wavedraw_values_94="7.316872477531433e-2"
-        osc2_wavedraw_values_94="7.316872477531433e-2" osc3_wavedraw_values_94="7.316872477531433e-2"
-        osc1_wavedraw_values_95="4.393227770924568e-2" osc2_wavedraw_values_95="4.393227770924568e-2"
-        osc3_wavedraw_values_95="4.393227770924568e-2" osc1_wavedraw_values_96="1.464926730841398e-2"
-        osc2_wavedraw_values_96="1.464926730841398e-2" osc3_wavedraw_values_96="1.464926730841398e-2"
-        osc1_wavedraw_values_97="-1.464926730841398e-2" osc2_wavedraw_values_97="-1.464926730841398e-2"
-        osc3_wavedraw_values_97="-1.464926730841398e-2" osc1_wavedraw_values_98="-4.393227770924568e-2"
-        osc2_wavedraw_values_98="-4.393227770924568e-2" osc3_wavedraw_values_98="-4.393227770924568e-2"
-        osc1_wavedraw_values_99="-7.316872477531433e-2" osc2_wavedraw_values_99="-7.316872477531433e-2"
-        osc3_wavedraw_values_99="-7.316872477531433e-2" osc1_wavedraw_values_100="-1.023276373744011e-1"
-        osc2_wavedraw_values_100="-1.023276373744011e-1" osc3_wavedraw_values_100="-1.023276373744011e-1"
-        osc1_wavedraw_values_101="-1.31378099322319e-1" osc2_wavedraw_values_101="-1.31378099322319e-1"
-        osc3_wavedraw_values_101="-1.31378099322319e-1" osc1_wavedraw_values_102="-1.602893471717834e-1"
-        osc2_wavedraw_values_102="-1.602893471717834e-1" osc3_wavedraw_values_102="-1.602893471717834e-1"
-        osc1_wavedraw_values_103="-1.89030721783638e-1" osc2_wavedraw_values_103="-1.89030721783638e-1"
-        osc3_wavedraw_values_103="-1.89030721783638e-1" osc1_wavedraw_values_104="-2.175717651844025e-1"
-        osc2_wavedraw_values_104="-2.175717651844025e-1" osc3_wavedraw_values_104="-2.175717651844025e-1"
-        osc1_wavedraw_values_105="-2.458822280168533e-1" osc2_wavedraw_values_105="-2.458822280168533e-1"
-        osc3_wavedraw_values_105="-2.458822280168533e-1" osc1_wavedraw_values_106="-2.739321291446686e-1"
-        osc2_wavedraw_values_106="-2.739321291446686e-1" osc3_wavedraw_values_106="-2.739321291446686e-1"
-        osc1_wavedraw_values_107="-3.016917109489441e-1" osc2_wavedraw_values_107="-3.016917109489441e-1"
-        osc3_wavedraw_values_107="-3.016917109489441e-1" osc1_wavedraw_values_108="-3.291316032409668e-1"
-        osc2_wavedraw_values_108="-3.291316032409668e-1" osc3_wavedraw_values_108="-3.291316032409668e-1"
-        osc1_wavedraw_values_109="-3.562226593494415e-1" osc2_wavedraw_values_109="-3.562226593494415e-1"
-        osc3_wavedraw_values_109="-3.562226593494415e-1" osc1_wavedraw_values_110="-3.829362392425537e-1"
-        osc2_wavedraw_values_110="-3.829362392425537e-1" osc3_wavedraw_values_110="-3.829362392425537e-1"
-        osc1_wavedraw_values_111="-4.092439711093903e-1" osc2_wavedraw_values_111="-4.092439711093903e-1"
-        osc3_wavedraw_values_111="-4.092439711093903e-1" osc1_wavedraw_values_112="-4.351180195808411e-1"
-        osc2_wavedraw_values_112="-4.351180195808411e-1" osc3_wavedraw_values_112="-4.351180195808411e-1"
-        osc1_wavedraw_values_113="-4.605309367179871e-1" osc2_wavedraw_values_113="-4.605309367179871e-1"
-        osc3_wavedraw_values_113="-4.605309367179871e-1" osc1_wavedraw_values_114="-4.854558110237122e-1"
-        osc2_wavedraw_values_114="-4.854558110237122e-1" osc3_wavedraw_values_114="-4.854558110237122e-1"
-        osc1_wavedraw_values_115="-5.098662376403809e-1" osc2_wavedraw_values_115="-5.098662376403809e-1"
-        osc3_wavedraw_values_115="-5.098662376403809e-1" osc1_wavedraw_values_116="-5.337362885475159e-1"
-        osc2_wavedraw_values_116="-5.337362885475159e-1" osc3_wavedraw_values_116="-5.337362885475159e-1"
-        osc1_wavedraw_values_117="-5.570407509803772e-1" osc2_wavedraw_values_117="-5.570407509803772e-1"
-        osc3_wavedraw_values_117="-5.570407509803772e-1" osc1_wavedraw_values_118="-5.797548294067383e-1"
-        osc2_wavedraw_values_118="-5.797548294067383e-1" osc3_wavedraw_values_118="-5.797548294067383e-1"
-        osc1_wavedraw_values_119="-6.018545627593994e-1" osc2_wavedraw_values_119="-6.018545627593994e-1"
-        osc3_wavedraw_values_119="-6.018545627593994e-1" osc1_wavedraw_values_120="-6.233164668083191e-1"
-        osc2_wavedraw_values_120="-6.233164668083191e-1" osc3_wavedraw_values_120="-6.233164668083191e-1"
-        osc1_wavedraw_values_121="-6.441177725791931e-1" osc2_wavedraw_values_121="-6.441177725791931e-1"
-        osc3_wavedraw_values_121="-6.441177725791931e-1" osc1_wavedraw_values_122="-6.642364859580994e-1"
-        osc2_wavedraw_values_122="-6.642364859580994e-1" osc3_wavedraw_values_122="-6.642364859580994e-1"
-        osc1_wavedraw_values_123="-6.836512684822083e-1" osc2_wavedraw_values_123="-6.836512684822083e-1"
-        osc3_wavedraw_values_123="-6.836512684822083e-1" osc1_wavedraw_values_124="-7.023415565490723e-1"
-        osc2_wavedraw_values_124="-7.023415565490723e-1" osc3_wavedraw_values_124="-7.023415565490723e-1"
-        osc1_wavedraw_values_125="-7.20287561416626e-1" osc2_wavedraw_values_125="-7.20287561416626e-1"
-        osc3_wavedraw_values_125="-7.20287561416626e-1" osc1_wavedraw_values_126="-7.374701499938965e-1"
-        osc2_wavedraw_values_126="-7.374701499938965e-1" osc3_wavedraw_values_126="-7.374701499938965e-1"
-        osc1_wavedraw_values_127="-7.538712620735168e-1" osc2_wavedraw_values_127="-7.538712620735168e-1"
-        osc3_wavedraw_values_127="-7.538712620735168e-1" osc1_wavedraw_values_128="-7.694734334945679e-1"
-        osc2_wavedraw_values_128="-7.694734334945679e-1" osc3_wavedraw_values_128="-7.694734334945679e-1"
-        osc1_wavedraw_values_129="-7.842601537704468e-1" osc2_wavedraw_values_129="-7.842601537704468e-1"
-        osc3_wavedraw_values_129="-7.842601537704468e-1" osc1_wavedraw_values_130="-7.982158064842224e-1"
-        osc2_wavedraw_values_130="-7.982158064842224e-1" osc3_wavedraw_values_130="-7.982158064842224e-1"
-        osc1_wavedraw_values_131="-8.113254308700562e-1" osc2_wavedraw_values_131="-8.113254308700562e-1"
-        osc3_wavedraw_values_131="-8.113254308700562e-1" osc1_wavedraw_values_132="-8.235753178596497e-1"
-        osc2_wavedraw_values_132="-8.235753178596497e-1" osc3_wavedraw_values_132="-8.235753178596497e-1"
-        osc1_wavedraw_values_133="-8.349524140357971e-1" osc2_wavedraw_values_133="-8.349524140357971e-1"
-        osc3_wavedraw_values_133="-8.349524140357971e-1" osc1_wavedraw_values_134="-8.454446196556091e-1"
-        osc2_wavedraw_values_134="-8.454446196556091e-1" osc3_wavedraw_values_134="-8.454446196556091e-1"
-        osc1_wavedraw_values_135="-8.550409078598022e-1" osc2_wavedraw_values_135="-8.550409078598022e-1"
-        osc3_wavedraw_values_135="-8.550409078598022e-1" osc1_wavedraw_values_136="-8.637310266494751e-1"
-        osc2_wavedraw_values_136="-8.637310266494751e-1" osc3_wavedraw_values_136="-8.637310266494751e-1"
-        osc1_wavedraw_values_137="-8.715058565139771e-1" osc2_wavedraw_values_137="-8.715058565139771e-1"
-        osc3_wavedraw_values_137="-8.715058565139771e-1" osc1_wavedraw_values_138="-8.783570528030396e-1"
-        osc2_wavedraw_values_138="-8.783570528030396e-1" osc3_wavedraw_values_138="-8.783570528030396e-1"
-        osc1_wavedraw_values_139="-8.842774033546448e-1" osc2_wavedraw_values_139="-8.842774033546448e-1"
-        osc3_wavedraw_values_139="-8.842774033546448e-1" osc1_wavedraw_values_140="-8.892605900764465e-1"
-        osc2_wavedraw_values_140="-8.892605900764465e-1" osc3_wavedraw_values_140="-8.892605900764465e-1"
-        osc1_wavedraw_values_141="-8.933014273643494e-1" osc2_wavedraw_values_141="-8.933014273643494e-1"
-        osc3_wavedraw_values_141="-8.933014273643494e-1" osc1_wavedraw_values_142="-8.963956236839294e-1"
-        osc2_wavedraw_values_142="-8.963956236839294e-1" osc3_wavedraw_values_142="-8.963956236839294e-1"
-        osc1_wavedraw_values_143="-8.985397815704346e-1" osc2_wavedraw_values_143="-8.985397815704346e-1"
-        osc3_wavedraw_values_143="-8.985397815704346e-1" osc1_wavedraw_values_144="-8.997317552566528e-1"
-        osc2_wavedraw_values_144="-8.997317552566528e-1" osc3_wavedraw_values_144="-8.997317552566528e-1"
-        osc1_wavedraw_values_145="-8.999701738357544e-1" osc2_wavedraw_values_145="-8.999701738357544e-1"
-        osc3_wavedraw_values_145="-8.999701738357544e-1" osc1_wavedraw_values_146="-8.992549180984497e-1"
-        osc2_wavedraw_values_146="-8.992549180984497e-1" osc3_wavedraw_values_146="-8.992549180984497e-1"
-        osc1_wavedraw_values_147="-8.975865840911865e-1" osc2_wavedraw_values_147="-8.975865840911865e-1"
-        osc3_wavedraw_values_147="-8.975865840911865e-1" osc1_wavedraw_values_148="-8.949670791625977e-1"
-        osc2_wavedraw_values_148="-8.949670791625977e-1" osc3_wavedraw_values_148="-8.949670791625977e-1"
-        osc1_wavedraw_values_149="-8.913991451263428e-1" osc2_wavedraw_values_149="-8.913991451263428e-1"
-        osc3_wavedraw_values_149="-8.913991451263428e-1" osc1_wavedraw_values_150="-8.868864774703979e-1"
-        osc2_wavedraw_values_150="-8.868864774703979e-1" osc3_wavedraw_values_150="-8.868864774703979e-1"
-        osc1_wavedraw_values_151="-8.814339637756348e-1" osc2_wavedraw_values_151="-8.814339637756348e-1"
-        osc3_wavedraw_values_151="-8.814339637756348e-1" osc1_wavedraw_values_152="-8.750473856925964e-1"
-        osc2_wavedraw_values_152="-8.750473856925964e-1" osc3_wavedraw_values_152="-8.750473856925964e-1"
-        osc1_wavedraw_values_153="-8.677334189414978e-1" osc2_wavedraw_values_153="-8.677334189414978e-1"
-        osc3_wavedraw_values_153="-8.677334189414978e-1" osc1_wavedraw_values_154="-8.594998717308044e-1"
-        osc2_wavedraw_values_154="-8.594998717308044e-1" osc3_wavedraw_values_154="-8.594998717308044e-1"
-        osc1_wavedraw_values_155="-8.503554463386536e-1" osc2_wavedraw_values_155="-8.503554463386536e-1"
-        osc3_wavedraw_values_155="-8.503554463386536e-1" osc1_wavedraw_values_156="-8.403098583221436e-1"
-        osc2_wavedraw_values_156="-8.403098583221436e-1" osc3_wavedraw_values_156="-8.403098583221436e-1"
-        osc1_wavedraw_values_157="-8.293737173080444e-1" osc2_wavedraw_values_157="-8.293737173080444e-1"
-        osc3_wavedraw_values_157="-8.293737173080444e-1" osc1_wavedraw_values_158="-8.175587058067322e-1"
-        osc2_wavedraw_values_158="-8.175587058067322e-1" osc3_wavedraw_values_158="-8.175587058067322e-1"
-        osc1_wavedraw_values_159="-8.048772215843201e-1" osc2_wavedraw_values_159="-8.048772215843201e-1"
-        osc3_wavedraw_values_159="-8.048772215843201e-1" osc1_wavedraw_values_160="-7.913427948951721e-1"
-        osc2_wavedraw_values_160="-7.913427948951721e-1" osc3_wavedraw_values_160="-7.913427948951721e-1"
-        osc1_wavedraw_values_161="-7.769697308540344e-1" osc2_wavedraw_values_161="-7.769697308540344e-1"
-        osc3_wavedraw_values_161="-7.769697308540344e-1" osc1_wavedraw_values_162="-7.617732882499695e-1"
-        osc2_wavedraw_values_162="-7.617732882499695e-1" osc3_wavedraw_values_162="-7.617732882499695e-1"
-        osc1_wavedraw_values_163="-7.457695007324219e-1" osc2_wavedraw_values_163="-7.457695007324219e-1"
-        osc3_wavedraw_values_163="-7.457695007324219e-1" osc1_wavedraw_values_164="-7.289754152297974e-1"
-        osc2_wavedraw_values_164="-7.289754152297974e-1" osc3_wavedraw_values_164="-7.289754152297974e-1"
-        osc1_wavedraw_values_165="-7.11408793926239e-1" osc2_wavedraw_values_165="-7.11408793926239e-1"
-        osc3_wavedraw_values_165="-7.11408793926239e-1" osc1_wavedraw_values_166="-6.930882334709167e-1"
-        osc2_wavedraw_values_166="-6.930882334709167e-1" osc3_wavedraw_values_166="-6.930882334709167e-1"
-        osc1_wavedraw_values_167="-6.740331649780273e-1" osc2_wavedraw_values_167="-6.740331649780273e-1"
-        osc3_wavedraw_values_167="-6.740331649780273e-1" osc1_wavedraw_values_168="-6.542637944221497e-1"
-        osc2_wavedraw_values_168="-6.542637944221497e-1" osc3_wavedraw_values_168="-6.542637944221497e-1"
-        osc1_wavedraw_values_169="-6.338011026382446e-1" osc2_wavedraw_values_169="-6.338011026382446e-1"
-        osc3_wavedraw_values_169="-6.338011026382446e-1" osc1_wavedraw_values_170="-6.126666665077209e-1"
-        osc2_wavedraw_values_170="-6.126666665077209e-1" osc3_wavedraw_values_170="-6.126666665077209e-1"
-        osc1_wavedraw_values_171="-5.908829569816589e-1" osc2_wavedraw_values_171="-5.908829569816589e-1"
-        osc3_wavedraw_values_171="-5.908829569816589e-1" osc1_wavedraw_values_172="-5.684731006622314e-1"
-        osc2_wavedraw_values_172="-5.684731006622314e-1" osc3_wavedraw_values_172="-5.684731006622314e-1"
-        osc1_wavedraw_values_173="-5.454607605934143e-1" osc2_wavedraw_values_173="-5.454607605934143e-1"
-        osc3_wavedraw_values_173="-5.454607605934143e-1" osc1_wavedraw_values_174="-5.218703746795654e-1"
-        osc2_wavedraw_values_174="-5.218703746795654e-1" osc3_wavedraw_values_174="-5.218703746795654e-1"
-        osc1_wavedraw_values_175="-4.977269470691681e-1" osc2_wavedraw_values_175="-4.977269470691681e-1"
-        osc3_wavedraw_values_175="-4.977269470691681e-1" osc1_wavedraw_values_176="-4.730560481548309e-1"
-        osc2_wavedraw_values_176="-4.730560481548309e-1" osc3_wavedraw_values_176="-4.730560481548309e-1"
-        osc1_wavedraw_values_177="-4.47883814573288e-1" osc2_wavedraw_values_177="-4.47883814573288e-1"
-        osc3_wavedraw_values_177="-4.47883814573288e-1" osc1_wavedraw_values_178="-4.222369194030762e-1"
-        osc2_wavedraw_values_178="-4.222369194030762e-1" osc3_wavedraw_values_178="-4.222369194030762e-1"
-        osc1_wavedraw_values_179="-3.961425721645355e-1" osc2_wavedraw_values_179="-3.961425721645355e-1"
-        osc3_wavedraw_values_179="-3.961425721645355e-1" osc1_wavedraw_values_180="-3.696284294128418e-1"
-        osc2_wavedraw_values_180="-3.696284294128418e-1" osc3_wavedraw_values_180="-3.696284294128418e-1"
-        osc1_wavedraw_values_181="-3.427225351333618e-1" osc2_wavedraw_values_181="-3.427225351333618e-1"
-        osc3_wavedraw_values_181="-3.427225351333618e-1" osc1_wavedraw_values_182="-3.15453439950943e-1"
-        osc2_wavedraw_values_182="-3.15453439950943e-1" osc3_wavedraw_values_182="-3.15453439950943e-1"
-        osc1_wavedraw_values_183="-2.878500521183014e-1" osc2_wavedraw_values_183="-2.878500521183014e-1"
-        osc3_wavedraw_values_183="-2.878500521183014e-1" osc1_wavedraw_values_184="-2.599416077136993e-1"
-        osc2_wavedraw_values_184="-2.599416077136993e-1" osc3_wavedraw_values_184="-2.599416077136993e-1"
-        osc1_wavedraw_values_185="-2.317577004432678e-1" osc2_wavedraw_values_185="-2.317577004432678e-1"
-        osc3_wavedraw_values_185="-2.317577004432678e-1" osc1_wavedraw_values_186="-2.033281773328781e-1"
-        osc2_wavedraw_values_186="-2.033281773328781e-1" osc3_wavedraw_values_186="-2.033281773328781e-1"
-        osc1_wavedraw_values_187="-1.746831685304642e-1" osc2_wavedraw_values_187="-1.746831685304642e-1"
-        osc3_wavedraw_values_187="-1.746831685304642e-1" osc1_wavedraw_values_188="-1.458530426025391e-1"
-        osc2_wavedraw_values_188="-1.458530426025391e-1" osc3_wavedraw_values_188="-1.458530426025391e-1"
-        osc1_wavedraw_values_189="-1.168683543801308e-1" osc2_wavedraw_values_189="-1.168683543801308e-1"
-        osc3_wavedraw_values_189="-1.168683543801308e-1" osc1_wavedraw_values_190="-8.775980770587921e-2"
-        osc2_wavedraw_values_190="-8.775980770587921e-2" osc3_wavedraw_values_190="-8.775980770587921e-2"
-        osc1_wavedraw_values_191="-5.855825915932655e-2" osc2_wavedraw_values_191="-5.855825915932655e-2"
-        osc3_wavedraw_values_191="-5.855825915932655e-2" osc1_wavedraw_values_192="-2.929465286433697e-2"
-        osc2_wavedraw_values_192="-2.929465286433697e-2" osc3_wavedraw_values_192="-2.929465286433697e-2"
-        osc1_chipdraw_values_0="8.75e-1" osc2_chipdraw_values_0="8.75e-1"
-        osc3_chipdraw_values_0="8.75e-1" osc1_chipdraw_values_1="8.75e-1"
-        osc2_chipdraw_values_1="8.75e-1" osc3_chipdraw_values_1="8.75e-1"
-        osc1_chipdraw_values_2="8.75e-1" osc2_chipdraw_values_2="8.75e-1"
-        osc3_chipdraw_values_2="8.75e-1" osc1_chipdraw_values_3="8.75e-1"
-        osc2_chipdraw_values_3="8.75e-1" osc3_chipdraw_values_3="8.75e-1"
-        osc1_chipdraw_values_4="8.75e-1" osc2_chipdraw_values_4="8.75e-1"
-        osc3_chipdraw_values_4="8.75e-1" osc1_chipdraw_values_5="8.75e-1"
-        osc2_chipdraw_values_5="8.75e-1" osc3_chipdraw_values_5="8.75e-1"
-        osc1_chipdraw_values_6="8.75e-1" osc2_chipdraw_values_6="8.75e-1"
-        osc3_chipdraw_values_6="8.75e-1" osc1_chipdraw_values_7="8.75e-1"
-        osc2_chipdraw_values_7="8.75e-1" osc3_chipdraw_values_7="8.75e-1"
-        osc1_chipdraw_values_8="8.75e-1" osc2_chipdraw_values_8="8.75e-1"
-        osc3_chipdraw_values_8="8.75e-1" osc1_chipdraw_values_9="8.75e-1"
-        osc2_chipdraw_values_9="8.75e-1" osc3_chipdraw_values_9="8.75e-1"
-        osc1_chipdraw_values_10="8.75e-1" osc2_chipdraw_values_10="8.75e-1"
-        osc3_chipdraw_values_10="8.75e-1" osc1_chipdraw_values_11="8.75e-1"
-        osc2_chipdraw_values_11="8.75e-1" osc3_chipdraw_values_11="8.75e-1"
-        osc1_chipdraw_values_12="8.75e-1" osc2_chipdraw_values_12="8.75e-1"
-        osc3_chipdraw_values_12="8.75e-1" osc1_chipdraw_values_13="8.75e-1"
-        osc2_chipdraw_values_13="8.75e-1" osc3_chipdraw_values_13="8.75e-1"
-        osc1_chipdraw_values_14="8.75e-1" osc2_chipdraw_values_14="8.75e-1"
-        osc3_chipdraw_values_14="8.75e-1" osc1_chipdraw_values_15="8.75e-1"
-        osc2_chipdraw_values_15="8.75e-1" osc3_chipdraw_values_15="8.75e-1"
-        osc1_chipdraw_values_16="-8.75e-1" osc2_chipdraw_values_16="-8.75e-1"
-        osc3_chipdraw_values_16="-8.75e-1" osc1_chipdraw_values_17="-8.75e-1"
-        osc2_chipdraw_values_17="-8.75e-1" osc3_chipdraw_values_17="-8.75e-1"
-        osc1_chipdraw_values_18="-8.75e-1" osc2_chipdraw_values_18="-8.75e-1"
-        osc3_chipdraw_values_18="-8.75e-1" osc1_chipdraw_values_19="-8.75e-1"
-        osc2_chipdraw_values_19="-8.75e-1" osc3_chipdraw_values_19="-8.75e-1"
-        osc1_chipdraw_values_20="-8.75e-1" osc2_chipdraw_values_20="-8.75e-1"
-        osc3_chipdraw_values_20="-8.75e-1" osc1_chipdraw_values_21="-8.75e-1"
-        osc2_chipdraw_values_21="-8.75e-1" osc3_chipdraw_values_21="-8.75e-1"
-        osc1_chipdraw_values_22="-8.75e-1" osc2_chipdraw_values_22="-8.75e-1"
-        osc3_chipdraw_values_22="-8.75e-1" osc1_chipdraw_values_23="-8.75e-1"
-        osc2_chipdraw_values_23="-8.75e-1" osc3_chipdraw_values_23="-8.75e-1"
-        osc1_chipdraw_values_24="-8.75e-1" osc2_chipdraw_values_24="-8.75e-1"
-        osc3_chipdraw_values_24="-8.75e-1" osc1_chipdraw_values_25="-8.75e-1"
-        osc2_chipdraw_values_25="-8.75e-1" osc3_chipdraw_values_25="-8.75e-1"
-        osc1_chipdraw_values_26="-8.75e-1" osc2_chipdraw_values_26="-8.75e-1"
-        osc3_chipdraw_values_26="-8.75e-1" osc1_chipdraw_values_27="-8.75e-1"
-        osc2_chipdraw_values_27="-8.75e-1" osc3_chipdraw_values_27="-8.75e-1"
-        osc1_chipdraw_values_28="-8.75e-1" osc2_chipdraw_values_28="-8.75e-1"
-        osc3_chipdraw_values_28="-8.75e-1" osc1_chipdraw_values_29="-8.75e-1"
-        osc2_chipdraw_values_29="-8.75e-1" osc3_chipdraw_values_29="-8.75e-1"
-        osc1_chipdraw_values_30="-8.75e-1" osc2_chipdraw_values_30="-8.75e-1"
-        osc3_chipdraw_values_30="-8.75e-1" osc1_chipdraw_values_31="-8.75e-1"
-        osc2_chipdraw_values_31="-8.75e-1" osc3_chipdraw_values_31="-8.75e-1"
-        osc1_specdraw_values_0="1" osc2_specdraw_values_0="1" osc3_specdraw_values_0="1"
-        osc1_specdraw_values_1="0" osc2_specdraw_values_1="0" osc3_specdraw_values_1="0"
-        osc1_specdraw_values_2="0" osc2_specdraw_values_2="0" osc3_specdraw_values_2="0"
-        osc1_specdraw_values_3="0" osc2_specdraw_values_3="0" osc3_specdraw_values_3="0"
-        osc1_specdraw_values_4="0" osc2_specdraw_values_4="0" osc3_specdraw_values_4="0"
-        osc1_specdraw_values_5="0" osc2_specdraw_values_5="0" osc3_specdraw_values_5="0"
-        osc1_specdraw_values_6="0" osc2_specdraw_values_6="0" osc3_specdraw_values_6="0"
-        osc1_specdraw_values_7="0" osc2_specdraw_values_7="0" osc3_specdraw_values_7="0"
-        osc1_specdraw_values_8="0" osc2_specdraw_values_8="0" osc3_specdraw_values_8="0"
-        osc1_specdraw_values_9="0" osc2_specdraw_values_9="0" osc3_specdraw_values_9="0"
-        osc1_specdraw_values_10="0" osc2_specdraw_values_10="0" osc3_specdraw_values_10="0"
-        osc1_specdraw_values_11="0" osc2_specdraw_values_11="0" osc3_specdraw_values_11="0"
-        osc1_specdraw_values_12="0" osc2_specdraw_values_12="0" osc3_specdraw_values_12="0"
-        osc1_specdraw_values_13="0" osc2_specdraw_values_13="0" osc3_specdraw_values_13="0"
-        osc1_specdraw_values_14="0" osc2_specdraw_values_14="0" osc3_specdraw_values_14="0"
-        osc1_specdraw_values_15="0" osc2_specdraw_values_15="0" osc3_specdraw_values_15="0"
-        osc1_specdraw_values_16="0" osc2_specdraw_values_16="0" osc3_specdraw_values_16="0"
-        osc1_specdraw_values_17="0" osc2_specdraw_values_17="0" osc3_specdraw_values_17="0"
-        osc1_specdraw_values_18="0" osc2_specdraw_values_18="0" osc3_specdraw_values_18="0"
-        osc1_specdraw_values_19="0" osc2_specdraw_values_19="0" osc3_specdraw_values_19="0"
-        osc1_specdraw_values_20="0" osc2_specdraw_values_20="0" osc3_specdraw_values_20="0"
-        osc1_specdraw_values_21="0" osc2_specdraw_values_21="0" osc3_specdraw_values_21="0"
-        osc1_specdraw_values_22="0" osc2_specdraw_values_22="0" osc3_specdraw_values_22="0"
-        osc1_specdraw_values_23="0" osc2_specdraw_values_23="0" osc3_specdraw_values_23="0"
-        osc1_specdraw_values_24="0" osc2_specdraw_values_24="0" osc3_specdraw_values_24="0"
-        osc1_specdraw_values_25="0" osc2_specdraw_values_25="0" osc3_specdraw_values_25="0"
-        osc1_specdraw_values_26="0" osc2_specdraw_values_26="0" osc3_specdraw_values_26="0"
-        osc1_specdraw_values_27="0" osc2_specdraw_values_27="0" osc3_specdraw_values_27="0"
-        osc1_specdraw_values_28="0" osc2_specdraw_values_28="0" osc3_specdraw_values_28="0"
-        osc1_specdraw_values_29="0" osc2_specdraw_values_29="0" osc3_specdraw_values_29="0"
-        osc1_specdraw_values_30="0" osc2_specdraw_values_30="0" osc3_specdraw_values_30="0"
-        osc1_specdraw_values_31="0" osc2_specdraw_values_31="0" osc3_specdraw_values_31="0"
-        osc1_specdraw_values_32="0" osc2_specdraw_values_32="0" osc3_specdraw_values_32="0"
-        osc1_specdraw_values_33="0" osc2_specdraw_values_33="0" osc3_specdraw_values_33="0"
-        osc1_specdraw_values_34="0" osc2_specdraw_values_34="0" osc3_specdraw_values_34="0"
-        osc1_specdraw_values_35="0" osc2_specdraw_values_35="0" osc3_specdraw_values_35="0"
-        osc1_specdraw_values_36="0" osc2_specdraw_values_36="0" osc3_specdraw_values_36="0"
-        osc1_specdraw_values_37="0" osc2_specdraw_values_37="0" osc3_specdraw_values_37="0"
-        osc1_specdraw_values_38="0" osc2_specdraw_values_38="0" osc3_specdraw_values_38="0"
-        osc1_specdraw_values_39="0" osc2_specdraw_values_39="0" osc3_specdraw_values_39="0"
-        osc1_specdraw_values_40="0" osc2_specdraw_values_40="0" osc3_specdraw_values_40="0"
-        osc1_specdraw_values_41="0" osc2_specdraw_values_41="0" osc3_specdraw_values_41="0"
-        osc1_specdraw_values_42="0" osc2_specdraw_values_42="0" osc3_specdraw_values_42="0"
-        osc1_specdraw_values_43="0" osc2_specdraw_values_43="0" osc3_specdraw_values_43="0"
-        osc1_specdraw_values_44="0" osc2_specdraw_values_44="0" osc3_specdraw_values_44="0"
-        osc1_specdraw_values_45="0" osc2_specdraw_values_45="0" osc3_specdraw_values_45="0"
-        osc1_specdraw_values_46="0" osc2_specdraw_values_46="0" osc3_specdraw_values_46="0"
-        osc1_specdraw_values_47="0" osc2_specdraw_values_47="0" osc3_specdraw_values_47="0"
-        osc1_specdraw_values_48="0" osc2_specdraw_values_48="0" osc3_specdraw_values_48="0"/>
+  <PARAM id="lfo4_reset" value="0.0"/>
+  <PARAM id="master" value="0.0"/>
+  <PARAM id="modwheel" value="0.0"/>
+  <PARAM id="osc1_arp_on" value="0.0"/>
+  <PARAM id="osc1_arp_speed" value="20.0"/>
+  <PARAM id="osc1_carrier_ratio" value="1.0"/>
+  <PARAM id="osc1_chipnoise" value="0.0"/>
+  <PARAM id="osc1_detune" value="0.0"/>
+  <PARAM id="osc1_drift" value="0.0"/>
+  <PARAM id="osc1_exp_fm" value="0.0"/>
+  <PARAM id="osc1_fine" value="0.0"/>
+  <PARAM id="osc1_fm" value="0.0"/>
+  <PARAM id="osc1_hp" value="80.0"/>
+  <PARAM id="osc1_lp" value="18000.0"/>
+  <PARAM id="osc1_modulator_ratio" value="1.0"/>
+  <PARAM id="osc1_multi_position" value="0.0"/>
+  <PARAM id="osc1_oct" value="0.0"/>
+  <PARAM id="osc1_pos_mod" value="0.0"/>
+  <PARAM id="osc1_position" value="0.0"/>
+  <PARAM id="osc1_pulsewidth" value="0.5"/>
+  <PARAM id="osc1_reset" value="0.0"/>
+  <PARAM id="osc1_semi" value="0.0"/>
+  <PARAM id="osc1_spread" value="0.0"/>
+  <PARAM id="osc1_step_1" value="0.0"/>
+  <PARAM id="osc1_step_2" value="12.0"/>
+  <PARAM id="osc1_step_3" value="7.0"/>
+  <PARAM id="osc1_step_3_on" value="0.0"/>
+  <PARAM id="osc1_vec_x" value="0.0"/>
+  <PARAM id="osc1_vec_y" value="0.0"/>
+  <PARAM id="osc1_vol" value="0.0"/>
+  <PARAM id="osc2_arp_on" value="0.0"/>
+  <PARAM id="osc2_arp_speed" value="20.0"/>
+  <PARAM id="osc2_carrier_ratio" value="1.0"/>
+  <PARAM id="osc2_chipnoise" value="0.0"/>
+  <PARAM id="osc2_detune" value="0.0"/>
+  <PARAM id="osc2_drift" value="0.0"/>
+  <PARAM id="osc2_exp_fm" value="0.0"/>
+  <PARAM id="osc2_fine" value="0.0"/>
+  <PARAM id="osc2_fm" value="0.0"/>
+  <PARAM id="osc2_hp" value="80.0"/>
+  <PARAM id="osc2_lp" value="18000.0"/>
+  <PARAM id="osc2_modulator_ratio" value="1.0"/>
+  <PARAM id="osc2_multi_position" value="0.0"/>
+  <PARAM id="osc2_oct" value="0.0"/>
+  <PARAM id="osc2_pos_mod" value="0.0"/>
+  <PARAM id="osc2_position" value="0.0"/>
+  <PARAM id="osc2_pulsewidth" value="0.5"/>
+  <PARAM id="osc2_reset" value="0.0"/>
+  <PARAM id="osc2_semi" value="0.0"/>
+  <PARAM id="osc2_spread" value="0.0"/>
+  <PARAM id="osc2_step_1" value="0.0"/>
+  <PARAM id="osc2_step_2" value="12.0"/>
+  <PARAM id="osc2_step_3" value="7.0"/>
+  <PARAM id="osc2_step_3_on" value="0.0"/>
+  <PARAM id="osc2_sync" value="0.0"/>
+  <PARAM id="osc2_vec_x" value="0.0"/>
+  <PARAM id="osc2_vec_y" value="0.0"/>
+  <PARAM id="osc2_vol" value="0.0"/>
+  <PARAM id="osc3_arp_on" value="0.0"/>
+  <PARAM id="osc3_arp_speed" value="20.0"/>
+  <PARAM id="osc3_carrier_ratio" value="1.0"/>
+  <PARAM id="osc3_chipnoise" value="0.0"/>
+  <PARAM id="osc3_detune" value="0.0"/>
+  <PARAM id="osc3_drift" value="0.0"/>
+  <PARAM id="osc3_exp_fm" value="0.0"/>
+  <PARAM id="osc3_fine" value="0.0"/>
+  <PARAM id="osc3_fm" value="0.0"/>
+  <PARAM id="osc3_hp" value="80.0"/>
+  <PARAM id="osc3_lp" value="18000.0"/>
+  <PARAM id="osc3_modulator_ratio" value="1.0"/>
+  <PARAM id="osc3_multi_position" value="0.0"/>
+  <PARAM id="osc3_oct" value="0.0"/>
+  <PARAM id="osc3_pos_mod" value="0.0"/>
+  <PARAM id="osc3_position" value="0.0"/>
+  <PARAM id="osc3_pulsewidth" value="0.5"/>
+  <PARAM id="osc3_reset" value="0.0"/>
+  <PARAM id="osc3_semi" value="0.0"/>
+  <PARAM id="osc3_spread" value="0.0"/>
+  <PARAM id="osc3_step_1" value="0.0"/>
+  <PARAM id="osc3_step_2" value="12.0"/>
+  <PARAM id="osc3_step_3" value="7.0"/>
+  <PARAM id="osc3_step_3_on" value="0.0"/>
+  <PARAM id="osc3_sync" value="0.0"/>
+  <PARAM id="osc3_vec_x" value="0.0"/>
+  <PARAM id="osc3_vec_y" value="0.0"/>
+  <PARAM id="osc3_vol" value="0.0"/>
+  <PARAM id="phaser_drywet" value="1.0"/>
+  <PARAM id="phaser_feedback" value="0.25"/>
+  <PARAM id="phaser_freq" value="3999.999755859375"/>
+  <PARAM id="phaser_mod" value="0.300000011920929"/>
+  <PARAM id="phaser_on" value="0.0"/>
+  <PARAM id="phaser_rate" value="0.2500000596046448"/>
+  <PARAM id="phaser_reset" value="0.0"/>
+  <PARAM id="pitchbend" value="0.0"/>
+  <PARAM id="pitchbend_amount" value="12.0"/>
+  <PARAM id="xy_x" value="0.0"/>
+  <PARAM id="xy_y" value="0.0"/>
+  <draw osc1_wavedraw_values_0="0.0" osc2_wavedraw_values_0="0.0" osc3_wavedraw_values_0="0.0"
+        osc1_wavedraw_values_1="0.02929465286433697" osc2_wavedraw_values_1="0.02929465286433697"
+        osc3_wavedraw_values_1="0.02929465286433697" osc1_wavedraw_values_2="0.05855825915932655"
+        osc2_wavedraw_values_2="0.05855825915932655" osc3_wavedraw_values_2="0.05855825915932655"
+        osc1_wavedraw_values_3="0.08775980770587921" osc2_wavedraw_values_3="0.08775980770587921"
+        osc3_wavedraw_values_3="0.08775980770587921" osc1_wavedraw_values_4="0.1168683543801308"
+        osc2_wavedraw_values_4="0.1168683543801308" osc3_wavedraw_values_4="0.1168683543801308"
+        osc1_wavedraw_values_5="0.1458530426025391" osc2_wavedraw_values_5="0.1458530426025391"
+        osc3_wavedraw_values_5="0.1458530426025391" osc1_wavedraw_values_6="0.1746831685304642"
+        osc2_wavedraw_values_6="0.1746831685304642" osc3_wavedraw_values_6="0.1746831685304642"
+        osc1_wavedraw_values_7="0.2033281773328781" osc2_wavedraw_values_7="0.2033281773328781"
+        osc3_wavedraw_values_7="0.2033281773328781" osc1_wavedraw_values_8="0.2317577004432678"
+        osc2_wavedraw_values_8="0.2317577004432678" osc3_wavedraw_values_8="0.2317577004432678"
+        osc1_wavedraw_values_9="0.2599416077136993" osc2_wavedraw_values_9="0.2599416077136993"
+        osc3_wavedraw_values_9="0.2599416077136993" osc1_wavedraw_values_10="0.2878500521183014"
+        osc2_wavedraw_values_10="0.2878500521183014" osc3_wavedraw_values_10="0.2878500521183014"
+        osc1_wavedraw_values_11="0.315453439950943" osc2_wavedraw_values_11="0.315453439950943"
+        osc3_wavedraw_values_11="0.315453439950943" osc1_wavedraw_values_12="0.3427225351333618"
+        osc2_wavedraw_values_12="0.3427225351333618" osc3_wavedraw_values_12="0.3427225351333618"
+        osc1_wavedraw_values_13="0.3696284294128418" osc2_wavedraw_values_13="0.3696284294128418"
+        osc3_wavedraw_values_13="0.3696284294128418" osc1_wavedraw_values_14="0.3961425721645355"
+        osc2_wavedraw_values_14="0.3961425721645355" osc3_wavedraw_values_14="0.3961425721645355"
+        osc1_wavedraw_values_15="0.4222369194030762" osc2_wavedraw_values_15="0.4222369194030762"
+        osc3_wavedraw_values_15="0.4222369194030762" osc1_wavedraw_values_16="0.447883814573288"
+        osc2_wavedraw_values_16="0.447883814573288" osc3_wavedraw_values_16="0.447883814573288"
+        osc1_wavedraw_values_17="0.4730560481548309" osc2_wavedraw_values_17="0.4730560481548309"
+        osc3_wavedraw_values_17="0.4730560481548309" osc1_wavedraw_values_18="0.4977269470691681"
+        osc2_wavedraw_values_18="0.4977269470691681" osc3_wavedraw_values_18="0.4977269470691681"
+        osc1_wavedraw_values_19="0.5218703746795654" osc2_wavedraw_values_19="0.5218703746795654"
+        osc3_wavedraw_values_19="0.5218703746795654" osc1_wavedraw_values_20="0.5454607605934143"
+        osc2_wavedraw_values_20="0.5454607605934143" osc3_wavedraw_values_20="0.5454607605934143"
+        osc1_wavedraw_values_21="0.5684731006622314" osc2_wavedraw_values_21="0.5684731006622314"
+        osc3_wavedraw_values_21="0.5684731006622314" osc1_wavedraw_values_22="0.5908829569816589"
+        osc2_wavedraw_values_22="0.5908829569816589" osc3_wavedraw_values_22="0.5908829569816589"
+        osc1_wavedraw_values_23="0.6126666665077209" osc2_wavedraw_values_23="0.6126666665077209"
+        osc3_wavedraw_values_23="0.6126666665077209" osc1_wavedraw_values_24="0.6338011026382446"
+        osc2_wavedraw_values_24="0.6338011026382446" osc3_wavedraw_values_24="0.6338011026382446"
+        osc1_wavedraw_values_25="0.6542637944221497" osc2_wavedraw_values_25="0.6542637944221497"
+        osc3_wavedraw_values_25="0.6542637944221497" osc1_wavedraw_values_26="0.6740331649780273"
+        osc2_wavedraw_values_26="0.6740331649780273" osc3_wavedraw_values_26="0.6740331649780273"
+        osc1_wavedraw_values_27="0.6930882334709167" osc2_wavedraw_values_27="0.6930882334709167"
+        osc3_wavedraw_values_27="0.6930882334709167" osc1_wavedraw_values_28="0.711408793926239"
+        osc2_wavedraw_values_28="0.711408793926239" osc3_wavedraw_values_28="0.711408793926239"
+        osc1_wavedraw_values_29="0.7289754152297974" osc2_wavedraw_values_29="0.7289754152297974"
+        osc3_wavedraw_values_29="0.7289754152297974" osc1_wavedraw_values_30="0.7457695007324219"
+        osc2_wavedraw_values_30="0.7457695007324219" osc3_wavedraw_values_30="0.7457695007324219"
+        osc1_wavedraw_values_31="0.7617732882499695" osc2_wavedraw_values_31="0.7617732882499695"
+        osc3_wavedraw_values_31="0.7617732882499695" osc1_wavedraw_values_32="0.7769697308540344"
+        osc2_wavedraw_values_32="0.7769697308540344" osc3_wavedraw_values_32="0.7769697308540344"
+        osc1_wavedraw_values_33="0.7913427948951721" osc2_wavedraw_values_33="0.7913427948951721"
+        osc3_wavedraw_values_33="0.7913427948951721" osc1_wavedraw_values_34="0.8048772215843201"
+        osc2_wavedraw_values_34="0.8048772215843201" osc3_wavedraw_values_34="0.8048772215843201"
+        osc1_wavedraw_values_35="0.8175587058067322" osc2_wavedraw_values_35="0.8175587058067322"
+        osc3_wavedraw_values_35="0.8175587058067322" osc1_wavedraw_values_36="0.8293737173080444"
+        osc2_wavedraw_values_36="0.8293737173080444" osc3_wavedraw_values_36="0.8293737173080444"
+        osc1_wavedraw_values_37="0.8403098583221436" osc2_wavedraw_values_37="0.8403098583221436"
+        osc3_wavedraw_values_37="0.8403098583221436" osc1_wavedraw_values_38="0.8503554463386536"
+        osc2_wavedraw_values_38="0.8503554463386536" osc3_wavedraw_values_38="0.8503554463386536"
+        osc1_wavedraw_values_39="0.8594998717308044" osc2_wavedraw_values_39="0.8594998717308044"
+        osc3_wavedraw_values_39="0.8594998717308044" osc1_wavedraw_values_40="0.8677334189414978"
+        osc2_wavedraw_values_40="0.8677334189414978" osc3_wavedraw_values_40="0.8677334189414978"
+        osc1_wavedraw_values_41="0.8750473856925964" osc2_wavedraw_values_41="0.8750473856925964"
+        osc3_wavedraw_values_41="0.8750473856925964" osc1_wavedraw_values_42="0.8814339637756348"
+        osc2_wavedraw_values_42="0.8814339637756348" osc3_wavedraw_values_42="0.8814339637756348"
+        osc1_wavedraw_values_43="0.8868864774703979" osc2_wavedraw_values_43="0.8868864774703979"
+        osc3_wavedraw_values_43="0.8868864774703979" osc1_wavedraw_values_44="0.8913991451263428"
+        osc2_wavedraw_values_44="0.8913991451263428" osc3_wavedraw_values_44="0.8913991451263428"
+        osc1_wavedraw_values_45="0.8949670791625977" osc2_wavedraw_values_45="0.8949670791625977"
+        osc3_wavedraw_values_45="0.8949670791625977" osc1_wavedraw_values_46="0.8975865840911865"
+        osc2_wavedraw_values_46="0.8975865840911865" osc3_wavedraw_values_46="0.8975865840911865"
+        osc1_wavedraw_values_47="0.8992549180984497" osc2_wavedraw_values_47="0.8992549180984497"
+        osc3_wavedraw_values_47="0.8992549180984497" osc1_wavedraw_values_48="0.8999701738357544"
+        osc2_wavedraw_values_48="0.8999701738357544" osc3_wavedraw_values_48="0.8999701738357544"
+        osc1_wavedraw_values_49="0.8997317552566528" osc2_wavedraw_values_49="0.8997317552566528"
+        osc3_wavedraw_values_49="0.8997317552566528" osc1_wavedraw_values_50="0.8985397815704346"
+        osc2_wavedraw_values_50="0.8985397815704346" osc3_wavedraw_values_50="0.8985397815704346"
+        osc1_wavedraw_values_51="0.8963956236839294" osc2_wavedraw_values_51="0.8963956236839294"
+        osc3_wavedraw_values_51="0.8963956236839294" osc1_wavedraw_values_52="0.8933014273643494"
+        osc2_wavedraw_values_52="0.8933014273643494" osc3_wavedraw_values_52="0.8933014273643494"
+        osc1_wavedraw_values_53="0.8892605900764465" osc2_wavedraw_values_53="0.8892605900764465"
+        osc3_wavedraw_values_53="0.8892605900764465" osc1_wavedraw_values_54="0.8842774033546448"
+        osc2_wavedraw_values_54="0.8842774033546448" osc3_wavedraw_values_54="0.8842774033546448"
+        osc1_wavedraw_values_55="0.8783570528030396" osc2_wavedraw_values_55="0.8783570528030396"
+        osc3_wavedraw_values_55="0.8783570528030396" osc1_wavedraw_values_56="0.8715058565139771"
+        osc2_wavedraw_values_56="0.8715058565139771" osc3_wavedraw_values_56="0.8715058565139771"
+        osc1_wavedraw_values_57="0.8637310266494751" osc2_wavedraw_values_57="0.8637310266494751"
+        osc3_wavedraw_values_57="0.8637310266494751" osc1_wavedraw_values_58="0.8550409078598022"
+        osc2_wavedraw_values_58="0.8550409078598022" osc3_wavedraw_values_58="0.8550409078598022"
+        osc1_wavedraw_values_59="0.8454446196556091" osc2_wavedraw_values_59="0.8454446196556091"
+        osc3_wavedraw_values_59="0.8454446196556091" osc1_wavedraw_values_60="0.8349524140357971"
+        osc2_wavedraw_values_60="0.8349524140357971" osc3_wavedraw_values_60="0.8349524140357971"
+        osc1_wavedraw_values_61="0.8235753178596497" osc2_wavedraw_values_61="0.8235753178596497"
+        osc3_wavedraw_values_61="0.8235753178596497" osc1_wavedraw_values_62="0.8113254308700562"
+        osc2_wavedraw_values_62="0.8113254308700562" osc3_wavedraw_values_62="0.8113254308700562"
+        osc1_wavedraw_values_63="0.7982158064842224" osc2_wavedraw_values_63="0.7982158064842224"
+        osc3_wavedraw_values_63="0.7982158064842224" osc1_wavedraw_values_64="0.7842601537704468"
+        osc2_wavedraw_values_64="0.7842601537704468" osc3_wavedraw_values_64="0.7842601537704468"
+        osc1_wavedraw_values_65="0.7694734334945679" osc2_wavedraw_values_65="0.7694734334945679"
+        osc3_wavedraw_values_65="0.7694734334945679" osc1_wavedraw_values_66="0.7538712620735168"
+        osc2_wavedraw_values_66="0.7538712620735168" osc3_wavedraw_values_66="0.7538712620735168"
+        osc1_wavedraw_values_67="0.7374701499938965" osc2_wavedraw_values_67="0.7374701499938965"
+        osc3_wavedraw_values_67="0.7374701499938965" osc1_wavedraw_values_68="0.720287561416626"
+        osc2_wavedraw_values_68="0.720287561416626" osc3_wavedraw_values_68="0.720287561416626"
+        osc1_wavedraw_values_69="0.7023415565490723" osc2_wavedraw_values_69="0.7023415565490723"
+        osc3_wavedraw_values_69="0.7023415565490723" osc1_wavedraw_values_70="0.6836512684822083"
+        osc2_wavedraw_values_70="0.6836512684822083" osc3_wavedraw_values_70="0.6836512684822083"
+        osc1_wavedraw_values_71="0.6642364859580994" osc2_wavedraw_values_71="0.6642364859580994"
+        osc3_wavedraw_values_71="0.6642364859580994" osc1_wavedraw_values_72="0.6441177725791931"
+        osc2_wavedraw_values_72="0.6441177725791931" osc3_wavedraw_values_72="0.6441177725791931"
+        osc1_wavedraw_values_73="0.6233164668083191" osc2_wavedraw_values_73="0.6233164668083191"
+        osc3_wavedraw_values_73="0.6233164668083191" osc1_wavedraw_values_74="0.6018545627593994"
+        osc2_wavedraw_values_74="0.6018545627593994" osc3_wavedraw_values_74="0.6018545627593994"
+        osc1_wavedraw_values_75="0.5797548294067383" osc2_wavedraw_values_75="0.5797548294067383"
+        osc3_wavedraw_values_75="0.5797548294067383" osc1_wavedraw_values_76="0.5570407509803772"
+        osc2_wavedraw_values_76="0.5570407509803772" osc3_wavedraw_values_76="0.5570407509803772"
+        osc1_wavedraw_values_77="0.5337362885475159" osc2_wavedraw_values_77="0.5337362885475159"
+        osc3_wavedraw_values_77="0.5337362885475159" osc1_wavedraw_values_78="0.5098662376403809"
+        osc2_wavedraw_values_78="0.5098662376403809" osc3_wavedraw_values_78="0.5098662376403809"
+        osc1_wavedraw_values_79="0.4854558110237122" osc2_wavedraw_values_79="0.4854558110237122"
+        osc3_wavedraw_values_79="0.4854558110237122" osc1_wavedraw_values_80="0.4605309367179871"
+        osc2_wavedraw_values_80="0.4605309367179871" osc3_wavedraw_values_80="0.4605309367179871"
+        osc1_wavedraw_values_81="0.4351180195808411" osc2_wavedraw_values_81="0.4351180195808411"
+        osc3_wavedraw_values_81="0.4351180195808411" osc1_wavedraw_values_82="0.4092439711093903"
+        osc2_wavedraw_values_82="0.4092439711093903" osc3_wavedraw_values_82="0.4092439711093903"
+        osc1_wavedraw_values_83="0.3829362392425537" osc2_wavedraw_values_83="0.3829362392425537"
+        osc3_wavedraw_values_83="0.3829362392425537" osc1_wavedraw_values_84="0.3562226593494415"
+        osc2_wavedraw_values_84="0.3562226593494415" osc3_wavedraw_values_84="0.3562226593494415"
+        osc1_wavedraw_values_85="0.3291316032409668" osc2_wavedraw_values_85="0.3291316032409668"
+        osc3_wavedraw_values_85="0.3291316032409668" osc1_wavedraw_values_86="0.3016917109489441"
+        osc2_wavedraw_values_86="0.3016917109489441" osc3_wavedraw_values_86="0.3016917109489441"
+        osc1_wavedraw_values_87="0.2739321291446686" osc2_wavedraw_values_87="0.2739321291446686"
+        osc3_wavedraw_values_87="0.2739321291446686" osc1_wavedraw_values_88="0.2458822280168533"
+        osc2_wavedraw_values_88="0.2458822280168533" osc3_wavedraw_values_88="0.2458822280168533"
+        osc1_wavedraw_values_89="0.2175717651844025" osc2_wavedraw_values_89="0.2175717651844025"
+        osc3_wavedraw_values_89="0.2175717651844025" osc1_wavedraw_values_90="0.189030721783638"
+        osc2_wavedraw_values_90="0.189030721783638" osc3_wavedraw_values_90="0.189030721783638"
+        osc1_wavedraw_values_91="0.1602893471717834" osc2_wavedraw_values_91="0.1602893471717834"
+        osc3_wavedraw_values_91="0.1602893471717834" osc1_wavedraw_values_92="0.131378099322319"
+        osc2_wavedraw_values_92="0.131378099322319" osc3_wavedraw_values_92="0.131378099322319"
+        osc1_wavedraw_values_93="0.1023276373744011" osc2_wavedraw_values_93="0.1023276373744011"
+        osc3_wavedraw_values_93="0.1023276373744011" osc1_wavedraw_values_94="0.07316872477531433"
+        osc2_wavedraw_values_94="0.07316872477531433" osc3_wavedraw_values_94="0.07316872477531433"
+        osc1_wavedraw_values_95="0.04393227770924568" osc2_wavedraw_values_95="0.04393227770924568"
+        osc3_wavedraw_values_95="0.04393227770924568" osc1_wavedraw_values_96="0.01464926730841398"
+        osc2_wavedraw_values_96="0.01464926730841398" osc3_wavedraw_values_96="0.01464926730841398"
+        osc1_wavedraw_values_97="-0.01464926730841398" osc2_wavedraw_values_97="-0.01464926730841398"
+        osc3_wavedraw_values_97="-0.01464926730841398" osc1_wavedraw_values_98="-0.04393227770924568"
+        osc2_wavedraw_values_98="-0.04393227770924568" osc3_wavedraw_values_98="-0.04393227770924568"
+        osc1_wavedraw_values_99="-0.07316872477531433" osc2_wavedraw_values_99="-0.07316872477531433"
+        osc3_wavedraw_values_99="-0.07316872477531433" osc1_wavedraw_values_100="-0.1023276373744011"
+        osc2_wavedraw_values_100="-0.1023276373744011" osc3_wavedraw_values_100="-0.1023276373744011"
+        osc1_wavedraw_values_101="-0.131378099322319" osc2_wavedraw_values_101="-0.131378099322319"
+        osc3_wavedraw_values_101="-0.131378099322319" osc1_wavedraw_values_102="-0.1602893471717834"
+        osc2_wavedraw_values_102="-0.1602893471717834" osc3_wavedraw_values_102="-0.1602893471717834"
+        osc1_wavedraw_values_103="-0.189030721783638" osc2_wavedraw_values_103="-0.189030721783638"
+        osc3_wavedraw_values_103="-0.189030721783638" osc1_wavedraw_values_104="-0.2175717651844025"
+        osc2_wavedraw_values_104="-0.2175717651844025" osc3_wavedraw_values_104="-0.2175717651844025"
+        osc1_wavedraw_values_105="-0.2458822280168533" osc2_wavedraw_values_105="-0.2458822280168533"
+        osc3_wavedraw_values_105="-0.2458822280168533" osc1_wavedraw_values_106="-0.2739321291446686"
+        osc2_wavedraw_values_106="-0.2739321291446686" osc3_wavedraw_values_106="-0.2739321291446686"
+        osc1_wavedraw_values_107="-0.3016917109489441" osc2_wavedraw_values_107="-0.3016917109489441"
+        osc3_wavedraw_values_107="-0.3016917109489441" osc1_wavedraw_values_108="-0.3291316032409668"
+        osc2_wavedraw_values_108="-0.3291316032409668" osc3_wavedraw_values_108="-0.3291316032409668"
+        osc1_wavedraw_values_109="-0.3562226593494415" osc2_wavedraw_values_109="-0.3562226593494415"
+        osc3_wavedraw_values_109="-0.3562226593494415" osc1_wavedraw_values_110="-0.3829362392425537"
+        osc2_wavedraw_values_110="-0.3829362392425537" osc3_wavedraw_values_110="-0.3829362392425537"
+        osc1_wavedraw_values_111="-0.4092439711093903" osc2_wavedraw_values_111="-0.4092439711093903"
+        osc3_wavedraw_values_111="-0.4092439711093903" osc1_wavedraw_values_112="-0.4351180195808411"
+        osc2_wavedraw_values_112="-0.4351180195808411" osc3_wavedraw_values_112="-0.4351180195808411"
+        osc1_wavedraw_values_113="-0.4605309367179871" osc2_wavedraw_values_113="-0.4605309367179871"
+        osc3_wavedraw_values_113="-0.4605309367179871" osc1_wavedraw_values_114="-0.4854558110237122"
+        osc2_wavedraw_values_114="-0.4854558110237122" osc3_wavedraw_values_114="-0.4854558110237122"
+        osc1_wavedraw_values_115="-0.5098662376403809" osc2_wavedraw_values_115="-0.5098662376403809"
+        osc3_wavedraw_values_115="-0.5098662376403809" osc1_wavedraw_values_116="-0.5337362885475159"
+        osc2_wavedraw_values_116="-0.5337362885475159" osc3_wavedraw_values_116="-0.5337362885475159"
+        osc1_wavedraw_values_117="-0.5570407509803772" osc2_wavedraw_values_117="-0.5570407509803772"
+        osc3_wavedraw_values_117="-0.5570407509803772" osc1_wavedraw_values_118="-0.5797548294067383"
+        osc2_wavedraw_values_118="-0.5797548294067383" osc3_wavedraw_values_118="-0.5797548294067383"
+        osc1_wavedraw_values_119="-0.6018545627593994" osc2_wavedraw_values_119="-0.6018545627593994"
+        osc3_wavedraw_values_119="-0.6018545627593994" osc1_wavedraw_values_120="-0.6233164668083191"
+        osc2_wavedraw_values_120="-0.6233164668083191" osc3_wavedraw_values_120="-0.6233164668083191"
+        osc1_wavedraw_values_121="-0.6441177725791931" osc2_wavedraw_values_121="-0.6441177725791931"
+        osc3_wavedraw_values_121="-0.6441177725791931" osc1_wavedraw_values_122="-0.6642364859580994"
+        osc2_wavedraw_values_122="-0.6642364859580994" osc3_wavedraw_values_122="-0.6642364859580994"
+        osc1_wavedraw_values_123="-0.6836512684822083" osc2_wavedraw_values_123="-0.6836512684822083"
+        osc3_wavedraw_values_123="-0.6836512684822083" osc1_wavedraw_values_124="-0.7023415565490723"
+        osc2_wavedraw_values_124="-0.7023415565490723" osc3_wavedraw_values_124="-0.7023415565490723"
+        osc1_wavedraw_values_125="-0.720287561416626" osc2_wavedraw_values_125="-0.720287561416626"
+        osc3_wavedraw_values_125="-0.720287561416626" osc1_wavedraw_values_126="-0.7374701499938965"
+        osc2_wavedraw_values_126="-0.7374701499938965" osc3_wavedraw_values_126="-0.7374701499938965"
+        osc1_wavedraw_values_127="-0.7538712620735168" osc2_wavedraw_values_127="-0.7538712620735168"
+        osc3_wavedraw_values_127="-0.7538712620735168" osc1_wavedraw_values_128="-0.7694734334945679"
+        osc2_wavedraw_values_128="-0.7694734334945679" osc3_wavedraw_values_128="-0.7694734334945679"
+        osc1_wavedraw_values_129="-0.7842601537704468" osc2_wavedraw_values_129="-0.7842601537704468"
+        osc3_wavedraw_values_129="-0.7842601537704468" osc1_wavedraw_values_130="-0.7982158064842224"
+        osc2_wavedraw_values_130="-0.7982158064842224" osc3_wavedraw_values_130="-0.7982158064842224"
+        osc1_wavedraw_values_131="-0.8113254308700562" osc2_wavedraw_values_131="-0.8113254308700562"
+        osc3_wavedraw_values_131="-0.8113254308700562" osc1_wavedraw_values_132="-0.8235753178596497"
+        osc2_wavedraw_values_132="-0.8235753178596497" osc3_wavedraw_values_132="-0.8235753178596497"
+        osc1_wavedraw_values_133="-0.8349524140357971" osc2_wavedraw_values_133="-0.8349524140357971"
+        osc3_wavedraw_values_133="-0.8349524140357971" osc1_wavedraw_values_134="-0.8454446196556091"
+        osc2_wavedraw_values_134="-0.8454446196556091" osc3_wavedraw_values_134="-0.8454446196556091"
+        osc1_wavedraw_values_135="-0.8550409078598022" osc2_wavedraw_values_135="-0.8550409078598022"
+        osc3_wavedraw_values_135="-0.8550409078598022" osc1_wavedraw_values_136="-0.8637310266494751"
+        osc2_wavedraw_values_136="-0.8637310266494751" osc3_wavedraw_values_136="-0.8637310266494751"
+        osc1_wavedraw_values_137="-0.8715058565139771" osc2_wavedraw_values_137="-0.8715058565139771"
+        osc3_wavedraw_values_137="-0.8715058565139771" osc1_wavedraw_values_138="-0.8783570528030396"
+        osc2_wavedraw_values_138="-0.8783570528030396" osc3_wavedraw_values_138="-0.8783570528030396"
+        osc1_wavedraw_values_139="-0.8842774033546448" osc2_wavedraw_values_139="-0.8842774033546448"
+        osc3_wavedraw_values_139="-0.8842774033546448" osc1_wavedraw_values_140="-0.8892605900764465"
+        osc2_wavedraw_values_140="-0.8892605900764465" osc3_wavedraw_values_140="-0.8892605900764465"
+        osc1_wavedraw_values_141="-0.8933014273643494" osc2_wavedraw_values_141="-0.8933014273643494"
+        osc3_wavedraw_values_141="-0.8933014273643494" osc1_wavedraw_values_142="-0.8963956236839294"
+        osc2_wavedraw_values_142="-0.8963956236839294" osc3_wavedraw_values_142="-0.8963956236839294"
+        osc1_wavedraw_values_143="-0.8985397815704346" osc2_wavedraw_values_143="-0.8985397815704346"
+        osc3_wavedraw_values_143="-0.8985397815704346" osc1_wavedraw_values_144="-0.8997317552566528"
+        osc2_wavedraw_values_144="-0.8997317552566528" osc3_wavedraw_values_144="-0.8997317552566528"
+        osc1_wavedraw_values_145="-0.8999701738357544" osc2_wavedraw_values_145="-0.8999701738357544"
+        osc3_wavedraw_values_145="-0.8999701738357544" osc1_wavedraw_values_146="-0.8992549180984497"
+        osc2_wavedraw_values_146="-0.8992549180984497" osc3_wavedraw_values_146="-0.8992549180984497"
+        osc1_wavedraw_values_147="-0.8975865840911865" osc2_wavedraw_values_147="-0.8975865840911865"
+        osc3_wavedraw_values_147="-0.8975865840911865" osc1_wavedraw_values_148="-0.8949670791625977"
+        osc2_wavedraw_values_148="-0.8949670791625977" osc3_wavedraw_values_148="-0.8949670791625977"
+        osc1_wavedraw_values_149="-0.8913991451263428" osc2_wavedraw_values_149="-0.8913991451263428"
+        osc3_wavedraw_values_149="-0.8913991451263428" osc1_wavedraw_values_150="-0.8868864774703979"
+        osc2_wavedraw_values_150="-0.8868864774703979" osc3_wavedraw_values_150="-0.8868864774703979"
+        osc1_wavedraw_values_151="-0.8814339637756348" osc2_wavedraw_values_151="-0.8814339637756348"
+        osc3_wavedraw_values_151="-0.8814339637756348" osc1_wavedraw_values_152="-0.8750473856925964"
+        osc2_wavedraw_values_152="-0.8750473856925964" osc3_wavedraw_values_152="-0.8750473856925964"
+        osc1_wavedraw_values_153="-0.8677334189414978" osc2_wavedraw_values_153="-0.8677334189414978"
+        osc3_wavedraw_values_153="-0.8677334189414978" osc1_wavedraw_values_154="-0.8594998717308044"
+        osc2_wavedraw_values_154="-0.8594998717308044" osc3_wavedraw_values_154="-0.8594998717308044"
+        osc1_wavedraw_values_155="-0.8503554463386536" osc2_wavedraw_values_155="-0.8503554463386536"
+        osc3_wavedraw_values_155="-0.8503554463386536" osc1_wavedraw_values_156="-0.8403098583221436"
+        osc2_wavedraw_values_156="-0.8403098583221436" osc3_wavedraw_values_156="-0.8403098583221436"
+        osc1_wavedraw_values_157="-0.8293737173080444" osc2_wavedraw_values_157="-0.8293737173080444"
+        osc3_wavedraw_values_157="-0.8293737173080444" osc1_wavedraw_values_158="-0.8175587058067322"
+        osc2_wavedraw_values_158="-0.8175587058067322" osc3_wavedraw_values_158="-0.8175587058067322"
+        osc1_wavedraw_values_159="-0.8048772215843201" osc2_wavedraw_values_159="-0.8048772215843201"
+        osc3_wavedraw_values_159="-0.8048772215843201" osc1_wavedraw_values_160="-0.7913427948951721"
+        osc2_wavedraw_values_160="-0.7913427948951721" osc3_wavedraw_values_160="-0.7913427948951721"
+        osc1_wavedraw_values_161="-0.7769697308540344" osc2_wavedraw_values_161="-0.7769697308540344"
+        osc3_wavedraw_values_161="-0.7769697308540344" osc1_wavedraw_values_162="-0.7617732882499695"
+        osc2_wavedraw_values_162="-0.7617732882499695" osc3_wavedraw_values_162="-0.7617732882499695"
+        osc1_wavedraw_values_163="-0.7457695007324219" osc2_wavedraw_values_163="-0.7457695007324219"
+        osc3_wavedraw_values_163="-0.7457695007324219" osc1_wavedraw_values_164="-0.7289754152297974"
+        osc2_wavedraw_values_164="-0.7289754152297974" osc3_wavedraw_values_164="-0.7289754152297974"
+        osc1_wavedraw_values_165="-0.711408793926239" osc2_wavedraw_values_165="-0.711408793926239"
+        osc3_wavedraw_values_165="-0.711408793926239" osc1_wavedraw_values_166="-0.6930882334709167"
+        osc2_wavedraw_values_166="-0.6930882334709167" osc3_wavedraw_values_166="-0.6930882334709167"
+        osc1_wavedraw_values_167="-0.6740331649780273" osc2_wavedraw_values_167="-0.6740331649780273"
+        osc3_wavedraw_values_167="-0.6740331649780273" osc1_wavedraw_values_168="-0.6542637944221497"
+        osc2_wavedraw_values_168="-0.6542637944221497" osc3_wavedraw_values_168="-0.6542637944221497"
+        osc1_wavedraw_values_169="-0.6338011026382446" osc2_wavedraw_values_169="-0.6338011026382446"
+        osc3_wavedraw_values_169="-0.6338011026382446" osc1_wavedraw_values_170="-0.6126666665077209"
+        osc2_wavedraw_values_170="-0.6126666665077209" osc3_wavedraw_values_170="-0.6126666665077209"
+        osc1_wavedraw_values_171="-0.5908829569816589" osc2_wavedraw_values_171="-0.5908829569816589"
+        osc3_wavedraw_values_171="-0.5908829569816589" osc1_wavedraw_values_172="-0.5684731006622314"
+        osc2_wavedraw_values_172="-0.5684731006622314" osc3_wavedraw_values_172="-0.5684731006622314"
+        osc1_wavedraw_values_173="-0.5454607605934143" osc2_wavedraw_values_173="-0.5454607605934143"
+        osc3_wavedraw_values_173="-0.5454607605934143" osc1_wavedraw_values_174="-0.5218703746795654"
+        osc2_wavedraw_values_174="-0.5218703746795654" osc3_wavedraw_values_174="-0.5218703746795654"
+        osc1_wavedraw_values_175="-0.4977269470691681" osc2_wavedraw_values_175="-0.4977269470691681"
+        osc3_wavedraw_values_175="-0.4977269470691681" osc1_wavedraw_values_176="-0.4730560481548309"
+        osc2_wavedraw_values_176="-0.4730560481548309" osc3_wavedraw_values_176="-0.4730560481548309"
+        osc1_wavedraw_values_177="-0.447883814573288" osc2_wavedraw_values_177="-0.447883814573288"
+        osc3_wavedraw_values_177="-0.447883814573288" osc1_wavedraw_values_178="-0.4222369194030762"
+        osc2_wavedraw_values_178="-0.4222369194030762" osc3_wavedraw_values_178="-0.4222369194030762"
+        osc1_wavedraw_values_179="-0.3961425721645355" osc2_wavedraw_values_179="-0.3961425721645355"
+        osc3_wavedraw_values_179="-0.3961425721645355" osc1_wavedraw_values_180="-0.3696284294128418"
+        osc2_wavedraw_values_180="-0.3696284294128418" osc3_wavedraw_values_180="-0.3696284294128418"
+        osc1_wavedraw_values_181="-0.3427225351333618" osc2_wavedraw_values_181="-0.3427225351333618"
+        osc3_wavedraw_values_181="-0.3427225351333618" osc1_wavedraw_values_182="-0.315453439950943"
+        osc2_wavedraw_values_182="-0.315453439950943" osc3_wavedraw_values_182="-0.315453439950943"
+        osc1_wavedraw_values_183="-0.2878500521183014" osc2_wavedraw_values_183="-0.2878500521183014"
+        osc3_wavedraw_values_183="-0.2878500521183014" osc1_wavedraw_values_184="-0.2599416077136993"
+        osc2_wavedraw_values_184="-0.2599416077136993" osc3_wavedraw_values_184="-0.2599416077136993"
+        osc1_wavedraw_values_185="-0.2317577004432678" osc2_wavedraw_values_185="-0.2317577004432678"
+        osc3_wavedraw_values_185="-0.2317577004432678" osc1_wavedraw_values_186="-0.2033281773328781"
+        osc2_wavedraw_values_186="-0.2033281773328781" osc3_wavedraw_values_186="-0.2033281773328781"
+        osc1_wavedraw_values_187="-0.1746831685304642" osc2_wavedraw_values_187="-0.1746831685304642"
+        osc3_wavedraw_values_187="-0.1746831685304642" osc1_wavedraw_values_188="-0.1458530426025391"
+        osc2_wavedraw_values_188="-0.1458530426025391" osc3_wavedraw_values_188="-0.1458530426025391"
+        osc1_wavedraw_values_189="-0.1168683543801308" osc2_wavedraw_values_189="-0.1168683543801308"
+        osc3_wavedraw_values_189="-0.1168683543801308" osc1_wavedraw_values_190="-0.08775980770587921"
+        osc2_wavedraw_values_190="-0.08775980770587921" osc3_wavedraw_values_190="-0.08775980770587921"
+        osc1_wavedraw_values_191="-0.05855825915932655" osc2_wavedraw_values_191="-0.05855825915932655"
+        osc3_wavedraw_values_191="-0.05855825915932655" osc1_wavedraw_values_192="-0.02929465286433697"
+        osc2_wavedraw_values_192="-0.02929465286433697" osc3_wavedraw_values_192="-0.02929465286433697"
+        osc1_chipdraw_values_0="0.875" osc2_chipdraw_values_0="0.875"
+        osc3_chipdraw_values_0="0.875" osc1_chipdraw_values_1="0.875"
+        osc2_chipdraw_values_1="0.875" osc3_chipdraw_values_1="0.875"
+        osc1_chipdraw_values_2="0.875" osc2_chipdraw_values_2="0.875"
+        osc3_chipdraw_values_2="0.875" osc1_chipdraw_values_3="0.875"
+        osc2_chipdraw_values_3="0.875" osc3_chipdraw_values_3="0.875"
+        osc1_chipdraw_values_4="0.875" osc2_chipdraw_values_4="0.875"
+        osc3_chipdraw_values_4="0.875" osc1_chipdraw_values_5="0.875"
+        osc2_chipdraw_values_5="0.875" osc3_chipdraw_values_5="0.875"
+        osc1_chipdraw_values_6="0.875" osc2_chipdraw_values_6="0.875"
+        osc3_chipdraw_values_6="0.875" osc1_chipdraw_values_7="0.875"
+        osc2_chipdraw_values_7="0.875" osc3_chipdraw_values_7="0.875"
+        osc1_chipdraw_values_8="0.875" osc2_chipdraw_values_8="0.875"
+        osc3_chipdraw_values_8="0.875" osc1_chipdraw_values_9="0.875"
+        osc2_chipdraw_values_9="0.875" osc3_chipdraw_values_9="0.875"
+        osc1_chipdraw_values_10="0.875" osc2_chipdraw_values_10="0.875"
+        osc3_chipdraw_values_10="0.875" osc1_chipdraw_values_11="0.875"
+        osc2_chipdraw_values_11="0.875" osc3_chipdraw_values_11="0.875"
+        osc1_chipdraw_values_12="0.875" osc2_chipdraw_values_12="0.875"
+        osc3_chipdraw_values_12="0.875" osc1_chipdraw_values_13="0.875"
+        osc2_chipdraw_values_13="0.875" osc3_chipdraw_values_13="0.875"
+        osc1_chipdraw_values_14="0.875" osc2_chipdraw_values_14="0.875"
+        osc3_chipdraw_values_14="0.875" osc1_chipdraw_values_15="0.875"
+        osc2_chipdraw_values_15="0.875" osc3_chipdraw_values_15="0.875"
+        osc1_chipdraw_values_16="-0.875" osc2_chipdraw_values_16="-0.875"
+        osc3_chipdraw_values_16="-0.875" osc1_chipdraw_values_17="-0.875"
+        osc2_chipdraw_values_17="-0.875" osc3_chipdraw_values_17="-0.875"
+        osc1_chipdraw_values_18="-0.875" osc2_chipdraw_values_18="-0.875"
+        osc3_chipdraw_values_18="-0.875" osc1_chipdraw_values_19="-0.875"
+        osc2_chipdraw_values_19="-0.875" osc3_chipdraw_values_19="-0.875"
+        osc1_chipdraw_values_20="-0.875" osc2_chipdraw_values_20="-0.875"
+        osc3_chipdraw_values_20="-0.875" osc1_chipdraw_values_21="-0.875"
+        osc2_chipdraw_values_21="-0.875" osc3_chipdraw_values_21="-0.875"
+        osc1_chipdraw_values_22="-0.875" osc2_chipdraw_values_22="-0.875"
+        osc3_chipdraw_values_22="-0.875" osc1_chipdraw_values_23="-0.875"
+        osc2_chipdraw_values_23="-0.875" osc3_chipdraw_values_23="-0.875"
+        osc1_chipdraw_values_24="-0.875" osc2_chipdraw_values_24="-0.875"
+        osc3_chipdraw_values_24="-0.875" osc1_chipdraw_values_25="-0.875"
+        osc2_chipdraw_values_25="-0.875" osc3_chipdraw_values_25="-0.875"
+        osc1_chipdraw_values_26="-0.875" osc2_chipdraw_values_26="-0.875"
+        osc3_chipdraw_values_26="-0.875" osc1_chipdraw_values_27="-0.875"
+        osc2_chipdraw_values_27="-0.875" osc3_chipdraw_values_27="-0.875"
+        osc1_chipdraw_values_28="-0.875" osc2_chipdraw_values_28="-0.875"
+        osc3_chipdraw_values_28="-0.875" osc1_chipdraw_values_29="-0.875"
+        osc2_chipdraw_values_29="-0.875" osc3_chipdraw_values_29="-0.875"
+        osc1_chipdraw_values_30="-0.875" osc2_chipdraw_values_30="-0.875"
+        osc3_chipdraw_values_30="-0.875" osc1_chipdraw_values_31="-0.875"
+        osc2_chipdraw_values_31="-0.875" osc3_chipdraw_values_31="-0.875"
+        osc1_specdraw_values_0="1.0" osc2_specdraw_values_0="1.0" osc3_specdraw_values_0="1.0"
+        osc1_specdraw_values_1="0.0" osc2_specdraw_values_1="0.0" osc3_specdraw_values_1="0.0"
+        osc1_specdraw_values_2="0.0" osc2_specdraw_values_2="0.0" osc3_specdraw_values_2="0.0"
+        osc1_specdraw_values_3="0.0" osc2_specdraw_values_3="0.0" osc3_specdraw_values_3="0.0"
+        osc1_specdraw_values_4="0.0" osc2_specdraw_values_4="0.0" osc3_specdraw_values_4="0.0"
+        osc1_specdraw_values_5="0.0" osc2_specdraw_values_5="0.0" osc3_specdraw_values_5="0.0"
+        osc1_specdraw_values_6="0.0" osc2_specdraw_values_6="0.0" osc3_specdraw_values_6="0.0"
+        osc1_specdraw_values_7="0.0" osc2_specdraw_values_7="0.0" osc3_specdraw_values_7="0.0"
+        osc1_specdraw_values_8="0.0" osc2_specdraw_values_8="0.0" osc3_specdraw_values_8="0.0"
+        osc1_specdraw_values_9="0.0" osc2_specdraw_values_9="0.0" osc3_specdraw_values_9="0.0"
+        osc1_specdraw_values_10="0.0" osc2_specdraw_values_10="0.0" osc3_specdraw_values_10="0.0"
+        osc1_specdraw_values_11="0.0" osc2_specdraw_values_11="0.0" osc3_specdraw_values_11="0.0"
+        osc1_specdraw_values_12="0.0" osc2_specdraw_values_12="0.0" osc3_specdraw_values_12="0.0"
+        osc1_specdraw_values_13="0.0" osc2_specdraw_values_13="0.0" osc3_specdraw_values_13="0.0"
+        osc1_specdraw_values_14="0.0" osc2_specdraw_values_14="0.0" osc3_specdraw_values_14="0.0"
+        osc1_specdraw_values_15="0.0" osc2_specdraw_values_15="0.0" osc3_specdraw_values_15="0.0"
+        osc1_specdraw_values_16="0.0" osc2_specdraw_values_16="0.0" osc3_specdraw_values_16="0.0"
+        osc1_specdraw_values_17="0.0" osc2_specdraw_values_17="0.0" osc3_specdraw_values_17="0.0"
+        osc1_specdraw_values_18="0.0" osc2_specdraw_values_18="0.0" osc3_specdraw_values_18="0.0"
+        osc1_specdraw_values_19="0.0" osc2_specdraw_values_19="0.0" osc3_specdraw_values_19="0.0"
+        osc1_specdraw_values_20="0.0" osc2_specdraw_values_20="0.0" osc3_specdraw_values_20="0.0"
+        osc1_specdraw_values_21="0.0" osc2_specdraw_values_21="0.0" osc3_specdraw_values_21="0.0"
+        osc1_specdraw_values_22="0.0" osc2_specdraw_values_22="0.0" osc3_specdraw_values_22="0.0"
+        osc1_specdraw_values_23="0.0" osc2_specdraw_values_23="0.0" osc3_specdraw_values_23="0.0"
+        osc1_specdraw_values_24="0.0" osc2_specdraw_values_24="0.0" osc3_specdraw_values_24="0.0"
+        osc1_specdraw_values_25="0.0" osc2_specdraw_values_25="0.0" osc3_specdraw_values_25="0.0"
+        osc1_specdraw_values_26="0.0" osc2_specdraw_values_26="0.0" osc3_specdraw_values_26="0.0"
+        osc1_specdraw_values_27="0.0" osc2_specdraw_values_27="0.0" osc3_specdraw_values_27="0.0"
+        osc1_specdraw_values_28="0.0" osc2_specdraw_values_28="0.0" osc3_specdraw_values_28="0.0"
+        osc1_specdraw_values_29="0.0" osc2_specdraw_values_29="0.0" osc3_specdraw_values_29="0.0"
+        osc1_specdraw_values_30="0.0" osc2_specdraw_values_30="0.0" osc3_specdraw_values_30="0.0"
+        osc1_specdraw_values_31="0.0" osc2_specdraw_values_31="0.0" osc3_specdraw_values_31="0.0"
+        osc1_specdraw_values_32="0.0" osc2_specdraw_values_32="0.0" osc3_specdraw_values_32="0.0"
+        osc1_specdraw_values_33="0.0" osc2_specdraw_values_33="0.0" osc3_specdraw_values_33="0.0"
+        osc1_specdraw_values_34="0.0" osc2_specdraw_values_34="0.0" osc3_specdraw_values_34="0.0"
+        osc1_specdraw_values_35="0.0" osc2_specdraw_values_35="0.0" osc3_specdraw_values_35="0.0"
+        osc1_specdraw_values_36="0.0" osc2_specdraw_values_36="0.0" osc3_specdraw_values_36="0.0"
+        osc1_specdraw_values_37="0.0" osc2_specdraw_values_37="0.0" osc3_specdraw_values_37="0.0"
+        osc1_specdraw_values_38="0.0" osc2_specdraw_values_38="0.0" osc3_specdraw_values_38="0.0"
+        osc1_specdraw_values_39="0.0" osc2_specdraw_values_39="0.0" osc3_specdraw_values_39="0.0"
+        osc1_specdraw_values_40="0.0" osc2_specdraw_values_40="0.0" osc3_specdraw_values_40="0.0"
+        osc1_specdraw_values_41="0.0" osc2_specdraw_values_41="0.0" osc3_specdraw_values_41="0.0"
+        osc1_specdraw_values_42="0.0" osc2_specdraw_values_42="0.0" osc3_specdraw_values_42="0.0"
+        osc1_specdraw_values_43="0.0" osc2_specdraw_values_43="0.0" osc3_specdraw_values_43="0.0"
+        osc1_specdraw_values_44="0.0" osc2_specdraw_values_44="0.0" osc3_specdraw_values_44="0.0"
+        osc1_specdraw_values_45="0.0" osc2_specdraw_values_45="0.0" osc3_specdraw_values_45="0.0"
+        osc1_specdraw_values_46="0.0" osc2_specdraw_values_46="0.0" osc3_specdraw_values_46="0.0"
+        osc1_specdraw_values_47="0.0" osc2_specdraw_values_47="0.0" osc3_specdraw_values_47="0.0"
+        osc1_specdraw_values_48="0.0" osc2_specdraw_values_48="0.0" osc3_specdraw_values_48="0.0"/>
   <fx delay_synctime_numerator="2" delay_synctime_denominator="5" phaser_synctime_numerator="2"
       phaser_synctime_denominator="5" flanger_synctime_numerator="2"
       flanger_synctime_denominator="5" chorus_synctime_numerator="2"
       chorus_synctime_denominator="5" delay_selected="1" phaser_selected="0"
-      flanger_selected="0" chorus_selected="0" delay_position="0" phaser_position="1"
-      chorus_position="2" flanger_position="3" delay_sync="0" phaser_sync="0"
-      flanger_sync="0" chorus_sync="0"/>
+      flanger_selected="0" chorus_selected="0" delay_position="0.0"
+      phaser_position="1.0" chorus_position="2.0" flanger_position="3.0"
+      delay_sync="0" phaser_sync="0" flanger_sync="0" chorus_sync="0"/>
   <lfo lfo1_synctime_numerator="2" lfo1_synctime_denominator="5" lfo2_synctime_numerator="2"
        lfo2_synctime_denominator="5" lfo3_synctime_numerator="2" lfo3_synctime_denominator="5"
        lfo4_synctime_numerator="2" lfo4_synctime_denominator="5" lfo_left_selected="1"
        lfo_right_selected="1" lfo1_wave="0" lfo2_wave="0" lfo3_wave="0"
        lfo4_wave="0" lfo1_sync="0" lfo2_sync="0" lfo3_sync="0" lfo4_sync="0"/>
-  <misc legato="1" dist_algo="1" BPM="120" env_left_selected="1" env_right_selected="1"
+  <misc legato="1" dist_algo="1.0" BPM="120" env_left_selected="1" env_right_selected="1"
         fil1_type="2" fil2_type="1" fil3_type="1" patch_name="init_patch"
-        version_minor="0" version_patch="9" patch_migration_version="1"
+        version_minor="0" version_patch="10" patch_migration_version="1"
         dist_on="0" fil1_comb_polarity="0" fil2_comb_polarity="0" fil3_comb_polarity="0"
         fil1_vowel_left="0" fil2_vowel_left="0" fil3_vowel_left="0" fil1_vowel_right="2"
         fil2_vowel_right="2" fil3_vowel_right="2"/>
@@ -611,14 +611,14 @@
        amount_2_row_6="0" amount_0_row_7="0" amount_1_row_7="0" amount_2_row_7="0"
        amount_0_row_8="0" amount_1_row_8="0" amount_2_row_8="0"/>
   <osc osc1_analog_wave="0" osc2_analog_wave="0" osc3_analog_wave="0"
-       osc1_type="2" osc2_type="1" osc3_type="1" osc1_wavetable="1"
-       osc2_wavetable="1" osc3_wavetable="1" osc1_vec_a="101" osc2_vec_a="101"
+       osc1_type="2" osc2_type="1" osc3_type="1" osc1_wavetable="1.0"
+       osc2_wavetable="1.0" osc3_wavetable="1.0" osc1_vec_a="101" osc2_vec_a="101"
        osc3_vec_a="101" osc1_vec_b="102" osc2_vec_b="102" osc3_vec_b="102"
        osc1_vec_c="103" osc2_vec_c="103" osc3_vec_c="103" osc1_vec_d="104"
-       osc2_vec_d="104" osc3_vec_d="104" osc1_chipwave="1" osc2_chipwave="1"
-       osc3_chipwave="1" osc1_modulator_wave="1" osc2_modulator_wave="1"
-       osc3_modulator_wave="1" osc1_carrier_wave="1" osc2_carrier_wave="1"
-       osc3_carrier_wave="1" osc1_mod_source="1" osc2_mod_source="1"
-       osc3_mod_source="1"/>
+       osc2_vec_d="104" osc3_vec_d="104" osc1_chipwave="1.0" osc2_chipwave="1.0"
+       osc3_chipwave="1.0" osc1_modulator_wave="1.0" osc2_modulator_wave="1.0"
+       osc3_modulator_wave="1.0" osc1_carrier_wave="1.0" osc2_carrier_wave="1.0"
+       osc3_carrier_wave="1.0" osc1_mod_source="1.0" osc2_mod_source="1.0"
+       osc3_mod_source="1.0"/>
   <midi_learn/>
 </Odin>

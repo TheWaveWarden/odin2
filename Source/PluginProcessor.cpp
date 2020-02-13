@@ -752,7 +752,7 @@ AudioProcessorEditor *OdinAudioProcessor::createEditor() {
 		//onSetStateInformation();
 	}
 
-	m_editor_pointer.reset(editor);
+	m_editor_pointer = editor;
 
 	return editor;
 }
@@ -769,16 +769,15 @@ void OdinAudioProcessor::getStateInformation(MemoryBlock &destData) {
 	auto state = m_value_tree.copyState();
 	std::unique_ptr<XmlElement> xml(state.createXml());
 	copyXmlToBinary(*xml, destData);
-	DBG("GET BINARY STATE!!");
 }
 
 //this is called when DAW restores a file
 void OdinAudioProcessor::setStateInformation(const void *data, int sizeInBytes) {
 
 	// disable for standalone plugins
-	//if (wrapperType == wrapperType_Standalone) {
-	//	return;
-	//}
+	if (wrapperType == wrapperType_Standalone) {
+		return;
+	}
 
 	std::unique_ptr<XmlElement> xmlState(getXmlFromBinary(data, sizeInBytes));
 	if (xmlState.get() != nullptr) {
@@ -801,7 +800,6 @@ void OdinAudioProcessor::setStateInformation(const void *data, int sizeInBytes) 
 			    "patch_migration_version", ODIN_PATCH_MIGRATION_VERSION, nullptr);
 
 			m_force_values_onto_gui = true;
-			DBG("LOADED BINARY STATE!!");
 
 			//create midi learn map from valuetree
 			for (int i = 0; i < m_value_tree_midi_learn.getNumProperties(); ++i) {
@@ -810,7 +808,7 @@ void OdinAudioProcessor::setStateInformation(const void *data, int sizeInBytes) 
 				    m_value_tree.getParameter(m_value_tree_midi_learn.getPropertyName(i)));
 			}
 
-			if(m_editor_pointer.get()){
+			if(m_editor_pointer){
 				m_editor_pointer->forceValueTreeOntoComponents(false);
 			}
 		}
