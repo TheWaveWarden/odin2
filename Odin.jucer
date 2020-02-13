@@ -2,7 +2,7 @@
 
 <JUCERPROJECT id="vpwEHn" name="Odin2" projectType="audioplug" jucerVersion="5.4.5"
               pluginFormats="buildStandalone,buildVST,buildVST3" version="2.0.0"
-              companyName="BommelDSP" companyWebsite="www.BommelDSP.com" pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn"
+              companyName="TheWaveWarden" companyWebsite="www.TODO.com" pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn"
               pluginManufacturerCode="BDSP" pluginCode="ODIN" pluginChannelConfigs="{0,2}">
   <MAINGROUP id="Tn76b3" name="Odin2">
     <GROUP id="{A5BAEEE4-3FCE-5605-7A4C-F29962266097}" name="Graphics">
@@ -962,7 +962,7 @@
   <EXPORTFORMATS>
     <XCODE_MAC targetFolder="Builds/MacOSX">
       <CONFIGURATIONS>
-        <CONFIGURATION isDebug="1" name="Debug" defines="ODIN_DEBUG&#10;ODIN_MAC"/>
+        <CONFIGURATION isDebug="1" name="Debug" defines="ODIN_DEBUG&#10;ODIN_MAC" targetName="Odin2DEBUG"/>
         <CONFIGURATION isDebug="0" name="Release" defines="ODIN_RELEASE&#10;ODIN_MAC"/>
       </CONFIGURATIONS>
       <MODULEPATHS>

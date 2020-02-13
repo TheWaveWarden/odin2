@@ -752,7 +752,7 @@ AudioProcessorEditor *OdinAudioProcessor::createEditor() {
 		//onSetStateInformation();
 	}
 
-	m_editor_pointer = editor;
+	m_editor_pointer.reset(editor);
 
 	return editor;
 }
@@ -810,7 +810,7 @@ void OdinAudioProcessor::setStateInformation(const void *data, int sizeInBytes) 
 				    m_value_tree.getParameter(m_value_tree_midi_learn.getPropertyName(i)));
 			}
 
-			if(m_editor_pointer){
+			if(m_editor_pointer.get()){
 				m_editor_pointer->forceValueTreeOntoComponents(false);
 			}
 		}
