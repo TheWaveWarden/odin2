@@ -1,3 +1,6 @@
+# 2.0.10 alpha
+- fixed VST3 project restore bug
+- changed company name in plugin
 # 2.0.9 alpha
 - fixed load functionality for draw-oscs, comb polarity and formant vowels
 - changed backdrop panels for korg and diode filters
