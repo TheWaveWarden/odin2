@@ -455,7 +455,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 		//DBG("Modmatrix: " + std::to_string((float)GETAUDIO("amount_1_row_0")));
 		//DBG(std::to_string((int)m_value_tree.state.getChildWithName("lfo")["lfo1_wave"]));
 		//DBG((float)GETAUDIO("fil1_comb_polarity"));
-		DBG((float)m_value_tree.state.getChildWithName("misc")["fil1_comb_polarity"]);
+		//DBG((float)m_value_tree.state.getChildWithName("misc")["fil1_comb_polarity"]);
 	};
 
 	addAndMakeVisible(m_question_button);
