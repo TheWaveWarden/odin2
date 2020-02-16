@@ -1,3 +1,5 @@
+# 2.0.11 alpha
+- fixed issue where multiple plugin instances would share the same wave-/chip-/specdraw data
 # 2.0.10 alpha
 - fixed VST3 project restore bug
 - changed company name in plugin
