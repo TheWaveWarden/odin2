@@ -10,13 +10,17 @@
 
 class WavetableContainer {
 public:
-  static WavetableContainer &getInstance() {
-    static WavetableContainer instance;
-    return instance;
-  }
-  WavetableContainer(WavetableContainer const &) = delete;
-  void operator=(WavetableContainer const &) = delete;
 
+
+  //this class isn't used as a singleton anymore, since it messes with havning mutliple plugin instances
+  //static WavetableContainer &getInstance() {
+  //  static WavetableContainer instance;
+  //  return instance;
+  //}
+  //WavetableContainer(WavetableContainer const &) = delete;
+  //void operator=(WavetableContainer const &) = delete;
+
+  WavetableContainer();
   virtual ~WavetableContainer();
 
   void loadWavetablesFromConstData(); // assign pointers to wavetables from
@@ -53,7 +57,7 @@ public:
 #endif
 
 private:
-  WavetableContainer();
+  //WavetableContainer();
 
 protected:
 // Fourrier Coefficients

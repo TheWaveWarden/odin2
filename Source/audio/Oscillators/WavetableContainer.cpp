@@ -12,10 +12,7 @@
 #define DBG(text)
 #endif
 
-WavetableContainer::WavetableContainer()
-//    :
-//#include "Wavetables/Tables/WavetableData.h" //include initializer list
-{
+WavetableContainer::WavetableContainer() {
 #include "WavetableCoefficients.h"
 
 	// dynamically allocate wavetables
@@ -153,15 +150,15 @@ void WavetableContainer::createLFOtables(float p_samplerate) {
 				next_table[index_position] +=
 				    m_LFO_fourier_coeffs[index_wavetable][0][index_harmonics] *
 				    sin(2.f * PI * index_position * index_harmonics / (float)WAVETABLE_LENGTH); // *
-				    // m_LFO_fourier_coeffs[index_wavetable][1]
-				    //[0]; // last term is normalization
+				// m_LFO_fourier_coeffs[index_wavetable][1]
+				//[0]; // last term is normalization
 				// cosine
 				next_table[index_position] +=
 				    m_LFO_fourier_coeffs[index_wavetable][1][index_harmonics] *
 				    cos(2.f * PI * index_position * index_harmonics / (float)WAVETABLE_LENGTH); // *
-				    // m_LFO_fourier_coeffs[index_wavetable][1]
-				    //                  [0]; // last term is
-				    //                  normalization
+				// m_LFO_fourier_coeffs[index_wavetable][1]
+				//                  [0]; // last term is
+				//                  normalization
 			}
 		}
 

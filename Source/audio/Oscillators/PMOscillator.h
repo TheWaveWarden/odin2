@@ -23,6 +23,11 @@ public:
 	  m_modulator_osc.setSampleRate(p_sr);
   }
 
+  void setWavetableContainer(WavetableContainer* p_WT_container){
+    m_carrier_osc.setWavetableContainer(p_WT_container);
+    m_modulator_osc.setWavetableContainer(p_WT_container);
+  }
+
   inline void setPMAmount(float p_pm_amount) { m_PM_amount = p_pm_amount; }
 
   inline void setRatio(int p_carrier, int p_modulator) {

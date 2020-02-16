@@ -42,10 +42,10 @@ void SpectrumDisplay::paint(Graphics &g) {
 
   */
 	if (m_position_left) {
-		float *spectrum_left  = WavetableContainer::getInstance().m_fourier_coeffs[m_lower_wt][0];
-		float scale_left      = WavetableContainer::getInstance().m_fourier_coeffs[m_lower_wt][1][0];
-		float *spectrum_right = WavetableContainer::getInstance().m_fourier_coeffs[m_higher_wt][0];
-		float scale_right     = WavetableContainer::getInstance().m_fourier_coeffs[m_higher_wt][1][0];
+		float *spectrum_left  = m_WT_container->m_fourier_coeffs[m_lower_wt][0];
+		float scale_left      = m_WT_container->m_fourier_coeffs[m_lower_wt][1][0];
+		float *spectrum_right = m_WT_container->m_fourier_coeffs[m_higher_wt][0];
+		float scale_right     = m_WT_container->m_fourier_coeffs[m_higher_wt][1][0];
 
 		float inverse_polation = 1.f - m_interpolation;
 

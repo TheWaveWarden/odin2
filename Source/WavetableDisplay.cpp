@@ -38,13 +38,13 @@ void WavetableDisplay::paint(Graphics &g) {
 
 	if (m_position_left) {
 
-		const float *left_table  = WavetableContainer::getInstance().getWavetablePointers(m_lower_wt)[0];
-		const float *right_table = WavetableContainer::getInstance().getWavetablePointers(m_higher_wt)[0];
+		const float *left_table  = m_WT_container->getWavetablePointers(m_lower_wt)[0];
+		const float *right_table = m_WT_container->getWavetablePointers(m_higher_wt)[0];
 
 		// const float *left_table =
-		//     WavetableContainer::getInstance().getWavetablePointers(2)[0];
+		//     m_WT_container->getWavetablePointers(2)[0];
 		// const float *right_table =
-		//     WavetableContainer::getInstance().getWavetablePointers(2)[SUBTABLES_PER_WAVETABLE-20];
+		//     m_WT_container->getWavetablePointers(2)[SUBTABLES_PER_WAVETABLE-20];
 
 		float inverse_polation = 1.f - m_interpolation;
 

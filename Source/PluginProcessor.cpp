@@ -143,9 +143,32 @@ OdinAudioProcessor::OdinAudioProcessor() :
 		treeValueChangedNonParamOsc(tree, identifier);
 	};
 
-	initializeModules();
+	//distribute WTContainer to audio core
+for (int i = 0; i < VOICES; ++i) {
+		for (int osc = 0; osc < 3; ++osc) {
+			m_voice[i].analog_osc[osc].setWavetableContainer(&m_WT_container);
+			m_voice[i].wavetable_osc[osc].setWavetableContainer(&m_WT_container);
+			m_voice[i].chiptune_osc[osc].setWavetableContainer(&m_WT_container);
+			m_voice[i].vector_osc[osc].setWavetableContainer(&m_WT_container);
+			m_voice[i].multi_osc[osc].setWavetableContainer(&m_WT_container);
+			m_voice[i].fm_osc[osc].setWavetableContainer(&m_WT_container);
+			m_voice[i].pm_osc[osc].setWavetableContainer(&m_WT_container);
+			m_voice[i].wavedraw_osc[osc].setWavetableContainer(&m_WT_container);
+			m_voice[i].chipdraw_osc[osc].setWavetableContainer(&m_WT_container);
+			m_voice[i].specdraw_osc[osc].setWavetableContainer(&m_WT_container);
+			m_voice[i].lfo[osc].setWavetableContainer(&m_WT_container);
+		}
+		m_voice[i].ring_mod[0].setWavetableContainer(&m_WT_container);
+		m_voice[i].ring_mod[1].setWavetableContainer(&m_WT_container);
 
-	WavetableContainer::getInstance().loadWavetablesFromConstData();
+	}
+	m_ring_mod[0].setWavetableContainer(&m_WT_container);
+	m_ring_mod[1].setWavetableContainer(&m_WT_container);
+
+	m_global_lfo.setWavetableContainer(&m_WT_container);
+
+	initializeModules();
+	m_WT_container.loadWavetablesFromConstData();
 
 	// create draw tables
 	float draw_values[WAVEDRAW_STEPS_X];
@@ -163,9 +186,9 @@ OdinAudioProcessor::OdinAudioProcessor() :
 		}
 	}
 	for (int osc = 0; osc < 3; ++osc) {
-		WavetableContainer::getInstance().createWavedrawTable(osc, draw_values, 44100);
-		WavetableContainer::getInstance().createChipdrawTable(osc, chip_values, 44100);
-		WavetableContainer::getInstance().createSpecdrawTable(osc, spec_values, 44100);
+		m_WT_container.createWavedrawTable(osc, draw_values, 44100);
+		m_WT_container.createChipdrawTable(osc, chip_values, 44100);
+		m_WT_container.createSpecdrawTable(osc, spec_values, 44100);
 	}
 
 	// load wavetables into oscs
@@ -233,7 +256,7 @@ OdinAudioProcessor::OdinAudioProcessor() :
 }
 
 OdinAudioProcessor::~OdinAudioProcessor() {
-	// WavetableContainer::getInstance().destroyWavetables();
+	// m_WT_container->destroyWavetables();
 }
 
 //==============================================================================

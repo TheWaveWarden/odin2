@@ -8,182 +8,182 @@ WavetableOsc2D::~WavetableOsc2D() {
 }
 
 void WavetableOsc2D::loadWavetables() {
-	setWavetablePointer(0, 0, WavetableContainer::getInstance().getWavetablePointers("Saw"));
-	setWavetablePointer(0, 1, WavetableContainer::getInstance().getWavetablePointers("ChiptuneSquare50"));
-	setWavetablePointer(0, 2, WavetableContainer::getInstance().getWavetablePointers("Triangle"));
-	setWavetablePointer(0, 3, WavetableContainer::getInstance().getWavetablePointers("Sine"));
+	setWavetablePointer(0, 0, m_WT_container->getWavetablePointers("Saw"));
+	setWavetablePointer(0, 1, m_WT_container->getWavetablePointers("ChiptuneSquare50"));
+	setWavetablePointer(0, 2, m_WT_container->getWavetablePointers("Triangle"));
+	setWavetablePointer(0, 3, m_WT_container->getWavetablePointers("Sine"));
 
-	setWavetablePointer(1, 0, WavetableContainer::getInstance().getWavetablePointers("AKWF_birds_0010"));
-	setWavetablePointer(1, 1, WavetableContainer::getInstance().getWavetablePointers("AKWF_birds_0011"));
-	setWavetablePointer(1, 2, WavetableContainer::getInstance().getWavetablePointers("AKWF_birds_0014"));
-	setWavetablePointer(1, 3, WavetableContainer::getInstance().getWavetablePointers("AKWF_birds_0004"));
+	setWavetablePointer(1, 0, m_WT_container->getWavetablePointers("AKWF_birds_0010"));
+	setWavetablePointer(1, 1, m_WT_container->getWavetablePointers("AKWF_birds_0011"));
+	setWavetablePointer(1, 2, m_WT_container->getWavetablePointers("AKWF_birds_0014"));
+	setWavetablePointer(1, 3, m_WT_container->getWavetablePointers("AKWF_birds_0004"));
 
-	setWavetablePointer(2, 0, WavetableContainer::getInstance().getWavetablePointers("BagPipe"));
-	setWavetablePointer(2, 1, WavetableContainer::getInstance().getWavetablePointers("BagPipeMutated1"));
-	setWavetablePointer(2, 2, WavetableContainer::getInstance().getWavetablePointers("BagPipeMutated5"));
-	setWavetablePointer(2, 3, WavetableContainer::getInstance().getWavetablePointers("BagPipeMutated4"));
+	setWavetablePointer(2, 0, m_WT_container->getWavetablePointers("BagPipe"));
+	setWavetablePointer(2, 1, m_WT_container->getWavetablePointers("BagPipeMutated1"));
+	setWavetablePointer(2, 2, m_WT_container->getWavetablePointers("BagPipeMutated5"));
+	setWavetablePointer(2, 3, m_WT_container->getWavetablePointers("BagPipeMutated4"));
 
-	setWavetablePointer(3, 0, WavetableContainer::getInstance().getWavetablePointers("Glass"));
-	setWavetablePointer(3, 1, WavetableContainer::getInstance().getWavetablePointers("GlassMutated1"));
-	setWavetablePointer(3, 2, WavetableContainer::getInstance().getWavetablePointers("GlassMutated2"));
-	setWavetablePointer(3, 3, WavetableContainer::getInstance().getWavetablePointers("GlassMutated3"));
+	setWavetablePointer(3, 0, m_WT_container->getWavetablePointers("Glass"));
+	setWavetablePointer(3, 1, m_WT_container->getWavetablePointers("GlassMutated1"));
+	setWavetablePointer(3, 2, m_WT_container->getWavetablePointers("GlassMutated2"));
+	setWavetablePointer(3, 3, m_WT_container->getWavetablePointers("GlassMutated3"));
 
-	setWavetablePointer(4, 0, WavetableContainer::getInstance().getWavetablePointers("AKWF_fmsynth_0011"));
-	setWavetablePointer(4, 1, WavetableContainer::getInstance().getWavetablePointers("AKWF_fmsynth_0032"));
-	setWavetablePointer(4, 2, WavetableContainer::getInstance().getWavetablePointers("AKWF_fmsynth_0034"));
-	setWavetablePointer(4, 3, WavetableContainer::getInstance().getWavetablePointers("AKWF_fmsynth_0081"));
+	setWavetablePointer(4, 0, m_WT_container->getWavetablePointers("AKWF_fmsynth_0011"));
+	setWavetablePointer(4, 1, m_WT_container->getWavetablePointers("AKWF_fmsynth_0032"));
+	setWavetablePointer(4, 2, m_WT_container->getWavetablePointers("AKWF_fmsynth_0034"));
+	setWavetablePointer(4, 3, m_WT_container->getWavetablePointers("AKWF_fmsynth_0081"));
 
-	setWavetablePointer(5, 0, WavetableContainer::getInstance().getWavetablePointers("BrokenSine1"));
-	setWavetablePointer(5, 1, WavetableContainer::getInstance().getWavetablePointers("BrokenSine2"));
-	setWavetablePointer(5, 2, WavetableContainer::getInstance().getWavetablePointers("BrokenSine3"));
-	setWavetablePointer(5, 3, WavetableContainer::getInstance().getWavetablePointers("BrokenSine4"));
+	setWavetablePointer(5, 0, m_WT_container->getWavetablePointers("BrokenSine1"));
+	setWavetablePointer(5, 1, m_WT_container->getWavetablePointers("BrokenSine2"));
+	setWavetablePointer(5, 2, m_WT_container->getWavetablePointers("BrokenSine3"));
+	setWavetablePointer(5, 3, m_WT_container->getWavetablePointers("BrokenSine4"));
 
-	setWavetablePointer(6, 0, WavetableContainer::getInstance().getWavetablePointers("Skyline1"));
-	setWavetablePointer(6, 1, WavetableContainer::getInstance().getWavetablePointers("Skyline2"));
-	setWavetablePointer(6, 2, WavetableContainer::getInstance().getWavetablePointers("Skyline3"));
-	setWavetablePointer(6, 3, WavetableContainer::getInstance().getWavetablePointers("Skyline4"));
+	setWavetablePointer(6, 0, m_WT_container->getWavetablePointers("Skyline1"));
+	setWavetablePointer(6, 1, m_WT_container->getWavetablePointers("Skyline2"));
+	setWavetablePointer(6, 2, m_WT_container->getWavetablePointers("Skyline3"));
+	setWavetablePointer(6, 3, m_WT_container->getWavetablePointers("Skyline4"));
 
-	setWavetablePointer(7, 0, WavetableContainer::getInstance().getWavetablePointers("PerlinReplace1"));
-	setWavetablePointer(7, 1, WavetableContainer::getInstance().getWavetablePointers("PerlinReplace2"));
-	setWavetablePointer(7, 2, WavetableContainer::getInstance().getWavetablePointers("PerlinReplace3"));
-	setWavetablePointer(7, 3, WavetableContainer::getInstance().getWavetablePointers("PerlinReplace4"));
+	setWavetablePointer(7, 0, m_WT_container->getWavetablePointers("PerlinReplace1"));
+	setWavetablePointer(7, 1, m_WT_container->getWavetablePointers("PerlinReplace2"));
+	setWavetablePointer(7, 2, m_WT_container->getWavetablePointers("PerlinReplace3"));
+	setWavetablePointer(7, 3, m_WT_container->getWavetablePointers("PerlinReplace4"));
 
-	setWavetablePointer(8, 0, WavetableContainer::getInstance().getWavetablePointers("Rectangular1"));
-	setWavetablePointer(8, 1, WavetableContainer::getInstance().getWavetablePointers("Rectangular2"));
-	setWavetablePointer(8, 2, WavetableContainer::getInstance().getWavetablePointers("Rectangular3"));
-	setWavetablePointer(8, 3, WavetableContainer::getInstance().getWavetablePointers("Rectangular4"));
+	setWavetablePointer(8, 0, m_WT_container->getWavetablePointers("Rectangular1"));
+	setWavetablePointer(8, 1, m_WT_container->getWavetablePointers("Rectangular2"));
+	setWavetablePointer(8, 2, m_WT_container->getWavetablePointers("Rectangular3"));
+	setWavetablePointer(8, 3, m_WT_container->getWavetablePointers("Rectangular4"));
 
-	setWavetablePointer(9, 0, WavetableContainer::getInstance().getWavetablePointers("AKWF_bitreduced_0002"));
-	setWavetablePointer(9, 1, WavetableContainer::getInstance().getWavetablePointers("AKWF_bitreduced_0003"));
-	setWavetablePointer(9, 2, WavetableContainer::getInstance().getWavetablePointers("AKWF_bitreduced_0006"));
-	setWavetablePointer(9, 3, WavetableContainer::getInstance().getWavetablePointers("AKWF_bitreduced_0011"));
+	setWavetablePointer(9, 0, m_WT_container->getWavetablePointers("AKWF_bitreduced_0002"));
+	setWavetablePointer(9, 1, m_WT_container->getWavetablePointers("AKWF_bitreduced_0003"));
+	setWavetablePointer(9, 2, m_WT_container->getWavetablePointers("AKWF_bitreduced_0006"));
+	setWavetablePointer(9, 3, m_WT_container->getWavetablePointers("AKWF_bitreduced_0011"));
 
-	setWavetablePointer(10, 0, WavetableContainer::getInstance().getWavetablePointers("Violin1"));
-	setWavetablePointer(10, 1, WavetableContainer::getInstance().getWavetablePointers("Violin2"));
-	setWavetablePointer(10, 2, WavetableContainer::getInstance().getWavetablePointers("Cello1"));
-	setWavetablePointer(10, 3, WavetableContainer::getInstance().getWavetablePointers("Cello2"));
+	setWavetablePointer(10, 0, m_WT_container->getWavetablePointers("Violin1"));
+	setWavetablePointer(10, 1, m_WT_container->getWavetablePointers("Violin2"));
+	setWavetablePointer(10, 2, m_WT_container->getWavetablePointers("Cello1"));
+	setWavetablePointer(10, 3, m_WT_container->getWavetablePointers("Cello2"));
 
-	setWavetablePointer(11, 0, WavetableContainer::getInstance().getWavetablePointers("Piano2"));
-	setWavetablePointer(11, 1, WavetableContainer::getInstance().getWavetablePointers("Piano3"));
-	setWavetablePointer(11, 2, WavetableContainer::getInstance().getWavetablePointers("Piano4"));
-	setWavetablePointer(11, 3, WavetableContainer::getInstance().getWavetablePointers("Piano1"));
+	setWavetablePointer(11, 0, m_WT_container->getWavetablePointers("Piano2"));
+	setWavetablePointer(11, 1, m_WT_container->getWavetablePointers("Piano3"));
+	setWavetablePointer(11, 2, m_WT_container->getWavetablePointers("Piano4"));
+	setWavetablePointer(11, 3, m_WT_container->getWavetablePointers("Piano1"));
 
-	setWavetablePointer(12, 0, WavetableContainer::getInstance().getWavetablePointers("Organ1"));
-	setWavetablePointer(12, 1, WavetableContainer::getInstance().getWavetablePointers("Organ2"));
-	setWavetablePointer(12, 2, WavetableContainer::getInstance().getWavetablePointers("Organ3"));
-	setWavetablePointer(12, 3, WavetableContainer::getInstance().getWavetablePointers("Organ4"));
+	setWavetablePointer(12, 0, m_WT_container->getWavetablePointers("Organ1"));
+	setWavetablePointer(12, 1, m_WT_container->getWavetablePointers("Organ2"));
+	setWavetablePointer(12, 2, m_WT_container->getWavetablePointers("Organ3"));
+	setWavetablePointer(12, 3, m_WT_container->getWavetablePointers("Organ4"));
 
-	setWavetablePointer(13, 0, WavetableContainer::getInstance().getWavetablePointers("Oboe1"));
-	setWavetablePointer(13, 1, WavetableContainer::getInstance().getWavetablePointers("Oboe2"));
-	setWavetablePointer(13, 2, WavetableContainer::getInstance().getWavetablePointers("Oboe3"));
-	setWavetablePointer(13, 3, WavetableContainer::getInstance().getWavetablePointers("Oboe4"));
+	setWavetablePointer(13, 0, m_WT_container->getWavetablePointers("Oboe1"));
+	setWavetablePointer(13, 1, m_WT_container->getWavetablePointers("Oboe2"));
+	setWavetablePointer(13, 2, m_WT_container->getWavetablePointers("Oboe3"));
+	setWavetablePointer(13, 3, m_WT_container->getWavetablePointers("Oboe4"));
 
-	setWavetablePointer(14, 0, WavetableContainer::getInstance().getWavetablePointers("Trumpet1"));
-	setWavetablePointer(14, 1, WavetableContainer::getInstance().getWavetablePointers("Trumpet2"));
-	setWavetablePointer(14, 2, WavetableContainer::getInstance().getWavetablePointers("Trumpet3"));
-	setWavetablePointer(14, 3, WavetableContainer::getInstance().getWavetablePointers("Trumpet4"));
+	setWavetablePointer(14, 0, m_WT_container->getWavetablePointers("Trumpet1"));
+	setWavetablePointer(14, 1, m_WT_container->getWavetablePointers("Trumpet2"));
+	setWavetablePointer(14, 2, m_WT_container->getWavetablePointers("Trumpet3"));
+	setWavetablePointer(14, 3, m_WT_container->getWavetablePointers("Trumpet4"));
 
-	setWavetablePointer(15, 0, WavetableContainer::getInstance().getWavetablePointers("LegToyBox"));
-	setWavetablePointer(15, 1, WavetableContainer::getInstance().getWavetablePointers("LegRip2"));
-	setWavetablePointer(15, 2, WavetableContainer::getInstance().getWavetablePointers("LegMale"));
-	setWavetablePointer(15, 3, WavetableContainer::getInstance().getWavetablePointers("LegBarbedWire"));
+	setWavetablePointer(15, 0, m_WT_container->getWavetablePointers("LegToyBox"));
+	setWavetablePointer(15, 1, m_WT_container->getWavetablePointers("LegRip2"));
+	setWavetablePointer(15, 2, m_WT_container->getWavetablePointers("LegMale"));
+	setWavetablePointer(15, 3, m_WT_container->getWavetablePointers("LegBarbedWire"));
 
-	setWavetablePointer(16, 0, WavetableContainer::getInstance().getWavetablePointers("LegAdd8"));
-	setWavetablePointer(16, 1, WavetableContainer::getInstance().getWavetablePointers("LegSharp"));
-	setWavetablePointer(16, 2, WavetableContainer::getInstance().getWavetablePointers("LegPiano"));
-	setWavetablePointer(16, 3, WavetableContainer::getInstance().getWavetablePointers("LegAdd1"));
+	setWavetablePointer(16, 0, m_WT_container->getWavetablePointers("LegAdd8"));
+	setWavetablePointer(16, 1, m_WT_container->getWavetablePointers("LegSharp"));
+	setWavetablePointer(16, 2, m_WT_container->getWavetablePointers("LegPiano"));
+	setWavetablePointer(16, 3, m_WT_container->getWavetablePointers("LegAdd1"));
 
-	setWavetablePointer(17, 0, WavetableContainer::getInstance().getWavetablePointers("LegCello"));
-	setWavetablePointer(17, 1, WavetableContainer::getInstance().getWavetablePointers("LegAah"));
-	setWavetablePointer(17, 2, WavetableContainer::getInstance().getWavetablePointers("LegHarm2"));
-	setWavetablePointer(17, 3, WavetableContainer::getInstance().getWavetablePointers("LegNoBass"));
+	setWavetablePointer(17, 0, m_WT_container->getWavetablePointers("LegCello"));
+	setWavetablePointer(17, 1, m_WT_container->getWavetablePointers("LegAah"));
+	setWavetablePointer(17, 2, m_WT_container->getWavetablePointers("LegHarm2"));
+	setWavetablePointer(17, 3, m_WT_container->getWavetablePointers("LegNoBass"));
 
-	setWavetablePointer(18, 0, WavetableContainer::getInstance().getWavetablePointers("LegBags"));
-	setWavetablePointer(18, 1, WavetableContainer::getInstance().getWavetablePointers("LegOrgan"));
-	setWavetablePointer(18, 2, WavetableContainer::getInstance().getWavetablePointers("LegTriQuad"));
-	setWavetablePointer(18, 3, WavetableContainer::getInstance().getWavetablePointers("LegAdd3"));
+	setWavetablePointer(18, 0, m_WT_container->getWavetablePointers("LegBags"));
+	setWavetablePointer(18, 1, m_WT_container->getWavetablePointers("LegOrgan"));
+	setWavetablePointer(18, 2, m_WT_container->getWavetablePointers("LegTriQuad"));
+	setWavetablePointer(18, 3, m_WT_container->getWavetablePointers("LegAdd3"));
 
-	setWavetablePointer(19, 0, WavetableContainer::getInstance().getWavetablePointers("AKWF_hvoice_0002"));
-	setWavetablePointer(19, 1, WavetableContainer::getInstance().getWavetablePointers("AKWF_hvoice_0010"));
-	setWavetablePointer(19, 2, WavetableContainer::getInstance().getWavetablePointers("AKWF_hvoice_0014"));
-	setWavetablePointer(19, 3, WavetableContainer::getInstance().getWavetablePointers("AKWF_hvoice_0019"));
+	setWavetablePointer(19, 0, m_WT_container->getWavetablePointers("AKWF_hvoice_0002"));
+	setWavetablePointer(19, 1, m_WT_container->getWavetablePointers("AKWF_hvoice_0010"));
+	setWavetablePointer(19, 2, m_WT_container->getWavetablePointers("AKWF_hvoice_0014"));
+	setWavetablePointer(19, 3, m_WT_container->getWavetablePointers("AKWF_hvoice_0019"));
 
-	setWavetablePointer(20, 0, WavetableContainer::getInstance().getWavetablePointers("AKWF_hvoice_0020"));
-	setWavetablePointer(20, 1, WavetableContainer::getInstance().getWavetablePointers("AKWF_hvoice_0021"));
-	setWavetablePointer(20, 2, WavetableContainer::getInstance().getWavetablePointers("AKWF_hvoice_0029"));
-	setWavetablePointer(20, 3, WavetableContainer::getInstance().getWavetablePointers("AKWF_hvoice_0032"));
+	setWavetablePointer(20, 0, m_WT_container->getWavetablePointers("AKWF_hvoice_0020"));
+	setWavetablePointer(20, 1, m_WT_container->getWavetablePointers("AKWF_hvoice_0021"));
+	setWavetablePointer(20, 2, m_WT_container->getWavetablePointers("AKWF_hvoice_0029"));
+	setWavetablePointer(20, 3, m_WT_container->getWavetablePointers("AKWF_hvoice_0032"));
 
-	setWavetablePointer(21, 0, WavetableContainer::getInstance().getWavetablePointers("AKWF_hvoice_0037"));
-	setWavetablePointer(21, 1, WavetableContainer::getInstance().getWavetablePointers("AKWF_hvoice_0041"));
-	setWavetablePointer(21, 2, WavetableContainer::getInstance().getWavetablePointers("AKWF_hvoice_0047"));
-	setWavetablePointer(21, 3, WavetableContainer::getInstance().getWavetablePointers("AKWF_hvoice_0049"));
+	setWavetablePointer(21, 0, m_WT_container->getWavetablePointers("AKWF_hvoice_0037"));
+	setWavetablePointer(21, 1, m_WT_container->getWavetablePointers("AKWF_hvoice_0041"));
+	setWavetablePointer(21, 2, m_WT_container->getWavetablePointers("AKWF_hvoice_0047"));
+	setWavetablePointer(21, 3, m_WT_container->getWavetablePointers("AKWF_hvoice_0049"));
 
-	setWavetablePointer(22, 0, WavetableContainer::getInstance().getWavetablePointers("AKWF_hvoice_0056"));
-	setWavetablePointer(22, 1, WavetableContainer::getInstance().getWavetablePointers("AKWF_hvoice_0064"));
-	setWavetablePointer(22, 2, WavetableContainer::getInstance().getWavetablePointers("AKWF_hvoice_0071"));
-	setWavetablePointer(22, 3, WavetableContainer::getInstance().getWavetablePointers("AKWF_hvoice_0093"));
+	setWavetablePointer(22, 0, m_WT_container->getWavetablePointers("AKWF_hvoice_0056"));
+	setWavetablePointer(22, 1, m_WT_container->getWavetablePointers("AKWF_hvoice_0064"));
+	setWavetablePointer(22, 2, m_WT_container->getWavetablePointers("AKWF_hvoice_0071"));
+	setWavetablePointer(22, 3, m_WT_container->getWavetablePointers("AKWF_hvoice_0093"));
 
-	setWavetablePointer(23, 0, WavetableContainer::getInstance().getWavetablePointers("Additive1"));
-	setWavetablePointer(23, 1, WavetableContainer::getInstance().getWavetablePointers("Additive2"));
-	setWavetablePointer(23, 2, WavetableContainer::getInstance().getWavetablePointers("Additive3"));
-	setWavetablePointer(23, 3, WavetableContainer::getInstance().getWavetablePointers("Additive4"));
+	setWavetablePointer(23, 0, m_WT_container->getWavetablePointers("Additive1"));
+	setWavetablePointer(23, 1, m_WT_container->getWavetablePointers("Additive2"));
+	setWavetablePointer(23, 2, m_WT_container->getWavetablePointers("Additive3"));
+	setWavetablePointer(23, 3, m_WT_container->getWavetablePointers("Additive4"));
 
-	setWavetablePointer(24, 0, WavetableContainer::getInstance().getWavetablePointers("Additive5"));
-	setWavetablePointer(24, 1, WavetableContainer::getInstance().getWavetablePointers("Additive6"));
-	setWavetablePointer(24, 2, WavetableContainer::getInstance().getWavetablePointers("Additive7"));
-	setWavetablePointer(24, 3, WavetableContainer::getInstance().getWavetablePointers("Additive8"));
+	setWavetablePointer(24, 0, m_WT_container->getWavetablePointers("Additive5"));
+	setWavetablePointer(24, 1, m_WT_container->getWavetablePointers("Additive6"));
+	setWavetablePointer(24, 2, m_WT_container->getWavetablePointers("Additive7"));
+	setWavetablePointer(24, 3, m_WT_container->getWavetablePointers("Additive8"));
 
-	setWavetablePointer(25, 0, WavetableContainer::getInstance().getWavetablePointers("Additive10"));
-	setWavetablePointer(25, 1, WavetableContainer::getInstance().getWavetablePointers("Additive11"));
-	setWavetablePointer(25, 2, WavetableContainer::getInstance().getWavetablePointers("Additive12"));
-	setWavetablePointer(25, 3, WavetableContainer::getInstance().getWavetablePointers("Additive9"));
+	setWavetablePointer(25, 0, m_WT_container->getWavetablePointers("Additive10"));
+	setWavetablePointer(25, 1, m_WT_container->getWavetablePointers("Additive11"));
+	setWavetablePointer(25, 2, m_WT_container->getWavetablePointers("Additive12"));
+	setWavetablePointer(25, 3, m_WT_container->getWavetablePointers("Additive9"));
 
-	setWavetablePointer(26, 0, WavetableContainer::getInstance().getWavetablePointers("Additive13"));
-	setWavetablePointer(26, 1, WavetableContainer::getInstance().getWavetablePointers("Additive14"));
-	setWavetablePointer(26, 2, WavetableContainer::getInstance().getWavetablePointers("Additive15"));
-	setWavetablePointer(26, 3, WavetableContainer::getInstance().getWavetablePointers("Additive16"));
+	setWavetablePointer(26, 0, m_WT_container->getWavetablePointers("Additive13"));
+	setWavetablePointer(26, 1, m_WT_container->getWavetablePointers("Additive14"));
+	setWavetablePointer(26, 2, m_WT_container->getWavetablePointers("Additive15"));
+	setWavetablePointer(26, 3, m_WT_container->getWavetablePointers("Additive16"));
 
 	setWavetablePointer(27, 0,
-	                    WavetableContainer::getInstance().getWavetablePointers("Harmonics9")); // overtones 1-4
-	setWavetablePointer(27, 1, WavetableContainer::getInstance().getWavetablePointers("Harmonics10"));
-	setWavetablePointer(27, 2, WavetableContainer::getInstance().getWavetablePointers("Harmonics11"));
-	setWavetablePointer(27, 3, WavetableContainer::getInstance().getWavetablePointers("Harmonics12"));
+	                    m_WT_container->getWavetablePointers("Harmonics9")); // overtones 1-4
+	setWavetablePointer(27, 1, m_WT_container->getWavetablePointers("Harmonics10"));
+	setWavetablePointer(27, 2, m_WT_container->getWavetablePointers("Harmonics11"));
+	setWavetablePointer(27, 3, m_WT_container->getWavetablePointers("Harmonics12"));
 
 	setWavetablePointer(28, 0,
-	                    WavetableContainer::getInstance().getWavetablePointers("Harmonics13")); // overtones 5-9
-	setWavetablePointer(28, 1, WavetableContainer::getInstance().getWavetablePointers("Harmonics14"));
-	setWavetablePointer(28, 2, WavetableContainer::getInstance().getWavetablePointers("Harmonics15"));
-	setWavetablePointer(28, 3, WavetableContainer::getInstance().getWavetablePointers("Harmonics16"));
+	                    m_WT_container->getWavetablePointers("Harmonics13")); // overtones 5-9
+	setWavetablePointer(28, 1, m_WT_container->getWavetablePointers("Harmonics14"));
+	setWavetablePointer(28, 2, m_WT_container->getWavetablePointers("Harmonics15"));
+	setWavetablePointer(28, 3, m_WT_container->getWavetablePointers("Harmonics16"));
 
-	setWavetablePointer(29, 0, WavetableContainer::getInstance().getWavetablePointers("Harmonics5"));
-	setWavetablePointer(29, 1, WavetableContainer::getInstance().getWavetablePointers("Harmonics6"));
-	setWavetablePointer(29, 2, WavetableContainer::getInstance().getWavetablePointers("Harmonics7"));
-	setWavetablePointer(29, 3, WavetableContainer::getInstance().getWavetablePointers("Harmonics8"));
+	setWavetablePointer(29, 0, m_WT_container->getWavetablePointers("Harmonics5"));
+	setWavetablePointer(29, 1, m_WT_container->getWavetablePointers("Harmonics6"));
+	setWavetablePointer(29, 2, m_WT_container->getWavetablePointers("Harmonics7"));
+	setWavetablePointer(29, 3, m_WT_container->getWavetablePointers("Harmonics8"));
 
-	setWavetablePointer(30, 0, WavetableContainer::getInstance().getWavetablePointers("Harmonics1"));
-	setWavetablePointer(30, 1, WavetableContainer::getInstance().getWavetablePointers("Harmonics2"));
-	setWavetablePointer(30, 2, WavetableContainer::getInstance().getWavetablePointers("Harmonics3"));
-	setWavetablePointer(30, 3, WavetableContainer::getInstance().getWavetablePointers("Harmonics4"));
+	setWavetablePointer(30, 0, m_WT_container->getWavetablePointers("Harmonics1"));
+	setWavetablePointer(30, 1, m_WT_container->getWavetablePointers("Harmonics2"));
+	setWavetablePointer(30, 2, m_WT_container->getWavetablePointers("Harmonics3"));
+	setWavetablePointer(30, 3, m_WT_container->getWavetablePointers("Harmonics4"));
 
-	setWavetablePointer(31, 0, WavetableContainer::getInstance().getWavetablePointers("FatSawMutated1"));
-	setWavetablePointer(31, 1, WavetableContainer::getInstance().getWavetablePointers("FatSawMutated2"));
-	setWavetablePointer(31, 2, WavetableContainer::getInstance().getWavetablePointers("FatSawMutated3"));
-	setWavetablePointer(31, 3, WavetableContainer::getInstance().getWavetablePointers("FatSawMutated4"));
+	setWavetablePointer(31, 0, m_WT_container->getWavetablePointers("FatSawMutated1"));
+	setWavetablePointer(31, 1, m_WT_container->getWavetablePointers("FatSawMutated2"));
+	setWavetablePointer(31, 2, m_WT_container->getWavetablePointers("FatSawMutated3"));
+	setWavetablePointer(31, 3, m_WT_container->getWavetablePointers("FatSawMutated4"));
 
-	setWavetablePointer(32, 0, WavetableContainer::getInstance().getWavetablePointers("FatSawMutated5"));
-	setWavetablePointer(32, 1, WavetableContainer::getInstance().getWavetablePointers("FatSawMutated6"));
-	setWavetablePointer(32, 2, WavetableContainer::getInstance().getWavetablePointers("FatSawMutated7"));
-	setWavetablePointer(32, 3, WavetableContainer::getInstance().getWavetablePointers("FatSawMutated8"));
+	setWavetablePointer(32, 0, m_WT_container->getWavetablePointers("FatSawMutated5"));
+	setWavetablePointer(32, 1, m_WT_container->getWavetablePointers("FatSawMutated6"));
+	setWavetablePointer(32, 2, m_WT_container->getWavetablePointers("FatSawMutated7"));
+	setWavetablePointer(32, 3, m_WT_container->getWavetablePointers("FatSawMutated8"));
 
-	setWavetablePointer(33, 0, WavetableContainer::getInstance().getWavetablePointers("ChiptuneSquare50Mutated1"));
-	setWavetablePointer(33, 1, WavetableContainer::getInstance().getWavetablePointers("ChiptuneSquare50Mutated2"));
-	setWavetablePointer(33, 2, WavetableContainer::getInstance().getWavetablePointers("ChiptuneSquare50Mutated3"));
-	setWavetablePointer(33, 3, WavetableContainer::getInstance().getWavetablePointers("ChiptuneSquare50Mutated4"));
+	setWavetablePointer(33, 0, m_WT_container->getWavetablePointers("ChiptuneSquare50Mutated1"));
+	setWavetablePointer(33, 1, m_WT_container->getWavetablePointers("ChiptuneSquare50Mutated2"));
+	setWavetablePointer(33, 2, m_WT_container->getWavetablePointers("ChiptuneSquare50Mutated3"));
+	setWavetablePointer(33, 3, m_WT_container->getWavetablePointers("ChiptuneSquare50Mutated4"));
 
-	setWavetablePointer(34, 0, WavetableContainer::getInstance().getWavetablePointers("ChiptuneSquare50Mutated5"));
-	setWavetablePointer(34, 1, WavetableContainer::getInstance().getWavetablePointers("ChiptuneSquare50Mutated6"));
-	setWavetablePointer(34, 2, WavetableContainer::getInstance().getWavetablePointers("ChiptuneSquare50Mutated7"));
-	setWavetablePointer(34, 3, WavetableContainer::getInstance().getWavetablePointers("ChiptuneSquare50Mutated8"));
+	setWavetablePointer(34, 0, m_WT_container->getWavetablePointers("ChiptuneSquare50Mutated5"));
+	setWavetablePointer(34, 1, m_WT_container->getWavetablePointers("ChiptuneSquare50Mutated6"));
+	setWavetablePointer(34, 2, m_WT_container->getWavetablePointers("ChiptuneSquare50Mutated7"));
+	setWavetablePointer(34, 3, m_WT_container->getWavetablePointers("ChiptuneSquare50Mutated8"));
 }
 
 std::string WavetableOsc2D::getWavetableName(int p_wt_2D, int sub_table_2D) {

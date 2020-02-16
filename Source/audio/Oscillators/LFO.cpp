@@ -14,34 +14,34 @@ void LFO::loadWavetables() {
 	//for (int wavetable = 0; wavetable < NUMBER_OF_LFOTABLES; ++wavetable) {
 	//  setWavetablePointer(
 	//      wavetable,
-	//      WavetableContainer::getInstance().getWavetablePointers(wavetable));
+	//      m_WT_container->getWavetablePointers(wavetable));
 	//}
 	//setWavetablePointer(0,
-	//                    WavetableContainer::getInstance().getWavedrawPointer(2));
-	setWavetablePointer(0, WavetableContainer::getInstance().getWavetablePointers("Sine"));
-	setWavetablePointer(1, WavetableContainer::getInstance().getWavetablePointers("Saw"));
-	setWavetablePointer(2, WavetableContainer::getInstance().getWavetablePointers("Triangle"));
+	//                    m_WT_container->getWavedrawPointer(2));
+	setWavetablePointer(0, m_WT_container->getWavetablePointers("Sine"));
+	setWavetablePointer(1, m_WT_container->getWavetablePointers("Saw"));
+	setWavetablePointer(2, m_WT_container->getWavetablePointers("Triangle"));
 
-	setWavetablePointer(3, WavetableContainer::getInstance().getLFOPointers("Square50"));
-	setWavetablePointer(4, WavetableContainer::getInstance().getLFOPointers("Square25"));
-	setWavetablePointer(5, WavetableContainer::getInstance().getLFOPointers("Square12"));
+	setWavetablePointer(3, m_WT_container->getLFOPointers("Square50"));
+	setWavetablePointer(4, m_WT_container->getLFOPointers("Square25"));
+	setWavetablePointer(5, m_WT_container->getLFOPointers("Square12"));
 
-	setWavetablePointer(6, WavetableContainer::getInstance().getLFOPointers("Spike"));
+	setWavetablePointer(6, m_WT_container->getLFOPointers("Spike"));
 
-	setWavetablePointer(7, WavetableContainer::getInstance().getLFOPointers("Pyramid4"));
-	setWavetablePointer(8, WavetableContainer::getInstance().getLFOPointers("Pyramid6"));
-	setWavetablePointer(9, WavetableContainer::getInstance().getLFOPointers("Pyramid8"));
-	setWavetablePointer(10, WavetableContainer::getInstance().getLFOPointers("Pyramid12"));
+	setWavetablePointer(7, m_WT_container->getLFOPointers("Pyramid4"));
+	setWavetablePointer(8, m_WT_container->getLFOPointers("Pyramid6"));
+	setWavetablePointer(9, m_WT_container->getLFOPointers("Pyramid8"));
+	setWavetablePointer(10, m_WT_container->getLFOPointers("Pyramid12"));
 
-	setWavetablePointer(11, WavetableContainer::getInstance().getLFOPointers("Stair3"));
-	setWavetablePointer(12, WavetableContainer::getInstance().getLFOPointers("Stair4"));
-	setWavetablePointer(13, WavetableContainer::getInstance().getLFOPointers("Stair6"));
-	setWavetablePointer(14, WavetableContainer::getInstance().getLFOPointers("Stair8"));
-	setWavetablePointer(15, WavetableContainer::getInstance().getLFOPointers("Stair12"));
+	setWavetablePointer(11, m_WT_container->getLFOPointers("Stair3"));
+	setWavetablePointer(12, m_WT_container->getLFOPointers("Stair4"));
+	setWavetablePointer(13, m_WT_container->getLFOPointers("Stair6"));
+	setWavetablePointer(14, m_WT_container->getLFOPointers("Stair8"));
+	setWavetablePointer(15, m_WT_container->getLFOPointers("Stair12"));
 
-	setWavetablePointerNONCONST(16, WavetableContainer::getInstance().getWavedrawPointer(0));
-	setWavetablePointerNONCONST(17, WavetableContainer::getInstance().getWavedrawPointer(1));
-	setWavetablePointerNONCONST(18, WavetableContainer::getInstance().getWavedrawPointer(2));
+	setWavetablePointerNONCONST(16, m_WT_container->getWavedrawPointer(0));
+	setWavetablePointerNONCONST(17, m_WT_container->getWavedrawPointer(1));
+	setWavetablePointerNONCONST(18, m_WT_container->getWavedrawPointer(2));
 }
 
 float LFO::doOscillate() {

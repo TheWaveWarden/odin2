@@ -59,9 +59,9 @@ public:
     }
 
     // do remapping
-    int lower = WavetableContainer::getInstance().getWavetableIndexFromName(
+    int lower = m_WT_container->getWavetableIndexFromName(
         getWavetableName(m_wavetable_index, p_left_table));
-    int higher = WavetableContainer::getInstance().getWavetableIndexFromName(
+    int higher = m_WT_container->getWavetableIndexFromName(
         getWavetableName(m_wavetable_index, p_right_table));
 
     // pass to lambda

@@ -25,6 +25,8 @@
 #include "WaveformSelectorComponent.h"
 #include "XYPadComponent.h"
 #include "OdinControlAttachments.h"
+#include "audio/Oscillators/WavetableContainer.h"
+
 
 //#include "PluginProcessor.h"
 
@@ -206,6 +208,10 @@ public:
 
   void resetVectorWaves();
 
+  void setWavetableContainer(WavetableContainer* p_WT_container){
+    m_WT_container = p_WT_container;
+  }
+
 protected:
   // TextEditor REMOVE_EDITOR;
 
@@ -326,6 +332,8 @@ protected:
   Identifier m_pos_mod_identifier;
 
   OdinMenuFeels m_menu_feels;
+
+  WavetableContainer* m_WT_container;
 
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(OscComponent)
 };

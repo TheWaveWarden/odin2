@@ -10,7 +10,7 @@
 
 #include "OscComponent.h"
 #include "../JuceLibraryCode/JuceHeader.h"
-#include "audio/Oscillators/WavetableContainer.h"
+#include "PluginProcessor.h"
 
 //==============================================================================
 OscComponent::OscComponent(OdinAudioProcessor &p_processor,
@@ -42,6 +42,8 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
     m_vec_a_identifier("osc" + p_osc_number + "_vec_a"), m_vec_b_identifier("osc" + p_osc_number + "_vec_b"),
     m_vec_c_identifier("osc" + p_osc_number + "_vec_c"), m_vec_d_identifier("osc" + p_osc_number + "_vec_d"),
     m_pos_mod_identifier("osc" + p_osc_number + "_pos_mod") {
+
+	m_WT_container = p_processor.getWavetableContainerPointer();
 
 	m_oct_attach.reset(new OdinKnobAttachment(m_value_tree, "osc" + m_osc_number + "_oct", m_oct));
 	m_semi_attach.reset(new OdinKnobAttachment(m_value_tree, "osc" + m_osc_number + "_semi", m_semi));
@@ -1507,7 +1509,7 @@ void OscComponent::showNoiseComponents() {
 }
 
 void OscComponent::createWavedrawTables() {
-	WavetableContainer::getInstance().createWavedrawTable(
+	m_WT_container->createWavedrawTable(
 	    std::stoi(m_osc_number) - 1, m_wavedraw.getDrawnTable(), 44100.f);
 
 	// write values to audiovaluetree
@@ -1520,7 +1522,7 @@ void OscComponent::createWavedrawTables() {
 
 void OscComponent::createChipdrawTables() {
 
-	WavetableContainer::getInstance().createChipdrawTable(
+	m_WT_container->createChipdrawTable(
 	    std::stoi(m_osc_number) - 1, m_chipdraw.getDrawnTable(), 44100.f);
 
 	// write values to audiovaluetree
@@ -1532,7 +1534,7 @@ void OscComponent::createChipdrawTables() {
 }
 
 void OscComponent::createSpecdrawTables() {
-	WavetableContainer::getInstance().createSpecdrawTable(
+	m_WT_container->createSpecdrawTable(
 	    std::stoi(m_osc_number) - 1, m_specdraw.getDrawnTable(), 44100.f);
 	// write values to audiovaluetree
 	float *table = m_specdraw.getDrawnTable();

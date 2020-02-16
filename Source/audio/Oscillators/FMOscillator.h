@@ -40,6 +40,11 @@ public:
 		reset();
 	}
 
+	void setWavetableContainer(WavetableContainer* p_WT_container){
+    	m_carrier_osc.setWavetableContainer(p_WT_container);
+    	m_modulator_osc.setWavetableContainer(p_WT_container);
+  	}
+
 	inline void selectWavetables(int p_wt_carrier, int p_wt_modulator){
 		m_carrier_osc.selectWavetable(p_wt_carrier);
 		m_modulator_osc.selectWavetable(p_wt_modulator);

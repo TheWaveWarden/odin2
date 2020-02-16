@@ -116,32 +116,32 @@ void WavetableOsc1D::selectWavetable(int p_wavetable_index) {
 void WavetableOsc1D::loadWavetables() {
 	// for standard osc simply get all wavetables
 	for (int wavetable = 0; wavetable < NUMBER_OF_WAVETABLES; ++wavetable) {
-		setWavetablePointer(wavetable, WavetableContainer::getInstance().getWavetablePointers(wavetable));
+		setWavetablePointer(wavetable, m_WT_container->getWavetablePointers(wavetable));
 	}
 	for (int i = 0; i < 3; ++i) {
 		// wavedraw
-		setWavetablePointerNONCONST(NUMBER_OF_WAVETABLES + i, WavetableContainer::getInstance().getWavedrawPointer(i));
+		setWavetablePointerNONCONST(NUMBER_OF_WAVETABLES + i, m_WT_container->getWavedrawPointer(i));
 		// chipdraw
 		setWavetablePointerNONCONST(NUMBER_OF_WAVETABLES + i + 3,
-		                            WavetableContainer::getInstance().getChipdrawPointer(i));
+		                            m_WT_container->getChipdrawPointer(i));
 		// specdraw
 		setWavetablePointerNONCONST(NUMBER_OF_WAVETABLES + i + 6,
-		                            WavetableContainer::getInstance().getSpecdrawPointer(i));
+		                            m_WT_container->getSpecdrawPointer(i));
 	}
 }
 
 void WavetableOsc1D::loadWavedrawTables(int p_osc) {
-	setWavetablePointerNONCONST(0, WavetableContainer::getInstance().getWavedrawPointer(p_osc));
+	setWavetablePointerNONCONST(0, m_WT_container->getWavedrawPointer(p_osc));
 	m_nr_of_wavetables = 1;
 }
 
 void WavetableOsc1D::loadSpecdrawTables(int p_osc) {
-	setWavetablePointerNONCONST(0, WavetableContainer::getInstance().getSpecdrawPointer(p_osc));
+	setWavetablePointerNONCONST(0, m_WT_container->getSpecdrawPointer(p_osc));
 	m_nr_of_wavetables = 1;
 }
 
 void WavetableOsc1D::loadChipdrawTables(int p_osc) {
-	setWavetablePointerNONCONST(0, WavetableContainer::getInstance().getChipdrawPointer(p_osc));
+	setWavetablePointerNONCONST(0, m_WT_container->getChipdrawPointer(p_osc));
 	m_nr_of_wavetables = 1;
 }
 

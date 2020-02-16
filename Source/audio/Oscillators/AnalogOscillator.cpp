@@ -14,10 +14,10 @@ AnalogOscillator::~AnalogOscillator() {
 
 void AnalogOscillator::loadWavetables() {
 	// load the saw table for square as well since PWM is generated from saw
-	setWavetablePointer(0, WavetableContainer::getInstance().getWavetablePointers("FatSaw"));
-	setWavetablePointer(1, WavetableContainer::getInstance().getWavetablePointers("FatSaw"));
-	setWavetablePointer(2, WavetableContainer::getInstance().getWavetablePointers("Triangle"));
-	setWavetablePointer(3, WavetableContainer::getInstance().getWavetablePointers("Sine"));
+	setWavetablePointer(0, m_WT_container->getWavetablePointers("FatSaw"));
+	setWavetablePointer(1, m_WT_container->getWavetablePointers("FatSaw"));
+	setWavetablePointer(2, m_WT_container->getWavetablePointers("Triangle"));
+	setWavetablePointer(3, m_WT_container->getWavetablePointers("Sine"));
 
 	// init drift generator
 	m_drift_generator.initialize(m_samplerate);

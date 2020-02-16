@@ -82,6 +82,10 @@ public:
 	void getStateInformation(MemoryBlock &destData) override;
 	void setStateInformation(const void *data, int sizeInBytes) override;
 
+	WavetableContainer* getWavetableContainerPointer(){
+		return &m_WT_container;
+	}
+
 	void startMidiLearn(const String &p_parameter_ID, OdinMidiLearnBase *p_GUI_control) {
 		DBG("MIDI LEARN FOR PARAMETER " + p_parameter_ID + " WAS SIGNALED!");
 		if (m_midi_learn_parameter_active) {
@@ -288,6 +292,8 @@ private:
 	//void treeValueChangedAmount2(const String &p_ID, float p_new_value);
 	//void treeValueChangedAmount3(const String &p_ID, float p_new_value);
 	void treeValueChangedGeneralMisc(const String &p_ID, float p_new_value);
+
+	WavetableContainer m_WT_container;
 
 	Voice m_voice[VOICES];
 	Amplifier m_amp;
