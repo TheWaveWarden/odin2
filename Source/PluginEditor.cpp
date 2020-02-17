@@ -14,7 +14,7 @@ bool writeComponentImageToFile(Component &comp) {
 	std::string date(buffer);
 
 	juce::File file("/home/frot/odinvst/screenshot.png");
-	juce::File file2("/home/frot/gui_saves_odin/screenshot" + date + ".png");
+	juce::File file2("/home/frederik_siepe/gui_saves_odin/screenshot" + date + ".png");
 	Rectangle<int> subArea = comp.getBounds();
 	if (ImageFileFormat *format = ImageFileFormat::findImageFormatForFileExtension(file)) {
 		FileOutputStream out(file);
