@@ -101,6 +101,7 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts) :
 		m_pm_osc_menu[osc].addItem(100 * osc + 52, "Osc" + std::to_string(osc + 1) + " Modulator Ratio");
 
 		// noise
+		m_noise_osc_menu[osc].addItem(100 * osc + 4, "Osc" + std::to_string(osc + 1) + " Volume");
 		m_noise_osc_menu[osc].addItem(100 * osc + 60, "Osc" + std::to_string(osc + 1) + " LP Frequency");
 		m_noise_osc_menu[osc].addItem(100 * osc + 61, "Osc" + std::to_string(osc + 1) + " HP Frequency");
 
