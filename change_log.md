@@ -1,3 +1,6 @@
+# 2.0.12 alpha
+- fixed issue where osc volume would not show up as mod destination for noise osc
+- added better render for knob graphics
 # 2.0.11 alpha
 - fixed issue where multiple plugin instances would share the same wave-/chip-/specdraw data
 # 2.0.10 alpha
