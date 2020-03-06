@@ -61,7 +61,7 @@ XYSectionComponent::XYSectionComponent(AudioProcessorValueTreeState &vts, std::s
 	                 BLACK_KNOB_VERY_SMALL_SIZE_Y);
 
 	juce::Image logo =
-	    ImageCache::getFromMemory(BinaryData::SF_logo_XY_png, BinaryData::SF_logo_XY_pngSize);
+	    ImageCache::getFromMemory(BinaryData::WW_logo_xy_png, BinaryData::WW_logo_xy_pngSize);
 	m_xy_pad.setLogoImage(logo);
 }
 

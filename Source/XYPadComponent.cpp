@@ -30,9 +30,9 @@ void XYPadComponent::paint(Graphics &g) {
 	bottom_right.addXY(-m_inlay, -m_inlay);
 	g.fillRect(juce::Rectangle<int>(top_left, bottom_right)); //
 
-	//if(m_draw_logo){
-	//	g.drawImageAt(m_logo, 0, -5);
-	//}
+	if(m_draw_logo){
+		g.drawImageAt(m_logo, 0, -5);
+	}
 
 	if (m_vector_pad) {
 		g.setColour(juce::Colours::lightgrey);
@@ -51,6 +51,8 @@ void XYPadComponent::paint(Graphics &g) {
 		g.setColour(Colour(60, 90, 120));
 	 	g.drawLine(m_inlay, y_handle + HANDLE_DIAMETER / 2, getWidth() - m_inlay, y_handle + HANDLE_DIAMETER / 2);
 	 	g.drawLine(x_handle + HANDLE_DIAMETER / 2, m_inlay, x_handle + HANDLE_DIAMETER / 2, getHeight() - m_inlay);
+		g.setColour(Colours::black);
+		g.fillEllipse(x_handle - 2, y_handle - 2, HANDLE_DIAMETER + 4, HANDLE_DIAMETER + 4);
 	}
 	g.setColour(Colours::white);
 	g.fillEllipse(x_handle, y_handle, HANDLE_DIAMETER, HANDLE_DIAMETER);
