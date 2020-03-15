@@ -1,3 +1,6 @@
+# 2.0.13 beta
+- fixed issue where FLStudio would freeze upon loading Odin
+- added thewavewarden logo to XY-pad
 # 2.0.12 alpha
 - fixed issue where osc volume would not show up as mod destination for noise osc
 - added better render for knob graphics

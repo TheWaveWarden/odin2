@@ -1402,7 +1402,8 @@ void OdinAudioProcessorEditor::allMidiKeysOff() {
 }
 
 void OdinAudioProcessorEditor::updatePitchWheel(float p_value) {
-	const MessageManagerLock mmLock;
+	//lock deadlocks synth in FL studio?
+	//const MessageManagerLock mmLock;
 	m_pitchwheel.setValue(p_value);
 }
 
