@@ -438,7 +438,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	};
 	m_question_button.setTooltip(
 	    std::string("Activating this button shows a\ntooltipfor every parameter in\nthe synth. Simply hover your\n"
-	                "mouse over it!\n\nGENERAL TIPS:\n\nHold shift to finetune knobs\n\nCtr "
+	                "mouse over it!\n\nBeta Testers:\nPlease report bugs on thewavewarden.com. Even if you don't find bugs, send feedback to info@thewavewarden.com.\n\nGENERAL TIPS:\n\nHold shift to finetune knobs\n\nCtr "
 	                "+ click to reset knobs\n\nDouble click to enter values\n\nRight click "
 	                "to access MIDI-learn\n\nThe order of FX can be rearranged\nby "
 	                "dragging and dropping\n the FX selection buttons.\n\nVersion: ") +
