@@ -4,7 +4,7 @@
               pluginFormats="buildStandalone,buildVST,buildVST3" version="2.0.13"
               companyName="TheWaveWarden" companyWebsite="www.thewavewarden.com"
               pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn"
-              pluginManufacturerCode="BDSP" pluginCode="ODIN" pluginChannelConfigs="{0,2}">
+              pluginManufacturerCode="WAWA" pluginCode="ODIN" pluginChannelConfigs="{0,2}">
   <MAINGROUP id="Tn76b3" name="Odin2">
     <GROUP id="{A5BAEEE4-3FCE-5605-7A4C-F29962266097}" name="Graphics">
       <FILE id="v9w1LN" name="analog_backdrop.png" compile="0" resource="1"
