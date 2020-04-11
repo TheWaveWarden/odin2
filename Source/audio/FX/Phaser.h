@@ -13,7 +13,6 @@ public:
 
   inline void setSampleRate(float p_samplerate) {
 
-    //DBG("setsamplerate phaser");
     m_samplerate = p_samplerate;
     setLFOFreq(m_LFO_freq);
 
@@ -70,6 +69,7 @@ public:
     m_AP10_right.reset();
     m_AP11_right.reset();
     m_AP12_right.reset();
+
     m_index_sine_left = 0;
     m_index_sine_right = 0;
     m_store_output_left = 0;
@@ -220,4 +220,5 @@ protected:
   float m_feedback = 0.25f * 0.97f;
   float m_store_output_left = 0;
   float m_store_output_right = 0;
+
 };

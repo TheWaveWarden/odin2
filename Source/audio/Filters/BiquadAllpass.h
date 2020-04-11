@@ -18,8 +18,6 @@ public:
 
 protected:
 
-	float m_samplerate = -1;
-	float m_one_over_samplerate;
 	float m_radius;
 };
 
