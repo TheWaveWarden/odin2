@@ -50,6 +50,9 @@ public:
 
   void mouseDown(const MouseEvent &event) override
   {
+    if(event.mods.isCtrlDown()){
+      reset();
+    }
     m_drag_start_y = getMouseXYRelative().getY();
     m_drag_start_value = m_value;
   }
