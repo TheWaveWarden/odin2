@@ -1,3 +1,7 @@
+# 2.0.14 beta
+- added AudioUnit version
+- fixed phaser not working
+- modulation amounts are now resetable by ctrl-click
 # 2.0.13 beta
 - fixed issue where FLStudio would freeze upon loading Odin
 - added thewavewarden logo to XY-pad
