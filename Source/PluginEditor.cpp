@@ -1402,12 +1402,23 @@ void OdinAudioProcessorEditor::allMidiKeysOff() {
 }
 
 void OdinAudioProcessorEditor::updatePitchWheel(float p_value) {
-	//lock deadlocks synth in FL studio?
-	//const MessageManagerLock mmLock;
-	m_pitchwheel.setValue(p_value);
+	auto sp = SafePointer<Component>(this);
+
+	MessageManager::callAsync([p_value, sp, this] {
+		if (sp == nullptr) {
+			return;
+		}
+		m_pitchwheel.setValue(p_value);
+	});
 }
 
 void OdinAudioProcessorEditor::updateModWheel(float p_value) {
-	const MessageManagerLock mmLock;
-	m_modwheel.setValue(p_value);
+	auto sp = SafePointer<Component>(this);
+
+	MessageManager::callAsync([p_value, sp, this] {
+		if (sp == nullptr) {
+			return;
+		}
+		m_modwheel.setValue(p_value);
+	});
 }
