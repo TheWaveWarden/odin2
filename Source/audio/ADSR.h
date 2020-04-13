@@ -13,6 +13,10 @@
 #define ADSR_SECTION_RELEASE 3
 #define ADSR_SECTION_FINISHED 4
 
+#define ATTACK_LOWER_LIMIT 0.000001
+#define DECAY_LOWER_LIMIT 0.000001
+#define RELEASE_LOWER_LIMIT 0.000001
+
 #include <cmath>
 
 class ADSREnvelope {

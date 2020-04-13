@@ -10,7 +10,7 @@ ADSREnvelope::~ADSREnvelope() {
 }
 
 float ADSREnvelope::doEnvelope() {
-    jassert(m_samplerate > 0);
+	jassert(m_samplerate > 0);
 
 	switch (m_current_section) {
 	case ADSR_SECTION_FINISHED:
@@ -26,7 +26,9 @@ float ADSREnvelope::doEnvelope() {
 	case ADSR_SECTION_ATTACK: {
 		double attack_modded = m_attack;
 		if (*m_attack_mod) {
-			attack_modded *= calcModFactor(*m_attack_mod);
+			//doing exp and additional - only additional is bad for high values
+			attack_modded = attack_modded * calcModFactor(*m_attack_mod) + *m_attack_mod * 0.3f;
+			attack_modded = attack_modded < ATTACK_LOWER_LIMIT ? ATTACK_LOWER_LIMIT : attack_modded;
 		}
 		m_current_value += 1. / (m_samplerate * attack_modded);
 		if (m_current_value >= 1) {
@@ -41,15 +43,16 @@ float ADSREnvelope::doEnvelope() {
 	case ADSR_SECTION_DECAY: {
 		double decay_modded = m_decay;
 		if (*m_decay_mod) {
-			decay_modded *= calcModFactor(*m_decay_mod);
+			decay_modded = decay_modded * calcModFactor(*m_decay_mod) + *m_decay_mod * 0.3f;
+			decay_modded = decay_modded < DECAY_LOWER_LIMIT ? DECAY_LOWER_LIMIT : decay_modded;
 		}
 
 		// just decay to zero but return scaled
 		m_decay_factor = calcDecayFactor(decay_modded);
 		m_current_value *= m_decay_factor;
 		double sustain_modded = m_sustain + *m_sustain_mod;
-		sustain_modded = sustain_modded < 0 ? 0 : sustain_modded;
-		sustain_modded = sustain_modded > 1 ? 1 : sustain_modded;
+		sustain_modded        = sustain_modded < 0 ? 0 : sustain_modded;
+		sustain_modded        = sustain_modded > 1 ? 1 : sustain_modded;
 		if (m_current_value < MIN_DECAY_RELEASE_VAL) {
 			if (m_loop) {
 				m_current_section    = ADSR_SECTION_ATTACK;
@@ -84,7 +87,8 @@ float ADSREnvelope::doEnvelope() {
 	case ADSR_SECTION_RELEASE: {
 		double release_modded = m_release;
 		if (*m_release_mod) {
-			release_modded *= calcModFactor(*m_release_mod * 2);
+			release_modded = release_modded * calcModFactor(*m_release_mod * 2) + *m_release_mod * 0.3f;
+			release_modded = release_modded < RELEASE_LOWER_LIMIT ? RELEASE_LOWER_LIMIT : release_modded;
 		}
 
 		m_release_factor = calcReleaseFactor(release_modded);
@@ -110,8 +114,8 @@ void ADSREnvelope::startRelease() {
 		return;
 	}
 	double sustain_modded = m_sustain + *m_sustain_mod;
-	sustain_modded = sustain_modded < 0 ? 0 : sustain_modded;
-	sustain_modded = sustain_modded > 1 ? 1 : sustain_modded;
+	sustain_modded        = sustain_modded < 0 ? 0 : sustain_modded;
+	sustain_modded        = sustain_modded > 1 ? 1 : sustain_modded;
 	if (m_current_section == ADSR_SECTION_DECAY) {
 		m_release_start_value = m_current_value * (1. - sustain_modded) + sustain_modded;
 	} else if (m_current_section == ADSR_SECTION_SUSTAIN) {
