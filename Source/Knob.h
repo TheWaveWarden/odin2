@@ -225,14 +225,16 @@ public:
 
 	void stopMidiLearn() override {
 		m_midi_learn = false;
-		const MessageManagerLock mmLock;
+		//todo replace lock by async MM call
+		//const MessageManagerLock mmLock;
 		repaint();
 	}
 
 	void setMidiControlActive() override {
 		m_midi_learn   = false;
 		m_midi_control = true;
-		const MessageManagerLock mmLock;
+		//todo replace lock by async MM call
+		//const MessageManagerLock mmLock;
 		repaint();
 	}
 

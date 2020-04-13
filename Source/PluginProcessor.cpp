@@ -1147,7 +1147,8 @@ void OdinAudioProcessor::handleMidiMessage(const MidiMessage &p_midi_message) {
 		// do midi control
 		for (auto const &control : m_midi_control_param_map) {
 			if (control.first == p_midi_message.getControllerNumber()) {
-				const MessageManagerLock mmLock;
+				//todo replace lock by async MM call
+				//const MessageManagerLock mmLock;
 				control.second->setValueNotifyingHost(/*control.second->convertFrom0to1(*/
 				                                      (float)p_midi_message.getControllerValue() / 127.f); //));
 			}
