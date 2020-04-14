@@ -175,6 +175,10 @@
             file="Graphics/cropped/buttons/buttonfxon_4.png"/>
       <FILE id="j1tXka" name="buttonfxonfilmstrip.png" compile="0" resource="1"
             file="Graphics/cropped/buttons/buttonfxonfilmstrip.png"/>
+      <FILE id="kMnZvE" name="buttonguisize_1.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonguisize_1.png"/>
+      <FILE id="OQRdFo" name="buttonguisize_3.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonguisize_3.png"/>
       <FILE id="j8N0tz" name="buttonleft_1.png" compile="0" resource="1"
             file="Graphics/cropped/buttons/buttonleft_1.png"/>
       <FILE id="kvr2Wu" name="buttonleft_2.png" compile="0" resource="1"

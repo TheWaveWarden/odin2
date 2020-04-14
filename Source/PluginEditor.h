@@ -117,8 +117,11 @@
 #define SAVE_LOAD_SIZE_X 288
 #define SAVE_LOAD_SIZE_Y 25
 
-#define LEGATO_POS_X 670
+#define LEGATO_POS_X 590
 #define LEGATO_POS_Y 7
+
+#define GUI_SIZE_POS_X 670
+#define GUI_SIZE_POS_Y 7
 
 #define ENV13_POS_X 30
 #define ENV13_POS_Y 313
@@ -161,7 +164,7 @@
 #define FONT_SPACE_Y 4
 #define TOOLTIP_INLAY 10
 
-#define BPM_POS_X 585
+#define BPM_POS_X 500
 #define BPM_POS_Y 6
 
 #define MIDI_KEYBOARD_SIZE 85
@@ -328,6 +331,7 @@ private:
   LeftRightButton m_lfo_24_button;
 
   LeftRightButton m_legato_button;
+  LeftRightButton m_gui_size_button;
 
   AudioProcessorValueTreeState &m_value_tree;
 

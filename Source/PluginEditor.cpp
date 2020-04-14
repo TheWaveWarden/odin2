@@ -74,7 +74,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
     m_fil1_type_identifier("fil1_type"), m_fil2_type_identifier("fil2_type"), m_fil3_type_identifier("fil3_type"),
     m_pitchbend_amount_identifier("pitchbend_amount"), m_delay_position_identifier("delay_position"),
     m_flanger_position_identifier("flanger_position"), m_phaser_position_identifier("phaser_position"),
-    m_chorus_position_identifier("chorus_position"), m_mod_matrix(vts), m_legato_button("legato"),
+    m_chorus_position_identifier("chorus_position"), m_mod_matrix(vts), m_legato_button("legato"), m_gui_size_button("gui_size"),
     m_tooltip(nullptr, 2047483647), m_is_standalone_plugin(p_is_standalone), m_save_load(vts, p_processor),
     m_processor(p_processor){
 
@@ -812,6 +812,23 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	                           "no hard envelope reset when transitioning from one note to another.");
 	addAndMakeVisible(m_legato_button);
 	m_legato_button.disableMidiLearn();
+
+
+
+	juce::Image gui_size_left =
+	    ImageCache::getFromMemory(BinaryData::buttonguisize_1_png, BinaryData::buttonguisize_1_pngSize);
+	juce::Image gui_size_right =
+	    ImageCache::getFromMemory(BinaryData::buttonguisize_3_png, BinaryData::buttonguisize_3_pngSize);
+	m_gui_size_button.setImage(gui_size_left, 1);
+	m_gui_size_button.setImage(gui_size_right, 2);
+	m_gui_size_button.setBounds(GUI_SIZE_POS_X, GUI_SIZE_POS_Y, gui_size_left.getWidth(), gui_size_left.getHeight());
+	m_gui_size_button.setToggleState(true, sendNotification);
+	m_gui_size_button.onClick = [&]() {
+		
+	};
+	m_gui_size_button.setTooltip("Scale the GUI to 100% or 150%");
+	addAndMakeVisible(m_gui_size_button);
+	m_gui_size_button.disableMidiLearn();
 
 	juce::Image lfo13_sync_background =
 	    ImageCache::getFromMemory(BinaryData::lfo13_sync_background_png, BinaryData::lfo13_sync_background_pngSize);
