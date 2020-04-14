@@ -172,6 +172,9 @@
 #define ODIN_EDITOR_SIZE_X 800
 #define ODIN_EDITOR_SIZE_Y 600
 
+#define ODIN_EDITOR_SIZE_150_X 1200
+#define ODIN_EDITOR_SIZE_150_Y 900
+
 class TooltipFeels : public LookAndFeel_V4 {
 public:
   TooltipFeels() {
@@ -370,6 +373,8 @@ private:
 
   OdinAudioProcessor& m_processor;
 
+  juce::Image m_odin_backdrop;
+
   void setOsc1Plate(int p_osc_type);
   void setOsc2Plate(int p_osc_type);
   void setOsc3Plate(int p_osc_type);
@@ -382,6 +387,7 @@ private:
   void setLfo34(bool p_lfo24);
   void updatePitchWheel(float p_value);
   void updateModWheel(float p_value);
+  void setGUISizeBig(bool p_big);
 
   int m_octave_shift = 0;
   bool m_is_standalone_plugin;

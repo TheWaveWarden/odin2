@@ -74,9 +74,9 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
     m_fil1_type_identifier("fil1_type"), m_fil2_type_identifier("fil2_type"), m_fil3_type_identifier("fil3_type"),
     m_pitchbend_amount_identifier("pitchbend_amount"), m_delay_position_identifier("delay_position"),
     m_flanger_position_identifier("flanger_position"), m_phaser_position_identifier("phaser_position"),
-    m_chorus_position_identifier("chorus_position"), m_mod_matrix(vts), m_legato_button("legato"), m_gui_size_button("gui_size"),
-    m_tooltip(nullptr, 2047483647), m_is_standalone_plugin(p_is_standalone), m_save_load(vts, p_processor),
-    m_processor(p_processor){
+    m_chorus_position_identifier("chorus_position"), m_mod_matrix(vts), m_legato_button("legato"),
+    m_gui_size_button("gui_size"), m_tooltip(nullptr, 2047483647), m_is_standalone_plugin(p_is_standalone),
+    m_save_load(vts, p_processor), m_processor(p_processor) {
 
 	if (m_is_standalone_plugin) {
 		addKeyListener(this);
@@ -437,11 +437,13 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 		setTooltipEnabled(m_question_button.getToggleState());
 	};
 	m_question_button.setTooltip(
-	    std::string("Activating this button shows a\ntooltipfor every parameter in\nthe synth. Simply hover your\n"
-	                "mouse over it!\n\nBeta Testers:\nPlease report bugs on thewavewarden.com. Even if you don't find bugs, send feedback to info@thewavewarden.com.\n\nGENERAL TIPS:\n\nHold shift to finetune knobs\n\nCtr "
-	                "+ click to reset knobs\n\nDouble click to enter values\n\nRight click "
-	                "to access MIDI-learn\n\nThe order of FX can be rearranged\nby "
-	                "dragging and dropping\n the FX selection buttons.\n\nVersion: ") +
+	    std::string(
+	        "Activating this button shows a\ntooltipfor every parameter in\nthe synth. Simply hover your\n"
+	        "mouse over it!\n\nBeta Testers:\nPlease report bugs on thewavewarden.com. Even if you don't find bugs, "
+	        "send feedback to info@thewavewarden.com.\n\nGENERAL TIPS:\n\nHold shift to finetune knobs\n\nCtr "
+	        "+ click to reset knobs\n\nDouble click to enter values\n\nRight click "
+	        "to access MIDI-learn\n\nThe order of FX can be rearranged\nby "
+	        "dragging and dropping\n the FX selection buttons.\n\nVersion: ") +
 	    ODIN_VERSION_STRING
 #ifdef ODIN_RELEASE
 	    + " Release"
@@ -451,7 +453,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 #endif
 	);
 
-	m_question_button.onClick = [&](){
+	m_question_button.onClick = [&]() {
 		//DBG("Modmatrix: " + std::to_string((float)GETAUDIO("amount_1_row_0")));
 		//DBG(std::to_string((int)m_value_tree.state.getChildWithName("lfo")["lfo1_wave"]));
 		//DBG((float)GETAUDIO("fil1_comb_polarity"));
@@ -813,8 +815,6 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	addAndMakeVisible(m_legato_button);
 	m_legato_button.disableMidiLearn();
 
-
-
 	juce::Image gui_size_left =
 	    ImageCache::getFromMemory(BinaryData::buttonguisize_1_png, BinaryData::buttonguisize_1_pngSize);
 	juce::Image gui_size_right =
@@ -823,9 +823,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	m_gui_size_button.setImage(gui_size_right, 2);
 	m_gui_size_button.setBounds(GUI_SIZE_POS_X, GUI_SIZE_POS_Y, gui_size_left.getWidth(), gui_size_left.getHeight());
 	m_gui_size_button.setToggleState(true, sendNotification);
-	m_gui_size_button.onClick = [&]() {
-		
-	};
+	m_gui_size_button.onClick = [&]() { setGUISizeBig(m_gui_size_button.getToggleState()); };
 	m_gui_size_button.setTooltip("Scale the GUI to 100% or 150%");
 	addAndMakeVisible(m_gui_size_button);
 	m_gui_size_button.disableMidiLearn();
@@ -1001,8 +999,10 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	forceValueTreeOntoComponents(false);
 	m_save_load.resetPatchText();
 
-	setSize(ODIN_EDITOR_SIZE_X, ODIN_EDITOR_SIZE_Y);
-	
+	//setSize(ODIN_EDITOR_SIZE_X, ODIN_EDITOR_SIZE_Y);
+	//todo read from config or something
+	setGUISizeBig(true);
+
 	//DBG("Display_Scale: " + std::to_string(Desktop::getInstance().getDisplays().getMainDisplay().scale));
 
 #ifdef ODIN_LINUX
@@ -1011,9 +1011,6 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	}
 	writeValueTreeToFile(m_value_tree.state);
 #endif
-
-
-
 }
 
 OdinAudioProcessorEditor::~OdinAudioProcessorEditor() {
@@ -1035,7 +1032,7 @@ OdinAudioProcessorEditor::~OdinAudioProcessorEditor() {
 //==============================================================================
 void OdinAudioProcessorEditor::paint(Graphics &g) {
 	SET_INTERPOLATION_QUALITY(g)
-	g.drawImageAt(ImageCache::getFromMemory(BinaryData::odin_backdrop_png, BinaryData::odin_backdrop_pngSize), 0, 0);
+	g.drawImageAt(m_odin_backdrop, 0, 0);
 }
 
 void OdinAudioProcessorEditor::resized() {
@@ -1233,7 +1230,6 @@ void OdinAudioProcessorEditor::forceValueTreeOntoComponentsOnlyMainPanel() {
 }
 
 void OdinAudioProcessorEditor::forceValueTreeOntoComponents(bool p_reset_audio) {
-
 
 	// reset audioengine
 	if (p_reset_audio) {
@@ -1438,4 +1434,16 @@ void OdinAudioProcessorEditor::updateModWheel(float p_value) {
 		}
 		m_modwheel.setValue(p_value);
 	});
+}
+
+void OdinAudioProcessorEditor::setGUISizeBig(bool p_big) {
+	if (p_big) {
+		setSize(ODIN_EDITOR_SIZE_X, ODIN_EDITOR_SIZE_Y);
+		m_odin_backdrop = ImageCache::getFromMemory(BinaryData::odin_backdrop_png, BinaryData::odin_backdrop_pngSize);
+	} else {
+		setSize(ODIN_EDITOR_SIZE_150_X, ODIN_EDITOR_SIZE_150_Y);
+		m_odin_backdrop = ImageCache::getFromMemory(BinaryData::odin_backdrop_150_png, BinaryData::odin_backdrop_150_pngSize);
+	}
+
+	repaint();
 }

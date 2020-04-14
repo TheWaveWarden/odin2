@@ -505,6 +505,8 @@
             file="Graphics/cropped/noise_knob_cropped.png"/>
       <FILE id="FQtPLE" name="odin_backdrop.png" compile="0" resource="1"
             file="Graphics/applied/odin_backdrop.png"/>
+      <FILE id="MTxs8R" name="odin_backdrop_150.png" compile="0" resource="1"
+            file="Graphics_150/applied/odin_backdrop_150.png"/>
       <FILE id="CbsyKq" name="osc1_bypass.png" compile="0" resource="1" file="Graphics/applied/osc1_bypass.png"/>
       <FILE id="GsrAH0" name="osc2_bypass.png" compile="0" resource="1" file="Graphics/applied/osc2_bypass.png"/>
       <FILE id="GKUnsQ" name="osc3_bypass.png" compile="0" resource="1" file="Graphics/applied/osc3_bypass.png"/>
