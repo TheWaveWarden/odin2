@@ -257,3 +257,263 @@ void AmpDistortionFlowComponent::setDistortionPanelActive(bool p_active) {
 	m_distortion_on = p_active;
 	repaint();
 }
+
+
+void AmpDistortionFlowComponent::setGUIBig(){
+	m_GUI_big = true;
+
+juce::Image flow_left_1 = ImageCache::getFromMemory(BinaryData::buttonleft_1_150_png, BinaryData::buttonleft_1_150_pngSize);
+	juce::Image flow_left_2 = ImageCache::getFromMemory(BinaryData::buttonleft_2_150_png, BinaryData::buttonleft_2_150_pngSize);
+	juce::Image flow_left_3 = ImageCache::getFromMemory(BinaryData::buttonleft_3_150_png, BinaryData::buttonleft_3_150_pngSize);
+	juce::Image flow_left_4 = ImageCache::getFromMemory(BinaryData::buttonleft_4_150_png, BinaryData::buttonleft_4_150_pngSize);
+
+	juce::DrawableImage flow_left_draw1;
+	juce::DrawableImage flow_left_draw2;
+	juce::DrawableImage flow_left_draw3;
+	juce::DrawableImage flow_left_draw4;
+
+	flow_left_draw1.setImage(flow_left_1);
+	flow_left_draw2.setImage(flow_left_2);
+	flow_left_draw3.setImage(flow_left_3);
+	flow_left_draw4.setImage(flow_left_4);
+
+	m_flow_left.setImages(&flow_left_draw2,
+	                      &flow_left_draw2,
+	                      &flow_left_draw1,
+	                      &flow_left_draw1,
+	                      &flow_left_draw4,
+	                      &flow_left_draw4,
+	                      &flow_left_draw3,
+	                      &flow_left_draw3);
+	m_flow_left.setBounds(OdinHelper::c150(FLOW_LEFT_POS_X), OdinHelper::c150(FLOW_POS_Y), flow_left_1.getWidth(), flow_left_1.getHeight());
+
+	juce::Image flow_right_1 =
+	    ImageCache::getFromMemory(BinaryData::buttonright_1_150_png, BinaryData::buttonright_1_150_pngSize);
+	juce::Image flow_right_2 =
+	    ImageCache::getFromMemory(BinaryData::buttonright_2_150_png, BinaryData::buttonright_2_150_pngSize);
+	juce::Image flow_right_3 =
+	    ImageCache::getFromMemory(BinaryData::buttonright_3_150_png, BinaryData::buttonright_3_150_pngSize);
+	juce::Image flow_right_4 =
+	    ImageCache::getFromMemory(BinaryData::buttonright_4_150_png, BinaryData::buttonright_4_150_pngSize);
+
+	juce::DrawableImage flow_right_draw1;
+	juce::DrawableImage flow_right_draw2;
+	juce::DrawableImage flow_right_draw3;
+	juce::DrawableImage flow_right_draw4;
+
+	flow_right_draw1.setImage(flow_right_1);
+	flow_right_draw2.setImage(flow_right_2);
+	flow_right_draw3.setImage(flow_right_3);
+	flow_right_draw4.setImage(flow_right_4);
+
+	m_flow_right.setImages(&flow_right_draw2,
+	                       &flow_right_draw2,
+	                       &flow_right_draw1,
+	                       &flow_right_draw1,
+	                       &flow_right_draw4,
+	                       &flow_right_draw4,
+	                       &flow_right_draw3,
+	                       &flow_right_draw3);
+	m_flow_right.setBounds(OdinHelper::c150(FLOW_RIGHT_POS_X), OdinHelper::c150(FLOW_POS_Y), flow_right_1.getWidth(), flow_right_1.getHeight());
+
+	juce::Image distortion_1 =
+	    ImageCache::getFromMemory(BinaryData::buttondistortion_1_150_png, BinaryData::buttondistortion_1_150_pngSize);
+	juce::Image distortion_2 =
+	    ImageCache::getFromMemory(BinaryData::buttondistortion_2_150_png, BinaryData::buttondistortion_2_150_pngSize);
+	juce::Image distortion_3 =
+	    ImageCache::getFromMemory(BinaryData::buttondistortion_3_150_png, BinaryData::buttondistortion_3_150_pngSize);
+	juce::Image distortion_4 =
+	    ImageCache::getFromMemory(BinaryData::buttondistortion_4_150_png, BinaryData::buttondistortion_4_150_pngSize);
+
+	juce::DrawableImage distortion_draw1;
+	juce::DrawableImage distortion_draw2;
+	juce::DrawableImage distortion_draw3;
+	juce::DrawableImage distortion_draw4;
+
+	distortion_draw1.setImage(distortion_1);
+	distortion_draw2.setImage(distortion_2);
+	distortion_draw3.setImage(distortion_3);
+	distortion_draw4.setImage(distortion_4);
+
+	m_distortion.setImages(&distortion_draw2,
+	                       &distortion_draw2,
+	                       &distortion_draw1,
+	                       &distortion_draw1,
+	                       &distortion_draw4,
+	                       &distortion_draw4,
+	                       &distortion_draw3,
+	                       &distortion_draw3);
+	m_distortion.setBounds(OdinHelper::c150(DISTORTION_POS_X), OdinHelper::c150(DISTORTION_POS_Y), distortion_1.getWidth(), distortion_1.getHeight());
+
+	juce::Image metal_knob_big =
+	    ImageCache::getFromMemory(BinaryData::metal_knob_big_150_png, BinaryData::metal_knob_big_150_pngSize);
+	juce::Image black_knob_mid =
+	    ImageCache::getFromMemory(BinaryData::black_knob_mid_150_png, BinaryData::black_knob_mid_150_pngSize);
+	juce::Image round_knob = ImageCache::getFromMemory(BinaryData::round_knob_150_png, BinaryData::round_knob_150_pngSize);
+
+	m_amp_gain.setStrip(metal_knob_big, N_KNOB_FRAMES);
+
+	m_amp_pan.setStrip(black_knob_mid, N_KNOB_FRAMES);
+
+	m_amp_width.setStrip(black_knob_mid, N_KNOB_FRAMES);
+
+	m_boost.setStrip(round_knob, N_KNOB_FRAMES);
+
+	m_dry_wet.setStrip(round_knob, N_KNOB_FRAMES);
+
+	juce::Image glas_panel =
+	    ImageCache::getFromMemory(BinaryData::glaspanel_midbig_150_png, BinaryData::glaspanel_midbig_150_pngSize);
+	m_distortion_algo.setImage(glas_panel);
+	m_distortion_algo.setInlay(1);
+	m_distortion_algo.setBounds(OdinHelper::c150(DIST_ALGO_POS_X), OdinHelper::c150(DIST_ALGO_POS_Y), glas_panel.getWidth(), glas_panel.getHeight());
+
+	m_amp_gain.setBounds(OdinHelper::c150(AMP_GAIN_POS_X) - OdinHelper::c150(METAL_KNOB_BIG_OFFSET_X),
+	                     OdinHelper::c150(AMP_GAIN_POS_Y) - OdinHelper::c150(METAL_KNOB_BIG_OFFSET_Y),
+	                     OdinHelper::c150(METAL_KNOB_BIG_SIZE_X),
+	                     OdinHelper::c150(METAL_KNOB_BIG_SIZE_Y));
+	m_amp_pan.setBounds(OdinHelper::c150(AMP_PAN_POS_X) - OdinHelper::c150(BLACK_KNOB_MID_OFFSET_X),
+	                    OdinHelper::c150(AMP_PAN_POS_Y) - OdinHelper::c150(BLACK_KNOB_MID_OFFSET_Y),
+	                    OdinHelper::c150(BLACK_KNOB_MID_SIZE_X),
+	                    OdinHelper::c150(BLACK_KNOB_MID_SIZE_Y));
+	m_amp_width.setBounds(OdinHelper::c150(AMP_VEL_POS_X) - OdinHelper::c150(BLACK_KNOB_MID_OFFSET_X),
+	                      OdinHelper::c150(AMP_VEL_POS_Y) - OdinHelper::c150(BLACK_KNOB_MID_OFFSET_Y),
+	                      OdinHelper::c150(BLACK_KNOB_MID_SIZE_X),
+	                      OdinHelper::c150(BLACK_KNOB_MID_SIZE_Y));
+	m_boost.setBounds(
+	    OdinHelper::c150(BIAS_POS_X) - OdinHelper::c150(ROUND_KNOB_OFFSET_X), OdinHelper::c150(BIAS_POS_Y) - OdinHelper::c150(ROUND_KNOB_OFFSET_Y), OdinHelper::c150(ROUND_KNOB_SIZE_X), OdinHelper::c150(ROUND_KNOB_SIZE_Y));
+	m_dry_wet.setBounds(OdinHelper::c150(THRESHOLD_POS_X) - OdinHelper::c150(ROUND_KNOB_OFFSET_X),
+	                    OdinHelper::c150(THRESHOLD_POS_Y) - OdinHelper::c150(ROUND_KNOB_OFFSET_Y),
+	                    OdinHelper::c150(ROUND_KNOB_SIZE_X),
+	                    OdinHelper::c150(ROUND_KNOB_SIZE_Y));
+
+	forceValueTreeOntoComponents(m_value_tree.state);
+}
+void AmpDistortionFlowComponent::setGUISmall(){
+	m_GUI_big = false;
+	
+	juce::Image flow_left_1 = ImageCache::getFromMemory(BinaryData::buttonleft_1_png, BinaryData::buttonleft_1_pngSize);
+	juce::Image flow_left_2 = ImageCache::getFromMemory(BinaryData::buttonleft_2_png, BinaryData::buttonleft_2_pngSize);
+	juce::Image flow_left_3 = ImageCache::getFromMemory(BinaryData::buttonleft_3_png, BinaryData::buttonleft_3_pngSize);
+	juce::Image flow_left_4 = ImageCache::getFromMemory(BinaryData::buttonleft_4_png, BinaryData::buttonleft_4_pngSize);
+
+	juce::DrawableImage flow_left_draw1;
+	juce::DrawableImage flow_left_draw2;
+	juce::DrawableImage flow_left_draw3;
+	juce::DrawableImage flow_left_draw4;
+
+	flow_left_draw1.setImage(flow_left_1);
+	flow_left_draw2.setImage(flow_left_2);
+	flow_left_draw3.setImage(flow_left_3);
+	flow_left_draw4.setImage(flow_left_4);
+
+	m_flow_left.setImages(&flow_left_draw2,
+	                      &flow_left_draw2,
+	                      &flow_left_draw1,
+	                      &flow_left_draw1,
+	                      &flow_left_draw4,
+	                      &flow_left_draw4,
+	                      &flow_left_draw3,
+	                      &flow_left_draw3);
+	m_flow_left.setBounds(FLOW_LEFT_POS_X, FLOW_POS_Y, flow_left_1.getWidth(), flow_left_1.getHeight());
+
+	juce::Image flow_right_1 =
+	    ImageCache::getFromMemory(BinaryData::buttonright_1_png, BinaryData::buttonright_1_pngSize);
+	juce::Image flow_right_2 =
+	    ImageCache::getFromMemory(BinaryData::buttonright_2_png, BinaryData::buttonright_2_pngSize);
+	juce::Image flow_right_3 =
+	    ImageCache::getFromMemory(BinaryData::buttonright_3_png, BinaryData::buttonright_3_pngSize);
+	juce::Image flow_right_4 =
+	    ImageCache::getFromMemory(BinaryData::buttonright_4_png, BinaryData::buttonright_4_pngSize);
+
+	juce::DrawableImage flow_right_draw1;
+	juce::DrawableImage flow_right_draw2;
+	juce::DrawableImage flow_right_draw3;
+	juce::DrawableImage flow_right_draw4;
+
+	flow_right_draw1.setImage(flow_right_1);
+	flow_right_draw2.setImage(flow_right_2);
+	flow_right_draw3.setImage(flow_right_3);
+	flow_right_draw4.setImage(flow_right_4);
+
+	m_flow_right.setImages(&flow_right_draw2,
+	                       &flow_right_draw2,
+	                       &flow_right_draw1,
+	                       &flow_right_draw1,
+	                       &flow_right_draw4,
+	                       &flow_right_draw4,
+	                       &flow_right_draw3,
+	                       &flow_right_draw3);
+	m_flow_right.setBounds(FLOW_RIGHT_POS_X, FLOW_POS_Y, flow_right_1.getWidth(), flow_right_1.getHeight());
+
+	juce::Image distortion_1 =
+	    ImageCache::getFromMemory(BinaryData::buttondistortion_1_png, BinaryData::buttondistortion_1_pngSize);
+	juce::Image distortion_2 =
+	    ImageCache::getFromMemory(BinaryData::buttondistortion_2_png, BinaryData::buttondistortion_2_pngSize);
+	juce::Image distortion_3 =
+	    ImageCache::getFromMemory(BinaryData::buttondistortion_3_png, BinaryData::buttondistortion_3_pngSize);
+	juce::Image distortion_4 =
+	    ImageCache::getFromMemory(BinaryData::buttondistortion_4_png, BinaryData::buttondistortion_4_pngSize);
+
+	juce::DrawableImage distortion_draw1;
+	juce::DrawableImage distortion_draw2;
+	juce::DrawableImage distortion_draw3;
+	juce::DrawableImage distortion_draw4;
+
+	distortion_draw1.setImage(distortion_1);
+	distortion_draw2.setImage(distortion_2);
+	distortion_draw3.setImage(distortion_3);
+	distortion_draw4.setImage(distortion_4);
+
+	m_distortion.setImages(&distortion_draw2,
+	                       &distortion_draw2,
+	                       &distortion_draw1,
+	                       &distortion_draw1,
+	                       &distortion_draw4,
+	                       &distortion_draw4,
+	                       &distortion_draw3,
+	                       &distortion_draw3);
+	m_distortion.setBounds(DISTORTION_POS_X, DISTORTION_POS_Y, distortion_1.getWidth(), distortion_1.getHeight());
+
+	juce::Image metal_knob_big =
+	    ImageCache::getFromMemory(BinaryData::metal_knob_big_png, BinaryData::metal_knob_big_pngSize);
+	juce::Image black_knob_mid =
+	    ImageCache::getFromMemory(BinaryData::black_knob_mid_png, BinaryData::black_knob_mid_pngSize);
+	juce::Image round_knob = ImageCache::getFromMemory(BinaryData::round_knob_png, BinaryData::round_knob_pngSize);
+
+	m_amp_gain.setStrip(metal_knob_big, N_KNOB_FRAMES);
+
+	m_amp_pan.setStrip(black_knob_mid, N_KNOB_FRAMES);
+
+	m_amp_width.setStrip(black_knob_mid, N_KNOB_FRAMES);
+
+	m_boost.setStrip(round_knob, N_KNOB_FRAMES);
+
+	m_dry_wet.setStrip(round_knob, N_KNOB_FRAMES);
+
+	juce::Image glas_panel =
+	    ImageCache::getFromMemory(BinaryData::glaspanel_midbig_png, BinaryData::glaspanel_midbig_pngSize);
+	m_distortion_algo.setImage(glas_panel);
+	m_distortion_algo.setInlay(1);
+	m_distortion_algo.setBounds(DIST_ALGO_POS_X, DIST_ALGO_POS_Y, glas_panel.getWidth(), glas_panel.getHeight());
+
+	m_amp_gain.setBounds(AMP_GAIN_POS_X - METAL_KNOB_BIG_OFFSET_X,
+	                     AMP_GAIN_POS_Y - METAL_KNOB_BIG_OFFSET_Y,
+	                     METAL_KNOB_BIG_SIZE_X,
+	                     METAL_KNOB_BIG_SIZE_Y);
+	m_amp_pan.setBounds(AMP_PAN_POS_X - BLACK_KNOB_MID_OFFSET_X,
+	                    AMP_PAN_POS_Y - BLACK_KNOB_MID_OFFSET_Y,
+	                    BLACK_KNOB_MID_SIZE_X,
+	                    BLACK_KNOB_MID_SIZE_Y);
+	m_amp_width.setBounds(AMP_VEL_POS_X - BLACK_KNOB_MID_OFFSET_X,
+	                      AMP_VEL_POS_Y - BLACK_KNOB_MID_OFFSET_Y,
+	                      BLACK_KNOB_MID_SIZE_X,
+	                      BLACK_KNOB_MID_SIZE_Y);
+	m_boost.setBounds(
+	    BIAS_POS_X - ROUND_KNOB_OFFSET_X, BIAS_POS_Y - ROUND_KNOB_OFFSET_Y, ROUND_KNOB_SIZE_X, ROUND_KNOB_SIZE_Y);
+	m_dry_wet.setBounds(THRESHOLD_POS_X - ROUND_KNOB_OFFSET_X,
+	                    THRESHOLD_POS_Y - ROUND_KNOB_OFFSET_Y,
+	                    ROUND_KNOB_SIZE_X,
+	                    ROUND_KNOB_SIZE_Y);
+
+	forceValueTreeOntoComponents(m_value_tree.state);
+}

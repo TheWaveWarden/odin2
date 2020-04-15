@@ -69,7 +69,13 @@ public:
 		}
 	}
 
+	void setGUIBig();
+	void setGUISmall();
+
 private:
+	bool m_GUI_big = false;
+
+
   void setDistortionPanelActive(bool p_active);
 
 	bool m_distortion_on = false;

@@ -52,7 +52,12 @@ public:
 
   void paint(Graphics &) override;
 
+  void setGUIBig();
+  void setGUISmall();
+
 private:
+  bool m_GUI_big = false;
+
   OdinButton m_loop;
 
 

@@ -1459,6 +1459,11 @@ void OdinAudioProcessorEditor::setGUISizeBig(bool p_big) {
 		m_fil1_component.setGUIBig();
 		m_fil2_component.setGUIBig();
 		m_fil3_component.setGUIBig();
+		m_midsection.setGUIBig();
+		m_adsr_1.setGUIBig();
+		m_adsr_2.setGUIBig();
+		m_adsr_3.setGUIBig();
+		m_adsr_4.setGUIBig();
 		setGUIBig();
 	} else {
 		g_GUI_big = false;
@@ -1468,6 +1473,11 @@ void OdinAudioProcessorEditor::setGUISizeBig(bool p_big) {
 		m_fil1_component.setGUISmall();
 		m_fil2_component.setGUISmall();
 		m_fil3_component.setGUISmall();
+		m_midsection.setGUISmall();
+		m_adsr_1.setGUISmall();
+		m_adsr_2.setGUISmall();
+		m_adsr_3.setGUISmall();
+		m_adsr_4.setGUISmall();
 		setGUISmall();
 	}
 
