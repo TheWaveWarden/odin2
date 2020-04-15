@@ -176,6 +176,8 @@ public:
   void setOscTypeVector();
   void setOscTypeWavetable();
   void setOscTypeMulti();
+  void setGUIBig();
+  void setGUISmall();
 
   void hideAllComponents();
 
@@ -214,6 +216,8 @@ public:
 
 protected:
   // TextEditor REMOVE_EDITOR;
+
+  bool m_GUI_big = false;
 
   int m_osc_type = 0;
 

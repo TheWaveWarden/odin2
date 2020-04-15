@@ -1453,9 +1453,21 @@ void OdinAudioProcessorEditor::updateModWheel(float p_value) {
 void OdinAudioProcessorEditor::setGUISizeBig(bool p_big) {
 	if (p_big) {
 		g_GUI_big = true;
+		m_osc1.setGUIBig();
+		m_osc2.setGUIBig();
+		m_osc3.setGUIBig();
+		m_fil1_component.setGUIBig();
+		m_fil2_component.setGUIBig();
+		m_fil3_component.setGUIBig();
 		setGUIBig();
 	} else {
 		g_GUI_big = false;
+		m_osc1.setGUISmall();
+		m_osc2.setGUISmall();
+		m_osc3.setGUISmall();
+		m_fil1_component.setGUISmall();
+		m_fil2_component.setGUISmall();
+		m_fil3_component.setGUISmall();
 		setGUISmall();
 	}
 

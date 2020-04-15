@@ -1268,57 +1268,103 @@ void OscComponent::setOscTypeBypass() {
 }
 
 void OscComponent::setOscTypeAnalog() {
-	m_background = ImageCache::getFromMemory(BinaryData::analog_backdrop_png, BinaryData::analog_backdrop_pngSize);
+	if (m_GUI_big) {
+		m_background =
+		    ImageCache::getFromMemory(BinaryData::analog_backdrop_150_png, BinaryData::analog_backdrop_150_pngSize);
+	} else {
+		m_background = ImageCache::getFromMemory(BinaryData::analog_backdrop_png, BinaryData::analog_backdrop_pngSize);
+	}
 	showAnalogComponents();
 }
 void OscComponent::setOscTypeChiptune() {
-	m_background = ImageCache::getFromMemory(BinaryData::chiptune_backdrop_png, BinaryData::chiptune_backdrop_pngSize);
+	if (m_GUI_big) {
+		m_background =
+		    ImageCache::getFromMemory(BinaryData::chiptune_backdrop_150_png, BinaryData::chiptune_backdrop_150_pngSize);
+	} else {
+		m_background =
+		    ImageCache::getFromMemory(BinaryData::chiptune_backdrop_png, BinaryData::chiptune_backdrop_pngSize);
+	}
 	showChiptuneComponents();
 }
 
 void OscComponent::setOscTypeFM() {
+	if (m_GUI_big) {
+	m_background = ImageCache::getFromMemory(BinaryData::fm_backdrop_150_png, BinaryData::fm_backdrop_150_pngSize);
+	} else {
 	m_background = ImageCache::getFromMemory(BinaryData::fm_backdrop_png, BinaryData::fm_backdrop_pngSize);
+	}
 	showFMComponents();
 }
 
 void OscComponent::setOscTypePM() {
+	if (m_GUI_big) {
+	m_background = ImageCache::getFromMemory(BinaryData::pm_backdrop_150_png, BinaryData::pm_backdrop_150_pngSize);
+	} else {
 	m_background = ImageCache::getFromMemory(BinaryData::pm_backdrop_png, BinaryData::pm_backdrop_pngSize);
+	}
 	showPMComponents();
 }
 
 void OscComponent::setOscTypeChipdraw() {
+	if (m_GUI_big) {
+	m_background = ImageCache::getFromMemory(BinaryData::chipdraw_backdrop_150_png, BinaryData::chipdraw_backdrop_150_pngSize);
+	} else {
 	m_background = ImageCache::getFromMemory(BinaryData::chipdraw_backdrop_png, BinaryData::chipdraw_backdrop_pngSize);
+	}
 	showChipdrawComponents();
 }
 
 void OscComponent::setOscTypeWavedraw() {
+	if (m_GUI_big) {
+	m_background = ImageCache::getFromMemory(BinaryData::wavedraw_backdrop_150_png, BinaryData::wavedraw_backdrop_150_pngSize);
+	} else {
 	m_background = ImageCache::getFromMemory(BinaryData::wavedraw_backdrop_png, BinaryData::wavedraw_backdrop_pngSize);
+	}
 	showWavedrawComponents();
 }
 
 void OscComponent::setOscTypeSpecdraw() {
+	if (m_GUI_big) {
+	m_background = ImageCache::getFromMemory(BinaryData::specdraw_backdrop_150_png, BinaryData::specdraw_backdrop_150_pngSize);
+	} else {
 	m_background = ImageCache::getFromMemory(BinaryData::specdraw_backdrop_png, BinaryData::specdraw_backdrop_pngSize);
+	}
 	showSpecdrawComponents();
 }
 
 void OscComponent::setOscTypeNoise() {
+	if (m_GUI_big) {
+	m_background = ImageCache::getFromMemory(BinaryData::noise_backdrop_150_png, BinaryData::noise_backdrop_150_pngSize);
+	} else {
 	m_background = ImageCache::getFromMemory(BinaryData::noise_backdrop_png, BinaryData::noise_backdrop_pngSize);
+	}
 	showNoiseComponents();
 }
 
 void OscComponent::setOscTypeVector() {
+	if (m_GUI_big) {
+	m_background = ImageCache::getFromMemory(BinaryData::vector_backdrop_150_png, BinaryData::vector_backdrop_150_pngSize);
+	} else {
 	m_background = ImageCache::getFromMemory(BinaryData::vector_backdrop_png, BinaryData::vector_backdrop_pngSize);
+	}
 	showVectorComponents();
 }
 
 void OscComponent::setOscTypeWavetable() {
-	m_background =
-	    ImageCache::getFromMemory(BinaryData::wavetable_backdrop_png, BinaryData::wavetable_backdrop_pngSize);
+	if (m_GUI_big) {
+	m_background =	    ImageCache::getFromMemory(BinaryData::wavetable_backdrop_150_png, BinaryData::wavetable_backdrop_150_pngSize);
+	} else {
+	m_background =	    ImageCache::getFromMemory(BinaryData::wavetable_backdrop_png, BinaryData::wavetable_backdrop_pngSize);
+	}
 	showWavetableComponents();
 }
 
 void OscComponent::setOscTypeMulti() {
+	if (m_GUI_big) {
+	m_background = ImageCache::getFromMemory(BinaryData::multi_backdrop_150_png, BinaryData::multi_backdrop_150_pngSize);
+	} else {
 	m_background = ImageCache::getFromMemory(BinaryData::multi_backdrop_png, BinaryData::multi_backdrop_pngSize);
+	}
 	showMultiComponents();
 }
 
@@ -1509,8 +1555,7 @@ void OscComponent::showNoiseComponents() {
 }
 
 void OscComponent::createWavedrawTables() {
-	m_WT_container->createWavedrawTable(
-	    std::stoi(m_osc_number) - 1, m_wavedraw.getDrawnTable(), 44100.f);
+	m_WT_container->createWavedrawTable(std::stoi(m_osc_number) - 1, m_wavedraw.getDrawnTable(), 44100.f);
 
 	// write values to audiovaluetree
 	float *table = m_wavedraw.getDrawnTable();
@@ -1522,8 +1567,7 @@ void OscComponent::createWavedrawTables() {
 
 void OscComponent::createChipdrawTables() {
 
-	m_WT_container->createChipdrawTable(
-	    std::stoi(m_osc_number) - 1, m_chipdraw.getDrawnTable(), 44100.f);
+	m_WT_container->createChipdrawTable(std::stoi(m_osc_number) - 1, m_chipdraw.getDrawnTable(), 44100.f);
 
 	// write values to audiovaluetree
 	float *table = m_chipdraw.getDrawnTable();
@@ -1534,8 +1578,7 @@ void OscComponent::createChipdrawTables() {
 }
 
 void OscComponent::createSpecdrawTables() {
-	m_WT_container->createSpecdrawTable(
-	    std::stoi(m_osc_number) - 1, m_specdraw.getDrawnTable(), 44100.f);
+	m_WT_container->createSpecdrawTable(std::stoi(m_osc_number) - 1, m_specdraw.getDrawnTable(), 44100.f);
 	// write values to audiovaluetree
 	float *table = m_specdraw.getDrawnTable();
 	auto node    = m_value_tree.state.getChildWithName("draw");
@@ -1634,4 +1677,818 @@ void OscComponent::forceValueTreeOntoComponents(ValueTree p_tree, int p_index, b
 		createChipdrawTables();
 		createSpecdrawTables();
 	}
+}
+
+void OscComponent::setGUIBig() {
+	m_GUI_big = true;
+
+	m_vol.setStrip(
+	    ImageCache::getFromMemory(BinaryData::black_knob_small_150_png, BinaryData::black_knob_small_150_pngSize),
+	    N_KNOB_FRAMES);
+
+	m_vol.setBounds(OdinHelper::c150(VOL_POS_X) - OdinHelper::c150(BLACK_KNOB_SMALL_OFFSET_X),
+	                OdinHelper::c150(VOL_POS_Y) - OdinHelper::c150(BLACK_KNOB_SMALL_OFFSET_Y),
+	                OdinHelper::c150(BLACK_KNOB_SMALL_SIZE_X),
+	                OdinHelper::c150(BLACK_KNOB_SMALL_SIZE_Y));
+
+	juce::Image reset_1 =
+	    ImageCache::getFromMemory(BinaryData::buttonreset_osc_1_150_png, BinaryData::buttonreset_osc_1_150_pngSize);
+	juce::Image reset_2 =
+	    ImageCache::getFromMemory(BinaryData::buttonreset_osc_2_150_png, BinaryData::buttonreset_osc_2_150_pngSize);
+	juce::Image reset_3 =
+	    ImageCache::getFromMemory(BinaryData::buttonreset_osc_3_150_png, BinaryData::buttonreset_osc_3_150_pngSize);
+	juce::Image reset_4 =
+	    ImageCache::getFromMemory(BinaryData::buttonreset_osc_4_150_png, BinaryData::buttonreset_osc_4_150_pngSize);
+
+	juce::DrawableImage reset_draw1;
+	juce::DrawableImage reset_draw2;
+	juce::DrawableImage reset_draw3;
+	juce::DrawableImage reset_draw4;
+
+	reset_draw1.setImage(reset_1);
+	reset_draw2.setImage(reset_2);
+	reset_draw3.setImage(reset_3);
+	reset_draw4.setImage(reset_4);
+
+	m_reset.setImages(
+	    &reset_draw2, &reset_draw2, &reset_draw1, &reset_draw1, &reset_draw4, &reset_draw4, &reset_draw3, &reset_draw3);
+	m_reset.setBounds(
+	    OdinHelper::c150(RESET_POS_X), OdinHelper::c150(RESET_POS_Y), reset_1.getWidth(), reset_1.getHeight());
+
+	// sync button only for osc 2 & 3
+	if (std::stoi(m_osc_number) != 1) {
+
+		juce::Image sync_1 =
+		    ImageCache::getFromMemory(BinaryData::buttonsync_osc_1_150_png, BinaryData::buttonsync_osc_1_150_pngSize);
+		juce::Image sync_2 =
+		    ImageCache::getFromMemory(BinaryData::buttonsync_osc_2_150_png, BinaryData::buttonsync_osc_2_150_pngSize);
+		juce::Image sync_3 =
+		    ImageCache::getFromMemory(BinaryData::buttonsync_osc_3_150_png, BinaryData::buttonsync_osc_3_150_pngSize);
+		juce::Image sync_4 =
+		    ImageCache::getFromMemory(BinaryData::buttonsync_osc_4_150_png, BinaryData::buttonsync_osc_4_150_pngSize);
+
+		juce::DrawableImage sync_draw1;
+		juce::DrawableImage sync_draw2;
+		juce::DrawableImage sync_draw3;
+		juce::DrawableImage sync_draw4;
+
+		sync_draw1.setImage(sync_1);
+		sync_draw2.setImage(sync_2);
+		sync_draw3.setImage(sync_3);
+		sync_draw4.setImage(sync_4);
+
+		m_sync.setImages(
+		    &sync_draw2, &sync_draw2, &sync_draw1, &sync_draw1, &sync_draw4, &sync_draw4, &sync_draw3, &sync_draw3);
+		m_sync.setBounds(
+		    OdinHelper::c150(OSC_SYNC_POS_X), OdinHelper::c150(OSC_SYNC_POS_Y), sync_1.getWidth(), sync_1.getHeight());
+	}
+
+	m_oct.setStrip(
+	    ImageCache::getFromMemory(BinaryData::black_knob_small_150_png, BinaryData::black_knob_small_150_pngSize),
+	    N_KNOB_FRAMES);
+	m_oct.setBounds(OdinHelper::c150(OCT_POS_X) - OdinHelper::c150(BLACK_KNOB_SMALL_OFFSET_X),
+	                OdinHelper::c150(PITCH_POS_Y) - OdinHelper::c150(BLACK_KNOB_SMALL_OFFSET_Y),
+	                OdinHelper::c150(BLACK_KNOB_SMALL_SIZE_X),
+	                OdinHelper::c150(BLACK_KNOB_SMALL_SIZE_Y));
+
+	m_semi.setStrip(
+	    ImageCache::getFromMemory(BinaryData::black_knob_small_150_png, BinaryData::black_knob_small_150_pngSize),
+	    N_KNOB_FRAMES);
+
+	m_fine.setStrip(
+	    ImageCache::getFromMemory(BinaryData::black_knob_small_150_png, BinaryData::black_knob_small_150_pngSize),
+	    N_KNOB_FRAMES);
+
+	m_semi.setBounds(OdinHelper::c150(SEMI_POS_X) - OdinHelper::c150(BLACK_KNOB_SMALL_OFFSET_X),
+	                 OdinHelper::c150(PITCH_POS_Y) - OdinHelper::c150(BLACK_KNOB_SMALL_OFFSET_Y),
+	                 OdinHelper::c150(BLACK_KNOB_SMALL_SIZE_X),
+	                 OdinHelper::c150(BLACK_KNOB_SMALL_SIZE_Y));
+
+	Rectangle<int> area_fine(OdinHelper::c150(BLACK_KNOB_SMALL_SIZE_X), OdinHelper::c150(BLACK_KNOB_SMALL_SIZE_Y));
+	m_fine.setBounds(OdinHelper::c150(FINE_POS_X) - OdinHelper::c150(BLACK_KNOB_SMALL_OFFSET_X),
+	                 OdinHelper::c150(PITCH_POS_Y) - OdinHelper::c150(BLACK_KNOB_SMALL_OFFSET_Y),
+	                 OdinHelper::c150(BLACK_KNOB_SMALL_SIZE_X),
+	                 OdinHelper::c150(BLACK_KNOB_SMALL_SIZE_Y));
+
+	juce::Image LED_1 = ImageCache::getFromMemory(BinaryData::LED_1_150_png, BinaryData::LED_1_150_pngSize);
+	juce::Image LED_2 = ImageCache::getFromMemory(BinaryData::LED_2_150_png, BinaryData::LED_2_150_pngSize);
+	juce::DrawableImage LED_draw1;
+	juce::DrawableImage LED_draw2;
+	LED_draw1.setImage(LED_1);
+	LED_draw2.setImage(LED_2);
+
+	m_LED_saw.setImages(&LED_draw2, &LED_draw2, &LED_draw2, &LED_draw2, &LED_draw1, &LED_draw1, &LED_draw1);
+	m_LED_saw.setBounds(OdinHelper::c150(LED_POS_X),
+	                    OdinHelper::c150(LED_POS_Y) - LED_1.getHeight(),
+	                    LED_1.getWidth(),
+	                    LED_1.getHeight());
+
+	m_LED_pulse.setImages(&LED_draw2, &LED_draw2, &LED_draw2, &LED_draw2, &LED_draw1, &LED_draw1, &LED_draw1);
+	m_LED_pulse.setBounds(
+	    OdinHelper::c150(LED_POS_X), OdinHelper::c150(LED_POS_Y), LED_1.getWidth(), LED_1.getHeight());
+
+	m_LED_triangle.setImages(&LED_draw2, &LED_draw2, &LED_draw2, &LED_draw2, &LED_draw1, &LED_draw1, &LED_draw1);
+	m_LED_triangle.setBounds(OdinHelper::c150(LED_POS_X),
+	                         OdinHelper::c150(LED_POS_Y) + LED_1.getHeight(),
+	                         LED_1.getWidth(),
+	                         LED_1.getHeight());
+
+	m_LED_sine.setImages(&LED_draw2, &LED_draw2, &LED_draw2, &LED_draw2, &LED_draw1, &LED_draw1, &LED_draw1);
+	m_LED_sine.setBounds(OdinHelper::c150(LED_POS_X),
+	                     OdinHelper::c150(LED_POS_Y) + 2 * LED_1.getHeight(),
+	                     LED_1.getWidth(),
+	                     LED_1.getHeight());
+
+	m_pw.setStrip(
+	    ImageCache::getFromMemory(BinaryData::black_knob_small_150_png, BinaryData::black_knob_small_150_pngSize),
+	    N_KNOB_FRAMES);
+	m_drift.setStrip(
+	    ImageCache::getFromMemory(BinaryData::black_knob_big_150_png, BinaryData::black_knob_big_150_pngSize),
+	    N_KNOB_FRAMES);
+
+	juce::Image arp_1 =
+	    ImageCache::getFromMemory(BinaryData::buttonarpeggiator_1_150_png, BinaryData::buttonarpeggiator_1_150_pngSize);
+	juce::Image arp_2 =
+	    ImageCache::getFromMemory(BinaryData::buttonarpeggiator_2_150_png, BinaryData::buttonarpeggiator_2_150_pngSize);
+	juce::Image arp_3 =
+	    ImageCache::getFromMemory(BinaryData::buttonarpeggiator_3_150_png, BinaryData::buttonarpeggiator_3_150_pngSize);
+	juce::Image arp_4 =
+	    ImageCache::getFromMemory(BinaryData::buttonarpeggiator_4_150_png, BinaryData::buttonarpeggiator_4_150_pngSize);
+
+	juce::DrawableImage arp_draw1;
+	juce::DrawableImage arp_draw2;
+	juce::DrawableImage arp_draw3;
+	juce::DrawableImage arp_draw4;
+
+	arp_draw1.setImage(arp_1);
+	arp_draw2.setImage(arp_2);
+	arp_draw3.setImage(arp_3);
+	arp_draw4.setImage(arp_4);
+
+	m_arp.setImages(&arp_draw2, &arp_draw2, &arp_draw1, &arp_draw1, &arp_draw4, &arp_draw4, &arp_draw3, &arp_draw3);
+	m_arp.setBounds(OdinHelper::c150(ARP_POS_X), OdinHelper::c150(ARP_POS_Y), arp_1.getWidth(), arp_1.getHeight());
+
+	juce::Image noise_1 =
+	    ImageCache::getFromMemory(BinaryData::buttonnoise_1_150_png, BinaryData::buttonnoise_1_150_pngSize);
+	juce::Image noise_2 =
+	    ImageCache::getFromMemory(BinaryData::buttonnoise_2_150_png, BinaryData::buttonnoise_2_150_pngSize);
+	juce::Image noise_3 =
+	    ImageCache::getFromMemory(BinaryData::buttonnoise_3_150_png, BinaryData::buttonnoise_3_150_pngSize);
+	juce::Image noise_4 =
+	    ImageCache::getFromMemory(BinaryData::buttonnoise_4_150_png, BinaryData::buttonnoise_4_150_pngSize);
+
+	juce::DrawableImage noise_draw1;
+	juce::DrawableImage noise_draw2;
+	juce::DrawableImage noise_draw3;
+	juce::DrawableImage noise_draw4;
+
+	noise_draw1.setImage(noise_1);
+	noise_draw2.setImage(noise_2);
+	noise_draw3.setImage(noise_3);
+	noise_draw4.setImage(noise_4);
+
+	m_noise.setImages(
+	    &noise_draw2, &noise_draw2, &noise_draw1, &noise_draw1, &noise_draw4, &noise_draw4, &noise_draw3, &noise_draw3);
+	m_noise.setBounds(
+	    OdinHelper::c150(NOISE_POS_X), OdinHelper::c150(NOISE_POS_Y), noise_1.getWidth(), noise_1.getHeight());
+
+	juce::Image step_button_1 =
+	    ImageCache::getFromMemory(BinaryData::buttonstep_1_150_png, BinaryData::buttonstep_1_150_pngSize);
+	juce::Image step_button_2 =
+	    ImageCache::getFromMemory(BinaryData::buttonstep_2_150_png, BinaryData::buttonstep_2_150_pngSize);
+	juce::Image step_button_3 =
+	    ImageCache::getFromMemory(BinaryData::buttonstep_3_150_png, BinaryData::buttonstep_3_150_pngSize);
+	juce::Image step_button_4 =
+	    ImageCache::getFromMemory(BinaryData::buttonstep_4_150_png, BinaryData::buttonstep_4_150_pngSize);
+
+	juce::DrawableImage step_button_draw1;
+	juce::DrawableImage step_button_draw2;
+	juce::DrawableImage step_button_draw3;
+	juce::DrawableImage step_button_draw4;
+
+	step_button_draw1.setImage(step_button_1);
+	step_button_draw2.setImage(step_button_2);
+	step_button_draw3.setImage(step_button_3);
+	step_button_draw4.setImage(step_button_4);
+
+	m_step_button.setImages(&step_button_draw2,
+	                        &step_button_draw2,
+	                        &step_button_draw1,
+	                        &step_button_draw1,
+	                        &step_button_draw4,
+	                        &step_button_draw4,
+	                        &step_button_draw3,
+	                        &step_button_draw3);
+	m_step_button.setBounds(OdinHelper::c150(STEP_BUTTON_POS_X),
+	                        OdinHelper::c150(STEP_BUTTON_POS_Y),
+	                        step_button_1.getWidth(),
+	                        step_button_1.getHeight());
+
+	m_step_1.setStrip(
+	    ImageCache::getFromMemory(BinaryData::black_knob_small_150_png, BinaryData::black_knob_small_150_pngSize), 256);
+	m_step_1.setBounds(OdinHelper::c150(STEP_1_POS_X),
+	                   OdinHelper::c150(STEP_1_POS_Y),
+	                   OdinHelper::c150(BLACK_KNOB_SMALL_SIZE_X),
+	                   OdinHelper::c150(BLACK_KNOB_SMALL_SIZE_Y));
+
+	m_step_2.setStrip(
+	    ImageCache::getFromMemory(BinaryData::black_knob_small_150_png, BinaryData::black_knob_small_150_pngSize), 256);
+	m_step_2.setBounds(OdinHelper::c150(STEP_2_POS_X),
+	                   OdinHelper::c150(STEP_2_POS_Y),
+	                   OdinHelper::c150(BLACK_KNOB_SMALL_SIZE_X),
+	                   OdinHelper::c150(BLACK_KNOB_SMALL_SIZE_Y));
+
+	m_step_3.setStrip(
+	    ImageCache::getFromMemory(BinaryData::black_knob_small_150_png, BinaryData::black_knob_small_150_pngSize), 256);
+	m_step_3.setBounds(OdinHelper::c150(STEP_3_POS_X),
+	                   OdinHelper::c150(STEP_3_POS_Y),
+	                   OdinHelper::c150(BLACK_KNOB_SMALL_SIZE_X),
+	                   OdinHelper::c150(BLACK_KNOB_SMALL_SIZE_Y));
+
+	m_fm.setStrip(ImageCache::getFromMemory(BinaryData::metal_knob_big_150_png, BinaryData::metal_knob_big_150_pngSize),
+	              256);
+	m_fm.setBounds(OdinHelper::c150(FM_POS_X),
+	               OdinHelper::c150(FM_POS_Y),
+	               OdinHelper::c150(METAL_KNOB_BIG_SIZE_X),
+	               OdinHelper::c150(METAL_KNOB_BIG_SIZE_Y));
+
+	m_lp.setStrip(ImageCache::getFromMemory(BinaryData::metal_knob_big_150_png, BinaryData::metal_knob_big_150_pngSize),
+	              256);
+	m_lp.setBounds(OdinHelper::c150(LP_POS_X),
+	               OdinHelper::c150(LP_POS_Y),
+	               OdinHelper::c150(METAL_KNOB_BIG_SIZE_X),
+	               OdinHelper::c150(METAL_KNOB_BIG_SIZE_Y));
+
+	m_hp.setStrip(ImageCache::getFromMemory(BinaryData::metal_knob_big_150_png, BinaryData::metal_knob_big_150_pngSize),
+	              256);
+	m_hp.setBounds(OdinHelper::c150(HP_POS_X),
+	               OdinHelper::c150(HP_POS_Y),
+	               OdinHelper::c150(METAL_KNOB_BIG_SIZE_X),
+	               OdinHelper::c150(METAL_KNOB_BIG_SIZE_Y));
+	m_position.setStrip(
+	    ImageCache::getFromMemory(BinaryData::metal_knob_mid_150_png, BinaryData::metal_knob_mid_150_pngSize), 256);
+	m_position.setBounds(OdinHelper::c150(POSITION_POS_X),
+	                     OdinHelper::c150(POSITION_POS_Y),
+	                     OdinHelper::c150(METAL_KNOB_MID_SIZE_X),
+	                     OdinHelper::c150(METAL_KNOB_MID_SIZE_Y));
+
+	m_detune.setStrip(
+	    ImageCache::getFromMemory(BinaryData::metal_knob_big_150_png, BinaryData::metal_knob_big_150_pngSize), 256);
+	m_detune.setBounds(OdinHelper::c150(DETUNE_POS_X),
+	                   OdinHelper::c150(DETUNE_POS_Y),
+	                   OdinHelper::c150(METAL_KNOB_BIG_SIZE_X),
+	                   OdinHelper::c150(METAL_KNOB_BIG_SIZE_Y));
+
+	m_pos_mod.setStrip(
+	    ImageCache::getFromMemory(BinaryData::black_knob_mid_150_png, BinaryData::black_knob_mid_150_pngSize), 256);
+	m_pos_mod.setBounds(OdinHelper::c150(POS_ENV_POS_X),
+	                    OdinHelper::c150(POS_ENV_POS_Y),
+	                    OdinHelper::c150(BLACK_KNOB_MID_SIZE_X),
+	                    OdinHelper::c150(BLACK_KNOB_MID_SIZE_Y));
+
+	m_spread.setStrip(
+	    ImageCache::getFromMemory(BinaryData::metal_knob_small_150_png, BinaryData::metal_knob_small_150_pngSize), 256);
+	m_spread.setBounds(OdinHelper::c150(SPREAD_POS_X),
+	                   OdinHelper::c150(SPREAD_POS_Y),
+	                   OdinHelper::c150(METAL_KNOB_SMALL_SIZE_X),
+	                   OdinHelper::c150(METAL_KNOB_SMALL_SIZE_Y));
+
+	m_position_multi.setStrip(
+	    ImageCache::getFromMemory(BinaryData::metal_knob_small_150_png, BinaryData::metal_knob_small_150_pngSize), 256);
+	m_position_multi.setBounds(OdinHelper::c150(POSITION_MULTI_POS_X),
+	                           OdinHelper::c150(POSITION_MULTI_POS_Y),
+	                           OdinHelper::c150(METAL_KNOB_SMALL_SIZE_X),
+	                           OdinHelper::c150(METAL_KNOB_SMALL_SIZE_Y));
+
+	m_speed.setStrip(
+	    ImageCache::getFromMemory(BinaryData::black_knob_small_150_png, BinaryData::black_knob_small_150_pngSize), 256);
+	m_speed.setBounds(OdinHelper::c150(SPEED_POS_X),
+	                  OdinHelper::c150(SPEED_POS_Y),
+	                  OdinHelper::c150(BLACK_KNOB_SMALL_SIZE_X),
+	                  OdinHelper::c150(BLACK_KNOB_SMALL_SIZE_Y));
+
+	juce::Image chipdraw_convert_1 =
+	    ImageCache::getFromMemory(BinaryData::buttonapply_1_150_png, BinaryData::buttonapply_1_150_pngSize);
+	juce::Image chipdraw_convert_2 =
+	    ImageCache::getFromMemory(BinaryData::buttonapply_2_150_png, BinaryData::buttonapply_2_150_pngSize);
+	juce::Image chipdraw_convert_3 =
+	    ImageCache::getFromMemory(BinaryData::buttonapply_3_150_png, BinaryData::buttonapply_3_150_pngSize);
+	juce::Image chipdraw_convert_4 =
+	    ImageCache::getFromMemory(BinaryData::buttonapply_4_150_png, BinaryData::buttonapply_4_150_pngSize);
+
+	juce::DrawableImage chipdraw_convert_draw1;
+	juce::DrawableImage chipdraw_convert_draw2;
+	juce::DrawableImage chipdraw_convert_draw3;
+	juce::DrawableImage chipdraw_convert_draw4;
+
+	chipdraw_convert_draw1.setImage(chipdraw_convert_1);
+	chipdraw_convert_draw2.setImage(chipdraw_convert_2);
+	chipdraw_convert_draw3.setImage(chipdraw_convert_3);
+	chipdraw_convert_draw4.setImage(chipdraw_convert_4);
+
+	m_chipdraw_convert.setImages(&chipdraw_convert_draw2,
+	                             &chipdraw_convert_draw2,
+	                             &chipdraw_convert_draw1,
+	                             &chipdraw_convert_draw1,
+	                             &chipdraw_convert_draw4,
+	                             &chipdraw_convert_draw4,
+	                             &chipdraw_convert_draw3,
+	                             &chipdraw_convert_draw3);
+	m_chipdraw_convert.setBounds(OdinHelper::c150(CONVERT_POS_X),
+	                             OdinHelper::c150(CONVERT_POS_Y),
+	                             chipdraw_convert_1.getWidth(),
+	                             chipdraw_convert_1.getHeight());
+
+	m_wavedraw_convert.setImages(&chipdraw_convert_draw2,
+	                             &chipdraw_convert_draw2,
+	                             &chipdraw_convert_draw1,
+	                             &chipdraw_convert_draw1,
+	                             &chipdraw_convert_draw4,
+	                             &chipdraw_convert_draw4,
+	                             &chipdraw_convert_draw3,
+	                             &chipdraw_convert_draw3);
+	m_wavedraw_convert.setBounds(OdinHelper::c150(CONVERT_POS_X),
+	                             OdinHelper::c150(CONVERT_POS_Y),
+	                             chipdraw_convert_1.getWidth(),
+	                             chipdraw_convert_1.getHeight());
+
+	m_specdraw_convert.setImages(&chipdraw_convert_draw2,
+	                             &chipdraw_convert_draw2,
+	                             &chipdraw_convert_draw1,
+	                             &chipdraw_convert_draw1,
+	                             &chipdraw_convert_draw4,
+	                             &chipdraw_convert_draw4,
+	                             &chipdraw_convert_draw3,
+	                             &chipdraw_convert_draw3);
+	m_specdraw_convert.setBounds(OdinHelper::c150(CONVERT_POS_X),
+	                             OdinHelper::c150(CONVERT_POS_Y),
+	                             chipdraw_convert_1.getWidth(),
+	                             chipdraw_convert_1.getHeight());
+
+	juce::Colour chip_color(93, 81, 63);
+
+	m_chiptune_waveselector.setTopLeftPosition(OdinHelper::c150(WAVE_CHIPTUNE_POS_X),
+	                                           OdinHelper::c150(WAVE_CHIPTUNE_POS_Y));
+	m_carrier_waveselector.setTopLeftPosition(OdinHelper::c150(WAVE_CARRIER_POS_X),
+	                                          OdinHelper::c150(WAVE_CARRIER_POS_Y));
+	m_wavetable_waveselector.setTopLeftPosition(OdinHelper::c150(WAVE_CARRIER_POS_X),
+	                                            OdinHelper::c150(WAVE_CARRIER_POS_Y));
+	m_modulation_source.setTopLeftPosition(OdinHelper::c150(POS_MODULATION_X), OdinHelper::c150(POS_MODULATION_Y));
+	m_modulator_waveselector.setTopLeftPosition(OdinHelper::c150(WAVE_MODULATOR_POS_X),
+	                                            OdinHelper::c150(WAVE_MODULATOR_POS_Y));
+	m_carrier_ratio.setTopLeftPosition(OdinHelper::c150(RATIO_CARRIER_POS_X), OdinHelper::c150(RATIO_CARRIER_POS_Y));
+	m_modulator_ratio.setTopLeftPosition(OdinHelper::c150(RATIO_MODULATOR_POS_X),
+	                                     OdinHelper::c150(RATIO_MODULATOR_POS_Y));
+
+	juce::Image fm_exp_left =
+	    ImageCache::getFromMemory(BinaryData::buttonexplin_1_150_png, BinaryData::buttonexplin_1_150_pngSize);
+	juce::Image fm_exp_right =
+	    ImageCache::getFromMemory(BinaryData::buttonexplin_3_150_png, BinaryData::buttonexplin_3_150_pngSize);
+	m_fm_exp.setImage(fm_exp_left, 1);
+	m_fm_exp.setImage(fm_exp_right, 2);
+	m_fm_exp.setBounds(OdinHelper::c150(FM_EXP_POS_X),
+	                   OdinHelper::c150(FM_EXP_POS_Y),
+	                   fm_exp_left.getWidth(),
+	                   fm_exp_left.getHeight());
+
+	m_chipdraw.setTopLeftPosition(OdinHelper::c150(CHIPDRAW_POSITION_X), OdinHelper::c150(CHIPDRAW_POSITION_Y));
+
+	juce::Colour wave_color(71, 92, 108);
+	juce::Colour wave_draw_color(99, 165, 236);
+
+	m_wavedraw.setTopLeftPosition(OdinHelper::c150(CHIPDRAW_POSITION_X), OdinHelper::c150(CHIPDRAW_POSITION_Y));
+
+	juce::Colour spec_color(61, 80, 70);
+	juce::Colour spec_draw_color(116, 180, 147);
+
+	m_specdraw.setTopLeftPosition(OdinHelper::c150(CHIPDRAW_POSITION_X), OdinHelper::c150(CHIPDRAW_POSITION_Y));
+	juce::Colour vector_color(25, 50, 60);
+
+	juce::Image glas_panel =
+	    ImageCache::getFromMemory(BinaryData::vectorpanel_150_png, BinaryData::vectorpanel_150_pngSize);
+	m_xy.setTopLeftPosition(OdinHelper::c150(XY_POS_X), OdinHelper::c150(XY_POS_Y));
+	m_xy.setSize(glas_panel.getWidth(), glas_panel.getHeight());
+	m_xy.setImage(glas_panel);
+	m_xy.setInlay(1);
+
+	juce::Image glas_panel_vecwave =
+	    ImageCache::getFromMemory(BinaryData::glaspanel_big_150_png, BinaryData::glaspanel_big_150_pngSize);
+	m_vec_a.setImage(glas_panel_vecwave);
+	m_vec_a.setInlay(1);
+	m_vec_a.setBounds(OdinHelper::c150(VEC_WAVE_X),
+	                  OdinHelper::c150(VEC_WAVE_Y),
+	                  glas_panel_vecwave.getWidth(),
+	                  glas_panel_vecwave.getHeight());
+
+	m_vec_b.setImage(glas_panel_vecwave);
+	m_vec_b.setInlay(1);
+	m_vec_b.setBounds(OdinHelper::c150(VEC_WAVE_X),
+	                  OdinHelper::c150(VEC_WAVE_Y) + 1 * OdinHelper::c150(VEC_WAVE_OFFSET),
+	                  glas_panel_vecwave.getWidth(),
+	                  glas_panel_vecwave.getHeight());
+
+	m_vec_c.setImage(glas_panel_vecwave);
+	m_vec_c.setInlay(1);
+	m_vec_c.setBounds(OdinHelper::c150(VEC_WAVE_X),
+	                  OdinHelper::c150(VEC_WAVE_Y) + 2 * OdinHelper::c150(VEC_WAVE_OFFSET),
+	                  glas_panel_vecwave.getWidth(),
+	                  glas_panel_vecwave.getHeight());
+
+	m_vec_d.setImage(glas_panel_vecwave);
+	m_vec_d.setInlay(1);
+	m_vec_d.setBounds(OdinHelper::c150(VEC_WAVE_X),
+	                  OdinHelper::c150(VEC_WAVE_Y) + 3 * OdinHelper::c150(VEC_WAVE_OFFSET),
+	                  glas_panel_vecwave.getWidth(),
+	                  glas_panel_vecwave.getHeight());
+
+	m_xy_x.setStrip(ImageCache::getFromMemory(BinaryData::black_knob_very_small_150_png,
+	                                          BinaryData::black_knob_very_small_150_pngSize),
+	                256);
+	m_xy_x.setBounds(OdinHelper::c150(X_POS_X),
+	                 OdinHelper::c150(X_POS_Y),
+	                 OdinHelper::c150(BLACK_KNOB_VERY_SMALL_SIZE_X),
+	                 OdinHelper::c150(BLACK_KNOB_VERY_SMALL_SIZE_Y));
+
+	m_xy_y.setStrip(ImageCache::getFromMemory(BinaryData::black_knob_very_small_150_png,
+	                                          BinaryData::black_knob_very_small_150_pngSize),
+	                256);
+	m_xy_y.setBounds(OdinHelper::c150(Y_POS_X),
+	                 OdinHelper::c150(Y_POS_Y),
+	                 OdinHelper::c150(BLACK_KNOB_VERY_SMALL_SIZE_X),
+	                 OdinHelper::c150(BLACK_KNOB_VERY_SMALL_SIZE_Y));
+
+	forceValueTreeOntoComponents(m_value_tree.state, std::stoi(m_osc_number), false);
+
+	resetVectorWaves();
+
+	m_pw.setBounds(OdinHelper::c150(PW_POS_X) - OdinHelper::c150(BLACK_KNOB_SMALL_OFFSET_X),
+	               OdinHelper::c150(PW_POS_Y) - OdinHelper::c150(BLACK_KNOB_SMALL_OFFSET_Y),
+	               OdinHelper::c150(BLACK_KNOB_SMALL_SIZE_X),
+	               OdinHelper::c150(BLACK_KNOB_SMALL_SIZE_Y));
+	m_drift.setBounds(OdinHelper::c150(DRIFT_POS_X) - OdinHelper::c150(BLACK_KNOB_BIG_OFFSET_X),
+	                  OdinHelper::c150(DRIFT_POS_Y) - OdinHelper::c150(BLACK_KNOB_BIG_OFFSET_Y),
+	                  OdinHelper::c150(BLACK_KNOB_BIG_SIZE_X),
+	                  OdinHelper::c150(BLACK_KNOB_BIG_SIZE_Y));
+
+	setSize(OdinHelper::c150(247), OdinHelper::c150(145));
+}
+
+void OscComponent::setGUISmall() {
+	m_GUI_big = false;
+
+	m_vol.setStrip(ImageCache::getFromMemory(BinaryData::black_knob_small_png, BinaryData::black_knob_small_pngSize),
+	               N_KNOB_FRAMES);
+
+	m_vol.setBounds(VOL_POS_X - BLACK_KNOB_SMALL_OFFSET_X,
+	                VOL_POS_Y - BLACK_KNOB_SMALL_OFFSET_Y,
+	                BLACK_KNOB_SMALL_SIZE_X,
+	                BLACK_KNOB_SMALL_SIZE_Y);
+
+	juce::Image reset_1 =
+	    ImageCache::getFromMemory(BinaryData::buttonreset_osc_1_png, BinaryData::buttonreset_osc_1_pngSize);
+	juce::Image reset_2 =
+	    ImageCache::getFromMemory(BinaryData::buttonreset_osc_2_png, BinaryData::buttonreset_osc_2_pngSize);
+	juce::Image reset_3 =
+	    ImageCache::getFromMemory(BinaryData::buttonreset_osc_3_png, BinaryData::buttonreset_osc_3_pngSize);
+	juce::Image reset_4 =
+	    ImageCache::getFromMemory(BinaryData::buttonreset_osc_4_png, BinaryData::buttonreset_osc_4_pngSize);
+
+	juce::DrawableImage reset_draw1;
+	juce::DrawableImage reset_draw2;
+	juce::DrawableImage reset_draw3;
+	juce::DrawableImage reset_draw4;
+
+	reset_draw1.setImage(reset_1);
+	reset_draw2.setImage(reset_2);
+	reset_draw3.setImage(reset_3);
+	reset_draw4.setImage(reset_4);
+
+	m_reset.setImages(
+	    &reset_draw2, &reset_draw2, &reset_draw1, &reset_draw1, &reset_draw4, &reset_draw4, &reset_draw3, &reset_draw3);
+	m_reset.setBounds(RESET_POS_X, RESET_POS_Y, reset_1.getWidth(), reset_1.getHeight());
+
+	// sync button only for osc 2 & 3
+	if (std::stoi(m_osc_number) != 1) {
+
+		juce::Image sync_1 =
+		    ImageCache::getFromMemory(BinaryData::buttonsync_osc_1_png, BinaryData::buttonsync_osc_1_pngSize);
+		juce::Image sync_2 =
+		    ImageCache::getFromMemory(BinaryData::buttonsync_osc_2_png, BinaryData::buttonsync_osc_2_pngSize);
+		juce::Image sync_3 =
+		    ImageCache::getFromMemory(BinaryData::buttonsync_osc_3_png, BinaryData::buttonsync_osc_3_pngSize);
+		juce::Image sync_4 =
+		    ImageCache::getFromMemory(BinaryData::buttonsync_osc_4_png, BinaryData::buttonsync_osc_4_pngSize);
+
+		juce::DrawableImage sync_draw1;
+		juce::DrawableImage sync_draw2;
+		juce::DrawableImage sync_draw3;
+		juce::DrawableImage sync_draw4;
+
+		sync_draw1.setImage(sync_1);
+		sync_draw2.setImage(sync_2);
+		sync_draw3.setImage(sync_3);
+		sync_draw4.setImage(sync_4);
+
+		m_sync.setImages(
+		    &sync_draw2, &sync_draw2, &sync_draw1, &sync_draw1, &sync_draw4, &sync_draw4, &sync_draw3, &sync_draw3);
+		m_sync.setBounds(OSC_SYNC_POS_X, OSC_SYNC_POS_Y, sync_1.getWidth(), sync_1.getHeight());
+	}
+
+	m_oct.setStrip(ImageCache::getFromMemory(BinaryData::black_knob_small_png, BinaryData::black_knob_small_pngSize),
+	               N_KNOB_FRAMES);
+	m_oct.setBounds(OCT_POS_X - BLACK_KNOB_SMALL_OFFSET_X,
+	                PITCH_POS_Y - BLACK_KNOB_SMALL_OFFSET_Y,
+	                BLACK_KNOB_SMALL_SIZE_X,
+	                BLACK_KNOB_SMALL_SIZE_Y);
+
+	m_semi.setStrip(ImageCache::getFromMemory(BinaryData::black_knob_small_png, BinaryData::black_knob_small_pngSize),
+	                N_KNOB_FRAMES);
+
+	m_fine.setStrip(ImageCache::getFromMemory(BinaryData::black_knob_small_png, BinaryData::black_knob_small_pngSize),
+	                N_KNOB_FRAMES);
+
+	m_semi.setBounds(SEMI_POS_X - BLACK_KNOB_SMALL_OFFSET_X,
+	                 PITCH_POS_Y - BLACK_KNOB_SMALL_OFFSET_Y,
+	                 BLACK_KNOB_SMALL_SIZE_X,
+	                 BLACK_KNOB_SMALL_SIZE_Y);
+
+	Rectangle<int> area_fine(BLACK_KNOB_SMALL_SIZE_X, BLACK_KNOB_SMALL_SIZE_Y);
+	m_fine.setBounds(FINE_POS_X - BLACK_KNOB_SMALL_OFFSET_X,
+	                 PITCH_POS_Y - BLACK_KNOB_SMALL_OFFSET_Y,
+	                 BLACK_KNOB_SMALL_SIZE_X,
+	                 BLACK_KNOB_SMALL_SIZE_Y);
+
+	juce::Image LED_1 = ImageCache::getFromMemory(BinaryData::LED_1_png, BinaryData::LED_1_pngSize);
+	juce::Image LED_2 = ImageCache::getFromMemory(BinaryData::LED_2_png, BinaryData::LED_2_pngSize);
+	juce::DrawableImage LED_draw1;
+	juce::DrawableImage LED_draw2;
+	LED_draw1.setImage(LED_1);
+	LED_draw2.setImage(LED_2);
+
+	m_LED_saw.setImages(&LED_draw2, &LED_draw2, &LED_draw2, &LED_draw2, &LED_draw1, &LED_draw1, &LED_draw1);
+	m_LED_saw.setBounds(LED_POS_X, LED_POS_Y - LED_1.getHeight(), LED_1.getWidth(), LED_1.getHeight());
+
+	m_LED_pulse.setImages(&LED_draw2, &LED_draw2, &LED_draw2, &LED_draw2, &LED_draw1, &LED_draw1, &LED_draw1);
+	m_LED_pulse.setBounds(LED_POS_X, LED_POS_Y, LED_1.getWidth(), LED_1.getHeight());
+
+	m_LED_triangle.setImages(&LED_draw2, &LED_draw2, &LED_draw2, &LED_draw2, &LED_draw1, &LED_draw1, &LED_draw1);
+	m_LED_triangle.setBounds(LED_POS_X, LED_POS_Y + LED_1.getHeight(), LED_1.getWidth(), LED_1.getHeight());
+
+	m_LED_sine.setImages(&LED_draw2, &LED_draw2, &LED_draw2, &LED_draw2, &LED_draw1, &LED_draw1, &LED_draw1);
+	m_LED_sine.setBounds(LED_POS_X, LED_POS_Y + 2 * LED_1.getHeight(), LED_1.getWidth(), LED_1.getHeight());
+
+	m_pw.setStrip(ImageCache::getFromMemory(BinaryData::black_knob_small_png, BinaryData::black_knob_small_pngSize),
+	              N_KNOB_FRAMES);
+	m_drift.setStrip(ImageCache::getFromMemory(BinaryData::black_knob_big_png, BinaryData::black_knob_big_pngSize),
+	                 N_KNOB_FRAMES);
+
+	juce::Image arp_1 =
+	    ImageCache::getFromMemory(BinaryData::buttonarpeggiator_1_png, BinaryData::buttonarpeggiator_1_pngSize);
+	juce::Image arp_2 =
+	    ImageCache::getFromMemory(BinaryData::buttonarpeggiator_2_png, BinaryData::buttonarpeggiator_2_pngSize);
+	juce::Image arp_3 =
+	    ImageCache::getFromMemory(BinaryData::buttonarpeggiator_3_png, BinaryData::buttonarpeggiator_3_pngSize);
+	juce::Image arp_4 =
+	    ImageCache::getFromMemory(BinaryData::buttonarpeggiator_4_png, BinaryData::buttonarpeggiator_4_pngSize);
+
+	juce::DrawableImage arp_draw1;
+	juce::DrawableImage arp_draw2;
+	juce::DrawableImage arp_draw3;
+	juce::DrawableImage arp_draw4;
+
+	arp_draw1.setImage(arp_1);
+	arp_draw2.setImage(arp_2);
+	arp_draw3.setImage(arp_3);
+	arp_draw4.setImage(arp_4);
+
+	m_arp.setImages(&arp_draw2, &arp_draw2, &arp_draw1, &arp_draw1, &arp_draw4, &arp_draw4, &arp_draw3, &arp_draw3);
+	m_arp.setBounds(ARP_POS_X, ARP_POS_Y, arp_1.getWidth(), arp_1.getHeight());
+
+	juce::Image noise_1 = ImageCache::getFromMemory(BinaryData::buttonnoise_1_png, BinaryData::buttonnoise_1_pngSize);
+	juce::Image noise_2 = ImageCache::getFromMemory(BinaryData::buttonnoise_2_png, BinaryData::buttonnoise_2_pngSize);
+	juce::Image noise_3 = ImageCache::getFromMemory(BinaryData::buttonnoise_3_png, BinaryData::buttonnoise_3_pngSize);
+	juce::Image noise_4 = ImageCache::getFromMemory(BinaryData::buttonnoise_4_png, BinaryData::buttonnoise_4_pngSize);
+
+	juce::DrawableImage noise_draw1;
+	juce::DrawableImage noise_draw2;
+	juce::DrawableImage noise_draw3;
+	juce::DrawableImage noise_draw4;
+
+	noise_draw1.setImage(noise_1);
+	noise_draw2.setImage(noise_2);
+	noise_draw3.setImage(noise_3);
+	noise_draw4.setImage(noise_4);
+
+	m_noise.setImages(
+	    &noise_draw2, &noise_draw2, &noise_draw1, &noise_draw1, &noise_draw4, &noise_draw4, &noise_draw3, &noise_draw3);
+	m_noise.setBounds(NOISE_POS_X, NOISE_POS_Y, noise_1.getWidth(), noise_1.getHeight());
+
+	juce::Image step_button_1 =
+	    ImageCache::getFromMemory(BinaryData::buttonstep_1_png, BinaryData::buttonstep_1_pngSize);
+	juce::Image step_button_2 =
+	    ImageCache::getFromMemory(BinaryData::buttonstep_2_png, BinaryData::buttonstep_2_pngSize);
+	juce::Image step_button_3 =
+	    ImageCache::getFromMemory(BinaryData::buttonstep_3_png, BinaryData::buttonstep_3_pngSize);
+	juce::Image step_button_4 =
+	    ImageCache::getFromMemory(BinaryData::buttonstep_4_png, BinaryData::buttonstep_4_pngSize);
+
+	juce::DrawableImage step_button_draw1;
+	juce::DrawableImage step_button_draw2;
+	juce::DrawableImage step_button_draw3;
+	juce::DrawableImage step_button_draw4;
+
+	step_button_draw1.setImage(step_button_1);
+	step_button_draw2.setImage(step_button_2);
+	step_button_draw3.setImage(step_button_3);
+	step_button_draw4.setImage(step_button_4);
+
+	m_step_button.setImages(&step_button_draw2,
+	                        &step_button_draw2,
+	                        &step_button_draw1,
+	                        &step_button_draw1,
+	                        &step_button_draw4,
+	                        &step_button_draw4,
+	                        &step_button_draw3,
+	                        &step_button_draw3);
+	m_step_button.setBounds(STEP_BUTTON_POS_X, STEP_BUTTON_POS_Y, step_button_1.getWidth(), step_button_1.getHeight());
+
+	m_step_1.setStrip(ImageCache::getFromMemory(BinaryData::black_knob_small_png, BinaryData::black_knob_small_pngSize),
+	                  256);
+	m_step_1.setBounds(STEP_1_POS_X, STEP_1_POS_Y, BLACK_KNOB_SMALL_SIZE_X, BLACK_KNOB_SMALL_SIZE_Y);
+
+	m_step_2.setStrip(ImageCache::getFromMemory(BinaryData::black_knob_small_png, BinaryData::black_knob_small_pngSize),
+	                  256);
+	m_step_2.setBounds(STEP_2_POS_X, STEP_2_POS_Y, BLACK_KNOB_SMALL_SIZE_X, BLACK_KNOB_SMALL_SIZE_Y);
+
+	m_step_3.setStrip(ImageCache::getFromMemory(BinaryData::black_knob_small_png, BinaryData::black_knob_small_pngSize),
+	                  256);
+	m_step_3.setBounds(STEP_3_POS_X, STEP_3_POS_Y, BLACK_KNOB_SMALL_SIZE_X, BLACK_KNOB_SMALL_SIZE_Y);
+
+	m_fm.setStrip(ImageCache::getFromMemory(BinaryData::metal_knob_big_png, BinaryData::metal_knob_big_pngSize), 256);
+	m_fm.setBounds(FM_POS_X, FM_POS_Y, METAL_KNOB_BIG_SIZE_X, METAL_KNOB_BIG_SIZE_Y);
+
+	m_lp.setStrip(ImageCache::getFromMemory(BinaryData::metal_knob_big_png, BinaryData::metal_knob_big_pngSize), 256);
+	m_lp.setBounds(LP_POS_X, LP_POS_Y, METAL_KNOB_BIG_SIZE_X, METAL_KNOB_BIG_SIZE_Y);
+
+	m_hp.setStrip(ImageCache::getFromMemory(BinaryData::metal_knob_big_png, BinaryData::metal_knob_big_pngSize), 256);
+	m_hp.setBounds(HP_POS_X, HP_POS_Y, METAL_KNOB_BIG_SIZE_X, METAL_KNOB_BIG_SIZE_Y);
+	m_position.setStrip(ImageCache::getFromMemory(BinaryData::metal_knob_mid_png, BinaryData::metal_knob_mid_pngSize),
+	                    256);
+	m_position.setBounds(POSITION_POS_X, POSITION_POS_Y, METAL_KNOB_MID_SIZE_X, METAL_KNOB_MID_SIZE_Y);
+
+	m_detune.setStrip(ImageCache::getFromMemory(BinaryData::metal_knob_big_png, BinaryData::metal_knob_big_pngSize),
+	                  256);
+	m_detune.setBounds(DETUNE_POS_X, DETUNE_POS_Y, METAL_KNOB_BIG_SIZE_X, METAL_KNOB_BIG_SIZE_Y);
+
+	m_pos_mod.setStrip(ImageCache::getFromMemory(BinaryData::black_knob_mid_png, BinaryData::black_knob_mid_pngSize),
+	                   256);
+	m_pos_mod.setBounds(POS_ENV_POS_X, POS_ENV_POS_Y, BLACK_KNOB_MID_SIZE_X, BLACK_KNOB_MID_SIZE_Y);
+
+	m_spread.setStrip(ImageCache::getFromMemory(BinaryData::metal_knob_small_png, BinaryData::metal_knob_small_pngSize),
+	                  256);
+	m_spread.setBounds(SPREAD_POS_X, SPREAD_POS_Y, METAL_KNOB_SMALL_SIZE_X, METAL_KNOB_SMALL_SIZE_Y);
+
+	m_position_multi.setStrip(
+	    ImageCache::getFromMemory(BinaryData::metal_knob_small_png, BinaryData::metal_knob_small_pngSize), 256);
+	m_position_multi.setBounds(
+	    POSITION_MULTI_POS_X, POSITION_MULTI_POS_Y, METAL_KNOB_SMALL_SIZE_X, METAL_KNOB_SMALL_SIZE_Y);
+
+	m_speed.setStrip(ImageCache::getFromMemory(BinaryData::black_knob_small_png, BinaryData::black_knob_small_pngSize),
+	                 256);
+	m_speed.setBounds(SPEED_POS_X, SPEED_POS_Y, BLACK_KNOB_SMALL_SIZE_X, BLACK_KNOB_SMALL_SIZE_Y);
+
+	juce::Image chipdraw_convert_1 =
+	    ImageCache::getFromMemory(BinaryData::buttonapply_1_png, BinaryData::buttonapply_1_pngSize);
+	juce::Image chipdraw_convert_2 =
+	    ImageCache::getFromMemory(BinaryData::buttonapply_2_png, BinaryData::buttonapply_2_pngSize);
+	juce::Image chipdraw_convert_3 =
+	    ImageCache::getFromMemory(BinaryData::buttonapply_3_png, BinaryData::buttonapply_3_pngSize);
+	juce::Image chipdraw_convert_4 =
+	    ImageCache::getFromMemory(BinaryData::buttonapply_4_png, BinaryData::buttonapply_4_pngSize);
+
+	juce::DrawableImage chipdraw_convert_draw1;
+	juce::DrawableImage chipdraw_convert_draw2;
+	juce::DrawableImage chipdraw_convert_draw3;
+	juce::DrawableImage chipdraw_convert_draw4;
+
+	chipdraw_convert_draw1.setImage(chipdraw_convert_1);
+	chipdraw_convert_draw2.setImage(chipdraw_convert_2);
+	chipdraw_convert_draw3.setImage(chipdraw_convert_3);
+	chipdraw_convert_draw4.setImage(chipdraw_convert_4);
+
+	m_chipdraw_convert.setImages(&chipdraw_convert_draw2,
+	                             &chipdraw_convert_draw2,
+	                             &chipdraw_convert_draw1,
+	                             &chipdraw_convert_draw1,
+	                             &chipdraw_convert_draw4,
+	                             &chipdraw_convert_draw4,
+	                             &chipdraw_convert_draw3,
+	                             &chipdraw_convert_draw3);
+	m_chipdraw_convert.setBounds(
+	    CONVERT_POS_X, CONVERT_POS_Y, chipdraw_convert_1.getWidth(), chipdraw_convert_1.getHeight());
+
+	m_wavedraw_convert.setImages(&chipdraw_convert_draw2,
+	                             &chipdraw_convert_draw2,
+	                             &chipdraw_convert_draw1,
+	                             &chipdraw_convert_draw1,
+	                             &chipdraw_convert_draw4,
+	                             &chipdraw_convert_draw4,
+	                             &chipdraw_convert_draw3,
+	                             &chipdraw_convert_draw3);
+	m_wavedraw_convert.setBounds(
+	    CONVERT_POS_X, CONVERT_POS_Y, chipdraw_convert_1.getWidth(), chipdraw_convert_1.getHeight());
+
+	m_specdraw_convert.setImages(&chipdraw_convert_draw2,
+	                             &chipdraw_convert_draw2,
+	                             &chipdraw_convert_draw1,
+	                             &chipdraw_convert_draw1,
+	                             &chipdraw_convert_draw4,
+	                             &chipdraw_convert_draw4,
+	                             &chipdraw_convert_draw3,
+	                             &chipdraw_convert_draw3);
+	m_specdraw_convert.setBounds(
+	    CONVERT_POS_X, CONVERT_POS_Y, chipdraw_convert_1.getWidth(), chipdraw_convert_1.getHeight());
+
+	juce::Colour chip_color(93, 81, 63);
+
+	m_chiptune_waveselector.setTopLeftPosition(WAVE_CHIPTUNE_POS_X, WAVE_CHIPTUNE_POS_Y);
+	m_carrier_waveselector.setTopLeftPosition(WAVE_CARRIER_POS_X, WAVE_CARRIER_POS_Y);
+	m_wavetable_waveselector.setTopLeftPosition(WAVE_CARRIER_POS_X, WAVE_CARRIER_POS_Y);
+	m_modulation_source.setTopLeftPosition(POS_MODULATION_X, POS_MODULATION_Y);
+	m_modulator_waveselector.setTopLeftPosition(WAVE_MODULATOR_POS_X, WAVE_MODULATOR_POS_Y);
+	m_carrier_ratio.setTopLeftPosition(RATIO_CARRIER_POS_X, RATIO_CARRIER_POS_Y);
+	m_modulator_ratio.setTopLeftPosition(RATIO_MODULATOR_POS_X, RATIO_MODULATOR_POS_Y);
+
+	juce::Image fm_exp_left =
+	    ImageCache::getFromMemory(BinaryData::buttonexplin_1_png, BinaryData::buttonexplin_1_pngSize);
+	juce::Image fm_exp_right =
+	    ImageCache::getFromMemory(BinaryData::buttonexplin_3_png, BinaryData::buttonexplin_3_pngSize);
+	m_fm_exp.setImage(fm_exp_left, 1);
+	m_fm_exp.setImage(fm_exp_right, 2);
+	m_fm_exp.setBounds(FM_EXP_POS_X, FM_EXP_POS_Y, fm_exp_left.getWidth(), fm_exp_left.getHeight());
+
+	m_chipdraw.setTopLeftPosition(CHIPDRAW_POSITION_X, CHIPDRAW_POSITION_Y);
+
+	juce::Colour wave_color(71, 92, 108);
+	juce::Colour wave_draw_color(99, 165, 236);
+
+	m_wavedraw.setTopLeftPosition(CHIPDRAW_POSITION_X, CHIPDRAW_POSITION_Y);
+
+	juce::Colour spec_color(61, 80, 70);
+	juce::Colour spec_draw_color(116, 180, 147);
+
+	m_specdraw.setTopLeftPosition(CHIPDRAW_POSITION_X, CHIPDRAW_POSITION_Y);
+	juce::Colour vector_color(25, 50, 60);
+
+	juce::Image glas_panel = ImageCache::getFromMemory(BinaryData::vectorpanel_png, BinaryData::vectorpanel_pngSize);
+	m_xy.setTopLeftPosition(XY_POS_X, XY_POS_Y);
+	m_xy.setSize(glas_panel.getWidth(), glas_panel.getHeight());
+	m_xy.setImage(glas_panel);
+	m_xy.setInlay(1);
+
+	juce::Image glas_panel_vecwave =
+	    ImageCache::getFromMemory(BinaryData::glaspanel_big_png, BinaryData::glaspanel_big_pngSize);
+	m_vec_a.setImage(glas_panel_vecwave);
+	m_vec_a.setInlay(1);
+	m_vec_a.setBounds(VEC_WAVE_X, VEC_WAVE_Y, glas_panel_vecwave.getWidth(), glas_panel_vecwave.getHeight());
+
+	m_vec_b.setImage(glas_panel_vecwave);
+	m_vec_b.setInlay(1);
+	m_vec_b.setBounds(
+	    VEC_WAVE_X, VEC_WAVE_Y + 1 * VEC_WAVE_OFFSET, glas_panel_vecwave.getWidth(), glas_panel_vecwave.getHeight());
+
+	m_vec_c.setImage(glas_panel_vecwave);
+	m_vec_c.setInlay(1);
+	m_vec_c.setBounds(
+	    VEC_WAVE_X, VEC_WAVE_Y + 2 * VEC_WAVE_OFFSET, glas_panel_vecwave.getWidth(), glas_panel_vecwave.getHeight());
+
+	m_vec_d.setImage(glas_panel_vecwave);
+	m_vec_d.setInlay(1);
+	m_vec_d.setBounds(
+	    VEC_WAVE_X, VEC_WAVE_Y + 3 * VEC_WAVE_OFFSET, glas_panel_vecwave.getWidth(), glas_panel_vecwave.getHeight());
+
+	m_xy_x.setStrip(
+	    ImageCache::getFromMemory(BinaryData::black_knob_very_small_png, BinaryData::black_knob_very_small_pngSize),
+	    256);
+	m_xy_x.setBounds(X_POS_X, X_POS_Y, BLACK_KNOB_VERY_SMALL_SIZE_X, BLACK_KNOB_VERY_SMALL_SIZE_Y);
+
+	m_xy_y.setStrip(
+	    ImageCache::getFromMemory(BinaryData::black_knob_very_small_png, BinaryData::black_knob_very_small_pngSize),
+	    256);
+	m_xy_y.setBounds(Y_POS_X, Y_POS_Y, BLACK_KNOB_VERY_SMALL_SIZE_X, BLACK_KNOB_VERY_SMALL_SIZE_Y);
+
+	forceValueTreeOntoComponents(m_value_tree.state, std::stoi(m_osc_number), false);
+
+	resetVectorWaves();
+
+	m_pw.setBounds(PW_POS_X - BLACK_KNOB_SMALL_OFFSET_X,
+	               PW_POS_Y - BLACK_KNOB_SMALL_OFFSET_Y,
+	               BLACK_KNOB_SMALL_SIZE_X,
+	               BLACK_KNOB_SMALL_SIZE_Y);
+	m_drift.setBounds(DRIFT_POS_X - BLACK_KNOB_BIG_OFFSET_X,
+	                  DRIFT_POS_Y - BLACK_KNOB_BIG_OFFSET_Y,
+	                  BLACK_KNOB_BIG_SIZE_X,
+	                  BLACK_KNOB_BIG_SIZE_Y);
+
+	setSize(247, 145);
 }

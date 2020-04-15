@@ -125,6 +125,9 @@ public:
 	void setStrip(juce::Image p_strip, size_t p_frames, bool p_is_vertical = true) {
 		m_is_vertical = p_is_vertical;
 		m_filmstrip   = p_strip;
+		//DBG(p_strip.getHeight());
+		//DBG(p_frames);
+		//DBG("--");
 		if (m_is_vertical) {
 			m_width  = p_strip.getWidth();
 			m_height = p_strip.getHeight() / p_frames;
@@ -207,7 +210,7 @@ public:
 			m_midi_learn_left_offset = WHEEL_LEFT_OFFSET;
 			break;
 		default:
-			DBG("FOUND UNKNOWN KNOB WIDTH " + std::to_string(width) + "in Knob::setBounds()\n\n\n\n\n\n");
+			DBG("FOUND UNKNOWN KNOB WIDTH " + std::to_string(width) + "px in Knob::setBounds()");
 			break;
 		}
 		Slider::setBounds(x, y, width, height);
