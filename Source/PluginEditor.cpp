@@ -13,7 +13,7 @@ bool writeComponentImageToFile(Component &comp) {
 	strftime(buffer, sizeof(buffer), "%Y-%m-%d %H:%M:%S", timeinfo);
 	std::string date(buffer);
 
-	juce::File file("/home/frot/odinvst/screenshot.png");
+	juce::File file("/home/frederik_siepe/odinvst/screenshot.png");
 	juce::File file2("/home/frederik_siepe/gui_saves_odin/screenshot" + date + ".png");
 	Rectangle<int> subArea = comp.getBounds();
 	if (ImageFileFormat *format = ImageFileFormat::findImageFormatForFileExtension(file)) {
@@ -823,7 +823,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	m_gui_size_button.setImage(gui_size_right, 2);
 	m_gui_size_button.setBounds(GUI_SIZE_POS_X, GUI_SIZE_POS_Y, gui_size_left.getWidth(), gui_size_left.getHeight());
 	m_gui_size_button.setToggleState(true, sendNotification);
-	m_gui_size_button.onClick = [&]() { setGUISizeBig(m_gui_size_button.getToggleState()); };
+	m_gui_size_button.onClick = [&]() { setGUISizeBig(!m_gui_size_button.getToggleState()); };
 	m_gui_size_button.setTooltip("Scale the GUI to 100% or 150%");
 	addAndMakeVisible(m_gui_size_button);
 	m_gui_size_button.disableMidiLearn();
@@ -1438,11 +1438,170 @@ void OdinAudioProcessorEditor::updateModWheel(float p_value) {
 
 void OdinAudioProcessorEditor::setGUISizeBig(bool p_big) {
 	if (p_big) {
+		setSize(ODIN_EDITOR_SIZE_150_X, ODIN_EDITOR_SIZE_150_Y);
+		m_odin_backdrop =
+		    ImageCache::getFromMemory(BinaryData::odin_backdrop_150_png, BinaryData::odin_backdrop_150_pngSize);
+
+		m_osc1.setTopLeftPosition(OdinHelper::c150(OSC1_POS_X), OdinHelper::c150(OSC_POS_Y));
+		m_osc2.setTopLeftPosition(OdinHelper::c150(OSC2_POS_X), OdinHelper::c150(OSC_POS_Y));
+		m_osc3.setTopLeftPosition(OdinHelper::c150(OSC3_POS_X), OdinHelper::c150(OSC_POS_Y));
+
+		m_fil1_component.setTopLeftPosition(OdinHelper::c150(FIL1_POS_X), OdinHelper::c150(FIL1_POS_Y));
+		m_fil2_component.setTopLeftPosition(OdinHelper::c150(FIL2_POS_X), OdinHelper::c150(FIL2_POS_Y));
+		m_fil3_component.setTopLeftPosition(OdinHelper::c150(FIL3_POS_X), OdinHelper::c150(FIL3_POS_Y));
+
+		m_mod_matrix.setTopLeftPosition(OdinHelper::c150(MATRIX_POS_X), OdinHelper::c150(MATRIX_POS_Y));
+
+		m_fx_buttons_section.setTopLeftPosition(OdinHelper::c150(FX_BUTTON_X), OdinHelper::c150(FX_BUTTON_Y));
+
+		m_adsr_1.setBounds(OdinHelper::c150(ADSR_LEFT_POS_X),
+		                   OdinHelper::c150(ADSR_LEFT_POS_Y),
+		                   OdinHelper::c150(ADSR_SIZE_X),
+		                   OdinHelper::c150(ADSR_SIZE_Y));
+		m_adsr_2.setBounds(OdinHelper::c150(ADSR_RIGHT_POS_X),
+		                   OdinHelper::c150(ADSR_RIGHT_POS_Y),
+		                   OdinHelper::c150(ADSR_SIZE_X),
+		                   OdinHelper::c150(ADSR_SIZE_Y));
+		m_adsr_3.setBounds(OdinHelper::c150(ADSR_LEFT_POS_X),
+		                   OdinHelper::c150(ADSR_LEFT_POS_Y),
+		                   OdinHelper::c150(ADSR_SIZE_X),
+		                   OdinHelper::c150(ADSR_SIZE_Y));
+		m_adsr_4.setBounds(OdinHelper::c150(ADSR_RIGHT_POS_X),
+		                   OdinHelper::c150(ADSR_RIGHT_POS_Y),
+		                   OdinHelper::c150(ADSR_SIZE_X),
+		                   OdinHelper::c150(ADSR_SIZE_Y));
+
+		m_flanger.setBounds(OdinHelper::c150(FX_AREA_POS_X),
+		                    OdinHelper::c150(FX_AREA_POS_Y),
+		                    OdinHelper::c150(FX_AREA_SIZE_X),
+		                    OdinHelper::c150(FX_AREA_SIZE_Y));
+		m_phaser.setBounds(OdinHelper::c150(FX_AREA_POS_X),
+		                   OdinHelper::c150(FX_AREA_POS_Y),
+		                   OdinHelper::c150(FX_AREA_SIZE_X),
+		                   OdinHelper::c150(FX_AREA_SIZE_Y));
+		m_chorus.setBounds(OdinHelper::c150(FX_AREA_POS_X),
+		                   OdinHelper::c150(FX_AREA_POS_Y),
+		                   OdinHelper::c150(FX_AREA_SIZE_X),
+		                   OdinHelper::c150(FX_AREA_SIZE_Y));
+		m_delay.setBounds(OdinHelper::c150(FX_AREA_POS_X),
+		                  OdinHelper::c150(FX_AREA_POS_Y),
+		                  OdinHelper::c150(FX_AREA_SIZE_X),
+		                  OdinHelper::c150(FX_AREA_SIZE_Y));
+
+		m_phaser_on_button.setTopLeftPosition(OdinHelper::c150(FX_ON_BUTTON_X), OdinHelper::c150(FX_ON_BUTTON_Y));
+		m_flanger_on_button.setTopLeftPosition(OdinHelper::c150(FX_ON_BUTTON_X) + FX_BUTTON_OFFSET,
+		                                       OdinHelper::c150(FX_ON_BUTTON_Y));
+		m_chorus_on_button.setTopLeftPosition(OdinHelper::c150(FX_ON_BUTTON_X) + 2 * FX_BUTTON_OFFSET,
+		                                      OdinHelper::c150(FX_ON_BUTTON_Y));
+		m_delay_on_button.setTopLeftPosition(OdinHelper::c150(FX_ON_BUTTON_X) + 3 * FX_BUTTON_OFFSET,
+		                                     OdinHelper::c150(FX_ON_BUTTON_Y));
+
+		m_lfo_1.setBounds(OdinHelper::c150(LFO_LEFT_POS_X),
+		                  OdinHelper::c150(LFO_LEFT_POS_Y),
+		                  OdinHelper::c150(LFO_SIZE_X),
+		                  OdinHelper::c150(LFO_SIZE_Y));
+		m_lfo_2.setBounds(OdinHelper::c150(LFO_LEFT_POS_X),
+		                  OdinHelper::c150(LFO_LEFT_POS_Y),
+		                  OdinHelper::c150(LFO_SIZE_X),
+		                  OdinHelper::c150(LFO_SIZE_Y));
+		m_lfo_3.setBounds(OdinHelper::c150(LFO_RIGHT_POS_X),
+		                  OdinHelper::c150(LFO_RIGHT_POS_Y),
+		                  OdinHelper::c150(LFO_SIZE_X),
+		                  OdinHelper::c150(LFO_SIZE_Y));
+		m_lfo_4.setBounds(OdinHelper::c150(LFO_RIGHT_POS_X),
+		                  OdinHelper::c150(LFO_RIGHT_POS_Y),
+		                  OdinHelper::c150(LFO_SIZE_X),
+		                  OdinHelper::c150(LFO_SIZE_Y));
+
+		m_xy_section.setBounds(OdinHelper::c150(XY_COMPONENT_POS_X),
+		                       OdinHelper::c150(XY_COMPONENT_POS_Y),
+		                       OdinHelper::c150(XY_COMPONENT_SIZE_X),
+		                       OdinHelper::c150(XY_COMPONENT_SIZE_Y));
+
+		m_glide.setBounds(OdinHelper::c150(GLIDE_POS_X - METAL_KNOB_SMALL_OFFSET_X),
+		                  OdinHelper::c150(GLIDE_POS_Y - METAL_KNOB_SMALL_OFFSET_Y),
+		                  OdinHelper::c150(METAL_KNOB_SMALL_SIZE_X),
+		                  OdinHelper::c150(METAL_KNOB_SMALL_SIZE_Y));
+
+		m_master.setBounds(OdinHelper::c150(MASTER_POS_X - METAL_KNOB_SMALL_OFFSET_X),
+		                   OdinHelper::c150(MASTER_POS_Y - METAL_KNOB_SMALL_OFFSET_Y),
+		                   OdinHelper::c150(METAL_KNOB_SMALL_SIZE_X),
+		                   OdinHelper::c150(METAL_KNOB_SMALL_SIZE_Y));
+
+		m_pitchwheel.setTopLeftPosition(OdinHelper::c150(PITCHWHEEL_X), OdinHelper::c150(WHEEL_Y));
+		m_modwheel.setTopLeftPosition(OdinHelper::c150(MODWHEEL_X), OdinHelper::c150(WHEEL_Y));
+
+		m_midsection.setBounds(OdinHelper::c150(MIDSECTION_POS_X), OdinHelper::c150(MIDSECTION_POS_Y), OdinHelper::c150(MIDSECTION_SIZE_X), OdinHelper::c150(MIDSECTION_SIZE_Y));
+
+		m_lfo_13_button.setTopLeftPosition(OdinHelper::c150(LFO13_POS_X), OdinHelper::c150(LFO13_POS_Y));
+		m_lfo_24_button.setTopLeftPosition(OdinHelper::c150(LFO24_POS_X), OdinHelper::c150(LFO13_POS_Y));
+
+		m_env_13_button.setTopLeftPosition(OdinHelper::c150(ENV13_POS_X), OdinHelper::c150(ENV13_POS_Y));
+		m_env_24_button.setTopLeftPosition(OdinHelper::c150(ENV24_POS_X), OdinHelper::c150(ENV24_POS_Y));
+
+	} else {
 		setSize(ODIN_EDITOR_SIZE_X, ODIN_EDITOR_SIZE_Y);
 		m_odin_backdrop = ImageCache::getFromMemory(BinaryData::odin_backdrop_png, BinaryData::odin_backdrop_pngSize);
-	} else {
-		setSize(ODIN_EDITOR_SIZE_150_X, ODIN_EDITOR_SIZE_150_Y);
-		m_odin_backdrop = ImageCache::getFromMemory(BinaryData::odin_backdrop_150_png, BinaryData::odin_backdrop_150_pngSize);
+
+		m_osc1.setTopLeftPosition(OSC1_POS_X, OSC_POS_Y);
+		m_osc2.setTopLeftPosition(OSC2_POS_X, OSC_POS_Y);
+		m_osc3.setTopLeftPosition(OSC3_POS_X, OSC_POS_Y);
+
+		m_fil1_component.setTopLeftPosition(FIL1_POS_X, FIL1_POS_Y);
+		m_fil2_component.setTopLeftPosition(FIL2_POS_X, FIL2_POS_Y);
+		m_fil3_component.setTopLeftPosition(FIL3_POS_X, FIL3_POS_Y);
+
+		m_mod_matrix.setTopLeftPosition(MATRIX_POS_X, MATRIX_POS_Y);
+
+		m_fx_buttons_section.setTopLeftPosition(FX_BUTTON_X, FX_BUTTON_Y);
+
+		m_adsr_1.setBounds(ADSR_LEFT_POS_X, ADSR_LEFT_POS_Y, ADSR_SIZE_X, ADSR_SIZE_Y);
+		m_adsr_2.setBounds(ADSR_RIGHT_POS_X, ADSR_RIGHT_POS_Y, ADSR_SIZE_X, ADSR_SIZE_Y);
+		m_adsr_3.setBounds(ADSR_LEFT_POS_X, ADSR_LEFT_POS_Y, ADSR_SIZE_X, ADSR_SIZE_Y);
+		m_adsr_4.setBounds(ADSR_RIGHT_POS_X, ADSR_RIGHT_POS_Y, ADSR_SIZE_X, ADSR_SIZE_Y);
+
+		m_flanger.setBounds(FX_AREA_POS_X, FX_AREA_POS_Y, FX_AREA_SIZE_X, FX_AREA_SIZE_Y);
+		m_phaser.setBounds(FX_AREA_POS_X, FX_AREA_POS_Y, FX_AREA_SIZE_X, FX_AREA_SIZE_Y);
+		m_chorus.setBounds(FX_AREA_POS_X, FX_AREA_POS_Y, FX_AREA_SIZE_X, FX_AREA_SIZE_Y);
+		m_delay.setBounds(FX_AREA_POS_X, FX_AREA_POS_Y, FX_AREA_SIZE_X, FX_AREA_SIZE_Y);
+
+		m_phaser_on_button.setTopLeftPosition(FX_ON_BUTTON_X, FX_ON_BUTTON_Y);
+		m_flanger_on_button.setTopLeftPosition(FX_ON_BUTTON_X + FX_BUTTON_OFFSET, FX_ON_BUTTON_Y);
+		m_chorus_on_button.setTopLeftPosition(FX_ON_BUTTON_X + 2 * FX_BUTTON_OFFSET, FX_ON_BUTTON_Y);
+		m_delay_on_button.setTopLeftPosition(FX_ON_BUTTON_X + 3 * FX_BUTTON_OFFSET, FX_ON_BUTTON_Y);
+
+		m_lfo_1.setBounds(LFO_LEFT_POS_X, LFO_LEFT_POS_Y, LFO_SIZE_X, LFO_SIZE_Y);
+		m_lfo_2.setBounds(LFO_LEFT_POS_X, LFO_LEFT_POS_Y, LFO_SIZE_X, LFO_SIZE_Y);
+		m_lfo_3.setBounds(LFO_RIGHT_POS_X, LFO_RIGHT_POS_Y, LFO_SIZE_X, LFO_SIZE_Y);
+		m_lfo_4.setBounds(LFO_RIGHT_POS_X, LFO_RIGHT_POS_Y, LFO_SIZE_X, LFO_SIZE_Y);
+
+		m_xy_section.setBounds(XY_COMPONENT_POS_X, XY_COMPONENT_POS_Y, XY_COMPONENT_SIZE_X, XY_COMPONENT_SIZE_Y);
+
+		m_glide.setBounds(GLIDE_POS_X - METAL_KNOB_SMALL_OFFSET_X,
+		                  GLIDE_POS_Y - METAL_KNOB_SMALL_OFFSET_Y,
+		                  METAL_KNOB_SMALL_SIZE_X,
+		                  METAL_KNOB_SMALL_SIZE_Y);
+
+		m_master.setBounds(MASTER_POS_X - METAL_KNOB_SMALL_OFFSET_X,
+		                   MASTER_POS_Y - METAL_KNOB_SMALL_OFFSET_Y,
+		                   METAL_KNOB_SMALL_SIZE_X,
+		                   METAL_KNOB_SMALL_SIZE_Y);
+
+		m_pitchwheel.setTopLeftPosition(PITCHWHEEL_X, WHEEL_Y);
+		m_modwheel.setTopLeftPosition(MODWHEEL_X, WHEEL_Y);
+
+		m_midsection.setBounds(MIDSECTION_POS_X, MIDSECTION_POS_Y, MIDSECTION_SIZE_X, MIDSECTION_SIZE_Y);
+
+		m_lfo_13_button.setTopLeftPosition(LFO13_POS_X, LFO13_POS_Y);
+		m_lfo_24_button.setTopLeftPosition(LFO24_POS_X, LFO13_POS_Y);
+
+		m_env_13_button.setTopLeftPosition(ENV13_POS_X, ENV13_POS_Y);
+		m_env_24_button.setTopLeftPosition(ENV24_POS_X, ENV24_POS_Y);
+
+		m_filright_button1.setTopLeftPosition(BUTTON_2_RIGHT_POS_X, BUTTON_2_RIGHT_POS_Y);
+		m_filright_button2.setTopLeftPosition(BUTTON_2_RIGHT_POS_X, BUTTON_2_RIGHT_POS_Y);
+		m_filright_button3.setTopLeftPosition(BUTTON_2_RIGHT_POS_X, BUTTON_2_RIGHT_POS_Y);
+
 	}
 
 	repaint();

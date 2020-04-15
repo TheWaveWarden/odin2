@@ -210,6 +210,16 @@ public:
 	Colour m_highlight_text_color = MENU_HIGHLIGHT_FONT_COLOR;
 };
 
+class OdinHelper{
+	public:
+	//convert an iteger value to 150%
+	static int c150(int input){
+		float x = input * 1.5f;
+		return  x + 0.5 - (x<0);
+		return (int)x;
+	}
+};
+
 #endif
 
 
