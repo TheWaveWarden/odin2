@@ -226,11 +226,11 @@ void FilterComponent::paint(Graphics &g) {
 	g.drawImageAt(m_background, 0, 0);
 }
 
-void FilterComponent::setFilterType(int p_filter_type) {
+void FilterComponent::setFilterType(int p_filter_type, bool p_force) {
 	if (p_filter_type == 0) {
 		return;
 	}
-	if (m_filter_type == p_filter_type) {
+	if (m_filter_type == p_filter_type && !p_force) {
 		return;
 	}
 	m_filter_type = p_filter_type;

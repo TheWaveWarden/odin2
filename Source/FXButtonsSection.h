@@ -14,6 +14,8 @@
 #include <map>
 #define FX_BUTTON_OFFSET 61
 
+static bool g_GUI_big = false;
+
 //==============================================================================
 /*
  */

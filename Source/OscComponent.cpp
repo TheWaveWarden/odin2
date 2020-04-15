@@ -1211,11 +1211,11 @@ void OscComponent::paint(Graphics &g) {
 	g.drawImageAt(m_background, 0, 0);
 }
 
-void OscComponent::setOscType(int p_osc_type) {
+void OscComponent::setOscType(int p_osc_type, bool p_force) {
 	if (p_osc_type == 0) {
 		return;
 	}
-	if (m_osc_type == p_osc_type) {
+	if (m_osc_type == p_osc_type && !p_force) {
 		return;
 	}
 	m_osc_type = p_osc_type;

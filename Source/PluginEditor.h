@@ -388,6 +388,8 @@ private:
   void updatePitchWheel(float p_value);
   void updateModWheel(float p_value);
   void setGUISizeBig(bool p_big);
+  void setGUISmall();
+  void setGUIBig();
 
   int m_octave_shift = 0;
   bool m_is_standalone_plugin;

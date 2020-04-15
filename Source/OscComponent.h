@@ -163,7 +163,7 @@ public:
     m_background_bypass = p_background;
   }
   int getOscType() { return m_osc_type; }
-  void setOscType(int p_osc_type);
+  void setOscType(int p_osc_type, bool p_force = true);
   void setOscTypeBypass();
   void setOscTypeAnalog();
   void setOscTypeChiptune();
