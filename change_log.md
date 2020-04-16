@@ -1,3 +1,8 @@
+# 2.0.15 beta
+- fixed a deadlock when assigning modsources in some hosts
+- fixed a deadlock when loading synth in some hosts
+- adjusted behaviour of ADSR as modulation targets
+- removed a lot of linux-dependencies, which caused problems in some hosts
 # 2.0.14 beta
 - added AudioUnit version
 - fixed phaser not working
