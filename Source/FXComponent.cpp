@@ -230,12 +230,17 @@ void FXComponent::setGUIBig() {
 
 	m_reset.setImages(
 	    &reset_draw2, &reset_draw2, &reset_draw1, &reset_draw1, &reset_draw4, &reset_draw4, &reset_draw3, &reset_draw3);
-	m_reset.setBounds(OdinHelper::c150(FX_RESET_POS_X), OdinHelper::c150(FX_RESET_POS_Y), reset_1.getWidth(), reset_1.getHeight());
+	m_reset.setBounds(
+	    OdinHelper::c150(FX_RESET_POS_X), OdinHelper::c150(FX_RESET_POS_Y), reset_1.getWidth(), reset_1.getHeight());
 
-	juce::Image sync_1 = ImageCache::getFromMemory(BinaryData::buttonsync_1_150_png, BinaryData::buttonsync_1_150_pngSize);
-	juce::Image sync_2 = ImageCache::getFromMemory(BinaryData::buttonsync_2_150_png, BinaryData::buttonsync_2_150_pngSize);
-	juce::Image sync_3 = ImageCache::getFromMemory(BinaryData::buttonsync_3_150_png, BinaryData::buttonsync_3_150_pngSize);
-	juce::Image sync_4 = ImageCache::getFromMemory(BinaryData::buttonsync_4_150_png, BinaryData::buttonsync_4_150_pngSize);
+	juce::Image sync_1 =
+	    ImageCache::getFromMemory(BinaryData::buttonsync_1_150_png, BinaryData::buttonsync_1_150_pngSize);
+	juce::Image sync_2 =
+	    ImageCache::getFromMemory(BinaryData::buttonsync_2_150_png, BinaryData::buttonsync_2_150_pngSize);
+	juce::Image sync_3 =
+	    ImageCache::getFromMemory(BinaryData::buttonsync_3_150_png, BinaryData::buttonsync_3_150_pngSize);
+	juce::Image sync_4 =
+	    ImageCache::getFromMemory(BinaryData::buttonsync_4_150_png, BinaryData::buttonsync_4_150_pngSize);
 
 	juce::DrawableImage sync_draw1;
 	juce::DrawableImage sync_draw2;
@@ -250,15 +255,38 @@ void FXComponent::setGUIBig() {
 	//m_sync_attach.reset(new OdinButtonAttachment(m_value_tree, m_fx_name + "_sync", m_sync));
 	m_sync.setImages(
 	    &sync_draw2, &sync_draw2, &sync_draw1, &sync_draw1, &sync_draw4, &sync_draw4, &sync_draw3, &sync_draw3);
-	m_sync.setBounds(OdinHelper::c150(FX_SYNC_POS_X), OdinHelper::c150(FX_SYNC_POS_Y), sync_1.getWidth(), sync_1.getHeight());
+	m_sync.setBounds(
+	    OdinHelper::c150(FX_SYNC_POS_X), OdinHelper::c150(FX_SYNC_POS_Y), sync_1.getWidth(), sync_1.getHeight());
 	m_sync_time.setTopLeftPosition(OdinHelper::c150(FX_SYNC_TIME_FX_POS_X), OdinHelper::c150(FX_SYNC_TIME_FX_POS_Y));
 
-	m_amount.setBounds(OdinHelper::c150(FX_AMOUNT_POS_X), OdinHelper::c150(FX_AMOUNT_POS_Y), metal_knob_mid.getWidth(), metal_knob_mid.getHeight() / 256);
-	m_rate.setBounds(OdinHelper::c150(FX_FREQ_POS_X), OdinHelper::c150(FX_FREQ_POS_Y), metal_knob_mid.getWidth(), metal_knob_mid.getHeight() / 256);
-	m_feedback.setBounds(
-	    OdinHelper::c150(FX_FEEDBACK_POS_X), OdinHelper::c150(FX_FEEDBACK_POS_Y), metal_knob_mid.getWidth(), metal_knob_mid.getHeight() / 256);
-	m_dry_wet.setBounds(
-	    OdinHelper::c150(FX_DRY_WET_POS_X), OdinHelper::c150(FX_DRY_WET_POS_Y), metal_knob_mid.getWidth(), metal_knob_mid.getHeight() / 256);
+	m_amount.setBounds(OdinHelper::c150(FX_AMOUNT_POS_X),
+	                   OdinHelper::c150(FX_AMOUNT_POS_Y),
+	                   metal_knob_mid.getWidth(),
+	                   metal_knob_mid.getHeight() / 256);
+	m_rate.setBounds(OdinHelper::c150(FX_FREQ_POS_X),
+	                 OdinHelper::c150(FX_FREQ_POS_Y),
+	                 metal_knob_mid.getWidth(),
+	                 metal_knob_mid.getHeight() / 256);
+	m_feedback.setBounds(OdinHelper::c150(FX_FEEDBACK_POS_X),
+	                     OdinHelper::c150(FX_FEEDBACK_POS_Y),
+	                     metal_knob_mid.getWidth(),
+	                     metal_knob_mid.getHeight() / 256);
+	m_dry_wet.setBounds(OdinHelper::c150(FX_DRY_WET_POS_X),
+	                    OdinHelper::c150(FX_DRY_WET_POS_Y),
+	                    metal_knob_mid.getWidth(),
+	                    metal_knob_mid.getHeight() / 256);
+
+	if (m_fx_name == "chorus") {
+		m_background_sync =
+		    ImageCache::getFromMemory(BinaryData::chorussync_150_png, BinaryData::chorussync_150_pngSize);
+		m_background_no_sync =
+		    ImageCache::getFromMemory(BinaryData::chorusnosync_150_png, BinaryData::chorusnosync_150_pngSize);
+	} else {
+		m_background_sync =
+		    ImageCache::getFromMemory(BinaryData::flangersync_150_png, BinaryData::flangersync_150_pngSize);
+		m_background_no_sync =
+		    ImageCache::getFromMemory(BinaryData::flangernosync_150_png, BinaryData::flangernosync_150_pngSize);
+	}
 
 	forceValueTreeOntoComponents(m_value_tree.state);
 }
@@ -320,6 +348,18 @@ void FXComponent::setGUISmall() {
 	    FX_FEEDBACK_POS_X, FX_FEEDBACK_POS_Y, metal_knob_mid.getWidth(), metal_knob_mid.getHeight() / 256);
 	m_dry_wet.setBounds(
 	    FX_DRY_WET_POS_X, FX_DRY_WET_POS_Y, metal_knob_mid.getWidth(), metal_knob_mid.getHeight() / 256);
+
+	if (m_fx_name == "chorus") {
+		m_background_sync =
+		    ImageCache::getFromMemory(BinaryData::chorussync_png, BinaryData::chorussync_pngSize);
+		m_background_no_sync =
+		    ImageCache::getFromMemory(BinaryData::chorusnosync_png, BinaryData::chorusnosync_pngSize);
+	} else {
+		m_background_sync =
+		    ImageCache::getFromMemory(BinaryData::flangersync_png, BinaryData::flangersync_pngSize);
+		m_background_no_sync =
+		    ImageCache::getFromMemory(BinaryData::flangernosync_png, BinaryData::flangernosync_pngSize);
+	}
 
 	forceValueTreeOntoComponents(m_value_tree.state);
 }

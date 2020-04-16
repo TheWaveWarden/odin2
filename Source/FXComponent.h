@@ -59,11 +59,11 @@ public:
 	}
 
 	void setImage(juce::Image p_background, bool p_sync) {
-		if (p_sync) {
-			m_background_sync = p_background;
-		} else {
-			m_background_no_sync = p_background;
-		}
+		// if (p_sync) {
+		// 	m_background_sync = p_background;
+		// } else {
+		// 	m_background_no_sync = p_background;
+		// }
 	}
 
 	void setSyncEnabled(bool p_sync);

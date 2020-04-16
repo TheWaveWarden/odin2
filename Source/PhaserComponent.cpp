@@ -302,13 +302,9 @@ void PhaserComponent::setGUIBig() {
 	                     metal_knob_mid.getWidth(),
 	                     metal_knob_mid.getWidth());
 
-	if ((float)m_value_tree.state.getChildWithName("fx")["phaser_sync"] < 0.5f) {
-		m_background_sync =
-		    ImageCache::getFromMemory(BinaryData::phasersync_150_png, BinaryData::phasersync_150_pngSize);
-	} else {
-		m_background_no_sync =
-		    ImageCache::getFromMemory(BinaryData::phasernosync_150_png, BinaryData::phasernosync_150_pngSize);
-	}
+	m_background_sync = ImageCache::getFromMemory(BinaryData::phasersync_150_png, BinaryData::phasersync_150_pngSize);
+	m_background_no_sync =
+	    ImageCache::getFromMemory(BinaryData::phasernosync_150_png, BinaryData::phasernosync_150_pngSize);
 
 	forceValueTreeOntoComponents(m_value_tree.state);
 }
@@ -378,12 +374,8 @@ void PhaserComponent::setGUISmall() {
 	m_feedback.setBounds(
 	    PHASER_FEEDBACK_POS_X, PHASER_FEEDBACK_POS_Y, metal_knob_mid.getWidth(), metal_knob_mid.getWidth());
 
-	if ((float)m_value_tree.state.getChildWithName("fx")["phaser_sync"] < 0.5f) {
-		m_background_sync = ImageCache::getFromMemory(BinaryData::phasersync_png, BinaryData::phasersync_pngSize);
-	} else {
-		m_background_no_sync =
-		    ImageCache::getFromMemory(BinaryData::phasernosync_png, BinaryData::phasernosync_pngSize);
-	}
+	m_background_sync    = ImageCache::getFromMemory(BinaryData::phasersync_png, BinaryData::phasersync_pngSize);
+	m_background_no_sync = ImageCache::getFromMemory(BinaryData::phasernosync_png, BinaryData::phasernosync_pngSize);
 
 	forceValueTreeOntoComponents(m_value_tree.state);
 }

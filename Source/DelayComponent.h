@@ -73,7 +73,6 @@ public:
 			m_sync_on = p_sync_on;
 
 			if (m_GUI_big) {
-				DBG("SET BIG IMAGE DELAY");
 				if (m_sync_on) {
 					m_background =
 					    ImageCache::getFromMemory(BinaryData::delaysync_150_png, BinaryData::delaysync_150_pngSize);
@@ -82,7 +81,6 @@ public:
 					    ImageCache::getFromMemory(BinaryData::delaynosync_150_png, BinaryData::delaynosync_150_pngSize);
 				}
 			} else {
-				DBG("SET SMOL IMAGE DELAY");
 				if (m_sync_on) {
 					m_background = ImageCache::getFromMemory(BinaryData::delaysync_png, BinaryData::delaysync_pngSize);
 				} else {
