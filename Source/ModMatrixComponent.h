@@ -30,7 +30,13 @@ public:
 
   void paint(Graphics &) override;
 
+  void setGUIBig();
+  void setGUISmall();
+
 private:
+
+  bool m_GUI_big = false;
+  
   void clearRow(int p_row);
 
   void createMenu(PopupMenu* p_menu);

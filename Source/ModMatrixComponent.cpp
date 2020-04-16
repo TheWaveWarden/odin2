@@ -1072,3 +1072,287 @@ void ModMatrixComponent::forceValueTreeOntoComponents(ValueTree p_tree) {
 		m_amount_3[row].setValue(m_value_tree.state.getChildWithName("mod")[String("amount_2_row_" + std::to_string(row))]);
 	}
 }
+
+
+void ModMatrixComponent::setGUIBig(){
+	m_GUI_big = true;
+
+	    juce::Image glas_left_down =
+	    ImageCache::getFromMemory(BinaryData::modpanelbig_left_down_150_png, BinaryData::modpanelbig_left_down_150_pngSize);
+	juce::Image glas_left_mid =
+	    ImageCache::getFromMemory(BinaryData::modpanelbig_left_mid_150_png, BinaryData::modpanelbig_left_mid_150_pngSize);
+	juce::Image glas_left_up =
+	    ImageCache::getFromMemory(BinaryData::modpanelbig_left_up_150_png, BinaryData::modpanelbig_left_up_150_pngSize);
+	juce::Image glas_mid_down =
+	    ImageCache::getFromMemory(BinaryData::modpanelbig_mid_down_150_png, BinaryData::modpanelbig_mid_down_150_pngSize);
+	juce::Image glas_mid_mid =
+	    ImageCache::getFromMemory(BinaryData::modpanelbig_mid_mid_150_png, BinaryData::modpanelbig_mid_mid_150_pngSize);
+	juce::Image glas_mid_up =
+	    ImageCache::getFromMemory(BinaryData::modpanelbig_mid_up_150_png, BinaryData::modpanelbig_mid_up_150_pngSize);
+	juce::Image glas_right_down =
+	    ImageCache::getFromMemory(BinaryData::modpanelbig_right_down_150_png, BinaryData::modpanelbig_right_down_150_pngSize);
+	juce::Image glas_right_mid =
+	    ImageCache::getFromMemory(BinaryData::modpanelbig_right_mid_150_png, BinaryData::modpanelbig_right_mid_150_pngSize);
+	juce::Image glas_right_up =
+	    ImageCache::getFromMemory(BinaryData::modpanelbig_right_up_150_png, BinaryData::modpanelbig_right_up_150_pngSize);
+	juce::Image glas_small_down =
+	    ImageCache::getFromMemory(BinaryData::modpanelsmall_down_150_png, BinaryData::modpanelsmall_down_150_pngSize);
+	juce::Image glas_small_mid =
+	    ImageCache::getFromMemory(BinaryData::modpanelsmall_mid_150_png, BinaryData::modpanelsmall_mid_150_pngSize);
+	juce::Image glas_small_up =
+	    ImageCache::getFromMemory(BinaryData::modpanelsmall_up_150_png, BinaryData::modpanelsmall_up_150_pngSize);
+
+	m_source[0].setImage(glas_left_up);
+	m_amount_1[0].setImage(glas_small_up);
+	m_dest_1[0].setImage(glas_mid_up);
+	m_amount_2[0].setImage(glas_small_up);
+	m_dest_2[0].setImage(glas_mid_up);
+	m_amount_3[0].setImage(glas_small_up);
+	m_scale[0].setImage(glas_right_up);
+	for (int i = 1; i < N_ROWS - 1; ++i) {
+		m_source[i].setImage(glas_left_mid);
+		m_amount_1[i].setImage(glas_small_mid);
+		m_dest_1[i].setImage(glas_mid_mid);
+		m_amount_2[i].setImage(glas_small_mid);
+		m_dest_2[i].setImage(glas_mid_mid);
+		m_amount_3[i].setImage(glas_small_mid);
+		m_scale[i].setImage(glas_right_mid);
+	}
+	m_source[N_ROWS - 1].setImage(glas_left_down);
+	m_amount_1[N_ROWS - 1].setImage(glas_small_down);
+	m_dest_1[N_ROWS - 1].setImage(glas_mid_down);
+	m_amount_2[N_ROWS - 1].setImage(glas_small_down);
+	m_dest_2[N_ROWS - 1].setImage(glas_mid_down);
+	m_amount_3[N_ROWS - 1].setImage(glas_small_down);
+	m_scale[N_ROWS - 1].setImage(glas_right_down);
+
+	m_small_panel_width = glas_small_down.getWidth();
+	m_big_panel_width   = glas_mid_down.getWidth();
+	m_panel_height      = glas_left_down.getHeight();
+
+	juce::Image clear_1 = ImageCache::getFromMemory(BinaryData::buttonclear_1_150_png, BinaryData::buttonclear_1_150_pngSize);
+	juce::Image clear_2 = ImageCache::getFromMemory(BinaryData::buttonclear_2_150_png, BinaryData::buttonclear_2_150_pngSize);
+	juce::Image clearlast_1 =
+	    ImageCache::getFromMemory(BinaryData::buttonclearlast_1_150_png, BinaryData::buttonclearlast_1_150_pngSize);
+	juce::Image clearlast_2 =
+	    ImageCache::getFromMemory(BinaryData::buttonclearlast_2_150_png, BinaryData::buttonclearlast_2_150_pngSize);
+
+	juce::DrawableImage clear_draw1;
+	juce::DrawableImage clear_draw2;
+	juce::DrawableImage clearlast_draw1;
+	juce::DrawableImage clearlast_draw2;
+
+	clear_draw1.setImage(clear_1);
+	clear_draw2.setImage(clear_2);
+	clearlast_draw1.setImage(clearlast_1);
+	clearlast_draw2.setImage(clearlast_2);
+	m_clear_button0.setImages(
+	    &clear_draw2, &clear_draw2, &clear_draw1, &clear_draw1, &clear_draw2, &clear_draw2, &clear_draw1, &clear_draw1);
+	m_clear_button0.setClickingTogglesState(true);
+	m_clear_button0.setBounds(
+	    4 * m_big_panel_width + 3 * m_small_panel_width, 0 * m_panel_height, clear_1.getWidth(), m_panel_height);
+
+	m_clear_button1.setImages(
+	    &clear_draw2, &clear_draw2, &clear_draw1, &clear_draw1, &clear_draw2, &clear_draw2, &clear_draw1, &clear_draw1);
+	m_clear_button1.setBounds(
+	    4 * m_big_panel_width + 3 * m_small_panel_width, 1 * m_panel_height, clear_1.getWidth(), m_panel_height);
+
+	m_clear_button2.setImages(
+	    &clear_draw2, &clear_draw2, &clear_draw1, &clear_draw1, &clear_draw2, &clear_draw2, &clear_draw1, &clear_draw1);
+	m_clear_button2.setBounds(
+	    4 * m_big_panel_width + 3 * m_small_panel_width, 2 * m_panel_height, clear_1.getWidth(), m_panel_height);
+
+	m_clear_button3.setImages(
+	    &clear_draw2, &clear_draw2, &clear_draw1, &clear_draw1, &clear_draw2, &clear_draw2, &clear_draw1, &clear_draw1);
+	m_clear_button3.setBounds(
+	    4 * m_big_panel_width + 3 * m_small_panel_width, 3 * m_panel_height, clear_1.getWidth(), m_panel_height);
+
+	m_clear_button4.setImages(
+	    &clear_draw2, &clear_draw2, &clear_draw1, &clear_draw1, &clear_draw2, &clear_draw2, &clear_draw1, &clear_draw1);
+	m_clear_button4.setBounds(
+	    4 * m_big_panel_width + 3 * m_small_panel_width, 4 * m_panel_height, clear_1.getWidth(), m_panel_height);
+
+	m_clear_button5.setImages(
+	    &clear_draw2, &clear_draw2, &clear_draw1, &clear_draw1, &clear_draw2, &clear_draw2, &clear_draw1, &clear_draw1);
+	m_clear_button5.setBounds(
+	    4 * m_big_panel_width + 3 * m_small_panel_width, 5 * m_panel_height, clear_1.getWidth(), m_panel_height);
+
+	m_clear_button6.setImages(
+	    &clear_draw2, &clear_draw2, &clear_draw1, &clear_draw1, &clear_draw2, &clear_draw2, &clear_draw1, &clear_draw1);
+	m_clear_button6.setBounds(
+	    4 * m_big_panel_width + 3 * m_small_panel_width, 6 * m_panel_height, clear_1.getWidth(), m_panel_height);
+
+	m_clear_button7.setImages(
+	    &clear_draw2, &clear_draw2, &clear_draw1, &clear_draw1, &clear_draw2, &clear_draw2, &clear_draw1, &clear_draw1);
+	m_clear_button7.setBounds(
+	    4 * m_big_panel_width + 3 * m_small_panel_width, 7 * m_panel_height, clear_1.getWidth(), m_panel_height);
+
+	m_clear_button8.setImages(&clearlast_draw2,
+	                          &clearlast_draw2,
+	                          &clearlast_draw1,
+	                          &clearlast_draw1,
+	                          &clearlast_draw2,
+	                          &clearlast_draw2,
+	                          &clearlast_draw1,
+	                          &clearlast_draw1);
+	m_clear_button8.setBounds(
+	    4 * m_big_panel_width + 3 * m_small_panel_width, 8 * m_panel_height, clearlast_1.getWidth(), m_panel_height);
+
+	for (int i = 0; i < N_ROWS; ++i) {
+		m_source[i].setBounds(0, i * m_panel_height, m_big_panel_width, m_panel_height);
+		m_amount_1[i].setBounds(m_big_panel_width, i * m_panel_height, m_small_panel_width, m_panel_height);
+		m_dest_1[i].setBounds(
+		    m_big_panel_width + m_small_panel_width, i * m_panel_height, m_big_panel_width, m_panel_height);
+		m_amount_2[i].setBounds(
+		    2 * m_big_panel_width + m_small_panel_width, i * m_panel_height, m_small_panel_width, m_panel_height);
+		m_dest_2[i].setBounds(
+		    2 * m_big_panel_width + 2 * m_small_panel_width, i * m_panel_height, m_big_panel_width, m_panel_height);
+		m_amount_3[i].setBounds(
+		    3 * m_big_panel_width + 2 * m_small_panel_width, i * m_panel_height, m_small_panel_width, m_panel_height);
+		m_scale[i].setBounds(
+		    3 * m_big_panel_width + 3 * m_small_panel_width, i * m_panel_height, m_big_panel_width, m_panel_height);
+	}
+
+	forceValueTreeOntoComponents(m_value_tree.state);
+}
+void ModMatrixComponent::setGUISmall(){
+	m_GUI_big = false;
+
+	    juce::Image glas_left_down =
+	    ImageCache::getFromMemory(BinaryData::modpanelbig_left_down_png, BinaryData::modpanelbig_left_down_pngSize);
+	juce::Image glas_left_mid =
+	    ImageCache::getFromMemory(BinaryData::modpanelbig_left_mid_png, BinaryData::modpanelbig_left_mid_pngSize);
+	juce::Image glas_left_up =
+	    ImageCache::getFromMemory(BinaryData::modpanelbig_left_up_png, BinaryData::modpanelbig_left_up_pngSize);
+	juce::Image glas_mid_down =
+	    ImageCache::getFromMemory(BinaryData::modpanelbig_mid_down_png, BinaryData::modpanelbig_mid_down_pngSize);
+	juce::Image glas_mid_mid =
+	    ImageCache::getFromMemory(BinaryData::modpanelbig_mid_mid_png, BinaryData::modpanelbig_mid_mid_pngSize);
+	juce::Image glas_mid_up =
+	    ImageCache::getFromMemory(BinaryData::modpanelbig_mid_up_png, BinaryData::modpanelbig_mid_up_pngSize);
+	juce::Image glas_right_down =
+	    ImageCache::getFromMemory(BinaryData::modpanelbig_right_down_png, BinaryData::modpanelbig_right_down_pngSize);
+	juce::Image glas_right_mid =
+	    ImageCache::getFromMemory(BinaryData::modpanelbig_right_mid_png, BinaryData::modpanelbig_right_mid_pngSize);
+	juce::Image glas_right_up =
+	    ImageCache::getFromMemory(BinaryData::modpanelbig_right_up_png, BinaryData::modpanelbig_right_up_pngSize);
+	juce::Image glas_small_down =
+	    ImageCache::getFromMemory(BinaryData::modpanelsmall_down_png, BinaryData::modpanelsmall_down_pngSize);
+	juce::Image glas_small_mid =
+	    ImageCache::getFromMemory(BinaryData::modpanelsmall_mid_png, BinaryData::modpanelsmall_mid_pngSize);
+	juce::Image glas_small_up =
+	    ImageCache::getFromMemory(BinaryData::modpanelsmall_up_png, BinaryData::modpanelsmall_up_pngSize);
+
+	m_source[0].setImage(glas_left_up);
+	m_amount_1[0].setImage(glas_small_up);
+	m_dest_1[0].setImage(glas_mid_up);
+	m_amount_2[0].setImage(glas_small_up);
+	m_dest_2[0].setImage(glas_mid_up);
+	m_amount_3[0].setImage(glas_small_up);
+	m_scale[0].setImage(glas_right_up);
+	for (int i = 1; i < N_ROWS - 1; ++i) {
+		m_source[i].setImage(glas_left_mid);
+		m_amount_1[i].setImage(glas_small_mid);
+		m_dest_1[i].setImage(glas_mid_mid);
+		m_amount_2[i].setImage(glas_small_mid);
+		m_dest_2[i].setImage(glas_mid_mid);
+		m_amount_3[i].setImage(glas_small_mid);
+		m_scale[i].setImage(glas_right_mid);
+	}
+	m_source[N_ROWS - 1].setImage(glas_left_down);
+	m_amount_1[N_ROWS - 1].setImage(glas_small_down);
+	m_dest_1[N_ROWS - 1].setImage(glas_mid_down);
+	m_amount_2[N_ROWS - 1].setImage(glas_small_down);
+	m_dest_2[N_ROWS - 1].setImage(glas_mid_down);
+	m_amount_3[N_ROWS - 1].setImage(glas_small_down);
+	m_scale[N_ROWS - 1].setImage(glas_right_down);
+
+	m_small_panel_width = glas_small_down.getWidth();
+	m_big_panel_width   = glas_mid_down.getWidth();
+	m_panel_height      = glas_left_down.getHeight();
+
+	juce::Image clear_1 = ImageCache::getFromMemory(BinaryData::buttonclear_1_png, BinaryData::buttonclear_1_pngSize);
+	juce::Image clear_2 = ImageCache::getFromMemory(BinaryData::buttonclear_2_png, BinaryData::buttonclear_2_pngSize);
+	juce::Image clearlast_1 =
+	    ImageCache::getFromMemory(BinaryData::buttonclearlast_1_png, BinaryData::buttonclearlast_1_pngSize);
+	juce::Image clearlast_2 =
+	    ImageCache::getFromMemory(BinaryData::buttonclearlast_2_png, BinaryData::buttonclearlast_2_pngSize);
+
+	juce::DrawableImage clear_draw1;
+	juce::DrawableImage clear_draw2;
+	juce::DrawableImage clearlast_draw1;
+	juce::DrawableImage clearlast_draw2;
+
+	clear_draw1.setImage(clear_1);
+	clear_draw2.setImage(clear_2);
+	clearlast_draw1.setImage(clearlast_1);
+	clearlast_draw2.setImage(clearlast_2);
+	m_clear_button0.setImages(
+	    &clear_draw2, &clear_draw2, &clear_draw1, &clear_draw1, &clear_draw2, &clear_draw2, &clear_draw1, &clear_draw1);
+	m_clear_button0.setClickingTogglesState(true);
+	m_clear_button0.setBounds(
+	    4 * m_big_panel_width + 3 * m_small_panel_width, 0 * m_panel_height, clear_1.getWidth(), m_panel_height);
+
+	m_clear_button1.setImages(
+	    &clear_draw2, &clear_draw2, &clear_draw1, &clear_draw1, &clear_draw2, &clear_draw2, &clear_draw1, &clear_draw1);
+	m_clear_button1.setBounds(
+	    4 * m_big_panel_width + 3 * m_small_panel_width, 1 * m_panel_height, clear_1.getWidth(), m_panel_height);
+
+	m_clear_button2.setImages(
+	    &clear_draw2, &clear_draw2, &clear_draw1, &clear_draw1, &clear_draw2, &clear_draw2, &clear_draw1, &clear_draw1);
+	m_clear_button2.setBounds(
+	    4 * m_big_panel_width + 3 * m_small_panel_width, 2 * m_panel_height, clear_1.getWidth(), m_panel_height);
+
+	m_clear_button3.setImages(
+	    &clear_draw2, &clear_draw2, &clear_draw1, &clear_draw1, &clear_draw2, &clear_draw2, &clear_draw1, &clear_draw1);
+	m_clear_button3.setBounds(
+	    4 * m_big_panel_width + 3 * m_small_panel_width, 3 * m_panel_height, clear_1.getWidth(), m_panel_height);
+
+	m_clear_button4.setImages(
+	    &clear_draw2, &clear_draw2, &clear_draw1, &clear_draw1, &clear_draw2, &clear_draw2, &clear_draw1, &clear_draw1);
+	m_clear_button4.setBounds(
+	    4 * m_big_panel_width + 3 * m_small_panel_width, 4 * m_panel_height, clear_1.getWidth(), m_panel_height);
+
+	m_clear_button5.setImages(
+	    &clear_draw2, &clear_draw2, &clear_draw1, &clear_draw1, &clear_draw2, &clear_draw2, &clear_draw1, &clear_draw1);
+	m_clear_button5.setBounds(
+	    4 * m_big_panel_width + 3 * m_small_panel_width, 5 * m_panel_height, clear_1.getWidth(), m_panel_height);
+
+	m_clear_button6.setImages(
+	    &clear_draw2, &clear_draw2, &clear_draw1, &clear_draw1, &clear_draw2, &clear_draw2, &clear_draw1, &clear_draw1);
+	m_clear_button6.setBounds(
+	    4 * m_big_panel_width + 3 * m_small_panel_width, 6 * m_panel_height, clear_1.getWidth(), m_panel_height);
+
+	m_clear_button7.setImages(
+	    &clear_draw2, &clear_draw2, &clear_draw1, &clear_draw1, &clear_draw2, &clear_draw2, &clear_draw1, &clear_draw1);
+	m_clear_button7.setBounds(
+	    4 * m_big_panel_width + 3 * m_small_panel_width, 7 * m_panel_height, clear_1.getWidth(), m_panel_height);
+
+	m_clear_button8.setImages(&clearlast_draw2,
+	                          &clearlast_draw2,
+	                          &clearlast_draw1,
+	                          &clearlast_draw1,
+	                          &clearlast_draw2,
+	                          &clearlast_draw2,
+	                          &clearlast_draw1,
+	                          &clearlast_draw1);
+	m_clear_button8.setBounds(
+	    4 * m_big_panel_width + 3 * m_small_panel_width, 8 * m_panel_height, clearlast_1.getWidth(), m_panel_height);
+
+	for (int i = 0; i < N_ROWS; ++i) {
+		m_source[i].setBounds(0, i * m_panel_height, m_big_panel_width, m_panel_height);
+		m_amount_1[i].setBounds(m_big_panel_width, i * m_panel_height, m_small_panel_width, m_panel_height);
+		m_dest_1[i].setBounds(
+		    m_big_panel_width + m_small_panel_width, i * m_panel_height, m_big_panel_width, m_panel_height);
+		m_amount_2[i].setBounds(
+		    2 * m_big_panel_width + m_small_panel_width, i * m_panel_height, m_small_panel_width, m_panel_height);
+		m_dest_2[i].setBounds(
+		    2 * m_big_panel_width + 2 * m_small_panel_width, i * m_panel_height, m_big_panel_width, m_panel_height);
+		m_amount_3[i].setBounds(
+		    3 * m_big_panel_width + 2 * m_small_panel_width, i * m_panel_height, m_small_panel_width, m_panel_height);
+		m_scale[i].setBounds(
+		    3 * m_big_panel_width + 3 * m_small_panel_width, i * m_panel_height, m_big_panel_width, m_panel_height);
+	}
+
+	forceValueTreeOntoComponents(m_value_tree.state);
+}
