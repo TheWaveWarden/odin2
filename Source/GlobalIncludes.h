@@ -125,6 +125,9 @@ DBG("TRIED TO ACCESS UNKOWN PARAMETER:");\
 DBG(name);\
 } 
 
+#define DEBUG_COMPONENT_OUTLINE 	g.setColour(Colours::grey);\
+g.drawRect(getLocalBounds(), 1);
+
 #define RETRIGGERAUDIO(name) SETAUDIOFULLRANGE(name, GETAUDIO(name))
 #define SETAUDIOVALUEPATCH(name)
 

@@ -1779,7 +1779,7 @@ void OscComponent::setGUIBig() {
 
 	m_LED_saw.setImages(&LED_draw2, &LED_draw2, &LED_draw2, &LED_draw2, &LED_draw1, &LED_draw1, &LED_draw1);
 	m_LED_saw.setBounds(OdinHelper::c150(LED_POS_X),
-	                    OdinHelper::c150(LED_POS_Y) - LED_1.getHeight(),
+	                    OdinHelper::c150(LED_POS_Y) - LED_1.getHeight() - 1 ,
 	                    LED_1.getWidth(),
 	                    LED_1.getHeight());
 
@@ -1789,13 +1789,13 @@ void OscComponent::setGUIBig() {
 
 	m_LED_triangle.setImages(&LED_draw2, &LED_draw2, &LED_draw2, &LED_draw2, &LED_draw1, &LED_draw1, &LED_draw1);
 	m_LED_triangle.setBounds(OdinHelper::c150(LED_POS_X),
-	                         OdinHelper::c150(LED_POS_Y) + LED_1.getHeight(),
+	                         OdinHelper::c150(LED_POS_Y) + LED_1.getHeight() + 1,
 	                         LED_1.getWidth(),
 	                         LED_1.getHeight());
 
 	m_LED_sine.setImages(&LED_draw2, &LED_draw2, &LED_draw2, &LED_draw2, &LED_draw1, &LED_draw1, &LED_draw1);
 	m_LED_sine.setBounds(OdinHelper::c150(LED_POS_X),
-	                     OdinHelper::c150(LED_POS_Y) + 2 * LED_1.getHeight(),
+	                     OdinHelper::c150(LED_POS_Y) + 2 * LED_1.getHeight() + 2,
 	                     LED_1.getWidth(),
 	                     LED_1.getHeight());
 

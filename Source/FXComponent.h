@@ -10,16 +10,14 @@
 
 #pragma once
 
-#include "OdinButton.h"
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "GlobalIncludes.h"
 #include "Knob.h"
-#include "SyncTimeSelector.h"
+#include "OdinButton.h"
 #include "OdinControlAttachments.h"
-
+#include "SyncTimeSelector.h"
 
 #define SPACING 56
-
 
 #define FX_FREQ_POS_X 20
 #define FX_FREQ_POS_Y 15
@@ -49,59 +47,61 @@
  */
 class FXComponent : public Component {
 public:
-  FXComponent(AudioProcessorValueTreeState &vts, std::string p_fx_name, bool p_is_standalone);
-  ~FXComponent();
+	FXComponent(AudioProcessorValueTreeState &vts, std::string p_fx_name, bool p_is_standalone);
+	~FXComponent();
 
-  void forceValueTreeOntoComponents(ValueTree p_tree);
-  
+	void forceValueTreeOntoComponents(ValueTree p_tree);
 
-  void paint(Graphics &) override;
-  
-  void setSyncTimeColor(juce::Colour p_color){
-    m_sync_time.setColor(p_color);
-  }
+	void paint(Graphics &) override;
 
-  void setImage(juce::Image p_background, bool p_sync) {
-    if (p_sync) {
-      m_background_sync = p_background;
-    } else {
-      m_background_no_sync = p_background;
-    }
-  }
+	void setSyncTimeColor(juce::Colour p_color) {
+		m_sync_time.setColor(p_color);
+	}
 
-  void setSyncEnabled(bool p_sync);
+	void setImage(juce::Image p_background, bool p_sync) {
+		if (p_sync) {
+			m_background_sync = p_background;
+		} else {
+			m_background_no_sync = p_background;
+		}
+	}
+
+	void setSyncEnabled(bool p_sync);
+	void setGUIBig();
+	void setGUISmall();
 
 private:
-  bool m_is_standalone_plugin;
+	bool m_GUI_big = false;
+	bool m_is_standalone_plugin;
 
-  Knob m_rate;
-  Knob m_amount;
-  Knob m_feedback;
-  Knob m_dry_wet;
+	Knob m_rate;
+	Knob m_amount;
+	Knob m_feedback;
+	Knob m_dry_wet;
 
-  OdinButton m_sync;
-  OdinButton m_reset;
+	OdinButton m_sync;
+	OdinButton m_reset;
 
-  juce::Image m_background_sync;
-  juce::Image m_background_no_sync;
+	juce::Image m_background_sync;
+	juce::Image m_background_no_sync;
 
-  SyncTimeSelector m_sync_time;
+	SyncTimeSelector m_sync_time;
 
-  bool m_sync_enabled = false;
+	bool m_sync_enabled = false;
 
-  std::string m_fx_name;
-  AudioProcessorValueTreeState &m_value_tree;
+	std::string m_fx_name;
+	AudioProcessorValueTreeState &m_value_tree;
 
-  std::unique_ptr<OdinKnobAttachment> m_rate_attach;
-  std::unique_ptr<OdinKnobAttachment> m_amount_attach;
-  std::unique_ptr<OdinKnobAttachment> m_drywet_attach;
-  std::unique_ptr<OdinKnobAttachment> m_feedback_attach;
+	std::unique_ptr<OdinKnobAttachment> m_rate_attach;
+	std::unique_ptr<OdinKnobAttachment> m_amount_attach;
+	std::unique_ptr<OdinKnobAttachment> m_drywet_attach;
+	std::unique_ptr<OdinKnobAttachment> m_feedback_attach;
 
-  //std::unique_ptr<OdinButtonAttachment> m_sync_attach;
-  std::unique_ptr<OdinButtonAttachment> m_reset_attach;
+	//std::unique_ptr<OdinButtonAttachment> m_sync_attach;
+	std::unique_ptr<OdinButtonAttachment> m_reset_attach;
 
-  Identifier m_fx_synctime_numerator_identifier;
-  Identifier m_fx_synctime_denominator_identifier;
+	Identifier m_fx_synctime_numerator_identifier;
+	Identifier m_fx_synctime_denominator_identifier;
 
-  JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(FXComponent)
+	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(FXComponent)
 };

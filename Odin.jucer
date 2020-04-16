@@ -1203,6 +1203,8 @@
       <FILE id="nQjJu7" name="wavetable_knob_cropped_150.png" compile="0"
             resource="1" file="Graphics_150/cropped/wavetable_knob_cropped_150.png"/>
       <FILE id="nYf2aq" name="WW_logo_xy.png" compile="0" resource="1" file="Graphics/applied/WW_logo_xy.png"/>
+      <FILE id="Dpp4M0" name="WW_logo_xy_150.png" compile="0" resource="1"
+            file="Graphics_150/applied/WW_logo_xy_150.png"/>
     </GROUP>
     <GROUP id="{7AF384ED-9FD6-6492-4B8C-5777BB9A2698}" name="Source">
       <FILE id="QuKD1K" name="SetModulationPointers.h" compile="0" resource="0"

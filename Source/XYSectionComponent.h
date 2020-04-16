@@ -32,7 +32,12 @@ public:
 
   void paint(Graphics &) override;
 
+  void setGUIBig();
+  void setGUISmall();
+
 private:
+  bool m_GUI_big = false;
+
   std::string m_section_name;
   AudioProcessorValueTreeState& m_value_tree;
 

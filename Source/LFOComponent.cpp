@@ -77,10 +77,12 @@ LFOComponent::LFOComponent(AudioProcessorValueTreeState &vts, std::string p_lfo_
 	m_sync.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
 	addAndMakeVisible(m_sync);
 	m_sync.setTooltip("Enables syncing the LFO\nto the speed of your track");
-	m_sync.onClick = [&]() { 
-		setSync(m_sync.getToggleState()); 
-		m_value_tree.state.getChildWithName("lfo").setProperty((Identifier)("lfo" + m_lfo_number + "_sync"), m_sync.getToggleState() ? 1.f : 0.f, nullptr);
-		m_value_tree.state.getChildWithName("lfo").sendPropertyChangeMessage((Identifier)("lfo" + m_lfo_number + "_sync"));
+	m_sync.onClick = [&]() {
+		setSync(m_sync.getToggleState());
+		m_value_tree.state.getChildWithName("lfo").setProperty(
+		    (Identifier)("lfo" + m_lfo_number + "_sync"), m_sync.getToggleState() ? 1.f : 0.f, nullptr);
+		m_value_tree.state.getChildWithName("lfo").sendPropertyChangeMessage(
+		    (Identifier)("lfo" + m_lfo_number + "_sync"));
 	};
 
 	juce::Image black_knob_small =
@@ -137,11 +139,122 @@ void LFOComponent::forceValueTreeOntoComponents(ValueTree p_tree) {
 
 	m_selector.setValueGUIOnly(m_value_tree.state.getChildWithName("lfo")[m_lfo_wave_identifier]);
 
-
 	m_sync_time.setValues(m_value_tree.state.getChildWithName("lfo")[m_lfo_synctime_numerator_identifier],
 	                      m_value_tree.state.getChildWithName("lfo")[m_lfo_synctime_denominator_identifier]);
 	setSync((float)GETAUDIO("lfo" + m_lfo_number + "_sync") > 0.5f);
 	setSync((float)m_value_tree.state.getChildWithName("lfo")[(Identifier)("lfo" + m_lfo_number + "_sync")] > 0.5f);
 	//send change message to set member in processor
 	m_value_tree.state.getChildWithName("fx").sendPropertyChangeMessage((Identifier)("lfo" + m_lfo_number + "_sync"));
+}
+
+bool LFOComponent::setGUIBig() {
+	m_GUI_big = true;	
+
+	juce::Image reset_1 =
+	    ImageCache::getFromMemory(BinaryData::buttonreset_lfo_1_150_png, BinaryData::buttonreset_lfo_1_150_pngSize);
+	juce::Image reset_2 =
+	    ImageCache::getFromMemory(BinaryData::buttonreset_lfo_2_150_png, BinaryData::buttonreset_lfo_2_150_pngSize);
+	juce::Image reset_3 =
+	    ImageCache::getFromMemory(BinaryData::buttonreset_lfo_3_150_png, BinaryData::buttonreset_lfo_3_150_pngSize);
+	juce::Image reset_4 =
+	    ImageCache::getFromMemory(BinaryData::buttonreset_lfo_4_150_png, BinaryData::buttonreset_lfo_4_150_pngSize);
+
+	juce::DrawableImage reset_draw1;
+	juce::DrawableImage reset_draw2;
+	juce::DrawableImage reset_draw3;
+	juce::DrawableImage reset_draw4;
+
+	reset_draw1.setImage(reset_1);
+	reset_draw2.setImage(reset_2);
+	reset_draw3.setImage(reset_3);
+	reset_draw4.setImage(reset_4);
+
+	m_reset.setImages(
+	    &reset_draw2, &reset_draw2, &reset_draw1, &reset_draw1, &reset_draw4, &reset_draw4, &reset_draw3, &reset_draw3);
+	m_reset.setBounds(OdinHelper::c150(LFO_RESET_POS_X), OdinHelper::c150(LFO_RESET_POS_Y), reset_1.getWidth(), reset_1.getHeight());
+
+	juce::Image sync_1 = ImageCache::getFromMemory(BinaryData::buttonsync_1_150_png, BinaryData::buttonsync_1_150_pngSize);
+	juce::Image sync_2 = ImageCache::getFromMemory(BinaryData::buttonsync_2_150_png, BinaryData::buttonsync_2_150_pngSize);
+	juce::Image sync_3 = ImageCache::getFromMemory(BinaryData::buttonsync_3_150_png, BinaryData::buttonsync_3_150_pngSize);
+	juce::Image sync_4 = ImageCache::getFromMemory(BinaryData::buttonsync_4_150_png, BinaryData::buttonsync_4_150_pngSize);
+
+	juce::DrawableImage sync_draw1;
+	juce::DrawableImage sync_draw2;
+	juce::DrawableImage sync_draw3;
+	juce::DrawableImage sync_draw4;
+
+	sync_draw1.setImage(sync_1);
+	sync_draw2.setImage(sync_2);
+	sync_draw3.setImage(sync_3);
+	sync_draw4.setImage(sync_4);
+
+	m_sync.setImages(
+	    &sync_draw2, &sync_draw2, &sync_draw1, &sync_draw1, &sync_draw4, &sync_draw4, &sync_draw3, &sync_draw3);
+	m_sync.setBounds(OdinHelper::c150(SYNC_POS_X), OdinHelper::c150(SYNC_POS_Y), sync_1.getWidth(), sync_1.getHeight());
+
+	juce::Image black_knob_small =
+	    ImageCache::getFromMemory(BinaryData::black_knob_small_150_png, BinaryData::black_knob_small_150_pngSize);
+
+	m_freq.setStrip(black_knob_small, N_KNOB_FRAMES);
+	m_selector.setTopLeftPosition(OdinHelper::c150(SELECTOR_POS_X), OdinHelper::c150(SELECTOR_POS_Y));
+	m_sync_time.setTopLeftPosition(OdinHelper::c150(SYNC_TIME_POS_X), OdinHelper::c150(SYNC_TIME_POS_Y));
+
+	m_freq.setBounds(OdinHelper::c150(LFO_FREQ_POS_X), OdinHelper::c150(LFO_FREQ_POS_Y), OdinHelper::c150(BLACK_KNOB_SMALL_SIZE_X), OdinHelper::c150(BLACK_KNOB_SMALL_SIZE_Y));
+
+}
+
+bool LFOComponent::setGUISmall() {
+	m_GUI_big = false;
+
+
+	juce::Image reset_1 =
+	    ImageCache::getFromMemory(BinaryData::buttonreset_lfo_1_png, BinaryData::buttonreset_lfo_1_pngSize);
+	juce::Image reset_2 =
+	    ImageCache::getFromMemory(BinaryData::buttonreset_lfo_2_png, BinaryData::buttonreset_lfo_2_pngSize);
+	juce::Image reset_3 =
+	    ImageCache::getFromMemory(BinaryData::buttonreset_lfo_3_png, BinaryData::buttonreset_lfo_3_pngSize);
+	juce::Image reset_4 =
+	    ImageCache::getFromMemory(BinaryData::buttonreset_lfo_4_png, BinaryData::buttonreset_lfo_4_pngSize);
+
+	juce::DrawableImage reset_draw1;
+	juce::DrawableImage reset_draw2;
+	juce::DrawableImage reset_draw3;
+	juce::DrawableImage reset_draw4;
+
+	reset_draw1.setImage(reset_1);
+	reset_draw2.setImage(reset_2);
+	reset_draw3.setImage(reset_3);
+	reset_draw4.setImage(reset_4);
+
+	m_reset.setImages(
+	    &reset_draw2, &reset_draw2, &reset_draw1, &reset_draw1, &reset_draw4, &reset_draw4, &reset_draw3, &reset_draw3);
+	m_reset.setBounds(LFO_RESET_POS_X, LFO_RESET_POS_Y, reset_1.getWidth(), reset_1.getHeight());
+
+	juce::Image sync_1 = ImageCache::getFromMemory(BinaryData::buttonsync_1_png, BinaryData::buttonsync_1_pngSize);
+	juce::Image sync_2 = ImageCache::getFromMemory(BinaryData::buttonsync_2_png, BinaryData::buttonsync_2_pngSize);
+	juce::Image sync_3 = ImageCache::getFromMemory(BinaryData::buttonsync_3_png, BinaryData::buttonsync_3_pngSize);
+	juce::Image sync_4 = ImageCache::getFromMemory(BinaryData::buttonsync_4_png, BinaryData::buttonsync_4_pngSize);
+
+	juce::DrawableImage sync_draw1;
+	juce::DrawableImage sync_draw2;
+	juce::DrawableImage sync_draw3;
+	juce::DrawableImage sync_draw4;
+
+	sync_draw1.setImage(sync_1);
+	sync_draw2.setImage(sync_2);
+	sync_draw3.setImage(sync_3);
+	sync_draw4.setImage(sync_4);
+
+	m_sync.setImages(
+	    &sync_draw2, &sync_draw2, &sync_draw1, &sync_draw1, &sync_draw4, &sync_draw4, &sync_draw3, &sync_draw3);
+	m_sync.setBounds(SYNC_POS_X, SYNC_POS_Y, sync_1.getWidth(), sync_1.getHeight());
+
+	juce::Image black_knob_small =
+	    ImageCache::getFromMemory(BinaryData::black_knob_small_png, BinaryData::black_knob_small_pngSize);
+
+	m_freq.setStrip(black_knob_small, N_KNOB_FRAMES);
+	m_selector.setTopLeftPosition(SELECTOR_POS_X, SELECTOR_POS_Y);
+	m_sync_time.setTopLeftPosition(SYNC_TIME_POS_X, SYNC_TIME_POS_Y);
+
+	m_freq.setBounds(LFO_FREQ_POS_X, LFO_FREQ_POS_Y, BLACK_KNOB_SMALL_SIZE_X, BLACK_KNOB_SMALL_SIZE_Y);
 }

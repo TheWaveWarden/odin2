@@ -72,7 +72,13 @@ public:
   void setSyncOverdraw(juce::Image p_image){
     m_freq_overdraw = p_image;
   }
+
+  bool setGUIBig();  
+  bool setGUISmall();
 private:
+
+  bool m_GUI_big = false;
+
   void toggleSync(){
     setSync(!m_sync_active);
   }

@@ -14,9 +14,8 @@
 #include "GlobalIncludes.h"
 #include "Knob.h"
 #include "OdinButton.h"
-#include "SyncTimeSelector.h"
 #include "OdinControlAttachments.h"
-
+#include "SyncTimeSelector.h"
 
 #define TIME_POS_X 17
 #define TIME_POS_Y 21
@@ -72,6 +71,26 @@ public:
 	void setSync(bool p_sync_on) {
 		if (p_sync_on != m_sync_on) {
 			m_sync_on = p_sync_on;
+
+			if (m_GUI_big) {
+				DBG("SET BIG IMAGE DELAY");
+				if (m_sync_on) {
+					m_background =
+					    ImageCache::getFromMemory(BinaryData::delaysync_150_png, BinaryData::delaysync_150_pngSize);
+				} else {
+					m_background =
+					    ImageCache::getFromMemory(BinaryData::delaynosync_150_png, BinaryData::delaynosync_150_pngSize);
+				}
+			} else {
+				DBG("SET SMOL IMAGE DELAY");
+				if (m_sync_on) {
+					m_background = ImageCache::getFromMemory(BinaryData::delaysync_png, BinaryData::delaysync_pngSize);
+				} else {
+					m_background =
+					    ImageCache::getFromMemory(BinaryData::delaynosync_png, BinaryData::delaynosync_pngSize);
+				}
+			}
+
 			if (p_sync_on) {
 				m_time.setVisible(false);
 				m_sync_time.setVisible(true);
@@ -83,7 +102,12 @@ public:
 		}
 	}
 
+	void setGUIBig();
+	void setGUISmall();
+
 private:
+	bool m_GUI_big = false;
+
 	bool m_is_standalone_plugin;
 	bool m_sync_on = false;
 
