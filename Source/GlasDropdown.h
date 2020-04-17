@@ -33,6 +33,7 @@ public:
   void setInlay(int p_inlay) { m_inlay = p_inlay; }
   void setDefaultText(std::string p_text) { m_default_text = p_text; }
   int m_inlay = INLAY_DEFAULT;
+  void setInlayTop(int p_inlay){m_inlay_top = p_inlay;}
 
   void mouseDown(const MouseEvent &event) {
     rearrangeMenu();
@@ -56,7 +57,15 @@ public:
 
   void enableOneToZero(bool p_enable) { m_setOneToZero = p_enable; }
 
+  void setGUIBig(){m_GUI_big = true;}
+  void setGUISmall(){m_GUI_big = false;}
+
 private:
+
+  int m_inlay_top = 0;
+
+  bool m_GUI_big = false;
+
   bool m_setOneToZero = false;
 
   std::string m_default_text = "undefined";

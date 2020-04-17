@@ -36,7 +36,7 @@ public:
 private:
 
   bool m_GUI_big = false;
-  
+
   void clearRow(int p_row);
 
   void createMenu(PopupMenu* p_menu);
@@ -158,7 +158,9 @@ private:
 
   int m_panel_height;
   int m_small_panel_width;
-  int m_big_panel_width;
+  int m_big_panel_width_left;
+  int m_big_panel_width_mid;
+  int m_big_panel_width_right;
 
   juce::Colour m_color;
 

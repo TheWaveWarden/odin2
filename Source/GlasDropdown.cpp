@@ -31,7 +31,7 @@ void GlasDropdown::paint(Graphics &g) {
 		g.setColour(m_color);
 	}
 	juce::Point<int> top_left = getLocalBounds().getTopLeft();
-	top_left.addXY(m_inlay /*+ 1*/, m_inlay);
+	top_left.addXY(m_inlay, m_inlay - m_inlay_top);
 	juce::Point<int> bottom_right = getLocalBounds().getBottomRight();
 	bottom_right.addXY(-m_inlay - 1, -m_inlay);
 	g.fillRect(juce::Rectangle<int>(top_left, bottom_right)); //
@@ -46,7 +46,11 @@ void GlasDropdown::paint(Graphics &g) {
 	Font current_font = g.getCurrentFont();
 	current_font.setStyleFlags(1); // bold
 	g.setFont(current_font);
-	g.setFont(12.0f);
+	if (m_GUI_big) {
+		g.setFont(18.0f);
+	} else {
+		g.setFont(12.0f);
+	}
 
 	if (getSelectedId() == 0) {
 		g.drawText(m_default_text, getLocalBounds(), Justification::centred, true);
