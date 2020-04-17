@@ -26,6 +26,19 @@ WavedrawDisplay::~WavedrawDisplay() {
 void WavedrawDisplay::paint(Graphics &g) {
 	SET_INTERPOLATION_QUALITY(g)
 
+	int draw_inlay_left = DRAW_INLAY_LEFT;
+	int draw_inlay_up = DRAW_INLAY_UP;
+	int draw_inlay_down = DRAW_INLAY_DOWN;
+	int wavedraw_thiccness = WAVEDRAW_THICCNESS;
+
+	if(m_GUI_big){
+		draw_inlay_left = 5;
+		draw_inlay_up = 7;
+		draw_inlay_down = 5;
+		wavedraw_thiccness = 3;
+	}
+
+
 	g.setColour(m_color);
 	juce::Point<int> top_left = getLocalBounds().getTopLeft();
 	top_left.addXY(m_inlay + 1, m_inlay);
@@ -35,26 +48,26 @@ void WavedrawDisplay::paint(Graphics &g) {
 
 	g.setColour(m_draw_color);
 
-	float width  = (float)(getWidth() - DRAW_INLAY_LEFT - DRAW_INLAY_RIGHT) / (float)WAVEDRAW_STEPS_X;
-	float height = (float)(getHeight() - DRAW_INLAY_UP - DRAW_INLAY_DOWN) / 2.f;
+	float width  = (float)(getWidth() - draw_inlay_left - DRAW_INLAY_RIGHT) / (float)WAVEDRAW_STEPS_X;
+	float height = (float)(getHeight() - draw_inlay_up - draw_inlay_down) / 2.f;
 	float mid    = (float)getHeight() / 2.f;
 
 	for (int i = 0; i < WAVEDRAW_STEPS_X; ++i) {
-		// g.drawLine(DRAW_INLAY_LEFT + i * width, mid - m_draw_values[i] * height,
-		// DRAW_INLAY_LEFT + (i + 1) * width, mid - m_draw_values[i] * height,
-		// WAVEDRAW_THICCNESS);
+		// g.drawLine(draw_inlay_left + i * width, mid - m_draw_values[i] * height,
+		// draw_inlay_left + (i + 1) * width, mid - m_draw_values[i] * height,
+		// wavedraw_thiccness);
 		if (i != WAVEDRAW_STEPS_X - 1) {
-			g.drawLine(DRAW_INLAY_LEFT + (i)*width,
+			g.drawLine(draw_inlay_left + (i)*width,
 			           mid - m_draw_values[i] * height,
-			           DRAW_INLAY_LEFT + (i + 1) * width,
+			           draw_inlay_left + (i + 1) * width,
 			           mid - m_draw_values[i + 1] * height,
-			           WAVEDRAW_THICCNESS);
+			           wavedraw_thiccness);
 		} else {
-			g.drawLine(DRAW_INLAY_LEFT + (i)*width,
+			g.drawLine(draw_inlay_left + (i)*width,
 			           mid - m_draw_values[i] * height,
-			           DRAW_INLAY_LEFT + (i + 1) * width,
+			           draw_inlay_left + (i + 1) * width,
 			           mid - m_draw_values[0] * height,
-			           WAVEDRAW_THICCNESS);
+			           wavedraw_thiccness);
 		}
 	}
 
@@ -83,16 +96,26 @@ void WavedrawDisplay::mouseInteraction() {
 	float x                    = mouse_pos.getX();
 	float y                    = mouse_pos.getY();
 
+	int draw_inlay_left = DRAW_INLAY_LEFT;
+	int draw_inlay_up = DRAW_INLAY_UP;
+	int draw_inlay_down = DRAW_INLAY_DOWN;
+
+	if(m_GUI_big){
+		draw_inlay_left = 5;
+		draw_inlay_up = 7;
+		draw_inlay_down = 5;
+	}
+
 	// clamp values
-	y = y < DRAW_INLAY_UP ? DRAW_INLAY_UP : y;
-	y = y > getHeight() - DRAW_INLAY_DOWN ? getHeight() - DRAW_INLAY_DOWN : y;
-	x = x > DRAW_INLAY_LEFT ? x : DRAW_INLAY_LEFT + 1;
+	y = y < draw_inlay_up ? draw_inlay_up : y;
+	y = y > getHeight() - draw_inlay_down ? getHeight() - draw_inlay_down : y;
+	x = x > draw_inlay_left ? x : draw_inlay_left + 1;
 	x = x < getWidth() - DRAW_INLAY_RIGHT ? x : getWidth() - DRAW_INLAY_RIGHT - 1;
 
-	float float_x = (x - DRAW_INLAY_LEFT) / (getWidth() - DRAW_INLAY_LEFT - DRAW_INLAY_RIGHT);
+	float float_x = (x - draw_inlay_left) / (getWidth() - draw_inlay_left - DRAW_INLAY_RIGHT);
 	int step_x    = (int)(floor(float_x * WAVEDRAW_STEPS_X));
 
-	float float_y = (y - DRAW_INLAY_UP) / (getHeight() - DRAW_INLAY_UP - DRAW_INLAY_DOWN);
+	float float_y = (y - draw_inlay_up) / (getHeight() - draw_inlay_up - draw_inlay_down);
 	float_y       = 2 * (0.5 - float_y);
 
 	if (m_mouse_was_down) {
@@ -130,4 +153,17 @@ void WavedrawDisplay::mouseUp(const MouseEvent &event) {
 
 float *WavedrawDisplay::getDrawnTable() {
 	return m_draw_values;
+}
+
+void WavedrawDisplay::setGUIBig(){
+	m_GUI_big = true;
+	m_glaspanel = ImageCache::getFromMemory(BinaryData::drawpanel_150_png, BinaryData::drawpanel_150_pngSize);
+
+	setSize(m_glaspanel.getWidth(), m_glaspanel.getHeight());
+}
+void WavedrawDisplay::setGUISmall(){
+	m_GUI_big = false;
+	m_glaspanel = ImageCache::getFromMemory(BinaryData::drawpanel_png, BinaryData::drawpanel_pngSize);
+
+	setSize(m_glaspanel.getWidth(), m_glaspanel.getHeight());
 }

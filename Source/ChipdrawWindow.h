@@ -52,7 +52,11 @@ public:
     repaint();
   }
   
+  void setGUIBig();
+  void setGUISmall();
 private:
+  bool m_GUI_big = false;
+
   bool m_mouse_was_down = false;
   int m_last_x_value;
   float m_last_y_value;

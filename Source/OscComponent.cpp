@@ -2150,6 +2150,9 @@ void OscComponent::setGUIBig() {
 	m_vec_b.setInlayLeft(1);
 	m_vec_c.setInlayLeft(1);
 	m_vec_d.setInlayLeft(1);
+	m_wavedraw.setGUIBig();
+	m_chipdraw.setGUIBig();
+	m_specdraw.setGUIBig();
 	setSize(OdinHelper::c150(247), OdinHelper::c150(145));
 }
 
@@ -2518,6 +2521,9 @@ void OscComponent::setGUISmall() {
 	m_vec_b.setInlayLeft(0);
 	m_vec_c.setInlayLeft(0);
 	m_vec_d.setInlayLeft(0);
+	m_wavedraw.setGUISmall();
+	m_chipdraw.setGUISmall();
+	m_specdraw.setGUISmall();
 
 	setSize(247, 145);
 }
