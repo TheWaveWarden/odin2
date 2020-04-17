@@ -1289,81 +1289,92 @@ void OscComponent::setOscTypeChiptune() {
 
 void OscComponent::setOscTypeFM() {
 	if (m_GUI_big) {
-	m_background = ImageCache::getFromMemory(BinaryData::fm_backdrop_150_png, BinaryData::fm_backdrop_150_pngSize);
+		m_background = ImageCache::getFromMemory(BinaryData::fm_backdrop_150_png, BinaryData::fm_backdrop_150_pngSize);
 	} else {
-	m_background = ImageCache::getFromMemory(BinaryData::fm_backdrop_png, BinaryData::fm_backdrop_pngSize);
+		m_background = ImageCache::getFromMemory(BinaryData::fm_backdrop_png, BinaryData::fm_backdrop_pngSize);
 	}
 	showFMComponents();
 }
 
 void OscComponent::setOscTypePM() {
 	if (m_GUI_big) {
-	m_background = ImageCache::getFromMemory(BinaryData::pm_backdrop_150_png, BinaryData::pm_backdrop_150_pngSize);
+		m_background = ImageCache::getFromMemory(BinaryData::pm_backdrop_150_png, BinaryData::pm_backdrop_150_pngSize);
 	} else {
-	m_background = ImageCache::getFromMemory(BinaryData::pm_backdrop_png, BinaryData::pm_backdrop_pngSize);
+		m_background = ImageCache::getFromMemory(BinaryData::pm_backdrop_png, BinaryData::pm_backdrop_pngSize);
 	}
 	showPMComponents();
 }
 
 void OscComponent::setOscTypeChipdraw() {
 	if (m_GUI_big) {
-	m_background = ImageCache::getFromMemory(BinaryData::chipdraw_backdrop_150_png, BinaryData::chipdraw_backdrop_150_pngSize);
+		m_background =
+		    ImageCache::getFromMemory(BinaryData::chipdraw_backdrop_150_png, BinaryData::chipdraw_backdrop_150_pngSize);
 	} else {
-	m_background = ImageCache::getFromMemory(BinaryData::chipdraw_backdrop_png, BinaryData::chipdraw_backdrop_pngSize);
+		m_background =
+		    ImageCache::getFromMemory(BinaryData::chipdraw_backdrop_png, BinaryData::chipdraw_backdrop_pngSize);
 	}
 	showChipdrawComponents();
 }
 
 void OscComponent::setOscTypeWavedraw() {
 	if (m_GUI_big) {
-	m_background = ImageCache::getFromMemory(BinaryData::wavedraw_backdrop_150_png, BinaryData::wavedraw_backdrop_150_pngSize);
+		m_background =
+		    ImageCache::getFromMemory(BinaryData::wavedraw_backdrop_150_png, BinaryData::wavedraw_backdrop_150_pngSize);
 	} else {
-	m_background = ImageCache::getFromMemory(BinaryData::wavedraw_backdrop_png, BinaryData::wavedraw_backdrop_pngSize);
+		m_background =
+		    ImageCache::getFromMemory(BinaryData::wavedraw_backdrop_png, BinaryData::wavedraw_backdrop_pngSize);
 	}
 	showWavedrawComponents();
 }
 
 void OscComponent::setOscTypeSpecdraw() {
 	if (m_GUI_big) {
-	m_background = ImageCache::getFromMemory(BinaryData::specdraw_backdrop_150_png, BinaryData::specdraw_backdrop_150_pngSize);
+		m_background =
+		    ImageCache::getFromMemory(BinaryData::specdraw_backdrop_150_png, BinaryData::specdraw_backdrop_150_pngSize);
 	} else {
-	m_background = ImageCache::getFromMemory(BinaryData::specdraw_backdrop_png, BinaryData::specdraw_backdrop_pngSize);
+		m_background =
+		    ImageCache::getFromMemory(BinaryData::specdraw_backdrop_png, BinaryData::specdraw_backdrop_pngSize);
 	}
 	showSpecdrawComponents();
 }
 
 void OscComponent::setOscTypeNoise() {
 	if (m_GUI_big) {
-	m_background = ImageCache::getFromMemory(BinaryData::noise_backdrop_150_png, BinaryData::noise_backdrop_150_pngSize);
+		m_background =
+		    ImageCache::getFromMemory(BinaryData::noise_backdrop_150_png, BinaryData::noise_backdrop_150_pngSize);
 	} else {
-	m_background = ImageCache::getFromMemory(BinaryData::noise_backdrop_png, BinaryData::noise_backdrop_pngSize);
+		m_background = ImageCache::getFromMemory(BinaryData::noise_backdrop_png, BinaryData::noise_backdrop_pngSize);
 	}
 	showNoiseComponents();
 }
 
 void OscComponent::setOscTypeVector() {
 	if (m_GUI_big) {
-	m_background = ImageCache::getFromMemory(BinaryData::vector_backdrop_150_png, BinaryData::vector_backdrop_150_pngSize);
+		m_background =
+		    ImageCache::getFromMemory(BinaryData::vector_backdrop_150_png, BinaryData::vector_backdrop_150_pngSize);
 	} else {
-	m_background = ImageCache::getFromMemory(BinaryData::vector_backdrop_png, BinaryData::vector_backdrop_pngSize);
+		m_background = ImageCache::getFromMemory(BinaryData::vector_backdrop_png, BinaryData::vector_backdrop_pngSize);
 	}
 	showVectorComponents();
 }
 
 void OscComponent::setOscTypeWavetable() {
 	if (m_GUI_big) {
-	m_background =	    ImageCache::getFromMemory(BinaryData::wavetable_backdrop_150_png, BinaryData::wavetable_backdrop_150_pngSize);
+		m_background = ImageCache::getFromMemory(BinaryData::wavetable_backdrop_150_png,
+		                                         BinaryData::wavetable_backdrop_150_pngSize);
 	} else {
-	m_background =	    ImageCache::getFromMemory(BinaryData::wavetable_backdrop_png, BinaryData::wavetable_backdrop_pngSize);
+		m_background =
+		    ImageCache::getFromMemory(BinaryData::wavetable_backdrop_png, BinaryData::wavetable_backdrop_pngSize);
 	}
 	showWavetableComponents();
 }
 
 void OscComponent::setOscTypeMulti() {
 	if (m_GUI_big) {
-	m_background = ImageCache::getFromMemory(BinaryData::multi_backdrop_150_png, BinaryData::multi_backdrop_150_pngSize);
+		m_background =
+		    ImageCache::getFromMemory(BinaryData::multi_backdrop_150_png, BinaryData::multi_backdrop_150_pngSize);
 	} else {
-	m_background = ImageCache::getFromMemory(BinaryData::multi_backdrop_png, BinaryData::multi_backdrop_pngSize);
+		m_background = ImageCache::getFromMemory(BinaryData::multi_backdrop_png, BinaryData::multi_backdrop_pngSize);
 	}
 	showMultiComponents();
 }
@@ -1779,7 +1790,7 @@ void OscComponent::setGUIBig() {
 
 	m_LED_saw.setImages(&LED_draw2, &LED_draw2, &LED_draw2, &LED_draw2, &LED_draw1, &LED_draw1, &LED_draw1);
 	m_LED_saw.setBounds(OdinHelper::c150(LED_POS_X),
-	                    OdinHelper::c150(LED_POS_Y) - LED_1.getHeight() - 1 ,
+	                    OdinHelper::c150(LED_POS_Y) - LED_1.getHeight() - 1,
 	                    LED_1.getWidth(),
 	                    LED_1.getHeight());
 
@@ -2131,7 +2142,14 @@ void OscComponent::setGUIBig() {
 	                  OdinHelper::c150(BLACK_KNOB_BIG_SIZE_Y));
 
 	m_xy.setGUIBig();
-
+	m_vec_a.setGUIBig();
+	m_vec_b.setGUIBig();
+	m_vec_c.setGUIBig();
+	m_vec_d.setGUIBig();
+	m_vec_a.setInlayLeft(1);
+	m_vec_b.setInlayLeft(1);
+	m_vec_c.setInlayLeft(1);
+	m_vec_d.setInlayLeft(1);
 	setSize(OdinHelper::c150(247), OdinHelper::c150(145));
 }
 
@@ -2492,6 +2510,14 @@ void OscComponent::setGUISmall() {
 	                  BLACK_KNOB_BIG_SIZE_X,
 	                  BLACK_KNOB_BIG_SIZE_Y);
 	m_xy.setGUISmall();
+	m_vec_a.setGUISmall();
+	m_vec_b.setGUISmall();
+	m_vec_c.setGUISmall();
+	m_vec_d.setGUISmall();
+	m_vec_a.setInlayLeft(0);
+	m_vec_b.setInlayLeft(0);
+	m_vec_c.setInlayLeft(0);
+	m_vec_d.setInlayLeft(0);
 
 	setSize(247, 145);
 }

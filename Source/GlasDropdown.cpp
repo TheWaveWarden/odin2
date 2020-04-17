@@ -31,7 +31,7 @@ void GlasDropdown::paint(Graphics &g) {
 		g.setColour(m_color);
 	}
 	juce::Point<int> top_left = getLocalBounds().getTopLeft();
-	top_left.addXY(m_inlay, m_inlay - m_inlay_top);
+	top_left.addXY(m_inlay + m_inlay_left, m_inlay - m_inlay_top);
 	juce::Point<int> bottom_right = getLocalBounds().getBottomRight();
 	bottom_right.addXY(-m_inlay - 1, -m_inlay);
 	g.fillRect(juce::Rectangle<int>(top_left, bottom_right)); //
