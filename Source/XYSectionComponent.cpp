@@ -102,6 +102,8 @@ void XYSectionComponent::setGUIBig(){
 	juce::Image logo =
 	    ImageCache::getFromMemory(BinaryData::WW_logo_xy_150_png, BinaryData::WW_logo_xy_150_pngSize);
 	m_xy_pad.setLogoImage(logo);	
+
+	m_xy_pad.setGUIBig();
 }
 
 void XYSectionComponent::setGUISmall(){
@@ -134,4 +136,6 @@ void XYSectionComponent::setGUISmall(){
 	juce::Image logo =
 	    ImageCache::getFromMemory(BinaryData::WW_logo_xy_png, BinaryData::WW_logo_xy_pngSize);
 	m_xy_pad.setLogoImage(logo);
+
+	m_xy_pad.setGUISmall();
 }

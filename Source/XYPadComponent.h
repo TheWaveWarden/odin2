@@ -63,8 +63,11 @@ public:
 		m_draw_logo = true;
 	}
 
-private:
+	void setGUIBig(){m_GUI_big = true;}
+	void setGUISmall(){m_GUI_big = false;}
 
+private:
+	bool m_GUI_big = false;
 
 	bool m_draw_logo = false;
 

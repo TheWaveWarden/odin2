@@ -14,7 +14,7 @@
 //==============================================================================
 XYPadComponent::XYPadComponent(Knob &p_x, Knob &p_y, bool p_vector_pad) :
     m_knob_x(p_x), m_knob_y(p_y), m_vector_pad(p_vector_pad) {
-	m_color = juce::Colour(30,30,30);
+	m_color = juce::Colour(30, 30, 30);
 }
 
 XYPadComponent::~XYPadComponent() {
@@ -25,37 +25,66 @@ void XYPadComponent::paint(Graphics &g) {
 
 	g.setColour(m_color);
 	juce::Point<int> top_left = getLocalBounds().getTopLeft();
-	top_left.addXY(m_inlay + 1, m_inlay);
+	if (m_GUI_big) {
+		top_left.addXY(m_inlay + 2, m_inlay);
+	} else {
+		top_left.addXY(m_inlay + 1, m_inlay);
+	}
 	juce::Point<int> bottom_right = getLocalBounds().getBottomRight();
 	bottom_right.addXY(-m_inlay, -m_inlay);
 	g.fillRect(juce::Rectangle<int>(top_left, bottom_right)); //
 
-	if(m_draw_logo){
+	if (m_draw_logo) {
 		g.drawImageAt(m_logo, 0, -5);
 	}
 
 	if (m_vector_pad) {
 		g.setColour(juce::Colours::lightgrey);
-		g.setFont(12.0f);
-		g.drawText("A", VECTOR_LEFT, VECTOR_DOWN, 8, 15, Justification::topLeft);
-		g.drawText("B", VECTOR_LEFT, VECTOR_UP, 8, 15, Justification::topLeft);
-		g.drawText("C", VECTOR_RIGHT, VECTOR_UP, 8, 15, Justification::topLeft);
-		g.drawText("D", VECTOR_RIGHT, VECTOR_DOWN, 8, 15, Justification::topLeft);
+		if (m_GUI_big) {
+			g.setFont(18.0f);
+			g.drawText(
+			    "A", OdinHelper::c150(VECTOR_LEFT)+1, OdinHelper::c150(VECTOR_DOWN), 12, 23, Justification::topLeft);
+			g.drawText("B", OdinHelper::c150(VECTOR_LEFT)+1, OdinHelper::c150(VECTOR_UP), 12, 23, Justification::topLeft);
+			g.drawText("C", OdinHelper::c150(VECTOR_RIGHT), OdinHelper::c150(VECTOR_UP), 12, 23, Justification::topLeft);
+			g.drawText(
+			    "D", OdinHelper::c150(VECTOR_RIGHT), OdinHelper::c150(VECTOR_DOWN), 12, 23, Justification::topLeft);
+		} else {
+			g.setFont(12.0f);
+			g.drawText("A", VECTOR_LEFT, VECTOR_DOWN, 8, 15, Justification::topLeft);
+			g.drawText("B", VECTOR_LEFT, VECTOR_UP, 8, 15, Justification::topLeft);
+			g.drawText("C", VECTOR_RIGHT, VECTOR_UP, 8, 15, Justification::topLeft);
+			g.drawText("D", VECTOR_RIGHT, VECTOR_DOWN, 8, 15, Justification::topLeft);
+		}
 	}
 
-	float x_handle = HANDLE_INLAY + m_value_x * (getWidth() - HANDLE_DIAMETER - 2 * HANDLE_INLAY);
+	int handle_inlay    = HANDLE_INLAY;
+	int handle_diameter = HANDLE_DIAMETER;
+	if (m_GUI_big) {
+		//handle_inlay *= 1.5f;
+		handle_diameter = 10;
+	}
+
+	float x_handle = handle_inlay + m_value_x * (getWidth() - handle_diameter - 2 * handle_inlay);
+	if (m_GUI_big) {
+		++x_handle;
+	}
 	float y_handle =
-	    getHeight() - HANDLE_DIAMETER - (HANDLE_INLAY + m_value_y * (getHeight() - HANDLE_DIAMETER - 2 * HANDLE_INLAY));
+	    getHeight() - handle_diameter - (handle_inlay + m_value_y * (getHeight() - handle_diameter - 2 * handle_inlay));
 	if (!m_vector_pad) {
-	 	//g.setColour(Colour(0, 10, 30));
+		//g.setColour(Colour(0, 10, 30));
 		g.setColour(Colour(60, 90, 120));
-	 	g.drawLine(m_inlay, y_handle + HANDLE_DIAMETER / 2, getWidth() - m_inlay, y_handle + HANDLE_DIAMETER / 2);
-	 	g.drawLine(x_handle + HANDLE_DIAMETER / 2, m_inlay, x_handle + HANDLE_DIAMETER / 2, getHeight() - m_inlay);
-		g.setColour(Colours::black);
-		g.fillEllipse(x_handle - 2, y_handle - 2, HANDLE_DIAMETER + 4, HANDLE_DIAMETER + 4);
+		if (!m_GUI_big) {
+			g.drawLine(m_inlay, y_handle + handle_diameter / 2, getWidth() - m_inlay, y_handle + handle_diameter / 2);
+		} else {
+			g.drawLine(
+			    m_inlay + 2, y_handle + handle_diameter / 2, getWidth() - m_inlay, y_handle + handle_diameter / 2);
+		}
+		g.drawLine(x_handle + handle_diameter / 2, m_inlay, x_handle + handle_diameter / 2, getHeight() - m_inlay);
+		g.setColour(Colour(20, 105, 129));
+		g.fillEllipse(x_handle - 1, y_handle - 1, handle_diameter + 2, handle_diameter + 2);
 	}
 	g.setColour(Colours::white);
-	g.fillEllipse(x_handle, y_handle, HANDLE_DIAMETER, HANDLE_DIAMETER);
+	g.fillEllipse(x_handle, y_handle, handle_diameter, handle_diameter);
 
 	g.drawImageAt(m_panel, 0, 0);
 }
@@ -71,13 +100,21 @@ void XYPadComponent::mouseDown(const MouseEvent &event) {
 
 void XYPadComponent::mouseInteraction() {
 	juce::Point<int> mouse_pos = getMouseXYRelative();
-	m_value_x                  = (float)(mouse_pos.getX() - HANDLE_INLAY - HANDLE_DIAMETER / 2) /
-	            (float)(getWidth() - HANDLE_DIAMETER - 2 * HANDLE_INLAY);
+
+	int handle_inlay    = HANDLE_INLAY;
+	int handle_diameter = HANDLE_DIAMETER;
+	if (m_GUI_big) {
+		//handle_inlay *= 1.5f;
+		handle_diameter *= 1.5f;
+	}
+
+	m_value_x = (float)(mouse_pos.getX() - handle_inlay - handle_diameter / 2) /
+	            (float)(getWidth() - handle_diameter - 2 * handle_inlay);
 	m_value_x = m_value_x < 0 ? 0 : m_value_x;
 	m_value_x = m_value_x > 1 ? 1 : m_value_x;
 
-	m_value_y = (float)(mouse_pos.getY() + HANDLE_DIAMETER / 2 - getHeight() + HANDLE_INLAY) /
-	            ((float)(2 * HANDLE_INLAY + HANDLE_DIAMETER - getHeight()));
+	m_value_y = (float)(mouse_pos.getY() + handle_diameter / 2 - getHeight() + handle_inlay) /
+	            ((float)(2 * handle_inlay + handle_diameter - getHeight()));
 	m_value_y = m_value_y < 0 ? 0 : m_value_y;
 	m_value_y = m_value_y > 1 ? 1 : m_value_y;
 

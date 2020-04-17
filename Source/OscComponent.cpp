@@ -2130,6 +2130,8 @@ void OscComponent::setGUIBig() {
 	                  OdinHelper::c150(BLACK_KNOB_BIG_SIZE_X),
 	                  OdinHelper::c150(BLACK_KNOB_BIG_SIZE_Y));
 
+	m_xy.setGUIBig();
+
 	setSize(OdinHelper::c150(247), OdinHelper::c150(145));
 }
 
@@ -2489,6 +2491,7 @@ void OscComponent::setGUISmall() {
 	                  DRIFT_POS_Y - BLACK_KNOB_BIG_OFFSET_Y,
 	                  BLACK_KNOB_BIG_SIZE_X,
 	                  BLACK_KNOB_BIG_SIZE_Y);
+	m_xy.setGUISmall();
 
 	setSize(247, 145);
 }
