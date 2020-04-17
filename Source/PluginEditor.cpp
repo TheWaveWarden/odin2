@@ -122,10 +122,10 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	m_filter_dropdown_menu.addItem(FILTER_TYPE_HP24, "Highpass 24");
 	m_filter_dropdown_menu.addItem(FILTER_TYPE_HP12, "Highpass 12");
 	m_filter_dropdown_menu.addSeparator();
-	m_filter_dropdown_menu.addItem(FILTER_TYPE_SEM12, "Oberheim 12");
+	m_filter_dropdown_menu.addItem(FILTER_TYPE_SEM12, "OB-12");
 	m_filter_dropdown_menu.addItem(FILTER_TYPE_DIODE, "Diode Ladder");
-	m_filter_dropdown_menu.addItem(FILTER_TYPE_KORG_LP, "Korg 35 LP");
-	m_filter_dropdown_menu.addItem(FILTER_TYPE_KORG_HP, "Korg 35 HP");
+	m_filter_dropdown_menu.addItem(FILTER_TYPE_KORG_LP, "KO-35 LP");
+	m_filter_dropdown_menu.addItem(FILTER_TYPE_KORG_HP, "KO-35 HP");
 	m_filter_dropdown_menu.addSeparator();
 	m_filter_dropdown_menu.addItem(FILTER_TYPE_COMB, "Comb Filter");
 	m_filter_dropdown_menu.addItem(FILTER_TYPE_FORMANT, "Formant Filter");
@@ -741,7 +741,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 		m_value_tree.state.getChildWithName("misc").setProperty(
 		    "env_left_selected", (int)m_env_13_button.getToggleState(), nullptr);
 	};
-	m_env_13_button.setTooltip("Shows the amplifier\nenvelope or envelope 3");
+	m_env_13_button.setTooltip("Shows the amplifier\nenvelope or the mod envelope");
 	addAndMakeVisible(m_env_13_button);
 	m_env_13_button.disableMidiLearn();
 
@@ -758,7 +758,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 		m_value_tree.state.getChildWithName("misc").setProperty(
 		    "env_right_selected", (int)m_env_24_button.getToggleState(), nullptr);
 	};
-	m_env_24_button.setTooltip("Shows the filter\nenvelope or envelope 4");
+	m_env_24_button.setTooltip("Shows the filter\nenvelope or global envelope");
 	addAndMakeVisible(m_env_24_button);
 	m_env_24_button.disableMidiLearn();
 
@@ -775,7 +775,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 		m_value_tree.state.getChildWithName("lfo").setProperty(
 		    "lfo_left_selected", (int)m_lfo_13_button.getToggleState(), nullptr);
 	};
-	m_lfo_13_button.setTooltip("Shows LFO 1 or LFO 3");
+	m_lfo_13_button.setTooltip("Shows LFO 1 or LFO 2");
 	addAndMakeVisible(m_lfo_13_button);
 	m_lfo_13_button.disableMidiLearn();
 
@@ -792,7 +792,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 		m_value_tree.state.getChildWithName("lfo").setProperty(
 		    "lfo_right_selected", (int)m_lfo_24_button.getToggleState(), nullptr);
 	};
-	m_lfo_24_button.setTooltip("Shows LFO 2 or LFO 4");
+	m_lfo_24_button.setTooltip("Shows LFO 3 or the global LFO");
 	m_lfo_24_button.disableMidiLearn();
 
 	addAndMakeVisible(m_lfo_24_button);
@@ -1475,6 +1475,7 @@ void OdinAudioProcessorEditor::setGUISizeBig(bool p_big) {
 		m_flanger.setGUIBig();
 		m_fx_buttons_section.setGUIBig();
 		m_mod_matrix.setGUIBig();
+		m_save_load.setGUIBig();
 		setGUIBig();
 	} else {
 		g_GUI_big = false;
@@ -1500,6 +1501,7 @@ void OdinAudioProcessorEditor::setGUISizeBig(bool p_big) {
 		m_flanger.setGUISmall();
 		m_fx_buttons_section.setGUISmall();
 		m_mod_matrix.setGUISmall();
+		m_save_load.setGUISmall();
 		setGUISmall();
 	}
 

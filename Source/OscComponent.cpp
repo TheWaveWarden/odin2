@@ -1538,7 +1538,12 @@ void OscComponent::showWavetableComponents() {
 	showVolComponent();
 	showPitchComponents();
 	m_wavetable_waveselector.setColor(WAVETABLE_DROPDOWN_COLOR);
-	m_wavetable_waveselector.setTopLeftPosition(WAVETABLE_WAVE_X, WAVETABLE_WAVE_Y);
+	if (m_GUI_big) {
+		m_wavetable_waveselector.setTopLeftPosition(OdinHelper::c150(WAVETABLE_WAVE_X),
+		                                            OdinHelper::c150(WAVETABLE_WAVE_Y));
+	} else {
+		m_wavetable_waveselector.setTopLeftPosition(WAVETABLE_WAVE_X, WAVETABLE_WAVE_Y);
+	}
 	m_position.setVisible(true);
 	m_wavetable_waveselector.setVisible(true);
 	m_sync.setVisible(true);
@@ -1554,8 +1559,11 @@ void OscComponent::showMultiComponents() {
 	m_detune.setVisible(true);
 
 	m_wavetable_waveselector.setColor(MULTI_DROPDOWN_COLOR);
-
-	m_wavetable_waveselector.setTopLeftPosition(MULTI_WAVE_X, MULTI_WAVE_Y);
+	if (m_GUI_big) {
+		m_wavetable_waveselector.setTopLeftPosition(OdinHelper::c150(MULTI_WAVE_X), OdinHelper::c150(MULTI_WAVE_Y));
+	} else {
+		m_wavetable_waveselector.setTopLeftPosition(MULTI_WAVE_X, MULTI_WAVE_Y);
+	}
 	m_wavetable_waveselector.setVisible(true);
 }
 
@@ -2048,7 +2056,7 @@ void OscComponent::setGUIBig() {
 	m_modulator_waveselector.setTopLeftPosition(OdinHelper::c150(WAVE_MODULATOR_POS_X),
 	                                            OdinHelper::c150(WAVE_MODULATOR_POS_Y));
 	m_carrier_ratio.setTopLeftPosition(OdinHelper::c150(RATIO_CARRIER_POS_X), OdinHelper::c150(RATIO_CARRIER_POS_Y));
-	m_modulator_ratio.setTopLeftPosition(OdinHelper::c150(RATIO_MODULATOR_POS_X),
+	m_modulator_ratio.setTopLeftPosition(OdinHelper::c150(RATIO_MODULATOR_POS_X-1),
 	                                     OdinHelper::c150(RATIO_MODULATOR_POS_Y));
 
 	juce::Image fm_exp_left =
@@ -2153,6 +2161,13 @@ void OscComponent::setGUIBig() {
 	m_wavedraw.setGUIBig();
 	m_chipdraw.setGUIBig();
 	m_specdraw.setGUIBig();
+	m_chiptune_waveselector.setGUIBig();
+	m_carrier_waveselector.setGUIBig();
+	m_modulator_waveselector.setGUIBig();
+	m_wavetable_waveselector.setGUIBig();
+	m_modulation_source.setGUIBig();
+	m_carrier_ratio.setGUIBig();
+  	m_modulator_ratio.setGUIBig();
 	setSize(OdinHelper::c150(247), OdinHelper::c150(145));
 }
 
@@ -2524,6 +2539,12 @@ void OscComponent::setGUISmall() {
 	m_wavedraw.setGUISmall();
 	m_chipdraw.setGUISmall();
 	m_specdraw.setGUISmall();
-
+	m_chiptune_waveselector.setGUISmall();
+	m_carrier_waveselector.setGUISmall();
+	m_modulator_waveselector.setGUISmall();
+	m_wavetable_waveselector.setGUISmall();
+	m_modulation_source.setGUISmall();
+	m_carrier_ratio.setGUISmall();
+  	m_modulator_ratio.setGUISmall();
 	setSize(247, 145);
 }

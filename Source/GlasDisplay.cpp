@@ -27,7 +27,7 @@ void GlasDisplay::paint(Graphics &g) {
 
 	g.setColour(m_color);
 	juce::Point<int> top_left = getLocalBounds().getTopLeft();
-	top_left.addXY(m_inlay + 1, m_inlay);
+	top_left.addXY(m_inlay + 1, m_inlay  + m_inlay_top);
 	juce::Point<int> bottom_right = getLocalBounds().getBottomRight();
 	bottom_right.addXY(-m_inlay, -m_inlay);
 	g.fillRect(juce::Rectangle<int>(top_left, bottom_right)); //pmai
@@ -35,8 +35,14 @@ void GlasDisplay::paint(Graphics &g) {
 	Font current_font = g.getCurrentFont();
 	current_font.setStyleFlags(1); //bold
 	g.setFont(current_font);
-	g.setFont(12.0f);
-	g.drawText(m_text, getLocalBounds(), Justification::centred,
+	if (m_GUI_big) {
+		g.setFont(18.0f);
+	} else {
+		g.setFont(12.0f);
+	}
+	juce::Rectangle<int> text_area = getLocalBounds();
+	text_area.setY(text_area.getY() + m_text_offset_top);
+	g.drawText(m_text, text_area, Justification::centred,
 	           true); // draw some placeholder text
 
 	g.drawImageAt(m_glas_panel, 0, 0);

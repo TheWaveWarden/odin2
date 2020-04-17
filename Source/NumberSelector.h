@@ -60,8 +60,12 @@ public:
   void setMouseDragDivisor(float p_divisor) {
     m_mouse_drag_divisor = p_divisor;
   }
-
+  void setGUIBig();
+  void setGUISmall();
 protected:
+  bool m_GUI_big = false;
+
+
   float m_mouse_drag_divisor = 7.f;
   int mouse_reference_value = 0;
   int m_drag_initial_value = 0;

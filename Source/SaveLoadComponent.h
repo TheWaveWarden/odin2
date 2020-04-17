@@ -44,7 +44,12 @@ public:
     m_patch.setText(m_value_tree.state.getChildWithName("misc")["patch_name"].toString().toStdString());
   }
 
+  void setGUIBig();
+  void setGUISmall();
+
 private:
+
+  bool m_GUI_big = false;
 
   bool checkForBiggerVersion(FileInputStream &p_file_stream, std::string &p_version_string);
   bool checkForSmallerVersion(FileInputStream &p_file_stream, std::string &p_version_string);

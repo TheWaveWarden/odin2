@@ -619,6 +619,9 @@ void FilterComponent::setGUIBig() {
 	                            comb_plus.getWidth(),
 	                            comb_plus.getHeight());
 
+	m_vowel_left.setGUIBig();
+	m_vowel_right.setGUIBig();
+
 	forceValueTreeOntoComponents(m_value_tree.state, std::stoi(m_filter_number));
 }
 void FilterComponent::setGUISmall() {
@@ -678,6 +681,9 @@ void FilterComponent::setGUISmall() {
 	m_comb_plus_minus.setImage(comb_plus, 1);
 	m_comb_plus_minus.setImage(comb_minus, 2);
 	m_comb_plus_minus.setBounds(COMB_PLUS_POS_X, COMB_PLUS_POS_Y, comb_plus.getWidth(), comb_plus.getHeight());
+
+	m_vowel_left.setGUISmall();
+	m_vowel_right.setGUISmall();
 
 	forceValueTreeOntoComponents(m_value_tree.state, std::stoi(m_filter_number));
 }

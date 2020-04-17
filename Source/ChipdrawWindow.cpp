@@ -93,6 +93,7 @@ void ChipdrawWindow::mouseInteraction() {
 		draw_inlay_left = 4;
 		draw_inlay_up = 7;
 		draw_inlay_down = 5;
+		draw_inlay_right = 1;
 	}
 
 	// get Mouse data
