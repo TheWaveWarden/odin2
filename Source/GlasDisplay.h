@@ -61,9 +61,11 @@ public:
 
 	void setGUIBig() {
 		m_GUI_big = true;
+		m_menu_feels.setGUIBig();
 	}
 	void setGUISmall() {
 		m_GUI_big = false;
+		m_menu_feels.setGUISmall();
 	}
 
 private:

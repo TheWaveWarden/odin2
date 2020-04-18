@@ -35,7 +35,7 @@ void ModAmountComponent::paint(Graphics &g) {
 
 	if (m_value > 0) {
 		g.setColour(m_color_bar);
-		bottom_right.addXY(-(getWidth() - m_inlay * 2 + 5) * (1.f - m_value), -m_inlay);
+		bottom_right.addXY(-(getWidth() - m_inlay * 2) * (1.f - m_value), -m_inlay);
 		g.fillRect(juce::Rectangle<int>(top_left, bottom_right));
 	} else if (m_value < 0) {
 		g.setColour(m_color_bar_negative);

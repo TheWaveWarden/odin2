@@ -936,6 +936,9 @@ void ModMatrixComponent::paint(Graphics &g) {
 	g.setColour(m_color);
 	auto background = getLocalBounds();
 	background.removeFromRight(19);
+	if(m_GUI_big){
+		background.removeFromBottom(20);
+	}
 	g.fillRect(background);
 }
 
@@ -1132,7 +1135,7 @@ void ModMatrixComponent::setGUIBig(){
 	m_big_panel_width_left   = glas_left_down.getWidth();
 	m_big_panel_width_mid   = glas_mid_down.getWidth();
 	m_big_panel_width_right   = glas_right_down.getWidth();
-	m_panel_height      = glas_left_down.getHeight();
+	m_panel_height      = glas_mid_mid.getHeight();
 
 	juce::Image clear_1 = ImageCache::getFromMemory(BinaryData::buttonclear_1_150_png, BinaryData::buttonclear_1_150_pngSize);
 	juce::Image clear_2 = ImageCache::getFromMemory(BinaryData::buttonclear_2_150_png, BinaryData::buttonclear_2_150_pngSize);

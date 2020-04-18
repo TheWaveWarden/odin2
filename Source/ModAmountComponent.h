@@ -72,8 +72,8 @@ public:
 
 	void setGUIBig() {
 		m_GUI_big      = true;
-		m_inlay_top    = 2;
-		m_inlay_bottom = 1;
+		m_inlay_top    = 1;
+		m_inlay_bottom = 0;
 	}
 	void setGUISmall() {
 		m_GUI_big      = false;

@@ -2168,6 +2168,7 @@ void OscComponent::setGUIBig() {
 	m_modulation_source.setGUIBig();
 	m_carrier_ratio.setGUIBig();
   	m_modulator_ratio.setGUIBig();
+	m_menu_feels.setGUIBig();
 	setSize(OdinHelper::c150(247), OdinHelper::c150(145));
 }
 
@@ -2546,5 +2547,6 @@ void OscComponent::setGUISmall() {
 	m_modulation_source.setGUISmall();
 	m_carrier_ratio.setGUISmall();
   	m_modulator_ratio.setGUISmall();
+	m_menu_feels.setGUISmall();
 	setSize(247, 145);
 }

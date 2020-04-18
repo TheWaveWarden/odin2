@@ -93,6 +93,7 @@ public:
 		g.fillRect(body); // pmai
 		g.setColour(Colour(50, 50, 50));
 		g.drawRect(body); // pmai
+		g.setFont(30.f);
 	}
 	int getSliderPopupPlacement(Slider &slider) {
 		return 2;
@@ -101,7 +102,7 @@ public:
 
 class Knob : public juce::Slider, public OdinMidiLearnBase {
 public:
-	Knob() : m_label("henlo", "texttt") {
+	Knob() {
 		setLookAndFeel(&m_knob_feels);
 		setRange(0, 1);
 
@@ -210,7 +211,7 @@ public:
 			m_midi_learn_left_offset = WHEEL_LEFT_OFFSET;
 			break;
 		default:
-			DBG("FOUND UNKNOWN KNOB WIDTH " + std::to_string(width) + "px in Knob::setBounds()");
+			DBG("Unknown knob width " + std::to_string(width) + "px in Knob::setBounds()");
 			break;
 		}
 		Slider::setBounds(x, y, width, height);
@@ -274,5 +275,5 @@ private:
 
 	KnobFeels m_knob_feels;
 
-	Label m_label;
+	//Label m_label;
 };

@@ -1476,6 +1476,7 @@ void OdinAudioProcessorEditor::setGUISizeBig(bool p_big) {
 		m_fx_buttons_section.setGUIBig();
 		m_mod_matrix.setGUIBig();
 		m_save_load.setGUIBig();
+		m_menu_feels.setGUIBig();
 		setGUIBig();
 	} else {
 		g_GUI_big = false;
@@ -1502,8 +1503,10 @@ void OdinAudioProcessorEditor::setGUISizeBig(bool p_big) {
 		m_fx_buttons_section.setGUISmall();
 		m_mod_matrix.setGUISmall();
 		m_save_load.setGUISmall();
+		m_menu_feels.setGUISmall();
 		setGUISmall();
 	}
+
 
 	repaint();
 }
