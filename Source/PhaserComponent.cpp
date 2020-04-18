@@ -305,6 +305,7 @@ void PhaserComponent::setGUIBig() {
 	m_background_sync = ImageCache::getFromMemory(BinaryData::phasersync_150_png, BinaryData::phasersync_150_pngSize);
 	m_background_no_sync =
 	    ImageCache::getFromMemory(BinaryData::phasernosync_150_png, BinaryData::phasernosync_150_pngSize);
+	m_sync_time.setGUIBig();
 
 	forceValueTreeOntoComponents(m_value_tree.state);
 }
@@ -377,5 +378,6 @@ void PhaserComponent::setGUISmall() {
 	m_background_sync    = ImageCache::getFromMemory(BinaryData::phasersync_png, BinaryData::phasersync_pngSize);
 	m_background_no_sync = ImageCache::getFromMemory(BinaryData::phasernosync_png, BinaryData::phasernosync_pngSize);
 
+	m_sync_time.setGUISmall();
 	forceValueTreeOntoComponents(m_value_tree.state);
 }

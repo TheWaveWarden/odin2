@@ -65,7 +65,11 @@ void ModAmountComponent::paint(Graphics &g) {
 }
 
 void ModAmountComponent::mouseDrag(const MouseEvent &event) {
-	m_value = m_drag_start_value + (m_drag_start_y - getMouseXYRelative().getY()) * DRAG_SCALAR;
+	float drag_scalar = DRAG_SCALAR;
+	if(m_GUI_big){
+		drag_scalar *= 0.66f;
+	}
+	m_value = m_drag_start_value + (m_drag_start_y - getMouseXYRelative().getY()) * drag_scalar;
 	m_value = m_value > 1 ? 1 : m_value;
 	m_value = m_value < -1 ? -1 : m_value;
 	onValueChange(m_value);

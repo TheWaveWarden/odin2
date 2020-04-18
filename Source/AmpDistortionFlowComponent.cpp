@@ -386,6 +386,10 @@ juce::Image flow_left_1 = ImageCache::getFromMemory(BinaryData::buttonleft_1_150
 	                    OdinHelper::c150(ROUND_KNOB_SIZE_X),
 	                    OdinHelper::c150(ROUND_KNOB_SIZE_Y));
 
+	m_distortion_algo.setGUIBig();
+
+	m_distortion_image = ImageCache::getFromMemory(BinaryData::distortion_on_150_png, BinaryData::distortion_on_150_pngSize);
+
 	forceValueTreeOntoComponents(m_value_tree.state);
 }
 void AmpDistortionFlowComponent::setGUISmall(){
@@ -514,6 +518,9 @@ void AmpDistortionFlowComponent::setGUISmall(){
 	                    THRESHOLD_POS_Y - ROUND_KNOB_OFFSET_Y,
 	                    ROUND_KNOB_SIZE_X,
 	                    ROUND_KNOB_SIZE_Y);
+
+	m_distortion_algo.setGUISmall();
+	m_distortion_image = ImageCache::getFromMemory(BinaryData::distortion_on_png, BinaryData::distortion_on_pngSize);
 
 	forceValueTreeOntoComponents(m_value_tree.state);
 }

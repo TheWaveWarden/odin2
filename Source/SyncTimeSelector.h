@@ -53,7 +53,14 @@ public:
   void setTooltip(const String p_text) { m_display.setTooltip(p_text); }
 
   std::function<void(int, int)> OnValueChange = [](int,int){};
+
+  void setGUIBig();
+  void setGUISmall();
+
 private:
+
+  bool m_GUI_big = false;
+
   void updateDisplay() {
     m_display.setText(m_left_values[m_value_left] + "/" +
                       m_right_values[m_value_right]);

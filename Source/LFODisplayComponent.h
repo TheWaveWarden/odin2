@@ -38,11 +38,28 @@ public:
   std::function<void(const MouseEvent&)> toParentMouseDrag = [](const MouseEvent&){};
   std::function<void(const MouseEvent&)> toParentMouseUp = [](const MouseEvent&){};
 
+  void clearWaves(){
+    m_waves.clear();
+  }
+
+  void setInlayTop(int p_inlay){
+    m_inlay_top = p_inlay;
+  }
+
+  void setInlayLeft(int p_inlay){
+    m_inlay_left = p_inlay;
+  }
+
 private:
   juce::Image m_panel;
   std::vector<juce::Image> m_waves;
   int m_inlay = 0;
   int m_value = 0;
+
+  int  m_inlay_top = 0;
+  int  m_inlay_left = 0;
+
+
 
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(LFODisplayComponent)
 };

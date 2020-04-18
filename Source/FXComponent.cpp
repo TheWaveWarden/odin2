@@ -287,6 +287,7 @@ void FXComponent::setGUIBig() {
 		m_background_no_sync =
 		    ImageCache::getFromMemory(BinaryData::flangernosync_150_png, BinaryData::flangernosync_150_pngSize);
 	}
+	m_sync_time.setGUIBig();
 
 	forceValueTreeOntoComponents(m_value_tree.state);
 }
@@ -360,6 +361,7 @@ void FXComponent::setGUISmall() {
 		m_background_no_sync =
 		    ImageCache::getFromMemory(BinaryData::flangernosync_png, BinaryData::flangernosync_pngSize);
 	}
+	m_sync_time.setGUISmall();
 
 	forceValueTreeOntoComponents(m_value_tree.state);
 }

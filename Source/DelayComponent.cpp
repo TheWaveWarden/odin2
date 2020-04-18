@@ -308,6 +308,7 @@ void DelayComponent::setGUIBig() {
 		delay_image = ImageCache::getFromMemory(BinaryData::delaysync_150_png, BinaryData::delaysync_150_pngSize);
 	}
 	setImage(delay_image);
+	m_sync_time.setGUIBig();
 
 	forceValueTreeOntoComponents(m_value_tree.state);
 }
@@ -388,6 +389,7 @@ void DelayComponent::setGUISmall() {
 	} else {
 		delay_image = ImageCache::getFromMemory(BinaryData::delaysync_png, BinaryData::delaysync_pngSize);
 	}
+	m_sync_time.setGUISmall();
 	setImage(delay_image);
 
 	forceValueTreeOntoComponents(m_value_tree.state);

@@ -806,6 +806,8 @@
             file="Graphics_150/cropped/diode_knobs_cropped_150.png"/>
       <FILE id="t2O7Ls" name="distortion_on.png" compile="0" resource="1"
             file="Graphics/applied/distortion_on.png"/>
+      <FILE id="yggzPw" name="distortion_on_150.png" compile="0" resource="1"
+            file="Graphics_150/applied/distortion_on_150.png"/>
       <FILE id="jQIeVv" name="drawpanel.png" compile="0" resource="1" file="Graphics/cropped/drawpanel.png"/>
       <FILE id="xhQwQn" name="drawpanel_150.png" compile="0" resource="1"
             file="Graphics_150/cropped/drawpanel_150.png"/>

@@ -201,6 +201,9 @@ bool LFOComponent::setGUIBig() {
 
 	m_freq.setBounds(OdinHelper::c150(LFO_FREQ_POS_X), OdinHelper::c150(LFO_FREQ_POS_Y), OdinHelper::c150(BLACK_KNOB_SMALL_SIZE_X), OdinHelper::c150(BLACK_KNOB_SMALL_SIZE_Y));
 
+	m_selector.setGUIBig();
+	m_sync_time.setGUIBig();
+
 }
 
 bool LFOComponent::setGUISmall() {
@@ -255,6 +258,9 @@ bool LFOComponent::setGUISmall() {
 	m_freq.setStrip(black_knob_small, N_KNOB_FRAMES);
 	m_selector.setTopLeftPosition(SELECTOR_POS_X, SELECTOR_POS_Y);
 	m_sync_time.setTopLeftPosition(SYNC_TIME_POS_X, SYNC_TIME_POS_Y);
+
+	m_selector.setGUISmall();
+	m_sync_time.setGUISmall();
 
 	m_freq.setBounds(LFO_FREQ_POS_X, LFO_FREQ_POS_Y, BLACK_KNOB_SMALL_SIZE_X, BLACK_KNOB_SMALL_SIZE_Y);
 }
