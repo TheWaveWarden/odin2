@@ -259,20 +259,20 @@ void FXComponent::setGUIBig() {
 	    OdinHelper::c150(FX_SYNC_POS_X), OdinHelper::c150(FX_SYNC_POS_Y), sync_1.getWidth(), sync_1.getHeight());
 	m_sync_time.setTopLeftPosition(OdinHelper::c150(FX_SYNC_TIME_FX_POS_X), OdinHelper::c150(FX_SYNC_TIME_FX_POS_Y));
 
-	m_amount.setBounds(OdinHelper::c150(FX_AMOUNT_POS_X),
-	                   OdinHelper::c150(FX_AMOUNT_POS_Y),
+	m_amount.setBounds(OdinHelper::c150(FX_AMOUNT_POS_X)-2,
+	                   OdinHelper::c150(FX_AMOUNT_POS_Y)-1,
 	                   metal_knob_mid.getWidth(),
 	                   metal_knob_mid.getHeight() / 256);
-	m_rate.setBounds(OdinHelper::c150(FX_FREQ_POS_X),
-	                 OdinHelper::c150(FX_FREQ_POS_Y),
+	m_rate.setBounds(OdinHelper::c150(FX_FREQ_POS_X)-2,
+	                 OdinHelper::c150(FX_FREQ_POS_Y)-1,
 	                 metal_knob_mid.getWidth(),
 	                 metal_knob_mid.getHeight() / 256);
-	m_feedback.setBounds(OdinHelper::c150(FX_FEEDBACK_POS_X),
-	                     OdinHelper::c150(FX_FEEDBACK_POS_Y),
+	m_feedback.setBounds(OdinHelper::c150(FX_FEEDBACK_POS_X)-2,
+	                     OdinHelper::c150(FX_FEEDBACK_POS_Y)-1,
 	                     metal_knob_mid.getWidth(),
 	                     metal_knob_mid.getHeight() / 256);
-	m_dry_wet.setBounds(OdinHelper::c150(FX_DRY_WET_POS_X),
-	                    OdinHelper::c150(FX_DRY_WET_POS_Y),
+	m_dry_wet.setBounds(OdinHelper::c150(FX_DRY_WET_POS_X)-2,
+	                    OdinHelper::c150(FX_DRY_WET_POS_Y)-1,
 	                    metal_knob_mid.getWidth(),
 	                    metal_knob_mid.getHeight() / 256);
 

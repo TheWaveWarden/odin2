@@ -285,7 +285,7 @@ juce::Image flow_left_1 = ImageCache::getFromMemory(BinaryData::buttonleft_1_150
 	                      &flow_left_draw4,
 	                      &flow_left_draw3,
 	                      &flow_left_draw3);
-	m_flow_left.setBounds(OdinHelper::c150(FLOW_LEFT_POS_X), OdinHelper::c150(FLOW_POS_Y), flow_left_1.getWidth(), flow_left_1.getHeight());
+	m_flow_left.setBounds(OdinHelper::c150(FLOW_LEFT_POS_X)+3, OdinHelper::c150(FLOW_POS_Y), flow_left_1.getWidth(), flow_left_1.getHeight());
 
 	juce::Image flow_right_1 =
 	    ImageCache::getFromMemory(BinaryData::buttonright_1_150_png, BinaryData::buttonright_1_150_pngSize);
@@ -343,7 +343,7 @@ juce::Image flow_left_1 = ImageCache::getFromMemory(BinaryData::buttonleft_1_150
 	                       &distortion_draw4,
 	                       &distortion_draw3,
 	                       &distortion_draw3);
-	m_distortion.setBounds(OdinHelper::c150(DISTORTION_POS_X), OdinHelper::c150(DISTORTION_POS_Y), distortion_1.getWidth(), distortion_1.getHeight());
+	m_distortion.setBounds(OdinHelper::c150(DISTORTION_POS_X)-2, OdinHelper::c150(DISTORTION_POS_Y), distortion_1.getWidth(), distortion_1.getHeight());
 
 	juce::Image metal_knob_big =
 	    ImageCache::getFromMemory(BinaryData::metal_knob_big_150_png, BinaryData::metal_knob_big_150_pngSize);
@@ -367,8 +367,8 @@ juce::Image flow_left_1 = ImageCache::getFromMemory(BinaryData::buttonleft_1_150
 	m_distortion_algo.setInlay(1);
 	m_distortion_algo.setBounds(OdinHelper::c150(DIST_ALGO_POS_X), OdinHelper::c150(DIST_ALGO_POS_Y), glas_panel.getWidth(), glas_panel.getHeight());
 
-	m_amp_gain.setBounds(OdinHelper::c150(AMP_GAIN_POS_X) - OdinHelper::c150(METAL_KNOB_BIG_OFFSET_X),
-	                     OdinHelper::c150(AMP_GAIN_POS_Y) - OdinHelper::c150(METAL_KNOB_BIG_OFFSET_Y),
+	m_amp_gain.setBounds(OdinHelper::c150(AMP_GAIN_POS_X) - OdinHelper::c150(METAL_KNOB_BIG_OFFSET_X)-1,
+	                     OdinHelper::c150(AMP_GAIN_POS_Y) - OdinHelper::c150(METAL_KNOB_BIG_OFFSET_Y)-1,
 	                     OdinHelper::c150(METAL_KNOB_BIG_SIZE_X),
 	                     OdinHelper::c150(METAL_KNOB_BIG_SIZE_Y));
 	m_amp_pan.setBounds(OdinHelper::c150(AMP_PAN_POS_X) - OdinHelper::c150(BLACK_KNOB_MID_OFFSET_X),
@@ -376,13 +376,13 @@ juce::Image flow_left_1 = ImageCache::getFromMemory(BinaryData::buttonleft_1_150
 	                    OdinHelper::c150(BLACK_KNOB_MID_SIZE_X),
 	                    OdinHelper::c150(BLACK_KNOB_MID_SIZE_Y));
 	m_amp_width.setBounds(OdinHelper::c150(AMP_VEL_POS_X) - OdinHelper::c150(BLACK_KNOB_MID_OFFSET_X),
-	                      OdinHelper::c150(AMP_VEL_POS_Y) - OdinHelper::c150(BLACK_KNOB_MID_OFFSET_Y),
+	                      OdinHelper::c150(AMP_VEL_POS_Y) - OdinHelper::c150(BLACK_KNOB_MID_OFFSET_Y)-1,
 	                      OdinHelper::c150(BLACK_KNOB_MID_SIZE_X),
 	                      OdinHelper::c150(BLACK_KNOB_MID_SIZE_Y));
 	m_boost.setBounds(
-	    OdinHelper::c150(BIAS_POS_X) - OdinHelper::c150(ROUND_KNOB_OFFSET_X), OdinHelper::c150(BIAS_POS_Y) - OdinHelper::c150(ROUND_KNOB_OFFSET_Y), OdinHelper::c150(ROUND_KNOB_SIZE_X), OdinHelper::c150(ROUND_KNOB_SIZE_Y));
-	m_dry_wet.setBounds(OdinHelper::c150(THRESHOLD_POS_X) - OdinHelper::c150(ROUND_KNOB_OFFSET_X),
-	                    OdinHelper::c150(THRESHOLD_POS_Y) - OdinHelper::c150(ROUND_KNOB_OFFSET_Y),
+	    OdinHelper::c150(BIAS_POS_X) - OdinHelper::c150(ROUND_KNOB_OFFSET_X)-1, OdinHelper::c150(BIAS_POS_Y) - OdinHelper::c150(ROUND_KNOB_OFFSET_Y)+1, OdinHelper::c150(ROUND_KNOB_SIZE_X), OdinHelper::c150(ROUND_KNOB_SIZE_Y));
+	m_dry_wet.setBounds(OdinHelper::c150(THRESHOLD_POS_X) - OdinHelper::c150(ROUND_KNOB_OFFSET_X)-1,
+	                    OdinHelper::c150(THRESHOLD_POS_Y) - OdinHelper::c150(ROUND_KNOB_OFFSET_Y)+1,
 	                    OdinHelper::c150(ROUND_KNOB_SIZE_X),
 	                    OdinHelper::c150(ROUND_KNOB_SIZE_Y));
 

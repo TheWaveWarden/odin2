@@ -1926,21 +1926,21 @@ void OscComponent::setGUIBig() {
 
 	m_fm.setStrip(ImageCache::getFromMemory(BinaryData::metal_knob_big_150_png, BinaryData::metal_knob_big_150_pngSize),
 	              256);
-	m_fm.setBounds(OdinHelper::c150(FM_POS_X),
-	               OdinHelper::c150(FM_POS_Y),
+	m_fm.setBounds(OdinHelper::c150(FM_POS_X) - 1,
+	               OdinHelper::c150(FM_POS_Y) - 1,
 	               OdinHelper::c150(METAL_KNOB_BIG_SIZE_X),
 	               OdinHelper::c150(METAL_KNOB_BIG_SIZE_Y));
 
 	m_lp.setStrip(ImageCache::getFromMemory(BinaryData::metal_knob_big_150_png, BinaryData::metal_knob_big_150_pngSize),
 	              256);
-	m_lp.setBounds(OdinHelper::c150(LP_POS_X),
+	m_lp.setBounds(OdinHelper::c150(LP_POS_X) - 1,
 	               OdinHelper::c150(LP_POS_Y),
 	               OdinHelper::c150(METAL_KNOB_BIG_SIZE_X),
 	               OdinHelper::c150(METAL_KNOB_BIG_SIZE_Y));
 
 	m_hp.setStrip(ImageCache::getFromMemory(BinaryData::metal_knob_big_150_png, BinaryData::metal_knob_big_150_pngSize),
 	              256);
-	m_hp.setBounds(OdinHelper::c150(HP_POS_X),
+	m_hp.setBounds(OdinHelper::c150(HP_POS_X) - 1,
 	               OdinHelper::c150(HP_POS_Y),
 	               OdinHelper::c150(METAL_KNOB_BIG_SIZE_X),
 	               OdinHelper::c150(METAL_KNOB_BIG_SIZE_Y));
@@ -1953,8 +1953,8 @@ void OscComponent::setGUIBig() {
 
 	m_detune.setStrip(
 	    ImageCache::getFromMemory(BinaryData::metal_knob_big_150_png, BinaryData::metal_knob_big_150_pngSize), 256);
-	m_detune.setBounds(OdinHelper::c150(DETUNE_POS_X),
-	                   OdinHelper::c150(DETUNE_POS_Y),
+	m_detune.setBounds(OdinHelper::c150(DETUNE_POS_X) - 1,
+	                   OdinHelper::c150(DETUNE_POS_Y) - 1,
 	                   OdinHelper::c150(METAL_KNOB_BIG_SIZE_X),
 	                   OdinHelper::c150(METAL_KNOB_BIG_SIZE_Y));
 
@@ -2056,7 +2056,7 @@ void OscComponent::setGUIBig() {
 	m_modulator_waveselector.setTopLeftPosition(OdinHelper::c150(WAVE_MODULATOR_POS_X),
 	                                            OdinHelper::c150(WAVE_MODULATOR_POS_Y));
 	m_carrier_ratio.setTopLeftPosition(OdinHelper::c150(RATIO_CARRIER_POS_X), OdinHelper::c150(RATIO_CARRIER_POS_Y));
-	m_modulator_ratio.setTopLeftPosition(OdinHelper::c150(RATIO_MODULATOR_POS_X-1),
+	m_modulator_ratio.setTopLeftPosition(OdinHelper::c150(RATIO_MODULATOR_POS_X - 1),
 	                                     OdinHelper::c150(RATIO_MODULATOR_POS_Y));
 
 	juce::Image fm_exp_left =
@@ -2125,29 +2125,29 @@ void OscComponent::setGUIBig() {
 	                256);
 	m_xy_x.setBounds(OdinHelper::c150(X_POS_X),
 	                 OdinHelper::c150(X_POS_Y),
-	                 OdinHelper::c150(BLACK_KNOB_VERY_SMALL_SIZE_X),
-	                 OdinHelper::c150(BLACK_KNOB_VERY_SMALL_SIZE_Y));
+	                 OdinHelper::c150(BLACK_KNOB_VERY_SMALL_SIZE_X) + 2,
+	                 OdinHelper::c150(BLACK_KNOB_VERY_SMALL_SIZE_Y) + 2);
 
 	m_xy_y.setStrip(ImageCache::getFromMemory(BinaryData::black_knob_very_small_150_png,
 	                                          BinaryData::black_knob_very_small_150_pngSize),
 	                256);
 	m_xy_y.setBounds(OdinHelper::c150(Y_POS_X),
 	                 OdinHelper::c150(Y_POS_Y),
-	                 OdinHelper::c150(BLACK_KNOB_VERY_SMALL_SIZE_X),
-	                 OdinHelper::c150(BLACK_KNOB_VERY_SMALL_SIZE_Y));
+	                 OdinHelper::c150(BLACK_KNOB_VERY_SMALL_SIZE_X) + 2,
+	                 OdinHelper::c150(BLACK_KNOB_VERY_SMALL_SIZE_Y) + 2);
 
 	forceValueTreeOntoComponents(m_value_tree.state, std::stoi(m_osc_number), false);
 
 	resetVectorWaves();
 
-	m_pw.setBounds(OdinHelper::c150(PW_POS_X) - OdinHelper::c150(BLACK_KNOB_SMALL_OFFSET_X),
-	               OdinHelper::c150(PW_POS_Y) - OdinHelper::c150(BLACK_KNOB_SMALL_OFFSET_Y),
+	m_pw.setBounds(OdinHelper::c150(PW_POS_X) - OdinHelper::c150(BLACK_KNOB_SMALL_OFFSET_X) - 1,
+	               OdinHelper::c150(PW_POS_Y) - OdinHelper::c150(BLACK_KNOB_SMALL_OFFSET_Y) + 1,
 	               OdinHelper::c150(BLACK_KNOB_SMALL_SIZE_X),
 	               OdinHelper::c150(BLACK_KNOB_SMALL_SIZE_Y));
-	m_drift.setBounds(OdinHelper::c150(DRIFT_POS_X) - OdinHelper::c150(BLACK_KNOB_BIG_OFFSET_X),
-	                  OdinHelper::c150(DRIFT_POS_Y) - OdinHelper::c150(BLACK_KNOB_BIG_OFFSET_Y),
-	                  OdinHelper::c150(BLACK_KNOB_BIG_SIZE_X),
-	                  OdinHelper::c150(BLACK_KNOB_BIG_SIZE_Y));
+	m_drift.setBounds(OdinHelper::c150(DRIFT_POS_X) - OdinHelper::c150(BLACK_KNOB_BIG_OFFSET_X) - 1,
+	                  OdinHelper::c150(DRIFT_POS_Y) - OdinHelper::c150(BLACK_KNOB_BIG_OFFSET_Y) + 1,
+	                  OdinHelper::c150(BLACK_KNOB_BIG_SIZE_X) + 2,
+	                  OdinHelper::c150(BLACK_KNOB_BIG_SIZE_Y) + 2);
 
 	m_xy.setGUIBig();
 	m_vec_a.setGUIBig();
@@ -2167,7 +2167,7 @@ void OscComponent::setGUIBig() {
 	m_wavetable_waveselector.setGUIBig();
 	m_modulation_source.setGUIBig();
 	m_carrier_ratio.setGUIBig();
-  	m_modulator_ratio.setGUIBig();
+	m_modulator_ratio.setGUIBig();
 	m_menu_feels.setGUIBig();
 	setSize(OdinHelper::c150(247), OdinHelper::c150(145));
 }
@@ -2546,7 +2546,7 @@ void OscComponent::setGUISmall() {
 	m_wavetable_waveselector.setGUISmall();
 	m_modulation_source.setGUISmall();
 	m_carrier_ratio.setGUISmall();
-  	m_modulator_ratio.setGUISmall();
+	m_modulator_ratio.setGUISmall();
 	m_menu_feels.setGUISmall();
 	setSize(247, 145);
 }

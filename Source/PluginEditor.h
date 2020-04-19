@@ -387,9 +387,12 @@ private:
   void setLfo34(bool p_lfo24);
   void updatePitchWheel(float p_value);
   void updateModWheel(float p_value);
-  void setGUISizeBig(bool p_big);
+  void setGUISizeBig(bool p_big, bool p_write_to_config);
   void setGUISmall();
   void setGUIBig();
+
+  void readOrCreateConfigFile(bool& p_GUI_big);
+  void writeConfigFile(bool p_GUI_big);
 
   int m_octave_shift = 0;
   bool m_is_standalone_plugin;

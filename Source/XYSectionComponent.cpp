@@ -90,11 +90,11 @@ void XYSectionComponent::setGUIBig(){
 
 	m_mody.setStrip(black_knob_very_small, N_KNOB_FRAMES);
 
-	m_modx.setBounds(OdinHelper::c150(MODX_POS_X) - OdinHelper::c150(BLACK_KNOB_VERY_SMALL_OFFSET_X),
+	m_modx.setBounds(OdinHelper::c150(MODX_POS_X) - OdinHelper::c150(BLACK_KNOB_VERY_SMALL_OFFSET_X)-1,
 	                 OdinHelper::c150(MODX_POS_Y) - OdinHelper::c150(BLACK_KNOB_VERY_SMALL_OFFSET_Y),
 	                 OdinHelper::c150(BLACK_KNOB_VERY_SMALL_SIZE_X),
 	                 OdinHelper::c150(BLACK_KNOB_VERY_SMALL_SIZE_Y));
-	m_mody.setBounds(OdinHelper::c150(MODY_POS_X) - OdinHelper::c150(BLACK_KNOB_VERY_SMALL_OFFSET_X),
+	m_mody.setBounds(OdinHelper::c150(MODY_POS_X) - OdinHelper::c150(BLACK_KNOB_VERY_SMALL_OFFSET_X)-1,
 	                 OdinHelper::c150(MODY_POS_Y) - OdinHelper::c150(BLACK_KNOB_VERY_SMALL_OFFSET_Y),
 	                 OdinHelper::c150(BLACK_KNOB_VERY_SMALL_SIZE_X),
 	                 OdinHelper::c150(BLACK_KNOB_VERY_SMALL_SIZE_Y));

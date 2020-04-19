@@ -1228,10 +1228,10 @@ void ModMatrixComponent::setGUIBig(){
 		m_scale[i].setGUIBig();
 	}
 
-	m_source[0].setInlayTop(1);
-	m_dest_1[0].setInlayTop(1);
-	m_dest_2[0].setInlayTop(1);
-	m_scale[0].setInlayTop(1);
+	m_source[0].setInlayTop(2);
+	m_dest_1[0].setInlayTop(2);
+	m_dest_2[0].setInlayTop(2);
+	m_scale[0].setInlayTop(2);
 
 	forceValueTreeOntoComponents(m_value_tree.state);
 }

@@ -72,7 +72,7 @@ void OdinAudioProcessorEditor::setGUIBig(){
 	m_filter3_dropdown.setBounds(
 	    OdinHelper::c150(DROPDOWN_FILTER3_POS_X), OdinHelper::c150(DROPDOWN_FILTER3_POS_Y), dropdown_button1.getWidth(), dropdown_button1.getHeight());
 
-	m_fx_buttons_section.setTopLeftPosition(OdinHelper::c150(FX_BUTTON_X), OdinHelper::c150(FX_BUTTON_Y));
+	m_fx_buttons_section.setTopLeftPosition(OdinHelper::c150(FX_BUTTON_X) + 2, OdinHelper::c150(FX_BUTTON_Y) + 3);
 
 	juce::Image fx_on_1 = ImageCache::getFromMemory(BinaryData::buttonfxon_1_150_png, BinaryData::buttonfxon_1_150_pngSize);
 	juce::Image fx_on_2 = ImageCache::getFromMemory(BinaryData::buttonfxon_2_150_png, BinaryData::buttonfxon_2_150_pngSize);

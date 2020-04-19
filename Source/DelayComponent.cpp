@@ -276,28 +276,28 @@ void DelayComponent::setGUIBig() {
 	m_wet.setStrip(black_knob_mid, N_KNOB_FRAMES);
 	m_sync_time.setTopLeftPosition(OdinHelper::c150(SYNC_TIME_DELAY_POS_X), OdinHelper::c150(SYNC_TIME_DELAY_POS_Y));
 
-	m_time.setBounds(OdinHelper::c150(TIME_POS_X),
-	                 OdinHelper::c150(TIME_POS_Y),
+	m_time.setBounds(OdinHelper::c150(TIME_POS_X)-2,
+	                 OdinHelper::c150(TIME_POS_Y)-2,
 	                 OdinHelper::c150(METAL_KNOB_BIG_SIZE_X),
 	                 OdinHelper::c150(METAL_KNOB_BIG_SIZE_Y));
-	m_feedback.setBounds(OdinHelper::c150(FEEDBACK_POS_X),
-	                     OdinHelper::c150(FEEDBACK_POS_Y),
+	m_feedback.setBounds(OdinHelper::c150(FEEDBACK_POS_X)-2,
+	                     OdinHelper::c150(FEEDBACK_POS_Y)-1,
 	                     OdinHelper::c150(METAL_KNOB_BIG_SIZE_X),
 	                     OdinHelper::c150(METAL_KNOB_BIG_SIZE_Y));
-	m_HP.setBounds(OdinHelper::c150(DELAY_HP_POS_X),
-	               OdinHelper::c150(DELAY_HP_POS_Y),
+	m_HP.setBounds(OdinHelper::c150(DELAY_HP_POS_X)-2,
+	               OdinHelper::c150(DELAY_HP_POS_Y)-2,
 	               OdinHelper::c150(BLACK_KNOB_MID_SIZE_X),
 	               OdinHelper::c150(BLACK_KNOB_MID_SIZE_Y));
-	m_ducking.setBounds(OdinHelper::c150(DUCKING_POS_X),
-	                    OdinHelper::c150(DUCKING_POS_Y),
+	m_ducking.setBounds(OdinHelper::c150(DUCKING_POS_X)-2,
+	                    OdinHelper::c150(DUCKING_POS_Y)-2,
 	                    OdinHelper::c150(BLACK_KNOB_MID_SIZE_X),
 	                    OdinHelper::c150(BLACK_KNOB_MID_SIZE_Y));
-	m_dry.setBounds(OdinHelper::c150(DRY_POS_X),
-	                OdinHelper::c150(DRY_POS_Y),
+	m_dry.setBounds(OdinHelper::c150(DRY_POS_X)-2,
+	                OdinHelper::c150(DRY_POS_Y)-2,
 	                OdinHelper::c150(BLACK_KNOB_MID_SIZE_X),
 	                OdinHelper::c150(BLACK_KNOB_MID_SIZE_Y));
-	m_wet.setBounds(OdinHelper::c150(WET_POS_X),
-	                OdinHelper::c150(WET_POS_Y),
+	m_wet.setBounds(OdinHelper::c150(WET_POS_X)-2,
+	                OdinHelper::c150(WET_POS_Y)-2,
 	                OdinHelper::c150(BLACK_KNOB_MID_SIZE_X),
 	                OdinHelper::c150(BLACK_KNOB_MID_SIZE_Y));
 

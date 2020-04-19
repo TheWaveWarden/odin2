@@ -207,11 +207,16 @@ public:
 			m_midi_learn_left_offset   = BLACK_KNOB_BIG_LEFT_OFFSET;
 			m_midi_learn_bottom_offset = BLACK_KNOB_BIG_BOTTOM_OFFSET;
 			break;
+		case 69:
+			m_midi_learn_left_offset = 5;
+			m_midi_learn_bottom_offset = 4;
 		case WHEEL_SIZE_X:
 			m_midi_learn_left_offset = WHEEL_LEFT_OFFSET;
 			break;
 		default:
-			DBG("Unknown knob width " + std::to_string(width) + "px in Knob::setBounds()");
+			m_midi_learn_left_offset   = 4;
+			m_midi_learn_bottom_offset = 3;
+			//DBG("Unknown knob width " + std::to_string(width) + "px in Knob::setBounds()");
 			break;
 		}
 		Slider::setBounds(x, y, width, height);
