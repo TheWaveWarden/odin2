@@ -119,7 +119,7 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts, OdinAudi
 			                                        : (result.isLocalFile() ? result.getLocalFile().getFullPathName()
 			                                                                : result.toString(true));
 			    //append .odin if not already there
-				file_name = file_name.endsWith(".odin") ? file_name : file_name + ".odin";
+			    file_name = file_name.endsWith(".odin") ? file_name : file_name + ".odin";
 
 			    File file_to_write(file_name);
 
@@ -232,7 +232,6 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts, OdinAudi
 					        AlertWindow::InfoIcon, "File not found!", "Path: " + file_name, "Ok");
 				    }
 			    }
-				
 		    });
 	};
 
@@ -257,7 +256,7 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts, OdinAudi
 		}
 		//usleep(1000*1000);
 		//DBG("Modmatrix: " + std::to_string((float)GETAUDIO("amount_1_row_0")));
-  		//DBG("Attack: " + std::to_string((float)GETAUDIO("env2_attack")));
+		//DBG("Attack: " + std::to_string((float)GETAUDIO("env2_attack")));
 	};
 
 	m_patch.setBounds(PATCH_POS_X, PATCH_POS_Y, m_patch_size_x, m_patch_size_y);
@@ -278,7 +277,8 @@ bool SaveLoadComponent::checkForBiggerVersion(FileInputStream &p_file_stream, st
 	if (patch_version > ODIN_PATCH_MIGRATION_VERSION) {
 		p_version_string = "2." + std::to_string((int)value_tree_read.getChildWithName("misc")["version_minor"]) + "." +
 		                   std::to_string((int)value_tree_read.getChildWithName("misc")["version_patch"]);
-		DBG("Trying to load PMV " + std::to_string(patch_version) +  ", current PMV is " + std::to_string(ODIN_PATCH_MIGRATION_VERSION));
+		DBG("Trying to load PMV " + std::to_string(patch_version) + ", current PMV is " +
+		    std::to_string(ODIN_PATCH_MIGRATION_VERSION));
 		return true;
 	}
 	return false;
@@ -294,4 +294,109 @@ bool SaveLoadComponent::checkForSmallerVersion(FileInputStream &p_file_stream, s
 		return true;
 	}
 	return false;
+}
+
+void SaveLoadComponent::setGUIBig() {
+	juce::Image save_1 = ImageCache::getFromMemory(BinaryData::buttonsave_2_150_png, BinaryData::buttonsave_2_150_pngSize);
+	juce::Image save_2 = ImageCache::getFromMemory(BinaryData::buttonsave_1_150_png, BinaryData::buttonsave_1_150_pngSize);
+
+	juce::DrawableImage save_draw1;
+	juce::DrawableImage save_draw2;
+
+	save_draw1.setImage(save_1);
+	save_draw2.setImage(save_2);
+
+	m_save.setImages(
+	    &save_draw2, &save_draw2, &save_draw1, &save_draw1, &save_draw2, &save_draw2, &save_draw1, &save_draw1);
+	m_save.setBounds(OdinHelper::c150(SAVE_POS_X), OdinHelper::c150(SAVE_POS_Y), save_1.getWidth(), save_1.getHeight());
+
+	juce::Image load_1 = ImageCache::getFromMemory(BinaryData::buttonload_2_150_png, BinaryData::buttonload_2_150_pngSize);
+	juce::Image load_2 = ImageCache::getFromMemory(BinaryData::buttonload_1_150_png, BinaryData::buttonload_1_150_pngSize);
+
+	juce::DrawableImage load_draw1;
+	juce::DrawableImage load_draw2;
+
+	load_draw1.setImage(load_1);
+	load_draw2.setImage(load_2);
+
+	m_load.setImages(
+	    &load_draw2, &load_draw2, &load_draw1, &load_draw1, &load_draw2, &load_draw2, &load_draw1, &load_draw1);
+	m_load.setBounds(OdinHelper::c150(LOAD_POS_X), OdinHelper::c150(LOAD_POS_Y), load_1.getWidth(), load_1.getHeight());
+	juce::Image reset_1 =
+	    ImageCache::getFromMemory(BinaryData::buttonreset_global_2_150_png, BinaryData::buttonreset_global_2_150_pngSize);
+	juce::Image reset_2 =
+	    ImageCache::getFromMemory(BinaryData::buttonreset_global_1_150_png, BinaryData::buttonreset_global_1_150_pngSize);
+
+	juce::DrawableImage reset_draw1;
+	juce::DrawableImage reset_draw2;
+
+	reset_draw1.setImage(reset_1);
+	reset_draw2.setImage(reset_2);
+
+	m_reset.setImages(
+	    &reset_draw2, &reset_draw2, &reset_draw1, &reset_draw1, &reset_draw2, &reset_draw2, &reset_draw1, &reset_draw1);
+	m_reset.setBounds(OdinHelper::c150(RESET_TOP_POS_X), OdinHelper::c150(RESET_TOP_POS_Y), reset_1.getWidth(), reset_1.getHeight());
+
+	juce::Image glas_panel =
+	    ImageCache::getFromMemory(BinaryData::glaspanel_big_150_png, BinaryData::glaspanel_big_150_pngSize);
+
+	m_patch.setImage(glas_panel);
+	m_patch_size_x = glas_panel.getWidth();
+	m_patch_size_y = glas_panel.getHeight();
+
+	m_patch.setBounds(OdinHelper::c150(PATCH_POS_X), OdinHelper::c150(PATCH_POS_Y) +1 , m_patch_size_x, m_patch_size_y);
+	m_patch.setGUIBig();
+
+}
+void SaveLoadComponent::setGUISmall() {
+	juce::Image save_1 = ImageCache::getFromMemory(BinaryData::buttonsave_2_png, BinaryData::buttonsave_2_pngSize);
+	juce::Image save_2 = ImageCache::getFromMemory(BinaryData::buttonsave_1_png, BinaryData::buttonsave_1_pngSize);
+
+	juce::DrawableImage save_draw1;
+	juce::DrawableImage save_draw2;
+
+	save_draw1.setImage(save_1);
+	save_draw2.setImage(save_2);
+
+	m_save.setImages(
+	    &save_draw2, &save_draw2, &save_draw1, &save_draw1, &save_draw2, &save_draw2, &save_draw1, &save_draw1);
+	m_save.setBounds(SAVE_POS_X, SAVE_POS_Y, save_1.getWidth(), save_1.getHeight());
+
+	juce::Image load_1 = ImageCache::getFromMemory(BinaryData::buttonload_2_png, BinaryData::buttonload_2_pngSize);
+	juce::Image load_2 = ImageCache::getFromMemory(BinaryData::buttonload_1_png, BinaryData::buttonload_1_pngSize);
+
+	juce::DrawableImage load_draw1;
+	juce::DrawableImage load_draw2;
+
+	load_draw1.setImage(load_1);
+	load_draw2.setImage(load_2);
+
+	m_load.setImages(
+	    &load_draw2, &load_draw2, &load_draw1, &load_draw1, &load_draw2, &load_draw2, &load_draw1, &load_draw1);
+	m_load.setBounds(LOAD_POS_X, LOAD_POS_Y, load_1.getWidth(), load_1.getHeight());
+	juce::Image reset_1 =
+	    ImageCache::getFromMemory(BinaryData::buttonreset_global_2_png, BinaryData::buttonreset_global_2_pngSize);
+	juce::Image reset_2 =
+	    ImageCache::getFromMemory(BinaryData::buttonreset_global_1_png, BinaryData::buttonreset_global_1_pngSize);
+
+	juce::DrawableImage reset_draw1;
+	juce::DrawableImage reset_draw2;
+
+	reset_draw1.setImage(reset_1);
+	reset_draw2.setImage(reset_2);
+
+	m_reset.setImages(
+	    &reset_draw2, &reset_draw2, &reset_draw1, &reset_draw1, &reset_draw2, &reset_draw2, &reset_draw1, &reset_draw1);
+	m_reset.setBounds(RESET_TOP_POS_X, RESET_TOP_POS_Y, reset_1.getWidth(), reset_1.getHeight());
+
+	juce::Image glas_panel =
+	    ImageCache::getFromMemory(BinaryData::glaspanel_big_png, BinaryData::glaspanel_big_pngSize);
+
+	m_patch.setImage(glas_panel);
+	m_patch_size_x = glas_panel.getWidth();
+	m_patch_size_y = glas_panel.getHeight();
+
+	m_patch.setBounds(PATCH_POS_X, PATCH_POS_Y, m_patch_size_x, m_patch_size_y);
+
+	m_patch.setGUISmall();
 }

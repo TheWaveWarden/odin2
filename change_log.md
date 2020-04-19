@@ -1,3 +1,5 @@
+# 2.0.16 beta
+- GUI-size now toggleable between 100% and 150%
 # 2.0.15 beta
 - fixed a deadlock when assigning modsources in some hosts
 - fixed a deadlock when loading synth in some hosts

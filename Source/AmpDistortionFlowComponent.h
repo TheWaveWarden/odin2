@@ -61,16 +61,27 @@ public:
 
 	void paint(Graphics &g) override {
 		SET_INTERPOLATION_QUALITY(g)
-
-		if (m_distortion_on) {
-			g.drawImageAt(ImageCache::getFromMemory(BinaryData::distortion_on_png, BinaryData::distortion_on_pngSize),
-			              DISTORTION_OVERLAY_X,
-			              DISTORTION_OVERLAY_Y);
+		if (m_GUI_big) {
+			if (m_distortion_on) {
+				g.drawImageAt(
+				    m_distortion_image, OdinHelper::c150(DISTORTION_OVERLAY_X), OdinHelper::c150(DISTORTION_OVERLAY_Y));
+			}
+		} else {
+			if (m_distortion_on) {
+				g.drawImageAt(m_distortion_image, DISTORTION_OVERLAY_X, DISTORTION_OVERLAY_Y);
+			}
 		}
 	}
 
+	void setGUIBig();
+	void setGUISmall();
+
 private:
-  void setDistortionPanelActive(bool p_active);
+	bool m_GUI_big = false;
+
+	juce::Image m_distortion_image;
+
+	void setDistortionPanelActive(bool p_active);
 
 	bool m_distortion_on = false;
 

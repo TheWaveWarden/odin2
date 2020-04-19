@@ -23,16 +23,27 @@ void SpecdrawDisplay::paint(Graphics &g) {
 
 	g.setColour(m_draw_color);
 
+
+	int draw_inlay_left_spec = DRAW_INLAY_LEFT_SPEC;
+	if(m_GUI_big){
+		draw_inlay_left_spec = 11;
+	}
+
 	float height = (float)(getHeight() - DRAW_INLAY_UP_SPEC - DRAW_INLAY_DOWN_SPEC);
 
 	float width = SPECDRAW_THICCNESS;
+	float draw_width = 2.8f;
+	if(m_GUI_big){
+		width = 6;
+		float draw_width = 4.2f;
+	}
 
 	for (int i = 0; i < SPECDRAW_STEPS_X; ++i) {
-		g.drawLine(DRAW_INLAY_LEFT_SPEC + i * width,
+		g.drawLine(draw_inlay_left_spec + i * width,
 		           getHeight() - DRAW_INLAY_DOWN_SPEC - m_draw_values[i] * height,
-		           DRAW_INLAY_LEFT_SPEC + i * width,
+		           draw_inlay_left_spec + i * width,
 		           getHeight() - DRAW_INLAY_DOWN_SPEC,
-		           2.8f);
+		           draw_width);
 	}
 
 	g.drawImageAt(m_glaspanel, 0, 0);
@@ -54,8 +65,19 @@ int min_int(int a, int b) {
 }
 
 void SpecdrawDisplay::mouseInteraction() {
+	int draw_inlay_left_spec = DRAW_INLAY_LEFT_SPEC;
+	if(m_GUI_big){
+		draw_inlay_left_spec = 10;
+	}
+
 	juce::Point<int> mouse_pos = getMouseXYRelative();
-	int x                      = mouse_pos.getX() / SPECDRAW_THICCNESS;
+
+	float specdraw_thiccness = SPECDRAW_THICCNESS;
+	if(m_GUI_big){
+		specdraw_thiccness = 6.f;
+	}
+
+	int x                      = mouse_pos.getX() / specdraw_thiccness;
 	float y                    = mouse_pos.getY();
 
 	y = y < DRAW_INLAY_UP_SPEC ? DRAW_INLAY_UP_SPEC : y;
@@ -101,4 +123,17 @@ void SpecdrawDisplay::mouseUp(const MouseEvent &event) {
 
 float *SpecdrawDisplay::getDrawnTable() {
 	return m_draw_values;
+}
+
+void SpecdrawDisplay::setGUIBig(){
+	m_GUI_big = true;
+	m_glaspanel = ImageCache::getFromMemory(BinaryData::drawpanel_150_png, BinaryData::drawpanel_150_pngSize);
+
+	setSize(m_glaspanel.getWidth(), m_glaspanel.getHeight());
+}
+void SpecdrawDisplay::setGUISmall(){
+	m_GUI_big = false;
+	m_glaspanel = ImageCache::getFromMemory(BinaryData::drawpanel_png, BinaryData::drawpanel_pngSize);
+
+	setSize(m_glaspanel.getWidth(), m_glaspanel.getHeight());
 }

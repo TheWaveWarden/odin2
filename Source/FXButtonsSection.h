@@ -14,6 +14,8 @@
 #include <map>
 #define FX_BUTTON_OFFSET 61
 
+static bool g_GUI_big = false;
+
 //==============================================================================
 /*
  */
@@ -233,18 +235,19 @@ public:
   }
 
   void positionButtons(std::string p_spare_button = "") {
+    float GUI_factor = (m_GUI_big) ? 1.5f : 1.f;
     if (p_spare_button != "flanger")
       m_flanger_button.setTopLeftPosition(
-          m_position_map.find("flanger")->second * FX_BUTTON_OFFSET, 0);
+          m_position_map.find("flanger")->second * FX_BUTTON_OFFSET * GUI_factor, 0);
     if (p_spare_button != "phaser")
       m_phaser_button.setTopLeftPosition(
-          m_position_map.find("phaser")->second * FX_BUTTON_OFFSET, 0);
+          m_position_map.find("phaser")->second * FX_BUTTON_OFFSET * GUI_factor, 0);
     if (p_spare_button != "chorus")
       m_chorus_button.setTopLeftPosition(
-          m_position_map.find("chorus")->second * FX_BUTTON_OFFSET, 0);
+          m_position_map.find("chorus")->second * FX_BUTTON_OFFSET * GUI_factor, 0);
     if (p_spare_button != "delay")
       m_delay_button.setTopLeftPosition(
-          m_position_map.find("delay")->second * FX_BUTTON_OFFSET, 0);
+          m_position_map.find("delay")->second * FX_BUTTON_OFFSET * GUI_factor, 0);
     onButtonArrange(m_position_map);
   }
 
@@ -350,7 +353,239 @@ public:
   std::function<void(std::map<std::string, int>)> onButtonArrange = [](std::map<std::string, int>){};
   std::function<void(std::string)> setHighlighted = [](std::string){};
 
+  void setGUIBig(){m_GUI_big = true;
+    juce::Image phaser_button_1 = ImageCache::getFromMemory(
+        BinaryData::buttonphaser_1_150_png, BinaryData::buttonphaser_1_150_pngSize);
+    juce::Image phaser_button_2 = ImageCache::getFromMemory(
+        BinaryData::buttonphaser_2_150_png, BinaryData::buttonphaser_2_150_pngSize);
+    juce::Image phaser_button_3 = ImageCache::getFromMemory(
+        BinaryData::buttonphaser_3_150_png, BinaryData::buttonphaser_3_150_pngSize);
+    juce::Image phaser_button_4 = ImageCache::getFromMemory(
+        BinaryData::buttonphaser_4_150_png, BinaryData::buttonphaser_4_150_pngSize);
+
+    juce::DrawableImage phaser_button_draw1;
+    juce::DrawableImage phaser_button_draw2;
+    juce::DrawableImage phaser_button_draw3;
+    juce::DrawableImage phaser_button_draw4;
+
+    phaser_button_draw1.setImage(phaser_button_1);
+    phaser_button_draw2.setImage(phaser_button_2);
+    phaser_button_draw3.setImage(phaser_button_3);
+    phaser_button_draw4.setImage(phaser_button_4);
+
+    m_phaser_button.setImages(&phaser_button_draw2, &phaser_button_draw2,
+                              &phaser_button_draw1, &phaser_button_draw1,
+                              &phaser_button_draw3, &phaser_button_draw3,
+                              &phaser_button_draw3, &phaser_button_draw3);
+    m_phaser_button.setBounds(0, 0, phaser_button_1.getWidth(),
+                              phaser_button_1.getHeight());
+
+    juce::Image flanger_button_1 = ImageCache::getFromMemory(
+        BinaryData::buttonflanger_1_150_png, BinaryData::buttonflanger_1_150_pngSize);
+    juce::Image flanger_button_2 = ImageCache::getFromMemory(
+        BinaryData::buttonflanger_2_150_png, BinaryData::buttonflanger_2_150_pngSize);
+    juce::Image flanger_button_3 = ImageCache::getFromMemory(
+        BinaryData::buttonflanger_3_150_png, BinaryData::buttonflanger_3_150_pngSize);
+    juce::Image flanger_button_4 = ImageCache::getFromMemory(
+        BinaryData::buttonflanger_4_150_png, BinaryData::buttonflanger_4_150_pngSize);
+
+    juce::DrawableImage flanger_button_draw1;
+    juce::DrawableImage flanger_button_draw2;
+    juce::DrawableImage flanger_button_draw3;
+    juce::DrawableImage flanger_button_draw4;
+
+    flanger_button_draw1.setImage(flanger_button_1);
+    flanger_button_draw2.setImage(flanger_button_2);
+    flanger_button_draw3.setImage(flanger_button_3);
+    flanger_button_draw4.setImage(flanger_button_4);
+
+    m_flanger_button.setImages(&flanger_button_draw2, &flanger_button_draw2,
+                               &flanger_button_draw1, &flanger_button_draw1,
+                               &flanger_button_draw3, &flanger_button_draw3,
+                               &flanger_button_draw3, &flanger_button_draw3);
+    m_flanger_button.setBounds(OdinHelper::c150(FX_BUTTON_OFFSET), 0, flanger_button_1.getWidth(),
+                               flanger_button_1.getHeight());
+
+    juce::Image chorus_button_1 = ImageCache::getFromMemory(
+        BinaryData::buttonchorus_1_150_png, BinaryData::buttonchorus_1_150_pngSize);
+    juce::Image chorus_button_2 = ImageCache::getFromMemory(
+        BinaryData::buttonchorus_2_150_png, BinaryData::buttonchorus_2_150_pngSize);
+    juce::Image chorus_button_3 = ImageCache::getFromMemory(
+        BinaryData::buttonchorus_3_150_png, BinaryData::buttonchorus_3_150_pngSize);
+    juce::Image chorus_button_4 = ImageCache::getFromMemory(
+        BinaryData::buttonchorus_4_150_png, BinaryData::buttonchorus_4_150_pngSize);
+
+    juce::DrawableImage chorus_button_draw1;
+    juce::DrawableImage chorus_button_draw2;
+    juce::DrawableImage chorus_button_draw3;
+    juce::DrawableImage chorus_button_draw4;
+
+    chorus_button_draw1.setImage(chorus_button_1);
+    chorus_button_draw2.setImage(chorus_button_2);
+    chorus_button_draw3.setImage(chorus_button_3);
+    chorus_button_draw4.setImage(chorus_button_4);
+
+    m_chorus_button.setImages(&chorus_button_draw2, &chorus_button_draw2,
+                              &chorus_button_draw1, &chorus_button_draw1,
+                              &chorus_button_draw3, &chorus_button_draw3,
+                              &chorus_button_draw3, &chorus_button_draw3);
+    m_chorus_button.setBounds(2 * OdinHelper::c150(FX_BUTTON_OFFSET), 0,
+                              chorus_button_1.getWidth(),
+                              chorus_button_1.getHeight());
+
+    juce::Image delay_button_1 = ImageCache::getFromMemory(
+        BinaryData::buttondelay_1_150_png, BinaryData::buttondelay_1_150_pngSize);
+    juce::Image delay_button_2 = ImageCache::getFromMemory(
+        BinaryData::buttondelay_2_150_png, BinaryData::buttondelay_2_150_pngSize);
+    juce::Image delay_button_3 = ImageCache::getFromMemory(
+        BinaryData::buttondelay_3_150_png, BinaryData::buttondelay_3_150_pngSize);
+    juce::Image delay_button_4 = ImageCache::getFromMemory(
+        BinaryData::buttondelay_4_150_png, BinaryData::buttondelay_4_150_pngSize);
+
+    juce::DrawableImage delay_button_draw1;
+    juce::DrawableImage delay_button_draw2;
+    juce::DrawableImage delay_button_draw3;
+    juce::DrawableImage delay_button_draw4;
+
+    delay_button_draw1.setImage(delay_button_1);
+    delay_button_draw2.setImage(delay_button_2);
+    delay_button_draw3.setImage(delay_button_3);
+    delay_button_draw4.setImage(delay_button_4);
+
+    m_delay_button.setImages(&delay_button_draw2, &delay_button_draw2,
+                             &delay_button_draw1, &delay_button_draw1,
+                             &delay_button_draw3, &delay_button_draw3,
+                             &delay_button_draw3, &delay_button_draw3);
+    m_delay_button.setBounds(3 * OdinHelper::c150(FX_BUTTON_OFFSET), 0, delay_button_1.getWidth(),
+                             delay_button_1.getHeight());
+    setSize(OdinHelper::c150(FX_BUTTON_OFFSET) * 4 + 1, delay_button_1.getHeight());
+
+    m_phaser_button.setGUIBig();
+    m_flanger_button.setGUIBig();
+    m_delay_button.setGUIBig();
+    m_chorus_button.setGUIBig();
+
+    forceValueTreeOntoComponents(m_value_tree.state);
+  }
+  void setGUISmall(){m_GUI_big = false;
+    juce::Image phaser_button_1 = ImageCache::getFromMemory(
+        BinaryData::buttonphaser_1_png, BinaryData::buttonphaser_1_pngSize);
+    juce::Image phaser_button_2 = ImageCache::getFromMemory(
+        BinaryData::buttonphaser_2_png, BinaryData::buttonphaser_2_pngSize);
+    juce::Image phaser_button_3 = ImageCache::getFromMemory(
+        BinaryData::buttonphaser_3_png, BinaryData::buttonphaser_3_pngSize);
+    juce::Image phaser_button_4 = ImageCache::getFromMemory(
+        BinaryData::buttonphaser_4_png, BinaryData::buttonphaser_4_pngSize);
+
+    juce::DrawableImage phaser_button_draw1;
+    juce::DrawableImage phaser_button_draw2;
+    juce::DrawableImage phaser_button_draw3;
+    juce::DrawableImage phaser_button_draw4;
+
+    phaser_button_draw1.setImage(phaser_button_1);
+    phaser_button_draw2.setImage(phaser_button_2);
+    phaser_button_draw3.setImage(phaser_button_3);
+    phaser_button_draw4.setImage(phaser_button_4);
+
+    m_phaser_button.setImages(&phaser_button_draw2, &phaser_button_draw2,
+                              &phaser_button_draw1, &phaser_button_draw1,
+                              &phaser_button_draw3, &phaser_button_draw3,
+                              &phaser_button_draw3, &phaser_button_draw3);
+    m_phaser_button.setBounds(0, 0, phaser_button_1.getWidth(),
+                              phaser_button_1.getHeight());
+
+    juce::Image flanger_button_1 = ImageCache::getFromMemory(
+        BinaryData::buttonflanger_1_png, BinaryData::buttonflanger_1_pngSize);
+    juce::Image flanger_button_2 = ImageCache::getFromMemory(
+        BinaryData::buttonflanger_2_png, BinaryData::buttonflanger_2_pngSize);
+    juce::Image flanger_button_3 = ImageCache::getFromMemory(
+        BinaryData::buttonflanger_3_png, BinaryData::buttonflanger_3_pngSize);
+    juce::Image flanger_button_4 = ImageCache::getFromMemory(
+        BinaryData::buttonflanger_4_png, BinaryData::buttonflanger_4_pngSize);
+
+    juce::DrawableImage flanger_button_draw1;
+    juce::DrawableImage flanger_button_draw2;
+    juce::DrawableImage flanger_button_draw3;
+    juce::DrawableImage flanger_button_draw4;
+
+    flanger_button_draw1.setImage(flanger_button_1);
+    flanger_button_draw2.setImage(flanger_button_2);
+    flanger_button_draw3.setImage(flanger_button_3);
+    flanger_button_draw4.setImage(flanger_button_4);
+
+    m_flanger_button.setImages(&flanger_button_draw2, &flanger_button_draw2,
+                               &flanger_button_draw1, &flanger_button_draw1,
+                               &flanger_button_draw3, &flanger_button_draw3,
+                               &flanger_button_draw3, &flanger_button_draw3);
+    m_flanger_button.setBounds(FX_BUTTON_OFFSET, 0, flanger_button_1.getWidth(),
+                               flanger_button_1.getHeight());
+
+    juce::Image chorus_button_1 = ImageCache::getFromMemory(
+        BinaryData::buttonchorus_1_png, BinaryData::buttonchorus_1_pngSize);
+    juce::Image chorus_button_2 = ImageCache::getFromMemory(
+        BinaryData::buttonchorus_2_png, BinaryData::buttonchorus_2_pngSize);
+    juce::Image chorus_button_3 = ImageCache::getFromMemory(
+        BinaryData::buttonchorus_3_png, BinaryData::buttonchorus_3_pngSize);
+    juce::Image chorus_button_4 = ImageCache::getFromMemory(
+        BinaryData::buttonchorus_4_png, BinaryData::buttonchorus_4_pngSize);
+
+    juce::DrawableImage chorus_button_draw1;
+    juce::DrawableImage chorus_button_draw2;
+    juce::DrawableImage chorus_button_draw3;
+    juce::DrawableImage chorus_button_draw4;
+
+    chorus_button_draw1.setImage(chorus_button_1);
+    chorus_button_draw2.setImage(chorus_button_2);
+    chorus_button_draw3.setImage(chorus_button_3);
+    chorus_button_draw4.setImage(chorus_button_4);
+
+    m_chorus_button.setImages(&chorus_button_draw2, &chorus_button_draw2,
+                              &chorus_button_draw1, &chorus_button_draw1,
+                              &chorus_button_draw3, &chorus_button_draw3,
+                              &chorus_button_draw3, &chorus_button_draw3);
+    m_chorus_button.setBounds(2 * FX_BUTTON_OFFSET, 0,
+                              chorus_button_1.getWidth(),
+                              chorus_button_1.getHeight());
+
+    juce::Image delay_button_1 = ImageCache::getFromMemory(
+        BinaryData::buttondelay_1_png, BinaryData::buttondelay_1_pngSize);
+    juce::Image delay_button_2 = ImageCache::getFromMemory(
+        BinaryData::buttondelay_2_png, BinaryData::buttondelay_2_pngSize);
+    juce::Image delay_button_3 = ImageCache::getFromMemory(
+        BinaryData::buttondelay_3_png, BinaryData::buttondelay_3_pngSize);
+    juce::Image delay_button_4 = ImageCache::getFromMemory(
+        BinaryData::buttondelay_4_png, BinaryData::buttondelay_4_pngSize);
+
+    juce::DrawableImage delay_button_draw1;
+    juce::DrawableImage delay_button_draw2;
+    juce::DrawableImage delay_button_draw3;
+    juce::DrawableImage delay_button_draw4;
+
+    delay_button_draw1.setImage(delay_button_1);
+    delay_button_draw2.setImage(delay_button_2);
+    delay_button_draw3.setImage(delay_button_3);
+    delay_button_draw4.setImage(delay_button_4);
+
+    m_delay_button.setImages(&delay_button_draw2, &delay_button_draw2,
+                             &delay_button_draw1, &delay_button_draw1,
+                             &delay_button_draw3, &delay_button_draw3,
+                             &delay_button_draw3, &delay_button_draw3);
+    m_delay_button.setBounds(3 * FX_BUTTON_OFFSET, 0, delay_button_1.getWidth(),
+                             delay_button_1.getHeight());
+    setSize(FX_BUTTON_OFFSET * 4 + 1, delay_button_1.getHeight());
+    
+    m_phaser_button.setGUISmall();
+    m_flanger_button.setGUISmall();
+    m_delay_button.setGUISmall();
+    m_chorus_button.setGUISmall();
+
+    forceValueTreeOntoComponents(m_value_tree.state);
+  }
+
 private:
+
+  bool m_GUI_big = false;
+
   OdinAudioProcessor &m_processor;
 
   DragButton m_flanger_button;

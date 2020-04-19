@@ -1,12 +1,12 @@
 
 #pragma once
 
-#include "GlobalIncludes.h"
 #include "../JuceLibraryCode/JuceHeader.h"
-#include "OdinControlAttachments.h"
-#include "Knob.h"
 #include "FormantSelector.h"
+#include "GlobalIncludes.h"
+#include "Knob.h"
 #include "LeftRightButton.h"
+#include "OdinControlAttachments.h"
 
 #define VEL_POS_X 9
 #define VEL_POS_Y 8
@@ -44,7 +44,6 @@
 #define RINGMOD_FREQ_X 58
 #define RINGMOD_FREQ_Y RINGMOD_AMOUNT_Y
 
-
 #define FREQ_MIN 80
 #define FREQ_MAX 18000
 #define FREQ_MID 640
@@ -63,91 +62,96 @@
 #define TRANSITION_MAX 1
 #define TRANSITION_DEFAULT -1
 
-
-
-
-
 //==============================================================================
 /*
  */
 class FilterComponent : public Component {
 public:
-  FilterComponent(AudioProcessorValueTreeState& vts, std::string p_filter_number);
-  ~FilterComponent();
+	FilterComponent(AudioProcessorValueTreeState &vts, std::string p_filter_number);
+	~FilterComponent();
 
-  void paint(Graphics &) override;
+	void paint(Graphics &) override;
 
-  void setBackground(juce::Image p_background) { m_background = p_background; }
-  void setBackgroundBypass(juce::Image p_background) {
-    m_background_bypass = p_background;
-  }
+	void setBackground(juce::Image p_background) {
+		m_background = p_background;
+	}
+	void setBackgroundBypass(juce::Image p_background) {
+		m_background_bypass = p_background;
+	}
 
-  void hideAllComponents();
-  int getFilterType(){return m_filter_type;}
-  void setFilterType(int p_filter_type);
-  void setFilterBypass();
-  void setFilterLP24();
-  void setFilterLP12();
-  void setFilterBP24();
-  void setFilterBP12();
-  void setFilterHP24();
-  void setFilterHP12();
-  void setFilterSEM24();
-  void setFilterSEM12();
-  void setFilterDiode();
-  void setFilterKorgLP();
-  void setFilterKorgHP();
-  void setFilterComb();
-  void setFilterFormant();
-  void setFilterRingMod();
+	void hideAllComponents();
+	int getFilterType() {
+		return m_filter_type;
+	}
+	void setFilterType(int p_filter_type, bool p_force = true);
+	void setFilterBypass();
+	void setFilterLP24();
+	void setFilterLP12();
+	void setFilterBP24();
+	void setFilterBP12();
+	void setFilterHP24();
+	void setFilterHP12();
+	void setFilterSEM24();
+	void setFilterSEM12();
+	void setFilterDiode();
+	void setFilterKorgLP();
+	void setFilterKorgHP();
+	void setFilterComb();
+	void setFilterFormant();
+	void setFilterRingMod();
 
-  void showStandardFilterComponents();
-  void showSEMFilterComponents();
-  void showCombFilterComponents();
-  void showFormantFilterComponents();
-  void showRingModFilterComponents();
+	void showStandardFilterComponents();
+	void showSEMFilterComponents();
+	void showCombFilterComponents();
+	void showFormantFilterComponents();
+	void showRingModFilterComponents();
 
-  void forceValueTreeOntoComponents(ValueTree p_tree, int index);
-  
+	void forceValueTreeOntoComponents(ValueTree p_tree, int index);
+
+	void setGUIBig();
+	void setGUISmall();
+
 protected:
-  Knob m_vel;
-  Knob m_kbd;
-  Knob m_env;
-  Knob m_gain;
-  Knob m_freq;
-  Knob m_res;
-  Knob m_saturation;
-  Knob m_sem_transition;
-  Knob m_formant_transition;
-  Knob m_ring_mod_amount;
+	bool m_GUI_big = false;
 
-  FormantSelector m_vowel_left;
-  FormantSelector m_vowel_right;
+	Knob m_vel;
+	Knob m_kbd;
+	Knob m_env;
+	Knob m_gain;
+	Knob m_freq;
+	Knob m_res;
+	Knob m_saturation;
+	Knob m_sem_transition;
+	Knob m_formant_transition;
+	Knob m_ring_mod_amount;
 
-  LeftRightButton m_comb_plus_minus;
+	FormantSelector m_vowel_left;
+	FormantSelector m_vowel_right;
 
-  juce::Image m_background;
-  juce::Image m_background_bypass;
-  int m_filter_type = 0;
+	LeftRightButton m_comb_plus_minus;
 
-  std::string m_filter_number;
-  AudioProcessorValueTreeState& m_value_tree;
+	juce::Image m_background;
+	juce::Image m_background_bypass;
+	int m_filter_type = 0;
 
-  std::unique_ptr<OdinKnobAttachment> m_vel_attach;
-  std::unique_ptr<OdinKnobAttachment> m_kbd_attach;
-  std::unique_ptr<OdinKnobAttachment> m_env_attach;
-  std::unique_ptr<OdinKnobAttachment> m_gain_attach;
-  std::unique_ptr<OdinKnobAttachment> m_freq_attach;
-  std::unique_ptr<OdinKnobAttachment> m_res_attach;
-  std::unique_ptr<OdinKnobAttachment> m_saturation_attach;
-  std::unique_ptr<OdinKnobAttachment> m_formant_transition_attach;
-  std::unique_ptr<OdinKnobAttachment> m_ring_mod_amount_attach;
-  std::unique_ptr<OdinKnobAttachment> m_sem_transition_attach;
+	std::string m_filter_number;
+	AudioProcessorValueTreeState &m_value_tree;
 
-  //std::unique_ptr<OdinButtonAttachment> m_comb_polarity_attach;
+	std::unique_ptr<OdinKnobAttachment> m_vel_attach;
+	std::unique_ptr<OdinKnobAttachment> m_kbd_attach;
+	std::unique_ptr<OdinKnobAttachment> m_env_attach;
+	std::unique_ptr<OdinKnobAttachment> m_gain_attach;
+	std::unique_ptr<OdinKnobAttachment> m_freq_attach;
+	std::unique_ptr<OdinKnobAttachment> m_res_attach;
+	std::unique_ptr<OdinKnobAttachment> m_saturation_attach;
+	std::unique_ptr<OdinKnobAttachment> m_formant_transition_attach;
+	std::unique_ptr<OdinKnobAttachment> m_ring_mod_amount_attach;
+	std::unique_ptr<OdinKnobAttachment> m_sem_transition_attach;
 
-  Identifier m_vowel_left_identifier;  
-  Identifier m_vowel_right_identifier;  
+	//std::unique_ptr<OdinButtonAttachment> m_comb_polarity_attach;
 
-  JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(FilterComponent)
+	Identifier m_vowel_left_identifier;
+	Identifier m_vowel_right_identifier;
+
+	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(FilterComponent)
 };

@@ -31,9 +31,10 @@
 
 #define ODIN_MAJOR_VERSION 2
 #define ODIN_MINOR_VERSION 0
-#define ODIN_PATCH_VERSION 15
+#define ODIN_PATCH_VERSION 16
 
-#define ODIN_VERSION_STRING ("Odin 2." + std::to_string(ODIN_MINOR_VERSION) + "." + std::to_string(ODIN_PATCH_VERSION) + " beta")
+#define ODIN_VERSION_STRING                                                                                            \
+	("Odin 2." + std::to_string(ODIN_MINOR_VERSION) + "." + std::to_string(ODIN_PATCH_VERSION) + " beta")
 
 // ! this is for migrating patches from older version, not to be confused with above
 #define ODIN_PATCH_MIGRATION_VERSION 1
@@ -42,7 +43,7 @@
 #define MENU_FONT_COLOR Colours::lightgrey
 #define MENU_HIGHLIGHT_FONT_COLOR Colour(62, 103, 117)
 #define MENU_HIGHLIGHT_BACKGROUND_COLOR Colour(50, 50, 50)
-#define STANDARD_DISPLAY_COLOR Colour(10,40,50)
+#define STANDARD_DISPLAY_COLOR Colour(10, 40, 50)
 //#define STANDARD_DISPLAY_COLOR Colour(21, 45, 56)
 //#define STANDARD_DISPLAY_COLOR Colour(30, 30, 30)
 #define PHASER_DISPLAY_COLOR Colour(11, 41, 19)
@@ -114,16 +115,22 @@
 
 #define SETAUDIO0TO1(name, value) m_value_tree.getParameter(name)->setValueNotifyingHost(((float)value))
 
-#define SETAUDIOFULLRANGE(name, value) /*m_value_tree.getParameter(name)->beginChangeGesture();*/\
-m_value_tree.getParameter(name)->setValueNotifyingHost(m_value_tree.getParameter(name)->convertTo0to1((float)value));\
-//m_value_tree.getParameter(name)->endChangeGesture();
+#define SETAUDIOFULLRANGE(name, value) /*m_value_tree.getParameter(name)->beginChangeGesture();*/                      \
+	m_value_tree.getParameter(name)->setValueNotifyingHost(                                                            \
+	    m_value_tree.getParameter(name)->convertTo0to1((float)value));                                                 \
+	//m_value_tree.getParameter(name)->endChangeGesture();
 
-#define SETAUDIOFULLRANGESAFE(name, value) if(m_value_tree.getParameter(name)){\
-SETAUDIOFULLRANGE(name, value)}\
-else {\
-DBG("TRIED TO ACCESS UNKOWN PARAMETER:");\
-DBG(name);\
-} 
+#define SETAUDIOFULLRANGESAFE(name, value)                                                                             \
+	if (m_value_tree.getParameter(name)) {                                                                             \
+		SETAUDIOFULLRANGE(name, value)                                                                                 \
+	} else {                                                                                                           \
+		DBG("TRIED TO ACCESS UNKOWN PARAMETER:");                                                                      \
+		DBG(name);                                                                                                     \
+	}
+
+#define DEBUG_COMPONENT_OUTLINE                                                                                        \
+	g.setColour(Colours::grey);                                                                                        \
+	g.drawRect(getLocalBounds(), 1);
 
 #define RETRIGGERAUDIO(name) SETAUDIOFULLRANGE(name, GETAUDIO(name))
 #define SETAUDIOVALUEPATCH(name)
@@ -132,17 +139,20 @@ DBG(name);\
 #define INTERPOLATION_QUALITY_HIGH Graphics::ResamplingQuality::highResamplingQuality
 
 //set interpolation value to 'none' for integer scaling, else to high
-#define SET_INTERPOLATION_QUALITY(graphics) \
-float desktop_scale = Desktop::getInstance().Desktop::getInstance().getDisplays().getMainDisplay().scale;\
-if((fabs(desktop_scale - 1.f) < 1e-4) || (fabs(desktop_scale - 2.f) < 1e-4)){\
-graphics.setImageResamplingQuality(INTERPOLATION_QUALITY_LOW);\
-} else {\
-graphics.setImageResamplingQuality(INTERPOLATION_QUALITY_HIGH);\
-}
+#define SET_INTERPOLATION_QUALITY(graphics)                                                                            \
+	float desktop_scale = Desktop::getInstance().Desktop::getInstance().getDisplays().getMainDisplay().scale;          \
+	if ((fabs(desktop_scale - 1.f) < 1e-4) || (fabs(desktop_scale - 2.f) < 1e-4)) {                                    \
+		graphics.setImageResamplingQuality(INTERPOLATION_QUALITY_LOW);                                                 \
+	} else {                                                                                                           \
+		graphics.setImageResamplingQuality(INTERPOLATION_QUALITY_HIGH);                                                \
+	}
 
 #define CLAMP(low, clamp, high) clamp = clamp < low ? low : clamp > high ? high : clamp
 
-#define DBGAUDIO(string) if(sample == 0){DBG(string);}
+#define DBGAUDIO(string)                                                                                               \
+	if (sample == 0) {                                                                                                 \
+		DBG(string);                                                                                                   \
+	}
 
 #define SETSKEWREPLACEMENT(component, mid_value)                                                                       \
 	component.setSkewFactorFromMidPoint(mid_value);                                                                    \
@@ -163,6 +173,33 @@ public:
 		g.drawRect(0, 0, width, height);
 	}
 
+	void setMenuWidth(int p_width){
+		m_width = p_width;
+	}
+
+
+
+	void getIdealPopupMenuItemSize(
+	    const String &text, bool isSeparator, int standardMenuItemHeight, int &idealWidth, int &idealHeight) {
+		if (m_GUI_big) {
+			if (isSeparator) {
+				idealWidth  = m_width;
+				idealHeight = 10;
+			} else {
+				idealWidth  = m_width;
+				idealHeight = 30;
+			}
+		} else {
+			if (isSeparator) {
+				idealWidth  = m_width;
+				idealHeight = 7;
+			} else {
+				idealWidth  = m_width;
+				idealHeight = 26;
+			}
+		}
+	}
+
 	void drawPopupMenuItem(Graphics &g,
 	                       const Rectangle<int> &area,
 	                       bool isSeparator,
@@ -174,8 +211,14 @@ public:
 	                       const String &shortcutKeyText,
 	                       const Drawable *icon,
 	                       const Colour *textColour) override {
+
+		Font font(17.f);
+		if(m_GUI_big){
+			font = Font(21.f);
+		}
+		
 		if (!isHighlighted) {
-			LookAndFeel_V4::drawPopupMenuItem(g,
+			drawPopupMenuItemOdin(g,
 			                                  area,
 			                                  isSeparator,
 			                                  isActive,
@@ -185,7 +228,7 @@ public:
 			                                  text,
 			                                  shortcutKeyText,
 			                                  icon,
-			                                  &m_text_color);
+			                                  &m_text_color, font);
 		} else {
 			if (!isSeparator) {
 				g.setColour(MENU_HIGHLIGHT_BACKGROUND_COLOR);
@@ -193,7 +236,7 @@ public:
 				g.setColour(MENU_FONT_COLOR);
 				g.drawRect(area);
 			}
-			LookAndFeel_V4::drawPopupMenuItem(g,
+			drawPopupMenuItemOdin(g,
 			                                  area,
 			                                  isSeparator,
 			                                  isActive,
@@ -203,15 +246,119 @@ public:
 			                                  text,
 			                                  shortcutKeyText,
 			                                  icon,
-			                                  &m_highlight_text_color);
+			                                  &m_highlight_text_color, font);
+		}
+	}
+
+	//this function is copied from JUCE and modified
+	void drawPopupMenuItemOdin(Graphics &g,
+	                                           const Rectangle<int> &area,
+	                                           const bool isSeparator,
+	                                           const bool isActive,
+	                                           const bool isHighlighted,
+	                                           const bool isTicked,
+	                                           const bool hasSubMenu,
+	                                           const String &text,
+	                                           const String &shortcutKeyText,
+	                                           const Drawable *icon,
+	                                           const Colour *const textColourToUse,
+											   Font p_font) {
+		if (isSeparator) {
+			auto r = area.reduced(5, 0);
+			r.removeFromTop(roundToInt((r.getHeight() * 0.5f) - 0.5f));
+
+			g.setColour(findColour(PopupMenu::textColourId).withAlpha(0.3f));
+			g.fillRect(r.removeFromTop(1));
+		} else {
+			auto textColour = (textColourToUse == nullptr ? findColour(PopupMenu::textColourId) : *textColourToUse);
+
+			auto r = area.reduced(1);
+
+			if (isHighlighted && isActive) {
+				g.setColour(findColour(PopupMenu::highlightedBackgroundColourId));
+				g.fillRect(r);
+
+				g.setColour(findColour(PopupMenu::highlightedTextColourId));
+			} else {
+				g.setColour(textColour.withMultipliedAlpha(isActive ? 1.0f : 0.5f));
+			}
+
+			r.reduce(jmin(5, area.getWidth() / 20), 0);
+
+			auto font = getPopupMenuFont();
+
+			auto maxFontHeight = r.getHeight() / 1.3f;
+
+			if (font.getHeight() > maxFontHeight)
+				font.setHeight(maxFontHeight);
+
+			g.setFont(p_font);
+
+			auto iconArea = r.removeFromLeft(roundToInt(maxFontHeight)).toFloat();
+
+			if (icon != nullptr) {
+				icon->drawWithin(g, iconArea, RectanglePlacement::centred | RectanglePlacement::onlyReduceInSize, 1.0f);
+				r.removeFromLeft(roundToInt(maxFontHeight * 0.5f));
+			} else if (isTicked) {
+				auto tick = getTickShape(1.0f);
+				g.fillPath(tick,
+				           tick.getTransformToScaleToFit(iconArea.reduced(iconArea.getWidth() / 5, 0).toFloat(), true));
+			}
+
+			if (hasSubMenu) {
+				auto arrowH = 0.6f * getPopupMenuFont().getAscent();
+
+				auto x     = static_cast<float>(r.removeFromRight((int)arrowH).getX());
+				auto halfH = static_cast<float>(r.getCentreY());
+
+				Path path;
+				path.startNewSubPath(x, halfH - arrowH * 0.5f);
+				path.lineTo(x + arrowH * 0.6f, halfH);
+				path.lineTo(x, halfH + arrowH * 0.5f);
+
+				g.strokePath(path, PathStrokeType(2.0f));
+			}
+
+			r.removeFromRight(3);
+			g.drawFittedText(text, r, Justification::centredLeft, 1);
+
+			if (shortcutKeyText.isNotEmpty()) {
+				auto f2 = font;
+				f2.setHeight(f2.getHeight() * 0.75f);
+				f2.setHorizontalScale(0.95f);
+				g.setFont(f2);
+
+				g.drawText(shortcutKeyText, r, Justification::centredRight, true);
+			}
 		}
 	}
 	Colour m_text_color           = MENU_FONT_COLOR;
 	Colour m_highlight_text_color = MENU_HIGHLIGHT_FONT_COLOR;
+
+	void setGUIBig() {
+		m_GUI_big = true;
+		m_width = 240;
+	}
+	void setGUISmall() {
+		m_GUI_big = false;
+		m_width = 170;
+	}
+
+	float m_width = 150;
+	bool m_GUI_big = false;
+};
+
+class OdinHelper {
+public:
+	//convert an iteger value to 150%
+	static int c150(int input) {
+		float x = input * 1.5f;
+		return x + 0.5 - (x < 0);
+		return (int)x;
+	}
 };
 
 #endif
-
 
 #define SET_CTR_KEY(name)                                                                                              \
 	name.setDoubleClickReturnValue(true, name.getDoubleClickReturnValue(), ModifierKeys::ctrlModifier)

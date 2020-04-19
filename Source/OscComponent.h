@@ -163,7 +163,7 @@ public:
     m_background_bypass = p_background;
   }
   int getOscType() { return m_osc_type; }
-  void setOscType(int p_osc_type);
+  void setOscType(int p_osc_type, bool p_force = true);
   void setOscTypeBypass();
   void setOscTypeAnalog();
   void setOscTypeChiptune();
@@ -176,6 +176,8 @@ public:
   void setOscTypeVector();
   void setOscTypeWavetable();
   void setOscTypeMulti();
+  void setGUIBig();
+  void setGUISmall();
 
   void hideAllComponents();
 
@@ -214,6 +216,8 @@ public:
 
 protected:
   // TextEditor REMOVE_EDITOR;
+
+  bool m_GUI_big = false;
 
   int m_osc_type = 0;
 

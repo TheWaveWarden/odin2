@@ -1,6 +1,9 @@
 #include "PluginEditor.h"
 #include "PluginProcessor.h"
 
+#include "setGUIBig.h"
+#include "setGUISmall.h"
+
 bool writeComponentImageToFile(Component &comp) {
 	time_t rawtime;
 	struct tm *timeinfo;
@@ -13,7 +16,7 @@ bool writeComponentImageToFile(Component &comp) {
 	strftime(buffer, sizeof(buffer), "%Y-%m-%d %H:%M:%S", timeinfo);
 	std::string date(buffer);
 
-	juce::File file("/home/frot/odinvst/screenshot.png");
+	juce::File file("/home/frederik_siepe/odinvst/screenshot.png");
 	juce::File file2("/home/frederik_siepe/gui_saves_odin/screenshot" + date + ".png");
 	Rectangle<int> subArea = comp.getBounds();
 	if (ImageFileFormat *format = ImageFileFormat::findImageFormatForFileExtension(file)) {
@@ -75,8 +78,8 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
     m_pitchbend_amount_identifier("pitchbend_amount"), m_delay_position_identifier("delay_position"),
     m_flanger_position_identifier("flanger_position"), m_phaser_position_identifier("phaser_position"),
     m_chorus_position_identifier("chorus_position"), m_mod_matrix(vts), m_legato_button("legato"),
-    m_tooltip(nullptr, 2047483647), m_is_standalone_plugin(p_is_standalone), m_save_load(vts, p_processor),
-    m_processor(p_processor){
+    m_gui_size_button("gui_size"), m_tooltip(nullptr, 2047483647), m_is_standalone_plugin(p_is_standalone),
+    m_save_load(vts, p_processor), m_processor(p_processor) {
 
 	if (m_is_standalone_plugin) {
 		addKeyListener(this);
@@ -119,10 +122,10 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	m_filter_dropdown_menu.addItem(FILTER_TYPE_HP24, "Highpass 24");
 	m_filter_dropdown_menu.addItem(FILTER_TYPE_HP12, "Highpass 12");
 	m_filter_dropdown_menu.addSeparator();
-	m_filter_dropdown_menu.addItem(FILTER_TYPE_SEM12, "Oberheim 12");
+	m_filter_dropdown_menu.addItem(FILTER_TYPE_SEM12, "OH-12");
 	m_filter_dropdown_menu.addItem(FILTER_TYPE_DIODE, "Diode Ladder");
-	m_filter_dropdown_menu.addItem(FILTER_TYPE_KORG_LP, "Korg 35 LP");
-	m_filter_dropdown_menu.addItem(FILTER_TYPE_KORG_HP, "Korg 35 HP");
+	m_filter_dropdown_menu.addItem(FILTER_TYPE_KORG_LP, "KO-35 LP");
+	m_filter_dropdown_menu.addItem(FILTER_TYPE_KORG_HP, "KO-35 HP");
 	m_filter_dropdown_menu.addSeparator();
 	m_filter_dropdown_menu.addItem(FILTER_TYPE_COMB, "Comb Filter");
 	m_filter_dropdown_menu.addItem(FILTER_TYPE_FORMANT, "Formant Filter");
@@ -437,11 +440,13 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 		setTooltipEnabled(m_question_button.getToggleState());
 	};
 	m_question_button.setTooltip(
-	    std::string("Activating this button shows a\ntooltipfor every parameter in\nthe synth. Simply hover your\n"
-	                "mouse over it!\n\nBeta Testers:\nPlease report bugs on thewavewarden.com. Even if you don't find bugs, send feedback to info@thewavewarden.com.\n\nGENERAL TIPS:\n\nHold shift to finetune knobs\n\nCtr "
-	                "+ click to reset knobs\n\nDouble click to enter values\n\nRight click "
-	                "to access MIDI-learn\n\nThe order of FX can be rearranged\nby "
-	                "dragging and dropping\n the FX selection buttons.\n\nVersion: ") +
+	    std::string(
+	        "Activating this button shows a\ntooltipfor every parameter in\nthe synth. Simply hover your\n"
+	        "mouse over it!\n\nBeta Testers:\nPlease report bugs on thewavewarden.com. Even if you don't find bugs, "
+	        "send feedback to info@thewavewarden.com.\n\nGENERAL TIPS:\n\nHold shift to finetune knobs\n\nCtr "
+	        "+ click to reset knobs\n\nDouble click to enter values\n\nRight click "
+	        "to access MIDI-learn\n\nThe order of FX can be rearranged\nby "
+	        "dragging and dropping\n the FX selection buttons.\n\nVersion: ") +
 	    ODIN_VERSION_STRING
 #ifdef ODIN_RELEASE
 	    + " Release"
@@ -451,7 +456,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 #endif
 	);
 
-	m_question_button.onClick = [&](){
+	m_question_button.onClick = [&]() {
 		//DBG("Modmatrix: " + std::to_string((float)GETAUDIO("amount_1_row_0")));
 		//DBG(std::to_string((int)m_value_tree.state.getChildWithName("lfo")["lfo1_wave"]));
 		//DBG((float)GETAUDIO("fil1_comb_polarity"));
@@ -736,7 +741,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 		m_value_tree.state.getChildWithName("misc").setProperty(
 		    "env_left_selected", (int)m_env_13_button.getToggleState(), nullptr);
 	};
-	m_env_13_button.setTooltip("Shows the amplifier\nenvelope or envelope 3");
+	m_env_13_button.setTooltip("Shows the amplifier\nenvelope or the mod envelope");
 	addAndMakeVisible(m_env_13_button);
 	m_env_13_button.disableMidiLearn();
 
@@ -753,7 +758,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 		m_value_tree.state.getChildWithName("misc").setProperty(
 		    "env_right_selected", (int)m_env_24_button.getToggleState(), nullptr);
 	};
-	m_env_24_button.setTooltip("Shows the filter\nenvelope or envelope 4");
+	m_env_24_button.setTooltip("Shows the filter\nenvelope or global envelope");
 	addAndMakeVisible(m_env_24_button);
 	m_env_24_button.disableMidiLearn();
 
@@ -770,7 +775,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 		m_value_tree.state.getChildWithName("lfo").setProperty(
 		    "lfo_left_selected", (int)m_lfo_13_button.getToggleState(), nullptr);
 	};
-	m_lfo_13_button.setTooltip("Shows LFO 1 or LFO 3");
+	m_lfo_13_button.setTooltip("Shows LFO 1 or LFO 2");
 	addAndMakeVisible(m_lfo_13_button);
 	m_lfo_13_button.disableMidiLearn();
 
@@ -787,7 +792,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 		m_value_tree.state.getChildWithName("lfo").setProperty(
 		    "lfo_right_selected", (int)m_lfo_24_button.getToggleState(), nullptr);
 	};
-	m_lfo_24_button.setTooltip("Shows LFO 2 or LFO 4");
+	m_lfo_24_button.setTooltip("Shows LFO 3 or the global LFO");
 	m_lfo_24_button.disableMidiLearn();
 
 	addAndMakeVisible(m_lfo_24_button);
@@ -812,6 +817,18 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	                           "no hard envelope reset when transitioning from one note to another.");
 	addAndMakeVisible(m_legato_button);
 	m_legato_button.disableMidiLearn();
+
+	juce::Image gui_size_left =
+	    ImageCache::getFromMemory(BinaryData::buttonguisize_1_png, BinaryData::buttonguisize_1_pngSize);
+	juce::Image gui_size_right =
+	    ImageCache::getFromMemory(BinaryData::buttonguisize_3_png, BinaryData::buttonguisize_3_pngSize);
+	m_gui_size_button.setImage(gui_size_left, 1);
+	m_gui_size_button.setImage(gui_size_right, 2);
+	m_gui_size_button.setBounds(GUI_SIZE_POS_X, GUI_SIZE_POS_Y, gui_size_left.getWidth(), gui_size_left.getHeight());
+	m_gui_size_button.setToggleState(true, sendNotification);
+	m_gui_size_button.setTooltip("Scale the GUI to 100% or 150%");
+	addAndMakeVisible(m_gui_size_button);
+	m_gui_size_button.disableMidiLearn();
 
 	juce::Image lfo13_sync_background =
 	    ImageCache::getFromMemory(BinaryData::lfo13_sync_background_png, BinaryData::lfo13_sync_background_pngSize);
@@ -984,8 +1001,15 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	forceValueTreeOntoComponents(false);
 	m_save_load.resetPatchText();
 
-	setSize(ODIN_EDITOR_SIZE_X, ODIN_EDITOR_SIZE_Y);
-	
+	//todo we are double loading ALL images.....
+	bool set_GUI_big;
+	readOrCreateConfigFile(set_GUI_big);
+	setGUISizeBig(set_GUI_big, false);
+
+	//set lambda after setting the button
+	m_gui_size_button.setToggleState(!set_GUI_big, dontSendNotification);
+	m_gui_size_button.onClick = [&]() { setGUISizeBig(!m_gui_size_button.getToggleState(), true); };
+
 	//DBG("Display_Scale: " + std::to_string(Desktop::getInstance().getDisplays().getMainDisplay().scale));
 
 #ifdef ODIN_LINUX
@@ -994,9 +1018,6 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	}
 	writeValueTreeToFile(m_value_tree.state);
 #endif
-
-
-
 }
 
 OdinAudioProcessorEditor::~OdinAudioProcessorEditor() {
@@ -1018,7 +1039,7 @@ OdinAudioProcessorEditor::~OdinAudioProcessorEditor() {
 //==============================================================================
 void OdinAudioProcessorEditor::paint(Graphics &g) {
 	SET_INTERPOLATION_QUALITY(g)
-	g.drawImageAt(ImageCache::getFromMemory(BinaryData::odin_backdrop_png, BinaryData::odin_backdrop_pngSize), 0, 0);
+	g.drawImageAt(m_odin_backdrop, 0, 0);
 }
 
 void OdinAudioProcessorEditor::resized() {
@@ -1115,14 +1136,29 @@ void OdinAudioProcessorEditor::setLfo34(bool p_lfo2) {
 
 void OdinAudioProcessorEditor::arrangeFXOnButtons(std::map<std::string, int> p_map) {
 
-	m_flanger_on_button.setTopLeftPosition(FX_ON_BUTTON_X + p_map.find("flanger")->second * FX_BUTTON_OFFSET,
-	                                       FX_ON_BUTTON_Y);
-	m_phaser_on_button.setTopLeftPosition(FX_ON_BUTTON_X + p_map.find("phaser")->second * FX_BUTTON_OFFSET,
-	                                      FX_ON_BUTTON_Y);
-	m_chorus_on_button.setTopLeftPosition(FX_ON_BUTTON_X + p_map.find("chorus")->second * FX_BUTTON_OFFSET,
-	                                      FX_ON_BUTTON_Y);
-	m_delay_on_button.setTopLeftPosition(FX_ON_BUTTON_X + p_map.find("delay")->second * FX_BUTTON_OFFSET,
-	                                     FX_ON_BUTTON_Y);
+	if (g_GUI_big) {
+		m_flanger_on_button.setTopLeftPosition(OdinHelper::c150(FX_ON_BUTTON_X) +
+		                                           p_map.find("flanger")->second * OdinHelper::c150(FX_BUTTON_OFFSET),
+		                                       OdinHelper::c150(FX_ON_BUTTON_Y));
+		m_phaser_on_button.setTopLeftPosition(OdinHelper::c150(FX_ON_BUTTON_X) +
+		                                          p_map.find("phaser")->second * OdinHelper::c150(FX_BUTTON_OFFSET),
+		                                      OdinHelper::c150(FX_ON_BUTTON_Y));
+		m_chorus_on_button.setTopLeftPosition(OdinHelper::c150(FX_ON_BUTTON_X) +
+		                                          p_map.find("chorus")->second * OdinHelper::c150(FX_BUTTON_OFFSET),
+		                                      OdinHelper::c150(FX_ON_BUTTON_Y));
+		m_delay_on_button.setTopLeftPosition(OdinHelper::c150(FX_ON_BUTTON_X) +
+		                                         p_map.find("delay")->second * OdinHelper::c150(FX_BUTTON_OFFSET),
+		                                     OdinHelper::c150(FX_ON_BUTTON_Y));
+	} else {
+		m_flanger_on_button.setTopLeftPosition(FX_ON_BUTTON_X + p_map.find("flanger")->second * (FX_BUTTON_OFFSET),
+		                                       FX_ON_BUTTON_Y);
+		m_phaser_on_button.setTopLeftPosition(FX_ON_BUTTON_X + p_map.find("phaser")->second * (FX_BUTTON_OFFSET),
+		                                      FX_ON_BUTTON_Y);
+		m_chorus_on_button.setTopLeftPosition(FX_ON_BUTTON_X + p_map.find("chorus")->second * (FX_BUTTON_OFFSET),
+		                                      FX_ON_BUTTON_Y);
+		m_delay_on_button.setTopLeftPosition(FX_ON_BUTTON_X + p_map.find("delay")->second * (FX_BUTTON_OFFSET),
+		                                     FX_ON_BUTTON_Y);
+	}
 
 	m_value_tree.state.getChildWithName("fx").setProperty(
 	    m_delay_position_identifier, (float)p_map.find("delay")->second, nullptr);
@@ -1216,7 +1252,6 @@ void OdinAudioProcessorEditor::forceValueTreeOntoComponentsOnlyMainPanel() {
 }
 
 void OdinAudioProcessorEditor::forceValueTreeOntoComponents(bool p_reset_audio) {
-
 
 	// reset audioengine
 	if (p_reset_audio) {
@@ -1421,4 +1456,121 @@ void OdinAudioProcessorEditor::updateModWheel(float p_value) {
 		}
 		m_modwheel.setValue(p_value);
 	});
+}
+
+void OdinAudioProcessorEditor::setGUISizeBig(bool p_big, bool p_write_to_config) {
+	if (p_big) {
+		g_GUI_big = true;
+		m_osc1.setGUIBig();
+		m_osc2.setGUIBig();
+		m_osc3.setGUIBig();
+		m_fil1_component.setGUIBig();
+		m_fil2_component.setGUIBig();
+		m_fil3_component.setGUIBig();
+		m_midsection.setGUIBig();
+		m_adsr_1.setGUIBig();
+		m_adsr_2.setGUIBig();
+		m_adsr_3.setGUIBig();
+		m_adsr_4.setGUIBig();
+		m_lfo_1.setGUIBig();
+		m_lfo_2.setGUIBig();
+		m_lfo_3.setGUIBig();
+		m_lfo_4.setGUIBig();
+		m_xy_section.setGUIBig();
+		m_delay.setGUIBig();
+		m_phaser.setGUIBig();
+		m_chorus.setGUIBig();
+		m_flanger.setGUIBig();
+		m_fx_buttons_section.setGUIBig();
+		m_mod_matrix.setGUIBig();
+		m_save_load.setGUIBig();
+		m_menu_feels.setGUIBig();
+		setGUIBig();
+	} else {
+		g_GUI_big = false;
+		m_osc1.setGUISmall();
+		m_osc2.setGUISmall();
+		m_osc3.setGUISmall();
+		m_fil1_component.setGUISmall();
+		m_fil2_component.setGUISmall();
+		m_fil3_component.setGUISmall();
+		m_midsection.setGUISmall();
+		m_adsr_1.setGUISmall();
+		m_adsr_2.setGUISmall();
+		m_adsr_3.setGUISmall();
+		m_adsr_4.setGUISmall();
+		m_lfo_1.setGUISmall();
+		m_lfo_2.setGUISmall();
+		m_lfo_3.setGUISmall();
+		m_lfo_4.setGUISmall();
+		m_xy_section.setGUISmall();
+		m_delay.setGUISmall();
+		m_phaser.setGUISmall();
+		m_chorus.setGUISmall();
+		m_flanger.setGUISmall();
+		m_fx_buttons_section.setGUISmall();
+		m_mod_matrix.setGUISmall();
+		m_save_load.setGUISmall();
+		m_menu_feels.setGUISmall();
+		setGUISmall();
+	}
+
+	if (p_write_to_config) {
+		writeConfigFile(p_big);
+	}
+
+	repaint();
+}
+
+
+#define CONFIG_FILE_PATH File::getSpecialLocation(File::SpecialLocationType::userDocumentsDirectory).getFullPathName() +\
+		File::getSeparatorString() + ".config" + File::getSeparatorString() + "odin2" + File::getSeparatorString() +\
+	    "odin2.conf"
+
+void OdinAudioProcessorEditor::readOrCreateConfigFile(bool &p_GUI_big) {
+
+	String path_absolute = CONFIG_FILE_PATH;
+	File configuration_file = File(path_absolute);
+
+	if (configuration_file.existsAsFile()) {
+		// rather hacky: check if the file ends on 1 (i.e. "big_GUI: 1")
+		p_GUI_big = configuration_file.loadFileAsString().endsWithChar('1');
+		DBG("Found configuration file, big_GUI: " + std::to_string(p_GUI_big));
+
+	}
+
+	else {
+		p_GUI_big = false;
+
+		configuration_file.create();
+		DBG("Created File " + path_absolute);
+
+		FileOutputStream config_stream(configuration_file);
+		if (config_stream.openedOk()) {
+			config_stream.setPosition(0);
+			config_stream.truncate();
+			config_stream << "big_GUI: 0";
+		} else {
+			DBG("Failed to create config file...");
+		}
+	}
+}
+void OdinAudioProcessorEditor::writeConfigFile(bool p_GUI_big) {
+	
+	String path_absolute = CONFIG_FILE_PATH;
+	File configuration_file = File(path_absolute);
+
+	if(!configuration_file.existsAsFile()){
+		configuration_file.create();
+	}
+
+	FileOutputStream config_stream(configuration_file);
+		if (config_stream.openedOk()) {
+			config_stream.setPosition(0);
+			config_stream.truncate();
+			config_stream << "big_GUI: " << p_GUI_big;
+			DBG("Wrote configuration file " << path_absolute);
+		} else {
+			DBG("Failed to create config file...");
+	}
 }

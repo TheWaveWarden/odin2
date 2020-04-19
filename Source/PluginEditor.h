@@ -117,8 +117,11 @@
 #define SAVE_LOAD_SIZE_X 288
 #define SAVE_LOAD_SIZE_Y 25
 
-#define LEGATO_POS_X 670
+#define LEGATO_POS_X 590
 #define LEGATO_POS_Y 7
+
+#define GUI_SIZE_POS_X 670
+#define GUI_SIZE_POS_Y 7
 
 #define ENV13_POS_X 30
 #define ENV13_POS_Y 313
@@ -161,13 +164,16 @@
 #define FONT_SPACE_Y 4
 #define TOOLTIP_INLAY 10
 
-#define BPM_POS_X 585
+#define BPM_POS_X 500
 #define BPM_POS_Y 6
 
 #define MIDI_KEYBOARD_SIZE 85
 
 #define ODIN_EDITOR_SIZE_X 800
 #define ODIN_EDITOR_SIZE_Y 600
+
+#define ODIN_EDITOR_SIZE_150_X 1200
+#define ODIN_EDITOR_SIZE_150_Y 900
 
 class TooltipFeels : public LookAndFeel_V4 {
 public:
@@ -328,6 +334,7 @@ private:
   LeftRightButton m_lfo_24_button;
 
   LeftRightButton m_legato_button;
+  LeftRightButton m_gui_size_button;
 
   AudioProcessorValueTreeState &m_value_tree;
 
@@ -366,6 +373,8 @@ private:
 
   OdinAudioProcessor& m_processor;
 
+  juce::Image m_odin_backdrop;
+
   void setOsc1Plate(int p_osc_type);
   void setOsc2Plate(int p_osc_type);
   void setOsc3Plate(int p_osc_type);
@@ -378,6 +387,12 @@ private:
   void setLfo34(bool p_lfo24);
   void updatePitchWheel(float p_value);
   void updateModWheel(float p_value);
+  void setGUISizeBig(bool p_big, bool p_write_to_config);
+  void setGUISmall();
+  void setGUIBig();
+
+  void readOrCreateConfigFile(bool& p_GUI_big);
+  void writeConfigFile(bool p_GUI_big);
 
   int m_octave_shift = 0;
   bool m_is_standalone_plugin;

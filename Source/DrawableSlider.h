@@ -52,6 +52,11 @@ public:
 	DrawableSlider();
 	~DrawableSlider();
 
+
+	void setHandle(juce::Image p_handle){
+		m_handle = p_handle;
+	}
+	
 	String getTextFromValue(double value) override;
 
 	void setTextValueSuffix(const String &suffix) {

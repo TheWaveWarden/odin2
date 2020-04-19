@@ -93,6 +93,7 @@ public:
 		g.fillRect(body); // pmai
 		g.setColour(Colour(50, 50, 50));
 		g.drawRect(body); // pmai
+		g.setFont(30.f);
 	}
 	int getSliderPopupPlacement(Slider &slider) {
 		return 2;
@@ -101,7 +102,7 @@ public:
 
 class Knob : public juce::Slider, public OdinMidiLearnBase {
 public:
-	Knob() : m_label("henlo", "texttt") {
+	Knob() {
 		setLookAndFeel(&m_knob_feels);
 		setRange(0, 1);
 
@@ -125,6 +126,9 @@ public:
 	void setStrip(juce::Image p_strip, size_t p_frames, bool p_is_vertical = true) {
 		m_is_vertical = p_is_vertical;
 		m_filmstrip   = p_strip;
+		//DBG(p_strip.getHeight());
+		//DBG(p_frames);
+		//DBG("--");
 		if (m_is_vertical) {
 			m_width  = p_strip.getWidth();
 			m_height = p_strip.getHeight() / p_frames;
@@ -203,11 +207,16 @@ public:
 			m_midi_learn_left_offset   = BLACK_KNOB_BIG_LEFT_OFFSET;
 			m_midi_learn_bottom_offset = BLACK_KNOB_BIG_BOTTOM_OFFSET;
 			break;
+		case 69:
+			m_midi_learn_left_offset = 5;
+			m_midi_learn_bottom_offset = 4;
 		case WHEEL_SIZE_X:
 			m_midi_learn_left_offset = WHEEL_LEFT_OFFSET;
 			break;
 		default:
-			DBG("FOUND UNKNOWN KNOB WIDTH " + std::to_string(width) + "in Knob::setBounds()\n\n\n\n\n\n");
+			m_midi_learn_left_offset   = 4;
+			m_midi_learn_bottom_offset = 3;
+			//DBG("Unknown knob width " + std::to_string(width) + "px in Knob::setBounds()");
 			break;
 		}
 		Slider::setBounds(x, y, width, height);
@@ -271,5 +280,5 @@ private:
 
 	KnobFeels m_knob_feels;
 
-	Label m_label;
+	//Label m_label;
 };

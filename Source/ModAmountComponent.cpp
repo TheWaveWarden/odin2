@@ -28,9 +28,9 @@ void ModAmountComponent::paint(Graphics &g) {
 	SET_INTERPOLATION_QUALITY(g)
 	g.setColour(m_color);
 	juce::Point<int> top_left = getLocalBounds().getTopLeft();
-	top_left.addXY(m_inlay, m_inlay);
+	top_left.addXY(m_inlay, m_inlay + m_inlay_top);
 	juce::Point<int> bottom_right = getLocalBounds().getBottomRight();
-	bottom_right.addXY(-m_inlay, -m_inlay);
+	bottom_right.addXY(-m_inlay, -m_inlay- m_inlay_bottom);
 	g.fillRect(juce::Rectangle<int>(top_left, bottom_right)); // pmai
 
 	if (m_value > 0) {
@@ -39,14 +39,19 @@ void ModAmountComponent::paint(Graphics &g) {
 		g.fillRect(juce::Rectangle<int>(top_left, bottom_right));
 	} else if (m_value < 0) {
 		g.setColour(m_color_bar_negative);
-		top_left.addXY((getWidth() - m_inlay * 2) * (1 + m_value), m_inlay);
+		top_left.addXY((getWidth() - m_inlay * 2) * (1 + m_value), m_inlay - m_inlay_bottom);
+		bottom_right.addXY(0,-m_inlay);
 		g.fillRect(juce::Rectangle<int>(top_left, bottom_right));
 	}
 
 	Font current_font = g.getCurrentFont();
 	current_font.setStyleFlags(1); //bold
 	g.setFont(current_font);
-	g.setFont(12.0f);
+	if (m_GUI_big) {
+		g.setFont(18.0f);
+	} else {
+		g.setFont(12.0f);
+	}
 	std::stringstream stream;
 	stream << std::fixed << std::setprecision(0) << m_value * 100;
 	std::string value_string = stream.str();
@@ -60,7 +65,11 @@ void ModAmountComponent::paint(Graphics &g) {
 }
 
 void ModAmountComponent::mouseDrag(const MouseEvent &event) {
-	m_value = m_drag_start_value + (m_drag_start_y - getMouseXYRelative().getY()) * DRAG_SCALAR;
+	float drag_scalar = DRAG_SCALAR;
+	if(m_GUI_big){
+		drag_scalar *= 0.66f;
+	}
+	m_value = m_drag_start_value + (m_drag_start_y - getMouseXYRelative().getY()) * drag_scalar;
 	m_value = m_value > 1 ? 1 : m_value;
 	m_value = m_value < -1 ? -1 : m_value;
 	onValueChange(m_value);

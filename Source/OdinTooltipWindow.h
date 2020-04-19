@@ -12,6 +12,14 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 
+
+// class TooltipFeels : public LookAndFeel_V4 {
+//   getTooltipBounds(const string& tipText, Point<int>screenPos, Rectangle<int> parentArea){
+//     LookAndFeel_
+//   }
+//}
+
+
 class OdinTooltipWindow : public TooltipWindow
 {
 
