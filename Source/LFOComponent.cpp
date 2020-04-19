@@ -147,7 +147,7 @@ void LFOComponent::forceValueTreeOntoComponents(ValueTree p_tree) {
 	m_value_tree.state.getChildWithName("fx").sendPropertyChangeMessage((Identifier)("lfo" + m_lfo_number + "_sync"));
 }
 
-bool LFOComponent::setGUIBig() {
+void LFOComponent::setGUIBig() {
 	m_GUI_big = true;	
 
 	juce::Image reset_1 =
@@ -206,7 +206,7 @@ bool LFOComponent::setGUIBig() {
 
 }
 
-bool LFOComponent::setGUISmall() {
+void LFOComponent::setGUISmall() {
 	m_GUI_big = false;
 
 

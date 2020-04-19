@@ -73,8 +73,8 @@ public:
     m_freq_overdraw = p_image;
   }
 
-  bool setGUIBig();  
-  bool setGUISmall();
+  void setGUIBig();  
+  void setGUISmall();
 private:
 
   bool m_GUI_big = false;
