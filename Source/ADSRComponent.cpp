@@ -147,6 +147,8 @@ void ADSRComponent::setGUIBig() {
 	    ImageCache::getFromMemory(BinaryData::slider_handle_150_png, BinaryData::slider_handle_150_pngSize));
 }
 void ADSRComponent::setGUISmall() {
+
+	DBG("AdSR SMALL");
 	juce::Image loop_1 = ImageCache::getFromMemory(BinaryData::buttonloop_1_png, BinaryData::buttonloop_1_pngSize);
 	juce::Image loop_2 = ImageCache::getFromMemory(BinaryData::buttonloop_2_png, BinaryData::buttonloop_2_pngSize);
 	juce::Image loop_3 = ImageCache::getFromMemory(BinaryData::buttonloop_3_png, BinaryData::buttonloop_3_pngSize);
@@ -161,6 +163,9 @@ void ADSRComponent::setGUISmall() {
 	loop_draw2.setImage(loop_2);
 	loop_draw3.setImage(loop_3);
 	loop_draw4.setImage(loop_4);
+
+	m_loop.setImages(
+	    &loop_draw2, &loop_draw2, &loop_draw1, &loop_draw1, &loop_draw4, &loop_draw4, &loop_draw3, &loop_draw3);
 
 	m_loop.setBounds(LOOP_POS_X, LOOP_POS_Y, loop_1.getWidth(), loop_1.getHeight());
 

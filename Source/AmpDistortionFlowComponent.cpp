@@ -380,10 +380,10 @@ juce::Image flow_left_1 = ImageCache::getFromMemory(BinaryData::buttonleft_1_150
 	                      OdinHelper::c150(BLACK_KNOB_MID_SIZE_X),
 	                      OdinHelper::c150(BLACK_KNOB_MID_SIZE_Y));
 	m_boost.setBounds(
-	    OdinHelper::c150(BIAS_POS_X) - OdinHelper::c150(ROUND_KNOB_OFFSET_X)-1, OdinHelper::c150(BIAS_POS_Y) - OdinHelper::c150(ROUND_KNOB_OFFSET_Y)+1, OdinHelper::c150(ROUND_KNOB_SIZE_X), OdinHelper::c150(ROUND_KNOB_SIZE_Y));
+	    OdinHelper::c150(BIAS_POS_X) - OdinHelper::c150(ROUND_KNOB_OFFSET_X)-1, OdinHelper::c150(BIAS_POS_Y) - OdinHelper::c150(ROUND_KNOB_OFFSET_Y)+1, OdinHelper::c150(ROUND_KNOB_SIZE_X)+2, OdinHelper::c150(ROUND_KNOB_SIZE_Y));
 	m_dry_wet.setBounds(OdinHelper::c150(THRESHOLD_POS_X) - OdinHelper::c150(ROUND_KNOB_OFFSET_X)-1,
 	                    OdinHelper::c150(THRESHOLD_POS_Y) - OdinHelper::c150(ROUND_KNOB_OFFSET_Y)+1,
-	                    OdinHelper::c150(ROUND_KNOB_SIZE_X),
+	                    OdinHelper::c150(ROUND_KNOB_SIZE_X)+2,
 	                    OdinHelper::c150(ROUND_KNOB_SIZE_Y));
 
 	m_distortion_algo.setGUIBig();
