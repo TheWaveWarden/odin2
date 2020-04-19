@@ -94,7 +94,7 @@
   <PARAM id="lfo3_reset" value="0.0"/>
   <PARAM id="lfo4_freq" value="1.000000357627869"/>
   <PARAM id="lfo4_reset" value="0.0"/>
-  <PARAM id="master" value="0.0"/>
+  <PARAM id="master" value="-3.0"/>
   <PARAM id="modwheel" value="0.0"/>
   <PARAM id="osc1_arp_on" value="0.0"/>
   <PARAM id="osc1_arp_speed" value="20.0"/>
