@@ -1,3 +1,6 @@
+# 2.0.17 beta
+- fixed Global modulation sources crashing plugin on some machines
+- dropped requirement for AVX instructions
 # 2.0.16 beta
 - GUI-size now toggleable between 100% and 150%
 - decreased volume of init-patch
