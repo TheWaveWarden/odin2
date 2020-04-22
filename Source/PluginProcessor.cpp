@@ -457,7 +457,6 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 		//============================================================
 
 		// we will write to this before the amplifier section
-		float voices_output = 0;
 
 		// global lfo and envelope
 		if (m_render_ADSR[1]) {
@@ -626,11 +625,13 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 					}
 				} // filter loop
 
+				float voices_output = 0;
+
 				if (*m_fil1_to_amp) {
-					voices_output += m_filter_output[voice][0] * m_adsr[voice][0];
+					voices_output += m_filter_output[voice][0];
 				}
 				if (*m_fil2_to_amp) {
-					voices_output += m_filter_output[voice][1] * m_adsr[voice][0];
+					voices_output += m_filter_output[voice][1];
 				}
 
 				//SIGNAL IS POLY STEREO FROM HERE ON
@@ -645,8 +646,8 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 					stereo_signal_voice[1] = m_voice[voice].distortion[1].doDistortion(stereo_signal_voice[1]);
 				}
 
-				stereo_signal[0] += stereo_signal_voice[0] / 12.f;
-				stereo_signal[1] += stereo_signal_voice[1] / 12.f;
+				stereo_signal[0] += stereo_signal_voice[0] * m_adsr[voice][0];
+				stereo_signal[1] += stereo_signal_voice[1] * m_adsr[voice][0];
 			} // voice active
 		}     // voice loop
 
