@@ -470,6 +470,10 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 			m_global_lfo_mod_source = m_global_lfo.doOscillate();
 		}
 
+		// output var for the individual oscs and filters - these are modulation sources as well
+		memset(m_osc_output, 0, sizeof(float) * VOICES * 3);
+		memset(m_filter_output, 0, sizeof(float) * VOICES * 2);
+
 		// loop over all voices
 		for (int voice = 0; voice < VOICES; ++voice) {
 			if (m_voice[voice]) {
@@ -489,9 +493,6 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 				}
 
 				//===== OSCS ======
-
-				// output var for the individual oscs
-				memset(m_osc_output, 0, sizeof(float) * VOICES * 3);
 
 				for (int osc = 0; osc < 3; ++osc) {
 
@@ -552,7 +553,6 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 				//===== FILTERS ======
 
 				float filter_input[2] = {0};
-				memset(m_filter_output, 0, sizeof(float) * VOICES * 2);
 				m_voice[voice].setFilterEnvValue(m_adsr[voice][1]); // can be split up to individual filters
 				for (int fil = 0; fil < 2; ++fil) {
 					// get filter inputs, fil1->fil2 is done at the end of fil1 calc
