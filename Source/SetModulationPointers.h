@@ -230,11 +230,16 @@ void OdinAudioProcessor::setModulationPointers() {
 		m_global_env.setDecayModPointer(&(m_mod_destinations.global_adsr.decay));
 		m_global_env.setSustainModPointer(&(m_mod_destinations.global_adsr.sustain));
 		m_global_env.setReleaseModPointer(&(m_mod_destinations.global_adsr.release));
-	}
 
-	m_amp.setGainModPointer(&(m_mod_destinations.amp.gain));
-	m_amp.setPanModPointer(&(m_mod_destinations.amp.pan));
-	m_amp.setVelModPointer(&(m_mod_destinations.amp.vel));
+		m_voice[voice].amp.setGainModPointer(&(m_mod_destinations.voice[voice].amp.gain));
+		m_voice[voice].amp.setPanModPointer(&(m_mod_destinations.voice[voice].amp.pan));
+		m_voice[voice].amp.setVelModPointer(&(m_mod_destinations.voice[voice].amp.vel));
+
+		m_voice[voice].distortion[0].setThresholdModPointer(&(m_mod_destinations.voice[voice].distortion.boost));
+		m_voice[voice].distortion[0].setDryWetModPointer(&(m_mod_destinations.voice[voice].distortion.drywet));
+		m_voice[voice].distortion[1].setThresholdModPointer(&(m_mod_destinations.voice[voice].distortion.boost));
+		m_voice[voice].distortion[1].setDryWetModPointer(&(m_mod_destinations.voice[voice].distortion.drywet));
+	}
 
 	for (int stereo = 0; stereo < 2; ++stereo) {
 
@@ -292,8 +297,6 @@ void OdinAudioProcessor::setModulationPointers() {
 
 		m_ring_mod[stereo].setRingModAmountModPointer(&(m_mod_destinations.filter3.ringmod_amount));
 
-		m_distortion[stereo].setThresholdModPointer(&(m_mod_destinations.distortion.boost));
-		m_distortion[stereo].setDryWetModPointer(&(m_mod_destinations.distortion.drywet));
 
 		m_delay.setTimeModPointer(&(m_mod_destinations.delay.time));
 		m_delay.setFeedbackModPointer(&(m_mod_destinations.delay.feedback));

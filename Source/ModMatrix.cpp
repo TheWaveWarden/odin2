@@ -925,25 +925,35 @@ void ModMatrixRow::setModDestination(int p_destination,
 		break;
 
 	case 900:
-		p_destination_pointers[0] = &(m_destinations->amp.gain);
-		p_dest_poly               = false;
+		for (int voice = 0; voice < VOICES; ++voice) {
+			p_destination_pointers[0] = &(m_destinations->voice[voice].amp.gain);
+			p_dest_poly               = true;
+		}
 		break;
 	case 901:
-		p_destination_pointers[0] = &(m_destinations->amp.pan);
-		p_dest_poly               = false;
+		for (int voice = 0; voice < VOICES; ++voice) {
+			p_destination_pointers[0] = &(m_destinations->voice[voice].amp.pan);
+			p_dest_poly               = true;
+		}
 		break;
 	case 902:
-		p_destination_pointers[0] = &(m_destinations->amp.vel);
-		p_dest_poly               = false;
+		for (int voice = 0; voice < VOICES; ++voice) {
+			p_destination_pointers[0] = &(m_destinations->voice[voice].amp.vel);
+			p_dest_poly               = true;
+		}
 		break;
 
 	case 950:
-		p_destination_pointers[0] = &(m_destinations->distortion.boost);
-		p_dest_poly               = false;
+		for (int voice = 0; voice < VOICES; ++voice) {
+			p_destination_pointers[0] = &(m_destinations->voice[voice].distortion.boost);
+			p_dest_poly               = true;
+		}
 		break;
 	case 951:
-		p_destination_pointers[0] = &(m_destinations->distortion.drywet);
-		p_dest_poly               = false;
+		for (int voice = 0; voice < VOICES; ++voice) {
+			p_destination_pointers[0] = &(m_destinations->voice[voice].distortion.drywet);
+			p_dest_poly               = true;
+		}
 		break;
 	case 999:
 		p_destination_pointers[0] = &(m_destinations->misc.glide);

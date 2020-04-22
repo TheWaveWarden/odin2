@@ -215,7 +215,7 @@ void OdinAudioProcessor::treeValueChangedOscMulti(const String &p_ID, float p_ne
 		for (int voice = 0; voice < VOICES; ++voice) {
 			m_voice[voice].wavetable_osc[2].setPosModAmount(p_new_value);
 		}
-	} 
+	}
 }
 
 void OdinAudioProcessor::treeValueChangedOscXY(const String &p_ID, float p_new_value) {
@@ -645,17 +645,27 @@ void OdinAudioProcessor::treeValueChangedAmp(const String &p_ID, float p_new_val
 	StringRef id = StringRef(p_ID);
 
 	if (id == m_amp_pan_identifier) {
-		m_amp.setPan(p_new_value);
+		for (int voice = 0; voice < VOICES; ++voice) {
+			m_voice[voice].amp.setPan(p_new_value);
+		}
 	} else if (id == m_amp_gain_identifier) {
-		m_amp.setGainDecibels(p_new_value);
+		for (int voice = 0; voice < VOICES; ++voice) {
+			m_voice[voice].amp.setGainDecibels(p_new_value);
+		}
 	} else if (id == m_amp_width_identifier) {
-		m_amp.setVelocityAmount(p_new_value);
+		for (int voice = 0; voice < VOICES; ++voice) {
+			m_voice[voice].amp.setVelocityAmount(p_new_value);
+		}
 	} else if (id == m_dist_drywet_identifier) {
-		m_distortion[0].setDryWet(p_new_value);
-		m_distortion[1].setDryWet(p_new_value);
+		for (int voice = 0; voice < VOICES; ++voice) {
+			m_voice[voice].distortion[0].setDryWet(p_new_value);
+			m_voice[voice].distortion[1].setDryWet(p_new_value);
+		}
 	} else if (id == m_dist_threshold_identifier) {
-		m_distortion[0].setThreshold(p_new_value);
-		m_distortion[1].setThreshold(p_new_value);
+		for (int voice = 0; voice < VOICES; ++voice) {
+			m_voice[voice].distortion[0].setThreshold(p_new_value);
+			m_voice[voice].distortion[1].setThreshold(p_new_value);
+		}
 	}
 }
 
@@ -681,7 +691,7 @@ void OdinAudioProcessor::treeValueChangedDelay(const String &p_ID, float p_new_v
 		m_delay.reset();
 	} else if (id == m_delay_pingpong_identifier) {
 		m_delay.setPingPong(*m_delay_pingpong > 0.5f);
-	} 
+	}
 }
 
 void OdinAudioProcessor::treeValueChangedChorus(const String &p_ID, float p_new_value) {
@@ -702,7 +712,7 @@ void OdinAudioProcessor::treeValueChangedChorus(const String &p_ID, float p_new_
 	} else if (id == m_chorus_drywet_identifier) {
 		m_chorus[0].setDryWet(p_new_value);
 		m_chorus[1].setDryWet(p_new_value);
-	} 
+	}
 }
 
 void OdinAudioProcessor::treeValueChangedPhaser(const String &p_ID, float p_new_value) {
@@ -721,7 +731,7 @@ void OdinAudioProcessor::treeValueChangedPhaser(const String &p_ID, float p_new_
 		m_phaser.setLFOFreq(p_new_value);
 	} else if (id == m_phaser_drywet_identifier) {
 		m_phaser.setDryWet(p_new_value);
-	} 
+	}
 }
 
 void OdinAudioProcessor::treeValueChangedFlanger(const String &p_ID, float p_new_value) {
@@ -861,7 +871,7 @@ void OdinAudioProcessor::treeValueChangedLFO1(const String &p_ID, float p_new_va
 		for (int voice = 0; voice < VOICES; ++voice) {
 			m_voice[voice].lfo[0].setResetActive(p_new_value > 0.5f);
 		}
-	} 
+	}
 }
 
 void OdinAudioProcessor::treeValueChangedLFO2(const String &p_ID, float p_new_value) {
@@ -878,7 +888,7 @@ void OdinAudioProcessor::treeValueChangedLFO2(const String &p_ID, float p_new_va
 		for (int voice = 0; voice < VOICES; ++voice) {
 			m_voice[voice].lfo[1].setResetActive(p_new_value > 0.5f);
 		}
-	} 
+	}
 }
 
 void OdinAudioProcessor::treeValueChangedLFO3(const String &p_ID, float p_new_value) {
@@ -895,7 +905,7 @@ void OdinAudioProcessor::treeValueChangedLFO3(const String &p_ID, float p_new_va
 		for (int voice = 0; voice < VOICES; ++voice) {
 			m_voice[voice].lfo[2].setResetActive(p_new_value > 0.5f);
 		}
-	} 
+	}
 }
 
 void OdinAudioProcessor::treeValueChangedLFO4(const String &p_ID, float p_new_value) {
@@ -908,7 +918,7 @@ void OdinAudioProcessor::treeValueChangedLFO4(const String &p_ID, float p_new_va
 		m_global_lfo.setBaseFrequency(p_new_value);
 	} else if (id == m_lfo4_reset_identifier) {
 		m_global_lfo.setResetActive(p_new_value > 0.5f);
-	} 
+	}
 }
 
 // void OdinAudioProcessor::treeValueChangedAmount1(const String &p_ID, float p_new_value) {
@@ -917,7 +927,7 @@ void OdinAudioProcessor::treeValueChangedLFO4(const String &p_ID, float p_new_va
 // #endif
 // 	StringRef id = StringRef(p_ID);
 
-// 	
+//
 // }
 
 void OdinAudioProcessor::treeValueChangedGeneralMisc(const String &p_ID, float p_new_value) {
@@ -932,7 +942,7 @@ void OdinAudioProcessor::treeValueChangedGeneralMisc(const String &p_ID, float p
 		}
 	} else if (id == m_master_identifier) {
 		m_master_control = Decibels::decibelsToGain(p_new_value);
-	} 
+	}
 }
 
 // void OdinAudioProcessor::treeValueChangedNonParam(ValueTree &tree, const Identifier &id) {
@@ -993,7 +1003,7 @@ void OdinAudioProcessor::treeValueChangedNonParamFX(ValueTree &tree, const Ident
 		if (!p_new_value) {
 			m_phaser.setLFOFreq(*m_phaser_rate);
 		}
-	} 
+	}
 }
 
 void OdinAudioProcessor::treeValueChangedNonParamLFO(ValueTree &tree, const Identifier &id) {
@@ -1030,8 +1040,6 @@ void OdinAudioProcessor::treeValueChangedNonParamLFO(ValueTree &tree, const Iden
 	} else if (id == m_lfo4_synctime_denominator_identifier) {
 		m_global_lfo.setSynctimeDenominator(valueToDenomintaor(p_new_value));
 	}
-
-
 
 	else if (id == m_lfo1_wave_identifier) {
 		for (int voice = 0; voice < VOICES; ++voice) {
@@ -1091,7 +1099,7 @@ void OdinAudioProcessor::treeValueChangedNonParamLFO(ValueTree &tree, const Iden
 				m_voice[voice].lfo[2].setBaseFrequency(*m_lfo3_freq);
 			}
 		}
-	}  else if (id == m_lfo2_sync_identifier) {
+	} else if (id == m_lfo2_sync_identifier) {
 		m_lfo2_sync = p_new_value > 0.5;
 		if (!p_new_value) {
 			for (int voice = 0; voice < VOICES; ++voice) {
@@ -1167,8 +1175,8 @@ void OdinAudioProcessor::treeValueChangedNonParamMod(ValueTree &tree, const Iden
 		m_mod_matrix.setModDestination2(7, p_new_value);
 	} else if (id == m_dest_2_row_9_identifier) {
 		m_mod_matrix.setModDestination2(8, p_new_value);
-	} 
-	
+	}
+
 	else if (id == m_scale_row_1_identifier) {
 		m_mod_matrix.setModScale(0, p_new_value);
 	} else if (id == m_scale_row_2_identifier) {
@@ -1187,8 +1195,8 @@ void OdinAudioProcessor::treeValueChangedNonParamMod(ValueTree &tree, const Iden
 		m_mod_matrix.setModScale(7, p_new_value);
 	} else if (id == m_scale_row_9_identifier) {
 		m_mod_matrix.setModScale(8, p_new_value);
-	} 
-	
+	}
+
 	else if (id == m_amount_1_row_1_identifier) {
 		m_mod_matrix.setModAmount1(0, p_new_value);
 	} else if (id == m_amount_1_row_2_identifier) {
@@ -1208,7 +1216,7 @@ void OdinAudioProcessor::treeValueChangedNonParamMod(ValueTree &tree, const Iden
 	} else if (id == m_amount_1_row_9_identifier) {
 		m_mod_matrix.setModAmount1(8, p_new_value);
 	}
-	
+
 	else if (id == m_amount_2_row_1_identifier) {
 		m_mod_matrix.setModAmount2(0, p_new_value);
 	} else if (id == m_amount_2_row_2_identifier) {
@@ -1227,26 +1235,25 @@ void OdinAudioProcessor::treeValueChangedNonParamMod(ValueTree &tree, const Iden
 		m_mod_matrix.setModAmount2(7, p_new_value);
 	} else if (id == m_amount_2_row_9_identifier) {
 		m_mod_matrix.setModAmount2(8, p_new_value);
+	} else if (id == m_amount_3_row_1_identifier) {
+		m_mod_matrix.setScaleAmount(0, p_new_value);
+	} else if (id == m_amount_3_row_2_identifier) {
+		m_mod_matrix.setScaleAmount(1, p_new_value);
+	} else if (id == m_amount_3_row_3_identifier) {
+		m_mod_matrix.setScaleAmount(2, p_new_value);
+	} else if (id == m_amount_3_row_4_identifier) {
+		m_mod_matrix.setScaleAmount(3, p_new_value);
+	} else if (id == m_amount_3_row_5_identifier) {
+		m_mod_matrix.setScaleAmount(4, p_new_value);
+	} else if (id == m_amount_3_row_6_identifier) {
+		m_mod_matrix.setScaleAmount(5, p_new_value);
+	} else if (id == m_amount_3_row_7_identifier) {
+		m_mod_matrix.setScaleAmount(6, p_new_value);
+	} else if (id == m_amount_3_row_8_identifier) {
+		m_mod_matrix.setScaleAmount(7, p_new_value);
+	} else if (id == m_amount_3_row_9_identifier) {
+		m_mod_matrix.setScaleAmount(8, p_new_value);
 	}
- 	else if (id == m_amount_3_row_1_identifier) {
- 		m_mod_matrix.setScaleAmount(0, p_new_value);
- 	} else if (id == m_amount_3_row_2_identifier) {
- 		m_mod_matrix.setScaleAmount(1, p_new_value);
- 	} else if (id == m_amount_3_row_3_identifier) {
- 		m_mod_matrix.setScaleAmount(2, p_new_value);
- 	} else if (id == m_amount_3_row_4_identifier) {
- 		m_mod_matrix.setScaleAmount(3, p_new_value);
- 	} else if (id == m_amount_3_row_5_identifier) {
- 		m_mod_matrix.setScaleAmount(4, p_new_value);
- 	} else if (id == m_amount_3_row_6_identifier) {
- 		m_mod_matrix.setScaleAmount(5, p_new_value);
- 	} else if (id == m_amount_3_row_7_identifier) {
- 		m_mod_matrix.setScaleAmount(6, p_new_value);
- 	} else if (id == m_amount_3_row_8_identifier) {
- 		m_mod_matrix.setScaleAmount(7, p_new_value);
- 	} else if (id == m_amount_3_row_9_identifier) {
- 		m_mod_matrix.setScaleAmount(8, p_new_value);
- 	}
 }
 
 void OdinAudioProcessor::treeValueChangedNonParamMisc(ValueTree &tree, const Identifier &id) {
@@ -1255,8 +1262,10 @@ void OdinAudioProcessor::treeValueChangedNonParamMisc(ValueTree &tree, const Ide
 	DBG("nonparam_misc: " + id.toString().toStdString() + ": " + std::to_string(p_new_value));
 #endif
 	if (id == m_dist_algo_identifier) {
-		m_distortion[0].setAlgorithm((int)p_new_value);
-		m_distortion[1].setAlgorithm((int)p_new_value);
+		for (int voice = 0; voice < VOICES; ++voice) {
+			m_voice[voice].distortion[0].setAlgorithm((int)p_new_value);
+			m_voice[voice].distortion[1].setAlgorithm((int)p_new_value);
+		}
 	} else if (id == m_fil1_type_identifier) {
 		m_fil_type[0] = p_new_value;
 		if (p_new_value < 7.5f && p_new_value > 1.5f) {
