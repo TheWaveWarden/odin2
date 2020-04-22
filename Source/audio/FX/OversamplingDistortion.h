@@ -1,7 +1,7 @@
 #pragma once
 
 #define THRESHOLD_MIN 0.05f
-#define DISTORTION_OUTPUT_SCALAR 0.6
+#define DISTORTION_OUTPUT_SCALAR 1.0
 
 class OversamplingDistortion {
 public:
