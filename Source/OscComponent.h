@@ -125,7 +125,7 @@
 #define SPEED_MID 15
 
 #define VOL_MAX 12
-#define VOL_MIN -20
+#define VOL_MIN -60
 #define VOL_DEFAULT 0
 
 #define HP_MIN 80

@@ -156,7 +156,7 @@
 #define PITCH_AMOUNT_Y 578
 
 #define MASTER_MAX 12
-#define MASTER_MIN -20
+#define MASTER_MIN -30
 #define MASTER_DEFAULT 0
 
 #define FONT_SIZE_Y 16

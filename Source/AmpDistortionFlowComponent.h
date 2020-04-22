@@ -39,7 +39,7 @@
 
 #define THRESHOLD_DEFAULT 0.7
 #define DRYWET_DIST_DEFAULT 1
-#define AMP_GAIN_MIN -20
+#define AMP_GAIN_MIN -30
 #define AMP_GAIN_MAX 12
 #define AMP_GAIN_DEFAULT 0
 #define PAN_MIN -1

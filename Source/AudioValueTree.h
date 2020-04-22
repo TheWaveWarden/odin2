@@ -9,7 +9,7 @@
           "osc1_fine", "Osc1 Finetune", NormalisableRange<float>(-50.0f, 50.0f),
           0),
       std::make_unique<AudioParameterFloat>(
-          "osc1_vol", "Osc1 Volume", NormalisableRange<float>(-20.0f, 12.0f),
+          "osc1_vol", "Osc1 Volume", NormalisableRange<float>(-60.0f, 12.0f),
           0),
       std::make_unique<AudioParameterInt>("osc1_reset", "Osc1 Reset", 0, 1, 0),
       std::make_unique<AudioParameterFloat>("osc1_position", "Osc1 Wavetble Position",
@@ -73,7 +73,7 @@
           "osc2_fine", "Osc2 Finetune", NormalisableRange<float>(-50.0f, 50.0f),
           0),
       std::make_unique<AudioParameterFloat>(
-          "osc2_vol", "Osc2 Volume", NormalisableRange<float>(-20.0f, 12.0f),
+          "osc2_vol", "Osc2 Volume", NormalisableRange<float>(-60.0f, 12.0f),
           0),
       std::make_unique<AudioParameterInt>("osc2_reset", "Osc2 Reset", 0, 1, 0),
       std::make_unique<AudioParameterInt>("osc2_sync", "Osc2 Sync", 0, 1, 0),
@@ -138,7 +138,7 @@
           "osc3_fine", "Osc3 Finetune", NormalisableRange<float>(-50.0f, 50.0f),
           0),
       std::make_unique<AudioParameterFloat>(
-          "osc3_vol", "Osc3 Volume", NormalisableRange<float>(-20.0f, 12.0f),
+          "osc3_vol", "Osc3 Volume", NormalisableRange<float>(-60.0f, 12.0f),
           0),
       std::make_unique<AudioParameterInt>("osc3_reset", "Osc3 Reset", 0, 1, 0),
       std::make_unique<AudioParameterInt>("osc3_sync", "Osc3 Sync", 0, 1, 0),
@@ -212,7 +212,7 @@
           "fil1_kbd", "Filter1 Keyboard Follow",
           NormalisableRange<float>(0.f, 1.f), 0.f),
       std::make_unique<AudioParameterFloat>(
-          "fil1_gain", "Filter1 Gain", NormalisableRange<float>(-12.f, 12.f),
+          "fil1_gain", "Filter1 Gain", NormalisableRange<float>(-60.f, 12.f),
           0.f),
       std::make_unique<AudioParameterFloat>(
           "fil1_freq", "Filter1 Frequency",
@@ -257,7 +257,7 @@
           "fil2_kbd", "Filter2 Keyboard Follow",
           NormalisableRange<float>(0.f, 1.f), 0.f),
       std::make_unique<AudioParameterFloat>(
-          "fil2_gain", "Filter2 Gain", NormalisableRange<float>(-12.f, 12.f),
+          "fil2_gain", "Filter2 Gain", NormalisableRange<float>(-60.f, 12.f),
           0.f),
       std::make_unique<AudioParameterFloat>(
           "fil2_freq", "Filter2 Frequency",
@@ -294,7 +294,7 @@
           "fil3_kbd", "Filter3 Keyboard Follow",
           NormalisableRange<float>(0.f, 1.f), 0.f),
       std::make_unique<AudioParameterFloat>(
-          "fil3_gain", "Filter3 Gain", NormalisableRange<float>(-12.f, 12.f),
+          "fil3_gain", "Filter3 Gain", NormalisableRange<float>(-60.f, 12.f),
           0.f),
       std::make_unique<AudioParameterFloat>(
           "fil3_freq", "Filter3 Frequency",
@@ -328,7 +328,7 @@
                                             NormalisableRange<float>(-1.f, 1.f),
                                             0.f),
       std::make_unique<AudioParameterFloat>(
-          "amp_gain", "Amplifier Gain", NormalisableRange<float>(-20.f, 12.f),
+          "amp_gain", "Amplifier Gain", NormalisableRange<float>(-30.f, 12.f),
           0.f),
       // Distortion
       std::make_unique<AudioParameterFloat>(
@@ -436,7 +436,7 @@
                                           0, 1, 1),
       std::make_unique<AudioParameterFloat>(
           "glide", "Glide", NormalisableRange<float>(0.f, 1.f, 0.f, 1.f), 0.f),
-      std::make_unique<AudioParameterFloat>("master", "Master", -20.f, 12.f,
+      std::make_unique<AudioParameterFloat>("master", "Master", -30.f, 12.f,
                                             -3.f),
       std::make_unique<AudioParameterFloat>(
           "modwheel", "Modwheel", NormalisableRange<float>(0.f, 1.f, 0.f, 1.f),
