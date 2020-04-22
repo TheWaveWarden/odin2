@@ -18,8 +18,13 @@ float MultiOscillator::doOscillate() {
 
 void MultiOscillator::update() {
 	float glide_input_modded = m_glide + *(m_glide_mod);
-	glide_input_modded       = glide_input_modded > 1 ? 1 : 0;
+	glide_input_modded       = glide_input_modded > 1 ? 1 : glide_input_modded;
 	double glide_modded      = calculateGlide(glide_input_modded);
+
+	// DBG("Glide: " + std::to_string(glide_modded));
+	// DBG("current:" + std::to_string(m_osc_freq_base));
+	// DBG("target:" + std::to_string(m_osc_freq_glide_target) + "\n---------");
+
 
 	m_osc_freq_base = m_osc_freq_glide_target * (1.f - glide_modded) + (glide_modded)*m_osc_freq_base;
 	// we overwrite even Oscillator here...
