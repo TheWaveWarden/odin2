@@ -5,10 +5,10 @@
 // these file contains implementation to avoid clutter in this file
 #include "AddNonAudioParametersToValueTree.h"
 #include "MigratePatch.h"
+#include "ReadPatch.h"
+#include "ScopedNoDenormals.h"
 #include "SetModulationPointers.h"
 #include "ValueChange.h"
-#include "ScopedNoDenormals.h"
-#include "ReadPatch.h"
 
 OdinAudioProcessor::OdinAudioProcessor() :
     AudioProcessor(BusesProperties().withOutput("Output", AudioChannelSet::stereo(), true)),
@@ -144,7 +144,7 @@ OdinAudioProcessor::OdinAudioProcessor() :
 	};
 
 	//distribute WTContainer to audio core
-for (int i = 0; i < VOICES; ++i) {
+	for (int i = 0; i < VOICES; ++i) {
 		for (int osc = 0; osc < 3; ++osc) {
 			m_voice[i].analog_osc[osc].setWavetableContainer(&m_WT_container);
 			m_voice[i].wavetable_osc[osc].setWavetableContainer(&m_WT_container);
@@ -160,7 +160,6 @@ for (int i = 0; i < VOICES; ++i) {
 		}
 		m_voice[i].ring_mod[0].setWavetableContainer(&m_WT_container);
 		m_voice[i].ring_mod[1].setWavetableContainer(&m_WT_container);
-
 	}
 	m_ring_mod[0].setWavetableContainer(&m_WT_container);
 	m_ring_mod[1].setWavetableContainer(&m_WT_container);
@@ -458,7 +457,6 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 		//============================================================
 
 		// we will write to this before the amplifier section
-		float voices_output = 0;
 
 		// global lfo and envelope
 		if (m_render_ADSR[1]) {
@@ -469,6 +467,8 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 			m_global_lfo.update();
 			m_global_lfo_mod_source = m_global_lfo.doOscillate();
 		}
+
+		float stereo_signal[2] = {0};
 
 		// output var for the individual oscs and filters - these are modulation sources as well
 		memset(m_osc_output, 0, sizeof(float) * VOICES * 3);
@@ -625,28 +625,33 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 					}
 				} // filter loop
 
+				float voices_output = 0;
+
 				if (*m_fil1_to_amp) {
-					voices_output += m_filter_output[voice][0] * m_adsr[voice][0];
+					voices_output += m_filter_output[voice][0];
 				}
 				if (*m_fil2_to_amp) {
-					voices_output += m_filter_output[voice][1] * m_adsr[voice][0];
+					voices_output += m_filter_output[voice][1];
 				}
 
+				//SIGNAL IS POLY STEREO FROM HERE ON
+				float stereo_signal_voice[2];
+
+				//===== AMPLIFIER ======
+				m_voice[voice].amp.doAmplifier(voices_output, stereo_signal_voice[0], stereo_signal_voice[1]);
+
+				//===== DISTORTION ======
+				if (m_dist_on) {
+					stereo_signal_voice[0] = m_voice[voice].distortion[0].doDistortion(stereo_signal_voice[0]);
+					stereo_signal_voice[1] = m_voice[voice].distortion[1].doDistortion(stereo_signal_voice[1]);
+				}
+
+				stereo_signal[0] += stereo_signal_voice[0] * m_adsr[voice][0];
+				stereo_signal[1] += stereo_signal_voice[1] * m_adsr[voice][0];
 			} // voice active
 		}     // voice loop
 
-		//===== AMPLIFIER ======
-
-		float stereo_signal[2];
-
-		m_amp.doAmplifier(voices_output, stereo_signal[0], stereo_signal[1]);
-
 		for (int channel = 0; channel < 2; ++channel) {
-
-			//===== DISTORTION ======
-			if (m_dist_on) {
-				stereo_signal[channel] = m_distortion[channel].doDistortion(stereo_signal[channel]);
-			}
 
 			//===== FILTER 3 ======
 
@@ -751,15 +756,14 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 	//float duration = (float)std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count();
 	//if(duration > m_max_buffer_time){
 	//	m_max_buffer_time = duration;
-	//} 
+	//}
 	//if(duration < m_min_buffer_time){
 	//	m_min_buffer_time = duration;
-	//} 
+	//}
 	//if(duration > 1000){
-		//just a dummy to have some code executed here
+	//just a dummy to have some code executed here
 	//	m_min_buffer_time = 700;
 	//}
-
 }
 
 //==============================================================================
@@ -807,15 +811,20 @@ void OdinAudioProcessor::setStateInformation(const void *data, int sizeInBytes) 
 		if (xmlState->hasTagName(m_value_tree.state.getType())) {
 
 			//avoid reading from newer patch versions
-			int patch_migration_version_read = xmlState->getChildByName("misc")->getIntAttribute("patch_migration_version");
-			if(patch_migration_version_read > ODIN_PATCH_MIGRATION_VERSION) {
-				AlertWindow::showMessageBox(AlertWindow::AlertIconType::WarningIcon, "You are trying to load a project which was saved with a newer Version of Odin2. Please go to todo.com and download the newest version to properly use this project!", "Thanks, I will!");
+			int patch_migration_version_read =
+			    xmlState->getChildByName("misc")->getIntAttribute("patch_migration_version");
+			if (patch_migration_version_read > ODIN_PATCH_MIGRATION_VERSION) {
+				AlertWindow::showMessageBox(
+				    AlertWindow::AlertIconType::WarningIcon,
+				    "You are trying to load a project which was saved with a newer Version of Odin2. Please go to "
+				    "todo.com and download the newest version to properly use this project!",
+				    "Thanks, I will!");
 				return;
 			}
-			
+
 			//load data
 			readPatch(ValueTree::fromXml(*xmlState));
-			
+
 			//set the correct version since an old one was maybe set from patch
 			m_value_tree.state.getChildWithName("misc").setProperty("version_minor", ODIN_MINOR_VERSION, nullptr);
 			m_value_tree.state.getChildWithName("misc").setProperty("version_patch", ODIN_PATCH_VERSION, nullptr);
@@ -831,7 +840,7 @@ void OdinAudioProcessor::setStateInformation(const void *data, int sizeInBytes) 
 				    m_value_tree.getParameter(m_value_tree_midi_learn.getPropertyName(i)));
 			}
 
-			if(m_editor_pointer){
+			if (m_editor_pointer) {
 				m_editor_pointer->forceValueTreeOntoComponents(false);
 			}
 		}
@@ -867,7 +876,6 @@ void OdinAudioProcessor::setSampleRate(float p_samplerate) {
 	m_phaser.setSampleRate(p_samplerate);
 	m_global_env.setSampleRate(p_samplerate);
 	m_global_lfo.setSampleRate(p_samplerate);
-	m_amp.setSampleRate(p_samplerate);
 }
 
 void OdinAudioProcessor::initializeModules() {
@@ -961,7 +969,7 @@ void OdinAudioProcessor::midiNoteOn(int p_midi_note, int p_midi_velocity) {
 		}
 		m_voice[voice_number].start(p_midi_note, p_midi_velocity, m_last_midi_note);
 		DBG("NoteOn,  key " + std::to_string(p_midi_note) + ", voice " + std::to_string(voice_number));
-		m_amp.setMIDIVelocity(p_midi_velocity);
+		m_voice[voice_number].amp.setMIDIVelocity(p_midi_velocity);
 		m_last_midi_note = p_midi_note;
 		m_mod_matrix.setMostRecentVoice(voice_number);
 	}
@@ -990,8 +998,6 @@ void OdinAudioProcessor::resetAudioEngine() {
 		m_voice[voice].hardReset();
 	}
 	for (int stereo = 0; stereo < 2; ++stereo) {
-		m_distortion[stereo].reset();
-
 		m_ladder_filter[stereo].reset();
 		m_SEM_filter_12[stereo].reset();
 		m_korg_filter[stereo].reset();

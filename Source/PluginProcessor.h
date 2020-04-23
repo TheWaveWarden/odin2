@@ -18,11 +18,9 @@
 #include "OdinButton.h"
 #include "OdinTreeListener.h"
 #include "Voice.h"
-#include "audio/Amplifier.h"
 #include "audio/FX/Chorus.h"
 #include "audio/FX/Delay.h"
 #include "audio/FX/Flanger.h"
-#include "audio/FX/OversamplingDistortion.h"
 #include "audio/FX/Phaser.h"
 #include "audio/FX/RingModulator.h"
 #include "audio/Filters/CombFilter.h"
@@ -296,8 +294,6 @@ private:
 	WavetableContainer m_WT_container;
 
 	Voice m_voice[VOICES];
-	Amplifier m_amp;
-	OversamplingDistortion m_distortion[2];
 
 	LadderFilter m_ladder_filter[2];
 	SEMFilter12 m_SEM_filter_12[2];

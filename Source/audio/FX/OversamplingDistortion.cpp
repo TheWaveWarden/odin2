@@ -25,8 +25,8 @@ double OversamplingDistortion::doDistortion(double p_input) {
 	threshold_modded       = threshold_modded < THRESHOLD_MIN ? THRESHOLD_MIN : threshold_modded;
 
 	// do distortion
-	switch(m_algorithm){
-		case Clamp:
+	switch (m_algorithm) {
+	case Clamp:
 		for (int sample = 0; sample < 3; ++sample) {
 			if (input_upsampled[sample] > m_bias && input_upsampled[sample] > m_bias + threshold_modded) {
 				input_upsampled[sample] = m_bias + threshold_modded;
@@ -35,7 +35,9 @@ double OversamplingDistortion::doDistortion(double p_input) {
 			}
 		}
 		break;
-		case Zero:
+	case Zero:
+		// half "boost" for zero
+		threshold_modded = 0.5f + threshold_modded * 0.5f;
 		for (int sample = 0; sample < 3; ++sample) {
 			if (input_upsampled[sample] > m_bias && input_upsampled[sample] > m_bias + threshold_modded) {
 				input_upsampled[sample] = 0.;
@@ -44,18 +46,17 @@ double OversamplingDistortion::doDistortion(double p_input) {
 			}
 		}
 		break;
-		case Sine:
+	case Sine:
 		for (int sample = 0; sample < 3; ++sample) {
 			input_upsampled[sample] = sin(input_upsampled[sample] /*/ threshold_modded*/);
-			
 		}
-		case Cube:
+	case Cube:
 		for (int sample = 0; sample < 3; ++sample) {
 			//input_upsampled[sample] /= threshold_modded;
 			input_upsampled[sample] *= input_upsampled[sample] * input_upsampled[sample];
 		}
 		break;
-		case Fold:
+	case Fold:
 		for (int sample = 0; sample < 3; ++sample) {
 			//threshold_modded = threshold_modded < 0.05 ? 0.05 : threshold_modded;
 			while (fabs(input_upsampled[sample]) > threshold_modded) {
@@ -149,17 +150,16 @@ double OversamplingDistortion::doDistortion(double p_input) {
 	drywet_modded       = drywet_modded < 0 ? 0 : drywet_modded;
 
 	// return only the last of the three samples
-	switch(m_algorithm){
-		case Clamp:
-		case Fold:
-		case Zero:
+	switch (m_algorithm) {
+	case Clamp:
+	case Fold:
+	case Zero:
 		return yv[9] * drywet_modded / threshold_modded * DISTORTION_OUTPUT_SCALAR + p_input * (1.f - drywet_modded);
-		case Sine:
-		case Cube:
+	case Sine:
+	case Cube:
 		return yv[9] * drywet_modded + p_input * (1.f - drywet_modded);
-		default: 
+	default:
 		return p_input;
 		break;
 	}
-	
 }

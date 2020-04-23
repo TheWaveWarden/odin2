@@ -19,10 +19,8 @@
 #include "audio/Oscillators/PMOscillator.h"
 #include "audio/Oscillators/VectorOscillator.h"
 #include "audio/Oscillators/WavetableOsc2D.h"
-
-// wavedraw
-// chipdraw
-// specdraw
+#include "audio/Amplifier.h"
+#include "audio/FX/OversamplingDistortion.h"
 #include "audio/Filters/CombFilter.h"
 #include "audio/Filters/DiodeFilter.h"
 #include "audio/Filters/FormantFilter.h"
@@ -286,6 +284,9 @@ struct Voice {
       chipdraw_osc[osc].reset();
       lfo[osc].reset();
     }
+		distortion[0].reset();
+		distortion[1].reset();
+
     m_voice_active = false;
   }
 
@@ -592,6 +593,8 @@ struct Voice {
     env[1].setSampleRate(p_samplerate);
     env[2].setSampleRate(p_samplerate);
 
+	  amp.setSampleRate(p_samplerate);
+
     for (int fil = 0; fil < 2; ++fil) {
       ladder_filter[fil].setSampleRate(p_samplerate);
       SEM_filter_12[fil].setSampleRate(p_samplerate);
@@ -645,6 +648,10 @@ struct Voice {
   // ADSRs
   ADSREnvelope env[3];
   LFO lfo[3];
+
+  //Amp & Distortion
+  Amplifier amp;
+	OversamplingDistortion distortion[2];
 
   bool m_is_legato = false;
   // modulation values

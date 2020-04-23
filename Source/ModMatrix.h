@@ -103,14 +103,14 @@ struct ModDestVoice {
   ModDestFilter filter[2];
   ModDestADSR adsr[3];
   ModDestLFO lfo[3];
+  ModDestAmp amp;
+  ModDestDistortion distortion;
 };
 
 struct ModDestinations {
   ModDestVoice voice[VOICES];
   ModDestADSR global_adsr;
   ModDestLFO global_lfo;
-  ModDestAmp amp;
-  ModDestDistortion distortion;
   ModDestFilter filter3;
   ModDestDelay delay;
   ModDestPhaser phaser;
