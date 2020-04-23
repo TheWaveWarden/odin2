@@ -344,7 +344,7 @@ void SaveLoadComponent::setGUIBig() {
 	m_patch_size_x = glas_panel.getWidth();
 	m_patch_size_y = glas_panel.getHeight();
 
-	m_patch.setBounds(OdinHelper::c150(PATCH_POS_X), OdinHelper::c150(PATCH_POS_Y) +1 , m_patch_size_x, m_patch_size_y);
+	m_patch.setBounds(OdinHelper::c150(PATCH_POS_X), OdinHelper::c150(PATCH_POS_Y) +2 , m_patch_size_x, m_patch_size_y);
 	m_patch.setGUIBig();
 
 }
