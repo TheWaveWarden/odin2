@@ -111,7 +111,7 @@
 #define MULTI_WAVE_X 80
 #define MULTI_WAVE_Y 103
 
-#define OCT_RANGE_MAX 3
+#define OCT_RANGE_MAX 4
 #define SEMI_RANGE_MAX 7
 #define FINE_RANGE_MAX 50
 #define PW_DEFAULT 0.5

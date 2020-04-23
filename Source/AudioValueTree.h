@@ -2,7 +2,7 @@
 
 {
   // Osc 1
-  std::make_unique<AudioParameterInt>("osc1_oct", "Osc1 Octave", -3, 3, 0),
+  std::make_unique<AudioParameterInt>("osc1_oct", "Osc1 Octave", -4, 4, 0),
       std::make_unique<AudioParameterInt>("osc1_semi", "Osc1 Semitones", -7, 7,
                                           0),
       std::make_unique<AudioParameterFloat>(
@@ -66,7 +66,7 @@
           "osc1_hp", "Osc1 Noise Highpass",
           NormalisableRange<float>(80.f, 18000.f, 0.f, FILTER_SKEW_DEFAULT), 80.f),
       // Osc 2
-      std::make_unique<AudioParameterInt>("osc2_oct", "Osc2 Octave", -3, 3, 0),
+      std::make_unique<AudioParameterInt>("osc2_oct", "Osc2 Octave", -4, 4, 0),
       std::make_unique<AudioParameterInt>("osc2_semi", "Osc2 Semitones", -7, 7,
                                           0),
       std::make_unique<AudioParameterFloat>(
@@ -131,7 +131,7 @@
           "osc2_hp", "Osc2 Noise Highpass",
           NormalisableRange<float>(80.f, 18000.f, 0.f, FILTER_SKEW_DEFAULT), 80.f),
       // Osc 3
-      std::make_unique<AudioParameterInt>("osc3_oct", "Osc3 Octave", -3, 3, 0),
+      std::make_unique<AudioParameterInt>("osc3_oct", "Osc3 Octave", -4, 4, 0),
       std::make_unique<AudioParameterInt>("osc3_semi", "Osc3 Semitones", -7, 7,
                                           0),
       std::make_unique<AudioParameterFloat>(
