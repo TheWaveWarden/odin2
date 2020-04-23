@@ -73,11 +73,13 @@ void SpecdrawDisplay::mouseInteraction() {
 	juce::Point<int> mouse_pos = getMouseXYRelative();
 
 	float specdraw_thiccness = SPECDRAW_THICCNESS;
+	float specdraw_x_offset = 6;
 	if(m_GUI_big){
+		specdraw_x_offset = 8;
 		specdraw_thiccness = 6.f;
 	}
 
-	int x                      = mouse_pos.getX() / specdraw_thiccness;
+	int x                      = (mouse_pos.getX() - specdraw_x_offset)/ specdraw_thiccness;
 	float y                    = mouse_pos.getY();
 
 	y = y < DRAW_INLAY_UP_SPEC ? DRAW_INLAY_UP_SPEC : y;
