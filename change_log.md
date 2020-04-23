@@ -1,3 +1,12 @@
+# 2.0.18 beta
+- made amplifier and distortion polyphonic
+- moved amp-envelope application after distortion
+- fixed oscillator as polyphonic modulation source
+- fixed glide in multi-oscillator
+- lowered the minimum volume for osc-volume to -60dB
+- lowered the minimum volume for filter gain to -60dB
+- lowered the minimum volume for amp gain to -30dB
+- lowered the minimum volume for master to -30dB
 # 2.0.17 beta
 - fixed Global modulation sources crashing plugin on some machines
 - dropped requirement for AVX instructions
