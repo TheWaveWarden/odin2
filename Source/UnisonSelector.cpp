@@ -29,13 +29,16 @@ UnisonSelector::UnisonSelector() : NumberSelector(true) {
 	m_display.toParentMouseDrag = [&](const MouseEvent e) {
 		float mouse_moved = mouse_reference_value - e.getScreenY();
 
-		int new_value = m_drag_initial_value + mouse_moved / m_mouse_drag_divisor;
-		new_value     = new_value > m_max ? m_max : new_value;
-		new_value     = new_value < m_min ? m_min : new_value;
+		if (mouse_moved > m_mouse_drag_divisor) {
+			increment();
+			mouse_reference_value = e.getScreenY();
+		}
+		else if (mouse_moved < -m_mouse_drag_divisor){
+			decrement();
+			mouse_reference_value = e.getScreenY();
+		}
 
-		setValue(new_value);
-
-		// Component::mouseDrag(e);
+		Component::mouseDrag(e);
 	};
 
 	m_display.toParentMouseUp = [&](const MouseEvent e) {};
