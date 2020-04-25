@@ -1080,11 +1080,12 @@ void OdinAudioProcessor::attachNonParamListeners() {
 }
 
 void OdinAudioProcessor::handleMidiMessage(const MidiMessage &p_midi_message) {
+	DBG(p_midi_message.getDescription());
+	std::cout << "KEK\n";
 	// apply midi message
 	if (p_midi_message.isNoteOn()) {
 		midiNoteOn(p_midi_message.getNoteNumber(), p_midi_message.getVelocity());
 	} else if (p_midi_message.isNoteOff()) {
-
 		midiNoteOff(p_midi_message.getNoteNumber());
 	} else if (p_midi_message.isPitchWheel()) {
 		setPitchWheelValue(p_midi_message.getPitchWheelValue());
@@ -1105,6 +1106,7 @@ void OdinAudioProcessor::handleMidiMessage(const MidiMessage &p_midi_message) {
 		checkEndGlobalEnvelope();
 	} else if (p_midi_message.isAftertouch()) {
 		// todo this is untested
+		DBG("receiving afterouch: " + std::to_string((float)p_midi_message.getAfterTouchValue() / 127.f));
 		m_MIDI_aftertouch = (float)p_midi_message.getAfterTouchValue() / 127.f;
 	} else if (p_midi_message.isSoftPedalOn()) {
 		m_soft_pedal = 1.f;
