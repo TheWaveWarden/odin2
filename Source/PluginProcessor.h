@@ -363,6 +363,25 @@ private:
 
 	bool m_force_values_onto_gui = false; // used for loading state and then remembering to force values once
 	                                      // the editor was created
+
+	//the panning distributions for each unison count
+	std::map<int, std::vector<float>> m_unison_pan_positions = {
+	    {1, {0.f}},
+	    {2, {-1.f, 1.f}},
+	    {3, {-1.f, 0.f, 1.f}},
+	    {4, {-1.f, -0.33333f, 0.3333333f, 1.f}},
+	    {6, {-1.f, -0.6f, -0.2f, 0.2f, 0.6f, 1.f}},
+	    {12,
+	     {-1.f, -0.8181f, -0.6363f, -0.45454f, -0.2787f, -0.0909f, 0.0909f, 0.2787f, 0.45454f, 0.6363f, 0.8181f, 1.f}}};
+
+	// map to "shuffle" the unison pan positions to get the detune positions
+	std::map<int, std::vector<int>> m_unison_detune_positions = {{1, {0}},
+	                                                             {2, {0, 1}},
+	                                                             {3, {0, 1, 2}},
+	                                                             //shuffling starts here:
+	                                                             {4, {2, 0, 3, 1}},
+	                                                             {6, {1, 4, 2, 0, 5, 3}},
+	                                                             {12, {3, 9, 6, 10, 7, 4, 0, 11, 5, 1, 8, 2}}};
 #include "AudioVarDeclarations.h"
 	//==============================================================================
 	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(OdinAudioProcessor)

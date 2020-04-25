@@ -49,6 +49,13 @@ public:
   void setGainModPointer(float *p_pointer) { m_gain_mod = p_pointer; }
   void setPanModPointer(float *p_pointer) { m_pan_mod = p_pointer; }
   void setVelModPointer(float *p_pointer) { m_vel_mod = p_pointer; }
+  void setUnisonPanPositionPointer(float *p_pointer){
+    m_unison_pan_position_pointer = p_pointer;
+  }
+  void setUnisonPanAmount(float p_unison_pan){
+    m_unison_pan_amount = p_unison_pan;
+    DBG("set unison pan amount: " + std::to_string(m_unison_pan_amount));
+  }
 
 protected:
   inline float linearInterpolation(float p_low, float p_high,
@@ -78,4 +85,7 @@ protected:
   float m_gain_smooth = 1.f;
   float m_pan = 0.f;
   float m_pan_smooth = 0.f;
+  float m_unison_pan_amount = 0.7f;
+
+  float* m_unison_pan_position_pointer = nullptr;
 };

@@ -526,7 +526,7 @@
           NormalisableRange<float>(0.f, 1.f, 0.f, 1.f), 1.f),
      std::make_unique<AudioParameterFloat>(
           "unison_detune", "Unison Detune",
-          NormalisableRange<float>(0.f, 1.f, 0.f, 1.f), 0.3f),
+          NormalisableRange<float>(0.f, 0.6f, 0.f, 0.5f), 0.08f),
     std::make_unique<AudioParameterFloat>(
           "unison_width", "Unison Width",
           NormalisableRange<float>(0.f, 1.f, 0.f, 1.f), 0.7f),

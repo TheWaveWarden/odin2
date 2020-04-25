@@ -79,9 +79,9 @@ public:
 		}
 
 		// we still need voices, so we steal them
-    int voices_to_steal = p_unison - ret.size();
+		int voices_to_steal = p_unison - ret.size();
 		for (int steal = 0; steal < voices_to_steal; ++steal) {
-      //we update history at the end of loop, so [11] is different every time
+			//we update history at the end of loop, so [11] is different every time
 			DBG("Voice manager STOLE voice " + std::to_string(m_voice_history[11]));
 			removeFromKillList(m_voice_history[11]);
 			ret.push_back(m_voice_history[11]);
@@ -218,7 +218,20 @@ struct Voice {
 			pm_osc[osc].m_modulator_osc.selectWavetableByMapping = [&, osc](int p_input) {
 				pm_osc[osc].m_modulator_osc.selectWavetable(pm_osc[osc].m_modulator_osc.wavetableMappingFM(p_input));
 			};
+
+      analog_osc[osc].setUnisonDetuneFactorPointer(&unison_detune_factor);
+		  wavedraw_osc[osc].setUnisonDetuneFactorPointer(&unison_detune_factor);
+		  chipdraw_osc[osc].setUnisonDetuneFactorPointer(&unison_detune_factor);
+		  specdraw_osc[osc].setUnisonDetuneFactorPointer(&unison_detune_factor);
+		  wavetable_osc[osc].setUnisonDetuneFactorPointer(&unison_detune_factor);
+		  multi_osc[osc].setUnisonDetuneFactorPointer(&unison_detune_factor);
+		  vector_osc[osc].setUnisonDetuneFactorPointer(&unison_detune_factor);
+		  chiptune_osc[osc].setUnisonDetuneFactorPointer(&unison_detune_factor);
+		  fm_osc[osc].setUnisonDetuneFactorPointer(&unison_detune_factor);
+		  pm_osc[osc].setUnisonDetuneFactorPointer(&unison_detune_factor);
 		}
+
+		amp.setUnisonPanPositionPointer(&unison_pan_position);
 	}
 
 	void setAftertouch(int p_note_number, float p_value) {
@@ -312,7 +325,11 @@ struct Voice {
 		m_voice_active = false;
 	}
 
-	void start(int p_MIDI_key, int p_MIDI_velocity, int p_last_MIDI_key) {
+	void setUnisonPanAmount(float p_amount) {
+		amp.setUnisonPanAmount(p_amount);
+	}
+
+	void start(int p_MIDI_key, int p_MIDI_velocity, int p_last_MIDI_key, float p_unison_pan, float p_unison_detune) {
 		reset();
 		setOscBaseFreq(MIDINoteToFreq(p_MIDI_key), MIDINoteToFreq(p_last_MIDI_key));
 		setFilterMIDIValues(p_MIDI_key, p_MIDI_velocity);
@@ -331,6 +348,9 @@ struct Voice {
 		}
 		generateNewRandomValue();
 		MIDI_aftertouch_mod_source = 0.f;
+		unison_pan_position        = p_unison_pan;
+		unison_detune_position     = p_unison_detune;
+    calcUnisonDetuneFactor();
 		//DBG("Started voice");
 	}
 
@@ -646,6 +666,22 @@ struct Voice {
 		}
 	}
 
+	void setUnisonDetuneAmount(float p_amount) {
+		unison_detune_amount = p_amount;
+		//only recalc if this voice is active right now
+		if (m_voice_active) {
+			calcUnisonDetuneFactor();
+		}
+	}
+
+	// this needs to be calculated when unison_detune_position has changed (voice start)
+	// or when the uniston detune amount has changed and the voice is active
+	void calcUnisonDetuneFactor() {
+    DBG("pos: " + std::to_string(unison_detune_position) + ", amount: " + std::to_string(unison_detune_amount));
+		unison_detune_factor = pow(2.f, unison_detune_position * unison_detune_amount / 12.f);
+    DBG("UDF: " + std::to_string(unison_detune_factor));
+	}
+
 	// oscs
 	AnalogOscillator analog_osc[3];
 	WavetableOsc2D wavetable_osc[3];
@@ -674,6 +710,15 @@ struct Voice {
 	//Amp & Distortion
 	Amplifier amp;
 	OversamplingDistortion distortion[2];
+
+	//the following two are set static on voice-start and are used to calculate actual pan and detune dynamically
+	//see OdinAudioProcessor::m_unison_pan_positions and m_unison_detune_positions for distributions
+	float unison_pan_position    = 0; // [-1,1]
+	float unison_detune_position = 0; //[-1,1]
+
+	float unison_detune_factor = 1.f; //calculated from unison_detune_position
+
+	float unison_detune_amount = 0.08f;
 
 	bool m_is_legato = false;
 	// modulation values

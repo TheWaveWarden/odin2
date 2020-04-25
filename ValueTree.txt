@@ -188,7 +188,7 @@
   <PARAM id="phaser_reset" value="0.0"/>
   <PARAM id="pitchbend" value="0.0"/>
   <PARAM id="pitchbend_amount" value="12.0"/>
-  <PARAM id="unison_detune" value="0.300000011920929"/>
+  <PARAM id="unison_detune" value="0.07999999821186066"/>
   <PARAM id="unison_width" value="0.699999988079071"/>
   <PARAM id="xy_x" value="0.0"/>
   <PARAM id="xy_y" value="0.0"/>

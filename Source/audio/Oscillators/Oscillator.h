@@ -55,6 +55,7 @@ public:
 	}
 
 	inline virtual void update() {
+		//jassert(m_unison_detune_factor_pointer);
 
 		float glide_input_modded = m_glide + *(m_glide_mod);
 
@@ -64,7 +65,7 @@ public:
 		m_osc_freq_base = m_osc_freq_glide_target * (1.f - glide_modded) + (glide_modded)*m_osc_freq_base;
 
 		// just multiply the controls on
-		m_osc_freq_modded = m_osc_freq_base * m_pitch_control_multiplier;
+		m_osc_freq_modded = m_osc_freq_base * m_pitch_control_multiplier * *m_unison_detune_factor_pointer;
 		// and only use pitchshift if needed!
 		if ((*m_pitchbend) + (*m_pitch_mod_exp) + m_mod_freq_exp + m_mod_exp_other) {
 			m_osc_freq_modded *= pitchShiftMultiplier((*m_pitchbend) + (*m_pitch_mod_exp) * OSC_EXP_MOD_RANGE +
@@ -163,6 +164,10 @@ public:
 		m_pitch_control_multiplier = m_octave_multiplier * m_semitone_multiplier * m_cent_multiplier;
 	}
 
+	void setUnisonDetuneFactorPointer(float* p_pointer){
+		m_unison_detune_factor_pointer = p_pointer;
+	}
+
 protected:
 	float m_octave_multiplier        = 1.f;
 	float m_semitone_multiplier      = 1.f;
@@ -177,4 +182,7 @@ protected:
 	double m_one_over_samplerate;
 	double m_osc_freq_modded;    // current (actual) frequency of oscillator
 	float m_mod_exp_other = 0.f; // can be used for whatever (Chiptune Arp uses it)
+
+	float* m_unison_detune_factor_pointer = nullptr;
+	float unison_detune_factor_dummy = 1.f;
 };

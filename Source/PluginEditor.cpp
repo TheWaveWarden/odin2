@@ -652,7 +652,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 
 	m_unison_detune.setSliderStyle(Slider::RotaryVerticalDrag);
 	m_unison_detune.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-	m_unison_detune.setKnobTooltip("Detunes the unison voices agains each other");
+	m_unison_detune.setKnobTooltip("Maximum detune in unison, measured in semitones");
 	addAndMakeVisible(m_unison_detune);
 	m_unison_width.setSliderStyle(Slider::RotaryVerticalDrag);
 	m_unison_width.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);

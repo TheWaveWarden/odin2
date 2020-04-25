@@ -943,17 +943,25 @@ void OdinAudioProcessor::midiNoteOn(int p_midi_note, int p_midi_velocity) {
 		m_chorus[1].resetLFO();
 	}
 
-	auto voice_numbers =
-	    m_voice_manager.getVoices(p_midi_note, m_value_tree.state.getChildWithName("misc")["unison_voices"]);
+	int unison_counter = 0;
+	int unison_voices  = m_value_tree.state.getChildWithName("misc")["unison_voices"];
+	auto voice_numbers = m_voice_manager.getVoices(p_midi_note, unison_voices);
 	if (m_last_midi_note == -1) {
 		// first time glide - dont glide
 		m_last_midi_note = p_midi_note;
 	}
 	for (int new_voice : voice_numbers) {
-		m_voice[new_voice].start(p_midi_note, p_midi_velocity, m_last_midi_note);
+		m_voice[new_voice].start(
+		    p_midi_note,
+		    p_midi_velocity,
+		    m_last_midi_note,
+		    m_unison_pan_positions[unison_voices][unison_counter],
+		    m_unison_pan_positions[unison_voices][m_unison_detune_positions[unison_voices][unison_counter]]);
 		DBG("NoteOn,  key " + std::to_string(p_midi_note) + ", voice " + std::to_string(new_voice));
+		DBG("Pan: " + std::to_string(m_unison_pan_positions[unison_voices][unison_counter]) + ", Detune: " + std::to_string(m_unison_pan_positions[unison_voices][m_unison_detune_positions[unison_voices][unison_counter]]));
 		m_voice[new_voice].amp.setMIDIVelocity(p_midi_velocity);
 		m_mod_matrix.setMostRecentVoice(new_voice);
+		++unison_counter;
 	}
 	m_last_midi_note = p_midi_note;
 

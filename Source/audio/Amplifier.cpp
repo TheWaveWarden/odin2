@@ -9,6 +9,8 @@ void Amplifier::incWriteIndex() {
 void Amplifier::doAmplifier(float p_in, float &po_left_out, float &po_right_out) {
 	jassert(m_samplerate > 0);
 
+	//DBG("pan pos: " + std::to_string(*m_unison_pan_position_pointer));
+
 	// appply gain
 	float gain_mod_factor = (*m_gain_mod) > 0 ? 1.f + 4 * (*m_gain_mod) : (1.f + *m_gain_mod);
 
@@ -45,7 +47,7 @@ void Amplifier::doAmplifier(float p_in, float &po_left_out, float &po_right_out)
 		    m_width_delay_buffer_left[read_index_trunc], m_width_delay_buffer_left[read_index_next], frac);
 		incWriteIndex();
 		// do panning
-		float pan_modded = m_pan_smooth + *m_pan_mod;
+		float pan_modded = m_pan_smooth + *m_pan_mod + *m_unison_pan_position_pointer * m_unison_pan_amount;
 		pan_modded       = pan_modded < -1 ? -1 : pan_modded;
 		pan_modded       = pan_modded > 1 ? 1 : pan_modded;
 		if (pan_modded >= 0.f) {
