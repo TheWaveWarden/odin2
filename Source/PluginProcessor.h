@@ -150,7 +150,9 @@ public:
 
 	void setPolyLegato(bool p_is_poly) {
 		bool legato_was_changed = m_voice_manager.setPolyLegato(p_is_poly);
-		m_voice[0].setPolyLegato(p_is_poly);
+		for (int voice = 0; voice < VOICES; ++voice) {
+			m_voice[voice].setPolyLegato(p_is_poly);
+		}
 
 		if (legato_was_changed) {
 			// reset engine here to get rid of trailing notes
