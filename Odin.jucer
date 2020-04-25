@@ -1552,6 +1552,10 @@
               file="Source/SyncTimeSelector.cpp"/>
         <FILE id="dGTCvN" name="SyncTimeSelector.h" compile="0" resource="0"
               file="Source/SyncTimeSelector.h"/>
+        <FILE id="VasNum" name="UnisonSelector.cpp" compile="1" resource="0"
+              file="Source/UnisonSelector.cpp"/>
+        <FILE id="BItZqW" name="UnisonSelector.h" compile="0" resource="0"
+              file="Source/UnisonSelector.h"/>
         <FILE id="J8nqZi" name="WavedrawDisplay.cpp" compile="1" resource="0"
               file="Source/WavedrawDisplay.cpp"/>
         <FILE id="OpAghB" name="WavedrawDisplay.h" compile="0" resource="0"

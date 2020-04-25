@@ -75,7 +75,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
     m_flanger(vts, "flanger", p_is_standalone), m_chorus(vts, "chorus", p_is_standalone), m_xy_section(vts, "xy"),
     m_osc1_type_identifier("osc1_type"), m_osc2_type_identifier("osc2_type"), m_osc3_type_identifier("osc3_type"),
     m_fil1_type_identifier("fil1_type"), m_fil2_type_identifier("fil2_type"), m_fil3_type_identifier("fil3_type"),
-    m_pitchbend_amount_identifier("pitchbend_amount"), m_delay_position_identifier("delay_position"),
+    m_pitchbend_amount_identifier("pitchbend_amount"),m_unison_voices_identifier("unison_voices"), m_delay_position_identifier("delay_position"),
     m_flanger_position_identifier("flanger_position"), m_phaser_position_identifier("phaser_position"),
     m_chorus_position_identifier("chorus_position"), m_mod_matrix(vts), m_legato_button("legato"),
     m_gui_size_button("gui_size"), m_tooltip(nullptr, 2047483647), m_is_standalone_plugin(p_is_standalone),
@@ -621,6 +621,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	juce::Image black_knob_mid =
 	    ImageCache::getFromMemory(BinaryData::black_knob_mid_png, BinaryData::black_knob_mid_pngSize);
 
+
 	// load backplates for osc and filters
 
 	juce::Image bypass_osc1_plate =
@@ -648,6 +649,15 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	m_master.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
 	m_master.setKnobTooltip("The master volume\nof the synth");
 	addAndMakeVisible(m_master);
+
+	m_unison_detune.setSliderStyle(Slider::RotaryVerticalDrag);
+	m_unison_detune.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
+	m_unison_detune.setKnobTooltip("Detunes the unison voices agains each other");
+	addAndMakeVisible(m_unison_detune);
+	m_unison_width.setSliderStyle(Slider::RotaryVerticalDrag);
+	m_unison_width.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
+	m_unison_width.setKnobTooltip("Spreads the unison voices over the stereo field");
+	addAndMakeVisible(m_unison_width);
 
 	juce::Image pitchwheel = ImageCache::getFromMemory(BinaryData::modwheel_png, BinaryData::modwheel_pngSize);
 
@@ -863,6 +873,17 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	m_pitch_amount.setColor(Colour(10, 40, 50));
 	m_pitch_amount.setTooltip("The amount of pitchbend for the pitchwheel in semitones");
 
+	m_unison_selector.OnValueChange = [&](int p_new_value) {
+		m_value_tree.state.getChildWithName("misc").setProperty(
+		    "unison_voices", p_new_value, nullptr);
+	};
+	m_unison_selector.setTopLeftPosition(UNISON_SELECTOR_X, UNISON_SELECTOR_Y);
+	addAndMakeVisible(m_unison_selector);
+	m_unison_selector.setMouseDragDivisor(20.f);
+	m_unison_selector.setColor(Colour(10, 40, 50));
+	m_unison_selector.setTooltip("Number of voices to trigger simultaneously");
+
+
 	m_BPM_selector.OnValueChange = [&](int p_new_value) {
 		m_value_tree.state.getChildWithName("misc").setProperty("BPM", p_new_value, nullptr);
 	};
@@ -871,9 +892,9 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	// m_BPM_selector.setValue(120);
 	m_BPM_selector.setColor(Colour(10, 40, 50));
 	m_BPM_selector.setTooltip("A BPM value for all time synced components in Odin standalone");
-	if (m_is_standalone_plugin) {
-		addAndMakeVisible(m_BPM_selector);
-	}
+	// if (m_is_standalone_plugin) {
+	// 	addAndMakeVisible(m_BPM_selector);
+	// }
 
 	m_osc_dropdown_menu.setLookAndFeel(&m_menu_feels);
 	m_filter_dropdown_menu.setLookAndFeel(&m_menu_feels);
@@ -894,6 +915,8 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 
 	m_glide_attachment.reset(new OdinKnobAttachment(m_value_tree, "glide", m_glide));
 	m_master_attachment.reset(new OdinKnobAttachment(m_value_tree, "master", m_master));
+	m_unison_width_attachment.reset(new OdinKnobAttachment(m_value_tree, "unison_width", m_unison_width));
+	m_unison_detune_attachment.reset(new OdinKnobAttachment(m_value_tree, "unison_detune", m_unison_detune));
 	m_modwheel_attachment.reset(new OdinKnobAttachment(m_value_tree, "modwheel", m_modwheel));
 	m_pitchbend_attachment.reset(new OdinKnobAttachment(m_value_tree, "pitchbend", m_pitchwheel));
 
@@ -901,6 +924,8 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	m_glide.setNumDecimalPlacesToDisplay(3);
 	m_modwheel.setNumDecimalPlacesToDisplay(3);
 	m_pitchwheel.setNumDecimalPlacesToDisplay(3);
+	m_unison_detune.setNumDecimalPlacesToDisplay(3);
+	m_unison_width.setNumDecimalPlacesToDisplay(3);
 
 	m_pitch_amount.setParameterId("pitchbend_amount");
 	m_value_tree.addParameterListener("pitchbend_amount", &m_pitch_amount);
@@ -928,6 +953,9 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	SET_CTR_KEY(m_glide);
 	SET_CTR_KEY(m_master);
 	SET_CTR_KEY(m_modwheel);
+	SET_CTR_KEY(m_unison_detune);
+	SET_CTR_KEY(m_unison_width);
+	
 
 	//m_color_picker.setTopLeftPosition(ADSR_LEFT_POS_X, ADSR_LEFT_POS_Y);
 	//m_color_picker.setSize(3 * ADSR_SIZE_X, 3 * ADSR_SIZE_Y);
@@ -1221,6 +1249,9 @@ void OdinAudioProcessorEditor::setTooltipEnabled(bool p_enabled) {
 }
 
 void OdinAudioProcessorEditor::forceValueTreeOntoComponentsOnlyMainPanel() {
+	
+	m_unison_selector.setValue(m_value_tree.state.getChildWithName("misc")["unison_voices"]);
+
 	m_pitch_amount.setValue(m_value_tree.getParameterAsValue("pitchbend_amount").getValue());
 
 	// ugly fix to set highlighted fx panel
@@ -1490,6 +1521,7 @@ void OdinAudioProcessorEditor::setGUISizeBig(bool p_big, bool p_write_to_config)
 		m_save_load.setGUIBig();
 		m_menu_feels.setGUIBig();
 		m_pitch_amount.setGUIBig();
+		m_unison_selector.setGUIBig();
 		setGUIBig();
 	} else {
 		g_GUI_big = false;
@@ -1518,6 +1550,7 @@ void OdinAudioProcessorEditor::setGUISizeBig(bool p_big, bool p_write_to_config)
 		m_save_load.setGUISmall();
 		m_menu_feels.setGUISmall();
 		m_pitch_amount.setGUISmall();
+		m_unison_selector.setGUISmall();
 		setGUISmall();
 	}
 

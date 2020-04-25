@@ -386,6 +386,7 @@
     Identifier m_modwheel_identifier;
     Identifier m_pitchbend_identifier;
     Identifier m_pitchbend_amount_identifier;
+    Identifier m_unison_voices_identifier;
     Identifier m_xy_x_identifier;
     Identifier m_xy_y_identifier;
     Identifier m_legato_identifier;

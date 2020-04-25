@@ -35,8 +35,8 @@
 
 class VoiceManager {
 public:
-  // returns free voice index or steals one and sets it busy
-  int getVoice(int p_note) {
+  // returns free voices index or steals one and sets it busy
+  std::vector<int> getVoices(int p_note, int p_unison) {
 
     // in legato mode there's only one voice
     if (m_is_legato) {

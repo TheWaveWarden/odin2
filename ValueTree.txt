@@ -188,6 +188,8 @@
   <PARAM id="phaser_reset" value="0.0"/>
   <PARAM id="pitchbend" value="0.0"/>
   <PARAM id="pitchbend_amount" value="12.0"/>
+  <PARAM id="unison_detune" value="0.300000011920929"/>
+  <PARAM id="unison_width" value="0.699999988079071"/>
   <PARAM id="xy_x" value="0.0"/>
   <PARAM id="xy_y" value="0.0"/>
   <draw osc1_wavedraw_values_0="0.0" osc2_wavedraw_values_0="0.0" osc3_wavedraw_values_0="0.0"
@@ -593,7 +595,7 @@
         version_minor="0" version_patch="18" patch_migration_version="1"
         dist_on="0" fil1_comb_polarity="0" fil2_comb_polarity="0" fil3_comb_polarity="0"
         fil1_vowel_left="0" fil2_vowel_left="0" fil3_vowel_left="0" fil1_vowel_right="2"
-        fil2_vowel_right="2" fil3_vowel_right="2"/>
+        fil2_vowel_right="2" fil3_vowel_right="2" unison_voices="1"/>
   <mod source_row_0="0" source_row_1="0" source_row_2="0" source_row_3="0"
        source_row_4="0" source_row_5="0" source_row_6="0" source_row_7="0"
        source_row_8="0" dest_1_row_0="0" dest_1_row_1="0" dest_1_row_2="0"

@@ -318,6 +318,12 @@ void OdinAudioProcessorEditor::setGUIBig(){
 	juce::Image bypass_fil3_plate =
 	    ImageCache::getFromMemory(BinaryData::filter3_bypass_150_png, BinaryData::filter3_bypass_150_pngSize);
 
+	juce::Image black_knob_small =
+	    ImageCache::getFromMemory(BinaryData::black_knob_very_small_150_png, BinaryData::black_knob_very_small_150_pngSize);
+
+	m_unison_detune.setStrip(black_knob_small, N_KNOB_FRAMES);
+	m_unison_width.setStrip(black_knob_small, N_KNOB_FRAMES);
+
 	m_glide.setStrip(metal_knob_small, N_KNOB_FRAMES);
 	m_master.setStrip(metal_knob_small, N_KNOB_FRAMES);
 
@@ -404,7 +410,7 @@ void OdinAudioProcessorEditor::setGUIBig(){
 	    ImageCache::getFromMemory(BinaryData::buttonlegato_3_150_png, BinaryData::buttonlegato_3_150_pngSize);
 	m_legato_button.setImage(legato_left, 1);
 	m_legato_button.setImage(legato_right, 2);
-	m_legato_button.setBounds(OdinHelper::c150(LEGATO_POS_X), OdinHelper::c150(LEGATO_POS_Y), legato_left.getWidth(), legato_left.getHeight());
+	m_legato_button.setBounds(OdinHelper::c150(LEGATO_POS_X), OdinHelper::c150(LEGATO_POS_Y)+1, legato_left.getWidth(), legato_left.getHeight());
 
 	juce::Image gui_size_left =
 	    ImageCache::getFromMemory(BinaryData::buttonguisize_1_150_png, BinaryData::buttonguisize_1_150_pngSize);
@@ -429,6 +435,7 @@ void OdinAudioProcessorEditor::setGUIBig(){
 	m_lfo_4.setSyncOverdraw(lfo24_sync_background);
 
 	m_pitch_amount.setTopLeftPosition(OdinHelper::c150(PITCH_AMOUNT_X), OdinHelper::c150(PITCH_AMOUNT_Y));
+	m_unison_selector.setTopLeftPosition(OdinHelper::c150(UNISON_SELECTOR_X), OdinHelper::c150(UNISON_SELECTOR_Y)+1);
 
 	m_BPM_selector.setTopLeftPosition(OdinHelper::c150(BPM_POS_X), OdinHelper::c150(BPM_POS_Y));
 
@@ -456,6 +463,15 @@ void OdinAudioProcessorEditor::setGUIBig(){
 	                   OdinHelper::c150(MASTER_POS_Y) - OdinHelper::c150(METAL_KNOB_SMALL_OFFSET_Y),
 	                   OdinHelper::c150(METAL_KNOB_SMALL_SIZE_X),
 	                   OdinHelper::c150(METAL_KNOB_SMALL_SIZE_Y));
+
+	m_unison_detune.setBounds(OdinHelper::c150(UNISON_DETUNE_X) ,
+	                          OdinHelper::c150(UNISON_DETUNE_Y),
+	                          OdinHelper::c150(BLACK_KNOB_SMALL_SIZE_X),
+	                          OdinHelper::c150(BLACK_KNOB_SMALL_SIZE_Y));
+	m_unison_width.setBounds(OdinHelper::c150(UNISON_STEREO_X),
+	                          OdinHelper::c150(UNISON_STEREO_Y),
+	                          OdinHelper::c150(BLACK_KNOB_SMALL_SIZE_X),
+	                          OdinHelper::c150(BLACK_KNOB_SMALL_SIZE_Y));
 
 	m_osc1.setBounds(area_osc_1);
 	m_osc2.setBounds(area_osc_2);
