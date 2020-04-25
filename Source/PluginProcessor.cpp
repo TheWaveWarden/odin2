@@ -251,7 +251,7 @@ OdinAudioProcessor::OdinAudioProcessor() :
 		    //    " ADSR: " + std::to_string((int)m_render_ADSR[0]) + " " + std::to_string((int)m_render_ADSR[1]));
 	    };
 
-	m_master_control = Decibels::decibelsToGain(-7);
+	m_master_control = Decibels::decibelsToGain(-7.f);
 	m_master_smooth = m_master_control;
 	//retriggerAllListeners();
 }
