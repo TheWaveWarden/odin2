@@ -80,7 +80,7 @@ public:
 	void getStateInformation(MemoryBlock &destData) override;
 	void setStateInformation(const void *data, int sizeInBytes) override;
 
-	WavetableContainer* getWavetableContainerPointer(){
+	WavetableContainer *getWavetableContainerPointer() {
 		return &m_WT_container;
 	}
 
@@ -166,6 +166,7 @@ public:
 	void attachNonParamListeners();
 	void migratePatch(int p_patch_version_to_migrate_from);
 	void readPatch(const ValueTree &newState);
+
 private:
 #ifdef ODIN_PROFILING
 #define PROFILING_SAMPLES 44100
@@ -314,17 +315,17 @@ private:
 	ModSources m_mod_sources;
 	ModDestinations m_mod_destinations;
 
-	bool m_dist_on = false;
-	bool m_lfo1_sync = false;
-	bool m_lfo2_sync = false;
-	bool m_lfo3_sync = false;
-	bool m_lfo4_sync = false;
-	bool m_delay_sync = false;
-	bool m_chorus_sync = false;
-	bool m_phaser_sync = false;
+	bool m_dist_on      = false;
+	bool m_lfo1_sync    = false;
+	bool m_lfo2_sync    = false;
+	bool m_lfo3_sync    = false;
+	bool m_lfo4_sync    = false;
+	bool m_delay_sync   = false;
+	bool m_chorus_sync  = false;
+	bool m_phaser_sync  = false;
 	bool m_flanger_sync = false;
 
-	bool m_osc_wavetable_source_lfo[3] = {0};//false <=> envelope
+	bool m_osc_wavetable_source_lfo[3] = {0}; //false <=> envelope
 
 	bool m_render_LFO[4]  = {0};
 	bool m_render_ADSR[2] = {0}; // 0 = mod, 1 = global
@@ -336,7 +337,7 @@ private:
 	float m_global_lfo_mod_source    = 0;
 	float m_filter_output[VOICES][2] = {0.f};
 	float m_osc_output[VOICES][3]    = {0.f};
-	float m_MIDI_aftertouch          = 0.f;
+	float m_MIDI_channel_pressure    = 0.f;
 	float m_constant                 = 1.f;
 	float m_soft_pedal               = 0.f;
 	float m_x                        = 0.f;

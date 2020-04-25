@@ -207,6 +207,12 @@ struct Voice {
     }
   }
 
+  void setAftertouch(int p_note_number, float p_value){
+    if(p_note_number == m_MIDI_key){
+      MIDI_aftertouch_mod_source = p_value;
+    }
+  }
+
   void setOscSyncEnabled(bool p_enabled, int p_osc){
     analog_osc[p_osc].setSyncEnabled(p_enabled);
     wavetable_osc[p_osc].setSyncEnabled(p_enabled);
@@ -259,6 +265,7 @@ struct Voice {
   }
 
   void hardReset() {
+    MIDI_aftertouch_mod_source = 0.f;
     for (int fil = 0; fil < 2; ++fil) {
       ladder_filter[fil].reset();
       diode_filter[fil].reset();
@@ -308,7 +315,7 @@ struct Voice {
       }
     }
     generateNewRandomValue();
-
+    MIDI_aftertouch_mod_source = 0.f;
     //DBG("Started voice");
   }
 
@@ -657,6 +664,7 @@ struct Voice {
   // modulation values
   float MIDI_key_mod_source = 0.f;
   float MIDI_velocity_mod_source = 0.f;
+  float MIDI_aftertouch_mod_source = 0.f;
   float random_modulation;
 
   // called when the envelope ends to signal voice end to voice manager

@@ -237,9 +237,10 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts) :
 	m_sources_menu.addItem(402, "ModWheel");
 	m_sources_menu.addItem(403, "PitchBend");
 	m_sources_menu.addSeparator();
-	m_sources_menu.addItem(404, "MIDI note");
-	m_sources_menu.addItem(405, "MIDI velocity");
-	m_sources_menu.addItem(406, "MIDI aftertouch");
+	m_sources_menu.addItem(404, "MIDI Note");
+	m_sources_menu.addItem(405, "MIDI Velocity");
+	m_sources_menu.addItem(406, "MIDI Aftertouch");
+	m_sources_menu.addItem(409, "Channel Pressure");
 	m_sources_menu.addSeparator();
 	m_sources_menu.addItem(440, "Sustain Pedal");
 	m_sources_menu.addItem(450, "Soft Pedal");

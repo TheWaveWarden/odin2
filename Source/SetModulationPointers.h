@@ -18,18 +18,19 @@ void OdinAudioProcessor::setModulationPointers() {
 		m_mod_sources.voice[voice].lfo[2]        = &(m_lfo[voice][2]);
 		m_mod_sources.voice[voice].MIDI_key      = &(m_voice[voice].MIDI_key_mod_source);
 		m_mod_sources.voice[voice].MIDI_velocity = &(m_voice[voice].MIDI_velocity_mod_source);
+		m_mod_sources.voice[voice].MIDI_aftertouch = &(m_voice[voice].MIDI_aftertouch_mod_source);
 		m_mod_sources.voice[voice].random        = &(m_voice[voice].random_modulation);
 	}
-	m_mod_sources.global_adsr     = &m_global_env_mod_source;
-	m_mod_sources.global_lfo      = &m_global_lfo_mod_source;
-	m_mod_sources.MIDI_aftertouch = &(m_MIDI_aftertouch);
-	m_mod_sources.x               = &m_x_smooth;
-	m_mod_sources.y               = &m_y_smooth;
-	m_mod_sources.modwheel        = &m_modwheel_smooth;
-	m_mod_sources.pitchwheel      = &m_pitch_bend_smooth;
-	m_mod_sources.constant        = &(m_constant);
-	m_mod_sources.sustain_pedal   = &(m_voice_manager.m_sustain_active_float);
-	m_mod_sources.soft_pedal      = &(m_soft_pedal);
+	m_mod_sources.global_adsr           = &m_global_env_mod_source;
+	m_mod_sources.global_lfo            = &m_global_lfo_mod_source;
+	m_mod_sources.MIDI_channel_pressure = &(m_MIDI_channel_pressure);
+	m_mod_sources.x                     = &m_x_smooth;
+	m_mod_sources.y                     = &m_y_smooth;
+	m_mod_sources.modwheel              = &m_modwheel_smooth;
+	m_mod_sources.pitchwheel            = &m_pitch_bend_smooth;
+	m_mod_sources.constant              = &(m_constant);
+	m_mod_sources.sustain_pedal         = &(m_voice_manager.m_sustain_active_float);
+	m_mod_sources.soft_pedal            = &(m_soft_pedal);
 
 	//========================================
 	//============= DESTINATIONS =============
@@ -296,7 +297,6 @@ void OdinAudioProcessor::setModulationPointers() {
 		m_formant_filter[stereo].setTransitionModPointer(&(m_mod_destinations.filter3.formant_transition));
 
 		m_ring_mod[stereo].setRingModAmountModPointer(&(m_mod_destinations.filter3.ringmod_amount));
-
 
 		m_delay.setTimeModPointer(&(m_mod_destinations.delay.time));
 		m_delay.setFeedbackModPointer(&(m_mod_destinations.delay.feedback));

@@ -126,6 +126,7 @@ struct ModSourceVoice {
   float* lfo[3];
   float* MIDI_key;
   float* MIDI_velocity;
+  float* MIDI_aftertouch;
   float* random;
 };
 
@@ -138,7 +139,7 @@ struct ModSources {
   float* pitchwheel;
   float* x;
   float* y;
-  float* MIDI_aftertouch;
+  float* MIDI_channel_pressure;
   float* constant;
   float* soft_pedal;
   float* sustain_pedal;

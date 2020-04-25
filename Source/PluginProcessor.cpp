@@ -347,6 +347,9 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 
 	//DBG("Modmatrix: " + std::to_string((float)GETAUDIO("amount_1_row_0")));
 	//DBG("Attack: " + std::to_string((float)GETAUDIO("env2_attack")));
+	// for (int sample = 0; sample < buffer.getNumSamples(); ++sample) {
+	// 	midiMessages.addEvent(MidiMessage(160, 64, 127), sample);
+	// }
 
 	//avoid denormals
 	//https://forum.juce.com/t/state-of-the-art-denormal-prevention/16802
@@ -1080,8 +1083,7 @@ void OdinAudioProcessor::attachNonParamListeners() {
 }
 
 void OdinAudioProcessor::handleMidiMessage(const MidiMessage &p_midi_message) {
-	DBG(p_midi_message.getDescription());
-	std::cout << "KEK\n";
+	//DBG(p_midi_message.getDescription());
 	// apply midi message
 	if (p_midi_message.isNoteOn()) {
 		midiNoteOn(p_midi_message.getNoteNumber(), p_midi_message.getVelocity());
@@ -1106,8 +1108,14 @@ void OdinAudioProcessor::handleMidiMessage(const MidiMessage &p_midi_message) {
 		checkEndGlobalEnvelope();
 	} else if (p_midi_message.isAftertouch()) {
 		// todo this is untested
-		DBG("receiving afterouch: " + std::to_string((float)p_midi_message.getAfterTouchValue() / 127.f));
-		m_MIDI_aftertouch = (float)p_midi_message.getAfterTouchValue() / 127.f;
+		DBG("receiving afterouch, note: " + std::to_string(p_midi_message.getNoteNumber()) +
+		    ", value: " + std::to_string((float)p_midi_message.getAfterTouchValue() / 127.f));
+		for (int voice = 0; voice < VOICES; ++voice) {
+			m_voice[voice].setAftertouch(p_midi_message.getNoteNumber(),
+			                             (float)p_midi_message.getAfterTouchValue() / 127.f);
+		}
+	} else if (p_midi_message.isChannelPressure()) {
+		m_MIDI_channel_pressure = (float)p_midi_message.getChannelPressureValue() / 127.f;
 	} else if (p_midi_message.isSoftPedalOn()) {
 		m_soft_pedal = 1.f;
 	} else if (p_midi_message.isSoftPedalOff()) {
