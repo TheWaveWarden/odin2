@@ -881,7 +881,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	addAndMakeVisible(m_unison_selector);
 	m_unison_selector.setMouseDragDivisor(20.f);
 	m_unison_selector.setColor(Colour(10, 40, 50));
-	m_unison_selector.setTooltip("Number of voices to trigger simultaneously");
+	m_unison_selector.setTooltip("Number of voices to trigger simultaneously\nThis limits the polyphony to 12 / N");
 
 
 	m_BPM_selector.OnValueChange = [&](int p_new_value) {

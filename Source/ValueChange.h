@@ -652,7 +652,7 @@ void OdinAudioProcessor::treeValueChangedAmp(const String &p_ID, float p_new_val
 		for (int voice = 0; voice < VOICES; ++voice) {
 			m_voice[voice].amp.setGainDecibels(p_new_value);
 		}
-	} else if (id == m_amp_width_identifier) {
+	} else if (id == m_amp_velocity_identifier) {
 		for (int voice = 0; voice < VOICES; ++voice) {
 			m_voice[voice].amp.setVelocityAmount(p_new_value);
 		}

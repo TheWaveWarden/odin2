@@ -322,8 +322,8 @@
       //                                    "Filter3 Comb Polarity", 0, 1, 0),
       // Amp
       std::make_unique<AudioParameterFloat>(
-          "amp_width", "Amplifier Stereo Width",
-          NormalisableRange<float>(-1.f, 1.f), 0.f),
+          "amp_velocity", "Amplifier Velocity",
+          NormalisableRange<float>(0.f, 1.f), 0.f),
       std::make_unique<AudioParameterFloat>("amp_pan", "Amplifier Panorama",
                                             NormalisableRange<float>(-1.f, 1.f),
                                             0.f),

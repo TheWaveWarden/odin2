@@ -17,11 +17,11 @@ public:
   void incWriteIndex();
 
 
-  void setWidth(float p_width){
-    //m_width_to_pan = p_width * WIDTH_TO_PAN_FACTOR;
-    m_width_seconds = fabs(p_width) * WIDTH_MAX_DELAY_SECONDS;
-    m_width_left = p_width > 0;//todo direction
-  }
+  // void setWidth(float p_width){
+  //   //m_width_to_pan = p_width * WIDTH_TO_PAN_FACTOR;
+  //   m_width_seconds = fabs(p_width) * WIDTH_MAX_DELAY_SECONDS;
+  //   m_width_left = p_width > 0;//todo direction
+  // }
 
   void setSampleRate(float p_samplerate){
     m_samplerate = p_samplerate;
@@ -36,9 +36,9 @@ public:
 
   // this is for the knob
   inline void setVelocityAmount(float p_vel) { 
-    //m_vel_amount = p_vel; 
+    m_vel_amount = p_vel; 
     //m_width_seconds = p_vel * WIDTH_MAX_DELAY_SECONDS;
-    setWidth(p_vel);
+    //setWidth(p_vel);
   }
 
   // this is for the keypress value
@@ -74,12 +74,12 @@ protected:
   float *m_pan_mod;
   float *m_vel_mod;
 
-  float m_width_seconds = 0;
-  float m_width_smooth = 0;
-  bool m_width_left = true;
+  //float m_width_seconds = 0;
+  //float m_width_smooth = 0;
+  //bool m_width_left = true;
   //float m_width_to_pan = 0;
-  float m_width_delay_buffer_left[WIDTH_DELAY_SAMPLES] = {0};
-  float m_width_delay_buffer_right[WIDTH_DELAY_SAMPLES] = {0};
+  //float m_width_delay_buffer_left[WIDTH_DELAY_SAMPLES] = {0};
+  //float m_width_delay_buffer_right[WIDTH_DELAY_SAMPLES] = {0};
   float m_samplerate = -1;
   int m_write_index = 0;
 

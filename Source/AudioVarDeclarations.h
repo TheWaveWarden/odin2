@@ -57,7 +57,7 @@
     //midsection
     std::atomic<float>* m_amp_pan;
     std::atomic<float>* m_amp_gain;
-    std::atomic<float>* m_amp_width;
+    std::atomic<float>* m_amp_velocity;
     std::atomic<float>* m_dist_threshold;
     std::atomic<float>* m_dist_drywet;
     //std::atomic<float>* m_dist_on;
@@ -330,7 +330,7 @@
     Identifier m_fil3_comb_polarity_identifier;
     Identifier m_amp_pan_identifier;
     Identifier m_amp_gain_identifier;
-    Identifier m_amp_width_identifier;
+    Identifier m_amp_velocity_identifier;
     Identifier m_dist_threshold_identifier;
     Identifier m_dist_drywet_identifier;
     Identifier m_dist_on_identifier;
