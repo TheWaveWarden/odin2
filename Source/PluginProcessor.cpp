@@ -251,6 +251,8 @@ OdinAudioProcessor::OdinAudioProcessor() :
 		    //    " ADSR: " + std::to_string((int)m_render_ADSR[0]) + " " + std::to_string((int)m_render_ADSR[1]));
 	    };
 
+	m_master_control = Decibels::decibelsToGain(-7);
+	m_master_smooth = m_master_control;
 	//retriggerAllListeners();
 }
 
@@ -956,9 +958,12 @@ void OdinAudioProcessor::midiNoteOn(int p_midi_note, int p_midi_velocity) {
 		    p_midi_velocity,
 		    m_last_midi_note,
 		    m_unison_pan_positions[unison_voices][unison_counter],
-		    m_unison_pan_positions[unison_voices][m_unison_detune_positions[unison_voices][unison_counter]]);
+		    m_unison_pan_positions[unison_voices][m_unison_detune_positions[unison_voices][unison_counter]],
+		    m_unison_gain_factors[unison_voices]);
 		DBG("NoteOn,  key " + std::to_string(p_midi_note) + ", voice " + std::to_string(new_voice));
-		DBG("Pan: " + std::to_string(m_unison_pan_positions[unison_voices][unison_counter]) + ", Detune: " + std::to_string(m_unison_pan_positions[unison_voices][m_unison_detune_positions[unison_voices][unison_counter]]));
+		DBG("Pan: " + std::to_string(m_unison_pan_positions[unison_voices][unison_counter]) + ", Detune: " +
+		    std::to_string(
+		        m_unison_pan_positions[unison_voices][m_unison_detune_positions[unison_voices][unison_counter]]));
 		m_voice[new_voice].amp.setMIDIVelocity(p_midi_velocity);
 		m_mod_matrix.setMostRecentVoice(new_voice);
 		++unison_counter;

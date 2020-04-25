@@ -382,6 +382,7 @@ private:
 	                                                             {4, {2, 0, 3, 1}},
 	                                                             {6, {1, 4, 2, 0, 5, 3}},
 	                                                             {12, {3, 9, 6, 10, 7, 4, 0, 11, 5, 1, 8, 2}}};
+	std::map<int, float> m_unison_gain_factors = {{1, 1.f}, {2, 0.86f}, {3, 0.75f}, {4, 0.65f}, {6, 0.53f}, {12, 0.45f}};
 #include "AudioVarDeclarations.h"
 	//==============================================================================
 	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(OdinAudioProcessor)

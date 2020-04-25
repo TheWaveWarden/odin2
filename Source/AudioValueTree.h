@@ -437,7 +437,7 @@
       std::make_unique<AudioParameterFloat>(
           "glide", "Glide", NormalisableRange<float>(0.f, 1.f, 0.f, 1.f), 0.f),
       std::make_unique<AudioParameterFloat>("master", "Master", -30.f, 12.f,
-                                            -3.f),
+                                            -7.f),
       std::make_unique<AudioParameterFloat>(
           "modwheel", "Modwheel", NormalisableRange<float>(0.f, 1.f, 0.f, 1.f),
           0.f),

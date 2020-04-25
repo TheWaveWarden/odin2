@@ -20,7 +20,7 @@ void Amplifier::doAmplifier(float p_in, float &po_left_out, float &po_right_out)
 
 	m_width_smooth = m_width_smooth * WIDTH_SMOOTHIN_FACTOR + (1 - WIDTH_SMOOTHIN_FACTOR) * m_width_seconds;
 
-	p_in *= m_gain_smooth * gain_mod_factor;
+	p_in *= m_gain_smooth * gain_mod_factor * *m_unison_gain_reduction_pointer;
 	m_width_delay_buffer_left[m_write_index]  = p_in;
 	m_width_delay_buffer_right[m_write_index] = p_in;
 
@@ -62,7 +62,7 @@ void Amplifier::doAmplifier(float p_in, float &po_left_out, float &po_right_out)
 		    m_width_delay_buffer_right[read_index_trunc], m_width_delay_buffer_right[read_index_next], frac);
 		incWriteIndex();
 		// do panning
-		float pan_modded = m_pan_smooth + *m_pan_mod;
+		float pan_modded = m_pan_smooth + *m_pan_mod + *m_unison_pan_position_pointer * m_unison_pan_amount;
 		pan_modded       = pan_modded < -1 ? -1 : pan_modded;
 		pan_modded       = pan_modded > 1 ? 1 : pan_modded;
 		if (pan_modded >= 0.f) {

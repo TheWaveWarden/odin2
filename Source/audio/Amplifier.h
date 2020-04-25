@@ -57,6 +57,10 @@ public:
     DBG("set unison pan amount: " + std::to_string(m_unison_pan_amount));
   }
 
+  void setUnisonGainReductionPointer(float* p_pointer){
+    m_unison_gain_reduction_pointer = p_pointer;
+  }
+
 protected:
   inline float linearInterpolation(float p_low, float p_high,
                                    float p_distance) {
@@ -88,4 +92,5 @@ protected:
   float m_unison_pan_amount = 0.7f;
 
   float* m_unison_pan_position_pointer = nullptr;
+  float* m_unison_gain_reduction_pointer = nullptr;
 };

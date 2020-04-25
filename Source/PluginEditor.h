@@ -166,7 +166,7 @@
 
 #define MASTER_MAX 12
 #define MASTER_MIN -30
-#define MASTER_DEFAULT 0
+#define MASTER_DEFAULT -7
 
 #define FONT_SIZE_Y 16
 #define FONT_SIZE_X 10
