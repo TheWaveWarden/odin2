@@ -252,7 +252,7 @@ OdinAudioProcessor::OdinAudioProcessor() :
 	    };
 
 	m_master_control = Decibels::decibelsToGain(-7.f);
-	m_master_smooth = m_master_control;
+	m_master_smooth  = m_master_control;
 	//retriggerAllListeners();
 }
 
@@ -964,7 +964,11 @@ void OdinAudioProcessor::midiNoteOn(int p_midi_note, int p_midi_velocity) {
 		DBG("Pan: " + std::to_string(m_unison_pan_positions[unison_voices][unison_counter]) + ", Detune: " +
 		    std::to_string(
 		        m_unison_pan_positions[unison_voices][m_unison_detune_positions[unison_voices][unison_counter]]));
+		//if (m_voice_manager.legatoEnabled()) {
+		//m_voice[new_voice].amp.setMIDIVelocityLegato(p_midi_velocity);
+		//} else {
 		m_voice[new_voice].amp.setMIDIVelocity(p_midi_velocity);
+		//}
 		m_mod_matrix.setMostRecentVoice(new_voice);
 		++unison_counter;
 	}

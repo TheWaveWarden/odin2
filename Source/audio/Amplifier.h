@@ -7,6 +7,7 @@
 #define WIDTH_DELAY_SAMPLES 1000
 #define WIDTH_MAX_DELAY_SECONDS 0.02
 #define WIDTH_SMOOTHIN_FACTOR 0.998
+//#define MIDI_VEL_SMOOTHIN_FACTOR 0.9995//0.998
 #define WIDTH_TO_PAN_FACTOR 1
 
 class Amplifier {
@@ -44,7 +45,13 @@ public:
   // this is for the keypress value
   inline void setMIDIVelocity(int p_MIDI_vel) {
     m_MIDI_vel = (float)p_MIDI_vel / MIDI_VEL_MAX;
+    //m_MIDI_vel_smooth = m_MIDI_vel;
   }
+
+  //in legato we get clicks if we dont smooth velocity
+  // inline void setMIDIVelocityLegato(int p_MIDI_vel){
+  //   m_MIDI_vel = (float)p_MIDI_vel / MIDI_VEL_MAX;
+  // }
 
   void setGainModPointer(float *p_pointer) { m_gain_mod = p_pointer; }
   void setPanModPointer(float *p_pointer) { m_pan_mod = p_pointer; }
@@ -84,6 +91,7 @@ protected:
   int m_write_index = 0;
 
   float m_MIDI_vel = 0.f;
+  //float m_MIDI_vel_smooth = 0.f;//needed to avoid clicks in legato mode...
   float m_vel_amount = 0.f;
   float m_gain = 1.f; // this is a multiplicator, not a dB value
   float m_gain_smooth = 1.f;

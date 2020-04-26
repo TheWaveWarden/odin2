@@ -14,8 +14,9 @@ void Amplifier::doAmplifier(float p_in, float &po_left_out, float &po_right_out)
 	// appply gain
 	float gain_mod_factor = (*m_gain_mod) > 0 ? 1.f + 4 * (*m_gain_mod) : (1.f + *m_gain_mod);
 
-	m_gain_smooth = m_gain_smooth * GAIN_SMOOTHIN_FACTOR + (1 - GAIN_SMOOTHIN_FACTOR) * (m_gain);
-	m_pan_smooth = m_pan_smooth * PAN_SMOOTHIN_FACTOR + (1 - PAN_SMOOTHIN_FACTOR) * m_pan;
+	m_gain_smooth = m_gain_smooth * GAIN_SMOOTHIN_FACTOR + (1.f - GAIN_SMOOTHIN_FACTOR) * (m_gain);
+	m_pan_smooth = m_pan_smooth * PAN_SMOOTHIN_FACTOR + (1.f - PAN_SMOOTHIN_FACTOR) * m_pan;
+	//m_MIDI_vel_smooth = m_MIDI_vel_smooth * MIDI_VEL_SMOOTHIN_FACTOR + (1.f - MIDI_VEL_SMOOTHIN_FACTOR) * m_MIDI_vel;
 	// m_width_smooth = m_width_smooth * WIDTH_SMOOTHIN_FACTOR + (1 - WIDTH_SMOOTHIN_FACTOR) * m_width_seconds;
 
 	p_in *= m_gain_smooth * gain_mod_factor * *m_unison_gain_reduction_pointer;

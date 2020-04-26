@@ -165,6 +165,10 @@ public:
 		return false;
 	}
 
+	bool legatoEnabled(){
+		return m_is_legato;	
+	}
+
 	void reset() {
 		for (int voice = 0; voice < VOICES; ++voice) {
 			m_voice_history[voice] = voice;
