@@ -1,3 +1,11 @@
+# 2.0.19 beta
+- implemented Unison
+- added "Unison index" modulation source
+- removed amp-width parameter
+- added amp-velocity parameter
+- split "Aftertouch" modsource into "Aftertouch" and "Channel Pressure"
+- changed default master-volume to -7dB
+- increased oscillator-octave range to [-4, 4]
 # 2.0.18 beta
 - made amplifier and distortion polyphonic
 - moved amp-envelope application after distortion
