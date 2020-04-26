@@ -37,7 +37,7 @@
 	("Odin 2." + std::to_string(ODIN_MINOR_VERSION) + "." + std::to_string(ODIN_PATCH_VERSION) + " beta")
 
 // ! this is for migrating patches from older version, not to be confused with above
-#define ODIN_PATCH_MIGRATION_VERSION 1
+#define ODIN_PATCH_MIGRATION_VERSION 2
 
 #define MENU_BACKGROUND_COLOR Colour(35, 35, 35)
 #define MENU_FONT_COLOR Colours::lightgrey
