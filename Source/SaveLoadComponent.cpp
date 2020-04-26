@@ -194,7 +194,7 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts, OdinAudi
 					            ODIN_VERSION_STRING +
 					            ".\nThe good news: The patch you're trying to load was created on version " +
 					            version_string +
-					            ". So go to TODO.com already and download the latest version of Odin2!",
+					            ". So go to www.thewavewarden.com and download the latest version of Odin2!",
 					        "Thanks, I will!");
 					    return;
 				    }

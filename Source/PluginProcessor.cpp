@@ -822,7 +822,7 @@ void OdinAudioProcessor::setStateInformation(const void *data, int sizeInBytes) 
 				AlertWindow::showMessageBox(
 				    AlertWindow::AlertIconType::WarningIcon,
 				    "You are trying to load a project which was saved with a newer Version of Odin2. Please go to "
-				    "todo.com and download the newest version to properly use this project!",
+				    "www.thewavewarden.com and download the newest version to properly use this project!",
 				    "Thanks, I will!");
 				return;
 			}
