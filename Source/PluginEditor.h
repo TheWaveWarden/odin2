@@ -26,6 +26,7 @@
 #include "LeftRightButton.h"
 #include "ModMatrixComponent.h"
 #include "NumberSelector.h"
+#include "UnisonSelector.h"
 #include "OdinButton.h"
 #include "OdinTooltipWindow.h"
 #include "OscComponent.h"
@@ -117,10 +118,18 @@
 #define SAVE_LOAD_SIZE_X 288
 #define SAVE_LOAD_SIZE_Y 25
 
-#define LEGATO_POS_X 590
-#define LEGATO_POS_Y 7
+#define LEGATO_POS_X 250
+#define LEGATO_POS_Y 8
 
-#define GUI_SIZE_POS_X 670
+#define UNISON_SELECTOR_X 490
+#define UNISON_SELECTOR_Y 6
+#define UNISON_DETUNE_X 601
+#define UNISON_DETUNE_Y 5
+#define UNISON_STEREO_X 646
+#define UNISON_STEREO_Y UNISON_DETUNE_Y
+
+
+#define GUI_SIZE_POS_X 672
 #define GUI_SIZE_POS_Y 7
 
 #define ENV13_POS_X 30
@@ -157,7 +166,7 @@
 
 #define MASTER_MAX 12
 #define MASTER_MIN -30
-#define MASTER_DEFAULT 0
+#define MASTER_DEFAULT -7
 
 #define FONT_SIZE_Y 16
 #define FONT_SIZE_X 10
@@ -260,9 +269,13 @@ private:
   Knob m_glide;
   Knob m_master;
   Knob m_modwheel;
+  Knob m_unison_detune;
+  Knob m_unison_width;
 
   PitchWheel m_pitchwheel;
   NumberSelector m_pitch_amount;
+
+  UnisonSelector m_unison_selector;
 
   BPMSelector m_BPM_selector;
 
@@ -355,6 +368,8 @@ private:
   std::unique_ptr<OdinKnobAttachment> m_master_attachment;
   std::unique_ptr<OdinKnobAttachment> m_modwheel_attachment;
   std::unique_ptr<OdinKnobAttachment> m_pitchbend_attachment;
+  std::unique_ptr<OdinKnobAttachment> m_unison_detune_attachment;
+  std::unique_ptr<OdinKnobAttachment> m_unison_width_attachment;
 
   Identifier m_osc1_type_identifier;
   Identifier m_osc2_type_identifier;
@@ -363,6 +378,7 @@ private:
   Identifier m_fil2_type_identifier;
   Identifier m_fil3_type_identifier;
   Identifier m_pitchbend_amount_identifier;
+  Identifier m_unison_voices_identifier;
   Identifier m_delay_position_identifier;
   Identifier m_phaser_position_identifier;
   Identifier m_flanger_position_identifier;

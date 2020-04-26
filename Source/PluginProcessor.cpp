@@ -251,6 +251,8 @@ OdinAudioProcessor::OdinAudioProcessor() :
 		    //    " ADSR: " + std::to_string((int)m_render_ADSR[0]) + " " + std::to_string((int)m_render_ADSR[1]));
 	    };
 
+	m_master_control = Decibels::decibelsToGain(-7.f);
+	m_master_smooth  = m_master_control;
 	//retriggerAllListeners();
 }
 
@@ -912,26 +914,6 @@ void OdinAudioProcessor::setModWheelValue(int p_value) {
 	updateModWheelGUI(*m_modwheel);
 }
 
-void OdinAudioProcessor::midiNoteOff(int p_midi_note) {
-	DBG("NoteOff, key " + std::to_string(p_midi_note));
-
-	if (!m_voice_manager.getSustainActive()) {
-		for (int voice = 0; voice < VOICES; ++voice) {
-			if (m_voice[voice].keyUp(p_midi_note)) {
-				//DBG("KeyUp on voice " + std::to_string(voice));
-			}
-		}
-	} else {
-		for (int voice = 0; voice < VOICES; ++voice) {
-			if (m_voice[voice].usesThisMIDIKey(p_midi_note)) {
-				m_voice_manager.addToKillList(voice, p_midi_note);
-			}
-		}
-	}
-
-	checkEndGlobalEnvelope();
-}
-
 void OdinAudioProcessor::checkEndGlobalEnvelope() {
 	for (int voice = 0; voice < VOICES; ++voice) {
 		if (m_voice[voice] && m_voice[voice].env[0].isBeforeRelease()) {
@@ -963,19 +945,34 @@ void OdinAudioProcessor::midiNoteOn(int p_midi_note, int p_midi_velocity) {
 		m_chorus[1].resetLFO();
 	}
 
-	int voice_number = m_voice_manager.getVoice(p_midi_note);
-	//todo "else is on sustain".... u sure...? (recent changes to sustain)
-	if (voice_number >= 0) { // else is on sustain
-		if (m_last_midi_note == -1) {
-			// first time glide - dont glide
-			m_last_midi_note = p_midi_note;
-		}
-		m_voice[voice_number].start(p_midi_note, p_midi_velocity, m_last_midi_note);
-		DBG("NoteOn,  key " + std::to_string(p_midi_note) + ", voice " + std::to_string(voice_number));
-		m_voice[voice_number].amp.setMIDIVelocity(p_midi_velocity);
+	int unison_counter = 0;
+	int unison_voices  = m_value_tree.state.getChildWithName("misc")["unison_voices"];
+	auto voice_numbers = m_voice_manager.getVoices(p_midi_note, unison_voices);
+	if (m_last_midi_note == -1) {
+		// first time glide - dont glide
 		m_last_midi_note = p_midi_note;
-		m_mod_matrix.setMostRecentVoice(voice_number);
 	}
+	for (int new_voice : voice_numbers) {
+		m_voice[new_voice].start(
+		    p_midi_note,
+		    p_midi_velocity,
+		    m_last_midi_note,
+		    m_unison_pan_positions[unison_voices][unison_counter],
+		    m_unison_pan_positions[unison_voices][m_unison_detune_positions[unison_voices][unison_counter]],
+		    m_unison_gain_factors[unison_voices]);
+		DBG("NoteOn,  key " + std::to_string(p_midi_note) + ", voice " + std::to_string(new_voice));
+		DBG("Pan: " + std::to_string(m_unison_pan_positions[unison_voices][unison_counter]) + ", Detune: " +
+		    std::to_string(
+		        m_unison_pan_positions[unison_voices][m_unison_detune_positions[unison_voices][unison_counter]]));
+		//if (m_voice_manager.legatoEnabled()) {
+		//m_voice[new_voice].amp.setMIDIVelocityLegato(p_midi_velocity);
+		//} else {
+		m_voice[new_voice].amp.setMIDIVelocity(p_midi_velocity);
+		//}
+		m_mod_matrix.setMostRecentVoice(new_voice);
+		++unison_counter;
+	}
+	m_last_midi_note = p_midi_note;
 
 	// set values to filters
 	for (int stereo = 0; stereo < 2; ++stereo) {
@@ -993,6 +990,26 @@ void OdinAudioProcessor::midiNoteOn(int p_midi_note, int p_midi_velocity) {
 		m_comb_filter[stereo].m_MIDI_velocity   = p_midi_velocity;
 		m_ring_mod[stereo].m_MIDI_velocity      = p_midi_velocity;
 	}
+}
+
+void OdinAudioProcessor::midiNoteOff(int p_midi_note) {
+	DBG("NoteOff, key " + std::to_string(p_midi_note));
+
+	if (!m_voice_manager.getSustainActive()) {
+		for (int voice = 0; voice < VOICES; ++voice) {
+			if (m_voice[voice].keyUp(p_midi_note)) {
+				//DBG("KeyUp on voice " + std::to_string(voice));
+			}
+		}
+	} else {
+		for (int voice = 0; voice < VOICES; ++voice) {
+			if (m_voice[voice].usesThisMIDIKey(p_midi_note)) {
+				m_voice_manager.addToKillList(voice, p_midi_note);
+			}
+		}
+	}
+
+	checkEndGlobalEnvelope();
 }
 
 void OdinAudioProcessor::resetAudioEngine() {

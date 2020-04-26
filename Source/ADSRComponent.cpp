@@ -148,7 +148,6 @@ void ADSRComponent::setGUIBig() {
 }
 void ADSRComponent::setGUISmall() {
 
-	DBG("AdSR SMALL");
 	juce::Image loop_1 = ImageCache::getFromMemory(BinaryData::buttonloop_1_png, BinaryData::buttonloop_1_pngSize);
 	juce::Image loop_2 = ImageCache::getFromMemory(BinaryData::buttonloop_2_png, BinaryData::buttonloop_2_pngSize);
 	juce::Image loop_3 = ImageCache::getFromMemory(BinaryData::buttonloop_3_png, BinaryData::buttonloop_3_pngSize);

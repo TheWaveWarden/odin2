@@ -89,6 +89,8 @@ void OdinAudioProcessor::addNonAudioParametersToTree() {
 	node.setProperty("fil1_vowel_right", 2, nullptr);
 	node.setProperty("fil2_vowel_right", 2, nullptr);
 	node.setProperty("fil3_vowel_right", 2, nullptr);
+	node.setProperty("unison_voices", 1, nullptr);
+
 
 	node = m_value_tree_mod;
 	node.setProperty("source_row_0", 0, nullptr);

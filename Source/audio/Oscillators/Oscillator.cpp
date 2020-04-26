@@ -1,6 +1,7 @@
 #include "Oscillator.h"
 
 Oscillator::Oscillator() {
+	m_unison_detune_factor_pointer = &unison_detune_factor_dummy;
 }
 
 Oscillator::~Oscillator() {

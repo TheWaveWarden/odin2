@@ -652,7 +652,7 @@ void OdinAudioProcessor::treeValueChangedAmp(const String &p_ID, float p_new_val
 		for (int voice = 0; voice < VOICES; ++voice) {
 			m_voice[voice].amp.setGainDecibels(p_new_value);
 		}
-	} else if (id == m_amp_width_identifier) {
+	} else if (id == m_amp_velocity_identifier) {
 		for (int voice = 0; voice < VOICES; ++voice) {
 			m_voice[voice].amp.setVelocityAmount(p_new_value);
 		}
@@ -942,6 +942,14 @@ void OdinAudioProcessor::treeValueChangedGeneralMisc(const String &p_ID, float p
 		}
 	} else if (id == m_master_identifier) {
 		m_master_control = Decibels::decibelsToGain(p_new_value);
+	} else if (id == m_unison_width_identifier) {
+		for (int voice = 0; voice < VOICES; ++voice) {
+			m_voice[voice].setUnisonPanAmount(p_new_value);
+		}
+	} else if (id == m_unison_detune_identifier) {
+		for (int voice = 0; voice < VOICES; ++voice) {
+			m_voice[voice].setUnisonDetuneAmount(p_new_value);
+		}
 	}
 }
 

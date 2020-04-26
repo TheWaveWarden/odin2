@@ -1,5 +1,5 @@
-void OdinAudioProcessorEditor::setGUISmall(){
-    
+void OdinAudioProcessorEditor::setGUISmall() {
+
 	juce::Image dropdown_button1 =
 	    ImageCache::getFromMemory(BinaryData::buttondropdown_1_png, BinaryData::buttondropdown_1_pngSize);
 	juce::Image dropdown_button2 =
@@ -60,7 +60,6 @@ void OdinAudioProcessorEditor::setGUISmall(){
 	                             &dropdown_draw2);
 	m_filter2_dropdown.setBounds(
 	    DROPDOWN_FILTER2_POS_X, DROPDOWN_FILTER2_POS_Y, dropdown_button1.getWidth(), dropdown_button1.getHeight());
-
 
 	m_filter3_dropdown.setImages(&dropdown_draw1,
 	                             &dropdown_draw1,
@@ -318,15 +317,20 @@ void OdinAudioProcessorEditor::setGUISmall(){
 	juce::Image bypass_fil3_plate =
 	    ImageCache::getFromMemory(BinaryData::filter3_bypass_png, BinaryData::filter3_bypass_pngSize);
 
+	juce::Image black_knob_small =
+	    ImageCache::getFromMemory(BinaryData::black_knob_very_small_png, BinaryData::black_knob_very_small_pngSize);
+
 	m_glide.setStrip(metal_knob_small, N_KNOB_FRAMES);
 	m_master.setStrip(metal_knob_small, N_KNOB_FRAMES);
+	m_unison_detune.setStrip(black_knob_small, N_KNOB_FRAMES);
+	m_unison_width.setStrip(black_knob_small, N_KNOB_FRAMES);
 
 	juce::Image pitchwheel = ImageCache::getFromMemory(BinaryData::modwheel_png, BinaryData::modwheel_pngSize);
 
 	m_pitchwheel.setStrip(pitchwheel, N_KNOB_FRAMES, false);
 	m_pitchwheel.setBounds(PITCHWHEEL_X, WHEEL_Y, pitchwheel.getWidth() / N_KNOB_FRAMES, pitchwheel.getHeight());
-	
-    m_modwheel.setStrip(pitchwheel, N_KNOB_FRAMES, false);
+
+	m_modwheel.setStrip(pitchwheel, N_KNOB_FRAMES, false);
 	m_modwheel.setBounds(MODWHEEL_X, WHEEL_Y, pitchwheel.getWidth() / N_KNOB_FRAMES, pitchwheel.getHeight());
 
 	m_osc1.setBackgroundBypass(bypass_osc1_plate);
@@ -429,6 +433,7 @@ void OdinAudioProcessorEditor::setGUISmall(){
 	m_lfo_4.setSyncOverdraw(lfo24_sync_background);
 
 	m_pitch_amount.setTopLeftPosition(PITCH_AMOUNT_X, PITCH_AMOUNT_Y);
+	m_unison_selector.setTopLeftPosition(UNISON_SELECTOR_X, UNISON_SELECTOR_Y);
 
 	m_BPM_selector.setTopLeftPosition(BPM_POS_X, BPM_POS_Y);
 
@@ -440,7 +445,6 @@ void OdinAudioProcessorEditor::setGUISmall(){
 	setFilter1Plate(m_value_tree.state.getChildWithName("misc")["fil1_type"]);
 	setFilter2Plate(m_value_tree.state.getChildWithName("misc")["fil2_type"]);
 	setFilter3Plate(m_value_tree.state.getChildWithName("misc")["fil3_type"]);
-
 
 	Rectangle<int> area_osc_1(OSC_SIZE_X, OSC_SIZE_Y);
 	Rectangle<int> area_osc_2(OSC_SIZE_X, OSC_SIZE_Y);
@@ -463,6 +467,15 @@ void OdinAudioProcessorEditor::setGUISmall(){
 	                   MASTER_POS_Y - METAL_KNOB_SMALL_OFFSET_Y,
 	                   METAL_KNOB_SMALL_SIZE_X,
 	                   METAL_KNOB_SMALL_SIZE_Y);
+
+	m_unison_detune.setBounds(UNISON_DETUNE_X ,
+	                          UNISON_DETUNE_Y,
+	                          BLACK_KNOB_SMALL_SIZE_X,
+	                          BLACK_KNOB_SMALL_SIZE_Y);
+	m_unison_width.setBounds(UNISON_STEREO_X,
+	                          UNISON_STEREO_Y,
+	                          BLACK_KNOB_SMALL_SIZE_X,
+	                          BLACK_KNOB_SMALL_SIZE_Y);
 
 	m_osc1.setBounds(area_osc_1);
 	m_osc2.setBounds(area_osc_2);
@@ -493,7 +506,6 @@ void OdinAudioProcessorEditor::setGUISmall(){
 	forceValueTreeOntoComponents(false);
 	m_save_load.resetPatchText();
 
-     setSize(ODIN_EDITOR_SIZE_X, ODIN_EDITOR_SIZE_Y);
-		m_odin_backdrop =
-		    ImageCache::getFromMemory(BinaryData::odin_backdrop_png, BinaryData::odin_backdrop_pngSize);
+	setSize(ODIN_EDITOR_SIZE_X, ODIN_EDITOR_SIZE_Y);
+	m_odin_backdrop = ImageCache::getFromMemory(BinaryData::odin_backdrop_png, BinaryData::odin_backdrop_pngSize);
 }

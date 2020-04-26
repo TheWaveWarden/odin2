@@ -60,8 +60,8 @@ public:
   void setMouseDragDivisor(float p_divisor) {
     m_mouse_drag_divisor = p_divisor;
   }
-  void setGUIBig();
-  void setGUISmall();
+  virtual void setGUIBig();
+  virtual void setGUISmall();
 protected:
   bool m_GUI_big = false;
 
@@ -72,9 +72,9 @@ protected:
 
   String m_parameter_id;
 
-  void increment() { setValue(m_value + 1); }
+  virtual void increment() { setValue(m_value + 1); }
 
-  void decrement() { setValue(m_value - 1); }
+  virtual void decrement() { setValue(m_value - 1); }
 
   GlasDisplay m_display;
   int m_min = 1;

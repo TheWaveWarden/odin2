@@ -150,7 +150,9 @@ public:
 
 	void setPolyLegato(bool p_is_poly) {
 		bool legato_was_changed = m_voice_manager.setPolyLegato(p_is_poly);
-		m_voice[0].setPolyLegato(p_is_poly);
+		for (int voice = 0; voice < VOICES; ++voice) {
+			m_voice[voice].setPolyLegato(p_is_poly);
+		}
 
 		if (legato_was_changed) {
 			// reset engine here to get rid of trailing notes
@@ -361,6 +363,26 @@ private:
 
 	bool m_force_values_onto_gui = false; // used for loading state and then remembering to force values once
 	                                      // the editor was created
+
+	//the panning distributions for each unison count
+	std::map<int, std::vector<float>> m_unison_pan_positions = {
+	    {1, {0.f}},
+	    {2, {-1.f, 1.f}},
+	    {3, {-1.f, 0.f, 1.f}},
+	    {4, {-1.f, -0.33333f, 0.3333333f, 1.f}},
+	    {6, {-1.f, -0.6f, -0.2f, 0.2f, 0.6f, 1.f}},
+	    {12,
+	     {-1.f, -0.8181f, -0.6363f, -0.45454f, -0.2787f, -0.0909f, 0.0909f, 0.2787f, 0.45454f, 0.6363f, 0.8181f, 1.f}}};
+
+	// map to "shuffle" the unison pan positions to get the detune positions
+	std::map<int, std::vector<int>> m_unison_detune_positions = {{1, {0}},
+	                                                             {2, {0, 1}},
+	                                                             {3, {0, 1, 2}},
+	                                                             //shuffling starts here:
+	                                                             {4, {2, 0, 3, 1}},
+	                                                             {6, {1, 4, 2, 0, 5, 3}},
+	                                                             {12, {3, 9, 6, 10, 7, 4, 0, 11, 5, 1, 8, 2}}};
+	std::map<int, float> m_unison_gain_factors = {{1, 1.f}, {2, 0.86f}, {3, 0.75f}, {4, 0.65f}, {6, 0.53f}, {12, 0.45f}};
 #include "AudioVarDeclarations.h"
 	//==============================================================================
 	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(OdinAudioProcessor)

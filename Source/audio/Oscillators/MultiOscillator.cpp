@@ -17,18 +17,15 @@ float MultiOscillator::doOscillate() {
 }
 
 void MultiOscillator::update() {
+	jassert(m_unison_detune_factor_pointer);
+
 	float glide_input_modded = m_glide + *(m_glide_mod);
 	glide_input_modded       = glide_input_modded > 1 ? 1 : glide_input_modded;
 	double glide_modded      = calculateGlide(glide_input_modded);
 
-	// DBG("Glide: " + std::to_string(glide_modded));
-	// DBG("current:" + std::to_string(m_osc_freq_base));
-	// DBG("target:" + std::to_string(m_osc_freq_glide_target) + "\n---------");
-
-
 	m_osc_freq_base = m_osc_freq_glide_target * (1.f - glide_modded) + (glide_modded)*m_osc_freq_base;
 	// we overwrite even Oscillator here...
-	m_osc_freq_modded = m_osc_freq_base * m_pitch_control_multiplier;
+	m_osc_freq_modded = m_osc_freq_base * m_pitch_control_multiplier * *m_unison_detune_factor_pointer;
 
 	if (*m_pitchbend + (*m_pitch_mod_exp) + m_mod_freq_exp + m_mod_exp_other) {
 		m_osc_freq_modded *= pitchShiftMultiplier(*m_pitchbend + (*m_pitch_mod_exp) * OSC_EXP_MOD_RANGE +

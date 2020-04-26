@@ -150,11 +150,11 @@ AmpDistortionFlowComponent::AmpDistortionFlowComponent(AudioProcessorValueTreeSt
 	m_amp_pan.setKnobTooltip("Pans the sound to the\nleft or the right");
 	addAndMakeVisible(m_amp_pan);
 
-	m_amp_width.setStrip(black_knob_mid, N_KNOB_FRAMES);
-	m_amp_width.setSliderStyle(Slider::RotaryVerticalDrag);
-	m_amp_width.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-	m_amp_width.setKnobTooltip("Widenes the stereo field by delaying one channel slightly");
-	addAndMakeVisible(m_amp_width);
+	m_amp_velocity.setStrip(black_knob_mid, N_KNOB_FRAMES);
+	m_amp_velocity.setSliderStyle(Slider::RotaryVerticalDrag);
+	m_amp_velocity.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
+	m_amp_velocity.setKnobTooltip("Modulates the amp-gain by MIDI-key velocity");
+	addAndMakeVisible(m_amp_velocity);
 
 	m_boost.setStrip(round_knob, N_KNOB_FRAMES);
 	m_boost.setSliderStyle(Slider::RotaryVerticalDrag);
@@ -196,7 +196,7 @@ AmpDistortionFlowComponent::AmpDistortionFlowComponent(AudioProcessorValueTreeSt
 	};
 	addAndMakeVisible(m_distortion_algo);
 
-	m_amp_width_attach.reset(new OdinKnobAttachment(m_value_tree, "amp_width", m_amp_width));
+	m_amp_velocity_attach.reset(new OdinKnobAttachment(m_value_tree, "amp_velocity", m_amp_velocity));
 	m_amp_gain_attach.reset(new OdinKnobAttachment(m_value_tree, "amp_gain", m_amp_gain));
 	m_amp_pan_attach.reset(new OdinKnobAttachment(m_value_tree, "amp_pan", m_amp_pan));
 	m_dist_threshold_attach.reset(new OdinKnobAttachment(m_value_tree, "dist_boost", m_boost));
@@ -214,7 +214,7 @@ AmpDistortionFlowComponent::AmpDistortionFlowComponent(AudioProcessorValueTreeSt
 	                    AMP_PAN_POS_Y - BLACK_KNOB_MID_OFFSET_Y,
 	                    BLACK_KNOB_MID_SIZE_X,
 	                    BLACK_KNOB_MID_SIZE_Y);
-	m_amp_width.setBounds(AMP_VEL_POS_X - BLACK_KNOB_MID_OFFSET_X,
+	m_amp_velocity.setBounds(AMP_VEL_POS_X - BLACK_KNOB_MID_OFFSET_X,
 	                      AMP_VEL_POS_Y - BLACK_KNOB_MID_OFFSET_Y,
 	                      BLACK_KNOB_MID_SIZE_X,
 	                      BLACK_KNOB_MID_SIZE_Y);
@@ -229,12 +229,12 @@ AmpDistortionFlowComponent::AmpDistortionFlowComponent(AudioProcessorValueTreeSt
 	m_boost.setNumDecimalPlacesToDisplay(3);
 	m_amp_gain.setNumDecimalPlacesToDisplay(2);
 	m_dry_wet.setNumDecimalPlacesToDisplay(3);
-	m_amp_width.setNumDecimalPlacesToDisplay(3);
+	m_amp_velocity.setNumDecimalPlacesToDisplay(3);
 	m_amp_pan.setNumDecimalPlacesToDisplay(3);
 
 	SET_CTR_KEY(m_amp_gain);
 	SET_CTR_KEY(m_amp_pan);
-	SET_CTR_KEY(m_amp_width);
+	SET_CTR_KEY(m_amp_velocity);
 	SET_CTR_KEY(m_boost);
 	SET_CTR_KEY(m_dry_wet);
 
@@ -355,7 +355,7 @@ juce::Image flow_left_1 = ImageCache::getFromMemory(BinaryData::buttonleft_1_150
 
 	m_amp_pan.setStrip(black_knob_mid, N_KNOB_FRAMES);
 
-	m_amp_width.setStrip(black_knob_mid, N_KNOB_FRAMES);
+	m_amp_velocity.setStrip(black_knob_mid, N_KNOB_FRAMES);
 
 	m_boost.setStrip(round_knob, N_KNOB_FRAMES);
 
@@ -375,7 +375,7 @@ juce::Image flow_left_1 = ImageCache::getFromMemory(BinaryData::buttonleft_1_150
 	                    OdinHelper::c150(AMP_PAN_POS_Y) - OdinHelper::c150(BLACK_KNOB_MID_OFFSET_Y),
 	                    OdinHelper::c150(BLACK_KNOB_MID_SIZE_X),
 	                    OdinHelper::c150(BLACK_KNOB_MID_SIZE_Y));
-	m_amp_width.setBounds(OdinHelper::c150(AMP_VEL_POS_X) - OdinHelper::c150(BLACK_KNOB_MID_OFFSET_X),
+	m_amp_velocity.setBounds(OdinHelper::c150(AMP_VEL_POS_X) - OdinHelper::c150(BLACK_KNOB_MID_OFFSET_X),
 	                      OdinHelper::c150(AMP_VEL_POS_Y) - OdinHelper::c150(BLACK_KNOB_MID_OFFSET_Y)-1,
 	                      OdinHelper::c150(BLACK_KNOB_MID_SIZE_X),
 	                      OdinHelper::c150(BLACK_KNOB_MID_SIZE_Y));
@@ -488,7 +488,7 @@ void AmpDistortionFlowComponent::setGUISmall(){
 
 	m_amp_pan.setStrip(black_knob_mid, N_KNOB_FRAMES);
 
-	m_amp_width.setStrip(black_knob_mid, N_KNOB_FRAMES);
+	m_amp_velocity.setStrip(black_knob_mid, N_KNOB_FRAMES);
 
 	m_boost.setStrip(round_knob, N_KNOB_FRAMES);
 
@@ -508,7 +508,7 @@ void AmpDistortionFlowComponent::setGUISmall(){
 	                    AMP_PAN_POS_Y - BLACK_KNOB_MID_OFFSET_Y,
 	                    BLACK_KNOB_MID_SIZE_X,
 	                    BLACK_KNOB_MID_SIZE_Y);
-	m_amp_width.setBounds(AMP_VEL_POS_X - BLACK_KNOB_MID_OFFSET_X,
+	m_amp_velocity.setBounds(AMP_VEL_POS_X - BLACK_KNOB_MID_OFFSET_X,
 	                      AMP_VEL_POS_Y - BLACK_KNOB_MID_OFFSET_Y,
 	                      BLACK_KNOB_MID_SIZE_X,
 	                      BLACK_KNOB_MID_SIZE_Y);

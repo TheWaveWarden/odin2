@@ -63,7 +63,7 @@ for (int fil = 0; fil < 3; ++fil) {
 
 m_amp_pan        = m_value_tree.getRawParameterValue("amp_pan");
 m_amp_gain       = m_value_tree.getRawParameterValue("amp_gain");
-m_amp_width        = m_value_tree.getRawParameterValue("amp_width");
+m_amp_velocity        = m_value_tree.getRawParameterValue("amp_velocity");
 m_dist_threshold = m_value_tree.getRawParameterValue("dist_boost");
 m_dist_drywet    = m_value_tree.getRawParameterValue("dist_drywet");
 //m_dist_on        = m_value_tree.getRawParameterValue("dist_on");
@@ -273,10 +273,9 @@ for (int fil = 0; fil < 3; ++fil) {
 //amp listener
 m_value_tree.addParameterListener("amp_pan", &m_tree_listener_amp);
 m_value_tree.addParameterListener("amp_gain", &m_tree_listener_amp);
-m_value_tree.addParameterListener("amp_width", &m_tree_listener_amp);
+m_value_tree.addParameterListener("amp_velocity", &m_tree_listener_amp);
 m_value_tree.addParameterListener("dist_boost", &m_tree_listener_amp);
 m_value_tree.addParameterListener("dist_drywet", &m_tree_listener_amp);
-//m_value_tree.addParameterListener("dist_on", &m_tree_listener_amp);
 
 //delay listener
 m_value_tree.addParameterListener("delay_time", &m_tree_listener_delay);
@@ -285,7 +284,6 @@ m_value_tree.addParameterListener("delay_hp", &m_tree_listener_delay);
 m_value_tree.addParameterListener("delay_ducking", &m_tree_listener_delay);
 m_value_tree.addParameterListener("delay_dry", &m_tree_listener_delay);
 m_value_tree.addParameterListener("delay_wet", &m_tree_listener_delay);
-//m_value_tree.addParameterListener("delay_sync", &m_tree_listener_delay);
 m_value_tree.addParameterListener("delay_pingpong", &m_tree_listener_delay);
 m_value_tree.addParameterListener("delay_on", &m_tree_listener_delay);
 
@@ -294,7 +292,6 @@ m_value_tree.addParameterListener("chorus_rate", &m_tree_listener_chorus);
 m_value_tree.addParameterListener("chorus_amount", &m_tree_listener_chorus);
 m_value_tree.addParameterListener("chorus_drywet", &m_tree_listener_chorus);
 m_value_tree.addParameterListener("chorus_feedback", &m_tree_listener_chorus);
-//m_value_tree.addParameterListener("chorus_sync", &m_tree_listener_chorus);
 m_value_tree.addParameterListener("chorus_reset", &m_tree_listener_chorus);
 m_value_tree.addParameterListener("chorus_on", &m_tree_listener_chorus);
 
@@ -304,7 +301,6 @@ m_value_tree.addParameterListener("phaser_freq", &m_tree_listener_phaser);
 m_value_tree.addParameterListener("phaser_feedback", &m_tree_listener_phaser);
 m_value_tree.addParameterListener("phaser_mod", &m_tree_listener_phaser);
 m_value_tree.addParameterListener("phaser_drywet", &m_tree_listener_phaser);
-//m_value_tree.addParameterListener("phaser_sync", &m_tree_listener_phaser);
 m_value_tree.addParameterListener("phaser_reset", &m_tree_listener_phaser);
 m_value_tree.addParameterListener("phaser_on", &m_tree_listener_phaser);
 
@@ -313,7 +309,6 @@ m_value_tree.addParameterListener("flanger_rate", &m_tree_listener_flanger);
 m_value_tree.addParameterListener("flanger_amount", &m_tree_listener_flanger);
 m_value_tree.addParameterListener("flanger_drywet", &m_tree_listener_flanger);
 m_value_tree.addParameterListener("flanger_feedback", &m_tree_listener_flanger);
-//m_value_tree.addParameterListener("flanger_sync", &m_tree_listener_flanger);
 m_value_tree.addParameterListener("flanger_reset", &m_tree_listener_flanger);
 m_value_tree.addParameterListener("flanger_on", &m_tree_listener_flanger);
 
@@ -348,55 +343,22 @@ m_value_tree.addParameterListener("env4_loop", &m_tree_listener_adsr4);
 //lfo1 listener
 m_value_tree.addParameterListener("lfo1_freq", &m_tree_listener_lfo1);
 m_value_tree.addParameterListener("lfo1_reset", &m_tree_listener_lfo1);
-//m_value_tree.addParameterListener("lfo1_sync", &m_tree_listener_lfo1);
-// m_value_tree.addParameterListener("lfo1_wave", &m_tree_listener_lfo1);
 
 //lfo2 listener
 m_value_tree.addParameterListener("lfo2_freq", &m_tree_listener_lfo2);
 m_value_tree.addParameterListener("lfo2_reset", &m_tree_listener_lfo2);
-//m_value_tree.addParameterListener("lfo2_sync", &m_tree_listener_lfo2);
-// m_value_tree.addParameterListener("lfo2_wave", &m_tree_listener_lfo2);
 
 //lfo3 listener
 m_value_tree.addParameterListener("lfo3_freq", &m_tree_listener_lfo3);
 m_value_tree.addParameterListener("lfo3_reset", &m_tree_listener_lfo3);
-//m_value_tree.addParameterListener("lfo3_sync", &m_tree_listener_lfo3);
-// m_value_tree.addParameterListener("lfo3_wave", &m_tree_listener_lfo3);
 
 //lfo4 listener
 m_value_tree.addParameterListener("lfo4_freq", &m_tree_listener_lfo4);
 m_value_tree.addParameterListener("lfo4_reset", &m_tree_listener_lfo4);
-//m_value_tree.addParameterListener("lfo4_sync", &m_tree_listener_lfo4);
-// m_value_tree.addParameterListener("lfo4_wave", &m_tree_listener_lfo4);
-
-// for (int i = 0; i < 9; ++i) {
-// 	//amount 1 listener
-// 	m_value_tree.addParameterListener("amount_1_row_" + std::to_string(i), &m_tree_listener_amount1);
-// 	//amount 2 listener
-// 	m_value_tree.addParameterListener("amount_2_row_" + std::to_string(i), &m_tree_listener_amount2);
-// 	//amount 3 listener
-// 	m_value_tree.addParameterListener("amount_3_row_" + std::to_string(i), &m_tree_listener_amount3);
-// }
 
 //general misc
 m_value_tree.addParameterListener("glide", &m_tree_listener_general_misc);
 m_value_tree.addParameterListener("master", &m_tree_listener_general_misc);
-//todo check if the following values are stored and retrieved correctly
-//m_value_tree.addParameterListener("pitchbend_amount", &m_tree_listener_general_misc);
 
-
-// m_value_tree.addParameterListener("fil1_to_amp", &m_tree_listener);
-// m_value_tree.addParameterListener("fil2_to_amp", &m_tree_listener);
-
-// for (int fil = 0; fil < 2; ++fil) {
-// 	m_value_tree.addParameterListener("fil" + std::to_string(fil + 1) + "_osc1", &m_tree_listener);
-// 	m_value_tree.addParameterListener("fil" + std::to_string(fil + 1) + "_osc2", &m_tree_listener);
-// 	m_value_tree.addParameterListener("fil" + std::to_string(fil + 1) + "_osc3", &m_tree_listener);
-// }
-
-// m_value_tree.addParameterListener("fil2_fil1", &m_tree_listener);
-// m_value_tree.addParameterListener("xy_x", &m_tree_listener);
-// m_value_tree.addParameterListener("xy_y", &m_tree_listener);
-// m_value_tree.addParameterListener("modwheel", &m_tree_listener);
-// m_value_tree.addParameterListener("pitchbend", &m_tree_listener);
-// m_value_tree.addParameterListener("pitchbend_amount", &m_tree_listener);
+m_value_tree.addParameterListener("unison_detune", &m_tree_listener_general_misc);
+m_value_tree.addParameterListener("unison_width", &m_tree_listener_general_misc);
