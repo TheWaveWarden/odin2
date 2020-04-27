@@ -1,3 +1,5 @@
+# 2.0.20 beta
+- fixed legato not being enabled before the GUI was opened
 # 2.0.19 beta
 - implemented Unison
 - added "Unison index" modulation source

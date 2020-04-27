@@ -590,9 +590,9 @@
        lfo4_synctime_numerator="2" lfo4_synctime_denominator="5" lfo_left_selected="1"
        lfo_right_selected="1" lfo1_wave="0" lfo2_wave="0" lfo3_wave="0"
        lfo4_wave="0" lfo1_sync="0" lfo2_sync="0" lfo3_sync="0" lfo4_sync="0"/>
-  <misc legato="0" dist_algo="1.0" BPM="120" env_left_selected="1" env_right_selected="1"
+  <misc legato="1" dist_algo="1.0" BPM="120" env_left_selected="1" env_right_selected="1"
         fil1_type="2" fil2_type="1" fil3_type="1" patch_name="init_patch"
-        version_minor="0" version_patch="19" patch_migration_version="2"
+        version_minor="0" version_patch="20" patch_migration_version="2"
         dist_on="0" fil1_comb_polarity="0" fil2_comb_polarity="0" fil3_comb_polarity="0"
         fil1_vowel_left="0" fil2_vowel_left="0" fil3_vowel_left="0" fil1_vowel_right="2"
         fil2_vowel_right="2" fil3_vowel_right="2" unison_voices="1"/>
@@ -614,13 +614,13 @@
        amount_0_row_8="0" amount_1_row_8="0" amount_2_row_8="0"/>
   <osc osc1_analog_wave="0" osc2_analog_wave="0" osc3_analog_wave="0"
        osc1_type="2" osc2_type="1" osc3_type="1" osc1_wavetable="1.0"
-       osc2_wavetable="1.0" osc3_wavetable="1.0" osc1_vec_a="101.0"
-       osc2_vec_a="101.0" osc3_vec_a="101.0" osc1_vec_b="102.0" osc2_vec_b="102.0"
-       osc3_vec_b="102.0" osc1_vec_c="103.0" osc2_vec_c="103.0" osc3_vec_c="103.0"
-       osc1_vec_d="104.0" osc2_vec_d="104.0" osc3_vec_d="104.0" osc1_chipwave="1.0"
-       osc2_chipwave="1.0" osc3_chipwave="1.0" osc1_modulator_wave="1.0"
-       osc2_modulator_wave="1.0" osc3_modulator_wave="1.0" osc1_carrier_wave="1.0"
-       osc2_carrier_wave="1.0" osc3_carrier_wave="1.0" osc1_mod_source="1.0"
-       osc2_mod_source="1.0" osc3_mod_source="1.0"/>
+       osc2_wavetable="1.0" osc3_wavetable="1.0" osc1_vec_a="101" osc2_vec_a="101"
+       osc3_vec_a="101" osc1_vec_b="102" osc2_vec_b="102" osc3_vec_b="102"
+       osc1_vec_c="103" osc2_vec_c="103" osc3_vec_c="103" osc1_vec_d="104"
+       osc2_vec_d="104" osc3_vec_d="104" osc1_chipwave="1.0" osc2_chipwave="1.0"
+       osc3_chipwave="1.0" osc1_modulator_wave="1.0" osc2_modulator_wave="1.0"
+       osc3_modulator_wave="1.0" osc1_carrier_wave="1.0" osc2_carrier_wave="1.0"
+       osc3_carrier_wave="1.0" osc1_mod_source="1.0" osc2_mod_source="1.0"
+       osc3_mod_source="1.0"/>
   <midi_learn/>
 </Odin>
