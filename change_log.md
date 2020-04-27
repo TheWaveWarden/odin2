@@ -6,6 +6,7 @@
 - split "Aftertouch" modsource into "Aftertouch" and "Channel Pressure"
 - changed default master-volume to -7dB
 - increased oscillator-octave range to [-4, 4]
+- fixed specdraw crosshair allignment
 # 2.0.18 beta
 - made amplifier and distortion polyphonic
 - moved amp-envelope application after distortion
