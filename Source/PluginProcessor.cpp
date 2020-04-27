@@ -376,7 +376,7 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 		//retriggerAllListeners();
 
 		//start all voices
-		for (int voice = 0; voice < 12; ++voice) {
+		for (int voice = 0; voice < VOICES; ++voice) {
 			//midiNoteOn(30 + 8 * voice, 100);
 		}
 
@@ -410,7 +410,7 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 #ifdef ODIN_PROFILING
 		if (++m_profiling_counter == PROFILING_SAMPLES) {
 			DBG("end profiling");
-			for (int voice = 0; voice < 12; ++voice) {
+			for (int voice = 0; voice < VOICES; ++voice) {
 				midiNoteOff(30 + 8 * voice);
 			}
 		}

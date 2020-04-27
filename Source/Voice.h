@@ -81,11 +81,11 @@ public:
 		// we still need voices, so we steal them
 		int voices_to_steal = p_unison - ret.size();
 		for (int steal = 0; steal < voices_to_steal; ++steal) {
-			//we update history at the end of loop, so [11] is different every time
-			DBG("Voice manager STOLE voice " + std::to_string(m_voice_history[11]));
-			removeFromKillList(m_voice_history[11]);
-			ret.push_back(m_voice_history[11]);
-			updateVoiceHistory(m_voice_history[11]);
+			//we update history at the end of loop, so [VOICES - 1] is different every time
+			DBG("Voice manager STOLE voice " + std::to_string(m_voice_history[VOICES - 1]));
+			removeFromKillList(m_voice_history[VOICES - 1]);
+			ret.push_back(m_voice_history[VOICES - 1]);
+			updateVoiceHistory(m_voice_history[VOICES - 1]);
 		}
 		return ret;
 	}
@@ -187,7 +187,7 @@ protected:
 
 	bool m_is_legato = false;
 	// used to determine oldest voice for stealing
-	int m_voice_history[VOICES] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
+	int m_voice_history[VOICES] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 ,13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23};
 
 	bool m_kill_list[VOICES] = {0};
 	int m_kill_list_note[VOICES];

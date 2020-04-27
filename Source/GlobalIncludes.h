@@ -52,7 +52,7 @@
 #define WAVETABLE_DROPDOWN_COLOR juce::Colour(48, 65, 60)
 #define DARKGREY juce::Colour(30, 30, 30)
 #define CHORUS_DISPLAY_COLOR Colour(69, 39, 38)
-#define VOICES 12
+#define VOICES 24
 
 // leave spare values for future additions :hype:
 #define OSC_TYPE_ANALOG 2
