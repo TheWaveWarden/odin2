@@ -1656,7 +1656,6 @@ void OscComponent::forceValueTreeOntoComponents(ValueTree p_tree, int p_index, b
 	m_modulator_waveselector.setValue(m_value_tree.state.getChildWithName("osc")[m_modulator_wave_identifier]);
 
 	m_carrier_ratio.setValue(GETAUDIO(m_carrier_ratio_identifier));
-
 	m_modulator_ratio.setValue(GETAUDIO(m_modulator_ratio_identifier));
 
 	m_fm_exp.setValue(m_value_tree.getParameterAsValue("osc" + m_osc_number + "_exp_fm").getValue());

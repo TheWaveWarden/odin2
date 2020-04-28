@@ -18,7 +18,7 @@ void ModMatrixRow::setSourcesAndDestinations(ModSources *p_source, ModDestinatio
 void ModMatrixRow::applyModulation() {
 
 	if (m_active_1) {
-		// poly destination -> 12 modulations
+		// poly destination -> #VOICES modulations
 		if (m_destination_1_poly) {
 			for (int voice = 0; voice < VOICES; ++voice) {
 				if (m_scale) {
@@ -38,7 +38,7 @@ void ModMatrixRow::applyModulation() {
 			}
 		} else // mono destination
 		{
-			// use most recent voice for poly, for mono all 12 are identical so it
+			// use most recent voice for poly, for mono all #VOICES are identical so it
 			// doesnt matter
 			if (m_scale) {
 				if (m_scale_amount >= 0) {
@@ -64,7 +64,7 @@ void ModMatrixRow::applyModulation() {
 	}
 
 	if (m_active_2) {
-		// poly destination -> 12 modulations
+		// poly destination -> #VOICES modulations
 		if (m_destination_2_poly) {
 			for (int voice = 0; voice < VOICES; ++voice) {
 				if (m_scale) {
@@ -84,7 +84,7 @@ void ModMatrixRow::applyModulation() {
 			}
 		} else // mono destination
 		{
-			// use most recent voice for poly, for mono all 12 are identical so it
+			// use most recent voice for poly, for mono all #VOICES are identical so it
 			// doesnt matter
 			if (m_scale) {
 				if (m_scale_amount >= 0) {

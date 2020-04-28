@@ -46,8 +46,8 @@ public:
 			//draw an outline
 			g.setColour(juce::Colour(30, 30, 30));
 			juce::Rectangle<int> rect = getLocalBounds();
-			rect.setX(UP_DOWN_BUTTON_X-3);
-			rect.setY(UP_BUTTON_Y-3);
+			rect.setX(UP_DOWN_BUTTON_X - 3);
+			rect.setY(UP_BUTTON_Y - 3);
 			rect.setHeight(rect.getHeight() - 3);
 			rect.setWidth(30);
 			g.drawRect(rect, 2);
@@ -69,6 +69,7 @@ public:
 private:
 	bool m_GUI_big = false;
 
+	void loadPatchWithFileBrowser();
 	bool checkForBiggerVersion(FileInputStream &p_file_stream, std::string &p_version_string);
 	bool checkForSmallerVersion(FileInputStream &p_file_stream, std::string &p_version_string);
 	void versionMigrate();

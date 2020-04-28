@@ -218,50 +218,7 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts, OdinAudi
 		    });
 	};
 
-	m_load.onClick = [&]() {
-		String current_directory = m_value_tree.state.getChildWithName("misc")["current_patch_directory"].toString();
-		m_filechooser.reset(new FileChooser("Choose a file to open...", current_directory, "*.odin", true));
-
-		m_filechooser->launchAsync(
-		    FileBrowserComponent::openMode | FileBrowserComponent::canSelectFiles, [this](const FileChooser &chooser) {
-			    String file_name;
-			    auto results = chooser.getURLResults();
-
-			    for (auto result : results)
-				    file_name << (result.isLocalFile() ? result.getLocalFile().getFullPathName()
-				                                       : result.toString(false));
-
-			    File file_to_read(file_name);
-
-			    FileInputStream file_stream(file_to_read);
-			    if (file_stream.openedOk()) {
-
-				    loadPatchFromOpenedFileStream(file_stream);
-
-				    //save load directory
-				    //m_last_directory = file_to_read.getParentDirectory().getFullPathName();
-
-				    m_value_tree.state.getChildWithName("misc").setProperty(
-				        "current_patch_filename",
-				        file_to_read.getFileName(),
-				        nullptr); //needed for up/down buttons in patch loading
-				    m_value_tree.state.getChildWithName("misc").setProperty(
-				        "current_patch_directory",
-				        file_to_read.getParentDirectory().getFullPathName(),
-				        nullptr); //needed for up/down buttons in patch loading
-				    DBG("set filename in valuetree: " +
-				        m_value_tree.state.getChildWithName("misc")["current_patch_filename"].toString());
-				    DBG("set filepath in valuetree: " +
-				        m_value_tree.state.getChildWithName("misc")["current_patch_directory"].toString());
-
-			    } else {
-				    if (file_name != "") {
-					    AlertWindow::showMessageBoxAsync(
-					        AlertWindow::InfoIcon, "File not found!", "Path: " + file_name, "Ok");
-				    }
-			    }
-		    });
-	};
+	m_load.onClick = [&]() { loadPatchWithFileBrowser(); };
 
 	m_reset.onClick = [&]() {
 		if (/*m_reset_warning_was_shown ||*/
@@ -302,28 +259,35 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts, OdinAudi
 
 			Array<File> file_array = current_dir.findChildFiles(File::TypesOfFileToFind::findFiles, false, "*.odin");
 
-			file_array.sort(m_file_comparator);
+			if (file_array.size() > 0) {
 
-			for (int file_index = 0; file_index < file_array.size(); ++file_index) {
-				m_patch_dropdown_menu.addItem(file_index + 1,
-				                              file_array[file_index].getFileName().dropLastCharacters(5));
-			}
-			int file_index_chosen = m_patch_dropdown_menu.show();
+				file_array.sort(m_file_comparator);
 
-			if (file_index_chosen != 0) { //means none was selected
-				File file_chosen = file_array[file_index_chosen - 1];
-
-				FileInputStream file_stream(file_chosen);
-				if (file_stream.openedOk()) {
-					loadPatchFromOpenedFileStream(file_stream);
-					m_value_tree.state.getChildWithName("misc").setProperty(
-					    "current_patch_filename", file_chosen.getFileName(), nullptr);
-					DBG("set filename in valuetree: " +
-					    m_value_tree.state.getChildWithName("misc")["current_patch_filename"].toString());
+				for (int file_index = 0; file_index < file_array.size(); ++file_index) {
+					m_patch_dropdown_menu.addItem(file_index + 1,
+					                              file_array[file_index].getFileName().dropLastCharacters(5));
 				}
+				int file_index_chosen = m_patch_dropdown_menu.show();
+
+				if (file_index_chosen != 0) { //means none was selected
+					File file_chosen = file_array[file_index_chosen - 1];
+
+					FileInputStream file_stream(file_chosen);
+					if (file_stream.openedOk()) {
+						loadPatchFromOpenedFileStream(file_stream);
+						m_value_tree.state.getChildWithName("misc").setProperty(
+						    "current_patch_filename", file_chosen.getFileName(), nullptr);
+						DBG("set filename in valuetree: " +
+						    m_value_tree.state.getChildWithName("misc")["current_patch_filename"].toString());
+					}
+				}
+			} else {
+				//no files in current dir -> open filebrowser
+				loadPatchWithFileBrowser();
 			}
 		} else {
-			DBG("IS DIR N'T");
+			//no dir??? whatever, open filebrowser
+			loadPatchWithFileBrowser();
 		}
 	};
 
@@ -594,7 +558,7 @@ void SaveLoadComponent::incrementPatch() {
 				}
 			}
 
-			if(next_file_index != 0){
+			if (next_file_index != 0) {
 				--next_file_index;
 			}
 
@@ -608,6 +572,9 @@ void SaveLoadComponent::incrementPatch() {
 				DBG("set filename in valuetree: " +
 				    m_value_tree.state.getChildWithName("misc")["current_patch_filename"].toString());
 			}
+		} else {
+			//no files in current dir -> open filebrowser
+			loadPatchWithFileBrowser();
 		}
 	} else {
 		DBG("IS DIR N'T");
@@ -640,7 +607,7 @@ void SaveLoadComponent::decrementPatch() {
 				}
 			}
 
-			if(next_file_index != file_array.size() - 1){
+			if (next_file_index != file_array.size() - 1) {
 				++next_file_index;
 			}
 
@@ -654,8 +621,56 @@ void SaveLoadComponent::decrementPatch() {
 				DBG("set filename in valuetree: " +
 				    m_value_tree.state.getChildWithName("misc")["current_patch_filename"].toString());
 			}
+		} else {
+			//no files in current dir -> open filebrowser
+			loadPatchWithFileBrowser();
 		}
 	} else {
 		DBG("IS DIR N'T");
+		loadPatchWithFileBrowser();
 	}
+}
+
+void SaveLoadComponent::loadPatchWithFileBrowser() {
+	String current_directory = m_value_tree.state.getChildWithName("misc")["current_patch_directory"].toString();
+	m_filechooser.reset(new FileChooser("Choose a file to open...", current_directory, "*.odin", true));
+
+	m_filechooser->launchAsync(
+	    FileBrowserComponent::openMode | FileBrowserComponent::canSelectFiles, [this](const FileChooser &chooser) {
+		    String file_name;
+		    auto results = chooser.getURLResults();
+
+		    for (auto result : results)
+			    file_name << (result.isLocalFile() ? result.getLocalFile().getFullPathName() : result.toString(false));
+
+		    File file_to_read(file_name);
+
+		    FileInputStream file_stream(file_to_read);
+		    if (file_stream.openedOk()) {
+
+			    loadPatchFromOpenedFileStream(file_stream);
+
+			    //save load directory
+			    //m_last_directory = file_to_read.getParentDirectory().getFullPathName();
+
+			    m_value_tree.state.getChildWithName("misc").setProperty(
+			        "current_patch_filename",
+			        file_to_read.getFileName(),
+			        nullptr); //needed for up/down buttons in patch loading
+			    m_value_tree.state.getChildWithName("misc").setProperty(
+			        "current_patch_directory",
+			        file_to_read.getParentDirectory().getFullPathName(),
+			        nullptr); //needed for up/down buttons in patch loading
+			    DBG("set filename in valuetree: " +
+			        m_value_tree.state.getChildWithName("misc")["current_patch_filename"].toString());
+			    DBG("set filepath in valuetree: " +
+			        m_value_tree.state.getChildWithName("misc")["current_patch_directory"].toString());
+
+		    } else {
+			    if (file_name != "") {
+				    AlertWindow::showMessageBoxAsync(
+				        AlertWindow::InfoIcon, "File not found!", "Path: " + file_name, "Ok");
+			    }
+		    }
+	    });
 }

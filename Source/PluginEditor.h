@@ -129,7 +129,7 @@
 #define UNISON_STEREO_Y UNISON_DETUNE_Y
 
 
-#define GUI_SIZE_POS_X 677
+#define GUI_SIZE_POS_X 674
 #define GUI_SIZE_POS_Y 7
 
 #define ENV13_POS_X 30
