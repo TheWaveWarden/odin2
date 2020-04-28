@@ -98,7 +98,6 @@
   <PARAM id="modwheel" value="0.0"/>
   <PARAM id="osc1_arp_on" value="0.0"/>
   <PARAM id="osc1_arp_speed" value="20.0"/>
-  <PARAM id="osc1_carrier_ratio" value="1.0"/>
   <PARAM id="osc1_chipnoise" value="0.0"/>
   <PARAM id="osc1_detune" value="0.0"/>
   <PARAM id="osc1_drift" value="0.0"/>
@@ -107,7 +106,6 @@
   <PARAM id="osc1_fm" value="0.0"/>
   <PARAM id="osc1_hp" value="80.0"/>
   <PARAM id="osc1_lp" value="18000.0"/>
-  <PARAM id="osc1_modulator_ratio" value="1.0"/>
   <PARAM id="osc1_multi_position" value="0.0"/>
   <PARAM id="osc1_oct" value="0.0"/>
   <PARAM id="osc1_pos_mod" value="0.0"/>
@@ -125,7 +123,6 @@
   <PARAM id="osc1_vol" value="0.0"/>
   <PARAM id="osc2_arp_on" value="0.0"/>
   <PARAM id="osc2_arp_speed" value="20.0"/>
-  <PARAM id="osc2_carrier_ratio" value="1.0"/>
   <PARAM id="osc2_chipnoise" value="0.0"/>
   <PARAM id="osc2_detune" value="0.0"/>
   <PARAM id="osc2_drift" value="0.0"/>
@@ -134,7 +131,6 @@
   <PARAM id="osc2_fm" value="0.0"/>
   <PARAM id="osc2_hp" value="80.0"/>
   <PARAM id="osc2_lp" value="18000.0"/>
-  <PARAM id="osc2_modulator_ratio" value="1.0"/>
   <PARAM id="osc2_multi_position" value="0.0"/>
   <PARAM id="osc2_oct" value="0.0"/>
   <PARAM id="osc2_pos_mod" value="0.0"/>
@@ -153,7 +149,6 @@
   <PARAM id="osc2_vol" value="0.0"/>
   <PARAM id="osc3_arp_on" value="0.0"/>
   <PARAM id="osc3_arp_speed" value="20.0"/>
-  <PARAM id="osc3_carrier_ratio" value="1.0"/>
   <PARAM id="osc3_chipnoise" value="0.0"/>
   <PARAM id="osc3_detune" value="0.0"/>
   <PARAM id="osc3_drift" value="0.0"/>
@@ -162,7 +157,6 @@
   <PARAM id="osc3_fm" value="0.0"/>
   <PARAM id="osc3_hp" value="80.0"/>
   <PARAM id="osc3_lp" value="18000.0"/>
-  <PARAM id="osc3_modulator_ratio" value="1.0"/>
   <PARAM id="osc3_multi_position" value="0.0"/>
   <PARAM id="osc3_oct" value="0.0"/>
   <PARAM id="osc3_pos_mod" value="0.0"/>
@@ -187,7 +181,6 @@
   <PARAM id="phaser_rate" value="0.2500000596046448"/>
   <PARAM id="phaser_reset" value="0.0"/>
   <PARAM id="pitchbend" value="0.0"/>
-  <PARAM id="pitchbend_amount" value="12.0"/>
   <PARAM id="unison_detune" value="0.07999999821186066"/>
   <PARAM id="unison_width" value="0.699999988079071"/>
   <PARAM id="xy_x" value="0.0"/>
@@ -595,8 +588,8 @@
         version_minor="0" version_patch="20" patch_migration_version="2"
         dist_on="0" fil1_comb_polarity="0" fil2_comb_polarity="0" fil3_comb_polarity="0"
         fil1_vowel_left="0" fil2_vowel_left="0" fil3_vowel_left="0" fil1_vowel_right="2"
-        fil2_vowel_right="2" fil3_vowel_right="2" unison_voices="1" current_patch_filename="Init Patch"
-        current_patch_directory="/home/frederik_siepe"/>
+        fil2_vowel_right="2" fil3_vowel_right="2" unison_voices="1" pitchbend_amount="12"
+        current_patch_filename="Init Patch" current_patch_directory="/home/frederik_siepe"/>
   <mod source_row_0="0" source_row_1="0" source_row_2="0" source_row_3="0"
        source_row_4="0" source_row_5="0" source_row_6="0" source_row_7="0"
        source_row_8="0" dest_1_row_0="0" dest_1_row_1="0" dest_1_row_2="0"
@@ -622,6 +615,8 @@
        osc3_chipwave="1.0" osc1_modulator_wave="1.0" osc2_modulator_wave="1.0"
        osc3_modulator_wave="1.0" osc1_carrier_wave="1.0" osc2_carrier_wave="1.0"
        osc3_carrier_wave="1.0" osc1_mod_source="1.0" osc2_mod_source="1.0"
-       osc3_mod_source="1.0"/>
+       osc3_mod_source="1.0" osc1_carrier_ratio="1" osc2_carrier_ratio="1"
+       osc3_carrier_ratio="1" osc1_modulator_ratio="1" osc2_modulator_ratio="1"
+       osc3_modulator_ratio="1"/>
   <midi_learn/>
 </Odin>

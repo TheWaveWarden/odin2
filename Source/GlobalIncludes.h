@@ -124,7 +124,7 @@
 	if (m_value_tree.getParameter(name)) {                                                                             \
 		SETAUDIOFULLRANGE(name, value)                                                                                 \
 	} else {                                                                                                           \
-		DBG("TRIED TO ACCESS UNKOWN PARAMETER:");                                                                      \
+		DBG("Tried to access unknown audio-param:");                                                                      \
 		DBG(name);                                                                                                     \
 	}
 

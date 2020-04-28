@@ -863,7 +863,8 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	addChildComponent(m_lfo_4);
 
 	m_pitch_amount.OnValueChange = [&](int p_new_value) {
-		m_value_tree.getParameter(m_pitchbend_amount_identifier)->setValueNotifyingHost(((float)p_new_value) / 24.f);
+		//m_value_tree.getParameter(m_pitchbend_amount_identifier)->setValueNotifyingHost(((float)p_new_value) / 24.f);
+		m_value_tree.state.getChildWithName("misc").setProperty("pitchbend_amount", p_new_value, nullptr);
 	};
 	m_pitch_amount.setTopLeftPosition(PITCH_AMOUNT_X, PITCH_AMOUNT_Y);
 	addAndMakeVisible(m_pitch_amount);
@@ -881,7 +882,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	addAndMakeVisible(m_unison_selector);
 	m_unison_selector.setMouseDragDivisor(20.f);
 	m_unison_selector.setColor(Colour(10, 40, 50));
-	m_unison_selector.setTooltip("Number of voices to trigger simultaneously\nThis limits the polyphony to 12 / N");
+	m_unison_selector.setTooltip("Number of voices to trigger simultaneously\nThis limits the polyphony to 12 / N\nBeware: N voices means N times the CPU load, so use with care!");
 
 
 	m_BPM_selector.OnValueChange = [&](int p_new_value) {
@@ -1252,7 +1253,7 @@ void OdinAudioProcessorEditor::forceValueTreeOntoComponentsOnlyMainPanel() {
 	
 	m_unison_selector.setValue(m_value_tree.state.getChildWithName("misc")["unison_voices"]);
 
-	m_pitch_amount.setValue(m_value_tree.getParameterAsValue("pitchbend_amount").getValue());
+	m_pitch_amount.setValue(m_value_tree.state.getChildWithName("misc")["pitchbend_amount"]);
 
 	// ugly fix to set highlighted fx panel
 	std::string fx_name = "delay";

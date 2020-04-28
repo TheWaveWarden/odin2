@@ -970,7 +970,8 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 	addChildComponent(m_modulator_waveselector);
 
 	m_carrier_ratio.OnValueChange = [&](int p_new_value) {
-		SETAUDIOFULLRANGE(m_carrier_ratio_identifier, p_new_value);
+		//SETAUDIOFULLRANGE(m_carrier_ratio_identifier, p_new_value);
+		m_value_tree.state.getChildWithName("osc").setProperty(m_carrier_ratio_identifier, p_new_value, nullptr);
 	};
 	m_carrier_ratio.setTopLeftPosition(RATIO_CARRIER_POS_X, RATIO_CARRIER_POS_Y);
 	m_carrier_ratio.setRange(1, 12);
@@ -981,7 +982,8 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 	addChildComponent(m_carrier_ratio);
 
 	m_modulator_ratio.OnValueChange = [&](int p_new_value) {
-		SETAUDIOFULLRANGE(m_modulator_ratio_identifier, p_new_value);
+		//SETAUDIOFULLRANGE(m_modulator_ratio_identifier, p_new_value);
+		m_value_tree.state.getChildWithName("osc").setProperty(m_modulator_ratio_identifier, p_new_value, nullptr);
 	};
 	m_modulator_ratio.setTopLeftPosition(RATIO_MODULATOR_POS_X, RATIO_MODULATOR_POS_Y);
 	m_modulator_ratio.setRange(1, 12);
@@ -1139,10 +1141,10 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 	m_lp.setNumDecimalPlacesToDisplay(1);
 	m_hp.setNumDecimalPlacesToDisplay(1);
 
-	m_carrier_ratio.setParameterId("osc" + m_osc_number + "_carrier_ratio");
-	m_value_tree.addParameterListener("osc" + m_osc_number + "_carrier_ratio", &m_carrier_ratio);
-	m_modulator_ratio.setParameterId("osc" + m_osc_number + "_modulator_ratio");
-	m_value_tree.addParameterListener("osc" + m_osc_number + "_modulator_ratio", &m_modulator_ratio);
+	//m_carrier_ratio.setParameterId("osc" + m_osc_number + "_carrier_ratio");
+	//m_value_tree.addParameterListener("osc" + m_osc_number + "_carrier_ratio", &m_carrier_ratio);
+	//m_modulator_ratio.setParameterId("osc" + m_osc_number + "_modulator_ratio");
+	//m_value_tree.addParameterListener("osc" + m_osc_number + "_modulator_ratio", &m_modulator_ratio);
 
 	forceValueTreeOntoComponents(m_value_tree.state, std::stoi(m_osc_number), false);
 
@@ -1184,8 +1186,8 @@ OscComponent::~OscComponent() {
 	m_modulator_waveselector.m_menu.setLookAndFeel(nullptr);
 	m_chiptune_waveselector.m_menu.setLookAndFeel(nullptr);
 
-	m_value_tree.removeParameterListener("osc" + m_osc_number + "_carrier_ratio", &m_carrier_ratio);
-	m_value_tree.removeParameterListener("osc" + m_osc_number + "_modulator_ratio", &m_modulator_ratio);
+	//m_value_tree.removeParameterListener("osc" + m_osc_number + "_carrier_ratio", &m_carrier_ratio);
+	//m_value_tree.removeParameterListener("osc" + m_osc_number + "_modulator_ratio", &m_modulator_ratio);
 }
 
 void OscComponent::resetVectorWaves() {
@@ -1655,8 +1657,11 @@ void OscComponent::forceValueTreeOntoComponents(ValueTree p_tree, int p_index, b
 	m_carrier_waveselector.setValue(m_value_tree.state.getChildWithName("osc")[m_carrier_wave_identifier]);
 	m_modulator_waveselector.setValue(m_value_tree.state.getChildWithName("osc")[m_modulator_wave_identifier]);
 
-	m_carrier_ratio.setValue(GETAUDIO(m_carrier_ratio_identifier));
-	m_modulator_ratio.setValue(GETAUDIO(m_modulator_ratio_identifier));
+	//m_carrier_ratio.setValue(GETAUDIO(m_carrier_ratio_identifier));
+	//m_modulator_ratio.setValue(GETAUDIO(m_modulator_ratio_identifier));
+
+	m_carrier_ratio.setValue(m_value_tree.state.getChildWithName("osc")[m_carrier_ratio_identifier]);
+	m_modulator_ratio.setValue(m_value_tree.state.getChildWithName("osc")[m_modulator_ratio_identifier]);
 
 	m_fm_exp.setValue(m_value_tree.getParameterAsValue("osc" + m_osc_number + "_exp_fm").getValue());
 

@@ -1,15 +1,6 @@
-/*
-  ==============================================================================
-
-    AudioVarDeclarations.h
-    Created: 5 Apr 2019 9:30:01pm
-    Author:  frot
-
-  ==============================================================================
-*/
-
 #pragma once
-//osc1
+    
+    //oscs
     std::atomic<float>* m_osc_oct[3];
     std::atomic<float>* m_osc_semi[3];
     std::atomic<float>* m_osc_fine[3];
@@ -26,8 +17,8 @@
     std::atomic<float>* m_osc_step_2[3];
     std::atomic<float>* m_osc_step_3[3];
     std::atomic<float>* m_osc_fm[3];
-    std::atomic<float>* m_osc_carrier_ratio[3];
-    std::atomic<float>* m_osc_modulator_ratio[3];
+    //std::atomic<float>* m_osc_carrier_ratio[3];
+    //std::atomic<float>* m_osc_modulator_ratio[3];
     std::atomic<float>* m_osc_lp[3];
     std::atomic<float>* m_osc_hp[3];
     std::atomic<float>* m_osc_reset[3];
@@ -112,7 +103,7 @@
     std::atomic<float>* m_master;
     std::atomic<float>* m_modwheel;
     std::atomic<float>* m_pitchbend;
-    std::atomic<float>* m_pitchbend_amount;
+    //std::atomic<float>* m_pitchbend_amount;
     std::atomic<float>* m_xy_x;
     std::atomic<float>* m_xy_y;
     std::atomic<float>* m_delay_on;
@@ -510,3 +501,4 @@
     Identifier m_scale_row_8_identifier;
     Identifier m_scale_row_9_identifier;
     Identifier m_BPM_identifier;
+    //Identifier m_pitchbend_amount_identifier;

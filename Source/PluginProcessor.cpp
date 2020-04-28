@@ -431,7 +431,9 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 
 		m_pitch_bend_smooth =
 		    m_pitch_bend_smooth * PITCHBEND_SMOOTHIN_FACTOR + (1.f - PITCHBEND_SMOOTHIN_FACTOR) * (*m_pitchbend);
-		m_pitch_bend_smooth_and_applied = m_pitch_bend_smooth * (*m_pitchbend_amount);
+
+		
+		m_pitch_bend_smooth_and_applied = m_pitch_bend_smooth * m_pitchbend_amount;
 
 		m_modwheel_smooth =
 		    m_modwheel_smooth * PITCHBEND_SMOOTHIN_FACTOR + (1.f - PITCHBEND_SMOOTHIN_FACTOR) * (*m_modwheel);

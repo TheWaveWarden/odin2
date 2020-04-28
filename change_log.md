@@ -1,3 +1,12 @@
+# 2.0.21 beta
+- increased number of voices from 12 to 24
+- lowered minimum freq on all filters to 40Hz
+- fixed FM carrier ratio not being loaded
+- fixed FM modulator ratio not being loaded
+- fixed pitchbend amount not being loaded
+- FM carrier ratio, FM modulator ratio and pitchbend amount are no longer modulatable in the DAW
+- Clikcing the patch-display now reveals a list of patches in the same folder
+- patach-display now has up and down button to browse through patches in same folder
 # 2.0.20 beta
 - fixed legato not being enabled before the GUI was opened
 # 2.0.19 beta

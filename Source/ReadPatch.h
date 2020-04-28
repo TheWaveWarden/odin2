@@ -1,18 +1,23 @@
 // read patch by iterating over all attritubes,
 // setting them if they are available and setting to default if not
 void OdinAudioProcessor::readPatch(const ValueTree &newState) {
-	//DBG(newState.toXmlString());
+	//DBG(newStateMigrated.toXmlString());
 
-	int minor_version           = newState.getChildWithName("misc")["version_minor"];
-	int patch_version           = newState.getChildWithName("misc")["version_patch"];
-	int patch_migration_version = newState.getChildWithName("misc")["patch_migration_version"];
+  //create deep copy for modification
+  auto newStateMigrated = newState.createCopy();
+
+  migratePatch(newStateMigrated);
+
+	int minor_version           = newStateMigrated.getChildWithName("misc")["version_minor"];
+	int patch_version           = newStateMigrated.getChildWithName("misc")["version_patch"];
+	int patch_migration_version = newStateMigrated.getChildWithName("misc")["patch_migration_version"];
 
 	DBG("Read patch from version 2." + std::to_string(minor_version) + "." + std::to_string(patch_version) +
 	    ", current version is: 2." + std::to_string(ODIN_MINOR_VERSION) + "." + std::to_string(ODIN_PATCH_VERSION));
 	DBG("Read patch migration version " + std::to_string(patch_migration_version) + ", current version is " +
 	    std::to_string(ODIN_PATCH_MIGRATION_VERSION));
 
-	const ValueTree &draw_tree = newState.getChildWithName("draw");
+	const ValueTree &draw_tree = newStateMigrated.getChildWithName("draw");
 	for (int i = 0; i < m_value_tree_draw.getNumProperties(); ++i) {
 		if (draw_tree.hasProperty(m_value_tree_draw.getPropertyName(i))) {
 			m_value_tree_draw.setProperty(m_value_tree_draw.getPropertyName(i),
@@ -20,10 +25,10 @@ void OdinAudioProcessor::readPatch(const ValueTree &newState) {
 			                              nullptr);
 			m_value_tree_draw.sendPropertyChangeMessage((m_value_tree_draw.getPropertyName(i)));
 		} else {
-			DBG("Didn't find property " + m_value_tree_draw.getPropertyName(i).toString().toStdString());
+			DBG("Didn't find non-audio property (draw) " + m_value_tree_draw.getPropertyName(i).toString().toStdString());
 		}
 	}
-	const ValueTree &osc_tree = newState.getChildWithName("osc");
+	const ValueTree &osc_tree = newStateMigrated.getChildWithName("osc");
 	for (int i = 0; i < m_value_tree_osc.getNumProperties(); ++i) {
 		if (osc_tree.hasProperty(m_value_tree_osc.getPropertyName(i))) {
 			m_value_tree_osc.setProperty(m_value_tree_osc.getPropertyName(i),
@@ -31,20 +36,20 @@ void OdinAudioProcessor::readPatch(const ValueTree &newState) {
 			                             nullptr);
 			m_value_tree_osc.sendPropertyChangeMessage((m_value_tree_osc.getPropertyName(i)));
 		} else {
-			DBG("Didn't find property " + m_value_tree_osc.getPropertyName(i).toString().toStdString());
+			DBG("Didn't find non-audio property (osc) " + m_value_tree_osc.getPropertyName(i).toString().toStdString());
 		}
 	}
-	const ValueTree &fx_tree = newState.getChildWithName("fx");
+	const ValueTree &fx_tree = newStateMigrated.getChildWithName("fx");
 	for (int i = 0; i < m_value_tree_fx.getNumProperties(); ++i) {
 		if (fx_tree.hasProperty(m_value_tree_fx.getPropertyName(i))) {
 			m_value_tree_fx.setProperty(
 			    m_value_tree_fx.getPropertyName(i), fx_tree.getProperty(m_value_tree_fx.getPropertyName(i)), nullptr);
 			m_value_tree_fx.sendPropertyChangeMessage((m_value_tree_fx.getPropertyName(i)));
 		} else {
-			DBG("Didn't find property " + m_value_tree_fx.getPropertyName(i).toString().toStdString());
+			DBG("Didn't find non-audio property (fx) " + m_value_tree_fx.getPropertyName(i).toString().toStdString());
 		}
 	}
-	const ValueTree &lfo_tree = newState.getChildWithName("lfo");
+	const ValueTree &lfo_tree = newStateMigrated.getChildWithName("lfo");
 	for (int i = 0; i < m_value_tree_lfo.getNumProperties(); ++i) {
 		if (lfo_tree.hasProperty(m_value_tree_lfo.getPropertyName(i))) {
 			m_value_tree_lfo.setProperty(m_value_tree_lfo.getPropertyName(i),
@@ -52,10 +57,10 @@ void OdinAudioProcessor::readPatch(const ValueTree &newState) {
 			                             nullptr);
 			m_value_tree_lfo.sendPropertyChangeMessage((m_value_tree_lfo.getPropertyName(i)));
 		} else {
-			DBG("Didn't find property " + m_value_tree_lfo.getPropertyName(i).toString().toStdString());
+			DBG("Didn't find non-audio property (lfo) " + m_value_tree_lfo.getPropertyName(i).toString().toStdString());
 		}
 	}
-	const ValueTree &misc_tree = newState.getChildWithName("misc");
+	const ValueTree &misc_tree = newStateMigrated.getChildWithName("misc");
 	for (int i = 0; i < m_value_tree_misc.getNumProperties(); ++i) {
 		if (misc_tree.hasProperty(m_value_tree_misc.getPropertyName(i))) {
 			m_value_tree_misc.setProperty(m_value_tree_misc.getPropertyName(i),
@@ -63,10 +68,10 @@ void OdinAudioProcessor::readPatch(const ValueTree &newState) {
 			                              nullptr);
 			m_value_tree_misc.sendPropertyChangeMessage((m_value_tree_misc.getPropertyName(i)));
 		} else {
-			DBG("Didn't find property " + m_value_tree_misc.getPropertyName(i).toString().toStdString());
+			DBG("Didn't find non-audio property (misc)" + m_value_tree_misc.getPropertyName(i).toString().toStdString());
 		}
 	}
-	const ValueTree &mod_tree = newState.getChildWithName("mod");
+	const ValueTree &mod_tree = newStateMigrated.getChildWithName("mod");
 	for (int i = 0; i < m_value_tree_mod.getNumProperties(); ++i) {
 		if (mod_tree.hasProperty(m_value_tree_mod.getPropertyName(i))) {
 			m_value_tree_mod.setProperty(m_value_tree_mod.getPropertyName(i),
@@ -74,22 +79,22 @@ void OdinAudioProcessor::readPatch(const ValueTree &newState) {
 			                             nullptr);
 			m_value_tree_mod.sendPropertyChangeMessage((m_value_tree_mod.getPropertyName(i)));
 		} else {
-			DBG("Didn't find property " + m_value_tree_mod.getPropertyName(i).toString().toStdString());
+			DBG("Didn't find non-audio property (mod) " + m_value_tree_mod.getPropertyName(i).toString().toStdString());
 		}
 	}
 
-	for (int i = 0; i < newState.getNumChildren(); ++i) {
+	for (int i = 0; i < newStateMigrated.getNumChildren(); ++i) {
 		// all children which are an audio param have two properties (name and value)
-		if (newState.getChild(i).getNumProperties() == 2) {
+		if (newStateMigrated.getChild(i).getNumProperties() == 2) {
 
-			DBG(newState.getChild(i).getProperty(newState.getChild(i).getPropertyName(0)).toString());
-			DBG(newState.getChild(i).getProperty(newState.getChild(i).getPropertyName(1)).toString());
+			//DBG(newStateMigrated.getChild(i).getProperty(newStateMigrated.getChild(i).getPropertyName(0)).toString());
+			//DBG(newStateMigrated.getChild(i).getProperty(newStateMigrated.getChild(i).getPropertyName(1)).toString());
 
-			String name = newState.getChild(i).getProperty(newState.getChild(i).getPropertyName(0)).toString();
-			SETAUDIOFULLRANGESAFE(newState.getChild(i).getProperty(newState.getChild(i).getPropertyName(0)).toString(),
-			                      newState.getChild(i).getProperty(newState.getChild(i).getPropertyName(1)));
+			String name = newStateMigrated.getChild(i).getProperty(newStateMigrated.getChild(i).getPropertyName(0)).toString();
+			SETAUDIOFULLRANGESAFE(newStateMigrated.getChild(i).getProperty(newStateMigrated.getChild(i).getPropertyName(0)).toString(),
+			                      newStateMigrated.getChild(i).getProperty(newStateMigrated.getChild(i).getPropertyName(1)));
 
-			DBG("Value on tree is now: is now:" + m_value_tree.getParameterAsValue(name).getValue().toString());
+			//DBG("Value on tree is now: is now:" + m_value_tree.getParameterAsValue(name).getValue().toString());
 
 
 			//DBG("");

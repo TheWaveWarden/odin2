@@ -90,10 +90,12 @@ void OdinAudioProcessor::addNonAudioParametersToTree() {
 	node.setProperty("fil2_vowel_right", 2, nullptr);
 	node.setProperty("fil3_vowel_right", 2, nullptr);
 	node.setProperty("unison_voices", 1, nullptr);
+	node.setProperty("pitchbend_amount", 12, nullptr);
 	node.setProperty("current_patch_filename", "Init Patch", nullptr); //needed for up/down buttons in patch loading
 	node.setProperty("current_patch_directory",
 	                 File::getSpecialLocation(File::SpecialLocationType::userDocumentsDirectory).getFullPathName(),
 	                 nullptr);
+	
 
 	node = m_value_tree_mod;
 	node.setProperty("source_row_0", 0, nullptr);
@@ -174,4 +176,10 @@ void OdinAudioProcessor::addNonAudioParametersToTree() {
 	node.setProperty("osc1_mod_source", 1, nullptr);
 	node.setProperty("osc2_mod_source", 1, nullptr);
 	node.setProperty("osc3_mod_source", 1, nullptr);
+	node.setProperty("osc1_carrier_ratio", 1, nullptr);
+	node.setProperty("osc2_carrier_ratio", 1, nullptr);
+	node.setProperty("osc3_carrier_ratio", 1, nullptr);
+	node.setProperty("osc1_modulator_ratio", 1, nullptr);
+	node.setProperty("osc2_modulator_ratio", 1, nullptr);
+	node.setProperty("osc3_modulator_ratio", 1, nullptr);
 }

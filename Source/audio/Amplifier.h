@@ -61,7 +61,7 @@ public:
   }
   void setUnisonPanAmount(float p_unison_pan){
     m_unison_pan_amount = p_unison_pan;
-    DBG("set unison pan amount: " + std::to_string(m_unison_pan_amount));
+    //DBG("set unison pan amount: " + std::to_string(m_unison_pan_amount));
   }
 
   void setUnisonGainReductionPointer(float* p_pointer){

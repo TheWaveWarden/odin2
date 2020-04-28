@@ -215,7 +215,7 @@ void OdinAudioProcessor::treeValueChangedOscMulti(const String &p_ID, float p_ne
 		for (int voice = 0; voice < VOICES; ++voice) {
 			m_voice[voice].wavetable_osc[2].setPosModAmount(p_new_value);
 		}
-	}
+	} 
 }
 
 void OdinAudioProcessor::treeValueChangedOscXY(const String &p_ID, float p_new_value) {
@@ -386,37 +386,7 @@ void OdinAudioProcessor::treeValueChangedOscFM(const String &p_ID, float p_new_v
 		for (int voice = 0; voice < VOICES; ++voice) {
 			m_voice[voice].fm_osc[2].setFMExponential(p_new_value);
 		}
-	} else if (id == m_osc1_carrier_ratio_identifier) {
-		for (int voice = 0; voice < VOICES; ++voice) {
-			m_voice[voice].fm_osc[0].setCarrierRatio(p_new_value);
-			m_voice[voice].pm_osc[0].setCarrierRatio(p_new_value);
-		}
-	} else if (id == m_osc2_carrier_ratio_identifier) {
-		for (int voice = 0; voice < VOICES; ++voice) {
-			m_voice[voice].fm_osc[1].setCarrierRatio(p_new_value);
-			m_voice[voice].pm_osc[1].setCarrierRatio(p_new_value);
-		}
-	} else if (id == m_osc3_carrier_ratio_identifier) {
-		for (int voice = 0; voice < VOICES; ++voice) {
-			m_voice[voice].fm_osc[2].setCarrierRatio(p_new_value);
-			m_voice[voice].pm_osc[2].setCarrierRatio(p_new_value);
-		}
-	} else if (id == m_osc1_modulator_ratio_identifier) {
-		for (int voice = 0; voice < VOICES; ++voice) {
-			m_voice[voice].fm_osc[0].setModulatorRatio(p_new_value);
-			m_voice[voice].pm_osc[0].setModulatorRatio(p_new_value);
-		}
-	} else if (id == m_osc2_modulator_ratio_identifier) {
-		for (int voice = 0; voice < VOICES; ++voice) {
-			m_voice[voice].fm_osc[1].setModulatorRatio(p_new_value);
-			m_voice[voice].pm_osc[1].setModulatorRatio(p_new_value);
-		}
-	} else if (id == m_osc3_modulator_ratio_identifier) {
-		for (int voice = 0; voice < VOICES; ++voice) {
-			m_voice[voice].fm_osc[2].setModulatorRatio(p_new_value);
-			m_voice[voice].pm_osc[2].setModulatorRatio(p_new_value);
-		}
-	}
+	} 
 }
 
 void OdinAudioProcessor::treeValueChangedOscNoise(const String &p_ID, float p_new_value) {
@@ -1354,6 +1324,8 @@ void OdinAudioProcessor::treeValueChangedNonParamMisc(ValueTree &tree, const Ide
 	} else if (id == m_fil3_vowel_right_identifier) {
 		m_formant_filter[0].setVowelRight((int)p_new_value);
 		m_formant_filter[1].setVowelRight((int)p_new_value);
+	} else if (id == m_pitchbend_amount_identifier) {
+		m_pitchbend_amount = p_new_value;
 	}
 }
 
@@ -1549,5 +1521,35 @@ void OdinAudioProcessor::treeValueChangedNonParamOsc(ValueTree &tree, const Iden
 		m_osc_wavetable_source_lfo[2] = (p_new_value == 10);
 		//check which sources to render for wavetable pos mod:
 		m_mod_matrix.checkWhichSourceToRender();
+	} else if (id == m_osc1_carrier_ratio_identifier) {
+		for (int voice = 0; voice < VOICES; ++voice) {
+			m_voice[voice].fm_osc[0].setCarrierRatio(p_new_value);
+			m_voice[voice].pm_osc[0].setCarrierRatio(p_new_value);
+		}
+	} else if (id == m_osc2_carrier_ratio_identifier) {
+		for (int voice = 0; voice < VOICES; ++voice) {
+			m_voice[voice].fm_osc[1].setCarrierRatio(p_new_value);
+			m_voice[voice].pm_osc[1].setCarrierRatio(p_new_value);
+		}
+	} else if (id == m_osc3_carrier_ratio_identifier) {
+		for (int voice = 0; voice < VOICES; ++voice) {
+			m_voice[voice].fm_osc[2].setCarrierRatio(p_new_value);
+			m_voice[voice].pm_osc[2].setCarrierRatio(p_new_value);
+		}
+	} else if (id == m_osc1_modulator_ratio_identifier) {
+		for (int voice = 0; voice < VOICES; ++voice) {
+			m_voice[voice].fm_osc[0].setModulatorRatio(p_new_value);
+			m_voice[voice].pm_osc[0].setModulatorRatio(p_new_value);
+		}
+	} else if (id == m_osc2_modulator_ratio_identifier) {
+		for (int voice = 0; voice < VOICES; ++voice) {
+			m_voice[voice].fm_osc[1].setModulatorRatio(p_new_value);
+			m_voice[voice].pm_osc[1].setModulatorRatio(p_new_value);
+		}
+	} else if (id == m_osc3_modulator_ratio_identifier) {
+		for (int voice = 0; voice < VOICES; ++voice) {
+			m_voice[voice].fm_osc[2].setModulatorRatio(p_new_value);
+			m_voice[voice].pm_osc[2].setModulatorRatio(p_new_value);
+		}
 	}
 }

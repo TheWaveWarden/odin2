@@ -26,9 +26,9 @@ for (int osc = 0; osc < 3; ++osc) {
 	m_osc_step_2[osc]         = m_value_tree.getRawParameterValue("osc" + std::to_string(osc + 1) + "_step_2");
 	m_osc_step_3[osc]         = m_value_tree.getRawParameterValue("osc" + std::to_string(osc + 1) + "_step_3");
 	m_osc_fm[osc]             = m_value_tree.getRawParameterValue("osc" + std::to_string(osc + 1) + "_fm");
-	m_osc_carrier_ratio[osc]  = m_value_tree.getRawParameterValue("osc" + std::to_string(osc + 1) + "_carrier_ratio");
-	m_osc_modulator_ratio[osc] =
-	    m_value_tree.getRawParameterValue("osc" + std::to_string(osc + 1) + "_modulator_ratio");
+	//m_osc_carrier_ratio[osc]  = m_value_tree.getRawParameterValue("osc" + std::to_string(osc + 1) + "_carrier_ratio");
+	//m_osc_modulator_ratio[osc] =
+	//    m_value_tree.getRawParameterValue("osc" + std::to_string(osc + 1) + "_modulator_ratio");
 	m_osc_lp[osc]    = m_value_tree.getRawParameterValue("osc" + std::to_string(osc + 1) + "_lp");
 	m_osc_hp[osc]    = m_value_tree.getRawParameterValue("osc" + std::to_string(osc + 1) + "_hp");
 	m_osc_reset[osc] = m_value_tree.getRawParameterValue("osc" + std::to_string(osc + 1) + "_reset");
@@ -132,7 +132,7 @@ m_glide            = m_value_tree.getRawParameterValue("glide");
 m_master           = m_value_tree.getRawParameterValue("master");
 m_modwheel         = m_value_tree.getRawParameterValue("modwheel");
 m_pitchbend        = m_value_tree.getRawParameterValue("pitchbend");
-m_pitchbend_amount = m_value_tree.getRawParameterValue("pitchbend_amount");
+//m_pitchbend_amount = m_value_tree.getRawParameterValue("pitchbend_amount");
 
 m_delay_time     = m_value_tree.getRawParameterValue("delay_time");
 m_delay_feedback = m_value_tree.getRawParameterValue("delay_feedback");
@@ -238,8 +238,8 @@ for (int osc = 0; osc < 3; ++osc) {
 	//osc fm listener
 	m_value_tree.addParameterListener("osc" + std::to_string(osc + 1) + "_fm", &m_tree_listener_osc_fm);
 	m_value_tree.addParameterListener("osc" + std::to_string(osc + 1) + "_exp_fm", &m_tree_listener_osc_fm);
-	m_value_tree.addParameterListener("osc" + std::to_string(osc + 1) + "_carrier_ratio", &m_tree_listener_osc_fm);
-	m_value_tree.addParameterListener("osc" + std::to_string(osc + 1) + "_modulator_ratio", &m_tree_listener_osc_fm);
+	//m_value_tree.addParameterListener("osc" + std::to_string(osc + 1) + "_carrier_ratio", &m_tree_listener_osc_fm);
+	//m_value_tree.addParameterListener("osc" + std::to_string(osc + 1) + "_modulator_ratio", &m_tree_listener_osc_fm);
 
 	//osc noiselistener
 	m_value_tree.addParameterListener("osc" + std::to_string(osc + 1) + "_lp", &m_tree_listener_osc_noise);

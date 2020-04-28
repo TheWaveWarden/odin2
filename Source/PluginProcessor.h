@@ -166,7 +166,7 @@ public:
 	void resetAudioEngine();
 	void setFXButtonsPosition(int p_delay, int p_phaser, int p_flanger, int p_chorus);
 	void attachNonParamListeners();
-	void migratePatch(int p_patch_version_to_migrate_from);
+	void migratePatch(ValueTree &p_patch);
 	void readPatch(const ValueTree &newState);
 
 private:
@@ -344,6 +344,7 @@ private:
 	float m_soft_pedal               = 0.f;
 	float m_x                        = 0.f;
 	float m_y                        = 0.f;
+	float m_pitchbend_amount         = 12.f;
 
 	// MOD DEST
 	float *m_master_mod;
@@ -382,7 +383,8 @@ private:
 	                                                             {4, {2, 0, 3, 1}},
 	                                                             {6, {1, 4, 2, 0, 5, 3}},
 	                                                             {12, {3, 9, 6, 10, 7, 4, 0, 11, 5, 1, 8, 2}}};
-	std::map<int, float> m_unison_gain_factors = {{1, 1.f}, {2, 0.86f}, {3, 0.75f}, {4, 0.65f}, {6, 0.53f}, {12, 0.45f}};
+	std::map<int, float> m_unison_gain_factors                = {
+        {1, 1.f}, {2, 0.86f}, {3, 0.75f}, {4, 0.65f}, {6, 0.53f}, {12, 0.45f}};
 #include "AudioVarDeclarations.h"
 	//==============================================================================
 	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(OdinAudioProcessor)
