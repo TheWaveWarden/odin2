@@ -37,7 +37,9 @@
 	("Odin 2." + std::to_string(ODIN_MINOR_VERSION) + "." + std::to_string(ODIN_PATCH_VERSION) + " beta")
 
 // ! this is for migrating patches from older version, not to be confused with above
-#define ODIN_PATCH_MIGRATION_VERSION 2
+#define ODIN_PATCH_MIGRATION_VERSION 3
+//1 -> 2: replaced "amp width" by "amp velocity"
+//2 -> 3: made carrier and modulator ratio, as well as pitchbend amount nonaudio values (but wrote migration code)
 
 #define MENU_BACKGROUND_COLOR Colour(35, 35, 35)
 #define MENU_FONT_COLOR Colours::lightgrey
