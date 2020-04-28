@@ -44,7 +44,7 @@
 #define RINGMOD_FREQ_X 58
 #define RINGMOD_FREQ_Y RINGMOD_AMOUNT_Y
 
-#define FREQ_MIN 80
+#define FREQ_MIN 40
 #define FREQ_MAX 18000
 #define FREQ_MID 640
 #define FREQ_DEFAULT 2000

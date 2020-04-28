@@ -216,7 +216,7 @@
           0.f),
       std::make_unique<AudioParameterFloat>(
           "fil1_freq", "Filter1 Frequency",
-          NormalisableRange<float>(80.f, 18000.f, 0.f, FILTER_SKEW_DEFAULT), 2000.f),
+          NormalisableRange<float>(40.f, 18000.f, 0.f, FILTER_SKEW_DEFAULT), 2000.f),
       std::make_unique<AudioParameterFloat>("fil1_res", "Filter1 Resonance",
                                             NormalisableRange<float>(0.f, 1.f),
                                             0.f),
@@ -261,7 +261,7 @@
           0.f),
       std::make_unique<AudioParameterFloat>(
           "fil2_freq", "Filter2 Frequency",
-          NormalisableRange<float>(80.f, 18000.f, 0.f, FILTER_SKEW_DEFAULT), 2000.f),
+          NormalisableRange<float>(40.f, 18000.f, 0.f, FILTER_SKEW_DEFAULT), 2000.f),
       std::make_unique<AudioParameterFloat>("fil2_res", "Filter2 Resonance",
                                             NormalisableRange<float>(0.f, 1.f),
                                             0.f),
@@ -298,7 +298,7 @@
           0.f),
       std::make_unique<AudioParameterFloat>(
           "fil3_freq", "Filter3 Frequency",
-          NormalisableRange<float>(80.f, 18000.f, 0.f, FILTER_SKEW_DEFAULT), 2000.f),
+          NormalisableRange<float>(40.f, 18000.f, 0.f, FILTER_SKEW_DEFAULT), 2000.f),
       std::make_unique<AudioParameterFloat>("fil3_res", "Filter3 Resonance",
                                             NormalisableRange<float>(0.f, 1.f),
                                             0.f),

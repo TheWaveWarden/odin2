@@ -6,7 +6,10 @@
 #include "Filter.h"
 #include <cstring>
 
-#define COMB_BUFFER_LENGTH ((size_t)(MAX_EXPECTED_SAMPLE_RATE / FILTER_FC_MIN * 1.1f))
+#define COMB_FC_MIN FILTER_FC_MIN
+
+
+#define COMB_BUFFER_LENGTH ((size_t)(MAX_EXPECTED_SAMPLE_RATE / COMB_FC_MIN * 1.1f))
 
 class CombFilter {
 public:
@@ -50,6 +53,7 @@ public:
 	}
 
 	inline void setCombFreq(float p_freq) {
+		p_freq = p_freq < COMB_FC_MIN ? COMB_FC_MIN : p_freq;
 		m_delay_time_control = 1.f / p_freq;
 	}
 

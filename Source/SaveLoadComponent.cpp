@@ -183,49 +183,11 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts, OdinAudi
 			    FileInputStream file_stream(file_to_read);
 			    if (file_stream.openedOk()) {
 
-				    //first see if the patch is of a higher version than we know about:
-				    std::string version_string;
-				    if (checkForBiggerVersion(file_stream, version_string)) {
-					    //abort with icon
-					    AlertWindow::showMessageBox(
-					        AlertWindow::AlertIconType::WarningIcon,
-					        "Cannot load patch!",
-					        "The bad news: You cannot load this patch, because you are on version " +
-					            ODIN_VERSION_STRING +
-					            ".\nThe good news: The patch you're trying to load was created on version " +
-					            version_string +
-					            ". So go to www.thewavewarden.com and download the latest version of Odin2!",
-					        "Thanks, I will!");
-					    return;
-				    }
-
-				    // if we're reading an older patch version we set the default patch first
-				    // since new params might not exist and will only be set
-				    if (checkForSmallerVersion(file_stream, version_string)) {
-					    DBG("Reading older patch, setting init patch first");
-					    MemoryInputStream init_stream(
-					        BinaryData::init_patch_odin, BinaryData::init_patch_odinSize, false);
-					    m_audio_processor.readPatch(ValueTree::readFromStream(init_stream));
-				    }
-
-				    //reset stream position
-				    file_stream.setPosition(0);
-				    m_audio_processor.readPatch(ValueTree::readFromStream(file_stream).createCopy());
-				    forceValueTreeLambda();
-
-				    //set the correct Version number again
-				    m_value_tree.state.getChildWithName("misc").setProperty(
-				        "version_minor", ODIN_MINOR_VERSION, nullptr);
-				    m_value_tree.state.getChildWithName("misc").setProperty(
-				        "version_patch", ODIN_PATCH_VERSION, nullptr);
-				    m_value_tree.state.getChildWithName("misc").setProperty(
-				        "patch_migration_version", ODIN_PATCH_MIGRATION_VERSION, nullptr);
-
-				    //this forces values onto the GUI (patch label as well)
-				    forceValueTreeLambda();
+				    loadPatchFromOpenedFileStream(file_stream);
 
 				    //save load directory
 				    m_last_directory = file_to_read.getParentDirectory().getFullPathName();
+
 			    } else {
 				    if (file_name != "") {
 					    AlertWindow::showMessageBoxAsync(
@@ -259,10 +221,44 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts, OdinAudi
 		//DBG("Attack: " + std::to_string((float)GETAUDIO("env2_attack")));
 	};
 
+	m_patch_dropdown_menu.setLookAndFeel(&m_menu_feels);
+
+	m_patch.onMouseDown = [&]() {
+		DBG("OPENMENU");
+
+		File current_dir(m_last_directory);
+		if (current_dir.isDirectory()) {
+			DBG("IS DIR");
+			m_patch_dropdown_menu.clear();
+
+			Array<File> file_array = current_dir.findChildFiles(File::TypesOfFileToFind::findFiles, false, "*.odin");
+
+			file_array.sort(m_file_comparator);
+
+			for (int file_index = 0; file_index < file_array.size(); ++file_index) {
+				m_patch_dropdown_menu.addItem(file_index + 1,
+				                              file_array[file_index].getFileName().dropLastCharacters(5));
+			}
+			int file_index_chosen = m_patch_dropdown_menu.show();
+
+			if (file_index_chosen != 0) { //means none was selected
+				File file_chosen = file_array[file_index_chosen - 1];
+
+				FileInputStream file_stream(file_chosen);
+				if (file_stream.openedOk()) {
+					loadPatchFromOpenedFileStream(file_stream);
+				}
+			}
+		} else {
+			DBG("IS DIR N'T");
+		}
+	};
+
 	m_patch.setBounds(PATCH_POS_X, PATCH_POS_Y, m_patch_size_x, m_patch_size_y);
 }
 
 SaveLoadComponent::~SaveLoadComponent() {
+	m_patch_dropdown_menu.setLookAndFeel(nullptr);
 }
 
 void SaveLoadComponent::forceValueTreeOntoComponents(ValueTree p_tree) {
@@ -297,8 +293,10 @@ bool SaveLoadComponent::checkForSmallerVersion(FileInputStream &p_file_stream, s
 }
 
 void SaveLoadComponent::setGUIBig() {
-	juce::Image save_1 = ImageCache::getFromMemory(BinaryData::buttonsave_2_150_png, BinaryData::buttonsave_2_150_pngSize);
-	juce::Image save_2 = ImageCache::getFromMemory(BinaryData::buttonsave_1_150_png, BinaryData::buttonsave_1_150_pngSize);
+	juce::Image save_1 =
+	    ImageCache::getFromMemory(BinaryData::buttonsave_2_150_png, BinaryData::buttonsave_2_150_pngSize);
+	juce::Image save_2 =
+	    ImageCache::getFromMemory(BinaryData::buttonsave_1_150_png, BinaryData::buttonsave_1_150_pngSize);
 
 	juce::DrawableImage save_draw1;
 	juce::DrawableImage save_draw2;
@@ -310,8 +308,10 @@ void SaveLoadComponent::setGUIBig() {
 	    &save_draw2, &save_draw2, &save_draw1, &save_draw1, &save_draw2, &save_draw2, &save_draw1, &save_draw1);
 	m_save.setBounds(OdinHelper::c150(SAVE_POS_X), OdinHelper::c150(SAVE_POS_Y), save_1.getWidth(), save_1.getHeight());
 
-	juce::Image load_1 = ImageCache::getFromMemory(BinaryData::buttonload_2_150_png, BinaryData::buttonload_2_150_pngSize);
-	juce::Image load_2 = ImageCache::getFromMemory(BinaryData::buttonload_1_150_png, BinaryData::buttonload_1_150_pngSize);
+	juce::Image load_1 =
+	    ImageCache::getFromMemory(BinaryData::buttonload_2_150_png, BinaryData::buttonload_2_150_pngSize);
+	juce::Image load_2 =
+	    ImageCache::getFromMemory(BinaryData::buttonload_1_150_png, BinaryData::buttonload_1_150_pngSize);
 
 	juce::DrawableImage load_draw1;
 	juce::DrawableImage load_draw2;
@@ -322,10 +322,10 @@ void SaveLoadComponent::setGUIBig() {
 	m_load.setImages(
 	    &load_draw2, &load_draw2, &load_draw1, &load_draw1, &load_draw2, &load_draw2, &load_draw1, &load_draw1);
 	m_load.setBounds(OdinHelper::c150(LOAD_POS_X), OdinHelper::c150(LOAD_POS_Y), load_1.getWidth(), load_1.getHeight());
-	juce::Image reset_1 =
-	    ImageCache::getFromMemory(BinaryData::buttonreset_global_2_150_png, BinaryData::buttonreset_global_2_150_pngSize);
-	juce::Image reset_2 =
-	    ImageCache::getFromMemory(BinaryData::buttonreset_global_1_150_png, BinaryData::buttonreset_global_1_150_pngSize);
+	juce::Image reset_1 = ImageCache::getFromMemory(BinaryData::buttonreset_global_2_150_png,
+	                                                BinaryData::buttonreset_global_2_150_pngSize);
+	juce::Image reset_2 = ImageCache::getFromMemory(BinaryData::buttonreset_global_1_150_png,
+	                                                BinaryData::buttonreset_global_1_150_pngSize);
 
 	juce::DrawableImage reset_draw1;
 	juce::DrawableImage reset_draw2;
@@ -335,7 +335,8 @@ void SaveLoadComponent::setGUIBig() {
 
 	m_reset.setImages(
 	    &reset_draw2, &reset_draw2, &reset_draw1, &reset_draw1, &reset_draw2, &reset_draw2, &reset_draw1, &reset_draw1);
-	m_reset.setBounds(OdinHelper::c150(RESET_TOP_POS_X), OdinHelper::c150(RESET_TOP_POS_Y), reset_1.getWidth(), reset_1.getHeight());
+	m_reset.setBounds(
+	    OdinHelper::c150(RESET_TOP_POS_X), OdinHelper::c150(RESET_TOP_POS_Y), reset_1.getWidth(), reset_1.getHeight());
 
 	juce::Image glas_panel =
 	    ImageCache::getFromMemory(BinaryData::glaspanel_big_150_png, BinaryData::glaspanel_big_150_pngSize);
@@ -344,9 +345,8 @@ void SaveLoadComponent::setGUIBig() {
 	m_patch_size_x = glas_panel.getWidth();
 	m_patch_size_y = glas_panel.getHeight();
 
-	m_patch.setBounds(OdinHelper::c150(PATCH_POS_X), OdinHelper::c150(PATCH_POS_Y) +2 , m_patch_size_x, m_patch_size_y);
+	m_patch.setBounds(OdinHelper::c150(PATCH_POS_X), OdinHelper::c150(PATCH_POS_Y) + 2, m_patch_size_x, m_patch_size_y);
 	m_patch.setGUIBig();
-
 }
 void SaveLoadComponent::setGUISmall() {
 	juce::Image save_1 = ImageCache::getFromMemory(BinaryData::buttonsave_2_png, BinaryData::buttonsave_2_pngSize);
@@ -399,4 +399,42 @@ void SaveLoadComponent::setGUISmall() {
 	m_patch.setBounds(PATCH_POS_X, PATCH_POS_Y, m_patch_size_x, m_patch_size_y);
 
 	m_patch.setGUISmall();
+}
+
+void SaveLoadComponent::loadPatchFromOpenedFileStream(juce::FileInputStream &p_file_stream) {
+	//first see if the patch is of a higher version than we know about:
+	std::string version_string;
+	if (checkForBiggerVersion(p_file_stream, version_string)) {
+		//abort with icon
+		AlertWindow::showMessageBox(
+		    AlertWindow::AlertIconType::WarningIcon,
+		    "Cannot load patch!",
+		    "The bad news: You cannot load this patch, because you are on version " + ODIN_VERSION_STRING +
+		        ".\nThe good news: The patch you're trying to load was created on version " + version_string +
+		        ". So go to www.thewavewarden.com and download the latest version of Odin2!",
+		    "Thanks, I will!");
+		return;
+	}
+
+	// if we're reading an older patch version we set the default patch first
+	// since new params might not exist and will only be set
+	if (checkForSmallerVersion(p_file_stream, version_string)) {
+		DBG("Reading older patch, setting init patch first");
+		MemoryInputStream init_stream(BinaryData::init_patch_odin, BinaryData::init_patch_odinSize, false);
+		m_audio_processor.readPatch(ValueTree::readFromStream(init_stream));
+	}
+
+	//reset stream position
+	p_file_stream.setPosition(0);
+	m_audio_processor.readPatch(ValueTree::readFromStream(p_file_stream).createCopy());
+	forceValueTreeLambda();
+
+	//set the correct Version number again
+	m_value_tree.state.getChildWithName("misc").setProperty("version_minor", ODIN_MINOR_VERSION, nullptr);
+	m_value_tree.state.getChildWithName("misc").setProperty("version_patch", ODIN_PATCH_VERSION, nullptr);
+	m_value_tree.state.getChildWithName("misc").setProperty(
+	    "patch_migration_version", ODIN_PATCH_MIGRATION_VERSION, nullptr);
+
+	//this forces values onto the GUI (patch label as well)
+	forceValueTreeLambda();
 }

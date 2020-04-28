@@ -27,9 +27,16 @@
 #define RANDOM_POS_Y LOAD_POS_Y
 
 
-//==============================================================================
-/*
- */
+class FileElementComparatorAlphabetical
+{
+public:
+    static int compareElements (const File &first, const File &second)
+    {
+        return first.getFileName().compare(second.getFileName());
+    }
+};
+
+
 class SaveLoadComponent : public Component {
 public:
   SaveLoadComponent(AudioProcessorValueTreeState &vts, OdinAudioProcessor& p_processor);
@@ -43,6 +50,8 @@ public:
   void resetPatchText(){
     m_patch.setText(m_value_tree.state.getChildWithName("misc")["patch_name"].toString().toStdString());
   }
+
+  void loadPatchFromOpenedFileStream(juce::FileInputStream &p_file);
 
   void setGUIBig();
   void setGUISmall();
@@ -70,5 +79,13 @@ private:
   GlasDisplay m_patch;
   int m_patch_size_x;
   int m_patch_size_y;
+
+  OdinMenuFeels m_menu_feels;
+  juce::PopupMenu m_patch_dropdown_menu;
+
+  FileElementComparatorAlphabetical m_file_comparator;
+
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(SaveLoadComponent)
 };
+
+
