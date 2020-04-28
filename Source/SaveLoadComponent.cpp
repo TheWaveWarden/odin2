@@ -32,8 +32,44 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts, OdinAudi
     m_save("save", juce::DrawableButton::ButtonStyle::ImageRaw),
     m_load("load", juce::DrawableButton::ButtonStyle::ImageRaw),
     m_reset("reset", juce::DrawableButton::ButtonStyle::ImageRaw),
-    /// m_random("random", juce::DrawableButton::ButtonStyle::ImageRaw),
-    m_value_tree(vts), m_audio_processor(p_processor) {
+    m_up("up", juce::DrawableButton::ButtonStyle::ImageRaw),
+    m_down("down", juce::DrawableButton::ButtonStyle::ImageRaw), m_value_tree(vts), m_audio_processor(p_processor) {
+
+	juce::Image up_1 = ImageCache::getFromMemory(BinaryData::buttonup_2_png, BinaryData::buttonup_2_pngSize);
+	juce::Image up_2 = ImageCache::getFromMemory(BinaryData::buttonup_1_png, BinaryData::buttonup_1_pngSize);
+
+	juce::DrawableImage up_draw1;
+	juce::DrawableImage up_draw2;
+
+	up_draw1.setImage(up_1);
+	up_draw2.setImage(up_2);
+
+	m_up.setImages(&up_draw2, &up_draw2, &up_draw1, &up_draw1, &up_draw2, &up_draw2, &up_draw1, &up_draw1);
+	m_up.setClickingTogglesState(true);
+	m_up.setBounds(UP_DOWN_BUTTON_X, UP_BUTTON_Y, up_1.getWidth(), up_1.getHeight());
+	addAndMakeVisible(m_up);
+	m_up.setTriggeredOnMouseDown(false);
+	m_up.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
+	m_up.onClick = [&]() { incrementPatch(); };
+
+	juce::Image down_1 = ImageCache::getFromMemory(BinaryData::buttondown_2_png, BinaryData::buttondown_2_pngSize);
+	juce::Image down_2 = ImageCache::getFromMemory(BinaryData::buttondown_1_png, BinaryData::buttondown_1_pngSize);
+
+	juce::DrawableImage down_draw1;
+	juce::DrawableImage down_draw2;
+
+	down_draw1.setImage(down_1);
+	down_draw2.setImage(down_2);
+
+	m_down.setImages(
+	    &down_draw2, &down_draw2, &down_draw1, &down_draw1, &down_draw2, &down_draw2, &down_draw1, &down_draw1);
+	m_down.setClickingTogglesState(true);
+	m_down.setBounds(UP_DOWN_BUTTON_X, down_1.getHeight(), down_1.getWidth(), down_1.getHeight());
+	addAndMakeVisible(m_down);
+	m_down.setTriggeredOnMouseDown(false);
+	m_down.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
+	m_down.onClick = [&]() { decrementPatch(); };
+
 	juce::Image save_1 = ImageCache::getFromMemory(BinaryData::buttonsave_2_png, BinaryData::buttonsave_2_pngSize);
 	juce::Image save_2 = ImageCache::getFromMemory(BinaryData::buttonsave_1_png, BinaryData::buttonsave_1_pngSize);
 
@@ -101,11 +137,12 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts, OdinAudi
 	addAndMakeVisible(m_patch);
 
 	//set initial save/load location to "Documents"
-	m_last_directory = File::getSpecialLocation(File::SpecialLocationType::userDocumentsDirectory).getFullPathName();
+	//m_last_directory = File::getSpecialLocation(File::SpecialLocationType::userDocumentsDirectory).getFullPathName();
 
 	m_save.onClick = [&]() {
 		//suggestion where to save
-		File fileToSave(m_last_directory + "/my_patch.odin");
+		String current_directory = m_value_tree.state.getChildWithName("misc")["current_patch_directory"].toString();
+		File fileToSave(current_directory + "/my_patch.odin");
 
 		// set up filechooser
 		m_filechooser.reset(new FileChooser("Choose a file to save...", fileToSave, "*.odin", true));
@@ -146,10 +183,12 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts, OdinAudi
 				        "patch_name", file_to_write.getFileNameWithoutExtension(), nullptr);
 				    DBG(m_value_tree.state.getChildWithName("misc")["patch_name"].toString());
 
-				    //make a deep copy and remove the midi_learn part
+				    //make a deep copy and remove the midi_learn part and file name
 				    ValueTree copy_without_midi_learn = m_value_tree.state.createCopy();
 				    copy_without_midi_learn.removeChild(copy_without_midi_learn.getChildWithName("midi_learn"),
 				                                        nullptr);
+				    copy_without_midi_learn.getChildWithName("misc").removeProperty("current_patch_filename", nullptr);
+				    copy_without_midi_learn.getChildWithName("misc").removeProperty("current_patch_directory", nullptr);
 
 				    //write valuetree into file
 				    copy_without_midi_learn.writeToStream(file_stream);
@@ -158,16 +197,30 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts, OdinAudi
 				    m_patch.setText(m_value_tree.state.getChildWithName("misc")["patch_name"].toString().toStdString());
 
 				    //save load directory
-				    m_last_directory = file_to_write.getParentDirectory().getFullPathName();
+				    //m_last_directory = file_to_write.getParentDirectory().getFullPathName();
 
 				    DBG(copy_without_midi_learn.toXmlString());
 				    DBG("Wrote above patch to " + file_name);
+
+				    m_value_tree.state.getChildWithName("misc").setProperty(
+				        "current_patch_filename",
+				        file_to_write.getFileName(),
+				        nullptr); //needed for up/down buttons in patch loading
+				    m_value_tree.state.getChildWithName("misc").setProperty(
+				        "current_patch_directory",
+				        file_to_write.getParentDirectory().getFullPathName(),
+				        nullptr); //needed for up/down buttons in patch loading
+				    DBG("set filename in valuetree: " +
+				        m_value_tree.state.getChildWithName("misc")["current_patch_filename"].toString());
+				    DBG("set filepath in valuetree: " +
+				        m_value_tree.state.getChildWithName("misc")["current_patch_directory"].toString());
 			    }
 		    });
 	};
 
 	m_load.onClick = [&]() {
-		m_filechooser.reset(new FileChooser("Choose a file to open...", m_last_directory, "*.odin", true));
+		String current_directory = m_value_tree.state.getChildWithName("misc")["current_patch_directory"].toString();
+		m_filechooser.reset(new FileChooser("Choose a file to open...", current_directory, "*.odin", true));
 
 		m_filechooser->launchAsync(
 		    FileBrowserComponent::openMode | FileBrowserComponent::canSelectFiles, [this](const FileChooser &chooser) {
@@ -186,7 +239,20 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts, OdinAudi
 				    loadPatchFromOpenedFileStream(file_stream);
 
 				    //save load directory
-				    m_last_directory = file_to_read.getParentDirectory().getFullPathName();
+				    //m_last_directory = file_to_read.getParentDirectory().getFullPathName();
+
+				    m_value_tree.state.getChildWithName("misc").setProperty(
+				        "current_patch_filename",
+				        file_to_read.getFileName(),
+				        nullptr); //needed for up/down buttons in patch loading
+				    m_value_tree.state.getChildWithName("misc").setProperty(
+				        "current_patch_directory",
+				        file_to_read.getParentDirectory().getFullPathName(),
+				        nullptr); //needed for up/down buttons in patch loading
+				    DBG("set filename in valuetree: " +
+				        m_value_tree.state.getChildWithName("misc")["current_patch_filename"].toString());
+				    DBG("set filepath in valuetree: " +
+				        m_value_tree.state.getChildWithName("misc")["current_patch_directory"].toString());
 
 			    } else {
 				    if (file_name != "") {
@@ -226,7 +292,10 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts, OdinAudi
 	m_patch.onMouseDown = [&]() {
 		DBG("OPENMENU");
 
-		File current_dir(m_last_directory);
+		String last_directory_name = m_value_tree.state.getChildWithName("misc")["current_patch_directory"];
+		DBG(last_directory_name);
+
+		File current_dir(last_directory_name);
 		if (current_dir.isDirectory()) {
 			DBG("IS DIR");
 			m_patch_dropdown_menu.clear();
@@ -247,6 +316,10 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts, OdinAudi
 				FileInputStream file_stream(file_chosen);
 				if (file_stream.openedOk()) {
 					loadPatchFromOpenedFileStream(file_stream);
+					m_value_tree.state.getChildWithName("misc").setProperty(
+					    "current_patch_filename", file_chosen.getFileName(), nullptr);
+					DBG("set filename in valuetree: " +
+					    m_value_tree.state.getChildWithName("misc")["current_patch_filename"].toString());
 				}
 			}
 		} else {
@@ -293,6 +366,36 @@ bool SaveLoadComponent::checkForSmallerVersion(FileInputStream &p_file_stream, s
 }
 
 void SaveLoadComponent::setGUIBig() {
+
+	juce::Image up_1 = ImageCache::getFromMemory(BinaryData::buttonup_2_150_png, BinaryData::buttonup_2_150_pngSize);
+	juce::Image up_2 = ImageCache::getFromMemory(BinaryData::buttonup_1_150_png, BinaryData::buttonup_1_150_pngSize);
+
+	juce::DrawableImage up_draw1;
+	juce::DrawableImage up_draw2;
+
+	up_draw1.setImage(up_1);
+	up_draw2.setImage(up_2);
+
+	m_up.setImages(&up_draw2, &up_draw2, &up_draw1, &up_draw1, &up_draw2, &up_draw2, &up_draw1, &up_draw1);
+	m_up.setBounds(
+	    OdinHelper::c150(UP_DOWN_BUTTON_X), OdinHelper::c150(UP_BUTTON_Y), up_1.getWidth(), up_1.getHeight());
+
+	juce::Image down_1 =
+	    ImageCache::getFromMemory(BinaryData::buttondown_2_150_png, BinaryData::buttondown_2_150_pngSize);
+	juce::Image down_2 =
+	    ImageCache::getFromMemory(BinaryData::buttondown_1_150_png, BinaryData::buttondown_1_150_pngSize);
+
+	juce::DrawableImage down_draw1;
+	juce::DrawableImage down_draw2;
+
+	down_draw1.setImage(down_1);
+	down_draw2.setImage(down_2);
+
+	m_down.setImages(
+	    &down_draw2, &down_draw2, &down_draw1, &down_draw1, &down_draw2, &down_draw2, &down_draw1, &down_draw1);
+	m_down.setBounds(
+	    OdinHelper::c150(UP_DOWN_BUTTON_X), OdinHelper::c150(DOWN_BUTTON_Y), down_1.getWidth(), down_1.getHeight());
+
 	juce::Image save_1 =
 	    ImageCache::getFromMemory(BinaryData::buttonsave_2_150_png, BinaryData::buttonsave_2_150_pngSize);
 	juce::Image save_2 =
@@ -349,6 +452,31 @@ void SaveLoadComponent::setGUIBig() {
 	m_patch.setGUIBig();
 }
 void SaveLoadComponent::setGUISmall() {
+	juce::Image up_1 = ImageCache::getFromMemory(BinaryData::buttonup_2_png, BinaryData::buttonup_2_pngSize);
+	juce::Image up_2 = ImageCache::getFromMemory(BinaryData::buttonup_1_png, BinaryData::buttonup_1_pngSize);
+
+	juce::DrawableImage up_draw1;
+	juce::DrawableImage up_draw2;
+
+	up_draw1.setImage(up_1);
+	up_draw2.setImage(up_2);
+
+	m_up.setImages(&up_draw2, &up_draw2, &up_draw1, &up_draw1, &up_draw2, &up_draw2, &up_draw1, &up_draw1);
+	m_up.setBounds(UP_DOWN_BUTTON_X + 1, UP_BUTTON_Y - 1, up_1.getWidth(), up_1.getHeight());
+
+	juce::Image down_1 = ImageCache::getFromMemory(BinaryData::buttondown_2_png, BinaryData::buttondown_2_pngSize);
+	juce::Image down_2 = ImageCache::getFromMemory(BinaryData::buttondown_1_png, BinaryData::buttondown_1_pngSize);
+
+	juce::DrawableImage down_draw1;
+	juce::DrawableImage down_draw2;
+
+	down_draw1.setImage(down_1);
+	down_draw2.setImage(down_2);
+
+	m_down.setImages(
+	    &down_draw2, &down_draw2, &down_draw1, &down_draw1, &down_draw2, &down_draw2, &down_draw1, &down_draw1);
+	m_down.setBounds(UP_DOWN_BUTTON_X + 1, DOWN_BUTTON_Y - 1, down_1.getWidth(), down_1.getHeight());
+
 	juce::Image save_1 = ImageCache::getFromMemory(BinaryData::buttonsave_2_png, BinaryData::buttonsave_2_pngSize);
 	juce::Image save_2 = ImageCache::getFromMemory(BinaryData::buttonsave_1_png, BinaryData::buttonsave_1_pngSize);
 
@@ -437,4 +565,97 @@ void SaveLoadComponent::loadPatchFromOpenedFileStream(juce::FileInputStream &p_f
 
 	//this forces values onto the GUI (patch label as well)
 	forceValueTreeLambda();
+}
+
+void SaveLoadComponent::incrementPatch() {
+	DBG("INCREMENT starting points:");
+
+	String current_filename  = m_value_tree.state.getChildWithName("misc")["current_patch_filename"].toString();
+	String current_directory = m_value_tree.state.getChildWithName("misc")["current_patch_directory"].toString();
+
+	DBG(current_directory);
+	DBG(current_filename);
+
+	File current_dir(current_directory);
+	if (current_dir.isDirectory()) {
+		DBG("IS DIR");
+
+		Array<File> file_array = current_dir.findChildFiles(File::TypesOfFileToFind::findFiles, false, "*.odin");
+		file_array.sort(m_file_comparator);
+
+		if (file_array.size() > 0) {
+			//if we find none, just start at the last...
+			int next_file_index = file_array.size() - 1;
+
+			for (int file_index = 0; file_index < file_array.size(); ++file_index) {
+				if (file_array[file_index].getFileName() == current_filename) {
+					next_file_index = file_index;
+					break;
+				}
+			}
+
+			if(next_file_index != 0){
+				--next_file_index;
+			}
+
+			File file_chosen = file_array[next_file_index];
+
+			FileInputStream file_stream(file_chosen);
+			if (file_stream.openedOk()) {
+				loadPatchFromOpenedFileStream(file_stream);
+				m_value_tree.state.getChildWithName("misc").setProperty(
+				    "current_patch_filename", file_chosen.getFileName(), nullptr);
+				DBG("set filename in valuetree: " +
+				    m_value_tree.state.getChildWithName("misc")["current_patch_filename"].toString());
+			}
+		}
+	} else {
+		DBG("IS DIR N'T");
+	}
+}
+void SaveLoadComponent::decrementPatch() {
+	DBG("DECREMENT starting points:");
+
+	String current_filename  = m_value_tree.state.getChildWithName("misc")["current_patch_filename"].toString();
+	String current_directory = m_value_tree.state.getChildWithName("misc")["current_patch_directory"].toString();
+
+	DBG(current_directory);
+	DBG(current_filename);
+
+	File current_dir(current_directory);
+	if (current_dir.isDirectory()) {
+		DBG("IS DIR");
+
+		Array<File> file_array = current_dir.findChildFiles(File::TypesOfFileToFind::findFiles, false, "*.odin");
+		file_array.sort(m_file_comparator);
+
+		if (file_array.size() > 0) {
+			//if we find none, just start at the first
+			int next_file_index = 0;
+
+			for (int file_index = 0; file_index < file_array.size(); ++file_index) {
+				if (file_array[file_index].getFileName() == current_filename) {
+					next_file_index = file_index;
+					break;
+				}
+			}
+
+			if(next_file_index != file_array.size() - 1){
+				++next_file_index;
+			}
+
+			File file_chosen = file_array[next_file_index];
+
+			FileInputStream file_stream(file_chosen);
+			if (file_stream.openedOk()) {
+				loadPatchFromOpenedFileStream(file_stream);
+				m_value_tree.state.getChildWithName("misc").setProperty(
+				    "current_patch_filename", file_chosen.getFileName(), nullptr);
+				DBG("set filename in valuetree: " +
+				    m_value_tree.state.getChildWithName("misc")["current_patch_filename"].toString());
+			}
+		}
+	} else {
+		DBG("IS DIR N'T");
+	}
 }

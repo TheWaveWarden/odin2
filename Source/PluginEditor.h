@@ -113,7 +113,7 @@
 #define MATRIX_POS_X 274
 #define MATRIX_POS_Y 452
 
-#define SAVE_LOAD_POS_X 27
+#define SAVE_LOAD_POS_X 23
 #define SAVE_LOAD_POS_Y 2
 #define SAVE_LOAD_SIZE_X 288
 #define SAVE_LOAD_SIZE_Y 25
@@ -129,7 +129,7 @@
 #define UNISON_STEREO_Y UNISON_DETUNE_Y
 
 
-#define GUI_SIZE_POS_X 672
+#define GUI_SIZE_POS_X 677
 #define GUI_SIZE_POS_Y 7
 
 #define ENV13_POS_X 30

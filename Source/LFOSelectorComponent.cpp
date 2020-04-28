@@ -196,7 +196,7 @@ void LFOSelectorComponent::setGUIBig() {
 	up_draw2.setImage(up_2);
 
 	m_up.setImages(&up_draw2, &up_draw2, &up_draw1, &up_draw1, &up_draw2, &up_draw2, &up_draw1, &up_draw1);
-	m_up.setBounds(glas_panel.getWidth() - 2, 1, up_1.getWidth(), up_1.getHeight());
+	m_up.setBounds(glas_panel.getWidth() - 2, 2, up_1.getWidth(), up_1.getHeight());
 
 	juce::Image down_1 =
 	    ImageCache::getFromMemory(BinaryData::buttondown_2_150_png, BinaryData::buttondown_2_150_pngSize);
@@ -211,7 +211,7 @@ void LFOSelectorComponent::setGUIBig() {
 
 	m_down.setImages(
 	    &down_draw2, &down_draw2, &down_draw1, &down_draw1, &down_draw2, &down_draw2, &down_draw1, &down_draw1);
-	m_down.setBounds(glas_panel.getWidth() - 2, 1 + up_1.getHeight(), down_1.getWidth(), down_1.getHeight());
+	m_down.setBounds(glas_panel.getWidth() - 2, 2 + up_1.getHeight(), down_1.getWidth(), down_1.getHeight());
 
 	m_display.setInlayTop(2);
 	m_display.setInlayLeft(2);

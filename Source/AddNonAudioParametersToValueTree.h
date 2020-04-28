@@ -73,7 +73,7 @@ void OdinAudioProcessor::addNonAudioParametersToTree() {
 	node.setProperty("fil1_type", FILTER_TYPE_LP24, nullptr);
 	node.setProperty("fil2_type", 1, nullptr);
 	node.setProperty("fil3_type", 1, nullptr);
-	node.setProperty("patch_name", String("init_patch"), nullptr);
+	node.setProperty("patch_name", String("Init Patch"), nullptr);
 	// these are synth version
 	node.setProperty("version_minor", ODIN_MINOR_VERSION, nullptr);
 	node.setProperty("version_patch", ODIN_PATCH_VERSION, nullptr);
@@ -90,7 +90,10 @@ void OdinAudioProcessor::addNonAudioParametersToTree() {
 	node.setProperty("fil2_vowel_right", 2, nullptr);
 	node.setProperty("fil3_vowel_right", 2, nullptr);
 	node.setProperty("unison_voices", 1, nullptr);
-
+	node.setProperty("current_patch_filename", "Init Patch", nullptr); //needed for up/down buttons in patch loading
+	node.setProperty("current_patch_directory",
+	                 File::getSpecialLocation(File::SpecialLocationType::userDocumentsDirectory).getFullPathName(),
+	                 nullptr);
 
 	node = m_value_tree_mod;
 	node.setProperty("source_row_0", 0, nullptr);
@@ -129,10 +132,11 @@ void OdinAudioProcessor::addNonAudioParametersToTree() {
 	node.setProperty("scale_row_6", 0, nullptr);
 	node.setProperty("scale_row_7", 0, nullptr);
 	node.setProperty("scale_row_8", 0, nullptr);
-	
+
 	for (int row = 0; row < 9; ++row) {
 		for (int horizontal = 0; horizontal < 3; ++horizontal) {
-			node.setProperty(Identifier("amount_" + std::to_string(horizontal) + "_row_" + std::to_string(row)), 0, nullptr);
+			node.setProperty(
+			    Identifier("amount_" + std::to_string(horizontal) + "_row_" + std::to_string(row)), 0, nullptr);
 		}
 	}
 
@@ -170,5 +174,4 @@ void OdinAudioProcessor::addNonAudioParametersToTree() {
 	node.setProperty("osc1_mod_source", 1, nullptr);
 	node.setProperty("osc2_mod_source", 1, nullptr);
 	node.setProperty("osc3_mod_source", 1, nullptr);
-
 }
