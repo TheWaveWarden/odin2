@@ -25,6 +25,8 @@ void WavetableOsc1D::reset() {
 	m_read_index = 0.0;
 	m_dc_blocking_filter.reset();
 
+	DBG("reset WT");
+
 	// downsampling filter buffers
 	for (int i = 0; i < 10; ++i) {
 		xv[i] = yv[i] = 0;

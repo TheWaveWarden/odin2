@@ -155,65 +155,71 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts, OdinAudi
 			    String file_name = result.isEmpty() ? String()
 			                                        : (result.isLocalFile() ? result.getLocalFile().getFullPathName()
 			                                                                : result.toString(true));
-			    //append .odin if not already there
-			    file_name = file_name.endsWith(".odin") ? file_name : file_name + ".odin";
 
-			    File file_to_write(file_name);
+			    if (file_name != "") {
+				    //append .odin if not already there
+				    file_name = file_name.endsWith(".odin") ? file_name : file_name + ".odin";
 
-			    //check whether file already exists
-			    if (file_to_write.existsAsFile()) {
-				    if (!(AlertWindow::showOkCancelBox(AlertWindow::WarningIcon,
-				                                       "File already exists!",
-				                                       "Are you sure you want to overwrite it?",
-				                                       {},
-				                                       {},
-				                                       {}))) {
-					    //user selected cancel
-					    return;
+				    File file_to_write(file_name);
+
+				    //check whether file already exists
+				    if (file_to_write.existsAsFile()) {
+					    if (!(AlertWindow::showOkCancelBox(AlertWindow::WarningIcon,
+					                                       "File already exists!",
+					                                       "Are you sure you want to overwrite it?",
+					                                       {},
+					                                       {},
+					                                       {}))) {
+						    //user selected cancel
+						    return;
+					    }
 				    }
-			    }
-			    FileOutputStream file_stream(file_to_write);
-			    if (file_stream.openedOk()) {
-				    // use this to overwrite old content
-				    file_stream.setPosition(0);
-				    file_stream.truncate();
+				    FileOutputStream file_stream(file_to_write);
+				    if (file_stream.openedOk()) {
+					    // use this to overwrite old content
+					    file_stream.setPosition(0);
+					    file_stream.truncate();
 
-				    //write patch name onto valuetree
-				    m_value_tree.state.getChildWithName("misc").setProperty(
-				        "patch_name", file_to_write.getFileNameWithoutExtension(), nullptr);
-				    DBG(m_value_tree.state.getChildWithName("misc")["patch_name"].toString());
+					    //write patch name onto valuetree
+					    m_value_tree.state.getChildWithName("misc").setProperty(
+					        "patch_name", file_to_write.getFileNameWithoutExtension(), nullptr);
+					    DBG(m_value_tree.state.getChildWithName("misc")["patch_name"].toString());
 
-				    //make a deep copy and remove the midi_learn part and file name
-				    ValueTree copy_without_midi_learn = m_value_tree.state.createCopy();
-				    copy_without_midi_learn.removeChild(copy_without_midi_learn.getChildWithName("midi_learn"),
-				                                        nullptr);
-				    copy_without_midi_learn.getChildWithName("misc").removeProperty("current_patch_filename", nullptr);
-				    copy_without_midi_learn.getChildWithName("misc").removeProperty("current_patch_directory", nullptr);
+					    //make a deep copy and remove the midi_learn part and file name
+					    ValueTree copy_without_midi_learn = m_value_tree.state.createCopy();
+					    copy_without_midi_learn.removeChild(copy_without_midi_learn.getChildWithName("midi_learn"),
+					                                        nullptr);
+					    copy_without_midi_learn.getChildWithName("misc").removeProperty("current_patch_filename",
+					                                                                    nullptr);
+					    copy_without_midi_learn.getChildWithName("misc").removeProperty("current_patch_directory",
+					                                                                    nullptr);
 
-				    //write valuetree into file
-				    copy_without_midi_learn.writeToStream(file_stream);
+					    //write valuetree into file
+					    copy_without_midi_learn.writeToStream(file_stream);
 
-				    //set label
-				    m_patch.setText(m_value_tree.state.getChildWithName("misc")["patch_name"].toString().toStdString());
+					    //set label
+					    m_patch.setText(
+					        m_value_tree.state.getChildWithName("misc")["patch_name"].toString().toStdString());
 
-				    //save load directory
-				    //m_last_directory = file_to_write.getParentDirectory().getFullPathName();
+					    //save load directory
+					    //m_last_directory = file_to_write.getParentDirectory().getFullPathName();
 
-				    DBG(copy_without_midi_learn.toXmlString());
-				    DBG("Wrote above patch to " + file_name);
+					    DBG(copy_without_midi_learn.toXmlString());
+					    DBG("Wrote above patch to " + file_name);
 
-				    m_value_tree.state.getChildWithName("misc").setProperty(
-				        "current_patch_filename",
-				        file_to_write.getFileName(),
-				        nullptr); //needed for up/down buttons in patch loading
-				    m_value_tree.state.getChildWithName("misc").setProperty(
-				        "current_patch_directory",
-				        file_to_write.getParentDirectory().getFullPathName(),
-				        nullptr); //needed for up/down buttons in patch loading
-				    DBG("set filename in valuetree: " +
-				        m_value_tree.state.getChildWithName("misc")["current_patch_filename"].toString());
-				    DBG("set filepath in valuetree: " +
-				        m_value_tree.state.getChildWithName("misc")["current_patch_directory"].toString());
+					    m_value_tree.state.getChildWithName("misc").setProperty(
+					        "current_patch_filename",
+					        file_to_write.getFileName(),
+					        nullptr); //needed for up/down buttons in patch loading
+					    m_value_tree.state.getChildWithName("misc").setProperty(
+					        "current_patch_directory",
+					        file_to_write.getParentDirectory().getFullPathName(),
+					        nullptr); //needed for up/down buttons in patch loading
+					    DBG("set filename in valuetree: " +
+					        m_value_tree.state.getChildWithName("misc")["current_patch_filename"].toString());
+					    DBG("set filepath in valuetree: " +
+					        m_value_tree.state.getChildWithName("misc")["current_patch_directory"].toString());
+				    }
 			    }
 		    });
 	};

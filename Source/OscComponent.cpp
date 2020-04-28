@@ -1964,8 +1964,8 @@ void OscComponent::setGUIBig() {
 
 	m_pos_mod.setStrip(
 	    ImageCache::getFromMemory(BinaryData::black_knob_mid_150_png, BinaryData::black_knob_mid_150_pngSize), 256);
-	m_pos_mod.setBounds(OdinHelper::c150(POS_ENV_POS_X),
-	                    OdinHelper::c150(POS_ENV_POS_Y),
+	m_pos_mod.setBounds(OdinHelper::c150(POS_ENV_POS_X) - 2,
+	                    OdinHelper::c150(POS_ENV_POS_Y) - 1,
 	                    OdinHelper::c150(BLACK_KNOB_MID_SIZE_X),
 	                    OdinHelper::c150(BLACK_KNOB_MID_SIZE_Y));
 

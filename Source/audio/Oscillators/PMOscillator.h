@@ -17,6 +17,10 @@ public:
   float doOscillate() override;
   void loadWavetables();
 
+  void randomizePhase() override {
+		//todo
+	}
+
   void setSampleRate(float p_sr) override {
 	  Oscillator::setSampleRate(p_sr);
 	  m_carrier_osc.setSampleRate(p_sr);

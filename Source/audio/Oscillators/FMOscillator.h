@@ -17,6 +17,10 @@ public:
 	float doOscillate() override;
 	void loadWavetables();
 	
+	void randomizePhase() override {
+		//todo
+	}
+
 	inline void setFMAmount(float p_fm_amount){
 		m_FM_amount = p_fm_amount;
 	}

@@ -32,8 +32,12 @@ public:
 	}
 	virtual void reset();
 
-	void voiceStart() {
+	void voiceStart(bool p_randomize_phase) {
+		if(p_randomize_phase){
+			randomizePhase();
+		}
 		if (m_reset_active) {
+			//DBG("RESET!");
 			reset();
 		}
 	}
@@ -127,6 +131,8 @@ public:
 			return 0.9985f + p_glide * 0.0014;
 		}
 	}
+
+	virtual void randomizePhase() = 0;
 
 public:
 	bool m_reset_flag      = false; // this is used by other oscs to know when to sync

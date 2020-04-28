@@ -21,6 +21,12 @@ public:
     DBG("\n\n\nERROR: setWavetableByMapping() not set!!!!\n\n\n");
   };
 
+  virtual void randomizePhase() override {
+    float white_noise = (float)rand();
+	  m_read_index = white_noise / (float)RAND_MAX * WAVETABLE_LENGTH;
+    DBG("WT_RANDO PHAASE");
+  }
+
   WavetableOsc1D();
   virtual ~WavetableOsc1D();
 

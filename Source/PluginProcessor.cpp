@@ -935,7 +935,7 @@ void OdinAudioProcessor::midiNoteOn(int p_midi_note, int p_midi_velocity) {
 
 	m_global_env.restartEnvelope();
 	if (*m_lfo4_reset) {
-		m_global_lfo.voiceStart();
+		m_global_lfo.voiceStart(false);
 	}
 
 	if (*m_phaser_reset) {
@@ -964,7 +964,7 @@ void OdinAudioProcessor::midiNoteOn(int p_midi_note, int p_midi_velocity) {
 		    m_last_midi_note,
 		    m_unison_pan_positions[unison_voices][unison_counter],
 		    m_unison_pan_positions[unison_voices][m_unison_detune_positions[unison_voices][unison_counter]],
-		    m_unison_gain_factors[unison_voices]);
+		    m_unison_gain_factors[unison_voices], unison_voices > 1);
 		DBG("NoteOn,  key " + std::to_string(p_midi_note) + ", voice " + std::to_string(new_voice));
 		DBG("Pan: " + std::to_string(m_unison_pan_positions[unison_voices][unison_counter]) + ", Detune: " +
 		    std::to_string(

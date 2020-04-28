@@ -339,8 +339,9 @@ struct Voice {
 	           int p_last_MIDI_key,
 	           float p_unison_pan,
 	           float p_unison_detune,
-	           float p_unison_gain_reduction) {
-		reset();
+	           float p_unison_gain_reduction,
+			   bool p_unison_active) {
+		reset(p_unison_active);
 		setOscBaseFreq(MIDINoteToFreq(p_MIDI_key), MIDINoteToFreq(p_last_MIDI_key));
 		setFilterMIDIValues(p_MIDI_key, p_MIDI_velocity);
 		m_voice_active           = true;
@@ -505,8 +506,8 @@ struct Voice {
 		}
 	}
 
-	void reset() {
-		resetLegato();
+	void reset(bool p_unison_active) {
+		resetLegato(p_unison_active);
 		if (!m_is_legato) {
 			for (int fil = 0; fil < 2; ++fil) {
 				ladder_filter[fil].reset();
@@ -518,23 +519,24 @@ struct Voice {
 			}
 		}
 	}
-	void resetLegato() {
+	void resetLegato(bool unison_active) {
+
 		for (int osc = 0; osc < 3; ++osc) {
 			// use start voice, oscs will reset if reset is active
-			analog_osc[osc].voiceStart();
-			wavetable_osc[osc].voiceStart();
-			wavedraw_osc[osc].voiceStart();
-			chipdraw_osc[osc].voiceStart();
-			specdraw_osc[osc].voiceStart();
-			multi_osc[osc].voiceStart();
-			vector_osc[osc].voiceStart();
-			chiptune_osc[osc].voiceStart();
-			fm_osc[osc].voiceStart();
-			pm_osc[osc].voiceStart();
-			wavedraw_osc[osc].voiceStart();
-			specdraw_osc[osc].voiceStart();
-			chipdraw_osc[osc].voiceStart();
-			lfo[osc].voiceStart();
+			analog_osc[osc].voiceStart(unison_active);
+			wavetable_osc[osc].voiceStart(unison_active);
+			wavedraw_osc[osc].voiceStart(unison_active);
+			chipdraw_osc[osc].voiceStart(unison_active);
+			specdraw_osc[osc].voiceStart(unison_active);
+			multi_osc[osc].voiceStart(true);
+			vector_osc[osc].voiceStart(unison_active);
+			chiptune_osc[osc].voiceStart(unison_active);
+			fm_osc[osc].voiceStart(unison_active);
+			pm_osc[osc].voiceStart(unison_active);
+			wavedraw_osc[osc].voiceStart(unison_active);
+			specdraw_osc[osc].voiceStart(unison_active);
+			chipdraw_osc[osc].voiceStart(unison_active);
+			lfo[osc].voiceStart(false);
 		}
 	}
 
