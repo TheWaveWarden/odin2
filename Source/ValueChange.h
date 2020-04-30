@@ -109,11 +109,11 @@ void OdinAudioProcessor::treeValueChangedOscMisc(const String &p_ID, float p_new
 			m_voice[voice].setOscSyncEnabled(p_new_value, 2);
 		}
 	} else if (id == m_osc1_vol_identifier) {
-		m_osc_vol_control[0] = Decibels::decibelsToGain(p_new_value);
+		m_osc_vol_control[0] = Decibels::decibelsToGain(p_new_value, -59.99f);
 	} else if (id == m_osc2_vol_identifier) {
-		m_osc_vol_control[1] = Decibels::decibelsToGain(p_new_value);
+		m_osc_vol_control[1] = Decibels::decibelsToGain(p_new_value, -59.99f);
 	} else if (id == m_osc3_vol_identifier) {
-		m_osc_vol_control[2] = Decibels::decibelsToGain(p_new_value);
+		m_osc_vol_control[2] = Decibels::decibelsToGain(p_new_value, -59.99f);
 	}
 }
 

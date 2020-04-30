@@ -208,7 +208,7 @@ public:
 			m_midi_learn_bottom_offset = BLACK_KNOB_BIG_BOTTOM_OFFSET;
 			break;
 		case 69:
-			m_midi_learn_left_offset = 5;
+			m_midi_learn_left_offset   = 5;
 			m_midi_learn_bottom_offset = 4;
 		case WHEEL_SIZE_X:
 			m_midi_learn_left_offset = WHEEL_LEFT_OFFSET;
@@ -281,4 +281,14 @@ private:
 	KnobFeels m_knob_feels;
 
 	//Label m_label;
+};
+
+class DecibelKnob : public Knob {
+	String getTextFromValue(double value) override {
+		if(value < -59.99){
+			return "-inf dB";
+		} else {
+			return String((float)value, 2) + " dB";
+		}
+	}
 };

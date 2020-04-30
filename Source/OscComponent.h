@@ -1,13 +1,3 @@
-/*
-  ==============================================================================
-
-    OscComponent.h
-    Created: 25 Feb 2019 12:31:26am
-    Author:  frot
-
-  ==============================================================================
-*/
-
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
@@ -227,7 +217,7 @@ protected:
   IntegerKnob m_oct;
   IntegerKnob m_semi;
   Knob m_fine;
-  Knob m_vol;
+  DecibelKnob m_vol;
   Knob m_pw;
   Knob m_drift;
   IntegerKnob m_step_1;
