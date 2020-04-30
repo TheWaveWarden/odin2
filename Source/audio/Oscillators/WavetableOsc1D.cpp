@@ -25,7 +25,7 @@ void WavetableOsc1D::reset() {
 	m_read_index = 0.0;
 	m_dc_blocking_filter.reset();
 
-	DBG("reset WT");
+	//DBG("reset WT");
 
 	// downsampling filter buffers
 	for (int i = 0; i < 10; ++i) {
@@ -41,7 +41,7 @@ void WavetableOsc1D::update() {
 	m_wavetable_inc   = WAVETABLE_LENGTH * m_increment;
 	m_sub_table_index = getTableIndex();
 
-	// set wavetable pointerd
+	// set wavetable pointers
 	m_current_table = m_wavetable_pointers[m_wavetable_index][m_sub_table_index];
 }
 
