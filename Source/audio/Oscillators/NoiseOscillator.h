@@ -13,9 +13,9 @@ public:
 	void setFilterFreqs(float p_lowpass_freq, float p_highpass_freq);
 	void setHPFreq(float p_freq);
 	void setLPFreq(float p_freq);
-	void setVolModPointer(float* p_pointer){
-		m_vol_mod = p_pointer;
-	}
+	// void setVolModPointer(float* p_pointer){
+	// 	m_vol_mod = p_pointer;
+	// }
 
 	void setSampleRate(float p_samplerate){
   		m_lowpass.setSampleRate(p_samplerate);
@@ -40,7 +40,7 @@ public:
 
 protected:
 
-	float* m_vol_mod;
+	//float* m_vol_mod;
 	//float* m_lp_mod;
 	//float* m_hp_mod;
 

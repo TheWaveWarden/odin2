@@ -11,12 +11,6 @@ WavetableOsc1D::WavetableOsc1D() {
 WavetableOsc1D::~WavetableOsc1D() {
 }
 
-void WavetableOsc1D::setVoldB(float p_dB) {
-	//m_volume_factor = pow(10, dB / 20);
-	//ln(10) / 20 = 0.11512f
-	m_volume_factor = juce::dsp::FastMathApproximations::exp(0.1151292 * p_dB);
-}
-
 void WavetableOsc1D::reset() {
 
 	// call baseclass first
@@ -88,10 +82,10 @@ float WavetableOsc1D::doWavetable() {
 float WavetableOsc1D::doOscillate() {
     jassert(m_samplerate > 0);
 
-	float vol_mod_factor = (*m_vol_mod) > 0 ? 1.f + 4 * (*m_vol_mod) : (1.f + *m_vol_mod);
-	vol_mod_factor       = vol_mod_factor > VOL_MOD_UPPER_LIMIT ? VOL_MOD_UPPER_LIMIT : vol_mod_factor;
+	//float vol_mod_factor = (*m_vol_mod) > 0 ? 1.f + 4 * (*m_vol_mod) : (1.f + *m_vol_mod);
+	//vol_mod_factor       = vol_mod_factor > VOL_MOD_UPPER_LIMIT ? VOL_MOD_UPPER_LIMIT : vol_mod_factor;
 
-	return doWavetable() * m_volume_factor * vol_mod_factor;
+	return doWavetable();// * m_volume_factor * vol_mod_factor;
 }
 
 void WavetableOsc1D::setWavetablePointer(int p_wavetable_index,

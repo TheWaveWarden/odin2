@@ -5,8 +5,8 @@ FMOscillator::FMOscillator() {
 	m_modulator_osc.setPitchModExpPointer(&m_zero_modulation_dummy);
 	m_carrier_osc.setPitchModLinPointer(&m_zero_modulation_dummy);
 	m_modulator_osc.setPitchModLinPointer(&m_zero_modulation_dummy);
-	m_carrier_osc.setVolModPointer(&m_zero_modulation_dummy);
-	m_modulator_osc.setVolModPointer(&m_zero_modulation_dummy);
+	//m_carrier_osc.setVolModPointer(&m_zero_modulation_dummy);
+	//m_modulator_osc.setVolModPointer(&m_zero_modulation_dummy);
 	m_carrier_osc.setPitchBendPointer(&m_zero_modulation_dummy);
 	m_modulator_osc.setPitchBendPointer(&m_zero_modulation_dummy);
 	m_modulator_osc.setGlidePointer(&m_zero_modulation_dummy);
@@ -65,10 +65,10 @@ void FMOscillator::reset() {
 float FMOscillator::doOscillate() {
     jassert(m_samplerate > 0);
 
-	float vol_mod_factor = (*m_vol_mod) > 0 ? 1.f + 4 * (*m_vol_mod) : (1.f + *m_vol_mod);
-	vol_mod_factor       = vol_mod_factor > VOL_MOD_UPPER_LIMIT ? VOL_MOD_UPPER_LIMIT : vol_mod_factor;
+	//float vol_mod_factor = (*m_vol_mod) > 0 ? 1.f + 4 * (*m_vol_mod) : (1.f + *m_vol_mod);
+	//vol_mod_factor       = vol_mod_factor > VOL_MOD_UPPER_LIMIT ? VOL_MOD_UPPER_LIMIT : vol_mod_factor;
 
-	float out = m_carrier_osc.doOscillate() * vol_mod_factor;
+	float out = m_carrier_osc.doOscillate();// * vol_mod_factor;
 
 	m_reset_flag = m_carrier_osc.m_reset_flag;
 	if (m_reset_flag) {

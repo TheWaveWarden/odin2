@@ -30,7 +30,6 @@ public:
   WavetableOsc1D();
   virtual ~WavetableOsc1D();
 
-  void setVoldB(float dB);
   virtual void selectWavetable(int p_wavetable_index);
 
   // overrides

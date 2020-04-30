@@ -110,9 +110,9 @@ public:
 	void setPitchModLinPointer(float *p_pointer) {
 		m_pitch_mod_lin = p_pointer;
 	}
-	void setVolModPointer(float *p_pointer) {
-		m_vol_mod = p_pointer;
-	}
+	// void setVolModPointer(float *p_pointer) {
+	// 	m_vol_mod = p_pointer;
+	// }
 	void setPitchBendPointer(float *p_pointer) {
 		m_pitchbend = p_pointer;
 	}
@@ -152,7 +152,7 @@ public:
 
 	float *m_pitch_mod_exp;
 	float *m_pitch_mod_lin;
-	float *m_vol_mod;
+	//float *m_vol_mod;
 	float *m_pitchbend;
 
 	void setOctaveMultiplier(float p_octave_multiplier) {

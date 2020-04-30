@@ -41,18 +41,18 @@ float AnalogOscillator::doOscillate() {
 	// if (!m_note_on){
 	//    return 0.f;
 	//}
-	float vol_mod_factor = (*m_vol_mod) > 0 ? 1.f + 4 * (*m_vol_mod) : (1.f + *m_vol_mod);
+	//float vol_mod_factor = (*m_vol_mod) > 0 ? 1.f + 4 * (*m_vol_mod) : (1.f + *m_vol_mod);
 	//	DBG(*m_vol_mod);
 	//DBG(vol_mod_factor);
-	vol_mod_factor       = vol_mod_factor > VOL_MOD_UPPER_LIMIT ? VOL_MOD_UPPER_LIMIT : vol_mod_factor;
+	//vol_mod_factor       = vol_mod_factor > VOL_MOD_UPPER_LIMIT ? VOL_MOD_UPPER_LIMIT : vol_mod_factor;
 	//DBG(vol_mod_factor);
 	//DBG("----");
 
 	if (m_wavetable_index != 1) {
-		return doWavetable() * vol_mod_factor;
+		return doWavetable();// * vol_mod_factor;
 	}
 
-	return doSquare() * vol_mod_factor;
+	return doSquare();// * vol_mod_factor;
 }
 
 float AnalogOscillator::doSquare() {

@@ -34,6 +34,9 @@
 //todo remove
 #include <chrono>
 
+#define MINUS_12_dB_GAIN 0.251189 //needed for volume modulation threshold
+#define PLUS_12_dB_GAIN 3.981072
+
 //#define ODIN_PROFILING
 
 class OdinAudioProcessorEditor;
@@ -348,6 +351,8 @@ private:
 
 	// MOD DEST
 	float *m_master_mod;
+	float *m_osc_vol_mod[VOICES][3];
+
 	int m_delay_position   = 0;
 	int m_phaser_position  = 1;
 	int m_chorus_position  = 2;

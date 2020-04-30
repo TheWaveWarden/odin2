@@ -432,7 +432,6 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 		m_pitch_bend_smooth =
 		    m_pitch_bend_smooth * PITCHBEND_SMOOTHIN_FACTOR + (1.f - PITCHBEND_SMOOTHIN_FACTOR) * (*m_pitchbend);
 
-		
 		m_pitch_bend_smooth_and_applied = m_pitch_bend_smooth * m_pitchbend_amount;
 
 		m_modwheel_smooth =
@@ -553,8 +552,27 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 					default:
 						break;
 					}
-					// apply volume
-					m_osc_output[voice][osc] *= m_osc_vol_smooth[osc];
+
+					// apply volume & modulation
+					float osc_vol_modded = m_osc_vol_smooth[osc];
+					if (*m_osc_vol_mod[voice][osc]) {
+						if (*m_osc_vol_mod[voice][osc] < 0.f) {
+							//negative modulation just modulates down to -inf dB
+							osc_vol_modded = m_osc_vol_smooth[osc] * (1.f + *m_osc_vol_mod[voice][osc]);
+							osc_vol_modded = osc_vol_modded < 0 ? 0 : osc_vol_modded;
+						} else {
+							if (m_osc_vol_smooth[osc] > MINUS_12_dB_GAIN) {
+								// volume level above -12dB, modulate to plus 12 dB
+								osc_vol_modded *= pow(PLUS_12_dB_GAIN, *m_osc_vol_mod[voice][osc]);
+								osc_vol_modded = osc_vol_modded > PLUS_12_dB_GAIN ? PLUS_12_dB_GAIN : osc_vol_modded;
+							} else {
+								// if volume level is below -12dB then just modulate up to 0dB
+								osc_vol_modded += (1.f - osc_vol_modded) * *m_osc_vol_mod[voice][osc];
+								osc_vol_modded = osc_vol_modded > PLUS_12_dB_GAIN ? PLUS_12_dB_GAIN : osc_vol_modded;
+							}
+						}
+					}
+					m_osc_output[voice][osc] *= osc_vol_modded;
 				} // osc loop
 
 				//===== FILTERS ======
@@ -964,7 +982,8 @@ void OdinAudioProcessor::midiNoteOn(int p_midi_note, int p_midi_velocity) {
 		    m_last_midi_note,
 		    m_unison_pan_positions[unison_voices][unison_counter],
 		    m_unison_pan_positions[unison_voices][m_unison_detune_positions[unison_voices][unison_counter]],
-		    m_unison_gain_factors[unison_voices], unison_voices > 1);
+		    m_unison_gain_factors[unison_voices],
+		    unison_voices > 1);
 		DBG("NoteOn,  key " + std::to_string(p_midi_note) + ", voice " + std::to_string(new_voice));
 		DBG("Pan: " + std::to_string(m_unison_pan_positions[unison_voices][unison_counter]) + ", Detune: " +
 		    std::to_string(

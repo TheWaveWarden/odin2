@@ -33,7 +33,7 @@ protected:
 
   float m_modulation_dummy = 0;
 
-  //float *m_vol_mod;
+  float *m_vol_mod;
   float *m_vel_mod_mod;
   float *m_kbd_mod_mod;
   float *m_env_mod_mod;
