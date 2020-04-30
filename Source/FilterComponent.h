@@ -117,7 +117,7 @@ protected:
 	Knob m_vel;
 	Knob m_kbd;
 	Knob m_env;
-	Knob m_gain;
+	DecibelKnob m_gain;
 	Knob m_freq;
 	Knob m_res;
 	Knob m_saturation;

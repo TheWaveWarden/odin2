@@ -496,11 +496,11 @@ void OdinAudioProcessor::treeValueChangedFilTop(const String &p_ID, float p_new_
 		m_ring_mod[1].m_env_mod_amount       = p_new_value;
 		m_formant_filter[1].m_env_mod_amount = p_new_value;
 	} else if (id == m_fil1_gain_identifier) {
-		m_fil_gain_control[0] = Decibels::decibelsToGain(p_new_value);
+		m_fil_gain_control[0] = Decibels::decibelsToGain(p_new_value, -59.99f);
 	} else if (id == m_fil2_gain_identifier) {
-		m_fil_gain_control[1] = Decibels::decibelsToGain(p_new_value);
+		m_fil_gain_control[1] = Decibels::decibelsToGain(p_new_value, -59.99f);
 	} else if (id == m_fil3_gain_identifier) {
-		m_fil_gain_control[2] = Decibels::decibelsToGain(p_new_value);
+		m_fil_gain_control[2] = Decibels::decibelsToGain(p_new_value, -59.99f);
 	}
 }
 

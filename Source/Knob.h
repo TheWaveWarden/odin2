@@ -285,8 +285,8 @@ private:
 
 class DecibelKnob : public Knob {
 	String getTextFromValue(double value) override {
-		if(value < -59.99){
-			return "-inf dB";
+		if(value < -59.999){
+			return "-Inf dB";
 		} else {
 			return String((float)value, 2) + " dB";
 		}
