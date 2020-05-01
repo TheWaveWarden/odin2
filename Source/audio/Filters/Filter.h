@@ -53,9 +53,9 @@ public:
 	virtual void setResModPointer(float *p_pointer) {
 		m_res_mod = p_pointer;
 	}
-	virtual void setVolModPointer(float *p_pointer) {
-		m_vol_mod = p_pointer;
-	}
+	// virtual void setVolModPointer(float *p_pointer) {
+	// 	m_vol_mod = p_pointer;
+	// }
 	virtual void setVelModPointer(float *p_pointer) {
 		m_vel_mod_mod = p_pointer;
 	}
@@ -114,7 +114,7 @@ public:
 	double m_mod_frequency = 0;
 
 protected:
-	float *m_vol_mod;
+	//float *m_vol_mod;
 	float *m_res_mod;
 	float *m_freq_mod;
 	float *m_saturation_mod = &m_mod_dummy_zero;

@@ -11,7 +11,7 @@ public:
   void reset() override;
   void update() override;
 
-  void setVolModPointer(float *p_pointer) { m_vol_mod = p_pointer; }
+  //void setVolModPointer(float *p_pointer) { m_vol_mod = p_pointer; }
   void setVelModPointer(float *p_pointer) { m_vel_mod_mod = p_pointer; }
   void setKbdModPointer(float *p_pointer) { m_kbd_mod_mod = p_pointer; }
   void setEnvModPointer(float *p_pointer) { m_env_mod_mod = p_pointer; }
@@ -33,7 +33,7 @@ protected:
 
   float m_modulation_dummy = 0;
 
-  float *m_vol_mod;
+  //float *m_vol_mod;
   float *m_vel_mod_mod;
   float *m_kbd_mod_mod;
   float *m_env_mod_mod;

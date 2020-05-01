@@ -352,6 +352,8 @@ private:
 	// MOD DEST
 	float *m_master_mod;
 	float *m_osc_vol_mod[VOICES][3];
+	float *m_fil_12_vol_mod[VOICES][2];
+	float *m_fil_3_vol_mod;
 
 	int m_delay_position   = 0;
 	int m_phaser_position  = 1;

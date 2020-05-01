@@ -25,7 +25,7 @@ public:
     updateParabolas();
   }
 
-  void setVolModPointer(float *p_pointer) { m_vol_mod = p_pointer; }
+  //void setVolModPointer(float *p_pointer) { m_vol_mod = p_pointer; }
   void setTransitionModPointer(float *p_pointer) {
     m_transition_mod = p_pointer;
   }
@@ -58,7 +58,7 @@ public:
   float m_MIDI_velocity = 0.f;
 
 protected:
-  float *m_vol_mod;
+  //float *m_vol_mod;
   float *m_transition_mod;
   float m_zero_dummy;
 

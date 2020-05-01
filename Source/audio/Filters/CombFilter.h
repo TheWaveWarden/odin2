@@ -35,9 +35,9 @@ public:
 	void setFreqModPointer(float *p_pointer) {
 		m_freq_mod = p_pointer;
 	}
-	void setVolModPointer(float *p_pointer) {
-		m_vol_mod = p_pointer;
-	}
+	// void setVolModPointer(float *p_pointer) {
+	// 	m_vol_mod = p_pointer;
+	// }
 	void setEnvModPointer(float *p_pointer) {
 		m_env_mod_mod = p_pointer;
 	}
@@ -90,7 +90,7 @@ public:
 
 	float *m_freq_mod    = &m_zero_modulation_dummy;
 	float *m_res_mod     = &m_zero_modulation_dummy;
-	float *m_vol_mod     = &m_zero_modulation_dummy;
+	//float *m_vol_mod     = &m_zero_modulation_dummy;
 	float *m_env_mod_mod = &m_zero_modulation_dummy;
 	float *m_vel_mod_mod = &m_zero_modulation_dummy;
 	float *m_kbd_mod_mod = &m_zero_modulation_dummy;

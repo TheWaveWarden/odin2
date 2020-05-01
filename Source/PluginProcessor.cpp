@@ -603,47 +603,67 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 					case FILTER_TYPE_HP12:
 						m_voice[voice].ladder_filter[fil].m_freq_base = m_fil_freq_smooth[fil];
 						m_voice[voice].ladder_filter[fil].update();
-						m_filter_output[voice][fil] =
-						    m_voice[voice].ladder_filter[fil].doFilter(filter_input[fil]) * m_fil_gain_smooth[fil];
+						m_filter_output[voice][fil] = m_voice[voice].ladder_filter[fil].doFilter(filter_input[fil]);
 						break;
 					case FILTER_TYPE_SEM12:
 						m_voice[voice].SEM_filter_12[fil].m_freq_base = m_fil_freq_smooth[fil];
 						m_voice[voice].SEM_filter_12[fil].update();
-						m_filter_output[voice][fil] =
-						    m_voice[voice].SEM_filter_12[fil].doFilter(filter_input[fil]) * m_fil_gain_smooth[fil];
+						m_filter_output[voice][fil] = m_voice[voice].SEM_filter_12[fil].doFilter(filter_input[fil]);
 						break;
 					case FILTER_TYPE_KORG_LP:
 					case FILTER_TYPE_KORG_HP:
 						m_voice[voice].korg_filter[fil].m_freq_base = m_fil_freq_smooth[fil];
 						m_voice[voice].korg_filter[fil].update();
-						m_filter_output[voice][fil] =
-						    m_voice[voice].korg_filter[fil].doFilter(filter_input[fil]) * m_fil_gain_smooth[fil];
+						m_filter_output[voice][fil] = m_voice[voice].korg_filter[fil].doFilter(filter_input[fil]);
 						break;
 					case FILTER_TYPE_DIODE:
 						m_voice[voice].diode_filter[fil].m_freq_base = m_fil_freq_smooth[fil];
 						m_voice[voice].diode_filter[fil].update();
-						m_filter_output[voice][fil] =
-						    m_voice[voice].diode_filter[fil].doFilter(filter_input[fil]) * m_fil_gain_smooth[fil];
+						m_filter_output[voice][fil] = m_voice[voice].diode_filter[fil].doFilter(filter_input[fil]);
 						break;
 					case FILTER_TYPE_FORMANT:
 						m_voice[voice].formant_filter[fil].m_freq_base = m_fil_freq_smooth[fil];
 						m_voice[voice].formant_filter[fil].update();
-						m_filter_output[voice][fil] =
-						    m_voice[voice].formant_filter[fil].doFilter(filter_input[fil]) * m_fil_gain_smooth[fil];
+						m_filter_output[voice][fil] = m_voice[voice].formant_filter[fil].doFilter(filter_input[fil]);
 						break;
 					case FILTER_TYPE_COMB:
 						m_voice[voice].comb_filter[fil].setCombFreq(m_fil_freq_smooth[fil]);
-						m_filter_output[voice][fil] =
-						    m_voice[voice].comb_filter[fil].doFilter(filter_input[fil]) * m_fil_gain_smooth[fil];
+						m_filter_output[voice][fil] = m_voice[voice].comb_filter[fil].doFilter(filter_input[fil]);
 						break;
 					case FILTER_TYPE_RINGMOD:
 						m_voice[voice].ring_mod[fil].setBaseFrequency(m_fil_freq_smooth[fil]);
 						m_voice[voice].ring_mod[fil].setGlideTargetFrequency(m_fil_freq_smooth[fil]);
 						m_voice[voice].ring_mod[fil].update();
-						m_filter_output[voice][fil] =
-						    m_voice[voice].ring_mod[fil].doRingModulator(filter_input[fil]) * m_fil_gain_smooth[fil];
+						m_filter_output[voice][fil] = m_voice[voice].ring_mod[fil].doRingModulator(filter_input[fil]);
 						break;
 					}
+
+					//apply gain & -modulation
+					if (m_fil_type[fil] != FILTER_TYPE_NONE) {
+						// apply volume & modulation
+						float fil_vol_modded = m_fil_gain_smooth[fil];
+						if (*m_fil_12_vol_mod[voice][fil]) {
+							if (*m_fil_12_vol_mod[voice][fil] < 0.f) {
+								//negative modulation just modulates down to -inf dB
+								fil_vol_modded = m_fil_gain_smooth[fil] * (1.f + *m_fil_12_vol_mod[voice][fil]);
+								fil_vol_modded = fil_vol_modded < 0 ? 0 : fil_vol_modded;
+							} else {
+								if (m_fil_gain_smooth[fil] > MINUS_12_dB_GAIN) {
+									// volume level above -12dB, modulate to plus 12 dB
+									fil_vol_modded *= pow(PLUS_12_dB_GAIN, *m_fil_12_vol_mod[voice][fil]);
+									fil_vol_modded =
+									    fil_vol_modded > PLUS_12_dB_GAIN ? PLUS_12_dB_GAIN : fil_vol_modded;
+								} else {
+									// if volume level is below -12dB then just modulate up to 0dB
+									fil_vol_modded += (1.f - fil_vol_modded) * *m_fil_12_vol_mod[voice][fil];
+									fil_vol_modded =
+									    fil_vol_modded > PLUS_12_dB_GAIN ? PLUS_12_dB_GAIN : fil_vol_modded;
+								}
+							}
+						}
+						m_filter_output[voice][fil] *= fil_vol_modded;
+					}
+
 					// add first filter to second filter input
 					if (fil == 0 && *m_fil2_fil1) {
 						filter_input[1] += m_filter_output[voice][0];
@@ -692,35 +712,35 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 				m_ladder_filter[channel].m_freq_base = m_fil_freq_smooth[2];
 				m_ladder_filter[channel].update();
 				stereo_signal[channel] =
-				    m_ladder_filter[channel].doFilter(stereo_signal[channel]) * m_fil_gain_smooth[2];
+				    m_ladder_filter[channel].doFilter(stereo_signal[channel]);
 				break;
 			case FILTER_TYPE_SEM12:
 				m_SEM_filter_12[channel].m_freq_base = m_fil_freq_smooth[2];
 				m_SEM_filter_12[channel].update();
 				stereo_signal[channel] =
-				    m_SEM_filter_12[channel].doFilter(stereo_signal[channel]) * m_fil_gain_smooth[2];
+				    m_SEM_filter_12[channel].doFilter(stereo_signal[channel]);
 				break;
 			case FILTER_TYPE_KORG_LP:
 			case FILTER_TYPE_KORG_HP:
 				m_korg_filter[channel].m_freq_base = m_fil_freq_smooth[2];
 				m_korg_filter[channel].update();
-				stereo_signal[channel] = m_korg_filter[channel].doFilter(stereo_signal[channel]) * m_fil_gain_smooth[2];
+				stereo_signal[channel] = m_korg_filter[channel].doFilter(stereo_signal[channel]);
 				break;
 			case FILTER_TYPE_DIODE:
 				m_diode_filter[channel].m_freq_base = m_fil_freq_smooth[2];
 				m_diode_filter[channel].update();
 				stereo_signal[channel] =
-				    m_diode_filter[channel].doFilter(stereo_signal[channel]) * m_fil_gain_smooth[2];
+				    m_diode_filter[channel].doFilter(stereo_signal[channel]);
 				break;
 			case FILTER_TYPE_FORMANT:
 				m_formant_filter[channel].m_freq_base = m_fil_freq_smooth[2];
 				m_formant_filter[channel].update();
 				stereo_signal[channel] =
-				    m_formant_filter[channel].doFilter(stereo_signal[channel]) * m_fil_gain_smooth[2];
+				    m_formant_filter[channel].doFilter(stereo_signal[channel]);
 				break;
 			case FILTER_TYPE_COMB:
 				m_comb_filter[channel].setCombFreq(m_fil_freq_smooth[2]);
-				stereo_signal[channel] = m_comb_filter[channel].doFilter(stereo_signal[channel]) * m_fil_gain_smooth[2];
+				stereo_signal[channel] = m_comb_filter[channel].doFilter(stereo_signal[channel]);
 				break;
 			case FILTER_TYPE_RINGMOD:
 				m_ring_mod[channel].setBaseFrequency(m_fil_freq_smooth[2]);
@@ -728,10 +748,33 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 
 				m_ring_mod[channel].update();
 				stereo_signal[channel] =
-				    m_ring_mod[channel].doRingModulator(stereo_signal[channel]) * m_fil_gain_smooth[2];
+				    m_ring_mod[channel].doRingModulator(stereo_signal[channel]);
 				break;
 			default:
 				break;
+			}
+			//apply gain & -modulation
+			if (m_fil_type[2] != FILTER_TYPE_NONE) {
+				// apply volume & modulation
+				float fil_vol_modded = m_fil_gain_smooth[2];
+				if (*m_fil_3_vol_mod) {
+					if (*m_fil_3_vol_mod < 0.f) {
+						//negative modulation just modulates down to -inf dB
+						fil_vol_modded = m_fil_gain_smooth[2] * (1.f + *m_fil_3_vol_mod);
+						fil_vol_modded = fil_vol_modded < 0 ? 0 : fil_vol_modded;
+					} else {
+						if (m_fil_gain_smooth[2] > MINUS_12_dB_GAIN) {
+							// volume level above -12dB, modulate to plus 12 dB
+							fil_vol_modded *= pow(PLUS_12_dB_GAIN, *m_fil_3_vol_mod);
+							fil_vol_modded = fil_vol_modded > PLUS_12_dB_GAIN ? PLUS_12_dB_GAIN : fil_vol_modded;
+						} else {
+							// if volume level is below -12dB then just modulate up to 0dB
+							fil_vol_modded += (1.f - fil_vol_modded) * *m_fil_3_vol_mod;
+							fil_vol_modded = fil_vol_modded > PLUS_12_dB_GAIN ? PLUS_12_dB_GAIN : fil_vol_modded;
+						}
+					}
+				}
+				stereo_signal[channel] *= fil_vol_modded;
 			}
 
 			//==== FX SECTION ====
