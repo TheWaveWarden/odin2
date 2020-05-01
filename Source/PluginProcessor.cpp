@@ -711,14 +711,12 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 			case FILTER_TYPE_HP12:
 				m_ladder_filter[channel].m_freq_base = m_fil_freq_smooth[2];
 				m_ladder_filter[channel].update();
-				stereo_signal[channel] =
-				    m_ladder_filter[channel].doFilter(stereo_signal[channel]);
+				stereo_signal[channel] = m_ladder_filter[channel].doFilter(stereo_signal[channel]);
 				break;
 			case FILTER_TYPE_SEM12:
 				m_SEM_filter_12[channel].m_freq_base = m_fil_freq_smooth[2];
 				m_SEM_filter_12[channel].update();
-				stereo_signal[channel] =
-				    m_SEM_filter_12[channel].doFilter(stereo_signal[channel]);
+				stereo_signal[channel] = m_SEM_filter_12[channel].doFilter(stereo_signal[channel]);
 				break;
 			case FILTER_TYPE_KORG_LP:
 			case FILTER_TYPE_KORG_HP:
@@ -729,14 +727,12 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 			case FILTER_TYPE_DIODE:
 				m_diode_filter[channel].m_freq_base = m_fil_freq_smooth[2];
 				m_diode_filter[channel].update();
-				stereo_signal[channel] =
-				    m_diode_filter[channel].doFilter(stereo_signal[channel]);
+				stereo_signal[channel] = m_diode_filter[channel].doFilter(stereo_signal[channel]);
 				break;
 			case FILTER_TYPE_FORMANT:
 				m_formant_filter[channel].m_freq_base = m_fil_freq_smooth[2];
 				m_formant_filter[channel].update();
-				stereo_signal[channel] =
-				    m_formant_filter[channel].doFilter(stereo_signal[channel]);
+				stereo_signal[channel] = m_formant_filter[channel].doFilter(stereo_signal[channel]);
 				break;
 			case FILTER_TYPE_COMB:
 				m_comb_filter[channel].setCombFreq(m_fil_freq_smooth[2]);
@@ -747,8 +743,7 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 				m_ring_mod[channel].setGlideTargetFrequency(m_fil_freq_smooth[2]);
 
 				m_ring_mod[channel].update();
-				stereo_signal[channel] =
-				    m_ring_mod[channel].doRingModulator(stereo_signal[channel]);
+				stereo_signal[channel] = m_ring_mod[channel].doRingModulator(stereo_signal[channel]);
 				break;
 			default:
 				break;
@@ -810,28 +805,31 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 
 			//===== OUTPUT ======
 
-			float master_mod_factor = (*m_master_mod) > 0 ? 1.f + 4 * (*m_master_mod) : (1.f + *m_master_mod);
+			// apply volume & modulation
+			float master_vol_modded = m_master_smooth;
+			if (*m_master_mod) {
+				if (*m_master_mod < 0.f) {
+					//negative modulation just modulates down to -inf dB
+					master_vol_modded = m_master_smooth * (1.f + *m_master_mod);
+					master_vol_modded = master_vol_modded < 0 ? 0 : master_vol_modded;
+				} else {
+					if (m_master_smooth > MINUS_12_dB_GAIN) {
+						// volume level above -12dB, modulate to plus 12 dB
+						master_vol_modded *= pow(PLUS_12_dB_GAIN, *m_master_mod);
+						master_vol_modded = master_vol_modded > PLUS_12_dB_GAIN ? PLUS_12_dB_GAIN : master_vol_modded;
+					} else {
+						// if volume level is below -12dB then just modulate up to 0dB
+						master_vol_modded += (1.f - master_vol_modded) * *m_master_mod;
+						master_vol_modded = master_vol_modded > PLUS_12_dB_GAIN ? PLUS_12_dB_GAIN : master_vol_modded;
+					}
+				}
+			}
 
 			auto *channelData   = buffer.getWritePointer(channel);
-			channelData[sample] = stereo_signal[channel] * m_master_smooth * master_mod_factor;
+			channelData[sample] = stereo_signal[channel] * master_vol_modded;
 
 		} // stereo loop
 	}     // sample loop
-
-	//todo remove
-	//std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
-
-	//float duration = (float)std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count();
-	//if(duration > m_max_buffer_time){
-	//	m_max_buffer_time = duration;
-	//}
-	//if(duration < m_min_buffer_time){
-	//	m_min_buffer_time = duration;
-	//}
-	//if(duration > 1000){
-	//just a dummy to have some code executed here
-	//	m_min_buffer_time = 700;
-	//}
 }
 
 //==============================================================================
