@@ -1,6 +1,6 @@
 # 2.0.21 beta
 - lowered minimum value for oscs and filters to -inf dB
-- reworked how volume- and filter-volume modulation works 
+- reworked how volume- and modulation works for osc-vol, filter-gain, amp-gain and master-gain
 - increased number of voices from 12 to 24
 - Clicking the patch-display now reveals a list of patches in the same folder
 - patch-display now has up and down button to browse through patches in same folder

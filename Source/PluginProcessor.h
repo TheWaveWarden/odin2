@@ -31,12 +31,6 @@
 #include "audio/Filters/SEMFilter12.h"
 #include "audio/Oscillators/WavetableContainer.h"
 
-//todo remove
-#include <chrono>
-
-#define MINUS_12_dB_GAIN 0.251189 //needed for volume modulation threshold
-#define PLUS_12_dB_GAIN 3.981072
-
 //#define ODIN_PROFILING
 
 class OdinAudioProcessorEditor;

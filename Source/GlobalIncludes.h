@@ -98,6 +98,9 @@
 #define PWM_SMOOTHIN_FACTOR 0.998
 #define THRESHOLD_SMOOTHIN_FACTOR 0.998
 
+#define MINUS_12_dB_GAIN 0.251189 //needed for volume modulation threshold
+#define PLUS_12_dB_GAIN 3.981072
+
 #define INPUT_LABEL_SIZE_X 70
 #define INPUT_LABEL_SIZE_Y 20
 
