@@ -137,6 +137,8 @@ void SyncTimeSelector::setGUIBig(){
 	m_down_right.setBounds(
 	    up_1.getWidth() + glas_panel.getWidth() - 4, 1 + up_1.getHeight(), down_1.getWidth(), down_1.getHeight());
 
+	m_display.setTextOffsetTop(2);
+	m_display.setTextOffsetLeft(2);
 	m_display.setGUIBig();
 
 	updateDisplay();
@@ -188,8 +190,11 @@ void SyncTimeSelector::setGUISmall(){
 	m_down_right.setBounds(
 	    up_1.getWidth() + glas_panel.getWidth() - 2, 1 + down_1.getHeight(), down_1.getWidth(), down_1.getHeight());
 
+	m_display.setTextOffsetTop(0);
+	m_display.setTextOffsetLeft(0);
 	m_display.setGUISmall();
 
 	updateDisplay();
 	setSize(glas_panel.getWidth() + 2 * down_1.getWidth(), glas_panel.getHeight());
+
 }

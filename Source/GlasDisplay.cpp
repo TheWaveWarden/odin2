@@ -42,6 +42,7 @@ void GlasDisplay::paint(Graphics &g) {
 	}
 	juce::Rectangle<int> text_area = getLocalBounds();
 	text_area.setY(text_area.getY() + m_text_offset_top);
+	text_area.setX(text_area.getX() + m_text_offset_left);
 	g.drawText(m_text, text_area, Justification::centred,
 	           true); // draw some placeholder text
 

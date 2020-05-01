@@ -59,6 +59,10 @@ public:
     m_text_offset_top = p_offset;
   }
 
+  void setTextOffsetLeft(int p_offset){
+    m_text_offset_left = p_offset;
+  }
+
 	void setGUIBig() {
 		m_GUI_big = true;
 		m_menu_feels.setGUIBig();
@@ -71,7 +75,8 @@ public:
 private:
 	bool m_GUI_big                  = false;
 
-  int m_text_offset_top = 0;
+  	int m_text_offset_top = 0;
+  	int m_text_offset_left = 0;
 
 	std::string m_text_value_suffix = "";
 
