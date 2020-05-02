@@ -42,6 +42,8 @@ public:
     m_current_section = -1;
     m_current_value = 0.f;
     m_attack_start_value = 0.f;
+    m_last_decay = -1.;
+    m_last_release = -1.;
   }
 
   bool isBeforeRelease() {
@@ -52,6 +54,7 @@ public:
 
   inline void setSampleRate(float p_samplerate) {
     m_samplerate = p_samplerate;
+    reset();
     ////DBG("setsamplerate adsr");
   }
 
@@ -123,7 +126,7 @@ protected:
   bool m_loop = false;
 
   // store values so we dont calculate pow() all the time
-  double m_last_decay = 0.f;
+  double m_last_decay = -1.f;
   double m_last_decay_return = 0.f;
   double m_last_release = 0.f;
   double m_last_release_return = 0.f;

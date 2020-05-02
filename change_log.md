@@ -11,8 +11,9 @@
 - fixed FM carrier ratio not being loaded
 - fixed FM modulator ratio not being loaded
 - fixed pitchbend amount not being loaded
-- FM carrier ratio, FM modulator ratio and pitchbend amount are no longer modulatable in the DAW
+- FM carrier ratio, FM modulator ratio and pitchbend amount are no longer modulatable by the DAW
 - fixed ".odin" patches still being saved when canceling patch-saving
+- fixed Decay and Release parameters not automatically updating after change in samplerate
 - removed 12-voice option from unison
 - fixed LFO-sync button always being off on GUI-load
 - fixed reversed sawtooth icon in small GUI LFO

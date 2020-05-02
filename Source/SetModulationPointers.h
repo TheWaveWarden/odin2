@@ -327,4 +327,5 @@ void OdinAudioProcessor::setModulationPointers() {
 	m_phaser.setDryWetModPointer(&(m_mod_destinations.phaser.drywet));
 	m_phaser.setFreqModPointer(&(m_mod_destinations.phaser.freq));
 	m_phaser.setFeedbackModPointer(&(m_mod_destinations.phaser.feedback));
+
 }
