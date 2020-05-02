@@ -143,7 +143,6 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts) :
 		m_SEM_fil_menu[fil].addItem(300 + 100 * fil + 4, "Filter" + std::to_string(fil + 1) + " Env Amount");
 		m_SEM_fil_menu[fil].addItem(300 + 100 * fil + 5, "Filter" + std::to_string(fil + 1) + " Vel Amount");
 		m_SEM_fil_menu[fil].addItem(300 + 100 * fil + 6, "Filter" + std::to_string(fil + 1) + " Kbd Amount");
-		m_SEM_fil_menu[fil].addItem(300 + 100 * fil + 7, "Filter" + std::to_string(fil + 1) + " Saturation");
 		m_SEM_fil_menu[fil].addItem(300 + 100 * fil + 10, "Filter" + std::to_string(fil + 1) + " SEM Transition");
 
 		// formant

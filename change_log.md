@@ -15,7 +15,9 @@
 - fixed ".odin" patches still being saved when canceling patch-saving
 - removed 12-voice option from unison
 - fixed LFO-sync button always being off on GUI-load
+- fixed reversed sawtooth icon in small GUI LFO
 - adjusted sync-time-selector font justification
+- removed saturation modulation target for OH-12 filter
 # 2.0.20 beta
 - fixed legato not being enabled before the GUI was opened
 # 2.0.19 beta
