@@ -33,166 +33,6 @@
 
 #include <cstdlib>
 
-class VoiceManager {
-public:
-	// returns free voices' index or steals some and sets them busy
-	std::vector<int> getVoices(int p_note, int p_unison) {
-
-		std::vector<int> ret;
-
-		// in legato mode every unison voice is the same
-		if (m_is_legato) {
-			for (int voice = 0; voice < p_unison; ++voice) {
-				ret.push_back(voice);
-			}
-			return ret;
-		}
-
-		// RIP note if it is in sustain
-		if (m_sustain_active) {
-			for (int voice = 0; voice < VOICES; ++voice) {
-				//check if THIS note is on kill list
-				if (m_kill_list[voice] && m_kill_list_note[voice] == p_note) {
-					// note is on sustain... remove it from kill list, reset voice and use that one
-					m_kill_list[voice] = false;
-					DBG("Note " + std::to_string(p_note) + " stole voice " + std::to_string(voice) +
-					    " out of sustain!");
-					ret.push_back(voice);
-					if (ret.size() >= p_unison) {
-						return ret;
-					}
-				}
-			}
-		}
-
-		// look for next free voices
-		for (int i = 0; i < VOICES; ++i) {
-			if (!voice_busy[i]) {
-				voice_busy[i] = true;
-				removeFromKillList(i);
-				updateVoiceHistory(i);
-				ret.push_back(i);
-				if (ret.size() >= p_unison) {
-					return ret;
-				}
-			}
-		}
-
-		// we still need voices, so we steal them
-		int voices_to_steal = p_unison - ret.size();
-		for (int steal = 0; steal < voices_to_steal; ++steal) {
-			//we update history at the end of loop, so [VOICES - 1] is different every time
-			DBG("Voice manager STOLE voice " + std::to_string(m_voice_history[VOICES - 1]));
-			removeFromKillList(m_voice_history[VOICES - 1]);
-			ret.push_back(m_voice_history[VOICES - 1]);
-			updateVoiceHistory(m_voice_history[VOICES - 1]);
-		}
-		return ret;
-	}
-
-	int getNewestVoiceIndex() {
-		return m_voice_history[0];
-	}
-
-	// marks a voice as free again
-	void freeVoice(int p_voice) {
-		voice_busy[p_voice] = false;
-		DBG("Voice manager freed voice " + std::to_string(p_voice));
-	}
-
-	void setSustainActive(bool p_active) {
-		m_sustain_active       = p_active;
-		m_sustain_active_float = p_active ? 1.f : 0.f;
-	}
-
-	bool getSustainActive() {
-		return m_sustain_active;
-	}
-
-	// adds to killlist to be killed after sustain pedal gets lifted
-	void addToKillList(int p_voice, int p_note) {
-		m_kill_list_note[p_voice] = p_note;
-		m_kill_list[p_voice]      = true;
-	}
-
-	void removeFromKillList(int p_voice) {
-		m_kill_list[p_voice] = false;
-	}
-
-	bool isOnKillList(int p_voice) {
-		return m_kill_list[p_voice];
-	}
-
-	void clearKillList() {
-		for (int voice = 0; voice < VOICES; ++voice) {
-			m_kill_list[voice] = false;
-		}
-	}
-
-	void updateVoiceHistory(int p_next_voice) {
-		int index = 0;
-		while (p_next_voice != m_voice_history[index]) {
-			++index;
-		}
-
-		// p_next_voice was at position index, move all above one down:
-		for (int voice = index; voice > 0; --voice) {
-			m_voice_history[voice] = m_voice_history[voice - 1];
-		}
-
-		// now set new as newest value:
-		m_voice_history[0] = p_next_voice;
-
-		// DBG(std::to_string(m_voice_history[0]) + " " +
-		//     std::to_string(m_voice_history[1]) + " " +
-		//     std::to_string(m_voice_history[2]) + " " +
-		//     std::to_string(m_voice_history[3]) + " " +
-		//     std::to_string(m_voice_history[4]) + " " +
-		//     std::to_string(m_voice_history[5]) + " " +
-		//     std::to_string(m_voice_history[6]) + " " +
-		//     std::to_string(m_voice_history[7]) + " " +
-		//     std::to_string(m_voice_history[8]) + " " +
-		//     std::to_string(m_voice_history[9]) + " " +
-		//     std::to_string(m_voice_history[10]) + " " +
-		//     std::to_string(m_voice_history[11]));
-	}
-
-	bool setPolyLegato(bool p_is_poly) {
-		if (m_is_legato == p_is_poly) {
-			m_is_legato = !p_is_poly;
-			return true; // value was changed
-		}
-		return false;
-	}
-
-	bool legatoEnabled(){
-		return m_is_legato;	
-	}
-
-	void reset() {
-		for (int voice = 0; voice < VOICES; ++voice) {
-			m_voice_history[voice] = voice;
-			voice_busy[voice]      = false;
-			m_kill_list[voice]     = false;
-		}
-		m_sustain_active       = false;
-		m_sustain_active_float = 0.f;
-	}
-
-	bool voice_busy[VOICES] = {0}; // is voice busy
-
-	float m_sustain_active_float = 0; //for modulation, "copy" of the bool
-protected:
-	bool m_sustain_active = false;
-
-	bool m_is_legato = false;
-	// used to determine oldest voice for stealing
-	int m_voice_history[VOICES] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 ,13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23};
-
-	bool m_kill_list[VOICES] = {0};
-	int m_kill_list_note[VOICES];
-};
-
 // one voice of the polyphonic voices, i.e. everything up to the amplifier
 struct Voice {
 
@@ -340,7 +180,7 @@ struct Voice {
 	           float p_unison_pan,
 	           float p_unison_detune,
 	           float p_unison_gain_reduction,
-			   bool p_unison_active) {
+	           bool p_unison_active) {
 		reset(p_unison_active);
 		setOscBaseFreq(MIDINoteToFreq(p_MIDI_key), MIDINoteToFreq(p_last_MIDI_key));
 		setFilterMIDIValues(p_MIDI_key, p_MIDI_velocity);
@@ -362,6 +202,7 @@ struct Voice {
 		unison_pan_position        = p_unison_pan;
 		unison_detune_position     = p_unison_detune;
 		unison_gain_reduction      = p_unison_gain_reduction;
+		m_is_in_release            = false;
 		calcUnisonDetuneFactor();
 		//DBG("Started voice");
 	}
@@ -371,10 +212,7 @@ struct Voice {
 	bool keyUp(int p_MIDI_key) {
 		if (m_MIDI_key == p_MIDI_key) {
 			//DBG("Stopping envelopes on key " + std::to_string(m_MIDI_key));
-			env[0].startRelease();
-			env[1].startRelease();
-			env[2].startRelease();
-
+			startRelease();
 			return true;
 		}
 		return false;
@@ -386,6 +224,17 @@ struct Voice {
 		env[0].startRelease();
 		env[1].startRelease();
 		env[2].startRelease();
+		m_is_in_release = true;
+	}
+
+	bool isInRelease() {
+		return m_is_in_release;
+	}
+
+	//this is needed so the voicemanager doesn't recognize this voice as 
+	//"in release" when it was added to the unison queue as "free" before the "in release" check
+	void setReleaseInactiveBeforeStart(){
+		m_is_in_release = false;
 	}
 
 	bool usesThisMIDIKey(int p_MIDI_key) {
@@ -743,6 +592,194 @@ struct Voice {
 
 	// called when the envelope ends to signal voice end to voice manager
 	// std::function<void()> onEnvelopeEnd = []() {};
+	bool m_is_in_release;
 	bool m_voice_active = false;
 	int m_MIDI_key      = 0;
+};
+
+
+class VoiceManager {
+public:
+	//voice return priority:
+	// 0. legato (fixed)
+	// 1. same key in sustain
+	// 2. free voices
+	// 3. oldest voices in release
+	// 4. oldest voices
+	std::vector<int> getVoices(int p_note, int p_unison) {
+
+		std::vector<int> ret;
+
+		// in legato mode every unison voice is the same
+		if (m_is_legato) {
+			for (int voice = 0; voice < p_unison; ++voice) {
+				ret.push_back(voice);
+			}
+			return ret;
+		}
+
+		// return note if it is in sustain (processor kills it)
+		if (m_sustain_active) {
+			for (int voice = 0; voice < VOICES; ++voice) {
+				//check if THIS note is on kill list
+				if (m_kill_list[voice] && m_kill_list_note[voice] == p_note) {
+					// note is on sustain... remove it from kill list, reset voice and use that one
+					m_kill_list[voice] = false;
+					DBG("Note " + std::to_string(p_note) + " stole voice " + std::to_string(voice) +
+					    " out of sustain!");
+					ret.push_back(voice);
+					if (ret.size() >= p_unison) {
+						return ret;
+					}
+				}
+			}
+		}
+
+		// look for free voices
+		for (int i = 0; i < VOICES; ++i) {
+			if (!voice_busy[i]) {
+				voice_busy[i] = true;
+				//so it doesn't get detected as "in release" in the next block:
+				m_actual_voice_pointers[i]->setReleaseInactiveBeforeStart();
+				removeFromKillList(i);
+				updateVoiceHistory(i);
+				ret.push_back(i);
+				if (ret.size() >= p_unison) {
+					return ret;
+				}
+			}
+		}
+
+		// look for voices in release
+		int voices_from_release = p_unison - ret.size();
+		for (int i = VOICES - 1; i >= 0; --i) {
+			if (m_actual_voice_pointers[m_voice_history[i]]->isInRelease()){
+				removeFromKillList(m_voice_history[i]);
+				ret.push_back(m_voice_history[i]);
+				updateVoiceHistory(m_voice_history[i]);
+				DBG("Stole voice " + std::to_string(m_voice_history[i]) + " out of release");
+				if (ret.size() >= p_unison) {
+					return ret;
+				}
+				// shift, since voice history was updated
+				++i;
+			}
+		}
+
+		// we still need voices, so we steal them
+		int voices_to_steal = p_unison - ret.size();
+		for (int steal = 0; steal < voices_to_steal; ++steal) {
+			//we update history at the end of loop, so [VOICES - 1] is different every time
+			DBG("Voice manager STOLE voice " + std::to_string(m_voice_history[VOICES - 1]));
+			removeFromKillList(m_voice_history[VOICES - 1]);
+			ret.push_back(m_voice_history[VOICES - 1]);
+			updateVoiceHistory(m_voice_history[VOICES - 1]);
+		}
+		return ret;
+	}
+
+	int getNewestVoiceIndex() {
+		return m_voice_history[0];
+	}
+
+	// marks a voice as free again
+	void freeVoice(int p_voice) {
+		voice_busy[p_voice] = false;
+		DBG("Voice manager freed voice " + std::to_string(p_voice));
+	}
+
+	void setSustainActive(bool p_active) {
+		m_sustain_active       = p_active;
+		m_sustain_active_float = p_active ? 1.f : 0.f;
+	}
+
+	bool getSustainActive() {
+		return m_sustain_active;
+	}
+
+	// adds to killlist to be killed after sustain pedal gets lifted
+	void addToKillList(int p_voice, int p_note) {
+		m_kill_list_note[p_voice] = p_note;
+		m_kill_list[p_voice]      = true;
+	}
+
+	void removeFromKillList(int p_voice) {
+		m_kill_list[p_voice] = false;
+	}
+
+	bool isOnKillList(int p_voice) {
+		return m_kill_list[p_voice];
+	}
+
+	void clearKillList() {
+		for (int voice = 0; voice < VOICES; ++voice) {
+			m_kill_list[voice] = false;
+		}
+	}
+
+	void updateVoiceHistory(int p_next_voice) {
+		int index = 0;
+		while (p_next_voice != m_voice_history[index]) {
+			++index;
+		}
+
+		// p_next_voice was at position index, move all above one down:
+		for (int voice = index; voice > 0; --voice) {
+			m_voice_history[voice] = m_voice_history[voice - 1];
+		}
+
+		// now set new as newest value:
+		m_voice_history[0] = p_next_voice;
+
+		// DBG(std::to_string(m_voice_history[0]) + " " +
+		//     std::to_string(m_voice_history[1]) + " " +
+		//     std::to_string(m_voice_history[2]) + " " +
+		//     std::to_string(m_voice_history[3]) + " " +
+		//     std::to_string(m_voice_history[4]) + " " +
+		//     std::to_string(m_voice_history[5]) + " " +
+		//     std::to_string(m_voice_history[6]) + " " +
+		//     std::to_string(m_voice_history[7]) + " " +
+		//     std::to_string(m_voice_history[8]) + " " +
+		//     std::to_string(m_voice_history[9]) + " " +
+		//     std::to_string(m_voice_history[10]) + " " +
+		//     std::to_string(m_voice_history[11]));
+	}
+
+	bool setPolyLegato(bool p_is_poly) {
+		if (m_is_legato == p_is_poly) {
+			m_is_legato = !p_is_poly;
+			return true; // value was changed
+		}
+		return false;
+	}
+
+	bool legatoEnabled() {
+		return m_is_legato;
+	}
+
+	void reset() {
+		for (int voice = 0; voice < VOICES; ++voice) {
+			m_voice_history[voice] = voice;
+			voice_busy[voice]      = false;
+			m_kill_list[voice]     = false;
+		}
+		m_sustain_active       = false;
+		m_sustain_active_float = 0.f;
+	}
+
+	bool voice_busy[VOICES] = {0}; // is voice busy
+
+	Voice *m_actual_voice_pointers[VOICES];
+
+	float m_sustain_active_float = 0; //for modulation, "copy" of the bool
+protected:
+	bool m_sustain_active = false;
+
+	bool m_is_legato = false;
+	// used to determine oldest voice for stealing
+	int m_voice_history[VOICES] = {0,  1,  2,  3,  4,  5,  6,  7,  8,  9,  10, 11,
+	                               12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23};
+
+	bool m_kill_list[VOICES] = {0};
+	int m_kill_list_note[VOICES];
 };

@@ -28,12 +28,6 @@ OdinAudioProcessor::OdinAudioProcessor() :
 		}
 	};
 #endif
-	// DBG("\n\n\n");
-	// double seed_freq = 27.5 / 1.09050773267;
-	// for (int table = 0; table < SUBTABLES_PER_WAVETABLE; ++table) {
-	// 	DBG(1.f / seed_freq);
-	// 	seed_freq *= 1.189207f; // minor third up
-	// }
 
 	m_is_standalone_plugin = (wrapperType == wrapperType_Standalone);
 
@@ -115,15 +109,6 @@ OdinAudioProcessor::OdinAudioProcessor() :
 	m_tree_listener_lfo4.onValueChange = [&](const String &p_ID, float p_new_value) {
 		treeValueChangedLFO4(p_ID, p_new_value);
 	};
-	// m_tree_listener_amount1.onValueChange = [&](const String &p_ID, float p_new_value) {
-	// 	treeValueChangedAmount1(p_ID, p_new_value);
-	// };
-	// m_tree_listener_amount2.onValueChange = [&](const String &p_ID, float p_new_value) {
-	// 	treeValueChangedAmount2(p_ID, p_new_value);
-	// };
-	// m_tree_listener_amount3.onValueChange = [&](const String &p_ID, float p_new_value) {
-	// 	treeValueChangedAmount3(p_ID, p_new_value);
-	// };
 	m_tree_listener_general_misc.onValueChange = [&](const String &p_ID, float p_new_value) {
 		treeValueChangedGeneralMisc(p_ID, p_new_value);
 	};
@@ -226,6 +211,7 @@ OdinAudioProcessor::OdinAudioProcessor() :
 	for (int voice = 0; voice < VOICES; ++voice) {
 		m_voice[voice].env[0].setEnvelopeEndPointers(&(m_voice[voice].m_voice_active),
 		                                             &(m_voice_manager.voice_busy[voice]));
+		m_voice_manager.m_actual_voice_pointers[voice] = &(m_voice[voice]);
 	}
 
 	// set mod sources to render from modmatrix
@@ -253,7 +239,6 @@ OdinAudioProcessor::OdinAudioProcessor() :
 
 	m_master_control = Decibels::decibelsToGain(-7.f);
 	m_master_smooth  = m_master_control;
-	//retriggerAllListeners();
 }
 
 OdinAudioProcessor::~OdinAudioProcessor() {
