@@ -60,5 +60,5 @@ double FormantFilter::doFilter(double p_input) {
 	//vol_mod_factor       = vol_mod_factor > VOL_MOD_UPPER_LIMIT ? VOL_MOD_UPPER_LIMIT : vol_mod_factor;
 	//vol_mod_factor       = vol_mod_factor > VOL_MOD_UPPER_LIMIT ? VOL_MOD_UPPER_LIMIT : vol_mod_factor;
 
-	return out /* vol_mod_factor*/ * m_samplerate_gain_compensation * FORMANT_OUTPUT_SCALAR;
+	return out * m_samplerate_gain_compensation * FORMANT_OUTPUT_SCALAR;
 }

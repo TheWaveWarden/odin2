@@ -42,7 +42,7 @@
   <PARAM id="env4_sustain" value="0.5"/>
   <PARAM id="fil1_env" value="0.0"/>
   <PARAM id="fil1_formant_transition" value="0.0"/>
-  <PARAM id="fil1_freq" value="2000.00048828125"/>
+  <PARAM id="fil1_freq" value="2000.000366210938"/>
   <PARAM id="fil1_gain" value="0.0"/>
   <PARAM id="fil1_kbd" value="0.0"/>
   <PARAM id="fil1_osc1" value="1.0"/>
@@ -57,7 +57,7 @@
   <PARAM id="fil2_env" value="0.0"/>
   <PARAM id="fil2_fil1" value="1.0"/>
   <PARAM id="fil2_formant_transition" value="0.0"/>
-  <PARAM id="fil2_freq" value="2000.00048828125"/>
+  <PARAM id="fil2_freq" value="2000.000366210938"/>
   <PARAM id="fil2_gain" value="0.0"/>
   <PARAM id="fil2_kbd" value="0.0"/>
   <PARAM id="fil2_osc1" value="0.0"/>
@@ -71,7 +71,7 @@
   <PARAM id="fil2_vel" value="0.0"/>
   <PARAM id="fil3_env" value="0.0"/>
   <PARAM id="fil3_formant_transition" value="0.0"/>
-  <PARAM id="fil3_freq" value="2000.00048828125"/>
+  <PARAM id="fil3_freq" value="2000.000366210938"/>
   <PARAM id="fil3_gain" value="0.0"/>
   <PARAM id="fil3_kbd" value="0.0"/>
   <PARAM id="fil3_res" value="0.0"/>

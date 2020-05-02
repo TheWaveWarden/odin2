@@ -8,8 +8,8 @@
 
 #include <cmath>
 
-#define FILTER_FC_MIN 40        // 80Hz
-#define FILTER_FC_MAX 18000     // 18kHz
+#define FILTER_FC_MIN 20        // 80Hz
+#define FILTER_FC_MAX 20000     // 18kHz
 #define FILTER_FC_DEFAULT 10000 // 10kHz
 #define FILTER_Q_DEFAULT 0.707  // Butterworth
 #define FILTER_ENV_MOD_SEMITONES_MAX 64

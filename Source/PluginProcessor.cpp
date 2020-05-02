@@ -1022,6 +1022,7 @@ void OdinAudioProcessor::midiNoteOn(int p_midi_note, int p_midi_velocity) {
 		    p_midi_velocity,
 		    m_last_midi_note,
 		    m_unison_pan_positions[unison_voices][unison_counter],
+			//we "shuffle" pan positions around to get detune positions:
 		    m_unison_pan_positions[unison_voices][m_unison_detune_positions[unison_voices][unison_counter]],
 		    m_unison_gain_factors[unison_voices],
 		    unison_voices > 1);
