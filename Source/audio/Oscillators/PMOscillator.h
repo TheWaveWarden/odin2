@@ -18,7 +18,7 @@ public:
   void loadWavetables();
 
   void randomizePhase() override {
-		//todo
+    m_carrier_osc.randomizePhase();
 	}
 
   void setSampleRate(float p_sr) override {

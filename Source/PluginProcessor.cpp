@@ -1012,9 +1012,6 @@ void OdinAudioProcessor::midiNoteOn(int p_midi_note, int p_midi_velocity) {
 		    m_unison_gain_factors[unison_voices],
 		    unison_voices > 1);
 		DBG("NoteOn,  key " + std::to_string(p_midi_note) + ", voice " + std::to_string(new_voice));
-		DBG("Pan: " + std::to_string(m_unison_pan_positions[unison_voices][unison_counter]) + ", Detune: " +
-		    std::to_string(
-		        m_unison_pan_positions[unison_voices][m_unison_detune_positions[unison_voices][unison_counter]]));
 		//if (m_voice_manager.legatoEnabled()) {
 		//m_voice[new_voice].amp.setMIDIVelocityLegato(p_midi_velocity);
 		//} else {

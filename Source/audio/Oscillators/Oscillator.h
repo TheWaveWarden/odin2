@@ -135,6 +135,7 @@ public:
 	virtual void randomizePhase() = 0;
 
 public:
+
 	bool m_reset_flag      = false; // this is used by other oscs to know when to sync
 	float m_reset_position = 0.f;   //this is used by other oscs to know which pos to sync to
 

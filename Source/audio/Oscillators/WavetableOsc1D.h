@@ -22,9 +22,7 @@ public:
   };
 
   virtual void randomizePhase() override {
-    float white_noise = (float)rand();
-	  m_read_index = white_noise / (float)RAND_MAX * WAVETABLE_LENGTH;
-  //  DBG("WT_RANDO PHAASE");
+	  m_read_index = (float)rand() / (float)RAND_MAX * WAVETABLE_LENGTH;
   }
 
   WavetableOsc1D();

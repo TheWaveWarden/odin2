@@ -539,9 +539,7 @@ struct Voice {
 	// this needs to be calculated when unison_detune_position has changed (voice start)
 	// or when the uniston detune amount has changed and the voice is active
 	void calcUnisonDetuneFactor() {
-		DBG("pos: " + std::to_string(unison_detune_position) + ", amount: " + std::to_string(unison_detune_amount));
 		unison_detune_factor = pow(2.f, unison_detune_position * unison_detune_amount / 12.f);
-		DBG("UDF: " + std::to_string(unison_detune_factor));
 	}
 
 	// oscs

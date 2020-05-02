@@ -16,11 +16,8 @@ public:
 
 	void randomizePhase(){
 		for(int osc = 0; osc < OSCS_PER_MULTIOSC; ++osc){
-			float white_noise = (float)rand();
-	  		m_read_index_multi[osc] = white_noise / (float)RAND_MAX * WAVETABLE_LENGTH;
+	  		m_read_index_multi[osc] = (float)rand() / (float)RAND_MAX * WAVETABLE_LENGTH;
 		}
-
-		DBG("MULTI RANDO PHASE");
 	}
 
 	inline void setPosition(float p_position){
