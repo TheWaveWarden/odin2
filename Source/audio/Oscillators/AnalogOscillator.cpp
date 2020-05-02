@@ -39,10 +39,10 @@ float AnalogOscillator::doOscillate() {
     jassert(m_samplerate > 0);
 
 	if (m_wavetable_index != 1) {
-		return doWavetable();// * vol_mod_factor;
+		return doWavetable();
 	}
 
-	return doSquare();// * vol_mod_factor;
+	return doSquare();
 }
 
 float AnalogOscillator::doSquare() {

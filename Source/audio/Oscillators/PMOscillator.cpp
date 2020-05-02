@@ -44,8 +44,6 @@ void PMOscillator::update() {
 	// pm_amount_modded = pm_amount_modded < 0 ? 0 : pm_amount_modded;
 
 	// set mod and update
-	// m_carrier_osc.m_mod_freq_lin = mod_value * 3 * m_osc_freq_base *
-	// pm_amount_modded;
 	m_carrier_osc.setPhaseMod(pm_amount_modded * mod_value);
 	m_carrier_osc.update();
 }
@@ -58,10 +56,7 @@ void PMOscillator::reset() {
 float PMOscillator::doOscillate() {
     jassert(m_samplerate > 0);
 
-	//float vol_mod_factor = (*m_vol_mod) > 0 ? 1.f + 4 * (*m_vol_mod) : (1.f + *m_vol_mod);
-	//vol_mod_factor       = vol_mod_factor > VOL_MOD_UPPER_LIMIT ? VOL_MOD_UPPER_LIMIT : vol_mod_factor;
-
-	float out = m_carrier_osc.doOscillate();// * vol_mod_factor;
+	float out = m_carrier_osc.doOscillate();
 
 	m_reset_flag = m_carrier_osc.m_reset_flag;
 	if (m_reset_flag) {

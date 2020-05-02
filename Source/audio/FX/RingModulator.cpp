@@ -16,14 +16,11 @@ RingModulator::RingModulator() {
 float RingModulator::doRingModulator(float p_input) {
     jassert(m_samplerate > 0);
 
-	//float vol_mod_factor = (*m_vol_mod) > 0 ? 1.f + 4 * (*m_vol_mod) : (1.f + *m_vol_mod);
-	//vol_mod_factor       = vol_mod_factor > VOL_MOD_UPPER_LIMIT ? VOL_MOD_UPPER_LIMIT : vol_mod_factor;
-
 	float amount_modded = m_amount + *m_ringmod_amount_mod;
 	amount_modded       = amount_modded > 1 ? 1 : amount_modded;
 	amount_modded       = amount_modded < 0 ? 0 : amount_modded;
 
-	return p_input * (doOscillate() * amount_modded + (1.f - amount_modded));// * vol_mod_factor;
+	return p_input * (doOscillate() * amount_modded + (1.f - amount_modded));
 }
 
 void RingModulator::reset() {

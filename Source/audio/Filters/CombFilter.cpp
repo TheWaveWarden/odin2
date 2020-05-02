@@ -47,10 +47,7 @@ float CombFilter::doFilter(float p_input) {
 	circular_buffer[m_write_index] = p_input + output * feedback_modded * m_positive_comb;
 	incWriteIndex();
 
-	//float vol_mod_factor = (*m_vol_mod) > 0 ? 1.f + 4 * (*m_vol_mod) : (1.f + *m_vol_mod);
-	//vol_mod_factor       = vol_mod_factor > VOL_MOD_UPPER_LIMIT ? VOL_MOD_UPPER_LIMIT : vol_mod_factor;
-
-	float ret = (p_input + output) * 0.5f;// * vol_mod_factor;
+	float ret = (p_input + output) * 0.5f;
 	m_DC_blocking_filter.doFilter(ret);
 	return ret;
 }

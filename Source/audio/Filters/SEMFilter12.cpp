@@ -72,10 +72,7 @@ double SEMFilter12::doFilter(double xn) {
 		xn = transition_modded * hpf + (1 - transition_modded) * bsf;
 	}
 
-	//float vol_mod_factor = (*m_vol_mod) > 0 ? 1.f + 4 * (*m_vol_mod) : (1.f + *m_vol_mod);
-	//vol_mod_factor       = vol_mod_factor > VOL_MOD_UPPER_LIMIT ? VOL_MOD_UPPER_LIMIT : vol_mod_factor;
-
-	return xn;// * vol_mod_factor;
+	return xn;
 }
 
 void SEMFilter12::setResControl(double p_res) {

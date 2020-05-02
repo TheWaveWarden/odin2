@@ -96,10 +96,7 @@ double Korg35Filter::doFilter(double xn) {
 	// make this one a bit easier (3.f), its very aggresive
 	applyOverdrive(y, 3.f);
 
-	//float vol_mod_factor = (*m_vol_mod) > 0 ? 1.f + 4 * (*m_vol_mod) : (1.f + *m_vol_mod);
-	//vol_mod_factor       = vol_mod_factor > VOL_MOD_UPPER_LIMIT ? VOL_MOD_UPPER_LIMIT : vol_mod_factor;
-
-	return y;// * vol_mod_factor;
+	return y;
 }
 
 void Korg35Filter::setResControl(double res) {

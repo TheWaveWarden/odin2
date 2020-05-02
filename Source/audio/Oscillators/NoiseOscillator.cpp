@@ -27,10 +27,7 @@ float NoiseOscillator::doNoise() {
 	white_noise = m_lowpass.doFilter(white_noise);
 	white_noise = m_highpass.doFilter(white_noise);
 
-	//float vol_mod_factor = (*m_vol_mod) > 0 ? 1.f + 4 * (*m_vol_mod) : (1.f + *m_vol_mod);
-	//vol_mod_factor       = vol_mod_factor > VOL_MOD_UPPER_LIMIT ? VOL_MOD_UPPER_LIMIT : vol_mod_factor;
-
-	return white_noise;// * vol_mod_factor;
+	return white_noise;
 }
 
 void NoiseOscillator::setFilterFreqs(float p_lowpass_freq, float p_highpass_freq) {

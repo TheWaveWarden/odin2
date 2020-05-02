@@ -16,13 +16,10 @@ ChiptuneOscillator::~ChiptuneOscillator() {
 float ChiptuneOscillator::doOscillate() {
     jassert(m_samplerate > 0);
 
-	//float vol_mod_factor = (*m_vol_mod) > 0 ? 1.f + 4 * (*m_vol_mod) : (1.f + *m_vol_mod);
-	//vol_mod_factor       = vol_mod_factor > VOL_MOD_UPPER_LIMIT ? VOL_MOD_UPPER_LIMIT : vol_mod_factor;
-
 	if (m_generate_noise) {
-		return generateChipNoise() * m_volume_factor;// * vol_mod_factor;
+		return generateChipNoise() * m_volume_factor;
 	} else {
-		return doWavetable() * m_volume_factor;// * vol_mod_factor;
+		return doWavetable() * m_volume_factor;
 	}
 }
 

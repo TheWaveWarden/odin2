@@ -65,10 +65,7 @@ void FMOscillator::reset() {
 float FMOscillator::doOscillate() {
     jassert(m_samplerate > 0);
 
-	//float vol_mod_factor = (*m_vol_mod) > 0 ? 1.f + 4 * (*m_vol_mod) : (1.f + *m_vol_mod);
-	//vol_mod_factor       = vol_mod_factor > VOL_MOD_UPPER_LIMIT ? VOL_MOD_UPPER_LIMIT : vol_mod_factor;
-
-	float out = m_carrier_osc.doOscillate();// * vol_mod_factor;
+	float out = m_carrier_osc.doOscillate();
 
 	m_reset_flag = m_carrier_osc.m_reset_flag;
 	if (m_reset_flag) {
@@ -77,17 +74,3 @@ float FMOscillator::doOscillate() {
 
 	return out;
 }
-
-// void FMOscillator::startOscillator(){
-// always reset this one to avoid unpredictable behaviour
-// reset();
-// m_note_on = true;
-// m_carrier_osc.startOscillator();
-// m_modulator_osc.startOscillator();
-//}
-
-// void FMOscillator::stopOscillator(){
-//    //m_note_on = false;
-//    m_carrier_osc.stopOscillator();
-//    m_modulator_osc.stopOscillator();
-//}

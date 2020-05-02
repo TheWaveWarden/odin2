@@ -162,12 +162,7 @@ public:
 
     applyOverdrive(output);
 
-    // float vol_mod_factor =
-    //     (*m_vol_mod) > 0 ? 1.f + 4 * (*m_vol_mod) : (1.f + *m_vol_mod);
-    // vol_mod_factor = vol_mod_factor > VOL_MOD_UPPER_LIMIT ? VOL_MOD_UPPER_LIMIT
-    //                                                       : vol_mod_factor;
-
-    return output;// * vol_mod_factor;
+    return output;
   }
 
   inline void setFilterType(int p_filtertype) {
