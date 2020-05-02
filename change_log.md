@@ -6,7 +6,8 @@
 - Clicking the patch-display now reveals a list of patches in the same folder
 - patch-display now has up and down button to browse through patches in same folder
 - now applying random phase at note start when using unison or multiosc (overwritten by osc-reset)
-- changed Range for main filters to [20Hz,20kHz] 
+- changed Range for main filters to [20Hz,20kHz]
+- fixed issue where FM-osc moddepth was dependent on pitch-controls 
 - fixed FM carrier ratio not being loaded
 - fixed FM modulator ratio not being loaded
 - fixed pitchbend amount not being loaded
