@@ -2,6 +2,7 @@
 - lowered minimum value for oscs and filters to -inf dB
 - reworked how volume- and modulation works for osc-vol, filter-gain, amp-gain and master-gain
 - increased number of voices from 12 to 24
+- updated voicing priority: voices in release are prioritized when stealing notes
 - Clicking the patch-display now reveals a list of patches in the same folder
 - patch-display now has up and down button to browse through patches in same folder
 - now applying random phase at note start when using unison or multiosc (overwritten by osc-reset)
