@@ -15,6 +15,7 @@
 - fixed ".odin" file still being saved when canceling patch-saving
 - fixed Decay and Release parameters not automatically updating after change in samplerate
 - removed 12-voice option from unison
+- removed "Poly Aftertouch" from modulation sources
 - fixed LFO-sync button always being off on GUI-load
 - fixed reversed sawtooth icon in small GUI LFO
 - adjusted sync-time-selector font justification
