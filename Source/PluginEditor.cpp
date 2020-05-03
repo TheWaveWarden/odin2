@@ -1334,129 +1334,129 @@ bool OdinAudioProcessorEditor::keyStateChanged(bool isKeyDown, Component *origin
 		if (KeyPress::isKeyCurrentlyDown(65) != m_A_down) {
 			m_A_down = KeyPress::isKeyCurrentlyDown(65);
 			if (m_A_down) {
-				processor.midiNoteOn(48 + m_octave_shift * 12, 100);
+				processor.handleMidiNoteOn(48 + m_octave_shift * 12, 100);
 			} else {
-				processor.midiNoteOff(48 + m_octave_shift * 12);
+				processor.handleMidiNoteOff(48 + m_octave_shift * 12);
 			}
 		}
 		if (KeyPress::isKeyCurrentlyDown(87) != m_W_down) {
 			m_W_down = KeyPress::isKeyCurrentlyDown(87);
 			if (m_W_down) {
-				processor.midiNoteOn(49 + m_octave_shift * 12, 100);
+				processor.handleMidiNoteOn(49 + m_octave_shift * 12, 100);
 			} else {
-				processor.midiNoteOff(49 + m_octave_shift * 12);
+				processor.handleMidiNoteOff(49 + m_octave_shift * 12);
 			}
 		}
 		if (KeyPress::isKeyCurrentlyDown(83) != m_S_down) {
 			m_S_down = KeyPress::isKeyCurrentlyDown(83);
 			if (m_S_down) {
-				processor.midiNoteOn(50 + m_octave_shift * 12, 100);
+				processor.handleMidiNoteOn(50 + m_octave_shift * 12, 100);
 			} else {
-				processor.midiNoteOff(50 + m_octave_shift * 12);
+				processor.handleMidiNoteOff(50 + m_octave_shift * 12);
 			}
 		}
 		if (KeyPress::isKeyCurrentlyDown(69) != m_E_down) {
 			m_E_down = KeyPress::isKeyCurrentlyDown(69);
 			if (m_E_down) {
-				processor.midiNoteOn(51 + m_octave_shift * 12, 100);
+				processor.handleMidiNoteOn(51 + m_octave_shift * 12, 100);
 			} else {
-				processor.midiNoteOff(51 + m_octave_shift * 12);
+				processor.handleMidiNoteOff(51 + m_octave_shift * 12);
 			}
 		}
 		if (KeyPress::isKeyCurrentlyDown(68) != m_D_down) {
 			m_D_down = KeyPress::isKeyCurrentlyDown(68);
 			if (m_D_down) {
-				processor.midiNoteOn(52 + m_octave_shift * 12, 100);
+				processor.handleMidiNoteOn(52 + m_octave_shift * 12, 100);
 			} else {
-				processor.midiNoteOff(52 + m_octave_shift * 12);
+				processor.handleMidiNoteOff(52 + m_octave_shift * 12);
 			}
 		}
 		if (KeyPress::isKeyCurrentlyDown(70) != m_F_down) {
 			m_F_down = KeyPress::isKeyCurrentlyDown(70);
 			if (m_F_down) {
-				processor.midiNoteOn(53 + m_octave_shift * 12, 100);
+				processor.handleMidiNoteOn(53 + m_octave_shift * 12, 100);
 			} else {
-				processor.midiNoteOff(53 + m_octave_shift * 12);
+				processor.handleMidiNoteOff(53 + m_octave_shift * 12);
 			}
 		}
 		if (KeyPress::isKeyCurrentlyDown(84) != m_T_down) {
 			m_T_down = KeyPress::isKeyCurrentlyDown(84);
 			if (m_T_down) {
-				processor.midiNoteOn(54 + m_octave_shift * 12, 100);
+				processor.handleMidiNoteOn(54 + m_octave_shift * 12, 100);
 			} else {
-				processor.midiNoteOff(54 + m_octave_shift * 12);
+				processor.handleMidiNoteOff(54 + m_octave_shift * 12);
 			}
 		}
 		if (KeyPress::isKeyCurrentlyDown(71) != m_G_down) {
 			m_G_down = KeyPress::isKeyCurrentlyDown(71);
 			if (m_G_down) {
-				processor.midiNoteOn(55 + m_octave_shift * 12, 100);
+				processor.handleMidiNoteOn(55 + m_octave_shift * 12, 100);
 			} else {
-				processor.midiNoteOff(55 + m_octave_shift * 12);
+				processor.handleMidiNoteOff(55 + m_octave_shift * 12);
 			}
 		}
 		if (KeyPress::isKeyCurrentlyDown(90) != m_Z_down) {
 			m_Z_down = KeyPress::isKeyCurrentlyDown(90);
 			if (m_Z_down) {
-				processor.midiNoteOn(56 + m_octave_shift * 12, 100);
+				processor.handleMidiNoteOn(56 + m_octave_shift * 12, 100);
 			} else {
-				processor.midiNoteOff(56 + m_octave_shift * 12);
+				processor.handleMidiNoteOff(56 + m_octave_shift * 12);
 			}
 		}
 		if (KeyPress::isKeyCurrentlyDown(72) != m_H_down) {
 			m_H_down = KeyPress::isKeyCurrentlyDown(72);
 			if (m_H_down) {
-				processor.midiNoteOn(57 + m_octave_shift * 12, 100);
+				processor.handleMidiNoteOn(57 + m_octave_shift * 12, 100);
 			} else {
-				processor.midiNoteOff(57 + m_octave_shift * 12);
+				processor.handleMidiNoteOff(57 + m_octave_shift * 12);
 			}
 		}
 		if (KeyPress::isKeyCurrentlyDown(85) != m_U_down) {
 			m_U_down = KeyPress::isKeyCurrentlyDown(85);
 			if (m_U_down) {
-				processor.midiNoteOn(58 + m_octave_shift * 12, 100);
+				processor.handleMidiNoteOn(58 + m_octave_shift * 12, 100);
 			} else {
-				processor.midiNoteOff(58 + m_octave_shift * 12);
+				processor.handleMidiNoteOff(58 + m_octave_shift * 12);
 			}
 		}
 		if (KeyPress::isKeyCurrentlyDown(74) != m_J_down) {
 			m_J_down = KeyPress::isKeyCurrentlyDown(74);
 			if (m_J_down) {
-				processor.midiNoteOn(59 + m_octave_shift * 12, 100);
+				processor.handleMidiNoteOn(59 + m_octave_shift * 12, 100);
 			} else {
-				processor.midiNoteOff(59 + m_octave_shift * 12);
+				processor.handleMidiNoteOff(59 + m_octave_shift * 12);
 			}
 		}
 		if (KeyPress::isKeyCurrentlyDown(75) != m_K_down) {
 			m_K_down = KeyPress::isKeyCurrentlyDown(75);
 			if (m_K_down) {
-				processor.midiNoteOn(60 + m_octave_shift * 12, 100);
+				processor.handleMidiNoteOn(60 + m_octave_shift * 12, 100);
 			} else {
-				processor.midiNoteOff(60 + m_octave_shift * 12);
+				processor.handleMidiNoteOff(60 + m_octave_shift * 12);
 			}
 		}
 		if (KeyPress::isKeyCurrentlyDown(79) != m_O_down) {
 			m_O_down = KeyPress::isKeyCurrentlyDown(79);
 			if (m_O_down) {
-				processor.midiNoteOn(61 + m_octave_shift * 12, 100);
+				processor.handleMidiNoteOn(61 + m_octave_shift * 12, 100);
 			} else {
-				processor.midiNoteOff(61 + m_octave_shift * 12);
+				processor.handleMidiNoteOff(61 + m_octave_shift * 12);
 			}
 		}
 		if (KeyPress::isKeyCurrentlyDown(76) != m_L_down) {
 			m_L_down = KeyPress::isKeyCurrentlyDown(76);
 			if (m_L_down) {
-				processor.midiNoteOn(62 + m_octave_shift * 12, 100);
+				processor.handleMidiNoteOn(62 + m_octave_shift * 12, 100);
 			} else {
-				processor.midiNoteOff(62 + m_octave_shift * 12);
+				processor.handleMidiNoteOff(62 + m_octave_shift * 12);
 			}
 		}
 		if (KeyPress::isKeyCurrentlyDown(80) != m_P_down) {
 			m_P_down = KeyPress::isKeyCurrentlyDown(80);
 			if (m_P_down) {
-				processor.midiNoteOn(63 + m_octave_shift * 12, 100);
+				processor.handleMidiNoteOn(63 + m_octave_shift * 12, 100);
 			} else {
-				processor.midiNoteOff(63 + m_octave_shift * 12);
+				processor.handleMidiNoteOff(63 + m_octave_shift * 12);
 			}
 		}
 	}
@@ -1468,7 +1468,7 @@ void OdinAudioProcessorEditor::allMidiKeysOff() {
 	// but it gets the job done and is called every moon :-)
 	// (gets called only for (PC-)keyboard octave change)
 	for (int note = 0; note < 127; ++note) {
-		processor.midiNoteOff(note);
+		processor.handleMidiNoteOff(note);
 	}
 }
 

@@ -332,42 +332,8 @@ bool OdinAudioProcessor::isBusesLayoutSupported(const BusesLayout &layouts) cons
 
 void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &midiMessages) {
 
-	//DBG("Modmatrix: " + std::to_string((float)GETAUDIO("amount_1_row_0")));
-	//DBG("Attack: " + std::to_string((float)GETAUDIO("env2_attack")));
-	// for (int sample = 0; sample < buffer.getNumSamples(); ++sample) {
-	// 	midiMessages.addEvent(MidiMessage(160, 64, 127), sample);
-	// }
-
 	//avoid denormals
-	//https://forum.juce.com/t/state-of-the-art-denormal-prevention/16802
 	denormals::ScopedNoDenormals snd;
-
-	//todo remove clock
-	//std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
-
-#ifdef ODIN_PROFILING
-	if (m_profiling_counter == 0) {
-		//load patch
-		File file_to_read("E:\\odinvst\\benchmark_patch.odin");
-		FileInputStream file_stream(file_to_read);
-
-		//read tree from file
-		m_value_tree.replaceState(ValueTree::readFromStream(file_stream));
-
-		//reattach the non_param listeners
-		attachNonParamListeners();
-
-		//retrigger all listeners to distribute values to DSP engine
-		//retriggerAllListeners();
-
-		//start all voices
-		for (int voice = 0; voice < VOICES; ++voice) {
-			//midiNoteOn(30 + 8 * voice, 100);
-		}
-
-		DBG("start profiling");
-	}
-#endif
 
 	// get BPM info from host
 	if (AudioPlayHead *playhead = getPlayHead()) {
@@ -392,14 +358,17 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 	// loop over samples
 	for (int sample = 0; sample < buffer.getNumSamples(); ++sample) {
 
-#ifdef ODIN_PROFILING
-		if (++m_profiling_counter == PROFILING_SAMPLES) {
-			DBG("end profiling");
-			for (int voice = 0; voice < VOICES; ++voice) {
-				midiNoteOff(30 + 8 * voice);
+		// do Arpeggiator
+		if(m_arpeggiator_on){
+			auto note = m_arpeggiator.getNoteOns();
+			if(note.first != -1){
+				midiNoteOn(note.first, note.second);
+			}
+			auto off_notes = m_arpeggiator.getNoteOffs();
+			for(auto note : off_notes){
+				midiNoteOff(note);
 			}
 		}
-#endif
 
 		//============================================================
 		//======================= SMOOTHING ==========================
@@ -930,6 +899,7 @@ void OdinAudioProcessor::setSampleRate(float p_samplerate) {
 	m_phaser.setSampleRate(p_samplerate);
 	m_global_env.setSampleRate(p_samplerate);
 	m_global_lfo.setSampleRate(p_samplerate);
+	m_arpeggiator.setSampleRate(p_samplerate);
 }
 
 void OdinAudioProcessor::initializeModules() {
@@ -974,6 +944,23 @@ void OdinAudioProcessor::checkEndGlobalEnvelope() {
 	m_global_env.startRelease();
 	//DBG("kill global env");
 }
+
+void OdinAudioProcessor::handleMidiNoteOn(int p_midi_note, int p_midi_velocity){
+	if(m_arpeggiator_on){
+		m_arpeggiator.midiNoteOn(p_midi_note, p_midi_velocity);
+	} else {
+		midiNoteOn(p_midi_note, p_midi_velocity);
+	}
+}
+
+void OdinAudioProcessor::handleMidiNoteOff(int p_midi_note){
+	if(m_arpeggiator_on){
+		m_arpeggiator.midiNoteOff(p_midi_note);
+	} else {
+		midiNoteOff(p_midi_note);
+	}
+}
+
 
 void OdinAudioProcessor::midiNoteOn(int p_midi_note, int p_midi_velocity) {
 
