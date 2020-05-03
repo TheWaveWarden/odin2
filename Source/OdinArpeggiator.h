@@ -39,24 +39,22 @@ private:
     std::pair<int, int> transpose(std::pair<int, int> note, int p_ocatve);
 
 	bool m_sequence_steps_on[NUMBER_SEQUENCE_STEPS] = {
-	    true, true, false, true, true, false, true, true, false, true, true, false, true, false, true, false};
+	    true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true};
 
     std::vector<std::pair<int, int>> m_active_keys_and_velocities = {};
     std::vector<int> m_sustain_kill_list = {};
 
-    double m_time_since_last_note = 0.;
 	double m_samplerate          = -1;
 	double m_one_over_samplerate = -1;
     double m_BPM;
     bool m_sustain_active = false;
     bool m_start_pattern = false;
 
-
     //algorithm parameters
-    int m_octaves = 1;
+    int m_octaves = 2;
     int m_max_sequence_steps = NUMBER_SEQUENCE_STEPS;
     float m_arp_time = 0.3;
-    float m_gate = 0.5;
+    float m_gate = 0.8;
     ArpPattern m_pattern = ArpPattern::UpAndDown;
 
     //temp parametes
@@ -64,4 +62,5 @@ private:
     std::vector<std::pair<int, float>> m_playing_notes;//note, timer
     int m_current_arp_index = -1;
     int m_current_sequence_index = -1;
+    double m_time_since_last_note = 0.;
 };
