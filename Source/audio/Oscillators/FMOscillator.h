@@ -18,7 +18,6 @@ public:
 	void loadWavetables();
 	
 	void randomizePhase() override {
-		//todo
 		m_carrier_osc.randomizePhase();
 		m_modulator_osc.randomizePhase();
 	}

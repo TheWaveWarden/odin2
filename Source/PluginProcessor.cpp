@@ -332,18 +332,9 @@ bool OdinAudioProcessor::isBusesLayoutSupported(const BusesLayout &layouts) cons
 
 void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &midiMessages) {
 
-	//DBG("Modmatrix: " + std::to_string((float)GETAUDIO("amount_1_row_0")));
-	//DBG("Attack: " + std::to_string((float)GETAUDIO("env2_attack")));
-	// for (int sample = 0; sample < buffer.getNumSamples(); ++sample) {
-	// 	midiMessages.addEvent(MidiMessage(160, 64, 127), sample);
-	// }
-
 	//avoid denormals
 	//https://forum.juce.com/t/state-of-the-art-denormal-prevention/16802
 	denormals::ScopedNoDenormals snd;
-
-	//todo remove clock
-	//std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
 
 #ifdef ODIN_PROFILING
 	if (m_profiling_counter == 0) {
