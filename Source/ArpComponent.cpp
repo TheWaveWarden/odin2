@@ -43,7 +43,7 @@ void ArpComponent::setGUIBig() {
 	m_GUI_big = true;
 	for (int step = 0; step < NUMBER_OF_STEPS; ++step) {
 
-		m_steps[step].setBounds(STEP_COMPONENT_POS_X + step * STEP_COMPONENT_WIDTH,
+	m_steps[step].setBounds(STEP_COMPONENT_POS_X + step * STEP_COMPONENT_WIDTH,
 		                       STEP_COMPONENT_POS_Y,
 		                       STEP_COMPONENT_WIDTH,
 		                       STEP_COMPONENT_HEIGHT);

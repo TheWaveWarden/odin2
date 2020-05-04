@@ -19,6 +19,10 @@
             file="Graphics/cropped/analog_knob_cropped.png"/>
       <FILE id="FU7Kyv" name="analog_knob_cropped_150.png" compile="0" resource="1"
             file="Graphics_150/cropped/analog_knob_cropped_150.png"/>
+      <FILE id="fJcZFK" name="Arp_LED_1_150.png" compile="0" resource="1"
+            file="Graphics_150/cropped/buttons/Arp_LED_1_150.png"/>
+      <FILE id="lhKPd9" name="Arp_LED_2_150.png" compile="0" resource="1"
+            file="Graphics_150/cropped/buttons/Arp_LED_2_150.png"/>
       <FILE id="otbqLv" name="black_knob_big.png" compile="0" resource="1"
             file="Graphics/cropped/knobs/black4/black_knob_big.png"/>
       <FILE id="vy2NvY" name="black_knob_big_150.png" compile="0" resource="1"
@@ -1460,6 +1464,7 @@
         <FILE id="yhSMDf" name="OdinConstants.h" compile="0" resource="0" file="Source/audio/OdinConstants.h"/>
       </GROUP>
       <GROUP id="{67642AFD-C38A-0B04-08CB-62632A5DEA0B}" name="GUI">
+        <FILE id="ZCPPsQ" name="StepLED.h" compile="0" resource="0" file="Source/StepLED.h"/>
         <FILE id="bch2qp" name="StepComponent.h" compile="0" resource="0" file="Source/StepComponent.h"/>
         <FILE id="bzNw3u" name="StepComponent.cpp" compile="1" resource="0"
               file="Source/StepComponent.cpp"/>

@@ -30,10 +30,12 @@ StepComponent::StepComponent() : m_step_on("step_on", juce::DrawableButton::Butt
 	m_step_on.setTooltip("TODO");
 	m_step_on.setTriggeredOnMouseDown(true);
 	m_step_on.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
-
 	m_step_on.onClick = [&](){
 		DBG((float)m_step_on.getToggleState());
 	};
+
+	addAndMakeVisible(m_led);
+	
 
 	//TODO REMOVE
 	m_mod.setRange(-1, 1);
@@ -52,6 +54,9 @@ void StepComponent::resized() {
 }
 
 void StepComponent::setGUIBig() {
+	m_led.setGUIBig();
+	m_led.setTopLeftPosition(STEP_LED_POS_X, STEP_LED_POS_Y);
+
 	juce::Image black_knob_small =
 	    ImageCache::getFromMemory(BinaryData::black_knob_small_150_png, BinaryData::black_knob_small_150_pngSize);
 	m_mod.setStrip(black_knob_small, N_KNOB_FRAMES);
