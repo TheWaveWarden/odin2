@@ -59,6 +59,14 @@
             file="Graphics/cropped/BP24_knobs_cropped.png"/>
       <FILE id="mpjrXy" name="BP24_knobs_cropped_150.png" compile="0" resource="1"
             file="Graphics_150/cropped/BP24_knobs_cropped_150.png"/>
+      <FILE id="EJ0zyn" name="button_arp_step_1_150.png" compile="0" resource="1"
+            file="Graphics_150/cropped/buttons/button_arp_step_1_150.png"/>
+      <FILE id="s9m9YF" name="button_arp_step_2_150.png" compile="0" resource="1"
+            file="Graphics_150/cropped/buttons/button_arp_step_2_150.png"/>
+      <FILE id="d2e20a" name="button_arp_step_3_150.png" compile="0" resource="1"
+            file="Graphics_150/cropped/buttons/button_arp_step_3_150.png"/>
+      <FILE id="Qa5heV" name="button_arp_step_4_150.png" compile="0" resource="1"
+            file="Graphics_150/cropped/buttons/button_arp_step_4_150.png"/>
       <FILE id="nfO9Sm" name="button1_1.png" compile="0" resource="1" file="Graphics/cropped/buttons/button1_1.png"/>
       <FILE id="TpwY9q" name="button1_1_150.png" compile="0" resource="1"
             file="Graphics_150/cropped/buttons/button1_1_150.png"/>
