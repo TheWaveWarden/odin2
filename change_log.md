@@ -1,20 +1,21 @@
 # 2.0.21 beta
-- lowered minimum value for oscs and filters to -inf dB
-- reworked how volume- and modulation works for osc-vol, filter-gain, amp-gain and master-gain
 - increased number of voices from 12 to 24
-- updated voicing priority: voices in release are prioritized when stealing notes
-- Clicking the patch-display now reveals a list of patches in the same folder
 - patch-display now has up and down button to browse through patches in same folder
+- clicking the patch-display now reveals a list of patches in the same folder
+- reworked how volume- and modulation works for osc-vol, filter-gain, amp-gain and master-gain
+- updated voicing priority: voices in release are prioritized when stealing notes
 - now applying random phase at note start when using unison or multiosc (overwritten by osc-reset)
-- changed Range for main filters to [20Hz,20kHz]
-- fixed issue where FM-osc moddepth was dependent on pitch-controls 
+- changed range for volume of oscs and filters to [-Inf dB, 12dB]
+- changed range for main filters to [20Hz,20kHz]
 - fixed FM carrier ratio not being loaded
 - fixed FM modulator ratio not being loaded
 - fixed pitchbend amount not being loaded
-- FM carrier ratio, FM modulator ratio and pitchbend amount are no longer modulatable by the DAW
-- fixed ".odin" patches still being saved when canceling patch-saving
+- FM carrier ratio, FM modulator ratio and pitchbend amount are no longer modulatable by the host
+- fixed issue where FM-osc moddepth was dependent on pitch-controls
+- fixed ".odin" file still being saved when canceling patch-saving
 - fixed Decay and Release parameters not automatically updating after change in samplerate
 - removed 12-voice option from unison
+- removed "Poly Aftertouch" from modulation sources
 - fixed LFO-sync button always being off on GUI-load
 - fixed reversed sawtooth icon in small GUI LFO
 - adjusted sync-time-selector font justification
