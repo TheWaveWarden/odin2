@@ -1,3 +1,5 @@
+# 2.0.22 beta
+- fixed issue where wave-/chip-/spec-draw oscs used default waveform before opening the GUI in some hosts
 # 2.0.21 beta
 - increased number of voices from 12 to 24
 - patch-display now has up and down button to browse through patches in same folder

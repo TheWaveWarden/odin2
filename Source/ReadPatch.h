@@ -3,10 +3,10 @@
 void OdinAudioProcessor::readPatch(const ValueTree &newState) {
 	//DBG(newStateMigrated.toXmlString());
 
-  //create deep copy for modification
-  auto newStateMigrated = newState.createCopy();
+	//create deep copy for modification
+	auto newStateMigrated = newState.createCopy();
 
-  migratePatch(newStateMigrated);
+	migratePatch(newStateMigrated);
 
 	int minor_version           = newStateMigrated.getChildWithName("misc")["version_minor"];
 	int patch_version           = newStateMigrated.getChildWithName("misc")["version_patch"];
@@ -25,7 +25,8 @@ void OdinAudioProcessor::readPatch(const ValueTree &newState) {
 			                              nullptr);
 			m_value_tree_draw.sendPropertyChangeMessage((m_value_tree_draw.getPropertyName(i)));
 		} else {
-			DBG("Didn't find non-audio property (draw) " + m_value_tree_draw.getPropertyName(i).toString().toStdString());
+			DBG("Didn't find non-audio property (draw) " +
+			    m_value_tree_draw.getPropertyName(i).toString().toStdString());
 		}
 	}
 	const ValueTree &osc_tree = newStateMigrated.getChildWithName("osc");
@@ -68,7 +69,8 @@ void OdinAudioProcessor::readPatch(const ValueTree &newState) {
 			                              nullptr);
 			m_value_tree_misc.sendPropertyChangeMessage((m_value_tree_misc.getPropertyName(i)));
 		} else {
-			DBG("Didn't find non-audio property (misc)" + m_value_tree_misc.getPropertyName(i).toString().toStdString());
+			DBG("Didn't find non-audio property (misc)" +
+			    m_value_tree_misc.getPropertyName(i).toString().toStdString());
 		}
 	}
 	const ValueTree &mod_tree = newStateMigrated.getChildWithName("mod");
@@ -90,14 +92,41 @@ void OdinAudioProcessor::readPatch(const ValueTree &newState) {
 			//DBG(newStateMigrated.getChild(i).getProperty(newStateMigrated.getChild(i).getPropertyName(0)).toString());
 			//DBG(newStateMigrated.getChild(i).getProperty(newStateMigrated.getChild(i).getPropertyName(1)).toString());
 
-			String name = newStateMigrated.getChild(i).getProperty(newStateMigrated.getChild(i).getPropertyName(0)).toString();
-			SETAUDIOFULLRANGESAFE(newStateMigrated.getChild(i).getProperty(newStateMigrated.getChild(i).getPropertyName(0)).toString(),
-			                      newStateMigrated.getChild(i).getProperty(newStateMigrated.getChild(i).getPropertyName(1)));
+			String name =
+			    newStateMigrated.getChild(i).getProperty(newStateMigrated.getChild(i).getPropertyName(0)).toString();
+			SETAUDIOFULLRANGESAFE(
+			    newStateMigrated.getChild(i).getProperty(newStateMigrated.getChild(i).getPropertyName(0)).toString(),
+			    newStateMigrated.getChild(i).getProperty(newStateMigrated.getChild(i).getPropertyName(1)));
 
 			//DBG("Value on tree is now: is now:" + m_value_tree.getParameterAsValue(name).getValue().toString());
 
-
 			//DBG("");
 		}
+	}
+}
+
+void OdinAudioProcessor::createDrawTablesFromValueTree() {
+
+	auto node = m_value_tree.state.getChildWithName("draw");
+
+	for (int osc = 1; osc < 4; ++osc) {
+		// wavedraw
+		float wavedraw_values[WAVEDRAW_STEPS_X];
+		for (int i = 0; i < WAVEDRAW_STEPS_X; ++i) {
+			wavedraw_values[i] = (float)node[String("osc" + std::to_string(osc) + "_wavedraw_values_" + std::to_string(i))];
+		}
+		m_WT_container.createWavedrawTable(osc - 1, wavedraw_values, 44100);
+
+		// chipdraw
+		for (int i = 0; i < CHIPDRAW_STEPS_X; ++i) {
+			wavedraw_values[i] = (float)node[String("osc" + std::to_string(osc) + "_chipdraw_values_" + std::to_string(i))];
+		}
+		m_WT_container.createChipdrawTable(osc - 1, wavedraw_values, 44100);
+
+		// specdraw
+		for (int i = 0; i < SPECDRAW_STEPS_X; ++i) {
+			wavedraw_values[i] = (float)node[String("osc" + std::to_string(osc) + "_specdraw_values_" + std::to_string(i))];
+		}
+		m_WT_container.createSpecdrawTable(osc - 1, wavedraw_values, 44100);
 	}
 }
