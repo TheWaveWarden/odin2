@@ -25,6 +25,7 @@
 #include "LFOComponent.h"
 #include "LeftRightButton.h"
 #include "ModMatrixComponent.h"
+#include "ArpComponent.h"
 #include "NumberSelector.h"
 #include "UnisonSelector.h"
 #include "OdinButton.h"
@@ -305,6 +306,7 @@ private:
   DelayComponent m_delay;
 
   ModMatrixComponent m_mod_matrix;
+  ArpComponent m_arp;
 
   SaveLoadComponent m_save_load;
 

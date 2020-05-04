@@ -195,6 +195,7 @@ private:
 
 	void setSampleRate(float p_samplerate);
 	void initializeModules();
+	void createDrawTablesFromValueTree();
 
 	VoiceManager m_voice_manager;
 	AudioProcessorValueTreeState m_value_tree;

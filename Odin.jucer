@@ -1460,6 +1460,12 @@
         <FILE id="yhSMDf" name="OdinConstants.h" compile="0" resource="0" file="Source/audio/OdinConstants.h"/>
       </GROUP>
       <GROUP id="{67642AFD-C38A-0B04-08CB-62632A5DEA0B}" name="GUI">
+        <FILE id="bch2qp" name="StepComponent.h" compile="0" resource="0" file="Source/StepComponent.h"/>
+        <FILE id="bzNw3u" name="StepComponent.cpp" compile="1" resource="0"
+              file="Source/StepComponent.cpp"/>
+        <FILE id="PC7Mm0" name="ArpComponent.h" compile="0" resource="0" file="Source/ArpComponent.h"/>
+        <FILE id="rrsKrB" name="ArpComponent.cpp" compile="1" resource="0"
+              file="Source/ArpComponent.cpp"/>
         <FILE id="lwsphb" name="ADSRComponent.cpp" compile="1" resource="0"
               file="Source/ADSRComponent.cpp"/>
         <FILE id="Movfh7" name="ADSRComponent.h" compile="0" resource="0" file="Source/ADSRComponent.h"/>
