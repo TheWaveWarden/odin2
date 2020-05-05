@@ -868,6 +868,8 @@ void OdinAudioProcessor::setStateInformation(const void *data, int sizeInBytes) 
 				    m_value_tree.getParameter(m_value_tree_midi_learn.getPropertyName(i)));
 			}
 
+			createDrawTablesFromValueTree();
+
 			if (m_editor_pointer) {
 				m_editor_pointer->forceValueTreeOntoComponents(false);
 			}
