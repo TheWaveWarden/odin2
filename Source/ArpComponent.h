@@ -4,10 +4,11 @@
 #include "StepComponent.h"
 #include "PluginProcessor.h"
 
-#define STEP_COMPONENT_WIDTH 42
-#define STEP_COMPONENT_HEIGHT 141
+#define STEP_COMPONENT_WIDTH 41
+#define STEP_COMPONENT_SPACING 7
+#define STEP_COMPONENT_HEIGHT 156
 #define STEP_COMPONENT_POS_X 69
-#define STEP_COMPONENT_POS_Y 78
+#define STEP_COMPONENT_POS_Y 63
 
 #define NUMBER_OF_STEPS 16
 
@@ -33,6 +34,21 @@ private:
 
     OdinAudioProcessor &m_processor;
 	AudioProcessorValueTreeState &m_value_tree;
+
+    //Knobs
+    //Gate Length
+    //Octave
+
+
+    //Buttons
+    //OneShot
+    //On / Off
+
+    //SyntimSelectorz & Dropdowns
+    //Time
+    //Direction
+    //N° of steps
+
 
     StepComponent m_step_0;
     StepComponent m_step_1;

@@ -8,11 +8,11 @@
 
 #define KNOB_POS_X 1
 #define MOD_POS_Y 1
-#define TRANSPOSE_POS_Y 43
+#define TRANSPOSE_POS_Y 48
 #define STEP_ON_X 3
-#define STEP_ON_Y 89
+#define STEP_ON_Y 99
 #define STEP_LED_POS_X 13
-#define STEP_LED_POS_Y 121
+#define STEP_LED_POS_Y 136
 
 class StepComponent : public Component {
 public:

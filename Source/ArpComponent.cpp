@@ -89,73 +89,73 @@ void ArpComponent::setGUIBig() {
 		                   STEP_COMPONENT_HEIGHT);
 		m_step_3.setGUIBig();
 
-		m_step_4.setBounds(STEP_COMPONENT_POS_X + 4 * STEP_COMPONENT_WIDTH,
+		m_step_4.setBounds(STEP_COMPONENT_POS_X + 4 * STEP_COMPONENT_WIDTH + STEP_COMPONENT_SPACING,
 		                   STEP_COMPONENT_POS_Y,
 		                   STEP_COMPONENT_WIDTH,
 		                   STEP_COMPONENT_HEIGHT);
 		m_step_4.setGUIBig();
 
-		m_step_5.setBounds(STEP_COMPONENT_POS_X + 5 * STEP_COMPONENT_WIDTH,
+		m_step_5.setBounds(STEP_COMPONENT_POS_X + 5 * STEP_COMPONENT_WIDTH + STEP_COMPONENT_SPACING,
 		                   STEP_COMPONENT_POS_Y,
 		                   STEP_COMPONENT_WIDTH,
 		                   STEP_COMPONENT_HEIGHT);
 		m_step_5.setGUIBig();
 
-		m_step_6.setBounds(STEP_COMPONENT_POS_X + 6 * STEP_COMPONENT_WIDTH,
+		m_step_6.setBounds(STEP_COMPONENT_POS_X + 6 * STEP_COMPONENT_WIDTH + STEP_COMPONENT_SPACING,
 		                   STEP_COMPONENT_POS_Y,
 		                   STEP_COMPONENT_WIDTH,
 		                   STEP_COMPONENT_HEIGHT);
 		m_step_6.setGUIBig();
 
-		m_step_7.setBounds(STEP_COMPONENT_POS_X + 7 * STEP_COMPONENT_WIDTH,
+		m_step_7.setBounds(STEP_COMPONENT_POS_X + 7 * STEP_COMPONENT_WIDTH + STEP_COMPONENT_SPACING,
 		                   STEP_COMPONENT_POS_Y,
 		                   STEP_COMPONENT_WIDTH,
 		                   STEP_COMPONENT_HEIGHT);
 		m_step_7.setGUIBig();
 
-		m_step_8.setBounds(STEP_COMPONENT_POS_X + 8 * STEP_COMPONENT_WIDTH,
+		m_step_8.setBounds(STEP_COMPONENT_POS_X + 8 * STEP_COMPONENT_WIDTH + STEP_COMPONENT_SPACING*2,
 		                   STEP_COMPONENT_POS_Y,
 		                   STEP_COMPONENT_WIDTH,
 		                   STEP_COMPONENT_HEIGHT);
 		m_step_8.setGUIBig();
 
-		m_step_9.setBounds(STEP_COMPONENT_POS_X + 9 * STEP_COMPONENT_WIDTH,
+		m_step_9.setBounds(STEP_COMPONENT_POS_X + 9 * STEP_COMPONENT_WIDTH + STEP_COMPONENT_SPACING*2,
 		                   STEP_COMPONENT_POS_Y,
 		                   STEP_COMPONENT_WIDTH,
 		                   STEP_COMPONENT_HEIGHT);
 		m_step_9.setGUIBig();
 
-		m_step_10.setBounds(STEP_COMPONENT_POS_X + 10 * STEP_COMPONENT_WIDTH,
+		m_step_10.setBounds(STEP_COMPONENT_POS_X + 10 * STEP_COMPONENT_WIDTH + STEP_COMPONENT_SPACING*2,
 		                    STEP_COMPONENT_POS_Y,
 		                    STEP_COMPONENT_WIDTH,
 		                    STEP_COMPONENT_HEIGHT);
 		m_step_10.setGUIBig();
 
-		m_step_11.setBounds(STEP_COMPONENT_POS_X + 11 * STEP_COMPONENT_WIDTH,
+		m_step_11.setBounds(STEP_COMPONENT_POS_X + 11 * STEP_COMPONENT_WIDTH + STEP_COMPONENT_SPACING*2,
 		                    STEP_COMPONENT_POS_Y,
 		                    STEP_COMPONENT_WIDTH,
 		                    STEP_COMPONENT_HEIGHT);
 		m_step_11.setGUIBig();
 
-		m_step_12.setBounds(STEP_COMPONENT_POS_X + 12 * STEP_COMPONENT_WIDTH,
+		m_step_12.setBounds(STEP_COMPONENT_POS_X + 12 * STEP_COMPONENT_WIDTH + STEP_COMPONENT_SPACING*3,
 		                    STEP_COMPONENT_POS_Y,
 		                    STEP_COMPONENT_WIDTH,
 		                    STEP_COMPONENT_HEIGHT);
 		m_step_12.setGUIBig();
 
-		m_step_13.setBounds(STEP_COMPONENT_POS_X + 13 * STEP_COMPONENT_WIDTH,
+		m_step_13.setBounds(STEP_COMPONENT_POS_X + 13 * STEP_COMPONENT_WIDTH + STEP_COMPONENT_SPACING*3,
 		                    STEP_COMPONENT_POS_Y,
 		                    STEP_COMPONENT_WIDTH,
 		                    STEP_COMPONENT_HEIGHT);
 		m_step_13.setGUIBig();
 
-		m_step_14.setBounds(STEP_COMPONENT_POS_X + 14 * STEP_COMPONENT_WIDTH,
+		m_step_14.setBounds(STEP_COMPONENT_POS_X + 14 * STEP_COMPONENT_WIDTH + STEP_COMPONENT_SPACING*3,
 		                    STEP_COMPONENT_POS_Y,
 		                    STEP_COMPONENT_WIDTH,
 		                    STEP_COMPONENT_HEIGHT);
 		m_step_14.setGUIBig();
 
-		m_step_15.setBounds(STEP_COMPONENT_POS_X + 15 * STEP_COMPONENT_WIDTH,
+		m_step_15.setBounds(STEP_COMPONENT_POS_X + 15 * STEP_COMPONENT_WIDTH + STEP_COMPONENT_SPACING*3,
 		                    STEP_COMPONENT_POS_Y,
 		                    STEP_COMPONENT_WIDTH,
 		                    STEP_COMPONENT_HEIGHT);
