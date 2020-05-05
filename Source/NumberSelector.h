@@ -1,21 +1,10 @@
-/*
-  ==============================================================================
-
-    NumberSelector.h
-    Created: 1 Mar 2019 9:29:33pm
-    Author:  frot
-
-  ==============================================================================
-*/
 
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "GlasDisplay.h"
 #include "GlobalIncludes.h"
-//==============================================================================
-/*
- */
+
 class NumberSelector : public Component,
                        public AudioProcessorValueTreeState::Listener {
 public:

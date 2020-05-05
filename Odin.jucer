@@ -1464,6 +1464,10 @@
         <FILE id="yhSMDf" name="OdinConstants.h" compile="0" resource="0" file="Source/audio/OdinConstants.h"/>
       </GROUP>
       <GROUP id="{67642AFD-C38A-0B04-08CB-62632A5DEA0B}" name="GUI">
+        <FILE id="M7zP4z" name="NumberSelectorWithText.cpp" compile="1" resource="0"
+              file="Source/NumberSelectorWithText.cpp"/>
+        <FILE id="KS8fBa" name="NumberSelectorWithText.h" compile="0" resource="0"
+              file="Source/NumberSelectorWithText.h"/>
         <FILE id="ZCPPsQ" name="StepLED.h" compile="0" resource="0" file="Source/StepLED.h"/>
         <FILE id="bch2qp" name="StepComponent.h" compile="0" resource="0" file="Source/StepComponent.h"/>
         <FILE id="bzNw3u" name="StepComponent.cpp" compile="1" resource="0"
@@ -1573,10 +1577,6 @@
               file="Source/SyncTimeSelector.cpp"/>
         <FILE id="dGTCvN" name="SyncTimeSelector.h" compile="0" resource="0"
               file="Source/SyncTimeSelector.h"/>
-        <FILE id="VasNum" name="UnisonSelector.cpp" compile="1" resource="0"
-              file="Source/UnisonSelector.cpp"/>
-        <FILE id="BItZqW" name="UnisonSelector.h" compile="0" resource="0"
-              file="Source/UnisonSelector.h"/>
         <FILE id="J8nqZi" name="WavedrawDisplay.cpp" compile="1" resource="0"
               file="Source/WavedrawDisplay.cpp"/>
         <FILE id="OpAghB" name="WavedrawDisplay.h" compile="0" resource="0"

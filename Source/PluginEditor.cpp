@@ -75,16 +75,17 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
     m_flanger(vts, "flanger", p_is_standalone), m_chorus(vts, "chorus", p_is_standalone), m_xy_section(vts, "xy"),
     m_osc1_type_identifier("osc1_type"), m_osc2_type_identifier("osc2_type"), m_osc3_type_identifier("osc3_type"),
     m_fil1_type_identifier("fil1_type"), m_fil2_type_identifier("fil2_type"), m_fil3_type_identifier("fil3_type"),
-    m_pitchbend_amount_identifier("pitchbend_amount"),m_unison_voices_identifier("unison_voices"), m_delay_position_identifier("delay_position"),
-    m_flanger_position_identifier("flanger_position"), m_phaser_position_identifier("phaser_position"),
-    m_chorus_position_identifier("chorus_position"), m_mod_matrix(vts), m_legato_button("legato"),
-    m_gui_size_button("gui_size"), m_tooltip(nullptr, 2047483647), m_is_standalone_plugin(p_is_standalone),
-    m_save_load(vts, p_processor), m_arp(p_processor, vts), m_processor(p_processor) {
-        
+    m_pitchbend_amount_identifier("pitchbend_amount"), m_unison_voices_identifier("unison_voices"),
+    m_delay_position_identifier("delay_position"), m_flanger_position_identifier("flanger_position"),
+    m_phaser_position_identifier("phaser_position"), m_chorus_position_identifier("chorus_position"), m_mod_matrix(vts),
+    m_legato_button("legato"), m_gui_size_button("gui_size"), m_tooltip(nullptr, 2047483647),
+    m_is_standalone_plugin(p_is_standalone), m_save_load(vts, p_processor), m_arp(p_processor, vts),
+    m_processor(p_processor) {
+
 #ifdef ODIN_MAC
-    setBufferedToImage(true);
+	setBufferedToImage(true);
 #endif
-        
+
 	if (m_is_standalone_plugin) {
 		addKeyListener(this);
 	}
@@ -621,7 +622,6 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	juce::Image black_knob_mid =
 	    ImageCache::getFromMemory(BinaryData::black_knob_mid_png, BinaryData::black_knob_mid_pngSize);
 
-
 	// load backplates for osc and filters
 
 	juce::Image bypass_osc1_plate =
@@ -876,15 +876,21 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	m_pitch_amount.setTooltip("The amount of pitchbend for the pitchwheel in semitones");
 
 	m_unison_selector.OnValueChange = [&](int p_new_value) {
-		m_value_tree.state.getChildWithName("misc").setProperty(
-		    "unison_voices", p_new_value, nullptr);
+		m_value_tree.state.getChildWithName("misc").setProperty("unison_voices", p_new_value, nullptr);
 	};
+	m_unison_selector.valueToText = [](int p_value) {
+		return "Unison: " + std::to_string(p_value);
+	};
+	m_unison_selector.setIncrementMap({{1, 2}, {2, 3}, {3, 4}, {4, 6}, {6, 6}});
+	m_unison_selector.setDecrementMap({{1, 1}, {2, 1}, {3, 2}, {4, 3}, {6, 4}});
+	m_unison_selector.setLegalValues({1, 2, 3, 4, 6});
+
 	m_unison_selector.setTopLeftPosition(UNISON_SELECTOR_X, UNISON_SELECTOR_Y);
 	addAndMakeVisible(m_unison_selector);
 	m_unison_selector.setMouseDragDivisor(20.f);
 	m_unison_selector.setColor(Colour(10, 40, 50));
-	m_unison_selector.setTooltip("Number of voices to trigger simultaneously\nThis limits the polyphony to 12 / N\nBeware: N voices means N times the CPU load, so use with care!");
-
+	m_unison_selector.setTooltip("Number of voices to trigger simultaneously\nThis limits the polyphony to 12 / "
+	                             "N\nBeware: N voices means N times the CPU load, so use with care!");
 
 	m_BPM_selector.OnValueChange = [&](int p_new_value) {
 		m_value_tree.state.getChildWithName("misc").setProperty("BPM", p_new_value, nullptr);
@@ -957,7 +963,6 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	SET_CTR_KEY(m_modwheel);
 	SET_CTR_KEY(m_unison_detune);
 	SET_CTR_KEY(m_unison_width);
-	
 
 	//m_color_picker.setTopLeftPosition(ADSR_LEFT_POS_X, ADSR_LEFT_POS_Y);
 	//m_color_picker.setSize(3 * ADSR_SIZE_X, 3 * ADSR_SIZE_Y);
@@ -1251,7 +1256,7 @@ void OdinAudioProcessorEditor::setTooltipEnabled(bool p_enabled) {
 }
 
 void OdinAudioProcessorEditor::forceValueTreeOntoComponentsOnlyMainPanel() {
-	
+
 	m_unison_selector.setValue(m_value_tree.state.getChildWithName("misc")["unison_voices"]);
 
 	m_pitch_amount.setValue(m_value_tree.state.getChildWithName("misc")["pitchbend_amount"]);
@@ -1565,14 +1570,14 @@ void OdinAudioProcessorEditor::setGUISizeBig(bool p_big, bool p_write_to_config)
 	repaint();
 }
 
-
-#define CONFIG_FILE_PATH File::getSpecialLocation(File::SpecialLocationType::userDocumentsDirectory).getFullPathName() +\
-		File::getSeparatorString() + ".config" + File::getSeparatorString() + "odin2" + File::getSeparatorString() +\
+#define CONFIG_FILE_PATH                                                                                               \
+	File::getSpecialLocation(File::SpecialLocationType::userDocumentsDirectory).getFullPathName() +                    \
+	    File::getSeparatorString() + ".config" + File::getSeparatorString() + "odin2" + File::getSeparatorString() +   \
 	    "odin2.conf"
 
 void OdinAudioProcessorEditor::readOrCreateConfigFile(bool &p_GUI_big) {
 
-	String path_absolute = CONFIG_FILE_PATH;
+	String path_absolute    = CONFIG_FILE_PATH;
 	File configuration_file = File(path_absolute);
 
 	if (configuration_file.existsAsFile()) {
@@ -1599,21 +1604,21 @@ void OdinAudioProcessorEditor::readOrCreateConfigFile(bool &p_GUI_big) {
 	}
 }
 void OdinAudioProcessorEditor::writeConfigFile(bool p_GUI_big) {
-	
-	String path_absolute = CONFIG_FILE_PATH;
+
+	String path_absolute    = CONFIG_FILE_PATH;
 	File configuration_file = File(path_absolute);
 
-	if(!configuration_file.existsAsFile()){
+	if (!configuration_file.existsAsFile()) {
 		configuration_file.create();
 	}
 
 	FileOutputStream config_stream(configuration_file);
-		if (config_stream.openedOk()) {
-			config_stream.setPosition(0);
-			config_stream.truncate();
-			config_stream << "big_GUI: " << p_GUI_big;
-			DBG("Wrote configuration file " << path_absolute);
-		} else {
-			DBG("Failed to create config file...");
+	if (config_stream.openedOk()) {
+		config_stream.setPosition(0);
+		config_stream.truncate();
+		config_stream << "big_GUI: " << p_GUI_big;
+		DBG("Wrote configuration file " << path_absolute);
+	} else {
+		DBG("Failed to create config file...");
 	}
 }

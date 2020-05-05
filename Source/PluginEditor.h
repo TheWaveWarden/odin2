@@ -27,7 +27,7 @@
 #include "ModMatrixComponent.h"
 #include "ArpComponent.h"
 #include "NumberSelector.h"
-#include "UnisonSelector.h"
+#include "NumberSelectorWithText.h"
 #include "OdinButton.h"
 #include "OdinTooltipWindow.h"
 #include "OscComponent.h"
@@ -276,7 +276,7 @@ private:
   PitchWheel m_pitchwheel;
   NumberSelector m_pitch_amount;
 
-  UnisonSelector m_unison_selector;
+  NumberSelectorWithText m_unison_selector;
 
   BPMSelector m_BPM_selector;
 

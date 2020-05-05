@@ -36,6 +36,27 @@ ArpComponent::ArpComponent(OdinAudioProcessor &p_processor, AudioProcessorValueT
 	addAndMakeVisible(m_step_14);
 	addAndMakeVisible(m_step_15);
 
+	m_octave_selector.OnValueChange = [&](int p_new_value) {
+		//todo
+		//m_value_tree.state.getChildWithName("misc").setProperty("unison_voices", p_new_value, nullptr);
+	};
+	m_octave_selector.valueToText = [](int p_value) {
+		if (p_value > 1) {
+			return std::to_string(p_value) + " Octaves";
+		} else {
+			return std::to_string(p_value) + " Octave";
+		}
+	};
+	m_octave_selector.setIncrementMap({{1, 2}, {2, 3}, {3, 4}, {4, 4}});
+	m_octave_selector.setDecrementMap({{1, 1}, {2, 1}, {3, 2}, {4, 3}});
+	m_octave_selector.setLegalValues({1, 2, 3, 4});
+
+	m_octave_selector.setTopLeftPosition(OCTAVE_SELECTOR_X, OCTAVE_SELECTOR_Y);
+	addAndMakeVisible(m_octave_selector);
+	m_octave_selector.setMouseDragDivisor(20.f);
+	m_octave_selector.setColor(Colour(10, 40, 50));
+	m_octave_selector.setTooltip("TODO");
+
 	//todo start and stop timer when component is shown
 	startTimer(10);
 }
@@ -63,6 +84,9 @@ void ArpComponent::resized() {
 
 void ArpComponent::setGUIBig() {
 	m_GUI_big = true;
+
+	m_octave_selector.setGUIBig();
+
 	for (int step = 0; step < NUMBER_OF_STEPS; ++step) {
 
 		m_step_0.setBounds(STEP_COMPONENT_POS_X + 0 * STEP_COMPONENT_WIDTH,
@@ -113,49 +137,49 @@ void ArpComponent::setGUIBig() {
 		                   STEP_COMPONENT_HEIGHT);
 		m_step_7.setGUIBig();
 
-		m_step_8.setBounds(STEP_COMPONENT_POS_X + 8 * STEP_COMPONENT_WIDTH + STEP_COMPONENT_SPACING*2,
+		m_step_8.setBounds(STEP_COMPONENT_POS_X + 8 * STEP_COMPONENT_WIDTH + STEP_COMPONENT_SPACING * 2,
 		                   STEP_COMPONENT_POS_Y,
 		                   STEP_COMPONENT_WIDTH,
 		                   STEP_COMPONENT_HEIGHT);
 		m_step_8.setGUIBig();
 
-		m_step_9.setBounds(STEP_COMPONENT_POS_X + 9 * STEP_COMPONENT_WIDTH + STEP_COMPONENT_SPACING*2,
+		m_step_9.setBounds(STEP_COMPONENT_POS_X + 9 * STEP_COMPONENT_WIDTH + STEP_COMPONENT_SPACING * 2,
 		                   STEP_COMPONENT_POS_Y,
 		                   STEP_COMPONENT_WIDTH,
 		                   STEP_COMPONENT_HEIGHT);
 		m_step_9.setGUIBig();
 
-		m_step_10.setBounds(STEP_COMPONENT_POS_X + 10 * STEP_COMPONENT_WIDTH + STEP_COMPONENT_SPACING*2,
+		m_step_10.setBounds(STEP_COMPONENT_POS_X + 10 * STEP_COMPONENT_WIDTH + STEP_COMPONENT_SPACING * 2,
 		                    STEP_COMPONENT_POS_Y,
 		                    STEP_COMPONENT_WIDTH,
 		                    STEP_COMPONENT_HEIGHT);
 		m_step_10.setGUIBig();
 
-		m_step_11.setBounds(STEP_COMPONENT_POS_X + 11 * STEP_COMPONENT_WIDTH + STEP_COMPONENT_SPACING*2,
+		m_step_11.setBounds(STEP_COMPONENT_POS_X + 11 * STEP_COMPONENT_WIDTH + STEP_COMPONENT_SPACING * 2,
 		                    STEP_COMPONENT_POS_Y,
 		                    STEP_COMPONENT_WIDTH,
 		                    STEP_COMPONENT_HEIGHT);
 		m_step_11.setGUIBig();
 
-		m_step_12.setBounds(STEP_COMPONENT_POS_X + 12 * STEP_COMPONENT_WIDTH + STEP_COMPONENT_SPACING*3,
+		m_step_12.setBounds(STEP_COMPONENT_POS_X + 12 * STEP_COMPONENT_WIDTH + STEP_COMPONENT_SPACING * 3,
 		                    STEP_COMPONENT_POS_Y,
 		                    STEP_COMPONENT_WIDTH,
 		                    STEP_COMPONENT_HEIGHT);
 		m_step_12.setGUIBig();
 
-		m_step_13.setBounds(STEP_COMPONENT_POS_X + 13 * STEP_COMPONENT_WIDTH + STEP_COMPONENT_SPACING*3,
+		m_step_13.setBounds(STEP_COMPONENT_POS_X + 13 * STEP_COMPONENT_WIDTH + STEP_COMPONENT_SPACING * 3,
 		                    STEP_COMPONENT_POS_Y,
 		                    STEP_COMPONENT_WIDTH,
 		                    STEP_COMPONENT_HEIGHT);
 		m_step_13.setGUIBig();
 
-		m_step_14.setBounds(STEP_COMPONENT_POS_X + 14 * STEP_COMPONENT_WIDTH + STEP_COMPONENT_SPACING*3,
+		m_step_14.setBounds(STEP_COMPONENT_POS_X + 14 * STEP_COMPONENT_WIDTH + STEP_COMPONENT_SPACING * 3,
 		                    STEP_COMPONENT_POS_Y,
 		                    STEP_COMPONENT_WIDTH,
 		                    STEP_COMPONENT_HEIGHT);
 		m_step_14.setGUIBig();
 
-		m_step_15.setBounds(STEP_COMPONENT_POS_X + 15 * STEP_COMPONENT_WIDTH + STEP_COMPONENT_SPACING*3,
+		m_step_15.setBounds(STEP_COMPONENT_POS_X + 15 * STEP_COMPONENT_WIDTH + STEP_COMPONENT_SPACING * 3,
 		                    STEP_COMPONENT_POS_Y,
 		                    STEP_COMPONENT_WIDTH,
 		                    STEP_COMPONENT_HEIGHT);

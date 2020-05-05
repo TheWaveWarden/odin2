@@ -3,12 +3,17 @@
 #include <JuceHeader.h>
 #include "StepComponent.h"
 #include "PluginProcessor.h"
+#include "NumberSelectorWithText.h"
 
 #define STEP_COMPONENT_WIDTH 41
 #define STEP_COMPONENT_SPACING 7
 #define STEP_COMPONENT_HEIGHT 156
 #define STEP_COMPONENT_POS_X 69
 #define STEP_COMPONENT_POS_Y 63
+
+#define OCTAVE_SELECTOR_X 80
+#define OCTAVE_SELECTOR_Y 20
+
 
 #define NUMBER_OF_STEPS 16
 
@@ -40,14 +45,16 @@ private:
     //OneShot
     //On / Off
 
+    //numberselector with text
     //Gate Length?
     //N° of steps
     //Octave
-    
+
     //SyntimSelectorz & Dropdowns
     //Time
     //Direction
 
+    NumberSelectorWithText m_octave_selector;
 
     StepComponent m_step_0;
     StepComponent m_step_1;
