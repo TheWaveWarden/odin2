@@ -1,17 +1,7 @@
-/*
-  ==============================================================================
-
-    ArpComponent.cpp
-    Created: 4 May 2020 1:23:25am
-    Author:  frederik_siepe
-
-  ==============================================================================
-*/
 
 #include "ArpComponent.h"
 #include <JuceHeader.h>
 
-//==============================================================================
 ArpComponent::ArpComponent(OdinAudioProcessor &p_processor, AudioProcessorValueTreeState &vts) :
     m_processor(p_processor), m_value_tree(vts), m_step_0(vts, 0), m_step_1(vts, 1), m_step_2(vts, 2), m_step_3(vts, 3),
     m_step_4(vts, 4), m_step_5(vts, 5), m_step_6(vts, 6), m_step_7(vts, 7), m_step_8(vts, 8), m_step_9(vts, 9),
@@ -47,18 +37,80 @@ ArpComponent::ArpComponent(OdinAudioProcessor &p_processor, AudioProcessorValueT
 			return std::to_string(p_value) + " Octave";
 		}
 	};
-	m_octave_selector.setIncrementMap({{1, 2}, {2, 3}, {3, 4}, {4, 4}});
-	m_octave_selector.setDecrementMap({{1, 1}, {2, 1}, {3, 2}, {4, 3}});
 	m_octave_selector.setLegalValues({1, 2, 3, 4});
 
-	m_octave_selector.setTopLeftPosition(OCTAVE_SELECTOR_X, OCTAVE_SELECTOR_Y);
 	addAndMakeVisible(m_octave_selector);
 	m_octave_selector.setMouseDragDivisor(20.f);
 	m_octave_selector.setColor(Colour(10, 40, 50));
 	m_octave_selector.setTooltip("TODO");
 
+	m_steps_selector.OnValueChange = [&](int p_new_value) {
+		setNumberLEDsToShow(p_new_value);
+		//todo
+		//m_value_tree.state.getChildWithName("misc").setProperty("unison_voices", p_new_value, nullptr);
+	};
+	m_steps_selector.valueToText = [](int p_value) {
+		if (p_value > 1) {
+			return std::to_string(p_value) + " Steps";
+		} else {
+			return std::to_string(p_value) + " Step";
+		}
+	};
+	m_steps_selector.setLegalValues({1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16});
+
+	addAndMakeVisible(m_steps_selector);
+	m_steps_selector.setMouseDragDivisor(20.f);
+	m_steps_selector.setColor(Colour(10, 40, 50));
+	m_steps_selector.setTooltip("TODO");
+
+	m_direction.OnValueChange = [&](int p_new_value) {
+		//todo
+		//m_value_tree.state.getChildWithName("misc").setProperty("unison_voices", p_new_value, nullptr);
+	};
+	m_direction.valueToText = [&](int p_value) {
+		return OdinArpeggiator::ArpPatternToString((OdinArpeggiator::ArpPattern)p_value).toStdString();
+	};
+	m_direction.setLegalValues({(int)OdinArpeggiator::ArpPattern::Up,
+	                            (int)OdinArpeggiator::ArpPattern::Down,
+	                            (int)OdinArpeggiator::ArpPattern::UpAndDown,
+	                            (int)OdinArpeggiator::ArpPattern::DownAndUp,
+	                            (int)OdinArpeggiator::ArpPattern::Random});
+	addAndMakeVisible(m_direction);
+	m_direction.setMouseDragDivisor(20.f);
+	m_direction.setColor(Colour(10, 40, 50));
+	m_direction.setTooltip("TODO");
+
+	m_gate.OnValueChange = [&](int p_new_value) {
+		//todo
+		//m_value_tree.state.getChildWithName("misc").setProperty("unison_voices", p_new_value, nullptr);
+	};
+	m_gate.valueToText = [&](int p_value) {
+		if (p_value < 100) {
+			return "Gate: " + std::to_string(p_value) + "%";
+		} else {
+			return "Gate " + std::to_string(p_value) + "%";
+		}
+	};
+	m_gate.setLegalValues({10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 125, 150, 175, 200});
+	addAndMakeVisible(m_gate);
+	m_gate.setMouseDragDivisor(20.f);
+	m_gate.setColor(Colour(10, 40, 50));
+	m_gate.setTooltip("TODO");
+
+	m_sync_time.OnValueChange = [&](int p_left, int p_right) {
+		//todo
+	};
+	m_sync_time.setTooltip("TODO");
+	addAndMakeVisible(m_sync_time);
+
 	//todo start and stop timer when component is shown
 	startTimer(10);
+
+	//todo remove
+	m_steps_selector.setValue(16);
+	m_octave_selector.setValue(2);
+	m_direction.setValue(1);
+	m_gate.setValue(50);
 }
 
 ArpComponent::~ArpComponent() {
@@ -66,26 +118,28 @@ ArpComponent::~ArpComponent() {
 
 void ArpComponent::paint(Graphics &g) {
 
-	// g.fillAll (getLookAndFeel().findColour (ResizableWindow::backgroundColourId));   // clear the background
-
-	g.setColour(Colours::grey);
+	g.setColour(Colours::darkgrey);
 	g.drawRect(getLocalBounds(), 1); // draw an outline around the component
-
-	// g.setColour (Colours::white);
-	// g.setFont (14.0f);
-	// g.drawText ("ArpComponent", getLocalBounds(),
-	//             Justification::centred, true);   // draw some placeholder text
 }
 
 void ArpComponent::resized() {
-	// This method is where you should set the bounds of any child
-	// components that your component contains..
 }
 
 void ArpComponent::setGUIBig() {
 	m_GUI_big = true;
 
 	m_octave_selector.setGUIBig();
+	m_steps_selector.setGUIBig();
+	m_direction.setGUIBig();
+	m_gate.setGUIBig();
+	m_sync_time.setGUIBig();
+
+	m_octave_selector.setTopLeftPosition(OCTAVE_SELECTOR_X, OCTAVE_SELECTOR_Y);
+	m_steps_selector.setTopLeftPosition(STEP_SELECTOR_X, STEP_SELECTOR_Y);
+	m_direction.setTopLeftPosition(DIRECTION_SELECTOR_X, DIRECTION_SELECTOR_Y);
+	m_gate.setTopLeftPosition(GATE_SELECTOR_X, GATE_SELECTOR_Y);
+	m_sync_time.setTopLeftPosition(SYNC_TIME_ARP_POS_X, SYNC_TIME_ARP_POS_Y);
+
 
 	for (int step = 0; step < NUMBER_OF_STEPS; ++step) {
 
@@ -236,4 +290,23 @@ void ArpComponent::setNoLEDActive() {
 	m_step_13.setLEDActive(-1);
 	m_step_14.setLEDActive(-1);
 	m_step_15.setLEDActive(-1);
+}
+
+void ArpComponent::setNumberLEDsToShow(int p_number) {
+	m_step_0.setShowLED(p_number);
+	m_step_1.setShowLED(p_number);
+	m_step_2.setShowLED(p_number);
+	m_step_3.setShowLED(p_number);
+	m_step_4.setShowLED(p_number);
+	m_step_5.setShowLED(p_number);
+	m_step_6.setShowLED(p_number);
+	m_step_7.setShowLED(p_number);
+	m_step_8.setShowLED(p_number);
+	m_step_9.setShowLED(p_number);
+	m_step_10.setShowLED(p_number);
+	m_step_11.setShowLED(p_number);
+	m_step_12.setShowLED(p_number);
+	m_step_13.setShowLED(p_number);
+	m_step_14.setShowLED(p_number);
+	m_step_15.setShowLED(p_number);
 }

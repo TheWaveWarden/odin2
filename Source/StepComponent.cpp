@@ -47,8 +47,6 @@ StepComponent::~StepComponent() {
 }
 
 void StepComponent::paint(Graphics &g) {
-	//g.setColour(Colours::grey);
-	//g.drawRect(getLocalBounds(), 1); // draw an outline around the component
 }
 
 void StepComponent::resized() {
@@ -101,4 +99,12 @@ void StepComponent::setGUISmall() {
 
 void StepComponent::setLEDActive(int p_step_index) {
 	m_led.setLEDOn(p_step_index == m_step_index);
+}
+
+
+void StepComponent::setShowLED(int p_highest_led){
+	if((p_highest_led > m_step_index) != m_show_led){
+		m_show_led = (p_highest_led > m_step_index);
+		m_led.setVisible(m_show_led);
+	}
 }

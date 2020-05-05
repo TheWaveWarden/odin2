@@ -39,7 +39,8 @@ NumberSelectorWithText::NumberSelectorWithText() : NumberSelector(true) {
 			m_dropdown.addItem(9999 - m_legal_values[index], valueToText(m_legal_values[index]));
 		}
 		int selected = 9999 - m_dropdown.show();
-		if (selected != 0) {
+		if (selected != 9999) {
+			DBG(selected);
 			setValue(selected);
 		}
 	};
@@ -136,7 +137,7 @@ void NumberSelectorWithText::setValue(int p_value) {
 	}
 	//m_display.setText("Unison: " + std::to_string(m_value));
 	m_display.setText(valueToText(m_value));
-	OnValueChange(p_value);
+	OnValueChange(m_value);
 }
 
 void NumberSelectorWithText::setGUIBig() {

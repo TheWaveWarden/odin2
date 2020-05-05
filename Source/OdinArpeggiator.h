@@ -10,12 +10,15 @@ class OdinArpeggiator {
     public:
 
     enum class ArpPattern{
-        Up,
-        Down,
-        UpAndDown,
-        DownAndUp,
-        Random
+        //dont change these (add inbetween, before, after) or you'll break patches
+        Up = 10,
+        Down = 20,
+        UpAndDown = 30,
+        DownAndUp = 40,
+        Random = 50
     };
+
+    static String ArpPatternToString(ArpPattern p_pattern);
 
 	std::pair<int, int> getNoteOns(int &pio_step_active);
     std::vector<int> getNoteOffs();

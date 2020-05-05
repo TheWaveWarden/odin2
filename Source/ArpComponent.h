@@ -3,7 +3,9 @@
 #include <JuceHeader.h>
 #include "StepComponent.h"
 #include "PluginProcessor.h"
+#include "OdinArpeggiator.h"
 #include "NumberSelectorWithText.h"
+#include "SyncTimeSelector.h"
 
 #define STEP_COMPONENT_WIDTH 41
 #define STEP_COMPONENT_SPACING 7
@@ -11,8 +13,21 @@
 #define STEP_COMPONENT_POS_X 69
 #define STEP_COMPONENT_POS_Y 63
 
-#define OCTAVE_SELECTOR_X 80
+#define SYNC_TIME_ARP_POS_X 75
+#define SYNC_TIME_ARP_POS_Y 20
+
+#define OCTAVE_SELECTOR_X 210
 #define OCTAVE_SELECTOR_Y 20
+
+#define DIRECTION_SELECTOR_X 345
+#define DIRECTION_SELECTOR_Y OCTAVE_SELECTOR_Y
+
+#define STEP_SELECTOR_X 480
+#define STEP_SELECTOR_Y OCTAVE_SELECTOR_Y
+
+#define GATE_SELECTOR_X 615
+#define GATE_SELECTOR_Y OCTAVE_SELECTOR_Y
+
 
 
 #define NUMBER_OF_STEPS 16
@@ -37,6 +52,8 @@ public:
 private:
     bool m_GUI_big = false;
 
+    void setNumberLEDsToShow(int p_number);
+
     OdinAudioProcessor &m_processor;
 	AudioProcessorValueTreeState &m_value_tree;
 
@@ -49,12 +66,17 @@ private:
     //Gate Length?
     //N° of steps
     //Octave
-
-    //SyntimSelectorz & Dropdowns
-    //Time
     //Direction
 
+    //SyntimSelectorz
+    //Time
+
     NumberSelectorWithText m_octave_selector;
+    NumberSelectorWithText m_steps_selector;
+    NumberSelectorWithText m_direction;
+    NumberSelectorWithText m_gate;
+
+	SyncTimeSelector m_sync_time;
 
     StepComponent m_step_0;
     StepComponent m_step_1;

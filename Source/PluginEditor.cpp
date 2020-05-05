@@ -881,8 +881,6 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	m_unison_selector.valueToText = [](int p_value) {
 		return "Unison: " + std::to_string(p_value);
 	};
-	m_unison_selector.setIncrementMap({{1, 2}, {2, 3}, {3, 4}, {4, 6}, {6, 6}});
-	m_unison_selector.setDecrementMap({{1, 1}, {2, 1}, {3, 2}, {4, 3}, {6, 4}});
 	m_unison_selector.setLegalValues({1, 2, 3, 4, 6});
 
 	m_unison_selector.setTopLeftPosition(UNISON_SELECTOR_X, UNISON_SELECTOR_Y);

@@ -12,6 +12,24 @@ bool sortKeysUpToDown(std::pair<int, int> a, std::pair<int, int> b) {
 	return a.first > b.first;
 }
 
+String OdinArpeggiator::ArpPatternToString(ArpPattern p_pattern){
+	switch(p_pattern){
+		case ArpPattern::Up:
+		return "Up";
+		case ArpPattern::Down:
+		return "Down";
+		case ArpPattern::UpAndDown:
+		return "Up Down";
+		case ArpPattern::DownAndUp:
+		return "Down Up";
+		case ArpPattern::Random:
+		return "Random";
+		default:
+		return "Unknown";
+	}
+}
+
+
 std::pair<int, int> OdinArpeggiator::getNoteOns(int &pio_step_active) {
 	jassert(m_samplerate > 0);
 
@@ -221,3 +239,4 @@ void OdinArpeggiator::printSequence() {
 void OdinArpeggiator::setBPM(double p_BPM) {
 	m_BPM = p_BPM;
 }
+
