@@ -19,6 +19,24 @@ SyncTimeSelector::SyncTimeSelector() :
     m_up_right("up_right", juce::DrawableButton::ButtonStyle::ImageRaw),
     m_down_right("down_right", juce::DrawableButton::ButtonStyle::ImageRaw) {
 
+	m_dropdown.addItem(10, "8 / 1");
+	m_dropdown.addItem(20, "4 / 1");
+	m_dropdown.addItem(30, "2 / 1");
+	m_dropdown.addItem(40, "1 / 1");
+	m_dropdown.addItem(50, "1 / 2");
+	m_dropdown.addItem(60, "1 / 4");
+	m_dropdown.addItem(70, "3 / 16");
+	m_dropdown.addItem(80, "1 / 8");
+	m_dropdown.addItem(90, "1 / 8T");
+	m_dropdown.addItem(100, "1 / 16");
+	m_dropdown.addItem(110, "1 / 16T");
+	m_dropdown.addItem(120, "1 / 32");
+	m_dropdown.addItem(130, "1 / 32T");
+
+	m_display.onMouseDown = [&]() { setValuesFromDropdown(m_dropdown.show()); };
+
+	m_dropdown.setLookAndFeel(&m_menu_feels);
+
 	juce::Image up_1 = ImageCache::getFromMemory(BinaryData::buttonup_2_png, BinaryData::buttonup_2_pngSize);
 	juce::Image up_2 = ImageCache::getFromMemory(BinaryData::buttonup_1_png, BinaryData::buttonup_1_pngSize);
 
@@ -91,10 +109,10 @@ SyncTimeSelector::SyncTimeSelector() :
 }
 
 SyncTimeSelector::~SyncTimeSelector() {
+	m_dropdown.setLookAndFeel(nullptr);
 }
 
-
-void SyncTimeSelector::setGUIBig(){
+void SyncTimeSelector::setGUIBig() {
 	m_GUI_big = true;
 
 	juce::Image up_1 = ImageCache::getFromMemory(BinaryData::buttonup_2_150_png, BinaryData::buttonup_2_150_pngSize);
@@ -103,7 +121,7 @@ void SyncTimeSelector::setGUIBig(){
 	juce::Image glas_panel =
 	    ImageCache::getFromMemory(BinaryData::glaspanel_mid_150_png, BinaryData::glaspanel_mid_150_pngSize);
 	m_display.setImage(glas_panel);
-	m_display.setBounds(up_1.getWidth() - 2 , - 1, glas_panel.getWidth(), glas_panel.getHeight() - 1);
+	m_display.setBounds(up_1.getWidth() - 2, -1, glas_panel.getWidth(), glas_panel.getHeight() - 1);
 	m_display.setInlay(1);
 	m_display.setInlayTop(2);
 
@@ -119,8 +137,10 @@ void SyncTimeSelector::setGUIBig(){
 	m_up_right.setImages(&up_draw2, &up_draw2, &up_draw1, &up_draw1, &up_draw2, &up_draw2, &up_draw1, &up_draw1);
 	m_up_right.setBounds(up_1.getWidth() + glas_panel.getWidth() - 4, 1, up_1.getWidth(), up_1.getHeight());
 
-	juce::Image down_1 = ImageCache::getFromMemory(BinaryData::buttondown_2_150_png, BinaryData::buttondown_2_150_pngSize);
-	juce::Image down_2 = ImageCache::getFromMemory(BinaryData::buttondown_1_150_png, BinaryData::buttondown_1_150_pngSize);
+	juce::Image down_1 =
+	    ImageCache::getFromMemory(BinaryData::buttondown_2_150_png, BinaryData::buttondown_2_150_pngSize);
+	juce::Image down_2 =
+	    ImageCache::getFromMemory(BinaryData::buttondown_1_150_png, BinaryData::buttondown_1_150_pngSize);
 
 	juce::DrawableImage down_draw1;
 	juce::DrawableImage down_draw2;
@@ -141,14 +161,13 @@ void SyncTimeSelector::setGUIBig(){
 	m_display.setTextOffsetLeft(2);
 	m_display.setGUIBig();
 
+	m_menu_feels.setGUIBig();
+
 	updateDisplay();
 	setSize(glas_panel.getWidth() + 2 * down_1.getWidth(), glas_panel.getHeight());
-
-
 }
-void SyncTimeSelector::setGUISmall(){
+void SyncTimeSelector::setGUISmall() {
 	m_GUI_big = false;
-
 
 	juce::Image up_1 = ImageCache::getFromMemory(BinaryData::buttonup_2_png, BinaryData::buttonup_2_pngSize);
 	juce::Image up_2 = ImageCache::getFromMemory(BinaryData::buttonup_1_png, BinaryData::buttonup_1_pngSize);
@@ -194,7 +213,89 @@ void SyncTimeSelector::setGUISmall(){
 	m_display.setTextOffsetLeft(0);
 	m_display.setGUISmall();
 
+	m_menu_feels.setGUISmall();
+
 	updateDisplay();
 	setSize(glas_panel.getWidth() + 2 * down_1.getWidth(), glas_panel.getHeight());
+}
 
+void SyncTimeSelector::setValuesFromDropdown(int p_dropdown_return) {
+	switch (p_dropdown_return) {
+	case 0:
+		return;
+		break;
+
+		//std::vector<std::string> m_left_values  = {"1", "2", "3", "4", "5", "6", "7", "8"};
+		//std::vector<std::string> m_right_values = {"1", "2", "4", "8", "8T", "16", "16T", "32", "32T"};
+
+	case 10:
+		//"8 / 1";
+		m_value_left  = 7;
+		m_value_right = 0;
+		break;
+	case 20:
+		//"4 / 1";
+		m_value_left  = 3;
+		m_value_right = 0;
+		break;
+	case 30:
+		//"2 / 1";
+		m_value_left  = 1;
+		m_value_right = 0;
+		break;
+	case 40:
+		//"1 / 1";
+		m_value_left  = 0;
+		m_value_right = 0;
+		break;
+	case 50:
+		//"1 / 2";
+		m_value_left  = 0;
+		m_value_right = 1;
+		break;
+	case 60:
+		//"1 / 4";
+		m_value_left  = 0;
+		m_value_right = 2;
+		break;
+	case 70:
+		//"3 / 16";
+		m_value_left  = 2;
+		m_value_right = 5;
+		break;
+	case 80:
+		//"1 / 8";
+		m_value_left  = 0;
+		m_value_right = 3;
+		break;
+	case 90:
+		//"1 / 8T";
+		m_value_left  = 0;
+		m_value_right = 4;
+		break;
+	case 100:
+		//"1 / 16";
+		m_value_left  = 0;
+		m_value_right = 5;
+		break;
+	case 110:
+		//"1 / 16T";
+		m_value_left  = 0;
+		m_value_right = 6;
+		break;
+	case 120:
+		//"1 / 32";
+		m_value_left  = 0;
+		m_value_right = 7;
+		break;
+	case 130:
+		//"1 / 32T";
+		m_value_left  = 0;
+		m_value_right = 8;
+		break;
+	default:
+		return;
+	}
+	updateDisplay();
+	OnValueChange(m_value_left, m_value_right);  
 }

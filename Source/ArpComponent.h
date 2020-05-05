@@ -35,19 +35,18 @@ private:
     OdinAudioProcessor &m_processor;
 	AudioProcessorValueTreeState &m_value_tree;
 
-    //Knobs
-    //Gate Length
-    //Octave
-
 
     //Buttons
     //OneShot
     //On / Off
 
+    //Gate Length?
+    //N° of steps
+    //Octave
+    
     //SyntimSelectorz & Dropdowns
     //Time
     //Direction
-    //N° of steps
 
 
     StepComponent m_step_0;
