@@ -6,12 +6,20 @@
 #include "OdinArpeggiator.h"
 #include "NumberSelectorWithText.h"
 #include "SyncTimeSelector.h"
+#include "OdinControlAttachments.h"
+#include "OdinButton.h"
 
 #define STEP_COMPONENT_WIDTH 41
 #define STEP_COMPONENT_SPACING 7
 #define STEP_COMPONENT_HEIGHT 156
 #define STEP_COMPONENT_POS_X 69
 #define STEP_COMPONENT_POS_Y 63
+
+#define ON_OFF_POS_X 16
+#define ON_OFF_POS_Y 13
+
+#define ONE_SHOT_POS_X 2
+#define ONE_SHOT_POS_Y 162
 
 #define SYNC_TIME_ARP_POS_X 75
 #define SYNC_TIME_ARP_POS_Y 20
@@ -57,24 +65,13 @@ private:
     OdinAudioProcessor &m_processor;
 	AudioProcessorValueTreeState &m_value_tree;
 
-
-    //Buttons
-    //OneShot
-    //On / Off
-
-    //numberselector with text
-    //Gate Length?
-    //N° of steps
-    //Octave
-    //Direction
-
-    //SyntimSelectorz
-    //Time
-
     NumberSelectorWithText m_octave_selector;
     NumberSelectorWithText m_steps_selector;
     NumberSelectorWithText m_direction;
     NumberSelectorWithText m_gate;
+
+    OdinButton m_on;
+    OdinButton m_one_shot;
 
 	SyncTimeSelector m_sync_time;
 
@@ -94,6 +91,9 @@ private:
     StepComponent m_step_13;
     StepComponent m_step_14;
     StepComponent m_step_15;
+
+    std::unique_ptr<OdinButtonAttachment> m_on_attach;
+	std::unique_ptr<OdinButtonAttachment> m_one_shot_attach;
 
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ArpComponent)

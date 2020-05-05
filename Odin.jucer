@@ -71,6 +71,22 @@
             file="Graphics_150/cropped/buttons/button_arp_step_3_150.png"/>
       <FILE id="Qa5heV" name="button_arp_step_4_150.png" compile="0" resource="1"
             file="Graphics_150/cropped/buttons/button_arp_step_4_150.png"/>
+      <FILE id="auw32C" name="button_on_off_1_150.png" compile="0" resource="1"
+            file="Graphics_150/cropped/buttons/button_on_off_1_150.png"/>
+      <FILE id="exI5H3" name="button_on_off_2_150.png" compile="0" resource="1"
+            file="Graphics_150/cropped/buttons/button_on_off_2_150.png"/>
+      <FILE id="ZAT9bw" name="button_on_off_3_150.png" compile="0" resource="1"
+            file="Graphics_150/cropped/buttons/button_on_off_3_150.png"/>
+      <FILE id="WSShQW" name="button_on_off_4_150.png" compile="0" resource="1"
+            file="Graphics_150/cropped/buttons/button_on_off_4_150.png"/>
+      <FILE id="W3s7Tq" name="button_one_shot_1_150.png" compile="0" resource="1"
+            file="Graphics_150/cropped/buttons/button_one_shot_1_150.png"/>
+      <FILE id="e5w7Mf" name="button_one_shot_2_150.png" compile="0" resource="1"
+            file="Graphics_150/cropped/buttons/button_one_shot_2_150.png"/>
+      <FILE id="qQOQln" name="button_one_shot_3_150.png" compile="0" resource="1"
+            file="Graphics_150/cropped/buttons/button_one_shot_3_150.png"/>
+      <FILE id="VdCRa5" name="button_one_shot_4_150.png" compile="0" resource="1"
+            file="Graphics_150/cropped/buttons/button_one_shot_4_150.png"/>
       <FILE id="nfO9Sm" name="button1_1.png" compile="0" resource="1" file="Graphics/cropped/buttons/button1_1.png"/>
       <FILE id="TpwY9q" name="button1_1_150.png" compile="0" resource="1"
             file="Graphics_150/cropped/buttons/button1_1_150.png"/>

@@ -56,9 +56,6 @@ for (int fil = 0; fil < 3; ++fil) {
 	m_fil_ring_mod_amount[fil] =
 	    m_value_tree.getRawParameterValue("fil" + std::to_string(fil + 1) + "_ring_mod_amount");
 	m_fil_sem_transition[fil] = m_value_tree.getRawParameterValue("fil" + std::to_string(fil + 1) + "_sem_transition");
-	//m_fil_vowel_left[fil]     = m_value_tree.getRawParameterValue("fil" + std::to_string(fil + 1) + "_vowel_left");
-	//m_fil_vowel_right[fil]    = m_value_tree.getRawParameterValue("fil" + std::to_string(fil + 1) + "_vowel_right");
-	//m_fil_comb_polarity[fil]  = m_value_tree.getRawParameterValue("fil" + std::to_string(fil + 1) + "_comb_polarity");
 }
 
 m_amp_pan        = m_value_tree.getRawParameterValue("amp_pan");
@@ -66,7 +63,6 @@ m_amp_gain       = m_value_tree.getRawParameterValue("amp_gain");
 m_amp_velocity        = m_value_tree.getRawParameterValue("amp_velocity");
 m_dist_threshold = m_value_tree.getRawParameterValue("dist_boost");
 m_dist_drywet    = m_value_tree.getRawParameterValue("dist_drywet");
-//m_dist_on        = m_value_tree.getRawParameterValue("dist_on");
 m_fil1_to_amp    = m_value_tree.getRawParameterValue("fil1_to_amp");
 m_fil2_to_amp    = m_value_tree.getRawParameterValue("fil2_to_amp");
 
@@ -96,23 +92,15 @@ m_env4_loop    = m_value_tree.getRawParameterValue("env4_loop");
 
 m_lfo1_freq  = m_value_tree.getRawParameterValue("lfo1_freq");
 m_lfo1_reset = m_value_tree.getRawParameterValue("lfo1_reset");
-//m_lfo1_sync  = m_value_tree.getRawParameterValue("lfo1_sync");
-//m_lfo1_wave  = m_value_tree.getRawParameterValue("lfo1_wave");
 
 m_lfo2_freq  = m_value_tree.getRawParameterValue("lfo2_freq");
 m_lfo2_reset = m_value_tree.getRawParameterValue("lfo2_reset");
-//m_lfo2_sync  = m_value_tree.getRawParameterValue("lfo2_sync");
-// m_lfo2_wave  = m_value_tree.getRawParameterValue("lfo2_wave");
 
 m_lfo3_freq  = m_value_tree.getRawParameterValue("lfo3_freq");
 m_lfo3_reset = m_value_tree.getRawParameterValue("lfo3_reset");
-//m_lfo3_sync  = m_value_tree.getRawParameterValue("lfo3_sync");
-// m_lfo3_wave  = m_value_tree.getRawParameterValue("lfo3_wave");
 
 m_lfo4_freq  = m_value_tree.getRawParameterValue("lfo4_freq");
 m_lfo4_reset = m_value_tree.getRawParameterValue("lfo4_reset");
-//m_lfo4_sync  = m_value_tree.getRawParameterValue("lfo4_sync");
-// m_lfo4_wave  = m_value_tree.getRawParameterValue("lfo4_wave");
 
 m_phaser_on  = m_value_tree.getRawParameterValue("phaser_on");
 m_flanger_on = m_value_tree.getRawParameterValue("flanger_on");
@@ -380,3 +368,5 @@ m_value_tree.addParameterListener("step_12_on", &m_tree_listener_arp);
 m_value_tree.addParameterListener("step_13_on", &m_tree_listener_arp);
 m_value_tree.addParameterListener("step_14_on", &m_tree_listener_arp);
 m_value_tree.addParameterListener("step_15_on", &m_tree_listener_arp);
+m_value_tree.addParameterListener("arp_on", &m_tree_listener_arp);
+m_value_tree.addParameterListener("arp_one_shot", &m_tree_listener_arp);

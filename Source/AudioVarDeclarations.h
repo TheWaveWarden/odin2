@@ -413,6 +413,14 @@
     Identifier m_delay_synctime_numerator_identifier;
     Identifier m_delay_synctime_denominator_identifier;
     Identifier m_phaser_reset_identifier;
+    Identifier m_arp_on_identifier;
+    Identifier m_arp_one_shot_identifier;
+    Identifier m_arp_synctime_denominator_identifier;
+    Identifier m_arp_synctime_numerator_identifier;
+    Identifier m_arp_octaves_identifier;
+    Identifier m_arp_direction_identifier;
+    Identifier m_arp_steps_identifier;
+    Identifier m_arp_gate_identifier;
     Identifier m_step_0_on_identifier;
     Identifier m_step_1_on_identifier;
     Identifier m_step_2_on_identifier;

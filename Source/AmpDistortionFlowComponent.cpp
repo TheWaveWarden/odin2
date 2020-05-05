@@ -202,7 +202,6 @@ AmpDistortionFlowComponent::AmpDistortionFlowComponent(AudioProcessorValueTreeSt
 	m_dist_threshold_attach.reset(new OdinKnobAttachment(m_value_tree, "dist_boost", m_boost));
 	m_dist_drywet_attach.reset(new OdinKnobAttachment(m_value_tree, "dist_drywet", m_dry_wet));
 
-	//m_dist_on_attach.reset(new OdinButtonAttachment(m_value_tree, "dist_on", m_distortion));
 	m_fil1_to_amp_attach.reset(new OdinButtonAttachment(m_value_tree, "fil1_to_amp", m_flow_right));
 	m_fil2_to_amp_attach.reset(new OdinButtonAttachment(m_value_tree, "fil2_to_amp", m_flow_left));
 

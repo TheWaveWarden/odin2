@@ -340,4 +340,6 @@
 	    std::make_unique<AudioParameterInt>("step_13_on", "Arp Step 14 On", 0, 1, 1),
 	    std::make_unique<AudioParameterInt>("step_14_on", "Arp Step 15 On", 0, 1, 1),
 	    std::make_unique<AudioParameterInt>("step_15_on", "Arp Step 16 On", 0, 1, 1),
+	    std::make_unique<AudioParameterInt>("arp_on", "Arpeggiator On", 0, 1, 0),
+	    std::make_unique<AudioParameterInt>("arp_one_shot", "Arpeggiator OneShot", 0, 1, 0)
 }

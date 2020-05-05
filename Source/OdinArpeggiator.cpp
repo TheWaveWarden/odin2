@@ -12,26 +12,30 @@ bool sortKeysUpToDown(std::pair<int, int> a, std::pair<int, int> b) {
 	return a.first > b.first;
 }
 
-String OdinArpeggiator::ArpPatternToString(ArpPattern p_pattern){
-	switch(p_pattern){
-		case ArpPattern::Up:
+String OdinArpeggiator::ArpPatternToString(ArpPattern p_pattern) {
+	switch (p_pattern) {
+	case ArpPattern::Up:
 		return "Up";
-		case ArpPattern::Down:
+	case ArpPattern::Down:
 		return "Down";
-		case ArpPattern::UpAndDown:
+	case ArpPattern::UpAndDown:
 		return "Up Down";
-		case ArpPattern::DownAndUp:
+	case ArpPattern::DownAndUp:
 		return "Down Up";
-		case ArpPattern::Random:
+	case ArpPattern::Random:
 		return "Random";
-		default:
+	default:
 		return "Unknown";
 	}
 }
 
-
 std::pair<int, int> OdinArpeggiator::getNoteOns(int &pio_step_active) {
 	jassert(m_samplerate > 0);
+
+	if (m_oneshot_end_reached) {
+		pio_step_active = -1;
+		return NO_NOTE;
+	}
 
 	//pattern is empty, nothing to do
 	if (m_arp_sequence.size() == 0) {
@@ -72,6 +76,12 @@ std::pair<int, int> OdinArpeggiator::getNoteOns(int &pio_step_active) {
 		++m_current_sequence_index;
 		if (m_current_sequence_index >= m_max_sequence_steps) {
 			m_current_sequence_index = 0;
+			if (m_oneshot) {
+				m_current_sequence_index = 0;
+				pio_step_active          = -1;
+				m_oneshot_end_reached    = true;
+				return NO_NOTE;
+			}
 		}
 		pio_step_active        = m_current_sequence_index;
 		m_time_since_last_note = 0.f;
@@ -118,6 +128,7 @@ void OdinArpeggiator::midiNoteOn(int p_midi_note, int p_midi_velocity) {
 		m_start_pattern = true;
 	}
 	generateSequence();
+	m_oneshot_end_reached = false;
 }
 
 void OdinArpeggiator::midiNoteOff(int p_midi_note) {
@@ -238,5 +249,44 @@ void OdinArpeggiator::printSequence() {
 
 void OdinArpeggiator::setBPM(double p_BPM) {
 	m_BPM = p_BPM;
+	calcArpTime();
 }
 
+void OdinArpeggiator::setOneShotEnabled(bool p_oneshot) {
+	m_oneshot = p_oneshot;
+}
+
+void OdinArpeggiator::setSynctimeNumerator(float p_value) {
+	DBG("numerator");
+	m_synctime_numerator = p_value;
+	m_synctime_ratio     = p_value / m_synctime_denominator;
+	calcArpTime();
+
+}
+
+void OdinArpeggiator::setSynctimeDenominator(float p_value) {
+	m_synctime_denominator = p_value;
+	m_synctime_ratio       = m_synctime_numerator / p_value;
+	calcArpTime();
+}
+
+
+void OdinArpeggiator::setOctaves(int p_new_value){
+	m_octaves = p_new_value;
+}
+
+void OdinArpeggiator::setDirection(int p_new_value){
+	m_pattern = (ArpPattern)p_new_value;
+}
+
+void OdinArpeggiator::setSteps(int p_new_value){
+	m_max_sequence_steps = p_new_value;
+}
+
+void OdinArpeggiator::setGatePercent(int p_new_value){
+	m_gate = (float) p_new_value / 100.f;
+}
+
+void OdinArpeggiator::calcArpTime(){
+	m_arp_time = m_synctime_ratio * 240.f / m_BPM;
+}

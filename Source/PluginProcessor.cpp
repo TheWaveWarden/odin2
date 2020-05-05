@@ -1100,6 +1100,7 @@ void OdinAudioProcessor::setBPM(float p_BPM) {
 	if (m_lfo4_sync) {
 		m_global_lfo.setFreqBPM(p_BPM);
 	}
+	m_arpeggiator.setBPM(p_BPM);
 }
 
 void OdinAudioProcessor::setFXButtonsPosition(int p_delay, int p_phaser, int p_flanger, int p_chorus) {

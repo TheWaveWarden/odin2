@@ -1,6 +1,6 @@
 #define DEBUG_VARIABLES
 
-float valueToDenomintaor(int p_value) {
+float valueToDenominator(int p_value) {
 	switch (p_value) {
 	case 0:
 		return 1.f;
@@ -215,7 +215,7 @@ void OdinAudioProcessor::treeValueChangedOscMulti(const String &p_ID, float p_ne
 		for (int voice = 0; voice < VOICES; ++voice) {
 			m_voice[voice].wavetable_osc[2].setPosModAmount(p_new_value);
 		}
-	} 
+	}
 }
 
 void OdinAudioProcessor::treeValueChangedOscXY(const String &p_ID, float p_new_value) {
@@ -386,7 +386,7 @@ void OdinAudioProcessor::treeValueChangedOscFM(const String &p_ID, float p_new_v
 		for (int voice = 0; voice < VOICES; ++voice) {
 			m_voice[voice].fm_osc[2].setFMExponential(p_new_value);
 		}
-	} 
+	}
 }
 
 void OdinAudioProcessor::treeValueChangedOscNoise(const String &p_ID, float p_new_value) {
@@ -706,56 +706,46 @@ void OdinAudioProcessor::treeValueChangedPhaser(const String &p_ID, float p_new_
 
 void OdinAudioProcessor::treeValueChangedArp(const String &p_ID, float p_new_value) {
 #ifdef DEBUG_VARIABLES
-	DBG("Phaser: " + p_ID + ": " + std::to_string(p_new_value));
+	DBG("Arp: " + p_ID + ": " + std::to_string(p_new_value));
 #endif
 	StringRef id = StringRef(p_ID);
 
-	if(id == m_step_0_on_identifier){
+	if (id == m_arp_on_identifier) {
+		m_arpeggiator.reset();
+		m_arpeggiator_on = p_new_value > 0.5f;
+	} else if (id == m_arp_one_shot_identifier) {
+		m_arpeggiator.setOneShotEnabled(p_new_value > 0.5f);
+	} else if (id == m_step_0_on_identifier) {
 		m_arpeggiator.setSequenceStepActive(0, p_new_value > 0.5f);
-	}
-    else if(id == m_step_1_on_identifier){
+	} else if (id == m_step_1_on_identifier) {
 		m_arpeggiator.setSequenceStepActive(1, p_new_value > 0.5f);
-	}
-    else if(id == m_step_2_on_identifier){
+	} else if (id == m_step_2_on_identifier) {
 		m_arpeggiator.setSequenceStepActive(2, p_new_value > 0.5f);
-	}
-    else if(id == m_step_3_on_identifier){
+	} else if (id == m_step_3_on_identifier) {
 		m_arpeggiator.setSequenceStepActive(3, p_new_value > 0.5f);
-	}
-    else if(id == m_step_4_on_identifier){
+	} else if (id == m_step_4_on_identifier) {
 		m_arpeggiator.setSequenceStepActive(4, p_new_value > 0.5f);
-	}
-    else if(id == m_step_5_on_identifier){
+	} else if (id == m_step_5_on_identifier) {
 		m_arpeggiator.setSequenceStepActive(5, p_new_value > 0.5f);
-	}
-    else if(id == m_step_6_on_identifier){
+	} else if (id == m_step_6_on_identifier) {
 		m_arpeggiator.setSequenceStepActive(6, p_new_value > 0.5f);
-	}
-    else if(id == m_step_7_on_identifier){
+	} else if (id == m_step_7_on_identifier) {
 		m_arpeggiator.setSequenceStepActive(7, p_new_value > 0.5f);
-	}
-    else if(id == m_step_8_on_identifier){
+	} else if (id == m_step_8_on_identifier) {
 		m_arpeggiator.setSequenceStepActive(8, p_new_value > 0.5f);
-	}
-    else if(id == m_step_9_on_identifier){
+	} else if (id == m_step_9_on_identifier) {
 		m_arpeggiator.setSequenceStepActive(9, p_new_value > 0.5f);
-	}
-    else if(id == m_step_10_on_identifier){
+	} else if (id == m_step_10_on_identifier) {
 		m_arpeggiator.setSequenceStepActive(10, p_new_value > 0.5f);
-	}
-    else if(id == m_step_11_on_identifier){
+	} else if (id == m_step_11_on_identifier) {
 		m_arpeggiator.setSequenceStepActive(11, p_new_value > 0.5f);
-	}
-    else if(id == m_step_12_on_identifier){
+	} else if (id == m_step_12_on_identifier) {
 		m_arpeggiator.setSequenceStepActive(12, p_new_value > 0.5f);
-	}
-    else if(id == m_step_13_on_identifier){
+	} else if (id == m_step_13_on_identifier) {
 		m_arpeggiator.setSequenceStepActive(13, p_new_value > 0.5f);
-	}
-    else if(id == m_step_14_on_identifier){
+	} else if (id == m_step_14_on_identifier) {
 		m_arpeggiator.setSequenceStepActive(14, p_new_value > 0.5f);
-	}
-    else if(id == m_step_15_on_identifier){
+	} else if (id == m_step_15_on_identifier) {
 		m_arpeggiator.setSequenceStepActive(15, p_new_value > 0.5f);
 	}
 }
@@ -997,7 +987,7 @@ void OdinAudioProcessor::treeValueChangedNonParamFX(ValueTree &tree, const Ident
 		}
 	} else if (id == m_flanger_synctime_denominator_identifier) {
 		for (int stereo = 0; stereo < 2; ++stereo) {
-			m_flanger[stereo].setSynctimeDenominator(valueToDenomintaor(p_new_value));
+			m_flanger[stereo].setSynctimeDenominator(valueToDenominator(p_new_value));
 		}
 	} else if (id == m_chorus_synctime_numerator_identifier) {
 		for (int stereo = 0; stereo < 2; ++stereo) {
@@ -1005,16 +995,16 @@ void OdinAudioProcessor::treeValueChangedNonParamFX(ValueTree &tree, const Ident
 		}
 	} else if (id == m_chorus_synctime_denominator_identifier) {
 		for (int stereo = 0; stereo < 2; ++stereo) {
-			m_chorus[stereo].setSynctimeDenominator(valueToDenomintaor(p_new_value));
+			m_chorus[stereo].setSynctimeDenominator(valueToDenominator(p_new_value));
 		}
 	} else if (id == m_delay_synctime_numerator_identifier) {
 		m_delay.setSynctimeNumerator(p_new_value + 1);
 	} else if (id == m_delay_synctime_denominator_identifier) {
-		m_delay.setSynctimeDenominator(valueToDenomintaor(p_new_value));
+		m_delay.setSynctimeDenominator(valueToDenominator(p_new_value));
 	} else if (id == m_phaser_synctime_numerator_identifier) {
 		m_phaser.setSynctimeNumerator(p_new_value + 1);
 	} else if (id == m_phaser_synctime_denominator_identifier) {
-		m_phaser.setSynctimeDenominator(valueToDenomintaor(p_new_value));
+		m_phaser.setSynctimeDenominator(valueToDenominator(p_new_value));
 	} else if (id == m_delay_sync_identifier) {
 		m_delay_sync = p_new_value > 0.5;
 		if (!p_new_value) {
@@ -1051,7 +1041,7 @@ void OdinAudioProcessor::treeValueChangedNonParamLFO(ValueTree &tree, const Iden
 		}
 	} else if (id == m_lfo1_synctime_denominator_identifier) {
 		for (int voice = 0; voice < VOICES; ++voice) {
-			m_voice[voice].lfo[0].setSynctimeDenominator(valueToDenomintaor(p_new_value));
+			m_voice[voice].lfo[0].setSynctimeDenominator(valueToDenominator(p_new_value));
 		}
 	} else if (id == m_lfo2_synctime_numerator_identifier) {
 		for (int voice = 0; voice < VOICES; ++voice) {
@@ -1059,7 +1049,7 @@ void OdinAudioProcessor::treeValueChangedNonParamLFO(ValueTree &tree, const Iden
 		}
 	} else if (id == m_lfo2_synctime_denominator_identifier) {
 		for (int voice = 0; voice < VOICES; ++voice) {
-			m_voice[voice].lfo[1].setSynctimeDenominator(valueToDenomintaor(p_new_value));
+			m_voice[voice].lfo[1].setSynctimeDenominator(valueToDenominator(p_new_value));
 		}
 	} else if (id == m_lfo3_synctime_numerator_identifier) {
 		for (int voice = 0; voice < VOICES; ++voice) {
@@ -1067,12 +1057,12 @@ void OdinAudioProcessor::treeValueChangedNonParamLFO(ValueTree &tree, const Iden
 		}
 	} else if (id == m_lfo3_synctime_denominator_identifier) {
 		for (int voice = 0; voice < VOICES; ++voice) {
-			m_voice[voice].lfo[2].setSynctimeDenominator(valueToDenomintaor(p_new_value));
+			m_voice[voice].lfo[2].setSynctimeDenominator(valueToDenominator(p_new_value));
 		}
 	} else if (id == m_lfo4_synctime_numerator_identifier) {
 		m_global_lfo.setSynctimeNumerator(p_new_value + 1);
 	} else if (id == m_lfo4_synctime_denominator_identifier) {
-		m_global_lfo.setSynctimeDenominator(valueToDenomintaor(p_new_value));
+		m_global_lfo.setSynctimeDenominator(valueToDenominator(p_new_value));
 	}
 
 	else if (id == m_lfo1_wave_identifier) {
@@ -1382,6 +1372,20 @@ void OdinAudioProcessor::treeValueChangedNonParamMisc(ValueTree &tree, const Ide
 		m_formant_filter[1].setVowelRight((int)p_new_value);
 	} else if (id == m_pitchbend_amount_identifier) {
 		m_pitchbend_amount = p_new_value;
+	}
+
+	if (id == m_arp_synctime_numerator_identifier) {
+		m_arpeggiator.setSynctimeNumerator(p_new_value + 1);
+	} else if (id == m_arp_synctime_denominator_identifier) {
+		m_arpeggiator.setSynctimeDenominator(valueToDenominator(p_new_value));
+	} else if (id == m_arp_octaves_identifier) {
+		m_arpeggiator.setOctaves(p_new_value);
+	} else if (id == m_arp_direction_identifier) {
+		m_arpeggiator.setDirection(p_new_value);
+	} else if (id == m_arp_steps_identifier) {
+		m_arpeggiator.setSteps(p_new_value);
+	} else if (id == m_arp_gate_identifier) {
+		m_arpeggiator.setGatePercent(p_new_value);
 	}
 }
 
