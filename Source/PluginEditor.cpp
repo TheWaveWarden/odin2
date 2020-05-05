@@ -79,7 +79,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
     m_flanger_position_identifier("flanger_position"), m_phaser_position_identifier("phaser_position"),
     m_chorus_position_identifier("chorus_position"), m_mod_matrix(vts), m_legato_button("legato"),
     m_gui_size_button("gui_size"), m_tooltip(nullptr, 2047483647), m_is_standalone_plugin(p_is_standalone),
-    m_save_load(vts, p_processor), m_processor(p_processor) {
+    m_save_load(vts, p_processor), m_arp(p_processor, vts), m_processor(p_processor) {
         
 #ifdef ODIN_MAC
     setBufferedToImage(true);

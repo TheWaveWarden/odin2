@@ -362,3 +362,21 @@ m_value_tree.addParameterListener("master", &m_tree_listener_general_misc);
 
 m_value_tree.addParameterListener("unison_detune", &m_tree_listener_general_misc);
 m_value_tree.addParameterListener("unison_width", &m_tree_listener_general_misc);
+
+//arp listener
+m_value_tree.addParameterListener("step_0_on", &m_tree_listener_arp);
+m_value_tree.addParameterListener("step_1_on", &m_tree_listener_arp);
+m_value_tree.addParameterListener("step_2_on", &m_tree_listener_arp);
+m_value_tree.addParameterListener("step_3_on", &m_tree_listener_arp);
+m_value_tree.addParameterListener("step_4_on", &m_tree_listener_arp);
+m_value_tree.addParameterListener("step_5_on", &m_tree_listener_arp);
+m_value_tree.addParameterListener("step_6_on", &m_tree_listener_arp);
+m_value_tree.addParameterListener("step_7_on", &m_tree_listener_arp);
+m_value_tree.addParameterListener("step_8_on", &m_tree_listener_arp);
+m_value_tree.addParameterListener("step_9_on", &m_tree_listener_arp);
+m_value_tree.addParameterListener("step_10_on", &m_tree_listener_arp);
+m_value_tree.addParameterListener("step_11_on", &m_tree_listener_arp);
+m_value_tree.addParameterListener("step_12_on", &m_tree_listener_arp);
+m_value_tree.addParameterListener("step_13_on", &m_tree_listener_arp);
+m_value_tree.addParameterListener("step_14_on", &m_tree_listener_arp);
+m_value_tree.addParameterListener("step_15_on", &m_tree_listener_arp);

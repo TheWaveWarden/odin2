@@ -12,7 +12,11 @@
 #include <JuceHeader.h>
 
 //==============================================================================
-StepComponent::StepComponent() : m_step_on("step_on", juce::DrawableButton::ButtonStyle::ImageRaw) {
+StepComponent::StepComponent(AudioProcessorValueTreeState &vts, int p_step_index) :
+    m_value_tree(vts),
+    m_step_on("step_" + std::to_string(p_step_index + 1) + "_on", juce::DrawableButton::ButtonStyle::ImageRaw),
+    m_step_index(p_step_index) {
+
 	addAndMakeVisible(m_mod);
 	m_mod.setSliderStyle(Slider::RotaryVerticalDrag);
 	m_mod.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
@@ -30,12 +34,9 @@ StepComponent::StepComponent() : m_step_on("step_on", juce::DrawableButton::Butt
 	m_step_on.setTooltip("TODO");
 	m_step_on.setTriggeredOnMouseDown(true);
 	m_step_on.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
-	m_step_on.onClick = [&](){
-		DBG((float)m_step_on.getToggleState());
-	};
+	m_step_on_attach.reset(new OdinButtonAttachment(m_value_tree, "step_" + std::to_string(m_step_index) + "_on", m_step_on));
 
 	addAndMakeVisible(m_led);
-	
 
 	//TODO REMOVE
 	m_mod.setRange(-1, 1);
@@ -46,8 +47,8 @@ StepComponent::~StepComponent() {
 }
 
 void StepComponent::paint(Graphics &g) {
-	g.setColour(Colours::grey);
-	g.drawRect(getLocalBounds(), 1); // draw an outline around the component
+	//g.setColour(Colours::grey);
+	//g.drawRect(getLocalBounds(), 1); // draw an outline around the component
 }
 
 void StepComponent::resized() {
@@ -63,7 +64,7 @@ void StepComponent::setGUIBig() {
 	m_mod.setBounds(KNOB_POS_X, MOD_POS_Y, BLACK_KNOB_SMALL_SIZE_X * 1.5, BLACK_KNOB_SMALL_SIZE_Y * 1.5);
 
 	m_transpose.setStrip(black_knob_small, N_KNOB_FRAMES);
-	m_transpose.setBounds(KNOB_POS_X, TRANSPOSE_POS_Y, BLACK_KNOB_MID_SIZE_X * 1.5, BLACK_KNOB_MID_SIZE_Y * 1.5);
+	m_transpose.setBounds(KNOB_POS_X, TRANSPOSE_POS_Y, BLACK_KNOB_SMALL_SIZE_X * 1.5, BLACK_KNOB_SMALL_SIZE_Y * 1.5);
 
 	juce::Image step_on_4 =
 	    ImageCache::getFromMemory(BinaryData::button_arp_step_1_150_png, BinaryData::button_arp_step_1_150_pngSize);
@@ -96,4 +97,8 @@ void StepComponent::setGUIBig() {
 }
 
 void StepComponent::setGUISmall() {
+}
+
+void StepComponent::setLEDActive(int p_step_index) {
+	m_led.setLEDOn(p_step_index == m_step_index);
 }

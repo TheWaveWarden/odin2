@@ -157,6 +157,8 @@ public:
 	void migratePatch(ValueTree &p_patch);
 	void readPatch(const ValueTree &newState);
 
+	Atomic<int> m_step_led_active = -1;
+
 private:
 #ifdef ODIN_PROFILING
 #define PROFILING_SAMPLES 44100
@@ -217,6 +219,7 @@ private:
 	OdinTreeListener m_tree_listener_delay;
 	OdinTreeListener m_tree_listener_chorus;
 	OdinTreeListener m_tree_listener_phaser;
+	OdinTreeListener m_tree_listener_arp;
 	OdinTreeListener m_tree_listener_flanger;
 	OdinTreeListener m_tree_listener_adsr1;
 	OdinTreeListener m_tree_listener_adsr2;
@@ -269,6 +272,7 @@ private:
 	void treeValueChangedDelay(const String &p_ID, float p_new_value);
 	void treeValueChangedChorus(const String &p_ID, float p_new_value);
 	void treeValueChangedPhaser(const String &p_ID, float p_new_value);
+	void treeValueChangedArp(const String &p_ID, float p_new_value);
 	void treeValueChangedFlanger(const String &p_ID, float p_new_value);
 	void treeValueChangedADSR1(const String &p_ID, float p_new_value);
 	void treeValueChangedADSR2(const String &p_ID, float p_new_value);

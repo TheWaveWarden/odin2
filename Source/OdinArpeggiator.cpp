@@ -12,11 +12,12 @@ bool sortKeysUpToDown(std::pair<int, int> a, std::pair<int, int> b) {
 	return a.first > b.first;
 }
 
-std::pair<int, int> OdinArpeggiator::getNoteOns() {
+std::pair<int, int> OdinArpeggiator::getNoteOns(int &pio_step_active) {
 	jassert(m_samplerate > 0);
 
 	//pattern is empty, nothing to do
 	if (m_arp_sequence.size() == 0) {
+		pio_step_active = -1;
 		return NO_NOTE;
 	}
 
@@ -28,6 +29,7 @@ std::pair<int, int> OdinArpeggiator::getNoteOns() {
 		m_start_pattern          = false;
 		m_current_arp_index      = 0;
 		m_current_sequence_index = 0;
+		pio_step_active          = 0;
 		m_time_since_last_note   = 0.f;
 		if (m_sequence_steps_on[m_current_sequence_index]) {
 			m_playing_notes.push_back(std::make_pair(m_arp_sequence[m_current_arp_index].first, 0.f));
@@ -53,6 +55,7 @@ std::pair<int, int> OdinArpeggiator::getNoteOns() {
 		if (m_current_sequence_index >= m_max_sequence_steps) {
 			m_current_sequence_index = 0;
 		}
+		pio_step_active        = m_current_sequence_index;
 		m_time_since_last_note = 0.f;
 
 		if (m_sequence_steps_on[m_current_sequence_index]) {
@@ -62,6 +65,7 @@ std::pair<int, int> OdinArpeggiator::getNoteOns() {
 	}
 
 	//well then do nothing I guess
+	pio_step_active = m_current_sequence_index;
 	return NO_NOTE;
 }
 
@@ -136,7 +140,7 @@ void OdinArpeggiator::executeKillList() {
 	generateSequence();
 }
 
-void OdinArpeggiator::setSequenceStepAvtive(int p_step, bool p_active) {
+void OdinArpeggiator::setSequenceStepActive(int p_step, bool p_active) {
 	m_sequence_steps_on[p_step] = p_active;
 }
 

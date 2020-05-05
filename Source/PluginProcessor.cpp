@@ -82,6 +82,9 @@ OdinAudioProcessor::OdinAudioProcessor() :
 	m_tree_listener_phaser.onValueChange = [&](const String &p_ID, float p_new_value) {
 		treeValueChangedPhaser(p_ID, p_new_value);
 	};
+	m_tree_listener_arp.onValueChange = [&](const String &p_ID, float p_new_value) {
+		treeValueChangedArp(p_ID, p_new_value);
+	};
 	m_tree_listener_flanger.onValueChange = [&](const String &p_ID, float p_new_value) {
 		treeValueChangedFlanger(p_ID, p_new_value);
 	};
@@ -360,7 +363,9 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 
 		// do Arpeggiator
 		if(m_arpeggiator_on){
-			auto note = m_arpeggiator.getNoteOns();
+			int step_active;
+			auto note = m_arpeggiator.getNoteOns(step_active);
+			m_step_led_active.set(step_active);
 			if(note.first != -1){
 				midiNoteOn(note.first, note.second);
 			}

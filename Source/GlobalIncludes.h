@@ -1,12 +1,3 @@
-/*
-  ==============================================================================
-
-    GlobalIncludes.h
-    Created: 7 Mar 2019 11:20:12pm
-    Author:  frot
-
-  ==============================================================================
-*/
 #pragma once
 #ifndef BENCHMARK
 #include "../JuceLibraryCode/JuceHeader.h"

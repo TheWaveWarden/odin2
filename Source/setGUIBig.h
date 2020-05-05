@@ -493,7 +493,7 @@ void OdinAudioProcessorEditor::setGUIBig(){
 	m_delay.setBounds(OdinHelper::c150(FX_AREA_POS_X), OdinHelper::c150(FX_AREA_POS_Y), OdinHelper::c150(FX_AREA_SIZE_X), OdinHelper::c150(FX_AREA_SIZE_Y));
 
 	m_mod_matrix.setBounds(OdinHelper::c150(MATRIX_POS_X), OdinHelper::c150(MATRIX_POS_Y), OdinHelper::c150(MATRIX_SIZE_X), OdinHelper::c150(MATRIX_SIZE_Y));
-	m_arp.setBounds(OdinHelper::c150(MATRIX_POS_X), OdinHelper::c150(MATRIX_POS_Y), OdinHelper::c150(MATRIX_SIZE_X), OdinHelper::c150(MATRIX_SIZE_Y));
+	m_arp.setBounds(OdinHelper::c150(MATRIX_POS_X), OdinHelper::c150(MATRIX_POS_Y), OdinHelper::c150(MATRIX_SIZE_X), OdinHelper::c150(MATRIX_SIZE_Y) + 5);
 	m_save_load.setBounds(OdinHelper::c150(SAVE_LOAD_POS_X), OdinHelper::c150(SAVE_LOAD_POS_Y), OdinHelper::c150(SAVE_LOAD_SIZE_X), OdinHelper::c150(SAVE_LOAD_SIZE_Y));
 	m_xy_section.setBounds(OdinHelper::c150(XY_COMPONENT_POS_X), OdinHelper::c150(XY_COMPONENT_POS_Y), OdinHelper::c150(XY_COMPONENT_SIZE_X), OdinHelper::c150(XY_COMPONENT_SIZE_Y));
 

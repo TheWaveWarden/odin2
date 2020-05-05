@@ -1,4 +1,4 @@
-//#define DEBUG_VARIABLES
+#define DEBUG_VARIABLES
 
 float valueToDenomintaor(int p_value) {
 	switch (p_value) {
@@ -701,6 +701,62 @@ void OdinAudioProcessor::treeValueChangedPhaser(const String &p_ID, float p_new_
 		m_phaser.setLFOFreq(p_new_value);
 	} else if (id == m_phaser_drywet_identifier) {
 		m_phaser.setDryWet(p_new_value);
+	}
+}
+
+void OdinAudioProcessor::treeValueChangedArp(const String &p_ID, float p_new_value) {
+#ifdef DEBUG_VARIABLES
+	DBG("Phaser: " + p_ID + ": " + std::to_string(p_new_value));
+#endif
+	StringRef id = StringRef(p_ID);
+
+	if(id == m_step_0_on_identifier){
+		m_arpeggiator.setSequenceStepActive(0, p_new_value > 0.5f);
+	}
+    else if(id == m_step_1_on_identifier){
+		m_arpeggiator.setSequenceStepActive(1, p_new_value > 0.5f);
+	}
+    else if(id == m_step_2_on_identifier){
+		m_arpeggiator.setSequenceStepActive(2, p_new_value > 0.5f);
+	}
+    else if(id == m_step_3_on_identifier){
+		m_arpeggiator.setSequenceStepActive(3, p_new_value > 0.5f);
+	}
+    else if(id == m_step_4_on_identifier){
+		m_arpeggiator.setSequenceStepActive(4, p_new_value > 0.5f);
+	}
+    else if(id == m_step_5_on_identifier){
+		m_arpeggiator.setSequenceStepActive(5, p_new_value > 0.5f);
+	}
+    else if(id == m_step_6_on_identifier){
+		m_arpeggiator.setSequenceStepActive(6, p_new_value > 0.5f);
+	}
+    else if(id == m_step_7_on_identifier){
+		m_arpeggiator.setSequenceStepActive(7, p_new_value > 0.5f);
+	}
+    else if(id == m_step_8_on_identifier){
+		m_arpeggiator.setSequenceStepActive(8, p_new_value > 0.5f);
+	}
+    else if(id == m_step_9_on_identifier){
+		m_arpeggiator.setSequenceStepActive(9, p_new_value > 0.5f);
+	}
+    else if(id == m_step_10_on_identifier){
+		m_arpeggiator.setSequenceStepActive(10, p_new_value > 0.5f);
+	}
+    else if(id == m_step_11_on_identifier){
+		m_arpeggiator.setSequenceStepActive(11, p_new_value > 0.5f);
+	}
+    else if(id == m_step_12_on_identifier){
+		m_arpeggiator.setSequenceStepActive(12, p_new_value > 0.5f);
+	}
+    else if(id == m_step_13_on_identifier){
+		m_arpeggiator.setSequenceStepActive(13, p_new_value > 0.5f);
+	}
+    else if(id == m_step_14_on_identifier){
+		m_arpeggiator.setSequenceStepActive(14, p_new_value > 0.5f);
+	}
+    else if(id == m_step_15_on_identifier){
+		m_arpeggiator.setSequenceStepActive(15, p_new_value > 0.5f);
 	}
 }
 

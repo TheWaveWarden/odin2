@@ -17,7 +17,7 @@ class OdinArpeggiator {
         Random
     };
 
-	std::pair<int, int> getNoteOns();
+	std::pair<int, int> getNoteOns(int &pio_step_active);
     std::vector<int> getNoteOffs();
 
 	void setSampleRate(double p_samplerate);
@@ -29,7 +29,7 @@ class OdinArpeggiator {
 
 	void setSustainActive(bool p_sustain_active);
 
-    void setSequenceStepAvtive(int p_step, bool p_active);
+    void setSequenceStepActive(int p_step, bool p_active);
     void setBPM(double p_BPM);
 
 private:
@@ -53,8 +53,8 @@ private:
     //algorithm parameters
     int m_octaves = 2;
     int m_max_sequence_steps = NUMBER_SEQUENCE_STEPS;
-    float m_arp_time = 0.3;
-    float m_gate = 0.8;
+    float m_arp_time = 0.2;
+    float m_gate = 0.5;
     ArpPattern m_pattern = ArpPattern::UpAndDown;
 
     //temp parametes

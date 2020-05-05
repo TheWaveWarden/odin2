@@ -12,9 +12,12 @@ public:
 
 	void paint(Graphics &g) override {
 		if (m_GUI_big) {
-			g.drawImageAt(m_image_on, 0, 0);
+			if (m_LED_on) {
+				g.drawImageAt(m_image_on, 0, 0);
+			} else {
+				g.drawImageAt(m_image_off, 0, 0);
+			}
 		} else {
-			g.drawImageAt(m_image_off, 0, 0);
 		}
 	}
 
@@ -32,12 +35,13 @@ public:
 		m_GUI_big = false;
 	}
 
-    void setLEDOn(bool p_on){
-        if(m_LED_on != p_on){
-            m_LED_on = p_on;
-            repaint();
-        }
-    }
+	void setLEDOn(bool p_on) {
+		if (m_LED_on != p_on) {
+			m_LED_on = p_on;
+			//DBG("REPAINT");
+			repaint();
+		}
+	}
 
 private:
 	bool m_GUI_big = false;
