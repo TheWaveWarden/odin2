@@ -66,7 +66,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
     m_chorus_on_button("chorus_button", juce::DrawableButton::ButtonStyle::ImageRaw),
     m_delay_on_button("delay_button", juce::DrawableButton::ButtonStyle::ImageRaw),
     m_question_button("question_button", juce::DrawableButton::ButtonStyle::ImageRaw), m_env_13_button("env13_button"),
-    m_env_24_button("env24_button"), m_lfo_13_button("lfo13_button"), m_lfo_24_button("lfo24_button"),
+    m_env_24_button("env24_button"), m_lfo_13_button("lfo13_button"), m_lfo_24_button("lfo24_button"), m_arp_modmatrix_button("arp_modmatrix_button"),
     m_pitch_amount(true), m_BPM_selector(true), m_osc1(p_processor, vts, "1"), m_osc2(p_processor, vts, "2"),
     m_osc3(p_processor, vts, "3"), m_fil1_component(vts, "1"), m_fil2_component(vts, "2"), m_fil3_component(vts, "3"),
     m_midsection(vts), m_adsr_1(vts, "1"), m_adsr_2(vts, "2"), m_adsr_3(vts, "3"), m_adsr_4(vts, "4"),
@@ -738,8 +738,8 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	m_delay.setImage(delay_image);
 	addAndMakeVisible(m_delay);
 
-	//addAndMakeVisible(m_mod_matrix);
-	addAndMakeVisible(m_arp);
+	addAndMakeVisible(m_mod_matrix);
+	addChildComponent(m_arp);
 	addAndMakeVisible(m_save_load);
 	addAndMakeVisible(m_xy_section);
 
@@ -793,6 +793,16 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	m_lfo_13_button.setTooltip("Shows LFO 1 or LFO 2");
 	addAndMakeVisible(m_lfo_13_button);
 	m_lfo_13_button.disableMidiLearn();
+
+	m_arp_modmatrix_button.setToggleState(true, dontSendNotification);
+	m_arp_modmatrix_button.onStateChange = [&]() {
+		setArpMod(m_arp_modmatrix_button.getToggleState());
+		m_value_tree.state.getChildWithName("misc").setProperty(
+		    "arp_mod_selected", (int)m_arp_modmatrix_button.getToggleState(), nullptr);
+	};
+	m_arp_modmatrix_button.setTooltip("Shows the arpeggiator or the mod-matrix");
+	addAndMakeVisible(m_arp_modmatrix_button);
+	m_arp_modmatrix_button.disableMidiLearn();
 
 	juce::Image lfo24_left =
 	    ImageCache::getFromMemory(BinaryData::buttonlfo24_1_png, BinaryData::buttonlfo24_1_pngSize);
@@ -1158,6 +1168,16 @@ void OdinAudioProcessorEditor::setLfo12(bool p_lfo1) {
 	} else {
 		m_lfo_1.setVisible(false);
 		m_lfo_2.setVisible(true);
+	}
+}
+
+void OdinAudioProcessorEditor::setArpMod(bool p_arp) {
+	if (p_arp) {
+		m_mod_matrix.setVisible(false);
+		m_arp.setVisible(true);
+	} else {
+		m_mod_matrix.setVisible(true);
+		m_arp.setVisible(false);
 	}
 }
 

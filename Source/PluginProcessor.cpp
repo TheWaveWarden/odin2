@@ -366,8 +366,8 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 			int step_active;
 			auto note = m_arpeggiator.getNoteOns(step_active);
 			m_step_led_active.set(step_active);
-			if(note.first != -1){
-				midiNoteOn(note.first, note.second);
+			if(std::get<0>(note) != -1){
+				midiNoteOn(std::get<0>(note), std::get<1>(note), std::get<2>(note));
 			}
 			auto off_notes = m_arpeggiator.getNoteOffs();
 			for(auto note : off_notes){
@@ -969,7 +969,7 @@ void OdinAudioProcessor::handleMidiNoteOff(int p_midi_note){
 }
 
 
-void OdinAudioProcessor::midiNoteOn(int p_midi_note, int p_midi_velocity) {
+void OdinAudioProcessor::midiNoteOn(int p_midi_note, int p_midi_velocity, float p_arp_mod) {
 
 	m_global_env.restartEnvelope();
 	if (*m_lfo4_reset) {
@@ -1004,7 +1004,7 @@ void OdinAudioProcessor::midiNoteOn(int p_midi_note, int p_midi_velocity) {
 			//we "shuffle" pan positions around to get detune positions:
 		    m_unison_pan_positions[unison_voices][m_unison_detune_positions[unison_voices][unison_counter]],
 		    m_unison_gain_factors[unison_voices],
-		    unison_voices > 1);
+		    unison_voices > 1, p_arp_mod);
 		DBG("NoteOn,  key " + std::to_string(p_midi_note) + ", voice " + std::to_string(new_voice));
 		//if (m_voice_manager.legatoEnabled()) {
 		//m_voice[new_voice].amp.setMIDIVelocityLegato(p_midi_velocity);
@@ -1146,9 +1146,9 @@ void OdinAudioProcessor::handleMidiMessage(const MidiMessage &p_midi_message) {
 	//DBG(p_midi_message.getDescription());
 	// apply midi message
 	if (p_midi_message.isNoteOn()) {
-		midiNoteOn(p_midi_message.getNoteNumber(), p_midi_message.getVelocity());
+		handleMidiNoteOn(p_midi_message.getNoteNumber(), p_midi_message.getVelocity());
 	} else if (p_midi_message.isNoteOff()) {
-		midiNoteOff(p_midi_message.getNoteNumber());
+		handleMidiNoteOff(p_midi_message.getNoteNumber());
 	} else if (p_midi_message.isPitchWheel()) {
 		setPitchWheelValue(p_midi_message.getPitchWheelValue());
 	} else if (p_midi_message.isController() && p_midi_message.getControllerNumber() == 1) { // modwheel

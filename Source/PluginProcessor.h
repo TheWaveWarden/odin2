@@ -131,7 +131,7 @@ public:
 
 	// this is an actual call to start / end a note
 	void midiNoteOff(int p_midi_note);
-	void midiNoteOn(int p_midi_note, int p_midi_velocity);
+	void midiNoteOn(int p_midi_note, int p_midi_velocity, float p_arp_mod = 0.f);
 	// this checks whether the arp is on and gives notes to it or puts notes on directly
 	void handleMidiNoteOff(int p_midi_note);
 	void handleMidiNoteOn(int p_midi_note, int p_midi_velocity);

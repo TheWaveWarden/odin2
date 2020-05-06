@@ -180,7 +180,7 @@ struct Voice {
 	           float p_unison_pan,
 	           float p_unison_detune,
 	           float p_unison_gain_reduction,
-	           bool p_unison_active) {
+	           bool p_unison_active, float p_arp_mod) {
 		reset(p_unison_active);
 		setOscBaseFreq(MIDINoteToFreq(p_MIDI_key), MIDINoteToFreq(p_last_MIDI_key));
 		setFilterMIDIValues(p_MIDI_key, p_MIDI_velocity);
@@ -203,6 +203,8 @@ struct Voice {
 		unison_detune_position     = p_unison_detune;
 		unison_gain_reduction      = p_unison_gain_reduction;
 		m_is_in_release            = false;
+		m_arp_mod = p_arp_mod;
+		DBG(m_arp_mod);
 		calcUnisonDetuneFactor();
 		//DBG("Started voice");
 	}
@@ -580,6 +582,7 @@ struct Voice {
 
 	float unison_detune_amount  = 0.08f;
 	float unison_gain_reduction = 1.f;
+	float m_arp_mod = 0.f;
 
 	bool m_is_legato = false;
 	// modulation values

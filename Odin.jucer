@@ -19,6 +19,8 @@
             file="Graphics/cropped/analog_knob_cropped.png"/>
       <FILE id="FU7Kyv" name="analog_knob_cropped_150.png" compile="0" resource="1"
             file="Graphics_150/cropped/analog_knob_cropped_150.png"/>
+      <FILE id="FYIdKv" name="arp_knob_guide_150.png" compile="0" resource="1"
+            file="Graphics_150/cropped/arp_knob_guide_150.png"/>
       <FILE id="fJcZFK" name="Arp_LED_1_150.png" compile="0" resource="1"
             file="Graphics_150/cropped/buttons/Arp_LED_1_150.png"/>
       <FILE id="lhKPd9" name="Arp_LED_2_150.png" compile="0" resource="1"
@@ -71,6 +73,10 @@
             file="Graphics_150/cropped/buttons/button_arp_step_3_150.png"/>
       <FILE id="Qa5heV" name="button_arp_step_4_150.png" compile="0" resource="1"
             file="Graphics_150/cropped/buttons/button_arp_step_4_150.png"/>
+      <FILE id="jjLNYj" name="button_mod_arp_1_150.png" compile="0" resource="1"
+            file="Graphics_150/cropped/buttons/button_mod_arp_1_150.png"/>
+      <FILE id="qOhc4m" name="button_mod_arp_2_150.png" compile="0" resource="1"
+            file="Graphics_150/cropped/buttons/button_mod_arp_2_150.png"/>
       <FILE id="auw32C" name="button_on_off_1_150.png" compile="0" resource="1"
             file="Graphics_150/cropped/buttons/button_on_off_1_150.png"/>
       <FILE id="exI5H3" name="button_on_off_2_150.png" compile="0" resource="1"

@@ -112,7 +112,10 @@
 #define MATRIX_SIZE_X 500
 #define MATRIX_SIZE_Y 144
 #define MATRIX_POS_X 274
-#define MATRIX_POS_Y 452
+#define MATRIX_POS_Y 472
+
+#define ARP_MATRIX_BUTTON_POS_X MATRIX_POS_X
+#define ARP_MATRIX_BUTTON_POS_Y 452
 
 #define SAVE_LOAD_POS_X 23
 #define SAVE_LOAD_POS_Y 2
@@ -180,10 +183,10 @@
 #define MIDI_KEYBOARD_SIZE 85
 
 #define ODIN_EDITOR_SIZE_X 800
-#define ODIN_EDITOR_SIZE_Y 600
+#define ODIN_EDITOR_SIZE_Y 620
 
 #define ODIN_EDITOR_SIZE_150_X 1200
-#define ODIN_EDITOR_SIZE_150_Y 900
+#define ODIN_EDITOR_SIZE_150_Y 930
 
 class TooltipFeels : public LookAndFeel_V4 {
 public:
@@ -348,6 +351,8 @@ private:
   LeftRightButton m_lfo_13_button;
   LeftRightButton m_lfo_24_button;
 
+  LeftRightButton m_arp_modmatrix_button;
+
   LeftRightButton m_legato_button;
   LeftRightButton m_gui_size_button;
 
@@ -403,6 +408,7 @@ private:
   void setEnv24(bool p_env24);
   void setLfo12(bool p_lfo13);
   void setLfo34(bool p_lfo24);
+  void setArpMod(bool p_arp);
   void updatePitchWheel(float p_value);
   void updateModWheel(float p_value);
   void setGUISizeBig(bool p_big, bool p_write_to_config);

@@ -6,8 +6,8 @@ ArpComponent::ArpComponent(OdinAudioProcessor &p_processor, AudioProcessorValueT
     m_processor(p_processor), m_value_tree(vts), m_step_0(vts, 0), m_step_1(vts, 1), m_step_2(vts, 2), m_step_3(vts, 3),
     m_step_4(vts, 4), m_step_5(vts, 5), m_step_6(vts, 6), m_step_7(vts, 7), m_step_8(vts, 8), m_step_9(vts, 9),
     m_step_10(vts, 10), m_step_11(vts, 11), m_step_12(vts, 12), m_step_13(vts, 13), m_step_14(vts, 14),
-    m_step_15(vts, 15),m_on("arp_on", juce::DrawableButton::ButtonStyle::ImageRaw),m_one_shot("arp_one_shot", juce::DrawableButton::ButtonStyle::ImageRaw)
-{
+    m_step_15(vts, 15), m_on("arp_on", juce::DrawableButton::ButtonStyle::ImageRaw),
+    m_one_shot("arp_one_shot", juce::DrawableButton::ButtonStyle::ImageRaw) {
 	addAndMakeVisible(m_step_0);
 	addAndMakeVisible(m_step_1);
 	addAndMakeVisible(m_step_2);
@@ -70,7 +70,11 @@ ArpComponent::ArpComponent(OdinAudioProcessor &p_processor, AudioProcessorValueT
 	                            (int)OdinArpeggiator::ArpPattern::Down,
 	                            (int)OdinArpeggiator::ArpPattern::UpAndDown,
 	                            (int)OdinArpeggiator::ArpPattern::DownAndUp,
-	                            (int)OdinArpeggiator::ArpPattern::Random});
+	                            (int)OdinArpeggiator::ArpPattern::Random,
+	                            (int)OdinArpeggiator::ArpPattern::CrawlUp,
+	                            (int)OdinArpeggiator::ArpPattern::CrawlDown,
+	                            (int)OdinArpeggiator::ArpPattern::CrawlUpDown,
+	                            (int)OdinArpeggiator::ArpPattern::CrawlDownUp});
 	addAndMakeVisible(m_direction);
 	m_direction.setMouseDragDivisor(20.f);
 	m_direction.setColor(Colour(10, 40, 50));
@@ -99,7 +103,6 @@ ArpComponent::ArpComponent(OdinAudioProcessor &p_processor, AudioProcessorValueT
 	m_sync_time.setTooltip("TODO");
 	addAndMakeVisible(m_sync_time);
 
-
 	m_on.setClickingTogglesState(true);
 	addAndMakeVisible(m_on);
 	m_on.setTooltip("Turns the arpeggiator / step sequencer on or off");
@@ -112,10 +115,8 @@ ArpComponent::ArpComponent(OdinAudioProcessor &p_processor, AudioProcessorValueT
 	m_one_shot.setTriggeredOnMouseDown(true);
 	m_one_shot.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
 
-
 	m_on_attach.reset(new OdinButtonAttachment(m_value_tree, "arp_on", m_on));
 	m_one_shot_attach.reset(new OdinButtonAttachment(m_value_tree, "arp_one_shot", m_one_shot));
-
 
 	//todo start and stop timer when component is shown
 	startTimer(10);
@@ -154,10 +155,14 @@ void ArpComponent::setGUIBig() {
 	m_gate.setTopLeftPosition(GATE_SELECTOR_X, GATE_SELECTOR_Y);
 	m_sync_time.setTopLeftPosition(SYNC_TIME_ARP_POS_X, SYNC_TIME_ARP_POS_Y);
 
-	juce::Image on_off_1 = ImageCache::getFromMemory(BinaryData::button_on_off_1_150_png, BinaryData::button_on_off_1_150_pngSize);
-	juce::Image on_off_2 = ImageCache::getFromMemory(BinaryData::button_on_off_2_150_png, BinaryData::button_on_off_2_150_pngSize);
-	juce::Image on_off_3 = ImageCache::getFromMemory(BinaryData::button_on_off_3_150_png, BinaryData::button_on_off_3_150_pngSize);
-	juce::Image on_off_4 = ImageCache::getFromMemory(BinaryData::button_on_off_4_150_png, BinaryData::button_on_off_4_150_pngSize);
+	juce::Image on_off_1 =
+	    ImageCache::getFromMemory(BinaryData::button_on_off_1_150_png, BinaryData::button_on_off_1_150_pngSize);
+	juce::Image on_off_2 =
+	    ImageCache::getFromMemory(BinaryData::button_on_off_2_150_png, BinaryData::button_on_off_2_150_pngSize);
+	juce::Image on_off_3 =
+	    ImageCache::getFromMemory(BinaryData::button_on_off_3_150_png, BinaryData::button_on_off_3_150_pngSize);
+	juce::Image on_off_4 =
+	    ImageCache::getFromMemory(BinaryData::button_on_off_4_150_png, BinaryData::button_on_off_4_150_pngSize);
 
 	juce::DrawableImage on_off_draw1;
 	juce::DrawableImage on_off_draw2;
@@ -169,20 +174,23 @@ void ArpComponent::setGUIBig() {
 	on_off_draw3.setImage(on_off_3);
 	on_off_draw4.setImage(on_off_4);
 	m_on.setImages(&on_off_draw2,
-	                      &on_off_draw2,
-	                      &on_off_draw1,
-	                      &on_off_draw1,
-	                      &on_off_draw4,
-	                      &on_off_draw4,
-	                      &on_off_draw3,
-	                      &on_off_draw3);
+	               &on_off_draw2,
+	               &on_off_draw1,
+	               &on_off_draw1,
+	               &on_off_draw4,
+	               &on_off_draw4,
+	               &on_off_draw3,
+	               &on_off_draw3);
 	m_on.setBounds(ON_OFF_POS_X, ON_OFF_POS_Y, on_off_1.getWidth(), on_off_1.getHeight());
 
-
-	juce::Image one_shot_1 = ImageCache::getFromMemory(BinaryData::button_one_shot_1_150_png, BinaryData::button_one_shot_1_150_pngSize);
-	juce::Image one_shot_2 = ImageCache::getFromMemory(BinaryData::button_one_shot_2_150_png, BinaryData::button_one_shot_2_150_pngSize);
-	juce::Image one_shot_3 = ImageCache::getFromMemory(BinaryData::button_one_shot_3_150_png, BinaryData::button_one_shot_3_150_pngSize);
-	juce::Image one_shot_4 = ImageCache::getFromMemory(BinaryData::button_one_shot_4_150_png, BinaryData::button_one_shot_4_150_pngSize);
+	juce::Image one_shot_1 =
+	    ImageCache::getFromMemory(BinaryData::button_one_shot_1_150_png, BinaryData::button_one_shot_1_150_pngSize);
+	juce::Image one_shot_2 =
+	    ImageCache::getFromMemory(BinaryData::button_one_shot_2_150_png, BinaryData::button_one_shot_2_150_pngSize);
+	juce::Image one_shot_3 =
+	    ImageCache::getFromMemory(BinaryData::button_one_shot_3_150_png, BinaryData::button_one_shot_3_150_pngSize);
+	juce::Image one_shot_4 =
+	    ImageCache::getFromMemory(BinaryData::button_one_shot_4_150_png, BinaryData::button_one_shot_4_150_pngSize);
 
 	juce::DrawableImage one_shot_draw1;
 	juce::DrawableImage one_shot_draw2;
@@ -194,16 +202,14 @@ void ArpComponent::setGUIBig() {
 	one_shot_draw3.setImage(one_shot_3);
 	one_shot_draw4.setImage(one_shot_4);
 	m_one_shot.setImages(&one_shot_draw2,
-	                      &one_shot_draw2,
-	                      &one_shot_draw1,
-	                      &one_shot_draw1,
-	                      &one_shot_draw4,
-	                      &one_shot_draw4,
-	                      &one_shot_draw3,
-	                      &one_shot_draw3);
+	                     &one_shot_draw2,
+	                     &one_shot_draw1,
+	                     &one_shot_draw1,
+	                     &one_shot_draw4,
+	                     &one_shot_draw4,
+	                     &one_shot_draw3,
+	                     &one_shot_draw3);
 	m_one_shot.setBounds(ONE_SHOT_POS_X, ONE_SHOT_POS_Y, one_shot_1.getWidth(), one_shot_1.getHeight());
-
-
 
 	for (int step = 0; step < NUMBER_OF_STEPS; ++step) {
 

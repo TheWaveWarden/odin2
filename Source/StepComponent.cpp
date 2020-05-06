@@ -1,17 +1,6 @@
-/*
-  ==============================================================================
-
-    StepComponent.cpp
-    Created: 4 May 2020 1:23:41am
-    Author:  frederik_siepe
-
-  ==============================================================================
-*/
-
 #include "StepComponent.h"
 #include <JuceHeader.h>
 
-//==============================================================================
 StepComponent::StepComponent(AudioProcessorValueTreeState &vts, int p_step_index) :
     m_value_tree(vts),
     m_step_on("step_" + std::to_string(p_step_index + 1) + "_on", juce::DrawableButton::ButtonStyle::ImageRaw),
@@ -20,39 +9,50 @@ StepComponent::StepComponent(AudioProcessorValueTreeState &vts, int p_step_index
 	addAndMakeVisible(m_mod);
 	m_mod.setSliderStyle(Slider::RotaryVerticalDrag);
 	m_mod.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-	m_mod.setNumDecimalPlacesToDisplay(3);
+	m_mod.setNumDecimalPlacesToDisplay(4);
 	m_mod.setKnobTooltip("TODO");
+	m_mod_attach.reset(
+	    new OdinKnobAttachment(m_value_tree, "step_" + std::to_string(m_step_index) + "_mod", m_mod));
 
 	addAndMakeVisible(m_transpose);
 	m_transpose.setSliderStyle(Slider::RotaryVerticalDrag);
 	m_transpose.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-	m_transpose.setNumDecimalPlacesToDisplay(3);
+	m_transpose.setNumDecimalPlacesToDisplay(1);
 	m_transpose.setKnobTooltip("TODO");
+	m_transpose_attach.reset(
+	    new OdinKnobAttachment(m_value_tree, "step_" + std::to_string(m_step_index) + "_transpose", m_transpose));
 
 	addAndMakeVisible(m_step_on);
 	m_step_on.setClickingTogglesState(true);
 	m_step_on.setTooltip("TODO");
 	m_step_on.setTriggeredOnMouseDown(true);
 	m_step_on.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
-	m_step_on_attach.reset(new OdinButtonAttachment(m_value_tree, "step_" + std::to_string(m_step_index) + "_on", m_step_on));
+	m_step_on_attach.reset(
+	    new OdinButtonAttachment(m_value_tree, "step_" + std::to_string(m_step_index) + "_on", m_step_on));
 
 	addAndMakeVisible(m_led);
 
-	//TODO REMOVE
-	m_mod.setRange(-1, 1);
-	m_transpose.setRange(-1, 1);
+	SET_CTR_KEY(m_transpose);
+	SET_CTR_KEY(m_mod);
 }
 
 StepComponent::~StepComponent() {
 }
 
 void StepComponent::paint(Graphics &g) {
+	if (m_GUI_big) {
+		g.drawImageAt(m_knob_guide, KNOB_GUIDE_X, KNOB_GUIDE_1_Y);
+		g.drawImageAt(m_knob_guide, KNOB_GUIDE_X, KNOB_GUIDE_2_Y);
+	} else {
+	}
 }
 
 void StepComponent::resized() {
 }
 
 void StepComponent::setGUIBig() {
+	m_GUI_big = true;
+
 	m_led.setGUIBig();
 	m_led.setTopLeftPosition(STEP_LED_POS_X, STEP_LED_POS_Y);
 
@@ -92,18 +92,21 @@ void StepComponent::setGUIBig() {
 	                    &step_on_draw3,
 	                    &step_on_draw3);
 	m_step_on.setBounds(STEP_ON_X, STEP_ON_Y, step_on_1.getWidth(), step_on_1.getHeight());
+
+	m_knob_guide =
+	    ImageCache::getFromMemory(BinaryData::arp_knob_guide_150_png, BinaryData::arp_knob_guide_150_pngSize);
 }
 
 void StepComponent::setGUISmall() {
+	m_GUI_big = false;
 }
 
 void StepComponent::setLEDActive(int p_step_index) {
 	m_led.setLEDOn(p_step_index == m_step_index);
 }
 
-
-void StepComponent::setShowLED(int p_highest_led){
-	if((p_highest_led > m_step_index) != m_show_led){
+void StepComponent::setShowLED(int p_highest_led) {
+	if ((p_highest_led > m_step_index) != m_show_led) {
 		m_show_led = (p_highest_led > m_step_index);
 		m_led.setVisible(m_show_led);
 	}

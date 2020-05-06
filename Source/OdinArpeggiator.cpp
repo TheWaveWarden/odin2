@@ -2,7 +2,7 @@
 #include <algorithm>
 #include <random>
 
-#define NO_NOTE std::make_pair(-1, 0)
+#define NO_NOTE std::make_tuple(-1, 0, 0.f)
 
 bool sortKeysDownToUp(std::pair<int, int> a, std::pair<int, int> b) {
 	return a.first < b.first;
@@ -24,12 +24,20 @@ String OdinArpeggiator::ArpPatternToString(ArpPattern p_pattern) {
 		return "Down Up";
 	case ArpPattern::Random:
 		return "Random";
+	case ArpPattern::CrawlUp:
+		return "CrawlUp";
+	case ArpPattern::CrawlDown:
+		return "CrawlDown";
+	case ArpPattern::CrawlUpDown:
+		return "CrawlUpDo";
+	case ArpPattern::CrawlDownUp:
+		return "CrawlDoUp";
 	default:
 		return "Unknown";
 	}
 }
 
-std::pair<int, int> OdinArpeggiator::getNoteOns(int &pio_step_active) {
+std::tuple<int, int, float> OdinArpeggiator::getNoteOns(int &pio_step_active) {
 	jassert(m_samplerate > 0);
 
 	if (m_oneshot_end_reached) {
@@ -54,8 +62,11 @@ std::pair<int, int> OdinArpeggiator::getNoteOns(int &pio_step_active) {
 		pio_step_active          = 0;
 		m_time_since_last_note   = 0.f;
 		if (m_sequence_steps_on[m_current_sequence_index]) {
-			m_playing_notes.push_back(std::make_pair(m_arp_sequence[m_current_arp_index].first, 0.f));
-			return m_arp_sequence[m_current_arp_index];
+			m_playing_notes.push_back(std::make_pair(
+			    m_arp_sequence[m_current_arp_index].first + m_transpose_steps[m_current_sequence_index], 0.f));
+			return transposeSemi(m_arp_sequence[m_current_arp_index],
+			                     m_transpose_steps[m_current_sequence_index],
+			                     m_mod_steps[m_current_sequence_index]);
 		} else {
 			return NO_NOTE;
 		}
@@ -87,8 +98,11 @@ std::pair<int, int> OdinArpeggiator::getNoteOns(int &pio_step_active) {
 		m_time_since_last_note = 0.f;
 
 		if (m_sequence_steps_on[m_current_sequence_index]) {
-			m_playing_notes.push_back(std::make_pair(m_arp_sequence[m_current_arp_index].first, 0.f));
-			return m_arp_sequence[m_current_arp_index];
+			m_playing_notes.push_back(std::make_pair(
+			    m_arp_sequence[m_current_arp_index].first + m_transpose_steps[m_current_sequence_index], 0.f));
+			return transposeSemi(m_arp_sequence[m_current_arp_index],
+			                     m_transpose_steps[m_current_sequence_index],
+			                     m_mod_steps[m_current_sequence_index]);
 		}
 	}
 
@@ -173,8 +187,12 @@ void OdinArpeggiator::setSequenceStepActive(int p_step, bool p_active) {
 	m_sequence_steps_on[p_step] = p_active;
 }
 
-std::pair<int, int> OdinArpeggiator::transpose(std::pair<int, int> note, int p_octave) {
-	return std::make_pair(note.first + 12 * p_octave, note.second);
+std::pair<int, int> OdinArpeggiator::transposeOct(std::pair<int, int> p_note, int p_octave) {
+	return std::make_pair(p_note.first + 12 * p_octave, p_note.second);
+}
+
+std::tuple<int, int, float> OdinArpeggiator::transposeSemi(std::pair<int, int> p_note, int p_semitones, float p_mod) {
+	return std::make_tuple(p_note.first + p_semitones, p_note.second, p_mod);
 }
 
 void OdinArpeggiator::generateSequence() { //sort active keys
@@ -185,7 +203,7 @@ void OdinArpeggiator::generateSequence() { //sort active keys
 		std::sort(m_active_keys_and_velocities.begin(), m_active_keys_and_velocities.end(), sortKeysDownToUp);
 		for (int octave = 0; octave < m_octaves; ++octave) {
 			for (auto note : m_active_keys_and_velocities) {
-				m_arp_sequence.push_back(transpose(note, octave));
+				m_arp_sequence.push_back(transposeOct(note, octave));
 			}
 		}
 		break;
@@ -193,7 +211,7 @@ void OdinArpeggiator::generateSequence() { //sort active keys
 		std::sort(m_active_keys_and_velocities.begin(), m_active_keys_and_velocities.end(), sortKeysUpToDown);
 		for (int octave = m_octaves - 1; octave >= 0; --octave) {
 			for (auto note : m_active_keys_and_velocities) {
-				m_arp_sequence.push_back(transpose(note, octave));
+				m_arp_sequence.push_back(transposeOct(note, octave));
 			}
 		}
 		break;
@@ -201,7 +219,7 @@ void OdinArpeggiator::generateSequence() { //sort active keys
 		std::sort(m_active_keys_and_velocities.begin(), m_active_keys_and_velocities.end(), sortKeysDownToUp);
 		for (int octave = 0; octave < m_octaves; ++octave) {
 			for (auto note : m_active_keys_and_velocities) {
-				m_arp_sequence.push_back(transpose(note, octave));
+				m_arp_sequence.push_back(transposeOct(note, octave));
 			}
 		}
 		std::sort(m_active_keys_and_velocities.begin(), m_active_keys_and_velocities.end(), sortKeysUpToDown);
@@ -213,7 +231,7 @@ void OdinArpeggiator::generateSequence() { //sort active keys
 					if (first_note) {
 						first_note = false;
 					} else {
-						m_arp_sequence.push_back(transpose(note, octave));
+						m_arp_sequence.push_back(transposeOct(note, octave));
 					}
 				}
 			}
@@ -224,7 +242,7 @@ void OdinArpeggiator::generateSequence() { //sort active keys
 		std::sort(m_active_keys_and_velocities.begin(), m_active_keys_and_velocities.end(), sortKeysDownToUp);
 		for (int octave = 0; octave < m_octaves; ++octave) {
 			for (auto note : m_active_keys_and_velocities) {
-				m_arp_sequence.push_back(transpose(note, octave));
+				m_arp_sequence.push_back(transposeOct(note, octave));
 			}
 		}
 		{
@@ -261,7 +279,6 @@ void OdinArpeggiator::setSynctimeNumerator(float p_value) {
 	m_synctime_numerator = p_value;
 	m_synctime_ratio     = p_value / m_synctime_denominator;
 	calcArpTime();
-
 }
 
 void OdinArpeggiator::setSynctimeDenominator(float p_value) {
@@ -270,23 +287,30 @@ void OdinArpeggiator::setSynctimeDenominator(float p_value) {
 	calcArpTime();
 }
 
-
-void OdinArpeggiator::setOctaves(int p_new_value){
+void OdinArpeggiator::setOctaves(int p_new_value) {
 	m_octaves = p_new_value;
 }
 
-void OdinArpeggiator::setDirection(int p_new_value){
+void OdinArpeggiator::setDirection(int p_new_value) {
 	m_pattern = (ArpPattern)p_new_value;
 }
 
-void OdinArpeggiator::setSteps(int p_new_value){
+void OdinArpeggiator::setSteps(int p_new_value) {
 	m_max_sequence_steps = p_new_value;
 }
 
-void OdinArpeggiator::setGatePercent(int p_new_value){
-	m_gate = (float) p_new_value / 100.f;
+void OdinArpeggiator::setGatePercent(int p_new_value) {
+	m_gate = (float)p_new_value / 100.f;
 }
 
-void OdinArpeggiator::calcArpTime(){
+void OdinArpeggiator::calcArpTime() {
 	m_arp_time = m_synctime_ratio * 240.f / m_BPM;
+}
+
+void OdinArpeggiator::setStepTranspose(int p_step, int p_semi) {
+	m_transpose_steps[p_step] = p_semi;
+}
+
+void OdinArpeggiator::setStepMod(int p_step, float p_mod) {
+	m_mod_steps[p_step] = p_mod;
 }

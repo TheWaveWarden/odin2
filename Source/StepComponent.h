@@ -7,12 +7,15 @@
 #include <JuceHeader.h>
 
 #define KNOB_POS_X 1
-#define MOD_POS_Y 1
+#define MOD_POS_Y 3
 #define TRANSPOSE_POS_Y 48
 #define STEP_ON_X 3
 #define STEP_ON_Y 96
 #define STEP_LED_POS_X 13
 #define STEP_LED_POS_Y 133
+#define KNOB_GUIDE_X 0
+#define KNOB_GUIDE_1_Y 0
+#define KNOB_GUIDE_2_Y 44
 
 class StepComponent : public Component {
 public:
@@ -29,13 +32,20 @@ public:
 	void setShowLED(int p_highest_led);
 
 private:
-	std::unique_ptr<OdinButtonAttachment> m_step_on_attach;
+	bool m_GUI_big = false;
+
+	Image m_knob_guide;
+
 	AudioProcessorValueTreeState &m_value_tree;
 
 	Knob m_mod;
 	Knob m_transpose;
 	OdinButton m_step_on;
 	StepLED m_led;
+	
+	std::unique_ptr<OdinButtonAttachment> m_step_on_attach;
+	std::unique_ptr<OdinKnobAttachment> m_mod_attach;
+	std::unique_ptr<OdinKnobAttachment> m_transpose_attach;
 
     int m_step_index;
 	bool m_show_led = true;

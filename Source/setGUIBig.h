@@ -396,6 +396,15 @@ void OdinAudioProcessorEditor::setGUIBig(){
 	m_lfo_13_button.setImage(lfo13_right, 2);
 	m_lfo_13_button.setBounds(OdinHelper::c150(LFO13_POS_X), OdinHelper::c150(LFO13_POS_Y), lfo13_left.getWidth(), lfo13_left.getHeight());
 
+	juce::Image arp_modmatrix_button_left =
+	    ImageCache::getFromMemory(BinaryData::button_mod_arp_1_150_png, BinaryData::button_mod_arp_1_150_pngSize);
+	juce::Image arp_modmatrix_button_right =
+	    ImageCache::getFromMemory(BinaryData::button_mod_arp_2_150_png, BinaryData::button_mod_arp_2_150_pngSize);
+	m_arp_modmatrix_button.setImage(arp_modmatrix_button_left, 1);
+	m_arp_modmatrix_button.setImage(arp_modmatrix_button_right, 2);
+	m_arp_modmatrix_button.setBounds(OdinHelper::c150(ARP_MATRIX_BUTTON_POS_X), OdinHelper::c150(ARP_MATRIX_BUTTON_POS_Y), arp_modmatrix_button_left.getWidth(), arp_modmatrix_button_left.getHeight());
+	
+
 	juce::Image lfo24_left =
 	    ImageCache::getFromMemory(BinaryData::buttonlfo24_1_150_png, BinaryData::buttonlfo24_1_150_pngSize);
 	juce::Image lfo24_right =

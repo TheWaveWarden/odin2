@@ -227,6 +227,11 @@ void ModMatrixRow::setModSource(int p_source, float **p_source_pointers, int &p_
 			p_source_pointers[voice] = m_sources->voice[voice].unison_position;
 		}
 		break;
+	case 430:
+		for (int voice = 0; voice < VOICES; ++voice) {
+			p_source_pointers[voice] = m_sources->voice[voice].arp_mod;
+		}
+		break;
 	case 440:
 		for (int voice = 0; voice < VOICES; ++voice) {
 			p_source_pointers[voice] = m_sources->sustain_pedal;

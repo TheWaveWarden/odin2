@@ -437,6 +437,42 @@
     Identifier m_step_13_on_identifier;
     Identifier m_step_14_on_identifier;
     Identifier m_step_15_on_identifier;
+
+    Identifier m_step_0_mod_identifier;
+    Identifier m_step_1_mod_identifier;
+    Identifier m_step_2_mod_identifier;
+    Identifier m_step_3_mod_identifier;
+    Identifier m_step_4_mod_identifier;
+    Identifier m_step_5_mod_identifier;
+    Identifier m_step_6_mod_identifier;
+    Identifier m_step_7_mod_identifier;
+    Identifier m_step_8_mod_identifier;
+    Identifier m_step_9_mod_identifier;
+    Identifier m_step_10_mod_identifier;
+    Identifier m_step_11_mod_identifier;
+    Identifier m_step_12_mod_identifier;
+    Identifier m_step_13_mod_identifier;
+    Identifier m_step_14_mod_identifier;
+    Identifier m_step_15_mod_identifier;
+
+    Identifier m_step_0_transpose_identifier;
+    Identifier m_step_1_transpose_identifier;
+    Identifier m_step_2_transpose_identifier;
+    Identifier m_step_3_transpose_identifier;
+    Identifier m_step_4_transpose_identifier;
+    Identifier m_step_5_transpose_identifier;
+    Identifier m_step_6_transpose_identifier;
+    Identifier m_step_7_transpose_identifier;
+    Identifier m_step_8_transpose_identifier;
+    Identifier m_step_9_transpose_identifier;
+    Identifier m_step_10_transpose_identifier;
+    Identifier m_step_11_transpose_identifier;
+    Identifier m_step_12_transpose_identifier;
+    Identifier m_step_13_transpose_identifier;
+    Identifier m_step_14_transpose_identifier;
+    Identifier m_step_15_transpose_identifier;
+
+
     Identifier m_phaser_sync_identifier;
     Identifier m_phaser_rate_identifier;
     Identifier m_phaser_freq_identifier;

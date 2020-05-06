@@ -10,19 +10,20 @@ class OdinArpeggiator {
 public:
 	enum class ArpPattern {
 		//dont change these (add inbetween, before, after) or you'll break patches
-		Up        = 10,
-		Down      = 20,
-		UpAndDown = 30,
-		DownAndUp = 40,
-		Random    = 50
-		//todo CRAWLUP
-		//todo CRAWLDOWN
-
+		Up          = 10,
+		Down        = 20,
+		UpAndDown   = 30,
+		DownAndUp   = 40,
+		Random      = 50,
+		CrawlUp     = 60,
+		CrawlDown   = 70,
+		CrawlUpDown = 80,
+		CrawlDownUp = 90,		
 	};
 
 	static String ArpPatternToString(ArpPattern p_pattern);
 
-	std::pair<int, int> getNoteOns(int &pio_step_active);
+	std::tuple<int, int, float> getNoteOns(int &pio_step_active);
 	std::vector<int> getNoteOffs();
 
 	void setSampleRate(double p_samplerate);
@@ -45,6 +46,8 @@ public:
 	void setDirection(int p_new_value);
 	void setSteps(int p_new_value);
 	void setGatePercent(int p_new_value);
+	void setStepTranspose(int p_step, int p_semi);
+	void setStepMod(int p_step, float p_mod);
 
 private:
 	float m_synctime_numerator   = 3.f;
@@ -56,19 +59,22 @@ private:
 	void calcArpTime();
 
 	void printSequence();
-	std::pair<int, int> transpose(std::pair<int, int> note, int p_ocatve);
+	std::pair<int, int> transposeOct(std::pair<int, int> note, int p_ocatve);
+	std::tuple<int, int, float> transposeSemi(std::pair<int, int> p_note, int p_semitones, float p_mod);
 
 	bool m_sequence_steps_on[NUMBER_SEQUENCE_STEPS] = {
 	    true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true};
+	int m_transpose_steps[NUMBER_SEQUENCE_STEPS] = {0};
+	float m_mod_steps[NUMBER_SEQUENCE_STEPS] = {0};
 
 	std::vector<std::pair<int, int>> m_active_keys_and_velocities = {};
 	std::vector<int> m_sustain_kill_list                          = {};
 
 	double m_samplerate          = -1;
 	double m_one_over_samplerate = -1;
-	double m_BPM = 120.;
-	bool m_sustain_active = false;
-	bool m_start_pattern  = false;
+	double m_BPM                 = 120.;
+	bool m_sustain_active        = false;
+	bool m_start_pattern         = false;
 
 	//algorithm parameters
 	int m_octaves            = 2;
