@@ -50,9 +50,9 @@ public:
 	void setStepMod(int p_step, float p_mod);
 
 private:
-	float m_synctime_numerator   = 3.f;
+	float m_synctime_numerator   = 2.f;
 	float m_synctime_denominator = 16.f;
-	float m_synctime_ratio       = 3.f / 16.f;
+	float m_synctime_ratio       = 2.f / 16.f;
 
 	void executeKillList();
 	void generateSequence();

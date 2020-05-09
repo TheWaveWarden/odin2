@@ -96,7 +96,7 @@ void OdinAudioProcessor::addNonAudioParametersToTree() {
 	                 File::getSpecialLocation(File::SpecialLocationType::userDocumentsDirectory).getFullPathName(),
 	                 nullptr);
 	
-	node.setProperty("arp_synctime_numerator", 2, nullptr);
+	node.setProperty("arp_synctime_numerator", 1, nullptr);
 	node.setProperty("arp_synctime_denominator", 5, nullptr);
 	node.setProperty("arp_octaves", 2, nullptr);
 	node.setProperty("arp_direction", (int)OdinArpeggiator::ArpPattern::Up, nullptr);

@@ -351,6 +351,10 @@ private:
 	int m_chorus_position  = 2;
 	int m_flanger_position = 3;
 
+	// //TODO REMOVE
+	// int counter = 0;
+
+
 	OdinAudioProcessorEditor *m_editor_pointer;
 
 	int m_osc_type[3] = {OSC_TYPE_ANALOG, 1, 1};

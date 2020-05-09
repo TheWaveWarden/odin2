@@ -100,7 +100,8 @@ ArpComponent::ArpComponent(OdinAudioProcessor &p_processor, AudioProcessorValueT
 		m_value_tree.state.getChildWithName("misc").setProperty("arp_synctime_numerator", p_left, nullptr);
 		m_value_tree.state.getChildWithName("misc").setProperty("arp_synctime_denominator", p_right, nullptr);
 	};
-	m_sync_time.setTooltip("TODO");
+	m_sync_time.setTooltip("Sets the time for the arpeggiator synced to the track");
+	m_sync_time.setValueLeft(1);
 	addAndMakeVisible(m_sync_time);
 
 	m_on.setClickingTogglesState(true);

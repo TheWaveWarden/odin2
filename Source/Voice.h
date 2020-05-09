@@ -202,6 +202,7 @@ struct Voice {
 		unison_pan_position        = p_unison_pan;
 		unison_detune_position     = p_unison_detune;
 		unison_gain_reduction      = p_unison_gain_reduction;
+		DBG("unison gain:" + std::to_string(p_unison_gain_reduction));
 		m_is_in_release            = false;
 		m_arp_mod = p_arp_mod;
 		DBG(m_arp_mod);
@@ -218,6 +219,10 @@ struct Voice {
 			return true;
 		}
 		return false;
+	}
+
+	bool forceKeyUp(){
+		startRelease();
 	}
 
 	void startRelease() {
@@ -372,21 +377,24 @@ struct Voice {
 	}
 	void resetLegato(bool unison_active) {
 
+		//we reset the phase in legato and the voice is not carried over from an old note
+		bool reset_phase = unison_active && env[0].isEnvelopeOff();
+
 		for (int osc = 0; osc < 3; ++osc) {
 			// use start voice, oscs will reset if reset is active
-			analog_osc[osc].voiceStart(unison_active);
-			wavetable_osc[osc].voiceStart(unison_active);
-			wavedraw_osc[osc].voiceStart(unison_active);
-			chipdraw_osc[osc].voiceStart(unison_active);
-			specdraw_osc[osc].voiceStart(unison_active);
+			analog_osc[osc].voiceStart(reset_phase);
+			wavetable_osc[osc].voiceStart(reset_phase);
+			wavedraw_osc[osc].voiceStart(reset_phase);
+			chipdraw_osc[osc].voiceStart(reset_phase);
+			specdraw_osc[osc].voiceStart(reset_phase);
 			multi_osc[osc].voiceStart(true);
-			vector_osc[osc].voiceStart(unison_active);
-			chiptune_osc[osc].voiceStart(unison_active);
-			fm_osc[osc].voiceStart(unison_active);
-			pm_osc[osc].voiceStart(unison_active);
-			wavedraw_osc[osc].voiceStart(unison_active);
-			specdraw_osc[osc].voiceStart(unison_active);
-			chipdraw_osc[osc].voiceStart(unison_active);
+			vector_osc[osc].voiceStart(reset_phase);
+			chiptune_osc[osc].voiceStart(reset_phase);
+			fm_osc[osc].voiceStart(reset_phase);
+			pm_osc[osc].voiceStart(reset_phase);
+			wavedraw_osc[osc].voiceStart(reset_phase);
+			specdraw_osc[osc].voiceStart(reset_phase);
+			chipdraw_osc[osc].voiceStart(reset_phase);
 			lfo[osc].voiceStart(false);
 		}
 	}

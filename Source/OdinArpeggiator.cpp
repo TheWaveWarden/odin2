@@ -33,7 +33,7 @@ String OdinArpeggiator::ArpPatternToString(ArpPattern p_pattern) {
 	case ArpPattern::CrawlDownUp:
 		return "CrawlDoUp";
 	default:
-		return "Unknown";
+		return "UnknownArpPattern: " + String((int)p_pattern);
 	}
 }
 
@@ -80,6 +80,10 @@ std::tuple<int, int, float> OdinArpeggiator::getNoteOns(int &pio_step_active) {
 			if ((m_pattern == ArpPattern::UpAndDown || m_pattern == ArpPattern::UpAndDown) &&
 			    m_arp_sequence.size() > 1) {
 				m_current_arp_index = 1;
+			} else if (m_pattern == ArpPattern::Random) {
+				//arp needs to be redone every pattern
+				generateSequence();
+				m_current_arp_index = 0;
 			} else {
 				m_current_arp_index = 0;
 			}
@@ -195,7 +199,7 @@ std::tuple<int, int, float> OdinArpeggiator::transposeSemi(std::pair<int, int> p
 	return std::make_tuple(p_note.first + p_semitones, p_note.second, p_mod);
 }
 
-void OdinArpeggiator::generateSequence() { //sort active keys
+void OdinArpeggiator::generateSequence() {
 
 	m_arp_sequence.clear();
 	switch (m_pattern) {
@@ -246,10 +250,24 @@ void OdinArpeggiator::generateSequence() { //sort active keys
 			}
 		}
 		{
-			auto RNG = std::default_random_engine{};
+			std::default_random_engine RNG(std::random_device{}());
 			std::shuffle(std::begin(m_arp_sequence), std::end(m_arp_sequence), RNG);
 		}
 		break;
+	case ArpPattern::CrawlUp: {
+		std::sort(m_active_keys_and_velocities.begin(), m_active_keys_and_velocities.end(), sortKeysDownToUp);
+		std::vector<std::pair<int, int>> temp_arp_index;
+		for (int octave = 0; octave < m_octaves; ++octave) {
+			for (auto note : m_active_keys_and_velocities) {
+				temp_arp_index.push_back(transposeOct(note, octave));
+			}
+		}
+		for (int crawl_index = 0; crawl_index < (int)temp_arp_index.size() - (int)m_active_keys_and_velocities.size(); ++crawl_index) {
+			for (int sub_index = 0; sub_index < m_active_keys_and_velocities.size(); ++sub_index) {
+				m_arp_sequence.push_back(temp_arp_index[crawl_index + sub_index]);
+			}
+		}
+	} break;
 	default:
 		break;
 	}

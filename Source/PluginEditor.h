@@ -1,13 +1,3 @@
-/*
-  ==============================================================================
-
-    This file was auto-generated!
-
-    It contains the basic framework code for a JUCE plugin editor.
-
-  ==============================================================================
-*/
-
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
@@ -112,10 +102,14 @@
 #define MATRIX_SIZE_X 500
 #define MATRIX_SIZE_Y 144
 #define MATRIX_POS_X 274
-#define MATRIX_POS_Y 472
+#define MATRIX_POS_Y 477
 
 #define ARP_MATRIX_BUTTON_POS_X MATRIX_POS_X
 #define ARP_MATRIX_BUTTON_POS_Y 452
+
+#define ARP_SEQ_POS_X MATRIX_POS_X
+#define ARP_SEQ_POS_Y 472
+
 
 #define SAVE_LOAD_POS_X 23
 #define SAVE_LOAD_POS_Y 2
@@ -198,9 +192,6 @@ public:
   }
 };
 
-//==============================================================================
-/**
- */
 class OdinAudioProcessorEditor : public AudioProcessorEditor,
                                  public KeyListener {
 public:
