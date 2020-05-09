@@ -268,6 +268,20 @@ void OdinArpeggiator::generateSequence() {
 			}
 		}
 	} break;
+	case ArpPattern::CrawlDown: {
+		std::sort(m_active_keys_and_velocities.begin(), m_active_keys_and_velocities.end(), sortKeysUpToDown);
+		std::vector<std::pair<int, int>> temp_arp_index;
+		for (int octave = m_octaves - 1; octave >= 0; --octave) {
+			for (auto note : m_active_keys_and_velocities) {
+				temp_arp_index.push_back(transposeOct(note, octave));
+			}
+		}
+		for (int crawl_index = (int)temp_arp_index.size() - (int)m_active_keys_and_velocities.size() - 1; crawl_index >= 0; --crawl_index) {
+			for (int sub_index = 0; sub_index < m_active_keys_and_velocities.size(); ++sub_index) {
+				m_arp_sequence.push_back(temp_arp_index[crawl_index + sub_index]);
+			}
+		}
+	} break;
 	default:
 		break;
 	}

@@ -102,6 +102,7 @@ void OdinAudioProcessor::addNonAudioParametersToTree() {
 	node.setProperty("arp_direction", (int)OdinArpeggiator::ArpPattern::Up, nullptr);
 	node.setProperty("arp_steps", 16, nullptr);
 	node.setProperty("arp_gate", 50, nullptr);
+	node.setProperty("arp_mod_selected", 0, nullptr);
 	
 
 	node = m_value_tree_mod;

@@ -11,21 +11,21 @@
 
 #define STEP_COMPONENT_WIDTH 41
 #define STEP_COMPONENT_SPACING 7
-#define STEP_COMPONENT_HEIGHT 156
+#define STEP_COMPONENT_HEIGHT 166
 #define STEP_COMPONENT_POS_X 69
-#define STEP_COMPONENT_POS_Y 63
+#define STEP_COMPONENT_POS_Y 53
 
-#define ON_OFF_POS_X 16
-#define ON_OFF_POS_Y 13
+#define ON_OFF_POS_X 11
+#define ON_OFF_POS_Y 4
 
 #define ONE_SHOT_POS_X 2
-#define ONE_SHOT_POS_Y 162
-
-#define SYNC_TIME_ARP_POS_X 75
-#define SYNC_TIME_ARP_POS_Y 20
+#define ONE_SHOT_POS_Y 159
 
 #define OCTAVE_SELECTOR_X 210
-#define OCTAVE_SELECTOR_Y 20
+#define OCTAVE_SELECTOR_Y 12
+
+#define SYNC_TIME_ARP_POS_X 75
+#define SYNC_TIME_ARP_POS_Y OCTAVE_SELECTOR_Y
 
 #define DIRECTION_SELECTOR_X 345
 #define DIRECTION_SELECTOR_Y OCTAVE_SELECTOR_Y
@@ -56,6 +56,8 @@ public:
     void timerCallback() override;
     void setLEDActive(int p_LED);
     void setNoLEDActive();
+
+	void forceValueTreeOntoComponents(ValueTree p_tree);
 
 private:
     bool m_GUI_big = false;

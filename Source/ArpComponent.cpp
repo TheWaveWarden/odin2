@@ -381,3 +381,16 @@ void ArpComponent::setNumberLEDsToShow(int p_number) {
 	m_step_14.setShowLED(p_number);
 	m_step_15.setShowLED(p_number);
 }
+
+void ArpComponent::forceValueTreeOntoComponents(ValueTree p_tree) {
+
+	m_octave_selector.setValue((int)m_value_tree.state.getChildWithName("misc")["arp_octaves"]);
+
+	setNumberLEDsToShow((int)m_value_tree.state.getChildWithName("misc")["arp_steps"]);
+	m_steps_selector.setValue((int)m_value_tree.state.getChildWithName("misc")["arp_steps"]);
+
+	m_direction.setValue((int)m_value_tree.state.getChildWithName("misc")["arp_direction"]);
+	m_gate.setValue((int)m_value_tree.state.getChildWithName("misc")["arp_gate"]);
+	m_sync_time.setValueLeft((int)m_value_tree.state.getChildWithName("misc")["arp_synctime_numerator"]);
+	m_sync_time.setValueRight((int)m_value_tree.state.getChildWithName("misc")["arp_synctime_denominator"]);
+}

@@ -378,7 +378,8 @@ struct Voice {
 	void resetLegato(bool unison_active) {
 
 		//we reset the phase in legato and the voice is not carried over from an old note
-		bool reset_phase = unison_active && env[0].isEnvelopeOff();
+		bool envelope_off = env[0].isEnvelopeOff();
+		bool reset_phase = unison_active && envelope_off;
 
 		for (int osc = 0; osc < 3; ++osc) {
 			// use start voice, oscs will reset if reset is active
@@ -387,7 +388,8 @@ struct Voice {
 			wavedraw_osc[osc].voiceStart(reset_phase);
 			chipdraw_osc[osc].voiceStart(reset_phase);
 			specdraw_osc[osc].voiceStart(reset_phase);
-			multi_osc[osc].voiceStart(true);
+			//special case:
+			multi_osc[osc].voiceStart(envelope_off);
 			vector_osc[osc].voiceStart(reset_phase);
 			chiptune_osc[osc].voiceStart(reset_phase);
 			fm_osc[osc].voiceStart(reset_phase);

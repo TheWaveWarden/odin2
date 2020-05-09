@@ -34,9 +34,9 @@
 #endif
 
 #define GLIDE_POS_X 117
-#define GLIDE_POS_Y 522
+#define GLIDE_POS_Y 542
 #define MASTER_POS_X GLIDE_POS_X
-#define MASTER_POS_Y 568
+#define MASTER_POS_Y 588
 
 #define OSC1_POS_X 29
 #define OSC2_POS_X 277
@@ -102,7 +102,7 @@
 #define MATRIX_SIZE_X 500
 #define MATRIX_SIZE_Y 144
 #define MATRIX_POS_X 274
-#define MATRIX_POS_Y 477
+#define MATRIX_POS_Y 475
 
 #define ARP_MATRIX_BUTTON_POS_X MATRIX_POS_X
 #define ARP_MATRIX_BUTTON_POS_Y 452
@@ -141,14 +141,14 @@
 #define LFO24_POS_Y LFO13_POS_Y
 
 #define LFO_SIZE_X 116
-#define LFO_SIZE_Y 51
+#define LFO_SIZE_Y 71
 #define LFO_RIGHT_POS_X 157
 #define LFO_RIGHT_POS_Y 448
 #define LFO_LEFT_POS_X 30
 #define LFO_LEFT_POS_Y LFO_RIGHT_POS_Y
 
 #define XY_COMPONENT_POS_X 143
-#define XY_COMPONENT_POS_Y 502
+#define XY_COMPONENT_POS_Y 522
 #define XY_COMPONENT_SIZE_X 127
 #define XY_COMPONENT_SIZE_Y 93
 
@@ -157,10 +157,10 @@
 
 #define PITCHWHEEL_X 42
 #define MODWHEEL_X 72
-#define WHEEL_Y 497
+#define WHEEL_Y 517
 
 #define PITCH_AMOUNT_X 35
-#define PITCH_AMOUNT_Y 578
+#define PITCH_AMOUNT_Y 598
 
 #define MASTER_MAX 12
 #define MASTER_MIN -30

@@ -319,7 +319,7 @@ private:
 	bool m_chorus_sync    = false;
 	bool m_phaser_sync    = false;
 	bool m_flanger_sync   = false;
-	bool m_arpeggiator_on = true;
+	bool m_arpeggiator_on = false;
 
 	bool m_osc_wavetable_source_lfo[3] = {0}; //false <=> envelope
 
@@ -350,10 +350,6 @@ private:
 	int m_phaser_position  = 1;
 	int m_chorus_position  = 2;
 	int m_flanger_position = 3;
-
-	// //TODO REMOVE
-	// int counter = 0;
-
 
 	OdinAudioProcessorEditor *m_editor_pointer;
 

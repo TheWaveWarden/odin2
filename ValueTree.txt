@@ -641,7 +641,7 @@
         fil2_vowel_right="2" fil3_vowel_right="2" unison_voices="1" pitchbend_amount="12"
         current_patch_filename="Init Patch" current_patch_directory="/home/frederik_siepe"
         arp_synctime_numerator="1" arp_synctime_denominator="5" arp_octaves="2"
-        arp_direction="10" arp_steps="16" arp_gate="50"/>
+        arp_direction="10" arp_steps="16" arp_gate="50" arp_mod_selected="0"/>
   <mod source_row_0="0" source_row_1="0" source_row_2="0" source_row_3="0"
        source_row_4="0" source_row_5="0" source_row_6="0" source_row_7="0"
        source_row_8="0" dest_1_row_0="0" dest_1_row_1="0" dest_1_row_2="0"
