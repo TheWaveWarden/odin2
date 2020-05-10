@@ -11,13 +11,10 @@ public:
 	}
 
 	void paint(Graphics &g) override {
-		if (m_GUI_big) {
-			if (m_LED_on) {
-				g.drawImageAt(m_image_on, 0, 0);
-			} else {
-				g.drawImageAt(m_image_off, 0, 0);
-			}
+		if (m_LED_on) {
+			g.drawImageAt(m_image_on, 0, 0);
 		} else {
+			g.drawImageAt(m_image_off, 0, 0);
 		}
 	}
 
@@ -32,7 +29,10 @@ public:
 	}
 
 	void setGUISmall() {
-		m_GUI_big = false;
+		m_GUI_big   = false;
+		m_image_on  = ImageCache::getFromMemory(BinaryData::arp_LED_1_png, BinaryData::arp_LED_1_pngSize);
+		m_image_off = ImageCache::getFromMemory(BinaryData::arp_LED_2_png, BinaryData::arp_LED_2_pngSize);
+		setSize(m_image_on.getHeight(), m_image_on.getWidth());
 	}
 
 	void setLEDOn(bool p_on) {

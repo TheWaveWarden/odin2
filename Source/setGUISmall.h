@@ -402,6 +402,14 @@ void OdinAudioProcessorEditor::setGUISmall() {
 	m_lfo_24_button.setImage(lfo24_right, 2);
 	m_lfo_24_button.setBounds(LFO24_POS_X, LFO24_POS_Y, lfo24_left.getWidth(), lfo24_left.getHeight());
 
+	juce::Image arp_modmatrix_button_left =
+	    ImageCache::getFromMemory(BinaryData::button_mod_arp_1_png, BinaryData::button_mod_arp_1_pngSize);
+	juce::Image arp_modmatrix_button_right =
+	    ImageCache::getFromMemory(BinaryData::button_mod_arp_2_png, BinaryData::button_mod_arp_2_pngSize);
+	m_arp_modmatrix_button.setImage(arp_modmatrix_button_left, 1);
+	m_arp_modmatrix_button.setImage(arp_modmatrix_button_right, 2);
+	m_arp_modmatrix_button.setBounds(ARP_MATRIX_BUTTON_POS_X, ARP_MATRIX_BUTTON_POS_Y, arp_modmatrix_button_left.getWidth(), arp_modmatrix_button_left.getHeight());
+
 	juce::Image legato_left =
 	    ImageCache::getFromMemory(BinaryData::buttonlegato_1_png, BinaryData::buttonlegato_1_pngSize);
 	juce::Image legato_right =
@@ -497,7 +505,7 @@ void OdinAudioProcessorEditor::setGUISmall() {
 	m_delay.setBounds(FX_AREA_POS_X, FX_AREA_POS_Y, FX_AREA_SIZE_X, FX_AREA_SIZE_Y);
 
 	m_mod_matrix.setBounds(MATRIX_POS_X, MATRIX_POS_Y, MATRIX_SIZE_X, MATRIX_SIZE_Y);
-	m_arp.setBounds(MATRIX_POS_X, MATRIX_POS_Y, MATRIX_SIZE_X, MATRIX_SIZE_Y);
+	m_arp.setBounds(ARP_SEQ_POS_X, ARP_SEQ_POS_Y, MATRIX_SIZE_X, MATRIX_SIZE_Y);
 	m_save_load.setBounds(SAVE_LOAD_POS_X, SAVE_LOAD_POS_Y, SAVE_LOAD_SIZE_X, SAVE_LOAD_SIZE_Y);
 	m_xy_section.setBounds(XY_COMPONENT_POS_X, XY_COMPONENT_POS_Y, XY_COMPONENT_SIZE_X, XY_COMPONENT_SIZE_Y);
 

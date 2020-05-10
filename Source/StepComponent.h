@@ -6,16 +6,27 @@
 #include "StepLED.h"
 #include <JuceHeader.h>
 
-#define KNOB_POS_X 1
-#define MOD_POS_Y 3
-#define TRANSPOSE_POS_Y 51
-#define STEP_ON_X 3
-#define STEP_ON_Y 102
-#define STEP_LED_POS_X 13
-#define STEP_LED_POS_Y 142
-#define KNOB_GUIDE_X 0
-#define KNOB_GUIDE_1_Y 0
-#define KNOB_GUIDE_2_Y 47
+#define KNOB_POS_X_100 1
+#define MOD_POS_Y_100 2
+#define TRANSPOSE_POS_Y_100 34
+#define STEP_ON_X_100 2
+#define STEP_ON_Y_100 68
+#define STEP_LED_POS_X_100 9
+#define STEP_LED_POS_Y_100 95
+#define KNOB_GUIDE_X_100 0
+#define KNOB_GUIDE_1_Y_100 0
+#define KNOB_GUIDE_2_Y_100 31
+
+#define KNOB_POS_X_150 1
+#define MOD_POS_Y_150 3
+#define TRANSPOSE_POS_Y_150 51
+#define STEP_ON_X_150 3
+#define STEP_ON_Y_150 102
+#define STEP_LED_POS_X_150 13
+#define STEP_LED_POS_Y_150 142
+#define KNOB_GUIDE_X_150 0
+#define KNOB_GUIDE_1_Y_150 0
+#define KNOB_GUIDE_2_Y_150 47
 
 class StepComponent : public Component {
 public:
