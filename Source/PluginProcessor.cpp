@@ -1004,8 +1004,9 @@ void OdinAudioProcessor::midiNoteOn(int p_midi_note, int p_midi_velocity, float 
 		    m_unison_pan_positions[unison_voices][m_unison_detune_positions[unison_voices][unison_counter]],
 		    m_unison_gain_factors[unison_voices],
 		    unison_voices > 1,
-		    p_arp_mod_1, p_arp_mod_2);
-		DBG("NoteOn,  key " + std::to_string(p_midi_note) + ", voice " + std::to_string(new_voice));
+		    p_arp_mod_1,
+		    p_arp_mod_2);
+		//DBG("NoteOn,  key " + std::to_string(p_midi_note) + ", voice " + std::to_string(new_voice));
 		//if (m_voice_manager.legatoEnabled()) {
 		//m_voice[new_voice].amp.setMIDIVelocityLegato(p_midi_velocity);
 		//} else {
@@ -1035,7 +1036,7 @@ void OdinAudioProcessor::midiNoteOn(int p_midi_note, int p_midi_velocity, float 
 }
 
 void OdinAudioProcessor::midiNoteOff(int p_midi_note) {
-	DBG("NoteOff, key " + std::to_string(p_midi_note));
+	//DBG("NoteOff, key " + std::to_string(p_midi_note));
 
 	if (!m_voice_manager.getSustainActive()) {
 		for (int voice = 0; voice < VOICES; ++voice) {
@@ -1142,6 +1143,13 @@ void OdinAudioProcessor::attachNonParamListeners() {
 	m_value_tree_midi_learn = m_value_tree.state.getChildWithName("midi_learn");
 }
 
+void OdinAudioProcessor::allNotesOff() {
+	for (int voice = 0; voice < VOICES; ++voice) {
+		m_voice[voice].forceKeyUp();
+	}
+	m_arpeggiator.endPlayingNotes();
+}
+
 void OdinAudioProcessor::handleMidiMessage(const MidiMessage &p_midi_message) {
 	//DBG(p_midi_message.getDescription());
 	// apply midi message
@@ -1150,16 +1158,17 @@ void OdinAudioProcessor::handleMidiMessage(const MidiMessage &p_midi_message) {
 	} else if (p_midi_message.isNoteOff()) {
 		handleMidiNoteOff(p_midi_message.getNoteNumber());
 	} else if (p_midi_message.isAllNotesOff()) {
-		for(int voice = 0; voice < VOICES; ++voice){
-			m_voice[voice].forceKeyUp();
-		}
-		m_arpeggiator.endPlayingNotes();
+		allNotesOff();
 	} else if (p_midi_message.isPitchWheel()) {
 		setPitchWheelValue(p_midi_message.getPitchWheelValue());
 	} else if (p_midi_message.isController() && p_midi_message.getControllerNumber() == 1) { // modwheel
 		setModWheelValue(p_midi_message.getControllerValue());
 	} else if (p_midi_message.isSustainPedalOn()) {
-		m_voice_manager.setSustainActive(true);
+		if (m_arpeggiator_on) {
+			m_arpeggiator.setSustainActive(true);
+		} else {
+			m_voice_manager.setSustainActive(true);
+		}
 		DBG("Sustain pedal pressed");
 	} else if (p_midi_message.isSustainPedalOff()) {
 		DBG("Sustain pedal released");
@@ -1169,6 +1178,7 @@ void OdinAudioProcessor::handleMidiMessage(const MidiMessage &p_midi_message) {
 				m_voice[voice].startRelease();
 			}
 		}
+		m_arpeggiator.setSustainActive(false);
 		m_voice_manager.clearKillList();
 		checkEndGlobalEnvelope();
 	} else if (p_midi_message.isAftertouch()) {

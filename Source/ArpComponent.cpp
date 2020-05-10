@@ -58,7 +58,7 @@ ArpComponent::ArpComponent(OdinAudioProcessor &p_processor, AudioProcessorValueT
 	addAndMakeVisible(m_steps_selector);
 	m_steps_selector.setMouseDragDivisor(20.f);
 	m_steps_selector.setColor(Colour(10, 40, 50));
-	m_steps_selector.setTooltip("Sets how many steps the step sequence has");
+	m_steps_selector.setTooltip("Sets how many steps the step sequence has before it wraps around");
 
 	m_direction.OnValueChange = [&](int p_new_value) {
 		m_value_tree.state.getChildWithName("misc").setProperty("arp_direction", p_new_value, nullptr);
@@ -72,9 +72,7 @@ ArpComponent::ArpComponent(OdinAudioProcessor &p_processor, AudioProcessorValueT
 	                            (int)OdinArpeggiator::ArpPattern::DownAndUp,
 	                            (int)OdinArpeggiator::ArpPattern::Random,
 	                            (int)OdinArpeggiator::ArpPattern::CrawlUp,
-	                            (int)OdinArpeggiator::ArpPattern::CrawlDown,
-	                            (int)OdinArpeggiator::ArpPattern::CrawlUpDown,
-	                            (int)OdinArpeggiator::ArpPattern::CrawlDownUp});
+	                            (int)OdinArpeggiator::ArpPattern::CrawlDown});
 	addAndMakeVisible(m_direction);
 	m_direction.setMouseDragDivisor(20.f);
 	m_direction.setColor(Colour(10, 40, 50));
@@ -106,7 +104,7 @@ ArpComponent::ArpComponent(OdinAudioProcessor &p_processor, AudioProcessorValueT
 
 	m_on.setClickingTogglesState(true);
 	addAndMakeVisible(m_on);
-	m_on.setTooltip("Turns the arpeggiator / step sequencer on or off");
+	m_on.setTooltip("Turns the arpeggiator on or off");
 	m_on.setTriggeredOnMouseDown(true);
 	m_on.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
 

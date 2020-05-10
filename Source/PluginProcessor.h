@@ -135,6 +135,7 @@ public:
 	// this checks whether the arp is on and gives notes to it or puts notes on directly
 	void handleMidiNoteOff(int p_midi_note);
 	void handleMidiNoteOn(int p_midi_note, int p_midi_velocity);
+	void allNotesOff();
 
 	void setPolyLegato(bool p_is_poly) {
 		bool legato_was_changed = m_voice_manager.setPolyLegato(p_is_poly);

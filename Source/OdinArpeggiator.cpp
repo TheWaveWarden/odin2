@@ -65,7 +65,7 @@ std::tuple<int, int, float, float> OdinArpeggiator::getNoteOns(int &pio_step_act
 			m_playing_notes.push_back(std::make_pair(
 			    m_arp_sequence[m_current_arp_index].first /*+ m_transpose_steps[m_current_sequence_index]*/, 0.f));
 			return transposeSemi(m_arp_sequence[m_current_arp_index],
-			                     0/*m_transpose_steps[m_current_sequence_index]*/,
+			                     0 /*m_transpose_steps[m_current_sequence_index]*/,
 			                     m_mod_1_steps[m_current_sequence_index],
 			                     m_mod_2_steps[m_current_sequence_index]);
 		} else {
@@ -107,7 +107,8 @@ std::tuple<int, int, float, float> OdinArpeggiator::getNoteOns(int &pio_step_act
 			    m_arp_sequence[m_current_arp_index].first /*+ m_transpose_steps[m_current_sequence_index]*/, 0.f));
 			return transposeSemi(m_arp_sequence[m_current_arp_index],
 			                     0 /*m_transpose_steps[m_current_sequence_index]*/,
-			                     m_mod_1_steps[m_current_sequence_index],m_mod_2_steps[m_current_sequence_index]);
+			                     m_mod_1_steps[m_current_sequence_index],
+			                     m_mod_2_steps[m_current_sequence_index]);
 		}
 	}
 
@@ -142,7 +143,26 @@ void OdinArpeggiator::reset() {
 }
 
 void OdinArpeggiator::midiNoteOn(int p_midi_note, int p_midi_velocity) {
+	if (m_sustain_active) {
+		//in sustain avoid adding double notes:
+		for (auto note : m_active_keys_and_velocities) {
+			if (note.first == p_midi_note) {
+				//this note is already on, remove it from kill list if necessary
+				for (int kill = 0; kill < m_sustain_kill_list.size(); ++kill) {
+					if (m_sustain_kill_list[kill] == p_midi_note) {
+						m_sustain_kill_list.erase(m_sustain_kill_list.begin() + kill);
+						//DBG("ERASED FROM KILLIST: " + std::to_string(p_midi_note));
+						//printKillList();
+						--kill;
+						break;
+					}
+				}
+				return;
+			}
+		}
+	}
 	m_active_keys_and_velocities.push_back(std::make_pair(p_midi_note, p_midi_velocity));
+	DBG("NOTEON: " + std::to_string(p_midi_note));
 	if (m_active_keys_and_velocities.size() == 1) {
 		m_start_pattern = true;
 	}
@@ -155,31 +175,35 @@ void OdinArpeggiator::midiNoteOff(int p_midi_note) {
 		if (m_active_keys_and_velocities[key].first == p_midi_note) {
 			if (m_sustain_active) {
 				m_sustain_kill_list.push_back(p_midi_note);
-				generateSequence();
+				//DBG("ADDED TO KILL LIST: " + std::to_string(p_midi_note));
+				//printKillList();
 			} else {
 				m_active_keys_and_velocities.erase(m_active_keys_and_velocities.begin() + key);
 				//in case we have the same note two times in a row (they are sorted):
 				--key;
+				generateSequence();
+				DBG("ENDED BY NOTEOFF: " + std::to_string(p_midi_note));
 			}
 		}
 	}
 	generateSequence();
 }
 
-void OdinArpeggiator::endPlayingNotes(){
+void OdinArpeggiator::endPlayingNotes() {
 	//set timer to max, so it ends on next sample
 	DBG("end playing notes");
 	std::vector<std::pair<int, float>> ret;
-	for(auto note : m_playing_notes){
+	for (auto note : m_playing_notes) {
 		ret.push_back(std::make_pair(note.first, std::numeric_limits<float>::max()));
 	}
-	m_playing_notes =  ret;
+	m_playing_notes = ret;
 }
 
 void OdinArpeggiator::allMidiNotesOff() {
 	endPlayingNotes();
 	m_active_keys_and_velocities.clear();
 	m_sustain_kill_list.clear();
+	//printKillList();
 	m_arp_sequence.clear();
 	m_current_arp_index = -1;
 }
@@ -194,8 +218,11 @@ void OdinArpeggiator::setSustainActive(bool p_sustain_active) {
 void OdinArpeggiator::executeKillList() {
 	// we are now in sustain off, so midinoteoff kills notes for sure
 	for (auto key : m_sustain_kill_list) {
+		//DBG("EXECUTE: " + std::to_string(key));
 		midiNoteOff(key);
 	}
+	m_sustain_kill_list.clear();
+	//printKillList();
 	generateSequence();
 }
 
@@ -207,7 +234,10 @@ std::pair<int, int> OdinArpeggiator::transposeOct(std::pair<int, int> p_note, in
 	return std::make_pair(p_note.first + 12 * p_octave, p_note.second);
 }
 
-std::tuple<int, int, float, float> OdinArpeggiator::transposeSemi(std::pair<int, int> p_note, int p_semitones, float p_mod_1, float p_mod_2) {
+std::tuple<int, int, float, float> OdinArpeggiator::transposeSemi(std::pair<int, int> p_note,
+                                                                  int p_semitones,
+                                                                  float p_mod_1,
+                                                                  float p_mod_2) {
 	return std::make_tuple(p_note.first + p_semitones, p_note.second, p_mod_1, p_mod_2);
 }
 
@@ -308,10 +338,10 @@ void OdinArpeggiator::generateSequence() {
 	}
 
 	//kill arp if all notes off:
-	if(m_arp_sequence.size() == 0){
+	if (m_arp_sequence.size() == 0) {
 		endPlayingNotes();
 	}
-	printSequence();
+	//printSequence();
 }
 
 void OdinArpeggiator::printSequence() {
@@ -346,10 +376,12 @@ void OdinArpeggiator::setSynctimeDenominator(float p_value) {
 
 void OdinArpeggiator::setOctaves(int p_new_value) {
 	m_octaves = p_new_value;
+	generateSequence();
 }
 
 void OdinArpeggiator::setDirection(int p_new_value) {
 	m_pattern = (ArpPattern)p_new_value;
+	generateSequence();
 }
 
 void OdinArpeggiator::setSteps(int p_new_value) {
@@ -374,4 +406,12 @@ void OdinArpeggiator::setStepMod1(int p_step, float p_mod) {
 
 void OdinArpeggiator::setStepMod2(int p_step, float p_mod) {
 	m_mod_2_steps[p_step] = p_mod;
+}
+
+void OdinArpeggiator::printKillList(){
+	DBG("KList:");
+	for(auto key : m_sustain_kill_list){
+		DBG(key);
+	}
+	DBG("------");
 }

@@ -34,6 +34,8 @@ public:
 	void allMidiNotesOff();
 	void endPlayingNotes();
 
+	void printKillList();
+
 
 	void setSustainActive(bool p_sustain_active);
 
@@ -53,9 +55,7 @@ public:
 	void setStepMod2(int p_step, float p_mod);
 
 private:
-	float m_synctime_numerator   = 2.f;
-	float m_synctime_denominator = 16.f;
-	float m_synctime_ratio       = 2.f / 16.f;
+	void setAllLEDsOff();
 
 	void executeKillList();
 	void generateSequence();
@@ -67,6 +67,9 @@ private:
 	                                                 int p_semitones,
 	                                                 float p_mod_1,
 	                                                 float p_mod_2);
+	float m_synctime_numerator   = 2.f;
+	float m_synctime_denominator = 16.f;
+	float m_synctime_ratio       = 2.f / 16.f;
 
 	bool m_sequence_steps_on[NUMBER_SEQUENCE_STEPS] = {
 	    true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true};

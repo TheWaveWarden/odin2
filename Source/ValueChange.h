@@ -712,7 +712,11 @@ void OdinAudioProcessor::treeValueChangedArp(const String &p_ID, float p_new_val
 
 	if (id == m_arp_on_identifier) {
 		m_arpeggiator.reset();
+		allNotesOff();
 		m_arpeggiator_on = p_new_value > 0.5f;
+		m_voice_manager.setSustainActive(false);
+		m_arpeggiator.setSustainActive(false);
+		m_step_led_active.set(-1);
 	} else if (id == m_arp_one_shot_identifier) {
 		m_arpeggiator.setOneShotEnabled(p_new_value > 0.5f);
 	} else if (id == m_step_0_on_identifier) {

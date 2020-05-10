@@ -202,12 +202,12 @@ struct Voice {
 		unison_pan_position        = p_unison_pan;
 		unison_detune_position     = p_unison_detune;
 		unison_gain_reduction      = p_unison_gain_reduction;
-		DBG("unison gain:" + std::to_string(p_unison_gain_reduction));
+		//DBG("unison gain:" + std::to_string(p_unison_gain_reduction));
 		m_is_in_release            = false;
 		m_arp_mod_1 = p_arp_mod_1;
 		m_arp_mod_2 = p_arp_mod_2;
-		DBG(m_arp_mod_1);
-		DBG(m_arp_mod_2);
+		//DBG(m_arp_mod_1);
+		//DBG(m_arp_mod_2);
 		calcUnisonDetuneFactor();
 		//DBG("Started voice");
 	}
