@@ -18,12 +18,12 @@ public:
 		CrawlUp     = 60,
 		CrawlDown   = 70,
 		CrawlUpDown = 80,
-		CrawlDownUp = 90,		
+		CrawlDownUp = 90,
 	};
 
 	static String ArpPatternToString(ArpPattern p_pattern);
 
-	std::tuple<int, int, float> getNoteOns(int &pio_step_active);
+	std::tuple<int, int, float, float> getNoteOns(int &pio_step_active);
 	std::vector<int> getNoteOffs();
 
 	void setSampleRate(double p_samplerate);
@@ -32,6 +32,8 @@ public:
 	void midiNoteOn(int p_midi_note, int p_midi_velocity);
 	void midiNoteOff(int p_midi_note);
 	void allMidiNotesOff();
+	void endPlayingNotes();
+
 
 	void setSustainActive(bool p_sustain_active);
 
@@ -46,8 +48,9 @@ public:
 	void setDirection(int p_new_value);
 	void setSteps(int p_new_value);
 	void setGatePercent(int p_new_value);
-	void setStepTranspose(int p_step, int p_semi);
-	void setStepMod(int p_step, float p_mod);
+	//void setStepTranspose(int p_step, int p_semi);
+	void setStepMod1(int p_step, float p_mod);
+	void setStepMod2(int p_step, float p_mod);
 
 private:
 	float m_synctime_numerator   = 2.f;
@@ -60,12 +63,16 @@ private:
 
 	void printSequence();
 	std::pair<int, int> transposeOct(std::pair<int, int> note, int p_ocatve);
-	std::tuple<int, int, float> transposeSemi(std::pair<int, int> p_note, int p_semitones, float p_mod);
+	std::tuple<int, int, float, float> transposeSemi(std::pair<int, int> p_note,
+	                                                 int p_semitones,
+	                                                 float p_mod_1,
+	                                                 float p_mod_2);
 
 	bool m_sequence_steps_on[NUMBER_SEQUENCE_STEPS] = {
 	    true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true};
-	int m_transpose_steps[NUMBER_SEQUENCE_STEPS] = {0};
-	float m_mod_steps[NUMBER_SEQUENCE_STEPS] = {0};
+	//int m_transpose_steps[NUMBER_SEQUENCE_STEPS] = {0};
+	float m_mod_1_steps[NUMBER_SEQUENCE_STEPS]   = {0};
+	float m_mod_2_steps[NUMBER_SEQUENCE_STEPS]   = {0};
 
 	std::vector<std::pair<int, int>> m_active_keys_and_velocities = {};
 	std::vector<int> m_sustain_kill_list                          = {};

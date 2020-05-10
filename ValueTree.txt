@@ -183,54 +183,54 @@
   <PARAM id="phaser_rate" value="0.2500000596046448"/>
   <PARAM id="phaser_reset" value="0.0"/>
   <PARAM id="pitchbend" value="0.0"/>
-  <PARAM id="step_0_mod" value="0.0"/>
+  <PARAM id="step_0_mod_1" value="0.0"/>
+  <PARAM id="step_0_mod_2" value="0.0"/>
   <PARAM id="step_0_on" value="1.0"/>
-  <PARAM id="step_0_transpose" value="0.0"/>
-  <PARAM id="step_10_mod" value="0.0"/>
+  <PARAM id="step_10_mod_1" value="0.0"/>
+  <PARAM id="step_10_mod_2" value="0.0"/>
   <PARAM id="step_10_on" value="1.0"/>
-  <PARAM id="step_10_transpose" value="0.0"/>
-  <PARAM id="step_11_mod" value="0.0"/>
+  <PARAM id="step_11_mod_1" value="0.0"/>
+  <PARAM id="step_11_mod_2" value="0.0"/>
   <PARAM id="step_11_on" value="1.0"/>
-  <PARAM id="step_11_transpose" value="0.0"/>
-  <PARAM id="step_12_mod" value="0.0"/>
+  <PARAM id="step_12_mod_1" value="0.0"/>
+  <PARAM id="step_12_mod_2" value="0.0"/>
   <PARAM id="step_12_on" value="1.0"/>
-  <PARAM id="step_12_transpose" value="0.0"/>
-  <PARAM id="step_13_mod" value="0.0"/>
+  <PARAM id="step_13_mod_1" value="0.0"/>
+  <PARAM id="step_13_mod_2" value="0.0"/>
   <PARAM id="step_13_on" value="1.0"/>
-  <PARAM id="step_13_transpose" value="0.0"/>
-  <PARAM id="step_14_mod" value="0.0"/>
+  <PARAM id="step_14_mod_1" value="0.0"/>
+  <PARAM id="step_14_mod_2" value="0.0"/>
   <PARAM id="step_14_on" value="1.0"/>
-  <PARAM id="step_14_transpose" value="0.0"/>
-  <PARAM id="step_15_mod" value="0.0"/>
+  <PARAM id="step_15_mod_1" value="0.0"/>
+  <PARAM id="step_15_mod_2" value="0.0"/>
   <PARAM id="step_15_on" value="1.0"/>
-  <PARAM id="step_15_transpose" value="0.0"/>
-  <PARAM id="step_1_mod" value="0.0"/>
+  <PARAM id="step_1_mod_1" value="0.0"/>
+  <PARAM id="step_1_mod_2" value="0.0"/>
   <PARAM id="step_1_on" value="1.0"/>
-  <PARAM id="step_1_transpose" value="0.0"/>
-  <PARAM id="step_2_mod" value="0.0"/>
+  <PARAM id="step_2_mod_1" value="0.0"/>
+  <PARAM id="step_2_mod_2" value="0.0"/>
   <PARAM id="step_2_on" value="1.0"/>
-  <PARAM id="step_2_transpose" value="0.0"/>
-  <PARAM id="step_3_mod" value="0.0"/>
+  <PARAM id="step_3_mod_1" value="0.0"/>
+  <PARAM id="step_3_mod_2" value="0.0"/>
   <PARAM id="step_3_on" value="1.0"/>
-  <PARAM id="step_3_transpose" value="0.0"/>
-  <PARAM id="step_4_mod" value="0.0"/>
+  <PARAM id="step_4_mod_1" value="0.0"/>
+  <PARAM id="step_4_mod_2" value="0.0"/>
   <PARAM id="step_4_on" value="1.0"/>
-  <PARAM id="step_4_transpose" value="0.0"/>
-  <PARAM id="step_5_mod" value="0.0"/>
+  <PARAM id="step_5_mod_1" value="0.0"/>
+  <PARAM id="step_5_mod_2" value="0.0"/>
   <PARAM id="step_5_on" value="1.0"/>
-  <PARAM id="step_5_transpose" value="0.0"/>
-  <PARAM id="step_6_mod" value="0.0"/>
+  <PARAM id="step_6_mod_1" value="0.0"/>
+  <PARAM id="step_6_mod_2" value="0.0"/>
   <PARAM id="step_6_on" value="1.0"/>
-  <PARAM id="step_6_transpose" value="0.0"/>
-  <PARAM id="step_7_mod" value="0.0"/>
+  <PARAM id="step_7_mod_1" value="0.0"/>
+  <PARAM id="step_7_mod_2" value="0.0"/>
   <PARAM id="step_7_on" value="1.0"/>
-  <PARAM id="step_7_transpose" value="0.0"/>
-  <PARAM id="step_8_mod" value="0.0"/>
+  <PARAM id="step_8_mod_1" value="0.0"/>
+  <PARAM id="step_8_mod_2" value="0.0"/>
   <PARAM id="step_8_on" value="1.0"/>
-  <PARAM id="step_8_transpose" value="0.0"/>
-  <PARAM id="step_9_mod" value="0.0"/>
+  <PARAM id="step_9_mod_1" value="0.0"/>
+  <PARAM id="step_9_mod_2" value="0.0"/>
   <PARAM id="step_9_on" value="1.0"/>
-  <PARAM id="step_9_transpose" value="0.0"/>
   <PARAM id="unison_detune" value="0.07999999821186066"/>
   <PARAM id="unison_width" value="0.699999988079071"/>
   <PARAM id="xy_x" value="0.0"/>

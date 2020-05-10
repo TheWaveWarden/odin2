@@ -749,72 +749,72 @@ void OdinAudioProcessor::treeValueChangedArp(const String &p_ID, float p_new_val
 		m_arpeggiator.setSequenceStepActive(15, p_new_value > 0.5f);
 	}
 
-	else if (id == m_step_0_mod_identifier) {
-		m_arpeggiator.setStepMod(0, p_new_value);
-	} else if (id == m_step_1_mod_identifier) {
-		m_arpeggiator.setStepMod(1, p_new_value);
-	} else if (id == m_step_2_mod_identifier) {
-		m_arpeggiator.setStepMod(2, p_new_value);
-	} else if (id == m_step_3_mod_identifier) {
-		m_arpeggiator.setStepMod(3, p_new_value);
-	} else if (id == m_step_4_mod_identifier) {
-		m_arpeggiator.setStepMod(4, p_new_value);
-	} else if (id == m_step_5_mod_identifier) {
-		m_arpeggiator.setStepMod(5, p_new_value);
-	} else if (id == m_step_6_mod_identifier) {
-		m_arpeggiator.setStepMod(6, p_new_value);
-	} else if (id == m_step_7_mod_identifier) {
-		m_arpeggiator.setStepMod(7, p_new_value);
-	} else if (id == m_step_8_mod_identifier) {
-		m_arpeggiator.setStepMod(8, p_new_value);
-	} else if (id == m_step_9_mod_identifier) {
-		m_arpeggiator.setStepMod(9, p_new_value);
-	} else if (id == m_step_10_mod_identifier) {
-		m_arpeggiator.setStepMod(10, p_new_value);
-	} else if (id == m_step_11_mod_identifier) {
-		m_arpeggiator.setStepMod(11, p_new_value);
-	} else if (id == m_step_12_mod_identifier) {
-		m_arpeggiator.setStepMod(12, p_new_value);
-	} else if (id == m_step_13_mod_identifier) {
-		m_arpeggiator.setStepMod(13, p_new_value);
-	} else if (id == m_step_14_mod_identifier) {
-		m_arpeggiator.setStepMod(14, p_new_value);
-	} else if (id == m_step_15_mod_identifier) {
-		m_arpeggiator.setStepMod(15, p_new_value);
+	else if (id == m_step_0_mod_1_identifier) {
+		m_arpeggiator.setStepMod1(0, p_new_value);
+	} else if (id == m_step_1_mod_1_identifier) {
+		m_arpeggiator.setStepMod1(1, p_new_value);
+	} else if (id == m_step_2_mod_1_identifier) {
+		m_arpeggiator.setStepMod1(2, p_new_value);
+	} else if (id == m_step_3_mod_1_identifier) {
+		m_arpeggiator.setStepMod1(3, p_new_value);
+	} else if (id == m_step_4_mod_1_identifier) {
+		m_arpeggiator.setStepMod1(4, p_new_value);
+	} else if (id == m_step_5_mod_1_identifier) {
+		m_arpeggiator.setStepMod1(5, p_new_value);
+	} else if (id == m_step_6_mod_1_identifier) {
+		m_arpeggiator.setStepMod1(6, p_new_value);
+	} else if (id == m_step_7_mod_1_identifier) {
+		m_arpeggiator.setStepMod1(7, p_new_value);
+	} else if (id == m_step_8_mod_1_identifier) {
+		m_arpeggiator.setStepMod1(8, p_new_value);
+	} else if (id == m_step_9_mod_1_identifier) {
+		m_arpeggiator.setStepMod1(9, p_new_value);
+	} else if (id == m_step_10_mod_1_identifier) {
+		m_arpeggiator.setStepMod1(10, p_new_value);
+	} else if (id == m_step_11_mod_1_identifier) {
+		m_arpeggiator.setStepMod1(11, p_new_value);
+	} else if (id == m_step_12_mod_1_identifier) {
+		m_arpeggiator.setStepMod1(12, p_new_value);
+	} else if (id == m_step_13_mod_1_identifier) {
+		m_arpeggiator.setStepMod1(13, p_new_value);
+	} else if (id == m_step_14_mod_1_identifier) {
+		m_arpeggiator.setStepMod1(14, p_new_value);
+	} else if (id == m_step_15_mod_1_identifier) {
+		m_arpeggiator.setStepMod1(15, p_new_value);
 	}
 
-	else if (id == m_step_0_transpose_identifier) {
-		m_arpeggiator.setStepTranspose(0, p_new_value);
-	} else if (id == m_step_1_transpose_identifier) {
-		m_arpeggiator.setStepTranspose(1, p_new_value);
-	} else if (id == m_step_2_transpose_identifier) {
-		m_arpeggiator.setStepTranspose(2, p_new_value);
-	} else if (id == m_step_3_transpose_identifier) {
-		m_arpeggiator.setStepTranspose(3, p_new_value);
-	} else if (id == m_step_4_transpose_identifier) {
-		m_arpeggiator.setStepTranspose(4, p_new_value);
-	} else if (id == m_step_5_transpose_identifier) {
-		m_arpeggiator.setStepTranspose(5, p_new_value);
-	} else if (id == m_step_6_transpose_identifier) {
-		m_arpeggiator.setStepTranspose(6, p_new_value);
-	} else if (id == m_step_7_transpose_identifier) {
-		m_arpeggiator.setStepTranspose(7, p_new_value);
-	} else if (id == m_step_8_transpose_identifier) {
-		m_arpeggiator.setStepTranspose(8, p_new_value);
-	} else if (id == m_step_9_transpose_identifier) {
-		m_arpeggiator.setStepTranspose(9, p_new_value);
-	} else if (id == m_step_10_transpose_identifier) {
-		m_arpeggiator.setStepTranspose(10, p_new_value);
-	} else if (id == m_step_11_transpose_identifier) {
-		m_arpeggiator.setStepTranspose(11, p_new_value);
-	} else if (id == m_step_12_transpose_identifier) {
-		m_arpeggiator.setStepTranspose(12, p_new_value);
-	} else if (id == m_step_13_transpose_identifier) {
-		m_arpeggiator.setStepTranspose(13, p_new_value);
-	} else if (id == m_step_14_transpose_identifier) {
-		m_arpeggiator.setStepTranspose(14, p_new_value);
-	} else if (id == m_step_15_transpose_identifier) {
-		m_arpeggiator.setStepTranspose(15, p_new_value);
+	else if (id == m_step_0_mod_2_identifier) {
+		m_arpeggiator.setStepMod2(0, p_new_value);
+	} else if (id == m_step_1_mod_2_identifier) {
+		m_arpeggiator.setStepMod2(1, p_new_value);
+	} else if (id == m_step_2_mod_2_identifier) {
+		m_arpeggiator.setStepMod2(2, p_new_value);
+	} else if (id == m_step_3_mod_2_identifier) {
+		m_arpeggiator.setStepMod2(3, p_new_value);
+	} else if (id == m_step_4_mod_2_identifier) {
+		m_arpeggiator.setStepMod2(4, p_new_value);
+	} else if (id == m_step_5_mod_2_identifier) {
+		m_arpeggiator.setStepMod2(5, p_new_value);
+	} else if (id == m_step_6_mod_2_identifier) {
+		m_arpeggiator.setStepMod2(6, p_new_value);
+	} else if (id == m_step_7_mod_2_identifier) {
+		m_arpeggiator.setStepMod2(7, p_new_value);
+	} else if (id == m_step_8_mod_2_identifier) {
+		m_arpeggiator.setStepMod2(8, p_new_value);
+	} else if (id == m_step_9_mod_2_identifier) {
+		m_arpeggiator.setStepMod2(9, p_new_value);
+	} else if (id == m_step_10_mod_2_identifier) {
+		m_arpeggiator.setStepMod2(10, p_new_value);
+	} else if (id == m_step_11_mod_2_identifier) {
+		m_arpeggiator.setStepMod2(11, p_new_value);
+	} else if (id == m_step_12_mod_2_identifier) {
+		m_arpeggiator.setStepMod2(12, p_new_value);
+	} else if (id == m_step_13_mod_2_identifier) {
+		m_arpeggiator.setStepMod2(13, p_new_value);
+	} else if (id == m_step_14_mod_2_identifier) {
+		m_arpeggiator.setStepMod2(14, p_new_value);
+	} else if (id == m_step_15_mod_2_identifier) {
+		m_arpeggiator.setStepMod2(15, p_new_value);
 	}
 }
 

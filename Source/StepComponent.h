@@ -38,8 +38,8 @@ private:
 
 	AudioProcessorValueTreeState &m_value_tree;
 
-	Knob m_mod;
-	Knob m_transpose;
+	Knob m_mod_1;
+	Knob m_mod_2;
 	OdinButton m_step_on;
 	StepLED m_led;
 	

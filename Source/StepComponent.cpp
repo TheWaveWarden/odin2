@@ -6,21 +6,19 @@ StepComponent::StepComponent(AudioProcessorValueTreeState &vts, int p_step_index
     m_step_on("step_" + std::to_string(p_step_index + 1) + "_on", juce::DrawableButton::ButtonStyle::ImageRaw),
     m_step_index(p_step_index) {
 
-	addAndMakeVisible(m_mod);
-	m_mod.setSliderStyle(Slider::RotaryVerticalDrag);
-	m_mod.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-	m_mod.setNumDecimalPlacesToDisplay(4);
-	m_mod.setKnobTooltip("TODO");
+	addAndMakeVisible(m_mod_1);
+	m_mod_1.setSliderStyle(Slider::RotaryVerticalDrag);
+	m_mod_1.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
+	m_mod_1.setKnobTooltip("TODO");
 	m_mod_attach.reset(
-	    new OdinKnobAttachment(m_value_tree, "step_" + std::to_string(m_step_index) + "_mod", m_mod));
+	    new OdinKnobAttachment(m_value_tree, "step_" + std::to_string(m_step_index) + "_mod_1", m_mod_1));
 
-	addAndMakeVisible(m_transpose);
-	m_transpose.setSliderStyle(Slider::RotaryVerticalDrag);
-	m_transpose.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-	m_transpose.setNumDecimalPlacesToDisplay(1);
-	m_transpose.setKnobTooltip("TODO");
+	addAndMakeVisible(m_mod_2);
+	m_mod_2.setSliderStyle(Slider::RotaryVerticalDrag);
+	m_mod_2.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
+	m_mod_2.setKnobTooltip("TODO");
 	m_transpose_attach.reset(
-	    new OdinKnobAttachment(m_value_tree, "step_" + std::to_string(m_step_index) + "_transpose", m_transpose));
+	    new OdinKnobAttachment(m_value_tree, "step_" + std::to_string(m_step_index) + "_mod_2", m_mod_2));
 
 	addAndMakeVisible(m_step_on);
 	m_step_on.setClickingTogglesState(true);
@@ -31,9 +29,12 @@ StepComponent::StepComponent(AudioProcessorValueTreeState &vts, int p_step_index
 	    new OdinButtonAttachment(m_value_tree, "step_" + std::to_string(m_step_index) + "_on", m_step_on));
 
 	addAndMakeVisible(m_led);
+	
+	m_mod_1.setNumDecimalPlacesToDisplay(3);
+	m_mod_2.setNumDecimalPlacesToDisplay(3);
 
-	SET_CTR_KEY(m_transpose);
-	SET_CTR_KEY(m_mod);
+	SET_CTR_KEY(m_mod_2);
+	SET_CTR_KEY(m_mod_1);
 }
 
 StepComponent::~StepComponent() {
@@ -58,11 +59,11 @@ void StepComponent::setGUIBig() {
 
 	juce::Image black_knob_small =
 	    ImageCache::getFromMemory(BinaryData::black_knob_small_150_png, BinaryData::black_knob_small_150_pngSize);
-	m_mod.setStrip(black_knob_small, N_KNOB_FRAMES);
-	m_mod.setBounds(KNOB_POS_X, MOD_POS_Y, BLACK_KNOB_SMALL_SIZE_X * 1.5, BLACK_KNOB_SMALL_SIZE_Y * 1.5);
+	m_mod_1.setStrip(black_knob_small, N_KNOB_FRAMES);
+	m_mod_1.setBounds(KNOB_POS_X, MOD_POS_Y, BLACK_KNOB_SMALL_SIZE_X * 1.5, BLACK_KNOB_SMALL_SIZE_Y * 1.5);
 
-	m_transpose.setStrip(black_knob_small, N_KNOB_FRAMES);
-	m_transpose.setBounds(KNOB_POS_X, TRANSPOSE_POS_Y, BLACK_KNOB_SMALL_SIZE_X * 1.5, BLACK_KNOB_SMALL_SIZE_Y * 1.5);
+	m_mod_2.setStrip(black_knob_small, N_KNOB_FRAMES);
+	m_mod_2.setBounds(KNOB_POS_X, TRANSPOSE_POS_Y, BLACK_KNOB_SMALL_SIZE_X * 1.5, BLACK_KNOB_SMALL_SIZE_Y * 1.5);
 
 	juce::Image step_on_4 =
 	    ImageCache::getFromMemory(BinaryData::button_arp_step_1_150_png, BinaryData::button_arp_step_1_150_pngSize);

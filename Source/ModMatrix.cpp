@@ -229,7 +229,12 @@ void ModMatrixRow::setModSource(int p_source, float **p_source_pointers, int &p_
 		break;
 	case 430:
 		for (int voice = 0; voice < VOICES; ++voice) {
-			p_source_pointers[voice] = m_sources->voice[voice].arp_mod;
+			p_source_pointers[voice] = m_sources->voice[voice].arp_mod_1;
+		}
+		break;
+	case 435:
+		for (int voice = 0; voice < VOICES; ++voice) {
+			p_source_pointers[voice] = m_sources->voice[voice].arp_mod_2;
 		}
 		break;
 	case 440:

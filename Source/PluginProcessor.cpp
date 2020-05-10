@@ -367,7 +367,7 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 			auto note = m_arpeggiator.getNoteOns(step_active);
 			m_step_led_active.set(step_active);
 			if (std::get<0>(note) != -1) {
-				midiNoteOn(std::get<0>(note), std::get<1>(note), std::get<2>(note));
+				midiNoteOn(std::get<0>(note), std::get<1>(note), std::get<2>(note), std::get<3>(note));
 			}
 			auto off_notes = m_arpeggiator.getNoteOffs();
 			for (auto note : off_notes) {
@@ -968,7 +968,7 @@ void OdinAudioProcessor::handleMidiNoteOff(int p_midi_note) {
 	}
 }
 
-void OdinAudioProcessor::midiNoteOn(int p_midi_note, int p_midi_velocity, float p_arp_mod) {
+void OdinAudioProcessor::midiNoteOn(int p_midi_note, int p_midi_velocity, float p_arp_mod_1, float p_arp_mod_2) {
 
 	m_global_env.restartEnvelope();
 	if (*m_lfo4_reset) {
@@ -1004,7 +1004,7 @@ void OdinAudioProcessor::midiNoteOn(int p_midi_note, int p_midi_velocity, float 
 		    m_unison_pan_positions[unison_voices][m_unison_detune_positions[unison_voices][unison_counter]],
 		    m_unison_gain_factors[unison_voices],
 		    unison_voices > 1,
-		    p_arp_mod);
+		    p_arp_mod_1, p_arp_mod_2);
 		DBG("NoteOn,  key " + std::to_string(p_midi_note) + ", voice " + std::to_string(new_voice));
 		//if (m_voice_manager.legatoEnabled()) {
 		//m_voice[new_voice].amp.setMIDIVelocityLegato(p_midi_velocity);
@@ -1153,6 +1153,7 @@ void OdinAudioProcessor::handleMidiMessage(const MidiMessage &p_midi_message) {
 		for(int voice = 0; voice < VOICES; ++voice){
 			m_voice[voice].forceKeyUp();
 		}
+		m_arpeggiator.endPlayingNotes();
 	} else if (p_midi_message.isPitchWheel()) {
 		setPitchWheelValue(p_midi_message.getPitchWheelValue());
 	} else if (p_midi_message.isController() && p_midi_message.getControllerNumber() == 1) { // modwheel
