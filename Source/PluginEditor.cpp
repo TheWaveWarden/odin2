@@ -1035,7 +1035,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	m_chorus.setBounds(FX_AREA_POS_X, FX_AREA_POS_Y, FX_AREA_SIZE_X, FX_AREA_SIZE_Y);
 	m_delay.setBounds(FX_AREA_POS_X, FX_AREA_POS_Y, FX_AREA_SIZE_X, FX_AREA_SIZE_Y);
 
-	m_mod_matrix.setBounds(MATRIX_POS_X, MATRIX_POS_Y, MATRIX_SIZE_X, MATRIX_SIZE_Y);
+	m_mod_matrix.setBounds(MATRIX_POS_X_100, MATRIX_POS_Y_100, MATRIX_SIZE_X, MATRIX_SIZE_Y);
 	m_save_load.setBounds(SAVE_LOAD_POS_X, SAVE_LOAD_POS_Y, SAVE_LOAD_SIZE_X, SAVE_LOAD_SIZE_Y);
 	m_xy_section.setBounds(XY_COMPONENT_POS_X, XY_COMPONENT_POS_Y, XY_COMPONENT_SIZE_X, XY_COMPONENT_SIZE_Y);
 
@@ -1605,7 +1605,7 @@ void OdinAudioProcessorEditor::readOrCreateConfigFile(bool &p_GUI_big) {
 	if (configuration_file.existsAsFile()) {
 		// rather hacky: check if the file ends on 1 (i.e. "big_GUI: 1")
 		p_GUI_big = configuration_file.loadFileAsString().endsWithChar('1');
-		DBG("Found configuration file, big_GUI: " + std::to_string(p_GUI_big));
+		//DBG("Found configuration file, big_GUI: " + std::to_string(p_GUI_big));
 
 	}
 

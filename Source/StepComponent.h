@@ -13,7 +13,7 @@
 #define STEP_ON_Y_100 68
 #define STEP_LED_POS_X_100 9
 #define STEP_LED_POS_Y_100 95
-#define KNOB_GUIDE_X_100 0
+#define KNOB_GUIDE_X_100 1
 #define KNOB_GUIDE_1_Y_100 0
 #define KNOB_GUIDE_2_Y_100 31
 

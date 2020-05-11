@@ -131,7 +131,7 @@ ArpComponent::~ArpComponent() {
 }
 
 void ArpComponent::paint(Graphics &g) {
-
+	g.drawImageAt(m_background, 0, 0);
 	//g.setColour(Colours::black);
 	//g.drawRect(getLocalBounds(), 1); // draw an outline around the component
 }
@@ -308,6 +308,8 @@ void ArpComponent::setGUIBig() {
 		                    STEP_COMPONENT_HEIGHT_150);
 		m_step_15.setGUIBig();
 	}
+
+	m_background = ImageCache::getFromMemory(BinaryData::arp_cropped_150_png, BinaryData::arp_cropped_150_pngSize);
 }
 void ArpComponent::setGUISmall() {
 	m_GUI_big = false;

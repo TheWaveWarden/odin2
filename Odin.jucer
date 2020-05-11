@@ -19,6 +19,8 @@
             file="Graphics/cropped/analog_knob_cropped.png"/>
       <FILE id="FU7Kyv" name="analog_knob_cropped_150.png" compile="0" resource="1"
             file="Graphics_150/cropped/analog_knob_cropped_150.png"/>
+      <FILE id="ygrnGc" name="arp_cropped_150.png" compile="0" resource="1"
+            file="Graphics_150/cropped/arp_cropped_150.png"/>
       <FILE id="Dzodcs" name="arp_knob_guide.png" compile="0" resource="1"
             file="Graphics/cropped/arp_knob_guide.png"/>
       <FILE id="FYIdKv" name="arp_knob_guide_150.png" compile="0" resource="1"

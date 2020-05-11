@@ -82,9 +82,11 @@ public:
 	void forceValueTreeOntoComponents(ValueTree p_tree);
 
 private:
-    bool m_GUI_big = false;
-
     void setNumberLEDsToShow(int p_number);
+    
+    bool m_GUI_big = false;
+    Image m_background;
+
 
     OdinAudioProcessor &m_processor;
 	AudioProcessorValueTreeState &m_value_tree;
