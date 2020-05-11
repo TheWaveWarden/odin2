@@ -78,7 +78,7 @@ std::tuple<int, int, float, float> OdinArpeggiator::getNoteOns(int &pio_step_act
 		++m_current_arp_index;
 		if (m_current_arp_index >= m_arp_sequence.size()) {
 			//updown skips a beat when wrapping
-			if ((m_pattern == ArpPattern::UpAndDown || m_pattern == ArpPattern::UpAndDown) &&
+			if ((m_pattern == ArpPattern::UpAndDown || m_pattern == ArpPattern::DownAndUp) &&
 			    m_arp_sequence.size() > 1) {
 				m_current_arp_index = 1;
 			} else if (m_pattern == ArpPattern::Random) {
@@ -283,6 +283,29 @@ void OdinArpeggiator::generateSequence() {
 			}
 		}
 		break;
+
+		case ArpPattern::DownAndUp:
+		std::sort(m_active_keys_and_velocities.begin(), m_active_keys_and_velocities.end(), sortKeysUpToDown);
+		for (int octave = m_octaves - 1; octave >= 0; --octave) {
+			for (auto note : m_active_keys_and_velocities) {
+				m_arp_sequence.push_back(transposeOct(note, octave));
+			}
+		}
+		std::sort(m_active_keys_and_velocities.begin(), m_active_keys_and_velocities.end(), sortKeysDownToUp);
+		{
+			bool first_note = true;
+			for (int octave = 0; octave < m_octaves; ++octave) {
+				for (auto note : m_active_keys_and_velocities) {
+					//omit first note when going down again
+					if (first_note) {
+						first_note = false;
+					} else {
+						m_arp_sequence.push_back(transposeOct(note, octave));
+					}
+				}
+			}
+		}
+		break;
 	case ArpPattern::Random:
 		//do up pattern and shuffle it
 		std::sort(m_active_keys_and_velocities.begin(), m_active_keys_and_velocities.end(), sortKeysDownToUp);
@@ -304,7 +327,7 @@ void OdinArpeggiator::generateSequence() {
 				temp_arp_index.push_back(transposeOct(note, octave));
 			}
 		}
-		for (int crawl_index = 0; crawl_index < (int)temp_arp_index.size() - (int)m_active_keys_and_velocities.size();
+		for (int crawl_index = 0; crawl_index < (int)temp_arp_index.size() - (int)m_active_keys_and_velocities.size() + 1;
 		     ++crawl_index) {
 			for (int sub_index = 0; sub_index < m_active_keys_and_velocities.size(); ++sub_index) {
 				m_arp_sequence.push_back(temp_arp_index[crawl_index + sub_index]);
@@ -323,7 +346,7 @@ void OdinArpeggiator::generateSequence() {
 				temp_arp_index.push_back(transposeOct(note, octave));
 			}
 		}
-		for (int crawl_index = 0; crawl_index < (int)temp_arp_index.size() - (int)m_active_keys_and_velocities.size();
+		for (int crawl_index = 0; crawl_index < (int)temp_arp_index.size() - (int)m_active_keys_and_velocities.size() + 1;
 		     ++crawl_index) {
 			for (int sub_index = 0; sub_index < m_active_keys_and_velocities.size(); ++sub_index) {
 				m_arp_sequence.push_back(temp_arp_index[crawl_index + sub_index]);
