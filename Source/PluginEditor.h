@@ -1,13 +1,3 @@
-/*
-  ==============================================================================
-
-    This file was auto-generated!
-
-    It contains the basic framework code for a JUCE plugin editor.
-
-  ==============================================================================
-*/
-
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
@@ -25,8 +15,9 @@
 #include "LFOComponent.h"
 #include "LeftRightButton.h"
 #include "ModMatrixComponent.h"
+#include "ArpComponent.h"
 #include "NumberSelector.h"
-#include "UnisonSelector.h"
+#include "NumberSelectorWithText.h"
 #include "OdinButton.h"
 #include "OdinTooltipWindow.h"
 #include "OscComponent.h"
@@ -43,9 +34,9 @@
 #endif
 
 #define GLIDE_POS_X 117
-#define GLIDE_POS_Y 522
+#define GLIDE_POS_Y 542
 #define MASTER_POS_X GLIDE_POS_X
-#define MASTER_POS_Y 568
+#define MASTER_POS_Y 588
 
 #define OSC1_POS_X 29
 #define OSC2_POS_X 277
@@ -110,8 +101,17 @@
 
 #define MATRIX_SIZE_X 500
 #define MATRIX_SIZE_Y 144
-#define MATRIX_POS_X 274
-#define MATRIX_POS_Y 452
+#define MATRIX_POS_X_100 274
+#define MATRIX_POS_Y_100 473
+#define MATRIX_POS_X_150 411
+#define MATRIX_POS_Y_150 713
+
+#define ARP_MATRIX_BUTTON_POS_X MATRIX_POS_X_100
+#define ARP_MATRIX_BUTTON_POS_Y 452
+
+#define ARP_SEQ_POS_X MATRIX_POS_X_100
+#define ARP_SEQ_POS_Y 472
+
 
 #define SAVE_LOAD_POS_X 23
 #define SAVE_LOAD_POS_Y 2
@@ -143,14 +143,14 @@
 #define LFO24_POS_Y LFO13_POS_Y
 
 #define LFO_SIZE_X 116
-#define LFO_SIZE_Y 51
+#define LFO_SIZE_Y 71
 #define LFO_RIGHT_POS_X 157
 #define LFO_RIGHT_POS_Y 448
 #define LFO_LEFT_POS_X 30
 #define LFO_LEFT_POS_Y LFO_RIGHT_POS_Y
 
 #define XY_COMPONENT_POS_X 143
-#define XY_COMPONENT_POS_Y 502
+#define XY_COMPONENT_POS_Y 522
 #define XY_COMPONENT_SIZE_X 127
 #define XY_COMPONENT_SIZE_Y 93
 
@@ -159,10 +159,10 @@
 
 #define PITCHWHEEL_X 42
 #define MODWHEEL_X 72
-#define WHEEL_Y 497
+#define WHEEL_Y 517
 
 #define PITCH_AMOUNT_X 35
-#define PITCH_AMOUNT_Y 578
+#define PITCH_AMOUNT_Y 598
 
 #define MASTER_MAX 12
 #define MASTER_MIN -30
@@ -179,10 +179,10 @@
 #define MIDI_KEYBOARD_SIZE 85
 
 #define ODIN_EDITOR_SIZE_X 800
-#define ODIN_EDITOR_SIZE_Y 600
+#define ODIN_EDITOR_SIZE_Y 620
 
 #define ODIN_EDITOR_SIZE_150_X 1200
-#define ODIN_EDITOR_SIZE_150_Y 900
+#define ODIN_EDITOR_SIZE_150_Y 930
 
 class TooltipFeels : public LookAndFeel_V4 {
 public:
@@ -194,9 +194,6 @@ public:
   }
 };
 
-//==============================================================================
-/**
- */
 class OdinAudioProcessorEditor : public AudioProcessorEditor,
                                  public KeyListener {
 public:
@@ -275,7 +272,7 @@ private:
   PitchWheel m_pitchwheel;
   NumberSelector m_pitch_amount;
 
-  UnisonSelector m_unison_selector;
+  NumberSelectorWithText m_unison_selector;
 
   BPMSelector m_BPM_selector;
 
@@ -305,6 +302,7 @@ private:
   DelayComponent m_delay;
 
   ModMatrixComponent m_mod_matrix;
+  ArpComponent m_arp;
 
   SaveLoadComponent m_save_load;
 
@@ -345,6 +343,8 @@ private:
 
   LeftRightButton m_lfo_13_button;
   LeftRightButton m_lfo_24_button;
+
+  LeftRightButton m_arp_modmatrix_button;
 
   LeftRightButton m_legato_button;
   LeftRightButton m_gui_size_button;
@@ -401,6 +401,7 @@ private:
   void setEnv24(bool p_env24);
   void setLfo12(bool p_lfo13);
   void setLfo34(bool p_lfo24);
+  void setArpMod(bool p_arp);
   void updatePitchWheel(float p_value);
   void updateModWheel(float p_value);
   void setGUISizeBig(bool p_big, bool p_write_to_config);

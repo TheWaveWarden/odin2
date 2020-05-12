@@ -396,6 +396,15 @@ void OdinAudioProcessorEditor::setGUIBig(){
 	m_lfo_13_button.setImage(lfo13_right, 2);
 	m_lfo_13_button.setBounds(OdinHelper::c150(LFO13_POS_X), OdinHelper::c150(LFO13_POS_Y), lfo13_left.getWidth(), lfo13_left.getHeight());
 
+	juce::Image arp_modmatrix_button_left =
+	    ImageCache::getFromMemory(BinaryData::button_mod_arp_1_150_png, BinaryData::button_mod_arp_1_150_pngSize);
+	juce::Image arp_modmatrix_button_right =
+	    ImageCache::getFromMemory(BinaryData::button_mod_arp_2_150_png, BinaryData::button_mod_arp_2_150_pngSize);
+	m_arp_modmatrix_button.setImage(arp_modmatrix_button_left, 1);
+	m_arp_modmatrix_button.setImage(arp_modmatrix_button_right, 2);
+	m_arp_modmatrix_button.setBounds(OdinHelper::c150(ARP_MATRIX_BUTTON_POS_X), OdinHelper::c150(ARP_MATRIX_BUTTON_POS_Y), arp_modmatrix_button_left.getWidth(), arp_modmatrix_button_left.getHeight());
+	
+
 	juce::Image lfo24_left =
 	    ImageCache::getFromMemory(BinaryData::buttonlfo24_1_150_png, BinaryData::buttonlfo24_1_150_pngSize);
 	juce::Image lfo24_right =
@@ -492,7 +501,8 @@ void OdinAudioProcessorEditor::setGUIBig(){
 	m_chorus.setBounds(OdinHelper::c150(FX_AREA_POS_X), OdinHelper::c150(FX_AREA_POS_Y), OdinHelper::c150(FX_AREA_SIZE_X), OdinHelper::c150(FX_AREA_SIZE_Y));
 	m_delay.setBounds(OdinHelper::c150(FX_AREA_POS_X), OdinHelper::c150(FX_AREA_POS_Y), OdinHelper::c150(FX_AREA_SIZE_X), OdinHelper::c150(FX_AREA_SIZE_Y));
 
-	m_mod_matrix.setBounds(OdinHelper::c150(MATRIX_POS_X), OdinHelper::c150(MATRIX_POS_Y), OdinHelper::c150(MATRIX_SIZE_X), OdinHelper::c150(MATRIX_SIZE_Y));
+	m_mod_matrix.setBounds(MATRIX_POS_X_150, MATRIX_POS_Y_150, OdinHelper::c150(MATRIX_SIZE_X), OdinHelper::c150(MATRIX_SIZE_Y));
+	m_arp.setBounds(OdinHelper::c150(ARP_SEQ_POS_X), OdinHelper::c150(ARP_SEQ_POS_Y), OdinHelper::c150(MATRIX_SIZE_X), OdinHelper::c150(MATRIX_SIZE_Y) + 5);
 	m_save_load.setBounds(OdinHelper::c150(SAVE_LOAD_POS_X), OdinHelper::c150(SAVE_LOAD_POS_Y), OdinHelper::c150(SAVE_LOAD_SIZE_X), OdinHelper::c150(SAVE_LOAD_SIZE_Y));
 	m_xy_section.setBounds(OdinHelper::c150(XY_COMPONENT_POS_X), OdinHelper::c150(XY_COMPONENT_POS_Y), OdinHelper::c150(XY_COMPONENT_SIZE_X), OdinHelper::c150(XY_COMPONENT_SIZE_Y));
 

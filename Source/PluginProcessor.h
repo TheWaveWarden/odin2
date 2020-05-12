@@ -1,12 +1,3 @@
-/*
-  ==============================================================================
-
-    This file was auto-generated!
-
-    It contains the basic framework code for a JUCE plugin processor.
-
-  ==============================================================================
-*/
 
 #pragma once
 
@@ -30,14 +21,10 @@
 #include "audio/Filters/LadderFilter.h"
 #include "audio/Filters/SEMFilter12.h"
 #include "audio/Oscillators/WavetableContainer.h"
-
-//#define ODIN_PROFILING
+#include "OdinArpeggiator.h"
 
 class OdinAudioProcessorEditor;
 
-//==============================================================================
-/**
- */
 class OdinAudioProcessor : public AudioProcessor {
 public:
 	//==============================================================================
@@ -142,8 +129,13 @@ public:
 		    "called!\n\n\n");
 	};
 
+	// this is an actual call to start / end a note
 	void midiNoteOff(int p_midi_note);
-	void midiNoteOn(int p_midi_note, int p_midi_velocity);
+	void midiNoteOn(int p_midi_note, int p_midi_velocity, float p_arp_mod_1 = 0.f, float p_arp_mod_2 = 0.f);
+	// this checks whether the arp is on and gives notes to it or puts notes on directly
+	void handleMidiNoteOff(int p_midi_note);
+	void handleMidiNoteOn(int p_midi_note, int p_midi_velocity);
+	void allNotesOff();
 
 	void setPolyLegato(bool p_is_poly) {
 		bool legato_was_changed = m_voice_manager.setPolyLegato(p_is_poly);
@@ -165,6 +157,8 @@ public:
 	void attachNonParamListeners();
 	void migratePatch(ValueTree &p_patch);
 	void readPatch(const ValueTree &newState);
+
+	Atomic<int> m_step_led_active = -1;
 
 private:
 #ifdef ODIN_PROFILING
@@ -226,6 +220,7 @@ private:
 	OdinTreeListener m_tree_listener_delay;
 	OdinTreeListener m_tree_listener_chorus;
 	OdinTreeListener m_tree_listener_phaser;
+	OdinTreeListener m_tree_listener_arp;
 	OdinTreeListener m_tree_listener_flanger;
 	OdinTreeListener m_tree_listener_adsr1;
 	OdinTreeListener m_tree_listener_adsr2;
@@ -278,6 +273,7 @@ private:
 	void treeValueChangedDelay(const String &p_ID, float p_new_value);
 	void treeValueChangedChorus(const String &p_ID, float p_new_value);
 	void treeValueChangedPhaser(const String &p_ID, float p_new_value);
+	void treeValueChangedArp(const String &p_ID, float p_new_value);
 	void treeValueChangedFlanger(const String &p_ID, float p_new_value);
 	void treeValueChangedADSR1(const String &p_ID, float p_new_value);
 	void treeValueChangedADSR2(const String &p_ID, float p_new_value);
@@ -293,7 +289,7 @@ private:
 	void treeValueChangedGeneralMisc(const String &p_ID, float p_new_value);
 
 	WavetableContainer m_WT_container;
-
+	OdinArpeggiator m_arpeggiator;
 	Voice m_voice[VOICES];
 
 	LadderFilter m_ladder_filter[2];
@@ -315,15 +311,16 @@ private:
 	ModSources m_mod_sources;
 	ModDestinations m_mod_destinations;
 
-	bool m_dist_on      = false;
-	bool m_lfo1_sync    = false;
-	bool m_lfo2_sync    = false;
-	bool m_lfo3_sync    = false;
-	bool m_lfo4_sync    = false;
-	bool m_delay_sync   = false;
-	bool m_chorus_sync  = false;
-	bool m_phaser_sync  = false;
-	bool m_flanger_sync = false;
+	bool m_dist_on        = false;
+	bool m_lfo1_sync      = false;
+	bool m_lfo2_sync      = false;
+	bool m_lfo3_sync      = false;
+	bool m_lfo4_sync      = false;
+	bool m_delay_sync     = false;
+	bool m_chorus_sync    = false;
+	bool m_phaser_sync    = false;
+	bool m_flanger_sync   = false;
+	bool m_arpeggiator_on = false;
 
 	bool m_osc_wavetable_source_lfo[3] = {0}; //false <=> envelope
 

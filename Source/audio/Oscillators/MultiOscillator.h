@@ -18,7 +18,6 @@ public:
 		for(int osc = 0; osc < OSCS_PER_MULTIOSC; ++osc){
 	  		m_read_index_multi[osc] = (float)rand() / (float)RAND_MAX * WAVETABLE_LENGTH;
 		}
-		DBG("mulit rando phase");
 	}
 
 	inline void setPosition(float p_position){

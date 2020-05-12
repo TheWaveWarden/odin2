@@ -129,6 +129,10 @@ LFOComponent::~LFOComponent() {
 }
 
 void LFOComponent::paint(Graphics &g) {
+
+	g.setColour(Colour((uint8_t)255,(uint8_t)255,(uint8_t)255,(uint8_t)40));
+	g.drawRoundedRectangle(getLocalBounds().getX(),getLocalBounds().getY(),getLocalBounds().getWidth(),getLocalBounds().getHeight(),4.f, 3.f); // draw an outline around the component
+
 	SET_INTERPOLATION_QUALITY(g)
 	if (m_sync_active) {
 		g.drawImageAt(m_freq_overdraw, OVERDRAW_POS_X, OVERDRAW_POS_Y);

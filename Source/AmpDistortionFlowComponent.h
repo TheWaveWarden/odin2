@@ -1,13 +1,3 @@
-/*
-  ==============================================================================
-
-    AmpDistortionFlowComponent.h
-    Created: 25 Feb 2019 8:09:19pm
-    Author:  frot
-
-  ==============================================================================
-*/
-
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"

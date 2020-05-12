@@ -1,12 +1,3 @@
-/*
-  ==============================================================================
-
-    GlobalIncludes.h
-    Created: 7 Mar 2019 11:20:12pm
-    Author:  frot
-
-  ==============================================================================
-*/
 #pragma once
 #ifndef BENCHMARK
 #include "../JuceLibraryCode/JuceHeader.h"
@@ -30,14 +21,14 @@
 //#define WTGEN
 
 #define ODIN_MAJOR_VERSION 2
-#define ODIN_MINOR_VERSION 0
-#define ODIN_PATCH_VERSION 22
+#define ODIN_MINOR_VERSION 1
+#define ODIN_PATCH_VERSION 0
 
 #define ODIN_VERSION_STRING                                                                                            \
 	("Odin 2." + std::to_string(ODIN_MINOR_VERSION) + "." + std::to_string(ODIN_PATCH_VERSION) + " beta")
 
 // ! this is for migrating patches from older version, not to be confused with above
-#define ODIN_PATCH_MIGRATION_VERSION 3
+#define ODIN_PATCH_MIGRATION_VERSION 4
 //1 -> 2: replaced "amp width" by "amp velocity"
 //2 -> 3: made carrier and modulator ratio, as well as pitchbend amount nonaudio values (but wrote migration code)
 

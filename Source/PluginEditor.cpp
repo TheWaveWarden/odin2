@@ -67,24 +67,26 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
     m_delay_on_button("delay_button", juce::DrawableButton::ButtonStyle::ImageRaw),
     m_question_button("question_button", juce::DrawableButton::ButtonStyle::ImageRaw), m_env_13_button("env13_button"),
     m_env_24_button("env24_button"), m_lfo_13_button("lfo13_button"), m_lfo_24_button("lfo24_button"),
-    m_pitch_amount(true), m_BPM_selector(true), m_osc1(p_processor, vts, "1"), m_osc2(p_processor, vts, "2"),
-    m_osc3(p_processor, vts, "3"), m_fil1_component(vts, "1"), m_fil2_component(vts, "2"), m_fil3_component(vts, "3"),
-    m_midsection(vts), m_adsr_1(vts, "1"), m_adsr_2(vts, "2"), m_adsr_3(vts, "3"), m_adsr_4(vts, "4"),
-    m_lfo_1(vts, "1", p_is_standalone), m_lfo_2(vts, "2", p_is_standalone), m_lfo_3(vts, "3", p_is_standalone),
-    m_lfo_4(vts, "4", p_is_standalone), m_delay(vts, p_is_standalone), m_phaser(vts, "phaser", p_is_standalone),
-    m_flanger(vts, "flanger", p_is_standalone), m_chorus(vts, "chorus", p_is_standalone), m_xy_section(vts, "xy"),
-    m_osc1_type_identifier("osc1_type"), m_osc2_type_identifier("osc2_type"), m_osc3_type_identifier("osc3_type"),
-    m_fil1_type_identifier("fil1_type"), m_fil2_type_identifier("fil2_type"), m_fil3_type_identifier("fil3_type"),
-    m_pitchbend_amount_identifier("pitchbend_amount"),m_unison_voices_identifier("unison_voices"), m_delay_position_identifier("delay_position"),
-    m_flanger_position_identifier("flanger_position"), m_phaser_position_identifier("phaser_position"),
-    m_chorus_position_identifier("chorus_position"), m_mod_matrix(vts), m_legato_button("legato"),
-    m_gui_size_button("gui_size"), m_tooltip(nullptr, 2047483647), m_is_standalone_plugin(p_is_standalone),
-    m_save_load(vts, p_processor), m_processor(p_processor) {
-        
+    m_arp_modmatrix_button("arp_modmatrix_button"), m_pitch_amount(true), m_BPM_selector(true),
+    m_osc1(p_processor, vts, "1"), m_osc2(p_processor, vts, "2"), m_osc3(p_processor, vts, "3"),
+    m_fil1_component(vts, "1"), m_fil2_component(vts, "2"), m_fil3_component(vts, "3"), m_midsection(vts),
+    m_adsr_1(vts, "1"), m_adsr_2(vts, "2"), m_adsr_3(vts, "3"), m_adsr_4(vts, "4"), m_lfo_1(vts, "1", p_is_standalone),
+    m_lfo_2(vts, "2", p_is_standalone), m_lfo_3(vts, "3", p_is_standalone), m_lfo_4(vts, "4", p_is_standalone),
+    m_delay(vts, p_is_standalone), m_phaser(vts, "phaser", p_is_standalone), m_flanger(vts, "flanger", p_is_standalone),
+    m_chorus(vts, "chorus", p_is_standalone), m_xy_section(vts, "xy"), m_osc1_type_identifier("osc1_type"),
+    m_osc2_type_identifier("osc2_type"), m_osc3_type_identifier("osc3_type"), m_fil1_type_identifier("fil1_type"),
+    m_fil2_type_identifier("fil2_type"), m_fil3_type_identifier("fil3_type"),
+    m_pitchbend_amount_identifier("pitchbend_amount"), m_unison_voices_identifier("unison_voices"),
+    m_delay_position_identifier("delay_position"), m_flanger_position_identifier("flanger_position"),
+    m_phaser_position_identifier("phaser_position"), m_chorus_position_identifier("chorus_position"), m_mod_matrix(vts),
+    m_legato_button("legato"), m_gui_size_button("gui_size"), m_tooltip(nullptr, 2047483647),
+    m_is_standalone_plugin(p_is_standalone), m_save_load(vts, p_processor), m_arp(p_processor, vts),
+    m_processor(p_processor) {
+
 #ifdef ODIN_MAC
-    setBufferedToImage(true);
+	setBufferedToImage(true);
 #endif
-        
+
 	if (m_is_standalone_plugin) {
 		addKeyListener(this);
 	}
@@ -621,7 +623,6 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	juce::Image black_knob_mid =
 	    ImageCache::getFromMemory(BinaryData::black_knob_mid_png, BinaryData::black_knob_mid_pngSize);
 
-
 	// load backplates for osc and filters
 
 	juce::Image bypass_osc1_plate =
@@ -739,6 +740,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	addAndMakeVisible(m_delay);
 
 	addAndMakeVisible(m_mod_matrix);
+	addChildComponent(m_arp);
 	addAndMakeVisible(m_save_load);
 	addAndMakeVisible(m_xy_section);
 
@@ -792,6 +794,16 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	m_lfo_13_button.setTooltip("Shows LFO 1 or LFO 2");
 	addAndMakeVisible(m_lfo_13_button);
 	m_lfo_13_button.disableMidiLearn();
+
+	m_arp_modmatrix_button.setToggleState(false, dontSendNotification);
+	m_arp_modmatrix_button.onStateChange = [&]() {
+		setArpMod(m_arp_modmatrix_button.getToggleState());
+		m_value_tree.state.getChildWithName("misc").setProperty(
+		    "arp_mod_selected", (int)m_arp_modmatrix_button.getToggleState(), nullptr);
+	};
+	m_arp_modmatrix_button.setTooltip("Shows the arpeggiator or the mod-matrix");
+	addAndMakeVisible(m_arp_modmatrix_button);
+	m_arp_modmatrix_button.disableMidiLearn();
 
 	juce::Image lfo24_left =
 	    ImageCache::getFromMemory(BinaryData::buttonlfo24_1_png, BinaryData::buttonlfo24_1_pngSize);
@@ -875,15 +887,17 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	m_pitch_amount.setTooltip("The amount of pitchbend for the pitchwheel in semitones");
 
 	m_unison_selector.OnValueChange = [&](int p_new_value) {
-		m_value_tree.state.getChildWithName("misc").setProperty(
-		    "unison_voices", p_new_value, nullptr);
+		m_value_tree.state.getChildWithName("misc").setProperty("unison_voices", p_new_value, nullptr);
 	};
+	m_unison_selector.valueToText = [](int p_value) { return "Unison: " + std::to_string(p_value); };
+	m_unison_selector.setLegalValues({1, 2, 3, 4, 6});
+
 	m_unison_selector.setTopLeftPosition(UNISON_SELECTOR_X, UNISON_SELECTOR_Y);
 	addAndMakeVisible(m_unison_selector);
 	m_unison_selector.setMouseDragDivisor(20.f);
 	m_unison_selector.setColor(Colour(10, 40, 50));
-	m_unison_selector.setTooltip("Number of voices to trigger simultaneously\nThis limits the polyphony to 12 / N\nBeware: N voices means N times the CPU load, so use with care!");
-
+	m_unison_selector.setTooltip("Number of voices to trigger simultaneously\nThis limits the polyphony to 12 / "
+	                             "N\nBeware: N voices means N times the CPU load, so use with care!");
 
 	m_BPM_selector.OnValueChange = [&](int p_new_value) {
 		m_value_tree.state.getChildWithName("misc").setProperty("BPM", p_new_value, nullptr);
@@ -956,7 +970,6 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	SET_CTR_KEY(m_modwheel);
 	SET_CTR_KEY(m_unison_detune);
 	SET_CTR_KEY(m_unison_width);
-	
 
 	//m_color_picker.setTopLeftPosition(ADSR_LEFT_POS_X, ADSR_LEFT_POS_Y);
 	//m_color_picker.setSize(3 * ADSR_SIZE_X, 3 * ADSR_SIZE_Y);
@@ -1022,7 +1035,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	m_chorus.setBounds(FX_AREA_POS_X, FX_AREA_POS_Y, FX_AREA_SIZE_X, FX_AREA_SIZE_Y);
 	m_delay.setBounds(FX_AREA_POS_X, FX_AREA_POS_Y, FX_AREA_SIZE_X, FX_AREA_SIZE_Y);
 
-	m_mod_matrix.setBounds(MATRIX_POS_X, MATRIX_POS_Y, MATRIX_SIZE_X, MATRIX_SIZE_Y);
+	m_mod_matrix.setBounds(MATRIX_POS_X_100, MATRIX_POS_Y_100, MATRIX_SIZE_X, MATRIX_SIZE_Y);
 	m_save_load.setBounds(SAVE_LOAD_POS_X, SAVE_LOAD_POS_Y, SAVE_LOAD_SIZE_X, SAVE_LOAD_SIZE_Y);
 	m_xy_section.setBounds(XY_COMPONENT_POS_X, XY_COMPONENT_POS_Y, XY_COMPONENT_SIZE_X, XY_COMPONENT_SIZE_Y);
 
@@ -1157,6 +1170,16 @@ void OdinAudioProcessorEditor::setLfo12(bool p_lfo1) {
 	}
 }
 
+void OdinAudioProcessorEditor::setArpMod(bool p_arp) {
+	if (p_arp) {
+		m_mod_matrix.setVisible(false);
+		m_arp.setVisible(true);
+	} else {
+		m_mod_matrix.setVisible(true);
+		m_arp.setVisible(false);
+	}
+}
+
 void OdinAudioProcessorEditor::setLfo34(bool p_lfo2) {
 	if (p_lfo2) {
 		m_lfo_3.setVisible(true);
@@ -1250,7 +1273,7 @@ void OdinAudioProcessorEditor::setTooltipEnabled(bool p_enabled) {
 }
 
 void OdinAudioProcessorEditor::forceValueTreeOntoComponentsOnlyMainPanel() {
-	
+
 	m_unison_selector.setValue(m_value_tree.state.getChildWithName("misc")["unison_voices"]);
 
 	m_pitch_amount.setValue(m_value_tree.state.getChildWithName("misc")["pitchbend_amount"]);
@@ -1285,6 +1308,10 @@ void OdinAudioProcessorEditor::forceValueTreeOntoComponentsOnlyMainPanel() {
 	m_lfo_24_button.setToggleState((float)m_value_tree.state.getChildWithName("lfo")["lfo_right_selected"] > 0.5,
 	                               dontSendNotification);
 	setLfo34(m_lfo_24_button.getToggleState());
+
+	m_arp_modmatrix_button.setToggleState((float)m_value_tree.state.getChildWithName("misc")["arp_mod_selected"] > 0.5,
+	                                      dontSendNotification);
+	setArpMod(m_arp_modmatrix_button.getToggleState());
 }
 
 void OdinAudioProcessorEditor::forceValueTreeOntoComponents(bool p_reset_audio) {
@@ -1325,6 +1352,7 @@ void OdinAudioProcessorEditor::forceValueTreeOntoComponents(bool p_reset_audio) 
 	m_midsection.forceValueTreeOntoComponents(m_value_tree.state);
 	m_fx_buttons_section.forceValueTreeOntoComponents(m_value_tree.state);
 	m_save_load.forceValueTreeOntoComponents(m_value_tree.state);
+	m_arp.forceValueTreeOntoComponents(m_value_tree.state);
 }
 
 bool OdinAudioProcessorEditor::keyStateChanged(bool isKeyDown, Component *originatingComponent) {
@@ -1334,129 +1362,129 @@ bool OdinAudioProcessorEditor::keyStateChanged(bool isKeyDown, Component *origin
 		if (KeyPress::isKeyCurrentlyDown(65) != m_A_down) {
 			m_A_down = KeyPress::isKeyCurrentlyDown(65);
 			if (m_A_down) {
-				processor.midiNoteOn(48 + m_octave_shift * 12, 100);
+				processor.handleMidiNoteOn(48 + m_octave_shift * 12, 100);
 			} else {
-				processor.midiNoteOff(48 + m_octave_shift * 12);
+				processor.handleMidiNoteOff(48 + m_octave_shift * 12);
 			}
 		}
 		if (KeyPress::isKeyCurrentlyDown(87) != m_W_down) {
 			m_W_down = KeyPress::isKeyCurrentlyDown(87);
 			if (m_W_down) {
-				processor.midiNoteOn(49 + m_octave_shift * 12, 100);
+				processor.handleMidiNoteOn(49 + m_octave_shift * 12, 100);
 			} else {
-				processor.midiNoteOff(49 + m_octave_shift * 12);
+				processor.handleMidiNoteOff(49 + m_octave_shift * 12);
 			}
 		}
 		if (KeyPress::isKeyCurrentlyDown(83) != m_S_down) {
 			m_S_down = KeyPress::isKeyCurrentlyDown(83);
 			if (m_S_down) {
-				processor.midiNoteOn(50 + m_octave_shift * 12, 100);
+				processor.handleMidiNoteOn(50 + m_octave_shift * 12, 100);
 			} else {
-				processor.midiNoteOff(50 + m_octave_shift * 12);
+				processor.handleMidiNoteOff(50 + m_octave_shift * 12);
 			}
 		}
 		if (KeyPress::isKeyCurrentlyDown(69) != m_E_down) {
 			m_E_down = KeyPress::isKeyCurrentlyDown(69);
 			if (m_E_down) {
-				processor.midiNoteOn(51 + m_octave_shift * 12, 100);
+				processor.handleMidiNoteOn(51 + m_octave_shift * 12, 100);
 			} else {
-				processor.midiNoteOff(51 + m_octave_shift * 12);
+				processor.handleMidiNoteOff(51 + m_octave_shift * 12);
 			}
 		}
 		if (KeyPress::isKeyCurrentlyDown(68) != m_D_down) {
 			m_D_down = KeyPress::isKeyCurrentlyDown(68);
 			if (m_D_down) {
-				processor.midiNoteOn(52 + m_octave_shift * 12, 100);
+				processor.handleMidiNoteOn(52 + m_octave_shift * 12, 100);
 			} else {
-				processor.midiNoteOff(52 + m_octave_shift * 12);
+				processor.handleMidiNoteOff(52 + m_octave_shift * 12);
 			}
 		}
 		if (KeyPress::isKeyCurrentlyDown(70) != m_F_down) {
 			m_F_down = KeyPress::isKeyCurrentlyDown(70);
 			if (m_F_down) {
-				processor.midiNoteOn(53 + m_octave_shift * 12, 100);
+				processor.handleMidiNoteOn(53 + m_octave_shift * 12, 100);
 			} else {
-				processor.midiNoteOff(53 + m_octave_shift * 12);
+				processor.handleMidiNoteOff(53 + m_octave_shift * 12);
 			}
 		}
 		if (KeyPress::isKeyCurrentlyDown(84) != m_T_down) {
 			m_T_down = KeyPress::isKeyCurrentlyDown(84);
 			if (m_T_down) {
-				processor.midiNoteOn(54 + m_octave_shift * 12, 100);
+				processor.handleMidiNoteOn(54 + m_octave_shift * 12, 100);
 			} else {
-				processor.midiNoteOff(54 + m_octave_shift * 12);
+				processor.handleMidiNoteOff(54 + m_octave_shift * 12);
 			}
 		}
 		if (KeyPress::isKeyCurrentlyDown(71) != m_G_down) {
 			m_G_down = KeyPress::isKeyCurrentlyDown(71);
 			if (m_G_down) {
-				processor.midiNoteOn(55 + m_octave_shift * 12, 100);
+				processor.handleMidiNoteOn(55 + m_octave_shift * 12, 100);
 			} else {
-				processor.midiNoteOff(55 + m_octave_shift * 12);
+				processor.handleMidiNoteOff(55 + m_octave_shift * 12);
 			}
 		}
 		if (KeyPress::isKeyCurrentlyDown(90) != m_Z_down) {
 			m_Z_down = KeyPress::isKeyCurrentlyDown(90);
 			if (m_Z_down) {
-				processor.midiNoteOn(56 + m_octave_shift * 12, 100);
+				processor.handleMidiNoteOn(56 + m_octave_shift * 12, 100);
 			} else {
-				processor.midiNoteOff(56 + m_octave_shift * 12);
+				processor.handleMidiNoteOff(56 + m_octave_shift * 12);
 			}
 		}
 		if (KeyPress::isKeyCurrentlyDown(72) != m_H_down) {
 			m_H_down = KeyPress::isKeyCurrentlyDown(72);
 			if (m_H_down) {
-				processor.midiNoteOn(57 + m_octave_shift * 12, 100);
+				processor.handleMidiNoteOn(57 + m_octave_shift * 12, 100);
 			} else {
-				processor.midiNoteOff(57 + m_octave_shift * 12);
+				processor.handleMidiNoteOff(57 + m_octave_shift * 12);
 			}
 		}
 		if (KeyPress::isKeyCurrentlyDown(85) != m_U_down) {
 			m_U_down = KeyPress::isKeyCurrentlyDown(85);
 			if (m_U_down) {
-				processor.midiNoteOn(58 + m_octave_shift * 12, 100);
+				processor.handleMidiNoteOn(58 + m_octave_shift * 12, 100);
 			} else {
-				processor.midiNoteOff(58 + m_octave_shift * 12);
+				processor.handleMidiNoteOff(58 + m_octave_shift * 12);
 			}
 		}
 		if (KeyPress::isKeyCurrentlyDown(74) != m_J_down) {
 			m_J_down = KeyPress::isKeyCurrentlyDown(74);
 			if (m_J_down) {
-				processor.midiNoteOn(59 + m_octave_shift * 12, 100);
+				processor.handleMidiNoteOn(59 + m_octave_shift * 12, 100);
 			} else {
-				processor.midiNoteOff(59 + m_octave_shift * 12);
+				processor.handleMidiNoteOff(59 + m_octave_shift * 12);
 			}
 		}
 		if (KeyPress::isKeyCurrentlyDown(75) != m_K_down) {
 			m_K_down = KeyPress::isKeyCurrentlyDown(75);
 			if (m_K_down) {
-				processor.midiNoteOn(60 + m_octave_shift * 12, 100);
+				processor.handleMidiNoteOn(60 + m_octave_shift * 12, 100);
 			} else {
-				processor.midiNoteOff(60 + m_octave_shift * 12);
+				processor.handleMidiNoteOff(60 + m_octave_shift * 12);
 			}
 		}
 		if (KeyPress::isKeyCurrentlyDown(79) != m_O_down) {
 			m_O_down = KeyPress::isKeyCurrentlyDown(79);
 			if (m_O_down) {
-				processor.midiNoteOn(61 + m_octave_shift * 12, 100);
+				processor.handleMidiNoteOn(61 + m_octave_shift * 12, 100);
 			} else {
-				processor.midiNoteOff(61 + m_octave_shift * 12);
+				processor.handleMidiNoteOff(61 + m_octave_shift * 12);
 			}
 		}
 		if (KeyPress::isKeyCurrentlyDown(76) != m_L_down) {
 			m_L_down = KeyPress::isKeyCurrentlyDown(76);
 			if (m_L_down) {
-				processor.midiNoteOn(62 + m_octave_shift * 12, 100);
+				processor.handleMidiNoteOn(62 + m_octave_shift * 12, 100);
 			} else {
-				processor.midiNoteOff(62 + m_octave_shift * 12);
+				processor.handleMidiNoteOff(62 + m_octave_shift * 12);
 			}
 		}
 		if (KeyPress::isKeyCurrentlyDown(80) != m_P_down) {
 			m_P_down = KeyPress::isKeyCurrentlyDown(80);
 			if (m_P_down) {
-				processor.midiNoteOn(63 + m_octave_shift * 12, 100);
+				processor.handleMidiNoteOn(63 + m_octave_shift * 12, 100);
 			} else {
-				processor.midiNoteOff(63 + m_octave_shift * 12);
+				processor.handleMidiNoteOff(63 + m_octave_shift * 12);
 			}
 		}
 	}
@@ -1468,7 +1496,7 @@ void OdinAudioProcessorEditor::allMidiKeysOff() {
 	// but it gets the job done and is called every moon :-)
 	// (gets called only for (PC-)keyboard octave change)
 	for (int note = 0; note < 127; ++note) {
-		processor.midiNoteOff(note);
+		processor.handleMidiNoteOff(note);
 	}
 }
 
@@ -1519,6 +1547,7 @@ void OdinAudioProcessorEditor::setGUISizeBig(bool p_big, bool p_write_to_config)
 		m_flanger.setGUIBig();
 		m_fx_buttons_section.setGUIBig();
 		m_mod_matrix.setGUIBig();
+		m_arp.setGUIBig();
 		m_save_load.setGUIBig();
 		m_menu_feels.setGUIBig();
 		m_pitch_amount.setGUIBig();
@@ -1548,6 +1577,7 @@ void OdinAudioProcessorEditor::setGUISizeBig(bool p_big, bool p_write_to_config)
 		m_flanger.setGUISmall();
 		m_fx_buttons_section.setGUISmall();
 		m_mod_matrix.setGUISmall();
+		m_arp.setGUISmall();
 		m_save_load.setGUISmall();
 		m_menu_feels.setGUISmall();
 		m_pitch_amount.setGUISmall();
@@ -1562,20 +1592,20 @@ void OdinAudioProcessorEditor::setGUISizeBig(bool p_big, bool p_write_to_config)
 	repaint();
 }
 
-
-#define CONFIG_FILE_PATH File::getSpecialLocation(File::SpecialLocationType::userDocumentsDirectory).getFullPathName() +\
-		File::getSeparatorString() + ".config" + File::getSeparatorString() + "odin2" + File::getSeparatorString() +\
+#define CONFIG_FILE_PATH                                                                                               \
+	File::getSpecialLocation(File::SpecialLocationType::userDocumentsDirectory).getFullPathName() +                    \
+	    File::getSeparatorString() + ".config" + File::getSeparatorString() + "odin2" + File::getSeparatorString() +   \
 	    "odin2.conf"
 
 void OdinAudioProcessorEditor::readOrCreateConfigFile(bool &p_GUI_big) {
 
-	String path_absolute = CONFIG_FILE_PATH;
+	String path_absolute    = CONFIG_FILE_PATH;
 	File configuration_file = File(path_absolute);
 
 	if (configuration_file.existsAsFile()) {
 		// rather hacky: check if the file ends on 1 (i.e. "big_GUI: 1")
 		p_GUI_big = configuration_file.loadFileAsString().endsWithChar('1');
-		DBG("Found configuration file, big_GUI: " + std::to_string(p_GUI_big));
+		//DBG("Found configuration file, big_GUI: " + std::to_string(p_GUI_big));
 
 	}
 
@@ -1596,21 +1626,21 @@ void OdinAudioProcessorEditor::readOrCreateConfigFile(bool &p_GUI_big) {
 	}
 }
 void OdinAudioProcessorEditor::writeConfigFile(bool p_GUI_big) {
-	
-	String path_absolute = CONFIG_FILE_PATH;
+
+	String path_absolute    = CONFIG_FILE_PATH;
 	File configuration_file = File(path_absolute);
 
-	if(!configuration_file.existsAsFile()){
+	if (!configuration_file.existsAsFile()) {
 		configuration_file.create();
 	}
 
 	FileOutputStream config_stream(configuration_file);
-		if (config_stream.openedOk()) {
-			config_stream.setPosition(0);
-			config_stream.truncate();
-			config_stream << "big_GUI: " << p_GUI_big;
-			DBG("Wrote configuration file " << path_absolute);
-		} else {
-			DBG("Failed to create config file...");
+	if (config_stream.openedOk()) {
+		config_stream.setPosition(0);
+		config_stream.truncate();
+		config_stream << "big_GUI: " << p_GUI_big;
+		DBG("Wrote configuration file " << path_absolute);
+	} else {
+		DBG("Failed to create config file...");
 	}
 }

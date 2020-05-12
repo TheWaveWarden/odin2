@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="vpwEHn" name="Odin2" projectType="audioplug" jucerVersion="5.4.7"
-              pluginFormats="buildAU,buildStandalone,buildVST,buildVST3" version="2.0.22"
+              pluginFormats="buildAU,buildStandalone,buildVST,buildVST3" version="2.1.0"
               companyName="TheWaveWarden" companyWebsite="www.thewavewarden.com"
               pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn"
               pluginManufacturerCode="WAWA" pluginCode="ODIN" pluginChannelConfigs="{0,2}">
@@ -19,6 +19,18 @@
             file="Graphics/cropped/analog_knob_cropped.png"/>
       <FILE id="FU7Kyv" name="analog_knob_cropped_150.png" compile="0" resource="1"
             file="Graphics_150/cropped/analog_knob_cropped_150.png"/>
+      <FILE id="ygrnGc" name="arp_cropped_150.png" compile="0" resource="1"
+            file="Graphics_150/cropped/arp_cropped_150.png"/>
+      <FILE id="Dzodcs" name="arp_knob_guide.png" compile="0" resource="1"
+            file="Graphics/cropped/arp_knob_guide.png"/>
+      <FILE id="FYIdKv" name="arp_knob_guide_150.png" compile="0" resource="1"
+            file="Graphics_150/cropped/arp_knob_guide_150.png"/>
+      <FILE id="jiiNxb" name="arp_LED_1.png" compile="0" resource="1" file="Graphics/cropped/buttons/arp_LED_1.png"/>
+      <FILE id="fJcZFK" name="Arp_LED_1_150.png" compile="0" resource="1"
+            file="Graphics_150/cropped/buttons/Arp_LED_1_150.png"/>
+      <FILE id="d0dY3u" name="arp_LED_2.png" compile="0" resource="1" file="Graphics/cropped/buttons/arp_LED_2.png"/>
+      <FILE id="lhKPd9" name="Arp_LED_2_150.png" compile="0" resource="1"
+            file="Graphics_150/cropped/buttons/Arp_LED_2_150.png"/>
       <FILE id="otbqLv" name="black_knob_big.png" compile="0" resource="1"
             file="Graphics/cropped/knobs/black4/black_knob_big.png"/>
       <FILE id="vy2NvY" name="black_knob_big_150.png" compile="0" resource="1"
@@ -59,6 +71,62 @@
             file="Graphics/cropped/BP24_knobs_cropped.png"/>
       <FILE id="mpjrXy" name="BP24_knobs_cropped_150.png" compile="0" resource="1"
             file="Graphics_150/cropped/BP24_knobs_cropped_150.png"/>
+      <FILE id="Ak5Juj" name="button_arp_step_1.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/button_arp_step_1.png"/>
+      <FILE id="EJ0zyn" name="button_arp_step_1_150.png" compile="0" resource="1"
+            file="Graphics_150/cropped/buttons/button_arp_step_1_150.png"/>
+      <FILE id="cfox7J" name="button_arp_step_2.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/button_arp_step_2.png"/>
+      <FILE id="s9m9YF" name="button_arp_step_2_150.png" compile="0" resource="1"
+            file="Graphics_150/cropped/buttons/button_arp_step_2_150.png"/>
+      <FILE id="hxmqUk" name="button_arp_step_3.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/button_arp_step_3.png"/>
+      <FILE id="d2e20a" name="button_arp_step_3_150.png" compile="0" resource="1"
+            file="Graphics_150/cropped/buttons/button_arp_step_3_150.png"/>
+      <FILE id="apbwmx" name="button_arp_step_4.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/button_arp_step_4.png"/>
+      <FILE id="Qa5heV" name="button_arp_step_4_150.png" compile="0" resource="1"
+            file="Graphics_150/cropped/buttons/button_arp_step_4_150.png"/>
+      <FILE id="us0gV0" name="button_mod_arp_1.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/button_mod_arp_1.png"/>
+      <FILE id="jjLNYj" name="button_mod_arp_1_150.png" compile="0" resource="1"
+            file="Graphics_150/cropped/buttons/button_mod_arp_1_150.png"/>
+      <FILE id="kPdXe0" name="button_mod_arp_2.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/button_mod_arp_2.png"/>
+      <FILE id="qOhc4m" name="button_mod_arp_2_150.png" compile="0" resource="1"
+            file="Graphics_150/cropped/buttons/button_mod_arp_2_150.png"/>
+      <FILE id="pxyhFO" name="button_on_off_1.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/button_on_off_1.png"/>
+      <FILE id="auw32C" name="button_on_off_1_150.png" compile="0" resource="1"
+            file="Graphics_150/cropped/buttons/button_on_off_1_150.png"/>
+      <FILE id="o6hkwx" name="button_on_off_2.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/button_on_off_2.png"/>
+      <FILE id="exI5H3" name="button_on_off_2_150.png" compile="0" resource="1"
+            file="Graphics_150/cropped/buttons/button_on_off_2_150.png"/>
+      <FILE id="lM1ZrR" name="button_on_off_3.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/button_on_off_3.png"/>
+      <FILE id="ZAT9bw" name="button_on_off_3_150.png" compile="0" resource="1"
+            file="Graphics_150/cropped/buttons/button_on_off_3_150.png"/>
+      <FILE id="CiaMSq" name="button_on_off_4.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/button_on_off_4.png"/>
+      <FILE id="WSShQW" name="button_on_off_4_150.png" compile="0" resource="1"
+            file="Graphics_150/cropped/buttons/button_on_off_4_150.png"/>
+      <FILE id="BHUJ4Y" name="button_one_shot_1.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/button_one_shot_1.png"/>
+      <FILE id="W3s7Tq" name="button_one_shot_1_150.png" compile="0" resource="1"
+            file="Graphics_150/cropped/buttons/button_one_shot_1_150.png"/>
+      <FILE id="jJTMtl" name="button_one_shot_2.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/button_one_shot_2.png"/>
+      <FILE id="e5w7Mf" name="button_one_shot_2_150.png" compile="0" resource="1"
+            file="Graphics_150/cropped/buttons/button_one_shot_2_150.png"/>
+      <FILE id="gQrUMa" name="button_one_shot_3.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/button_one_shot_3.png"/>
+      <FILE id="qQOQln" name="button_one_shot_3_150.png" compile="0" resource="1"
+            file="Graphics_150/cropped/buttons/button_one_shot_3_150.png"/>
+      <FILE id="EPLGm8" name="button_one_shot_4.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/button_one_shot_4.png"/>
+      <FILE id="VdCRa5" name="button_one_shot_4_150.png" compile="0" resource="1"
+            file="Graphics_150/cropped/buttons/button_one_shot_4_150.png"/>
       <FILE id="nfO9Sm" name="button1_1.png" compile="0" resource="1" file="Graphics/cropped/buttons/button1_1.png"/>
       <FILE id="TpwY9q" name="button1_1_150.png" compile="0" resource="1"
             file="Graphics_150/cropped/buttons/button1_1_150.png"/>
@@ -1209,6 +1277,8 @@
             file="Graphics_150/applied/WW_logo_xy_150.png"/>
     </GROUP>
     <GROUP id="{7AF384ED-9FD6-6492-4B8C-5777BB9A2698}" name="Source">
+      <FILE id="SXPdO5" name="OdinArpeggiator.cpp" compile="1" resource="0"
+            file="Source/OdinArpeggiator.cpp"/>
       <FILE id="QuKD1K" name="SetModulationPointers.h" compile="0" resource="0"
             file="Source/SetModulationPointers.h"/>
       <FILE id="hf2LpP" name="Utilities.cpp" compile="1" resource="0" file="Source/Utilities.cpp"/>
@@ -1450,6 +1520,17 @@
         <FILE id="yhSMDf" name="OdinConstants.h" compile="0" resource="0" file="Source/audio/OdinConstants.h"/>
       </GROUP>
       <GROUP id="{67642AFD-C38A-0B04-08CB-62632A5DEA0B}" name="GUI">
+        <FILE id="M7zP4z" name="NumberSelectorWithText.cpp" compile="1" resource="0"
+              file="Source/NumberSelectorWithText.cpp"/>
+        <FILE id="KS8fBa" name="NumberSelectorWithText.h" compile="0" resource="0"
+              file="Source/NumberSelectorWithText.h"/>
+        <FILE id="ZCPPsQ" name="StepLED.h" compile="0" resource="0" file="Source/StepLED.h"/>
+        <FILE id="bch2qp" name="StepComponent.h" compile="0" resource="0" file="Source/StepComponent.h"/>
+        <FILE id="bzNw3u" name="StepComponent.cpp" compile="1" resource="0"
+              file="Source/StepComponent.cpp"/>
+        <FILE id="PC7Mm0" name="ArpComponent.h" compile="0" resource="0" file="Source/ArpComponent.h"/>
+        <FILE id="rrsKrB" name="ArpComponent.cpp" compile="1" resource="0"
+              file="Source/ArpComponent.cpp"/>
         <FILE id="lwsphb" name="ADSRComponent.cpp" compile="1" resource="0"
               file="Source/ADSRComponent.cpp"/>
         <FILE id="Movfh7" name="ADSRComponent.h" compile="0" resource="0" file="Source/ADSRComponent.h"/>
@@ -1552,10 +1633,6 @@
               file="Source/SyncTimeSelector.cpp"/>
         <FILE id="dGTCvN" name="SyncTimeSelector.h" compile="0" resource="0"
               file="Source/SyncTimeSelector.h"/>
-        <FILE id="VasNum" name="UnisonSelector.cpp" compile="1" resource="0"
-              file="Source/UnisonSelector.cpp"/>
-        <FILE id="BItZqW" name="UnisonSelector.h" compile="0" resource="0"
-              file="Source/UnisonSelector.h"/>
         <FILE id="J8nqZi" name="WavedrawDisplay.cpp" compile="1" resource="0"
               file="Source/WavedrawDisplay.cpp"/>
         <FILE id="OpAghB" name="WavedrawDisplay.h" compile="0" resource="0"

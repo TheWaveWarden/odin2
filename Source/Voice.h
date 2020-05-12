@@ -180,7 +180,7 @@ struct Voice {
 	           float p_unison_pan,
 	           float p_unison_detune,
 	           float p_unison_gain_reduction,
-	           bool p_unison_active) {
+	           bool p_unison_active, float p_arp_mod_1, float p_arp_mod_2) {
 		reset(p_unison_active);
 		setOscBaseFreq(MIDINoteToFreq(p_MIDI_key), MIDINoteToFreq(p_last_MIDI_key));
 		setFilterMIDIValues(p_MIDI_key, p_MIDI_velocity);
@@ -202,7 +202,12 @@ struct Voice {
 		unison_pan_position        = p_unison_pan;
 		unison_detune_position     = p_unison_detune;
 		unison_gain_reduction      = p_unison_gain_reduction;
+		//DBG("unison gain:" + std::to_string(p_unison_gain_reduction));
 		m_is_in_release            = false;
+		m_arp_mod_1 = p_arp_mod_1;
+		m_arp_mod_2 = p_arp_mod_2;
+		//DBG(m_arp_mod_1);
+		//DBG(m_arp_mod_2);
 		calcUnisonDetuneFactor();
 		//DBG("Started voice");
 	}
@@ -216,6 +221,10 @@ struct Voice {
 			return true;
 		}
 		return false;
+	}
+
+	bool forceKeyUp(){
+		startRelease();
 	}
 
 	void startRelease() {
@@ -370,21 +379,26 @@ struct Voice {
 	}
 	void resetLegato(bool unison_active) {
 
+		//we reset the phase in legato and the voice is not carried over from an old note
+		bool envelope_off = env[0].isEnvelopeOff();
+		bool reset_phase = unison_active && envelope_off;
+
 		for (int osc = 0; osc < 3; ++osc) {
 			// use start voice, oscs will reset if reset is active
-			analog_osc[osc].voiceStart(unison_active);
-			wavetable_osc[osc].voiceStart(unison_active);
-			wavedraw_osc[osc].voiceStart(unison_active);
-			chipdraw_osc[osc].voiceStart(unison_active);
-			specdraw_osc[osc].voiceStart(unison_active);
-			multi_osc[osc].voiceStart(true);
-			vector_osc[osc].voiceStart(unison_active);
-			chiptune_osc[osc].voiceStart(unison_active);
-			fm_osc[osc].voiceStart(unison_active);
-			pm_osc[osc].voiceStart(unison_active);
-			wavedraw_osc[osc].voiceStart(unison_active);
-			specdraw_osc[osc].voiceStart(unison_active);
-			chipdraw_osc[osc].voiceStart(unison_active);
+			analog_osc[osc].voiceStart(reset_phase);
+			wavetable_osc[osc].voiceStart(reset_phase);
+			wavedraw_osc[osc].voiceStart(reset_phase);
+			chipdraw_osc[osc].voiceStart(reset_phase);
+			specdraw_osc[osc].voiceStart(reset_phase);
+			//special case:
+			multi_osc[osc].voiceStart(envelope_off);
+			vector_osc[osc].voiceStart(reset_phase);
+			chiptune_osc[osc].voiceStart(reset_phase);
+			fm_osc[osc].voiceStart(reset_phase);
+			pm_osc[osc].voiceStart(reset_phase);
+			wavedraw_osc[osc].voiceStart(reset_phase);
+			specdraw_osc[osc].voiceStart(reset_phase);
+			chipdraw_osc[osc].voiceStart(reset_phase);
 			lfo[osc].voiceStart(false);
 		}
 	}
@@ -580,6 +594,8 @@ struct Voice {
 
 	float unison_detune_amount  = 0.08f;
 	float unison_gain_reduction = 1.f;
+	float m_arp_mod_1 = 0.f;
+	float m_arp_mod_2 = 0.f;
 
 	bool m_is_legato = false;
 	// modulation values

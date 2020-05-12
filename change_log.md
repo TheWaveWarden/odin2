@@ -1,3 +1,8 @@
+# 2.1.0 beta
+- implemented Arpeggiator
+- all sync-time selectors now show a dropdown with most common times on click
+- unison selector now shows dropdown rather than being click-draggable
+- fixed issue where unison+legato would produce clicks
 # 2.0.22 beta
 - fixed issue where wave-/chip-/spec-draw oscs used default waveform before opening the GUI in some hosts
 # 2.0.21 beta

@@ -1,13 +1,3 @@
-/*
-  ==============================================================================
-
-    LFOComponent.h
-    Created: 27 Feb 2019 5:33:38pm
-    Author:  frot
-
-  ==============================================================================
-*/
-
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
@@ -20,15 +10,15 @@
 
 
 #define LFO_FREQ_POS_X 74
-#define LFO_FREQ_POS_Y 21
+#define LFO_FREQ_POS_Y 37
 
 #define LFO_RESET_POS_X 63
-#define LFO_RESET_POS_Y 1
+#define LFO_RESET_POS_Y 6
 #define SYNC_POS_X 2
-#define SYNC_POS_Y 25
+#define SYNC_POS_Y 40
 
 #define SELECTOR_POS_X 0
-#define SELECTOR_POS_Y 1
+#define SELECTOR_POS_Y 6
 
 #define OVERDRAW_POS_X 40
 #define OVERDRAW_POS_Y 20
@@ -36,16 +26,13 @@
 #define OVERDRAW_SIZE_Y 40
 
 #define SYNC_TIME_POS_X 38
-#define SYNC_TIME_POS_Y 25
+#define SYNC_TIME_POS_Y 40
 
 #define LFO_FREQ_MIN 0.05
 #define LFO_FREQ_MAX 100
 #define LFO_FREQ_DEFAULT 1
 #define LFO_FREQ_MID 3
 
-//==============================================================================
-/*
- */
 class LFOComponent : public Component {
 public:
   LFOComponent(AudioProcessorValueTreeState& vts, std::string p_lfo_number, bool p_is_standalone);

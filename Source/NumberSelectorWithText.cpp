@@ -1,47 +1,49 @@
-/*
-  ==============================================================================
-
-    UnisonSelector.cpp
-    Created: 25 Apr 2020 1:11:09pm
-    Author:  frederik_siepe
-
-  ==============================================================================
-*/
-
-#include "UnisonSelector.h"
+#include "NumberSelectorWithText.h"
 #include <JuceHeader.h>
 
 //==============================================================================
-UnisonSelector::UnisonSelector() : NumberSelector(true) {
+NumberSelectorWithText::NumberSelectorWithText() : NumberSelector(true) {
 	juce::Image glas_panel =
 	    ImageCache::getFromMemory(BinaryData::glaspanel_midbig_png, BinaryData::glaspanel_midbig_pngSize);
 	m_display.setImage(glas_panel);
 	m_display.setBounds(0, 0, glas_panel.getWidth(), glas_panel.getHeight());
 	m_display.setInlay(1);
-	m_display.setText("Unison: " + std::to_string(m_value));
 
 	m_display.toParentMouseDown = [&](const MouseEvent e) {
-		mouse_reference_value = e.getScreenY();
-		m_drag_initial_value  = m_value;
+		// mouse_reference_value = e.getScreenY();
+		// m_drag_initial_value  = m_value;
 		// Component::mouseDown(e);
 	};
 
 	m_display.toParentMouseDrag = [&](const MouseEvent e) {
-		float mouse_moved = mouse_reference_value - e.getScreenY();
+		// float mouse_moved = mouse_reference_value - e.getScreenY();
 
-		if (mouse_moved > m_mouse_drag_divisor) {
-			increment();
-			mouse_reference_value = e.getScreenY();
-		}
-		else if (mouse_moved < -m_mouse_drag_divisor){
-			decrement();
-			mouse_reference_value = e.getScreenY();
-		}
+		// if (mouse_moved > m_mouse_drag_divisor) {
+		// 	increment();
+		// 	mouse_reference_value = e.getScreenY();
+		// } else if (mouse_moved < -m_mouse_drag_divisor) {
+		// 	decrement();
+		// 	mouse_reference_value = e.getScreenY();
+		// }
 
-		Component::mouseDrag(e);
+		//		Component::mouseDrag(e);
 	};
 
-	m_display.toParentMouseUp = [&](const MouseEvent e) {};
+	// m_display.toParentMouseUp = [&](const MouseEvent e) {};
+	m_display.onMouseDown = [&]() {
+		m_dropdown.clear();
+		for (int index = m_legal_values.size() - 1; index >= 0; --index) {
+			//ugly hack to 
+			// a) avoid 0 being used as value (reserved for "nothing selected")
+			// b) make ordering inside menu the same as up/down buttons
+			m_dropdown.addItem(9999 - m_legal_values[index], valueToText(m_legal_values[index]));
+		}
+		int selected = 9999 - m_dropdown.show();
+		if (selected != 9999) {
+			DBG(selected);
+			setValue(selected);
+		}
+	};
 
 	addAndMakeVisible(m_display);
 
@@ -85,47 +87,60 @@ UnisonSelector::UnisonSelector() : NumberSelector(true) {
 	m_up.setTopLeftPosition(glas_panel.getWidth() - 1, 1);
 	m_down.setTopLeftPosition(glas_panel.getWidth() - 1, down_1.getHeight() + 1);
 
-	m_display.onMouseDown = [&]() {
-		// do nothing
-	};
-
 	m_display_width = glas_panel.getWidth();
 	m_buttons_right = true;
 
 	m_up.setRepeatSpeed(BUTTON_REPEAT_INITIAL_DELAY, BUTTON_REPEAT_DELAY);
 	m_down.setRepeatSpeed(BUTTON_REPEAT_INITIAL_DELAY, BUTTON_REPEAT_DELAY);
 
-	setValue(1);
+	m_dropdown.setLookAndFeel(&m_menu_feels);
+
+	m_value = 1;
 }
 
-UnisonSelector::~UnisonSelector() {
+NumberSelectorWithText::~NumberSelectorWithText() {
+	m_dropdown.setLookAndFeel(nullptr);
 }
 
-void UnisonSelector::resized() {
+void NumberSelectorWithText::resized() {
 	// This method is where you should set the bounds of any child
 	// components that your component contains..
 }
 
-void UnisonSelector::increment() {
+void NumberSelectorWithText::increment() {
 	setValue(m_increment_map[m_value]);
 }
 
-void UnisonSelector::decrement() {
+void NumberSelectorWithText::decrement() {
 	setValue(m_decrement_map[m_value]);
 }
 
-void UnisonSelector::setValue(int p_value) {
+void NumberSelectorWithText::setValue(int p_value) {
 	//just some safety...
-	if (p_value != 1 && p_value != 2 && p_value != 3 && p_value != 4 && p_value != 6 && p_value != 12) {
-		m_value = 1;
+	bool value_legal = false;
+	for (auto value : m_legal_values) {
+		value_legal = (p_value == value) ? true : value_legal;
+	}
+	if (!value_legal) {
+		//this should never happen (unless patch with unison = 12 is loaded)
+		int nearest_value = 0;
+		float nearest_dist = 999;
+		for (auto value : m_legal_values) {
+			if(fabs(value - p_value) < nearest_dist){
+				nearest_value = value;
+				nearest_dist = fabs(value - p_value);
+			}
+		}
+		m_value = nearest_value;
 	} else {
 		m_value = p_value;
 	}
-	m_display.setText("Unison: " + std::to_string(m_value));
-	OnValueChange(p_value);
+	//m_display.setText("Unison: " + std::to_string(m_value));
+	m_display.setText(valueToText(m_value));
+	OnValueChange(m_value);
 }
 
-void UnisonSelector::setGUIBig() {
+void NumberSelectorWithText::setGUIBig() {
 	m_GUI_big = true;
 
 	juce::Image glas_panel =
@@ -170,8 +185,10 @@ void UnisonSelector::setGUIBig() {
 	m_display.setInlayTop(1);
 	m_display.setTextOffsetTop(1);
 	m_display.setGUIBig();
+
+	m_menu_feels.setGUIBig();
 }
-void UnisonSelector::setGUISmall() {
+void NumberSelectorWithText::setGUISmall() {
 	m_GUI_big = false;
 
 	juce::Image glas_panel =
@@ -214,4 +231,6 @@ void UnisonSelector::setGUISmall() {
 	m_display.setInlayTop(0);
 	m_display.setTextOffsetTop(0);
 	m_display.setGUISmall();
+
+	m_menu_feels.setGUISmall();
 }

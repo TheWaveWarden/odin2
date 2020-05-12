@@ -98,12 +98,18 @@ private:
     }
   }
 
+
   std::vector<std::string> m_right_values = {"1",  "2",   "4",  "8",  "8T",
                                              "16", "16T", "32", "32T"};
   std::vector<std::string> m_left_values = {"1", "2", "3", "4",
                                             "5", "6", "7", "8"};
 
+  void setValuesFromDropdown(int p_dropdown_return);
+
   GlasDisplay m_display;
+	OdinMenuFeels m_menu_feels;
+
+  PopupMenu m_dropdown;
 
   juce::DrawableButton m_up_left;
   juce::DrawableButton m_down_left;

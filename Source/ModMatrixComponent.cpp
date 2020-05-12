@@ -242,6 +242,9 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts) :
 	m_sources_menu.addItem(409, "Channel Pressure");
 	m_sources_menu.addItem(420, "Unison Index");
 	m_sources_menu.addSeparator();
+	m_sources_menu.addItem(430, "Arpeggiator Mod 1");
+	m_sources_menu.addItem(435, "Arpeggiator Mod 2");
+	m_sources_menu.addSeparator();
 	m_sources_menu.addItem(440, "Sustain Pedal");
 	m_sources_menu.addItem(450, "Soft Pedal");
 	m_sources_menu.addSeparator();

@@ -128,6 +128,8 @@ struct ModSourceVoice {
   float* MIDI_velocity;
   float* random;
   float* unison_position;
+  float* arp_mod_1;
+  float* arp_mod_2;
 
   //this was abandoned, but is here to avoid crashes:
   float* MIDI_aftertouch;
