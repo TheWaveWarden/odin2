@@ -1,4 +1,5 @@
 # 2.1.0 beta
+- implemented Arpeggiator
 - all sync-time selectors now show a dropdown with most common times on click
 - unison selector now shows dropdown rather than being click-draggable
 - fixed issue where unison+legato would produce clicks
