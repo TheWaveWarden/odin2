@@ -223,7 +223,7 @@ struct Voice {
 		return false;
 	}
 
-	bool forceKeyUp(){
+	void forceKeyUp(){
 		startRelease();
 	}
 
