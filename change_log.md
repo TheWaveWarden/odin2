@@ -7,6 +7,8 @@
 - fixed issue where unison+legato would produce clicks
 - changed default value for Delay-Feedback to 0.45
 - changed default value for Delay-Wet to 0.7
+- implemented MIDI-AllNotesOff
+- implemented MIDI-allSoundOff
 # 2.0.22 beta
 - fixed issue where wave-/chip-/spec-draw oscs used default waveform before opening the GUI in some hosts
 # 2.0.21 beta

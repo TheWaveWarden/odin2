@@ -907,6 +907,8 @@ void OdinAudioProcessor::setSampleRate(float p_samplerate) {
 	m_global_env.setSampleRate(p_samplerate);
 	m_global_lfo.setSampleRate(p_samplerate);
 	m_arpeggiator.setSampleRate(p_samplerate);
+
+	m_voice[0].start(60, 100, 60, 0, 0, 1.f, false, 0, 0);
 }
 
 void OdinAudioProcessor::initializeModules() {
@@ -1157,7 +1159,7 @@ void OdinAudioProcessor::handleMidiMessage(const MidiMessage &p_midi_message) {
 		handleMidiNoteOn(p_midi_message.getNoteNumber(), p_midi_message.getVelocity());
 	} else if (p_midi_message.isNoteOff()) {
 		handleMidiNoteOff(p_midi_message.getNoteNumber());
-	} else if (p_midi_message.isAllNotesOff()) {
+	} else if (p_midi_message.isAllNotesOff() || p_midi_message.isAllSoundOff()) {
 		allNotesOff();
 	} else if (p_midi_message.isPitchWheel()) {
 		setPitchWheelValue(p_midi_message.getPitchWheelValue());
