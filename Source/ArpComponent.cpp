@@ -99,7 +99,6 @@ ArpComponent::ArpComponent(OdinAudioProcessor &p_processor, AudioProcessorValueT
 		m_value_tree.state.getChildWithName("misc").setProperty("arp_synctime_denominator", p_right, nullptr);
 	};
 	m_sync_time.setTooltip("Sets the time for the arpeggiator synced to the track");
-	m_sync_time.setValueLeft(1);
 	addAndMakeVisible(m_sync_time);
 
 	m_on.setClickingTogglesState(true);
@@ -119,12 +118,6 @@ ArpComponent::ArpComponent(OdinAudioProcessor &p_processor, AudioProcessorValueT
 
 	//todo start and stop timer when component is shown
 	startTimer(10);
-
-	//todo remove
-	m_steps_selector.setValue(16);
-	m_octave_selector.setValue(2);
-	m_direction.setValue(1);
-	m_gate.setValue(50);
 }
 
 ArpComponent::~ArpComponent() {
@@ -558,6 +551,6 @@ void ArpComponent::forceValueTreeOntoComponents(ValueTree p_tree) {
 
 	m_direction.setValue((int)m_value_tree.state.getChildWithName("misc")["arp_direction"]);
 	m_gate.setValue((int)m_value_tree.state.getChildWithName("misc")["arp_gate"]);
-	m_sync_time.setValueLeft((int)m_value_tree.state.getChildWithName("misc")["arp_synctime_numerator"]);
-	m_sync_time.setValueRight((int)m_value_tree.state.getChildWithName("misc")["arp_synctime_denominator"]);
+	m_sync_time.setValues((int)m_value_tree.state.getChildWithName("misc")["arp_synctime_numerator"],
+	                      (int)m_value_tree.state.getChildWithName("misc")["arp_synctime_denominator"]);
 }

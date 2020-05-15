@@ -37,6 +37,7 @@ public:
 
   void setValueRight(int p_value) {
     if (p_value < m_right_values.size() && p_value >= 0) {
+      DBG("SETVALUERIGHT " + String(p_value));
       m_value_right = p_value;
       updateDisplay();
       OnValueChange(m_value_left, m_value_right);
