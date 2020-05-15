@@ -88,7 +88,7 @@ DelayComponent::DelayComponent(AudioProcessorValueTreeState &vts, bool p_is_stan
 	m_pingpong.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
 	m_pingpong.setTooltip("Makes the left and right delay channels cross their feedback");
 	addAndMakeVisible(m_pingpong);
-	//}
+
 	juce::Image metal_knob_big =
 	    ImageCache::getFromMemory(BinaryData::metal_knob_big_png, BinaryData::metal_knob_big_pngSize);
 	juce::Image black_knob_mid =
@@ -98,20 +98,14 @@ DelayComponent::DelayComponent(AudioProcessorValueTreeState &vts, bool p_is_stan
 	m_time.setSliderStyle(Slider::RotaryVerticalDrag);
 	m_time.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
 	m_time.setRange(TIME_MIN, TIME_MAX);
-	// m_time.setSkewFactorFromMidPoint(TIME_MID);
-	// skew value printed as 0.627099
 	m_time.setTextValueSuffix(" s");
 	m_time.setNumDecimalPlacesToDisplay(3);
-	// m_time.setDoubleClickReturnValue(true, TIME_DEFAULT,
-	//                       ModifierKeys::ctrlModifier);
 	m_time.setKnobTooltip("The time for the \nsignal to echo back");
 	addAndMakeVisible(m_time);
 
 	m_feedback.setStrip(metal_knob_big, N_KNOB_FRAMES);
 	m_feedback.setSliderStyle(Slider::RotaryVerticalDrag);
 	m_feedback.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-	// m_feedback.setSkewFactorFromMidPoint(FEEDBACK_MID);
-	// skew value was printed: 0.575717
 	m_feedback.setKnobTooltip("How much to echo back");
 
 	addAndMakeVisible(m_feedback);
@@ -119,12 +113,6 @@ DelayComponent::DelayComponent(AudioProcessorValueTreeState &vts, bool p_is_stan
 	m_HP.setStrip(black_knob_mid, N_KNOB_FRAMES);
 	m_HP.setSliderStyle(Slider::RotaryVerticalDrag);
 	m_HP.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-	//m_HP.setRange(HP_FREQ_MIN, HP_FREQ_MAX);
-	//m_HP.setSkewFactorFromMidPoint(HP_FREQ_MID);
-
-	// m_HP.setDoubleClickReturnValue(true, HP_FREQ_DEFAULT,
-	//                   ModifierKeys::ctrlModifier);
-	// m_HP.setValue(HP_FREQ_DEFAULT);
 	m_HP.setTextValueSuffix(" Hz");
 	m_HP.setNumDecimalPlacesToDisplay(1);
 	m_HP.setKnobTooltip("The cutoff frequency\n for a highpass filter\n which is "

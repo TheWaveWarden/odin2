@@ -14,12 +14,12 @@
   <PARAM id="chorus_reset" value="0.0"/>
   <PARAM id="delay_dry" value="1.0"/>
   <PARAM id="delay_ducking" value="0.0"/>
-  <PARAM id="delay_feedback" value="0.5999999642372131"/>
+  <PARAM id="delay_feedback" value="0.449999988079071"/>
   <PARAM id="delay_hp" value="80.0"/>
   <PARAM id="delay_on" value="0.0"/>
   <PARAM id="delay_pingpong" value="0.0"/>
   <PARAM id="delay_time" value="1.0"/>
-  <PARAM id="delay_wet" value="0.7999999523162842"/>
+  <PARAM id="delay_wet" value="0.7000000476837158"/>
   <PARAM id="dist_boost" value="0.300000011920929"/>
   <PARAM id="dist_drywet" value="1.0"/>
   <PARAM id="env1_attack" value="0.009999999776482582"/>

@@ -140,7 +140,7 @@ protected:
   // need to be init by synth
   float m_delay_time_control = 1.f;
   float m_delay_time_smooth = 1.f;
-  float m_feedback = 0.6;
+  float m_feedback = 0.45;
   float m_samplerate = -1;
   float m_dry = 1.f;
   float m_wet = 0.7f;

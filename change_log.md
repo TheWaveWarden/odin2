@@ -5,6 +5,8 @@
 - all sync-time selectors now show a dropdown with most common times on click
 - unison selector now shows dropdown rather than being click-draggable
 - fixed issue where unison+legato would produce clicks
+- changed default value for Delay-Feedback to 0.45
+- changed default value for Delay-Wet to 0.7
 # 2.0.22 beta
 - fixed issue where wave-/chip-/spec-draw oscs used default waveform before opening the GUI in some hosts
 # 2.0.21 beta

@@ -268,7 +268,7 @@
 	    std::make_unique<AudioParameterFloat>(
 	        "delay_time", "Delay Time", NormalisableRange<float>(0.01f, 3.f, 0.f, 0.627099), 1.f),
 	    std::make_unique<AudioParameterFloat>(
-	        "delay_feedback", "Delay Feedback", NormalisableRange<float>(0.f, 1.f, 0.f, 0.575717), 0.6f),
+	        "delay_feedback", "Delay Feedback", NormalisableRange<float>(0.f, 1.f, 0.f, 0.575717), 0.45f),
 	    std::make_unique<AudioParameterFloat>("delay_hp",
 	                                          "Delay Highpass Frequency",
 	                                          NormalisableRange<float>(80.f, 18000.f, 0.f, FILTER_SKEW_DEFAULT),
@@ -278,7 +278,7 @@
 	    std::make_unique<AudioParameterFloat>(
 	        "delay_dry", "Delay Dry", NormalisableRange<float>(0.f, 1.f, 0.f, 0.575717), 1.f),
 	    std::make_unique<AudioParameterFloat>(
-	        "delay_wet", "Delay Wet", NormalisableRange<float>(0.f, 1.f, 0.f, 0.575717), 0.8f),
+	        "delay_wet", "Delay Wet", NormalisableRange<float>(0.f, 1.f, 0.f, 0.575717), 0.7f),
 	    std::make_unique<AudioParameterInt>("delay_on", "Delay On", 0, 1, 0),
 
 	    // Phaser
