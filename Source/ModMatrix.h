@@ -98,6 +98,11 @@ struct ModDestMisc {
   float glide;
 };
 
+struct ModDestArp {
+  float speed;
+  float gate;
+};
+
 struct ModDestVoice {
   ModDestOsc osc[3];
   ModDestFilter filter[2];
@@ -116,6 +121,7 @@ struct ModDestinations {
   ModDestPhaser phaser;
   ModDestFlanger flanger;
   ModDestChorus chorus;
+  ModDestArp arp;
   ModDestMisc misc;
 };
 

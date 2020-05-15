@@ -36,7 +36,6 @@ public:
 
 	void printKillList();
 
-
 	void setSustainActive(bool p_sustain_active);
 
 	void setSequenceStepActive(int p_step, bool p_active);
@@ -53,6 +52,9 @@ public:
 	//void setStepTranspose(int p_step, int p_semi);
 	void setStepMod1(int p_step, float p_mod);
 	void setStepMod2(int p_step, float p_mod);
+
+	void setSpeedModPointer(float *p_pointer);
+	void setGateModPointer(float *p_pointer);
 
 private:
 	void setAllLEDsOff();
@@ -74,8 +76,8 @@ private:
 	bool m_sequence_steps_on[NUMBER_SEQUENCE_STEPS] = {
 	    true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true};
 	//int m_transpose_steps[NUMBER_SEQUENCE_STEPS] = {0};
-	float m_mod_1_steps[NUMBER_SEQUENCE_STEPS]   = {0};
-	float m_mod_2_steps[NUMBER_SEQUENCE_STEPS]   = {0};
+	float m_mod_1_steps[NUMBER_SEQUENCE_STEPS] = {0};
+	float m_mod_2_steps[NUMBER_SEQUENCE_STEPS] = {0};
 
 	std::vector<std::pair<int, int>> m_active_keys_and_velocities = {};
 	std::vector<int> m_sustain_kill_list                          = {};
@@ -101,4 +103,9 @@ private:
 	int m_current_sequence_index  = -1;
 	double m_time_since_last_note = 0.;
 	bool m_oneshot_end_reached    = false;
+
+	//modulation parameters
+	float *m_speed_mod;
+	float *m_gate_mod;
+	float m_speed_mod_factor = 1.; // baked, since we need it twice per sample
 };

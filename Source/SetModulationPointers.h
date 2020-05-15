@@ -330,4 +330,8 @@ void OdinAudioProcessor::setModulationPointers() {
 	m_phaser.setFreqModPointer(&(m_mod_destinations.phaser.freq));
 	m_phaser.setFeedbackModPointer(&(m_mod_destinations.phaser.feedback));
 
+	m_arpeggiator.setSpeedModPointer(&(m_mod_destinations.arp.speed));
+	m_arpeggiator.setGateModPointer(&(m_mod_destinations.arp.gate));
+
+
 }

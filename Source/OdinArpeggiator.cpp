@@ -52,7 +52,14 @@ std::tuple<int, int, float, float> OdinArpeggiator::getNoteOns(int &pio_step_act
 	}
 
 	//increment time
-	m_time_since_last_note += m_one_over_samplerate;
+	if (*m_speed_mod) {
+		//change speed by octaves:
+		m_speed_mod_factor = juce::dsp::FastMathApproximations::exp(0.693147 * (*m_speed_mod));
+		m_time_since_last_note += m_one_over_samplerate * m_speed_mod_factor;
+	} else {
+		m_time_since_last_note += m_one_over_samplerate;
+		m_speed_mod_factor = 1.f;
+	}
 
 	//start new pattern?
 	if (m_start_pattern) {
@@ -120,8 +127,16 @@ std::tuple<int, int, float, float> OdinArpeggiator::getNoteOns(int &pio_step_act
 std::vector<int> OdinArpeggiator::getNoteOffs() {
 	std::vector<int> ret;
 	for (int note = 0; note < m_playing_notes.size(); ++note) {
-		m_playing_notes[note].second += m_one_over_samplerate;
-		if (m_playing_notes[note].second > m_arp_time * m_gate) {
+		m_playing_notes[note].second += m_one_over_samplerate * m_speed_mod_factor;
+		float gate_modded = m_gate;
+		if(*m_gate_mod > 0){
+			gate_modded += *m_gate_mod;
+		} else if(*m_gate_mod < 0){
+			gate_modded += *m_gate_mod * m_gate;
+			gate_modded = gate_modded < 0.f ? 0.f : gate_modded;
+		}
+
+		if (m_playing_notes[note].second > m_arp_time * gate_modded) {
 			ret.push_back(m_playing_notes[note].first);
 			m_playing_notes.erase(m_playing_notes.begin() + note);
 			//go one back since we deleted one
@@ -284,7 +299,7 @@ void OdinArpeggiator::generateSequence() {
 		}
 		break;
 
-		case ArpPattern::DownAndUp:
+	case ArpPattern::DownAndUp:
 		std::sort(m_active_keys_and_velocities.begin(), m_active_keys_and_velocities.end(), sortKeysUpToDown);
 		for (int octave = m_octaves - 1; octave >= 0; --octave) {
 			for (auto note : m_active_keys_and_velocities) {
@@ -327,7 +342,8 @@ void OdinArpeggiator::generateSequence() {
 				temp_arp_index.push_back(transposeOct(note, octave));
 			}
 		}
-		for (int crawl_index = 0; crawl_index < (int)temp_arp_index.size() - (int)m_active_keys_and_velocities.size() + 1;
+		for (int crawl_index = 0;
+		     crawl_index < (int)temp_arp_index.size() - (int)m_active_keys_and_velocities.size() + 1;
 		     ++crawl_index) {
 			for (int sub_index = 0; sub_index < m_active_keys_and_velocities.size(); ++sub_index) {
 				m_arp_sequence.push_back(temp_arp_index[crawl_index + sub_index]);
@@ -346,7 +362,8 @@ void OdinArpeggiator::generateSequence() {
 				temp_arp_index.push_back(transposeOct(note, octave));
 			}
 		}
-		for (int crawl_index = 0; crawl_index < (int)temp_arp_index.size() - (int)m_active_keys_and_velocities.size() + 1;
+		for (int crawl_index = 0;
+		     crawl_index < (int)temp_arp_index.size() - (int)m_active_keys_and_velocities.size() + 1;
 		     ++crawl_index) {
 			for (int sub_index = 0; sub_index < m_active_keys_and_velocities.size(); ++sub_index) {
 				m_arp_sequence.push_back(temp_arp_index[crawl_index + sub_index]);
@@ -431,10 +448,17 @@ void OdinArpeggiator::setStepMod2(int p_step, float p_mod) {
 	m_mod_2_steps[p_step] = p_mod;
 }
 
-void OdinArpeggiator::printKillList(){
+void OdinArpeggiator::printKillList() {
 	DBG("KList:");
-	for(auto key : m_sustain_kill_list){
+	for (auto key : m_sustain_kill_list) {
 		DBG(key);
 	}
 	DBG("------");
+}
+
+void OdinArpeggiator::setSpeedModPointer(float *p_pointer) {
+	m_speed_mod = p_pointer;
+}
+void OdinArpeggiator::setGateModPointer(float *p_pointer) {
+	m_gate_mod = p_pointer;
 }

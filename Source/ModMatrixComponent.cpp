@@ -211,6 +211,9 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts) :
 	m_distortion_menu.addItem(950, "Distortion Boost");
 	m_distortion_menu.addItem(951, "Distortion DryWet");
 
+	m_arp_menu.addItem(970, "Arp Speed");
+	m_arp_menu.addItem(973, "Arp Gate");
+
 	m_sources_menu.addItem(1, "Off");
 	m_sources_menu.addSeparator();
 	m_sources_menu.addItem(100, "Oscillator 1");
@@ -1050,6 +1053,10 @@ void ModMatrixComponent::createMenu(PopupMenu *p_menu) {
 	p_menu->addSubMenu("Phaser", m_phaser_menu, true);
 	p_menu->addSubMenu("Flanger", m_flanger_menu, true);
 	p_menu->addSubMenu("Chorus", m_chorus_menu, true);
+
+	p_menu->addSeparator();
+
+	p_menu->addSubMenu("Arpeggiator", m_arp_menu, true);
 
 	p_menu->addSeparator();
 
