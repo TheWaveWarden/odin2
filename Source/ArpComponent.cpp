@@ -115,9 +115,6 @@ ArpComponent::ArpComponent(OdinAudioProcessor &p_processor, AudioProcessorValueT
 
 	m_on_attach.reset(new OdinButtonAttachment(m_value_tree, "arp_on", m_on));
 	m_one_shot_attach.reset(new OdinButtonAttachment(m_value_tree, "arp_one_shot", m_one_shot));
-
-	//todo start and stop timer when component is shown
-	startTimer(10);
 }
 
 ArpComponent::~ArpComponent() {
@@ -553,4 +550,14 @@ void ArpComponent::forceValueTreeOntoComponents(ValueTree p_tree) {
 	m_gate.setValue((int)m_value_tree.state.getChildWithName("misc")["arp_gate"]);
 	m_sync_time.setValues((int)m_value_tree.state.getChildWithName("misc")["arp_synctime_numerator"],
 	                      (int)m_value_tree.state.getChildWithName("misc")["arp_synctime_denominator"]);
+}
+
+
+void ArpComponent::setVisibleAndStartTimer(bool p_set_visible){
+	if(p_set_visible){
+		startTimer(ARP_TIMER_MILLISECS);
+	} else {
+		stopTimer();
+	}
+	setVisible(p_set_visible);
 }

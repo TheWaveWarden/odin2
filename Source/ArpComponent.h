@@ -58,6 +58,8 @@
 #define GATE_SELECTOR_X_150 615
 #define GATE_SELECTOR_Y_150 OCTAVE_SELECTOR_Y_150
 
+#define ARP_TIMER_MILLISECS 10
+
 
 
 #define NUMBER_OF_STEPS 16
@@ -78,6 +80,7 @@ public:
     void timerCallback() override;
     void setLEDActive(int p_LED);
     void setNoLEDActive();
+    void setVisibleAndStartTimer(bool p_set_visible);
 
 	void forceValueTreeOntoComponents(ValueTree p_tree);
 
