@@ -1,5 +1,7 @@
 # 2.1.0 beta
 - implemented Arpeggiator
+- new modulation sources: Arp Mod 1 & 2
+- new modulation tagets: Arp Speed & Arp Gate
 - all sync-time selectors now show a dropdown with most common times on click
 - unison selector now shows dropdown rather than being click-draggable
 - fixed issue where unison+legato would produce clicks
