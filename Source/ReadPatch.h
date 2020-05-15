@@ -94,15 +94,29 @@ void OdinAudioProcessor::readPatch(const ValueTree &newState) {
 
 			String name =
 			    newStateMigrated.getChild(i).getProperty(newStateMigrated.getChild(i).getPropertyName(0)).toString();
-			SETAUDIOFULLRANGESAFE(
-			    newStateMigrated.getChild(i).getProperty(newStateMigrated.getChild(i).getPropertyName(0)).toString(),
-			    newStateMigrated.getChild(i).getProperty(newStateMigrated.getChild(i).getPropertyName(1)));
 
+			if (checkLoadParameter(name)) {
+				SETAUDIOFULLRANGESAFE(
+				    name, newStateMigrated.getChild(i).getProperty(newStateMigrated.getChild(i).getPropertyName(1)));
+			}
 			//DBG("Value on tree is now: is now:" + m_value_tree.getParameterAsValue(name).getValue().toString());
 
 			//DBG("");
 		}
 	}
+}
+
+bool OdinAudioProcessor::checkLoadParameter(const String &p_name){
+
+	//return false for the params which are not to be loaded.
+	//sadly not very efficient approach...
+	if(p_name == "modwheel"){
+		return false;
+	} 
+	else if(p_name == "pitchbend"){
+		return false;
+	}
+	return true;
 }
 
 void OdinAudioProcessor::createDrawTablesFromValueTree() {
@@ -113,19 +127,22 @@ void OdinAudioProcessor::createDrawTablesFromValueTree() {
 		// wavedraw
 		float wavedraw_values[WAVEDRAW_STEPS_X];
 		for (int i = 0; i < WAVEDRAW_STEPS_X; ++i) {
-			wavedraw_values[i] = (float)node[String("osc" + std::to_string(osc) + "_wavedraw_values_" + std::to_string(i))];
+			wavedraw_values[i] =
+			    (float)node[String("osc" + std::to_string(osc) + "_wavedraw_values_" + std::to_string(i))];
 		}
 		m_WT_container.createWavedrawTable(osc - 1, wavedraw_values, 44100);
 
 		// chipdraw
 		for (int i = 0; i < CHIPDRAW_STEPS_X; ++i) {
-			wavedraw_values[i] = (float)node[String("osc" + std::to_string(osc) + "_chipdraw_values_" + std::to_string(i))];
+			wavedraw_values[i] =
+			    (float)node[String("osc" + std::to_string(osc) + "_chipdraw_values_" + std::to_string(i))];
 		}
 		m_WT_container.createChipdrawTable(osc - 1, wavedraw_values, 44100);
 
 		// specdraw
 		for (int i = 0; i < SPECDRAW_STEPS_X; ++i) {
-			wavedraw_values[i] = (float)node[String("osc" + std::to_string(osc) + "_specdraw_values_" + std::to_string(i))];
+			wavedraw_values[i] =
+			    (float)node[String("osc" + std::to_string(osc) + "_specdraw_values_" + std::to_string(i))];
 		}
 		m_WT_container.createSpecdrawTable(osc - 1, wavedraw_values, 44100);
 	}

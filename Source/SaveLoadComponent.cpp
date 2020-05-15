@@ -240,6 +240,10 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts, OdinAudi
 			MemoryInputStream init_stream(BinaryData::init_patch_odin, BinaryData::init_patch_odinSize, false);
 			m_audio_processor.readPatch(ValueTree::readFromStream(init_stream));
 
+			//reset pitchbend and modwheel, since they are not loaded with patches
+			SETAUDIOFULLRANGESAFE("modwheel", 0.f);
+			SETAUDIOFULLRANGESAFE("pitchbend", 0.f);
+
 			//this forces values onto the GUI (patch label as well)
 			forceValueTreeLambda();
 

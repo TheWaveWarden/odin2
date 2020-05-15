@@ -175,6 +175,7 @@ private:
 	void addNonAudioParametersToTree();
 	void handleMidiMessage(const MidiMessage &p_midi_message);
 	void createDrawTablesFromValueTree();
+	bool checkLoadParameter(const String &p_name);
 
 	bool m_midi_learn_parameter_active      = false;
 	OdinMidiLearnBase *m_midi_learn_control = nullptr;

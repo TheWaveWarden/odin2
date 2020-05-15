@@ -9,6 +9,7 @@
 - changed default value for Delay-Wet to 0.7
 - implemented MIDI-AllNotesOff
 - implemented MIDI-allSoundOff
+- modwheel and pitchbend are no longer loaded with patches
 # 2.0.22 beta
 - fixed issue where wave-/chip-/spec-draw oscs used default waveform before opening the GUI in some hosts
 # 2.0.21 beta
