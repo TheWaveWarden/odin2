@@ -9,16 +9,25 @@ StepComponent::StepComponent(AudioProcessorValueTreeState &vts, int p_step_index
 	addAndMakeVisible(m_mod_1);
 	m_mod_1.setSliderStyle(Slider::RotaryVerticalDrag);
 	m_mod_1.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-	m_mod_1.setKnobTooltip("TODO");
-	m_mod_attach.reset(
+	m_mod_1.setKnobTooltip("This value can be used as a modulation source in the modmatrix");
+	m_mod_1_attach.reset(
 	    new OdinKnobAttachment(m_value_tree, "step_" + std::to_string(m_step_index) + "_mod_1", m_mod_1));
 
 	addAndMakeVisible(m_mod_2);
 	m_mod_2.setSliderStyle(Slider::RotaryVerticalDrag);
 	m_mod_2.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-	m_mod_2.setKnobTooltip("TODO");
-	m_transpose_attach.reset(
+	m_mod_2.setKnobTooltip("This value can be used as a modulation source in the modmatrix.\nThe entire row of knobs "
+	                       "can be replaced with \"transpose\" by the button to the left.");
+	m_mod_2_attach.reset(
 	    new OdinKnobAttachment(m_value_tree, "step_" + std::to_string(m_step_index) + "_mod_2", m_mod_2));
+
+	addChildComponent(m_transpose);
+	m_transpose.setSliderStyle(Slider::RotaryVerticalDrag);
+	m_transpose.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
+	m_transpose.setKnobTooltip("Transposes this step in the arp in semitones.\nThe entire row of knobs "
+	                       "can be replaced with \"mod 2\" by the button to the left.");
+	m_transpose_attach.reset(
+	    new OdinKnobAttachment(m_value_tree, "step_" + std::to_string(m_step_index) + "_transpose", m_transpose));
 
 	addAndMakeVisible(m_step_on);
 	m_step_on.setClickingTogglesState(true);
@@ -29,12 +38,14 @@ StepComponent::StepComponent(AudioProcessorValueTreeState &vts, int p_step_index
 	    new OdinButtonAttachment(m_value_tree, "step_" + std::to_string(m_step_index) + "_on", m_step_on));
 
 	addAndMakeVisible(m_led);
-	
+
 	m_mod_1.setNumDecimalPlacesToDisplay(3);
 	m_mod_2.setNumDecimalPlacesToDisplay(3);
+	m_transpose.setNumDecimalPlacesToDisplay(3);
 
-	SET_CTR_KEY(m_mod_2);
 	SET_CTR_KEY(m_mod_1);
+	SET_CTR_KEY(m_mod_2);
+	SET_CTR_KEY(m_transpose);
 }
 
 StepComponent::~StepComponent() {
@@ -65,7 +76,12 @@ void StepComponent::setGUIBig() {
 	m_mod_1.setBounds(KNOB_POS_X_150, MOD_POS_Y_150, BLACK_KNOB_SMALL_SIZE_X * 1.5, BLACK_KNOB_SMALL_SIZE_Y * 1.5);
 
 	m_mod_2.setStrip(black_knob_small, N_KNOB_FRAMES);
-	m_mod_2.setBounds(KNOB_POS_X_150, TRANSPOSE_POS_Y_150, BLACK_KNOB_SMALL_SIZE_X * 1.5, BLACK_KNOB_SMALL_SIZE_Y * 1.5);
+	m_mod_2.setBounds(
+	    KNOB_POS_X_150, TRANSPOSE_POS_Y_150, BLACK_KNOB_SMALL_SIZE_X * 1.5, BLACK_KNOB_SMALL_SIZE_Y * 1.5);
+
+	m_transpose.setStrip(black_knob_small, N_KNOB_FRAMES);
+	m_transpose.setBounds(
+	    KNOB_POS_X_150, TRANSPOSE_POS_Y_150, BLACK_KNOB_SMALL_SIZE_X * 1.5, BLACK_KNOB_SMALL_SIZE_Y * 1.5);
 
 	juce::Image step_on_4 =
 	    ImageCache::getFromMemory(BinaryData::button_arp_step_1_150_png, BinaryData::button_arp_step_1_150_pngSize);
@@ -114,6 +130,9 @@ void StepComponent::setGUISmall() {
 	m_mod_2.setStrip(black_knob_small, N_KNOB_FRAMES);
 	m_mod_2.setBounds(KNOB_POS_X_100, TRANSPOSE_POS_Y_100, BLACK_KNOB_SMALL_SIZE_X, BLACK_KNOB_SMALL_SIZE_Y);
 
+	m_transpose.setStrip(black_knob_small, N_KNOB_FRAMES);
+	m_transpose.setBounds(KNOB_POS_X_100, TRANSPOSE_POS_Y_100, BLACK_KNOB_SMALL_SIZE_X, BLACK_KNOB_SMALL_SIZE_Y);
+
 	juce::Image step_on_4 =
 	    ImageCache::getFromMemory(BinaryData::button_arp_step_1_png, BinaryData::button_arp_step_1_pngSize);
 	juce::Image step_on_2 =
@@ -143,8 +162,7 @@ void StepComponent::setGUISmall() {
 	                    &step_on_draw3);
 	m_step_on.setBounds(STEP_ON_X_100, STEP_ON_Y_100, step_on_1.getWidth(), step_on_1.getHeight());
 
-	m_knob_guide =
-	    ImageCache::getFromMemory(BinaryData::arp_knob_guide_png, BinaryData::arp_knob_guide_pngSize);
+	m_knob_guide = ImageCache::getFromMemory(BinaryData::arp_knob_guide_png, BinaryData::arp_knob_guide_pngSize);
 }
 
 void StepComponent::setLEDActive(int p_step_index) {
@@ -155,5 +173,15 @@ void StepComponent::setShowLED(int p_highest_led) {
 	if ((p_highest_led > m_step_index) != m_show_led) {
 		m_show_led = (p_highest_led > m_step_index);
 		m_led.setVisible(m_show_led);
+	}
+}
+
+void StepComponent::setModTranspose(bool p_is_mod) {
+	if (p_is_mod) {
+		m_mod_2.setVisible(true);
+		m_transpose.setVisible(false);
+	} else {
+		m_mod_2.setVisible(false);
+		m_transpose.setVisible(true);
 	}
 }

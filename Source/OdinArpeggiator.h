@@ -49,7 +49,7 @@ public:
 	void setDirection(int p_new_value);
 	void setSteps(int p_new_value);
 	void setGatePercent(int p_new_value);
-	//void setStepTranspose(int p_step, int p_semi);
+	void setStepTranspose(int p_step, int p_semi);
 	void setStepMod1(int p_step, float p_mod);
 	void setStepMod2(int p_step, float p_mod);
 
@@ -75,7 +75,7 @@ private:
 
 	bool m_sequence_steps_on[NUMBER_SEQUENCE_STEPS] = {
 	    true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true};
-	//int m_transpose_steps[NUMBER_SEQUENCE_STEPS] = {0};
+	int m_transpose_steps[NUMBER_SEQUENCE_STEPS] = {0};
 	float m_mod_1_steps[NUMBER_SEQUENCE_STEPS] = {0};
 	float m_mod_2_steps[NUMBER_SEQUENCE_STEPS] = {0};
 

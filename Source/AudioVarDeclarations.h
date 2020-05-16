@@ -472,6 +472,23 @@
     Identifier m_step_14_mod_2_identifier;
     Identifier m_step_15_mod_2_identifier;
 
+    Identifier m_step_0_transpose_identifier;
+    Identifier m_step_1_transpose_identifier;
+    Identifier m_step_2_transpose_identifier;
+    Identifier m_step_3_transpose_identifier;
+    Identifier m_step_4_transpose_identifier;
+    Identifier m_step_5_transpose_identifier;
+    Identifier m_step_6_transpose_identifier;
+    Identifier m_step_7_transpose_identifier;
+    Identifier m_step_8_transpose_identifier;
+    Identifier m_step_9_transpose_identifier;
+    Identifier m_step_10_transpose_identifier;
+    Identifier m_step_11_transpose_identifier;
+    Identifier m_step_12_transpose_identifier;
+    Identifier m_step_13_transpose_identifier;
+    Identifier m_step_14_transpose_identifier;
+    Identifier m_step_15_transpose_identifier;
+
 
     Identifier m_phaser_sync_identifier;
     Identifier m_phaser_rate_identifier;

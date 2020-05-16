@@ -403,5 +403,22 @@ m_value_tree.addParameterListener("step_13_mod_2", &m_tree_listener_arp);
 m_value_tree.addParameterListener("step_14_mod_2", &m_tree_listener_arp);
 m_value_tree.addParameterListener("step_15_mod_2", &m_tree_listener_arp);
 
+m_value_tree.addParameterListener("step_0_transpose", &m_tree_listener_arp);
+m_value_tree.addParameterListener("step_1_transpose", &m_tree_listener_arp);
+m_value_tree.addParameterListener("step_2_transpose", &m_tree_listener_arp);
+m_value_tree.addParameterListener("step_3_transpose", &m_tree_listener_arp);
+m_value_tree.addParameterListener("step_4_transpose", &m_tree_listener_arp);
+m_value_tree.addParameterListener("step_5_transpose", &m_tree_listener_arp);
+m_value_tree.addParameterListener("step_6_transpose", &m_tree_listener_arp);
+m_value_tree.addParameterListener("step_7_transpose", &m_tree_listener_arp);
+m_value_tree.addParameterListener("step_8_transpose", &m_tree_listener_arp);
+m_value_tree.addParameterListener("step_9_transpose", &m_tree_listener_arp);
+m_value_tree.addParameterListener("step_10_transpose", &m_tree_listener_arp);
+m_value_tree.addParameterListener("step_11_transpose", &m_tree_listener_arp);
+m_value_tree.addParameterListener("step_12_transpose", &m_tree_listener_arp);
+m_value_tree.addParameterListener("step_13_transpose", &m_tree_listener_arp);
+m_value_tree.addParameterListener("step_14_transpose", &m_tree_listener_arp);
+m_value_tree.addParameterListener("step_15_transpose", &m_tree_listener_arp);
+
 m_value_tree.addParameterListener("arp_on", &m_tree_listener_arp);
 m_value_tree.addParameterListener("arp_one_shot", &m_tree_listener_arp);

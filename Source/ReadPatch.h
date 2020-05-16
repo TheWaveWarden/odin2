@@ -18,6 +18,25 @@ void OdinAudioProcessor::readPatch(const ValueTree &newState) {
 	    std::to_string(ODIN_PATCH_MIGRATION_VERSION));
 
 	const ValueTree &draw_tree = newStateMigrated.getChildWithName("draw");
+
+	//if new value has no draw tree, create it from scratch
+	for (int osc = 1; osc < 4; ++osc) {
+		if (!(draw_tree.hasProperty(String("osc" + std::to_string(osc) + "_wavedraw_values_0")))) {
+			DBG("Tree has no wavedraw" + std::to_string(osc) +" values, fallback to generation");
+			writeDefaultWavedrawValuesToTree(osc);
+		}
+
+		if (!(draw_tree.hasProperty(String("osc" + std::to_string(osc) + "_chipdraw_values_0")))) {
+			DBG("Tree has no chipdraw" + std::to_string(osc) +" values, fallback to generation");
+			writeDefaultChipdrawValuesToTree(osc);
+		}
+
+		if (!(draw_tree.hasProperty(String("osc" + std::to_string(osc) + "_specdraw_values_0")))) {
+			DBG("Tree has no specdraw" + std::to_string(osc) +" values, fallback to generation");
+			writeDefaultSpecdrawValuesToTree(osc);
+		}
+	}
+
 	for (int i = 0; i < m_value_tree_draw.getNumProperties(); ++i) {
 		if (draw_tree.hasProperty(m_value_tree_draw.getPropertyName(i))) {
 			m_value_tree_draw.setProperty(m_value_tree_draw.getPropertyName(i),
@@ -25,8 +44,8 @@ void OdinAudioProcessor::readPatch(const ValueTree &newState) {
 			                              nullptr);
 			m_value_tree_draw.sendPropertyChangeMessage((m_value_tree_draw.getPropertyName(i)));
 		} else {
-			DBG("Didn't find non-audio property (draw) " +
-			    m_value_tree_draw.getPropertyName(i).toString().toStdString());
+			//DBG("Didn't find non-audio property (draw) " +
+			//    m_value_tree_draw.getPropertyName(i).toString().toStdString());
 		}
 	}
 	const ValueTree &osc_tree = newStateMigrated.getChildWithName("osc");
@@ -106,14 +125,13 @@ void OdinAudioProcessor::readPatch(const ValueTree &newState) {
 	}
 }
 
-bool OdinAudioProcessor::checkLoadParameter(const String &p_name){
+bool OdinAudioProcessor::checkLoadParameter(const String &p_name) {
 
 	//return false for the params which are not to be loaded.
 	//sadly not very efficient approach...
-	if(p_name == "modwheel"){
+	if (p_name == "modwheel") {
 		return false;
-	} 
-	else if(p_name == "pitchbend"){
+	} else if (p_name == "pitchbend") {
 		return false;
 	}
 	return true;

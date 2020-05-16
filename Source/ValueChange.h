@@ -1,4 +1,4 @@
-//#define DEBUG_VARIABLES
+#define DEBUG_VARIABLES
 
 float valueToDenominator(int p_value) {
 	switch (p_value) {
@@ -819,6 +819,40 @@ void OdinAudioProcessor::treeValueChangedArp(const String &p_ID, float p_new_val
 		m_arpeggiator.setStepMod2(14, p_new_value);
 	} else if (id == m_step_15_mod_2_identifier) {
 		m_arpeggiator.setStepMod2(15, p_new_value);
+	}
+
+	else if (id == m_step_0_transpose_identifier) {
+		m_arpeggiator.setStepTranspose(0, p_new_value);
+	} else if (id == m_step_1_transpose_identifier) {
+		m_arpeggiator.setStepTranspose(1, p_new_value);
+	} else if (id == m_step_2_transpose_identifier) {
+		m_arpeggiator.setStepTranspose(2, p_new_value);
+	} else if (id == m_step_3_transpose_identifier) {
+		m_arpeggiator.setStepTranspose(3, p_new_value);
+	} else if (id == m_step_4_transpose_identifier) {
+		m_arpeggiator.setStepTranspose(4, p_new_value);
+	} else if (id == m_step_5_transpose_identifier) {
+		m_arpeggiator.setStepTranspose(5, p_new_value);
+	} else if (id == m_step_6_transpose_identifier) {
+		m_arpeggiator.setStepTranspose(6, p_new_value);
+	} else if (id == m_step_7_transpose_identifier) {
+		m_arpeggiator.setStepTranspose(7, p_new_value);
+	} else if (id == m_step_8_transpose_identifier) {
+		m_arpeggiator.setStepTranspose(8, p_new_value);
+	} else if (id == m_step_9_transpose_identifier) {
+		m_arpeggiator.setStepTranspose(9, p_new_value);
+	} else if (id == m_step_10_transpose_identifier) {
+		m_arpeggiator.setStepTranspose(10, p_new_value);
+	} else if (id == m_step_11_transpose_identifier) {
+		m_arpeggiator.setStepTranspose(11, p_new_value);
+	} else if (id == m_step_12_transpose_identifier) {
+		m_arpeggiator.setStepTranspose(12, p_new_value);
+	} else if (id == m_step_13_transpose_identifier) {
+		m_arpeggiator.setStepTranspose(13, p_new_value);
+	} else if (id == m_step_14_transpose_identifier) {
+		m_arpeggiator.setStepTranspose(14, p_new_value);
+	} else if (id == m_step_15_transpose_identifier) {
+		m_arpeggiator.setStepTranspose(15, p_new_value);
 	}
 }
 

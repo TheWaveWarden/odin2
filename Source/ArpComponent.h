@@ -13,11 +13,11 @@
 #define STEP_COMPONENT_SPACING_100 5
 #define STEP_COMPONENT_HEIGHT_100 111
 #define STEP_COMPONENT_POS_X_100 46
-#define STEP_COMPONENT_POS_Y_100 35
+#define STEP_COMPONENT_POS_Y_100 33
 #define ON_OFF_POS_X_100 7
-#define ON_OFF_POS_Y_100 3
+#define ON_OFF_POS_Y_100 6
 #define ONE_SHOT_POS_X_100 1
-#define ONE_SHOT_POS_Y_100 106
+#define ONE_SHOT_POS_Y_100 104
 #define OCTAVE_SELECTOR_X_100 140
 #define OCTAVE_SELECTOR_Y_100 8
 #define SYNC_TIME_ARP_POS_X_100 50
@@ -38,10 +38,13 @@
 #define STEP_COMPONENT_POS_Y_150 53
 
 #define ON_OFF_POS_X_150 11
-#define ON_OFF_POS_Y_150 4
+#define ON_OFF_POS_Y_150 8
 
-#define ONE_SHOT_POS_X_150 2
+#define ONE_SHOT_POS_X_150 6
 #define ONE_SHOT_POS_Y_150 159
+
+#define MOD_TRANSPOSE_POS_X_150 ONE_SHOT_POS_X_150
+#define MOD_TRANSPOSE_POS_Y_150 110
 
 #define OCTAVE_SELECTOR_X_150 210
 #define OCTAVE_SELECTOR_Y_150 12
@@ -86,6 +89,7 @@ public:
 
 private:
     void setNumberLEDsToShow(int p_number);
+    void setModTranspose(bool p_is_mod);
     
     bool m_GUI_big = false;
     Image m_background;
@@ -101,6 +105,7 @@ private:
 
     OdinButton m_on;
     OdinButton m_one_shot;
+    OdinButton m_mod_transpose;
 
 	SyncTimeSelector m_sync_time;
 
@@ -123,7 +128,7 @@ private:
 
     std::unique_ptr<OdinButtonAttachment> m_on_attach;
 	std::unique_ptr<OdinButtonAttachment> m_one_shot_attach;
-
+	std::unique_ptr<OdinButtonAttachment> m_mod_transpose_attach;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ArpComponent)
 };

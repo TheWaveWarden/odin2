@@ -140,6 +140,22 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts, OdinAudi
 	//m_last_directory = File::getSpecialLocation(File::SpecialLocationType::userDocumentsDirectory).getFullPathName();
 
 	m_save.onClick = [&]() {
+		// for (int osc = 1; osc < 4; ++osc) {
+		// 	std::string osc_string = std::to_string(osc);
+
+		// 	if (usesWavedraw(osc)) {
+		// 		DBG("uses wavedraw " + String(osc));
+		// 	}
+		// 	if (usesChipdraw(osc)) {
+		// 		DBG("uses chipdraw " + String(osc));
+		// 	}
+		// 	if (usesSpecdraw(osc)) {
+		// 		DBG("uses specdraw " + String(osc));
+		// 	}
+		// }
+
+		// return;
+
 		//suggestion where to save
 		String current_directory = m_value_tree.state.getChildWithName("misc")["current_patch_directory"].toString();
 		File fileToSave(current_directory + "/my_patch.odin");
@@ -186,16 +202,46 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts, OdinAudi
 					    DBG(m_value_tree.state.getChildWithName("misc")["patch_name"].toString());
 
 					    //make a deep copy and remove the midi_learn part and file name
-					    ValueTree copy_without_midi_learn = m_value_tree.state.createCopy();
-					    copy_without_midi_learn.removeChild(copy_without_midi_learn.getChildWithName("midi_learn"),
-					                                        nullptr);
-					    copy_without_midi_learn.getChildWithName("misc").removeProperty("current_patch_filename",
-					                                                                    nullptr);
-					    copy_without_midi_learn.getChildWithName("misc").removeProperty("current_patch_directory",
-					                                                                    nullptr);
+					    ValueTree copy_with_removed_params = m_value_tree.state.createCopy();
+					    copy_with_removed_params.removeChild(copy_with_removed_params.getChildWithName("midi_learn"),
+					                                         nullptr);
+					    copy_with_removed_params.getChildWithName("misc").removeProperty("current_patch_filename",
+					                                                                     nullptr);
+					    copy_with_removed_params.getChildWithName("misc").removeProperty("current_patch_directory",
+					                                                                     nullptr);
+
+					    //remove draw osc params if they aren't needed
+					    for (int osc = 1; osc < 4; ++osc) {
+						    std::string osc_string = std::to_string(osc);
+
+						    if (!usesWavedraw(osc)) {
+							    //DBG("uses wavedraw " + String(osc));
+							    for (int step = 0; step < WAVEDRAW_STEPS_X; ++step) {
+								    copy_with_removed_params.getChildWithName("draw").removeProperty(
+								        String("osc" + osc_string + "_wavedraw_values_" + std::to_string(step)),
+								        nullptr);
+							    }
+						    }
+						    if (!usesChipdraw(osc)) {
+							    //DBG("uses chipdraw " + String(osc));
+							    for (int step = 0; step < CHIPDRAW_STEPS_X; ++step) {
+								    copy_with_removed_params.getChildWithName("draw").removeProperty(
+								        String("osc" + osc_string + "_chipdraw_values_" + std::to_string(step)),
+								        nullptr);
+							    }
+						    }
+						    if (!usesSpecdraw(osc)) {
+							    //DBG("uses specdraw " + String(osc));
+							    for (int step = 0; step < SPECDRAW_STEPS_X; ++step) {
+								    copy_with_removed_params.getChildWithName("draw").removeProperty(
+								        String("osc" + osc_string + "_specdraw_values_" + std::to_string(step)),
+								        nullptr);
+							    }
+						    }
+					    }
 
 					    //write valuetree into file
-					    copy_without_midi_learn.writeToStream(file_stream);
+					    copy_with_removed_params.writeToStream(file_stream);
 
 					    //set label
 					    m_patch.setText(
@@ -204,7 +250,7 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts, OdinAudi
 					    //save load directory
 					    //m_last_directory = file_to_write.getParentDirectory().getFullPathName();
 
-					    DBG(copy_without_midi_learn.toXmlString());
+					    DBG(copy_with_removed_params.toXmlString());
 					    DBG("Wrote above patch to " + file_name);
 
 					    m_value_tree.state.getChildWithName("misc").setProperty(
@@ -683,4 +729,188 @@ void SaveLoadComponent::loadPatchWithFileBrowser() {
 			    }
 		    }
 	    });
+}
+
+bool SaveLoadComponent::usesWavedraw(int p_osc) {
+	if ((int)(m_value_tree.state.getChildWithName("osc")[String("osc" + std::to_string(p_osc) + "_type")]) ==
+	    OSC_TYPE_WAVEDRAW) {
+		return true;
+	}
+
+	for (int osc_slot = 1; osc_slot < 4; ++osc_slot) {
+		//these oscs can all use wavedraw:
+		if ((int)(m_value_tree.state.getChildWithName("osc")[String("osc" + std::to_string(osc_slot) + "_type")]) ==
+		    OSC_TYPE_VECTOR) {
+			if ((int)(m_value_tree.state.getChildWithName(
+			        "osc")[String("osc" + std::to_string(osc_slot) + "_vec_a")]) == 600 + p_osc) {
+				return true;
+			}
+			if ((int)(m_value_tree.state.getChildWithName(
+			        "osc")[String("osc" + std::to_string(osc_slot) + "_vec_b")]) == 600 + p_osc) {
+				return true;
+			}
+			if ((int)(m_value_tree.state.getChildWithName(
+			        "osc")[String("osc" + std::to_string(osc_slot) + "_vec_c")]) == 600 + p_osc) {
+				return true;
+			}
+			if ((int)(m_value_tree.state.getChildWithName(
+			        "osc")[String("osc" + std::to_string(osc_slot) + "_vec_d")]) == 600 + p_osc) {
+				return true;
+			}
+		}
+
+		if ((int)(m_value_tree.state.getChildWithName("osc")[String("osc" + std::to_string(osc_slot) + "_type")]) ==
+		    OSC_TYPE_FM) {
+			if ((int)(m_value_tree.state.getChildWithName(
+			        "osc")[String("osc" + std::to_string(osc_slot) + "_modulator_wave")]) == 600 + p_osc) {
+				return true;
+			}
+			if ((int)(m_value_tree.state.getChildWithName(
+			        "osc")[String("osc" + std::to_string(osc_slot) + "_carrier_wave")]) == 600 + p_osc) {
+				return true;
+			}
+		}
+
+		if ((int)(m_value_tree.state.getChildWithName("osc")[String("osc" + std::to_string(osc_slot) + "_type")]) ==
+		    OSC_TYPE_PM) {
+			if ((int)(m_value_tree.state.getChildWithName(
+			        "osc")[String("osc" + std::to_string(osc_slot) + "_modulator_wave")]) == 600 + p_osc) {
+				return true;
+			}
+			if ((int)(m_value_tree.state.getChildWithName(
+			        "osc")[String("osc" + std::to_string(osc_slot) + "_carrier_wave")]) == 600 + p_osc) {
+				return true;
+			}
+		}
+	}
+
+	//wavedraw can be used by LFOs as well
+	for (int lfo = 1; lfo < 5; ++lfo) {
+		if ((int)(m_value_tree.state.getChildWithName("lfo")[String("lfo" + std::to_string(lfo) + "_wave")]) ==
+		    16 + p_osc) {
+			return true;
+		}
+	}
+
+	return false;
+}
+
+bool SaveLoadComponent::usesChipdraw(int p_osc) {
+	if ((int)(m_value_tree.state.getChildWithName("osc")[String("osc" + std::to_string(p_osc) + "_type")]) ==
+	    OSC_TYPE_CHIPDRAW) {
+		return true;
+	}
+
+	for (int osc_slot = 1; osc_slot < 4; ++osc_slot) {
+		//these oscs can all use chipdraw:
+		if ((int)(m_value_tree.state.getChildWithName("osc")[String("osc" + std::to_string(osc_slot) + "_type")]) ==
+		    OSC_TYPE_VECTOR) {
+			if ((int)(m_value_tree.state.getChildWithName(
+			        "osc")[String("osc" + std::to_string(osc_slot) + "_vec_a")]) == 700 + p_osc) {
+				return true;
+			}
+			if ((int)(m_value_tree.state.getChildWithName(
+			        "osc")[String("osc" + std::to_string(osc_slot) + "_vec_b")]) == 700 + p_osc) {
+				return true;
+			}
+			if ((int)(m_value_tree.state.getChildWithName(
+			        "osc")[String("osc" + std::to_string(osc_slot) + "_vec_c")]) == 700 + p_osc) {
+				return true;
+			}
+			if ((int)(m_value_tree.state.getChildWithName(
+			        "osc")[String("osc" + std::to_string(osc_slot) + "_vec_d")]) == 700 + p_osc) {
+				return true;
+			}
+		}
+
+		if ((int)(m_value_tree.state.getChildWithName("osc")[String("osc" + std::to_string(osc_slot) + "_type")]) ==
+		    OSC_TYPE_FM) {
+			if ((int)(m_value_tree.state.getChildWithName(
+			        "osc")[String("osc" + std::to_string(osc_slot) + "_modulator_wave")]) == 700 + p_osc) {
+				return true;
+			}
+			if ((int)(m_value_tree.state.getChildWithName(
+			        "osc")[String("osc" + std::to_string(osc_slot) + "_carrier_wave")]) == 700 + p_osc) {
+				return true;
+			}
+		}
+
+		if ((int)(m_value_tree.state.getChildWithName("osc")[String("osc" + std::to_string(osc_slot) + "_type")]) ==
+		    OSC_TYPE_PM) {
+			if ((int)(m_value_tree.state.getChildWithName(
+			        "osc")[String("osc" + std::to_string(osc_slot) + "_modulator_wave")]) == 700 + p_osc) {
+				return true;
+			}
+			if ((int)(m_value_tree.state.getChildWithName(
+			        "osc")[String("osc" + std::to_string(osc_slot) + "_carrier_wave")]) == 700 + p_osc) {
+				return true;
+			}
+		}
+
+		if ((int)(m_value_tree.state.getChildWithName("osc")[String("osc" + std::to_string(osc_slot) + "_type")]) ==
+		    OSC_TYPE_CHIPTUNE) {
+			if ((int)(m_value_tree.state.getChildWithName(
+			        "osc")[String("osc" + std::to_string(osc_slot) + "_chipwave")]) == 700 + p_osc) {
+				return true;
+			}
+		}
+	}
+
+	return false;
+}
+
+bool SaveLoadComponent::usesSpecdraw(int p_osc) {
+	if ((int)(m_value_tree.state.getChildWithName("osc")[String("osc" + std::to_string(p_osc) + "_type")]) ==
+	    OSC_TYPE_SPECDRAW) {
+		return true;
+	}
+
+	for (int osc_slot = 1; osc_slot < 4; ++osc_slot) {
+		//these oscs can all use wavedraw:
+		if ((int)(m_value_tree.state.getChildWithName("osc")[String("osc" + std::to_string(osc_slot) + "_type")]) ==
+		    OSC_TYPE_VECTOR) {
+			if ((int)(m_value_tree.state.getChildWithName(
+			        "osc")[String("osc" + std::to_string(osc_slot) + "_vec_a")]) == 800 + p_osc) {
+				return true;
+			}
+			if ((int)(m_value_tree.state.getChildWithName(
+			        "osc")[String("osc" + std::to_string(osc_slot) + "_vec_b")]) == 800 + p_osc) {
+				return true;
+			}
+			if ((int)(m_value_tree.state.getChildWithName(
+			        "osc")[String("osc" + std::to_string(osc_slot) + "_vec_c")]) == 800 + p_osc) {
+				return true;
+			}
+			if ((int)(m_value_tree.state.getChildWithName(
+			        "osc")[String("osc" + std::to_string(osc_slot) + "_vec_d")]) == 800 + p_osc) {
+				return true;
+			}
+		}
+
+		if ((int)(m_value_tree.state.getChildWithName("osc")[String("osc" + std::to_string(osc_slot) + "_type")]) ==
+		    OSC_TYPE_FM) {
+			if ((int)(m_value_tree.state.getChildWithName(
+			        "osc")[String("osc" + std::to_string(osc_slot) + "_modulator_wave")]) == 800 + p_osc) {
+				return true;
+			}
+			if ((int)(m_value_tree.state.getChildWithName(
+			        "osc")[String("osc" + std::to_string(osc_slot) + "_carrier_wave")]) == 800 + p_osc) {
+				return true;
+			}
+		}
+
+		if ((int)(m_value_tree.state.getChildWithName("osc")[String("osc" + std::to_string(osc_slot) + "_type")]) ==
+		    OSC_TYPE_PM) {
+			if ((int)(m_value_tree.state.getChildWithName(
+			        "osc")[String("osc" + std::to_string(osc_slot) + "_modulator_wave")]) == 800 + p_osc) {
+				return true;
+			}
+			if ((int)(m_value_tree.state.getChildWithName(
+			        "osc")[String("osc" + std::to_string(osc_slot) + "_carrier_wave")]) == 800 + p_osc) {
+				return true;
+			}
+		}
+	}
+
+	return false;
 }

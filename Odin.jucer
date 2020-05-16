@@ -19,6 +19,10 @@
             file="Graphics/cropped/analog_knob_cropped.png"/>
       <FILE id="FU7Kyv" name="analog_knob_cropped_150.png" compile="0" resource="1"
             file="Graphics_150/cropped/analog_knob_cropped_150.png"/>
+      <FILE id="WKbKoO" name="arp_backdrop.png" compile="0" resource="1"
+            file="Graphics/cropped/arp_backdrop.png"/>
+      <FILE id="XsoJcM" name="arp_backdrop_150.png" compile="0" resource="1"
+            file="Graphics_150/cropped/arp_backdrop_150.png"/>
       <FILE id="ygrnGc" name="arp_cropped_150.png" compile="0" resource="1"
             file="Graphics_150/cropped/arp_cropped_150.png"/>
       <FILE id="Dzodcs" name="arp_knob_guide.png" compile="0" resource="1"
@@ -95,6 +99,14 @@
             file="Graphics/cropped/buttons/button_mod_arp_2.png"/>
       <FILE id="qOhc4m" name="button_mod_arp_2_150.png" compile="0" resource="1"
             file="Graphics_150/cropped/buttons/button_mod_arp_2_150.png"/>
+      <FILE id="cOn6Ys" name="button_mod_transpose_1_150.png" compile="0"
+            resource="1" file="Graphics_150/cropped/buttons/button_mod_transpose_1_150.png"/>
+      <FILE id="O7hNMx" name="button_mod_transpose_2_150.png" compile="0"
+            resource="1" file="Graphics_150/cropped/buttons/button_mod_transpose_2_150.png"/>
+      <FILE id="ssValp" name="button_mod_transpose_3_150.png" compile="0"
+            resource="1" file="Graphics_150/cropped/buttons/button_mod_transpose_3_150.png"/>
+      <FILE id="pjA570" name="button_mod_transpose_4_150.png" compile="0"
+            resource="1" file="Graphics_150/cropped/buttons/button_mod_transpose_4_150.png"/>
       <FILE id="pxyhFO" name="button_on_off_1.png" compile="0" resource="1"
             file="Graphics/cropped/buttons/button_on_off_1.png"/>
       <FILE id="auw32C" name="button_on_off_1_150.png" compile="0" resource="1"

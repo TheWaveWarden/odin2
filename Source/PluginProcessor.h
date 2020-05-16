@@ -6,6 +6,7 @@
 #include "Knob.h"
 #include "LeftRightButton.h"
 #include "ModMatrix.h"
+#include "OdinArpeggiator.h"
 #include "OdinButton.h"
 #include "OdinTreeListener.h"
 #include "Voice.h"
@@ -21,7 +22,6 @@
 #include "audio/Filters/LadderFilter.h"
 #include "audio/Filters/SEMFilter12.h"
 #include "audio/Oscillators/WavetableContainer.h"
-#include "OdinArpeggiator.h"
 
 class OdinAudioProcessorEditor;
 
@@ -176,6 +176,9 @@ private:
 	void handleMidiMessage(const MidiMessage &p_midi_message);
 	void createDrawTablesFromValueTree();
 	bool checkLoadParameter(const String &p_name);
+	void writeDefaultWavedrawValuesToTree(int p_osc);
+	void writeDefaultChipdrawValuesToTree(int p_osc);
+	void writeDefaultSpecdrawValuesToTree(int p_osc);
 
 	bool m_midi_learn_parameter_active      = false;
 	OdinMidiLearnBase *m_midi_learn_control = nullptr;

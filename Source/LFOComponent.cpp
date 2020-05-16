@@ -130,12 +130,16 @@ LFOComponent::~LFOComponent() {
 
 void LFOComponent::paint(Graphics &g) {
 
-	g.setColour(Colour((uint8_t)255,(uint8_t)255,(uint8_t)255,(uint8_t)40));
-	g.drawRoundedRectangle(getLocalBounds().getX(),getLocalBounds().getY(),getLocalBounds().getWidth(),getLocalBounds().getHeight(),4.f, 3.f); // draw an outline around the component
+	//g.setColour(Colour((uint8_t)255,(uint8_t)255,(uint8_t)255,(uint8_t)40));
+	//g.drawRoundedRectangle(getLocalBounds().getX(),getLocalBounds().getY(),getLocalBounds().getWidth(),getLocalBounds().getHeight(),4.f, 3.f); // draw an outline around the component
 
 	SET_INTERPOLATION_QUALITY(g)
-	if (m_sync_active) {
-		g.drawImageAt(m_freq_overdraw, OVERDRAW_POS_X, OVERDRAW_POS_Y);
+	if (!m_sync_active) {
+		if (m_GUI_big) {
+			g.drawImageAt(m_knob_guide, OVERDRAW_POS_X_150, OVERDRAW_POS_Y_150);
+		} else {
+			g.drawImageAt(m_knob_guide, OVERDRAW_POS_X, OVERDRAW_POS_Y);
+		}
 	}
 }
 
@@ -147,11 +151,13 @@ void LFOComponent::forceValueTreeOntoComponents(ValueTree p_tree) {
 	                      m_value_tree.state.getChildWithName("lfo")[m_lfo_synctime_denominator_identifier]);
 	setSync((float)m_value_tree.state.getChildWithName("lfo")[(Identifier)("lfo" + m_lfo_number + "_sync")] > 0.5f);
 	//m_value_tree.state.getChildWithName("lfo").sendPropertyChangeMessage((Identifier)("lfo" + m_lfo_number + "_sync"));
-	m_sync.setToggleState((float)m_value_tree.state.getChildWithName("lfo")[(Identifier)("lfo" + m_lfo_number + "_sync")] > 0.5f, dontSendNotification);
+	m_sync.setToggleState(
+	    (float)m_value_tree.state.getChildWithName("lfo")[(Identifier)("lfo" + m_lfo_number + "_sync")] > 0.5f,
+	    dontSendNotification);
 }
 
 void LFOComponent::setGUIBig() {
-	m_GUI_big = true;	
+	m_GUI_big = true;
 
 	juce::Image reset_1 =
 	    ImageCache::getFromMemory(BinaryData::buttonreset_lfo_1_150_png, BinaryData::buttonreset_lfo_1_150_pngSize);
@@ -174,12 +180,17 @@ void LFOComponent::setGUIBig() {
 
 	m_reset.setImages(
 	    &reset_draw2, &reset_draw2, &reset_draw1, &reset_draw1, &reset_draw4, &reset_draw4, &reset_draw3, &reset_draw3);
-	m_reset.setBounds(OdinHelper::c150(LFO_RESET_POS_X), OdinHelper::c150(LFO_RESET_POS_Y), reset_1.getWidth(), reset_1.getHeight());
+	m_reset.setBounds(
+	    OdinHelper::c150(LFO_RESET_POS_X), OdinHelper::c150(LFO_RESET_POS_Y), reset_1.getWidth(), reset_1.getHeight());
 
-	juce::Image sync_1 = ImageCache::getFromMemory(BinaryData::buttonsync_1_150_png, BinaryData::buttonsync_1_150_pngSize);
-	juce::Image sync_2 = ImageCache::getFromMemory(BinaryData::buttonsync_2_150_png, BinaryData::buttonsync_2_150_pngSize);
-	juce::Image sync_3 = ImageCache::getFromMemory(BinaryData::buttonsync_3_150_png, BinaryData::buttonsync_3_150_pngSize);
-	juce::Image sync_4 = ImageCache::getFromMemory(BinaryData::buttonsync_4_150_png, BinaryData::buttonsync_4_150_pngSize);
+	juce::Image sync_1 =
+	    ImageCache::getFromMemory(BinaryData::buttonsync_1_150_png, BinaryData::buttonsync_1_150_pngSize);
+	juce::Image sync_2 =
+	    ImageCache::getFromMemory(BinaryData::buttonsync_2_150_png, BinaryData::buttonsync_2_150_pngSize);
+	juce::Image sync_3 =
+	    ImageCache::getFromMemory(BinaryData::buttonsync_3_150_png, BinaryData::buttonsync_3_150_pngSize);
+	juce::Image sync_4 =
+	    ImageCache::getFromMemory(BinaryData::buttonsync_4_150_png, BinaryData::buttonsync_4_150_pngSize);
 
 	juce::DrawableImage sync_draw1;
 	juce::DrawableImage sync_draw2;
@@ -202,16 +213,20 @@ void LFOComponent::setGUIBig() {
 	m_selector.setTopLeftPosition(OdinHelper::c150(SELECTOR_POS_X), OdinHelper::c150(SELECTOR_POS_Y));
 	m_sync_time.setTopLeftPosition(OdinHelper::c150(SYNC_TIME_POS_X), OdinHelper::c150(SYNC_TIME_POS_Y));
 
-	m_freq.setBounds(OdinHelper::c150(LFO_FREQ_POS_X), OdinHelper::c150(LFO_FREQ_POS_Y), OdinHelper::c150(BLACK_KNOB_SMALL_SIZE_X), OdinHelper::c150(BLACK_KNOB_SMALL_SIZE_Y));
+	m_freq.setBounds(OdinHelper::c150(LFO_FREQ_POS_X),
+	                 OdinHelper::c150(LFO_FREQ_POS_Y),
+	                 OdinHelper::c150(BLACK_KNOB_SMALL_SIZE_X),
+	                 OdinHelper::c150(BLACK_KNOB_SMALL_SIZE_Y));
 
 	m_selector.setGUIBig();
 	m_sync_time.setGUIBig();
 
+	m_knob_guide =
+	    ImageCache::getFromMemory(BinaryData::arp_knob_guide_150_png, BinaryData::arp_knob_guide_150_pngSize);
 }
 
 void LFOComponent::setGUISmall() {
 	m_GUI_big = false;
-
 
 	juce::Image reset_1 =
 	    ImageCache::getFromMemory(BinaryData::buttonreset_lfo_1_png, BinaryData::buttonreset_lfo_1_pngSize);
@@ -266,4 +281,6 @@ void LFOComponent::setGUISmall() {
 	m_sync_time.setGUISmall();
 
 	m_freq.setBounds(LFO_FREQ_POS_X, LFO_FREQ_POS_Y, BLACK_KNOB_SMALL_SIZE_X, BLACK_KNOB_SMALL_SIZE_Y);
+
+	m_knob_guide = ImageCache::getFromMemory(BinaryData::arp_knob_guide_png, BinaryData::arp_knob_guide_pngSize);
 }

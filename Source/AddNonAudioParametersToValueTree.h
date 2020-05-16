@@ -1,28 +1,41 @@
 void OdinAudioProcessor::addNonAudioParametersToTree() {
 
-	auto node = m_value_tree_draw;
+	// auto node = m_value_tree_draw;
 
-	for (int i = 0; i < WAVEDRAW_STEPS_X; ++i) {
-		float val = sin(2 * M_PI * i / (float)WAVEDRAW_STEPS_X) * 0.9;
-		node.setProperty(String("osc1_wavedraw_values_" + std::to_string(i)), val, nullptr);
-		node.setProperty(String("osc2_wavedraw_values_" + std::to_string(i)), val, nullptr);
-		node.setProperty(String("osc3_wavedraw_values_" + std::to_string(i)), val, nullptr);
-	}
-	for (int i = 0; i < CHIPDRAW_STEPS_X; ++i) {
-		float val = i < CHIPDRAW_STEPS_X / 2 ? 0.875f : -0.875f;
-		node.setProperty(String("osc1_chipdraw_values_" + std::to_string(i)), val, nullptr);
-		node.setProperty(String("osc2_chipdraw_values_" + std::to_string(i)), val, nullptr);
-		node.setProperty(String("osc3_chipdraw_values_" + std::to_string(i)), val, nullptr);
-	}
-	for (int i = 0; i < SPECDRAW_STEPS_X; ++i) {
-		float val = i == 0 ? 1 : 0;
-		node.setProperty(String("osc1_specdraw_values_" + std::to_string(i)), val, nullptr);
-		node.setProperty(String("osc2_specdraw_values_" + std::to_string(i)), val, nullptr);
-		node.setProperty(String("osc3_specdraw_values_" + std::to_string(i)), val, nullptr);
-		//		node.setProperty(String("osc3_specdraw_values_" + std::to_string(i)), 0.5f-i*0.005+cos(i*0.2f)*0.5f*(1.f-i*0.02), nullptr);
-	}
+	// for (int i = 0; i < WAVEDRAW_STEPS_X; ++i) {
+	// 	float val = sin(2 * M_PI * i / (float)WAVEDRAW_STEPS_X) * 0.9;
+	// 	node.setProperty(String("osc1_wavedraw_values_" + std::to_string(i)), val, nullptr);
+	// 	node.setProperty(String("osc2_wavedraw_values_" + std::to_string(i)), val, nullptr);
+	// 	node.setProperty(String("osc3_wavedraw_values_" + std::to_string(i)), val, nullptr);
+	// }
+	// for (int i = 0; i < CHIPDRAW_STEPS_X; ++i) {
+	// 	float val = i < CHIPDRAW_STEPS_X / 2 ? 0.875f : -0.875f;
+	// 	node.setProperty(String("osc1_chipdraw_values_" + std::to_string(i)), val, nullptr);
+	// 	node.setProperty(String("osc2_chipdraw_values_" + std::to_string(i)), val, nullptr);
+	// 	node.setProperty(String("osc3_chipdraw_values_" + std::to_string(i)), val, nullptr);
+	// }
+	// for (int i = 0; i < SPECDRAW_STEPS_X; ++i) {
+	// 	float val = i == 0 ? 1 : 0;
+	// 	node.setProperty(String("osc1_specdraw_values_" + std::to_string(i)), val, nullptr);
+	// 	node.setProperty(String("osc2_specdraw_values_" + std::to_string(i)), val, nullptr);
+	// 	node.setProperty(String("osc3_specdraw_values_" + std::to_string(i)), val, nullptr);
+	// 	//		node.setProperty(String("osc3_specdraw_values_" + std::to_string(i)), 0.5f-i*0.005+cos(i*0.2f)*0.5f*(1.f-i*0.02), nullptr);
+	// }
 
-	node = m_value_tree_fx;
+	writeDefaultWavedrawValuesToTree(1);
+	writeDefaultWavedrawValuesToTree(2);
+	writeDefaultWavedrawValuesToTree(3);
+
+	writeDefaultChipdrawValuesToTree(1);
+	writeDefaultChipdrawValuesToTree(2);
+	writeDefaultChipdrawValuesToTree(3);
+
+	writeDefaultSpecdrawValuesToTree(1);
+	writeDefaultSpecdrawValuesToTree(2);
+	writeDefaultSpecdrawValuesToTree(3);
+
+
+	auto node = m_value_tree_fx;
 	node.setProperty("delay_synctime_numerator", 2, nullptr);
 	node.setProperty("delay_synctime_denominator", 5, nullptr);
 	node.setProperty("phaser_synctime_numerator", 2, nullptr);
@@ -95,7 +108,7 @@ void OdinAudioProcessor::addNonAudioParametersToTree() {
 	node.setProperty("current_patch_directory",
 	                 File::getSpecialLocation(File::SpecialLocationType::userDocumentsDirectory).getFullPathName(),
 	                 nullptr);
-	
+
 	node.setProperty("arp_synctime_numerator", 1, nullptr);
 	node.setProperty("arp_synctime_denominator", 5, nullptr);
 	node.setProperty("arp_octaves", 2, nullptr);
@@ -103,7 +116,6 @@ void OdinAudioProcessor::addNonAudioParametersToTree() {
 	node.setProperty("arp_steps", 16, nullptr);
 	node.setProperty("arp_gate", 50, nullptr);
 	node.setProperty("arp_mod_selected", 0, nullptr);
-	
 
 	node = m_value_tree_mod;
 	node.setProperty("source_row_0", 0, nullptr);
@@ -190,4 +202,37 @@ void OdinAudioProcessor::addNonAudioParametersToTree() {
 	node.setProperty("osc1_modulator_ratio", 1, nullptr);
 	node.setProperty("osc2_modulator_ratio", 1, nullptr);
 	node.setProperty("osc3_modulator_ratio", 1, nullptr);
+}
+
+void OdinAudioProcessor::writeDefaultWavedrawValuesToTree(int p_osc) {
+
+	//p_osc = {1,2,3}
+	std::string osc_index_string = std::to_string(p_osc);
+
+	for (int i = 0; i < WAVEDRAW_STEPS_X; ++i) {
+		float val = sin(2 * M_PI * i / (float)WAVEDRAW_STEPS_X) * 0.9;
+		m_value_tree_draw.setProperty(String("osc" + osc_index_string + "_wavedraw_values_" + std::to_string(i)), val, nullptr);
+	}
+}
+
+void OdinAudioProcessor::writeDefaultChipdrawValuesToTree(int p_osc) {
+
+	//p_osc = {1,2,3}
+	std::string osc_index_string = std::to_string(p_osc);
+
+	for (int i = 0; i < CHIPDRAW_STEPS_X; ++i) {
+		float val = i < CHIPDRAW_STEPS_X / 2 ? 0.875f : -0.875f;
+		m_value_tree_draw.setProperty(String("osc" + osc_index_string + "_chipdraw_values_" + std::to_string(i)), val, nullptr);
+	}
+}
+
+void OdinAudioProcessor::writeDefaultSpecdrawValuesToTree(int p_osc) {
+
+	//p_osc = {1,2,3}
+	std::string osc_index_string = std::to_string(p_osc);
+
+	for (int i = 0; i < SPECDRAW_STEPS_X; ++i) {
+		float val = i == 0 ? 1 : 0;
+		m_value_tree_draw.setProperty(String("osc" + osc_index_string + "_specdraw_values_" + std::to_string(i)), val, nullptr);
+	}
 }

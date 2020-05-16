@@ -7,7 +7,7 @@ ArpComponent::ArpComponent(OdinAudioProcessor &p_processor, AudioProcessorValueT
     m_step_4(vts, 4), m_step_5(vts, 5), m_step_6(vts, 6), m_step_7(vts, 7), m_step_8(vts, 8), m_step_9(vts, 9),
     m_step_10(vts, 10), m_step_11(vts, 11), m_step_12(vts, 12), m_step_13(vts, 13), m_step_14(vts, 14),
     m_step_15(vts, 15), m_on("arp_on", juce::DrawableButton::ButtonStyle::ImageRaw),
-    m_one_shot("arp_one_shot", juce::DrawableButton::ButtonStyle::ImageRaw) {
+    m_one_shot("arp_one_shot", juce::DrawableButton::ButtonStyle::ImageRaw),m_mod_transpose("arp_mod_transpose", juce::DrawableButton::ButtonStyle::ImageRaw) {
 	addAndMakeVisible(m_step_0);
 	addAndMakeVisible(m_step_1);
 	addAndMakeVisible(m_step_2);
@@ -107,6 +107,15 @@ ArpComponent::ArpComponent(OdinAudioProcessor &p_processor, AudioProcessorValueT
 	m_on.setTriggeredOnMouseDown(true);
 	m_on.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
 
+	m_mod_transpose.setClickingTogglesState(true);
+	addAndMakeVisible(m_mod_transpose);
+	m_mod_transpose.setTooltip("Toggles between the knob-rows for mod 2 or transpose");
+	m_mod_transpose.setTriggeredOnMouseDown(true);
+	m_mod_transpose.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
+	m_mod_transpose.onClick = [&](){
+		setModTranspose(!m_mod_transpose.getToggleState());
+	};
+
 	m_one_shot.setClickingTogglesState(true);
 	addAndMakeVisible(m_one_shot);
 	m_one_shot.setTooltip("Makes the sequence stop after it ran through every step once");
@@ -115,6 +124,7 @@ ArpComponent::ArpComponent(OdinAudioProcessor &p_processor, AudioProcessorValueT
 
 	m_on_attach.reset(new OdinButtonAttachment(m_value_tree, "arp_on", m_on));
 	m_one_shot_attach.reset(new OdinButtonAttachment(m_value_tree, "arp_one_shot", m_one_shot));
+	m_mod_transpose_attach.reset(new OdinButtonAttachment(m_value_tree, "arp_mod_transpose", m_mod_transpose));
 }
 
 ArpComponent::~ArpComponent() {
@@ -199,6 +209,36 @@ void ArpComponent::setGUIBig() {
 	                     &one_shot_draw3,
 	                     &one_shot_draw3);
 	m_one_shot.setBounds(ONE_SHOT_POS_X_150, ONE_SHOT_POS_Y_150, one_shot_1.getWidth(), one_shot_1.getHeight());
+
+
+
+	juce::Image mod_transpose_1 =
+	    ImageCache::getFromMemory(BinaryData::button_mod_transpose_1_150_png, BinaryData::button_mod_transpose_1_150_pngSize);
+	juce::Image mod_transpose_2 =
+	    ImageCache::getFromMemory(BinaryData::button_mod_transpose_2_150_png, BinaryData::button_mod_transpose_2_150_pngSize);
+	juce::Image mod_transpose_3 =
+	    ImageCache::getFromMemory(BinaryData::button_mod_transpose_3_150_png, BinaryData::button_mod_transpose_3_150_pngSize);
+	juce::Image mod_transpose_4 =
+	    ImageCache::getFromMemory(BinaryData::button_mod_transpose_4_150_png, BinaryData::button_mod_transpose_4_150_pngSize);
+
+	juce::DrawableImage mod_transpose_draw1;
+	juce::DrawableImage mod_transpose_draw2;
+	juce::DrawableImage mod_transpose_draw3;
+	juce::DrawableImage mod_transpose_draw4;
+
+	mod_transpose_draw1.setImage(mod_transpose_1);
+	mod_transpose_draw2.setImage(mod_transpose_2);
+	mod_transpose_draw3.setImage(mod_transpose_3);
+	mod_transpose_draw4.setImage(mod_transpose_4);
+	m_mod_transpose.setImages(&mod_transpose_draw2,
+	                     &mod_transpose_draw2,
+	                     &mod_transpose_draw1,
+	                     &mod_transpose_draw1,
+	                     &mod_transpose_draw4,
+	                     &mod_transpose_draw4,
+	                     &mod_transpose_draw3,
+	                     &mod_transpose_draw3);
+	m_mod_transpose.setBounds(MOD_TRANSPOSE_POS_X_150, MOD_TRANSPOSE_POS_Y_150, mod_transpose_1.getWidth(), mod_transpose_1.getHeight());
 
 	for (int step = 0; step < NUMBER_OF_STEPS; ++step) {
 
@@ -299,7 +339,10 @@ void ArpComponent::setGUIBig() {
 		m_step_15.setGUIBig();
 	}
 
-	//m_background = ImageCache::getFromMemory(BinaryData::arp_cropped_150_png, BinaryData::arp_cropped_150_pngSize);
+	m_background = ImageCache::getFromMemory(BinaryData::arp_backdrop_150_png, BinaryData::arp_backdrop_150_pngSize);
+
+
+	//DBG("SIZE: " + std::to_string(getX()) + ", " + std::to_string(getY()) + ", " + std::to_string(getWidth()) + ", " + std::to_string(getHeight()) );
 }
 void ArpComponent::setGUISmall() {
 	m_GUI_big = false;
@@ -470,6 +513,10 @@ void ArpComponent::setGUISmall() {
 		                    STEP_COMPONENT_HEIGHT_100);
 		m_step_15.setGUISmall();
 	}
+	//DBG("SIZE: " + std::to_string(getX()) + ", " + std::to_string(getY()) + ", " + std::to_string(getWidth()) + ", " + std::to_string(getHeight()) );
+
+	m_background = ImageCache::getFromMemory(BinaryData::arp_backdrop_png, BinaryData::arp_backdrop_pngSize);
+
 }
 
 void ArpComponent::timerCallback() {
@@ -550,6 +597,8 @@ void ArpComponent::forceValueTreeOntoComponents(ValueTree p_tree) {
 	m_gate.setValue((int)m_value_tree.state.getChildWithName("misc")["arp_gate"]);
 	m_sync_time.setValues((int)m_value_tree.state.getChildWithName("misc")["arp_synctime_numerator"],
 	                      (int)m_value_tree.state.getChildWithName("misc")["arp_synctime_denominator"]);
+
+	setModTranspose(!m_mod_transpose.getToggleState());
 }
 
 
@@ -560,4 +609,24 @@ void ArpComponent::setVisibleAndStartTimer(bool p_set_visible){
 		stopTimer();
 	}
 	setVisible(p_set_visible);
+}
+
+
+void ArpComponent::setModTranspose(bool p_is_mod){
+	m_step_0.setModTranspose(p_is_mod);
+	m_step_1.setModTranspose(p_is_mod);
+	m_step_2.setModTranspose(p_is_mod);
+	m_step_3.setModTranspose(p_is_mod);
+	m_step_4.setModTranspose(p_is_mod);
+	m_step_5.setModTranspose(p_is_mod);
+	m_step_6.setModTranspose(p_is_mod);
+	m_step_7.setModTranspose(p_is_mod);
+	m_step_8.setModTranspose(p_is_mod);
+	m_step_9.setModTranspose(p_is_mod);
+	m_step_10.setModTranspose(p_is_mod);
+	m_step_11.setModTranspose(p_is_mod);
+	m_step_12.setModTranspose(p_is_mod);
+	m_step_13.setModTranspose(p_is_mod);
+	m_step_14.setModTranspose(p_is_mod);
+	m_step_15.setModTranspose(p_is_mod);
 }

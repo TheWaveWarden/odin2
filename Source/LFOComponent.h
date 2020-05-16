@@ -10,23 +10,27 @@
 
 
 #define LFO_FREQ_POS_X 74
-#define LFO_FREQ_POS_Y 37
+#define LFO_FREQ_POS_Y 33
 
 #define LFO_RESET_POS_X 63
-#define LFO_RESET_POS_Y 6
+#define LFO_RESET_POS_Y 7
 #define SYNC_POS_X 2
-#define SYNC_POS_Y 40
+#define SYNC_POS_Y 36
 
 #define SELECTOR_POS_X 0
 #define SELECTOR_POS_Y 6
 
-#define OVERDRAW_POS_X 40
-#define OVERDRAW_POS_Y 20
+#define OVERDRAW_POS_X 74
+#define OVERDRAW_POS_Y 31
+
+#define OVERDRAW_POS_X_150 110
+#define OVERDRAW_POS_Y_150 46
+
 #define OVERDRAW_SIZE_X 70
 #define OVERDRAW_SIZE_Y 40
 
 #define SYNC_TIME_POS_X 38
-#define SYNC_TIME_POS_Y 40
+#define SYNC_TIME_POS_Y 36
 
 #define LFO_FREQ_MIN 0.05
 #define LFO_FREQ_MAX 100
@@ -65,6 +69,8 @@ public:
 private:
 
   bool m_GUI_big = false;
+
+  Image m_knob_guide;
 
   void toggleSync(){
     setSync(!m_sync_active);

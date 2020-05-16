@@ -813,11 +813,6 @@ AudioProcessorEditor *OdinAudioProcessor::createEditor() {
 void OdinAudioProcessor::getStateInformation(MemoryBlock &destData) {
 	// this is called when DAW saves a file
 
-	// disable for standalone plugins
-	//if (wrapperType == wrapperType_Standalone) {
-	//	return;
-	//}
-
 	auto state = m_value_tree.copyState();
 	std::unique_ptr<XmlElement> xml(state.createXml());
 	copyXmlToBinary(*xml, destData);

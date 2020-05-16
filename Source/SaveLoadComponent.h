@@ -76,6 +76,10 @@ private:
 	void incrementPatch();
 	void decrementPatch();
 
+	bool usesWavedraw(int p_osc);
+	bool usesChipdraw(int p_osc);
+	bool usesSpecdraw(int p_osc);
+
 	OdinAudioProcessor &m_audio_processor;
 
 	std::unique_ptr<FileChooser> m_filechooser;
