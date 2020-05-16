@@ -415,6 +415,35 @@ void ArpComponent::setGUISmall() {
 	                     &one_shot_draw3);
 	m_one_shot.setBounds(ONE_SHOT_POS_X_100, ONE_SHOT_POS_Y_100, one_shot_1.getWidth(), one_shot_1.getHeight());
 
+	juce::Image mod_transpose_1 =
+	    ImageCache::getFromMemory(BinaryData::button_mod_transpose_1_png, BinaryData::button_mod_transpose_1_pngSize);
+	juce::Image mod_transpose_2 =
+	    ImageCache::getFromMemory(BinaryData::button_mod_transpose_2_png, BinaryData::button_mod_transpose_2_pngSize);
+	juce::Image mod_transpose_3 =
+	    ImageCache::getFromMemory(BinaryData::button_mod_transpose_3_png, BinaryData::button_mod_transpose_3_pngSize);
+	juce::Image mod_transpose_4 =
+	    ImageCache::getFromMemory(BinaryData::button_mod_transpose_4_png, BinaryData::button_mod_transpose_4_pngSize);
+
+	juce::DrawableImage mod_transpose_draw1;
+	juce::DrawableImage mod_transpose_draw2;
+	juce::DrawableImage mod_transpose_draw3;
+	juce::DrawableImage mod_transpose_draw4;
+
+	mod_transpose_draw1.setImage(mod_transpose_1);
+	mod_transpose_draw2.setImage(mod_transpose_2);
+	mod_transpose_draw3.setImage(mod_transpose_3);
+	mod_transpose_draw4.setImage(mod_transpose_4);
+	m_mod_transpose.setImages(&mod_transpose_draw2,
+	                     &mod_transpose_draw2,
+	                     &mod_transpose_draw1,
+	                     &mod_transpose_draw1,
+	                     &mod_transpose_draw4,
+	                     &mod_transpose_draw4,
+	                     &mod_transpose_draw3,
+	                     &mod_transpose_draw3);
+	m_mod_transpose.setBounds(MOD_TRANSPOSE_POS_X_100, MOD_TRANSPOSE_POS_Y_100, mod_transpose_1.getWidth(), mod_transpose_1.getHeight());
+
+
 	for (int step = 0; step < NUMBER_OF_STEPS; ++step) {
 
 		m_step_0.setBounds(STEP_COMPONENT_POS_X_100 + 0 * STEP_COMPONENT_WIDTH_100,
@@ -515,8 +544,7 @@ void ArpComponent::setGUISmall() {
 	}
 	//DBG("SIZE: " + std::to_string(getX()) + ", " + std::to_string(getY()) + ", " + std::to_string(getWidth()) + ", " + std::to_string(getHeight()) );
 
-	m_background = ImageCache::getFromMemory(BinaryData::arp_backdrop_png, BinaryData::arp_backdrop_pngSize);
-
+	//m_background = ImageCache::getFromMemory(BinaryData::arp_backdrop_png, BinaryData::arp_backdrop_pngSize);
 }
 
 void ArpComponent::timerCallback() {

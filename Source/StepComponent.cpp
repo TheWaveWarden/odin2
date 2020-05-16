@@ -9,14 +9,14 @@ StepComponent::StepComponent(AudioProcessorValueTreeState &vts, int p_step_index
 	addAndMakeVisible(m_mod_1);
 	m_mod_1.setSliderStyle(Slider::RotaryVerticalDrag);
 	m_mod_1.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-	m_mod_1.setKnobTooltip("This value can be used as a modulation source in the modmatrix");
+	m_mod_1.setKnobTooltip("This value can be used as modulation source \"Arp Mod 1\" in the modmatrix");
 	m_mod_1_attach.reset(
 	    new OdinKnobAttachment(m_value_tree, "step_" + std::to_string(m_step_index) + "_mod_1", m_mod_1));
 
 	addAndMakeVisible(m_mod_2);
 	m_mod_2.setSliderStyle(Slider::RotaryVerticalDrag);
 	m_mod_2.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-	m_mod_2.setKnobTooltip("This value can be used as a modulation source in the modmatrix.\nThe entire row of knobs "
+	m_mod_2.setKnobTooltip("This value can be used as modulation source \"Arp Mod 2\" in the modmatrix.\nThe entire row of knobs "
 	                       "can be replaced with \"transpose\" by the button to the left.");
 	m_mod_2_attach.reset(
 	    new OdinKnobAttachment(m_value_tree, "step_" + std::to_string(m_step_index) + "_mod_2", m_mod_2));
@@ -31,7 +31,7 @@ StepComponent::StepComponent(AudioProcessorValueTreeState &vts, int p_step_index
 
 	addAndMakeVisible(m_step_on);
 	m_step_on.setClickingTogglesState(true);
-	m_step_on.setTooltip("TODO");
+	m_step_on.setTooltip("Turns this step in the sequence on or off");
 	m_step_on.setTriggeredOnMouseDown(true);
 	m_step_on.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
 	m_step_on_attach.reset(
