@@ -339,7 +339,7 @@ void ArpComponent::setGUIBig() {
 		m_step_15.setGUIBig();
 	}
 
-	m_background = ImageCache::getFromMemory(BinaryData::arp_backdrop_150_png, BinaryData::arp_backdrop_150_pngSize);
+	//m_background = ImageCache::getFromMemory(BinaryData::arp_backdrop_150_png, BinaryData::arp_backdrop_150_pngSize);
 
 
 	//DBG("SIZE: " + std::to_string(getX()) + ", " + std::to_string(getY()) + ", " + std::to_string(getWidth()) + ", " + std::to_string(getHeight()) );

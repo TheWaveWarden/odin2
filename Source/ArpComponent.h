@@ -94,7 +94,7 @@ private:
     void setModTranspose(bool p_is_mod);
     
     bool m_GUI_big = false;
-    Image m_background;
+    //Image m_background;
 
 
     OdinAudioProcessor &m_processor;
