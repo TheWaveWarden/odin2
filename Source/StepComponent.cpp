@@ -16,16 +16,17 @@ StepComponent::StepComponent(AudioProcessorValueTreeState &vts, int p_step_index
 	addAndMakeVisible(m_mod_2);
 	m_mod_2.setSliderStyle(Slider::RotaryVerticalDrag);
 	m_mod_2.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-	m_mod_2.setKnobTooltip("This value can be used as modulation source \"Arp Mod 2\" in the modmatrix.\nThe entire row of knobs "
-	                       "can be replaced with \"transpose\" by the button to the left.");
+	m_mod_2.setKnobTooltip(
+	    "This value can be used as modulation source \"Arp Mod 2\" in the modmatrix.\nThe entire row of knobs "
+	    "can be replaced with \"transpose\" by the button to the left.");
 	m_mod_2_attach.reset(
 	    new OdinKnobAttachment(m_value_tree, "step_" + std::to_string(m_step_index) + "_mod_2", m_mod_2));
 
 	addChildComponent(m_transpose);
 	m_transpose.setSliderStyle(Slider::RotaryVerticalDrag);
 	m_transpose.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-	m_transpose.setKnobTooltip("Transposes this step in the arp in semitones.\nThe entire row of knobs "
-	                       "can be replaced with \"mod 2\" by the button to the left.");
+	m_transpose.setKnobTooltip(
+	    "Transposes this step in the arp in semitones.\nSet \"octaves\" to one to use the arp as a step sequencer");
 	m_transpose_attach.reset(
 	    new OdinKnobAttachment(m_value_tree, "step_" + std::to_string(m_step_index) + "_transpose", m_transpose));
 

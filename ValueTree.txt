@@ -4,8 +4,8 @@
   <PARAM id="amp_gain" value="0.0"/>
   <PARAM id="amp_pan" value="0.0"/>
   <PARAM id="amp_velocity" value="0.0"/>
-  <PARAM id="arp_mod_transpose" value="1.0"/>
-  <PARAM id="arp_on" value="1.0"/>
+  <PARAM id="arp_mod_transpose" value="0.0"/>
+  <PARAM id="arp_on" value="0.0"/>
   <PARAM id="arp_one_shot" value="0.0"/>
   <PARAM id="chorus_amount" value="0.4000000059604645"/>
   <PARAM id="chorus_drywet" value="1.0"/>
@@ -185,9 +185,9 @@
   <PARAM id="phaser_reset" value="0.0"/>
   <PARAM id="pitchbend" value="0.0"/>
   <PARAM id="step_0_mod_1" value="0.0"/>
-  <PARAM id="step_0_mod_2" value="0.5099999904632568"/>
+  <PARAM id="step_0_mod_2" value="0.0"/>
   <PARAM id="step_0_on" value="1.0"/>
-  <PARAM id="step_0_transpose" value="5.0"/>
+  <PARAM id="step_0_transpose" value="0.0"/>
   <PARAM id="step_10_mod_1" value="0.0"/>
   <PARAM id="step_10_mod_2" value="0.0"/>
   <PARAM id="step_10_on" value="1.0"/>
@@ -215,15 +215,15 @@
   <PARAM id="step_1_mod_1" value="0.0"/>
   <PARAM id="step_1_mod_2" value="0.0"/>
   <PARAM id="step_1_on" value="1.0"/>
-  <PARAM id="step_1_transpose" value="2.0"/>
+  <PARAM id="step_1_transpose" value="0.0"/>
   <PARAM id="step_2_mod_1" value="0.0"/>
   <PARAM id="step_2_mod_2" value="0.0"/>
   <PARAM id="step_2_on" value="1.0"/>
-  <PARAM id="step_2_transpose" value="3.0"/>
+  <PARAM id="step_2_transpose" value="0.0"/>
   <PARAM id="step_3_mod_1" value="0.0"/>
   <PARAM id="step_3_mod_2" value="0.0"/>
   <PARAM id="step_3_on" value="1.0"/>
-  <PARAM id="step_3_transpose" value="2.0"/>
+  <PARAM id="step_3_transpose" value="0.0"/>
   <PARAM id="step_4_mod_1" value="0.0"/>
   <PARAM id="step_4_mod_2" value="0.0"/>
   <PARAM id="step_4_on" value="1.0"/>
@@ -658,8 +658,8 @@
         fil1_vowel_left="0" fil2_vowel_left="0" fil3_vowel_left="0" fil1_vowel_right="2"
         fil2_vowel_right="2" fil3_vowel_right="2" unison_voices="1" pitchbend_amount="12"
         current_patch_filename="Init Patch" current_patch_directory="/home/frederik_siepe"
-        arp_synctime_numerator="1" arp_synctime_denominator="5" arp_octaves="1"
-        arp_direction="10" arp_steps="4" arp_gate="50" arp_mod_selected="1"/>
+        arp_synctime_numerator="1" arp_synctime_denominator="5" arp_octaves="2"
+        arp_direction="10" arp_steps="16" arp_gate="50" arp_mod_selected="0"/>
   <mod source_row_0="0" source_row_1="0" source_row_2="0" source_row_3="0"
        source_row_4="0" source_row_5="0" source_row_6="0" source_row_7="0"
        source_row_8="0" dest_1_row_0="0" dest_1_row_1="0" dest_1_row_2="0"
@@ -678,15 +678,15 @@
        amount_0_row_8="0" amount_1_row_8="0" amount_2_row_8="0"/>
   <osc osc1_analog_wave="0" osc2_analog_wave="0" osc3_analog_wave="0"
        osc1_type="2" osc2_type="1" osc3_type="1" osc1_wavetable="1.0"
-       osc2_wavetable="1.0" osc3_wavetable="1.0" osc1_vec_a="101.0"
-       osc2_vec_a="101.0" osc3_vec_a="101.0" osc1_vec_b="102.0" osc2_vec_b="102.0"
-       osc3_vec_b="102.0" osc1_vec_c="103.0" osc2_vec_c="103.0" osc3_vec_c="103.0"
-       osc1_vec_d="104.0" osc2_vec_d="104.0" osc3_vec_d="104.0" osc1_chipwave="1.0"
-       osc2_chipwave="1.0" osc3_chipwave="1.0" osc1_modulator_wave="1.0"
-       osc2_modulator_wave="1.0" osc3_modulator_wave="1.0" osc1_carrier_wave="1.0"
-       osc2_carrier_wave="1.0" osc3_carrier_wave="1.0" osc1_mod_source="1.0"
-       osc2_mod_source="1.0" osc3_mod_source="1.0" osc1_carrier_ratio="1"
-       osc2_carrier_ratio="1" osc3_carrier_ratio="1" osc1_modulator_ratio="1"
-       osc2_modulator_ratio="1" osc3_modulator_ratio="1"/>
+       osc2_wavetable="1.0" osc3_wavetable="1.0" osc1_vec_a="101" osc2_vec_a="101"
+       osc3_vec_a="101" osc1_vec_b="102" osc2_vec_b="102" osc3_vec_b="102"
+       osc1_vec_c="103" osc2_vec_c="103" osc3_vec_c="103" osc1_vec_d="104"
+       osc2_vec_d="104" osc3_vec_d="104" osc1_chipwave="1.0" osc2_chipwave="1.0"
+       osc3_chipwave="1.0" osc1_modulator_wave="1.0" osc2_modulator_wave="1.0"
+       osc3_modulator_wave="1.0" osc1_carrier_wave="1.0" osc2_carrier_wave="1.0"
+       osc3_carrier_wave="1.0" osc1_mod_source="1.0" osc2_mod_source="1.0"
+       osc3_mod_source="1.0" osc1_carrier_ratio="1" osc2_carrier_ratio="1"
+       osc3_carrier_ratio="1" osc1_modulator_ratio="1" osc2_modulator_ratio="1"
+       osc3_modulator_ratio="1"/>
   <midi_learn/>
 </Odin>
