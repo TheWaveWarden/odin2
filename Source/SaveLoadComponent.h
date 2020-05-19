@@ -1,13 +1,3 @@
-/*
-  ==============================================================================
-
-    SaveLoadComponent.h
-    Created: 27 Feb 2019 11:01:28am
-    Author:  frot
-
-  ==============================================================================
-*/
-
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
@@ -28,13 +18,6 @@
 #define RESET_TOP_POS_Y LOAD_POS_Y
 #define RANDOM_POS_X 218
 #define RANDOM_POS_Y LOAD_POS_Y
-
-class FileElementComparatorAlphabetical {
-public:
-	static int compareElements(const File &first, const File &second) {
-		return first.getFileName().compareIgnoreCase(second.getFileName());
-	}
-};
 
 class SaveLoadComponent : public Component {
 public:

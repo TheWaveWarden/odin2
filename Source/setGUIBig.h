@@ -503,6 +503,7 @@ void OdinAudioProcessorEditor::setGUIBig(){
 
 	m_mod_matrix.setBounds(MATRIX_POS_X_150, MATRIX_POS_Y_150, OdinHelper::c150(MATRIX_SIZE_X), OdinHelper::c150(MATRIX_SIZE_Y));
 	m_arp.setBounds(OdinHelper::c150(ARPEGGIATOR_POS_X), OdinHelper::c150(ARPEGGIATOR_POS_Y), OdinHelper::c150(MATRIX_SIZE_X), OdinHelper::c150(MATRIX_SIZE_Y) + 5);
+	m_patch_browser.setBounds(BROWSER_POS_X_150, BROWSER_POS_Y_150, BROWSER_SIZE_X_150, BROWSER_SIZE_Y_150);
 	m_save_load.setBounds(OdinHelper::c150(SAVE_LOAD_POS_X), OdinHelper::c150(SAVE_LOAD_POS_Y), OdinHelper::c150(SAVE_LOAD_SIZE_X), OdinHelper::c150(SAVE_LOAD_SIZE_Y));
 	m_xy_section.setBounds(OdinHelper::c150(XY_COMPONENT_POS_X), OdinHelper::c150(XY_COMPONENT_POS_Y), OdinHelper::c150(XY_COMPONENT_SIZE_X), OdinHelper::c150(XY_COMPONENT_SIZE_Y));
 

@@ -308,7 +308,7 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts) :
 	m_dest_2[N_ROWS - 1].setImage(glas_mid_down);
 	m_amount_3[N_ROWS - 1].setImage(glas_small_down);
 	m_scale[N_ROWS - 1].setImage(glas_right_down);
-	juce::Colour modmatrix_grey_color = juce::Colour(30,30,30);
+	juce::Colour modmatrix_grey_color = MODMATRIX_COLOR;
 	juce::Colour modmatrix_color = STANDARD_DISPLAY_COLOR;
 
 	juce::Colour modmatrix_color_bar(46, 136, 174);

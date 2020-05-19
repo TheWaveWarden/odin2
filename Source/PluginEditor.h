@@ -16,6 +16,7 @@
 #include "LeftRightButton.h"
 #include "ModMatrixComponent.h"
 #include "ArpComponent.h"
+#include "PatchBrowser.h"
 #include "NumberSelector.h"
 #include "NumberSelectorWithText.h"
 #include "OdinButton.h"
@@ -113,6 +114,10 @@
 #define ARPEGGIATOR_POS_X MATRIX_POS_X_100
 #define ARPEGGIATOR_POS_Y 470
 
+#define BROWSER_POS_X_150 411
+#define BROWSER_POS_Y_150 705
+#define BROWSER_SIZE_X_150 750
+#define BROWSER_SIZE_Y_150 213
 
 #define SAVE_LOAD_POS_X 23
 #define SAVE_LOAD_POS_Y 2
@@ -304,6 +309,7 @@ private:
 
   ModMatrixComponent m_mod_matrix;
   ArpComponent m_arp;
+  PatchBrowser m_patch_browser;
 
   SaveLoadComponent m_save_load;
 

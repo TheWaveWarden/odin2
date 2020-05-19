@@ -37,6 +37,8 @@
 #define MENU_HIGHLIGHT_FONT_COLOR Colour(62, 103, 117)
 #define MENU_HIGHLIGHT_BACKGROUND_COLOR Colour(50, 50, 50)
 #define STANDARD_DISPLAY_COLOR Colour(10, 40, 50)
+#define MODMATRIX_COLOR Colour(30, 30, 30)
+#define ODIN_BLUE Colour(0xff3c9bc7)
 //#define STANDARD_DISPLAY_COLOR Colour(21, 45, 56)
 //#define STANDARD_DISPLAY_COLOR Colour(30, 30, 30)
 #define PHASER_DISPLAY_COLOR Colour(11, 41, 19)
@@ -120,7 +122,7 @@
 	if (m_value_tree.getParameter(name)) {                                                                             \
 		SETAUDIOFULLRANGE(name, value)                                                                                 \
 	} else {                                                                                                           \
-		DBG("Tried to access unknown audio-param:");                                                                      \
+		DBG("Tried to access unknown audio-param:");                                                                   \
 		DBG(name);                                                                                                     \
 	}
 
@@ -169,11 +171,9 @@ public:
 		g.drawRect(0, 0, width, height);
 	}
 
-	void setMenuWidth(int p_width){
+	void setMenuWidth(int p_width) {
 		m_width = p_width;
 	}
-
-
 
 	void getIdealPopupMenuItemSize(
 	    const String &text, bool isSeparator, int standardMenuItemHeight, int &idealWidth, int &idealHeight) {
@@ -209,22 +209,23 @@ public:
 	                       const Colour *textColour) override {
 
 		Font font(17.f);
-		if(m_GUI_big){
+		if (m_GUI_big) {
 			font = Font(21.f);
 		}
-		
+
 		if (!isHighlighted) {
 			drawPopupMenuItemOdin(g,
-			                                  area,
-			                                  isSeparator,
-			                                  isActive,
-			                                  isHighlighted,
-			                                  isTicked,
-			                                  hasSubMenu,
-			                                  text,
-			                                  shortcutKeyText,
-			                                  icon,
-			                                  &m_text_color, font);
+			                      area,
+			                      isSeparator,
+			                      isActive,
+			                      isHighlighted,
+			                      isTicked,
+			                      hasSubMenu,
+			                      text,
+			                      shortcutKeyText,
+			                      icon,
+			                      &m_text_color,
+			                      font);
 		} else {
 			if (!isSeparator) {
 				g.setColour(MENU_HIGHLIGHT_BACKGROUND_COLOR);
@@ -233,32 +234,33 @@ public:
 				g.drawRect(area);
 			}
 			drawPopupMenuItemOdin(g,
-			                                  area,
-			                                  isSeparator,
-			                                  isActive,
-			                                  false,
-			                                  isTicked,
-			                                  hasSubMenu,
-			                                  text,
-			                                  shortcutKeyText,
-			                                  icon,
-			                                  &m_highlight_text_color, font);
+			                      area,
+			                      isSeparator,
+			                      isActive,
+			                      false,
+			                      isTicked,
+			                      hasSubMenu,
+			                      text,
+			                      shortcutKeyText,
+			                      icon,
+			                      &m_highlight_text_color,
+			                      font);
 		}
 	}
 
 	//this function is copied from JUCE and modified
 	void drawPopupMenuItemOdin(Graphics &g,
-	                                           const Rectangle<int> &area,
-	                                           const bool isSeparator,
-	                                           const bool isActive,
-	                                           const bool isHighlighted,
-	                                           const bool isTicked,
-	                                           const bool hasSubMenu,
-	                                           const String &text,
-	                                           const String &shortcutKeyText,
-	                                           const Drawable *icon,
-	                                           const Colour *const textColourToUse,
-											   Font p_font) {
+	                           const Rectangle<int> &area,
+	                           const bool isSeparator,
+	                           const bool isActive,
+	                           const bool isHighlighted,
+	                           const bool isTicked,
+	                           const bool hasSubMenu,
+	                           const String &text,
+	                           const String &shortcutKeyText,
+	                           const Drawable *icon,
+	                           const Colour *const textColourToUse,
+	                           Font p_font) {
 		if (isSeparator) {
 			auto r = area.reduced(5, 0);
 			r.removeFromTop(roundToInt((r.getHeight() * 0.5f) - 0.5f));
@@ -333,14 +335,14 @@ public:
 
 	void setGUIBig() {
 		m_GUI_big = true;
-		m_width = 240;
+		m_width   = 240;
 	}
 	void setGUISmall() {
 		m_GUI_big = false;
-		m_width = 170;
+		m_width   = 170;
 	}
 
-	float m_width = 150;
+	float m_width  = 150;
 	bool m_GUI_big = false;
 };
 
@@ -462,3 +464,10 @@ public:
 	DBG("======================================================================"                                       \
 	    "\n");                                                                                                         \
 	}
+
+class FileElementComparatorAlphabetical {
+public:
+	static int compareElements(const File &first, const File &second) {
+		return first.getFileName().compareIgnoreCase(second.getFileName());
+	}
+};

@@ -1293,6 +1293,16 @@
             file="Graphics_150/applied/WW_logo_xy_150.png"/>
     </GROUP>
     <GROUP id="{7AF384ED-9FD6-6492-4B8C-5777BB9A2698}" name="Source">
+      <FILE id="se9iKw" name="BrowserEntry.cpp" compile="1" resource="0"
+            file="Source/BrowserEntry.cpp"/>
+      <FILE id="OikSS5" name="BrowserEntry.h" compile="0" resource="0" file="Source/BrowserEntry.h"/>
+      <FILE id="PbFqKu" name="PatchBrowserSelector.cpp" compile="1" resource="0"
+            file="Source/PatchBrowserSelector.cpp"/>
+      <FILE id="eL3QwF" name="PatchBrowserSelector.h" compile="0" resource="0"
+            file="Source/PatchBrowserSelector.h"/>
+      <FILE id="rsoZtm" name="PatchBrowser.cpp" compile="1" resource="0"
+            file="Source/PatchBrowser.cpp"/>
+      <FILE id="T2T7Fq" name="PatchBrowser.h" compile="0" resource="0" file="Source/PatchBrowser.h"/>
       <FILE id="SXPdO5" name="OdinArpeggiator.cpp" compile="1" resource="0"
             file="Source/OdinArpeggiator.cpp"/>
       <FILE id="QuKD1K" name="SetModulationPointers.h" compile="0" resource="0"

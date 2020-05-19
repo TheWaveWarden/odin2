@@ -739,7 +739,9 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	m_delay.setImage(delay_image);
 	addAndMakeVisible(m_delay);
 
-	addAndMakeVisible(m_mod_matrix);
+
+	//addAndMakeVisible(m_mod_matrix);
+	addAndMakeVisible(m_patch_browser);
 	addChildComponent(m_arp);
 	addAndMakeVisible(m_save_load);
 	addAndMakeVisible(m_xy_section);
@@ -1547,6 +1549,7 @@ void OdinAudioProcessorEditor::setGUISizeBig(bool p_big, bool p_write_to_config)
 		m_flanger.setGUIBig();
 		m_fx_buttons_section.setGUIBig();
 		m_mod_matrix.setGUIBig();
+		m_patch_browser.setGUIBig();
 		m_arp.setGUIBig();
 		m_save_load.setGUIBig();
 		m_menu_feels.setGUIBig();
@@ -1577,6 +1580,7 @@ void OdinAudioProcessorEditor::setGUISizeBig(bool p_big, bool p_write_to_config)
 		m_flanger.setGUISmall();
 		m_fx_buttons_section.setGUISmall();
 		m_mod_matrix.setGUISmall();
+		m_patch_browser.setGUISmall();
 		m_arp.setGUISmall();
 		m_save_load.setGUISmall();
 		m_menu_feels.setGUISmall();
