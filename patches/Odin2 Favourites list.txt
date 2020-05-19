@@ -1,0 +1,68 @@
+Favourites:
+
+4T_Orbitalesque_stabs.odin      
+Alien Chaos_psylion.odin        
+Alien Chaos2_psylion.odin       
+Bassline.odin                   
+Dreams of Utopia_psylion.odin   
+Midi rain.odin                  
+VangBrass.odin                  
+Zambezi River_psylion.odin      
+
+Good:
+4T_Could_be_chinese.odin           
+4T_Gritty_lead_(high_notes).odin   
+4T_High_tea_lead.odin              
+4T_Plated_steel.odin               
+4T_Sweep_pad.odin                  
+Arp_Chopper [RM].odin              
+Bass A.odin                        
+Blip velocity.odin                 
+Boards bass.odin                   
+Boards1.odin                       
+Boards2.odin                       
+Brass cute.odin                    
+Brass pad.odin                     
+Creep ATMO_psylion.odin            
+Deep triads (velo).odin            
+Dubby chords.odin                  
+Eerie pad.odin                     
+Forever young.odin                 
+Forgive me GOD.odin                
+Funky-D6.odin                      
+Funny.odin                         
+Funny2.odin                        
+Galata Dream.odin                  
+Gurgles dirty.odin                 
+Gurgles.odin                       
+Metallic (vel).odin                
+Modular mess2.odin                 
+New romantic.odin                  
+Organ church.odin                  
+Organ sparkle.odin                 
+Organ Tremolo.odin                 
+Pad_Darken Nature [RM].odin        
+Pad_Haunt [RM].odin                
+Pad_Motion [RM].odin               
+Pad_Planet Power [RM].odin         
+Pad_Swirl [RM].odin                
+Pad_Waver [RM].odin                
+Phasing-Clavi.odin                 
+Pipe FX.odin                       
+Pretty.odin                        
+Pretty2.odin                       
+Pretty3.odin                       
+Rich wow pad.odin                  
+Sound of Paradise_psylion.odin     
+Sound of Paradise2_psylion.odin    
+Sounds like a melody.odin          
+Strange tinkle.odin                
+Strings.odin                       
+Swell pad.odin                     
+Synth ballad.odin                  
+Synth brass.odin                   
+Synthwave pad.odin                 
+Taiko-Drums.odin                   
+The sound of Agony_psylion.odin    
+Vibraphone2.odin                   
+Voices.odin                        

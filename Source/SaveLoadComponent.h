@@ -32,7 +32,7 @@
 class FileElementComparatorAlphabetical {
 public:
 	static int compareElements(const File &first, const File &second) {
-		return first.getFileName().compare(second.getFileName());
+		return first.getFileName().compareIgnoreCase(second.getFileName());
 	}
 };
 

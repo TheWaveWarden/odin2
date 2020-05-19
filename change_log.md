@@ -1,3 +1,5 @@
+# 2.1.1 beta
+- made patch-list in dropdown case-insensistive
 # 2.1.0 beta
 - implemented Arpeggiator
 - new modulation sources: Arp Mod 1 & 2
