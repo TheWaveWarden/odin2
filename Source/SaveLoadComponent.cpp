@@ -584,7 +584,7 @@ void SaveLoadComponent::loadPatchFromOpenedFileStream(juce::FileInputStream &p_f
 	    "patch_migration_version", ODIN_PATCH_MIGRATION_VERSION, nullptr);
 
 	//this forces values onto the GUI (patch label as well)
-	forceValueTreeLambda();
+	//forceValueTreeLambda();
 }
 
 void SaveLoadComponent::incrementPatch() {

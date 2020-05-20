@@ -105,6 +105,8 @@ void PatchBrowser::loadPatchFromOpenedFileStream(juce::FileInputStream &p_file_s
 	//reset stream position
 	p_file_stream.setPosition(0);
 	m_audio_processor.readPatch(ValueTree::readFromStream(p_file_stream).createCopy());
+
+	//note: 99% percent of patch-loading time is spent here:
 	forceValueTreeLambda();
 
 	//set the correct Version number again
@@ -114,7 +116,9 @@ void PatchBrowser::loadPatchFromOpenedFileStream(juce::FileInputStream &p_file_s
 	    "patch_migration_version", ODIN_PATCH_MIGRATION_VERSION, nullptr);
 
 	//this forces values onto the GUI (patch label as well)
-	forceValueTreeLambda();
+	//	forceValueTreeLambda();
+
+
 }
 
 bool PatchBrowser::checkForBiggerVersion(FileInputStream &p_file_stream, std::string &p_version_string) {
