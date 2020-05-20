@@ -77,6 +77,11 @@
 #define FILTER_TYPE_FORMANT 35
 #define FILTER_TYPE_RINGMOD 40
 
+#define BROWSER_POS_X_150 418
+#define BROWSER_POS_Y_150 705
+#define BROWSER_SIZE_X_150 738
+#define BROWSER_SIZE_Y_150 213
+
 // midpoint for filters:
 // https://www.wolframalpha.com/input/?i=80*e%5E%28ln%2818000%2F80%29*0.5%29
 // skew for filters:

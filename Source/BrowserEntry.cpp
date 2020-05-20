@@ -71,7 +71,7 @@ void BrowserEntry::mouseDown(const MouseEvent &e) {
 		onLeftClick();
 		m_is_active = true;
 	} else if (e.mods.isRightButtonDown()) {
-		DBG("RIGHTCLICK");
+		onRightClick();
 	}
 	Component::mouseDown(e);
 	repaint();

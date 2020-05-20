@@ -1,12 +1,3 @@
-/*
-  ==============================================================================
-
-    GlasDisplay.h
-    Created: 27 Feb 2019 11:56:53am
-    Author:  frot
-
-  ==============================================================================
-*/
 
 #pragma once
 
@@ -14,9 +5,6 @@
 #include "GlobalIncludes.h"
 #define INLAY_DEF 1
 
-//==============================================================================
-/*
- */
 class GlasDisplay : public SettableTooltipClient, public Component {
 public:
 	GlasDisplay();

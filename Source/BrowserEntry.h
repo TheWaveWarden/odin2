@@ -26,6 +26,7 @@ public:
 	String getText();
 
 	std::function<void()> onLeftClick;
+	std::function<void()> onRightClick;
 
 private:
 

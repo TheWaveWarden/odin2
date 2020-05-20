@@ -2,9 +2,12 @@
 #include <JuceHeader.h>
 
 PatchBrowserSelector::PatchBrowserSelector(File::TypesOfFileToFind p_file_or_dir) : m_file_or_dir(p_file_or_dir) {
+	m_menu.addItem(10, "Delete");
+	m_menu.setLookAndFeel(&m_menu_feels);
 }
 
 PatchBrowserSelector::~PatchBrowserSelector() {
+	m_menu.setLookAndFeel(nullptr);
 }
 
 void PatchBrowserSelector::paint(Graphics &g) {
@@ -18,6 +21,8 @@ void PatchBrowserSelector::resized() {
 
 void PatchBrowserSelector::setGUIBig() {
 	m_GUI_big = true;
+	
+	m_menu_feels.setGUIBig();
 
 	resetScrollPosition();
 	positionEntries();
@@ -25,6 +30,8 @@ void PatchBrowserSelector::setGUIBig() {
 
 void PatchBrowserSelector::setGUISmall() {
 	m_GUI_big = false;
+
+	m_menu_feels.setGUISmall();
 
 	resetScrollPosition();
 	positionEntries();
@@ -65,6 +72,9 @@ void PatchBrowserSelector::generateContent() {
 					//DBG(return_string + " was clicked!");
 					passValueToPatchBrowser(return_string);
 					unhighlightAllEntries();
+				};
+				m_entries[file_index]->onRightClick = [&, return_string]() {
+					m_menu.show();
 				};
 			}
 

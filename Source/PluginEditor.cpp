@@ -81,7 +81,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
     m_phaser_position_identifier("phaser_position"), m_chorus_position_identifier("chorus_position"), m_mod_matrix(vts),
     m_legato_button("legato"), m_gui_size_button("gui_size"), m_tooltip(nullptr, 2047483647),
     m_is_standalone_plugin(p_is_standalone), m_save_load(vts, p_processor), m_arp(p_processor, vts),
-    m_processor(p_processor) {
+    m_processor(p_processor), m_patch_browser(p_processor, vts) {
 
 #ifdef ODIN_MAC
 	setBufferedToImage(true);
@@ -98,6 +98,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	p_processor.updateModWheelGUI     = [&](float p_value) { updateModWheel(p_value); };
 
 	m_save_load.forceValueTreeLambda = [&]() { forceValueTreeOntoComponents(true); };
+	m_patch_browser.forceValueTreeLambda = [&]() { forceValueTreeOntoComponents(true); };
 
 	Knob::setOdinPointer(&p_processor);
 	DrawableSlider::setOdinPointer(&p_processor);

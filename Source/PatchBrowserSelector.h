@@ -48,6 +48,9 @@ private:
 
 	std::vector<std::unique_ptr<BrowserEntry>> m_entries;
 
+	PopupMenu m_menu;
+	OdinMenuFeels m_menu_feels;
+
 	bool m_GUI_big = false;
 	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(PatchBrowserSelector)
 };
