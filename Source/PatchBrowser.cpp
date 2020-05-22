@@ -147,9 +147,9 @@ PatchBrowser::PatchBrowser(OdinAudioProcessor &p_processor, AudioProcessorValueT
 		//check whether directory already exists
 		if (dir_to_create.isDirectory()) {
 			AlertWindow::showMessageBox(AlertWindow::AlertIconType::WarningIcon,
-		                            "Category Exists!",
-		                            "The category you're trying to create already exists!",
-		                            "Ok");
+			                            "Category Exists!",
+			                            "The category you're trying to create already exists!",
+			                            "Ok");
 			return;
 		}
 		if (dir_to_create.createDirectory()) {
@@ -160,7 +160,6 @@ PatchBrowser::PatchBrowser(OdinAudioProcessor &p_processor, AudioProcessorValueT
 		}
 	};
 
-
 	m_soundbank_selector.onCreateNewFile = [&](String p_string) {
 		DBG("create directory: " + p_string);
 
@@ -169,9 +168,9 @@ PatchBrowser::PatchBrowser(OdinAudioProcessor &p_processor, AudioProcessorValueT
 		//check whether directory already exists
 		if (dir_to_create.isDirectory()) {
 			AlertWindow::showMessageBox(AlertWindow::AlertIconType::WarningIcon,
-		                            "Soundbank Exists!",
-		                            "The soundbank you're trying to create already exists!",
-		                            "Ok");
+			                            "Soundbank Exists!",
+			                            "The soundbank you're trying to create already exists!",
+			                            "Ok");
 			return;
 		}
 		if (dir_to_create.createDirectory()) {
@@ -183,6 +182,58 @@ PatchBrowser::PatchBrowser(OdinAudioProcessor &p_processor, AudioProcessorValueT
 			m_patch_selector.setDirectory(m_category_selector.getFirstSubDirectoryAndHighlightIt());
 		}
 	};
+
+	m_patch_selector.onExport =
+	    [&](String p_directory) {
+			File file_suggestion = File(p_directory + File::getSeparatorString() + "preset.odin");
+
+		    // set up filechooser
+		    m_filechooser.reset(new FileChooser("Choose a file to save...", file_suggestion, "*.odin", true));
+
+		    //launch filechooser
+		    m_filechooser->launchAsync(
+		        FileBrowserComponent::saveMode | FileBrowserComponent::canSelectFiles,
+		        [file_suggestion, this](const FileChooser &chooser) {
+			        auto result = chooser.getURLResult();
+			        String file_name =
+			            result.isEmpty()
+			                ? String()
+			                : (result.isLocalFile() ? result.getLocalFile().getFullPathName() : result.toString(true));
+
+			        if (file_name != "") {
+				        //append .odin if not already there
+				        file_name = file_name.endsWith(".odin") ? file_name : file_name + ".odin";
+
+				        File file_to_write(file_name);
+
+				        //check whether file already exists
+				        if (file_to_write.existsAsFile()) {
+					        if (!(AlertWindow::showOkCancelBox(AlertWindow::WarningIcon,
+					                                           "File already exists!",
+					                                           "Are you sure you want to overwrite it?",
+					                                           {},
+					                                           {},
+					                                           {}))) {
+						        //user selected cancel
+						        return;
+					        }
+				        }
+				        FileOutputStream file_stream(file_to_write);
+				        if (file_stream.openedOk()) {
+					        savePatchInOpenedFileStream(file_stream);
+							m_patch_selector.regenerateContent();
+				        }
+			        }
+		        });
+	    };
+
+	    m_patch_selector.setButtonTooltips("Import a single patch from your harddrive into this category",
+	                                       "Export the current patch to your harddrive",
+	                                       "Save the current patch as a preset in this category");
+	m_category_selector.setButtonTooltips("", "", "Create a new category for presets in this soundbank");
+	m_soundbank_selector.setButtonTooltips("Import an entire soundbank from your harddrive",
+	                                       "Export the highlighted soundbank to your harddrive",
+	                                       "Create a new soundbank");
 }
 
 PatchBrowser::~PatchBrowser() {
@@ -354,9 +405,10 @@ void PatchBrowser::savePatchInOpenedFileStream(FileOutputStream &p_file_stream) 
 	m_value_tree.state.getChildWithName("misc").setProperty("current_patch_filename",
 	                                                        p_file_stream.getFile().getFileName(),
 	                                                        nullptr); //needed for up/down buttons in patch loading
-	m_value_tree.state.getChildWithName("misc").setProperty("current_patch_directory",
-	                                                        p_file_stream.getFile().getParentDirectory().getFullPathName(),
-	                                                        nullptr); //needed for up/down buttons in patch loading
+	m_value_tree.state.getChildWithName("misc").setProperty(
+	    "current_patch_directory",
+	    p_file_stream.getFile().getParentDirectory().getFullPathName(),
+	    nullptr); //needed for up/down buttons in patch loading
 	DBG("set filename in valuetree: " +
 	    m_value_tree.state.getChildWithName("misc")["current_patch_filename"].toString());
 	DBG("set filepath in valuetree: " +

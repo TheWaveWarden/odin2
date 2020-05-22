@@ -39,6 +39,7 @@
 #define STANDARD_DISPLAY_COLOR Colour(10, 40, 50)
 #define MODMATRIX_COLOR Colour(30, 30, 30)
 #define ODIN_BLUE Colour(0xff3c9bc7)
+#define DISTORTION_ON_COLOR juce::Colour(14, 35, 50)
 //#define STANDARD_DISPLAY_COLOR Colour(21, 45, 56)
 //#define STANDARD_DISPLAY_COLOR Colour(30, 30, 30)
 #define PHASER_DISPLAY_COLOR Colour(11, 41, 19)

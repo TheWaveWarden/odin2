@@ -5,6 +5,7 @@
 #include "PluginProcessor.h"
 
 #define DEFAULT_SOUNDBANK_LOCATION_STRING (File::getSpecialLocation(File::SpecialLocationType::userDocumentsDirectory).getFullPathName() + "/Soundbanks")
+//#define DEFAULT_EXPORT_LOCATION_STRING (File::getSpecialLocation(File::SpecialLocationType::userDocumentsDirectory).getFullPathName())
 
 class PatchBrowser    : public Component
 {
@@ -24,13 +25,15 @@ public:
 private:
     void loadPatchFromOpenedFileStream(juce::FileInputStream &p_file_stream);
     void savePatchInOpenedFileStream(FileOutputStream &p_file_stream);
-    
+
     bool checkForBiggerVersion(FileInputStream &p_file_stream, std::string &p_version_string);
     bool checkForSmallerVersion(FileInputStream &p_file_stream, std::string &p_version_string);
 
     bool usesWavedraw(int p_osc);
     bool usesChipdraw(int p_osc);
     bool usesSpecdraw(int p_osc);
+
+	std::unique_ptr<FileChooser> m_filechooser;
 
     Image m_background;
 

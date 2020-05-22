@@ -18,6 +18,9 @@ PatchBrowserSelector::PatchBrowserSelector(File::TypesOfFileToFind p_file_or_dir
 		m_show_left_button = true;
 		m_left_button.setLookAndFeel(&m_button_feels);
 		m_left_button.setAlwaysOnTop(true);
+		m_left_button.onClick = [&](){
+			onImport(getDirectory());
+		};
 	}
 	if (p_mid_button != "") {
 		addAndMakeVisible(m_mid_button);
@@ -25,6 +28,9 @@ PatchBrowserSelector::PatchBrowserSelector(File::TypesOfFileToFind p_file_or_dir
 		m_show_mid_button = true;
 		m_mid_button.setLookAndFeel(&m_button_feels);
 		m_mid_button.setAlwaysOnTop(true);
+		m_mid_button.onClick = [&](){
+			onExport(getDirectory());
+		};
 	}
 	addAndMakeVisible(m_right_button);
 	m_right_button.setButtonText(p_right_button);
@@ -39,6 +45,8 @@ PatchBrowserSelector::PatchBrowserSelector(File::TypesOfFileToFind p_file_or_dir
 	};
 
 	//m_input_field.onFocusLost = [&]() { hideInputField(); };
+#define	PATCH_BROWSER_INPUT_FIELD_BACKGROUND_COLOR Colour(20,30,30)
+	m_input_field.setColour(TextEditor::ColourIds::backgroundColourId, PATCH_BROWSER_INPUT_FIELD_BACKGROUND_COLOR);
 	m_input_field.onEscapeKey = [&]() { hideInputField(); };
 	m_input_field.onReturnKey = [&]() { applyInputField(); };
 }
@@ -88,6 +96,7 @@ void PatchBrowserSelector::setGUIBig() {
 
 	m_menu_feels.setWidth(150);
 	m_menu_feels.setFontSize(18);
+	m_button_feels.setButtonFontSize(17.f);
 
 	resetScrollPosition();
 	positionEntries();
@@ -99,6 +108,7 @@ void PatchBrowserSelector::setGUIBig() {
 	    getWidth() * 2 / 3, getHeight() - BUTTON_HEIGHT_BROWSER_150, getWidth() / 3, BUTTON_HEIGHT_BROWSER_150);
 
 	m_input_field.setBounds(0, getHeight() - BUTTON_HEIGHT_BROWSER_150, getWidth() / 3 * 2, BUTTON_HEIGHT_BROWSER_150);
+	m_input_field.setFont(Font(17.f));
 }
 
 void PatchBrowserSelector::setGUISmall() {
@@ -121,6 +131,18 @@ void PatchBrowserSelector::setDirectory(String p_absolute_path) {
 
 	resetScrollPosition();
 	regenerateContent();
+	
+	showButtons(File(p_absolute_path).exists());
+}
+
+void PatchBrowserSelector::showButtons(bool p_show){
+	if(m_show_left_button){
+		m_left_button.setVisible(p_show);
+	}
+	if(m_show_mid_button){
+		m_mid_button.setVisible(p_show);
+	}
+	m_right_button.setVisible(p_show);
 }
 
 void PatchBrowserSelector::regenerateContent() {
@@ -270,3 +292,16 @@ void PatchBrowserSelector::unhighlightAllEntries() {
 		m_entries[entry]->setEntryActive(false);
 	}
 }
+
+void PatchBrowserSelector::setButtonTooltips(String p_left, String p_mid, String p_right ){
+	m_left_button.setTooltip(p_left);
+	m_mid_button.setTooltip(p_mid);
+	m_right_button.setTooltip(p_right);
+}
+
+// void PatchBrowserSelector::focusLost(FocusChangeType p_cause){
+// 	//this doesnt do anything?
+// 	DBG("FOCUS LOST!!");
+// 	//hideInputField();
+// 	Component::focusLost(p_cause);
+// }

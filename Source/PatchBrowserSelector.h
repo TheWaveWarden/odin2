@@ -16,6 +16,12 @@
 #define PATCH_BROWSER_MENU_ENTRY_DELETE 10
 
 class OdinBrowserButtonFeels : public LookAndFeel_V4 {
+public:
+	void setButtonFontSize(float p_size) {
+		m_font_size = p_size;
+	}
+
+protected:
 	void drawButtonBackground(Graphics &g,
 	                          Button &button,
 	                          const Colour &backgroundColour,
@@ -24,7 +30,7 @@ class OdinBrowserButtonFeels : public LookAndFeel_V4 {
 		auto cornerSize = 0.f;
 		auto bounds     = button.getLocalBounds().toFloat().reduced(0.5f, 0.5f);
 
-		auto baseColour = Colour(20,20,20);
+		auto baseColour = Colour(20, 20, 20);
 
 		if (shouldDrawButtonAsDown || shouldDrawButtonAsHighlighted)
 			baseColour = baseColour.contrasting(shouldDrawButtonAsDown ? 0.2f : 0.05f);
@@ -36,30 +42,46 @@ class OdinBrowserButtonFeels : public LookAndFeel_V4 {
 		auto flatOnTop    = button.isConnectedOnTop();
 		auto flatOnBottom = button.isConnectedOnBottom();
 
-		if (flatOnLeft || flatOnRight || flatOnTop || flatOnBottom) {
-			Path path;
-			path.addRoundedRectangle(bounds.getX(),
-			                         bounds.getY(),
-			                         bounds.getWidth(),
-			                         bounds.getHeight(),
-			                         cornerSize,
-			                         cornerSize,
-			                         !(flatOnLeft || flatOnTop),
-			                         !(flatOnRight || flatOnTop),
-			                         !(flatOnLeft || flatOnBottom),
-			                         !(flatOnRight || flatOnBottom));
-
-			g.fillPath(path);
-
-			g.setColour(button.findColour(ComboBox::outlineColourId));
-			g.strokePath(path, PathStrokeType(1.0f));
+		g.fillRoundedRectangle(bounds, cornerSize);
+		if (shouldDrawButtonAsHighlighted) {
+			g.setColour(ODIN_BLUE);
 		} else {
-			g.fillRoundedRectangle(bounds, cornerSize);
-
 			g.setColour(button.findColour(ComboBox::outlineColourId));
-			g.drawRoundedRectangle(bounds, cornerSize, 1.0f);
 		}
+		g.drawRoundedRectangle(bounds, cornerSize, 1.0f);
 	}
+
+	void drawButtonText(Graphics &g, TextButton &button, bool p_highlighted, bool /*shouldDrawButtonAsDown*/) override {
+		Font font(m_font_size);
+		g.setFont(font);
+
+		if (p_highlighted) {
+			g.setColour(ODIN_BLUE);
+		} else {
+			g.setColour(
+			    button.findColour(button.getToggleState() ? TextButton::textColourOnId : TextButton::textColourOffId)
+			        .withMultipliedAlpha(button.isEnabled() ? 1.0f : 0.5f));
+		}
+
+		const int yIndent    = jmin(4, button.proportionOfHeight(0.3f));
+		const int cornerSize = jmin(button.getHeight(), button.getWidth()) / 2;
+
+		const int fontHeight  = roundToInt(font.getHeight() * 0.6f);
+		const int leftIndent  = jmin(fontHeight, 2 + cornerSize / (button.isConnectedOnLeft() ? 4 : 2));
+		const int rightIndent = jmin(fontHeight, 2 + cornerSize / (button.isConnectedOnRight() ? 4 : 2));
+		const int textWidth   = button.getWidth() - leftIndent - rightIndent;
+
+		if (textWidth > 0)
+			g.drawFittedText(button.getButtonText(),
+			                 leftIndent,
+			                 yIndent,
+			                 textWidth,
+			                 button.getHeight() - yIndent * 2,
+			                 Justification::centred,
+			                 2);
+	}
+
+	float m_font_size = 15.f;
 };
 
 class PatchBrowserSelector : public Component {
@@ -90,16 +112,22 @@ public:
 	std::function<void(String)> passValueToPatchBrowser;
 	std::function<void(String)> passDeleteToPatchBrowser;
 	std::function<void(String)> onCreateNewFile;
+	std::function<void(String)> onExport;
+	std::function<void(String)> onImport;
 
 	void regenerateContent();
 	void positionEntries();
 
 	void applyInputField();
 
+	void setButtonTooltips(String p_left, String p_mid, String p_right );
+	//void focusLost(FocusChangeType p_cause) override;
+
 private:
 	void generateContent();
 	void unhighlightAllEntries();
 	void enforceScrollLimits();
+	void showButtons(bool p_show);
 
 	float m_scroll_position = 0.f;
 
@@ -115,7 +143,7 @@ private:
 	PopupMenu m_menu;
 	OdinMenuFeels m_menu_feels;
 	OdinBrowserButtonFeels m_button_feels;
-	
+
 	TextEditor m_input_field;
 
 	TextButton m_left_button;

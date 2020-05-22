@@ -251,7 +251,6 @@ void AmpDistortionFlowComponent::forceValueTreeOntoComponents(ValueTree p_tree) 
 
 void AmpDistortionFlowComponent::setDistortionPanelActive(bool p_active) {
 	//DBG("SetDistortionPanelActive: " + std::to_string(p_active));
-#define DISTORTION_ON_COLOR juce::Colour(14, 35, 50)
 	m_distortion_algo.setColor(p_active ? DISTORTION_ON_COLOR : DARKGREY);
 	m_distortion_on = p_active;
 	repaint();
