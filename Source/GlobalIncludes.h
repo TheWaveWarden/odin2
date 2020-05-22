@@ -77,10 +77,14 @@
 #define FILTER_TYPE_FORMANT 35
 #define FILTER_TYPE_RINGMOD 40
 
-#define BROWSER_POS_X_150 418
-#define BROWSER_POS_Y_150 705
-#define BROWSER_SIZE_X_150 738
-#define BROWSER_SIZE_Y_150 213
+#define BROWSER_INLAY_X_150 6
+#define BROWSER_INLAY_Y_150 5
+
+#define BROWSER_POS_X_150 411
+#define BROWSER_POS_Y_150 701
+#define BROWSER_SIZE_X_150 (738 + 2*BROWSER_INLAY_X_150)
+#define BROWSER_SIZE_Y_150 (213 + 2*BROWSER_INLAY_Y_150)
+
 
 // midpoint for filters:
 // https://www.wolframalpha.com/input/?i=80*e%5E%28ln%2818000%2F80%29*0.5%29
@@ -217,6 +221,7 @@ public:
 		if (m_GUI_big) {
 			font = Font(21.f);
 		}
+		font = Font(m_font_size);
 
 		if (!isHighlighted) {
 			drawPopupMenuItemOdin(g,
@@ -341,12 +346,23 @@ public:
 	void setGUIBig() {
 		m_GUI_big = true;
 		m_width   = 240;
+		m_font_size = 21.f;
 	}
 	void setGUISmall() {
 		m_GUI_big = false;
 		m_width   = 170;
+		m_font_size = 21.f;
 	}
 
+	void setFontSize(float p_size){
+		m_font_size = p_size;
+	}
+
+	void setWidth(float p_width){
+		m_width = p_width;
+	}
+
+	float m_font_size = 17.f;
 	float m_width  = 150;
 	bool m_GUI_big = false;
 };

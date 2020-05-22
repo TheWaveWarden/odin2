@@ -1176,9 +1176,11 @@ void OdinAudioProcessorEditor::setLfo12(bool p_lfo1) {
 void OdinAudioProcessorEditor::setArpMod(bool p_arp) {
 	if (p_arp) {
 		m_mod_matrix.setVisible(false);
+		m_patch_browser.setVisible(false);
 		m_arp.setVisibleAndStartTimer(true);
 	} else {
 		m_mod_matrix.setVisible(true);
+		m_patch_browser.setVisible(true);
 		m_arp.setVisibleAndStartTimer(false);
 	}
 }

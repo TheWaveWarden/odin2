@@ -1130,6 +1130,8 @@
       <FILE id="GKUnsQ" name="osc3_bypass.png" compile="0" resource="1" file="Graphics/applied/osc3_bypass.png"/>
       <FILE id="ZQM0MD" name="osc3_bypass_150.png" compile="0" resource="1"
             file="Graphics_150/applied/osc3_bypass_150.png"/>
+      <FILE id="gd6SA1" name="patch_browser_window_150.png" compile="0" resource="1"
+            file="Graphics_150/cropped/patch_browser_window_150.png"/>
       <FILE id="uFus9Q" name="peak.png" compile="0" resource="1" file="Graphics/cropped/lfo/peak.png"/>
       <FILE id="rwA0gs" name="peak_150.png" compile="0" resource="1" file="Graphics_150/cropped/lfo/peak_150.png"/>
       <FILE id="dqIaYV" name="phasernosync.png" compile="0" resource="1"

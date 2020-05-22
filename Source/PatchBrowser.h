@@ -23,8 +23,16 @@ public:
 
 private:
     void loadPatchFromOpenedFileStream(juce::FileInputStream &p_file_stream);
+    void savePatchInOpenedFileStream(FileOutputStream &p_file_stream);
+    
     bool checkForBiggerVersion(FileInputStream &p_file_stream, std::string &p_version_string);
     bool checkForSmallerVersion(FileInputStream &p_file_stream, std::string &p_version_string);
+
+    bool usesWavedraw(int p_osc);
+    bool usesChipdraw(int p_osc);
+    bool usesSpecdraw(int p_osc);
+
+    Image m_background;
 
     bool m_GUI_big = false;
 

@@ -1,4 +1,5 @@
 # 2.1.1 beta
+- drastically imrpoved patch load times
 - made patch-list in dropdown case-insensistive
 # 2.1.0 beta
 - implemented Arpeggiator

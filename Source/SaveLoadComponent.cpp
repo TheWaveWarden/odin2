@@ -295,9 +295,6 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts, OdinAudi
 
 			DBG("Loaded init patch");
 		}
-		//usleep(1000*1000);
-		//DBG("Modmatrix: " + std::to_string((float)GETAUDIO("amount_1_row_0")));
-		//DBG("Attack: " + std::to_string((float)GETAUDIO("env2_attack")));
 	};
 
 	m_patch_dropdown_menu.setLookAndFeel(&m_menu_feels);
