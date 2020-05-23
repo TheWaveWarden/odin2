@@ -183,53 +183,133 @@ PatchBrowser::PatchBrowser(OdinAudioProcessor &p_processor, AudioProcessorValueT
 		}
 	};
 
-	m_patch_selector.onExport =
-	    [&](String p_directory) {
-			File file_suggestion = File(p_directory + File::getSeparatorString() + "preset.odin");
+	m_patch_selector.onExport = [&](String p_directory) {
+		File file_suggestion;
 
-		    // set up filechooser
-		    m_filechooser.reset(new FileChooser("Choose a file to save...", file_suggestion, "*.odin", true));
+		if (File(p_directory).exists()) {
+			file_suggestion = File(p_directory + File::getSeparatorString() + "Preset.odin");
+		} else {
+			file_suggestion = File(DEFAULT_EXPORT_LOCATION_STRING + +File::getSeparatorString() + "Preset.odin");
+		}
 
-		    //launch filechooser
-		    m_filechooser->launchAsync(
-		        FileBrowserComponent::saveMode | FileBrowserComponent::canSelectFiles,
-		        [file_suggestion, this](const FileChooser &chooser) {
-			        auto result = chooser.getURLResult();
-			        String file_name =
-			            result.isEmpty()
-			                ? String()
-			                : (result.isLocalFile() ? result.getLocalFile().getFullPathName() : result.toString(true));
+		// set up filechooser
+		m_filechooser.reset(new FileChooser("Choose a file to save...", file_suggestion, "*.odin", true));
 
-			        if (file_name != "") {
-				        //append .odin if not already there
-				        file_name = file_name.endsWith(".odin") ? file_name : file_name + ".odin";
+		//launch filechooser
+		m_filechooser->launchAsync(
+		    FileBrowserComponent::saveMode | FileBrowserComponent::canSelectFiles,
+		    [file_suggestion, this](const FileChooser &chooser) {
+			    auto result      = chooser.getURLResult();
+			    String file_name = result.isEmpty() ? String()
+			                                        : (result.isLocalFile() ? result.getLocalFile().getFullPathName()
+			                                                                : result.toString(true));
 
-				        File file_to_write(file_name);
+			    if (file_name != "") {
+				    //append .odin if not already there
+				    file_name = file_name.endsWith(".odin") ? file_name : file_name + ".odin";
 
-				        //check whether file already exists
-				        if (file_to_write.existsAsFile()) {
-					        if (!(AlertWindow::showOkCancelBox(AlertWindow::WarningIcon,
-					                                           "File already exists!",
-					                                           "Are you sure you want to overwrite it?",
-					                                           {},
-					                                           {},
-					                                           {}))) {
-						        //user selected cancel
-						        return;
-					        }
-				        }
-				        FileOutputStream file_stream(file_to_write);
-				        if (file_stream.openedOk()) {
-					        savePatchInOpenedFileStream(file_stream);
-							m_patch_selector.regenerateContent();
-				        }
-			        }
-		        });
-	    };
+				    File file_to_write(file_name);
 
-	    m_patch_selector.setButtonTooltips("Import a single patch from your harddrive into this category",
-	                                       "Export the current patch to your harddrive",
-	                                       "Save the current patch as a preset in this category");
+				    //check whether file already exists
+				    if (file_to_write.existsAsFile()) {
+					    if (!(AlertWindow::showOkCancelBox(AlertWindow::WarningIcon,
+					                                       "File already exists!",
+					                                       "Are you sure you want to overwrite it?",
+					                                       {},
+					                                       {},
+					                                       {}))) {
+						    //user selected cancel
+						    return;
+					    }
+				    }
+				    FileOutputStream file_stream(file_to_write);
+				    if (file_stream.openedOk()) {
+					    savePatchInOpenedFileStream(file_stream);
+					    m_patch_selector.regenerateContent();
+				    }
+			    }
+		    });
+	};
+
+	m_patch_selector.onImport = [&](String p_directory) { loadPatchWithFileBrowser(p_directory); };
+
+	m_soundbank_selector.onExport = [&](String p_directory) {
+		File soundbank_file(m_category_selector.getDirectory());
+		if (!soundbank_file.isDirectory()) {
+			AlertWindow::showMessageBox(AlertWindow::AlertIconType::WarningIcon,
+			                            "No soundbank selected!",
+			                            "You appear to not have selected any soundbank.",
+			                            "Bummer");
+		}
+
+		File file_suggestion =
+		    File(DEFAULT_EXPORT_LOCATION_STRING + +File::getSeparatorString() + soundbank_file.getFileName() + ".osb");
+
+		// set up filechooser
+		m_filechooser.reset(new FileChooser("Choose a file to save...", file_suggestion, "*.osb", true));
+
+		//launch filechooser
+		m_filechooser->launchAsync(
+		    FileBrowserComponent::saveMode | FileBrowserComponent::canSelectFiles, [&](const FileChooser &chooser) {
+			    auto result      = chooser.getURLResult();
+			    String file_name = result.isEmpty() ? String()
+			                                        : (result.isLocalFile() ? result.getLocalFile().getFullPathName()
+			                                                                : result.toString(true));
+
+			    if (file_name != "") {
+				    //append .odin if not already there
+				    file_name = file_name.endsWith(".osb") ? file_name : file_name + ".osb";
+
+				    File file_to_write(file_name);
+
+				    //check whether file already exists
+				    if (file_to_write.existsAsFile()) {
+					    if (!(AlertWindow::showOkCancelBox(AlertWindow::WarningIcon,
+					                                       "File already exists!",
+					                                       "Are you sure you want to overwrite it?",
+					                                       {},
+					                                       {},
+					                                       {}))) {
+						    //user selected cancel
+						    return;
+					    }
+				    }
+
+				    File soundbank_file_lambda(m_category_selector.getDirectory());
+				    DBG(soundbank_file_lambda.getFullPathName() + " to");
+				    DBG(file_to_write.getFullPathName());
+				    //DBG("name:" + soundbank_file.getFileName());
+
+				    FileOutputStream file_stream(file_to_write);
+				    if (file_stream.openedOk() && soundbank_file_lambda.exists()) {
+
+					    ZipFile::Builder zip_builder;
+
+					    auto sub_folders =
+					        soundbank_file_lambda.findChildFiles(File::TypesOfFileToFind::findDirectories, false);
+					    for (int sub_index = 0; sub_index < sub_folders.size(); ++sub_index) {
+						    auto preset_files = sub_folders[sub_index].findChildFiles(
+						        File::TypesOfFileToFind::findFiles, false, "*.odin");
+						    for (int preset_index = 0; preset_index < preset_files.size(); ++preset_index) {
+							    //DBG(preset_files[preset_index].getFullPathName());
+							    zip_builder.addFile(
+							        preset_files[preset_index],
+							        5,
+							        preset_files[preset_index].getRelativePathFrom(soundbank_file_lambda));
+						    }
+					    }
+
+					    zip_builder.writeToStream(file_stream, nullptr);
+
+					    DBG("saved " + file_to_write.getFullPathName());
+				    }
+			    }
+		    });
+	};
+
+	m_patch_selector.setButtonTooltips("Load a patch from your harddrive",
+	                                   "Export the current patch to your harddrive",
+	                                   "Save the current patch as a preset in this category");
 	m_category_selector.setButtonTooltips("", "", "Create a new category for presets in this soundbank");
 	m_soundbank_selector.setButtonTooltips("Import an entire soundbank from your harddrive",
 	                                       "Export the highlighted soundbank to your harddrive",
@@ -597,4 +677,53 @@ bool PatchBrowser::usesSpecdraw(int p_osc) {
 	}
 
 	return false;
+}
+
+void PatchBrowser::loadPatchWithFileBrowser(String p_directory) {
+	File file;
+	if (File(p_directory).exists()) {
+		file = File(p_directory);
+	} else {
+		file = File(DEFAULT_EXPORT_LOCATION_STRING);
+	}
+	m_filechooser.reset(new FileChooser("Choose a file to open...", file, "*.odin", true));
+
+	m_filechooser->launchAsync(
+	    FileBrowserComponent::openMode | FileBrowserComponent::canSelectFiles, [this](const FileChooser &chooser) {
+		    String file_name;
+		    auto results = chooser.getURLResults();
+
+		    for (auto result : results)
+			    file_name << (result.isLocalFile() ? result.getLocalFile().getFullPathName() : result.toString(false));
+
+		    File file_to_read(file_name);
+
+		    FileInputStream file_stream(file_to_read);
+		    if (file_stream.openedOk()) {
+
+			    loadPatchFromOpenedFileStream(file_stream);
+
+			    //save load directory
+			    //m_last_directory = file_to_read.getParentDirectory().getFullPathName();
+
+			    m_value_tree.state.getChildWithName("misc").setProperty(
+			        "current_patch_filename",
+			        file_to_read.getFileName(),
+			        nullptr); //needed for up/down buttons in patch loading
+			    m_value_tree.state.getChildWithName("misc").setProperty(
+			        "current_patch_directory",
+			        file_to_read.getParentDirectory().getFullPathName(),
+			        nullptr); //needed for up/down buttons in patch loading
+			    DBG("set filename in valuetree: " +
+			        m_value_tree.state.getChildWithName("misc")["current_patch_filename"].toString());
+			    DBG("set filepath in valuetree: " +
+			        m_value_tree.state.getChildWithName("misc")["current_patch_directory"].toString());
+
+		    } else {
+			    if (file_name != "") {
+				    AlertWindow::showMessageBoxAsync(
+				        AlertWindow::InfoIcon, "File not found!", "Path: " + file_name, "Ok");
+			    }
+		    }
+	    });
 }

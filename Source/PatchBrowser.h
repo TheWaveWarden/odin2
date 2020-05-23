@@ -5,7 +5,7 @@
 #include "PluginProcessor.h"
 
 #define DEFAULT_SOUNDBANK_LOCATION_STRING (File::getSpecialLocation(File::SpecialLocationType::userDocumentsDirectory).getFullPathName() + "/Soundbanks")
-//#define DEFAULT_EXPORT_LOCATION_STRING (File::getSpecialLocation(File::SpecialLocationType::userDocumentsDirectory).getFullPathName())
+#define DEFAULT_EXPORT_LOCATION_STRING (File::getSpecialLocation(File::SpecialLocationType::userDocumentsDirectory).getFullPathName())
 
 class PatchBrowser    : public Component
 {
@@ -23,6 +23,7 @@ public:
 
 
 private:
+    void loadPatchWithFileBrowser(String p_directory);
     void loadPatchFromOpenedFileStream(juce::FileInputStream &p_file_stream);
     void savePatchInOpenedFileStream(FileOutputStream &p_file_stream);
 

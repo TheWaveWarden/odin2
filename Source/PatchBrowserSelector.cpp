@@ -136,12 +136,12 @@ void PatchBrowserSelector::setDirectory(String p_absolute_path) {
 }
 
 void PatchBrowserSelector::showButtons(bool p_show){
-	if(m_show_left_button){
-		m_left_button.setVisible(p_show);
-	}
-	if(m_show_mid_button){
-		m_mid_button.setVisible(p_show);
-	}
+	//if(m_show_left_button){
+	//	m_left_button.setVisible(p_show);
+	//}
+	//if(m_show_mid_button){
+	//	m_mid_button.setVisible(p_show);
+	//}
 	m_right_button.setVisible(p_show);
 }
 
