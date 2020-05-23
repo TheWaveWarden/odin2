@@ -2,6 +2,22 @@
 #include <JuceHeader.h>
 
 BrowserEntry::BrowserEntry(String p_text) : m_text(p_text) {
+	addChildComponent(m_rename_editor);
+	m_rename_editor.setColour(TextEditor::ColourIds::backgroundColourId, PATCH_BROWSER_INPUT_FIELD_BACKGROUND_COLOR);
+	m_rename_editor.onFocusLost = [&]() {
+		DBG("RENAME FOCUS LOST");
+		hideRenameEditor();
+	};
+	m_rename_editor.onEscapeKey = [&]() { hideRenameEditor(); };
+	if (m_GUI_big) {
+		m_rename_editor.setFont(Font(24.f));
+		m_rename_editor.setIndents(TEXT_INLAY_BROWSER_150, 3);
+	} else {
+		m_rename_editor.setFont(Font(17.f));
+		m_rename_editor.setIndents(TEXT_INLAY_BROWSER_100, 2);
+	}
+	//m_rename_editor.onReturnKey = [&]() { };
+	setWantsKeyboardFocus(true);
 }
 
 BrowserEntry::~BrowserEntry() {
@@ -48,6 +64,8 @@ void BrowserEntry::resized() {
 void BrowserEntry::setGUIBig() {
 	m_GUI_big = true;
 
+	m_rename_editor.setBounds(0, 0, getWidth(), getHeight());
+
 	repaint();
 }
 
@@ -86,4 +104,19 @@ void BrowserEntry::setEntryActive(bool p_active) {
 
 String BrowserEntry::getText() {
 	return m_text;
+}
+
+void BrowserEntry::showRenameEditor() {
+	m_rename_editor.setVisible(true);
+	m_rename_editor.setText(getText());
+	m_rename_editor.grabKeyboardFocus();
+}
+
+void BrowserEntry::hideRenameEditor() {
+	m_rename_editor.setVisible(false);
+}
+
+void BrowserEntry::setBoundsWithInputField(int p_x, int p_y, int p_width, int p_height) {
+	Component::setBounds(p_x, p_y, p_width, p_height);
+	m_rename_editor.setBounds(0, 0, p_width, p_height);
 }

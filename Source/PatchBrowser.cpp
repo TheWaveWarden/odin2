@@ -8,6 +8,8 @@ PatchBrowser::PatchBrowser(OdinAudioProcessor &p_processor, AudioProcessorValueT
     m_value_tree(p_vts)
 
 {
+	setWantsKeyboardFocus(true);
+
 	addAndMakeVisible(m_soundbank_selector);
 	addAndMakeVisible(m_category_selector);
 	addAndMakeVisible(m_patch_selector);

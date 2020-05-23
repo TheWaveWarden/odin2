@@ -6,6 +6,7 @@ PatchBrowserSelector::PatchBrowserSelector(File::TypesOfFileToFind p_file_or_dir
                                            String p_mid_button,
                                            String p_right_button) :
     m_file_or_dir(p_file_or_dir) {
+	m_menu.addItem(PATCH_BROWSER_MENU_ENTRY_RENAME, "Rename");
 	m_menu.addItem(PATCH_BROWSER_MENU_ENTRY_DELETE, "Delete");
 	m_menu.setLookAndFeel(&m_menu_feels);
 
@@ -41,7 +42,6 @@ PatchBrowserSelector::PatchBrowserSelector(File::TypesOfFileToFind p_file_or_dir
 	};
 
 	//m_input_field.onFocusLost = [&]() { hideInputField(); };
-#define PATCH_BROWSER_INPUT_FIELD_BACKGROUND_COLOR Colour(20, 30, 30)
 	m_input_field.setColour(TextEditor::ColourIds::backgroundColourId, PATCH_BROWSER_INPUT_FIELD_BACKGROUND_COLOR);
 	m_input_field.onEscapeKey = [&]() { hideInputField(); };
 	m_input_field.onReturnKey = [&]() { applyInputField(); };
@@ -157,7 +157,7 @@ void PatchBrowserSelector::setDirectory(String p_absolute_path) {
 	showButtons(exists);
 }
 
-void PatchBrowserSelector::checkDirectoryStatus(){
+void PatchBrowserSelector::checkDirectoryStatus() {
 	if (!File(m_absolute_path).isDirectory()) {
 		m_directory_status = DirectoryStatus::Nonexistent;
 	} else if (m_entries.size() == 0) {
@@ -208,11 +208,13 @@ void PatchBrowserSelector::generateContent() {
 					passValueToPatchBrowser(return_string);
 					unhighlightAllEntries();
 				};
-				m_entries[file_index]->onRightClick = [&, return_string]() {
+				m_entries[file_index]->onRightClick = [&, return_string, file_index]() {
 					int selected = m_menu.show();
 
 					if (selected == PATCH_BROWSER_MENU_ENTRY_DELETE) {
 						passDeleteToPatchBrowser(return_string);
+					} else if (selected == PATCH_BROWSER_MENU_ENTRY_RENAME) {
+						m_entries[file_index]->showRenameEditor();
 					}
 				};
 			}
@@ -236,7 +238,7 @@ void PatchBrowserSelector::generateContent() {
 void PatchBrowserSelector::positionEntries() {
 	int entry_height = m_GUI_big ? ENTRY_HEIGHT_150 : ENTRY_HEIGHT_100;
 	for (int entry = 0; entry < m_entries.size(); ++entry) {
-		m_entries[entry]->setBounds(0, m_scroll_position + entry_height * entry, getWidth(), entry_height);
+		m_entries[entry]->setBoundsWithInputField(0, m_scroll_position + entry_height * entry, getWidth(), entry_height);
 	}
 }
 

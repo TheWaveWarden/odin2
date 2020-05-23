@@ -22,11 +22,16 @@ public:
 	void mouseExit(const MouseEvent &e) override;
 	void mouseDown(const MouseEvent &e) override;
 	void setEntryActive(bool p_active);
+	void showRenameEditor();
+	void hideRenameEditor();
+	void setBoundsWithInputField(int p_x, int p_y, int p_width, int p_height);
 
 	String getText();
 
 	std::function<void()> onLeftClick;
 	std::function<void()> onRightClick;
+
+	TextEditor m_rename_editor;
 
 private:
 

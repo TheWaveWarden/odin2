@@ -40,6 +40,7 @@
 #define MODMATRIX_COLOR Colour(30, 30, 30)
 #define ODIN_BLUE Colour(0xff3c9bc7)
 #define DISTORTION_ON_COLOR juce::Colour(14, 35, 50)
+#define PATCH_BROWSER_INPUT_FIELD_BACKGROUND_COLOR Colour(20, 30, 30)
 //#define STANDARD_DISPLAY_COLOR Colour(21, 45, 56)
 //#define STANDARD_DISPLAY_COLOR Colour(30, 30, 30)
 #define PHASER_DISPLAY_COLOR Colour(11, 41, 19)
