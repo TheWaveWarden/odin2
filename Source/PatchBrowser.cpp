@@ -307,6 +307,8 @@ PatchBrowser::PatchBrowser(OdinAudioProcessor &p_processor, AudioProcessorValueT
 		    });
 	};
 
+	m_soundbank_selector.onImport = [&](String p_directory) { loadSoundbankWithFileBrowser(p_directory); };
+
 	m_patch_selector.setButtonTooltips("Load a patch from your harddrive",
 	                                   "Export the current patch to your harddrive",
 	                                   "Save the current patch as a preset in this category");
@@ -314,6 +316,10 @@ PatchBrowser::PatchBrowser(OdinAudioProcessor &p_processor, AudioProcessorValueT
 	m_soundbank_selector.setButtonTooltips("Import an entire soundbank from your harddrive",
 	                                       "Export the highlighted soundbank to your harddrive",
 	                                       "Create a new soundbank");
+
+	m_patch_selector.setWarningTexts("The selected category contains no presets! Try creating a new one with the \"Save\" button below!", "No category was selected. You need to select a category in order to save presets. You can still import / export presets.");
+	m_category_selector.setWarningTexts("The selected soundbank contains no category! Create a new one with the \"New\" button below!", "No soundbank was selected.");
+	m_soundbank_selector.setWarningTexts("No soundbank was found on your computer! To use the Factory Presets, please reinstall the plugin, or create a new Soundbank with the \"New\" button below!", "It seems you deleted the soundbank folder...");
 }
 
 PatchBrowser::~PatchBrowser() {
@@ -718,6 +724,69 @@ void PatchBrowser::loadPatchWithFileBrowser(String p_directory) {
 			        m_value_tree.state.getChildWithName("misc")["current_patch_filename"].toString());
 			    DBG("set filepath in valuetree: " +
 			        m_value_tree.state.getChildWithName("misc")["current_patch_directory"].toString());
+
+		    } else {
+			    if (file_name != "") {
+				    AlertWindow::showMessageBoxAsync(
+				        AlertWindow::InfoIcon, "File not found!", "Path: " + file_name, "Ok");
+			    }
+		    }
+	    });
+}
+
+void PatchBrowser::loadSoundbankWithFileBrowser(String p_directory) {
+	File file;
+
+	file = File(DEFAULT_SOUNDBANK_IMPORT_LOCATION_STRING);
+
+	m_filechooser.reset(new FileChooser("Choose a Odin 2 soundbank to open...", file, "*.osb", true));
+
+	m_filechooser->launchAsync(
+	    FileBrowserComponent::openMode | FileBrowserComponent::canSelectFiles, [this](const FileChooser &chooser) {
+		    String file_name;
+		    auto results = chooser.getURLResults();
+
+		    for (auto result : results)
+			    file_name << (result.isLocalFile() ? result.getLocalFile().getFullPathName() : result.toString(false));
+
+		    File file_to_read(file_name);
+
+		    FileInputStream file_stream(file_to_read);
+		    if (file_stream.openedOk()) {
+
+			    String soundbank_name = file_to_read.getFileNameWithoutExtension();
+
+			    DBG("Trying to import soundbank \"" + soundbank_name + "\" from location " +
+			        file_to_read.getFullPathName() + " to folder\n" + DEFAULT_SOUNDBANK_LOCATION_STRING +
+			        File::getSeparatorString() + soundbank_name);
+
+			    File dir_to_create(DEFAULT_SOUNDBANK_LOCATION_STRING + File::getSeparatorString() + soundbank_name);
+
+			    if (dir_to_create.isDirectory()) {
+				    AlertWindow::showMessageBoxAsync(AlertWindow::InfoIcon,
+				                                     "Soundbank already there!",
+				                                     "A soundbank with the same name already exists. Please rename it "
+				                                     "or rename the soundbank you're trying to import!",
+				                                     "Ok");
+				    return;
+			    }
+
+				if(dir_to_create.createDirectory()){
+
+					ZipFile soundbank_zip(file_stream);
+					if(soundbank_zip.uncompressTo(dir_to_create)){
+						m_soundbank_selector.regenerateContent();
+						m_category_selector.setDirectory(m_soundbank_selector.getSubDirectoryAndHighlightItFromName(soundbank_name));
+						m_patch_selector.setDirectory(m_category_selector.getFirstSubDirectoryAndHighlightIt());
+					} else {
+						AlertWindow::showMessageBoxAsync(
+				        AlertWindow::InfoIcon, "Something went wrong when creating the soundbank!", "Error: Couldn't decompress .osb file");	
+					}
+
+				} else {
+					AlertWindow::showMessageBoxAsync(
+				        AlertWindow::InfoIcon, "Something went wrong when creating the soundbank!", "Error: Couldn't create Directory");
+				}
 
 		    } else {
 			    if (file_name != "") {

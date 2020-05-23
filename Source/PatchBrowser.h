@@ -6,6 +6,8 @@
 
 #define DEFAULT_SOUNDBANK_LOCATION_STRING (File::getSpecialLocation(File::SpecialLocationType::userDocumentsDirectory).getFullPathName() + "/Soundbanks")
 #define DEFAULT_EXPORT_LOCATION_STRING (File::getSpecialLocation(File::SpecialLocationType::userDocumentsDirectory).getFullPathName())
+//make this one different as to not spark confusion between "folders" and "osb"
+#define DEFAULT_SOUNDBANK_IMPORT_LOCATION_STRING (File::getSpecialLocation(File::SpecialLocationType::userDocumentsDirectory).getFullPathName())
 
 class PatchBrowser    : public Component
 {
@@ -26,6 +28,7 @@ private:
     void loadPatchWithFileBrowser(String p_directory);
     void loadPatchFromOpenedFileStream(juce::FileInputStream &p_file_stream);
     void savePatchInOpenedFileStream(FileOutputStream &p_file_stream);
+    void loadSoundbankWithFileBrowser(String p_directory);
 
     bool checkForBiggerVersion(FileInputStream &p_file_stream, std::string &p_version_string);
     bool checkForSmallerVersion(FileInputStream &p_file_stream, std::string &p_version_string);

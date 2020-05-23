@@ -15,6 +15,12 @@
 
 #define PATCH_BROWSER_MENU_ENTRY_DELETE 10
 
+#define WARNING_INLAY_X_150 10
+#define WARNING_INLAY_X_100 6
+
+#define WARNING_OFFSET_Y_150 50
+#define WARNING_OFFSET_Y_100 33
+
 class OdinBrowserButtonFeels : public LookAndFeel_V4 {
 public:
 	void setButtonFontSize(float p_size) {
@@ -86,6 +92,13 @@ protected:
 
 class PatchBrowserSelector : public Component {
 public:
+
+	enum class DirectoryStatus{
+		Ok,
+		Empty,
+		Nonexistent
+	};
+
 	PatchBrowserSelector(File::TypesOfFileToFind p_file_or_dir,
 	                     String p_left_button,
 	                     String p_mid_button,
@@ -123,11 +136,14 @@ public:
 	void setButtonTooltips(String p_left, String p_mid, String p_right );
 	//void focusLost(FocusChangeType p_cause) override;
 
+	void setWarningTexts(String p_empty, String p_nonexistent);
+
 private:
 	void generateContent();
 	void unhighlightAllEntries();
 	void enforceScrollLimits();
 	void showButtons(bool p_show);
+	void checkDirectoryStatus();
 
 	float m_scroll_position = 0.f;
 
@@ -157,4 +173,9 @@ private:
 	bool m_show_mid_button  = false;
 
 	bool m_input_field_active = false;
+
+	String m_empty_text = "";
+	String m_nonexistent_text = "";
+
+	DirectoryStatus m_directory_status = DirectoryStatus::Nonexistent;
 };

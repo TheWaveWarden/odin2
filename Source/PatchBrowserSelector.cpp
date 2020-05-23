@@ -18,9 +18,7 @@ PatchBrowserSelector::PatchBrowserSelector(File::TypesOfFileToFind p_file_or_dir
 		m_show_left_button = true;
 		m_left_button.setLookAndFeel(&m_button_feels);
 		m_left_button.setAlwaysOnTop(true);
-		m_left_button.onClick = [&](){
-			onImport(getDirectory());
-		};
+		m_left_button.onClick = [&]() { onImport(getDirectory()); };
 	}
 	if (p_mid_button != "") {
 		addAndMakeVisible(m_mid_button);
@@ -28,9 +26,7 @@ PatchBrowserSelector::PatchBrowserSelector(File::TypesOfFileToFind p_file_or_dir
 		m_show_mid_button = true;
 		m_mid_button.setLookAndFeel(&m_button_feels);
 		m_mid_button.setAlwaysOnTop(true);
-		m_mid_button.onClick = [&](){
-			onExport(getDirectory());
-		};
+		m_mid_button.onClick = [&]() { onExport(getDirectory()); };
 	}
 	addAndMakeVisible(m_right_button);
 	m_right_button.setButtonText(p_right_button);
@@ -45,7 +41,7 @@ PatchBrowserSelector::PatchBrowserSelector(File::TypesOfFileToFind p_file_or_dir
 	};
 
 	//m_input_field.onFocusLost = [&]() { hideInputField(); };
-#define	PATCH_BROWSER_INPUT_FIELD_BACKGROUND_COLOR Colour(20,30,30)
+#define PATCH_BROWSER_INPUT_FIELD_BACKGROUND_COLOR Colour(20, 30, 30)
 	m_input_field.setColour(TextEditor::ColourIds::backgroundColourId, PATCH_BROWSER_INPUT_FIELD_BACKGROUND_COLOR);
 	m_input_field.onEscapeKey = [&]() { hideInputField(); };
 	m_input_field.onReturnKey = [&]() { applyInputField(); };
@@ -63,6 +59,30 @@ void PatchBrowserSelector::paint(Graphics &g) {
 	g.fillAll(MODMATRIX_COLOR); // clear the background
 	g.setColour(Colours::grey);
 	g.drawRect(getLocalBounds(), 1); // draw an outline around the component
+
+#define WARNING_COLOR ODIN_BLUE
+
+	switch (m_directory_status) {
+	case DirectoryStatus::Nonexistent: {
+		g.setColour(WARNING_COLOR);
+		float font_size = m_GUI_big ? 17.f : 11.f;
+		float inlay_x   = m_GUI_big ? WARNING_INLAY_X_150 : WARNING_INLAY_X_100;
+		float offset_y  = m_GUI_big ? WARNING_OFFSET_Y_150 : WARNING_OFFSET_Y_100;
+		g.setFont(font_size);
+		g.drawMultiLineText(
+		    m_nonexistent_text, inlay_x, font_size + offset_y, getWidth() - 2 * inlay_x, Justification::centred, 5.f);
+	} break;
+
+	case DirectoryStatus::Empty: {
+		g.setColour(WARNING_COLOR);
+		float font_size = m_GUI_big ? 17.f : 11.f;
+		float inlay_x   = m_GUI_big ? WARNING_INLAY_X_150 : WARNING_INLAY_X_100;
+		float offset_y  = m_GUI_big ? WARNING_OFFSET_Y_150 : WARNING_OFFSET_Y_100;
+		g.setFont(font_size);
+		g.drawMultiLineText(
+		    m_empty_text, inlay_x, font_size + offset_y, getWidth() - 2 * inlay_x, Justification::centred, 5.f);
+	} break;
+	}
 }
 
 void PatchBrowserSelector::applyInputField() {
@@ -125,23 +145,29 @@ void PatchBrowserSelector::setWildCard(String p_wildcard) {
 }
 
 void PatchBrowserSelector::setDirectory(String p_absolute_path) {
+
 	m_absolute_path = p_absolute_path;
 
 	DBG("Set path to " + m_absolute_path);
 
 	resetScrollPosition();
 	regenerateContent();
-	
-	showButtons(File(p_absolute_path).exists());
+
+	bool exists = File(p_absolute_path).isDirectory();
+	showButtons(exists);
 }
 
-void PatchBrowserSelector::showButtons(bool p_show){
-	//if(m_show_left_button){
-	//	m_left_button.setVisible(p_show);
-	//}
-	//if(m_show_mid_button){
-	//	m_mid_button.setVisible(p_show);
-	//}
+void PatchBrowserSelector::checkDirectoryStatus(){
+	if (!File(m_absolute_path).isDirectory()) {
+		m_directory_status = DirectoryStatus::Nonexistent;
+	} else if (m_entries.size() == 0) {
+		m_directory_status = DirectoryStatus::Empty;
+	} else {
+		m_directory_status = DirectoryStatus::Ok;
+	}
+}
+
+void PatchBrowserSelector::showButtons(bool p_show) {
 	m_right_button.setVisible(p_show);
 }
 
@@ -203,6 +229,8 @@ void PatchBrowserSelector::generateContent() {
 	} else {
 		//no dir??? whatever, open filebrowser
 	}
+
+	checkDirectoryStatus();
 }
 
 void PatchBrowserSelector::positionEntries() {
@@ -293,10 +321,15 @@ void PatchBrowserSelector::unhighlightAllEntries() {
 	}
 }
 
-void PatchBrowserSelector::setButtonTooltips(String p_left, String p_mid, String p_right ){
+void PatchBrowserSelector::setButtonTooltips(String p_left, String p_mid, String p_right) {
 	m_left_button.setTooltip(p_left);
 	m_mid_button.setTooltip(p_mid);
 	m_right_button.setTooltip(p_right);
+}
+
+void PatchBrowserSelector::setWarningTexts(String p_empty, String p_nonexistent) {
+	m_empty_text       = p_empty;
+	m_nonexistent_text = p_nonexistent;
 }
 
 // void PatchBrowserSelector::focusLost(FocusChangeType p_cause){

@@ -11,13 +11,15 @@ void BrowserEntry::paint(Graphics &g) {
 
 	if (!m_is_active) {
 		if (m_is_highlighted) {
-			g.fillAll(Colour(35, 35, 35));
+			//g.fillAll(Colour(35, 35, 35));
+			g.fillAll(Colour(22, 22, 22));
 			g.setColour(Colours::grey);
 			g.drawRect(getLocalBounds(), 1); // draw an outline around the component
 		}
 		g.setColour(Colours::white);
 	} else {
-		g.fillAll(Colour(35, 35, 35));
+		//g.fillAll(Colour(35, 35, 35));
+		g.fillAll(Colour(22, 22, 22));
 		g.setColour(ODIN_BLUE);
 		g.drawRect(getLocalBounds(), 1); // draw an outline around the component
 	}
