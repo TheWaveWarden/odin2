@@ -15,6 +15,8 @@
 
 #define PATCH_BROWSER_MENU_ENTRY_RENAME 10
 #define PATCH_BROWSER_MENU_ENTRY_DELETE 20
+#define PATCH_BROWSER_MENU_MOVE_OFFSET 1000
+#define PATCH_BROWSER_MENU_COPY_OFFSET 3000
 
 #define WARNING_INLAY_X_150 10
 #define WARNING_INLAY_X_100 6
@@ -93,12 +95,7 @@ protected:
 
 class PatchBrowserSelector : public Component {
 public:
-
-	enum class DirectoryStatus{
-		Ok,
-		Empty,
-		Nonexistent
-	};
+	enum class DirectoryStatus { Ok, Empty, Nonexistent };
 
 	PatchBrowserSelector(File::TypesOfFileToFind p_file_or_dir,
 	                     String p_left_button,
@@ -128,16 +125,25 @@ public:
 	std::function<void(String)> onCreateNewFile;
 	std::function<void(String)> onExport;
 	std::function<void(String)> onImport;
+	std::function<void(String, String)> onMove;
+	std::function<void(String, String)> onCopy;
+	std::function<void(String, String, String)> applyRenamingSelector;
 
 	void regenerateContent();
 	void positionEntries();
 
 	void applyInputField();
 
-	void setButtonTooltips(String p_left, String p_mid, String p_right );
+	void setButtonTooltips(String p_left, String p_mid, String p_right);
 	//void focusLost(FocusChangeType p_cause) override;
 
 	void setWarningTexts(String p_empty, String p_nonexistent);
+	void setCopyTargetName(String p_name);
+	void setCopyMoveEnabled(bool p_enabled);
+
+	String getCopyFileString(int p_popupmenu_index);
+	String getMoveFileString(int p_popupmenu_index);
+	String getCopyMoveMap(int p_index);
 
 private:
 	void generateContent();
@@ -145,6 +151,7 @@ private:
 	void enforceScrollLimits();
 	void showButtons(bool p_show);
 	void checkDirectoryStatus();
+	void recreatePopupMenu();
 
 	float m_scroll_position = 0.f;
 
@@ -175,8 +182,12 @@ private:
 
 	bool m_input_field_active = false;
 
-	String m_empty_text = "";
+	bool m_copy_move_enabled = true;
+	std::map<int, String> m_copy_move_map;
+
+	String m_empty_text       = "";
 	String m_nonexistent_text = "";
+	String m_copy_target_name = "";
 
 	DirectoryStatus m_directory_status = DirectoryStatus::Nonexistent;
 };

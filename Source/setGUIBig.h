@@ -1,5 +1,5 @@
-void OdinAudioProcessorEditor::setGUIBig(){
-    
+void OdinAudioProcessorEditor::setGUIBig() {
+
 	juce::Image dropdown_button1 =
 	    ImageCache::getFromMemory(BinaryData::buttondropdown_1_150_png, BinaryData::buttondropdown_1_150_pngSize);
 	juce::Image dropdown_button2 =
@@ -19,8 +19,10 @@ void OdinAudioProcessorEditor::setGUIBig(){
 	                          &dropdown_draw1,
 	                          &dropdown_draw2);
 
-	m_osc1_dropdown.setBounds(
-	    OdinHelper::c150(DROPDOWN_OSC1_POS_X), OdinHelper::c150(DROPDOWN_POS_Y), dropdown_button1.getWidth(), dropdown_button1.getHeight());
+	m_osc1_dropdown.setBounds(OdinHelper::c150(DROPDOWN_OSC1_POS_X),
+	                          OdinHelper::c150(DROPDOWN_POS_Y),
+	                          dropdown_button1.getWidth(),
+	                          dropdown_button1.getHeight());
 
 	m_osc2_dropdown.setImages(&dropdown_draw1,
 	                          &dropdown_draw1,
@@ -30,8 +32,10 @@ void OdinAudioProcessorEditor::setGUIBig(){
 	                          &dropdown_draw1,
 	                          &dropdown_draw2);
 
-	m_osc2_dropdown.setBounds(
-	    OdinHelper::c150(DROPDOWN_OSC2_POS_X), OdinHelper::c150(DROPDOWN_POS_Y), dropdown_button1.getWidth(), dropdown_button1.getHeight());
+	m_osc2_dropdown.setBounds(OdinHelper::c150(DROPDOWN_OSC2_POS_X),
+	                          OdinHelper::c150(DROPDOWN_POS_Y),
+	                          dropdown_button1.getWidth(),
+	                          dropdown_button1.getHeight());
 
 	m_osc3_dropdown.setImages(&dropdown_draw1,
 	                          &dropdown_draw1,
@@ -40,8 +44,10 @@ void OdinAudioProcessorEditor::setGUIBig(){
 	                          &dropdown_draw1,
 	                          &dropdown_draw1,
 	                          &dropdown_draw2);
-	m_osc3_dropdown.setBounds(
-	    OdinHelper::c150(DROPDOWN_OSC3_POS_X), OdinHelper::c150(DROPDOWN_POS_Y), dropdown_button1.getWidth(), dropdown_button1.getHeight());
+	m_osc3_dropdown.setBounds(OdinHelper::c150(DROPDOWN_OSC3_POS_X),
+	                          OdinHelper::c150(DROPDOWN_POS_Y),
+	                          dropdown_button1.getWidth(),
+	                          dropdown_button1.getHeight());
 	m_filter1_dropdown.setImages(&dropdown_draw1,
 	                             &dropdown_draw1,
 	                             &dropdown_draw2,
@@ -49,8 +55,10 @@ void OdinAudioProcessorEditor::setGUIBig(){
 	                             &dropdown_draw1,
 	                             &dropdown_draw1,
 	                             &dropdown_draw2);
-	m_filter1_dropdown.setBounds(
-	    OdinHelper::c150(DROPDOWN_FILTER1_POS_X), OdinHelper::c150(DROPDOWN_FILTER1_POS_Y), dropdown_button1.getWidth(), dropdown_button1.getHeight());
+	m_filter1_dropdown.setBounds(OdinHelper::c150(DROPDOWN_FILTER1_POS_X),
+	                             OdinHelper::c150(DROPDOWN_FILTER1_POS_Y),
+	                             dropdown_button1.getWidth(),
+	                             dropdown_button1.getHeight());
 	m_filter2_dropdown.setImages(&dropdown_draw1,
 	                             &dropdown_draw1,
 	                             &dropdown_draw2,
@@ -58,9 +66,10 @@ void OdinAudioProcessorEditor::setGUIBig(){
 	                             &dropdown_draw1,
 	                             &dropdown_draw1,
 	                             &dropdown_draw2);
-	m_filter2_dropdown.setBounds(
-	    OdinHelper::c150(DROPDOWN_FILTER2_POS_X), OdinHelper::c150(DROPDOWN_FILTER2_POS_Y), dropdown_button1.getWidth(), dropdown_button1.getHeight());
-
+	m_filter2_dropdown.setBounds(OdinHelper::c150(DROPDOWN_FILTER2_POS_X),
+	                             OdinHelper::c150(DROPDOWN_FILTER2_POS_Y),
+	                             dropdown_button1.getWidth(),
+	                             dropdown_button1.getHeight());
 
 	m_filter3_dropdown.setImages(&dropdown_draw1,
 	                             &dropdown_draw1,
@@ -69,15 +78,21 @@ void OdinAudioProcessorEditor::setGUIBig(){
 	                             &dropdown_draw1,
 	                             &dropdown_draw1,
 	                             &dropdown_draw2);
-	m_filter3_dropdown.setBounds(
-	    OdinHelper::c150(DROPDOWN_FILTER3_POS_X), OdinHelper::c150(DROPDOWN_FILTER3_POS_Y), dropdown_button1.getWidth(), dropdown_button1.getHeight());
+	m_filter3_dropdown.setBounds(OdinHelper::c150(DROPDOWN_FILTER3_POS_X),
+	                             OdinHelper::c150(DROPDOWN_FILTER3_POS_Y),
+	                             dropdown_button1.getWidth(),
+	                             dropdown_button1.getHeight());
 
 	m_fx_buttons_section.setTopLeftPosition(OdinHelper::c150(FX_BUTTON_X) + 2, OdinHelper::c150(FX_BUTTON_Y) + 3);
 
-	juce::Image fx_on_1 = ImageCache::getFromMemory(BinaryData::buttonfxon_1_150_png, BinaryData::buttonfxon_1_150_pngSize);
-	juce::Image fx_on_2 = ImageCache::getFromMemory(BinaryData::buttonfxon_2_150_png, BinaryData::buttonfxon_2_150_pngSize);
-	juce::Image fx_on_3 = ImageCache::getFromMemory(BinaryData::buttonfxon_3_150_png, BinaryData::buttonfxon_3_150_pngSize);
-	juce::Image fx_on_4 = ImageCache::getFromMemory(BinaryData::buttonfxon_4_150_png, BinaryData::buttonfxon_4_150_pngSize);
+	juce::Image fx_on_1 =
+	    ImageCache::getFromMemory(BinaryData::buttonfxon_1_150_png, BinaryData::buttonfxon_1_150_pngSize);
+	juce::Image fx_on_2 =
+	    ImageCache::getFromMemory(BinaryData::buttonfxon_2_150_png, BinaryData::buttonfxon_2_150_pngSize);
+	juce::Image fx_on_3 =
+	    ImageCache::getFromMemory(BinaryData::buttonfxon_3_150_png, BinaryData::buttonfxon_3_150_pngSize);
+	juce::Image fx_on_4 =
+	    ImageCache::getFromMemory(BinaryData::buttonfxon_4_150_png, BinaryData::buttonfxon_4_150_pngSize);
 
 	juce::DrawableImage fx_on_draw1;
 	juce::DrawableImage fx_on_draw2;
@@ -91,17 +106,22 @@ void OdinAudioProcessorEditor::setGUIBig(){
 
 	m_phaser_on_button.setImages(
 	    &fx_on_draw2, &fx_on_draw2, &fx_on_draw1, &fx_on_draw1, &fx_on_draw4, &fx_on_draw4, &fx_on_draw3, &fx_on_draw3);
-	m_phaser_on_button.setBounds(OdinHelper::c150(FX_ON_BUTTON_X), OdinHelper::c150(FX_ON_BUTTON_Y), fx_on_1.getWidth(), fx_on_1.getHeight());
+	m_phaser_on_button.setBounds(
+	    OdinHelper::c150(FX_ON_BUTTON_X), OdinHelper::c150(FX_ON_BUTTON_Y), fx_on_1.getWidth(), fx_on_1.getHeight());
 
 	m_flanger_on_button.setImages(
 	    &fx_on_draw2, &fx_on_draw2, &fx_on_draw1, &fx_on_draw1, &fx_on_draw4, &fx_on_draw4, &fx_on_draw3, &fx_on_draw3);
-	m_flanger_on_button.setBounds(
-	    OdinHelper::c150(FX_ON_BUTTON_X) + OdinHelper::c150(FX_BUTTON_OFFSET), OdinHelper::c150(FX_ON_BUTTON_Y), fx_on_1.getWidth(), fx_on_1.getHeight());
+	m_flanger_on_button.setBounds(OdinHelper::c150(FX_ON_BUTTON_X) + OdinHelper::c150(FX_BUTTON_OFFSET),
+	                              OdinHelper::c150(FX_ON_BUTTON_Y),
+	                              fx_on_1.getWidth(),
+	                              fx_on_1.getHeight());
 
 	m_chorus_on_button.setImages(
 	    &fx_on_draw2, &fx_on_draw2, &fx_on_draw1, &fx_on_draw1, &fx_on_draw4, &fx_on_draw4, &fx_on_draw3, &fx_on_draw3);
-	m_chorus_on_button.setBounds(
-	    OdinHelper::c150(FX_ON_BUTTON_X) + 2 * OdinHelper::c150(FX_BUTTON_OFFSET), OdinHelper::c150(FX_ON_BUTTON_Y), fx_on_1.getWidth(), fx_on_1.getHeight());
+	m_chorus_on_button.setBounds(OdinHelper::c150(FX_ON_BUTTON_X) + 2 * OdinHelper::c150(FX_BUTTON_OFFSET),
+	                             OdinHelper::c150(FX_ON_BUTTON_Y),
+	                             fx_on_1.getWidth(),
+	                             fx_on_1.getHeight());
 	m_chorus_on_button.setTriggeredOnMouseDown(true);
 	m_chorus_on_button.setTooltip("Enables the chorus");
 	m_chorus_on_button.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
@@ -109,15 +129,21 @@ void OdinAudioProcessorEditor::setGUIBig(){
 	m_delay_on_button.setImages(
 	    &fx_on_draw2, &fx_on_draw2, &fx_on_draw1, &fx_on_draw1, &fx_on_draw4, &fx_on_draw4, &fx_on_draw3, &fx_on_draw3);
 	m_delay_on_button.setClickingTogglesState(true);
-	m_delay_on_button.setBounds(
-	    OdinHelper::c150(FX_ON_BUTTON_X) + 3 * OdinHelper::c150(FX_BUTTON_OFFSET), OdinHelper::c150(FX_ON_BUTTON_Y), fx_on_1.getWidth(), fx_on_1.getHeight());
+	m_delay_on_button.setBounds(OdinHelper::c150(FX_ON_BUTTON_X) + 3 * OdinHelper::c150(FX_BUTTON_OFFSET),
+	                            OdinHelper::c150(FX_ON_BUTTON_Y),
+	                            fx_on_1.getWidth(),
+	                            fx_on_1.getHeight());
 	addAndMakeVisible(m_delay_on_button);
 	m_delay_on_button.setAlwaysOnTop(true);
 
-	juce::Image filter_button1_1 = ImageCache::getFromMemory(BinaryData::button1_1_150_png, BinaryData::button1_1_150_pngSize);
-	juce::Image filter_button1_2 = ImageCache::getFromMemory(BinaryData::button1_2_150_png, BinaryData::button1_2_150_pngSize);
-	juce::Image filter_button1_3 = ImageCache::getFromMemory(BinaryData::button1_3_150_png, BinaryData::button1_3_150_pngSize);
-	juce::Image filter_button1_4 = ImageCache::getFromMemory(BinaryData::button1_4_150_png, BinaryData::button1_4_150_pngSize);
+	juce::Image filter_button1_1 =
+	    ImageCache::getFromMemory(BinaryData::button1_1_150_png, BinaryData::button1_1_150_pngSize);
+	juce::Image filter_button1_2 =
+	    ImageCache::getFromMemory(BinaryData::button1_2_150_png, BinaryData::button1_2_150_pngSize);
+	juce::Image filter_button1_3 =
+	    ImageCache::getFromMemory(BinaryData::button1_3_150_png, BinaryData::button1_3_150_pngSize);
+	juce::Image filter_button1_4 =
+	    ImageCache::getFromMemory(BinaryData::button1_4_150_png, BinaryData::button1_4_150_pngSize);
 
 	juce::DrawableImage filter_button1_draw1;
 	juce::DrawableImage filter_button1_draw2;
@@ -137,8 +163,10 @@ void OdinAudioProcessorEditor::setGUIBig(){
 	                            &filter_button1_draw4,
 	                            &filter_button1_draw3,
 	                            &filter_button1_draw3);
-	m_filleft_button1.setBounds(
-	    OdinHelper::c150(BUTTON_1_LEFT_POS_X), OdinHelper::c150(BUTTON_1_LEFT_POS_Y), filter_button1_1.getWidth(), filter_button1_1.getHeight());
+	m_filleft_button1.setBounds(OdinHelper::c150(BUTTON_1_LEFT_POS_X),
+	                            OdinHelper::c150(BUTTON_1_LEFT_POS_Y),
+	                            filter_button1_1.getWidth(),
+	                            filter_button1_1.getHeight());
 	m_filright_button1.setImages(&filter_button1_draw2,
 	                             &filter_button1_draw2,
 	                             &filter_button1_draw1,
@@ -179,13 +207,19 @@ void OdinAudioProcessorEditor::setGUIBig(){
 	                            &question_button_draw4,
 	                            &question_button_draw3,
 	                            &question_button_draw3);
-	m_question_button.setBounds(
-	    OdinHelper::c150(QUESTION_POS_X), OdinHelper::c150(QUESTION_POS_Y), question_button_1.getWidth(), question_button_1.getHeight());
+	m_question_button.setBounds(OdinHelper::c150(QUESTION_POS_X),
+	                            OdinHelper::c150(QUESTION_POS_Y),
+	                            question_button_1.getWidth(),
+	                            question_button_1.getHeight());
 
-	juce::Image filter_button2_1 = ImageCache::getFromMemory(BinaryData::button2_1_150_png, BinaryData::button2_1_150_pngSize);
-	juce::Image filter_button2_2 = ImageCache::getFromMemory(BinaryData::button2_2_150_png, BinaryData::button2_2_150_pngSize);
-	juce::Image filter_button2_3 = ImageCache::getFromMemory(BinaryData::button2_3_150_png, BinaryData::button2_3_150_pngSize);
-	juce::Image filter_button2_4 = ImageCache::getFromMemory(BinaryData::button2_4_150_png, BinaryData::button2_4_150_pngSize);
+	juce::Image filter_button2_1 =
+	    ImageCache::getFromMemory(BinaryData::button2_1_150_png, BinaryData::button2_1_150_pngSize);
+	juce::Image filter_button2_2 =
+	    ImageCache::getFromMemory(BinaryData::button2_2_150_png, BinaryData::button2_2_150_pngSize);
+	juce::Image filter_button2_3 =
+	    ImageCache::getFromMemory(BinaryData::button2_3_150_png, BinaryData::button2_3_150_pngSize);
+	juce::Image filter_button2_4 =
+	    ImageCache::getFromMemory(BinaryData::button2_4_150_png, BinaryData::button2_4_150_pngSize);
 
 	juce::DrawableImage filter_button2_draw1;
 	juce::DrawableImage filter_button2_draw2;
@@ -218,13 +252,19 @@ void OdinAudioProcessorEditor::setGUIBig(){
 	                             &filter_button2_draw4,
 	                             &filter_button2_draw3,
 	                             &filter_button2_draw3);
-	m_filright_button2.setBounds(
-	    OdinHelper::c150(BUTTON_2_RIGHT_POS_X), OdinHelper::c150(BUTTON_2_RIGHT_POS_Y), filter_button2_1.getWidth(), filter_button2_1.getHeight());
+	m_filright_button2.setBounds(OdinHelper::c150(BUTTON_2_RIGHT_POS_X),
+	                             OdinHelper::c150(BUTTON_2_RIGHT_POS_Y),
+	                             filter_button2_1.getWidth(),
+	                             filter_button2_1.getHeight());
 
-	juce::Image filter_button3_1 = ImageCache::getFromMemory(BinaryData::button3_1_150_png, BinaryData::button3_1_150_pngSize);
-	juce::Image filter_button3_2 = ImageCache::getFromMemory(BinaryData::button3_2_150_png, BinaryData::button3_2_150_pngSize);
-	juce::Image filter_button3_3 = ImageCache::getFromMemory(BinaryData::button3_3_150_png, BinaryData::button3_3_150_pngSize);
-	juce::Image filter_button3_4 = ImageCache::getFromMemory(BinaryData::button3_4_150_png, BinaryData::button3_4_150_pngSize);
+	juce::Image filter_button3_1 =
+	    ImageCache::getFromMemory(BinaryData::button3_1_150_png, BinaryData::button3_1_150_pngSize);
+	juce::Image filter_button3_2 =
+	    ImageCache::getFromMemory(BinaryData::button3_2_150_png, BinaryData::button3_2_150_pngSize);
+	juce::Image filter_button3_3 =
+	    ImageCache::getFromMemory(BinaryData::button3_3_150_png, BinaryData::button3_3_150_pngSize);
+	juce::Image filter_button3_4 =
+	    ImageCache::getFromMemory(BinaryData::button3_4_150_png, BinaryData::button3_4_150_pngSize);
 
 	juce::DrawableImage filter_button3_draw1;
 	juce::DrawableImage filter_button3_draw2;
@@ -318,8 +358,8 @@ void OdinAudioProcessorEditor::setGUIBig(){
 	juce::Image bypass_fil3_plate =
 	    ImageCache::getFromMemory(BinaryData::filter3_bypass_150_png, BinaryData::filter3_bypass_150_pngSize);
 
-	juce::Image black_knob_small =
-	    ImageCache::getFromMemory(BinaryData::black_knob_very_small_150_png, BinaryData::black_knob_very_small_150_pngSize);
+	juce::Image black_knob_small = ImageCache::getFromMemory(BinaryData::black_knob_very_small_150_png,
+	                                                         BinaryData::black_knob_very_small_150_pngSize);
 
 	m_unison_detune.setStrip(black_knob_small, N_KNOB_FRAMES);
 	m_unison_width.setStrip(black_knob_small, N_KNOB_FRAMES);
@@ -330,10 +370,16 @@ void OdinAudioProcessorEditor::setGUIBig(){
 	juce::Image pitchwheel = ImageCache::getFromMemory(BinaryData::modwheel_150_png, BinaryData::modwheel_150_pngSize);
 
 	m_pitchwheel.setStrip(pitchwheel, N_KNOB_FRAMES, false);
-	m_pitchwheel.setBounds(OdinHelper::c150(PITCHWHEEL_X), OdinHelper::c150(WHEEL_Y), pitchwheel.getWidth() / N_KNOB_FRAMES, pitchwheel.getHeight());
-	
-    m_modwheel.setStrip(pitchwheel, N_KNOB_FRAMES, false);
-	m_modwheel.setBounds(OdinHelper::c150(MODWHEEL_X), OdinHelper::c150(WHEEL_Y), pitchwheel.getWidth() / N_KNOB_FRAMES, pitchwheel.getHeight());
+	m_pitchwheel.setBounds(OdinHelper::c150(PITCHWHEEL_X),
+	                       OdinHelper::c150(WHEEL_Y),
+	                       pitchwheel.getWidth() / N_KNOB_FRAMES,
+	                       pitchwheel.getHeight());
+
+	m_modwheel.setStrip(pitchwheel, N_KNOB_FRAMES, false);
+	m_modwheel.setBounds(OdinHelper::c150(MODWHEEL_X),
+	                     OdinHelper::c150(WHEEL_Y),
+	                     pitchwheel.getWidth() / N_KNOB_FRAMES,
+	                     pitchwheel.getHeight());
 
 	m_osc1.setBackgroundBypass(bypass_osc1_plate);
 	m_osc2.setBackgroundBypass(bypass_osc2_plate);
@@ -378,7 +424,8 @@ void OdinAudioProcessorEditor::setGUIBig(){
 	    ImageCache::getFromMemory(BinaryData::buttonenv13_3_150_png, BinaryData::buttonenv13_3_150_pngSize);
 	m_env_13_button.setImage(env13_left, 1);
 	m_env_13_button.setImage(env13_right, 2);
-	m_env_13_button.setBounds(OdinHelper::c150(ENV13_POS_X), OdinHelper::c150(ENV13_POS_Y), env13_left.getWidth(), env13_left.getHeight());
+	m_env_13_button.setBounds(
+	    OdinHelper::c150(ENV13_POS_X), OdinHelper::c150(ENV13_POS_Y), env13_left.getWidth(), env13_left.getHeight());
 
 	juce::Image env24_left =
 	    ImageCache::getFromMemory(BinaryData::buttonenv24_1_150_png, BinaryData::buttonenv24_1_150_pngSize);
@@ -386,7 +433,8 @@ void OdinAudioProcessorEditor::setGUIBig(){
 	    ImageCache::getFromMemory(BinaryData::buttonenv24_3_150_png, BinaryData::buttonenv24_3_150_pngSize);
 	m_env_24_button.setImage(env24_left, 1);
 	m_env_24_button.setImage(env24_right, 2);
-	m_env_24_button.setBounds(OdinHelper::c150(ENV24_POS_X), OdinHelper::c150(ENV24_POS_Y), env24_left.getWidth(), env24_left.getHeight());
+	m_env_24_button.setBounds(
+	    OdinHelper::c150(ENV24_POS_X), OdinHelper::c150(ENV24_POS_Y), env24_left.getWidth(), env24_left.getHeight());
 
 	juce::Image lfo13_left =
 	    ImageCache::getFromMemory(BinaryData::buttonlfo13_1_150_png, BinaryData::buttonlfo13_1_150_pngSize);
@@ -394,16 +442,68 @@ void OdinAudioProcessorEditor::setGUIBig(){
 	    ImageCache::getFromMemory(BinaryData::buttonlfo13_3_150_png, BinaryData::buttonlfo13_3_150_pngSize);
 	m_lfo_13_button.setImage(lfo13_left, 1);
 	m_lfo_13_button.setImage(lfo13_right, 2);
-	m_lfo_13_button.setBounds(OdinHelper::c150(LFO13_POS_X), OdinHelper::c150(LFO13_POS_Y), lfo13_left.getWidth(), lfo13_left.getHeight());
+	m_lfo_13_button.setBounds(
+	    OdinHelper::c150(LFO13_POS_X), OdinHelper::c150(LFO13_POS_Y), lfo13_left.getWidth(), lfo13_left.getHeight());
 
-	juce::Image arp_modmatrix_button_left =
-	    ImageCache::getFromMemory(BinaryData::button_mod_arp_1_150_png, BinaryData::button_mod_arp_1_150_pngSize);
-	juce::Image arp_modmatrix_button_right =
-	    ImageCache::getFromMemory(BinaryData::button_mod_arp_2_150_png, BinaryData::button_mod_arp_2_150_pngSize);
-	m_arp_modmatrix_button.setImage(arp_modmatrix_button_left, 1);
-	m_arp_modmatrix_button.setImage(arp_modmatrix_button_right, 2);
-	m_arp_modmatrix_button.setBounds(OdinHelper::c150(ARP_MATRIX_BUTTON_POS_X), OdinHelper::c150(ARP_MATRIX_BUTTON_POS_Y), arp_modmatrix_button_left.getWidth(), arp_modmatrix_button_left.getHeight());
-	
+	juce::Image select_arp_button_left  = ImageCache::getFromMemory(BinaryData::button_select_arpeggiator_1_150_png,
+                                                                   BinaryData::button_select_arpeggiator_1_150_pngSize);
+	juce::Image select_arp_button_right = ImageCache::getFromMemory(
+	    BinaryData::button_select_arpeggiator_2_150_png, BinaryData::button_select_arpeggiator_2_150_pngSize);
+	juce::DrawableImage select_arp_button_left_draw;
+	select_arp_button_left_draw.setImage(select_arp_button_left);
+	juce::DrawableImage select_arp_button_right_draw;
+	select_arp_button_right_draw.setImage(select_arp_button_right);
+	m_select_arp_button.setImages(&select_arp_button_right_draw,
+	                              &select_arp_button_right_draw,
+	                              &select_arp_button_left_draw,
+	                              &select_arp_button_left_draw,
+	                              &select_arp_button_left_draw,
+	                              &select_arp_button_left_draw,
+	                              &select_arp_button_left_draw);
+	m_select_arp_button.setBounds(OdinHelper::c150(ARP_MATRIX_BUTTON_POS_X),
+	                              OdinHelper::c150(ARP_MATRIX_BUTTON_POS_Y),
+	                              select_arp_button_left.getWidth(),
+	                              select_arp_button_left.getHeight());
+
+	juce::Image select_modmatrix_button_left = ImageCache::getFromMemory(
+	    BinaryData::button_select_modmatrix_1_150_png, BinaryData::button_select_modmatrix_1_150_pngSize);
+	juce::Image select_modmatrix_button_right = ImageCache::getFromMemory(
+	    BinaryData::button_select_modmatrix_2_150_png, BinaryData::button_select_modmatrix_2_150_pngSize);
+	juce::DrawableImage select_modmatrix_button_left_draw;
+	select_modmatrix_button_left_draw.setImage(select_modmatrix_button_left);
+	juce::DrawableImage select_modmatrix_button_right_draw;
+	select_modmatrix_button_right_draw.setImage(select_modmatrix_button_right);
+	m_select_modmatrix_button.setImages(&select_modmatrix_button_right_draw,
+	                                    &select_modmatrix_button_right_draw,
+	                                    &select_modmatrix_button_left_draw,
+	                                    &select_modmatrix_button_left_draw,
+	                                    &select_modmatrix_button_left_draw,
+	                                    &select_modmatrix_button_left_draw,
+	                                    &select_modmatrix_button_left_draw);
+	m_select_modmatrix_button.setBounds(SELECT_BUTTON_WIDTH_150 + OdinHelper::c150(ARP_MATRIX_BUTTON_POS_X),
+	                                    OdinHelper::c150(ARP_MATRIX_BUTTON_POS_Y),
+	                                    select_modmatrix_button_left.getWidth(),
+	                                    select_modmatrix_button_left.getHeight());
+
+	juce::Image select_presets_button_left  = ImageCache::getFromMemory(BinaryData::button_select_presets_1_150_png,
+                                                                       BinaryData::button_select_presets_1_150_pngSize);
+	juce::Image select_presets_button_right = ImageCache::getFromMemory(
+	    BinaryData::button_select_presets_2_150_png, BinaryData::button_select_presets_2_150_pngSize);
+	juce::DrawableImage select_presets_button_left_draw;
+	select_presets_button_left_draw.setImage(select_presets_button_left);
+	juce::DrawableImage select_presets_button_right_draw;
+	select_presets_button_right_draw.setImage(select_presets_button_right);
+	m_select_presets_button.setImages(&select_presets_button_right_draw,
+	                                  &select_presets_button_right_draw,
+	                                  &select_presets_button_left_draw,
+	                                  &select_presets_button_left_draw,
+	                                  &select_presets_button_left_draw,
+	                                  &select_presets_button_left_draw,
+	                                  &select_presets_button_left_draw);
+	m_select_presets_button.setBounds(SELECT_BUTTON_WIDTH_150 * 2 + OdinHelper::c150(ARP_MATRIX_BUTTON_POS_X),
+	                                  OdinHelper::c150(ARP_MATRIX_BUTTON_POS_Y),
+	                                  select_presets_button_left.getWidth(),
+	                                  select_presets_button_left.getHeight());
 
 	juce::Image lfo24_left =
 	    ImageCache::getFromMemory(BinaryData::buttonlfo24_1_150_png, BinaryData::buttonlfo24_1_150_pngSize);
@@ -411,7 +511,8 @@ void OdinAudioProcessorEditor::setGUIBig(){
 	    ImageCache::getFromMemory(BinaryData::buttonlfo24_3_150_png, BinaryData::buttonlfo24_3_150_pngSize);
 	m_lfo_24_button.setImage(lfo24_left, 1);
 	m_lfo_24_button.setImage(lfo24_right, 2);
-	m_lfo_24_button.setBounds(OdinHelper::c150(LFO24_POS_X), OdinHelper::c150(LFO24_POS_Y), lfo24_left.getWidth(), lfo24_left.getHeight());
+	m_lfo_24_button.setBounds(
+	    OdinHelper::c150(LFO24_POS_X), OdinHelper::c150(LFO24_POS_Y), lfo24_left.getWidth(), lfo24_left.getHeight());
 
 	juce::Image legato_left =
 	    ImageCache::getFromMemory(BinaryData::buttonlegato_1_150_png, BinaryData::buttonlegato_1_150_pngSize);
@@ -419,7 +520,10 @@ void OdinAudioProcessorEditor::setGUIBig(){
 	    ImageCache::getFromMemory(BinaryData::buttonlegato_3_150_png, BinaryData::buttonlegato_3_150_pngSize);
 	m_legato_button.setImage(legato_left, 1);
 	m_legato_button.setImage(legato_right, 2);
-	m_legato_button.setBounds(OdinHelper::c150(LEGATO_POS_X), OdinHelper::c150(LEGATO_POS_Y)+1, legato_left.getWidth(), legato_left.getHeight());
+	m_legato_button.setBounds(OdinHelper::c150(LEGATO_POS_X),
+	                          OdinHelper::c150(LEGATO_POS_Y) + 1,
+	                          legato_left.getWidth(),
+	                          legato_left.getHeight());
 
 	juce::Image gui_size_left =
 	    ImageCache::getFromMemory(BinaryData::buttonguisize_1_150_png, BinaryData::buttonguisize_1_150_pngSize);
@@ -427,29 +531,43 @@ void OdinAudioProcessorEditor::setGUIBig(){
 	    ImageCache::getFromMemory(BinaryData::buttonguisize_3_150_png, BinaryData::buttonguisize_3_150_pngSize);
 	m_gui_size_button.setImage(gui_size_left, 1);
 	m_gui_size_button.setImage(gui_size_right, 2);
-	m_gui_size_button.setBounds(OdinHelper::c150(GUI_SIZE_POS_X), OdinHelper::c150(GUI_SIZE_POS_Y), gui_size_left.getWidth(), gui_size_left.getHeight());
+	m_gui_size_button.setBounds(OdinHelper::c150(GUI_SIZE_POS_X),
+	                            OdinHelper::c150(GUI_SIZE_POS_Y),
+	                            gui_size_left.getWidth(),
+	                            gui_size_left.getHeight());
 
-	juce::Image lfo13_sync_background =
-	    ImageCache::getFromMemory(BinaryData::lfo13_sync_background_150_png, BinaryData::lfo13_sync_background_150_pngSize);
+	juce::Image lfo13_sync_background = ImageCache::getFromMemory(BinaryData::lfo13_sync_background_150_png,
+	                                                              BinaryData::lfo13_sync_background_150_pngSize);
 
-	juce::Image lfo24_sync_background =
-	    ImageCache::getFromMemory(BinaryData::lfo24_sync_background_150_png, BinaryData::lfo24_sync_background_150_pngSize);
-	m_lfo_1.setBounds(OdinHelper::c150(LFO_LEFT_POS_X), OdinHelper::c150(LFO_LEFT_POS_Y), OdinHelper::c150(LFO_SIZE_X), OdinHelper::c150(LFO_SIZE_Y));
+	juce::Image lfo24_sync_background = ImageCache::getFromMemory(BinaryData::lfo24_sync_background_150_png,
+	                                                              BinaryData::lfo24_sync_background_150_pngSize);
+	m_lfo_1.setBounds(OdinHelper::c150(LFO_LEFT_POS_X),
+	                  OdinHelper::c150(LFO_LEFT_POS_Y),
+	                  OdinHelper::c150(LFO_SIZE_X),
+	                  OdinHelper::c150(LFO_SIZE_Y));
 	m_lfo_1.setSyncOverdraw(lfo13_sync_background);
-	m_lfo_2.setBounds(OdinHelper::c150(LFO_LEFT_POS_X), OdinHelper::c150(LFO_LEFT_POS_Y), OdinHelper::c150(LFO_SIZE_X), OdinHelper::c150(LFO_SIZE_Y));
+	m_lfo_2.setBounds(OdinHelper::c150(LFO_LEFT_POS_X),
+	                  OdinHelper::c150(LFO_LEFT_POS_Y),
+	                  OdinHelper::c150(LFO_SIZE_X),
+	                  OdinHelper::c150(LFO_SIZE_Y));
 	m_lfo_2.setSyncOverdraw(lfo24_sync_background);
-	m_lfo_3.setBounds(OdinHelper::c150(LFO_RIGHT_POS_X), OdinHelper::c150(LFO_RIGHT_POS_Y), OdinHelper::c150(LFO_SIZE_X), OdinHelper::c150(LFO_SIZE_Y));
+	m_lfo_3.setBounds(OdinHelper::c150(LFO_RIGHT_POS_X),
+	                  OdinHelper::c150(LFO_RIGHT_POS_Y),
+	                  OdinHelper::c150(LFO_SIZE_X),
+	                  OdinHelper::c150(LFO_SIZE_Y));
 	m_lfo_3.setSyncOverdraw(lfo13_sync_background);
-	m_lfo_4.setBounds(OdinHelper::c150(LFO_RIGHT_POS_X), OdinHelper::c150(LFO_RIGHT_POS_Y), OdinHelper::c150(LFO_SIZE_X), OdinHelper::c150(LFO_SIZE_Y));
+	m_lfo_4.setBounds(OdinHelper::c150(LFO_RIGHT_POS_X),
+	                  OdinHelper::c150(LFO_RIGHT_POS_Y),
+	                  OdinHelper::c150(LFO_SIZE_X),
+	                  OdinHelper::c150(LFO_SIZE_Y));
 	m_lfo_4.setSyncOverdraw(lfo24_sync_background);
 
 	m_pitch_amount.setTopLeftPosition(OdinHelper::c150(PITCH_AMOUNT_X), OdinHelper::c150(PITCH_AMOUNT_Y));
-	m_unison_selector.setTopLeftPosition(OdinHelper::c150(UNISON_SELECTOR_X), OdinHelper::c150(UNISON_SELECTOR_Y)+1);
+	m_unison_selector.setTopLeftPosition(OdinHelper::c150(UNISON_SELECTOR_X), OdinHelper::c150(UNISON_SELECTOR_Y) + 1);
 
 	m_BPM_selector.setTopLeftPosition(OdinHelper::c150(BPM_POS_X), OdinHelper::c150(BPM_POS_Y));
 
 	m_value_input.setBounds(0, 0, OdinHelper::c150(INPUT_LABEL_SIZE_X), OdinHelper::c150(INPUT_LABEL_SIZE_Y));
-
 
 	Rectangle<int> area_osc_1(OdinHelper::c150(OSC_SIZE_X), OdinHelper::c150(OSC_SIZE_Y));
 	Rectangle<int> area_osc_2(OdinHelper::c150(OSC_SIZE_X), OdinHelper::c150(OSC_SIZE_Y));
@@ -473,39 +591,79 @@ void OdinAudioProcessorEditor::setGUIBig(){
 	                   OdinHelper::c150(METAL_KNOB_SMALL_SIZE_X),
 	                   OdinHelper::c150(METAL_KNOB_SMALL_SIZE_Y));
 
-	m_unison_detune.setBounds(OdinHelper::c150(UNISON_DETUNE_X) ,
+	m_unison_detune.setBounds(OdinHelper::c150(UNISON_DETUNE_X),
 	                          OdinHelper::c150(UNISON_DETUNE_Y),
 	                          OdinHelper::c150(BLACK_KNOB_SMALL_SIZE_X),
 	                          OdinHelper::c150(BLACK_KNOB_SMALL_SIZE_Y));
 	m_unison_width.setBounds(OdinHelper::c150(UNISON_STEREO_X),
-	                          OdinHelper::c150(UNISON_STEREO_Y),
-	                          OdinHelper::c150(BLACK_KNOB_SMALL_SIZE_X),
-	                          OdinHelper::c150(BLACK_KNOB_SMALL_SIZE_Y));
+	                         OdinHelper::c150(UNISON_STEREO_Y),
+	                         OdinHelper::c150(BLACK_KNOB_SMALL_SIZE_X),
+	                         OdinHelper::c150(BLACK_KNOB_SMALL_SIZE_Y));
 
 	m_osc1.setBounds(area_osc_1);
 	m_osc2.setBounds(area_osc_2);
 	m_osc3.setBounds(area_osc_3);
 
 	m_fil1_component.setBounds(area_fil_1);
-	m_fil2_component.setBounds(OdinHelper::c150(FIL2_POS_X), OdinHelper::c150(FIL2_POS_Y), OdinHelper::c150(FILTER_SIZE_X), OdinHelper::c150(FILTER_SIZE_Y));
-	m_fil3_component.setBounds(OdinHelper::c150(FIL3_POS_X), OdinHelper::c150(FIL3_POS_Y), OdinHelper::c150(FILTER_SIZE_X), OdinHelper::c150(FILTER_SIZE_Y));
+	m_fil2_component.setBounds(OdinHelper::c150(FIL2_POS_X),
+	                           OdinHelper::c150(FIL2_POS_Y),
+	                           OdinHelper::c150(FILTER_SIZE_X),
+	                           OdinHelper::c150(FILTER_SIZE_Y));
+	m_fil3_component.setBounds(OdinHelper::c150(FIL3_POS_X),
+	                           OdinHelper::c150(FIL3_POS_Y),
+	                           OdinHelper::c150(FILTER_SIZE_X),
+	                           OdinHelper::c150(FILTER_SIZE_Y));
 	m_midsection.setBounds(area_midsection);
 
-	m_adsr_1.setBounds(OdinHelper::c150(ADSR_LEFT_POS_X), OdinHelper::c150(ADSR_LEFT_POS_Y), OdinHelper::c150(ADSR_SIZE_X), OdinHelper::c150(ADSR_SIZE_Y));
-	m_adsr_2.setBounds(OdinHelper::c150(ADSR_RIGHT_POS_X), OdinHelper::c150(ADSR_RIGHT_POS_Y), OdinHelper::c150(ADSR_SIZE_X), OdinHelper::c150(ADSR_SIZE_Y));
-	m_adsr_3.setBounds(OdinHelper::c150(ADSR_LEFT_POS_X), OdinHelper::c150(ADSR_LEFT_POS_Y), OdinHelper::c150(ADSR_SIZE_X), OdinHelper::c150(ADSR_SIZE_Y));
-	m_adsr_4.setBounds(OdinHelper::c150(ADSR_RIGHT_POS_X), OdinHelper::c150(ADSR_RIGHT_POS_Y), OdinHelper::c150(ADSR_SIZE_X), OdinHelper::c150(ADSR_SIZE_Y));
+	m_adsr_1.setBounds(OdinHelper::c150(ADSR_LEFT_POS_X),
+	                   OdinHelper::c150(ADSR_LEFT_POS_Y),
+	                   OdinHelper::c150(ADSR_SIZE_X),
+	                   OdinHelper::c150(ADSR_SIZE_Y));
+	m_adsr_2.setBounds(OdinHelper::c150(ADSR_RIGHT_POS_X),
+	                   OdinHelper::c150(ADSR_RIGHT_POS_Y),
+	                   OdinHelper::c150(ADSR_SIZE_X),
+	                   OdinHelper::c150(ADSR_SIZE_Y));
+	m_adsr_3.setBounds(OdinHelper::c150(ADSR_LEFT_POS_X),
+	                   OdinHelper::c150(ADSR_LEFT_POS_Y),
+	                   OdinHelper::c150(ADSR_SIZE_X),
+	                   OdinHelper::c150(ADSR_SIZE_Y));
+	m_adsr_4.setBounds(OdinHelper::c150(ADSR_RIGHT_POS_X),
+	                   OdinHelper::c150(ADSR_RIGHT_POS_Y),
+	                   OdinHelper::c150(ADSR_SIZE_X),
+	                   OdinHelper::c150(ADSR_SIZE_Y));
 
-	m_flanger.setBounds(OdinHelper::c150(FX_AREA_POS_X), OdinHelper::c150(FX_AREA_POS_Y), OdinHelper::c150(FX_AREA_SIZE_X), OdinHelper::c150(FX_AREA_SIZE_Y));
-	m_phaser.setBounds(OdinHelper::c150(FX_AREA_POS_X), OdinHelper::c150(FX_AREA_POS_Y), OdinHelper::c150(FX_AREA_SIZE_X), OdinHelper::c150(FX_AREA_SIZE_Y));
-	m_chorus.setBounds(OdinHelper::c150(FX_AREA_POS_X), OdinHelper::c150(FX_AREA_POS_Y), OdinHelper::c150(FX_AREA_SIZE_X), OdinHelper::c150(FX_AREA_SIZE_Y));
-	m_delay.setBounds(OdinHelper::c150(FX_AREA_POS_X), OdinHelper::c150(FX_AREA_POS_Y), OdinHelper::c150(FX_AREA_SIZE_X), OdinHelper::c150(FX_AREA_SIZE_Y));
+	m_flanger.setBounds(OdinHelper::c150(FX_AREA_POS_X),
+	                    OdinHelper::c150(FX_AREA_POS_Y),
+	                    OdinHelper::c150(FX_AREA_SIZE_X),
+	                    OdinHelper::c150(FX_AREA_SIZE_Y));
+	m_phaser.setBounds(OdinHelper::c150(FX_AREA_POS_X),
+	                   OdinHelper::c150(FX_AREA_POS_Y),
+	                   OdinHelper::c150(FX_AREA_SIZE_X),
+	                   OdinHelper::c150(FX_AREA_SIZE_Y));
+	m_chorus.setBounds(OdinHelper::c150(FX_AREA_POS_X),
+	                   OdinHelper::c150(FX_AREA_POS_Y),
+	                   OdinHelper::c150(FX_AREA_SIZE_X),
+	                   OdinHelper::c150(FX_AREA_SIZE_Y));
+	m_delay.setBounds(OdinHelper::c150(FX_AREA_POS_X),
+	                  OdinHelper::c150(FX_AREA_POS_Y),
+	                  OdinHelper::c150(FX_AREA_SIZE_X),
+	                  OdinHelper::c150(FX_AREA_SIZE_Y));
 
-	m_mod_matrix.setBounds(MATRIX_POS_X_150, MATRIX_POS_Y_150, OdinHelper::c150(MATRIX_SIZE_X), OdinHelper::c150(MATRIX_SIZE_Y));
-	m_arp.setBounds(OdinHelper::c150(ARPEGGIATOR_POS_X), OdinHelper::c150(ARPEGGIATOR_POS_Y), OdinHelper::c150(MATRIX_SIZE_X), OdinHelper::c150(MATRIX_SIZE_Y) + 5);
+	m_mod_matrix.setBounds(
+	    MATRIX_POS_X_150, MATRIX_POS_Y_150, OdinHelper::c150(MATRIX_SIZE_X), OdinHelper::c150(MATRIX_SIZE_Y));
+	m_arp.setBounds(OdinHelper::c150(ARPEGGIATOR_POS_X),
+	                OdinHelper::c150(ARPEGGIATOR_POS_Y),
+	                OdinHelper::c150(MATRIX_SIZE_X),
+	                OdinHelper::c150(MATRIX_SIZE_Y) + 5);
 	m_patch_browser.setBounds(BROWSER_POS_X_150, BROWSER_POS_Y_150, BROWSER_SIZE_X_150, BROWSER_SIZE_Y_150);
-	m_save_load.setBounds(OdinHelper::c150(SAVE_LOAD_POS_X), OdinHelper::c150(SAVE_LOAD_POS_Y), OdinHelper::c150(SAVE_LOAD_SIZE_X), OdinHelper::c150(SAVE_LOAD_SIZE_Y));
-	m_xy_section.setBounds(OdinHelper::c150(XY_COMPONENT_POS_X), OdinHelper::c150(XY_COMPONENT_POS_Y), OdinHelper::c150(XY_COMPONENT_SIZE_X), OdinHelper::c150(XY_COMPONENT_SIZE_Y));
+	m_save_load.setBounds(OdinHelper::c150(SAVE_LOAD_POS_X),
+	                      OdinHelper::c150(SAVE_LOAD_POS_Y),
+	                      OdinHelper::c150(SAVE_LOAD_SIZE_X),
+	                      OdinHelper::c150(SAVE_LOAD_SIZE_Y));
+	m_xy_section.setBounds(OdinHelper::c150(XY_COMPONENT_POS_X),
+	                       OdinHelper::c150(XY_COMPONENT_POS_Y),
+	                       OdinHelper::c150(XY_COMPONENT_SIZE_X),
+	                       OdinHelper::c150(XY_COMPONENT_SIZE_Y));
 
 	m_tooltip.setBounds(900, 100, 100, 100);
 	m_tooltip.setAlwaysOnTop(true);
@@ -520,7 +678,7 @@ void OdinAudioProcessorEditor::setGUIBig(){
 	forceValueTreeOntoComponents(false);
 	m_save_load.resetPatchText();
 
-    setSize(ODIN_EDITOR_SIZE_150_X, ODIN_EDITOR_SIZE_150_Y);
-		m_odin_backdrop =
-		    ImageCache::getFromMemory(BinaryData::odin_backdrop_150_png, BinaryData::odin_backdrop_150_pngSize);
+	setSize(ODIN_EDITOR_SIZE_150_X, ODIN_EDITOR_SIZE_150_Y);
+	m_odin_backdrop =
+	    ImageCache::getFromMemory(BinaryData::odin_backdrop_150_png, BinaryData::odin_backdrop_150_pngSize);
 }

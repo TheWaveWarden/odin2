@@ -14,6 +14,10 @@ PatchBrowser::PatchBrowser(OdinAudioProcessor &p_processor, AudioProcessorValueT
 	addAndMakeVisible(m_category_selector);
 	addAndMakeVisible(m_patch_selector);
 
+	m_soundbank_selector.setCopyMoveEnabled(false);
+	m_category_selector.setCopyTargetName("Soundbank");
+	m_patch_selector.setCopyTargetName("Category");
+
 	m_soundbank_selector.setDirectory(DEFAULT_SOUNDBANK_LOCATION_STRING);
 	m_category_selector.setDirectory(m_soundbank_selector.getFirstSubDirectoryAndHighlightIt());
 	m_patch_selector.setWildCard("*.odin");
@@ -311,6 +315,229 @@ PatchBrowser::PatchBrowser(OdinAudioProcessor &p_processor, AudioProcessorValueT
 
 	m_soundbank_selector.onImport = [&](String p_directory) { loadSoundbankWithFileBrowser(p_directory); };
 
+	m_patch_selector.applyRenamingSelector = [&](String p_directory, String p_old_name, String p_new_name) {
+		DBG(p_directory);
+		DBG(p_old_name);
+		DBG(p_new_name);
+
+		if (p_old_name == p_new_name) {
+			return;
+		}
+
+		File move_target(p_directory + File::getSeparatorString() + p_new_name + ".odin");
+		if (move_target.existsAsFile()) {
+			AlertWindow::showMessageBox(AlertWindow::AlertIconType::WarningIcon,
+			                            "Preset already exists!",
+			                            "The preset you're trying to create already exists, please choose another name "
+			                            "or remove the other one.",
+			                            "Ok");
+			return;
+		}
+
+		File move_source(p_directory + File::getSeparatorString() + p_old_name + ".odin");
+		if (move_source.existsAsFile()) {
+			//all set, now move
+			move_source.moveFileTo(move_target);
+		}
+
+		m_patch_selector.regenerateContent();
+	};
+
+	m_category_selector.applyRenamingSelector = [&](String p_directory, String p_old_name, String p_new_name) {
+		DBG(p_directory);
+		DBG(p_old_name);
+		DBG(p_new_name);
+
+		if (p_old_name == p_new_name) {
+			return;
+		}
+
+		File move_target(p_directory + File::getSeparatorString() + p_new_name);
+		if (move_target.isDirectory()) {
+			AlertWindow::showMessageBox(
+			    AlertWindow::AlertIconType::WarningIcon,
+			    "Category already exists!",
+			    "The category you're trying to create already exists, please choose another name "
+			    "or remove the other one.",
+			    "Ok");
+			return;
+		}
+		DBG(p_directory + File::getSeparatorString() + p_old_name);
+		DBG(p_directory + File::getSeparatorString() + p_new_name);
+		File move_source(p_directory + File::getSeparatorString() + p_old_name);
+		if (move_source.isDirectory()) {
+			//all set, now move
+			if (move_source.copyDirectoryTo(move_target)) {
+				move_source.deleteRecursively();
+			}
+		}
+
+		m_category_selector.regenerateContent();
+
+		m_patch_selector.setDirectory(m_category_selector.getSubDirectoryAndHighlightItFromName(
+		    m_soundbank_selector.getDirectory() + File::getSeparatorString() + p_new_name));
+	};
+
+	m_soundbank_selector.applyRenamingSelector = [&](String p_directory, String p_old_name, String p_new_name) {
+		DBG(p_directory);
+		DBG(p_old_name);
+		DBG(p_new_name);
+
+		if (p_old_name == p_new_name) {
+			return;
+		}
+
+		File move_target(p_directory + File::getSeparatorString() + p_new_name);
+		if (move_target.isDirectory()) {
+			AlertWindow::showMessageBox(
+			    AlertWindow::AlertIconType::WarningIcon,
+			    "Soundbank already exists!",
+			    "The soundbank you're trying to create already exists, please choose another name "
+			    "or remove the other one.",
+			    "Ok");
+			return;
+		}
+		DBG(p_directory + File::getSeparatorString() + p_old_name);
+		DBG(p_directory + File::getSeparatorString() + p_new_name);
+		File move_source(p_directory + File::getSeparatorString() + p_old_name);
+		if (move_source.isDirectory()) {
+			//all set, now move
+			if (move_source.copyDirectoryTo(move_target)) {
+				move_source.deleteRecursively();
+			}
+		}
+
+		m_soundbank_selector.regenerateContent();
+		m_category_selector.setDirectory(m_soundbank_selector.getSubDirectoryAndHighlightItFromName(
+		    DEFAULT_SOUNDBANK_LOCATION_STRING + File::getSeparatorString() + p_new_name));
+
+		m_patch_selector.setDirectory(m_category_selector.getFirstSubDirectoryAndHighlightIt());
+	};
+
+	m_soundbank_selector.onMove = [](String p_from, String p_to) {};
+
+	m_category_selector.onMove  = [&](String p_cat, String p_target_sb) {
+
+		String source_absolute = m_category_selector.getDirectory() + File::getSeparatorString() + p_cat;
+		String target_absolute = DEFAULT_SOUNDBANK_LOCATION_STRING + File::getSeparatorString() + p_target_sb +
+		                         File::getSeparatorString() + p_cat;
+
+		DBG("Copy category " + source_absolute +  " to\n" + target_absolute);
+
+		File move_target(target_absolute);
+		if (move_target.isDirectory()) {
+			AlertWindow::showMessageBox(
+			    AlertWindow::AlertIconType::WarningIcon,
+			    "Category already exists!",
+			    "The category you're trying to create already exists, please choose another name "
+			    "or remove the other one.",
+			    "Ok");
+			return;
+		}
+		
+		File move_source(source_absolute);
+		if (move_source.isDirectory()) {
+			//all set, now move
+			if (move_source.copyDirectoryTo(move_target)) {
+				move_source.deleteRecursively();
+			}
+		}
+
+		m_category_selector.regenerateContent();
+
+		m_patch_selector.setDirectory(m_category_selector.getFirstSubDirectoryAndHighlightIt());
+	};
+
+	m_patch_selector.onMove     = [&](String p_file, String p_target_cat) {
+		DBG(p_target_cat);
+        DBG("Move Patch " + m_patch_selector.getDirectory() + File::getSeparatorString() + p_file + ".odin to " +
+            m_category_selector.getDirectory() + File::getSeparatorString() + p_target_cat +
+            File::getSeparatorString() + p_file + ".odin");
+
+        File move_target(m_category_selector.getDirectory() + File::getSeparatorString() + p_target_cat +
+                         File::getSeparatorString() + p_file + ".odin");
+
+        if (move_target.existsAsFile()) {
+            AlertWindow::showMessageBox(AlertWindow::AlertIconType::WarningIcon,
+                                        "Preset already exists!",
+                                        "The preset you're trying to create already exists, please choose another name "
+                                        "or remove the other one.",
+                                        "Ok");
+            return;
+        }
+
+        File move_source(m_patch_selector.getDirectory() + File::getSeparatorString() + p_file + ".odin");
+        if (move_source.existsAsFile()) {
+            //all set, now move
+            if (move_source.moveFileTo(move_target)) {
+                DBG("Success!");
+            }
+        }
+
+        m_patch_selector.regenerateContent();
+	};
+	m_soundbank_selector.onCopy = [](String p_from, String p_to) {};
+
+	m_category_selector.onCopy = [&](String p_cat, String p_target_sb) {
+
+		String source_absolute = m_category_selector.getDirectory() + File::getSeparatorString() + p_cat;
+		String target_absolute = DEFAULT_SOUNDBANK_LOCATION_STRING + File::getSeparatorString() + p_target_sb +
+		                         File::getSeparatorString() + p_cat;
+
+		DBG("Copy category " + source_absolute +  " to\n" + target_absolute);
+
+		File move_target(target_absolute);
+		if (move_target.isDirectory()) {
+			AlertWindow::showMessageBox(
+			    AlertWindow::AlertIconType::WarningIcon,
+			    "Category already exists!",
+			    "The category you're trying to create already exists, please choose another name "
+			    "or remove the other one.",
+			    "Ok");
+			return;
+		}
+		
+		File move_source(source_absolute);
+		if (move_source.isDirectory()) {
+			//all set, now move
+			if (move_source.copyDirectoryTo(move_target)) {
+				//move_source.deleteRecursively();
+			}
+		}
+
+		m_category_selector.regenerateContent();
+
+		m_patch_selector.setDirectory(m_category_selector.getFirstSubDirectoryAndHighlightIt());
+	};
+
+	m_patch_selector.onCopy = [&](String p_file, String p_target_cat) {
+		DBG("Copy Patch " + m_patch_selector.getDirectory() + File::getSeparatorString() + p_file + ".odin to " +
+		    m_category_selector.getDirectory() + File::getSeparatorString() + p_target_cat +
+		    File::getSeparatorString() + p_file + ".odin");
+
+		File copy_target(m_category_selector.getDirectory() + File::getSeparatorString() + p_target_cat +
+		                 File::getSeparatorString() + p_file + ".odin");
+
+		if (copy_target.existsAsFile()) {
+			AlertWindow::showMessageBox(AlertWindow::AlertIconType::WarningIcon,
+			                            "Preset already exists!",
+			                            "The preset you're trying to create already exists, please choose another name "
+			                            "or remove the other one.",
+			                            "Ok");
+			return;
+		}
+
+		File copy_source(m_patch_selector.getDirectory() + File::getSeparatorString() + p_file + ".odin");
+		if (copy_source.existsAsFile()) {
+			//all set, now move
+			if (copy_source.copyFileTo(copy_target)) {
+				DBG("Success!");
+			}
+		}
+
+		m_patch_selector.regenerateContent();
+	};
+
 	m_patch_selector.setButtonTooltips("Load a patch from your harddrive",
 	                                   "Export the current patch to your harddrive",
 	                                   "Save the current patch as a preset in this category");
@@ -319,9 +546,17 @@ PatchBrowser::PatchBrowser(OdinAudioProcessor &p_processor, AudioProcessorValueT
 	                                       "Export the highlighted soundbank to your harddrive",
 	                                       "Create a new soundbank");
 
-	m_patch_selector.setWarningTexts("The selected category contains no presets! Try creating a new one with the \"Save\" button below!", "No category was selected. You need to select a category in order to save presets. You can still import / export presets.");
-	m_category_selector.setWarningTexts("The selected soundbank contains no category! Create a new one with the \"New\" button below!", "No soundbank was selected.");
-	m_soundbank_selector.setWarningTexts("No soundbank was found on your computer! To use the Factory Presets, please reinstall the plugin, or create a new Soundbank with the \"New\" button below!", "It seems you deleted the soundbank folder...");
+	m_patch_selector.setWarningTexts(
+	    "The selected category contains no presets! Create a new one with the \"Save\" button below!",
+	    "No category was selected. You need to select a category in order to save presets. You can still import / "
+	    "export presets.");
+	m_category_selector.setWarningTexts(
+	    "The selected soundbank contains no category! Create a new one with the \"New\" button below!",
+	    "No soundbank was selected.");
+	m_soundbank_selector.setWarningTexts(
+	    "No soundbank was found on your computer! To use the Factory Presets, please reinstall the plugin, or create a "
+	    "new Soundbank with the \"New\" button below!",
+	    "It seems you deleted the soundbank folder...");
 }
 
 PatchBrowser::~PatchBrowser() {
@@ -773,22 +1008,25 @@ void PatchBrowser::loadSoundbankWithFileBrowser(String p_directory) {
 				    return;
 			    }
 
-				if(dir_to_create.createDirectory()){
+			    if (dir_to_create.createDirectory()) {
 
-					ZipFile soundbank_zip(file_stream);
-					if(soundbank_zip.uncompressTo(dir_to_create)){
-						m_soundbank_selector.regenerateContent();
-						m_category_selector.setDirectory(m_soundbank_selector.getSubDirectoryAndHighlightItFromName(soundbank_name));
-						m_patch_selector.setDirectory(m_category_selector.getFirstSubDirectoryAndHighlightIt());
-					} else {
-						AlertWindow::showMessageBoxAsync(
-				        AlertWindow::InfoIcon, "Something went wrong when creating the soundbank!", "Error: Couldn't decompress .osb file");	
-					}
+				    ZipFile soundbank_zip(file_stream);
+				    if (soundbank_zip.uncompressTo(dir_to_create)) {
+					    m_soundbank_selector.regenerateContent();
+					    m_category_selector.setDirectory(
+					        m_soundbank_selector.getSubDirectoryAndHighlightItFromName(soundbank_name));
+					    m_patch_selector.setDirectory(m_category_selector.getFirstSubDirectoryAndHighlightIt());
+				    } else {
+					    AlertWindow::showMessageBoxAsync(AlertWindow::InfoIcon,
+					                                     "Something went wrong when creating the soundbank!",
+					                                     "Error: Couldn't decompress .osb file");
+				    }
 
-				} else {
-					AlertWindow::showMessageBoxAsync(
-				        AlertWindow::InfoIcon, "Something went wrong when creating the soundbank!", "Error: Couldn't create Directory");
-				}
+			    } else {
+				    AlertWindow::showMessageBoxAsync(AlertWindow::InfoIcon,
+				                                     "Something went wrong when creating the soundbank!",
+				                                     "Error: Couldn't create Directory");
+			    }
 
 		    } else {
 			    if (file_name != "") {

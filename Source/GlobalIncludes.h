@@ -51,6 +51,10 @@
 #define CHORUS_DISPLAY_COLOR Colour(69, 39, 38)
 #define VOICES 24
 
+#define MATRIX_SECTION_INDEX_PRESETS 10
+#define MATRIX_SECTION_INDEX_ARP 0
+#define MATRIX_SECTION_INDEX_MATRIX 1
+
 // leave spare values for future additions :hype:
 #define OSC_TYPE_ANALOG 2
 #define OSC_TYPE_WAVETABLE 3

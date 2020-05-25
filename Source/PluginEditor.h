@@ -34,6 +34,8 @@
 #include "SpectrumDisplay.h"
 #endif
 
+#define RADIO_GROUP_ARP_MODMATRIX_PRESETS 98765
+
 #define GLIDE_POS_X 117
 #define GLIDE_POS_Y 536
 #define MASTER_POS_X GLIDE_POS_X
@@ -110,6 +112,7 @@
 
 #define ARP_MATRIX_BUTTON_POS_X MATRIX_POS_X_100
 #define ARP_MATRIX_BUTTON_POS_Y 450
+#define SELECT_BUTTON_WIDTH_150 249
 
 #define ARPEGGIATOR_POS_X MATRIX_POS_X_100
 #define ARPEGGIATOR_POS_Y 470
@@ -336,6 +339,10 @@ private:
   OdinButton m_chorus_on_button;
   OdinButton m_delay_on_button;
 
+  OdinButton m_select_arp_button;
+  OdinButton m_select_modmatrix_button;
+  OdinButton m_select_presets_button;
+
   juce::DrawableButton m_question_button;
 
   juce::ComponentDragger m_dragger;
@@ -346,7 +353,6 @@ private:
   LeftRightButton m_lfo_13_button;
   LeftRightButton m_lfo_24_button;
 
-  LeftRightButton m_arp_modmatrix_button;
 
   LeftRightButton m_legato_button;
   LeftRightButton m_gui_size_button;
@@ -403,7 +409,8 @@ private:
   void setEnv24(bool p_env24);
   void setLfo12(bool p_lfo13);
   void setLfo34(bool p_lfo24);
-  void setArpMod(bool p_arp);
+  //void setArpMod(bool p_arp);
+  void setMatrixSectionModule(int p_module);
   void updatePitchWheel(float p_value);
   void updateModWheel(float p_value);
   void setGUISizeBig(bool p_big, bool p_write_to_config);

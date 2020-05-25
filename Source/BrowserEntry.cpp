@@ -16,7 +16,18 @@ BrowserEntry::BrowserEntry(String p_text) : m_text(p_text) {
 		m_rename_editor.setFont(Font(17.f));
 		m_rename_editor.setIndents(TEXT_INLAY_BROWSER_100, 2);
 	}
-	//m_rename_editor.onReturnKey = [&]() { };
+	m_rename_editor.onReturnKey = [&]() {
+		if (m_rename_editor.getText().isEmpty()) {
+			AlertWindow::showMessageBox(AlertWindow::AlertIconType::WarningIcon,
+			                            "Empty Name",
+			                            "Please input a valid name!",
+			                            "Ok");
+			return;
+		}
+		hideRenameEditor();
+		applyRenaming(getText(), m_rename_editor.getText());
+	};
+	//m_rename_editor.setWantsKeyboardFocus(true);
 	setWantsKeyboardFocus(true);
 }
 
@@ -110,6 +121,10 @@ void BrowserEntry::showRenameEditor() {
 	m_rename_editor.setVisible(true);
 	m_rename_editor.setText(getText());
 	m_rename_editor.grabKeyboardFocus();
+
+	//hack: grab keyboardfocus again in 50msec...
+	m_timer_counter = 1;
+	startTimer(50);
 }
 
 void BrowserEntry::hideRenameEditor() {
@@ -119,4 +134,16 @@ void BrowserEntry::hideRenameEditor() {
 void BrowserEntry::setBoundsWithInputField(int p_x, int p_y, int p_width, int p_height) {
 	Component::setBounds(p_x, p_y, p_width, p_height);
 	m_rename_editor.setBounds(0, 0, p_width, p_height);
+}
+
+void BrowserEntry::timerCallback(){
+	//hack: grab keyboardfocus after 50msec...
+	//doing so directly won't work...
+	
+	DBG(m_timer_counter);
+
+	m_rename_editor.grabKeyboardFocus();
+	if(--m_timer_counter <= 0){
+		stopTimer();
+	}
 }

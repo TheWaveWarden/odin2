@@ -402,13 +402,13 @@ void OdinAudioProcessorEditor::setGUISmall() {
 	m_lfo_24_button.setImage(lfo24_right, 2);
 	m_lfo_24_button.setBounds(LFO24_POS_X, LFO24_POS_Y, lfo24_left.getWidth(), lfo24_left.getHeight());
 
-	juce::Image arp_modmatrix_button_left =
-	    ImageCache::getFromMemory(BinaryData::button_mod_arp_1_png, BinaryData::button_mod_arp_1_pngSize);
-	juce::Image arp_modmatrix_button_right =
-	    ImageCache::getFromMemory(BinaryData::button_mod_arp_2_png, BinaryData::button_mod_arp_2_pngSize);
-	m_arp_modmatrix_button.setImage(arp_modmatrix_button_left, 1);
-	m_arp_modmatrix_button.setImage(arp_modmatrix_button_right, 2);
-	m_arp_modmatrix_button.setBounds(ARP_MATRIX_BUTTON_POS_X, ARP_MATRIX_BUTTON_POS_Y, arp_modmatrix_button_left.getWidth(), arp_modmatrix_button_left.getHeight());
+	//juce::Image arp_modmatrix_button_left =
+	 //   ImageCache::getFromMemory(BinaryData::button_mod_arp_1_png, BinaryData::button_mod_arp_1_pngSize);
+	//juce::Image arp_modmatrix_button_right =
+	//    ImageCache::getFromMemory(BinaryData::button_mod_arp_2_png, BinaryData::button_mod_arp_2_pngSize);
+	//m_select_arp_button.setImage(arp_modmatrix_button_left, 1);
+	//m_select_arp_button.setImage(arp_modmatrix_button_right, 2);
+	//m_select_arp_button.setBounds(ARP_MATRIX_BUTTON_POS_X, ARP_MATRIX_BUTTON_POS_Y, arp_modmatrix_button_left.getWidth(), arp_modmatrix_button_left.getHeight());
 
 	juce::Image legato_left =
 	    ImageCache::getFromMemory(BinaryData::buttonlegato_1_png, BinaryData::buttonlegato_1_pngSize);

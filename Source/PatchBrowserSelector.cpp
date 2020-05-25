@@ -114,7 +114,7 @@ void PatchBrowserSelector::hideInputField() {
 void PatchBrowserSelector::setGUIBig() {
 	m_GUI_big = true;
 
-	m_menu_feels.setWidth(150);
+	m_menu_feels.setWidth(200);
 	m_menu_feels.setFontSize(18);
 	m_button_feels.setButtonFontSize(17.f);
 
@@ -155,6 +155,66 @@ void PatchBrowserSelector::setDirectory(String p_absolute_path) {
 
 	bool exists = File(p_absolute_path).isDirectory();
 	showButtons(exists);
+
+	if (m_copy_move_enabled) {
+		recreatePopupMenu();
+	}
+}
+
+void PatchBrowserSelector::recreatePopupMenu() {
+	m_menu.clear();
+	m_menu.addItem(PATCH_BROWSER_MENU_ENTRY_RENAME, "Rename");
+	m_menu.addItem(PATCH_BROWSER_MENU_ENTRY_DELETE, "Delete");
+
+	File file(m_absolute_path);
+	if (file.exists()) {
+		PopupMenu m_move_menu;
+		PopupMenu m_copy_menu;
+
+		auto parent = file.getParentDirectory();
+
+		auto siblings = parent.findChildFiles(File::TypesOfFileToFind::findDirectories, false);
+		siblings.sort(m_file_comparator);
+
+		String current_dir = file.getFileName();
+		m_copy_move_map.clear();
+		
+		for (int i = 0; i < siblings.size(); ++i) {
+			if (siblings[i].getFileName() != current_dir) {
+				m_move_menu.addItem(PATCH_BROWSER_MENU_MOVE_OFFSET + i, siblings[i].getFileName());
+				m_copy_menu.addItem(PATCH_BROWSER_MENU_COPY_OFFSET + i, siblings[i].getFileName());
+
+				m_copy_move_map.insert(std::make_pair(i, siblings[i].getFileName()));
+
+			}
+		}
+
+		if (m_move_menu.getNumItems() > 0) {
+			m_menu.addSubMenu("Move to " + m_copy_target_name, m_move_menu);
+			m_menu.addSubMenu("Copy to " + m_copy_target_name, m_copy_menu);
+		} else {
+			m_menu.addItem(PATCH_BROWSER_MENU_ENTRY_RENAME, "Move to " + m_copy_target_name, false);
+			m_menu.addItem(PATCH_BROWSER_MENU_ENTRY_RENAME, "Copy to " + m_copy_target_name, false);
+		}
+		DBG("---");
+	}
+}
+
+String PatchBrowserSelector::getCopyFileString(int p_popupmenu_index) {
+	return getCopyMoveMap(p_popupmenu_index - PATCH_BROWSER_MENU_COPY_OFFSET);
+}
+
+String PatchBrowserSelector::getMoveFileString(int p_popupmenu_index) {
+	return getCopyMoveMap(p_popupmenu_index - PATCH_BROWSER_MENU_MOVE_OFFSET);
+}
+
+String PatchBrowserSelector::getCopyMoveMap(int p_index) {
+
+	auto it = m_copy_move_map.find(p_index);
+	if (it != m_copy_move_map.end()) {
+		return it->second;
+	}
+	return "";
 }
 
 void PatchBrowserSelector::checkDirectoryStatus() {
@@ -215,7 +275,15 @@ void PatchBrowserSelector::generateContent() {
 						passDeleteToPatchBrowser(return_string);
 					} else if (selected == PATCH_BROWSER_MENU_ENTRY_RENAME) {
 						m_entries[file_index]->showRenameEditor();
+					} else if (selected >= PATCH_BROWSER_MENU_MOVE_OFFSET &&
+					           selected < PATCH_BROWSER_MENU_COPY_OFFSET) {
+						onMove(m_entries[file_index]->getText(), getMoveFileString(selected));
+					} else if (selected >= PATCH_BROWSER_MENU_COPY_OFFSET) {
+						onCopy(m_entries[file_index]->getText(), getCopyFileString(selected));
 					}
+				};
+				m_entries[file_index]->applyRenaming = [&](String p_old_name, String p_new_name) {
+					applyRenamingSelector(getDirectory(), p_old_name, p_new_name);
 				};
 			}
 
@@ -238,7 +306,8 @@ void PatchBrowserSelector::generateContent() {
 void PatchBrowserSelector::positionEntries() {
 	int entry_height = m_GUI_big ? ENTRY_HEIGHT_150 : ENTRY_HEIGHT_100;
 	for (int entry = 0; entry < m_entries.size(); ++entry) {
-		m_entries[entry]->setBoundsWithInputField(0, m_scroll_position + entry_height * entry, getWidth(), entry_height);
+		m_entries[entry]->setBoundsWithInputField(
+		    0, m_scroll_position + entry_height * entry, getWidth(), entry_height);
 	}
 }
 
@@ -332,6 +401,14 @@ void PatchBrowserSelector::setButtonTooltips(String p_left, String p_mid, String
 void PatchBrowserSelector::setWarningTexts(String p_empty, String p_nonexistent) {
 	m_empty_text       = p_empty;
 	m_nonexistent_text = p_nonexistent;
+}
+
+void PatchBrowserSelector::setCopyTargetName(String p_name) {
+	m_copy_target_name = p_name;
+}
+
+void PatchBrowserSelector::setCopyMoveEnabled(bool p_enabled) {
+	m_copy_move_enabled = p_enabled;
 }
 
 // void PatchBrowserSelector::focusLost(FocusChangeType p_cause){
