@@ -37,7 +37,8 @@ PatchBrowserSelector::PatchBrowserSelector(File::TypesOfFileToFind p_file_or_dir
 		if (m_input_field_active) {
 			applyInputField();
 		} else {
-			resetInputFieldAndShow();
+			//resetInputFieldAndShow();
+			showInputField();
 		}
 	};
 
@@ -101,6 +102,12 @@ void PatchBrowserSelector::applyInputField() {
 
 void PatchBrowserSelector::resetInputFieldAndShow() {
 	m_input_field.clear();
+	m_input_field.setVisible(true);
+	m_input_field.grabKeyboardFocus();
+	m_input_field_active = true;
+}
+
+void PatchBrowserSelector::showInputField() {
 	m_input_field.setVisible(true);
 	m_input_field.grabKeyboardFocus();
 	m_input_field_active = true;
@@ -262,6 +269,12 @@ void PatchBrowserSelector::generateContent() {
 			for (int file_index = 0; file_index < file_array.size(); ++file_index) {
 				m_entries.push_back(std::make_unique<BrowserEntry>(
 				    file_array[file_index].getFileName().dropLastCharacters((int)m_wildcard.length() - 1)));
+				if(m_pass_active_element_to_parent){
+					m_entries[m_entries.size() - 1]->enablePassActiveNameToParent(true);
+					m_entries[m_entries.size() - 1]->passActiveNameToParent = [&](String p_name){
+						m_input_field.setText(p_name);
+					};
+				}
 				String return_string               = file_array[file_index].getFileName();
 				m_entries[file_index]->onLeftClick = [&, return_string]() {
 					//DBG(return_string + " was clicked!");
@@ -410,6 +423,11 @@ void PatchBrowserSelector::setCopyTargetName(String p_name) {
 void PatchBrowserSelector::setCopyMoveEnabled(bool p_enabled) {
 	m_copy_move_enabled = p_enabled;
 }
+
+void PatchBrowserSelector::enablePassActiveNameToParent(bool p_enable){
+	m_pass_active_element_to_parent = p_enable;
+}
+
 
 // void PatchBrowserSelector::focusLost(FocusChangeType p_cause){
 // 	//this doesnt do anything?

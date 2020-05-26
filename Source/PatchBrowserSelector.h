@@ -109,6 +109,7 @@ public:
 	void setGUISmall();
 
 	void resetInputFieldAndShow();
+	void showInputField();
 	void hideInputField();
 
 	void setDirectory(String p_absolute_path);
@@ -140,10 +141,12 @@ public:
 	void setWarningTexts(String p_empty, String p_nonexistent);
 	void setCopyTargetName(String p_name);
 	void setCopyMoveEnabled(bool p_enabled);
+	void enablePassActiveNameToParent(bool p_enable);
 
 	String getCopyFileString(int p_popupmenu_index);
 	String getMoveFileString(int p_popupmenu_index);
 	String getCopyMoveMap(int p_index);
+
 
 private:
 	void generateContent();
@@ -188,6 +191,8 @@ private:
 	String m_empty_text       = "";
 	String m_nonexistent_text = "";
 	String m_copy_target_name = "";
+
+	bool m_pass_active_element_to_parent = false;
 
 	DirectoryStatus m_directory_status = DirectoryStatus::Nonexistent;
 };

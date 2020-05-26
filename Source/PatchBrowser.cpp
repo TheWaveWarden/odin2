@@ -14,6 +14,8 @@ PatchBrowser::PatchBrowser(OdinAudioProcessor &p_processor, AudioProcessorValueT
 	addAndMakeVisible(m_category_selector);
 	addAndMakeVisible(m_patch_selector);
 
+	m_patch_selector.enablePassActiveNameToParent(true);
+
 	m_soundbank_selector.setCopyMoveEnabled(false);
 	m_category_selector.setCopyTargetName("Soundbank");
 	m_patch_selector.setCopyTargetName("Category");
@@ -237,7 +239,7 @@ PatchBrowser::PatchBrowser(OdinAudioProcessor &p_processor, AudioProcessorValueT
 		    });
 	};
 
-	m_patch_selector.onImport = [&](String p_directory) { loadPatchWithFileBrowser(p_directory); };
+	m_patch_selector.onImport = [&](String p_directory) { loadPatchWithFileBrowserAndCopyToCategory(p_directory); };
 
 	m_soundbank_selector.onExport = [&](String p_directory) {
 		File soundbank_file(m_category_selector.getDirectory());
@@ -416,13 +418,12 @@ PatchBrowser::PatchBrowser(OdinAudioProcessor &p_processor, AudioProcessorValueT
 
 	m_soundbank_selector.onMove = [](String p_from, String p_to) {};
 
-	m_category_selector.onMove  = [&](String p_cat, String p_target_sb) {
-
+	m_category_selector.onMove = [&](String p_cat, String p_target_sb) {
 		String source_absolute = m_category_selector.getDirectory() + File::getSeparatorString() + p_cat;
 		String target_absolute = DEFAULT_SOUNDBANK_LOCATION_STRING + File::getSeparatorString() + p_target_sb +
 		                         File::getSeparatorString() + p_cat;
 
-		DBG("Copy category " + source_absolute +  " to\n" + target_absolute);
+		DBG("Copy category " + source_absolute + " to\n" + target_absolute);
 
 		File move_target(target_absolute);
 		if (move_target.isDirectory()) {
@@ -434,7 +435,7 @@ PatchBrowser::PatchBrowser(OdinAudioProcessor &p_processor, AudioProcessorValueT
 			    "Ok");
 			return;
 		}
-		
+
 		File move_source(source_absolute);
 		if (move_source.isDirectory()) {
 			//all set, now move
@@ -448,43 +449,42 @@ PatchBrowser::PatchBrowser(OdinAudioProcessor &p_processor, AudioProcessorValueT
 		m_patch_selector.setDirectory(m_category_selector.getFirstSubDirectoryAndHighlightIt());
 	};
 
-	m_patch_selector.onMove     = [&](String p_file, String p_target_cat) {
+	m_patch_selector.onMove = [&](String p_file, String p_target_cat) {
 		DBG(p_target_cat);
-        DBG("Move Patch " + m_patch_selector.getDirectory() + File::getSeparatorString() + p_file + ".odin to " +
-            m_category_selector.getDirectory() + File::getSeparatorString() + p_target_cat +
-            File::getSeparatorString() + p_file + ".odin");
+		DBG("Move Patch " + m_patch_selector.getDirectory() + File::getSeparatorString() + p_file + ".odin to " +
+		    m_category_selector.getDirectory() + File::getSeparatorString() + p_target_cat +
+		    File::getSeparatorString() + p_file + ".odin");
 
-        File move_target(m_category_selector.getDirectory() + File::getSeparatorString() + p_target_cat +
-                         File::getSeparatorString() + p_file + ".odin");
+		File move_target(m_category_selector.getDirectory() + File::getSeparatorString() + p_target_cat +
+		                 File::getSeparatorString() + p_file + ".odin");
 
-        if (move_target.existsAsFile()) {
-            AlertWindow::showMessageBox(AlertWindow::AlertIconType::WarningIcon,
-                                        "Preset already exists!",
-                                        "The preset you're trying to create already exists, please choose another name "
-                                        "or remove the other one.",
-                                        "Ok");
-            return;
-        }
+		if (move_target.existsAsFile()) {
+			AlertWindow::showMessageBox(AlertWindow::AlertIconType::WarningIcon,
+			                            "Preset already exists!",
+			                            "The preset you're trying to create already exists, please choose another name "
+			                            "or remove the other one.",
+			                            "Ok");
+			return;
+		}
 
-        File move_source(m_patch_selector.getDirectory() + File::getSeparatorString() + p_file + ".odin");
-        if (move_source.existsAsFile()) {
-            //all set, now move
-            if (move_source.moveFileTo(move_target)) {
-                DBG("Success!");
-            }
-        }
+		File move_source(m_patch_selector.getDirectory() + File::getSeparatorString() + p_file + ".odin");
+		if (move_source.existsAsFile()) {
+			//all set, now move
+			if (move_source.moveFileTo(move_target)) {
+				DBG("Success!");
+			}
+		}
 
-        m_patch_selector.regenerateContent();
+		m_patch_selector.regenerateContent();
 	};
 	m_soundbank_selector.onCopy = [](String p_from, String p_to) {};
 
 	m_category_selector.onCopy = [&](String p_cat, String p_target_sb) {
-
 		String source_absolute = m_category_selector.getDirectory() + File::getSeparatorString() + p_cat;
 		String target_absolute = DEFAULT_SOUNDBANK_LOCATION_STRING + File::getSeparatorString() + p_target_sb +
 		                         File::getSeparatorString() + p_cat;
 
-		DBG("Copy category " + source_absolute +  " to\n" + target_absolute);
+		DBG("Copy category " + source_absolute + " to\n" + target_absolute);
 
 		File move_target(target_absolute);
 		if (move_target.isDirectory()) {
@@ -496,7 +496,7 @@ PatchBrowser::PatchBrowser(OdinAudioProcessor &p_processor, AudioProcessorValueT
 			    "Ok");
 			return;
 		}
-		
+
 		File move_source(source_absolute);
 		if (move_source.isDirectory()) {
 			//all set, now move
@@ -631,6 +631,9 @@ void PatchBrowser::loadPatchFromOpenedFileStream(juce::FileInputStream &p_file_s
 	//reset stream position
 	p_file_stream.setPosition(0);
 	m_audio_processor.readPatch(ValueTree::readFromStream(p_file_stream).createCopy());
+
+	//setPatchBrowser to be shown
+	m_value_tree.state.getChildWithName("misc").setProperty("arp_mod_selected", MATRIX_SECTION_INDEX_PRESETS, nullptr);
 
 	//note: 99% percent of patch-loading time is spent here:
 	forceValueTreeLambda();
@@ -922,10 +925,11 @@ bool PatchBrowser::usesSpecdraw(int p_osc) {
 	return false;
 }
 
-void PatchBrowser::loadPatchWithFileBrowser(String p_directory) {
+void PatchBrowser::loadPatchWithFileBrowserAndCopyToCategory(String p_directory) {
+
 	File file;
-	if (File(p_directory).exists()) {
-		file = File(p_directory);
+	if (File(m_value_tree.state.getChildWithName("misc")["current_patch_directory"].toString()).exists()) {
+		file = File(m_value_tree.state.getChildWithName("misc")["current_patch_directory"].toString());
 	} else {
 		file = File(DEFAULT_EXPORT_LOCATION_STRING);
 	}
@@ -943,6 +947,36 @@ void PatchBrowser::loadPatchWithFileBrowser(String p_directory) {
 
 		    FileInputStream file_stream(file_to_read);
 		    if (file_stream.openedOk()) {
+
+			    // First copy the patch to the current category
+			    if (!m_patch_selector.getDirectory().isEmpty()) {
+				    String copy_target_string =
+				        m_patch_selector.getDirectory() + File::getSeparatorString() + file_to_read.getFileName();
+				    DBG("Copy Patch " + file_name + " to \n" + copy_target_string);
+
+				    File copy_target(copy_target_string);
+
+				    if (copy_target.existsAsFile()) {
+					    AlertWindow::showMessageBox(
+					        AlertWindow::AlertIconType::WarningIcon,
+					        "Preset already exists!",
+					        "The preset you're trying to import already exists in this category, "
+					        "please choose a different category name "
+					        "or remove the other one.",
+					        "Ok");
+					    return;
+				    }
+
+				    //all set, now move
+				    if (file_to_read.copyFileTo(copy_target)) {
+					    DBG("Success!");
+				    }
+
+				    m_patch_selector.regenerateContent();
+				    m_patch_selector.getSubDirectoryAndHighlightItFromName(copy_target_string);
+			    }
+
+			    // now actually laod the patch
 
 			    loadPatchFromOpenedFileStream(file_stream);
 

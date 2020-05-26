@@ -18,10 +18,8 @@ BrowserEntry::BrowserEntry(String p_text) : m_text(p_text) {
 	}
 	m_rename_editor.onReturnKey = [&]() {
 		if (m_rename_editor.getText().isEmpty()) {
-			AlertWindow::showMessageBox(AlertWindow::AlertIconType::WarningIcon,
-			                            "Empty Name",
-			                            "Please input a valid name!",
-			                            "Ok");
+			AlertWindow::showMessageBox(
+			    AlertWindow::AlertIconType::WarningIcon, "Empty Name", "Please input a valid name!", "Ok");
 			return;
 		}
 		hideRenameEditor();
@@ -100,7 +98,7 @@ void BrowserEntry::mouseExit(const MouseEvent &e) {
 void BrowserEntry::mouseDown(const MouseEvent &e) {
 	if (e.mods.isLeftButtonDown()) {
 		onLeftClick();
-		m_is_active = true;
+		setEntryActive(true);
 	} else if (e.mods.isRightButtonDown()) {
 		onRightClick();
 	}
@@ -110,6 +108,9 @@ void BrowserEntry::mouseDown(const MouseEvent &e) {
 
 void BrowserEntry::setEntryActive(bool p_active) {
 	m_is_active = p_active;
+	if (m_pass_active_element_to_parent) {
+		passActiveNameToParent(getText());
+	}
 	repaint();
 }
 
@@ -136,14 +137,18 @@ void BrowserEntry::setBoundsWithInputField(int p_x, int p_y, int p_width, int p_
 	m_rename_editor.setBounds(0, 0, p_width, p_height);
 }
 
-void BrowserEntry::timerCallback(){
+void BrowserEntry::timerCallback() {
 	//hack: grab keyboardfocus after 50msec...
 	//doing so directly won't work...
-	
+
 	DBG(m_timer_counter);
 
 	m_rename_editor.grabKeyboardFocus();
-	if(--m_timer_counter <= 0){
+	if (--m_timer_counter <= 0) {
 		stopTimer();
 	}
+}
+
+void BrowserEntry::enablePassActiveNameToParent(bool p_enable) {
+	m_pass_active_element_to_parent = p_enable;
 }

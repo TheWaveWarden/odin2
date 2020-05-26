@@ -746,7 +746,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	addAndMakeVisible(m_mod_matrix);
 	addChildComponent(m_patch_browser);
 	addChildComponent(m_arp);
-	
+
 	addAndMakeVisible(m_save_load);
 	addAndMakeVisible(m_xy_section);
 
@@ -1369,9 +1369,14 @@ void OdinAudioProcessorEditor::forceValueTreeOntoComponentsOnlyMainPanel() {
 	                               dontSendNotification);
 	setLfo34(m_lfo_24_button.getToggleState());
 
-	m_select_arp_button.setToggleState((float)m_value_tree.state.getChildWithName("misc")["arp_mod_selected"] > 0.5,
+	float select_bottom_left = (float)m_value_tree.state.getChildWithName("misc")["arp_mod_selected"];
+	m_select_arp_button.setToggleState(fabs(select_bottom_left - (float)MATRIX_SECTION_INDEX_ARP) < 0.1f,
 	                                   dontSendNotification);
-	//setArpMod(m_select_arp_button.getToggleState());
+	m_select_modmatrix_button.setToggleState(fabs(select_bottom_left - (float)MATRIX_SECTION_INDEX_MATRIX) < 0.1f,
+	                                         dontSendNotification);
+	m_select_presets_button.setToggleState(fabs(select_bottom_left - (float)MATRIX_SECTION_INDEX_PRESETS) < 0.1f,
+	                                       dontSendNotification);
+	setMatrixSectionModule((int)(select_bottom_left + 0.5f));
 }
 
 void OdinAudioProcessorEditor::forceValueTreeOntoComponents(bool p_reset_audio) {

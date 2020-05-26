@@ -25,7 +25,7 @@ public:
 
 
 private:
-    void loadPatchWithFileBrowser(String p_directory);
+    void loadPatchWithFileBrowserAndCopyToCategory(String p_directory);
     void loadPatchFromOpenedFileStream(juce::FileInputStream &p_file_stream);
     void savePatchInOpenedFileStream(FileOutputStream &p_file_stream);
     void loadSoundbankWithFileBrowser(String p_directory);

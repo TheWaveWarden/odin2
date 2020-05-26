@@ -52,8 +52,8 @@
 #define VOICES 24
 
 #define MATRIX_SECTION_INDEX_PRESETS 10
-#define MATRIX_SECTION_INDEX_ARP 0
-#define MATRIX_SECTION_INDEX_MATRIX 1
+#define MATRIX_SECTION_INDEX_ARP 1
+#define MATRIX_SECTION_INDEX_MATRIX 0
 
 // leave spare values for future additions :hype:
 #define OSC_TYPE_ANALOG 2

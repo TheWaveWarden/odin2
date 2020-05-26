@@ -25,13 +25,14 @@ public:
 	void showRenameEditor();
 	void hideRenameEditor();
 	void setBoundsWithInputField(int p_x, int p_y, int p_width, int p_height);
-
+	void enablePassActiveNameToParent(bool p_enable);
 
 	String getText();
 
 	std::function<void()> onLeftClick;
 	std::function<void()> onRightClick;
 	std::function<void(String,String)> applyRenaming;
+	std::function<void(String)> passActiveNameToParent;
 
 	TextEditor m_rename_editor;
 
@@ -46,6 +47,7 @@ private:
 	bool m_GUI_big = false;
 	bool m_is_highlighted = false;
 	bool m_is_active = false;
+	bool m_pass_active_element_to_parent = false;
 
 	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(BrowserEntry)
 };
