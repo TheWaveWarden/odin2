@@ -1,3 +1,5 @@
+# 2.2.0 beta
+- changed location of config file
 # 2.1.1 beta
 - drastically imrpoved patch load times
 - made patch-list in dropdown case-insensistive

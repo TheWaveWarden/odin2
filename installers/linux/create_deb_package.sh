@@ -31,6 +31,8 @@ popd
 
 #cp Soundbanks
 cp -r ../../Soundbanks/* $package_name/opt/odin2/Soundbanks/
+#remove empty .gitignore
+rm $package_name/opt/odin2/Soundbanks/User\ Patches/.gitignore 
 
 mkdir $package_name/DEBIAN
 
