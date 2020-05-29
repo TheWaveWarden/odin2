@@ -1659,10 +1659,10 @@ void OdinAudioProcessorEditor::setGUISizeBig(bool p_big, bool p_write_to_config)
 	repaint();
 }
 
-#define CONFIG_FILE_PATH                                                                                               \
-	File::getSpecialLocation(File::SpecialLocationType::userDocumentsDirectory).getFullPathName() +                    \
-	    File::getSeparatorString() + ".config" + File::getSeparatorString() + "odin2" + File::getSeparatorString() +   \
-	    "odin2.conf"
+// #define CONFIG_FILE_PATH                                                                                               \
+// 	File::getSpecialLocation(File::SpecialLocationType::userDocumentsDirectory).getFullPathName() +                    \
+// 	    File::getSeparatorString() + ".config" + File::getSeparatorString() + "odin2" + File::getSeparatorString() +   \
+// 	    "odin2.conf"
 
 void OdinAudioProcessorEditor::readOrCreateConfigFile(bool &p_GUI_big) {
 

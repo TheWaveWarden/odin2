@@ -556,7 +556,7 @@ PatchBrowser::PatchBrowser(OdinAudioProcessor &p_processor, AudioProcessorValueT
 	m_soundbank_selector.setWarningTexts(
 	    "No soundbank was found on your computer! To use the Factory Presets, please reinstall the plugin, or create a "
 	    "new Soundbank with the \"New\" button below!",
-	    "It seems you deleted the soundbank folder...");
+	    "Soundbank folder\n" + DEFAULT_SOUNDBANK_LOCATION_STRING + "\n\nnot found! Please create this folder or reinstall the plugin");
 }
 
 PatchBrowser::~PatchBrowser() {

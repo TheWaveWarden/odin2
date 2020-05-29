@@ -55,6 +55,22 @@
 #define MATRIX_SECTION_INDEX_ARP 1
 #define MATRIX_SECTION_INDEX_MATRIX 0
 
+
+
+//#ifdef ODIN_LINUXXXX
+//#define ODIN_STORAGE_PATH File::getSpecialLocation(File::SpecialLocationType::commonApplicationDataDirectory).getFullPathName() +                    \
+// 	    File::getSeparatorString() + "odin2"
+//#else 
+#define ODIN_STORAGE_PATH File::getSpecialLocation(File::SpecialLocationType::commonApplicationDataDirectory).getFullPathName() +                    \
+ 	    File::getSeparatorString()  + "odin2"
+//#endif
+#define CONFIG_FILE_PATH ODIN_STORAGE_PATH + File::getSeparatorString() + "odin2.conf"
+
+
+
+
+
+
 // leave spare values for future additions :hype:
 #define OSC_TYPE_ANALOG 2
 #define OSC_TYPE_WAVETABLE 3

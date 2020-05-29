@@ -6,13 +6,18 @@ package_name="Odin_${package_version}"
 echo "Creating package ${package_name}"
 
 #recreate directory
-rm -rf $package_name
+sudo rm -rf $package_name
 mkdir $package_name
 
 #build tree for vst2 plugin
 mkdir $package_name/usr/
 mkdir $package_name/usr/lib
 mkdir $package_name/usr/lib/vst
+
+#build tree for preset library
+mkdir $package_name/opt
+mkdir $package_name/opt/odin2
+mkdir $package_name/opt/odin2/Soundbanks
 
 #build Odin2 from scratch
 pushd ../../Builds/LinuxMakefile/
@@ -24,8 +29,12 @@ make CONFIG=Release -j 12
 cp build/Odin2.so ../../installers/linux/$package_name/usr/lib/vst/Odin2.so
 popd
 
-#create config file
+#cp Soundbanks
+cp -r ../../Soundbanks/* $package_name/opt/odin2/Soundbanks/
+
 mkdir $package_name/DEBIAN
+
+#create config file
 echo "Package: Odin" >> $package_name/DEBIAN/control
 echo "Version: ${package_version}" >> $package_name/DEBIAN/control
 echo "Section: base" >> $package_name/DEBIAN/control
@@ -35,6 +44,10 @@ echo "Depends:" >> $package_name/DEBIAN/control
 echo "Maintainer: TheWaveWarden info@thewavewarden.com" >> $package_name/DEBIAN/control
 echo "Description: Odin 2" >> $package_name/DEBIAN/control
 echo "  Semimodular VST Synthesizer Plugin" >> $package_name/DEBIAN/control
+
+#create postinst file
+echo "chmod -R 777 /opt/odin2" >> $package_name/DEBIAN/postinst
+sudo chmod -R 775 $package_name/DEBIAN/postinst
 
 dpkg-deb --build $package_name
 
