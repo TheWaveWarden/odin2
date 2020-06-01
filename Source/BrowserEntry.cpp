@@ -1,7 +1,7 @@
 #include "BrowserEntry.h"
 #include <JuceHeader.h>
 
-BrowserEntry::BrowserEntry(String p_text) : m_text(p_text) {
+BrowserEntry::BrowserEntry(String p_text, bool p_GUI_big) : m_text(p_text), m_GUI_big(p_GUI_big) {
 	addChildComponent(m_rename_editor);
 	m_rename_editor.setColour(TextEditor::ColourIds::backgroundColourId, PATCH_BROWSER_INPUT_FIELD_BACKGROUND_COLOR);
 	m_rename_editor.onFocusLost = [&]() {
@@ -10,10 +10,10 @@ BrowserEntry::BrowserEntry(String p_text) : m_text(p_text) {
 	};
 	m_rename_editor.onEscapeKey = [&]() { hideRenameEditor(); };
 	if (m_GUI_big) {
-		m_rename_editor.setFont(Font(24.f));
+		m_rename_editor.setFont(Font(18.f));
 		m_rename_editor.setIndents(TEXT_INLAY_BROWSER_150, 3);
 	} else {
-		m_rename_editor.setFont(Font(17.f));
+		m_rename_editor.setFont(Font(15.f));
 		m_rename_editor.setIndents(TEXT_INLAY_BROWSER_100, 2);
 	}
 	m_rename_editor.onReturnKey = [&]() {
@@ -50,9 +50,9 @@ void BrowserEntry::paint(Graphics &g) {
 	}
 
 	if (m_GUI_big) {
-		g.setFont(24.0f);
-	} else {
 		g.setFont(18.0f);
+	} else {
+		g.setFont(15.0f);
 	}
 	auto text_area = getLocalBounds();
 
@@ -80,6 +80,8 @@ void BrowserEntry::setGUIBig() {
 
 void BrowserEntry::setGUISmall() {
 	m_GUI_big = false;
+
+	m_rename_editor.setBounds(0, 0, getWidth(), getHeight());
 
 	repaint();
 }

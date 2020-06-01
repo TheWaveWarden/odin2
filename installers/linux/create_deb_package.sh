@@ -51,8 +51,10 @@ echo "  Semimodular VST Synthesizer Plugin" >> $package_name/DEBIAN/control
 echo "chmod -R 777 /opt/odin2" >> $package_name/DEBIAN/postinst
 sudo chmod -R 775 $package_name/DEBIAN/postinst
 
+#build package
 dpkg-deb --build $package_name
 
+#remove temp files
 rm -rf $package_name
 
 

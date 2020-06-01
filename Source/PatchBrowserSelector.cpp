@@ -66,7 +66,7 @@ void PatchBrowserSelector::paint(Graphics &g) {
 	switch (m_directory_status) {
 	case DirectoryStatus::Nonexistent: {
 		g.setColour(WARNING_COLOR);
-		float font_size = m_GUI_big ? 17.f : 11.f;
+		float font_size = m_GUI_big ? 17.f : 13.f;
 		float inlay_x   = m_GUI_big ? WARNING_INLAY_X_150 : WARNING_INLAY_X_100;
 		float offset_y  = m_GUI_big ? WARNING_OFFSET_Y_150 : WARNING_OFFSET_Y_100;
 		g.setFont(font_size);
@@ -76,7 +76,7 @@ void PatchBrowserSelector::paint(Graphics &g) {
 
 	case DirectoryStatus::Empty: {
 		g.setColour(WARNING_COLOR);
-		float font_size = m_GUI_big ? 17.f : 11.f;
+		float font_size = m_GUI_big ? 17.f : 13.f;
 		float inlay_x   = m_GUI_big ? WARNING_INLAY_X_150 : WARNING_INLAY_X_100;
 		float offset_y  = m_GUI_big ? WARNING_OFFSET_Y_150 : WARNING_OFFSET_Y_100;
 		g.setFont(font_size);
@@ -125,8 +125,6 @@ void PatchBrowserSelector::setGUIBig() {
 	m_menu_feels.setFontSize(18);
 	m_button_feels.setButtonFontSize(17.f);
 
-	resetScrollPosition();
-	positionEntries();
 
 	m_left_button.setBounds(0, getHeight() - BUTTON_HEIGHT_BROWSER_150, getWidth() / 3, BUTTON_HEIGHT_BROWSER_150);
 	m_mid_button.setBounds(
@@ -136,13 +134,29 @@ void PatchBrowserSelector::setGUIBig() {
 
 	m_input_field.setBounds(0, getHeight() - BUTTON_HEIGHT_BROWSER_150, getWidth() / 3 * 2, BUTTON_HEIGHT_BROWSER_150);
 	m_input_field.setFont(Font(17.f));
+
+	regenerateContent();
+	resetScrollPosition();
+	positionEntries();	
 }
 
 void PatchBrowserSelector::setGUISmall() {
 	m_GUI_big = false;
 
-	m_menu_feels.setGUISmall();
+	m_menu_feels.setWidth(134.f);
+	m_menu_feels.setFontSize(15.f);
+	m_button_feels.setButtonFontSize(14.f);
 
+	m_left_button.setBounds(0, BROWSER_SIZE_Y - BUTTON_HEIGHT_BROWSER - 7, getWidth() / 3, BUTTON_HEIGHT_BROWSER);
+
+	m_mid_button.setBounds(getWidth() / 3, BROWSER_SIZE_Y - BUTTON_HEIGHT_BROWSER - 7, getWidth() / 3, BUTTON_HEIGHT_BROWSER);
+	m_right_button.setBounds(
+	    getWidth() * 2 / 3,BROWSER_SIZE_Y - BUTTON_HEIGHT_BROWSER - 7, getWidth() / 3, BUTTON_HEIGHT_BROWSER);
+
+	m_input_field.setBounds(0, BROWSER_SIZE_Y - BUTTON_HEIGHT_BROWSER - 7, getWidth() / 3 * 2, BUTTON_HEIGHT_BROWSER);
+	m_input_field.setFont(Font(17.f));
+
+	regenerateContent();
 	resetScrollPosition();
 	positionEntries();
 }
@@ -185,14 +199,13 @@ void PatchBrowserSelector::recreatePopupMenu() {
 
 		String current_dir = file.getFileName();
 		m_copy_move_map.clear();
-		
+
 		for (int i = 0; i < siblings.size(); ++i) {
 			if (siblings[i].getFileName() != current_dir) {
 				m_move_menu.addItem(PATCH_BROWSER_MENU_MOVE_OFFSET + i, siblings[i].getFileName());
 				m_copy_menu.addItem(PATCH_BROWSER_MENU_COPY_OFFSET + i, siblings[i].getFileName());
 
 				m_copy_move_map.insert(std::make_pair(i, siblings[i].getFileName()));
-
 			}
 		}
 
@@ -268,10 +281,10 @@ void PatchBrowserSelector::generateContent() {
 
 			for (int file_index = 0; file_index < file_array.size(); ++file_index) {
 				m_entries.push_back(std::make_unique<BrowserEntry>(
-				    file_array[file_index].getFileName().dropLastCharacters((int)m_wildcard.length() - 1)));
-				if(m_pass_active_element_to_parent){
+				    file_array[file_index].getFileName().dropLastCharacters((int)m_wildcard.length() - 1), m_GUI_big));
+				if (m_pass_active_element_to_parent) {
 					m_entries[m_entries.size() - 1]->enablePassActiveNameToParent(true);
-					m_entries[m_entries.size() - 1]->passActiveNameToParent = [&](String p_name){
+					m_entries[m_entries.size() - 1]->passActiveNameToParent = [&](String p_name) {
 						m_input_field.setText(p_name);
 					};
 				}
@@ -350,7 +363,7 @@ void PatchBrowserSelector::enforceScrollLimits() {
 	float entry_height      = m_entries.size() * entry_height_single;
 
 	float bottom      = entry_height + m_scroll_position;
-	int button_height = m_GUI_big ? BUTTON_HEIGHT_BROWSER_150 : BUTTON_HEIGHT_BROWSER_100;
+	int button_height = m_GUI_big ? BUTTON_HEIGHT_BROWSER_150 : BUTTON_HEIGHT_BROWSER;
 	if (bottom < getHeight() - button_height) {
 		m_scroll_position -= (bottom - getHeight() + button_height);
 		m_scroll_position = m_scroll_position > 0.f ? 0.f : m_scroll_position;
@@ -424,10 +437,9 @@ void PatchBrowserSelector::setCopyMoveEnabled(bool p_enabled) {
 	m_copy_move_enabled = p_enabled;
 }
 
-void PatchBrowserSelector::enablePassActiveNameToParent(bool p_enable){
+void PatchBrowserSelector::enablePassActiveNameToParent(bool p_enable) {
 	m_pass_active_element_to_parent = p_enable;
 }
-
 
 // void PatchBrowserSelector::focusLost(FocusChangeType p_cause){
 // 	//this doesnt do anything?

@@ -402,6 +402,67 @@ void OdinAudioProcessorEditor::setGUISmall() {
 	m_lfo_24_button.setImage(lfo24_right, 2);
 	m_lfo_24_button.setBounds(LFO24_POS_X, LFO24_POS_Y, lfo24_left.getWidth(), lfo24_left.getHeight());
 
+
+	juce::Image select_arp_button_left  = ImageCache::getFromMemory(BinaryData::button_select_arpeggiator_1_png,
+                                                                   BinaryData::button_select_arpeggiator_1_pngSize);
+	juce::Image select_arp_button_right = ImageCache::getFromMemory(
+	    BinaryData::button_select_arpeggiator_2_png, BinaryData::button_select_arpeggiator_2_pngSize);
+	juce::DrawableImage select_arp_button_left_draw;
+	select_arp_button_left_draw.setImage(select_arp_button_left);
+	juce::DrawableImage select_arp_button_right_draw;
+	select_arp_button_right_draw.setImage(select_arp_button_right);
+	m_select_arp_button.setImages(&select_arp_button_right_draw,
+	                              &select_arp_button_right_draw,
+	                              &select_arp_button_left_draw,
+	                              &select_arp_button_left_draw,
+	                              &select_arp_button_left_draw,
+	                              &select_arp_button_left_draw,
+	                              &select_arp_button_left_draw);
+	m_select_arp_button.setBounds(ARP_MATRIX_BUTTON_POS_X,
+	                              ARP_MATRIX_BUTTON_POS_Y,
+	                              select_arp_button_left.getWidth(),
+	                              select_arp_button_left.getHeight());
+
+	juce::Image select_modmatrix_button_left = ImageCache::getFromMemory(
+	    BinaryData::button_select_modmatrix_1_png, BinaryData::button_select_modmatrix_1_pngSize);
+	juce::Image select_modmatrix_button_right = ImageCache::getFromMemory(
+	    BinaryData::button_select_modmatrix_2_png, BinaryData::button_select_modmatrix_2_pngSize);
+	juce::DrawableImage select_modmatrix_button_left_draw;
+	select_modmatrix_button_left_draw.setImage(select_modmatrix_button_left);
+	juce::DrawableImage select_modmatrix_button_right_draw;
+	select_modmatrix_button_right_draw.setImage(select_modmatrix_button_right);
+	m_select_modmatrix_button.setImages(&select_modmatrix_button_right_draw,
+	                                    &select_modmatrix_button_right_draw,
+	                                    &select_modmatrix_button_left_draw,
+	                                    &select_modmatrix_button_left_draw,
+	                                    &select_modmatrix_button_left_draw,
+	                                    &select_modmatrix_button_left_draw,
+	                                    &select_modmatrix_button_left_draw);
+	m_select_modmatrix_button.setBounds(SELECT_BUTTON_WIDTH + ARP_MATRIX_BUTTON_POS_X,
+	                                    ARP_MATRIX_BUTTON_POS_Y,
+	                                    select_modmatrix_button_left.getWidth(),
+	                                    select_modmatrix_button_left.getHeight());
+
+	juce::Image select_presets_button_left  = ImageCache::getFromMemory(BinaryData::button_select_presets_1_png,
+                                                                       BinaryData::button_select_presets_1_pngSize);
+	juce::Image select_presets_button_right = ImageCache::getFromMemory(
+	    BinaryData::button_select_presets_2_png, BinaryData::button_select_presets_2_pngSize);
+	juce::DrawableImage select_presets_button_left_draw;
+	select_presets_button_left_draw.setImage(select_presets_button_left);
+	juce::DrawableImage select_presets_button_right_draw;
+	select_presets_button_right_draw.setImage(select_presets_button_right);
+	m_select_presets_button.setImages(&select_presets_button_right_draw,
+	                                  &select_presets_button_right_draw,
+	                                  &select_presets_button_left_draw,
+	                                  &select_presets_button_left_draw,
+	                                  &select_presets_button_left_draw,
+	                                  &select_presets_button_left_draw,
+	                                  &select_presets_button_left_draw);
+	m_select_presets_button.setBounds(SELECT_BUTTON_WIDTH * 2 + ARP_MATRIX_BUTTON_POS_X,
+	                                  ARP_MATRIX_BUTTON_POS_Y,
+	                                  select_presets_button_left.getWidth(),
+	                                  select_presets_button_left.getHeight());
+
 	//juce::Image arp_modmatrix_button_left =
 	 //   ImageCache::getFromMemory(BinaryData::button_mod_arp_1_png, BinaryData::button_mod_arp_1_pngSize);
 	//juce::Image arp_modmatrix_button_right =
@@ -506,6 +567,8 @@ void OdinAudioProcessorEditor::setGUISmall() {
 
 	m_mod_matrix.setBounds(MATRIX_POS_X_100, MATRIX_POS_Y_100, MATRIX_SIZE_X, MATRIX_SIZE_Y);
 	m_arp.setBounds(ARPEGGIATOR_POS_X, ARPEGGIATOR_POS_Y, MATRIX_SIZE_X, MATRIX_SIZE_Y);
+	m_patch_browser.setBounds(BROWSER_POS_X, BROWSER_POS_Y, BROWSER_SIZE_X, BROWSER_SIZE_Y);
+
 	m_save_load.setBounds(SAVE_LOAD_POS_X, SAVE_LOAD_POS_Y, SAVE_LOAD_SIZE_X, SAVE_LOAD_SIZE_Y);
 	m_xy_section.setBounds(XY_COMPONENT_POS_X, XY_COMPONENT_POS_Y, XY_COMPONENT_SIZE_X, XY_COMPONENT_SIZE_Y);
 

@@ -9,7 +9,7 @@
 
 class BrowserEntry : public Component, public Timer {
 public:
-	BrowserEntry(String p_text);
+	BrowserEntry(String p_text, bool p_GUI_big);
 	~BrowserEntry();
 
 	void paint(Graphics &) override;

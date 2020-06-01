@@ -135,16 +135,28 @@
             file="Graphics/cropped/buttons/button_one_shot_4.png"/>
       <FILE id="VdCRa5" name="button_one_shot_4_150.png" compile="0" resource="1"
             file="Graphics_150/cropped/buttons/button_one_shot_4_150.png"/>
+      <FILE id="geKwZb" name="button_select_arpeggiator_1.png" compile="0"
+            resource="1" file="Graphics/cropped/buttons/button_select_arpeggiator_1.png"/>
       <FILE id="gWwjWC" name="button_select_arpeggiator_1_150.png" compile="0"
             resource="1" file="Graphics_150/cropped/buttons/button_select_arpeggiator_1_150.png"/>
+      <FILE id="hRO9Jf" name="button_select_arpeggiator_2.png" compile="0"
+            resource="1" file="Graphics/cropped/buttons/button_select_arpeggiator_2.png"/>
       <FILE id="gVIZA4" name="button_select_arpeggiator_2_150.png" compile="0"
             resource="1" file="Graphics_150/cropped/buttons/button_select_arpeggiator_2_150.png"/>
+      <FILE id="uYo0kJ" name="button_select_modmatrix_1.png" compile="0"
+            resource="1" file="Graphics/cropped/buttons/button_select_modmatrix_1.png"/>
       <FILE id="wFyRIK" name="button_select_modmatrix_1_150.png" compile="0"
             resource="1" file="Graphics_150/cropped/buttons/button_select_modmatrix_1_150.png"/>
+      <FILE id="RnP6dh" name="button_select_modmatrix_2.png" compile="0"
+            resource="1" file="Graphics/cropped/buttons/button_select_modmatrix_2.png"/>
       <FILE id="mnyTcJ" name="button_select_modmatrix_2_150.png" compile="0"
             resource="1" file="Graphics_150/cropped/buttons/button_select_modmatrix_2_150.png"/>
+      <FILE id="j4GLTQ" name="button_select_presets_1.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/button_select_presets_1.png"/>
       <FILE id="fi4DOd" name="button_select_presets_1_150.png" compile="0"
             resource="1" file="Graphics_150/cropped/buttons/button_select_presets_1_150.png"/>
+      <FILE id="utYzep" name="button_select_presets_2.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/button_select_presets_2.png"/>
       <FILE id="Ft2Db6" name="button_select_presets_2_150.png" compile="0"
             resource="1" file="Graphics_150/cropped/buttons/button_select_presets_2_150.png"/>
       <FILE id="nfO9Sm" name="button1_1.png" compile="0" resource="1" file="Graphics/cropped/buttons/button1_1.png"/>
