@@ -556,7 +556,8 @@ PatchBrowser::PatchBrowser(OdinAudioProcessor &p_processor, AudioProcessorValueT
 	m_soundbank_selector.setWarningTexts(
 	    "No soundbank was found on your computer! To use the Factory Presets, please reinstall the plugin, or create a "
 	    "new Soundbank with the \"New\" button below!",
-	    "Soundbank folder\n" + DEFAULT_SOUNDBANK_LOCATION_STRING + "\n\nnot found! Please create this folder or reinstall the plugin");
+	    "Soundbank folder\n" + DEFAULT_SOUNDBANK_LOCATION_STRING +
+	        "\n\nnot found! Please create this folder or reinstall the plugin");
 }
 
 PatchBrowser::~PatchBrowser() {
@@ -573,7 +574,11 @@ void PatchBrowser::paint(Graphics &g) {
 void PatchBrowser::paintOverChildren(Graphics &g) {
 	//g.setColour(Colours::grey);
 	//g.drawRect(getLocalBounds().expanded(0, 1).translated(0, -1), 1); // draw an outline around the component
-	g.drawImageAt(m_background, 0, 0);
+	if (m_GUI_big) {
+		g.drawImageAt(m_background, 0, 0);
+	} else {
+		g.drawImageAt(m_background, 2, 3);
+	}
 }
 
 void PatchBrowser::setGUIBig() {
@@ -611,13 +616,12 @@ void PatchBrowser::setGUISmall() {
 	                           (BROWSER_INLAY_X + BROWSER_SIZE_X - BROWSER_INLAY_X * 2) / 3,
 	                           213);
 
-
 	m_soundbank_selector.setGUISmall();
 	m_category_selector.setGUISmall();
 	m_patch_selector.setGUISmall();
 
-	m_background = ImageCache::getFromMemory(BinaryData::patch_browser_window_150_png,
-	                                         BinaryData::patch_browser_window_150_pngSize);
+	m_background =
+	    ImageCache::getFromMemory(BinaryData::patch_browser_window_png, BinaryData::patch_browser_window_pngSize);
 }
 
 void PatchBrowser::loadPatchFromOpenedFileStream(juce::FileInputStream &p_file_stream) {

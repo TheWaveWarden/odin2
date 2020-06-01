@@ -143,17 +143,17 @@ void PatchBrowserSelector::setGUIBig() {
 void PatchBrowserSelector::setGUISmall() {
 	m_GUI_big = false;
 
-	m_menu_feels.setWidth(134.f);
-	m_menu_feels.setFontSize(15.f);
+	m_menu_feels.setWidth(170.f);
+	m_menu_feels.setFontSize(16.f);
 	m_button_feels.setButtonFontSize(14.f);
 
-	m_left_button.setBounds(0, BROWSER_SIZE_Y - BUTTON_HEIGHT_BROWSER - 7, getWidth() / 3, BUTTON_HEIGHT_BROWSER);
+	m_left_button.setBounds(0, BROWSER_SIZE_Y - BUTTON_HEIGHT_BROWSER - 7, getWidth() / 3, BUTTON_HEIGHT_BROWSER+7);
 
-	m_mid_button.setBounds(getWidth() / 3, BROWSER_SIZE_Y - BUTTON_HEIGHT_BROWSER - 7, getWidth() / 3, BUTTON_HEIGHT_BROWSER);
+	m_mid_button.setBounds(getWidth() / 3, BROWSER_SIZE_Y - BUTTON_HEIGHT_BROWSER - 7, getWidth() / 3, BUTTON_HEIGHT_BROWSER+7);
 	m_right_button.setBounds(
-	    getWidth() * 2 / 3,BROWSER_SIZE_Y - BUTTON_HEIGHT_BROWSER - 7, getWidth() / 3, BUTTON_HEIGHT_BROWSER);
+	    getWidth() * 2 / 3,BROWSER_SIZE_Y - BUTTON_HEIGHT_BROWSER - 7, getWidth() / 3, BUTTON_HEIGHT_BROWSER+7);
 
-	m_input_field.setBounds(0, BROWSER_SIZE_Y - BUTTON_HEIGHT_BROWSER - 7, getWidth() / 3 * 2, BUTTON_HEIGHT_BROWSER);
+	m_input_field.setBounds(0, BROWSER_SIZE_Y - BUTTON_HEIGHT_BROWSER - 7, getWidth() / 3 * 2, BUTTON_HEIGHT_BROWSER+7);
 	m_input_field.setFont(Font(17.f));
 
 	regenerateContent();

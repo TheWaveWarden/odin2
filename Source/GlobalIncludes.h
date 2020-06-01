@@ -111,7 +111,7 @@
 #define BROWSER_POS_X 274
 #define BROWSER_POS_Y 467
 #define BROWSER_SIZE_X (492 + 2*BROWSER_INLAY_X)
-#define BROWSER_SIZE_Y (142 + 2*BROWSER_INLAY_Y)
+#define BROWSER_SIZE_Y (141 + 2*BROWSER_INLAY_Y)
 
 
 // midpoint for filters:
