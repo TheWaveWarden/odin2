@@ -38,6 +38,8 @@ private:
     bool usesChipdraw(int p_osc);
     bool usesSpecdraw(int p_osc);
 
+    void setFirstSoundbankActive();
+
 	std::unique_ptr<FileChooser> m_filechooser;
 
     Image m_background;

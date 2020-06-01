@@ -601,20 +601,24 @@ void PatchBrowser::setGUIBig() {
 
 	m_background = ImageCache::getFromMemory(BinaryData::patch_browser_window_150_png,
 	                                         BinaryData::patch_browser_window_150_pngSize);
+
+	setFirstSoundbankActive();
 }
 void PatchBrowser::setGUISmall() {
 	m_GUI_big = false;
 
-	m_soundbank_selector.setBounds(
-	    BROWSER_INLAY_X - 1, BROWSER_INLAY_Y, (BROWSER_SIZE_X - BROWSER_INLAY_X * 2) / 3, 213);
+	m_soundbank_selector.setBounds(BROWSER_INLAY_X - 1,
+	                               BROWSER_INLAY_Y + 2,
+	                               (BROWSER_SIZE_X - BROWSER_INLAY_X * 2) / 3,
+	                               BROWSER_SIZE_Y - 2 * BROWSER_INLAY_Y-2);
 	m_category_selector.setBounds(BROWSER_INLAY_X - 1 + (BROWSER_SIZE_X - BROWSER_INLAY_X * 2) / 3,
-	                              BROWSER_INLAY_Y,
+	                              BROWSER_INLAY_Y + 2,
 	                              (BROWSER_SIZE_X - BROWSER_INLAY_X * 2) / 3,
-	                              213);
+	                              BROWSER_SIZE_Y - 2 * BROWSER_INLAY_Y-2);
 	m_patch_selector.setBounds(BROWSER_INLAY_X - 1 + ((BROWSER_SIZE_X - BROWSER_INLAY_X * 2) / 3) * 2,
-	                           BROWSER_INLAY_Y,
+	                           BROWSER_INLAY_Y + 2,
 	                           (BROWSER_INLAY_X + BROWSER_SIZE_X - BROWSER_INLAY_X * 2) / 3,
-	                           213);
+	                           BROWSER_SIZE_Y - 2 * BROWSER_INLAY_Y-2);
 
 	m_soundbank_selector.setGUISmall();
 	m_category_selector.setGUISmall();
@@ -622,6 +626,8 @@ void PatchBrowser::setGUISmall() {
 
 	m_background =
 	    ImageCache::getFromMemory(BinaryData::patch_browser_window_png, BinaryData::patch_browser_window_pngSize);
+
+	setFirstSoundbankActive();
 }
 
 void PatchBrowser::loadPatchFromOpenedFileStream(juce::FileInputStream &p_file_stream) {
@@ -1088,4 +1094,9 @@ void PatchBrowser::loadSoundbankWithFileBrowser(String p_directory) {
 			    }
 		    }
 	    });
+}
+
+void PatchBrowser::setFirstSoundbankActive(){
+	m_category_selector.setDirectory(m_soundbank_selector.getFirstSubDirectoryAndHighlightIt());
+	m_patch_selector.setDirectory(m_category_selector.getFirstSubDirectoryAndHighlightIt());
 }

@@ -125,7 +125,6 @@ void PatchBrowserSelector::setGUIBig() {
 	m_menu_feels.setFontSize(18);
 	m_button_feels.setButtonFontSize(17.f);
 
-
 	m_left_button.setBounds(0, getHeight() - BUTTON_HEIGHT_BROWSER_150, getWidth() / 3, BUTTON_HEIGHT_BROWSER_150);
 	m_mid_button.setBounds(
 	    getWidth() / 3, getHeight() - BUTTON_HEIGHT_BROWSER_150, getWidth() / 3, BUTTON_HEIGHT_BROWSER_150);
@@ -137,7 +136,7 @@ void PatchBrowserSelector::setGUIBig() {
 
 	regenerateContent();
 	resetScrollPosition();
-	positionEntries();	
+	positionEntries();
 }
 
 void PatchBrowserSelector::setGUISmall() {
@@ -147,13 +146,24 @@ void PatchBrowserSelector::setGUISmall() {
 	m_menu_feels.setFontSize(16.f);
 	m_button_feels.setButtonFontSize(14.f);
 
-	m_left_button.setBounds(0, BROWSER_SIZE_Y - BUTTON_HEIGHT_BROWSER - 7, getWidth() / 3, BUTTON_HEIGHT_BROWSER+7);
+	m_left_button.setBounds(0,
+	                        BROWSER_SIZE_Y - BUTTON_HEIGHT_BROWSER - 2 * BROWSER_INLAY_Y - 2,
+	                        getWidth() / 3,
+	                        BUTTON_HEIGHT_BROWSER + BROWSER_INLAY_Y - 4);
 
-	m_mid_button.setBounds(getWidth() / 3, BROWSER_SIZE_Y - BUTTON_HEIGHT_BROWSER - 7, getWidth() / 3, BUTTON_HEIGHT_BROWSER+7);
-	m_right_button.setBounds(
-	    getWidth() * 2 / 3,BROWSER_SIZE_Y - BUTTON_HEIGHT_BROWSER - 7, getWidth() / 3, BUTTON_HEIGHT_BROWSER+7);
+	m_mid_button.setBounds(getWidth() / 3,
+	                       BROWSER_SIZE_Y - BUTTON_HEIGHT_BROWSER - 2 * BROWSER_INLAY_Y - 2,
+	                       getWidth() / 3,
+	                       BUTTON_HEIGHT_BROWSER + BROWSER_INLAY_Y - 4);
+	m_right_button.setBounds(getWidth() * 2 / 3,
+	                         BROWSER_SIZE_Y - BUTTON_HEIGHT_BROWSER - 2 * BROWSER_INLAY_Y - 2,
+	                         getWidth() / 3,
+	                         BUTTON_HEIGHT_BROWSER + BROWSER_INLAY_Y - 4);
 
-	m_input_field.setBounds(0, BROWSER_SIZE_Y - BUTTON_HEIGHT_BROWSER - 7, getWidth() / 3 * 2, BUTTON_HEIGHT_BROWSER+7);
+	m_input_field.setBounds(0,
+	                        BROWSER_SIZE_Y - BUTTON_HEIGHT_BROWSER - 2 * BROWSER_INLAY_Y - 2,
+	                        getWidth() / 3 * 2,
+	                        BUTTON_HEIGHT_BROWSER + BROWSER_INLAY_Y - 4);
 	m_input_field.setFont(Font(17.f));
 
 	regenerateContent();
