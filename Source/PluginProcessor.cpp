@@ -1241,3 +1241,7 @@ void OdinAudioProcessor::handleMidiMessage(const MidiMessage &p_midi_message) {
 		}
 	}
 }
+
+void OdinAudioProcessor::onEditorDestruction(){
+	m_editor_pointer = nullptr;
+}

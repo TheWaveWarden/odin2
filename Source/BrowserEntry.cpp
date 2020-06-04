@@ -101,11 +101,12 @@ void BrowserEntry::mouseDown(const MouseEvent &e) {
 	if (e.mods.isLeftButtonDown()) {
 		onLeftClick();
 		setEntryActive(true);
+		repaint();
 	} else if (e.mods.isRightButtonDown()) {
 		onRightClick();
 	}
 	Component::mouseDown(e);
-	repaint();
+	DBG((int)e.mods.isLeftButtonDown());
 }
 
 void BrowserEntry::setEntryActive(bool p_active) {

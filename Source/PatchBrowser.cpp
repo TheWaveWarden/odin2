@@ -66,6 +66,10 @@ PatchBrowser::PatchBrowser(OdinAudioProcessor &p_processor, AudioProcessorValueT
 			File file_to_delete(absolute_path);
 			if (file_to_delete.deleteRecursively()) {
 				DBG("Directory was deleted!");
+
+				//avoid segfault from pending mousedown on deleted browserentry every now and then
+				//Time::waitForMillisecondCounter(20);
+
 				m_soundbank_selector.regenerateContent();
 
 				m_category_selector.setDirectory(m_soundbank_selector.getFirstSubDirectoryAndHighlightIt());
@@ -91,7 +95,11 @@ PatchBrowser::PatchBrowser(OdinAudioProcessor &p_processor, AudioProcessorValueT
 		                                 {})) {
 			File file_to_delete(absolute_path);
 			if (file_to_delete.deleteRecursively()) {
-				DBG("Directory was deleted!");
+				DBG("DBG: Directory was deleted!");
+
+				//avoid segfault from pending mousedown on deleted browserentry every now and then
+				//Time::waitForMillisecondCounter(20);
+
 				m_category_selector.regenerateContent();
 				m_patch_selector.setDirectory(m_category_selector.getFirstSubDirectoryAndHighlightIt());
 				m_category_selector.positionEntries();
@@ -114,6 +122,10 @@ PatchBrowser::PatchBrowser(OdinAudioProcessor &p_processor, AudioProcessorValueT
 			File file_to_delete(absolute_path);
 			if (file_to_delete.deleteFile()) {
 				DBG("file was deleted!");
+
+				//avoid segfault from pending mousedown on deleted browserentry every now and then
+				//Time::waitForMillisecondCounter(20);
+
 				m_patch_selector.regenerateContent();
 			} else {
 				DBG("file was NOT deleted!");

@@ -1091,10 +1091,12 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	//DBG("Display_Scale: " + std::to_string(Desktop::getInstance().getDisplays().getMainDisplay().scale));
 
 #ifdef ODIN_LINUX
+#ifdef ODIN_DEBUG
 	if (!writeComponentImageToFile(*this)) {
 		DBG("Failed to create GUI screenshot");
 	}
 	writeValueTreeToFile(m_value_tree.state);
+#endif
 #endif
 }
 
@@ -1112,6 +1114,9 @@ OdinAudioProcessorEditor::~OdinAudioProcessorEditor() {
 	m_processor.onSetStateInformation = [&]() {};
 	m_processor.updatePitchWheelGUI   = [&](float p_value) {};
 	m_processor.updateModWheelGUI     = [&](float p_value) {};
+
+	// tell processor that the editor was destroyed
+	m_processor.onEditorDestruction();
 }
 
 //==============================================================================

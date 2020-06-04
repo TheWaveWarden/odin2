@@ -44,6 +44,7 @@ public:
 	//==============================================================================
 	AudioProcessorEditor *createEditor() override;
 	bool hasEditor() const override;
+	void onEditorDestruction();
 
 	//==============================================================================
 	const String getName() const override;
@@ -165,7 +166,6 @@ private:
 #define PROFILING_SAMPLES 44100
 	int m_profiling_counter = 0;
 #endif
-	// OdinAudioProcessorEditor* m_editor = nullptr;
 	void setFilter3EnvValue();
 	void setBPM(float BPM);
 	void setPitchWheelValue(int p_value);
