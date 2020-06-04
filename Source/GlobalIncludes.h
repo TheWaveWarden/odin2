@@ -21,7 +21,7 @@
 //#define WTGEN
 
 #define ODIN_MAJOR_VERSION 2
-#define ODIN_MINOR_VERSION 1
+#define ODIN_MINOR_VERSION 2
 #define ODIN_PATCH_VERSION 0
 
 #define ODIN_VERSION_STRING                                                                                            \

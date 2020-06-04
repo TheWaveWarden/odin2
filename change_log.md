@@ -3,7 +3,8 @@
 - created installers for all platforms
 - Odin 2 now ships with a Factory Soundbank
 - changed location of config file
-- ping-pong delay will now always start left, regardless of amp-pan
+- ping-pong delay will now alwmays start left, regardless of amp-pan
+- fixed issue which would crash pluginval
 # 2.1.1 beta
 - drastically imrpoved patch load times
 - made patch-list in dropdown case-insensistive
