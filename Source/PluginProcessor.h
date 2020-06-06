@@ -315,6 +315,8 @@ private:
 	ModSources m_mod_sources;
 	ModDestinations m_mod_destinations;
 
+	float m_samplerate = 44800.f;
+
 	bool m_dist_on        = false;
 	bool m_lfo1_sync      = false;
 	bool m_lfo2_sync      = false;

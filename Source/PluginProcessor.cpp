@@ -881,6 +881,8 @@ AudioProcessor *JUCE_CALLTYPE createPluginFilter() {
 void OdinAudioProcessor::setSampleRate(float p_samplerate) {
 	DBG("SampleRate was set to " + std::to_string((int)p_samplerate) + " Hz!");
 
+	m_samplerate = p_samplerate;
+
 	for (int voice = 0; voice < VOICES; ++voice) {
 		m_voice[voice].setSampleRate(p_samplerate);
 	}
@@ -902,6 +904,9 @@ void OdinAudioProcessor::setSampleRate(float p_samplerate) {
 	m_global_env.setSampleRate(p_samplerate);
 	m_global_lfo.setSampleRate(p_samplerate);
 	m_arpeggiator.setSampleRate(p_samplerate);
+
+	//update glide
+	SETAUDIOFULLRANGE("glide", GETAUDIO("glide"));
 }
 
 void OdinAudioProcessor::initializeModules() {
