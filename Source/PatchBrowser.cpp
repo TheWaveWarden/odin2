@@ -486,6 +486,11 @@ PatchBrowser::PatchBrowser(OdinAudioProcessor &p_processor, AudioProcessorValueT
 			//all set, now move
 			if (move_source.moveFileTo(move_target)) {
 				DBG("Success!");
+				
+				//TODO REMOVE
+				if(!(move_target.getFullPathName().contains("Sort Out"))){
+					writeRenamingCommandToFile(move_source.getFullPathName(), move_target.getFullPathName());
+				}
 			}
 		}
 
