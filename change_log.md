@@ -5,6 +5,7 @@
 - changed location of config file
 - ping-pong delay will now alwmays start left, regardless of amp-pan
 - fixed issue where Filter2 would use the wrong right vowel
+- fixed issue where glide time was dependent on samplerate
 - fixed issue which would crash pluginval
 # 2.1.1 beta
 - drastically imrpoved patch load times
