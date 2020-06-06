@@ -4,12 +4,11 @@
 - Odin 2 now ships with a Factory Soundbank
 - changed location of config file
 - ping-pong delay will now alwmays start left, regardless of amp-pan
+- drastically imrpoved patch load times
 - fixed issue where Filter2 would use the wrong right vowel
 - fixed issue where glide time was dependent on samplerate
 - fixed issue where comb filter would produce smear effect on first note
 - fixed issue which would crash pluginval
-# 2.1.1 beta
-- drastically imrpoved patch load times
 - made patch-list in dropdown case-insensistive
 # 2.1.0 beta
 - implemented Arpeggiator
