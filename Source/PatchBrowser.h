@@ -40,6 +40,10 @@ private:
 
     void setFirstSoundbankActive();
 
+    //TODO REMOVE THIS AFTER PATCHES ARE SORTED!
+	void writeRenamingCommandToFile(String p_from, String p_to);
+
+
 	std::unique_ptr<FileChooser> m_filechooser;
 
     Image m_background;

@@ -352,6 +352,8 @@ PatchBrowser::PatchBrowser(OdinAudioProcessor &p_processor, AudioProcessorValueT
 		if (move_source.existsAsFile()) {
 			//all set, now move
 			move_source.moveFileTo(move_target);
+
+			writeRenamingCommandToFile(move_source.getFullPathName(), move_target.getFullPathName());
 		}
 
 		m_patch_selector.regenerateContent();
@@ -1111,4 +1113,15 @@ void PatchBrowser::loadSoundbankWithFileBrowser(String p_directory) {
 void PatchBrowser::setFirstSoundbankActive(){
 	m_category_selector.setDirectory(m_soundbank_selector.getFirstSubDirectoryAndHighlightIt());
 	m_patch_selector.setDirectory(m_category_selector.getFirstSubDirectoryAndHighlightIt());
+}
+
+
+void PatchBrowser::writeRenamingCommandToFile(String p_from, String p_to){
+	File command_file(ODIN_STORAGE_PATH + File::getSeparatorString() + "move_commands.sh");
+
+	if(!command_file.existsAsFile()){
+		command_file.create();
+	}
+
+	command_file.appendText (String("mv '" + p_from + "' '" + p_to + "'\n"), false, false, "\n");
 }
