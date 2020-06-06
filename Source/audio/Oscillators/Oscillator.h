@@ -121,7 +121,7 @@ public:
 	}
 
 	void setGlide(float p_glide) {
-		m_glide = p_glide;
+		m_glide = p_glide * 44800. / m_samplerate;
 	}
 
 	inline double calculateGlide(float p_glide) {

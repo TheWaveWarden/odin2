@@ -1468,7 +1468,7 @@ void OdinAudioProcessor::treeValueChangedNonParamMisc(ValueTree &tree, const Ide
 		}
 	} else if (id == m_fil2_vowel_right_identifier) {
 		for (int voice = 0; voice < VOICES; ++voice) {
-			m_voice[voice].formant_filter[1].setVowelRight((int)p_new_value - 1);
+			m_voice[voice].formant_filter[1].setVowelRight((int)p_new_value);
 		}
 	} else if (id == m_fil3_vowel_left_identifier) {
 		m_formant_filter[0].setVowelLeft((int)p_new_value);
