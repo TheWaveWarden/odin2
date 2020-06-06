@@ -6,8 +6,8 @@
 #include "Filter.h"
 #include <cstring>
 
-#define COMB_FC_MIN FILTER_FC_MIN
-
+//#define COMB_FC_MIN FILTER_FC_MIN
+#define COMB_FC_MIN 40
 
 #define COMB_BUFFER_LENGTH ((size_t)(MAX_EXPECTED_SAMPLE_RATE / COMB_FC_MIN * 1.1f))
 
@@ -24,8 +24,8 @@ public:
 	float m_vel_mod_amount = 0;
 	float m_env_mod_amount = 0;
 	float m_env_value      = 0;
-	
-  // ! bottleneck
+
+	// ! bottleneck
 	float pitchShiftMultiplier(float p_semitones) {
 		//0.05776226504 = ln(2)/12
 		//apparently pow(a,b) is calculated as exp(ln(a)*b), hence this is faster
@@ -53,7 +53,8 @@ public:
 	}
 
 	inline void setCombFreq(float p_freq) {
-		p_freq = p_freq < COMB_FC_MIN ? COMB_FC_MIN : p_freq;
+		//note this function is not used right now, since things are smoothe in pluginprocessor
+		p_freq               = p_freq < COMB_FC_MIN ? COMB_FC_MIN : p_freq;
 		m_delay_time_control = 1.f / p_freq;
 	}
 
@@ -82,14 +83,16 @@ public:
 		m_write_index = 0;
 		memset(circular_buffer, 0, COMB_BUFFER_LENGTH * sizeof(float));
 		m_DC_blocking_filter.reset();
+		m_delay_time_smooth = m_delay_time_control;
+		m_reset_smoothing = true;
 	}
 
 	void setResModPointer(float *p_pointer) {
 		m_res_mod = p_pointer;
 	}
 
-	float *m_freq_mod    = &m_zero_modulation_dummy;
-	float *m_res_mod     = &m_zero_modulation_dummy;
+	float *m_freq_mod = &m_zero_modulation_dummy;
+	float *m_res_mod  = &m_zero_modulation_dummy;
 	//float *m_vol_mod     = &m_zero_modulation_dummy;
 	float *m_env_mod_mod = &m_zero_modulation_dummy;
 	float *m_vel_mod_mod = &m_zero_modulation_dummy;
@@ -105,6 +108,7 @@ public:
 	int m_positive_comb = 1;
 
 	// need to be init by synth
+	bool m_reset_smoothing = false;
 	double m_delay_time_control = 1. / 2000.f;
 	double m_delay_time_smooth  = 1. / 2000.f;
 	float m_feedback            = 0;

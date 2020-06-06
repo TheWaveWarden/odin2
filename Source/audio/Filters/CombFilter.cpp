@@ -9,6 +9,12 @@ CombFilter::~CombFilter() {
 float CombFilter::doFilter(float p_input) {
     jassert(m_samplerate > 0);
 
+	
+	if(m_reset_smoothing){
+		m_delay_time_smooth = m_delay_time_control;
+		m_reset_smoothing = false;
+	}
+
 	m_delay_time_smooth = (m_delay_time_smooth - m_delay_time_control) * 0.999 + m_delay_time_control;
 
 	float delay_time_modded = m_delay_time_smooth;
@@ -20,7 +26,7 @@ float CombFilter::doFilter(float p_input) {
 		                             48 -
 		                         m_MIDI_note * (m_kbd_mod_amount + *m_kbd_mod_mod));
 	}
-	delay_time_modded = delay_time_modded > 1.f / 40.f ? 1.f / 40.f : delay_time_modded;
+	delay_time_modded = delay_time_modded > 1.f / (float)COMB_FC_MIN ? 1.f / (float)COMB_FC_MIN : delay_time_modded;
 
 	// calc read index
 	float read_index     = (float)m_write_index - delay_time_modded * m_samplerate;
