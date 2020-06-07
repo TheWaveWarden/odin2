@@ -1,18 +1,29 @@
-\newcommand{\audioparameter}[1]{\vspace{3mm}\noindent\textbf{Parameter: #1} [modulatable]\\}
+\newcommand{\audioparameter}[1]{\vspace{3mm}
+\begin{tabular}{ll}
+\raisebox{-.5\height}{\includegraphics[width=0.06\textwidth]{graphics/knob.png}} & \underline{\fat{#1}}\\
+\end{tabular}
+
+}
 \newcommand{\audioparameterint}[1]{\vspace{3mm}\noindent\textbf{Parameter: #1} [modulatable, whole numbers]\\}
 \newcommand{\modmatrix}{\hyperref[chapter_matrix]{modulation matrix}}
+\newcommand{\fat}{\textbf}
 
-\documentclass[12pt]{report}
+\documentclass[10pt]{report}
 \usepackage{graphicx}
 \usepackage{hyperref}
+\usepackage{svg}
+\usepackage{mwe}
 
 
 \begin{document}
+\setlength{\parindent}{0pt}
 \begin{titlepage}
 	\centering
-	{\huge\bfseries Odin 2 Synthesizer Plugin\par}
+	{\Huge\bfseries Odin 2\par}
+	{\huge\bfseries Synthesizer Plugin\par}
         \vspace{2cm}
 	{\Huge\bfseries Manual\par}
+	{\Large\bfseries for version 2.2.0\par}
 	\vspace{2cm}
 	{\Large TheWaveWarden\par}
         \includegraphics[width=0.4\textwidth]{graphics/logo.png}\par

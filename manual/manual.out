@@ -2,8 +2,13 @@
 \BOOKMARK [0][-]{chapter.2}{Overview}{}% 2
 \BOOKMARK [0][-]{chapter.3}{Oscillators}{}% 3
 \BOOKMARK [1][-]{section.3.1}{Common Parameters}{chapter.3}% 4
-\BOOKMARK [0][-]{chapter.4}{Filters}{}% 5
-\BOOKMARK [0][-]{chapter.5}{DistortionFX}{}% 6
-\BOOKMARK [0][-]{chapter.6}{Modulators}{}% 7
-\BOOKMARK [0][-]{chapter.7}{ModulationMatrix}{}% 8
-\BOOKMARK [0][-]{chapter.8}{GlobalSettings}{}% 9
+\BOOKMARK [1][-]{section.3.2}{Analog Osc}{chapter.3}% 5
+\BOOKMARK [1][-]{section.3.3}{Wavetable Osc}{chapter.3}% 6
+\BOOKMARK [1][-]{section.3.4}{Multi Osc}{chapter.3}% 7
+\BOOKMARK [1][-]{section.3.5}{Vector Osc}{chapter.3}% 8
+\BOOKMARK [1][-]{section.3.6}{Chiptune Osc}{chapter.3}% 9
+\BOOKMARK [0][-]{chapter.4}{Filters}{}% 10
+\BOOKMARK [0][-]{chapter.5}{DistortionFX}{}% 11
+\BOOKMARK [0][-]{chapter.6}{Modulators}{}% 12
+\BOOKMARK [0][-]{chapter.7}{ModulationMatrix}{}% 13
+\BOOKMARK [0][-]{chapter.8}{GlobalSettings}{}% 14
