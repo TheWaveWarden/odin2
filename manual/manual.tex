@@ -1,0 +1,47 @@
+\newcommand{\audioparameter}[1]{\vspace{3mm}\noindent\textbf{Parameter: #1} [modulatable]\\}
+\newcommand{\audioparameterint}[1]{\vspace{3mm}\noindent\textbf{Parameter: #1} [modulatable, whole numbers]\\}
+\newcommand{\modmatrix}{\hyperref[chapter_matrix]{modulation matrix}}
+
+\documentclass[12pt]{report}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+
+\begin{document}
+\begin{titlepage}
+	\centering
+	{\huge\bfseries Odin 2 Synthesizer Plugin\par}
+        \vspace{2cm}
+	{\Huge\bfseries Manual\par}
+	\vspace{2cm}
+	{\Large TheWaveWarden\par}
+        \includegraphics[width=0.4\textwidth]{graphics/logo.png}\par
+	{\large www.thewavewarden.com\par}
+	\vfill
+
+% Bottom of the page
+	{\large \today\par}
+\end{titlepage}
+\clearpage
+
+\tableofcontents
+\clearpage
+
+\include{Introduction}
+\clearpage
+\include{Overview}
+\clearpage
+\include{Oscillators}
+\clearpage
+\include{Filters}
+\clearpage
+\include{DistortionFX}
+\clearpage
+\include{Modulators}
+\clearpage
+\include{ModulationMatrix}
+\clearpage
+\include{GlobalSettings}
+\clearpage
+
+\end{document}

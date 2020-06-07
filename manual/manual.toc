@@ -1,0 +1,9 @@
+\contentsline {chapter}{\numberline {1}Introduction}{2}{chapter.1}% 
+\contentsline {chapter}{\numberline {2}Overview}{3}{chapter.2}% 
+\contentsline {chapter}{\numberline {3}Oscillators}{4}{chapter.3}% 
+\contentsline {section}{\numberline {3.1}Common Parameters}{4}{section.3.1}% 
+\contentsline {chapter}{\numberline {4}Filters}{6}{chapter.4}% 
+\contentsline {chapter}{\numberline {5}DistortionFX}{7}{chapter.5}% 
+\contentsline {chapter}{\numberline {6}Modulators}{8}{chapter.6}% 
+\contentsline {chapter}{\numberline {7}ModulationMatrix}{9}{chapter.7}% 
+\contentsline {chapter}{\numberline {8}GlobalSettings}{10}{chapter.8}% 
