@@ -1,37 +1,74 @@
-\newcommand{\audioparameter}[1]{\vspace{3mm}
-\begin{tabular}{ll}
-\raisebox{-.5\height}{\includegraphics[width=0.06\textwidth]{graphics/knob.png}} & \underline{\fat{#1}}\\
-\end{tabular}
 
+\newcommand{\audioparameter}[4]{\vspace{3mm}
+\begin{tcolorbox}[colback=parambackground,
+	colframe=white!20!black,
+	center,
+	valign=top,
+	halign=left,
+	center title,
+	width=\textwidth]
+
+	\begin{tabular}{p{0.06\textwidth}p{0.4\textwidth}p{0.2\textwidth}p{0.2\textwidth}}
+		\raisebox{-.5\height}{\includegraphics[width=0.06\textwidth]{graphics/knob.png}} & \underline{\fat{\large{#1}}}&  \small{Modulation}:
+		\IfEqCase{#2}{%
+        	{1}{\includegraphics[width=0.025\textwidth]{graphics/available.png}}%
+        	{0}{\includegraphics[width=0.02\textwidth]{graphics/not_available.png}}%
+		}[\PackageError{audioparameter}{Undefined option to param: #2}{}] 
+		&\small{Automation}:
+		\IfEqCase{#3}{%
+		{1}{\includegraphics[width=0.025\textwidth]{graphics/available.png}}%
+		{0}{\includegraphics[width=0.02\textwidth]{graphics/not_available.png}}%
+		}[\PackageError{audioparameter}{Undefined option to param: #3}{}] 
+		\\
+	\end{tabular}
+
+	\vspace{5mm}
+	#4
+\end{tcolorbox}
 }
 \newcommand{\audioparameterint}[1]{\vspace{3mm}\noindent\textbf{Parameter: #1} [modulatable, whole numbers]\\}
-\newcommand{\modmatrix}{\hyperref[chapter_matrix]{modulation matrix}}
+\newcommand{\modmatrix}{\hyperref[chapter_matrix]{modulation matrix}\hspace{1mm}}
 \newcommand{\fat}{\textbf}
 
-\documentclass[10pt]{report}
+% \newcommand{\tree}[2]{%
+%     \IfEqCase{#1}{%
+%         {a}{$\sqrt{#2}$}%
+%         {b}{Hi}%
+%         % you can add more cases here as desired
+%     }[\PackageError{tree}{Undefined option to tree: #1}{}]%
+% }%
+
+\documentclass[12pt]{report}
 \usepackage{graphicx}
 \usepackage{hyperref}
 \usepackage{svg}
 \usepackage{mwe}
 \usepackage{xcolor}
 \usepackage[many]{tcolorbox}
+\usepackage[margin=1in]{geometry}
+\usepackage{xstring}
+\usepackage{utopia}
+\usepackage{pagecolor}
+
+\definecolor{parambackground}{rgb}{0.9470, 0.963, 1}
 
 \begin{document}
+\pagecolor{white!95!black}
 \setlength{\parindent}{0pt}
 \begin{titlepage}
 	\centering
 	{\Huge\bfseries Odin 2\par}
 	{\huge\bfseries Synthesizer Plugin\par}
-        \vspace{2cm}
+	\vspace{2cm}
 	{\Huge\bfseries Manual\par}
 	{\Large\bfseries for version 2.2.0\par}
 	\vspace{2cm}
 	{\Large TheWaveWarden\par}
-        \includegraphics[width=0.4\textwidth]{graphics/logo.png}\par
+	\includegraphics[width=0.4\textwidth]{graphics/logo.png}\par
 	{\large www.thewavewarden.com\par}
 	\vfill
 
-% Bottom of the page
+	% Bottom of the page
 	{\large \today\par}
 \end{titlepage}
 \clearpage
@@ -47,7 +84,9 @@
 \clearpage
 \include{Filters}
 \clearpage
-\include{DistortionFX}
+\include{AmpDistortion.tex}
+\clearpage
+\include{FX}
 \clearpage
 \include{Modulators}
 \clearpage
