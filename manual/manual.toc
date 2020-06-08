@@ -7,8 +7,14 @@
 \contentsline {section}{\numberline {3.4}Multi Osc}{8}{section.3.4}
 \contentsline {section}{\numberline {3.5}Vector Osc}{9}{section.3.5}
 \contentsline {section}{\numberline {3.6}Chiptune Osc}{9}{section.3.6}
-\contentsline {chapter}{\numberline {4}Filters}{11}{chapter.4}
-\contentsline {chapter}{\numberline {5}DistortionFX}{12}{chapter.5}
-\contentsline {chapter}{\numberline {6}Modulators}{13}{chapter.6}
-\contentsline {chapter}{\numberline {7}ModulationMatrix}{14}{chapter.7}
-\contentsline {chapter}{\numberline {8}GlobalSettings}{15}{chapter.8}
+\contentsline {section}{\numberline {3.7}FM Osc}{11}{section.3.7}
+\contentsline {section}{\numberline {3.8}PM Osc}{12}{section.3.8}
+\contentsline {section}{\numberline {3.9}Noise Osc}{13}{section.3.9}
+\contentsline {section}{\numberline {3.10}WaveDraw Osc}{13}{section.3.10}
+\contentsline {section}{\numberline {3.11}ChipDraw Osc}{14}{section.3.11}
+\contentsline {section}{\numberline {3.12}SpecDraw Osc}{14}{section.3.12}
+\contentsline {chapter}{\numberline {4}Filters}{16}{chapter.4}
+\contentsline {chapter}{\numberline {5}DistortionFX}{17}{chapter.5}
+\contentsline {chapter}{\numberline {6}Modulators}{18}{chapter.6}
+\contentsline {chapter}{\numberline {7}ModulationMatrix}{19}{chapter.7}
+\contentsline {chapter}{\numberline {8}GlobalSettings}{20}{chapter.8}

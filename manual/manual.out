@@ -7,8 +7,14 @@
 \BOOKMARK [1][-]{section.3.4}{Multi Osc}{chapter.3}% 7
 \BOOKMARK [1][-]{section.3.5}{Vector Osc}{chapter.3}% 8
 \BOOKMARK [1][-]{section.3.6}{Chiptune Osc}{chapter.3}% 9
-\BOOKMARK [0][-]{chapter.4}{Filters}{}% 10
-\BOOKMARK [0][-]{chapter.5}{DistortionFX}{}% 11
-\BOOKMARK [0][-]{chapter.6}{Modulators}{}% 12
-\BOOKMARK [0][-]{chapter.7}{ModulationMatrix}{}% 13
-\BOOKMARK [0][-]{chapter.8}{GlobalSettings}{}% 14
+\BOOKMARK [1][-]{section.3.7}{FM Osc}{chapter.3}% 10
+\BOOKMARK [1][-]{section.3.8}{PM Osc}{chapter.3}% 11
+\BOOKMARK [1][-]{section.3.9}{Noise Osc}{chapter.3}% 12
+\BOOKMARK [1][-]{section.3.10}{WaveDraw Osc}{chapter.3}% 13
+\BOOKMARK [1][-]{section.3.11}{ChipDraw Osc}{chapter.3}% 14
+\BOOKMARK [1][-]{section.3.12}{SpecDraw Osc}{chapter.3}% 15
+\BOOKMARK [0][-]{chapter.4}{Filters}{}% 16
+\BOOKMARK [0][-]{chapter.5}{DistortionFX}{}% 17
+\BOOKMARK [0][-]{chapter.6}{Modulators}{}% 18
+\BOOKMARK [0][-]{chapter.7}{ModulationMatrix}{}% 19
+\BOOKMARK [0][-]{chapter.8}{GlobalSettings}{}% 20
