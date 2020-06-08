@@ -2,30 +2,32 @@
 \BOOKMARK [1][-]{section.1.1}{Overview}{chapter.1}% 2
 \BOOKMARK [1][-]{section.1.2}{Installation}{chapter.1}% 3
 \BOOKMARK [1][-]{section.1.3}{Routing}{chapter.1}% 4
-\BOOKMARK [0][-]{chapter.2}{Overview}{}% 5
-\BOOKMARK [0][-]{chapter.3}{Oscillators}{}% 6
-\BOOKMARK [1][-]{section.3.1}{Common Parameters}{chapter.3}% 7
-\BOOKMARK [1][-]{section.3.2}{Analog Osc}{chapter.3}% 8
-\BOOKMARK [1][-]{section.3.3}{Wavetable Osc}{chapter.3}% 9
-\BOOKMARK [1][-]{section.3.4}{Multi Osc}{chapter.3}% 10
-\BOOKMARK [1][-]{section.3.5}{Vector Osc}{chapter.3}% 11
-\BOOKMARK [1][-]{section.3.6}{Chiptune Osc}{chapter.3}% 12
-\BOOKMARK [1][-]{section.3.7}{FM Osc}{chapter.3}% 13
-\BOOKMARK [1][-]{section.3.8}{PM Osc}{chapter.3}% 14
-\BOOKMARK [1][-]{section.3.9}{Noise Osc}{chapter.3}% 15
-\BOOKMARK [1][-]{section.3.10}{WaveDraw Osc}{chapter.3}% 16
-\BOOKMARK [1][-]{section.3.11}{ChipDraw Osc}{chapter.3}% 17
-\BOOKMARK [1][-]{section.3.12}{SpecDraw Osc}{chapter.3}% 18
-\BOOKMARK [0][-]{chapter.4}{Filters}{}% 19
-\BOOKMARK [1][-]{section.4.1}{Common Controls}{chapter.4}% 20
-\BOOKMARK [1][-]{section.4.2}{Lowpass, Bandpass, Highpass}{chapter.4}% 21
-\BOOKMARK [1][-]{section.4.3}{SEM-12}{chapter.4}% 22
-\BOOKMARK [1][-]{section.4.4}{Diode Ladder}{chapter.4}% 23
-\BOOKMARK [1][-]{section.4.5}{KO-35}{chapter.4}% 24
-\BOOKMARK [1][-]{section.4.6}{Comb Filter}{chapter.4}% 25
-\BOOKMARK [1][-]{section.4.7}{Formant Filter}{chapter.4}% 26
-\BOOKMARK [1][-]{section.4.8}{Ring Modulator}{chapter.4}% 27
-\BOOKMARK [0][-]{chapter.5}{FX}{}% 28
-\BOOKMARK [0][-]{chapter.6}{Modulators}{}% 29
-\BOOKMARK [0][-]{chapter.7}{ModulationMatrix}{}% 30
-\BOOKMARK [0][-]{chapter.8}{GlobalSettings}{}% 31
+\BOOKMARK [0][-]{chapter.2}{Oscillators}{}% 5
+\BOOKMARK [1][-]{section.2.1}{Common Parameters}{chapter.2}% 6
+\BOOKMARK [1][-]{section.2.2}{Analog Osc}{chapter.2}% 7
+\BOOKMARK [1][-]{section.2.3}{Wavetable Osc}{chapter.2}% 8
+\BOOKMARK [1][-]{section.2.4}{Multi Osc}{chapter.2}% 9
+\BOOKMARK [1][-]{section.2.5}{Vector Osc}{chapter.2}% 10
+\BOOKMARK [1][-]{section.2.6}{Chiptune Osc}{chapter.2}% 11
+\BOOKMARK [1][-]{section.2.7}{FM Osc}{chapter.2}% 12
+\BOOKMARK [1][-]{section.2.8}{PM Osc}{chapter.2}% 13
+\BOOKMARK [1][-]{section.2.9}{Noise Osc}{chapter.2}% 14
+\BOOKMARK [1][-]{section.2.10}{WaveDraw Osc}{chapter.2}% 15
+\BOOKMARK [1][-]{section.2.11}{ChipDraw Osc}{chapter.2}% 16
+\BOOKMARK [1][-]{section.2.12}{SpecDraw Osc}{chapter.2}% 17
+\BOOKMARK [0][-]{chapter.3}{Filters}{}% 18
+\BOOKMARK [1][-]{section.3.1}{Common Controls}{chapter.3}% 19
+\BOOKMARK [1][-]{section.3.2}{Lowpass, Bandpass, Highpass}{chapter.3}% 20
+\BOOKMARK [1][-]{section.3.3}{SEM-12}{chapter.3}% 21
+\BOOKMARK [1][-]{section.3.4}{Diode Ladder}{chapter.3}% 22
+\BOOKMARK [1][-]{section.3.5}{KO-35}{chapter.3}% 23
+\BOOKMARK [1][-]{section.3.6}{Comb Filter}{chapter.3}% 24
+\BOOKMARK [1][-]{section.3.7}{Formant Filter}{chapter.3}% 25
+\BOOKMARK [1][-]{section.3.8}{Ring Modulator}{chapter.3}% 26
+\BOOKMARK [0][-]{chapter.4}{Amplifier \046 Distortion}{}% 27
+\BOOKMARK [1][-]{section.4.1}{Amplifier}{chapter.4}% 28
+\BOOKMARK [1][-]{section.4.2}{Distortion}{chapter.4}% 29
+\BOOKMARK [0][-]{chapter.5}{FX}{}% 30
+\BOOKMARK [0][-]{chapter.6}{Modulators}{}% 31
+\BOOKMARK [0][-]{chapter.7}{ModulationMatrix}{}% 32
+\BOOKMARK [0][-]{chapter.8}{GlobalSettings}{}% 33
