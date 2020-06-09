@@ -28,6 +28,7 @@
 \contentsline {section}{\numberline {4.1}Amplifier}{29}{section.4.1}
 \contentsline {section}{\numberline {4.2}Distortion}{30}{section.4.2}
 \contentsline {chapter}{\numberline {5}FX}{33}{chapter.5}
-\contentsline {chapter}{\numberline {6}Modulators}{34}{chapter.6}
-\contentsline {chapter}{\numberline {7}ModulationMatrix}{35}{chapter.7}
-\contentsline {chapter}{\numberline {8}GlobalSettings}{36}{chapter.8}
+\contentsline {section}{\numberline {5.1}Delay}{34}{section.5.1}
+\contentsline {chapter}{\numberline {6}Modulators}{36}{chapter.6}
+\contentsline {chapter}{\numberline {7}ModulationMatrix}{37}{chapter.7}
+\contentsline {chapter}{\numberline {8}GlobalSettings}{38}{chapter.8}

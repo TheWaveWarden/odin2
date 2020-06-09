@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.8.2)  8 JUN 2020 23:55
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.8.2)  9 JUN 2020 02:04
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -774,7 +774,7 @@ LaTeX Info: Redefining \nameref on input line 55.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 \GPT@outputbox=\box69
-<graphics/logo.png, id=139, 74.50516pt x 63.95026pt>
+<graphics/logo.png, id=143, 74.50516pt x 63.95026pt>
 File: graphics/logo.png Graphic file (type png)
 <use graphics/logo.png>
 Package pdftex.def Info: graphics/logo.png  used on input line 67.
@@ -784,7 +784,7 @@ Package pdftex.def Info: graphics/logo.png  used on input line 67.
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} </home/frederik_siepe/odinvst/manual/graphics/logo.png>] (/home/frederik_siepe/odinvst/manual/manual.tocpdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.31 ...{\numberline {6}Modulators}{34}{chapter.6}
+l.32 ...{\numberline {6}Modulators}{36}{chapter.6}
                                                    [1
 
 
@@ -806,12 +806,12 @@ Chapter 1.
 
  (/home/frederik_siepe/odinvst/manual/Oscillators.tex
 Chapter 2.
-<graphics/knob.png, id=195, 72.27pt x 82.3075pt>
+<graphics/knob.png, id=200, 72.27pt x 82.3075pt>
 File: graphics/knob.png Graphic file (type png)
 <use graphics/knob.png>
 Package pdftex.def Info: graphics/knob.png  used on input line 8.
 (pdftex.def)             Requested size: 26.30635pt x 29.95972pt.
-<graphics/not_available.png, id=196, 93.951pt x 105.996pt>
+<graphics/not_available.png, id=201, 93.951pt x 105.996pt>
 File: graphics/not_available.png Graphic file (type png)
 <use graphics/not_available.png>
 Package pdftex.def Info: graphics/not_available.png  used on input line 8.
@@ -820,12 +820,12 @@ File: graphics/not_available.png Graphic file (type png)
 <use graphics/not_available.png>
 Package pdftex.def Info: graphics/not_available.png  used on input line 8.
 (pdftex.def)             Requested size: 8.77101pt x 9.89503pt.
-<graphics/osc_selection.png, id=197, 270.7716pt x 54.4434pt>
+<graphics/osc_selection.png, id=202, 270.7716pt x 54.4434pt>
 File: graphics/osc_selection.png Graphic file (type png)
 <use graphics/osc_selection.png>
 Package pdftex.def Info: graphics/osc_selection.png  used on input line 8.
 (pdftex.def)             Requested size: 438.45708pt x 88.16623pt.
-<graphics/osc_common.png, id=198, 181.67876pt x 95.35625pt>
+<graphics/osc_common.png, id=203, 181.67876pt x 95.35625pt>
 File: graphics/osc_common.png Graphic file (type png)
 <use graphics/osc_common.png>
 Package pdftex.def Info: graphics/osc_common.png  used on input line 14.
@@ -834,7 +834,7 @@ File: graphics/knob.png Graphic file (type png)
 <use graphics/knob.png>
 Package pdftex.def Info: graphics/knob.png  used on input line 18.
 (pdftex.def)             Requested size: 26.30635pt x 29.95972pt.
-<graphics/available.png, id=199, 120.45pt x 105.996pt>
+<graphics/available.png, id=204, 120.45pt x 105.996pt>
 File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 18.
@@ -885,7 +885,7 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 27.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
-<graphics/osc_common2.png, id=208, 94.3525pt x 143.53625pt>
+<graphics/osc_common2.png, id=213, 94.3525pt x 143.53625pt>
 File: graphics/osc_common2.png Graphic file (type png)
 <use graphics/osc_common2.png>
 Package pdftex.def Info: graphics/osc_common2.png  used on input line 30.
@@ -914,13 +914,13 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 43.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
-<graphics/osc_sync.png, id=209, 544.56421pt x 187.1207pt>
+<graphics/osc_sync.png, id=214, 544.56421pt x 187.1207pt>
 File: graphics/osc_sync.png Graphic file (type png)
 <use graphics/osc_sync.png>
 Package pdftex.def Info: graphics/osc_sync.png  used on input line 43.
 (pdftex.def)             Requested size: 438.45708pt x 150.65895pt.
  [5 </home/frederik_siepe/odinvst/manual/graphics/available.png> </home/frederik_siepe/odinvst/manual/graphics/osc_common2.png>]
-<graphics/analog_osc.png, id=217, 364.36125pt x 212.795pt>
+<graphics/analog_osc.png, id=222, 364.36125pt x 212.795pt>
 File: graphics/analog_osc.png Graphic file (type png)
 <use graphics/analog_osc.png>
 Package pdftex.def Info: graphics/analog_osc.png  used on input line 48.
@@ -950,7 +950,7 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 79.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
-<graphics/PWM.png, id=224, 557.45563pt x 126.96082pt>
+<graphics/PWM.png, id=229, 557.45563pt x 126.96082pt>
 File: graphics/PWM.png Graphic file (type png)
 <use graphics/PWM.png>
 Package pdftex.def Info: graphics/PWM.png  used on input line 79.
@@ -968,7 +968,7 @@ File: graphics/available.png Graphic file (type png)
 Package pdftex.def Info: graphics/available.png  used on input line 82.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
  [7 </home/frederik_siepe/odinvst/manual/graphics/PWM.png>]
-<graphics/wavetable_osc.png, id=231, 367.3725pt x 211.79124pt>
+<graphics/wavetable_osc.png, id=236, 367.3725pt x 211.79124pt>
 File: graphics/wavetable_osc.png Graphic file (type png)
 <use graphics/wavetable_osc.png>
 Package pdftex.def Info: graphics/wavetable_osc.png  used on input line 86.
@@ -1022,7 +1022,7 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 100.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
-<graphics/multi_osc.png, id=237, 367.3725pt x 211.79124pt>
+<graphics/multi_osc.png, id=242, 367.3725pt x 211.79124pt>
 File: graphics/multi_osc.png Graphic file (type png)
 <use graphics/multi_osc.png>
 Package pdftex.def Info: graphics/multi_osc.png  used on input line 104.
@@ -1081,7 +1081,7 @@ Underfull \hbox (badness 1127) in paragraph at lines 118--118
 []\OT1/put/m/n/12 Spreads the four sub-oscillators over the wavetable: The first sub-osc 
  []
 
-<graphics/vector_osc.png, id=243, 366.36874pt x 214.8025pt>
+<graphics/vector_osc.png, id=248, 366.36874pt x 214.8025pt>
 File: graphics/vector_osc.png Graphic file (type png)
 <use graphics/vector_osc.png>
 Package pdftex.def Info: graphics/vector_osc.png  used on input line 122.
@@ -1111,7 +1111,7 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 132.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
-<graphics/chiptune_osc.png, id=249, 365.365pt x 212.795pt>
+<graphics/chiptune_osc.png, id=254, 365.365pt x 212.795pt>
 File: graphics/chiptune_osc.png Graphic file (type png)
 <use graphics/chiptune_osc.png>
 Package pdftex.def Info: graphics/chiptune_osc.png  used on input line 136.
@@ -1190,7 +1190,7 @@ File: graphics/available.png Graphic file (type png)
 Package pdftex.def Info: graphics/available.png  used on input line 158.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
  [12]
-<graphics/fm_osc.png, id=261, 363.3575pt x 212.795pt>
+<graphics/fm_osc.png, id=266, 363.3575pt x 212.795pt>
 File: graphics/fm_osc.png Graphic file (type png)
 <use graphics/fm_osc.png>
 Package pdftex.def Info: graphics/fm_osc.png  used on input line 162.
@@ -1232,7 +1232,7 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 187.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
-<graphics/pm_osc.png, id=272, 366.36874pt x 210.7875pt>
+<graphics/pm_osc.png, id=277, 366.36874pt x 210.7875pt>
 File: graphics/pm_osc.png Graphic file (type png)
 <use graphics/pm_osc.png>
 Package pdftex.def Info: graphics/pm_osc.png  used on input line 191.
@@ -1274,7 +1274,7 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 214.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
-<graphics/noise_osc.png, id=282, 365.365pt x 212.795pt>
+<graphics/noise_osc.png, id=287, 365.365pt x 212.795pt>
 File: graphics/noise_osc.png Graphic file (type png)
 <use graphics/noise_osc.png>
 Package pdftex.def Info: graphics/noise_osc.png  used on input line 218.
@@ -1304,13 +1304,13 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 227.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
-<graphics/wavedraw_osc.png, id=289, 364.36125pt x 210.7875pt>
+<graphics/wavedraw_osc.png, id=294, 364.36125pt x 210.7875pt>
 File: graphics/wavedraw_osc.png Graphic file (type png)
 <use graphics/wavedraw_osc.png>
 Package pdftex.def Info: graphics/wavedraw_osc.png  used on input line 232.
 (pdftex.def)             Requested size: 234.8775pt x 135.8781pt.
  [16 </home/frederik_siepe/odinvst/manual/graphics/noise_osc.png> </home/frederik_siepe/odinvst/manual/graphics/wavedraw_osc.png>]
-<graphics/chipdraw_osc.png, id=294, 364.36125pt x 212.795pt>
+<graphics/chipdraw_osc.png, id=299, 364.36125pt x 212.795pt>
 File: graphics/chipdraw_osc.png Graphic file (type png)
 <use graphics/chipdraw_osc.png>
 Package pdftex.def Info: graphics/chipdraw_osc.png  used on input line 252.
@@ -1320,7 +1320,7 @@ Overfull \hbox (2.80923pt too wide) in paragraph at lines 254--255
 \OT1/put/m/n/12 bil-i-ties of the "cus-tom wave-form" on an Nin-tendo En-ter-tain-ment Sys-tem, NES soundsys-
  []
 
-<graphics/specdraw_osc.png, id=295, 364.36125pt x 211.79124pt>
+<graphics/specdraw_osc.png, id=300, 364.36125pt x 211.79124pt>
 File: graphics/specdraw_osc.png Graphic file (type png)
 <use graphics/specdraw_osc.png>
 Package pdftex.def Info: graphics/specdraw_osc.png  used on input line 271.
@@ -1330,7 +1330,7 @@ Package pdftex.def Info: graphics/specdraw_osc.png  used on input line 271.
 
  (/home/frederik_siepe/odinvst/manual/Filters.tex
 Chapter 3.
-<graphics/filter.png, id=305, 582.84778pt x 118.36655pt>
+<graphics/filter.png, id=310, 582.84778pt x 118.36655pt>
 File: graphics/filter.png Graphic file (type png)
 <use graphics/filter.png>
 Package pdftex.def Info: graphics/filter.png  used on input line 6.
@@ -1347,7 +1347,7 @@ File: graphics/not_available.png Graphic file (type png)
 <use graphics/not_available.png>
 Package pdftex.def Info: graphics/not_available.png  used on input line 19.
 (pdftex.def)             Requested size: 8.77101pt x 9.89503pt.
-<graphics/filter_dropdown.png, id=306, 364.36125pt x 196.735pt>
+<graphics/filter_dropdown.png, id=311, 364.36125pt x 196.735pt>
 File: graphics/filter_dropdown.png Graphic file (type png)
 <use graphics/filter_dropdown.png>
 Package pdftex.def Info: graphics/filter_dropdown.png  used on input line 19.
@@ -1358,7 +1358,7 @@ Package pdftex.def Info: graphics/filter_dropdown.png  used on input line 19.
 
 
  </home/frederik_siepe/odinvst/manual/graphics/filter.png>]
-<graphics/lowpass_filter.png, id=312, 364.36125pt x 196.735pt>
+<graphics/lowpass_filter.png, id=317, 364.36125pt x 196.735pt>
 File: graphics/lowpass_filter.png Graphic file (type png)
 <use graphics/lowpass_filter.png>
 Package pdftex.def Info: graphics/lowpass_filter.png  used on input line 25.
@@ -1375,7 +1375,7 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 34.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
-<graphics/filter_freq.png, id=313, 217.5913pt x 115.24135pt>
+<graphics/filter_freq.png, id=318, 217.5913pt x 115.24135pt>
 File: graphics/filter_freq.png Graphic file (type png)
 <use graphics/filter_freq.png>
 Package pdftex.def Info: graphics/filter_freq.png  used on input line 34.
@@ -1393,7 +1393,7 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 45.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
-<graphics/filter_resonance.png, id=319, 446.5114pt x 153.13428pt>
+<graphics/filter_resonance.png, id=325, 446.5114pt x 153.13428pt>
 File: graphics/filter_resonance.png Graphic file (type png)
 <use graphics/filter_resonance.png>
 Package pdftex.def Info: graphics/filter_resonance.png  used on input line 45.
@@ -1460,7 +1460,7 @@ File: graphics/available.png Graphic file (type png)
 Package pdftex.def Info: graphics/available.png  used on input line 60.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
  [22]
-<graphics/lp_bp_hp.png, id=333, 1110.1475pt x 196.735pt>
+<graphics/lp_bp_hp.png, id=338, 1110.1475pt x 196.735pt>
 File: graphics/lp_bp_hp.png Graphic file (type png)
 <use graphics/lp_bp_hp.png>
 Package pdftex.def Info: graphics/lp_bp_hp.png  used on input line 64.
@@ -1477,29 +1477,29 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 83.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
-<graphics/SEM_transition.png, id=334, 572.69092pt x 149.22778pt>
+<graphics/SEM_transition.png, id=339, 572.69092pt x 149.22778pt>
 File: graphics/SEM_transition.png Graphic file (type png)
 <use graphics/SEM_transition.png>
 Package pdftex.def Info: graphics/SEM_transition.png  used on input line 83.
 (pdftex.def)             Requested size: 438.45708pt x 114.24995pt.
  [23 </home/frederik_siepe/odinvst/manual/graphics/lp_bp_hp.png (PNG copy)>]
-<graphics/diode_filter.png, id=339, 364.36125pt x 196.735pt>
+<graphics/diode_filter.png, id=344, 364.36125pt x 196.735pt>
 File: graphics/diode_filter.png Graphic file (type png)
 <use graphics/diode_filter.png>
 Package pdftex.def Info: graphics/diode_filter.png  used on input line 87.
 (pdftex.def)             Requested size: 234.8775pt x 126.81953pt.
-<graphics/korg_filter.png, id=340, 365.365pt x 196.735pt>
+<graphics/korg_filter.png, id=345, 365.365pt x 196.735pt>
 File: graphics/korg_filter.png Graphic file (type png)
 <use graphics/korg_filter.png>
 Package pdftex.def Info: graphics/korg_filter.png  used on input line 94.
 (pdftex.def)             Requested size: 234.8775pt x 126.47131pt.
  [24 </home/frederik_siepe/odinvst/manual/graphics/SEM_transition.png> </home/frederik_siepe/odinvst/manual/graphics/diode_filter.png>]
-<graphics/comb_filter.png, id=347, 365.365pt x 198.7425pt>
+<graphics/comb_filter.png, id=352, 365.365pt x 198.7425pt>
 File: graphics/comb_filter.png Graphic file (type png)
 <use graphics/comb_filter.png>
 Package pdftex.def Info: graphics/comb_filter.png  used on input line 101.
 (pdftex.def)             Requested size: 234.8775pt x 127.76184pt.
-<graphics/comb_response.png, id=349, 218.76324pt x 144.54pt>
+<graphics/comb_response.png, id=354, 218.76324pt x 144.54pt>
 File: graphics/comb_response.png Graphic file (type png)
 <use graphics/comb_response.png>
 Package pdftex.def Info: graphics/comb_response.png  used on input line 112.
@@ -1517,12 +1517,12 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 121.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
-<graphics/formant_filter.png, id=355, 365.365pt x 198.7425pt>
+<graphics/formant_filter.png, id=360, 365.365pt x 198.7425pt>
 File: graphics/formant_filter.png Graphic file (type png)
 <use graphics/formant_filter.png>
 Package pdftex.def Info: graphics/formant_filter.png  used on input line 125.
 (pdftex.def)             Requested size: 234.8775pt x 127.76184pt.
-<graphics/formant_response.png, id=356, 218.76324pt x 116.02264pt>
+<graphics/formant_response.png, id=361, 218.76324pt x 116.02264pt>
 File: graphics/formant_response.png Graphic file (type png)
 <use graphics/formant_response.png>
 Package pdftex.def Info: graphics/formant_response.png  used on input line 130.
@@ -1552,7 +1552,7 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 145.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
-<graphics/ring_modulator.png, id=362, 367.3725pt x 195.73125pt>
+<graphics/ring_modulator.png, id=367, 367.3725pt x 195.73125pt>
 File: graphics/ring_modulator.png Graphic file (type png)
 <use graphics/ring_modulator.png>
 Package pdftex.def Info: graphics/ring_modulator.png  used on input line 149.
@@ -1587,7 +1587,7 @@ Package pdftex.def Info: graphics/available.png  used on input line 159.
 
  (/home/frederik_siepe/odinvst/manual/AmpDistortion.tex
 Chapter 4.
-<graphics/amp_distortion.png, id=372, 311.1625pt x 233.87375pt>
+<graphics/amp_distortion.png, id=377, 311.1625pt x 233.87375pt>
 File: graphics/amp_distortion.png Graphic file (type png)
 <use graphics/amp_distortion.png>
 Package pdftex.def Info: graphics/amp_distortion.png  used on input line 4.
@@ -1616,7 +1616,7 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 23.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
-<graphics/pan_function.png, id=374, 217.20065pt x 135.94572pt>
+<graphics/pan_function.png, id=379, 217.20065pt x 135.94572pt>
 File: graphics/pan_function.png Graphic file (type png)
 <use graphics/pan_function.png>
 Package pdftex.def Info: graphics/pan_function.png  used on input line 23.
@@ -1688,17 +1688,17 @@ File: graphics/not_available.png Graphic file (type png)
 <use graphics/not_available.png>
 Package pdftex.def Info: graphics/not_available.png  used on input line 83.
 (pdftex.def)             Requested size: 8.77101pt x 9.89503pt.
-<graphics/overdrive.png, id=386, 485.96692pt x 157.04076pt>
+<graphics/overdrive.png, id=391, 485.96692pt x 157.04076pt>
 File: graphics/overdrive.png Graphic file (type png)
 <use graphics/overdrive.png>
 Package pdftex.def Info: graphics/overdrive.png  used on input line 83.
 (pdftex.def)             Requested size: 306.91861pt x 99.18541pt.
-<graphics/fold.png, id=387, 488.70146pt x 157.04076pt>
+<graphics/fold.png, id=392, 488.70146pt x 157.04076pt>
 File: graphics/fold.png Graphic file (type png)
 <use graphics/fold.png>
 Package pdftex.def Info: graphics/fold.png  used on input line 83.
 (pdftex.def)             Requested size: 306.91861pt x 98.62708pt.
-<graphics/zero.png, id=388, 488.70146pt x 157.04076pt>
+<graphics/zero.png, id=393, 488.70146pt x 157.04076pt>
 File: graphics/zero.png Graphic file (type png)
 <use graphics/zero.png>
 Package pdftex.def Info: graphics/zero.png  used on input line 83.
@@ -1708,17 +1708,154 @@ Package pdftex.def Info: graphics/zero.png  used on input line 83.
 
  (/home/frederik_siepe/odinvst/manual/FX.tex
 Chapter 5.
-) [33
+<graphics/FX.png, id=405, 373.395pt x 212.795pt>
+File: graphics/FX.png Graphic file (type png)
+<use graphics/FX.png>
+Package pdftex.def Info: graphics/FX.png  used on input line 6.
+(pdftex.def)             Requested size: 187.89914pt x 107.08234pt.
+<graphics/FX_selector.png, id=406, 373.395pt x 50.1875pt>
+File: graphics/FX_selector.png Graphic file (type png)
+<use graphics/FX_selector.png>
+Package pdftex.def Info: graphics/FX_selector.png  used on input line 12.
+(pdftex.def)             Requested size: 187.89914pt x 25.25526pt.
+File: graphics/knob.png Graphic file (type png)
+<use graphics/knob.png>
+Package pdftex.def Info: graphics/knob.png  used on input line 20.
+(pdftex.def)             Requested size: 26.30635pt x 29.95972pt.
+File: graphics/not_available.png Graphic file (type png)
+<use graphics/not_available.png>
+Package pdftex.def Info: graphics/not_available.png  used on input line 20.
+(pdftex.def)             Requested size: 8.77101pt x 9.89503pt.
+File: graphics/available.png Graphic file (type png)
+<use graphics/available.png>
+Package pdftex.def Info: graphics/available.png  used on input line 20.
+(pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
+File: graphics/knob.png Graphic file (type png)
+<use graphics/knob.png>
+Package pdftex.def Info: graphics/knob.png  used on input line 24.
+(pdftex.def)             Requested size: 26.30635pt x 29.95972pt.
+File: graphics/not_available.png Graphic file (type png)
+<use graphics/not_available.png>
+Package pdftex.def Info: graphics/not_available.png  used on input line 24.
+(pdftex.def)             Requested size: 8.77101pt x 9.89503pt.
+File: graphics/not_available.png Graphic file (type png)
+<use graphics/not_available.png>
+Package pdftex.def Info: graphics/not_available.png  used on input line 24.
+(pdftex.def)             Requested size: 8.77101pt x 9.89503pt.
+[33
 
 
 
 
-]
+ </home/frederik_siepe/odinvst/manual/graphics/FX.png> </home/frederik_siepe/odinvst/manual/graphics/FX_selector.png>]
+File: graphics/knob.png Graphic file (type png)
+<use graphics/knob.png>
+Package pdftex.def Info: graphics/knob.png  used on input line 37.
+(pdftex.def)             Requested size: 26.30635pt x 29.95972pt.
+File: graphics/available.png Graphic file (type png)
+<use graphics/available.png>
+Package pdftex.def Info: graphics/available.png  used on input line 37.
+(pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
+File: graphics/available.png Graphic file (type png)
+<use graphics/available.png>
+Package pdftex.def Info: graphics/available.png  used on input line 37.
+(pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
+<graphics/delay_sync.png, id=412, 118.4425pt x 30.1125pt>
+File: graphics/delay_sync.png Graphic file (type png)
+<use graphics/delay_sync.png>
+Package pdftex.def Info: graphics/delay_sync.png  used on input line 37.
+(pdftex.def)             Requested size: 78.91905pt x 20.06451pt.
+File: graphics/knob.png Graphic file (type png)
+<use graphics/knob.png>
+Package pdftex.def Info: graphics/knob.png  used on input line 41.
+(pdftex.def)             Requested size: 26.30635pt x 29.95972pt.
+File: graphics/available.png Graphic file (type png)
+<use graphics/available.png>
+Package pdftex.def Info: graphics/available.png  used on input line 41.
+(pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
+File: graphics/available.png Graphic file (type png)
+<use graphics/available.png>
+Package pdftex.def Info: graphics/available.png  used on input line 41.
+(pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
+File: graphics/knob.png Graphic file (type png)
+<use graphics/knob.png>
+Package pdftex.def Info: graphics/knob.png  used on input line 45.
+(pdftex.def)             Requested size: 26.30635pt x 29.95972pt.
+File: graphics/not_available.png Graphic file (type png)
+<use graphics/not_available.png>
+Package pdftex.def Info: graphics/not_available.png  used on input line 45.
+(pdftex.def)             Requested size: 8.77101pt x 9.89503pt.
+File: graphics/available.png Graphic file (type png)
+<use graphics/available.png>
+Package pdftex.def Info: graphics/available.png  used on input line 45.
+(pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
+File: graphics/knob.png Graphic file (type png)
+<use graphics/knob.png>
+Package pdftex.def Info: graphics/knob.png  used on input line 51.
+(pdftex.def)             Requested size: 26.30635pt x 29.95972pt.
+File: graphics/not_available.png Graphic file (type png)
+<use graphics/not_available.png>
+Package pdftex.def Info: graphics/not_available.png  used on input line 51.
+(pdftex.def)             Requested size: 8.77101pt x 9.89503pt.
+File: graphics/available.png Graphic file (type png)
+<use graphics/available.png>
+Package pdftex.def Info: graphics/available.png  used on input line 51.
+(pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
+ [34 </home/frederik_siepe/odinvst/manual/graphics/delay_sync.png>]
+File: graphics/knob.png Graphic file (type png)
+<use graphics/knob.png>
+Package pdftex.def Info: graphics/knob.png  used on input line 57.
+(pdftex.def)             Requested size: 26.30635pt x 29.95972pt.
+File: graphics/available.png Graphic file (type png)
+<use graphics/available.png>
+Package pdftex.def Info: graphics/available.png  used on input line 57.
+(pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
+File: graphics/available.png Graphic file (type png)
+<use graphics/available.png>
+Package pdftex.def Info: graphics/available.png  used on input line 57.
+(pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
+File: graphics/knob.png Graphic file (type png)
+<use graphics/knob.png>
+Package pdftex.def Info: graphics/knob.png  used on input line 61.
+(pdftex.def)             Requested size: 26.30635pt x 29.95972pt.
+File: graphics/not_available.png Graphic file (type png)
+<use graphics/not_available.png>
+Package pdftex.def Info: graphics/not_available.png  used on input line 61.
+(pdftex.def)             Requested size: 8.77101pt x 9.89503pt.
+File: graphics/available.png Graphic file (type png)
+<use graphics/available.png>
+Package pdftex.def Info: graphics/available.png  used on input line 61.
+(pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
+File: graphics/knob.png Graphic file (type png)
+<use graphics/knob.png>
+Package pdftex.def Info: graphics/knob.png  used on input line 66.
+(pdftex.def)             Requested size: 26.30635pt x 29.95972pt.
+File: graphics/available.png Graphic file (type png)
+<use graphics/available.png>
+Package pdftex.def Info: graphics/available.png  used on input line 66.
+(pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
+File: graphics/available.png Graphic file (type png)
+<use graphics/available.png>
+Package pdftex.def Info: graphics/available.png  used on input line 66.
+(pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
+File: graphics/knob.png Graphic file (type png)
+<use graphics/knob.png>
+Package pdftex.def Info: graphics/knob.png  used on input line 70.
+(pdftex.def)             Requested size: 26.30635pt x 29.95972pt.
+File: graphics/available.png Graphic file (type png)
+<use graphics/available.png>
+Package pdftex.def Info: graphics/available.png  used on input line 70.
+(pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
+File: graphics/available.png Graphic file (type png)
+<use graphics/available.png>
+Package pdftex.def Info: graphics/available.png  used on input line 70.
+(pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
+) [35]
 \openout2 = `Modulators.aux'.
 
  (/home/frederik_siepe/odinvst/manual/Modulators.tex
 Chapter 6.
-) [34
+) [36
 
 
 
@@ -1728,7 +1865,7 @@ Chapter 6.
 
  (/home/frederik_siepe/odinvst/manual/ModulationMatrix.tex
 Chapter 7.
-) [35
+) [37
 
 
 
@@ -1738,7 +1875,7 @@ Chapter 7.
 
  (/home/frederik_siepe/odinvst/manual/GlobalSettings.tex
 Chapter 8.
-) [36
+) [38
 
 
 
@@ -1750,24 +1887,24 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 96.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 96.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 96.
 Package rerunfilecheck Info: File `manual.out' has not changed.
-(rerunfilecheck)             Checksum: C729B35644091F272DEA72E3F95C42AB;1832.
+(rerunfilecheck)             Checksum: 740162DF334CD4E299A750D275461E86;1884.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 96.
  ) 
 Here is how much of TeX's memory you used:
- 30053 strings out of 492982
- 613511 string characters out of 6134897
- 811365 words of memory out of 5000000
- 33093 multiletter control sequences out of 15000+600000
+ 30084 strings out of 492982
+ 614118 string characters out of 6134897
+ 811374 words of memory out of 5000000
+ 33119 multiletter control sequences out of 15000+600000
  564870 words of font info for 51 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 63i,15n,97p,10534b,500s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 63i,16n,97p,10534b,500s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{https://de.wikipedia.org/wiki/FM-Synthese} has been referenced but does not exist, replaced by a fixed one
 
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/adobe/utopia/putb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/adobe/utopia/putr8a.pfb>
-Output written on /home/frederik_siepe/odinvst/manual/manual.pdf (37 pages, 2088813 bytes).
+Output written on /home/frederik_siepe/odinvst/manual/manual.pdf (39 pages, 2195815 bytes).
 PDF statistics:
- 464 PDF objects out of 1000 (max. 8388607)
- 357 compressed objects within 4 object streams
- 75 named destinations out of 1000 (max. 500000)
- 472 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 481 PDF objects out of 1000 (max. 8388607)
+ 368 compressed objects within 4 object streams
+ 78 named destinations out of 1000 (max. 500000)
+ 495 words of extra memory for PDF output out of 10000 (max. 10000000)
 
