@@ -745,6 +745,22 @@
             file="Graphics/cropped/buttons/buttonreset_oscfilmstrip.png"/>
       <FILE id="AajoT4" name="buttonreset_oscfilmstrip_150.png" compile="0"
             resource="1" file="Graphics_150/cropped/buttons/buttonreset_oscfilmstrip_150.png"/>
+      <FILE id="d4c4Ve" name="buttonresetsynth_1.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonresetsynth_1.png"/>
+      <FILE id="DZYloM" name="buttonresetsynth_1_150.png" compile="0" resource="1"
+            file="Graphics_150/cropped/buttons/buttonresetsynth_1_150.png"/>
+      <FILE id="XUbPTE" name="buttonresetsynth_2.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonresetsynth_2.png"/>
+      <FILE id="j54He5" name="buttonresetsynth_2_150.png" compile="0" resource="1"
+            file="Graphics_150/cropped/buttons/buttonresetsynth_2_150.png"/>
+      <FILE id="BC94Zq" name="buttonresetsynth_3.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonresetsynth_3.png"/>
+      <FILE id="h4Z0G8" name="buttonresetsynth_3_150.png" compile="0" resource="1"
+            file="Graphics_150/cropped/buttons/buttonresetsynth_3_150.png"/>
+      <FILE id="ZPJRcp" name="buttonresetsynth_4.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonresetsynth_4.png"/>
+      <FILE id="XvfA2d" name="buttonresetsynth_4_150.png" compile="0" resource="1"
+            file="Graphics_150/cropped/buttons/buttonresetsynth_4_150.png"/>
       <FILE id="NJvidF" name="buttonright_1.png" compile="0" resource="1"
             file="Graphics/cropped/buttons/buttonright_1.png"/>
       <FILE id="h6k4EJ" name="buttonright_1_150.png" compile="0" resource="1"

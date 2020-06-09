@@ -521,7 +521,7 @@ void OdinAudioProcessorEditor::setGUIBig() {
 	m_legato_button.setImage(legato_left, 1);
 	m_legato_button.setImage(legato_right, 2);
 	m_legato_button.setBounds(OdinHelper::c150(LEGATO_POS_X),
-	                          OdinHelper::c150(LEGATO_POS_Y) + 1,
+	                          OdinHelper::c150(LEGATO_POS_Y),
 	                          legato_left.getWidth(),
 	                          legato_left.getHeight());
 
@@ -535,6 +535,22 @@ void OdinAudioProcessorEditor::setGUIBig() {
 	                            OdinHelper::c150(GUI_SIZE_POS_Y),
 	                            gui_size_left.getWidth(),
 	                            gui_size_left.getHeight());
+
+	juce::Image reset_1 = ImageCache::getFromMemory(BinaryData::buttonresetsynth_3_150_png,
+	                                                BinaryData::buttonresetsynth_3_150_pngSize);
+	juce::Image reset_2 = ImageCache::getFromMemory(BinaryData::buttonresetsynth_2_150_png,
+	                                                BinaryData::buttonresetsynth_2_150_pngSize);
+
+	juce::DrawableImage reset_draw1;
+	juce::DrawableImage reset_draw2;
+
+	reset_draw1.setImage(reset_1);
+	reset_draw2.setImage(reset_2);
+
+	m_reset.setImages(
+	    &reset_draw2, &reset_draw2, &reset_draw1, &reset_draw1, &reset_draw2, &reset_draw2, &reset_draw1, &reset_draw1);
+	m_reset.setBounds(
+	    RESET_SYNTH_POS_X_150, RESET_SYNTH_POS_Y_150, reset_1.getWidth(), reset_1.getHeight());
 
 	juce::Image lfo13_sync_background = ImageCache::getFromMemory(BinaryData::lfo13_sync_background_150_png,
 	                                                              BinaryData::lfo13_sync_background_150_pngSize);
@@ -656,10 +672,10 @@ void OdinAudioProcessorEditor::setGUIBig() {
 	                OdinHelper::c150(MATRIX_SIZE_X),
 	                OdinHelper::c150(MATRIX_SIZE_Y) + 5);
 	m_patch_browser.setBounds(BROWSER_POS_X_150, BROWSER_POS_Y_150, BROWSER_SIZE_X_150, BROWSER_SIZE_Y_150);
-	m_save_load.setBounds(OdinHelper::c150(SAVE_LOAD_POS_X),
-	                      OdinHelper::c150(SAVE_LOAD_POS_Y),
-	                      OdinHelper::c150(SAVE_LOAD_SIZE_X),
-	                      OdinHelper::c150(SAVE_LOAD_SIZE_Y));
+	//m_save_load.setBounds(OdinHelper::c150(SAVE_LOAD_POS_X),
+	//                      OdinHelper::c150(SAVE_LOAD_POS_Y),
+	//                      OdinHelper::c150(SAVE_LOAD_SIZE_X),
+	//                      OdinHelper::c150(SAVE_LOAD_SIZE_Y));
 	m_xy_section.setBounds(OdinHelper::c150(XY_COMPONENT_POS_X),
 	                       OdinHelper::c150(XY_COMPONENT_POS_Y),
 	                       OdinHelper::c150(XY_COMPONENT_SIZE_X),
@@ -676,7 +692,7 @@ void OdinAudioProcessorEditor::setGUIBig() {
 	setFilter3Plate(m_value_tree.state.getChildWithName("misc")["fil3_type"]);
 
 	forceValueTreeOntoComponents(false);
-	m_save_load.resetPatchText();
+	//m_save_load.resetPatchText();
 
 	setSize(ODIN_EDITOR_SIZE_150_X, ODIN_EDITOR_SIZE_150_Y);
 	m_odin_backdrop =

@@ -1,257 +1,257 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <Odin>
-  <PARAM id="amp_gain" value="-13.44333267211914"/>
-  <PARAM id="amp_pan" value="-0.9773907661437988"/>
-  <PARAM id="amp_velocity" value="0.1125580444931984"/>
-  <PARAM id="arp_mod_transpose" value="0.1499999910593033"/>
-  <PARAM id="arp_on" value="1.0"/>
-  <PARAM id="arp_one_shot" value="1.0"/>
-  <PARAM id="chorus_amount" value="0.6185297966003418"/>
-  <PARAM id="chorus_drywet" value="0.4796314835548401"/>
-  <PARAM id="chorus_feedback" value="-0.75"/>
+  <PARAM id="amp_gain" value="0.0"/>
+  <PARAM id="amp_pan" value="0.0"/>
+  <PARAM id="amp_velocity" value="0.0"/>
+  <PARAM id="arp_mod_transpose" value="0.0"/>
+  <PARAM id="arp_on" value="0.0"/>
+  <PARAM id="arp_one_shot" value="0.0"/>
+  <PARAM id="chorus_amount" value="0.4000000059604645"/>
+  <PARAM id="chorus_drywet" value="1.0"/>
+  <PARAM id="chorus_feedback" value="0.0"/>
   <PARAM id="chorus_on" value="0.0"/>
-  <PARAM id="chorus_rate" value="8.370763778686523"/>
+  <PARAM id="chorus_rate" value="0.1500000208616257"/>
   <PARAM id="chorus_reset" value="0.0"/>
-  <PARAM id="delay_dry" value="0.3978627622127533"/>
-  <PARAM id="delay_ducking" value="0.5054171681404114"/>
-  <PARAM id="delay_feedback" value="0.2484211325645447"/>
-  <PARAM id="delay_hp" value="699.0184326171875"/>
-  <PARAM id="delay_on" value="1.0"/>
-  <PARAM id="delay_pingpong" value="1.0"/>
-  <PARAM id="delay_time" value="0.745244562625885"/>
-  <PARAM id="delay_wet" value="0.0354723185300827"/>
-  <PARAM id="dist_boost" value="0.9701520800590515"/>
-  <PARAM id="dist_drywet" value="0.1865812242031097"/>
-  <PARAM id="env1_attack" value="1.025023221969604"/>
-  <PARAM id="env1_decay" value="1.728884100914001"/>
+  <PARAM id="delay_dry" value="1.0"/>
+  <PARAM id="delay_ducking" value="0.0"/>
+  <PARAM id="delay_feedback" value="0.449999988079071"/>
+  <PARAM id="delay_hp" value="80.0"/>
+  <PARAM id="delay_on" value="0.0"/>
+  <PARAM id="delay_pingpong" value="0.0"/>
+  <PARAM id="delay_time" value="1.0"/>
+  <PARAM id="delay_wet" value="0.7000000476837158"/>
+  <PARAM id="dist_boost" value="0.300000011920929"/>
+  <PARAM id="dist_drywet" value="1.0"/>
+  <PARAM id="env1_attack" value="0.009999999776482582"/>
+  <PARAM id="env1_decay" value="0.9999998807907104"/>
   <PARAM id="env1_loop" value="0.0"/>
-  <PARAM id="env1_release" value="7.065257549285889"/>
-  <PARAM id="env1_sustain" value="0.02009699307382107"/>
-  <PARAM id="env2_attack" value="0.004897866398096085"/>
-  <PARAM id="env2_decay" value="0.05537509918212891"/>
+  <PARAM id="env1_release" value="0.009999999776482582"/>
+  <PARAM id="env1_sustain" value="0.5"/>
+  <PARAM id="env2_attack" value="0.009999999776482582"/>
+  <PARAM id="env2_decay" value="0.800000011920929"/>
   <PARAM id="env2_loop" value="0.0"/>
-  <PARAM id="env2_release" value="0.105999730527401"/>
-  <PARAM id="env2_sustain" value="0.09693755954504013"/>
-  <PARAM id="env3_attack" value="0.4657628834247589"/>
-  <PARAM id="env3_decay" value="0.00135771045461297"/>
+  <PARAM id="env2_release" value="0.009999999776482582"/>
+  <PARAM id="env2_sustain" value="0.0"/>
+  <PARAM id="env3_attack" value="0.009999999776482582"/>
+  <PARAM id="env3_decay" value="0.800000011920929"/>
   <PARAM id="env3_loop" value="0.0"/>
-  <PARAM id="env3_release" value="2.286394119262695"/>
-  <PARAM id="env3_sustain" value="0.004189569503068924"/>
-  <PARAM id="env4_attack" value="3.687744379043579"/>
-  <PARAM id="env4_decay" value="0.6661454439163208"/>
+  <PARAM id="env3_release" value="0.009999999776482582"/>
+  <PARAM id="env3_sustain" value="0.0"/>
+  <PARAM id="env4_attack" value="0.009999999776482582"/>
+  <PARAM id="env4_decay" value="0.9999998807907104"/>
   <PARAM id="env4_loop" value="0.0"/>
-  <PARAM id="env4_release" value="4.7911057472229"/>
-  <PARAM id="env4_sustain" value="0.2570507228374481"/>
-  <PARAM id="fil1_env" value="0.1360206604003906"/>
-  <PARAM id="fil1_formant_transition" value="0.4915900230407715"/>
-  <PARAM id="fil1_freq" value="90.35780334472656"/>
-  <PARAM id="fil1_gain" value="-29.91405487060547"/>
-  <PARAM id="fil1_kbd" value="0.520746111869812"/>
+  <PARAM id="env4_release" value="0.009999999776482582"/>
+  <PARAM id="env4_sustain" value="0.5"/>
+  <PARAM id="fil1_env" value="0.0"/>
+  <PARAM id="fil1_formant_transition" value="0.0"/>
+  <PARAM id="fil1_freq" value="2000.000366210938"/>
+  <PARAM id="fil1_gain" value="0.0"/>
+  <PARAM id="fil1_kbd" value="0.0"/>
   <PARAM id="fil1_osc1" value="1.0"/>
   <PARAM id="fil1_osc2" value="1.0"/>
   <PARAM id="fil1_osc3" value="1.0"/>
-  <PARAM id="fil1_res" value="0.3015089929103851"/>
-  <PARAM id="fil1_ring_mod_amount" value="0.9381398558616638"/>
-  <PARAM id="fil1_saturation" value="0.9829099178314209"/>
-  <PARAM id="fil1_sem_transition" value="0.9939349889755249"/>
+  <PARAM id="fil1_res" value="0.0"/>
+  <PARAM id="fil1_ring_mod_amount" value="1.0"/>
+  <PARAM id="fil1_saturation" value="0.0"/>
+  <PARAM id="fil1_sem_transition" value="-1.0"/>
   <PARAM id="fil1_to_amp" value="0.0"/>
-  <PARAM id="fil1_vel" value="0.6819360256195068"/>
-  <PARAM id="fil2_env" value="0.8093966245651245"/>
+  <PARAM id="fil1_vel" value="0.0"/>
+  <PARAM id="fil2_env" value="0.0"/>
   <PARAM id="fil2_fil1" value="1.0"/>
-  <PARAM id="fil2_formant_transition" value="0.4976950883865356"/>
-  <PARAM id="fil2_freq" value="3533.91943359375"/>
-  <PARAM id="fil2_gain" value="-47.77799224853516"/>
-  <PARAM id="fil2_kbd" value="0.2900390326976776"/>
+  <PARAM id="fil2_formant_transition" value="0.0"/>
+  <PARAM id="fil2_freq" value="2000.000366210938"/>
+  <PARAM id="fil2_gain" value="0.0"/>
+  <PARAM id="fil2_kbd" value="0.0"/>
   <PARAM id="fil2_osc1" value="0.0"/>
-  <PARAM id="fil2_osc2" value="1.0"/>
+  <PARAM id="fil2_osc2" value="0.0"/>
   <PARAM id="fil2_osc3" value="0.0"/>
-  <PARAM id="fil2_res" value="0.636721670627594"/>
-  <PARAM id="fil2_ring_mod_amount" value="0.07957484573125839"/>
-  <PARAM id="fil2_saturation" value="0.9991891384124756"/>
-  <PARAM id="fil2_sem_transition" value="-0.9064857959747314"/>
-  <PARAM id="fil2_to_amp" value="0.0"/>
-  <PARAM id="fil2_vel" value="0.9316114783287048"/>
-  <PARAM id="fil3_env" value="-0.3580324649810791"/>
-  <PARAM id="fil3_formant_transition" value="0.5572319626808167"/>
-  <PARAM id="fil3_freq" value="12400.23828125"/>
-  <PARAM id="fil3_gain" value="-0.4538040161132812"/>
-  <PARAM id="fil3_kbd" value="0.7767212390899658"/>
-  <PARAM id="fil3_res" value="0.2505050897598267"/>
-  <PARAM id="fil3_ring_mod_amount" value="0.2287167012691498"/>
-  <PARAM id="fil3_saturation" value="0.7814528346061707"/>
-  <PARAM id="fil3_sem_transition" value="0.4212561845779419"/>
-  <PARAM id="fil3_vel" value="0.5731831789016724"/>
-  <PARAM id="flanger_amount" value="0.7336531281471252"/>
-  <PARAM id="flanger_drywet" value="0.6611371040344238"/>
-  <PARAM id="flanger_feedback" value="0.2200000286102295"/>
-  <PARAM id="flanger_on" value="1.0"/>
-  <PARAM id="flanger_rate" value="2.52661395072937"/>
-  <PARAM id="flanger_reset" value="1.0"/>
-  <PARAM id="glide" value="0.728143036365509"/>
-  <PARAM id="lfo1_freq" value="2.919715166091919"/>
-  <PARAM id="lfo1_reset" value="1.0"/>
-  <PARAM id="lfo2_freq" value="39.38859939575195"/>
+  <PARAM id="fil2_res" value="0.0"/>
+  <PARAM id="fil2_ring_mod_amount" value="1.0"/>
+  <PARAM id="fil2_saturation" value="0.0"/>
+  <PARAM id="fil2_sem_transition" value="-1.0"/>
+  <PARAM id="fil2_to_amp" value="1.0"/>
+  <PARAM id="fil2_vel" value="0.0"/>
+  <PARAM id="fil3_env" value="0.0"/>
+  <PARAM id="fil3_formant_transition" value="0.0"/>
+  <PARAM id="fil3_freq" value="2000.000366210938"/>
+  <PARAM id="fil3_gain" value="0.0"/>
+  <PARAM id="fil3_kbd" value="0.0"/>
+  <PARAM id="fil3_res" value="0.0"/>
+  <PARAM id="fil3_ring_mod_amount" value="1.0"/>
+  <PARAM id="fil3_saturation" value="0.0"/>
+  <PARAM id="fil3_sem_transition" value="-1.0"/>
+  <PARAM id="fil3_vel" value="0.0"/>
+  <PARAM id="flanger_amount" value="0.300000011920929"/>
+  <PARAM id="flanger_drywet" value="1.0"/>
+  <PARAM id="flanger_feedback" value="0.5999999046325684"/>
+  <PARAM id="flanger_on" value="0.0"/>
+  <PARAM id="flanger_rate" value="0.1500000208616257"/>
+  <PARAM id="flanger_reset" value="0.0"/>
+  <PARAM id="glide" value="0.0"/>
+  <PARAM id="lfo1_freq" value="1.000000357627869"/>
+  <PARAM id="lfo1_reset" value="0.0"/>
+  <PARAM id="lfo2_freq" value="1.000000357627869"/>
   <PARAM id="lfo2_reset" value="0.0"/>
-  <PARAM id="lfo3_freq" value="4.33141040802002"/>
-  <PARAM id="lfo3_reset" value="1.0"/>
-  <PARAM id="lfo4_freq" value="5.984923839569092"/>
-  <PARAM id="lfo4_reset" value="1.0"/>
-  <PARAM id="master" value="6.969997406005859"/>
-  <PARAM id="modwheel" value="0.7386831641197205"/>
-  <PARAM id="osc1_arp_on" value="1.0"/>
-  <PARAM id="osc1_arp_speed" value="17.00031661987305"/>
+  <PARAM id="lfo3_freq" value="1.000000357627869"/>
+  <PARAM id="lfo3_reset" value="0.0"/>
+  <PARAM id="lfo4_freq" value="1.000000357627869"/>
+  <PARAM id="lfo4_reset" value="0.0"/>
+  <PARAM id="master" value="-7.0"/>
+  <PARAM id="modwheel" value="0.0"/>
+  <PARAM id="osc1_arp_on" value="0.0"/>
+  <PARAM id="osc1_arp_speed" value="20.0"/>
   <PARAM id="osc1_chipnoise" value="0.0"/>
-  <PARAM id="osc1_detune" value="0.913074791431427"/>
-  <PARAM id="osc1_drift" value="0.6906501054763794"/>
+  <PARAM id="osc1_detune" value="0.2000000029802322"/>
+  <PARAM id="osc1_drift" value="0.0"/>
   <PARAM id="osc1_exp_fm" value="0.0"/>
-  <PARAM id="osc1_fine" value="5.885459899902344"/>
-  <PARAM id="osc1_fm" value="0.02424570359289646"/>
-  <PARAM id="osc1_hp" value="85.5992431640625"/>
-  <PARAM id="osc1_lp" value="85.78453826904297"/>
-  <PARAM id="osc1_multi_position" value="0.0315263532102108"/>
-  <PARAM id="osc1_oct" value="-3.0"/>
-  <PARAM id="osc1_pos_mod" value="0.2736878395080566"/>
-  <PARAM id="osc1_position" value="0.3658411204814911"/>
-  <PARAM id="osc1_pulsewidth" value="0.6058910489082336"/>
-  <PARAM id="osc1_reset" value="1.0"/>
-  <PARAM id="osc1_semi" value="3.0"/>
-  <PARAM id="osc1_spread" value="0.3890202939510345"/>
-  <PARAM id="osc1_step_1" value="9.0"/>
-  <PARAM id="osc1_step_2" value="-7.0"/>
+  <PARAM id="osc1_fine" value="0.0"/>
+  <PARAM id="osc1_fm" value="0.0"/>
+  <PARAM id="osc1_hp" value="80.0"/>
+  <PARAM id="osc1_lp" value="18000.0"/>
+  <PARAM id="osc1_multi_position" value="0.0"/>
+  <PARAM id="osc1_oct" value="0.0"/>
+  <PARAM id="osc1_pos_mod" value="0.0"/>
+  <PARAM id="osc1_position" value="0.0"/>
+  <PARAM id="osc1_pulsewidth" value="0.5"/>
+  <PARAM id="osc1_reset" value="0.0"/>
+  <PARAM id="osc1_semi" value="0.0"/>
+  <PARAM id="osc1_spread" value="0.0"/>
+  <PARAM id="osc1_step_1" value="0.0"/>
+  <PARAM id="osc1_step_2" value="12.0"/>
   <PARAM id="osc1_step_3" value="7.0"/>
   <PARAM id="osc1_step_3_on" value="0.0"/>
-  <PARAM id="osc1_vec_x" value="0.3745304942131042"/>
-  <PARAM id="osc1_vec_y" value="0.8296802043914795"/>
-  <PARAM id="osc1_vol" value="-14.84130859375"/>
-  <PARAM id="osc2_arp_on" value="1.0"/>
-  <PARAM id="osc2_arp_speed" value="1.00042462348938"/>
-  <PARAM id="osc2_chipnoise" value="1.0"/>
-  <PARAM id="osc2_detune" value="0.2202553302049637"/>
-  <PARAM id="osc2_drift" value="0.9381973743438721"/>
+  <PARAM id="osc1_vec_x" value="0.0"/>
+  <PARAM id="osc1_vec_y" value="0.0"/>
+  <PARAM id="osc1_vol" value="0.0"/>
+  <PARAM id="osc2_arp_on" value="0.0"/>
+  <PARAM id="osc2_arp_speed" value="20.0"/>
+  <PARAM id="osc2_chipnoise" value="0.0"/>
+  <PARAM id="osc2_detune" value="0.2000000029802322"/>
+  <PARAM id="osc2_drift" value="0.0"/>
   <PARAM id="osc2_exp_fm" value="0.0"/>
-  <PARAM id="osc2_fine" value="8.365863800048828"/>
-  <PARAM id="osc2_fm" value="0.5414997935295105"/>
-  <PARAM id="osc2_hp" value="12103.755859375"/>
-  <PARAM id="osc2_lp" value="8276.3828125"/>
-  <PARAM id="osc2_multi_position" value="0.4981191754341125"/>
-  <PARAM id="osc2_oct" value="4.0"/>
-  <PARAM id="osc2_pos_mod" value="0.3398444652557373"/>
-  <PARAM id="osc2_position" value="0.1894565373659134"/>
-  <PARAM id="osc2_pulsewidth" value="0.7988767027854919"/>
+  <PARAM id="osc2_fine" value="0.0"/>
+  <PARAM id="osc2_fm" value="0.0"/>
+  <PARAM id="osc2_hp" value="80.0"/>
+  <PARAM id="osc2_lp" value="18000.0"/>
+  <PARAM id="osc2_multi_position" value="0.0"/>
+  <PARAM id="osc2_oct" value="0.0"/>
+  <PARAM id="osc2_pos_mod" value="0.0"/>
+  <PARAM id="osc2_position" value="0.0"/>
+  <PARAM id="osc2_pulsewidth" value="0.5"/>
   <PARAM id="osc2_reset" value="0.0"/>
-  <PARAM id="osc2_semi" value="-5.0"/>
-  <PARAM id="osc2_spread" value="0.7905193567276001"/>
-  <PARAM id="osc2_step_1" value="-7.0"/>
-  <PARAM id="osc2_step_2" value="-9.0"/>
-  <PARAM id="osc2_step_3" value="3.0"/>
-  <PARAM id="osc2_step_3_on" value="1.0"/>
+  <PARAM id="osc2_semi" value="0.0"/>
+  <PARAM id="osc2_spread" value="0.0"/>
+  <PARAM id="osc2_step_1" value="0.0"/>
+  <PARAM id="osc2_step_2" value="12.0"/>
+  <PARAM id="osc2_step_3" value="7.0"/>
+  <PARAM id="osc2_step_3_on" value="0.0"/>
   <PARAM id="osc2_sync" value="0.0"/>
-  <PARAM id="osc2_vec_x" value="0.1674866229295731"/>
-  <PARAM id="osc2_vec_y" value="0.8765048384666443"/>
-  <PARAM id="osc2_vol" value="-37.74279022216797"/>
-  <PARAM id="osc3_arp_on" value="1.0"/>
-  <PARAM id="osc3_arp_speed" value="5.515470504760742"/>
+  <PARAM id="osc2_vec_x" value="0.0"/>
+  <PARAM id="osc2_vec_y" value="0.0"/>
+  <PARAM id="osc2_vol" value="0.0"/>
+  <PARAM id="osc3_arp_on" value="0.0"/>
+  <PARAM id="osc3_arp_speed" value="20.0"/>
   <PARAM id="osc3_chipnoise" value="0.0"/>
-  <PARAM id="osc3_detune" value="0.4234507083892822"/>
-  <PARAM id="osc3_drift" value="0.6208574175834656"/>
+  <PARAM id="osc3_detune" value="0.2000000029802322"/>
+  <PARAM id="osc3_drift" value="0.0"/>
   <PARAM id="osc3_exp_fm" value="0.0"/>
-  <PARAM id="osc3_fine" value="-38.02021408081055"/>
-  <PARAM id="osc3_fm" value="0.757860004901886"/>
-  <PARAM id="osc3_hp" value="9962.947265625"/>
-  <PARAM id="osc3_lp" value="80.080810546875"/>
-  <PARAM id="osc3_multi_position" value="0.8158168792724609"/>
-  <PARAM id="osc3_oct" value="1.0"/>
-  <PARAM id="osc3_pos_mod" value="0.1958787441253662"/>
-  <PARAM id="osc3_position" value="0.2087537497282028"/>
-  <PARAM id="osc3_pulsewidth" value="0.322952002286911"/>
-  <PARAM id="osc3_reset" value="1.0"/>
-  <PARAM id="osc3_semi" value="2.0"/>
-  <PARAM id="osc3_spread" value="0.9467207789421082"/>
-  <PARAM id="osc3_step_1" value="-1.0"/>
-  <PARAM id="osc3_step_2" value="9.0"/>
-  <PARAM id="osc3_step_3" value="-8.0"/>
-  <PARAM id="osc3_step_3_on" value="1.0"/>
-  <PARAM id="osc3_sync" value="1.0"/>
-  <PARAM id="osc3_vec_x" value="0.3449818193912506"/>
-  <PARAM id="osc3_vec_y" value="0.1168409138917923"/>
-  <PARAM id="osc3_vol" value="-10.52719497680664"/>
-  <PARAM id="phaser_drywet" value="0.428481787443161"/>
-  <PARAM id="phaser_feedback" value="0.2257959097623825"/>
-  <PARAM id="phaser_freq" value="81.31648254394531"/>
-  <PARAM id="phaser_mod" value="0.3299542367458344"/>
+  <PARAM id="osc3_fine" value="0.0"/>
+  <PARAM id="osc3_fm" value="0.0"/>
+  <PARAM id="osc3_hp" value="80.0"/>
+  <PARAM id="osc3_lp" value="18000.0"/>
+  <PARAM id="osc3_multi_position" value="0.0"/>
+  <PARAM id="osc3_oct" value="0.0"/>
+  <PARAM id="osc3_pos_mod" value="0.0"/>
+  <PARAM id="osc3_position" value="0.0"/>
+  <PARAM id="osc3_pulsewidth" value="0.5"/>
+  <PARAM id="osc3_reset" value="0.0"/>
+  <PARAM id="osc3_semi" value="0.0"/>
+  <PARAM id="osc3_spread" value="0.0"/>
+  <PARAM id="osc3_step_1" value="0.0"/>
+  <PARAM id="osc3_step_2" value="12.0"/>
+  <PARAM id="osc3_step_3" value="7.0"/>
+  <PARAM id="osc3_step_3_on" value="0.0"/>
+  <PARAM id="osc3_sync" value="0.0"/>
+  <PARAM id="osc3_vec_x" value="0.0"/>
+  <PARAM id="osc3_vec_y" value="0.0"/>
+  <PARAM id="osc3_vol" value="0.0"/>
+  <PARAM id="phaser_drywet" value="1.0"/>
+  <PARAM id="phaser_feedback" value="0.25"/>
+  <PARAM id="phaser_freq" value="3999.999755859375"/>
+  <PARAM id="phaser_mod" value="0.300000011920929"/>
   <PARAM id="phaser_on" value="0.0"/>
-  <PARAM id="phaser_rate" value="0.5645428895950317"/>
-  <PARAM id="phaser_reset" value="1.0"/>
-  <PARAM id="pitchbend" value="0.6924166679382324"/>
-  <PARAM id="step_0_mod_1" value="0.1299999952316284"/>
-  <PARAM id="step_0_mod_2" value="-0.5600000023841858"/>
+  <PARAM id="phaser_rate" value="0.2500000596046448"/>
+  <PARAM id="phaser_reset" value="0.0"/>
+  <PARAM id="pitchbend" value="0.0"/>
+  <PARAM id="step_0_mod_1" value="0.0"/>
+  <PARAM id="step_0_mod_2" value="0.0"/>
   <PARAM id="step_0_on" value="1.0"/>
-  <PARAM id="step_0_transpose" value="-9.0"/>
-  <PARAM id="step_10_mod_1" value="-0.03000003099441528"/>
-  <PARAM id="step_10_mod_2" value="-0.2200000286102295"/>
-  <PARAM id="step_10_on" value="0.0"/>
-  <PARAM id="step_10_transpose" value="18.0"/>
-  <PARAM id="step_11_mod_1" value="-0.4000000357627869"/>
-  <PARAM id="step_11_mod_2" value="-0.800000011920929"/>
-  <PARAM id="step_11_on" value="0.0"/>
-  <PARAM id="step_11_transpose" value="-11.0"/>
-  <PARAM id="step_12_mod_1" value="0.7300000190734863"/>
-  <PARAM id="step_12_mod_2" value="0.01999998092651367"/>
+  <PARAM id="step_0_transpose" value="0.0"/>
+  <PARAM id="step_10_mod_1" value="0.0"/>
+  <PARAM id="step_10_mod_2" value="0.0"/>
+  <PARAM id="step_10_on" value="1.0"/>
+  <PARAM id="step_10_transpose" value="0.0"/>
+  <PARAM id="step_11_mod_1" value="0.0"/>
+  <PARAM id="step_11_mod_2" value="0.0"/>
+  <PARAM id="step_11_on" value="1.0"/>
+  <PARAM id="step_11_transpose" value="0.0"/>
+  <PARAM id="step_12_mod_1" value="0.0"/>
+  <PARAM id="step_12_mod_2" value="0.0"/>
   <PARAM id="step_12_on" value="1.0"/>
-  <PARAM id="step_12_transpose" value="15.0"/>
-  <PARAM id="step_13_mod_1" value="0.3500000238418579"/>
-  <PARAM id="step_13_mod_2" value="0.4199999570846558"/>
+  <PARAM id="step_12_transpose" value="0.0"/>
+  <PARAM id="step_13_mod_1" value="0.0"/>
+  <PARAM id="step_13_mod_2" value="0.0"/>
   <PARAM id="step_13_on" value="1.0"/>
-  <PARAM id="step_13_transpose" value="1.0"/>
-  <PARAM id="step_14_mod_1" value="0.2599999904632568"/>
-  <PARAM id="step_14_mod_2" value="-0.2700000405311584"/>
+  <PARAM id="step_13_transpose" value="0.0"/>
+  <PARAM id="step_14_mod_1" value="0.0"/>
+  <PARAM id="step_14_mod_2" value="0.0"/>
   <PARAM id="step_14_on" value="1.0"/>
-  <PARAM id="step_14_transpose" value="18.0"/>
-  <PARAM id="step_15_mod_1" value="-0.1299999952316284"/>
-  <PARAM id="step_15_mod_2" value="-0.550000011920929"/>
-  <PARAM id="step_15_on" value="0.0"/>
-  <PARAM id="step_15_transpose" value="-5.0"/>
-  <PARAM id="step_1_mod_1" value="-0.9200000166893005"/>
-  <PARAM id="step_1_mod_2" value="0.3799999952316284"/>
+  <PARAM id="step_14_transpose" value="0.0"/>
+  <PARAM id="step_15_mod_1" value="0.0"/>
+  <PARAM id="step_15_mod_2" value="0.0"/>
+  <PARAM id="step_15_on" value="1.0"/>
+  <PARAM id="step_15_transpose" value="0.0"/>
+  <PARAM id="step_1_mod_1" value="0.0"/>
+  <PARAM id="step_1_mod_2" value="0.0"/>
   <PARAM id="step_1_on" value="1.0"/>
-  <PARAM id="step_1_transpose" value="-22.0"/>
-  <PARAM id="step_2_mod_1" value="0.6200000047683716"/>
-  <PARAM id="step_2_mod_2" value="-0.5800000429153442"/>
+  <PARAM id="step_1_transpose" value="0.0"/>
+  <PARAM id="step_2_mod_1" value="0.0"/>
+  <PARAM id="step_2_mod_2" value="0.0"/>
   <PARAM id="step_2_on" value="1.0"/>
-  <PARAM id="step_2_transpose" value="-7.0"/>
-  <PARAM id="step_3_mod_1" value="-0.7100000381469727"/>
-  <PARAM id="step_3_mod_2" value="0.4800000190734863"/>
-  <PARAM id="step_3_on" value="0.0"/>
-  <PARAM id="step_3_transpose" value="-1.0"/>
-  <PARAM id="step_4_mod_1" value="-0.8799999952316284"/>
-  <PARAM id="step_4_mod_2" value="1.0"/>
+  <PARAM id="step_2_transpose" value="0.0"/>
+  <PARAM id="step_3_mod_1" value="0.0"/>
+  <PARAM id="step_3_mod_2" value="0.0"/>
+  <PARAM id="step_3_on" value="1.0"/>
+  <PARAM id="step_3_transpose" value="0.0"/>
+  <PARAM id="step_4_mod_1" value="0.0"/>
+  <PARAM id="step_4_mod_2" value="0.0"/>
   <PARAM id="step_4_on" value="1.0"/>
-  <PARAM id="step_4_transpose" value="5.0"/>
-  <PARAM id="step_5_mod_1" value="0.9799998998641968"/>
-  <PARAM id="step_5_mod_2" value="-0.03000003099441528"/>
+  <PARAM id="step_4_transpose" value="0.0"/>
+  <PARAM id="step_5_mod_1" value="0.0"/>
+  <PARAM id="step_5_mod_2" value="0.0"/>
   <PARAM id="step_5_on" value="1.0"/>
-  <PARAM id="step_5_transpose" value="15.0"/>
-  <PARAM id="step_6_mod_1" value="-0.09000003337860107"/>
-  <PARAM id="step_6_mod_2" value="0.1000000238418579"/>
-  <PARAM id="step_6_on" value="0.0"/>
-  <PARAM id="step_6_transpose" value="-23.0"/>
-  <PARAM id="step_7_mod_1" value="-0.5"/>
-  <PARAM id="step_7_mod_2" value="-0.949999988079071"/>
-  <PARAM id="step_7_on" value="0.0"/>
-  <PARAM id="step_7_transpose" value="9.0"/>
-  <PARAM id="step_8_mod_1" value="-0.8700000047683716"/>
-  <PARAM id="step_8_mod_2" value="0.4499999284744263"/>
+  <PARAM id="step_5_transpose" value="0.0"/>
+  <PARAM id="step_6_mod_1" value="0.0"/>
+  <PARAM id="step_6_mod_2" value="0.0"/>
+  <PARAM id="step_6_on" value="1.0"/>
+  <PARAM id="step_6_transpose" value="0.0"/>
+  <PARAM id="step_7_mod_1" value="0.0"/>
+  <PARAM id="step_7_mod_2" value="0.0"/>
+  <PARAM id="step_7_on" value="1.0"/>
+  <PARAM id="step_7_transpose" value="0.0"/>
+  <PARAM id="step_8_mod_1" value="0.0"/>
+  <PARAM id="step_8_mod_2" value="0.0"/>
   <PARAM id="step_8_on" value="1.0"/>
-  <PARAM id="step_8_transpose" value="-22.0"/>
-  <PARAM id="step_9_mod_1" value="-0.6800000071525574"/>
-  <PARAM id="step_9_mod_2" value="-0.75"/>
+  <PARAM id="step_8_transpose" value="0.0"/>
+  <PARAM id="step_9_mod_1" value="0.0"/>
+  <PARAM id="step_9_mod_2" value="0.0"/>
   <PARAM id="step_9_on" value="1.0"/>
-  <PARAM id="step_9_transpose" value="-2.0"/>
-  <PARAM id="unison_detune" value="0.3664522767066956"/>
-  <PARAM id="unison_width" value="0.4131797552108765"/>
-  <PARAM id="xy_x" value="0.2370006144046783"/>
-  <PARAM id="xy_y" value="0.2403386533260345"/>
+  <PARAM id="step_9_transpose" value="0.0"/>
+  <PARAM id="unison_detune" value="0.07999999821186066"/>
+  <PARAM id="unison_width" value="0.699999988079071"/>
+  <PARAM id="xy_x" value="0.0"/>
+  <PARAM id="xy_y" value="0.0"/>
   <draw osc1_wavedraw_values_0="0.0" osc1_wavedraw_values_1="0.02929465286433697"
         osc1_wavedraw_values_2="0.05855825915932655" osc1_wavedraw_values_3="0.08775980770587921"
         osc1_wavedraw_values_4="0.1168683543801308" osc1_wavedraw_values_5="0.1458530426025391"
@@ -653,7 +653,7 @@
        lfo4_wave="0" lfo1_sync="0" lfo2_sync="0" lfo3_sync="0" lfo4_sync="0"/>
   <misc legato="1" dist_algo="1.0" BPM="120" env_left_selected="1" env_right_selected="1"
         fil1_type="2" fil2_type="1" fil3_type="1" patch_name="Init Patch"
-        version_minor="1" version_patch="0" patch_migration_version="4"
+        version_minor="2" version_patch="0" patch_migration_version="4"
         dist_on="0" fil1_comb_polarity="0" fil2_comb_polarity="0" fil3_comb_polarity="0"
         fil1_vowel_left="0" fil2_vowel_left="0" fil3_vowel_left="0" fil1_vowel_right="2"
         fil2_vowel_right="2" fil3_vowel_right="2" unison_voices="1" pitchbend_amount="12"
@@ -678,15 +678,15 @@
        amount_0_row_8="0" amount_1_row_8="0" amount_2_row_8="0"/>
   <osc osc1_analog_wave="0" osc2_analog_wave="0" osc3_analog_wave="0"
        osc1_type="2" osc2_type="1" osc3_type="1" osc1_wavetable="1.0"
-       osc2_wavetable="1.0" osc3_wavetable="1.0" osc1_vec_a="101.0"
-       osc2_vec_a="101.0" osc3_vec_a="101.0" osc1_vec_b="102.0" osc2_vec_b="102.0"
-       osc3_vec_b="102.0" osc1_vec_c="103.0" osc2_vec_c="103.0" osc3_vec_c="103.0"
-       osc1_vec_d="104.0" osc2_vec_d="104.0" osc3_vec_d="104.0" osc1_chipwave="1.0"
-       osc2_chipwave="1.0" osc3_chipwave="1.0" osc1_modulator_wave="1.0"
-       osc2_modulator_wave="1.0" osc3_modulator_wave="1.0" osc1_carrier_wave="1.0"
-       osc2_carrier_wave="1.0" osc3_carrier_wave="1.0" osc1_mod_source="1.0"
-       osc2_mod_source="1.0" osc3_mod_source="1.0" osc1_carrier_ratio="1"
-       osc2_carrier_ratio="1" osc3_carrier_ratio="1" osc1_modulator_ratio="1"
-       osc2_modulator_ratio="1" osc3_modulator_ratio="1"/>
+       osc2_wavetable="1.0" osc3_wavetable="1.0" osc1_vec_a="101" osc2_vec_a="101"
+       osc3_vec_a="101" osc1_vec_b="102" osc2_vec_b="102" osc3_vec_b="102"
+       osc1_vec_c="103" osc2_vec_c="103" osc3_vec_c="103" osc1_vec_d="104"
+       osc2_vec_d="104" osc3_vec_d="104" osc1_chipwave="1.0" osc2_chipwave="1.0"
+       osc3_chipwave="1.0" osc1_modulator_wave="1.0" osc2_modulator_wave="1.0"
+       osc3_modulator_wave="1.0" osc1_carrier_wave="1.0" osc2_carrier_wave="1.0"
+       osc3_carrier_wave="1.0" osc1_mod_source="1.0" osc2_mod_source="1.0"
+       osc3_mod_source="1.0" osc1_carrier_ratio="1" osc2_carrier_ratio="1"
+       osc3_carrier_ratio="1" osc1_modulator_ratio="1" osc2_modulator_ratio="1"
+       osc3_modulator_ratio="1"/>
   <midi_learn/>
 </Odin>

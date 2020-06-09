@@ -77,7 +77,7 @@ protected:
 	}
 
 	float m_position_2D = 0.f;
-	float m_detune = 0.f;
+	float m_detune = 0.04f;//0.2²
 	float m_wavetable_multi_spread = 0.f;
 
 	float m_position_2D_multi[OSCS_PER_MULTIOSC];

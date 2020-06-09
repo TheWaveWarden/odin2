@@ -196,6 +196,8 @@ private:
 	float m_modwheel_smooth               = 0.f;
 	float m_x_smooth                      = 0.f;
 	float m_y_smooth                      = 0.f;
+	float m_x_modded                      = 0.f;
+	float m_y_modded                      = 0.f;
 	float m_master_smooth                 = 1.f;
 	float m_master_control                = 1.f; // factor
 
@@ -315,6 +317,8 @@ private:
 	ModSources m_mod_sources;
 	ModDestinations m_mod_destinations;
 
+	float m_samplerate = 44800.f;
+
 	bool m_dist_on        = false;
 	bool m_lfo1_sync      = false;
 	bool m_lfo2_sync      = false;
@@ -350,6 +354,8 @@ private:
 	float *m_osc_vol_mod[VOICES][3];
 	float *m_fil_12_vol_mod[VOICES][2];
 	float *m_fil_3_vol_mod;
+	float *m_x_mod;
+	float *m_y_mod;
 
 	int m_delay_position   = 0;
 	int m_phaser_position  = 1;

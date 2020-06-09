@@ -214,6 +214,9 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts) :
 	m_arp_menu.addItem(970, "Arp Speed");
 	m_arp_menu.addItem(973, "Arp Gate");
 
+	m_xy_menu.addItem(980, "XY-Pad X");
+	m_xy_menu.addItem(982, "XY-Pad Y");
+
 	m_sources_menu.addItem(1, "Off");
 	m_sources_menu.addSeparator();
 	m_sources_menu.addItem(100, "Oscillator 1");
@@ -1057,6 +1060,10 @@ void ModMatrixComponent::createMenu(PopupMenu *p_menu) {
 	p_menu->addSeparator();
 
 	p_menu->addSubMenu("Arpeggiator", m_arp_menu, true);
+
+	p_menu->addSeparator();
+
+	p_menu->addSubMenu("XY-Pad", m_xy_menu, true);
 
 	p_menu->addSeparator();
 

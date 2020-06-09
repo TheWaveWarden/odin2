@@ -23,7 +23,7 @@
 #include "OdinTooltipWindow.h"
 #include "OscComponent.h"
 #include "PitchWheel.h"
-#include "SaveLoadComponent.h"
+//#include "SaveLoadComponent.h"
 #include "XYSectionComponent.h"
 #include "PhaserComponent.h"
 #include "BPMSelector.h"
@@ -123,19 +123,28 @@
 #define SAVE_LOAD_SIZE_X 288
 #define SAVE_LOAD_SIZE_Y 25
 
-#define LEGATO_POS_X 250
+#define LEGATO_POS_X 32
 #define LEGATO_POS_Y 8
 
-#define UNISON_SELECTOR_X 490
+//#define UNISON_OFFSET 378
+//define UNISON_OFFSET_150 567
+
+#define UNISON_SELECTOR_X 112
 #define UNISON_SELECTOR_Y 6
-#define UNISON_DETUNE_X 601
+#define UNISON_DETUNE_X 223
 #define UNISON_DETUNE_Y 5
-#define UNISON_STEREO_X 646
+#define UNISON_STEREO_X 268
 #define UNISON_STEREO_Y UNISON_DETUNE_Y
 
 
 #define GUI_SIZE_POS_X 674
 #define GUI_SIZE_POS_Y 7
+
+
+#define RESET_SYNTH_POS_X_100 604
+#define RESET_SYNTH_POS_Y_100 6
+#define RESET_SYNTH_POS_X_150 904
+#define RESET_SYNTH_POS_Y_150 11
 
 #define ENV13_POS_X 30
 #define ENV13_POS_Y 313
@@ -310,7 +319,7 @@ private:
   ArpComponent m_arp;
   PatchBrowser m_patch_browser;
 
-  SaveLoadComponent m_save_load;
+  //SaveLoadComponent m_save_load;
 
   XYSectionComponent m_xy_section;
 
@@ -357,6 +366,8 @@ private:
 
   LeftRightButton m_legato_button;
   LeftRightButton m_gui_size_button;
+
+  juce::DrawableButton m_reset;
 
   AudioProcessorValueTreeState &m_value_tree;
 

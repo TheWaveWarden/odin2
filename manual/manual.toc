@@ -1,0 +1,54 @@
+\contentsline {chapter}{\numberline {1}Introduction}{3}{chapter.1}
+\contentsline {section}{\numberline {1.1}Install}{3}{section.1.1}
+\contentsline {section}{\numberline {1.2}Odin 2: A Mighty God}{4}{section.1.2}
+\contentsline {section}{\numberline {1.3}Panel Overview}{5}{section.1.3}
+\contentsline {section}{\numberline {1.4}Saving and Loading Presets}{6}{section.1.4}
+\contentsline {section}{\numberline {1.5}Routing}{7}{section.1.5}
+\contentsline {section}{\numberline {1.6}Scaling the Interface}{8}{section.1.6}
+\contentsline {section}{\numberline {1.7}Help Inside the Plugin}{8}{section.1.7}
+\contentsline {chapter}{\numberline {2}Oscillators}{9}{chapter.2}
+\contentsline {section}{\numberline {2.1}Common Parameters}{9}{section.2.1}
+\contentsline {section}{\numberline {2.2}Analog Osc}{11}{section.2.2}
+\contentsline {section}{\numberline {2.3}Wavetable Osc}{13}{section.2.3}
+\contentsline {section}{\numberline {2.4}Multi Osc}{14}{section.2.4}
+\contentsline {section}{\numberline {2.5}Vector Osc}{15}{section.2.5}
+\contentsline {section}{\numberline {2.6}Chiptune Osc}{16}{section.2.6}
+\contentsline {section}{\numberline {2.7}FM Osc}{18}{section.2.7}
+\contentsline {section}{\numberline {2.8}PM Osc}{19}{section.2.8}
+\contentsline {section}{\numberline {2.9}Noise Osc}{21}{section.2.9}
+\contentsline {section}{\numberline {2.10}WaveDraw Osc}{21}{section.2.10}
+\contentsline {section}{\numberline {2.11}ChipDraw Osc}{22}{section.2.11}
+\contentsline {section}{\numberline {2.12}SpecDraw Osc}{23}{section.2.12}
+\contentsline {chapter}{\numberline {3}Filters}{24}{chapter.3}
+\contentsline {section}{\numberline {3.1}Common Controls}{25}{section.3.1}
+\contentsline {section}{\numberline {3.2}Lowpass, Bandpass, Highpass}{28}{section.3.2}
+\contentsline {section}{\numberline {3.3}SEM-12}{28}{section.3.3}
+\contentsline {section}{\numberline {3.4}Diode Ladder}{29}{section.3.4}
+\contentsline {section}{\numberline {3.5}KRG-35 LP / HP}{30}{section.3.5}
+\contentsline {section}{\numberline {3.6}Comb Filter}{30}{section.3.6}
+\contentsline {section}{\numberline {3.7}Formant Filter}{31}{section.3.7}
+\contentsline {section}{\numberline {3.8}Ring Modulator}{32}{section.3.8}
+\contentsline {chapter}{\numberline {4}Amplifier \& Distortion}{34}{chapter.4}
+\contentsline {section}{\numberline {4.1}Amplifier}{34}{section.4.1}
+\contentsline {section}{\numberline {4.2}Distortion}{35}{section.4.2}
+\contentsline {chapter}{\numberline {5}FX}{38}{chapter.5}
+\contentsline {section}{\numberline {5.1}Delay}{39}{section.5.1}
+\contentsline {section}{\numberline {5.2}Chorus}{41}{section.5.2}
+\contentsline {section}{\numberline {5.3}Phaser}{42}{section.5.3}
+\contentsline {section}{\numberline {5.4}Flanger}{44}{section.5.4}
+\contentsline {chapter}{\numberline {6}Modulators}{46}{chapter.6}
+\contentsline {section}{\numberline {6.1}ADSR Envelopes}{46}{section.6.1}
+\contentsline {section}{\numberline {6.2}Low Frequency Oscillators (LFOs)}{49}{section.6.2}
+\contentsline {section}{\numberline {6.3}XY-Pad}{51}{section.6.3}
+\contentsline {section}{\numberline {6.4}Modwheel \& Pitch Bend}{52}{section.6.4}
+\contentsline {chapter}{\numberline {7}Modulation Matrix}{53}{chapter.7}
+\contentsline {section}{\numberline {7.1}Basic Operation}{53}{section.7.1}
+\contentsline {section}{\numberline {7.2}Modulation Scaling}{54}{section.7.2}
+\contentsline {section}{\numberline {7.3}Mono \& Poly Modulation}{55}{section.7.3}
+\contentsline {section}{\numberline {7.4}Modulation Sources}{56}{section.7.4}
+\contentsline {section}{\numberline {7.5}Modulation Destinations}{58}{section.7.5}
+\contentsline {chapter}{\numberline {8}Arpeggiator \& Step Sequencer}{65}{chapter.8}
+\contentsline {chapter}{\numberline {9}Global Settings}{71}{chapter.9}
+\contentsline {section}{\numberline {9.1}Polyphonic / Legato}{71}{section.9.1}
+\contentsline {section}{\numberline {9.2}Unison}{72}{section.9.2}
+\contentsline {section}{\numberline {9.3}Glide and Master}{73}{section.9.3}
