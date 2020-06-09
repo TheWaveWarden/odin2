@@ -1,5 +1,5 @@
 \chapter{FX}
-
+\label{FX}
 Odin 2 comes with four internal FX modules: \fat{Delay, Chorus, Phaser} and \fat{Flanger}.
 
 \begin{center}
@@ -25,6 +25,9 @@ You can also \fat{change the order of the modules}, by drag'n'dropping their nam
 
 \section{Delay}
 \label{delay}
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{graphics/delay.png}
+\end{center}
 
 A delay is a module capable of producing an 'echo' effect: The signal is fed into a delay-line, which outputs the signal again after a set amount of time again. The output of the delay line can also be fed back in, allowing a chain of attenuating echos. By controlling the delay time and feeback parameters, a wide variety of effects can be achieved. The Delay module in Odin 2 goes a step further and offers several additional features.
 
@@ -67,4 +70,35 @@ Unlike the other FX modules, the Delay features a separate Dry and Wet control t
 
 \audioparameter{Delay Wet}{1}{1}{
     Controls how much processed signal is output by the Delay.
+}
+
+\section{Chorus}
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{graphics/chorus.png}
+\end{center}
+
+The Chorus module is a delay based effect capable of thickening sounds. The generated sound resembles that of a slightly detuned ensemble, hence the name chorus. Internally, the Chorus module uses a delay line, which is read from at two diferent positions. The delay times are modulated by an internal Low Frequency Oscillator (LFO). This slightly detunes the result resulting in the Chorus sound.
+
+\audioparameter{Chorus Rate}{1}{1}{
+    Controls the speed of the internal LFO. Depending on the parameter "Chorus Sync", this is either a dial for continuous values in Hz, or a custom selector to sync the time to the beat. This selector allows for arbitrary fractions of the current host BPM, for example 5/16th notes:
+
+    \begin{center}
+        \includegraphics[width=0.18\textwidth]{graphics/chorus_sync.png}
+    \end{center}
+}
+
+\audioparameter{Chorus Sync}{0}{1}{
+    Controls whether the Chorus Rate is set by a knob in Hz or via the sync-time selector, syncing it to the host BPM.
+}
+
+\audioparameter{Chorus Modulation}{1}{1}{
+    Controls how much the internal LFO modulates the two delay times. Exaggerates the detune effect.
+}
+
+\audioparameter{Chorus Feedback}{1}{1}{
+    Controls how much of the output of the delay line is fed back in again. Pronounces the effect of the Chorus a bit more.
+}
+
+\audioparameter{Chorus DryWet}{1}{1}{
+    Interpolates the processed and unprocessed signals, thereby controlling the strength of the effect.
 }

@@ -9,7 +9,7 @@
 	width=\textwidth]
 
 	\begin{tabular}{p{0.06\textwidth}p{0.4\textwidth}p{0.2\textwidth}p{0.2\textwidth}}
-		\raisebox{-.5\height}{\includegraphics[width=0.06\textwidth]{graphics/knob.png}} & \underline{\fat{\large{#1}}}&  \small{Modulation}:
+		\raisebox{-.32\height}{\includegraphics[width=0.06\textwidth]{graphics/knob.png}} & \underline{\fat{\large{#1}}}&  \small{Modulation}:
 		\IfEqCase{#2}{%
         	{1}{\includegraphics[width=0.025\textwidth]{graphics/available.png}}%
         	{0}{\includegraphics[width=0.02\textwidth]{graphics/not_available.png}}%
@@ -65,7 +65,16 @@
 	\vspace{2cm}
 	{\Large TheWaveWarden\par}
 	\includegraphics[width=0.4\textwidth]{graphics/logo.png}\par
-	{\large www.thewavewarden.com\par}
+	{\large \url{www.thewavewarden.com}\par}
+
+	\vspace{20mm}
+
+	\begin{center}
+		\begin{tabular}{p{0.2\textwidth}p{0.15\textwidth}p{0.2\textwidth}p{0.15\textwidth}p{0.25\textwidth}}
+			&\includegraphics[width=0.15\textwidth]{graphics/vst3_logo.png}& & \includegraphics[width=0.11\textwidth]{graphics/au_logo.png}&
+		\end{tabular}
+	\end{center}
+
 	\vfill
 
 	% Bottom of the page
@@ -89,6 +98,8 @@
 \include{Modulators}
 \clearpage
 \include{ModulationMatrix}
+\clearpage
+\include{Arpeggiator}
 \clearpage
 \include{GlobalSettings}
 \clearpage
