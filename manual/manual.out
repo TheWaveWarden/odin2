@@ -31,7 +31,10 @@
 \BOOKMARK [0][-]{chapter.5}{FX}{}% 31
 \BOOKMARK [1][-]{section.5.1}{Delay}{chapter.5}% 32
 \BOOKMARK [1][-]{section.5.2}{Chorus}{chapter.5}% 33
-\BOOKMARK [0][-]{chapter.6}{Modulators}{}% 34
-\BOOKMARK [0][-]{chapter.7}{ModulationMatrix}{}% 35
-\BOOKMARK [0][-]{chapter.8}{Arpeggiator}{}% 36
-\BOOKMARK [0][-]{chapter.9}{GlobalSettings}{}% 37
+\BOOKMARK [1][-]{section.5.3}{Phaser}{chapter.5}% 34
+\BOOKMARK [1][-]{section.5.4}{Flanger}{chapter.5}% 35
+\BOOKMARK [0][-]{chapter.6}{Modulators}{}% 36
+\BOOKMARK [1][-]{section.6.1}{ADSR Envelopes}{chapter.6}% 37
+\BOOKMARK [0][-]{chapter.7}{ModulationMatrix}{}% 38
+\BOOKMARK [0][-]{chapter.8}{Arpeggiator}{}% 39
+\BOOKMARK [0][-]{chapter.9}{GlobalSettings}{}% 40

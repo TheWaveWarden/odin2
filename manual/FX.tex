@@ -77,7 +77,7 @@ Unlike the other FX modules, the Delay features a separate Dry and Wet control t
     \includegraphics[width=0.5\textwidth]{graphics/chorus.png}
 \end{center}
 
-The Chorus module is a delay based effect capable of thickening sounds. The generated sound resembles that of a slightly detuned ensemble, hence the name chorus. Internally, the Chorus module uses a delay line, which is read from at two diferent positions. The delay times are modulated by an internal Low Frequency Oscillator (LFO). This slightly detunes the result resulting in the Chorus sound.
+The Chorus module is a delay based effect capable of thickening sounds. The generated sound resembles that of a slightly detuned ensemble, hence the name chorus. Internally, the Chorus module uses a delay line, which is read from at two diferent positions. The delay times are modulated by an internal Low Frequency Oscillator (LFO). This slightly detunes the result resulting in the Chorus sound. The LFOs for the left and right channel are phase-offset by 90° to spread the sound in the stereo field.
 
 \audioparameter{Chorus Rate}{1}{1}{
     Controls the speed of the internal LFO. Depending on the parameter "Chorus Sync", this is either a dial for continuous values in Hz, or a custom selector to sync the time to the beat. This selector allows for arbitrary fractions of the current host BPM, for example 5/16th notes:
@@ -100,5 +100,70 @@ The Chorus module is a delay based effect capable of thickening sounds. The gene
 }
 
 \audioparameter{Chorus DryWet}{1}{1}{
+    Interpolates the processed and unprocessed signals, thereby controlling the strength of the effect.
+}
+
+\section{Phaser}
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{graphics/phaser.png}
+\end{center}
+The phaser module introduces movement to the sound by applying a subtle "windy" character. The internal structure consists of a series of allpass filters: These filters do not alter the amplitude like the filters from Chapter \ref{filters}, but only shifts the phase of some frequencies. By adding the phase-shifted signal back onto the original signal, some of the frequencies get boosted, attenuated or eliminated entirely via phase-cancellation. The characteristic of the allpass-filters is continuously modulated by an internal Low Frequency Oscillator (LFO), which makes for the movemnet in the sound. The LFOs for the left and right channel are phase-offset by 90° to spread the sound in the stereo field.
+
+\audioparameter{Phaser Rate}{1}{1}{
+    Controls the speed of the internal LFO. Depending on the parameter "Phaser Sync", this is either a dial for continuous values in Hz, or a custom selector to sync the time to the beat. This selector allows for arbitrary fractions of the current host BPM, for example 5/16th notes:
+
+    \begin{center}
+        \includegraphics[width=0.18\textwidth]{graphics/phaser_sync.png}
+    \end{center}
+}
+
+\audioparameter{Phaser Sync}{0}{1}{
+    Controls whether the Phaser Rate is set by a knob in Hz or via the sync-time selector, syncing it to the host BPM.
+}
+
+\audioparameter{Phaser Modulation}{1}{1}{
+    Controls how much the internal LFO modulates the internal allpass filters.
+}
+
+\audioparameter{Phaser Feedback}{1}{1}{
+    An extra feedback stage, which feeds the output signal into the input again.
+}
+
+\audioparameter{Phaser Freq}{1}{1}{
+    Shifts the base frequency of the internal allpass filters, thereby altering the characteristic of the effect.
+}
+
+\audioparameter{Phaser DryWet}{1}{1}{
+    Controls how much of the phase-shifted signal is added to the input signal, thereby controling the strength of the effect.
+}
+
+\section{Flanger}
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{graphics/flanger.png}
+\end{center}
+
+A Flanger is a modulated \hyperref[comb_filter]{comb filter}. The signal is fed into a delay line and mixed with the input signal after a small echo. The timing of this effect is modulated by an internal Low Frequency Oscillator (LFO). Additionally, the output of the delay line can be fed in again via the Feedback parameter, to allow for a continuous stream of echoes. The delay times for Comb Filters and Flangers is very short, usually below 50ms. 
+
+\audioparameter{Flanger Rate}{1}{1}{
+    Controls the speed of the internal LFO. Depending on the parameter "Flanger Sync", this is either a dial for continuous values in Hz, or a custom selector to sync the time to the beat. This selector allows for arbitrary fractions of the current host BPM, for example 5/16th notes:
+
+    \begin{center}
+        \includegraphics[width=0.18\textwidth]{graphics/flanger_sync.png}
+    \end{center}
+}
+
+\audioparameter{Flanger Sync}{0}{1}{
+    Controls whether the Flanger Rate is set by a knob in Hz or via the sync-time selector, syncing it to the host BPM.
+}
+
+\audioparameter{Flanger Modulation}{1}{1}{
+    Controls how much the internal LFO modulates the delay time.
+}
+
+\audioparameter{Flanger Feedback}{1}{1}{
+    Controls how much of the output of the delay line is fed back in again. Creates a metallic smearing effect for big values. This parameter can be positive or negative allowing for positive and negative comb operation.
+}
+
+\audioparameter{Flanger DryWet}{1}{1}{
     Interpolates the processed and unprocessed signals, thereby controlling the strength of the effect.
 }

@@ -31,7 +31,10 @@
 \contentsline {chapter}{\numberline {5}FX}{35}{chapter.5}
 \contentsline {section}{\numberline {5.1}Delay}{36}{section.5.1}
 \contentsline {section}{\numberline {5.2}Chorus}{38}{section.5.2}
-\contentsline {chapter}{\numberline {6}Modulators}{40}{chapter.6}
-\contentsline {chapter}{\numberline {7}ModulationMatrix}{41}{chapter.7}
-\contentsline {chapter}{\numberline {8}Arpeggiator}{42}{chapter.8}
-\contentsline {chapter}{\numberline {9}GlobalSettings}{43}{chapter.9}
+\contentsline {section}{\numberline {5.3}Phaser}{39}{section.5.3}
+\contentsline {section}{\numberline {5.4}Flanger}{40}{section.5.4}
+\contentsline {chapter}{\numberline {6}Modulators}{43}{chapter.6}
+\contentsline {section}{\numberline {6.1}ADSR Envelopes}{43}{section.6.1}
+\contentsline {chapter}{\numberline {7}ModulationMatrix}{46}{chapter.7}
+\contentsline {chapter}{\numberline {8}Arpeggiator}{47}{chapter.8}
+\contentsline {chapter}{\numberline {9}GlobalSettings}{48}{chapter.9}
