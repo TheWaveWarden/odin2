@@ -2,6 +2,7 @@
 - implemented patch-browser
 - created installers for all platforms
 - Odin 2 now ships with a Factory Soundbank
+- Added XY-Pad X & Y as modulation destinations
 - changed location of config file
 - ping-pong delay will now alwmays start left, regardless of amp-pan
 - drastically imrpoved patch load times

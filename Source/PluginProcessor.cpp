@@ -399,6 +399,21 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 		m_x_smooth = m_x_smooth * PAD_SMOOTHIN_FACTOR + (1.f - PAD_SMOOTHIN_FACTOR) * (*m_xy_x);
 		m_y_smooth = m_y_smooth * PAD_SMOOTHIN_FACTOR + (1.f - PAD_SMOOTHIN_FACTOR) * (*m_xy_y);
 
+		if (*m_x_mod) {
+			m_x_modded = m_x_smooth + *m_x_mod;
+			m_x_modded = m_x_modded > 1.f ? 1.f : m_x_modded;
+			m_x_modded = m_x_modded < 0.f ? 0.f : m_x_modded;
+		} else {
+			m_x_modded = m_x_smooth;
+		}
+		if (*m_y_mod) {
+			m_y_modded = m_y_smooth + *m_y_mod;
+			m_y_modded = m_y_modded > 1.f ? 1.f : m_y_modded;
+			m_y_modded = m_y_modded < 0.f ? 0.f : m_y_modded;
+		} else {
+			m_y_modded = m_y_smooth;
+		}
+
 		m_master_smooth = m_master_smooth * GAIN_SMOOTHIN_FACTOR + (1 - GAIN_SMOOTHIN_FACTOR) * (m_master_control);
 
 		//============================================================
@@ -1247,6 +1262,6 @@ void OdinAudioProcessor::handleMidiMessage(const MidiMessage &p_midi_message) {
 	}
 }
 
-void OdinAudioProcessor::onEditorDestruction(){
+void OdinAudioProcessor::onEditorDestruction() {
 	m_editor_pointer = nullptr;
 }

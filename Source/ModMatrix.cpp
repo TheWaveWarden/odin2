@@ -983,6 +983,14 @@ void ModMatrixRow::setModDestination(int p_destination,
 		p_destination_pointers[0] = &(m_destinations->arp.gate);
 		p_dest_poly               = false;
 		break;
+	case 980:
+		p_destination_pointers[0] = &(m_destinations->xy.x);
+		p_dest_poly               = false;
+		break;
+	case 982:
+		p_destination_pointers[0] = &(m_destinations->xy.y);
+		p_dest_poly               = false;
+		break;
 	case 999:
 		p_destination_pointers[0] = &(m_destinations->misc.glide);
 		p_dest_poly               = false;

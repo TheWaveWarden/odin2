@@ -103,6 +103,11 @@ struct ModDestArp {
   float gate;
 };
 
+struct ModDestXY {
+  float x;
+  float y;
+};
+
 struct ModDestVoice {
   ModDestOsc osc[3];
   ModDestFilter filter[2];
@@ -122,6 +127,7 @@ struct ModDestinations {
   ModDestFlanger flanger;
   ModDestChorus chorus;
   ModDestArp arp;
+  ModDestXY xy;
   ModDestMisc misc;
 };
 
