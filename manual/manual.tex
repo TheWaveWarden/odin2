@@ -9,12 +9,12 @@
 	width=\textwidth]
 
 	\begin{tabular}{p{0.06\textwidth}p{0.4\textwidth}p{0.2\textwidth}p{0.2\textwidth}}
-		\raisebox{-.32\height}{\includegraphics[width=0.06\textwidth]{graphics/knob.png}} & \underline{\fat{\large{#1}}}&  \small{Modulation}:
+		\raisebox{-.32\height}{\includegraphics[width=0.06\textwidth]{graphics/knob.png}} & \underline{\fat{\large{#1}}}&  \small{Modulatable}:
 		\IfEqCase{#2}{%
         	{1}{\includegraphics[width=0.025\textwidth]{graphics/available.png}}%
         	{0}{\includegraphics[width=0.02\textwidth]{graphics/not_available.png}}%
 		}[\PackageError{audioparameter}{Undefined option to param: #2}{}] 
-		&\small{Automation}:
+		&\small{Automatable}:
 		\IfEqCase{#3}{%
 		{1}{\includegraphics[width=0.025\textwidth]{graphics/available.png}}%
 		{0}{\includegraphics[width=0.02\textwidth]{graphics/not_available.png}}%
@@ -29,6 +29,7 @@
 \newcommand{\audioparameterint}[1]{\vspace{3mm}\noindent\textbf{Parameter: #1} [modulatable, whole numbers]\\}
 \newcommand{\modmatrix}{\hyperref[chapter_matrix]{modulation matrix}\hspace{1mm}}
 \newcommand{\fat}{\textbf}
+
 
 % \newcommand{\tree}[2]{%
 %     \IfEqCase{#1}{%
@@ -49,6 +50,11 @@
 \usepackage{xstring}
 \usepackage{utopia}
 \usepackage{pagecolor}
+\usepackage{array}
+\usepackage{longtable}
+
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
 
 \definecolor{parambackground}{rgb}{0.9470, 0.963, 1}
 
@@ -56,7 +62,10 @@
 \pagecolor{white!95!black}
 \setlength{\parindent}{0pt}
 \begin{titlepage}
+	\mbox{}
 	\centering
+	\vspace{20mm}
+	
 	{\Huge\bfseries Odin 2\par}
 	{\huge\bfseries Synthesizer Plugin\par}
 	\vspace{2cm}
@@ -67,7 +76,7 @@
 	\includegraphics[width=0.4\textwidth]{graphics/logo.png}\par
 	{\large \url{www.thewavewarden.com}\par}
 
-	\vspace{20mm}
+	\vspace{10mm}
 
 	\begin{center}
 		\begin{tabular}{p{0.2\textwidth}p{0.15\textwidth}p{0.2\textwidth}p{0.15\textwidth}p{0.25\textwidth}}

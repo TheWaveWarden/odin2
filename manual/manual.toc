@@ -35,6 +35,14 @@
 \contentsline {section}{\numberline {5.4}Flanger}{40}{section.5.4}
 \contentsline {chapter}{\numberline {6}Modulators}{43}{chapter.6}
 \contentsline {section}{\numberline {6.1}ADSR Envelopes}{43}{section.6.1}
-\contentsline {chapter}{\numberline {7}ModulationMatrix}{46}{chapter.7}
-\contentsline {chapter}{\numberline {8}Arpeggiator}{47}{chapter.8}
-\contentsline {chapter}{\numberline {9}GlobalSettings}{48}{chapter.9}
+\contentsline {section}{\numberline {6.2}Low Frequency Oscillators (LFOs)}{46}{section.6.2}
+\contentsline {section}{\numberline {6.3}XY-Pad}{48}{section.6.3}
+\contentsline {section}{\numberline {6.4}Modwheel \& Pitchbend}{48}{section.6.4}
+\contentsline {chapter}{\numberline {7}ModulationMatrix}{50}{chapter.7}
+\contentsline {section}{\numberline {7.1}Basic Operation}{50}{section.7.1}
+\contentsline {section}{\numberline {7.2}Modulation Scaling}{51}{section.7.2}
+\contentsline {section}{\numberline {7.3}Mono \& Poly Modulation}{52}{section.7.3}
+\contentsline {section}{\numberline {7.4}Modulation Sources}{53}{section.7.4}
+\contentsline {section}{\numberline {7.5}Modulation Destinations}{55}{section.7.5}
+\contentsline {chapter}{\numberline {8}Arpeggiator \& Step Sequencer}{61}{chapter.8}
+\contentsline {chapter}{\numberline {9}GlobalSettings}{67}{chapter.9}

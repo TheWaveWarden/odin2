@@ -35,6 +35,14 @@
 \BOOKMARK [1][-]{section.5.4}{Flanger}{chapter.5}% 35
 \BOOKMARK [0][-]{chapter.6}{Modulators}{}% 36
 \BOOKMARK [1][-]{section.6.1}{ADSR Envelopes}{chapter.6}% 37
-\BOOKMARK [0][-]{chapter.7}{ModulationMatrix}{}% 38
-\BOOKMARK [0][-]{chapter.8}{Arpeggiator}{}% 39
-\BOOKMARK [0][-]{chapter.9}{GlobalSettings}{}% 40
+\BOOKMARK [1][-]{section.6.2}{Low Frequency Oscillators \(LFOs\)}{chapter.6}% 38
+\BOOKMARK [1][-]{section.6.3}{XY-Pad}{chapter.6}% 39
+\BOOKMARK [1][-]{section.6.4}{Modwheel \046 Pitchbend}{chapter.6}% 40
+\BOOKMARK [0][-]{chapter.7}{ModulationMatrix}{}% 41
+\BOOKMARK [1][-]{section.7.1}{Basic Operation}{chapter.7}% 42
+\BOOKMARK [1][-]{section.7.2}{Modulation Scaling}{chapter.7}% 43
+\BOOKMARK [1][-]{section.7.3}{Mono \046 Poly Modulation}{chapter.7}% 44
+\BOOKMARK [1][-]{section.7.4}{Modulation Sources}{chapter.7}% 45
+\BOOKMARK [1][-]{section.7.5}{Modulation Destinations}{chapter.7}% 46
+\BOOKMARK [0][-]{chapter.8}{Arpeggiator \046 Step Sequencer}{}% 47
+\BOOKMARK [0][-]{chapter.9}{GlobalSettings}{}% 48
