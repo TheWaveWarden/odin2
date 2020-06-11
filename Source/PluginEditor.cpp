@@ -132,10 +132,10 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	m_filter_dropdown_menu.addItem(FILTER_TYPE_HP24, "Highpass 24");
 	m_filter_dropdown_menu.addItem(FILTER_TYPE_HP12, "Highpass 12");
 	m_filter_dropdown_menu.addSeparator();
-	m_filter_dropdown_menu.addItem(FILTER_TYPE_SEM12, "OH-12");
+	m_filter_dropdown_menu.addItem(FILTER_TYPE_SEM12, "SEM-12");
 	m_filter_dropdown_menu.addItem(FILTER_TYPE_DIODE, "Diode Ladder");
-	m_filter_dropdown_menu.addItem(FILTER_TYPE_KORG_LP, "KO-35 LP");
-	m_filter_dropdown_menu.addItem(FILTER_TYPE_KORG_HP, "KO-35 HP");
+	m_filter_dropdown_menu.addItem(FILTER_TYPE_KORG_LP, "KRG-35 LP");
+	m_filter_dropdown_menu.addItem(FILTER_TYPE_KORG_HP, "KRG-35 HP");
 	m_filter_dropdown_menu.addSeparator();
 	m_filter_dropdown_menu.addItem(FILTER_TYPE_COMB, "Comb Filter");
 	m_filter_dropdown_menu.addItem(FILTER_TYPE_FORMANT, "Formant Filter");

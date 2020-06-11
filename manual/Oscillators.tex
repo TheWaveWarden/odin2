@@ -32,10 +32,10 @@ There are some controls which are common to all oscillator modules:
 \end{center}
 
 \audioparameter{Osc Reset (Rst)}{0}{1}
-{Resets the waveform to its initial position each time a key is pressed. This is usefull to get more consistent sounding notes, for example for tight basslines. If this is turned off, the wave will continue where it ended on the last note.}
+{Resets the waveform to its initial position each time a key is pressed. This is useful to get more consistent sounding notes, for example for tight basslines. If this is turned off, the wave will continue where it ended on the last note.}
 
 \audioparameter{Osc Sync}{0}{1}
-{This parameter is only available for Osc 2 \& 3. Activating sync will sync this osc to Osc 1. That means each time Osc 1 completes a cycle, this osc is reset to its initial position. The pitch of the oscillator is thereby controlled by Osc 1. This can introduce lots of harmonics, even for soft waveforms like the sinewave.
+{This parameter is only available for Osc 2 \& 3. Activating sync will sync this osc to Osc 1. That means each time Osc 1 completes a cycle, this osc is reset to its initial position. The pitch of the oscillator is thereby controlled by Osc 1. This can introduce lots of harmonics, even for soft waveforms like the sine wave.
 
 \vspace{5mm}
 
@@ -56,11 +56,11 @@ The analog osc aims to emulate the sound of classic analog synthesis. The first 
 
 \fat{Sawtooth}:
 
-The classic sawtooth wave. It is very rich in harmonics and forms an excellent starting point for a wide variety of sounds. This particular Sawtooth emulates the way analog syntheizers generate saw-waves. The result is a (phase-corrected) "fat-saw". This variant doesn't rise linearly as the icon would suggest, but in a slight curve, providing a different tonal character.
+The classic sawtooth wave. It is very rich in harmonics and forms an excellent starting point for a wide variety of sounds. This particular Sawtooth emulates the way analog synthesizers generate saw-waves. The result is a (phase-corrected) "fat-saw". This variant doesn't rise linearly as the icon would suggest, but in a slight curve, providing a different tonal character.
 
 \fat{Pulse Wave}:
 
-The pulse wave has a thinner sound than the savetooth, sometimes giving the impression of a "hollow" sound body being emulated. The pulse still has a lot of harmonics, making it a common alternative to the sawtooth. The width of the pulse can be adjusted, see the next parameter \fat{Pulse Width}.
+The pulse wave has a thinner sound than the sawtooth, sometimes giving the impression of a "hollow" sound body being emulated. The pulse still has a lot of harmonics, making it a common alternative to the sawtooth. The width of the pulse can be adjusted, see the next parameter \fat{Pulse Width}.
 
 \fat{Triangle}:
 
@@ -68,19 +68,19 @@ The triangle wave is much gentler than the saw and pulse waves. It still has a l
 
 \fat{Sine}:
 
-The purest of all waveforms. The sinewave (by its very definition) has no harmonics at all. The resulting sound is very easy on the ears.}
+The purest of all waveforms. The sine wave (by its very definition) has no harmonics at all. The resulting sound is very easy on the ears.}
 
 \audioparameter{Pulse Width (PW)}{1}{1}
-{This parameter has no effect if the waveform selected is not a pulse. It shifst the duty cycle of the pulse wave, making it stay longer in the lower section for higher values.
+{This parameter has no effect if the waveform selected is not a pulse. It shifts the duty cycle of the pulse wave, making it stay longer in the lower section for higher values.
 
 \begin{center}
     \includegraphics[width=\textwidth]{graphics/PWM.png}
 \end{center}
 
-The pulse width control can not be used to shut the sound completely ($PW = 0$ or $PW = 1$), but that can be achieved when modulating via the modmatrix.}
+The pulse width control can not be used to shut the sound completely ($PW = 0$ or $PW = 1$), but that can be achieved when modulating via the \modmatrix.}
 
 \audioparameter{Drift}{0}{1}
-{Analog oscillators tend to not be stable in their frequency. Drift emulates this behaviour by randomly shifting the pitch up and down just a little bit over time. For a single osc, the effect is not very apparent, but becomes clear once two oscillators are used.}
+{Analog oscillators tend to not be stable in their frequency. Drift emulates this behavior by randomly shifting the pitch up and down just a little bit over time. For a single osc, the effect is not very apparent, but becomes clear once two oscillators are used.}
 
 \section{Wavetable Osc}
 \begin{center}
@@ -95,7 +95,7 @@ The Wavetable Osc allows you to create evolving sounds, which feature more than 
 {Fades through the four waves in the selected wavetable. A value of $0$ will give the first wave, $0.333$ the second, $0.666$ the third and $1$ the last wave.}
 
 \audioparameter{Modulation}{0}{0}
-{Selects a modulation source, which can be used to modulate the Wavetable Position. Modulation Envelope and LFO1 are selectable. Please note that arbitrary modulation sources can be sected when working with the \modmatrix. This slot is merely for a fast and convenient way to set up modulation.}
+{Selects a modulation source, which can be used to modulate the Wavetable Position. Modulation Envelope and LFO1 are selectable. Please note that arbitrary modulation sources can be selected when working with the \modmatrix. This slot is merely for a fast and convenient way to set up modulation.}
 
 \audioparameter{Amount}{0}{1}
 {Sets the amount of modulation being used to modify the Wavetable Position. Positive and negative values are possible.}
@@ -104,10 +104,10 @@ The Wavetable Osc allows you to create evolving sounds, which feature more than 
 \begin{center}
     \includegraphics[width=0.5\textwidth]{graphics/multi_osc.png}
 \end{center}
-The Multi Osc is four oscillators disguised as one. These can be arbitraritly detuned and can even use different waveforms, which results in a thicc, rich sound.
+The Multi Osc is four oscillators disguised as one. These can be arbitrarily detuned and can even use different waveforms, which results in a thicc, rich sound.
 
 \audioparameter{Detune}{1}{1}
-{Detunes the four sub-oscillators agains each other. The detune values are calculated to avoid beating (random phase-cancellation).}
+{Detunes the four sub-oscillators against each other. The detune values are calculated to avoid beating (random phase-cancellation).}
 
 \audioparameter{Wavetable}{0}{0}
 {The same as in Wavetable Osc: Selects which wavetable to be used. A wide variety of sounds is available, starting with analog waveforms, human voice like sounds, additive waves, waveforms taken from instruments and many, many more.}
@@ -125,23 +125,23 @@ The Multi Osc is four oscillators disguised as one. These can be arbitraritly de
 The Vector Osc gives even more options for evolving sounds than the Wavetable Osc. Four freely definable waves can be interpolated in a very intuitive graphic way via an XY-pad.
 
 \audioparameter{A, B, C \& D}{0}{0}
-{Select the waves to be used. Each of the four letters mark one cornder of the XY-pad, as the graphic suggests. Virtually any waveform from the entire synthesizer can be chosen for any of the corners. This also includes any of the (see \hyperref[wavedraw]{Draw Oscillators}).
+{Select the waves to be used. Each of the four letters mark one corner of the XY-pad, as the graphic suggests. Virtually any waveform from the entire synthesizer can be chosen for any of the corners. This also includes any of the drawable waveforms (see \hyperref[wavedraw]{Draw Oscillators}).
 
 When selecting  Draw Osc 1, 2 \& 3, the waves you have drawn in osc slots 1, 2 and \& 3 respectively are used.}
 
 \audioparameter{X \& Y}{1}{1}
-{Moves the handle over the XY pad. Each of the corners represent the waveform chosen from the A, B, C and D dropdowns. Moving closer to a corner will make the sound closely relate the waveform of that corner. When being in the corner, the resulting waveform is purely the one selected for that corner. Uses bilinear interpolation to fade through the four tables.}
+{Moves the handle over the XY pad. Each of the corners represent the waveform chosen from the A, B, C and D drop down menus. Moving closer to a corner will make the sound more closely relate the waveform of that corner. When being in a corner, the resulting waveform is purely the one selected for that corner. Uses bilinear interpolation to fade through the four tables.}
 
 \section{Chiptune Osc}
 \begin{center}
     \includegraphics[width=0.5\textwidth]{graphics/chiptune_osc.png}
 \end{center}
-The Chiptune Osc is an easy way to get nostalgic for your childhood. It aims to emulate the sound of yesteryear while emulating the processing capabilities of a 4-Bit soundchip, like it was used in the Nintendo Entertainment System NES or original Nintendo Gameboy. It also features a simple arpeggiator, with two or three steps being selectable. Whilest being able to produce harmonic sounds, it also features a dedicated chiptune noise module.
+The Chiptune Osc is an easy way to get nostalgic for your childhood. It aims to emulate the sound of yesteryear while emulating the processing capabilities of a 4-Bit sound chip, like it was used in the Nintendo Entertainment System NES or original Nintendo GameBoy. It also features a simple arpeggiator, with two or three steps being selectable. Whilst being able to produce harmonic sounds, it also features a dedicated chiptune noise module.
 
 \audioparameter{Waveform}{0}{0}
-{Lets you select from a variety of waveforms, like you would typically find on the soundchips of yesteryear. Available are a bunch of pulse waves, a triangle, saw and sine variant. All of these waves are limited to a 4Bit resolution (16 steps) on the $Y$-axis. On top of these, you can select any of the \hyperref[chipdraw]{ChipDraw} waves.
+{Lets you select from a variety of waveforms, like you would typically find on the sound chips of yesteryear. Available are a bunch of pulse waves, a triangle, saw and sine variant. All of these waves are limited to a 4Bit resolution (16 steps) on the $Y$-axis. On top of these, you can select any of the \hyperref[chipdraw]{ChipDraw} waves.
 
-To clarify: ChipDraw 1, 2 \& 3 refer to the waves you have drawn in osc slots 1, 2 and \& 3 respectively. You need to apply changes in the ChipdDraw Oscs for the change to take effekt (see \hyperref[chipdraw]{ChipDraw Osc}).}
+To clarify: ChipDraw 1, 2 \& 3 refer to the waves you have drawn in osc slots 1, 2 and \& 3 respectively. You need to apply changes in the ChipDraw Oscs for the change to take effect (see \hyperref[chipdraw]{ChipDraw Osc}).}
 
 \audioparameter{Arpeggiator}{0}{1}
 {Turns on an internal arpeggiator module, which makes the oscillator jump over predefined semitone values. See the next parameters for specifics.}
@@ -156,7 +156,7 @@ To clarify: ChipDraw 1, 2 \& 3 refer to the waves you have drawn in osc slots 1,
 {Sets the speed of the arpeggiator in Hz.}
 
 \audioparameter{Noise}{0}{1}
-{Enabling Noise will change stop the output of the selected wavform. Instead, the oscillator will generate a random value to be output each time a cycle is complete. This creates a classic noise effect like it was used on early game consoles. Internally, 3x oversampling is used to remove aliasing on the jumps between values. Note that this noise is dependent on the note being played and has a perceived pitch. It is also possible to use the noise module while the Chiptune arpeggiator is enabled.}
+{Enabling Noise will change stop the output of the selected waveform. Instead, the oscillator will generate a random value to be output each time a cycle is complete. This creates a classic noise effect like it was used on early game consoles. Internally, 3x oversampling is used to remove aliasing on the jumps between values. Note that this noise is dependent on the note being played and has a perceived pitch. It is also possible to use the noise module while the Chiptune arpeggiator is enabled.}
 
 \section{FM Osc}
 \label{fm_osc}
@@ -173,7 +173,7 @@ FM will usually produce a metallic, bell-like sound.
 When selecting  Draw Osc 1, 2 \& 3, the waves you have drawn in osc slots 1, 2 and \& 3 respectively are used.}
 
 \audioparameter{Ratio}{1}{0}
-{The numbers above/below the waveform describe the base-frequency relation modulator and carrier have to one another. The frequency of the modulator will alwlays be
+{The numbers above/below the waveform describe the base-frequency relation modulator and carrier have to one another. The frequency of the modulator will always be
 
 \begin{equation}
     f_{mod} = f_{car} \frac{Ratio_{mod}}{Ratio_{car}}
@@ -181,12 +181,12 @@ When selecting  Draw Osc 1, 2 \& 3, the waves you have drawn in osc slots 1, 2 a
 
 So for example using the values $Ratio_{mod} = 2$ and $Ratio_{mod} = 1$ will put the modulator one octave (double the frequency) above the carrier. The base freq of the carrier is the pitch played for the note.
 
-Using fractions which are not reducable to "simple" fractions, like $\frac{11}{7}$ will yield wilder results than "simple" ones like $\frac{1}{2}$.
+Using fractions which are not reducible to "simple" fractions, like $\frac{11}{7}$ will yield wilder results than "simple" ones like $\frac{1}{2}$.
 
 Note that modulating these values from the \modmatrix, allows for fractions which are non-rational (continuous modulation).}
 
 \audioparameter{FM}{1}{1}
-{This is where the magic happens: The FM amount controls how deep the modulator modulates the frequency of the carrier. A value of zero will show no modulation at all, so the carrier is playing like a normal osc. When increasing the amount, the sound gets more and more metallic. The range of this parameter can be extended over its natural range via the modmatrix.}
+{This is where the magic happens: The FM amount controls how deep the modulator modulates the frequency of the carrier. A value of zero will show no modulation at all, so the carrier is playing like a normal osc. When increasing the amount, the sound gets more and more metallic. The range of this parameter can be extended over its natural range via the \modmatrix.}
 
 \section{PM Osc}
 \begin{center}
@@ -200,7 +200,7 @@ PM or Phase Modulation, is closely related to FM or Frequency Modulation. Like t
 When selecting  Draw Osc 1, 2 \& 3, the waves you have drawn in osc slots 1, 2 and \& 3 respectively are used.}
 
 \audioparameter{Ratio}{1}{0}
-{The numbers above/below the waveform describe the base-frequency relation modulator and carrier have to one another. The frequency of the modulator will alwlays be
+{The numbers above/below the waveform describe the base-frequency relation modulator and carrier have to one another. The frequency of the modulator will always be
 
 \begin{equation}
     f_{mod} = f_{car} \frac{Ratio_{mod}}{Ratio_{car}}
@@ -208,12 +208,12 @@ When selecting  Draw Osc 1, 2 \& 3, the waves you have drawn in osc slots 1, 2 a
 
 So for example using the values $Ratio_{mod} = 2$ and $Ratio_{mod} = 1$ will put the modulator one octave (double the frequency) above the carrier. The base freq of the carrier is the pitch played for the note.
 
-Using fractions which are not reducable to "simple" fractions, like $\frac{11}{7}$ will yield wilder results than "simple" ones like $\frac{1}{2}$.
+Using fractions which are not reducible to "simple" fractions, like $\frac{11}{7}$ will yield wilder results than "simple" ones like $\frac{1}{2}$.
 
 Note that modulating these values from the \modmatrix, allows for fractions which are non-rational (continuous modulation).}
 
 \audioparameter{PM}{1}{1}
-{The PM amount controls how deep the modulator modulates the phase of the carrier. A value of zero will show no modulation at all, so the carrier is playing like a normal osc. The range of this parameter can be extended over its natural range via the modmatrix.}
+{The PM amount controls how deep the modulator modulates the phase of the carrier. A value of zero will show no modulation at all, so the carrier is playing like a normal osc. The range of this parameter can be extended over its natural range via the \modmatrix.}
 
 \section{Noise Osc}
 \begin{center}
@@ -233,7 +233,7 @@ The Noise Osc provides a source of noise in Odin 2. The initial noise generation
 \begin{center}
     \includegraphics[width=0.5\textwidth]{graphics/wavedraw_osc.png}
 \end{center}
-The wavedraw osc lets you experiment with waveforms by letting you draw them yourself.
+The WaveDraw Osc lets you experiment with waveforms by letting you draw them yourself.
 
 \begin{tcolorbox}[colback=yellow!10!white,
         colframe=white!20!black,
@@ -253,7 +253,7 @@ The drawn waveform is sampled using 200 discrete steps. When you press the apply
 \begin{center}
     \includegraphics[width=0.5\textwidth]{graphics/chipdraw_osc.png}
 \end{center}
-The ChipDraw Osc lets you draw a custom chipdraw waveform. It resembles the capabilities of the "custom waveform" on an Nintendo Entertainment System, NES soundsystem. The waveform consists of 32 steps in horizontal direction, which can be offset to 16 values (4Bit) in vertical direction.
+The ChipDraw Osc lets you draw a custom ChipDraw waveform. It resembles the capabilities of the "custom waveform" on an Nintendo Entertainment System (NES) sound system. The waveform consists of 32 steps in horizontal direction, which can be offset to 16 values (4Bit) in vertical direction.
 
 \begin{tcolorbox}[colback=yellow!10!white,
         colframe=white!20!black,
@@ -272,7 +272,7 @@ When you press the apply button, the waveform is processed into the spectral dom
 \begin{center}
     \includegraphics[width=0.5\textwidth]{graphics/specdraw_osc.png}
 \end{center}
-The SpecDraw Osc opens the sonic capabilities with some \fat{additive synthesis}. Unlike subtractive synthesis, where you filter frequencies from harmonically rich waves, additive synthesis lets you build a sound by stacking up individual harmonics. The n-th harmonic is a sinewave which has n-times the frequency of the base note. The Specdraw Osc lets you draw the amplitude of these sinewaves. The left-most bar represents the fundamental. In the initial state, only this bar ist present, resulting in an overall sinewave osc. As you bring more overtones, the sound gets richer. Addiitve synthesis is capable of creating timbres which are not possible with subtractive synthesis.
+The SpecDraw Osc opens the sonic capabilities with some \fat{additive synthesis}. Unlike subtractive synthesis, where you filter frequencies from harmonically rich waves, additive synthesis lets you build a sound by stacking up individual harmonics. The n-th harmonic is a sine wave which has n-times the frequency of the base note. The SpecDraw Osc lets you draw the amplitude of these sine waves. The left-most bar represents the fundamental. In the initial state, only this bar ist present, resulting in an overall sine wave osc. As you bring more overtones, the sound gets richer. Additive synthesis is capable of creating timbres which are not possible with subtractive synthesis.
 
 \begin{tcolorbox}[colback=yellow!10!white,
         colframe=white!20!black,

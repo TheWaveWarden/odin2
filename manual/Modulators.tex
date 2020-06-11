@@ -1,7 +1,7 @@
 \chapter{Modulators}
-The previous chapters wrote about the audio generators and manipulators. This section will take a look at some usefull modules which are used to modulate parameters within Odin 2.
+The previous chapters wrote about the audio generators and manipulators. This section will take a look at some useful modules which are used to modulate parameters within Odin 2.
 
-Some of the modulators have hardwired functionalities in the synthesizer. However, the true potential of these (and the entire synth, really) lies in appling modulation from the \modmatrix.
+Some of the modulators have hardwired functionalities in the synthesizer. However, the true potential of these (and the entire synth, really) lies in applying modulation from the \modmatrix.
 
 \section{ADSR Envelopes}
 \label{ADSR}
@@ -13,7 +13,7 @@ Odin 2 provides four of these Envelopes:
     \includegraphics[width=0.4\textwidth]{graphics/ADSR_section.png}
 \end{center}
 
-The \fat{Amp Envelope} is hardwired to control the volume curve of the voice. This effect is not applied in the actual Amplifier module, but after the Distortion section (see Section \ref{routing}). Note that the Amp Envelope can still be used as a freely assignable modulation source in the \modmatrix. This Envelope is calculated for each voice independently.
+The \fat{Amp Envelope} is hardwired to control the volume curve of the voice. This effect is not applied in the actual Amplifier module, but after the Distortion section (see the routing graphic in Section \ref{routing}). Note that the Amp Envelope can still be used as a freely assignable modulation source in the \modmatrix. This Envelope is calculated for each voice independently.
 \label{amp_env}
 
 The \fat{Filter Envelope} is hardwired to modulate the frequencies of the various Filter modules in Odin 2. For this to take effect, the parameter "Filter Env" (see Section \ref{filters}) has to be enabled. The modulation by this envelope can be in either positive or negative direction. This Envelope is calculated for each voice independently.
@@ -26,7 +26,9 @@ To switch between the different Envelope modules, use their handles on top of th
 \begin{center}
     \includegraphics[width=0.5\textwidth]{graphics/ADSR_handles.png}
 \end{center}
-Two envelopes are paired to occupy the same space. To acces the currently not visible Envelope, simply click on its name.
+Two envelopes are paired to occupy the same space. To access the currently not visible Envelope, simply click on its name.
+
+The following graphic shows the structure of an ADSR envelope:
 
 \begin{center}
     \includegraphics[width=\textwidth]{graphics/ADSR.png}
@@ -35,7 +37,7 @@ Two envelopes are paired to occupy the same space. To acces the currently not vi
 \audioparameter{Attack}{1}{1}{
     The Attack determines the time the Envelope takes from the start to the first peak.
 
-    When playing the synth in Legato mode (see Section \ref{legato}), the attack section will start from the last value the Enveope from the previous voice produced. No matter the start height, the slope of the Attack will always be the same as if it started from zero.
+    When playing the synth in Legato mode (see Section \ref{legato}), the attack section will start from the last value the Envelope from the previous voice produced. No matter the start height, the slope of the Attack will always be the same as if it started from zero.
 
     Using really short Attack times can introduce clicks into the sound, so it is advisable to have at least some attack for most situations.
 
@@ -77,7 +79,7 @@ To switch between the different LFO modules, use their handles on top of the sec
 \begin{center}
     \includegraphics[width=0.5\textwidth]{graphics/LFO_handles.png}
 \end{center}
-Two LFOs are paired to occupy the same space. To acces the one currently not visible , simply click on its name.
+Two LFOs are paired to occupy the same space. To access the one currently not visible , simply click on its name.
 
 \audioparameter{LFO Freq}{1}{1}{
     Controls the speed of the oscillator. Depending on the parameter "LFO Sync", this is either a dial for continuous values in Hz, or a custom selector to sync the time to the beat. This selector allows for arbitrary fractions of the current host BPM, for example 3/16th notes:
@@ -182,21 +184,21 @@ The XY-Pad provides a convenient way to combine two independent modulation sourc
     Controls the Y-axis of the XY-Pad.
 }
 
-\section{Modwheel \& Pitchbend}
+\section{Modwheel \& Pitch Bend}
 \label{wheels}
 
 \begin{center}
     \includegraphics[width=0.15\textwidth]{graphics/wheels.png}
 \end{center}
 
-Modwheel and Pitchbend provide two basic modulation sources which can be found on most MIDI keyboards.
+Modwheel and Pitch Bend provide two basic modulation sources which can be found on most MIDI keyboards.
 
-\audioparameter{Pitchbend}{0}{1}{
-    Pitchbend allows you to easily transpose the sound of all Oscillators (See Chapter \ref{oscillators}). The amount of transposition is controlled by the parameter "Pitchbend Range" in semitones. Default is +/- 12 semitones.
+\audioparameter{Pitch Bend}{0}{1}{
+    Pitch Bend allows you to easily transpose the sound of all Oscillators (See Chapter \ref{oscillators}). The amount of transposition is controlled by the parameter "Pitch Bend Range" in semitones. Default is +/- 12 semitones.
 
-    This control will automatically track all MIDI Pitchbend messages send to Odin 2 and update accordingly. 
+    This control will automatically track all MIDI Pitch Bend messages send to Odin 2 and update accordingly. 
     
-    You can use the pitchbend as a modulation source as well.
+    You can use the Pitch Bend as a modulation source as well.
 }
 
 \audioparameter{Pitchbend Range}{0}{0}{

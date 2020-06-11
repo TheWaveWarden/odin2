@@ -1,7 +1,6 @@
-\chapter{ModulationMatrix}
+\chapter{Modulation Matrix}
 \label{chapter_matrix}
 
-TODO MODDEST ARPEGGIATOR
 
 \begin{center}
     \includegraphics[width=0.9\textwidth]{graphics/modmatrix.png}
@@ -66,7 +65,7 @@ We can see how the actual modulation curve gets more complex instantaneously.
 
 \section{Mono \& Poly Modulation}
 
-Some of the modulation sources and destinations inside Odin 2 are polyphonic (i.e. exist once per voice), while others are monophonic (exist once per plugin instance). The following table summarizes the behaviour when setting up poly/mono source and destination combos:
+Some of the modulation sources and destinations inside Odin 2 are polyphonic (i.e. exist once per voice), while others are monophonic (exist once per plugin instance). The following table summarizes the behavior when setting up poly/mono source and destination combos:
 
 {\renewcommand{\arraystretch}{1.6}
 \begin{tabular}{| L{0.2\textwidth} | L{0.35\textwidth} | L{0.35\textwidth} |}
@@ -175,7 +174,7 @@ Note that all unipolar sources operate in the range [0, 1], and all bipolar sour
             The position of the \hyperref[wheels]{PitchBend wheel}.
         }
         \modsource{MIDI Note}{P}{U}{
-            The index of the MIDI note-on event, scaled from 0 (note: 0) to 1 (note: 127).
+            The index of the MIDI note-on event, scaled from 0 (note: 0, C-2) to 1 (note: 127, G8).
         }
         \modsource{MIDI Velocity}{P}{U}{
             The velocity of the MIDI note-on event, scaled from 0 (vel: 0) to 1 (vel: 127).
@@ -211,42 +210,47 @@ Note that all unipolar sources operate in the range [0, 1], and all bipolar sour
 \section{Modulation Destinations}
 \label{mod_destinations}
 
-An overview of all availabe modulation destinations in Odin 2. The collumn "Range" describes the amount of modulation that is applied if you use a "Constant" source and modulate by an amount of +100 or -100. Note that most destinations have internal logical limits for their modulation ranges. For example, the "Amplifier Pan" can not get out of the range [-1, 1].
+This is an overview of all available modulation destinations in Odin 2. The column "Range" describes the amount of modulation that is applied if you use a "Constant" source and modulate by an amount of +100 or -100. Note that most destinations have internal logical limits for their modulation ranges. For example, the "Amplifier Pan" can not get out of the range [-1, 1].
 
-\newcommand{\moddest}[4]{
+\newcommand{\moddest}[5]{
     \fat{#1} &
-    \footnotesize{#2} &
-    \footnotesize{\fat{+100}: #3}
+    \IfEqCase{#2}{%
+        {M}{\scriptsize{Mono}}%
+            {P}{\scriptsize{Poly}}%
+    }[\PackageError{audioparameter}{Undefined option to param: #2}{}]  &
+    \footnotesize{#3} &
+    \footnotesize{\fat{+100}: #4}
 
-    \footnotesize{\fat{-100}: #4}\\
+    \footnotesize{\fat{-100}: #5}\\
     \hline
 }
 
 \newcommand{\moddestcategory}[1]{
-    \multicolumn{3}{|c|}{\fat{#1}} \\
+    \multicolumn{4}{|c|}{\fat{#1}} \\
     \hline
 }
 
 {\renewcommand{\arraystretch}{1.4}
-    \begin{longtable}{| L{0.2\textwidth} | L{0.36\textwidth} | L{0.4\textwidth}|}
+    \begin{longtable}{| L{0.15\textwidth}| L{0.05\textwidth} | L{0.34\textwidth} | L{0.37\textwidth}|}
         \hline
 
-        \fat{Destination} &
-        \fat{Description} &
-        \fat{Range}         \\
+        \fat{Destination}             &
+        \scriptsize{\fat{Mono/ Poly}} &
+        \fat{Description}             &
+        \fat{Range}                     \\
         \hline
 
         \moddestcategory{Oscillator Common}
 
-        \moddest{Osc Pitch Exp}{
+        \moddest{Osc Pitch Exp}{P}{
             Exponential modulation of the oscillator pitch}{
             Two octaves up}{
             Two octaves down}
-        \moddest{Osc Pitch Lin}{
+        \moddest{Osc Pitch Lin}{P}{
             Linear modulation of the oscillator pitch}{
             Adds two times the current frequency}{
             Subtracts two times the current frequency, making the oscillator run backwards.}
-        \moddest{Osc Volume}{
+        \moddest{Osc Volume}{P}{
             Modulates the volume of the oscillator
         }{
             If the volume is below -12dB, then modulation is up to 0dB. If the volume is above -12dB, then modulation is 12dB up from that point.
@@ -255,7 +259,7 @@ An overview of all availabe modulation destinations in Odin 2. The collumn "Rang
         }
 
         \moddestcategory{Analog Osc}
-        \moddest{Pulse Width}{
+        \moddest{Pulse Width}{P}{
             Modulates the pulse width of the pulse wave. Unlike the control knob, this can be used to achieve a pulse-width of 0\% or 100\% (no sound) and beyond.
         }{
             Increase duty cycle by 100\%
@@ -263,7 +267,7 @@ An overview of all availabe modulation destinations in Odin 2. The collumn "Rang
             Decrease duty cycle by 100\%
         }
         \moddestcategory{Wavetable / Multi Osc}
-        \moddest{Osc Position}{
+        \moddest{Osc Position}{P}{
             Modulates the position used for interpolating between the four subtables.
         }{
             Move once through the entire table.
@@ -272,14 +276,14 @@ An overview of all availabe modulation destinations in Odin 2. The collumn "Rang
         }
         \moddestcategory{Multi Osc}
 
-        \moddest{Osc Detune}{
+        \moddest{Osc Detune}{P}{
             Modulates the detuning of the sub-oscillators.
         }{
             Same as moving the control knob by a value of +1.
         }{
             Same as moving the control knob by a value of -1.
         }
-        \moddest{Osc Spread}{
+        \moddest{Osc Spread}{P}{
             Modulates the spreading of the sub-oscillators across the wavetable.
         }{
             Same as moving the control knob by a value of +1.
@@ -287,14 +291,14 @@ An overview of all availabe modulation destinations in Odin 2. The collumn "Rang
             Same as moving the control knob by a value of -1.
         }
         \moddestcategory{Vector Osc}
-        \moddest{Osc X}{
+        \moddest{Osc X}{P}{
             Modulate the X position of the vector pad.
         }{
             Move the handle the width of the pad to the right.
         }{
             Move the handle the width of the pad to the left.
         }
-        \moddest{Osc Y}{
+        \moddest{Osc Y}{P}{
             Modulate the Y position of the vector pad.
         }{
             Move the handle the height of the pad up.
@@ -302,7 +306,7 @@ An overview of all availabe modulation destinations in Odin 2. The collumn "Rang
             Move the handle the height of the pad down.
         }
         \moddestcategory{Chiptune Osc}
-        \moddest{Osc Arp Speed}{
+        \moddest{Osc Arp Speed}{P}{
             Modulates the speed of the arpeggiator in the chiptune osc exponentially.
         }{
             Increase the speed by a factor of 4.
@@ -310,28 +314,28 @@ An overview of all availabe modulation destinations in Odin 2. The collumn "Rang
             Decrease the speed by a factor of $1/4$.
         }
         \moddestcategory{FM and PhaseMod Oscs}
-        \moddest{Osc FM amount}{
+        \moddest{Osc FM amount}{P}{
             Modulates the amount of frequency modulation between carrier and modulator oscs.
         }{
             Same as moving the control knob by a value of +1.
         }{
             Same as moving the control knob by a value of -1.
         }
-        \moddest{Osc FM amount}{
+        \moddest{Osc FM amount}{P}{
             Modulates the amount of phase modulation between carrier and modulator oscs.
         }{
             Same as moving the control knob by a value of +1.
         }{
             Same as moving the control knob by a value of -1.
         }
-        \moddest{Modulator Ratio}{
+        \moddest{Modulator Ratio}{P}{
             Modulates the ratio used for the modulator (see Section \ref{fm_osc}). Unlike the controls, this can be used to generate irrational fractions.
         }{
             Increases the current ratio by a factor of four.
         }{
             Decrease the current ratio by a factor of $1/4$.
         }
-        \moddest{Carrier Ratio}{
+        \moddest{Carrier Ratio}{P}{
             Modulates the ratio used for the carrier (see Section \ref{fm_osc}). Unlike the controls, this can be used to generate irrational fractions.
         }{
             Increases the current ratio by a factor of four.
@@ -339,14 +343,14 @@ An overview of all availabe modulation destinations in Odin 2. The collumn "Rang
             Decrease the current ratio by a factor of $1/4$.
         }
         \moddestcategory{Noise Osc}
-        \moddest{Osc LP Frequency}{
+        \moddest{Osc LP Frequency}{P}{
             Modulates the frequency of the lowpass filter in the noise osc exponentially.
         }{
             Modulates the frequency 64 semitones up (factor 40.317).
         }{
             Modulates the frequency 64 semitones down (factor 0.0248).
         }
-        \moddest{Osc HP Frequency}{
+        \moddest{Osc HP Frequency}{P}{
             Modulates the frequency of the highpass filter in the noise osc exponentially.
         }{
             Modulates the frequency 64 semitones up (factor 40.317).
@@ -354,49 +358,49 @@ An overview of all availabe modulation destinations in Odin 2. The collumn "Rang
             Modulates the frequency 64 semitones down (factor 0.0248).
         }
         \moddestcategory{}{Filter Common}
-        \moddest{Filter Frequency}{
+        \moddest{Filter Frequency}{P}{
             Modulates the filter frequency exponentially.
         }{
             Modulates the frequency 64 semitones up (factor 40.317).
         }{
             Modulates the frequency 64 semitones down (factor 0.0248).
         }
-        \moddest{Filter Resonance}{
+        \moddest{Filter Resonance}{P}{
             Modulates the resonance of the filter.
         }{
             Same as moving the control knob by a value of +1.
         }{
             Same as moving the control knob by a value of -1.
         }
-        \moddest{Filter Gain}{
+        \moddest{Filter Gain}{P}{
             Modulates the volume of the filter.
         }{
             If the current gain is below -12dB, then modulation is up to 0dB. If the gain is above -12dB, then modulation is 12dB up from that point.
         }{
             Modulates to $-\infty$dB.
         }
-        \moddest{Filter Env Amount}{
+        \moddest{Filter Env Amount}{P}{
             Modulates how much envelope is applied to the filter.
         }{
             Same as moving the control knob by a value of +1.
         }{
             Same as moving the control knob by a value of -1.
         }
-        \moddest{Filter Vel Amount}{
+        \moddest{Filter Vel Amount}{P}{
             Modulates the velocity sensitivity of the filter.
         }{
             Same as moving the control knob by a value of +1.
         }{
             Same as moving the control knob by a value of -1.
         }
-        \moddest{Filter Kbd Amount}{
+        \moddest{Filter Kbd Amount}{P}{
             Modulates the keyboard sensitivity of the filter.
         }{
             Same as moving the control knob by a value of +1.
         }{
             Same as moving the control knob by a value of -1.
         }
-        \moddest{Filter Saturation}{
+        \moddest{Filter Saturation}{P}{
             Modulates the saturation of the filter.
         }{
             Same as moving the control knob by a value of +1.
@@ -404,7 +408,7 @@ An overview of all availabe modulation destinations in Odin 2. The collumn "Rang
             Same as moving the control knob by a value of -1.
         }
         \moddestcategory{SEM-12 Filter}
-        \moddest{Filter SEM Transition}{
+        \moddest{Filter SEM Transition}{P}{
             Modulates the filter characteristic transition from lowpass over notch to highpass.
         }{
             Same as moving the control knob by a value of +1.
@@ -412,7 +416,7 @@ An overview of all availabe modulation destinations in Odin 2. The collumn "Rang
             Same as moving the control knob by a value of -1.
         }
         \moddestcategory{Formant Filter}
-        \moddest{Filter Formant Transition}{
+        \moddest{Filter Formant Transition}{P}{
             Modulates the transition from the left vowel to the right.
         }{
             Same as moving the control knob by a value of +1.
@@ -420,14 +424,14 @@ An overview of all availabe modulation destinations in Odin 2. The collumn "Rang
             Same as moving the control knob by a value of -1.
         }
         \moddestcategory{Amplifier}
-        \moddest{Amplifier Gain}{
+        \moddest{Amplifier Gain}{P}{
             Modulates the gain in the Amplifier module.
         }{
             If the current gain is below -12dB, then modulation is up to 0dB. If the gain is above -12dB, then modulation is 12dB up from that point.
         }{
             Modulates to $-\infty$dB.
         }
-        \moddest{Amplifier Pan}{
+        \moddest{Amplifier Pan}{P}{
             Modulates the position of the sound in the stereo field.
         }{
             Same as moving the control knob by a value of +1.
@@ -435,14 +439,14 @@ An overview of all availabe modulation destinations in Odin 2. The collumn "Rang
             Same as moving the control knob by a value of -1.
         }
         \moddestcategory{Distortion}
-        \moddest{Distortion Boost}{
+        \moddest{Distortion Boost}{P}{
             Modulates the input boost of the distortion module.
         }{
             Same as moving the control knob by a value of +1.
         }{
             Same as moving the control knob by a value of -1.
         }
-        \moddest{Distortion DryWet}{
+        \moddest{Distortion DryWet}{P}{
             Modulates the relation of unprocessed and processed signal in the Distortion module.
         }{
             Same as moving the control knob by a value of +1.
@@ -450,72 +454,72 @@ An overview of all availabe modulation destinations in Odin 2. The collumn "Rang
             Same as moving the control knob by a value of -1.
         }
         \moddestcategory{ADSR Envelopes}
-        \moddest{Env Attack}{
-            Modulates the attack time of the Envelope exponentially and linearly.
+        \moddest{Env Attack}{P}{
+            Modulates the attack time of the Envelope exponentially and linearly. This parameter is Mono for the Global Env.
         }{
             Scales the current time by a factor of 8 and then adds 0.3 seconds.
         }{
             Scales the current time by a factor of $1/8$ and then subtracts 0.3 seconds.
         }
-        \moddest{Env Decay}{
-            Modulates the decay time of the Envelope exponentially and linearly.
+        \moddest{Env Decay}{P}{
+            Modulates the decay time of the Envelope exponentially and linearly. This parameter is Mono for the Global Env.
         }{
             Scales the current time by a factor of 8 and then adds 0.3 seconds.
         }{
             Scales the current time by a factor of $1/8$ and then subtracts 0.3 seconds.
         }
-        \moddest{Env Sustain}{
+        \moddest{Env Sustain}{P}{
             Modulates the sustain value of the Envelope.
         }{
             Same as moving the control slider +1.
         }{
             Same as moving the control slider -1.
         }
-        \moddest{Env Release}{
-            Modulates the release time of the Envelope exponentially and linearly.
+        \moddest{Env Release}{P}{
+            Modulates the release time of the Envelope exponentially and linearly. This parameter is Mono for the Global Env.
         }{
             Scales the current time by a factor of 8 and then adds 0.3 seconds.
         }{
             Scales the current time by a factor of $1/8$ and then subtracts 0.3 seconds.
         }
         \moddestcategory{LFOs}
-        \moddest{LFO Freq}{
-            Modulates the frequency of the LFO exponentially
+        \moddest{LFO Freq}{P}{
+            Modulates the frequency of the LFO exponentially. This parameter is Mono for the Global LFO.
         }{
             Increases current frequency by 4 octaves (factor 16).
         }{
             Decreases current frequency by 4 octaves (factor 0.0625).
         }
         \moddestcategory{Delay}
-        \moddest{Delay Time}{
+        \moddest{Delay Time}{M}{
             Modulates the delay time exponentially.
         }{
             Increases the current time by a factor of 3.
         }{
             Decreases the current time by a factor of $1/3$.
         }
-        \moddest{Delay Feedback}{
+        \moddest{Delay Feedback}{M}{
             Modulates the feedback of the delay line.
         }{
             Same as moving the control knob by a value of +1.
         }{
             Same as moving the control knob by a value of -1.
         }
-        \moddest{Delay HP Freq}{
+        \moddest{Delay HP Freq}{M}{
             Modulates the frequency of the highpass filter in the Delay module exponentially.
         }{
             Modulates the frequency 64 semitones up (factor 40.317).
         }{
             Modulates the frequency 64 semitones down (factor 0.0248).
         }
-        \moddest{Delay Dry}{
+        \moddest{Delay Dry}{M}{
             Modulates the output of unprocessed signal from the Delay module.
         }{
             Same as moving the control knob by a value of +1.
         }{
             Same as moving the control knob by a value of -1.
         }
-        \moddest{Delay Wet}{
+        \moddest{Delay Wet}{M}{
             Modulates the output of processed signal from the Delay module.
         }{
             Same as moving the control knob by a value of +1.
@@ -523,35 +527,35 @@ An overview of all availabe modulation destinations in Odin 2. The collumn "Rang
             Same as moving the control knob by a value of -1.
         }
         \moddestcategory{Phaser}
-        \moddest{Phaser Rate}{
+        \moddest{Phaser Rate}{M}{
             Modulates the speed of the internal LFO exponentially.
         }{
             Increases the speed by a factor of 4.
         }{
             Decreases the speed by a factor of $1/4$.
         }
-        \moddest{Phaser Amount}{
+        \moddest{Phaser Amount}{M}{
             Modulates the depth of frequency modulation by the LFO in the Phaser.
         }{
             Same as moving the control knob by a value of +1.
         }{
             Same as moving the control knob by a value of -1.
         }
-        \moddest{Phaser Freq}{
+        \moddest{Phaser Freq}{M}{
             Modulates the base frequency of the internal allpass filters linearly.
         }{
             Moves the frequency up 2000Hz.
         }{
             Moves the frequency down 2000Hz.
         }
-        \moddest{Phaser Feedback}{
+        \moddest{Phaser Feedback}{M}{
             Modulates the internal feedback of the Phaser module.
         }{
             Same as moving the control knob by a value of +1.
         }{
             Same as moving the control knob by a value of -1.
         }
-        \moddest{Phaser Drywet}{
+        \moddest{Phaser Drywet}{M}{
             Modulates the ratio of processed and unprocess signals output by the Phaser module.
         }{
             Same as moving the control knob by a value of +1.
@@ -559,28 +563,28 @@ An overview of all availabe modulation destinations in Odin 2. The collumn "Rang
             Same as moving the control knob by a value of -1.
         }
         \moddestcategory{Chorus}
-        \moddest{Chorus Rate}{
+        \moddest{Chorus Rate}{M}{
             Modulates the speed of the internal LFO exponentially.
         }{
             Increases the speed by a factor of 4.
         }{
             Decreases the speed by a factor of $1/4$.
         }
-        \moddest{Chorus Amount}{
+        \moddest{Chorus Amount}{M}{
             Modulates the depth of frequency modulation by the LFO in the Chorus.
         }{
             Same as moving the control knob by a value of +1.
         }{
             Same as moving the control knob by a value of -1.
         }
-        \moddest{Chorus Feedback}{
+        \moddest{Chorus Feedback}{M}{
             Modulates the feedback of the internal delay line.
         }{
             Same as moving the control knob by a value of +1.
         }{
             Same as moving the control knob by a value of -1.
         }
-        \moddest{Chorus Drywet}{
+        \moddest{Chorus Drywet}{M}{
             Modulates the ratio of processed and unprocess signals output by the Chorus module.
         }{
             Same as moving the control knob by a value of +1.
@@ -588,49 +592,63 @@ An overview of all availabe modulation destinations in Odin 2. The collumn "Rang
             Same as moving the control knob by a value of -1.
         }
         \moddestcategory{Phaser}
-        \moddest{Phaser Rate}{
+        \moddest{Phaser Rate}{M}{
             Modulates the speed of the internal LFO exponentially.
         }{
             Increases the speed by a factor of 4.
         }{
             Decreases the speed by a factor of $1/4$.
         }
-        \moddest{Phaser Amount}{
+        \moddest{Phaser Amount}{M}{
             Modulates the depth of frequency modulation by the LFO in the Phaser.
         }{
             Same as moving the control knob by a value of +1.
         }{
             Same as moving the control knob by a value of -1.
         }
-        \moddest{Phaser Feedback}{
+        \moddest{Phaser Feedback}{M}{
             Modulates the feedback of the internal delay line.
         }{
             Same as moving the control knob by a value of +1.
         }{
             Same as moving the control knob by a value of -1.
         }
-        \moddest{Phaser Drywet}{
+        \moddest{Phaser Drywet}{M}{
             Modulates the ratio of processed and unprocess signals output by the Phaser module.
         }{
             Same as moving the control knob by a value of +1.
         }{
             Same as moving the control knob by a value of -1.
         }
+        \moddestcategory{Arpeggiator}
+        \moddest{Arp Speed}{M}{
+            Modulates the speed of the Arpeggiator module exponentially
+        }{
+            Doubles the speed.
+        }{
+            Halves the speed.
+        }
+        \moddest{Arp Gate}{M}{
+            Modulates the gate time in the Arpeggiator module.
+        }{
+            Adds 100\% gate time.
+        }{
+            Subtracts 100\% gate time.
+        }
         \moddestcategory{Global}
-        \moddest{Glide}{
+        \moddest{Glide}{M}{
             Modulates the Glide parameter in the synth (see Section \ref{glide}).
         }{
             Same as moving the control knob by a value of +1.
         }{
             Same as moving the control knob by a value of -1.
         }
-        \moddest{Master}{
+        \moddest{Master}{M}{
             Modulates the master gain of the synthesizer.
         }{
             If the current master gain is below -12dB, then modulation is up to 0dB. If the master gain is above -12dB, then modulation is 12dB up from that point.
         }{
             Modulates to $-\infty$dB.
         }
-
     \end{longtable}
 }

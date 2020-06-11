@@ -7,6 +7,7 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="211.35309mm"
@@ -89,21 +90,21 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.8607713"
-     inkscape:cx="434.88789"
-     inkscape:cy="202.76012"
+     inkscape:zoom="1.315764"
+     inkscape:cx="526.48968"
+     inkscape:cy="232.87239"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:snap-global="false"
+     inkscape:snap-global="true"
      fit-margin-top="10"
      fit-margin-left="10"
      fit-margin-right="10"
      fit-margin-bottom="10"
-     inkscape:window-width="956"
-     inkscape:window-height="1044"
-     inkscape:window-x="960"
-     inkscape:window-y="202"
+     inkscape:window-width="2556"
+     inkscape:window-height="1400"
+     inkscape:window-x="0"
+     inkscape:window-y="38"
      inkscape:window-maximized="0" />
   <metadata
      id="metadata5">
@@ -128,7 +129,7 @@
        id="path815"
        inkscape:connector-curvature="0" />
     <path
-       style="fill:none;stroke:#3092be;stroke-width:0.36500001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:none;stroke:#3092be;stroke-width:0.565;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="M 3.9687499,41.771575 37.041665,16.825148 V 42.244047 L 69.736606,17.014136 V 42.999999 L 92.415178,24.951636"
        id="path1105"
        inkscape:connector-curvature="0" />
@@ -149,11 +150,11 @@
          y="64.495399"
          style="stroke-width:0.1188262">Osc 2</tspan></text>
     <path
-       style="fill:none;stroke:#44aa00;stroke-width:0.36500001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="M 4.1254449,60.051746 C 27.465475,30.097133 46.207589,59.914435 46.207589,59.914435 c 24.405961,29.665929 40.915921,0 40.915921,0"
+       style="fill:none;stroke:#44aa00;stroke-width:0.565;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 4.1254449,60.051746 C 27.364931,28.387892 44.196717,57.099214 46.207589,59.914435"
        id="path1423"
        inkscape:connector-curvature="0"
-       sodipodi:nodetypes="ccc" />
+       sodipodi:nodetypes="cc" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.27774334px;line-height:1000;font-family:squaretype;-inkscape-font-specification:squaretype;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.1188262"
@@ -183,7 +184,7 @@
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc" />
     <path
-       style="fill:none;stroke:#3092be;stroke-width:0.36500001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:none;stroke:#3092be;stroke-width:0.565;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="M 104.95059,42.040158 138.02351,17.093732 V 42.51263 L 170.71845,17.28272 V 43.268582 L 193.39703,25.22022"
        id="path1105-7"
        inkscape:connector-curvature="0" />
@@ -204,7 +205,7 @@
          y="64.763992"
          style="stroke-width:0.1188262">Osc 2</tspan></text>
     <path
-       style="fill:none;stroke:#44aa00;stroke-width:0.36500001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:none;stroke:#44aa00;stroke-width:0.565;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 105.10729,60.320329 c 14.59274,-19.498077 32.82172,-12.138055 32.82172,-12.138055 l 1e-5,11.811756"
        id="path1423-6"
        inkscape:connector-curvature="0"
@@ -221,13 +222,13 @@
          y="26.900923"
          style="stroke-width:0.1188262">Osc 1</tspan></text>
     <path
-       style="fill:none;stroke:#44aa00;stroke-width:0.36500001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:none;stroke:#44aa00;stroke-width:0.565;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 137.92902,59.99403 c 14.59274,-19.498077 32.82172,-12.138055 32.82172,-12.138055 l 1e-5,11.811756"
        id="path1423-6-2"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="ccc" />
     <path
-       style="fill:none;stroke:#44aa00;stroke-width:0.36500001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:none;stroke:#44aa00;stroke-width:0.565;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 170.75075,60.371536 c 7.95686,-12.862198 21.76192,-13.143491 21.76192,-13.143491"
        id="path1423-6-6"
        inkscape:connector-curvature="0"
@@ -254,5 +255,14 @@
          x="153.32784"
          y="11.795138"
          style="stroke-width:0.16073728">Sync</tspan></text>
+    <use
+       x="0"
+       y="0"
+       xlink:href="#path1423"
+       id="use942"
+       width="100%"
+       height="100%"
+       transform="rotate(-180,46.207589,59.914435)"
+       style="stroke-width:0.565;stroke-miterlimit:4;stroke-dasharray:none" />
   </g>
 </svg>

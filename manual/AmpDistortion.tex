@@ -9,7 +9,7 @@ The Amplifier and Distortion sections form the only parts in the signal flow in 
 \section{Amplifier}
 \label{amplifier}
 
-The amplifier section plays an important gain-staging role in odin. The sound can be boosted or attenuated, as well as panned.
+The amplifier section plays an important gain-staging role in Odin 2. The sound can be boosted or attenuated, as well as panned.
 
 \audioparameter{Amp Gain}{1}{1}{
     Changes the volume in in deciBels. Can be used to shut the sound entirely. Modulating this parameter from the \modmatrix  with $-100$ will always shut the sound. Modulating this parameter with $+100$ will raise the sound to 0dB if the current value is smaller than -12dB. If it is bigger than -12dB, it will modulate to +12dB from the current value.
@@ -41,9 +41,17 @@ Please note that the \hyperref[amp_env]{Amp Envelope} is not applied between the
 \section{Distortion}
 \label{distortion}
 
+\begin{center}
+    \includegraphics[width=0.35\textwidth]{graphics/distortion.png}
+\end{center}
+
 The Distortion module is capable of distorting the sound by various characteristic distortion functions. All the distortion types used in this section are threshold based: Once the wave surpasses a predefined value (in positive or negative direction), the processing will apply. Internally, 3x oversampling is used to prevent aliasing from the sharp cuts made to the waveform.
 
 \audioparameter{Distortion On}{0}{1}{
+    \begin{center}
+        \includegraphics[width=0.15\textwidth]{graphics/distortion_on.png}
+    \end{center}
+
     Turns the Distortion module on or off.
 }
 

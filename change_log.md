@@ -10,6 +10,8 @@
 - fixed issue where comb filter would produce smear effect on first note
 - fixed issue which would crash pluginval
 - made patch-list in dropdown case-insensistive
+- renamed OH-12 to SEM-12
+- renamed KO-35 to KRG-25
 # 2.1.0 beta
 - implemented Arpeggiator
 - new modulation sources: Arp Mod 1 & 2

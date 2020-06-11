@@ -52,12 +52,24 @@
 \usepackage{pagecolor}
 \usepackage{array}
 \usepackage{longtable}
+\usepackage{titlesec} 
+\usepackage{lipsum} % just to generate text for the example
+
+\titleformat{\chapter}[display]
+  {\bfseries\Huge}
+  {}%\filright\MakeUppercase{\chaptertitlename} \Huge\thechapter}
+  {1ex}
+  {\titlerule\vspace{1ex} \chaptertitlename \hspace{3mm} \Huge\thechapter \hfill}
+  [\vspace{1ex}\titlerule]
+
+
 
 \newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 
 
 \definecolor{parambackground}{rgb}{0.9470, 0.963, 1}
 
+%\titleformat{\chapter}[hang]{\Huge\bfseries}{\thechapter\hsp\textcolor{gray75}{|}\hsp}{0pt}{\Huge\bfseries}
 \begin{document}
 \pagecolor{white!95!black}
 \setlength{\parindent}{0pt}

@@ -1,9 +1,9 @@
 \chapter{Filters}
 
-TODO: modulation amouns by common controls
+TODO: modulation amount from  "common controls"
 
 \label{filters}
-Signal filters are one of the basic tools to shape your sound in subtractive synthesis. While the oscillators in Odin 2 are already capable of a wide array of sounds, unprocessed oscillators usually sound very sharp and not pleasing to the ears. So what is a filter? A filter selectively removes frequencies from the spectrum, usually with some dials for the user to control the rolloff. Filters can be charcaterized by their frequency response, which tells us which frequencies are being attenuated or boosted:
+Signal filters are one of the basic tools to shape your sound in subtractive synthesis. While the oscillators in Odin 2 are already capable of a wide array of sounds, unprocessed oscillators usually sound very sharp and not pleasing to the ears. So what is a filter? A filter selectively removes frequencies from the spectrum, usually with some dials for the user to control the roll-off. Filters can be characterized by their frequency response, which tells us which frequencies are being attenuated or boosted:
 
 \vspace{5mm}
 \begin{center}
@@ -12,7 +12,7 @@ Signal filters are one of the basic tools to shape your sound in subtractive syn
 
 \vspace{5mm}
 
-Odin 2 has three slots for filters which can be filled with a extensive selection of modules to shape your sound. A wide array of high quality virtual analog filter emulations is availabe, which emulate various analog filter circuits from synthesizer history.
+Odin 2 has three slots for filters which can be filled with a extensive selection of modules to shape your sound. A wide array of high quality virtual analog filter emulations is available, which emulate various analog filter circuits from synthesizer history.
 
 TODO poly vs stereo.
 
@@ -57,7 +57,7 @@ Some of the controls are shared among most filter modules:
 {Controls the amount of Filter Envelope which is applied to the filter frequency. To see how the Filter Envelope itself is operated, see section \ref{ADSR}.}
 
 \audioparameter{Filter Keyboard (Kbd)}{1}{1}
-{Controls how much the MIDI-note is put ontop of the filter frequency. Increasing this value makes the filter open up more for higher notes. This allows for more consistent notes across the keyboard, since higher notes are filtered differently more by static filters. Note that the value is added on top of the current value, so to achieve a similar resulting timbre, you might need to lower the filter frequency accordingly.}
+{Controls how much the MIDI-note is put on top of the filter frequency. Increasing this value makes the filter open up more for higher notes. This allows for more consistent notes across the keyboard, since higher notes are filtered differently more by static filters. Note that the value is added on top of the current value, so to achieve a similar resulting timbre, you might need to lower the filter frequency accordingly.}
 
 \audioparameter{Filter Gain}{1}{1}
 {Regulates the volume of this filter in deciBels. Can be used to shut the filter entirely. Modulating this parameter from the \modmatrix  with $-100$ will always shut the sound. Modulating this parameter with $+100$ will raise the sound to 0dB if the current value is smaller than -12dB. If it is bigger than -12dB, it will modulate to +12dB from the current value.}
@@ -72,13 +72,13 @@ Some of the controls are shared among most filter modules:
 
 The staples of sound-design in Odin 2. These filters are virtual analog emulations of a certain, famous \fat{ladder filter} which has had a big impact in the history of synthesizers.
 
-Each of these filters is available in a 12dB/Oct and a 24dB/Oct variant. These values determine the slope of the filter rolloff. The 24dB/Oct variants filter more frequencies than the 12dB/Oct counterparts.
+Each of these filters is available in a 12dB/Oct and a 24dB/Oct variant. These values determine the slope of the filter roll-off. The 24dB/Oct variants filter more frequencies than the 12dB/Oct counterparts.
 
 \section{SEM-12}
 
-TODO SEM BILD.
+TODO SEM PIC.
 
-Another emulation of a classic synthesizer filter. This filter has the speciality of being able to shift between a lowpass and a highpass filter, with a notch-filter in between. The filter slope of this filter is 12dB/Oct.
+Another emulation of a classic synthesizer filter. This filter has the specialty of being able to shift between a lowpass and a highpass filter, with a notch-filter in between. The filter slope of this filter is 12dB/Oct.
 
 \audioparameter{SEM Transition}{1}{1}
 {Fades from a lowpass filter over a notch filter to a highpass filter. This allows for special filter variants which still leave some of the frequencies that were filtered before.
@@ -93,14 +93,14 @@ Another emulation of a classic synthesizer filter. This filter has the specialit
     \includegraphics[width=0.5\textwidth]{graphics/diode_filter.png}
 \end{center}
 
-The Diode Ladder is a virtual analog emulation of another classic analog syntheiszer filter. Its analog pendant was originally developed to work around a patent on the well established ladder filter. While still being 24dB/Oct, the characteristic of this filter is said to be more aggressive and wild compared to the classic ladder, especially when invoking resonance.
+The Diode Ladder is a virtual analog emulation of another classic analog synthesizer filter. Its analog pendant was originally developed to work around a patent on the well established ladder filter. While still being 24dB/Oct, the characteristic of this filter is said to be more aggressive and wild compared to the classic ladder, especially when invoking resonance.
 
-\section{KO-35}
+\section{KRG-35 LP / HP}
 \begin{center}
     \includegraphics[width=0.5\textwidth]{graphics/korg_filter.png}
 \end{center}
 
-Yet another virtual analog emulation of one of the legendary analog filters of the past. This filter comes in a lowpass and highpass variant. Crancking up the resonance on these filters reveals a dirty, aggressive sound. Note that while the filters are named KO-35, their slope is 12dB/Oct.
+Yet another virtual analog emulation of one of the legendary analog filters of the past. This filter comes in a lowpass and highpass variant. Cranking up the resonance on these filters reveals a dirty, aggressive sound. Note that while the filters are named KRG-35, their slope is 12dB/Oct.
 
 \section{Comb Filter}
 \label{comb_filter}
