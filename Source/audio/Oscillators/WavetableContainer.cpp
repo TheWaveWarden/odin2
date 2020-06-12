@@ -13,7 +13,7 @@
 #endif
 
 WavetableContainer::WavetableContainer() {
-#include "WavetableCoefficients.h"
+//#include "WavetableCoefficients.h"
 
 	// dynamically allocate wavetables
 	// m_wavetables = new
