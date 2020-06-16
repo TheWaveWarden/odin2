@@ -1,9 +1,10 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.8.2)  12 JUN 2020 19:31
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.8.2)  16 JUN 2020 09:21
 entering extended mode
  restricted \write18 enabled.
+ file:line:error style messages enabled.
  %&-line parsing enabled.
-**manual
-(./manual.tex
+**/home/frederik_siepe/odinvst/manual/manual.tex
+(/home/frederik_siepe/odinvst/manual/manual.tex
 LaTeX2e <2017-04-15>
 Babel <3.18> and hyphenation patterns for 84 language(s) loaded.
 (/usr/share/texlive/texmf-dist/tex/latex/base/report.cls
@@ -23,39 +24,29 @@ File: size12.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 \abovecaptionskip=\skip41
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
-)
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 2017/06/01 v1.1a Enhanced LaTeX Graphics (DPC,SPQR)
-
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
+ (/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
 \KV@toks@=\toks14
-)
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
 Package: graphics 2017/06/25 v1.2c Standard LaTeX Graphics (DPC,SPQR)
-
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
+ (/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
 Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
-)
-(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+) (/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
 Package graphics Info: Driver file: pdftex.def on input line 99.
-
-(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def
+ (/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def
 File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
 ))
 \Gin@req@height=\dimen103
 \Gin@req@width=\dimen104
-)
-(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
 Package: hyperref 2018/02/06 v6.86b Hypertext links for LaTeX
-
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
+ (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
 Package: hobsub-hyperref 2016/05/16 v1.14 Bundle oberdiek, subset hyperref (HO)
-
-
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-generic.sty
+ (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-generic.sty
 Package: hobsub-generic 2016/05/16 v1.14 Bundle oberdiek, subset generic (HO)
 Package: hobsub 2016/05/16 v1.14 Construct package bundles (HO)
 Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
@@ -73,15 +64,13 @@ Package etexcmds Info: Could not find \expanded.
 (etexcmds)             In the latter case, load this package earlier.
 Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
 Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
-Package: pdftexcmds 2018/01/21 v0.26 Utility functions of pdfTeX for LuaTeX (HO
-)
+Package: pdftexcmds 2018/01/21 v0.26 Utility functions of pdfTeX for LuaTeX (HO)
 Package pdftexcmds Info: LuaTeX not detected.
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
 Package pdftexcmds Info: \pdfdraftmode found.
 Package: pdfescape 2016/05/16 v1.14 Implements pdfTeX's escape features (HO)
-Package: bigintcalc 2016/05/16 v1.4 Expandable calculations on big integers (HO
-)
+Package: bigintcalc 2016/05/16 v1.4 Expandable calculations on big integers (HO)
 Package: bitset 2016/05/16 v1.2 Handle bit-vector datatype (HO)
 Package: uniquecounter 2016/05/16 v1.3 Provide unlimited unique counter (HO)
 )
@@ -94,26 +83,21 @@ Package atveryend Info: \enddocument detected (standard20110627).
 Package: atbegshi 2016/06/09 v1.18 At begin shipout hook (HO)
 Package: refcount 2016/05/16 v3.5 Data extraction from label references (HO)
 Package: hycolor 2016/05/16 v1.8 Color options for hyperref/bookmark (HO)
-)
-(/usr/share/texlive/texmf-dist/tex/generic/ifxetex/ifxetex.sty
+) (/usr/share/texlive/texmf-dist/tex/generic/ifxetex/ifxetex.sty
 Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
-)
-(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/auxhook.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/auxhook.sty
 Package: auxhook 2016/05/16 v1.4 Hooks for auxiliary files (HO)
-)
-(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/kvoptions.sty
 Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
 )
 \@linkdim=\dimen105
 \Hy@linkcounter=\count88
 \Hy@pagecounter=\count89
-
-(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def
+ (/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def
 File: pd1enc.def 2018/02/06 v6.86b Hyperref: PDFDocEncoding definition (HO)
 )
 \Hy@SavedSpaceFactor=\count90
-
-(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/hyperref.cfg
+ (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/hyperref.cfg
 File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
 )
 Package hyperref Info: Hyper figures OFF on input line 4509.
@@ -124,8 +108,7 @@ Package hyperref Info: Backreferencing OFF on input line 4529.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4762.
 \c@Hy@tempcnt=\count91
-
-(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty
+ (/usr/share/texlive/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip10
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
@@ -148,40 +131,30 @@ LaTeX Info: Redefining \pageref on input line 6443.
 \c@Hfootnote=\count95
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
-
-(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+ (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
 File: hpdftex.def 2018/02/06 v6.86b Hyperref driver for pdfTeX
 \Fld@listcount=\count96
 \c@bookmark@seq@number=\count97
-
-(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty
+ (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty
 Package: rerunfilecheck 2016/05/16 v1.8 Rerun checks for auxiliary files (HO)
-Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
-82.
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 282.
 )
 \Hy@SectionHShift=\skip43
-)
-(/usr/share/texlive/texmf-dist/tex/latex/svg/svg.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/svg/svg.sty
 Package: svg 2017/11/29 v2.01 (include SVG pictures)
-
-(/usr/share/texlive/texmf-dist/tex/latex/koma-script/scrbase.sty
-Package: scrbase 2017/09/07 v3.24 KOMA-Script package (KOMA-Script-independent 
-basics and keyval usage)
-
-(/usr/share/texlive/texmf-dist/tex/latex/koma-script/scrlfile.sty
+ (/usr/share/texlive/texmf-dist/tex/latex/koma-script/scrbase.sty
+Package: scrbase 2017/09/07 v3.24 KOMA-Script package (KOMA-Script-independent basics and keyval usage)
+ (/usr/share/texlive/texmf-dist/tex/latex/koma-script/scrlfile.sty
 Package: scrlfile 2017/09/07 v3.24 KOMA-Script package (loading files)
-))
-(/usr/share/texlive/texmf-dist/tex/latex/tools/shellesc.sty
+)) (/usr/share/texlive/texmf-dist/tex/latex/tools/shellesc.sty
 Package: shellesc 2016/06/07 v0.02a unified shell escape interface for LaTeX
 Package shellesc Info: Restricted shell escape enabled on input line 69.
 )
 \c@svg@param@lastpage=\count98
 \c@svg@param@currpage=\count99
-)
-(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
 Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
-
-(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg
+ (/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
 Package xcolor Info: Driver file: pdftex.def on input line 225.
@@ -194,22 +167,16 @@ Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1368.
 Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
 Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
-)
-(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/transparent.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/transparent.sty
 Package: transparent 2016/05/16 v1.1 Transparency via pdfTeX's color stack (HO)
-
-)
-(/usr/share/texlive/texmf-dist/tex/latex/mwe/mwe.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/mwe/mwe.sty
 Package: mwe 2017/12/10 v0.4 Package to support minimal working examples (MWE)
-
-(/usr/share/texlive/texmf-dist/tex/latex/lipsum/lipsum.sty
+ (/usr/share/texlive/texmf-dist/tex/latex/lipsum/lipsum.sty
 Package: lipsum 2014/07/27 v1.3 150 paragraphs of Lorem Ipsum dummy text
 \c@lips@count=\count100
-)
-(/usr/share/texlive/texmf-dist/tex/latex/blindtext/blindtext.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/blindtext/blindtext.sty
 Package: blindtext 2012/01/06 V2.0 blindtext-Package
-
-(/usr/share/texlive/texmf-dist/tex/latex/tools/xspace.sty
+ (/usr/share/texlive/texmf-dist/tex/latex/tools/xspace.sty
 Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
 )
 \c@blindtext=\count101
@@ -230,39 +197,26 @@ Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
 \c@blind@randommax=\count116
 \c@blind@pangramcount=\count117
 \c@blind@pangrammax=\count118
-))
-(/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcolorbox.sty
+)) (/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcolorbox.sty
 Package: tcolorbox 2018/01/12 version 4.12 text color boxes
-
-(/usr/share/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
-(/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex
+ (/usr/share/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty (/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex
 \pgfutil@everybye=\toks15
 \pgfutil@tempdima=\dimen109
 \pgfutil@tempdimb=\dimen110
-
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common-lists.t
-ex)) (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
+ (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common-lists.tex)) (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
 \pgfutil@abb=\box26
-(/usr/share/texlive/texmf-dist/tex/latex/ms/everyshi.sty
+ (/usr/share/texlive/texmf-dist/tex/latex/ms/everyshi.sty
 Package: everyshi 2001/05/15 v3.00 EveryShipout Package (MS)
-))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex
+)) (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex
 Package: pgfrcs 2015/08/07 v3.0.1a (rcs-revision 1.31)
 ))
 Package: pgf 2015/08/07 v3.0.1a (rcs-revision 1.15)
-
-(/usr/share/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty
-(/usr/share/texlive/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
+ (/usr/share/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty (/usr/share/texlive/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty (/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
 Package: pgfsys 2014/07/09 v3.0.1a (rcs-revision 1.48)
-
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
+ (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
 \pgfkeys@pathtoks=\toks16
 \pgfkeys@temptoks=\toks17
-
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeysfiltered.code.t
-ex
+ (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeysfiltered.code.tex
 \pgfkeys@tmptoks=\toks18
 ))
 \pgf@x=\dimen111
@@ -286,60 +240,28 @@ ex
 File: pgf.cfg 2008/05/14  (rcs-revision 1.7)
 )
 Driver file for pgf: pgfsys-pdftex.def
-
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-pdftex.def
+ (/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-pdftex.def
 File: pgfsys-pdftex.def 2014/10/11  (rcs-revision 1.35)
-
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-pdf.de
-f
+ (/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-pdf.def
 File: pgfsys-common-pdf.def 2013/10/10  (rcs-revision 1.13)
-)))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.
-tex
+))) (/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.tex
 File: pgfsyssoftpath.code.tex 2013/09/09  (rcs-revision 1.9)
 \pgfsyssoftpath@smallbuffer@items=\count123
 \pgfsyssoftpath@bigbuffer@items=\count124
-)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.
-tex
+) (/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.tex
 File: pgfsysprotocol.code.tex 2006/10/16  (rcs-revision 1.4)
-))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
+)) (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
 Package: pgfcore 2010/04/11 v3.0.1a (rcs-revision 1.7)
-
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
+ (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex) (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
 \pgfmath@dimen=\dimen119
 \pgfmath@count=\count125
 \pgfmath@box=\box27
 \pgfmath@toks=\toks22
 \pgfmath@stack@operand=\toks23
 \pgfmath@stack@operation=\toks24
-)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic.code
-.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigonomet
-ric.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.random.cod
-e.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.comparison
-.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.code.
-tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round.code
-.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.code.
-tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerari
-thmetics.code.tex)))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
+) (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.tex (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic.code.tex) (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigonometric.code.tex) (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.random.code.tex) (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.comparison.code.tex) (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.code.tex) (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round.code.tex) (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.code.tex) (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerarithmetics.code.tex))) (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
 \c@pgfmathroundto@lastzeros=\count126
-))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.te
-x
+)) (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.tex
 File: pgfcorepoints.code.tex 2013/10/07  (rcs-revision 1.27)
 \pgf@picminx=\dimen120
 \pgf@picmaxx=\dimen121
@@ -355,110 +277,75 @@ File: pgfcorepoints.code.tex 2013/10/07  (rcs-revision 1.27)
 \pgf@yy=\dimen131
 \pgf@zx=\dimen132
 \pgf@zy=\dimen133
-)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconstruct.
-code.tex
+) (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconstruct.code.tex
 File: pgfcorepathconstruct.code.tex 2013/10/07  (rcs-revision 1.29)
 \pgf@path@lastx=\dimen134
 \pgf@path@lasty=\dimen135
-)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage.code
-.tex
+) (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage.code.tex
 File: pgfcorepathusage.code.tex 2014/11/02  (rcs-revision 1.24)
 \pgf@shorten@end@additional=\dimen136
 \pgf@shorten@start@additional=\dimen137
-)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.code.te
-x
+) (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.code.tex
 File: pgfcorescopes.code.tex 2015/05/08  (rcs-revision 1.46)
 \pgfpic=\box28
 \pgf@hbox=\box29
 \pgf@layerbox@main=\box30
 \pgf@picture@serial@count=\count127
-)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.c
-ode.tex
+) (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.code.tex
 File: pgfcoregraphicstate.code.tex 2014/11/02  (rcs-revision 1.12)
 \pgflinewidth=\dimen138
-)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransformation
-s.code.tex
+) (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransformations.code.tex
 File: pgfcoretransformations.code.tex 2015/08/07  (rcs-revision 1.20)
 \pgf@pt@x=\dimen139
 \pgf@pt@y=\dimen140
 \pgf@pt@temp=\dimen141
-)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.code.tex
+) (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.code.tex
 File: pgfcorequick.code.tex 2008/10/09  (rcs-revision 1.3)
-)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.code.t
-ex
+) (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.code.tex
 File: pgfcoreobjects.code.tex 2006/10/11  (rcs-revision 1.2)
-)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathprocessing
-.code.tex
+) (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathprocessing.code.tex
 File: pgfcorepathprocessing.code.tex 2013/09/09  (rcs-revision 1.9)
-)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.code.te
-x
+) (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.code.tex
 File: pgfcorearrows.code.tex 2015/05/14  (rcs-revision 1.43)
 \pgfarrowsep=\dimen142
-)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
+) (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
 File: pgfcoreshade.code.tex 2013/07/15  (rcs-revision 1.15)
 \pgf@max=\dimen143
 \pgf@sys@shading@range@num=\count128
-)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
+) (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
 File: pgfcoreimage.code.tex 2013/07/15  (rcs-revision 1.18)
-
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.code.
-tex
+ (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.code.tex
 File: pgfcoreexternal.code.tex 2014/07/09  (rcs-revision 1.21)
 \pgfexternal@startupbox=\box31
-))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.code.te
-x
+)) (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.code.tex
 File: pgfcorelayers.code.tex 2013/07/18  (rcs-revision 1.7)
-)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransparency.c
-ode.tex
+) (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransparency.code.tex
 File: pgfcoretransparency.code.tex 2013/09/30  (rcs-revision 1.5)
-)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.code.
-tex
+) (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.code.tex
 File: pgfcorepatterns.code.tex 2013/11/07  (rcs-revision 1.5)
-)))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.code.tex
+))) (/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.code.tex
 File: pgfmoduleshapes.code.tex 2014/03/21  (rcs-revision 1.35)
 \pgfnodeparttextbox=\box32
 ) (/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.tex
 File: pgfmoduleplot.code.tex 2015/08/03  (rcs-revision 1.13)
-)
-(/usr/share/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65
-.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65.sty
 Package: pgfcomp-version-0-65 2007/07/03 v3.0.1a (rcs-revision 1.7)
 \pgf@nodesepstart=\dimen144
 \pgf@nodesepend=\dimen145
-)
-(/usr/share/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18
-.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18.sty
 Package: pgfcomp-version-1-18 2007/07/23 v3.0.1a (rcs-revision 1.1)
 )) (/usr/share/texlive/texmf-dist/tex/latex/tools/verbatim.sty
 Package: verbatim 2014/10/28 v1.5q LaTeX2e package for verbatim enhancements
 \every@verbatim=\toks25
 \verbatim@line=\toks26
 \verbatim@in@stream=\read2
-)
-(/usr/share/texlive/texmf-dist/tex/latex/environ/environ.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/environ/environ.sty
 Package: environ 2014/05/04 v0.3 A new way to define environments
-
-(/usr/share/texlive/texmf-dist/tex/latex/trimspaces/trimspaces.sty
+ (/usr/share/texlive/texmf-dist/tex/latex/trimspaces/trimspaces.sty
 Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
 )
 \@envbody=\toks27
-)
-(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty
 Package: etoolbox 2018/02/11 v2.5e e-TeX tools for LaTeX (JAW)
 \etb@tempcnta=\count129
 )
@@ -475,34 +362,23 @@ Package: etoolbox 2018/02/11 v2.5e e-TeX tools for LaTeX (JAW)
 \tcb@temp=\box40
 \tcb@out=\write4
 \tcb@record@out=\write5
-
-(/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcbraster.code.tex
+ (/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcbraster.code.tex
 Library (tcolorbox): 'tcbraster.code.tex' version '4.12'
 \c@tcbrastercolumn=\count133
 \c@tcbrasterrow=\count134
 \c@tcbraster=\count135
 ) (/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcbskins.code.tex
 Library (tcolorbox): 'tcbskins.code.tex' version '4.12'
-(/usr/share/texlive/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
-(/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
-(/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex))
-(/usr/share/texlive/texmf-dist/tex/latex/pgf/math/pgfmath.sty
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty (/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgffor.sty (/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex)) (/usr/share/texlive/texmf-dist/tex/latex/pgf/math/pgfmath.sty (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex)) (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
 Package: pgffor 2013/12/13 v3.0.1a (rcs-revision 1.25)
-
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex)
+ (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex)
 \pgffor@iter=\dimen146
 \pgffor@skip=\dimen147
 \pgffor@stack=\toks28
 \pgffor@toks=\toks29
-))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
+)) (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
 Package: tikz 2015/08/07 v3.0.1a (rcs-revision 1.151)
-
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers
-.code.tex
+ (/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers.code.tex
 File: pgflibraryplothandlers.code.tex 2013/08/31 v3.0.1a (rcs-revision 1.20)
 \pgf@plot@mark@count=\count136
 \pgfplotmarksize=\dimen148
@@ -521,22 +397,18 @@ File: pgflibraryplothandlers.code.tex 2013/08/31 v3.0.1a (rcs-revision 1.20)
 \tikznumberofchildren=\count138
 \tikznumberofcurrentchild=\count139
 \tikz@fig@count=\count140
-
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.code.tex
+ (/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.code.tex
 File: pgfmodulematrix.code.tex 2013/09/17  (rcs-revision 1.8)
 \pgfmatrixcurrentrow=\count141
 \pgfmatrixcurrentcolumn=\count142
 \pgf@matrix@numberofcolumns=\count143
 )
 \tikz@expandcount=\count144
-
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
-zlibrarytopaths.code.tex
+ (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytopaths.code.tex
 File: tikzlibrarytopaths.code.tex 2008/06/17 v3.0.1a (rcs-revision 1.2)
 )))
 \tcb@waterbox=\box45
-
-(/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcbskinsjigsaw.code.tex
+ (/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcbskinsjigsaw.code.tex
 Library (tcolorbox): 'tcbskinsjigsaw.code.tex' version '4.12'
 )) (/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcbbreakable.code.tex
 Library (tcolorbox): 'tcbbreakable.code.tex' version '4.12'
@@ -554,17 +426,14 @@ Package: amsmath 2017/09/02 v2.17a AMS math features
 For additional information on amsmath, use the `?' option.
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
 Package: amstext 2000/06/29 v2.01 AMS text
-
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty
+ (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
 \@emptytoks=\toks30
 \ex@=\dimen155
-))
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
+)) (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 \pmbraise@=\dimen156
-)
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 2016/03/08 v2.02 operator names
 )
 \inf@bad=\count145
@@ -604,8 +473,7 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 713.
 \mathdisplay@stack=\toks34
 LaTeX Info: Redefining \[ on input line 2817.
 LaTeX Info: Redefining \] on input line 2818.
-))
-(/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcbfitting.code.tex
+)) (/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcbfitting.code.tex
 Library (tcolorbox): 'tcbfitting.code.tex' version '4.12'
 \tcbfitdim=\dimen164
 \tcb@lowerfitdim=\dimen165
@@ -613,11 +481,9 @@ Library (tcolorbox): 'tcbfitting.code.tex' version '4.12'
 \tcb@cur@hbadness=\count157
 ) (/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcbxparse.code.tex
 Library (tcolorbox): 'tcbxparse.code.tex' version '4.12'
-(/usr/share/texlive/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
-(/usr/share/texlive/texmf-dist/tex/latex/l3kernel/expl3.sty
+(/usr/share/texlive/texmf-dist/tex/latex/l3packages/xparse/xparse.sty (/usr/share/texlive/texmf-dist/tex/latex/l3kernel/expl3.sty
 Package: expl3 2018/02/21 L3 programming layer (loader) 
-
-(/usr/share/texlive/texmf-dist/tex/latex/l3kernel/expl3-code.tex
+ (/usr/share/texlive/texmf-dist/tex/latex/l3kernel/expl3-code.tex
 Package: expl3 2018/02/21 L3 programming layer (code)
 \c_max_int=\count158
 \l_tmpa_int=\count159
@@ -760,8 +626,7 @@ Package: expl3 2018/02/21 L3 programming layer (code)
 \l__coffin_top_corner_dim=\dimen195
 \l__coffin_scaled_total_height_dim=\dimen196
 \l__coffin_scaled_width_dim=\dimen197
-)
-(/usr/share/texlive/texmf-dist/tex/latex/l3kernel/l3pdfmode.def
+) (/usr/share/texlive/texmf-dist/tex/latex/l3kernel/l3pdfmode.def
 File: l3pdfmode.def 2017/03/18 v L3 Experimental driver: PDF mode
 \l__driver_color_stack_int=\count307
 \l__driver_tmp_box=\box66
@@ -783,8 +648,7 @@ Package: xparse 2018/02/21 L3 Experimental document command parser
 . 
 . Defining command \tcbsidebyside with sig. ' +O{} +m +m ' on line 280.
 .................................................
-))
-(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+)) (/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2010/09/12 v5.6 Page Geometry
 \Gm@cnth=\count313
 \Gm@cntv=\count314
@@ -798,16 +662,13 @@ Package: geometry 2010/09/12 v5.6 Page Geometry
 \Gm@layouthoffset=\dimen260
 \Gm@layoutvoffset=\dimen261
 \Gm@dimlist=\toks35
-)
-(/usr/share/texlive/texmf-dist/tex/generic/xstring/xstring.sty
-(/usr/share/texlive/texmf-dist/tex/generic/xstring/xstring.tex
+) (/usr/share/texlive/texmf-dist/tex/generic/xstring/xstring.sty (/usr/share/texlive/texmf-dist/tex/generic/xstring/xstring.tex
 \@xs@message=\write6
 \integerpart=\count316
 \decimalpart=\count317
 )
 Package: xstring 2013/10/13  v1.7c  String manipulations (C Tellechea)
-)
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/utopia.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/psnfss/utopia.sty
 Package: utopia 2005/04/12 PSNFSS-v9.2a (P.Dyballa) 
 
 
@@ -816,16 +677,14 @@ Package utopia Warning: This package is to be regarded as obsolete.
 
 ) (/usr/share/texlive/texmf-dist/tex/latex/pagecolor/pagecolor.sty
 Package: pagecolor 2017/05/29 v1.0i Provides thepagecolor (HMM)
-)
-(/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty
 Package: array 2016/10/06 v2.4d Tabular extension package (FMi)
 \col@sep=\dimen262
 \extrarowheight=\dimen263
 \NC@list=\toks36
 \extratabsurround=\skip53
 \backup@length=\skip54
-)
-(/usr/share/texlive/texmf-dist/tex/latex/tools/longtable.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/tools/longtable.sty
 Package: longtable 2014/10/28 v4.11 Multi-page Table package (DPC)
 \LTleft=\skip55
 \LTright=\skip56
@@ -842,8 +701,7 @@ Package: longtable 2014/10/28 v4.11 Multi-page Table package (DPC)
 \c@LT@tables=\count321
 \c@LT@chunks=\count322
 \LT@p@ftn=\toks37
-)
-(/usr/share/texlive/texmf-dist/tex/latex/titlesec/titlesec.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/titlesec/titlesec.sty
 Package: titlesec 2016/03/21 v2.10.2 Sectioning titles
 \ttl@box=\box71
 \beforetitleunit=\skip59
@@ -854,10 +712,7 @@ Package: titlesec 2016/03/21 v2.10.2 Sectioning titles
 \titlewidth=\dimen267
 \titlewidthlast=\dimen268
 \titlewidthfirst=\dimen269
-) (./manual.aux
-(./Introduction.aux) (./Oscillators.aux) (./Filters.aux) (./AmpDistortion.aux)
-(./FX.aux) (./Modulators.aux) (./ModulationMatrix.aux) (./Arpeggiator.aux)
-(./GlobalSettings.aux))
+) (/home/frederik_siepe/odinvst/manual/manual.aux (/home/frederik_siepe/odinvst/manual/Introduction.aux) (/home/frederik_siepe/odinvst/manual/Oscillators.aux) (/home/frederik_siepe/odinvst/manual/Filters.aux) (/home/frederik_siepe/odinvst/manual/AmpDistortion.aux) (/home/frederik_siepe/odinvst/manual/FX.aux) (/home/frederik_siepe/odinvst/manual/Modulators.aux) (/home/frederik_siepe/odinvst/manual/ModulationMatrix.aux) (/home/frederik_siepe/odinvst/manual/Arpeggiator.aux) (/home/frederik_siepe/odinvst/manual/GlobalSettings.aux))
 \openout1 = `manual.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 73.
@@ -875,11 +730,9 @@ LaTeX Font Info:    ... okay on input line 73.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 73.
 LaTeX Font Info:    ... okay on input line 73.
 LaTeX Font Info:    Try loading font information for OT1+put on input line 73.
-
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1put.fd
+ (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1put.fd
 File: ot1put.fd 2001/06/04 font definitions for OT1/put.
-)
-(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+) (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count323
 \scratchdimen=\dimen270
@@ -894,28 +747,21 @@ File: ot1put.fd 2001/06/04 font definitions for OT1/put.
 \everyMPtoPDFconversion=\toks40
 ) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
-
-(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/grfext.sty
+ (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/grfext.sty
 Package: grfext 2016/05/16 v1.2 Manage graphics extensions (HO)
 )
-Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
-38.
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 438.
 Package grfext Info: Graphics extension search list:
-(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPE
-G,.JBIG2,.JB2,.eps]
+(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPEG,.JBIG2,.JB2,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 456.
-
-(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
-File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
-e
+ (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
 \AtBeginShipoutBox=\box73
 Package hyperref Info: Link coloring OFF on input line 73.
-
-(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+ (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
-
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
+ (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count329
@@ -923,8 +769,7 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 73.
 LaTeX Info: Redefining \pageref on input line 73.
 LaTeX Info: Redefining \nameref on input line 73.
-
-(./manual.out) (./manual.out)
+ (/home/frederik_siepe/odinvst/manual/manual.out) (/home/frederik_siepe/odinvst/manual/manual.out)
 \@outlinefile=\write7
 \openout7 = `manual.out'.
 
@@ -986,10 +831,7 @@ Overfull \hbox (36.50362pt too wide) in paragraph at lines 94--97
 
 [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./graphics/logo.png> <./gr
-aphics/vst3_logo.png> <./graphics/au_logo.png>] (./manual.tocpdfTeX warning (ex
-t4): destination with the same identifier (name{page.1}) has been already used,
- duplicate ignored
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} </home/frederik_siepe/odinvst/manual/graphics/logo.png> </home/frederik_siepe/odinvst/manual/graphics/vst3_logo.png> </home/frederik_siepe/odinvst/manual/graphics/au_logo.png>] (/home/frederik_siepe/odinvst/manual/manual.tocpdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.33 ...mberline {4.2}Distortion}{35}{section.4.2}
@@ -1003,7 +845,7 @@ l.33 ...mberline {4.2}Distortion}{35}{section.4.2}
  [2]
 \openout2 = `Introduction.aux'.
 
- (./Introduction.tex
+ (/home/frederik_siepe/odinvst/manual/Introduction.tex
 Chapter 1.
 [3
 
@@ -1017,22 +859,21 @@ Package pdftex.def Info: graphics/mighty_god.png  used on input line 46.
 (pdftex.def)             Requested size: 469.75502pt x 360.5355pt.
  [4
 
- <./graphics/mighty_god.png>]
+ </home/frederik_siepe/odinvst/manual/graphics/mighty_god.png>]
 <graphics/overview.png, id=312, 1204.5pt x 924.45375pt>
 File: graphics/overview.png Graphic file (type png)
 <use graphics/overview.png>
 Package pdftex.def Info: graphics/overview.png  used on input line 72.
 (pdftex.def)             Requested size: 469.75502pt x 360.5355pt.
 LaTeX Font Info:    Try loading font information for OMS+put on input line 76.
-
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/omsput.fd
+ (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omsput.fd
 File: omsput.fd 
 )
 LaTeX Font Info:    Font shape `OMS/put/m/n' in size <12> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 76.
  [5
 
- <./graphics/overview.png>]
+ </home/frederik_siepe/odinvst/manual/graphics/overview.png>]
 <graphics/preset_browser.png, id=332, 754.82pt x 244.915pt>
 File: graphics/preset_browser.png Graphic file (type png)
 <use graphics/preset_browser.png>
@@ -1041,11 +882,9 @@ Package pdftex.def Info: graphics/preset_browser.png  used on input line 93.
 <graphics/preset_browser_button.png, id=333, 754.82pt x 28.105pt>
 File: graphics/preset_browser_button.png Graphic file (type png)
 <use graphics/preset_browser_button.png>
-Package pdftex.def Info: graphics/preset_browser_button.png  used on input line
- 107.
+Package pdftex.def Info: graphics/preset_browser_button.png  used on input line 107.
 (pdftex.def)             Requested size: 438.45708pt x 16.32535pt.
- [6 <./graphics/preset_browser.png> <./graphics/preset_browser_button.png (PNG 
-copy)>]
+ [6 </home/frederik_siepe/odinvst/manual/graphics/preset_browser.png> </home/frederik_siepe/odinvst/manual/graphics/preset_browser_button.png (PNG copy)>]
 <graphics/routing.png, id=339, 737.154pt x 541.04839pt>
 File: graphics/routing.png Graphic file (type png)
 <use graphics/routing.png>
@@ -1074,12 +913,11 @@ Package pdftex.def Info: graphics/available.png  used on input line 145.
 <graphics/filter_input_buttons.png, id=344, 45.16875pt x 139.52126pt>
 File: graphics/filter_input_buttons.png Graphic file (type png)
 <use graphics/filter_input_buttons.png>
-Package pdftex.def Info: graphics/filter_input_buttons.png  used on input line 
-145.
+Package pdftex.def Info: graphics/filter_input_buttons.png  used on input line 145.
 (pdftex.def)             Requested size: 28.38959pt x 87.69006pt.
  [7
 
- <./graphics/routing.png> <./graphics/routing_buttons.png>]
+ </home/frederik_siepe/odinvst/manual/graphics/routing.png> </home/frederik_siepe/odinvst/manual/graphics/routing_buttons.png>]
 File: graphics/knob.png Graphic file (type png)
 <use graphics/knob.png>
 Package pdftex.def Info: graphics/knob.png  used on input line 153.
@@ -1095,8 +933,7 @@ Package pdftex.def Info: graphics/available.png  used on input line 153.
 <graphics/filter_output_buttons.png, id=350, 105.39375pt x 40.15pt>
 File: graphics/filter_output_buttons.png Graphic file (type png)
 <use graphics/filter_output_buttons.png>
-Package pdftex.def Info: graphics/filter_output_buttons.png  used on input line
- 153.
+Package pdftex.def Info: graphics/filter_output_buttons.png  used on input line 153.
 (pdftex.def)             Requested size: 57.00156pt x 21.71497pt.
 
 Overfull \hbox (2.0758pt too wide) in paragraph at lines 153--153
@@ -1113,12 +950,10 @@ File: graphics/tooltip.png Graphic file (type png)
 <use graphics/tooltip.png>
 Package pdftex.def Info: graphics/tooltip.png  used on input line 170.
 (pdftex.def)             Requested size: 51.67332pt x 45.80211pt.
-) [8 <./graphics/knob.png> <./graphics/not_available.png> <./graphics/available
-.png> <./graphics/filter_input_buttons.png> <./graphics/filter_output_buttons.p
-ng> <./graphics/GUI_scaling.png> <./graphics/tooltip.png>]
+) [8 </home/frederik_siepe/odinvst/manual/graphics/knob.png> </home/frederik_siepe/odinvst/manual/graphics/not_available.png> </home/frederik_siepe/odinvst/manual/graphics/available.png> </home/frederik_siepe/odinvst/manual/graphics/filter_input_buttons.png> </home/frederik_siepe/odinvst/manual/graphics/filter_output_buttons.png> </home/frederik_siepe/odinvst/manual/graphics/GUI_scaling.png> </home/frederik_siepe/odinvst/manual/graphics/tooltip.png>]
 \openout2 = `Oscillators.aux'.
 
- (./Oscillators.tex
+ (/home/frederik_siepe/odinvst/manual/Oscillators.tex
 Chapter 2.
 File: graphics/knob.png Graphic file (type png)
 <use graphics/knob.png>
@@ -1159,7 +994,7 @@ Package pdftex.def Info: graphics/available.png  used on input line 19.
 
 
 
- <./graphics/osc_selection.png> <./graphics/osc_common.png>]
+ </home/frederik_siepe/odinvst/manual/graphics/osc_selection.png> </home/frederik_siepe/odinvst/manual/graphics/osc_common.png>]
 File: graphics/knob.png Graphic file (type png)
 <use graphics/knob.png>
 Package pdftex.def Info: graphics/knob.png  used on input line 22.
@@ -1230,7 +1065,7 @@ File: graphics/osc_sync.png Graphic file (type png)
 <use graphics/osc_sync.png>
 Package pdftex.def Info: graphics/osc_sync.png  used on input line 44.
 (pdftex.def)             Requested size: 438.45708pt x 154.11876pt.
- [10 <./graphics/osc_common2.png>]
+ [10 </home/frederik_siepe/odinvst/manual/graphics/osc_common2.png>]
 <graphics/analog_osc.png, id=378, 364.36125pt x 212.795pt>
 File: graphics/analog_osc.png Graphic file (type png)
 <use graphics/analog_osc.png>
@@ -1248,7 +1083,7 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 71.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
- [11 <./graphics/osc_sync.png> <./graphics/analog_osc.png>]
+ [11 </home/frederik_siepe/odinvst/manual/graphics/osc_sync.png> </home/frederik_siepe/odinvst/manual/graphics/analog_osc.png>]
 File: graphics/knob.png Graphic file (type png)
 <use graphics/knob.png>
 Package pdftex.def Info: graphics/knob.png  used on input line 80.
@@ -1278,8 +1113,7 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 83.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
-
-[12 <./graphics/PWM.png>]
+ [12 </home/frederik_siepe/odinvst/manual/graphics/PWM.png>]
 <graphics/wavetable_osc.png, id=394, 367.3725pt x 211.79124pt>
 File: graphics/wavetable_osc.png Graphic file (type png)
 <use graphics/wavetable_osc.png>
@@ -1321,7 +1155,7 @@ File: graphics/not_available.png Graphic file (type png)
 <use graphics/not_available.png>
 Package pdftex.def Info: graphics/not_available.png  used on input line 98.
 (pdftex.def)             Requested size: 8.77101pt x 9.89503pt.
- [13 <./graphics/wavetable_osc.png>]
+ [13 </home/frederik_siepe/odinvst/manual/graphics/wavetable_osc.png>]
 File: graphics/knob.png Graphic file (type png)
 <use graphics/knob.png>
 Package pdftex.def Info: graphics/knob.png  used on input line 101.
@@ -1363,7 +1197,7 @@ File: graphics/not_available.png Graphic file (type png)
 <use graphics/not_available.png>
 Package pdftex.def Info: graphics/not_available.png  used on input line 113.
 (pdftex.def)             Requested size: 8.77101pt x 9.89503pt.
- [14 <./graphics/multi_osc.png>]
+ [14 </home/frederik_siepe/odinvst/manual/graphics/multi_osc.png>]
 File: graphics/knob.png Graphic file (type png)
 <use graphics/knob.png>
 Package pdftex.def Info: graphics/knob.png  used on input line 116.
@@ -1390,8 +1224,7 @@ Package pdftex.def Info: graphics/available.png  used on input line 119.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
 
 Underfull \hbox (badness 1127) in paragraph at lines 119--119
-[]\OT1/put/m/n/12 Spreads the four sub-oscillators over the wavetable: The firs
-t sub-osc 
+[]\OT1/put/m/n/12 Spreads the four sub-oscillators over the wavetable: The first sub-osc 
  []
 
 <graphics/vector_osc.png, id=406, 366.36874pt x 214.8025pt>
@@ -1411,7 +1244,7 @@ File: graphics/not_available.png Graphic file (type png)
 <use graphics/not_available.png>
 Package pdftex.def Info: graphics/not_available.png  used on input line 130.
 (pdftex.def)             Requested size: 8.77101pt x 9.89503pt.
-[15 <./graphics/vector_osc.png>]
+[15 </home/frederik_siepe/odinvst/manual/graphics/vector_osc.png>]
 File: graphics/knob.png Graphic file (type png)
 <use graphics/knob.png>
 Package pdftex.def Info: graphics/knob.png  used on input line 133.
@@ -1441,7 +1274,7 @@ File: graphics/not_available.png Graphic file (type png)
 <use graphics/not_available.png>
 Package pdftex.def Info: graphics/not_available.png  used on input line 144.
 (pdftex.def)             Requested size: 8.77101pt x 9.89503pt.
- [16 <./graphics/chiptune_osc.png>]
+ [16 </home/frederik_siepe/odinvst/manual/graphics/chiptune_osc.png>]
 File: graphics/knob.png Graphic file (type png)
 <use graphics/knob.png>
 Package pdftex.def Info: graphics/knob.png  used on input line 147.
@@ -1532,8 +1365,7 @@ File: graphics/not_available.png Graphic file (type png)
 <use graphics/not_available.png>
 Package pdftex.def Info: graphics/not_available.png  used on input line 186.
 (pdftex.def)             Requested size: 8.77101pt x 9.89503pt.
-
-[18 <./graphics/fm_osc.png>]
+ [18 </home/frederik_siepe/odinvst/manual/graphics/fm_osc.png>]
 File: graphics/knob.png Graphic file (type png)
 <use graphics/knob.png>
 Package pdftex.def Info: graphics/knob.png  used on input line 189.
@@ -1551,7 +1383,7 @@ File: graphics/pm_osc.png Graphic file (type png)
 <use graphics/pm_osc.png>
 Package pdftex.def Info: graphics/pm_osc.png  used on input line 193.
 (pdftex.def)             Requested size: 234.8775pt x 135.13512pt.
- [19 <./graphics/pm_osc.png>]
+ [19 </home/frederik_siepe/odinvst/manual/graphics/pm_osc.png>]
 File: graphics/knob.png Graphic file (type png)
 <use graphics/knob.png>
 Package pdftex.def Info: graphics/knob.png  used on input line 200.
@@ -1623,7 +1455,7 @@ File: graphics/wavedraw_osc.png Graphic file (type png)
 <use graphics/wavedraw_osc.png>
 Package pdftex.def Info: graphics/wavedraw_osc.png  used on input line 234.
 (pdftex.def)             Requested size: 234.8775pt x 135.8781pt.
- [21 <./graphics/noise_osc.png> <./graphics/wavedraw_osc.png>]
+ [21 </home/frederik_siepe/odinvst/manual/graphics/noise_osc.png> </home/frederik_siepe/odinvst/manual/graphics/wavedraw_osc.png>]
 <graphics/chipdraw_osc.png, id=460, 364.36125pt x 212.795pt>
 File: graphics/chipdraw_osc.png Graphic file (type png)
 <use graphics/chipdraw_osc.png>
@@ -1634,10 +1466,10 @@ File: graphics/specdraw_osc.png Graphic file (type png)
 <use graphics/specdraw_osc.png>
 Package pdftex.def Info: graphics/specdraw_osc.png  used on input line 273.
 (pdftex.def)             Requested size: 234.8775pt x 136.52512pt.
- [22 <./graphics/chipdraw_osc.png>]) [23 <./graphics/specdraw_osc.png>]
+ [22 </home/frederik_siepe/odinvst/manual/graphics/chipdraw_osc.png>]) [23 </home/frederik_siepe/odinvst/manual/graphics/specdraw_osc.png>]
 \openout2 = `Filters.aux'.
 
- (./Filters.tex
+ (/home/frederik_siepe/odinvst/manual/Filters.tex
 Chapter 3.
 <graphics/filter.png, id=470, 582.84778pt x 118.36655pt>
 File: graphics/filter.png Graphic file (type png)
@@ -1666,7 +1498,7 @@ Package pdftex.def Info: graphics/filter_dropdown.png  used on input line 25.
 
 
 
- <./graphics/filter.png>]
+ </home/frederik_siepe/odinvst/manual/graphics/filter.png>]
 <graphics/lowpass_filter.png, id=478, 364.36125pt x 196.735pt>
 File: graphics/lowpass_filter.png Graphic file (type png)
 <use graphics/lowpass_filter.png>
@@ -1689,7 +1521,7 @@ File: graphics/filter_freq.png Graphic file (type png)
 <use graphics/filter_freq.png>
 Package pdftex.def Info: graphics/filter_freq.png  used on input line 40.
 (pdftex.def)             Requested size: 219.22853pt x 116.11497pt.
- [25 <./graphics/filter_dropdown.png> <./graphics/lowpass_filter.png>]
+ [25 </home/frederik_siepe/odinvst/manual/graphics/filter_dropdown.png> </home/frederik_siepe/odinvst/manual/graphics/lowpass_filter.png>]
 File: graphics/knob.png Graphic file (type png)
 <use graphics/knob.png>
 Package pdftex.def Info: graphics/knob.png  used on input line 51.
@@ -1719,7 +1551,7 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 54.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
- [26 <./graphics/filter_freq.png> <./graphics/filter_resonance.png>]
+ [26 </home/frederik_siepe/odinvst/manual/graphics/filter_freq.png> </home/frederik_siepe/odinvst/manual/graphics/filter_resonance.png>]
 File: graphics/knob.png Graphic file (type png)
 <use graphics/knob.png>
 Package pdftex.def Info: graphics/knob.png  used on input line 57.
@@ -1774,130 +1606,134 @@ File: graphics/lp_bp_hp.png Graphic file (type png)
 <use graphics/lp_bp_hp.png>
 Package pdftex.def Info: graphics/lp_bp_hp.png  used on input line 70.
 (pdftex.def)             Requested size: 469.75502pt x 83.24652pt.
+<graphics/SEM_filter.png, id=500, 363.3575pt x 194.7275pt>
+File: graphics/SEM_filter.png Graphic file (type png)
+<use graphics/SEM_filter.png>
+Package pdftex.def Info: graphics/SEM_filter.png  used on input line 79.
+(pdftex.def)             Requested size: 234.8775pt x 125.87607pt.
 File: graphics/knob.png Graphic file (type png)
 <use graphics/knob.png>
-Package pdftex.def Info: graphics/knob.png  used on input line 89.
+Package pdftex.def Info: graphics/knob.png  used on input line 90.
 (pdftex.def)             Requested size: 26.30635pt x 29.95972pt.
 File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
-Package pdftex.def Info: graphics/available.png  used on input line 89.
+Package pdftex.def Info: graphics/available.png  used on input line 90.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
 File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
-Package pdftex.def Info: graphics/available.png  used on input line 89.
+Package pdftex.def Info: graphics/available.png  used on input line 90.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
-<graphics/SEM_transition.png, id=500, 572.69092pt x 120.71043pt>
+<graphics/SEM_transition.png, id=501, 572.69092pt x 120.71043pt>
 File: graphics/SEM_transition.png Graphic file (type png)
 <use graphics/SEM_transition.png>
-Package pdftex.def Info: graphics/SEM_transition.png  used on input line 89.
+Package pdftex.def Info: graphics/SEM_transition.png  used on input line 90.
 (pdftex.def)             Requested size: 438.45708pt x 92.41682pt.
- [28 <./graphics/lp_bp_hp.png (PNG copy)>]
-<graphics/diode_filter.png, id=505, 364.36125pt x 196.735pt>
+ [28 </home/frederik_siepe/odinvst/manual/graphics/lp_bp_hp.png (PNG copy)> </home/frederik_siepe/odinvst/manual/graphics/SEM_filter.png>]
+<graphics/diode_filter.png, id=506, 364.36125pt x 196.735pt>
 File: graphics/diode_filter.png Graphic file (type png)
 <use graphics/diode_filter.png>
-Package pdftex.def Info: graphics/diode_filter.png  used on input line 93.
+Package pdftex.def Info: graphics/diode_filter.png  used on input line 94.
 (pdftex.def)             Requested size: 234.8775pt x 126.81953pt.
-<graphics/korg_filter.png, id=506, 365.365pt x 196.735pt>
+<graphics/korg_filter.png, id=507, 365.365pt x 196.735pt>
 File: graphics/korg_filter.png Graphic file (type png)
 <use graphics/korg_filter.png>
-Package pdftex.def Info: graphics/korg_filter.png  used on input line 100.
+Package pdftex.def Info: graphics/korg_filter.png  used on input line 101.
 (pdftex.def)             Requested size: 234.8775pt x 126.47131pt.
- [29 <./graphics/SEM_transition.png> <./graphics/diode_filter.png>]
-<graphics/comb_filter.png, id=512, 365.365pt x 198.7425pt>
+ [29 </home/frederik_siepe/odinvst/manual/graphics/SEM_transition.png> </home/frederik_siepe/odinvst/manual/graphics/diode_filter.png>]
+<graphics/comb_filter.png, id=513, 365.365pt x 198.7425pt>
 File: graphics/comb_filter.png Graphic file (type png)
 <use graphics/comb_filter.png>
-Package pdftex.def Info: graphics/comb_filter.png  used on input line 108.
+Package pdftex.def Info: graphics/comb_filter.png  used on input line 109.
 (pdftex.def)             Requested size: 234.8775pt x 127.76184pt.
-<graphics/comb_response.png, id=514, 218.76324pt x 144.54pt>
+<graphics/comb_response.png, id=515, 218.76324pt x 144.54pt>
 File: graphics/comb_response.png Graphic file (type png)
 <use graphics/comb_response.png>
-Package pdftex.def Info: graphics/comb_response.png  used on input line 119.
+Package pdftex.def Info: graphics/comb_response.png  used on input line 120.
 (pdftex.def)             Requested size: 234.8775pt x 155.19438pt.
- [30 <./graphics/korg_filter.png> <./graphics/comb_filter.png>]
+ [30 </home/frederik_siepe/odinvst/manual/graphics/korg_filter.png> </home/frederik_siepe/odinvst/manual/graphics/comb_filter.png>]
 File: graphics/knob.png Graphic file (type png)
 <use graphics/knob.png>
-Package pdftex.def Info: graphics/knob.png  used on input line 128.
+Package pdftex.def Info: graphics/knob.png  used on input line 129.
 (pdftex.def)             Requested size: 26.30635pt x 29.95972pt.
 File: graphics/not_available.png Graphic file (type png)
 <use graphics/not_available.png>
-Package pdftex.def Info: graphics/not_available.png  used on input line 128.
+Package pdftex.def Info: graphics/not_available.png  used on input line 129.
 (pdftex.def)             Requested size: 8.77101pt x 9.89503pt.
 File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
-Package pdftex.def Info: graphics/available.png  used on input line 128.
+Package pdftex.def Info: graphics/available.png  used on input line 129.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
-<graphics/formant_filter.png, id=521, 365.365pt x 198.7425pt>
+<graphics/formant_filter.png, id=522, 365.365pt x 198.7425pt>
 File: graphics/formant_filter.png Graphic file (type png)
 <use graphics/formant_filter.png>
-Package pdftex.def Info: graphics/formant_filter.png  used on input line 132.
+Package pdftex.def Info: graphics/formant_filter.png  used on input line 133.
 (pdftex.def)             Requested size: 234.8775pt x 127.76184pt.
-<graphics/formant_response.png, id=522, 218.76324pt x 116.02264pt>
+<graphics/formant_response.png, id=523, 218.76324pt x 116.02264pt>
 File: graphics/formant_response.png Graphic file (type png)
 <use graphics/formant_response.png>
-Package pdftex.def Info: graphics/formant_response.png  used on input line 137.
-
+Package pdftex.def Info: graphics/formant_response.png  used on input line 138.
 (pdftex.def)             Requested size: 234.8775pt x 124.57495pt.
- [31 <./graphics/comb_response.png> <./graphics/formant_filter.png>]
+ [31 </home/frederik_siepe/odinvst/manual/graphics/comb_response.png> </home/frederik_siepe/odinvst/manual/graphics/formant_filter.png>]
 File: graphics/knob.png Graphic file (type png)
 <use graphics/knob.png>
-Package pdftex.def Info: graphics/knob.png  used on input line 146.
+Package pdftex.def Info: graphics/knob.png  used on input line 147.
 (pdftex.def)             Requested size: 26.30635pt x 29.95972pt.
 File: graphics/not_available.png Graphic file (type png)
 <use graphics/not_available.png>
-Package pdftex.def Info: graphics/not_available.png  used on input line 146.
+Package pdftex.def Info: graphics/not_available.png  used on input line 147.
 (pdftex.def)             Requested size: 8.77101pt x 9.89503pt.
 File: graphics/not_available.png Graphic file (type png)
 <use graphics/not_available.png>
-Package pdftex.def Info: graphics/not_available.png  used on input line 146.
+Package pdftex.def Info: graphics/not_available.png  used on input line 147.
 (pdftex.def)             Requested size: 8.77101pt x 9.89503pt.
 File: graphics/knob.png Graphic file (type png)
 <use graphics/knob.png>
-Package pdftex.def Info: graphics/knob.png  used on input line 152.
+Package pdftex.def Info: graphics/knob.png  used on input line 153.
 (pdftex.def)             Requested size: 26.30635pt x 29.95972pt.
 File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
-Package pdftex.def Info: graphics/available.png  used on input line 152.
+Package pdftex.def Info: graphics/available.png  used on input line 153.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
 File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
-Package pdftex.def Info: graphics/available.png  used on input line 152.
+Package pdftex.def Info: graphics/available.png  used on input line 153.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
-<graphics/ring_modulator.png, id=528, 367.3725pt x 195.73125pt>
+<graphics/ring_modulator.png, id=529, 367.3725pt x 195.73125pt>
 File: graphics/ring_modulator.png Graphic file (type png)
 <use graphics/ring_modulator.png>
-Package pdftex.def Info: graphics/ring_modulator.png  used on input line 156.
+Package pdftex.def Info: graphics/ring_modulator.png  used on input line 157.
 (pdftex.def)             Requested size: 234.8775pt x 125.14212pt.
 File: graphics/knob.png Graphic file (type png)
 <use graphics/knob.png>
-Package pdftex.def Info: graphics/knob.png  used on input line 162.
+Package pdftex.def Info: graphics/knob.png  used on input line 163.
 (pdftex.def)             Requested size: 26.30635pt x 29.95972pt.
 File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
-Package pdftex.def Info: graphics/available.png  used on input line 162.
+Package pdftex.def Info: graphics/available.png  used on input line 163.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
 File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
-Package pdftex.def Info: graphics/available.png  used on input line 162.
+Package pdftex.def Info: graphics/available.png  used on input line 163.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
- [32 <./graphics/formant_response.png> <./graphics/ring_modulator.png>]
+ [32 </home/frederik_siepe/odinvst/manual/graphics/formant_response.png> </home/frederik_siepe/odinvst/manual/graphics/ring_modulator.png>]
 File: graphics/knob.png Graphic file (type png)
 <use graphics/knob.png>
-Package pdftex.def Info: graphics/knob.png  used on input line 166.
+Package pdftex.def Info: graphics/knob.png  used on input line 167.
 (pdftex.def)             Requested size: 26.30635pt x 29.95972pt.
 File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
-Package pdftex.def Info: graphics/available.png  used on input line 166.
+Package pdftex.def Info: graphics/available.png  used on input line 167.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
 File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
-Package pdftex.def Info: graphics/available.png  used on input line 166.
+Package pdftex.def Info: graphics/available.png  used on input line 167.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
 ) [33]
 \openout2 = `AmpDistortion.aux'.
 
- (./AmpDistortion.tex
+ (/home/frederik_siepe/odinvst/manual/AmpDistortion.tex
 Chapter 4.
-<graphics/amp_distortion.png, id=538, 311.1625pt x 233.87375pt>
+<graphics/amp_distortion.png, id=539, 311.1625pt x 233.87375pt>
 File: graphics/amp_distortion.png Graphic file (type png)
 <use graphics/amp_distortion.png>
 Package pdftex.def Info: graphics/amp_distortion.png  used on input line 4.
@@ -1926,7 +1762,7 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 24.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
-<graphics/pan_function.png, id=540, 217.20065pt x 135.94572pt>
+<graphics/pan_function.png, id=541, 217.20065pt x 135.94572pt>
 File: graphics/pan_function.png Graphic file (type png)
 <use graphics/pan_function.png>
 Package pdftex.def Info: graphics/pan_function.png  used on input line 24.
@@ -1936,7 +1772,7 @@ Package pdftex.def Info: graphics/pan_function.png  used on input line 24.
 
 
 
- <./graphics/amp_distortion.png>]
+ </home/frederik_siepe/odinvst/manual/graphics/amp_distortion.png>]
 File: graphics/knob.png Graphic file (type png)
 <use graphics/knob.png>
 Package pdftex.def Info: graphics/knob.png  used on input line 28.
@@ -1949,12 +1785,12 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 28.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
-<graphics/distortion.png, id=546, 303.1325pt x 94.3525pt>
+<graphics/distortion.png, id=547, 303.1325pt x 94.3525pt>
 File: graphics/distortion.png Graphic file (type png)
 <use graphics/distortion.png>
 Package pdftex.def Info: graphics/distortion.png  used on input line 45.
 (pdftex.def)             Requested size: 164.41711pt x 51.17705pt.
- [35 <./graphics/pan_function.png> <./graphics/distortion.png (PNG copy)>]
+ [35 </home/frederik_siepe/odinvst/manual/graphics/pan_function.png> </home/frederik_siepe/odinvst/manual/graphics/distortion.png (PNG copy)>]
 File: graphics/knob.png Graphic file (type png)
 <use graphics/knob.png>
 Package pdftex.def Info: graphics/knob.png  used on input line 56.
@@ -1967,7 +1803,7 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 56.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
-<graphics/distortion_on.png, id=552, 101.37875pt x 31.11626pt>
+<graphics/distortion_on.png, id=553, 101.37875pt x 31.11626pt>
 File: graphics/distortion_on.png Graphic file (type png)
 <use graphics/distortion_on.png>
 Package pdftex.def Info: graphics/distortion_on.png  used on input line 56.
@@ -2008,34 +1844,32 @@ File: graphics/not_available.png Graphic file (type png)
 <use graphics/not_available.png>
 Package pdftex.def Info: graphics/not_available.png  used on input line 93.
 (pdftex.def)             Requested size: 8.77101pt x 9.89503pt.
-<graphics/overdrive.png, id=553, 485.96692pt x 157.04076pt>
+<graphics/overdrive.png, id=554, 485.96692pt x 157.04076pt>
 File: graphics/overdrive.png Graphic file (type png)
 <use graphics/overdrive.png>
 Package pdftex.def Info: graphics/overdrive.png  used on input line 93.
 (pdftex.def)             Requested size: 306.91861pt x 99.18541pt.
-<graphics/fold.png, id=554, 488.70146pt x 157.04076pt>
+<graphics/fold.png, id=555, 488.70146pt x 157.04076pt>
 File: graphics/fold.png Graphic file (type png)
 <use graphics/fold.png>
 Package pdftex.def Info: graphics/fold.png  used on input line 93.
 (pdftex.def)             Requested size: 306.91861pt x 98.62708pt.
-<graphics/zero.png, id=555, 488.70146pt x 157.04076pt>
+<graphics/zero.png, id=556, 488.70146pt x 157.04076pt>
 File: graphics/zero.png Graphic file (type png)
 <use graphics/zero.png>
 Package pdftex.def Info: graphics/zero.png  used on input line 93.
 (pdftex.def)             Requested size: 306.91861pt x 98.62708pt.
-) [36 <./graphics/distortion_on.png (PNG copy)>] [37 <./graphics/overdrive.png>
- <./graphics/fold.png> <./graphics/zero.png>]
+) [36 </home/frederik_siepe/odinvst/manual/graphics/distortion_on.png (PNG copy)>] [37 </home/frederik_siepe/odinvst/manual/graphics/overdrive.png> </home/frederik_siepe/odinvst/manual/graphics/fold.png> </home/frederik_siepe/odinvst/manual/graphics/zero.png>]
 \openout2 = `FX.aux'.
 
-
-(./FX.tex
+ (/home/frederik_siepe/odinvst/manual/FX.tex
 Chapter 5.
-<graphics/FX.png, id=568, 373.395pt x 212.795pt>
+<graphics/FX.png, id=569, 373.395pt x 212.795pt>
 File: graphics/FX.png Graphic file (type png)
 <use graphics/FX.png>
 Package pdftex.def Info: graphics/FX.png  used on input line 6.
 (pdftex.def)             Requested size: 187.89914pt x 107.08234pt.
-<graphics/FX_selector.png, id=569, 373.395pt x 50.1875pt>
+<graphics/FX_selector.png, id=570, 373.395pt x 50.1875pt>
 File: graphics/FX_selector.png Graphic file (type png)
 <use graphics/FX_selector.png>
 Package pdftex.def Info: graphics/FX_selector.png  used on input line 12.
@@ -2069,8 +1903,8 @@ Package pdftex.def Info: graphics/not_available.png  used on input line 24.
 
 
 
- <./graphics/FX.png> <./graphics/FX_selector.png>]
-<graphics/delay.png, id=575, 365.365pt x 159.59625pt>
+ </home/frederik_siepe/odinvst/manual/graphics/FX.png> </home/frederik_siepe/odinvst/manual/graphics/FX_selector.png>]
+<graphics/delay.png, id=576, 365.365pt x 159.59625pt>
 File: graphics/delay.png Graphic file (type png)
 <use graphics/delay.png>
 Package pdftex.def Info: graphics/delay.png  used on input line 29.
@@ -2087,7 +1921,7 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 40.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
-<graphics/delay_sync.png, id=576, 118.4425pt x 30.1125pt>
+<graphics/delay_sync.png, id=577, 118.4425pt x 30.1125pt>
 File: graphics/delay_sync.png Graphic file (type png)
 <use graphics/delay_sync.png>
 Package pdftex.def Info: graphics/delay_sync.png  used on input line 40.
@@ -2116,7 +1950,7 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 48.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
- [39 <./graphics/delay.png (PNG copy)> <./graphics/delay_sync.png>]
+ [39 </home/frederik_siepe/odinvst/manual/graphics/delay.png (PNG copy)> </home/frederik_siepe/odinvst/manual/graphics/delay_sync.png>]
 File: graphics/knob.png Graphic file (type png)
 <use graphics/knob.png>
 Package pdftex.def Info: graphics/knob.png  used on input line 54.
@@ -2178,7 +2012,7 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 73.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
-<graphics/chorus.png, id=585, 364.36125pt x 160.6pt>
+<graphics/chorus.png, id=586, 364.36125pt x 160.6pt>
 File: graphics/chorus.png Graphic file (type png)
 <use graphics/chorus.png>
 Package pdftex.def Info: graphics/chorus.png  used on input line 77.
@@ -2197,7 +2031,7 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 88.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
-<graphics/chorus_sync.png, id=586, 118.4425pt x 30.1125pt>
+<graphics/chorus_sync.png, id=587, 118.4425pt x 30.1125pt>
 File: graphics/chorus_sync.png Graphic file (type png)
 <use graphics/chorus_sync.png>
 Package pdftex.def Info: graphics/chorus_sync.png  used on input line 88.
@@ -2214,7 +2048,7 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 92.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
- [41 <./graphics/chorus.png> <./graphics/chorus_sync.png (PNG copy)>]
+ [41 </home/frederik_siepe/odinvst/manual/graphics/chorus.png> </home/frederik_siepe/odinvst/manual/graphics/chorus_sync.png (PNG copy)>]
 File: graphics/knob.png Graphic file (type png)
 <use graphics/knob.png>
 Package pdftex.def Info: graphics/knob.png  used on input line 96.
@@ -2251,14 +2085,14 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 104.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
-<graphics/phaser.png, id=591, 366.36874pt x 161.60374pt>
+<graphics/phaser.png, id=592, 366.36874pt x 161.60374pt>
 File: graphics/phaser.png Graphic file (type png)
 <use graphics/phaser.png>
 Package pdftex.def Info: graphics/phaser.png  used on input line 108.
 (pdftex.def)             Requested size: 234.8775pt x 103.60358pt.
 Missing character: There is no Â in font putr7t!
 Missing character: There is no ° in font putr7t!
- [42 <./graphics/phaser.png>]
+ [42 </home/frederik_siepe/odinvst/manual/graphics/phaser.png>]
 File: graphics/knob.png Graphic file (type png)
 <use graphics/knob.png>
 Package pdftex.def Info: graphics/knob.png  used on input line 118.
@@ -2271,7 +2105,7 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 118.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
-<graphics/phaser_sync.png, id=598, 118.4425pt x 30.1125pt>
+<graphics/phaser_sync.png, id=599, 118.4425pt x 30.1125pt>
 File: graphics/phaser_sync.png Graphic file (type png)
 <use graphics/phaser_sync.png>
 Package pdftex.def Info: graphics/phaser_sync.png  used on input line 118.
@@ -2336,8 +2170,8 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 138.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
- [43 <./graphics/phaser_sync.png (PNG copy)>]
-<graphics/flanger.png, id=603, 365.365pt x 161.60374pt>
+ [43 </home/frederik_siepe/odinvst/manual/graphics/phaser_sync.png (PNG copy)>]
+<graphics/flanger.png, id=604, 365.365pt x 161.60374pt>
 File: graphics/flanger.png Graphic file (type png)
 <use graphics/flanger.png>
 Package pdftex.def Info: graphics/flanger.png  used on input line 142.
@@ -2354,7 +2188,7 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 153.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
-<graphics/flanger_sync.png, id=605, 118.4425pt x 30.1125pt>
+<graphics/flanger_sync.png, id=606, 118.4425pt x 30.1125pt>
 File: graphics/flanger_sync.png Graphic file (type png)
 <use graphics/flanger_sync.png>
 Package pdftex.def Info: graphics/flanger_sync.png  used on input line 153.
@@ -2383,7 +2217,7 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 161.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
- [44 <./graphics/flanger.png> <./graphics/flanger_sync.png (PNG copy)>]
+ [44 </home/frederik_siepe/odinvst/manual/graphics/flanger.png> </home/frederik_siepe/odinvst/manual/graphics/flanger_sync.png (PNG copy)>]
 File: graphics/knob.png Graphic file (type png)
 <use graphics/knob.png>
 Package pdftex.def Info: graphics/knob.png  used on input line 165.
@@ -2411,9 +2245,9 @@ Package pdftex.def Info: graphics/available.png  used on input line 169.
 ) [45]
 \openout2 = `Modulators.aux'.
 
- (./Modulators.tex
+ (/home/frederik_siepe/odinvst/manual/Modulators.tex
 Chapter 6.
-<graphics/ADSR_section.png, id=615, 364.36125pt x 170.6375pt>
+<graphics/ADSR_section.png, id=616, 364.36125pt x 170.6375pt>
 File: graphics/ADSR_section.png Graphic file (type png)
 <use graphics/ADSR_section.png>
 Package pdftex.def Info: graphics/ADSR_section.png  used on input line 13.
@@ -2423,13 +2257,13 @@ Package pdftex.def Info: graphics/ADSR_section.png  used on input line 13.
 
 
 
- <./graphics/ADSR_section.png>]
-<graphics/ADSR_handles.png, id=623, 364.36125pt x 28.105pt>
+ </home/frederik_siepe/odinvst/manual/graphics/ADSR_section.png>]
+<graphics/ADSR_handles.png, id=624, 364.36125pt x 28.105pt>
 File: graphics/ADSR_handles.png Graphic file (type png)
 <use graphics/ADSR_handles.png>
 Package pdftex.def Info: graphics/ADSR_handles.png  used on input line 27.
 (pdftex.def)             Requested size: 234.8775pt x 18.11707pt.
-<graphics/ADSR.png, id=624, 628.16302pt x 226.96686pt>
+<graphics/ADSR.png, id=625, 628.16302pt x 226.96686pt>
 File: graphics/ADSR.png Graphic file (type png)
 <use graphics/ADSR.png>
 Package pdftex.def Info: graphics/ADSR.png  used on input line 34.
@@ -2458,7 +2292,7 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 51.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
- [47 <./graphics/ADSR_handles.png (PNG copy)> <./graphics/ADSR.png>]
+ [47 </home/frederik_siepe/odinvst/manual/graphics/ADSR_handles.png (PNG copy)> </home/frederik_siepe/odinvst/manual/graphics/ADSR.png>]
 File: graphics/knob.png Graphic file (type png)
 <use graphics/knob.png>
 Package pdftex.def Info: graphics/knob.png  used on input line 55.
@@ -2495,13 +2329,13 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 65.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
-<graphics/LFOs.png, id=631, 365.365pt x 119.44624pt>
+<graphics/LFOs.png, id=632, 365.365pt x 119.44624pt>
 File: graphics/LFOs.png Graphic file (type png)
 <use graphics/LFOs.png>
 Package pdftex.def Info: graphics/LFOs.png  used on input line 71.
 (pdftex.def)             Requested size: 187.89914pt x 61.42891pt.
  [48]
-<graphics/LFO_handles.png, id=638, 363.3575pt x 29.10875pt>
+<graphics/LFO_handles.png, id=639, 363.3575pt x 29.10875pt>
 File: graphics/LFO_handles.png Graphic file (type png)
 <use graphics/LFO_handles.png>
 Package pdftex.def Info: graphics/LFO_handles.png  used on input line 80.
@@ -2518,7 +2352,7 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 92.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
-<graphics/LFO_sync.png, id=639, 113.42375pt x 28.105pt>
+<graphics/LFO_sync.png, id=640, 113.42375pt x 28.105pt>
 File: graphics/LFO_sync.png Graphic file (type png)
 <use graphics/LFO_sync.png>
 Package pdftex.def Info: graphics/LFO_sync.png  used on input line 92.
@@ -2547,108 +2381,107 @@ File: graphics/not_available.png Graphic file (type png)
 <use graphics/not_available.png>
 Package pdftex.def Info: graphics/not_available.png  used on input line 165.
 (pdftex.def)             Requested size: 8.77101pt x 9.89503pt.
-<graphics/LFO/sine.png, id=640, 42.1575pt x 20.075pt>
+<graphics/LFO/sine.png, id=641, 42.1575pt x 20.075pt>
 File: graphics/LFO/sine.png Graphic file (type png)
 <use graphics/LFO/sine.png>
 Package pdftex.def Info: graphics/LFO/sine.png  used on input line 165.
 (pdftex.def)             Requested size: 43.84837pt x 20.88055pt.
-<graphics/LFO/saw.png, id=641, 42.1575pt x 20.075pt>
+<graphics/LFO/saw.png, id=642, 42.1575pt x 20.075pt>
 File: graphics/LFO/saw.png Graphic file (type png)
 <use graphics/LFO/saw.png>
 Package pdftex.def Info: graphics/LFO/saw.png  used on input line 165.
 (pdftex.def)             Requested size: 43.84837pt x 20.88055pt.
-<graphics/LFO/triangle.png, id=642, 42.1575pt x 20.075pt>
+<graphics/LFO/triangle.png, id=643, 42.1575pt x 20.075pt>
 File: graphics/LFO/triangle.png Graphic file (type png)
 <use graphics/LFO/triangle.png>
 Package pdftex.def Info: graphics/LFO/triangle.png  used on input line 165.
 (pdftex.def)             Requested size: 43.84837pt x 20.88055pt.
-<graphics/LFO/square50.png, id=643, 42.1575pt x 20.075pt>
+<graphics/LFO/square50.png, id=644, 42.1575pt x 20.075pt>
 File: graphics/LFO/square50.png Graphic file (type png)
 <use graphics/LFO/square50.png>
 Package pdftex.def Info: graphics/LFO/square50.png  used on input line 165.
 (pdftex.def)             Requested size: 43.84837pt x 20.88055pt.
-<graphics/LFO/square25.png, id=644, 42.1575pt x 20.075pt>
+<graphics/LFO/square25.png, id=645, 42.1575pt x 20.075pt>
 File: graphics/LFO/square25.png Graphic file (type png)
 <use graphics/LFO/square25.png>
 Package pdftex.def Info: graphics/LFO/square25.png  used on input line 165.
 (pdftex.def)             Requested size: 43.84837pt x 20.88055pt.
-<graphics/LFO/square12.png, id=645, 42.1575pt x 20.075pt>
+<graphics/LFO/square12.png, id=646, 42.1575pt x 20.075pt>
 File: graphics/LFO/square12.png Graphic file (type png)
 <use graphics/LFO/square12.png>
 Package pdftex.def Info: graphics/LFO/square12.png  used on input line 165.
 (pdftex.def)             Requested size: 43.84837pt x 20.88055pt.
-<graphics/LFO/peak.png, id=646, 42.1575pt x 20.075pt>
+<graphics/LFO/peak.png, id=647, 42.1575pt x 20.075pt>
 File: graphics/LFO/peak.png Graphic file (type png)
 <use graphics/LFO/peak.png>
 Package pdftex.def Info: graphics/LFO/peak.png  used on input line 165.
 (pdftex.def)             Requested size: 43.84837pt x 20.88055pt.
-<graphics/LFO/SH.png, id=647, 42.1575pt x 20.075pt>
+<graphics/LFO/SH.png, id=648, 42.1575pt x 20.075pt>
 File: graphics/LFO/SH.png Graphic file (type png)
 <use graphics/LFO/SH.png>
 Package pdftex.def Info: graphics/LFO/SH.png  used on input line 165.
 (pdftex.def)             Requested size: 43.84837pt x 20.88055pt.
-<graphics/LFO/pyram4.png, id=648, 42.1575pt x 20.075pt>
+<graphics/LFO/pyram4.png, id=649, 42.1575pt x 20.075pt>
 File: graphics/LFO/pyram4.png Graphic file (type png)
 <use graphics/LFO/pyram4.png>
 Package pdftex.def Info: graphics/LFO/pyram4.png  used on input line 165.
 (pdftex.def)             Requested size: 43.84837pt x 20.88055pt.
-<graphics/LFO/pyram6.png, id=649, 42.1575pt x 20.075pt>
+<graphics/LFO/pyram6.png, id=650, 42.1575pt x 20.075pt>
 File: graphics/LFO/pyram6.png Graphic file (type png)
 <use graphics/LFO/pyram6.png>
 Package pdftex.def Info: graphics/LFO/pyram6.png  used on input line 165.
 (pdftex.def)             Requested size: 43.84837pt x 20.88055pt.
-<graphics/LFO/pyram8.png, id=650, 42.1575pt x 20.075pt>
+<graphics/LFO/pyram8.png, id=651, 42.1575pt x 20.075pt>
 File: graphics/LFO/pyram8.png Graphic file (type png)
 <use graphics/LFO/pyram8.png>
 Package pdftex.def Info: graphics/LFO/pyram8.png  used on input line 165.
 (pdftex.def)             Requested size: 43.84837pt x 20.88055pt.
-<graphics/LFO/pyram12.png, id=651, 42.1575pt x 20.075pt>
+<graphics/LFO/pyram12.png, id=652, 42.1575pt x 20.075pt>
 File: graphics/LFO/pyram12.png Graphic file (type png)
 <use graphics/LFO/pyram12.png>
 Package pdftex.def Info: graphics/LFO/pyram12.png  used on input line 165.
 (pdftex.def)             Requested size: 43.84837pt x 20.88055pt.
-<graphics/LFO/stair3.png, id=652, 42.1575pt x 20.075pt>
+<graphics/LFO/stair3.png, id=653, 42.1575pt x 20.075pt>
 File: graphics/LFO/stair3.png Graphic file (type png)
 <use graphics/LFO/stair3.png>
 Package pdftex.def Info: graphics/LFO/stair3.png  used on input line 165.
 (pdftex.def)             Requested size: 43.84837pt x 20.88055pt.
-<graphics/LFO/stair4.png, id=653, 42.1575pt x 20.075pt>
+<graphics/LFO/stair4.png, id=654, 42.1575pt x 20.075pt>
 File: graphics/LFO/stair4.png Graphic file (type png)
 <use graphics/LFO/stair4.png>
 Package pdftex.def Info: graphics/LFO/stair4.png  used on input line 165.
 (pdftex.def)             Requested size: 43.84837pt x 20.88055pt.
-<graphics/LFO/stair6.png, id=654, 42.1575pt x 20.075pt>
+<graphics/LFO/stair6.png, id=655, 42.1575pt x 20.075pt>
 File: graphics/LFO/stair6.png Graphic file (type png)
 <use graphics/LFO/stair6.png>
 Package pdftex.def Info: graphics/LFO/stair6.png  used on input line 165.
 (pdftex.def)             Requested size: 43.84837pt x 20.88055pt.
-<graphics/LFO/stair8.png, id=655, 42.1575pt x 20.075pt>
+<graphics/LFO/stair8.png, id=656, 42.1575pt x 20.075pt>
 File: graphics/LFO/stair8.png Graphic file (type png)
 <use graphics/LFO/stair8.png>
 Package pdftex.def Info: graphics/LFO/stair8.png  used on input line 165.
 (pdftex.def)             Requested size: 43.84837pt x 20.88055pt.
-<graphics/LFO/stair12.png, id=656, 42.1575pt x 20.075pt>
+<graphics/LFO/stair12.png, id=657, 42.1575pt x 20.075pt>
 File: graphics/LFO/stair12.png Graphic file (type png)
 <use graphics/LFO/stair12.png>
 Package pdftex.def Info: graphics/LFO/stair12.png  used on input line 165.
 (pdftex.def)             Requested size: 43.84837pt x 20.88055pt.
-<graphics/LFO/wavedraw1.png, id=657, 42.1575pt x 20.075pt>
+<graphics/LFO/wavedraw1.png, id=658, 42.1575pt x 20.075pt>
 File: graphics/LFO/wavedraw1.png Graphic file (type png)
 <use graphics/LFO/wavedraw1.png>
 Package pdftex.def Info: graphics/LFO/wavedraw1.png  used on input line 165.
 (pdftex.def)             Requested size: 43.84837pt x 20.88055pt.
-<graphics/LFO/wavedraw2.png, id=659, 42.1575pt x 20.075pt>
+<graphics/LFO/wavedraw2.png, id=660, 42.1575pt x 20.075pt>
 File: graphics/LFO/wavedraw2.png Graphic file (type png)
 <use graphics/LFO/wavedraw2.png>
 Package pdftex.def Info: graphics/LFO/wavedraw2.png  used on input line 165.
 (pdftex.def)             Requested size: 43.84837pt x 20.88055pt.
-<graphics/LFO/wavedraw3.png, id=661, 42.1575pt x 20.075pt>
+<graphics/LFO/wavedraw3.png, id=662, 42.1575pt x 20.075pt>
 File: graphics/LFO/wavedraw3.png Graphic file (type png)
 <use graphics/LFO/wavedraw3.png>
 Package pdftex.def Info: graphics/LFO/wavedraw3.png  used on input line 165.
 (pdftex.def)             Requested size: 43.84837pt x 20.88055pt.
- [49 <./graphics/LFOs.png> <./graphics/LFO_handles.png (PNG copy)> <./graphics/
-LFO_sync.png (PNG copy)>]
+ [49 </home/frederik_siepe/odinvst/manual/graphics/LFOs.png> </home/frederik_siepe/odinvst/manual/graphics/LFO_handles.png (PNG copy)> </home/frederik_siepe/odinvst/manual/graphics/LFO_sync.png (PNG copy)>]
 File: graphics/knob.png Graphic file (type png)
 <use graphics/knob.png>
 Package pdftex.def Info: graphics/knob.png  used on input line 169.
@@ -2661,23 +2494,15 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 169.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
- [50 <./graphics/LFO/sine.png> <./graphics/LFO/saw.png> <./graphics/LFO/triangl
-e.png> <./graphics/LFO/square50.png> <./graphics/LFO/square25.png> <./graphics/
-LFO/square12.png> <./graphics/LFO/peak.png> <./graphics/LFO/SH.png> <./graphics
-/LFO/pyram4.png> <./graphics/LFO/pyram6.png> <./graphics/LFO/pyram8.png> <./gra
-phics/LFO/pyram12.png> <./graphics/LFO/stair3.png> <./graphics/LFO/stair4.png> 
-<./graphics/LFO/stair6.png> <./graphics/LFO/stair8.png> <./graphics/LFO/stair12
-.png> <./graphics/LFO/wavedraw1.png> <./graphics/LFO/wavedraw2.png> <./graphics
-/LFO/wavedraw3.png>]
-<graphics/XY_pad.png, id=691, 194.7275pt x 137.51375pt>
+ [50 </home/frederik_siepe/odinvst/manual/graphics/LFO/sine.png> </home/frederik_siepe/odinvst/manual/graphics/LFO/saw.png> </home/frederik_siepe/odinvst/manual/graphics/LFO/triangle.png> </home/frederik_siepe/odinvst/manual/graphics/LFO/square50.png> </home/frederik_siepe/odinvst/manual/graphics/LFO/square25.png> </home/frederik_siepe/odinvst/manual/graphics/LFO/square12.png> </home/frederik_siepe/odinvst/manual/graphics/LFO/peak.png> </home/frederik_siepe/odinvst/manual/graphics/LFO/SH.png> </home/frederik_siepe/odinvst/manual/graphics/LFO/pyram4.png> </home/frederik_siepe/odinvst/manual/graphics/LFO/pyram6.png> </home/frederik_siepe/odinvst/manual/graphics/LFO/pyram8.png> </home/frederik_siepe/odinvst/manual/graphics/LFO/pyram12.png> </home/frederik_siepe/odinvst/manual/graphics/LFO/stair3.png> </home/frederik_siepe/odinvst/manual/graphics/LFO/stair4.png> </home/frederik_siepe/odinvst/manual/graphics/LFO/stair6.png> </home/frederik_siepe/odinvst/manual/graphics/LFO/stair8.png> </home/frederik_siepe/odinvst/manual/graphics/LFO/stair12.png> </home/frederik_siepe/odinvst/manual/graphics/LFO/wavedraw1.png> </home/frederik_siepe/odinvst/manual/graphics/LFO/wavedraw2.png> </home/frederik_siepe/odinvst/manual/graphics/LFO/wavedraw3.png>]
+<graphics/XY_pad.png, id=692, 194.7275pt x 137.51375pt>
 File: graphics/XY_pad.png Graphic file (type png)
 <use graphics/XY_pad.png>
 Package pdftex.def Info: graphics/XY_pad.png  used on input line 174.
 (pdftex.def)             Requested size: 164.41711pt x 116.11296pt.
 
 Overfull \hbox (2.9445pt too wide) in paragraph at lines 177--178
-[]\OT1/put/m/n/12 The XY-Pad pro-vides a con-ve-nient way to com-bine two in-de
--pen-dent mod-u-la-tion sources
+[]\OT1/put/m/n/12 The XY-Pad pro-vides a con-ve-nient way to com-bine two in-de-pen-dent mod-u-la-tion sources
  []
 
 File: graphics/knob.png Graphic file (type png)
@@ -2704,12 +2529,12 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 185.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
-<graphics/wheels.png, id=692, 97.36375pt x 155.58125pt>
+<graphics/wheels.png, id=693, 97.36375pt x 155.58125pt>
 File: graphics/wheels.png Graphic file (type png)
 <use graphics/wheels.png>
 Package pdftex.def Info: graphics/wheels.png  used on input line 191.
 (pdftex.def)             Requested size: 70.46037pt x 112.59528pt.
-[51 <./graphics/XY_pad.png>]
+[51 </home/frederik_siepe/odinvst/manual/graphics/XY_pad.png>]
 File: graphics/knob.png Graphic file (type png)
 <use graphics/knob.png>
 Package pdftex.def Info: graphics/knob.png  used on input line 202.
@@ -2746,18 +2571,17 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 212.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
-) [52 <./graphics/wheels.png>]
+) [52 </home/frederik_siepe/odinvst/manual/graphics/wheels.png>]
 \openout2 = `ModulationMatrix.aux'.
 
-
-(./ModulationMatrix.tex
+ (/home/frederik_siepe/odinvst/manual/ModulationMatrix.tex
 Chapter 7.
-<graphics/modmatrix.png, id=702, 753.81625pt x 243.91125pt>
+<graphics/modmatrix.png, id=703, 753.81625pt x 243.91125pt>
 File: graphics/modmatrix.png Graphic file (type png)
 <use graphics/modmatrix.png>
 Package pdftex.def Info: graphics/modmatrix.png  used on input line 6.
 (pdftex.def)             Requested size: 422.77664pt x 136.79405pt.
-<graphics/modmatrix_row.png, id=703, 744.96698pt x 80.08298pt>
+<graphics/modmatrix_row.png, id=704, 744.96698pt x 80.08298pt>
 File: graphics/modmatrix_row.png Graphic file (type png)
 <use graphics/modmatrix_row.png>
 Package pdftex.def Info: graphics/modmatrix_row.png  used on input line 16.
@@ -2791,7 +2615,7 @@ Package pdftex.def Info: graphics/not_available.png  used on input line 29.
 
 
 
- <./graphics/modmatrix.png> <./graphics/modmatrix_row.png>]
+ </home/frederik_siepe/odinvst/manual/graphics/modmatrix.png> </home/frederik_siepe/odinvst/manual/graphics/modmatrix_row.png>]
 File: graphics/knob.png Graphic file (type png)
 <use graphics/knob.png>
 Package pdftex.def Info: graphics/knob.png  used on input line 33.
@@ -2829,7 +2653,7 @@ File: graphics/not_available.png Graphic file (type png)
 Package pdftex.def Info: graphics/not_available.png  used on input line 41.
 (pdftex.def)             Requested size: 8.77101pt x 9.89503pt.
  [54]
-<graphics/modulation_scale.png, id=716, 516.82816pt x 146.49324pt>
+<graphics/modulation_scale.png, id=717, 516.82816pt x 146.49324pt>
 File: graphics/modulation_scale.png Graphic file (type png)
 <use graphics/modulation_scale.png>
 Package pdftex.def Info: graphics/modulation_scale.png  used on input line 52.
@@ -2858,7 +2682,7 @@ File: graphics/not_available.png Graphic file (type png)
 <use graphics/not_available.png>
 Package pdftex.def Info: graphics/not_available.png  used on input line 64.
 (pdftex.def)             Requested size: 8.77101pt x 9.89503pt.
- [55 <./graphics/modulation_scale.png>]
+ [55 </home/frederik_siepe/odinvst/manual/graphics/modulation_scale.png>]
 Overfull \hbox (12.41869pt too wide) in alignment at lines 116--181
  [] [] [] [] 
  []
@@ -2901,26 +2725,25 @@ Overfull \hbox (7.71654pt too wide) in alignment at lines 550--660
  [] [] [] [] 
  []
 
-[61] [62]
+[61]
 Overfull \hbox (7.71654pt too wide) in alignment at lines 660--668
  [] [] [] [] 
  []
 
-[63]) [64]
+[62] [63]) [64]
 \openout2 = `Arpeggiator.aux'.
 
- (./Arpeggiator.tex
+ (/home/frederik_siepe/odinvst/manual/Arpeggiator.tex
 Chapter 8.
-<graphics/arpeggiator.png, id=792, 753.81625pt x 245.91875pt>
+<graphics/arpeggiator.png, id=793, 753.81625pt x 245.91875pt>
 File: graphics/arpeggiator.png Graphic file (type png)
 <use graphics/arpeggiator.png>
 Package pdftex.def Info: graphics/arpeggiator.png  used on input line 5.
 (pdftex.def)             Requested size: 469.75502pt x 153.24854pt.
-<graphics/arpeggiator_button.png, id=793, 752.8125pt x 29.10875pt>
+<graphics/arpeggiator_button.png, id=794, 752.8125pt x 29.10875pt>
 File: graphics/arpeggiator_button.png Graphic file (type png)
 <use graphics/arpeggiator_button.png>
-Package pdftex.def Info: graphics/arpeggiator_button.png  used on input line 21
-.
+Package pdftex.def Info: graphics/arpeggiator_button.png  used on input line 21.
 (pdftex.def)             Requested size: 438.45708pt x 16.95415pt.
 File: graphics/knob.png Graphic file (type png)
 <use graphics/knob.png>
@@ -2934,7 +2757,7 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 33.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
-<graphics/arpeggiator_on.png, id=794, 52.195pt x 47.17625pt>
+<graphics/arpeggiator_on.png, id=795, 52.195pt x 47.17625pt>
 File: graphics/arpeggiator_on.png Graphic file (type png)
 <use graphics/arpeggiator_on.png>
 Package pdftex.def Info: graphics/arpeggiator_on.png  used on input line 33.
@@ -2944,7 +2767,7 @@ Package pdftex.def Info: graphics/arpeggiator_on.png  used on input line 33.
 
 
 
- <./graphics/arpeggiator.png> <./graphics/arpeggiator_button.png (PNG copy)>]
+ </home/frederik_siepe/odinvst/manual/graphics/arpeggiator.png> </home/frederik_siepe/odinvst/manual/graphics/arpeggiator_button.png (PNG copy)>]
 File: graphics/knob.png Graphic file (type png)
 <use graphics/knob.png>
 Package pdftex.def Info: graphics/knob.png  used on input line 40.
@@ -2957,11 +2780,10 @@ File: graphics/not_available.png Graphic file (type png)
 <use graphics/not_available.png>
 Package pdftex.def Info: graphics/not_available.png  used on input line 40.
 (pdftex.def)             Requested size: 8.77101pt x 9.89503pt.
-<graphics/arpeggiator_speed.png, id=799, 112.42pt x 26.0975pt>
+<graphics/arpeggiator_speed.png, id=800, 112.42pt x 26.0975pt>
 File: graphics/arpeggiator_speed.png Graphic file (type png)
 <use graphics/arpeggiator_speed.png>
 Package pdftex.def Info: graphics/arpeggiator_speed.png  used on input line 40.
-
 (pdftex.def)             Requested size: 74.5369pt x 17.30403pt.
 File: graphics/knob.png Graphic file (type png)
 <use graphics/knob.png>
@@ -2975,11 +2797,10 @@ File: graphics/not_available.png Graphic file (type png)
 <use graphics/not_available.png>
 Package pdftex.def Info: graphics/not_available.png  used on input line 47.
 (pdftex.def)             Requested size: 8.77101pt x 9.89503pt.
-<graphics/arpeggiator_octaves.png, id=801, 133.49875pt x 34.1275pt>
+<graphics/arpeggiator_octaves.png, id=802, 133.49875pt x 34.1275pt>
 File: graphics/arpeggiator_octaves.png Graphic file (type png)
 <use graphics/arpeggiator_octaves.png>
-Package pdftex.def Info: graphics/arpeggiator_octaves.png  used on input line 4
-7.
+Package pdftex.def Info: graphics/arpeggiator_octaves.png  used on input line 47.
 (pdftex.def)             Requested size: 74.5369pt x 19.05501pt.
 File: graphics/knob.png Graphic file (type png)
 <use graphics/knob.png>
@@ -2993,7 +2814,7 @@ File: graphics/not_available.png Graphic file (type png)
 <use graphics/not_available.png>
 Package pdftex.def Info: graphics/not_available.png  used on input line 54.
 (pdftex.def)             Requested size: 8.77101pt x 9.89503pt.
-<graphics/arpeggiator_gate.png, id=802, 132.495pt x 36.135pt>
+<graphics/arpeggiator_gate.png, id=803, 132.495pt x 36.135pt>
 File: graphics/arpeggiator_gate.png Graphic file (type png)
 <use graphics/arpeggiator_gate.png>
 Package pdftex.def Info: graphics/arpeggiator_gate.png  used on input line 54.
@@ -3010,54 +2831,47 @@ File: graphics/not_available.png Graphic file (type png)
 <use graphics/not_available.png>
 Package pdftex.def Info: graphics/not_available.png  used on input line 98.
 (pdftex.def)             Requested size: 8.77101pt x 9.89503pt.
-<graphics/arpeggiator_direction.png, id=803, 134.5025pt x 37.13875pt>
+<graphics/arpeggiator_direction.png, id=804, 134.5025pt x 37.13875pt>
 File: graphics/arpeggiator_direction.png Graphic file (type png)
 <use graphics/arpeggiator_direction.png>
-Package pdftex.def Info: graphics/arpeggiator_direction.png  used on input line
- 98.
+Package pdftex.def Info: graphics/arpeggiator_direction.png  used on input line 98.
 (pdftex.def)             Requested size: 74.5369pt x 20.58107pt.
-<graphics/c_major.png, id=804, 896.34875pt x 631.35875pt>
+<graphics/c_major.png, id=805, 896.34875pt x 631.35875pt>
 File: graphics/c_major.png Graphic file (type png)
 <use graphics/c_major.png>
 Package pdftex.def Info: graphics/c_major.png  used on input line 98.
 (pdftex.def)             Requested size: 49.79854pt x 35.07736pt.
-<graphics/arpeggiator_up.png, id=805, 1133.23375pt x 442.65375pt>
+<graphics/arpeggiator_up.png, id=806, 1133.23375pt x 442.65375pt>
 File: graphics/arpeggiator_up.png Graphic file (type png)
 <use graphics/arpeggiator_up.png>
 Package pdftex.def Info: graphics/arpeggiator_up.png  used on input line 98.
 (pdftex.def)             Requested size: 89.79596pt x 35.07736pt.
-<graphics/arpeggiator_down.png, id=806, 1118.1775pt x 445.665pt>
+<graphics/arpeggiator_down.png, id=807, 1118.1775pt x 445.665pt>
 File: graphics/arpeggiator_down.png Graphic file (type png)
 <use graphics/arpeggiator_down.png>
 Package pdftex.def Info: graphics/arpeggiator_down.png  used on input line 98.
 (pdftex.def)             Requested size: 88.00575pt x 35.07736pt.
-<graphics/arpeggiator_updown.png, id=807, 1690.315pt x 513.92pt>
+<graphics/arpeggiator_updown.png, id=808, 1690.315pt x 513.92pt>
 File: graphics/arpeggiator_updown.png Graphic file (type png)
 <use graphics/arpeggiator_updown.png>
-Package pdftex.def Info: graphics/arpeggiator_updown.png  used on input line 98
-.
+Package pdftex.def Info: graphics/arpeggiator_updown.png  used on input line 98.
 (pdftex.def)             Requested size: 115.36804pt x 35.07736pt.
-<graphics/arpeggiator_downup.png, id=808, 1702.36pt x 483.8075pt>
+<graphics/arpeggiator_downup.png, id=809, 1702.36pt x 483.8075pt>
 File: graphics/arpeggiator_downup.png Graphic file (type png)
 <use graphics/arpeggiator_downup.png>
-Package pdftex.def Info: graphics/arpeggiator_downup.png  used on input line 98
-.
+Package pdftex.def Info: graphics/arpeggiator_downup.png  used on input line 98.
 (pdftex.def)             Requested size: 123.41144pt x 35.07736pt.
-<graphics/arpeggiator_crawlup.png, id=809, 2045.6425pt x 512.91624pt>
+<graphics/arpeggiator_crawlup.png, id=810, 2045.6425pt x 512.91624pt>
 File: graphics/arpeggiator_crawlup.png Graphic file (type png)
 <use graphics/arpeggiator_crawlup.png>
-Package pdftex.def Info: graphics/arpeggiator_crawlup.png  used on input line 9
-8.
+Package pdftex.def Info: graphics/arpeggiator_crawlup.png  used on input line 98.
 (pdftex.def)             Requested size: 139.8697pt x 35.07736pt.
-<graphics/arpeggiator_crawldown.png, id=810, 2039.62pt x 505.89pt>
+<graphics/arpeggiator_crawldown.png, id=811, 2039.62pt x 505.89pt>
 File: graphics/arpeggiator_crawldown.png Graphic file (type png)
 <use graphics/arpeggiator_crawldown.png>
-Package pdftex.def Info: graphics/arpeggiator_crawldown.png  used on input line
- 98.
+Package pdftex.def Info: graphics/arpeggiator_crawldown.png  used on input line 98.
 (pdftex.def)             Requested size: 141.41861pt x 35.07736pt.
- [66 <./graphics/arpeggiator_on.png (PNG copy)> <./graphics/arpeggiator_speed.p
-ng (PNG copy)> <./graphics/arpeggiator_octaves.png (PNG copy)> <./graphics/arpe
-ggiator_gate.png (PNG copy)>]
+ [66 </home/frederik_siepe/odinvst/manual/graphics/arpeggiator_on.png (PNG copy)> </home/frederik_siepe/odinvst/manual/graphics/arpeggiator_speed.png (PNG copy)> </home/frederik_siepe/odinvst/manual/graphics/arpeggiator_octaves.png (PNG copy)> </home/frederik_siepe/odinvst/manual/graphics/arpeggiator_gate.png (PNG copy)>]
 File: graphics/knob.png Graphic file (type png)
 <use graphics/knob.png>
 Package pdftex.def Info: graphics/knob.png  used on input line 106.
@@ -3070,16 +2884,12 @@ File: graphics/not_available.png Graphic file (type png)
 <use graphics/not_available.png>
 Package pdftex.def Info: graphics/not_available.png  used on input line 106.
 (pdftex.def)             Requested size: 8.77101pt x 9.89503pt.
-<graphics/arpeggiator_step_on.png, id=817, 163.61125pt x 60.225pt>
+<graphics/arpeggiator_step_on.png, id=818, 163.61125pt x 60.225pt>
 File: graphics/arpeggiator_step_on.png Graphic file (type png)
 <use graphics/arpeggiator_step_on.png>
-Package pdftex.def Info: graphics/arpeggiator_step_on.png  used on input line 1
-06.
+Package pdftex.def Info: graphics/arpeggiator_step_on.png  used on input line 106.
 (pdftex.def)             Requested size: 95.29651pt x 35.07736pt.
- [67 <./graphics/arpeggiator_direction.png (PNG copy)> <./graphics/c_major.png>
- <./graphics/arpeggiator_up.png> <./graphics/arpeggiator_down.png> <./graphics/
-arpeggiator_updown.png> <./graphics/arpeggiator_downup.png> <./graphics/arpeggi
-ator_crawlup.png> <./graphics/arpeggiator_crawldown.png>]
+ [67 </home/frederik_siepe/odinvst/manual/graphics/arpeggiator_direction.png (PNG copy)> </home/frederik_siepe/odinvst/manual/graphics/c_major.png> </home/frederik_siepe/odinvst/manual/graphics/arpeggiator_up.png> </home/frederik_siepe/odinvst/manual/graphics/arpeggiator_down.png> </home/frederik_siepe/odinvst/manual/graphics/arpeggiator_updown.png> </home/frederik_siepe/odinvst/manual/graphics/arpeggiator_downup.png> </home/frederik_siepe/odinvst/manual/graphics/arpeggiator_crawlup.png> </home/frederik_siepe/odinvst/manual/graphics/arpeggiator_crawldown.png>]
 File: graphics/knob.png Graphic file (type png)
 <use graphics/knob.png>
 Package pdftex.def Info: graphics/knob.png  used on input line 118.
@@ -3092,11 +2902,10 @@ File: graphics/not_available.png Graphic file (type png)
 <use graphics/not_available.png>
 Package pdftex.def Info: graphics/not_available.png  used on input line 118.
 (pdftex.def)             Requested size: 8.77101pt x 9.89503pt.
-<graphics/arpeggiator_steps.png, id=822, 135.50626pt x 38.1425pt>
+<graphics/arpeggiator_steps.png, id=823, 135.50626pt x 38.1425pt>
 File: graphics/arpeggiator_steps.png Graphic file (type png)
 <use graphics/arpeggiator_steps.png>
-Package pdftex.def Info: graphics/arpeggiator_steps.png  used on input line 118
-.
+Package pdftex.def Info: graphics/arpeggiator_steps.png  used on input line 118.
 (pdftex.def)             Requested size: 77.89066pt x 21.92418pt.
 File: graphics/knob.png Graphic file (type png)
 <use graphics/knob.png>
@@ -3122,19 +2931,16 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 134.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
-<graphics/arpeggiator_mod1.png, id=823, 402.50375pt x 46.1725pt>
+<graphics/arpeggiator_mod1.png, id=824, 402.50375pt x 46.1725pt>
 File: graphics/arpeggiator_mod1.png Graphic file (type png)
 <use graphics/arpeggiator_mod1.png>
 Package pdftex.def Info: graphics/arpeggiator_mod1.png  used on input line 134.
-
 (pdftex.def)             Requested size: 191.1237pt x 21.92418pt.
- [68 <./graphics/arpeggiator_step_on.png (PNG copy)> <./graphics/arpeggiator_st
-eps.png (PNG copy)>]
-<graphics/arpeggiator_mod_vs_transpose.png, id=829, 516.93124pt x 51.19125pt>
+ [68 </home/frederik_siepe/odinvst/manual/graphics/arpeggiator_step_on.png (PNG copy)> </home/frederik_siepe/odinvst/manual/graphics/arpeggiator_steps.png (PNG copy)>]
+<graphics/arpeggiator_mod_vs_transpose.png, id=830, 516.93124pt x 51.19125pt>
 File: graphics/arpeggiator_mod_vs_transpose.png Graphic file (type png)
 <use graphics/arpeggiator_mod_vs_transpose.png>
-Package pdftex.def Info: graphics/arpeggiator_mod_vs_transpose.png  used on inp
-ut line 147.
+Package pdftex.def Info: graphics/arpeggiator_mod_vs_transpose.png  used on input line 147.
 (pdftex.def)             Requested size: 263.07692pt x 26.05328pt.
 File: graphics/knob.png Graphic file (type png)
 <use graphics/knob.png>
@@ -3148,11 +2954,10 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 164.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
-<graphics/arpeggiator_mod2.png, id=830, 405.515pt x 46.1725pt>
+<graphics/arpeggiator_mod2.png, id=831, 405.515pt x 46.1725pt>
 File: graphics/arpeggiator_mod2.png Graphic file (type png)
 <use graphics/arpeggiator_mod2.png>
 Package pdftex.def Info: graphics/arpeggiator_mod2.png  used on input line 164.
-
 (pdftex.def)             Requested size: 192.55354pt x 21.92418pt.
 File: graphics/knob.png Graphic file (type png)
 <use graphics/knob.png>
@@ -3166,19 +2971,15 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 177.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
-<graphics/arpeggiator_transp.png, id=832, 414.54875pt x 50.1875pt>
+<graphics/arpeggiator_transp.png, id=833, 414.54875pt x 50.1875pt>
 File: graphics/arpeggiator_transp.png Graphic file (type png)
 <use graphics/arpeggiator_transp.png>
-Package pdftex.def Info: graphics/arpeggiator_transp.png  used on input line 17
-7.
+Package pdftex.def Info: graphics/arpeggiator_transp.png  used on input line 177.
 (pdftex.def)             Requested size: 181.09895pt x 21.92418pt.
-) [69 <./graphics/arpeggiator_mod1.png (PNG copy)> <./graphics/arpeggiator_mod_
-vs_transpose.png> <./graphics/arpeggiator_mod2.png (PNG copy)>] [70 <./graphics
-/arpeggiator_transp.png (PNG copy)>]
+) [69 </home/frederik_siepe/odinvst/manual/graphics/arpeggiator_mod1.png (PNG copy)> </home/frederik_siepe/odinvst/manual/graphics/arpeggiator_mod_vs_transpose.png> </home/frederik_siepe/odinvst/manual/graphics/arpeggiator_mod2.png (PNG copy)>] [70 </home/frederik_siepe/odinvst/manual/graphics/arpeggiator_transp.png (PNG copy)>]
 \openout2 = `GlobalSettings.aux'.
 
-
-(./GlobalSettings.tex
+ (/home/frederik_siepe/odinvst/manual/GlobalSettings.tex
 Chapter 9.
 File: graphics/knob.png Graphic file (type png)
 <use graphics/knob.png>
@@ -3192,7 +2993,7 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 24.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
-<graphics/poly_legato.png, id=843, 112.42pt x 35.13126pt>
+<graphics/poly_legato.png, id=844, 112.42pt x 35.13126pt>
 File: graphics/poly_legato.png Graphic file (type png)
 <use graphics/poly_legato.png>
 Package pdftex.def Info: graphics/poly_legato.png  used on input line 24.
@@ -3202,8 +3003,8 @@ Package pdftex.def Info: graphics/poly_legato.png  used on input line 24.
 
 
 
- <./graphics/poly_legato.png>]
-<graphics/unison.png, id=849, 279.0425pt x 37.13875pt>
+ </home/frederik_siepe/odinvst/manual/graphics/poly_legato.png>]
+<graphics/unison.png, id=850, 279.0425pt x 37.13875pt>
 File: graphics/unison.png Graphic file (type png)
 <use graphics/unison.png>
 Package pdftex.def Info: graphics/unison.png  used on input line 31.
@@ -3246,8 +3047,8 @@ Package pdftex.def Info: graphics/available.png  used on input line 63.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
  [72
 
- <./graphics/unison.png>]
-<graphics/master_glide.png, id=857, 74.2775pt x 149.55875pt>
+ </home/frederik_siepe/odinvst/manual/graphics/unison.png>]
+<graphics/master_glide.png, id=858, 74.2775pt x 149.55875pt>
 File: graphics/master_glide.png Graphic file (type png)
 <use graphics/master_glide.png>
 Package pdftex.def Info: graphics/master_glide.png  used on input line 71.
@@ -3276,12 +3077,10 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 80.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
-) [73 <./graphics/master_glide.png>]
+) [73 </home/frederik_siepe/odinvst/manual/graphics/master_glide.png>]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 128.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 128.
- (./manual.aux (./Introduction.aux) (./Oscillators.aux)
-(./Filters.aux) (./AmpDistortion.aux) (./FX.aux) (./Modulators.aux)
-(./ModulationMatrix.aux) (./Arpeggiator.aux) (./GlobalSettings.aux))
+ (/home/frederik_siepe/odinvst/manual/manual.aux (/home/frederik_siepe/odinvst/manual/Introduction.aux) (/home/frederik_siepe/odinvst/manual/Oscillators.aux) (/home/frederik_siepe/odinvst/manual/Filters.aux) (/home/frederik_siepe/odinvst/manual/AmpDistortion.aux) (/home/frederik_siepe/odinvst/manual/FX.aux) (/home/frederik_siepe/odinvst/manual/Modulators.aux) (/home/frederik_siepe/odinvst/manual/ModulationMatrix.aux) (/home/frederik_siepe/odinvst/manual/Arpeggiator.aux) (/home/frederik_siepe/odinvst/manual/GlobalSettings.aux))
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 128.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 128.
 Package rerunfilecheck Info: File `manual.out' has not changed.
@@ -3289,30 +3088,20 @@ Package rerunfilecheck Info: File `manual.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 128.
  ) 
 Here is how much of TeX's memory you used:
- 31068 strings out of 492982
- 629769 string characters out of 6134897
- 856549 words of memory out of 5000000
- 33949 multiletter control sequences out of 15000+600000
+ 31074 strings out of 492982
+ 632312 string characters out of 6134897
+ 856604 words of memory out of 5000000
+ 33953 multiletter control sequences out of 15000+600000
  581759 words of font info for 67 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 63i,16n,97p,10494b,482s stack positions out of 5000i,500n,10000p,200000b,80000s
-pdfTeX warning (dest): name{https://de.wikipedia.org/wiki/FM-Synthese} has be
-en referenced but does not exist, replaced by a fixed one
+ 63i,16n,97p,10534b,482s stack positions out of 5000i,500n,10000p,200000b,80000s
+pdfTeX warning (dest): name{https://de.wikipedia.org/wiki/FM-Synthese} has been referenced but does not exist, replaced by a fixed one
 
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/f
-onts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
-/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt1
-2.pfb></usr/share/texlive/texmf-dist/fonts/type1/adobe/utopia/putb8a.pfb></usr/
-share/texlive/texmf-dist/fonts/type1/adobe/utopia/putr8a.pfb>
-Output written on manual.pdf (74 pages, 5929278 bytes).
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/share/texlive/texmf-dist/fonts/type1/adobe/utopia/putb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/adobe/utopia/putr8a.pfb>
+Output written on /home/frederik_siepe/odinvst/manual/manual.pdf (74 pages, 6019135 bytes).
 PDF statistics:
- 931 PDF objects out of 1000 (max. 8388607)
+ 932 PDF objects out of 1000 (max. 8388607)
  668 compressed objects within 7 object streams
  135 named destinations out of 1000 (max. 500000)
- 1030 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1035 words of extra memory for PDF output out of 10000 (max. 10000000)
 
