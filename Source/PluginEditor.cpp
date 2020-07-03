@@ -83,7 +83,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
     m_delay_position_identifier("delay_position"), m_flanger_position_identifier("flanger_position"),
     m_phaser_position_identifier("phaser_position"), m_chorus_position_identifier("chorus_position"), m_mod_matrix(vts),
     m_legato_button("legato"), m_gui_size_button("gui_size"), m_tooltip(nullptr, 2047483647),
-    m_is_standalone_plugin(p_is_standalone), m_save_load(vts, p_processor), m_arp(p_processor, vts),
+    m_is_standalone_plugin(p_is_standalone), /*m_save_load(vts, p_processor),*/ m_arp(p_processor, vts),
     m_processor(p_processor), m_patch_browser(p_processor, vts) {
 
 #ifdef ODIN_MAC
@@ -100,7 +100,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	p_processor.updatePitchWheelGUI   = [&](float p_value) { updatePitchWheel(p_value); };
 	p_processor.updateModWheelGUI     = [&](float p_value) { updateModWheel(p_value); };
 
-	m_save_load.forceValueTreeLambda     = [&]() { forceValueTreeOntoComponents(true); };
+	//m_save_load.forceValueTreeLambda     = [&]() { forceValueTreeOntoComponents(true); };
 	m_patch_browser.forceValueTreeLambda = [&]() { forceValueTreeOntoComponents(true); };
 
 	Knob::setOdinPointer(&p_processor);
@@ -747,7 +747,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	addChildComponent(m_patch_browser);
 	addChildComponent(m_arp);
 
-	addAndMakeVisible(m_save_load);
+	//addAndMakeVisible(m_save_load);
 	addAndMakeVisible(m_xy_section);
 
 	juce::Image env13_left =
@@ -1068,7 +1068,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	m_delay.setBounds(FX_AREA_POS_X, FX_AREA_POS_Y, FX_AREA_SIZE_X, FX_AREA_SIZE_Y);
 
 	m_mod_matrix.setBounds(MATRIX_POS_X_100, MATRIX_POS_Y_100, MATRIX_SIZE_X, MATRIX_SIZE_Y);
-	m_save_load.setBounds(SAVE_LOAD_POS_X, SAVE_LOAD_POS_Y, SAVE_LOAD_SIZE_X, SAVE_LOAD_SIZE_Y);
+	//m_save_load.setBounds(SAVE_LOAD_POS_X, SAVE_LOAD_POS_Y, SAVE_LOAD_SIZE_X, SAVE_LOAD_SIZE_Y);
 	m_xy_section.setBounds(XY_COMPONENT_POS_X, XY_COMPONENT_POS_Y, XY_COMPONENT_SIZE_X, XY_COMPONENT_SIZE_Y);
 
 	m_tooltip.setBounds(900, 100, 100, 100);
@@ -1077,7 +1077,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	addAndMakeVisible(m_tooltip);
 
 	forceValueTreeOntoComponents(false);
-	m_save_load.resetPatchText();
+	//m_save_load.resetPatchText();
 
 	//todo we are double loading ALL images.....
 	bool set_GUI_big;
@@ -1421,7 +1421,7 @@ void OdinAudioProcessorEditor::forceValueTreeOntoComponents(bool p_reset_audio) 
 	m_delay.forceValueTreeOntoComponents(m_value_tree.state);
 	m_midsection.forceValueTreeOntoComponents(m_value_tree.state);
 	m_fx_buttons_section.forceValueTreeOntoComponents(m_value_tree.state);
-	m_save_load.forceValueTreeOntoComponents(m_value_tree.state);
+	//m_save_load.forceValueTreeOntoComponents(m_value_tree.state);
 	m_arp.forceValueTreeOntoComponents(m_value_tree.state);
 }
 
@@ -1619,7 +1619,7 @@ void OdinAudioProcessorEditor::setGUISizeBig(bool p_big, bool p_write_to_config)
 		m_mod_matrix.setGUIBig();
 		m_patch_browser.setGUIBig();
 		m_arp.setGUIBig();
-		m_save_load.setGUIBig();
+		//m_save_load.setGUIBig();
 		m_menu_feels.setGUIBig();
 		m_pitch_amount.setGUIBig();
 		m_unison_selector.setGUIBig();
@@ -1650,7 +1650,7 @@ void OdinAudioProcessorEditor::setGUISizeBig(bool p_big, bool p_write_to_config)
 		m_mod_matrix.setGUISmall();
 		m_patch_browser.setGUISmall();
 		m_arp.setGUISmall();
-		m_save_load.setGUISmall();
+		//m_save_load.setGUISmall();
 		m_menu_feels.setGUISmall();
 		m_pitch_amount.setGUISmall();
 		m_unison_selector.setGUISmall();

@@ -477,7 +477,7 @@ void OdinAudioProcessorEditor::setGUISmall() {
 	    ImageCache::getFromMemory(BinaryData::buttonlegato_3_png, BinaryData::buttonlegato_3_pngSize);
 	m_legato_button.setImage(legato_left, 1);
 	m_legato_button.setImage(legato_right, 2);
-	m_legato_button.setBounds(LEGATO_POS_X, LEGATO_POS_Y, legato_left.getWidth(), legato_left.getHeight());
+	m_legato_button.setBounds(LEGATO_POS_X, LEGATO_POS_Y - 2, legato_left.getWidth(), legato_left.getHeight());
 
 	juce::Image gui_size_left =
 	    ImageCache::getFromMemory(BinaryData::buttonguisize_1_png, BinaryData::buttonguisize_1_pngSize);
@@ -569,14 +569,14 @@ void OdinAudioProcessorEditor::setGUISmall() {
 	m_arp.setBounds(ARPEGGIATOR_POS_X, ARPEGGIATOR_POS_Y, MATRIX_SIZE_X, MATRIX_SIZE_Y);
 	m_patch_browser.setBounds(BROWSER_POS_X, BROWSER_POS_Y, BROWSER_SIZE_X, BROWSER_SIZE_Y);
 
-	m_save_load.setBounds(SAVE_LOAD_POS_X, SAVE_LOAD_POS_Y, SAVE_LOAD_SIZE_X, SAVE_LOAD_SIZE_Y);
+	//m_save_load.setBounds(SAVE_LOAD_POS_X, SAVE_LOAD_POS_Y, SAVE_LOAD_SIZE_X, SAVE_LOAD_SIZE_Y);
 	m_xy_section.setBounds(XY_COMPONENT_POS_X, XY_COMPONENT_POS_Y, XY_COMPONENT_SIZE_X, XY_COMPONENT_SIZE_Y);
 
 	m_tooltip.setBounds(900, 100, 100, 100);
 	m_tooltip.setAlwaysOnTop(true);
 
 	forceValueTreeOntoComponents(false);
-	m_save_load.resetPatchText();
+	//m_save_load.resetPatchText();
 
 	setSize(ODIN_EDITOR_SIZE_X, ODIN_EDITOR_SIZE_Y);
 	m_odin_backdrop = ImageCache::getFromMemory(BinaryData::odin_backdrop_png, BinaryData::odin_backdrop_pngSize);
