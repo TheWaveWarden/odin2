@@ -492,6 +492,22 @@ void OdinAudioProcessorEditor::setGUISmall() {
 
 	juce::Image lfo24_sync_background =
 	    ImageCache::getFromMemory(BinaryData::lfo24_sync_background_png, BinaryData::lfo24_sync_background_pngSize);
+
+	juce::Image reset_1 =
+	    ImageCache::getFromMemory(BinaryData::buttonresetsynth_3_png, BinaryData::buttonresetsynth_3_pngSize);
+	juce::Image reset_2 =
+	    ImageCache::getFromMemory(BinaryData::buttonresetsynth_2_png, BinaryData::buttonresetsynth_2_pngSize);
+
+	juce::DrawableImage reset_draw1;
+	juce::DrawableImage reset_draw2;
+
+	reset_draw1.setImage(reset_1);
+	reset_draw2.setImage(reset_2);
+
+	m_reset.setImages(
+	    &reset_draw2, &reset_draw2, &reset_draw1, &reset_draw1, &reset_draw2, &reset_draw2, &reset_draw1, &reset_draw1);
+	m_reset.setBounds(RESET_SYNTH_POS_X_100, RESET_SYNTH_POS_Y_100, reset_1.getWidth(), reset_1.getHeight());
+
 	m_lfo_1.setBounds(LFO_LEFT_POS_X, LFO_LEFT_POS_Y, LFO_SIZE_X, LFO_SIZE_Y);
 	m_lfo_1.setSyncOverdraw(lfo13_sync_background);
 	m_lfo_2.setBounds(LFO_LEFT_POS_X, LFO_LEFT_POS_Y, LFO_SIZE_X, LFO_SIZE_Y);

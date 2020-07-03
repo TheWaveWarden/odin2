@@ -140,6 +140,12 @@
 #define GUI_SIZE_POS_X 674
 #define GUI_SIZE_POS_Y 7
 
+
+#define RESET_SYNTH_POS_X_100 604
+#define RESET_SYNTH_POS_Y_100 6
+#define RESET_SYNTH_POS_X_150 904
+#define RESET_SYNTH_POS_Y_150 11
+
 #define ENV13_POS_X 30
 #define ENV13_POS_Y 313
 #define ENV24_POS_X 158
@@ -360,6 +366,8 @@ private:
 
   LeftRightButton m_legato_button;
   LeftRightButton m_gui_size_button;
+
+  juce::DrawableButton m_reset;
 
   AudioProcessorValueTreeState &m_value_tree;
 

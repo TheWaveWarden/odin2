@@ -69,6 +69,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
     m_select_arp_button("select_arpeggiator_button", juce::DrawableButton::ButtonStyle::ImageRaw),
     m_select_modmatrix_button("select_modmatrix_button", juce::DrawableButton::ButtonStyle::ImageRaw),
     m_select_presets_button("select_presets_button", juce::DrawableButton::ButtonStyle::ImageRaw),
+	m_reset("reset", juce::DrawableButton::ButtonStyle::ImageRaw),
     m_env_13_button("env13_button"), m_env_24_button("env24_button"), m_lfo_13_button("lfo13_button"),
     m_lfo_24_button("lfo24_button"), m_pitch_amount(true), m_BPM_selector(true), m_osc1(p_processor, vts, "1"),
     m_osc2(p_processor, vts, "2"), m_osc3(p_processor, vts, "3"), m_fil1_component(vts, "1"),
@@ -102,6 +103,31 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 
 	//m_save_load.forceValueTreeLambda     = [&]() { forceValueTreeOntoComponents(true); };
 	m_patch_browser.forceValueTreeLambda = [&]() { forceValueTreeOntoComponents(true); };
+
+	m_reset.onClick = [&]() {
+		if (/*m_reset_warning_was_shown ||*/
+		    AlertWindow::showOkCancelBox(AlertWindow::WarningIcon,
+		                                 "Reset Synth",
+		                                 "This will reset the synth to its initial state and you will lose "
+		                                 "your patch!",
+		                                 {},
+		                                 {},
+		                                 {})) {
+
+			// replace stream with patch from binary data
+			MemoryInputStream init_stream(BinaryData::init_patch_odin, BinaryData::init_patch_odinSize, false);
+			processor.readPatch(ValueTree::readFromStream(init_stream));
+
+			//reset pitchbend and modwheel, since they are not loaded with patches
+			SETAUDIOFULLRANGESAFE("modwheel", 0.f);
+			SETAUDIOFULLRANGESAFE("pitchbend", 0.f);
+
+			//this forces values onto the GUI (patch label as well)
+			forceValueTreeOntoComponents(true);
+
+			DBG("Loaded init patch");
+		}
+	};
 
 	Knob::setOdinPointer(&p_processor);
 	DrawableSlider::setOdinPointer(&p_processor);
@@ -360,6 +386,11 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	m_delay_on_button.setTriggeredOnMouseDown(true);
 	m_delay_on_button.setTooltip("Enables the delay");
 	m_delay_on_button.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
+
+	m_reset.setTooltip("Reset the synth to its initial state");
+	addAndMakeVisible(m_reset);
+	m_reset.setTriggeredOnMouseDown(false);
+	m_reset.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
 
 	juce::Image filter_button1_1 = ImageCache::getFromMemory(BinaryData::button1_1_png, BinaryData::button1_1_pngSize);
 	juce::Image filter_button1_2 = ImageCache::getFromMemory(BinaryData::button1_2_png, BinaryData::button1_2_pngSize);

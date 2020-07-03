@@ -536,6 +536,22 @@ void OdinAudioProcessorEditor::setGUIBig() {
 	                            gui_size_left.getWidth(),
 	                            gui_size_left.getHeight());
 
+	juce::Image reset_1 = ImageCache::getFromMemory(BinaryData::buttonresetsynth_3_150_png,
+	                                                BinaryData::buttonresetsynth_3_150_pngSize);
+	juce::Image reset_2 = ImageCache::getFromMemory(BinaryData::buttonresetsynth_2_150_png,
+	                                                BinaryData::buttonresetsynth_2_150_pngSize);
+
+	juce::DrawableImage reset_draw1;
+	juce::DrawableImage reset_draw2;
+
+	reset_draw1.setImage(reset_1);
+	reset_draw2.setImage(reset_2);
+
+	m_reset.setImages(
+	    &reset_draw2, &reset_draw2, &reset_draw1, &reset_draw1, &reset_draw2, &reset_draw2, &reset_draw1, &reset_draw1);
+	m_reset.setBounds(
+	    RESET_SYNTH_POS_X_150, RESET_SYNTH_POS_Y_150, reset_1.getWidth(), reset_1.getHeight());
+
 	juce::Image lfo13_sync_background = ImageCache::getFromMemory(BinaryData::lfo13_sync_background_150_png,
 	                                                              BinaryData::lfo13_sync_background_150_pngSize);
 
