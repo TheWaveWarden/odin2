@@ -61,8 +61,13 @@
 //#define ODIN_STORAGE_PATH File::getSpecialLocation(File::SpecialLocationType::commonApplicationDataDirectory).getFullPathName() +                    \
 // 	    File::getSeparatorString() + "odin2"
 //#else 
+#ifdef ODIN_MAC
+#define ODIN_STORAGE_PATH File::getSpecialLocation(File::SpecialLocationType::commonApplicationDataDirectory).getFullPathName() +                    \
+ 	    File::getSeparatorString()  + "Audio" + File::getSeparatorString() + "odin2"
+#else
 #define ODIN_STORAGE_PATH File::getSpecialLocation(File::SpecialLocationType::commonApplicationDataDirectory).getFullPathName() +                    \
  	    File::getSeparatorString()  + "odin2"
+#endif
 //#endif
 #define CONFIG_FILE_PATH ODIN_STORAGE_PATH + File::getSeparatorString() + "odin2.conf"
 
