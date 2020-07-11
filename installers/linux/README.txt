@@ -5,7 +5,7 @@ You have two options to install Odin2 VST:
 |========================|
 
 1. Unzip contents to some folder
-2. Launch a terminal in that folder (right-click in folder -> Open In Terminal)
+2. Launch a terminal in that folder (right-click empty space in folder -> Open In Terminal)
 3. Type in "bash install.sh"
 4. Hit Enter
 
