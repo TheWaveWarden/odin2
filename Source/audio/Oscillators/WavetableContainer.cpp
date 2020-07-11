@@ -13,9 +13,9 @@
 #endif
 
 WavetableContainer::WavetableContainer() {
-#ifdef ODIN_DEBUG
+//#ifdef ODIN_DEBUG
 #include "WavetableCoefficients.h"
-#endif
+//#endif
 
 	// dynamically allocate wavetables
 	// m_wavetables = new
@@ -471,15 +471,7 @@ const float **WavetableContainer::getWavetablePointers(std::string p_name) {
 		return m_const_wavetable_pointers[it->second];
 	}
 
-	String DEBUG_LIST_FUCK = "";
-
-	for (it = m_name_index_map.begin(); it != m_name_index_map.end(); it++) {
-		DEBUG_LIST_FUCK = DEBUG_LIST_FUCK + it->first + ", ";
-	}
-
-	DBG("COULDN'T FIND WAVETABLE WITH NAME " + p_name);
-	AlertWindow::showMessageBox(
-	    AlertWindow::AlertIconType::WarningIcon, "DIDNT FIND WAVETABLE " + String(p_name) + " LIST SIZE: " + String(m_name_index_map.size()), DEBUG_LIST_FUCK, "ok");
+	
 	return m_const_wavetable_pointers[0]; // return sine if no wt found
 }
 
@@ -501,6 +493,15 @@ void WavetableContainer::loadWavetablesFromConstData() {
 			    getOneSubTable(index_wavetable, index_subtable);
 		}
 		m_name_index_map.insert(std::pair<std::string, int>(m_wavetable_names_1D[index_wavetable], index_wavetable));
+		//String DEBUG_LIST_FUCK = "";
+
+	//for (auto it = m_name_index_map.begin(); it != m_name_index_map.end(); it++) {
+	//	DEBUG_LIST_FUCK = DEBUG_LIST_FUCK + it->first + ", ";
+	//}
+
+	//DBG("COULDN'T FIND WAVETABLE WITH NAME " + p_name);
+	//AlertWindow::showMessageBox(
+	  //  AlertWindow::AlertIconType::WarningIcon,  " MAPSIZE AT: "+String(m_wavetable_names_1D[index_wavetable]) +"..." + String(m_name_index_map.size()), DEBUG_LIST_FUCK, m_wavetable_names_1D[index_wavetable]);
 	}
 
 	for (int index_wavetable = 0; index_wavetable < NUMBER_OF_WAVETABLES; ++index_wavetable) {
