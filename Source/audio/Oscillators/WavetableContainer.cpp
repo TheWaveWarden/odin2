@@ -14,7 +14,7 @@
 
 WavetableContainer::WavetableContainer() {
 #ifdef ODIN_DEBUG
-	#include "WavetableCoefficients.h"
+#include "WavetableCoefficients.h"
 #endif
 
 	// dynamically allocate wavetables
@@ -471,6 +471,11 @@ const float **WavetableContainer::getWavetablePointers(std::string p_name) {
 		return m_const_wavetable_pointers[it->second];
 	}
 	DBG("COULDN'T FIND WAVETABLE WITH NAME " + p_name);
+	AlertWindow::showMessageBox(
+	    AlertWindow::AlertIconType::WarningIcon,
+	    "DIDNT FIND WAVETABLE " + p_name,
+	    "fuck",
+	    "ok");
 	return m_const_wavetable_pointers[0]; // return sine if no wt found
 }
 

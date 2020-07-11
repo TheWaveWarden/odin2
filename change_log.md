@@ -1,18 +1,17 @@
 # 2.2.0 beta
-- implemented patch-browser
-- created installers for all platforms
+- new feature: patch-browser
+- Odin 2 now ships with installers for all platforms
 - Odin 2 now ships with a Factory Soundbank
-- Added XY-Pad X & Y as modulation destinations
-- changed location of config file
 - ping-pong delay will now alwmays start left, regardless of amp-pan
-- drastically imrpoved patch load times
+- added XY-Pad X & Y as modulation destinations
+- changed location of config file on Win & Mac
+- drastically imrpoved patch loading times
 - fixed issue where Filter2 would use the wrong right vowel
 - fixed issue where glide time was dependent on samplerate
 - fixed issue where comb filter would produce smear effect on first note
 - fixed issue which would crash pluginval
-- made patch-list in dropdown case-insensistive
-- renamed OH-12 to SEM-12
-- renamed KO-35 to KRG-25
+- renamed OH-12 filter to SEM-12
+- renamed KO-35 filter to KRG-35
 # 2.1.0 beta
 - implemented Arpeggiator
 - new modulation sources: Arp Mod 1 & 2
