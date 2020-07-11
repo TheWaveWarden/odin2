@@ -838,7 +838,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	m_select_arp_button.onClick = [&]() {
 		setMatrixSectionModule(MATRIX_SECTION_INDEX_ARP);
 		m_value_tree.state.getChildWithName("misc").setProperty(
-		    "arp_mod_selected", (int)m_select_arp_button.getToggleState(), nullptr);
+		    "arp_mod_selected", MATRIX_SECTION_INDEX_ARP, nullptr);
 	};
 	m_select_arp_button.setTooltip("Shows the arpeggiator or the mod-matrix");
 	addAndMakeVisible(m_select_arp_button);
@@ -850,7 +850,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	m_select_modmatrix_button.onClick = [&]() {
 		setMatrixSectionModule(MATRIX_SECTION_INDEX_MATRIX);
 		m_value_tree.state.getChildWithName("misc").setProperty(
-		    "arp_mod_selected", (int)m_select_modmatrix_button.getToggleState(), nullptr);
+		    "arp_mod_selected", MATRIX_SECTION_INDEX_MATRIX, nullptr);
 	};
 	m_select_modmatrix_button.setTooltip("Shows the arpeggiator or the mod-matrix");
 	addAndMakeVisible(m_select_modmatrix_button);
@@ -862,7 +862,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	m_select_presets_button.onClick = [&]() {
 		setMatrixSectionModule(MATRIX_SECTION_INDEX_PRESETS);
 		m_value_tree.state.getChildWithName("misc").setProperty(
-		    "arp_mod_selected", (int)m_select_presets_button.getToggleState(), nullptr);
+		    "arp_mod_selected", MATRIX_SECTION_INDEX_PRESETS, nullptr);
 	};
 	m_select_presets_button.setTooltip("Shows the arpeggiator or the mod-matrix");
 	addAndMakeVisible(m_select_presets_button);
