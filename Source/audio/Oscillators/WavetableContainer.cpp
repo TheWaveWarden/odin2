@@ -470,12 +470,16 @@ const float **WavetableContainer::getWavetablePointers(std::string p_name) {
 	if (it != m_name_index_map.end()) {
 		return m_const_wavetable_pointers[it->second];
 	}
+
+	String DEBUG_LIST_FUCK = "";
+
+	for (it = m_name_index_map.begin(); it != m_name_index_map.end(); it++) {
+		DEBUG_LIST_FUCK = DEBUG_LIST_FUCK + it->first + ", ";
+	}
+
 	DBG("COULDN'T FIND WAVETABLE WITH NAME " + p_name);
 	AlertWindow::showMessageBox(
-	    AlertWindow::AlertIconType::WarningIcon,
-	    "DIDNT FIND WAVETABLE " + p_name,
-	    "fuck",
-	    "ok");
+	    AlertWindow::AlertIconType::WarningIcon, "DIDNT FIND WAVETABLE " + String(p_name) + " LIST SIZE: " + String(m_name_index_map.size()), DEBUG_LIST_FUCK, "ok");
 	return m_const_wavetable_pointers[0]; // return sine if no wt found
 }
 
