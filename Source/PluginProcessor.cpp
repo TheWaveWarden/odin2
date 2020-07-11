@@ -399,6 +399,21 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 		m_x_smooth = m_x_smooth * PAD_SMOOTHIN_FACTOR + (1.f - PAD_SMOOTHIN_FACTOR) * (*m_xy_x);
 		m_y_smooth = m_y_smooth * PAD_SMOOTHIN_FACTOR + (1.f - PAD_SMOOTHIN_FACTOR) * (*m_xy_y);
 
+		if (*m_x_mod) {
+			m_x_modded = m_x_smooth + *m_x_mod;
+			m_x_modded = m_x_modded > 1.f ? 1.f : m_x_modded;
+			m_x_modded = m_x_modded < 0.f ? 0.f : m_x_modded;
+		} else {
+			m_x_modded = m_x_smooth;
+		}
+		if (*m_y_mod) {
+			m_y_modded = m_y_smooth + *m_y_mod;
+			m_y_modded = m_y_modded > 1.f ? 1.f : m_y_modded;
+			m_y_modded = m_y_modded < 0.f ? 0.f : m_y_modded;
+		} else {
+			m_y_modded = m_y_smooth;
+		}
+
 		m_master_smooth = m_master_smooth * GAIN_SMOOTHIN_FACTOR + (1 - GAIN_SMOOTHIN_FACTOR) * (m_master_control);
 
 		//============================================================
@@ -881,6 +896,8 @@ AudioProcessor *JUCE_CALLTYPE createPluginFilter() {
 void OdinAudioProcessor::setSampleRate(float p_samplerate) {
 	DBG("SampleRate was set to " + std::to_string((int)p_samplerate) + " Hz!");
 
+	m_samplerate = p_samplerate;
+
 	for (int voice = 0; voice < VOICES; ++voice) {
 		m_voice[voice].setSampleRate(p_samplerate);
 	}
@@ -902,6 +919,9 @@ void OdinAudioProcessor::setSampleRate(float p_samplerate) {
 	m_global_env.setSampleRate(p_samplerate);
 	m_global_lfo.setSampleRate(p_samplerate);
 	m_arpeggiator.setSampleRate(p_samplerate);
+
+	//update glide
+	SETAUDIOFULLRANGE("glide", GETAUDIO("glide"));
 }
 
 void OdinAudioProcessor::initializeModules() {
@@ -1240,4 +1260,8 @@ void OdinAudioProcessor::handleMidiMessage(const MidiMessage &p_midi_message) {
 			}
 		}
 	}
+}
+
+void OdinAudioProcessor::onEditorDestruction() {
+	m_editor_pointer = nullptr;
 }

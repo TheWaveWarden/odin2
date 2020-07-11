@@ -21,7 +21,7 @@
 //#define WTGEN
 
 #define ODIN_MAJOR_VERSION 2
-#define ODIN_MINOR_VERSION 1
+#define ODIN_MINOR_VERSION 2
 #define ODIN_PATCH_VERSION 0
 
 #define ODIN_VERSION_STRING                                                                                            \
@@ -37,6 +37,10 @@
 #define MENU_HIGHLIGHT_FONT_COLOR Colour(62, 103, 117)
 #define MENU_HIGHLIGHT_BACKGROUND_COLOR Colour(50, 50, 50)
 #define STANDARD_DISPLAY_COLOR Colour(10, 40, 50)
+#define MODMATRIX_COLOR Colour(30, 30, 30)
+#define ODIN_BLUE Colour(0xff3c9bc7)
+#define DISTORTION_ON_COLOR juce::Colour(14, 35, 50)
+#define PATCH_BROWSER_INPUT_FIELD_BACKGROUND_COLOR Colour(20, 30, 30)
 //#define STANDARD_DISPLAY_COLOR Colour(21, 45, 56)
 //#define STANDARD_DISPLAY_COLOR Colour(30, 30, 30)
 #define PHASER_DISPLAY_COLOR Colour(11, 41, 19)
@@ -46,6 +50,26 @@
 #define DARKGREY juce::Colour(30, 30, 30)
 #define CHORUS_DISPLAY_COLOR Colour(69, 39, 38)
 #define VOICES 24
+
+#define MATRIX_SECTION_INDEX_PRESETS 10
+#define MATRIX_SECTION_INDEX_ARP 1
+#define MATRIX_SECTION_INDEX_MATRIX 0
+
+
+
+//#ifdef ODIN_LINUXXXX
+//#define ODIN_STORAGE_PATH File::getSpecialLocation(File::SpecialLocationType::commonApplicationDataDirectory).getFullPathName() +                    \
+// 	    File::getSeparatorString() + "odin2"
+//#else 
+#define ODIN_STORAGE_PATH File::getSpecialLocation(File::SpecialLocationType::commonApplicationDataDirectory).getFullPathName() +                    \
+ 	    File::getSeparatorString()  + "odin2"
+//#endif
+#define CONFIG_FILE_PATH ODIN_STORAGE_PATH + File::getSeparatorString() + "odin2.conf"
+
+
+
+
+
 
 // leave spare values for future additions :hype:
 #define OSC_TYPE_ANALOG 2
@@ -74,6 +98,21 @@
 #define FILTER_TYPE_COMB 30
 #define FILTER_TYPE_FORMANT 35
 #define FILTER_TYPE_RINGMOD 40
+
+#define BROWSER_INLAY_X_150 6
+#define BROWSER_INLAY_Y_150 5
+#define BROWSER_POS_X_150 411
+#define BROWSER_POS_Y_150 701
+#define BROWSER_SIZE_X_150 (738 + 2*BROWSER_INLAY_X_150)
+#define BROWSER_SIZE_Y_150 (213 + 2*BROWSER_INLAY_Y_150)
+
+#define BROWSER_INLAY_X 4
+#define BROWSER_INLAY_Y 4
+#define BROWSER_POS_X 274
+#define BROWSER_POS_Y 467
+#define BROWSER_SIZE_X (492 + 2*BROWSER_INLAY_X)
+#define BROWSER_SIZE_Y (141 + 2*BROWSER_INLAY_Y)
+
 
 // midpoint for filters:
 // https://www.wolframalpha.com/input/?i=80*e%5E%28ln%2818000%2F80%29*0.5%29
@@ -120,7 +159,7 @@
 	if (m_value_tree.getParameter(name)) {                                                                             \
 		SETAUDIOFULLRANGE(name, value)                                                                                 \
 	} else {                                                                                                           \
-		DBG("Tried to access unknown audio-param:");                                                                      \
+		DBG("Tried to access unknown audio-param:");                                                                   \
 		DBG(name);                                                                                                     \
 	}
 
@@ -169,11 +208,9 @@ public:
 		g.drawRect(0, 0, width, height);
 	}
 
-	void setMenuWidth(int p_width){
+	void setMenuWidth(int p_width) {
 		m_width = p_width;
 	}
-
-
 
 	void getIdealPopupMenuItemSize(
 	    const String &text, bool isSeparator, int standardMenuItemHeight, int &idealWidth, int &idealHeight) {
@@ -209,22 +246,24 @@ public:
 	                       const Colour *textColour) override {
 
 		Font font(17.f);
-		if(m_GUI_big){
+		if (m_GUI_big) {
 			font = Font(21.f);
 		}
-		
+		font = Font(m_font_size);
+
 		if (!isHighlighted) {
 			drawPopupMenuItemOdin(g,
-			                                  area,
-			                                  isSeparator,
-			                                  isActive,
-			                                  isHighlighted,
-			                                  isTicked,
-			                                  hasSubMenu,
-			                                  text,
-			                                  shortcutKeyText,
-			                                  icon,
-			                                  &m_text_color, font);
+			                      area,
+			                      isSeparator,
+			                      isActive,
+			                      isHighlighted,
+			                      isTicked,
+			                      hasSubMenu,
+			                      text,
+			                      shortcutKeyText,
+			                      icon,
+			                      &m_text_color,
+			                      font);
 		} else {
 			if (!isSeparator) {
 				g.setColour(MENU_HIGHLIGHT_BACKGROUND_COLOR);
@@ -233,32 +272,33 @@ public:
 				g.drawRect(area);
 			}
 			drawPopupMenuItemOdin(g,
-			                                  area,
-			                                  isSeparator,
-			                                  isActive,
-			                                  false,
-			                                  isTicked,
-			                                  hasSubMenu,
-			                                  text,
-			                                  shortcutKeyText,
-			                                  icon,
-			                                  &m_highlight_text_color, font);
+			                      area,
+			                      isSeparator,
+			                      isActive,
+			                      false,
+			                      isTicked,
+			                      hasSubMenu,
+			                      text,
+			                      shortcutKeyText,
+			                      icon,
+			                      &m_highlight_text_color,
+			                      font);
 		}
 	}
 
 	//this function is copied from JUCE and modified
 	void drawPopupMenuItemOdin(Graphics &g,
-	                                           const Rectangle<int> &area,
-	                                           const bool isSeparator,
-	                                           const bool isActive,
-	                                           const bool isHighlighted,
-	                                           const bool isTicked,
-	                                           const bool hasSubMenu,
-	                                           const String &text,
-	                                           const String &shortcutKeyText,
-	                                           const Drawable *icon,
-	                                           const Colour *const textColourToUse,
-											   Font p_font) {
+	                           const Rectangle<int> &area,
+	                           const bool isSeparator,
+	                           const bool isActive,
+	                           const bool isHighlighted,
+	                           const bool isTicked,
+	                           const bool hasSubMenu,
+	                           const String &text,
+	                           const String &shortcutKeyText,
+	                           const Drawable *icon,
+	                           const Colour *const textColourToUse,
+	                           Font p_font) {
 		if (isSeparator) {
 			auto r = area.reduced(5, 0);
 			r.removeFromTop(roundToInt((r.getHeight() * 0.5f) - 0.5f));
@@ -333,14 +373,25 @@ public:
 
 	void setGUIBig() {
 		m_GUI_big = true;
-		m_width = 240;
+		m_width   = 240;
+		m_font_size = 21.f;
 	}
 	void setGUISmall() {
 		m_GUI_big = false;
-		m_width = 170;
+		m_width   = 170;
+		m_font_size = 21.f;
 	}
 
-	float m_width = 150;
+	void setFontSize(float p_size){
+		m_font_size = p_size;
+	}
+
+	void setWidth(float p_width){
+		m_width = p_width;
+	}
+
+	float m_font_size = 17.f;
+	float m_width  = 150;
 	bool m_GUI_big = false;
 };
 
@@ -462,3 +513,10 @@ public:
 	DBG("======================================================================"                                       \
 	    "\n");                                                                                                         \
 	}
+
+class FileElementComparatorAlphabetical {
+public:
+	static int compareElements(const File &first, const File &second) {
+		return first.getFileName().compareIgnoreCase(second.getFileName());
+	}
+};

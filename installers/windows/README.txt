@@ -1,0 +1,1 @@
+open the win_installer.iss with InnoSetupCompiler (6.0.5 was used)

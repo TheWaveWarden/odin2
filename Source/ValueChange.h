@@ -1,4 +1,4 @@
-#define DEBUG_VARIABLES
+//#define DEBUG_VARIABLES
 
 float valueToDenominator(int p_value) {
 	switch (p_value) {
@@ -1059,8 +1059,9 @@ void OdinAudioProcessor::treeValueChangedGeneralMisc(const String &p_ID, float p
 	StringRef id = StringRef(p_ID);
 
 	if (id == m_glide_identifier) {
+		float glide_samplerate_adjusted = pow(p_new_value, 44800. / m_samplerate);
 		for (int voice = 0; voice < VOICES; ++voice) {
-			m_voice[voice].setGlide(p_new_value);
+			m_voice[voice].setGlide(glide_samplerate_adjusted);
 		}
 	} else if (id == m_master_identifier) {
 		m_master_control = Decibels::decibelsToGain(p_new_value);
@@ -1468,7 +1469,7 @@ void OdinAudioProcessor::treeValueChangedNonParamMisc(ValueTree &tree, const Ide
 		}
 	} else if (id == m_fil2_vowel_right_identifier) {
 		for (int voice = 0; voice < VOICES; ++voice) {
-			m_voice[voice].formant_filter[1].setVowelRight((int)p_new_value - 1);
+			m_voice[voice].formant_filter[1].setVowelRight((int)p_new_value);
 		}
 	} else if (id == m_fil3_vowel_left_identifier) {
 		m_formant_filter[0].setVowelLeft((int)p_new_value);

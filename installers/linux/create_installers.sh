@@ -1,0 +1,2 @@
+bash create_deb_package.sh
+bash create_bash_installer.sh

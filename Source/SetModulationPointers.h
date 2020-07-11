@@ -27,8 +27,8 @@ void OdinAudioProcessor::setModulationPointers() {
 	m_mod_sources.global_adsr           = &m_global_env_mod_source;
 	m_mod_sources.global_lfo            = &m_global_lfo_mod_source;
 	m_mod_sources.MIDI_channel_pressure = &(m_MIDI_channel_pressure);
-	m_mod_sources.x                     = &m_x_smooth;
-	m_mod_sources.y                     = &m_y_smooth;
+	m_mod_sources.x                     = &m_x_modded;
+	m_mod_sources.y                     = &m_y_modded;
 	m_mod_sources.modwheel              = &m_modwheel_smooth;
 	m_mod_sources.pitchwheel            = &m_pitch_bend_smooth;
 	m_mod_sources.constant              = &(m_constant);
@@ -333,5 +333,7 @@ void OdinAudioProcessor::setModulationPointers() {
 	m_arpeggiator.setSpeedModPointer(&(m_mod_destinations.arp.speed));
 	m_arpeggiator.setGateModPointer(&(m_mod_destinations.arp.gate));
 
+	m_x_mod = &(m_mod_destinations.xy.x);
+	m_y_mod = &(m_mod_destinations.xy.y);
 
 }

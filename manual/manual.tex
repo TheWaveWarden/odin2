@@ -1,0 +1,128 @@
+
+\newcommand{\audioparameter}[4]{\vspace{3mm}
+\begin{tcolorbox}[colback=parambackground,
+	colframe=white!20!black,
+	center,
+	valign=top,
+	halign=left,
+	center title,
+	width=\textwidth]
+
+	\begin{tabular}{p{0.06\textwidth}p{0.4\textwidth}p{0.2\textwidth}p{0.2\textwidth}}
+		\raisebox{-.32\height}{\includegraphics[width=0.06\textwidth]{graphics/knob.png}} & \underline{\fat{\large{#1}}}&  \small{Modulatable}:
+		\IfEqCase{#2}{%
+        	{1}{\includegraphics[width=0.025\textwidth]{graphics/available.png}}%
+        	{0}{\includegraphics[width=0.02\textwidth]{graphics/not_available.png}}%
+		}[\PackageError{audioparameter}{Undefined option to param: #2}{}] 
+		&\small{Automatable}:
+		\IfEqCase{#3}{%
+		{1}{\includegraphics[width=0.025\textwidth]{graphics/available.png}}%
+		{0}{\includegraphics[width=0.02\textwidth]{graphics/not_available.png}}%
+		}[\PackageError{audioparameter}{Undefined option to param: #3}{}] 
+		\\
+	\end{tabular}
+
+	\vspace{5mm}
+	#4
+\end{tcolorbox}
+}
+\newcommand{\audioparameterint}[1]{\vspace{3mm}\noindent\textbf{Parameter: #1} [modulatable, whole numbers]\\}
+\newcommand{\modmatrix}{\hyperref[chapter_matrix]{modulation matrix}\hspace{1mm}}
+\newcommand{\fat}{\textbf}
+
+
+% \newcommand{\tree}[2]{%
+%     \IfEqCase{#1}{%
+%         {a}{$\sqrt{#2}$}%
+%         {b}{Hi}%
+%         % you can add more cases here as desired
+%     }[\PackageError{tree}{Undefined option to tree: #1}{}]%
+% }%
+
+\documentclass[12pt]{report}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{svg}
+\usepackage{mwe}
+\usepackage{xcolor}
+\usepackage[many]{tcolorbox}
+\usepackage[margin=1in]{geometry}
+\usepackage{xstring}
+\usepackage{utopia}
+\usepackage{pagecolor}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{titlesec} 
+\usepackage{lipsum} % just to generate text for the example
+
+\titleformat{\chapter}[display]
+  {\bfseries\Huge}
+  {}%\filright\MakeUppercase{\chaptertitlename} \Huge\thechapter}
+  {1ex}
+  {\titlerule\vspace{1ex} \chaptertitlename \hspace{3mm} \Huge\thechapter \hfill}
+  [\vspace{1ex}\titlerule]
+
+
+
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+
+\definecolor{parambackground}{rgb}{0.9470, 0.963, 1}
+
+%\titleformat{\chapter}[hang]{\Huge\bfseries}{\thechapter\hsp\textcolor{gray75}{|}\hsp}{0pt}{\Huge\bfseries}
+\begin{document}
+\pagecolor{white!95!black}
+\setlength{\parindent}{0pt}
+\begin{titlepage}
+	\mbox{}
+	\centering
+	\vspace{20mm}
+	
+	{\Huge\bfseries Odin 2\par}
+	{\huge\bfseries Synthesizer Plugin\par}
+	\vspace{2cm}
+	{\Huge\bfseries Manual\par}
+	{\Large\bfseries for version 2.2.0\par}
+	\vspace{2cm}
+	{\Large TheWaveWarden\par}
+	\includegraphics[width=0.4\textwidth]{graphics/logo.png}\par
+	{\large \url{www.thewavewarden.com}\par}
+
+	\vspace{10mm}
+
+	\begin{center}
+		\begin{tabular}{p{0.2\textwidth}p{0.15\textwidth}p{0.2\textwidth}p{0.15\textwidth}p{0.25\textwidth}}
+			&\includegraphics[width=0.15\textwidth]{graphics/vst3_logo.png}& & \includegraphics[width=0.11\textwidth]{graphics/au_logo.png}&
+		\end{tabular}
+	\end{center}
+
+	\vfill
+
+	% Bottom of the page
+	{\large \today\par}
+\end{titlepage}
+\clearpage
+
+\tableofcontents
+\clearpage
+
+\include{Introduction}
+\clearpage
+\include{Oscillators}
+\clearpage
+\include{Filters}
+\clearpage
+\include{AmpDistortion}
+\clearpage
+\include{FX}
+\clearpage
+\include{Modulators}
+\clearpage
+\include{ModulationMatrix}
+\clearpage
+\include{Arpeggiator}
+\clearpage
+\include{GlobalSettings}
+\clearpage
+
+\end{document}

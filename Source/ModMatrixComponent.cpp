@@ -214,6 +214,9 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts) :
 	m_arp_menu.addItem(970, "Arp Speed");
 	m_arp_menu.addItem(973, "Arp Gate");
 
+	m_xy_menu.addItem(980, "XY-Pad X");
+	m_xy_menu.addItem(982, "XY-Pad Y");
+
 	m_sources_menu.addItem(1, "Off");
 	m_sources_menu.addSeparator();
 	m_sources_menu.addItem(100, "Oscillator 1");
@@ -308,7 +311,7 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts) :
 	m_dest_2[N_ROWS - 1].setImage(glas_mid_down);
 	m_amount_3[N_ROWS - 1].setImage(glas_small_down);
 	m_scale[N_ROWS - 1].setImage(glas_right_down);
-	juce::Colour modmatrix_grey_color = juce::Colour(30,30,30);
+	juce::Colour modmatrix_grey_color = MODMATRIX_COLOR;
 	juce::Colour modmatrix_color = STANDARD_DISPLAY_COLOR;
 
 	juce::Colour modmatrix_color_bar(46, 136, 174);
@@ -1057,6 +1060,10 @@ void ModMatrixComponent::createMenu(PopupMenu *p_menu) {
 	p_menu->addSeparator();
 
 	p_menu->addSubMenu("Arpeggiator", m_arp_menu, true);
+
+	p_menu->addSeparator();
+
+	p_menu->addSubMenu("XY-Pad", m_xy_menu, true);
 
 	p_menu->addSeparator();
 

@@ -102,7 +102,7 @@
   <PARAM id="osc1_arp_on" value="0.0"/>
   <PARAM id="osc1_arp_speed" value="20.0"/>
   <PARAM id="osc1_chipnoise" value="0.0"/>
-  <PARAM id="osc1_detune" value="0.0"/>
+  <PARAM id="osc1_detune" value="0.2000000029802322"/>
   <PARAM id="osc1_drift" value="0.0"/>
   <PARAM id="osc1_exp_fm" value="0.0"/>
   <PARAM id="osc1_fine" value="0.0"/>
@@ -127,7 +127,7 @@
   <PARAM id="osc2_arp_on" value="0.0"/>
   <PARAM id="osc2_arp_speed" value="20.0"/>
   <PARAM id="osc2_chipnoise" value="0.0"/>
-  <PARAM id="osc2_detune" value="0.0"/>
+  <PARAM id="osc2_detune" value="0.2000000029802322"/>
   <PARAM id="osc2_drift" value="0.0"/>
   <PARAM id="osc2_exp_fm" value="0.0"/>
   <PARAM id="osc2_fine" value="0.0"/>
@@ -153,7 +153,7 @@
   <PARAM id="osc3_arp_on" value="0.0"/>
   <PARAM id="osc3_arp_speed" value="20.0"/>
   <PARAM id="osc3_chipnoise" value="0.0"/>
-  <PARAM id="osc3_detune" value="0.0"/>
+  <PARAM id="osc3_detune" value="0.2000000029802322"/>
   <PARAM id="osc3_drift" value="0.0"/>
   <PARAM id="osc3_exp_fm" value="0.0"/>
   <PARAM id="osc3_fine" value="0.0"/>
@@ -653,7 +653,7 @@
        lfo4_wave="0" lfo1_sync="0" lfo2_sync="0" lfo3_sync="0" lfo4_sync="0"/>
   <misc legato="1" dist_algo="1.0" BPM="120" env_left_selected="1" env_right_selected="1"
         fil1_type="2" fil2_type="1" fil3_type="1" patch_name="Init Patch"
-        version_minor="1" version_patch="0" patch_migration_version="4"
+        version_minor="2" version_patch="0" patch_migration_version="4"
         dist_on="0" fil1_comb_polarity="0" fil2_comb_polarity="0" fil3_comb_polarity="0"
         fil1_vowel_left="0" fil2_vowel_left="0" fil3_vowel_left="0" fil1_vowel_right="2"
         fil2_vowel_right="2" fil3_vowel_right="2" unison_voices="1" pitchbend_amount="12"

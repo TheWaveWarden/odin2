@@ -402,13 +402,74 @@ void OdinAudioProcessorEditor::setGUISmall() {
 	m_lfo_24_button.setImage(lfo24_right, 2);
 	m_lfo_24_button.setBounds(LFO24_POS_X, LFO24_POS_Y, lfo24_left.getWidth(), lfo24_left.getHeight());
 
-	juce::Image arp_modmatrix_button_left =
-	    ImageCache::getFromMemory(BinaryData::button_mod_arp_1_png, BinaryData::button_mod_arp_1_pngSize);
-	juce::Image arp_modmatrix_button_right =
-	    ImageCache::getFromMemory(BinaryData::button_mod_arp_2_png, BinaryData::button_mod_arp_2_pngSize);
-	m_arp_modmatrix_button.setImage(arp_modmatrix_button_left, 1);
-	m_arp_modmatrix_button.setImage(arp_modmatrix_button_right, 2);
-	m_arp_modmatrix_button.setBounds(ARP_MATRIX_BUTTON_POS_X, ARP_MATRIX_BUTTON_POS_Y, arp_modmatrix_button_left.getWidth(), arp_modmatrix_button_left.getHeight());
+
+	juce::Image select_arp_button_left  = ImageCache::getFromMemory(BinaryData::button_select_arpeggiator_1_png,
+                                                                   BinaryData::button_select_arpeggiator_1_pngSize);
+	juce::Image select_arp_button_right = ImageCache::getFromMemory(
+	    BinaryData::button_select_arpeggiator_2_png, BinaryData::button_select_arpeggiator_2_pngSize);
+	juce::DrawableImage select_arp_button_left_draw;
+	select_arp_button_left_draw.setImage(select_arp_button_left);
+	juce::DrawableImage select_arp_button_right_draw;
+	select_arp_button_right_draw.setImage(select_arp_button_right);
+	m_select_arp_button.setImages(&select_arp_button_right_draw,
+	                              &select_arp_button_right_draw,
+	                              &select_arp_button_left_draw,
+	                              &select_arp_button_left_draw,
+	                              &select_arp_button_left_draw,
+	                              &select_arp_button_left_draw,
+	                              &select_arp_button_left_draw);
+	m_select_arp_button.setBounds(ARP_MATRIX_BUTTON_POS_X,
+	                              ARP_MATRIX_BUTTON_POS_Y,
+	                              select_arp_button_left.getWidth(),
+	                              select_arp_button_left.getHeight());
+
+	juce::Image select_modmatrix_button_left = ImageCache::getFromMemory(
+	    BinaryData::button_select_modmatrix_1_png, BinaryData::button_select_modmatrix_1_pngSize);
+	juce::Image select_modmatrix_button_right = ImageCache::getFromMemory(
+	    BinaryData::button_select_modmatrix_2_png, BinaryData::button_select_modmatrix_2_pngSize);
+	juce::DrawableImage select_modmatrix_button_left_draw;
+	select_modmatrix_button_left_draw.setImage(select_modmatrix_button_left);
+	juce::DrawableImage select_modmatrix_button_right_draw;
+	select_modmatrix_button_right_draw.setImage(select_modmatrix_button_right);
+	m_select_modmatrix_button.setImages(&select_modmatrix_button_right_draw,
+	                                    &select_modmatrix_button_right_draw,
+	                                    &select_modmatrix_button_left_draw,
+	                                    &select_modmatrix_button_left_draw,
+	                                    &select_modmatrix_button_left_draw,
+	                                    &select_modmatrix_button_left_draw,
+	                                    &select_modmatrix_button_left_draw);
+	m_select_modmatrix_button.setBounds(SELECT_BUTTON_WIDTH + ARP_MATRIX_BUTTON_POS_X,
+	                                    ARP_MATRIX_BUTTON_POS_Y,
+	                                    select_modmatrix_button_left.getWidth(),
+	                                    select_modmatrix_button_left.getHeight());
+
+	juce::Image select_presets_button_left  = ImageCache::getFromMemory(BinaryData::button_select_presets_1_png,
+                                                                       BinaryData::button_select_presets_1_pngSize);
+	juce::Image select_presets_button_right = ImageCache::getFromMemory(
+	    BinaryData::button_select_presets_2_png, BinaryData::button_select_presets_2_pngSize);
+	juce::DrawableImage select_presets_button_left_draw;
+	select_presets_button_left_draw.setImage(select_presets_button_left);
+	juce::DrawableImage select_presets_button_right_draw;
+	select_presets_button_right_draw.setImage(select_presets_button_right);
+	m_select_presets_button.setImages(&select_presets_button_right_draw,
+	                                  &select_presets_button_right_draw,
+	                                  &select_presets_button_left_draw,
+	                                  &select_presets_button_left_draw,
+	                                  &select_presets_button_left_draw,
+	                                  &select_presets_button_left_draw,
+	                                  &select_presets_button_left_draw);
+	m_select_presets_button.setBounds(SELECT_BUTTON_WIDTH * 2 + ARP_MATRIX_BUTTON_POS_X,
+	                                  ARP_MATRIX_BUTTON_POS_Y,
+	                                  select_presets_button_left.getWidth(),
+	                                  select_presets_button_left.getHeight());
+
+	//juce::Image arp_modmatrix_button_left =
+	 //   ImageCache::getFromMemory(BinaryData::button_mod_arp_1_png, BinaryData::button_mod_arp_1_pngSize);
+	//juce::Image arp_modmatrix_button_right =
+	//    ImageCache::getFromMemory(BinaryData::button_mod_arp_2_png, BinaryData::button_mod_arp_2_pngSize);
+	//m_select_arp_button.setImage(arp_modmatrix_button_left, 1);
+	//m_select_arp_button.setImage(arp_modmatrix_button_right, 2);
+	//m_select_arp_button.setBounds(ARP_MATRIX_BUTTON_POS_X, ARP_MATRIX_BUTTON_POS_Y, arp_modmatrix_button_left.getWidth(), arp_modmatrix_button_left.getHeight());
 
 	juce::Image legato_left =
 	    ImageCache::getFromMemory(BinaryData::buttonlegato_1_png, BinaryData::buttonlegato_1_pngSize);
@@ -416,7 +477,7 @@ void OdinAudioProcessorEditor::setGUISmall() {
 	    ImageCache::getFromMemory(BinaryData::buttonlegato_3_png, BinaryData::buttonlegato_3_pngSize);
 	m_legato_button.setImage(legato_left, 1);
 	m_legato_button.setImage(legato_right, 2);
-	m_legato_button.setBounds(LEGATO_POS_X, LEGATO_POS_Y, legato_left.getWidth(), legato_left.getHeight());
+	m_legato_button.setBounds(LEGATO_POS_X, LEGATO_POS_Y - 2, legato_left.getWidth(), legato_left.getHeight());
 
 	juce::Image gui_size_left =
 	    ImageCache::getFromMemory(BinaryData::buttonguisize_1_png, BinaryData::buttonguisize_1_pngSize);
@@ -431,6 +492,22 @@ void OdinAudioProcessorEditor::setGUISmall() {
 
 	juce::Image lfo24_sync_background =
 	    ImageCache::getFromMemory(BinaryData::lfo24_sync_background_png, BinaryData::lfo24_sync_background_pngSize);
+
+	juce::Image reset_1 =
+	    ImageCache::getFromMemory(BinaryData::buttonresetsynth_3_png, BinaryData::buttonresetsynth_3_pngSize);
+	juce::Image reset_2 =
+	    ImageCache::getFromMemory(BinaryData::buttonresetsynth_2_png, BinaryData::buttonresetsynth_2_pngSize);
+
+	juce::DrawableImage reset_draw1;
+	juce::DrawableImage reset_draw2;
+
+	reset_draw1.setImage(reset_1);
+	reset_draw2.setImage(reset_2);
+
+	m_reset.setImages(
+	    &reset_draw2, &reset_draw2, &reset_draw1, &reset_draw1, &reset_draw2, &reset_draw2, &reset_draw1, &reset_draw1);
+	m_reset.setBounds(RESET_SYNTH_POS_X_100, RESET_SYNTH_POS_Y_100, reset_1.getWidth(), reset_1.getHeight());
+
 	m_lfo_1.setBounds(LFO_LEFT_POS_X, LFO_LEFT_POS_Y, LFO_SIZE_X, LFO_SIZE_Y);
 	m_lfo_1.setSyncOverdraw(lfo13_sync_background);
 	m_lfo_2.setBounds(LFO_LEFT_POS_X, LFO_LEFT_POS_Y, LFO_SIZE_X, LFO_SIZE_Y);
@@ -506,14 +583,16 @@ void OdinAudioProcessorEditor::setGUISmall() {
 
 	m_mod_matrix.setBounds(MATRIX_POS_X_100, MATRIX_POS_Y_100, MATRIX_SIZE_X, MATRIX_SIZE_Y);
 	m_arp.setBounds(ARPEGGIATOR_POS_X, ARPEGGIATOR_POS_Y, MATRIX_SIZE_X, MATRIX_SIZE_Y);
-	m_save_load.setBounds(SAVE_LOAD_POS_X, SAVE_LOAD_POS_Y, SAVE_LOAD_SIZE_X, SAVE_LOAD_SIZE_Y);
+	m_patch_browser.setBounds(BROWSER_POS_X, BROWSER_POS_Y, BROWSER_SIZE_X, BROWSER_SIZE_Y);
+
+	//m_save_load.setBounds(SAVE_LOAD_POS_X, SAVE_LOAD_POS_Y, SAVE_LOAD_SIZE_X, SAVE_LOAD_SIZE_Y);
 	m_xy_section.setBounds(XY_COMPONENT_POS_X, XY_COMPONENT_POS_Y, XY_COMPONENT_SIZE_X, XY_COMPONENT_SIZE_Y);
 
 	m_tooltip.setBounds(900, 100, 100, 100);
 	m_tooltip.setAlwaysOnTop(true);
 
 	forceValueTreeOntoComponents(false);
-	m_save_load.resetPatchText();
+	//m_save_load.resetPatchText();
 
 	setSize(ODIN_EDITOR_SIZE_X, ODIN_EDITOR_SIZE_Y);
 	m_odin_backdrop = ImageCache::getFromMemory(BinaryData::odin_backdrop_png, BinaryData::odin_backdrop_pngSize);

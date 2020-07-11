@@ -48,7 +48,8 @@ float Delay::doDelayLeft(float p_left) {
 	feedback_modded       = feedback_modded < 0 ? 0 : feedback_modded;
 
 	if (m_ping_pong) {
-		circular_buffer_right[m_write_index] = input_left + p_left * feedback_modded;
+		circular_buffer_left[m_write_index] = input_left / 2.f;
+		circular_buffer_right[m_write_index] = p_left * feedback_modded;
 	} else {
 		circular_buffer_left[m_write_index] = input_left + p_left * feedback_modded;
 	}
@@ -106,7 +107,7 @@ float Delay::doDelayRight(float p_right) {
 	feedback_modded       = feedback_modded < 0 ? 0 : feedback_modded;
 
 	if (m_ping_pong) {
-		circular_buffer_left[m_write_index] = input_right + p_right * feedback_modded;
+		circular_buffer_left[m_write_index] += input_right / 2.f + p_right * feedback_modded;
 	} else {
 		circular_buffer_right[m_write_index] = input_right + p_right * feedback_modded;
 	}

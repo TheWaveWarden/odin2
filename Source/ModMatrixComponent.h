@@ -153,6 +153,7 @@ private:
   PopupMenu m_phaser_menu;
   PopupMenu m_flanger_menu;
   PopupMenu m_chorus_menu;
+  PopupMenu m_xy_menu;
   PopupMenu m_arp_menu;
 
   PopupMenu m_sources_menu;

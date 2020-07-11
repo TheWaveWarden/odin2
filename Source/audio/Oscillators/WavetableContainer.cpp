@@ -13,7 +13,9 @@
 #endif
 
 WavetableContainer::WavetableContainer() {
-#include "WavetableCoefficients.h"
+#ifdef ODIN_DEBUG
+	#include "WavetableCoefficients.h"
+#endif
 
 	// dynamically allocate wavetables
 	// m_wavetables = new
