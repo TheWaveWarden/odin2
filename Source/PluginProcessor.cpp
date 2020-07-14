@@ -921,7 +921,10 @@ void OdinAudioProcessor::setSampleRate(float p_samplerate) {
 	m_arpeggiator.setSampleRate(p_samplerate);
 
 	//update glide
-	SETAUDIOFULLRANGE("glide", GETAUDIO("glide"));
+	float glide_samplerate_adjusted = pow(GETAUDIO("glide"), 44800. / m_samplerate);
+	for (int voice = 0; voice < VOICES; ++voice) {
+		m_voice[voice].setGlide(glide_samplerate_adjusted);
+	}
 }
 
 void OdinAudioProcessor::initializeModules() {
