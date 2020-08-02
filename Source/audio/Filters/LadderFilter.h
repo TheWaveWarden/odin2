@@ -15,8 +15,8 @@ public:
     HP2 = 5
   };
 
-  LadderFilter(void);
-  ~LadderFilter(void);
+  LadderFilter();
+  ~LadderFilter();
 
   // -- Filter Overrides --
   void reset() override;

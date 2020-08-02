@@ -15,8 +15,8 @@
 class Oscillator {
 
 public:
-	Oscillator(void);
-	virtual ~Oscillator(void);
+	Oscillator();
+	virtual ~Oscillator();
 
 	// --- reset the modulo (required for master->slave operations)
 	inline void resetModulo(double d = 0.0) {

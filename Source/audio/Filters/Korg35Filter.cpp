@@ -1,6 +1,6 @@
 #include "Korg35Filter.h"
 
-Korg35Filter::Korg35Filter(void) {
+Korg35Filter::Korg35Filter() {
 	m_is_lowpass = true;
 
 	// init
@@ -15,7 +15,7 @@ Korg35Filter::Korg35Filter(void) {
 	reset();
 }
 
-Korg35Filter::~Korg35Filter(void) {
+Korg35Filter::~Korg35Filter() {
 }
 
 void Korg35Filter::reset() {

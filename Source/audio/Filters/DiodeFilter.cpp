@@ -1,6 +1,6 @@
 #include "DiodeFilter.h"
 
-DiodeFilter::DiodeFilter(void) {
+DiodeFilter::DiodeFilter() {
 	// init
 	m_k     = 0.0;
 	m_gamma = 0.0;
@@ -19,7 +19,7 @@ DiodeFilter::DiodeFilter(void) {
 	reset();
 }
 
-DiodeFilter::~DiodeFilter(void) {
+DiodeFilter::~DiodeFilter() {
 }
 
 void DiodeFilter::reset() {

@@ -1,7 +1,7 @@
 #include "Filter.h"
 
 // --- construction
-Filter::Filter(void) {
+Filter::Filter() {
 	// --- defaults
 	m_res_base    = 1.0; // Q is 1 to 10 on GUI
 	m_freq_modded = FILTER_FC_DEFAULT;
@@ -11,7 +11,7 @@ Filter::Filter(void) {
 	m_mod_frequency = 0.0;
 }
 
-Filter::~Filter(void) {
+Filter::~Filter() {
 }
 
 // --- flush buffers

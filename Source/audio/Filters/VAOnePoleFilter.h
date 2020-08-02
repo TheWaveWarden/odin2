@@ -7,8 +7,8 @@
 class VAOnePoleFilter : public Filter
 {
 public:
-	VAOnePoleFilter(void);
-	virtual ~VAOnePoleFilter(void);
+	VAOnePoleFilter();
+	virtual ~VAOnePoleFilter();
 	double m_alpha;			// Feed Forward coeff
 	double m_beta;
 	double m_gamma;		// Pre-Gain

@@ -1,6 +1,6 @@
 #include "LadderFilter.h"
 
-LadderFilter::LadderFilter(void) {
+LadderFilter::LadderFilter() {
 
 	// init
 	m_k       = 0.0;
@@ -23,7 +23,7 @@ LadderFilter::LadderFilter(void) {
 	reset();
 }
 
-LadderFilter::~LadderFilter(void) {
+LadderFilter::~LadderFilter() {
 }
 
 void LadderFilter::reset() {

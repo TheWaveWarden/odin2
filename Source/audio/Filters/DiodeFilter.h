@@ -5,8 +5,8 @@ class DiodeFilter :
 	public 	Filter
 {
 public:
-	DiodeFilter(void);
-	~DiodeFilter(void);
+	DiodeFilter();
+	~DiodeFilter();
 	void reset() override;
 	void update() override;
 	double doFilter(double xn) override;

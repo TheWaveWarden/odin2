@@ -1,6 +1,6 @@
 #include "VAOnePoleFilter.h"
 
-VAOnePoleFilter::VAOnePoleFilter(void) {
+VAOnePoleFilter::VAOnePoleFilter() {
 	// init
 	m_alpha   = 1.0;
 	m_beta    = 0.0;
@@ -20,7 +20,7 @@ VAOnePoleFilter::VAOnePoleFilter(void) {
 	reset();
 }
 
-VAOnePoleFilter::~VAOnePoleFilter(void) {
+VAOnePoleFilter::~VAOnePoleFilter() {
 }
 
 // recalc coeffs

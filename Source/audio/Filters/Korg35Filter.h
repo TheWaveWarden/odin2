@@ -5,8 +5,8 @@
 class Korg35Filter :
 	public Filter{
 public:
-	Korg35Filter(void);
-	~Korg35Filter(void);
+	Korg35Filter();
+	~Korg35Filter();
 
 	void reset() override;
 	void update() override;
