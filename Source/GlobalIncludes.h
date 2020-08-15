@@ -205,6 +205,17 @@ typedef AudioProcessorValueTreeState::SliderAttachment SliderAttachment;
 typedef AudioProcessorValueTreeState::ButtonAttachment ButtonAttachment;
 typedef AudioProcessorValueTreeState::ComboBoxAttachment ComboBoxAttachment;
 
+
+// note: these are not the values stored in the value tree, since historically the param was a button (mono 0, poly 1) and is now a dropdown (can't be 0)
+enum class PlayModes {
+	Legato = 1,
+	Poly = 2,
+	Mono = 3
+};
+#define PLAYMODETOVALUETREE(playmode) ((int)playmode - 1)
+#define VALUETREETOPLAYMODE(mode) ((PlayModes) (mode + 1))
+
+
 class OdinMenuFeels : public LookAndFeel_V4 {
 public:
 	void drawPopupMenuBackground(Graphics &g, int width, int height) override {

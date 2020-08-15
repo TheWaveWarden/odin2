@@ -77,7 +77,8 @@ void OdinAudioProcessor::addNonAudioParametersToTree() {
 	node.setProperty("lfo4_sync", 0, nullptr);
 
 	node = m_value_tree_misc;
-	node.setProperty("legato", 1, nullptr); // this is actually "poly" or !legato"
+	// legato 0, poly 1, mono 2, BUT see mapping in globalincludes.h (valuetree != dropdown values)
+	node.setProperty("legato", 1, nullptr);
 	node.setProperty("dist_algo", 1.f, nullptr);
 	node.setProperty("BPM", 120, nullptr);
 	node.setProperty("env_left_selected", 1, nullptr);
@@ -113,7 +114,7 @@ void OdinAudioProcessor::addNonAudioParametersToTree() {
 	node.setProperty("arp_direction", (int)OdinArpeggiator::ArpPattern::Up, nullptr);
 	node.setProperty("arp_steps", 16, nullptr);
 	node.setProperty("arp_gate", 50, nullptr);
-	node.setProperty("arp_mod_selected", 0, nullptr);//actually arp,modmatrix,patchbrowser, TBD
+	node.setProperty("arp_mod_selected", 0, nullptr); //actually arp,modmatrix,patchbrowser, TBD
 
 	node = m_value_tree_mod;
 	node.setProperty("source_row_0", 0, nullptr);

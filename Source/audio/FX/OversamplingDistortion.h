@@ -12,7 +12,7 @@ public:
 
   double doDistortion(double p_input);
 
-  inline void setThreshold(float p_threshold) { 
+  inline void setThreshold(float p_threshold) {
     p_threshold = 1.f - p_threshold;
     m_threshold = p_threshold * p_threshold * p_threshold; 
   }

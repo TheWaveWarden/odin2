@@ -123,17 +123,17 @@
 #define SAVE_LOAD_SIZE_X 288
 #define SAVE_LOAD_SIZE_Y 25
 
-#define LEGATO_POS_X 32
+#define LEGATO_POS_X 225
 #define LEGATO_POS_Y 8
 
-//#define UNISON_OFFSET 378
+#define UNISON_OFFSET 80
 //define UNISON_OFFSET_150 567
 
-#define UNISON_SELECTOR_X 112
+#define UNISON_SELECTOR_X 112 - UNISON_OFFSET
 #define UNISON_SELECTOR_Y 6
-#define UNISON_DETUNE_X 223
+#define UNISON_DETUNE_X 223 - UNISON_OFFSET
 #define UNISON_DETUNE_Y 5
-#define UNISON_STEREO_X 268
+#define UNISON_STEREO_X 268 -  UNISON_OFFSET
 #define UNISON_STEREO_Y UNISON_DETUNE_Y
 
 
@@ -364,7 +364,8 @@ private:
   LeftRightButton m_lfo_24_button;
 
 
-  LeftRightButton m_legato_button;
+  //LeftRightButton m_legato_button;
+	GlasDropdown m_mono_poly_legato_dropdown;
   LeftRightButton m_gui_size_button;
 
   juce::DrawableButton m_reset;

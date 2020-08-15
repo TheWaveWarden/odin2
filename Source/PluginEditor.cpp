@@ -83,7 +83,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
     m_pitchbend_amount_identifier("pitchbend_amount"), m_unison_voices_identifier("unison_voices"),
     m_delay_position_identifier("delay_position"), m_flanger_position_identifier("flanger_position"),
     m_phaser_position_identifier("phaser_position"), m_chorus_position_identifier("chorus_position"), m_mod_matrix(vts),
-    m_legato_button("legato"), m_gui_size_button("gui_size"), m_tooltip(nullptr, 2047483647),
+    /*m_legato_button("legato"),*/ m_gui_size_button("gui_size"), m_tooltip(nullptr, 2047483647),
     m_is_standalone_plugin(p_is_standalone), /*m_save_load(vts, p_processor),*/ m_arp(p_processor, vts),
     m_processor(p_processor), m_patch_browser(p_processor, vts) {
 
@@ -886,26 +886,46 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 
 	addAndMakeVisible(m_lfo_24_button);
 
-	juce::Image legato_left =
-	    ImageCache::getFromMemory(BinaryData::buttonlegato_1_png, BinaryData::buttonlegato_1_pngSize);
-	juce::Image legato_right =
-	    ImageCache::getFromMemory(BinaryData::buttonlegato_3_png, BinaryData::buttonlegato_3_pngSize);
-	m_legato_button.setImage(legato_left, 1);
-	m_legato_button.setImage(legato_right, 2);
-	m_legato_button.setBounds(LEGATO_POS_X, LEGATO_POS_Y, legato_left.getWidth(), legato_left.getHeight());
-	m_legato_button.setToggleState(true, sendNotification);
-	m_legato_button.onClick = [&]() {
-		// set value in audiovaluetree
-		m_value_tree.state.getChildWithName("misc").setProperty("legato", m_legato_button.getToggleState(), nullptr);
-		// notify voice manager this will reset synth
-		processor.setPolyLegato(m_legato_button.getToggleState());
+	//juce::Image legato_left =
+	//    ImageCache::getFromMemory(BinaryData::buttonlegato_1_png, BinaryData::buttonlegato_1_pngSize);
+	//juce::Image legato_right =
+	//    ImageCache::getFromMemory(BinaryData::buttonlegato_3_png, BinaryData::buttonlegato_3_pngSize);
+	//m_legato_button.setImage(legato_left, 1);
+	//m_legato_button.setImage(legato_right, 2);
+	//m_legato_button.setBounds(LEGATO_POS_X, LEGATO_POS_Y, legato_left.getWidth(), legato_left.getHeight());
+	//m_legato_button.setToggleState(true, sendNotification);
+	//m_legato_button.onClick = [&]() {
+	//	// set value in audiovaluetree
+	//	m_value_tree.state.getChildWithName("misc").setProperty("legato", m_legato_button.getToggleState(), nullptr);
+	//	// notify voice manager this will reset synth
+	//	processor.setPolyLegato(m_legato_button.getToggleState());
+	//};
+	//m_legato_button.setTooltip("Sets the synth to legato or polyphonic mode. In poly mode you have 12 "
+	//                           "voices, in legato you only have one and the envelopes tied together. "
+	//                           "This can be usefull for melodies, since notes don't overlap and there's "
+	//                           "no hard envelope reset when transitioning from one note to another.");
+	//addAndMakeVisible(m_legato_button);
+	//m_legato_button.disableMidiLearn();
+
+	//juce::Image glas_panel =
+	//    ImageCache::getFromMemory(BinaryData::glaspanel_midbig_png, BinaryData::glaspanel_midbig_pngSize);
+	//m_mono_poly_legato_dropdown.setBounds(DIST_ALGO_POS_X, DIST_ALGO_POS_Y, glas_panel.getWidth(), glas_panel.getHeight());
+	//m_mono_poly_legato_dropdown.setImage(glas_panel);
+
+	m_mono_poly_legato_dropdown.setInlay(1);
+	m_mono_poly_legato_dropdown.addItem("Legato", 1);
+	m_mono_poly_legato_dropdown.addItem("Poly", 2);
+	m_mono_poly_legato_dropdown.addItem("Mono", 3);
+	m_mono_poly_legato_dropdown.setEditableText(false);
+	m_mono_poly_legato_dropdown.setSelectedId(2, dontSendNotification);
+
+	m_mono_poly_legato_dropdown.setColor(juce::STANDARD_DISPLAY_COLOR);
+	m_mono_poly_legato_dropdown.setTooltip("Selects the distortion algorithm to be used");
+	m_mono_poly_legato_dropdown.onChange = [&]() {
+		m_value_tree.state.getChildWithName("misc").setProperty(
+		    "legato", PLAYMODETOVALUETREE(m_mono_poly_legato_dropdown.getSelectedId()), nullptr);
 	};
-	m_legato_button.setTooltip("Sets the synth to legato or polyphonic mode. In poly mode you have 12 "
-	                           "voices, in legato you only have one and the envelopes tied together. "
-	                           "This can be usefull for melodies, since notes don't overlap and there's "
-	                           "no hard envelope reset when transitioning from one note to another.");
-	addAndMakeVisible(m_legato_button);
-	m_legato_button.disableMidiLearn();
+	addAndMakeVisible(m_mono_poly_legato_dropdown);
 
 	juce::Image gui_size_left =
 	    ImageCache::getFromMemory(BinaryData::buttonguisize_1_png, BinaryData::buttonguisize_1_pngSize);
@@ -1385,9 +1405,9 @@ void OdinAudioProcessorEditor::forceValueTreeOntoComponentsOnlyMainPanel() {
 	}
 	setActiveFXPanel(fx_name);
 
-	m_legato_button.setToggleState((float)m_value_tree.state.getChildWithName("misc")["legato"] > 0.5,
-	                               dontSendNotification);
-	processor.setPolyLegato(m_legato_button.getToggleState());
+	//m_legato_button.setToggleState((float)m_value_tree.state.getChildWithName("misc")["legato"] > 0.5,
+	//                               dontSendNotification);
+	//processor.setPolyLegato(m_legato_button.getToggleState());
 
 	m_BPM_selector.setValue(m_value_tree.state.getChildWithName("misc")["BPM"]);
 
@@ -1654,6 +1674,7 @@ void OdinAudioProcessorEditor::setGUISizeBig(bool p_big, bool p_write_to_config)
 		m_menu_feels.setGUIBig();
 		m_pitch_amount.setGUIBig();
 		m_unison_selector.setGUIBig();
+		m_mono_poly_legato_dropdown.setGUIBig();
 		setGUIBig();
 	} else {
 		g_GUI_big = false;
@@ -1685,6 +1706,7 @@ void OdinAudioProcessorEditor::setGUISizeBig(bool p_big, bool p_write_to_config)
 		m_menu_feels.setGUISmall();
 		m_pitch_amount.setGUISmall();
 		m_unison_selector.setGUISmall();
+		m_mono_poly_legato_dropdown.setGUISmall();
 		setGUISmall();
 	}
 

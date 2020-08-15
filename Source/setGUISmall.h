@@ -471,13 +471,18 @@ void OdinAudioProcessorEditor::setGUISmall() {
 	//m_select_arp_button.setImage(arp_modmatrix_button_right, 2);
 	//m_select_arp_button.setBounds(ARP_MATRIX_BUTTON_POS_X, ARP_MATRIX_BUTTON_POS_Y, arp_modmatrix_button_left.getWidth(), arp_modmatrix_button_left.getHeight());
 
-	juce::Image legato_left =
-	    ImageCache::getFromMemory(BinaryData::buttonlegato_1_png, BinaryData::buttonlegato_1_pngSize);
-	juce::Image legato_right =
-	    ImageCache::getFromMemory(BinaryData::buttonlegato_3_png, BinaryData::buttonlegato_3_pngSize);
-	m_legato_button.setImage(legato_left, 1);
-	m_legato_button.setImage(legato_right, 2);
-	m_legato_button.setBounds(LEGATO_POS_X, LEGATO_POS_Y - 2, legato_left.getWidth(), legato_left.getHeight());
+	//juce::Image legato_left =
+	//    ImageCache::getFromMemory(BinaryData::buttonlegato_1_png, BinaryData::buttonlegato_1_pngSize);
+	//juce::Image legato_right =
+	//    ImageCache::getFromMemory(BinaryData::buttonlegato_3_png, BinaryData::buttonlegato_3_pngSize);
+	//m_legato_button.setImage(legato_left, 1);
+	//m_legato_button.setImage(legato_right, 2);
+	//m_legato_button.setBounds(LEGATO_POS_X, LEGATO_POS_Y - 2, legato_left.getWidth(), legato_left.getHeight());
+	juce::Image glas_panel =
+	    ImageCache::getFromMemory(BinaryData::glaspanel_midbig_png, BinaryData::glaspanel_midbig_pngSize);
+	m_mono_poly_legato_dropdown.setBounds(LEGATO_POS_X, LEGATO_POS_Y, glas_panel.getWidth(), glas_panel.getHeight());
+	m_mono_poly_legato_dropdown.setImage(glas_panel);
+	m_mono_poly_legato_dropdown.setInlay(1);
 
 	juce::Image gui_size_left =
 	    ImageCache::getFromMemory(BinaryData::buttonguisize_1_png, BinaryData::buttonguisize_1_pngSize);
