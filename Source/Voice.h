@@ -113,8 +113,8 @@ struct Voice {
 		vector_osc[2].setSyncOscillator(p_osc);
 	}
 
-	void setPolyLegato(bool p_is_poly) {
-		m_is_legato = !p_is_poly;
+	void setMonoPolyLegato(PlayModes p_mode) {
+		m_mono_poly_legato = p_mode;
 	}
 
 	void generateNewRandomValue() {
@@ -188,9 +188,9 @@ struct Voice {
 		m_MIDI_key               = p_MIDI_key;
 		MIDI_key_mod_source      = (float)p_MIDI_key / 127.f;
 		MIDI_velocity_mod_source = (float)p_MIDI_velocity / 127.f;
-		if (m_is_legato) {
+		if (m_mono_poly_legato == PlayModes::Legato) {
 			for (int mod = 0; mod < 3; ++mod) {
-				env[mod].restartEnvelope();
+				env[mod].softRestartEnvelope();
 			}
 		} else {
 			for (int mod = 0; mod < 3; ++mod) {
@@ -366,7 +366,7 @@ struct Voice {
 
 	void reset(bool p_unison_active) {
 		resetLegato(p_unison_active);
-		if (!m_is_legato) {
+		if (m_mono_poly_legato != PlayModes::Legato) {
 			for (int fil = 0; fil < 2; ++fil) {
 				ladder_filter[fil].reset();
 				diode_filter[fil].reset();
@@ -377,10 +377,11 @@ struct Voice {
 			}
 		}
 	}
+
 	void resetLegato(bool unison_active) {
 
 		//we reset the phase in legato and the voice is not carried over from an old note
-		bool envelope_off = env[0].isEnvelopeOff();
+		bool envelope_off = env[0].isEnvelopeOff();// i.e. voice isn't playing anymore
 		bool reset_phase = unison_active && envelope_off;
 
 		for (int osc = 0; osc < 3; ++osc) {
@@ -597,7 +598,7 @@ struct Voice {
 	float m_arp_mod_1 = 0.f;
 	float m_arp_mod_2 = 0.f;
 
-	bool m_is_legato = false;
+	PlayModes m_mono_poly_legato = PlayModes::Poly;
 	// modulation values
 	float MIDI_key_mod_source        = 0.f;
 	float MIDI_velocity_mod_source   = 0.f;
@@ -624,8 +625,8 @@ public:
 
 		std::vector<int> ret;
 
-		// in legato mode every unison voice is the same
-		if (m_is_legato) {
+		// in Legato and Mono mode every unison voice is the same
+		if (m_mono_poly_legato != PlayModes::Poly) {
 			for (int voice = 0; voice < p_unison; ++voice) {
 				ret.push_back(voice);
 			}
@@ -759,16 +760,12 @@ public:
 		//     std::to_string(m_voice_history[11]));
 	}
 
-	bool setPolyLegato(bool p_is_poly) {
-		if (m_is_legato == p_is_poly) {
-			m_is_legato = !p_is_poly;
+	bool setMonoPolyLegato(PlayModes p_mode) {
+		if (m_mono_poly_legato != p_mode) {
+			m_mono_poly_legato = p_mode;
 			return true; // value was changed
 		}
 		return false;
-	}
-
-	bool legatoEnabled() {
-		return m_is_legato;
 	}
 
 	void reset() {
@@ -789,7 +786,7 @@ public:
 protected:
 	bool m_sustain_active = false;
 
-	bool m_is_legato = false;
+	PlayModes m_mono_poly_legato = PlayModes::Poly;
 	// used to determine oldest voice for stealing
 	int m_voice_history[VOICES] = {0,  1,  2,  3,  4,  5,  6,  7,  8,  9,  10, 11,
 	                               12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23};

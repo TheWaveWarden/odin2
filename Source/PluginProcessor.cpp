@@ -861,7 +861,7 @@ void OdinAudioProcessor::setStateInformation(const void *data, int sizeInBytes) 
 			readPatch(ValueTree::fromXml(*xmlState));
 
 			//set legato here, so it is active before opening the GUI
-			setPolyLegato((float)m_value_tree.state.getChildWithName("misc")["legato"] > 0.5);
+			setMonoPolyLegato(VALUETREETOPLAYMODE((int)m_value_tree.state.getChildWithName("misc")["legato"]));
 
 			//set the correct version since an old one was maybe set from patch
 			m_value_tree.state.getChildWithName("misc").setProperty("version_minor", ODIN_MINOR_VERSION, nullptr);
@@ -988,7 +988,7 @@ void OdinAudioProcessor::handleMidiNoteOff(int p_midi_note) {
 
 void OdinAudioProcessor::midiNoteOn(int p_midi_note, int p_midi_velocity, float p_arp_mod_1, float p_arp_mod_2) {
 
-	m_global_env.restartEnvelope();
+	m_global_env.softRestartEnvelope();
 	if (*m_lfo4_reset) {
 		m_global_lfo.voiceStart(false);
 	}
@@ -1268,3 +1268,28 @@ void OdinAudioProcessor::handleMidiMessage(const MidiMessage &p_midi_message) {
 void OdinAudioProcessor::onEditorDestruction() {
 	m_editor_pointer = nullptr;
 }
+
+void OdinAudioProcessor::setMonoPolyLegato(PlayModes p_mode){
+	m_mono_poly_legato = p_mode;
+
+	bool legato_was_changed = m_voice_manager.setMonoPolyLegato(p_mode);
+	for(int voice = 0; voice < VOICES; ++voice){
+		m_voice[voice].setMonoPolyLegato(p_mode);
+	}
+
+	if(legato_was_changed) {
+		resetAudioEngine();
+	}
+}
+
+//void setPolyLegato(bool p_is_poly) {
+//	bool legato_was_changed = m_voice_manager.setPolyLegato(p_is_poly);
+//	for (int voice = 0; voice < VOICES; ++voice) {
+//		m_voice[voice].setPolyLegato(p_is_poly);
+//	}
+//
+//	if (legato_was_changed) {
+//		// reset engine here to get rid of trailing notes
+//		resetAudioEngine();
+//	}
+//}

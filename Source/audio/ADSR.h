@@ -32,7 +32,8 @@ public:
   		return (m_current_section == ADSR_SECTION_INIT || m_current_section == ADSR_SECTION_FINISHED);
 	}
 
-	void restartEnvelope() {
+	// start attack from the current value
+	void softRestartEnvelope() {
 		m_current_value   = m_last_actual_value;
 		m_current_section = 0;
 	}

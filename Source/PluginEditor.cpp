@@ -69,17 +69,16 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
     m_select_arp_button("select_arpeggiator_button", juce::DrawableButton::ButtonStyle::ImageRaw),
     m_select_modmatrix_button("select_modmatrix_button", juce::DrawableButton::ButtonStyle::ImageRaw),
     m_select_presets_button("select_presets_button", juce::DrawableButton::ButtonStyle::ImageRaw),
-	m_reset("reset", juce::DrawableButton::ButtonStyle::ImageRaw),
-    m_env_13_button("env13_button"), m_env_24_button("env24_button"), m_lfo_13_button("lfo13_button"),
-    m_lfo_24_button("lfo24_button"), m_pitch_amount(true), m_BPM_selector(true), m_osc1(p_processor, vts, "1"),
-    m_osc2(p_processor, vts, "2"), m_osc3(p_processor, vts, "3"), m_fil1_component(vts, "1"),
-    m_fil2_component(vts, "2"), m_fil3_component(vts, "3"), m_midsection(vts), m_adsr_1(vts, "1"), m_adsr_2(vts, "2"),
-    m_adsr_3(vts, "3"), m_adsr_4(vts, "4"), m_lfo_1(vts, "1", p_is_standalone), m_lfo_2(vts, "2", p_is_standalone),
-    m_lfo_3(vts, "3", p_is_standalone), m_lfo_4(vts, "4", p_is_standalone), m_delay(vts, p_is_standalone),
-    m_phaser(vts, "phaser", p_is_standalone), m_flanger(vts, "flanger", p_is_standalone),
-    m_chorus(vts, "chorus", p_is_standalone), m_xy_section(vts, "xy"), m_osc1_type_identifier("osc1_type"),
-    m_osc2_type_identifier("osc2_type"), m_osc3_type_identifier("osc3_type"), m_fil1_type_identifier("fil1_type"),
-    m_fil2_type_identifier("fil2_type"), m_fil3_type_identifier("fil3_type"),
+    m_reset("reset", juce::DrawableButton::ButtonStyle::ImageRaw), m_env_13_button("env13_button"),
+    m_env_24_button("env24_button"), m_lfo_13_button("lfo13_button"), m_lfo_24_button("lfo24_button"),
+    m_pitch_amount(true), m_BPM_selector(true), m_osc1(p_processor, vts, "1"), m_osc2(p_processor, vts, "2"),
+    m_osc3(p_processor, vts, "3"), m_fil1_component(vts, "1"), m_fil2_component(vts, "2"), m_fil3_component(vts, "3"),
+    m_midsection(vts), m_adsr_1(vts, "1"), m_adsr_2(vts, "2"), m_adsr_3(vts, "3"), m_adsr_4(vts, "4"),
+    m_lfo_1(vts, "1", p_is_standalone), m_lfo_2(vts, "2", p_is_standalone), m_lfo_3(vts, "3", p_is_standalone),
+    m_lfo_4(vts, "4", p_is_standalone), m_delay(vts, p_is_standalone), m_phaser(vts, "phaser", p_is_standalone),
+    m_flanger(vts, "flanger", p_is_standalone), m_chorus(vts, "chorus", p_is_standalone), m_xy_section(vts, "xy"),
+    m_osc1_type_identifier("osc1_type"), m_osc2_type_identifier("osc2_type"), m_osc3_type_identifier("osc3_type"),
+    m_fil1_type_identifier("fil1_type"), m_fil2_type_identifier("fil2_type"), m_fil3_type_identifier("fil3_type"),
     m_pitchbend_amount_identifier("pitchbend_amount"), m_unison_voices_identifier("unison_voices"),
     m_delay_position_identifier("delay_position"), m_flanger_position_identifier("flanger_position"),
     m_phaser_position_identifier("phaser_position"), m_chorus_position_identifier("chorus_position"), m_mod_matrix(vts),
@@ -837,8 +836,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	m_select_arp_button.setRadioGroupId(RADIO_GROUP_ARP_MODMATRIX_PRESETS);
 	m_select_arp_button.onClick = [&]() {
 		setMatrixSectionModule(MATRIX_SECTION_INDEX_ARP);
-		m_value_tree.state.getChildWithName("misc").setProperty(
-		    "arp_mod_selected", MATRIX_SECTION_INDEX_ARP, nullptr);
+		m_value_tree.state.getChildWithName("misc").setProperty("arp_mod_selected", MATRIX_SECTION_INDEX_ARP, nullptr);
 	};
 	m_select_arp_button.setTooltip("Shows the arpeggiator or the mod-matrix");
 	addAndMakeVisible(m_select_arp_button);
@@ -915,7 +913,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	m_mono_poly_legato_dropdown.setInlay(1);
 	m_mono_poly_legato_dropdown.addItem("Legato", 1);
 	m_mono_poly_legato_dropdown.addItem("Poly", 2);
-	m_mono_poly_legato_dropdown.addItem("Mono", 3);
+	m_mono_poly_legato_dropdown.addItem("Retrig", 3);
 	m_mono_poly_legato_dropdown.setEditableText(false);
 	m_mono_poly_legato_dropdown.setSelectedId(2, dontSendNotification);
 
@@ -924,6 +922,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	m_mono_poly_legato_dropdown.onChange = [&]() {
 		m_value_tree.state.getChildWithName("misc").setProperty(
 		    "legato", PLAYMODETOVALUETREE(m_mono_poly_legato_dropdown.getSelectedId()), nullptr);
+		processor.setMonoPolyLegato((PlayModes) m_mono_poly_legato_dropdown.getSelectedId());
 	};
 	addAndMakeVisible(m_mono_poly_legato_dropdown);
 
@@ -1391,8 +1390,11 @@ void OdinAudioProcessorEditor::setTooltipEnabled(bool p_enabled) {
 void OdinAudioProcessorEditor::forceValueTreeOntoComponentsOnlyMainPanel() {
 
 	m_unison_selector.setValue(m_value_tree.state.getChildWithName("misc")["unison_voices"]);
-
 	m_pitch_amount.setValue(m_value_tree.state.getChildWithName("misc")["pitchbend_amount"]);
+	m_mono_poly_legato_dropdown.setSelectedId(
+	    (int)VALUETREETOPLAYMODE((int)m_value_tree.state.getChildWithName("misc")["legato"]),
+	    dontSendNotification);
+	("LEGATORVALUE:" + std::to_string((int)VALUETREETOPLAYMODE((int)m_value_tree.state.getChildWithName("misc")["legato"])));
 
 	// ugly fix to set highlighted fx panel
 	std::string fx_name = "delay";

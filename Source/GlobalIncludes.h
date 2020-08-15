@@ -210,7 +210,7 @@ typedef AudioProcessorValueTreeState::ComboBoxAttachment ComboBoxAttachment;
 enum class PlayModes {
 	Legato = 1,
 	Poly = 2,
-	Mono = 3
+	Retrig = 3
 };
 #define PLAYMODETOVALUETREE(playmode) ((int)playmode - 1)
 #define VALUETREETOPLAYMODE(mode) ((PlayModes) (mode + 1))

@@ -137,18 +137,7 @@ public:
 	void handleMidiNoteOff(int p_midi_note);
 	void handleMidiNoteOn(int p_midi_note, int p_midi_velocity);
 	void allNotesOff();
-
-	void setPolyLegato(bool p_is_poly) {
-		bool legato_was_changed = m_voice_manager.setPolyLegato(p_is_poly);
-		for (int voice = 0; voice < VOICES; ++voice) {
-			m_voice[voice].setPolyLegato(p_is_poly);
-		}
-
-		if (legato_was_changed) {
-			// reset engine here to get rid of trailing notes
-			resetAudioEngine();
-		}
-	}
+	void setMonoPolyLegato(PlayModes p_mode);
 
 	// this should be called when patches are loaded and legato
 	// enabled. it doesn't change values but clears all buffer
@@ -202,6 +191,8 @@ private:
 	float m_master_control                = 1.f; // factor
 
 	int m_last_midi_note = -1;
+
+	PlayModes m_mono_poly_legato = PlayModes::Poly;
 
 	void setSampleRate(float p_samplerate);
 	void initializeModules();
