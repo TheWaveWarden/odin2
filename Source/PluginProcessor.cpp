@@ -1066,8 +1066,12 @@ void OdinAudioProcessor::midiNoteOn(
 void OdinAudioProcessor::midiNoteOff(int p_midi_note) {
 	//DBG("NoteOff, key " + std::to_string(p_midi_note));
 	if (m_mono_poly_legato != PlayModes::Poly) {
+		
+		//remove note from mono note list
+		bool note_killed_is_most_recent = false;
 		for (auto note_it = m_playmode_mono_note_list.begin(); note_it != m_playmode_mono_note_list.end(); note_it++) {
 			if (note_it->first == p_midi_note) {
+				note_killed_is_most_recent = (note_it->first == m_playmode_mono_note_list.back().first);
 				m_playmode_mono_note_list.erase(note_it);
 				break;
 			}
@@ -1078,7 +1082,8 @@ void OdinAudioProcessor::midiNoteOff(int p_midi_note) {
 		//	DBG(i.first);
 		//}
 
-		if (!m_playmode_mono_note_list.empty()) {
+		//if mono/legato && killed note is the one playing && note list not empty, we play the most recent pressed key again
+		if (!m_playmode_mono_note_list.empty() && note_killed_is_most_recent) {
 			midiNoteOn(m_playmode_mono_note_list.back().first, m_playmode_mono_note_list.back().second, 0, 0, false);
 		}
 	}
