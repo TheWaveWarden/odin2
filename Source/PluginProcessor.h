@@ -23,6 +23,8 @@
 #include "audio/Filters/SEMFilter12.h"
 #include "audio/Oscillators/WavetableContainer.h"
 
+#include <list>
+
 class OdinAudioProcessorEditor;
 
 class OdinAudioProcessor : public AudioProcessor {
@@ -132,7 +134,7 @@ public:
 
 	// this is an actual call to start / end a note
 	void midiNoteOff(int p_midi_note);
-	void midiNoteOn(int p_midi_note, int p_midi_velocity, float p_arp_mod_1 = 0.f, float p_arp_mod_2 = 0.f);
+	void midiNoteOn(int p_midi_note, int p_midi_velocity, float p_arp_mod_1 = 0.f, float p_arp_mod_2 = 0.f, bool p_add_to_mono_list = true);
 	// this checks whether the arp is on and gives notes to it or puts notes on directly
 	void handleMidiNoteOff(int p_midi_note);
 	void handleMidiNoteOn(int p_midi_note, int p_midi_velocity);
@@ -147,6 +149,9 @@ public:
 	void attachNonParamListeners();
 	void migratePatch(ValueTree &p_patch);
 	void readPatch(const ValueTree &newState);
+
+	// this is used to retrigger a held down note if the note after it was released. It stores note and velocity
+	std::list<std::pair<int, int>> m_playmode_mono_note_list;
 
 	Atomic<int> m_step_led_active = -1;
 
