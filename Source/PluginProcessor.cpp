@@ -992,10 +992,10 @@ void OdinAudioProcessor::midiNoteOn(
 	if (m_mono_poly_legato != PlayModes::Poly && p_add_to_mono_list) {
 		//append note to list, we ignore sustain here for simplicity
 		m_playmode_mono_note_list.push_back(std::make_pair(p_midi_note, p_midi_velocity));
-		DBG("List:");
-		for (auto const &i : m_playmode_mono_note_list) {
-			DBG(i.first);
-		}
+		//DBG("List:");
+		//for (auto const &i : m_playmode_mono_note_list) {
+		//	DBG(i.first);
+		//}
 	}
 
 	m_global_env.softRestartEnvelope();
@@ -1066,7 +1066,6 @@ void OdinAudioProcessor::midiNoteOn(
 void OdinAudioProcessor::midiNoteOff(int p_midi_note) {
 	//DBG("NoteOff, key " + std::to_string(p_midi_note));
 	if (m_mono_poly_legato != PlayModes::Poly) {
-		DBG("List:");
 		for (auto note_it = m_playmode_mono_note_list.begin(); note_it != m_playmode_mono_note_list.end(); note_it++) {
 			if (note_it->first == p_midi_note) {
 				m_playmode_mono_note_list.erase(note_it);
@@ -1074,10 +1073,10 @@ void OdinAudioProcessor::midiNoteOff(int p_midi_note) {
 			}
 		}
 
-		DBG("List:");
-		for (auto const &i : m_playmode_mono_note_list) {
-			DBG(i.first);
-		}
+		//DBG("List:");
+		//for (auto const &i : m_playmode_mono_note_list) {
+		//	DBG(i.first);
+		//}
 
 		if (!m_playmode_mono_note_list.empty()) {
 			midiNoteOn(m_playmode_mono_note_list.back().first, m_playmode_mono_note_list.back().second, 0, 0, false);

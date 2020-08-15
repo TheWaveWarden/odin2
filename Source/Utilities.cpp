@@ -1196,7 +1196,7 @@ void Utilities::writeSampleTableToFile(std::string p_filename) {
 	std::string filename = "/home/frot/odinvst/samples/" + p_filename;
 	File file(filename);
 	WavAudioFormat wavAudioFormat;
-	AudioFormatReader *audioFormatReader = wavAudioFormat.createReaderFor(file.createInputStream(), true);
+	AudioFormatReader *audioFormatReader = wavAudioFormat.createReaderFor(file.createInputStream().get(), true);
 	float *wavData[2]; // new int *[3];
 	wavData[0] = new float[audioFormatReader->lengthInSamples];
 	wavData[1] = new float[audioFormatReader->lengthInSamples];
