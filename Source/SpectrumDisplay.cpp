@@ -1,18 +1,7 @@
-/*
-  ==============================================================================
-
-    SpectrumDisplay.cpp
-    Created: 28 Aug 2019 7:27:05pm
-    Author:  frot
-
-  ==============================================================================
-*/
-
 #include "SpectrumDisplay.h"
 #include "../JuceLibraryCode/JuceHeader.h"
 #include <cmath>
 
-//==============================================================================
 SpectrumDisplay::SpectrumDisplay() {
 	setSize(2 * WTDISPLAY_INLAY + WTDISPLAY_SIZE_X, 2 * WTDISPLAY_INLAY + WTDISPLAY_SIZE_Y);
 }

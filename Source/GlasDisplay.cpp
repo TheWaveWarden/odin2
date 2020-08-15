@@ -1,20 +1,7 @@
-/*
-  ==============================================================================
-
-    GlasDisplay.cpp
-    Created: 27 Feb 2019 11:56:53am
-    Author:  frot
-
-  ==============================================================================
-*/
-
 #include "GlasDisplay.h"
 #include "../JuceLibraryCode/JuceHeader.h"
 
-//==============================================================================
 GlasDisplay::GlasDisplay() {
-	// In your constructor, you should add any child components, and
-	// initialise any special settings that your component needs.
 	setLookAndFeel(&m_menu_feels);
 }
 

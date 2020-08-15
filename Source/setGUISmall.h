@@ -525,8 +525,6 @@ void OdinAudioProcessorEditor::setGUISmall() {
 	m_pitch_amount.setTopLeftPosition(PITCH_AMOUNT_X, PITCH_AMOUNT_Y);
 	m_unison_selector.setTopLeftPosition(UNISON_SELECTOR_X, UNISON_SELECTOR_Y);
 
-	m_BPM_selector.setTopLeftPosition(BPM_POS_X, BPM_POS_Y);
-
 	m_value_input.setBounds(0, 0, INPUT_LABEL_SIZE_X, INPUT_LABEL_SIZE_Y);
 
 	setOsc1Plate(m_value_tree.state.getChildWithName("osc")["osc1_type"]);

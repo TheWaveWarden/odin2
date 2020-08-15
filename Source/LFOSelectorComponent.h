@@ -1,22 +1,9 @@
-/*
-  ==============================================================================
-
-    LFOSelectorComponent.h
-    Created: 27 Feb 2019 6:43:15pm
-    Author:  frot
-
-  ==============================================================================
-*/
-
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "GlobalIncludes.h"
 #include "LFODisplayComponent.h"
 
-//==============================================================================
-/*
- */
 class LFOSelectorComponent : public Component,
                              public AudioProcessorValueTreeState::Listener {
 public:

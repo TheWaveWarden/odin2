@@ -1,24 +1,10 @@
-/*
-  ==============================================================================
-
-    ModAmountComponent.cpp
-    Created: 3 Mar 2019 2:02:02am
-    Author:  frot
-
-  ==============================================================================
-*/
-
 #include "ModAmountComponent.h"
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "GlobalIncludes.h"
 #include <iomanip> // setprecision
 #include <sstream> // stringstream
 
-//==============================================================================
 ModAmountComponent::ModAmountComponent() {
-	// In your constructor, you should add any child components, and
-	// initialise any special settings that your component needs.
-	// setDoubleClickReturnValue(true, 0, ModifierKeys::ctrlModifier);
 }
 
 ModAmountComponent::~ModAmountComponent() {
@@ -30,7 +16,7 @@ void ModAmountComponent::paint(Graphics &g) {
 	juce::Point<int> top_left = getLocalBounds().getTopLeft();
 	top_left.addXY(m_inlay, m_inlay + m_inlay_top);
 	juce::Point<int> bottom_right = getLocalBounds().getBottomRight();
-	bottom_right.addXY(-m_inlay, -m_inlay- m_inlay_bottom);
+	bottom_right.addXY(-m_inlay, -m_inlay - m_inlay_bottom);
 	g.fillRect(juce::Rectangle<int>(top_left, bottom_right)); // pmai
 
 	if (m_value > 0) {
@@ -40,7 +26,7 @@ void ModAmountComponent::paint(Graphics &g) {
 	} else if (m_value < 0) {
 		g.setColour(m_color_bar_negative);
 		top_left.addXY((getWidth() - m_inlay * 2) * (1 + m_value), m_inlay - m_inlay_bottom);
-		bottom_right.addXY(0,-m_inlay);
+		bottom_right.addXY(0, -m_inlay);
 		g.fillRect(juce::Rectangle<int>(top_left, bottom_right));
 	}
 
@@ -66,7 +52,7 @@ void ModAmountComponent::paint(Graphics &g) {
 
 void ModAmountComponent::mouseDrag(const MouseEvent &event) {
 	float drag_scalar = DRAG_SCALAR;
-	if(m_GUI_big){
+	if (m_GUI_big) {
 		drag_scalar *= 0.66f;
 	}
 	m_value = m_drag_start_value + (m_drag_start_y - getMouseXYRelative().getY()) * drag_scalar;

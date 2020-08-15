@@ -1,20 +1,7 @@
-/*
-  ==============================================================================
-
-    LFODisplayComponent.cpp
-    Created: 27 Feb 2019 6:43:33pm
-    Author:  frot
-
-  ==============================================================================
-*/
-
 #include "LFODisplayComponent.h"
 #include "../JuceLibraryCode/JuceHeader.h"
 
-//==============================================================================
 LFODisplayComponent::LFODisplayComponent() {
-	// In your constructor, you should add any child components, and
-	// initialise any special settings that your component needs.
 }
 
 LFODisplayComponent::~LFODisplayComponent() {

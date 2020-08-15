@@ -1,20 +1,8 @@
-/*
-  ==============================================================================
-
-    FormantSelector.h
-    Created: 9 Mar 2019 10:32:47pm
-    Author:  frot
-
-  ==============================================================================
-*/
-
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "NumberSelector.h"
-//==============================================================================
-/*
- */
+
 class FormantSelector : public NumberSelector {
 public:
   FormantSelector(bool p_buttons_right = true)
@@ -24,13 +12,6 @@ public:
   }
 
   ~FormantSelector() {}
-
-  // void setValueGUIOnly(int p_value) {
-  //   if (p_value >= m_min && p_value <= m_max) {
-  //     m_value = p_value;
-  //     m_display.setText(m_formant_vector[p_value]);
-  //   }
-  // }
 
   void setValueNotifyingHost(int p_value){
     if (p_value >= m_min && p_value <= m_max) {

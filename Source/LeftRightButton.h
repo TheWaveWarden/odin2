@@ -1,22 +1,8 @@
-/*
-  ==============================================================================
-
-    LeftRightButton.h
-    Created: 27 Feb 2019 3:35:54pm
-    Author:  frot
-
-  ==============================================================================
-*/
-
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "GlobalIncludes.h"
 #include "OdinMidiLearnBase.h"
-
-//==============================================================================
-/*
- */
 
 class OdinAudioProcessor;
 

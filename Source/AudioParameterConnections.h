@@ -1,13 +1,3 @@
-/*
-  ==============================================================================
-
-    AudioParameterConnections.h
-    Created: 5 Apr 2019 10:15:10pm
-    Author:  frot
-
-  ==============================================================================
-*/
-
 #pragma once
 for (int osc = 0; osc < 3; ++osc) {
 	m_osc_oct[osc]            = m_value_tree.getRawParameterValue("osc" + std::to_string(osc + 1) + "_oct");

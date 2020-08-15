@@ -1,21 +1,9 @@
-/*
-  ==============================================================================
-
-    LFODisplayComponent.h
-    Created: 27 Feb 2019 6:43:33pm
-    Author:  frot
-
-  ==============================================================================
-*/
-
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "GlobalIncludes.h"
 #include <vector>
-//==============================================================================
-/*
- */
+
 class LFODisplayComponent : public Component, public SettableTooltipClient {
 public:
   LFODisplayComponent();

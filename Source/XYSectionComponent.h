@@ -1,13 +1,3 @@
-/*
-  ==============================================================================
-
-    XYSectionComponent.h
-    Created: 27 Feb 2019 8:44:56pm
-    Author:  frot
-
-  ==============================================================================
-*/
-
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
@@ -22,9 +12,7 @@
 #define MODY_POS_Y (521 - 502)
 
 #define XY_PAD_POSIITON_Y 4
-//==============================================================================
-/*
- */
+
 class XYSectionComponent : public Component {
 public:
   XYSectionComponent(AudioProcessorValueTreeState& vts, std::string p_section_name);

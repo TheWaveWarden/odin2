@@ -1,22 +1,8 @@
-/*
-  ==============================================================================
-
-    DragButton.h
-    Created: 8 Mar 2019 7:31:21pm
-    Author:  frot
-
-  ==============================================================================
-*/
-
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
 
 #define FX_BUTTON_OFFSET 61
-
-//==============================================================================
-/*
- */
 
 class DragButton : public juce::DrawableButton {
 public:

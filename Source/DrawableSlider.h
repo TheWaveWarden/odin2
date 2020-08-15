@@ -1,23 +1,9 @@
-/*
-  ==============================================================================
-
-    DrawableSlider.h
-    Created: 26 Feb 2019 9:46:41pm
-    Author:  frot
-
-  ==============================================================================
-*/
-
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "GlobalIncludes.h"
 #include "InputField.h"
 #include "OdinMidiLearnBase.h"
-
-//==============================================================================
-/*
- */
 
 #include "../JuceLibraryCode/JuceHeader.h"
 

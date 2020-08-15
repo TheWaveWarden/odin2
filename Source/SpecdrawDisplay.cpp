@@ -2,10 +2,6 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 
 SpecdrawDisplay::SpecdrawDisplay() {
-	m_glaspanel = ImageCache::getFromMemory(BinaryData::drawpanel_png, BinaryData::drawpanel_pngSize);
-
-	setSize(m_glaspanel.getWidth(), m_glaspanel.getHeight());
-
 	setMouseCursor(MouseCursor::StandardCursorType::CrosshairCursor);
 }
 

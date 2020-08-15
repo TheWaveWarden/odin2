@@ -1,20 +1,7 @@
-/*
-  ==============================================================================
-
-    GlasDropdown.cpp
-    Created: 25 Feb 2019 11:24:02pm
-    Author:  frot
-
-  ==============================================================================
-*/
-
 #include "GlasDropdown.h"
 #include "../JuceLibraryCode/JuceHeader.h"
 
-//==============================================================================
 GlasDropdown::GlasDropdown() {
-	// In your constructor, you should add any child components, and
-	// initialise any special settings that your component needs.
 	setLookAndFeel(&m_menu_feels);
 }
 

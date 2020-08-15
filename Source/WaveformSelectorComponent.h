@@ -1,13 +1,3 @@
-/*
-  ==============================================================================
-
-    WaveformSelectorComponent.h
-    Created: 1 Mar 2019 6:48:53pm
-    Author:  frot
-
-  ==============================================================================
-*/
-
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
@@ -16,9 +6,7 @@
 #include <map>
 
 #define N_SUBMENUS 5
-//==============================================================================
-/*
- */
+
 class WaveformSelectorComponent : public Component
 {
 public:

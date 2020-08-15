@@ -1,23 +1,6 @@
-/*
-  ==============================================================================
-
-    LFO.cpp
-    Created: 25 Apr 2019 11:24:01pm
-    Author:  frot
-
-  ==============================================================================
-*/
-
 #include "LFO.h"
 
 void LFO::loadWavetables() {
-	//for (int wavetable = 0; wavetable < NUMBER_OF_LFOTABLES; ++wavetable) {
-	//  setWavetablePointer(
-	//      wavetable,
-	//      m_WT_container->getWavetablePointers(wavetable));
-	//}
-	//setWavetablePointer(0,
-	//                    m_WT_container->getWavedrawPointer(2));
 	setWavetablePointer(0, m_WT_container->getWavetablePointers("Sine"));
 	setWavetablePointer(1, m_WT_container->getWavetablePointers("Saw"));
 	setWavetablePointer(2, m_WT_container->getWavetablePointers("Triangle"));

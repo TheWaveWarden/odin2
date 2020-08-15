@@ -1,13 +1,3 @@
-/*
-  ==============================================================================
-
-    FXComponent.h
-    Created: 27 Feb 2019 12:02:15am
-    Author:  frot
-
-  ==============================================================================
-*/
-
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
@@ -42,9 +32,6 @@
 
 #define FX_DRYWET_DEFAULT 1
 
-//==============================================================================
-/*
- */
 class FXComponent : public Component {
 public:
 	FXComponent(AudioProcessorValueTreeState &vts, std::string p_fx_name, bool p_is_standalone);

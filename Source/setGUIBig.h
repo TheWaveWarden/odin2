@@ -586,8 +586,6 @@ void OdinAudioProcessorEditor::setGUIBig() {
 	m_pitch_amount.setTopLeftPosition(OdinHelper::c150(PITCH_AMOUNT_X), OdinHelper::c150(PITCH_AMOUNT_Y));
 	m_unison_selector.setTopLeftPosition(OdinHelper::c150(UNISON_SELECTOR_X), OdinHelper::c150(UNISON_SELECTOR_Y) + 1);
 
-	m_BPM_selector.setTopLeftPosition(OdinHelper::c150(BPM_POS_X), OdinHelper::c150(BPM_POS_Y));
-
 	m_value_input.setBounds(0, 0, OdinHelper::c150(INPUT_LABEL_SIZE_X), OdinHelper::c150(INPUT_LABEL_SIZE_Y));
 
 	Rectangle<int> area_osc_1(OdinHelper::c150(OSC_SIZE_X), OdinHelper::c150(OSC_SIZE_Y));

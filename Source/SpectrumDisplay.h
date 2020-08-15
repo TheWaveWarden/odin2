@@ -1,18 +1,7 @@
-/*
-  ==============================================================================
-
-    SpectrumDisplay.h
-    Created: 28 Aug 2019 7:27:05pm
-    Author:  frot
-
-  ==============================================================================
-*/
-
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "audio/Oscillators/WavetableContainer.h"
-
 
 #define WTDISPLAY_SIZE_X 512
 #define WTDISPLAY_SIZE_Y 200
@@ -20,11 +9,6 @@
 #define WAVEDISPLAY_THICCNESS 3
 #define SPECTRUM_LINE_WIDTH 3
 
-
-
-//==============================================================================
-/*
-*/
 class SpectrumDisplay    : public Component
 {
 public:

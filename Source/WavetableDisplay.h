@@ -1,13 +1,3 @@
-/*
-  ==============================================================================
-
-    WavetableDisplay.h
-    Created: 28 Aug 2019 7:27:05pm
-    Author:  frot
-
-  ==============================================================================
-*/
-
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
@@ -19,11 +9,6 @@
 #define WTDISPLAY_INLAY 6
 #define WAVEDISPLAY_THICCNESS 3
 
-
-
-//==============================================================================
-/*
-*/
 class WavetableDisplay    : public Component
 {
 public:

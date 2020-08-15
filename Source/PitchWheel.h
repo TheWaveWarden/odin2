@@ -1,21 +1,9 @@
-/*
-  ==============================================================================
-
-    PitchWheel.h
-    Created: 3 Mar 2019 7:06:49pm
-    Author:  frot
-
-  ==============================================================================
-*/
-
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "GlobalIncludes.h"
 #include "Knob.h"
-//==============================================================================
-/*
- */
+
 class PitchWheel : public Knob {
 public:
   PitchWheel() {

@@ -1,13 +1,3 @@
-/*
-  ==============================================================================
-
-    FXButtonsSection.h
-    Created: 8 Mar 2019 9:07:08pm
-    Author:  frot
-
-  ==============================================================================
-*/
-
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
@@ -16,9 +6,6 @@
 
 static bool g_GUI_big = false;
 
-//==============================================================================
-/*
- */
 class FXButtonsSection : public Component {
 public:
   FXButtonsSection(AudioProcessorValueTreeState &vts,
@@ -35,32 +22,7 @@ public:
         m_delay_button("delay", juce::DrawableButton::ButtonStyle::ImageRaw,
                        &m_constrainer, "delay") {
 
-    juce::Image phaser_button_1 = ImageCache::getFromMemory(
-        BinaryData::buttonphaser_1_png, BinaryData::buttonphaser_1_pngSize);
-    juce::Image phaser_button_2 = ImageCache::getFromMemory(
-        BinaryData::buttonphaser_2_png, BinaryData::buttonphaser_2_pngSize);
-    juce::Image phaser_button_3 = ImageCache::getFromMemory(
-        BinaryData::buttonphaser_3_png, BinaryData::buttonphaser_3_pngSize);
-    juce::Image phaser_button_4 = ImageCache::getFromMemory(
-        BinaryData::buttonphaser_4_png, BinaryData::buttonphaser_4_pngSize);
-
-    juce::DrawableImage phaser_button_draw1;
-    juce::DrawableImage phaser_button_draw2;
-    juce::DrawableImage phaser_button_draw3;
-    juce::DrawableImage phaser_button_draw4;
-
-    phaser_button_draw1.setImage(phaser_button_1);
-    phaser_button_draw2.setImage(phaser_button_2);
-    phaser_button_draw3.setImage(phaser_button_3);
-    phaser_button_draw4.setImage(phaser_button_4);
-
-    m_phaser_button.setImages(&phaser_button_draw2, &phaser_button_draw2,
-                              &phaser_button_draw1, &phaser_button_draw1,
-                              &phaser_button_draw3, &phaser_button_draw3,
-                              &phaser_button_draw3, &phaser_button_draw3);
     m_phaser_button.setClickingTogglesState(true);
-    m_phaser_button.setBounds(0, 0, phaser_button_1.getWidth(),
-                              phaser_button_1.getHeight());
     m_phaser_button.setTooltip(
         "Shows the phaser.\nDrag and Drop this to\nrearrange the FX order");
     addAndMakeVisible(m_phaser_button);
@@ -70,33 +32,7 @@ public:
         juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
     m_phaser_button.setRadioGroupId(1221);
 
-
-    juce::Image flanger_button_1 = ImageCache::getFromMemory(
-        BinaryData::buttonflanger_1_png, BinaryData::buttonflanger_1_pngSize);
-    juce::Image flanger_button_2 = ImageCache::getFromMemory(
-        BinaryData::buttonflanger_2_png, BinaryData::buttonflanger_2_pngSize);
-    juce::Image flanger_button_3 = ImageCache::getFromMemory(
-        BinaryData::buttonflanger_3_png, BinaryData::buttonflanger_3_pngSize);
-    juce::Image flanger_button_4 = ImageCache::getFromMemory(
-        BinaryData::buttonflanger_4_png, BinaryData::buttonflanger_4_pngSize);
-
-    juce::DrawableImage flanger_button_draw1;
-    juce::DrawableImage flanger_button_draw2;
-    juce::DrawableImage flanger_button_draw3;
-    juce::DrawableImage flanger_button_draw4;
-
-    flanger_button_draw1.setImage(flanger_button_1);
-    flanger_button_draw2.setImage(flanger_button_2);
-    flanger_button_draw3.setImage(flanger_button_3);
-    flanger_button_draw4.setImage(flanger_button_4);
-
-    m_flanger_button.setImages(&flanger_button_draw2, &flanger_button_draw2,
-                               &flanger_button_draw1, &flanger_button_draw1,
-                               &flanger_button_draw3, &flanger_button_draw3,
-                               &flanger_button_draw3, &flanger_button_draw3);
     m_flanger_button.setClickingTogglesState(true);
-    m_flanger_button.setBounds(FX_BUTTON_OFFSET, 0, flanger_button_1.getWidth(),
-                               flanger_button_1.getHeight());
     m_flanger_button.setTooltip(
         "Shows the flanger.\nDrag and Drop this to\nrearrange the FX order");
     addAndMakeVisible(m_flanger_button);
@@ -106,34 +42,7 @@ public:
         juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
     m_flanger_button.setRadioGroupId(1221);
 
-
-    juce::Image chorus_button_1 = ImageCache::getFromMemory(
-        BinaryData::buttonchorus_1_png, BinaryData::buttonchorus_1_pngSize);
-    juce::Image chorus_button_2 = ImageCache::getFromMemory(
-        BinaryData::buttonchorus_2_png, BinaryData::buttonchorus_2_pngSize);
-    juce::Image chorus_button_3 = ImageCache::getFromMemory(
-        BinaryData::buttonchorus_3_png, BinaryData::buttonchorus_3_pngSize);
-    juce::Image chorus_button_4 = ImageCache::getFromMemory(
-        BinaryData::buttonchorus_4_png, BinaryData::buttonchorus_4_pngSize);
-
-    juce::DrawableImage chorus_button_draw1;
-    juce::DrawableImage chorus_button_draw2;
-    juce::DrawableImage chorus_button_draw3;
-    juce::DrawableImage chorus_button_draw4;
-
-    chorus_button_draw1.setImage(chorus_button_1);
-    chorus_button_draw2.setImage(chorus_button_2);
-    chorus_button_draw3.setImage(chorus_button_3);
-    chorus_button_draw4.setImage(chorus_button_4);
-
-    m_chorus_button.setImages(&chorus_button_draw2, &chorus_button_draw2,
-                              &chorus_button_draw1, &chorus_button_draw1,
-                              &chorus_button_draw3, &chorus_button_draw3,
-                              &chorus_button_draw3, &chorus_button_draw3);
     m_chorus_button.setClickingTogglesState(true);
-    m_chorus_button.setBounds(2 * FX_BUTTON_OFFSET, 0,
-                              chorus_button_1.getWidth(),
-                              chorus_button_1.getHeight());
     m_chorus_button.setTooltip(
         "Shows the chorus.\nDrag and Drop this to\nrearrange the FX order");
     addAndMakeVisible(m_chorus_button);
@@ -143,32 +52,7 @@ public:
         juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
     m_chorus_button.setRadioGroupId(1221);
 
-    juce::Image delay_button_1 = ImageCache::getFromMemory(
-        BinaryData::buttondelay_1_png, BinaryData::buttondelay_1_pngSize);
-    juce::Image delay_button_2 = ImageCache::getFromMemory(
-        BinaryData::buttondelay_2_png, BinaryData::buttondelay_2_pngSize);
-    juce::Image delay_button_3 = ImageCache::getFromMemory(
-        BinaryData::buttondelay_3_png, BinaryData::buttondelay_3_pngSize);
-    juce::Image delay_button_4 = ImageCache::getFromMemory(
-        BinaryData::buttondelay_4_png, BinaryData::buttondelay_4_pngSize);
-
-    juce::DrawableImage delay_button_draw1;
-    juce::DrawableImage delay_button_draw2;
-    juce::DrawableImage delay_button_draw3;
-    juce::DrawableImage delay_button_draw4;
-
-    delay_button_draw1.setImage(delay_button_1);
-    delay_button_draw2.setImage(delay_button_2);
-    delay_button_draw3.setImage(delay_button_3);
-    delay_button_draw4.setImage(delay_button_4);
-
-    m_delay_button.setImages(&delay_button_draw2, &delay_button_draw2,
-                             &delay_button_draw1, &delay_button_draw1,
-                             &delay_button_draw3, &delay_button_draw3,
-                             &delay_button_draw3, &delay_button_draw3);
     m_delay_button.setClickingTogglesState(true);
-    m_delay_button.setBounds(3 * FX_BUTTON_OFFSET, 0, delay_button_1.getWidth(),
-                             delay_button_1.getHeight());
     m_delay_button.setTooltip(
         "Shows the delay.\nDrag and Drop this to\nrearrange the FX order");
     addAndMakeVisible(m_delay_button);
@@ -214,8 +98,6 @@ public:
       setHighlighted("delay");
       setHighlightedToValueTree(0);
     };
-
-    setSize(FX_BUTTON_OFFSET * 4 + 1, delay_button_1.getHeight());
 
     forceValueTreeOntoComponents(m_value_tree.state);
   }

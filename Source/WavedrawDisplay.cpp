@@ -1,22 +1,7 @@
-/*
-  ==============================================================================
-
-    WavedrawDisplay.cpp
-    Created: 2 Mar 2019 1:38:37am
-    Author:  frot
-
-  ==============================================================================
-*/
-
 #include "WavedrawDisplay.h"
 #include "../JuceLibraryCode/JuceHeader.h"
 
-//==============================================================================
 WavedrawDisplay::WavedrawDisplay() {
-	m_glaspanel = ImageCache::getFromMemory(BinaryData::drawpanel_png, BinaryData::drawpanel_pngSize);
-
-	setSize(m_glaspanel.getWidth(), m_glaspanel.getHeight());
-
 	setMouseCursor(MouseCursor::StandardCursorType::CrosshairCursor);
 }
 

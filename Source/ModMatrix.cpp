@@ -1,13 +1,3 @@
-/*
-  ==============================================================================
-
-    ModMatrix.cpp
-    Created: 20 Apr 2019 5:04:47pm
-    Author:  frot
-
-  ==============================================================================
-*/
-
 #include "ModMatrix.h"
 
 void ModMatrixRow::setSourcesAndDestinations(ModSources *p_source, ModDestinations *p_destination) {

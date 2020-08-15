@@ -1,13 +1,3 @@
-/*
-  ==============================================================================
-
-    ADSRComponent.cpp
-    Created: 26 Feb 2019 9:04:59pm
-    Author:  frot
-
-  ==============================================================================
-*/
-
 #include "ADSRComponent.h"
 #include "../JuceLibraryCode/JuceHeader.h"
 
@@ -21,25 +11,7 @@ ADSRComponent::ADSRComponent(AudioProcessorValueTreeState &vts, std::string p_ad
 	m_sustain_attach.reset(new OdinSliderAttachment(m_value_tree, "env" + m_adsr_number + "_sustain", m_sustain));
 	m_release_attach.reset(new OdinSliderAttachment(m_value_tree, "env" + m_adsr_number + "_release", m_release));
 
-	juce::Image loop_1 = ImageCache::getFromMemory(BinaryData::buttonloop_1_png, BinaryData::buttonloop_1_pngSize);
-	juce::Image loop_2 = ImageCache::getFromMemory(BinaryData::buttonloop_2_png, BinaryData::buttonloop_2_pngSize);
-	juce::Image loop_3 = ImageCache::getFromMemory(BinaryData::buttonloop_3_png, BinaryData::buttonloop_3_pngSize);
-	juce::Image loop_4 = ImageCache::getFromMemory(BinaryData::buttonloop_4_png, BinaryData::buttonloop_4_pngSize);
-
-	juce::DrawableImage loop_draw1;
-	juce::DrawableImage loop_draw2;
-	juce::DrawableImage loop_draw3;
-	juce::DrawableImage loop_draw4;
-
-	loop_draw1.setImage(loop_1);
-	loop_draw2.setImage(loop_2);
-	loop_draw3.setImage(loop_3);
-	loop_draw4.setImage(loop_4);
-
-	m_loop.setImages(
-	    &loop_draw2, &loop_draw2, &loop_draw1, &loop_draw1, &loop_draw4, &loop_draw4, &loop_draw3, &loop_draw3);
 	m_loop.setClickingTogglesState(true);
-	m_loop.setBounds(LOOP_POS_X, LOOP_POS_Y, loop_1.getWidth(), loop_1.getHeight());
 	addAndMakeVisible(m_loop);
 	m_loop.setAlwaysOnTop(true);
 	m_loop.setTriggeredOnMouseDown(true);

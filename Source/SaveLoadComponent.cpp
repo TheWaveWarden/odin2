@@ -27,7 +27,6 @@ std::string getFileNameFromAbsolute(const std::string &s) {
 	return ("");
 }
 
-//==============================================================================
 SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts, OdinAudioProcessor &p_processor) :
     m_save("save", juce::DrawableButton::ButtonStyle::ImageRaw),
     m_load("load", juce::DrawableButton::ButtonStyle::ImageRaw),
@@ -35,36 +34,13 @@ SaveLoadComponent::SaveLoadComponent(AudioProcessorValueTreeState &vts, OdinAudi
     m_up("up", juce::DrawableButton::ButtonStyle::ImageRaw),
     m_down("down", juce::DrawableButton::ButtonStyle::ImageRaw), m_value_tree(vts), m_audio_processor(p_processor) {
 
-	juce::Image up_1 = ImageCache::getFromMemory(BinaryData::buttonup_2_png, BinaryData::buttonup_2_pngSize);
-	juce::Image up_2 = ImageCache::getFromMemory(BinaryData::buttonup_1_png, BinaryData::buttonup_1_pngSize);
-
-	juce::DrawableImage up_draw1;
-	juce::DrawableImage up_draw2;
-
-	up_draw1.setImage(up_1);
-	up_draw2.setImage(up_2);
-
-	m_up.setImages(&up_draw2, &up_draw2, &up_draw1, &up_draw1, &up_draw2, &up_draw2, &up_draw1, &up_draw1);
 	m_up.setClickingTogglesState(true);
-	m_up.setBounds(UP_DOWN_BUTTON_X, UP_BUTTON_Y, up_1.getWidth(), up_1.getHeight());
 	addAndMakeVisible(m_up);
 	m_up.setTriggeredOnMouseDown(false);
 	m_up.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
 	m_up.onClick = [&]() { incrementPatch(); };
 
-	juce::Image down_1 = ImageCache::getFromMemory(BinaryData::buttondown_2_png, BinaryData::buttondown_2_pngSize);
-	juce::Image down_2 = ImageCache::getFromMemory(BinaryData::buttondown_1_png, BinaryData::buttondown_1_pngSize);
-
-	juce::DrawableImage down_draw1;
-	juce::DrawableImage down_draw2;
-
-	down_draw1.setImage(down_1);
-	down_draw2.setImage(down_2);
-
-	m_down.setImages(
-	    &down_draw2, &down_draw2, &down_draw1, &down_draw1, &down_draw2, &down_draw2, &down_draw1, &down_draw1);
 	m_down.setClickingTogglesState(true);
-	m_down.setBounds(UP_DOWN_BUTTON_X, down_1.getHeight(), down_1.getWidth(), down_1.getHeight());
 	addAndMakeVisible(m_down);
 	m_down.setTriggeredOnMouseDown(false);
 	m_down.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());

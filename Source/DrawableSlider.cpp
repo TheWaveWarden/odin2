@@ -1,20 +1,9 @@
-/*
-  ==============================================================================
-
-    DrawableSlider.cpp
-    Created: 26 Feb 2019 9:46:41pm
-    Author:  frot
-
-  ==============================================================================
-*/
-
 #include "DrawableSlider.h"
 #include "GlobalIncludes.h"
 #include "PluginProcessor.h"
 
 OdinAudioProcessor *DrawableSlider::m_processor;
 
-//==============================================================================
 DrawableSlider::DrawableSlider() {
 	setLookAndFeel(&m_feels);
 

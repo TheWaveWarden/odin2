@@ -1,22 +1,9 @@
-/*
-  ==============================================================================
-
-    ModAmountComponent.h
-    Created: 3 Mar 2019 2:02:02am
-    Author:  frot
-
-  ==============================================================================
-*/
-
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #define INLAY_DEF_MODAMOUNT 1
 #define DRAG_SCALAR 0.01f;
 
-//==============================================================================
-/*
- */
 class ModAmountComponent : public Component,
                            public SettableTooltipClient,
                            public AudioProcessorValueTreeState::Listener {

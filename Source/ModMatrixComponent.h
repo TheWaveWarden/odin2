@@ -1,13 +1,3 @@
-/*
-  ==============================================================================
-
-    ModMatrixComponent.h
-    Created: 27 Feb 2019 1:27:55am
-    Author:  frot
-
-  ==============================================================================
-*/
-
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
@@ -17,9 +7,6 @@
 
 #define N_ROWS 9
 
-//==============================================================================
-/*
- */
 class ModMatrixComponent : public Component {
 public:
   ModMatrixComponent(AudioProcessorValueTreeState& vts);

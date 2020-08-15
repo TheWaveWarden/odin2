@@ -1,3 +1,9 @@
+# 2.2.3
+- New Playmode: Retrig
+- Playmodes Legato and Retrig will now play linguring notes again after the current key is released
+- Improved opening time for GUI
+# 2.2.2
+# 2.2.1
 # 2.2.0 beta
 - new feature: patch-browser
 - Odin 2 now ships with installers for all platforms

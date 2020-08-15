@@ -23,10 +23,8 @@
 #include "OdinTooltipWindow.h"
 #include "OscComponent.h"
 #include "PitchWheel.h"
-//#include "SaveLoadComponent.h"
 #include "XYSectionComponent.h"
 #include "PhaserComponent.h"
-#include "BPMSelector.h"
 #include "InputField.h"
 
 #ifdef WTGEN
@@ -287,8 +285,6 @@ private:
   NumberSelector m_pitch_amount;
 
   NumberSelectorWithText m_unison_selector;
-
-  BPMSelector m_BPM_selector;
 
   OscComponent m_osc1;
   OscComponent m_osc2;

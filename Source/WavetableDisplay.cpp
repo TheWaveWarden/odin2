@@ -1,17 +1,6 @@
-/*
-  ==============================================================================
-
-    WavetableDisplay.cpp
-    Created: 28 Aug 2019 7:27:05pm
-    Author:  frot
-
-  ==============================================================================
-*/
-
 #include "WavetableDisplay.h"
 #include "../JuceLibraryCode/JuceHeader.h"
 
-//==============================================================================
 WavetableDisplay::WavetableDisplay() {
 	setSize(2 * WTDISPLAY_INLAY + WTDISPLAY_SIZE_X, 2 * WTDISPLAY_INLAY + WTDISPLAY_SIZE_Y);
 }

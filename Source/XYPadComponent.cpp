@@ -1,17 +1,6 @@
-/*
-  ==============================================================================
-
-    XYPadComponent.cpp
-    Created: 27 Feb 2019 8:45:18pm
-    Author:  frot
-
-  ==============================================================================
-*/
-
 #include "XYPadComponent.h"
 #include "../JuceLibraryCode/JuceHeader.h"
 
-//==============================================================================
 XYPadComponent::XYPadComponent(Knob &p_x, Knob &p_y, bool p_vector_pad) :
     m_knob_x(p_x), m_knob_y(p_y), m_vector_pad(p_vector_pad) {
 	m_color = juce::Colour(30, 30, 30);

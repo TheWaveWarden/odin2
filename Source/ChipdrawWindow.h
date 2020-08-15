@@ -1,13 +1,3 @@
-/*
-  ==============================================================================
-
-    ChipdrawWindow.h
-    Created: 1 Mar 2019 11:07:05pm
-    Author:  frot
-
-  ==============================================================================
-*/
-
 #pragma once
 
 #include "GlobalIncludes.h"
@@ -20,9 +10,7 @@
 #define DRAW_INLAY_UP 5
 #define DRAW_INLAY_DOWN 3
 #define CHIPDRAW_THICCNESS 2
-//==============================================================================
-/*
-*/
+
 class ChipdrawWindow : public Component, public SettableTooltipClient
 {
 public:

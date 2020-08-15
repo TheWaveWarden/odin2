@@ -1,20 +1,9 @@
-/*
-  ==============================================================================
-
-    LeftRightButton.cpp
-    Created: 27 Feb 2019 3:35:54pm
-    Author:  frot
-
-  ==============================================================================
-*/
-
 #include "LeftRightButton.h"
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "PluginProcessor.h"
 
 OdinAudioProcessor *LeftRightButton::m_processor;
 
-//==============================================================================
 LeftRightButton::LeftRightButton(const String &buttonName) : juce::Button(buttonName) {
 	// In your constructor, you should add any child components, and
 	// initialise any special settings that your component needs.

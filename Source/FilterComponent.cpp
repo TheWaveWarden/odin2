@@ -1,18 +1,7 @@
-/*
-  ==============================================================================
-
-    FilterComponent.cpp
-    Created: 25 Feb 2019 10:06:59am
-    Author:  frot
-
-  ==============================================================================
-*/
-
 #include "FilterComponent.h"
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "GlobalIncludes.h"
 
-//==============================================================================
 FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts, std::string p_filter_number) :
     m_value_tree(vts), m_filter_number(p_filter_number), m_vowel_left(false), m_vowel_right(true),
     m_vowel_left_identifier("fil" + p_filter_number + "_vowel_left"),
@@ -32,118 +21,72 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts, std::string 
 	    new OdinKnobAttachment(m_value_tree, "fil" + m_filter_number + "_ring_mod_amount", m_ring_mod_amount));
 	m_sem_transition_attach.reset(
 	    new OdinKnobAttachment(m_value_tree, "fil" + m_filter_number + "_sem_transition", m_sem_transition));
-	//m_comb_polarity_attach.reset(
-	//    new OdinButtonAttachment(m_value_tree, "fil" + m_filter_number + "_comb_polarity", m_comb_plus_minus));
 
-	juce::Image metal_knob_big =
-	    ImageCache::getFromMemory(BinaryData::metal_knob_big_png, BinaryData::metal_knob_big_pngSize);
-	juce::Image metal_knob_mid =
-	    ImageCache::getFromMemory(BinaryData::metal_knob_mid_png, BinaryData::metal_knob_mid_pngSize);
-	juce::Image black_knob_small =
-	    ImageCache::getFromMemory(BinaryData::black_knob_small_png, BinaryData::black_knob_small_pngSize);
-
-	m_vel.setStrip(black_knob_small, N_KNOB_FRAMES);
 	m_vel.setSliderStyle(Slider::RotaryVerticalDrag);
 	m_vel.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-	m_vel.setBounds(VEL_POS_X, VEL_POS_Y, black_knob_small.getWidth(), black_knob_small.getHeight() / N_KNOB_FRAMES);
 	m_vel.setKnobTooltip("Velocity sensitivity. Sets how much the MIDI velocity "
 	                     "value is added to the filter freqency");
 	addChildComponent(m_vel);
 
-	m_kbd.setStrip(black_knob_small, N_KNOB_FRAMES);
 	m_kbd.setSliderStyle(Slider::RotaryVerticalDrag);
 	m_kbd.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-	m_kbd.setBounds(KBD_POS_X, KBD_POS_Y, black_knob_small.getWidth(), black_knob_small.getHeight() / N_KNOB_FRAMES);
 	m_kbd.setKnobTooltip("Keyboard follow.\nSets how much the MIDI note\n is "
 	                     "added to the\nfilter frequency");
 	addChildComponent(m_kbd);
 
-	m_env.setStrip(black_knob_small, N_KNOB_FRAMES);
 	m_env.setSliderStyle(Slider::RotaryVerticalDrag);
 	m_env.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-	m_env.setBounds(ENV_POS_X, ENV_POS_Y, black_knob_small.getWidth(), black_knob_small.getHeight() / N_KNOB_FRAMES);
 	m_env.setRange(ENV_MIN, ENV_MAX);
-	// m_env.setValue(ENV_DEFAULT);
 	m_env.setSkewFactor(ENV_SKEW, true);
 	m_env.setNumDecimalPlacesToDisplay(3);
 	m_env.setKnobTooltip("Filter envelope amount.\nSets how much the "
 	                     "filter\nenvelope modulates the filter");
 	addChildComponent(m_env);
 
-	m_gain.setStrip(black_knob_small, N_KNOB_FRAMES);
 	m_gain.setSliderStyle(Slider::RotaryVerticalDrag);
 	m_gain.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-	m_gain.setBounds(GAIN_POS_X, GAIN_POS_Y, black_knob_small.getWidth(), black_knob_small.getHeight() / N_KNOB_FRAMES);
 	m_gain.setRange(GAIN_MIN, GAIN_MAX);
-	// m_gain.setValue(GAIN_DEFAULT);
 	m_gain.setTextValueSuffix(" dB");
 	m_gain.setNumDecimalPlacesToDisplay(1);
 	m_gain.setKnobTooltip("The volume of\n the filter");
 	addChildComponent(m_gain);
 
-	m_freq.setStrip(metal_knob_big, N_KNOB_FRAMES);
 	m_freq.setSliderStyle(Slider::RotaryVerticalDrag);
 	m_freq.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-	m_freq.setBounds(
-	    FILTER_FREQ_POS_X, FILTER_FREQ_POS_Y, metal_knob_big.getWidth(), metal_knob_big.getHeight() / N_KNOB_FRAMES);
 	m_freq.setRange(FREQ_MIN, FREQ_MAX);
 	m_freq.setKnobTooltip("The filter cutoff frequency");
-	//m_freq.setSkewFactorFromMidPoint(FREQ_MID);
-
 	m_freq.setTextValueSuffix(" Hz");
-	// m_freq.setValue(FREQ_DEFAULT);
-	// m_freq.setDoubleClickReturnValue(true, m_freq.getDoubleClickReturnValue(),
-	//  ModifierKeys::ctrlModifier);
 	m_freq.setNumDecimalPlacesToDisplay(1);
 	addChildComponent(m_freq);
 
-	m_res.setStrip(metal_knob_mid, N_KNOB_FRAMES);
 	m_res.setSliderStyle(Slider::RotaryVerticalDrag);
 	m_res.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-	m_res.setBounds(RES_POS_X, RES_POS_Y, metal_knob_mid.getWidth(), metal_knob_mid.getHeight() / N_KNOB_FRAMES);
 	m_res.setKnobTooltip("Creates a resonant peak at the cutoff "
 	                     "frequency.\nFilters will not\n self oscillate");
 	addChildComponent(m_res);
 
-	m_saturation.setStrip(black_knob_small, N_KNOB_FRAMES);
 	m_saturation.setSliderStyle(Slider::RotaryVerticalDrag);
 	m_saturation.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-	m_saturation.setBounds(
-	    SATURATION_POS_X, SATURATION_POS_Y, black_knob_small.getWidth(), black_knob_small.getHeight() / N_KNOB_FRAMES);
 	m_saturation.setKnobTooltip("Saturates the filter\nand introduces a\nslight distortion");
 	addChildComponent(m_saturation);
 
-	m_sem_transition.setStrip(metal_knob_mid, N_KNOB_FRAMES);
 	m_sem_transition.setSliderStyle(Slider::RotaryVerticalDrag);
 	m_sem_transition.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-	m_sem_transition.setBounds(
-	    TRANSITION_POS_X, TRANSITION_POS_Y, metal_knob_mid.getWidth(), metal_knob_mid.getHeight() / N_KNOB_FRAMES);
 	m_sem_transition.setTopLeftPosition(TRANSITION_POS_X, TRANSITION_POS_Y);
 	m_sem_transition.setRange(TRANSITION_MIN, TRANSITION_MAX);
-	// m_sem_transition.setValue(TRANSITION_DEFAULT);
-	// m_sem_transition.setDoubleClickReturnValue(true, TRANSITION_DEFAULT,
-	//  ModifierKeys::ctrlModifier);
 	m_sem_transition.setNumDecimalPlacesToDisplay(3);
 	m_sem_transition.setKnobTooltip("Sets the filter characteristic\nfrom a "
 	                                "lowpass over a\nnotch to a highpass");
 	addChildComponent(m_sem_transition);
 
-	m_formant_transition.setStrip(metal_knob_big, N_KNOB_FRAMES);
 	m_formant_transition.setSliderStyle(Slider::RotaryVerticalDrag);
 	m_formant_transition.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-	m_formant_transition.setBounds(FORMANT_TRANSITION_X,
-	                               FORMANT_TRANSITION_Y,
-	                               metal_knob_big.getWidth(),
-	                               metal_knob_big.getHeight() / N_KNOB_FRAMES);
 	m_formant_transition.setTopLeftPosition(FORMANT_TRANSITION_X, FORMANT_TRANSITION_Y);
 	m_formant_transition.setKnobTooltip("Transitions from the vowel on the\nleft to the one on the right");
 	addChildComponent(m_formant_transition);
 
-	m_ring_mod_amount.setStrip(metal_knob_big, N_KNOB_FRAMES);
 	m_ring_mod_amount.setSliderStyle(Slider::RotaryVerticalDrag);
 	m_ring_mod_amount.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-	m_ring_mod_amount.setBounds(
-	    RINGMOD_AMOUNT_X, RINGMOD_AMOUNT_Y, metal_knob_big.getWidth(), metal_knob_big.getHeight() / N_KNOB_FRAMES);
 	m_ring_mod_amount.setTopLeftPosition(RINGMOD_AMOUNT_X, RINGMOD_AMOUNT_Y);
 	m_ring_mod_amount.setKnobTooltip("How much ring modulation is applied to the signal");
 	addChildComponent(m_ring_mod_amount);
@@ -156,7 +99,6 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts, std::string 
 	m_vowel_left.setTooltip("The vowel to\nthe left side of\nthe transition knob");
 	m_vowel_left.setMouseDragDivisor(40.f);
 	addChildComponent(m_vowel_left);
-	// m_vowel_left.setValue(0);
 	m_vowel_left.setColor(Colour(90, 40, 40));
 
 	m_vowel_right.OnValueChange = [&](int p_new_value) {
@@ -167,16 +109,8 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts, std::string 
 	m_vowel_right.setTooltip("The vowel to\nthe right side of\nthe transition knob");
 	m_vowel_right.setMouseDragDivisor(40.f);
 	addChildComponent(m_vowel_right);
-	// m_vowel_right.setValue(2);
 	m_vowel_right.setColor(Colour(90, 40, 40));
 
-	juce::Image comb_plus =
-	    ImageCache::getFromMemory(BinaryData::buttonplusminus_1_png, BinaryData::buttonplusminus_1_pngSize);
-	juce::Image comb_minus =
-	    ImageCache::getFromMemory(BinaryData::buttonplusminus_3_png, BinaryData::buttonplusminus_3_pngSize);
-	m_comb_plus_minus.setImage(comb_plus, 1);
-	m_comb_plus_minus.setImage(comb_minus, 2);
-	m_comb_plus_minus.setBounds(COMB_PLUS_POS_X, COMB_PLUS_POS_Y, comb_plus.getWidth(), comb_plus.getHeight());
 	m_comb_plus_minus.onClick = [&]() {
 		m_value_tree.state.getChildWithName("misc").setProperty(
 		    (Identifier)("fil" + m_filter_number + "_comb_polarity"), m_comb_plus_minus.getToggleState(), nullptr);
@@ -196,9 +130,7 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts, std::string 
 	m_ring_mod_amount.setNumDecimalPlacesToDisplay(3);
 
 	m_vowel_left.setParameterId("fil" + m_filter_number + "_vowel_left");
-	//m_value_tree.addParameterListener("fil" + m_filter_number + "_vowel_left", &m_vowel_left);
 	m_vowel_right.setParameterId("fil" + m_filter_number + "_vowel_right");
-	//m_value_tree.addParameterListener("fil" + m_filter_number + "_vowel_right", &m_vowel_right);
 
 	SET_CTR_KEY(m_vel);
 	SET_CTR_KEY(m_kbd);

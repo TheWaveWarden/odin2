@@ -1,22 +1,9 @@
-/*
-  ==============================================================================
-
-    GlasDropdown.h
-    Created: 25 Feb 2019 11:24:02pm
-    Author:  frot
-
-  ==============================================================================
-*/
-
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "GlobalIncludes.h"
 #include <functional>
 #define INLAY_DEFAULT 1
-//==============================================================================
-/*
- */
 class GlasDropdown : public juce::ComboBox {
 public:
 	GlasDropdown();

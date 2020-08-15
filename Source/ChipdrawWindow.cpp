@@ -1,22 +1,8 @@
-/*
-  ==============================================================================
-
-    ChipdrawWindow.cpp
-    Created: 1 Mar 2019 11:07:05pm
-    Author:  frot
-
-  ==============================================================================
-*/
-
 #include "ChipdrawWindow.h"
 #include "../JuceLibraryCode/JuceHeader.h"
 #include <cmath>
 //==============================================================================
 ChipdrawWindow::ChipdrawWindow() {
-	m_glaspanel = ImageCache::getFromMemory(BinaryData::drawpanel_png, BinaryData::drawpanel_pngSize);
-
-	setSize(m_glaspanel.getWidth(), m_glaspanel.getHeight());
-
 	setMouseCursor(MouseCursor::StandardCursorType::CrosshairCursor);
 }
 

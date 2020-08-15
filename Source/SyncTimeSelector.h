@@ -1,13 +1,3 @@
-/*
-  ==============================================================================
-
-    SyncTimeSelector.h
-    Created: 6 Mar 2019 10:31:49pm
-    Author:  frot
-
-  ==============================================================================
-*/
-
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
@@ -15,9 +5,6 @@
 #include "GlobalIncludes.h"
 
 
-//==============================================================================
-/*
- */
 class SyncTimeSelector : public Component {
 public:
   SyncTimeSelector();

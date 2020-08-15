@@ -1,13 +1,3 @@
-/*
-  ==============================================================================
-
-    DelayComponent.h
-    Created: 27 Feb 2019 12:02:33am
-    Author:  frot
-
-  ==============================================================================
-*/
-
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
@@ -68,37 +58,7 @@ public:
 		m_background = p_background;
 	}
 
-	void setSync(bool p_sync_on) {
-		if (p_sync_on != m_sync_on) {
-			m_sync_on = p_sync_on;
-
-			if (m_GUI_big) {
-				if (m_sync_on) {
-					m_background =
-					    ImageCache::getFromMemory(BinaryData::delaysync_150_png, BinaryData::delaysync_150_pngSize);
-				} else {
-					m_background =
-					    ImageCache::getFromMemory(BinaryData::delaynosync_150_png, BinaryData::delaynosync_150_pngSize);
-				}
-			} else {
-				if (m_sync_on) {
-					m_background = ImageCache::getFromMemory(BinaryData::delaysync_png, BinaryData::delaysync_pngSize);
-				} else {
-					m_background =
-					    ImageCache::getFromMemory(BinaryData::delaynosync_png, BinaryData::delaynosync_pngSize);
-				}
-			}
-
-			if (p_sync_on) {
-				m_time.setVisible(false);
-				m_sync_time.setVisible(true);
-			} else {
-				m_time.setVisible(true);
-				m_sync_time.setVisible(false);
-			}
-			repaint();
-		}
-	}
+	void setSync(bool p_sync_on);
 
 	void setGUIBig();
 	void setGUISmall();
