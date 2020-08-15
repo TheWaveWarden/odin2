@@ -11,9 +11,6 @@
 #define VECTOR_DOWN 70
 #define VECTOR_LEFT 4
 #define VECTOR_RIGHT 87
-//==============================================================================
-/*
- */
 class XYPadComponent : public Component, public SettableTooltipClient {
 public:
 	XYPadComponent(Knob &p_x, Knob &p_y, bool p_vector_pad = false);

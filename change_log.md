@@ -1,9 +1,13 @@
 # 2.2.3
+- upgraded to JUCE 6
+- Removed automatic analytics-collection by JUCE
 - New Playmode: Retrig
 - Playmodes Legato and Retrig will now play linguring notes again after the current key is released
 - Improved opening time for GUI
 # 2.2.2
+- fixed plugin validation in Logic
 # 2.2.1
+- fixed some verisons only playing sine-waves
 # 2.2.0 beta
 - new feature: patch-browser
 - Odin 2 now ships with installers for all platforms

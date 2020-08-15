@@ -1307,6 +1307,9 @@ void OscComponent::forceValueTreeOntoComponents(ValueTree p_tree, int p_index, b
 	m_vec_c.setSelectedId(m_value_tree.state.getChildWithName("osc")[m_vec_c_identifier]);
 	m_vec_d.setSelectedId(m_value_tree.state.getChildWithName("osc")[m_vec_d_identifier]);
 
+	m_xy.setX(GETAUDIO( "osc" + m_osc_number + "_vec_x"));
+	m_xy.setY(GETAUDIO( "osc" + m_osc_number + "_vec_y"));
+
 	// fm
 	m_carrier_waveselector.setValue(m_value_tree.state.getChildWithName("osc")[m_carrier_wave_identifier]);
 	m_modulator_waveselector.setValue(m_value_tree.state.getChildWithName("osc")[m_modulator_wave_identifier]);
