@@ -6,6 +6,17 @@ PatchBrowserSelector::PatchBrowserSelector(File::TypesOfFileToFind p_file_or_dir
                                            String p_mid_button,
                                            String p_right_button) :
     m_file_or_dir(p_file_or_dir) {
+
+	m_scroll_bar.reportMouseDrag = [&](float p_delta_y) {
+		if (fabs(m_available_scroll_height - m_scroll_bar_height) >= 1) {
+			m_scroll_position = (p_delta_y * m_max_scroll_position) / (m_available_scroll_height - m_scroll_bar_height);
+
+			enforceScrollLimits();
+			positionEntries();
+			repaint();
+		}
+	};
+
 	m_menu.addItem(PATCH_BROWSER_MENU_ENTRY_RENAME, "Rename");
 	m_menu.addItem(PATCH_BROWSER_MENU_ENTRY_DELETE, "Delete");
 	m_menu.setLookAndFeel(&m_menu_feels);
@@ -46,6 +57,9 @@ PatchBrowserSelector::PatchBrowserSelector(File::TypesOfFileToFind p_file_or_dir
 	m_input_field.setColour(TextEditor::ColourIds::backgroundColourId, PATCH_BROWSER_INPUT_FIELD_BACKGROUND_COLOR);
 	m_input_field.onEscapeKey = [&]() { hideInputField(); };
 	m_input_field.onReturnKey = [&]() { applyInputField(); };
+
+	addAndMakeVisible(m_scroll_bar);
+	m_scroll_bar.setAlwaysOnTop(true);
 }
 
 PatchBrowserSelector::~PatchBrowserSelector() {
@@ -280,6 +294,7 @@ void PatchBrowserSelector::generateContent() {
 	}
 	addAndMakeVisible(m_right_button);
 	addChildComponent(m_input_field);
+	addAndMakeVisible(m_scroll_bar);
 
 	File current_dir(m_absolute_path);
 	if (current_dir.isDirectory()) {
@@ -345,6 +360,20 @@ void PatchBrowserSelector::positionEntries() {
 		m_entries[entry]->setBoundsWithInputField(
 		    0, m_scroll_position + entry_height * entry, getWidth(), entry_height);
 	}
+
+	auto scroll_bar_width = m_GUI_big ? SCROLL_BAR_WIDTH_150 : SCROLL_BAR_WIDTH_100;
+
+	m_available_scroll_height = getHeight() - entry_height;
+	m_scroll_bar_height       = m_available_scroll_height * getHeight() / (m_entries.size() * entry_height);
+	m_scroll_bar_height =
+	    m_scroll_bar_height > m_available_scroll_height ? m_available_scroll_height : m_scroll_bar_height;
+
+	m_max_scroll_position = (m_entries.size() + 1) * entry_height -
+	                        getHeight(); // + 1 because we leave 1 space at the bottom for the buttons
+	m_scroll_bar_position =
+	    -m_scroll_position / m_max_scroll_position * (m_available_scroll_height - m_scroll_bar_height);
+
+	m_scroll_bar.setBounds(getWidth() - scroll_bar_width, m_scroll_bar_position, scroll_bar_width, m_scroll_bar_height);
 }
 
 void PatchBrowserSelector::resetScrollPosition() {

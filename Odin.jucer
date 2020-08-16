@@ -1582,6 +1582,10 @@
         <FILE id="yhSMDf" name="OdinConstants.h" compile="0" resource="0" file="Source/audio/OdinConstants.h"/>
       </GROUP>
       <GROUP id="{67642AFD-C38A-0B04-08CB-62632A5DEA0B}" name="GUI">
+        <FILE id="ruJEKD" name="PatchBrowserScrollBar.cpp" compile="1" resource="0"
+              file="Source/PatchBrowserScrollBar.cpp"/>
+        <FILE id="a5SEsw" name="PatchBrowserScrollBar.h" compile="0" resource="0"
+              file="Source/PatchBrowserScrollBar.h"/>
         <FILE id="M7zP4z" name="NumberSelectorWithText.cpp" compile="1" resource="0"
               file="Source/NumberSelectorWithText.cpp"/>
         <FILE id="KS8fBa" name="NumberSelectorWithText.h" compile="0" resource="0"

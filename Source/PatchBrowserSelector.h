@@ -3,6 +3,7 @@
 #include "BrowserEntry.h"
 #include "GlobalIncludes.h"
 #include <JuceHeader.h>
+#include "PatchBrowserScrollBar.h"
 
 #define ENTRY_HEIGHT_150 24
 #define ENTRY_HEIGHT_100 18
@@ -23,6 +24,11 @@
 
 #define WARNING_OFFSET_Y_150 50
 #define WARNING_OFFSET_Y_100 33
+
+#define SCROLL_BAR_WIDTH_150 12
+#define SCROLL_BAR_WIDTH_100 8
+#define SCROLL_BAR_CORNER_RADIUS_150 3
+#define SCROLL_BAR_CORNER_RADIUS_100 2
 
 class OdinBrowserButtonFeels : public LookAndFeel_V4 {
 public:
@@ -157,6 +163,11 @@ private:
 	void recreatePopupMenu();
 
 	float m_scroll_position = 0.f;
+	float m_max_scroll_position = 0.f;
+	float m_scroll_bar_height = 0.f;
+	float m_scroll_bar_position = 0.f;
+	float m_available_scroll_height = 0.f;
+
 
 	String m_absolute_path;
 	File::TypesOfFileToFind m_file_or_dir;
@@ -176,6 +187,8 @@ private:
 	TextButton m_left_button;
 	TextButton m_mid_button;
 	TextButton m_right_button;
+
+	PatchBrowserScrollBar m_scroll_bar;
 
 	bool m_GUI_big = false;
 	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(PatchBrowserSelector)
