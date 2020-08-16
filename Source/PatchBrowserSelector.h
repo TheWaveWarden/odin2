@@ -25,10 +25,8 @@
 #define WARNING_OFFSET_Y_150 50
 #define WARNING_OFFSET_Y_100 33
 
-#define SCROLL_BAR_WIDTH_150 12
-#define SCROLL_BAR_WIDTH_100 8
-#define SCROLL_BAR_CORNER_RADIUS_150 3
-#define SCROLL_BAR_CORNER_RADIUS_100 2
+#define SCROLL_BAR_WIDTH_150 15
+#define SCROLL_BAR_WIDTH_100 10
 
 class OdinBrowserButtonFeels : public LookAndFeel_V4 {
 public:

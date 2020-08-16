@@ -10,10 +10,16 @@ PatchBrowserScrollBar::~PatchBrowserScrollBar()
 
 void PatchBrowserScrollBar::paint (juce::Graphics& g)
 {
-    g.fillAll (ODIN_BLUE);   // clear the background
+#define ODIN_BLUE_DARKER Colour(0xff111e24)
+    //g.setColour(ODIN_BLUE_DARKER);
+    //g.fillRoundedRectangle (0, 0, getWidth(), getHeight(), 12);
+    //g.setColour(ODIN_BLUE);
+    //g.drawRoundedRectangle (0, 0, getWidth(), getHeight(), 12 , 3);
 
-    //g.setColour (juce::Colours::grey);
-    //g.drawRect (getLocalBounds(), 1);   // draw an outline around the component
+
+    g.fillAll (ODIN_BLUE_DARKER);   // clear the background
+    g.setColour (ODIN_BLUE);
+    g.drawRect (getLocalBounds(), 2);   // draw an outline around the component
 
     //g.setColour (juce::Colours::white);
     //g.setFont (14.0f);

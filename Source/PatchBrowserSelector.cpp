@@ -294,7 +294,6 @@ void PatchBrowserSelector::generateContent() {
 	}
 	addAndMakeVisible(m_right_button);
 	addChildComponent(m_input_field);
-	addAndMakeVisible(m_scroll_bar);
 
 	File current_dir(m_absolute_path);
 	if (current_dir.isDirectory()) {
@@ -343,6 +342,11 @@ void PatchBrowserSelector::generateContent() {
 			}
 
 			positionEntries();
+
+			//show scrollbar only if needed
+			if (fabs(m_available_scroll_height - m_scroll_bar_height) >= 1) {
+				addAndMakeVisible(m_scroll_bar);
+			}
 
 		} else {
 			//no files in current dir
