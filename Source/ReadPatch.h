@@ -123,6 +123,8 @@ void OdinAudioProcessor::readPatch(const ValueTree &newState) {
 			//DBG("");
 		}
 	}
+
+	setMonoPolyLegato(VALUETREETOPLAYMODE((int)m_value_tree.state.getChildWithName("misc")["legato"]));
 }
 
 bool OdinAudioProcessor::checkLoadParameter(const String &p_name) {

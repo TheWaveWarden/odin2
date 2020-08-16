@@ -860,9 +860,6 @@ void OdinAudioProcessor::setStateInformation(const void *data, int sizeInBytes) 
 			//load data
 			readPatch(ValueTree::fromXml(*xmlState));
 
-			//set legato here, so it is active before opening the GUI
-			setMonoPolyLegato(VALUETREETOPLAYMODE((int)m_value_tree.state.getChildWithName("misc")["legato"]));
-
 			//set the correct version since an old one was maybe set from patch
 			m_value_tree.state.getChildWithName("misc").setProperty("version_minor", ODIN_MINOR_VERSION, nullptr);
 			m_value_tree.state.getChildWithName("misc").setProperty("version_patch", ODIN_PATCH_VERSION, nullptr);
