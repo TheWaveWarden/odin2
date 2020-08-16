@@ -60,7 +60,7 @@
 //#else 
 #ifdef ODIN_MAC
 #define ODIN_STORAGE_PATH File::getSpecialLocation(File::SpecialLocationType::commonApplicationDataDirectory).getFullPathName() +                    \
- 	    File::getSeparatorString()  + "Audio" + File::getSeparatorString() + "odin2"
+ 	    File::getSeparatorString()  + "Audio" + File::getSeparatorString() + "Presets" + File::getSeparatorString() + "odin2"
 #else
 #define ODIN_STORAGE_PATH File::getSpecialLocation(File::SpecialLocationType::commonApplicationDataDirectory).getFullPathName() +                    \
  	    File::getSeparatorString()  + "odin2"
