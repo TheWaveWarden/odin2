@@ -44,7 +44,7 @@ WavetableContainer::~WavetableContainer() {
 	}
 	delete[] m_wavetables;
 }
-
+/*
 void WavetableContainer::createWavetables(float p_samplerate) {
 
 	std::clock_t begin = std::clock();
@@ -169,7 +169,7 @@ void WavetableContainer::createLFOtables(float p_samplerate) {
 
 		m_LFO_name_index_map.insert(std::pair<std::string, int>(m_LFO_names[index_wavetable], index_wavetable));
 	}
-}
+}*/
 
 void WavetableContainer::createChipdrawTable(int p_table_nr,
                                              float p_chipdraw_values[CHIPDRAW_STEPS_X],

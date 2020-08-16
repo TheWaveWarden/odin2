@@ -49,25 +49,19 @@ public:
 
   int getWavetableIndexFromName(std::string p_name);
 
-#ifdef WTGEN // must be public to be accessed by SpectrumDisplay
-  float m_fourier_coeffs[NUMBER_OF_WAVETABLES][SIN_AND_COS]
-                        [NUMBER_OF_HARMONICS] = {
-                            0}; // index [x][1][0] will store scalar, since it
-                                // is usually constant offset
-#endif
-
 private:
   //WavetableContainer();
 
 protected:
 // Fourrier Coefficients
-#ifndef WTGEN
-  float m_fourier_coeffs[NUMBER_OF_WAVETABLES][SIN_AND_COS]
-                        [NUMBER_OF_HARMONICS] = {
-                            0}; // index [x][1][0] will store scalar, since it
-                                // is usually constant offset
-#endif
 
+  //float m_fourier_coeffs[NUMBER_OF_WAVETABLES][SIN_AND_COS]
+  //                      [NUMBER_OF_HARMONICS] = {
+  //                          0}; // index [x][1][0] will store scalar, since it
+                                // is usually constant offset
+
+  //the following functions generato the contribution of a const / lin segment in a function to the fourier transform for a given overtone.
+  //do this for all const / lin segments in a funciton to get the fourier transform for any piecewise const or lin function
   float const_segment_one_overtone_sine(float p_start, float p_end,
                                         float p_height, int p_harmonic);
   float const_segment_one_overtone_cosine(float p_start, float p_end,
@@ -80,9 +74,9 @@ protected:
   std::map<std::string, int> m_name_index_map;
   std::map<std::string, int> m_LFO_name_index_map;
 
-  float m_LFO_fourier_coeffs[NUMBER_OF_LFOTABLES][SIN_AND_COS]
-                            [NUMBER_OF_HARMONICS] = {
-                                0}; // index [x][1][0] will store scalar, since
+  //float m_LFO_fourier_coeffs[NUMBER_OF_LFOTABLES][SIN_AND_COS]
+  //                          [NUMBER_OF_HARMONICS] = {
+  //                              0}; // index [x][1][0] will store scalar, since
                                     // it is usually constant offset
 
   const float *m_const_wavetable_pointers[NUMBER_OF_WAVETABLES]
@@ -115,9 +109,5 @@ protected:
 
   bool m_wavetables_created = false;
 
-  // float m_wavetables[NUMBER_OF_WAVETABLES][SUBTABLES_PER_WAVETABLE]
-  //                  [WAVETABLE_LENGTH] = {0};
   float ***m_wavetables; // dynamic allocation
-
-  //#include "Wavetables/Tables/WavetableData.h" //include initializer list
 };
