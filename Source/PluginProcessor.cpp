@@ -355,8 +355,12 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 
 	MidiMessage midi_message;
 	int midi_message_sample;
-	MidiBuffer::Iterator midi_iterator(midiMessages);
-	bool midi_message_remaining = midi_iterator.getNextEvent(midi_message, midi_message_sample);
+	MidiBufferIterator midi_iterator = midiMessages.begin();
+	bool midi_message_remaining      = !midiMessages.isEmpty();
+	if (midi_message_remaining) {
+		midi_message        = (*midi_iterator).getMessage();
+		midi_message_sample = (*midi_iterator).samplePosition;
+	}
 
 	// loop over samples
 	for (int sample = 0; sample < buffer.getNumSamples(); ++sample) {
@@ -422,7 +426,12 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 		while (midi_message_remaining && midi_message_sample <= sample) {
 			handleMidiMessage(midi_message);
 			// get next midi message
-			midi_message_remaining = midi_iterator.getNextEvent(midi_message, midi_message_sample);
+			midi_iterator++;
+			midi_message_remaining = (midi_iterator == midiMessages.end());
+			if (midi_message_remaining) {
+				midi_message        = (*midi_iterator).getMessage();
+				midi_message_sample = (*midi_iterator).samplePosition;
+			}
 		}
 
 		//============================================================
@@ -1063,7 +1072,7 @@ void OdinAudioProcessor::midiNoteOn(
 void OdinAudioProcessor::midiNoteOff(int p_midi_note) {
 	//DBG("NoteOff, key " + std::to_string(p_midi_note));
 	if (m_mono_poly_legato != PlayModes::Poly) {
-		
+
 		//remove note from mono note list
 		bool note_killed_is_most_recent = false;
 		for (auto note_it = m_playmode_mono_note_list.begin(); note_it != m_playmode_mono_note_list.end(); note_it++) {
