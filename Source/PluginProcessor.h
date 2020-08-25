@@ -141,8 +141,8 @@ public:
 	void allNotesOff();
 	void setMonoPolyLegato(PlayModes p_mode);
 
-	// this should be called when patches are loaded and legato
-	// enabled. it doesn't change values but clears all buffer
+	// this should be called when patches are loaded or playmode has changed
+	// .it doesn't change values but clears all buffers
 	// and makes it "untouched"
 	void resetAudioEngine();
 	void setFXButtonsPosition(int p_delay, int p_phaser, int p_flanger, int p_chorus);
@@ -232,9 +232,6 @@ private:
 	OdinTreeListener m_tree_listener_lfo2;
 	OdinTreeListener m_tree_listener_lfo3;
 	OdinTreeListener m_tree_listener_lfo4;
-	//OdinTreeListener m_tree_listener_amount1;
-	//OdinTreeListener m_tree_listener_amount2;
-	//OdinTreeListener m_tree_listener_amount3;
 	OdinTreeListener m_tree_listener_general_misc;
 
 	ValueTree m_value_tree_draw;
@@ -285,9 +282,6 @@ private:
 	void treeValueChangedLFO2(const String &p_ID, float p_new_value);
 	void treeValueChangedLFO3(const String &p_ID, float p_new_value);
 	void treeValueChangedLFO4(const String &p_ID, float p_new_value);
-	//void treeValueChangedAmount1(const String &p_ID, float p_new_value);
-	//void treeValueChangedAmount2(const String &p_ID, float p_new_value);
-	//void treeValueChangedAmount3(const String &p_ID, float p_new_value);
 	void treeValueChangedGeneralMisc(const String &p_ID, float p_new_value);
 
 	WavetableContainer m_WT_container;

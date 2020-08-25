@@ -2,6 +2,7 @@
 
 #include "PluginEditor.h"
 #include "PluginProcessor.h"
+
 // these file contains implementation to avoid clutter in this file
 #include "AddNonAudioParametersToValueTree.h"
 #include "MigratePatch.h"
@@ -244,9 +245,7 @@ OdinAudioProcessor::OdinAudioProcessor() :
 	m_master_smooth  = m_master_control;
 }
 
-OdinAudioProcessor::~OdinAudioProcessor() {
-	// m_WT_container->destroyWavetables();
-}
+OdinAudioProcessor::~OdinAudioProcessor() {}
 
 //==============================================================================
 const String OdinAudioProcessor::getName() const {
@@ -313,23 +312,12 @@ void OdinAudioProcessor::releaseResources() {
 
 #ifndef JucePlugin_PreferredChannelConfigurations
 bool OdinAudioProcessor::isBusesLayoutSupported(const BusesLayout &layouts) const {
-#if JucePlugin_IsMidiEffect
-	ignoreUnused(layouts);
-	return true;
-#else
-	// This is the place where you check if the layout is supported.
-	// In this template code we only support mono or stereo.
+
+	//only support stereo output
 	if (layouts.getMainOutputChannelSet() != AudioChannelSet::stereo())
 		return false;
 
-		// This checks if the input layout matches the output layout
-#if !JucePlugin_IsSynth
-	if (layouts.getMainOutputChannelSet() != layouts.getMainInputChannelSet())
-		return false;
-#endif
-
 	return true;
-#endif
 }
 #endif
 
@@ -445,13 +433,10 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 		//======================== VOICES ============================
 		//============================================================
 
-		// we will write to this before the amplifier section
-
 		// global lfo and envelope
 		if (m_render_ADSR[1]) {
 			m_global_env_mod_source = m_global_env.doEnvelope();
 		}
-
 		if (m_render_LFO[3]) {
 			m_global_lfo.update();
 			m_global_lfo_mod_source = m_global_lfo.doOscillate();
@@ -674,6 +659,7 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 					stereo_signal_voice[1] = m_voice[voice].distortion[1].doDistortion(stereo_signal_voice[1]);
 				}
 
+				//apply amp envelope
 				stereo_signal[0] += stereo_signal_voice[0] * m_adsr[voice][0];
 				stereo_signal[1] += stereo_signal_voice[1] * m_adsr[voice][0];
 			} // voice active
@@ -757,7 +743,8 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 
 			//==== FX SECTION ====
 
-			// ugly solution, yet here we go
+			// ugly solution, yet here we go:
+			// check for each fx if its position is slot and then render it
 			for (int fx_slot = 0; fx_slot < 4; ++fx_slot) {
 				if (m_delay_position == fx_slot) {
 					if (*m_delay_on) {
@@ -823,11 +810,6 @@ bool OdinAudioProcessor::hasEditor() const {
 AudioProcessorEditor *OdinAudioProcessor::createEditor() {
 
 	OdinAudioProcessorEditor *editor = new OdinAudioProcessorEditor(*this, m_value_tree, m_is_standalone_plugin);
-
-	if (m_force_values_onto_gui) {
-		//onSetStateInformation();
-	}
-
 	m_editor_pointer = editor;
 
 	return editor;
@@ -1320,15 +1302,3 @@ void OdinAudioProcessor::setMonoPolyLegato(PlayModes p_mode) {
 		m_playmode_mono_note_list.clear();
 	}
 }
-
-//void setPolyLegato(bool p_is_poly) {
-//	bool legato_was_changed = m_voice_manager.setPolyLegato(p_is_poly);
-//	for (int voice = 0; voice < VOICES; ++voice) {
-//		m_voice[voice].setPolyLegato(p_is_poly);
-//	}
-//
-//	if (legato_was_changed) {
-//		// reset engine here to get rid of trailing notes
-//		resetAudioEngine();
-//	}
-//}

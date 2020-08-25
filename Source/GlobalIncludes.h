@@ -405,6 +405,7 @@ public:
 	bool m_GUI_big = false;
 };
 
+//Used to convert positions and sizes to 150% GUI scaling
 class OdinHelper {
 public:
 	//convert an iteger value to 150%
@@ -415,6 +416,7 @@ public:
 	}
 };
 
+//sets the Ctrl-key as "reset" key for a given control
 #define SET_CTR_KEY(name)                                                                                              \
 	name.setDoubleClickReturnValue(true, name.getDoubleClickReturnValue(), ModifierKeys::ctrlModifier)
 
