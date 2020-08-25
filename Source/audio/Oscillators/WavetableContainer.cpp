@@ -6,11 +6,7 @@
 #include <fstream>
 #include <iostream>
 
-#ifndef BENCHMARK
 #include "../JuceLibraryCode/JuceHeader.h"
-#else
-#define DBG(text)
-#endif
 
 WavetableContainer::WavetableContainer() {
 //#ifdef ODIN_DEBUG

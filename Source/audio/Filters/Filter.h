@@ -1,10 +1,6 @@
 #pragma once
 
-//#include "../pluginconstants.h"
-//#include "../synthfunctions.h"
-#ifndef BENCHMARK
 #include "../JuceLibraryCode/JuceHeader.h"
-#endif
 
 #include <cmath>
 
@@ -30,11 +26,7 @@ public:
 	float fasttanh(float p_input, float p_tanh_factor) {
 // idea2: use curveable x^3
 // tanh(3x)
-#ifndef BENCHMARK
 		return juce::dsp::FastMathApproximations::tanh(p_tanh_factor * p_input);
-#else
-		return std::tanh(p_tanh_factor * p_input);
-#endif
 	}
 
 	inline void applyOverdrive(double &pio_input, float p_tanh_factor = 3.5f) {

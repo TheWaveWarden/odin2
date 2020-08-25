@@ -1,7 +1,5 @@
 #pragma once
-#ifndef BENCHMARK
 #include "../JuceLibraryCode/JuceHeader.h"
-#endif
 
 // these 3 belong to the profiling macro
 #include "ctime"
@@ -196,7 +194,6 @@
 	DBG("REPLACE SKEW:  NormalisableRange<float>(" + std::to_string(component.getMinimum()) + ", " +                   \
 	    std::to_string(component.getMaximum()) + ", 0, " + std::to_string(component.getSkewFactor()) + ")");
 
-#ifndef BENCHMARK
 
 typedef AudioProcessorValueTreeState::SliderAttachment SliderAttachment;
 typedef AudioProcessorValueTreeState::ButtonAttachment ButtonAttachment;
@@ -417,8 +414,6 @@ public:
 		return (int)x;
 	}
 };
-
-#endif
 
 #define SET_CTR_KEY(name)                                                                                              \
 	name.setDoubleClickReturnValue(true, name.getDoubleClickReturnValue(), ModifierKeys::ctrlModifier)
