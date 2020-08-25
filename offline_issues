@@ -1,7 +1,0 @@
-- load functionality is broken af in linux standalone as well...?
-  - same for linux VST - the only one working so far is linux VST2...????
-  - seems to "lag behid" on save... affected are (on linux) dist panel, modmatrix dropdowns... (on win was also filter panels...?)
-  - values are not loaded (value tree still has values from before...)
-- .odin is noch automatically appended to filename on linux
-  - don
-  - done 
