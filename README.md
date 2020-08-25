@@ -6,7 +6,7 @@ This is the home of Odin 2 freeware VST and AU synthesizer plugin.
 
 # Build Instructions
 ## All Platforms
-Download JUCE from www.TODO.com/getjuce. The project is currently build against JUCE 6.0.1, using newer versions might need some adjustments. Legacy versions can be found at www.github.com/juce/TODO. Open the file `odinvst/Odin.jucer` with the `Projucer` application from the JUCE main directory. Now generate the build files by pressing `ctr + P` inside the `Projucer`. You can close `Projucer` now.
+[Download JUCE](https://juce.com/get-juce/download). The project is currently build against JUCE 6.0.1, using newer versions might need some adjustments. Legacy versions can be found [here](https://github.com/juce-framework/JUCE/releases). Open the file `odinvst/Odin.jucer` with the `Projucer` application from the JUCE main directory. Now generate the build files by pressing `ctr + P` inside the `Projucer`. You can close `Projucer` now.
 
 ## Windows (Visual Studio 2019)
 

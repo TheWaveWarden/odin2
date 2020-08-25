@@ -239,7 +239,6 @@ void PatchBrowserSelector::recreatePopupMenu() {
 			m_menu.addItem(PATCH_BROWSER_MENU_ENTRY_RENAME, "Move to " + m_copy_target_name, false);
 			m_menu.addItem(PATCH_BROWSER_MENU_ENTRY_RENAME, "Copy to " + m_copy_target_name, false);
 		}
-		DBG("---");
 	}
 }
 

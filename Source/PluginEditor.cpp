@@ -4,7 +4,8 @@
 #include "setGUIBig.h"
 #include "setGUISmall.h"
 
-bool writeComponentImageToFile(Component &comp) {
+//this was used to create automatic screenshots on startup
+/*bool writeComponentImageToFile(Component &comp) {
 	time_t rawtime;
 	struct tm *timeinfo;
 	char buffer[80];
@@ -32,7 +33,7 @@ bool writeComponentImageToFile(Component &comp) {
 		}
 	}
 	return false;
-}
+}*/
 
 void writeValueTreeToFile(const ValueTree &tree) {
 	File file("../../odinvst/ValueTree.txt");
@@ -637,14 +638,14 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 
 	//DBG("Display_Scale: " + std::to_string(Desktop::getInstance().getDisplays().getMainDisplay().scale));
 
-#ifdef ODIN_LINUX
-#ifdef ODIN_DEBUG
-	if (!writeComponentImageToFile(*this)) {
-		DBG("Failed to create GUI screenshot");
-	}
-	writeValueTreeToFile(m_value_tree.state);
-#endif
-#endif
+//#ifdef ODIN_LINUX
+//#ifdef ODIN_DEBUG
+//	if (!writeComponentImageToFile(*this)) {
+//		DBG("Failed to create GUI screenshot");
+//	}
+//	writeValueTreeToFile(m_value_tree.state);
+//#endif
+//#endif
 }
 
 OdinAudioProcessorEditor::~OdinAudioProcessorEditor() {
