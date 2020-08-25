@@ -315,8 +315,6 @@ private:
   ArpComponent m_arp;
   PatchBrowser m_patch_browser;
 
-  //SaveLoadComponent m_save_load;
-
   XYSectionComponent m_xy_section;
 
   juce::PopupMenu m_osc_dropdown_menu;
@@ -360,7 +358,6 @@ private:
   LeftRightButton m_lfo_24_button;
 
 
-  //LeftRightButton m_legato_button;
 	GlasDropdown m_mono_poly_legato_dropdown;
   LeftRightButton m_gui_size_button;
 

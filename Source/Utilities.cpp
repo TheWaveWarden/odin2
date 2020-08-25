@@ -206,7 +206,7 @@ void Utilities::createLFOCoefficientsFromConstSections(int p_table_nr,
 	}
 
 	std::ofstream output_file;
-	output_file.open("/home/frederik_siepe/odinvst/Source/audio/Oscillators/"
+	output_file.open("~/odinvst/Source/audio/Oscillators/"
 	                 "Wavetables/LFO/LFO" +
 	                 p_table_name + ".h");
 
@@ -260,7 +260,7 @@ void Utilities::createLFOCoefficientsFromLinSections(int p_table_nr,
 	}
 
 	std::ofstream output_file;
-	output_file.open("/home/frederik_siepe/odinvst/Source/audio/Oscillators/"
+	output_file.open("~/odinvst/Source/audio/Oscillators/"
 	                 "Wavetables/LFO/LFO" +
 	                 p_table_name + ".h");
 

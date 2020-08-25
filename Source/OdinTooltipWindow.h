@@ -1,24 +1,6 @@
-/*
-  ==============================================================================
-
-    OdinTooltipWindow.h
-    Created: 6 Jun 2019 5:24:16pm
-    Author:  frederik_siepe
-
-  ==============================================================================
-*/
-
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
-
-
-// class TooltipFeels : public LookAndFeel_V4 {
-//   getTooltipBounds(const string& tipText, Point<int>screenPos, Rectangle<int> parentArea){
-//     LookAndFeel_
-//   }
-//}
-
 
 class OdinTooltipWindow : public TooltipWindow
 {

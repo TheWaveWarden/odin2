@@ -192,8 +192,7 @@ void PatchBrowserSelector::setWildCard(String p_wildcard) {
 void PatchBrowserSelector::setDirectory(String p_absolute_path) {
 
 	m_absolute_path = p_absolute_path;
-
-	DBG("Set path to " + m_absolute_path);
+	//DBG("Set path to " + m_absolute_path);
 
 	resetScrollPosition();
 	regenerateContent();

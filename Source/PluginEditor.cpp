@@ -12,19 +12,18 @@ bool writeComponentImageToFile(Component &comp) {
 	time(&rawtime);
 	timeinfo = localtime(&rawtime);
 
-	//strftime(buffer, sizeof(buffer), "%d-%m-%Y %H:%M:%S", timeinfo);
 	strftime(buffer, sizeof(buffer), "%Y-%m-%d %H:%M:%S", timeinfo);
 	std::string date(buffer);
 
-	juce::File file("/home/frederik_siepe/odinvst/screenshot.png");
-	juce::File file2("/home/frederik_siepe/gui_saves_odin/screenshot" + date + ".png");
+	juce::File file("../../../screenshot.png");
+	//juce::File file2("../../../gui_saves_odin/screenshot" + date + ".png");
 	Rectangle<int> subArea = comp.getBounds();
 	if (ImageFileFormat *format = ImageFileFormat::findImageFormatForFileExtension(file)) {
 		FileOutputStream out(file);
-		FileOutputStream out2(file2);
-		if (out2.openedOk()) {
-			format->writeImageToStream(comp.createComponentSnapshot(subArea), out2);
-		}
+		//FileOutputStream out2(file2);
+		//if (out2.openedOk()) {
+		//	format->writeImageToStream(comp.createComponentSnapshot(subArea), out2);
+		//}
 
 		if (out.openedOk()) {
 			out.setPosition(0);
@@ -36,7 +35,7 @@ bool writeComponentImageToFile(Component &comp) {
 }
 
 void writeValueTreeToFile(const ValueTree &tree) {
-	File file("/home/frederik_siepe/odinvst/ValueTree.txt");
+	File file("../../odinvst/ValueTree.txt");
 	String text = tree.toXmlString();
 	file.replaceWithText(text);
 }
@@ -100,12 +99,10 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	p_processor.updatePitchWheelGUI   = [&](float p_value) { updatePitchWheel(p_value); };
 	p_processor.updateModWheelGUI     = [&](float p_value) { updateModWheel(p_value); };
 
-	//m_save_load.forceValueTreeLambda     = [&]() { forceValueTreeOntoComponents(true); };
 	m_patch_browser.forceValueTreeLambda = [&]() { forceValueTreeOntoComponents(true); };
 
 	m_reset.onClick = [&]() {
-		if (/*m_reset_warning_was_shown ||*/
-		    AlertWindow::showOkCancelBox(AlertWindow::WarningIcon,
+		if (AlertWindow::showOkCancelBox(AlertWindow::WarningIcon,
 		                                 "Reset Synth",
 		                                 "This will reset the synth to its initial state and you will lose "
 		                                 "your patch!",
@@ -665,7 +662,7 @@ OdinAudioProcessorEditor::~OdinAudioProcessorEditor() {
 	m_processor.updatePitchWheelGUI   = [&](float p_value) {};
 	m_processor.updateModWheelGUI     = [&](float p_value) {};
 
-	// tell processor that the editor was destroyed
+	// tell processor that the editor was destroyed (needs to invalidate pointers)
 	m_processor.onEditorDestruction();
 }
 
@@ -679,7 +676,6 @@ void OdinAudioProcessorEditor::resized() {
 }
 
 void OdinAudioProcessorEditor::setOsc1Plate(int p_osc_type) {
-	// DBG(p_osc_type);
 	if (p_osc_type == 0) {
 		return;
 	}
@@ -756,18 +752,6 @@ void OdinAudioProcessorEditor::setLfo12(bool p_lfo1) {
 		m_lfo_2.setVisible(true);
 	}
 }
-
-// void OdinAudioProcessorEditor::setArpMod(bool p_arp) {
-// 	if (p_arp) {
-// 		m_mod_matrix.setVisible(false);
-// 		m_patch_browser.setVisible(false);
-// 		m_arp.setVisibleAndStartTimer(true);
-// 	} else {
-// 		m_mod_matrix.setVisible(true);
-// 		m_patch_browser.setVisible(true);
-// 		m_arp.setVisibleAndStartTimer(false);
-// 	}
-// }
 
 void OdinAudioProcessorEditor::setLfo34(bool p_lfo2) {
 	if (p_lfo2) {
@@ -907,10 +891,6 @@ void OdinAudioProcessorEditor::forceValueTreeOntoComponentsOnlyMainPanel() {
 	}
 	setActiveFXPanel(fx_name);
 
-	//m_legato_button.setToggleState((float)m_value_tree.state.getChildWithName("misc")["legato"] > 0.5,
-	//                               dontSendNotification);
-	//processor.setPolyLegato(m_legato_button.getToggleState());
-
 	m_env_13_button.setToggleState((float)m_value_tree.state.getChildWithName("misc")["env_left_selected"] > 0.5,
 	                               dontSendNotification);
 	setEnv13(m_env_13_button.getToggleState());
@@ -942,9 +922,6 @@ void OdinAudioProcessorEditor::forceValueTreeOntoComponents(bool p_reset_audio) 
 		processor.resetAudioEngine();
 	}
 
-	//DBG("FORCEVALUETREEONTOCOMPONENTS");
-	// DBG(m_value_tree.state.toXmlString());
-
 	forceValueTreeOntoComponentsOnlyMainPanel();
 
 	// constructor, these seems to have no influence
@@ -972,7 +949,6 @@ void OdinAudioProcessorEditor::forceValueTreeOntoComponents(bool p_reset_audio) 
 	m_delay.forceValueTreeOntoComponents(m_value_tree.state);
 	m_midsection.forceValueTreeOntoComponents(m_value_tree.state);
 	m_fx_buttons_section.forceValueTreeOntoComponents(m_value_tree.state);
-	//m_save_load.forceValueTreeOntoComponents(m_value_tree.state);
 	m_arp.forceValueTreeOntoComponents(m_value_tree.state);
 }
 
@@ -1114,7 +1090,7 @@ bool OdinAudioProcessorEditor::keyStateChanged(bool isKeyDown, Component *origin
 
 void OdinAudioProcessorEditor::allMidiKeysOff() {
 	// this is the SHITTIEST implementation ever
-	// but it gets the job done and is called every moon :-)
+	// but it gets the job done and is only called every blue moon :-)
 	// (gets called only for (PC-)keyboard octave change)
 	for (int note = 0; note < 127; ++note) {
 		processor.handleMidiNoteOff(note);
