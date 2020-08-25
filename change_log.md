@@ -5,6 +5,7 @@
 - Playmodes Legato and Retrig will now play linguring notes again after the current key is released
 - Improved opening time for GUI
 - added scroll bars to patch-browser
+- changed MAC file location
 # 2.2.2
 - fixed plugin validation in Logic
 # 2.2.1
