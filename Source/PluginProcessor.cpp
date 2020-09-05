@@ -415,7 +415,7 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 			handleMidiMessage(midi_message);
 			// get next midi message
 			midi_iterator++;
-			midi_message_remaining = (midi_iterator == midiMessages.end());
+			midi_message_remaining = (midi_iterator != midiMessages.end());
 			if (midi_message_remaining) {
 				midi_message        = (*midi_iterator).getMessage();
 				midi_message_sample = (*midi_iterator).samplePosition;
