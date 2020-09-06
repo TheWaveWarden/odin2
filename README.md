@@ -26,4 +26,4 @@ sudo apt install libx11-dev libwebkit2gtk-4.0-dev mesa-common-dev libasound2-dev
 ## Compiling as VST2 Plugin
 VST2 is no longer licensed by Steinberg. You will need to find the `VST2 SDK` on the internet yourself. Once you have it, open `Odin.jucer` with the `Projucer` again. Navigate to `File -> Global Paths...` and under `VST (Legacy) SDK` insert the path to the `VST2_SDK` folder. Close the window and hit the gear-icon on the top left of the `Projucer` interface. Under `Plugin Formats` enable `VST (Legacy)`. Press `Ctrl + S` and build the project again as described above.
 
-**IMPORTANT**: Steinbergs licencing prohibits you from redistributing any VST2 plugins, unless you've been a registered developer with them since 2018.
+**IMPORTANT**: Steinbergs licencing prohibits you from distributing any VST2 plugins, unless you've been a registered developer with them since 2018.
