@@ -17,13 +17,6 @@ public:
   void doAmplifier(float p_in, float &po_left_out, float &po_right_out);
   void incWriteIndex();
 
-
-  // void setWidth(float p_width){
-  //   //m_width_to_pan = p_width * WIDTH_TO_PAN_FACTOR;
-  //   m_width_seconds = fabs(p_width) * WIDTH_MAX_DELAY_SECONDS;
-  //   m_width_left = p_width > 0;//todo direction
-  // }
-
   void setSampleRate(float p_samplerate){
     m_samplerate = p_samplerate;
   }

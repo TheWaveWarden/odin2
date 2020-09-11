@@ -484,14 +484,7 @@ PatchBrowser::PatchBrowser(OdinAudioProcessor &p_processor, AudioProcessorValueT
 		File move_source(m_patch_selector.getDirectory() + File::getSeparatorString() + p_file + ".odin");
 		if (move_source.existsAsFile()) {
 			//all set, now move
-			if (move_source.moveFileTo(move_target)) {
-				DBG("Success!");
-				
-				//TODO REMOVE
-				if(!(move_target.getFullPathName().contains("Sort Out"))){
-					writeRenamingCommandToFile(move_source.getFullPathName(), move_target.getFullPathName());
-				}
-			}
+			move_source.moveFileTo(move_target);
 		}
 
 		m_patch_selector.regenerateContent();
@@ -629,15 +622,15 @@ void PatchBrowser::setGUISmall() {
 	m_soundbank_selector.setBounds(BROWSER_INLAY_X - 1,
 	                               BROWSER_INLAY_Y + 2,
 	                               (BROWSER_SIZE_X - BROWSER_INLAY_X * 2) / 3,
-	                               BROWSER_SIZE_Y - 2 * BROWSER_INLAY_Y-2);
+	                               BROWSER_SIZE_Y - 2 * BROWSER_INLAY_Y - 2);
 	m_category_selector.setBounds(BROWSER_INLAY_X - 1 + (BROWSER_SIZE_X - BROWSER_INLAY_X * 2) / 3,
 	                              BROWSER_INLAY_Y + 2,
 	                              (BROWSER_SIZE_X - BROWSER_INLAY_X * 2) / 3,
-	                              BROWSER_SIZE_Y - 2 * BROWSER_INLAY_Y-2);
+	                              BROWSER_SIZE_Y - 2 * BROWSER_INLAY_Y - 2);
 	m_patch_selector.setBounds(BROWSER_INLAY_X - 1 + ((BROWSER_SIZE_X - BROWSER_INLAY_X * 2) / 3) * 2,
 	                           BROWSER_INLAY_Y + 2,
 	                           (BROWSER_INLAY_X + BROWSER_SIZE_X - BROWSER_INLAY_X * 2) / 3,
-	                           BROWSER_SIZE_Y - 2 * BROWSER_INLAY_Y-2);
+	                           BROWSER_SIZE_Y - 2 * BROWSER_INLAY_Y - 2);
 
 	m_soundbank_selector.setGUISmall();
 	m_category_selector.setGUISmall();
@@ -1115,18 +1108,7 @@ void PatchBrowser::loadSoundbankWithFileBrowser(String p_directory) {
 	    });
 }
 
-void PatchBrowser::setFirstSoundbankActive(){
+void PatchBrowser::setFirstSoundbankActive() {
 	m_category_selector.setDirectory(m_soundbank_selector.getFirstSubDirectoryAndHighlightIt());
 	m_patch_selector.setDirectory(m_category_selector.getFirstSubDirectoryAndHighlightIt());
-}
-
-
-void PatchBrowser::writeRenamingCommandToFile(String p_from, String p_to){
-	File command_file(ODIN_STORAGE_PATH + File::getSeparatorString() + "move_commands.sh");
-
-	if(!command_file.existsAsFile()){
-		command_file.create();
-	}
-
-	command_file.appendText (String("mv '" + p_from + "' '" + p_to + "'\n"), false, false, "\n");
 }

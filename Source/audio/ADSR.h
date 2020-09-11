@@ -173,9 +173,4 @@ protected:
 
 	double m_current_value = 0.f;
 	double m_samplerate    = -1;
-
-	//todo remove
-	//std::vector<float> m_log;
-	//bool m_LOG = false;
-	// bool* m_envelope_finish_flag = nullptr;
 };
