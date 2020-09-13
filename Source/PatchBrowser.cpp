@@ -352,8 +352,6 @@ PatchBrowser::PatchBrowser(OdinAudioProcessor &p_processor, AudioProcessorValueT
 		if (move_source.existsAsFile()) {
 			//all set, now move
 			move_source.moveFileTo(move_target);
-
-			writeRenamingCommandToFile(move_source.getFullPathName(), move_target.getFullPathName());
 		}
 
 		m_patch_selector.regenerateContent();
