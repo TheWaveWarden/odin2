@@ -41,7 +41,7 @@ echo "Package: Odin" >> $package_name/DEBIAN/control
 echo "Version: ${package_version}" >> $package_name/DEBIAN/control
 echo "Section: base" >> $package_name/DEBIAN/control
 echo "Priority: optional" >> $package_name/DEBIAN/control
-echo "Architecture: i386" >> $package_name/DEBIAN/control
+echo "Architecture: amd64" >> $package_name/DEBIAN/control
 echo "Depends:" >> $package_name/DEBIAN/control
 echo "Maintainer: TheWaveWarden info@thewavewarden.com" >> $package_name/DEBIAN/control
 echo "Description: Odin 2" >> $package_name/DEBIAN/control
