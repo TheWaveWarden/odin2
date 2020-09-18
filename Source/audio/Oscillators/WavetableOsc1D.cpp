@@ -1,9 +1,7 @@
 #include "WavetableOsc1D.h"
 #include <cmath>
 
-//#include "../JuceLibraryCode/JuceHeader.h"
-
-#include "../../WavetableMappings.h"
+#include "Wavetables/WavetableMappings.h"
 
 WavetableOsc1D::WavetableOsc1D() {
 }

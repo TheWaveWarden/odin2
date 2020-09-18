@@ -2,14 +2,13 @@
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
-#include "DrawableSlider.h"
-#include "Knob.h"
-#include "LeftRightButton.h"
-#include "ModMatrix.h"
-#include "OdinArpeggiator.h"
-#include "OdinButton.h"
-#include "OdinTreeListener.h"
-#include "Voice.h"
+#include "gui/DrawableSlider.h"
+#include "gui/Knob.h"
+#include "gui/LeftRightButton.h"
+#include "gui/ModMatrix.h"
+#include "gui/OdinArpeggiator.h"
+#include "gui/OdinButton.h"
+#include "audio/Voice.h"
 #include "audio/FX/Chorus.h"
 #include "audio/FX/Delay.h"
 #include "audio/FX/Flanger.h"
@@ -22,6 +21,7 @@
 #include "audio/Filters/LadderFilter.h"
 #include "audio/Filters/SEMFilter12.h"
 #include "audio/Oscillators/WavetableContainer.h"
+#include "OdinTreeListener.h"
 
 #include <list>
 

@@ -1,8 +1,8 @@
 #include "PluginEditor.h"
 #include "PluginProcessor.h"
 
-#include "setGUIBig.h"
-#include "setGUISmall.h"
+#include "gui/setGUIBig.h"
+#include "gui/setGUISmall.h"
 
 //this was used to create automatic screenshots on startup
 /*bool writeComponentImageToFile(Component &comp) {
