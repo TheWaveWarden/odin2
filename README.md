@@ -33,7 +33,7 @@ For LV2 you'll need a custom set of JUCE modules from the [LV2 Porting Project](
 ```
 git clone -b lv2 https://github.com/lv2-porting-project/JUCE/ ~/JUCELV2
 ```
-Now make your **regular** Projucer look for the modules in this repo:
+Now make your **regular** `Projucer` look for the modules in this repo:
 ```
 /path/to/juce/Projucer --set-global-search-path linux defaultJuceModulePath ~/JUCELV2/modules
 ```
@@ -45,12 +45,10 @@ Add these lines to `odin2/JuceLibraryCode/AppConfig.h` and make sure they are co
 ```
 // [BEGIN_USER_CODE_SECTION]
 
-// (You can add your own code in this section, and the Projucer will not overwrite it)
   #define JucePlugin_Build_LV2 1
   #define JucePlugin_LV2URI "https://www.thewavewarden.com/odin2"
   #define JucePlugin_MaxNumInputChannels 2
   #define JucePlugin_MaxNumOutputChannels 2
-
 
 // [END_USER_CODE_SECTION]
 ```
@@ -58,4 +56,4 @@ The last step is to append a line to the generated Makefile with this command:
 ```
 echo -e "include ../../LV2.mak" >> odin2/Builds/LinuxMakefile/Makefile
 ```
-Now you can build the project again with `make` as before.
+Now you can build the project again with `make` as before. Note: Every time you export the project from the `Projucer`, you'll have to append the line to the Makefile again.
