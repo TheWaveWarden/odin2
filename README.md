@@ -29,18 +29,24 @@ VST2 is no longer licensed by Steinberg. You will need to find the `VST2 SDK` on
 **IMPORTANT**: Steinbergs licencing prohibits you from distributing any VST2 plugins, unless you've been a registered developer with them since 2018.
 
 ## Compiling as LV2 Plugin (Linux)
-For LV2 you'll need a custom set of JUCE modules from the [LV2 Porting Project](https://github.com/lv2-porting-project/). Clone the JUCE fork and check out the `lv2` branch, e.g.:
+First, you'll need the LV2 headers. On Ubuntu you can install them with
+```
+sudo apt install lv2-dev
+```
+You'll also need a custom set of JUCE modules from the [LV2 Porting Project](https://github.com/lv2-porting-project/). Clone the JUCE fork and check out the `lv2` branch, e.g.:
 ```
 git clone -b lv2 https://github.com/lv2-porting-project/JUCE/ ~/JUCELV2
 ```
-Now make your **regular** `Projucer` look for the modules in this repo:
+Now open Odin in your **regular** Projucer:
 ```
-/path/to/juce/Projucer --set-global-search-path linux defaultJuceModulePath ~/JUCELV2/modules
+/path/to/juce/Projucer odin2/Odin.jucer
 ```
-Resave the project
+Navigate to `File`->`Global Paths`. In the Field `JUCE Modules` enter, the modules from the repo you just cloned, e.g.:
 ```
-/path/to/jucer/Projucer --resave odin2/Odin2.jucer
+~/JUCELV2/modules
 ```
+Close the Dialog and generate the Project again with `Ctrl + P`. Close the Projucer.
+
 Add these lines to `odin2/JuceLibraryCode/AppConfig.h` and make sure they are contained within the user code section:
 ```
 // [BEGIN_USER_CODE_SECTION]
