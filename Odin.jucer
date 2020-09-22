@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT id="vpwEHn" name="Odin2" projectType="audioplug" pluginFormats="buildAU,buildStandalone,buildVST3"
+<JUCERPROJECT id="vpwEHn" name="Odin2" projectType="audioplug" pluginFormats="buildAU,buildStandalone,buildVST,buildVST3"
               version="2.2.3" companyName="TheWaveWarden" companyWebsite="www.thewavewarden.com"
               pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn"
               pluginManufacturerCode="WAWA" pluginCode="ODIN" pluginChannelConfigs="{0,2}"

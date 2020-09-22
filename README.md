@@ -29,7 +29,7 @@ VST2 is no longer licensed by Steinberg. You will need to find the `VST2 SDK` on
 **IMPORTANT**: Steinbergs licencing prohibits you from distributing any VST2 plugins, unless you've been a registered developer with them since 2018.
 
 ## Compiling as LV2 Plugin (Linux)
-First, you'll need the LV2 headers. On Ubuntu you can install them with
+In order to build LV2, you need to do everything which is stated under "Compiling as VST2 Plugin (All Platforms). Then, you'll need the LV2 headers. On Ubuntu you can install them with
 ```
 sudo apt install lv2-dev
 ```
