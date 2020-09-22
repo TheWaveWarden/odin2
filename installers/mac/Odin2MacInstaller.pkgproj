@@ -129,7 +129,7 @@
 															<key>GID</key>
 															<integer>0</integer>
 															<key>PATH</key>
-															<string>/Users/frederiksiepe/odinvst/Soundbanks</string>
+															<string>/Users/frederiksiepe/odin2/Soundbanks</string>
 															<key>PATH_TYPE</key>
 															<integer>0</integer>
 															<key>PERMISSIONS</key>
@@ -569,7 +569,7 @@
 				<key>PREINSTALL_PATH</key>
 				<dict>
 					<key>PATH</key>
-					<string>/Users/frederiksiepe/odinvst/installers/mac/migrate_soundbank_from_old_location.sh</string>
+					<string>/Users/frederiksiepe/odin2/installers/mac/migrate_soundbank_from_old_location.sh</string>
 					<key>PATH_TYPE</key>
 					<integer>0</integer>
 				</dict>
@@ -733,7 +733,7 @@
 															<key>GID</key>
 															<integer>0</integer>
 															<key>PATH</key>
-															<string>/Users/frederiksiepe/odinvst/Soundbanks</string>
+															<string>/Users/frederiksiepe/odin2/Soundbanks</string>
 															<key>PATH_TYPE</key>
 															<integer>0</integer>
 															<key>PERMISSIONS</key>

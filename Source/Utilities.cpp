@@ -206,7 +206,7 @@ void Utilities::createLFOCoefficientsFromConstSections(int p_table_nr,
 	}
 
 	std::ofstream output_file;
-	output_file.open("~/odinvst/Source/audio/Oscillators/"
+	output_file.open("~/odin2/Source/audio/Oscillators/"
 	                 "Wavetables/LFO/LFO" +
 	                 p_table_name + ".h");
 
@@ -260,7 +260,7 @@ void Utilities::createLFOCoefficientsFromLinSections(int p_table_nr,
 	}
 
 	std::ofstream output_file;
-	output_file.open("~/odinvst/Source/audio/Oscillators/"
+	output_file.open("~/odin2/Source/audio/Oscillators/"
 	                 "Wavetables/LFO/LFO" +
 	                 p_table_name + ".h");
 
@@ -432,7 +432,7 @@ void Utilities::writeWavedrawTable(float p_wavedraw_values[WAVEDRAW_STEPS_X], st
 	}
 
 	std::ofstream container;
-	container.open("/home/frot/odinvst/Source/audio//Oscillators/WavetableCoefficients.h",
+	container.open("/home/frot/odin2/Source/audio//Oscillators/WavetableCoefficients.h",
 	               std::ofstream::out | std::ofstream::app);
 
 	// container << "#include \"Wavetables/Coefficients/" + p_table_name +
@@ -440,12 +440,12 @@ void Utilities::writeWavedrawTable(float p_wavedraw_values[WAVEDRAW_STEPS_X], st
 	//                 "\n";
 	container.close();
 
-	DBG("CREATING TABLE /home/frot/odinvst/Source/audio/Oscillators/"
+	DBG("CREATING TABLE /home/frot/odin2/Source/audio/Oscillators/"
 	    "Wavetables/Coefficients/" +
 	    p_table_name + ".h " + std::to_string(m_highest_loaded_table + 1));
 
 	std::ofstream output_file;
-	output_file.open("/home/frot/odinvst/Source/audio/Oscillators/"
+	output_file.open("/home/frot/odin2/Source/audio/Oscillators/"
 	                 "Wavetables/Coefficients/" +
 	                 p_table_name + ".h");
 
@@ -537,12 +537,12 @@ void Utilities::writeChipdrawTable(float p_chipdraw_values[WAVEDRAW_STEPS_X], st
 
 	std::string random_string = std::to_string(rand());
 
-	DBG("CREATING TABLE /home/frot/odinvst/Source/audio/Oscillators/"
+	DBG("CREATING TABLE /home/frot/odin2/Source/audio/Oscillators/"
 	    "Wavetables/Coefficients/" +
 	    p_table_name + random_string + ".h " + std::to_string(m_highest_loaded_table + 1));
 
 	std::ofstream output_file;
-	output_file.open("/home/frot/odinvst/Source/audio/Oscillators/"
+	output_file.open("/home/frot/odin2/Source/audio/Oscillators/"
 	                 "Wavetables/Coefficients/" +
 	                 p_table_name + random_string + ".h");
 
@@ -609,7 +609,7 @@ void Utilities::writeSpecdrawTable(float p_specdraw_values[SPECDRAW_STEPS_X], st
 	}
 
 	std::ofstream container;
-	container.open("/home/frot/odinvst/Source/audio//Oscillators/WavetableCoefficients.h",
+	container.open("/home/frot/odin2/Source/audio//Oscillators/WavetableCoefficients.h",
 	               std::ofstream::out | std::ofstream::app);
 
 	// container << "#include \"Wavetables/Coefficients/" + p_table_name +
@@ -617,12 +617,12 @@ void Utilities::writeSpecdrawTable(float p_specdraw_values[SPECDRAW_STEPS_X], st
 	//                 "\n";
 	container.close();
 
-	DBG("CREATING TABLE /home/frot/odinvst/Source/audio/Oscillators/"
+	DBG("CREATING TABLE /home/frot/odin2/Source/audio/Oscillators/"
 	    "Wavetables/Coefficients/" +
 	    p_table_name + ".h " + std::to_string(m_highest_loaded_table + 1));
 
 	std::ofstream output_file;
-	output_file.open("/home/frot/odinvst/Source/audio/Oscillators/"
+	output_file.open("/home/frot/odin2/Source/audio/Oscillators/"
 	                 "Wavetables/Coefficients/" +
 	                 p_table_name + ".h");
 
@@ -944,7 +944,7 @@ void Utilities::writeWavetablesToFile() {
 
 void Utilities::startWriteWavetablesToFile() {
 	std::ofstream output_file;
-	output_file.open("/home/frot/odinvst/Source/audio/Oscillators/"
+	output_file.open("/home/frot/odin2/Source/audio/Oscillators/"
 	                 "Wavetables/Tables/WavetableData.cpp");
 
 	output_file << "#include \"WavetableData.h\"\n\nconst float "
@@ -1009,7 +1009,7 @@ void Utilities::writeWavetableToFile(int index_wavetable) {
 	max = max < 0.0001 ? 1 : max;
 
 	std::ofstream output_file;
-	output_file.open("/home/frot/odinvst/Source/audio/Oscillators/"
+	output_file.open("/home/frot/odin2/Source/audio/Oscillators/"
 	                 "Wavetables/Tables/WavetableData.cpp",
 	                 std::ofstream::out | std::ofstream::app);
 
@@ -1040,7 +1040,7 @@ void Utilities::writeWavetableToFile(int index_wavetable) {
 
 void Utilities::endWriteWavetablesToFile() {
 	std::ofstream output_file;
-	output_file.open("/home/frot/odinvst/Source/audio/Oscillators/"
+	output_file.open("/home/frot/odin2/Source/audio/Oscillators/"
 	                 "Wavetables/Tables/WavetableData.cpp",
 	                 std::ofstream::out | std::ofstream::app);
 
@@ -1111,7 +1111,7 @@ void Utilities::writeLFOtablesToFiles() {
 	}
 
 	std::ofstream output_file;
-	output_file.open("/home/frot/odinvst/Source/audio/Oscillators/"
+	output_file.open("/home/frot/odin2/Source/audio/Oscillators/"
 	                 "Wavetables/Tables/LFOTableData.cpp");
 
 	output_file << "const float "
@@ -1147,7 +1147,7 @@ void Utilities::writeLFOtablesToFiles() {
 
 void Utilities::generateAudioValueCode() {
 	std::ofstream output_file;
-	output_file.open("/home/frot/odinvst/Source/GeneratedAudioValueCode.h");
+	output_file.open("/home/frot/odin2/Source/GeneratedAudioValueCode.h");
 
 	output_file << "//This code was automatically generated by "
 	               "Utilities::generateAudioValueCode()\n\n";
@@ -1193,7 +1193,7 @@ void Utilities::generateAudioValueCode() {
 void Utilities::writeSampleTableToFile(std::string p_filename) {
 
 	// load in data
-	std::string filename = "/home/frot/odinvst/samples/" + p_filename;
+	std::string filename = "/home/frot/odin2/samples/" + p_filename;
 	File file(filename);
 	WavAudioFormat wavAudioFormat;
 	AudioFormatReader *audioFormatReader = wavAudioFormat.createReaderFor(file.createInputStream().get(), true);
@@ -1287,7 +1287,7 @@ void Utilities::writeSampleTableToFile(std::string p_filename) {
 	}
 
 	std::ofstream container;
-	container.open("/home/frot/odinvst/Source/audio//Oscillators/WavetableCoefficients.h",
+	container.open("/home/frot/odin2/Source/audio//Oscillators/WavetableCoefficients.h",
 	               std::ofstream::out | std::ofstream::app);
 
 	// container << "#include \"Wavetables/Coefficients/" + p_table_name +
@@ -1295,12 +1295,12 @@ void Utilities::writeSampleTableToFile(std::string p_filename) {
 	//                 "\n";
 	container.close();
 
-	DBG("CREATING TABLE /home/frot/odinvst/Source/audio/Oscillators/"
+	DBG("CREATING TABLE /home/frot/odin2/Source/audio/Oscillators/"
 	    "Wavetables/Coefficients/" +
 	    p_table_name + ".h");
 
 	std::ofstream output_file;
-	output_file.open("/home/frot/odinvst/Source/audio/Oscillators/"
+	output_file.open("/home/frot/odin2/Source/audio/Oscillators/"
 	                 "Wavetables/Coefficients/" +
 	                 p_table_name + ".h");
 
@@ -1408,7 +1408,7 @@ void Utilities::mutateWavetable(
 		}
 
 		std::ofstream container;
-		container.open("/home/frot/odinvst/Source/audio//Oscillators/WavetableCoefficients.h",
+		container.open("/home/frot/odin2/Source/audio//Oscillators/WavetableCoefficients.h",
 		               std::ofstream::out | std::ofstream::app);
 
 		// container << "#include \"Wavetables/Coefficients/" + p_table_name +
@@ -1416,12 +1416,12 @@ void Utilities::mutateWavetable(
 		//                 std::to_string(m_highest_loaded_table + 1) + "\n";
 		container.close();
 
-		DBG("CREATING TABLE /home/frot/odinvst/Source/audio/Oscillators/"
+		DBG("CREATING TABLE /home/frot/odin2/Source/audio/Oscillators/"
 		    "Wavetables/Coefficients/" +
 		    p_table_name + "Mutated" + std::to_string(mutation) + ".h   WT_NR = " + std::to_string(p_start_id));
 
 		std::ofstream output_file;
-		output_file.open("/home/frot/odinvst/Source/audio/Oscillators/"
+		output_file.open("/home/frot/odin2/Source/audio/Oscillators/"
 		                 "Wavetables/Coefficients/" +
 		                 p_table_name + "Mutated" + std::to_string(mutation) + ".h");
 
@@ -1511,7 +1511,7 @@ void Utilities::writePerlinTableToFile(std ::string p_table_name, int p_steps, f
 	float perlin_table[PERLIN_STEPS_X] = {0};
 
 	// std::ofstream perlin_file;
-	// perlin_file.open("/home/frot/odinvst/Source/audio/Oscillators/"
+	// perlin_file.open("/home/frot/odin2/Source/audio/Oscillators/"
 	//                  "Wavetables/Coefficients/" +
 	//                  p_table_name + ".csv");
 
@@ -1607,7 +1607,7 @@ void Utilities::writePerlinTableToFile(std ::string p_table_name, int p_steps, f
 	}
 
 	std::ofstream container;
-	container.open("/home/frot/odinvst/Source/audio//Oscillators/WavetableCoefficients.h",
+	container.open("/home/frot/odin2/Source/audio//Oscillators/WavetableCoefficients.h",
 	               std::ofstream::out | std::ofstream::app);
 
 	// container << "#include \"Wavetables/Coefficients/" + p_table_name +
@@ -1615,12 +1615,12 @@ void Utilities::writePerlinTableToFile(std ::string p_table_name, int p_steps, f
 	//                 "\n";
 	container.close();
 
-	DBG("CREATING PERLIN TABLE /home/frot/odinvst/Source/audio/Oscillators/"
+	DBG("CREATING PERLIN TABLE /home/frot/odin2/Source/audio/Oscillators/"
 	    "Wavetables/Coefficients/" +
 	    p_table_name + ".h " + std::to_string(m_highest_loaded_table + 1));
 
 	std::ofstream output_file;
-	output_file.open("/home/frot/odinvst/Source/audio/Oscillators/"
+	output_file.open("/home/frot/odin2/Source/audio/Oscillators/"
 	                 "Wavetables/Coefficients/" +
 	                 p_table_name + ".h");
 
@@ -1658,9 +1658,9 @@ void Utilities::fixWavetableCoefficientFile() {
 
 	int highest_table = 4;
 
-	std::ifstream filein("/home/frot/odinvst/Source/audio//Oscillators/"
+	std::ifstream filein("/home/frot/odin2/Source/audio//Oscillators/"
 	                     "WavetableCoefficients.h");                                   // File to read from
-	std::ofstream fileout("/home/frot/odinvst/Source/audio//Oscillators/TEMPORARY.h"); // Temporary
+	std::ofstream fileout("/home/frot/odin2/Source/audio//Oscillators/TEMPORARY.h"); // Temporary
 	                                                                                   // file
 	if (!filein || !fileout) {
 		DBG("Error opening files!");
@@ -1678,7 +1678,7 @@ void Utilities::fixWavetableCoefficientFile() {
 }
 
 void Utilities::fixWavetableIndexInFiles() {
-	std::ifstream filein("/home/frot/odinvst/Source/audio//Oscillators/"
+	std::ifstream filein("/home/frot/odin2/Source/audio//Oscillators/"
 	                     "WavetableCoefficients.h"); // File to read from
 
 	if (!filein) {
@@ -1701,9 +1701,9 @@ void Utilities::fixWavetableIndexInFiles() {
 }
 
 void Utilities::fixWavetableIndexInSingleFile(std::string p_filename, int p_number) {
-	std::ifstream filein("/home/frot/odinvst/Source/audio/Oscillators/Wavetables/" + p_filename +
+	std::ifstream filein("/home/frot/odin2/Source/audio/Oscillators/Wavetables/" + p_filename +
 	                     ".h"); // File to read from
-	std::ofstream fileout("/home/frot/odinvst/Source/audio/Oscillators/Wavetables/TEMP/" + p_filename + ".h");
+	std::ofstream fileout("/home/frot/odin2/Source/audio/Oscillators/Wavetables/TEMP/" + p_filename + ".h");
 
 	if (!filein || !fileout) {
 		DBG("Error opening files!");
@@ -1752,9 +1752,9 @@ void Utilities::eliminatePhaseInWavetableCoefficients(std::string p_filename) {
 	DBG("ELIMINATING PHASE IN WT FILE " + p_filename);
 	// see whether files open
 	{
-		std::ifstream filein("/home/frot/odinvst/Source/audio/Oscillators/Wavetables/Coefficients/" + p_filename +
+		std::ifstream filein("/home/frot/odin2/Source/audio/Oscillators/Wavetables/Coefficients/" + p_filename +
 		                     ".h"); // File to read from
-		std::ofstream fileout("/home/frot/odinvst/Source/audio/Oscillators/"
+		std::ofstream fileout("/home/frot/odin2/Source/audio/Oscillators/"
 		                      "Wavetables/Coefficients/PhaseEliminated/" +
 		                      p_filename + ".h");
 		if (!filein) {
@@ -1775,7 +1775,7 @@ void Utilities::eliminatePhaseInWavetableCoefficients(std::string p_filename) {
 
 	// find all sin coeffs
 	for (int i = 1; i < NUMBER_OF_HARMONICS; ++i) {
-		std::ifstream filein("/home/frot/odinvst/Source/audio/Oscillators/Wavetables/Coefficients/" + p_filename +
+		std::ifstream filein("/home/frot/odin2/Source/audio/Oscillators/Wavetables/Coefficients/" + p_filename +
 		                     ".h"); // File to read from
 
 		std::string string_to_find = "m_fourier_coeffs[WT_NR][0][" + std::to_string(i) + "]";
@@ -1811,7 +1811,7 @@ void Utilities::eliminatePhaseInWavetableCoefficients(std::string p_filename) {
 
 	// find all cos coeffs
 	for (int i = 1; i < NUMBER_OF_HARMONICS; ++i) {
-		std::ifstream filein("/home/frot/odinvst/Source/audio/Oscillators/Wavetables/Coefficients/" + p_filename +
+		std::ifstream filein("/home/frot/odin2/Source/audio/Oscillators/Wavetables/Coefficients/" + p_filename +
 		                     ".h"); // File to read from
 
 		std::string string_to_find = "m_fourier_coeffs[WT_NR][1][" + std::to_string(i) + "]";
@@ -1847,7 +1847,7 @@ void Utilities::eliminatePhaseInWavetableCoefficients(std::string p_filename) {
 
 	float scalar = 1;
 	{
-		std::ifstream filein("/home/frot/odinvst/Source/audio/Oscillators/Wavetables/Coefficients/" + p_filename +
+		std::ifstream filein("/home/frot/odin2/Source/audio/Oscillators/Wavetables/Coefficients/" + p_filename +
 		                     ".h"); // File to read from
 
 		std::string string_to_find = "m_fourier_coeffs[WT_NR][1][0]";
@@ -1879,10 +1879,10 @@ void Utilities::eliminatePhaseInWavetableCoefficients(std::string p_filename) {
 	}
 
 	// now write to file
-	std::ifstream filein("/home/frot/odinvst/Source/audio/Oscillators/Wavetables/Coefficients/" + p_filename +
+	std::ifstream filein("/home/frot/odin2/Source/audio/Oscillators/Wavetables/Coefficients/" + p_filename +
 	                     ".h"); // File to read from
 
-	std::ofstream fileout("/home/frot/odinvst/Source/audio/Oscillators/"
+	std::ofstream fileout("/home/frot/odin2/Source/audio/Oscillators/"
 	                      "Wavetables/Coefficients/PhaseEliminated/" +
 	                      p_filename + ".h");
 
@@ -1938,9 +1938,9 @@ bool containsTooHighHarmonics(std::string p_input) {
 void Utilities::fixTooHighHarmonics(std::string p_filename) {
 	DBG("REMOVING TOO HIGH HARMONICS IN " + p_filename);
 
-	std::ifstream filein("/home/frot/odinvst/Source/audio/Oscillators/Wavetables/Coefficients/" + p_filename +
+	std::ifstream filein("/home/frot/odin2/Source/audio/Oscillators/Wavetables/Coefficients/" + p_filename +
 	                     ".h"); // File to read from
-	std::ofstream fileout("/home/frot/odinvst/Source/audio/Oscillators/"
+	std::ofstream fileout("/home/frot/odin2/Source/audio/Oscillators/"
 	                      "Wavetables/Coefficients/TEMP/" +
 	                      p_filename + ".h");
 
@@ -1963,8 +1963,8 @@ void Utilities::convertWTFromOdin1(int p_odin_1_nr, int p_odin_2_nr, std::string
 
 	// see whether files open
 
-	std::ifstream filein("/home/frot/odinvst/odin_1_wavetables.h"); // File to read from
-	std::ofstream fileout("/home/frot/odinvst/Source/audio/Oscillators/"
+	std::ifstream filein("/home/frot/odin2/odin_1_wavetables.h"); // File to read from
+	std::ofstream fileout("/home/frot/odin2/Source/audio/Oscillators/"
 	                      "Wavetables/Coefficients/" +
 	                      p_name + ".h");
 	if (!filein) {
@@ -2010,11 +2010,11 @@ void Utilities::convertWTFromOdin1(int p_odin_1_nr, int p_odin_2_nr, std::string
 
 	eliminatePhaseInWavetableCoefficients(p_name);
 
-	std::ifstream src("/home/frot/odinvst/Source/audio/Oscillators/"
+	std::ifstream src("/home/frot/odin2/Source/audio/Oscillators/"
 	                  "Wavetables/Coefficients/PhaseEliminated/" +
 	                      p_name + ".h",
 	                  std::ios::binary);
-	std::ofstream dst("/home/frot/odinvst/Source/audio/Oscillators/"
+	std::ofstream dst("/home/frot/odin2/Source/audio/Oscillators/"
 	                  "Wavetables/Coefficients/" +
 	                      p_name + ".h",
 	                  std::ios::binary);
@@ -2029,7 +2029,7 @@ void Utilities::printWTsNotUsedAsCoeffs() {
 	std::vector<std::string> string_vec = {"lol"};
 
 	for (auto const &wavetable_name : string_vec) {
-		std::ifstream filein("/home/frot/odinvst/Source/audio/Oscillators/"
+		std::ifstream filein("/home/frot/odin2/Source/audio/Oscillators/"
 		                     "WavetableOsc2D.cpp"); // File to read from
 
 		if (!filein) {
