@@ -29,8 +29,8 @@ make clean
 make CONFIG=Release -j 12
 
 #copy it over and go back to installer dir
-cp build/Odin2.vst3 ../../installers/linux/$package_name/usr/lib/vst3/Odin2.vst3
-cp build/Odin2.lv2 ../../installers/linux/$package_name/usr/lib/lv2/Odin2.lv2
+cp -r build/Odin2.vst3 ../../installers/linux/$package_name/usr/lib/vst3/Odin2.vst3
+cp -r build/Odin2_.lv2 ../../installers/linux/$package_name/usr/lib/lv2/Odin2.lv2
 popd
 
 #cp Soundbanks
