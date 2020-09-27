@@ -79,9 +79,9 @@
 															<key>GID</key>
 															<integer>0</integer>
 															<key>PATH</key>
-															<string>/Users/frederiksiepe/Library/Audio/Plug-Ins/VST3/Odin2.vst3</string>
+															<string>../../../Library/Audio/Plug-Ins/VST3/Odin2.vst3</string>
 															<key>PATH_TYPE</key>
-															<integer>0</integer>
+															<integer>1</integer>
 															<key>PERMISSIONS</key>
 															<integer>493</integer>
 															<key>TYPE</key>
@@ -129,9 +129,9 @@
 															<key>GID</key>
 															<integer>0</integer>
 															<key>PATH</key>
-															<string>/Users/frederiksiepe/odinvst/Soundbanks</string>
+															<string>../../../odin2/Soundbanks</string>
 															<key>PATH_TYPE</key>
-															<integer>0</integer>
+															<integer>1</integer>
 															<key>PERMISSIONS</key>
 															<integer>511</integer>
 															<key>TYPE</key>
@@ -569,7 +569,7 @@
 				<key>PREINSTALL_PATH</key>
 				<dict>
 					<key>PATH</key>
-					<string>/Users/frederiksiepe/odinvst/installers/mac/migrate_soundbank_from_old_location.sh</string>
+					<string>/Users/frederiksiepe/odin2/installers/mac/migrate_soundbank_From_old_location.sh</string>
 					<key>PATH_TYPE</key>
 					<integer>0</integer>
 				</dict>
@@ -601,7 +601,7 @@
 				<key>USE_HFS+_COMPRESSION</key>
 				<false/>
 				<key>VERSION</key>
-				<string>2.2</string>
+				<string>2.2.3</string>
 			</dict>
 			<key>TYPE</key>
 			<integer>0</integer>
@@ -683,9 +683,9 @@
 															<key>GID</key>
 															<integer>0</integer>
 															<key>PATH</key>
-															<string>/Users/frederiksiepe/Library/Audio/Plug-Ins/Components/Odin2.component</string>
+															<string>../../../Library/Audio/Plug-Ins/Components/Odin2.component</string>
 															<key>PATH_TYPE</key>
-															<integer>0</integer>
+															<integer>1</integer>
 															<key>PERMISSIONS</key>
 															<integer>493</integer>
 															<key>TYPE</key>
@@ -733,9 +733,9 @@
 															<key>GID</key>
 															<integer>0</integer>
 															<key>PATH</key>
-															<string>/Users/frederiksiepe/odinvst/Soundbanks</string>
+															<string>../../../odin2/Soundbanks</string>
 															<key>PATH_TYPE</key>
-															<integer>0</integer>
+															<integer>1</integer>
 															<key>PERMISSIONS</key>
 															<integer>511</integer>
 															<key>TYPE</key>
@@ -1205,7 +1205,7 @@
 				<key>USE_HFS+_COMPRESSION</key>
 				<false/>
 				<key>VERSION</key>
-				<string>2.2</string>
+				<string>2.2.3</string>
 			</dict>
 			<key>TYPE</key>
 			<integer>0</integer>
@@ -1386,6 +1386,15 @@
 					</dict>
 				</array>
 			</dict>
+		</dict>
+		<key>PROJECT_REQUIREMENTS</key>
+		<dict>
+			<key>LIST</key>
+			<array/>
+			<key>RESOURCES</key>
+			<array/>
+			<key>ROOT_VOLUME_ONLY</key>
+			<false/>
 		</dict>
 		<key>PROJECT_SETTINGS</key>
 		<dict>
