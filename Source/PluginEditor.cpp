@@ -36,7 +36,7 @@
 }*/
 
 void writeValueTreeToFile(const ValueTree &tree) {
-	File file("../../odinvst/ValueTree.txt");
+	File file("../../odin2/ValueTree.txt");
 	String text = tree.toXmlString();
 	file.replaceWithText(text);
 }

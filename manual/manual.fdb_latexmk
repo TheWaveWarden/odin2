@@ -1,9 +1,9 @@
 # Fdb version 3
-["pdflatex"] 1599631749 "/home/frot/odinvst/manual/manual.tex" "/home/frot/odinvst/manual/manual.pdf" "manual" 1599631749
+["pdflatex"] 1599631749 "/home/frot/odin2/manual/manual.tex" "/home/frot/odin2/manual/manual.pdf" "manual" 1599631749
   "/dev/null" 1599547494 0 d41d8cd98f00b204e9800998ecf8427e ""
   "/etc/texmf/web2c/texmf.cnf" 1574849637 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/frot/odinvst/manual/manual.aux" 1599631749 8 a94a2480d3289e625eea47cd1b285758 ""
-  "/home/frot/odinvst/manual/manual.tex" 1596380396 3418 d0f4ccf111a6296cd96e609bcd6e88f8 ""
+  "/home/frot/odin2/manual/manual.aux" 1599631749 8 a94a2480d3289e625eea47cd1b285758 ""
+  "/home/frot/odin2/manual/manual.tex" 1596380396 3418 d0f4ccf111a6296cd96e609bcd6e88f8 ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1511824771 3332 103109f5612ad95229751940c61aada0 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/adobe/utopia/putb7t.tfm" 1480098689 5064 5bd9181f6ca2ab59c1725704f3eb746d ""
@@ -313,7 +313,7 @@
   "manual.out" 0 -1 0 ""
   "manual.tex" 1596380396 3418 d0f4ccf111a6296cd96e609bcd6e88f8 ""
   (generated)
-  "/home/frot/odinvst/manual/manual.log"
+  "/home/frot/odin2/manual/manual.log"
   "Arpeggiator.aux"
   "manual.aux"
   "Introduction.aux"
@@ -323,7 +323,7 @@
   "ModulationMatrix.aux"
   "Modulators.aux"
   "manual.log"
-  "/home/frot/odinvst/manual/manual.pdf"
+  "/home/frot/odin2/manual/manual.pdf"
   "manual.out"
   "FX.aux"
   "AmpDistortion.aux"

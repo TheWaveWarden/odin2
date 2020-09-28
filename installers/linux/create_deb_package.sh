@@ -9,10 +9,11 @@ echo "Creating package ${package_name}"
 sudo rm -rf $package_name
 mkdir $package_name
 
-#build tree for vst2 plugin
+#build tree for vst3 && lv2 plugin
 mkdir $package_name/usr/
 mkdir $package_name/usr/lib
-mkdir $package_name/usr/lib/vst
+mkdir $package_name/usr/lib/vst3
+mkdir $package_name/usr/lib/lv2
 
 #build tree for preset library
 mkdir $package_name/opt
@@ -22,11 +23,14 @@ mkdir $package_name/opt/odin2/Soundbanks
 #build Odin2 from scratch
 pushd ../../Builds/LinuxMakefile/
 ../../../JUCE/Projucer --resave ../../Odin.jucer
+#add command to build LV2 as well
+echo -e "include ../../LV2.mak" >> Makefile
 make clean
 make CONFIG=Release -j 12
 
 #copy it over and go back to installer dir
-cp build/Odin2.so ../../installers/linux/$package_name/usr/lib/vst/Odin2.so
+cp -r build/Odin2.vst3 ../../installers/linux/$package_name/usr/lib/vst3/Odin2.vst3
+cp -r build/Odin2_.lv2 ../../installers/linux/$package_name/usr/lib/lv2/Odin2.lv2
 popd
 
 #cp Soundbanks
@@ -45,7 +49,7 @@ echo "Architecture: amd64" >> $package_name/DEBIAN/control
 echo "Depends:" >> $package_name/DEBIAN/control
 echo "Maintainer: TheWaveWarden info@thewavewarden.com" >> $package_name/DEBIAN/control
 echo "Description: Odin 2" >> $package_name/DEBIAN/control
-echo "  Semimodular VST Synthesizer Plugin" >> $package_name/DEBIAN/control
+echo "  Semimodular VST3 and LV2 Synthesizer Plugin" >> $package_name/DEBIAN/control
 
 #create postinst file
 echo "chmod -R 777 /opt/odin2" >> $package_name/DEBIAN/postinst

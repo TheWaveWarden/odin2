@@ -1,4 +1,4 @@
-You have two options to install Odin2 VST:
+You have two options to install Odin2 VST3 / LV2:
 
 |========================|
 | OPTION 1 (RECOMMENDED) |
@@ -15,8 +15,9 @@ You have two options to install Odin2 VST:
 
 Using this method will install no presets for the synth!
 
-1. Copy the file Odin2.so in the zip to /usr/lib/vst/Odin2.so
-(~/.vst/Odin2.so might also work)
+1. Copy the file Odin2.vst3 in the zip to /usr/lib/vst3/Odin2.vst3 for the VST3 version
+(~/.vst3/Odin2.vst3 might also work)
+2. Copy the file Odin2.lv2 in the zip to /usr/lib/lv2/Odin2.lv2 for the LV2 version
 
 
 

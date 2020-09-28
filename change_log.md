@@ -1,6 +1,9 @@
 # 2.2.3
 - upgraded to JUCE 6
 - Removed automatic analytics-collection by JUCE
+- Removed linux VST2 version
+- Added linux VST3 version
+- Added linux LV2 version
 - New Playmode: Retrig
 - Playmodes Legato and Retrig will now play linguring notes again after the current key is released
 - Improved opening time for GUI
