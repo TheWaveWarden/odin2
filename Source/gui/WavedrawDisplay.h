@@ -59,6 +59,7 @@ private:
   juce::Image m_glaspanel;
   juce::Colour m_color = juce::Colours::black;
   juce::Colour m_draw_color = juce::Colours::white;
+  juce::Colour m_fill_color = juce::Colour(0x473c9bc7);
 
   float m_draw_values[WAVEDRAW_STEPS_X] = {0};
 
