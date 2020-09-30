@@ -38,10 +38,23 @@ void WavedrawDisplay::paint(Graphics &g) {
 	float mid    = (float)getHeight() / 2.f;
 
 	for (int i = 0; i < WAVEDRAW_STEPS_X; ++i) {
-		// g.drawLine(draw_inlay_left + i * width, mid - m_draw_values[i] * height,
-		// draw_inlay_left + (i + 1) * width, mid - m_draw_values[i] * height,
-		// wavedraw_thiccness);
+		
 		if (i != WAVEDRAW_STEPS_X - 1) {
+
+			//draw backgorund shade as path
+			Path path;
+			path.startNewSubPath(draw_inlay_left + (i)*width, mid);
+			path.lineTo(draw_inlay_left + (i)*width,mid - m_draw_values[i] * height);
+			path.lineTo(draw_inlay_left + (i + 1) * width, mid - m_draw_values[i + 1] * height);
+			path.lineTo(draw_inlay_left + (i + 1)*width, mid);
+			path.closeSubPath();
+		
+			g.setColour(m_fill_color);
+			g.fillPath(path);
+
+			g.setColour(m_draw_color);
+
+
 			g.drawLine(draw_inlay_left + (i)*width,
 			           mid - m_draw_values[i] * height,
 			           draw_inlay_left + (i + 1) * width,
