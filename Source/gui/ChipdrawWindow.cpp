@@ -11,15 +11,15 @@ ChipdrawWindow::~ChipdrawWindow() {
 
 void ChipdrawWindow::paint(Graphics &g) {
 
-	int draw_inlay_left  = DRAW_INLAY_LEFT;
-	int draw_inlay_right = DRAW_INLAY_RIGHT;
-	int draw_inlay_up    = DRAW_INLAY_UP;
-	int draw_inlay_down  = DRAW_INLAY_DOWN;
+	int draw_inlay_left    = DRAW_INLAY_LEFT;
+	int draw_inlay_right   = DRAW_INLAY_RIGHT;
+	int draw_inlay_up      = DRAW_INLAY_UP;
+	int draw_inlay_down    = DRAW_INLAY_DOWN;
 	int chipdraw_thiccness = CHIPDRAW_THICCNESS;
-	if(m_GUI_big){
-		draw_inlay_left = 4;
-		draw_inlay_up = 7;
-		draw_inlay_down = 5;
+	if (m_GUI_big) {
+		draw_inlay_left    = 4;
+		draw_inlay_up      = 7;
+		draw_inlay_down    = 5;
 		chipdraw_thiccness = 3;
 	}
 
@@ -31,13 +31,31 @@ void ChipdrawWindow::paint(Graphics &g) {
 	bottom_right.addXY(-m_inlay - 1, -m_inlay);
 	g.fillRect(juce::Rectangle<int>(top_left, bottom_right)); //
 
-	g.setColour(m_draw_color);
-
 	float width  = (float)(getWidth() - draw_inlay_left - draw_inlay_right) / (float)CHIPDRAW_STEPS_X;
 	float height = (float)(getHeight() - draw_inlay_up - draw_inlay_down) / 2.f;
 	float mid    = (float)getHeight() / 2.f;
 
+	//juce::ColourGradient gradient_up   = juce::ColourGradient::vertical(m_color, mid, m_fill_color, mid + height);
+	//juce::ColourGradient gradient_down = juce::ColourGradient::vertical(m_color, mid, m_fill_color, mid - height);
+
 	for (int i = 0; i < CHIPDRAW_STEPS_X; ++i) {
+		Path path;
+		path.startNewSubPath(draw_inlay_left + (i)*width, mid - m_draw_values[i] * height);
+		path.lineTo(draw_inlay_left + (i + 1) * width, mid - m_draw_values[i] * height);
+		path.lineTo(draw_inlay_left + (i + 1) * width, mid);
+		path.lineTo(draw_inlay_left + (i)*width, mid);
+		path.closeSubPath();
+
+		//if (m_draw_values[i] < 0) {
+		//	g.setGradientFill(gradient_up);
+		//} else {
+		//	g.setGradientFill(gradient_down);
+		//}
+		g.setColour(m_fill_color);
+		g.fillPath(path);
+
+		g.setColour(m_draw_color);
+
 		g.drawLine(draw_inlay_left + i * width,
 		           mid - m_draw_values[i] * height,
 		           draw_inlay_left + (i + 1) * width,
@@ -75,10 +93,10 @@ void ChipdrawWindow::mouseInteraction() {
 	int draw_inlay_right = DRAW_INLAY_RIGHT;
 	int draw_inlay_up    = DRAW_INLAY_UP;
 	int draw_inlay_down  = DRAW_INLAY_DOWN;
-	if(m_GUI_big){
-		draw_inlay_left = 4;
-		draw_inlay_up = 7;
-		draw_inlay_down = 5;
+	if (m_GUI_big) {
+		draw_inlay_left  = 4;
+		draw_inlay_up    = 7;
+		draw_inlay_down  = 5;
 		draw_inlay_right = 1;
 	}
 

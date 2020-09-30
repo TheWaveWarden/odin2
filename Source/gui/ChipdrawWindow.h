@@ -54,6 +54,8 @@ private:
   juce::Colour m_color = juce::Colours::black;
   juce::Colour m_draw_color = juce::Colours::black;
 
+  juce::Colour m_fill_color = juce::Colour(0x47d1bc84);
+
 #ifndef WTGEN
   float m_draw_values[CHIPDRAW_STEPS_X] = {0.875f, 0.875f, 0.875f, 0.875f, 0.875f, 0.875f, 0.875f, 0.875f, -0.875f, -0.875f, -0.875f, -0.875f, -0.875f, -0.875f, -0.875f, -0.875f};
 #endif

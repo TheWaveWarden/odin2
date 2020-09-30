@@ -31,8 +31,6 @@ void WavedrawDisplay::paint(Graphics &g) {
 	bottom_right.addXY(-m_inlay - 1, -m_inlay);
 	g.fillRect(juce::Rectangle<int>(top_left, bottom_right)); //
 
-	g.setColour(m_draw_color);
-
 	float width  = (float)(getWidth() - draw_inlay_left - DRAW_INLAY_RIGHT) / (float)WAVEDRAW_STEPS_X;
 	float height = (float)(getHeight() - draw_inlay_up - draw_inlay_down) / 2.f;
 	float mid    = (float)getHeight() / 2.f;
