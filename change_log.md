@@ -1,3 +1,6 @@
+# 2.2.4
+- added background fill to chipdraw and wavedraw editors
+- added new patches to factory sound bank
 # 2.2.3
 - upgraded to JUCE 6
 - Removed automatic analytics-collection by JUCE
