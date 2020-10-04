@@ -14,8 +14,8 @@
 */
 
 #include "LFOSelectorComponent.h"
-#include "../JuceLibraryCode/JuceHeader.h"
 #include "../GlobalIncludes.h"
+#include "../JuceLibraryCode/JuceHeader.h"
 
 LFOSelectorComponent::LFOSelectorComponent() :
     m_up("up", juce::DrawableButton::ButtonStyle::ImageRaw),
@@ -120,6 +120,12 @@ void LFOSelectorComponent::setGUIBig() {
 	m_display.addWave(wavedraw2);
 	juce::Image wavedraw3 = ImageCache::getFromMemory(BinaryData::wavedraw3_150_png, BinaryData::wavedraw3_150_pngSize);
 	m_display.addWave(wavedraw3);
+	juce::Image chipdraw1 = ImageCache::getFromMemory(BinaryData::chipdraw1_150_png, BinaryData::chipdraw1_150_pngSize);
+	m_display.addWave(chipdraw1);
+	juce::Image chipdraw2 = ImageCache::getFromMemory(BinaryData::chipdraw2_150_png, BinaryData::chipdraw2_150_pngSize);
+	m_display.addWave(chipdraw2);
+	juce::Image chipdraw3 = ImageCache::getFromMemory(BinaryData::chipdraw3_150_png, BinaryData::chipdraw3_150_pngSize);
+	m_display.addWave(chipdraw3);
 
 	juce::Image up_1 = ImageCache::getFromMemory(BinaryData::buttonup_2_150_png, BinaryData::buttonup_2_150_pngSize);
 	juce::Image up_2 = ImageCache::getFromMemory(BinaryData::buttonup_1_150_png, BinaryData::buttonup_1_150_pngSize);
@@ -204,6 +210,12 @@ void LFOSelectorComponent::setGUISmall() {
 	m_display.addWave(wavedraw2);
 	juce::Image wavedraw3 = ImageCache::getFromMemory(BinaryData::wavedraw3_png, BinaryData::wavedraw3_pngSize);
 	m_display.addWave(wavedraw3);
+	juce::Image chipdraw1 = ImageCache::getFromMemory(BinaryData::chipdraw1_png, BinaryData::chipdraw1_pngSize);
+	m_display.addWave(chipdraw1);
+	juce::Image chipdraw2 = ImageCache::getFromMemory(BinaryData::chipdraw2_png, BinaryData::chipdraw2_pngSize);
+	m_display.addWave(chipdraw2);
+	juce::Image chipdraw3 = ImageCache::getFromMemory(BinaryData::chipdraw3_png, BinaryData::chipdraw3_pngSize);
+	m_display.addWave(chipdraw3);
 
 	juce::Image up_1 = ImageCache::getFromMemory(BinaryData::buttonup_2_png, BinaryData::buttonup_2_pngSize);
 	juce::Image up_2 = ImageCache::getFromMemory(BinaryData::buttonup_1_png, BinaryData::buttonup_1_pngSize);

@@ -871,6 +871,15 @@
             file="Graphics/cropped/chipdraw_knob_cropped.png"/>
       <FILE id="SwFXXI" name="chipdraw_knob_cropped_150.png" compile="0"
             resource="1" file="Graphics_150/cropped/chipdraw_knob_cropped_150.png"/>
+      <FILE id="lN00ca" name="chipdraw1.png" compile="0" resource="1" file="Graphics/cropped/lfo/chipdraw1.png"/>
+      <FILE id="fT9MNv" name="chipdraw1_150.png" compile="0" resource="1"
+            file="Graphics_150/cropped/lfo/chipdraw1_150.png"/>
+      <FILE id="YIRVYI" name="chipdraw2.png" compile="0" resource="1" file="Graphics/cropped/lfo/chipdraw2.png"/>
+      <FILE id="v715qD" name="chipdraw2_150.png" compile="0" resource="1"
+            file="Graphics_150/cropped/lfo/chipdraw2_150.png"/>
+      <FILE id="CGJ0LG" name="chipdraw3.png" compile="0" resource="1" file="Graphics/cropped/lfo/chipdraw3.png"/>
+      <FILE id="aOdEuP" name="chipdraw3_150.png" compile="0" resource="1"
+            file="Graphics_150/cropped/lfo/chipdraw3_150.png"/>
       <FILE id="XEXSW5" name="chiptune_backdrop.png" compile="0" resource="1"
             file="Graphics/applied/chiptune_backdrop.png"/>
       <FILE id="LSSYQ5" name="chiptune_backdrop_150.png" compile="0" resource="1"

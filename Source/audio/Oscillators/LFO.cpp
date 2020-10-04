@@ -40,6 +40,10 @@ void LFO::loadWavetables() {
 	setWavetablePointerNONCONST(16, m_WT_container->getWavedrawPointer(0));
 	setWavetablePointerNONCONST(17, m_WT_container->getWavedrawPointer(1));
 	setWavetablePointerNONCONST(18, m_WT_container->getWavedrawPointer(2));
+
+	setWavetablePointerNONCONST(19, m_WT_container->getChipdrawPointer(0));
+	setWavetablePointerNONCONST(20, m_WT_container->getChipdrawPointer(1));
+	setWavetablePointerNONCONST(21, m_WT_container->getChipdrawPointer(2));
 }
 
 float LFO::doOscillate() {
