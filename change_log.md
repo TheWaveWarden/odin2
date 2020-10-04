@@ -1,4 +1,5 @@
 # 2.2.4
+- fixed Legato carrying current value over to Attack rather than current section
 - added background fill to chipdraw and wavedraw editors
 - added new patches to factory sound bank
 # 2.2.3
