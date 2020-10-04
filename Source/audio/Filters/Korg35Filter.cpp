@@ -13,6 +13,9 @@
 ** GNU General Public License for more details.
 */
 
+// The code for this filter is based on the diagrams and implementations in Will Pirkles book
+// "Designing Software Synthesizer Plug-Ins in C++". Find out more on https://willpirkle.com
+
 #include "Korg35Filter.h"
 
 Korg35Filter::Korg35Filter() {

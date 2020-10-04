@@ -17,13 +17,6 @@
 
 // --- construction
 Filter::Filter() {
-	// --- defaults
-	m_res_base    = 1.0; // Q is 1 to 10 on GUI
-	m_freq_modded = FILTER_FC_DEFAULT;
-	m_res_modded  = FILTER_Q_DEFAULT;
-	m_freq_base   = FILTER_FC_DEFAULT;
-	// --- clear
-	m_mod_frequency = 0.0;
 }
 
 Filter::~Filter() {
@@ -31,4 +24,36 @@ Filter::~Filter() {
 
 // --- flush buffers
 void Filter::reset() {
+}
+
+void Filter::setFreqModPointer(float *p_pointer) {
+	m_freq_mod = p_pointer;
+}
+
+void Filter::setResModPointer(float *p_pointer) {
+	m_res_mod = p_pointer;
+}
+
+void Filter::setVelModPointer(float *p_pointer) {
+	m_vel_mod_mod = p_pointer;
+}
+
+void Filter::setKbdModPointer(float *p_pointer) {
+	m_kbd_mod_mod = p_pointer;
+}
+
+void Filter::setSaturationModPointer(float *p_pointer) {
+	m_saturation_mod = p_pointer;
+}
+
+void Filter::setEnvModPointer(float *p_pointer) {
+	m_env_mod_mod = p_pointer;
+}
+
+void Filter::setResControl(double p_res) {
+}
+
+void Filter::setSampleRate(double d) {
+	m_samplerate          = d;
+	m_one_over_samplerate = 1.f / d;
 }
