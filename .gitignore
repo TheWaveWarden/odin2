@@ -2,7 +2,4 @@ Builds/
 .vscode/
 JuceLibraryCode/
 benchmark/build
-Graphics/*.png
-Graphics/cropped/knobs/*.png
-Graphics/cropped/lfo/*.png
 patches_listen
