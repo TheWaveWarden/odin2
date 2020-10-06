@@ -15,8 +15,8 @@
 
 #pragma once
 
-#include "../JuceLibraryCode/JuceHeader.h"
 #include "../GlobalIncludes.h"
+#include "../JuceLibraryCode/JuceHeader.h"
 #include "Knob.h"
 
 #define HANDLE_DIAMETER 8
@@ -34,43 +34,20 @@ public:
 	void paint(Graphics &) override;
 	void mouseDrag(const MouseEvent &event) override;
 	void mouseDown(const MouseEvent &event) override;
-  void mouseUp(const MouseEvent &event) override;
+	void mouseUp(const MouseEvent &event) override;
 	void mouseInteraction();
 
-	void setImage(juce::Image p_panel) {
-		m_panel = p_panel;
-	}
-	void setInlay(int p_inlay) {
-		m_inlay = p_inlay;
-	}
-	void setX(float p_x) {
-		if (!m_lock_set_XY_while_drawing) {
-			m_value_x = p_x;
-			repaint();
-		}
-	}
-	void setY(float p_y) {
-		if (!m_lock_set_XY_while_drawing) {
-			m_value_y = p_y;
-			repaint();
-		}
-	}
-
-	void setColor(juce::Colour p_color) {
-		m_color = p_color;
-	}
-
-	void setLogoImage(juce::Image p_image){
-		m_logo = p_image;
-		m_draw_logo = true;
-	}
-
-	void setGUIBig(){m_GUI_big = true;}
-	void setGUISmall(){m_GUI_big = false;}
+	void setImage(juce::Image p_panel);
+	void setInlay(int p_inlay);
+	void setX(float p_x);
+	void setY(float p_y);
+	void setColor(juce::Colour p_color);
+	void setLogoImage(juce::Image p_image);
+	void setGUIBig();
+	void setGUISmall();
 
 private:
 	bool m_GUI_big = false;
-
 	bool m_draw_logo = false;
 
 	//this resolves the issue where the pad updates the knob, which updates the pad again

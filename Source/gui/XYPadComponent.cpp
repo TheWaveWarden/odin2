@@ -47,9 +47,11 @@ void XYPadComponent::paint(Graphics &g) {
 		if (m_GUI_big) {
 			g.setFont(18.0f);
 			g.drawText(
-			    "A", OdinHelper::c150(VECTOR_LEFT)+1, OdinHelper::c150(VECTOR_DOWN), 12, 23, Justification::topLeft);
-			g.drawText("B", OdinHelper::c150(VECTOR_LEFT)+1, OdinHelper::c150(VECTOR_UP), 12, 23, Justification::topLeft);
-			g.drawText("C", OdinHelper::c150(VECTOR_RIGHT), OdinHelper::c150(VECTOR_UP), 12, 23, Justification::topLeft);
+			    "A", OdinHelper::c150(VECTOR_LEFT) + 1, OdinHelper::c150(VECTOR_DOWN), 12, 23, Justification::topLeft);
+			g.drawText(
+			    "B", OdinHelper::c150(VECTOR_LEFT) + 1, OdinHelper::c150(VECTOR_UP), 12, 23, Justification::topLeft);
+			g.drawText(
+			    "C", OdinHelper::c150(VECTOR_RIGHT), OdinHelper::c150(VECTOR_UP), 12, 23, Justification::topLeft);
 			g.drawText(
 			    "D", OdinHelper::c150(VECTOR_RIGHT), OdinHelper::c150(VECTOR_DOWN), 12, 23, Justification::topLeft);
 		} else {
@@ -131,4 +133,42 @@ void XYPadComponent::mouseInteraction() {
 void XYPadComponent::mouseUp(const MouseEvent &event) {
 	m_lock_set_XY_while_drawing = false;
 	Component::mouseUp(event);
+}
+
+void XYPadComponent::setImage(juce::Image p_panel) {
+	m_panel = p_panel;
+}
+
+void XYPadComponent::setInlay(int p_inlay) {
+	m_inlay = p_inlay;
+}
+
+void XYPadComponent::setX(float p_x) {
+	if (!m_lock_set_XY_while_drawing) {
+		m_value_x = p_x;
+		repaint();
+	}
+}
+void XYPadComponent::setY(float p_y) {
+	if (!m_lock_set_XY_while_drawing) {
+		m_value_y = p_y;
+		repaint();
+	}
+}
+
+void XYPadComponent::setColor(juce::Colour p_color) {
+	m_color = p_color;
+}
+
+void XYPadComponent::setLogoImage(juce::Image p_image) {
+	m_logo      = p_image;
+	m_draw_logo = true;
+}
+
+void XYPadComponent::setGUIBig() {
+	m_GUI_big = true;
+}
+
+void XYPadComponent::setGUISmall() {
+	m_GUI_big = false;
 }
