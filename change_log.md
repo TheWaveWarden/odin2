@@ -2,6 +2,7 @@
 - fixed Legato carrying current value over to Attack rather than to current section
 - ChipDraw tables now available as LFO waves
 - added background fill to chipdraw and wavedraw editors
+- fixed permissions path in mac installer script when copying file over from old soundbank location
 - added new patches to factory sound bank
 # 2.2.3
 - upgraded to JUCE 6
