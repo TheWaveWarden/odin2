@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2019.11.27)  9 SEP 2020 08:09
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2019.11.27)  6 OCT 2020 21:50
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -991,7 +991,7 @@ t4): destination with the same identifier (name{page.1}) has been already used,
  duplicate ignored
 <to be read again> 
                    \relax 
-l.33 ...mberline {4.2}Distortion}{34}{section.4.2}
+l.33 ...mberline {4.2}Distortion}{35}{section.4.2}
                                                   % [1
 
 
@@ -2201,8 +2201,7 @@ Type  H <return>  for immediate help.
 l.80 ...and right channel are phase-offset by 90°
                                                    to spread the sound in th...
 
-? q
-OK, entering \batchmode...
+? 
 File: graphics/knob.png Graphic file (type png)
 <use graphics/knob.png>
 Package pdftex.def Info: graphics/knob.png  used on input line 88.
@@ -2232,7 +2231,7 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 92.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
- [41 <./graphics/chorus.png> <./graphics/chorus_sync.png (PNG copy)>]
+[41 <./graphics/chorus.png> <./graphics/chorus_sync.png (PNG copy)>]
 File: graphics/knob.png Graphic file (type png)
 <use graphics/knob.png>
 Package pdftex.def Info: graphics/knob.png  used on input line 96.
@@ -2275,6 +2274,7 @@ File: graphics/phaser.png Graphic file (type png)
 Package pdftex.def Info: graphics/phaser.png  used on input line 108.
 (pdftex.def)             Requested size: 234.8775pt x 103.60358pt.
 
+
 ! Package inputenc Error: Unicode character ° (U+00B0)
 (inputenc)                not set up for use with LaTeX.
 
@@ -2285,10 +2285,8 @@ Type  H <return>  for immediate help.
 l.110 ...nd right channel are phase-offset by 90°
                                                    to spread the sound in th...
 
-You may provide a definition with
-\DeclareUnicodeCharacter 
-
- [42 <./graphics/phaser.png>]
+? 
+[42 <./graphics/phaser.png>]
 File: graphics/knob.png Graphic file (type png)
 <use graphics/knob.png>
 Package pdftex.def Info: graphics/knob.png  used on input line 118.
@@ -2413,7 +2411,8 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 161.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
- [44 <./graphics/flanger.png> <./graphics/flanger_sync.png (PNG copy)>]
+
+[44 <./graphics/flanger.png> <./graphics/flanger_sync.png (PNG copy)>]
 File: graphics/knob.png Graphic file (type png)
 <use graphics/knob.png>
 Package pdftex.def Info: graphics/knob.png  used on input line 165.
@@ -2438,7 +2437,8 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 169.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
-) [45]
+)
+[45]
 \openout2 = `Modulators.aux'.
 
  (./Modulators.tex
@@ -2448,7 +2448,7 @@ File: graphics/ADSR_section.png Graphic file (type png)
 <use graphics/ADSR_section.png>
 Package pdftex.def Info: graphics/ADSR_section.png  used on input line 13.
 (pdftex.def)             Requested size: 187.89914pt x 87.99515pt.
- [46
+[46
 
 
 
@@ -2739,7 +2739,7 @@ File: graphics/wheels.png Graphic file (type png)
 <use graphics/wheels.png>
 Package pdftex.def Info: graphics/wheels.png  used on input line 191.
 (pdftex.def)             Requested size: 70.46037pt x 112.59528pt.
- [51 <./graphics/XY_pad.png>]
+[51 <./graphics/XY_pad.png>]
 File: graphics/knob.png Graphic file (type png)
 <use graphics/knob.png>
 Package pdftex.def Info: graphics/knob.png  used on input line 202.
@@ -2779,7 +2779,8 @@ Package pdftex.def Info: graphics/available.png  used on input line 212.
 ) [52 <./graphics/wheels.png>]
 \openout2 = `ModulationMatrix.aux'.
 
- (./ModulationMatrix.tex
+
+(./ModulationMatrix.tex
 Chapter 7.
 <graphics/modmatrix.png, id=703, 753.81625pt x 243.91125pt>
 File: graphics/modmatrix.png Graphic file (type png)
@@ -2815,7 +2816,7 @@ File: graphics/not_available.png Graphic file (type png)
 <use graphics/not_available.png>
 Package pdftex.def Info: graphics/not_available.png  used on input line 29.
 (pdftex.def)             Requested size: 8.77101pt x 9.89503pt.
- [53
+[53
 
 
 
@@ -2901,7 +2902,7 @@ Overfull \hbox (12.41869pt too wide) in alignment at lines 181--206
  [] [] [] [] 
  []
 
- [56] [57]
+[56] [57]
 Overfull \hbox (1.10257pt too wide) in paragraph at lines 238--238
 \OT1/put/b/n/8 Mono/ 
  []
@@ -2920,22 +2921,22 @@ Overfull \hbox (7.71654pt too wide) in alignment at lines 330--440
  [] [] [] [] 
  []
 
- [58]
+[58]
 Overfull \hbox (7.71654pt too wide) in alignment at lines 440--550
  [] [] [] [] 
  []
 
- [59] [60]
+[59] [60]
 Overfull \hbox (7.71654pt too wide) in alignment at lines 550--660
  [] [] [] [] 
  []
 
- [61]
+[61]
 Overfull \hbox (7.71654pt too wide) in alignment at lines 660--668
  [] [] [] [] 
  []
 
- [62] [63]) [64]
+[62] [63]) [64]
 \openout2 = `Arpeggiator.aux'.
 
  (./Arpeggiator.tex
@@ -2968,7 +2969,7 @@ File: graphics/arpeggiator_on.png Graphic file (type png)
 <use graphics/arpeggiator_on.png>
 Package pdftex.def Info: graphics/arpeggiator_on.png  used on input line 33.
 (pdftex.def)             Requested size: 38.80925pt x 35.07736pt.
- [65
+[65
 
 
 
@@ -3206,7 +3207,8 @@ vs_transpose.png> <./graphics/arpeggiator_mod2.png (PNG copy)>] [70 <./graphics
 /arpeggiator_transp.png (PNG copy)>]
 \openout2 = `GlobalSettings.aux'.
 
- (./GlobalSettings.tex
+
+(./GlobalSettings.tex
 Chapter 9.
 File: graphics/knob.png Graphic file (type png)
 <use graphics/knob.png>
@@ -3225,7 +3227,7 @@ File: graphics/poly_legato.png Graphic file (type png)
 <use graphics/poly_legato.png>
 Package pdftex.def Info: graphics/poly_legato.png  used on input line 24.
 (pdftex.def)             Requested size: 65.76588pt x 20.55249pt.
- [71
+[71
 
 
 
@@ -3307,22 +3309,19 @@ Package pdftex.def Info: graphics/available.png  used on input line 80.
 ) [73 <./graphics/master_glide.png>]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 128.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 128.
- (./manual.aux (./Introduction.aux) (./Oscillators.aux) (./Filters.aux) (./AmpD
-istortion.aux) (./FX.aux) (./Modulators.aux) (./ModulationMatrix.aux) (./Arpegg
-iator.aux) (./GlobalSettings.aux))
+ (./manual.aux (./Introduction.aux) (./Oscillators.aux)
+(./Filters.aux) (./AmpDistortion.aux) (./FX.aux) (./Modulators.aux)
+(./ModulationMatrix.aux) (./Arpeggiator.aux) (./GlobalSettings.aux))
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 128.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 128.
 Package rerunfilecheck Info: File `manual.out' has not changed.
 (rerunfilecheck)             Checksum: C3667A59B118F0D43AD02E12237AD218;3182.
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 128.
  ) 
 Here is how much of TeX's memory you used:
  32340 strings out of 492615
  648244 string characters out of 6131389
- 869967 words of memory out of 5000000
+ 869968 words of memory out of 5000000
  35556 multiletter control sequences out of 15000+600000
  583825 words of font info for 69 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -3340,7 +3339,7 @@ fonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
 /cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt1
 2.pfb></usr/share/texlive/texmf-dist/fonts/type1/adobe/utopia/putb8a.pfb></usr/
 share/texlive/texmf-dist/fonts/type1/adobe/utopia/putr8a.pfb>
-Output written on manual.pdf (74 pages, 6018668 bytes).
+Output written on manual.pdf (74 pages, 6018661 bytes).
 PDF statistics:
  932 PDF objects out of 1000 (max. 8388607)
  668 compressed objects within 7 object streams

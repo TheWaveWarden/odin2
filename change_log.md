@@ -1,5 +1,5 @@
 # 2.2.4
-- fixed Legato carrying current value over to Attack rather than current section
+- fixed Legato carrying current value over to Attack rather than to current section
 - ChipDraw tables now available as LFO waves
 - added background fill to chipdraw and wavedraw editors
 - added new patches to factory sound bank
