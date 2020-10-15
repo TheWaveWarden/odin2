@@ -16,8 +16,11 @@
 #include "XYPadComponent.h"
 #include "../JuceLibraryCode/JuceHeader.h"
 
-XYPadComponent::XYPadComponent(Knob &p_x, Knob &p_y, bool p_vector_pad) :
-    m_knob_x(p_x), m_knob_y(p_y), m_vector_pad(p_vector_pad) {
+XYPadComponent::XYPadComponent(
+    AudioProcessorValueTreeState &vts, const std::string &p_param_prefix, Knob &p_x, Knob &p_y, bool p_vector_pad) :
+    m_value_tree(vts),
+    m_param_name_x(p_param_prefix + "x"), m_param_name_y(p_param_prefix + "y"), m_knob_x(p_x), m_knob_y(p_y),
+    m_vector_pad(p_vector_pad) {
 	m_color = juce::Colour(30, 30, 30);
 }
 
@@ -124,8 +127,16 @@ void XYPadComponent::mouseInteraction() {
 	m_value_y = m_value_y < 0 ? 0 : m_value_y;
 	m_value_y = m_value_y > 1 ? 1 : m_value_y;
 
-	m_knob_x.setValue(m_value_x);
-	m_knob_y.setValue(m_value_y);
+	//todo here we want to set "notifyingHost" in some way, to allow for automation recording
+	//DBG_VAR(m_param_name_x);
+	//DBG_VAR(m_param_name_y);
+	// auto store_mouse_lock = m_lock_set_XY_while_drawing;
+	// m_lock_set_XY_while_drawing = true;
+	SETAUDIO0TO1(m_param_name_x, m_value_x);
+	SETAUDIO0TO1(m_param_name_y, m_value_y);
+	// m_lock_set_XY_while_drawing = store_mouse_lock;
+	//m_knob_x.setValue(m_value_x);
+	//m_knob_y.setValue(m_value_y);
 
 	repaint();
 }

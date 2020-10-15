@@ -15,11 +15,11 @@
 
 #pragma once
 
-#include "../JuceLibraryCode/JuceHeader.h"
 #include "../GlobalIncludes.h"
-#include "XYPadComponent.h"
+#include "../JuceLibraryCode/JuceHeader.h"
 #include "Knob.h"
 #include "OdinControlAttachments.h"
+#include "XYPadComponent.h"
 
 #define MODX_POS_X (264 - 150)
 #define MODX_POS_Y (564 - 502)
@@ -30,27 +30,27 @@
 
 class XYSectionComponent : public Component {
 public:
-  XYSectionComponent(AudioProcessorValueTreeState& vts, std::string p_section_name);
-  ~XYSectionComponent();
+	XYSectionComponent(AudioProcessorValueTreeState &vts, const std::string &p_section_name);
+	~XYSectionComponent();
 
-  void paint(Graphics &) override;
+	void paint(Graphics &) override;
 
-  void setGUIBig();
-  void setGUISmall();
+	void setGUIBig();
+	void setGUISmall();
 
 private:
-  bool m_GUI_big = false;
+	bool m_GUI_big = false;
 
-  std::string m_section_name;
-  AudioProcessorValueTreeState& m_value_tree;
+	std::string m_section_name;
+	AudioProcessorValueTreeState &m_value_tree;
 
-  Knob m_modx;
-  Knob m_mody;
+	Knob m_modx;
+	Knob m_mody;
 
-  std::unique_ptr<OdinKnobAttachment> m_x_attach;
-  std::unique_ptr<OdinKnobAttachment> m_y_attach;
+	std::unique_ptr<OdinKnobAttachment> m_x_attach;
+	std::unique_ptr<OdinKnobAttachment> m_y_attach;
 
-  XYPadComponent m_xy_pad;
+	XYPadComponent m_xy_pad;
 
-  JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(XYSectionComponent)
+	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(XYSectionComponent)
 };
