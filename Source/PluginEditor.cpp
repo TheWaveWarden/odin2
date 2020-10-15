@@ -86,14 +86,14 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
     m_select_presets_button("select_presets_button", juce::DrawableButton::ButtonStyle::ImageRaw),
     m_reset("reset", juce::DrawableButton::ButtonStyle::ImageRaw), m_env_13_button("env13_button"),
     m_env_24_button("env24_button"), m_lfo_13_button("lfo13_button"), m_lfo_24_button("lfo24_button"),
-    m_pitch_amount(true), m_osc1(p_processor, vts, "1"), m_osc2(p_processor, vts, "2"),
-    m_osc3(p_processor, vts, "3"), m_fil1_component(vts, "1"), m_fil2_component(vts, "2"), m_fil3_component(vts, "3"),
-    m_midsection(vts), m_adsr_1(vts, "1"), m_adsr_2(vts, "2"), m_adsr_3(vts, "3"), m_adsr_4(vts, "4"),
-    m_lfo_1(vts, "1", p_is_standalone), m_lfo_2(vts, "2", p_is_standalone), m_lfo_3(vts, "3", p_is_standalone),
-    m_lfo_4(vts, "4", p_is_standalone), m_delay(vts, p_is_standalone), m_phaser(vts, "phaser", p_is_standalone),
-    m_flanger(vts, "flanger", p_is_standalone), m_chorus(vts, "chorus", p_is_standalone), m_xy_section(vts, "xy"),
-    m_osc1_type_identifier("osc1_type"), m_osc2_type_identifier("osc2_type"), m_osc3_type_identifier("osc3_type"),
-    m_fil1_type_identifier("fil1_type"), m_fil2_type_identifier("fil2_type"), m_fil3_type_identifier("fil3_type"),
+    m_pitch_amount(true), m_osc1(p_processor, vts, "1"), m_osc2(p_processor, vts, "2"), m_osc3(p_processor, vts, "3"),
+    m_fil1_component(vts, "1"), m_fil2_component(vts, "2"), m_fil3_component(vts, "3"), m_midsection(vts),
+    m_adsr_1(vts, "1"), m_adsr_2(vts, "2"), m_adsr_3(vts, "3"), m_adsr_4(vts, "4"), m_lfo_1(vts, "1", p_is_standalone),
+    m_lfo_2(vts, "2", p_is_standalone), m_lfo_3(vts, "3", p_is_standalone), m_lfo_4(vts, "4", p_is_standalone),
+    m_delay(vts, p_is_standalone), m_phaser(vts, "phaser", p_is_standalone), m_flanger(vts, "flanger", p_is_standalone),
+    m_chorus(vts, "chorus", p_is_standalone), m_xy_section(vts, "xy"), m_osc1_type_identifier("osc1_type"),
+    m_osc2_type_identifier("osc2_type"), m_osc3_type_identifier("osc3_type"), m_fil1_type_identifier("fil1_type"),
+    m_fil2_type_identifier("fil2_type"), m_fil3_type_identifier("fil3_type"),
     m_pitchbend_amount_identifier("pitchbend_amount"), m_unison_voices_identifier("unison_voices"),
     m_delay_position_identifier("delay_position"), m_flanger_position_identifier("flanger_position"),
     m_phaser_position_identifier("phaser_position"), m_chorus_position_identifier("chorus_position"), m_mod_matrix(vts),
@@ -341,8 +341,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 #endif
 	);
 
-	m_question_button.onClick = [&]() {
-	};
+	m_question_button.onClick = [&]() {};
 
 	addAndMakeVisible(m_question_button);
 
@@ -532,11 +531,14 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	m_mono_poly_legato_dropdown.setSelectedId(2, dontSendNotification);
 
 	m_mono_poly_legato_dropdown.setColor(juce::STANDARD_DISPLAY_COLOR);
-	m_mono_poly_legato_dropdown.setTooltip("Selects the distortion algorithm to be used");
+	m_mono_poly_legato_dropdown.setTooltip(
+	    "Selects the Playmode:\n\nPoly: Play multiple voices at once.\n\nLegato: Only one voice available. Envelopes "
+	    "are not restarted, so legato notes will blend over seemlessly.\n\nRetrig: Like Legato, but the envelopes are "
+	    "restarted on every note start.");
 	m_mono_poly_legato_dropdown.onChange = [&]() {
 		m_value_tree.state.getChildWithName("misc").setProperty(
 		    "legato", PLAYMODETOVALUETREE(m_mono_poly_legato_dropdown.getSelectedId()), nullptr);
-		processor.setMonoPolyLegato((PlayModes) m_mono_poly_legato_dropdown.getSelectedId());
+		processor.setMonoPolyLegato((PlayModes)m_mono_poly_legato_dropdown.getSelectedId());
 	};
 	addAndMakeVisible(m_mono_poly_legato_dropdown);
 
@@ -653,14 +655,14 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 
 	//DBG("Display_Scale: " + std::to_string(Desktop::getInstance().getDisplays().getMainDisplay().scale));
 
-//#ifdef ODIN_LINUX
-//#ifdef ODIN_DEBUG
-//	if (!writeComponentImageToFile(*this)) {
-//		DBG("Failed to create GUI screenshot");
-//	}
-//	writeValueTreeToFile(m_value_tree.state);
-//#endif
-//#endif
+	//#ifdef ODIN_LINUX
+	//#ifdef ODIN_DEBUG
+	//	if (!writeComponentImageToFile(*this)) {
+	//		DBG("Failed to create GUI screenshot");
+	//	}
+	//	writeValueTreeToFile(m_value_tree.state);
+	//#endif
+	//#endif
 }
 
 OdinAudioProcessorEditor::~OdinAudioProcessorEditor() {
@@ -892,9 +894,9 @@ void OdinAudioProcessorEditor::forceValueTreeOntoComponentsOnlyMainPanel() {
 	m_unison_selector.setValue(m_value_tree.state.getChildWithName("misc")["unison_voices"]);
 	m_pitch_amount.setValue(m_value_tree.state.getChildWithName("misc")["pitchbend_amount"]);
 	m_mono_poly_legato_dropdown.setSelectedId(
-	    (int)VALUETREETOPLAYMODE((int)m_value_tree.state.getChildWithName("misc")["legato"]),
-	    dontSendNotification);
-	("LEGATORVALUE:" + std::to_string((int)VALUETREETOPLAYMODE((int)m_value_tree.state.getChildWithName("misc")["legato"])));
+	    (int)VALUETREETOPLAYMODE((int)m_value_tree.state.getChildWithName("misc")["legato"]), dontSendNotification);
+	("LEGATORVALUE:" +
+	 std::to_string((int)VALUETREETOPLAYMODE((int)m_value_tree.state.getChildWithName("misc")["legato"])));
 
 	// ugly fix to set highlighted fx panel
 	std::string fx_name = "delay";

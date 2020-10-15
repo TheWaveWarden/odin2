@@ -138,7 +138,6 @@ void OdinAudioProcessorEditor::setGUIBig() {
 	                             fx_on_1.getWidth(),
 	                             fx_on_1.getHeight());
 	m_chorus_on_button.setTriggeredOnMouseDown(true);
-	m_chorus_on_button.setTooltip("Enables the chorus");
 	m_chorus_on_button.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
 
 	m_delay_on_button.setImages(

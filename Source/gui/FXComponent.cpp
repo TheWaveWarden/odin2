@@ -53,7 +53,7 @@ FXComponent::FXComponent(AudioProcessorValueTreeState &vts, std::string p_fx_nam
 
 	m_dry_wet.setSliderStyle(Slider::RotaryVerticalDrag);
 	m_dry_wet.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-	m_dry_wet.setKnobTooltip("The mix of processed and\n unprocessed signals");
+	m_dry_wet.setKnobTooltip("The mix of unprocessed and\n processed signals");
 	addAndMakeVisible(m_dry_wet);
 
 	m_reset.setClickingTogglesState(true);

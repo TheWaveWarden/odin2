@@ -77,7 +77,7 @@ AmpDistortionFlowComponent::AmpDistortionFlowComponent(AudioProcessorValueTreeSt
 
 	m_dry_wet.setSliderStyle(Slider::RotaryVerticalDrag);
 	m_dry_wet.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-	m_dry_wet.setKnobTooltip("The ratio of processed\nand unprocessed sound");
+	m_dry_wet.setKnobTooltip("The ratio of unprocessed\nand processed sound");
 	addAndMakeVisible(m_dry_wet);
 
 	m_distortion_algo.setInlay(1);
