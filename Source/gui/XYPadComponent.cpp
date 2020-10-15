@@ -103,6 +103,10 @@ void XYPadComponent::mouseDrag(const MouseEvent &event) {
 }
 
 void XYPadComponent::mouseDown(const MouseEvent &event) {
+	//needed so the host knows we are "touching" the knobs
+	m_value_tree.getParameter(m_param_name_x)->beginChangeGesture();
+	m_value_tree.getParameter(m_param_name_y)->beginChangeGesture();
+
 	mouseInteraction();
 	m_lock_set_XY_while_drawing = true;
 }
@@ -127,7 +131,6 @@ void XYPadComponent::mouseInteraction() {
 	m_value_y = m_value_y < 0 ? 0 : m_value_y;
 	m_value_y = m_value_y > 1 ? 1 : m_value_y;
 
-	//todo here we want to set "notifyingHost" in some way, to allow for automation recording
 	SETAUDIO0TO1(m_param_name_x, m_value_x);
 	SETAUDIO0TO1(m_param_name_y, m_value_y);
 
@@ -137,6 +140,9 @@ void XYPadComponent::mouseInteraction() {
 void XYPadComponent::mouseUp(const MouseEvent &event) {
 	m_lock_set_XY_while_drawing = false;
 	Component::mouseUp(event);
+
+	m_value_tree.getParameter(m_param_name_x)->endChangeGesture();
+	m_value_tree.getParameter(m_param_name_y)->endChangeGesture();
 }
 
 void XYPadComponent::setImage(juce::Image p_panel) {
