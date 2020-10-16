@@ -3,3 +3,4 @@ Builds/
 JuceLibraryCode/
 benchmark/build
 patches_listen
+Source/GitCommitId.h

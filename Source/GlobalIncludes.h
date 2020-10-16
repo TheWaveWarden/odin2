@@ -21,6 +21,8 @@
 #include <iomanip> // setprecision
 #include <sstream> // stringstream
 
+#include "GitCommitId.h"
+
 #ifdef ODIN_LINUX
 #endif
 #ifdef ODIN_WIN
@@ -35,7 +37,7 @@
 #define ODIN_PATCH_VERSION 4
 
 #define ODIN_VERSION_STRING                                                                                            \
-	("Odin 2." + std::to_string(ODIN_MINOR_VERSION) + "." + std::to_string(ODIN_PATCH_VERSION) + " beta")
+	("Odin 2." + std::to_string(ODIN_MINOR_VERSION) + "." + std::to_string(ODIN_PATCH_VERSION))
 
 // ! this is for migrating patches from older version, not to be confused with above
 #define ODIN_PATCH_MIGRATION_VERSION 4
