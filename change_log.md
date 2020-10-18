@@ -6,7 +6,7 @@
 - disabled "Made with JUCE" splashscreen
 - fixed permissions path in mac installer script when copying file over from old soundbank location
 - added new patches to factory sound bank
-- git commit hash now displayed in the help-section
+- git commit hash is now displayed in the help-section
 # 2.2.3
 - upgraded to JUCE 6
 - Removed automatic analytics-collection by JUCE
