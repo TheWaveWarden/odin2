@@ -6,6 +6,7 @@
 - disabled "Made with JUCE" splashscreen
 - fixed permissions path in mac installer script when copying file over from old soundbank location
 - added new patches to factory sound bank
+- fixed help description for Playmode-dropdown
 - git commit hash is now displayed in the help-section
 # 2.2.3
 - upgraded to JUCE 6
