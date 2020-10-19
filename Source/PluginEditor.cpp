@@ -895,8 +895,6 @@ void OdinAudioProcessorEditor::forceValueTreeOntoComponentsOnlyMainPanel() {
 	m_pitch_amount.setValue(m_value_tree.state.getChildWithName("misc")["pitchbend_amount"]);
 	m_mono_poly_legato_dropdown.setSelectedId(
 	    (int)VALUETREETOPLAYMODE((int)m_value_tree.state.getChildWithName("misc")["legato"]), dontSendNotification);
-	("LEGATORVALUE:" +
-	 std::to_string((int)VALUETREETOPLAYMODE((int)m_value_tree.state.getChildWithName("misc")["legato"])));
 
 	// ugly fix to set highlighted fx panel
 	std::string fx_name = "delay";
