@@ -21,6 +21,8 @@
 #include <iomanip> // setprecision
 #include <sstream> // stringstream
 
+#include "GitCommitId.h"
+
 #ifdef ODIN_LINUX
 #endif
 #ifdef ODIN_WIN
@@ -32,15 +34,17 @@
 
 #define ODIN_MAJOR_VERSION 2
 #define ODIN_MINOR_VERSION 2
-#define ODIN_PATCH_VERSION 3
+#define ODIN_PATCH_VERSION 4
 
 #define ODIN_VERSION_STRING                                                                                            \
-	("Odin 2." + std::to_string(ODIN_MINOR_VERSION) + "." + std::to_string(ODIN_PATCH_VERSION) + " beta")
+	("Odin 2." + std::to_string(ODIN_MINOR_VERSION) + "." + std::to_string(ODIN_PATCH_VERSION))
 
 // ! this is for migrating patches from older version, not to be confused with above
 #define ODIN_PATCH_MIGRATION_VERSION 4
 //1 -> 2: replaced "amp width" by "amp velocity"
 //2 -> 3: made carrier and modulator ratio, as well as pitchbend amount nonaudio values (but wrote migration code)
+
+#define DBG_VAR(var) DBG(#var << ": " << var)
 
 #define MENU_BACKGROUND_COLOR Colour(35, 35, 35)
 #define MENU_FONT_COLOR Colours::lightgrey
@@ -163,7 +167,7 @@
 
 #define GETAUDIO(name) m_value_tree.getParameterAsValue(name).getValue()
 
-#define SETAUDIO0TO1(name, value) m_value_tree.getParameter(name)->setValueNotifyingHost(((float)value))
+#define SETAUDIO0TO1(name, value) m_value_tree.getParameter(name)->setValueNotifyingHost((float)value)
 
 #define SETAUDIOFULLRANGE(name, value) /*m_value_tree.getParameter(name)->beginChangeGesture();*/                      \
 	m_value_tree.getParameter(name)->setValueNotifyingHost(                                                            \

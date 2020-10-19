@@ -1,9 +1,13 @@
 # 2.2.4
 - fixed Legato carrying current value over to Attack rather than to current section
 - ChipDraw tables now available as LFO waves
+- XY-Pad automation can now be recorded in DAW
 - added background fill to chipdraw and wavedraw editors
+- disabled "Made with JUCE" splashscreen
 - fixed permissions path in mac installer script when copying file over from old soundbank location
 - added new patches to factory sound bank
+- fixed help description for Playmode-dropdown
+- git commit hash is now displayed in the help-section
 # 2.2.3
 - upgraded to JUCE 6
 - Removed automatic analytics-collection by JUCE

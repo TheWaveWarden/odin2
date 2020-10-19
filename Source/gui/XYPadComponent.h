@@ -28,7 +28,11 @@
 #define VECTOR_RIGHT 87
 class XYPadComponent : public Component, public SettableTooltipClient {
 public:
-	XYPadComponent(Knob &p_x, Knob &p_y, bool p_vector_pad = false);
+	XYPadComponent(AudioProcessorValueTreeState &vts,
+	               const std::string &p_param_prefix,
+	               Knob &p_x,
+	               Knob &p_y,
+	               bool p_vector_pad = false);
 	~XYPadComponent();
 
 	void paint(Graphics &) override;
@@ -47,7 +51,11 @@ public:
 	void setGUISmall();
 
 private:
-	bool m_GUI_big = false;
+	AudioProcessorValueTreeState &m_value_tree;
+	const std::string m_param_name_x;
+	const std::string m_param_name_y;
+
+	bool m_GUI_big   = false;
 	bool m_draw_logo = false;
 
 	//this resolves the issue where the pad updates the knob, which updates the pad again

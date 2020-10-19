@@ -16,8 +16,8 @@
 #include "XYSectionComponent.h"
 #include "../JuceLibraryCode/JuceHeader.h"
 
-XYSectionComponent::XYSectionComponent(AudioProcessorValueTreeState &vts, std::string p_section_name) :
-    m_value_tree(vts), m_section_name(p_section_name), m_xy_pad(m_modx, m_mody) {
+XYSectionComponent::XYSectionComponent(AudioProcessorValueTreeState &vts,const std::string &p_section_name) :
+    m_value_tree(vts), m_section_name(p_section_name), m_xy_pad(vts, "xy_", m_modx, m_mody) {
 
 	m_xy_pad.setInlay(1);
 	m_xy_pad.setTooltip("An XY pad to be used as a modulation source in the modmatrix.");

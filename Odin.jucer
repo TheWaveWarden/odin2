@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="vpwEHn" name="Odin2" projectType="audioplug" pluginFormats="buildAU,buildStandalone,buildVST3"
-              version="2.2.3" companyName="TheWaveWarden" companyWebsite="www.thewavewarden.com"
+              version="2.2.4" companyName="TheWaveWarden" companyWebsite="www.thewavewarden.com"
               pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn"
               pluginManufacturerCode="WAWA" pluginCode="ODIN" pluginChannelConfigs="{0,2}"
-              displaySplashScreen="1" jucerFormatVersion="1">
+              displaySplashScreen="0" jucerFormatVersion="1" companyEmail="info@thewavewarden.com"
+              postExportShellCommandWin="powershell.exe -command &quot;#define GIT_COMMIT_ID &#96;&quot;$(git --git-dir %%1%%\.git rev-parse --short HEAD)&#96;&quot;&quot; &gt; %%1%%\Source\GitCommitId.h"
+              postExportShellCommandPosix="echo &quot;#define GIT_COMMIT_ID \&quot;$(git --git-dir %%1%%/.git rev-parse --short HEAD)\&quot;&quot; &gt; %%1%%/Source/GitCommitId.h">
   <MAINGROUP id="Tn76b3" name="Odin2">
     <GROUP id="{A5BAEEE4-3FCE-5605-7A4C-F29962266097}" name="Graphics">
       <FILE id="v9w1LN" name="analog_backdrop.png" compile="0" resource="1"

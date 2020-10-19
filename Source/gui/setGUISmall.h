@@ -117,7 +117,6 @@ void OdinAudioProcessorEditor::setGUISmall() {
 	m_chorus_on_button.setBounds(
 	    FX_ON_BUTTON_X + 2 * FX_BUTTON_OFFSET, FX_ON_BUTTON_Y, fx_on_1.getWidth(), fx_on_1.getHeight());
 	m_chorus_on_button.setTriggeredOnMouseDown(true);
-	m_chorus_on_button.setTooltip("Enables the chorus");
 	m_chorus_on_button.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
 
 	m_delay_on_button.setImages(

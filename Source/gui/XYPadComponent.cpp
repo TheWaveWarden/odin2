@@ -16,8 +16,11 @@
 #include "XYPadComponent.h"
 #include "../JuceLibraryCode/JuceHeader.h"
 
-XYPadComponent::XYPadComponent(Knob &p_x, Knob &p_y, bool p_vector_pad) :
-    m_knob_x(p_x), m_knob_y(p_y), m_vector_pad(p_vector_pad) {
+XYPadComponent::XYPadComponent(
+    AudioProcessorValueTreeState &vts, const std::string &p_param_prefix, Knob &p_x, Knob &p_y, bool p_vector_pad) :
+    m_value_tree(vts),
+    m_param_name_x(p_param_prefix + "x"), m_param_name_y(p_param_prefix + "y"), m_knob_x(p_x), m_knob_y(p_y),
+    m_vector_pad(p_vector_pad) {
 	m_color = juce::Colour(30, 30, 30);
 }
 
@@ -100,6 +103,10 @@ void XYPadComponent::mouseDrag(const MouseEvent &event) {
 }
 
 void XYPadComponent::mouseDown(const MouseEvent &event) {
+	//needed so the host knows we are "touching" the knobs
+	m_value_tree.getParameter(m_param_name_x)->beginChangeGesture();
+	m_value_tree.getParameter(m_param_name_y)->beginChangeGesture();
+
 	mouseInteraction();
 	m_lock_set_XY_while_drawing = true;
 }
@@ -124,8 +131,8 @@ void XYPadComponent::mouseInteraction() {
 	m_value_y = m_value_y < 0 ? 0 : m_value_y;
 	m_value_y = m_value_y > 1 ? 1 : m_value_y;
 
-	m_knob_x.setValue(m_value_x);
-	m_knob_y.setValue(m_value_y);
+	SETAUDIO0TO1(m_param_name_x, m_value_x);
+	SETAUDIO0TO1(m_param_name_y, m_value_y);
 
 	repaint();
 }
@@ -133,6 +140,9 @@ void XYPadComponent::mouseInteraction() {
 void XYPadComponent::mouseUp(const MouseEvent &event) {
 	m_lock_set_XY_while_drawing = false;
 	Component::mouseUp(event);
+
+	m_value_tree.getParameter(m_param_name_x)->endChangeGesture();
+	m_value_tree.getParameter(m_param_name_y)->endChangeGesture();
 }
 
 void XYPadComponent::setImage(juce::Image p_panel) {
