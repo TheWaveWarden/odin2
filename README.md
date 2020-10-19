@@ -1,7 +1,7 @@
 # Odin 2 Synthesizer
 
-This is the home of Odin 2 freeware VST and AU synthesizer plugin. This repository contains only the code to build the project, if you just want to download the synth visit
-https://thewavewarden.com/odin2
+This is the home of **Odin 2 freeware VST and AU synthesizer** plugin. This repository contains the code to build the project. **If you just want to download the synth visit
+https://thewavewarden.com/odin2**
 
 ![alt text](screenshot.png)
 
