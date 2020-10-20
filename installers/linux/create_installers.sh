@@ -4,6 +4,9 @@ echo "================================================================="
 echo "IMPORTANT: Build only on Ubuntu 18.4, else will give libc6 errors"
 echo "================================================================="
 echo ""
+echo "removing old builds from directory..."
+rm Odin*
+echo ""
 echo "running deb creator script"
 bash create_deb_package.sh
 echo ""
