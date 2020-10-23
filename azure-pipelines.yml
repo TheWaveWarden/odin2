@@ -59,7 +59,7 @@ steps:
     make -j 4 CONFIG=Release
     echo "Set Projucer modules path"
     pwd
-    build/Projucer --set-global-search-path linux defaultJuceModulePath ../../../modules
+    build/Projucer --set-global-search-path linux defaultJuceModulePath ../../../../modules
   displayName: 'Set up JUCE'
 
 - script: |
