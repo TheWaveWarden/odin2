@@ -68,6 +68,5 @@ steps:
     echo "========= Build Odin =========="
     echo "==============================="
     ../JUCE/extras/Projucer/Builds/LinuxMakefile/build/Projucer --resave Odin.jucer
-    cd installers/linux
-    ./create_installers.sh
+    make -j 8 CONFIG=Release
   displayName: 'Build Odin2'
