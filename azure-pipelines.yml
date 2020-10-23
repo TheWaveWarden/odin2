@@ -47,5 +47,5 @@ steps:
     ls -la
     cd ..
     ls -la
-    git clone git@github.com:juce-framework/JUCE.git
+    git clone https://github.com/juce-framework/JUCE.git
   displayName: 'Build the project'
