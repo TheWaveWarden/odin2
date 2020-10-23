@@ -131,7 +131,7 @@ public:
     positionButtons();
   }
 
-  void positionButtons(std::string p_spare_button = "") {
+  void positionButtons(const std::string &p_spare_button = "") {
     float GUI_factor = (m_GUI_big) ? 1.5f : 1.f;
     if (p_spare_button != "flanger")
       m_flanger_button.setTopLeftPosition(
@@ -148,7 +148,7 @@ public:
     onButtonArrange(m_position_map);
   }
 
-  void changeMapPosition(std::string p_button_name, int p_new_position) {
+  void changeMapPosition(const std::string &p_button_name, int p_new_position) {
     // return if already in right position
     if (m_position_map.find(p_button_name)->second == p_new_position) {
       return;

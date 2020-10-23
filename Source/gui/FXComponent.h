@@ -49,7 +49,7 @@
 
 class FXComponent : public Component {
 public:
-	FXComponent(AudioProcessorValueTreeState &vts, std::string p_fx_name, bool p_is_standalone);
+	FXComponent(AudioProcessorValueTreeState &vts, const std::string &p_fx_name, bool p_is_standalone);
 	~FXComponent();
 
 	void forceValueTreeOntoComponents(ValueTree p_tree);

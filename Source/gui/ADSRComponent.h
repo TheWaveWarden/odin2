@@ -52,7 +52,7 @@
  */
 class ADSRComponent : public Component {
 public:
-  ADSRComponent(AudioProcessorValueTreeState& vts, std::string p_adsr_number);
+  ADSRComponent(AudioProcessorValueTreeState& vts, const std::string &p_adsr_number);
   ~ADSRComponent();
 
   void paint(Graphics &) override;

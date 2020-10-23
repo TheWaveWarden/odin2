@@ -54,7 +54,7 @@
 
 class LFOComponent : public Component {
 public:
-  LFOComponent(AudioProcessorValueTreeState& vts, std::string p_lfo_number, bool p_is_standalone);
+  LFOComponent(AudioProcessorValueTreeState& vts, const std::string &p_lfo_number, bool p_is_standalone);
   ~LFOComponent();
 
   void forceValueTreeOntoComponents(ValueTree p_tree);

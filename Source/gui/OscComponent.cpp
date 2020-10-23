@@ -19,7 +19,7 @@
 
 OscComponent::OscComponent(OdinAudioProcessor &p_processor,
                            AudioProcessorValueTreeState &vts,
-                           std::string p_osc_number) :
+                           const std::string &p_osc_number) :
     m_value_tree(vts),
     m_reset("reset_button", juce::DrawableButton::ButtonStyle::ImageRaw),
     m_sync("osc_sync_button", juce::DrawableButton::ButtonStyle::ImageRaw),

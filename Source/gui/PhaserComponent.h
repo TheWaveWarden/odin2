@@ -59,7 +59,7 @@
  */
 class PhaserComponent : public Component {
 public:
-	PhaserComponent(AudioProcessorValueTreeState &vts, std::string p_fx_name, bool p_is_standalone);
+	PhaserComponent(AudioProcessorValueTreeState &vts, const std::string &p_fx_name, bool p_is_standalone);
 	~PhaserComponent();
 
 	void forceValueTreeOntoComponents(ValueTree p_tree);

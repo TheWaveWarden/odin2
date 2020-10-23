@@ -17,7 +17,7 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "../GlobalIncludes.h"
 
-FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts, std::string p_filter_number) :
+FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts, const std::string &p_filter_number) :
     m_value_tree(vts), m_filter_number(p_filter_number), m_vowel_left(false), m_vowel_right(true),
     m_vowel_left_identifier("fil" + p_filter_number + "_vowel_left"),
     m_vowel_right_identifier("fil" + p_filter_number + "_vowel_right"), m_comb_plus_minus("comb_plus_minus") {

@@ -56,13 +56,13 @@ public:
                            float p_samplerate);
 
   const float **getWavetablePointers(int p_wavetable);
-  const float **getWavetablePointers(std::string p_name);
+  const float **getWavetablePointers(const std::string &p_name);
   float **getChipdrawPointer(int p_chipdraw_index);
   float **getWavedrawPointer(int p_wavedraw_index);
   float **getSpecdrawPointer(int p_specdraw_index);
-  const float **getLFOPointers(std::string p_name);
+  const float **getLFOPointers(const std::string &p_name);
 
-  int getWavetableIndexFromName(std::string p_name);
+  int getWavetableIndexFromName(const std::string &p_name);
 
 private:
   //WavetableContainer();

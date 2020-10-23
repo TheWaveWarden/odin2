@@ -17,7 +17,7 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 
 //==============================================================================
-ADSRComponent::ADSRComponent(AudioProcessorValueTreeState &vts, std::string p_adsr_number) :
+ADSRComponent::ADSRComponent(AudioProcessorValueTreeState &vts, const std::string &p_adsr_number) :
     m_loop("loop_button", juce::DrawableButton::ButtonStyle::ImageRaw), m_value_tree(vts),
     m_adsr_number(p_adsr_number) {
 

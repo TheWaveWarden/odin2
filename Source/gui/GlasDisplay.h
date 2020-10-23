@@ -29,7 +29,7 @@ public:
 	void setImage(juce::Image p_panel) {
 		m_glas_panel = p_panel;
 	}
-	void setText(std::string p_text) {
+	void setText(const std::string &p_text) {
 		m_text_no_suffix = p_text;
 		m_text           = m_text_no_suffix + m_text_value_suffix;
 		repaint();
@@ -48,7 +48,7 @@ public:
 	void mouseDown(const MouseEvent &event) override;
 	void mouseDrag(const MouseEvent &event) override;
 	void mouseUp(const MouseEvent &event) override;
-	void setTextValueSuffix(std::string p_suffix) {
+	void setTextValueSuffix(const std::string &p_suffix) {
 		m_text_value_suffix = p_suffix;
 		m_text              = m_text_no_suffix + m_text_value_suffix;
 	}

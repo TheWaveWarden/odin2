@@ -82,7 +82,7 @@
  */
 class FilterComponent : public Component {
 public:
-	FilterComponent(AudioProcessorValueTreeState &vts, std::string p_filter_number);
+	FilterComponent(AudioProcessorValueTreeState &vts, const std::string &p_filter_number);
 	~FilterComponent();
 
 	void paint(Graphics &) override;

@@ -33,10 +33,10 @@ public:
 
   virtual ~Utilities();
 
-  void fixTooHighHarmonics(std::string p_filename);
+  void fixTooHighHarmonics(const std::string &filename);
   void fixWavetableCoefficientFile();
   void fixWavetableIndexInFiles();
-  void fixWavetableIndexInSingleFile(std::string p_filename, int p_number);
+  void fixWavetableIndexInSingleFile(const std::string &filename, int p_number);
   void printWTsNotUsedAsCoeffs();
 
   void loadWavetablesFromConstData(); // assign pointers to wavetables from
@@ -49,11 +49,11 @@ public:
   void createLFOCoefficientsFromConstSections(int p_table_nr,
                                               float p_const_section_values[],
                                               int p_number_of_sections,
-                                              std::string p_table_name);
+                                              const std::string &table_name);
   void createLFOCoefficientsFromLinSections(int p_table_nr,
                                             float p_const_section_values[],
                                             int p_number_of_sections,
-                                            std::string p_table_name);
+                                            const std::string &table_name);
   void createChipdrawTable(int p_table_nr, float p_chipdraw_values[32],
                            float p_samplerate);
   void createWavedrawTable(int p_table_nr,
@@ -66,28 +66,28 @@ public:
   void changeSampleRate(float p_samplerate);
 
   const float **getWavetablePointers(int p_wavetable);
-  const float **getWavetablePointers(std::string p_name);
+  const float **getWavetablePointers(const std::string &name);
   float **getChipdrawPointer(int p_chipdraw_index);
   float **getWavedrawPointer(int p_wavedraw_index);
   float **getSpecdrawPointer(int p_specdraw_index);
-  const float **getLFOPointers(std::string p_name);
+  const float **getLFOPointers(const std::string &name);
 
   void writeScaleFactorsToFile();
   void writeWavedrawTable(float p_wavedraw_values[WAVEDRAW_STEPS_X],
-                          std::string p_name);
+                          const std::string &name);
   void writeChipdrawTable(float p_wavedraw_values[WAVEDRAW_STEPS_X],
-                          std::string p_name);
+                          const std::string &name);
   void writeSpecdrawTable(float p_wavedraw_values[WAVEDRAW_STEPS_X],
-                          std::string p_name);
+                          const std::string &name);
 
-  void writeSampleTableToFile(std::string p_filname);
-  void writePerlinTableToFile(std::string p_filename, int p_steps,
+  void writeSampleTableToFile(const std::string &filname);
+  void writePerlinTableToFile(const std::string &filename, int p_steps,
                               float p_percent);
 
   // this will calculate the amplitude of the wave which arises from a sin + b
   // cos and use it for sin, b = 0
-  void eliminatePhaseInWavetableCoefficients(std::string p_filename);
-  void convertWTFromOdin1(int p_odin_1_nr, int p_odin_2_nr, std::string p_name);
+  void eliminatePhaseInWavetableCoefficients(const std::string &filename);
+  void convertWTFromOdin1(int p_odin_1_nr, int p_odin_2_nr, const std::string &name);
 
   // call this to make wavetablefiles from wavetable coefficients
   void writeWavetablesToFile();
@@ -96,14 +96,14 @@ public:
   writeWavetableToFile(int index_wavetable); // single table, else stackoverflow
   void endWriteWavetablesToFile();
 
-  void mutateWavetable(std::string p_table_name, int number_of_mutations,
+  void mutateWavetable(const std::string &table_name, int number_of_mutations,
                        float percent, bool p_consecutive_mutation, int p_start_id);
 
   void writeLFOtablesToFiles();
 
   void generateAudioValueCode();
 
-  int getWavetableIndexFromName(std::string p_name);
+  int getWavetableIndexFromName(const std::string &name);
 
   // void deleteWavedraw() {
   //	m_wavedraw_tables = {0};
