@@ -37,6 +37,7 @@ steps:
     sudo apt-get install -y libxcursor1 
     sudo apt-get install -y libxcb-cursor-dev 
     sudo apt-get install -y libxcb-cursor0
+    sudo apt-get install -y xvfb
     sudo apt-get install -y --fix-missing
     apt list --installed
   displayName: 'Install stuff with apt'
@@ -59,7 +60,11 @@ steps:
     make -j 4 CONFIG=Release
     echo "Set Projucer modules path"
     pwd
-    build/Projucer --set-global-search-path linux defaultJuceModulePath ../../../../modules
+    export GDK_BACKEND=x11
+    Xvfb :99 &
+    export DISPLAY=:99
+    sleep 5
+    build/Projucer --set-global-search-path linux defaultJuceModulePath /home/vsts/work/1/JUCE/modules
   displayName: 'Set up JUCE'
 
 - script: |
