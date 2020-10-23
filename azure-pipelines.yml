@@ -39,14 +39,14 @@ steps:
     sudo apt-get install -y libxcb-cursor0
     sudo apt-get install -y --fix-missing
     apt list --installed
+  displayName: 'Install stuff with apt'
+
+- script: |
     echo ""
     echo "==============================="
     echo "========= CLONE JUCE =========="
     echo "==============================="
-    pwd
-    ls -la
     cd ..
-    ls -la
     git clone https://github.com/juce-framework/JUCE.git
     cd JUCE
     echo "Checking out JUCE 6.0.1"
@@ -56,5 +56,15 @@ steps:
     echo "======= BUILD PROJUCER ========"
     echo "==============================="
     cd extras/Projucer/Builds/LinuxMakefile
-    make CONFIG=Release
-  displayName: 'Build the project'
+    make -j 4 CONFIG=Release
+  displayName: 'Set up JUCE'
+
+
+- script: |
+    echo ""
+    echo "==============================="
+    echo "========= Build Odin =========="
+    echo "==============================="
+    ../JUCE/extras/Projucer/Builds/LinuxMakefile/build/Projucer --resave Odin.jucer
+    which bash
+  displayName: 'Build Odin2'
