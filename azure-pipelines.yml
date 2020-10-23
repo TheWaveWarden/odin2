@@ -57,7 +57,7 @@ steps:
     echo "======= BUILD PROJUCER ========"
     echo "==============================="
     cd extras/Projucer/Builds/LinuxMakefile
-    make -j 4 CONFIG=Release
+    make -j 8 CONFIG=Release
     echo "Set Projucer modules path"
     pwd
     export GDK_BACKEND=x11
@@ -73,5 +73,6 @@ steps:
     echo "========= Build Odin =========="
     echo "==============================="
     ../JUCE/extras/Projucer/Builds/LinuxMakefile/build/Projucer --resave Odin.jucer
+    cd Builds/LinuxMakefile
     make -j 8 CONFIG=Release
   displayName: 'Build Odin2'
