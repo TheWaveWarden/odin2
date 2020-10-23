@@ -57,8 +57,10 @@ steps:
     echo "==============================="
     cd extras/Projucer/Builds/LinuxMakefile
     make -j 4 CONFIG=Release
+    echo "Set Projucer modules path"
+    pwd
+    build/Projucer --set-global-search-path linux defaultJuceModulePath ../../../modules
   displayName: 'Set up JUCE'
-
 
 - script: |
     echo ""
@@ -66,5 +68,6 @@ steps:
     echo "========= Build Odin =========="
     echo "==============================="
     ../JUCE/extras/Projucer/Builds/LinuxMakefile/build/Projucer --resave Odin.jucer
-    which bash
+    cd installers/linux
+    ./create_installers.sh
   displayName: 'Build Odin2'
