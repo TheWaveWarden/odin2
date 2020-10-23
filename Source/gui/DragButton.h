@@ -24,7 +24,7 @@ public:
 	DragButton(const String &buttonName,
 	           ButtonStyle buttonStyle,
 	           juce::ComponentBoundsConstrainer *constrainer,
-	           std::string p_name) :
+	           const std::string &p_name) :
 	    juce::DrawableButton(buttonName, buttonStyle) {
 		m_constrainer = constrainer;
 		m_button_name = p_name;

@@ -18,7 +18,7 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "LFOComponent.h"
 
-LFOComponent::LFOComponent(AudioProcessorValueTreeState &vts, std::string p_lfo_number, bool p_is_standalone) :
+LFOComponent::LFOComponent(AudioProcessorValueTreeState &vts, const std::string &p_lfo_number, bool p_is_standalone) :
     m_value_tree(vts), m_lfo_number(p_lfo_number), m_reset("reset", juce::DrawableButton::ButtonStyle::ImageRaw),
     m_sync("sync", juce::DrawableButton::ButtonStyle::ImageRaw), m_lfo_wave_identifier("lfo" + p_lfo_number + "_wave"),
     m_lfo_synctime_denominator_identifier("lfo" + p_lfo_number + "_synctime_denominator"),

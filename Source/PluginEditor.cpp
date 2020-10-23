@@ -266,7 +266,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	m_filter3_dropdown.setToggleState(false, dontSendNotification);
 
 	m_fx_buttons_section.onButtonArrange = [&](std::map<std::string, int> p_map) { arrangeFXOnButtons(p_map); };
-	m_fx_buttons_section.setHighlighted  = [&](std::string p_name) { setActiveFXPanel(p_name); };
+	m_fx_buttons_section.setHighlighted  = [&](const std::string &p_name) { setActiveFXPanel(p_name); };
 	addAndMakeVisible(m_fx_buttons_section);
 
 	m_phaser_on_button.setClickingTogglesState(true);
@@ -847,7 +847,7 @@ void OdinAudioProcessorEditor::arrangeFXOnButtons(std::map<std::string, int> p_m
 	                               (float)p_map.find("chorus")->second);
 }
 
-void OdinAudioProcessorEditor::setActiveFXPanel(std::string p_name) {
+void OdinAudioProcessorEditor::setActiveFXPanel(const std::string &p_name) {
 	m_phaser.setVisible(false);
 	m_flanger.setVisible(false);
 	m_chorus.setVisible(false);

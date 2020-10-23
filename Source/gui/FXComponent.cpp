@@ -17,7 +17,7 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "../GlobalIncludes.h"
 
-FXComponent::FXComponent(AudioProcessorValueTreeState &vts, std::string p_fx_name, bool p_is_standalone) :
+FXComponent::FXComponent(AudioProcessorValueTreeState &vts, const std::string &p_fx_name, bool p_is_standalone) :
     m_value_tree(vts), m_fx_name(p_fx_name), m_is_standalone_plugin(p_is_standalone),
     m_sync("sync", juce::DrawableButton::ButtonStyle::ImageRaw),
     m_reset("reset", juce::DrawableButton::ButtonStyle::ImageRaw),

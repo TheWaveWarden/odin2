@@ -28,7 +28,7 @@ Utilities::Utilities()
 //#include "Wavetables/Tables/WavetableData.h" //include initializer list
 {
 #ifdef ODIN_DEBUG
-	#include "audio/Oscillators/WavetableCoefficients.h"
+#include "audio/Oscillators/WavetableCoefficients.h"
 #endif
 
 	// dynamically allocate wavetables
@@ -194,7 +194,7 @@ void Utilities::createLFOtables(float p_samplerate) {
 void Utilities::createLFOCoefficientsFromConstSections(int p_table_nr,
                                                        float p_const_section_values[],
                                                        int p_number_of_sections,
-                                                       std::string p_table_name) {
+                                                       const std::string &p_table_name) {
 	// first generate the fourier coefficients
 	float LFO_coefficients[SIN_AND_COS][NUMBER_OF_HARMONICS];
 
@@ -242,7 +242,7 @@ void Utilities::createLFOCoefficientsFromConstSections(int p_table_nr,
 void Utilities::createLFOCoefficientsFromLinSections(int p_table_nr,
                                                      float p_lin_section_values[],
                                                      int p_number_of_sections,
-                                                     std::string p_table_name) {
+                                                     const std::string &p_table_name) {
 	// first generate the fourier coefficients
 	float LFO_coefficients[SIN_AND_COS][NUMBER_OF_HARMONICS];
 
@@ -369,7 +369,7 @@ void Utilities::createChipdrawTable(int p_table_nr, float p_chipdraw_values[CHIP
 	}
 }
 
-void Utilities::writeWavedrawTable(float p_wavedraw_values[WAVEDRAW_STEPS_X], std::string p_table_name) {
+void Utilities::writeWavedrawTable(float p_wavedraw_values[WAVEDRAW_STEPS_X], const std::string &p_table_name) {
 	// first generate the fourier coefficients
 	float wavedraw_coefficients[SIN_AND_COS][NUMBER_OF_HARMONICS];
 
@@ -483,7 +483,7 @@ void Utilities::writeWavedrawTable(float p_wavedraw_values[WAVEDRAW_STEPS_X], st
 	output_file.close();
 }
 
-void Utilities::writeChipdrawTable(float p_chipdraw_values[WAVEDRAW_STEPS_X], std::string p_table_name) {
+void Utilities::writeChipdrawTable(float p_chipdraw_values[WAVEDRAW_STEPS_X], const std::string &p_table_name) {
 	// first generate the fourier coefficients
 	float wavedraw_coefficients[SIN_AND_COS][NUMBER_OF_HARMONICS];
 
@@ -581,7 +581,7 @@ void Utilities::writeChipdrawTable(float p_chipdraw_values[WAVEDRAW_STEPS_X], st
 	output_file.close();
 }
 
-void Utilities::writeSpecdrawTable(float p_specdraw_values[SPECDRAW_STEPS_X], std::string p_table_name) {
+void Utilities::writeSpecdrawTable(float p_specdraw_values[SPECDRAW_STEPS_X], const std::string &p_table_name) {
 
 	// now create the wavetable from the fourier coefficients
 	double seed_freq                                                 = 27.5; // A0
@@ -868,7 +868,7 @@ const float **Utilities::getWavetablePointers(int p_wavetable) {
 	return m_const_wavetable_pointers[p_wavetable];
 }
 
-const float **Utilities::getWavetablePointers(std::string p_name) {
+const float **Utilities::getWavetablePointers(const std::string &p_name) {
 	// for(int wt = 0; wt < NUMBER_OF_WAVETABLES; ++wt){
 	//     if(p_name == m_wavetable_names_1D[wt]){
 	//         return m_wavetable_pointers[wt];
@@ -883,7 +883,7 @@ const float **Utilities::getWavetablePointers(std::string p_name) {
 	return m_const_wavetable_pointers[0]; // return sine if no wt found
 }
 
-const float **Utilities::getLFOPointers(std::string p_name) {
+const float **Utilities::getLFOPointers(const std::string &p_name) {
 	auto it = m_LFO_name_index_map.find(p_name);
 	if (it != m_LFO_name_index_map.end()) {
 		return m_const_LFO_pointers[it->second];
@@ -1205,7 +1205,7 @@ void Utilities::generateAudioValueCode() {
 	output_file.close();
 }
 
-void Utilities::writeSampleTableToFile(std::string p_filename) {
+void Utilities::writeSampleTableToFile(const std::string &p_filename) {
 
 	// load in data
 	std::string filename = "/home/frot/odin2/samples/" + p_filename;
@@ -1337,8 +1337,11 @@ void Utilities::writeSampleTableToFile(std::string p_filename) {
 	output_file.close();
 }
 
-void Utilities::mutateWavetable(
-    std::string p_table_name, int number_of_mutations, float percent, bool p_consecutive_mutation, int p_start_id) {
+void Utilities::mutateWavetable(const std::string &p_table_name,
+                                int number_of_mutations,
+                                float percent,
+                                bool p_consecutive_mutation,
+                                int p_start_id) {
 
 	auto it = m_name_index_map.find(p_table_name);
 	if (it == m_name_index_map.end()) {
@@ -1475,7 +1478,7 @@ float cosInterpol(float p_left, float p_right, float p_frac) {
 	return p_left + (p_right - p_left) * cosine;
 }
 
-void Utilities::writePerlinTableToFile(std ::string p_table_name, int p_steps, float p_percent) {
+void Utilities::writePerlinTableToFile(const std ::string &p_table_name, int p_steps, float p_percent) {
 	seedRandom();
 
 	// first generate the grid:
@@ -1674,9 +1677,9 @@ void Utilities::fixWavetableCoefficientFile() {
 	int highest_table = 4;
 
 	std::ifstream filein("/home/frot/odin2/Source/audio//Oscillators/"
-	                     "WavetableCoefficients.h");                                   // File to read from
+	                     "WavetableCoefficients.h");                                 // File to read from
 	std::ofstream fileout("/home/frot/odin2/Source/audio//Oscillators/TEMPORARY.h"); // Temporary
-	                                                                                   // file
+	                                                                                 // file
 	if (!filein || !fileout) {
 		DBG("Error opening files!");
 		return;
@@ -1715,7 +1718,7 @@ void Utilities::fixWavetableIndexInFiles() {
 	}
 }
 
-void Utilities::fixWavetableIndexInSingleFile(std::string p_filename, int p_number) {
+void Utilities::fixWavetableIndexInSingleFile(const std::string &p_filename, int p_number) {
 	std::ifstream filein("/home/frot/odin2/Source/audio/Oscillators/Wavetables/" + p_filename +
 	                     ".h"); // File to read from
 	std::ofstream fileout("/home/frot/odin2/Source/audio/Oscillators/Wavetables/TEMP/" + p_filename + ".h");
@@ -1762,7 +1765,7 @@ std::string makeFloatCorrectOutput(float p_input) {
 	return out;
 }
 
-void Utilities::eliminatePhaseInWavetableCoefficients(std::string p_filename) {
+void Utilities::eliminatePhaseInWavetableCoefficients(const std::string &p_filename) {
 
 	DBG("ELIMINATING PHASE IN WT FILE " + p_filename);
 	// see whether files open
@@ -1931,7 +1934,7 @@ void Utilities::eliminatePhaseInWavetableCoefficients(std::string p_filename) {
 	fileout << "\n\n#undef WT_NR";
 }
 
-int Utilities::getWavetableIndexFromName(std::string p_name) {
+int Utilities::getWavetableIndexFromName(const std::string &p_name) {
 	auto it = m_name_index_map.find(p_name);
 	if (it != m_name_index_map.end()) {
 		return it->second;
@@ -1940,7 +1943,7 @@ int Utilities::getWavetableIndexFromName(std::string p_name) {
 	return 0;
 }
 
-bool containsTooHighHarmonics(std::string p_input) {
+bool containsTooHighHarmonics(const std::string &p_input) {
 	// return true if it contains "[500]" for example
 	for (int i = 256; i < 802; ++i) {
 		if (p_input.find("[" + std::to_string(i) + "]") != std::string::npos) {
@@ -1950,7 +1953,7 @@ bool containsTooHighHarmonics(std::string p_input) {
 	return false;
 }
 
-void Utilities::fixTooHighHarmonics(std::string p_filename) {
+void Utilities::fixTooHighHarmonics(const std::string &p_filename) {
 	DBG("REMOVING TOO HIGH HARMONICS IN " + p_filename);
 
 	std::ifstream filein("/home/frot/odin2/Source/audio/Oscillators/Wavetables/Coefficients/" + p_filename +
@@ -1974,7 +1977,7 @@ void Utilities::fixTooHighHarmonics(std::string p_filename) {
 	fileout.close();
 }
 
-void Utilities::convertWTFromOdin1(int p_odin_1_nr, int p_odin_2_nr, std::string p_name) {
+void Utilities::convertWTFromOdin1(int p_odin_1_nr, int p_odin_2_nr, const std::string &p_name) {
 
 	// see whether files open
 

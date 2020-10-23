@@ -48,7 +48,7 @@ public:
 	void setInlay(int p_inlay) {
 		m_inlay = p_inlay;
 	}
-	void setDefaultText(std::string p_text) {
+	void setDefaultText(const std::string &p_text) {
 		m_default_text = p_text;
 	}
 	int m_inlay = INLAY_DEFAULT;

@@ -470,7 +470,7 @@ const float **WavetableContainer::getWavetablePointers(int p_wavetable) {
 	return m_const_wavetable_pointers[p_wavetable];
 }
 
-const float **WavetableContainer::getWavetablePointers(std::string p_name) {
+const float **WavetableContainer::getWavetablePointers(const std::string &p_name) {
 	// for(int wt = 0; wt < NUMBER_OF_WAVETABLES; ++wt){
 	//     if(p_name == m_wavetable_names_1D[wt]){
 	//         return m_wavetable_pointers[wt];
@@ -486,7 +486,7 @@ const float **WavetableContainer::getWavetablePointers(std::string p_name) {
 	return m_const_wavetable_pointers[0]; // return sine if no wt found
 }
 
-const float **WavetableContainer::getLFOPointers(std::string p_name) {
+const float **WavetableContainer::getLFOPointers(const std::string &p_name) {
 	auto it = m_LFO_name_index_map.find(p_name);
 	if (it != m_LFO_name_index_map.end()) {
 		return m_const_LFO_pointers[it->second];
@@ -536,7 +536,7 @@ void WavetableContainer::loadWavetablesAfterFourierCreation() {
 	}
 }
 
-int WavetableContainer::getWavetableIndexFromName(std::string p_name) {
+int WavetableContainer::getWavetableIndexFromName(const std::string &p_name) {
 	auto it = m_name_index_map.find(p_name);
 	if (it != m_name_index_map.end()) {
 		return it->second;

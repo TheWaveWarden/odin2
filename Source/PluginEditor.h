@@ -233,7 +233,7 @@ public:
   void paint(Graphics &) override;
   void resized() override;
   void arrangeFXOnButtons(std::map<std::string, int> p_map);
-  void setActiveFXPanel(std::string p_name);
+  void setActiveFXPanel(const std::string &name);
 
   void forceValueTreeOntoComponents(bool p_reset_audio);
   void forceValueTreeOntoComponentsOnlyMainPanel();

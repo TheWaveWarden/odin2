@@ -230,7 +230,7 @@ public:
 
 	void mouseDown(const MouseEvent &event) override;
 
-	void setKnobTooltip(const std::string p_tooltip) {
+	void setKnobTooltip(const std::string &p_tooltip) {
 		setTooltip(p_tooltip);
 	}
 

@@ -159,7 +159,7 @@
 class OscComponent : public Component {
 public:
   OscComponent(OdinAudioProcessor &p_processor,
-               AudioProcessorValueTreeState &vts, std::string p_osc_number);
+               AudioProcessorValueTreeState &vts, const std::string &p_osc_number);
   ~OscComponent();
 
   void paint(Graphics &) override;
