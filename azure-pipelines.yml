@@ -48,4 +48,13 @@ steps:
     cd ..
     ls -la
     git clone https://github.com/juce-framework/JUCE.git
+    cd JUCE
+    echo "Checking out JUCE 6.0.1"
+    git checkout a30f7357863a7d480a771e069abf56909cdf0e13
+    echo ""
+    echo "==============================="
+    echo "======= BUILD PROJUCER ========"
+    echo "==============================="
+    cd extras/Projucer/Builds/LinuxMakefile
+    make CONFIG=Release
   displayName: 'Build the project'
