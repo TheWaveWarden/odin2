@@ -15,8 +15,7 @@ jobs:
     matrix:
       mac:
         imageName: 'macos-10.14'
-        #todo
-        isHACC: True
+        isMac: True
         #isMac: True
       # kwin:
       #   imageName: 'windows-2019'
@@ -65,7 +64,7 @@ jobs:
       ls -l
 
     displayName: 'Mac: Install Prerequisites'
-    condition: variables.isHACC 
+    condition: variables.isMac
 
   - script: |
       echo ""
