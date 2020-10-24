@@ -88,16 +88,27 @@ steps:
     export LINE_NUMBER="$(grep -n 'BEGIN_USER_CODE_SECTION' AppConfig.h | cut -d: -f1)"
     echo "Line for usercode in AppConfig.h is $LINE_NUMBER"
     head -n $LINE_NUMBER AppConfig.h > app_config.tmp
-    echo "#define JucePlugin_Build_LV2 1" >> app_config.tmp
-    echo "#define JucePlugin_LV2URI \"https://www.thewavewarden.com/odin2\"" >> app_config.tmp
-    echo "#define JucePlugin_MaxNumInputChannels 2" >> app_config.tmp
-    echo "#define JucePlugin_MaxNumOutputChannels 2" >> app_config.tmp
+    echo -e "#define JucePlugin_Build_LV2 1" >> app_config.tmp
+    echo -e "#define JucePlugin_LV2URI \"https://www.thewavewarden.com/odin2\"" >> app_config.tmp
+    echo -e "#define JucePlugin_MaxNumInputChannels 2" >> app_config.tmp
+    echo -e "#define JucePlugin_MaxNumOutputChannels 2" >> app_config.tmp
     tail -n +$((LINE_NUMBER+1)) AppConfig.h >> app_config.tmp
+    mv app_config.tmp AppConfig.h
+    rm app_config.tmp
+    echo ""
+    echo "Contents of AppConfig.h after modification:"
+    echo ""
+    cat AppConfig.h
+    echo ""
+    echo ""
+    cd ..
+    echo -e "include ../../LV2.mak" >> Builds/LinuxMakefile/Makefile
     echo ""
     echo "==============================="
     echo "========= Build Odin =========="
     echo "==============================="
     echo ""
+    pwd
     cd Builds/LinuxMakefile
     make -j 8 CONFIG=Release
   displayName: 'Build Odin2'
