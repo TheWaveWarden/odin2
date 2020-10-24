@@ -63,11 +63,8 @@ jobs:
       echo "======= EXPORT PROJUCER ======="
       echo "==============================="
       echo ""
-      ls -l ../JUCE/extras/Projucer/Builds/MacOSX/build/
       ls -l ../JUCE/extras/Projucer/Builds/MacOSX/build/Release
-      ls -l ../JUCE/extras/Projucer/Builds/MacOSX/build/Projucer.build
-      ls -l ../JUCE/extras/Projucer/Builds/MacOSX/build/Projucer.build/Release
-      ../JUCE/extras/Projucer/Builds/MacOSX/build/Projucer.build/Release/Projucer --resave Odin.jucer
+      open ../JUCE/extras/Projucer/Builds/MacOSX/build/Projucer.build/Release/Projucer.app --args --resave Odin.jucer
     displayName: 'Mac: Build Odin2 Packages'
     condition: variables.isMac
 
