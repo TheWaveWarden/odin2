@@ -63,7 +63,7 @@ jobs:
       echo "======= EXPORT PROJUCER ======="
       echo "==============================="
       echo ""
-      open ../JUCE/extras/Projucer/Builds/MacOSX/build/Release/Projucer.app --args --resave Odin.jucer
+      ../JUCE/extras/Projucer/Builds/MacOSX/build/Release/Projucer.app/Contents/MacOS/Projucer --resave Odin.jucer
     displayName: 'Mac: Export Project with Projucer'
     condition: variables.isMac
 
