@@ -48,6 +48,7 @@ steps:
     echo "==============================="
     echo "========= CLONE JUCE =========="
     echo "==============================="
+    echo ""
     cd ..
     git clone -b lv2 https://github.com/lv2-porting-project/JUCE.git JUCE
     cd JUCE
@@ -58,6 +59,7 @@ steps:
     echo "==============================="
     echo "======= BUILD PROJUCER ========"
     echo "==============================="
+    echo ""
     cd extras/Projucer/Builds/LinuxMakefile
     make -j 8 CONFIG=Release
     echo "Set Projucer modules path"
@@ -67,14 +69,28 @@ steps:
     export DISPLAY=:99
     sleep 5
     build/Projucer --set-global-search-path linux defaultJuceModulePath /home/vsts/work/1/JUCE/modules
+
   displayName: 'Set up JUCE'
 
 - script: |
     echo ""
     echo "==============================="
+    echo "======= EXPORT PROJUCER ======="
+    echo "==============================="
+    echo ""
+    ../JUCE/extras/Projucer/Builds/LinuxMakefile/build/Projucer --resave Odin.jucer
+    echo ""
+    echo "==============================="
+    echo "====== PREPARE LV2 STUFF ======"
+    echo "==============================="
+    echo ""
+    export LINE_NUMBER="$(grep -n 'BEGIN_USER_CODE_SECTION' JuceLibraryCode/AppConfig.h | cut -d: -f1)"
+    echo "Line for usercode in AppConfig.h is $LINE_NUMBER"
+    echo ""
+    echo "==============================="
     echo "========= Build Odin =========="
     echo "==============================="
-    ../JUCE/extras/Projucer/Builds/LinuxMakefile/build/Projucer --resave Odin.jucer
+    echo ""
     cd Builds/LinuxMakefile
     make -j 8 CONFIG=Release
   displayName: 'Build Odin2'
