@@ -54,8 +54,8 @@ jobs:
       configuration: 'Release'
       xcodeVersion: 'default'
       xcWorkspacePath: ../JUCE/extras/Projucer/Builds/MacOSX/Projucer.xcodeproj
-      displayName: 'Mac: Build Projucer XCode'
-      condition: variables.isMac
+    displayName: 'Mac: Build Projucer XCode'
+    condition: variables.isMac
 
   - script: |
       echo ""
@@ -64,8 +64,8 @@ jobs:
       echo "==============================="
       echo ""
       ls -l ../JUCE/extras/Projucer/Builds/MacOSX/build/Release
-      open ../JUCE/extras/Projucer/Builds/MacOSX/build/Projucer.build/Release/Projucer.app --args --resave Odin.jucer
-    displayName: 'Mac: Build Odin2 Packages'
+      open ../JUCE/extras/Projucer/Builds/MacOSX/build/Release/Projucer.app --args --resave Odin.jucer
+    displayName: 'Mac: Export Project with Projucer'
     condition: variables.isMac
 
 
