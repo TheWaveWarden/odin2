@@ -133,8 +133,8 @@ jobs:
       echo "The final product:"
       ls -lh build
 
-      [[ $(find build/Odin2MacInstaller.pkg -type f -size +50000000c 2>/dev/null) ]] && echo "Mac Package Built Successfully" || return 1
-      return 0
+      [[ $(find build/Odin2MacInstaller.pkg -type f -size +50000000c 2>/dev/null) ]] && echo "Mac Package Built Successfully" || exit 1
+      exit 0
     displayName: 'Mac: Package Odin'
     condition: variables.isMac
 
@@ -270,8 +270,8 @@ jobs:
       echo ""
       echo "RESULTS:"
       echo ""
-      [[ $(find Odin2_linux_x64.zip -type f -size +50000000c 2>/dev/null) ]] && echo "Generic Zip Built sucessfully!" || return 1
-      [[ $(find $DEB_NAME -type f -size +50000000c 2>/dev/null) ]] && echo "Debian package built successfully!" || return 1
-      return 0
+      [[ $(find Odin2_linux_x64.zip -type f -size +50000000c 2>/dev/null) ]] && echo "Generic Zip Built sucessfully!" || exit 1
+      [[ $(find $DEB_NAME -type f -size +50000000c 2>/dev/null) ]] && echo "Debian package built successfully!" || exit 1
+      exit 0
     displayName: 'Linux: Build Odin2 Packages'
     condition: variables.isLinux
