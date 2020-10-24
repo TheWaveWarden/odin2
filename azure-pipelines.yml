@@ -38,6 +38,7 @@ steps:
     sudo apt-get install -y libxcb-cursor-dev 
     sudo apt-get install -y libxcb-cursor0
     sudo apt-get install -y xvfb
+    sudo apt-get install -y lv2-dev 
     sudo apt-get install -y --fix-missing
     apt list --installed
   displayName: 'Install stuff with apt'
@@ -47,32 +48,75 @@ steps:
     echo "==============================="
     echo "========= CLONE JUCE =========="
     echo "==============================="
+    echo ""
     cd ..
-    git clone https://github.com/juce-framework/JUCE.git
+    git clone https://github.com/lv2-porting-project/JUCE.git JUCE
     cd JUCE
+    git status
     echo "Checking out JUCE 6.0.1"
     git checkout a30f7357863a7d480a771e069abf56909cdf0e13
+    git status
     echo ""
     echo "==============================="
     echo "======= BUILD PROJUCER ========"
     echo "==============================="
+    echo ""
     cd extras/Projucer/Builds/LinuxMakefile
     make -j 8 CONFIG=Release
+    echo "checking out lv2 branch"
+    git checkout lv2
+    git checkout c51d03f11be20cb35eb28e8016e9a81827b50339
     echo "Set Projucer modules path"
-    pwd
     export GDK_BACKEND=x11
     Xvfb :99 &
     export DISPLAY=:99
     sleep 5
     build/Projucer --set-global-search-path linux defaultJuceModulePath /home/vsts/work/1/JUCE/modules
+    echo "setting symlink to Projucer"
+    ln -s /home/vsts/work/1/JUCE/extras/Projucer/Builds/LinuxMakefile/build/Projucer /home/vsts/work/1/JUCE/Projucer
+    ls -l /home/vsts/work/1/JUCE
+
   displayName: 'Set up JUCE'
 
 - script: |
     echo ""
     echo "==============================="
-    echo "========= Build Odin =========="
+    echo "======= EXPORT PROJUCER ======="
     echo "==============================="
+    echo ""
     ../JUCE/extras/Projucer/Builds/LinuxMakefile/build/Projucer --resave Odin.jucer
-    cd Builds/LinuxMakefile
-    make -j 8 CONFIG=Release
-  displayName: 'Build Odin2'
+    echo ""
+    echo "==============================="
+    echo "====== PREPARE LV2 STUFF ======"
+    echo "==============================="
+    echo ""
+    cd JuceLibraryCode
+    export LINE_NUMBER="$(grep -n 'BEGIN_USER_CODE_SECTION' AppConfig.h | cut -d: -f1)"
+    echo "Line for usercode in AppConfig.h is $LINE_NUMBER"
+    echo "Insert commands to AppConfig.h"
+    head -n $LINE_NUMBER AppConfig.h > app_config.tmp
+    echo -e "#define JucePlugin_Build_LV2 1" >> app_config.tmp
+    echo -e "#define JucePlugin_LV2URI \"https://www.thewavewarden.com/odin2\"" >> app_config.tmp
+    echo -e "#define JucePlugin_MaxNumInputChannels 2" >> app_config.tmp
+    echo -e "#define JucePlugin_MaxNumOutputChannels 2" >> app_config.tmp
+    tail -n +$((LINE_NUMBER+1)) AppConfig.h >> app_config.tmp
+    mv app_config.tmp AppConfig.h
+    cd ..
+    echo -e "include ../../LV2.mak" >> Builds/LinuxMakefile/Makefile
+    echo ""
+    echo "==============================="
+    echo "===== Build Odin Packages ====="
+    echo "==============================="
+    echo ""
+    export PROJECT_VERSION="$(../JUCE/extras/Projucer/Builds/LinuxMakefile/build/Projucer --get-version Odin.jucer)"
+    echo "Odin Project Version: $PROJECT_VERSION"
+    IFS='.' read -ra ADDR <<< "$PROJECT_VERSION"
+    export DEBIAN_PROJECT_STRING="${ADDR[0]}.${ADDR[1]}-${ADDR[2]}"
+    echo "Debian package String: $DEBIAN_PROJECT_STRING"
+    cd installers/linux
+    ./create_installers.sh $DEBIAN_PROJECT_STRING
+    echo ""
+    echo "Packed builds:"
+    echo ""
+    ls -lh | grep Odin
+  displayName: 'Build Odin2 Packages'

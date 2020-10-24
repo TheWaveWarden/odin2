@@ -1,3 +1,4 @@
+- created CI pipeline for Ubuntu-18.04
 # 2.2.4
 - fixed Legato carrying current value over to Attack rather than to current section
 - ChipDraw tables now available as LFO waves
