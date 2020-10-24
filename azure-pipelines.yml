@@ -111,6 +111,11 @@ steps:
     echo ""
     export PROJECT_VERSION="$(../JUCE/extras/Projucer/Builds/LinuxMakefile/build/Projucer --get-version Odin.jucer)"
     echo "Odin Project Version: $PROJECT_VERSION"
+    echo $PROJECT_VERSION
+    IFS='.' read -ra ADDR <<< "$PROJECT_VERSION"
+    for i in "${ADDR[@]}"; do
+      echo "$i"
+    done
     pwd
     cd Builds/LinuxMakefile
     make -j 8 CONFIG=Release
