@@ -13,20 +13,34 @@ jobs:
 - job: Build
   strategy:
     matrix:
-      Mac:
-        imageName: 'macos-10.14'
-        isMac: True
-      #Windows:
-      #  imageName: 'windows-2019'
-      #  isWindows: True
-      Linux:
-        imageName: 'ubuntu-18.04'
-        isLinux: True
+      #Mac:
+      #  imageName: 'macos-10.14'
+      #  isMac: True
+      Windows:
+        imageName: 'windows-2019'
+        isWindows: True
+      #Linux:
+      #  imageName: 'ubuntu-18.04'
+      #  isLinux: True
 
   pool:
     vmImage: '$(imageName)'
 
   steps:
+
+#! ██     ██ ██ ███    ██ ██████   ██████  ██     ██ ███████ 
+#! ██     ██ ██ ████   ██ ██   ██ ██    ██ ██     ██ ██      
+#! ██  █  ██ ██ ██ ██  ██ ██   ██ ██    ██ ██  █  ██ ███████ 
+#! ██ ███ ██ ██ ██  ██ ██ ██   ██ ██    ██ ██ ███ ██      ██ 
+#!  ███ ███  ██ ██   ████ ██████   ██████   ███ ███  ███████
+
+  - bash: |
+      set -ex
+      # build the innosetup install
+      nuget install innosetup
+  displayName: 'Windows: Install Prerequisites'
+  condition: variables.isWindows
+
 #! ███    ███  █████   ██████ 
 #! ████  ████ ██   ██ ██      
 #! ██ ████ ██ ███████ ██      
@@ -137,16 +151,6 @@ jobs:
       exit 0
     displayName: 'Mac: Package Odin'
     condition: variables.isMac
-
-
-#! ██     ██ ██ ███    ██ ██████   ██████  ██     ██ ███████ 
-#! ██     ██ ██ ████   ██ ██   ██ ██    ██ ██     ██ ██      
-#! ██  █  ██ ██ ██ ██  ██ ██   ██ ██    ██ ██  █  ██ ███████ 
-#! ██ ███ ██ ██ ██  ██ ██ ██   ██ ██    ██ ██ ███ ██      ██ 
-#!  ███ ███  ██ ██   ████ ██████   ██████   ███ ███  ███████
-
-
-
 
 
 #! ██      ██ ███    ██ ██    ██ ██   ██ 
