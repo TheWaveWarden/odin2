@@ -16,8 +16,7 @@ jobs:
       mac:
         imageName: 'macos-10.14'
         isMac: True
-        #isMac: True
-      # kwin:
+      # win:
       #   imageName: 'windows-2019'
       #   isWindows: True
       #lin:
@@ -61,7 +60,6 @@ jobs:
       #curl http://s.sudre.free.fr/Software/files/Packages.dmg -o Packages.dmg
       #echo "Install Packages packaging tool"
       ls -l /usr/local/bin | grep packagesbuild
-      ls -l
 
     displayName: 'Mac: Install Prerequisites'
     condition: variables.isMac
@@ -122,12 +120,17 @@ jobs:
       echo "======== PACKAGE ODIN ========="
       echo "==============================="
       echo ""
-      pwd
-      ls -l Builds/MacOSX
-      ls -l Builds/MacOSX/build
-      ls -l Builds/MacOSX/build/Release
       cd installers/mac
+      echo "Adjusting paths in pkgproj to Azure build system"
+      cat Odin2MacInstaller.pkproj | grep ../../..
+      echo ""
+      sed -i '' 's:../../../Library:../../../../../Library:' Odin2MacInstaller.pkgproj
+      cat Odin2MacInstaller.pkproj | grep ../../..
+
       /usr/local/bin/packagesbuild Odin2MacInstaller.pkgproj
+      echo ""
+      echo "The final product:"
+      ls -l build
     displayName: 'Mac: Package Odin'
     condition: variables.isMac
 
