@@ -74,6 +74,7 @@ steps:
     build/Projucer --set-global-search-path linux defaultJuceModulePath /home/vsts/work/1/JUCE/modules
     echo "setting symlink to Projucer"
     ln -s  /home/vsts/work/1/JUCE/Builds/LinuxMakefile/build/Projucer  /home/vsts/work/1/JUCE/Projucer
+    ll /home/vsts/work/1/JUCE/Projucer
 
   displayName: 'Set up JUCE'
 
@@ -92,6 +93,7 @@ steps:
     cd JuceLibraryCode
     export LINE_NUMBER="$(grep -n 'BEGIN_USER_CODE_SECTION' AppConfig.h | cut -d: -f1)"
     echo "Line for usercode in AppConfig.h is $LINE_NUMBER"
+    echo "Insert commands to AppConfig.h"
     head -n $LINE_NUMBER AppConfig.h > app_config.tmp
     echo -e "#define JucePlugin_Build_LV2 1" >> app_config.tmp
     echo -e "#define JucePlugin_LV2URI \"https://www.thewavewarden.com/odin2\"" >> app_config.tmp
@@ -99,8 +101,6 @@ steps:
     echo -e "#define JucePlugin_MaxNumOutputChannels 2" >> app_config.tmp
     tail -n +$((LINE_NUMBER+1)) AppConfig.h >> app_config.tmp
     mv app_config.tmp AppConfig.h
-    rm app_config.tmp
-    echo ""
     cd ..
     echo -e "include ../../LV2.mak" >> Builds/LinuxMakefile/Makefile
     echo ""
