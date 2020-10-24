@@ -83,7 +83,17 @@ jobs:
     displayName: 'Mac: Build Odin XCode'
     condition: variables.isMac
 
-
+  - script: |
+      echo ""
+      echo "==============================="
+      echo "======== PACKAGE ODIN ========="
+      echo "==============================="
+      echo ""
+      ls -l Builds/MacOSX
+      ls -l Builds/MacOSX/build
+      ls -l Builds/MacOSX/build/Release
+    displayName: 'Mac: Package Odin'
+    condition: variables.isMac
 
 
 #! ██     ██ ██ ███    ██ ██████   ██████  ██     ██ ███████ 
