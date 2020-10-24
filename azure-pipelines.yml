@@ -72,6 +72,8 @@ steps:
     export DISPLAY=:99
     sleep 5
     build/Projucer --set-global-search-path linux defaultJuceModulePath /home/vsts/work/1/JUCE/modules
+    echo "setting symlink to Projucer"
+    ln -s  /home/vsts/work/1/JUCE/Builds/LinuxMakefile/build/Projucer  /home/vsts/work/1/JUCE/Projucer
 
   displayName: 'Set up JUCE'
 
@@ -113,5 +115,8 @@ steps:
     echo "Debian package String: $DEBIAN_PROJECT_STRING"
     cd installers/linux
     ./create_installers.sh $DEBIAN_PROJECT_STRING
-    ls -l | grep Odin
+    echo ""
+    echo "Packed builds:"
+    echo ""
+    ls -lh | grep Odin
   displayName: 'Build Odin2 Packages'
