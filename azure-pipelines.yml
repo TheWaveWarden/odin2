@@ -67,6 +67,9 @@ jobs:
       ../JUCE/extras/Projucer/Builds/MacOSX/build/Release/Projucer.app/Contents/MacOS/Projucer --set-global-search-path osx defaultJuceModulePath /Users/runner/work/1/JUCE/modules
       echo "Export project"
       ../JUCE/extras/Projucer/Builds/MacOSX/build/Release/Projucer.app/Contents/MacOS/Projucer --resave Odin.jucer
+      echo "extract git commit id"
+      echo "#define GIT_COMMIT_ID \"$(git rev-parse --short HEAD)\"" > Source/GitCommitId.h
+      cat Source/GitCommitId.h
     displayName: 'Mac: Export Project Projucer'
     condition: variables.isMac
 
