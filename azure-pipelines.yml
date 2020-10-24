@@ -93,6 +93,8 @@ jobs:
       ls -l Builds/MacOSX
       ls -l Builds/MacOSX/build
       ls -l Builds/MacOSX/build/Release
+      cd installers/mac
+      /usr/local/bin/packagesbuild Odin2MacInstaller.pkgproj
     displayName: 'Mac: Package Odin'
     condition: variables.isMac
 
