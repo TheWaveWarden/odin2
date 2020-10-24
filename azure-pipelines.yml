@@ -89,6 +89,7 @@ jobs:
       echo "======== PACKAGE ODIN ========="
       echo "==============================="
       echo ""
+      pwd
       ls -l Builds/MacOSX
       ls -l Builds/MacOSX/build
       ls -l Builds/MacOSX/build/Release
