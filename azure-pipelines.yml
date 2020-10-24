@@ -17,7 +17,7 @@ jobs:
         imageName: 'macos-10.14'
         #todo
         isHACC: True
-        isMac: True
+        #isMac: True
       # kwin:
       #   imageName: 'windows-2019'
       #   isWindows: True
@@ -51,7 +51,7 @@ jobs:
           cp -rf "$volume"/*.app /Applications
         elif [ -e "$volume"/*.pkg ]; then
           package=$(ls -1 "$volume" | grep .pkg | head -1)
-          installer -pkg "$volume"/"$package" -target /
+          installer -verbose -pkg "$volume"/"$package" -target /
         fi
         sudo hdiutil detach "$(echo "$listing" | cut -f 1)"
         rm -rf $tempd
