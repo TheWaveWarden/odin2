@@ -19,9 +19,9 @@ jobs:
       # kwin:
       #   imageName: 'windows-2019'
       #   isWindows: True
-      lin:
-        imageName: 'ubuntu-18.04'
-        isLinux: True
+      #lin:
+      #  imageName: 'ubuntu-18.04'
+      #  isLinux: True
 
   pool:
     vmImage: '$(imageName)'
