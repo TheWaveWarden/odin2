@@ -38,6 +38,7 @@ steps:
     sudo apt-get install -y libxcb-cursor-dev 
     sudo apt-get install -y libxcb-cursor0
     sudo apt-get install -y xvfb
+    sudo apt-get install -y lv2-dev 
     sudo apt-get install -y --fix-missing
     apt list --installed
   displayName: 'Install stuff with apt'
@@ -48,8 +49,9 @@ steps:
     echo "========= CLONE JUCE =========="
     echo "==============================="
     cd ..
-    git clone https://github.com/juce-framework/JUCE.git
+    git clone -b lv2 https://github.com/lv2-porting-project/JUCE.git JUCE
     cd JUCE
+    git log | grep 6.0.1
     echo "Checking out JUCE 6.0.1"
     git checkout a30f7357863a7d480a771e069abf56909cdf0e13
     echo ""
