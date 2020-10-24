@@ -41,6 +41,20 @@ jobs:
     displayName: 'Windows: Install Prerequisites'
     condition: variables.isWindows
 
+  - script: |
+      echo ""
+      echo "==============================="
+      echo "========= CLONE JUCE =========="
+      echo "==============================="
+      echo ""
+      cd ..
+      git clone https://github.com/juce-framework/JUCE.git JUCE
+      cd JUCE
+      echo "Checking out JUCE 6.0.1"
+      git checkout a30f7357863a7d480a771e069abf56909cdf0e13
+    displayName: 'Windows: Clone JUCE'
+    condition: variables.isWindows
+
 #! ███    ███  █████   ██████ 
 #! ████  ████ ██   ██ ██      
 #! ██ ████ ██ ███████ ██      
