@@ -71,7 +71,7 @@ steps:
     export DISPLAY=:99
     sleep 5
     build/Projucer --set-global-search-path linux defaultJuceModulePath /home/vsts/work/1/JUCE/modules
-    ls -l /home/vsts/work/1/JUCE/modules
+    ls -l /home/vsts/work/1/JUCE/modules/juce_audio_plugin_client
 
   displayName: 'Set up JUCE'
 
@@ -106,6 +106,8 @@ steps:
     echo ""
     ls -l
     cd ..
+    ../JUCE/extras/Projucer/Builds/LinuxMakefile/build/Projucer --resave Odin.jucer
+    ls -l JuceLibraryCode
     echo -e "include ../../LV2.mak" >> Builds/LinuxMakefile/Makefile
     #cat Builds/LinuxMakefile/Makefile
     echo ""
