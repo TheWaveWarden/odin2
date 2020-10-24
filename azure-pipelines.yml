@@ -55,12 +55,12 @@ jobs:
     displayName: 'Mac: Set up clone JUCE'
     condition: variables.isMac
 
-- task: Xcode@5
-  inputs:
-    actions: 'build'
-    xcWorkspacePath: ../JUCE/extras/Projucer/Builds/MacOSX/Projucer.xcodeproj
-    displayName: 'Mac: Build Projucer XCode'
-    condition: variables.isMac
+  - task: Xcode@5
+    inputs:
+      actions: 'build'
+      xcWorkspacePath: ../JUCE/extras/Projucer/Builds/MacOSX/Projucer.xcodeproj
+      displayName: 'Mac: Build Projucer XCode'
+      condition: variables.isMac
 
 
 
