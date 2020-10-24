@@ -38,8 +38,8 @@ jobs:
       set -ex
       # build the innosetup install
       nuget install innosetup
-  displayName: 'Windows: Install Prerequisites'
-  condition: variables.isWindows
+    displayName: 'Windows: Install Prerequisites'
+    condition: variables.isWindows
 
 #! ███    ███  █████   ██████ 
 #! ████  ████ ██   ██ ██      
