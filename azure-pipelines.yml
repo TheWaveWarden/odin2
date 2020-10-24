@@ -98,11 +98,11 @@ steps:
     echo ""
     echo "Contents of AppConfig.h after modification:"
     echo ""
-    cat AppConfig.h
+    #cat AppConfig.h
     echo ""
     echo ""
     cd ..
-    #echo -e "include ../../LV2.mak" >> Builds/LinuxMakefile/Makefile
+    echo -e "include ../../LV2.mak" >> Builds/LinuxMakefile/Makefile
     cat Builds/LinuxMakefile/Makefile
     echo ""
     echo "==============================="
