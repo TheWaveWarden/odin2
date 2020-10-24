@@ -52,9 +52,11 @@ steps:
     cd ..
     git clone -b lv2 https://github.com/lv2-porting-project/JUCE.git JUCE
     cd JUCE
+    git status
     git log | grep 6.0.1
     echo "Checking out JUCE 6.0.1"
     git checkout a30f7357863a7d480a771e069abf56909cdf0e13
+    git status
     echo ""
     echo "==============================="
     echo "======= BUILD PROJUCER ========"
@@ -116,6 +118,10 @@ steps:
     for i in "${ADDR[@]}"; do
       echo "$i"
     done
+    echo "$ADDR[0]"
+    echo "$ADDR[1]"
+    echo "$ADDR[2]"
+    echo "$ADDR[3]"
     pwd
     cd Builds/LinuxMakefile
     make -j 8 CONFIG=Release
