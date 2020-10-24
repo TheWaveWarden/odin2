@@ -1,5 +1,16 @@
+#!/bin/bash
+
+
+#package version can be passed as first argument for CI, if not it must be input
+if [ "$#" -eq 1 ]; then
+    package_version="$1"
+else 
+    read -p "Enter Odin Package Version (i.e. 2.2-0): "  package_version
+fi
+
+echo "package version set to $package_version"
+
 #get name for package
-read -p "Enter Odin Package Version (i.e. 2.2-0): "  package_version
 
 package_name="Odin_${package_version}"
 
