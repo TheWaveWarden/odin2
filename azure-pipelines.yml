@@ -103,6 +103,7 @@ steps:
     echo ""
     cd ..
     echo -e "include ../../LV2.mak" >> Builds/LinuxMakefile/Makefile
+    cat Builds/LinuxMakefile/Makefile
     echo ""
     echo "==============================="
     echo "========= Build Odin =========="
