@@ -109,6 +109,8 @@ steps:
     echo "========= Build Odin =========="
     echo "==============================="
     echo ""
+    export PROJECT_VERSION=$(../JUCE/Projucer --get-version /Odin.jucer)
+    echo "Odin Project Version: $PROJECT_VERSION"
     pwd
     cd Builds/LinuxMakefile
     make -j 8 CONFIG=Release
