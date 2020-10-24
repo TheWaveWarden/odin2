@@ -100,11 +100,10 @@ steps:
     rm app_config.tmp
     echo ""
     cd ..
-    #../JUCE/extras/Projucer/Builds/LinuxMakefile/build/Projucer --resave Odin.jucer
     echo -e "include ../../LV2.mak" >> Builds/LinuxMakefile/Makefile
     echo ""
     echo "==============================="
-    echo "========= Build Odin =========="
+    echo "===== Build Odin Packages ====="
     echo "==============================="
     echo ""
     export PROJECT_VERSION="$(../JUCE/extras/Projucer/Builds/LinuxMakefile/build/Projucer --get-version Odin.jucer)"
@@ -118,8 +117,8 @@ steps:
     echo "${ADDR[1]}"
     echo "${ADDR[2]}"
     export DEBIAN_PROJECT_STRING="${ADDR[0]}.${ADDR[1]}-${ADDR[2]}"
-    echo "Debian String: $DEBIAN_PROJECT_STRING"
-    pwd
-    cd Builds/LinuxMakefile
-    make -j 8 CONFIG=Release
+    echo "Debian package String: $DEBIAN_PROJECT_STRING"
+    cd installers/linux
+    ./create_installers.sh
+    ls -l
   displayName: 'Build Odin2'
