@@ -103,6 +103,7 @@ steps:
     #cat AppConfig.h
     echo ""
     echo ""
+    ls -l
     cd ..
     echo -e "include ../../LV2.mak" >> Builds/LinuxMakefile/Makefile
     #cat Builds/LinuxMakefile/Makefile
@@ -118,10 +119,11 @@ steps:
     for i in "${ADDR[@]}"; do
       echo "$i"
     done
-    echo "$ADDR[0]"
-    echo "$ADDR[1]"
-    echo "$ADDR[2]"
-    echo "$ADDR[3]"
+    echo "${ADDR[0]}"
+    echo "${ADDR[1]}"
+    echo "${ADDR[2]}"
+    export DEBIAN_PROJECT_STRING="${ADDR[0]}.${ADDR[1]}-${ADDR[2]}"
+    echo "Debian String: $DEBIAN_PROJCET_STRING"
     pwd
     cd Builds/LinuxMakefile
     make -j 8 CONFIG=Release
