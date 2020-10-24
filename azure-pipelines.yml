@@ -13,13 +13,13 @@ jobs:
 - job: Build
   strategy:
     matrix:
-      mac:
+      Mac:
         imageName: 'macos-10.14'
         isMac: True
-      # win:
-      #   imageName: 'windows-2019'
-      #   isWindows: True
-      #lin:
+      #Windows:
+      #  imageName: 'windows-2019'
+      #  isWindows: True
+      #Linux:
       #  imageName: 'ubuntu-18.04'
       #  isLinux: True
 
@@ -122,10 +122,11 @@ jobs:
       echo ""
       cd installers/mac
       echo "Adjusting paths in pkgproj to Azure build system"
-      cat Odin2MacInstaller.pkproj | grep ../../..
+      cat Odin2MacInstaller.pkgproj | grep ../../..
       echo ""
       sed -i '' 's:../../../Library:../../../../../Library:' Odin2MacInstaller.pkgproj
-      cat Odin2MacInstaller.pkproj | grep ../../..
+      sed -i '' 's:../../../odin2:../..:' Odin2MacInstaller.pkgproj
+      cat Odin2MacInstaller.pkgproj | grep ../../..
 
       /usr/local/bin/packagesbuild Odin2MacInstaller.pkgproj
       echo ""
