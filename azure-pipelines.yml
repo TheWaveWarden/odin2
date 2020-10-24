@@ -71,6 +71,7 @@ steps:
     export DISPLAY=:99
     sleep 5
     build/Projucer --set-global-search-path linux defaultJuceModulePath /home/vsts/work/1/JUCE/modules
+    ls -l /home/vsts/work/1/JUCE/modules
 
   displayName: 'Set up JUCE'
 
@@ -123,7 +124,7 @@ steps:
     echo "${ADDR[1]}"
     echo "${ADDR[2]}"
     export DEBIAN_PROJECT_STRING="${ADDR[0]}.${ADDR[1]}-${ADDR[2]}"
-    echo "Debian String: $DEBIAN_PROJCET_STRING"
+    echo "Debian String: $DEBIAN_PROJECT_STRING"
     pwd
     cd Builds/LinuxMakefile
     make -j 8 CONFIG=Release
