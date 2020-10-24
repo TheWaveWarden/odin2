@@ -66,7 +66,8 @@ jobs:
       ls -l ../JUCE/extras/Projucer/Builds/MacOSX/build/
       ls -l ../JUCE/extras/Projucer/Builds/MacOSX/build/Release
       ls -l ../JUCE/extras/Projucer/Builds/MacOSX/build/Projucer.build
-      ../JUCE/extras/Projucer/Builds/MacOSX/build/Release/Projucer --resave Odin.jucer
+      ls -l ../JUCE/extras/Projucer/Builds/MacOSX/build/Projucer.build/Release
+      ../JUCE/extras/Projucer/Builds/MacOSX/build/Projucer.build/Release/Projucer --resave Odin.jucer
     displayName: 'Mac: Build Odin2 Packages'
     condition: variables.isMac
 
