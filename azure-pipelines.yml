@@ -102,14 +102,14 @@ steps:
     echo ""
     echo ""
     cd ..
-    echo -e "include ../../LV2.mak" >> Builds/LinuxMakefile/Makefile
+    #echo -e "include ../../LV2.mak" >> Builds/LinuxMakefile/Makefile
     cat Builds/LinuxMakefile/Makefile
     echo ""
     echo "==============================="
     echo "========= Build Odin =========="
     echo "==============================="
     echo ""
-    export PROJECT_VERSION=$(../JUCE/Projucer --get-version /Odin.jucer)
+    export PROJECT_VERSION="$(../JUCE/Projucer --get-version /Odin.jucer)"
     echo "Odin Project Version: $PROJECT_VERSION"
     pwd
     cd Builds/LinuxMakefile
