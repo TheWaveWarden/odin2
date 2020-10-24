@@ -1,7 +1,7 @@
 #!/bin/bash
-echo "================================================================="
-echo "IMPORTANT: Build only on Ubuntu 18.4, else will give libc6 errors"
-echo "================================================================="
+echo "=================================================================="
+echo "IMPORTANT: Build only on Ubuntu 18.04, else will give libc6 errors"
+echo "=================================================================="
 echo ""
 echo "removing old builds from directory..."
 rm Odin*

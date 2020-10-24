@@ -33,15 +33,6 @@ mkdir $package_name/opt/odin2/Soundbanks
 
 #build Odin2 from scratch
 pushd ../../Builds/LinuxMakefile/
-pwd
-echo ""
-ls -l ../../..
-echo ""
-ls -l ../..
-echo ""
-ls -l ../../../JUCE
-echo ""
-ls -l
 ../../../JUCE/Projucer --resave ../../Odin.jucer
 #add command to build LV2 as well
 echo -e "include ../../LV2.mak" >> Makefile
