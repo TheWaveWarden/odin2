@@ -52,10 +52,10 @@ jobs:
       cd extras/Projucer/Builds/MacOSX
       ls -lh
 
-    displayName: 'Mac: Set up clone JUCE'
+    displayName: 'Mac: Clone JUCE'
     condition: variables.isMac
 
-  - task: Mac Build Projucer Xcode@5
+  - task: Xcode@5
     inputs:
       actions: 'build'
       sdk: ''
