@@ -63,9 +63,18 @@ jobs:
       echo "======= EXPORT PROJUCER ======="
       echo "==============================="
       echo ""
-      ls -l ../JUCE/extras/Projucer/Builds/MacOSX/build/Release
       open ../JUCE/extras/Projucer/Builds/MacOSX/build/Release/Projucer.app --args --resave Odin.jucer
     displayName: 'Mac: Export Project with Projucer'
+    condition: variables.isMac
+
+  - task: Xcode@5
+    inputs:
+      actions: 'build'
+      sdk: ''
+      configuration: 'Release'
+      xcodeVersion: 'default'
+      xcWorkspacePath: Builds/MacOSX/Odin2.xcodeproj
+    displayName: 'Mac: Build Odin XCode'
     condition: variables.isMac
 
 
