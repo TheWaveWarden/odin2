@@ -84,8 +84,15 @@ steps:
     echo "====== PREPARE LV2 STUFF ======"
     echo "==============================="
     echo ""
-    export LINE_NUMBER="$(grep -n 'BEGIN_USER_CODE_SECTION' JuceLibraryCode/AppConfig.h | cut -d: -f1)"
+    cd JuceLibraryCode
+    export LINE_NUMBER="$(grep -n 'BEGIN_USER_CODE_SECTION' AppConfig.h | cut -d: -f1)"
     echo "Line for usercode in AppConfig.h is $LINE_NUMBER"
+    head -n $LINE_NUMBER AppConfig.h > app_config.tmp
+    echo "#define JucePlugin_Build_LV2 1" >> app_config.tmp
+    echo "#define JucePlugin_LV2URI \"https://www.thewavewarden.com/odin2\"" >> app_config.tmp
+    echo "#define JucePlugin_MaxNumInputChannels 2" >> app_config.tmp
+    echo "#define JucePlugin_MaxNumOutputChannels 2" >> app_config.tmp
+    tail -n +$((LINE_NUMBER+1)) AppConfig.h >> app_config.tmp
     echo ""
     echo "==============================="
     echo "========= Build Odin =========="
