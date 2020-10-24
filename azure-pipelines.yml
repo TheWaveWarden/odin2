@@ -15,6 +15,8 @@ jobs:
     matrix:
       mac:
         imageName: 'macos-10.14'
+        #todo
+        isHACC: True
         isMac: True
       # kwin:
       #   imageName: 'windows-2019'
@@ -57,12 +59,13 @@ jobs:
       }
       installdmg http://s.sudre.free.fr/Software/files/Packages.dmg
       #echo "Download and install Packages packaging tool"
-      #echo "Install Packages packaging tool"
       #curl http://s.sudre.free.fr/Software/files/Packages.dmg -o Packages.dmg
       #echo "Install Packages packaging tool"
+      ls -l /usr/local/bin | grep packagesbuild
+      ls -l
 
     displayName: 'Mac: Install Prerequisites'
-    condition: variables.isMac
+    condition: variables.isHACC 
 
   - script: |
       echo ""
