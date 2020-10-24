@@ -36,6 +36,37 @@ jobs:
   - script: |
       echo ""
       echo "==============================="
+      echo "====== INSTALL PACKAGES ======="
+      echo "==============================="
+      echo ""
+      function installdmg {
+        set -x
+        tempd=$(mktemp -d)
+        curl $1 > $tempd/pkg.dmg
+        listing=$(hdiutil attach $tempd/pkg.dmg | grep Volumes)
+        volume=$(echo "$listing" | cut -f 3)
+        if [ -e "$volume"/*.app ]; then
+          cp -rf "$volume"/*.app /Applications
+        elif [ -e "$volume"/*.pkg ]; then
+          package=$(ls -1 "$volume" | grep .pkg | head -1)
+          installer -pkg "$volume"/"$package" -target /
+        fi
+        sudo hdiutil detach "$(echo "$listing" | cut -f 1)"
+        rm -rf $tempd
+        set +x
+      }
+      installdmg http://s.sudre.free.fr/Software/files/Packages.dmg
+      #echo "Download and install Packages packaging tool"
+      #echo "Install Packages packaging tool"
+      #curl http://s.sudre.free.fr/Software/files/Packages.dmg -o Packages.dmg
+      #echo "Install Packages packaging tool"
+
+    displayName: 'Mac: Install Prerequisites'
+    condition: variables.isMac
+
+  - script: |
+      echo ""
+      echo "==============================="
       echo "========= CLONE JUCE =========="
       echo "==============================="
       echo ""
@@ -145,7 +176,7 @@ jobs:
       sudo apt-get install -y lv2-dev 
       sudo apt-get install -y --fix-missing
       apt list --installed
-    displayName: 'Linux: Install stuff with apt'
+    displayName: 'Linux: Install Prerequisites'
     condition: variables.isLinux
 
   - script: |
