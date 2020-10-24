@@ -74,7 +74,7 @@ steps:
     build/Projucer --set-global-search-path linux defaultJuceModulePath /home/vsts/work/1/JUCE/modules
     echo "setting symlink to Projucer"
     ln -s  /home/vsts/work/1/JUCE/Builds/LinuxMakefile/build/Projucer  /home/vsts/work/1/JUCE/Projucer
-    ll /home/vsts/work/1/JUCE/Projucer
+    ls -l /home/vsts/work/1/JUCE/Projucer
 
   displayName: 'Set up JUCE'
 
