@@ -26,6 +26,53 @@ jobs:
   pool:
     vmImage: '$(imageName)'
 
+
+#! ███    ███  █████   ██████ 
+#! ████  ████ ██   ██ ██      
+#! ██ ████ ██ ███████ ██      
+#! ██  ██  ██ ██   ██ ██      
+#! ██      ██ ██   ██  ██████
+
+  - script: |
+      echo ""
+      echo "==============================="
+      echo "========= CLONE JUCE =========="
+      echo "==============================="
+      echo ""
+      cd ..
+      git clone https://github.com/juce-framework/JUCE.git JUCE
+      cd JUCE
+      echo "Checking out JUCE 6.0.1"
+      git checkout a30f7357863a7d480a771e069abf56909cdf0e13
+      echo ""
+      echo "==============================="
+      echo "======= BUILD PROJUCER ========"
+      echo "==============================="
+      echo ""
+      cd extras/Projucer/Builds/MacOSX
+      ls -lh
+
+    displayName: 'Mac: Set up JUCE'
+    condition: variables.isMac
+
+
+
+#! ██     ██ ██ ███    ██ ██████   ██████  ██     ██ ███████ 
+#! ██     ██ ██ ████   ██ ██   ██ ██    ██ ██     ██ ██      
+#! ██  █  ██ ██ ██ ██  ██ ██   ██ ██    ██ ██  █  ██ ███████ 
+#! ██ ███ ██ ██ ██  ██ ██ ██   ██ ██    ██ ██ ███ ██      ██ 
+#!  ███ ███  ██ ██   ████ ██████   ██████   ███ ███  ███████
+
+
+
+
+
+#! ██      ██ ███    ██ ██    ██ ██   ██ 
+#! ██      ██ ████   ██ ██    ██  ██ ██  
+#! ██      ██ ██ ██  ██ ██    ██   ███   
+#! ██      ██ ██  ██ ██ ██    ██  ██ ██  
+#! ███████ ██ ██   ████  ██████  ██   ██
+
   steps:
   - script: |
       echo ""
@@ -58,6 +105,7 @@ jobs:
       sudo apt-get install -y --fix-missing
       apt list --installed
     displayName: 'Linux: Install stuff with apt'
+    condition: variables.isLinux
 
   - script: |
       echo ""
@@ -68,10 +116,8 @@ jobs:
       cd ..
       git clone https://github.com/lv2-porting-project/JUCE.git JUCE
       cd JUCE
-      git status
       echo "Checking out JUCE 6.0.1"
       git checkout a30f7357863a7d480a771e069abf56909cdf0e13
-      git status
       echo ""
       echo "==============================="
       echo "======= BUILD PROJUCER ========"
@@ -93,6 +139,7 @@ jobs:
       ls -l /home/vsts/work/1/JUCE
 
     displayName: 'Linux: Set up JUCE'
+    condition: variables.isLinux
 
   - script: |
       echo ""
@@ -136,3 +183,4 @@ jobs:
       echo ""
       ls -lh | grep Odin
     displayName: 'Linux: Build Odin2 Packages'
+    condition: variables.isLinux
