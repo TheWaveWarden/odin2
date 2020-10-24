@@ -1,3 +1,5 @@
+#!/bin/bash
+
 rm Odin2_linux_x64.zip
 cp -r ../../Builds/LinuxMakefile/build/Odin2.vst3 Odin2.vst3
 cp -r ../../Builds/LinuxMakefile/build/Odin2_.lv2 Odin2.lv2
