@@ -13,12 +13,12 @@ jobs:
 - job: Build
   strategy:
     matrix:
-      Mac:
-        imageName: 'macos-10.14'
-        isMac: True
       Windows:
         imageName: 'windows-2019'
         isWindows: True
+      Mac:
+        imageName: 'macos-10.14'
+        isMac: True
       Linux:
         imageName: 'ubuntu-18.04'
         isLinux: True
@@ -96,10 +96,13 @@ jobs:
     condition: variables.isWindows
 
   - bash: |
+      set -ex
       iscc installers/windows/win_installer.iss
       cd installers/windows/Output
-      [[ $(find Odin2.exe -type f -size +50000000c 2>/dev/null) ]] && echo "Windows installer built successfully" || exit 1
-      exit 0
+      ls -l
+      echo ""
+      echo "Results"
+      echo "Windows installer built successfully"
     displayName: 'Windows: Build Installer'
     condition: variables.isWindows
 
@@ -338,8 +341,6 @@ jobs:
       echo "RESULTS:"
       echo ""
       [[ $(find Odin2_linux_x64.zip -type f -size +50000000c 2>/dev/null) ]] && echo "Generic Zip Built sucessfully!" || exit 1
-      #TODO REMOVE
-      rm $DEB_NAME
       [[ $(find $DEB_NAME -type f -size +50000000c 2>/dev/null) ]] && echo "Debian package built successfully!" || exit 1
       exit 0
     displayName: 'Linux: Build Odin2 Packages'
