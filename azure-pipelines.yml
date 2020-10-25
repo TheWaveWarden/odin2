@@ -66,7 +66,7 @@ jobs:
     inputs:
       solution: "../JUCE/extras/Projucer/Builds/VisualStudio2019/Projucer.sln"
       platform: "x64"
-      configuration: "configuration"
+      configuration: "release"
     displayName: "Windows: Build Projucer"
     condition: variables.isWindows
 
