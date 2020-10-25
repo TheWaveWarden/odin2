@@ -59,16 +59,15 @@ jobs:
       ls -l
       cd Builds
       ls -l
-      cd VisualStudio2019
+      cd VisualStudio2019/Projucer.sln
       ls -l
     displayName: 'Windows: Clone JUCE'
     condition: variables.isWindows
 
   - task: MSBuild@1
     inputs:
-      solution: ""
+      solution: "extras/Projucer/Builds/VisualStudio2019/Projucer.sln"
       platform: "x64"
-
     displayName: "Windows: Build Projucer"
     condition: variables.isWindows
 
