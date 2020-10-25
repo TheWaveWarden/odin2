@@ -67,7 +67,7 @@ jobs:
       solution: "../JUCE/extras/Projucer/Builds/VisualStudio2019/Projucer.sln"
       platform: "x64"
       configuration: "release"
-    displayName: "Windows: Build Projucer"
+    displayName: "Windows: Build Projucer MSBuild"
     condition: variables.isWindows
 
 
@@ -80,11 +80,20 @@ jobs:
       pwd
       echo "Set JUCE Moudules path"
       cd ../JUCE/extras/Projucer/Builds/VisualStudio2019/x64/Release/App
-      Projucer.exe --set-global-search-path windows defaultJuceModulePath /d/a/1/JUCE/modules
+      Projucer.exe --set-global-search-path windows defaultJuceModulePath /a/1/JUCE/modules
       echo "Export project"
-      Projucer.exe --resave /d/a/1/s/Odin.jucer
+      Projucer.exe --resave /a/1/s/Odin.jucer
       cat Source/GitCommitId.h
     displayName: 'Windows: Export Project Projucer'
+    condition: variables.isWindows
+
+
+  - task: MSBuild@1
+    inputs:
+      solution: "Builds/VisualStudio2019/Odin2.sln"
+      platform: "x64"
+      configuration: "release"
+    displayName: "Windows: Build Odin MSBuild"
     condition: variables.isWindows
 
 #! ███    ███  █████   ██████ 
