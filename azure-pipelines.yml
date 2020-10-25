@@ -96,13 +96,12 @@ jobs:
     condition: variables.isWindows
 
   - bash: |
-      set -ex
       iscc installers/windows/win_installer.iss
       cd installers/windows/Output
-      ls -l
       echo ""
       echo "Results"
-      echo "Windows installer built successfully"
+      [[ $(find Odin2.exe -type f -size +30000000c 2>/dev/null) ]] && echo "Windows installer built successfully" || exit 1
+      exit 0
     displayName: 'Windows: Build Installer'
     condition: variables.isWindows
 
