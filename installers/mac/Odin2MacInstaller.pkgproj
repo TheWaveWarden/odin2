@@ -569,9 +569,9 @@
 				<key>PREINSTALL_PATH</key>
 				<dict>
 					<key>PATH</key>
-					<string>/Users/frederiksiepe/odin2/installers/mac/migrate_soundbank_From_old_location.sh</string>
+					<string>migrate_soundbank_From_old_location.sh</string>
 					<key>PATH_TYPE</key>
-					<integer>0</integer>
+					<integer>1</integer>
 				</dict>
 				<key>RESOURCES</key>
 				<array/>

@@ -7,116 +7,340 @@ trigger:
 - master
 - devel
 
-pool:
-  vmImage: 'ubuntu-18.04'
+  
+jobs:
 
-steps:
-- script: |
-    echo ""
-    echo "==============================="
-    echo "==== INSTALL STUFF VIA APT ===="
-    echo "==============================="
-    sudo apt-get update
-    sudo apt-get install -y libgtk-3-dev
-    sudo apt-get install -y libwebkit2gtk-4.0
-    sudo apt-get install -y libwebkit2gtk-4.0-dev
-    sudo apt-get install -y libcurl4-openssl-dev
-    sudo apt-get install -y alsa
-    sudp apt-get install -y alsa-tools
-    sudo apt-get install -y libasound2-dev
-    sudo apt-get install -y jack
-    sudo apt-get install -y libjack-dev
-    sudo apt-get install -y libfreetype6-dev
-    sudo apt-get install -y libxinerama-dev
-    sudo apt-get install -y libxcb-xinerama0
-    sudo apt-get install -y libxinerama1
-    sudo apt-get install -y x11proto-xinerama-dev
-    sudo apt-get install -y libxrandr-dev
-    sudo apt-get install -y libgl1-mesa-dev
-    sudo apt-get install -y libxcursor-dev 
-    sudo apt-get install -y libxcursor1 
-    sudo apt-get install -y libxcb-cursor-dev 
-    sudo apt-get install -y libxcb-cursor0
-    sudo apt-get install -y xvfb
-    sudo apt-get install -y lv2-dev 
-    sudo apt-get install -y --fix-missing
-    apt list --installed
-  displayName: 'Install stuff with apt'
+- job: Build
+  strategy:
+    matrix:
+      Windows:
+        imageName: 'windows-2019'
+        isWindows: True
+      Mac:
+        imageName: 'macos-10.14'
+        isMac: True
+      Linux:
+        imageName: 'ubuntu-18.04'
+        isLinux: True
 
-- script: |
-    echo ""
-    echo "==============================="
-    echo "========= CLONE JUCE =========="
-    echo "==============================="
-    echo ""
-    cd ..
-    git clone https://github.com/lv2-porting-project/JUCE.git JUCE
-    cd JUCE
-    git status
-    echo "Checking out JUCE 6.0.1"
-    git checkout a30f7357863a7d480a771e069abf56909cdf0e13
-    git status
-    echo ""
-    echo "==============================="
-    echo "======= BUILD PROJUCER ========"
-    echo "==============================="
-    echo ""
-    cd extras/Projucer/Builds/LinuxMakefile
-    make -j 8 CONFIG=Release
-    echo "checking out lv2 branch"
-    git checkout lv2
-    git checkout c51d03f11be20cb35eb28e8016e9a81827b50339
-    echo "Set Projucer modules path"
-    export GDK_BACKEND=x11
-    Xvfb :99 &
-    export DISPLAY=:99
-    sleep 5
-    build/Projucer --set-global-search-path linux defaultJuceModulePath /home/vsts/work/1/JUCE/modules
-    echo "setting symlink to Projucer"
-    ln -s /home/vsts/work/1/JUCE/extras/Projucer/Builds/LinuxMakefile/build/Projucer /home/vsts/work/1/JUCE/Projucer
-    ls -l /home/vsts/work/1/JUCE
+  pool:
+    vmImage: '$(imageName)'
 
-  displayName: 'Set up JUCE'
+  steps:
 
-- script: |
-    echo ""
-    echo "==============================="
-    echo "======= EXPORT PROJUCER ======="
-    echo "==============================="
-    echo ""
-    ../JUCE/extras/Projucer/Builds/LinuxMakefile/build/Projucer --resave Odin.jucer
-    echo ""
-    echo "==============================="
-    echo "====== PREPARE LV2 STUFF ======"
-    echo "==============================="
-    echo ""
-    cd JuceLibraryCode
-    export LINE_NUMBER="$(grep -n 'BEGIN_USER_CODE_SECTION' AppConfig.h | cut -d: -f1)"
-    echo "Line for usercode in AppConfig.h is $LINE_NUMBER"
-    echo "Insert commands to AppConfig.h"
-    head -n $LINE_NUMBER AppConfig.h > app_config.tmp
-    echo -e "#define JucePlugin_Build_LV2 1" >> app_config.tmp
-    echo -e "#define JucePlugin_LV2URI \"https://www.thewavewarden.com/odin2\"" >> app_config.tmp
-    echo -e "#define JucePlugin_MaxNumInputChannels 2" >> app_config.tmp
-    echo -e "#define JucePlugin_MaxNumOutputChannels 2" >> app_config.tmp
-    tail -n +$((LINE_NUMBER+1)) AppConfig.h >> app_config.tmp
-    mv app_config.tmp AppConfig.h
-    cd ..
-    echo -e "include ../../LV2.mak" >> Builds/LinuxMakefile/Makefile
-    echo ""
-    echo "==============================="
-    echo "===== Build Odin Packages ====="
-    echo "==============================="
-    echo ""
-    export PROJECT_VERSION="$(../JUCE/extras/Projucer/Builds/LinuxMakefile/build/Projucer --get-version Odin.jucer)"
-    echo "Odin Project Version: $PROJECT_VERSION"
-    IFS='.' read -ra ADDR <<< "$PROJECT_VERSION"
-    export DEBIAN_PROJECT_STRING="${ADDR[0]}.${ADDR[1]}-${ADDR[2]}"
-    echo "Debian package String: $DEBIAN_PROJECT_STRING"
-    cd installers/linux
-    ./create_installers.sh $DEBIAN_PROJECT_STRING
-    echo ""
-    echo "Packed builds:"
-    echo ""
-    ls -lh | grep Odin
-  displayName: 'Build Odin2 Packages'
+#! ██     ██ ██ ███    ██ ██████   ██████  ██     ██ ███████ 
+#! ██     ██ ██ ████   ██ ██   ██ ██    ██ ██     ██ ██      
+#! ██  █  ██ ██ ██ ██  ██ ██   ██ ██    ██ ██  █  ██ ███████ 
+#! ██ ███ ██ ██ ██  ██ ██ ██   ██ ██    ██ ██ ███ ██      ██ 
+#!  ███ ███  ██ ██   ████ ██████   ██████   ███ ███  ███████
+
+  - bash: |
+      nuget install innosetup
+    displayName: 'Windows: Install Prerequisites'
+    condition: variables.isWindows
+
+  - script: |
+      echo ""
+      echo "==============================="
+      echo "========= CLONE JUCE =========="
+      echo "==============================="
+      echo ""
+      cd ..
+      git clone https://github.com/juce-framework/JUCE.git JUCE
+      cd JUCE
+      echo "Checking out JUCE 6.0.1"
+      git checkout a30f7357863a7d480a771e069abf56909cdf0e13
+      ls -l
+      cd extras/Projucer
+      ls -l
+      cd Builds
+      ls -l
+      cd VisualStudio2019
+      ls -l
+    displayName: 'Windows: Clone JUCE'
+    condition: variables.isWindows
+
+  - task: MSBuild@1
+    inputs:
+      solution: "../JUCE/extras/Projucer/Builds/VisualStudio2019/Projucer.sln"
+      platform: "x64"
+      configuration: "release"
+    displayName: "Windows: Build Projucer MSBuild"
+    condition: variables.isWindows
+
+
+  - script: |
+      echo ""
+      echo "==============================="
+      echo "======= EXPORT PROJUCER ======="
+      echo "==============================="
+      echo ""
+      pwd
+      echo "Set JUCE Moudules path"
+      cd ../JUCE/extras/Projucer/Builds/VisualStudio2019/x64/Release/App
+      Projucer.exe --set-global-search-path windows defaultJuceModulePath /a/1/JUCE/modules
+      echo "Export project"
+      Projucer.exe --resave /a/1/s/Odin.jucer
+      cd /a/1/s
+      cat Source/GitCommitId.h
+    displayName: 'Windows: Export Project Projucer'
+    condition: variables.isWindows
+
+
+  - task: MSBuild@1
+    inputs:
+      solution: "Builds/VisualStudio2019/Odin2.sln"
+      platform: "x64"
+      configuration: "release"
+    displayName: "Windows: Build Odin MSBuild"
+    condition: variables.isWindows
+
+  - bash: |
+      iscc installers/windows/win_installer.iss
+      cd installers/windows/Output
+      echo ""
+      echo "Results"
+      [[ $(find Odin2.exe -type f -size +30000000c 2>/dev/null) ]] && echo "Windows installer built successfully" || exit 1
+      exit 0
+    displayName: 'Windows: Build Installer'
+    condition: variables.isWindows
+
+
+#! ███    ███  █████   ██████ 
+#! ████  ████ ██   ██ ██      
+#! ██ ████ ██ ███████ ██      
+#! ██  ██  ██ ██   ██ ██      
+#! ██      ██ ██   ██  ██████
+
+  - script: |
+      echo ""
+      echo "==============================="
+      echo "====== INSTALL PACKAGES ======="
+      echo "==============================="
+      echo ""
+      function installdmg {
+        set -x
+        tempd=$(mktemp -d)
+        curl $1 > $tempd/pkg.dmg
+        listing=$(hdiutil attach $tempd/pkg.dmg | grep Volumes)
+        volume=$(echo "$listing" | cut -f 3)
+        if [ -e "$volume"/*.app ]; then
+          cp -rf "$volume"/*.app /Applications
+        elif [ -e "$volume"/*.pkg ]; then
+          package=$(ls -1 "$volume" | grep .pkg | head -1)
+          sudo installer -verbose -pkg "$volume"/"$package" -target /
+        fi
+        sudo hdiutil detach "$(echo "$listing" | cut -f 1)"
+        rm -rf $tempd
+        set +x
+      }
+      installdmg http://s.sudre.free.fr/Software/files/Packages.dmg
+      #echo "Download and install Packages packaging tool"
+      #curl http://s.sudre.free.fr/Software/files/Packages.dmg -o Packages.dmg
+      #echo "Install Packages packaging tool"
+      ls -l /usr/local/bin | grep packagesbuild
+
+    displayName: 'Mac: Install Prerequisites'
+    condition: variables.isMac
+
+  - script: |
+      echo ""
+      echo "==============================="
+      echo "========= CLONE JUCE =========="
+      echo "==============================="
+      echo ""
+      cd ..
+      git clone https://github.com/juce-framework/JUCE.git JUCE
+      cd JUCE
+      echo "Checking out JUCE 6.0.1"
+      git checkout a30f7357863a7d480a771e069abf56909cdf0e13
+    displayName: 'Mac: Clone JUCE'
+    condition: variables.isMac
+
+  - task: Xcode@5
+    inputs:
+      actions: 'build'
+      sdk: ''
+      configuration: 'Release'
+      xcodeVersion: 'default'
+      xcWorkspacePath: ../JUCE/extras/Projucer/Builds/MacOSX/Projucer.xcodeproj
+    displayName: 'Mac: Build Projucer XCode'
+    condition: variables.isMac
+
+  - script: |
+      echo ""
+      echo "==============================="
+      echo "======= EXPORT PROJUCER ======="
+      echo "==============================="
+      echo ""
+      echo "Set JUCE Moudules path"
+      ../JUCE/extras/Projucer/Builds/MacOSX/build/Release/Projucer.app/Contents/MacOS/Projucer --set-global-search-path osx defaultJuceModulePath /Users/runner/work/1/JUCE/modules
+      echo "Export project"
+      ../JUCE/extras/Projucer/Builds/MacOSX/build/Release/Projucer.app/Contents/MacOS/Projucer --resave Odin.jucer
+      echo "extract git commit id"
+      echo "#define GIT_COMMIT_ID \"$(git rev-parse --short HEAD)\"" > Source/GitCommitId.h
+      cat Source/GitCommitId.h
+    displayName: 'Mac: Export Project Projucer'
+    condition: variables.isMac
+
+  - task: Xcode@5
+    inputs:
+      actions: 'build'
+      sdk: ''
+      configuration: 'Release'
+      xcodeVersion: 'default'
+      xcWorkspacePath: Builds/MacOSX/Odin2.xcodeproj
+    displayName: 'Mac: Build Odin XCode'
+    condition: variables.isMac
+
+  - script: |
+      echo ""
+      echo "==============================="
+      echo "======== PACKAGE ODIN ========="
+      echo "==============================="
+      echo ""
+      cd installers/mac
+      echo "Adjusting paths in pkgproj to Azure build system"
+      cat Odin2MacInstaller.pkgproj | grep ../../..
+      echo ""
+      sed -i '' 's:../../../Library:../../../../../Library:' Odin2MacInstaller.pkgproj
+      sed -i '' 's:../../../odin2:../..:' Odin2MacInstaller.pkgproj
+      cat Odin2MacInstaller.pkgproj | grep ../../..
+
+      /usr/local/bin/packagesbuild Odin2MacInstaller.pkgproj
+      echo ""
+      echo "The final product:"
+      ls -lh build
+
+      [[ $(find build/Odin2MacInstaller.pkg -type f -size +50000000c 2>/dev/null) ]] && echo "Mac Package Built Successfully" || exit 1
+      exit 0
+    displayName: 'Mac: Package Odin'
+    condition: variables.isMac
+
+
+#! ██      ██ ███    ██ ██    ██ ██   ██ 
+#! ██      ██ ████   ██ ██    ██  ██ ██  
+#! ██      ██ ██ ██  ██ ██    ██   ███   
+#! ██      ██ ██  ██ ██ ██    ██  ██ ██  
+#! ███████ ██ ██   ████  ██████  ██   ██
+
+  - script: |
+      echo ""
+      echo "==============================="
+      echo "==== INSTALL STUFF VIA APT ===="
+      echo "==============================="
+      sudo apt-get update
+      sudo apt-get install -y libgtk-3-dev
+      sudo apt-get install -y libwebkit2gtk-4.0
+      sudo apt-get install -y libwebkit2gtk-4.0-dev
+      sudo apt-get install -y libcurl4-openssl-dev
+      sudo apt-get install -y alsa
+      sudp apt-get install -y alsa-tools
+      sudo apt-get install -y libasound2-dev
+      sudo apt-get install -y jack
+      sudo apt-get install -y libjack-dev
+      sudo apt-get install -y libfreetype6-dev
+      sudo apt-get install -y libxinerama-dev
+      sudo apt-get install -y libxcb-xinerama0
+      sudo apt-get install -y libxinerama1
+      sudo apt-get install -y x11proto-xinerama-dev
+      sudo apt-get install -y libxrandr-dev
+      sudo apt-get install -y libgl1-mesa-dev
+      sudo apt-get install -y libxcursor-dev 
+      sudo apt-get install -y libxcursor1 
+      sudo apt-get install -y libxcb-cursor-dev 
+      sudo apt-get install -y libxcb-cursor0
+      sudo apt-get install -y xvfb
+      sudo apt-get install -y lv2-dev 
+      sudo apt-get install -y --fix-missing
+      apt list --installed
+    displayName: 'Linux: Install Prerequisites'
+    condition: variables.isLinux
+
+  - script: |
+      echo ""
+      echo "==============================="
+      echo "========= CLONE JUCE =========="
+      echo "==============================="
+      echo ""
+      cd ..
+      git clone https://github.com/lv2-porting-project/JUCE.git JUCE
+      cd JUCE
+      echo "Checking out JUCE 6.0.1"
+      git checkout a30f7357863a7d480a771e069abf56909cdf0e13
+      echo ""
+      echo "==============================="
+      echo "======= BUILD PROJUCER ========"
+      echo "==============================="
+      echo ""
+      cd extras/Projucer/Builds/LinuxMakefile
+      make -j 8 CONFIG=Release
+      echo "checking out lv2 branch"
+      git checkout lv2
+      git checkout c51d03f11be20cb35eb28e8016e9a81827b50339
+      echo "Set Projucer modules path"
+      export GDK_BACKEND=x11
+      Xvfb :99 &
+      export DISPLAY=:99
+      sleep 5
+      build/Projucer --set-global-search-path linux defaultJuceModulePath /home/vsts/work/1/JUCE/modules
+      echo "setting symlink to Projucer"
+      ln -s /home/vsts/work/1/JUCE/extras/Projucer/Builds/LinuxMakefile/build/Projucer /home/vsts/work/1/JUCE/Projucer
+      ls -l /home/vsts/work/1/JUCE
+
+    displayName: 'Linux: Set up JUCE'
+    condition: variables.isLinux
+
+  - script: |
+      echo ""
+      echo "==============================="
+      echo "======= EXPORT PROJUCER ======="
+      echo "==============================="
+      echo ""
+      ../JUCE/extras/Projucer/Builds/LinuxMakefile/build/Projucer --resave Odin.jucer
+      echo ""
+      echo "==============================="
+      echo "====== PREPARE LV2 STUFF ======"
+      echo "==============================="
+      echo ""
+      cd JuceLibraryCode
+      export LINE_NUMBER="$(grep -n 'BEGIN_USER_CODE_SECTION' AppConfig.h | cut -d: -f1)"
+      echo "Line for usercode in AppConfig.h is $LINE_NUMBER"
+      echo "Insert commands to AppConfig.h"
+      head -n $LINE_NUMBER AppConfig.h > app_config.tmp
+      echo -e "#define JucePlugin_Build_LV2 1" >> app_config.tmp
+      echo -e "#define JucePlugin_LV2URI \"https://www.thewavewarden.com/odin2\"" >> app_config.tmp
+      echo -e "#define JucePlugin_MaxNumInputChannels 2" >> app_config.tmp
+      echo -e "#define JucePlugin_MaxNumOutputChannels 2" >> app_config.tmp
+      tail -n +$((LINE_NUMBER+1)) AppConfig.h >> app_config.tmp
+      mv app_config.tmp AppConfig.h
+      cd ..
+      echo -e "include ../../LV2.mak" >> Builds/LinuxMakefile/Makefile
+      echo ""
+      echo "==============================="
+      echo "===== Build Odin Packages ====="
+      echo "==============================="
+      echo ""
+      export PROJECT_VERSION="$(../JUCE/extras/Projucer/Builds/LinuxMakefile/build/Projucer --get-version Odin.jucer)"
+      echo "Odin Project Version: $PROJECT_VERSION"
+      IFS='.' read -ra ADDR <<< "$PROJECT_VERSION"
+      export DEBIAN_PROJECT_STRING="${ADDR[0]}.${ADDR[1]}-${ADDR[2]}"
+      echo "Debian package String: $DEBIAN_PROJECT_STRING"
+      cd installers/linux
+      ./create_installers.sh $DEBIAN_PROJECT_STRING
+      echo ""
+      echo "Packed builds:"
+      echo ""
+      ls -lh | grep Odin
+
+      export $DEB_NAME="Odin_$DEBIAN_PROJECT_STRING.deb"
+      echo "Debian name should be: $DEB_NAME"
+
+      echo ""
+      echo "RESULTS:"
+      echo ""
+      [[ $(find Odin2_linux_x64.zip -type f -size +50000000c 2>/dev/null) ]] && echo "Generic Zip Built sucessfully!" || exit 1
+      [[ $(find $DEB_NAME -type f -size +50000000c 2>/dev/null) ]] && echo "Debian package built successfully!" || exit 1
+      exit 0
+    displayName: 'Linux: Build Odin2 Packages'
+    condition: variables.isLinux
