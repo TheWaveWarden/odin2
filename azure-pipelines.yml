@@ -52,7 +52,24 @@ jobs:
       cd JUCE
       echo "Checking out JUCE 6.0.1"
       git checkout a30f7357863a7d480a771e069abf56909cdf0e13
+      ls -l
+      cd extras
+      ls -l
+      cd Projucer
+      ls -l
+      cd Builds
+      ls -l
+      cd VisualStudio2019
+      ls -l
     displayName: 'Windows: Clone JUCE'
+    condition: variables.isWindows
+
+  - task: MSBuild@1
+    inputs:
+      solution: ""
+      platform: "x64"
+
+    displayName: "Windows: Build Projucer"
     condition: variables.isWindows
 
 #! ███    ███  █████   ██████ 
