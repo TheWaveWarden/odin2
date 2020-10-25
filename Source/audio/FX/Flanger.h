@@ -22,7 +22,7 @@
 class Flanger : public CombFilter {
 public:
   Flanger();
-  ~Flanger();
+  virtual ~Flanger();
 
   inline void reset() override {
     CombFilter::reset();

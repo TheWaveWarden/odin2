@@ -23,7 +23,7 @@ public:
   FormantSelector(bool p_buttons_right = true)
       : NumberSelector(p_buttons_right) {
     m_min = 0;
-    m_max = m_formant_vector.size() - 1;
+    m_max = (int)m_formant_vector.size() - 1;
   }
 
   ~FormantSelector() {}

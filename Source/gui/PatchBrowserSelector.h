@@ -54,7 +54,7 @@ protected:
 	                          Button &button,
 	                          const Colour &backgroundColour,
 	                          bool shouldDrawButtonAsHighlighted,
-	                          bool shouldDrawButtonAsDown) {
+	                          bool shouldDrawButtonAsDown) override {
 		auto cornerSize = 0.f;
 		auto bounds     = button.getLocalBounds().toFloat().reduced(0.5f, 0.5f);
 
@@ -64,11 +64,6 @@ protected:
 			baseColour = baseColour.contrasting(shouldDrawButtonAsDown ? 0.2f : 0.05f);
 
 		g.setColour(baseColour);
-
-		auto flatOnLeft   = button.isConnectedOnLeft();
-		auto flatOnRight  = button.isConnectedOnRight();
-		auto flatOnTop    = button.isConnectedOnTop();
-		auto flatOnBottom = button.isConnectedOnBottom();
 
 		g.fillRoundedRectangle(bounds, cornerSize);
 		if (shouldDrawButtonAsHighlighted) {

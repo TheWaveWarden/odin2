@@ -242,7 +242,7 @@ public:
 	}
 
 	void getIdealPopupMenuItemSize(
-	    const String &text, bool isSeparator, int standardMenuItemHeight, int &idealWidth, int &idealHeight) {
+	    const String &text, bool isSeparator, int standardMenuItemHeight, int &idealWidth, int &idealHeight) override {
 		if (m_GUI_big) {
 			if (isSeparator) {
 				idealWidth  = m_width;

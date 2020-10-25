@@ -29,7 +29,7 @@
 class CombFilter {
 public:
 	CombFilter();
-	~CombFilter();
+	virtual ~CombFilter();
 
 	float doFilter(float p_input);
 	int m_MIDI_note     = 0;

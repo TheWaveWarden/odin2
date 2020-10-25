@@ -29,7 +29,7 @@ public:
 	void update() override;
 	void reset() override;
 
-	void randomizePhase(){
+	void randomizePhase() override {
 		for(int osc = 0; osc < OSCS_PER_MULTIOSC; ++osc){
 	  		m_read_index_multi[osc] = (float)rand() / (float)RAND_MAX * WAVETABLE_LENGTH;
 		}

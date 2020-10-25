@@ -21,7 +21,7 @@
 class BiquadFilter {
 public:
   BiquadFilter();
-  ~BiquadFilter();
+  virtual ~BiquadFilter();
 
   inline void reset() { m_z1 = m_z2 = 0.; }
 

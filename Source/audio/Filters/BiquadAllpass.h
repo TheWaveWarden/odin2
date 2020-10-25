@@ -22,7 +22,7 @@ class BiquadAllpass : public BiquadFilter
 {
 public:
 	BiquadAllpass();
-	~BiquadAllpass();
+	virtual ~BiquadAllpass();
 
 	inline void setRadius(float p_radius){
 		m_radius = p_radius;

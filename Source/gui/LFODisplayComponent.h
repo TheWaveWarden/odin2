@@ -28,7 +28,7 @@ public:
   void setImage(juce::Image p_panel) { m_panel = p_panel; }
   void addWave(juce::Image p_wave);
   void setInlay(int p_inlay) { m_inlay = p_inlay; }
-  int getNrOfWaves() { return m_waves.size(); }
+  int getNrOfWaves() { return (int)m_waves.size(); }
   void setValue(int p_value) {
     m_value = p_value;
     repaint();

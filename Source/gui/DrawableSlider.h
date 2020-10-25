@@ -35,7 +35,7 @@ public:
 		g.setColour(Colour(50, 50, 50));
 		g.drawRect(body); // pmai
 	}
-	int getSliderPopupPlacement(Slider &slider) {
+	int getSliderPopupPlacement(Slider &slider) override {
 		return 2;
 	}
 	/*

@@ -47,7 +47,7 @@ struct Voice {
 	}
 
 	Voice() {
-		std::srand(std::time(nullptr));
+		std::srand((unsigned int)std::time(nullptr));
 		generateNewRandomValue();
 
 		for (int osc = 0; osc < 3; ++osc) {
@@ -671,7 +671,6 @@ public:
 		}
 
 		// look for voices in release
-		int voices_from_release = p_unison - ret.size();
 		for (int i = VOICES - 1; i >= 0; --i) {
 			if (m_actual_voice_pointers[m_voice_history[i]]->isInRelease()){
 				removeFromKillList(m_voice_history[i]);

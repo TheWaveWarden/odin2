@@ -32,7 +32,7 @@ public:
     //https://ccrma.stanford.edu/~jos/filters/Time_Varying_Two_Pole_Filters.html
     m_b2 = -RESONATOR_GAIN_FACTOR;
   }
-  ~BiquadResonator() {}
+  virtual ~BiquadResonator() {}
 
   void setRadius(float p_radius) {
     m_radius = p_radius;

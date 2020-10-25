@@ -56,7 +56,7 @@ public:
 		m_inlay_top = p_inlay;
 	}
 
-	void mouseDown(const MouseEvent &event) {
+	void mouseDown(const MouseEvent &event) override {
 		rearrangeMenu();
 		ComboBox::mouseDown(event);
 	}

@@ -27,7 +27,7 @@ public:
   }
 
   void drawTextEditorOutline(Graphics &g, int width, int height,
-                             TextEditor &t) {
+                             TextEditor &t) override {
     g.setColour(Colour(80, 80, 80));
     Rectangle<float> Rect(0, 0, width, height);
     g.drawRect(Rect); // pmai
