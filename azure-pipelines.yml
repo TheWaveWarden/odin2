@@ -70,6 +70,21 @@ jobs:
     displayName: "Windows: Build Projucer"
     condition: variables.isWindows
 
+
+  - script: |
+      echo ""
+      echo "==============================="
+      echo "======= EXPORT PROJUCER ======="
+      echo "==============================="
+      echo ""
+      echo "Set JUCE Moudules path"
+      ../JUCE/extras/Projucer/Builds/VisualStudio2019/x64/Release/App/Projucer.exe --set-global-search-path osx defaultJuceModulePath /Users/runner/work/1/JUCE/modules
+      echo "Export project"
+      ../JUCE/extras/Projucer/Builds/VisualStudio2019/x64/Release/App/Projucer.exe --resave Odin.jucer
+      cat Source/GitCommitId.h
+    displayName: 'Windows: Export Project Projucer'
+    condition: variables.isWindows
+
 #! ███    ███  █████   ██████ 
 #! ████  ████ ██   ██ ██      
 #! ██ ████ ██ ███████ ██      
