@@ -35,14 +35,11 @@ jobs:
 #!  ███ ███  ██ ██   ████ ██████   ██████   ███ ███  ███████
 
   - bash: |
-      set -ex
-      # build the innosetup install
       nuget install innosetup
     displayName: 'Windows: Install Prerequisites'
     condition: variables.isWindows
 
   - script: |
-      set -ex
       echo ""
       echo "==============================="
       echo "========= CLONE JUCE =========="
@@ -73,7 +70,6 @@ jobs:
 
 
   - script: |
-      set -ex
       echo ""
       echo "==============================="
       echo "======= EXPORT PROJUCER ======="
@@ -100,7 +96,6 @@ jobs:
     condition: variables.isWindows
 
   - bash: |
-      set -ex
       iscc installers/windows/win_installer.iss
       cd installers/windows/Output
       [[ $(find Odin2.exe -type f -size +50000000c 2>/dev/null) ]] && echo "Windows installer built successfully" || exit 1
@@ -121,7 +116,6 @@ jobs:
       echo "====== INSTALL PACKAGES ======="
       echo "==============================="
       echo ""
-      set -ex
       function installdmg {
         set -x
         tempd=$(mktemp -d)
@@ -154,7 +148,6 @@ jobs:
       echo "==============================="
       echo ""
       cd ..
-      set -ex
       git clone https://github.com/juce-framework/JUCE.git JUCE
       cd JUCE
       echo "Checking out JUCE 6.0.1"
@@ -178,7 +171,6 @@ jobs:
       echo "======= EXPORT PROJUCER ======="
       echo "==============================="
       echo ""
-      set -ex
       echo "Set JUCE Moudules path"
       ../JUCE/extras/Projucer/Builds/MacOSX/build/Release/Projucer.app/Contents/MacOS/Projucer --set-global-search-path osx defaultJuceModulePath /Users/runner/work/1/JUCE/modules
       echo "Export project"
@@ -205,7 +197,6 @@ jobs:
       echo "======== PACKAGE ODIN ========="
       echo "==============================="
       echo ""
-      set -ex
       cd installers/mac
       echo "Adjusting paths in pkgproj to Azure build system"
       cat Odin2MacInstaller.pkgproj | grep ../../..
@@ -232,7 +223,6 @@ jobs:
 #! ███████ ██ ██   ████  ██████  ██   ██
 
   - script: |
-      set -ex
       echo ""
       echo "==============================="
       echo "==== INSTALL STUFF VIA APT ===="
@@ -266,7 +256,6 @@ jobs:
     condition: variables.isLinux
 
   - script: |
-      set -ex
       echo ""
       echo "==============================="
       echo "========= CLONE JUCE =========="
@@ -301,7 +290,6 @@ jobs:
     condition: variables.isLinux
 
   - script: |
-      set -ex
       echo ""
       echo "==============================="
       echo "======= EXPORT PROJUCER ======="
