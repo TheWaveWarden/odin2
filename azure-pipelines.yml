@@ -57,7 +57,7 @@ jobs:
 
   - task: MSBuild@1
     inputs:
-      solution: "extras\Projucer\Builds\VisualStudio2019\Projucer.sln"
+      solution: "extras\\Projucer\\Builds\\VisualStudio2019\\Projucer.sln"
       platform: "x64"
       configuration: "configuration"
     displayName: "Windows: Build Projucer"
