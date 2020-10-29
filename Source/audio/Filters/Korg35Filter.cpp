@@ -60,10 +60,8 @@ void Korg35Filter::update() {
 
 	// BZT
 	double wd = 2 * 3.141592653 * m_freq_modded;
-	//double t = 1.0 / m_samplerate;
 	double wa = (2.0 * m_samplerate) * juce::dsp::FastMathApproximations::tan(wd * m_one_over_samplerate * 0.5);
 	double g  = wa * m_one_over_samplerate * 0.5;
-
 	double G = g / (1.0 + g);
 
 	m_LPF1.m_alpha = G;
@@ -80,11 +78,7 @@ void Korg35Filter::update() {
 	if (m_is_lowpass) {
 		m_LPF2.m_beta = (m_k_modded - m_k_modded * G) / (1.0 + g);
 		m_HPF1.m_beta = -1.0 / (1.0 + g);
-		m_LPF1.m_beta = (m_k_modded - m_k_modded * G) / (1.0 + g);
-		m_HPF2.m_beta = -1.0 / (1.0 + g);
 	} else {
-		m_HPF2.m_beta = -1.0 * G / (1.0 + g);
-		m_LPF1.m_beta = 1.0 / (1.0 + g);
 		m_HPF2.m_beta = -1.0 * G / (1.0 + g);
 		m_LPF1.m_beta = 1.0 / (1.0 + g);
 	}

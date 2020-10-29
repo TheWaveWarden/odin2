@@ -25,7 +25,8 @@ If applicable, add screenshots to help explain your problem.
 
 **Desktop (please complete the following information):**
  - OS: [e.g. Windows]
- - Version [e.g. 2.2.4]
+ - DAW being used [e.g Ableton, Ardour]
+ - Odin Version [e.g. 2.2.4]
  - Plugin Format [VST3 / AU / LV2]
 
 **Additional context**

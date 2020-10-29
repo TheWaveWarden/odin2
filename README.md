@@ -1,13 +1,13 @@
 # Odin 2 Synthesizer
 
-This is the home of **Odin 2 free VST and AU synthesizer** plugin. This repository contains the code to build the project. **If you just want to download the synth visit
+This is the home of **Odin 2 free VST3, AU and LV2 synthesizer** plugin. This repository contains the code to build the project. **If you just want to download the synth visit
 https://thewavewarden.com/odin2**
 
 ![alt text](screenshot.png)
 
 # Build Instructions
 ## All Platforms
-[Download JUCE](https://juce.com/get-juce/download). The project is currently build against JUCE 6.0.1, using newer versions might need some adjustments. Legacy versions can be found [here](https://github.com/juce-framework/JUCE/releases). Open the file `odin2/Odin.jucer` with the `Projucer` application from the JUCE main directory. Now generate the build files by pressing `Ctrl + P` inside the `Projucer`. You can close `Projucer` now.
+[Download JUCE 6.0.1](https://github.com/juce-framework/JUCE/releases). The project is currently build against JUCE 6.0.1. You can use newer JUCE versions, but the code will need some adjustments then. Open the file `odin2/Odin.jucer` with the `Projucer` application from the JUCE main directory. Now generate the build files by pressing `Ctrl + P` inside the `Projucer`. You can close `Projucer` now.
 
 ## Windows (Visual Studio 2019)
 
