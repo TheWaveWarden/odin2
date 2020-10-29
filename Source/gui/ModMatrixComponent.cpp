@@ -261,7 +261,7 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts) :
 	m_sources_menu.addItem(999, "Random");
 	m_sources_menu.addItem(1000, "Constant");
 	// 1000 must be highest value
-	
+
 	for (int i = 1; i < N_ROWS - 1; ++i) {
 		m_source[i].enableOneToZero(true);
 		m_dest_1[i].enableOneToZero(true);
@@ -270,7 +270,7 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts) :
 	}
 
 	juce::Colour modmatrix_grey_color = MODMATRIX_COLOR;
-	juce::Colour modmatrix_color = STANDARD_DISPLAY_COLOR;
+	juce::Colour modmatrix_color      = STANDARD_DISPLAY_COLOR;
 
 	juce::Colour modmatrix_color_bar(46, 136, 174);
 	juce::Colour modmatrix_color_bar_negative(252, 58, 97);
@@ -310,7 +310,13 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts) :
 		addAndMakeVisible(m_source[i]);
 
 		m_amount_1[i].setColor(modmatrix_grey_color);
-		m_amount_1[i].setColorBars(modmatrix_color_bar, modmatrix_color_bar_negative);
+		//m_amount_1[i].setColorBars(modmatrix_color_bar, modmatrix_color_bar_negative);
+		m_amount_1[i].setColorBarsExtended(modmatrix_color_bar,
+		                                   juce::Colours::darkgreen,
+		                                   juce::Colours::darkturquoise,
+		                                   modmatrix_color_bar_negative,
+		                                   juce::Colours::darkred,
+		                                   juce::Colours::darkviolet);
 		addAndMakeVisible(m_amount_1[i]);
 
 		m_dest_1[i].rearrangeMenu = [&, i]() {
@@ -327,8 +333,13 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts) :
 		addAndMakeVisible(m_dest_1[i]);
 
 		m_amount_2[i].setColor(modmatrix_grey_color);
-		m_amount_2[i].setColorBars(modmatrix_color_bar, modmatrix_color_bar_negative);
-
+		//m_amount_2[i].setColorBars(modmatrix_color_bar, modmatrix_color_bar_negative);
+		m_amount_2[i].setColorBarsExtended(modmatrix_color_bar,
+		                                   juce::Colours::green,
+		                                   juce::Colours::darkgreen,
+		                                   modmatrix_color_bar_negative,
+		                                   juce::Colours::darkred,
+		                                   juce::Colours::darkviolet);
 		addAndMakeVisible(m_amount_2[i]);
 
 		m_dest_2[i].rearrangeMenu = [&, i]() {
@@ -359,120 +370,93 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts) :
 		addAndMakeVisible(m_scale[i]);
 	}
 	m_amount_1[0].onValueChange = [&](float p_value) {
-		m_value_tree.state.getChildWithName("mod").setProperty(
-		    "amount_0_row_0", p_value, nullptr);
+		m_value_tree.state.getChildWithName("mod").setProperty("amount_0_row_0", p_value, nullptr);
 	};
 	m_amount_2[0].onValueChange = [&](float p_value) {
-		m_value_tree.state.getChildWithName("mod").setProperty(
-		    "amount_1_row_0", p_value, nullptr);
+		m_value_tree.state.getChildWithName("mod").setProperty("amount_1_row_0", p_value, nullptr);
 	};
 	m_amount_3[0].onValueChange = [&](float p_value) {
-		m_value_tree.state.getChildWithName("mod").setProperty(
-		    "amount_2_row_0", p_value, nullptr);
+		m_value_tree.state.getChildWithName("mod").setProperty("amount_2_row_0", p_value, nullptr);
 	};
 
 	m_amount_1[1].onValueChange = [&](float p_value) {
-		m_value_tree.state.getChildWithName("mod").setProperty(
-		    "amount_0_row_1", p_value, nullptr);
+		m_value_tree.state.getChildWithName("mod").setProperty("amount_0_row_1", p_value, nullptr);
 	};
 	m_amount_2[1].onValueChange = [&](float p_value) {
-		m_value_tree.state.getChildWithName("mod").setProperty(
-		    "amount_1_row_1", p_value, nullptr);
+		m_value_tree.state.getChildWithName("mod").setProperty("amount_1_row_1", p_value, nullptr);
 	};
 	m_amount_3[1].onValueChange = [&](float p_value) {
-		m_value_tree.state.getChildWithName("mod").setProperty(
-		    "amount_2_row_1", p_value, nullptr);
+		m_value_tree.state.getChildWithName("mod").setProperty("amount_2_row_1", p_value, nullptr);
 	};
 
 	m_amount_1[2].onValueChange = [&](float p_value) {
-		m_value_tree.state.getChildWithName("mod").setProperty(
-		    "amount_0_row_2", p_value, nullptr);
+		m_value_tree.state.getChildWithName("mod").setProperty("amount_0_row_2", p_value, nullptr);
 	};
 	m_amount_2[2].onValueChange = [&](float p_value) {
-		m_value_tree.state.getChildWithName("mod").setProperty(
-		    "amount_1_row_2", p_value, nullptr);
+		m_value_tree.state.getChildWithName("mod").setProperty("amount_1_row_2", p_value, nullptr);
 	};
 	m_amount_3[2].onValueChange = [&](float p_value) {
-		m_value_tree.state.getChildWithName("mod").setProperty(
-		    "amount_2_row_2", p_value, nullptr);
+		m_value_tree.state.getChildWithName("mod").setProperty("amount_2_row_2", p_value, nullptr);
 	};
 
 	m_amount_1[3].onValueChange = [&](float p_value) {
-		m_value_tree.state.getChildWithName("mod").setProperty(
-		    "amount_0_row_3", p_value, nullptr);
+		m_value_tree.state.getChildWithName("mod").setProperty("amount_0_row_3", p_value, nullptr);
 	};
 	m_amount_2[3].onValueChange = [&](float p_value) {
-		m_value_tree.state.getChildWithName("mod").setProperty(
-		    "amount_1_row_3", p_value, nullptr);
+		m_value_tree.state.getChildWithName("mod").setProperty("amount_1_row_3", p_value, nullptr);
 	};
 	m_amount_3[3].onValueChange = [&](float p_value) {
-		m_value_tree.state.getChildWithName("mod").setProperty(
-		    "amount_2_row_3", p_value, nullptr);
+		m_value_tree.state.getChildWithName("mod").setProperty("amount_2_row_3", p_value, nullptr);
 	};
 
 	m_amount_1[4].onValueChange = [&](float p_value) {
-		m_value_tree.state.getChildWithName("mod").setProperty(
-		    "amount_0_row_4", p_value, nullptr);
+		m_value_tree.state.getChildWithName("mod").setProperty("amount_0_row_4", p_value, nullptr);
 	};
 	m_amount_2[4].onValueChange = [&](float p_value) {
-		m_value_tree.state.getChildWithName("mod").setProperty(
-		    "amount_1_row_4", p_value, nullptr);
+		m_value_tree.state.getChildWithName("mod").setProperty("amount_1_row_4", p_value, nullptr);
 	};
 	m_amount_3[4].onValueChange = [&](float p_value) {
-		m_value_tree.state.getChildWithName("mod").setProperty(
-		    "amount_2_row_4", p_value, nullptr);
+		m_value_tree.state.getChildWithName("mod").setProperty("amount_2_row_4", p_value, nullptr);
 	};
 
 	m_amount_1[5].onValueChange = [&](float p_value) {
-		m_value_tree.state.getChildWithName("mod").setProperty(
-		    "amount_0_row_5", p_value, nullptr);
+		m_value_tree.state.getChildWithName("mod").setProperty("amount_0_row_5", p_value, nullptr);
 	};
 	m_amount_2[5].onValueChange = [&](float p_value) {
-		m_value_tree.state.getChildWithName("mod").setProperty(
-		    "amount_1_row_5", p_value, nullptr);
+		m_value_tree.state.getChildWithName("mod").setProperty("amount_1_row_5", p_value, nullptr);
 	};
 	m_amount_3[5].onValueChange = [&](float p_value) {
-		m_value_tree.state.getChildWithName("mod").setProperty(
-		    "amount_2_row_5", p_value, nullptr);
+		m_value_tree.state.getChildWithName("mod").setProperty("amount_2_row_5", p_value, nullptr);
 	};
 
 	m_amount_1[6].onValueChange = [&](float p_value) {
-		m_value_tree.state.getChildWithName("mod").setProperty(
-		    "amount_0_row_6", p_value, nullptr);
+		m_value_tree.state.getChildWithName("mod").setProperty("amount_0_row_6", p_value, nullptr);
 	};
 	m_amount_2[6].onValueChange = [&](float p_value) {
-		m_value_tree.state.getChildWithName("mod").setProperty(
-		    "amount_1_row_6", p_value, nullptr);
+		m_value_tree.state.getChildWithName("mod").setProperty("amount_1_row_6", p_value, nullptr);
 	};
 	m_amount_3[6].onValueChange = [&](float p_value) {
-		m_value_tree.state.getChildWithName("mod").setProperty(
-		    "amount_2_row_6", p_value, nullptr);
+		m_value_tree.state.getChildWithName("mod").setProperty("amount_2_row_6", p_value, nullptr);
 	};
 
 	m_amount_1[7].onValueChange = [&](float p_value) {
-		m_value_tree.state.getChildWithName("mod").setProperty(
-		    "amount_0_row_7", p_value, nullptr);
+		m_value_tree.state.getChildWithName("mod").setProperty("amount_0_row_7", p_value, nullptr);
 	};
 	m_amount_2[7].onValueChange = [&](float p_value) {
-		m_value_tree.state.getChildWithName("mod").setProperty(
-		    "amount_1_row_7", p_value, nullptr);
+		m_value_tree.state.getChildWithName("mod").setProperty("amount_1_row_7", p_value, nullptr);
 	};
 	m_amount_3[7].onValueChange = [&](float p_value) {
-		m_value_tree.state.getChildWithName("mod").setProperty(
-		    "amount_2_row_7", p_value, nullptr);
+		m_value_tree.state.getChildWithName("mod").setProperty("amount_2_row_7", p_value, nullptr);
 	};
 
 	m_amount_1[8].onValueChange = [&](float p_value) {
-		m_value_tree.state.getChildWithName("mod").setProperty(
-		    "amount_0_row_8", p_value, nullptr);
+		m_value_tree.state.getChildWithName("mod").setProperty("amount_0_row_8", p_value, nullptr);
 	};
 	m_amount_2[8].onValueChange = [&](float p_value) {
-		m_value_tree.state.getChildWithName("mod").setProperty(
-		    "amount_1_row_8", p_value, nullptr);
+		m_value_tree.state.getChildWithName("mod").setProperty("amount_1_row_8", p_value, nullptr);
 	};
 	m_amount_3[8].onValueChange = [&](float p_value) {
-		m_value_tree.state.getChildWithName("mod").setProperty(
-		    "amount_2_row_8", p_value, nullptr);
+		m_value_tree.state.getChildWithName("mod").setProperty("amount_2_row_8", p_value, nullptr);
 	};
 
 	m_source[0].onChange = [&]() {
@@ -779,7 +763,7 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts) :
 	addAndMakeVisible(m_clear_button8);
 	m_clear_button8.setTriggeredOnMouseDown(false);
 	m_clear_button8.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
-	
+
 	m_clear_button0.onClick = [&]() { clearRow(0); };
 	m_clear_button1.onClick = [&]() { clearRow(1); };
 	m_clear_button2.onClick = [&]() { clearRow(2); };
@@ -809,7 +793,8 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts) :
 	forceValueTreeOntoComponents(m_value_tree.state);
 }
 
-ModMatrixComponent::~ModMatrixComponent() {}
+ModMatrixComponent::~ModMatrixComponent() {
+}
 
 void ModMatrixComponent::paint(Graphics &g) {
 	SET_INTERPOLATION_QUALITY(g)
@@ -817,7 +802,7 @@ void ModMatrixComponent::paint(Graphics &g) {
 	g.setColour(m_color);
 	auto background = getLocalBounds();
 	background.removeFromRight(19);
-	if(m_GUI_big){
+	if (m_GUI_big) {
 		background.removeFromBottom(20);
 	}
 	g.fillRect(background);
@@ -961,34 +946,36 @@ void ModMatrixComponent::forceValueTreeOntoComponents(ValueTree p_tree) {
 
 		m_scale[row].setValue(m_value_tree.state.getChildWithName("mod")[String("scale_row_" + std::to_string(row))]);
 
-		m_amount_1[row].setValue(m_value_tree.state.getChildWithName("mod")[String("amount_0_row_" + std::to_string(row))]);
-		m_amount_2[row].setValue(m_value_tree.state.getChildWithName("mod")[String("amount_1_row_" + std::to_string(row))]);
-		m_amount_3[row].setValue(m_value_tree.state.getChildWithName("mod")[String("amount_2_row_" + std::to_string(row))]);
+		m_amount_1[row].setValue(
+		    m_value_tree.state.getChildWithName("mod")[String("amount_0_row_" + std::to_string(row))]);
+		m_amount_2[row].setValue(
+		    m_value_tree.state.getChildWithName("mod")[String("amount_1_row_" + std::to_string(row))]);
+		m_amount_3[row].setValue(
+		    m_value_tree.state.getChildWithName("mod")[String("amount_2_row_" + std::to_string(row))]);
 	}
 }
 
-
-void ModMatrixComponent::setGUIBig(){
+void ModMatrixComponent::setGUIBig() {
 	m_GUI_big = true;
 
-	    juce::Image glas_left_down =
-	    ImageCache::getFromMemory(BinaryData::modpanelbig_left_down_150_png, BinaryData::modpanelbig_left_down_150_pngSize);
-	juce::Image glas_left_mid =
-	    ImageCache::getFromMemory(BinaryData::modpanelbig_left_mid_150_png, BinaryData::modpanelbig_left_mid_150_pngSize);
+	juce::Image glas_left_down = ImageCache::getFromMemory(BinaryData::modpanelbig_left_down_150_png,
+	                                                       BinaryData::modpanelbig_left_down_150_pngSize);
+	juce::Image glas_left_mid  = ImageCache::getFromMemory(BinaryData::modpanelbig_left_mid_150_png,
+                                                          BinaryData::modpanelbig_left_mid_150_pngSize);
 	juce::Image glas_left_up =
 	    ImageCache::getFromMemory(BinaryData::modpanelbig_left_up_150_png, BinaryData::modpanelbig_left_up_150_pngSize);
-	juce::Image glas_mid_down =
-	    ImageCache::getFromMemory(BinaryData::modpanelbig_mid_down_150_png, BinaryData::modpanelbig_mid_down_150_pngSize);
+	juce::Image glas_mid_down = ImageCache::getFromMemory(BinaryData::modpanelbig_mid_down_150_png,
+	                                                      BinaryData::modpanelbig_mid_down_150_pngSize);
 	juce::Image glas_mid_mid =
 	    ImageCache::getFromMemory(BinaryData::modpanelbig_mid_mid_150_png, BinaryData::modpanelbig_mid_mid_150_pngSize);
 	juce::Image glas_mid_up =
 	    ImageCache::getFromMemory(BinaryData::modpanelbig_mid_up_150_png, BinaryData::modpanelbig_mid_up_150_pngSize);
-	juce::Image glas_right_down =
-	    ImageCache::getFromMemory(BinaryData::modpanelbig_right_down_150_png, BinaryData::modpanelbig_right_down_150_pngSize);
-	juce::Image glas_right_mid =
-	    ImageCache::getFromMemory(BinaryData::modpanelbig_right_mid_150_png, BinaryData::modpanelbig_right_mid_150_pngSize);
-	juce::Image glas_right_up =
-	    ImageCache::getFromMemory(BinaryData::modpanelbig_right_up_150_png, BinaryData::modpanelbig_right_up_150_pngSize);
+	juce::Image glas_right_down = ImageCache::getFromMemory(BinaryData::modpanelbig_right_down_150_png,
+	                                                        BinaryData::modpanelbig_right_down_150_pngSize);
+	juce::Image glas_right_mid  = ImageCache::getFromMemory(BinaryData::modpanelbig_right_mid_150_png,
+                                                           BinaryData::modpanelbig_right_mid_150_pngSize);
+	juce::Image glas_right_up   = ImageCache::getFromMemory(BinaryData::modpanelbig_right_up_150_png,
+                                                          BinaryData::modpanelbig_right_up_150_pngSize);
 	juce::Image glas_small_down =
 	    ImageCache::getFromMemory(BinaryData::modpanelsmall_down_150_png, BinaryData::modpanelsmall_down_150_pngSize);
 	juce::Image glas_small_mid =
@@ -1020,14 +1007,16 @@ void ModMatrixComponent::setGUIBig(){
 	m_amount_3[N_ROWS - 1].setImage(glas_small_down);
 	m_scale[N_ROWS - 1].setImage(glas_right_down);
 
-	m_small_panel_width = glas_small_down.getWidth();
-	m_big_panel_width_left   = glas_left_down.getWidth();
+	m_small_panel_width     = glas_small_down.getWidth();
+	m_big_panel_width_left  = glas_left_down.getWidth();
 	m_big_panel_width_mid   = glas_mid_down.getWidth();
-	m_big_panel_width_right   = glas_right_down.getWidth();
-	m_panel_height      = glas_mid_mid.getHeight();
+	m_big_panel_width_right = glas_right_down.getWidth();
+	m_panel_height          = glas_mid_mid.getHeight();
 
-	juce::Image clear_1 = ImageCache::getFromMemory(BinaryData::buttonclear_1_150_png, BinaryData::buttonclear_1_150_pngSize);
-	juce::Image clear_2 = ImageCache::getFromMemory(BinaryData::buttonclear_2_150_png, BinaryData::buttonclear_2_150_pngSize);
+	juce::Image clear_1 =
+	    ImageCache::getFromMemory(BinaryData::buttonclear_1_150_png, BinaryData::buttonclear_1_150_pngSize);
+	juce::Image clear_2 =
+	    ImageCache::getFromMemory(BinaryData::buttonclear_2_150_png, BinaryData::buttonclear_2_150_pngSize);
 	juce::Image clearlast_1 =
 	    ImageCache::getFromMemory(BinaryData::buttonclearlast_1_150_png, BinaryData::buttonclearlast_1_150_pngSize);
 	juce::Image clearlast_2 =
@@ -1045,43 +1034,67 @@ void ModMatrixComponent::setGUIBig(){
 	m_clear_button0.setImages(
 	    &clear_draw2, &clear_draw2, &clear_draw1, &clear_draw1, &clear_draw2, &clear_draw2, &clear_draw1, &clear_draw1);
 	m_clear_button0.setClickingTogglesState(true);
-	m_clear_button0.setBounds(
-	    2 * m_big_panel_width_mid + m_big_panel_width_left + m_big_panel_width_right + 3 * m_small_panel_width, 0 * m_panel_height, clear_1.getWidth(), m_panel_height);
+	m_clear_button0.setBounds(2 * m_big_panel_width_mid + m_big_panel_width_left + m_big_panel_width_right +
+	                              3 * m_small_panel_width,
+	                          0 * m_panel_height,
+	                          clear_1.getWidth(),
+	                          m_panel_height);
 
 	m_clear_button1.setImages(
 	    &clear_draw2, &clear_draw2, &clear_draw1, &clear_draw1, &clear_draw2, &clear_draw2, &clear_draw1, &clear_draw1);
-	m_clear_button1.setBounds(
-	    2 * m_big_panel_width_mid + m_big_panel_width_left + m_big_panel_width_right + 3 * m_small_panel_width, 1 * m_panel_height, clear_1.getWidth(), m_panel_height);
+	m_clear_button1.setBounds(2 * m_big_panel_width_mid + m_big_panel_width_left + m_big_panel_width_right +
+	                              3 * m_small_panel_width,
+	                          1 * m_panel_height,
+	                          clear_1.getWidth(),
+	                          m_panel_height);
 
 	m_clear_button2.setImages(
 	    &clear_draw2, &clear_draw2, &clear_draw1, &clear_draw1, &clear_draw2, &clear_draw2, &clear_draw1, &clear_draw1);
-	m_clear_button2.setBounds(
-	    2 * m_big_panel_width_mid + m_big_panel_width_left + m_big_panel_width_right + 3 * m_small_panel_width, 2 * m_panel_height, clear_1.getWidth(), m_panel_height);
+	m_clear_button2.setBounds(2 * m_big_panel_width_mid + m_big_panel_width_left + m_big_panel_width_right +
+	                              3 * m_small_panel_width,
+	                          2 * m_panel_height,
+	                          clear_1.getWidth(),
+	                          m_panel_height);
 
 	m_clear_button3.setImages(
 	    &clear_draw2, &clear_draw2, &clear_draw1, &clear_draw1, &clear_draw2, &clear_draw2, &clear_draw1, &clear_draw1);
-	m_clear_button3.setBounds(
-	    2 * m_big_panel_width_mid + m_big_panel_width_left + m_big_panel_width_right + 3 * m_small_panel_width, 3 * m_panel_height, clear_1.getWidth(), m_panel_height);
+	m_clear_button3.setBounds(2 * m_big_panel_width_mid + m_big_panel_width_left + m_big_panel_width_right +
+	                              3 * m_small_panel_width,
+	                          3 * m_panel_height,
+	                          clear_1.getWidth(),
+	                          m_panel_height);
 
 	m_clear_button4.setImages(
 	    &clear_draw2, &clear_draw2, &clear_draw1, &clear_draw1, &clear_draw2, &clear_draw2, &clear_draw1, &clear_draw1);
-	m_clear_button4.setBounds(
-	    2 * m_big_panel_width_mid + m_big_panel_width_left + m_big_panel_width_right + 3 * m_small_panel_width, 4 * m_panel_height, clear_1.getWidth(), m_panel_height);
+	m_clear_button4.setBounds(2 * m_big_panel_width_mid + m_big_panel_width_left + m_big_panel_width_right +
+	                              3 * m_small_panel_width,
+	                          4 * m_panel_height,
+	                          clear_1.getWidth(),
+	                          m_panel_height);
 
 	m_clear_button5.setImages(
 	    &clear_draw2, &clear_draw2, &clear_draw1, &clear_draw1, &clear_draw2, &clear_draw2, &clear_draw1, &clear_draw1);
-	m_clear_button5.setBounds(
-	    2 * m_big_panel_width_mid + m_big_panel_width_left + m_big_panel_width_right + 3 * m_small_panel_width, 5 * m_panel_height, clear_1.getWidth(), m_panel_height);
+	m_clear_button5.setBounds(2 * m_big_panel_width_mid + m_big_panel_width_left + m_big_panel_width_right +
+	                              3 * m_small_panel_width,
+	                          5 * m_panel_height,
+	                          clear_1.getWidth(),
+	                          m_panel_height);
 
 	m_clear_button6.setImages(
 	    &clear_draw2, &clear_draw2, &clear_draw1, &clear_draw1, &clear_draw2, &clear_draw2, &clear_draw1, &clear_draw1);
-	m_clear_button6.setBounds(
-	    2 * m_big_panel_width_mid + m_big_panel_width_left + m_big_panel_width_right + 3 * m_small_panel_width, 6 * m_panel_height, clear_1.getWidth(), m_panel_height);
+	m_clear_button6.setBounds(2 * m_big_panel_width_mid + m_big_panel_width_left + m_big_panel_width_right +
+	                              3 * m_small_panel_width,
+	                          6 * m_panel_height,
+	                          clear_1.getWidth(),
+	                          m_panel_height);
 
 	m_clear_button7.setImages(
 	    &clear_draw2, &clear_draw2, &clear_draw1, &clear_draw1, &clear_draw2, &clear_draw2, &clear_draw1, &clear_draw1);
-	m_clear_button7.setBounds(
-	    2 * m_big_panel_width_mid + m_big_panel_width_left + m_big_panel_width_right + 3 * m_small_panel_width, 7 * m_panel_height, clear_1.getWidth(), m_panel_height);
+	m_clear_button7.setBounds(2 * m_big_panel_width_mid + m_big_panel_width_left + m_big_panel_width_right +
+	                              3 * m_small_panel_width,
+	                          7 * m_panel_height,
+	                          clear_1.getWidth(),
+	                          m_panel_height);
 
 	m_clear_button8.setImages(&clearlast_draw2,
 	                          &clearlast_draw2,
@@ -1091,22 +1104,33 @@ void ModMatrixComponent::setGUIBig(){
 	                          &clearlast_draw2,
 	                          &clearlast_draw1,
 	                          &clearlast_draw1);
-	m_clear_button8.setBounds(
-	    2 * m_big_panel_width_mid + m_big_panel_width_left + m_big_panel_width_right + 3 * m_small_panel_width, 8 * m_panel_height, clearlast_1.getWidth(), m_panel_height);
+	m_clear_button8.setBounds(2 * m_big_panel_width_mid + m_big_panel_width_left + m_big_panel_width_right +
+	                              3 * m_small_panel_width,
+	                          8 * m_panel_height,
+	                          clearlast_1.getWidth(),
+	                          m_panel_height);
 
 	for (int i = 0; i < N_ROWS; ++i) {
 		m_source[i].setBounds(0, i * m_panel_height, m_big_panel_width_left, m_panel_height);
 		m_amount_1[i].setBounds(m_big_panel_width_left, i * m_panel_height, m_small_panel_width, m_panel_height);
 		m_dest_1[i].setBounds(
 		    m_big_panel_width_left + m_small_panel_width, i * m_panel_height, m_big_panel_width_left, m_panel_height);
-		m_amount_2[i].setBounds(
-		    m_big_panel_width_mid + m_big_panel_width_left + m_small_panel_width, i * m_panel_height, m_small_panel_width, m_panel_height);
-		m_dest_2[i].setBounds(
-		    m_big_panel_width_mid + m_big_panel_width_left + 2 * m_small_panel_width, i * m_panel_height, m_big_panel_width_left, m_panel_height);
-		m_amount_3[i].setBounds(
-		    2 * m_big_panel_width_mid + m_big_panel_width_left + 2 * m_small_panel_width, i * m_panel_height, m_small_panel_width, m_panel_height);
-		m_scale[i].setBounds(
-		    2 * m_big_panel_width_mid + m_big_panel_width_left + 3 * m_small_panel_width, i * m_panel_height, m_big_panel_width_left, m_panel_height);
+		m_amount_2[i].setBounds(m_big_panel_width_mid + m_big_panel_width_left + m_small_panel_width,
+		                        i * m_panel_height,
+		                        m_small_panel_width,
+		                        m_panel_height);
+		m_dest_2[i].setBounds(m_big_panel_width_mid + m_big_panel_width_left + 2 * m_small_panel_width,
+		                      i * m_panel_height,
+		                      m_big_panel_width_left,
+		                      m_panel_height);
+		m_amount_3[i].setBounds(2 * m_big_panel_width_mid + m_big_panel_width_left + 2 * m_small_panel_width,
+		                        i * m_panel_height,
+		                        m_small_panel_width,
+		                        m_panel_height);
+		m_scale[i].setBounds(2 * m_big_panel_width_mid + m_big_panel_width_left + 3 * m_small_panel_width,
+		                     i * m_panel_height,
+		                     m_big_panel_width_left,
+		                     m_panel_height);
 
 		m_amount_1[i].setGUIBig();
 		m_amount_2[i].setGUIBig();
@@ -1124,10 +1148,10 @@ void ModMatrixComponent::setGUIBig(){
 
 	forceValueTreeOntoComponents(m_value_tree.state);
 }
-void ModMatrixComponent::setGUISmall(){
+void ModMatrixComponent::setGUISmall() {
 	m_GUI_big = false;
 
-	    juce::Image glas_left_down =
+	juce::Image glas_left_down =
 	    ImageCache::getFromMemory(BinaryData::modpanelbig_left_down_png, BinaryData::modpanelbig_left_down_pngSize);
 	juce::Image glas_left_mid =
 	    ImageCache::getFromMemory(BinaryData::modpanelbig_left_mid_png, BinaryData::modpanelbig_left_mid_pngSize);
@@ -1176,11 +1200,11 @@ void ModMatrixComponent::setGUISmall(){
 	m_amount_3[N_ROWS - 1].setImage(glas_small_down);
 	m_scale[N_ROWS - 1].setImage(glas_right_down);
 
-	m_small_panel_width = glas_small_down.getWidth();
-	m_big_panel_width_left   = glas_left_down.getWidth();
+	m_small_panel_width     = glas_small_down.getWidth();
+	m_big_panel_width_left  = glas_left_down.getWidth();
 	m_big_panel_width_mid   = glas_mid_down.getWidth();
-	m_big_panel_width_right   = glas_right_down.getWidth();
-	m_panel_height      = glas_left_down.getHeight();
+	m_big_panel_width_right = glas_right_down.getWidth();
+	m_panel_height          = glas_left_down.getHeight();
 
 	juce::Image clear_1 = ImageCache::getFromMemory(BinaryData::buttonclear_1_png, BinaryData::buttonclear_1_pngSize);
 	juce::Image clear_2 = ImageCache::getFromMemory(BinaryData::buttonclear_2_png, BinaryData::buttonclear_2_pngSize);
@@ -1201,43 +1225,67 @@ void ModMatrixComponent::setGUISmall(){
 	m_clear_button0.setImages(
 	    &clear_draw2, &clear_draw2, &clear_draw1, &clear_draw1, &clear_draw2, &clear_draw2, &clear_draw1, &clear_draw1);
 	m_clear_button0.setClickingTogglesState(true);
-	m_clear_button0.setBounds(
-	    2 * m_big_panel_width_mid + m_big_panel_width_left + m_big_panel_width_right + 3 * m_small_panel_width, 0 * m_panel_height, clear_1.getWidth(), m_panel_height);
+	m_clear_button0.setBounds(2 * m_big_panel_width_mid + m_big_panel_width_left + m_big_panel_width_right +
+	                              3 * m_small_panel_width,
+	                          0 * m_panel_height,
+	                          clear_1.getWidth(),
+	                          m_panel_height);
 
 	m_clear_button1.setImages(
 	    &clear_draw2, &clear_draw2, &clear_draw1, &clear_draw1, &clear_draw2, &clear_draw2, &clear_draw1, &clear_draw1);
-	m_clear_button1.setBounds(
-	    2 * m_big_panel_width_mid + m_big_panel_width_left + m_big_panel_width_right + 3 * m_small_panel_width, 1 * m_panel_height, clear_1.getWidth(), m_panel_height);
+	m_clear_button1.setBounds(2 * m_big_panel_width_mid + m_big_panel_width_left + m_big_panel_width_right +
+	                              3 * m_small_panel_width,
+	                          1 * m_panel_height,
+	                          clear_1.getWidth(),
+	                          m_panel_height);
 
 	m_clear_button2.setImages(
 	    &clear_draw2, &clear_draw2, &clear_draw1, &clear_draw1, &clear_draw2, &clear_draw2, &clear_draw1, &clear_draw1);
-	m_clear_button2.setBounds(
-	    2 * m_big_panel_width_mid + m_big_panel_width_left + m_big_panel_width_right + 3 * m_small_panel_width, 2 * m_panel_height, clear_1.getWidth(), m_panel_height);
+	m_clear_button2.setBounds(2 * m_big_panel_width_mid + m_big_panel_width_left + m_big_panel_width_right +
+	                              3 * m_small_panel_width,
+	                          2 * m_panel_height,
+	                          clear_1.getWidth(),
+	                          m_panel_height);
 
 	m_clear_button3.setImages(
 	    &clear_draw2, &clear_draw2, &clear_draw1, &clear_draw1, &clear_draw2, &clear_draw2, &clear_draw1, &clear_draw1);
-	m_clear_button3.setBounds(
-	    2 * m_big_panel_width_mid + m_big_panel_width_left + m_big_panel_width_right + 3 * m_small_panel_width, 3 * m_panel_height, clear_1.getWidth(), m_panel_height);
+	m_clear_button3.setBounds(2 * m_big_panel_width_mid + m_big_panel_width_left + m_big_panel_width_right +
+	                              3 * m_small_panel_width,
+	                          3 * m_panel_height,
+	                          clear_1.getWidth(),
+	                          m_panel_height);
 
 	m_clear_button4.setImages(
 	    &clear_draw2, &clear_draw2, &clear_draw1, &clear_draw1, &clear_draw2, &clear_draw2, &clear_draw1, &clear_draw1);
-	m_clear_button4.setBounds(
-	    2 * m_big_panel_width_mid + m_big_panel_width_left + m_big_panel_width_right + 3 * m_small_panel_width, 4 * m_panel_height, clear_1.getWidth(), m_panel_height);
+	m_clear_button4.setBounds(2 * m_big_panel_width_mid + m_big_panel_width_left + m_big_panel_width_right +
+	                              3 * m_small_panel_width,
+	                          4 * m_panel_height,
+	                          clear_1.getWidth(),
+	                          m_panel_height);
 
 	m_clear_button5.setImages(
 	    &clear_draw2, &clear_draw2, &clear_draw1, &clear_draw1, &clear_draw2, &clear_draw2, &clear_draw1, &clear_draw1);
-	m_clear_button5.setBounds(
-	    2 * m_big_panel_width_mid + m_big_panel_width_left + m_big_panel_width_right + 3 * m_small_panel_width, 5 * m_panel_height, clear_1.getWidth(), m_panel_height);
+	m_clear_button5.setBounds(2 * m_big_panel_width_mid + m_big_panel_width_left + m_big_panel_width_right +
+	                              3 * m_small_panel_width,
+	                          5 * m_panel_height,
+	                          clear_1.getWidth(),
+	                          m_panel_height);
 
 	m_clear_button6.setImages(
 	    &clear_draw2, &clear_draw2, &clear_draw1, &clear_draw1, &clear_draw2, &clear_draw2, &clear_draw1, &clear_draw1);
-	m_clear_button6.setBounds(
-	    2 * m_big_panel_width_mid + m_big_panel_width_left + m_big_panel_width_right + 3 * m_small_panel_width, 6 * m_panel_height, clear_1.getWidth(), m_panel_height);
+	m_clear_button6.setBounds(2 * m_big_panel_width_mid + m_big_panel_width_left + m_big_panel_width_right +
+	                              3 * m_small_panel_width,
+	                          6 * m_panel_height,
+	                          clear_1.getWidth(),
+	                          m_panel_height);
 
 	m_clear_button7.setImages(
 	    &clear_draw2, &clear_draw2, &clear_draw1, &clear_draw1, &clear_draw2, &clear_draw2, &clear_draw1, &clear_draw1);
-	m_clear_button7.setBounds(
-	    2 * m_big_panel_width_mid + m_big_panel_width_left + m_big_panel_width_right + 3 * m_small_panel_width, 7 * m_panel_height, clear_1.getWidth(), m_panel_height);
+	m_clear_button7.setBounds(2 * m_big_panel_width_mid + m_big_panel_width_left + m_big_panel_width_right +
+	                              3 * m_small_panel_width,
+	                          7 * m_panel_height,
+	                          clear_1.getWidth(),
+	                          m_panel_height);
 
 	m_clear_button8.setImages(&clearlast_draw2,
 	                          &clearlast_draw2,
@@ -1247,22 +1295,33 @@ void ModMatrixComponent::setGUISmall(){
 	                          &clearlast_draw2,
 	                          &clearlast_draw1,
 	                          &clearlast_draw1);
-	m_clear_button8.setBounds(
-	    2 * m_big_panel_width_mid + m_big_panel_width_left + m_big_panel_width_right + 3 * m_small_panel_width, 8 * m_panel_height, clearlast_1.getWidth(), m_panel_height);
+	m_clear_button8.setBounds(2 * m_big_panel_width_mid + m_big_panel_width_left + m_big_panel_width_right +
+	                              3 * m_small_panel_width,
+	                          8 * m_panel_height,
+	                          clearlast_1.getWidth(),
+	                          m_panel_height);
 
 	for (int i = 0; i < N_ROWS; ++i) {
 		m_source[i].setBounds(0, i * m_panel_height, m_big_panel_width_left, m_panel_height);
 		m_amount_1[i].setBounds(m_big_panel_width_left, i * m_panel_height, m_small_panel_width, m_panel_height);
 		m_dest_1[i].setBounds(
 		    m_big_panel_width_left + m_small_panel_width, i * m_panel_height, m_big_panel_width_left, m_panel_height);
-		m_amount_2[i].setBounds(
-		    m_big_panel_width_mid + m_big_panel_width_left + m_small_panel_width, i * m_panel_height, m_small_panel_width, m_panel_height);
-		m_dest_2[i].setBounds(
-		    m_big_panel_width_mid + m_big_panel_width_left + 2 * m_small_panel_width, i * m_panel_height, m_big_panel_width_left, m_panel_height);
-		m_amount_3[i].setBounds(
-		    2 * m_big_panel_width_mid + m_big_panel_width_left + 2 * m_small_panel_width, i * m_panel_height, m_small_panel_width, m_panel_height);
-		m_scale[i].setBounds(
-		    2 * m_big_panel_width_mid + m_big_panel_width_left + 3 * m_small_panel_width, i * m_panel_height, m_big_panel_width_left, m_panel_height);
+		m_amount_2[i].setBounds(m_big_panel_width_mid + m_big_panel_width_left + m_small_panel_width,
+		                        i * m_panel_height,
+		                        m_small_panel_width,
+		                        m_panel_height);
+		m_dest_2[i].setBounds(m_big_panel_width_mid + m_big_panel_width_left + 2 * m_small_panel_width,
+		                      i * m_panel_height,
+		                      m_big_panel_width_left,
+		                      m_panel_height);
+		m_amount_3[i].setBounds(2 * m_big_panel_width_mid + m_big_panel_width_left + 2 * m_small_panel_width,
+		                        i * m_panel_height,
+		                        m_small_panel_width,
+		                        m_panel_height);
+		m_scale[i].setBounds(2 * m_big_panel_width_mid + m_big_panel_width_left + 3 * m_small_panel_width,
+		                     i * m_panel_height,
+		                     m_big_panel_width_left,
+		                     m_panel_height);
 
 		m_amount_1[i].setGUISmall();
 		m_amount_2[i].setGUISmall();

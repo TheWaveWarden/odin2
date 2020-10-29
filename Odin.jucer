@@ -1340,6 +1340,10 @@
             file="Graphics_150/applied/WW_logo_xy_150.png"/>
     </GROUP>
     <GROUP id="{7AF384ED-9FD6-6492-4B8C-5777BB9A2698}" name="Source">
+      <FILE id="m2K5JH" name="ModAmountComponentExtended.h" compile="0" resource="0"
+            file="Source/gui/ModAmountComponentExtended.h"/>
+      <FILE id="PWghTC" name="ModAmountComponentExtended.cpp" compile="1"
+            resource="0" file="Source/gui/ModAmountComponentExtended.cpp"/>
       <FILE id="E5lkTP" name="WavetableMappings.h" compile="0" resource="0"
             file="Source/audio/Oscillators/Wavetables/WavetableMappings.h"/>
       <FILE id="HwmoDW" name="Voice.h" compile="0" resource="0" file="Source/audio/Voice.h"/>

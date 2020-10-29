@@ -85,7 +85,7 @@ public:
 
 	//void setInlayTop(int p_inlay){m_inlay_top = p_inlay;}
 
-private:
+protected:
 	bool m_GUI_big = false;
 
 	String m_parameter_id = "";
@@ -101,6 +101,7 @@ private:
 	float m_value            = 0.f;
 	float m_drag_start_value = 0.f;
 	int m_drag_start_y       = 0;
+	float m_input_limit      = 1.f;
 
 	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(ModAmountComponent)
 };
