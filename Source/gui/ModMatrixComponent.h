@@ -22,6 +22,13 @@
 
 #define N_ROWS 9
 
+#define MODMATRIX_COL_POS_1 juce::Colour(46, 136, 174)
+#define MODMATRIX_COL_POS_2 juce::Colour(0xff005400)
+#define MODMATRIX_COL_POS_3 juce::Colour(0xff172575)
+#define MODMATRIX_COL_NEG_1 juce::Colour(252, 58, 97)
+#define MODMATRIX_COL_NEG_2 juce::Colours::darkviolet
+#define MODMATRIX_COL_NEG_3 juce::Colours::black
+
 class ModMatrixComponent : public Component {
 public:
   ModMatrixComponent(AudioProcessorValueTreeState& vts);

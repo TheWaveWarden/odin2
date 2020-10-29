@@ -272,8 +272,8 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts) :
 	juce::Colour modmatrix_grey_color = MODMATRIX_COLOR;
 	juce::Colour modmatrix_color      = STANDARD_DISPLAY_COLOR;
 
-	juce::Colour modmatrix_color_bar(46, 136, 174);
-	juce::Colour modmatrix_color_bar_negative(252, 58, 97);
+	//juce::Colour modmatrix_color_bar(46, 136, 174);
+	//juce::Colour modmatrix_color_bar_negative(252, 58, 97);
 	juce::Colour modmatrix_font_selected_color = Colour(126, 182, 206);
 
 	m_color = modmatrix_grey_color;
@@ -310,13 +310,12 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts) :
 		addAndMakeVisible(m_source[i]);
 
 		m_amount_1[i].setColor(modmatrix_grey_color);
-		//m_amount_1[i].setColorBars(modmatrix_color_bar, modmatrix_color_bar_negative);
-		m_amount_1[i].setColorBarsExtended(modmatrix_color_bar,
-		                                   juce::Colours::darkgreen,
-		                                   juce::Colours::darkturquoise,
-		                                   modmatrix_color_bar_negative,
-		                                   juce::Colours::darkred,
-		                                   juce::Colours::darkviolet);
+		m_amount_1[i].setColorBarsExtended(MODMATRIX_COL_POS_1,
+		                                   MODMATRIX_COL_POS_2,
+		                                   MODMATRIX_COL_POS_3,
+		                                   MODMATRIX_COL_NEG_1,
+		                                   MODMATRIX_COL_NEG_2,
+		                                   MODMATRIX_COL_NEG_3);
 		addAndMakeVisible(m_amount_1[i]);
 
 		m_dest_1[i].rearrangeMenu = [&, i]() {
@@ -333,13 +332,12 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts) :
 		addAndMakeVisible(m_dest_1[i]);
 
 		m_amount_2[i].setColor(modmatrix_grey_color);
-		//m_amount_2[i].setColorBars(modmatrix_color_bar, modmatrix_color_bar_negative);
-		m_amount_2[i].setColorBarsExtended(modmatrix_color_bar,
-		                                   juce::Colours::green,
-		                                   juce::Colours::darkgreen,
-		                                   modmatrix_color_bar_negative,
-		                                   juce::Colours::darkred,
-		                                   juce::Colours::darkviolet);
+		m_amount_2[i].setColorBarsExtended(MODMATRIX_COL_POS_1,
+		                                   MODMATRIX_COL_POS_2,
+		                                   MODMATRIX_COL_POS_3,
+		                                   MODMATRIX_COL_NEG_1,
+		                                   MODMATRIX_COL_NEG_2,
+		                                   MODMATRIX_COL_NEG_3);
 		addAndMakeVisible(m_amount_2[i]);
 
 		m_dest_2[i].rearrangeMenu = [&, i]() {
@@ -356,7 +354,7 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts) :
 		addAndMakeVisible(m_dest_2[i]);
 
 		m_amount_3[i].setColor(modmatrix_grey_color);
-		m_amount_3[i].setColorBars(modmatrix_color_bar, modmatrix_color_bar_negative);
+		m_amount_3[i].setColorBars(MODMATRIX_COL_POS_1, MODMATRIX_COL_NEG_1);
 		addAndMakeVisible(m_amount_3[i]);
 
 		m_scale[i].clear();
