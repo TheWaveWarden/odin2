@@ -1340,6 +1340,11 @@
             file="Graphics_150/applied/WW_logo_xy_150.png"/>
     </GROUP>
     <GROUP id="{7AF384ED-9FD6-6492-4B8C-5777BB9A2698}" name="Source">
+      <FILE id="QlEHfA" name="ParametricEQ.cpp" compile="1" resource="0"
+            file="Source/audio/FX/ParametricEQ.cpp"/>
+      <FILE id="xTwlWY" name="ParametricEQ.h" compile="0" resource="0" file="Source/audio/FX/ParametricEQ.h"/>
+      <FILE id="O4EivA" name="Reverb.h" compile="0" resource="0" file="Source/audio/FX/Reverb.h"/>
+      <FILE id="RsaXj6" name="Reverb.cpp" compile="1" resource="0" file="Source/audio/FX/Reverb.cpp"/>
       <FILE id="m2K5JH" name="ModAmountComponentExtended.h" compile="0" resource="0"
             file="Source/gui/ModAmountComponentExtended.h"/>
       <FILE id="PWghTC" name="ModAmountComponentExtended.cpp" compile="1"
