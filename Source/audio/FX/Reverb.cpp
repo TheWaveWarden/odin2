@@ -13,7 +13,7 @@
 ** GNU General Public License for more details.
 */
 
-// The implementation for this Reverb module is taken from zita-rev1 with some adjustments. See
+// The implementation for this ZitaReverb module is taken from zita-rev1 with some adjustments. See
 // https://github.com/royvegard/zita-rev1 for the original code.
 
 #include "Reverb.h"
@@ -110,23 +110,22 @@ void Filt1::set_params(float del, float tmf, float tlo, float wlo, float thi, fl
 
 // -----------------------------------------------------------------------
 
-float Reverb::_tdiff1[8] = {20346e-6f, 24421e-6f, 31604e-6f, 27333e-6f, 22904e-6f, 29291e-6f, 13458e-6f, 19123e-6f};
+float ZitaReverb::_tdiff1[8] = {20346e-6f, 24421e-6f, 31604e-6f, 27333e-6f, 22904e-6f, 29291e-6f, 13458e-6f, 19123e-6f};
 
-float Reverb::_tdelay[8] = {
+float ZitaReverb::_tdelay[8] = {
     153129e-6f, 210389e-6f, 127837e-6f, 256891e-6f, 174713e-6f, 192303e-6f, 125000e-6f, 219991e-6f};
 
-Reverb::Reverb(void) {
+ZitaReverb::ZitaReverb(void) {
 }
 
-Reverb::~Reverb(void) {
+ZitaReverb::~ZitaReverb(void) {
 	fini();
 }
 
-void Reverb::init(float fsamp, bool ambis) {
+void ZitaReverb::setSampleRate(float fsamp) {
 	int i, k1, k2;
 
 	_fsamp = fsamp;
-	_ambis = ambis;
 	_cntA1 = 1;
 	_cntA2 = 0;
 	_cntB1 = 1;
@@ -155,15 +154,15 @@ void Reverb::init(float fsamp, bool ambis) {
 	}
 
 	_pareq1.setfsamp(fsamp);
-	_pareq2.setfsamp(fsamp);
+	//_pareq2.setfsamp(fsamp);
 }
 
-void Reverb::fini(void) {
+void ZitaReverb::fini(void) {
 	for (int i = 0; i < 8; i++)
 		_delay[i].fini();
 }
 
-void Reverb::prepare(int nfram) {
+void ZitaReverb::prepare() {
 	int a, b, c, i, k;
 	float t0, t1, wlo, chi;
 
@@ -192,133 +191,168 @@ void Reverb::prepare(int nfram) {
 	}
 
 	if (c != _cntC2) {
-		// if (_ambis)
-		// {
-		//     t0 = 1.0f / sqrtf (_rtmid);
-		//     t1 = t0 * powf (10.0f, 0.05f * _rgxyz);
-		// }
-		// else
-		// {
-		t0 = (1 - _opmix) * (1 + _opmix);
-		t1 = 0.7f * _opmix * (2 - _opmix) / sqrtf(_rtmid);
-		// }
-		_d0    = (t0 - _g0) / nfram;
-		_d1    = (t1 - _g1) / nfram;
+		t0     = (1 - _opmix) * (1 + _opmix);
+		t1     = 0.7f * _opmix * (2 - _opmix) / sqrtf(_rtmid);
+		_d0    = t0 - _g0;
+		_d1    = t1 - _g1;
 		_cntC2 = c;
 	}
 
-	_pareq1.prepare(nfram);
-	_pareq2.prepare(nfram);
+	_pareq1.prepare();
+	//_pareq2.prepare(nfram);
+
+
+	// set_delay(40);
+	// set_xover(2);
+	// set_rtlow(3);
+	// set_rtmid(2);
+	// set_fdamp(6);
+	// set_opmix(0.5);
+	// //set_rgxyz();
+	// set_eq1(200, 0);
 }
 
-void Reverb::process(int nfram, float *inp[], float *out[]) {
+float *ZitaReverb::process(float input[2]) {
+
 	int i, n;
 	float *p0, *p1;
 	float *q0, *q1, *q2, *q3;
 	float t, g, x0, x1, x2, x3, x4, x5, x6, x7;
+	static float out[2];
 
-	g = sqrtf(0.125f);
+	//g = sqrtf(0.125f);
+	g = 0.35355f;
 
-	p0 = inp[0];
-	p1 = inp[1];
-	q0 = out[0];
-	q1 = out[1];
-	q2 = out[2];
-	q3 = out[3];
+	// p0 = inp[0];
+	// p1 = inp[1];
+	// q0 = out[0];
+	// q1 = out[1];
+	// q2 = out[2];
+	// q3 = out[3];
 
 	//loop over samples -> sample based from here
 	//p0[i] p1[i] is left / right input
 	//AMBISONIC: four channel -> _ambis switches can be ignored
 	//4 channel output??
 	//q0[i]
-	for (i = 0; i < nfram; i++) {
-		_vdelay0.write(p0[i]);
-		_vdelay1.write(p1[i]);
+	_vdelay0.write(input[0]);
+	_vdelay1.write(input[1]);
 
-		t  = 0.3f * _vdelay0.read();
-		x0 = _diff1[0].process(_delay[0].read() + t);
-		x1 = _diff1[1].process(_delay[1].read() + t);
-		x2 = _diff1[2].process(_delay[2].read() - t);
-		x3 = _diff1[3].process(_delay[3].read() - t);
-		t  = 0.3f * _vdelay1.read();
-		x4 = _diff1[4].process(_delay[4].read() + t);
-		x5 = _diff1[5].process(_delay[5].read() + t);
-		x6 = _diff1[6].process(_delay[6].read() - t);
-		x7 = _diff1[7].process(_delay[7].read() - t);
+	t  = 0.3f * _vdelay0.read();
+	x0 = _diff1[0].process(_delay[0].read() + t);
+	x1 = _diff1[1].process(_delay[1].read() + t);
+	x2 = _diff1[2].process(_delay[2].read() - t);
+	x3 = _diff1[3].process(_delay[3].read() - t);
+	t  = 0.3f * _vdelay1.read();
+	x4 = _diff1[4].process(_delay[4].read() + t);
+	x5 = _diff1[5].process(_delay[5].read() + t);
+	x6 = _diff1[6].process(_delay[6].read() - t);
+	x7 = _diff1[7].process(_delay[7].read() - t);
 
-		t = x0 - x1;
-		x0 += x1;
-		x1 = t;
-		t  = x2 - x3;
-		x2 += x3;
-		x3 = t;
-		t  = x4 - x5;
-		x4 += x5;
-		x5 = t;
-		t  = x6 - x7;
-		x6 += x7;
-		x7 = t;
-		t  = x0 - x2;
-		x0 += x2;
-		x2 = t;
-		t  = x1 - x3;
-		x1 += x3;
-		x3 = t;
-		t  = x4 - x6;
-		x4 += x6;
-		x6 = t;
-		t  = x5 - x7;
-		x5 += x7;
-		x7 = t;
-		t  = x0 - x4;
-		x0 += x4;
-		x4 = t;
-		t  = x1 - x5;
-		x1 += x5;
-		x5 = t;
-		t  = x2 - x6;
-		x2 += x6;
-		x6 = t;
-		t  = x3 - x7;
-		x3 += x7;
-		x7 = t;
+	t = x0 - x1;
+	x0 += x1;
+	x1 = t;
+	t  = x2 - x3;
+	x2 += x3;
+	x3 = t;
+	t  = x4 - x5;
+	x4 += x5;
+	x5 = t;
+	t  = x6 - x7;
+	x6 += x7;
+	x7 = t;
+	t  = x0 - x2;
+	x0 += x2;
+	x2 = t;
+	t  = x1 - x3;
+	x1 += x3;
+	x3 = t;
+	t  = x4 - x6;
+	x4 += x6;
+	x6 = t;
+	t  = x5 - x7;
+	x5 += x7;
+	x7 = t;
+	t  = x0 - x4;
+	x0 += x4;
+	x4 = t;
+	t  = x1 - x5;
+	x1 += x5;
+	x5 = t;
+	t  = x2 - x6;
+	x2 += x6;
+	x6 = t;
+	t  = x3 - x7;
+	x3 += x7;
+	x7 = t;
 
-		// if (_ambis)
-		// {
-		//     _g0 += _d0;
-		//     _g1 += _d1;
-		//     q0 [i] = _g0 * x0;
-		//     q1 [i] = _g1 * x1;
-		//     q2 [i] = _g1 * x4;
-		//     q3 [i] = _g1 * x2;
-		// }
-		// else
-		// {
-		_g1 += _d1;
-		q0[i] = _g1 * (x1 + x2);
-		q1[i] = _g1 * (x1 - x2);
-		// }
+	_g1 += _d1;
+	out[0] = _g1 * (x1 + x2);
+	out[1] = _g1 * (x1 - x2);
 
-		_delay[0].write(_filt1[0].process(g * x0));
-		_delay[1].write(_filt1[1].process(g * x1));
-		_delay[2].write(_filt1[2].process(g * x2));
-		_delay[3].write(_filt1[3].process(g * x3));
-		_delay[4].write(_filt1[4].process(g * x4));
-		_delay[5].write(_filt1[5].process(g * x5));
-		_delay[6].write(_filt1[6].process(g * x6));
-		_delay[7].write(_filt1[7].process(g * x7));
-	}
+	_delay[0].write(_filt1[0].process(g * x0));
+	_delay[1].write(_filt1[1].process(g * x1));
+	_delay[2].write(_filt1[2].process(g * x2));
+	_delay[3].write(_filt1[3].process(g * x3));
+	_delay[4].write(_filt1[4].process(g * x4));
+	_delay[5].write(_filt1[5].process(g * x5));
+	_delay[6].write(_filt1[6].process(g * x6));
+	_delay[7].write(_filt1[7].process(g * x7));
 
-	n = _ambis ? 4 : 2;
-	_pareq1.process(nfram, n, out);
-	_pareq2.process(nfram, n, out);
-	if (!_ambis) {
-		for (i = 0; i < nfram; i++) {
-			_g0 += _d0;
-			q0[i] += _g0 * p0[i];
-			q1[i] += _g0 * p1[i];
-		}
-	}
+	_pareq1.process(out);
+
+	//_pareq2.process(out);
+	//for (i = 0; i < nfram; i++) {
+	_g0 += _d0;
+	out[0] += _g0 * input[0];
+	out[1] += _g0 * input[1];
+	//}
+
+	return out;
 }
+
+void ZitaReverb::set_delay(float v) {
+	_ipdel = v;
+	_cntA1++;
+}
+
+void ZitaReverb::set_xover(float v) {
+	_xover = v;
+	_cntB1++;
+}
+
+void ZitaReverb::set_rtlow(float v) {
+	_rtlow = v;
+	_cntB1++;
+}
+
+void ZitaReverb::set_rtmid(float v) {
+	_rtmid = v;
+	_cntB1++;
+	_cntC1++;
+}
+
+void ZitaReverb::set_fdamp(float v) {
+	_fdamp = v;
+	_cntB1++;
+}
+
+void ZitaReverb::set_opmix(float v) {
+	_opmix = v;
+	_cntC1++;
+}
+
+void ZitaReverb::set_rgxyz(float v) {
+	_rgxyz = v;
+	_cntC1++;
+}
+
+void ZitaReverb::set_eq1(float f, float g) {
+	_pareq1.setparam(f, g);
+}
+
+// void ZitaReverb::set_eq2(float f, float g) {
+// 	_pareq2.setparam(f, g);
+// }
 
 // -----------------------------------------------------------------------

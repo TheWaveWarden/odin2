@@ -13,7 +13,7 @@
 ** GNU General Public License for more details.
 */
 
-// The implementation for this Reverb module is taken from zita-rev1 with some adjustments. See
+// The implementation for this ZitaReverb module is taken from zita-rev1 with some adjustments. See
 // https://github.com/royvegard/zita-rev1 for the original code.
 
 #ifndef __REVERB_H
@@ -23,7 +23,7 @@
 
 class Diff1 {
 private:
-	friend class Reverb;
+	friend class ZitaReverb;
 
 	Diff1(void);
 	~Diff1(void);
@@ -50,7 +50,7 @@ private:
 
 class Filt1 {
 private:
-	friend class Reverb;
+	friend class ZitaReverb;
 
 	Filt1(void) : _slo(0), _shi(0) {
 	}
@@ -77,7 +77,7 @@ private:
 
 class RevDelay {
 private:
-	friend class Reverb;
+	friend class ZitaReverb;
 
 	RevDelay(void);
 	~RevDelay(void);
@@ -104,7 +104,7 @@ private:
 
 class Vdelay {
 private:
-	friend class Reverb;
+	friend class ZitaReverb;
 
 	Vdelay(void);
 	~Vdelay(void);
@@ -134,56 +134,29 @@ private:
 
 // -----------------------------------------------------------------------
 
-class Reverb {
+class ZitaReverb {
 public:
-	Reverb(void);
-	~Reverb(void);
+	ZitaReverb(void);
+	~ZitaReverb(void);
 
-	void init(float fsamp, bool ambis);
+	void setSampleRate(float fsamp);
 	void fini(void);
 
-	void prepare(int n);
-	void process(int n, float *inp[], float *out[]);
+	void prepare();
+	float* process(float input[2]);
 
-	void set_delay(float v) {
-		_ipdel = v;
-		_cntA1++;
-	}
-	void set_xover(float v) {
-		_xover = v;
-		_cntB1++;
-	}
-	void set_rtlow(float v) {
-		_rtlow = v;
-		_cntB1++;
-	}
-	void set_rtmid(float v) {
-		_rtmid = v;
-		_cntB1++;
-		_cntC1++;
-	}
-	void set_fdamp(float v) {
-		_fdamp = v;
-		_cntB1++;
-	}
-	void set_opmix(float v) {
-		_opmix = v;
-		_cntC1++;
-	}
-	void set_rgxyz(float v) {
-		_rgxyz = v;
-		_cntC1++;
-	}
-	void set_eq1(float f, float g) {
-		_pareq1.setparam(f, g);
-	}
-	void set_eq2(float f, float g) {
-		_pareq2.setparam(f, g);
-	}
+	void set_delay(float v);
+	void set_xover(float v);
+	void set_rtlow(float v);
+	void set_rtmid(float v);
+	void set_fdamp(float v);
+	void set_opmix(float v);
+	void set_rgxyz(float v);
+	void set_eq1(float f, float g);
+	//void set_eq2(float f, float g);
 
 private:
 	float _fsamp;
-	bool _ambis;
 
 	Vdelay _vdelay0;
 	Vdelay _vdelay1;
@@ -210,7 +183,7 @@ private:
 	float _g1, _d1;
 
 	ParametricEQ _pareq1;
-	ParametricEQ _pareq2;
+	//ParametricEQ _pareq2;
 
 	static float _tdiff1[8];
 	static float _tdelay[8];

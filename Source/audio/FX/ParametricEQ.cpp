@@ -37,7 +37,7 @@ void ParametricEQ::reset(void) {
 	memset(_z2, 0, sizeof(float) * MAXCH);
 }
 
-void ParametricEQ::prepare(int nsamp) {
+void ParametricEQ::prepare() {
 	bool upd = false;
 	float g, f;
 
@@ -67,7 +67,7 @@ void ParametricEQ::prepare(int nsamp) {
 				calcpar1(0, _g1, _f1);
 			} else {
 				_state = SMOOTH;
-				calcpar1(nsamp, _g1, _f1);
+				calcpar1(1, _g1, _f1);
 			}
 		} else {
 			_touch1 = _touch0;
@@ -100,7 +100,7 @@ void ParametricEQ::calcpar1(int nsamp, float g, float f) {
 	}
 }
 
-void ParametricEQ::process1(int nsamp, int nchan, float *data[]) {
+void ParametricEQ::process1(float data[]) {
 	int i, j;
 	float c1, c2, gg;
 	float x, y, z1, z2;
@@ -110,24 +110,24 @@ void ParametricEQ::process1(int nsamp, int nchan, float *data[]) {
 	c2 = _c2;
 	gg = _gg;
 	if (_state == SMOOTH) {
-		for (i = 0; i < nchan; i++) {
-			p  = data[i];
+		for (i = 0; i < 2 /*nchan*/; i++) {
+			p  = &(data[i]);
 			z1 = _z1[i];
 			z2 = _z2[i];
 			c1 = _c1;
 			c2 = _c2;
 			gg = _gg;
-			for (j = 0; j < nsamp; j++) {
-				c1 += _dc1;
-				c2 += _dc2;
-				gg += _dgg;
-				x    = *p;
-				y    = x - c2 * z2;
-				*p++ = x - gg * (z2 + c2 * y - x);
-				y -= c1 * z1;
-				z2 = z1 + c1 * y;
-				z1 = y + 1e-20f;
-			}
+			//for (j = 0; j < nsamp; j++) {
+			c1 += _dc1;
+			c2 += _dc2;
+			gg += _dgg;
+			x    = *p;
+			y    = x - c2 * z2;
+			*p++ = x - gg * (z2 + c2 * y - x);
+			y -= c1 * z1;
+			z2 = z1 + c1 * y;
+			z1 = y + 1e-20f;
+			//}
 			_z1[i] = z1;
 			_z2[i] = z2;
 		}
@@ -135,18 +135,18 @@ void ParametricEQ::process1(int nsamp, int nchan, float *data[]) {
 		_c2 = c2;
 		_gg = gg;
 	} else {
-		for (i = 0; i < nchan; i++) {
-			p  = data[i];
+		for (i = 0; i < 2 /*nchan*/; i++) {
+			p  = &(data[i]);
 			z1 = _z1[i];
 			z2 = _z2[i];
-			for (j = 0; j < nsamp; j++) {
-				x    = *p;
-				y    = x - c2 * z2;
-				*p++ = x - gg * (z2 + c2 * y - x);
-				y -= c1 * z1;
-				z2 = z1 + c1 * y;
-				z1 = y + 1e-20f;
-			}
+			//for (j = 0; j < nsamp; j++) {
+			x    = *p;
+			y    = x - c2 * z2;
+			*p++ = x - gg * (z2 + c2 * y - x);
+			y -= c1 * z1;
+			z2 = z1 + c1 * y;
+			z1 = y + 1e-20f;
+			//}
 			_z1[i] = z1;
 			_z2[i] = z2;
 		}

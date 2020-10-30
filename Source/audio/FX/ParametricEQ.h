@@ -35,17 +35,17 @@ public:
 		_touch0++;
 	}
 	void reset(void);
-	void prepare(int nsamp);
-	void process(int nsamp, int nchan, float *data[]) {
+	void prepare();
+	void process(float data[]) {
 		if (_state != BYPASS)
-			process1(nsamp, nchan, data);
+			process1(data);
 	}
 
 private:
 	enum { BYPASS, STATIC, SMOOTH, MAXCH = 4 };
 
 	void calcpar1(int nsamp, float g, float f);
-	void process1(int nsamp, int nchan, float *data[]);
+	void process1(float data[]);
 
 	volatile int16_t _touch0;
 	volatile int16_t _touch1;

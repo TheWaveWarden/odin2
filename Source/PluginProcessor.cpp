@@ -786,6 +786,12 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 			}
 		}
 
+		auto todo = m_reverb.process(stereo_signal);
+		stereo_signal[0] = todo[0];
+		stereo_signal[1] = todo[1];
+
+		DBG(stereo_signal[0]);
+
 		//===== OUTPUT ======
 
 		// apply volume & modulation
@@ -918,6 +924,8 @@ void OdinAudioProcessor::setSampleRate(float p_samplerate) {
 
 	m_delay.setSampleRate(p_samplerate);
 	m_phaser.setSampleRate(p_samplerate);
+	m_reverb.setSampleRate(p_samplerate);
+	m_reverb.prepare();
 	m_global_env.setSampleRate(p_samplerate);
 	m_global_lfo.setSampleRate(p_samplerate);
 	m_arpeggiator.setSampleRate(p_samplerate);
