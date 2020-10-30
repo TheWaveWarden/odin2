@@ -260,7 +260,8 @@ OdinAudioProcessor::OdinAudioProcessor() :
 	m_master_smooth  = m_master_control;
 }
 
-OdinAudioProcessor::~OdinAudioProcessor() {}
+OdinAudioProcessor::~OdinAudioProcessor() {
+}
 
 //==============================================================================
 const String OdinAudioProcessor::getName() const {
@@ -755,66 +756,64 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 				}
 				stereo_signal[channel] *= fil_vol_modded;
 			}
-
-			//==== FX SECTION ====
-
-			// ugly solution, yet here we go:
-			// check for each fx if its position is slot and then render it
-			for (int fx_slot = 0; fx_slot < 4; ++fx_slot) {
-				if (m_delay_position == fx_slot) {
-					if (*m_delay_on) {
-						if (channel == 0) {
-							stereo_signal[channel] = m_delay.doDelayLeft(stereo_signal[channel]);
-						} else {
-							stereo_signal[channel] = m_delay.doDelayRight(stereo_signal[channel]);
-						}
-					}
-				} else if (m_phaser_position == fx_slot) {
-					if (*m_phaser_on) {
-						if (channel == 0) {
-							stereo_signal[channel] = m_phaser.doPhaserLeft(stereo_signal[channel]);
-						} else {
-							stereo_signal[channel] = m_phaser.doPhaserRight(stereo_signal[channel]);
-						}
-					}
-				} else if (m_flanger_position == fx_slot) {
-					if (*m_flanger_on) {
-						stereo_signal[channel] = m_flanger[channel].doFlanger(stereo_signal[channel]);
-					}
-				} else if (m_chorus_position == fx_slot) {
-					if (*m_chorus_on) {
-						stereo_signal[channel] = m_chorus[channel].doChorus(stereo_signal[channel]);
-					}
-				}
-			}
-
-			//===== OUTPUT ======
-
-			// apply volume & modulation
-			float master_vol_modded = m_master_smooth;
-			if (*m_master_mod) {
-				if (*m_master_mod < 0.f) {
-					//negative modulation just modulates down to -inf dB
-					master_vol_modded = m_master_smooth * (1.f + *m_master_mod);
-					master_vol_modded = master_vol_modded < 0 ? 0 : master_vol_modded;
-				} else {
-					if (m_master_smooth > MINUS_12_dB_GAIN) {
-						// volume level above -12dB, modulate to plus 12 dB
-						master_vol_modded *= pow(PLUS_12_dB_GAIN, *m_master_mod);
-						master_vol_modded = master_vol_modded > PLUS_12_dB_GAIN ? PLUS_12_dB_GAIN : master_vol_modded;
-					} else {
-						// if volume level is below -12dB then just modulate up to 0dB
-						master_vol_modded += (1.f - master_vol_modded) * *m_master_mod;
-						master_vol_modded = master_vol_modded > PLUS_12_dB_GAIN ? PLUS_12_dB_GAIN : master_vol_modded;
-					}
-				}
-			}
-
-			auto *channelData   = buffer.getWritePointer(channel);
-			channelData[sample] = stereo_signal[channel] * master_vol_modded;
-
 		} // stereo loop
-	}     // sample loop
+
+		//==== FX SECTION ====
+
+		// ugly solution, yet here we go:
+		// check for each fx if its position is slot and then render it
+		for (int fx_slot = 0; fx_slot < 4; ++fx_slot) {
+			if (m_delay_position == fx_slot) {
+				if (*m_delay_on) {
+					stereo_signal[0] = m_delay.doDelayLeft(stereo_signal[0]);
+					stereo_signal[1] = m_delay.doDelayRight(stereo_signal[1]);
+				}
+			} else if (m_phaser_position == fx_slot) {
+				if (*m_phaser_on) {
+					stereo_signal[0] = m_phaser.doPhaserLeft(stereo_signal[0]);
+					stereo_signal[1] = m_phaser.doPhaserRight(stereo_signal[1]);
+				}
+			} else if (m_flanger_position == fx_slot) {
+				if (*m_flanger_on) {
+					stereo_signal[0] = m_flanger[0].doFlanger(stereo_signal[0]);
+					stereo_signal[1] = m_flanger[1].doFlanger(stereo_signal[1]);
+				}
+			} else if (m_chorus_position == fx_slot) {
+				if (*m_chorus_on) {
+					stereo_signal[0] = m_chorus[0].doChorus(stereo_signal[0]);
+					stereo_signal[1] = m_chorus[1].doChorus(stereo_signal[1]);
+				}
+			}
+		}
+
+		//===== OUTPUT ======
+
+		// apply volume & modulation
+		float master_vol_modded = m_master_smooth;
+		if (*m_master_mod) {
+			if (*m_master_mod < 0.f) {
+				//negative modulation just modulates down to -inf dB
+				master_vol_modded = m_master_smooth * (1.f + *m_master_mod);
+				master_vol_modded = master_vol_modded < 0 ? 0 : master_vol_modded;
+			} else {
+				if (m_master_smooth > MINUS_12_dB_GAIN) {
+					// volume level above -12dB, modulate to plus 12 dB
+					master_vol_modded *= pow(PLUS_12_dB_GAIN, *m_master_mod);
+					master_vol_modded = master_vol_modded > PLUS_12_dB_GAIN ? PLUS_12_dB_GAIN : master_vol_modded;
+				} else {
+					// if volume level is below -12dB then just modulate up to 0dB
+					master_vol_modded += (1.f - master_vol_modded) * *m_master_mod;
+					master_vol_modded = master_vol_modded > PLUS_12_dB_GAIN ? PLUS_12_dB_GAIN : master_vol_modded;
+				}
+			}
+		}
+
+		auto *channelData   = buffer.getWritePointer(0);
+		channelData[sample] = stereo_signal[0] * master_vol_modded;
+		channelData   = buffer.getWritePointer(1);
+		channelData[sample] = stereo_signal[1] * master_vol_modded;
+
+	} // sample loop
 }
 
 //==============================================================================
@@ -825,7 +824,7 @@ bool OdinAudioProcessor::hasEditor() const {
 AudioProcessorEditor *OdinAudioProcessor::createEditor() {
 
 	OdinAudioProcessorEditor *editor = new OdinAudioProcessorEditor(*this, m_value_tree, m_is_standalone_plugin);
-	m_editor_pointer = editor;
+	m_editor_pointer                 = editor;
 
 	return editor;
 }
