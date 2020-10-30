@@ -1,4 +1,5 @@
-- created CI pipeline for Ubuntu-18.04
+- ModMatrix amounts now range up to [-300, 300] //todo bump patch migration version
+- created Azure-CI pipelines for Ubuntu-18.04, MacOs 10.14 and Windows2019
 # 2.2.4
 - fixed Legato carrying current value over to Attack rather than to current section
 - ChipDraw tables now available as LFO waves
