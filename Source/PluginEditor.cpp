@@ -438,7 +438,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	m_chorus.setSyncTimeColor(CHORUS_DISPLAY_COLOR);
 	addChildComponent(m_chorus);
 
-	addAndMakeVisible(m_delay);
+	//addAndMakeVisible(m_delay);
 
 	addAndMakeVisible(m_mod_matrix);
 	addChildComponent(m_patch_browser);
