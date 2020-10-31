@@ -126,12 +126,13 @@ void ZitaReverb::setSampleRate(float fsamp) {
 	int i, k1, k2;
 
 	_fsamp = fsamp;
-	_cntA1 = 1;
-	_cntA2 = 0;
-	_cntB1 = 1;
-	_cntB2 = 0;
-	_cntC1 = 1;
-	_cntC2 = 0;
+	// _cntA1 = 1;
+	// _cntA2 = 0;
+	// _cntB1 = 1;
+	// _cntB2 = 0;
+	// _cntC1 = 1;
+	// _cntC2 = 0;
+	_Adirty = _Bdirty = _Cdirty = true;
 
 	_ipdel = 0.04f;
 	_xover = 200.0f;
@@ -163,22 +164,24 @@ void ZitaReverb::fini(void) {
 }
 
 void ZitaReverb::prepare() {
-	int a, b, c, i, k;
+	//int a, b, c,
+	int i, k;
 	float t0, t1, wlo, chi;
 
-	a   = _cntA1;
-	b   = _cntB1;
-	c   = _cntC1;
+	// a   = _cntA1;
+	// b   = _cntB1;
+	// c   = _cntC1;
 	_d0 = _d1 = 0;
 
-	if (a != _cntA2) {
+	if (_Adirty) {
 		k = (int)(floorf((_ipdel - 0.020f) * _fsamp + 0.5f));
 		_vdelay0.set_delay(k);
 		_vdelay1.set_delay(k);
-		_cntA2 = a;
+		//_cntA2 = _cntA1;
+		_Adirty = false;
 	}
 
-	if (b != _cntB2) {
+	if (_Bdirty) {
 		wlo = 6.2832f * _xover / _fsamp;
 		if (_fdamp > 0.49f * _fsamp)
 			chi = 2;
@@ -187,21 +190,35 @@ void ZitaReverb::prepare() {
 		for (i = 0; i < 8; i++) {
 			_filt1[i].set_params(_tdelay[i], _rtmid, _rtlow, wlo, 0.5f * _rtmid, chi);
 		}
-		_cntB2 = b;
+		//_cntB2 = _cntB1;
+		_Bdirty = false;
 	}
 
-	if (c != _cntC2) {
-		t0     = (1 - _opmix) * (1 + _opmix);
-		t1     = 0.7f * _opmix * (2 - _opmix) / sqrtf(_rtmid);
-		_d0    = t0 - _g0;
-		_d1    = t1 - _g1;
-		_cntC2 = c;
+	if (_Cdirty) {
+		// t0     = (1 - _opmix) * (1 + _opmix);
+		// t1     = 0.7f * _opmix * (2 - _opmix) / sqrtf(_rtmid);
+		// _d0    = t0 - _g0;
+		// _d1    = t1 - _g1;
+		// _cntC2 = _cntC1;
+		_g0 = (1.f - _opmix) * (1.f - _opmix);
+		_g1 = 1.f - _g0;
+		_Cdirty = false;
 	}
 
 	_pareq1.prepare();
 	//_pareq2.prepare(nfram);
 
+	// DBG_VAR(_g0);
+	// DBG_VAR(_g1);
+	// DBG_VAR(_d0);
+	// DBG_VAR(_d1);
+	// DBG_VAR(t0);
+	// DBG_VAR(t1);
 
+	// _d0 = 0;
+	// _d1 = 0;
+	// _g0 = 0.75;
+	// _g1 = 0.25;
 	// set_delay(40);
 	// set_xover(2);
 	// set_rtlow(3);
@@ -286,7 +303,7 @@ float *ZitaReverb::process(float input[2]) {
 	x3 += x7;
 	x7 = t;
 
-	_g1 += _d1;
+	//_g1 += _d1;
 	out[0] = _g1 * (x1 + x2);
 	out[1] = _g1 * (x1 - x2);
 
@@ -303,48 +320,62 @@ float *ZitaReverb::process(float input[2]) {
 
 	//_pareq2.process(out);
 	//for (i = 0; i < nfram; i++) {
-	_g0 += _d0;
+	//_g0 += _d0;
 	out[0] += _g0 * input[0];
 	out[1] += _g0 * input[1];
 	//}
+
+	// DBG("==");
+	// DBG_VAR(_g0);
+	// DBG_VAR(_g1);
+	// DBG_VAR(_d0);
+	// DBG_VAR(_d1);
 
 	return out;
 }
 
 void ZitaReverb::set_delay(float v) {
 	_ipdel = v;
-	_cntA1++;
+	//_cntA1++;
+	_Adirty = true;
 }
 
 void ZitaReverb::set_xover(float v) {
 	_xover = v;
-	_cntB1++;
+	//_cntB1++;
+	_Bdirty = true;
 }
 
 void ZitaReverb::set_rtlow(float v) {
 	_rtlow = v;
-	_cntB1++;
+	//_cntB1++;
+	_Cdirty = true;
 }
 
 void ZitaReverb::set_rtmid(float v) {
 	_rtmid = v;
-	_cntB1++;
-	_cntC1++;
+	//_cntB1++;
+	//_cntC1++;
+	_Bdirty = true;
+	_Cdirty = true;
 }
 
 void ZitaReverb::set_fdamp(float v) {
 	_fdamp = v;
-	_cntB1++;
+	//_cntB1++;
+	_Bdirty = true;
 }
 
 void ZitaReverb::set_opmix(float v) {
 	_opmix = v;
-	_cntC1++;
+	//_cntC1++;
+	_Cdirty = true;
 }
 
 void ZitaReverb::set_rgxyz(float v) {
 	_rgxyz = v;
-	_cntC1++;
+	//_cntC1++;
+	_Cdirty = true;
 }
 
 void ZitaReverb::set_eq1(float f, float g) {
@@ -356,3 +387,86 @@ void ZitaReverb::set_eq1(float f, float g) {
 // }
 
 // -----------------------------------------------------------------------
+void Diff1::dump(std::string name) {
+	DBG("===");
+	DBG("Dumping Diff1 " << name);
+	DBG_VAR(_i);
+	DBG_VAR(_c);
+	DBG_VAR(_size);
+}
+void RevDelay::dump(std::string name) {
+	DBG("===");
+	DBG("Dumping Delay " << name);
+	//DBG_VAR(_i);
+	DBG_VAR(_size);
+}
+void Vdelay::dump(std::string name) {
+	DBG("===");
+	DBG("Dumping VDelay " << name);
+	DBG_VAR(_ir);
+	DBG_VAR(_iw);
+	DBG_VAR(_size);
+}
+void Filt1::dump(std::string name) {
+	DBG("===");
+	DBG("Dumping Fil1 " << name);
+	DBG_VAR(_gmf);
+	DBG_VAR(_glo);
+	DBG_VAR(_wlo);
+	DBG_VAR(_whi);
+	DBG_VAR(_slo);
+	DBG_VAR(_shi);
+}
+void ZitaReverb::dump(std::string name) {
+	DBG("===================================");
+	DBG("Dumping Reverb " << name);
+	DBG_VAR(_fsamp);
+	//DBG_VAR(_cntA1);
+	//DBG_VAR(_cntB1);
+	//DBG_VAR(_cntC1);
+	//DBG_VAR(_cntA2);
+	//DBG_VAR(_cntB2);
+	//DBG_VAR(_cntC2);
+	DBG_VAR(_ipdel);
+	DBG_VAR(_xover);
+	DBG_VAR(_rtlow);
+	DBG_VAR(_rtmid);
+	DBG_VAR(_fdamp);
+	DBG_VAR(_opmix);
+	DBG_VAR(_rgxyz);
+	DBG_VAR(_g0);
+	DBG_VAR(_d0);
+	DBG_VAR(_g1);
+	DBG_VAR(_d1);
+
+	_vdelay0.dump("_vdelay0");
+	_vdelay1.dump("_vdelay1");
+	_diff1[0].dump("_diff1[0]");
+	_diff1[1].dump("_diff1[1]");
+	_diff1[2].dump("_diff1[2]");
+	_diff1[3].dump("_diff1[3]");
+	_diff1[4].dump("_diff1[4]");
+	_diff1[5].dump("_diff1[5]");
+	_diff1[6].dump("_diff1[6]");
+	_diff1[7].dump("_diff1[7]");
+
+	_filt1[0].dump("_filt1[0]");
+	_filt1[1].dump("_filt1[1]");
+	_filt1[2].dump("_filt1[2]");
+	_filt1[3].dump("_filt1[3]");
+	_filt1[4].dump("_filt1[4]");
+	_filt1[5].dump("_filt1[5]");
+	_filt1[6].dump("_filt1[6]");
+	_filt1[7].dump("_filt1[7]");
+
+	_delay[0].dump("_delay[0]");
+	_delay[1].dump("_delay[1]");
+	_delay[2].dump("_delay[2]");
+	_delay[3].dump("_delay[3]");
+	_delay[4].dump("_delay[4]");
+	_delay[5].dump("_delay[5]");
+	_delay[6].dump("_delay[6]");
+	_delay[7].dump("_delay[7]");
+
+	DBG("===================================");
+}

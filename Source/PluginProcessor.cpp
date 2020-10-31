@@ -786,11 +786,13 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 			}
 		}
 
+//		m_reverb.dump("REVERB");
+
 		auto todo = m_reverb.process(stereo_signal);
 		stereo_signal[0] = todo[0];
 		stereo_signal[1] = todo[1];
 
-		DBG(stereo_signal[0]);
+		//DBG(stereo_signal[0]);
 
 		//===== OUTPUT ======
 

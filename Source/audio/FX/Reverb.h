@@ -19,11 +19,18 @@
 #ifndef __REVERB_H
 #define __REVERB_H
 
+
 #include "ParametricEQ.h"
+#include <string>
+#include "../JuceLibraryCode/JuceHeader.h"
+
+#define DBG_VAR(var) DBG(#var << ": " << var)
 
 class Diff1 {
 private:
 	friend class ZitaReverb;
+
+    void dump(std::string name);
 
 	Diff1(void);
 	~Diff1(void);
@@ -52,6 +59,8 @@ class Filt1 {
 private:
 	friend class ZitaReverb;
 
+    void dump(std::string name);
+
 	Filt1(void) : _slo(0), _shi(0) {
 	}
 	~Filt1(void) {
@@ -78,6 +87,7 @@ private:
 class RevDelay {
 private:
 	friend class ZitaReverb;
+    void dump(std::string name);
 
 	RevDelay(void);
 	~RevDelay(void);
@@ -102,9 +112,14 @@ private:
 
 // -----------------------------------------------------------------------
 
+
+/**
+ * A simple, non-fractional delay line without feedback
+ */
 class Vdelay {
 private:
 	friend class ZitaReverb;
+    void dump(std::string name);
 
 	Vdelay(void);
 	~Vdelay(void);
@@ -126,9 +141,9 @@ private:
 			_iw = 0;
 	}
 
-	int _ir;
-	int _iw;
-	int _size;
+	int _ir; // read index
+	int _iw; // write index
+	int _size; //delay line size
 	float *_line;
 };
 
@@ -138,6 +153,7 @@ class ZitaReverb {
 public:
 	ZitaReverb(void);
 	~ZitaReverb(void);
+    void dump(std::string name);
 
 	void setSampleRate(float fsamp);
 	void fini(void);
@@ -164,12 +180,16 @@ private:
 	Filt1 _filt1[8];
 	RevDelay _delay[8];
 
-	volatile int _cntA1;
-	volatile int _cntB1;
-	volatile int _cntC1;
-	int _cntA2;
-	int _cntB2;
-	int _cntC2;
+	//basically a "set-dirty" mechanism ?
+	// volatile int _cntA1;
+	// volatile int _cntB1;
+	// volatile int _cntC1;
+	// int _cntA2;
+	// int _cntB2;
+	// int _cntC2;
+	bool _Adirty;
+	bool _Bdirty;
+	bool _Cdirty;
 
 	float _ipdel;
 	float _xover;
