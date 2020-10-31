@@ -123,9 +123,9 @@ void ParametricEQ::process1(float data[]) {
 			c2 = _c2;
 			gg = _gg;
 			//for (j = 0; j < nsamp; j++) {
-			//c1 += _dc1;
-			//c2 += _dc2;
-			//gg += _dgg;
+			c1 += _dc1;
+			c2 += _dc2;
+			gg += _dgg;
 			x    = *p;
 			y    = x - c2 * z2;
 			*p++ = x - gg * (z2 + c2 * y - x);
