@@ -92,6 +92,9 @@ OdinAudioProcessor::OdinAudioProcessor() :
 	m_tree_listener_delay.onValueChange = [&](const String &p_ID, float p_new_value) {
 		treeValueChangedDelay(p_ID, p_new_value);
 	};
+	m_tree_listener_reverb.onValueChange = [&](const String &p_ID, float p_new_value) {
+		treeValueChangedReverb(p_ID, p_new_value);
+	};
 	m_tree_listener_chorus.onValueChange = [&](const String &p_ID, float p_new_value) {
 		treeValueChangedChorus(p_ID, p_new_value);
 	};

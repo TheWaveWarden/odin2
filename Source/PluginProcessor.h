@@ -236,6 +236,7 @@ private:
 	OdinTreeListener m_tree_listener_fil_formant;
 	OdinTreeListener m_tree_listener_amp;
 	OdinTreeListener m_tree_listener_delay;
+	OdinTreeListener m_tree_listener_reverb;
 	OdinTreeListener m_tree_listener_chorus;
 	OdinTreeListener m_tree_listener_phaser;
 	OdinTreeListener m_tree_listener_arp;
@@ -286,6 +287,7 @@ private:
 	void treeValueChangedFilFormant(const String &p_ID, float p_new_value);
 	void treeValueChangedAmp(const String &p_ID, float p_new_value);
 	void treeValueChangedDelay(const String &p_ID, float p_new_value);
+	void treeValueChangedReverb(const String &p_ID, float p_new_value);
 	void treeValueChangedChorus(const String &p_ID, float p_new_value);
 	void treeValueChangedPhaser(const String &p_ID, float p_new_value);
 	void treeValueChangedArp(const String &p_ID, float p_new_value);

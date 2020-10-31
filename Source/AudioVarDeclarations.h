@@ -427,6 +427,15 @@
     Identifier m_delay_pingpong_identifier;
     Identifier m_delay_synctime_numerator_identifier;
     Identifier m_delay_synctime_denominator_identifier;
+    Identifier m_reverb_delay_identifier;
+    Identifier m_reverb_lowfreq_identifier;
+    Identifier m_reverb_lowtime_identifier;
+    Identifier m_reverb_midtime_identifier;
+    Identifier m_reverb_hfdamp_identifier;
+    Identifier m_reverb_eq_gain_identifier;
+    Identifier m_reverb_eq_freq_identifier;
+    Identifier m_reverb_ducking_identifier;
+    Identifier m_reverb_dry_wet_identifier;
     Identifier m_phaser_reset_identifier;
     Identifier m_arp_on_identifier;
     Identifier m_arp_one_shot_identifier;

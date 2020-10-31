@@ -13,8 +13,6 @@
 ** GNU General Public License for more details.
 */
 
-
-
 {
 	// Osc 1
 	std::make_unique<AudioParameterInt>("osc1_oct", "Osc1 Octave", -4, 4, 0),
@@ -295,6 +293,25 @@
 	    std::make_unique<AudioParameterFloat>(
 	        "delay_wet", "Delay Wet", NormalisableRange<float>(0.f, 1.f, 0.f, 0.575717), 0.7f),
 	    std::make_unique<AudioParameterInt>("delay_on", "Delay On", 0, 1, 0),
+
+	    std::make_unique<AudioParameterFloat>(
+	        "rev_delay", "Reverb Delay", NormalisableRange<float>(20, 100, 0.f, 1.f), 40.f),
+	    std::make_unique<AudioParameterFloat>(
+	        "rev_lowfreq", "Reverb Low Freq", NormalisableRange<float>(50.f, 1000.f, 0.f, FILTER_SKEW_DEFAULT), 200.f),
+	    std::make_unique<AudioParameterFloat>(
+	        "rev_lowtime", "Reverb Low Time", NormalisableRange<float>(1.f, 8.f, 0.f, 1.f), 5.f),
+	    std::make_unique<AudioParameterFloat>(
+	        "rev_midtime", "Reverb Mid Time", NormalisableRange<float>(1.f, 8.f, 0.f, 1.f), 2.f),
+	    std::make_unique<AudioParameterFloat>(
+	        "rev_hfdamp", "Reverb HF Damp", NormalisableRange<float>(1500.f, 24000.f, 0.f, FILTER_SKEW_DEFAULT), 6000.f),
+	    std::make_unique<AudioParameterFloat>(
+	        "rev_eqgain", "Reverb EQ Gain", NormalisableRange<float>(-15.f, 15.f, 0.f, 1.f), 0.f),
+	    std::make_unique<AudioParameterFloat>(
+	        "rev_eqfreq", "Reverb EQ Freq", NormalisableRange<float>(100.f, 10000.f, 0.f, FILTER_SKEW_DEFAULT), 1000.f),
+	    std::make_unique<AudioParameterFloat>(
+	        "rev_ducking", "Reverb Ducking", NormalisableRange<float>(0.f, 1.f, 0.f, 1.f), 0.f),
+	    std::make_unique<AudioParameterFloat>(
+	        "rev_drywet", "Reverb DryWet", NormalisableRange<float>(0.f, 1.f, 0.f, 1.f), 0.5f),
 
 	    // Phaser
 	    std::make_unique<AudioParameterInt>("phaser_reset", "Phaser Reset", 0, 1, 0),

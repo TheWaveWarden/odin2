@@ -679,6 +679,19 @@ void OdinAudioProcessor::treeValueChangedDelay(const String &p_ID, float p_new_v
 	}
 }
 
+void OdinAudioProcessor::treeValueChangedReverb(const String &p_ID, float p_new_value) {
+//#ifdef DEBUG_VARIABLES
+	DBG("Reverb: " + p_ID + ": " + std::to_string(p_new_value));
+//#endif
+	StringRef id = StringRef(p_ID);
+
+	if (id == m_delay_time_identifier) {
+		m_delay.setDelayTime(p_new_value);
+	} else if (id == m_delay_feedback_identifier) {
+		m_delay.setFeedback(p_new_value);
+	}
+}
+
 void OdinAudioProcessor::treeValueChangedChorus(const String &p_ID, float p_new_value) {
 #ifdef DEBUG_VARIABLES
 	DBG("Chorus: " + p_ID + ": " + std::to_string(p_new_value));

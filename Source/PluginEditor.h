@@ -22,6 +22,7 @@
 #include "gui/ADSRComponent.h"
 #include "gui/AmpDistortionFlowComponent.h"
 #include "gui/DelayComponent.h"
+#include "gui/ReverbComponent.h"
 #include "gui/DragButton.h"
 #include "gui/FXButtonsSection.h"
 #include "gui/FXComponent.h"
@@ -325,6 +326,7 @@ private:
   PhaserComponent m_phaser;
   FXComponent m_chorus;
   DelayComponent m_delay;
+  ReverbComponent m_reverb;
 
   ModMatrixComponent m_mod_matrix;
   ArpComponent m_arp;

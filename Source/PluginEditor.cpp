@@ -90,7 +90,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
     m_osc3(p_processor, vts, "3"), m_fil1_component(vts, "1"), m_fil2_component(vts, "2"), m_fil3_component(vts, "3"),
     m_midsection(vts), m_adsr_1(vts, "1"), m_adsr_2(vts, "2"), m_adsr_3(vts, "3"), m_adsr_4(vts, "4"),
     m_lfo_1(vts, "1", p_is_standalone), m_lfo_2(vts, "2", p_is_standalone), m_lfo_3(vts, "3", p_is_standalone),
-    m_lfo_4(vts, "4", p_is_standalone), m_delay(vts, p_is_standalone), m_phaser(vts, "phaser", p_is_standalone),
+    m_lfo_4(vts, "4", p_is_standalone), m_delay(vts, p_is_standalone), m_reverb(vts, p_is_standalone), m_phaser(vts, "phaser", p_is_standalone),
     m_flanger(vts, "flanger", p_is_standalone), m_chorus(vts, "chorus", p_is_standalone), m_xy_section(vts, "xy"),
     m_osc1_type_identifier("osc1_type"), m_osc2_type_identifier("osc2_type"), m_osc3_type_identifier("osc3_type"),
     m_fil1_type_identifier("fil1_type"), m_fil2_type_identifier("fil2_type"), m_fil3_type_identifier("fil3_type"),
@@ -439,6 +439,8 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	addChildComponent(m_chorus);
 
 	//addAndMakeVisible(m_delay);
+
+	addAndMakeVisible(m_reverb);
 
 	addAndMakeVisible(m_mod_matrix);
 	addChildComponent(m_patch_browser);
@@ -1157,6 +1159,7 @@ void OdinAudioProcessorEditor::setGUISizeBig(bool p_big, bool p_write_to_config)
 		m_phaser.setGUIBig();
 		m_chorus.setGUIBig();
 		m_flanger.setGUIBig();
+		m_reverb.setGUIBig();
 		m_fx_buttons_section.setGUIBig();
 		m_mod_matrix.setGUIBig();
 		m_patch_browser.setGUIBig();
@@ -1189,6 +1192,7 @@ void OdinAudioProcessorEditor::setGUISizeBig(bool p_big, bool p_write_to_config)
 		m_phaser.setGUISmall();
 		m_chorus.setGUISmall();
 		m_flanger.setGUISmall();
+		m_reverb.setGUISmall();
 		m_fx_buttons_section.setGUISmall();
 		m_mod_matrix.setGUISmall();
 		m_patch_browser.setGUISmall();

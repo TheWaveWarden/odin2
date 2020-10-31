@@ -280,6 +280,17 @@ m_value_tree.addParameterListener("delay_wet", &m_tree_listener_delay);
 m_value_tree.addParameterListener("delay_pingpong", &m_tree_listener_delay);
 m_value_tree.addParameterListener("delay_on", &m_tree_listener_delay);
 
+//reverb listener
+m_value_tree.addParameterListener("rev_eqfreq", &m_tree_listener_reverb);
+m_value_tree.addParameterListener("rev_eqgain", &m_tree_listener_reverb);
+m_value_tree.addParameterListener("rev_ducking", &m_tree_listener_reverb);
+m_value_tree.addParameterListener("rev_drywet", &m_tree_listener_reverb);
+m_value_tree.addParameterListener("rev_delay", &m_tree_listener_reverb);
+m_value_tree.addParameterListener("rev_lowfreq", &m_tree_listener_reverb);
+m_value_tree.addParameterListener("rev_lowtime", &m_tree_listener_reverb);
+m_value_tree.addParameterListener("rev_midtime", &m_tree_listener_reverb);
+m_value_tree.addParameterListener("rev_hfdamp", &m_tree_listener_reverb);
+
 //chorus listener
 m_value_tree.addParameterListener("chorus_rate", &m_tree_listener_chorus);
 m_value_tree.addParameterListener("chorus_amount", &m_tree_listener_chorus);

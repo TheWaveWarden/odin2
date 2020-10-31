@@ -1202,6 +1202,7 @@
       <FILE id="GpGdSn" name="pyram8_150.png" compile="0" resource="1" file="Graphics_150/cropped/lfo/pyram8_150.png"/>
       <FILE id="k45nl4" name="pyram12.png" compile="0" resource="1" file="Graphics/cropped/lfo/pyram12.png"/>
       <FILE id="fFF0f8" name="pyram12_150.png" compile="0" resource="1" file="Graphics_150/cropped/lfo/pyram12_150.png"/>
+      <FILE id="klgaEC" name="reverb_150.png" compile="0" resource="1" file="Graphics_150/cropped/reverb_150.png"/>
       <FILE id="DMKYAC" name="ringmod_backdrop.png" compile="0" resource="1"
             file="Graphics/applied/ringmod_backdrop.png"/>
       <FILE id="iQBzhM" name="ringmod_backdrop_150.png" compile="0" resource="1"
@@ -1340,6 +1341,10 @@
             file="Graphics_150/applied/WW_logo_xy_150.png"/>
     </GROUP>
     <GROUP id="{7AF384ED-9FD6-6492-4B8C-5777BB9A2698}" name="Source">
+      <FILE id="Y82HXT" name="ReverbComponent.cpp" compile="1" resource="0"
+            file="Source/gui/ReverbComponent.cpp"/>
+      <FILE id="aSPjJ2" name="ReverbComponent.h" compile="0" resource="0"
+            file="Source/gui/ReverbComponent.h"/>
       <FILE id="QlEHfA" name="ParametricEQ.cpp" compile="1" resource="0"
             file="Source/audio/FX/ParametricEQ.cpp"/>
       <FILE id="xTwlWY" name="ParametricEQ.h" compile="0" resource="0" file="Source/audio/FX/ParametricEQ.h"/>
