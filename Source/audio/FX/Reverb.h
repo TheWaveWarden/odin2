@@ -24,8 +24,6 @@
 #include <string>
 #include "../JuceLibraryCode/JuceHeader.h"
 
-#define DBG_VAR(var) DBG(#var << ": " << var)
-
 class Diff1 {
 private:
 	friend class ZitaReverb;
@@ -169,7 +167,9 @@ public:
 	void set_opmix(float v);
 	void set_rgxyz(float v);
 	void set_eq1(float f, float g);
-	//void set_eq2(float f, float g);
+	void set_eq1_gain(float g);
+	void set_eq1_freq(float f);
+	void set_ducking(float d);
 
 private:
 	float _fsamp;
@@ -201,6 +201,9 @@ private:
 
 	float _g0, _d0;
 	float _g1, _d1;
+
+	float _eq_gain = REV_EQ_DEFAULT_GAIN_DB;
+	float _eq_freq = REV_EQ_DEFAULT_FREQ;
 
 	ParametricEQ _pareq1;
 	//ParametricEQ _pareq2;

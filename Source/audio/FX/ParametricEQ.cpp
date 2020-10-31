@@ -20,7 +20,9 @@
 #include <math.h>
 #include <string.h>
 
-ParametricEQ::ParametricEQ(void) : _touch0(0), _touch1(0), _state(BYPASS), _g0(1), _g1(1), _f0(1e3f), _f1(1e3f) {
+ParametricEQ::ParametricEQ(void) :
+    _touch0(0), _touch1(0), _state(BYPASS), _g0(REV_EQ_DEFUALT_GAIN_MULTIPLIER), _g1(1), _f0(REV_EQ_DEFAULT_FREQ),
+    _f1(1e3f) {
 	setfsamp(0.0f);
 }
 
@@ -33,19 +35,19 @@ void ParametricEQ::setfsamp(float fsamp) {
 }
 
 void ParametricEQ::reset(void) {
-	memset(_z1, 0, sizeof(float) * MAXCH);
-	memset(_z2, 0, sizeof(float) * MAXCH);
+	memset(_z1, 0, sizeof(float) * EQ_MAXCH);
+	memset(_z2, 0, sizeof(float) * EQ_MAXCH);
 }
 
 void ParametricEQ::prepare() {
-	bool upd = false;
+	bool update = false;
 	float g, f;
 
 	if (_touch1 != _touch0) {
 		g = _g0;
 		f = _f0;
 		if (g != _g1) {
-			upd = true;
+			update = true;
 			if (g > 2 * _g1)
 				_g1 *= 2;
 			else if (_g1 > 2 * g)
@@ -54,7 +56,7 @@ void ParametricEQ::prepare() {
 				_g1 = g;
 		}
 		if (f != _f1) {
-			upd = true;
+			update = true;
 			if (f > 2 * _f1)
 				_f1 *= 2;
 			else if (_f1 > 2 * f)
@@ -62,7 +64,7 @@ void ParametricEQ::prepare() {
 			else
 				_f1 = f;
 		}
-		if (upd) {
+		if (update) {
 			if ((_state == BYPASS) && (_g1 == 1)) {
 				calcpar1(0, _g1, _f1);
 			} else {
@@ -79,7 +81,8 @@ void ParametricEQ::prepare() {
 			}
 		}
 	}
-}
+	dump("PREPARE");
+ }
 
 void ParametricEQ::calcpar1(int nsamp, float g, float f) {
 	float b, c1, c2, gg;
@@ -98,6 +101,7 @@ void ParametricEQ::calcpar1(int nsamp, float g, float f) {
 		_c2 = c2;
 		_gg = gg;
 	}
+	dump("CALCPAR1");
 }
 
 void ParametricEQ::process1(float data[]) {
@@ -110,6 +114,7 @@ void ParametricEQ::process1(float data[]) {
 	c2 = _c2;
 	gg = _gg;
 	if (_state == SMOOTH) {
+		//DBG("SMOOTH");
 		for (i = 0; i < 2 /*nchan*/; i++) {
 			p  = &(data[i]);
 			z1 = _z1[i];
@@ -118,9 +123,9 @@ void ParametricEQ::process1(float data[]) {
 			c2 = _c2;
 			gg = _gg;
 			//for (j = 0; j < nsamp; j++) {
-			c1 += _dc1;
-			c2 += _dc2;
-			gg += _dgg;
+			//c1 += _dc1;
+			//c2 += _dc2;
+			//gg += _dgg;
 			x    = *p;
 			y    = x - c2 * z2;
 			*p++ = x - gg * (z2 + c2 * y - x);
@@ -135,6 +140,7 @@ void ParametricEQ::process1(float data[]) {
 		_c2 = c2;
 		_gg = gg;
 	} else {
+		DBG("NON SMOOTH");
 		for (i = 0; i < 2 /*nchan*/; i++) {
 			p  = &(data[i]);
 			z1 = _z1[i];
@@ -151,4 +157,27 @@ void ParametricEQ::process1(float data[]) {
 			_z2[i] = z2;
 		}
 	}
+}
+
+void ParametricEQ::dump(std::string name) {
+	DBG("Dumping EQ " + name);
+	DBG_VAR(_touch0);
+	DBG_VAR(_touch1);
+	DBG_VAR((int)_bypass);
+	DBG_VAR(_state);
+	DBG_VAR(_fsamp);
+	DBG_VAR(_g0);
+	DBG_VAR(_g1);
+	DBG_VAR(_f0);
+	DBG_VAR(_f1);
+	DBG_VAR(_c1);
+	DBG_VAR(_dc1);
+	DBG_VAR(_c2);
+	DBG_VAR(_dc2);
+	DBG_VAR(_gg);
+	DBG_VAR(_dgg);
+	DBG_VAR(_z1[0]);
+	DBG_VAR(_z2[0]);
+	DBG_VAR(_z1[1]);
+	DBG_VAR(_z2[1]);
 }

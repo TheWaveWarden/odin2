@@ -155,6 +155,7 @@ void ZitaReverb::setSampleRate(float fsamp) {
 	}
 
 	_pareq1.setfsamp(fsamp);
+
 	//_pareq2.setfsamp(fsamp);
 }
 
@@ -200,8 +201,8 @@ void ZitaReverb::prepare() {
 		// _d0    = t0 - _g0;
 		// _d1    = t1 - _g1;
 		// _cntC2 = _cntC1;
-		_g0 = (1.f - _opmix) * (1.f - _opmix);
-		_g1 = 1.f - _g0;
+		_g0     = (1.f - _opmix) * (1.f - _opmix);
+		_g1     = 1.f - _g0;
 		_Cdirty = false;
 	}
 
@@ -338,18 +339,21 @@ void ZitaReverb::set_delay(float v) {
 	_ipdel = v;
 	//_cntA1++;
 	_Adirty = true;
+	prepare();
 }
 
 void ZitaReverb::set_xover(float v) {
 	_xover = v;
 	//_cntB1++;
 	_Bdirty = true;
+	prepare();
 }
 
 void ZitaReverb::set_rtlow(float v) {
 	_rtlow = v;
 	//_cntB1++;
 	_Cdirty = true;
+	prepare();
 }
 
 void ZitaReverb::set_rtmid(float v) {
@@ -358,28 +362,50 @@ void ZitaReverb::set_rtmid(float v) {
 	//_cntC1++;
 	_Bdirty = true;
 	_Cdirty = true;
+	prepare();
 }
 
 void ZitaReverb::set_fdamp(float v) {
 	_fdamp = v;
 	//_cntB1++;
 	_Bdirty = true;
+	prepare();
 }
 
 void ZitaReverb::set_opmix(float v) {
 	_opmix = v;
 	//_cntC1++;
 	_Cdirty = true;
+	prepare();
 }
 
 void ZitaReverb::set_rgxyz(float v) {
 	_rgxyz = v;
 	//_cntC1++;
 	_Cdirty = true;
+	prepare();
 }
 
 void ZitaReverb::set_eq1(float f, float g) {
+	_eq_gain = g;
+	_eq_freq = f;
 	_pareq1.setparam(f, g);
+	prepare();
+}
+
+void ZitaReverb::set_eq1_gain(float g) {
+	_eq_gain = g;
+	_pareq1.setparam(_eq_freq, g);
+	prepare();
+}
+
+void ZitaReverb::set_eq1_freq(float f) {
+	_eq_freq = f;
+	_pareq1.setparam(f, _eq_gain);
+	prepare();
+}
+
+void ZitaReverb::set_ducking(float d) {
 }
 
 // void ZitaReverb::set_eq2(float f, float g) {
@@ -418,55 +444,57 @@ void Filt1::dump(std::string name) {
 	DBG_VAR(_shi);
 }
 void ZitaReverb::dump(std::string name) {
-	DBG("===================================");
-	DBG("Dumping Reverb " << name);
-	DBG_VAR(_fsamp);
-	//DBG_VAR(_cntA1);
-	//DBG_VAR(_cntB1);
-	//DBG_VAR(_cntC1);
-	//DBG_VAR(_cntA2);
-	//DBG_VAR(_cntB2);
-	//DBG_VAR(_cntC2);
-	DBG_VAR(_ipdel);
-	DBG_VAR(_xover);
-	DBG_VAR(_rtlow);
-	DBG_VAR(_rtmid);
-	DBG_VAR(_fdamp);
-	DBG_VAR(_opmix);
-	DBG_VAR(_rgxyz);
-	DBG_VAR(_g0);
-	DBG_VAR(_d0);
-	DBG_VAR(_g1);
-	DBG_VAR(_d1);
+	//DBG("===================================");
+	//DBG("Dumping Reverb " << name);
+	// DBG_VAR(_fsamp);
+	// //DBG_VAR(_cntA1);
+	// //DBG_VAR(_cntB1);
+	// //DBG_VAR(_cntC1);
+	// //DBG_VAR(_cntA2);
+	// //DBG_VAR(_cntB2);
+	// //DBG_VAR(_cntC2);
+	// DBG_VAR(_ipdel);
+	// DBG_VAR(_xover);
+	// DBG_VAR(_rtlow);
+	// DBG_VAR(_rtmid);
+	// DBG_VAR(_fdamp);
+	// DBG_VAR(_opmix);
+	// DBG_VAR(_rgxyz);
+	// DBG_VAR(_g0);
+	// DBG_VAR(_d0);
+	// DBG_VAR(_g1);
+	// DBG_VAR(_d1);
 
-	_vdelay0.dump("_vdelay0");
-	_vdelay1.dump("_vdelay1");
-	_diff1[0].dump("_diff1[0]");
-	_diff1[1].dump("_diff1[1]");
-	_diff1[2].dump("_diff1[2]");
-	_diff1[3].dump("_diff1[3]");
-	_diff1[4].dump("_diff1[4]");
-	_diff1[5].dump("_diff1[5]");
-	_diff1[6].dump("_diff1[6]");
-	_diff1[7].dump("_diff1[7]");
+	// _vdelay0.dump("_vdelay0");
+	// _vdelay1.dump("_vdelay1");
+	// _diff1[0].dump("_diff1[0]");
+	// _diff1[1].dump("_diff1[1]");
+	// _diff1[2].dump("_diff1[2]");
+	// _diff1[3].dump("_diff1[3]");
+	// _diff1[4].dump("_diff1[4]");
+	// _diff1[5].dump("_diff1[5]");
+	// _diff1[6].dump("_diff1[6]");
+	// _diff1[7].dump("_diff1[7]");
 
-	_filt1[0].dump("_filt1[0]");
-	_filt1[1].dump("_filt1[1]");
-	_filt1[2].dump("_filt1[2]");
-	_filt1[3].dump("_filt1[3]");
-	_filt1[4].dump("_filt1[4]");
-	_filt1[5].dump("_filt1[5]");
-	_filt1[6].dump("_filt1[6]");
-	_filt1[7].dump("_filt1[7]");
+	// _filt1[0].dump("_filt1[0]");
+	// _filt1[1].dump("_filt1[1]");
+	// _filt1[2].dump("_filt1[2]");
+	// _filt1[3].dump("_filt1[3]");
+	// _filt1[4].dump("_filt1[4]");
+	// _filt1[5].dump("_filt1[5]");
+	// _filt1[6].dump("_filt1[6]");
+	// _filt1[7].dump("_filt1[7]");
 
-	_delay[0].dump("_delay[0]");
-	_delay[1].dump("_delay[1]");
-	_delay[2].dump("_delay[2]");
-	_delay[3].dump("_delay[3]");
-	_delay[4].dump("_delay[4]");
-	_delay[5].dump("_delay[5]");
-	_delay[6].dump("_delay[6]");
-	_delay[7].dump("_delay[7]");
+	// _delay[0].dump("_delay[0]");
+	// _delay[1].dump("_delay[1]");
+	// _delay[2].dump("_delay[2]");
+	// _delay[3].dump("_delay[3]");
+	// _delay[4].dump("_delay[4]");
+	// _delay[5].dump("_delay[5]");
+	// _delay[6].dump("_delay[6]");
+	// _delay[7].dump("_delay[7]");
 
-	DBG("===================================");
+	//_pareq1.dump("EQ");
+
+	//DBG("===================================");
 }
