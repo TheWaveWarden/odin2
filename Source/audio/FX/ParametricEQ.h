@@ -21,9 +21,10 @@
 #ifndef __PAREQ_H
 #define __PAREQ_H
 
-#include "../JuceLibraryCode/JuceHeader.h"
 #include <math.h>
 #include <stdint.h>
+#include "../JuceLibraryCode/JuceHeader.h"
+#include "../../GlobalIncludes.h"
 
 #define REV_EQ_DEFAULT_FREQ 1000
 #define REV_EQ_DEFAULT_GAIN_DB 0         //these two are linked
