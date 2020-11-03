@@ -244,8 +244,6 @@ void Reverb2Effect::setPreDelay(float p_predelay) {
 
 void Reverb2Effect::process(float &dataL, float &dataR) {
 
-	float wetL, wetR;
-
 	//for (int k = 0; k < BLOCK_SIZE; k++) {
 	float in = (dataL + dataR) * 0.5f;
 
@@ -257,8 +255,8 @@ void Reverb2Effect::process(float &dataL, float &dataR) {
 	in      = m_input_allpass[3].process(in, m_diffusion);
 	float x = m_state;
 
-	float outL = 0.f;
-	float outR = 0.f;
+	float wetL = 0.f;
+	float wetR = 0.f;
 
 	float lfos[NUM_BLOCKS];
 	lfos[0] = m_lfo.r;
@@ -281,14 +279,12 @@ void Reverb2Effect::process(float &dataL, float &dataR) {
 		float tap_outL = 0.f;
 		float tap_outR = 0.f;
 		x              = m_delay[b].process(x, m_tap_timeL[b], tap_outL, m_tap_timeR[b], tap_outR, modulation);
-		outL += tap_outL * m_tap_gainL[b];
-		outR += tap_outR * m_tap_gainR[b];
+		wetL += tap_outL * m_tap_gainL[b];
+		wetR += tap_outR * m_tap_gainR[b];
 
 		x *= m_decay_multiply;
 	}
 
-	wetL    = outL;
-	wetR    = outR;
 	m_state = x;
 	//}
 
@@ -297,10 +293,15 @@ void Reverb2Effect::process(float &dataL, float &dataR) {
 	//encodeMS(wetL, wetR, M, S, BLOCK_SIZE_QUAD);
 	//width.multiply_block(S, BLOCK_SIZE_QUAD);
 	//decodeMS(M, S, wetL, wetR, BLOCK_SIZE_QUAD);
-	//todo encode mid-side, scale width.... width is buffer??
+	float mid = wetL + wetR;
+	float side = wetL - wetR;
+	side *= m_width;
+	wetL = (mid + side) * 0.5;
+	wetR = (mid - side) * 0.5;
 
 	//mix.fade_2_blocks_to(dataL, wetL, dataR, wetR, dataL, dataR, BLOCK_SIZE_QUAD);
-	//todo output signal
+	dataL = (1.f - mix) * dataL + mix * wetL;
+	dataR = (1.f - mix) * dataR + mix * wetR;
 }
 
 void Reverb2Effect::suspend() {
