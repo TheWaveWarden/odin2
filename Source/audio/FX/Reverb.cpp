@@ -17,484 +17,374 @@
 // https://github.com/royvegard/zita-rev1 for the original code.
 
 #include "Reverb.h"
-#include <math.h>
-#include <stdio.h>
-#include <string.h>
+#include <algorithm>
 
-// -----------------------------------------------------------------------
+/* reverb 2			*/
+/* allpass loop design */
 
-Diff1::Diff1(void) : _size(0), _line(0) {
+float db_to_linear(float x) {
+	return juce::Decibels::decibelsToGain(x);
 }
 
-Diff1::~Diff1(void) {
-	fini();
+float clamp(float min, float val, float max) {
+	if (val < min)
+		return min;
+	else if (val > max)
+		return max;
+	return val;
 }
 
-void Diff1::init(int size, float c) {
-	_size = size;
-	_line = new float[size];
-	memset(_line, 0, size * sizeof(float));
-	_i = 0;
-	_c = c;
+// enum revparam {
+// 	r2p_predelay = 0,
+
+// 	r2p_room_size,
+// 	r2p_decay_time,
+// 	r2p_diffusion,
+// 	r2p_buildup,
+// 	r2p_modulation,
+
+// 	r2p_lf_damping,
+// 	r2p_hf_damping,
+
+// 	r2p_width,
+// 	r2p_mix,
+// 	r2p_num_params,
+// };
+
+const float db60 = powf(10.f, 0.05f * -60.f);
+
+Reverb2Effect::allpass::allpass() {
+	m_k   = 0;
+	m_len = 1;
+	memset(m_data, 0, MAX_ALLPASS_LEN * sizeof(float));
 }
 
-void Diff1::fini(void) {
-	delete[] _line;
-	_size = 0;
-	_line = 0;
+void Reverb2Effect::allpass::setLen(int len) {
+	m_len = len;
 }
 
-// -----------------------------------------------------------------------
-
-RevDelay::RevDelay(void) : _size(0), _line(0) {
+float Reverb2Effect::allpass::process(float in, float coeff) {
+	m_k++;
+	if (m_k >= m_len)
+		m_k = 0;
+	float delay_in = in - coeff * m_data[m_k];
+	float result   = m_data[m_k] + coeff * delay_in;
+	m_data[m_k]    = delay_in;
+	return result;
 }
 
-RevDelay::~RevDelay(void) {
-	fini();
+Reverb2Effect::delay::delay() {
+	m_k   = 0;
+	m_len = 1;
+	memset(m_data, 0, MAX_DELAY_LEN * sizeof(float));
 }
 
-void RevDelay::init(int size) {
-	_size = size;
-	_line = new float[size];
-	memset(_line, 0, size * sizeof(float));
-	_i = 0;
+void Reverb2Effect::delay::setLen(int len) {
+	m_len = len;
 }
 
-void RevDelay::fini(void) {
-	delete[] _line;
-	_size = 0;
-	_line = 0;
+float Reverb2Effect::delay::process(float in, int tap1, float &tap_out1, int tap2, float &tap_out2, int modulation) {
+	m_k = (m_k + 1) & DELAY_LEN_MASK;
+
+	tap_out1 = m_data[(m_k - tap1) & DELAY_LEN_MASK];
+	tap_out2 = m_data[(m_k - tap2) & DELAY_LEN_MASK];
+
+	int modulation_int   = modulation >> DELAY_SUBSAMPLE_BITS;
+	int modulation_frac1 = modulation & (DELAY_SUBSAMPLE_RANGE - 1);
+	int modulation_frac2 = DELAY_SUBSAMPLE_RANGE - modulation_frac1;
+
+	float d1               = m_data[(m_k - m_len + modulation_int + 1) & DELAY_LEN_MASK];
+	float d2               = m_data[(m_k - m_len + modulation_int) & DELAY_LEN_MASK];
+	const float multiplier = 1.f / (float)(DELAY_SUBSAMPLE_RANGE);
+
+	float result = (d1 * (float)modulation_frac1 + d2 * (float)modulation_frac2) * multiplier;
+	m_data[m_k]  = in;
+
+	return result;
 }
 
-// -----------------------------------------------------------------------
-
-Vdelay::Vdelay(void) : _size(0), _line(0) {
+Reverb2Effect::onepole_filter::onepole_filter() {
+	m_a0 = 0.f;
 }
 
-Vdelay::~Vdelay(void) {
-	fini();
+float Reverb2Effect::onepole_filter::process_lowpass(float x, float c0) {
+	m_a0 = m_a0 * c0 + x * (1.f - c0);
+	return m_a0;
 }
 
-void Vdelay::init(int size) {
-	_size = size;
-	_line = new float[size];
-	memset(_line, 0, size * sizeof(float));
-	_ir = 0;
-	_iw = 0;
+float Reverb2Effect::onepole_filter::process_highpass(float x, float c0) {
+	m_a0 = m_a0 * (1.f - c0) + x * c0;
+	return x - m_a0;
 }
 
-void Vdelay::fini(void) {
-	delete[] _line;
-	_size = 0;
-	_line = 0;
+Reverb2Effect::Reverb2Effect(/*SurgeStorage* storage, FxStorage* fxdata, pdata* pd*/)
+/*: Effect(storage, fxdata, pd)*/
+{
+	m_state = 0.f;
 }
 
-void Vdelay::set_delay(int del) {
-	_ir = _iw - del;
-	if (_ir < 0)
-		_ir += _size;
+Reverb2Effect::~Reverb2Effect() {
 }
 
-// -----------------------------------------------------------------------
-
-void Filt1::set_params(float del, float tmf, float tlo, float wlo, float thi, float chi) {
-	float g, t;
-
-	_gmf = powf(0.001f, del / tmf);
-	_glo = powf(0.001f, del / tlo) / _gmf - 1.0f;
-	_wlo = wlo;
-	g    = powf(0.001f, del / thi) / _gmf;
-	t    = (1 - g * g) / (2 * g * g * chi);
-	_whi = (sqrtf(1 + 4 * t) - 1) / (2 * t);
+void Reverb2Effect::init() {
+	setvars(true);
 }
 
-// -----------------------------------------------------------------------
+int Reverb2Effect::msToSamples(float ms, float scale) {
+	float a = m_samplerate * ms * 0.001f;
 
-float ZitaReverb::_tdiff1[8] = {20346e-6f, 24421e-6f, 31604e-6f, 27333e-6f, 22904e-6f, 29291e-6f, 13458e-6f, 19123e-6f};
+	float b = a * scale;
 
-float ZitaReverb::_tdelay[8] = {
-    153129e-6f, 210389e-6f, 127837e-6f, 256891e-6f, 174713e-6f, 192303e-6f, 125000e-6f, 219991e-6f};
-
-ZitaReverb::ZitaReverb(void) {
+	return (int)(b);
 }
 
-ZitaReverb::~ZitaReverb(void) {
-	fini();
+void Reverb2Effect::calc_size(float scale) {
+	float m = scale;
+
+	m_tap_timeL[0] = msToSamples(80.3, m);
+	m_tap_timeL[1] = msToSamples(59.3, m);
+	m_tap_timeL[2] = msToSamples(97.7, m);
+	m_tap_timeL[3] = msToSamples(122.6, m);
+	m_tap_timeR[0] = msToSamples(35.5, m);
+	m_tap_timeR[1] = msToSamples(101.6, m);
+	m_tap_timeR[2] = msToSamples(73.9, m);
+	m_tap_timeR[3] = msToSamples(80.3, m);
+
+	m_input_allpass[0].setLen(msToSamples(4.76, m));
+	m_input_allpass[1].setLen(msToSamples(6.81, m));
+	m_input_allpass[2].setLen(msToSamples(10.13, m));
+	m_input_allpass[3].setLen(msToSamples(16.72, m));
+
+	m_allpass[0][0].setLen(msToSamples(38.2, m));
+	m_allpass[0][1].setLen(msToSamples(53.4, m));
+	m_delay[0].setLen(msToSamples(178.8, m));
+
+	m_allpass[1][0].setLen(msToSamples(44.0, m));
+	m_allpass[1][1].setLen(msToSamples(41, m));
+	m_delay[1].setLen(msToSamples(126.5, m));
+
+	m_allpass[2][0].setLen(msToSamples(48.3, m));
+	m_allpass[2][1].setLen(msToSamples(60.5, m));
+	m_delay[2].setLen(msToSamples(106.1, m));
+
+	m_allpass[3][0].setLen(msToSamples(38.9, m));
+	m_allpass[3][1].setLen(msToSamples(42.2, m));
+	m_delay[3].setLen(msToSamples(139.4, m));
 }
 
-void ZitaReverb::setSampleRate(float fsamp) {
-	int i, k1, k2;
+void Reverb2Effect::setvars(bool init) {
+	// TODO, balance the gains from the calculated decay coefficient?
 
-	_fsamp = fsamp;
-	// _cntA1 = 1;
-	// _cntA2 = 0;
-	// _cntB1 = 1;
-	// _cntB2 = 0;
-	// _cntC1 = 1;
-	// _cntC2 = 0;
-	_Adirty = _Bdirty = _Cdirty = true;
+	m_tap_gainL[0] = 1.5f / 4.f;
+	m_tap_gainL[1] = 1.2f / 4.f;
+	m_tap_gainL[2] = 1.0f / 4.f;
+	m_tap_gainL[3] = 0.8f / 4.f;
+	m_tap_gainR[0] = 1.5f / 4.f;
+	m_tap_gainR[1] = 1.2f / 4.f;
+	m_tap_gainR[2] = 1.0f / 4.f;
+	m_tap_gainR[3] = 0.8f / 4.f;
 
-	_ipdel = 0.04f;
-	_xover = 200.0f;
-	_rtlow = 3.0f;
-	_rtmid = 2.0f;
-	_fdamp = 3e3f;
-	_opmix = 0.5f;
-	_rgxyz = 0.0f;
+	calc_size(1.f);
+}
 
-	_g0 = _d0 = 0;
-	_g1 = _d1 = 0;
+void Reverb2Effect::update_rtime() {
+	float t = BLOCK_SIZE_INV *
+	          (m_samplerate * (std::max(1.0f, powf(2.f, m_decay_time)) * 2.f +
+	                           std::max(0.1f, powf(2.f, m_predelay_val)) * 2.f)); // *2 is to get the db120 time
+	ringout_time = (int)t;
+}
 
-	_vdelay0.init((int)(0.1f * _fsamp));
-	_vdelay1.init((int)(0.1f * _fsamp));
-	for (i = 0; i < 8; i++) {
-		k1 = (int)(floorf(_tdiff1[i] * _fsamp + 0.5f));
-		k2 = (int)(floorf(_tdelay[i] * _fsamp + 0.5f));
-		_diff1[i].init(k1, (i & 1) ? -0.6f : 0.6f);
-		_delay[i].init(k2 - k1);
+void Reverb2Effect::setRoomSize(float p_room_size) {
+	m_scale = powf(2.f, 1.f * p_room_size);
+	calc_size(m_scale);
+}
+
+void Reverb2Effect::setDecayTime(float p_decay_time) {
+
+	if (fabs(p_decay_time - m_last_decay_time) > 0.001f) {
+		update_rtime();
+		m_last_decay_time = p_decay_time;
 	}
 
-	_pareq1.setfsamp(fsamp);
-
-	//_pareq2.setfsamp(fsamp);
+	float loop_time_s = 0.5508 * m_scale;
+	float decay       = powf(db60, loop_time_s / (4.f * (powf(2.f, m_decay_time))));
+	m_decay_multiply  = decay;
 }
 
-void ZitaReverb::fini(void) {
-	for (int i = 0; i < 8; i++)
-		_delay[i].fini();
+void Reverb2Effect::setDiffusion(float p_diffusion) {
+	m_diffusion = 0.7f * p_diffusion;
 }
 
-void ZitaReverb::prepare() {
-	//int a, b, c,
-	int i, k;
-	float t0, t1, wlo, chi;
+void Reverb2Effect::setBuildup(float p_buildup) {
+	m_buildup = 0.7f * p_buildup;
+}
 
-	// a   = _cntA1;
-	// b   = _cntB1;
-	// c   = _cntC1;
-	_d0 = _d1 = 0;
+void Reverb2Effect::setHFDamp(float p_hf_damping) {
+	m_hf_damp_coefficent = 0.8 * p_hf_damping;
+}
 
-	if (_Adirty) {
-		k = (int)(floorf((_ipdel - 0.020f) * _fsamp + 0.5f));
-		_vdelay0.set_delay(k);
-		_vdelay1.set_delay(k);
-		//_cntA2 = _cntA1;
-		_Adirty = false;
-	}
+void Reverb2Effect::setLFDamp(float p_lf_damping) {
+	m_lf_damp_coefficent = 0.2 * p_lf_damping;
+}
 
-	if (_Bdirty) {
-		wlo = 6.2832f * _xover / _fsamp;
-		if (_fdamp > 0.49f * _fsamp)
-			chi = 2;
-		else
-			chi = 1 - cosf(6.2832f * _fdamp / _fsamp);
-		for (i = 0; i < 8; i++) {
-			_filt1[i].set_params(_tdelay[i], _rtmid, _rtlow, wlo, 0.5f * _rtmid, chi);
+void Reverb2Effect::setWidth(float p_width) {
+	m_width = db_to_linear(p_width);
+}
+
+void Reverb2Effect::setMix(float p_mix) {
+	mix = p_mix;
+}
+
+void Reverb2Effect::setPreDelay(float p_predelay) {
+	m_pre_delay_time = clamp(1, (int)(m_samplerate * pow(2.0, p_predelay) * 1.f), PREDELAY_BUFFER_SIZE_LIMIT - 1);
+}
+
+//todo is static?
+//m_lfo.set_rate(2.0 * M_PI * /*powf(2, -2.f)*/ 0.25 * dsamplerate_inv);
+
+void Reverb2Effect::process(float &dataL, float &dataR) {
+
+	float wetL, wetR;
+
+	//for (int k = 0; k < BLOCK_SIZE; k++) {
+	float in = (dataL + dataR) * 0.5f;
+
+	in = m_predelay.process(in, m_pre_delay_time);
+
+	in      = m_input_allpass[0].process(in, m_diffusion);
+	in      = m_input_allpass[1].process(in, m_diffusion);
+	in      = m_input_allpass[2].process(in, m_diffusion);
+	in      = m_input_allpass[3].process(in, m_diffusion);
+	float x = m_state;
+
+	float outL = 0.f;
+	float outR = 0.f;
+
+	float lfos[NUM_BLOCKS];
+	lfos[0] = m_lfo.r;
+	lfos[1] = m_lfo.i;
+	lfos[2] = -m_lfo.r;
+	lfos[3] = -m_lfo.i;
+
+	auto hdc = clamp(0.01f, m_hf_damp_coefficent, 0.99f);
+	auto ldc = clamp(0.01f, m_lf_damp_coefficent, 0.99f);
+	for (int b = 0; b < NUM_BLOCKS; b++) {
+		x = x + in;
+		for (int c = 0; c < NUM_ALLPASSES_PER_BLOCK; c++) {
+			x = m_allpass[b][c].process(x, m_buildup);
 		}
-		//_cntB2 = _cntB1;
-		_Bdirty = false;
+
+		x = m_hf_damper[b].process_lowpass(x, hdc);
+		x = m_lf_damper[b].process_highpass(x, ldc);
+
+		int modulation = (int)(m_modulation * lfos[b] * (float)DELAY_SUBSAMPLE_RANGE);
+		float tap_outL = 0.f;
+		float tap_outR = 0.f;
+		x              = m_delay[b].process(x, m_tap_timeL[b], tap_outL, m_tap_timeR[b], tap_outR, modulation);
+		outL += tap_outL * m_tap_gainL[b];
+		outR += tap_outR * m_tap_gainR[b];
+
+		x *= m_decay_multiply;
 	}
 
-	if (_Cdirty) {
-		// t0     = (1 - _opmix) * (1 + _opmix);
-		// t1     = 0.7f * _opmix * (2 - _opmix) / sqrtf(_rtmid);
-		// _d0    = t0 - _g0;
-		// _d1    = t1 - _g1;
-		// _cntC2 = _cntC1;
-		_g0     = (1.f - _opmix) * (1.f - _opmix);
-		_g1     = 1.f - _g0;
-		_Cdirty = false;
-	}
-
-	_pareq1.prepare();
-	//_pareq2.prepare(nfram);
-
-	// DBG_VAR(_g0);
-	// DBG_VAR(_g1);
-	// DBG_VAR(_d0);
-	// DBG_VAR(_d1);
-	// DBG_VAR(t0);
-	// DBG_VAR(t1);
-
-	// _d0 = 0;
-	// _d1 = 0;
-	// _g0 = 0.75;
-	// _g1 = 0.25;
-	// set_delay(40);
-	// set_xover(2);
-	// set_rtlow(3);
-	// set_rtmid(2);
-	// set_fdamp(6);
-	// set_opmix(0.5);
-	// //set_rgxyz();
-	// set_eq1(200, 0);
-}
-
-float *ZitaReverb::process(float input[2]) {
-
-	int i, n;
-	float *p0, *p1;
-	float *q0, *q1, *q2, *q3;
-	float t, g, x0, x1, x2, x3, x4, x5, x6, x7;
-	static float out[2];
-
-	//g = sqrtf(0.125f);
-	g = 0.35355f;
-
-	// p0 = inp[0];
-	// p1 = inp[1];
-	// q0 = out[0];
-	// q1 = out[1];
-	// q2 = out[2];
-	// q3 = out[3];
-
-	//loop over samples -> sample based from here
-	//p0[i] p1[i] is left / right input
-	//AMBISONIC: four channel -> _ambis switches can be ignored
-	//4 channel output??
-	//q0[i]
-	_vdelay0.write(input[0]);
-	_vdelay1.write(input[1]);
-
-	t  = 0.3f * _vdelay0.read();
-	x0 = _diff1[0].process(_delay[0].read() + t);
-	x1 = _diff1[1].process(_delay[1].read() + t);
-	x2 = _diff1[2].process(_delay[2].read() - t);
-	x3 = _diff1[3].process(_delay[3].read() - t);
-	t  = 0.3f * _vdelay1.read();
-	x4 = _diff1[4].process(_delay[4].read() + t);
-	x5 = _diff1[5].process(_delay[5].read() + t);
-	x6 = _diff1[6].process(_delay[6].read() - t);
-	x7 = _diff1[7].process(_delay[7].read() - t);
-
-	t = x0 - x1;
-	x0 += x1;
-	x1 = t;
-	t  = x2 - x3;
-	x2 += x3;
-	x3 = t;
-	t  = x4 - x5;
-	x4 += x5;
-	x5 = t;
-	t  = x6 - x7;
-	x6 += x7;
-	x7 = t;
-	t  = x0 - x2;
-	x0 += x2;
-	x2 = t;
-	t  = x1 - x3;
-	x1 += x3;
-	x3 = t;
-	t  = x4 - x6;
-	x4 += x6;
-	x6 = t;
-	t  = x5 - x7;
-	x5 += x7;
-	x7 = t;
-	t  = x0 - x4;
-	x0 += x4;
-	x4 = t;
-	t  = x1 - x5;
-	x1 += x5;
-	x5 = t;
-	t  = x2 - x6;
-	x2 += x6;
-	x6 = t;
-	t  = x3 - x7;
-	x3 += x7;
-	x7 = t;
-
-	//_g1 += _d1;
-	out[0] = _g1 * (x1 + x2);
-	out[1] = _g1 * (x1 - x2);
-
-	_delay[0].write(_filt1[0].process(g * x0));
-	_delay[1].write(_filt1[1].process(g * x1));
-	_delay[2].write(_filt1[2].process(g * x2));
-	_delay[3].write(_filt1[3].process(g * x3));
-	_delay[4].write(_filt1[4].process(g * x4));
-	_delay[5].write(_filt1[5].process(g * x5));
-	_delay[6].write(_filt1[6].process(g * x6));
-	_delay[7].write(_filt1[7].process(g * x7));
-
-	_pareq1.process(out);
-
-	//_pareq2.process(out);
-	//for (i = 0; i < nfram; i++) {
-	//_g0 += _d0;
-	out[0] += _g0 * input[0];
-	out[1] += _g0 * input[1];
+	wetL    = outL;
+	wetR    = outR;
+	m_state = x;
 	//}
 
-	// DBG("==");
-	// DBG_VAR(_g0);
-	// DBG_VAR(_g1);
-	// DBG_VAR(_d0);
-	// DBG_VAR(_d1);
+	// scale width
+	//float M[BLOCK_SIZE], S[BLOCK_SIZE];
+	//encodeMS(wetL, wetR, M, S, BLOCK_SIZE_QUAD);
+	//width.multiply_block(S, BLOCK_SIZE_QUAD);
+	//decodeMS(M, S, wetL, wetR, BLOCK_SIZE_QUAD);
+	//todo encode mid-side, scale width.... width is buffer??
 
-	return out;
+	//mix.fade_2_blocks_to(dataL, wetL, dataR, wetR, dataL, dataR, BLOCK_SIZE_QUAD);
+	//todo output signal
 }
 
-void ZitaReverb::set_delay(float v) {
-	_ipdel = v;
-	//_cntA1++;
-	_Adirty = true;
-	prepare();
+void Reverb2Effect::suspend() {
+	init();
 }
 
-void ZitaReverb::set_xover(float v) {
-	_xover = v;
-	//_cntB1++;
-	_Bdirty = true;
-	prepare();
+const char *Reverb2Effect::group_label(int id) {
+	switch (id) {
+	case 0:
+		return "Pre-Delay";
+	case 1:
+		return "Reverb";
+	case 2:
+		return "EQ";
+	case 3:
+		return "Output";
+	}
+	return 0;
+}
+int Reverb2Effect::group_label_ypos(int id) {
+	switch (id) {
+	case 0:
+		return 1;
+	case 1:
+		return 5;
+	case 2:
+		return 17;
+	case 3:
+		return 23;
+	}
+	return 0;
 }
 
-void ZitaReverb::set_rtlow(float v) {
-	_rtlow = v;
-	//_cntB1++;
-	_Cdirty = true;
-	prepare();
+void Reverb2Effect::init_ctrltypes() {
+	//Effect::init_ctrltypes();
+
+	// m_fxdata_predelay.set_name("Pre-Delay");
+	// m_fxdata_predelay.set_type(ct_reverbpredelaytime);
+
+	// m_fxdata_room_size.set_name("Room Size");
+	// m_fxdata_room_size.set_type(ct_percent_bidirectional);
+	// m_fxdata_decay_time.set_name("Decay Time");
+	// m_fxdata_decay_time.set_type(ct_reverbtime);
+	// m_fxdata_diffusion.set_name("Diffusion");
+	// m_fxdata_diffusion.set_type(ct_percent);
+	// m_fxdata_buildup.set_name("Buildup");
+	// m_fxdata_buildup.set_type(ct_percent);
+	// m_fxdata_modulation.set_name("Modulation");
+	// m_fxdata_modulation.set_type(ct_percent);
+
+	// m_fxdata_hf_damping.set_name("HF Damping");
+	// m_fxdata_hf_damping.set_type(ct_percent);
+	// m_fxdata_lf_damping.set_name("LF Damping");
+	// m_fxdata_lf_damping.set_type(ct_percent);
+
+	// m_fxdata_width.set_name("Width");
+	// m_fxdata_width.set_type(ct_decibel_narrow);
+	// m_fxdata_mix.set_name("Mix");
+	// m_fxdata_mix.set_type(ct_percent);
+
+	// for( int i=r2p_predelay; i<r2p_num_params; ++i )
+	// {
+	//    auto a = 1;
+	//    if( i >= r2p_room_size ) a += 2;
+	//    if( i >= r2p_lf_damping ) a += 2;
+	//    if( i >= r2p_width ) a += 2;
+	//    fxdata->p[i].posy_offset = a;
+	// }
 }
 
-void ZitaReverb::set_rtmid(float v) {
-	_rtmid = v;
-	//_cntB1++;
-	//_cntC1++;
-	_Bdirty = true;
-	_Cdirty = true;
-	prepare();
+void Reverb2Effect::init_default_values() {
+	m_fxdata_predelay   = -4.f;
+	m_fxdata_decay_time = 0.75f;
+	m_fxdata_mix        = 0.33f;
+	m_fxdata_width      = 0.0f;
+	m_fxdata_diffusion  = 1.0f;
+	m_fxdata_buildup    = 1.0f;
+	m_fxdata_modulation = 0.5f;
+	m_fxdata_hf_damping = 0.2f;
+	m_fxdata_lf_damping = 0.2f;
+	m_fxdata_room_size  = 0.f;
 }
 
-void ZitaReverb::set_fdamp(float v) {
-	_fdamp = v;
-	//_cntB1++;
-	_Bdirty = true;
-	prepare();
-}
-
-void ZitaReverb::set_opmix(float v) {
-	_opmix = v;
-	//_cntC1++;
-	_Cdirty = true;
-	prepare();
-}
-
-void ZitaReverb::set_rgxyz(float v) {
-	_rgxyz = v;
-	//_cntC1++;
-	_Cdirty = true;
-	prepare();
-}
-
-void ZitaReverb::set_eq1(float f, float g) {
-	_eq_gain = g;
-	_eq_freq = f;
-	_pareq1.setparam(f, g);
-	prepare();
-}
-
-void ZitaReverb::set_eq1_gain(float g) {
-	_eq_gain = g;
-	_pareq1.setparam(_eq_freq, g);
-	prepare();
-}
-
-void ZitaReverb::set_eq1_freq(float f) {
-	_eq_freq = f;
-	_pareq1.setparam(f, _eq_gain);
-	prepare();
-}
-
-void ZitaReverb::set_ducking(float d) {
-}
-
-// void ZitaReverb::set_eq2(float f, float g) {
-// 	_pareq2.setparam(f, g);
-// }
-
-// -----------------------------------------------------------------------
-void Diff1::dump(std::string name) {
-	DBG("===");
-	DBG("Dumping Diff1 " << name);
-	DBG_VAR(_i);
-	DBG_VAR(_c);
-	DBG_VAR(_size);
-}
-void RevDelay::dump(std::string name) {
-	DBG("===");
-	DBG("Dumping Delay " << name);
-	//DBG_VAR(_i);
-	DBG_VAR(_size);
-}
-void Vdelay::dump(std::string name) {
-	DBG("===");
-	DBG("Dumping VDelay " << name);
-	DBG_VAR(_ir);
-	DBG_VAR(_iw);
-	DBG_VAR(_size);
-}
-void Filt1::dump(std::string name) {
-	DBG("===");
-	DBG("Dumping Fil1 " << name);
-	DBG_VAR(_gmf);
-	DBG_VAR(_glo);
-	DBG_VAR(_wlo);
-	DBG_VAR(_whi);
-	DBG_VAR(_slo);
-	DBG_VAR(_shi);
-}
-void ZitaReverb::dump(std::string name) {
-	//DBG("===================================");
-	//DBG("Dumping Reverb " << name);
-	// DBG_VAR(_fsamp);
-	// //DBG_VAR(_cntA1);
-	// //DBG_VAR(_cntB1);
-	// //DBG_VAR(_cntC1);
-	// //DBG_VAR(_cntA2);
-	// //DBG_VAR(_cntB2);
-	// //DBG_VAR(_cntC2);
-	// DBG_VAR(_ipdel);
-	// DBG_VAR(_xover);
-	// DBG_VAR(_rtlow);
-	// DBG_VAR(_rtmid);
-	// DBG_VAR(_fdamp);
-	// DBG_VAR(_opmix);
-	// DBG_VAR(_rgxyz);
-	// DBG_VAR(_g0);
-	// DBG_VAR(_d0);
-	// DBG_VAR(_g1);
-	// DBG_VAR(_d1);
-
-	// _vdelay0.dump("_vdelay0");
-	// _vdelay1.dump("_vdelay1");
-	// _diff1[0].dump("_diff1[0]");
-	// _diff1[1].dump("_diff1[1]");
-	// _diff1[2].dump("_diff1[2]");
-	// _diff1[3].dump("_diff1[3]");
-	// _diff1[4].dump("_diff1[4]");
-	// _diff1[5].dump("_diff1[5]");
-	// _diff1[6].dump("_diff1[6]");
-	// _diff1[7].dump("_diff1[7]");
-
-	// _filt1[0].dump("_filt1[0]");
-	// _filt1[1].dump("_filt1[1]");
-	// _filt1[2].dump("_filt1[2]");
-	// _filt1[3].dump("_filt1[3]");
-	// _filt1[4].dump("_filt1[4]");
-	// _filt1[5].dump("_filt1[5]");
-	// _filt1[6].dump("_filt1[6]");
-	// _filt1[7].dump("_filt1[7]");
-
-	// _delay[0].dump("_delay[0]");
-	// _delay[1].dump("_delay[1]");
-	// _delay[2].dump("_delay[2]");
-	// _delay[3].dump("_delay[3]");
-	// _delay[4].dump("_delay[4]");
-	// _delay[5].dump("_delay[5]");
-	// _delay[6].dump("_delay[6]");
-	// _delay[7].dump("_delay[7]");
-
-	//_pareq1.dump("EQ");
-
-	//DBG("===================================");
+void Reverb2Effect::setSampleRate(float p_sr) {
+	m_samplerate    = p_sr;
+	dsamplerate_inv = 1. / (double)p_sr;
 }

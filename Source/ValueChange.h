@@ -686,23 +686,23 @@ void OdinAudioProcessor::treeValueChangedReverb(const String &p_ID, float p_new_
 	StringRef id = StringRef(p_ID);
 
 	if (id == m_reverb_delay_identifier) {
-		m_reverb.set_delay(p_new_value);
+		//m_reverb.set_delay(p_new_value);
 	} else if (id == m_reverb_lowfreq_identifier) {
-		m_reverb.set_xover(p_new_value);//! ???
+		//m_reverb.set_xover(p_new_value);//! ???
 	} else if (id == m_reverb_lowtime_identifier) {
-		m_reverb.set_rtlow(p_new_value);
+		//m_reverb.set_rtlow(p_new_value);
 	} else if (id == m_reverb_midtime_identifier) {
-		m_reverb.set_rtmid(p_new_value);
+		//m_reverb.set_rtmid(p_new_value);
 	} else if (id == m_reverb_hfdamp_identifier) {
-		m_reverb.set_fdamp(p_new_value);
+		//m_reverb.set_fdamp(p_new_value);
 	} else if (id == m_reverb_eq_gain_identifier) {
-		m_reverb.set_eq1_gain(p_new_value);
+		//m_reverb.set_eq1_gain(p_new_value);
 	} else if (id == m_reverb_eq_freq_identifier) {
-		m_reverb.set_eq1_freq(p_new_value);
+		//m_reverb.set_eq1_freq(p_new_value);
 	} else if (id == m_reverb_ducking_identifier) {
-		m_reverb.set_ducking(p_new_value);
+		//m_reverb.set_ducking(p_new_value);
 	} else if (id == m_reverb_dry_wet_identifier) {
-		m_reverb.set_opmix(p_new_value);
+		//m_reverb.set_opmix(p_new_value);
 	}
 }
 
