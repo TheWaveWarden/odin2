@@ -239,9 +239,6 @@ void Reverb2Effect::setPreDelay(float p_predelay) {
 	m_pre_delay_time = clamp(1, (int)(m_samplerate * pow(2.0, p_predelay) * 1.f), PREDELAY_BUFFER_SIZE_LIMIT - 1);
 }
 
-//todo is static?
-//m_lfo.set_rate(2.0 * M_PI * /*powf(2, -2.f)*/ 0.25 * dsamplerate_inv);
-
 void Reverb2Effect::process(float &dataL, float &dataR) {
 
 	//for (int k = 0; k < BLOCK_SIZE; k++) {
@@ -388,4 +385,6 @@ void Reverb2Effect::init_default_values() {
 void Reverb2Effect::setSampleRate(float p_sr) {
 	m_samplerate    = p_sr;
 	dsamplerate_inv = 1. / (double)p_sr;
+
+	m_lfo.set_rate(2.0 * M_PI * /*powf(2, -2.f)*/ 0.25 * dsamplerate_inv);
 }
