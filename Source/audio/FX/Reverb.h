@@ -47,7 +47,7 @@
 
 #include <cmath>
 #include <cstring>
-#include "../JuceLibraryCode/JuceHeader.h"
+#include "../../GlobalIncludes.h"
 
 #define BLOCK_SIZE 1
 #define BLOCK_SIZE_INV 1
@@ -153,7 +153,7 @@ class Reverb2Effect {
 	};
 
 	//lipol_ps mix alignas(16), width alignas(16);
-   float mix, width;
+   //float width;
 
 public:
 	Reverb2Effect(/*SurgeStorage *storage, FxStorage *fxdata, pdata *pd*/);
@@ -185,18 +185,22 @@ public:
 	void setWidth(float p_width);
 	void setMix(float p_mix);
 	void setPreDelay(float p_predelay);
+	void setModulation(float p_modulation);
 private:
 	float m_samplerate = -1;
 	double dsamplerate_inv = -1;
 
-	void update_rtime();
+	void update_ringout_time();
 	int ringout_time;
+
 	allpass m_input_allpass[NUM_INPUT_ALLPASSES];
 	allpass m_allpass[NUM_BLOCKS][NUM_ALLPASSES_PER_BLOCK];
 	onepole_filter m_hf_damper[NUM_BLOCKS];
 	onepole_filter m_lf_damper[NUM_BLOCKS];
 	delay m_delay[NUM_BLOCKS];
 	predelay m_predelay;
+	quadr_osc m_lfo;
+
 	int m_tap_timeL[NUM_BLOCKS];
 	int m_tap_timeR[NUM_BLOCKS];
 	float m_tap_gainL[NUM_BLOCKS];
@@ -209,24 +213,22 @@ private:
 	float m_lf_damp_coefficent;
 	float m_modulation;
 	float m_last_decay_time = -1.0;
-	quadr_osc m_lfo;
-
-	//control vars
 	float m_decay_time;
 	float m_predelay_val;
 	float m_width;
 	float m_mix;
 	float m_roomsize;
-	float m_fxdata_buildup;
-	float m_fxdata_predelay;
-	float m_fxdata_mix;
-	float m_fxdata_decay_time;
-	float m_fxdata_modulation;
-	float m_fxdata_hf_damping;
-	float m_fxdata_lf_damping;
-	float m_fxdata_room_size;
-	float m_fxdata_diffusion;
-	float m_fxdata_width;
 	float m_scale;
 	int m_pre_delay_time;
+
+	//float m_fxdata_buildup;
+	//float m_fxdata_predelay;
+	//float m_fxdata_mix;
+	//float m_fxdata_decay_time;
+	//float m_fxdata_modulation;
+	//float m_fxdata_hf_damping;
+	//float m_fxdata_lf_damping;
+	//float m_fxdata_room_size;
+	//float m_fxdata_diffusion;
+	//float m_fxdata_width;
 };

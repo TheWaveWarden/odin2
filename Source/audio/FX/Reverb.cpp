@@ -117,10 +117,9 @@ float Reverb2Effect::onepole_filter::process_highpass(float x, float c0) {
 	return x - m_a0;
 }
 
-Reverb2Effect::Reverb2Effect(/*SurgeStorage* storage, FxStorage* fxdata, pdata* pd*/)
-/*: Effect(storage, fxdata, pd)*/
-{
+Reverb2Effect::Reverb2Effect() {
 	m_state = 0.f;
+	init_default_values();
 }
 
 Reverb2Effect::~Reverb2Effect() {
@@ -187,7 +186,7 @@ void Reverb2Effect::setvars(bool init) {
 	calc_size(1.f);
 }
 
-void Reverb2Effect::update_rtime() {
+void Reverb2Effect::update_ringout_time() {
 	float t = BLOCK_SIZE_INV *
 	          (m_samplerate * (std::max(1.0f, powf(2.f, m_decay_time)) * 2.f +
 	                           std::max(0.1f, powf(2.f, m_predelay_val)) * 2.f)); // *2 is to get the db120 time
@@ -202,7 +201,7 @@ void Reverb2Effect::setRoomSize(float p_room_size) {
 void Reverb2Effect::setDecayTime(float p_decay_time) {
 
 	if (fabs(p_decay_time - m_last_decay_time) > 0.001f) {
-		update_rtime();
+		update_ringout_time();
 		m_last_decay_time = p_decay_time;
 	}
 
@@ -232,12 +231,17 @@ void Reverb2Effect::setWidth(float p_width) {
 }
 
 void Reverb2Effect::setMix(float p_mix) {
-	mix = p_mix;
+	m_mix = p_mix;
 }
 
 void Reverb2Effect::setPreDelay(float p_predelay) {
 	m_pre_delay_time = clamp(1, (int)(m_samplerate * pow(2.0, p_predelay) * 1.f), PREDELAY_BUFFER_SIZE_LIMIT - 1);
 }
+
+void Reverb2Effect::setModulation(float p_modulation){
+	m_modulation = p_modulation;
+}
+
 
 void Reverb2Effect::process(float &dataL, float &dataR) {
 
@@ -269,6 +273,7 @@ void Reverb2Effect::process(float &dataL, float &dataR) {
 			x = m_allpass[b][c].process(x, m_buildup);
 		}
 
+		//HF / LF Damping filters
 		x = m_hf_damper[b].process_lowpass(x, hdc);
 		x = m_lf_damper[b].process_highpass(x, ldc);
 
@@ -290,15 +295,15 @@ void Reverb2Effect::process(float &dataL, float &dataR) {
 	//encodeMS(wetL, wetR, M, S, BLOCK_SIZE_QUAD);
 	//width.multiply_block(S, BLOCK_SIZE_QUAD);
 	//decodeMS(M, S, wetL, wetR, BLOCK_SIZE_QUAD);
-	float mid = wetL + wetR;
+	float mid  = wetL + wetR;
 	float side = wetL - wetR;
 	side *= m_width;
 	wetL = (mid + side) * 0.5;
 	wetR = (mid - side) * 0.5;
 
 	//mix.fade_2_blocks_to(dataL, wetL, dataR, wetR, dataL, dataR, BLOCK_SIZE_QUAD);
-	dataL = (1.f - mix) * dataL + mix * wetL;
-	dataR = (1.f - mix) * dataR + mix * wetR;
+	dataL = (1.f - m_mix) * dataL + m_mix * wetL;
+	dataR = (1.f - m_mix) * dataR + m_mix * wetR;
 }
 
 void Reverb2Effect::suspend() {
@@ -370,16 +375,16 @@ void Reverb2Effect::init_ctrltypes() {
 }
 
 void Reverb2Effect::init_default_values() {
-	m_fxdata_predelay   = -4.f;
-	m_fxdata_decay_time = 0.75f;
-	m_fxdata_mix        = 0.33f;
-	m_fxdata_width      = 0.0f;
-	m_fxdata_diffusion  = 1.0f;
-	m_fxdata_buildup    = 1.0f;
-	m_fxdata_modulation = 0.5f;
-	m_fxdata_hf_damping = 0.2f;
-	m_fxdata_lf_damping = 0.2f;
-	m_fxdata_room_size  = 0.f;
+	setPreDelay(4.f);
+	setDecayTime(0.75f);
+	setMix(0.5);
+	setWidth(0.0f);
+	setDiffusion(1.f);
+	setBuildup(1.0f);
+	setModulation(0.5f);
+	setHFDamp(0.2f);
+	setLFDamp(0.2f);
+	setRoomSize(0.f);
 }
 
 void Reverb2Effect::setSampleRate(float p_sr) {
@@ -387,4 +392,7 @@ void Reverb2Effect::setSampleRate(float p_sr) {
 	dsamplerate_inv = 1. / (double)p_sr;
 
 	m_lfo.set_rate(2.0 * M_PI * /*powf(2, -2.f)*/ 0.25 * dsamplerate_inv);
+
+	//todo this should not happen here...
+	init_default_values();
 }
