@@ -1,3 +1,4 @@
+- FM- PM Osc ratio ranges increased to [1,16]
 - ModMatrix amounts now range up to [-300, 300] //todo bump patch migration version
 - created Azure-CI pipelines for Ubuntu-18.04, MacOs 10.14 and Windows2019
 # 2.2.4
