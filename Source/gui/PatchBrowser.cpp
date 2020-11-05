@@ -739,6 +739,8 @@ void PatchBrowser::savePatchInOpenedFileStream(FileOutputStream &p_file_stream) 
 	copy_with_removed_params.removeChild(copy_with_removed_params.getChildWithName("midi_learn"), nullptr);
 	copy_with_removed_params.getChildWithName("misc").removeProperty("current_patch_filename", nullptr);
 	copy_with_removed_params.getChildWithName("misc").removeProperty("current_patch_directory", nullptr);
+	copy_with_removed_params.getChildWithName("misc").removeProperty("arp_mod_selected", nullptr);
+	
 
 	//remove draw osc params if they aren't needed
 	for (int osc = 1; osc < 4; ++osc) {

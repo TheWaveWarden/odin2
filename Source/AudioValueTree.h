@@ -144,7 +144,7 @@
 	    std::make_unique<AudioParameterFloat>("fil1_freq",
 	                                          "Filter1 Frequency",
 	                                          NormalisableRange<float>(20.f, 20000.f, 0.f, FILTER_SKEW_DEFAULT),
-	                                          2000.f),
+	                                          20000.f),
 	    std::make_unique<AudioParameterFloat>("fil1_res", "Filter1 Resonance", NormalisableRange<float>(0.f, 1.f), 0.f),
 	    std::make_unique<AudioParameterFloat>(
 	        "fil1_saturation", "Filter1 Saturation", NormalisableRange<float>(0.f, 1.f), 0.f),

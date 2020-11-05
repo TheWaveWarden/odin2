@@ -62,7 +62,6 @@
 #define FREQ_MIN 20
 #define FREQ_MAX 20000
 #define FREQ_MID 640
-#define FREQ_DEFAULT 2000
 
 #define ENV_MIN -1
 #define ENV_MAX 1

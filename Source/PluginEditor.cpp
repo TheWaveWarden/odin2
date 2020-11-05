@@ -90,10 +90,11 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
     m_osc3(p_processor, vts, "3"), m_fil1_component(vts, "1"), m_fil2_component(vts, "2"), m_fil3_component(vts, "3"),
     m_midsection(vts), m_adsr_1(vts, "1"), m_adsr_2(vts, "2"), m_adsr_3(vts, "3"), m_adsr_4(vts, "4"),
     m_lfo_1(vts, "1", p_is_standalone), m_lfo_2(vts, "2", p_is_standalone), m_lfo_3(vts, "3", p_is_standalone),
-    m_lfo_4(vts, "4", p_is_standalone), m_delay(vts, p_is_standalone), m_reverb(vts, p_is_standalone), m_phaser(vts, "phaser", p_is_standalone),
-    m_flanger(vts, "flanger", p_is_standalone), m_chorus(vts, "chorus", p_is_standalone), m_xy_section(vts, "xy"),
-    m_osc1_type_identifier("osc1_type"), m_osc2_type_identifier("osc2_type"), m_osc3_type_identifier("osc3_type"),
-    m_fil1_type_identifier("fil1_type"), m_fil2_type_identifier("fil2_type"), m_fil3_type_identifier("fil3_type"),
+    m_lfo_4(vts, "4", p_is_standalone), m_delay(vts, p_is_standalone), m_reverb(vts, p_is_standalone),
+    m_phaser(vts, "phaser", p_is_standalone), m_flanger(vts, "flanger", p_is_standalone),
+    m_chorus(vts, "chorus", p_is_standalone), m_xy_section(vts, "xy"), m_osc1_type_identifier("osc1_type"),
+    m_osc2_type_identifier("osc2_type"), m_osc3_type_identifier("osc3_type"), m_fil1_type_identifier("fil1_type"),
+    m_fil2_type_identifier("fil2_type"), m_fil3_type_identifier("fil3_type"),
     m_pitchbend_amount_identifier("pitchbend_amount"), m_unison_voices_identifier("unison_voices"),
     m_delay_position_identifier("delay_position"), m_flanger_position_identifier("flanger_position"),
     m_phaser_position_identifier("phaser_position"), m_chorus_position_identifier("chorus_position"), m_mod_matrix(vts),
@@ -133,6 +134,10 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 			//reset pitchbend and modwheel, since they are not loaded with patches
 			SETAUDIOFULLRANGESAFE("modwheel", 0.f);
 			SETAUDIOFULLRANGESAFE("pitchbend", 0.f);
+
+			//force modmatrix to show
+			m_value_tree.state.getChildWithName("misc").setProperty(
+			    "arp_mod_selected", MATRIX_SECTION_INDEX_MATRIX, nullptr);
 
 			//this forces values onto the GUI (patch label as well)
 			forceValueTreeOntoComponents(true);
