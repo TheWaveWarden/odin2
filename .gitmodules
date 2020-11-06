@@ -1,0 +1,3 @@
+[submodule "tuning-library"]
+	path = tuning-library
+	url = https://github.com/surge-synthesizer/tuning-library.git
