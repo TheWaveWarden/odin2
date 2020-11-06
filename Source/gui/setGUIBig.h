@@ -548,6 +548,10 @@ void OdinAudioProcessorEditor::setGUIBig() {
 	m_mono_poly_legato_dropdown.setImage(glas_panel);
 	m_mono_poly_legato_dropdown.setInlay(1);
 
+	m_tuning_dropdown.setBounds(OdinHelper::c150(TUNING_POS_X), OdinHelper::c150(TUNING_POS_Y), glas_panel.getWidth(), glas_panel.getHeight());
+	m_tuning_dropdown.setImage(glas_panel);
+	m_tuning_dropdown.setInlay(1);
+
 	juce::Image gui_size_left =
 	    ImageCache::getFromMemory(BinaryData::buttonguisize_1_150_png, BinaryData::buttonguisize_1_150_pngSize);
 	juce::Image gui_size_right =

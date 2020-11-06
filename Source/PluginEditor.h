@@ -21,31 +21,32 @@
 #include "GlobalIncludes.h"
 #include "gui/ADSRComponent.h"
 #include "gui/AmpDistortionFlowComponent.h"
+#include "gui/ArpComponent.h"
 #include "gui/DelayComponent.h"
-#include "gui/ReverbComponent.h"
 #include "gui/DragButton.h"
 #include "gui/FXButtonsSection.h"
 #include "gui/FXComponent.h"
 #include "gui/FilterComponent.h"
+#include "gui/FixedTextGlassDropdown.h"
+#include "gui/InputField.h"
 #include "gui/Knob.h"
 #include "gui/LFOComponent.h"
 #include "gui/LeftRightButton.h"
 #include "gui/ModMatrixComponent.h"
-#include "gui/ArpComponent.h"
-#include "gui/PatchBrowser.h"
 #include "gui/NumberSelector.h"
 #include "gui/NumberSelectorWithText.h"
 #include "gui/OdinButton.h"
 #include "gui/OdinTooltipWindow.h"
 #include "gui/OscComponent.h"
-#include "gui/PitchWheel.h"
-#include "gui/XYSectionComponent.h"
+#include "gui/PatchBrowser.h"
 #include "gui/PhaserComponent.h"
-#include "gui/InputField.h"
+#include "gui/PitchWheel.h"
+#include "gui/ReverbComponent.h"
+#include "gui/XYSectionComponent.h"
 
 #ifdef WTGEN
-#include "WavetableDisplay.h"
 #include "SpectrumDisplay.h"
+#include "WavetableDisplay.h"
 #endif
 
 #define RADIO_GROUP_ARP_MODMATRIX_PRESETS 98765
@@ -140,6 +141,9 @@
 #define LEGATO_POS_X 225
 #define LEGATO_POS_Y 8
 
+#define TUNING_POS_X 530
+#define TUNING_POS_Y 7
+
 #define UNISON_OFFSET 80
 //define UNISON_OFFSET_150 567
 
@@ -147,18 +151,16 @@
 #define UNISON_SELECTOR_Y 6
 #define UNISON_DETUNE_X 223 - UNISON_OFFSET
 #define UNISON_DETUNE_Y 5
-#define UNISON_STEREO_X 268 -  UNISON_OFFSET
+#define UNISON_STEREO_X 268 - UNISON_OFFSET
 #define UNISON_STEREO_Y UNISON_DETUNE_Y
-
 
 #define GUI_SIZE_POS_X 674
 #define GUI_SIZE_POS_Y 7
 
-
 #define RESET_SYNTH_POS_X_100 604
-#define RESET_SYNTH_POS_Y_100 6
+#define RESET_SYNTH_POS_Y_100 8
 #define RESET_SYNTH_POS_X_150 904
-#define RESET_SYNTH_POS_Y_150 11
+#define RESET_SYNTH_POS_Y_150 12
 
 #define ENV13_POS_X 30
 #define ENV13_POS_Y 313
@@ -212,239 +214,248 @@
 #define ODIN_EDITOR_SIZE_150_X 1200
 #define ODIN_EDITOR_SIZE_150_Y 921
 
+#define TUNING_IMPORT_SCL 10
+#define TUNING_IMPORT_KBM 50
+#define TUNING_EXPORT_SCL 100
+#define TUNING_EXPORT_KBM 150
+#define TUNING_RESTORE_SCL 1000
+#define TUNING_RESTORE_KBM 1050
+
 class TooltipFeels : public LookAndFeel_V4 {
 public:
-  TooltipFeels() {
-    setColour(TooltipWindow::ColourIds::textColourId, MENU_FONT_COLOR);
-    setColour(TooltipWindow::ColourIds::outlineColourId, MENU_FONT_COLOR);
-    setColour(TooltipWindow::ColourIds::backgroundColourId,
-              MENU_BACKGROUND_COLOR);
-  }
+	TooltipFeels() {
+		setColour(TooltipWindow::ColourIds::textColourId, MENU_FONT_COLOR);
+		setColour(TooltipWindow::ColourIds::outlineColourId, MENU_FONT_COLOR);
+		setColour(TooltipWindow::ColourIds::backgroundColourId, MENU_BACKGROUND_COLOR);
+	}
 };
 
-class OdinAudioProcessorEditor : public AudioProcessorEditor,
-                                 public KeyListener {
+class OdinAudioProcessorEditor : public AudioProcessorEditor, public KeyListener {
 public:
-  OdinAudioProcessorEditor(OdinAudioProcessor &p_processor,
-                           AudioProcessorValueTreeState &vts,
-                           bool p_is_standalone);
-  ~OdinAudioProcessorEditor();
+	OdinAudioProcessorEditor(OdinAudioProcessor &p_processor, AudioProcessorValueTreeState &vts, bool p_is_standalone);
+	~OdinAudioProcessorEditor();
 
-  //==============================================================================
-  void paint(Graphics &) override;
-  void resized() override;
-  void arrangeFXOnButtons(std::map<std::string, int> p_map);
-  void setActiveFXPanel(const std::string &name);
+	//==============================================================================
+	void paint(Graphics &) override;
+	void resized() override;
+	void arrangeFXOnButtons(std::map<std::string, int> p_map);
+	void setActiveFXPanel(const std::string &name);
 
-  void forceValueTreeOntoComponents(bool p_reset_audio);
-  void forceValueTreeOntoComponentsOnlyMainPanel();
+	void forceValueTreeOntoComponents(bool p_reset_audio);
+	void forceValueTreeOntoComponentsOnlyMainPanel();
 
-  bool keyPressed(const KeyPress &key, Component *) override { 
-    if(key.getKeyCode() == 120){
-      ++m_octave_shift;
-      allMidiKeysOff();
-    } else if(key == 121){
-      --m_octave_shift;
-      allMidiKeysOff();
-    }
-    return false; }
-  bool keyStateChanged(bool isKeyDown,
-                       Component *originatingComponent) override;
-  void allMidiKeysOff();
+	bool keyPressed(const KeyPress &key, Component *) override {
+		if (key.getKeyCode() == 120) {
+			++m_octave_shift;
+			allMidiKeysOff();
+		} else if (key == 121) {
+			--m_octave_shift;
+			allMidiKeysOff();
+		}
+		return false;
+	}
+	bool keyStateChanged(bool isKeyDown, Component *originatingComponent) override;
+	void allMidiKeysOff();
 
-  InputField m_value_input;
-  InputFeels m_input_feels;
+	InputField m_value_input;
+	InputFeels m_input_feels;
 
-
-  //ColourSelector m_color_picker;
+	//ColourSelector m_color_picker;
 
 #ifdef WTGEN
-  WavetableDisplay m_wavetable_display;
-  SpectrumDisplay m_spectrum_display;
+	WavetableDisplay m_wavetable_display;
+	SpectrumDisplay m_spectrum_display;
 #endif
 
-
 private:
-  bool m_A_down = false; // C
-  bool m_W_down = false; // C#
-  bool m_S_down = false; // D
-  bool m_E_down = false; // D#
-  bool m_D_down = false; // E
-  bool m_F_down = false; // F
-  bool m_T_down = false; // F#
-  bool m_G_down = false; // G
-  bool m_Z_down = false; // G#
-  bool m_H_down = false; // A
-  bool m_U_down = false; // A#
-  bool m_J_down = false; // B
-  bool m_K_down = false; // C
-  bool m_O_down = false; // C#
-  bool m_L_down = false; // D
-  bool m_P_down = false; // D#
+	bool m_A_down = false; // C
+	bool m_W_down = false; // C#
+	bool m_S_down = false; // D
+	bool m_E_down = false; // D#
+	bool m_D_down = false; // E
+	bool m_F_down = false; // F
+	bool m_T_down = false; // F#
+	bool m_G_down = false; // G
+	bool m_Z_down = false; // G#
+	bool m_H_down = false; // A
+	bool m_U_down = false; // A#
+	bool m_J_down = false; // B
+	bool m_K_down = false; // C
+	bool m_O_down = false; // C#
+	bool m_L_down = false; // D
+	bool m_P_down = false; // D#
 
-  // This reference is provided as a quick way for your editor to
-  // access the processor object that created it.
-  OdinAudioProcessor &processor;
+	// This reference is provided as a quick way for your editor to
+	// access the processor object that created it.
+	OdinAudioProcessor &processor;
 
-  void setTooltipEnabled(bool p_enabled);
-  //==============================================================================
-  // Your private member variables go here...
-  OdinMenuFeels m_menu_feels;
+	void setTooltipEnabled(bool p_enabled);
+	//==============================================================================
+	// Your private member variables go here...
+	OdinMenuFeels m_menu_feels;
 
-  Knob m_glide;
-  Knob m_master;
-  Knob m_modwheel;
-  Knob m_unison_detune;
-  Knob m_unison_width;
+	Knob m_glide;
+	Knob m_master;
+	Knob m_modwheel;
+	Knob m_unison_detune;
+	Knob m_unison_width;
 
-  PitchWheel m_pitchwheel;
-  NumberSelector m_pitch_amount;
+	PitchWheel m_pitchwheel;
+	NumberSelector m_pitch_amount;
 
-  NumberSelectorWithText m_unison_selector;
+	NumberSelectorWithText m_unison_selector;
 
-  OscComponent m_osc1;
-  OscComponent m_osc2;
-  OscComponent m_osc3;
+	OscComponent m_osc1;
+	OscComponent m_osc2;
+	OscComponent m_osc3;
 
-  FilterComponent m_fil1_component;
-  FilterComponent m_fil2_component;
-  FilterComponent m_fil3_component;
+	FilterComponent m_fil1_component;
+	FilterComponent m_fil2_component;
+	FilterComponent m_fil3_component;
 
-  AmpDistortionFlowComponent m_midsection;
+	AmpDistortionFlowComponent m_midsection;
 
-  ADSRComponent m_adsr_1;
-  ADSRComponent m_adsr_2;
-  ADSRComponent m_adsr_3;
-  ADSRComponent m_adsr_4;
+	ADSRComponent m_adsr_1;
+	ADSRComponent m_adsr_2;
+	ADSRComponent m_adsr_3;
+	ADSRComponent m_adsr_4;
 
-  LFOComponent m_lfo_1;
-  LFOComponent m_lfo_2;
-  LFOComponent m_lfo_3;
-  LFOComponent m_lfo_4;
+	LFOComponent m_lfo_1;
+	LFOComponent m_lfo_2;
+	LFOComponent m_lfo_3;
+	LFOComponent m_lfo_4;
 
-  FXComponent m_flanger;
-  PhaserComponent m_phaser;
-  FXComponent m_chorus;
-  DelayComponent m_delay;
-  ReverbComponent m_reverb;
+	FXComponent m_flanger;
+	PhaserComponent m_phaser;
+	FXComponent m_chorus;
+	DelayComponent m_delay;
+	ReverbComponent m_reverb;
 
-  ModMatrixComponent m_mod_matrix;
-  ArpComponent m_arp;
-  PatchBrowser m_patch_browser;
+	ModMatrixComponent m_mod_matrix;
+	ArpComponent m_arp;
+	PatchBrowser m_patch_browser;
 
-  XYSectionComponent m_xy_section;
+	XYSectionComponent m_xy_section;
 
-  juce::PopupMenu m_osc_dropdown_menu;
-  juce::DrawableButton m_osc1_dropdown;
-  juce::DrawableButton m_osc2_dropdown;
-  juce::DrawableButton m_osc3_dropdown;
+	juce::PopupMenu m_osc_dropdown_menu;
+	juce::DrawableButton m_osc1_dropdown;
+	juce::DrawableButton m_osc2_dropdown;
+	juce::DrawableButton m_osc3_dropdown;
 
-  juce::PopupMenu m_filter_dropdown_menu;
-  juce::DrawableButton m_filter1_dropdown;
-  juce::DrawableButton m_filter2_dropdown;
-  juce::DrawableButton m_filter3_dropdown;
+	juce::PopupMenu m_filter_dropdown_menu;
+	juce::DrawableButton m_filter1_dropdown;
+	juce::DrawableButton m_filter2_dropdown;
+	juce::DrawableButton m_filter3_dropdown;
 
-  OdinButton m_filleft_button1;
-  OdinButton m_filleft_button2;
-  OdinButton m_filleft_button3;
+	OdinButton m_filleft_button1;
+	OdinButton m_filleft_button2;
+	OdinButton m_filleft_button3;
 
-  OdinButton m_filright_button1;
-  OdinButton m_filright_button2;
-  OdinButton m_filright_button3;
-  OdinButton m_filright_buttonf1;
+	OdinButton m_filright_button1;
+	OdinButton m_filright_button2;
+	OdinButton m_filright_button3;
+	OdinButton m_filright_buttonf1;
 
-  FXButtonsSection m_fx_buttons_section;
+	FXButtonsSection m_fx_buttons_section;
 
-  OdinButton m_flanger_on_button;
-  OdinButton m_phaser_on_button;
-  OdinButton m_chorus_on_button;
-  OdinButton m_delay_on_button;
+	OdinButton m_flanger_on_button;
+	OdinButton m_phaser_on_button;
+	OdinButton m_chorus_on_button;
+	OdinButton m_delay_on_button;
 
-  OdinButton m_select_arp_button;
-  OdinButton m_select_modmatrix_button;
-  OdinButton m_select_presets_button;
+	OdinButton m_select_arp_button;
+	OdinButton m_select_modmatrix_button;
+	OdinButton m_select_presets_button;
 
-  juce::DrawableButton m_question_button;
+	juce::DrawableButton m_question_button;
 
-  juce::ComponentDragger m_dragger;
+	juce::ComponentDragger m_dragger;
 
-  LeftRightButton m_env_13_button;
-  LeftRightButton m_env_24_button;
+	LeftRightButton m_env_13_button;
+	LeftRightButton m_env_24_button;
 
-  LeftRightButton m_lfo_13_button;
-  LeftRightButton m_lfo_24_button;
+	LeftRightButton m_lfo_13_button;
+	LeftRightButton m_lfo_24_button;
 
+	GlassDropdown m_mono_poly_legato_dropdown;
+	FixedTextGlassDropdown m_tuning_dropdown;
+	LeftRightButton m_gui_size_button;
 
-	GlasDropdown m_mono_poly_legato_dropdown;
-  LeftRightButton m_gui_size_button;
+	juce::DrawableButton m_reset;
 
-  juce::DrawableButton m_reset;
+	AudioProcessorValueTreeState &m_value_tree;
 
-  AudioProcessorValueTreeState &m_value_tree;
+	std::unique_ptr<OdinButtonAttachment> m_phaser_on_attachment;
+	std::unique_ptr<OdinButtonAttachment> m_flanger_on_attachment;
+	std::unique_ptr<OdinButtonAttachment> m_delay_on_attachment;
+	std::unique_ptr<OdinButtonAttachment> m_chorus_on_attachment;
+	std::unique_ptr<OdinButtonAttachment> m_fil1_osc1_attachment;
+	std::unique_ptr<OdinButtonAttachment> m_fil1_osc2_attachment;
+	std::unique_ptr<OdinButtonAttachment> m_fil1_osc3_attachment;
+	std::unique_ptr<OdinButtonAttachment> m_fil2_osc1_attachment;
+	std::unique_ptr<OdinButtonAttachment> m_fil2_osc2_attachment;
+	std::unique_ptr<OdinButtonAttachment> m_fil2_osc3_attachment;
+	std::unique_ptr<OdinButtonAttachment> m_fil2_fil1_attachment;
+	std::unique_ptr<OdinButtonAttachment> m_legato_attachment;
 
-  std::unique_ptr<OdinButtonAttachment> m_phaser_on_attachment;
-  std::unique_ptr<OdinButtonAttachment> m_flanger_on_attachment;
-  std::unique_ptr<OdinButtonAttachment> m_delay_on_attachment;
-  std::unique_ptr<OdinButtonAttachment> m_chorus_on_attachment;
-  std::unique_ptr<OdinButtonAttachment> m_fil1_osc1_attachment;
-  std::unique_ptr<OdinButtonAttachment> m_fil1_osc2_attachment;
-  std::unique_ptr<OdinButtonAttachment> m_fil1_osc3_attachment;
-  std::unique_ptr<OdinButtonAttachment> m_fil2_osc1_attachment;
-  std::unique_ptr<OdinButtonAttachment> m_fil2_osc2_attachment;
-  std::unique_ptr<OdinButtonAttachment> m_fil2_osc3_attachment;
-  std::unique_ptr<OdinButtonAttachment> m_fil2_fil1_attachment;
-  std::unique_ptr<OdinButtonAttachment> m_legato_attachment;
+	std::unique_ptr<OdinKnobAttachment> m_glide_attachment;
+	std::unique_ptr<OdinKnobAttachment> m_master_attachment;
+	std::unique_ptr<OdinKnobAttachment> m_modwheel_attachment;
+	std::unique_ptr<OdinKnobAttachment> m_pitchbend_attachment;
+	std::unique_ptr<OdinKnobAttachment> m_unison_detune_attachment;
+	std::unique_ptr<OdinKnobAttachment> m_unison_width_attachment;
 
-  std::unique_ptr<OdinKnobAttachment> m_glide_attachment;
-  std::unique_ptr<OdinKnobAttachment> m_master_attachment;
-  std::unique_ptr<OdinKnobAttachment> m_modwheel_attachment;
-  std::unique_ptr<OdinKnobAttachment> m_pitchbend_attachment;
-  std::unique_ptr<OdinKnobAttachment> m_unison_detune_attachment;
-  std::unique_ptr<OdinKnobAttachment> m_unison_width_attachment;
+	Identifier m_osc1_type_identifier;
+	Identifier m_osc2_type_identifier;
+	Identifier m_osc3_type_identifier;
+	Identifier m_fil1_type_identifier;
+	Identifier m_fil2_type_identifier;
+	Identifier m_fil3_type_identifier;
+	Identifier m_pitchbend_amount_identifier;
+	Identifier m_unison_voices_identifier;
+	Identifier m_delay_position_identifier;
+	Identifier m_phaser_position_identifier;
+	Identifier m_flanger_position_identifier;
+	Identifier m_chorus_position_identifier;
 
-  Identifier m_osc1_type_identifier;
-  Identifier m_osc2_type_identifier;
-  Identifier m_osc3_type_identifier;
-  Identifier m_fil1_type_identifier;
-  Identifier m_fil2_type_identifier;
-  Identifier m_fil3_type_identifier;
-  Identifier m_pitchbend_amount_identifier;
-  Identifier m_unison_voices_identifier;
-  Identifier m_delay_position_identifier;
-  Identifier m_phaser_position_identifier;
-  Identifier m_flanger_position_identifier;
-  Identifier m_chorus_position_identifier;
+	OdinTooltipWindow m_tooltip;
+	TooltipFeels m_tooltip_feels;
 
-  OdinTooltipWindow m_tooltip;
-  TooltipFeels m_tooltip_feels;
+	OdinAudioProcessor &m_processor;
 
-  OdinAudioProcessor& m_processor;
+	juce::Image m_odin_backdrop;
 
-  juce::Image m_odin_backdrop;
+  //tuning
+	void importSCLFile();
+	void importKBMFile();
+	void exportSCLFile();
+	void exportKBMFile();
+	void restoreSCL();
+	void restoreKBM();
 
-  void setOsc1Plate(int p_osc_type);
-  void setOsc2Plate(int p_osc_type);
-  void setOsc3Plate(int p_osc_type);
-  void setFilter1Plate(int p_osc_type);
-  void setFilter2Plate(int p_osc_type);
-  void setFilter3Plate(int p_osc_type);
-  void setEnv13(bool p_env13);
-  void setEnv24(bool p_env24);
-  void setLfo12(bool p_lfo13);
-  void setLfo34(bool p_lfo24);
-  //void setArpMod(bool p_arp);
-  void setMatrixSectionModule(int p_module);
-  void updatePitchWheel(float p_value);
-  void updateModWheel(float p_value);
-  void setGUISizeBig(bool p_big, bool p_write_to_config);
-  void setGUISmall();
-  void setGUIBig();
+	void setOsc1Plate(int p_osc_type);
+	void setOsc2Plate(int p_osc_type);
+	void setOsc3Plate(int p_osc_type);
+	void setFilter1Plate(int p_osc_type);
+	void setFilter2Plate(int p_osc_type);
+	void setFilter3Plate(int p_osc_type);
+	void setEnv13(bool p_env13);
+	void setEnv24(bool p_env24);
+	void setLfo12(bool p_lfo13);
+	void setLfo34(bool p_lfo24);
+	//void setArpMod(bool p_arp);
+	void setMatrixSectionModule(int p_module);
+	void updatePitchWheel(float p_value);
+	void updateModWheel(float p_value);
+	void setGUISizeBig(bool p_big, bool p_write_to_config);
+	void setGUISmall();
+	void setGUIBig();
 
-  void readOrCreateConfigFile(bool& p_GUI_big);
-  void writeConfigFile(bool p_GUI_big);
+	void readOrCreateConfigFile(bool &p_GUI_big);
+	void writeConfigFile(bool p_GUI_big);
 
-  int m_octave_shift = 0;
-  bool m_is_standalone_plugin;
+	int m_octave_shift = 0;
+	bool m_is_standalone_plugin;
 
-  JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(OdinAudioProcessorEditor)
+	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(OdinAudioProcessorEditor)
 };

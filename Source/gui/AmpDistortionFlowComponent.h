@@ -16,7 +16,7 @@
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
-#include "GlasDropdown.h"
+#include "GlassDropdown.h"
 #include "../GlobalIncludes.h"
 #include "Knob.h"
 #include "OdinButton.h"
@@ -100,7 +100,7 @@ private:
 	OdinButton m_flow_right;
 	OdinButton m_distortion;
 
-	GlasDropdown m_distortion_algo;
+	GlassDropdown m_distortion_algo;
 
 	AudioProcessorValueTreeState &m_value_tree;
 

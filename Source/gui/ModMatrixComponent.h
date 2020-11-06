@@ -16,7 +16,7 @@
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
-#include "GlasDropdown.h"
+#include "GlassDropdown.h"
 #include "../GlobalIncludes.h"
 #include "ModAmountComponentExtended.h"
 
@@ -51,13 +51,13 @@ private:
   void createMenu(PopupMenu* p_menu);
   void setStandardMenu(PopupMenu *p_menu);
 
-  GlasDropdown m_source[N_ROWS];
+  GlassDropdown m_source[N_ROWS];
   ModAmountComponentExtended m_amount_1[N_ROWS];
-  GlasDropdown m_dest_1[N_ROWS];
+  GlassDropdown m_dest_1[N_ROWS];
   ModAmountComponentExtended m_amount_2[N_ROWS];
-  GlasDropdown m_dest_2[N_ROWS];
+  GlassDropdown m_dest_2[N_ROWS];
   ModAmountComponent m_amount_3[N_ROWS];
-  GlasDropdown m_scale[N_ROWS];
+  GlassDropdown m_scale[N_ROWS];
 
   Identifier m_source_identifier0;
   Identifier m_source_identifier1;

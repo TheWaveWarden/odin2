@@ -100,6 +100,7 @@ public:
 	// this is used to retrigger a held down note if the note after it was released. It stores note and velocity
 	std::list<std::pair<int, int>> m_playmode_mono_note_list;
 	Atomic<int> m_step_led_active = -1;
+	Tunings::Tuning m_tuning;
 
 private:
 	void setSampleRate(float p_samplerate);
@@ -205,8 +206,6 @@ private:
 	WavetableContainer m_WT_container;
 	OdinArpeggiator m_arpeggiator;
 	Voice m_voice[VOICES];
-
-	Tunings::Tuning m_tuning;
 
 	LadderFilter m_ladder_filter[2];
 	SEMFilter12 m_SEM_filter_12[2];

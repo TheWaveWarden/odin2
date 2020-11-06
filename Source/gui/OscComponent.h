@@ -19,7 +19,7 @@
 #include "../GlobalIncludes.h"
 #include "../Utilities.h"
 #include "ChipdrawWindow.h"
-#include "GlasDropdown.h"
+#include "GlassDropdown.h"
 #include "IntegerKnob.h"
 #include "Knob.h"
 #include "LeftRightButton.h"
@@ -285,10 +285,10 @@ protected:
   XYPadComponent m_xy;
   Knob m_xy_x;
   Knob m_xy_y;
-  GlasDropdown m_vec_a;
-  GlasDropdown m_vec_b;
-  GlasDropdown m_vec_c;
-  GlasDropdown m_vec_d;
+  GlassDropdown m_vec_a;
+  GlassDropdown m_vec_b;
+  GlassDropdown m_vec_c;
+  GlassDropdown m_vec_d;
 
   std::string m_osc_number;
   AudioProcessorValueTreeState &m_value_tree;

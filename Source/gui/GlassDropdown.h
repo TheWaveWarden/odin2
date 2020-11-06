@@ -29,12 +29,12 @@
 #include "../GlobalIncludes.h"
 #include <functional>
 #define INLAY_DEFAULT 1
-class GlasDropdown : public juce::ComboBox {
+class GlassDropdown : public juce::ComboBox {
 public:
-	GlasDropdown();
-	~GlasDropdown();
+	GlassDropdown();
+	virtual ~GlassDropdown();
 
-	void paint(Graphics &) override;
+	virtual void paint(Graphics &) override;
 	void resized() override {
 	} //note without this function, screen text will be drawn double.... no idea..
 	void setImage(juce::Image p_panel) {
@@ -105,7 +105,7 @@ public:
 		m_show_triangle = p_show;
 	}
 
-private:
+protected:
 	int m_inlay_top  = 0;
 	int m_inlay_left = 0;
 
@@ -121,7 +121,7 @@ private:
 	juce::Colour m_grey_color            = juce::Colours::lightgrey;
 	juce::Colour m_grey_background_color = juce::Colours::black;
 	juce::Colour m_font_color            = juce::Colours::white;
-	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(GlasDropdown)
+	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(GlassDropdown)
 
 	OdinMenuFeels m_menu_feels;
 };

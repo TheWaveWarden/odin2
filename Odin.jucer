@@ -1341,6 +1341,13 @@
             file="Graphics_150/applied/WW_logo_xy_150.png"/>
     </GROUP>
     <GROUP id="{7AF384ED-9FD6-6492-4B8C-5777BB9A2698}" name="Source">
+      <FILE id="aIxVj1" name="FixedTextGlassDropdown.h" compile="0" resource="0"
+            file="Source/gui/FixedTextGlassDropdown.h"/>
+      <FILE id="kd4xyY" name="FixedTextGlassDropdown.cpp" compile="1" resource="0"
+            file="Source/gui/FixedTextGlassDropdown.cpp"/>
+      <FILE id="iQ4IiX" name="GlassDropdown.h" compile="0" resource="0" file="Source/gui/GlassDropdown.h"/>
+      <FILE id="u2hJTS" name="GlassDropdown.cpp" compile="1" resource="0"
+            file="Source/gui/GlassDropdown.cpp"/>
       <FILE id="Y82HXT" name="ReverbComponent.cpp" compile="1" resource="0"
             file="Source/gui/ReverbComponent.cpp"/>
       <FILE id="aSPjJ2" name="ReverbComponent.h" compile="0" resource="0"
@@ -1396,9 +1403,6 @@
       <FILE id="xiZXl8" name="FXComponent.h" compile="0" resource="0" file="Source/gui/FXComponent.h"/>
       <FILE id="kFvFcx" name="GlasDisplay.cpp" compile="1" resource="0" file="Source/gui/GlasDisplay.cpp"/>
       <FILE id="j4EBc4" name="GlasDisplay.h" compile="0" resource="0" file="Source/gui/GlasDisplay.h"/>
-      <FILE id="xKrAJ5" name="GlasDropdown.cpp" compile="1" resource="0"
-            file="Source/gui/GlasDropdown.cpp"/>
-      <FILE id="GjCcJl" name="GlasDropdown.h" compile="0" resource="0" file="Source/gui/GlasDropdown.h"/>
       <FILE id="z5mvGZ" name="InputField.h" compile="0" resource="0" file="Source/gui/InputField.h"/>
       <FILE id="Yvnf2T" name="IntegerKnob.cpp" compile="1" resource="0" file="Source/gui/IntegerKnob.cpp"/>
       <FILE id="HOGsjk" name="IntegerKnob.h" compile="0" resource="0" file="Source/gui/IntegerKnob.h"/>

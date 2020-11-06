@@ -13,25 +13,16 @@
 ** GNU General Public License for more details.
 */
 
-#include "GlasDropdown.h"
-#include "../JuceLibraryCode/JuceHeader.h"
+#include "FixedTextGlassDropdown.h"
 
-GlasDropdown::GlasDropdown() {
-	setLookAndFeel(&m_menu_feels);
+FixedTextGlassDropdown::FixedTextGlassDropdown(const std::string &p_fixed_text) : m_fixed_text(p_fixed_text) {
 }
 
-GlasDropdown::~GlasDropdown() {
-	setLookAndFeel(nullptr);
-}
-
-void GlasDropdown::paint(Graphics &g) {
+void FixedTextGlassDropdown::paint(Graphics &g) {
 	SET_INTERPOLATION_QUALITY(g)
 
-	if (getSelectedId() == 0 && m_grey_first_element) {
-		g.setColour(m_grey_background_color);
-	} else {
-		g.setColour(m_color);
-	}
+	g.setColour(m_color);
+
 	juce::Point<int> top_left = getLocalBounds().getTopLeft();
 	top_left.addXY(m_inlay + m_inlay_left, m_inlay - m_inlay_top);
 	juce::Point<int> bottom_right = getLocalBounds().getBottomRight();
@@ -85,10 +76,6 @@ void GlasDropdown::paint(Graphics &g) {
 		g.setFont(12.0f);
 	}
 
-	if (getSelectedId() == 0) {
-		g.drawText(m_default_text, text_bounds, Justification::centred, true);
-	} else {
-		g.drawText(getText(), text_bounds, Justification::centred, true);
-	}
+	g.drawText(m_fixed_text, text_bounds, Justification::centred, true);
 	g.drawImageAt(m_glaspanel, 0, 0);
 }
