@@ -87,6 +87,7 @@ AmpDistortionFlowComponent::AmpDistortionFlowComponent(AudioProcessorValueTreeSt
 	//m_distortion_algo.addItem("Sine", 4);
 	//m_distortion_algo.addItem("Cube", 5);
 	m_distortion_algo.setEditableText(false);
+	m_distortion_algo.showTriangle();
 	m_distortion_algo.setSelectedId(1, dontSendNotification);
 	m_distortion_algo.setColor(juce::STANDARD_DISPLAY_COLOR);
 	m_distortion_algo.setTooltip("Selects the distortion algorithm to be used");

@@ -15,6 +15,16 @@
 
 #pragma once
 
+#define TRIANGLE_POS_X 51
+#define TRIANGLE_POS_Y 8
+#define TRIANGLE_WIDTH 8
+#define TRIANGLE_HEIGHT 4
+
+#define TRIANGLE_POS_X_150 76
+#define TRIANGLE_POS_Y_150 12
+#define TRIANGLE_WIDTH_150 12
+#define TRIANGLE_HEIGHT_150 6
+
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "../GlobalIncludes.h"
 #include <functional>
@@ -91,15 +101,17 @@ public:
 	void setInlayLeft(int p_inlay) {
 		m_inlay_left = p_inlay;
 	}
+	void showTriangle(bool p_show = true){
+		m_show_triangle = p_show;
+	}
 
 private:
 	int m_inlay_top  = 0;
 	int m_inlay_left = 0;
 
 	bool m_GUI_big = false;
-
 	bool m_setOneToZero = false;
-
+	bool m_show_triangle = false;
 	std::string m_default_text = "undefined";
 
 	bool m_grey_first_element = false;

@@ -38,6 +38,37 @@ void GlasDropdown::paint(Graphics &g) {
 	bottom_right.addXY(-m_inlay - 1, -m_inlay);
 	g.fillRect(juce::Rectangle<int>(top_left, bottom_right)); //
 
+	auto text_bounds = getLocalBounds();
+	if (m_show_triangle) {
+		if (m_GUI_big) {
+
+			Path triangle;
+			triangle.addTriangle(TRIANGLE_POS_X_150,
+			                     TRIANGLE_POS_Y_150,
+			                     TRIANGLE_POS_X_150 + TRIANGLE_WIDTH_150,
+			                     TRIANGLE_POS_Y_150,
+			                     TRIANGLE_POS_X_150 + TRIANGLE_WIDTH_150 / 2,
+			                     TRIANGLE_POS_Y_150 + TRIANGLE_HEIGHT_150);
+			g.setColour(m_grey_color);
+			g.fillPath(triangle);
+
+			text_bounds.removeFromRight(TRIANGLE_WIDTH_150 * 1.f);
+		} else {
+
+			Path triangle;
+			triangle.addTriangle(TRIANGLE_POS_X,
+			                     TRIANGLE_POS_Y,
+			                     TRIANGLE_POS_X + TRIANGLE_WIDTH,
+			                     TRIANGLE_POS_Y,
+			                     TRIANGLE_POS_X + TRIANGLE_WIDTH / 2,
+			                     TRIANGLE_POS_Y + TRIANGLE_HEIGHT);
+			g.setColour(m_grey_color);
+			g.fillPath(triangle);
+
+			text_bounds.removeFromRight(TRIANGLE_WIDTH * 1.f);
+		}
+	}
+
 	g.setColour(m_font_color);
 
 	if (getSelectedId() == 0 && m_grey_first_element) {
@@ -55,10 +86,9 @@ void GlasDropdown::paint(Graphics &g) {
 	}
 
 	if (getSelectedId() == 0) {
-		g.drawText(m_default_text, getLocalBounds(), Justification::centred, true);
+		g.drawText(m_default_text, text_bounds, Justification::centred, true);
 	} else {
-
-		g.drawText(getText(), getLocalBounds(), Justification::centred, true);
+		g.drawText(getText(), text_bounds, Justification::centred, true);
 	}
 	g.drawImageAt(m_glaspanel, 0, 0);
 }

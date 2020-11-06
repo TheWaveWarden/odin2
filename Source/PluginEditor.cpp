@@ -535,6 +535,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	m_mono_poly_legato_dropdown.addItem("Retrig", 3);
 	m_mono_poly_legato_dropdown.setEditableText(false);
 	m_mono_poly_legato_dropdown.setSelectedId(2, dontSendNotification);
+	m_mono_poly_legato_dropdown.showTriangle();
 
 	m_mono_poly_legato_dropdown.setColor(juce::STANDARD_DISPLAY_COLOR);
 	m_mono_poly_legato_dropdown.setTooltip(
