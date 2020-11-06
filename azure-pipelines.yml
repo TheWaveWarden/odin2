@@ -310,7 +310,6 @@ jobs:
       head -n $LINE_NUMBER AppConfig.h > app_config.tmp
       echo -e "#define JucePlugin_Build_LV2 1" >> app_config.tmp
       echo -e "#define JucePlugin_LV2URI \"https://www.thewavewarden.com/odin2\"" >> app_config.tmp
-      echo -e "#define JucePlugin_MaxNumInputChannels 0" >> app_config.tmp
       echo -e "#define JucePlugin_MaxNumOutputChannels 2" >> app_config.tmp
       tail -n +$((LINE_NUMBER+1)) AppConfig.h >> app_config.tmp
       mv app_config.tmp AppConfig.h
