@@ -206,6 +206,8 @@ private:
 	OdinArpeggiator m_arpeggiator;
 	Voice m_voice[VOICES];
 
+	Tunings::Tuning m_tuning;
+
 	LadderFilter m_ladder_filter[2];
 	SEMFilter12 m_SEM_filter_12[2];
 	Korg35Filter m_korg_filter[2];

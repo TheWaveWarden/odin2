@@ -15,6 +15,7 @@
 
 #pragma once
 
+#include "../../tuning-library/include/Tunings.h"
 #include "../GlobalIncludes.h"
 #include "Amplifier.h"
 #include "FX/OversamplingDistortion.h"
@@ -127,7 +128,8 @@ struct Voice {
 	}
 
 	float MIDINoteToFreq(int p_MIDI_note) {
-		return 27.5f * pow(2.f, (float)(p_MIDI_note - 21) / 12.f);
+		return m_tuning_ptr->frequencyForMidiNote(p_MIDI_note);
+		//return 27.5f * pow(2.f, (float)(p_MIDI_note - 21) / 12.f);
 	}
 
 	void setBPM(float p_BPM, bool p_LFO1_reset, bool p_LFO2_reset, bool p_LFO3_reset) {
@@ -562,6 +564,10 @@ struct Voice {
 		unison_detune_factor = pow(2.f, unison_detune_position * unison_detune_amount / 12.f);
 	}
 
+	void setTuningPtr(Tunings::Tuning* p_tuning_ptr){
+		m_tuning_ptr = p_tuning_ptr;
+	}
+
 	// oscs
 	AnalogOscillator analog_osc[3];
 	WavetableOsc2D wavetable_osc[3];
@@ -596,6 +602,7 @@ struct Voice {
 	float unison_pan_position    = 0; // [-1,1]
 	float unison_detune_position = 0; //[-1,1]
 
+	Tunings::Tuning* m_tuning_ptr;
 	float unison_detune_factor = 1.f; //calculated from unison_detune_position
 
 	float unison_detune_amount  = 0.08f;
@@ -788,6 +795,7 @@ public:
 
 	float m_sustain_active_float = 0; //for modulation, "copy" of the bool
 protected:
+
 	bool m_sustain_active = false;
 
 	PlayModes m_mono_poly_legato = PlayModes::Poly;

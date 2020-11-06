@@ -156,6 +156,8 @@ OdinAudioProcessor::OdinAudioProcessor() :
 			m_voice[i].specdraw_osc[osc].setWavetableContainer(&m_WT_container);
 			m_voice[i].lfo[osc].setWavetableContainer(&m_WT_container);
 		}
+		m_voice[i].setTuningPtr(&m_tuning);
+
 		m_voice[i].ring_mod[0].setWavetableContainer(&m_WT_container);
 		m_voice[i].ring_mod[1].setWavetableContainer(&m_WT_container);
 	}
