@@ -13,29 +13,11 @@
 ** GNU General Public License for more details.
 */
 
+//this file is included from PluginProcessor.cpp to split the class implementation
+
+#include "PluginProcessor.h"
+
 void OdinAudioProcessor::addNonAudioParametersToTree() {
-
-	// auto node = m_value_tree_draw;
-
-	// for (int i = 0; i < WAVEDRAW_STEPS_X; ++i) {
-	// 	float val = sin(2 * M_PI * i / (float)WAVEDRAW_STEPS_X) * 0.9;
-	// 	node.setProperty(String("osc1_wavedraw_values_" + std::to_string(i)), val, nullptr);
-	// 	node.setProperty(String("osc2_wavedraw_values_" + std::to_string(i)), val, nullptr);
-	// 	node.setProperty(String("osc3_wavedraw_values_" + std::to_string(i)), val, nullptr);
-	// }
-	// for (int i = 0; i < CHIPDRAW_STEPS_X; ++i) {
-	// 	float val = i < CHIPDRAW_STEPS_X / 2 ? 0.875f : -0.875f;
-	// 	node.setProperty(String("osc1_chipdraw_values_" + std::to_string(i)), val, nullptr);
-	// 	node.setProperty(String("osc2_chipdraw_values_" + std::to_string(i)), val, nullptr);
-	// 	node.setProperty(String("osc3_chipdraw_values_" + std::to_string(i)), val, nullptr);
-	// }
-	// for (int i = 0; i < SPECDRAW_STEPS_X; ++i) {
-	// 	float val = i == 0 ? 1 : 0;
-	// 	node.setProperty(String("osc1_specdraw_values_" + std::to_string(i)), val, nullptr);
-	// 	node.setProperty(String("osc2_specdraw_values_" + std::to_string(i)), val, nullptr);
-	// 	node.setProperty(String("osc3_specdraw_values_" + std::to_string(i)), val, nullptr);
-	// 	//		node.setProperty(String("osc3_specdraw_values_" + std::to_string(i)), 0.5f-i*0.005+cos(i*0.2f)*0.5f*(1.f-i*0.02), nullptr);
-	// }
 
 	writeDefaultWavedrawValuesToTree(1);
 	writeDefaultWavedrawValuesToTree(2);

@@ -13,6 +13,9 @@
 ** GNU General Public License for more details.
 */
 
+//this file is included from PluginProcessor.cpp to split the class implementation
+
+#include "PluginProcessor.h"
 
 void OdinAudioProcessor::setModulationPointers() {
 	//========================================

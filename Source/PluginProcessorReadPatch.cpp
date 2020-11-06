@@ -13,6 +13,10 @@
 ** GNU General Public License for more details.
 */
 
+//this file is included from PluginProcessor.cpp to split the class implementation
+
+#include "PluginProcessor.h"
+
 // read patch by iterating over all attritubes,
 // setting them if they are available and setting to default if not
 void OdinAudioProcessor::readPatch(const ValueTree &newState) {
