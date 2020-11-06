@@ -54,7 +54,7 @@ Add these lines to `odin2/JuceLibraryCode/AppConfig.h` and make sure they are co
 
   #define JucePlugin_Build_LV2 1
   #define JucePlugin_LV2URI "https://www.thewavewarden.com/odin2"
-  #define JucePlugin_MaxNumInputChannels 2
+  #define JucePlugin_MaxNumInputChannels 0
   #define JucePlugin_MaxNumOutputChannels 2
 
 // [END_USER_CODE_SECTION]
