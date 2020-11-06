@@ -28,6 +28,11 @@ jobs:
 
   steps:
 
+  - bash: |
+      git submodule init
+      git submodule update
+    displayName: "Git Submodules"
+
 #! ██     ██ ██ ███    ██ ██████   ██████  ██     ██ ███████ 
 #! ██     ██ ██ ████   ██ ██   ██ ██    ██ ██     ██ ██      
 #! ██  █  ██ ██ ██ ██  ██ ██   ██ ██    ██ ██  █  ██ ███████ 
