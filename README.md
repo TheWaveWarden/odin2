@@ -1,3 +1,7 @@
+|Master|Devel|
+|---|---|
+|[![Build Status](https://dev.azure.com/TheWaveWarden/odin2/_apis/build/status/TheWaveWarden.odin2?branchName=master)](https://dev.azure.com/TheWaveWarden/odin2/_build/latest?definitionId=1&branchName=master)|[![Build Status](https://dev.azure.com/TheWaveWarden/odin2/_apis/build/status/TheWaveWarden.odin2?branchName=devel)](https://dev.azure.com/TheWaveWarden/odin2/_build/latest?definitionId=1&branchName=devel)|
+
 # Odin 2 Synthesizer
 
 This is the home of **Odin 2 free VST3, AU and LV2 synthesizer** plugin. This repository contains the code to build the project. **If you just want to download the synth visit
