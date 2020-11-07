@@ -13,7 +13,7 @@
 ** GNU General Public License for more details.
 */
 
-//#define DEBUG_VARIABLES
+#define DEBUG_VARIABLES
 
 float valueToDenominator(int p_value) {
 	switch (p_value) {
@@ -686,15 +686,15 @@ void OdinAudioProcessor::treeValueChangedReverb(const String &p_ID, float p_new_
 	StringRef id = StringRef(p_ID);
 
 	if (id == m_reverb_delay_identifier) {
-		//m_reverb.set_delay(p_new_value);
-	} else if (id == m_reverb_lowfreq_identifier) {
-		//m_reverb.set_xover(p_new_value);//! ???
-	} else if (id == m_reverb_lowtime_identifier) {
-		//m_reverb.set_rtlow(p_new_value);
-	} else if (id == m_reverb_midtime_identifier) {
-		//m_reverb.set_rtmid(p_new_value);
-	} else if (id == m_reverb_hfdamp_identifier) {
-		//m_reverb.set_fdamp(p_new_value);
+		m_reverb.setPreDelayMs(p_new_value);
+	} else if (id == m_reverb_roomsize_identifer) {
+		m_reverb.setRoomSize(p_new_value);
+	} else if (id == m_reverb_diffusion_identifer) {
+		m_reverb.setDiffusion(p_new_value);
+	} else if (id == m_reverb_decaytime_identifer) {
+		m_reverb.setDecayTime(p_new_value);
+	} else if (id == m_reverb_buildup_identifer) {
+		m_reverb.setBuildup(p_new_value);
 	} else if (id == m_reverb_eq_gain_identifier) {
 		//m_reverb.set_eq1_gain(p_new_value);
 	} else if (id == m_reverb_eq_freq_identifier) {

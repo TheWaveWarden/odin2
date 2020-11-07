@@ -28,23 +28,6 @@ float db_to_linear(float x) {
 
 #define clamp(min, val, max) ((val) < (min) ? (min) : ((val) > (max) ? (max) : (val)))
 
-// enum revparam {
-// 	r2p_predelay = 0,
-
-// 	r2p_room_size,
-// 	r2p_decay_time,
-// 	r2p_diffusion,
-// 	r2p_buildup,
-// 	r2p_modulation,
-
-// 	r2p_lf_damping,
-// 	r2p_hf_damping,
-
-// 	r2p_width,
-// 	r2p_mix,
-// 	r2p_num_params,
-// };
-
 const float db60 = powf(10.f, 0.05f * -60.f);
 
 Reverb2Effect::allpass::allpass() {
@@ -188,7 +171,7 @@ void Reverb2Effect::update_ringout_time() {
 }
 
 void Reverb2Effect::setRoomSize(float p_room_size) {
-	m_scale = powf(2.f, 1.f * p_room_size);
+	m_scale = powf(2.f, p_room_size);
 	calc_size(m_scale);
 }
 
@@ -228,7 +211,7 @@ void Reverb2Effect::setMix(float p_mix) {
 	m_mix = p_mix;
 }
 
-void Reverb2Effect::setPreDelay(float p_predelay) {
+void Reverb2Effect::setPreDelayMs(float p_predelay) {
 	m_pre_delay_time = clamp(1, (int)(m_samplerate * p_predelay * 0.001), PREDELAY_BUFFER_SIZE_LIMIT - 1);
 }
 
@@ -262,7 +245,6 @@ void Reverb2Effect::process(float &dataL, float &dataR) {
 	auto hdc = clamp(0.01f, m_hf_damp_coefficent, 0.99f);
 	auto ldc = clamp(0.01f, m_lf_damp_coefficent, 0.99f);
 
-	DBG("==");
 	for (int b = 0; b < NUM_BLOCKS; b++) {
 		x = x + in;
 
@@ -331,44 +313,11 @@ int Reverb2Effect::group_label_ypos(int id) {
 }
 
 void Reverb2Effect::init_ctrltypes() {
-	//Effect::init_ctrltypes();
-
-	// m_fxdata_predelay.set_name("Pre-Delay");
-	// m_fxdata_predelay.set_type(ct_reverbpredelaytime);
-
-	// m_fxdata_room_size.set_name("Room Size");
-	// m_fxdata_room_size.set_type(ct_percent_bidirectional);
-	// m_fxdata_decay_time.set_name("Decay Time");
-	// m_fxdata_decay_time.set_type(ct_reverbtime);
-	// m_fxdata_diffusion.set_name("Diffusion");
-	// m_fxdata_diffusion.set_type(ct_percent);
-	// m_fxdata_buildup.set_name("Buildup");
-	// m_fxdata_buildup.set_type(ct_percent);
-	// m_fxdata_modulation.set_name("Modulation");
-	// m_fxdata_modulation.set_type(ct_percent);
-
-	// m_fxdata_hf_damping.set_name("HF Damping");
-	// m_fxdata_hf_damping.set_type(ct_percent);
-	// m_fxdata_lf_damping.set_name("LF Damping");
-	// m_fxdata_lf_damping.set_type(ct_percent);
-
-	// m_fxdata_width.set_name("Width");
-	// m_fxdata_width.set_type(ct_decibel_narrow);
-	// m_fxdata_mix.set_name("Mix");
-	// m_fxdata_mix.set_type(ct_percent);
-
-	// for( int i=r2p_predelay; i<r2p_num_params; ++i )
-	// {
-	//    auto a = 1;
-	//    if( i >= r2p_room_size ) a += 2;
-	//    if( i >= r2p_lf_damping ) a += 2;
-	//    if( i >= r2p_width ) a += 2;
-	//    fxdata->p[i].posy_offset = a;
-	// }
+	//todo remove?
 }
 
 void Reverb2Effect::init_default_values() {
-	setPreDelay(4.f);
+	setPreDelayMs(10.f);
 	setDecayTime(0.75f);
 	setMix(0.5);
 	setWidth(0.0f);

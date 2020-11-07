@@ -51,11 +51,11 @@ void OdinAudioProcessorEditor::restoreSCL() {
 
 void OdinAudioProcessorEditor::restoreKBM() {
 	DBG("restoreKBM()");
-	m_processor.m_tuning = Tunings::Tuning(m_processor.m_tuning.scale, Tunings::tuneA69To(440.));
+	m_processor.m_tuning = Tunings::Tuning(m_processor.m_tuning.scale, Tunings::tuneNoteTo( 60, Tunings::MIDI_0_FREQ * 32.0 ));
 }
 
 void OdinAudioProcessorEditor::resetEntireTuning() {
-	m_processor.m_tuning = Tunings::Tuning();
+	m_processor.m_tuning = Tunings::Tuning(Tunings::tuneNoteTo( 60, Tunings::MIDI_0_FREQ * 32.0 ));
 }
 
 void OdinAudioProcessorEditor::importSCLFromFileBrowser(String p_directory,

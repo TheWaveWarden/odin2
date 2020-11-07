@@ -428,10 +428,10 @@
     Identifier m_delay_synctime_numerator_identifier;
     Identifier m_delay_synctime_denominator_identifier;
     Identifier m_reverb_delay_identifier;
-    Identifier m_reverb_lowfreq_identifier;
-    Identifier m_reverb_lowtime_identifier;
-    Identifier m_reverb_midtime_identifier;
-    Identifier m_reverb_hfdamp_identifier;
+    Identifier m_reverb_roomsize_identifer;
+    Identifier m_reverb_diffusion_identifer;
+    Identifier m_reverb_decaytime_identifer;
+    Identifier m_reverb_buildup_identifer;
     Identifier m_reverb_eq_gain_identifier;
     Identifier m_reverb_eq_freq_identifier;
     Identifier m_reverb_ducking_identifier;

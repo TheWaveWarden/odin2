@@ -295,15 +295,15 @@
 	    std::make_unique<AudioParameterInt>("delay_on", "Delay On", 0, 1, 0),
 
 	    std::make_unique<AudioParameterFloat>(
-	        "rev_delay", "Reverb Delay", NormalisableRange<float>(20, 100, 0.f, 1.f), 40.f),
+	        "rev_delay", "Reverb Pre Delay", NormalisableRange<float>(1.f, 1000, 0.f, FILTER_SKEW_DEFAULT), 40.f),
 	    std::make_unique<AudioParameterFloat>(
-	        "rev_lowfreq", "Reverb Low Freq", NormalisableRange<float>(50.f, 1000.f, 0.f, FILTER_SKEW_DEFAULT), 200.f),
+	        "rev_roomsize", "Reverb Room Size", NormalisableRange<float>(0.f, 1.f, 0.f, 1.f), 0.5f),
 	    std::make_unique<AudioParameterFloat>(
-	        "rev_lowtime", "Reverb Low Time", NormalisableRange<float>(1.f, 8.f, 0.f, 1.f), 5.f),
+	        "rev_diffusion", "Reverb Diffusion", NormalisableRange<float>(0.f, 1.f, 0.f, 1.f), 0.5f),
 	    std::make_unique<AudioParameterFloat>(
-	        "rev_midtime", "Reverb Mid Time", NormalisableRange<float>(1.f, 8.f, 0.f, 1.f), 2.f),
+	        "rev_decaytime", "Reverb Decay Time", NormalisableRange<float>(0.01f, 64.f, 0.f, FILTER_SKEW_DEFAULT), 2.f),
 	    std::make_unique<AudioParameterFloat>(
-	        "rev_hfdamp", "Reverb HF Damp", NormalisableRange<float>(1500.f, 24000.f, 0.f, FILTER_SKEW_DEFAULT), 6000.f),
+	        "rev_buildup", "Reverb Buildup", NormalisableRange<float>(0.f, 1.f, 0.f, 1), 0.5f),
 	    std::make_unique<AudioParameterFloat>(
 	        "rev_eqgain", "Reverb EQ Gain", NormalisableRange<float>(-15.f, 15.f, 0.f, 1.f), 0.f),
 	    std::make_unique<AudioParameterFloat>(

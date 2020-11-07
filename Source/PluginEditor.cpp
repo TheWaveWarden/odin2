@@ -22,37 +22,6 @@
 //include these files with implementation to avoid one big cpp file
 #include "PluginEditorTuning.cpp"
 
-//this was used to create automatic screenshots on startup
-/*bool writeComponentImageToFile(Component &comp) {
-	time_t rawtime;
-	struct tm *timeinfo;
-	char buffer[80];
-
-	time(&rawtime);
-	timeinfo = localtime(&rawtime);
-
-	strftime(buffer, sizeof(buffer), "%Y-%m-%d %H:%M:%S", timeinfo);
-	std::string date(buffer);
-
-	juce::File file("../../../screenshot.png");
-	//juce::File file2("../../../gui_saves_odin/screenshot" + date + ".png");
-	Rectangle<int> subArea = comp.getBounds();
-	if (ImageFileFormat *format = ImageFileFormat::findImageFormatForFileExtension(file)) {
-		FileOutputStream out(file);
-		//FileOutputStream out2(file2);
-		//if (out2.openedOk()) {
-		//	format->writeImageToStream(comp.createComponentSnapshot(subArea), out2);
-		//}
-
-		if (out.openedOk()) {
-			out.setPosition(0);
-			out.truncate();
-			return format->writeImageToStream(comp.createComponentSnapshot(subArea), out);
-		}
-	}
-	return false;
-}*/
-
 void writeValueTreeToFile(const ValueTree &tree) {
 	File file("../../odin2/ValueTree.txt");
 	String text = tree.toXmlString();

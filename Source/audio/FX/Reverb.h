@@ -169,7 +169,7 @@ public:
 	void setLFDamp(float p_lf_damping);	
 	void setWidth(float p_width);
 	void setMix(float p_mix);
-	void setPreDelay(float p_predelay);
+	void setPreDelayMs(float p_predelay);
 	void setModulation(float p_modulation);
 private:
 	float m_samplerate = -1;

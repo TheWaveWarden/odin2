@@ -22,7 +22,7 @@
 #include "OdinControlAttachments.h"
 
 #define REVERB_EQ_GAIN_POS_X 141
-#define REVERB_EQ_GAIN_POS_Y 17
+#define REVERB_EQ_GAIN_POS_Y 5
 #define REVERB_DUCKING_POS_X 180
 #define REVERB_DUCKING_POS_Y REVERB_EQ_GAIN_POS_Y
 #define DRY_POS_X 160
@@ -66,10 +66,10 @@ private:
 	juce::Image m_background;
 
 	Knob m_delay;
-	Knob m_low_freq;
-	Knob m_low_time;
-	Knob m_mid_time;
-	Knob m_HF_damping;
+	Knob m_roomsize;
+	Knob m_diffusion;
+	Knob m_decay;
+	Knob m_buildup;
 	Knob m_EQ_gain;
 	Knob m_EQ_freq;
 	Knob m_ducking;
@@ -78,10 +78,10 @@ private:
 	AudioProcessorValueTreeState &m_value_tree;
 
 	std::unique_ptr<OdinKnobAttachment> m_reverb_delay_attach;
-	std::unique_ptr<OdinKnobAttachment> m_reverb_low_freq_attach;
-	std::unique_ptr<OdinKnobAttachment> m_reverb_low_time_attach;
-	std::unique_ptr<OdinKnobAttachment> m_reverb_mid_time_attach;
-	std::unique_ptr<OdinKnobAttachment> m_reverb_HF_damping_attach;
+	std::unique_ptr<OdinKnobAttachment> m_reverb_roomsize_attach;
+	std::unique_ptr<OdinKnobAttachment> m_reverb_diffusion_attach;
+	std::unique_ptr<OdinKnobAttachment> m_reverb_decay_attach;
+	std::unique_ptr<OdinKnobAttachment> m_reverb_buildup_attach;
 	std::unique_ptr<OdinKnobAttachment> m_reverb_EQ_gain_attach;
 	std::unique_ptr<OdinKnobAttachment> m_reverb_EQ_freq_attach;
 	std::unique_ptr<OdinKnobAttachment> m_reverb_ducking_attach;
