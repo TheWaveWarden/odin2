@@ -26,13 +26,7 @@ float db_to_linear(float x) {
 	return juce::Decibels::decibelsToGain(x);
 }
 
-float clamp(float min, float val, float max) {
-	if (val < min)
-		return min;
-	else if (val > max)
-		return max;
-	return val;
-}
+#define clamp(min, val, max) ((val) < (min) ? (min) : ((val) > (max) ? (max) : (val)))
 
 // enum revparam {
 // 	r2p_predelay = 0,
@@ -235,7 +229,7 @@ void Reverb2Effect::setMix(float p_mix) {
 }
 
 void Reverb2Effect::setPreDelay(float p_predelay) {
-	m_pre_delay_time = clamp(1, (int)(m_samplerate * pow(2.0, p_predelay) * 1.f), PREDELAY_BUFFER_SIZE_LIMIT - 1);
+	m_pre_delay_time = clamp(1, (int)(m_samplerate * p_predelay * 0.001), PREDELAY_BUFFER_SIZE_LIMIT - 1);
 }
 
 void Reverb2Effect::setModulation(float p_modulation){
@@ -267,8 +261,11 @@ void Reverb2Effect::process(float &dataL, float &dataR) {
 
 	auto hdc = clamp(0.01f, m_hf_damp_coefficent, 0.99f);
 	auto ldc = clamp(0.01f, m_lf_damp_coefficent, 0.99f);
+
+	DBG("==");
 	for (int b = 0; b < NUM_BLOCKS; b++) {
 		x = x + in;
+
 		for (int c = 0; c < NUM_ALLPASSES_PER_BLOCK; c++) {
 			x = m_allpass[b][c].process(x, m_buildup);
 		}
@@ -290,11 +287,7 @@ void Reverb2Effect::process(float &dataL, float &dataR) {
 	m_state = x;
 	//}
 
-	// scale width
-	//float M[BLOCK_SIZE], S[BLOCK_SIZE];
-	//encodeMS(wetL, wetR, M, S, BLOCK_SIZE_QUAD);
-	//width.multiply_block(S, BLOCK_SIZE_QUAD);
-	//decodeMS(M, S, wetL, wetR, BLOCK_SIZE_QUAD);
+
 	float mid  = wetL + wetR;
 	float side = wetL - wetR;
 	side *= m_width;
@@ -395,4 +388,5 @@ void Reverb2Effect::setSampleRate(float p_sr) {
 
 	//todo this should not happen here...
 	init_default_values();
+	init();
 }
