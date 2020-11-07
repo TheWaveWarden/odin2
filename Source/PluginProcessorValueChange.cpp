@@ -696,9 +696,9 @@ void OdinAudioProcessor::treeValueChangedReverb(const String &p_ID, float p_new_
 	} else if (id == m_reverb_buildup_identifer) {
 		m_reverb.setBuildup(p_new_value);
 	} else if (id == m_reverb_eq_gain_identifier) {
-		//m_reverb.set_eq1_gain(p_new_value);
+		m_reverb.setEQGain(p_new_value);
 	} else if (id == m_reverb_eq_freq_identifier) {
-		//m_reverb.set_eq1_freq(p_new_value);
+		m_reverb.setEQFreq(p_new_value);
 	} else if (id == m_reverb_ducking_identifier) {
 		//m_reverb.set_ducking(p_new_value);
 	} else if (id == m_reverb_dry_wet_identifier) {

@@ -253,8 +253,8 @@ void Reverb2Effect::process(float &dataL, float &dataR) {
 		}
 
 		//HF / LF Damping filters
-		x = m_hf_damper[b].process_lowpass(x, hdc);
-		x = m_lf_damper[b].process_highpass(x, ldc);
+		//x = m_hf_damper[b].process_lowpass(x, hdc);
+		//x = m_lf_damper[b].process_highpass(x, ldc);
 
 		int modulation = (int)(m_modulation * lfos[b] * (float)DELAY_SUBSAMPLE_RANGE);
 		float tap_outL = 0.f;
@@ -275,6 +275,9 @@ void Reverb2Effect::process(float &dataL, float &dataR) {
 	side *= m_width;
 	wetL = (mid + side) * 0.5;
 	wetR = (mid - side) * 0.5;
+
+	wetL = m_EQ[0].doFilter(wetL);
+	wetR = m_EQ[1].doFilter(wetR);
 
 	//mix.fade_2_blocks_to(dataL, wetL, dataR, wetR, dataL, dataR, BLOCK_SIZE_QUAD);
 	dataL = (1.f - m_mix) * dataL + m_mix * wetL;
@@ -327,6 +330,10 @@ void Reverb2Effect::init_default_values() {
 	setHFDamp(0.2f);
 	setLFDamp(0.2f);
 	setRoomSize(0.f);
+
+	//todo find good eq value
+	m_EQ[0].setQ(1.5);
+	m_EQ[1].setQ(1.5);
 }
 
 void Reverb2Effect::setSampleRate(float p_sr) {
@@ -338,4 +345,23 @@ void Reverb2Effect::setSampleRate(float p_sr) {
 	//todo this should not happen here...
 	init_default_values();
 	init();
+
+	m_EQ[0].setSampleRate(p_sr);
+	m_EQ[1].setSampleRate(p_sr);
+}
+
+
+void Reverb2Effect::setEQGain(float p_gain){
+	m_EQ[0].setGain(p_gain);
+	m_EQ[1].setGain(p_gain);
+}
+
+void Reverb2Effect::setEQQ(float p_Q){
+	m_EQ[0].setQ(p_Q);
+	m_EQ[1].setQ(p_Q);
+}
+
+void Reverb2Effect::setEQFreq(float p_freq){
+	m_EQ[0].setFreq(p_freq);
+	m_EQ[1].setFreq(p_freq);
 }

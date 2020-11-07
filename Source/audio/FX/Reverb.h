@@ -14,25 +14,12 @@
 */
 
 #pragma once
-//#include "Effect.h"
 
-//the following are unused:
-//#include "BiquadFilter.h" //unused?
-//#include "DspUtilities.h"
-//#include "AllpassFilter.h"
-//#include "VectorizedSvfFilter.h"
-//#include <vt_dsp/halfratefilter.h>
-
-//#include <vt_dsp/lipol.h>
-
-//#include "DspUtilities.h"
-//#include "SurgeStorage.h"
-
-/*	base class			*/
 
 #include <cmath>
 #include <cstring>
 #include "../../GlobalIncludes.h"
+#include "../Filters/BiquadEQ.h"
 
 #define BLOCK_SIZE 1
 #define BLOCK_SIZE_INV 1
@@ -167,6 +154,9 @@ public:
 	void setBuildup(float p_buildup);
 	void setHFDamp(float p_hf_damping);
 	void setLFDamp(float p_lf_damping);	
+	void setEQGain(float p_gain);
+	void setEQQ(float p_Q);
+	void setEQFreq(float p_freq);
 	void setWidth(float p_width);
 	void setMix(float p_mix);
 	void setPreDelayMs(float p_predelay);
@@ -185,6 +175,7 @@ private:
 	delay m_delay[NUM_BLOCKS];
 	predelay m_predelay;
 	quadr_osc m_lfo;
+	BiquadEQ m_EQ[2];
 
 	int m_tap_timeL[NUM_BLOCKS];
 	int m_tap_timeR[NUM_BLOCKS];
@@ -205,15 +196,4 @@ private:
 	float m_roomsize;
 	float m_scale;
 	int m_pre_delay_time;
-
-	//float m_fxdata_buildup;
-	//float m_fxdata_predelay;
-	//float m_fxdata_mix;
-	//float m_fxdata_decay_time;
-	//float m_fxdata_modulation;
-	//float m_fxdata_hf_damping;
-	//float m_fxdata_lf_damping;
-	//float m_fxdata_room_size;
-	//float m_fxdata_diffusion;
-	//float m_fxdata_width;
 };
