@@ -16,6 +16,7 @@
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "../../GlobalIncludes.h"
 
 
 class BiquadFilter {
