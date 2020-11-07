@@ -220,6 +220,7 @@
 #define TUNING_EXPORT_KBM 150
 #define TUNING_RESTORE_SCL 1000
 #define TUNING_RESTORE_KBM 1050
+#define TUNING_RESET_ENTIRE_TUNING 2000
 
 class TooltipFeels : public LookAndFeel_V4 {
 public:
@@ -425,13 +426,20 @@ private:
 
 	juce::Image m_odin_backdrop;
 
-  //tuning
+	//tuning
 	void importSCLFile();
 	void importKBMFile();
 	void exportSCLFile();
 	void exportKBMFile();
 	void restoreSCL();
 	void restoreKBM();
+	void resetEntireTuning();
+
+	String m_scl_import_dir = DEFAULT_SOUNDBANK_IMPORT_LOCATION_STRING;
+	String m_kbm_import_dir = DEFAULT_SOUNDBANK_IMPORT_LOCATION_STRING;
+	std::unique_ptr<FileChooser> m_filechooser;
+	void importSCLFromFileBrowser(String p_directory, String p_extension, String p_title_text, int p_flags);
+	void importKBMFromFileBrowser(String p_directory, String p_extension, String p_title_text, int p_flags);
 
 	void setOsc1Plate(int p_osc_type);
 	void setOsc2Plate(int p_osc_type);

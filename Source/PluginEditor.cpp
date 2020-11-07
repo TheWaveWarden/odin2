@@ -560,14 +560,16 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	    "Load or export custom tunings. A tuning is comprised of a .scl file a .kbm file. The .kbm file maps keys on "
 	    "the keyboard to arbitrary note indices and sets the base note. The .scl file maps those indices to actual "
 	    "frequencies in relation to the base note.");
-	m_tuning_dropdown.addItem("Import SCL File", TUNING_IMPORT_SCL);
-	m_tuning_dropdown.addItem("Import KBM File", TUNING_IMPORT_KBM);
+	m_tuning_dropdown.addItem("Import .scl file", TUNING_IMPORT_SCL);
+	m_tuning_dropdown.addItem("Import .kbm file", TUNING_IMPORT_KBM);
 	m_tuning_dropdown.addSeparator();
-	m_tuning_dropdown.addItem("Export Current SCL File", TUNING_EXPORT_SCL);
-	m_tuning_dropdown.addItem("Export Current KBM File", TUNING_EXPORT_KBM);
+	m_tuning_dropdown.addItem("Export current .scl file", TUNING_EXPORT_SCL);
+	m_tuning_dropdown.addItem("Export current .kbm file", TUNING_EXPORT_KBM);
 	m_tuning_dropdown.addSeparator();
-	m_tuning_dropdown.addItem("Restore Standard Tuning", TUNING_RESTORE_SCL);
-	m_tuning_dropdown.addItem("Restore Standard Keyboard Mapping", TUNING_RESTORE_KBM);
+	m_tuning_dropdown.addItem("Reset to standard .scl", TUNING_RESTORE_SCL);
+	m_tuning_dropdown.addItem("Reset to standard .kbm", TUNING_RESTORE_KBM);
+	m_tuning_dropdown.addSeparator();
+	m_tuning_dropdown.addItem("Reset entire tuning", TUNING_RESET_ENTIRE_TUNING);
 	m_tuning_dropdown.onChange = [&]() {
 		DBG_VAR(m_tuning_dropdown.getSelectedId());
 		switch (m_tuning_dropdown.getSelectedId()) {
@@ -589,6 +591,8 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 		case TUNING_RESTORE_KBM:
 			restoreKBM();
 			break;
+		case TUNING_RESET_ENTIRE_TUNING:
+			resetEntireTuning();
 		default:
 			break;
 		}
