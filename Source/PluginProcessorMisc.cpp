@@ -272,12 +272,13 @@ void OdinAudioProcessor::setBPM(float p_BPM) {
 	m_arpeggiator.setBPM(p_BPM);
 }
 
-void OdinAudioProcessor::setFXButtonsPosition(int p_delay, int p_phaser, int p_flanger, int p_chorus) {
+void OdinAudioProcessor::setFXButtonsPosition(int p_delay, int p_phaser, int p_flanger, int p_chorus, int p_reverb) {
 
 	m_delay_position   = p_delay;
 	m_phaser_position  = p_phaser;
 	m_flanger_position = p_flanger;
 	m_chorus_position  = p_chorus;
+	m_reverb_position  = p_reverb;
 }
 
 void OdinAudioProcessor::setFilter3EnvValue() {

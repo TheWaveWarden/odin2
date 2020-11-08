@@ -17,7 +17,7 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 
-#define FX_BUTTON_OFFSET 61
+#define FX_BUTTON_OFFSET 48
 
 class DragButton : public juce::DrawableButton {
 public:
@@ -39,14 +39,12 @@ public:
 		//DBG(getX());
 		float GUI_factor = m_GUI_big ? 1.5f : 1.f;
 
-		if (isInRangeDrag(
-		        0 * (float)FX_BUTTON_OFFSET * GUI_factor, getX(), 0.5f * FX_BUTTON_OFFSET * GUI_factor)) {
+		if (isInRangeDrag(0 * (float)FX_BUTTON_OFFSET * GUI_factor, getX(), 0.5f * FX_BUTTON_OFFSET * GUI_factor)) {
 			lambdaMouseDrag(0);
 			return;
 		}
 
-		if (isInRangeDrag(0.5f * (float)FX_BUTTON_OFFSET * GUI_factor, getX(), 1.5f * FX_BUTTON_OFFSET*
-		    GUI_factor) ) {
+		if (isInRangeDrag(0.5f * (float)FX_BUTTON_OFFSET * GUI_factor, getX(), 1.5f * FX_BUTTON_OFFSET * GUI_factor)) {
 			lambdaMouseDrag(1);
 			return;
 		}
@@ -56,8 +54,13 @@ public:
 			return;
 		}
 
-		if (isInRangeDrag(2.5f * FX_BUTTON_OFFSET * GUI_factor, getX(), 3.f * FX_BUTTON_OFFSET* GUI_factor)) {
+		if (isInRangeDrag(2.5f * FX_BUTTON_OFFSET * GUI_factor, getX(), 3.5f * FX_BUTTON_OFFSET * GUI_factor)) {
 			lambdaMouseDrag(3);
+			return;
+		}
+
+		if (isInRangeDrag(3.5f * FX_BUTTON_OFFSET * GUI_factor, getX(), 4.f * FX_BUTTON_OFFSET * GUI_factor)) {
+			lambdaMouseDrag(4);
 			return;
 		}
 	}

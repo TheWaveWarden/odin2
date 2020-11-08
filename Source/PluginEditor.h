@@ -103,7 +103,7 @@
 
 #define FX_BUTTON_X 525
 #define FX_BUTTON_Y 310
-#define FX_BUTTON_OFFSET 61
+//#define FX_BUTTON_OFFSET 61
 #define FX_ON_BUTTON_X 526
 #define FX_ON_BUTTON_Y 330
 
@@ -363,6 +363,7 @@ private:
 	OdinButton m_phaser_on_button;
 	OdinButton m_chorus_on_button;
 	OdinButton m_delay_on_button;
+	OdinButton m_reverb_on_button;
 
 	OdinButton m_select_arp_button;
 	OdinButton m_select_modmatrix_button;
@@ -418,6 +419,7 @@ private:
 	Identifier m_phaser_position_identifier;
 	Identifier m_flanger_position_identifier;
 	Identifier m_chorus_position_identifier;
+	Identifier m_reverb_position_identifier;
 
 	OdinTooltipWindow m_tooltip;
 	TooltipFeels m_tooltip_feels;

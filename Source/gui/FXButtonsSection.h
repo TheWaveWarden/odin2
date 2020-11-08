@@ -17,7 +17,7 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include <map>
-#define FX_BUTTON_OFFSET 61
+//#define FX_BUTTON_OFFSET 48
 
 static bool g_GUI_big = false;
 
@@ -28,12 +28,12 @@ public:
 	    m_flanger_button("flanger", juce::DrawableButton::ButtonStyle::ImageRaw, &m_constrainer, "flanger"),
 	    m_phaser_button("phaser", juce::DrawableButton::ButtonStyle::ImageRaw, &m_constrainer, "phaser"),
 	    m_chorus_button("chorus", juce::DrawableButton::ButtonStyle::ImageRaw, &m_constrainer, "chorus"),
-	    m_delay_button("delay", juce::DrawableButton::ButtonStyle::ImageRaw, &m_constrainer, "delay") {
+	    m_delay_button("delay", juce::DrawableButton::ButtonStyle::ImageRaw, &m_constrainer, "delay"),
+	    m_reverb_button("reverb", juce::DrawableButton::ButtonStyle::ImageRaw, &m_constrainer, "reverb") {
 
 		m_phaser_button.setClickingTogglesState(true);
 		m_phaser_button.setTooltip("Shows the phaser.\nDrag and Drop this to\nrearrange the FX order");
 		addAndMakeVisible(m_phaser_button);
-		// m_phaser_button.setAlwaysOnTop(true);
 		m_phaser_button.setTriggeredOnMouseDown(true);
 		m_phaser_button.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
 		m_phaser_button.setRadioGroupId(1221);
@@ -41,7 +41,6 @@ public:
 		m_flanger_button.setClickingTogglesState(true);
 		m_flanger_button.setTooltip("Shows the flanger.\nDrag and Drop this to\nrearrange the FX order");
 		addAndMakeVisible(m_flanger_button);
-		// m_flanger_button.setAlwaysOnTop(true);
 		m_flanger_button.setTriggeredOnMouseDown(true);
 		m_flanger_button.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
 		m_flanger_button.setRadioGroupId(1221);
@@ -49,7 +48,6 @@ public:
 		m_chorus_button.setClickingTogglesState(true);
 		m_chorus_button.setTooltip("Shows the chorus.\nDrag and Drop this to\nrearrange the FX order");
 		addAndMakeVisible(m_chorus_button);
-		// m_chorus_button.setOnTop(true);
 		m_chorus_button.setTriggeredOnMouseDown(true);
 		m_chorus_button.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
 		m_chorus_button.setRadioGroupId(1221);
@@ -57,11 +55,18 @@ public:
 		m_delay_button.setClickingTogglesState(true);
 		m_delay_button.setTooltip("Shows the delay.\nDrag and Drop this to\nrearrange the FX order");
 		addAndMakeVisible(m_delay_button);
-		// m_delay_button.setAlwaysOnTop(true);
 		m_delay_button.setTriggeredOnMouseDown(true);
 		m_delay_button.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
 		m_delay_button.setRadioGroupId(1221);
 		m_delay_button.setToggleState(true, dontSendNotification);
+
+		m_reverb_button.setClickingTogglesState(true);
+		m_reverb_button.setTooltip("Shows the reverb.\nDrag and Drop this to\nrearrange the FX order");
+		addAndMakeVisible(m_reverb_button);
+		m_reverb_button.setTriggeredOnMouseDown(true);
+		m_reverb_button.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
+		m_reverb_button.setRadioGroupId(1221);
+		m_reverb_button.setToggleState(true, dontSendNotification);
 
 		m_phaser_button.lambdaMouseDrag = [&](int p_position) { changeMapPosition("phaser", p_position); };
 		m_phaser_button.lambdaMouseUp   = [&]() { positionButtons(); };
@@ -89,6 +94,13 @@ public:
 		m_delay_button.lambdaMouseDown = [&]() {
 			setHighlighted("delay");
 			setHighlightedToValueTree(0);
+		};
+
+		m_reverb_button.lambdaMouseDrag = [&](int p_position) { changeMapPosition("reverb", p_position); };
+		m_reverb_button.lambdaMouseUp   = [&]() { positionButtons(); };
+		m_reverb_button.lambdaMouseDown = [&]() {
+			setHighlighted("reverb");
+			setHighlightedToValueTree(5);
 		};
 
 		forceValueTreeOntoComponents(m_value_tree.state);
@@ -119,10 +131,16 @@ public:
 			                                   0);
 		if (p_spare_button != "delay")
 			m_delay_button.setTopLeftPosition(m_position_map.find("delay")->second * FX_BUTTON_OFFSET * GUI_factor, 0);
+
+		if (p_spare_button != "reverb")
+			m_reverb_button.setTopLeftPosition(m_position_map.find("reverb")->second * FX_BUTTON_OFFSET * GUI_factor,
+			                                   0);
+
 		onButtonArrange(m_position_map);
 	}
 
 	void changeMapPosition(const std::string &p_button_name, int p_new_position) {
+
 		// return if already in right position
 		if (m_position_map.find(p_button_name)->second == p_new_position) {
 			return;
@@ -131,15 +149,14 @@ public:
 		// move other button to old position first
 		if (m_position_map.find("flanger")->second == p_new_position) {
 			m_position_map.find("flanger")->second = m_position_map.find(p_button_name)->second;
-		}
-		if (m_position_map.find("phaser")->second == p_new_position) {
+		} else if (m_position_map.find("phaser")->second == p_new_position) {
 			m_position_map.find("phaser")->second = m_position_map.find(p_button_name)->second;
-		}
-		if (m_position_map.find("chorus")->second == p_new_position) {
+		} else if (m_position_map.find("chorus")->second == p_new_position) {
 			m_position_map.find("chorus")->second = m_position_map.find(p_button_name)->second;
-		}
-		if (m_position_map.find("delay")->second == p_new_position) {
+		} else if (m_position_map.find("delay")->second == p_new_position) {
 			m_position_map.find("delay")->second = m_position_map.find(p_button_name)->second;
+		} else if (m_position_map.find("reverb")->second == p_new_position) {
+			m_position_map.find("reverb")->second = m_position_map.find(p_button_name)->second;
 		}
 		// move button to new position
 		m_position_map.find(p_button_name)->second = p_new_position;
@@ -154,24 +171,35 @@ public:
 			m_value_tree.state.getChildWithName("fx").setProperty("phaser_selected", 0.f, nullptr);
 			m_value_tree.state.getChildWithName("fx").setProperty("flanger_selected", 0.f, nullptr);
 			m_value_tree.state.getChildWithName("fx").setProperty("chorus_selected", 0.f, nullptr);
+			m_value_tree.state.getChildWithName("fx").setProperty("reverb_selected", 0.f, nullptr);
 			break;
 		case 1:
 			m_value_tree.state.getChildWithName("fx").setProperty("delay_selected", 0.f, nullptr);
 			m_value_tree.state.getChildWithName("fx").setProperty("phaser_selected", 1.f, nullptr);
 			m_value_tree.state.getChildWithName("fx").setProperty("flanger_selected", 0.f, nullptr);
 			m_value_tree.state.getChildWithName("fx").setProperty("chorus_selected", 0.f, nullptr);
+			m_value_tree.state.getChildWithName("fx").setProperty("reverb_selected", 0.f, nullptr);
 			break;
 		case 2:
 			m_value_tree.state.getChildWithName("fx").setProperty("delay_selected", 0.f, nullptr);
 			m_value_tree.state.getChildWithName("fx").setProperty("phaser_selected", 0.f, nullptr);
 			m_value_tree.state.getChildWithName("fx").setProperty("flanger_selected", 1.f, nullptr);
 			m_value_tree.state.getChildWithName("fx").setProperty("chorus_selected", 0.f, nullptr);
+			m_value_tree.state.getChildWithName("fx").setProperty("reverb_selected", 0.f, nullptr);
 			break;
 		case 3:
 			m_value_tree.state.getChildWithName("fx").setProperty("delay_selected", 0.f, nullptr);
 			m_value_tree.state.getChildWithName("fx").setProperty("phaser_selected", 0.f, nullptr);
 			m_value_tree.state.getChildWithName("fx").setProperty("flanger_selected", 0.f, nullptr);
 			m_value_tree.state.getChildWithName("fx").setProperty("chorus_selected", 1.f, nullptr);
+			m_value_tree.state.getChildWithName("fx").setProperty("reverb_selected", 0.f, nullptr);
+			break;
+		case 4:
+			m_value_tree.state.getChildWithName("fx").setProperty("delay_selected", 0.f, nullptr);
+			m_value_tree.state.getChildWithName("fx").setProperty("phaser_selected", 0.f, nullptr);
+			m_value_tree.state.getChildWithName("fx").setProperty("flanger_selected", 0.f, nullptr);
+			m_value_tree.state.getChildWithName("fx").setProperty("chorus_selected", 0.f, nullptr);
+			m_value_tree.state.getChildWithName("fx").setProperty("reverb_selected", 1.f, nullptr);
 			break;
 		default:
 			break;
@@ -185,30 +213,46 @@ public:
 			m_phaser_button.setToggleState(false, dontSendNotification);
 			m_flanger_button.setToggleState(false, dontSendNotification);
 			m_chorus_button.setToggleState(false, dontSendNotification);
+			m_reverb_button.setToggleState(false, dontSendNotification);
 		} else if ((int)m_value_tree.state.getChildWithName("fx")["phaser_selected"] == 1) {
 			setHighlighted("phaser");
 			m_delay_button.setToggleState(false, dontSendNotification);
 			m_phaser_button.setToggleState(true, dontSendNotification);
 			m_flanger_button.setToggleState(false, dontSendNotification);
 			m_chorus_button.setToggleState(false, dontSendNotification);
+			m_reverb_button.setToggleState(false, dontSendNotification);
 		} else if ((int)m_value_tree.state.getChildWithName("fx")["flanger_selected"] == 1) {
 			setHighlighted("flanger");
 			m_delay_button.setToggleState(false, dontSendNotification);
 			m_phaser_button.setToggleState(false, dontSendNotification);
 			m_flanger_button.setToggleState(true, dontSendNotification);
 			m_chorus_button.setToggleState(false, dontSendNotification);
+			m_reverb_button.setToggleState(false, dontSendNotification);
 		} else if ((int)m_value_tree.state.getChildWithName("fx")["chorus_selected"] == 1) {
 			setHighlighted("chorus");
 			m_delay_button.setToggleState(false, dontSendNotification);
 			m_phaser_button.setToggleState(false, dontSendNotification);
 			m_flanger_button.setToggleState(false, dontSendNotification);
 			m_chorus_button.setToggleState(true, dontSendNotification);
+			m_reverb_button.setToggleState(false, dontSendNotification);
+		} else if ((int)m_value_tree.state.getChildWithName("fx")["reverb_selected"] == 1) {
+			setHighlighted("reverb");
+			m_delay_button.setToggleState(false, dontSendNotification);
+			m_phaser_button.setToggleState(false, dontSendNotification);
+			m_flanger_button.setToggleState(false, dontSendNotification);
+			m_chorus_button.setToggleState(false, dontSendNotification);
+			m_reverb_button.setToggleState(true, dontSendNotification);
 		}
 
 		m_position_map.find("delay")->second   = m_value_tree.state.getChildWithName("fx")["delay_position"];
 		m_position_map.find("phaser")->second  = m_value_tree.state.getChildWithName("fx")["phaser_position"];
 		m_position_map.find("flanger")->second = m_value_tree.state.getChildWithName("fx")["flanger_position"];
 		m_position_map.find("chorus")->second  = m_value_tree.state.getChildWithName("fx")["chorus_position"];
+		m_position_map.find("reverb")->second  = m_value_tree.state.getChildWithName("fx")["reverb_position"];
+
+
+		DBG_VAR((float)m_position_map.find("reverb")->second  = m_value_tree.state.getChildWithName("fx")["reverb_position"]);
+
 
 		positionButtons();
 	}
@@ -336,12 +380,44 @@ public:
 		                         &delay_button_draw3);
 		m_delay_button.setBounds(
 		    3 * OdinHelper::c150(FX_BUTTON_OFFSET), 0, delay_button_1.getWidth(), delay_button_1.getHeight());
-		setSize(OdinHelper::c150(FX_BUTTON_OFFSET) * 4 + 1, delay_button_1.getHeight());
+		setSize(FX_BUTTON_OFFSET * 1.5 * 5 + 1, delay_button_1.getHeight());
+
+
+		juce::Image reverb_button_1 =
+		    ImageCache::getFromMemory(BinaryData::buttonreverb_1_150_png, BinaryData::buttonreverb_1_150_pngSize);
+		juce::Image reverb_button_2 =
+		    ImageCache::getFromMemory(BinaryData::buttonreverb_2_150_png, BinaryData::buttonreverb_2_150_pngSize);
+		juce::Image reverb_button_3 =
+		    ImageCache::getFromMemory(BinaryData::buttonreverb_3_150_png, BinaryData::buttonreverb_3_150_pngSize);
+		juce::Image reverb_button_4 =
+		    ImageCache::getFromMemory(BinaryData::buttonreverb_4_150_png, BinaryData::buttonreverb_4_150_pngSize);
+
+		juce::DrawableImage reverb_button_draw1;
+		juce::DrawableImage reverb_button_draw2;
+		juce::DrawableImage reverb_button_draw3;
+		juce::DrawableImage reverb_button_draw4;
+
+		reverb_button_draw1.setImage(reverb_button_1);
+		reverb_button_draw2.setImage(reverb_button_2);
+		reverb_button_draw3.setImage(reverb_button_3);
+		reverb_button_draw4.setImage(reverb_button_4);
+
+		m_reverb_button.setImages(&reverb_button_draw2,
+		                          &reverb_button_draw2,
+		                          &reverb_button_draw1,
+		                          &reverb_button_draw1,
+		                          &reverb_button_draw3,
+		                          &reverb_button_draw3,
+		                          &reverb_button_draw3,
+		                          &reverb_button_draw3);
+		m_reverb_button.setBounds(
+		    4 * OdinHelper::c150(FX_BUTTON_OFFSET), 0, reverb_button_1.getWidth(), reverb_button_1.getHeight());
 
 		m_phaser_button.setGUIBig();
 		m_flanger_button.setGUIBig();
 		m_delay_button.setGUIBig();
 		m_chorus_button.setGUIBig();
+		m_reverb_button.setGUIBig();
 
 		forceValueTreeOntoComponents(m_value_tree.state);
 	}
@@ -462,12 +538,44 @@ public:
 		                         &delay_button_draw3,
 		                         &delay_button_draw3);
 		m_delay_button.setBounds(3 * FX_BUTTON_OFFSET, 0, delay_button_1.getWidth(), delay_button_1.getHeight());
-		setSize(FX_BUTTON_OFFSET * 4 + 1, delay_button_1.getHeight());
+
+		// todo render assets
+		// juce::Image reverb_button_1 =
+		//     ImageCache::getFromMemory(BinaryData::buttonreverb_1_png, BinaryData::buttonreverb_1_pngSize);
+		// juce::Image reverb_button_2 =
+		//     ImageCache::getFromMemory(BinaryData::buttonreverb_2_png, BinaryData::buttonreverb_2_pngSize);
+		// juce::Image reverb_button_3 =
+		//     ImageCache::getFromMemory(BinaryData::buttonreverb_3_png, BinaryData::buttonreverb_3_pngSize);
+		// juce::Image reverb_button_4 =
+		//     ImageCache::getFromMemory(BinaryData::buttonreverb_4_png, BinaryData::buttonreverb_4_pngSize);
+
+		// juce::DrawableImage reverb_button_draw1;
+		// juce::DrawableImage reverb_button_draw2;
+		// juce::DrawableImage reverb_button_draw3;
+		// juce::DrawableImage reverb_button_draw4;
+
+		// reverb_button_draw1.setImage(reverb_button_1);
+		// reverb_button_draw2.setImage(reverb_button_2);
+		// reverb_button_draw3.setImage(reverb_button_3);
+		// reverb_button_draw4.setImage(reverb_button_4);
+
+		// m_reverb_button.setImages(&reverb_button_draw2,
+		//                           &reverb_button_draw2,
+		//                           &reverb_button_draw1,
+		//                           &reverb_button_draw1,
+		//                           &reverb_button_draw3,
+		//                           &reverb_button_draw3,
+		//                           &reverb_button_draw3,
+		//                           &reverb_button_draw3);
+		// m_reverb_button.setBounds(4 * FX_BUTTON_OFFSET, 0, reverb_button_1.getWidth(), reverb_button_1.getHeight());
+
+ 		setSize(FX_BUTTON_OFFSET * 5 + 1, delay_button_1.getHeight());
 
 		m_phaser_button.setGUISmall();
 		m_flanger_button.setGUISmall();
 		m_delay_button.setGUISmall();
 		m_chorus_button.setGUISmall();
+		m_reverb_button.setGUISmall();
 
 		forceValueTreeOntoComponents(m_value_tree.state);
 	}
@@ -481,10 +589,12 @@ private:
 	DragButton m_phaser_button;
 	DragButton m_chorus_button;
 	DragButton m_delay_button;
+	DragButton m_reverb_button;
 
 	AudioProcessorValueTreeState &m_value_tree;
 
-	std::map<std::string, int> m_position_map = {{"flanger", 3}, {"phaser", 1}, {"chorus", 2}, {"delay", 0}};
+	std::map<std::string, int> m_position_map = {
+	    {"reverb", 4}, {"flanger", 3}, {"phaser", 1}, {"chorus", 2}, {"delay", 0}};
 
 	juce::ComponentBoundsConstrainer m_constrainer;
 	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(FXButtonsSection)

@@ -44,10 +44,12 @@ void OdinAudioProcessor::addNonAudioParametersToTree() {
 	node.setProperty("phaser_selected", 0, nullptr);
 	node.setProperty("flanger_selected", 0, nullptr);
 	node.setProperty("chorus_selected", 0, nullptr);
+	node.setProperty("reverb_selected", 0, nullptr);
 	node.setProperty("delay_position", 0, nullptr);
 	node.setProperty("phaser_position", 1, nullptr);
 	node.setProperty("chorus_position", 2, nullptr);
 	node.setProperty("flanger_position", 3, nullptr);
+	node.setProperty("reverb_position", 4, nullptr);
 	node.setProperty("delay_sync", 0, nullptr);
 	node.setProperty("phaser_sync", 0, nullptr);
 	node.setProperty("flanger_sync", 0, nullptr);

@@ -127,6 +127,15 @@ void OdinAudioProcessorEditor::setGUISmall() {
 	addAndMakeVisible(m_delay_on_button);
 	m_delay_on_button.setAlwaysOnTop(true);
 
+	//todo render assets
+	// m_reverb_on_button.setImages(
+	//     &fx_on_draw2, &fx_on_draw2, &fx_on_draw1, &fx_on_draw1, &fx_on_draw4, &fx_on_draw4, &fx_on_draw3, &fx_on_draw3);
+	// m_reverb_on_button.setClickingTogglesState(true);
+	// m_reverb_on_button.setBounds(
+	//     FX_ON_BUTTON_X + 3 * FX_BUTTON_OFFSET, FX_ON_BUTTON_Y, fx_on_1.getWidth(), fx_on_1.getHeight());
+	// addAndMakeVisible(m_reverb_on_button);
+	// m_reverb_on_button.setAlwaysOnTop(true);
+
 	juce::Image filter_button1_1 = ImageCache::getFromMemory(BinaryData::button1_1_png, BinaryData::button1_1_pngSize);
 	juce::Image filter_button1_2 = ImageCache::getFromMemory(BinaryData::button1_2_png, BinaryData::button1_2_pngSize);
 	juce::Image filter_button1_3 = ImageCache::getFromMemory(BinaryData::button1_3_png, BinaryData::button1_3_pngSize);

@@ -52,6 +52,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
     m_phaser_on_button("phaser_button", juce::DrawableButton::ButtonStyle::ImageRaw),
     m_chorus_on_button("chorus_button", juce::DrawableButton::ButtonStyle::ImageRaw),
     m_delay_on_button("delay_button", juce::DrawableButton::ButtonStyle::ImageRaw),
+    m_reverb_on_button("reverb_button", juce::DrawableButton::ButtonStyle::ImageRaw),
     m_select_arp_button("select_arpeggiator_button", juce::DrawableButton::ButtonStyle::ImageRaw),
     m_question_button("question_button", juce::DrawableButton::ButtonStyle::ImageRaw),
     m_select_modmatrix_button("select_modmatrix_button", juce::DrawableButton::ButtonStyle::ImageRaw),
@@ -69,7 +70,8 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
     m_fil2_type_identifier("fil2_type"), m_fil3_type_identifier("fil3_type"),
     m_pitchbend_amount_identifier("pitchbend_amount"), m_unison_voices_identifier("unison_voices"),
     m_delay_position_identifier("delay_position"), m_flanger_position_identifier("flanger_position"),
-    m_phaser_position_identifier("phaser_position"), m_chorus_position_identifier("chorus_position"), m_mod_matrix(vts),
+    m_phaser_position_identifier("phaser_position"), m_chorus_position_identifier("chorus_position"),
+    m_reverb_position_identifier("reverb_position"), m_mod_matrix(vts),
     /*m_legato_button("legato"),*/ m_gui_size_button("gui_size"), m_tooltip(nullptr, 2047483647),
     m_is_standalone_plugin(p_is_standalone), /*m_save_load(vts, p_processor),*/ m_arp(p_processor, vts),
     m_processor(p_processor), m_patch_browser(p_processor, vts), m_tuning_dropdown("Tuning") {
@@ -273,6 +275,13 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	m_delay_on_button.setTriggeredOnMouseDown(true);
 	m_delay_on_button.setTooltip("Enables the delay");
 	m_delay_on_button.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
+
+	m_reverb_on_button.setClickingTogglesState(true);
+	addAndMakeVisible(m_reverb_on_button);
+	m_reverb_on_button.setAlwaysOnTop(true);
+	m_reverb_on_button.setTriggeredOnMouseDown(true);
+	m_reverb_on_button.setTooltip("Enables the delay");
+	m_reverb_on_button.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
 
 	m_reset.setTooltip("Reset the synth to its initial state");
 	addAndMakeVisible(m_reset);
@@ -611,6 +620,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	m_phaser_on_attachment.reset(new OdinButtonAttachment(m_value_tree, "phaser_on", m_phaser_on_button));
 	m_flanger_on_attachment.reset(new OdinButtonAttachment(m_value_tree, "flanger_on", m_flanger_on_button));
 	m_delay_on_attachment.reset(new OdinButtonAttachment(m_value_tree, "delay_on", m_delay_on_button));
+	m_delay_on_attachment.reset(new OdinButtonAttachment(m_value_tree, "reverb_on", m_reverb_on_button));
 	m_chorus_on_attachment.reset(new OdinButtonAttachment(m_value_tree, "chorus_on", m_chorus_on_button));
 	m_fil1_osc1_attachment.reset(new OdinButtonAttachment(m_value_tree, "fil1_osc1", m_filleft_button1));
 	m_fil1_osc2_attachment.reset(new OdinButtonAttachment(m_value_tree, "fil1_osc2", m_filleft_button2));
@@ -851,6 +861,10 @@ void OdinAudioProcessorEditor::arrangeFXOnButtons(std::map<std::string, int> p_m
 		m_delay_on_button.setTopLeftPosition(OdinHelper::c150(FX_ON_BUTTON_X) +
 		                                         p_map.find("delay")->second * OdinHelper::c150(FX_BUTTON_OFFSET),
 		                                     OdinHelper::c150(FX_ON_BUTTON_Y));
+		m_reverb_on_button.setTopLeftPosition(OdinHelper::c150(FX_ON_BUTTON_X) +
+		                                          p_map.find("reverb")->second * OdinHelper::c150(FX_BUTTON_OFFSET),
+		                                      OdinHelper::c150(FX_ON_BUTTON_Y));
+		DBG_VAR(p_map.find("reverb")->second);
 	} else {
 		m_flanger_on_button.setTopLeftPosition(FX_ON_BUTTON_X + p_map.find("flanger")->second * (FX_BUTTON_OFFSET),
 		                                       FX_ON_BUTTON_Y);
@@ -860,6 +874,8 @@ void OdinAudioProcessorEditor::arrangeFXOnButtons(std::map<std::string, int> p_m
 		                                      FX_ON_BUTTON_Y);
 		m_delay_on_button.setTopLeftPosition(FX_ON_BUTTON_X + p_map.find("delay")->second * (FX_BUTTON_OFFSET),
 		                                     FX_ON_BUTTON_Y);
+		m_reverb_on_button.setTopLeftPosition(FX_ON_BUTTON_X + p_map.find("reverb")->second * (FX_BUTTON_OFFSET),
+		                                      FX_ON_BUTTON_Y);
 	}
 
 	m_value_tree.state.getChildWithName("fx").setProperty(
@@ -870,11 +886,14 @@ void OdinAudioProcessorEditor::arrangeFXOnButtons(std::map<std::string, int> p_m
 	    m_flanger_position_identifier, (float)p_map.find("flanger")->second, nullptr);
 	m_value_tree.state.getChildWithName("fx").setProperty(
 	    m_chorus_position_identifier, (float)p_map.find("chorus")->second, nullptr);
+	m_value_tree.state.getChildWithName("fx").setProperty(
+	    m_reverb_position_identifier, (float)p_map.find("reverb")->second, nullptr);
 
 	processor.setFXButtonsPosition((float)p_map.find("delay")->second,
 	                               (float)p_map.find("phaser")->second,
 	                               (float)p_map.find("flanger")->second,
-	                               (float)p_map.find("chorus")->second);
+	                               (float)p_map.find("chorus")->second,
+	                               (float)p_map.find("reverb")->second);
 }
 
 void OdinAudioProcessorEditor::setActiveFXPanel(const std::string &p_name) {

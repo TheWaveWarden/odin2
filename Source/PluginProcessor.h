@@ -88,14 +88,14 @@ public:
 	// .it doesn't change values but clears all buffers
 	// and makes it "untouched"
 	void resetAudioEngine();
-	void setFXButtonsPosition(int p_delay, int p_phaser, int p_flanger, int p_chorus);
+	void setFXButtonsPosition(int p_delay, int p_phaser, int p_flanger, int p_chorus, int p_reverb);
 	void attachNonParamListeners();
 	void migratePatch(ValueTree &p_patch);
 	void readPatch(const ValueTree &newState);
 
-	std::function<void()> onSetStateInformation = []() {};
+	std::function<void()> onSetStateInformation    = []() {};
 	std::function<void(float)> updatePitchWheelGUI = [](float p_value) {};
-	std::function<void(float)> updateModWheelGUI = [](float p_value) {};
+	std::function<void(float)> updateModWheelGUI   = [](float p_value) {};
 
 	// this is used to retrigger a held down note if the note after it was released. It stores note and velocity
 	std::list<std::pair<int, int>> m_playmode_mono_note_list;
@@ -230,7 +230,7 @@ private:
 	OdinMidiLearnBase *m_midi_learn_control = nullptr;
 	String m_midi_learn_parameter_ID        = "";
 	std::multimap<int, RangedAudioParameter *> m_midi_control_param_map;
-	bool m_midi_learn_parameter_active      = false;
+	bool m_midi_learn_parameter_active = false;
 
 	float m_osc_vol_smooth[3]             = {1.f, 1.f, 1.f}; // factor
 	float m_fil_gain_smooth[3]            = {1.f, 1.f, 1.f}; // factor
@@ -296,6 +296,7 @@ private:
 	int m_phaser_position  = 1;
 	int m_chorus_position  = 2;
 	int m_flanger_position = 3;
+	int m_reverb_position  = 4;
 
 	OdinAudioProcessorEditor *m_editor_pointer;
 
