@@ -409,7 +409,7 @@ jobs:
   - task: GitHubRelease@0
     displayName: "Create New Github Release"
     inputs:
-      gitHubConnection: TheWaveWarden
+      gitHubConnection: TheWaveWardenOdin2AzureConnection
       repositoryName: TheWaveWarden/odin2
       action: 'create'
       tag: Nightly
