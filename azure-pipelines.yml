@@ -110,6 +110,12 @@ jobs:
     displayName: 'Windows: Build Installer'
     condition: variables.isWindows
 
+  - task: PublishPipelineArtifact@0
+    inputs:
+      artifactName: 'WINDOWS_BUILD'
+      targetPath: 'installers/windows/Output'
+    displayName: 'Windows: Publish Installer'
+    condition: variables.isWindows
 
 #! ███    ███  █████   ██████ 
 #! ████  ████ ██   ██ ██      
@@ -216,12 +222,19 @@ jobs:
       echo ""
       echo "The final product:"
       ls -lh build
+      pwd
 
       [[ $(find build/Odin2MacInstaller.pkg -type f -size +50000000c 2>/dev/null) ]] && echo "Mac Package Built Successfully" || exit 1
       exit 0
     displayName: 'Mac: Package Odin'
     condition: variables.isMac
 
+  - task: PublishPipelineArtifact@0
+    inputs:
+      artifactName: 'MACOS_BUILD'
+      targetPath: 'installers/mac/build'
+    displayName: 'Mac: Publish Installer'
+    condition: variables.isMac
 
 #! ██      ██ ███    ██ ██    ██ ██   ██ 
 #! ██      ██ ████   ██ ██    ██  ██ ██  
@@ -348,3 +361,47 @@ jobs:
       exit 0
     displayName: 'Linux: Build Odin2 Packages'
     condition: variables.isLinux
+
+  - task: PublishPipelineArtifact@0
+    inputs:
+      artifactName: 'LINUX_BUILD'
+      targetPath: 'installers/linux'
+    displayName: 'Linux: Publish Installer'
+    condition: variables.isLinux
+
+#!==============================================================================
+#!==============================================================================
+#!==============================================================================
+#!==============================================================================
+#!==============================================================================
+#!==============================================================================
+#!==============================================================================
+
+
+- job: UpdateGithubRelease
+  dependsOn: Build
+
+  steps:
+  - task: DownloadPipelineArtifact@0
+    inputs:
+      artifactName: 'MACOS_BUILD'
+      targetPath: $(Build.ArtifactStagingDirectory)
+
+  - task: DownloadPipelineArtifact@0
+    inputs:
+      artifactName: 'WINDOWS_BUILD'
+      targetPath: $(Build.ArtifactStagingDirectory)
+
+  - task: DownloadPipelineArtifact@0
+    inputs:
+      artifactName: 'LINUX_BUILD'
+      targetPath: $(Build.ArtifactStagingDirectory)
+
+  - bash: |
+     ls $(Build.ArtifactStagingDirectory)
+    displayName: Fake up release notes and tag release
+
+
+
+
+
