@@ -15,8 +15,8 @@
 
 //this file is included from PluginProcessor.cpp to split the class implementation
 
-#include "ScopedNoDenormals.h"
 #include "PluginProcessor.h"
+#include "ScopedNoDenormals.h"
 
 void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &midiMessages) {
 
@@ -443,11 +443,9 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 
 		// ugly solution, yet here we go:
 		// check for each fx if its position is slot and then render it
-		for (int fx_slot = 0; fx_slot < 4; ++fx_slot) {
+		for (int fx_slot = 0; fx_slot < 5; ++fx_slot) {
 			if (m_delay_position == fx_slot) {
-				//if (*m_delay_on) {
-				//TODO TODO TODO TODO
-				if (false) {
+				if (*m_delay_on) {
 					stereo_signal[0] = m_delay.doDelayLeft(stereo_signal[0]);
 					stereo_signal[1] = m_delay.doDelayRight(stereo_signal[1]);
 				}
@@ -466,20 +464,12 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 					stereo_signal[0] = m_chorus[0].doChorus(stereo_signal[0]);
 					stereo_signal[1] = m_chorus[1].doChorus(stereo_signal[1]);
 				}
+			} else if (m_reverb_position == fx_slot) {
+				if (*m_reverb_on) {
+					m_reverb.process(stereo_signal[0], stereo_signal[1]);
+				}
 			}
 		}
-
-		if (*m_delay_on) {
-			m_reverb.process(stereo_signal[0], stereo_signal[1]);
-		}
-
-		//m_reverb.dump("REVERB");
-
-		//auto todo = m_reverb.process(stereo_signal);
-		//stereo_signal[0] = todo[0];
-		//stereo_signal[1] = todo[1];
-
-		//DBG(stereo_signal[0]);
 
 		//===== OUTPUT ======
 

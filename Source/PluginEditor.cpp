@@ -864,7 +864,6 @@ void OdinAudioProcessorEditor::arrangeFXOnButtons(std::map<std::string, int> p_m
 		m_reverb_on_button.setTopLeftPosition(OdinHelper::c150(FX_ON_BUTTON_X) +
 		                                          p_map.find("reverb")->second * OdinHelper::c150(FX_BUTTON_OFFSET),
 		                                      OdinHelper::c150(FX_ON_BUTTON_Y));
-		DBG_VAR(p_map.find("reverb")->second);
 	} else {
 		m_flanger_on_button.setTopLeftPosition(FX_ON_BUTTON_X + p_map.find("flanger")->second * (FX_BUTTON_OFFSET),
 		                                       FX_ON_BUTTON_Y);

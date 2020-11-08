@@ -312,6 +312,7 @@
 	        "rev_ducking", "Reverb Ducking", NormalisableRange<float>(0.f, 1.f, 0.f, 1.f), 0.f),
 	    std::make_unique<AudioParameterFloat>(
 	        "rev_drywet", "Reverb DryWet", NormalisableRange<float>(0.f, 1.f, 0.f, 1.f), 0.5f),
+	    std::make_unique<AudioParameterInt>("reverb_on", "Reverb On", 0, 1, 0),
 
 	    // Phaser
 	    std::make_unique<AudioParameterInt>("phaser_reset", "Phaser Reset", 0, 1, 0),

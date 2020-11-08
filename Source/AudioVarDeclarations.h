@@ -125,6 +125,7 @@
     std::atomic<float>* m_phaser_on;
     std::atomic<float>* m_flanger_on;
     std::atomic<float>* m_chorus_on;
+    std::atomic<float>* m_reverb_on;
     std::atomic<float>* m_fil_osc1[2];
     std::atomic<float>* m_fil_osc2[2];
     std::atomic<float>* m_fil_osc3[2];
