@@ -406,6 +406,20 @@ jobs:
     displayName: Gather Installers
 
 
+  - task: GitHubRelease@0
+    displayName: "Create New Github Release"
+    inputs:
+      gitHubConnection: TheWaveWarden
+      repositoryName: TheWaveWarden/odin2
+      action: 'create'
+      tag: Nightly
+      target: '$(Build.SourceVersion)'
+      addChangeLog: false
+      assetUploadMode: 'delete'
+      #releaseNotesFile: $(Build.ArtifactStagingDirectory)/ReleaseNotes.md
+      assets: $(Build.ArtifactStagingDirectory)/*.*
+
+
 
 
 
