@@ -305,7 +305,7 @@
 	    std::make_unique<AudioParameterFloat>(
 	        "rev_buildup", "Reverb Buildup", NormalisableRange<float>(0.f, 1.f, 0.f, 1), 0.5f),
 	    std::make_unique<AudioParameterFloat>(
-	        "rev_eqgain", "Reverb EQ Gain", NormalisableRange<float>(-15.f, 15.f, 0.f, 1.f), 0.f),
+	        "rev_eqgain", "Reverb EQ Gain", NormalisableRange<float>(-20.f, 20.f, 0.f, 1.f), 0.f),
 	    std::make_unique<AudioParameterFloat>(
 	        "rev_eqfreq", "Reverb EQ Freq", NormalisableRange<float>(100.f, 10000.f, 0.f, FILTER_SKEW_DEFAULT), 1000.f),
 	    std::make_unique<AudioParameterFloat>(

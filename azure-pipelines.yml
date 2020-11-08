@@ -358,14 +358,18 @@ jobs:
       echo ""
       [[ $(find Odin2_linux_x64.zip -type f -size +50000000c 2>/dev/null) ]] && echo "Generic Zip Built sucessfully!" || exit 1
       [[ $(find $DEB_NAME -type f -size +50000000c 2>/dev/null) ]] && echo "Debian package built successfully!" || exit 1
-      exit 0
+
+      echo "Move installers to separate dir"
+      mkdir build
+      mv Odin* build/
+      
     displayName: 'Linux: Build Odin2 Packages'
     condition: variables.isLinux
 
   - task: PublishPipelineArtifact@0
     inputs:
       artifactName: 'LINUX_BUILD'
-      targetPath: 'installers/linux'
+      targetPath: 'installers/linux/build'
     displayName: 'Linux: Publish Installer'
     condition: variables.isLinux
 
@@ -399,7 +403,7 @@ jobs:
 
   - bash: |
      ls $(Build.ArtifactStagingDirectory)
-    displayName: Fake up release notes and tag release
+    displayName: Gather Installers
 
 
 
