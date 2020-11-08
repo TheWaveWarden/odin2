@@ -424,9 +424,9 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	m_chorus.setSyncTimeColor(CHORUS_DISPLAY_COLOR);
 	addChildComponent(m_chorus);
 
-	//addAndMakeVisible(m_delay);
+	addAndMakeVisible(m_delay);
 
-	addAndMakeVisible(m_reverb);
+	addChildComponent(m_reverb);
 
 	addAndMakeVisible(m_mod_matrix);
 	addChildComponent(m_patch_browser);
@@ -901,12 +901,14 @@ void OdinAudioProcessorEditor::setActiveFXPanel(const std::string &p_name) {
 	m_flanger.setVisible(false);
 	m_chorus.setVisible(false);
 	m_delay.setVisible(false);
+	m_reverb.setVisible(false);
 
 	int fx = 0;
 	fx     = p_name == "phaser" ? 1 : fx;
 	fx     = p_name == "flanger" ? 2 : fx;
 	fx     = p_name == "chorus" ? 3 : fx;
 	fx     = p_name == "delay" ? 4 : fx;
+	fx     = p_name == "reverb" ? 5 : fx;
 
 	switch (fx) {
 	case 1:
@@ -920,6 +922,9 @@ void OdinAudioProcessorEditor::setActiveFXPanel(const std::string &p_name) {
 		break;
 	case 4:
 		m_delay.setVisible(true);
+		break;
+	case 5:
+		m_reverb.setVisible(true);
 		break;
 	default:
 		m_delay.setVisible(true);

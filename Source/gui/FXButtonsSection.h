@@ -250,10 +250,6 @@ public:
 		m_position_map.find("chorus")->second  = m_value_tree.state.getChildWithName("fx")["chorus_position"];
 		m_position_map.find("reverb")->second  = m_value_tree.state.getChildWithName("fx")["reverb_position"];
 
-
-		DBG_VAR((float)m_position_map.find("reverb")->second  = m_value_tree.state.getChildWithName("fx")["reverb_position"]);
-
-
 		positionButtons();
 	}
 
