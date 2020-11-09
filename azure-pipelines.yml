@@ -382,8 +382,9 @@ jobs:
 #!==============================================================================
 
 
-- job: UpdateGithubRelease
+- job: Nightly Devel Update
   dependsOn: Build
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/devel'))
 
   steps:
   - task: DownloadPipelineArtifact@0
