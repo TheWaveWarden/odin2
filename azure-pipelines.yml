@@ -411,8 +411,8 @@ jobs:
     inputs:
       gitHubConnection: TheWaveWardenOdin2AzureConnection
       repositoryName: TheWaveWarden/odin2
-      action: 'create'
-      tag: Nightly
+      action: 'edit'
+      tag: NightlyDevel
       target: '$(Build.SourceVersion)'
       addChangeLog: false
       assetUploadMode: 'delete'
