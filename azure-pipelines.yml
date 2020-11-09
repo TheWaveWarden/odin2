@@ -402,8 +402,9 @@ jobs:
       targetPath: $(Build.ArtifactStagingDirectory)
 
   - bash: |
+     scripts/nightly-devel-notes.sh > $(Build.ArtifactStagingDirectory)/ReleaseNotes.md
      ls $(Build.ArtifactStagingDirectory)
-    displayName: Gather Installers
+    displayName: Create Release Notes
 
 
   - task: GitHubRelease@0
@@ -416,7 +417,7 @@ jobs:
       target: '$(Build.SourceVersion)'
       addChangeLog: false
       assetUploadMode: 'delete'
-      #releaseNotesFile: $(Build.ArtifactStagingDirectory)/ReleaseNotes.md
+      releaseNotesFile: $(Build.ArtifactStagingDirectory)/ReleaseNotes.md
       assets: $(Build.ArtifactStagingDirectory)/*.*
 
 
