@@ -159,12 +159,12 @@ void ReverbComponent::setGUIBig() {
 	                    OdinHelper::c150(REVERB_DUCKING_POS_Y) - 2,
 	                    OdinHelper::c150(BLACK_KNOB_MID_SIZE_X),
 	                    OdinHelper::c150(BLACK_KNOB_MID_SIZE_Y));
-	m_EQ_freq.setBounds(OdinHelper::c150(DRY_POS_X) - 2,
-	                    OdinHelper::c150(DRY_POS_Y) - 2,
+	m_EQ_freq.setBounds(OdinHelper::c150(REVERB_DRY_POS_X) - 2,
+	                    OdinHelper::c150(REVERB_DRY_POS_Y) - 2,
 	                    OdinHelper::c150(BLACK_KNOB_MID_SIZE_X),
 	                    OdinHelper::c150(BLACK_KNOB_MID_SIZE_Y));
-	m_dry_wet.setBounds(OdinHelper::c150(WET_POS_X) - 2,
-	                    OdinHelper::c150(WET_POS_Y) - 2,
+	m_dry_wet.setBounds(OdinHelper::c150(REVERB_WET_POS_X) - 2,
+	                    OdinHelper::c150(REVERB_WET_POS_Y) - 2,
 	                    OdinHelper::c150(BLACK_KNOB_MID_SIZE_X),
 	                    OdinHelper::c150(BLACK_KNOB_MID_SIZE_Y));
 
@@ -189,8 +189,8 @@ void ReverbComponent::setGUISmall() {
 
 	m_EQ_gain.setBounds(REVERB_EQ_GAIN_POS_X, REVERB_EQ_GAIN_POS_Y, BLACK_KNOB_MID_SIZE_X, BLACK_KNOB_MID_SIZE_Y);
 	m_ducking.setBounds(REVERB_DUCKING_POS_X, REVERB_DUCKING_POS_Y, BLACK_KNOB_MID_SIZE_X, BLACK_KNOB_MID_SIZE_Y);
-	m_EQ_freq.setBounds(DRY_POS_X, DRY_POS_Y, BLACK_KNOB_MID_SIZE_X, BLACK_KNOB_MID_SIZE_Y);
-	m_dry_wet.setBounds(WET_POS_X, WET_POS_Y, BLACK_KNOB_MID_SIZE_X, BLACK_KNOB_MID_SIZE_Y);
+	m_EQ_freq.setBounds(REVERB_DRY_POS_X, REVERB_DRY_POS_Y, BLACK_KNOB_MID_SIZE_X, BLACK_KNOB_MID_SIZE_Y);
+	m_dry_wet.setBounds(REVERB_WET_POS_X, REVERB_WET_POS_Y, BLACK_KNOB_MID_SIZE_X, BLACK_KNOB_MID_SIZE_Y);
 
 	juce::Image reverb_image;
 	//! todo

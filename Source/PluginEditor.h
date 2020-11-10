@@ -390,6 +390,7 @@ private:
 	std::unique_ptr<OdinButtonAttachment> m_phaser_on_attachment;
 	std::unique_ptr<OdinButtonAttachment> m_flanger_on_attachment;
 	std::unique_ptr<OdinButtonAttachment> m_delay_on_attachment;
+	std::unique_ptr<OdinButtonAttachment> m_reverb_on_attachment;
 	std::unique_ptr<OdinButtonAttachment> m_chorus_on_attachment;
 	std::unique_ptr<OdinButtonAttachment> m_fil1_osc1_attachment;
 	std::unique_ptr<OdinButtonAttachment> m_fil1_osc2_attachment;

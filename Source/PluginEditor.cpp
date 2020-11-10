@@ -620,7 +620,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	m_phaser_on_attachment.reset(new OdinButtonAttachment(m_value_tree, "phaser_on", m_phaser_on_button));
 	m_flanger_on_attachment.reset(new OdinButtonAttachment(m_value_tree, "flanger_on", m_flanger_on_button));
 	m_delay_on_attachment.reset(new OdinButtonAttachment(m_value_tree, "delay_on", m_delay_on_button));
-	m_delay_on_attachment.reset(new OdinButtonAttachment(m_value_tree, "reverb_on", m_reverb_on_button));
+	m_reverb_on_attachment.reset(new OdinButtonAttachment(m_value_tree, "reverb_on", m_reverb_on_button));
 	m_chorus_on_attachment.reset(new OdinButtonAttachment(m_value_tree, "chorus_on", m_chorus_on_button));
 	m_fil1_osc1_attachment.reset(new OdinButtonAttachment(m_value_tree, "fil1_osc1", m_filleft_button1));
 	m_fil1_osc2_attachment.reset(new OdinButtonAttachment(m_value_tree, "fil1_osc2", m_filleft_button2));
