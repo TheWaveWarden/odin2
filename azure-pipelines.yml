@@ -316,6 +316,7 @@ jobs:
       echo "==============================="
       echo ""
       ../JUCE/extras/Projucer/Builds/LinuxMakefile/build/Projucer --resave Odin.jucer
+      cat Source/GitCommitId.h
       echo ""
       echo "==============================="
       echo "====== PREPARE LV2 STUFF ======"
