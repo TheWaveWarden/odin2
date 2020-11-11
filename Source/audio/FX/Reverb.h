@@ -152,8 +152,8 @@ public:
 	void setDecayTime(float p_decay_time);
 	void setDiffusion(float p_diffusion);
 	void setBuildup(float p_buildup);
-	void setHFDamp(float p_hf_damping);
-	void setLFDamp(float p_lf_damping);	
+	//void setHFDamp(float p_hf_damping);
+	//void setLFDamp(float p_lf_damping);	
 	void setEQGain(float p_gain);
 	void setEQQ(float p_Q);
 	void setEQFreq(float p_freq);
@@ -161,6 +161,7 @@ public:
 	void setMix(float p_mix);
 	void setPreDelayMs(float p_predelay);
 	void setModulation(float p_modulation);
+	void setDucking(float p_ducking);
 private:
 	float m_samplerate = -1;
 	double dsamplerate_inv = -1;
@@ -196,4 +197,5 @@ private:
 	float m_roomsize;
 	float m_scale;
 	int m_pre_delay_time;
+	float m_ducking;
 };

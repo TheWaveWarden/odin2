@@ -195,13 +195,13 @@ void Reverb2Effect::setBuildup(float p_buildup) {
 	m_buildup = 0.7f * p_buildup;
 }
 
-void Reverb2Effect::setHFDamp(float p_hf_damping) {
-	m_hf_damp_coefficent = 0.8 * p_hf_damping;
-}
+// void Reverb2Effect::setHFDamp(float p_hf_damping) {
+// 	m_hf_damp_coefficent = 0.8 * p_hf_damping;
+// }
 
-void Reverb2Effect::setLFDamp(float p_lf_damping) {
-	m_lf_damp_coefficent = 0.2 * p_lf_damping;
-}
+// void Reverb2Effect::setLFDamp(float p_lf_damping) {
+// 	m_lf_damp_coefficent = 0.2 * p_lf_damping;
+//}
 
 void Reverb2Effect::setWidth(float p_width) {
 	m_width = db_to_linear(p_width);
@@ -327,8 +327,8 @@ void Reverb2Effect::init_default_values() {
 	setDiffusion(1.f);
 	setBuildup(1.0f);
 	setModulation(0.5f);
-	setHFDamp(0.2f);
-	setLFDamp(0.2f);
+	//setHFDamp(0.2f);
+	//setLFDamp(0.2f);
 	setRoomSize(0.f);
 
 	//todo find good eq value
@@ -364,4 +364,8 @@ void Reverb2Effect::setEQQ(float p_Q){
 void Reverb2Effect::setEQFreq(float p_freq){
 	m_EQ[0].setFreq(p_freq);
 	m_EQ[1].setFreq(p_freq);
+}
+
+void Reverb2Effect::setDucking(float p_ducking){
+	m_ducking = p_ducking;
 }

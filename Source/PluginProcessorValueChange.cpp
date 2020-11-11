@@ -700,6 +700,7 @@ void OdinAudioProcessor::treeValueChangedReverb(const String &p_ID, float p_new_
 	} else if (id == m_reverb_eq_freq_identifier) {
 		m_reverb.setEQFreq(p_new_value);
 	} else if (id == m_reverb_ducking_identifier) {
+		m_reverb.setWidth(p_new_value);
 		//m_reverb.set_ducking(p_new_value);
 	} else if (id == m_reverb_dry_wet_identifier) {
 		m_reverb.setMix(p_new_value);
