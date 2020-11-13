@@ -1,7 +1,7 @@
 #!/bin/bash
 
 cat <<- EOH
-# Nihgtly Build devel Branch
+# Nightly Build of Devel Branch
 
 ### This is not the stable release, if you're unsure what to download, use the stable release from https://thewavewarden.com/odin2
 
