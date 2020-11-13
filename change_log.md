@@ -1,3 +1,4 @@
+- added microtuning functionality: Scala and KeyboardMapping files
 - default GUI size is now 150%
 - added triangles to dropdowns to make them more obvious 
 - FM- PM Osc ratio ranges increased to [1,16]

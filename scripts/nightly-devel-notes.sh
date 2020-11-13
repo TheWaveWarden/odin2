@@ -1,13 +1,13 @@
 #!/bin/bash
 
 cat <<- EOH
-# Automated build of Odin, this is not the stable release
+# Nihgtly Build devel Branch
 
-If you are looking for the most recent released version, visit https://thewavewarden.com/odin2
+### This is not the stable release, if you're unsure what to download, use the stable release from https://thewavewarden.com/odin2
 
 The downloads below are the packages created from the most recent commits on the devel branch.
 They contain the newest features in development, but are to be tested.
-Patches created by these builds are not guaranteed to be compatible to following releases.
+Presets created with these builds are not guaranteed to be compatible to following releases.
 
 EOH
 date

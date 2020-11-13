@@ -221,7 +221,6 @@ void OdinArpeggiator::midiNoteOff(int p_midi_note) {
 
 void OdinArpeggiator::endPlayingNotes() {
 	//set timer to max, so it ends on next sample
-	DBG("end playing notes");
 	std::vector<std::pair<int, float>> ret;
 	for (auto note : m_playing_notes) {
 		ret.push_back(std::make_pair(note.first, std::numeric_limits<float>::max()));
@@ -417,7 +416,6 @@ void OdinArpeggiator::setOneShotEnabled(bool p_oneshot) {
 }
 
 void OdinArpeggiator::setSynctimeNumerator(float p_value) {
-	DBG("numerator");
 	m_synctime_numerator = p_value;
 	m_synctime_ratio     = p_value / m_synctime_denominator;
 	calcArpTime();

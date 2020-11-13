@@ -87,10 +87,19 @@ void OdinAudioProcessor::getStateInformation(MemoryBlock &destData) {
 	std::unique_ptr<XmlElement> xml(state.createXml());
 
 	//add tuning to xml
-	xml->setAttribute("tuning_scl", m_tuning.scale.rawText);
-	xml->setAttribute("tuning_kbm", m_tuning.keyboardMapping.rawText);
+	//! XmlElement::addChildElement takes ownership of these, using delete causes segfault
+	XmlElement *scl = new XmlElement("tuning_scl");
+	XmlElement *kbm = new XmlElement("tuning_kbm");
+
+	scl->setAttribute("data", m_tuning.scale.rawText);
+	kbm->setAttribute("data", m_tuning.keyboardMapping.rawText);
+
+	xml->addChildElement(scl);
+	xml->addChildElement(kbm);
 
 	copyXmlToBinary(*xml, destData);
+
+	DBG(xml->toString());
 }
 
 //this is called when DAW restores a file
@@ -104,25 +113,36 @@ void OdinAudioProcessor::setStateInformation(const void *data, int sizeInBytes) 
 	std::unique_ptr<XmlElement> xmlState(getXmlFromBinary(data, sizeInBytes));
 	if (xmlState.get() != nullptr) {
 
+		//DBG(xmlState->toString());
+
 		//read tunings and remove them from xmltree:
-		Tunings::Scale scl;
+		Tunings::Scale scl           = Tunings::evenTemperament12NoteScale();
 		Tunings::KeyboardMapping kbm = Tunings::tuneNoteTo(60, Tunings::MIDI_0_FREQ * 32.0);
-		if (xmlState->hasTagName("tuning_scl")) {
-			try {
-				scl = Tunings::parseSCLData(xmlState->getStringAttribute("tuning_scl").toStdString());
-			} catch (...) {
-				scl = Tunings::Scale();
+		forEachXmlChildElement(*xmlState, e) {
+			if (e->hasTagName("tuning_scl")) {
+				try {
+					//DBG(e->getStringAttribute("data"));
+					scl = Tunings::parseSCLData(e->getStringAttribute("data").toStdString());
+				} catch (...) {
+					DBG("Failed to load .scl from binary state... resorting to default");
+					scl = Tunings::evenTemperament12NoteScale();
+				}
 			}
-			xmlState->removeAttribute("tuning_scl");
-		}
-		if (xmlState->hasTagName("tuning_kbm")) {
-			try {
-				kbm = Tunings::parseKBMData(xmlState->getStringAttribute("tuning_kbm").toStdString());
-			} catch (...) {
-				kbm = Tunings::tuneNoteTo(60, Tunings::MIDI_0_FREQ * 32.0);
+			if (e->hasTagName("tuning_kbm")) {
+				try {
+					//DBG(e->getStringAttribute("data"));
+					kbm = Tunings::parseKBMData(e->getStringAttribute("data").toStdString());
+				} catch (...) {
+					DBG("Failed to load .kbm from binary state... resorting to default");
+					kbm = Tunings::tuneNoteTo(60, Tunings::MIDI_0_FREQ * 32.0);
+				}
 			}
-			xmlState->removeAttribute("tuning_kbm");
 		}
+		xmlState->deleteAllChildElementsWithTagName("tuning_kbm");
+		xmlState->deleteAllChildElementsWithTagName("tuning_scl");
+		jassert(xmlState->getChildByName("tuning_kbm") == nullptr);
+		jassert(xmlState->getChildByName("tuning_scl") == nullptr);
+
 		m_tuning = Tunings::Tuning(scl, kbm);
 
 		if (xmlState->hasTagName(m_value_tree.state.getType())) {
