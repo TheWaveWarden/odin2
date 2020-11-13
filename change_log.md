@@ -1,3 +1,4 @@
+- default GUI size is now 150%
 - added triangles to dropdowns to make them more obvious 
 - FM- PM Osc ratio ranges increased to [1,16]
 - ModMatrix amounts now range up to [-300, 300] //todo bump patch migration version
