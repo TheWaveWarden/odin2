@@ -406,7 +406,17 @@ jobs:
   - bash: |
      scripts/nightly-devel-notes.sh > $(Build.ArtifactStagingDirectory)/ReleaseNotes.md
      ls $(Build.ArtifactStagingDirectory)
-    displayName: Create Release Notes
+
+     export PROJ_VERSION="$(../JUCE/extras/Projucer/Builds/LinuxMakefile/build/Projucer --get-version Odin.jucer)"
+     echo "Odin Project Version: $PROJ_VERSION"
+
+     mv "$(Build.ArtifactStagingDirectory)/Odin2.exe" "$(Build.ArtifactStagingDirectory)/Odin$PROJ_VERSIONWinInstaller.exe"
+     mv "$(Build.ArtifactStagingDirectory)/Odin2MacInstaller.pkg" "$(Build.ArtifactStagingDirectory)/Odin$PROJ_VERSIONMacInstaller.pkg"
+     mv "$(Build.ArtifactStagingDirectory)/Odin2MacInstaller.pkg" "$(Build.ArtifactStagingDirectory)/Odin$PROJ_VERSIONMacInstaller.pkg"
+     mv "$(Build.ArtifactStagingDirectory)/Odin2_linux_x64" "$(Build.ArtifactStagingDirectory)/Odin$PROJ_VERSIONLinux.zip"
+     
+     
+    displayName: Create Release Notes and Rename Binaries
 
 
   - task: GitHubRelease@0
