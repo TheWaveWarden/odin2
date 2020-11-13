@@ -106,7 +106,12 @@ jobs:
       echo ""
       echo "Results"
       [[ $(find Odin2.exe -type f -size +30000000c 2>/dev/null) ]] && echo "Windows installer built successfully" || exit 1
-      exit 0
+
+      export PROJ_VERSION="$(../../../JUCE/extras/Projucer/Builds/VisualStudio2019/x64/Release/App/Projucer.exe --get-version Odin.jucer)"
+      echo "Odin Project Version: $PROJ_VERSION"
+      mv "Odin2.exe" "build/Odin$PROJ_VERSIONWinInstaller.exe"
+
+
     displayName: 'Windows: Build Installer'
     condition: variables.isWindows
 
@@ -225,7 +230,13 @@ jobs:
       pwd
 
       [[ $(find build/Odin2MacInstaller.pkg -type f -size +50000000c 2>/dev/null) ]] && echo "Mac Package Built Successfully" || exit 1
-      exit 0
+
+      export PROJ_VERSION="$(../../../JUCE/extras/Projucer/Builds/MacOSX/build/Release/Projucer.app/Contents/MacOS/Projucer --get-version Odin.jucer)"
+      echo "Odin Project Version: $PROJ_VERSION"
+      mv "build/Odin2MacInstaller.pkg" "build/Odin$PROJ_VERSIONMacInstaller.pkg"
+
+      ls -l build
+
     displayName: 'Mac: Package Odin'
     condition: variables.isMac
 
@@ -363,6 +374,11 @@ jobs:
       echo "Move installers to separate dir"
       mkdir build
       mv Odin* build/
+
+      echo "Rename Linux Zip"
+      export PROJ_VERSION="$(../../../JUCE/extras/Projucer/Builds/LinuxMakefile/build/Projucer --get-version Odin.jucer)"
+      echo "Odin Project Version: $PROJ_VERSION"
+      mv "build/Odin2_linux_x64.zip" "build/$Odin$(PROJ_VERSION)Linux.zip"
       
     displayName: 'Linux: Build Odin2 Packages'
     condition: variables.isLinux
@@ -406,20 +422,8 @@ jobs:
   - bash: |
      scripts/nightly-devel-notes.sh > $(Build.ArtifactStagingDirectory)/ReleaseNotes.md
      ls $(Build.ArtifactStagingDirectory)
-
-     export PROJ_VERSION="$(../JUCE/extras/Projucer/Builds/LinuxMakefile/build/Projucer --get-version Odin.jucer)"
-     echo "Odin Project Version: $PROJ_VERSION"
-
-
-     cd $(Build.ArtifactStagingDirectory)
-
-     mv "Odin2.exe" "Odin$PROJ_VERSIONWinInstaller.exe"
-     mv "Odin2MacInstaller.pkg" "Odin$PROJ_VERSIONMacInstaller.pkg"
-     mv "Odin2_linux_x64.zip" "$Odin$(PROJ_VERSION)Linux.zip"
-
-     ls
      
-    displayName: Create Release Notes and Rename Binaries
+    displayName: Create Release Notes
 
 
   - task: GitHubRelease@0

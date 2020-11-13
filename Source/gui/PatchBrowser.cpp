@@ -278,7 +278,7 @@ PatchBrowser::PatchBrowser(OdinAudioProcessor &p_processor, AudioProcessorValueT
 		}
 
 		File file_suggestion =
-		    File(DEFAULT_EXPORT_LOCATION_STRING + +File::getSeparatorString() + soundbank_file.getFileName() + ".osb");
+		    File(DEFAULT_EXPORT_LOCATION_STRING + File::getSeparatorString() + soundbank_file.getFileName() + ".osb");
 
 		// set up filechooser
 		m_filechooser.reset(new FileChooser("Choose a file to save...", file_suggestion, "*.osb", true));
@@ -740,7 +740,6 @@ void PatchBrowser::savePatchInOpenedFileStream(FileOutputStream &p_file_stream) 
 	copy_with_removed_params.getChildWithName("misc").removeProperty("current_patch_filename", nullptr);
 	copy_with_removed_params.getChildWithName("misc").removeProperty("current_patch_directory", nullptr);
 	copy_with_removed_params.getChildWithName("misc").removeProperty("arp_mod_selected", nullptr);
-	
 
 	//remove draw osc params if they aren't needed
 	for (int osc = 1; osc < 4; ++osc) {

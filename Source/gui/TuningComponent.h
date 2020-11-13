@@ -38,8 +38,8 @@ public:
 protected:
 	void importSCLFile();
 	void importKBMFile();
-	void exportSCLFile();
-	void exportKBMFile();
+	void exportSCLFileWithFileBrowser();
+	void exportKBMFileWithFileBrowser();
 	void restoreSCL();
 	void restoreKBM();
 	void resetEntireTuning();
