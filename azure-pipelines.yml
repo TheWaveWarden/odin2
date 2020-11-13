@@ -379,7 +379,7 @@ jobs:
       echo "Rename Linux Zip"
       export PROJ_VERSION="$(../../../JUCE/extras/Projucer/Builds/LinuxMakefile/build/Projucer --get-version ../../Odin.jucer)"
       echo "Odin Project Version: $PROJ_VERSION"
-      mv "build/Odin2_linux_x64.zip" "build/$Odin${PROJ_VERSION}Linux.zip"
+      mv "build/Odin2_linux_x64.zip" "build/Odin${PROJ_VERSION}Linux.zip"
       
     displayName: 'Linux: Build Odin2 Packages'
     condition: variables.isLinux
