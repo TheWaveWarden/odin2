@@ -376,7 +376,6 @@ public:
 		                         &delay_button_draw3);
 		m_delay_button.setBounds(
 		    3 * OdinHelper::c150(FX_BUTTON_OFFSET), 0, delay_button_1.getWidth(), delay_button_1.getHeight());
-		setSize(FX_BUTTON_OFFSET * 1.5 * 5 + 1, delay_button_1.getHeight());
 
 
 		juce::Image reverb_button_1 =
@@ -408,6 +407,8 @@ public:
 		                          &reverb_button_draw3);
 		m_reverb_button.setBounds(
 		    4 * OdinHelper::c150(FX_BUTTON_OFFSET), 0, reverb_button_1.getWidth(), reverb_button_1.getHeight());
+
+		setSize(FX_BUTTON_OFFSET * 1.5 * 5, delay_button_1.getHeight());
 
 		m_phaser_button.setGUIBig();
 		m_flanger_button.setGUIBig();
@@ -565,7 +566,7 @@ public:
 		//                           &reverb_button_draw3);
 		// m_reverb_button.setBounds(4 * FX_BUTTON_OFFSET, 0, reverb_button_1.getWidth(), reverb_button_1.getHeight());
 
- 		setSize(FX_BUTTON_OFFSET * 5 + 1, delay_button_1.getHeight());
+ 		setSize(FX_BUTTON_OFFSET * 5, delay_button_1.getHeight());
 
 		m_phaser_button.setGUISmall();
 		m_flanger_button.setGUISmall();
