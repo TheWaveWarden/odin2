@@ -19,9 +19,6 @@
 #include "gui/setGUIBig.h"
 #include "gui/setGUISmall.h"
 
-//include these files with implementation to avoid one big cpp file
-#include "PluginEditorTuning.cpp"
-
 void writeValueTreeToFile(const ValueTree &tree) {
 	File file("../../odin2/ValueTree.txt");
 	String text = tree.toXmlString();
@@ -74,7 +71,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
     m_reverb_position_identifier("reverb_position"), m_mod_matrix(vts),
     /*m_legato_button("legato"),*/ m_gui_size_button("gui_size"), m_tooltip(nullptr, 2047483647),
     m_is_standalone_plugin(p_is_standalone), /*m_save_load(vts, p_processor),*/ m_arp(p_processor, vts),
-    m_processor(p_processor), m_patch_browser(p_processor, vts), m_tuning_dropdown("Tuning") {
+    m_processor(p_processor), m_patch_browser(p_processor, vts), m_tuning(p_processor) {
 
 #ifdef ODIN_MAC
 	setBufferedToImage(true);
@@ -328,6 +325,8 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 
 	m_question_button.onClick = [&]() {};
 
+	addAndMakeVisible(m_tuning);
+
 	addAndMakeVisible(m_question_button);
 
 	m_filleft_button2.setClickingTogglesState(true);
@@ -529,56 +528,6 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 		processor.setMonoPolyLegato((PlayModes)m_mono_poly_legato_dropdown.getSelectedId());
 	};
 	addAndMakeVisible(m_mono_poly_legato_dropdown);
-
-	m_tuning_dropdown.setInlay(1);
-	m_tuning_dropdown.setEditableText(false);
-	m_tuning_dropdown.showTriangle();
-	m_tuning_dropdown.setColor(juce::STANDARD_DISPLAY_COLOR);
-	m_tuning_dropdown.setTooltip(
-	    "Load or export custom tunings. A tuning is comprised of a .scl file a .kbm file. The .kbm file maps keys on "
-	    "the keyboard to arbitrary note indices and sets the base note. The .scl file maps those indices to actual "
-	    "frequencies in relation to the base note.");
-	m_tuning_dropdown.addItem("Import .scl file", TUNING_IMPORT_SCL);
-	m_tuning_dropdown.addItem("Import .kbm file", TUNING_IMPORT_KBM);
-	m_tuning_dropdown.addSeparator();
-	m_tuning_dropdown.addItem("Export current .scl file", TUNING_EXPORT_SCL);
-	m_tuning_dropdown.addItem("Export current .kbm file", TUNING_EXPORT_KBM);
-	m_tuning_dropdown.addSeparator();
-	m_tuning_dropdown.addItem("Reset to standard .scl", TUNING_RESTORE_SCL);
-	m_tuning_dropdown.addItem("Reset to standard .kbm", TUNING_RESTORE_KBM);
-	m_tuning_dropdown.addSeparator();
-	m_tuning_dropdown.addItem("Reset entire tuning", TUNING_RESET_ENTIRE_TUNING);
-	m_tuning_dropdown.onChange = [&]() {
-		DBG_VAR(m_tuning_dropdown.getSelectedId());
-		switch (m_tuning_dropdown.getSelectedId()) {
-		case TUNING_IMPORT_SCL:
-			importSCLFile();
-			break;
-		case TUNING_IMPORT_KBM:
-			importKBMFile();
-			break;
-		case TUNING_EXPORT_SCL:
-			exportSCLFile();
-			break;
-		case TUNING_EXPORT_KBM:
-			exportKBMFile();
-			break;
-		case TUNING_RESTORE_SCL:
-			restoreSCL();
-			break;
-		case TUNING_RESTORE_KBM:
-			restoreKBM();
-			break;
-		case TUNING_RESET_ENTIRE_TUNING:
-			resetEntireTuning();
-		default:
-			break;
-		}
-
-		//reset id, so the checkmark doesn't appear on next dropdown
-		m_tuning_dropdown.setSelectedId(-1, NotificationType::dontSendNotification);
-	};
-	addAndMakeVisible(m_tuning_dropdown);
 
 	m_gui_size_button.setToggleState(false, sendNotification);
 	m_gui_size_button.setTooltip("Scale the GUI to 100% or 150%");
@@ -1220,7 +1169,7 @@ void OdinAudioProcessorEditor::setGUISizeBig(bool p_big, bool p_write_to_config)
 		m_pitch_amount.setGUIBig();
 		m_unison_selector.setGUIBig();
 		m_mono_poly_legato_dropdown.setGUIBig();
-		m_tuning_dropdown.setGUIBig();
+		m_tuning.setGUIBig();
 		setGUIBig();
 	} else {
 		g_GUI_big = false;
@@ -1254,7 +1203,7 @@ void OdinAudioProcessorEditor::setGUISizeBig(bool p_big, bool p_write_to_config)
 		m_pitch_amount.setGUISmall();
 		m_unison_selector.setGUISmall();
 		m_mono_poly_legato_dropdown.setGUISmall();
-		m_tuning_dropdown.setGUISmall();
+		m_tuning.setGUISmall();
 		setGUISmall();
 	}
 

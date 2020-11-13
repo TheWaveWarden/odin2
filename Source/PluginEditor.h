@@ -43,6 +43,7 @@
 #include "gui/PitchWheel.h"
 #include "gui/ReverbComponent.h"
 #include "gui/XYSectionComponent.h"
+#include "gui/TuningComponent.h"
 
 #ifdef WTGEN
 #include "SpectrumDisplay.h"
@@ -214,14 +215,6 @@
 #define ODIN_EDITOR_SIZE_150_X 1200
 #define ODIN_EDITOR_SIZE_150_Y 921
 
-#define TUNING_IMPORT_SCL 10
-#define TUNING_IMPORT_KBM 50
-#define TUNING_EXPORT_SCL 100
-#define TUNING_EXPORT_KBM 150
-#define TUNING_RESTORE_SCL 1000
-#define TUNING_RESTORE_KBM 1050
-#define TUNING_RESET_ENTIRE_TUNING 2000
-
 class TooltipFeels : public LookAndFeel_V4 {
 public:
 	TooltipFeels() {
@@ -337,6 +330,7 @@ private:
 	PatchBrowser m_patch_browser;
 
 	XYSectionComponent m_xy_section;
+	TuningComponent m_tuning;
 
 	juce::PopupMenu m_osc_dropdown_menu;
 	juce::DrawableButton m_osc1_dropdown;
@@ -380,7 +374,6 @@ private:
 	LeftRightButton m_lfo_24_button;
 
 	GlassDropdown m_mono_poly_legato_dropdown;
-	FixedTextGlassDropdown m_tuning_dropdown;
 	LeftRightButton m_gui_size_button;
 
 	juce::DrawableButton m_reset;
@@ -428,21 +421,6 @@ private:
 	OdinAudioProcessor &m_processor;
 
 	juce::Image m_odin_backdrop;
-
-	//tuning
-	void importSCLFile();
-	void importKBMFile();
-	void exportSCLFile();
-	void exportKBMFile();
-	void restoreSCL();
-	void restoreKBM();
-	void resetEntireTuning();
-
-	String m_scl_import_dir = DEFAULT_SOUNDBANK_IMPORT_LOCATION_STRING;
-	String m_kbm_import_dir = DEFAULT_SOUNDBANK_IMPORT_LOCATION_STRING;
-	std::unique_ptr<FileChooser> m_filechooser;
-	void importSCLFromFileBrowser(String p_directory, String p_extension, String p_title_text, int p_flags);
-	void importKBMFromFileBrowser(String p_directory, String p_extension, String p_title_text, int p_flags);
 
 	void setOsc1Plate(int p_osc_type);
 	void setOsc2Plate(int p_osc_type);

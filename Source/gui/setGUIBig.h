@@ -15,6 +15,8 @@
 
 void OdinAudioProcessorEditor::setGUIBig() {
 
+	m_tuning.setTopLeftPosition(1.5f * TUNING_POS_X, 1.5f * TUNING_POS_Y);
+
 	juce::Image dropdown_button1 =
 	    ImageCache::getFromMemory(BinaryData::buttondropdown_1_150_png, BinaryData::buttondropdown_1_150_pngSize);
 	juce::Image dropdown_button2 =
@@ -553,27 +555,12 @@ void OdinAudioProcessorEditor::setGUIBig() {
 	m_lfo_24_button.setBounds(
 	    OdinHelper::c150(LFO24_POS_X), OdinHelper::c150(LFO24_POS_Y), lfo24_left.getWidth(), lfo24_left.getHeight());
 
-	//juce::Image legato_left =
-	//    ImageCache::getFromMemory(BinaryData::buttonlegato_1_150_png, BinaryData::buttonlegato_1_150_pngSize);
-	//juce::Image legato_right =
-	//    ImageCache::getFromMemory(BinaryData::buttonlegato_3_150_png, BinaryData::buttonlegato_3_150_pngSize);
-	//m_legato_button.setImage(legato_left, 1);
-	//m_legato_button.setImage(legato_right, 2);
-	//m_legato_button.setBounds(OdinHelper::c150(LEGATO_POS_X),
-	//                          OdinHelper::c150(LEGATO_POS_Y),
-	//                          legato_left.getWidth(),
-	//                          legato_left.getHeight());
 	juce::Image glas_panel =
 	    ImageCache::getFromMemory(BinaryData::glaspanel_midbig_150_png, BinaryData::glaspanel_midbig_150_pngSize);
 	m_mono_poly_legato_dropdown.setBounds(
 	    OdinHelper::c150(LEGATO_POS_X), OdinHelper::c150(LEGATO_POS_Y), glas_panel.getWidth(), glas_panel.getHeight());
 	m_mono_poly_legato_dropdown.setImage(glas_panel);
 	m_mono_poly_legato_dropdown.setInlay(1);
-
-	m_tuning_dropdown.setBounds(
-	    OdinHelper::c150(TUNING_POS_X), OdinHelper::c150(TUNING_POS_Y), glas_panel.getWidth(), glas_panel.getHeight());
-	m_tuning_dropdown.setImage(glas_panel);
-	m_tuning_dropdown.setInlay(1);
 
 	juce::Image gui_size_left =
 	    ImageCache::getFromMemory(BinaryData::buttonguisize_1_150_png, BinaryData::buttonguisize_1_150_pngSize);

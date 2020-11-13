@@ -15,6 +15,8 @@
 
 void OdinAudioProcessorEditor::setGUISmall() {
 
+	m_tuning.setTopLeftPosition(TUNING_POS_X, TUNING_POS_Y);
+
 	juce::Image dropdown_button1 =
 	    ImageCache::getFromMemory(BinaryData::buttondropdown_1_png, BinaryData::buttondropdown_1_pngSize);
 	juce::Image dropdown_button2 =
@@ -491,10 +493,6 @@ void OdinAudioProcessorEditor::setGUISmall() {
 	m_mono_poly_legato_dropdown.setBounds(LEGATO_POS_X, LEGATO_POS_Y, glas_panel.getWidth(), glas_panel.getHeight());
 	m_mono_poly_legato_dropdown.setImage(glas_panel);
 	m_mono_poly_legato_dropdown.setInlay(1);
-
-	m_tuning_dropdown.setBounds(TUNING_POS_X, TUNING_POS_Y, glas_panel.getWidth(), glas_panel.getHeight());
-	m_tuning_dropdown.setImage(glas_panel);
-	m_tuning_dropdown.setInlay(1);
 
 	juce::Image gui_size_left =
 	    ImageCache::getFromMemory(BinaryData::buttonguisize_1_png, BinaryData::buttonguisize_1_pngSize);

@@ -1349,6 +1349,10 @@
             file="Graphics_150/applied/WW_logo_xy_150.png"/>
     </GROUP>
     <GROUP id="{7AF384ED-9FD6-6492-4B8C-5777BB9A2698}" name="Source">
+      <FILE id="JBuR0C" name="TuningComponent.cpp" compile="1" resource="0"
+            file="Source/gui/TuningComponent.cpp"/>
+      <FILE id="TaV6sk" name="TuningComponent.h" compile="0" resource="0"
+            file="Source/gui/TuningComponent.h"/>
       <FILE id="GrV3GI" name="BiquadEQ.cpp" compile="1" resource="0" file="Source/audio/Filters/BiquadEQ.cpp"/>
       <FILE id="IwaVYt" name="BiquadEQ.h" compile="0" resource="0" file="Source/audio/Filters/BiquadEQ.h"/>
       <FILE id="aIxVj1" name="FixedTextGlassDropdown.h" compile="0" resource="0"
