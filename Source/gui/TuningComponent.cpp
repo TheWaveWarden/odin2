@@ -123,16 +123,18 @@ void TuningComponent::exportSCLFileWithFileBrowser() {
 				    }
 			    }
 			    FileOutputStream file_stream(file_to_write);
+			    m_scl_import_dir = file_to_write.getParentDirectory().getFullPathName();
 			    if (file_stream.openedOk()) {
 				    DBG("Writing tuning file to " << file_to_write.getFullPathName());
-					file_stream.setPosition(0);
+				    file_stream.setPosition(0);
 				    file_stream << String(m_processor.m_tuning.scale.rawText);
 				    file_stream.flush();
 				    //savePatchInOpenedFileStream(file_stream);
 			    } else {
-				    AlertWindow::showMessageBox(AlertWindow::AlertIconType::WarningIcon,
-				                                "Unable to save file!",
-				                                "Please make sure you have proper write-permissions for the selected directory!");
+				    AlertWindow::showMessageBox(
+				        AlertWindow::AlertIconType::WarningIcon,
+				        "Unable to save file!",
+				        "Please make sure you have proper write-permissions for the selected directory!");
 			    }
 		    }
 	    });
@@ -141,7 +143,54 @@ void TuningComponent::exportSCLFileWithFileBrowser() {
 void TuningComponent::exportKBMFileWithFileBrowser() {
 	DBG("exportKBMFile()");
 	DBG(m_processor.m_tuning.keyboardMapping.rawText);
-	//todo
+
+	File file_suggestion(m_kbm_import_dir + File::getSeparatorString() + "mapping.kbm");
+
+	// set up filechooser
+	m_filechooser.reset(new FileChooser("Choose a file to save...", file_suggestion, "*.kbm", true));
+
+	//launch filechooser
+	m_filechooser->launchAsync(
+	    FileBrowserComponent::saveMode | FileBrowserComponent::canSelectFiles,
+	    [file_suggestion, this](const FileChooser &chooser) {
+		    auto result      = chooser.getURLResult();
+		    String file_name = result.isEmpty() ? String()
+		                                        : (result.isLocalFile() ? result.getLocalFile().getFullPathName()
+		                                                                : result.toString(true));
+
+		    if (file_name != "") {
+			    //append .odin if not already there
+			    file_name = file_name.endsWith(".kbm") ? file_name : file_name + ".kbm";
+
+			    File file_to_write(file_name);
+
+			    //check whether file already exists
+			    if (file_to_write.existsAsFile()) {
+				    if (!(AlertWindow::showOkCancelBox(AlertWindow::WarningIcon,
+				                                       "File already exists!",
+				                                       "Are you sure you want to overwrite it?",
+				                                       {},
+				                                       {},
+				                                       {}))) {
+					    //user selected cancel
+					    return;
+				    }
+			    }
+			    FileOutputStream file_stream(file_to_write);
+			    m_kbm_import_dir = file_to_write.getParentDirectory().getFullPathName();
+			    if (file_stream.openedOk()) {
+				    DBG("Writing kbm mapping file to " << file_to_write.getFullPathName());
+				    file_stream.setPosition(0);
+				    file_stream << String(m_processor.m_tuning.keyboardMapping.rawText);
+				    file_stream.flush();
+			    } else {
+				    AlertWindow::showMessageBox(
+				        AlertWindow::AlertIconType::WarningIcon,
+				        "Unable to save file!",
+				        "Please make sure you have proper write-permissions for the selected directory!");
+			    }
+		    }
+	    });
 }
 
 void TuningComponent::restoreSCL() {
@@ -191,7 +240,7 @@ void TuningComponent::importKBMFromFileBrowser(String p_directory,
 			kbm_from_file = Tunings::readKBMFile(file_name.toStdString());
 		} catch (...) {
 			AlertWindow::showMessageBox(AlertWindow::AlertIconType::WarningIcon,
-			                            "Unable to read Scala!",
+			                            "Unable to read keyboard mapping!",
 			                            "Please make sure the file is a proper keyboard mapping file!");
 			return;
 		}
