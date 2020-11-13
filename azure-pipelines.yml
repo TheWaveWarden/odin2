@@ -109,7 +109,7 @@ jobs:
 
       export PROJ_VERSION="$(../../../../JUCE/extras/Projucer/Builds/VisualStudio2019/x64/Release/App/Projucer.exe --get-version ../../../Odin.jucer)"
       echo "Odin Project Version: $PROJ_VERSION"
-      mv "Odin2.exe" "Odin$PROJ_VERSIONWinInstaller.exe"
+      mv "Odin2.exe" "Odin${PROJ_VERSION}WinInstaller.exe"
       ls -l
 
 
@@ -234,7 +234,7 @@ jobs:
 
       export PROJ_VERSION="$(../../../JUCE/extras/Projucer/Builds/MacOSX/build/Release/Projucer.app/Contents/MacOS/Projucer --get-version ../../Odin.jucer)"
       echo "Odin Project Version: $PROJ_VERSION"
-      mv "build/Odin2MacInstaller.pkg" "build/Odin$PROJ_VERSIONMacInstaller.pkg"
+      mv "build/Odin2MacInstaller.pkg" "build/Odin${PROJ_VERSION}MacInstaller.pkg"
 
       ls -l build
 
@@ -379,7 +379,7 @@ jobs:
       echo "Rename Linux Zip"
       export PROJ_VERSION="$(../../../JUCE/extras/Projucer/Builds/LinuxMakefile/build/Projucer --get-version ../../Odin.jucer)"
       echo "Odin Project Version: $PROJ_VERSION"
-      mv "build/Odin2_linux_x64.zip" "build/$Odin$(PROJ_VERSION)Linux.zip"
+      mv "build/Odin2_linux_x64.zip" "build/$Odin${PROJ_VERSION}Linux.zip"
       
     displayName: 'Linux: Build Odin2 Packages'
     condition: variables.isLinux
