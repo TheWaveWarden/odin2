@@ -78,7 +78,7 @@ void TuningComponent::importSCLFile() {
 
 void TuningComponent::importKBMFile() {
 	DBG("importKBMFile()");
-	importSCLFromFileBrowser("",
+	importKBMFromFileBrowser("",
 	                         "*.kbm",
 	                         "Load KBM keyboard file...",
 	                         FileBrowserComponent::openMode | FileBrowserComponent::canSelectFiles);
@@ -152,7 +152,7 @@ void TuningComponent::resetEntireTuning() {
 	m_processor.m_tuning = Tunings::Tuning(Tunings::tuneNoteTo(60, Tunings::MIDI_0_FREQ * 32.0));
 }
 
-void TuningComponent::importSCLFromFileBrowser(String p_directory,
+void TuningComponent::importKBMFromFileBrowser(String p_directory,
                                                String p_extension,
                                                String p_title_text,
                                                int p_flags) {
@@ -184,7 +184,7 @@ void TuningComponent::importSCLFromFileBrowser(String p_directory,
 			kbm_from_file = Tunings::readKBMFile(file_name.toStdString());
 		} catch (...) {
 			AlertWindow::showMessageBox(AlertWindow::AlertIconType::WarningIcon,
-			                            "Unable to read keyboard mapping!",
+			                            "Unable to read Scala!",
 			                            "Please make sure the file is a proper keyboard mapping file!");
 			return;
 		}
@@ -193,7 +193,7 @@ void TuningComponent::importSCLFromFileBrowser(String p_directory,
 	});
 }
 
-void TuningComponent::importKBMFromFileBrowser(String p_directory,
+void TuningComponent::importSCLFromFileBrowser(String p_directory,
                                                String p_extension,
                                                String p_title_text,
                                                int p_flags) {
