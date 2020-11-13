@@ -85,6 +85,11 @@ void OdinAudioProcessor::getStateInformation(MemoryBlock &destData) {
 
 	auto state = m_value_tree.copyState();
 	std::unique_ptr<XmlElement> xml(state.createXml());
+
+	//add tuning to xml
+	xml->setAttribute("tuning_scl", m_tuning.scale.rawText);
+	xml->setAttribute("tuning_kbm", m_tuning.keyboardMapping.rawText);
+
 	copyXmlToBinary(*xml, destData);
 }
 
@@ -98,6 +103,28 @@ void OdinAudioProcessor::setStateInformation(const void *data, int sizeInBytes) 
 
 	std::unique_ptr<XmlElement> xmlState(getXmlFromBinary(data, sizeInBytes));
 	if (xmlState.get() != nullptr) {
+
+		//read tunings and remove them from xmltree:
+		Tunings::Scale scl;
+		Tunings::KeyboardMapping kbm = Tunings::tuneNoteTo(60, Tunings::MIDI_0_FREQ * 32.0);
+		if (xmlState->hasTagName("tuning_scl")) {
+			try {
+				scl = Tunings::parseSCLData(xmlState->getStringAttribute("tuning_scl").toStdString());
+			} catch (...) {
+				scl = Tunings::Scale();
+			}
+			xmlState->removeAttribute("tuning_scl");
+		}
+		if (xmlState->hasTagName("tuning_kbm")) {
+			try {
+				kbm = Tunings::parseKBMData(xmlState->getStringAttribute("tuning_kbm").toStdString());
+			} catch (...) {
+				kbm = Tunings::tuneNoteTo(60, Tunings::MIDI_0_FREQ * 32.0);
+			}
+			xmlState->removeAttribute("tuning_kbm");
+		}
+		m_tuning = Tunings::Tuning(scl, kbm);
+
 		if (xmlState->hasTagName(m_value_tree.state.getType())) {
 
 			//avoid reading from newer patch versions
