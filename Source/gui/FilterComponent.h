@@ -126,7 +126,7 @@ public:
 	void setGUISmall();
 
 protected:
-	bool m_GUI_big = false;
+	bool m_GUI_big = true;
 
 	Knob m_vel;
 	Knob m_kbd;

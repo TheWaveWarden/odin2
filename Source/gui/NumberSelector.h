@@ -67,7 +67,7 @@ public:
   virtual void setGUIBig();
   virtual void setGUISmall();
 protected:
-  bool m_GUI_big = false;
+  bool m_GUI_big = true;
 
 
   float m_mouse_drag_divisor = 7.f;

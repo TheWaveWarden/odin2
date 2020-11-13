@@ -57,7 +57,7 @@ public:
   void setGUISmall();
 
 protected:
-  bool m_GUI_big = false;
+  bool m_GUI_big = true;
 
   int mouse_reference_value = 0;
   int m_drag_initial_value = 0;

@@ -73,7 +73,7 @@ public:
 	void setGUISmall();
 
 private:
-	bool m_GUI_big = false;
+	bool m_GUI_big = true;
 	bool m_is_standalone_plugin;
 
 	Knob m_rate;

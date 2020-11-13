@@ -580,7 +580,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	};
 	addAndMakeVisible(m_tuning_dropdown);
 
-	m_gui_size_button.setToggleState(true, sendNotification);
+	m_gui_size_button.setToggleState(false, sendNotification);
 	m_gui_size_button.setTooltip("Scale the GUI to 100% or 150%");
 	addAndMakeVisible(m_gui_size_button);
 	m_gui_size_button.disableMidiLearn();
@@ -1278,16 +1278,16 @@ void OdinAudioProcessorEditor::readOrCreateConfigFile(bool &p_GUI_big) {
 	}
 
 	else {
-		p_GUI_big = false;
+		p_GUI_big = true;
 
 		configuration_file.create();
-		DBG("Created File " + path_absolute);
+		DBG("Created Config File " + path_absolute);
 
 		FileOutputStream config_stream(configuration_file);
 		if (config_stream.openedOk()) {
 			config_stream.setPosition(0);
 			config_stream.truncate();
-			config_stream << "big_GUI: 0";
+			config_stream << "big_GUI: 1";
 		} else {
 			DBG("Failed to create config file...");
 		}

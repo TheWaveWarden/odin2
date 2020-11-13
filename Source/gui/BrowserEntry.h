@@ -59,7 +59,7 @@ private:
 
 	String m_text;
 
-	bool m_GUI_big = false;
+	bool m_GUI_big = true;
 	bool m_is_highlighted = false;
 	bool m_is_active = false;
 	bool m_pass_active_element_to_parent = false;

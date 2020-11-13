@@ -62,7 +62,7 @@ public:
 	void setGUISmall();
 
 private:
-	bool m_GUI_big = false;
+	bool m_GUI_big = true;
 	int m_inlay    = INLAY_DEFAULT_SPECDRAW;
 	juce::Image m_glaspanel;
 	juce::Colour m_color      = juce::Colours::black;

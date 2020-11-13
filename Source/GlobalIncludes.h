@@ -421,7 +421,7 @@ public:
 
 	float m_font_size = 17.f;
 	float m_width  = 150;
-	bool m_GUI_big = false;
+	bool m_GUI_big = true;
 };
 
 //Used to convert positions and sizes to 150% GUI scaling

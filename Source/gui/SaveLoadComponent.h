@@ -65,7 +65,7 @@ public:
 	void setGUISmall();
 
 private:
-	bool m_GUI_big = false;
+	bool m_GUI_big = true;
 
 	void loadPatchWithFileBrowser();
 	bool checkForBiggerVersion(FileInputStream &p_file_stream, std::string &p_version_string);

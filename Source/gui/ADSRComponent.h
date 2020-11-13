@@ -61,7 +61,7 @@ public:
   void setGUISmall();
 
 private:
-  bool m_GUI_big = false;
+  bool m_GUI_big = true;
 
   OdinButton m_loop;
 

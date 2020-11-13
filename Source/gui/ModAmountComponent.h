@@ -86,7 +86,7 @@ public:
 	//void setInlayTop(int p_inlay){m_inlay_top = p_inlay;}
 
 protected:
-	bool m_GUI_big = false;
+	bool m_GUI_big = true;
 
 	String m_parameter_id = "";
 

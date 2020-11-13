@@ -82,7 +82,7 @@ public:
 	void setGUISmall();
 
 private:
-	bool m_GUI_big = false;
+	bool m_GUI_big = true;
 
 	juce::Image m_distortion_image;
 

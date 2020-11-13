@@ -55,7 +55,7 @@ private:
 	const std::string m_param_name_x;
 	const std::string m_param_name_y;
 
-	bool m_GUI_big   = false;
+	bool m_GUI_big   = true;
 	bool m_draw_logo = false;
 
 	//this resolves the issue where the pad updates the knob, which updates the pad again

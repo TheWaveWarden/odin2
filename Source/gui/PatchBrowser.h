@@ -59,7 +59,7 @@ private:
 
     Image m_background;
 
-    bool m_GUI_big = false;
+    bool m_GUI_big = true;
 
 	OdinAudioProcessor &m_audio_processor;
 	AudioProcessorValueTreeState &m_value_tree;

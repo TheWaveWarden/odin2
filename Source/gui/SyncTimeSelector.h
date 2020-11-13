@@ -62,7 +62,7 @@ public:
 
 private:
 
-  bool m_GUI_big = false;
+  bool m_GUI_big = true;
 
   void updateDisplay() {
     m_display.setText(m_left_values[m_value_left] + "/" +

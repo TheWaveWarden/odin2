@@ -91,7 +91,7 @@ public:
 	}
 
 private:
-	bool m_GUI_big = false;
+	bool m_GUI_big = true;
 
 	std::string m_button_name;
 	juce::ComponentDragger m_dragger;

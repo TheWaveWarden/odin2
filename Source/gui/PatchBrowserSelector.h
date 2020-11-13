@@ -198,7 +198,7 @@ private:
 
 	PatchBrowserScrollBar m_scroll_bar;
 
-	bool m_GUI_big = false;
+	bool m_GUI_big = true;
 	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(PatchBrowserSelector)
 
 	bool m_show_left_button = false;

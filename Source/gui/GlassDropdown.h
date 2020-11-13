@@ -109,7 +109,7 @@ protected:
 	int m_inlay_top  = 0;
 	int m_inlay_left = 0;
 
-	bool m_GUI_big = false;
+	bool m_GUI_big = true;
 	bool m_setOneToZero = false;
 	bool m_show_triangle = false;
 	std::string m_default_text = "undefined";

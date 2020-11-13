@@ -59,7 +59,7 @@ public:
 	}
 
 private:
-	bool m_GUI_big = false;
+	bool m_GUI_big = true;
 	bool m_LED_on  = false;
 
 	juce::Image m_image_on;

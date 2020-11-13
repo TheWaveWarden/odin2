@@ -60,7 +60,7 @@ public:
 
 private:
 
-	bool m_GUI_big = false;
+	bool m_GUI_big = true;
 
 	Image m_knob_guide;
 

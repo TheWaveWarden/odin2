@@ -108,7 +108,7 @@ private:
     void setNumberLEDsToShow(int p_number);
     void setModTranspose(bool p_is_mod);
     
-    bool m_GUI_big = false;
+    bool m_GUI_big = true;
     //Image m_background;
 
 

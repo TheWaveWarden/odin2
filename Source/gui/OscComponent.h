@@ -222,7 +222,7 @@ public:
 protected:
   // TextEditor REMOVE_EDITOR;
 
-  bool m_GUI_big = false;
+  bool m_GUI_big = true;
 
   int m_osc_type = 0;
 

@@ -39,7 +39,7 @@ public:
 	void setGUISmall();
 
 private:
-	bool m_GUI_big = false;
+	bool m_GUI_big = true;
 
 	std::string m_section_name;
 	AudioProcessorValueTreeState &m_value_tree;

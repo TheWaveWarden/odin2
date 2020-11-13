@@ -58,7 +58,7 @@ public:
   void setGUIBig();
   void setGUISmall();
 private:
-  bool m_GUI_big = false;
+  bool m_GUI_big = true;
 
   bool m_mouse_was_down = false;
   int m_last_x_value;
