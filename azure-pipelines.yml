@@ -410,9 +410,14 @@ jobs:
      export PROJ_VERSION="$(../JUCE/extras/Projucer/Builds/LinuxMakefile/build/Projucer --get-version Odin.jucer)"
      echo "Odin Project Version: $PROJ_VERSION"
 
-     mv "$(Build.ArtifactStagingDirectory)/Odin2.exe" "$(Build.ArtifactStagingDirectory)/Odin$PROJ_VERSIONWinInstaller.exe"
-     mv "$(Build.ArtifactStagingDirectory)/Odin2MacInstaller.pkg" "$(Build.ArtifactStagingDirectory)/Odin$PROJ_VERSIONMacInstaller.pkg"
-     mv "$(Build.ArtifactStagingDirectory)/Odin2_linux_x64.zip" "$(Build.ArtifactStagingDirectory)/Odin$PROJ_VERSIONLinux.zip"
+
+     cd $(Build.ArtifactStagingDirectory)
+
+     mv "Odin2.exe" "Odin$PROJ_VERSIONWinInstaller.exe"
+     mv "Odin2MacInstaller.pkg" "Odin$PROJ_VERSIONMacInstaller.pkg"
+     mv "Odin2_linux_x64.zip" "$Odin$(PROJ_VERSION)Linux.zip"
+
+     ls
      
     displayName: Create Release Notes and Rename Binaries
 
