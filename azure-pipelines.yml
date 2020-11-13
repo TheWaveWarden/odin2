@@ -107,9 +107,9 @@ jobs:
       echo "Results"
       [[ $(find Odin2.exe -type f -size +30000000c 2>/dev/null) ]] && echo "Windows installer built successfully" || exit 1
 
-      export PROJ_VERSION="$(../../../JUCE/extras/Projucer/Builds/VisualStudio2019/x64/Release/App/Projucer.exe --get-version Odin.jucer)"
+      export PROJ_VERSION="$(../../../../JUCE/extras/Projucer/Builds/VisualStudio2019/x64/Release/App/Projucer.exe --get-version Odin.jucer)"
       echo "Odin Project Version: $PROJ_VERSION"
-      mv "Odin2.exe" "build/Odin$PROJ_VERSIONWinInstaller.exe"
+      mv "Odin2.exe" "Odin$PROJ_VERSIONWinInstaller.exe"
 
 
     displayName: 'Windows: Build Installer'
