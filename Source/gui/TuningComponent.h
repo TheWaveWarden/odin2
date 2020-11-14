@@ -18,8 +18,6 @@
 #include "../GlobalIncludes.h"
 #include "FixedTextGlassDropdown.h"
 
-#define DEFAULT_TUNING_DIRECTORY (File::getSpecialLocation(File::SpecialLocationType::userDocumentsDirectory).getFullPathName())
-
 #define TUNING_IMPORT_SCL 10
 #define TUNING_IMPORT_KBM 50
 #define TUNING_EXPORT_SCL 100
@@ -49,7 +47,5 @@ protected:
 	FixedTextGlassDropdown m_tuning_dropdown;
     OdinAudioProcessor &m_processor;
 
-    String m_scl_import_dir = DEFAULT_TUNING_DIRECTORY;
-	String m_kbm_import_dir = DEFAULT_TUNING_DIRECTORY;
 	std::unique_ptr<FileChooser> m_filechooser;
 };

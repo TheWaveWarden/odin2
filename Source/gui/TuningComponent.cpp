@@ -14,6 +14,7 @@
 */
 
 #include "TuningComponent.h"
+#include "../ConfigFileManager.h"
 
 TuningComponent::TuningComponent(OdinAudioProcessor &p_processor) :
     m_processor(p_processor), m_tuning_dropdown("Tuning") {
@@ -88,9 +89,11 @@ void TuningComponent::exportSCLFileWithFileBrowser() {
 	DBG("exportSCLFile()");
 
 	DBG(m_processor.m_tuning.scale.rawText);
-	//todo
 
-	File file_suggestion(m_scl_import_dir + File::getSeparatorString() + "tuning.scl");
+	ConfigFileManager config;
+	auto suggested_dir = config.getOptionTuningDir();
+
+	File file_suggestion(suggested_dir + File::getSeparatorString() + "tuning.scl");
 
 	// set up filechooser
 	m_filechooser.reset(new FileChooser("Choose a file to save...", file_suggestion, "*.scl", true));
@@ -123,7 +126,11 @@ void TuningComponent::exportSCLFileWithFileBrowser() {
 				    }
 			    }
 			    FileOutputStream file_stream(file_to_write);
-			    m_scl_import_dir = file_to_write.getParentDirectory().getFullPathName();
+
+			    ConfigFileManager config_save;
+			    config_save.setOptionTuningDir(file_to_write.getParentDirectory().getFullPathName());
+			    config_save.saveDataToFile();
+
 			    if (file_stream.openedOk()) {
 				    DBG("Writing tuning file to " << file_to_write.getFullPathName());
 				    file_stream.setPosition(0);
@@ -144,7 +151,10 @@ void TuningComponent::exportKBMFileWithFileBrowser() {
 	DBG("exportKBMFile()");
 	DBG(m_processor.m_tuning.keyboardMapping.rawText);
 
-	File file_suggestion(m_kbm_import_dir + File::getSeparatorString() + "mapping.kbm");
+	ConfigFileManager config;
+	auto suggested_dir = config.getOptionTuningDir();
+
+	File file_suggestion(suggested_dir + File::getSeparatorString() + "mapping.kbm");
 
 	// set up filechooser
 	m_filechooser.reset(new FileChooser("Choose a file to save...", file_suggestion, "*.kbm", true));
@@ -177,7 +187,11 @@ void TuningComponent::exportKBMFileWithFileBrowser() {
 				    }
 			    }
 			    FileOutputStream file_stream(file_to_write);
-			    m_kbm_import_dir = file_to_write.getParentDirectory().getFullPathName();
+
+			    ConfigFileManager config_save;
+			    config_save.setOptionTuningDir(file_to_write.getParentDirectory().getFullPathName());
+			    config_save.saveDataToFile();
+
 			    if (file_stream.openedOk()) {
 				    DBG("Writing kbm mapping file to " << file_to_write.getFullPathName());
 				    file_stream.setPosition(0);
@@ -213,7 +227,9 @@ void TuningComponent::importKBMFromFileBrowser(String p_directory,
                                                String p_title_text,
                                                int p_flags) {
 
-	File file(m_kbm_import_dir);
+	ConfigFileManager config;
+	auto suggested_dir = config.getOptionTuningDir();
+	File file(suggested_dir);
 
 	m_filechooser.reset(new FileChooser(p_title_text, file, p_extension, true));
 
@@ -233,7 +249,10 @@ void TuningComponent::importKBMFromFileBrowser(String p_directory,
 
 		// store filename for next opening
 		File file(file_name);
-		m_kbm_import_dir = file.getParentDirectory().getFullPathName().toStdString();
+
+		ConfigFileManager config_save;
+		config_save.setOptionTuningDir(file.getParentDirectory().getFullPathName());
+		config_save.saveDataToFile();
 
 		Tunings::KeyboardMapping kbm_from_file;
 		try {
@@ -253,8 +272,9 @@ void TuningComponent::importSCLFromFileBrowser(String p_directory,
                                                String p_extension,
                                                String p_title_text,
                                                int p_flags) {
-
-	File file(m_scl_import_dir);
+	ConfigFileManager config;
+	auto suggested_dir = config.getOptionTuningDir();
+	File file(suggested_dir);
 
 	m_filechooser.reset(new FileChooser(p_title_text, file, p_extension, true));
 
@@ -274,7 +294,10 @@ void TuningComponent::importSCLFromFileBrowser(String p_directory,
 
 		// store filename for next opening
 		File file(file_name);
-		m_scl_import_dir = file.getParentDirectory().getFullPathName().toStdString();
+
+		ConfigFileManager config_save;
+		config_save.setOptionTuningDir(file.getParentDirectory().getFullPathName());
+		config_save.saveDataToFile();
 
 		Tunings::Scale scale_from_file;
 		try {

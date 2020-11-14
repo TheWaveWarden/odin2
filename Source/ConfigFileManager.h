@@ -17,8 +17,12 @@
 
 #include "GlobalIncludes.h"
 
-#define XML_ATTRIBUTE_BIG_GUI ("big_gui")
+#define DEFAULT_TUNING_DIRECTORY                                                                                       \
+	(File::getSpecialLocation(File::SpecialLocationType::userDocumentsDirectory).getFullPathName())
+
 #define XML_ATTRIBUTE_ODIN_CONFIG ("odin_config")
+#define XML_ATTRIBUTE_BIG_GUI ("big_gui")
+#define XML_ATTRIBUTE_TUNING_DIR ("tuning_dir")
 
 /**
  * This class manages the config file. Data is loaded from the file in constructor if possible. Then the individual 
@@ -31,9 +35,12 @@ public:
 
 	void setOptionBigGUI(bool p_GUI_big);
 	bool getOptionBigGUI();
+	void setOptionTuningDir(String p_dir);
+	String getOptionTuningDir();
 
 private:
 	void loadDataFromFile();
 	//the actual config values with default values
 	bool m_big_gui = true;
+	String m_tuning_dir = DEFAULT_TUNING_DIRECTORY;
 };
