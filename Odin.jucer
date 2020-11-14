@@ -1349,6 +1349,10 @@
             file="Graphics_150/applied/WW_logo_xy_150.png"/>
     </GROUP>
     <GROUP id="{7AF384ED-9FD6-6492-4B8C-5777BB9A2698}" name="Source">
+      <FILE id="FSwq31" name="ConfigFileManager.h" compile="0" resource="0"
+            file="Source/ConfigFileManager.h"/>
+      <FILE id="GEm8WC" name="ConfigFileManager.cpp" compile="1" resource="0"
+            file="Source/ConfigFileManager.cpp"/>
       <FILE id="JBuR0C" name="TuningComponent.cpp" compile="1" resource="0"
             file="Source/gui/TuningComponent.cpp"/>
       <FILE id="TaV6sk" name="TuningComponent.h" compile="0" resource="0"

@@ -441,7 +441,6 @@ private:
 	void setGUIBig();
 
 	void readOrCreateConfigFile(bool &p_GUI_big);
-	void writeConfigFile(bool p_GUI_big);
 
 	int m_octave_shift = 0;
 	bool m_is_standalone_plugin;

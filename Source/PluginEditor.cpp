@@ -18,6 +18,7 @@
 
 #include "gui/setGUIBig.h"
 #include "gui/setGUISmall.h"
+#include "ConfigFileManager.h"
 
 void writeValueTreeToFile(const ValueTree &tree) {
 	File file("../../odin2/ValueTree.txt");
@@ -1208,56 +1209,16 @@ void OdinAudioProcessorEditor::setGUISizeBig(bool p_big, bool p_write_to_config)
 	}
 
 	if (p_write_to_config) {
-		writeConfigFile(p_big);
+		ConfigFileManager config;
+		config.setOptionBigGUI(p_big);
+		config.saveDataToFile();
 	}
 
 	repaint();
 }
 
 void OdinAudioProcessorEditor::readOrCreateConfigFile(bool &p_GUI_big) {
-
-	String path_absolute    = CONFIG_FILE_PATH;
-	File configuration_file = File(path_absolute);
-
-	if (configuration_file.existsAsFile()) {
-		// rather hacky: check if the file ends on 1 (i.e. "big_GUI: 1")
-		p_GUI_big = configuration_file.loadFileAsString().endsWithChar('1');
-		//DBG("Found configuration file, big_GUI: " + std::to_string(p_GUI_big));
-
-	}
-
-	else {
-		p_GUI_big = true;
-
-		configuration_file.create();
-		DBG("Created Config File " + path_absolute);
-
-		FileOutputStream config_stream(configuration_file);
-		if (config_stream.openedOk()) {
-			config_stream.setPosition(0);
-			config_stream.truncate();
-			config_stream << "big_GUI: 1";
-		} else {
-			DBG("Failed to create config file...");
-		}
-	}
-}
-void OdinAudioProcessorEditor::writeConfigFile(bool p_GUI_big) {
-
-	String path_absolute    = CONFIG_FILE_PATH;
-	File configuration_file = File(path_absolute);
-
-	if (!configuration_file.existsAsFile()) {
-		configuration_file.create();
-	}
-
-	FileOutputStream config_stream(configuration_file);
-	if (config_stream.openedOk()) {
-		config_stream.setPosition(0);
-		config_stream.truncate();
-		config_stream << "big_GUI: " << p_GUI_big;
-		DBG("Wrote configuration file " << path_absolute);
-	} else {
-		DBG("Failed to create config file...");
-	}
+	ConfigFileManager config;
+	p_GUI_big = config.getOptionBigGUI();
+	config.saveDataToFile();
 }

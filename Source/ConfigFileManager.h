@@ -1,0 +1,39 @@
+/*
+** Odin 2 Synthesizer Plugin
+** Copyright (C) 2020 TheWaveWarden
+**
+** Odin 2 is free software: you can redistribute it and/or modify
+** it under the terms of the GNU General Public License as published by
+** the Free Software Foundation, either version 3 of the License, or
+** (at your option) any later version.
+**
+** Odin 2 is distributed in the hope that it will be useful,
+** but WITHOUT ANY WARRANTY; without even the implied warranty of
+** MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+** GNU General Public License for more details.
+*/
+
+#pragma once
+
+#include "GlobalIncludes.h"
+
+#define XML_ATTRIBUTE_BIG_GUI ("big_gui")
+#define XML_ATTRIBUTE_ODIN_CONFIG ("odin_config")
+
+/**
+ * This class manages the config file. Data is loaded from the file in constructor if possible. Then the individual 
+ * attributes can be written and read. After writing, the state must be explicitly saved to file.
+ */
+class ConfigFileManager {
+public:
+	ConfigFileManager();
+	void saveDataToFile();
+
+	void setOptionBigGUI(bool p_GUI_big);
+	bool getOptionBigGUI();
+
+private:
+	void loadDataFromFile();
+	//the actual config values with default values
+	bool m_big_gui = true;
+};

@@ -98,8 +98,6 @@ void OdinAudioProcessor::getStateInformation(MemoryBlock &destData) {
 	xml->addChildElement(kbm);
 
 	copyXmlToBinary(*xml, destData);
-
-	DBG(xml->toString());
 }
 
 //this is called when DAW restores a file
