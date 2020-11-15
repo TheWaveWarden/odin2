@@ -1,3 +1,4 @@
+- Added MIDI Breath (CC 2) as modulation source
 - Retrig playmode now restarts the ADSR Attack from the current value, rather than zero
 - added microtuning functionality: Scala and KeyboardMapping files
 - default GUI size is now 150%

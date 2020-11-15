@@ -248,7 +248,7 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts) :
 	m_sources_menu.addSeparator();
 	m_sources_menu.addItem(404, "MIDI Note");
 	m_sources_menu.addItem(405, "MIDI Velocity");
-	//m_sources_menu.addItem(406, "MIDI Aftertouch");
+	m_sources_menu.addItem(407, "MIDI Breath");
 	m_sources_menu.addItem(409, "Channel Pressure");
 	m_sources_menu.addItem(420, "Unison Index");
 	m_sources_menu.addSeparator();

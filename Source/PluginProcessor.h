@@ -283,6 +283,7 @@ private:
 	float m_x                        = 0.f;
 	float m_y                        = 0.f;
 	float m_pitchbend_amount         = 12.f;
+	float m_midi_breath              = 0.f;
 
 	// MOD DEST
 	float *m_master_mod;

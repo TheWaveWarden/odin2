@@ -172,6 +172,7 @@ struct ModSources {
   float* x;
   float* y;
   float* MIDI_channel_pressure;
+  float* MIDI_breath;
   float* constant;
   float* soft_pedal;
   float* sustain_pedal;

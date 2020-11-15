@@ -17,6 +17,8 @@
 
 #include "PluginProcessor.h"
 
+#define MIDI_CONTROLLER_NUMBER_BREATH 2
+
 bool OdinAudioProcessor::acceptsMidi() const {
 #if JucePlugin_WantsMidiInput
 	return true;
@@ -221,6 +223,8 @@ void OdinAudioProcessor::handleMidiMessage(const MidiMessage &p_midi_message) {
 		m_soft_pedal = 1.f;
 	} else if (p_midi_message.isSoftPedalOff()) {
 		m_soft_pedal = 0.f;
+	} else if(p_midi_message.isController() && p_midi_message.getControllerNumber() == MIDI_CONTROLLER_NUMBER_BREATH) {
+		m_midi_breath = p_midi_message.getControllerValue() / 127.f;
 	}
 
 	else {
