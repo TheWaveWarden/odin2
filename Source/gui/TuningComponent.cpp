@@ -26,14 +26,14 @@ TuningComponent::TuningComponent(OdinAudioProcessor &p_processor) :
 	    "Load or export custom tunings. A tuning is comprised of a .scl file a .kbm file. The .kbm file maps keys on "
 	    "the keyboard to arbitrary note indices and sets the base note. The .scl file maps those indices to actual "
 	    "frequencies in relation to the base note.");
-	m_tuning_dropdown.addItem("Import .scl file", TUNING_IMPORT_SCL);
-	m_tuning_dropdown.addItem("Import .kbm file", TUNING_IMPORT_KBM);
+	m_tuning_dropdown.addItem("Import SCL file", TUNING_IMPORT_SCL);
+	m_tuning_dropdown.addItem("Import KBM file", TUNING_IMPORT_KBM);
 	m_tuning_dropdown.addSeparator();
-	m_tuning_dropdown.addItem("Export current .scl file", TUNING_EXPORT_SCL);
-	m_tuning_dropdown.addItem("Export current .kbm file", TUNING_EXPORT_KBM);
+	m_tuning_dropdown.addItem("Export current SCL file", TUNING_EXPORT_SCL);
+	m_tuning_dropdown.addItem("Export current KBM file", TUNING_EXPORT_KBM);
 	m_tuning_dropdown.addSeparator();
-	m_tuning_dropdown.addItem("Reset to standard .scl", TUNING_RESTORE_SCL);
-	m_tuning_dropdown.addItem("Reset to standard .kbm", TUNING_RESTORE_KBM);
+	m_tuning_dropdown.addItem("Reset to standard SCL", TUNING_RESTORE_SCL);
+	m_tuning_dropdown.addItem("Reset to standard KBM", TUNING_RESTORE_KBM);
 	m_tuning_dropdown.addSeparator();
 	m_tuning_dropdown.addItem("Reset entire tuning", TUNING_RESET_ENTIRE_TUNING);
 	m_tuning_dropdown.onChange = [&]() {
