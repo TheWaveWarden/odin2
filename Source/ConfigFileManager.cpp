@@ -39,9 +39,17 @@ void ConfigFileManager::loadDataFromFile() {
 						                             << (int)child->getBoolAttribute("data"));
 						m_big_gui = child->getBoolAttribute("data");
 					} else if (child->hasTagName(XML_ATTRIBUTE_TUNING_DIR)) {
-						DBG("Found Config Element: " << XML_ATTRIBUTE_BIG_GUI << ": "
+						DBG("Found Config Element: " << XML_ATTRIBUTE_TUNING_DIR << ": "
 						                             << child->getStringAttribute("data"));
 						m_tuning_dir = child->getStringAttribute("data");
+					} else if (child->hasTagName(XML_ATTRIBUTE_SOUNDBANK_DIR)) {
+						DBG("Found Config Element: " << XML_ATTRIBUTE_SOUNDBANK_DIR << ": "
+						                             << child->getStringAttribute("data"));
+						m_soundbank_dir = child->getStringAttribute("data");
+					} else if (child->hasTagName(XML_ATTRIBUTE_PATCH_DIR)) {
+						DBG("Found Config Element: " << XML_ATTRIBUTE_PATCH_DIR << ": "
+						                             << child->getStringAttribute("data"));
+						m_patch_dir = child->getStringAttribute("data");
 					}
 				}
 			}
@@ -63,6 +71,14 @@ void ConfigFileManager::saveDataToFile() {
 	XmlElement *tuning_dir = new XmlElement(XML_ATTRIBUTE_TUNING_DIR);
 	tuning_dir->setAttribute("data", m_tuning_dir);
 	config_xml->addChildElement(tuning_dir);
+
+	XmlElement *soundbank_dir = new XmlElement(XML_ATTRIBUTE_SOUNDBANK_DIR);
+	soundbank_dir->setAttribute("data", m_soundbank_dir);
+	config_xml->addChildElement(soundbank_dir);
+
+	XmlElement *patch_dir = new XmlElement(XML_ATTRIBUTE_PATCH_DIR);
+	patch_dir->setAttribute("data", m_patch_dir);
+	config_xml->addChildElement(patch_dir);
 
 	DBG_VAR(config_xml->toString());
 
@@ -91,4 +107,20 @@ void ConfigFileManager::setOptionTuningDir(String p_dir) {
 
 String ConfigFileManager::getOptionTuningDir() {
 	return m_tuning_dir;
+}
+
+void ConfigFileManager::setOptionSoundbankDir(String p_dir) {
+	m_soundbank_dir = p_dir;
+}
+
+String ConfigFileManager::getOptionSoundbankDir() {
+	return m_soundbank_dir;
+}
+
+void ConfigFileManager::setOptionPatchDir(String p_dir) {
+	m_patch_dir = p_dir;
+}
+
+String ConfigFileManager::getOptionPatchDir() {
+	return m_patch_dir;
 }

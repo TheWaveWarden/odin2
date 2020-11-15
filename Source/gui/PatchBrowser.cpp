@@ -16,6 +16,8 @@
 #include "PatchBrowser.h"
 #include <JuceHeader.h>
 
+#include "../ConfigFileManager.h"
+
 PatchBrowser::PatchBrowser(OdinAudioProcessor &p_processor, AudioProcessorValueTreeState &p_vts) :
     m_soundbank_selector(File::TypesOfFileToFind::findDirectories, "Import", "Export", "New"),
     m_category_selector(File::TypesOfFileToFind::findDirectories, "", "", "New"),
@@ -221,11 +223,14 @@ PatchBrowser::PatchBrowser(OdinAudioProcessor &p_processor, AudioProcessorValueT
 	m_patch_selector.onExport = [&](String p_directory) {
 		File file_suggestion;
 
-		if (File(p_directory).exists()) {
-			file_suggestion = File(p_directory + File::getSeparatorString() + "Preset.odin");
-		} else {
-			file_suggestion = File(DEFAULT_EXPORT_LOCATION_STRING + +File::getSeparatorString() + "Preset.odin");
-		}
+		// if (File(p_directory).exists()) {
+		// 	file_suggestion = File(p_directory + File::getSeparatorString() + "Preset.odin");
+		// } else {
+		// 	file_suggestion = File(DEFAULT_EXPORT_LOCATION_STRING + +File::getSeparatorString() + "Preset.odin");
+		// }
+		ConfigFileManager config;
+		auto suggested_dir = config.getOptionPatchDir();
+		file_suggestion    = File(suggested_dir + File::getSeparatorString() + "Preset.odin");
 
 		// set up filechooser
 		m_filechooser.reset(new FileChooser("Choose a file to save...", file_suggestion, "*.odin", true));
@@ -244,6 +249,10 @@ PatchBrowser::PatchBrowser(OdinAudioProcessor &p_processor, AudioProcessorValueT
 				    file_name = file_name.endsWith(".odin") ? file_name : file_name + ".odin";
 
 				    File file_to_write(file_name);
+
+				    ConfigFileManager config_save;
+				    config_save.setOptionPatchDir(file_to_write.getParentDirectory().getFullPathName());
+				    config_save.saveDataToFile();
 
 				    //check whether file already exists
 				    if (file_to_write.existsAsFile()) {
@@ -277,8 +286,9 @@ PatchBrowser::PatchBrowser(OdinAudioProcessor &p_processor, AudioProcessorValueT
 			                            "Bummer");
 		}
 
-		File file_suggestion =
-		    File(DEFAULT_EXPORT_LOCATION_STRING + File::getSeparatorString() + soundbank_file.getFileName() + ".osb");
+		ConfigFileManager config;
+		auto suggested_dir = config.getOptionSoundbankDir();
+		File file_suggestion(suggested_dir + File::getSeparatorString() + soundbank_file.getFileName() + ".osb");
 
 		// set up filechooser
 		m_filechooser.reset(new FileChooser("Choose a file to save...", file_suggestion, "*.osb", true));
@@ -296,6 +306,10 @@ PatchBrowser::PatchBrowser(OdinAudioProcessor &p_processor, AudioProcessorValueT
 				    file_name = file_name.endsWith(".osb") ? file_name : file_name + ".osb";
 
 				    File file_to_write(file_name);
+
+				    ConfigFileManager config_save;
+				    config_save.setOptionSoundbankDir(file_to_write.getParentDirectory().getFullPathName());
+				    config_save.saveDataToFile();
 
 				    //check whether file already exists
 				    if (file_to_write.existsAsFile()) {
@@ -978,12 +992,16 @@ bool PatchBrowser::usesSpecdraw(int p_osc) {
 
 void PatchBrowser::loadPatchWithFileBrowserAndCopyToCategory(String p_directory) {
 
-	File file;
-	if (File(m_value_tree.state.getChildWithName("misc")["current_patch_directory"].toString()).exists()) {
-		file = File(m_value_tree.state.getChildWithName("misc")["current_patch_directory"].toString());
-	} else {
-		file = File(DEFAULT_EXPORT_LOCATION_STRING);
-	}
+	// File file;
+	// if (File(m_value_tree.state.getChildWithName("misc")["current_patch_directory"].toString()).exists()) {
+	// 	file = File(m_value_tree.state.getChildWithName("misc")["current_patch_directory"].toString());
+	// } else {
+	// 	file = File(DEFAULT_EXPORT_LOCATION_STRING);
+	// }
+	ConfigFileManager config;
+	auto suggested_dir = config.getOptionPatchDir();
+	File file(suggested_dir);
+
 	m_filechooser.reset(new FileChooser("Choose a file to open...", file, "*.odin", true));
 
 	m_filechooser->launchAsync(
@@ -1006,6 +1024,9 @@ void PatchBrowser::loadPatchWithFileBrowserAndCopyToCategory(String p_directory)
 				    DBG("Copy Patch " + file_name + " to \n" + copy_target_string);
 
 				    File copy_target(copy_target_string);
+				    ConfigFileManager config_save;
+				    config_save.setOptionPatchDir(file_to_read.getParentDirectory().getFullPathName());
+				    config_save.saveDataToFile();
 
 				    if (copy_target.existsAsFile()) {
 					    AlertWindow::showMessageBox(
@@ -1059,7 +1080,9 @@ void PatchBrowser::loadPatchWithFileBrowserAndCopyToCategory(String p_directory)
 void PatchBrowser::loadSoundbankWithFileBrowser(String p_directory) {
 	File file;
 
-	file = File(DEFAULT_SOUNDBANK_IMPORT_LOCATION_STRING);
+	ConfigFileManager config;
+	auto suggested_dir = config.getOptionSoundbankDir();
+	file               = File(suggested_dir);
 
 	m_filechooser.reset(new FileChooser("Choose a Odin 2 soundbank to open...", file, "*.osb", true));
 
@@ -1075,6 +1098,10 @@ void PatchBrowser::loadSoundbankWithFileBrowser(String p_directory) {
 
 		    FileInputStream file_stream(file_to_read);
 		    if (file_stream.openedOk()) {
+
+			    ConfigFileManager config_save;
+			    config_save.setOptionSoundbankDir(file_to_read.getParentDirectory().getFullPathName());
+			    config_save.saveDataToFile();
 
 			    String soundbank_name = file_to_read.getFileNameWithoutExtension();
 

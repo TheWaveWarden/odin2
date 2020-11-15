@@ -21,9 +21,8 @@
 
 #define DEFAULT_SOUNDBANK_LOCATION_STRING (ODIN_STORAGE_PATH + File::getSeparatorString() + "Soundbanks")
 
-#define DEFAULT_EXPORT_LOCATION_STRING (File::getSpecialLocation(File::SpecialLocationType::userDocumentsDirectory).getFullPathName())
 //make this one different as to not spark confusion between "folders" and "osb"
-#define DEFAULT_SOUNDBANK_IMPORT_LOCATION_STRING (File::getSpecialLocation(File::SpecialLocationType::userDocumentsDirectory).getFullPathName())
+//#define DEFAULT_SOUNDBANK_IMPORT_LOCATION_STRING (File::getSpecialLocation(File::SpecialLocationType::userDocumentsDirectory).getFullPathName())
 
 class PatchBrowser    : public Component
 {
