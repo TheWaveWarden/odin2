@@ -42,8 +42,9 @@
 #include "gui/PhaserComponent.h"
 #include "gui/PitchWheel.h"
 #include "gui/ReverbComponent.h"
-#include "gui/XYSectionComponent.h"
 #include "gui/TuningComponent.h"
+#include "gui/XYSectionComponent.h"
+#include "gui/TooltipFeels.h"
 
 #ifdef WTGEN
 #include "SpectrumDisplay.h"
@@ -214,15 +215,6 @@
 
 #define ODIN_EDITOR_SIZE_150_X 1200
 #define ODIN_EDITOR_SIZE_150_Y 921
-
-class TooltipFeels : public LookAndFeel_V4 {
-public:
-	TooltipFeels() {
-		setColour(TooltipWindow::ColourIds::textColourId, MENU_FONT_COLOR);
-		setColour(TooltipWindow::ColourIds::outlineColourId, MENU_FONT_COLOR);
-		setColour(TooltipWindow::ColourIds::backgroundColourId, MENU_BACKGROUND_COLOR);
-	}
-};
 
 class OdinAudioProcessorEditor : public AudioProcessorEditor, public KeyListener {
 public:
