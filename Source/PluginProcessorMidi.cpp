@@ -69,7 +69,12 @@ void OdinAudioProcessor::midiNoteOn(
 		//}
 	}
 
-	m_global_env.restartEnvelopeLegato();
+	if (m_mono_poly_legato != PlayModes::Retrig) {
+		m_global_env.restartEnvelopeLegato();
+	} else {
+		m_global_env.restartEnvelopeRetrig();
+	}
+
 	if (*m_lfo4_reset) {
 		m_global_lfo.voiceStart(false);
 	}

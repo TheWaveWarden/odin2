@@ -195,15 +195,25 @@ struct Voice {
 		m_MIDI_key               = p_MIDI_key;
 		MIDI_key_mod_source      = (float)p_MIDI_key / 127.f;
 		MIDI_velocity_mod_source = (float)p_MIDI_velocity / 127.f;
-		if (m_mono_poly_legato == PlayModes::Legato) {
+
+		switch(m_mono_poly_legato){
+			case PlayModes::Legato:
 			for (int mod = 0; mod < 3; ++mod) {
 				env[mod].restartEnvelopeLegato();
 			}
-		} else {
+			break;
+			case PlayModes::Retrig:
+			for (int mod = 0; mod < 3; ++mod) {
+				env[mod].restartEnvelopeRetrig();
+			}
+			break;
+			case PlayModes::Poly:
 			for (int mod = 0; mod < 3; ++mod) {
 				env[mod].reset();
 			}
+			break;
 		}
+
 		generateNewRandomValue();
 		MIDI_aftertouch_mod_source = 0.f;
 		unison_pan_position        = p_unison_pan;
@@ -373,7 +383,7 @@ struct Voice {
 
 	void reset(bool p_unison_active) {
 		resetLegato(p_unison_active);
-		if (m_mono_poly_legato != PlayModes::Legato) {
+		if (m_mono_poly_legato == PlayModes::Poly) {
 			for (int fil = 0; fil < 2; ++fil) {
 				ladder_filter[fil].reset();
 				diode_filter[fil].reset();

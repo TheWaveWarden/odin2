@@ -47,11 +47,17 @@ public:
 		return (m_current_section == ADSR_SECTION_INIT || m_current_section == ADSR_SECTION_FINISHED);
 	}
 
-	// start attack if state is > release, else do nothing
+	// start attack from current val if state is > release, else do nothing
 	void restartEnvelopeLegato() {
 		m_current_value = m_last_actual_value;
 		if (m_current_section == ADSR_SECTION_RELEASE || m_current_section == ADSR_SECTION_FINISHED)
 			m_current_section = 0;
+	}
+
+	// start attack from the current value
+	void restartEnvelopeRetrig() {
+		m_current_value   = m_last_actual_value;
+		m_current_section = 0;
 	}
 
 	void setEnvelopeOff() {
