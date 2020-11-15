@@ -4,6 +4,7 @@
 - FM- PM Osc ratio ranges increased to [1,16]
 - ModMatrix amounts now range up to [-300, 300] //todo bump patch migration version
 - created Azure-CI pipelines for Ubuntu-18.04, MacOs 10.14 and Windows2019
+- all path opened with patchbrowsers are now remembered after reopening plugin and shared among different plugin instances
 - removed unnessecary dependency to libcurl4
 # 2.2.4
 - fixed Legato carrying current value over to Attack rather than to current section
