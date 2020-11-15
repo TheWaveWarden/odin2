@@ -47,8 +47,8 @@ public:
 		return (m_current_section == ADSR_SECTION_INIT || m_current_section == ADSR_SECTION_FINISHED);
 	}
 
-	// start attack from the current value
-	void softRestartEnvelope() {
+	// start attack if state is > release, else do nothing
+	void restartEnvelopeLegato() {
 		m_current_value = m_last_actual_value;
 		if (m_current_section == ADSR_SECTION_RELEASE || m_current_section == ADSR_SECTION_FINISHED)
 			m_current_section = 0;

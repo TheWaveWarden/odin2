@@ -69,7 +69,7 @@ void OdinAudioProcessor::midiNoteOn(
 		//}
 	}
 
-	m_global_env.softRestartEnvelope();
+	m_global_env.restartEnvelopeLegato();
 	if (*m_lfo4_reset) {
 		m_global_lfo.voiceStart(false);
 	}
@@ -105,12 +105,7 @@ void OdinAudioProcessor::midiNoteOn(
 		    unison_voices > 1,
 		    p_arp_mod_1,
 		    p_arp_mod_2);
-		//DBG("NoteOn,  key " + std::to_string(p_midi_note) + ", voice " + std::to_string(new_voice));
-		//if (m_voice_manager.legatoEnabled()) {
-		//m_voice[new_voice].amp.setMIDIVelocityLegato(p_midi_velocity);
-		//} else {
 		m_voice[new_voice].amp.setMIDIVelocity(p_midi_velocity);
-		//}
 		m_mod_matrix.setMostRecentVoice(new_voice);
 		++unison_counter;
 	}

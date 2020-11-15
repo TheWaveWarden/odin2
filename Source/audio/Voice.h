@@ -197,7 +197,7 @@ struct Voice {
 		MIDI_velocity_mod_source = (float)p_MIDI_velocity / 127.f;
 		if (m_mono_poly_legato == PlayModes::Legato) {
 			for (int mod = 0; mod < 3; ++mod) {
-				env[mod].softRestartEnvelope();
+				env[mod].restartEnvelopeLegato();
 			}
 		} else {
 			for (int mod = 0; mod < 3; ++mod) {
