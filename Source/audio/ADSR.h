@@ -68,7 +68,7 @@ protected:
 	bool *m_voice_manager_bool_pointer = nullptr;
 	bool *m_voice_end_pointer          = nullptr;
 
-	int m_current_section = -1; // before start:-1, A0, D1, S2, R3
+	int m_current_section = ADSR_SECTION_INIT; // before start:-1, A=0, D=1, S=2, R=3, finished=4
 	bool m_loop           = false;
 
 	// store values so we dont calculate pow() all the time
