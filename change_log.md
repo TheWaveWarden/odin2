@@ -1,3 +1,4 @@
+- Retrig playmode now restarts the ADSR Attack from the current value, rather than zero
 - added microtuning functionality: Scala and KeyboardMapping files
 - default GUI size is now 150%
 - added triangles to dropdowns to make them more obvious 
