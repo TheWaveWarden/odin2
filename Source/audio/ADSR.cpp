@@ -146,3 +146,109 @@ void ADSREnvelope::startRelease() {
 int ADSREnvelope::getCurrentSection() {
 	return m_current_section;
 }
+
+bool ADSREnvelope::isEnvelopeOff() {
+	return (m_current_section == ADSR_SECTION_INIT || m_current_section == ADSR_SECTION_FINISHED);
+}
+
+// start attack from current val if state is > release, else do nothing
+void ADSREnvelope::restartEnvelopeLegato() {
+	m_current_value = m_last_actual_value;
+	if (m_current_section == ADSR_SECTION_RELEASE || m_current_section == ADSR_SECTION_FINISHED)
+		m_current_section = 0;
+}
+
+// start attack from the current value
+void ADSREnvelope::restartEnvelopeRetrig() {
+	m_current_value   = m_last_actual_value;
+	m_current_section = 0;
+}
+
+void ADSREnvelope::setEnvelopeOff() {
+	m_current_section = 4; // = after release
+}
+
+void ADSREnvelope::reset() {
+	m_current_section    = -1;
+	m_current_value      = 0.f;
+	m_attack_start_value = 0.f;
+	m_last_decay         = -1.;
+	m_last_release       = -1.;
+}
+
+bool ADSREnvelope::isBeforeRelease() {
+	return (m_current_section < 3 && m_current_section > -1);
+}
+
+void ADSREnvelope::setLoop(bool p_loop) {
+	m_loop = p_loop;
+}
+
+void ADSREnvelope::setSampleRate(float p_samplerate) {
+	m_samplerate = p_samplerate;
+	reset();
+}
+
+void ADSREnvelope::setAttack(float p_attack) {
+	m_attack = p_attack;
+}
+
+void ADSREnvelope::setDecay(float p_decay) {
+	m_decay = p_decay;
+}
+
+void ADSREnvelope::setSustain(float p_sustain) {
+	m_sustain = p_sustain;
+}
+
+void ADSREnvelope::setRelease(float p_release) {
+	m_release = p_release;
+}
+
+double ADSREnvelope::calcModFactor(double p_mod) {
+	return pow(2, 3 * p_mod);
+}
+
+double ADSREnvelope::calcDecayFactor(double p_decay) {
+	if (p_decay != m_last_decay) {
+		m_last_decay_return = pow(MIN_DECAY_RELEASE_VAL, 1. / (m_samplerate * p_decay));
+		m_last_decay        = p_decay;
+	}
+	return m_last_decay_return;
+}
+
+double ADSREnvelope::calcReleaseFactor(double p_release) {
+	if (p_release != m_last_release) {
+		m_last_release_return = pow(MIN_DECAY_RELEASE_VAL, 1. / (m_samplerate * p_release));
+		m_last_release        = p_release;
+	}
+	return m_last_release_return;
+}
+
+void ADSREnvelope::setAttackModPointer(float *p_pointer) {
+	m_attack_mod = p_pointer;
+}
+void ADSREnvelope::setDecayModPointer(float *p_pointer) {
+	m_decay_mod = p_pointer;
+}
+void ADSREnvelope::setSustainModPointer(float *p_pointer) {
+	m_sustain_mod = p_pointer;
+}
+void ADSREnvelope::setReleaseModPointer(float *p_pointer) {
+	m_release_mod = p_pointer;
+}
+
+void ADSREnvelope::onEnvelopeEnd() {
+	if (m_voice_end_pointer && m_voice_manager_bool_pointer) {
+		*m_voice_manager_bool_pointer = false;
+		*m_voice_end_pointer          = false;
+	}
+}
+
+void ADSREnvelope::setEnvelopeEndPointers(bool *p_voice, bool *p_manager) {
+	m_voice_manager_bool_pointer = p_manager;
+	m_voice_end_pointer          = p_voice;
+	// todo remove
+	*m_voice_manager_bool_pointer = false;
+	*m_voice_end_pointer          = false;
+}
