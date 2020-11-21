@@ -15,8 +15,10 @@
 
 #pragma once
 
-#include "../GlobalIncludes.h"
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "OdinFeels.h"
+#include "../GlobalIncludes.h"
+
 #define INLAY_DEF 1
 
 class GlasDisplay : public SettableTooltipClient, public Component {

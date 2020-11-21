@@ -45,6 +45,7 @@
 #include "gui/TuningComponent.h"
 #include "gui/XYSectionComponent.h"
 #include "gui/TooltipFeels.h"
+#include "gui/OdinFeels.h"
 
 #ifdef WTGEN
 #include "SpectrumDisplay.h"

@@ -15,10 +15,11 @@
 
 #pragma once
 
+#include <JuceHeader.h>
 #include "BrowserEntry.h"
 #include "../GlobalIncludes.h"
-#include <JuceHeader.h>
 #include "PatchBrowserScrollBar.h"
+#include "OdinFeels.h"
 
 #define ENTRY_HEIGHT_150 24
 #define ENTRY_HEIGHT_100 18

@@ -29,11 +29,11 @@ TuningComponent::TuningComponent(OdinAudioProcessor &p_processor) :
 	m_tuning_dropdown.addItem("Import SCL file", TUNING_IMPORT_SCL);
 	m_tuning_dropdown.addItem("Import KBM file", TUNING_IMPORT_KBM);
 	m_tuning_dropdown.addSeparator();
-	m_tuning_dropdown.addItem("Export current SCL file", TUNING_EXPORT_SCL);
-	m_tuning_dropdown.addItem("Export current KBM file", TUNING_EXPORT_KBM);
+	m_tuning_dropdown.addItem("Export SCL file", TUNING_EXPORT_SCL);
+	m_tuning_dropdown.addItem("Export KBM file", TUNING_EXPORT_KBM);
 	m_tuning_dropdown.addSeparator();
-	m_tuning_dropdown.addItem("Reset to standard SCL", TUNING_RESTORE_SCL);
-	m_tuning_dropdown.addItem("Reset to standard KBM", TUNING_RESTORE_KBM);
+	m_tuning_dropdown.addItem("Reset SCL file", TUNING_RESTORE_SCL);
+	m_tuning_dropdown.addItem("Reset KBM file", TUNING_RESTORE_KBM);
 	m_tuning_dropdown.addSeparator();
 	m_tuning_dropdown.addItem("Reset entire tuning", TUNING_RESET_ENTIRE_TUNING);
 	m_tuning_dropdown.onChange = [&]() {
