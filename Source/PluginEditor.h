@@ -104,10 +104,10 @@
 #define ADSR_RIGHT_POS_X 162
 #define ADSR_RIGHT_POS_Y 330
 
-#define FX_BUTTON_X 525
+#define FX_BUTTON_X 527
 #define FX_BUTTON_Y 310
-//#define FX_BUTTON_OFFSET 61
-#define FX_ON_BUTTON_X 526
+
+#define FX_ON_BUTTON_X 528
 #define FX_ON_BUTTON_Y 330
 
 #define LEFT_FX_POS_X 526

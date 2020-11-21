@@ -536,35 +536,34 @@ public:
 		                         &delay_button_draw3);
 		m_delay_button.setBounds(3 * FX_BUTTON_OFFSET, 0, delay_button_1.getWidth(), delay_button_1.getHeight());
 
-		// todo render assets
-		// juce::Image reverb_button_1 =
-		//     ImageCache::getFromMemory(BinaryData::buttonreverb_1_png, BinaryData::buttonreverb_1_pngSize);
-		// juce::Image reverb_button_2 =
-		//     ImageCache::getFromMemory(BinaryData::buttonreverb_2_png, BinaryData::buttonreverb_2_pngSize);
-		// juce::Image reverb_button_3 =
-		//     ImageCache::getFromMemory(BinaryData::buttonreverb_3_png, BinaryData::buttonreverb_3_pngSize);
-		// juce::Image reverb_button_4 =
-		//     ImageCache::getFromMemory(BinaryData::buttonreverb_4_png, BinaryData::buttonreverb_4_pngSize);
+		juce::Image reverb_button_1 =
+		    ImageCache::getFromMemory(BinaryData::buttonreverb_1_png, BinaryData::buttonreverb_1_pngSize);
+		juce::Image reverb_button_2 =
+		    ImageCache::getFromMemory(BinaryData::buttonreverb_2_png, BinaryData::buttonreverb_2_pngSize);
+		juce::Image reverb_button_3 =
+		    ImageCache::getFromMemory(BinaryData::buttonreverb_3_png, BinaryData::buttonreverb_3_pngSize);
+		juce::Image reverb_button_4 =
+		    ImageCache::getFromMemory(BinaryData::buttonreverb_4_png, BinaryData::buttonreverb_4_pngSize);
 
-		// juce::DrawableImage reverb_button_draw1;
-		// juce::DrawableImage reverb_button_draw2;
-		// juce::DrawableImage reverb_button_draw3;
-		// juce::DrawableImage reverb_button_draw4;
+		juce::DrawableImage reverb_button_draw1;
+		juce::DrawableImage reverb_button_draw2;
+		juce::DrawableImage reverb_button_draw3;
+		juce::DrawableImage reverb_button_draw4;
 
-		// reverb_button_draw1.setImage(reverb_button_1);
-		// reverb_button_draw2.setImage(reverb_button_2);
-		// reverb_button_draw3.setImage(reverb_button_3);
-		// reverb_button_draw4.setImage(reverb_button_4);
+		reverb_button_draw1.setImage(reverb_button_1);
+		reverb_button_draw2.setImage(reverb_button_2);
+		reverb_button_draw3.setImage(reverb_button_3);
+		reverb_button_draw4.setImage(reverb_button_4);
 
-		// m_reverb_button.setImages(&reverb_button_draw2,
-		//                           &reverb_button_draw2,
-		//                           &reverb_button_draw1,
-		//                           &reverb_button_draw1,
-		//                           &reverb_button_draw3,
-		//                           &reverb_button_draw3,
-		//                           &reverb_button_draw3,
-		//                           &reverb_button_draw3);
-		// m_reverb_button.setBounds(4 * FX_BUTTON_OFFSET, 0, reverb_button_1.getWidth(), reverb_button_1.getHeight());
+		m_reverb_button.setImages(&reverb_button_draw2,
+		                          &reverb_button_draw2,
+		                          &reverb_button_draw1,
+		                          &reverb_button_draw1,
+		                          &reverb_button_draw3,
+		                          &reverb_button_draw3,
+		                          &reverb_button_draw3,
+		                          &reverb_button_draw3);
+		m_reverb_button.setBounds(4 * FX_BUTTON_OFFSET, 0, reverb_button_1.getWidth(), reverb_button_1.getHeight());
 
  		setSize(FX_BUTTON_OFFSET * 5, delay_button_1.getHeight());
 

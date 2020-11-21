@@ -129,14 +129,13 @@ void OdinAudioProcessorEditor::setGUISmall() {
 	addAndMakeVisible(m_delay_on_button);
 	m_delay_on_button.setAlwaysOnTop(true);
 
-	//todo render assets
-	// m_reverb_on_button.setImages(
-	//     &fx_on_draw2, &fx_on_draw2, &fx_on_draw1, &fx_on_draw1, &fx_on_draw4, &fx_on_draw4, &fx_on_draw3, &fx_on_draw3);
-	// m_reverb_on_button.setClickingTogglesState(true);
-	// m_reverb_on_button.setBounds(
-	//     FX_ON_BUTTON_X + 3 * FX_BUTTON_OFFSET, FX_ON_BUTTON_Y, fx_on_1.getWidth(), fx_on_1.getHeight());
-	// addAndMakeVisible(m_reverb_on_button);
-	// m_reverb_on_button.setAlwaysOnTop(true);
+	m_reverb_on_button.setImages(
+	    &fx_on_draw2, &fx_on_draw2, &fx_on_draw1, &fx_on_draw1, &fx_on_draw4, &fx_on_draw4, &fx_on_draw3, &fx_on_draw3);
+	m_reverb_on_button.setClickingTogglesState(true);
+	m_reverb_on_button.setBounds(
+	    FX_ON_BUTTON_X + 3 * FX_BUTTON_OFFSET, FX_ON_BUTTON_Y, fx_on_1.getWidth(), fx_on_1.getHeight());
+	addAndMakeVisible(m_reverb_on_button);
+	m_reverb_on_button.setAlwaysOnTop(true);
 
 	juce::Image filter_button1_1 = ImageCache::getFromMemory(BinaryData::button1_1_png, BinaryData::button1_1_pngSize);
 	juce::Image filter_button1_2 = ImageCache::getFromMemory(BinaryData::button1_2_png, BinaryData::button1_2_pngSize);
@@ -427,11 +426,10 @@ void OdinAudioProcessorEditor::setGUISmall() {
 	m_lfo_24_button.setImage(lfo24_right, 2);
 	m_lfo_24_button.setBounds(LFO24_POS_X, LFO24_POS_Y, lfo24_left.getWidth(), lfo24_left.getHeight());
 
-
 	juce::Image select_arp_button_left  = ImageCache::getFromMemory(BinaryData::button_select_arpeggiator_1_png,
                                                                    BinaryData::button_select_arpeggiator_1_pngSize);
-	juce::Image select_arp_button_right = ImageCache::getFromMemory(
-	    BinaryData::button_select_arpeggiator_2_png, BinaryData::button_select_arpeggiator_2_pngSize);
+	juce::Image select_arp_button_right = ImageCache::getFromMemory(BinaryData::button_select_arpeggiator_2_png,
+	                                                                BinaryData::button_select_arpeggiator_2_pngSize);
 	juce::DrawableImage select_arp_button_left_draw;
 	select_arp_button_left_draw.setImage(select_arp_button_left);
 	juce::DrawableImage select_arp_button_right_draw;
@@ -448,8 +446,8 @@ void OdinAudioProcessorEditor::setGUISmall() {
 	                              select_arp_button_left.getWidth(),
 	                              select_arp_button_left.getHeight());
 
-	juce::Image select_modmatrix_button_left = ImageCache::getFromMemory(
-	    BinaryData::button_select_modmatrix_1_png, BinaryData::button_select_modmatrix_1_pngSize);
+	juce::Image select_modmatrix_button_left  = ImageCache::getFromMemory(BinaryData::button_select_modmatrix_1_png,
+                                                                         BinaryData::button_select_modmatrix_1_pngSize);
 	juce::Image select_modmatrix_button_right = ImageCache::getFromMemory(
 	    BinaryData::button_select_modmatrix_2_png, BinaryData::button_select_modmatrix_2_pngSize);
 	juce::DrawableImage select_modmatrix_button_left_draw;
@@ -468,10 +466,10 @@ void OdinAudioProcessorEditor::setGUISmall() {
 	                                    select_modmatrix_button_left.getWidth(),
 	                                    select_modmatrix_button_left.getHeight());
 
-	juce::Image select_presets_button_left  = ImageCache::getFromMemory(BinaryData::button_select_presets_1_png,
-                                                                       BinaryData::button_select_presets_1_pngSize);
-	juce::Image select_presets_button_right = ImageCache::getFromMemory(
-	    BinaryData::button_select_presets_2_png, BinaryData::button_select_presets_2_pngSize);
+	juce::Image select_presets_button_left =
+	    ImageCache::getFromMemory(BinaryData::button_select_presets_1_png, BinaryData::button_select_presets_1_pngSize);
+	juce::Image select_presets_button_right =
+	    ImageCache::getFromMemory(BinaryData::button_select_presets_2_png, BinaryData::button_select_presets_2_pngSize);
 	juce::DrawableImage select_presets_button_left_draw;
 	select_presets_button_left_draw.setImage(select_presets_button_left);
 	juce::DrawableImage select_presets_button_right_draw;
@@ -566,14 +564,8 @@ void OdinAudioProcessorEditor::setGUISmall() {
 	                   METAL_KNOB_SMALL_SIZE_X,
 	                   METAL_KNOB_SMALL_SIZE_Y);
 
-	m_unison_detune.setBounds(UNISON_DETUNE_X ,
-	                          UNISON_DETUNE_Y,
-	                          BLACK_KNOB_SMALL_SIZE_X,
-	                          BLACK_KNOB_SMALL_SIZE_Y);
-	m_unison_width.setBounds(UNISON_STEREO_X,
-	                          UNISON_STEREO_Y,
-	                          BLACK_KNOB_SMALL_SIZE_X,
-	                          BLACK_KNOB_SMALL_SIZE_Y);
+	m_unison_detune.setBounds(UNISON_DETUNE_X, UNISON_DETUNE_Y, BLACK_KNOB_SMALL_SIZE_X, BLACK_KNOB_SMALL_SIZE_Y);
+	m_unison_width.setBounds(UNISON_STEREO_X, UNISON_STEREO_Y, BLACK_KNOB_SMALL_SIZE_X, BLACK_KNOB_SMALL_SIZE_Y);
 
 	m_osc1.setBounds(area_osc_1);
 	m_osc2.setBounds(area_osc_2);

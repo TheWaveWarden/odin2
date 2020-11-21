@@ -16,9 +16,9 @@
 #include "PluginEditor.h"
 #include "PluginProcessor.h"
 
+#include "ConfigFileManager.h"
 #include "gui/setGUIBig.h"
 #include "gui/setGUISmall.h"
-#include "ConfigFileManager.h"
 
 void writeValueTreeToFile(const ValueTree &tree) {
 	File file("../../odin2/ValueTree.txt");
@@ -643,15 +643,6 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	m_gui_size_button.onClick = [&]() { setGUISizeBig(!m_gui_size_button.getToggleState(), true); };
 
 	//DBG("Display_Scale: " + std::to_string(Desktop::getInstance().getDisplays().getMainDisplay().scale));
-
-	//#ifdef ODIN_LINUX
-	//#ifdef ODIN_DEBUG
-	//	if (!writeComponentImageToFile(*this)) {
-	//		DBG("Failed to create GUI screenshot");
-	//	}
-	//	writeValueTreeToFile(m_value_tree.state);
-	//#endif
-	//#endif
 }
 
 OdinAudioProcessorEditor::~OdinAudioProcessorEditor() {
@@ -799,31 +790,31 @@ void OdinAudioProcessorEditor::setMatrixSectionModule(int p_module) {
 void OdinAudioProcessorEditor::arrangeFXOnButtons(std::map<std::string, int> p_map) {
 
 	if (g_GUI_big) {
-		m_flanger_on_button.setTopLeftPosition(OdinHelper::c150(FX_ON_BUTTON_X) +
-		                                           p_map.find("flanger")->second * OdinHelper::c150(FX_BUTTON_OFFSET),
-		                                       OdinHelper::c150(FX_ON_BUTTON_Y));
+		m_flanger_on_button.setTopLeftPosition(
+		    OdinHelper::c150(FX_ON_BUTTON_X) + p_map.find("flanger")->second * OdinHelper::c150(FX_BUTTON_OFFSET) + 1,
+		    OdinHelper::c150(FX_ON_BUTTON_Y));
 		m_phaser_on_button.setTopLeftPosition(OdinHelper::c150(FX_ON_BUTTON_X) +
-		                                          p_map.find("phaser")->second * OdinHelper::c150(FX_BUTTON_OFFSET),
+		                                          p_map.find("phaser")->second * OdinHelper::c150(FX_BUTTON_OFFSET) + 1,
 		                                      OdinHelper::c150(FX_ON_BUTTON_Y));
 		m_chorus_on_button.setTopLeftPosition(OdinHelper::c150(FX_ON_BUTTON_X) +
-		                                          p_map.find("chorus")->second * OdinHelper::c150(FX_BUTTON_OFFSET),
+		                                          p_map.find("chorus")->second * OdinHelper::c150(FX_BUTTON_OFFSET) + 1,
 		                                      OdinHelper::c150(FX_ON_BUTTON_Y));
 		m_delay_on_button.setTopLeftPosition(OdinHelper::c150(FX_ON_BUTTON_X) +
-		                                         p_map.find("delay")->second * OdinHelper::c150(FX_BUTTON_OFFSET),
+		                                         p_map.find("delay")->second * OdinHelper::c150(FX_BUTTON_OFFSET) + 1,
 		                                     OdinHelper::c150(FX_ON_BUTTON_Y));
 		m_reverb_on_button.setTopLeftPosition(OdinHelper::c150(FX_ON_BUTTON_X) +
-		                                          p_map.find("reverb")->second * OdinHelper::c150(FX_BUTTON_OFFSET),
+		                                          p_map.find("reverb")->second * OdinHelper::c150(FX_BUTTON_OFFSET) + 1,
 		                                      OdinHelper::c150(FX_ON_BUTTON_Y));
 	} else {
-		m_flanger_on_button.setTopLeftPosition(FX_ON_BUTTON_X + p_map.find("flanger")->second * (FX_BUTTON_OFFSET),
+		m_flanger_on_button.setTopLeftPosition(FX_ON_BUTTON_X + p_map.find("flanger")->second * (FX_BUTTON_OFFSET)-1,
 		                                       FX_ON_BUTTON_Y);
-		m_phaser_on_button.setTopLeftPosition(FX_ON_BUTTON_X + p_map.find("phaser")->second * (FX_BUTTON_OFFSET),
+		m_phaser_on_button.setTopLeftPosition(FX_ON_BUTTON_X + p_map.find("phaser")->second * (FX_BUTTON_OFFSET)-1,
 		                                      FX_ON_BUTTON_Y);
-		m_chorus_on_button.setTopLeftPosition(FX_ON_BUTTON_X + p_map.find("chorus")->second * (FX_BUTTON_OFFSET),
+		m_chorus_on_button.setTopLeftPosition(FX_ON_BUTTON_X + p_map.find("chorus")->second * (FX_BUTTON_OFFSET)-1,
 		                                      FX_ON_BUTTON_Y);
-		m_delay_on_button.setTopLeftPosition(FX_ON_BUTTON_X + p_map.find("delay")->second * (FX_BUTTON_OFFSET),
+		m_delay_on_button.setTopLeftPosition(FX_ON_BUTTON_X + p_map.find("delay")->second * (FX_BUTTON_OFFSET)-1,
 		                                     FX_ON_BUTTON_Y);
-		m_reverb_on_button.setTopLeftPosition(FX_ON_BUTTON_X + p_map.find("reverb")->second * (FX_BUTTON_OFFSET),
+		m_reverb_on_button.setTopLeftPosition(FX_ON_BUTTON_X + p_map.find("reverb")->second * (FX_BUTTON_OFFSET)-1,
 		                                      FX_ON_BUTTON_Y);
 	}
 

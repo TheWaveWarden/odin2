@@ -763,12 +763,20 @@
             file="Graphics/cropped/buttons/buttonresetsynth_4.png"/>
       <FILE id="XvfA2d" name="buttonresetsynth_4_150.png" compile="0" resource="1"
             file="Graphics_150/cropped/buttons/buttonresetsynth_4_150.png"/>
+      <FILE id="mb5khb" name="buttonreverb_1.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonreverb_1.png"/>
       <FILE id="Uk17bQ" name="buttonreverb_1_150.png" compile="0" resource="1"
             file="Graphics_150/cropped/buttons/buttonreverb_1_150.png"/>
+      <FILE id="w2mGG2" name="buttonreverb_2.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonreverb_2.png"/>
       <FILE id="jpGPiM" name="buttonreverb_2_150.png" compile="0" resource="1"
             file="Graphics_150/cropped/buttons/buttonreverb_2_150.png"/>
+      <FILE id="G8sBLQ" name="buttonreverb_3.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonreverb_3.png"/>
       <FILE id="ZZY15x" name="buttonreverb_3_150.png" compile="0" resource="1"
             file="Graphics_150/cropped/buttons/buttonreverb_3_150.png"/>
+      <FILE id="hVRMvR" name="buttonreverb_4.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonreverb_4.png"/>
       <FILE id="d2dTfT" name="buttonreverb_4_150.png" compile="0" resource="1"
             file="Graphics_150/cropped/buttons/buttonreverb_4_150.png"/>
       <FILE id="NJvidF" name="buttonright_1.png" compile="0" resource="1"
