@@ -108,6 +108,65 @@ void ReverbComponent::paint(Graphics &g) {
 	SET_INTERPOLATION_QUALITY(g)
 
 	g.drawImageAt(m_background, 0, 0);
+
+	if (m_GUI_big) {
+		g.setColour(Colours::white);
+		Rectangle<int> bounds;
+
+		bounds.setBounds(OdinHelper::c150(REVERB_DELAY_POS_X),
+		                 OdinHelper::c150(REVERB_DELAY_POS_Y) + OdinHelper::c150(BLACK_KNOB_MID_SIZE_Y) + 4,
+		                 OdinHelper::c150(BLACK_KNOB_MID_SIZE_X) * 2.f,
+		                 10);
+		g.drawText("Pre-Delay", bounds, Justification::centredLeft, true);
+
+		bounds.setBounds(OdinHelper::c150(REVERB_ROOMSIZE_POS_X),
+		                 OdinHelper::c150(REVERB_ROOMSIZE_POS_Y) + OdinHelper::c150(BLACK_KNOB_MID_SIZE_Y) + 4,
+		                 OdinHelper::c150(BLACK_KNOB_MID_SIZE_X) * 2.f,
+		                 10);
+		g.drawText("Roomsize", bounds, Justification::centredLeft, true);
+
+		bounds.setBounds(OdinHelper::c150(REVERB_DIFFUSION_POS_X),
+		                 OdinHelper::c150(REVERB_DIFFUSION_POS_Y) + OdinHelper::c150(BLACK_KNOB_MID_SIZE_Y) + 4,
+		                 OdinHelper::c150(BLACK_KNOB_MID_SIZE_X) * 2.f,
+		                 10);
+		g.drawText("Diffusion", bounds, Justification::centredLeft, true);
+
+		bounds.setBounds(OdinHelper::c150(REVERB_DECAY_POS_X),
+		                 OdinHelper::c150(REVERB_DECAY_POS_Y) + OdinHelper::c150(BLACK_KNOB_MID_SIZE_Y) + 4,
+		                 OdinHelper::c150(BLACK_KNOB_MID_SIZE_X) * 2.f,
+		                 10);
+		g.drawText("Decay", bounds, Justification::centredLeft, true);
+
+		bounds.setBounds(OdinHelper::c150(REVERB_BUILDUP_POS_X),
+		                 OdinHelper::c150(REVERB_BUILDUP_POS_Y) + OdinHelper::c150(BLACK_KNOB_MID_SIZE_Y) + 4,
+		                 OdinHelper::c150(BLACK_KNOB_MID_SIZE_X) * 2.f,
+		                 10);
+		g.drawText("Buildup", bounds, Justification::centredLeft, true);
+
+		bounds.setBounds(OdinHelper::c150(REVERB_EQ_GAIN_POS_X),
+		                 OdinHelper::c150(REVERB_EQ_GAIN_POS_Y) + OdinHelper::c150(BLACK_KNOB_MID_SIZE_Y) + 4,
+		                 OdinHelper::c150(BLACK_KNOB_MID_SIZE_X) * 2.f,
+		                 10);
+		g.drawText("EQ Gain", bounds, Justification::centredLeft, true);
+
+		bounds.setBounds(OdinHelper::c150(REVERB_WIDTH_POS_X),
+		                 OdinHelper::c150(REVERB_WIDTH_POS_Y) + OdinHelper::c150(BLACK_KNOB_MID_SIZE_Y) + 4,
+		                 OdinHelper::c150(BLACK_KNOB_MID_SIZE_X) * 2.f,
+		                 10);
+		g.drawText("Width", bounds, Justification::centredLeft, true);
+
+		bounds.setBounds(OdinHelper::c150(REVERB_DRY_POS_X),
+		                 OdinHelper::c150(REVERB_DRY_POS_Y) + OdinHelper::c150(BLACK_KNOB_MID_SIZE_Y) + 4,
+		                 OdinHelper::c150(BLACK_KNOB_MID_SIZE_X) * 2.f,
+		                 10);
+		g.drawText("EQ Freq", bounds, Justification::centredLeft, true);
+
+		bounds.setBounds(OdinHelper::c150(REVERB_WET_POS_X),
+		                 OdinHelper::c150(REVERB_WET_POS_Y) + OdinHelper::c150(BLACK_KNOB_MID_SIZE_Y) + 4,
+		                 OdinHelper::c150(BLACK_KNOB_MID_SIZE_X) * 2.f,
+		                 10);
+		g.drawText("DryWet", bounds, Justification::centredLeft, true);
+	}
 }
 
 void ReverbComponent::forceValueTreeOntoComponents(ValueTree p_tree) {
@@ -133,20 +192,20 @@ void ReverbComponent::setGUIBig() {
 	                  OdinHelper::c150(REVERB_DELAY_POS_Y),
 	                  OdinHelper::c150(BLACK_KNOB_MID_SIZE_X),
 	                  OdinHelper::c150(BLACK_KNOB_MID_SIZE_Y));
-	m_roomsize.setBounds(OdinHelper::c150(REVERB_LOW_FREQ_POS_X),
-	                     OdinHelper::c150(REVERB_LOW_FREQ_POS_Y),
+	m_roomsize.setBounds(OdinHelper::c150(REVERB_ROOMSIZE_POS_X),
+	                     OdinHelper::c150(REVERB_ROOMSIZE_POS_Y),
 	                     OdinHelper::c150(BLACK_KNOB_MID_SIZE_X),
 	                     OdinHelper::c150(BLACK_KNOB_MID_SIZE_Y));
-	m_diffusion.setBounds(OdinHelper::c150(REVERB_LOW_TIME_POS_X),
-	                      OdinHelper::c150(REVERB_LOW_TIME_POS_Y),
+	m_diffusion.setBounds(OdinHelper::c150(REVERB_DIFFUSION_POS_X),
+	                      OdinHelper::c150(REVERB_DIFFUSION_POS_Y),
 	                      OdinHelper::c150(BLACK_KNOB_MID_SIZE_X),
 	                      OdinHelper::c150(BLACK_KNOB_MID_SIZE_Y));
-	m_decay.setBounds(OdinHelper::c150(REVERB_MID_TIME_POS_X),
-	                  OdinHelper::c150(REVERB_MID_TIME_POS_Y),
+	m_decay.setBounds(OdinHelper::c150(REVERB_DECAY_POS_X),
+	                  OdinHelper::c150(REVERB_DECAY_POS_Y),
 	                  OdinHelper::c150(BLACK_KNOB_MID_SIZE_X),
 	                  OdinHelper::c150(BLACK_KNOB_MID_SIZE_Y));
-	m_buildup.setBounds(OdinHelper::c150(REVERB_HF_DAMPING_POS_X),
-	                    OdinHelper::c150(REVERB_HF_DAMPING_POS_Y),
+	m_buildup.setBounds(OdinHelper::c150(REVERB_BUILDUP_POS_X),
+	                    OdinHelper::c150(REVERB_BUILDUP_POS_Y),
 	                    OdinHelper::c150(BLACK_KNOB_MID_SIZE_X),
 	                    OdinHelper::c150(BLACK_KNOB_MID_SIZE_Y));
 
@@ -154,8 +213,8 @@ void ReverbComponent::setGUIBig() {
 	                    OdinHelper::c150(REVERB_EQ_GAIN_POS_Y),
 	                    OdinHelper::c150(BLACK_KNOB_MID_SIZE_X),
 	                    OdinHelper::c150(BLACK_KNOB_MID_SIZE_Y));
-	m_ducking.setBounds(OdinHelper::c150(REVERB_DUCKING_POS_X),
-	                    OdinHelper::c150(REVERB_DUCKING_POS_Y),
+	m_ducking.setBounds(OdinHelper::c150(REVERB_WIDTH_POS_X),
+	                    OdinHelper::c150(REVERB_WIDTH_POS_Y),
 	                    OdinHelper::c150(BLACK_KNOB_MID_SIZE_X),
 	                    OdinHelper::c150(BLACK_KNOB_MID_SIZE_Y));
 	m_EQ_freq.setBounds(OdinHelper::c150(REVERB_DRY_POS_X),
@@ -187,7 +246,7 @@ void ReverbComponent::setGUISmall() {
 	m_dry_wet.setStrip(black_knob_mid, N_KNOB_FRAMES);
 
 	m_EQ_gain.setBounds(REVERB_EQ_GAIN_POS_X, REVERB_EQ_GAIN_POS_Y, BLACK_KNOB_MID_SIZE_X, BLACK_KNOB_MID_SIZE_Y);
-	m_ducking.setBounds(REVERB_DUCKING_POS_X, REVERB_DUCKING_POS_Y, BLACK_KNOB_MID_SIZE_X, BLACK_KNOB_MID_SIZE_Y);
+	m_ducking.setBounds(REVERB_WIDTH_POS_X, REVERB_WIDTH_POS_Y, BLACK_KNOB_MID_SIZE_X, BLACK_KNOB_MID_SIZE_Y);
 	m_EQ_freq.setBounds(REVERB_DRY_POS_X, REVERB_DRY_POS_Y, BLACK_KNOB_MID_SIZE_X, BLACK_KNOB_MID_SIZE_Y);
 	m_dry_wet.setBounds(REVERB_WET_POS_X, REVERB_WET_POS_Y, BLACK_KNOB_MID_SIZE_X, BLACK_KNOB_MID_SIZE_Y);
 

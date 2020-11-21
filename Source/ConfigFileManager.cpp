@@ -16,12 +16,10 @@
 #include "ConfigFileManager.h"
 
 ConfigFileManager::ConfigFileManager() {
-	DBG("ConfigFileManager()");
 	loadDataFromFile();
 }
 
 void ConfigFileManager::loadDataFromFile() {
-	DBG("loadDataFromFile()");
 	String path_absolute    = CONFIG_FILE_PATH;
 	File configuration_file = File(path_absolute);
 
@@ -30,9 +28,7 @@ void ConfigFileManager::loadDataFromFile() {
 
 		//parse() returns nullptr for any problem
 		if (config_xml.get()) {
-			DBG_VAR(config_xml->toString());
 			if (config_xml->hasTagName(XML_ATTRIBUTE_ODIN_CONFIG)) {
-				DBG("Found Odin Config Xml Tag");
 				forEachXmlChildElement(*config_xml.get(), child) {
 					if (child->hasTagName(XML_ATTRIBUTE_BIG_GUI)) {
 						DBG("Found Config Element: " << XML_ATTRIBUTE_BIG_GUI << ": "
@@ -80,14 +76,13 @@ void ConfigFileManager::saveDataToFile() {
 	patch_dir->setAttribute("data", m_patch_dir);
 	config_xml->addChildElement(patch_dir);
 
-	DBG_VAR(config_xml->toString());
+	//DBG_VAR(config_xml->toString());
 
 	String path_absolute    = CONFIG_FILE_PATH;
 	File configuration_file = File(path_absolute);
 
 	if (config_xml->writeTo(configuration_file)) {
 		DBG("Wrote configuration Xml to " << path_absolute);
-		DBG_VAR(config_xml->toString());
 	} else {
 		DBG("Failed to write configuration file!");
 	}
