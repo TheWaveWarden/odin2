@@ -18,7 +18,6 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "GlasDisplay.h"
 #include "OdinFeels.h"
-#include "../GlobalIncludes.h"
 
 
 class SyncTimeSelector : public Component {
