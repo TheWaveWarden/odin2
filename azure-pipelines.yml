@@ -28,6 +28,11 @@ jobs:
 
   steps:
 
+  - bash: |
+      git submodule init
+      git submodule update
+    displayName: "Git Submodules"
+
 #! ██     ██ ██ ███    ██ ██████   ██████  ██     ██ ███████ 
 #! ██     ██ ██ ████   ██ ██   ██ ██    ██ ██     ██ ██      
 #! ██  █  ██ ██ ██ ██  ██ ██   ██ ██    ██ ██  █  ██ ███████ 
@@ -101,10 +106,22 @@ jobs:
       echo ""
       echo "Results"
       [[ $(find Odin2.exe -type f -size +30000000c 2>/dev/null) ]] && echo "Windows installer built successfully" || exit 1
-      exit 0
+
+      export PROJ_VERSION="$(../../../../JUCE/extras/Projucer/Builds/VisualStudio2019/x64/Release/App/Projucer.exe --get-version ../../../Odin.jucer)"
+      echo "Odin Project Version: $PROJ_VERSION"
+      mv "Odin2.exe" "Odin${PROJ_VERSION}WinInstaller.exe"
+      ls -l
+
+
     displayName: 'Windows: Build Installer'
     condition: variables.isWindows
 
+  - task: PublishPipelineArtifact@0
+    inputs:
+      artifactName: 'WINDOWS_BUILD'
+      targetPath: 'installers/windows/Output'
+    displayName: 'Windows: Publish Installer'
+    condition: variables.isWindows
 
 #! ███    ███  █████   ██████ 
 #! ████  ████ ██   ██ ██      
@@ -211,12 +228,25 @@ jobs:
       echo ""
       echo "The final product:"
       ls -lh build
+      pwd
 
       [[ $(find build/Odin2MacInstaller.pkg -type f -size +50000000c 2>/dev/null) ]] && echo "Mac Package Built Successfully" || exit 1
-      exit 0
+
+      export PROJ_VERSION="$(../../../JUCE/extras/Projucer/Builds/MacOSX/build/Release/Projucer.app/Contents/MacOS/Projucer --get-version ../../Odin.jucer)"
+      echo "Odin Project Version: $PROJ_VERSION"
+      mv "build/Odin2MacInstaller.pkg" "build/Odin${PROJ_VERSION}MacInstaller.pkg"
+
+      ls -l build
+
     displayName: 'Mac: Package Odin'
     condition: variables.isMac
 
+  - task: PublishPipelineArtifact@0
+    inputs:
+      artifactName: 'MACOS_BUILD'
+      targetPath: 'installers/mac/build'
+    displayName: 'Mac: Publish Installer'
+    condition: variables.isMac
 
 #! ██      ██ ███    ██ ██    ██ ██   ██ 
 #! ██      ██ ████   ██ ██    ██  ██ ██  
@@ -298,6 +328,7 @@ jobs:
       echo "==============================="
       echo ""
       ../JUCE/extras/Projucer/Builds/LinuxMakefile/build/Projucer --resave Odin.jucer
+      cat Source/GitCommitId.h
       echo ""
       echo "==============================="
       echo "====== PREPARE LV2 STUFF ======"
@@ -340,6 +371,76 @@ jobs:
       echo ""
       [[ $(find Odin2_linux_x64.zip -type f -size +50000000c 2>/dev/null) ]] && echo "Generic Zip Built sucessfully!" || exit 1
       [[ $(find $DEB_NAME -type f -size +50000000c 2>/dev/null) ]] && echo "Debian package built successfully!" || exit 1
-      exit 0
+
+      echo "Move installers to separate dir"
+      mkdir build
+      mv Odin* build/
+
+      echo "Rename Linux Zip"
+      export PROJ_VERSION="$(../../../JUCE/extras/Projucer/Builds/LinuxMakefile/build/Projucer --get-version ../../Odin.jucer)"
+      echo "Odin Project Version: $PROJ_VERSION"
+      mv "build/Odin2_linux_x64.zip" "build/Odin${PROJ_VERSION}Linux.zip"
+      
     displayName: 'Linux: Build Odin2 Packages'
     condition: variables.isLinux
+
+  - task: PublishPipelineArtifact@0
+    inputs:
+      artifactName: 'LINUX_BUILD'
+      targetPath: 'installers/linux/build'
+    displayName: 'Linux: Publish Installer'
+    condition: variables.isLinux
+
+#!==============================================================================
+#!==============================================================================
+#!==============================================================================
+#!==============================================================================
+#!==============================================================================
+#!==============================================================================
+#!==============================================================================
+
+
+- job: NightlyDevelUpdate
+  dependsOn: Build
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+
+  steps:
+  - task: DownloadPipelineArtifact@0
+    inputs:
+      artifactName: 'MACOS_BUILD'
+      targetPath: $(Build.ArtifactStagingDirectory)
+
+  - task: DownloadPipelineArtifact@0
+    inputs:
+      artifactName: 'WINDOWS_BUILD'
+      targetPath: $(Build.ArtifactStagingDirectory)
+
+  - task: DownloadPipelineArtifact@0
+    inputs:
+      artifactName: 'LINUX_BUILD'
+      targetPath: $(Build.ArtifactStagingDirectory)
+
+  - bash: |
+     scripts/nightly-devel-notes.sh > $(Build.ArtifactStagingDirectory)/ReleaseNotes.md
+     ls $(Build.ArtifactStagingDirectory)
+     
+    displayName: Create Release Notes
+
+
+  - task: GitHubRelease@0
+    displayName: "Create New Github Release"
+    inputs:
+      gitHubConnection: TheWaveWardenOdin2AzureConnection
+      repositoryName: TheWaveWarden/odin2
+      action: 'edit'
+      tag: NightlyDevel
+      target: '$(Build.SourceVersion)'
+      addChangeLog: false
+      assetUploadMode: 'delete'
+      releaseNotesFile: $(Build.ArtifactStagingDirectory)/ReleaseNotes.md
+      assets: $(Build.ArtifactStagingDirectory)/*.*
+
+
+
+
+
