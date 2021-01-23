@@ -70,13 +70,21 @@ int main()
             //DBG(squiggels_line);
             //DBG(problem_string);
 
-            auto combo = file_name + file_line;
+
+            auto last_slash_in_filename = file_name.find_last_of("/") + 1;
+            std::string pure_file_name = file_name.substr(last_slash_in_filename, file_name.size() - last_slash_in_filename);
+            auto combo = pure_file_name + file_line;
+
 
             if(std::find(edited_values.begin(), edited_values.end(), combo) != edited_values.end()) {
                 continue;
             } else {
                 edited_values.push_back(combo);
             }
+
+            //if(file_name.find("GlobalIncludes.h") != std::string::npos) {
+            //    DBG(combo);
+            //}
 
             std::string sed_line = "sed -i '" + file_line + "s@" + problem_string + "@" + solution_string + "@' " + file_name;
 
