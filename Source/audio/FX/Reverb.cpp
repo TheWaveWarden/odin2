@@ -231,6 +231,7 @@ void Reverb2Effect::process(float &dataL, float &dataR) {
 	in      = m_input_allpass[1].process(in, m_diffusion);
 	in      = m_input_allpass[2].process(in, m_diffusion);
 	in      = m_input_allpass[3].process(in, m_diffusion);
+
 	float x = m_state;
 
 	float wetL = 0.f;
@@ -332,8 +333,11 @@ void Reverb2Effect::init_default_values() {
 	setRoomSize(0.f);
 
 	//todo find good eq value
-	m_EQ[0].setQ(1.5);
-	m_EQ[1].setQ(1.5);
+	m_EQ[0].setQ(1.5f);
+	m_EQ[1].setQ(1.5f);
+
+	m_EQ[0].setFreq(1000.f);
+	m_EQ[1].setFreq(1000.f);
 }
 
 void Reverb2Effect::setSampleRate(float p_sr) {
