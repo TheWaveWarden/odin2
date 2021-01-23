@@ -99,7 +99,7 @@ void SpecdrawDisplay::mouseInteraction() {
 	x = x >= SPECDRAW_STEPS_X ? SPECDRAW_STEPS_X - 1 : x;
 
 	float float_y =
-	    (getHeight() - DRAW_INLAY_DOWN_SPEC - y) / (getHeight() - DRAW_INLAY_UP_SPEC - DRAW_INLAY_DOWN_SPEC);
+	    (getHeight() - DRAW_INLAY_DOWN_SPEC - y) / ((float)getHeight() - (float)DRAW_INLAY_UP_SPEC - (float)DRAW_INLAY_DOWN_SPEC);
 	if (m_mouse_was_down) {
 
 		//DBG(std::to_string(x) + ", " + std::to_string(m_last_x_value));
