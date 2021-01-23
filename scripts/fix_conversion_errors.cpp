@@ -1,7 +1,8 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-
+#include <vector>
+#include <algorithm>
 
 #define DBG(text) std::cout << text << std::endl
 
@@ -26,6 +27,8 @@ int main()
     std::ifstream ifs("/home/fred/odin2/Builds/LinuxMakefile/compile_warnings.log");
 
     std::string line;
+
+    std::vector<std::string> edited_values;
 
     while (std::getline(ifs, line))
     {
@@ -66,6 +69,14 @@ int main()
             //DBG(code_line);
             //DBG(squiggels_line);
             //DBG(problem_string);
+
+            auto combo = file_name + file_line;
+
+            if(std::find(edited_values.begin(), edited_values.end(), combo) != edited_values.end()) {
+                continue;
+            } else {
+                edited_values.push_back(combo);
+            }
 
             std::string sed_line = "sed -i '" + file_line + "s@" + problem_string + "@" + solution_string + "@' " + file_name;
 
