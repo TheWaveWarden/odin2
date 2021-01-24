@@ -14,8 +14,8 @@
 */
 
 #include "../JuceLibraryCode/JuceHeader.h"
-#include "../PluginProcessor.h"
 #include "../GlobalIncludes.h"
+#include "../PluginProcessor.h"
 #include "FixedTextGlassDropdown.h"
 
 #define TUNING_IMPORT_SCL 10

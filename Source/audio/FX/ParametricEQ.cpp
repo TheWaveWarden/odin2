@@ -105,7 +105,7 @@ void ParametricEQ::calcpar1(int nsamp, float g, float f) {
 }
 
 void ParametricEQ::process1(float data[]) {
-	int i, j;
+	int i;
 	float c1, c2, gg;
 	float x, y, z1, z2;
 	float *p;

@@ -46,7 +46,7 @@ void SpecdrawDisplay::paint(Graphics &g) {
 	float draw_width = 2.8f;
 	if(m_GUI_big){
 		width = 6;
-		float draw_width = 4.2f;
+		//float draw_width = 4.2f;
 	}
 
 	for (int i = 0; i < SPECDRAW_STEPS_X; ++i) {

@@ -243,8 +243,8 @@ void Reverb2Effect::process(float &dataL, float &dataR) {
 	lfos[2] = -m_lfo.r;
 	lfos[3] = -m_lfo.i;
 
-	auto hdc = clamp(0.01f, m_hf_damp_coefficent, 0.99f);
-	auto ldc = clamp(0.01f, m_lf_damp_coefficent, 0.99f);
+	//auto hdc = clamp(0.01f, m_hf_damp_coefficent, 0.99f);
+	//auto ldc = clamp(0.01f, m_lf_damp_coefficent, 0.99f);
 
 	for (int b = 0; b < NUM_BLOCKS; b++) {
 		x = x + in;

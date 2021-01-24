@@ -464,6 +464,7 @@ void OdinArpeggiator::setStepMod2(int p_step, float p_mod) {
 void OdinArpeggiator::printKillList() {
 	DBG("KList:");
 	for (auto key : m_sustain_kill_list) {
+		(void)key;//<- hide compile warning
 		DBG(key);
 	}
 	DBG("------");
