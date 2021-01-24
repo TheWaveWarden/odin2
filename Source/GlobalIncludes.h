@@ -27,6 +27,8 @@
 #endif
 #ifdef ODIN_WIN
 #define M_PI 3.14159265359
+// disable hundreds of float to double conversion errors
+#pragma warning( disable : 4244 )
 #endif
 
 // shows the spectrum and wave display for wavetable osc 1
