@@ -31,7 +31,6 @@
 #pragma warning( disable : 4100 ) //disable unreferenced parameter warning (VS really misses the point here...)
 #pragma warning( disable : 4305 ) //disable double to float truncation warning
 #pragma warning( disable : 4267 ) //disable size_t to int truncation warning
-#pragma warning( disable : 4305 ) //disable double to float initialization warning
 #endif
 
 // shows the spectrum and wave display for wavetable osc 1

@@ -14,6 +14,11 @@
 */
 
 #pragma once
+
+#ifdef ODIN_WIN
+#pragma warning( disable : 4305 ) //disable double to float initialization warning
+#endif
+
 #include "../../../OdinConstants.h"
 const float (*getLFOtableData())[NUMBER_OF_LFOTABLES][1][WAVETABLE_LENGTH];
 const float * getOneLFOTable(int p_wavetable);
