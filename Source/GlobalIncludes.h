@@ -239,7 +239,6 @@ public:
 	static int c150(int input) {
 		float x = input * 1.5f;
 		return x + 0.5 - (x < 0);
-		return (int)x;
 	}
 };
 

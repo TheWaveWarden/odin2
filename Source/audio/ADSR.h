@@ -16,7 +16,7 @@
 #pragma once
 
 #include "../../JuceLibraryCode/JuceHeader.h"
-
+#include "../GlobalIncludes.h"
 #include <functional>
 
 #define MIN_DECAY_RELEASE_VAL 0.001

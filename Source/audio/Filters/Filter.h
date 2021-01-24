@@ -16,6 +16,7 @@
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "../../GlobalIncludes.h"
 #include <cmath>
 
 #define FILTER_FC_MIN 20        // 80Hz

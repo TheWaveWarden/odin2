@@ -36,11 +36,11 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 	setBPM(m_BPM);
 
 	ScopedNoDenormals noDenormals;
-	auto totalNumInputChannels  = getTotalNumInputChannels();
-	auto totalNumOutputChannels = getTotalNumOutputChannels();
+	//auto totalNumInputChannels  = getTotalNumInputChannels();
+	//auto totalNumOutputChannels = getTotalNumOutputChannels();
 
 	MidiMessage midi_message;
-	int midi_message_sample;
+	int midi_message_sample = -1;
 	MidiBufferIterator midi_iterator = midiMessages.begin();
 	bool midi_message_remaining      = !midiMessages.isEmpty();
 	if (midi_message_remaining) {
@@ -60,8 +60,8 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 				midiNoteOn(std::get<0>(note), std::get<1>(note), std::get<2>(note), std::get<3>(note));
 			}
 			auto off_notes = m_arpeggiator.getNoteOffs();
-			for (auto note : off_notes) {
-				midiNoteOff(note);
+			for (auto note_to_kill : off_notes) {
+				midiNoteOff(note_to_kill);
 			}
 		}
 

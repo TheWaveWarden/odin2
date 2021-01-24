@@ -48,7 +48,6 @@ float valueToDenominator(int p_value) {
 		return 16.f;
 		break;
 	}
-	return 16.f;
 }
 
 void OdinAudioProcessor::treeValueChangedOscPitch(const String &p_ID, float p_new_value) {
