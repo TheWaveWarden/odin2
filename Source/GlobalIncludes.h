@@ -27,8 +27,9 @@
 #endif
 #ifdef ODIN_WIN
 #define M_PI 3.14159265359
-// disable hundreds of float to double conversion errors
-#pragma warning( disable : 4244 )
+#pragma warning( disable : 4244 ) //disable conversion warnings
+#pragma warning( disable : 4100 ) //disable unreferenced parameter warning (VS really misses the point here...)
+#pragma warning( disable : 4305 ) //disable double to float truncation warning
 #endif
 
 // shows the spectrum and wave display for wavetable osc 1
