@@ -32,6 +32,9 @@
 #pragma warning( disable : 4305 ) //disable double to float truncation warning
 #pragma warning( disable : 4267 ) //disable size_t to int truncation warning
 #endif
+#ifdef ODIN_MAC
+#pragma clang diagnostic ignored "-Wshorten-64-to-32 -Wreorder"
+#endif
 
 // shows the spectrum and wave display for wavetable osc 1
 //#define WTGEN
