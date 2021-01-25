@@ -1792,7 +1792,7 @@
     <FILE id="HQUFcv" name="init_patch.odin" compile="0" resource="1" file="init_patch.odin"/>
   </MAINGROUP>
   <EXPORTFORMATS>
-    <XCODE_MAC targetFolder="Builds/MacOSX">
+    <XCODE_MAC targetFolder="Builds/MacOSX" extraCompilerFlags="-Wno-shorten-64-to-32 -Wno-reorder">
       <CONFIGURATIONS>
         <CONFIGURATION isDebug="1" name="Debug" defines="ODIN_DEBUG&#10;ODIN_MAC" targetName="Odin2DEBUG"/>
         <CONFIGURATION isDebug="0" name="Release" defines="ODIN_RELEASE&#10;ODIN_MAC"/>
