@@ -399,11 +399,13 @@ void OdinArpeggiator::generateSequence() {
 }
 
 void OdinArpeggiator::printSequence() {
+#ifdef ODIN_DEBUG
 	DBG("Current sequence:");
 	for (auto note : m_arp_sequence) {
 		DBG("Key: " + String(note.first) + ", Vel: " + String(note.second));
 	}
 	DBG("----");
+#endif
 }
 
 void OdinArpeggiator::setBPM(double p_BPM) {
