@@ -22,7 +22,8 @@
 #include "audio/FX/Delay.h"
 #include "audio/FX/Flanger.h"
 #include "audio/FX/Phaser.h"
-#include "audio/FX/Reverb.h"
+#include "audio/FX/SurgeReverb.h"
+#include "audio/FX/ZitaReverb.h"
 #include "audio/FX/RingModulator.h"
 #include "audio/Filters/CombFilter.h"
 #include "audio/Filters/DiodeFilter.h"
@@ -217,7 +218,8 @@ private:
 	RingModulator m_ring_mod[2];
 	Delay m_delay;          //is stereo delay
 	Phaser m_phaser;        // is stereo phaser
-	Reverb2Effect m_reverb; // is stereo reverb
+	SurgeReverb m_reverb_surge; // is stereo reverb
+	ZitaReverb m_reverb_zita;
 	Flanger m_flanger[2];
 	Chorus m_chorus[2];
 

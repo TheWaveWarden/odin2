@@ -1357,6 +1357,10 @@
             file="Graphics_150/applied/WW_logo_xy_150.png"/>
     </GROUP>
     <GROUP id="{7AF384ED-9FD6-6492-4B8C-5777BB9A2698}" name="Source">
+      <FILE id="BaQyHx" name="SurgeReverb.h" compile="0" resource="0" file="Source/audio/FX/SurgeReverb.h"/>
+      <FILE id="Q9R7V5" name="SurgeReverb.cpp" compile="1" resource="0" file="Source/audio/FX/SurgeReverb.cpp"/>
+      <FILE id="PGDVFF" name="ZitaReverb.h" compile="0" resource="0" file="Source/audio/FX/ZitaReverb.h"/>
+      <FILE id="ufovUU" name="ZitaReverb.cpp" compile="1" resource="0" file="Source/audio/FX/ZitaReverb.cpp"/>
       <FILE id="FSwq31" name="ConfigFileManager.h" compile="0" resource="0"
             file="Source/ConfigFileManager.h"/>
       <FILE id="GEm8WC" name="ConfigFileManager.cpp" compile="1" resource="0"
@@ -1381,8 +1385,6 @@
       <FILE id="QlEHfA" name="ParametricEQ.cpp" compile="1" resource="0"
             file="Source/audio/FX/ParametricEQ.cpp"/>
       <FILE id="xTwlWY" name="ParametricEQ.h" compile="0" resource="0" file="Source/audio/FX/ParametricEQ.h"/>
-      <FILE id="O4EivA" name="Reverb.h" compile="0" resource="0" file="Source/audio/FX/Reverb.h"/>
-      <FILE id="RsaXj6" name="Reverb.cpp" compile="1" resource="0" file="Source/audio/FX/Reverb.cpp"/>
       <FILE id="m2K5JH" name="ModAmountComponentExtended.h" compile="0" resource="0"
             file="Source/gui/ModAmountComponentExtended.h"/>
       <FILE id="PWghTC" name="ModAmountComponentExtended.cpp" compile="1"
@@ -1544,13 +1546,10 @@
             file="Source/gui/XYSectionComponent.cpp"/>
       <FILE id="z4elIk" name="XYSectionComponent.h" compile="0" resource="0"
             file="Source/gui/XYSectionComponent.h"/>
-      <FILE id="QuKD1K" name="SetModulationPointers.h" compile="0" resource="0"
-            file="Source/SetModulationPointers.h"/>
       <FILE id="hf2LpP" name="Utilities.cpp" compile="1" resource="0" file="Source/Utilities.cpp"/>
       <FILE id="R1tTJD" name="Utilities.h" compile="0" resource="0" file="Source/Utilities.h"/>
       <FILE id="xS4QLp" name="ProcessorInitializerList.h" compile="0" resource="0"
             file="Source/ProcessorInitializerList.h"/>
-      <FILE id="BnAGtb" name="ValueChange.h" compile="0" resource="0" file="Source/ValueChange.h"/>
       <FILE id="RyCmuE" name="OdinTreeListener.h" compile="0" resource="0"
             file="Source/OdinTreeListener.h"/>
       <FILE id="gQqTHH" name="AudioParameterConnections.h" compile="0" resource="0"
@@ -1558,9 +1557,7 @@
       <FILE id="JThZCM" name="AudioVarDeclarations.h" compile="0" resource="0"
             file="Source/AudioVarDeclarations.h"/>
       <GROUP id="{3EB8BD5A-21BA-3762-1B22-4C7E7C63EF47}" name="audio">
-        <GROUP id="{6154F4CF-B621-5841-23CC-5426B7C28BDC}" name="Lookuptables">
-          <FILE id="IuvMkp" name="adsr_pow.h" compile="0" resource="0" file="Source/audio/LookupTables/adsr_pow.h"/>
-        </GROUP>
+        <GROUP id="{6154F4CF-B621-5841-23CC-5426B7C28BDC}" name="Lookuptables"/>
         <FILE id="kbJgTr" name="Amplifier.cpp" compile="1" resource="0" file="Source/audio/Amplifier.cpp"/>
         <FILE id="gD2con" name="Amplifier.h" compile="0" resource="0" file="Source/audio/Amplifier.h"/>
         <GROUP id="{D6691E6B-37D4-2804-8E68-093C3D0E2F7C}" name="Oscillators">
@@ -1636,10 +1633,6 @@
               <FILE id="AsGdxr" name="LFOStair6.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/LFOStair6.h"/>
               <FILE id="a0n5Of" name="LFOStair8.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/LFOStair8.h"/>
               <FILE id="pCgpRC" name="LFOStair12.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/LFOStair12.h"/>
-              <FILE id="g1txPv" name="MultiSaw1.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/MultiSaw1.h"/>
-              <FILE id="P0jiqX" name="MultiSaw2.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/MultiSaw2.h"/>
-              <FILE id="CItGM7" name="MultiSaw3.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/MultiSaw3.h"/>
-              <FILE id="TEJGi4" name="MultiSaw4.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/MultiSaw4.h"/>
               <FILE id="bCDHnM" name="Organ1.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/Organ1.h"/>
               <FILE id="Qv9iqZ" name="Organ2.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/Organ2.h"/>
               <FILE id="Dak3MU" name="Organ3.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/Organ3.h"/>
@@ -1650,10 +1643,6 @@
               <FILE id="wUxekK" name="Skyline2.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/Skyline2.h"/>
               <FILE id="mhCdbj" name="Skyline3.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/Skyline3.h"/>
               <FILE id="V1NKdV" name="Skyline4.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/Skyline4.h"/>
-              <FILE id="L1EYvD" name="Soft1.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/Soft1.h"/>
-              <FILE id="UAm1YN" name="Soft2.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/Soft2.h"/>
-              <FILE id="U7eMaD" name="Soft3.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/Soft3.h"/>
-              <FILE id="IJVGvN" name="Soft4.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/Soft4.h"/>
               <FILE id="HKd1fO" name="Triangle.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/Triangle.h"/>
             </GROUP>
             <FILE id="VZe7pv" name="LFOTableData.cpp" compile="1" resource="0"
@@ -1718,8 +1707,6 @@
                 file="Source/audio/Oscillators/WavetableOsc2D.cpp"/>
           <FILE id="VTgjWS" name="WavetableOsc2D.h" compile="0" resource="0"
                 file="Source/audio/Oscillators/WavetableOsc2D.h"/>
-          <FILE id="dK6tmG" name="WavetableTables.h" compile="0" resource="0"
-                file="Source/audio/Oscillators/WavetableTables.h"/>
         </GROUP>
         <GROUP id="{C724E5C9-D97D-5F0F-8A81-C41A55596A1D}" name="FX">
           <FILE id="Sd74Ze" name="Bitcrusher.cpp" compile="1" resource="0" file="Source/audio/FX/Bitcrusher.cpp"/>

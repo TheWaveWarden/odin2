@@ -61,7 +61,7 @@ private:
    float dr, di;
 };
 
-class Reverb2Effect {
+class SurgeReverb {
 	static const int NUM_BLOCKS = 4, NUM_INPUT_ALLPASSES = 4, NUM_ALLPASSES_PER_BLOCK = 2, MAX_ALLPASS_LEN = 16384,
 	                 MAX_DELAY_LEN = 16384, DELAY_LEN_MASK = MAX_DELAY_LEN - 1, DELAY_SUBSAMPLE_BITS = 8,
 	                 DELAY_SUBSAMPLE_RANGE = (1 << DELAY_SUBSAMPLE_BITS),
@@ -128,8 +128,8 @@ class Reverb2Effect {
    //float width;
 
 public:
-	Reverb2Effect(/*SurgeStorage *storage, FxStorage *fxdata, pdata *pd*/);
-	~Reverb2Effect();
+	SurgeReverb(/*SurgeStorage *storage, FxStorage *fxdata, pdata *pd*/);
+	~SurgeReverb();
 	const char *get_effectname() {
 		return "reverb2";
 	}
