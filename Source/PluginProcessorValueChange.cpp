@@ -13,7 +13,7 @@
 ** GNU General Public License for more details.
 */
 
-//#define DEBUG_VARIABLES
+#define DEBUG_VARIABLES
 
 float valueToDenominator(int p_value) {
 	switch (p_value) {
@@ -1176,6 +1176,8 @@ void OdinAudioProcessor::treeValueChangedNonParamFX(ValueTree &tree, const Ident
 		if (!p_new_value) {
 			m_phaser.setLFOFreq(*m_phaser_rate);
 		}
+	} else if (id == m_reverb_module_identifier) {
+		m_reverb_module_used = (ReverbModule)p_new_value;
 	}
 }
 

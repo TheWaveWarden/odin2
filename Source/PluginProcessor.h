@@ -46,6 +46,12 @@ class OdinAudioProcessorEditor;
 
 class OdinAudioProcessor : public AudioProcessor {
 public:
+
+	enum class ReverbModule {
+		Zita = 1,
+		Surge = 2
+	};
+
 	OdinAudioProcessor();
 	~OdinAudioProcessor();
 
@@ -234,6 +240,8 @@ private:
 	String m_midi_learn_parameter_ID        = "";
 	std::multimap<int, RangedAudioParameter *> m_midi_control_param_map;
 	bool m_midi_learn_parameter_active = false;
+
+	ReverbModule m_reverb_module_used = ReverbModule::Zita;
 
 	float m_osc_vol_smooth[3]             = {1.f, 1.f, 1.f}; // factor
 	float m_fil_gain_smooth[3]            = {1.f, 1.f, 1.f}; // factor
