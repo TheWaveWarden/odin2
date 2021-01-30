@@ -40,7 +40,7 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 	//auto totalNumOutputChannels = getTotalNumOutputChannels();
 
 	MidiMessage midi_message;
-	int midi_message_sample = -1;
+	int midi_message_sample          = -1;
 	MidiBufferIterator midi_iterator = midiMessages.begin();
 	bool midi_message_remaining      = !midiMessages.isEmpty();
 	if (midi_message_remaining) {
@@ -467,7 +467,13 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 				}
 			} else if (m_reverb_position == fx_slot) {
 				if (*m_reverb_on) {
-					m_reverb_surge.process(stereo_signal[0], stereo_signal[1]);
+					if (m_reverb_module_used == ReverbModule::Surge) {
+						m_reverb_surge.process(stereo_signal[0], stereo_signal[1]);
+					} else {
+						auto rev_out = m_reverb_zita.process(stereo_signal);
+						stereo_signal[0] = rev_out[0];
+						stereo_signal[1] = rev_out[1];
+					}
 				}
 			}
 		}
