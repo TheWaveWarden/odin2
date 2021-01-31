@@ -1076,7 +1076,7 @@ void Utilities::writeLFOtablesToFiles() {
 	float wavetables[NUMBER_OF_WAVETABLES][1][WAVETABLE_LENGTH] = {0};
 
 	// //loop over all wavetables
-	for (int index_wavetable = 0; index_wavetable < NUMBER_OF_WAVETABLES; ++index_wavetable) {
+	for (int index_wavetable = 0; index_wavetable < NUMBER_OF_LFOTABLES; ++index_wavetable) {
 
 		// this flags hackishly if a waveform only uses sine components
 		//bool sine_only = false;
