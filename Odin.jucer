@@ -1810,7 +1810,7 @@
                        linuxArchitecture="-m64"/>
         <CONFIGURATION name="Release" defines="ODIN_LINUX&#10;JUCE_JACK_CLIENT_NAME=JucePlugin_Name&#10;ODIN_RELEASE"
                        headerPath="/home/frot/Downloads/VST_SDK/VST2_SDK/&#10;/usr/include/freetype2/&#10;/usr/include/gtk-3.0/&#10;/usr/include/glib-2.0/&#10;/usr/lib/x86_64-linux-gnu/glib-2.0/include/&#10;/usr/include/pango-1.0/&#10;/usr/include/cairo/&#10;/usr/include/gdk-pixbuf-2.0/&#10;/usr/include/atk-1.0/"
-                       linuxArchitecture="-m64"/>
+                       linuxArchitecture="-m64" linkTimeOptimisation="1"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_audio_basics" path="../../JUCE/modules"/>
