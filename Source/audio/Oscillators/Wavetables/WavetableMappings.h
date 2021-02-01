@@ -225,7 +225,6 @@ int WavetableOsc1D::wavetableMappingVector(int p_input) {
     return 0;
     break;
   }
-  return 0;
 }
 
 int WavetableOsc1D::wavetableMappingChiptune(int p_input) {

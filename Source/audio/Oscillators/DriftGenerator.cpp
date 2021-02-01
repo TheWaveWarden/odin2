@@ -14,6 +14,7 @@
 */
 
 #include "DriftGenerator.h"
+#include "../../GlobalIncludes.h"
 #include "stdlib.h"
 
 DriftGenerator::DriftGenerator() {

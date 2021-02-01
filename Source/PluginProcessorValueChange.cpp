@@ -13,7 +13,7 @@
 ** GNU General Public License for more details.
 */
 
-//#define DEBUG_VARIABLES
+#define DEBUG_VARIABLES
 
 float valueToDenominator(int p_value) {
 	switch (p_value) {
@@ -48,7 +48,6 @@ float valueToDenominator(int p_value) {
 		return 16.f;
 		break;
 	}
-	return 16.f;
 }
 
 void OdinAudioProcessor::treeValueChangedOscPitch(const String &p_ID, float p_new_value) {
@@ -686,24 +685,24 @@ void OdinAudioProcessor::treeValueChangedReverb(const String &p_ID, float p_new_
 	StringRef id = StringRef(p_ID);
 
 	if (id == m_reverb_delay_identifier) {
-		m_reverb.setPreDelayMs(p_new_value);
+		m_reverb_surge.setPreDelayMs(p_new_value);
 	} else if (id == m_reverb_roomsize_identifer) {
-		m_reverb.setRoomSize(p_new_value);
+		m_reverb_surge.setRoomSize(p_new_value);
 	} else if (id == m_reverb_diffusion_identifer) {
-		m_reverb.setDiffusion(p_new_value);
+		m_reverb_surge.setDiffusion(p_new_value);
 	} else if (id == m_reverb_decaytime_identifer) {
-		m_reverb.setDecayTime(p_new_value);
+		m_reverb_surge.setDecayTime(p_new_value);
 	} else if (id == m_reverb_buildup_identifer) {
-		m_reverb.setBuildup(p_new_value);
+		m_reverb_surge.setBuildup(p_new_value);
 	} else if (id == m_reverb_eq_gain_identifier) {
-		m_reverb.setEQGain(p_new_value);
+		m_reverb_surge.setEQGain(p_new_value);
 	} else if (id == m_reverb_eq_freq_identifier) {
-		m_reverb.setEQFreq(p_new_value);
+		m_reverb_surge.setEQFreq(p_new_value);
 	} else if (id == m_reverb_ducking_identifier) {
-		m_reverb.setWidth(p_new_value);
-		//m_reverb.set_ducking(p_new_value);
+		m_reverb_surge.setWidth(p_new_value);
+		//m_reverb_surge.set_ducking(p_new_value);
 	} else if (id == m_reverb_dry_wet_identifier) {
-		m_reverb.setMix(p_new_value);
+		m_reverb_surge.setMix(p_new_value);
 	}
 }
 
@@ -1177,6 +1176,8 @@ void OdinAudioProcessor::treeValueChangedNonParamFX(ValueTree &tree, const Ident
 		if (!p_new_value) {
 			m_phaser.setLFOFreq(*m_phaser_rate);
 		}
+	} else if (id == m_reverb_module_identifier) {
+		m_reverb_module_used = (ReverbModule)p_new_value;
 	}
 }
 

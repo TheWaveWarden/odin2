@@ -54,6 +54,7 @@ void OdinAudioProcessor::addNonAudioParametersToTree() {
 	node.setProperty("phaser_sync", 0, nullptr);
 	node.setProperty("flanger_sync", 0, nullptr);
 	node.setProperty("chorus_sync", 0, nullptr);
+	node.setProperty("reverb_module", 1, nullptr); // 1 zita, 2 surge
 
 	node = m_value_tree_lfo;
 	node.setProperty("lfo1_synctime_numerator", 2, nullptr);

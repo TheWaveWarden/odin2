@@ -399,11 +399,13 @@ void OdinArpeggiator::generateSequence() {
 }
 
 void OdinArpeggiator::printSequence() {
+#ifdef ODIN_DEBUG
 	DBG("Current sequence:");
 	for (auto note : m_arp_sequence) {
 		DBG("Key: " + String(note.first) + ", Vel: " + String(note.second));
 	}
 	DBG("----");
+#endif
 }
 
 void OdinArpeggiator::setBPM(double p_BPM) {
@@ -464,6 +466,7 @@ void OdinArpeggiator::setStepMod2(int p_step, float p_mod) {
 void OdinArpeggiator::printKillList() {
 	DBG("KList:");
 	for (auto key : m_sustain_kill_list) {
+		(void)key;//<- hide compile warning
 		DBG(key);
 	}
 	DBG("------");

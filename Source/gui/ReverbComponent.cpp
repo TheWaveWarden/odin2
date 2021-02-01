@@ -91,6 +91,22 @@ ReverbComponent::ReverbComponent(AudioProcessorValueTreeState &vts, bool p_is_st
 	m_EQ_freq.setNumDecimalPlacesToDisplay(3);
 	m_dry_wet.setNumDecimalPlacesToDisplay(3);
 
+	m_module.setInlay(1);
+	m_module.addItem("Zita", 1);
+	m_module.addItem("Surge", 2);
+	m_module.setEditableText(false);
+	m_module.showTriangle();
+	m_module.setSelectedId(1, dontSendNotification);
+	m_module.setColor(juce::STANDARD_DISPLAY_COLOR);
+	m_module.setTooltip("Selects whether to use the reverb algorithm from Surge or Zita-rev1");
+	
+	m_module.onChange = [&]() {
+		m_value_tree.state.getChildWithName("fx").setProperty(
+		    "reverb_module", m_module.getSelectedId(), nullptr);
+	};
+	addAndMakeVisible(m_module);
+
+
 	SET_CTR_KEY(m_EQ_gain);
 	SET_CTR_KEY(m_EQ_freq);
 	SET_CTR_KEY(m_ducking);
@@ -230,6 +246,13 @@ void ReverbComponent::setGUIBig() {
 	reverb_image = ImageCache::getFromMemory(BinaryData::reverb_150_png, BinaryData::reverb_150_pngSize);
 	setImage(reverb_image);
 
+	juce::Image glas_panel =
+	    ImageCache::getFromMemory(BinaryData::glaspanel_midbig_150_png, BinaryData::glaspanel_midbig_150_pngSize);
+	m_module.setImage(glas_panel);
+	m_module.setInlay(1);
+	m_module.setBounds(OdinHelper::c150(MODULE_POS_X), OdinHelper::c150(MODULE_POS_Y), glas_panel.getWidth(), glas_panel.getHeight());
+	m_module.setGUIBig();
+
 	forceValueTreeOntoComponents(m_value_tree.state);
 }
 
@@ -254,6 +277,13 @@ void ReverbComponent::setGUISmall() {
 	//! todo
 	reverb_image = ImageCache::getFromMemory(BinaryData::reverb_150_png, BinaryData::reverb_150_pngSize);
 	setImage(reverb_image);
+
+	juce::Image glas_panel =
+	    ImageCache::getFromMemory(BinaryData::glaspanel_midbig_png, BinaryData::glaspanel_midbig_pngSize);
+	m_module.setImage(glas_panel);
+	m_module.setInlay(1);
+	m_module.setBounds(MODULE_POS_X, MODULE_POS_Y, glas_panel.getWidth(), glas_panel.getHeight());
+	m_module.setGUISmall();
 
 	forceValueTreeOntoComponents(m_value_tree.state);
 }

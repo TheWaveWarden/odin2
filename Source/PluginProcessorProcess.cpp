@@ -17,6 +17,7 @@
 
 #include "PluginProcessor.h"
 #include "ScopedNoDenormals.h"
+#include <math.h> //todo remove isnan
 
 void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &midiMessages) {
 
@@ -35,11 +36,11 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 	setBPM(m_BPM);
 
 	ScopedNoDenormals noDenormals;
-	auto totalNumInputChannels  = getTotalNumInputChannels();
-	auto totalNumOutputChannels = getTotalNumOutputChannels();
+	//auto totalNumInputChannels  = getTotalNumInputChannels();
+	//auto totalNumOutputChannels = getTotalNumOutputChannels();
 
 	MidiMessage midi_message;
-	int midi_message_sample;
+	int midi_message_sample          = -1;
 	MidiBufferIterator midi_iterator = midiMessages.begin();
 	bool midi_message_remaining      = !midiMessages.isEmpty();
 	if (midi_message_remaining) {
@@ -59,8 +60,8 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 				midiNoteOn(std::get<0>(note), std::get<1>(note), std::get<2>(note), std::get<3>(note));
 			}
 			auto off_notes = m_arpeggiator.getNoteOffs();
-			for (auto note : off_notes) {
-				midiNoteOff(note);
+			for (auto note_to_kill : off_notes) {
+				midiNoteOff(note_to_kill);
 			}
 		}
 
@@ -466,7 +467,13 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 				}
 			} else if (m_reverb_position == fx_slot) {
 				if (*m_reverb_on) {
-					m_reverb.process(stereo_signal[0], stereo_signal[1]);
+					if (m_reverb_module_used == ReverbModule::Surge) {
+						m_reverb_surge.process(stereo_signal[0], stereo_signal[1]);
+					} else {
+						auto rev_out = m_reverb_zita.process(stereo_signal);
+						stereo_signal[0] = rev_out[0];
+						stereo_signal[1] = rev_out[1];
+					}
 				}
 			}
 		}

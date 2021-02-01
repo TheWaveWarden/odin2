@@ -16,12 +16,14 @@
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "GlobalIncludes.h"
 #include "OdinTreeListener.h"
 #include "audio/FX/Chorus.h"
 #include "audio/FX/Delay.h"
 #include "audio/FX/Flanger.h"
 #include "audio/FX/Phaser.h"
-#include "audio/FX/Reverb.h"
+#include "audio/FX/SurgeReverb.h"
+#include "audio/FX/ZitaReverb.h"
 #include "audio/FX/RingModulator.h"
 #include "audio/Filters/CombFilter.h"
 #include "audio/Filters/DiodeFilter.h"
@@ -44,6 +46,12 @@ class OdinAudioProcessorEditor;
 
 class OdinAudioProcessor : public AudioProcessor {
 public:
+
+	enum class ReverbModule {
+		Zita = 1,
+		Surge = 2
+	};
+
 	OdinAudioProcessor();
 	~OdinAudioProcessor();
 
@@ -216,7 +224,8 @@ private:
 	RingModulator m_ring_mod[2];
 	Delay m_delay;          //is stereo delay
 	Phaser m_phaser;        // is stereo phaser
-	Reverb2Effect m_reverb; // is stereo reverb
+	SurgeReverb m_reverb_surge; // is stereo reverb
+	ZitaReverb m_reverb_zita;
 	Flanger m_flanger[2];
 	Chorus m_chorus[2];
 
@@ -231,6 +240,8 @@ private:
 	String m_midi_learn_parameter_ID        = "";
 	std::multimap<int, RangedAudioParameter *> m_midi_control_param_map;
 	bool m_midi_learn_parameter_active = false;
+
+	ReverbModule m_reverb_module_used = ReverbModule::Zita;
 
 	float m_osc_vol_smooth[3]             = {1.f, 1.f, 1.f}; // factor
 	float m_fil_gain_smooth[3]            = {1.f, 1.f, 1.f}; // factor

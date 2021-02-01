@@ -20,13 +20,13 @@
 #include "Knob.h"
 #include "OdinButton.h"
 #include "OdinControlAttachments.h"
+#include "GlassDropdown.h"
 
 
 #define REVERB_POS_X_SPACING 45
 #define REVERB_POS_X_FIRST 18
 #define REVERB_POS_Y_TOP 10
 #define REVERB_POS_Y_BOTTOM 60
-
 
 #define REVERB_DELAY_POS_X (REVERB_POS_X_FIRST + 0 * REVERB_POS_X_SPACING)
 #define REVERB_DELAY_POS_Y REVERB_POS_Y_BOTTOM
@@ -50,6 +50,9 @@
 #define REVERB_WIDTH_POS_Y REVERB_POS_Y_TOP
 #define REVERB_WET_POS_X (REVERB_POS_X_FIRST + 4 * REVERB_POS_X_SPACING)
 #define REVERB_WET_POS_Y REVERB_POS_Y_BOTTOM
+
+#define MODULE_POS_X 2
+#define MODULE_POS_Y 15
 
 
 class ReverbComponent : public Component {
@@ -85,6 +88,8 @@ private:
 	Knob m_EQ_freq;
 	Knob m_ducking;
 	Knob m_dry_wet;
+
+	GlassDropdown m_module;
 
 	AudioProcessorValueTreeState &m_value_tree;
 

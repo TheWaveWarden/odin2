@@ -516,6 +516,7 @@
     Identifier m_step_15_transpose_identifier;
 
 
+    Identifier m_reverb_module_identifier;
     Identifier m_phaser_sync_identifier;
     Identifier m_phaser_rate_identifier;
     Identifier m_phaser_freq_identifier;

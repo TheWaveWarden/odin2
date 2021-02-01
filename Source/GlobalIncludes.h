@@ -27,6 +27,12 @@
 #endif
 #ifdef ODIN_WIN
 #define M_PI 3.14159265359
+#pragma warning( disable : 4244 ) //disable conversion warnings
+#pragma warning( disable : 4100 ) //disable unreferenced parameter warning (VS really misses the point here...)
+#pragma warning( disable : 4305 ) //disable double to float truncation warning
+#pragma warning( disable : 4267 ) //disable size_t to int truncation warning
+#endif
+#ifdef ODIN_MAC
 #endif
 
 // shows the spectrum and wave display for wavetable osc 1
@@ -139,16 +145,16 @@
 // https://www.wolframalpha.com/input/?i=ln%280.5%29%2F%28ln%28%281200-80%29%2F%2818000-80%29%29%29
 #define FILTER_SKEW_DEFAULT 0.25f
 
-#define GAIN_SMOOTHIN_FACTOR 0.995
-#define PAN_SMOOTHIN_FACTOR 0.998
-#define PITCHBEND_SMOOTHIN_FACTOR 0.998
-#define FILTER_FREQ_SMOOTHING_FACTOR 0.998
-#define PAD_SMOOTHIN_FACTOR 0.998
-#define PWM_SMOOTHIN_FACTOR 0.998
-#define THRESHOLD_SMOOTHIN_FACTOR 0.998
+#define GAIN_SMOOTHIN_FACTOR 0.995f
+#define PAN_SMOOTHIN_FACTOR 0.998f
+#define PITCHBEND_SMOOTHIN_FACTOR 0.998f
+#define FILTER_FREQ_SMOOTHING_FACTOR 0.998f
+#define PAD_SMOOTHIN_FACTOR 0.998f
+#define PWM_SMOOTHIN_FACTOR 0.998f
+#define THRESHOLD_SMOOTHIN_FACTOR 0.998f
 
-#define MINUS_12_dB_GAIN 0.251189 //needed for volume modulation threshold
-#define PLUS_12_dB_GAIN 3.981072
+#define MINUS_12_dB_GAIN 0.251189f //needed for volume modulation threshold
+#define PLUS_12_dB_GAIN 3.981072f
 
 #define INPUT_LABEL_SIZE_X 70
 #define INPUT_LABEL_SIZE_Y 20
@@ -235,7 +241,6 @@ public:
 	static int c150(int input) {
 		float x = input * 1.5f;
 		return x + 0.5 - (x < 0);
-		return (int)x;
 	}
 };
 

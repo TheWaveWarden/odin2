@@ -27,11 +27,11 @@ void OdinAudioProcessor::readPatch(const ValueTree &newState) {
 
 	migratePatch(newStateMigrated);
 
-	int minor_version           = newStateMigrated.getChildWithName("misc")["version_minor"];
-	int patch_version           = newStateMigrated.getChildWithName("misc")["version_patch"];
 
 //avoid compiler warning unused variable
 #if (JUCE_DEBUG && ! JUCE_DISABLE_ASSERTIONS) || DOXYGEN
+	int patch_version           = newStateMigrated.getChildWithName("misc")["version_patch"];
+	int minor_version           = newStateMigrated.getChildWithName("misc")["version_minor"];
 	int patch_migration_version = newStateMigrated.getChildWithName("misc")["patch_migration_version"];
 #endif
 

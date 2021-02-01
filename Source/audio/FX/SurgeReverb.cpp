@@ -16,7 +16,7 @@
 // The implementation for this ZitaReverb module is taken from zita-rev1 with some adjustments. See
 // https://github.com/royvegard/zita-rev1 for the original code.
 
-#include "Reverb.h"
+#include "SurgeReverb.h"
 #include <algorithm>
 
 /* reverb 2			*/
@@ -30,17 +30,17 @@ float db_to_linear(float x) {
 
 const float db60 = powf(10.f, 0.05f * -60.f);
 
-Reverb2Effect::allpass::allpass() {
+SurgeReverb::allpass::allpass() {
 	m_k   = 0;
 	m_len = 1;
 	memset(m_data, 0, MAX_ALLPASS_LEN * sizeof(float));
 }
 
-void Reverb2Effect::allpass::setLen(int len) {
+void SurgeReverb::allpass::setLen(int len) {
 	m_len = len;
 }
 
-float Reverb2Effect::allpass::process(float in, float coeff) {
+float SurgeReverb::allpass::process(float in, float coeff) {
 	m_k++;
 	if (m_k >= m_len)
 		m_k = 0;
@@ -50,17 +50,17 @@ float Reverb2Effect::allpass::process(float in, float coeff) {
 	return result;
 }
 
-Reverb2Effect::delay::delay() {
+SurgeReverb::delay::delay() {
 	m_k   = 0;
 	m_len = 1;
 	memset(m_data, 0, MAX_DELAY_LEN * sizeof(float));
 }
 
-void Reverb2Effect::delay::setLen(int len) {
+void SurgeReverb::delay::setLen(int len) {
 	m_len = len;
 }
 
-float Reverb2Effect::delay::process(float in, int tap1, float &tap_out1, int tap2, float &tap_out2, int modulation) {
+float SurgeReverb::delay::process(float in, int tap1, float &tap_out1, int tap2, float &tap_out2, int modulation) {
 	m_k = (m_k + 1) & DELAY_LEN_MASK;
 
 	tap_out1 = m_data[(m_k - tap1) & DELAY_LEN_MASK];
@@ -80,33 +80,33 @@ float Reverb2Effect::delay::process(float in, int tap1, float &tap_out1, int tap
 	return result;
 }
 
-Reverb2Effect::onepole_filter::onepole_filter() {
+SurgeReverb::onepole_filter::onepole_filter() {
 	m_a0 = 0.f;
 }
 
-float Reverb2Effect::onepole_filter::process_lowpass(float x, float c0) {
+float SurgeReverb::onepole_filter::process_lowpass(float x, float c0) {
 	m_a0 = m_a0 * c0 + x * (1.f - c0);
 	return m_a0;
 }
 
-float Reverb2Effect::onepole_filter::process_highpass(float x, float c0) {
+float SurgeReverb::onepole_filter::process_highpass(float x, float c0) {
 	m_a0 = m_a0 * (1.f - c0) + x * c0;
 	return x - m_a0;
 }
 
-Reverb2Effect::Reverb2Effect() {
+SurgeReverb::SurgeReverb() {
 	m_state = 0.f;
 	init_default_values();
 }
 
-Reverb2Effect::~Reverb2Effect() {
+SurgeReverb::~SurgeReverb() {
 }
 
-void Reverb2Effect::init() {
+void SurgeReverb::init() {
 	setvars(true);
 }
 
-int Reverb2Effect::msToSamples(float ms, float scale) {
+int SurgeReverb::msToSamples(float ms, float scale) {
 	float a = m_samplerate * ms * 0.001f;
 
 	float b = a * scale;
@@ -114,7 +114,7 @@ int Reverb2Effect::msToSamples(float ms, float scale) {
 	return (int)(b);
 }
 
-void Reverb2Effect::calc_size(float scale) {
+void SurgeReverb::calc_size(float scale) {
 	float m = scale;
 
 	m_tap_timeL[0] = msToSamples(80.3, m);
@@ -148,7 +148,7 @@ void Reverb2Effect::calc_size(float scale) {
 	m_delay[3].setLen(msToSamples(139.4, m));
 }
 
-void Reverb2Effect::setvars(bool init) {
+void SurgeReverb::setvars(bool init) {
 	// TODO, balance the gains from the calculated decay coefficient?
 
 	m_tap_gainL[0] = 1.5f / 4.f;
@@ -163,19 +163,19 @@ void Reverb2Effect::setvars(bool init) {
 	calc_size(1.f);
 }
 
-void Reverb2Effect::update_ringout_time() {
+void SurgeReverb::update_ringout_time() {
 	float t = BLOCK_SIZE_INV *
 	          (m_samplerate * (std::max(1.0f, powf(2.f, m_decay_time)) * 2.f +
 	                           std::max(0.1f, powf(2.f, m_predelay_val)) * 2.f)); // *2 is to get the db120 time
 	ringout_time = (int)t;
 }
 
-void Reverb2Effect::setRoomSize(float p_room_size) {
+void SurgeReverb::setRoomSize(float p_room_size) {
 	m_scale = powf(2.f, p_room_size);
 	calc_size(m_scale);
 }
 
-void Reverb2Effect::setDecayTime(float p_decay_time) {
+void SurgeReverb::setDecayTime(float p_decay_time) {
 
 	if (fabs(p_decay_time - m_last_decay_time) > 0.001f) {
 		update_ringout_time();
@@ -187,40 +187,40 @@ void Reverb2Effect::setDecayTime(float p_decay_time) {
 	m_decay_multiply  = decay;
 }
 
-void Reverb2Effect::setDiffusion(float p_diffusion) {
+void SurgeReverb::setDiffusion(float p_diffusion) {
 	m_diffusion = 0.7f * p_diffusion;
 }
 
-void Reverb2Effect::setBuildup(float p_buildup) {
+void SurgeReverb::setBuildup(float p_buildup) {
 	m_buildup = 0.7f * p_buildup;
 }
 
-// void Reverb2Effect::setHFDamp(float p_hf_damping) {
+// void SurgeReverb::setHFDamp(float p_hf_damping) {
 // 	m_hf_damp_coefficent = 0.8 * p_hf_damping;
 // }
 
-// void Reverb2Effect::setLFDamp(float p_lf_damping) {
+// void SurgeReverb::setLFDamp(float p_lf_damping) {
 // 	m_lf_damp_coefficent = 0.2 * p_lf_damping;
 //}
 
-void Reverb2Effect::setWidth(float p_width) {
+void SurgeReverb::setWidth(float p_width) {
 	m_width = db_to_linear(p_width);
 }
 
-void Reverb2Effect::setMix(float p_mix) {
+void SurgeReverb::setMix(float p_mix) {
 	m_mix = p_mix;
 }
 
-void Reverb2Effect::setPreDelayMs(float p_predelay) {
+void SurgeReverb::setPreDelayMs(float p_predelay) {
 	m_pre_delay_time = clamp(1, (int)(m_samplerate * p_predelay * 0.001), PREDELAY_BUFFER_SIZE_LIMIT - 1);
 }
 
-void Reverb2Effect::setModulation(float p_modulation){
+void SurgeReverb::setModulation(float p_modulation){
 	m_modulation = p_modulation;
 }
 
 
-void Reverb2Effect::process(float &dataL, float &dataR) {
+void SurgeReverb::process(float &dataL, float &dataR) {
 
 	//for (int k = 0; k < BLOCK_SIZE; k++) {
 	float in = (dataL + dataR) * 0.5f;
@@ -231,6 +231,7 @@ void Reverb2Effect::process(float &dataL, float &dataR) {
 	in      = m_input_allpass[1].process(in, m_diffusion);
 	in      = m_input_allpass[2].process(in, m_diffusion);
 	in      = m_input_allpass[3].process(in, m_diffusion);
+
 	float x = m_state;
 
 	float wetL = 0.f;
@@ -242,8 +243,8 @@ void Reverb2Effect::process(float &dataL, float &dataR) {
 	lfos[2] = -m_lfo.r;
 	lfos[3] = -m_lfo.i;
 
-	auto hdc = clamp(0.01f, m_hf_damp_coefficent, 0.99f);
-	auto ldc = clamp(0.01f, m_lf_damp_coefficent, 0.99f);
+	//auto hdc = clamp(0.01f, m_hf_damp_coefficent, 0.99f);
+	//auto ldc = clamp(0.01f, m_lf_damp_coefficent, 0.99f);
 
 	for (int b = 0; b < NUM_BLOCKS; b++) {
 		x = x + in;
@@ -284,11 +285,11 @@ void Reverb2Effect::process(float &dataL, float &dataR) {
 	dataR = (1.f - m_mix) * dataR + m_mix * wetR;
 }
 
-void Reverb2Effect::suspend() {
+void SurgeReverb::suspend() {
 	init();
 }
 
-const char *Reverb2Effect::group_label(int id) {
+const char *SurgeReverb::group_label(int id) {
 	switch (id) {
 	case 0:
 		return "Pre-Delay";
@@ -301,7 +302,7 @@ const char *Reverb2Effect::group_label(int id) {
 	}
 	return 0;
 }
-int Reverb2Effect::group_label_ypos(int id) {
+int SurgeReverb::group_label_ypos(int id) {
 	switch (id) {
 	case 0:
 		return 1;
@@ -315,11 +316,11 @@ int Reverb2Effect::group_label_ypos(int id) {
 	return 0;
 }
 
-void Reverb2Effect::init_ctrltypes() {
+void SurgeReverb::init_ctrltypes() {
 	//todo remove?
 }
 
-void Reverb2Effect::init_default_values() {
+void SurgeReverb::init_default_values() {
 	setPreDelayMs(10.f);
 	setDecayTime(0.75f);
 	setMix(0.5);
@@ -332,11 +333,14 @@ void Reverb2Effect::init_default_values() {
 	setRoomSize(0.f);
 
 	//todo find good eq value
-	m_EQ[0].setQ(1.5);
-	m_EQ[1].setQ(1.5);
+	m_EQ[0].setQ(1.5f);
+	m_EQ[1].setQ(1.5f);
+
+	m_EQ[0].setFreq(1000.f);
+	m_EQ[1].setFreq(1000.f);
 }
 
-void Reverb2Effect::setSampleRate(float p_sr) {
+void SurgeReverb::setSampleRate(float p_sr) {
 	m_samplerate    = p_sr;
 	dsamplerate_inv = 1. / (double)p_sr;
 
@@ -351,21 +355,21 @@ void Reverb2Effect::setSampleRate(float p_sr) {
 }
 
 
-void Reverb2Effect::setEQGain(float p_gain){
+void SurgeReverb::setEQGain(float p_gain){
 	m_EQ[0].setGain(p_gain);
 	m_EQ[1].setGain(p_gain);
 }
 
-void Reverb2Effect::setEQQ(float p_Q){
+void SurgeReverb::setEQQ(float p_Q){
 	m_EQ[0].setQ(p_Q);
 	m_EQ[1].setQ(p_Q);
 }
 
-void Reverb2Effect::setEQFreq(float p_freq){
+void SurgeReverb::setEQFreq(float p_freq){
 	m_EQ[0].setFreq(p_freq);
 	m_EQ[1].setFreq(p_freq);
 }
 
-void Reverb2Effect::setDucking(float p_ducking){
+void SurgeReverb::setDucking(float p_ducking){
 	m_ducking = p_ducking;
 }

@@ -112,6 +112,8 @@ void PatchBrowserSelector::paint(Graphics &g) {
 		g.drawMultiLineText(
 		    m_empty_text, inlay_x, font_size + offset_y, getWidth() - 2 * inlay_x, Justification::centred, 5.f);
 	} break;
+	default:
+		break;
 	}
 }
 

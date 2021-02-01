@@ -15,6 +15,7 @@
 
 #pragma once
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "../../GlobalIncludes.h"
 #include <cmath>
 
 #define OSC_FO_MOD_RANGE 2          // 2 semitone default

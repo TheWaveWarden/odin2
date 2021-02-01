@@ -127,8 +127,6 @@ float ChiptuneOscillator::generateChipNoise() {
 
 	// return only the last of the three samples
 	return yv[9];
-
-	return m_last_noise_value;
 }
 
 void ChiptuneOscillator::update() {

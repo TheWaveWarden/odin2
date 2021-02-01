@@ -13,6 +13,10 @@
 ** GNU General Public License for more details.
 */
 
+#ifdef ODIN_WIN
+#pragma warning( disable : 4305 ) //disable double to float initialization warning
+#endif
+
 #include "../../../OdinConstants.h"
 
 const float (*getWavetableData())[NUMBER_OF_WAVETABLES][SUBTABLES_PER_WAVETABLE][WAVETABLE_LENGTH] ;
