@@ -12,7 +12,7 @@ echo "package version set to $package_version"
 
 #get name for package
 
-package_name="Odin_${package_version}"
+package_name="Odin2-synth_${package_version}"
 
 echo "Creating package ${package_name}"
 
@@ -52,14 +52,15 @@ rm $package_name/opt/odin2/Soundbanks/User\ Patches/.gitignore
 mkdir $package_name/DEBIAN
 
 #create config file
-echo "Package: Odin" >> $package_name/DEBIAN/control
+echo "Package: Odin2-synth" >> $package_name/DEBIAN/control
 echo "Version: ${package_version}" >> $package_name/DEBIAN/control
+echo "Replaces: odin (<< 2.2-6~)" >> $package_name/DEBIAN/control
 echo "Section: base" >> $package_name/DEBIAN/control
 echo "Priority: optional" >> $package_name/DEBIAN/control
 echo "Architecture: amd64" >> $package_name/DEBIAN/control
 echo "Depends:" >> $package_name/DEBIAN/control
 echo "Maintainer: TheWaveWarden info@thewavewarden.com" >> $package_name/DEBIAN/control
-echo "Description: Odin 2" >> $package_name/DEBIAN/control
+echo "Description: Odin 2 Synthesizer Plugin" >> $package_name/DEBIAN/control
 echo "  Semimodular VST3 and LV2 Synthesizer Plugin" >> $package_name/DEBIAN/control
 
 #create postinst file
