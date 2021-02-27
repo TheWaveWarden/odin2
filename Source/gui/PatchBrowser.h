@@ -21,9 +21,6 @@
 
 #define DEFAULT_SOUNDBANK_LOCATION_STRING (ODIN_STORAGE_PATH + File::getSeparatorString() + "Soundbanks")
 
-//make this one different as to not spark confusion between "folders" and "osb"
-//#define DEFAULT_SOUNDBANK_IMPORT_LOCATION_STRING (File::getSpecialLocation(File::SpecialLocationType::userDocumentsDirectory).getFullPathName())
-
 class PatchBrowser    : public Component
 {
 public:
@@ -53,6 +50,8 @@ private:
     bool usesSpecdraw(int p_osc);
 
     void setFirstSoundbankActive();
+
+    #include "FactoryPresetNames.h"
 
 	std::unique_ptr<FileChooser> m_filechooser;
 

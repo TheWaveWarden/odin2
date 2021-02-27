@@ -19,19 +19,19 @@ echo "std::map<std::string, std::vector<std::string>> m_factory_preset_cat_and_n
 for cat in *; do
     CATEGORY=$(realpath --relative-to=. "$cat")
     echo "Category folder: $CATEGORY"
-    echo "    \"$CATEGORY\", " >> $CPP_FILE_ABS
+    echo "    { \"$CATEGORY\", " >> $CPP_FILE_ABS
     echo "    {" >> $CPP_FILE_ABS
     cd "$cat"
     # write individual preset names:
     for preset in *; do
-        echo "        $preset, " >> $CPP_FILE_ABS
+        echo "        \"$preset\", " >> $CPP_FILE_ABS
 
     done
     cd ..
-    echo "    }," >> $CPP_FILE_ABS
+    echo "    } }," >> $CPP_FILE_ABS
     echo ""
 done
-echo "}" >> $CPP_FILE_ABS
+echo "};" >> $CPP_FILE_ABS
 echo "" >> $CPP_FILE_ABS
 
 #generate all the vectors containing the preset names for their respective_folders
