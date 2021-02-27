@@ -16,6 +16,8 @@
 #include "PatchBrowser.h"
 #include <JuceHeader.h>
 
+#include "FactoryPresetBinaryMapping.h"
+
 #include "../ConfigFileManager.h"
 
 PatchBrowser::PatchBrowser(OdinAudioProcessor &p_processor, AudioProcessorValueTreeState &p_vts) :

@@ -30,8 +30,8 @@ echo "{">> $CPP_FILE_BINARY_ABS
 echo "    return !str[h] ? 5381 : (hash(str, h+1) * 33) ^ str[h];">> $CPP_FILE_BINARY_ABS
 echo "}">> $CPP_FILE_BINARY_ABS
 echo "">> $CPP_FILE_BINARY_ABS
-echo "std::pair<char*, int> getFactoryPresetBinaryData(const std::std::string& p_preset) {" >> $CPP_FILE_BINARY_ABS
-echo "    switch(hash(p_preset)) {" >> $CPP_FILE_BINARY_ABS
+echo "std::pair<const char*, int> getFactoryPresetBinaryData(const std::string& p_preset) {" >> $CPP_FILE_BINARY_ABS
+echo "    switch(hash(p_preset.c_str())) {" >> $CPP_FILE_BINARY_ABS
 
 
 
@@ -54,12 +54,14 @@ for cat in *; do
         #replace points by underscore
         preset_cpp=${preset_cpp//./_}
         echo $preset_cpp
-        #remove characters ".()[]-"
+        #remove characters ".()[]-&,"
         preset_cpp=${preset_cpp//[}
         preset_cpp=${preset_cpp//]}
         preset_cpp=${preset_cpp//(}
         preset_cpp=${preset_cpp//)}
         preset_cpp=${preset_cpp//-}
+        preset_cpp=${preset_cpp//&}
+        preset_cpp=${preset_cpp//,}
         #if first char is a number, put an underscore in front of it
         if [[ $preset_cpp =~ ^[0-9] ]];
         then
@@ -67,7 +69,7 @@ for cat in *; do
         fi
         echo $preset_cpp
         echo "    case hash(\"$preset\"):" >> $CPP_FILE_BINARY_ABS
-        echo "        return std::make_pair(BinaryData::$preset_cpp, BinaryData::${preset_cpp}size);" >> $CPP_FILE_BINARY_ABS
+        echo "        return std::make_pair(BinaryData::$preset_cpp, BinaryData::${preset_cpp}Size);" >> $CPP_FILE_BINARY_ABS
         
 
     done
@@ -79,8 +81,8 @@ echo "};" >> $CPP_FILE_STRUCTURE_ABS
 echo "" >> $CPP_FILE_STRUCTURE_ABS
 
 echo "    default:" >> $CPP_FILE_BINARY_ABS
-echo "        DBG(\"ERROR: Illegal Lookup in FactoryPresetBinaryMapping.h PresetName: \" + p_preset):" >> $CPP_FILE_BINARY_ABS
-echo "        return std::make_pair(nullptr, 0)" >> $CPP_FILE_BINARY_ABS
+echo "        DBG(\"ERROR: Illegal Lookup in FactoryPresetBinaryMapping.h PresetName: \" + p_preset);" >> $CPP_FILE_BINARY_ABS
+echo "        return std::make_pair(nullptr, 0);" >> $CPP_FILE_BINARY_ABS
 echo "    }" >> $CPP_FILE_BINARY_ABS
 echo "}" >> $CPP_FILE_BINARY_ABS
 echo "" >> $CPP_FILE_BINARY_ABS

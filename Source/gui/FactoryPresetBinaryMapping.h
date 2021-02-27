@@ -6,531 +6,531 @@ constexpr unsigned int hash(const char* str, int h = 0)
     return !str[h] ? 5381 : (hash(str, h+1) * 33) ^ str[h];
 }
 
-std::pair<char*, int> getFactoryPresetBinaryData(const std::std::string& p_preset) {
-    switch(hash(p_preset)) {
+std::pair<const char*, int> getFactoryPresetBinaryData(const std::string& p_preset) {
+    switch(hash(p_preset.c_str())) {
     case hash("Arp Charger [RM].odin"):
-        return std::make_pair(BinaryData::Arp_Charger_RM_odin, BinaryData::Arp_Charger_RM_odinsize);
+        return std::make_pair(BinaryData::Arp_Charger_RM_odin, BinaryData::Arp_Charger_RM_odinSize);
     case hash("Arp Chopper [RM].odin"):
-        return std::make_pair(BinaryData::Arp_Chopper_RM_odin, BinaryData::Arp_Chopper_RM_odinsize);
+        return std::make_pair(BinaryData::Arp_Chopper_RM_odin, BinaryData::Arp_Chopper_RM_odinSize);
     case hash("Bass Arp 1 [RS].odin"):
-        return std::make_pair(BinaryData::Bass_Arp_1_RS_odin, BinaryData::Bass_Arp_1_RS_odinsize);
+        return std::make_pair(BinaryData::Bass_Arp_1_RS_odin, BinaryData::Bass_Arp_1_RS_odinSize);
     case hash("Bassline.odin"):
-        return std::make_pair(BinaryData::Bassline_odin, BinaryData::Bassline_odinsize);
+        return std::make_pair(BinaryData::Bassline_odin, BinaryData::Bassline_odinSize);
     case hash("Cinedrive (MW) [Photonic].odin"):
-        return std::make_pair(BinaryData::Cinedrive_MW_Photonic_odin, BinaryData::Cinedrive_MW_Photonic_odinsize);
+        return std::make_pair(BinaryData::Cinedrive_MW_Photonic_odin, BinaryData::Cinedrive_MW_Photonic_odinSize);
     case hash("Critical [tx].odin"):
-        return std::make_pair(BinaryData::Critical_tx_odin, BinaryData::Critical_tx_odinsize);
+        return std::make_pair(BinaryData::Critical_tx_odin, BinaryData::Critical_tx_odinSize);
     case hash("Darkness [psylion].odin"):
-        return std::make_pair(BinaryData::Darkness_psylion_odin, BinaryData::Darkness_psylion_odinsize);
+        return std::make_pair(BinaryData::Darkness_psylion_odin, BinaryData::Darkness_psylion_odinSize);
     case hash("Doctor Karlsson.odin"):
-        return std::make_pair(BinaryData::Doctor_Karlsson_odin, BinaryData::Doctor_Karlsson_odinsize);
+        return std::make_pair(BinaryData::Doctor_Karlsson_odin, BinaryData::Doctor_Karlsson_odinSize);
     case hash("Dreamy ARP [psylion].odin"):
-        return std::make_pair(BinaryData::Dreamy_ARP_psylion_odin, BinaryData::Dreamy_ARP_psylion_odinsize);
+        return std::make_pair(BinaryData::Dreamy_ARP_psylion_odin, BinaryData::Dreamy_ARP_psylion_odinSize);
     case hash("Forgive me GOD.odin"):
-        return std::make_pair(BinaryData::Forgive_me_GOD_odin, BinaryData::Forgive_me_GOD_odinsize);
+        return std::make_pair(BinaryData::Forgive_me_GOD_odin, BinaryData::Forgive_me_GOD_odinSize);
     case hash("Funk Acid 2 [psylion].odin"):
-        return std::make_pair(BinaryData::Funk_Acid_2_psylion_odin, BinaryData::Funk_Acid_2_psylion_odinsize);
+        return std::make_pair(BinaryData::Funk_Acid_2_psylion_odin, BinaryData::Funk_Acid_2_psylion_odinSize);
     case hash("Funk Acid [psylion].odin"):
-        return std::make_pair(BinaryData::Funk_Acid_psylion_odin, BinaryData::Funk_Acid_psylion_odinsize);
+        return std::make_pair(BinaryData::Funk_Acid_psylion_odin, BinaryData::Funk_Acid_psylion_odinSize);
     case hash("Funny 2.odin"):
-        return std::make_pair(BinaryData::Funny_2_odin, BinaryData::Funny_2_odinsize);
+        return std::make_pair(BinaryData::Funny_2_odin, BinaryData::Funny_2_odinSize);
     case hash("Glass Morph ARP [RS].odin"):
-        return std::make_pair(BinaryData::Glass_Morph_ARP_RS_odin, BinaryData::Glass_Morph_ARP_RS_odinsize);
+        return std::make_pair(BinaryData::Glass_Morph_ARP_RS_odin, BinaryData::Glass_Morph_ARP_RS_odinSize);
     case hash("Harpstrum Down [RS].odin"):
-        return std::make_pair(BinaryData::Harpstrum_Down_RS_odin, BinaryData::Harpstrum_Down_RS_odinsize);
+        return std::make_pair(BinaryData::Harpstrum_Down_RS_odin, BinaryData::Harpstrum_Down_RS_odinSize);
     case hash("Harpstrum Up [RS].odin"):
-        return std::make_pair(BinaryData::Harpstrum_Up_RS_odin, BinaryData::Harpstrum_Up_RS_odinsize);
+        return std::make_pair(BinaryData::Harpstrum_Up_RS_odin, BinaryData::Harpstrum_Up_RS_odinSize);
     case hash("I was born in 90s [psylion].odin"):
-        return std::make_pair(BinaryData::I_was_born_in_90s_psylion_odin, BinaryData::I_was_born_in_90s_psylion_odinsize);
+        return std::make_pair(BinaryData::I_was_born_in_90s_psylion_odin, BinaryData::I_was_born_in_90s_psylion_odinSize);
     case hash("Midi Rain.odin"):
-        return std::make_pair(BinaryData::Midi_Rain_odin, BinaryData::Midi_Rain_odinsize);
+        return std::make_pair(BinaryData::Midi_Rain_odin, BinaryData::Midi_Rain_odinSize);
     case hash("Minor Song.odin"):
-        return std::make_pair(BinaryData::Minor_Song_odin, BinaryData::Minor_Song_odinsize);
+        return std::make_pair(BinaryData::Minor_Song_odin, BinaryData::Minor_Song_odinSize);
     case hash("Modular Mess 2.odin"):
-        return std::make_pair(BinaryData::Modular_Mess_2_odin, BinaryData::Modular_Mess_2_odinsize);
+        return std::make_pair(BinaryData::Modular_Mess_2_odin, BinaryData::Modular_Mess_2_odinSize);
     case hash("Omani Desert 1 [psylion].odin"):
-        return std::make_pair(BinaryData::Omani_Desert_1_psylion_odin, BinaryData::Omani_Desert_1_psylion_odinsize);
+        return std::make_pair(BinaryData::Omani_Desert_1_psylion_odin, BinaryData::Omani_Desert_1_psylion_odinSize);
     case hash("Omani Desert 2 [psylion].odin"):
-        return std::make_pair(BinaryData::Omani_Desert_2_psylion_odin, BinaryData::Omani_Desert_2_psylion_odinsize);
+        return std::make_pair(BinaryData::Omani_Desert_2_psylion_odin, BinaryData::Omani_Desert_2_psylion_odinSize);
     case hash("RandArpChords (MW) [Photonic].odin"):
-        return std::make_pair(BinaryData::RandArpChords_MW_Photonic_odin, BinaryData::RandArpChords_MW_Photonic_odinsize);
+        return std::make_pair(BinaryData::RandArpChords_MW_Photonic_odin, BinaryData::RandArpChords_MW_Photonic_odinSize);
     case hash("Self Phasing Arp.odin"):
-        return std::make_pair(BinaryData::Self_Phasing_Arp_odin, BinaryData::Self_Phasing_Arp_odinsize);
+        return std::make_pair(BinaryData::Self_Phasing_Arp_odin, BinaryData::Self_Phasing_Arp_odinSize);
     case hash("Sharp Lead.odin"):
-        return std::make_pair(BinaryData::Sharp_Lead_odin, BinaryData::Sharp_Lead_odinsize);
+        return std::make_pair(BinaryData::Sharp_Lead_odin, BinaryData::Sharp_Lead_odinSize);
     case hash("Sound of Paradise [psylion].odin"):
-        return std::make_pair(BinaryData::Sound_of_Paradise_psylion_odin, BinaryData::Sound_of_Paradise_psylion_odinsize);
+        return std::make_pair(BinaryData::Sound_of_Paradise_psylion_odin, BinaryData::Sound_of_Paradise_psylion_odinSize);
     case hash("The Arp 2.0 [XR].odin"):
-        return std::make_pair(BinaryData::The_Arp_2_0_XR_odin, BinaryData::The_Arp_2_0_XR_odinsize);
+        return std::make_pair(BinaryData::The_Arp_2_0_XR_odin, BinaryData::The_Arp_2_0_XR_odinSize);
     case hash("Alien Atmo [tx].odin"):
-        return std::make_pair(BinaryData::Alien_Atmo_tx_odin, BinaryData::Alien_Atmo_tx_odinsize);
+        return std::make_pair(BinaryData::Alien_Atmo_tx_odin, BinaryData::Alien_Atmo_tx_odinSize);
     case hash("Alien Chaos2 [psylion].odin"):
-        return std::make_pair(BinaryData::Alien_Chaos2_psylion_odin, BinaryData::Alien_Chaos2_psylion_odinsize);
+        return std::make_pair(BinaryData::Alien_Chaos2_psylion_odin, BinaryData::Alien_Chaos2_psylion_odinSize);
     case hash("Alien Chaos [psylion].odin"):
-        return std::make_pair(BinaryData::Alien_Chaos_psylion_odin, BinaryData::Alien_Chaos_psylion_odinsize);
+        return std::make_pair(BinaryData::Alien_Chaos_psylion_odin, BinaryData::Alien_Chaos_psylion_odinSize);
     case hash("Analog Particles [XR].odin"):
-        return std::make_pair(BinaryData::Analog_Particles_XR_odin, BinaryData::Analog_Particles_XR_odinsize);
+        return std::make_pair(BinaryData::Analog_Particles_XR_odin, BinaryData::Analog_Particles_XR_odinSize);
     case hash("Antarctica [RS].odin"):
-        return std::make_pair(BinaryData::Antarctica_RS_odin, BinaryData::Antarctica_RS_odinsize);
+        return std::make_pair(BinaryData::Antarctica_RS_odin, BinaryData::Antarctica_RS_odinSize);
     case hash("Atmo-Chaos [Photonic].odin"):
-        return std::make_pair(BinaryData::AtmoChaos_Photonic_odin, BinaryData::AtmoChaos_Photonic_odinsize);
+        return std::make_pair(BinaryData::AtmoChaos_Photonic_odin, BinaryData::AtmoChaos_Photonic_odinSize);
     case hash("Blinking Pad [Photonic].odin"):
-        return std::make_pair(BinaryData::Blinking_Pad_Photonic_odin, BinaryData::Blinking_Pad_Photonic_odinsize);
+        return std::make_pair(BinaryData::Blinking_Pad_Photonic_odin, BinaryData::Blinking_Pad_Photonic_odinSize);
     case hash("Digital Motion [XR].odin"):
-        return std::make_pair(BinaryData::Digital_Motion_XR_odin, BinaryData::Digital_Motion_XR_odinsize);
+        return std::make_pair(BinaryData::Digital_Motion_XR_odin, BinaryData::Digital_Motion_XR_odinSize);
     case hash("Dreams of Utopia [psylion].odin"):
-        return std::make_pair(BinaryData::Dreams_of_Utopia_psylion_odin, BinaryData::Dreams_of_Utopia_psylion_odinsize);
+        return std::make_pair(BinaryData::Dreams_of_Utopia_psylion_odin, BinaryData::Dreams_of_Utopia_psylion_odinSize);
     case hash("Eerie Pad.odin"):
-        return std::make_pair(BinaryData::Eerie_Pad_odin, BinaryData::Eerie_Pad_odinsize);
+        return std::make_pair(BinaryData::Eerie_Pad_odin, BinaryData::Eerie_Pad_odinSize);
     case hash("Expressive Atmosphere [XR].odin"):
-        return std::make_pair(BinaryData::Expressive_Atmosphere_XR_odin, BinaryData::Expressive_Atmosphere_XR_odinsize);
+        return std::make_pair(BinaryData::Expressive_Atmosphere_XR_odin, BinaryData::Expressive_Atmosphere_XR_odinSize);
     case hash("Floating Dreams [XR].odin"):
-        return std::make_pair(BinaryData::Floating_Dreams_XR_odin, BinaryData::Floating_Dreams_XR_odinsize);
+        return std::make_pair(BinaryData::Floating_Dreams_XR_odin, BinaryData::Floating_Dreams_XR_odinSize);
     case hash("Frosty Atmo [tx].odin"):
-        return std::make_pair(BinaryData::Frosty_Atmo_tx_odin, BinaryData::Frosty_Atmo_tx_odinsize);
+        return std::make_pair(BinaryData::Frosty_Atmo_tx_odin, BinaryData::Frosty_Atmo_tx_odinSize);
     case hash("Galata Dream.odin"):
-        return std::make_pair(BinaryData::Galata_Dream_odin, BinaryData::Galata_Dream_odinsize);
+        return std::make_pair(BinaryData::Galata_Dream_odin, BinaryData::Galata_Dream_odinSize);
     case hash("Messy Seq X-Y.odin"):
-        return std::make_pair(BinaryData::Messy_Seq_XY_odin, BinaryData::Messy_Seq_XY_odinsize);
+        return std::make_pair(BinaryData::Messy_Seq_XY_odin, BinaryData::Messy_Seq_XY_odinSize);
     case hash("Orbitalesque Stabs [4T].odin"):
-        return std::make_pair(BinaryData::Orbitalesque_Stabs_4T_odin, BinaryData::Orbitalesque_Stabs_4T_odinsize);
+        return std::make_pair(BinaryData::Orbitalesque_Stabs_4T_odin, BinaryData::Orbitalesque_Stabs_4T_odinSize);
     case hash("Pacific Nights.odin"):
-        return std::make_pair(BinaryData::Pacific_Nights_odin, BinaryData::Pacific_Nights_odinsize);
+        return std::make_pair(BinaryData::Pacific_Nights_odin, BinaryData::Pacific_Nights_odinSize);
     case hash("Pulsator.odin"):
-        return std::make_pair(BinaryData::Pulsator_odin, BinaryData::Pulsator_odinsize);
+        return std::make_pair(BinaryData::Pulsator_odin, BinaryData::Pulsator_odinSize);
     case hash("Sound of Paradise2 [psylion].odin"):
-        return std::make_pair(BinaryData::Sound_of_Paradise2_psylion_odin, BinaryData::Sound_of_Paradise2_psylion_odinsize);
+        return std::make_pair(BinaryData::Sound_of_Paradise2_psylion_odin, BinaryData::Sound_of_Paradise2_psylion_odinSize);
     case hash("Sunrise.odin"):
-        return std::make_pair(BinaryData::Sunrise_odin, BinaryData::Sunrise_odinsize);
+        return std::make_pair(BinaryData::Sunrise_odin, BinaryData::Sunrise_odinSize);
     case hash("Vector Soundtrack [XR].odin"):
-        return std::make_pair(BinaryData::Vector_Soundtrack_XR_odin, BinaryData::Vector_Soundtrack_XR_odinsize);
+        return std::make_pair(BinaryData::Vector_Soundtrack_XR_odin, BinaryData::Vector_Soundtrack_XR_odinSize);
     case hash("Violet.odin"):
-        return std::make_pair(BinaryData::Violet_odin, BinaryData::Violet_odinsize);
+        return std::make_pair(BinaryData::Violet_odin, BinaryData::Violet_odinSize);
     case hash("Voyage 1a X-Y.odin"):
-        return std::make_pair(BinaryData::Voyage_1a_XY_odin, BinaryData::Voyage_1a_XY_odinsize);
+        return std::make_pair(BinaryData::Voyage_1a_XY_odin, BinaryData::Voyage_1a_XY_odinSize);
     case hash("Zambezi River [psylion].odin"):
-        return std::make_pair(BinaryData::Zambezi_River_psylion_odin, BinaryData::Zambezi_River_psylion_odinsize);
+        return std::make_pair(BinaryData::Zambezi_River_psylion_odin, BinaryData::Zambezi_River_psylion_odinSize);
     case hash("Analog Bass [tx].odin"):
-        return std::make_pair(BinaryData::Analog_Bass_tx_odin, BinaryData::Analog_Bass_tx_odinsize);
+        return std::make_pair(BinaryData::Analog_Bass_tx_odin, BinaryData::Analog_Bass_tx_odinSize);
     case hash("Bass Crusher [RM].odin"):
-        return std::make_pair(BinaryData::Bass_Crusher_RM_odin, BinaryData::Bass_Crusher_RM_odinsize);
+        return std::make_pair(BinaryData::Bass_Crusher_RM_odin, BinaryData::Bass_Crusher_RM_odinSize);
     case hash("Bass Low [RM].odin"):
-        return std::make_pair(BinaryData::Bass_Low_RM_odin, BinaryData::Bass_Low_RM_odinsize);
+        return std::make_pair(BinaryData::Bass_Low_RM_odin, BinaryData::Bass_Low_RM_odinSize);
     case hash("Bass Seq 2 [RS].odin"):
-        return std::make_pair(BinaryData::Bass_Seq_2_RS_odin, BinaryData::Bass_Seq_2_RS_odinsize);
+        return std::make_pair(BinaryData::Bass_Seq_2_RS_odin, BinaryData::Bass_Seq_2_RS_odinSize);
     case hash("Bass Simple PM [RS].odin"):
-        return std::make_pair(BinaryData::Bass_Simple_PM_RS_odin, BinaryData::Bass_Simple_PM_RS_odinsize);
+        return std::make_pair(BinaryData::Bass_Simple_PM_RS_odin, BinaryData::Bass_Simple_PM_RS_odinSize);
     case hash("Bass Wobble [4T].odin"):
-        return std::make_pair(BinaryData::Bass_Wobble_4T_odin, BinaryData::Bass_Wobble_4T_odinsize);
+        return std::make_pair(BinaryData::Bass_Wobble_4T_odin, BinaryData::Bass_Wobble_4T_odinSize);
     case hash("Bass X-Y Mod [RS].odin"):
-        return std::make_pair(BinaryData::Bass_XY_Mod_RS_odin, BinaryData::Bass_XY_Mod_RS_odinsize);
+        return std::make_pair(BinaryData::Bass_XY_Mod_RS_odin, BinaryData::Bass_XY_Mod_RS_odinSize);
     case hash("Boards Bass.odin"):
-        return std::make_pair(BinaryData::Boards_Bass_odin, BinaryData::Boards_Bass_odinsize);
+        return std::make_pair(BinaryData::Boards_Bass_odin, BinaryData::Boards_Bass_odinSize);
     case hash("BS Decay Bass MW.odin"):
-        return std::make_pair(BinaryData::BS_Decay_Bass_MW_odin, BinaryData::BS_Decay_Bass_MW_odinsize);
+        return std::make_pair(BinaryData::BS_Decay_Bass_MW_odin, BinaryData::BS_Decay_Bass_MW_odinSize);
     case hash("BS PWM Bass XY.odin"):
-        return std::make_pair(BinaryData::BS_PWM_Bass_XY_odin, BinaryData::BS_PWM_Bass_XY_odinsize);
+        return std::make_pair(BinaryData::BS_PWM_Bass_XY_odin, BinaryData::BS_PWM_Bass_XY_odinSize);
     case hash("DeepBass [Photonic].odin"):
-        return std::make_pair(BinaryData::DeepBass_Photonic_odin, BinaryData::DeepBass_Photonic_odinsize);
+        return std::make_pair(BinaryData::DeepBass_Photonic_odin, BinaryData::DeepBass_Photonic_odinSize);
     case hash("Growly FM Bass [XR].odin"):
-        return std::make_pair(BinaryData::Growly_FM_Bass_XR_odin, BinaryData::Growly_FM_Bass_XR_odinsize);
+        return std::make_pair(BinaryData::Growly_FM_Bass_XR_odin, BinaryData::Growly_FM_Bass_XR_odinSize);
     case hash("PM Bass [XR].odin"):
-        return std::make_pair(BinaryData::PM_Bass_XR_odin, BinaryData::PM_Bass_XR_odinsize);
+        return std::make_pair(BinaryData::PM_Bass_XR_odin, BinaryData::PM_Bass_XR_odinSize);
     case hash("Rhythm Bass.odin"):
-        return std::make_pair(BinaryData::Rhythm_Bass_odin, BinaryData::Rhythm_Bass_odinsize);
+        return std::make_pair(BinaryData::Rhythm_Bass_odin, BinaryData::Rhythm_Bass_odinSize);
     case hash("Sausage Bassener.odin"):
-        return std::make_pair(BinaryData::Sausage_Bassener_odin, BinaryData::Sausage_Bassener_odinsize);
+        return std::make_pair(BinaryData::Sausage_Bassener_odin, BinaryData::Sausage_Bassener_odinSize);
     case hash("Arp-Bells [Photonic].odin"):
-        return std::make_pair(BinaryData::ArpBells_Photonic_odin, BinaryData::ArpBells_Photonic_odinsize);
+        return std::make_pair(BinaryData::ArpBells_Photonic_odin, BinaryData::ArpBells_Photonic_odinSize);
     case hash("Cheese Pad.odin"):
-        return std::make_pair(BinaryData::Cheese_Pad_odin, BinaryData::Cheese_Pad_odinsize);
+        return std::make_pair(BinaryData::Cheese_Pad_odin, BinaryData::Cheese_Pad_odinSize);
     case hash("Chimes [Photonic].odin"):
-        return std::make_pair(BinaryData::Chimes_Photonic_odin, BinaryData::Chimes_Photonic_odinsize);
+        return std::make_pair(BinaryData::Chimes_Photonic_odin, BinaryData::Chimes_Photonic_odinSize);
     case hash("Ethereal Bells.odin"):
-        return std::make_pair(BinaryData::Ethereal_Bells_odin, BinaryData::Ethereal_Bells_odinsize);
+        return std::make_pair(BinaryData::Ethereal_Bells_odin, BinaryData::Ethereal_Bells_odinSize);
     case hash("FM Church Bells [RS].odin"):
-        return std::make_pair(BinaryData::FM_Church_Bells_RS_odin, BinaryData::FM_Church_Bells_RS_odinsize);
+        return std::make_pair(BinaryData::FM_Church_Bells_RS_odin, BinaryData::FM_Church_Bells_RS_odinSize);
     case hash("Glass Harp A slow.odin"):
-        return std::make_pair(BinaryData::Glass_Harp_A_slow_odin, BinaryData::Glass_Harp_A_slow_odinsize);
+        return std::make_pair(BinaryData::Glass_Harp_A_slow_odin, BinaryData::Glass_Harp_A_slow_odinSize);
     case hash("Glass Morph XY [RS].odin"):
-        return std::make_pair(BinaryData::Glass_Morph_XY_RS_odin, BinaryData::Glass_Morph_XY_RS_odinsize);
+        return std::make_pair(BinaryData::Glass_Morph_XY_RS_odin, BinaryData::Glass_Morph_XY_RS_odinSize);
     case hash("New Age Lead.odin"):
-        return std::make_pair(BinaryData::New_Age_Lead_odin, BinaryData::New_Age_Lead_odinsize);
+        return std::make_pair(BinaryData::New_Age_Lead_odin, BinaryData::New_Age_Lead_odinSize);
     case hash("Pad Sine.odin"):
-        return std::make_pair(BinaryData::Pad_Sine_odin, BinaryData::Pad_Sine_odinsize);
+        return std::make_pair(BinaryData::Pad_Sine_odin, BinaryData::Pad_Sine_odinSize);
     case hash("PRC GlassHit.odin"):
-        return std::make_pair(BinaryData::PRC_GlassHit_odin, BinaryData::PRC_GlassHit_odinsize);
+        return std::make_pair(BinaryData::PRC_GlassHit_odin, BinaryData::PRC_GlassHit_odinSize);
     case hash("Synth Glass .odin"):
-        return std::make_pair(BinaryData::Synth_Glass__odin, BinaryData::Synth_Glass__odinsize);
+        return std::make_pair(BinaryData::Synth_Glass__odin, BinaryData::Synth_Glass__odinSize);
     case hash("Synth Glassybell.odin"):
-        return std::make_pair(BinaryData::Synth_Glassybell_odin, BinaryData::Synth_Glassybell_odinsize);
+        return std::make_pair(BinaryData::Synth_Glassybell_odin, BinaryData::Synth_Glassybell_odinSize);
     case hash("Vibraphone.odin"):
-        return std::make_pair(BinaryData::Vibraphone_odin, BinaryData::Vibraphone_odinsize);
+        return std::make_pair(BinaryData::Vibraphone_odin, BinaryData::Vibraphone_odinSize);
     case hash("Bagpipe Tune.odin"):
-        return std::make_pair(BinaryData::Bagpipe_Tune_odin, BinaryData::Bagpipe_Tune_odinsize);
+        return std::make_pair(BinaryData::Bagpipe_Tune_odin, BinaryData::Bagpipe_Tune_odinSize);
     case hash("ChippyDelayed.odin"):
-        return std::make_pair(BinaryData::ChippyDelayed_odin, BinaryData::ChippyDelayed_odinsize);
+        return std::make_pair(BinaryData::ChippyDelayed_odin, BinaryData::ChippyDelayed_odinSize);
     case hash("Chippy.odin"):
-        return std::make_pair(BinaryData::Chippy_odin, BinaryData::Chippy_odinsize);
+        return std::make_pair(BinaryData::Chippy_odin, BinaryData::Chippy_odinSize);
     case hash("Chiptune Chords [Projektor].odin"):
-        return std::make_pair(BinaryData::Chiptune_Chords_Projektor_odin, BinaryData::Chiptune_Chords_Projektor_odinsize);
+        return std::make_pair(BinaryData::Chiptune_Chords_Projektor_odin, BinaryData::Chiptune_Chords_Projektor_odinSize);
     case hash("Lead 64.odin"):
-        return std::make_pair(BinaryData::Lead_64_odin, BinaryData::Lead_64_odinsize);
+        return std::make_pair(BinaryData::Lead_64_odin, BinaryData::Lead_64_odinSize);
     case hash("Legal Looting [yellowmix].odin"):
-        return std::make_pair(BinaryData::Legal_Looting_yellowmix_odin, BinaryData::Legal_Looting_yellowmix_odinsize);
+        return std::make_pair(BinaryData::Legal_Looting_yellowmix_odin, BinaryData::Legal_Looting_yellowmix_odinSize);
     case hash("Pad Arpeggio.odin"):
-        return std::make_pair(BinaryData::Pad_Arpeggio_odin, BinaryData::Pad_Arpeggio_odinsize);
+        return std::make_pair(BinaryData::Pad_Arpeggio_odin, BinaryData::Pad_Arpeggio_odinSize);
     case hash("PM Sequence.odin"):
-        return std::make_pair(BinaryData::PM_Sequence_odin, BinaryData::PM_Sequence_odinsize);
+        return std::make_pair(BinaryData::PM_Sequence_odin, BinaryData::PM_Sequence_odinSize);
     case hash("Rect In Peace.odin"):
-        return std::make_pair(BinaryData::Rect_In_Peace_odin, BinaryData::Rect_In_Peace_odinsize);
+        return std::make_pair(BinaryData::Rect_In_Peace_odin, BinaryData::Rect_In_Peace_odinSize);
     case hash("Rhythmic Sequence 01.odin"):
-        return std::make_pair(BinaryData::Rhythmic_Sequence_01_odin, BinaryData::Rhythmic_Sequence_01_odinsize);
+        return std::make_pair(BinaryData::Rhythmic_Sequence_01_odin, BinaryData::Rhythmic_Sequence_01_odinSize);
     case hash("Shortchip.odin"):
-        return std::make_pair(BinaryData::Shortchip_odin, BinaryData::Shortchip_odinsize);
+        return std::make_pair(BinaryData::Shortchip_odin, BinaryData::Shortchip_odinSize);
     case hash("Alone in the Subway.odin"):
-        return std::make_pair(BinaryData::Alone_in_the_Subway_odin, BinaryData::Alone_in_the_Subway_odinsize);
+        return std::make_pair(BinaryData::Alone_in_the_Subway_odin, BinaryData::Alone_in_the_Subway_odinSize);
     case hash("Circus Horror Show.odin"):
-        return std::make_pair(BinaryData::Circus_Horror_Show_odin, BinaryData::Circus_Horror_Show_odinsize);
+        return std::make_pair(BinaryData::Circus_Horror_Show_odin, BinaryData::Circus_Horror_Show_odinSize);
     case hash("Creep ATMO [psylion].odin"):
-        return std::make_pair(BinaryData::Creep_ATMO_psylion_odin, BinaryData::Creep_ATMO_psylion_odinsize);
+        return std::make_pair(BinaryData::Creep_ATMO_psylion_odin, BinaryData::Creep_ATMO_psylion_odinSize);
     case hash("Dark-Psy FX [psylion].odin"):
-        return std::make_pair(BinaryData::DarkPsy_FX_psylion_odin, BinaryData::DarkPsy_FX_psylion_odinsize);
+        return std::make_pair(BinaryData::DarkPsy_FX_psylion_odin, BinaryData::DarkPsy_FX_psylion_odinSize);
     case hash("Fresh Breeze.odin"):
-        return std::make_pair(BinaryData::Fresh_Breeze_odin, BinaryData::Fresh_Breeze_odinsize);
+        return std::make_pair(BinaryData::Fresh_Breeze_odin, BinaryData::Fresh_Breeze_odinSize);
     case hash("High Tea [4T].odin"):
-        return std::make_pair(BinaryData::High_Tea_4T_odin, BinaryData::High_Tea_4T_odinsize);
+        return std::make_pair(BinaryData::High_Tea_4T_odin, BinaryData::High_Tea_4T_odinSize);
     case hash("Lead Sinematic.odin"):
-        return std::make_pair(BinaryData::Lead_Sinematic_odin, BinaryData::Lead_Sinematic_odinsize);
+        return std::make_pair(BinaryData::Lead_Sinematic_odin, BinaryData::Lead_Sinematic_odinSize);
     case hash("MAD PAD 3.odin"):
-        return std::make_pair(BinaryData::MAD_PAD_3_odin, BinaryData::MAD_PAD_3_odinsize);
+        return std::make_pair(BinaryData::MAD_PAD_3_odin, BinaryData::MAD_PAD_3_odinSize);
     case hash("Prophet.odin"):
-        return std::make_pair(BinaryData::Prophet_odin, BinaryData::Prophet_odinsize);
+        return std::make_pair(BinaryData::Prophet_odin, BinaryData::Prophet_odinSize);
     case hash("S&H harsh .odin"):
-        return std::make_pair(BinaryData::S&H_harsh__odin, BinaryData::S&H_harsh__odinsize);
+        return std::make_pair(BinaryData::SH_harsh__odin, BinaryData::SH_harsh__odinSize);
     case hash("Swell Bits.odin"):
-        return std::make_pair(BinaryData::Swell_Bits_odin, BinaryData::Swell_Bits_odinsize);
+        return std::make_pair(BinaryData::Swell_Bits_odin, BinaryData::Swell_Bits_odinSize);
     case hash("Synth Unleash [RM].odin"):
-        return std::make_pair(BinaryData::Synth_Unleash_RM_odin, BinaryData::Synth_Unleash_RM_odinsize);
+        return std::make_pair(BinaryData::Synth_Unleash_RM_odin, BinaryData::Synth_Unleash_RM_odinSize);
     case hash("The Sound of Agony [psylion].odin"):
-        return std::make_pair(BinaryData::The_Sound_of_Agony_psylion_odin, BinaryData::The_Sound_of_Agony_psylion_odinsize);
+        return std::make_pair(BinaryData::The_Sound_of_Agony_psylion_odin, BinaryData::The_Sound_of_Agony_psylion_odinSize);
     case hash("Timmy got some meth [psylion].odin"):
-        return std::make_pair(BinaryData::Timmy_got_some_meth_psylion_odin, BinaryData::Timmy_got_some_meth_psylion_odinsize);
+        return std::make_pair(BinaryData::Timmy_got_some_meth_psylion_odin, BinaryData::Timmy_got_some_meth_psylion_odinSize);
     case hash("Clap [RS].odin"):
-        return std::make_pair(BinaryData::Clap_RS_odin, BinaryData::Clap_RS_odinsize);
+        return std::make_pair(BinaryData::Clap_RS_odin, BinaryData::Clap_RS_odinSize);
     case hash("Claps [Photonic].odin"):
-        return std::make_pair(BinaryData::Claps_Photonic_odin, BinaryData::Claps_Photonic_odinsize);
+        return std::make_pair(BinaryData::Claps_Photonic_odin, BinaryData::Claps_Photonic_odinSize);
     case hash("Crash-1 [Photonic].odin"):
-        return std::make_pair(BinaryData::Crash1_Photonic_odin, BinaryData::Crash1_Photonic_odinsize);
+        return std::make_pair(BinaryData::Crash1_Photonic_odin, BinaryData::Crash1_Photonic_odinSize);
     case hash("Drum Machine.odin"):
-        return std::make_pair(BinaryData::Drum_Machine_odin, BinaryData::Drum_Machine_odinsize);
+        return std::make_pair(BinaryData::Drum_Machine_odin, BinaryData::Drum_Machine_odinSize);
     case hash("Flange Hat.odin"):
-        return std::make_pair(BinaryData::Flange_Hat_odin, BinaryData::Flange_Hat_odinsize);
+        return std::make_pair(BinaryData::Flange_Hat_odin, BinaryData::Flange_Hat_odinSize);
     case hash("Hi-Hat 8th Seq [RS].odin"):
-        return std::make_pair(BinaryData::HiHat_8th_Seq_RS_odin, BinaryData::HiHat_8th_Seq_RS_odinsize);
+        return std::make_pair(BinaryData::HiHat_8th_Seq_RS_odin, BinaryData::HiHat_8th_Seq_RS_odinSize);
     case hash("HiHat-closed [Photonic].odin"):
-        return std::make_pair(BinaryData::HiHatclosed_Photonic_odin, BinaryData::HiHatclosed_Photonic_odinsize);
+        return std::make_pair(BinaryData::HiHatclosed_Photonic_odin, BinaryData::HiHatclosed_Photonic_odinSize);
     case hash("Hi-Hat [RS].odin"):
-        return std::make_pair(BinaryData::HiHat_RS_odin, BinaryData::HiHat_RS_odinsize);
+        return std::make_pair(BinaryData::HiHat_RS_odin, BinaryData::HiHat_RS_odinSize);
     case hash("Kick-1 [Photonic].odin"):
-        return std::make_pair(BinaryData::Kick1_Photonic_odin, BinaryData::Kick1_Photonic_odinsize);
+        return std::make_pair(BinaryData::Kick1_Photonic_odin, BinaryData::Kick1_Photonic_odinSize);
     case hash("Kick 1 XY [RS].odin"):
-        return std::make_pair(BinaryData::Kick_1_XY_RS_odin, BinaryData::Kick_1_XY_RS_odinsize);
+        return std::make_pair(BinaryData::Kick_1_XY_RS_odin, BinaryData::Kick_1_XY_RS_odinSize);
     case hash("kick 909.odin"):
-        return std::make_pair(BinaryData::kick_909_odin, BinaryData::kick_909_odinsize);
+        return std::make_pair(BinaryData::kick_909_odin, BinaryData::kick_909_odinSize);
     case hash("Kick tekmid.odin"):
-        return std::make_pair(BinaryData::Kick_tekmid_odin, BinaryData::Kick_tekmid_odinsize);
+        return std::make_pair(BinaryData::Kick_tekmid_odin, BinaryData::Kick_tekmid_odinSize);
     case hash("Marching [Photonic].odin"):
-        return std::make_pair(BinaryData::Marching_Photonic_odin, BinaryData::Marching_Photonic_odinsize);
+        return std::make_pair(BinaryData::Marching_Photonic_odin, BinaryData::Marching_Photonic_odinSize);
     case hash("Shaker [Photonic].odin"):
-        return std::make_pair(BinaryData::Shaker_Photonic_odin, BinaryData::Shaker_Photonic_odinsize);
+        return std::make_pair(BinaryData::Shaker_Photonic_odin, BinaryData::Shaker_Photonic_odinSize);
     case hash("Shakers [RS].odin"):
-        return std::make_pair(BinaryData::Shakers_RS_odin, BinaryData::Shakers_RS_odinsize);
+        return std::make_pair(BinaryData::Shakers_RS_odin, BinaryData::Shakers_RS_odinSize);
     case hash("Simple Hat [Projektor].odin"):
-        return std::make_pair(BinaryData::Simple_Hat_Projektor_odin, BinaryData::Simple_Hat_Projektor_odinsize);
+        return std::make_pair(BinaryData::Simple_Hat_Projektor_odin, BinaryData::Simple_Hat_Projektor_odinSize);
     case hash("Snappy Snare [Projektor].odin"):
-        return std::make_pair(BinaryData::Snappy_Snare_Projektor_odin, BinaryData::Snappy_Snare_Projektor_odinsize);
+        return std::make_pair(BinaryData::Snappy_Snare_Projektor_odin, BinaryData::Snappy_Snare_Projektor_odinSize);
     case hash("Snare-1 [Photonic].odin"):
-        return std::make_pair(BinaryData::Snare1_Photonic_odin, BinaryData::Snare1_Photonic_odinsize);
+        return std::make_pair(BinaryData::Snare1_Photonic_odin, BinaryData::Snare1_Photonic_odinSize);
     case hash("Snare 1 [RS].odin"):
-        return std::make_pair(BinaryData::Snare_1_RS_odin, BinaryData::Snare_1_RS_odinsize);
+        return std::make_pair(BinaryData::Snare_1_RS_odin, BinaryData::Snare_1_RS_odinSize);
     case hash("Snare-2 [Photonic].odin"):
-        return std::make_pair(BinaryData::Snare2_Photonic_odin, BinaryData::Snare2_Photonic_odinsize);
+        return std::make_pair(BinaryData::Snare2_Photonic_odin, BinaryData::Snare2_Photonic_odinSize);
     case hash("SnarNoize.odin"):
-        return std::make_pair(BinaryData::SnarNoize_odin, BinaryData::SnarNoize_odinsize);
+        return std::make_pair(BinaryData::SnarNoize_odin, BinaryData::SnarNoize_odinSize);
     case hash("Taiko-Drums [Photonic].odin"):
-        return std::make_pair(BinaryData::TaikoDrums_Photonic_odin, BinaryData::TaikoDrums_Photonic_odinsize);
+        return std::make_pair(BinaryData::TaikoDrums_Photonic_odin, BinaryData::TaikoDrums_Photonic_odinSize);
     case hash("Toms-1 [Photonic].odin"):
-        return std::make_pair(BinaryData::Toms1_Photonic_odin, BinaryData::Toms1_Photonic_odinsize);
+        return std::make_pair(BinaryData::Toms1_Photonic_odin, BinaryData::Toms1_Photonic_odinSize);
     case hash("Toms 1 [RS].odin"):
-        return std::make_pair(BinaryData::Toms_1_RS_odin, BinaryData::Toms_1_RS_odinsize);
+        return std::make_pair(BinaryData::Toms_1_RS_odin, BinaryData::Toms_1_RS_odinSize);
     case hash("Toms 2 [RS].odin"):
-        return std::make_pair(BinaryData::Toms_2_RS_odin, BinaryData::Toms_2_RS_odinsize);
+        return std::make_pair(BinaryData::Toms_2_RS_odin, BinaryData::Toms_2_RS_odinSize);
     case hash("War-Drum [Photonic].odin"):
-        return std::make_pair(BinaryData::WarDrum_Photonic_odin, BinaryData::WarDrum_Photonic_odinsize);
+        return std::make_pair(BinaryData::WarDrum_Photonic_odin, BinaryData::WarDrum_Photonic_odinSize);
     case hash("Accordion.odin"):
-        return std::make_pair(BinaryData::Accordion_odin, BinaryData::Accordion_odinsize);
+        return std::make_pair(BinaryData::Accordion_odin, BinaryData::Accordion_odinSize);
     case hash("Brass Pad.odin"):
-        return std::make_pair(BinaryData::Brass_Pad_odin, BinaryData::Brass_Pad_odinsize);
+        return std::make_pair(BinaryData::Brass_Pad_odin, BinaryData::Brass_Pad_odinSize);
     case hash("Celeste.odin"):
-        return std::make_pair(BinaryData::Celeste_odin, BinaryData::Celeste_odinsize);
+        return std::make_pair(BinaryData::Celeste_odin, BinaryData::Celeste_odinSize);
     case hash("Chello (MW,AT) [Photonic].odin"):
-        return std::make_pair(BinaryData::Chello_MW,AT_Photonic_odin, BinaryData::Chello_MW,AT_Photonic_odinsize);
+        return std::make_pair(BinaryData::Chello_MWAT_Photonic_odin, BinaryData::Chello_MWAT_Photonic_odinSize);
     case hash("Chinese Steel [4T-RS].odin"):
-        return std::make_pair(BinaryData::Chinese_Steel_4TRS_odin, BinaryData::Chinese_Steel_4TRS_odinsize);
+        return std::make_pair(BinaryData::Chinese_Steel_4TRS_odin, BinaryData::Chinese_Steel_4TRS_odinSize);
     case hash("DistGuit (MW,AT) [Photonic].odin"):
-        return std::make_pair(BinaryData::DistGuit_MW,AT_Photonic_odin, BinaryData::DistGuit_MW,AT_Photonic_odinsize);
+        return std::make_pair(BinaryData::DistGuit_MWAT_Photonic_odin, BinaryData::DistGuit_MWAT_Photonic_odinSize);
     case hash("DoubleBass(MW) [Photonic].odin"):
-        return std::make_pair(BinaryData::DoubleBassMW_Photonic_odin, BinaryData::DoubleBassMW_Photonic_odinsize);
+        return std::make_pair(BinaryData::DoubleBassMW_Photonic_odin, BinaryData::DoubleBassMW_Photonic_odinSize);
     case hash("Flute (MW,AT) [Photonic].odin"):
-        return std::make_pair(BinaryData::Flute_MW,AT_Photonic_odin, BinaryData::Flute_MW,AT_Photonic_odinsize);
+        return std::make_pair(BinaryData::Flute_MWAT_Photonic_odin, BinaryData::Flute_MWAT_Photonic_odinSize);
     case hash("FM Steel Drum [RS].odin"):
-        return std::make_pair(BinaryData::FM_Steel_Drum_RS_odin, BinaryData::FM_Steel_Drum_RS_odinsize);
+        return std::make_pair(BinaryData::FM_Steel_Drum_RS_odin, BinaryData::FM_Steel_Drum_RS_odinSize);
     case hash("Jazzguitar (MW) [Photonic].odin"):
-        return std::make_pair(BinaryData::Jazzguitar_MW_Photonic_odin, BinaryData::Jazzguitar_MW_Photonic_odinsize);
+        return std::make_pair(BinaryData::Jazzguitar_MW_Photonic_odin, BinaryData::Jazzguitar_MW_Photonic_odinSize);
     case hash("MusicBox [Photonic].odin"):
-        return std::make_pair(BinaryData::MusicBox_Photonic_odin, BinaryData::MusicBox_Photonic_odinsize);
+        return std::make_pair(BinaryData::MusicBox_Photonic_odin, BinaryData::MusicBox_Photonic_odinSize);
     case hash("OB Brass.odin"):
-        return std::make_pair(BinaryData::OB_Brass_odin, BinaryData::OB_Brass_odinsize);
+        return std::make_pair(BinaryData::OB_Brass_odin, BinaryData::OB_Brass_odinSize);
     case hash("Sitar Echo.odin"):
-        return std::make_pair(BinaryData::Sitar_Echo_odin, BinaryData::Sitar_Echo_odinsize);
+        return std::make_pair(BinaryData::Sitar_Echo_odin, BinaryData::Sitar_Echo_odinSize);
     case hash("Steeldrum [Photonic].odin"):
-        return std::make_pair(BinaryData::Steeldrum_Photonic_odin, BinaryData::Steeldrum_Photonic_odinsize);
+        return std::make_pair(BinaryData::Steeldrum_Photonic_odin, BinaryData::Steeldrum_Photonic_odinSize);
     case hash("Steel Drums.odin"):
-        return std::make_pair(BinaryData::Steel_Drums_odin, BinaryData::Steel_Drums_odinsize);
+        return std::make_pair(BinaryData::Steel_Drums_odin, BinaryData::Steel_Drums_odinSize);
     case hash("Tuba.odin"):
-        return std::make_pair(BinaryData::Tuba_odin, BinaryData::Tuba_odinsize);
+        return std::make_pair(BinaryData::Tuba_odin, BinaryData::Tuba_odinSize);
     case hash("Electric Piano [tx].odin"):
-        return std::make_pair(BinaryData::Electric_Piano_tx_odin, BinaryData::Electric_Piano_tx_odinsize);
+        return std::make_pair(BinaryData::Electric_Piano_tx_odin, BinaryData::Electric_Piano_tx_odinSize);
     case hash("E-Piano (MW) [Photonic].odin"):
-        return std::make_pair(BinaryData::EPiano_MW_Photonic_odin, BinaryData::EPiano_MW_Photonic_odinsize);
+        return std::make_pair(BinaryData::EPiano_MW_Photonic_odin, BinaryData::EPiano_MW_Photonic_odinSize);
     case hash("FM Piano.odin"):
-        return std::make_pair(BinaryData::FM_Piano_odin, BinaryData::FM_Piano_odinsize);
+        return std::make_pair(BinaryData::FM_Piano_odin, BinaryData::FM_Piano_odinSize);
     case hash("Funky-D6.odin"):
-        return std::make_pair(BinaryData::FunkyD6_odin, BinaryData::FunkyD6_odinsize);
+        return std::make_pair(BinaryData::FunkyD6_odin, BinaryData::FunkyD6_odinSize);
     case hash("Funky-D6 [Photonic].odin"):
-        return std::make_pair(BinaryData::FunkyD6_Photonic_odin, BinaryData::FunkyD6_Photonic_odinsize);
+        return std::make_pair(BinaryData::FunkyD6_Photonic_odin, BinaryData::FunkyD6_Photonic_odinSize);
     case hash("FX Piano.odin"):
-        return std::make_pair(BinaryData::FX_Piano_odin, BinaryData::FX_Piano_odinsize);
+        return std::make_pair(BinaryData::FX_Piano_odin, BinaryData::FX_Piano_odinSize);
     case hash("Mellow Keys [tx].odin"):
-        return std::make_pair(BinaryData::Mellow_Keys_tx_odin, BinaryData::Mellow_Keys_tx_odinsize);
+        return std::make_pair(BinaryData::Mellow_Keys_tx_odin, BinaryData::Mellow_Keys_tx_odinSize);
     case hash("Metallic Keys [XR].odin"):
-        return std::make_pair(BinaryData::Metallic_Keys_XR_odin, BinaryData::Metallic_Keys_XR_odinsize);
+        return std::make_pair(BinaryData::Metallic_Keys_XR_odin, BinaryData::Metallic_Keys_XR_odinSize);
     case hash("PhasClavi (AT) [Photonic].odin"):
-        return std::make_pair(BinaryData::PhasClavi_AT_Photonic_odin, BinaryData::PhasClavi_AT_Photonic_odinsize);
+        return std::make_pair(BinaryData::PhasClavi_AT_Photonic_odin, BinaryData::PhasClavi_AT_Photonic_odinSize);
     case hash("Phuzz Piano.odin"):
-        return std::make_pair(BinaryData::Phuzz_Piano_odin, BinaryData::Phuzz_Piano_odinsize);
+        return std::make_pair(BinaryData::Phuzz_Piano_odin, BinaryData::Phuzz_Piano_odinSize);
     case hash("Pianet.odin"):
-        return std::make_pair(BinaryData::Pianet_odin, BinaryData::Pianet_odinsize);
+        return std::make_pair(BinaryData::Pianet_odin, BinaryData::Pianet_odinSize);
     case hash("Piano Ballad 3.odin"):
-        return std::make_pair(BinaryData::Piano_Ballad_3_odin, BinaryData::Piano_Ballad_3_odinsize);
+        return std::make_pair(BinaryData::Piano_Ballad_3_odin, BinaryData::Piano_Ballad_3_odinSize);
     case hash("Piano [Photonic].odin"):
-        return std::make_pair(BinaryData::Piano_Photonic_odin, BinaryData::Piano_Photonic_odinsize);
+        return std::make_pair(BinaryData::Piano_Photonic_odin, BinaryData::Piano_Photonic_odinSize);
     case hash("SynKeys 2 [RS].odin"):
-        return std::make_pair(BinaryData::SynKeys_2_RS_odin, BinaryData::SynKeys_2_RS_odinsize);
+        return std::make_pair(BinaryData::SynKeys_2_RS_odin, BinaryData::SynKeys_2_RS_odinSize);
     case hash("SynKeys 3XY [RS].odin"):
-        return std::make_pair(BinaryData::SynKeys_3XY_RS_odin, BinaryData::SynKeys_3XY_RS_odinsize);
+        return std::make_pair(BinaryData::SynKeys_3XY_RS_odin, BinaryData::SynKeys_3XY_RS_odinSize);
     case hash("Synth Piano.odin"):
-        return std::make_pair(BinaryData::Synth_Piano_odin, BinaryData::Synth_Piano_odinsize);
+        return std::make_pair(BinaryData::Synth_Piano_odin, BinaryData::Synth_Piano_odinSize);
     case hash("Toy Piano.odin"):
-        return std::make_pair(BinaryData::Toy_Piano_odin, BinaryData::Toy_Piano_odinsize);
+        return std::make_pair(BinaryData::Toy_Piano_odin, BinaryData::Toy_Piano_odinSize);
     case hash("Cuaroth [yellowmix].odin"):
-        return std::make_pair(BinaryData::Cuaroth_yellowmix_odin, BinaryData::Cuaroth_yellowmix_odinsize);
+        return std::make_pair(BinaryData::Cuaroth_yellowmix_odin, BinaryData::Cuaroth_yellowmix_odinSize);
     case hash("Drawing Lead.odin"):
-        return std::make_pair(BinaryData::Drawing_Lead_odin, BinaryData::Drawing_Lead_odinsize);
+        return std::make_pair(BinaryData::Drawing_Lead_odin, BinaryData::Drawing_Lead_odinSize);
     case hash("EDM Synth Projektor.odin"):
-        return std::make_pair(BinaryData::EDM_Synth_Projektor_odin, BinaryData::EDM_Synth_Projektor_odinsize);
+        return std::make_pair(BinaryData::EDM_Synth_Projektor_odin, BinaryData::EDM_Synth_Projektor_odinSize);
     case hash("Filter LFO Lead.odin"):
-        return std::make_pair(BinaryData::Filter_LFO_Lead_odin, BinaryData::Filter_LFO_Lead_odinsize);
+        return std::make_pair(BinaryData::Filter_LFO_Lead_odin, BinaryData::Filter_LFO_Lead_odinSize);
     case hash("Glide Comb Lead.odin"):
-        return std::make_pair(BinaryData::Glide_Comb_Lead_odin, BinaryData::Glide_Comb_Lead_odinsize);
+        return std::make_pair(BinaryData::Glide_Comb_Lead_odin, BinaryData::Glide_Comb_Lead_odinSize);
     case hash("Karplus Lead.odin"):
-        return std::make_pair(BinaryData::Karplus_Lead_odin, BinaryData::Karplus_Lead_odinsize);
+        return std::make_pair(BinaryData::Karplus_Lead_odin, BinaryData::Karplus_Lead_odinSize);
     case hash("Lead Glide.odin"):
-        return std::make_pair(BinaryData::Lead_Glide_odin, BinaryData::Lead_Glide_odinsize);
+        return std::make_pair(BinaryData::Lead_Glide_odin, BinaryData::Lead_Glide_odinSize);
     case hash("LeadPuls (AT,MW) [Photonic].odin"):
-        return std::make_pair(BinaryData::LeadPuls_AT,MW_Photonic_odin, BinaryData::LeadPuls_AT,MW_Photonic_odinsize);
+        return std::make_pair(BinaryData::LeadPuls_ATMW_Photonic_odin, BinaryData::LeadPuls_ATMW_Photonic_odinSize);
     case hash("Lead Rusty.odin"):
-        return std::make_pair(BinaryData::Lead_Rusty_odin, BinaryData::Lead_Rusty_odinsize);
+        return std::make_pair(BinaryData::Lead_Rusty_odin, BinaryData::Lead_Rusty_odinSize);
     case hash("Lead Sine.odin"):
-        return std::make_pair(BinaryData::Lead_Sine_odin, BinaryData::Lead_Sine_odinsize);
+        return std::make_pair(BinaryData::Lead_Sine_odin, BinaryData::Lead_Sine_odinSize);
     case hash("Lead Square A.odin"):
-        return std::make_pair(BinaryData::Lead_Square_A_odin, BinaryData::Lead_Square_A_odinsize);
+        return std::make_pair(BinaryData::Lead_Square_A_odin, BinaryData::Lead_Square_A_odinSize);
     case hash("Lead Squarepusher.odin"):
-        return std::make_pair(BinaryData::Lead_Squarepusher_odin, BinaryData::Lead_Squarepusher_odinsize);
+        return std::make_pair(BinaryData::Lead_Squarepusher_odin, BinaryData::Lead_Squarepusher_odinSize);
     case hash("Meeting Of Three.odin"):
-        return std::make_pair(BinaryData::Meeting_Of_Three_odin, BinaryData::Meeting_Of_Three_odinsize);
+        return std::make_pair(BinaryData::Meeting_Of_Three_odin, BinaryData::Meeting_Of_Three_odinSize);
     case hash("Pad cheapo.odin"):
-        return std::make_pair(BinaryData::Pad_cheapo_odin, BinaryData::Pad_cheapo_odinsize);
+        return std::make_pair(BinaryData::Pad_cheapo_odin, BinaryData::Pad_cheapo_odinSize);
     case hash("Random Voices.odin"):
-        return std::make_pair(BinaryData::Random_Voices_odin, BinaryData::Random_Voices_odinsize);
+        return std::make_pair(BinaryData::Random_Voices_odin, BinaryData::Random_Voices_odinSize);
     case hash("Reverse Lead.odin"):
-        return std::make_pair(BinaryData::Reverse_Lead_odin, BinaryData::Reverse_Lead_odinsize);
+        return std::make_pair(BinaryData::Reverse_Lead_odin, BinaryData::Reverse_Lead_odinSize);
     case hash("Rnd Delay Lead.odin"):
-        return std::make_pair(BinaryData::Rnd_Delay_Lead_odin, BinaryData::Rnd_Delay_Lead_odinsize);
+        return std::make_pair(BinaryData::Rnd_Delay_Lead_odin, BinaryData::Rnd_Delay_Lead_odinSize);
     case hash("Synth Brass.odin"):
-        return std::make_pair(BinaryData::Synth_Brass_odin, BinaryData::Synth_Brass_odinsize);
+        return std::make_pair(BinaryData::Synth_Brass_odin, BinaryData::Synth_Brass_odinSize);
     case hash("Unison Glide Lead.odin"):
-        return std::make_pair(BinaryData::Unison_Glide_Lead_odin, BinaryData::Unison_Glide_Lead_odinsize);
+        return std::make_pair(BinaryData::Unison_Glide_Lead_odin, BinaryData::Unison_Glide_Lead_odinSize);
     case hash("Vibrato Lead.odin"):
-        return std::make_pair(BinaryData::Vibrato_Lead_odin, BinaryData::Vibrato_Lead_odinsize);
+        return std::make_pair(BinaryData::Vibrato_Lead_odin, BinaryData::Vibrato_Lead_odinSize);
     case hash("666-001-Organ.odin"):
-        return std::make_pair(BinaryData::_666001Organ_odin, BinaryData::_666001Organ_odinsize);
+        return std::make_pair(BinaryData::_666001Organ_odin, BinaryData::_666001Organ_odinSize);
     case hash("Church Organ.odin"):
-        return std::make_pair(BinaryData::Church_Organ_odin, BinaryData::Church_Organ_odinsize);
+        return std::make_pair(BinaryData::Church_Organ_odin, BinaryData::Church_Organ_odinSize);
     case hash("Glass Organ.odin"):
-        return std::make_pair(BinaryData::Glass_Organ_odin, BinaryData::Glass_Organ_odinsize);
+        return std::make_pair(BinaryData::Glass_Organ_odin, BinaryData::Glass_Organ_odinSize);
     case hash("Organ 0001.odin"):
-        return std::make_pair(BinaryData::Organ_0001_odin, BinaryData::Organ_0001_odinsize);
+        return std::make_pair(BinaryData::Organ_0001_odin, BinaryData::Organ_0001_odinSize);
     case hash("Organ Tremolo.odin"):
-        return std::make_pair(BinaryData::Organ_Tremolo_odin, BinaryData::Organ_Tremolo_odinsize);
+        return std::make_pair(BinaryData::Organ_Tremolo_odin, BinaryData::Organ_Tremolo_odinSize);
     case hash("Pad Pleasure.odin"):
-        return std::make_pair(BinaryData::Pad_Pleasure_odin, BinaryData::Pad_Pleasure_odinsize);
+        return std::make_pair(BinaryData::Pad_Pleasure_odin, BinaryData::Pad_Pleasure_odinSize);
     case hash("Phazzy Organ.odin"):
-        return std::make_pair(BinaryData::Phazzy_Organ_odin, BinaryData::Phazzy_Organ_odinsize);
+        return std::make_pair(BinaryData::Phazzy_Organ_odin, BinaryData::Phazzy_Organ_odinSize);
     case hash("Pipe Dreams [yellowmix].odin"):
-        return std::make_pair(BinaryData::Pipe_Dreams_yellowmix_odin, BinaryData::Pipe_Dreams_yellowmix_odinsize);
+        return std::make_pair(BinaryData::Pipe_Dreams_yellowmix_odin, BinaryData::Pipe_Dreams_yellowmix_odinSize);
     case hash("Sparkle Organ.odin"):
-        return std::make_pair(BinaryData::Sparkle_Organ_odin, BinaryData::Sparkle_Organ_odinsize);
+        return std::make_pair(BinaryData::Sparkle_Organ_odin, BinaryData::Sparkle_Organ_odinSize);
     case hash("Suitcase n Amp [yellowmix].odin"):
-        return std::make_pair(BinaryData::Suitcase_n_Amp_yellowmix_odin, BinaryData::Suitcase_n_Amp_yellowmix_odinsize);
+        return std::make_pair(BinaryData::Suitcase_n_Amp_yellowmix_odin, BinaryData::Suitcase_n_Amp_yellowmix_odinSize);
     case hash("Boards 2.odin"):
-        return std::make_pair(BinaryData::Boards_2_odin, BinaryData::Boards_2_odinsize);
+        return std::make_pair(BinaryData::Boards_2_odin, BinaryData::Boards_2_odinSize);
     case hash("Burble Pad.odin"):
-        return std::make_pair(BinaryData::Burble_Pad_odin, BinaryData::Burble_Pad_odinsize);
+        return std::make_pair(BinaryData::Burble_Pad_odin, BinaryData::Burble_Pad_odinSize);
     case hash("Choir Aahs 1 [RS].odin"):
-        return std::make_pair(BinaryData::Choir_Aahs_1_RS_odin, BinaryData::Choir_Aahs_1_RS_odinsize);
+        return std::make_pair(BinaryData::Choir_Aahs_1_RS_odin, BinaryData::Choir_Aahs_1_RS_odinSize);
     case hash("Choir Aahs 2 [RS].odin"):
-        return std::make_pair(BinaryData::Choir_Aahs_2_RS_odin, BinaryData::Choir_Aahs_2_RS_odinsize);
+        return std::make_pair(BinaryData::Choir_Aahs_2_RS_odin, BinaryData::Choir_Aahs_2_RS_odinSize);
     case hash("Choir [Photonic].odin"):
-        return std::make_pair(BinaryData::Choir_Photonic_odin, BinaryData::Choir_Photonic_odinsize);
+        return std::make_pair(BinaryData::Choir_Photonic_odin, BinaryData::Choir_Photonic_odinSize);
     case hash("Choir Yeah [RS].odin"):
-        return std::make_pair(BinaryData::Choir_Yeah_RS_odin, BinaryData::Choir_Yeah_RS_odinsize);
+        return std::make_pair(BinaryData::Choir_Yeah_RS_odin, BinaryData::Choir_Yeah_RS_odinSize);
     case hash("Clouded [RM].odin"):
-        return std::make_pair(BinaryData::Clouded_RM_odin, BinaryData::Clouded_RM_odinsize);
+        return std::make_pair(BinaryData::Clouded_RM_odin, BinaryData::Clouded_RM_odinSize);
     case hash("Darken Nature [RM].odin"):
-        return std::make_pair(BinaryData::Darken_Nature_RM_odin, BinaryData::Darken_Nature_RM_odinsize);
+        return std::make_pair(BinaryData::Darken_Nature_RM_odin, BinaryData::Darken_Nature_RM_odinSize);
     case hash("Drifter.odin"):
-        return std::make_pair(BinaryData::Drifter_odin, BinaryData::Drifter_odinsize);
+        return std::make_pair(BinaryData::Drifter_odin, BinaryData::Drifter_odinSize);
     case hash("Female aah mellow.odin"):
-        return std::make_pair(BinaryData::Female_aah_mellow_odin, BinaryData::Female_aah_mellow_odinsize);
+        return std::make_pair(BinaryData::Female_aah_mellow_odin, BinaryData::Female_aah_mellow_odinSize);
     case hash("Female aah.odin"):
-        return std::make_pair(BinaryData::Female_aah_odin, BinaryData::Female_aah_odinsize);
+        return std::make_pair(BinaryData::Female_aah_odin, BinaryData::Female_aah_odinSize);
     case hash("FM Sphere [RS].odin"):
-        return std::make_pair(BinaryData::FM_Sphere_RS_odin, BinaryData::FM_Sphere_RS_odinsize);
+        return std::make_pair(BinaryData::FM_Sphere_RS_odin, BinaryData::FM_Sphere_RS_odinSize);
     case hash("forever young.odin"):
-        return std::make_pair(BinaryData::forever_young_odin, BinaryData::forever_young_odinsize);
+        return std::make_pair(BinaryData::forever_young_odin, BinaryData::forever_young_odinSize);
     case hash("Haunt [RM].odin"):
-        return std::make_pair(BinaryData::Haunt_RM_odin, BinaryData::Haunt_RM_odinsize);
+        return std::make_pair(BinaryData::Haunt_RM_odin, BinaryData::Haunt_RM_odinSize);
     case hash("Moonshade.odin"):
-        return std::make_pair(BinaryData::Moonshade_odin, BinaryData::Moonshade_odinsize);
+        return std::make_pair(BinaryData::Moonshade_odin, BinaryData::Moonshade_odinSize);
     case hash("PAD Open.odin"):
-        return std::make_pair(BinaryData::PAD_Open_odin, BinaryData::PAD_Open_odinsize);
+        return std::make_pair(BinaryData::PAD_Open_odin, BinaryData::PAD_Open_odinSize);
     case hash("Portapotty.odin"):
-        return std::make_pair(BinaryData::Portapotty_odin, BinaryData::Portapotty_odinsize);
+        return std::make_pair(BinaryData::Portapotty_odin, BinaryData::Portapotty_odinSize);
     case hash("sounds like a melody.odin"):
-        return std::make_pair(BinaryData::sounds_like_a_melody_odin, BinaryData::sounds_like_a_melody_odinsize);
+        return std::make_pair(BinaryData::sounds_like_a_melody_odin, BinaryData::sounds_like_a_melody_odinSize);
     case hash("Strings (MW,AT) [Photonic].odin"):
-        return std::make_pair(BinaryData::Strings_MW,AT_Photonic_odin, BinaryData::Strings_MW,AT_Photonic_odinsize);
+        return std::make_pair(BinaryData::Strings_MWAT_Photonic_odin, BinaryData::Strings_MWAT_Photonic_odinSize);
     case hash("Strings short (MW) [Photonic].odin"):
-        return std::make_pair(BinaryData::Strings_short_MW_Photonic_odin, BinaryData::Strings_short_MW_Photonic_odinsize);
+        return std::make_pair(BinaryData::Strings_short_MW_Photonic_odin, BinaryData::Strings_short_MW_Photonic_odinSize);
     case hash("Sweeper 3.odin"):
-        return std::make_pair(BinaryData::Sweeper_3_odin, BinaryData::Sweeper_3_odinsize);
+        return std::make_pair(BinaryData::Sweeper_3_odin, BinaryData::Sweeper_3_odinSize);
     case hash("Synae XY [RS].odin"):
-        return std::make_pair(BinaryData::Synae_XY_RS_odin, BinaryData::Synae_XY_RS_odinsize);
+        return std::make_pair(BinaryData::Synae_XY_RS_odin, BinaryData::Synae_XY_RS_odinSize);
     case hash("Synth Ballad.odin"):
-        return std::make_pair(BinaryData::Synth_Ballad_odin, BinaryData::Synth_Ballad_odinsize);
+        return std::make_pair(BinaryData::Synth_Ballad_odin, BinaryData::Synth_Ballad_odinSize);
     case hash("Synth Strings2.odin"):
-        return std::make_pair(BinaryData::Synth_Strings2_odin, BinaryData::Synth_Strings2_odinsize);
+        return std::make_pair(BinaryData::Synth_Strings2_odin, BinaryData::Synth_Strings2_odinSize);
     case hash("Synth Strings.odin"):
-        return std::make_pair(BinaryData::Synth_Strings_odin, BinaryData::Synth_Strings_odinsize);
+        return std::make_pair(BinaryData::Synth_Strings_odin, BinaryData::Synth_Strings_odinSize);
     case hash("Synthwave Pad.odin"):
-        return std::make_pair(BinaryData::Synthwave_Pad_odin, BinaryData::Synthwave_Pad_odinsize);
+        return std::make_pair(BinaryData::Synthwave_Pad_odin, BinaryData::Synthwave_Pad_odinSize);
     case hash("VangBrass (MW,AT) [Photonic].odin"):
-        return std::make_pair(BinaryData::VangBrass_MW,AT_Photonic_odin, BinaryData::VangBrass_MW,AT_Photonic_odinsize);
+        return std::make_pair(BinaryData::VangBrass_MWAT_Photonic_odin, BinaryData::VangBrass_MWAT_Photonic_odinSize);
     case hash("Voices.odin"):
-        return std::make_pair(BinaryData::Voices_odin, BinaryData::Voices_odinsize);
+        return std::make_pair(BinaryData::Voices_odin, BinaryData::Voices_odinSize);
     case hash("Warm-Pad [Photonic].odin"):
-        return std::make_pair(BinaryData::WarmPad_Photonic_odin, BinaryData::WarmPad_Photonic_odinsize);
+        return std::make_pair(BinaryData::WarmPad_Photonic_odin, BinaryData::WarmPad_Photonic_odinSize);
     case hash("Alien Arp.odin"):
-        return std::make_pair(BinaryData::Alien_Arp_odin, BinaryData::Alien_Arp_odinsize);
+        return std::make_pair(BinaryData::Alien_Arp_odin, BinaryData::Alien_Arp_odinSize);
     case hash("Cheering Minions.odin"):
-        return std::make_pair(BinaryData::Cheering_Minions_odin, BinaryData::Cheering_Minions_odinsize);
+        return std::make_pair(BinaryData::Cheering_Minions_odin, BinaryData::Cheering_Minions_odinSize);
     case hash("Doctor Acid.odin"):
-        return std::make_pair(BinaryData::Doctor_Acid_odin, BinaryData::Doctor_Acid_odinsize);
+        return std::make_pair(BinaryData::Doctor_Acid_odin, BinaryData::Doctor_Acid_odinSize);
     case hash("Drippin Droplets.odin"):
-        return std::make_pair(BinaryData::Drippin_Droplets_odin, BinaryData::Drippin_Droplets_odinsize);
+        return std::make_pair(BinaryData::Drippin_Droplets_odin, BinaryData::Drippin_Droplets_odinSize);
     case hash("Drone S&H.odin"):
-        return std::make_pair(BinaryData::Drone_S&H_odin, BinaryData::Drone_S&H_odinsize);
+        return std::make_pair(BinaryData::Drone_SH_odin, BinaryData::Drone_SH_odinSize);
     case hash("Dropper [RS].odin"):
-        return std::make_pair(BinaryData::Dropper_RS_odin, BinaryData::Dropper_RS_odinsize);
+        return std::make_pair(BinaryData::Dropper_RS_odin, BinaryData::Dropper_RS_odinSize);
     case hash("Flange Fun [psylion].odin"):
-        return std::make_pair(BinaryData::Flange_Fun_psylion_odin, BinaryData::Flange_Fun_psylion_odinsize);
+        return std::make_pair(BinaryData::Flange_Fun_psylion_odin, BinaryData::Flange_Fun_psylion_odinSize);
     case hash("FM-XY Fun [RS].odin"):
-        return std::make_pair(BinaryData::FMXY_Fun_RS_odin, BinaryData::FMXY_Fun_RS_odinsize);
+        return std::make_pair(BinaryData::FMXY_Fun_RS_odin, BinaryData::FMXY_Fun_RS_odinSize);
     case hash("Formant Squelch.odin"):
-        return std::make_pair(BinaryData::Formant_Squelch_odin, BinaryData::Formant_Squelch_odinsize);
+        return std::make_pair(BinaryData::Formant_Squelch_odin, BinaryData::Formant_Squelch_odinSize);
     case hash("FX Jump [RM].odin"):
-        return std::make_pair(BinaryData::FX_Jump_RM_odin, BinaryData::FX_Jump_RM_odinsize);
+        return std::make_pair(BinaryData::FX_Jump_RM_odin, BinaryData::FX_Jump_RM_odinSize);
     case hash("FX Pitch Down [RM].odin"):
-        return std::make_pair(BinaryData::FX_Pitch_Down_RM_odin, BinaryData::FX_Pitch_Down_RM_odinsize);
+        return std::make_pair(BinaryData::FX_Pitch_Down_RM_odin, BinaryData::FX_Pitch_Down_RM_odinSize);
     case hash("FX Reso Warble.odin"):
-        return std::make_pair(BinaryData::FX_Reso_Warble_odin, BinaryData::FX_Reso_Warble_odinsize);
+        return std::make_pair(BinaryData::FX_Reso_Warble_odin, BinaryData::FX_Reso_Warble_odinSize);
     case hash("German Glitches.odin"):
-        return std::make_pair(BinaryData::German_Glitches_odin, BinaryData::German_Glitches_odinsize);
+        return std::make_pair(BinaryData::German_Glitches_odin, BinaryData::German_Glitches_odinSize);
     case hash("Pipe FX.odin"):
-        return std::make_pair(BinaryData::Pipe_FX_odin, BinaryData::Pipe_FX_odinsize);
+        return std::make_pair(BinaryData::Pipe_FX_odin, BinaryData::Pipe_FX_odinSize);
     case hash("Plastic Riser 1 [RS].odin"):
-        return std::make_pair(BinaryData::Plastic_Riser_1_RS_odin, BinaryData::Plastic_Riser_1_RS_odinsize);
+        return std::make_pair(BinaryData::Plastic_Riser_1_RS_odin, BinaryData::Plastic_Riser_1_RS_odinSize);
     case hash("Plastic Riser 2 [RS].odin"):
-        return std::make_pair(BinaryData::Plastic_Riser_2_RS_odin, BinaryData::Plastic_Riser_2_RS_odinsize);
+        return std::make_pair(BinaryData::Plastic_Riser_2_RS_odin, BinaryData::Plastic_Riser_2_RS_odinSize);
     case hash("PSY Noise Squelch .odin"):
-        return std::make_pair(BinaryData::PSY_Noise_Squelch__odin, BinaryData::PSY_Noise_Squelch__odinsize);
+        return std::make_pair(BinaryData::PSY_Noise_Squelch__odin, BinaryData::PSY_Noise_Squelch__odinSize);
     case hash("S&H noise.odin"):
-        return std::make_pair(BinaryData::S&H_noise_odin, BinaryData::S&H_noise_odinsize);
+        return std::make_pair(BinaryData::SH_noise_odin, BinaryData::SH_noise_odinSize);
     case hash("Something Awakens.odin"):
-        return std::make_pair(BinaryData::Something_Awakens_odin, BinaryData::Something_Awakens_odinsize);
+        return std::make_pair(BinaryData::Something_Awakens_odin, BinaryData::Something_Awakens_odinSize);
     case hash("Space Shuttle [psylion].odin"):
-        return std::make_pair(BinaryData::Space_Shuttle_psylion_odin, BinaryData::Space_Shuttle_psylion_odinsize);
+        return std::make_pair(BinaryData::Space_Shuttle_psylion_odin, BinaryData::Space_Shuttle_psylion_odinSize);
     case hash("Voices in my head [psylion].odin"):
-        return std::make_pair(BinaryData::Voices_in_my_head_psylion_odin, BinaryData::Voices_in_my_head_psylion_odinsize);
+        return std::make_pair(BinaryData::Voices_in_my_head_psylion_odin, BinaryData::Voices_in_my_head_psylion_odinSize);
     case hash("Chinese Ow [4T-RS].odin"):
-        return std::make_pair(BinaryData::Chinese_Ow_4TRS_odin, BinaryData::Chinese_Ow_4TRS_odinsize);
+        return std::make_pair(BinaryData::Chinese_Ow_4TRS_odin, BinaryData::Chinese_Ow_4TRS_odinSize);
     case hash("Chord Pluck Projektor.odin"):
-        return std::make_pair(BinaryData::Chord_Pluck_Projektor_odin, BinaryData::Chord_Pluck_Projektor_odinsize);
+        return std::make_pair(BinaryData::Chord_Pluck_Projektor_odin, BinaryData::Chord_Pluck_Projektor_odinSize);
     case hash("Deep Triads (velo).odin"):
-        return std::make_pair(BinaryData::Deep_Triads_velo_odin, BinaryData::Deep_Triads_velo_odinsize);
+        return std::make_pair(BinaryData::Deep_Triads_velo_odin, BinaryData::Deep_Triads_velo_odinSize);
     case hash("Dub Synth.odin"):
-        return std::make_pair(BinaryData::Dub_Synth_odin, BinaryData::Dub_Synth_odinsize);
+        return std::make_pair(BinaryData::Dub_Synth_odin, BinaryData::Dub_Synth_odinSize);
     case hash("Gurgles dirty.odin"):
-        return std::make_pair(BinaryData::Gurgles_dirty_odin, BinaryData::Gurgles_dirty_odinsize);
+        return std::make_pair(BinaryData::Gurgles_dirty_odin, BinaryData::Gurgles_dirty_odinSize);
     case hash("Gurgles.odin"):
-        return std::make_pair(BinaryData::Gurgles_odin, BinaryData::Gurgles_odinsize);
+        return std::make_pair(BinaryData::Gurgles_odin, BinaryData::Gurgles_odinSize);
     case hash("House Stab.odin"):
-        return std::make_pair(BinaryData::House_Stab_odin, BinaryData::House_Stab_odinsize);
+        return std::make_pair(BinaryData::House_Stab_odin, BinaryData::House_Stab_odinSize);
     case hash("JMJ-Sync [Photonic].odin"):
-        return std::make_pair(BinaryData::JMJSync_Photonic_odin, BinaryData::JMJSync_Photonic_odinsize);
+        return std::make_pair(BinaryData::JMJSync_Photonic_odin, BinaryData::JMJSync_Photonic_odinSize);
     case hash("Lead 17.odin"):
-        return std::make_pair(BinaryData::Lead_17_odin, BinaryData::Lead_17_odinsize);
+        return std::make_pair(BinaryData::Lead_17_odin, BinaryData::Lead_17_odinSize);
     case hash("Lead Hit 1.odin"):
-        return std::make_pair(BinaryData::Lead_Hit_1_odin, BinaryData::Lead_Hit_1_odinsize);
+        return std::make_pair(BinaryData::Lead_Hit_1_odin, BinaryData::Lead_Hit_1_odinSize);
     case hash("Lead phazz.odin"):
-        return std::make_pair(BinaryData::Lead_phazz_odin, BinaryData::Lead_phazz_odinsize);
+        return std::make_pair(BinaryData::Lead_phazz_odin, BinaryData::Lead_phazz_odinSize);
     case hash("LFO Keys.odin"):
-        return std::make_pair(BinaryData::LFO_Keys_odin, BinaryData::LFO_Keys_odinsize);
+        return std::make_pair(BinaryData::LFO_Keys_odin, BinaryData::LFO_Keys_odinSize);
     case hash("Metallic (vel).odin"):
-        return std::make_pair(BinaryData::Metallic_vel_odin, BinaryData::Metallic_vel_odinsize);
+        return std::make_pair(BinaryData::Metallic_vel_odin, BinaryData::Metallic_vel_odinSize);
     case hash("Pad House.odin"):
-        return std::make_pair(BinaryData::Pad_House_odin, BinaryData::Pad_House_odinsize);
+        return std::make_pair(BinaryData::Pad_House_odin, BinaryData::Pad_House_odinSize);
     case hash("Plucker 3.odin"):
-        return std::make_pair(BinaryData::Plucker_3_odin, BinaryData::Plucker_3_odinsize);
+        return std::make_pair(BinaryData::Plucker_3_odin, BinaryData::Plucker_3_odinSize);
     case hash("Pluck.odin"):
-        return std::make_pair(BinaryData::Pluck_odin, BinaryData::Pluck_odinsize);
+        return std::make_pair(BinaryData::Pluck_odin, BinaryData::Pluck_odinSize);
     case hash("Saw Pluck [Projektor].odin"):
-        return std::make_pair(BinaryData::Saw_Pluck_Projektor_odin, BinaryData::Saw_Pluck_Projektor_odinsize);
+        return std::make_pair(BinaryData::Saw_Pluck_Projektor_odin, BinaryData::Saw_Pluck_Projektor_odinSize);
     default:
-        DBG("ERROR: Illegal Lookup in FactoryPresetBinaryMapping.h PresetName: " + p_preset):
-        return std::make_pair(nullptr, 0)
+        DBG("ERROR: Illegal Lookup in FactoryPresetBinaryMapping.h PresetName: " + p_preset);
+        return std::make_pair(nullptr, 0);
     }
 }
 
