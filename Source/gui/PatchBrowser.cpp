@@ -70,6 +70,13 @@ PatchBrowser::PatchBrowser(OdinAudioProcessor &p_processor, AudioProcessorValueT
 	};
 
 	m_patch_selector.passValueToPatchBrowser = [&](String p_string) {
+		if(p_string.toStdString().find(FACTORY_PRESETS_SOUNDBANK_CODE) != std::string::npos) {
+			auto binary_patch_key = p_string.toStdString().substr(std::string(FACTORY_PRESETS_SOUNDBANK_CODE).size());
+			DBG("Loading Binary Patch:" + binary_patch_key);
+			return;
+		}
+
+
 		DBG("Try to open patch: " + m_patch_selector.getDirectory() + File::getSeparatorString() + p_string);
 		String absolute_path = m_patch_selector.getDirectory() + File::getSeparatorString() + p_string;
 

@@ -342,8 +342,8 @@ void PatchBrowserSelector::setDirectoryFactoryPresetPreset(const std::string& p_
 		m_entries.push_back(std::make_unique<BrowserEntry>(entry, m_GUI_big));
 		std::string patch_name = entry;
 		m_entries.back()->onLeftClick = [&, patch_name]() {
-					DBG("FP Preset " + entry + " was clicked!");
-					//passValueToPatchBrowser(FACTORY_PRESETS_SOUNDBANK_CODE + entry.first);
+					DBG("FP Preset " + patch_name + " was clicked!");
+					passValueToPatchBrowser(FACTORY_PRESETS_SOUNDBANK_CODE + patch_name);
 					unhighlightAllEntries();
 		};
 		m_entries.back()->onRightClick = []() {};

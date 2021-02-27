@@ -43,10 +43,12 @@ for cat in *; do
     cd "$cat"
     # write individual preset names:
     for preset in *; do
+        preset="${preset%.*}"
+
         echo "        \"$preset\", " >> $CPP_FILE_STRUCTURE_ABS
 
         #modify the name to be compatible with the cpp conform namin in BinaryData.h:
-        preset_cpp=$preset
+        preset_cpp="${preset}.odin"
         echo $preset_cpp
         #replace spaces by underscore
         preset_cpp=${preset_cpp// /_}
