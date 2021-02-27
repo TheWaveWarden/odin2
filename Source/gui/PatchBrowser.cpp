@@ -52,7 +52,8 @@ PatchBrowser::PatchBrowser(OdinAudioProcessor &p_processor, AudioProcessorValueT
 		if(p_string == FACTORY_PRESETS_SOUNDBANK_CODE) {
 			DBG("The Factory Preset Soundbank has been requested!");
 			m_category_selector.setDirectoryFactoryPresetCategory();
-			//todo m_patch_selector
+			//todo category is not highlighted
+			m_patch_selector.setDirectoryFactoryPresetPreset("Arps & Sequences");
 			return;
 		}
 		DBG(p_string + " was pressed in soundbank");
@@ -61,6 +62,7 @@ PatchBrowser::PatchBrowser(OdinAudioProcessor &p_processor, AudioProcessorValueT
 	};
 
 	m_category_selector.passValueToPatchBrowser = [&](String p_string) {
+		//handle factory sounds:
 		if(p_string.toStdString().find(FACTORY_PRESETS_SOUNDBANK_CODE) != std::string::npos) {
 			m_patch_selector.setDirectoryFactoryPresetPreset(p_string.toStdString().substr(std::string(FACTORY_PRESETS_SOUNDBANK_CODE).size()));
 			return;
@@ -70,9 +72,25 @@ PatchBrowser::PatchBrowser(OdinAudioProcessor &p_processor, AudioProcessorValueT
 	};
 
 	m_patch_selector.passValueToPatchBrowser = [&](String p_string) {
+		//handle factory sounds
 		if(p_string.toStdString().find(FACTORY_PRESETS_SOUNDBANK_CODE) != std::string::npos) {
 			auto binary_patch_key = p_string.toStdString().substr(std::string(FACTORY_PRESETS_SOUNDBANK_CODE).size());
 			DBG("Loading Binary Patch:" + binary_patch_key);
+			auto binary_patch_data = getFactoryPresetBinaryData(binary_patch_key);
+
+			MemoryInputStream init_stream(binary_patch_data.first, binary_patch_data.second, false);
+			m_audio_processor.readPatch(ValueTree::readFromStream(init_stream));
+
+			//reset pitchbend and modwheel, since they are not loaded with patches
+			SETAUDIOFULLRANGESAFE("modwheel", 0.f);
+			SETAUDIOFULLRANGESAFE("pitchbend", 0.f);
+
+			//force modmatrix to show
+			m_value_tree.state.getChildWithName("misc").setProperty(
+			    "arp_mod_selected", MATRIX_SECTION_INDEX_MATRIX, nullptr);
+
+			m_value_tree.state.getChildWithName("misc").setProperty("arp_mod_selected", MATRIX_SECTION_INDEX_PRESETS, nullptr);
+			forceValueTreeLambda();
 			return;
 		}
 
