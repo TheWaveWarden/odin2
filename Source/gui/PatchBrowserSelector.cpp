@@ -222,6 +222,17 @@ void PatchBrowserSelector::setDirectory(String p_absolute_path) {
 	}
 }
 
+void PatchBrowserSelector::setDirectoryFactoryPresetCategory() {
+	m_menu.clear();
+	m_copy_move_map.clear();
+	resetScrollPosition();
+	regenerateContent();
+	showButtons(false);
+
+	generateContentFactoryPresetCategories();
+	repaint();
+}
+
 void PatchBrowserSelector::recreatePopupMenu() {
 	m_menu.clear();
 	m_menu.addItem(PATCH_BROWSER_MENU_ENTRY_RENAME, "Rename");
@@ -295,10 +306,75 @@ void PatchBrowserSelector::regenerateContent() {
 	repaint();
 }
 
+void PatchBrowserSelector::generateContentFactoryPresetCategories() {
+	//this function is for the special case of factory preset category selection (presets are stored in binary, not in folders)
+
+	removeAllChildren();
+	m_entries.clear();
+
+	for (auto &entry : m_factory_preset_cat_and_names) {
+		m_entries.push_back(std::make_unique<BrowserEntry>(entry.first, m_GUI_big));
+		std::string cat_name = entry.first;
+		m_entries.back()->onLeftClick = [&, cat_name]() {
+					//DBG(return_string + " was clicked!");
+					passValueToPatchBrowser(FACTORY_PRESETS_SOUNDBANK_CODE + cat_name);
+					unhighlightAllEntries();
+		};
+		m_entries.back()->onRightClick = []() {};
+	}
+	for (int entry = 0; entry < m_entries.size(); ++entry) {
+		addAndMakeVisible(*(m_entries[entry].get()));
+	}
+	positionEntries();
+
+	//show scrollbar only if needed
+	if (fabs(m_available_scroll_height - m_scroll_bar_height) >= 1) {
+		addAndMakeVisible(m_scroll_bar);
+	}
+}
+
+void PatchBrowserSelector::setDirectoryFactoryPresetPreset(const std::string& p_category) {
+	//this function is for the special case of factory preset selection (category provided)(presets are stored in binary, not in folders)
+	removeAllChildren();
+	m_entries.clear();
+
+	for (auto &entry : m_factory_preset_cat_and_names[p_category]) {
+		m_entries.push_back(std::make_unique<BrowserEntry>(entry, m_GUI_big));
+		std::string patch_name = entry;
+		m_entries.back()->onLeftClick = [&, patch_name]() {
+					DBG("FP Preset " + entry + " was clicked!");
+					//passValueToPatchBrowser(FACTORY_PRESETS_SOUNDBANK_CODE + entry.first);
+					unhighlightAllEntries();
+		};
+		m_entries.back()->onRightClick = []() {};
+	}
+	for (int entry = 0; entry < m_entries.size(); ++entry) {
+		addAndMakeVisible(*(m_entries[entry].get()));
+	}
+	positionEntries();
+
+	//show scrollbar only if needed
+	if (fabs(m_available_scroll_height - m_scroll_bar_height) >= 1) {
+		addAndMakeVisible(m_scroll_bar);
+	}
+}
+
+
 void PatchBrowserSelector::generateContent() {
 
 	removeAllChildren();
 	m_entries.clear();
+
+	//allways show "Factory Presets" in Soundbank selector first
+	if (m_browser_type == BrowserType::Soundbank) {
+		m_entries.push_back(std::make_unique<BrowserEntry>("Static Factory Presets", m_GUI_big));
+		m_entries[0]->onLeftClick = [this]() {
+			//DBG(return_string + " was clicked!");
+			passValueToPatchBrowser(FACTORY_PRESETS_SOUNDBANK_CODE);
+			unhighlightAllEntries();
+		};
+		m_entries[0]->onRightClick = []() {};
+	}
 
 	//add the buttons again
 	if (m_show_left_button) {
@@ -327,13 +403,13 @@ void PatchBrowserSelector::generateContent() {
 						m_input_field.setText(p_name);
 					};
 				}
-				String return_string               = file_array[file_index].getFileName();
-				m_entries[file_index]->onLeftClick = [&, return_string]() {
+				String return_string          = file_array[file_index].getFileName();
+				m_entries.back()->onLeftClick = [&, return_string]() {
 					//DBG(return_string + " was clicked!");
 					passValueToPatchBrowser(return_string);
 					unhighlightAllEntries();
 				};
-				m_entries[file_index]->onRightClick = [&, return_string, file_index]() {
+				m_entries.back()->onRightClick = [&, return_string, file_index]() {
 					int selected = m_menu.show();
 
 					if (selected == PATCH_BROWSER_MENU_ENTRY_DELETE) {
@@ -347,7 +423,7 @@ void PatchBrowserSelector::generateContent() {
 						onCopy(m_entries[file_index]->getText(), getCopyFileString(selected));
 					}
 				};
-				m_entries[file_index]->applyRenaming = [&](String p_old_name, String p_new_name) {
+				m_entries.back()->applyRenaming = [&](String p_old_name, String p_new_name) {
 					applyRenamingSelector(getDirectory(), p_old_name, p_new_name);
 				};
 			}
@@ -497,6 +573,10 @@ void PatchBrowserSelector::setCopyMoveEnabled(bool p_enabled) {
 
 void PatchBrowserSelector::enablePassActiveNameToParent(bool p_enable) {
 	m_pass_active_element_to_parent = p_enable;
+}
+
+void PatchBrowserSelector::setType(BrowserType p_type) {
+	m_browser_type = p_type;
 }
 
 // void PatchBrowserSelector::focusLost(FocusChangeType p_cause){

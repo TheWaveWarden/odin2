@@ -51,7 +51,6 @@ private:
 
     void setFirstSoundbankActive();
 
-    #include "FactoryPresetNames.h"
 
 	std::unique_ptr<FileChooser> m_filechooser;
 

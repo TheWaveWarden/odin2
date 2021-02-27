@@ -21,6 +21,8 @@
 #include "PatchBrowserScrollBar.h"
 #include "OdinFeels.h"
 
+#define FACTORY_PRESETS_SOUNDBANK_CODE "F_A_C_T_O_R_Y"
+
 #define ENTRY_HEIGHT_150 24
 #define ENTRY_HEIGHT_100 18
 
@@ -111,6 +113,7 @@ protected:
 class PatchBrowserSelector : public Component {
 public:
 	enum class DirectoryStatus { Ok, Empty, Nonexistent };
+	enum class BrowserType { Soundbank, Category, Patch };
 
 	PatchBrowserSelector(File::TypesOfFileToFind p_file_or_dir,
 	                     String p_left_button,
@@ -128,11 +131,14 @@ public:
 	void hideInputField();
 
 	void setDirectory(String p_absolute_path);
+	void setDirectoryFactoryPresetCategory();
+	void setDirectoryFactoryPresetPreset(const std::string& p_category);
 	String getDirectory();
 	void setWildCard(String p_wildcard);
 	void resetScrollPosition();
 	String getFirstSubDirectoryAndHighlightIt();
 	String getSubDirectoryAndHighlightItFromName(String p_name);
+	void setType(BrowserType p_type);
 
 	void mouseWheelMove(const MouseEvent &event, const MouseWheelDetails &wheel) override;
 
@@ -165,6 +171,7 @@ public:
 
 private:
 	void generateContent();
+	void generateContentFactoryPresetCategories();
 	void unhighlightAllEntries();
 	void enforceScrollLimits();
 	void showButtons(bool p_show);
@@ -215,6 +222,10 @@ private:
 	String m_copy_target_name = "";
 
 	bool m_pass_active_element_to_parent = false;
+	BrowserType m_browser_type;
+
+	//auto generated header with the factory preset names
+    #include "FactoryPresetNames.h"
 
 	DirectoryStatus m_directory_status = DirectoryStatus::Nonexistent;
 };

@@ -31,6 +31,10 @@ PatchBrowser::PatchBrowser(OdinAudioProcessor &p_processor, AudioProcessorValueT
 	addAndMakeVisible(m_category_selector);
 	addAndMakeVisible(m_patch_selector);
 
+	m_soundbank_selector.setType(PatchBrowserSelector::BrowserType::Soundbank);
+	m_category_selector.setType(PatchBrowserSelector::BrowserType::Category);
+	m_patch_selector.setType(PatchBrowserSelector::BrowserType::Patch);
+
 	m_patch_selector.enablePassActiveNameToParent(true);
 
 	m_soundbank_selector.setCopyMoveEnabled(false);
@@ -43,12 +47,22 @@ PatchBrowser::PatchBrowser(OdinAudioProcessor &p_processor, AudioProcessorValueT
 	m_patch_selector.setDirectory(m_category_selector.getFirstSubDirectoryAndHighlightIt());
 
 	m_soundbank_selector.passValueToPatchBrowser = [&](String p_string) {
+		if(p_string == FACTORY_PRESETS_SOUNDBANK_CODE) {
+			DBG("The Factory Preset Soundbank has been requested!");
+			m_category_selector.setDirectoryFactoryPresetCategory();
+			//todo m_patch_selector
+			return;
+		}
 		DBG(p_string + " was pressed in soundbank");
 		m_category_selector.setDirectory(m_soundbank_selector.getDirectory() + File::getSeparatorString() + p_string);
 		m_patch_selector.setDirectory(m_category_selector.getFirstSubDirectoryAndHighlightIt());
 	};
 
 	m_category_selector.passValueToPatchBrowser = [&](String p_string) {
+		if(p_string.toStdString().find(FACTORY_PRESETS_SOUNDBANK_CODE) != std::string::npos) {
+			m_patch_selector.setDirectoryFactoryPresetPreset(p_string.toStdString().substr(std::string(FACTORY_PRESETS_SOUNDBANK_CODE).size()));
+			return;
+		}
 		DBG(p_string + " was pressed in category");
 		m_patch_selector.setDirectory(m_category_selector.getDirectory() + File::getSeparatorString() + p_string);
 	};
