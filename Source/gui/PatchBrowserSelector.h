@@ -136,6 +136,7 @@ public:
 	String getDirectory();
 	void setWildCard(String p_wildcard);
 	void resetScrollPosition();
+	void highlightFirstEntry();
 	String getFirstSubDirectoryAndHighlightIt();
 	String getSubDirectoryAndHighlightItFromName(String p_name);
 	void setType(BrowserType p_type);

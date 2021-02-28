@@ -44,15 +44,18 @@ PatchBrowser::PatchBrowser(OdinAudioProcessor &p_processor, AudioProcessorValueT
 	m_patch_selector.setCopyTargetName("Category");
 
 	m_soundbank_selector.setDirectory(DEFAULT_SOUNDBANK_LOCATION_STRING);
-	m_category_selector.setDirectory(m_soundbank_selector.getFirstSubDirectoryAndHighlightIt());
+	
+	m_category_selector.setDirectoryFactoryPresetCategory();
+	m_patch_selector.setDirectoryFactoryPresetPreset("Arps & Sequences");
+
 	m_patch_selector.setWildCard("*.odin");
-	m_patch_selector.setDirectory(m_category_selector.getFirstSubDirectoryAndHighlightIt());
+	m_patch_selector.setDirectoryFactoryPresetPreset("Arps & Sequences");
 
 	m_soundbank_selector.passValueToPatchBrowser = [&](String p_string) {
 		if(p_string == FACTORY_PRESETS_SOUNDBANK_CODE) {
 			DBG("The Factory Preset Soundbank has been requested!");
 			m_category_selector.setDirectoryFactoryPresetCategory();
-			//todo category is not highlighted
+			m_category_selector.highlightFirstEntry();
 			m_patch_selector.setDirectoryFactoryPresetPreset("Arps & Sequences");
 			return;
 		}
@@ -638,6 +641,7 @@ PatchBrowser::PatchBrowser(OdinAudioProcessor &p_processor, AudioProcessorValueT
 	    "new Soundbank with the \"New\" button below!",
 	    "Soundbank folder\n" + DEFAULT_SOUNDBANK_LOCATION_STRING +
 	        "\n\nnot found! Please create this folder or reinstall the plugin");
+
 }
 
 PatchBrowser::~PatchBrowser() {
@@ -1191,6 +1195,9 @@ void PatchBrowser::loadSoundbankWithFileBrowser(String p_directory) {
 }
 
 void PatchBrowser::setFirstSoundbankActive() {
-	m_category_selector.setDirectory(m_soundbank_selector.getFirstSubDirectoryAndHighlightIt());
-	m_patch_selector.setDirectory(m_category_selector.getFirstSubDirectoryAndHighlightIt());
+	//factory presets:
+	m_soundbank_selector.highlightFirstEntry();
+	m_category_selector.setDirectoryFactoryPresetCategory();
+	m_category_selector.highlightFirstEntry();
+	m_patch_selector.setDirectoryFactoryPresetPreset("Arps & Sequences");
 }

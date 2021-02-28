@@ -224,6 +224,7 @@ void PatchBrowserSelector::setDirectory(String p_absolute_path) {
 
 void PatchBrowserSelector::setDirectoryFactoryPresetCategory() {
 	m_menu.clear();
+	m_menu.addItem(1, "Factory Preset items cannot be modified", false);
 	m_copy_move_map.clear();
 	resetScrollPosition();
 	regenerateContent();
@@ -331,6 +332,8 @@ void PatchBrowserSelector::generateContentFactoryPresetCategories() {
 	if (fabs(m_available_scroll_height - m_scroll_bar_height) >= 1) {
 		addAndMakeVisible(m_scroll_bar);
 	}
+
+	m_directory_status = DirectoryStatus::Ok;
 }
 
 void PatchBrowserSelector::setDirectoryFactoryPresetPreset(const std::string& p_category) {
@@ -357,6 +360,8 @@ void PatchBrowserSelector::setDirectoryFactoryPresetPreset(const std::string& p_
 	if (fabs(m_available_scroll_height - m_scroll_bar_height) >= 1) {
 		addAndMakeVisible(m_scroll_bar);
 	}
+
+	m_directory_status = DirectoryStatus::Ok;
 }
 
 
@@ -506,6 +511,13 @@ void PatchBrowserSelector::enforceScrollLimits() {
 
 String PatchBrowserSelector::getDirectory() {
 	return m_absolute_path;
+}
+
+void PatchBrowserSelector::highlightFirstEntry() {
+	unhighlightAllEntries();
+	if (m_entries.size() > 0) {
+		m_entries[0]->setEntryActive(true);
+	}
 }
 
 String PatchBrowserSelector::getFirstSubDirectoryAndHighlightIt() {
