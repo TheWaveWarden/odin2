@@ -1,3 +1,5 @@
+- factory presets are now contained in the binary
+- linux: enabled link-time optimization
 - renamed debian package from odin to odin2-synth to avoid conflicts with repositories
 - Added MIDI Breath (CC 2) as modulation source
 - Retrig playmode now restarts the ADSR Attack from the current value, rather than zero

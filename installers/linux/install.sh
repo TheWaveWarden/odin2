@@ -15,17 +15,12 @@ sudo cp -r $DIR/Odin2.vst3 /usr/lib/vst3
 echo "Copy Odin2 to LV2 directory"
 sudo cp -r $DIR/Odin2.lv2 /usr/lib/lv2
 
-#echo "Remove old Odin2 VST2 version (if it exists)"
-#sudo rm /usr/lib/vst/odin2
-
-echo "Create Odin2 soundbank and config file folder"
-sudo mkdir -p /opt/odin2/Soundbanks
-
-echo "Copy Soundbanks"
-sudo cp -r $DIR/Soundbanks/* /opt/odin2/Soundbanks/
-
-echo "Adjust write permissions for soundbank folder"
-sudo chmod -R 777 /opt/odin2
+if [ ! -d "$HOME/.local/share/odin2/Soundbanks" ]; then
+    echo "Migrate Soundbanks from old location:"
+    mkdir -p "$HOME/.local/share/odin2/Soundbanks/User Patches"
+    cp -r /opt/odin2/Soundbanks/* $HOME/.local/share/odin2/Soundbanks/
+    sudo chown -R $USER:$USER $HOME/.local/share/odin2
+fi
 
 echo "Done!"
 
