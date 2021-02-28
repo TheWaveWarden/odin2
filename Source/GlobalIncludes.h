@@ -27,10 +27,10 @@
 #endif
 #ifdef ODIN_WIN
 #define M_PI 3.14159265359
-#pragma warning( disable : 4244 ) //disable conversion warnings
-#pragma warning( disable : 4100 ) //disable unreferenced parameter warning (VS really misses the point here...)
-#pragma warning( disable : 4305 ) //disable double to float truncation warning
-#pragma warning( disable : 4267 ) //disable size_t to int truncation warning
+#pragma warning(disable : 4244) //disable conversion warnings
+#pragma warning(disable : 4100) //disable unreferenced parameter warning (VS really misses the point here...)
+#pragma warning(disable : 4305) //disable double to float truncation warning
+#pragma warning(disable : 4267) //disable size_t to int truncation warning
 #endif
 #ifdef ODIN_MAC
 #endif
@@ -42,8 +42,7 @@
 #define ODIN_MINOR_VERSION 2
 #define ODIN_PATCH_VERSION 4
 
-#define ODIN_VERSION_STRING                                                                                            \
-	("Odin 2." + std::to_string(ODIN_MINOR_VERSION) + "." + std::to_string(ODIN_PATCH_VERSION))
+#define ODIN_VERSION_STRING ("Odin 2." + std::to_string(ODIN_MINOR_VERSION) + "." + std::to_string(ODIN_PATCH_VERSION))
 
 // ! this is for migrating patches from older version, not to be confused with above
 #define ODIN_PATCH_MIGRATION_VERSION 4
@@ -75,26 +74,25 @@
 #define MATRIX_SECTION_INDEX_ARP 1
 #define MATRIX_SECTION_INDEX_MATRIX 0
 
-
-
-//#ifdef ODIN_LINUXXXX
-//#define ODIN_STORAGE_PATH File::getSpecialLocation(File::SpecialLocationType::commonApplicationDataDirectory).getFullPathName() +                    \
-// 	    File::getSeparatorString() + "odin2"
-//#else 
+#ifdef ODIN_LINUX
+#define ODIN_STORAGE_PATH                                                                                              \
+	File::getSpecialLocation(File::SpecialLocationType::userHomeDirectory).getFullPathName() +                         \
+	    File::getSeparatorString() + ".local" + File::getSeparatorString() + "share" + File::getSeparatorString() +    \
+	    "odin2"
+#endif
 #ifdef ODIN_MAC
-#define ODIN_STORAGE_PATH File::getSpecialLocation(File::SpecialLocationType::commonApplicationDataDirectory).getFullPathName() +                    \
- 	    File::getSeparatorString()  + "Audio" + File::getSeparatorString() + "Presets" + File::getSeparatorString() + "odin2"
-#else
-#define ODIN_STORAGE_PATH File::getSpecialLocation(File::SpecialLocationType::commonApplicationDataDirectory).getFullPathName() +                    \
- 	    File::getSeparatorString()  + "odin2"
+#define ODIN_STORAGE_PATH                                                                                              \
+	File::getSpecialLocation(File::SpecialLocationType::commonApplicationDataDirectory).getFullPathName() +            \
+	    File::getSeparatorString() + "Audio" + File::getSeparatorString() + "Presets" + File::getSeparatorString() +   \
+	    "odin2"
+#endif
+#ifdef ODIN_WIN
+#define ODIN_STORAGE_PATH                                                                                              \
+	File::getSpecialLocation(File::SpecialLocationType::commonApplicationDataDirectory).getFullPathName() +            \
+	    File::getSeparatorString() + "odin2"
 #endif
 //#endif
 #define CONFIG_FILE_PATH ODIN_STORAGE_PATH + File::getSeparatorString() + "odin2.conf"
-
-
-
-
-
 
 // leave spare values for future additions :hype:
 #define OSC_TYPE_ANALOG 2
@@ -128,16 +126,15 @@
 #define BROWSER_INLAY_Y_150 5
 #define BROWSER_POS_X_150 411
 #define BROWSER_POS_Y_150 701
-#define BROWSER_SIZE_X_150 (738 + 2*BROWSER_INLAY_X_150)
-#define BROWSER_SIZE_Y_150 (213 + 2*BROWSER_INLAY_Y_150)
+#define BROWSER_SIZE_X_150 (738 + 2 * BROWSER_INLAY_X_150)
+#define BROWSER_SIZE_Y_150 (213 + 2 * BROWSER_INLAY_Y_150)
 
 #define BROWSER_INLAY_X 4
 #define BROWSER_INLAY_Y 4
 #define BROWSER_POS_X 274
 #define BROWSER_POS_Y 467
-#define BROWSER_SIZE_X (492 + 2*BROWSER_INLAY_X)
-#define BROWSER_SIZE_Y (141 + 2*BROWSER_INLAY_Y)
-
+#define BROWSER_SIZE_X (492 + 2 * BROWSER_INLAY_X)
+#define BROWSER_SIZE_Y (141 + 2 * BROWSER_INLAY_Y)
 
 // midpoint for filters:
 // https://www.wolframalpha.com/input/?i=80*e%5E%28ln%2818000%2F80%29*0.5%29
@@ -219,20 +216,14 @@
 	DBG("REPLACE SKEW:  NormalisableRange<float>(" + std::to_string(component.getMinimum()) + ", " +                   \
 	    std::to_string(component.getMaximum()) + ", 0, " + std::to_string(component.getSkewFactor()) + ")");
 
-
 typedef AudioProcessorValueTreeState::SliderAttachment SliderAttachment;
 typedef AudioProcessorValueTreeState::ButtonAttachment ButtonAttachment;
 typedef AudioProcessorValueTreeState::ComboBoxAttachment ComboBoxAttachment;
 
-
 // note: these are not the values stored in the value tree, since historically the param was a button (mono 0, poly 1) and is now a dropdown (can't be 0)
-enum class PlayModes {
-	Legato = 1,
-	Poly = 2,
-	Retrig = 3
-};
+enum class PlayModes { Legato = 1, Poly = 2, Retrig = 3 };
 #define PLAYMODETOVALUETREE(playmode) ((int)playmode - 1)
-#define VALUETREETOPLAYMODE(mode) ((PlayModes) (mode + 1))
+#define VALUETREETOPLAYMODE(mode) ((PlayModes)(mode + 1))
 
 //Used to convert positions and sizes to 150% GUI scaling
 class OdinHelper {
