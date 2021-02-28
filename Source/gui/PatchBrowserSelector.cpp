@@ -395,6 +395,18 @@ void PatchBrowserSelector::generateContent() {
 	if (current_dir.isDirectory()) {
 
 		Array<File> file_array = current_dir.findChildFiles(m_file_or_dir, false, m_wildcard);
+		//don't show the old factory presets (before they were in binary)
+		if(m_browser_type == BrowserType::Soundbank && file_array.size() > 0) {
+			int remove_index = -1;
+			for (int file_index = 0; file_index < file_array.size(); ++file_index) {
+				if(file_array[file_index].getFileName() == "Factory Presets") {
+					remove_index = file_index;
+				}
+			}
+			if(remove_index != -1) {
+				file_array.remove(remove_index);
+			}
+		}
 		if (file_array.size() > 0) {
 
 			file_array.sort(m_file_comparator);
