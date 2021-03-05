@@ -1,26 +1,31 @@
 \chapter{Global Settings}
 \label{global}
 
-\section{Polyphonic / Legato}
+\section{Play Modes}
 \label{legato}
 
-Odin 2 is capable of two play modes: \fat{polyphonic} or \fat{legato}.
+Odin 2 is capable of three play modes: \fat{Polyphonic}, \fat{Legato} and \fat{Retrig}.
 
 \vspace{3mm}
-In the default polyphonic mode, you can play up to 24 voices. When you reached the voice limit, the oldest note that is not still held down will be stolen and used as the new voice.
+In the default mode \fat{Poly}, you can play up to 24 voices. When you reached the voice limit, the oldest note that is not still held down will be stolen and used as the new voice.
 
 \vspace{3mm}
-In legato mode, you have only one voice to play with. This can be very useful if you don't want notes to overlap, for example in a lead or bass type of sound. In legato mode, the \hyperref[ADSR]{envelopes} perform a "soft reset". Instead of starting the attack from zero, the last value output by the envelope will be used as the start of the attack section. This way, clicky noises can be avoided for example in the Amp Envelope.
+In \fat{Legato} mode, you have only one voice to play with. When playing another note while still holding down the last note, \fat{the envelope generators (see \ref{ADSR}) will not be retriggered}. 
+This essentially creates one long note, which changes pitch as you press the second key. Legato mode can be very useful if you don't want notes to overlap, for example in a lead or bass type of sound. 
 
 \vspace{3mm}
-The switch for the play modes can be found in the top-right corner of the GUI.
+\fat{Retrig} mode also features a single voice. In contrast to Legato mode, the envelopes perform a \fat{soft-reset} when overlapping notes are triggered. In that case, the Attack section of the envelopes (see \ref{ADSR})
+is not started from zero, but the value it is currently on. This creates a smooth transition between the two notes, while still giving each note their own percussive start.
+
+\vspace{3mm}
+The drop-down to select the play mode can be found on the top of the GUI.
 
 
-\audioparameter{Poly / Legato}{0}{1}{
+\audioparameter{Play Mode}{0}{0}{
     \begin{center}
         \includegraphics[width=0.15\textwidth]{graphics/poly_legato.png}
     \end{center}
-    Toggles between polyphonic and legato play modes.
+    Select between playmodes \fat{Poly}, \fat{Legato} and \fat{Retrig}.
 }
 
 \clearpage

@@ -49,6 +49,6 @@
 \contentsline {section}{\numberline {7.5}Modulation Destinations}{58}{section.7.5}% 
 \contentsline {chapter}{\numberline {8}Arpeggiator \& Step Sequencer}{65}{chapter.8}% 
 \contentsline {chapter}{\numberline {9}Global Settings}{71}{chapter.9}% 
-\contentsline {section}{\numberline {9.1}Polyphonic / Legato}{71}{section.9.1}% 
+\contentsline {section}{\numberline {9.1}Play Modes}{71}{section.9.1}% 
 \contentsline {section}{\numberline {9.2}Unison}{72}{section.9.2}% 
 \contentsline {section}{\numberline {9.3}Glide and Master}{73}{section.9.3}% 

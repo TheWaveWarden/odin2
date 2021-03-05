@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2021.1.19)  5 MAR 2021 12:05
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2021.1.19)  5 MAR 2021 12:35
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -3189,21 +3189,21 @@ vs_transpose.png> <./graphics/arpeggiator_mod2.png (PNG copy)>] [70 <./graphics
 Chapter 9.
 File: graphics/knob.png Graphic file (type png)
 <use graphics/knob.png>
-Package pdftex.def Info: graphics/knob.png  used on input line 24.
+Package pdftex.def Info: graphics/knob.png  used on input line 29.
 (pdftex.def)             Requested size: 26.30635pt x 29.95972pt.
 File: graphics/not_available.png Graphic file (type png)
 <use graphics/not_available.png>
-Package pdftex.def Info: graphics/not_available.png  used on input line 24.
+Package pdftex.def Info: graphics/not_available.png  used on input line 29.
 (pdftex.def)             Requested size: 8.77101pt x 9.89503pt.
-File: graphics/available.png Graphic file (type png)
-<use graphics/available.png>
-Package pdftex.def Info: graphics/available.png  used on input line 24.
-(pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
-<graphics/poly_legato.png, id=847, 112.42pt x 35.13126pt>
+File: graphics/not_available.png Graphic file (type png)
+<use graphics/not_available.png>
+Package pdftex.def Info: graphics/not_available.png  used on input line 29.
+(pdftex.def)             Requested size: 8.77101pt x 9.89503pt.
+<graphics/poly_legato.png, id=848, 119.44624pt x 48.18pt>
 File: graphics/poly_legato.png Graphic file (type png)
 <use graphics/poly_legato.png>
-Package pdftex.def Info: graphics/poly_legato.png  used on input line 24.
-(pdftex.def)             Requested size: 65.76588pt x 20.55249pt.
+Package pdftex.def Info: graphics/poly_legato.png  used on input line 29.
+(pdftex.def)             Requested size: 65.76588pt x 26.527pt.
 [71
 
 
@@ -3213,43 +3213,43 @@ Package pdftex.def Info: graphics/poly_legato.png  used on input line 24.
 <graphics/unison.png, id=853, 279.0425pt x 37.13875pt>
 File: graphics/unison.png Graphic file (type png)
 <use graphics/unison.png>
-Package pdftex.def Info: graphics/unison.png  used on input line 31.
+Package pdftex.def Info: graphics/unison.png  used on input line 36.
 (pdftex.def)             Requested size: 187.89914pt x 25.00864pt.
 File: graphics/knob.png Graphic file (type png)
 <use graphics/knob.png>
-Package pdftex.def Info: graphics/knob.png  used on input line 55.
+Package pdftex.def Info: graphics/knob.png  used on input line 60.
 (pdftex.def)             Requested size: 26.30635pt x 29.95972pt.
 File: graphics/not_available.png Graphic file (type png)
 <use graphics/not_available.png>
-Package pdftex.def Info: graphics/not_available.png  used on input line 55.
+Package pdftex.def Info: graphics/not_available.png  used on input line 60.
 (pdftex.def)             Requested size: 8.77101pt x 9.89503pt.
 File: graphics/not_available.png Graphic file (type png)
 <use graphics/not_available.png>
-Package pdftex.def Info: graphics/not_available.png  used on input line 55.
+Package pdftex.def Info: graphics/not_available.png  used on input line 60.
 (pdftex.def)             Requested size: 8.77101pt x 9.89503pt.
 File: graphics/knob.png Graphic file (type png)
 <use graphics/knob.png>
-Package pdftex.def Info: graphics/knob.png  used on input line 59.
+Package pdftex.def Info: graphics/knob.png  used on input line 64.
 (pdftex.def)             Requested size: 26.30635pt x 29.95972pt.
 File: graphics/not_available.png Graphic file (type png)
 <use graphics/not_available.png>
-Package pdftex.def Info: graphics/not_available.png  used on input line 59.
+Package pdftex.def Info: graphics/not_available.png  used on input line 64.
 (pdftex.def)             Requested size: 8.77101pt x 9.89503pt.
 File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
-Package pdftex.def Info: graphics/available.png  used on input line 59.
+Package pdftex.def Info: graphics/available.png  used on input line 64.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
 File: graphics/knob.png Graphic file (type png)
 <use graphics/knob.png>
-Package pdftex.def Info: graphics/knob.png  used on input line 63.
+Package pdftex.def Info: graphics/knob.png  used on input line 68.
 (pdftex.def)             Requested size: 26.30635pt x 29.95972pt.
 File: graphics/not_available.png Graphic file (type png)
 <use graphics/not_available.png>
-Package pdftex.def Info: graphics/not_available.png  used on input line 63.
+Package pdftex.def Info: graphics/not_available.png  used on input line 68.
 (pdftex.def)             Requested size: 8.77101pt x 9.89503pt.
 File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
-Package pdftex.def Info: graphics/available.png  used on input line 63.
+Package pdftex.def Info: graphics/available.png  used on input line 68.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
  [72
 
@@ -3257,31 +3257,31 @@ Package pdftex.def Info: graphics/available.png  used on input line 63.
 <graphics/master_glide.png, id=861, 74.2775pt x 149.55875pt>
 File: graphics/master_glide.png Graphic file (type png)
 <use graphics/master_glide.png>
-Package pdftex.def Info: graphics/master_glide.png  used on input line 71.
+Package pdftex.def Info: graphics/master_glide.png  used on input line 76.
 (pdftex.def)             Requested size: 46.66019pt x 93.94957pt.
 File: graphics/knob.png Graphic file (type png)
 <use graphics/knob.png>
-Package pdftex.def Info: graphics/knob.png  used on input line 76.
+Package pdftex.def Info: graphics/knob.png  used on input line 81.
 (pdftex.def)             Requested size: 26.30635pt x 29.95972pt.
 File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
-Package pdftex.def Info: graphics/available.png  used on input line 76.
+Package pdftex.def Info: graphics/available.png  used on input line 81.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
 File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
-Package pdftex.def Info: graphics/available.png  used on input line 76.
+Package pdftex.def Info: graphics/available.png  used on input line 81.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
 File: graphics/knob.png Graphic file (type png)
 <use graphics/knob.png>
-Package pdftex.def Info: graphics/knob.png  used on input line 80.
+Package pdftex.def Info: graphics/knob.png  used on input line 85.
 (pdftex.def)             Requested size: 26.30635pt x 29.95972pt.
 File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
-Package pdftex.def Info: graphics/available.png  used on input line 80.
+Package pdftex.def Info: graphics/available.png  used on input line 85.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
 File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
-Package pdftex.def Info: graphics/available.png  used on input line 80.
+Package pdftex.def Info: graphics/available.png  used on input line 85.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
 ) [73 <./graphics/master_glide.png>]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 128.
@@ -3292,13 +3292,13 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 128.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 128.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 128.
 Package rerunfilecheck Info: File `manual.out' has not changed.
-(rerunfilecheck)             Checksum: C3667A59B118F0D43AD02E12237AD218;3182.
+(rerunfilecheck)             Checksum: A36FC6F3E17EB99A753F8AF75ADB5BE7;3173.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 128.
  ) 
 Here is how much of TeX's memory you used:
  32344 strings out of 494561
  648354 string characters out of 6177454
- 865006 words of memory out of 5000000
+ 864997 words of memory out of 5000000
  35308 multiletter control sequences out of 15000+600000
  583825 words of font info for 69 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
@@ -3317,10 +3317,10 @@ fonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
 .pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb><
 /usr/share/texlive/texmf-dist/fonts/type1/adobe/utopia/putb8a.pfb></usr/share/t
 exlive/texmf-dist/fonts/type1/adobe/utopia/putr8a.pfb>
-Output written on manual.pdf (74 pages, 6053368 bytes).
+Output written on manual.pdf (74 pages, 6055324 bytes).
 PDF statistics:
  938 PDF objects out of 1000 (max. 8388607)
- 671 compressed objects within 7 object streams
+ 672 compressed objects within 7 object streams
  135 named destinations out of 1000 (max. 500000)
  1040 words of extra memory for PDF output out of 10000 (max. 10000000)
 
