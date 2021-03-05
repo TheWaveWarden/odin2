@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2021.1.19)  5 MAR 2021 13:26
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2021.1.19)  5 MAR 2021 14:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2875,41 +2875,41 @@ Underfull \vbox (badness 10000) detected at line 181
  []
 
 
-Overfull \hbox (12.41869pt too wide) in alignment at lines 181--206
+Overfull \hbox (12.41869pt too wide) in alignment at lines 181--209
  [] [] [] [] 
  []
 
 [56] [57]
-Overfull \hbox (1.10257pt too wide) in paragraph at lines 238--238
+Overfull \hbox (1.10257pt too wide) in paragraph at lines 241--241
 \OT1/put/b/n/8 Mono/ 
  []
 
 
-Overfull \hbox (7.71654pt too wide) in alignment at lines 234--330
+Overfull \hbox (7.71654pt too wide) in alignment at lines 237--333
  [] [] [] [] 
  []
 
 
-Underfull \vbox (badness 10000) detected at line 330
+Underfull \vbox (badness 10000) detected at line 333
  []
 
 
-Overfull \hbox (7.71654pt too wide) in alignment at lines 330--440
+Overfull \hbox (7.71654pt too wide) in alignment at lines 333--443
  [] [] [] [] 
  []
 
 [58]
-Overfull \hbox (7.71654pt too wide) in alignment at lines 440--550
+Overfull \hbox (7.71654pt too wide) in alignment at lines 443--553
  [] [] [] [] 
  []
 
 [59] [60]
-Overfull \hbox (7.71654pt too wide) in alignment at lines 550--660
+Overfull \hbox (7.71654pt too wide) in alignment at lines 553--663
  [] [] [] [] 
  []
 
 [61]
-Overfull \hbox (7.71654pt too wide) in alignment at lines 660--668
+Overfull \hbox (7.71654pt too wide) in alignment at lines 663--671
  [] [] [] [] 
  []
 
@@ -3305,7 +3305,7 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 128.
 Here is how much of TeX's memory you used:
  32353 strings out of 494561
  648528 string characters out of 6177454
- 865036 words of memory out of 5000000
+ 866036 words of memory out of 5000000
  35314 multiletter control sequences out of 15000+600000
  583825 words of font info for 69 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
@@ -3324,7 +3324,7 @@ fonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
 .pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb><
 /usr/share/texlive/texmf-dist/fonts/type1/adobe/utopia/putb8a.pfb></usr/share/t
 exlive/texmf-dist/fonts/type1/adobe/utopia/putr8a.pfb>
-Output written on manual.pdf (75 pages, 6081455 bytes).
+Output written on manual.pdf (75 pages, 6081705 bytes).
 PDF statistics:
  953 PDF objects out of 1000 (max. 8388607)
  685 compressed objects within 7 object streams
