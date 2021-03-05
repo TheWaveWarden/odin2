@@ -67,6 +67,39 @@ The controls for Unison can be found in the top-left corner of the GUI.
     Controls the stereo spread of the voices in the unison stack. Having this value at zero will put all voices in the center of the stereo field. Having the value at one puts the first voices hard-left and the last on hard-right. The voices inbetween are spread linearly inbetween
 }
 
+\section{Microtuning}
+\label{microtuning}
+
+Starting from version 2.3, Odin 2 supports microtuning. This feateare can be used from subtle changes, like retuning the instrument to a different base frequency to a complete remapping of the keyboard.
+You can find the Tuning dropdown on top of the GUI:
+
+\begin{center}
+    \includegraphics[width=0.3\textwidth]{graphics/microtuning.png}
+\end{center}
+
+The tuning is specified by two separate files: The \fat{keyboard mapping} files (\fat{.kbm}) and \fat{Scala} files (\fat{.scl}). Together, they make up a complete and arbitrary tuning of the synthesizer.
+To read up on the specifications, use these resources:
+
+\vspace{3mm}
+Scala File Specification: \url{http://www.huygens-fokker.org/scala/scl_format.html}
+
+\vspace{3mm}
+Keyboard Mapping Specification: \url{http://www.huygens-fokker.org/scala/help.htm#mappings}
+
+\vspace{3mm}
+A large variety of tuning files can be downloaded from this scale archive: \url{http://www.huygens-fokker.org/docs/scales.zip}.
+
+\vspace{3mm}
+To generate your own .kbm and .scl files, use the "Export SCL/KBM file" option. This will let you save the currently used files and adjust them as needed. You can then import the modded file again.
+
+
+
+
+
+
+
+
+
 \section{Glide and Master}
 \label{glide}
 
