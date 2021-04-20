@@ -1819,6 +1819,14 @@
             file="Graphics_150/applied/WW_logo_xy_150.png"/>
     </GROUP>
     <GROUP id="{7AF384ED-9FD6-6492-4B8C-5777BB9A2698}" name="Source">
+      <FILE id="Z5h8IC" name="FeedbackDelayNetwork.cpp" compile="1" resource="0"
+            file="Source/audio/FX/FeedbackDelayNetwork.cpp"/>
+      <FILE id="JZkpjA" name="FeedbackDelayNetwork.h" compile="0" resource="0"
+            file="Source/audio/FX/FeedbackDelayNetwork.h"/>
+      <FILE id="MDr7Ji" name="IntegerDelayLine.cpp" compile="1" resource="0"
+            file="Source/audio/FX/IntegerDelayLine.cpp"/>
+      <FILE id="TDuwde" name="IntegerDelayLine.h" compile="0" resource="0"
+            file="Source/audio/FX/IntegerDelayLine.h"/>
       <FILE id="BaQyHx" name="SurgeReverb.h" compile="0" resource="0" file="Source/audio/FX/SurgeReverb.h"/>
       <FILE id="Q9R7V5" name="SurgeReverb.cpp" compile="1" resource="0" file="Source/audio/FX/SurgeReverb.cpp"/>
       <FILE id="PGDVFF" name="ZitaReverb.h" compile="0" resource="0" file="Source/audio/FX/ZitaReverb.h"/>
