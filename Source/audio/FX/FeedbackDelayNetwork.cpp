@@ -4,6 +4,27 @@ FeedbackDelayNetwork::FeedbackDelayNetwork() {
 	for (int i = 0; i < DFN_SIZE; ++i) {
 		m_delay[i].setDelayLength(m_prime_numbers[i]);
 	}
+
+	//set up matrix
+	for (int x_big = 0; x_big < 16; x_big += 4) {
+		for (int y_big = 0; y_big < 16; y_big += 4) {
+			for (int x = 0; x < 4; ++x) {
+				for (int y = 0; y < 4; ++y) {
+					if (x == y) {
+						A[x_big + x][y_big + y] = 1;
+					} else {
+						A[x_big + x][y_big + y] = -1;
+					}
+				}
+			}
+		}
+	}
+
+	for (int y = 0; y < DFN_SIZE; ++y) {
+		DBG(A[0][y] << " " << A[1][y] << " " << A[2][y] << " " << A[3][y] << " " << A[4][y] << " " << A[5][y] << " "
+		            << A[6][y] << " " << A[7][y] << " " << A[8][y] << " " << A[9][y] << " " << A[10][y] << " "
+		            << A[11][y] << " " << A[12][y] << " " << A[13][y] << " " << A[14][y] << " " << A[15][y]);
+	}
 }
 
 FeedbackDelayNetwork::~FeedbackDelayNetwork() {
