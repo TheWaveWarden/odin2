@@ -81,7 +81,7 @@ void ParametricEQ::prepare() {
 			}
 		}
 	}
-	dump("PREPARE");
+	//dump("PREPARE");
  }
 
 void ParametricEQ::calcpar1(int nsamp, float g, float f) {
@@ -101,7 +101,7 @@ void ParametricEQ::calcpar1(int nsamp, float g, float f) {
 		_c2 = c2;
 		_gg = gg;
 	}
-	dump("CALCPAR1");
+	//dump("CALCPAR1");
 }
 
 void ParametricEQ::process1(float data[]) {

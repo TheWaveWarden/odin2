@@ -227,7 +227,7 @@ private:
 	Phaser m_phaser;        // is stereo phaser
 	SurgeReverb m_reverb_surge; // is stereo reverb
 	ZitaReverb m_reverb_zita;
-	FeedbackDelayNetwork m_reverb_fdn;
+	FeedbackDelayNetwork m_reverb_fdn[2];
 	Flanger m_flanger[2];
 	Chorus m_chorus[2];
 

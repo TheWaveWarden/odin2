@@ -703,6 +703,8 @@ void OdinAudioProcessor::treeValueChangedReverb(const String &p_ID, float p_new_
 		//m_reverb_surge.set_ducking(p_new_value);
 	} else if (id == m_reverb_dry_wet_identifier) {
 		m_reverb_surge.setMix(p_new_value);
+		m_reverb_fdn[0].setDryWet(p_new_value);
+		m_reverb_fdn[1].setDryWet(p_new_value);
 	}
 }
 

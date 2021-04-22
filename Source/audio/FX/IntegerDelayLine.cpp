@@ -10,11 +10,13 @@ IntegerDelayLine::~IntegerDelayLine() {
 }
 
 void IntegerDelayLine::setDelayLength(int p_length) {
+	DBG("Set Delay length: " << p_length);
 	if (m_length != -1) {
 		deallocateDelayBuffer();
 	}
 
-	m_length = p_length;
+	// 1 sample is needed bc of output -> input delay, so make delay line 1 sample shorter
+	m_length = p_length - 1;
 
 	//read is always one ahead, to avoid saving value in separate var before overwriting
 	m_buffer        = new float[m_length + 1];
