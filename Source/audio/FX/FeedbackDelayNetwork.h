@@ -6,6 +6,10 @@
 //https://www.dsprelated.com/freebooks/pasp/FDN_Reverberation.html
 //http://pub.dega-akustik.de/DAGA_2014/data/articles/000025.pdf
 
+//! Note: this class is currently not used in the synthesizer
+//! It has a rough, metallic sound and needs lots of more research and tweaking
+//! to be usefull
+
 #define FDN_SIZE 16
 #define FDN_GAIN_DEFAULT 0.245
 
