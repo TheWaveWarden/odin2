@@ -11,6 +11,7 @@
 - created Azure-CI pipelines for Ubuntu-18.04, MacOs 10.14 and Windows2019
 - all path opened with patchbrowsers are now remembered after reopening plugin and shared among different plugin instances
 - removed unnessecary dependency to libcurl4
+- updated to JUCE 6.0.8, fixed deprecated function calls
 # 2.2.4
 - fixed Legato carrying current value over to Attack rather than to current section
 - ChipDraw tables now available as LFO waves

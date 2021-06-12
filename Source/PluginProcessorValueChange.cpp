@@ -13,7 +13,7 @@
 ** GNU General Public License for more details.
 */
 
-#define DEBUG_VARIABLES
+//#define DEBUG_VARIABLES
 
 float valueToDenominator(int p_value) {
 	switch (p_value) {

@@ -105,7 +105,7 @@ ReverbComponent::ReverbComponent(AudioProcessorValueTreeState &vts, bool p_is_st
 		//m_value_tree.state.getChildWithName("fx").setProperty("reverb_module", m_module.getSelectedId(), nullptr);
 		setReverbType((ReverbType)m_module.getSelectedId());
 	};
-	addAndMakeVisible(m_module);
+	//addAndMakeVisible(m_module);
 
 	SET_CTR_KEY(m_EQ_gain);
 	SET_CTR_KEY(m_EQ_freq);
@@ -195,6 +195,8 @@ void ReverbComponent::setGUIBig() {
 
 	juce::Image black_knob_mid =
 	    ImageCache::getFromMemory(BinaryData::black_knob_mid_150_png, BinaryData::black_knob_mid_150_pngSize);
+	juce::Image metal_knob_mid =
+	    ImageCache::getFromMemory(BinaryData::metal_knob_mid_150_png, BinaryData::metal_knob_mid_150_pngSize);
 
 	m_delay.setStrip(black_knob_mid, N_KNOB_FRAMES);
 	m_roomsize.setStrip(black_knob_mid, N_KNOB_FRAMES);
@@ -204,7 +206,7 @@ void ReverbComponent::setGUIBig() {
 	m_EQ_gain.setStrip(black_knob_mid, N_KNOB_FRAMES);
 	m_ducking.setStrip(black_knob_mid, N_KNOB_FRAMES);
 	m_EQ_freq.setStrip(black_knob_mid, N_KNOB_FRAMES);
-	m_dry_wet.setStrip(black_knob_mid, N_KNOB_FRAMES);
+	m_dry_wet.setStrip(metal_knob_mid, N_KNOB_FRAMES);
 
 	m_delay.setBounds(OdinHelper::c150(REVERB_DELAY_POS_X),
 	                  OdinHelper::c150(REVERB_DELAY_POS_Y),
@@ -241,8 +243,8 @@ void ReverbComponent::setGUIBig() {
 	                    OdinHelper::c150(BLACK_KNOB_MID_SIZE_Y));
 	m_dry_wet.setBounds(OdinHelper::c150(REVERB_WET_POS_X),
 	                    OdinHelper::c150(REVERB_WET_POS_Y),
-	                    OdinHelper::c150(BLACK_KNOB_MID_SIZE_X),
-	                    OdinHelper::c150(BLACK_KNOB_MID_SIZE_Y));
+	                    OdinHelper::c150(METAL_KNOB_MID_SIZE_X),
+	                    OdinHelper::c150(METAL_KNOB_MID_SIZE_Y));
 
 	juce::Image glas_panel =
 	    ImageCache::getFromMemory(BinaryData::glaspanel_midbig_150_png, BinaryData::glaspanel_midbig_150_pngSize);
@@ -258,8 +260,8 @@ void ReverbComponent::setGUIBig() {
 void ReverbComponent::setGUISmall() {
 	m_GUI_big = false;
 
-	juce::Image metal_knob_big =
-	    ImageCache::getFromMemory(BinaryData::metal_knob_big_png, BinaryData::metal_knob_big_pngSize);
+	juce::Image metal_knob_mid =
+	    ImageCache::getFromMemory(BinaryData::metal_knob_mid_150_png, BinaryData::metal_knob_mid_150_pngSize);
 	juce::Image black_knob_mid =
 	    ImageCache::getFromMemory(BinaryData::black_knob_mid_png, BinaryData::black_knob_mid_pngSize);
 	m_EQ_gain.setStrip(black_knob_mid, N_KNOB_FRAMES);
