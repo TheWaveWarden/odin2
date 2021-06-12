@@ -27,7 +27,7 @@ void ConfigFileManager::createDirIfNeeded() {
 	if (!storage_path.isDirectory()) {
 		DBG("Storage path" << ODIN_STORAGE_PATH " was not found! Try to create it...");
 		auto result = storage_path.createDirectory();
-		if(result.wasOk()){
+		if (result.wasOk()) {
 			DBG("Sucessfully created storage path");
 		} else {
 			DBG("Failed to create storage path");
@@ -45,7 +45,7 @@ void ConfigFileManager::loadDataFromFile() {
 		//parse() returns nullptr for any problem
 		if (config_xml.get()) {
 			if (config_xml->hasTagName(XML_ATTRIBUTE_ODIN_CONFIG)) {
-				forEachXmlChildElement(*config_xml.get(), child) {
+				for (auto *child : config_xml->getChildIterator()) {
 					if (child->hasTagName(XML_ATTRIBUTE_BIG_GUI)) {
 						DBG("Found Config Element: " << XML_ATTRIBUTE_BIG_GUI << ": "
 						                             << (int)child->getBoolAttribute("data"));
