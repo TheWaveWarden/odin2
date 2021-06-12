@@ -116,20 +116,20 @@ void OdinAudioProcessor::setStateInformation(const void *data, int sizeInBytes) 
 		//read tunings and remove them from xmltree:
 		Tunings::Scale scl           = Tunings::evenTemperament12NoteScale();
 		Tunings::KeyboardMapping kbm = Tunings::tuneNoteTo(60, Tunings::MIDI_0_FREQ * 32.0);
-		forEachXmlChildElement(*xmlState, e) {
-			if (e->hasTagName("tuning_scl")) {
+		for (auto *child : xmlState->getChildIterator()) {
+			if (child->hasTagName("tuning_scl")) {
 				try {
-					//DBG(e->getStringAttribute("data"));
-					scl = Tunings::parseSCLData(e->getStringAttribute("data").toStdString());
+					//DBG(child->getStringAttribute("data"));
+					scl = Tunings::parseSCLData(child->getStringAttribute("data").toStdString());
 				} catch (...) {
 					DBG("Failed to load .scl from binary state... resorting to default");
 					scl = Tunings::evenTemperament12NoteScale();
 				}
 			}
-			if (e->hasTagName("tuning_kbm")) {
+			if (child->hasTagName("tuning_kbm")) {
 				try {
-					//DBG(e->getStringAttribute("data"));
-					kbm = Tunings::parseKBMData(e->getStringAttribute("data").toStdString());
+					//DBG(child->getStringAttribute("data"));
+					kbm = Tunings::parseKBMData(child->getStringAttribute("data").toStdString());
 				} catch (...) {
 					DBG("Failed to load .kbm from binary state... resorting to default");
 					kbm = Tunings::tuneNoteTo(60, Tunings::MIDI_0_FREQ * 32.0);
@@ -213,7 +213,7 @@ void OdinAudioProcessor::setSampleRate(float p_samplerate) {
 
 	m_delay.setSampleRate(p_samplerate);
 	m_phaser.setSampleRate(p_samplerate);
-	m_reverb_surge.setSampleRate(p_samplerate);	
+	m_reverb_surge.setSampleRate(p_samplerate);
 	m_reverb_zita.setSampleRate(p_samplerate);
 	m_reverb_zita.prepare();
 	m_global_env.setSampleRate(p_samplerate);
