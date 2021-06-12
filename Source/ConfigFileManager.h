@@ -48,6 +48,7 @@ public:
 	String getOptionPatchDir();
 
 private:
+	void createDirIfNeeded();
 	void loadDataFromFile();
 	//the actual config values with default values
 	bool m_big_gui = true;

@@ -17,6 +17,22 @@
 
 ConfigFileManager::ConfigFileManager() {
 	loadDataFromFile();
+
+	createDirIfNeeded();
+}
+
+void ConfigFileManager::createDirIfNeeded() {
+	//actually this should be done already by the installer
+	File storage_path(ODIN_STORAGE_PATH);
+	if (!storage_path.isDirectory()) {
+		DBG("Storage path" << ODIN_STORAGE_PATH " was not found! Try to create it...");
+		auto result = storage_path.createDirectory();
+		if(result.wasOk()){
+			DBG("Sucessfully created storage path");
+		} else {
+			DBG("Failed to create storage path");
+		}
+	}
 }
 
 void ConfigFileManager::loadDataFromFile() {
