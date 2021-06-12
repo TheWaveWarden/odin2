@@ -696,13 +696,18 @@ void OdinAudioProcessor::treeValueChangedReverb(const String &p_ID, float p_new_
 		m_reverb_surge.setBuildup(p_new_value);
 	} else if (id == m_reverb_eq_gain_identifier) {
 		m_reverb_surge.setEQGain(p_new_value);
+		m_reverb_zita.set_eq1_gain(p_new_value);
 	} else if (id == m_reverb_eq_freq_identifier) {
 		m_reverb_surge.setEQFreq(p_new_value);
+		m_reverb_zita.set_eq1_freq(p_new_value);
 	} else if (id == m_reverb_ducking_identifier) {
 		m_reverb_surge.setWidth(p_new_value);
 		//m_reverb_surge.set_ducking(p_new_value);
 	} else if (id == m_reverb_dry_wet_identifier) {
 		m_reverb_surge.setMix(p_new_value);
+		m_reverb_zita.set_opmix(p_new_value);
+	}else if (id == m_reverb_module_identifier) {
+		m_reverb_module_used = (ReverbModule)(p_new_value + 1);
 	}
 }
 
@@ -1176,8 +1181,6 @@ void OdinAudioProcessor::treeValueChangedNonParamFX(ValueTree &tree, const Ident
 		if (!p_new_value) {
 			m_phaser.setLFOFreq(*m_phaser_rate);
 		}
-	} else if (id == m_reverb_module_identifier) {
-		m_reverb_module_used = (ReverbModule)p_new_value;
 	}
 }
 

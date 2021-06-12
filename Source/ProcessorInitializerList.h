@@ -323,7 +323,7 @@ m_osc1_type_identifier("osc1_type"), m_osc2_type_identifier("osc2_type"),
     m_step_14_transpose_identifier("step_14_transpose"),
     m_step_15_transpose_identifier("step_15_transpose"),
 
-    m_reverb_module_identifier("reverb_module"),
+    m_reverb_module_identifier("rev_type"),
     m_phaser_sync_identifier("phaser_sync"),
     m_phaser_rate_identifier("phaser_rate"),
     m_phaser_freq_identifier("phaser_freq"),

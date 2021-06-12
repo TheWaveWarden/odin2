@@ -127,61 +127,61 @@ void ReverbComponent::paint(Graphics &g) {
 
 	if (m_GUI_big) {
 		g.setColour(Colours::white);
-		Rectangle<int> bounds;
+		// Rectangle<int> bounds;
 
-		bounds.setBounds(OdinHelper::c150(REVERB_DELAY_POS_X),
-		                 OdinHelper::c150(REVERB_DELAY_POS_Y) + OdinHelper::c150(BLACK_KNOB_MID_SIZE_Y) + 4,
-		                 OdinHelper::c150(BLACK_KNOB_MID_SIZE_X) * 2.f,
-		                 10);
-		g.drawText("Pre-Delay", bounds, Justification::centredLeft, true);
+		// bounds.setBounds(OdinHelper::c150(REVERB_DELAY_POS_X),
+		//                  OdinHelper::c150(REVERB_DELAY_POS_Y) + OdinHelper::c150(BLACK_KNOB_MID_SIZE_Y) + 4,
+		//                  OdinHelper::c150(BLACK_KNOB_MID_SIZE_X) * 2.f,
+		//                  10);
+		// g.drawText("Pre-Delay", bounds, Justification::centredLeft, true);
 
-		bounds.setBounds(OdinHelper::c150(REVERB_ROOMSIZE_POS_X),
-		                 OdinHelper::c150(REVERB_ROOMSIZE_POS_Y) + OdinHelper::c150(BLACK_KNOB_MID_SIZE_Y) + 4,
-		                 OdinHelper::c150(BLACK_KNOB_MID_SIZE_X) * 2.f,
-		                 10);
-		g.drawText("Roomsize", bounds, Justification::centredLeft, true);
+		// bounds.setBounds(OdinHelper::c150(REVERB_ROOMSIZE_POS_X),
+		//                  OdinHelper::c150(REVERB_ROOMSIZE_POS_Y) + OdinHelper::c150(BLACK_KNOB_MID_SIZE_Y) + 4,
+		//                  OdinHelper::c150(BLACK_KNOB_MID_SIZE_X) * 2.f,
+		//                  10);
+		// g.drawText("Roomsize", bounds, Justification::centredLeft, true);
 
-		bounds.setBounds(OdinHelper::c150(REVERB_DIFFUSION_POS_X),
-		                 OdinHelper::c150(REVERB_DIFFUSION_POS_Y) + OdinHelper::c150(BLACK_KNOB_MID_SIZE_Y) + 4,
-		                 OdinHelper::c150(BLACK_KNOB_MID_SIZE_X) * 2.f,
-		                 10);
-		g.drawText("Diffusion", bounds, Justification::centredLeft, true);
+		// bounds.setBounds(OdinHelper::c150(REVERB_DIFFUSION_POS_X),
+		//                  OdinHelper::c150(REVERB_DIFFUSION_POS_Y) + OdinHelper::c150(BLACK_KNOB_MID_SIZE_Y) + 4,
+		//                  OdinHelper::c150(BLACK_KNOB_MID_SIZE_X) * 2.f,
+		//                  10);
+		// g.drawText("Diffusion", bounds, Justification::centredLeft, true);
 
-		bounds.setBounds(OdinHelper::c150(REVERB_DECAY_POS_X),
-		                 OdinHelper::c150(REVERB_DECAY_POS_Y) + OdinHelper::c150(BLACK_KNOB_MID_SIZE_Y) + 4,
-		                 OdinHelper::c150(BLACK_KNOB_MID_SIZE_X) * 2.f,
-		                 10);
-		g.drawText("Decay", bounds, Justification::centredLeft, true);
+		// bounds.setBounds(OdinHelper::c150(REVERB_DECAY_POS_X),
+		//                  OdinHelper::c150(REVERB_DECAY_POS_Y) + OdinHelper::c150(BLACK_KNOB_MID_SIZE_Y) + 4,
+		//                  OdinHelper::c150(BLACK_KNOB_MID_SIZE_X) * 2.f,
+		//                  10);
+		// g.drawText("Decay", bounds, Justification::centredLeft, true);
 
-		bounds.setBounds(OdinHelper::c150(REVERB_BUILDUP_POS_X),
-		                 OdinHelper::c150(REVERB_BUILDUP_POS_Y) + OdinHelper::c150(BLACK_KNOB_MID_SIZE_Y) + 4,
-		                 OdinHelper::c150(BLACK_KNOB_MID_SIZE_X) * 2.f,
-		                 10);
-		g.drawText("Buildup", bounds, Justification::centredLeft, true);
+		// bounds.setBounds(OdinHelper::c150(REVERB_BUILDUP_POS_X),
+		//                  OdinHelper::c150(REVERB_BUILDUP_POS_Y) + OdinHelper::c150(BLACK_KNOB_MID_SIZE_Y) + 4,
+		//                  OdinHelper::c150(BLACK_KNOB_MID_SIZE_X) * 2.f,
+		//                  10);
+		// g.drawText("Buildup", bounds, Justification::centredLeft, true);
 
-		bounds.setBounds(OdinHelper::c150(REVERB_EQ_GAIN_POS_X),
-		                 OdinHelper::c150(REVERB_EQ_GAIN_POS_Y) + OdinHelper::c150(BLACK_KNOB_MID_SIZE_Y) + 4,
-		                 OdinHelper::c150(BLACK_KNOB_MID_SIZE_X) * 2.f,
-		                 10);
-		g.drawText("EQ Gain", bounds, Justification::centredLeft, true);
+		// bounds.setBounds(OdinHelper::c150(REVERB_EQ_GAIN_POS_X),
+		//                  OdinHelper::c150(REVERB_EQ_GAIN_POS_Y) + OdinHelper::c150(BLACK_KNOB_MID_SIZE_Y) + 4,
+		//                  OdinHelper::c150(BLACK_KNOB_MID_SIZE_X) * 2.f,
+		//                  10);
+		// g.drawText("EQ Gain", bounds, Justification::centredLeft, true);
 
-		bounds.setBounds(OdinHelper::c150(REVERB_WIDTH_POS_X),
-		                 OdinHelper::c150(REVERB_WIDTH_POS_Y) + OdinHelper::c150(BLACK_KNOB_MID_SIZE_Y) + 4,
-		                 OdinHelper::c150(BLACK_KNOB_MID_SIZE_X) * 2.f,
-		                 10);
-		g.drawText("Width", bounds, Justification::centredLeft, true);
+		// bounds.setBounds(OdinHelper::c150(REVERB_WIDTH_POS_X),
+		//                  OdinHelper::c150(REVERB_WIDTH_POS_Y) + OdinHelper::c150(BLACK_KNOB_MID_SIZE_Y) + 4,
+		//                  OdinHelper::c150(BLACK_KNOB_MID_SIZE_X) * 2.f,
+		//                  10);
+		// g.drawText("Width", bounds, Justification::centredLeft, true);
 
-		bounds.setBounds(OdinHelper::c150(REVERB_DRY_POS_X),
-		                 OdinHelper::c150(REVERB_DRY_POS_Y) + OdinHelper::c150(BLACK_KNOB_MID_SIZE_Y) + 4,
-		                 OdinHelper::c150(BLACK_KNOB_MID_SIZE_X) * 2.f,
-		                 10);
-		g.drawText("EQ Freq", bounds, Justification::centredLeft, true);
+		// bounds.setBounds(OdinHelper::c150(REVERB_DRY_POS_X),
+		//                  OdinHelper::c150(REVERB_DRY_POS_Y) + OdinHelper::c150(BLACK_KNOB_MID_SIZE_Y) + 4,
+		//                  OdinHelper::c150(BLACK_KNOB_MID_SIZE_X) * 2.f,
+		//                  10);
+		// g.drawText("EQ Freq", bounds, Justification::centredLeft, true);
 
-		bounds.setBounds(OdinHelper::c150(REVERB_WET_POS_X),
-		                 OdinHelper::c150(REVERB_WET_POS_Y) + OdinHelper::c150(BLACK_KNOB_MID_SIZE_Y) + 4,
-		                 OdinHelper::c150(BLACK_KNOB_MID_SIZE_X) * 2.f,
-		                 10);
-		g.drawText("DryWet", bounds, Justification::centredLeft, true);
+		// bounds.setBounds(OdinHelper::c150(REVERB_WET_POS_X),
+		//                  OdinHelper::c150(REVERB_WET_POS_Y) + OdinHelper::c150(BLACK_KNOB_MID_SIZE_Y) + 4,
+		//                  OdinHelper::c150(BLACK_KNOB_MID_SIZE_X) * 2.f,
+		//                  10);
+		// g.drawText("DryWet", bounds, Justification::centredLeft, true);
 	}
 }
 
@@ -305,8 +305,8 @@ void ReverbComponent::setReverbType(ReverbType p_type) {
 	}
 
 	//set background images
+	juce::Image reverb_image;
 	if (m_GUI_big) {
-		juce::Image reverb_image;
 		if (m_reverb_type == ReverbType::Zita) {
 			reverb_image =
 			    ImageCache::getFromMemory(BinaryData::reverb_zita_150_png, BinaryData::reverb_zita_150_pngSize);
@@ -317,7 +317,6 @@ void ReverbComponent::setReverbType(ReverbType p_type) {
 		setImage(reverb_image);
 	} else {
 		//todo
-		juce::Image reverb_image;
 		if (m_reverb_type == ReverbType::Zita) {
 			reverb_image =
 			    ImageCache::getFromMemory(BinaryData::reverb_zita_150_png, BinaryData::reverb_zita_150_pngSize);
@@ -327,4 +326,6 @@ void ReverbComponent::setReverbType(ReverbType p_type) {
 		}
 		setImage(reverb_image);
 	}
+
+	repaint();
 }

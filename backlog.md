@@ -1,4 +1,5 @@
 - investigate dropdowns not closing
+- deprected call to const juce::Displays::Display& juce::Displays::getMainDisplay() const
 - clean separation of Zita and Surge GUI
 - Zita
   - Add own EQ to algorithm

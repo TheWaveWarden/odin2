@@ -116,6 +116,12 @@ float ZitaReverb::_tdelay[8] = {
     153129e-6f, 210389e-6f, 127837e-6f, 256891e-6f, 174713e-6f, 192303e-6f, 125000e-6f, 219991e-6f};
 
 ZitaReverb::ZitaReverb(void) {
+	//todo find good eq values
+	_pareq[0].setQ(1.5f);
+	_pareq[1].setQ(1.5f);
+
+	_pareq[0].setFreq(1000.f);
+	_pareq[1].setFreq(1000.f);
 }
 
 ZitaReverb::~ZitaReverb(void) {
@@ -154,7 +160,8 @@ void ZitaReverb::setSampleRate(float fsamp) {
 		_delay[i].init(k2 - k1);
 	}
 
-	_pareq1.setfsamp(fsamp);
+	_pareq[0].setSampleRate(fsamp);
+	_pareq[1].setSampleRate(fsamp);
 
 	//_pareq2.setfsamp(fsamp);
 }
@@ -206,7 +213,7 @@ void ZitaReverb::prepare() {
 		_Cdirty = false;
 	}
 
-	_pareq1.prepare();
+	//_pareq1.prepare();
 	//_pareq2.prepare(nfram);
 
 	// DBG_VAR(_g0);
@@ -317,7 +324,8 @@ float *ZitaReverb::process(float input[2]) {
 	_delay[6].write(_filt1[6].process(g * x6));
 	_delay[7].write(_filt1[7].process(g * x7));
 
-	_pareq1.process(out);
+	out[0] = _pareq[0].doFilter(out[0]);
+	out[1] = _pareq[1].doFilter(out[1]);
 
 	//_pareq2.process(out);
 	//for (i = 0; i < nfram; i++) {
@@ -387,21 +395,26 @@ void ZitaReverb::set_rgxyz(float v) {
 }
 
 void ZitaReverb::set_eq1(float f, float g) {
-	_eq_gain = g;
-	_eq_freq = f;
-	_pareq1.setparam(f, g);
+	//_eq_gain = g;
+	//_eq_freq = f;
+	_pareq[0].setFreq(f);
+	_pareq[1].setFreq(f);
+	_pareq[0].setQ(g);
+	_pareq[1].setQ(g);
 	prepare();
 }
 
 void ZitaReverb::set_eq1_gain(float g) {
-	_eq_gain = g;
-	_pareq1.setparam(_eq_freq, g);
+	//_eq_gain = g;
+	_pareq[0].setGain(g);
+	_pareq[1].setGain(g);
 	prepare();
 }
 
 void ZitaReverb::set_eq1_freq(float f) {
-	_eq_freq = f;
-	_pareq1.setparam(f, _eq_gain);
+	//_eq_freq = f;
+	_pareq[0].setFreq(f);
+	_pareq[1].setFreq(f);
 	prepare();
 }
 

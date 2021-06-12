@@ -20,7 +20,8 @@
 #define __REVERB_H
 
 
-#include "ParametricEQ.h"
+//#include "ParametricEQ.h"
+#include "../Filters/BiquadEQ.h"
 #include <string>
 #include "../JuceLibraryCode/JuceHeader.h"
 
@@ -202,10 +203,10 @@ private:
 	float _g0, _d0;
 	float _g1, _d1;
 
-	float _eq_gain = REV_EQ_DEFAULT_GAIN_DB;
-	float _eq_freq = REV_EQ_DEFAULT_FREQ;
+	//float _eq_gain = REV_EQ_DEFAULT_GAIN_DB;
+	//float _eq_freq = REV_EQ_DEFAULT_FREQ;
 
-	ParametricEQ _pareq1;
+	BiquadEQ _pareq[2];
 	//ParametricEQ _pareq2;
 
 	static float _tdiff1[8];
