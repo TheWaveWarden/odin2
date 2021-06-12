@@ -28,6 +28,7 @@ ReverbComponent::ReverbComponent(AudioProcessorValueTreeState &vts, bool p_is_st
 	m_reverb_EQ_freq_attach.reset(new OdinKnobAttachment(m_value_tree, "rev_eqfreq", m_EQ_freq));
 	m_reverb_ducking_attach.reset(new OdinKnobAttachment(m_value_tree, "rev_ducking", m_ducking));
 	m_reverb_drywet_attach.reset(new OdinKnobAttachment(m_value_tree, "rev_drywet", m_dry_wet));
+	m_reverb_type_attach.reset(new ComboBoxAttachment(m_value_tree, "rev_type", m_module));
 
 	m_delay.setSliderStyle(Slider::RotaryVerticalDrag);
 	m_delay.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
@@ -99,13 +100,12 @@ ReverbComponent::ReverbComponent(AudioProcessorValueTreeState &vts, bool p_is_st
 	m_module.setSelectedId(1, dontSendNotification);
 	m_module.setColor(juce::STANDARD_DISPLAY_COLOR);
 	m_module.setTooltip("Selects whether to use the reverb algorithm from Surge or Zita-rev1");
-	
+
 	m_module.onChange = [&]() {
-		m_value_tree.state.getChildWithName("fx").setProperty(
-		    "reverb_module", m_module.getSelectedId(), nullptr);
+		//m_value_tree.state.getChildWithName("fx").setProperty("reverb_module", m_module.getSelectedId(), nullptr);
+		setReverbType((ReverbType)m_module.getSelectedId());
 	};
 	addAndMakeVisible(m_module);
-
 
 	SET_CTR_KEY(m_EQ_gain);
 	SET_CTR_KEY(m_EQ_freq);
@@ -186,6 +186,8 @@ void ReverbComponent::paint(Graphics &g) {
 }
 
 void ReverbComponent::forceValueTreeOntoComponents(ValueTree p_tree) {
+	//todo make dynamic
+	setReverbType(ReverbType::Zita);
 }
 
 void ReverbComponent::setGUIBig() {
@@ -242,15 +244,12 @@ void ReverbComponent::setGUIBig() {
 	                    OdinHelper::c150(BLACK_KNOB_MID_SIZE_X),
 	                    OdinHelper::c150(BLACK_KNOB_MID_SIZE_Y));
 
-	juce::Image reverb_image;
-	reverb_image = ImageCache::getFromMemory(BinaryData::reverb_150_png, BinaryData::reverb_150_pngSize);
-	setImage(reverb_image);
-
 	juce::Image glas_panel =
 	    ImageCache::getFromMemory(BinaryData::glaspanel_midbig_150_png, BinaryData::glaspanel_midbig_150_pngSize);
 	m_module.setImage(glas_panel);
 	m_module.setInlay(1);
-	m_module.setBounds(OdinHelper::c150(MODULE_POS_X), OdinHelper::c150(MODULE_POS_Y), glas_panel.getWidth(), glas_panel.getHeight());
+	m_module.setBounds(
+	    OdinHelper::c150(MODULE_POS_X), OdinHelper::c150(MODULE_POS_Y), glas_panel.getWidth(), glas_panel.getHeight());
 	m_module.setGUIBig();
 
 	forceValueTreeOntoComponents(m_value_tree.state);
@@ -273,11 +272,6 @@ void ReverbComponent::setGUISmall() {
 	m_EQ_freq.setBounds(REVERB_DRY_POS_X, REVERB_DRY_POS_Y, BLACK_KNOB_MID_SIZE_X, BLACK_KNOB_MID_SIZE_Y);
 	m_dry_wet.setBounds(REVERB_WET_POS_X, REVERB_WET_POS_Y, BLACK_KNOB_MID_SIZE_X, BLACK_KNOB_MID_SIZE_Y);
 
-	juce::Image reverb_image;
-	//! todo
-	reverb_image = ImageCache::getFromMemory(BinaryData::reverb_150_png, BinaryData::reverb_150_pngSize);
-	setImage(reverb_image);
-
 	juce::Image glas_panel =
 	    ImageCache::getFromMemory(BinaryData::glaspanel_midbig_png, BinaryData::glaspanel_midbig_pngSize);
 	m_module.setImage(glas_panel);
@@ -286,4 +280,51 @@ void ReverbComponent::setGUISmall() {
 	m_module.setGUISmall();
 
 	forceValueTreeOntoComponents(m_value_tree.state);
+}
+
+void ReverbComponent::setReverbType(ReverbType p_type) {
+	m_reverb_type = p_type;
+
+	//hide everything
+	m_delay.setVisible(false);
+	m_roomsize.setVisible(false);
+	m_diffusion.setVisible(false);
+	m_decay.setVisible(false);
+	m_buildup.setVisible(false);
+	m_ducking.setVisible(false);
+
+	//show needed controls
+	if (m_reverb_type == ReverbType::Zita) {
+	} else {
+		m_delay.setVisible(true);
+		m_roomsize.setVisible(true);
+		m_diffusion.setVisible(true);
+		m_decay.setVisible(true);
+		m_buildup.setVisible(true);
+		m_ducking.setVisible(true);
+	}
+
+	//set background images
+	if (m_GUI_big) {
+		juce::Image reverb_image;
+		if (m_reverb_type == ReverbType::Zita) {
+			reverb_image =
+			    ImageCache::getFromMemory(BinaryData::reverb_zita_150_png, BinaryData::reverb_zita_150_pngSize);
+		} else {
+			reverb_image =
+			    ImageCache::getFromMemory(BinaryData::reverb_surge_150_png, BinaryData::reverb_surge_150_pngSize);
+		}
+		setImage(reverb_image);
+	} else {
+		//todo
+		juce::Image reverb_image;
+		if (m_reverb_type == ReverbType::Zita) {
+			reverb_image =
+			    ImageCache::getFromMemory(BinaryData::reverb_zita_150_png, BinaryData::reverb_zita_150_pngSize);
+		} else {
+			reverb_image =
+			    ImageCache::getFromMemory(BinaryData::reverb_surge_150_png, BinaryData::reverb_surge_150_pngSize);
+		}
+		setImage(reverb_image);
+	}
 }

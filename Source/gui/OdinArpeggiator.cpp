@@ -192,7 +192,7 @@ void OdinArpeggiator::midiNoteOn(int p_midi_note, int p_midi_velocity) {
 		}
 	}
 	m_active_keys_and_velocities.push_back(std::make_pair(p_midi_note, p_midi_velocity));
-	DBG("NOTEON: " + std::to_string(p_midi_note));
+	//DBG("NOTEON: " + std::to_string(p_midi_note));
 	if (m_active_keys_and_velocities.size() == 1) {
 		m_start_pattern = true;
 	}
@@ -212,7 +212,7 @@ void OdinArpeggiator::midiNoteOff(int p_midi_note) {
 				//in case we have the same note two times in a row (they are sorted):
 				--key;
 				generateSequence();
-				DBG("ENDED BY NOTEOFF: " + std::to_string(p_midi_note));
+				//DBG("ENDED BY NOTEOFF: " + std::to_string(p_midi_note));
 			}
 		}
 	}

@@ -455,10 +455,6 @@ void OdinAudioProcessorEditor::setGUIBig() {
 	}
 	m_delay.setImage(delay_image);
 
-	juce::Image reverb_image;
-	reverb_image = ImageCache::getFromMemory(BinaryData::reverb_150_png, BinaryData::reverb_150_pngSize);
-	m_reverb.setImage(reverb_image);
-
 	juce::Image env13_left =
 	    ImageCache::getFromMemory(BinaryData::buttonenv13_1_150_png, BinaryData::buttonenv13_1_150_pngSize);
 	juce::Image env13_right =

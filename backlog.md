@@ -1,0 +1,19 @@
+- investigate dropdowns not closing
+- clean separation of Zita and Surge GUI
+- Zita
+  - Add own EQ to algorithm
+  - check which values need to be set
+  - create knobs
+  - create APVTS params
+  - connect those
+  - pass values to algorithm
+  - compare agains original algorithm
+    - get JACK up and running again
+- Surge
+  - investigate params not doing anything
+  - maybe some can be eliminated
+  - compare against original algorithm
+- Create Backdrops 150
+- Create Backdrops 100
+- Move Knobs to correct location 100
+- Write manual entry for Reverbs 

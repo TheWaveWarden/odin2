@@ -159,17 +159,17 @@ public:
 	void prepare();
 	float* process(float input[2]);
 
-	void set_delay(float v);
-	void set_xover(float v);
-	void set_rtlow(float v);
-	void set_rtmid(float v);
-	void set_fdamp(float v);
-	void set_opmix(float v);
+	void set_delay(float v);  //orig GUI param
+	void set_xover(float v);  
+	void set_rtlow(float v);  //orig GUI param
+	void set_rtmid(float v);  //orig GUI param
+	void set_fdamp(float v);  //orig GUI param
+	void set_opmix(float v);  //orig GUI param
 	void set_rgxyz(float v);
 	void set_eq1(float f, float g);
 	void set_eq1_gain(float g);
 	void set_eq1_freq(float f);
-	void set_ducking(float d);
+	void set_ducking(float d); //unused?
 
 private:
 	float _fsamp;

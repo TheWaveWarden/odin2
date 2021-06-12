@@ -57,6 +57,11 @@
 
 class ReverbComponent : public Component {
 public:
+	enum class ReverbType {
+		Zita = 1,
+		Surge = 2
+	};
+
 	ReverbComponent(AudioProcessorValueTreeState &vts, bool p_is_standalone);
 	~ReverbComponent();
 
@@ -68,10 +73,14 @@ public:
 		m_background = p_background;
 	}
 
+	void setReverbType(ReverbType p_type);
+
 	void setGUIBig();
 	void setGUISmall();
 
 private:
+	ReverbType m_reverb_type = ReverbType::Zita;
+
 	bool m_GUI_big = true;
 
 	bool m_is_standalone_plugin;
@@ -102,6 +111,7 @@ private:
 	std::unique_ptr<OdinKnobAttachment> m_reverb_EQ_freq_attach;
 	std::unique_ptr<OdinKnobAttachment> m_reverb_ducking_attach;
 	std::unique_ptr<OdinKnobAttachment> m_reverb_drywet_attach;
+	std::unique_ptr<ComboBoxAttachment> m_reverb_type_attach;
 
 	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(ReverbComponent)
 };
