@@ -197,7 +197,7 @@
 
 //set interpolation value to 'none' for integer scaling, else to high
 #define SET_INTERPOLATION_QUALITY(graphics)                                                                            \
-	float desktop_scale = Desktop::getInstance().Desktop::getInstance().getDisplays().getMainDisplay().scale;          \
+	float desktop_scale = Desktop::getInstance().Desktop::getInstance().getDisplays().getPrimaryDisplay()->scale;      \
 	if ((fabs(desktop_scale - 1.f) < 1e-4) || (fabs(desktop_scale - 2.f) < 1e-4)) {                                    \
 		graphics.setImageResamplingQuality(INTERPOLATION_QUALITY_LOW);                                                 \
 	} else {                                                                                                           \
