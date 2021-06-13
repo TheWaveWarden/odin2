@@ -307,7 +307,7 @@ jobs:
       make -j 8 CONFIG=Release
       echo "checking out lv2 branch"
       git checkout lv2
-      git checkout c51d03f11be20cb35eb28e8016e9a81827b50339
+      git checkout f00a420bc348d79c4688b33b2b905b8ca0f25a3a
       echo "Set Projucer modules path"
       export GDK_BACKEND=x11
       Xvfb :99 &
