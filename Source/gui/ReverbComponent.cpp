@@ -30,11 +30,44 @@ ReverbComponent::ReverbComponent(AudioProcessorValueTreeState &vts, bool p_is_st
 	m_reverb_drywet_attach.reset(new OdinKnobAttachment(m_value_tree, "rev_drywet", m_dry_wet));
 	m_reverb_type_attach.reset(new ComboBoxAttachment(m_value_tree, "rev_type", m_module));
 
+	m_reverb_low_freq_attach.reset(new OdinKnobAttachment(m_value_tree, "rev_low_freq", m_low_freq));
+	m_reverb_low_hall_attach.reset(new OdinKnobAttachment(m_value_tree, "rev_low_hall", m_low_hall));
+	m_reverb_mid_hall_attach.reset(new OdinKnobAttachment(m_value_tree, "rev_mid_hall", m_mid_hall));
+	m_reverb_hf_damp_attach.reset(new OdinKnobAttachment(m_value_tree, "rev_hf_damp", m_hf_damp));
+
 	m_delay.setSliderStyle(Slider::RotaryVerticalDrag);
 	m_delay.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
 	m_delay.setTextValueSuffix(" ms");
 	m_delay.setKnobTooltip("m_delay");
 	addAndMakeVisible(m_delay);
+
+	m_low_freq.setSliderStyle(Slider::RotaryVerticalDrag);
+	m_low_freq.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
+	m_low_freq.setTextValueSuffix(" Hz");
+	m_low_freq.setKnobTooltip("TODO LOW_FREQ");
+	m_low_freq.setNumDecimalPlacesToDisplay(0);
+	addAndMakeVisible(m_low_freq);
+
+	m_low_hall.setSliderStyle(Slider::RotaryVerticalDrag);
+	m_low_hall.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
+	m_low_hall.setTextValueSuffix(" s");
+	m_low_hall.setKnobTooltip("TODO LOW HALL");
+	m_low_hall.setNumDecimalPlacesToDisplay(2);
+	addAndMakeVisible(m_low_hall);
+
+	m_mid_hall.setSliderStyle(Slider::RotaryVerticalDrag);
+	m_mid_hall.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
+	m_mid_hall.setTextValueSuffix(" s");
+	m_mid_hall.setKnobTooltip("TODO MID HALL");
+	m_mid_hall.setNumDecimalPlacesToDisplay(2);
+	addAndMakeVisible(m_mid_hall);
+
+	m_hf_damp.setSliderStyle(Slider::RotaryVerticalDrag);
+	m_hf_damp.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
+	m_hf_damp.setTextValueSuffix(" Hz");
+	m_hf_damp.setKnobTooltip("TODO HF DAMP");
+	m_hf_damp.setNumDecimalPlacesToDisplay(0);
+	addAndMakeVisible(m_hf_damp);
 
 	m_roomsize.setSliderStyle(Slider::RotaryVerticalDrag);
 	m_roomsize.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
@@ -197,8 +230,10 @@ void ReverbComponent::setGUIBig() {
 	    ImageCache::getFromMemory(BinaryData::black_knob_mid_150_png, BinaryData::black_knob_mid_150_pngSize);
 	juce::Image metal_knob_mid =
 	    ImageCache::getFromMemory(BinaryData::metal_knob_mid_150_png, BinaryData::metal_knob_mid_150_pngSize);
+	juce::Image black_knob_big =
+	    ImageCache::getFromMemory(BinaryData::black_knob_big_150_png, BinaryData::black_knob_big_150_pngSize);
 
-	m_delay.setStrip(black_knob_mid, N_KNOB_FRAMES);
+	m_delay.setStrip(metal_knob_mid, N_KNOB_FRAMES);
 	m_roomsize.setStrip(black_knob_mid, N_KNOB_FRAMES);
 	m_diffusion.setStrip(black_knob_mid, N_KNOB_FRAMES);
 	m_decay.setStrip(black_knob_mid, N_KNOB_FRAMES);
@@ -208,10 +243,32 @@ void ReverbComponent::setGUIBig() {
 	m_EQ_freq.setStrip(black_knob_mid, N_KNOB_FRAMES);
 	m_dry_wet.setStrip(metal_knob_mid, N_KNOB_FRAMES);
 
+	m_low_freq.setStrip(black_knob_mid, N_KNOB_FRAMES);
+	m_low_hall.setStrip(black_knob_mid, N_KNOB_FRAMES);
+	m_mid_hall.setStrip(black_knob_mid, N_KNOB_FRAMES);
+	m_hf_damp.setStrip(black_knob_mid, N_KNOB_FRAMES);
+
+	m_low_freq.setBounds(OdinHelper::c150(REVERB_LOW_FREQ_POS_X),
+	                     OdinHelper::c150(REVERB_LOW_FREQ_POS_Y),
+	                     OdinHelper::c150(BLACK_KNOB_MID_SIZE_X),
+	                     OdinHelper::c150(BLACK_KNOB_MID_SIZE_Y));
+	m_low_hall.setBounds(OdinHelper::c150(REVERB_LOW_HALL_POS_X),
+	                     OdinHelper::c150(REVERB_LOW_HALL_POS_Y),
+	                     OdinHelper::c150(BLACK_KNOB_MID_SIZE_X),
+	                     OdinHelper::c150(BLACK_KNOB_MID_SIZE_Y));
+	m_mid_hall.setBounds(OdinHelper::c150(REVERB_MID_HALL_POS_X),
+	                     OdinHelper::c150(REVERB_MID_HALL_POS_Y),
+	                     OdinHelper::c150(BLACK_KNOB_MID_SIZE_X),
+	                     OdinHelper::c150(BLACK_KNOB_MID_SIZE_Y));
+	m_hf_damp.setBounds(OdinHelper::c150(REVERB_HF_DAMP_POS_X),
+	                    OdinHelper::c150(REVERB_HF_DAMP_POS_Y),
+	                    OdinHelper::c150(BLACK_KNOB_MID_SIZE_X),
+	                    OdinHelper::c150(BLACK_KNOB_MID_SIZE_Y));
+
 	m_delay.setBounds(OdinHelper::c150(REVERB_DELAY_POS_X),
 	                  OdinHelper::c150(REVERB_DELAY_POS_Y),
-	                  OdinHelper::c150(BLACK_KNOB_MID_SIZE_X),
-	                  OdinHelper::c150(BLACK_KNOB_MID_SIZE_Y));
+	                  OdinHelper::c150(METAL_KNOB_MID_SIZE_X),
+	                  OdinHelper::c150(METAL_KNOB_MID_SIZE_Y));
 	m_roomsize.setBounds(OdinHelper::c150(REVERB_ROOMSIZE_POS_X),
 	                     OdinHelper::c150(REVERB_ROOMSIZE_POS_Y),
 	                     OdinHelper::c150(BLACK_KNOB_MID_SIZE_X),
@@ -288,7 +345,7 @@ void ReverbComponent::setReverbType(ReverbType p_type) {
 	m_reverb_type = p_type;
 
 	//hide everything
-	m_delay.setVisible(false);
+	//m_delay.setVisible(false);
 	m_roomsize.setVisible(false);
 	m_diffusion.setVisible(false);
 	m_decay.setVisible(false);

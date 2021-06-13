@@ -16,3 +16,4 @@
 - Create Backdrops 100
 - Move Knobs to correct location 100
 - Write manual entry for Reverbs 
+- manual: somewhere is a todo

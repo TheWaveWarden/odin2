@@ -17,20 +17,34 @@
 
 #include "../GlobalIncludes.h"
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "GlassDropdown.h"
 #include "Knob.h"
 #include "OdinButton.h"
 #include "OdinControlAttachments.h"
-#include "GlassDropdown.h"
 
-
-#define REVERB_POS_X_SPACING 45
-#define REVERB_POS_X_FIRST 18
+#define REVERB_POS_X_SPACING 48
+#define REVERB_POS_X_FIRST 9
 #define REVERB_POS_Y_TOP 10
 #define REVERB_POS_Y_MID 35
 #define REVERB_POS_Y_BOTTOM 60
 
 #define REVERB_DELAY_POS_X (REVERB_POS_X_FIRST + 0 * REVERB_POS_X_SPACING)
-#define REVERB_DELAY_POS_Y REVERB_POS_Y_BOTTOM
+#define REVERB_DELAY_POS_Y REVERB_POS_Y_MID
+
+#define REVERB_LOW_FREQ_POS_X (REVERB_POS_X_FIRST + 1 * REVERB_POS_X_SPACING)
+#define REVERB_LOW_FREQ_POS_Y REVERB_POS_Y_BOTTOM
+#define REVERB_LOW_HALL_POS_X (REVERB_POS_X_FIRST + 2 * REVERB_POS_X_SPACING)
+#define REVERB_LOW_HALL_POS_Y REVERB_POS_Y_BOTTOM
+#define REVERB_MID_HALL_POS_X (REVERB_POS_X_FIRST + 1 * REVERB_POS_X_SPACING)
+#define REVERB_MID_HALL_POS_Y REVERB_POS_Y_TOP
+#define REVERB_HF_DAMP_POS_X (REVERB_POS_X_FIRST + 2 * REVERB_POS_X_SPACING)
+#define REVERB_HF_DAMP_POS_Y REVERB_POS_Y_TOP
+
+
+
+
+
+
 
 #define REVERB_ROOMSIZE_POS_X (REVERB_POS_X_FIRST + 1 * REVERB_POS_X_SPACING)
 #define REVERB_ROOMSIZE_POS_Y REVERB_POS_Y_TOP
@@ -55,13 +69,9 @@
 #define MODULE_POS_X 2
 #define MODULE_POS_Y 15
 
-
 class ReverbComponent : public Component {
 public:
-	enum class ReverbType {
-		Zita = 1,
-		Surge = 2
-	};
+	enum class ReverbType { Zita = 1, Surge = 2 };
 
 	ReverbComponent(AudioProcessorValueTreeState &vts, bool p_is_standalone);
 	~ReverbComponent();
@@ -89,15 +99,19 @@ private:
 
 	juce::Image m_background;
 
-	Knob m_delay;
+	Knob m_delay; // zita: delay / size
 	Knob m_roomsize;
 	Knob m_diffusion;
 	Knob m_decay;
 	Knob m_buildup;
-	Knob m_EQ_gain;
-	Knob m_EQ_freq;
+	Knob m_EQ_gain; // zita: eq
+	Knob m_EQ_freq; // zita: eq
 	Knob m_ducking;
-	Knob m_dry_wet;
+	Knob m_dry_wet;  // zita: mix
+	Knob m_low_freq; // zita: low freq
+	Knob m_low_hall; // zita: low hall
+	Knob m_mid_hall; // zita: mid hall
+	Knob m_hf_damp;  //zita: hf damp
 
 	GlassDropdown m_module;
 
@@ -112,6 +126,10 @@ private:
 	std::unique_ptr<OdinKnobAttachment> m_reverb_EQ_freq_attach;
 	std::unique_ptr<OdinKnobAttachment> m_reverb_ducking_attach;
 	std::unique_ptr<OdinKnobAttachment> m_reverb_drywet_attach;
+	std::unique_ptr<OdinKnobAttachment> m_reverb_low_freq_attach;
+	std::unique_ptr<OdinKnobAttachment> m_reverb_low_hall_attach;
+	std::unique_ptr<OdinKnobAttachment> m_reverb_mid_hall_attach;
+	std::unique_ptr<OdinKnobAttachment> m_reverb_hf_damp_attach;
 	std::unique_ptr<ComboBoxAttachment> m_reverb_type_attach;
 
 	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(ReverbComponent)
