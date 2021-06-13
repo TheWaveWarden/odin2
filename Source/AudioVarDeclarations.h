@@ -430,15 +430,9 @@
     Identifier m_delay_synctime_numerator_identifier;
     Identifier m_delay_synctime_denominator_identifier;
     Identifier m_reverb_delay_identifier;
-    Identifier m_reverb_roomsize_identifier;
-    Identifier m_reverb_diffusion_identifier;
-    Identifier m_reverb_decaytime_identifier;
-    Identifier m_reverb_buildup_identifier;
     Identifier m_reverb_eq_gain_identifier;
     Identifier m_reverb_eq_freq_identifier;
-    Identifier m_reverb_ducking_identifier;
-    Identifier m_reverb_low_freq_identifier;
-    Identifier m_reverb_low_hall_identifier;
+    //Identifier m_reverb_ducking_identifier;
     Identifier m_reverb_mid_hall_identifier;
     Identifier m_reverb_hf_damp_identifier;
     Identifier m_reverb_dry_wet_identifier;
@@ -519,8 +513,6 @@
     Identifier m_step_14_transpose_identifier;
     Identifier m_step_15_transpose_identifier;
 
-
-    Identifier m_reverb_module_identifier;
     Identifier m_phaser_sync_identifier;
     Identifier m_phaser_rate_identifier;
     Identifier m_phaser_freq_identifier;

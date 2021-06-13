@@ -444,6 +444,7 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 
 		// ugly solution, yet here we go:
 		// check for each fx if its position is slot and then render it
+		// todo this section should really be solved with function pointers! This is ugly code
 		for (int fx_slot = 0; fx_slot < 5; ++fx_slot) {
 			if (m_delay_position == fx_slot) {
 				if (*m_delay_on) {
@@ -467,13 +468,9 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 				}
 			} else if (m_reverb_position == fx_slot) {
 				if (*m_reverb_on) {
-					if (m_reverb_module_used == ReverbModule::Surge) {
-						m_reverb_surge.process(stereo_signal[0], stereo_signal[1]);
-					} else {
-						auto rev_out = m_reverb_zita.process(stereo_signal);
-						stereo_signal[0] = rev_out[0];
-						stereo_signal[1] = rev_out[1];
-					}
+					auto rev_out     = m_reverb_zita.process(stereo_signal);
+					stereo_signal[0] = rev_out[0];
+					stereo_signal[1] = rev_out[1];
 				}
 			}
 		}

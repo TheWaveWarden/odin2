@@ -284,17 +284,10 @@ m_value_tree.addParameterListener("delay_on", &m_tree_listener_delay);
 //reverb listener
 m_value_tree.addParameterListener("rev_eqfreq", &m_tree_listener_reverb);
 m_value_tree.addParameterListener("rev_eqgain", &m_tree_listener_reverb);
-m_value_tree.addParameterListener("rev_ducking", &m_tree_listener_reverb);
+//m_value_tree.addParameterListener("rev_ducking", &m_tree_listener_reverb);
 m_value_tree.addParameterListener("rev_drywet", &m_tree_listener_reverb);
 m_value_tree.addParameterListener("rev_delay", &m_tree_listener_reverb);
-m_value_tree.addParameterListener("rev_roomsize", &m_tree_listener_reverb);
-m_value_tree.addParameterListener("rev_diffusion", &m_tree_listener_reverb);
-m_value_tree.addParameterListener("rev_decaytime", &m_tree_listener_reverb);
-m_value_tree.addParameterListener("rev_buildup", &m_tree_listener_reverb);
 m_value_tree.addParameterListener("reverb_on", &m_tree_listener_reverb);
-m_value_tree.addParameterListener("rev_type", &m_tree_listener_reverb);
-m_value_tree.addParameterListener("rev_low_freq", &m_tree_listener_reverb);
-m_value_tree.addParameterListener("rev_low_hall", &m_tree_listener_reverb);
 m_value_tree.addParameterListener("rev_mid_hall", &m_tree_listener_reverb);
 m_value_tree.addParameterListener("rev_hf_damp", &m_tree_listener_reverb);
 

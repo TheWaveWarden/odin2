@@ -4,12 +4,8 @@
   - get JACK up and running again
   - evtl: ducking
 - remove
-  - unused knobs
-  - unused attachments
-  - unused audio params
-  - unused identifiers 
-  - Surge reverb in PRocessor
-- Create Backdrops 150
+  - Surge reverb in Processor
+- write tooltips
 - Create Backdrops 100
 - draggable FX buttons 100 (blender?)
 - Make sure things are saved and retrieved correctly

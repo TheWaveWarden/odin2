@@ -13,7 +13,7 @@
 ** GNU General Public License for more details.
 */
 
-#define DEBUG_VARIABLES
+//#define DEBUG_VARIABLES
 
 float valueToDenominator(int p_value) {
 	switch (p_value) {
@@ -685,41 +685,17 @@ void OdinAudioProcessor::treeValueChangedReverb(const String &p_ID, float p_new_
 	StringRef id = StringRef(p_ID);
 
 	if (id == m_reverb_delay_identifier) {
-		//m_reverb_surge.setPreDelayMs(p_new_value);
 		m_reverb_zita.set_delay(p_new_value / 1000.f);
-	} else if (id == m_reverb_low_freq_identifier) {
-		m_reverb_zita.set_xover(p_new_value);
-	} else if (id == m_reverb_low_hall_identifier) {
-		m_reverb_zita.set_rtlow(p_new_value);
 	} else if (id == m_reverb_mid_hall_identifier) {
 		m_reverb_zita.set_rtmid(p_new_value);
 	} else if (id == m_reverb_hf_damp_identifier) {
 		m_reverb_zita.set_fdamp(p_new_value);
-	} 
-	
-	
-	else if (id == m_reverb_roomsize_identifier) {
-		m_reverb_surge.setRoomSize(p_new_value);
-	} else if (id == m_reverb_diffusion_identifier) {
-		m_reverb_surge.setDiffusion(p_new_value);
-	} else if (id == m_reverb_decaytime_identifier) {
-		m_reverb_surge.setDecayTime(p_new_value);
-	} else if (id == m_reverb_buildup_identifier) {
-		m_reverb_surge.setBuildup(p_new_value);
 	} else if (id == m_reverb_eq_gain_identifier) {
-		m_reverb_surge.setEQGain(p_new_value);
 		m_reverb_zita.set_eq1_gain(p_new_value);
 	} else if (id == m_reverb_eq_freq_identifier) {
-		m_reverb_surge.setEQFreq(p_new_value);
 		m_reverb_zita.set_eq1_freq(p_new_value);
-	} else if (id == m_reverb_ducking_identifier) {
-		m_reverb_surge.setWidth(p_new_value);
-		//m_reverb_surge.set_ducking(p_new_value);
 	} else if (id == m_reverb_dry_wet_identifier) {
-		m_reverb_surge.setMix(p_new_value);
 		m_reverb_zita.set_opmix(p_new_value);
-	}else if (id == m_reverb_module_identifier) {
-		m_reverb_module_used = (ReverbModule)(p_new_value + 1);
 	}
 }
 

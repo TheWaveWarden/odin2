@@ -32,43 +32,21 @@
 #define REVERB_DELAY_POS_X (REVERB_POS_X_FIRST + 0 * REVERB_POS_X_SPACING)
 #define REVERB_DELAY_POS_Y REVERB_POS_Y_BOTTOM_LEFT
 
-#define REVERB_LOW_FREQ_POS_X (REVERB_POS_X_FIRST + 1 * REVERB_POS_X_SPACING * 0.93)
-#define REVERB_LOW_FREQ_POS_Y REVERB_POS_Y_BOTTOM
-#define REVERB_LOW_HALL_POS_X (REVERB_POS_X_FIRST + 2 * REVERB_POS_X_SPACING)
-#define REVERB_LOW_HALL_POS_Y REVERB_POS_Y_BOTTOM
 #define REVERB_MID_HALL_POS_X (REVERB_POS_X_FIRST + 1 * REVERB_POS_X_SPACING * 0.93)
 #define REVERB_MID_HALL_POS_Y REVERB_POS_Y_TOP
 #define REVERB_HF_DAMP_POS_X (REVERB_POS_X_FIRST + 2 * REVERB_POS_X_SPACING * 0.93)
 #define REVERB_HF_DAMP_POS_Y REVERB_POS_Y_BOTTOM_LEFT
-
-
-#define REVERB_ROOMSIZE_POS_X (REVERB_POS_X_FIRST + 1 * REVERB_POS_X_SPACING)
-#define REVERB_ROOMSIZE_POS_Y REVERB_POS_Y_TOP
-#define REVERB_DIFFUSION_POS_X (REVERB_POS_X_FIRST + 1 * REVERB_POS_X_SPACING)
-#define REVERB_DIFFUSION_POS_Y REVERB_POS_Y_BOTTOM
-
-#define REVERB_DECAY_POS_X (REVERB_POS_X_FIRST + 2 * REVERB_POS_X_SPACING)
-#define REVERB_DECAY_POS_Y REVERB_POS_Y_TOP
-#define REVERB_BUILDUP_POS_X (REVERB_POS_X_FIRST + 2 * REVERB_POS_X_SPACING)
-#define REVERB_BUILDUP_POS_Y REVERB_POS_Y_BOTTOM
 
 #define REVERB_EQ_GAIN_POS_X (REVERB_POS_X_FIRST + 3 * REVERB_POS_X_SPACING)
 #define REVERB_EQ_GAIN_POS_Y REVERB_POS_Y_TOP
 #define REVERB_DRY_POS_X (REVERB_POS_X_FIRST + 3 * REVERB_POS_X_SPACING)
 #define REVERB_DRY_POS_Y REVERB_POS_Y_BOTTOM
 
-#define REVERB_WIDTH_POS_X (REVERB_POS_X_FIRST + 4 * REVERB_POS_X_SPACING)
-#define REVERB_WIDTH_POS_Y REVERB_POS_Y_TOP
 #define REVERB_WET_POS_X 195
 #define REVERB_WET_POS_Y 37
 
-#define MODULE_POS_X 2
-#define MODULE_POS_Y 15
-
 class ReverbComponent : public Component {
 public:
-	enum class ReverbType { Zita = 1, Surge = 2 };
-
 	ReverbComponent(AudioProcessorValueTreeState &vts, bool p_is_standalone);
 	~ReverbComponent();
 
@@ -79,15 +57,10 @@ public:
 	void setImage(juce::Image p_background) {
 		m_background = p_background;
 	}
-
-	void setReverbType(ReverbType p_type);
-
 	void setGUIBig();
 	void setGUISmall();
 
 private:
-	ReverbType m_reverb_type = ReverbType::Zita;
-
 	bool m_GUI_big = true;
 
 	bool m_is_standalone_plugin;
@@ -96,37 +69,24 @@ private:
 	juce::Image m_background;
 
 	Knob m_delay; // zita: delay / size
-	Knob m_roomsize;
-	Knob m_diffusion;
-	Knob m_decay;
-	Knob m_buildup;
 	Knob m_EQ_gain; // zita: eq
 	Knob m_EQ_freq; // zita: eq
-	Knob m_ducking;
+	//Knob m_ducking;
 	Knob m_dry_wet;  // zita: mix
 	Knob m_low_freq; // zita: low freq
 	Knob m_low_hall; // zita: low hall
 	Knob m_mid_hall; // zita: mid hall
 	Knob m_hf_damp;  //zita: hf damp
 
-	GlassDropdown m_module;
-
 	AudioProcessorValueTreeState &m_value_tree;
 
 	std::unique_ptr<OdinKnobAttachment> m_reverb_delay_attach;
-	std::unique_ptr<OdinKnobAttachment> m_reverb_roomsize_attach;
-	std::unique_ptr<OdinKnobAttachment> m_reverb_diffusion_attach;
-	std::unique_ptr<OdinKnobAttachment> m_reverb_decay_attach;
-	std::unique_ptr<OdinKnobAttachment> m_reverb_buildup_attach;
 	std::unique_ptr<OdinKnobAttachment> m_reverb_EQ_gain_attach;
 	std::unique_ptr<OdinKnobAttachment> m_reverb_EQ_freq_attach;
-	std::unique_ptr<OdinKnobAttachment> m_reverb_ducking_attach;
+	//std::unique_ptr<OdinKnobAttachment> m_reverb_ducking_attach;
 	std::unique_ptr<OdinKnobAttachment> m_reverb_drywet_attach;
-	std::unique_ptr<OdinKnobAttachment> m_reverb_low_freq_attach;
-	std::unique_ptr<OdinKnobAttachment> m_reverb_low_hall_attach;
 	std::unique_ptr<OdinKnobAttachment> m_reverb_mid_hall_attach;
 	std::unique_ptr<OdinKnobAttachment> m_reverb_hf_damp_attach;
-	std::unique_ptr<ComboBoxAttachment> m_reverb_type_attach;
 
 	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(ReverbComponent)
 };

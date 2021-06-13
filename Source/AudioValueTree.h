@@ -295,27 +295,15 @@
 	    std::make_unique<AudioParameterInt>("delay_on", "Delay On", 0, 1, 0),
 
 	    std::make_unique<AudioParameterFloat>(
-	        "rev_delay", "Reverb Size", NormalisableRange<float>(20.f, 80.f, 0.f, 1), 40.f),
-	    std::make_unique<AudioParameterFloat>(
-	        "rev_roomsize", "Reverb Room Size", NormalisableRange<float>(0.f, 1.f, 0.f, 1.f), 0.5f),
-	    std::make_unique<AudioParameterFloat>(
-	        "rev_diffusion", "Reverb Diffusion", NormalisableRange<float>(0.f, 1.f, 0.f, 1.f), 0.5f),
-	    std::make_unique<AudioParameterFloat>(
-	        "rev_decaytime", "Reverb Decay Time", NormalisableRange<float>(0.01f, 64.f, 0.f, FILTER_SKEW_DEFAULT), 2.f),
-	    std::make_unique<AudioParameterFloat>(
-	        "rev_buildup", "Reverb Buildup", NormalisableRange<float>(0.f, 1.f, 0.f, 1), 0.5f),
+	        "rev_delay", "Reverb PreDelay", NormalisableRange<float>(20.f, 80.f, 0.f, 1), 40.f),
 	    std::make_unique<AudioParameterFloat>(
 	        "rev_eqgain", "Reverb EQ Gain", NormalisableRange<float>(-12.f, 12.f, 0.f, 1.f), 0.f),
 	    std::make_unique<AudioParameterFloat>(
 	        "rev_eqfreq", "Reverb EQ Freq", NormalisableRange<float>(100.f, 10000.f, 0.f, FILTER_SKEW_DEFAULT), 1000.f),
+	    //std::make_unique<AudioParameterFloat>(
+	    //    "rev_ducking", "Reverb Ducking", NormalisableRange<float>(0.f, 1.f, 0.f, 1.f), 0.f),
 	    std::make_unique<AudioParameterFloat>(
-	        "rev_ducking", "Reverb Ducking", NormalisableRange<float>(0.f, 1.f, 0.f, 1.f), 0.f),
-	    std::make_unique<AudioParameterFloat>(
-	        "rev_drywet", "Reverb DryWet", NormalisableRange<float>(0.f, 1.f, 0.f, 1.5f), 0.35f),
-	    std::make_unique<AudioParameterFloat>(
-	        "rev_low_freq", "Reverb Low Frequency", NormalisableRange<float>(50.f, 1000.f, 0.f, 1.f), 200.f),
-	    std::make_unique<AudioParameterFloat>(
-	        "rev_low_hall", "Reverb Low Hall", NormalisableRange<float>(1.f, 8.f, 0.f, 1.f), 3.f),
+	        "rev_drywet", "Reverb DryWet", NormalisableRange<float>(0.f, 1.f, 0.f, 0.7f), 0.35f),
 	    std::make_unique<AudioParameterFloat>(
 	        "rev_mid_hall", "Reverb Mid Hall", NormalisableRange<float>(1.f, 8.f, 0.f, 1.f), 2.f),
 	    std::make_unique<AudioParameterFloat>("rev_hf_damp",
@@ -323,7 +311,6 @@
 	                                          NormalisableRange<float>(1500.f, 24000.f, 0.f, FILTER_SKEW_DEFAULT),
 	                                          6000.f),
 	    std::make_unique<AudioParameterInt>("reverb_on", "Reverb On", 0, 1, 0),
-	    std::make_unique<AudioParameterChoice>("rev_type", "Reverb Type", StringArray{"Zita", "Surge"}, 0),
 
 	    // Phaser
 	    std::make_unique<AudioParameterInt>("phaser_reset", "Phaser Reset", 0, 1, 0),

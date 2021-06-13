@@ -213,7 +213,6 @@ void OdinAudioProcessor::setSampleRate(float p_samplerate) {
 
 	m_delay.setSampleRate(p_samplerate);
 	m_phaser.setSampleRate(p_samplerate);
-	m_reverb_surge.setSampleRate(p_samplerate);
 	m_reverb_zita.setSampleRate(p_samplerate);
 	m_reverb_zita.prepare();
 	m_global_env.setSampleRate(p_samplerate);

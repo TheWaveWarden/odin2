@@ -13,6 +13,9 @@
 ** GNU General Public License for more details.
 */
 
+
+//!Note this class is currently not used, it was originally ported from the awesome Surge OpenSource Synthesizer
+
 #pragma once
 
 
