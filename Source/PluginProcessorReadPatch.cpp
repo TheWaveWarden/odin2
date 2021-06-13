@@ -27,19 +27,19 @@ void OdinAudioProcessor::readPatch(const ValueTree &newState) {
 
 	migratePatch(newStateMigrated);
 
-	//avoid compiler warning unused variable
-	//#if (JUCE_DEBUG && ! JUCE_DISABLE_ASSERTIONS) || DOXYGEN
-	int patch_version           = newStateMigrated.getChildWithName("misc")["version_patch"];
-	int minor_version           = newStateMigrated.getChildWithName("misc")["version_minor"];
+//avoid compiler warning unused variable
+#if (JUCE_DEBUG && !JUCE_DISABLE_ASSERTIONS) || DOXYGEN
+	int patch_version = newStateMigrated.getChildWithName("misc")["version_patch"];
+	int minor_version = newStateMigrated.getChildWithName("misc")["version_minor"];
+#endif
 	int patch_migration_version = newStateMigrated.getChildWithName("misc")["patch_migration_version"];
-	//#endif
 
 	DBG("Read patch from version 2." + std::to_string(minor_version) + "." + std::to_string(patch_version) +
 	    ", current version is: 2." + std::to_string(ODIN_MINOR_VERSION) + "." + std::to_string(ODIN_PATCH_VERSION));
 	DBG("Read patch migration version " + std::to_string(patch_migration_version) + ", current version is " +
 	    std::to_string(ODIN_PATCH_MIGRATION_VERSION));
 
-	if (minor_version * 1000 + patch_version < ODIN_MINOR_VERSION * 1000 + patch_version) {
+	if (patch_migration_version < ODIN_PATCH_MIGRATION_VERSION) {
 		DBG("Preset seems to be from older version... loading init priset first...");
 
 		// replace stream with patch from binary data

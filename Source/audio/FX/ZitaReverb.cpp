@@ -145,7 +145,7 @@ void ZitaReverb::setSampleRate(float fsamp) {
 	_rtlow = 3.0f;
 	_rtmid = 2.0f;
 	_fdamp = 3e3f;
-	_opmix = 0.5f;
+	_opmix = 0.25f;
 	_rgxyz = 0.0f;
 
 	_g0 = _d0 = 0;

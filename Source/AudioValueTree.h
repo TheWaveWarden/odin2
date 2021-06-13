@@ -303,7 +303,7 @@
 	    //std::make_unique<AudioParameterFloat>(
 	    //    "rev_ducking", "Reverb Ducking", NormalisableRange<float>(0.f, 1.f, 0.f, 1.f), 0.f),
 	    std::make_unique<AudioParameterFloat>(
-	        "rev_drywet", "Reverb DryWet", NormalisableRange<float>(0.f, 1.f, 0.f, 0.7f), 0.35f),
+	        "rev_drywet", "Reverb DryWet", NormalisableRange<float>(0.f, 1.f, 0.f, 0.7f), 0.25f),
 	    std::make_unique<AudioParameterFloat>(
 	        "rev_mid_hall", "Reverb Mid Hall", NormalisableRange<float>(1.f, 8.f, 0.f, 1.f), 2.f),
 	    std::make_unique<AudioParameterFloat>("rev_hf_damp",
