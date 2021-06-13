@@ -30,20 +30,20 @@ ReverbComponent::ReverbComponent(AudioProcessorValueTreeState &vts, bool p_is_st
 	m_delay.setSliderStyle(Slider::RotaryVerticalDrag);
 	m_delay.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
 	m_delay.setTextValueSuffix(" ms");
-	m_delay.setKnobTooltip("m_delay");
+	m_delay.setKnobTooltip("Sets the time of the initial delay before reverberation starts");
 	addAndMakeVisible(m_delay);
 
 	m_mid_hall.setSliderStyle(Slider::RotaryVerticalDrag);
 	m_mid_hall.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
 	m_mid_hall.setTextValueSuffix(" s");
-	m_mid_hall.setKnobTooltip("TODO MID HALL");
+	m_mid_hall.setKnobTooltip("Controls the time the reverberation takes to attenuate");
 	m_mid_hall.setNumDecimalPlacesToDisplay(2);
 	addAndMakeVisible(m_mid_hall);
 
 	m_hf_damp.setSliderStyle(Slider::RotaryVerticalDrag);
 	m_hf_damp.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
 	m_hf_damp.setTextValueSuffix(" Hz");
-	m_hf_damp.setKnobTooltip("TODO HF DAMP");
+	m_hf_damp.setKnobTooltip("Controls the frequency where higher frequencies start to be attenuated");
 	m_hf_damp.setNumDecimalPlacesToDisplay(0);
 	addAndMakeVisible(m_hf_damp);
 
@@ -51,13 +51,13 @@ ReverbComponent::ReverbComponent(AudioProcessorValueTreeState &vts, bool p_is_st
 	m_EQ_gain.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
 	m_EQ_gain.setTextValueSuffix(" dB");
 	m_EQ_gain.setNumDecimalPlacesToDisplay(1);
-	m_EQ_gain.setKnobTooltip("EQ GAIN");
+	m_EQ_gain.setKnobTooltip("Sets the gain of the build in equalizer");
 	addAndMakeVisible(m_EQ_gain);
 
 	m_EQ_freq.setSliderStyle(Slider::RotaryVerticalDrag);
 	m_EQ_freq.setTextValueSuffix(" Hz");
 	m_EQ_freq.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-	m_EQ_freq.setKnobTooltip("EQ FREQ");
+	m_EQ_freq.setKnobTooltip("Sets the frequency of the build in eqalizer");
 	addAndMakeVisible(m_EQ_freq);
 
 	//m_ducking.setSliderStyle(Slider::RotaryVerticalDrag);
@@ -67,7 +67,7 @@ ReverbComponent::ReverbComponent(AudioProcessorValueTreeState &vts, bool p_is_st
 
 	m_dry_wet.setSliderStyle(Slider::RotaryVerticalDrag);
 	m_dry_wet.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-	m_dry_wet.setKnobTooltip("DRYWET");
+	m_dry_wet.setKnobTooltip("Controls the mix of processed and unprocessed signals");
 	addAndMakeVisible(m_dry_wet);
 
 	m_delay.setNumDecimalPlacesToDisplay(3);
@@ -77,9 +77,9 @@ ReverbComponent::ReverbComponent(AudioProcessorValueTreeState &vts, bool p_is_st
 
 	SET_CTR_KEY(m_EQ_gain);
 	SET_CTR_KEY(m_EQ_freq);
+	SET_CTR_KEY(m_delay);
 	SET_CTR_KEY(m_mid_hall);
 	SET_CTR_KEY(m_hf_damp);
-	SET_CTR_KEY(m_EQ_freq);
 	//SET_CTR_KEY(m_ducking);
 	SET_CTR_KEY(m_dry_wet);
 

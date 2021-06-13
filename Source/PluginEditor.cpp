@@ -250,35 +250,35 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	addAndMakeVisible(m_phaser_on_button);
 	m_phaser_on_button.setAlwaysOnTop(true);
 	m_phaser_on_button.setTriggeredOnMouseDown(true);
-	m_phaser_on_button.setTooltip("Enables the phaser");
+	m_phaser_on_button.setTooltip("Enables the phaser module");
 	m_phaser_on_button.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
 
 	m_flanger_on_button.setClickingTogglesState(true);
 	addAndMakeVisible(m_flanger_on_button);
 	m_flanger_on_button.setAlwaysOnTop(true);
 	m_flanger_on_button.setTriggeredOnMouseDown(true);
-	m_flanger_on_button.setTooltip("Enables the flanger");
+	m_flanger_on_button.setTooltip("Enables the flanger module");
 	m_flanger_on_button.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
 
 	m_chorus_on_button.setClickingTogglesState(true);
 	addAndMakeVisible(m_chorus_on_button);
 	m_chorus_on_button.setAlwaysOnTop(true);
 	m_chorus_on_button.setTriggeredOnMouseDown(true);
-	m_chorus_on_button.setTooltip("Enables the chorus");
+	m_chorus_on_button.setTooltip("Enables the chorus module");
 	m_chorus_on_button.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
 
 	m_delay_on_button.setClickingTogglesState(true);
 	addAndMakeVisible(m_delay_on_button);
 	m_delay_on_button.setAlwaysOnTop(true);
 	m_delay_on_button.setTriggeredOnMouseDown(true);
-	m_delay_on_button.setTooltip("Enables the delay");
+	m_delay_on_button.setTooltip("Enables the delay module");
 	m_delay_on_button.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
 
 	m_reverb_on_button.setClickingTogglesState(true);
 	addAndMakeVisible(m_reverb_on_button);
 	m_reverb_on_button.setAlwaysOnTop(true);
 	m_reverb_on_button.setTriggeredOnMouseDown(true);
-	m_reverb_on_button.setTooltip("Enables the delay");
+	m_reverb_on_button.setTooltip("Enables the reverb module");
 	m_reverb_on_button.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
 
 	m_reset.setTooltip("Reset the synth to its initial state");
