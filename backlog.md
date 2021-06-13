@@ -1,3 +1,4 @@
 - investigate dropdowns not closing
-- Write manual entry for Reverbs
-- manual: somewhere is a todo
+- when loading older patches, reverb is not reset
+- reset reverb on activate (clear buffers)
+- disable jack

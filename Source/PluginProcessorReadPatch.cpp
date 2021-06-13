@@ -27,35 +27,44 @@ void OdinAudioProcessor::readPatch(const ValueTree &newState) {
 
 	migratePatch(newStateMigrated);
 
-
-//avoid compiler warning unused variable
-#if (JUCE_DEBUG && ! JUCE_DISABLE_ASSERTIONS) || DOXYGEN
+	//avoid compiler warning unused variable
+	//#if (JUCE_DEBUG && ! JUCE_DISABLE_ASSERTIONS) || DOXYGEN
 	int patch_version           = newStateMigrated.getChildWithName("misc")["version_patch"];
 	int minor_version           = newStateMigrated.getChildWithName("misc")["version_minor"];
 	int patch_migration_version = newStateMigrated.getChildWithName("misc")["patch_migration_version"];
-#endif
+	//#endif
 
 	DBG("Read patch from version 2." + std::to_string(minor_version) + "." + std::to_string(patch_version) +
 	    ", current version is: 2." + std::to_string(ODIN_MINOR_VERSION) + "." + std::to_string(ODIN_PATCH_VERSION));
 	DBG("Read patch migration version " + std::to_string(patch_migration_version) + ", current version is " +
 	    std::to_string(ODIN_PATCH_MIGRATION_VERSION));
 
+	if (minor_version * 1000 + patch_version < ODIN_MINOR_VERSION * 1000 + patch_version) {
+		DBG("Preset seems to be from older version... loading init priset first...");
+
+		// replace stream with patch from binary data
+		MemoryInputStream init_stream(BinaryData::init_patch_odin, BinaryData::init_patch_odinSize, false);
+		readPatch(ValueTree::readFromStream(init_stream));
+
+		DBG("Done loading init patch");
+	}
+
 	const ValueTree &draw_tree = newStateMigrated.getChildWithName("draw");
 
 	//if new value has no draw tree, create it from scratch
 	for (int osc = 1; osc < 4; ++osc) {
 		if (!(draw_tree.hasProperty(String("osc" + std::to_string(osc) + "_wavedraw_values_0")))) {
-			DBG("Tree has no wavedraw" + std::to_string(osc) +" values, fallback to generation");
+			DBG("Tree has no wavedraw" + std::to_string(osc) + " values, fallback to generation");
 			writeDefaultWavedrawValuesToTree(osc);
 		}
 
 		if (!(draw_tree.hasProperty(String("osc" + std::to_string(osc) + "_chipdraw_values_0")))) {
-			DBG("Tree has no chipdraw" + std::to_string(osc) +" values, fallback to generation");
+			DBG("Tree has no chipdraw" + std::to_string(osc) + " values, fallback to generation");
 			writeDefaultChipdrawValuesToTree(osc);
 		}
 
 		if (!(draw_tree.hasProperty(String("osc" + std::to_string(osc) + "_specdraw_values_0")))) {
-			DBG("Tree has no specdraw" + std::to_string(osc) +" values, fallback to generation");
+			DBG("Tree has no specdraw" + std::to_string(osc) + " values, fallback to generation");
 			writeDefaultSpecdrawValuesToTree(osc);
 		}
 	}
