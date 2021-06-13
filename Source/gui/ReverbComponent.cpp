@@ -46,14 +46,14 @@ ReverbComponent::ReverbComponent(AudioProcessorValueTreeState &vts, bool p_is_st
 	m_low_freq.setTextValueSuffix(" Hz");
 	m_low_freq.setKnobTooltip("TODO LOW_FREQ");
 	m_low_freq.setNumDecimalPlacesToDisplay(0);
-	addAndMakeVisible(m_low_freq);
+	//addAndMakeVisible(m_low_freq);
 
 	m_low_hall.setSliderStyle(Slider::RotaryVerticalDrag);
 	m_low_hall.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
 	m_low_hall.setTextValueSuffix(" s");
 	m_low_hall.setKnobTooltip("TODO LOW HALL");
 	m_low_hall.setNumDecimalPlacesToDisplay(2);
-	addAndMakeVisible(m_low_hall);
+	//addAndMakeVisible(m_low_hall);
 
 	m_mid_hall.setSliderStyle(Slider::RotaryVerticalDrag);
 	m_mid_hall.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
@@ -241,12 +241,12 @@ void ReverbComponent::setGUIBig() {
 	m_EQ_gain.setStrip(black_knob_mid, N_KNOB_FRAMES);
 	m_ducking.setStrip(black_knob_mid, N_KNOB_FRAMES);
 	m_EQ_freq.setStrip(black_knob_mid, N_KNOB_FRAMES);
-	m_dry_wet.setStrip(metal_knob_mid, N_KNOB_FRAMES);
+	m_dry_wet.setStrip(black_knob_big, N_KNOB_FRAMES);
 
 	m_low_freq.setStrip(black_knob_mid, N_KNOB_FRAMES);
 	m_low_hall.setStrip(black_knob_mid, N_KNOB_FRAMES);
-	m_mid_hall.setStrip(black_knob_mid, N_KNOB_FRAMES);
-	m_hf_damp.setStrip(black_knob_mid, N_KNOB_FRAMES);
+	m_mid_hall.setStrip(metal_knob_mid, N_KNOB_FRAMES);
+	m_hf_damp.setStrip(metal_knob_mid, N_KNOB_FRAMES);
 
 	m_low_freq.setBounds(OdinHelper::c150(REVERB_LOW_FREQ_POS_X),
 	                     OdinHelper::c150(REVERB_LOW_FREQ_POS_Y),
@@ -258,12 +258,12 @@ void ReverbComponent::setGUIBig() {
 	                     OdinHelper::c150(BLACK_KNOB_MID_SIZE_Y));
 	m_mid_hall.setBounds(OdinHelper::c150(REVERB_MID_HALL_POS_X),
 	                     OdinHelper::c150(REVERB_MID_HALL_POS_Y),
-	                     OdinHelper::c150(BLACK_KNOB_MID_SIZE_X),
-	                     OdinHelper::c150(BLACK_KNOB_MID_SIZE_Y));
+	                     OdinHelper::c150(METAL_KNOB_MID_SIZE_X),
+	                     OdinHelper::c150(METAL_KNOB_MID_SIZE_Y));
 	m_hf_damp.setBounds(OdinHelper::c150(REVERB_HF_DAMP_POS_X),
 	                    OdinHelper::c150(REVERB_HF_DAMP_POS_Y),
-	                    OdinHelper::c150(BLACK_KNOB_MID_SIZE_X),
-	                    OdinHelper::c150(BLACK_KNOB_MID_SIZE_Y));
+	                    OdinHelper::c150(METAL_KNOB_MID_SIZE_X),
+	                    OdinHelper::c150(METAL_KNOB_MID_SIZE_Y));
 
 	m_delay.setBounds(OdinHelper::c150(REVERB_DELAY_POS_X),
 	                  OdinHelper::c150(REVERB_DELAY_POS_Y),
@@ -300,8 +300,8 @@ void ReverbComponent::setGUIBig() {
 	                    OdinHelper::c150(BLACK_KNOB_MID_SIZE_Y));
 	m_dry_wet.setBounds(OdinHelper::c150(REVERB_WET_POS_X),
 	                    OdinHelper::c150(REVERB_WET_POS_Y),
-	                    OdinHelper::c150(METAL_KNOB_MID_SIZE_X),
-	                    OdinHelper::c150(METAL_KNOB_MID_SIZE_Y));
+	                    OdinHelper::c150(BLACK_KNOB_BIG_SIZE_X),
+	                    OdinHelper::c150(BLACK_KNOB_BIG_SIZE_Y));
 
 	juce::Image glas_panel =
 	    ImageCache::getFromMemory(BinaryData::glaspanel_midbig_150_png, BinaryData::glaspanel_midbig_150_pngSize);

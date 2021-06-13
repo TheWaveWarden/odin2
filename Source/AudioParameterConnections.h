@@ -293,6 +293,10 @@ m_value_tree.addParameterListener("rev_decaytime", &m_tree_listener_reverb);
 m_value_tree.addParameterListener("rev_buildup", &m_tree_listener_reverb);
 m_value_tree.addParameterListener("reverb_on", &m_tree_listener_reverb);
 m_value_tree.addParameterListener("rev_type", &m_tree_listener_reverb);
+m_value_tree.addParameterListener("rev_low_freq", &m_tree_listener_reverb);
+m_value_tree.addParameterListener("rev_low_hall", &m_tree_listener_reverb);
+m_value_tree.addParameterListener("rev_mid_hall", &m_tree_listener_reverb);
+m_value_tree.addParameterListener("rev_hf_damp", &m_tree_listener_reverb);
 
 //chorus listener
 m_value_tree.addParameterListener("chorus_rate", &m_tree_listener_chorus);

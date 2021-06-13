@@ -93,7 +93,7 @@ public:
   inline void setDucking(float p_ducking) { m_ducking_amount = p_ducking; }
 
   inline float doAverage(float p_input) {
-    // abs inpkut for pos only
+    // abs input for pos only
     p_input = fabs(p_input);
 
     // do moving average

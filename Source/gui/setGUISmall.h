@@ -322,8 +322,8 @@ void OdinAudioProcessorEditor::setGUISmall() {
 	juce::Image metal_knob_big =
 	    ImageCache::getFromMemory(BinaryData::metal_knob_big_png, BinaryData::metal_knob_big_pngSize);
 
-	juce::Image black_knob_mid =
-	    ImageCache::getFromMemory(BinaryData::black_knob_mid_png, BinaryData::black_knob_mid_pngSize);
+	//juce::Image black_knob_mid =
+	//    ImageCache::getFromMemory(BinaryData::black_knob_mid_png, BinaryData::black_knob_mid_pngSize);
 
 	// load backplates for osc and filters
 

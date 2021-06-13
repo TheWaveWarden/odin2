@@ -160,12 +160,12 @@ public:
 	void prepare();
 	float* process(float input[2]);
 
-	void set_delay(float v);  //orig GUI param
-	void set_xover(float v);  
-	void set_rtlow(float v);  //orig GUI param
-	void set_rtmid(float v);  //orig GUI param
-	void set_fdamp(float v);  //orig GUI param
-	void set_opmix(float v);  //orig GUI param
+	void set_delay(float v);  //v in seconds
+	void set_xover(float v);  // set low freq, v in Hz  
+	void set_rtlow(float v);  //v in seconds (RT60: time for signal to attenuate 60dB)
+	void set_rtmid(float v);  //v in seconds (RT60: time for signal to attenuate 60dB)
+	void set_fdamp(float v);  //v in Hz
+	void set_opmix(float v);  //drywet [0,1]
 	void set_rgxyz(float v);
 	void set_eq1(float f, float g);
 	void set_eq1_gain(float g);

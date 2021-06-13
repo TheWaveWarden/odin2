@@ -1,19 +1,21 @@
 - investigate dropdowns not closing
-- clean separation of Zita and Surge GUI
 - Zita
-  - check which values need to be set
-  - create knobs
-  - create APVTS params
-  - connect those
-  - pass values to algorithm
   - compare agains original algorithm
-    - get JACK up and running again
-- Surge
-  - investigate params not doing anything
-  - maybe some can be eliminated
-  - compare against original algorithm
+  - get JACK up and running again
+  - evtl: ducking
+- remove
+  - unused knobs
+  - unused attachments
+  - unused audio params
+  - unused identifiers 
+  - Surge reverb in PRocessor
 - Create Backdrops 150
 - Create Backdrops 100
+- draggable FX buttons 100 (blender?)
+- Make sure things are saved and retrieved correctly
+- recreate init path
+- rename "Static Factory Presets"
+- bump patch migration version
 - Move Knobs to correct location 100
 - Write manual entry for Reverbs 
 - manual: somewhere is a todo

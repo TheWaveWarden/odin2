@@ -295,7 +295,7 @@
 	    std::make_unique<AudioParameterInt>("delay_on", "Delay On", 0, 1, 0),
 
 	    std::make_unique<AudioParameterFloat>(
-	        "rev_delay", "Reverb Size", NormalisableRange<float>(20.f, 100, 0.f, 1), 40.f),
+	        "rev_delay", "Reverb Size", NormalisableRange<float>(20.f, 80.f, 0.f, 1), 40.f),
 	    std::make_unique<AudioParameterFloat>(
 	        "rev_roomsize", "Reverb Room Size", NormalisableRange<float>(0.f, 1.f, 0.f, 1.f), 0.5f),
 	    std::make_unique<AudioParameterFloat>(
