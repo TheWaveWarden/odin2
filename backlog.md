@@ -1,4 +1,3 @@
 - investigate dropdowns not closing
-- Zita Rev: Find good value for Q (big)
 - Write manual entry for Reverbs
 - manual: somewhere is a todo

@@ -1,24 +1,25 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2021.1.19)  5 MAR 2021 14:41
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.8.2)  13 JUN 2021 20:38
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **manual
 (./manual.tex
-LaTeX2e <2018-12-01>
+LaTeX2e <2017-04-15>
+Babel <3.18> and hyphenation patterns for 84 language(s) loaded.
 (/usr/share/texlive/texmf-dist/tex/latex/base/report.cls
-Document Class: report 2018/09/03 v1.4i Standard LaTeX document class
+Document Class: report 2014/09/29 v1.4h Standard LaTeX document class
 (/usr/share/texlive/texmf-dist/tex/latex/base/size12.clo
-File: size12.clo 2018/09/03 v1.4i Standard LaTeX file (size option)
+File: size12.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 )
-\c@part=\count80
-\c@chapter=\count81
-\c@section=\count82
-\c@subsection=\count83
-\c@subsubsection=\count84
-\c@paragraph=\count85
-\c@subparagraph=\count86
-\c@figure=\count87
-\c@table=\count88
+\c@part=\count79
+\c@chapter=\count80
+\c@section=\count81
+\c@subsection=\count82
+\c@subsubsection=\count83
+\c@paragraph=\count84
+\c@subparagraph=\count85
+\c@figure=\count86
+\c@table=\count87
 \abovecaptionskip=\skip41
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
@@ -48,7 +49,7 @@ File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
 \Gin@req@width=\dimen104
 )
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
-Package: hyperref 2018/11/30 v6.88e Hypertext links for LaTeX
+Package: hyperref 2018/02/06 v6.86b Hypertext links for LaTeX
 
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
 Package: hobsub-hyperref 2016/05/16 v1.14 Bundle oberdiek, subset hyperref (HO)
@@ -64,11 +65,15 @@ Package ifluatex Info: LuaTeX not detected.
 Package: ifvtex 2016/05/16 v1.6 Detect VTeX and its facilities (HO)
 Package ifvtex Info: VTeX not detected.
 Package: intcalc 2016/05/16 v1.2 Expandable calculations with integers (HO)
-Package: ifpdf 2018/09/07 v3.3 Provides the ifpdf switch
+Package: ifpdf 2017/03/15 v3.2 Provides the ifpdf switch
 Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
 Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
 Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
-Package: pdftexcmds 2018/09/10 v0.29 Utility functions of pdfTeX for LuaTeX (HO
+Package: pdftexcmds 2018/01/21 v0.26 Utility functions of pdfTeX for LuaTeX (HO
 )
 Package pdftexcmds Info: LuaTeX not detected.
 Package pdftexcmds Info: \pdf@primitive is available.
@@ -100,56 +105,54 @@ Package: auxhook 2016/05/16 v1.4 Hooks for auxiliary files (HO)
 Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
 )
 \@linkdim=\dimen105
-\Hy@linkcounter=\count89
-\Hy@pagecounter=\count90
+\Hy@linkcounter=\count88
+\Hy@pagecounter=\count89
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def
-File: pd1enc.def 2018/11/30 v6.88e Hyperref: PDFDocEncoding definition (HO)
-Now handling font encoding PD1 ...
-... no UTF-8 mapping file for font encoding PD1
+File: pd1enc.def 2018/02/06 v6.86b Hyperref: PDFDocEncoding definition (HO)
 )
-\Hy@SavedSpaceFactor=\count91
+\Hy@SavedSpaceFactor=\count90
 
 (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/hyperref.cfg
 File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
 )
-Package hyperref Info: Hyper figures OFF on input line 4519.
-Package hyperref Info: Link nesting OFF on input line 4524.
-Package hyperref Info: Hyper index ON on input line 4527.
-Package hyperref Info: Plain pages OFF on input line 4534.
-Package hyperref Info: Backreferencing OFF on input line 4539.
+Package hyperref Info: Hyper figures OFF on input line 4509.
+Package hyperref Info: Link nesting OFF on input line 4514.
+Package hyperref Info: Hyper index ON on input line 4517.
+Package hyperref Info: Plain pages OFF on input line 4524.
+Package hyperref Info: Backreferencing OFF on input line 4529.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
-Package hyperref Info: Bookmarks ON on input line 4772.
-\c@Hy@tempcnt=\count92
+Package hyperref Info: Bookmarks ON on input line 4762.
+\c@Hy@tempcnt=\count91
 
 (/usr/share/texlive/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip10
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
-LaTeX Info: Redefining \url on input line 5125.
+LaTeX Info: Redefining \url on input line 5115.
 \XeTeXLinkMargin=\dimen106
-\Fld@menulength=\count93
+\Fld@menulength=\count92
 \Field@Width=\dimen107
 \Fld@charsize=\dimen108
-Package hyperref Info: Hyper figures OFF on input line 6380.
-Package hyperref Info: Link nesting OFF on input line 6385.
-Package hyperref Info: Hyper index ON on input line 6388.
-Package hyperref Info: backreferencing OFF on input line 6395.
-Package hyperref Info: Link coloring OFF on input line 6400.
-Package hyperref Info: Link coloring with OCG OFF on input line 6405.
-Package hyperref Info: PDF/A mode OFF on input line 6410.
-LaTeX Info: Redefining \ref on input line 6450.
-LaTeX Info: Redefining \pageref on input line 6454.
-\Hy@abspage=\count94
-\c@Item=\count95
-\c@Hfootnote=\count96
+Package hyperref Info: Hyper figures OFF on input line 6369.
+Package hyperref Info: Link nesting OFF on input line 6374.
+Package hyperref Info: Hyper index ON on input line 6377.
+Package hyperref Info: backreferencing OFF on input line 6384.
+Package hyperref Info: Link coloring OFF on input line 6389.
+Package hyperref Info: Link coloring with OCG OFF on input line 6394.
+Package hyperref Info: PDF/A mode OFF on input line 6399.
+LaTeX Info: Redefining \ref on input line 6439.
+LaTeX Info: Redefining \pageref on input line 6443.
+\Hy@abspage=\count93
+\c@Item=\count94
+\c@Hfootnote=\count95
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
-File: hpdftex.def 2018/11/30 v6.88e Hyperref driver for pdfTeX
-\Fld@listcount=\count97
-\c@bookmark@seq@number=\count98
+File: hpdftex.def 2018/02/06 v6.86b Hyperref driver for pdfTeX
+\Fld@listcount=\count96
+\c@bookmark@seq@number=\count97
 
 (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty
 Package: rerunfilecheck 2016/05/16 v1.8 Rerun checks for auxiliary files (HO)
@@ -159,25 +162,21 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 \Hy@SectionHShift=\skip43
 )
 (/usr/share/texlive/texmf-dist/tex/latex/svg/svg.sty
-Package: svg 2018/11/12 v2.02b (include SVG pictures)
+Package: svg 2017/11/29 v2.01 (include SVG pictures)
 
 (/usr/share/texlive/texmf-dist/tex/latex/koma-script/scrbase.sty
-Package: scrbase 2019/02/01 v3.26b KOMA-Script package (KOMA-Script-independent
- basics and keyval usage)
+Package: scrbase 2017/09/07 v3.24 KOMA-Script package (KOMA-Script-independent 
+basics and keyval usage)
 
 (/usr/share/texlive/texmf-dist/tex/latex/koma-script/scrlfile.sty
-Package: scrlfile 2019/02/01 v3.26b KOMA-Script package (loading files)
+Package: scrlfile 2017/09/07 v3.24 KOMA-Script package (loading files)
 ))
 (/usr/share/texlive/texmf-dist/tex/latex/tools/shellesc.sty
 Package: shellesc 2016/06/07 v0.02a unified shell escape interface for LaTeX
 Package shellesc Info: Restricted shell escape enabled on input line 69.
 )
-(/usr/share/texlive/texmf-dist/tex/latex/trimspaces/trimspaces.sty
-Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
-)
-\svg@box=\box27
-\c@svg@param@lastpage=\count99
-\c@svg@param@currpage=\count100
+\c@svg@param@lastpage=\count98
+\c@svg@param@currpage=\count99
 )
 (/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
 Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
@@ -197,234 +196,66 @@ Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
 )
 (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/transparent.sty
-Package: transparent 2018/11/18 v1.3 Transparency via pdfTeX's color stack (HO)
+Package: transparent 2016/05/16 v1.1 Transparency via pdfTeX's color stack (HO)
 
 )
 (/usr/share/texlive/texmf-dist/tex/latex/mwe/mwe.sty
-Package: mwe 2018/03/30 v0.5 Package to support minimal working examples (MWE)
+Package: mwe 2017/12/10 v0.4 Package to support minimal working examples (MWE)
 
 (/usr/share/texlive/texmf-dist/tex/latex/lipsum/lipsum.sty
-(/usr/share/texlive/texmf-dist/tex/latex/l3kernel/expl3.sty
-Package: expl3 2019-02-15 L3 programming layer (loader) 
-
-(/usr/share/texlive/texmf-dist/tex/latex/l3kernel/expl3-code.tex
-Package: expl3 2019-02-15 L3 programming layer (code)
-\c_max_int=\count101
-\l_tmpa_int=\count102
-\l_tmpb_int=\count103
-\g_tmpa_int=\count104
-\g_tmpb_int=\count105
-\g__kernel_prg_map_int=\count106
-\c_log_iow=\count107
-\l_iow_line_count_int=\count108
-\l__iow_line_target_int=\count109
-\l__iow_one_indent_int=\count110
-\l__iow_indent_int=\count111
-\c_zero_dim=\dimen109
-\c_max_dim=\dimen110
-\l_tmpa_dim=\dimen111
-\l_tmpb_dim=\dimen112
-\g_tmpa_dim=\dimen113
-\g_tmpb_dim=\dimen114
-\c_zero_skip=\skip44
-\c_max_skip=\skip45
-\l_tmpa_skip=\skip46
-\l_tmpb_skip=\skip47
-\g_tmpa_skip=\skip48
-\g_tmpb_skip=\skip49
-\c_zero_muskip=\muskip11
-\c_max_muskip=\muskip12
-\l_tmpa_muskip=\muskip13
-\l_tmpb_muskip=\muskip14
-\g_tmpa_muskip=\muskip15
-\g_tmpb_muskip=\muskip16
-\l_keys_choice_int=\count112
-\l__intarray_loop_int=\count113
-\c__intarray_sp_dim=\dimen115
-\g__intarray_font_int=\count114
-\c__fp_leading_shift_int=\count115
-\c__fp_middle_shift_int=\count116
-\c__fp_trailing_shift_int=\count117
-\c__fp_big_leading_shift_int=\count118
-\c__fp_big_middle_shift_int=\count119
-\c__fp_big_trailing_shift_int=\count120
-\c__fp_Bigg_leading_shift_int=\count121
-\c__fp_Bigg_middle_shift_int=\count122
-\c__fp_Bigg_trailing_shift_int=\count123
-\c__kernel_randint_max_int=\count124
-\g__fp_array_int=\count125
-\l__fp_array_loop_int=\count126
-\l__sort_length_int=\count127
-\l__sort_min_int=\count128
-\l__sort_top_int=\count129
-\l__sort_max_int=\count130
-\l__sort_true_max_int=\count131
-\l__sort_block_int=\count132
-\l__sort_begin_int=\count133
-\l__sort_end_int=\count134
-\l__sort_A_int=\count135
-\l__sort_B_int=\count136
-\l__sort_C_int=\count137
-\l__tl_analysis_normal_int=\count138
-\l__tl_analysis_index_int=\count139
-\l__tl_analysis_nesting_int=\count140
-\l__tl_analysis_type_int=\count141
-\l__regex_internal_a_int=\count142
-\l__regex_internal_b_int=\count143
-\l__regex_internal_c_int=\count144
-\l__regex_balance_int=\count145
-\l__regex_group_level_int=\count146
-\l__regex_mode_int=\count147
-\c__regex_cs_in_class_mode_int=\count148
-\c__regex_cs_mode_int=\count149
-\l__regex_catcodes_int=\count150
-\l__regex_default_catcodes_int=\count151
-\c__regex_catcode_D_int=\count152
-\c__regex_catcode_S_int=\count153
-\c__regex_catcode_L_int=\count154
-\c__regex_catcode_O_int=\count155
-\c__regex_catcode_A_int=\count156
-\c__regex_all_catcodes_int=\count157
-\l__regex_show_lines_int=\count158
-\l__regex_min_state_int=\count159
-\l__regex_max_state_int=\count160
-\l__regex_left_state_int=\count161
-\l__regex_right_state_int=\count162
-\l__regex_capturing_group_int=\count163
-\l__regex_min_pos_int=\count164
-\l__regex_max_pos_int=\count165
-\l__regex_curr_pos_int=\count166
-\l__regex_start_pos_int=\count167
-\l__regex_success_pos_int=\count168
-\l__regex_curr_char_int=\count169
-\l__regex_curr_catcode_int=\count170
-\l__regex_last_char_int=\count171
-\l__regex_case_changed_char_int=\count172
-\l__regex_curr_state_int=\count173
-\l__regex_step_int=\count174
-\l__regex_min_active_int=\count175
-\l__regex_max_active_int=\count176
-\l__regex_replacement_csnames_int=\count177
-\l__regex_match_count_int=\count178
-\l__regex_min_submatch_int=\count179
-\l__regex_submatch_int=\count180
-\l__regex_zeroth_submatch_int=\count181
-\g__regex_trace_regex_int=\count182
-\c_empty_box=\box28
-\l_tmpa_box=\box29
-\l_tmpb_box=\box30
-\g_tmpa_box=\box31
-\g_tmpb_box=\box32
-\l__box_top_dim=\dimen116
-\l__box_bottom_dim=\dimen117
-\l__box_left_dim=\dimen118
-\l__box_right_dim=\dimen119
-\l__box_top_new_dim=\dimen120
-\l__box_bottom_new_dim=\dimen121
-\l__box_left_new_dim=\dimen122
-\l__box_right_new_dim=\dimen123
-\l__box_internal_box=\box33
-\l__coffin_internal_box=\box34
-\l__coffin_internal_dim=\dimen124
-\l__coffin_offset_x_dim=\dimen125
-\l__coffin_offset_y_dim=\dimen126
-\l__coffin_x_dim=\dimen127
-\l__coffin_y_dim=\dimen128
-\l__coffin_x_prime_dim=\dimen129
-\l__coffin_y_prime_dim=\dimen130
-\c_empty_coffin=\box35
-\l__coffin_aligned_coffin=\box36
-\l__coffin_aligned_internal_coffin=\box37
-\l_tmpa_coffin=\box38
-\l_tmpb_coffin=\box39
-\g_tmpa_coffin=\box40
-\g_tmpb_coffin=\box41
-\c__coffin_empty_coffin=\box42
-\l__coffin_display_coffin=\box43
-\l__coffin_display_coord_coffin=\box44
-\l__coffin_display_pole_coffin=\box45
-\l__coffin_display_offset_dim=\dimen131
-\l__coffin_display_x_dim=\dimen132
-\l__coffin_display_y_dim=\dimen133
-\g__file_internal_ior=\read1
-\l__coffin_bounding_shift_dim=\dimen134
-\l__coffin_left_corner_dim=\dimen135
-\l__coffin_right_corner_dim=\dimen136
-\l__coffin_bottom_corner_dim=\dimen137
-\l__coffin_top_corner_dim=\dimen138
-\l__coffin_scaled_total_height_dim=\dimen139
-\l__coffin_scaled_width_dim=\dimen140
-\l__seq_internal_a_int=\count183
-\l__seq_internal_b_int=\count184
+Package: lipsum 2014/07/27 v1.3 150 paragraphs of Lorem Ipsum dummy text
+\c@lips@count=\count100
 )
-(/usr/share/texlive/texmf-dist/tex/latex/l3kernel/l3pdfmode.def
-File: l3pdfmode.def 2019-02-15 v L3 Experimental driver: PDF mode
-\l__driver_color_stack_int=\count185
-))
-(/usr/share/texlive/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
-Package: xparse 2018-10-17 L3 Experimental document command parser
-\l__xparse_current_arg_int=\count186
-\g__xparse_grabber_int=\count187
-\l__xparse_m_args_int=\count188
-\l__xparse_mandatory_args_int=\count189
-\l__xparse_v_nesting_int=\count190
-)
-Package: lipsum 2019/01/02 v2.2 150 paragraphs of Lorem Ipsum dummy text
-
-(/usr/share/texlive/texmf-dist/tex/latex/lipsum/lipsum.ltd.tex
-File: lipsum.ltd.tex 2019/01/02 v2.2 The Lorem ipsum dummy text
-))
 (/usr/share/texlive/texmf-dist/tex/latex/blindtext/blindtext.sty
 Package: blindtext 2012/01/06 V2.0 blindtext-Package
 
 (/usr/share/texlive/texmf-dist/tex/latex/tools/xspace.sty
 Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
 )
-\c@blindtext=\count191
-\c@Blindtext=\count192
-\c@blind@countparstart=\count193
-\blind@countxx=\count194
-\blindtext@numBlindtext=\count195
-\blind@countyy=\count196
-\c@blindlist=\count197
-\c@blindlistlevel=\count198
-\c@blindlist@level=\count199
-\blind@listitem=\count266
-\c@blind@listcount=\count267
-\c@blind@levelcount=\count268
-\blind@mathformula=\count269
-\blind@Mathformula=\count270
-\c@blind@randomcount=\count271
-\c@blind@randommax=\count272
-\c@blind@pangramcount=\count273
-\c@blind@pangrammax=\count274
+\c@blindtext=\count101
+\c@Blindtext=\count102
+\c@blind@countparstart=\count103
+\blind@countxx=\count104
+\blindtext@numBlindtext=\count105
+\blind@countyy=\count106
+\c@blindlist=\count107
+\c@blindlistlevel=\count108
+\c@blindlist@level=\count109
+\blind@listitem=\count110
+\c@blind@listcount=\count111
+\c@blind@levelcount=\count112
+\blind@mathformula=\count113
+\blind@Mathformula=\count114
+\c@blind@randomcount=\count115
+\c@blind@randommax=\count116
+\c@blind@pangramcount=\count117
+\c@blind@pangrammax=\count118
 ))
 (/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcolorbox.sty
-Package: tcolorbox 2018/12/07 version 4.15 text color boxes
+Package: tcolorbox 2018/01/12 version 4.12 text color boxes
 
 (/usr/share/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
 (/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex
 \pgfutil@everybye=\toks15
-\pgfutil@tempdima=\dimen141
-\pgfutil@tempdimb=\dimen142
+\pgfutil@tempdima=\dimen109
+\pgfutil@tempdimb=\dimen110
 
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common-lists.t
 ex)) (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
-\pgfutil@abb=\box46
+\pgfutil@abb=\box26
 (/usr/share/texlive/texmf-dist/tex/latex/ms/everyshi.sty
 Package: everyshi 2001/05/15 v3.00 EveryShipout Package (MS)
 ))
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/pgf.revision.tex)
-Package: pgfrcs 2019/02/02 v3.1.1 (3.1.1)
+Package: pgfrcs 2015/08/07 v3.0.1a (rcs-revision 1.31)
 ))
-Package: pgf 2019/02/02 v3.1.1 (3.1.1)
+Package: pgf 2015/08/07 v3.0.1a (rcs-revision 1.15)
 
 (/usr/share/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty
 (/usr/share/texlive/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
-Package: pgfsys 2019/02/02 v3.1.1 (3.1.1)
+Package: pgfsys 2014/07/09 v3.0.1a (rcs-revision 1.48)
 
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
 \pgfkeys@pathtoks=\toks16
@@ -434,56 +265,55 @@ Package: pgfsys 2019/02/02 v3.1.1 (3.1.1)
 ex
 \pgfkeys@tmptoks=\toks18
 ))
-\pgf@x=\dimen143
-\pgf@y=\dimen144
-\pgf@xa=\dimen145
-\pgf@ya=\dimen146
-\pgf@xb=\dimen147
-\pgf@yb=\dimen148
-\pgf@xc=\dimen149
-\pgf@yc=\dimen150
+\pgf@x=\dimen111
+\pgf@y=\dimen112
+\pgf@xa=\dimen113
+\pgf@ya=\dimen114
+\pgf@xb=\dimen115
+\pgf@yb=\dimen116
+\pgf@xc=\dimen117
+\pgf@yc=\dimen118
 \w@pgf@writea=\write3
-\r@pgf@reada=\read2
-\c@pgf@counta=\count275
-\c@pgf@countb=\count276
-\c@pgf@countc=\count277
-\c@pgf@countd=\count278
+\r@pgf@reada=\read1
+\c@pgf@counta=\count119
+\c@pgf@countb=\count120
+\c@pgf@countc=\count121
+\c@pgf@countd=\count122
 \t@pgf@toka=\toks19
 \t@pgf@tokb=\toks20
 \t@pgf@tokc=\toks21
-\pgf@sys@id@count=\count279
  (/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
-File: pgf.cfg 2019/02/02 v3.1.1 (3.1.1)
+File: pgf.cfg 2008/05/14  (rcs-revision 1.7)
 )
 Driver file for pgf: pgfsys-pdftex.def
 
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-pdftex.def
-File: pgfsys-pdftex.def 2019/02/02 v3.1.1 (3.1.1)
+File: pgfsys-pdftex.def 2014/10/11  (rcs-revision 1.35)
 
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-pdf.de
 f
-File: pgfsys-common-pdf.def 2019/02/02 v3.1.1 (3.1.1)
+File: pgfsys-common-pdf.def 2013/10/10  (rcs-revision 1.13)
 )))
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.
 tex
-File: pgfsyssoftpath.code.tex 2019/02/02 v3.1.1 (3.1.1)
-\pgfsyssoftpath@smallbuffer@items=\count280
-\pgfsyssoftpath@bigbuffer@items=\count281
+File: pgfsyssoftpath.code.tex 2013/09/09  (rcs-revision 1.9)
+\pgfsyssoftpath@smallbuffer@items=\count123
+\pgfsyssoftpath@bigbuffer@items=\count124
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.
 tex
-File: pgfsysprotocol.code.tex 2019/02/02 v3.1.1 (3.1.1)
+File: pgfsysprotocol.code.tex 2006/10/16  (rcs-revision 1.4)
 ))
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
-Package: pgfcore 2019/02/02 v3.1.1 (3.1.1)
+Package: pgfcore 2010/04/11 v3.0.1a (rcs-revision 1.7)
 
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
-\pgfmath@dimen=\dimen151
-\pgfmath@count=\count282
-\pgfmath@box=\box47
+\pgfmath@dimen=\dimen119
+\pgfmath@count=\count125
+\pgfmath@box=\box27
 \pgfmath@toks=\toks22
 \pgfmath@stack@operand=\toks23
 \pgfmath@stack@operation=\toks24
@@ -506,152 +336,153 @@ tex)
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerari
 thmetics.code.tex)))
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
-\c@pgfmathroundto@lastzeros=\count283
+\c@pgfmathroundto@lastzeros=\count126
 ))
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.te
 x
-File: pgfcorepoints.code.tex 2019/02/02 v3.1.1 (3.1.1)
-\pgf@picminx=\dimen152
-\pgf@picmaxx=\dimen153
-\pgf@picminy=\dimen154
-\pgf@picmaxy=\dimen155
-\pgf@pathminx=\dimen156
-\pgf@pathmaxx=\dimen157
-\pgf@pathminy=\dimen158
-\pgf@pathmaxy=\dimen159
-\pgf@xx=\dimen160
-\pgf@xy=\dimen161
-\pgf@yx=\dimen162
-\pgf@yy=\dimen163
-\pgf@zx=\dimen164
-\pgf@zy=\dimen165
+File: pgfcorepoints.code.tex 2013/10/07  (rcs-revision 1.27)
+\pgf@picminx=\dimen120
+\pgf@picmaxx=\dimen121
+\pgf@picminy=\dimen122
+\pgf@picmaxy=\dimen123
+\pgf@pathminx=\dimen124
+\pgf@pathmaxx=\dimen125
+\pgf@pathminy=\dimen126
+\pgf@pathmaxy=\dimen127
+\pgf@xx=\dimen128
+\pgf@xy=\dimen129
+\pgf@yx=\dimen130
+\pgf@yy=\dimen131
+\pgf@zx=\dimen132
+\pgf@zy=\dimen133
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconstruct.
 code.tex
-File: pgfcorepathconstruct.code.tex 2019/02/02 v3.1.1 (3.1.1)
-\pgf@path@lastx=\dimen166
-\pgf@path@lasty=\dimen167
+File: pgfcorepathconstruct.code.tex 2013/10/07  (rcs-revision 1.29)
+\pgf@path@lastx=\dimen134
+\pgf@path@lasty=\dimen135
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage.code
 .tex
-File: pgfcorepathusage.code.tex 2019/02/02 v3.1.1 (3.1.1)
-\pgf@shorten@end@additional=\dimen168
-\pgf@shorten@start@additional=\dimen169
+File: pgfcorepathusage.code.tex 2014/11/02  (rcs-revision 1.24)
+\pgf@shorten@end@additional=\dimen136
+\pgf@shorten@start@additional=\dimen137
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.code.te
 x
-File: pgfcorescopes.code.tex 2019/02/02 v3.1.1 (3.1.1)
-\pgfpic=\box48
-\pgf@hbox=\box49
-\pgf@layerbox@main=\box50
-\pgf@picture@serial@count=\count284
+File: pgfcorescopes.code.tex 2015/05/08  (rcs-revision 1.46)
+\pgfpic=\box28
+\pgf@hbox=\box29
+\pgf@layerbox@main=\box30
+\pgf@picture@serial@count=\count127
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.c
 ode.tex
-File: pgfcoregraphicstate.code.tex 2019/02/02 v3.1.1 (3.1.1)
-\pgflinewidth=\dimen170
+File: pgfcoregraphicstate.code.tex 2014/11/02  (rcs-revision 1.12)
+\pgflinewidth=\dimen138
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransformation
 s.code.tex
-File: pgfcoretransformations.code.tex 2019/02/02 v3.1.1 (3.1.1)
-\pgf@pt@x=\dimen171
-\pgf@pt@y=\dimen172
-\pgf@pt@temp=\dimen173
+File: pgfcoretransformations.code.tex 2015/08/07  (rcs-revision 1.20)
+\pgf@pt@x=\dimen139
+\pgf@pt@y=\dimen140
+\pgf@pt@temp=\dimen141
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.code.tex
-File: pgfcorequick.code.tex 2019/02/02 v3.1.1 (3.1.1)
+File: pgfcorequick.code.tex 2008/10/09  (rcs-revision 1.3)
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.code.t
 ex
-File: pgfcoreobjects.code.tex 2019/02/02 v3.1.1 (3.1.1)
+File: pgfcoreobjects.code.tex 2006/10/11  (rcs-revision 1.2)
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathprocessing
 .code.tex
-File: pgfcorepathprocessing.code.tex 2019/02/02 v3.1.1 (3.1.1)
+File: pgfcorepathprocessing.code.tex 2013/09/09  (rcs-revision 1.9)
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.code.te
 x
-File: pgfcorearrows.code.tex 2019/02/02 v3.1.1 (3.1.1)
-\pgfarrowsep=\dimen174
+File: pgfcorearrows.code.tex 2015/05/14  (rcs-revision 1.43)
+\pgfarrowsep=\dimen142
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
-File: pgfcoreshade.code.tex 2019/02/02 v3.1.1 (3.1.1)
-\pgf@max=\dimen175
-\pgf@sys@shading@range@num=\count285
+File: pgfcoreshade.code.tex 2013/07/15  (rcs-revision 1.15)
+\pgf@max=\dimen143
+\pgf@sys@shading@range@num=\count128
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
-File: pgfcoreimage.code.tex 2019/02/02 v3.1.1 (3.1.1)
+File: pgfcoreimage.code.tex 2013/07/15  (rcs-revision 1.18)
 
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.code.
 tex
-File: pgfcoreexternal.code.tex 2019/02/02 v3.1.1 (3.1.1)
-\pgfexternal@startupbox=\box51
+File: pgfcoreexternal.code.tex 2014/07/09  (rcs-revision 1.21)
+\pgfexternal@startupbox=\box31
 ))
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.code.te
 x
-File: pgfcorelayers.code.tex 2019/02/02 v3.1.1 (3.1.1)
+File: pgfcorelayers.code.tex 2013/07/18  (rcs-revision 1.7)
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransparency.c
 ode.tex
-File: pgfcoretransparency.code.tex 2019/02/02 v3.1.1 (3.1.1)
+File: pgfcoretransparency.code.tex 2013/09/30  (rcs-revision 1.5)
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.code.
 tex
-File: pgfcorepatterns.code.tex 2019/02/02 v3.1.1 (3.1.1)
-)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorerdf.code.tex
-File: pgfcorerdf.code.tex 2019/02/02 v3.1.1 (3.1.1)
+File: pgfcorepatterns.code.tex 2013/11/07  (rcs-revision 1.5)
 )))
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.code.tex
-File: pgfmoduleshapes.code.tex 2019/02/02 v3.1.1 (3.1.1)
-\pgfnodeparttextbox=\box52
+File: pgfmoduleshapes.code.tex 2014/03/21  (rcs-revision 1.35)
+\pgfnodeparttextbox=\box32
 ) (/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.tex
-File: pgfmoduleplot.code.tex 2019/02/02 v3.1.1 (3.1.1)
+File: pgfmoduleplot.code.tex 2015/08/03  (rcs-revision 1.13)
 )
 (/usr/share/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65
 .sty
-Package: pgfcomp-version-0-65 2019/02/02 v3.1.1 (3.1.1)
-\pgf@nodesepstart=\dimen176
-\pgf@nodesepend=\dimen177
+Package: pgfcomp-version-0-65 2007/07/03 v3.0.1a (rcs-revision 1.7)
+\pgf@nodesepstart=\dimen144
+\pgf@nodesepend=\dimen145
 )
 (/usr/share/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18
 .sty
-Package: pgfcomp-version-1-18 2019/02/02 v3.1.1 (3.1.1)
+Package: pgfcomp-version-1-18 2007/07/23 v3.0.1a (rcs-revision 1.1)
 )) (/usr/share/texlive/texmf-dist/tex/latex/tools/verbatim.sty
 Package: verbatim 2014/10/28 v1.5q LaTeX2e package for verbatim enhancements
 \every@verbatim=\toks25
 \verbatim@line=\toks26
-\verbatim@in@stream=\read3
+\verbatim@in@stream=\read2
 )
 (/usr/share/texlive/texmf-dist/tex/latex/environ/environ.sty
 Package: environ 2014/05/04 v0.3 A new way to define environments
+
+(/usr/share/texlive/texmf-dist/tex/latex/trimspaces/trimspaces.sty
+Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
+)
 \@envbody=\toks27
 )
 (/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty
-Package: etoolbox 2018/08/19 v2.5f e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count286
+Package: etoolbox 2018/02/11 v2.5e e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count129
 )
-\tcb@titlebox=\box53
-\tcb@upperbox=\box54
-\tcb@lowerbox=\box55
-\tcb@phantombox=\box56
-\c@tcbbreakpart=\count287
-\c@tcblayer=\count288
-\tcolorbox@number=\count289
-\tcb@temp=\box57
-\tcb@temp=\box58
-\tcb@temp=\box59
-\tcb@temp=\box60
+\tcb@titlebox=\box33
+\tcb@upperbox=\box34
+\tcb@lowerbox=\box35
+\tcb@phantombox=\box36
+\c@tcbbreakpart=\count130
+\c@tcblayer=\count131
+\tcolorbox@number=\count132
+\tcb@temp=\box37
+\tcb@temp=\box38
+\tcb@temp=\box39
+\tcb@temp=\box40
 \tcb@out=\write4
 \tcb@record@out=\write5
 
 (/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcbraster.code.tex
-Library (tcolorbox): 'tcbraster.code.tex' version '4.15'
-\c@tcbrastercolumn=\count290
-\c@tcbrasterrow=\count291
-\c@tcbraster=\count292
+Library (tcolorbox): 'tcbraster.code.tex' version '4.12'
+\c@tcbrastercolumn=\count133
+\c@tcbrasterrow=\count134
+\c@tcbraster=\count135
 ) (/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcbskins.code.tex
-Library (tcolorbox): 'tcbskins.code.tex' version '4.15'
+Library (tcolorbox): 'tcbskins.code.tex' version '4.12'
 (/usr/share/texlive/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
 (/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
 (/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
@@ -659,66 +490,66 @@ Library (tcolorbox): 'tcbskins.code.tex' version '4.15'
 (/usr/share/texlive/texmf-dist/tex/latex/pgf/math/pgfmath.sty
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex))
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
-Package: pgffor 2019/02/02 v3.1.1 (3.1.1)
+Package: pgffor 2013/12/13 v3.0.1a (rcs-revision 1.25)
 
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex)
-\pgffor@iter=\dimen178
-\pgffor@skip=\dimen179
+\pgffor@iter=\dimen146
+\pgffor@skip=\dimen147
 \pgffor@stack=\toks28
 \pgffor@toks=\toks29
 ))
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
-Package: tikz 2019/02/02 v3.1.1 (3.1.1)
+Package: tikz 2015/08/07 v3.0.1a (rcs-revision 1.151)
 
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers
 .code.tex
-File: pgflibraryplothandlers.code.tex 2019/02/02 v3.1.1 (3.1.1)
-\pgf@plot@mark@count=\count293
-\pgfplotmarksize=\dimen180
+File: pgflibraryplothandlers.code.tex 2013/08/31 v3.0.1a (rcs-revision 1.20)
+\pgf@plot@mark@count=\count136
+\pgfplotmarksize=\dimen148
 )
-\tikz@lastx=\dimen181
-\tikz@lasty=\dimen182
-\tikz@lastxsaved=\dimen183
-\tikz@lastysaved=\dimen184
-\tikzleveldistance=\dimen185
-\tikzsiblingdistance=\dimen186
-\tikz@figbox=\box61
-\tikz@figbox@bg=\box62
-\tikz@tempbox=\box63
-\tikz@tempbox@bg=\box64
-\tikztreelevel=\count294
-\tikznumberofchildren=\count295
-\tikznumberofcurrentchild=\count296
-\tikz@fig@count=\count297
+\tikz@lastx=\dimen149
+\tikz@lasty=\dimen150
+\tikz@lastxsaved=\dimen151
+\tikz@lastysaved=\dimen152
+\tikzleveldistance=\dimen153
+\tikzsiblingdistance=\dimen154
+\tikz@figbox=\box41
+\tikz@figbox@bg=\box42
+\tikz@tempbox=\box43
+\tikz@tempbox@bg=\box44
+\tikztreelevel=\count137
+\tikznumberofchildren=\count138
+\tikznumberofcurrentchild=\count139
+\tikz@fig@count=\count140
 
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.code.tex
-File: pgfmodulematrix.code.tex 2019/02/02 v3.1.1 (3.1.1)
-\pgfmatrixcurrentrow=\count298
-\pgfmatrixcurrentcolumn=\count299
-\pgf@matrix@numberofcolumns=\count300
+File: pgfmodulematrix.code.tex 2013/09/17  (rcs-revision 1.8)
+\pgfmatrixcurrentrow=\count141
+\pgfmatrixcurrentcolumn=\count142
+\pgf@matrix@numberofcolumns=\count143
 )
-\tikz@expandcount=\count301
+\tikz@expandcount=\count144
 
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
 zlibrarytopaths.code.tex
-File: tikzlibrarytopaths.code.tex 2019/02/02 v3.1.1 (3.1.1)
+File: tikzlibrarytopaths.code.tex 2008/06/17 v3.0.1a (rcs-revision 1.2)
 )))
-\tcb@waterbox=\box65
+\tcb@waterbox=\box45
 
 (/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcbskinsjigsaw.code.tex
-Library (tcolorbox): 'tcbskinsjigsaw.code.tex' version '4.15'
+Library (tcolorbox): 'tcbskinsjigsaw.code.tex' version '4.12'
 )) (/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcbbreakable.code.tex
-Library (tcolorbox): 'tcbbreakable.code.tex' version '4.15'
-\tcb@testbox=\box66
-\tcb@totalupperbox=\box67
-\tcb@totallowerbox=\box68
+Library (tcolorbox): 'tcbbreakable.code.tex' version '4.12'
+\tcb@testbox=\box46
+\tcb@totalupperbox=\box47
+\tcb@totallowerbox=\box48
 ) (/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcbhooks.code.tex
-Library (tcolorbox): 'tcbhooks.code.tex' version '4.15'
+Library (tcolorbox): 'tcbhooks.code.tex' version '4.12'
 ) (/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcbtheorems.code.tex
-Library (tcolorbox): 'tcbtheorems.code.tex' version '4.15'
+Library (tcolorbox): 'tcbtheorems.code.tex' version '4.12'
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
-Package: amsmath 2018/12/01 v2.17b AMS math features
-\@mathmargin=\skip50
+Package: amsmath 2017/09/02 v2.17a AMS math features
+\@mathmargin=\skip44
 
 For additional information on amsmath, use the `?' option.
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
@@ -727,82 +558,254 @@ Package: amstext 2000/06/29 v2.01 AMS text
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
 \@emptytoks=\toks30
-\ex@=\dimen187
+\ex@=\dimen155
 ))
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
-\pmbraise@=\dimen188
+\pmbraise@=\dimen156
 )
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 2016/03/08 v2.02 operator names
 )
-\inf@bad=\count302
-LaTeX Info: Redefining \frac on input line 223.
-\uproot@=\count303
-\leftroot@=\count304
-LaTeX Info: Redefining \overline on input line 385.
-\classnum@=\count305
-\DOTSCASE@=\count306
-LaTeX Info: Redefining \ldots on input line 482.
-LaTeX Info: Redefining \dots on input line 485.
-LaTeX Info: Redefining \cdots on input line 606.
-\Mathstrutbox@=\box69
-\strutbox@=\box70
-\big@size=\dimen189
-LaTeX Font Info:    Redeclaring font encoding OML on input line 729.
-LaTeX Font Info:    Redeclaring font encoding OMS on input line 730.
-\macc@depth=\count307
-\c@MaxMatrixCols=\count308
-\dotsspace@=\muskip17
-\c@parentequation=\count309
-\dspbrk@lvl=\count310
+\inf@bad=\count145
+LaTeX Info: Redefining \frac on input line 213.
+\uproot@=\count146
+\leftroot@=\count147
+LaTeX Info: Redefining \overline on input line 375.
+\classnum@=\count148
+\DOTSCASE@=\count149
+LaTeX Info: Redefining \ldots on input line 472.
+LaTeX Info: Redefining \dots on input line 475.
+LaTeX Info: Redefining \cdots on input line 596.
+\Mathstrutbox@=\box49
+\strutbox@=\box50
+\big@size=\dimen157
+LaTeX Font Info:    Redeclaring font encoding OML on input line 712.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 713.
+\macc@depth=\count150
+\c@MaxMatrixCols=\count151
+\dotsspace@=\muskip11
+\c@parentequation=\count152
+\dspbrk@lvl=\count153
 \tag@help=\toks31
-\row@=\count311
-\column@=\count312
-\maxfields@=\count313
+\row@=\count154
+\column@=\count155
+\maxfields@=\count156
 \andhelp@=\toks32
-\eqnshift@=\dimen190
-\alignsep@=\dimen191
-\tagshift@=\dimen192
-\tagwidth@=\dimen193
-\totwidth@=\dimen194
-\lineht@=\dimen195
+\eqnshift@=\dimen158
+\alignsep@=\dimen159
+\tagshift@=\dimen160
+\tagwidth@=\dimen161
+\totwidth@=\dimen162
+\lineht@=\dimen163
 \@envbody=\toks33
-\multlinegap=\skip51
-\multlinetaggap=\skip52
+\multlinegap=\skip45
+\multlinetaggap=\skip46
 \mathdisplay@stack=\toks34
-LaTeX Info: Redefining \[ on input line 2844.
-LaTeX Info: Redefining \] on input line 2845.
+LaTeX Info: Redefining \[ on input line 2817.
+LaTeX Info: Redefining \] on input line 2818.
 ))
 (/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcbfitting.code.tex
-Library (tcolorbox): 'tcbfitting.code.tex' version '4.15'
-\tcbfitdim=\dimen196
-\tcb@lowerfitdim=\dimen197
-\tcb@upperfitdim=\dimen198
-\tcb@cur@hbadness=\count314
+Library (tcolorbox): 'tcbfitting.code.tex' version '4.12'
+\tcbfitdim=\dimen164
+\tcb@lowerfitdim=\dimen165
+\tcb@upperfitdim=\dimen166
+\tcb@cur@hbadness=\count157
 ) (/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcbxparse.code.tex
-Library (tcolorbox): 'tcbxparse.code.tex' version '4.15'
-)) (/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
-Package: geometry 2018/04/16 v5.8 Page Geometry
-\Gm@cnth=\count315
-\Gm@cntv=\count316
-\c@Gm@tempcnt=\count317
-\Gm@bindingoffset=\dimen199
-\Gm@wd@mp=\dimen256
-\Gm@odd@mp=\dimen257
-\Gm@even@mp=\dimen258
-\Gm@layoutwidth=\dimen259
-\Gm@layoutheight=\dimen260
-\Gm@layouthoffset=\dimen261
-\Gm@layoutvoffset=\dimen262
+Library (tcolorbox): 'tcbxparse.code.tex' version '4.12'
+(/usr/share/texlive/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
+(/usr/share/texlive/texmf-dist/tex/latex/l3kernel/expl3.sty
+Package: expl3 2018/02/21 L3 programming layer (loader) 
+
+(/usr/share/texlive/texmf-dist/tex/latex/l3kernel/expl3-code.tex
+Package: expl3 2018/02/21 L3 programming layer (code)
+\c_max_int=\count158
+\l_tmpa_int=\count159
+\l_tmpb_int=\count160
+\g_tmpa_int=\count161
+\g_tmpb_int=\count162
+\g__intarray_font_int=\count163
+\g__prg_map_int=\count164
+\c_log_iow=\count165
+\l_iow_line_count_int=\count166
+\l__iow_line_target_int=\count167
+\l__iow_one_indent_int=\count168
+\l__iow_indent_int=\count169
+\c_zero_dim=\dimen167
+\c_max_dim=\dimen168
+\l_tmpa_dim=\dimen169
+\l_tmpb_dim=\dimen170
+\g_tmpa_dim=\dimen171
+\g_tmpb_dim=\dimen172
+\c_zero_skip=\skip47
+\c_max_skip=\skip48
+\l_tmpa_skip=\skip49
+\l_tmpb_skip=\skip50
+\g_tmpa_skip=\skip51
+\g_tmpb_skip=\skip52
+\c_zero_muskip=\muskip12
+\c_max_muskip=\muskip13
+\l_tmpa_muskip=\muskip14
+\l_tmpb_muskip=\muskip15
+\g_tmpa_muskip=\muskip16
+\g_tmpb_muskip=\muskip17
+\l_keys_choice_int=\count170
+\c__fp_leading_shift_int=\count171
+\c__fp_middle_shift_int=\count172
+\c__fp_trailing_shift_int=\count173
+\c__fp_big_leading_shift_int=\count174
+\c__fp_big_middle_shift_int=\count175
+\c__fp_big_trailing_shift_int=\count176
+\c__fp_Bigg_leading_shift_int=\count177
+\c__fp_Bigg_middle_shift_int=\count178
+\c__fp_Bigg_trailing_shift_int=\count179
+\c__fp_rand_size_int=\count180
+\c__fp_rand_four_int=\count181
+\c__fp_rand_eight_int=\count182
+\l__sort_length_int=\count183
+\l__sort_min_int=\count184
+\l__sort_top_int=\count185
+\l__sort_max_int=\count186
+\l__sort_true_max_int=\count187
+\l__sort_block_int=\count188
+\l__sort_begin_int=\count189
+\l__sort_end_int=\count190
+\l__sort_A_int=\count191
+\l__sort_B_int=\count192
+\l__sort_C_int=\count193
+\l__tl_build_start_index_int=\count194
+\l__tl_build_index_int=\count195
+\l__tl_analysis_normal_int=\count196
+\l__tl_analysis_index_int=\count197
+\l__tl_analysis_nesting_int=\count198
+\l__tl_analysis_type_int=\count199
+\l__regex_internal_a_int=\count266
+\l__regex_internal_b_int=\count267
+\l__regex_internal_c_int=\count268
+\l__regex_balance_int=\count269
+\l__regex_group_level_int=\count270
+\l__regex_mode_int=\count271
+\c__regex_cs_in_class_mode_int=\count272
+\c__regex_cs_mode_int=\count273
+\l__regex_catcodes_int=\count274
+\l__regex_default_catcodes_int=\count275
+\c__regex_catcode_D_int=\count276
+\c__regex_catcode_S_int=\count277
+\c__regex_catcode_L_int=\count278
+\c__regex_catcode_O_int=\count279
+\c__regex_catcode_A_int=\count280
+\c__regex_all_catcodes_int=\count281
+\l__regex_show_lines_int=\count282
+\l__regex_min_state_int=\count283
+\l__regex_max_state_int=\count284
+\l__regex_left_state_int=\count285
+\l__regex_right_state_int=\count286
+\l__regex_capturing_group_int=\count287
+\l__regex_min_pos_int=\count288
+\l__regex_max_pos_int=\count289
+\l__regex_curr_pos_int=\count290
+\l__regex_start_pos_int=\count291
+\l__regex_success_pos_int=\count292
+\l__regex_curr_char_int=\count293
+\l__regex_curr_catcode_int=\count294
+\l__regex_last_char_int=\count295
+\l__regex_case_changed_char_int=\count296
+\l__regex_curr_state_int=\count297
+\l__regex_step_int=\count298
+\l__regex_min_active_int=\count299
+\l__regex_max_active_int=\count300
+\l__regex_replacement_csnames_int=\count301
+\l__regex_match_count_int=\count302
+\l__regex_min_submatch_int=\count303
+\l__regex_submatch_int=\count304
+\l__regex_zeroth_submatch_int=\count305
+\g__regex_trace_regex_int=\count306
+\c_empty_box=\box51
+\l_tmpa_box=\box52
+\l_tmpb_box=\box53
+\g_tmpa_box=\box54
+\g_tmpb_box=\box55
+\l__box_top_dim=\dimen173
+\l__box_bottom_dim=\dimen174
+\l__box_left_dim=\dimen175
+\l__box_right_dim=\dimen176
+\l__box_top_new_dim=\dimen177
+\l__box_bottom_new_dim=\dimen178
+\l__box_left_new_dim=\dimen179
+\l__box_right_new_dim=\dimen180
+\l__box_internal_box=\box56
+\l__coffin_internal_box=\box57
+\l__coffin_internal_dim=\dimen181
+\l__coffin_offset_x_dim=\dimen182
+\l__coffin_offset_y_dim=\dimen183
+\l__coffin_x_dim=\dimen184
+\l__coffin_y_dim=\dimen185
+\l__coffin_x_prime_dim=\dimen186
+\l__coffin_y_prime_dim=\dimen187
+\c_empty_coffin=\box58
+\l__coffin_aligned_coffin=\box59
+\l__coffin_aligned_internal_coffin=\box60
+\l_tmpa_coffin=\box61
+\l_tmpb_coffin=\box62
+\l__coffin_display_coffin=\box63
+\l__coffin_display_coord_coffin=\box64
+\l__coffin_display_pole_coffin=\box65
+\l__coffin_display_offset_dim=\dimen188
+\l__coffin_display_x_dim=\dimen189
+\l__coffin_display_y_dim=\dimen190
+\l__coffin_bounding_shift_dim=\dimen191
+\l__coffin_left_corner_dim=\dimen192
+\l__coffin_right_corner_dim=\dimen193
+\l__coffin_bottom_corner_dim=\dimen194
+\l__coffin_top_corner_dim=\dimen195
+\l__coffin_scaled_total_height_dim=\dimen196
+\l__coffin_scaled_width_dim=\dimen197
+)
+(/usr/share/texlive/texmf-dist/tex/latex/l3kernel/l3pdfmode.def
+File: l3pdfmode.def 2017/03/18 v L3 Experimental driver: PDF mode
+\l__driver_color_stack_int=\count307
+\l__driver_tmp_box=\box66
+))
+Package: xparse 2018/02/21 L3 Experimental document command parser
+\l__xparse_current_arg_int=\count308
+\g__xparse_grabber_int=\count309
+\l__xparse_m_args_int=\count310
+\l__xparse_mandatory_args_int=\count311
+\l__xparse_v_nesting_int=\count312
+)
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \tcboxverb with sig. ' O{} v ' on line 128.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \tcbsidebyside with sig. ' +O{} +m +m ' on line 280.
+.................................................
+))
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2010/09/12 v5.6 Page Geometry
+\Gm@cnth=\count313
+\Gm@cntv=\count314
+\c@Gm@tempcnt=\count315
+\Gm@bindingoffset=\dimen198
+\Gm@wd@mp=\dimen199
+\Gm@odd@mp=\dimen256
+\Gm@even@mp=\dimen257
+\Gm@layoutwidth=\dimen258
+\Gm@layoutheight=\dimen259
+\Gm@layouthoffset=\dimen260
+\Gm@layoutvoffset=\dimen261
 \Gm@dimlist=\toks35
 )
 (/usr/share/texlive/texmf-dist/tex/generic/xstring/xstring.sty
 (/usr/share/texlive/texmf-dist/tex/generic/xstring/xstring.tex
-\integerpart=\count318
-\decimalpart=\count319
+\@xs@message=\write6
+\integerpart=\count316
+\decimalpart=\count317
 )
-Package: xstring 2019/02/06 v1.83 String manipulations (CT)
+Package: xstring 2013/10/13  v1.7c  String manipulations (C Tellechea)
 )
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/utopia.sty
 Package: utopia 2005/04/12 PSNFSS-v9.2a (P.Dyballa) 
@@ -815,44 +818,42 @@ Package utopia Warning: This package is to be regarded as obsolete.
 Package: pagecolor 2017/05/29 v1.0i Provides thepagecolor (HMM)
 )
 (/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty
-Package: array 2018/12/30 v2.4k Tabular extension package (FMi)
-\col@sep=\dimen263
-\ar@mcellbox=\box71
-\extrarowheight=\dimen264
+Package: array 2016/10/06 v2.4d Tabular extension package (FMi)
+\col@sep=\dimen262
+\extrarowheight=\dimen263
 \NC@list=\toks36
 \extratabsurround=\skip53
 \backup@length=\skip54
-\ar@cellbox=\box72
 )
 (/usr/share/texlive/texmf-dist/tex/latex/tools/longtable.sty
-Package: longtable 2014/10/28 v4.11 Multi-page Table package (DPC)+ FMi change
+Package: longtable 2014/10/28 v4.11 Multi-page Table package (DPC)
 \LTleft=\skip55
 \LTright=\skip56
 \LTpre=\skip57
 \LTpost=\skip58
-\LTchunksize=\count320
-\LTcapwidth=\dimen265
-\LT@head=\box73
-\LT@firsthead=\box74
-\LT@foot=\box75
-\LT@lastfoot=\box76
-\LT@cols=\count321
-\LT@rows=\count322
-\c@LT@tables=\count323
-\c@LT@chunks=\count324
+\LTchunksize=\count318
+\LTcapwidth=\dimen264
+\LT@head=\box67
+\LT@firsthead=\box68
+\LT@foot=\box69
+\LT@lastfoot=\box70
+\LT@cols=\count319
+\LT@rows=\count320
+\c@LT@tables=\count321
+\c@LT@chunks=\count322
 \LT@p@ftn=\toks37
 )
 (/usr/share/texlive/texmf-dist/tex/latex/titlesec/titlesec.sty
 Package: titlesec 2016/03/21 v2.10.2 Sectioning titles
-\ttl@box=\box77
+\ttl@box=\box71
 \beforetitleunit=\skip59
 \aftertitleunit=\skip60
-\ttl@plus=\dimen266
-\ttl@minus=\dimen267
+\ttl@plus=\dimen265
+\ttl@minus=\dimen266
 \ttl@toksa=\toks38
-\titlewidth=\dimen268
-\titlewidthlast=\dimen269
-\titlewidthfirst=\dimen270
+\titlewidth=\dimen267
+\titlewidthlast=\dimen268
+\titlewidthfirst=\dimen269
 ) (./manual.aux
 (./Introduction.aux) (./Oscillators.aux) (./Filters.aux) (./AmpDistortion.aux)
 (./FX.aux) (./Modulators.aux) (./ModulationMatrix.aux) (./Arpeggiator.aux)
@@ -880,16 +881,16 @@ File: ot1put.fd 2001/06/04 font definitions for OT1/put.
 )
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count325
-\scratchdimen=\dimen271
-\scratchbox=\box78
-\nofMPsegments=\count326
-\nofMParguments=\count327
+\scratchcounter=\count323
+\scratchdimen=\dimen270
+\scratchbox=\box72
+\nofMPsegments=\count324
+\nofMParguments=\count325
 \everyMPshowfont=\toks39
-\MPscratchCnt=\count328
-\MPscratchDim=\dimen272
-\MPnumerator=\count329
-\makeMPintoPDFobject=\count330
+\MPscratchCnt=\count326
+\MPscratchDim=\dimen271
+\MPnumerator=\count327
+\makeMPintoPDFobject=\count328
 \everyMPtoPDFconversion=\toks40
 ) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
@@ -908,7 +909,7 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-\AtBeginShipoutBox=\box79
+\AtBeginShipoutBox=\box73
 Package hyperref Info: Link coloring OFF on input line 73.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
@@ -917,15 +918,15 @@ Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count331
+\c@section@level=\count329
 )
 LaTeX Info: Redefining \ref on input line 73.
 LaTeX Info: Redefining \pageref on input line 73.
 LaTeX Info: Redefining \nameref on input line 73.
 
 (./manual.out) (./manual.out)
-\@outlinefile=\write6
-\openout6 = `manual.out'.
+\@outlinefile=\write7
+\openout7 = `manual.out'.
 
  ABD: EveryShipout initializing macros
 *geometry* driver: auto-detecting
@@ -962,23 +963,23 @@ LaTeX Info: Redefining \nameref on input line 73.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-\GPT@outputbox=\box80
-<graphics/logo.png, id=228, 74.50516pt x 63.95026pt>
+\GPT@outputbox=\box74
+<graphics/logo.png, id=232, 74.50516pt x 63.95026pt>
 File: graphics/logo.png Graphic file (type png)
 <use graphics/logo.png>
 Package pdftex.def Info: graphics/logo.png  used on input line 88.
 (pdftex.def)             Requested size: 187.89914pt x 161.29013pt.
-<graphics/vst3_logo.png, id=231, 4818.0pt x 3059.43pt>
+<graphics/vst3_logo.png, id=235, 4818.0pt x 3059.43pt>
 File: graphics/vst3_logo.png Graphic file (type png)
 <use graphics/vst3_logo.png>
 Package pdftex.def Info: graphics/vst3_logo.png  used on input line 95.
 (pdftex.def)             Requested size: 70.46037pt x 44.72238pt.
-<graphics/au_logo.png, id=232, 301.125pt x 271.0125pt>
+<graphics/au_logo.png, id=236, 301.125pt x 271.0125pt>
 File: graphics/au_logo.png Graphic file (type png)
 <use graphics/au_logo.png>
 Package pdftex.def Info: graphics/au_logo.png  used on input line 95.
 (pdftex.def)             Requested size: 51.67332pt x 46.5057pt.
-<graphics/lv2_logo.png, id=233, 255.95625pt x 161.60374pt>
+<graphics/lv2_logo.png, id=237, 255.95625pt x 161.60374pt>
 File: graphics/lv2_logo.png Graphic file (type png)
 <use graphics/lv2_logo.png>
 Package pdftex.def Info: graphics/lv2_logo.png  used on input line 95.
@@ -997,25 +998,24 @@ page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.33 ...mberline {4.2}Distortion}{35}{section.4.2}
-                                                  % [1
+                                                   [1
 
 
 ])
-\tf@toc=\write7
-\openout7 = `manual.toc'.
+\tf@toc=\write8
+\openout8 = `manual.toc'.
 
  [2]
 \openout2 = `Introduction.aux'.
 
-
-(./Introduction.tex
+ (./Introduction.tex
 Chapter 1.
 [3
 
 
 
 ]
-<graphics/mighty_god.png, id=314, 1204.5pt x 924.45375pt>
+<graphics/mighty_god.png, id=319, 1204.5pt x 924.45375pt>
 File: graphics/mighty_god.png Graphic file (type png)
 <use graphics/mighty_god.png>
 Package pdftex.def Info: graphics/mighty_god.png  used on input line 47.
@@ -1023,7 +1023,7 @@ Package pdftex.def Info: graphics/mighty_god.png  used on input line 47.
  [4
 
  <./graphics/mighty_god.png>]
-<graphics/overview.png, id=319, 1204.5pt x 924.45375pt>
+<graphics/overview.png, id=324, 1204.5pt x 924.45375pt>
 File: graphics/overview.png Graphic file (type png)
 <use graphics/overview.png>
 Package pdftex.def Info: graphics/overview.png  used on input line 73.
@@ -1038,12 +1038,12 @@ LaTeX Font Info:    Font shape `OMS/put/m/n' in size <12> not available
  [5
 
  <./graphics/overview.png>]
-<graphics/preset_browser.png, id=339, 754.82pt x 244.915pt>
+<graphics/preset_browser.png, id=344, 754.82pt x 244.915pt>
 File: graphics/preset_browser.png Graphic file (type png)
 <use graphics/preset_browser.png>
 Package pdftex.def Info: graphics/preset_browser.png  used on input line 94.
 (pdftex.def)             Requested size: 469.75502pt x 152.42123pt.
-<graphics/preset_browser_button.png, id=340, 754.82pt x 28.105pt>
+<graphics/preset_browser_button.png, id=345, 754.82pt x 28.105pt>
 File: graphics/preset_browser_button.png Graphic file (type png)
 <use graphics/preset_browser_button.png>
 Package pdftex.def Info: graphics/preset_browser_button.png  used on input line
@@ -1051,32 +1051,32 @@ Package pdftex.def Info: graphics/preset_browser_button.png  used on input line
 (pdftex.def)             Requested size: 438.45708pt x 16.32535pt.
  [6 <./graphics/preset_browser.png> <./graphics/preset_browser_button.png (PNG 
 copy)>]
-<graphics/routing.png, id=346, 737.154pt x 541.04839pt>
+<graphics/routing.png, id=351, 737.154pt x 541.04839pt>
 File: graphics/routing.png Graphic file (type png)
 <use graphics/routing.png>
 Package pdftex.def Info: graphics/routing.png  used on input line 130.
 (pdftex.def)             Requested size: 469.75502pt x 344.792pt.
-<graphics/routing_buttons.png, id=347, 1119.18124pt x 200.75pt>
+<graphics/routing_buttons.png, id=352, 1119.18124pt x 200.75pt>
 File: graphics/routing_buttons.png Graphic file (type png)
 <use graphics/routing_buttons.png>
 Package pdftex.def Info: graphics/routing_buttons.png  used on input line 137.
 (pdftex.def)             Requested size: 469.75502pt x 84.26234pt.
-<graphics/knob.png, id=348, 72.27pt x 82.3075pt>
+<graphics/knob.png, id=353, 72.27pt x 82.3075pt>
 File: graphics/knob.png Graphic file (type png)
 <use graphics/knob.png>
 Package pdftex.def Info: graphics/knob.png  used on input line 146.
 (pdftex.def)             Requested size: 26.30635pt x 29.95972pt.
-<graphics/not_available.png, id=349, 93.951pt x 105.996pt>
+<graphics/not_available.png, id=354, 93.951pt x 105.996pt>
 File: graphics/not_available.png Graphic file (type png)
 <use graphics/not_available.png>
 Package pdftex.def Info: graphics/not_available.png  used on input line 146.
 (pdftex.def)             Requested size: 8.77101pt x 9.89503pt.
-<graphics/available.png, id=350, 120.45pt x 105.996pt>
+<graphics/available.png, id=355, 120.45pt x 105.996pt>
 File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 146.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
-<graphics/filter_input_buttons.png, id=351, 45.16875pt x 139.52126pt>
+<graphics/filter_input_buttons.png, id=356, 45.16875pt x 139.52126pt>
 File: graphics/filter_input_buttons.png Graphic file (type png)
 <use graphics/filter_input_buttons.png>
 Package pdftex.def Info: graphics/filter_input_buttons.png  used on input line 
@@ -1097,7 +1097,7 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 154.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
-<graphics/filter_output_buttons.png, id=357, 105.39375pt x 40.15pt>
+<graphics/filter_output_buttons.png, id=362, 105.39375pt x 40.15pt>
 File: graphics/filter_output_buttons.png Graphic file (type png)
 <use graphics/filter_output_buttons.png>
 Package pdftex.def Info: graphics/filter_output_buttons.png  used on input line
@@ -1108,12 +1108,12 @@ Overfull \hbox (2.0758pt too wide) in paragraph at lines 154--154
 [][]  
  []
 
-<graphics/GUI_scaling.png, id=358, 116.435pt x 38.1425pt>
+<graphics/GUI_scaling.png, id=363, 116.435pt x 38.1425pt>
 File: graphics/GUI_scaling.png Graphic file (type png)
 <use graphics/GUI_scaling.png>
 Package pdftex.def Info: graphics/GUI_scaling.png  used on input line 164.
 (pdftex.def)             Requested size: 93.94957pt x 30.77768pt.
-<graphics/tooltip.png, id=359, 44.165pt x 39.14626pt>
+<graphics/tooltip.png, id=364, 44.165pt x 39.14626pt>
 File: graphics/tooltip.png Graphic file (type png)
 <use graphics/tooltip.png>
 Package pdftex.def Info: graphics/tooltip.png  used on input line 171.
@@ -1137,12 +1137,12 @@ File: graphics/not_available.png Graphic file (type png)
 <use graphics/not_available.png>
 Package pdftex.def Info: graphics/not_available.png  used on input line 9.
 (pdftex.def)             Requested size: 8.77101pt x 9.89503pt.
-<graphics/osc_selection.png, id=371, 1119.18124pt x 219.82124pt>
+<graphics/osc_selection.png, id=376, 1119.18124pt x 219.82124pt>
 File: graphics/osc_selection.png Graphic file (type png)
 <use graphics/osc_selection.png>
 Package pdftex.def Info: graphics/osc_selection.png  used on input line 9.
 (pdftex.def)             Requested size: 438.45708pt x 86.11902pt.
-<graphics/osc_common.png, id=372, 181.67876pt x 95.35625pt>
+<graphics/osc_common.png, id=377, 181.67876pt x 95.35625pt>
 File: graphics/osc_common.png Graphic file (type png)
 <use graphics/osc_common.png>
 Package pdftex.def Info: graphics/osc_common.png  used on input line 15.
@@ -1201,7 +1201,7 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 28.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
-<graphics/osc_common2.png, id=378, 94.3525pt x 143.53625pt>
+<graphics/osc_common2.png, id=383, 94.3525pt x 143.53625pt>
 File: graphics/osc_common2.png Graphic file (type png)
 <use graphics/osc_common2.png>
 Package pdftex.def Info: graphics/osc_common2.png  used on input line 31.
@@ -1230,13 +1230,13 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 44.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
-<graphics/osc_sync.png, id=379, 544.56421pt x 191.41783pt>
+<graphics/osc_sync.png, id=384, 544.56421pt x 191.41783pt>
 File: graphics/osc_sync.png Graphic file (type png)
 <use graphics/osc_sync.png>
 Package pdftex.def Info: graphics/osc_sync.png  used on input line 44.
 (pdftex.def)             Requested size: 438.45708pt x 154.11876pt.
  [10 <./graphics/osc_common2.png>]
-<graphics/analog_osc.png, id=385, 364.36125pt x 212.795pt>
+<graphics/analog_osc.png, id=390, 364.36125pt x 212.795pt>
 File: graphics/analog_osc.png Graphic file (type png)
 <use graphics/analog_osc.png>
 Package pdftex.def Info: graphics/analog_osc.png  used on input line 49.
@@ -1266,7 +1266,7 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 80.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
-<graphics/PWM.png, id=391, 528.93826pt x 98.8341pt>
+<graphics/PWM.png, id=396, 528.93826pt x 98.8341pt>
 File: graphics/PWM.png Graphic file (type png)
 <use graphics/PWM.png>
 Package pdftex.def Info: graphics/PWM.png  used on input line 80.
@@ -1285,7 +1285,7 @@ Package pdftex.def Info: graphics/available.png  used on input line 83.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
 
 [12 <./graphics/PWM.png>]
-<graphics/wavetable_osc.png, id=401, 367.3725pt x 211.79124pt>
+<graphics/wavetable_osc.png, id=406, 367.3725pt x 211.79124pt>
 File: graphics/wavetable_osc.png Graphic file (type png)
 <use graphics/wavetable_osc.png>
 Package pdftex.def Info: graphics/wavetable_osc.png  used on input line 87.
@@ -1339,7 +1339,7 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 101.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
-<graphics/multi_osc.png, id=407, 367.3725pt x 211.79124pt>
+<graphics/multi_osc.png, id=412, 367.3725pt x 211.79124pt>
 File: graphics/multi_osc.png Graphic file (type png)
 <use graphics/multi_osc.png>
 Package pdftex.def Info: graphics/multi_osc.png  used on input line 105.
@@ -1399,7 +1399,7 @@ Underfull \hbox (badness 1127) in paragraph at lines 119--119
 t sub-osc 
  []
 
-<graphics/vector_osc.png, id=413, 366.36874pt x 214.8025pt>
+<graphics/vector_osc.png, id=418, 366.36874pt x 214.8025pt>
 File: graphics/vector_osc.png Graphic file (type png)
 <use graphics/vector_osc.png>
 Package pdftex.def Info: graphics/vector_osc.png  used on input line 123.
@@ -1429,7 +1429,7 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 133.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
-<graphics/chiptune_osc.png, id=419, 365.365pt x 212.795pt>
+<graphics/chiptune_osc.png, id=424, 365.365pt x 212.795pt>
 File: graphics/chiptune_osc.png Graphic file (type png)
 <use graphics/chiptune_osc.png>
 Package pdftex.def Info: graphics/chiptune_osc.png  used on input line 137.
@@ -1508,7 +1508,7 @@ File: graphics/available.png Graphic file (type png)
 Package pdftex.def Info: graphics/available.png  used on input line 159.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
  [17]
-<graphics/fm_osc.png, id=430, 363.3575pt x 212.795pt>
+<graphics/fm_osc.png, id=435, 363.3575pt x 212.795pt>
 File: graphics/fm_osc.png Graphic file (type png)
 <use graphics/fm_osc.png>
 Package pdftex.def Info: graphics/fm_osc.png  used on input line 164.
@@ -1551,7 +1551,7 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 189.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
-<graphics/pm_osc.png, id=443, 366.36874pt x 210.7875pt>
+<graphics/pm_osc.png, id=448, 366.36874pt x 210.7875pt>
 File: graphics/pm_osc.png Graphic file (type png)
 <use graphics/pm_osc.png>
 Package pdftex.def Info: graphics/pm_osc.png  used on input line 193.
@@ -1593,7 +1593,7 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 216.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
-<graphics/noise_osc.png, id=455, 365.365pt x 212.795pt>
+<graphics/noise_osc.png, id=460, 365.365pt x 212.795pt>
 File: graphics/noise_osc.png Graphic file (type png)
 <use graphics/noise_osc.png>
 Package pdftex.def Info: graphics/noise_osc.png  used on input line 220.
@@ -1623,18 +1623,18 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 229.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
-<graphics/wavedraw_osc.png, id=462, 364.36125pt x 210.7875pt>
+<graphics/wavedraw_osc.png, id=467, 364.36125pt x 210.7875pt>
 File: graphics/wavedraw_osc.png Graphic file (type png)
 <use graphics/wavedraw_osc.png>
 Package pdftex.def Info: graphics/wavedraw_osc.png  used on input line 234.
 (pdftex.def)             Requested size: 234.8775pt x 135.8781pt.
  [21 <./graphics/noise_osc.png> <./graphics/wavedraw_osc.png>]
-<graphics/chipdraw_osc.png, id=467, 364.36125pt x 212.795pt>
+<graphics/chipdraw_osc.png, id=472, 364.36125pt x 212.795pt>
 File: graphics/chipdraw_osc.png Graphic file (type png)
 <use graphics/chipdraw_osc.png>
 Package pdftex.def Info: graphics/chipdraw_osc.png  used on input line 254.
 (pdftex.def)             Requested size: 234.8775pt x 137.17215pt.
-<graphics/specdraw_osc.png, id=468, 364.36125pt x 211.79124pt>
+<graphics/specdraw_osc.png, id=473, 364.36125pt x 211.79124pt>
 File: graphics/specdraw_osc.png Graphic file (type png)
 <use graphics/specdraw_osc.png>
 Package pdftex.def Info: graphics/specdraw_osc.png  used on input line 273.
@@ -1644,27 +1644,27 @@ Package pdftex.def Info: graphics/specdraw_osc.png  used on input line 273.
 
  (./Filters.tex
 Chapter 3.
-<graphics/filter.png, id=477, 582.84778pt x 118.36655pt>
+<graphics/filter.png, id=482, 582.84778pt x 118.36655pt>
 File: graphics/filter.png Graphic file (type png)
 <use graphics/filter.png>
 Package pdftex.def Info: graphics/filter.png  used on input line 8.
 (pdftex.def)             Requested size: 469.75502pt x 95.39955pt.
 File: graphics/knob.png Graphic file (type png)
 <use graphics/knob.png>
-Package pdftex.def Info: graphics/knob.png  used on input line 23.
+Package pdftex.def Info: graphics/knob.png  used on input line 21.
 (pdftex.def)             Requested size: 26.30635pt x 29.95972pt.
 File: graphics/not_available.png Graphic file (type png)
 <use graphics/not_available.png>
-Package pdftex.def Info: graphics/not_available.png  used on input line 23.
+Package pdftex.def Info: graphics/not_available.png  used on input line 21.
 (pdftex.def)             Requested size: 8.77101pt x 9.89503pt.
 File: graphics/not_available.png Graphic file (type png)
 <use graphics/not_available.png>
-Package pdftex.def Info: graphics/not_available.png  used on input line 23.
+Package pdftex.def Info: graphics/not_available.png  used on input line 21.
 (pdftex.def)             Requested size: 8.77101pt x 9.89503pt.
-<graphics/filter_dropdown.png, id=478, 364.36125pt x 196.735pt>
+<graphics/filter_dropdown.png, id=483, 364.36125pt x 196.735pt>
 File: graphics/filter_dropdown.png Graphic file (type png)
 <use graphics/filter_dropdown.png>
-Package pdftex.def Info: graphics/filter_dropdown.png  used on input line 23.
+Package pdftex.def Info: graphics/filter_dropdown.png  used on input line 21.
 (pdftex.def)             Requested size: 219.22853pt x 118.3691pt.
 [24
 
@@ -1672,243 +1672,243 @@ Package pdftex.def Info: graphics/filter_dropdown.png  used on input line 23.
 
 
  <./graphics/filter.png>]
-<graphics/lowpass_filter.png, id=485, 364.36125pt x 196.735pt>
+<graphics/lowpass_filter.png, id=491, 364.36125pt x 196.735pt>
 File: graphics/lowpass_filter.png Graphic file (type png)
 <use graphics/lowpass_filter.png>
-Package pdftex.def Info: graphics/lowpass_filter.png  used on input line 29.
+Package pdftex.def Info: graphics/lowpass_filter.png  used on input line 27.
 (pdftex.def)             Requested size: 234.8775pt x 126.81953pt.
 File: graphics/knob.png Graphic file (type png)
 <use graphics/knob.png>
-Package pdftex.def Info: graphics/knob.png  used on input line 38.
+Package pdftex.def Info: graphics/knob.png  used on input line 36.
 (pdftex.def)             Requested size: 26.30635pt x 29.95972pt.
 File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
-Package pdftex.def Info: graphics/available.png  used on input line 38.
+Package pdftex.def Info: graphics/available.png  used on input line 36.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
 File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
-Package pdftex.def Info: graphics/available.png  used on input line 38.
+Package pdftex.def Info: graphics/available.png  used on input line 36.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
-<graphics/filter_freq.png, id=486, 217.5913pt x 115.24135pt>
+<graphics/filter_freq.png, id=492, 217.5913pt x 115.24135pt>
 File: graphics/filter_freq.png Graphic file (type png)
 <use graphics/filter_freq.png>
-Package pdftex.def Info: graphics/filter_freq.png  used on input line 38.
+Package pdftex.def Info: graphics/filter_freq.png  used on input line 36.
 (pdftex.def)             Requested size: 219.22853pt x 116.11497pt.
  [25 <./graphics/filter_dropdown.png> <./graphics/lowpass_filter.png>]
 File: graphics/knob.png Graphic file (type png)
 <use graphics/knob.png>
-Package pdftex.def Info: graphics/knob.png  used on input line 49.
+Package pdftex.def Info: graphics/knob.png  used on input line 47.
 (pdftex.def)             Requested size: 26.30635pt x 29.95972pt.
 File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
-Package pdftex.def Info: graphics/available.png  used on input line 49.
+Package pdftex.def Info: graphics/available.png  used on input line 47.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
 File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
-Package pdftex.def Info: graphics/available.png  used on input line 49.
+Package pdftex.def Info: graphics/available.png  used on input line 47.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
-<graphics/filter_resonance.png, id=493, 446.5114pt x 124.61691pt>
+<graphics/filter_resonance.png, id=498, 446.5114pt x 124.61691pt>
 File: graphics/filter_resonance.png Graphic file (type png)
 <use graphics/filter_resonance.png>
-Package pdftex.def Info: graphics/filter_resonance.png  used on input line 49.
+Package pdftex.def Info: graphics/filter_resonance.png  used on input line 47.
 (pdftex.def)             Requested size: 394.60869pt x 110.13287pt.
 File: graphics/knob.png Graphic file (type png)
 <use graphics/knob.png>
-Package pdftex.def Info: graphics/knob.png  used on input line 52.
+Package pdftex.def Info: graphics/knob.png  used on input line 50.
 (pdftex.def)             Requested size: 26.30635pt x 29.95972pt.
 File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
-Package pdftex.def Info: graphics/available.png  used on input line 52.
+Package pdftex.def Info: graphics/available.png  used on input line 50.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
 File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
-Package pdftex.def Info: graphics/available.png  used on input line 52.
+Package pdftex.def Info: graphics/available.png  used on input line 50.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
  [26 <./graphics/filter_freq.png> <./graphics/filter_resonance.png>]
 File: graphics/knob.png Graphic file (type png)
 <use graphics/knob.png>
-Package pdftex.def Info: graphics/knob.png  used on input line 55.
+Package pdftex.def Info: graphics/knob.png  used on input line 53.
 (pdftex.def)             Requested size: 26.30635pt x 29.95972pt.
 File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
-Package pdftex.def Info: graphics/available.png  used on input line 55.
+Package pdftex.def Info: graphics/available.png  used on input line 53.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
 File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
-Package pdftex.def Info: graphics/available.png  used on input line 55.
+Package pdftex.def Info: graphics/available.png  used on input line 53.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
 File: graphics/knob.png Graphic file (type png)
 <use graphics/knob.png>
-Package pdftex.def Info: graphics/knob.png  used on input line 58.
+Package pdftex.def Info: graphics/knob.png  used on input line 56.
 (pdftex.def)             Requested size: 26.30635pt x 29.95972pt.
 File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
-Package pdftex.def Info: graphics/available.png  used on input line 58.
+Package pdftex.def Info: graphics/available.png  used on input line 56.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
 File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
-Package pdftex.def Info: graphics/available.png  used on input line 58.
+Package pdftex.def Info: graphics/available.png  used on input line 56.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
 File: graphics/knob.png Graphic file (type png)
 <use graphics/knob.png>
-Package pdftex.def Info: graphics/knob.png  used on input line 61.
+Package pdftex.def Info: graphics/knob.png  used on input line 59.
 (pdftex.def)             Requested size: 26.30635pt x 29.95972pt.
 File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
-Package pdftex.def Info: graphics/available.png  used on input line 61.
+Package pdftex.def Info: graphics/available.png  used on input line 59.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
 File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
-Package pdftex.def Info: graphics/available.png  used on input line 61.
+Package pdftex.def Info: graphics/available.png  used on input line 59.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
 File: graphics/knob.png Graphic file (type png)
 <use graphics/knob.png>
-Package pdftex.def Info: graphics/knob.png  used on input line 64.
+Package pdftex.def Info: graphics/knob.png  used on input line 62.
 (pdftex.def)             Requested size: 26.30635pt x 29.95972pt.
 File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
-Package pdftex.def Info: graphics/available.png  used on input line 64.
+Package pdftex.def Info: graphics/available.png  used on input line 62.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
 File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
-Package pdftex.def Info: graphics/available.png  used on input line 64.
+Package pdftex.def Info: graphics/available.png  used on input line 62.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
  [27]
-<graphics/lp_bp_hp.png, id=506, 1110.1475pt x 196.735pt>
+<graphics/lp_bp_hp.png, id=511, 1110.1475pt x 196.735pt>
 File: graphics/lp_bp_hp.png Graphic file (type png)
 <use graphics/lp_bp_hp.png>
-Package pdftex.def Info: graphics/lp_bp_hp.png  used on input line 68.
+Package pdftex.def Info: graphics/lp_bp_hp.png  used on input line 66.
 (pdftex.def)             Requested size: 469.75502pt x 83.24652pt.
-<graphics/SEM_filter.png, id=507, 363.3575pt x 194.7275pt>
+<graphics/SEM_filter.png, id=512, 363.3575pt x 194.7275pt>
 File: graphics/SEM_filter.png Graphic file (type png)
 <use graphics/SEM_filter.png>
-Package pdftex.def Info: graphics/SEM_filter.png  used on input line 77.
+Package pdftex.def Info: graphics/SEM_filter.png  used on input line 75.
 (pdftex.def)             Requested size: 234.8775pt x 125.87607pt.
 File: graphics/knob.png Graphic file (type png)
 <use graphics/knob.png>
-Package pdftex.def Info: graphics/knob.png  used on input line 88.
+Package pdftex.def Info: graphics/knob.png  used on input line 86.
 (pdftex.def)             Requested size: 26.30635pt x 29.95972pt.
 File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
-Package pdftex.def Info: graphics/available.png  used on input line 88.
+Package pdftex.def Info: graphics/available.png  used on input line 86.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
 File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
-Package pdftex.def Info: graphics/available.png  used on input line 88.
+Package pdftex.def Info: graphics/available.png  used on input line 86.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
-<graphics/SEM_transition.png, id=508, 572.69092pt x 120.71043pt>
+<graphics/SEM_transition.png, id=513, 572.69092pt x 120.71043pt>
 File: graphics/SEM_transition.png Graphic file (type png)
 <use graphics/SEM_transition.png>
-Package pdftex.def Info: graphics/SEM_transition.png  used on input line 88.
+Package pdftex.def Info: graphics/SEM_transition.png  used on input line 86.
 (pdftex.def)             Requested size: 438.45708pt x 92.41682pt.
  [28 <./graphics/lp_bp_hp.png (PNG copy)> <./graphics/SEM_filter.png>]
-<graphics/diode_filter.png, id=513, 364.36125pt x 196.735pt>
+<graphics/diode_filter.png, id=518, 364.36125pt x 196.735pt>
 File: graphics/diode_filter.png Graphic file (type png)
 <use graphics/diode_filter.png>
-Package pdftex.def Info: graphics/diode_filter.png  used on input line 92.
+Package pdftex.def Info: graphics/diode_filter.png  used on input line 90.
 (pdftex.def)             Requested size: 234.8775pt x 126.81953pt.
-<graphics/korg_filter.png, id=514, 365.365pt x 196.735pt>
+<graphics/korg_filter.png, id=519, 365.365pt x 196.735pt>
 File: graphics/korg_filter.png Graphic file (type png)
 <use graphics/korg_filter.png>
-Package pdftex.def Info: graphics/korg_filter.png  used on input line 99.
+Package pdftex.def Info: graphics/korg_filter.png  used on input line 97.
 (pdftex.def)             Requested size: 234.8775pt x 126.47131pt.
  [29 <./graphics/SEM_transition.png> <./graphics/diode_filter.png>]
-<graphics/comb_filter.png, id=520, 365.365pt x 198.7425pt>
+<graphics/comb_filter.png, id=525, 365.365pt x 198.7425pt>
 File: graphics/comb_filter.png Graphic file (type png)
 <use graphics/comb_filter.png>
-Package pdftex.def Info: graphics/comb_filter.png  used on input line 107.
+Package pdftex.def Info: graphics/comb_filter.png  used on input line 105.
 (pdftex.def)             Requested size: 234.8775pt x 127.76184pt.
-<graphics/comb_response.png, id=522, 218.76324pt x 144.54pt>
+<graphics/comb_response.png, id=527, 218.76324pt x 144.54pt>
 File: graphics/comb_response.png Graphic file (type png)
 <use graphics/comb_response.png>
-Package pdftex.def Info: graphics/comb_response.png  used on input line 118.
+Package pdftex.def Info: graphics/comb_response.png  used on input line 116.
 (pdftex.def)             Requested size: 234.8775pt x 155.19438pt.
 
 [30 <./graphics/korg_filter.png> <./graphics/comb_filter.png>]
 File: graphics/knob.png Graphic file (type png)
 <use graphics/knob.png>
-Package pdftex.def Info: graphics/knob.png  used on input line 127.
+Package pdftex.def Info: graphics/knob.png  used on input line 125.
 (pdftex.def)             Requested size: 26.30635pt x 29.95972pt.
 File: graphics/not_available.png Graphic file (type png)
 <use graphics/not_available.png>
-Package pdftex.def Info: graphics/not_available.png  used on input line 127.
+Package pdftex.def Info: graphics/not_available.png  used on input line 125.
 (pdftex.def)             Requested size: 8.77101pt x 9.89503pt.
 File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
-Package pdftex.def Info: graphics/available.png  used on input line 127.
+Package pdftex.def Info: graphics/available.png  used on input line 125.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
-<graphics/formant_filter.png, id=529, 365.365pt x 198.7425pt>
+<graphics/formant_filter.png, id=534, 365.365pt x 198.7425pt>
 File: graphics/formant_filter.png Graphic file (type png)
 <use graphics/formant_filter.png>
-Package pdftex.def Info: graphics/formant_filter.png  used on input line 131.
+Package pdftex.def Info: graphics/formant_filter.png  used on input line 129.
 (pdftex.def)             Requested size: 234.8775pt x 127.76184pt.
-<graphics/formant_response.png, id=530, 218.76324pt x 116.02264pt>
+<graphics/formant_response.png, id=535, 218.76324pt x 116.02264pt>
 File: graphics/formant_response.png Graphic file (type png)
 <use graphics/formant_response.png>
-Package pdftex.def Info: graphics/formant_response.png  used on input line 136.
+Package pdftex.def Info: graphics/formant_response.png  used on input line 134.
 
 (pdftex.def)             Requested size: 234.8775pt x 124.57495pt.
  [31 <./graphics/comb_response.png> <./graphics/formant_filter.png>]
 File: graphics/knob.png Graphic file (type png)
 <use graphics/knob.png>
-Package pdftex.def Info: graphics/knob.png  used on input line 145.
+Package pdftex.def Info: graphics/knob.png  used on input line 143.
 (pdftex.def)             Requested size: 26.30635pt x 29.95972pt.
 File: graphics/not_available.png Graphic file (type png)
 <use graphics/not_available.png>
-Package pdftex.def Info: graphics/not_available.png  used on input line 145.
+Package pdftex.def Info: graphics/not_available.png  used on input line 143.
 (pdftex.def)             Requested size: 8.77101pt x 9.89503pt.
 File: graphics/not_available.png Graphic file (type png)
 <use graphics/not_available.png>
-Package pdftex.def Info: graphics/not_available.png  used on input line 145.
+Package pdftex.def Info: graphics/not_available.png  used on input line 143.
 (pdftex.def)             Requested size: 8.77101pt x 9.89503pt.
 File: graphics/knob.png Graphic file (type png)
 <use graphics/knob.png>
-Package pdftex.def Info: graphics/knob.png  used on input line 151.
+Package pdftex.def Info: graphics/knob.png  used on input line 149.
 (pdftex.def)             Requested size: 26.30635pt x 29.95972pt.
 File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
-Package pdftex.def Info: graphics/available.png  used on input line 151.
+Package pdftex.def Info: graphics/available.png  used on input line 149.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
 File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
-Package pdftex.def Info: graphics/available.png  used on input line 151.
+Package pdftex.def Info: graphics/available.png  used on input line 149.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
-<graphics/ring_modulator.png, id=536, 367.3725pt x 195.73125pt>
+<graphics/ring_modulator.png, id=541, 367.3725pt x 195.73125pt>
 File: graphics/ring_modulator.png Graphic file (type png)
 <use graphics/ring_modulator.png>
-Package pdftex.def Info: graphics/ring_modulator.png  used on input line 155.
+Package pdftex.def Info: graphics/ring_modulator.png  used on input line 153.
 (pdftex.def)             Requested size: 234.8775pt x 125.14212pt.
 File: graphics/knob.png Graphic file (type png)
 <use graphics/knob.png>
-Package pdftex.def Info: graphics/knob.png  used on input line 161.
+Package pdftex.def Info: graphics/knob.png  used on input line 159.
 (pdftex.def)             Requested size: 26.30635pt x 29.95972pt.
 File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
-Package pdftex.def Info: graphics/available.png  used on input line 161.
+Package pdftex.def Info: graphics/available.png  used on input line 159.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
 File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
-Package pdftex.def Info: graphics/available.png  used on input line 161.
+Package pdftex.def Info: graphics/available.png  used on input line 159.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
  [32 <./graphics/formant_response.png> <./graphics/ring_modulator.png>]
 File: graphics/knob.png Graphic file (type png)
 <use graphics/knob.png>
-Package pdftex.def Info: graphics/knob.png  used on input line 165.
+Package pdftex.def Info: graphics/knob.png  used on input line 163.
 (pdftex.def)             Requested size: 26.30635pt x 29.95972pt.
 File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
-Package pdftex.def Info: graphics/available.png  used on input line 165.
+Package pdftex.def Info: graphics/available.png  used on input line 163.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
 File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
-Package pdftex.def Info: graphics/available.png  used on input line 165.
+Package pdftex.def Info: graphics/available.png  used on input line 163.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
 ) [33]
 \openout2 = `AmpDistortion.aux'.
 
  (./AmpDistortion.tex
 Chapter 4.
-<graphics/amp_distortion.png, id=546, 311.1625pt x 233.87375pt>
+<graphics/amp_distortion.png, id=551, 311.1625pt x 233.87375pt>
 File: graphics/amp_distortion.png Graphic file (type png)
 <use graphics/amp_distortion.png>
 Package pdftex.def Info: graphics/amp_distortion.png  used on input line 4.
@@ -1937,7 +1937,7 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 24.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
-<graphics/pan_function.png, id=548, 217.20065pt x 135.94572pt>
+<graphics/pan_function.png, id=553, 217.20065pt x 135.94572pt>
 File: graphics/pan_function.png Graphic file (type png)
 <use graphics/pan_function.png>
 Package pdftex.def Info: graphics/pan_function.png  used on input line 24.
@@ -1960,7 +1960,7 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 28.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
-<graphics/distortion.png, id=554, 303.1325pt x 94.3525pt>
+<graphics/distortion.png, id=559, 303.1325pt x 94.3525pt>
 File: graphics/distortion.png Graphic file (type png)
 <use graphics/distortion.png>
 Package pdftex.def Info: graphics/distortion.png  used on input line 45.
@@ -1978,7 +1978,7 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 56.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
-<graphics/distortion_on.png, id=560, 101.37875pt x 31.11626pt>
+<graphics/distortion_on.png, id=565, 101.37875pt x 31.11626pt>
 File: graphics/distortion_on.png Graphic file (type png)
 <use graphics/distortion_on.png>
 Package pdftex.def Info: graphics/distortion_on.png  used on input line 56.
@@ -2019,17 +2019,17 @@ File: graphics/not_available.png Graphic file (type png)
 <use graphics/not_available.png>
 Package pdftex.def Info: graphics/not_available.png  used on input line 93.
 (pdftex.def)             Requested size: 8.77101pt x 9.89503pt.
-<graphics/overdrive.png, id=561, 485.96692pt x 157.04076pt>
+<graphics/overdrive.png, id=566, 485.96692pt x 157.04076pt>
 File: graphics/overdrive.png Graphic file (type png)
 <use graphics/overdrive.png>
 Package pdftex.def Info: graphics/overdrive.png  used on input line 93.
 (pdftex.def)             Requested size: 306.91861pt x 99.18541pt.
-<graphics/fold.png, id=562, 488.70146pt x 157.04076pt>
+<graphics/fold.png, id=567, 488.70146pt x 157.04076pt>
 File: graphics/fold.png Graphic file (type png)
 <use graphics/fold.png>
 Package pdftex.def Info: graphics/fold.png  used on input line 93.
 (pdftex.def)             Requested size: 306.91861pt x 98.62708pt.
-<graphics/zero.png, id=563, 488.70146pt x 157.04076pt>
+<graphics/zero.png, id=568, 488.70146pt x 157.04076pt>
 File: graphics/zero.png Graphic file (type png)
 <use graphics/zero.png>
 Package pdftex.def Info: graphics/zero.png  used on input line 93.
@@ -2041,12 +2041,12 @@ Package pdftex.def Info: graphics/zero.png  used on input line 93.
 
 (./FX.tex
 Chapter 5.
-<graphics/FX.png, id=576, 373.395pt x 212.795pt>
+<graphics/FX.png, id=581, 373.395pt x 212.795pt>
 File: graphics/FX.png Graphic file (type png)
 <use graphics/FX.png>
 Package pdftex.def Info: graphics/FX.png  used on input line 6.
 (pdftex.def)             Requested size: 187.89914pt x 107.08234pt.
-<graphics/FX_selector.png, id=577, 373.395pt x 50.1875pt>
+<graphics/FX_selector.png, id=582, 373.395pt x 50.1875pt>
 File: graphics/FX_selector.png Graphic file (type png)
 <use graphics/FX_selector.png>
 Package pdftex.def Info: graphics/FX_selector.png  used on input line 12.
@@ -2081,7 +2081,7 @@ Package pdftex.def Info: graphics/not_available.png  used on input line 24.
 
 
  <./graphics/FX.png> <./graphics/FX_selector.png>]
-<graphics/delay.png, id=583, 365.365pt x 159.59625pt>
+<graphics/delay.png, id=588, 365.365pt x 159.59625pt>
 File: graphics/delay.png Graphic file (type png)
 <use graphics/delay.png>
 Package pdftex.def Info: graphics/delay.png  used on input line 29.
@@ -2098,7 +2098,7 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 40.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
-<graphics/delay_sync.png, id=584, 118.4425pt x 30.1125pt>
+<graphics/delay_sync.png, id=589, 118.4425pt x 30.1125pt>
 File: graphics/delay_sync.png Graphic file (type png)
 <use graphics/delay_sync.png>
 Package pdftex.def Info: graphics/delay_sync.png  used on input line 40.
@@ -2189,7 +2189,7 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 73.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
-<graphics/chorus.png, id=593, 364.36125pt x 160.6pt>
+<graphics/chorus.png, id=598, 364.36125pt x 160.6pt>
 File: graphics/chorus.png Graphic file (type png)
 <use graphics/chorus.png>
 Package pdftex.def Info: graphics/chorus.png  used on input line 77.
@@ -2206,7 +2206,7 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 88.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
-<graphics/chorus_sync.png, id=594, 118.4425pt x 30.1125pt>
+<graphics/chorus_sync.png, id=599, 118.4425pt x 30.1125pt>
 File: graphics/chorus_sync.png Graphic file (type png)
 <use graphics/chorus_sync.png>
 Package pdftex.def Info: graphics/chorus_sync.png  used on input line 88.
@@ -2260,7 +2260,7 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 104.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
-<graphics/phaser.png, id=600, 366.36874pt x 161.60374pt>
+<graphics/phaser.png, id=605, 366.36874pt x 161.60374pt>
 File: graphics/phaser.png Graphic file (type png)
 <use graphics/phaser.png>
 Package pdftex.def Info: graphics/phaser.png  used on input line 108.
@@ -2278,7 +2278,7 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 118.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
-<graphics/phaser_sync.png, id=607, 118.4425pt x 30.1125pt>
+<graphics/phaser_sync.png, id=612, 118.4425pt x 30.1125pt>
 File: graphics/phaser_sync.png Graphic file (type png)
 <use graphics/phaser_sync.png>
 Package pdftex.def Info: graphics/phaser_sync.png  used on input line 118.
@@ -2344,7 +2344,7 @@ File: graphics/available.png Graphic file (type png)
 Package pdftex.def Info: graphics/available.png  used on input line 138.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
  [43 <./graphics/phaser_sync.png (PNG copy)>]
-<graphics/flanger.png, id=612, 365.365pt x 161.60374pt>
+<graphics/flanger.png, id=617, 365.365pt x 161.60374pt>
 File: graphics/flanger.png Graphic file (type png)
 <use graphics/flanger.png>
 Package pdftex.def Info: graphics/flanger.png  used on input line 142.
@@ -2361,7 +2361,7 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 153.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
-<graphics/flanger_sync.png, id=614, 118.4425pt x 30.1125pt>
+<graphics/flanger_sync.png, id=619, 118.4425pt x 30.1125pt>
 File: graphics/flanger_sync.png Graphic file (type png)
 <use graphics/flanger_sync.png>
 Package pdftex.def Info: graphics/flanger_sync.png  used on input line 153.
@@ -2415,28 +2415,106 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 169.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
-) [45]
+<graphics/reverb.png, id=624, 364.36125pt x 158.5925pt>
+File: graphics/reverb.png Graphic file (type png)
+<use graphics/reverb.png>
+Package pdftex.def Info: graphics/reverb.png  used on input line 174.
+(pdftex.def)             Requested size: 234.8775pt x 102.23207pt.
+File: graphics/knob.png Graphic file (type png)
+<use graphics/knob.png>
+Package pdftex.def Info: graphics/knob.png  used on input line 181.
+(pdftex.def)             Requested size: 26.30635pt x 29.95972pt.
+File: graphics/not_available.png Graphic file (type png)
+<use graphics/not_available.png>
+Package pdftex.def Info: graphics/not_available.png  used on input line 181.
+(pdftex.def)             Requested size: 8.77101pt x 9.89503pt.
+File: graphics/available.png Graphic file (type png)
+<use graphics/available.png>
+Package pdftex.def Info: graphics/available.png  used on input line 181.
+(pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
+File: graphics/knob.png Graphic file (type png)
+<use graphics/knob.png>
+Package pdftex.def Info: graphics/knob.png  used on input line 184.
+(pdftex.def)             Requested size: 26.30635pt x 29.95972pt.
+File: graphics/not_available.png Graphic file (type png)
+<use graphics/not_available.png>
+Package pdftex.def Info: graphics/not_available.png  used on input line 184.
+(pdftex.def)             Requested size: 8.77101pt x 9.89503pt.
+File: graphics/available.png Graphic file (type png)
+<use graphics/available.png>
+Package pdftex.def Info: graphics/available.png  used on input line 184.
+(pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
+File: graphics/knob.png Graphic file (type png)
+<use graphics/knob.png>
+Package pdftex.def Info: graphics/knob.png  used on input line 187.
+(pdftex.def)             Requested size: 26.30635pt x 29.95972pt.
+File: graphics/not_available.png Graphic file (type png)
+<use graphics/not_available.png>
+Package pdftex.def Info: graphics/not_available.png  used on input line 187.
+(pdftex.def)             Requested size: 8.77101pt x 9.89503pt.
+File: graphics/available.png Graphic file (type png)
+<use graphics/available.png>
+Package pdftex.def Info: graphics/available.png  used on input line 187.
+(pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
+ [45 <./graphics/reverb.png>]
+File: graphics/knob.png Graphic file (type png)
+<use graphics/knob.png>
+Package pdftex.def Info: graphics/knob.png  used on input line 190.
+(pdftex.def)             Requested size: 26.30635pt x 29.95972pt.
+File: graphics/not_available.png Graphic file (type png)
+<use graphics/not_available.png>
+Package pdftex.def Info: graphics/not_available.png  used on input line 190.
+(pdftex.def)             Requested size: 8.77101pt x 9.89503pt.
+File: graphics/available.png Graphic file (type png)
+<use graphics/available.png>
+Package pdftex.def Info: graphics/available.png  used on input line 190.
+(pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
+File: graphics/knob.png Graphic file (type png)
+<use graphics/knob.png>
+Package pdftex.def Info: graphics/knob.png  used on input line 193.
+(pdftex.def)             Requested size: 26.30635pt x 29.95972pt.
+File: graphics/not_available.png Graphic file (type png)
+<use graphics/not_available.png>
+Package pdftex.def Info: graphics/not_available.png  used on input line 193.
+(pdftex.def)             Requested size: 8.77101pt x 9.89503pt.
+File: graphics/available.png Graphic file (type png)
+<use graphics/available.png>
+Package pdftex.def Info: graphics/available.png  used on input line 193.
+(pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
+File: graphics/knob.png Graphic file (type png)
+<use graphics/knob.png>
+Package pdftex.def Info: graphics/knob.png  used on input line 196.
+(pdftex.def)             Requested size: 26.30635pt x 29.95972pt.
+File: graphics/not_available.png Graphic file (type png)
+<use graphics/not_available.png>
+Package pdftex.def Info: graphics/not_available.png  used on input line 196.
+(pdftex.def)             Requested size: 8.77101pt x 9.89503pt.
+File: graphics/available.png Graphic file (type png)
+<use graphics/available.png>
+Package pdftex.def Info: graphics/available.png  used on input line 196.
+(pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
+) [46]
 \openout2 = `Modulators.aux'.
 
  (./Modulators.tex
 Chapter 6.
-<graphics/ADSR_section.png, id=624, 364.36125pt x 170.6375pt>
+<graphics/ADSR_section.png, id=635, 364.36125pt x 170.6375pt>
 File: graphics/ADSR_section.png Graphic file (type png)
 <use graphics/ADSR_section.png>
 Package pdftex.def Info: graphics/ADSR_section.png  used on input line 13.
 (pdftex.def)             Requested size: 187.89914pt x 87.99515pt.
-[46
+[47
 
 
 
 
  <./graphics/ADSR_section.png>]
-<graphics/ADSR_handles.png, id=632, 364.36125pt x 28.105pt>
+<graphics/ADSR_handles.png, id=644, 364.36125pt x 28.105pt>
 File: graphics/ADSR_handles.png Graphic file (type png)
 <use graphics/ADSR_handles.png>
 Package pdftex.def Info: graphics/ADSR_handles.png  used on input line 27.
 (pdftex.def)             Requested size: 234.8775pt x 18.11707pt.
-<graphics/ADSR.png, id=633, 628.16302pt x 226.96686pt>
+<graphics/ADSR.png, id=645, 628.16302pt x 226.96686pt>
 File: graphics/ADSR.png Graphic file (type png)
 <use graphics/ADSR.png>
 Package pdftex.def Info: graphics/ADSR.png  used on input line 34.
@@ -2465,7 +2543,7 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 51.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
- [47 <./graphics/ADSR_handles.png (PNG copy)> <./graphics/ADSR.png>]
+ [48 <./graphics/ADSR_handles.png (PNG copy)> <./graphics/ADSR.png>]
 File: graphics/knob.png Graphic file (type png)
 <use graphics/knob.png>
 Package pdftex.def Info: graphics/knob.png  used on input line 55.
@@ -2502,13 +2580,13 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 65.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
-<graphics/LFOs.png, id=640, 365.365pt x 119.44624pt>
+<graphics/LFOs.png, id=653, 365.365pt x 119.44624pt>
 File: graphics/LFOs.png Graphic file (type png)
 <use graphics/LFOs.png>
 Package pdftex.def Info: graphics/LFOs.png  used on input line 71.
 (pdftex.def)             Requested size: 187.89914pt x 61.42891pt.
- [48]
-<graphics/LFO_handles.png, id=647, 363.3575pt x 29.10875pt>
+ [49]
+<graphics/LFO_handles.png, id=658, 363.3575pt x 29.10875pt>
 File: graphics/LFO_handles.png Graphic file (type png)
 <use graphics/LFO_handles.png>
 Package pdftex.def Info: graphics/LFO_handles.png  used on input line 80.
@@ -2525,7 +2603,7 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 92.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
-<graphics/LFO_sync.png, id=648, 113.42375pt x 28.105pt>
+<graphics/LFO_sync.png, id=659, 113.42375pt x 28.105pt>
 File: graphics/LFO_sync.png Graphic file (type png)
 <use graphics/LFO_sync.png>
 Package pdftex.def Info: graphics/LFO_sync.png  used on input line 92.
@@ -2554,107 +2632,107 @@ File: graphics/not_available.png Graphic file (type png)
 <use graphics/not_available.png>
 Package pdftex.def Info: graphics/not_available.png  used on input line 165.
 (pdftex.def)             Requested size: 8.77101pt x 9.89503pt.
-<graphics/LFO/sine.png, id=649, 42.1575pt x 20.075pt>
+<graphics/LFO/sine.png, id=660, 42.1575pt x 20.075pt>
 File: graphics/LFO/sine.png Graphic file (type png)
 <use graphics/LFO/sine.png>
 Package pdftex.def Info: graphics/LFO/sine.png  used on input line 165.
 (pdftex.def)             Requested size: 43.84837pt x 20.88055pt.
-<graphics/LFO/saw.png, id=650, 42.1575pt x 20.075pt>
+<graphics/LFO/saw.png, id=661, 42.1575pt x 20.075pt>
 File: graphics/LFO/saw.png Graphic file (type png)
 <use graphics/LFO/saw.png>
 Package pdftex.def Info: graphics/LFO/saw.png  used on input line 165.
 (pdftex.def)             Requested size: 43.84837pt x 20.88055pt.
-<graphics/LFO/triangle.png, id=651, 42.1575pt x 20.075pt>
+<graphics/LFO/triangle.png, id=662, 42.1575pt x 20.075pt>
 File: graphics/LFO/triangle.png Graphic file (type png)
 <use graphics/LFO/triangle.png>
 Package pdftex.def Info: graphics/LFO/triangle.png  used on input line 165.
 (pdftex.def)             Requested size: 43.84837pt x 20.88055pt.
-<graphics/LFO/square50.png, id=652, 42.1575pt x 20.075pt>
+<graphics/LFO/square50.png, id=663, 42.1575pt x 20.075pt>
 File: graphics/LFO/square50.png Graphic file (type png)
 <use graphics/LFO/square50.png>
 Package pdftex.def Info: graphics/LFO/square50.png  used on input line 165.
 (pdftex.def)             Requested size: 43.84837pt x 20.88055pt.
-<graphics/LFO/square25.png, id=653, 42.1575pt x 20.075pt>
+<graphics/LFO/square25.png, id=664, 42.1575pt x 20.075pt>
 File: graphics/LFO/square25.png Graphic file (type png)
 <use graphics/LFO/square25.png>
 Package pdftex.def Info: graphics/LFO/square25.png  used on input line 165.
 (pdftex.def)             Requested size: 43.84837pt x 20.88055pt.
-<graphics/LFO/square12.png, id=654, 42.1575pt x 20.075pt>
+<graphics/LFO/square12.png, id=665, 42.1575pt x 20.075pt>
 File: graphics/LFO/square12.png Graphic file (type png)
 <use graphics/LFO/square12.png>
 Package pdftex.def Info: graphics/LFO/square12.png  used on input line 165.
 (pdftex.def)             Requested size: 43.84837pt x 20.88055pt.
-<graphics/LFO/peak.png, id=655, 42.1575pt x 20.075pt>
+<graphics/LFO/peak.png, id=666, 42.1575pt x 20.075pt>
 File: graphics/LFO/peak.png Graphic file (type png)
 <use graphics/LFO/peak.png>
 Package pdftex.def Info: graphics/LFO/peak.png  used on input line 165.
 (pdftex.def)             Requested size: 43.84837pt x 20.88055pt.
-<graphics/LFO/SH.png, id=656, 42.1575pt x 20.075pt>
+<graphics/LFO/SH.png, id=667, 42.1575pt x 20.075pt>
 File: graphics/LFO/SH.png Graphic file (type png)
 <use graphics/LFO/SH.png>
 Package pdftex.def Info: graphics/LFO/SH.png  used on input line 165.
 (pdftex.def)             Requested size: 43.84837pt x 20.88055pt.
-<graphics/LFO/pyram4.png, id=657, 42.1575pt x 20.075pt>
+<graphics/LFO/pyram4.png, id=668, 42.1575pt x 20.075pt>
 File: graphics/LFO/pyram4.png Graphic file (type png)
 <use graphics/LFO/pyram4.png>
 Package pdftex.def Info: graphics/LFO/pyram4.png  used on input line 165.
 (pdftex.def)             Requested size: 43.84837pt x 20.88055pt.
-<graphics/LFO/pyram6.png, id=658, 42.1575pt x 20.075pt>
+<graphics/LFO/pyram6.png, id=669, 42.1575pt x 20.075pt>
 File: graphics/LFO/pyram6.png Graphic file (type png)
 <use graphics/LFO/pyram6.png>
 Package pdftex.def Info: graphics/LFO/pyram6.png  used on input line 165.
 (pdftex.def)             Requested size: 43.84837pt x 20.88055pt.
-<graphics/LFO/pyram8.png, id=659, 42.1575pt x 20.075pt>
+<graphics/LFO/pyram8.png, id=670, 42.1575pt x 20.075pt>
 File: graphics/LFO/pyram8.png Graphic file (type png)
 <use graphics/LFO/pyram8.png>
 Package pdftex.def Info: graphics/LFO/pyram8.png  used on input line 165.
 (pdftex.def)             Requested size: 43.84837pt x 20.88055pt.
-<graphics/LFO/pyram12.png, id=660, 42.1575pt x 20.075pt>
+<graphics/LFO/pyram12.png, id=671, 42.1575pt x 20.075pt>
 File: graphics/LFO/pyram12.png Graphic file (type png)
 <use graphics/LFO/pyram12.png>
 Package pdftex.def Info: graphics/LFO/pyram12.png  used on input line 165.
 (pdftex.def)             Requested size: 43.84837pt x 20.88055pt.
-<graphics/LFO/stair3.png, id=661, 42.1575pt x 20.075pt>
+<graphics/LFO/stair3.png, id=672, 42.1575pt x 20.075pt>
 File: graphics/LFO/stair3.png Graphic file (type png)
 <use graphics/LFO/stair3.png>
 Package pdftex.def Info: graphics/LFO/stair3.png  used on input line 165.
 (pdftex.def)             Requested size: 43.84837pt x 20.88055pt.
-<graphics/LFO/stair4.png, id=662, 42.1575pt x 20.075pt>
+<graphics/LFO/stair4.png, id=673, 42.1575pt x 20.075pt>
 File: graphics/LFO/stair4.png Graphic file (type png)
 <use graphics/LFO/stair4.png>
 Package pdftex.def Info: graphics/LFO/stair4.png  used on input line 165.
 (pdftex.def)             Requested size: 43.84837pt x 20.88055pt.
-<graphics/LFO/stair6.png, id=663, 42.1575pt x 20.075pt>
+<graphics/LFO/stair6.png, id=674, 42.1575pt x 20.075pt>
 File: graphics/LFO/stair6.png Graphic file (type png)
 <use graphics/LFO/stair6.png>
 Package pdftex.def Info: graphics/LFO/stair6.png  used on input line 165.
 (pdftex.def)             Requested size: 43.84837pt x 20.88055pt.
-<graphics/LFO/stair8.png, id=664, 42.1575pt x 20.075pt>
+<graphics/LFO/stair8.png, id=675, 42.1575pt x 20.075pt>
 File: graphics/LFO/stair8.png Graphic file (type png)
 <use graphics/LFO/stair8.png>
 Package pdftex.def Info: graphics/LFO/stair8.png  used on input line 165.
 (pdftex.def)             Requested size: 43.84837pt x 20.88055pt.
-<graphics/LFO/stair12.png, id=665, 42.1575pt x 20.075pt>
+<graphics/LFO/stair12.png, id=676, 42.1575pt x 20.075pt>
 File: graphics/LFO/stair12.png Graphic file (type png)
 <use graphics/LFO/stair12.png>
 Package pdftex.def Info: graphics/LFO/stair12.png  used on input line 165.
 (pdftex.def)             Requested size: 43.84837pt x 20.88055pt.
-<graphics/LFO/wavedraw1.png, id=666, 42.1575pt x 20.075pt>
+<graphics/LFO/wavedraw1.png, id=677, 42.1575pt x 20.075pt>
 File: graphics/LFO/wavedraw1.png Graphic file (type png)
 <use graphics/LFO/wavedraw1.png>
 Package pdftex.def Info: graphics/LFO/wavedraw1.png  used on input line 165.
 (pdftex.def)             Requested size: 43.84837pt x 20.88055pt.
-<graphics/LFO/wavedraw2.png, id=668, 42.1575pt x 20.075pt>
+<graphics/LFO/wavedraw2.png, id=679, 42.1575pt x 20.075pt>
 File: graphics/LFO/wavedraw2.png Graphic file (type png)
 <use graphics/LFO/wavedraw2.png>
 Package pdftex.def Info: graphics/LFO/wavedraw2.png  used on input line 165.
 (pdftex.def)             Requested size: 43.84837pt x 20.88055pt.
-<graphics/LFO/wavedraw3.png, id=670, 42.1575pt x 20.075pt>
+<graphics/LFO/wavedraw3.png, id=681, 42.1575pt x 20.075pt>
 File: graphics/LFO/wavedraw3.png Graphic file (type png)
 <use graphics/LFO/wavedraw3.png>
 Package pdftex.def Info: graphics/LFO/wavedraw3.png  used on input line 165.
 (pdftex.def)             Requested size: 43.84837pt x 20.88055pt.
- [49 <./graphics/LFOs.png> <./graphics/LFO_handles.png (PNG copy)> <./graphics/
+ [50 <./graphics/LFOs.png> <./graphics/LFO_handles.png (PNG copy)> <./graphics/
 LFO_sync.png (PNG copy)>]
 File: graphics/knob.png Graphic file (type png)
 <use graphics/knob.png>
@@ -2668,7 +2746,7 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 169.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
- [50 <./graphics/LFO/sine.png> <./graphics/LFO/saw.png> <./graphics/LFO/triangl
+ [51 <./graphics/LFO/sine.png> <./graphics/LFO/saw.png> <./graphics/LFO/triangl
 e.png> <./graphics/LFO/square50.png> <./graphics/LFO/square25.png> <./graphics/
 LFO/square12.png> <./graphics/LFO/peak.png> <./graphics/LFO/SH.png> <./graphics
 /LFO/pyram4.png> <./graphics/LFO/pyram6.png> <./graphics/LFO/pyram8.png> <./gra
@@ -2676,7 +2754,7 @@ phics/LFO/pyram12.png> <./graphics/LFO/stair3.png> <./graphics/LFO/stair4.png>
 <./graphics/LFO/stair6.png> <./graphics/LFO/stair8.png> <./graphics/LFO/stair12
 .png> <./graphics/LFO/wavedraw1.png> <./graphics/LFO/wavedraw2.png> <./graphics
 /LFO/wavedraw3.png>]
-<graphics/XY_pad.png, id=700, 194.7275pt x 137.51375pt>
+<graphics/XY_pad.png, id=711, 194.7275pt x 137.51375pt>
 File: graphics/XY_pad.png Graphic file (type png)
 <use graphics/XY_pad.png>
 Package pdftex.def Info: graphics/XY_pad.png  used on input line 174.
@@ -2711,12 +2789,12 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 185.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
-<graphics/wheels.png, id=701, 97.36375pt x 155.58125pt>
+<graphics/wheels.png, id=712, 97.36375pt x 155.58125pt>
 File: graphics/wheels.png Graphic file (type png)
 <use graphics/wheels.png>
 Package pdftex.def Info: graphics/wheels.png  used on input line 191.
 (pdftex.def)             Requested size: 70.46037pt x 112.59528pt.
-[51 <./graphics/XY_pad.png>]
+[52 <./graphics/XY_pad.png>]
 File: graphics/knob.png Graphic file (type png)
 <use graphics/knob.png>
 Package pdftex.def Info: graphics/knob.png  used on input line 202.
@@ -2753,18 +2831,18 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 212.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
-) [52 <./graphics/wheels.png>]
+) [53 <./graphics/wheels.png>]
 \openout2 = `ModulationMatrix.aux'.
 
 
 (./ModulationMatrix.tex
 Chapter 7.
-<graphics/modmatrix.png, id=711, 753.81625pt x 243.91125pt>
+<graphics/modmatrix.png, id=722, 753.81625pt x 243.91125pt>
 File: graphics/modmatrix.png Graphic file (type png)
 <use graphics/modmatrix.png>
 Package pdftex.def Info: graphics/modmatrix.png  used on input line 6.
 (pdftex.def)             Requested size: 422.77664pt x 136.79405pt.
-<graphics/modmatrix_row.png, id=712, 744.96698pt x 80.08298pt>
+<graphics/modmatrix_row.png, id=723, 744.96698pt x 80.08298pt>
 File: graphics/modmatrix_row.png Graphic file (type png)
 <use graphics/modmatrix_row.png>
 Package pdftex.def Info: graphics/modmatrix_row.png  used on input line 16.
@@ -2793,7 +2871,7 @@ File: graphics/not_available.png Graphic file (type png)
 <use graphics/not_available.png>
 Package pdftex.def Info: graphics/not_available.png  used on input line 29.
 (pdftex.def)             Requested size: 8.77101pt x 9.89503pt.
-[53
+[54
 
 
 
@@ -2835,8 +2913,8 @@ File: graphics/not_available.png Graphic file (type png)
 <use graphics/not_available.png>
 Package pdftex.def Info: graphics/not_available.png  used on input line 41.
 (pdftex.def)             Requested size: 8.77101pt x 9.89503pt.
- [54]
-<graphics/modulation_scale.png, id=725, 516.82816pt x 146.49324pt>
+ [55]
+<graphics/modulation_scale.png, id=736, 516.82816pt x 146.49324pt>
 File: graphics/modulation_scale.png Graphic file (type png)
 <use graphics/modulation_scale.png>
 Package pdftex.def Info: graphics/modulation_scale.png  used on input line 52.
@@ -2865,7 +2943,7 @@ File: graphics/not_available.png Graphic file (type png)
 <use graphics/not_available.png>
 Package pdftex.def Info: graphics/not_available.png  used on input line 64.
 (pdftex.def)             Requested size: 8.77101pt x 9.89503pt.
- [55 <./graphics/modulation_scale.png>]
+ [56 <./graphics/modulation_scale.png>]
 Overfull \hbox (12.41869pt too wide) in alignment at lines 116--181
  [] [] [] [] 
  []
@@ -2879,7 +2957,7 @@ Overfull \hbox (12.41869pt too wide) in alignment at lines 181--209
  [] [] [] [] 
  []
 
-[56] [57]
+[57] [58]
 Overfull \hbox (1.10257pt too wide) in paragraph at lines 241--241
 \OT1/put/b/n/8 Mono/ 
  []
@@ -2898,32 +2976,32 @@ Overfull \hbox (7.71654pt too wide) in alignment at lines 333--443
  [] [] [] [] 
  []
 
-[58]
+[59]
 Overfull \hbox (7.71654pt too wide) in alignment at lines 443--553
  [] [] [] [] 
  []
 
-[59] [60]
+[60] [61]
 Overfull \hbox (7.71654pt too wide) in alignment at lines 553--663
  [] [] [] [] 
  []
 
-[61]
+[62] [63]
 Overfull \hbox (7.71654pt too wide) in alignment at lines 663--671
  [] [] [] [] 
  []
 
-[62] [63]) [64]
+[64]) [65]
 \openout2 = `Arpeggiator.aux'.
 
  (./Arpeggiator.tex
 Chapter 8.
-<graphics/arpeggiator.png, id=801, 753.81625pt x 245.91875pt>
+<graphics/arpeggiator.png, id=813, 753.81625pt x 245.91875pt>
 File: graphics/arpeggiator.png Graphic file (type png)
 <use graphics/arpeggiator.png>
 Package pdftex.def Info: graphics/arpeggiator.png  used on input line 5.
 (pdftex.def)             Requested size: 469.75502pt x 153.24854pt.
-<graphics/arpeggiator_button.png, id=802, 752.8125pt x 29.10875pt>
+<graphics/arpeggiator_button.png, id=814, 752.8125pt x 29.10875pt>
 File: graphics/arpeggiator_button.png Graphic file (type png)
 <use graphics/arpeggiator_button.png>
 Package pdftex.def Info: graphics/arpeggiator_button.png  used on input line 21
@@ -2941,12 +3019,12 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 33.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
-<graphics/arpeggiator_on.png, id=803, 52.195pt x 47.17625pt>
+<graphics/arpeggiator_on.png, id=815, 52.195pt x 47.17625pt>
 File: graphics/arpeggiator_on.png Graphic file (type png)
 <use graphics/arpeggiator_on.png>
 Package pdftex.def Info: graphics/arpeggiator_on.png  used on input line 33.
 (pdftex.def)             Requested size: 38.80925pt x 35.07736pt.
-[65
+[66
 
 
 
@@ -2964,7 +3042,7 @@ File: graphics/not_available.png Graphic file (type png)
 <use graphics/not_available.png>
 Package pdftex.def Info: graphics/not_available.png  used on input line 40.
 (pdftex.def)             Requested size: 8.77101pt x 9.89503pt.
-<graphics/arpeggiator_speed.png, id=809, 112.42pt x 26.0975pt>
+<graphics/arpeggiator_speed.png, id=821, 112.42pt x 26.0975pt>
 File: graphics/arpeggiator_speed.png Graphic file (type png)
 <use graphics/arpeggiator_speed.png>
 Package pdftex.def Info: graphics/arpeggiator_speed.png  used on input line 40.
@@ -2982,7 +3060,7 @@ File: graphics/not_available.png Graphic file (type png)
 <use graphics/not_available.png>
 Package pdftex.def Info: graphics/not_available.png  used on input line 47.
 (pdftex.def)             Requested size: 8.77101pt x 9.89503pt.
-<graphics/arpeggiator_octaves.png, id=811, 133.49875pt x 34.1275pt>
+<graphics/arpeggiator_octaves.png, id=823, 133.49875pt x 34.1275pt>
 File: graphics/arpeggiator_octaves.png Graphic file (type png)
 <use graphics/arpeggiator_octaves.png>
 Package pdftex.def Info: graphics/arpeggiator_octaves.png  used on input line 4
@@ -3000,7 +3078,7 @@ File: graphics/not_available.png Graphic file (type png)
 <use graphics/not_available.png>
 Package pdftex.def Info: graphics/not_available.png  used on input line 54.
 (pdftex.def)             Requested size: 8.77101pt x 9.89503pt.
-<graphics/arpeggiator_gate.png, id=812, 132.495pt x 36.135pt>
+<graphics/arpeggiator_gate.png, id=824, 132.495pt x 36.135pt>
 File: graphics/arpeggiator_gate.png Graphic file (type png)
 <use graphics/arpeggiator_gate.png>
 Package pdftex.def Info: graphics/arpeggiator_gate.png  used on input line 54.
@@ -3017,52 +3095,52 @@ File: graphics/not_available.png Graphic file (type png)
 <use graphics/not_available.png>
 Package pdftex.def Info: graphics/not_available.png  used on input line 98.
 (pdftex.def)             Requested size: 8.77101pt x 9.89503pt.
-<graphics/arpeggiator_direction.png, id=813, 134.5025pt x 37.13875pt>
+<graphics/arpeggiator_direction.png, id=825, 134.5025pt x 37.13875pt>
 File: graphics/arpeggiator_direction.png Graphic file (type png)
 <use graphics/arpeggiator_direction.png>
 Package pdftex.def Info: graphics/arpeggiator_direction.png  used on input line
  98.
 (pdftex.def)             Requested size: 74.5369pt x 20.58107pt.
-<graphics/c_major.png, id=814, 896.34875pt x 631.35875pt>
+<graphics/c_major.png, id=826, 896.34875pt x 631.35875pt>
 File: graphics/c_major.png Graphic file (type png)
 <use graphics/c_major.png>
 Package pdftex.def Info: graphics/c_major.png  used on input line 98.
 (pdftex.def)             Requested size: 49.79854pt x 35.07736pt.
-<graphics/arpeggiator_up.png, id=815, 1133.23375pt x 442.65375pt>
+<graphics/arpeggiator_up.png, id=827, 1133.23375pt x 442.65375pt>
 File: graphics/arpeggiator_up.png Graphic file (type png)
 <use graphics/arpeggiator_up.png>
 Package pdftex.def Info: graphics/arpeggiator_up.png  used on input line 98.
 (pdftex.def)             Requested size: 89.79596pt x 35.07736pt.
-<graphics/arpeggiator_down.png, id=816, 1118.1775pt x 445.665pt>
+<graphics/arpeggiator_down.png, id=828, 1118.1775pt x 445.665pt>
 File: graphics/arpeggiator_down.png Graphic file (type png)
 <use graphics/arpeggiator_down.png>
 Package pdftex.def Info: graphics/arpeggiator_down.png  used on input line 98.
 (pdftex.def)             Requested size: 88.00575pt x 35.07736pt.
-<graphics/arpeggiator_updown.png, id=817, 1690.315pt x 513.92pt>
+<graphics/arpeggiator_updown.png, id=829, 1690.315pt x 513.92pt>
 File: graphics/arpeggiator_updown.png Graphic file (type png)
 <use graphics/arpeggiator_updown.png>
 Package pdftex.def Info: graphics/arpeggiator_updown.png  used on input line 98
 .
 (pdftex.def)             Requested size: 115.36804pt x 35.07736pt.
-<graphics/arpeggiator_downup.png, id=818, 1702.36pt x 483.8075pt>
+<graphics/arpeggiator_downup.png, id=830, 1702.36pt x 483.8075pt>
 File: graphics/arpeggiator_downup.png Graphic file (type png)
 <use graphics/arpeggiator_downup.png>
 Package pdftex.def Info: graphics/arpeggiator_downup.png  used on input line 98
 .
 (pdftex.def)             Requested size: 123.41144pt x 35.07736pt.
-<graphics/arpeggiator_crawlup.png, id=819, 2045.6425pt x 512.91624pt>
+<graphics/arpeggiator_crawlup.png, id=831, 2045.6425pt x 512.91624pt>
 File: graphics/arpeggiator_crawlup.png Graphic file (type png)
 <use graphics/arpeggiator_crawlup.png>
 Package pdftex.def Info: graphics/arpeggiator_crawlup.png  used on input line 9
 8.
 (pdftex.def)             Requested size: 139.8697pt x 35.07736pt.
-<graphics/arpeggiator_crawldown.png, id=820, 2039.62pt x 505.89pt>
+<graphics/arpeggiator_crawldown.png, id=832, 2039.62pt x 505.89pt>
 File: graphics/arpeggiator_crawldown.png Graphic file (type png)
 <use graphics/arpeggiator_crawldown.png>
 Package pdftex.def Info: graphics/arpeggiator_crawldown.png  used on input line
  98.
 (pdftex.def)             Requested size: 141.41861pt x 35.07736pt.
- [66 <./graphics/arpeggiator_on.png (PNG copy)> <./graphics/arpeggiator_speed.p
+ [67 <./graphics/arpeggiator_on.png (PNG copy)> <./graphics/arpeggiator_speed.p
 ng (PNG copy)> <./graphics/arpeggiator_octaves.png (PNG copy)> <./graphics/arpe
 ggiator_gate.png (PNG copy)>]
 File: graphics/knob.png Graphic file (type png)
@@ -3077,13 +3155,13 @@ File: graphics/not_available.png Graphic file (type png)
 <use graphics/not_available.png>
 Package pdftex.def Info: graphics/not_available.png  used on input line 106.
 (pdftex.def)             Requested size: 8.77101pt x 9.89503pt.
-<graphics/arpeggiator_step_on.png, id=826, 163.61125pt x 60.225pt>
+<graphics/arpeggiator_step_on.png, id=837, 163.61125pt x 60.225pt>
 File: graphics/arpeggiator_step_on.png Graphic file (type png)
 <use graphics/arpeggiator_step_on.png>
 Package pdftex.def Info: graphics/arpeggiator_step_on.png  used on input line 1
 06.
 (pdftex.def)             Requested size: 95.29651pt x 35.07736pt.
- [67 <./graphics/arpeggiator_direction.png (PNG copy)> <./graphics/c_major.png>
+ [68 <./graphics/arpeggiator_direction.png (PNG copy)> <./graphics/c_major.png>
  <./graphics/arpeggiator_up.png> <./graphics/arpeggiator_down.png> <./graphics/
 arpeggiator_updown.png> <./graphics/arpeggiator_downup.png> <./graphics/arpeggi
 ator_crawlup.png> <./graphics/arpeggiator_crawldown.png>]
@@ -3099,7 +3177,7 @@ File: graphics/not_available.png Graphic file (type png)
 <use graphics/not_available.png>
 Package pdftex.def Info: graphics/not_available.png  used on input line 118.
 (pdftex.def)             Requested size: 8.77101pt x 9.89503pt.
-<graphics/arpeggiator_steps.png, id=831, 135.50626pt x 38.1425pt>
+<graphics/arpeggiator_steps.png, id=842, 135.50626pt x 38.1425pt>
 File: graphics/arpeggiator_steps.png Graphic file (type png)
 <use graphics/arpeggiator_steps.png>
 Package pdftex.def Info: graphics/arpeggiator_steps.png  used on input line 118
@@ -3129,15 +3207,15 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 134.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
-<graphics/arpeggiator_mod1.png, id=832, 402.50375pt x 46.1725pt>
+<graphics/arpeggiator_mod1.png, id=843, 402.50375pt x 46.1725pt>
 File: graphics/arpeggiator_mod1.png Graphic file (type png)
 <use graphics/arpeggiator_mod1.png>
 Package pdftex.def Info: graphics/arpeggiator_mod1.png  used on input line 134.
 
 (pdftex.def)             Requested size: 191.1237pt x 21.92418pt.
- [68 <./graphics/arpeggiator_step_on.png (PNG copy)> <./graphics/arpeggiator_st
+ [69 <./graphics/arpeggiator_step_on.png (PNG copy)> <./graphics/arpeggiator_st
 eps.png (PNG copy)>]
-<graphics/arpeggiator_mod_vs_transpose.png, id=838, 516.93124pt x 51.19125pt>
+<graphics/arpeggiator_mod_vs_transpose.png, id=849, 516.93124pt x 51.19125pt>
 File: graphics/arpeggiator_mod_vs_transpose.png Graphic file (type png)
 <use graphics/arpeggiator_mod_vs_transpose.png>
 Package pdftex.def Info: graphics/arpeggiator_mod_vs_transpose.png  used on inp
@@ -3155,7 +3233,7 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 164.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
-<graphics/arpeggiator_mod2.png, id=839, 405.515pt x 46.1725pt>
+<graphics/arpeggiator_mod2.png, id=850, 405.515pt x 46.1725pt>
 File: graphics/arpeggiator_mod2.png Graphic file (type png)
 <use graphics/arpeggiator_mod2.png>
 Package pdftex.def Info: graphics/arpeggiator_mod2.png  used on input line 164.
@@ -3173,14 +3251,14 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 177.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
-<graphics/arpeggiator_transp.png, id=841, 414.54875pt x 50.1875pt>
+<graphics/arpeggiator_transp.png, id=852, 414.54875pt x 50.1875pt>
 File: graphics/arpeggiator_transp.png Graphic file (type png)
 <use graphics/arpeggiator_transp.png>
 Package pdftex.def Info: graphics/arpeggiator_transp.png  used on input line 17
 7.
 (pdftex.def)             Requested size: 181.09895pt x 21.92418pt.
-) [69 <./graphics/arpeggiator_mod1.png (PNG copy)> <./graphics/arpeggiator_mod_
-vs_transpose.png> <./graphics/arpeggiator_mod2.png (PNG copy)>] [70 <./graphics
+) [70 <./graphics/arpeggiator_mod1.png (PNG copy)> <./graphics/arpeggiator_mod_
+vs_transpose.png> <./graphics/arpeggiator_mod2.png (PNG copy)>] [71 <./graphics
 /arpeggiator_transp.png (PNG copy)>]
 \openout2 = `GlobalSettings.aux'.
 
@@ -3199,18 +3277,18 @@ File: graphics/not_available.png Graphic file (type png)
 <use graphics/not_available.png>
 Package pdftex.def Info: graphics/not_available.png  used on input line 29.
 (pdftex.def)             Requested size: 8.77101pt x 9.89503pt.
-<graphics/poly_legato.png, id=853, 119.44624pt x 48.18pt>
+<graphics/poly_legato.png, id=864, 119.44624pt x 48.18pt>
 File: graphics/poly_legato.png Graphic file (type png)
 <use graphics/poly_legato.png>
 Package pdftex.def Info: graphics/poly_legato.png  used on input line 29.
 (pdftex.def)             Requested size: 65.76588pt x 26.527pt.
-[71
+[72
 
 
 
 
  <./graphics/poly_legato.png>]
-<graphics/unison.png, id=858, 279.0425pt x 37.13875pt>
+<graphics/unison.png, id=870, 279.0425pt x 37.13875pt>
 File: graphics/unison.png Graphic file (type png)
 <use graphics/unison.png>
 Package pdftex.def Info: graphics/unison.png  used on input line 36.
@@ -3251,15 +3329,15 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 68.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
- [72
+ [73
 
  <./graphics/unison.png>]
-<graphics/microtuning.png, id=866, 266.9975pt x 287.0725pt>
+<graphics/microtuning.png, id=877, 266.9975pt x 287.0725pt>
 File: graphics/microtuning.png Graphic file (type png)
 <use graphics/microtuning.png>
 Package pdftex.def Info: graphics/microtuning.png  used on input line 77.
 (pdftex.def)             Requested size: 140.92793pt x 151.53006pt.
-<graphics/master_glide.png, id=870, 74.2775pt x 149.55875pt>
+<graphics/master_glide.png, id=881, 74.2775pt x 149.55875pt>
 File: graphics/master_glide.png Graphic file (type png)
 <use graphics/master_glide.png>
 Package pdftex.def Info: graphics/master_glide.png  used on input line 109.
@@ -3276,7 +3354,7 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 114.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
- [73 <./graphics/microtuning.png> <./graphics/master_glide.png>]
+ [74 <./graphics/microtuning.png> <./graphics/master_glide.png>]
 File: graphics/knob.png Graphic file (type png)
 <use graphics/knob.png>
 Package pdftex.def Info: graphics/knob.png  used on input line 118.
@@ -3289,7 +3367,7 @@ File: graphics/available.png Graphic file (type png)
 <use graphics/available.png>
 Package pdftex.def Info: graphics/available.png  used on input line 118.
 (pdftex.def)             Requested size: 10.95874pt x 9.64273pt.
-) [74]
+) [75]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 128.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 128.
  (./manual.aux
@@ -3299,17 +3377,17 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 128.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 128.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 128.
 Package rerunfilecheck Info: File `manual.out' has not changed.
-(rerunfilecheck)             Checksum: B8A8A2C4867462E4D274B4A91EC5E3D1;3231.
+(rerunfilecheck)             Checksum: 7CFD8E88CD1492F5C6FADE55C1CDE9D8;3284.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 128.
  ) 
 Here is how much of TeX's memory you used:
- 32353 strings out of 494561
- 648528 string characters out of 6177454
- 866036 words of memory out of 5000000
- 35314 multiletter control sequences out of 15000+600000
- 583825 words of font info for 69 fonts, out of 8000000 for 9000
- 14 hyphenation exceptions out of 8191
- 63i,16n,97p,954b,487s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 31101 strings out of 492982
+ 630421 string characters out of 6134897
+ 857747 words of memory out of 5000000
+ 33974 multiletter control sequences out of 15000+600000
+ 581759 words of font info for 67 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 63i,16n,97p,10494b,482s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{https://de.wikipedia.org/wiki/FM-Synthese} has be
 en referenced but does not exist, replaced by a fixed one
 
@@ -3324,10 +3402,10 @@ fonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
 .pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb><
 /usr/share/texlive/texmf-dist/fonts/type1/adobe/utopia/putb8a.pfb></usr/share/t
 exlive/texmf-dist/fonts/type1/adobe/utopia/putr8a.pfb>
-Output written on manual.pdf (75 pages, 6137330 bytes).
+Output written on manual.pdf (76 pages, 6209815 bytes).
 PDF statistics:
- 953 PDF objects out of 1000 (max. 8388607)
- 685 compressed objects within 7 object streams
- 137 named destinations out of 1000 (max. 500000)
- 1053 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 965 PDF objects out of 1000 (max. 8388607)
+ 695 compressed objects within 7 object streams
+ 139 named destinations out of 1000 (max. 500000)
+ 1066 words of extra memory for PDF output out of 10000 (max. 10000000)
 

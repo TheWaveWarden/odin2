@@ -1,6 +1,6 @@
 \chapter{FX}
 \label{FX}
-Odin 2 comes with four internal FX modules: \fat{Delay, Chorus, Phaser} and \fat{Flanger}.
+Odin 2 comes with five internal FX modules: \fat{Delay, Chorus, Phaser, Flanger} and \fat{Reverb}.
 
 \begin{center}
     \includegraphics[width=0.4\textwidth]{graphics/FX.png}
@@ -166,4 +166,31 @@ A Flanger is a modulated \hyperref[comb_filter]{comb filter}. The signal is fed 
 
 \audioparameter{Flanger DryWet}{1}{1}{
     Interpolates the processed and unprocessed signals, thereby controlling the strength of the effect.
+}
+
+
+\section{Reverb}
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{graphics/reverb.png}
+\end{center}
+
+The reverb module provides a source of artificial reverberation in Odin 2. This module is sourced from \href{https://kokkinizita.linuxaudio.org/linuxaudio/zita-rev1-doc/quickguide.html}{Zita-rev1}. The reverb additionally features a built in equalizer with a rather large Q, to further shape the reverb to your hearts desire.
+
+\audioparameter{Pre-Delay}{0}{1}{
+    Controls how much the signal is delayed before being fed into the reverberation. This contributes to how big the emulated room feels.
+}
+\audioparameter{Decay}{0}{1}{
+    Controls how fast the reverberation decays. The value in seconds controls the RT60, that is how long the signal takes to be attenuated by 60dB.
+}
+\audioparameter{HF-Damp}{0}{1}{
+    Controls how much high frequencies are attenuated. Higher values will let more frequencies pass.
+}
+\audioparameter{EQ-Gain}{0}{1}{
+    Controls the gain of the internal equalizer. The equalization will only be applied to the wet signal. Use this to highlight parts of the spectrum, or attenuate unwanted frequencies.
+}
+\audioparameter{EQ-Freq}{0}{1}{
+    Controls the frequency of the internal equalizer. The equalization will only be applied to the wet signal. Use this to highlight parts of the spectrum, or attenuate unwanted frequencies.
+}
+\audioparameter{DryWet}{0}{1}{
+    Controls the mix of unprocessed and processed sound.
 }
