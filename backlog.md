@@ -1,11 +1,10 @@
 - investigate dropdowns not closing
-- write tooltips
 - Create Backdrops 100
-- draggable FX buttons 100 (blender?)
+- GUI resizes moves focus to flanger
+- 150%: align font precisely
+- Move Knobs to correct location 100
 - Make sure things are saved and retrieved correctly
 - recreate init path
-- rename "Static Factory Presets"
 - bump patch migration version
-- Move Knobs to correct location 100
-- Write manual entry for Reverbs 
+- Write manual entry for Reverbs
 - manual: somewhere is a todo

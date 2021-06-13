@@ -156,19 +156,39 @@ void ReverbComponent::setGUIBig() {
 void ReverbComponent::setGUISmall() {
 	m_GUI_big = false;
 
-	juce::Image metal_knob_mid =
-	    ImageCache::getFromMemory(BinaryData::metal_knob_mid_150_png, BinaryData::metal_knob_mid_150_pngSize);
+	setImage(ImageCache::getFromMemory(BinaryData::reverb_zita_png, BinaryData::reverb_zita_pngSize));
+
 	juce::Image black_knob_mid =
 	    ImageCache::getFromMemory(BinaryData::black_knob_mid_png, BinaryData::black_knob_mid_pngSize);
+	juce::Image metal_knob_mid =
+	    ImageCache::getFromMemory(BinaryData::metal_knob_mid_png, BinaryData::metal_knob_mid_pngSize);
+	juce::Image black_knob_big =
+	    ImageCache::getFromMemory(BinaryData::black_knob_big_png, BinaryData::black_knob_big_pngSize);
+
+	m_delay.setStrip(metal_knob_mid, N_KNOB_FRAMES);
 	m_EQ_gain.setStrip(black_knob_mid, N_KNOB_FRAMES);
 	//m_ducking.setStrip(black_knob_mid, N_KNOB_FRAMES);
 	m_EQ_freq.setStrip(black_knob_mid, N_KNOB_FRAMES);
-	m_dry_wet.setStrip(black_knob_mid, N_KNOB_FRAMES);
+	m_dry_wet.setStrip(black_knob_big, N_KNOB_FRAMES);
+	m_mid_hall.setStrip(metal_knob_mid, N_KNOB_FRAMES);
+	m_hf_damp.setStrip(metal_knob_mid, N_KNOB_FRAMES);
 
-	m_EQ_gain.setBounds(REVERB_EQ_GAIN_POS_X, REVERB_EQ_GAIN_POS_Y, BLACK_KNOB_MID_SIZE_X, BLACK_KNOB_MID_SIZE_Y);
-	//m_ducking.setBounds(REVERB_WIDTH_POS_X, REVERB_WIDTH_POS_Y, BLACK_KNOB_MID_SIZE_X, BLACK_KNOB_MID_SIZE_Y);
-	m_EQ_freq.setBounds(REVERB_DRY_POS_X, REVERB_DRY_POS_Y, BLACK_KNOB_MID_SIZE_X, BLACK_KNOB_MID_SIZE_Y);
-	m_dry_wet.setBounds(REVERB_WET_POS_X, REVERB_WET_POS_Y, BLACK_KNOB_MID_SIZE_X, BLACK_KNOB_MID_SIZE_Y);
+	m_mid_hall.setBounds(
+	    (REVERB_MID_HALL_POS_X) + 2, (REVERB_MID_HALL_POS_Y) + 1, (METAL_KNOB_MID_SIZE_X), (METAL_KNOB_MID_SIZE_Y));
+	m_hf_damp.setBounds(
+	    (REVERB_HF_DAMP_POS_X) + 2, (REVERB_HF_DAMP_POS_Y) + 1, (METAL_KNOB_MID_SIZE_X), (METAL_KNOB_MID_SIZE_Y));
+
+	m_delay.setBounds(
+	    (REVERB_DELAY_POS_X) + 2, (REVERB_DELAY_POS_Y) + 1, (METAL_KNOB_MID_SIZE_X), (METAL_KNOB_MID_SIZE_Y));
+
+	m_EQ_gain.setBounds(
+	    (REVERB_EQ_GAIN_POS_X) + 1, (REVERB_EQ_GAIN_POS_Y) + 1, (BLACK_KNOB_MID_SIZE_X), (BLACK_KNOB_MID_SIZE_Y));
+	//	m_ducking.setBounds((REVERB_WIDTH_POS_X),
+	//	                    (REVERB_WIDTH_POS_Y),
+	//	                    (BLACK_KNOB_MID_SIZE_X),
+	//	                    (BLACK_KNOB_MID_SIZE_Y));
+	m_EQ_freq.setBounds((REVERB_DRY_POS_X) + 1, (REVERB_DRY_POS_Y) + 1, (BLACK_KNOB_MID_SIZE_X), (BLACK_KNOB_MID_SIZE_Y));
+	m_dry_wet.setBounds((REVERB_WET_POS_X) + 1, (REVERB_WET_POS_Y), (BLACK_KNOB_BIG_SIZE_X), (BLACK_KNOB_BIG_SIZE_Y));
 
 	forceValueTreeOntoComponents(m_value_tree.state);
 }

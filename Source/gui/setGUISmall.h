@@ -585,6 +585,7 @@ void OdinAudioProcessorEditor::setGUISmall() {
 	m_phaser.setBounds(FX_AREA_POS_X, FX_AREA_POS_Y, FX_AREA_SIZE_X, FX_AREA_SIZE_Y);
 	m_chorus.setBounds(FX_AREA_POS_X, FX_AREA_POS_Y, FX_AREA_SIZE_X, FX_AREA_SIZE_Y);
 	m_delay.setBounds(FX_AREA_POS_X, FX_AREA_POS_Y, FX_AREA_SIZE_X, FX_AREA_SIZE_Y);
+	m_reverb.setBounds(FX_AREA_POS_X, FX_AREA_POS_Y, FX_AREA_SIZE_X, FX_AREA_SIZE_Y);
 
 	m_mod_matrix.setBounds(MATRIX_POS_X_100, MATRIX_POS_Y_100, MATRIX_SIZE_X, MATRIX_SIZE_Y);
 	m_arp.setBounds(ARPEGGIATOR_POS_X, ARPEGGIATOR_POS_Y, MATRIX_SIZE_X, MATRIX_SIZE_Y);
