@@ -1,9 +1,9 @@
 - investigate dropdowns not closing
-- Create Backdrops 100
 - GUI resizes moves focus to flanger
-- 150%: align font precisely
-- Move Knobs to correct location 100
 - Make sure things are saved and retrieved correctly
+  - reverb OnOff not retrieved
+  - decay not retrieved
+  - hf damp not retrieved
 - recreate init path
 - bump patch migration version
 - Write manual entry for Reverbs

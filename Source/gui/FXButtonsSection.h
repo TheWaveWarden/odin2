@@ -100,7 +100,7 @@ public:
 		m_reverb_button.lambdaMouseUp   = [&]() { positionButtons(); };
 		m_reverb_button.lambdaMouseDown = [&]() {
 			setHighlighted("reverb");
-			setHighlightedToValueTree(5);
+			setHighlightedToValueTree(4);
 		};
 
 		forceValueTreeOntoComponents(m_value_tree.state);
@@ -193,6 +193,7 @@ public:
 			m_value_tree.state.getChildWithName("fx").setProperty("flanger_selected", 0.f, nullptr);
 			m_value_tree.state.getChildWithName("fx").setProperty("chorus_selected", 1.f, nullptr);
 			m_value_tree.state.getChildWithName("fx").setProperty("reverb_selected", 0.f, nullptr);
+			DBG("set chorus selected");
 			break;
 		case 4:
 			m_value_tree.state.getChildWithName("fx").setProperty("delay_selected", 0.f, nullptr);
@@ -200,6 +201,7 @@ public:
 			m_value_tree.state.getChildWithName("fx").setProperty("flanger_selected", 0.f, nullptr);
 			m_value_tree.state.getChildWithName("fx").setProperty("chorus_selected", 0.f, nullptr);
 			m_value_tree.state.getChildWithName("fx").setProperty("reverb_selected", 1.f, nullptr);
+			DBG("set rev selected");
 			break;
 		default:
 			break;

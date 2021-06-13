@@ -403,10 +403,6 @@
     Identifier m_phaser_on_identifier;
     Identifier m_flanger_on_identifier;
     Identifier m_chorus_on_identifier;
-    //Identifier m_delay_selected_identifier;
-    //Identifier m_phaser_selected_identifier;
-    //Identifier m_flanger_selected_identifier;
-    //Identifier m_chorus_selected_identifier;
     Identifier m_fil1_osc1_identifier;
     Identifier m_fil1_osc2_identifier;
     Identifier m_fil1_osc3_identifier;

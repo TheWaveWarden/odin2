@@ -897,6 +897,8 @@ void OdinAudioProcessorEditor::forceValueTreeOntoComponentsOnlyMainPanel() {
 		fx_name = "flanger";
 	} else if ((float)m_value_tree.state.getChildWithName("fx")["chorus_selected"] > 0.5) {
 		fx_name = "chorus";
+	} else if ((float)m_value_tree.state.getChildWithName("fx")["reverb_selected"] > 0.5) {
+		fx_name = "reverb";
 	}
 	setActiveFXPanel(fx_name);
 
