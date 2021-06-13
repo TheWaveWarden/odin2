@@ -117,8 +117,8 @@ float ZitaReverb::_tdelay[8] = {
 
 ZitaReverb::ZitaReverb(void) {
 	//todo find good eq values
-	_pareq[0].setQ(1.5f);
-	_pareq[1].setQ(1.5f);
+	_pareq[0].setQ(REVERB_EQ_Q_DEFAULT);
+	_pareq[1].setQ(REVERB_EQ_Q_DEFAULT);
 
 	_pareq[0].setFreq(1000.f);
 	_pareq[1].setFreq(1000.f);

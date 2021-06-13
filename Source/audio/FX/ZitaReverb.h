@@ -19,6 +19,7 @@
 #ifndef __REVERB_H
 #define __REVERB_H
 
+#define REVERB_EQ_Q_DEFAULT 0.9f
 
 //#include "ParametricEQ.h"
 #include "../Filters/BiquadEQ.h"
