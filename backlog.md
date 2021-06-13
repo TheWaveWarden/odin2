@@ -1,10 +1,4 @@
 - investigate dropdowns not closing
-- GUI resizes moves focus to flanger
-- Make sure things are saved and retrieved correctly
-  - reverb OnOff not retrieved
-  - decay not retrieved
-  - hf damp not retrieved
-- recreate init path
-- bump patch migration version
+- Zita Rev: Find good value for Q (big)
 - Write manual entry for Reverbs
 - manual: somewhere is a todo
