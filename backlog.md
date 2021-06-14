@@ -3,3 +3,5 @@
 - reset reverb on activate (clear buffers)
 - reverb values are set in setSampleRate...?
 - disable jack
+- remove Factory presets from installers
+- init patch still using 0.35 wet for reverb
