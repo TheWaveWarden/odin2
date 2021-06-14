@@ -30,10 +30,17 @@ Diff1::~Diff1(void) {
 	fini();
 }
 
+void Diff1::reset() {
+	memset(_line, 0, _size * sizeof(float));
+	_i = 0;
+}
+
 void Diff1::init(int size, float c) {
 	_size = size;
 	_line = new float[size];
-	memset(_line, 0, size * sizeof(float));
+	if (_line) {
+		memset(_line, 0, size * sizeof(float));
+	}
 	_i = 0;
 	_c = c;
 }
@@ -42,6 +49,11 @@ void Diff1::fini(void) {
 	delete[] _line;
 	_size = 0;
 	_line = 0;
+}
+
+void Filt1::reset() {
+	_slo = 0;
+	_shi = 0;
 }
 
 // -----------------------------------------------------------------------
@@ -57,6 +69,13 @@ void RevDelay::init(int size) {
 	_size = size;
 	_line = new float[size];
 	memset(_line, 0, size * sizeof(float));
+	_i = 0;
+}
+
+void RevDelay::reset() {
+	if (_line) {
+		memset(_line, 0, _size * sizeof(float));
+	}
 	_i = 0;
 }
 
@@ -88,6 +107,11 @@ void Vdelay::fini(void) {
 	_size = 0;
 	_line = 0;
 }
+
+void Vdelay::reset() {
+	memset(_line, 0, _size * sizeof(float));
+}
+
 
 void Vdelay::set_delay(int del) {
 	_ir = _iw - del;

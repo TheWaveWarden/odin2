@@ -1,4 +1,3 @@
-- CI not building, probably due to JUCE 6.0.8
 - investigate dropdowns not closing
 - reset reverb on activate (clear buffers)
 - reverb values are set in setSampleRate...?

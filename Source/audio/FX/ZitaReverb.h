@@ -37,6 +37,7 @@ private:
 
 	void init(int size, float c);
 	void fini(void);
+	void reset();
 
 	float process(float x) {
 		float z = _line[_i];
@@ -66,6 +67,8 @@ private:
 	~Filt1(void) {
 	}
 
+	void reset();
+
 	void set_params(float del, float tmf, float tlo, float wlo, float thi, float chi);
 
 	float process(float x) {
@@ -94,6 +97,7 @@ private:
 
 	void init(int size);
 	void fini(void);
+	void reset();
 
 	float read(void) {
 		return _line[_i];
@@ -126,6 +130,7 @@ private:
 
 	void init(int size);
 	void fini(void);
+	void reset();
 	void set_delay(int del);
 
 	float read(void) {
