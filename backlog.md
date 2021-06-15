@@ -1,4 +1,3 @@
 - investigate dropdowns not closing
 - reset reverb on activate (clear buffers)
 - reverb values are set in setSampleRate...?
-- disable jack
