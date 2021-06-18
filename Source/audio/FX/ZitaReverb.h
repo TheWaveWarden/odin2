@@ -50,7 +50,7 @@ private:
 
 	int _i;
 	float _c;
-	int _size;
+	int _size = 0;
 	float *_line;
 };
 
@@ -110,7 +110,7 @@ private:
 	}
 
 	int _i;
-	int _size;
+	int _size = 0;
 	float *_line;
 };
 
@@ -148,7 +148,7 @@ private:
 
 	int _ir; // read index
 	int _iw; // write index
-	int _size; //delay line size
+	int _size = 0; //delay line size
 	float *_line;
 };
 

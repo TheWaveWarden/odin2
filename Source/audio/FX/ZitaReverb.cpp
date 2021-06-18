@@ -36,6 +36,10 @@ void Diff1::reset() {
 }
 
 void Diff1::init(int size, float c) {
+	//deallocate if needed
+	if(_size != 0)
+		delete[] _line;
+
 	_size = size;
 	_line = new float[size];
 	if (_line) {
@@ -66,6 +70,10 @@ RevDelay::~RevDelay(void) {
 }
 
 void RevDelay::init(int size) {
+	//deallocate if needed
+	if(_size != 0)
+		delete[] _line;
+	
 	_size = size;
 	_line = new float[size];
 	memset(_line, 0, size * sizeof(float));
@@ -73,7 +81,7 @@ void RevDelay::init(int size) {
 }
 
 void RevDelay::reset() {
-	if (_line) {
+	if (_size != 0) {
 		memset(_line, 0, _size * sizeof(float));
 	}
 	_i = 0;
@@ -95,6 +103,10 @@ Vdelay::~Vdelay(void) {
 }
 
 void Vdelay::init(int size) {
+	//deallocate if needed
+	if(_size != 0)
+		delete[] _line;
+	
 	_size = size;
 	_line = new float[size];
 	memset(_line, 0, size * sizeof(float));
@@ -103,7 +115,10 @@ void Vdelay::init(int size) {
 }
 
 void Vdelay::fini(void) {
-	delete[] _line;
+	//deallocate if needed
+	if(_size != 0)
+		delete[] _line;
+	
 	_size = 0;
 	_line = 0;
 }
@@ -163,6 +178,8 @@ void ZitaReverb::setSampleRate(float fsamp) {
 	// _cntC2 = 0;
 	_Adirty = _Bdirty = _Cdirty = true;
 
+
+	//todo these values should not be set just bc sample rate is set
 	_ipdel = 0.04f;
 	_xover = 200.0f;
 	_rtlow = 3.0f;
@@ -174,6 +191,7 @@ void ZitaReverb::setSampleRate(float fsamp) {
 	_g0 = _d0 = 0;
 	_g1 = _d1 = 0;
 
+	//TODO MEMORY LEAK!!!!
 	_vdelay0.init((int)(0.1f * _fsamp));
 	_vdelay1.init((int)(0.1f * _fsamp));
 	for (i = 0; i < 8; i++) {
