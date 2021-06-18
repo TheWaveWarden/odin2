@@ -13,7 +13,7 @@
 ** GNU General Public License for more details.
 */
 
-//#define DEBUG_VARIABLES
+#define DEBUG_VARIABLES
 
 float valueToDenominator(int p_value) {
 	switch (p_value) {
@@ -686,6 +686,8 @@ void OdinAudioProcessor::treeValueChangedReverb(const String &p_ID, float p_new_
 
 	if (id == m_reverb_delay_identifier) {
 		m_reverb_zita.set_delay(p_new_value / 1000.f);
+	} else if (id == m_reverb_on_identifier && p_new_value > 0.5f) {
+		m_reverb_zita.reset();
 	} else if (id == m_reverb_mid_hall_identifier) {
 		m_reverb_zita.set_rtmid(p_new_value);
 	} else if (id == m_reverb_hf_damp_identifier) {

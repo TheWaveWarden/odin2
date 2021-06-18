@@ -430,6 +430,7 @@
     Identifier m_reverb_eq_freq_identifier;
     //Identifier m_reverb_ducking_identifier;
     Identifier m_reverb_mid_hall_identifier;
+    Identifier m_reverb_on_identifier;
     Identifier m_reverb_hf_damp_identifier;
     Identifier m_reverb_dry_wet_identifier;
     Identifier m_phaser_reset_identifier;

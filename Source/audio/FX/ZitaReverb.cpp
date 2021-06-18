@@ -112,7 +112,6 @@ void Vdelay::reset() {
 	memset(_line, 0, _size * sizeof(float));
 }
 
-
 void Vdelay::set_delay(int del) {
 	_ir = _iw - del;
 	if (_ir < 0)
@@ -534,4 +533,17 @@ void ZitaReverb::dump(std::string name) {
 	//_pareq1.dump("EQ");
 
 	//DBG("===================================");
+}
+
+void ZitaReverb::reset() {
+	DBG("Zita reset()");
+
+	_vdelay0.reset();
+	_vdelay1.reset();
+
+	for (int i = 0; i < 8; ++i) {
+		_diff1[i].reset();
+		_filt1[i].reset();
+		_delay[i].reset();
+	}
 }

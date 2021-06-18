@@ -165,6 +165,7 @@ public:
 
 	void prepare();
 	float* process(float input[2]);
+	void reset();
 
 	void set_delay(float v);  //v in seconds
 	void set_xover(float v);  // set low freq, v in Hz  
