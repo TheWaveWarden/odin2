@@ -50,7 +50,10 @@ void Diff1::init(int size, float c) {
 }
 
 void Diff1::fini(void) {
-	delete[] _line;
+	//deallocate if needed
+	if(_size != 0)
+		delete[] _line;
+	
 	_size = 0;
 	_line = 0;
 }
