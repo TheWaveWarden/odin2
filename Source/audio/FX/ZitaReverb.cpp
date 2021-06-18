@@ -37,7 +37,7 @@ void Diff1::reset() {
 
 void Diff1::init(int size, float c) {
 	//deallocate if needed
-	if(_size != 0)
+	if (_size != 0)
 		delete[] _line;
 
 	_size = size;
@@ -51,9 +51,9 @@ void Diff1::init(int size, float c) {
 
 void Diff1::fini(void) {
 	//deallocate if needed
-	if(_size != 0)
+	if (_size != 0)
 		delete[] _line;
-	
+
 	_size = 0;
 	_line = 0;
 }
@@ -74,9 +74,9 @@ RevDelay::~RevDelay(void) {
 
 void RevDelay::init(int size) {
 	//deallocate if needed
-	if(_size != 0)
+	if (_size != 0)
 		delete[] _line;
-	
+
 	_size = size;
 	_line = new float[size];
 	memset(_line, 0, size * sizeof(float));
@@ -107,9 +107,9 @@ Vdelay::~Vdelay(void) {
 
 void Vdelay::init(int size) {
 	//deallocate if needed
-	if(_size != 0)
+	if (_size != 0)
 		delete[] _line;
-	
+
 	_size = size;
 	_line = new float[size];
 	memset(_line, 0, size * sizeof(float));
@@ -119,9 +119,9 @@ void Vdelay::init(int size) {
 
 void Vdelay::fini(void) {
 	//deallocate if needed
-	if(_size != 0)
+	if (_size != 0)
 		delete[] _line;
-	
+
 	_size = 0;
 	_line = 0;
 }
@@ -163,6 +163,15 @@ ZitaReverb::ZitaReverb(void) {
 
 	_pareq[0].setFreq(1000.f);
 	_pareq[1].setFreq(1000.f);
+
+	//set default vals
+	_ipdel = 0.04f;
+	_xover = 200.0f;
+	_rtlow = 3.0f;
+	_rtmid = 2.0f;
+	_fdamp = 3e3f;
+	_opmix = 0.25f;
+	_rgxyz = 0.0f;
 }
 
 ZitaReverb::~ZitaReverb(void) {
@@ -180,16 +189,6 @@ void ZitaReverb::setSampleRate(float fsamp) {
 	// _cntC1 = 1;
 	// _cntC2 = 0;
 	_Adirty = _Bdirty = _Cdirty = true;
-
-
-	//todo these values should not be set just bc sample rate is set
-	_ipdel = 0.04f;
-	_xover = 200.0f;
-	_rtlow = 3.0f;
-	_rtmid = 2.0f;
-	_fdamp = 3e3f;
-	_opmix = 0.25f;
-	_rgxyz = 0.0f;
 
 	_g0 = _d0 = 0;
 	_g1 = _d1 = 0;
