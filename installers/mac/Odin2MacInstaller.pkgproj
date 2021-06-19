@@ -117,56 +117,6 @@
 											<key>UID</key>
 											<integer>0</integer>
 										</dict>
-										<dict>
-											<key>CHILDREN</key>
-											<array>
-												<dict>
-													<key>CHILDREN</key>
-													<array>
-														<dict>
-															<key>CHILDREN</key>
-															<array/>
-															<key>GID</key>
-															<integer>0</integer>
-															<key>PATH</key>
-															<string>../../../odin2/Soundbanks</string>
-															<key>PATH_TYPE</key>
-															<integer>1</integer>
-															<key>PERMISSIONS</key>
-															<integer>511</integer>
-															<key>TYPE</key>
-															<integer>3</integer>
-															<key>UID</key>
-															<integer>0</integer>
-														</dict>
-													</array>
-													<key>GID</key>
-													<integer>0</integer>
-													<key>PATH</key>
-													<string>odin2</string>
-													<key>PATH_TYPE</key>
-													<integer>2</integer>
-													<key>PERMISSIONS</key>
-													<integer>511</integer>
-													<key>TYPE</key>
-													<integer>2</integer>
-													<key>UID</key>
-													<integer>0</integer>
-												</dict>
-											</array>
-											<key>GID</key>
-											<integer>0</integer>
-											<key>PATH</key>
-											<string>Presets</string>
-											<key>PATH_TYPE</key>
-											<integer>2</integer>
-											<key>PERMISSIONS</key>
-											<integer>509</integer>
-											<key>TYPE</key>
-											<integer>2</integer>
-											<key>UID</key>
-											<integer>0</integer>
-										</dict>
 									</array>
 									<key>GID</key>
 									<integer>0</integer>
@@ -712,56 +662,6 @@
 											<integer>0</integer>
 											<key>PATH</key>
 											<string>Plug-Ins</string>
-											<key>PATH_TYPE</key>
-											<integer>2</integer>
-											<key>PERMISSIONS</key>
-											<integer>509</integer>
-											<key>TYPE</key>
-											<integer>2</integer>
-											<key>UID</key>
-											<integer>0</integer>
-										</dict>
-										<dict>
-											<key>CHILDREN</key>
-											<array>
-												<dict>
-													<key>CHILDREN</key>
-													<array>
-														<dict>
-															<key>CHILDREN</key>
-															<array/>
-															<key>GID</key>
-															<integer>0</integer>
-															<key>PATH</key>
-															<string>../../../odin2/Soundbanks</string>
-															<key>PATH_TYPE</key>
-															<integer>1</integer>
-															<key>PERMISSIONS</key>
-															<integer>511</integer>
-															<key>TYPE</key>
-															<integer>3</integer>
-															<key>UID</key>
-															<integer>0</integer>
-														</dict>
-													</array>
-													<key>GID</key>
-													<integer>0</integer>
-													<key>PATH</key>
-													<string>odin2</string>
-													<key>PATH_TYPE</key>
-													<integer>2</integer>
-													<key>PERMISSIONS</key>
-													<integer>511</integer>
-													<key>TYPE</key>
-													<integer>2</integer>
-													<key>UID</key>
-													<integer>0</integer>
-												</dict>
-											</array>
-											<key>GID</key>
-											<integer>0</integer>
-											<key>PATH</key>
-											<string>Presets</string>
 											<key>PATH_TYPE</key>
 											<integer>2</integer>
 											<key>PERMISSIONS</key>
