@@ -1,17 +1,22 @@
-- factory presets are now contained in the binary
-- linux: enabled link-time optimization
-- renamed debian package from odin to odin2-synth to avoid conflicts with repositories
-- Added MIDI Breath (CC 2) as modulation source
-- Retrig playmode now restarts the ADSR Attack from the current value, rather than zero
+# 2.3.0
+- new FX Module: Reverb (ported from zita-rev1)
 - added microtuning functionality: Scala and KeyboardMapping files
+- Added MIDI Breath (CC 2) as modulation source
+- ModMatrix amounts now range up to [-300, 300]
 - default GUI size is now 150%
-- added triangles to dropdowns to make them more obvious 
+- Init Patch now has the LP-Filter fully open
+- Retrig playmode now restarts the ADSR Attack from the current value, rather than zero
 - FM- PM Osc ratio ranges increased to [1,16]
-- ModMatrix amounts now range up to [-300, 300] //todo bump patch migration version
-- created Azure-CI pipelines for Ubuntu-18.04, MacOs 10.14 and Windows2019
-- all path opened with patchbrowsers are now remembered after reopening plugin and shared among different plugin instances
-- removed unnessecary dependency to libcurl4
-- updated to JUCE 6.0.8, fixed deprecated function calls
+- added indicator triangles to dropdowns to make them more obvious
+- factory presets are now contained in the binary
+- all paths opened with patchbrowsers are now remembered after reopening plugin and shared among different plugin instances
+- updated to JUCE 6.0.8
+- renamed debian package from odin to odin2-synth to avoid conflicts with repositories
+- linux: removed unnessecary dependency to libcurl4
+- linux: enabled link-time optimization
+- created Azure-CI pipelines for Ubuntu-18.04, MacOs 10.14 and Windows2019 to create automated builds
+- updated Manual to 2.3.0
+- major code cleanups
 # 2.2.4
 - fixed Legato carrying current value over to Attack rather than to current section
 - ChipDraw tables now available as LFO waves

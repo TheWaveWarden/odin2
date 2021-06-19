@@ -1,5 +1,0 @@
-- investigate dropdowns not closing
-- reverb values are set in setSampleRate...?
-- remove Factory presets from installers
-- migrate factory presets?
-- Update versions in win & mac installers
