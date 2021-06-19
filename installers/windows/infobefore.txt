@@ -2,4 +2,4 @@ Odin2 VST3 plugin will be installed to:
 C:\Program Files\Common Files\VST3\Odin2.vst3
 
 Soundbank and config location will be created in:
-C:\ProgramData\odin2\Soundbanks
+C:\ProgramData\odin2
