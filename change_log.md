@@ -1,6 +1,6 @@
 # 2.3.0
 - new FX Module: Reverb (ported from zita-rev1)
-- added microtuning functionality: Scala and KeyboardMapping files
+- added microtuning functionality: Scala and KeyboardMapping files (Credits to Team Surge with their FOSS tuning-library)
 - Added MIDI Breath (CC 2) as modulation source
 - ModMatrix amounts now range up to [-300, 300]
 - default GUI size is now 150%
@@ -10,6 +10,7 @@
 - added indicator triangles to dropdowns to make them more obvious
 - factory presets are now contained in the binary
 - all paths opened with patchbrowsers are now remembered after reopening plugin and shared among different plugin instances
+- fixed Filters not being modulatable beyond +150 in modmatrix
 - updated to JUCE 6.0.8
 - renamed debian package from odin to odin2-synth to avoid conflicts with repositories
 - linux: removed unnessecary dependency to libcurl4
