@@ -58,7 +58,7 @@ echo "echo \"running post install script...\"" >> $package_name/DEBIAN/postinst
 echo "if [ ! -d \"$HOME/.local/share/odin2/Soundbanks\" ]; then" >> $package_name/DEBIAN/postinst
 echo "    mkdir -p \"$HOME/.local/share/odin2/Soundbanks/User Patches\"" >> $package_name/DEBIAN/postinst
 echo "    echo \"migrating Soundbanks from old location to userspace...\"" >> $package_name/DEBIAN/postinst
-echo "    if [ -d \"opt/odin2/Soundbanks\" ]; then" >> $package_name/DEBIAN/postinst
+echo "    if [ -d \"/opt/odin2/Soundbanks\" ]; then" >> $package_name/DEBIAN/postinst
 echo "        cp -r /opt/odin2/Soundbanks/* $HOME/.local/share/odin2/Soundbanks/" >> $package_name/DEBIAN/postinst
 echo "    fi" >> $package_name/DEBIAN/postinst
 echo "    chown -R $USER:$USER $HOME/.local/share/odin2" >> $package_name/DEBIAN/postinst
