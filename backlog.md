@@ -1,1 +1,2 @@
 - update microtuning library
+- make gui not resizable (setResizable(false, false))
