@@ -1,2 +1,3 @@
 - update microtuning library
-- make gui not resizable (setResizable(false, false))
+- make gui not resizable (setResizable(false, false)
+- bug on win10 Reaper: FX tabs are missing on initial window opening)
