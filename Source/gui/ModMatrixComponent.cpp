@@ -56,7 +56,7 @@ ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts) :
 	// create submenus to be inserted on demand
 	for (int osc = 0; osc < 3; ++osc) {
 		// analog oscs
-		m_analog_osc_menu[osc].addItem(100 * osc + 2, "Osc" + std::to_string(osc + 1) + "Pitch Exp");
+		m_analog_osc_menu[osc].addItem(100 * osc + 2, "Osc" + std::to_string(osc + 1) + " Pitch Exp");
 		m_analog_osc_menu[osc].addItem(100 * osc + 3, "Osc" + std::to_string(osc + 1) + " Pitch Lin");
 		m_analog_osc_menu[osc].addItem(100 * osc + 4, "Osc" + std::to_string(osc + 1) + " Volume");
 		m_analog_osc_menu[osc].addItem(100 * osc + 10, "Osc" + std::to_string(osc + 1) + " Pulse Width");
