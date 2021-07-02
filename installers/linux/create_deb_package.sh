@@ -61,7 +61,7 @@ echo "    if [ -d \"/opt/odin2/Soundbanks\" ]; then" >> $package_name/DEBIAN/pos
 echo "        echo \"migrating Soundbanks from old location to userspace...\"" >> $package_name/DEBIAN/postinst
 echo "        cp -r /opt/odin2/Soundbanks/* \$HOME/.local/share/odin2/Soundbanks/" >> $package_name/DEBIAN/postinst
 echo "    fi" >> $package_name/DEBIAN/postinst
-echo "    chown -R \$USER:\$USER \$HOME/.local/share/odin2" >> $package_name/DEBIAN/postinst
+echo "    chown -R \$SUDO_USER:\$SUDO_USER \$HOME/.local/share/odin2" >> $package_name/DEBIAN/postinst
 echo "fi" >> $package_name/DEBIAN/postinst
 sudo chmod -R 775 $package_name/DEBIAN/postinst
 
