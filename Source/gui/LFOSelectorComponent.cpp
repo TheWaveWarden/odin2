@@ -79,6 +79,7 @@ LFOSelectorComponent::LFOSelectorComponent() :
 	m_popup.addItem(5, "sq25");
 	m_popup.addItem(6, "sq12");
 	m_popup.addItem(7, "pe");
+	m_popup.addSeparator();
 	m_popup.addItem(8, "sh");
 	m_popup.addSeparator();
 	m_popup.addItem(9, "p4");
