@@ -7,4 +7,9 @@
 - bump version to 3.0.1
     - projucer
     - installer mac
-    - installer win    
+    - installer win   
+- win installer not installing new version over old one???     
+    - just exits in no time...
+    - when manually deleting it installs properly...
+    - seems to be connected to versioning in Innosetup
+    - Flags: ignoreversion

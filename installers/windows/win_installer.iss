@@ -11,7 +11,7 @@ InfoBeforeFile=infobefore.txt
 
  
 [Files]
-Source: "..\..\Builds\VisualStudio2019\x64\Release\VST3\Odin2.vst3"; DestDir: "{cf}\VST3"
+Source: "..\..\Builds\VisualStudio2019\x64\Release\VST3\Odin2.vst3"; DestDir: "{cf}\VST3"; Flags: ignoreversion
 
 [Dirs]
 Name: "C:\ProgramData\odin2\Soundbanks"; Permissions: everyone-full
