@@ -1,5 +1,7 @@
 #2.3.1
 - debian package: fixed data file being owned by root (introduced in 2.3.0)
+- LFO Waves now selectable from a dropdown
+- Reversed order of LFO waves to make them align with dropdown
 # 2.3.0
 - new FX Module: Reverb (ported from zita-rev1)
 - added microtuning functionality: Scala and KeyboardMapping files (Credits to Team Surge with their FOSS tuning-library)

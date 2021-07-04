@@ -1821,6 +1821,10 @@
             file="Graphics_150/applied/WW_logo_xy_150.png"/>
     </GROUP>
     <GROUP id="{7AF384ED-9FD6-6492-4B8C-5777BB9A2698}" name="Source">
+      <FILE id="hAQsJp" name="LFOPopupLookAndFeel.h" compile="0" resource="0"
+            file="Source/gui/LFOPopupLookAndFeel.h"/>
+      <FILE id="jPWLZ8" name="LFOPopupLookAndFeel.cpp" compile="1" resource="0"
+            file="Source/gui/LFOPopupLookAndFeel.cpp"/>
       <FILE id="nDrPp7" name="ImpulseResponseCreator.h" compile="0" resource="0"
             file="Source/audio/ImpulseResponseCreator.h"/>
       <FILE id="qDqmjL" name="ImpulseResponseCreator.cpp" compile="1" resource="0"

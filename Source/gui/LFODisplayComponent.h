@@ -40,6 +40,7 @@ public:
   std::function<void(const MouseEvent&)> toParentMouseDown = [](const MouseEvent&){};
   std::function<void(const MouseEvent&)> toParentMouseDrag = [](const MouseEvent&){};
   std::function<void(const MouseEvent&)> toParentMouseUp = [](const MouseEvent&){};
+  std::function<void()> onClick;
 
   void clearWaves(){
     m_waves.clear();

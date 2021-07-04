@@ -58,4 +58,8 @@ void LFODisplayComponent::mouseDrag(const MouseEvent &event) {
 void LFODisplayComponent::mouseUp(const MouseEvent &event) {
 	toParentMouseUp(event);
 	Component::mouseUp(event);
+
+	if (contains(event.getPosition())) {
+		onClick();
+	}
 }

@@ -18,6 +18,7 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "../GlobalIncludes.h"
 #include "LFODisplayComponent.h"
+#include "LFOPopupLookAndFeel.h"
 
 class LFOSelectorComponent : public Component,
                              public AudioProcessorValueTreeState::Listener {
@@ -78,6 +79,8 @@ protected:
   }
 
   LFODisplayComponent m_display;
+  LFOPopupLookAndFeel m_popup_look_and_feel;
+  PopupMenu m_popup;
 
   DrawableButton m_up;
   DrawableButton m_down;
