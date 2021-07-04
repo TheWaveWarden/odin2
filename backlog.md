@@ -4,3 +4,7 @@
 - bug on win10 Renoise: Renoise crashes when loading / savind scl files
     - seems to be happening with all fileopen dialogs (scl, kbm as well as presets)
     - fixed in JUCE devel branch -> wait for JUCE 6.0.9
+- bump version to 3.0.1
+    - projucer
+    - installer mac
+    - installer win    
