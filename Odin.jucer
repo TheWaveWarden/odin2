@@ -2255,7 +2255,8 @@
     <FILE id="HQUFcv" name="init_patch.odin" compile="0" resource="1" file="init_patch.odin"/>
   </MAINGROUP>
   <EXPORTFORMATS>
-    <XCODE_MAC targetFolder="Builds/MacOSX" extraCompilerFlags="-Wno-shorten-64-to-32 -Wno-reorder">
+    <XCODE_MAC targetFolder="Builds/MacOSX" extraCompilerFlags="-Wno-shorten-64-to-32 -Wno-reorder"
+               extraDefs="JUCE_MODAL_LOOPS_PERMITTED">
       <CONFIGURATIONS>
         <CONFIGURATION isDebug="1" name="Debug" defines="ODIN_DEBUG&#10;ODIN_MAC" targetName="Odin2DEBUG"/>
         <CONFIGURATION isDebug="0" name="Release" defines="ODIN_RELEASE&#10;ODIN_MAC"/>
@@ -2279,7 +2280,7 @@
       </MODULEPATHS>
     </XCODE_MAC>
     <LINUX_MAKE targetFolder="Builds/LinuxMakefile" extraCompilerFlags="-msse2"
-                userNotes="-Wconversion">
+                userNotes="-Wconversion" extraDefs="JUCE_MODAL_LOOPS_PERMITTED">
       <CONFIGURATIONS>
         <CONFIGURATION isDebug="1" name="Debug" defines="ODIN_LINUX&#10;JUCE_JACK_CLIENT_NAME=JucePlugin_Name&#10;ODIN_DEBUG"
                        headerPath="/home/frot/Downloads/VST_SDK/VST2_SDK/&#10;/usr/include/freetype2/&#10;/usr/include/gtk-3.0/&#10;/usr/include/glib-2.0/&#10;/usr/lib/x86_64-linux-gnu/glib-2.0/include/&#10;/usr/include/pango-1.0/&#10;/usr/include/cairo/&#10;/usr/include/gdk-pixbuf-2.0/&#10;/usr/include/atk-1.0/"
@@ -2306,7 +2307,7 @@
         <MODULEPATH id="juce_dsp" path="../JUCE/modules"/>
       </MODULEPATHS>
     </LINUX_MAKE>
-    <VS2019 targetFolder="Builds/VisualStudio2019">
+    <VS2019 targetFolder="Builds/VisualStudio2019" extraDefs="JUCE_MODAL_LOOPS_PERMITTED">
       <CONFIGURATIONS>
         <CONFIGURATION isDebug="1" name="Debug" defines="ODIN_WIN&#10;ODIN_DEBUG" headerPath="E:\odin2\Odin\Source&#10;E:\JUCE2\JUCE\VST2_SDK"
                        targetName="Odin2DEBUG"/>

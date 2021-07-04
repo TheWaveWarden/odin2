@@ -74,6 +74,8 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
     m_is_standalone_plugin(p_is_standalone), /*m_save_load(vts, p_processor),*/ m_arp(p_processor, vts),
     m_processor(p_processor), m_patch_browser(p_processor, vts), m_tuning(p_processor) {
 
+	setResizable(false, false);
+
 #ifdef ODIN_MAC
 	setBufferedToImage(true);
 #endif

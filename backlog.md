@@ -1,4 +1,6 @@
 - update microtuning library
-- make gui not resizable (setResizable(false, false)
 - bug on win10 Reaper: FX tabs are missing on initial window opening)
+    - fixed in JUCE devel branch -> wait for JUCE 6.0.9
 - bug on win10 Renoise: Renoise crashes when loading / savind scl files
+    - seems to be happening with all fileopen dialogs (scl, kbm as well as presets)
+    - fixed in JUCE devel branch -> wait for JUCE 6.0.9
