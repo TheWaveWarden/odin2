@@ -53,8 +53,9 @@ jobs:
       cd ..
       git clone https://github.com/juce-framework/JUCE.git JUCE
       cd JUCE
-      echo "Checking out JUCE 6.0.8"
-      git checkout 545e9f353a6a336c5d1616796024b30d4bbed04b
+      echo "Checking out JUCE dev version"
+      git fetch origin
+      git checkout b13af2df9530bf473ff9a85936e5700027bd2af4
       ls -l
       cd extras/Projucer
       ls -l
@@ -169,8 +170,9 @@ jobs:
       cd ..
       git clone https://github.com/juce-framework/JUCE.git JUCE
       cd JUCE
-      echo "Checking out JUCE 6.0.8"
-      git checkout 545e9f353a6a336c5d1616796024b30d4bbed04b
+      echo "Checking out JUCE dev version"
+      git fetch origin
+      git checkout b13af2df9530bf473ff9a85936e5700027bd2af4
     displayName: 'Mac: Clone JUCE'
     condition: variables.isMac
 
@@ -296,8 +298,9 @@ jobs:
       cd ..
       git clone https://github.com/lv2-porting-project/JUCE.git JUCE
       cd JUCE
-      echo "Checking out JUCE 6.0.8"
-      git checkout 545e9f353a6a336c5d1616796024b30d4bbed04b
+      echo "Checking out JUCE dev version"
+      git fetch origin
+      git checkout b13af2df9530bf473ff9a85936e5700027bd2af4
       echo ""
       echo "==============================="
       echo "======= BUILD PROJUCER ========"

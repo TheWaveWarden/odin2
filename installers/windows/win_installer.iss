@@ -1,6 +1,6 @@
 [Setup]
 AppName=Odin2 VST3 Synthesizer
-AppVersion=2.3.0
+AppVersion=2.3.1
 DefaultDirName={cf}
 DefaultGroupName=Odin2
 OutputBaseFilename=Odin2
