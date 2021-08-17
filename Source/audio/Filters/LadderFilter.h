@@ -1,6 +1,6 @@
 /*
 ** Odin 2 Synthesizer Plugin
-** Copyright (C) 2020 TheWaveWarden
+** Copyright (C) 2020 - 2021 TheWaveWarden
 **
 ** Odin 2 is free software: you can redistribute it and/or modify
 ** it under the terms of the GNU General Public License as published by
@@ -48,7 +48,7 @@ public:
     m_last_freq_modded = -1; //to signal recalculation of coeffs in update()
   }
 
-  inline void update() {
+  inline void update() override {
 
     // do any modulation first
     Filter::update();
@@ -159,7 +159,7 @@ public:
     }
   }
 
-  inline double doFilter(double xn) {
+  inline double doFilter(double xn) override {
     jassert(m_samplerate > 0);
 
     double dSigma = m_LPF1.getFeedbackOutput() + m_LPF2.getFeedbackOutput() +

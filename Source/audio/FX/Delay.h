@@ -1,6 +1,6 @@
 /*
 ** Odin 2 Synthesizer Plugin
-** Copyright (C) 2020 TheWaveWarden
+** Copyright (C) 2020 - 2021 TheWaveWarden
 **
 ** Odin 2 is free software: you can redistribute it and/or modify
 ** it under the terms of the GNU General Public License as published by
@@ -93,7 +93,7 @@ public:
   inline void setDucking(float p_ducking) { m_ducking_amount = p_ducking; }
 
   inline float doAverage(float p_input) {
-    // abs inpkut for pos only
+    // abs input for pos only
     p_input = fabs(p_input);
 
     // do moving average

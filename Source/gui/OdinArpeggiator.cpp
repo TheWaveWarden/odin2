@@ -1,6 +1,6 @@
 /*
 ** Odin 2 Synthesizer Plugin
-** Copyright (C) 2020 TheWaveWarden
+** Copyright (C) 2020 - 2021 TheWaveWarden
 **
 ** Odin 2 is free software: you can redistribute it and/or modify
 ** it under the terms of the GNU General Public License as published by
@@ -192,7 +192,7 @@ void OdinArpeggiator::midiNoteOn(int p_midi_note, int p_midi_velocity) {
 		}
 	}
 	m_active_keys_and_velocities.push_back(std::make_pair(p_midi_note, p_midi_velocity));
-	DBG("NOTEON: " + std::to_string(p_midi_note));
+	//DBG("NOTEON: " + std::to_string(p_midi_note));
 	if (m_active_keys_and_velocities.size() == 1) {
 		m_start_pattern = true;
 	}
@@ -212,7 +212,7 @@ void OdinArpeggiator::midiNoteOff(int p_midi_note) {
 				//in case we have the same note two times in a row (they are sorted):
 				--key;
 				generateSequence();
-				DBG("ENDED BY NOTEOFF: " + std::to_string(p_midi_note));
+				//DBG("ENDED BY NOTEOFF: " + std::to_string(p_midi_note));
 			}
 		}
 	}
@@ -221,7 +221,6 @@ void OdinArpeggiator::midiNoteOff(int p_midi_note) {
 
 void OdinArpeggiator::endPlayingNotes() {
 	//set timer to max, so it ends on next sample
-	DBG("end playing notes");
 	std::vector<std::pair<int, float>> ret;
 	for (auto note : m_playing_notes) {
 		ret.push_back(std::make_pair(note.first, std::numeric_limits<float>::max()));
@@ -400,11 +399,13 @@ void OdinArpeggiator::generateSequence() {
 }
 
 void OdinArpeggiator::printSequence() {
+#ifdef ODIN_DEBUG
 	DBG("Current sequence:");
 	for (auto note : m_arp_sequence) {
 		DBG("Key: " + String(note.first) + ", Vel: " + String(note.second));
 	}
 	DBG("----");
+#endif
 }
 
 void OdinArpeggiator::setBPM(double p_BPM) {
@@ -417,7 +418,6 @@ void OdinArpeggiator::setOneShotEnabled(bool p_oneshot) {
 }
 
 void OdinArpeggiator::setSynctimeNumerator(float p_value) {
-	DBG("numerator");
 	m_synctime_numerator = p_value;
 	m_synctime_ratio     = p_value / m_synctime_denominator;
 	calcArpTime();
@@ -466,6 +466,7 @@ void OdinArpeggiator::setStepMod2(int p_step, float p_mod) {
 void OdinArpeggiator::printKillList() {
 	DBG("KList:");
 	for (auto key : m_sustain_kill_list) {
+		(void)key;//<- hide compile warning
 		DBG(key);
 	}
 	DBG("------");

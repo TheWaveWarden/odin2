@@ -1,6 +1,6 @@
 /*
 ** Odin 2 Synthesizer Plugin
-** Copyright (C) 2020 TheWaveWarden
+** Copyright (C) 2020 - 2021 TheWaveWarden
 **
 ** Odin 2 is free software: you can redistribute it and/or modify
 ** it under the terms of the GNU General Public License as published by
@@ -15,10 +15,13 @@
 
 #pragma once
 
+#include <JuceHeader.h>
 #include "BrowserEntry.h"
 #include "../GlobalIncludes.h"
-#include <JuceHeader.h>
 #include "PatchBrowserScrollBar.h"
+#include "OdinFeels.h"
+
+#define FACTORY_PRESETS_SOUNDBANK_CODE "F_A_C_T_O_R_Y"
 
 #define ENTRY_HEIGHT_150 24
 #define ENTRY_HEIGHT_100 18
@@ -54,7 +57,7 @@ protected:
 	                          Button &button,
 	                          const Colour &backgroundColour,
 	                          bool shouldDrawButtonAsHighlighted,
-	                          bool shouldDrawButtonAsDown) {
+	                          bool shouldDrawButtonAsDown) override {
 		auto cornerSize = 0.f;
 		auto bounds     = button.getLocalBounds().toFloat().reduced(0.5f, 0.5f);
 
@@ -64,11 +67,6 @@ protected:
 			baseColour = baseColour.contrasting(shouldDrawButtonAsDown ? 0.2f : 0.05f);
 
 		g.setColour(baseColour);
-
-		auto flatOnLeft   = button.isConnectedOnLeft();
-		auto flatOnRight  = button.isConnectedOnRight();
-		auto flatOnTop    = button.isConnectedOnTop();
-		auto flatOnBottom = button.isConnectedOnBottom();
 
 		g.fillRoundedRectangle(bounds, cornerSize);
 		if (shouldDrawButtonAsHighlighted) {
@@ -115,6 +113,7 @@ protected:
 class PatchBrowserSelector : public Component {
 public:
 	enum class DirectoryStatus { Ok, Empty, Nonexistent };
+	enum class BrowserType { Soundbank, Category, Patch };
 
 	PatchBrowserSelector(File::TypesOfFileToFind p_file_or_dir,
 	                     String p_left_button,
@@ -132,11 +131,15 @@ public:
 	void hideInputField();
 
 	void setDirectory(String p_absolute_path);
+	void setDirectoryFactoryPresetCategory();
+	void setDirectoryFactoryPresetPreset(const std::string& p_category);
 	String getDirectory();
 	void setWildCard(String p_wildcard);
 	void resetScrollPosition();
+	void highlightFirstEntry();
 	String getFirstSubDirectoryAndHighlightIt();
 	String getSubDirectoryAndHighlightItFromName(String p_name);
+	void setType(BrowserType p_type);
 
 	void mouseWheelMove(const MouseEvent &event, const MouseWheelDetails &wheel) override;
 
@@ -169,6 +172,7 @@ public:
 
 private:
 	void generateContent();
+	void generateContentFactoryPresetCategories();
 	void unhighlightAllEntries();
 	void enforceScrollLimits();
 	void showButtons(bool p_show);
@@ -203,7 +207,7 @@ private:
 
 	PatchBrowserScrollBar m_scroll_bar;
 
-	bool m_GUI_big = false;
+	bool m_GUI_big = true;
 	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(PatchBrowserSelector)
 
 	bool m_show_left_button = false;
@@ -219,6 +223,10 @@ private:
 	String m_copy_target_name = "";
 
 	bool m_pass_active_element_to_parent = false;
+	BrowserType m_browser_type;
+
+	//auto generated header with the factory preset names
+    #include "FactoryPresetNames.h"
 
 	DirectoryStatus m_directory_status = DirectoryStatus::Nonexistent;
 };

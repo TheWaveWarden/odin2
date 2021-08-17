@@ -1,13 +1,475 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="vpwEHn" name="Odin2" projectType="audioplug" pluginFormats="buildAU,buildStandalone,buildVST3"
-              version="2.2.4" companyName="TheWaveWarden" companyWebsite="www.thewavewarden.com"
+              version="2.3.1" companyName="TheWaveWarden" companyWebsite="www.thewavewarden.com"
               pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn"
               pluginManufacturerCode="WAWA" pluginCode="ODIN" pluginChannelConfigs="{0,2}"
               displaySplashScreen="0" jucerFormatVersion="1" companyEmail="info@thewavewarden.com"
               postExportShellCommandWin="powershell.exe -command &quot;#define GIT_COMMIT_ID &#96;&quot;$(git --git-dir %%1%%\.git rev-parse --short HEAD)&#96;&quot;&quot; &gt; %%1%%\Source\GitCommitId.h"
               postExportShellCommandPosix="echo &quot;#define GIT_COMMIT_ID \&quot;$(git --git-dir %%1%%/.git rev-parse --short HEAD)\&quot;&quot; &gt; %%1%%/Source/GitCommitId.h">
   <MAINGROUP id="Tn76b3" name="Odin2">
+    <GROUP id="{4BDA71D1-AEF1-9B93-669C-B796828B51C7}" name="FactoryPresets">
+      <FILE id="OvtiZa" name="666-001-Organ.odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Organ/666-001-Organ.odin"/>
+      <FILE id="b2qii9" name="Accordion.odin" compile="0" resource="1" file="Soundbanks/Factory Presets/Instruments/Accordion.odin"/>
+      <FILE id="NDoIVy" name="Alien Arp.odin" compile="0" resource="1" file="Soundbanks/Factory Presets/SFX/Alien Arp.odin"/>
+      <FILE id="GcYdaQ" name="Alien Atmo [tx].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Atmospheres/Alien Atmo [tx].odin"/>
+      <FILE id="Ul6M2a" name="Alien Chaos [psylion].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Atmospheres/Alien Chaos [psylion].odin"/>
+      <FILE id="G0DHM7" name="Alien Chaos2 [psylion].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Atmospheres/Alien Chaos2 [psylion].odin"/>
+      <FILE id="TGfv2s" name="Alone in the Subway.odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Drones/Alone in the Subway.odin"/>
+      <FILE id="THEbAE" name="Analog Bass [tx].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Bass/Analog Bass [tx].odin"/>
+      <FILE id="g4uQzh" name="Analog Particles [XR].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Atmospheres/Analog Particles [XR].odin"/>
+      <FILE id="jHJvla" name="Antarctica [RS].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Atmospheres/Antarctica [RS].odin"/>
+      <FILE id="oqjhuz" name="Arp Charger [RM].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Arps &amp; Sequences/Arp Charger [RM].odin"/>
+      <FILE id="uW7xgA" name="Arp Chopper [RM].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Arps &amp; Sequences/Arp Chopper [RM].odin"/>
+      <FILE id="N9tmUy" name="Arp-Bells [Photonic].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Chimes/Arp-Bells [Photonic].odin"/>
+      <FILE id="PUeA78" name="Atmo-Chaos [Photonic].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Atmospheres/Atmo-Chaos [Photonic].odin"/>
+      <FILE id="GMgWvb" name="Bagpipe Tune.odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Chiptune/Bagpipe Tune.odin"/>
+      <FILE id="VXD3Iq" name="Bass Arp 1 [RS].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Arps &amp; Sequences/Bass Arp 1 [RS].odin"/>
+      <FILE id="ujdN8g" name="Bass Crusher [RM].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Bass/Bass Crusher [RM].odin"/>
+      <FILE id="zQOZLP" name="Bass Low [RM].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Bass/Bass Low [RM].odin"/>
+      <FILE id="lbTuv6" name="Bass Seq 2 [RS].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Bass/Bass Seq 2 [RS].odin"/>
+      <FILE id="Kfe5QI" name="Bass Simple PM [RS].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Bass/Bass Simple PM [RS].odin"/>
+      <FILE id="Nya7y3" name="Bass Wobble [4T].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Bass/Bass Wobble [4T].odin"/>
+      <FILE id="zdLDxz" name="Bass X-Y Mod [RS].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Bass/Bass X-Y Mod [RS].odin"/>
+      <FILE id="ZKzyEB" name="Bassline.odin" compile="0" resource="1" file="Soundbanks/Factory Presets/Arps &amp; Sequences/Bassline.odin"/>
+      <FILE id="BnA3oK" name="Blinking Pad [Photonic].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Atmospheres/Blinking Pad [Photonic].odin"/>
+      <FILE id="JXL9Um" name="Boards 2.odin" compile="0" resource="1" file="Soundbanks/Factory Presets/Pads/Boards 2.odin"/>
+      <FILE id="DRgARL" name="Boards Bass.odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Bass/Boards Bass.odin"/>
+      <FILE id="J022ls" name="Brass Pad.odin" compile="0" resource="1" file="Soundbanks/Factory Presets/Instruments/Brass Pad.odin"/>
+      <FILE id="SSVEeK" name="BS Decay Bass MW.odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Bass/BS Decay Bass MW.odin"/>
+      <FILE id="OrTp8a" name="BS PWM Bass XY.odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Bass/BS PWM Bass XY.odin"/>
+      <FILE id="pmVGPW" name="Burble Pad.odin" compile="0" resource="1" file="Soundbanks/Factory Presets/Pads/Burble Pad.odin"/>
+      <FILE id="Pqvjlr" name="Celeste.odin" compile="0" resource="1" file="Soundbanks/Factory Presets/Instruments/Celeste.odin"/>
+      <FILE id="CFsPDm" name="Cheering Minions.odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/SFX/Cheering Minions.odin"/>
+      <FILE id="mUYyAU" name="Cheese Pad.odin" compile="0" resource="1" file="Soundbanks/Factory Presets/Chimes/Cheese Pad.odin"/>
+      <FILE id="jwVOGW" name="Chello (MW,AT) [Photonic].odin" compile="0"
+            resource="1" file="Soundbanks/Factory Presets/Instruments/Chello (MW,AT) [Photonic].odin"/>
+      <FILE id="cpP0Vs" name="Chimes [Photonic].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Chimes/Chimes [Photonic].odin"/>
+      <FILE id="q4PQL3" name="Chinese Ow [4T-RS].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Stabs/Chinese Ow [4T-RS].odin"/>
+      <FILE id="k5TqbM" name="Chinese Steel [4T-RS].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Instruments/Chinese Steel [4T-RS].odin"/>
+      <FILE id="icoUtt" name="Chippy.odin" compile="0" resource="1" file="Soundbanks/Factory Presets/Chiptune/Chippy.odin"/>
+      <FILE id="BC6vTk" name="ChippyDelayed.odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Chiptune/ChippyDelayed.odin"/>
+      <FILE id="lQuFqZ" name="Chiptune Chords [Projektor].odin" compile="0"
+            resource="1" file="Soundbanks/Factory Presets/Chiptune/Chiptune Chords [Projektor].odin"/>
+      <FILE id="YcGjsk" name="Choir [Photonic].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Pads/Choir [Photonic].odin"/>
+      <FILE id="WKnUCY" name="Choir Aahs 1 [RS].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Pads/Choir Aahs 1 [RS].odin"/>
+      <FILE id="EEHRRV" name="Choir Aahs 2 [RS].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Pads/Choir Aahs 2 [RS].odin"/>
+      <FILE id="SpAHhe" name="Choir Yeah [RS].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Pads/Choir Yeah [RS].odin"/>
+      <FILE id="tmSXMq" name="Chord Pluck Projektor.odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Stabs/Chord Pluck Projektor.odin"/>
+      <FILE id="VTUNsY" name="Church Organ.odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Organ/Church Organ.odin"/>
+      <FILE id="Kbmyqb" name="Cinedrive (MW) [Photonic].odin" compile="0"
+            resource="1" file="Soundbanks/Factory Presets/Arps &amp; Sequences/Cinedrive (MW) [Photonic].odin"/>
+      <FILE id="LKMaMC" name="Circus Horror Show.odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Drones/Circus Horror Show.odin"/>
+      <FILE id="l2yfma" name="Clap [RS].odin" compile="0" resource="1" file="Soundbanks/Factory Presets/Drums/Clap [RS].odin"/>
+      <FILE id="nfNpHE" name="Claps [Photonic].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Drums/Claps [Photonic].odin"/>
+      <FILE id="nIqRGL" name="Clouded [RM].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Pads/Clouded [RM].odin"/>
+      <FILE id="Rss2bS" name="Crash-1 [Photonic].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Drums/Crash-1 [Photonic].odin"/>
+      <FILE id="EQIHNL" name="Creep ATMO [psylion].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Drones/Creep ATMO [psylion].odin"/>
+      <FILE id="mPIFDY" name="Critical [tx].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Arps &amp; Sequences/Critical [tx].odin"/>
+      <FILE id="oAPWGH" name="Cuaroth [yellowmix].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Leads/Cuaroth [yellowmix].odin"/>
+      <FILE id="TBdfCE" name="Dark-Psy FX [psylion].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Drones/Dark-Psy FX [psylion].odin"/>
+      <FILE id="pEQ9CX" name="Darken Nature [RM].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Pads/Darken Nature [RM].odin"/>
+      <FILE id="nRVNVi" name="Darkness [psylion].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Arps &amp; Sequences/Darkness [psylion].odin"/>
+      <FILE id="yf46eu" name="Deep Triads (velo).odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Stabs/Deep Triads (velo).odin"/>
+      <FILE id="jGWbQB" name="DeepBass [Photonic].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Bass/DeepBass [Photonic].odin"/>
+      <FILE id="NvvCiq" name="Digital Motion [XR].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Atmospheres/Digital Motion [XR].odin"/>
+      <FILE id="pwyA2a" name="DistGuit (MW,AT) [Photonic].odin" compile="0"
+            resource="1" file="Soundbanks/Factory Presets/Instruments/DistGuit (MW,AT) [Photonic].odin"/>
+      <FILE id="rCloB9" name="Doctor Acid.odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/SFX/Doctor Acid.odin"/>
+      <FILE id="xZ4Fnl" name="Doctor Karlsson.odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Arps &amp; Sequences/Doctor Karlsson.odin"/>
+      <FILE id="ggAI9D" name="DoubleBass(MW) [Photonic].odin" compile="0"
+            resource="1" file="Soundbanks/Factory Presets/Instruments/DoubleBass(MW) [Photonic].odin"/>
+      <FILE id="HqeEWG" name="Drawing Lead.odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Leads/Drawing Lead.odin"/>
+      <FILE id="wb3v39" name="Dreams of Utopia [psylion].odin" compile="0"
+            resource="1" file="Soundbanks/Factory Presets/Atmospheres/Dreams of Utopia [psylion].odin"/>
+      <FILE id="AmGokg" name="Dreamy ARP [psylion].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Arps &amp; Sequences/Dreamy ARP [psylion].odin"/>
+      <FILE id="QDurYi" name="Drifter.odin" compile="0" resource="1" file="Soundbanks/Factory Presets/Pads/Drifter.odin"/>
+      <FILE id="b4DWAd" name="Drippin Droplets.odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/SFX/Drippin Droplets.odin"/>
+      <FILE id="mUGhBO" name="Drone S&amp;H.odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/SFX/Drone S&amp;H.odin"/>
+      <FILE id="awVXvA" name="Dropper [RS].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/SFX/Dropper [RS].odin"/>
+      <FILE id="Y9X69V" name="Drum Machine.odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Drums/Drum Machine.odin"/>
+      <FILE id="wbMqGp" name="Dub Synth.odin" compile="0" resource="1" file="Soundbanks/Factory Presets/Stabs/Dub Synth.odin"/>
+      <FILE id="tYzGV8" name="E-Piano (MW) [Photonic].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Keys/E-Piano (MW) [Photonic].odin"/>
+      <FILE id="oKGw3G" name="EDM Synth Projektor.odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Leads/EDM Synth Projektor.odin"/>
+      <FILE id="v87Kt5" name="Eerie Pad.odin" compile="0" resource="1" file="Soundbanks/Factory Presets/Atmospheres/Eerie Pad.odin"/>
+      <FILE id="beBpV5" name="Electric Piano [tx].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Keys/Electric Piano [tx].odin"/>
+      <FILE id="aFX1ax" name="Ethereal Bells.odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Chimes/Ethereal Bells.odin"/>
+      <FILE id="KYbtyQ" name="Expressive Atmosphere [XR].odin" compile="0"
+            resource="1" file="Soundbanks/Factory Presets/Atmospheres/Expressive Atmosphere [XR].odin"/>
+      <FILE id="KiHVrB" name="Female aah mellow.odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Pads/Female aah mellow.odin"/>
+      <FILE id="w3iP0J" name="Female aah.odin" compile="0" resource="1" file="Soundbanks/Factory Presets/Pads/Female aah.odin"/>
+      <FILE id="ZbRpEv" name="Filter LFO Lead.odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Leads/Filter LFO Lead.odin"/>
+      <FILE id="qiE1FC" name="Flange Fun [psylion].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/SFX/Flange Fun [psylion].odin"/>
+      <FILE id="tpr2xl" name="Flange Hat.odin" compile="0" resource="1" file="Soundbanks/Factory Presets/Drums/Flange Hat.odin"/>
+      <FILE id="h0IFXw" name="Floating Dreams [XR].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Atmospheres/Floating Dreams [XR].odin"/>
+      <FILE id="rJhXnn" name="Flute (MW,AT) [Photonic].odin" compile="0"
+            resource="1" file="Soundbanks/Factory Presets/Instruments/Flute (MW,AT) [Photonic].odin"/>
+      <FILE id="uBBXVs" name="FM Church Bells [RS].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Chimes/FM Church Bells [RS].odin"/>
+      <FILE id="yIiaTk" name="FM Piano.odin" compile="0" resource="1" file="Soundbanks/Factory Presets/Keys/FM Piano.odin"/>
+      <FILE id="GZIQit" name="FM Sphere [RS].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Pads/FM Sphere [RS].odin"/>
+      <FILE id="CFKUAi" name="FM Steel Drum [RS].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Instruments/FM Steel Drum [RS].odin"/>
+      <FILE id="vp7t21" name="FM-XY Fun [RS].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/SFX/FM-XY Fun [RS].odin"/>
+      <FILE id="YdpSQ2" name="forever young.odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Pads/forever young.odin"/>
+      <FILE id="MXfvy2" name="Forgive me GOD.odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Arps &amp; Sequences/Forgive me GOD.odin"/>
+      <FILE id="LRoHTt" name="Formant Squelch.odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/SFX/Formant Squelch.odin"/>
+      <FILE id="jwshti" name="Fresh Breeze.odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Drones/Fresh Breeze.odin"/>
+      <FILE id="wYJehM" name="Frosty Atmo [tx].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Atmospheres/Frosty Atmo [tx].odin"/>
+      <FILE id="Freqti" name="Funk Acid [psylion].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Arps &amp; Sequences/Funk Acid [psylion].odin"/>
+      <FILE id="TseZY8" name="Funk Acid 2 [psylion].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Arps &amp; Sequences/Funk Acid 2 [psylion].odin"/>
+      <FILE id="Cjsryj" name="Funky-D6 [Photonic].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Keys/Funky-D6 [Photonic].odin"/>
+      <FILE id="Lu6bUX" name="Funky-D6.odin" compile="0" resource="1" file="Soundbanks/Factory Presets/Keys/Funky-D6.odin"/>
+      <FILE id="uptST8" name="Funny 2.odin" compile="0" resource="1" file="Soundbanks/Factory Presets/Arps &amp; Sequences/Funny 2.odin"/>
+      <FILE id="Lqtygf" name="FX Jump [RM].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/SFX/FX Jump [RM].odin"/>
+      <FILE id="yGwg1t" name="FX Piano.odin" compile="0" resource="1" file="Soundbanks/Factory Presets/Keys/FX Piano.odin"/>
+      <FILE id="ZvxO1s" name="FX Pitch Down [RM].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/SFX/FX Pitch Down [RM].odin"/>
+      <FILE id="DMotaT" name="FX Reso Warble.odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/SFX/FX Reso Warble.odin"/>
+      <FILE id="TKKSw7" name="Galata Dream.odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Atmospheres/Galata Dream.odin"/>
+      <FILE id="QV6Za8" name="German Glitches.odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/SFX/German Glitches.odin"/>
+      <FILE id="YVWket" name="Glass Harp A slow.odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Chimes/Glass Harp A slow.odin"/>
+      <FILE id="JrqD15" name="Glass Morph ARP [RS].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Arps &amp; Sequences/Glass Morph ARP [RS].odin"/>
+      <FILE id="V22orG" name="Glass Morph XY [RS].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Chimes/Glass Morph XY [RS].odin"/>
+      <FILE id="tVtmj9" name="Glass Organ.odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Organ/Glass Organ.odin"/>
+      <FILE id="xAXoqj" name="Glide Comb Lead.odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Leads/Glide Comb Lead.odin"/>
+      <FILE id="MPHTqj" name="Growly FM Bass [XR].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Bass/Growly FM Bass [XR].odin"/>
+      <FILE id="VUMdcc" name="Gurgles dirty.odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Stabs/Gurgles dirty.odin"/>
+      <FILE id="Bhlwd0" name="Gurgles.odin" compile="0" resource="1" file="Soundbanks/Factory Presets/Stabs/Gurgles.odin"/>
+      <FILE id="aYkxyC" name="Harpstrum Down [RS].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Arps &amp; Sequences/Harpstrum Down [RS].odin"/>
+      <FILE id="MZcXQ7" name="Harpstrum Up [RS].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Arps &amp; Sequences/Harpstrum Up [RS].odin"/>
+      <FILE id="ARFi0O" name="Haunt [RM].odin" compile="0" resource="1" file="Soundbanks/Factory Presets/Pads/Haunt [RM].odin"/>
+      <FILE id="akwFVy" name="Hi-Hat [RS].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Drums/Hi-Hat [RS].odin"/>
+      <FILE id="uCUrsF" name="Hi-Hat 8th Seq [RS].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Drums/Hi-Hat 8th Seq [RS].odin"/>
+      <FILE id="PpJMUE" name="High Tea [4T].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Drones/High Tea [4T].odin"/>
+      <FILE id="RVxIur" name="HiHat-closed [Photonic].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Drums/HiHat-closed [Photonic].odin"/>
+      <FILE id="PqM1cw" name="House Stab.odin" compile="0" resource="1" file="Soundbanks/Factory Presets/Stabs/House Stab.odin"/>
+      <FILE id="mLhN7n" name="I was born in 90s [psylion].odin" compile="0"
+            resource="1" file="Soundbanks/Factory Presets/Arps &amp; Sequences/I was born in 90s [psylion].odin"/>
+      <FILE id="oycBoT" name="Jazzguitar (MW) [Photonic].odin" compile="0"
+            resource="1" file="Soundbanks/Factory Presets/Instruments/Jazzguitar (MW) [Photonic].odin"/>
+      <FILE id="B9KVkU" name="JMJ-Sync [Photonic].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Stabs/JMJ-Sync [Photonic].odin"/>
+      <FILE id="duTGKQ" name="Karplus Lead.odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Leads/Karplus Lead.odin"/>
+      <FILE id="SvvHWw" name="Kick 1 XY [RS].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Drums/Kick 1 XY [RS].odin"/>
+      <FILE id="aeNErV" name="kick 909.odin" compile="0" resource="1" file="Soundbanks/Factory Presets/Drums/kick 909.odin"/>
+      <FILE id="l4knIb" name="Kick tekmid.odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Drums/Kick tekmid.odin"/>
+      <FILE id="t6ygqq" name="Kick-1 [Photonic].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Drums/Kick-1 [Photonic].odin"/>
+      <FILE id="nx8AzE" name="Lead 17.odin" compile="0" resource="1" file="Soundbanks/Factory Presets/Stabs/Lead 17.odin"/>
+      <FILE id="ksyzga" name="Lead 64.odin" compile="0" resource="1" file="Soundbanks/Factory Presets/Chiptune/Lead 64.odin"/>
+      <FILE id="D5NGqr" name="Lead Glide.odin" compile="0" resource="1" file="Soundbanks/Factory Presets/Leads/Lead Glide.odin"/>
+      <FILE id="TnmgX0" name="Lead Hit 1.odin" compile="0" resource="1" file="Soundbanks/Factory Presets/Stabs/Lead Hit 1.odin"/>
+      <FILE id="iKbKku" name="Lead phazz.odin" compile="0" resource="1" file="Soundbanks/Factory Presets/Stabs/Lead phazz.odin"/>
+      <FILE id="bQG3ag" name="Lead Rusty.odin" compile="0" resource="1" file="Soundbanks/Factory Presets/Leads/Lead Rusty.odin"/>
+      <FILE id="tjzCv7" name="Lead Sine.odin" compile="0" resource="1" file="Soundbanks/Factory Presets/Leads/Lead Sine.odin"/>
+      <FILE id="PLOH2e" name="Lead Sinematic.odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Drones/Lead Sinematic.odin"/>
+      <FILE id="UhpifP" name="Lead Square A.odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Leads/Lead Square A.odin"/>
+      <FILE id="LPZO1F" name="Lead Squarepusher.odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Leads/Lead Squarepusher.odin"/>
+      <FILE id="LVEF1S" name="LeadPuls (AT,MW) [Photonic].odin" compile="0"
+            resource="1" file="Soundbanks/Factory Presets/Leads/LeadPuls (AT,MW) [Photonic].odin"/>
+      <FILE id="owFmhR" name="Legal Looting [yellowmix].odin" compile="0"
+            resource="1" file="Soundbanks/Factory Presets/Chiptune/Legal Looting [yellowmix].odin"/>
+      <FILE id="gtGTYU" name="LFO Keys.odin" compile="0" resource="1" file="Soundbanks/Factory Presets/Stabs/LFO Keys.odin"/>
+      <FILE id="gXeMoA" name="MAD PAD 3.odin" compile="0" resource="1" file="Soundbanks/Factory Presets/Drones/MAD PAD 3.odin"/>
+      <FILE id="Ov6KPx" name="Marching [Photonic].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Drums/Marching [Photonic].odin"/>
+      <FILE id="nKon1W" name="Meeting Of Three.odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Leads/Meeting Of Three.odin"/>
+      <FILE id="seMNSX" name="Mellow Keys [tx].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Keys/Mellow Keys [tx].odin"/>
+      <FILE id="ZdGHNv" name="Messy Seq X-Y.odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Atmospheres/Messy Seq X-Y.odin"/>
+      <FILE id="paBCfn" name="Metallic (vel).odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Stabs/Metallic (vel).odin"/>
+      <FILE id="spYNhG" name="Metallic Keys [XR].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Keys/Metallic Keys [XR].odin"/>
+      <FILE id="tKT1SU" name="Midi Rain.odin" compile="0" resource="1" file="Soundbanks/Factory Presets/Arps &amp; Sequences/Midi Rain.odin"/>
+      <FILE id="uCXd4x" name="Minor Song.odin" compile="0" resource="1" file="Soundbanks/Factory Presets/Arps &amp; Sequences/Minor Song.odin"/>
+      <FILE id="ZlQr71" name="Modular Mess 2.odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Arps &amp; Sequences/Modular Mess 2.odin"/>
+      <FILE id="v3fdWm" name="Moonshade.odin" compile="0" resource="1" file="Soundbanks/Factory Presets/Pads/Moonshade.odin"/>
+      <FILE id="x1RIWl" name="MusicBox [Photonic].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Instruments/MusicBox [Photonic].odin"/>
+      <FILE id="qbnj29" name="New Age Lead.odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Chimes/New Age Lead.odin"/>
+      <FILE id="yhh49X" name="OB Brass.odin" compile="0" resource="1" file="Soundbanks/Factory Presets/Instruments/OB Brass.odin"/>
+      <FILE id="yPBh4B" name="Omani Desert 1 [psylion].odin" compile="0"
+            resource="1" file="Soundbanks/Factory Presets/Arps &amp; Sequences/Omani Desert 1 [psylion].odin"/>
+      <FILE id="s6esrq" name="Omani Desert 2 [psylion].odin" compile="0"
+            resource="1" file="Soundbanks/Factory Presets/Arps &amp; Sequences/Omani Desert 2 [psylion].odin"/>
+      <FILE id="KunXFE" name="Orbitalesque Stabs [4T].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Atmospheres/Orbitalesque Stabs [4T].odin"/>
+      <FILE id="jDjl5J" name="Organ 0001.odin" compile="0" resource="1" file="Soundbanks/Factory Presets/Organ/Organ 0001.odin"/>
+      <FILE id="N4yiWx" name="Organ Tremolo.odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Organ/Organ Tremolo.odin"/>
+      <FILE id="PHuS9c" name="Pacific Nights.odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Atmospheres/Pacific Nights.odin"/>
+      <FILE id="g2W27A" name="Pad Arpeggio.odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Chiptune/Pad Arpeggio.odin"/>
+      <FILE id="ieORsS" name="Pad cheapo.odin" compile="0" resource="1" file="Soundbanks/Factory Presets/Leads/Pad cheapo.odin"/>
+      <FILE id="si7iZT" name="Pad House.odin" compile="0" resource="1" file="Soundbanks/Factory Presets/Stabs/Pad House.odin"/>
+      <FILE id="GSh54Y" name="PAD Open.odin" compile="0" resource="1" file="Soundbanks/Factory Presets/Pads/PAD Open.odin"/>
+      <FILE id="REGMlN" name="Pad Pleasure.odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Organ/Pad Pleasure.odin"/>
+      <FILE id="uJvdkB" name="Pad Sine.odin" compile="0" resource="1" file="Soundbanks/Factory Presets/Chimes/Pad Sine.odin"/>
+      <FILE id="GyjOgN" name="PhasClavi (AT) [Photonic].odin" compile="0"
+            resource="1" file="Soundbanks/Factory Presets/Keys/PhasClavi (AT) [Photonic].odin"/>
+      <FILE id="SJCZVF" name="Phazzy Organ.odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Organ/Phazzy Organ.odin"/>
+      <FILE id="OcZH1a" name="Phuzz Piano.odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Keys/Phuzz Piano.odin"/>
+      <FILE id="G1OgXy" name="Pianet.odin" compile="0" resource="1" file="Soundbanks/Factory Presets/Keys/Pianet.odin"/>
+      <FILE id="UvjngC" name="Piano [Photonic].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Keys/Piano [Photonic].odin"/>
+      <FILE id="svVoD3" name="Piano Ballad 3.odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Keys/Piano Ballad 3.odin"/>
+      <FILE id="ISnPSr" name="Pipe Dreams [yellowmix].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Organ/Pipe Dreams [yellowmix].odin"/>
+      <FILE id="Z7Kfkx" name="Pipe FX.odin" compile="0" resource="1" file="Soundbanks/Factory Presets/SFX/Pipe FX.odin"/>
+      <FILE id="wjSNIZ" name="Plastic Riser 1 [RS].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/SFX/Plastic Riser 1 [RS].odin"/>
+      <FILE id="psCxm8" name="Plastic Riser 2 [RS].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/SFX/Plastic Riser 2 [RS].odin"/>
+      <FILE id="jR9sii" name="Pluck.odin" compile="0" resource="1" file="Soundbanks/Factory Presets/Stabs/Pluck.odin"/>
+      <FILE id="Hy5HIn" name="Plucker 3.odin" compile="0" resource="1" file="Soundbanks/Factory Presets/Stabs/Plucker 3.odin"/>
+      <FILE id="XlDlOC" name="PM Bass [XR].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Bass/PM Bass [XR].odin"/>
+      <FILE id="cO8TLL" name="PM Sequence.odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Chiptune/PM Sequence.odin"/>
+      <FILE id="VpdMsQ" name="Portapotty.odin" compile="0" resource="1" file="Soundbanks/Factory Presets/Pads/Portapotty.odin"/>
+      <FILE id="OBq229" name="PRC GlassHit.odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Chimes/PRC GlassHit.odin"/>
+      <FILE id="gVkM8w" name="Prophet.odin" compile="0" resource="1" file="Soundbanks/Factory Presets/Drones/Prophet.odin"/>
+      <FILE id="X3sI94" name="PSY Noise Squelch .odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/SFX/PSY Noise Squelch .odin"/>
+      <FILE id="jXu5CD" name="Pulsator.odin" compile="0" resource="1" file="Soundbanks/Factory Presets/Atmospheres/Pulsator.odin"/>
+      <FILE id="P21krj" name="RandArpChords (MW) [Photonic].odin" compile="0"
+            resource="1" file="Soundbanks/Factory Presets/Arps &amp; Sequences/RandArpChords (MW) [Photonic].odin"/>
+      <FILE id="kYkBiG" name="Random Voices.odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Leads/Random Voices.odin"/>
+      <FILE id="VsPdO6" name="Rect In Peace.odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Chiptune/Rect In Peace.odin"/>
+      <FILE id="JfB7sM" name="Reverse Lead.odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Leads/Reverse Lead.odin"/>
+      <FILE id="u6SjCq" name="Rhythm Bass.odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Bass/Rhythm Bass.odin"/>
+      <FILE id="FV9TKb" name="Rhythmic Sequence 01.odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Chiptune/Rhythmic Sequence 01.odin"/>
+      <FILE id="KpVOi3" name="Rnd Delay Lead.odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Leads/Rnd Delay Lead.odin"/>
+      <FILE id="lr15KH" name="S&amp;H harsh .odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Drones/S&amp;H harsh .odin"/>
+      <FILE id="knmSZ7" name="S&amp;H noise.odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/SFX/S&amp;H noise.odin"/>
+      <FILE id="ADQrnj" name="Sausage Bassener.odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Bass/Sausage Bassener.odin"/>
+      <FILE id="Gt2ByZ" name="Saw Pluck [Projektor].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Stabs/Saw Pluck [Projektor].odin"/>
+      <FILE id="i22ZaH" name="Self Phasing Arp.odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Arps &amp; Sequences/Self Phasing Arp.odin"/>
+      <FILE id="xfKdeL" name="Shaker [Photonic].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Drums/Shaker [Photonic].odin"/>
+      <FILE id="yl0nbA" name="Shakers [RS].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Drums/Shakers [RS].odin"/>
+      <FILE id="qSFLJ3" name="Sharp Lead.odin" compile="0" resource="1" file="Soundbanks/Factory Presets/Arps &amp; Sequences/Sharp Lead.odin"/>
+      <FILE id="eT01Sb" name="Shortchip.odin" compile="0" resource="1" file="Soundbanks/Factory Presets/Chiptune/Shortchip.odin"/>
+      <FILE id="cEV6Iv" name="Simple Hat [Projektor].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Drums/Simple Hat [Projektor].odin"/>
+      <FILE id="Uwoc5V" name="Sitar Echo.odin" compile="0" resource="1" file="Soundbanks/Factory Presets/Instruments/Sitar Echo.odin"/>
+      <FILE id="BVRF9U" name="Snappy Snare [Projektor].odin" compile="0"
+            resource="1" file="Soundbanks/Factory Presets/Drums/Snappy Snare [Projektor].odin"/>
+      <FILE id="JG2VY9" name="Snare 1 [RS].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Drums/Snare 1 [RS].odin"/>
+      <FILE id="WiQReT" name="Snare-1 [Photonic].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Drums/Snare-1 [Photonic].odin"/>
+      <FILE id="y9ESbB" name="Snare-2 [Photonic].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Drums/Snare-2 [Photonic].odin"/>
+      <FILE id="RKs2cJ" name="SnarNoize.odin" compile="0" resource="1" file="Soundbanks/Factory Presets/Drums/SnarNoize.odin"/>
+      <FILE id="oKWBVu" name="Something Awakens.odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/SFX/Something Awakens.odin"/>
+      <FILE id="ZeQpY6" name="Sound of Paradise [psylion].odin" compile="0"
+            resource="1" file="Soundbanks/Factory Presets/Arps &amp; Sequences/Sound of Paradise [psylion].odin"/>
+      <FILE id="bnmgz3" name="Sound of Paradise2 [psylion].odin" compile="0"
+            resource="1" file="Soundbanks/Factory Presets/Atmospheres/Sound of Paradise2 [psylion].odin"/>
+      <FILE id="P3Kjp5" name="sounds like a melody.odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Pads/sounds like a melody.odin"/>
+      <FILE id="kCgqpA" name="Space Shuttle [psylion].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/SFX/Space Shuttle [psylion].odin"/>
+      <FILE id="Ni6T1o" name="Sparkle Organ.odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Organ/Sparkle Organ.odin"/>
+      <FILE id="LIdQ1I" name="Steel Drums.odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Instruments/Steel Drums.odin"/>
+      <FILE id="jUhubw" name="Steeldrum [Photonic].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Instruments/Steeldrum [Photonic].odin"/>
+      <FILE id="bsumqb" name="Strings (MW,AT) [Photonic].odin" compile="0"
+            resource="1" file="Soundbanks/Factory Presets/Pads/Strings (MW,AT) [Photonic].odin"/>
+      <FILE id="TSA9RW" name="Strings short (MW) [Photonic].odin" compile="0"
+            resource="1" file="Soundbanks/Factory Presets/Pads/Strings short (MW) [Photonic].odin"/>
+      <FILE id="WUibs3" name="Suitcase n Amp [yellowmix].odin" compile="0"
+            resource="1" file="Soundbanks/Factory Presets/Organ/Suitcase n Amp [yellowmix].odin"/>
+      <FILE id="YKtGuq" name="Sunrise.odin" compile="0" resource="1" file="Soundbanks/Factory Presets/Atmospheres/Sunrise.odin"/>
+      <FILE id="wqjy8V" name="Sweeper 3.odin" compile="0" resource="1" file="Soundbanks/Factory Presets/Pads/Sweeper 3.odin"/>
+      <FILE id="AZFkjR" name="Swell Bits.odin" compile="0" resource="1" file="Soundbanks/Factory Presets/Drones/Swell Bits.odin"/>
+      <FILE id="CK64Qq" name="Synae XY [RS].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Pads/Synae XY [RS].odin"/>
+      <FILE id="o6tii7" name="SynKeys 2 [RS].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Keys/SynKeys 2 [RS].odin"/>
+      <FILE id="yVWzTT" name="SynKeys 3XY [RS].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Keys/SynKeys 3XY [RS].odin"/>
+      <FILE id="Vw07cf" name="Synth Ballad.odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Pads/Synth Ballad.odin"/>
+      <FILE id="Fgtwz3" name="Synth Brass.odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Leads/Synth Brass.odin"/>
+      <FILE id="QR4jua" name="Synth Glass .odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Chimes/Synth Glass .odin"/>
+      <FILE id="CrBKcy" name="Synth Glassybell.odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Chimes/Synth Glassybell.odin"/>
+      <FILE id="dIs1Ly" name="Synth Piano.odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Keys/Synth Piano.odin"/>
+      <FILE id="UnpfZE" name="Synth Strings.odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Pads/Synth Strings.odin"/>
+      <FILE id="aRo8Ru" name="Synth Strings2.odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Pads/Synth Strings2.odin"/>
+      <FILE id="odwnhq" name="Synth Unleash [RM].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Drones/Synth Unleash [RM].odin"/>
+      <FILE id="kTcyfV" name="Synthwave Pad.odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Pads/Synthwave Pad.odin"/>
+      <FILE id="Ycdz1i" name="Taiko-Drums [Photonic].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Drums/Taiko-Drums [Photonic].odin"/>
+      <FILE id="YhpHpu" name="The Arp 2.0 [XR].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Arps &amp; Sequences/The Arp 2.0 [XR].odin"/>
+      <FILE id="xC7QMv" name="The Sound of Agony [psylion].odin" compile="0"
+            resource="1" file="Soundbanks/Factory Presets/Drones/The Sound of Agony [psylion].odin"/>
+      <FILE id="uZLE3w" name="Timmy got some meth [psylion].odin" compile="0"
+            resource="1" file="Soundbanks/Factory Presets/Drones/Timmy got some meth [psylion].odin"/>
+      <FILE id="wNshNZ" name="Toms 1 [RS].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Drums/Toms 1 [RS].odin"/>
+      <FILE id="AXruFj" name="Toms 2 [RS].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Drums/Toms 2 [RS].odin"/>
+      <FILE id="X18Td3" name="Toms-1 [Photonic].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Drums/Toms-1 [Photonic].odin"/>
+      <FILE id="AfYiLN" name="Toy Piano.odin" compile="0" resource="1" file="Soundbanks/Factory Presets/Keys/Toy Piano.odin"/>
+      <FILE id="mhEyqA" name="Tuba.odin" compile="0" resource="1" file="Soundbanks/Factory Presets/Instruments/Tuba.odin"/>
+      <FILE id="LybYqq" name="Unison Glide Lead.odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Leads/Unison Glide Lead.odin"/>
+      <FILE id="rUAMwK" name="VangBrass (MW,AT) [Photonic].odin" compile="0"
+            resource="1" file="Soundbanks/Factory Presets/Pads/VangBrass (MW,AT) [Photonic].odin"/>
+      <FILE id="KGdBse" name="Vector Soundtrack [XR].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Atmospheres/Vector Soundtrack [XR].odin"/>
+      <FILE id="gigI3u" name="Vibraphone.odin" compile="0" resource="1" file="Soundbanks/Factory Presets/Chimes/Vibraphone.odin"/>
+      <FILE id="MdJiSN" name="Vibrato Lead.odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Leads/Vibrato Lead.odin"/>
+      <FILE id="mq4kGu" name="Violet.odin" compile="0" resource="1" file="Soundbanks/Factory Presets/Atmospheres/Violet.odin"/>
+      <FILE id="K2ebQ0" name="Voices in my head [psylion].odin" compile="0"
+            resource="1" file="Soundbanks/Factory Presets/SFX/Voices in my head [psylion].odin"/>
+      <FILE id="CyrGCf" name="Voices.odin" compile="0" resource="1" file="Soundbanks/Factory Presets/Pads/Voices.odin"/>
+      <FILE id="WVbH4X" name="Voyage 1a X-Y.odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Atmospheres/Voyage 1a X-Y.odin"/>
+      <FILE id="jY3Gyj" name="War-Drum [Photonic].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Drums/War-Drum [Photonic].odin"/>
+      <FILE id="nq5GHf" name="Warm-Pad [Photonic].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Pads/Warm-Pad [Photonic].odin"/>
+      <FILE id="fusxyo" name="Zambezi River [psylion].odin" compile="0" resource="1"
+            file="Soundbanks/Factory Presets/Atmospheres/Zambezi River [psylion].odin"/>
+    </GROUP>
     <GROUP id="{A5BAEEE4-3FCE-5605-7A4C-F29962266097}" name="Graphics">
       <FILE id="v9w1LN" name="analog_backdrop.png" compile="0" resource="1"
             file="Graphics/applied/analog_backdrop.png"/>
@@ -763,6 +1225,22 @@
             file="Graphics/cropped/buttons/buttonresetsynth_4.png"/>
       <FILE id="XvfA2d" name="buttonresetsynth_4_150.png" compile="0" resource="1"
             file="Graphics_150/cropped/buttons/buttonresetsynth_4_150.png"/>
+      <FILE id="mb5khb" name="buttonreverb_1.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonreverb_1.png"/>
+      <FILE id="Uk17bQ" name="buttonreverb_1_150.png" compile="0" resource="1"
+            file="Graphics_150/cropped/buttons/buttonreverb_1_150.png"/>
+      <FILE id="w2mGG2" name="buttonreverb_2.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonreverb_2.png"/>
+      <FILE id="jpGPiM" name="buttonreverb_2_150.png" compile="0" resource="1"
+            file="Graphics_150/cropped/buttons/buttonreverb_2_150.png"/>
+      <FILE id="G8sBLQ" name="buttonreverb_3.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonreverb_3.png"/>
+      <FILE id="ZZY15x" name="buttonreverb_3_150.png" compile="0" resource="1"
+            file="Graphics_150/cropped/buttons/buttonreverb_3_150.png"/>
+      <FILE id="hVRMvR" name="buttonreverb_4.png" compile="0" resource="1"
+            file="Graphics/cropped/buttons/buttonreverb_4.png"/>
+      <FILE id="d2dTfT" name="buttonreverb_4_150.png" compile="0" resource="1"
+            file="Graphics_150/cropped/buttons/buttonreverb_4_150.png"/>
       <FILE id="NJvidF" name="buttonright_1.png" compile="0" resource="1"
             file="Graphics/cropped/buttons/buttonright_1.png"/>
       <FILE id="h6k4EJ" name="buttonright_1_150.png" compile="0" resource="1"
@@ -1202,6 +1680,9 @@
       <FILE id="GpGdSn" name="pyram8_150.png" compile="0" resource="1" file="Graphics_150/cropped/lfo/pyram8_150.png"/>
       <FILE id="k45nl4" name="pyram12.png" compile="0" resource="1" file="Graphics/cropped/lfo/pyram12.png"/>
       <FILE id="fFF0f8" name="pyram12_150.png" compile="0" resource="1" file="Graphics_150/cropped/lfo/pyram12_150.png"/>
+      <FILE id="hOH6jo" name="reverb_zita.png" compile="0" resource="1" file="Graphics/cropped/reverb_zita.png"/>
+      <FILE id="Ox3ksY" name="reverb_zita_150.png" compile="0" resource="1"
+            file="Graphics_150/cropped/reverb_zita_150.png"/>
       <FILE id="DMKYAC" name="ringmod_backdrop.png" compile="0" resource="1"
             file="Graphics/applied/ringmod_backdrop.png"/>
       <FILE id="iQBzhM" name="ringmod_backdrop_150.png" compile="0" resource="1"
@@ -1340,6 +1821,54 @@
             file="Graphics_150/applied/WW_logo_xy_150.png"/>
     </GROUP>
     <GROUP id="{7AF384ED-9FD6-6492-4B8C-5777BB9A2698}" name="Source">
+      <FILE id="hAQsJp" name="LFOPopupLookAndFeel.h" compile="0" resource="0"
+            file="Source/gui/LFOPopupLookAndFeel.h"/>
+      <FILE id="jPWLZ8" name="LFOPopupLookAndFeel.cpp" compile="1" resource="0"
+            file="Source/gui/LFOPopupLookAndFeel.cpp"/>
+      <FILE id="nDrPp7" name="ImpulseResponseCreator.h" compile="0" resource="0"
+            file="Source/audio/ImpulseResponseCreator.h"/>
+      <FILE id="qDqmjL" name="ImpulseResponseCreator.cpp" compile="1" resource="0"
+            file="Source/audio/ImpulseResponseCreator.cpp"/>
+      <FILE id="Z5h8IC" name="FeedbackDelayNetwork.cpp" compile="1" resource="0"
+            file="Source/audio/FX/FeedbackDelayNetwork.cpp"/>
+      <FILE id="JZkpjA" name="FeedbackDelayNetwork.h" compile="0" resource="0"
+            file="Source/audio/FX/FeedbackDelayNetwork.h"/>
+      <FILE id="MDr7Ji" name="IntegerDelayLine.cpp" compile="1" resource="0"
+            file="Source/audio/FX/IntegerDelayLine.cpp"/>
+      <FILE id="TDuwde" name="IntegerDelayLine.h" compile="0" resource="0"
+            file="Source/audio/FX/IntegerDelayLine.h"/>
+      <FILE id="BaQyHx" name="SurgeReverb.h" compile="0" resource="0" file="Source/audio/FX/SurgeReverb.h"/>
+      <FILE id="Q9R7V5" name="SurgeReverb.cpp" compile="1" resource="0" file="Source/audio/FX/SurgeReverb.cpp"/>
+      <FILE id="PGDVFF" name="ZitaReverb.h" compile="0" resource="0" file="Source/audio/FX/ZitaReverb.h"/>
+      <FILE id="ufovUU" name="ZitaReverb.cpp" compile="1" resource="0" file="Source/audio/FX/ZitaReverb.cpp"/>
+      <FILE id="FSwq31" name="ConfigFileManager.h" compile="0" resource="0"
+            file="Source/ConfigFileManager.h"/>
+      <FILE id="GEm8WC" name="ConfigFileManager.cpp" compile="1" resource="0"
+            file="Source/ConfigFileManager.cpp"/>
+      <FILE id="JBuR0C" name="TuningComponent.cpp" compile="1" resource="0"
+            file="Source/gui/TuningComponent.cpp"/>
+      <FILE id="TaV6sk" name="TuningComponent.h" compile="0" resource="0"
+            file="Source/gui/TuningComponent.h"/>
+      <FILE id="GrV3GI" name="BiquadEQ.cpp" compile="1" resource="0" file="Source/audio/Filters/BiquadEQ.cpp"/>
+      <FILE id="IwaVYt" name="BiquadEQ.h" compile="0" resource="0" file="Source/audio/Filters/BiquadEQ.h"/>
+      <FILE id="aIxVj1" name="FixedTextGlassDropdown.h" compile="0" resource="0"
+            file="Source/gui/FixedTextGlassDropdown.h"/>
+      <FILE id="kd4xyY" name="FixedTextGlassDropdown.cpp" compile="1" resource="0"
+            file="Source/gui/FixedTextGlassDropdown.cpp"/>
+      <FILE id="iQ4IiX" name="GlassDropdown.h" compile="0" resource="0" file="Source/gui/GlassDropdown.h"/>
+      <FILE id="u2hJTS" name="GlassDropdown.cpp" compile="1" resource="0"
+            file="Source/gui/GlassDropdown.cpp"/>
+      <FILE id="Y82HXT" name="ReverbComponent.cpp" compile="1" resource="0"
+            file="Source/gui/ReverbComponent.cpp"/>
+      <FILE id="aSPjJ2" name="ReverbComponent.h" compile="0" resource="0"
+            file="Source/gui/ReverbComponent.h"/>
+      <FILE id="QlEHfA" name="ParametricEQ.cpp" compile="1" resource="0"
+            file="Source/audio/FX/ParametricEQ.cpp"/>
+      <FILE id="xTwlWY" name="ParametricEQ.h" compile="0" resource="0" file="Source/audio/FX/ParametricEQ.h"/>
+      <FILE id="m2K5JH" name="ModAmountComponentExtended.h" compile="0" resource="0"
+            file="Source/gui/ModAmountComponentExtended.h"/>
+      <FILE id="PWghTC" name="ModAmountComponentExtended.cpp" compile="1"
+            resource="0" file="Source/gui/ModAmountComponentExtended.cpp"/>
       <FILE id="E5lkTP" name="WavetableMappings.h" compile="0" resource="0"
             file="Source/audio/Oscillators/Wavetables/WavetableMappings.h"/>
       <FILE id="HwmoDW" name="Voice.h" compile="0" resource="0" file="Source/audio/Voice.h"/>
@@ -1382,9 +1911,6 @@
       <FILE id="xiZXl8" name="FXComponent.h" compile="0" resource="0" file="Source/gui/FXComponent.h"/>
       <FILE id="kFvFcx" name="GlasDisplay.cpp" compile="1" resource="0" file="Source/gui/GlasDisplay.cpp"/>
       <FILE id="j4EBc4" name="GlasDisplay.h" compile="0" resource="0" file="Source/gui/GlasDisplay.h"/>
-      <FILE id="xKrAJ5" name="GlasDropdown.cpp" compile="1" resource="0"
-            file="Source/gui/GlasDropdown.cpp"/>
-      <FILE id="GjCcJl" name="GlasDropdown.h" compile="0" resource="0" file="Source/gui/GlasDropdown.h"/>
       <FILE id="z5mvGZ" name="InputField.h" compile="0" resource="0" file="Source/gui/InputField.h"/>
       <FILE id="Yvnf2T" name="IntegerKnob.cpp" compile="1" resource="0" file="Source/gui/IntegerKnob.cpp"/>
       <FILE id="HOGsjk" name="IntegerKnob.h" compile="0" resource="0" file="Source/gui/IntegerKnob.h"/>
@@ -1500,13 +2026,10 @@
             file="Source/gui/XYSectionComponent.cpp"/>
       <FILE id="z4elIk" name="XYSectionComponent.h" compile="0" resource="0"
             file="Source/gui/XYSectionComponent.h"/>
-      <FILE id="QuKD1K" name="SetModulationPointers.h" compile="0" resource="0"
-            file="Source/SetModulationPointers.h"/>
       <FILE id="hf2LpP" name="Utilities.cpp" compile="1" resource="0" file="Source/Utilities.cpp"/>
       <FILE id="R1tTJD" name="Utilities.h" compile="0" resource="0" file="Source/Utilities.h"/>
       <FILE id="xS4QLp" name="ProcessorInitializerList.h" compile="0" resource="0"
             file="Source/ProcessorInitializerList.h"/>
-      <FILE id="BnAGtb" name="ValueChange.h" compile="0" resource="0" file="Source/ValueChange.h"/>
       <FILE id="RyCmuE" name="OdinTreeListener.h" compile="0" resource="0"
             file="Source/OdinTreeListener.h"/>
       <FILE id="gQqTHH" name="AudioParameterConnections.h" compile="0" resource="0"
@@ -1514,9 +2037,7 @@
       <FILE id="JThZCM" name="AudioVarDeclarations.h" compile="0" resource="0"
             file="Source/AudioVarDeclarations.h"/>
       <GROUP id="{3EB8BD5A-21BA-3762-1B22-4C7E7C63EF47}" name="audio">
-        <GROUP id="{6154F4CF-B621-5841-23CC-5426B7C28BDC}" name="Lookuptables">
-          <FILE id="IuvMkp" name="adsr_pow.h" compile="0" resource="0" file="Source/audio/LookupTables/adsr_pow.h"/>
-        </GROUP>
+        <GROUP id="{6154F4CF-B621-5841-23CC-5426B7C28BDC}" name="Lookuptables"/>
         <FILE id="kbJgTr" name="Amplifier.cpp" compile="1" resource="0" file="Source/audio/Amplifier.cpp"/>
         <FILE id="gD2con" name="Amplifier.h" compile="0" resource="0" file="Source/audio/Amplifier.h"/>
         <GROUP id="{D6691E6B-37D4-2804-8E68-093C3D0E2F7C}" name="Oscillators">
@@ -1592,10 +2113,6 @@
               <FILE id="AsGdxr" name="LFOStair6.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/LFOStair6.h"/>
               <FILE id="a0n5Of" name="LFOStair8.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/LFOStair8.h"/>
               <FILE id="pCgpRC" name="LFOStair12.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/LFOStair12.h"/>
-              <FILE id="g1txPv" name="MultiSaw1.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/MultiSaw1.h"/>
-              <FILE id="P0jiqX" name="MultiSaw2.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/MultiSaw2.h"/>
-              <FILE id="CItGM7" name="MultiSaw3.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/MultiSaw3.h"/>
-              <FILE id="TEJGi4" name="MultiSaw4.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/MultiSaw4.h"/>
               <FILE id="bCDHnM" name="Organ1.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/Organ1.h"/>
               <FILE id="Qv9iqZ" name="Organ2.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/Organ2.h"/>
               <FILE id="Dak3MU" name="Organ3.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/Organ3.h"/>
@@ -1606,10 +2123,6 @@
               <FILE id="wUxekK" name="Skyline2.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/Skyline2.h"/>
               <FILE id="mhCdbj" name="Skyline3.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/Skyline3.h"/>
               <FILE id="V1NKdV" name="Skyline4.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/Skyline4.h"/>
-              <FILE id="L1EYvD" name="Soft1.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/Soft1.h"/>
-              <FILE id="UAm1YN" name="Soft2.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/Soft2.h"/>
-              <FILE id="U7eMaD" name="Soft3.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/Soft3.h"/>
-              <FILE id="IJVGvN" name="Soft4.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/Soft4.h"/>
               <FILE id="HKd1fO" name="Triangle.h" compile="0" resource="0" file="Source/audio/Oscillators/Wavetables/Coefficients/Triangle.h"/>
             </GROUP>
             <FILE id="VZe7pv" name="LFOTableData.cpp" compile="1" resource="0"
@@ -1674,8 +2187,6 @@
                 file="Source/audio/Oscillators/WavetableOsc2D.cpp"/>
           <FILE id="VTgjWS" name="WavetableOsc2D.h" compile="0" resource="0"
                 file="Source/audio/Oscillators/WavetableOsc2D.h"/>
-          <FILE id="dK6tmG" name="WavetableTables.h" compile="0" resource="0"
-                file="Source/audio/Oscillators/WavetableTables.h"/>
         </GROUP>
         <GROUP id="{C724E5C9-D97D-5F0F-8A81-C41A55596A1D}" name="FX">
           <FILE id="Sd74Ze" name="Bitcrusher.cpp" compile="1" resource="0" file="Source/audio/FX/Bitcrusher.cpp"/>
@@ -1748,7 +2259,8 @@
     <FILE id="HQUFcv" name="init_patch.odin" compile="0" resource="1" file="init_patch.odin"/>
   </MAINGROUP>
   <EXPORTFORMATS>
-    <XCODE_MAC targetFolder="Builds/MacOSX">
+    <XCODE_MAC targetFolder="Builds/MacOSX" extraCompilerFlags="-Wno-shorten-64-to-32 -Wno-reorder"
+               extraDefs="JUCE_MODAL_LOOPS_PERMITTED">
       <CONFIGURATIONS>
         <CONFIGURATION isDebug="1" name="Debug" defines="ODIN_DEBUG&#10;ODIN_MAC" targetName="Odin2DEBUG"/>
         <CONFIGURATION isDebug="0" name="Release" defines="ODIN_RELEASE&#10;ODIN_MAC"/>
@@ -1771,14 +2283,15 @@
         <MODULEPATH id="juce_dsp" path="../JUCE/modules"/>
       </MODULEPATHS>
     </XCODE_MAC>
-    <LINUX_MAKE targetFolder="Builds/LinuxMakefile" extraCompilerFlags="-msse2">
+    <LINUX_MAKE targetFolder="Builds/LinuxMakefile" extraCompilerFlags="-msse2"
+                userNotes="-Wconversion" extraDefs="JUCE_MODAL_LOOPS_PERMITTED">
       <CONFIGURATIONS>
         <CONFIGURATION isDebug="1" name="Debug" defines="ODIN_LINUX&#10;JUCE_JACK_CLIENT_NAME=JucePlugin_Name&#10;ODIN_DEBUG"
                        headerPath="/home/frot/Downloads/VST_SDK/VST2_SDK/&#10;/usr/include/freetype2/&#10;/usr/include/gtk-3.0/&#10;/usr/include/glib-2.0/&#10;/usr/lib/x86_64-linux-gnu/glib-2.0/include/&#10;/usr/include/pango-1.0/&#10;/usr/include/cairo/&#10;/usr/include/gdk-pixbuf-2.0/&#10;/usr/include/atk-1.0/"
                        linuxArchitecture="-m64"/>
         <CONFIGURATION name="Release" defines="ODIN_LINUX&#10;JUCE_JACK_CLIENT_NAME=JucePlugin_Name&#10;ODIN_RELEASE"
                        headerPath="/home/frot/Downloads/VST_SDK/VST2_SDK/&#10;/usr/include/freetype2/&#10;/usr/include/gtk-3.0/&#10;/usr/include/glib-2.0/&#10;/usr/lib/x86_64-linux-gnu/glib-2.0/include/&#10;/usr/include/pango-1.0/&#10;/usr/include/cairo/&#10;/usr/include/gdk-pixbuf-2.0/&#10;/usr/include/atk-1.0/"
-                       linuxArchitecture="-m64"/>
+                       linuxArchitecture="-m64" linkTimeOptimisation="1"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_audio_basics" path="../../JUCE/modules"/>
@@ -1798,7 +2311,7 @@
         <MODULEPATH id="juce_dsp" path="../JUCE/modules"/>
       </MODULEPATHS>
     </LINUX_MAKE>
-    <VS2019 targetFolder="Builds/VisualStudio2019" extraCompilerFlags="/arch:SSE2">
+    <VS2019 targetFolder="Builds/VisualStudio2019" extraDefs="JUCE_MODAL_LOOPS_PERMITTED">
       <CONFIGURATIONS>
         <CONFIGURATION isDebug="1" name="Debug" defines="ODIN_WIN&#10;ODIN_DEBUG" headerPath="E:\odin2\Odin\Source&#10;E:\JUCE2\JUCE\VST2_SDK"
                        targetName="Odin2DEBUG"/>
@@ -1848,5 +2361,5 @@
     <OSX/>
   </LIVE_SETTINGS>
   <JUCEOPTIONS JUCE_VST3_CAN_REPLACE_VST2="0" JUCE_STRICT_REFCOUNTEDPOINTER="1"
-               JUCE_WEB_BROWSER="0"/>
+               JUCE_WEB_BROWSER="0" JUCE_USE_CURL="0"/>
 </JUCERPROJECT>

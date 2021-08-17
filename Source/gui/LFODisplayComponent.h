@@ -1,6 +1,6 @@
 /*
 ** Odin 2 Synthesizer Plugin
-** Copyright (C) 2020 TheWaveWarden
+** Copyright (C) 2020 - 2021 TheWaveWarden
 **
 ** Odin 2 is free software: you can redistribute it and/or modify
 ** it under the terms of the GNU General Public License as published by
@@ -28,7 +28,7 @@ public:
   void setImage(juce::Image p_panel) { m_panel = p_panel; }
   void addWave(juce::Image p_wave);
   void setInlay(int p_inlay) { m_inlay = p_inlay; }
-  int getNrOfWaves() { return m_waves.size(); }
+  int getNrOfWaves() { return (int)m_waves.size(); }
   void setValue(int p_value) {
     m_value = p_value;
     repaint();
@@ -40,6 +40,7 @@ public:
   std::function<void(const MouseEvent&)> toParentMouseDown = [](const MouseEvent&){};
   std::function<void(const MouseEvent&)> toParentMouseDrag = [](const MouseEvent&){};
   std::function<void(const MouseEvent&)> toParentMouseUp = [](const MouseEvent&){};
+  std::function<void()> onClick;
 
   void clearWaves(){
     m_waves.clear();

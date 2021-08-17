@@ -1,6 +1,6 @@
 /*
 ** Odin 2 Synthesizer Plugin
-** Copyright (C) 2020 TheWaveWarden
+** Copyright (C) 2020 - 2021 TheWaveWarden
 **
 ** Odin 2 is free software: you can redistribute it and/or modify
 ** it under the terms of the GNU General Public License as published by
@@ -13,11 +13,12 @@
 ** GNU General Public License for more details.
 */
 
-
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "OdinFeels.h"
 #include "../GlobalIncludes.h"
+
 #define INLAY_DEF 1
 
 class GlasDisplay : public SettableTooltipClient, public Component {
@@ -58,13 +59,13 @@ public:
 	std::function<void(const MouseEvent &)> toParentMouseDrag = [](const MouseEvent &) {};
 	std::function<void(const MouseEvent &)> toParentMouseUp   = [](const MouseEvent &) {};
 
-  void setTextOffsetTop(int p_offset){
-    m_text_offset_top = p_offset;
-  }
+	void setTextOffsetTop(int p_offset) {
+		m_text_offset_top = p_offset;
+	}
 
-  void setTextOffsetLeft(int p_offset){
-    m_text_offset_left = p_offset;
-  }
+	void setTextOffsetLeft(int p_offset) {
+		m_text_offset_left = p_offset;
+	}
 
 	void setGUIBig() {
 		m_GUI_big = true;
@@ -76,10 +77,10 @@ public:
 	}
 
 private:
-	bool m_GUI_big                  = false;
+	bool m_GUI_big = true;
 
-  	int m_text_offset_top = 0;
-  	int m_text_offset_left = 0;
+	int m_text_offset_top  = 0;
+	int m_text_offset_left = 0;
 
 	std::string m_text_value_suffix = "";
 

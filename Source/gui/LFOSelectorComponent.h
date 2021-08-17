@@ -1,6 +1,6 @@
 /*
 ** Odin 2 Synthesizer Plugin
-** Copyright (C) 2020 TheWaveWarden
+** Copyright (C) 2020 - 2021 TheWaveWarden
 **
 ** Odin 2 is free software: you can redistribute it and/or modify
 ** it under the terms of the GNU General Public License as published by
@@ -18,6 +18,7 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "../GlobalIncludes.h"
 #include "LFODisplayComponent.h"
+#include "LFOPopupLookAndFeel.h"
 
 class LFOSelectorComponent : public Component,
                              public AudioProcessorValueTreeState::Listener {
@@ -57,7 +58,7 @@ public:
   void setGUISmall();
 
 protected:
-  bool m_GUI_big = false;
+  bool m_GUI_big = true;
 
   int mouse_reference_value = 0;
   int m_drag_initial_value = 0;
@@ -78,6 +79,8 @@ protected:
   }
 
   LFODisplayComponent m_display;
+  LFOPopupLookAndFeel m_popup_look_and_feel;
+  PopupMenu m_popup;
 
   DrawableButton m_up;
   DrawableButton m_down;

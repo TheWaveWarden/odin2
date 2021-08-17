@@ -1,6 +1,6 @@
 /*
 ** Odin 2 Synthesizer Plugin
-** Copyright (C) 2020 TheWaveWarden
+** Copyright (C) 2020 - 2021 TheWaveWarden
 **
 ** Odin 2 is free software: you can redistribute it and/or modify
 ** it under the terms of the GNU General Public License as published by
@@ -19,22 +19,24 @@
 
 class OdinMidiLearnBase {
 public:
+	virtual ~OdinMidiLearnBase() {
+	}
 
-  void setParameterID(const String& p_ID){
-    m_parameter_ID = p_ID;
-    //DBG("Set parameter ID in Knob: " + p_ID);
-  }
+	void setParameterID(const String &p_ID) {
+		m_parameter_ID = p_ID;
+		//DBG("Set parameter ID in Knob: " + p_ID);
+	}
 
-  virtual void setMidiControlActive() = 0;
-  virtual void stopMidiLearn() = 0;
+	virtual void setMidiControlActive() = 0;
+	virtual void stopMidiLearn()        = 0;
 
-  void disableMidiLearn(){
-    m_midi_learn_possible = false;
-  }
+	void disableMidiLearn() {
+		m_midi_learn_possible = false;
+	}
+
 protected:
-
-  bool m_midi_learn_possible = true;
-  bool m_midi_learn = false;
-  bool m_midi_control = false;
-  String m_parameter_ID;
+	bool m_midi_learn_possible = true;
+	bool m_midi_learn          = false;
+	bool m_midi_control        = false;
+	String m_parameter_ID;
 };

@@ -1,6 +1,6 @@
 /*
 ** Odin 2 Synthesizer Plugin
-** Copyright (C) 2020 TheWaveWarden
+** Copyright (C) 2020 - 2021 TheWaveWarden
 **
 ** Odin 2 is free software: you can redistribute it and/or modify
 ** it under the terms of the GNU General Public License as published by
@@ -125,6 +125,7 @@
     std::atomic<float>* m_phaser_on;
     std::atomic<float>* m_flanger_on;
     std::atomic<float>* m_chorus_on;
+    std::atomic<float>* m_reverb_on;
     std::atomic<float>* m_fil_osc1[2];
     std::atomic<float>* m_fil_osc2[2];
     std::atomic<float>* m_fil_osc3[2];
@@ -402,10 +403,6 @@
     Identifier m_phaser_on_identifier;
     Identifier m_flanger_on_identifier;
     Identifier m_chorus_on_identifier;
-    Identifier m_delay_selected_identifier;
-    Identifier m_phaser_selected_identifier;
-    Identifier m_flanger_selected_identifier;
-    Identifier m_chorus_selected_identifier;
     Identifier m_fil1_osc1_identifier;
     Identifier m_fil1_osc2_identifier;
     Identifier m_fil1_osc3_identifier;
@@ -417,6 +414,7 @@
     Identifier m_flanger_position_identifier;
     Identifier m_phaser_position_identifier;
     Identifier m_chorus_position_identifier;
+    Identifier m_reverb_position_identifier;
     Identifier m_delay_time_identifier;
     Identifier m_delay_feedback_identifier;
     Identifier m_delay_hp_identifier;
@@ -427,6 +425,14 @@
     Identifier m_delay_pingpong_identifier;
     Identifier m_delay_synctime_numerator_identifier;
     Identifier m_delay_synctime_denominator_identifier;
+    Identifier m_reverb_delay_identifier;
+    Identifier m_reverb_eq_gain_identifier;
+    Identifier m_reverb_eq_freq_identifier;
+    //Identifier m_reverb_ducking_identifier;
+    Identifier m_reverb_mid_hall_identifier;
+    Identifier m_reverb_on_identifier;
+    Identifier m_reverb_hf_damp_identifier;
+    Identifier m_reverb_dry_wet_identifier;
     Identifier m_phaser_reset_identifier;
     Identifier m_arp_on_identifier;
     Identifier m_arp_one_shot_identifier;
@@ -503,7 +509,6 @@
     Identifier m_step_13_transpose_identifier;
     Identifier m_step_14_transpose_identifier;
     Identifier m_step_15_transpose_identifier;
-
 
     Identifier m_phaser_sync_identifier;
     Identifier m_phaser_rate_identifier;

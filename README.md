@@ -11,7 +11,11 @@ https://thewavewarden.com/odin2**
 
 # Build Instructions
 ## All Platforms
-[Download JUCE 6.0.1](https://github.com/juce-framework/JUCE/releases). The project is currently build against JUCE 6.0.1. You can use newer JUCE versions, but the code will need some adjustments then. Open the file `odin2/Odin.jucer` with the `Projucer` application from the JUCE main directory. Now generate the build files by pressing `Ctrl + P` inside the `Projucer`. You can close `Projucer` now.
+Clone this project **with submodules**:
+```
+git clone --recurse-submodules https://github.com/TheWaveWarden/odin2.git
+```
+Now [download JUCE 6.0.8](https://github.com/juce-framework/JUCE/releases). The project is currently build against JUCE 6.0.8. You can use more recent JUCE versions, but the code might need adjustments then. Open the file `odin2/Odin.jucer` with the `Projucer` application from the JUCE main directory. Now generate the build files by pressing `Ctrl + P` inside the `Projucer`. You can close `Projucer` now.
 
 ## Windows (Visual Studio 2019)
 

@@ -1,6 +1,6 @@
 /*
 ** Odin 2 Synthesizer Plugin
-** Copyright (C) 2020 TheWaveWarden
+** Copyright (C) 2020 - 2021 TheWaveWarden
 **
 ** Odin 2 is free software: you can redistribute it and/or modify
 ** it under the terms of the GNU General Public License as published by
@@ -13,29 +13,11 @@
 ** GNU General Public License for more details.
 */
 
+//this file is included from PluginProcessor.cpp to split the class implementation
+
+#include "PluginProcessor.h"
+
 void OdinAudioProcessor::addNonAudioParametersToTree() {
-
-	// auto node = m_value_tree_draw;
-
-	// for (int i = 0; i < WAVEDRAW_STEPS_X; ++i) {
-	// 	float val = sin(2 * M_PI * i / (float)WAVEDRAW_STEPS_X) * 0.9;
-	// 	node.setProperty(String("osc1_wavedraw_values_" + std::to_string(i)), val, nullptr);
-	// 	node.setProperty(String("osc2_wavedraw_values_" + std::to_string(i)), val, nullptr);
-	// 	node.setProperty(String("osc3_wavedraw_values_" + std::to_string(i)), val, nullptr);
-	// }
-	// for (int i = 0; i < CHIPDRAW_STEPS_X; ++i) {
-	// 	float val = i < CHIPDRAW_STEPS_X / 2 ? 0.875f : -0.875f;
-	// 	node.setProperty(String("osc1_chipdraw_values_" + std::to_string(i)), val, nullptr);
-	// 	node.setProperty(String("osc2_chipdraw_values_" + std::to_string(i)), val, nullptr);
-	// 	node.setProperty(String("osc3_chipdraw_values_" + std::to_string(i)), val, nullptr);
-	// }
-	// for (int i = 0; i < SPECDRAW_STEPS_X; ++i) {
-	// 	float val = i == 0 ? 1 : 0;
-	// 	node.setProperty(String("osc1_specdraw_values_" + std::to_string(i)), val, nullptr);
-	// 	node.setProperty(String("osc2_specdraw_values_" + std::to_string(i)), val, nullptr);
-	// 	node.setProperty(String("osc3_specdraw_values_" + std::to_string(i)), val, nullptr);
-	// 	//		node.setProperty(String("osc3_specdraw_values_" + std::to_string(i)), 0.5f-i*0.005+cos(i*0.2f)*0.5f*(1.f-i*0.02), nullptr);
-	// }
 
 	writeDefaultWavedrawValuesToTree(1);
 	writeDefaultWavedrawValuesToTree(2);
@@ -62,10 +44,12 @@ void OdinAudioProcessor::addNonAudioParametersToTree() {
 	node.setProperty("phaser_selected", 0, nullptr);
 	node.setProperty("flanger_selected", 0, nullptr);
 	node.setProperty("chorus_selected", 0, nullptr);
+	node.setProperty("reverb_selected", 0, nullptr);
 	node.setProperty("delay_position", 0, nullptr);
 	node.setProperty("phaser_position", 1, nullptr);
 	node.setProperty("chorus_position", 2, nullptr);
 	node.setProperty("flanger_position", 3, nullptr);
+	node.setProperty("reverb_position", 4, nullptr);
 	node.setProperty("delay_sync", 0, nullptr);
 	node.setProperty("phaser_sync", 0, nullptr);
 	node.setProperty("flanger_sync", 0, nullptr);

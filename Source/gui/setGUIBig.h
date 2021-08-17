@@ -1,6 +1,6 @@
 /*
 ** Odin 2 Synthesizer Plugin
-** Copyright (C) 2020 TheWaveWarden
+** Copyright (C) 2020 - 2021 TheWaveWarden
 **
 ** Odin 2 is free software: you can redistribute it and/or modify
 ** it under the terms of the GNU General Public License as published by
@@ -14,6 +14,8 @@
 */
 
 void OdinAudioProcessorEditor::setGUIBig() {
+
+	m_tuning.setTopLeftPosition(1.5f * TUNING_POS_X, 1.5f * TUNING_POS_Y);
 
 	juce::Image dropdown_button1 =
 	    ImageCache::getFromMemory(BinaryData::buttondropdown_1_150_png, BinaryData::buttondropdown_1_150_pngSize);
@@ -149,6 +151,27 @@ void OdinAudioProcessorEditor::setGUIBig() {
 	                            fx_on_1.getHeight());
 	addAndMakeVisible(m_delay_on_button);
 	m_delay_on_button.setAlwaysOnTop(true);
+
+	m_reverb_on_button.setImages(
+	    &fx_on_draw2, &fx_on_draw2, &fx_on_draw1, &fx_on_draw1, &fx_on_draw4, &fx_on_draw4, &fx_on_draw3, &fx_on_draw3);
+	m_reverb_on_button.setClickingTogglesState(true);
+	m_reverb_on_button.setBounds(OdinHelper::c150(FX_ON_BUTTON_X) + 3 * OdinHelper::c150(FX_BUTTON_OFFSET),
+	                            OdinHelper::c150(FX_ON_BUTTON_Y),
+	                            fx_on_1.getWidth(),
+	                            fx_on_1.getHeight());
+	addAndMakeVisible(m_reverb_on_button);
+	m_reverb_on_button.setAlwaysOnTop(true);
+
+
+	m_reverb_on_button.setImages(
+	    &fx_on_draw2, &fx_on_draw2, &fx_on_draw1, &fx_on_draw1, &fx_on_draw4, &fx_on_draw4, &fx_on_draw3, &fx_on_draw3);
+	m_reverb_on_button.setClickingTogglesState(true);
+	m_reverb_on_button.setBounds(OdinHelper::c150(FX_ON_BUTTON_X) + 3 * OdinHelper::c150(FX_BUTTON_OFFSET),
+	                             OdinHelper::c150(FX_ON_BUTTON_Y),
+	                             fx_on_1.getWidth(),
+	                             fx_on_1.getHeight());
+	addAndMakeVisible(m_reverb_on_button);
+	m_reverb_on_button.setAlwaysOnTop(true);
 
 	juce::Image filter_button1_1 =
 	    ImageCache::getFromMemory(BinaryData::button1_1_150_png, BinaryData::button1_1_150_pngSize);
@@ -353,8 +376,8 @@ void OdinAudioProcessorEditor::setGUIBig() {
 	juce::Image metal_knob_big =
 	    ImageCache::getFromMemory(BinaryData::metal_knob_big_150_png, BinaryData::metal_knob_big_150_pngSize);
 
-	juce::Image black_knob_mid =
-	    ImageCache::getFromMemory(BinaryData::black_knob_mid_150_png, BinaryData::black_knob_mid_150_pngSize);
+	//juce::Image black_knob_mid =
+	//    ImageCache::getFromMemory(BinaryData::black_knob_mid_150_png, BinaryData::black_knob_mid_150_pngSize);
 
 	// load backplates for osc and filters
 
@@ -528,19 +551,10 @@ void OdinAudioProcessorEditor::setGUIBig() {
 	m_lfo_24_button.setBounds(
 	    OdinHelper::c150(LFO24_POS_X), OdinHelper::c150(LFO24_POS_Y), lfo24_left.getWidth(), lfo24_left.getHeight());
 
-	//juce::Image legato_left =
-	//    ImageCache::getFromMemory(BinaryData::buttonlegato_1_150_png, BinaryData::buttonlegato_1_150_pngSize);
-	//juce::Image legato_right =
-	//    ImageCache::getFromMemory(BinaryData::buttonlegato_3_150_png, BinaryData::buttonlegato_3_150_pngSize);
-	//m_legato_button.setImage(legato_left, 1);
-	//m_legato_button.setImage(legato_right, 2);
-	//m_legato_button.setBounds(OdinHelper::c150(LEGATO_POS_X),
-	//                          OdinHelper::c150(LEGATO_POS_Y),
-	//                          legato_left.getWidth(),
-	//                          legato_left.getHeight());
 	juce::Image glas_panel =
 	    ImageCache::getFromMemory(BinaryData::glaspanel_midbig_150_png, BinaryData::glaspanel_midbig_150_pngSize);
-	m_mono_poly_legato_dropdown.setBounds(OdinHelper::c150(LEGATO_POS_X), OdinHelper::c150(LEGATO_POS_Y), glas_panel.getWidth(), glas_panel.getHeight());
+	m_mono_poly_legato_dropdown.setBounds(
+	    OdinHelper::c150(LEGATO_POS_X), OdinHelper::c150(LEGATO_POS_Y), glas_panel.getWidth(), glas_panel.getHeight());
 	m_mono_poly_legato_dropdown.setImage(glas_panel);
 	m_mono_poly_legato_dropdown.setInlay(1);
 
@@ -555,10 +569,10 @@ void OdinAudioProcessorEditor::setGUIBig() {
 	                            gui_size_left.getWidth(),
 	                            gui_size_left.getHeight());
 
-	juce::Image reset_1 = ImageCache::getFromMemory(BinaryData::buttonresetsynth_3_150_png,
-	                                                BinaryData::buttonresetsynth_3_150_pngSize);
-	juce::Image reset_2 = ImageCache::getFromMemory(BinaryData::buttonresetsynth_2_150_png,
-	                                                BinaryData::buttonresetsynth_2_150_pngSize);
+	juce::Image reset_1 =
+	    ImageCache::getFromMemory(BinaryData::buttonresetsynth_3_150_png, BinaryData::buttonresetsynth_3_150_pngSize);
+	juce::Image reset_2 =
+	    ImageCache::getFromMemory(BinaryData::buttonresetsynth_2_150_png, BinaryData::buttonresetsynth_2_150_pngSize);
 
 	juce::DrawableImage reset_draw1;
 	juce::DrawableImage reset_draw2;
@@ -568,8 +582,7 @@ void OdinAudioProcessorEditor::setGUIBig() {
 
 	m_reset.setImages(
 	    &reset_draw2, &reset_draw2, &reset_draw1, &reset_draw1, &reset_draw2, &reset_draw2, &reset_draw1, &reset_draw1);
-	m_reset.setBounds(
-	    RESET_SYNTH_POS_X_150, RESET_SYNTH_POS_Y_150, reset_1.getWidth(), reset_1.getHeight());
+	m_reset.setBounds(RESET_SYNTH_POS_X_150, RESET_SYNTH_POS_Y_150, reset_1.getWidth(), reset_1.getHeight());
 
 	juce::Image lfo13_sync_background = ImageCache::getFromMemory(BinaryData::lfo13_sync_background_150_png,
 	                                                              BinaryData::lfo13_sync_background_150_pngSize);
@@ -681,6 +694,10 @@ void OdinAudioProcessorEditor::setGUIBig() {
 	                  OdinHelper::c150(FX_AREA_POS_Y),
 	                  OdinHelper::c150(FX_AREA_SIZE_X),
 	                  OdinHelper::c150(FX_AREA_SIZE_Y));
+	m_reverb.setBounds(OdinHelper::c150(FX_AREA_POS_X),
+	                   OdinHelper::c150(FX_AREA_POS_Y),
+	                   OdinHelper::c150(FX_AREA_SIZE_X),
+	                   OdinHelper::c150(FX_AREA_SIZE_Y));
 
 	m_mod_matrix.setBounds(
 	    MATRIX_POS_X_150, MATRIX_POS_Y_150, OdinHelper::c150(MATRIX_SIZE_X), OdinHelper::c150(MATRIX_SIZE_Y));

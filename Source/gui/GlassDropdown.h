@@ -1,6 +1,6 @@
 /*
 ** Odin 2 Synthesizer Plugin
-** Copyright (C) 2020 TheWaveWarden
+** Copyright (C) 2020 - 2021 TheWaveWarden
 **
 ** Odin 2 is free software: you can redistribute it and/or modify
 ** it under the terms of the GNU General Public License as published by
@@ -15,16 +15,29 @@
 
 #pragma once
 
+#define TRIANGLE_POS_X 51
+#define TRIANGLE_POS_Y 8
+#define TRIANGLE_WIDTH 8
+#define TRIANGLE_HEIGHT 4
+
+#define TRIANGLE_POS_X_150 76
+#define TRIANGLE_POS_Y_150 12
+#define TRIANGLE_WIDTH_150 12
+#define TRIANGLE_HEIGHT_150 6
+
+#include <functional>
+
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "../GlobalIncludes.h"
-#include <functional>
-#define INLAY_DEFAULT 1
-class GlasDropdown : public juce::ComboBox {
-public:
-	GlasDropdown();
-	~GlasDropdown();
+#include "OdinFeels.h"
 
-	void paint(Graphics &) override;
+#define INLAY_DEFAULT 1
+class GlassDropdown : public juce::ComboBox {
+public:
+	GlassDropdown();
+	virtual ~GlassDropdown();
+
+	virtual void paint(Graphics &) override;
 	void resized() override {
 	} //note without this function, screen text will be drawn double.... no idea..
 	void setImage(juce::Image p_panel) {
@@ -56,7 +69,7 @@ public:
 		m_inlay_top = p_inlay;
 	}
 
-	void mouseDown(const MouseEvent &event) {
+	void mouseDown(const MouseEvent &event) override {
 		rearrangeMenu();
 		ComboBox::mouseDown(event);
 	}
@@ -91,15 +104,17 @@ public:
 	void setInlayLeft(int p_inlay) {
 		m_inlay_left = p_inlay;
 	}
+	void showTriangle(bool p_show = true){
+		m_show_triangle = p_show;
+	}
 
-private:
+protected:
 	int m_inlay_top  = 0;
 	int m_inlay_left = 0;
 
-	bool m_GUI_big = false;
-
+	bool m_GUI_big = true;
 	bool m_setOneToZero = false;
-
+	bool m_show_triangle = false;
 	std::string m_default_text = "undefined";
 
 	bool m_grey_first_element = false;
@@ -109,7 +124,7 @@ private:
 	juce::Colour m_grey_color            = juce::Colours::lightgrey;
 	juce::Colour m_grey_background_color = juce::Colours::black;
 	juce::Colour m_font_color            = juce::Colours::white;
-	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(GlasDropdown)
+	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(GlassDropdown)
 
 	OdinMenuFeels m_menu_feels;
 };

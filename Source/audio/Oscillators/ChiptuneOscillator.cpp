@@ -1,6 +1,6 @@
 /*
 ** Odin 2 Synthesizer Plugin
-** Copyright (C) 2020 TheWaveWarden
+** Copyright (C) 2020 - 2021 TheWaveWarden
 **
 ** Odin 2 is free software: you can redistribute it and/or modify
 ** it under the terms of the GNU General Public License as published by
@@ -127,8 +127,6 @@ float ChiptuneOscillator::generateChipNoise() {
 
 	// return only the last of the three samples
 	return yv[9];
-
-	return m_last_noise_value;
 }
 
 void ChiptuneOscillator::update() {

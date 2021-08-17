@@ -1,6 +1,6 @@
 /*
 ** Odin 2 Synthesizer Plugin
-** Copyright (C) 2020 TheWaveWarden
+** Copyright (C) 2020 - 2021 TheWaveWarden
 **
 ** Odin 2 is free software: you can redistribute it and/or modify
 ** it under the terms of the GNU General Public License as published by
@@ -32,7 +32,7 @@ public:
     //https://ccrma.stanford.edu/~jos/filters/Time_Varying_Two_Pole_Filters.html
     m_b2 = -RESONATOR_GAIN_FACTOR;
   }
-  ~BiquadResonator() {}
+  virtual ~BiquadResonator() {}
 
   void setRadius(float p_radius) {
     m_radius = p_radius;

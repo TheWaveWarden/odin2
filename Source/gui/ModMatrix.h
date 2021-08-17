@@ -1,6 +1,6 @@
 /*
 ** Odin 2 Synthesizer Plugin
-** Copyright (C) 2020 TheWaveWarden
+** Copyright (C) 2020 - 2021 TheWaveWarden
 **
 ** Odin 2 is free software: you can redistribute it and/or modify
 ** it under the terms of the GNU General Public License as published by
@@ -172,6 +172,7 @@ struct ModSources {
   float* x;
   float* y;
   float* MIDI_channel_pressure;
+  float* MIDI_breath;
   float* constant;
   float* soft_pedal;
   float* sustain_pedal;

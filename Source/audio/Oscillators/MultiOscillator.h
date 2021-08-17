@@ -1,6 +1,6 @@
 /*
 ** Odin 2 Synthesizer Plugin
-** Copyright (C) 2020 TheWaveWarden
+** Copyright (C) 2020 - 2021 TheWaveWarden
 **
 ** Odin 2 is free software: you can redistribute it and/or modify
 ** it under the terms of the GNU General Public License as published by
@@ -29,7 +29,7 @@ public:
 	void update() override;
 	void reset() override;
 
-	void randomizePhase(){
+	void randomizePhase() override {
 		for(int osc = 0; osc < OSCS_PER_MULTIOSC; ++osc){
 	  		m_read_index_multi[osc] = (float)rand() / (float)RAND_MAX * WAVETABLE_LENGTH;
 		}

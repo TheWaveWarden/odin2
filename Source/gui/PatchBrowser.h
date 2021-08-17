@@ -1,6 +1,6 @@
 /*
 ** Odin 2 Synthesizer Plugin
-** Copyright (C) 2020 TheWaveWarden
+** Copyright (C) 2020 - 2021 TheWaveWarden
 **
 ** Odin 2 is free software: you can redistribute it and/or modify
 ** it under the terms of the GNU General Public License as published by
@@ -20,10 +20,6 @@
 #include "../PluginProcessor.h"
 
 #define DEFAULT_SOUNDBANK_LOCATION_STRING (ODIN_STORAGE_PATH + File::getSeparatorString() + "Soundbanks")
-
-#define DEFAULT_EXPORT_LOCATION_STRING (File::getSpecialLocation(File::SpecialLocationType::userDocumentsDirectory).getFullPathName())
-//make this one different as to not spark confusion between "folders" and "osb"
-#define DEFAULT_SOUNDBANK_IMPORT_LOCATION_STRING (File::getSpecialLocation(File::SpecialLocationType::userDocumentsDirectory).getFullPathName())
 
 class PatchBrowser    : public Component
 {
@@ -55,11 +51,12 @@ private:
 
     void setFirstSoundbankActive();
 
+
 	std::unique_ptr<FileChooser> m_filechooser;
 
     Image m_background;
 
-    bool m_GUI_big = false;
+    bool m_GUI_big = true;
 
 	OdinAudioProcessor &m_audio_processor;
 	AudioProcessorValueTreeState &m_value_tree;

@@ -1,6 +1,6 @@
 /*
 ** Odin 2 Synthesizer Plugin
-** Copyright (C) 2020 TheWaveWarden
+** Copyright (C) 2020 - 2021 TheWaveWarden
 **
 ** Odin 2 is free software: you can redistribute it and/or modify
 ** it under the terms of the GNU General Public License as published by
@@ -35,7 +35,7 @@ public:
 		g.setColour(Colour(50, 50, 50));
 		g.drawRect(body); // pmai
 	}
-	int getSliderPopupPlacement(Slider &slider) {
+	int getSliderPopupPlacement(Slider &slider) override {
 		return 2;
 	}
 	/*

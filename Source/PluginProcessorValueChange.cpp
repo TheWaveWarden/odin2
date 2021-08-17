@@ -1,6 +1,6 @@
 /*
 ** Odin 2 Synthesizer Plugin
-** Copyright (C) 2020 TheWaveWarden
+** Copyright (C) 2020 - 2021 TheWaveWarden
 **
 ** Odin 2 is free software: you can redistribute it and/or modify
 ** it under the terms of the GNU General Public License as published by
@@ -48,7 +48,6 @@ float valueToDenominator(int p_value) {
 		return 16.f;
 		break;
 	}
-	return 16.f;
 }
 
 void OdinAudioProcessor::treeValueChangedOscPitch(const String &p_ID, float p_new_value) {
@@ -676,6 +675,29 @@ void OdinAudioProcessor::treeValueChangedDelay(const String &p_ID, float p_new_v
 		m_delay.reset();
 	} else if (id == m_delay_pingpong_identifier) {
 		m_delay.setPingPong(*m_delay_pingpong > 0.5f);
+	}
+}
+
+void OdinAudioProcessor::treeValueChangedReverb(const String &p_ID, float p_new_value) {
+#ifdef DEBUG_VARIABLES
+	DBG("Reverb: " + p_ID + ": " + std::to_string(p_new_value));
+#endif
+	StringRef id = StringRef(p_ID);
+
+	if (id == m_reverb_delay_identifier) {
+		m_reverb_zita.set_delay(p_new_value / 1000.f);
+	} else if (id == m_reverb_on_identifier && p_new_value > 0.5f) {
+		m_reverb_zita.reset();
+	} else if (id == m_reverb_mid_hall_identifier) {
+		m_reverb_zita.set_rtmid(p_new_value);
+	} else if (id == m_reverb_hf_damp_identifier) {
+		m_reverb_zita.set_fdamp(p_new_value);
+	} else if (id == m_reverb_eq_gain_identifier) {
+		m_reverb_zita.set_eq1_gain(p_new_value);
+	} else if (id == m_reverb_eq_freq_identifier) {
+		m_reverb_zita.set_eq1_freq(p_new_value);
+	} else if (id == m_reverb_dry_wet_identifier) {
+		m_reverb_zita.set_opmix(p_new_value);
 	}
 }
 

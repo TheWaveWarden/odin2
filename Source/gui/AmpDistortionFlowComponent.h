@@ -1,6 +1,6 @@
 /*
 ** Odin 2 Synthesizer Plugin
-** Copyright (C) 2020 TheWaveWarden
+** Copyright (C) 2020 - 2021 TheWaveWarden
 **
 ** Odin 2 is free software: you can redistribute it and/or modify
 ** it under the terms of the GNU General Public License as published by
@@ -16,7 +16,7 @@
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
-#include "GlasDropdown.h"
+#include "GlassDropdown.h"
 #include "../GlobalIncludes.h"
 #include "Knob.h"
 #include "OdinButton.h"
@@ -82,7 +82,7 @@ public:
 	void setGUISmall();
 
 private:
-	bool m_GUI_big = false;
+	bool m_GUI_big = true;
 
 	juce::Image m_distortion_image;
 
@@ -100,7 +100,7 @@ private:
 	OdinButton m_flow_right;
 	OdinButton m_distortion;
 
-	GlasDropdown m_distortion_algo;
+	GlassDropdown m_distortion_algo;
 
 	AudioProcessorValueTreeState &m_value_tree;
 

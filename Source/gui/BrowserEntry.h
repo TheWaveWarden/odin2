@@ -1,6 +1,6 @@
 /*
 ** Odin 2 Synthesizer Plugin
-** Copyright (C) 2020 TheWaveWarden
+** Copyright (C) 2020 - 2021 TheWaveWarden
 **
 ** Odin 2 is free software: you can redistribute it and/or modify
 ** it under the terms of the GNU General Public License as published by
@@ -59,7 +59,7 @@ private:
 
 	String m_text;
 
-	bool m_GUI_big = false;
+	bool m_GUI_big = true;
 	bool m_is_highlighted = false;
 	bool m_is_active = false;
 	bool m_pass_active_element_to_parent = false;

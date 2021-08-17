@@ -1,6 +1,6 @@
 /*
 ** Odin 2 Synthesizer Plugin
-** Copyright (C) 2020 TheWaveWarden
+** Copyright (C) 2020 - 2021 TheWaveWarden
 **
 ** Odin 2 is free software: you can redistribute it and/or modify
 ** it under the terms of the GNU General Public License as published by
@@ -101,7 +101,7 @@ public:
 		g.drawRect(body); // pmai
 		g.setFont(30.f);
 	}
-	int getSliderPopupPlacement(Slider &slider) {
+	int getSliderPopupPlacement(Slider &slider) override {
 		return 2;
 	}
 };
@@ -150,9 +150,7 @@ public:
 	void paint(juce::Graphics &g) override {
 		SET_INTERPOLATION_QUALITY(g)
 
-		std::size_t image_number = static_cast<std::size_t>(
-		    // 0.5 + (getValue() - getMinimum()) / (getMaximum() - getMinimum()) *
-		    valueToProportionOfLength(getValue()) * (m_frames - 1));
+		int image_number = (int)(valueToProportionOfLength(getValue()) * (m_frames - 1));
 		if (m_is_vertical) {
 			g.drawImage(m_filmstrip, 0, 0, m_width, m_height, 0, image_number * m_height, m_width, m_height);
 		} else {
@@ -281,7 +279,7 @@ private:
 
 	static OdinAudioProcessor *m_processor;
 	bool m_is_vertical = true;
-	std::size_t m_frames, m_width, m_height;
+	int m_frames, m_width, m_height;
 	juce::Image m_filmstrip;
 
 	KnobFeels m_knob_feels;
@@ -291,7 +289,7 @@ private:
 
 class DecibelKnob : public Knob {
 	String getTextFromValue(double value) override {
-		if(value < -59.999){
+		if (value < -59.999) {
 			return "-Inf dB";
 		} else {
 			return String((float)value, 2) + " dB";

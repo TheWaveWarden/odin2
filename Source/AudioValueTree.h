@@ -1,6 +1,6 @@
 /*
 ** Odin 2 Synthesizer Plugin
-** Copyright (C) 2020 TheWaveWarden
+** Copyright (C) 2020 - 2021 TheWaveWarden
 **
 ** Odin 2 is free software: you can redistribute it and/or modify
 ** it under the terms of the GNU General Public License as published by
@@ -12,8 +12,6 @@
 ** MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 ** GNU General Public License for more details.
 */
-
-
 
 {
 	// Osc 1
@@ -38,7 +36,7 @@
 	    std::make_unique<AudioParameterFloat>("osc1_vec_y", "Osc1 Vector Y", NormalisableRange<float>(0.f, 1.f), 0.f),
 	    std::make_unique<AudioParameterFloat>("osc1_arp_speed",
 	                                          "Osc1 Arpeggiator Speed",
-	                                          NormalisableRange<float>(1.000000, 100.000000, 0, 0.354358),
+	                                          NormalisableRange<float>(1.000000, 100.000000, 0, 0.354358f),
 	                                          20.f),
 	    std::make_unique<AudioParameterInt>("osc1_step_1", "Osc1 Step1", -12, 12, 0),
 	    std::make_unique<AudioParameterInt>("osc1_step_2", "Osc1 Step2", -12, 12, 12),
@@ -77,7 +75,7 @@
 	    std::make_unique<AudioParameterFloat>("osc2_vec_y", "Osc2 Vector Y", NormalisableRange<float>(0.f, 1.f), 0.f),
 	    std::make_unique<AudioParameterFloat>("osc2_arp_speed",
 	                                          "Osc2 Arpeggiator Speed",
-	                                          NormalisableRange<float>(1.000000, 100.000000, 0, 0.354358),
+	                                          NormalisableRange<float>(1.000000, 100.000000, 0, 0.354358f),
 	                                          20.f),
 	    std::make_unique<AudioParameterInt>("osc2_step_1", "Osc2 Step1", -12, 12, 0),
 	    std::make_unique<AudioParameterInt>("osc2_step_2", "Osc2 Step2", -12, 12, 12),
@@ -116,7 +114,7 @@
 	    std::make_unique<AudioParameterFloat>("osc3_vec_y", "Osc3 Vector Y", NormalisableRange<float>(0.f, 1.f), 0.f),
 	    std::make_unique<AudioParameterFloat>("osc3_arp_speed",
 	                                          "Osc3 Arpeggiator Speed",
-	                                          NormalisableRange<float>(1.000000, 100.000000, 0, 0.354358),
+	                                          NormalisableRange<float>(1.000000, 100.000000, 0, 0.354358f),
 	                                          20.f),
 	    std::make_unique<AudioParameterInt>("osc3_step_1", "Osc3 Step1", -12, 12, 0),
 	    std::make_unique<AudioParameterInt>("osc3_step_2", "Osc3 Step2", -12, 12, 12),
@@ -146,7 +144,7 @@
 	    std::make_unique<AudioParameterFloat>("fil1_freq",
 	                                          "Filter1 Frequency",
 	                                          NormalisableRange<float>(20.f, 20000.f, 0.f, FILTER_SKEW_DEFAULT),
-	                                          2000.f),
+	                                          20000.f),
 	    std::make_unique<AudioParameterFloat>("fil1_res", "Filter1 Resonance", NormalisableRange<float>(0.f, 1.f), 0.f),
 	    std::make_unique<AudioParameterFloat>(
 	        "fil1_saturation", "Filter1 Saturation", NormalisableRange<float>(0.f, 1.f), 0.f),
@@ -214,60 +212,60 @@
 	        "dist_drywet", "Distortion DryWet", NormalisableRange<float>(0.f, 1.f, 0.f, 1.f), 1.f),
 	    // ADSR1
 	    std::make_unique<AudioParameterFloat>(
-	        "env1_attack", "AmpEnv Attack", NormalisableRange<float>(0.001f, 10.f, 0.f, 0.300912), 0.01f),
+	        "env1_attack", "AmpEnv Attack", NormalisableRange<float>(0.001f, 10.f, 0.f, 0.300912f), 0.01f),
 	    std::make_unique<AudioParameterFloat>(
-	        "env1_decay", "AmpEnv Decay", NormalisableRange<float>(0.001f, 10.f, 0.f, 0.300912), 1.f),
+	        "env1_decay", "AmpEnv Decay", NormalisableRange<float>(0.001f, 10.f, 0.f, 0.300912f), 1.f),
 	    std::make_unique<AudioParameterFloat>(
-	        "env1_sustain", "AmpEnv Sustain", NormalisableRange<float>(0.f, 1.f, 0.f, 0.575717), 0.5f),
+	        "env1_sustain", "AmpEnv Sustain", NormalisableRange<float>(0.f, 1.f, 0.f, 0.575717f), 0.5f),
 	    std::make_unique<AudioParameterFloat>(
-	        "env1_release", "AmpEnv Release", NormalisableRange<float>(0.001f, 10.f, 0.f, 0.300912), 0.01f),
+	        "env1_release", "AmpEnv Release", NormalisableRange<float>(0.001f, 10.f, 0.f, 0.300912f), 0.01f),
 	    std::make_unique<AudioParameterInt>("env1_loop", "AmpEnv Loop", 0, 1, 0),
 	    // ADSR2
 	    std::make_unique<AudioParameterFloat>(
-	        "env2_attack", "FilterEnv Attack", NormalisableRange<float>(0.001f, 10.f, 0.f, 0.300912), 0.01f),
+	        "env2_attack", "FilterEnv Attack", NormalisableRange<float>(0.001f, 10.f, 0.f, 0.300912f), 0.01f),
 	    std::make_unique<AudioParameterFloat>(
-	        "env2_decay", "FilterEnv Decay", NormalisableRange<float>(0.001f, 10.f, 0.f, 0.300912), 0.8f),
+	        "env2_decay", "FilterEnv Decay", NormalisableRange<float>(0.001f, 10.f, 0.f, 0.300912f), 0.8f),
 	    std::make_unique<AudioParameterFloat>(
-	        "env2_sustain", "FilterEnv Sustain", NormalisableRange<float>(0.f, 1.f, 0.f, 0.575717), 0.f),
+	        "env2_sustain", "FilterEnv Sustain", NormalisableRange<float>(0.f, 1.f, 0.f, 0.575717f), 0.f),
 	    std::make_unique<AudioParameterFloat>(
-	        "env2_release", "FilterEnv Release", NormalisableRange<float>(0.001f, 10.f, 0.f, 0.300912), 0.01f),
+	        "env2_release", "FilterEnv Release", NormalisableRange<float>(0.001f, 10.f, 0.f, 0.300912f), 0.01f),
 	    std::make_unique<AudioParameterInt>("env2_loop", "FilterEnv Loop", 0, 1, 0),
 	    // ADSR3
 	    std::make_unique<AudioParameterFloat>(
-	        "env3_attack", "ModEnv Attack", NormalisableRange<float>(0.001f, 10.f, 0.f, 0.300912), 0.01f),
+	        "env3_attack", "ModEnv Attack", NormalisableRange<float>(0.001f, 10.f, 0.f, 0.300912f), 0.01f),
 	    std::make_unique<AudioParameterFloat>(
-	        "env3_decay", "ModEnv Decay", NormalisableRange<float>(0.001f, 10.f, 0.f, 0.300912), 0.8f),
+	        "env3_decay", "ModEnv Decay", NormalisableRange<float>(0.001f, 10.f, 0.f, 0.300912f), 0.8f),
 	    std::make_unique<AudioParameterFloat>(
-	        "env3_sustain", "ModEnv Sustain", NormalisableRange<float>(0.f, 1.f, 0.f, 0.575717), 0.f),
+	        "env3_sustain", "ModEnv Sustain", NormalisableRange<float>(0.f, 1.f, 0.f, 0.575717f), 0.f),
 	    std::make_unique<AudioParameterFloat>(
-	        "env3_release", "ModEnv Release", NormalisableRange<float>(0.001f, 10.f, 0.f, 0.300912), 0.01f),
+	        "env3_release", "ModEnv Release", NormalisableRange<float>(0.001f, 10.f, 0.f, 0.300912f), 0.01f),
 	    std::make_unique<AudioParameterInt>("env3_loop", "ModEnv Loop", 0, 1, 0),
 	    // ADSR4
 	    std::make_unique<AudioParameterFloat>(
-	        "env4_attack", "GlobalEnv Attack", NormalisableRange<float>(0.001f, 10.f, 0.f, 0.300912), 0.01f),
+	        "env4_attack", "GlobalEnv Attack", NormalisableRange<float>(0.001f, 10.f, 0.f, 0.300912f), 0.01f),
 	    std::make_unique<AudioParameterFloat>(
-	        "env4_decay", "GlobalEnv Decay", NormalisableRange<float>(0.001f, 10.f, 0.f, 0.300912), 1.f),
+	        "env4_decay", "GlobalEnv Decay", NormalisableRange<float>(0.001f, 10.f, 0.f, 0.300912f), 1.f),
 	    std::make_unique<AudioParameterFloat>(
-	        "env4_sustain", "GlobalEnv Sustain", NormalisableRange<float>(0.f, 1.f, 0.f, 0.575717), 0.5f),
+	        "env4_sustain", "GlobalEnv Sustain", NormalisableRange<float>(0.f, 1.f, 0.f, 0.575717f), 0.5f),
 	    std::make_unique<AudioParameterFloat>(
-	        "env4_release", "GlobalEnv Release", NormalisableRange<float>(0.001f, 10.f, 0.f, 0.300912), 0.01f),
+	        "env4_release", "GlobalEnv Release", NormalisableRange<float>(0.001f, 10.f, 0.f, 0.300912f), 0.01f),
 	    std::make_unique<AudioParameterInt>("env4_loop", "GlobalEnv Loop", 0, 1, 0),
 	    // LFO1
 	    std::make_unique<AudioParameterInt>("lfo1_reset", "LFO1 Reset", 0, 1, 0),
 	    std::make_unique<AudioParameterFloat>(
-	        "lfo1_freq", "LFO1 Frequency", NormalisableRange<float>(0.05f, 100.f, 0.f, 0.196757), 1),
+	        "lfo1_freq", "LFO1 Frequency", NormalisableRange<float>(0.05f, 100.f, 0.f, 0.196757f), 1),
 	    // LFO2
 	    std::make_unique<AudioParameterInt>("lfo2_reset", "LFO2 Reset", 0, 1, 0),
 	    std::make_unique<AudioParameterFloat>(
-	        "lfo2_freq", "LFO2 Frequency", NormalisableRange<float>(0.05f, 100.f, 0.f, 0.196757), 1),
+	        "lfo2_freq", "LFO2 Frequency", NormalisableRange<float>(0.05f, 100.f, 0.f, 0.196757f), 1),
 	    // LFO3
 	    std::make_unique<AudioParameterInt>("lfo3_reset", "LFO3 Reset", 0, 1, 0),
 	    std::make_unique<AudioParameterFloat>(
-	        "lfo3_freq", "LFO3 Frequency", NormalisableRange<float>(0.05f, 100.f, 0.f, 0.196757), 1),
+	        "lfo3_freq", "LFO3 Frequency", NormalisableRange<float>(0.05f, 100.f, 0.f, 0.196757f), 1),
 	    // LFO4
 	    std::make_unique<AudioParameterInt>("lfo4_reset", "LFO4 Reset", 0, 1, 0),
 	    std::make_unique<AudioParameterFloat>(
-	        "lfo4_freq", "LFO4 Frequency", NormalisableRange<float>(0.05f, 100.f, 0.f, 0.196757), 1),
+	        "lfo4_freq", "LFO4 Frequency", NormalisableRange<float>(0.05f, 100.f, 0.f, 0.196757f), 1),
 	    // Misc
 	    std::make_unique<AudioParameterInt>("fil1_to_amp", "Filter1 To Amplifier", 0, 1, 0),
 	    std::make_unique<AudioParameterInt>("fil2_to_amp", "Filter2 To Amplifier", 0, 1, 1),
@@ -295,6 +293,24 @@
 	    std::make_unique<AudioParameterFloat>(
 	        "delay_wet", "Delay Wet", NormalisableRange<float>(0.f, 1.f, 0.f, 0.575717), 0.7f),
 	    std::make_unique<AudioParameterInt>("delay_on", "Delay On", 0, 1, 0),
+
+	    std::make_unique<AudioParameterFloat>(
+	        "rev_delay", "Reverb PreDelay", NormalisableRange<float>(20.f, 80.f, 0.f, 1), 40.f),
+	    std::make_unique<AudioParameterFloat>(
+	        "rev_eqgain", "Reverb EQ Gain", NormalisableRange<float>(-12.f, 12.f, 0.f, 1.f), 0.f),
+	    std::make_unique<AudioParameterFloat>(
+	        "rev_eqfreq", "Reverb EQ Freq", NormalisableRange<float>(100.f, 10000.f, 0.f, FILTER_SKEW_DEFAULT), 1000.f),
+	    //std::make_unique<AudioParameterFloat>(
+	    //    "rev_ducking", "Reverb Ducking", NormalisableRange<float>(0.f, 1.f, 0.f, 1.f), 0.f),
+	    std::make_unique<AudioParameterFloat>(
+	        "rev_drywet", "Reverb DryWet", NormalisableRange<float>(0.f, 1.f, 0.f, 0.7f), 0.25f),
+	    std::make_unique<AudioParameterFloat>(
+	        "rev_mid_hall", "Reverb Mid Hall", NormalisableRange<float>(1.f, 8.f, 0.f, 1.f), 2.f),
+	    std::make_unique<AudioParameterFloat>("rev_hf_damp",
+	                                          "Reverb High Freq Damp",
+	                                          NormalisableRange<float>(1500.f, 24000.f, 0.f, FILTER_SKEW_DEFAULT),
+	                                          6000.f),
+	    std::make_unique<AudioParameterInt>("reverb_on", "Reverb On", 0, 1, 0),
 
 	    // Phaser
 	    std::make_unique<AudioParameterInt>("phaser_reset", "Phaser Reset", 0, 1, 0),

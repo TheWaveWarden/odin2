@@ -1,6 +1,6 @@
 /*
 ** Odin 2 Synthesizer Plugin
-** Copyright (C) 2020 TheWaveWarden
+** Copyright (C) 2020 - 2021 TheWaveWarden
 **
 ** Odin 2 is free software: you can redistribute it and/or modify
 ** it under the terms of the GNU General Public License as published by
@@ -221,10 +221,6 @@ m_osc1_type_identifier("osc1_type"), m_osc2_type_identifier("osc2_type"),
     m_xy_x_identifier("xy_x"), m_xy_y_identifier("xy_y"),
     m_delay_on_identifier("delay_on"), m_phaser_on_identifier("phaser_on"),
     m_flanger_on_identifier("flanger_on"), m_chorus_on_identifier("chorus_on"),
-    m_delay_selected_identifier("delay_selected"),
-    m_phaser_selected_identifier("phaser_selected"),
-    m_flanger_selected_identifier("flanger_selected"),
-    m_chorus_selected_identifier("chorus_selected"),
     m_fil1_osc1_identifier("fil1_osc1"), m_fil1_osc2_identifier("fil1_osc2"),
     m_fil1_osc3_identifier("fil1_osc3"), m_fil2_osc1_identifier("fil2_osc1"),
     m_fil2_osc2_identifier("fil2_osc2"), m_fil2_osc3_identifier("fil2_osc3"),
@@ -233,6 +229,7 @@ m_osc1_type_identifier("osc1_type"), m_osc2_type_identifier("osc2_type"),
     m_flanger_position_identifier("flanger_position"),
     m_phaser_position_identifier("phaser_position"),
     m_chorus_position_identifier("chorus_position"),
+    m_reverb_position_identifier("reverb_position"),
     m_delay_time_identifier("delay_time"),
     m_delay_feedback_identifier("delay_feedback"),
     m_delay_hp_identifier("delay_hp"),
@@ -242,6 +239,14 @@ m_osc1_type_identifier("osc1_type"), m_osc2_type_identifier("osc2_type"),
     m_delay_pingpong_identifier("delay_pingpong"),
     m_delay_synctime_numerator_identifier("delay_synctime_numerator"),
     m_delay_synctime_denominator_identifier("delay_synctime_denominator"),
+    m_reverb_delay_identifier("rev_delay"),
+    m_reverb_eq_gain_identifier("rev_eqgain"),
+    m_reverb_eq_freq_identifier("rev_eqfreq"),
+    //m_reverb_ducking_identifier("rev_ducking"),
+    m_reverb_mid_hall_identifier("rev_mid_hall"),
+    m_reverb_on_identifier("reverb_on"),
+    m_reverb_hf_damp_identifier("rev_hf_damp"),
+    m_reverb_dry_wet_identifier("rev_drywet"),
     m_phaser_reset_identifier("phaser_reset"),
     m_arp_on_identifier("arp_on"),
     m_arp_one_shot_identifier("arp_one_shot"),
@@ -406,4 +411,5 @@ m_osc1_type_identifier("osc1_type"), m_osc2_type_identifier("osc2_type"),
 	m_value_tree_misc("misc"),
 	m_value_tree_mod("mod"),
 	m_value_tree_osc("osc"),
-    m_value_tree_midi_learn("midi_learn")
+    m_value_tree_midi_learn("midi_learn"),
+    m_tuning(Tunings::tuneNoteTo( 60, Tunings::MIDI_0_FREQ * 32.0 ))

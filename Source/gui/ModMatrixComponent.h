@@ -1,6 +1,6 @@
 /*
 ** Odin 2 Synthesizer Plugin
-** Copyright (C) 2020 TheWaveWarden
+** Copyright (C) 2020 - 2021 TheWaveWarden
 **
 ** Odin 2 is free software: you can redistribute it and/or modify
 ** it under the terms of the GNU General Public License as published by
@@ -16,11 +16,18 @@
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
-#include "GlasDropdown.h"
+#include "GlassDropdown.h"
 #include "../GlobalIncludes.h"
-#include "ModAmountComponent.h"
+#include "ModAmountComponentExtended.h"
 
 #define N_ROWS 9
+
+#define MODMATRIX_COL_POS_1 juce::Colour(46, 136, 174)
+#define MODMATRIX_COL_POS_2 juce::Colour(0xff005400)
+#define MODMATRIX_COL_POS_3 juce::Colour(0xff172575)
+#define MODMATRIX_COL_NEG_1 juce::Colour(252, 58, 97)
+#define MODMATRIX_COL_NEG_2 juce::Colours::darkviolet
+#define MODMATRIX_COL_NEG_3 juce::Colours::black
 
 class ModMatrixComponent : public Component {
 public:
@@ -37,20 +44,20 @@ public:
 
 private:
 
-  bool m_GUI_big = false;
+  bool m_GUI_big = true;
 
   void clearRow(int p_row);
 
   void createMenu(PopupMenu* p_menu);
   void setStandardMenu(PopupMenu *p_menu);
 
-  GlasDropdown m_source[N_ROWS];
-  ModAmountComponent m_amount_1[N_ROWS];
-  GlasDropdown m_dest_1[N_ROWS];
-  ModAmountComponent m_amount_2[N_ROWS];
-  GlasDropdown m_dest_2[N_ROWS];
+  GlassDropdown m_source[N_ROWS];
+  ModAmountComponentExtended m_amount_1[N_ROWS];
+  GlassDropdown m_dest_1[N_ROWS];
+  ModAmountComponentExtended m_amount_2[N_ROWS];
+  GlassDropdown m_dest_2[N_ROWS];
   ModAmountComponent m_amount_3[N_ROWS];
-  GlasDropdown m_scale[N_ROWS];
+  GlassDropdown m_scale[N_ROWS];
 
   Identifier m_source_identifier0;
   Identifier m_source_identifier1;

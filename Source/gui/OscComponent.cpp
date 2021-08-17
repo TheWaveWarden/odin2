@@ -1,6 +1,6 @@
 /*
 ** Odin 2 Synthesizer Plugin
-** Copyright (C) 2020 TheWaveWarden
+** Copyright (C) 2020 - 2021 TheWaveWarden
 **
 ** Odin 2 is free software: you can redistribute it and/or modify
 ** it under the terms of the GNU General Public License as published by
@@ -692,7 +692,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 		m_value_tree.state.getChildWithName("osc").setProperty(m_carrier_ratio_identifier, p_new_value, nullptr);
 	};
 	m_carrier_ratio.setTopLeftPosition(RATIO_CARRIER_POS_X, RATIO_CARRIER_POS_Y);
-	m_carrier_ratio.setRange(1, 12);
+	m_carrier_ratio.setRange(1, 16);
 	m_carrier_ratio.setColor(FM_COLOR);
 	m_carrier_ratio.setTooltip("The pitch ratio of the carrier to base frequency");
 	m_carrier_ratio.setMouseDragDivisor(20.f);
@@ -704,7 +704,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 		m_value_tree.state.getChildWithName("osc").setProperty(m_modulator_ratio_identifier, p_new_value, nullptr);
 	};
 	m_modulator_ratio.setTopLeftPosition(RATIO_MODULATOR_POS_X, RATIO_MODULATOR_POS_Y);
-	m_modulator_ratio.setRange(1, 12);
+	m_modulator_ratio.setRange(1, 16);
 	m_modulator_ratio.setColor(FM_COLOR);
 	m_modulator_ratio.setTooltip("The pitch ratio of the modulator to base frequency");
 	m_modulator_ratio.setMouseDragDivisor(20.f);

@@ -1,6 +1,6 @@
 /*
 ** Odin 2 Synthesizer Plugin
-** Copyright (C) 2020 TheWaveWarden
+** Copyright (C) 2020 - 2021 TheWaveWarden
 **
 ** Odin 2 is free software: you can redistribute it and/or modify
 ** it under the terms of the GNU General Public License as published by
@@ -15,6 +15,7 @@
 
 #pragma once
 
+#include "../../GlobalIncludes.h"
 #include "../JuceLibraryCode/JuceHeader.h"
 #include <cmath>
 
@@ -32,8 +33,11 @@ public:
 	virtual ~Filter();
 
 	inline float pitchShiftMultiplier(float p_semitones) {
+		if (p_semitones < 48.f && p_semitones > -48.f) {
+			return juce::dsp::FastMathApproximations::exp(0.05776226504 * p_semitones);
+		}
 		//0.05776226504 = ln(2)/12
-		return juce::dsp::FastMathApproximations::exp(0.057762f * p_semitones);
+		return std::exp(0.05776226504 * p_semitones);
 	}
 
 	inline float fasttanh(float p_input, float p_tanh_factor) {
@@ -82,7 +86,7 @@ public:
 	virtual void reset();
 
 	double m_freq_base = FILTER_FC_DEFAULT;
-	double m_res_base = 1;
+	double m_res_base  = 1;
 
 	int m_MIDI_note     = 0;
 	int m_MIDI_velocity = 0;
@@ -91,7 +95,7 @@ public:
 	float m_vel_mod_amount = 0;
 	float m_env_mod_amount = 0;
 	float m_env_value      = 0.f;
-	float m_overdrive = 0.;
+	float m_overdrive      = 0.;
 	double m_mod_frequency = 0;
 
 protected:
@@ -107,5 +111,5 @@ protected:
 	double m_samplerate = -1;
 	double m_one_over_samplerate;
 	double m_freq_modded = FILTER_FC_DEFAULT;
-	double m_res_modded = FILTER_Q_DEFAULT;
+	double m_res_modded  = FILTER_Q_DEFAULT;
 };

@@ -1,6 +1,6 @@
 /*
 ** Odin 2 Synthesizer Plugin
-** Copyright (C) 2020 TheWaveWarden
+** Copyright (C) 2020 - 2021 TheWaveWarden
 **
 ** Odin 2 is free software: you can redistribute it and/or modify
 ** it under the terms of the GNU General Public License as published by
@@ -13,6 +13,10 @@
 ** GNU General Public License for more details.
 */
 
+//this file is included from PluginProcessor.cpp to split the class implementation
+
+#include "PluginProcessor.h"
+
 // read patch by iterating over all attritubes,
 // setting them if they are available and setting to default if not
 void OdinAudioProcessor::readPatch(const ValueTree &newState) {
@@ -23,8 +27,11 @@ void OdinAudioProcessor::readPatch(const ValueTree &newState) {
 
 	migratePatch(newStateMigrated);
 
-	int minor_version           = newStateMigrated.getChildWithName("misc")["version_minor"];
-	int patch_version           = newStateMigrated.getChildWithName("misc")["version_patch"];
+//avoid compiler warning unused variable
+#if (JUCE_DEBUG && !JUCE_DISABLE_ASSERTIONS) || DOXYGEN
+	int patch_version = newStateMigrated.getChildWithName("misc")["version_patch"];
+	int minor_version = newStateMigrated.getChildWithName("misc")["version_minor"];
+#endif
 	int patch_migration_version = newStateMigrated.getChildWithName("misc")["patch_migration_version"];
 
 	DBG("Read patch from version 2." + std::to_string(minor_version) + "." + std::to_string(patch_version) +
@@ -32,22 +39,32 @@ void OdinAudioProcessor::readPatch(const ValueTree &newState) {
 	DBG("Read patch migration version " + std::to_string(patch_migration_version) + ", current version is " +
 	    std::to_string(ODIN_PATCH_MIGRATION_VERSION));
 
+	if (patch_migration_version < ODIN_PATCH_MIGRATION_VERSION) {
+		DBG("Preset seems to be from older version... loading init priset first...");
+
+		// replace stream with patch from binary data
+		MemoryInputStream init_stream(BinaryData::init_patch_odin, BinaryData::init_patch_odinSize, false);
+		readPatch(ValueTree::readFromStream(init_stream));
+
+		DBG("Done loading init patch");
+	}
+
 	const ValueTree &draw_tree = newStateMigrated.getChildWithName("draw");
 
 	//if new value has no draw tree, create it from scratch
 	for (int osc = 1; osc < 4; ++osc) {
 		if (!(draw_tree.hasProperty(String("osc" + std::to_string(osc) + "_wavedraw_values_0")))) {
-			DBG("Tree has no wavedraw" + std::to_string(osc) +" values, fallback to generation");
+			DBG("Tree has no wavedraw" + std::to_string(osc) + " values, fallback to generation");
 			writeDefaultWavedrawValuesToTree(osc);
 		}
 
 		if (!(draw_tree.hasProperty(String("osc" + std::to_string(osc) + "_chipdraw_values_0")))) {
-			DBG("Tree has no chipdraw" + std::to_string(osc) +" values, fallback to generation");
+			DBG("Tree has no chipdraw" + std::to_string(osc) + " values, fallback to generation");
 			writeDefaultChipdrawValuesToTree(osc);
 		}
 
 		if (!(draw_tree.hasProperty(String("osc" + std::to_string(osc) + "_specdraw_values_0")))) {
-			DBG("Tree has no specdraw" + std::to_string(osc) +" values, fallback to generation");
+			DBG("Tree has no specdraw" + std::to_string(osc) + " values, fallback to generation");
 			writeDefaultSpecdrawValuesToTree(osc);
 		}
 	}

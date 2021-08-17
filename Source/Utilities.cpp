@@ -1,6 +1,6 @@
 /*
 ** Odin 2 Synthesizer Plugin
-** Copyright (C) 2020 TheWaveWarden
+** Copyright (C) 2020 - 2021 TheWaveWarden
 **
 ** Odin 2 is free software: you can redistribute it and/or modify
 ** it under the terms of the GNU General Public License as published by
@@ -142,6 +142,7 @@ void Utilities::createWavetables(float p_samplerate) {
 
 	end                 = std::clock();
 	double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
+	(void)elapsed_secs; //<- compiler warning
 	DBG("Oscillator WT creation took " + std::to_string(elapsed_secs) +
 	    " seconds. Average: " + std::to_string(elapsed_secs / (float)NUMBER_OF_WAVETABLES));
 }
@@ -152,7 +153,7 @@ void Utilities::createLFOtables(float p_samplerate) {
 	for (int index_wavetable = 0; index_wavetable < NUMBER_OF_LFOTABLES; ++index_wavetable) {
 
 		double seed_freq = 27.5; // A0
-		float max        = 0.f;
+		//float max        = 0.f;
 
 		// allocate memory for actual tables
 		float *next_table = new float[WAVETABLE_LENGTH];
@@ -1008,10 +1009,10 @@ void Utilities::writeWavetableToFile(int index_wavetable) {
 			}
 		}
 
-		for (int index_sub_table = 0; index_sub_table < SUBTABLES_PER_WAVETABLE; ++index_sub_table) {
+		for (int index_sub_table_arr = 0; index_sub_table_arr < SUBTABLES_PER_WAVETABLE; ++index_sub_table_arr) {
 			for (int index_position = 0; index_position < WAVETABLE_LENGTH; ++index_position) {
-				if (fabs(wavetables[0][index_sub_table][index_position]) > max) {
-					max = fabs(wavetables[0][index_sub_table][index_position]);
+				if (fabs(wavetables[0][index_sub_table_arr][index_position]) > max) {
+					max = fabs(wavetables[0][index_sub_table_arr][index_position]);
 				}
 			}
 		}
@@ -1075,13 +1076,13 @@ void Utilities::writeLFOtablesToFiles() {
 	float wavetables[NUMBER_OF_WAVETABLES][1][WAVETABLE_LENGTH] = {0};
 
 	// //loop over all wavetables
-	for (int index_wavetable = 0; index_wavetable < NUMBER_OF_WAVETABLES; ++index_wavetable) {
+	for (int index_wavetable = 0; index_wavetable < NUMBER_OF_LFOTABLES; ++index_wavetable) {
 
 		// this flags hackishly if a waveform only uses sine components
-		bool sine_only = false;
+		//bool sine_only = false;
 
 		double seed_freq = 27.5; // A0
-		float max        = 0.f;
+		//float max        = 0.f;
 
 		// loop over subtables
 		int index_sub_table = 0;

@@ -1,6 +1,6 @@
 /*
 ** Odin 2 Synthesizer Plugin
-** Copyright (C) 2020 TheWaveWarden
+** Copyright (C) 2020 - 2021 TheWaveWarden
 **
 ** Odin 2 is free software: you can redistribute it and/or modify
 ** it under the terms of the GNU General Public License as published by
@@ -29,7 +29,7 @@
 class CombFilter {
 public:
 	CombFilter();
-	~CombFilter();
+	virtual ~CombFilter();
 
 	float doFilter(float p_input);
 	int m_MIDI_note     = 0;

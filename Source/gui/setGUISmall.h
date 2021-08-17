@@ -1,6 +1,6 @@
 /*
 ** Odin 2 Synthesizer Plugin
-** Copyright (C) 2020 TheWaveWarden
+** Copyright (C) 2020 - 2021 TheWaveWarden
 **
 ** Odin 2 is free software: you can redistribute it and/or modify
 ** it under the terms of the GNU General Public License as published by
@@ -14,6 +14,8 @@
 */
 
 void OdinAudioProcessorEditor::setGUISmall() {
+
+	m_tuning.setTopLeftPosition(TUNING_POS_X, TUNING_POS_Y);
 
 	juce::Image dropdown_button1 =
 	    ImageCache::getFromMemory(BinaryData::buttondropdown_1_png, BinaryData::buttondropdown_1_pngSize);
@@ -126,6 +128,14 @@ void OdinAudioProcessorEditor::setGUISmall() {
 	    FX_ON_BUTTON_X + 3 * FX_BUTTON_OFFSET, FX_ON_BUTTON_Y, fx_on_1.getWidth(), fx_on_1.getHeight());
 	addAndMakeVisible(m_delay_on_button);
 	m_delay_on_button.setAlwaysOnTop(true);
+
+	m_reverb_on_button.setImages(
+	    &fx_on_draw2, &fx_on_draw2, &fx_on_draw1, &fx_on_draw1, &fx_on_draw4, &fx_on_draw4, &fx_on_draw3, &fx_on_draw3);
+	m_reverb_on_button.setClickingTogglesState(true);
+	m_reverb_on_button.setBounds(
+	    FX_ON_BUTTON_X + 3 * FX_BUTTON_OFFSET, FX_ON_BUTTON_Y, fx_on_1.getWidth(), fx_on_1.getHeight());
+	addAndMakeVisible(m_reverb_on_button);
+	m_reverb_on_button.setAlwaysOnTop(true);
 
 	juce::Image filter_button1_1 = ImageCache::getFromMemory(BinaryData::button1_1_png, BinaryData::button1_1_pngSize);
 	juce::Image filter_button1_2 = ImageCache::getFromMemory(BinaryData::button1_2_png, BinaryData::button1_2_pngSize);
@@ -312,8 +322,8 @@ void OdinAudioProcessorEditor::setGUISmall() {
 	juce::Image metal_knob_big =
 	    ImageCache::getFromMemory(BinaryData::metal_knob_big_png, BinaryData::metal_knob_big_pngSize);
 
-	juce::Image black_knob_mid =
-	    ImageCache::getFromMemory(BinaryData::black_knob_mid_png, BinaryData::black_knob_mid_pngSize);
+	//juce::Image black_knob_mid =
+	//    ImageCache::getFromMemory(BinaryData::black_knob_mid_png, BinaryData::black_knob_mid_pngSize);
 
 	// load backplates for osc and filters
 
@@ -416,11 +426,10 @@ void OdinAudioProcessorEditor::setGUISmall() {
 	m_lfo_24_button.setImage(lfo24_right, 2);
 	m_lfo_24_button.setBounds(LFO24_POS_X, LFO24_POS_Y, lfo24_left.getWidth(), lfo24_left.getHeight());
 
-
 	juce::Image select_arp_button_left  = ImageCache::getFromMemory(BinaryData::button_select_arpeggiator_1_png,
                                                                    BinaryData::button_select_arpeggiator_1_pngSize);
-	juce::Image select_arp_button_right = ImageCache::getFromMemory(
-	    BinaryData::button_select_arpeggiator_2_png, BinaryData::button_select_arpeggiator_2_pngSize);
+	juce::Image select_arp_button_right = ImageCache::getFromMemory(BinaryData::button_select_arpeggiator_2_png,
+	                                                                BinaryData::button_select_arpeggiator_2_pngSize);
 	juce::DrawableImage select_arp_button_left_draw;
 	select_arp_button_left_draw.setImage(select_arp_button_left);
 	juce::DrawableImage select_arp_button_right_draw;
@@ -437,8 +446,8 @@ void OdinAudioProcessorEditor::setGUISmall() {
 	                              select_arp_button_left.getWidth(),
 	                              select_arp_button_left.getHeight());
 
-	juce::Image select_modmatrix_button_left = ImageCache::getFromMemory(
-	    BinaryData::button_select_modmatrix_1_png, BinaryData::button_select_modmatrix_1_pngSize);
+	juce::Image select_modmatrix_button_left  = ImageCache::getFromMemory(BinaryData::button_select_modmatrix_1_png,
+                                                                         BinaryData::button_select_modmatrix_1_pngSize);
 	juce::Image select_modmatrix_button_right = ImageCache::getFromMemory(
 	    BinaryData::button_select_modmatrix_2_png, BinaryData::button_select_modmatrix_2_pngSize);
 	juce::DrawableImage select_modmatrix_button_left_draw;
@@ -457,10 +466,10 @@ void OdinAudioProcessorEditor::setGUISmall() {
 	                                    select_modmatrix_button_left.getWidth(),
 	                                    select_modmatrix_button_left.getHeight());
 
-	juce::Image select_presets_button_left  = ImageCache::getFromMemory(BinaryData::button_select_presets_1_png,
-                                                                       BinaryData::button_select_presets_1_pngSize);
-	juce::Image select_presets_button_right = ImageCache::getFromMemory(
-	    BinaryData::button_select_presets_2_png, BinaryData::button_select_presets_2_pngSize);
+	juce::Image select_presets_button_left =
+	    ImageCache::getFromMemory(BinaryData::button_select_presets_1_png, BinaryData::button_select_presets_1_pngSize);
+	juce::Image select_presets_button_right =
+	    ImageCache::getFromMemory(BinaryData::button_select_presets_2_png, BinaryData::button_select_presets_2_pngSize);
 	juce::DrawableImage select_presets_button_left_draw;
 	select_presets_button_left_draw.setImage(select_presets_button_left);
 	juce::DrawableImage select_presets_button_right_draw;
@@ -555,14 +564,8 @@ void OdinAudioProcessorEditor::setGUISmall() {
 	                   METAL_KNOB_SMALL_SIZE_X,
 	                   METAL_KNOB_SMALL_SIZE_Y);
 
-	m_unison_detune.setBounds(UNISON_DETUNE_X ,
-	                          UNISON_DETUNE_Y,
-	                          BLACK_KNOB_SMALL_SIZE_X,
-	                          BLACK_KNOB_SMALL_SIZE_Y);
-	m_unison_width.setBounds(UNISON_STEREO_X,
-	                          UNISON_STEREO_Y,
-	                          BLACK_KNOB_SMALL_SIZE_X,
-	                          BLACK_KNOB_SMALL_SIZE_Y);
+	m_unison_detune.setBounds(UNISON_DETUNE_X, UNISON_DETUNE_Y, BLACK_KNOB_SMALL_SIZE_X, BLACK_KNOB_SMALL_SIZE_Y);
+	m_unison_width.setBounds(UNISON_STEREO_X, UNISON_STEREO_Y, BLACK_KNOB_SMALL_SIZE_X, BLACK_KNOB_SMALL_SIZE_Y);
 
 	m_osc1.setBounds(area_osc_1);
 	m_osc2.setBounds(area_osc_2);
@@ -582,6 +585,7 @@ void OdinAudioProcessorEditor::setGUISmall() {
 	m_phaser.setBounds(FX_AREA_POS_X, FX_AREA_POS_Y, FX_AREA_SIZE_X, FX_AREA_SIZE_Y);
 	m_chorus.setBounds(FX_AREA_POS_X, FX_AREA_POS_Y, FX_AREA_SIZE_X, FX_AREA_SIZE_Y);
 	m_delay.setBounds(FX_AREA_POS_X, FX_AREA_POS_Y, FX_AREA_SIZE_X, FX_AREA_SIZE_Y);
+	m_reverb.setBounds(FX_AREA_POS_X, FX_AREA_POS_Y, FX_AREA_SIZE_X, FX_AREA_SIZE_Y);
 
 	m_mod_matrix.setBounds(MATRIX_POS_X_100, MATRIX_POS_Y_100, MATRIX_SIZE_X, MATRIX_SIZE_Y);
 	m_arp.setBounds(ARPEGGIATOR_POS_X, ARPEGGIATOR_POS_Y, MATRIX_SIZE_X, MATRIX_SIZE_Y);

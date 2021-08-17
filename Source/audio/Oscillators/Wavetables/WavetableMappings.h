@@ -1,6 +1,6 @@
 /*
 ** Odin 2 Synthesizer Plugin
-** Copyright (C) 2020 TheWaveWarden
+** Copyright (C) 2020 - 2021 TheWaveWarden
 **
 ** Odin 2 is free software: you can redistribute it and/or modify
 ** it under the terms of the GNU General Public License as published by
@@ -225,7 +225,6 @@ int WavetableOsc1D::wavetableMappingVector(int p_input) {
     return 0;
     break;
   }
-  return 0;
 }
 
 int WavetableOsc1D::wavetableMappingChiptune(int p_input) {

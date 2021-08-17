@@ -1,4 +1,27 @@
-- created CI pipeline for Ubuntu-18.04
+#2.3.1
+- debian package: fixed data file being owned by root (introduced in 2.3.0)
+- LFO Waves now selectable from a dropdown
+- Reversed order of LFO waves to make them align with dropdown
+# 2.3.0
+- new FX Module: Reverb (ported from zita-rev1)
+- added microtuning functionality: Scala and KeyboardMapping files (Credits to Team Surge with their FOSS tuning-library)
+- Added MIDI Breath (CC 2) as modulation source
+- ModMatrix amounts now range up to [-300, 300]
+- default GUI size is now 150%
+- Init Patch now has the LP-Filter fully open
+- Retrig playmode now restarts the ADSR Attack from the current value, rather than zero
+- FM- PM Osc ratio ranges increased to [1,16]
+- added indicator triangles to dropdowns to make them more obvious
+- factory presets are now contained in the binary
+- all paths opened with patchbrowsers are now remembered after reopening plugin and shared among different plugin instances
+- fixed Filters not being modulatable beyond +150 in modmatrix
+- updated to JUCE 6.0.8
+- renamed debian package from odin to odin2-synth to avoid conflicts with repositories
+- linux: removed unnessecary dependency to libcurl4
+- linux: enabled link-time optimization
+- created Azure-CI pipelines for Ubuntu-18.04, MacOs 10.14 and Windows2019 to create automated builds
+- updated Manual to 2.3.0
+- major code cleanups
 # 2.2.4
 - fixed Legato carrying current value over to Attack rather than to current section
 - ChipDraw tables now available as LFO waves

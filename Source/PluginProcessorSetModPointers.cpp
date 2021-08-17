@@ -1,6 +1,6 @@
 /*
 ** Odin 2 Synthesizer Plugin
-** Copyright (C) 2020 TheWaveWarden
+** Copyright (C) 2020 - 2021 TheWaveWarden
 **
 ** Odin 2 is free software: you can redistribute it and/or modify
 ** it under the terms of the GNU General Public License as published by
@@ -13,6 +13,9 @@
 ** GNU General Public License for more details.
 */
 
+//this file is included from PluginProcessor.cpp to split the class implementation
+
+#include "PluginProcessor.h"
 
 void OdinAudioProcessor::setModulationPointers() {
 	//========================================
@@ -20,28 +23,29 @@ void OdinAudioProcessor::setModulationPointers() {
 	//========================================
 
 	for (int voice = 0; voice < VOICES; ++voice) {
-		m_mod_sources.voice[voice].osc[0]        = &(m_osc_output[voice][0]);
-		m_mod_sources.voice[voice].osc[1]        = &(m_osc_output[voice][1]);
-		m_mod_sources.voice[voice].osc[2]        = &(m_osc_output[voice][2]);
-		m_mod_sources.voice[voice].filter[0]     = &(m_filter_output[voice][0]);
-		m_mod_sources.voice[voice].filter[1]     = &(m_filter_output[voice][1]);
-		m_mod_sources.voice[voice].adsr[0]       = &(m_adsr[voice][0]);
-		m_mod_sources.voice[voice].adsr[1]       = &(m_adsr[voice][1]);
-		m_mod_sources.voice[voice].adsr[2]       = &(m_adsr[voice][2]);
-		m_mod_sources.voice[voice].lfo[0]        = &(m_lfo[voice][0]);
-		m_mod_sources.voice[voice].lfo[1]        = &(m_lfo[voice][1]);
-		m_mod_sources.voice[voice].lfo[2]        = &(m_lfo[voice][2]);
-		m_mod_sources.voice[voice].MIDI_key      = &(m_voice[voice].MIDI_key_mod_source);
-		m_mod_sources.voice[voice].MIDI_velocity = &(m_voice[voice].MIDI_velocity_mod_source);
+		m_mod_sources.voice[voice].osc[0]          = &(m_osc_output[voice][0]);
+		m_mod_sources.voice[voice].osc[1]          = &(m_osc_output[voice][1]);
+		m_mod_sources.voice[voice].osc[2]          = &(m_osc_output[voice][2]);
+		m_mod_sources.voice[voice].filter[0]       = &(m_filter_output[voice][0]);
+		m_mod_sources.voice[voice].filter[1]       = &(m_filter_output[voice][1]);
+		m_mod_sources.voice[voice].adsr[0]         = &(m_adsr[voice][0]);
+		m_mod_sources.voice[voice].adsr[1]         = &(m_adsr[voice][1]);
+		m_mod_sources.voice[voice].adsr[2]         = &(m_adsr[voice][2]);
+		m_mod_sources.voice[voice].lfo[0]          = &(m_lfo[voice][0]);
+		m_mod_sources.voice[voice].lfo[1]          = &(m_lfo[voice][1]);
+		m_mod_sources.voice[voice].lfo[2]          = &(m_lfo[voice][2]);
+		m_mod_sources.voice[voice].MIDI_key        = &(m_voice[voice].MIDI_key_mod_source);
+		m_mod_sources.voice[voice].MIDI_velocity   = &(m_voice[voice].MIDI_velocity_mod_source);
 		m_mod_sources.voice[voice].MIDI_aftertouch = &(m_voice[voice].MIDI_aftertouch_mod_source);
 		m_mod_sources.voice[voice].unison_position = &(m_voice[voice].unison_pan_position);
-		m_mod_sources.voice[voice].random        = &(m_voice[voice].random_modulation);
-		m_mod_sources.voice[voice].arp_mod_1        = &(m_voice[voice].m_arp_mod_1);
-		m_mod_sources.voice[voice].arp_mod_2        = &(m_voice[voice].m_arp_mod_2);
+		m_mod_sources.voice[voice].random          = &(m_voice[voice].random_modulation);
+		m_mod_sources.voice[voice].arp_mod_1       = &(m_voice[voice].m_arp_mod_1);
+		m_mod_sources.voice[voice].arp_mod_2       = &(m_voice[voice].m_arp_mod_2);
 	}
 	m_mod_sources.global_adsr           = &m_global_env_mod_source;
 	m_mod_sources.global_lfo            = &m_global_lfo_mod_source;
 	m_mod_sources.MIDI_channel_pressure = &(m_MIDI_channel_pressure);
+	m_mod_sources.MIDI_breath           = &(m_midi_breath);
 	m_mod_sources.x                     = &m_x_modded;
 	m_mod_sources.y                     = &m_y_modded;
 	m_mod_sources.modwheel              = &m_modwheel_smooth;
@@ -350,5 +354,4 @@ void OdinAudioProcessor::setModulationPointers() {
 
 	m_x_mod = &(m_mod_destinations.xy.x);
 	m_y_mod = &(m_mod_destinations.xy.y);
-
 }

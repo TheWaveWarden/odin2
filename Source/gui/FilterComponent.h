@@ -1,6 +1,6 @@
 /*
 ** Odin 2 Synthesizer Plugin
-** Copyright (C) 2020 TheWaveWarden
+** Copyright (C) 2020 - 2021 TheWaveWarden
 **
 ** Odin 2 is free software: you can redistribute it and/or modify
 ** it under the terms of the GNU General Public License as published by
@@ -62,7 +62,6 @@
 #define FREQ_MIN 20
 #define FREQ_MAX 20000
 #define FREQ_MID 640
-#define FREQ_DEFAULT 2000
 
 #define ENV_MIN -1
 #define ENV_MAX 1
@@ -127,7 +126,7 @@ public:
 	void setGUISmall();
 
 protected:
-	bool m_GUI_big = false;
+	bool m_GUI_big = true;
 
 	Knob m_vel;
 	Knob m_kbd;

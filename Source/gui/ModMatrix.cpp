@@ -1,6 +1,6 @@
 /*
 ** Odin 2 Synthesizer Plugin
-** Copyright (C) 2020 TheWaveWarden
+** Copyright (C) 2020 - 2021 TheWaveWarden
 **
 ** Odin 2 is free software: you can redistribute it and/or modify
 ** it under the terms of the GNU General Public License as published by
@@ -217,9 +217,14 @@ void ModMatrixRow::setModSource(int p_source, float **p_source_pointers, int &p_
 			p_source_pointers[voice] = m_sources->voice[voice].MIDI_velocity;
 		}
 		break;
-	case 406:
+	case 406:// ? this does not exists anymore... is here for crash avoidance when loading backward?
 		for (int voice = 0; voice < VOICES; ++voice) {
 			p_source_pointers[voice] = m_sources->voice[voice].MIDI_aftertouch;
+		}
+		break;
+	case 407:
+		for (int voice = 0; voice < VOICES; ++voice) {
+			p_source_pointers[voice] = m_sources->MIDI_breath;
 		}
 		break;
 	case 409:

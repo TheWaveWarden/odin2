@@ -1,6 +1,6 @@
 /*
 ** Odin 2 Synthesizer Plugin
-** Copyright (C) 2020 TheWaveWarden
+** Copyright (C) 2020 - 2021 TheWaveWarden
 **
 ** Odin 2 is free software: you can redistribute it and/or modify
 ** it under the terms of the GNU General Public License as published by
@@ -111,6 +111,7 @@ m_phaser_on  = m_value_tree.getRawParameterValue("phaser_on");
 m_flanger_on = m_value_tree.getRawParameterValue("flanger_on");
 m_delay_on   = m_value_tree.getRawParameterValue("delay_on");
 m_chorus_on  = m_value_tree.getRawParameterValue("chorus_on");
+m_reverb_on  = m_value_tree.getRawParameterValue("reverb_on");
 
 for (int fil = 0; fil < 2; ++fil) {
 	m_fil_osc1[fil] = m_value_tree.getRawParameterValue("fil" + std::to_string(fil + 1) + "_osc1");
@@ -279,6 +280,16 @@ m_value_tree.addParameterListener("delay_dry", &m_tree_listener_delay);
 m_value_tree.addParameterListener("delay_wet", &m_tree_listener_delay);
 m_value_tree.addParameterListener("delay_pingpong", &m_tree_listener_delay);
 m_value_tree.addParameterListener("delay_on", &m_tree_listener_delay);
+
+//reverb listener
+m_value_tree.addParameterListener("rev_eqfreq", &m_tree_listener_reverb);
+m_value_tree.addParameterListener("rev_eqgain", &m_tree_listener_reverb);
+//m_value_tree.addParameterListener("rev_ducking", &m_tree_listener_reverb);
+m_value_tree.addParameterListener("rev_drywet", &m_tree_listener_reverb);
+m_value_tree.addParameterListener("rev_delay", &m_tree_listener_reverb);
+m_value_tree.addParameterListener("reverb_on", &m_tree_listener_reverb);
+m_value_tree.addParameterListener("rev_mid_hall", &m_tree_listener_reverb);
+m_value_tree.addParameterListener("rev_hf_damp", &m_tree_listener_reverb);
 
 //chorus listener
 m_value_tree.addParameterListener("chorus_rate", &m_tree_listener_chorus);

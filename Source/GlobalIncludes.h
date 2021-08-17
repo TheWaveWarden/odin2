@@ -1,6 +1,6 @@
 /*
 ** Odin 2 Synthesizer Plugin
-** Copyright (C) 2020 TheWaveWarden
+** Copyright (C) 2020 - 2021 TheWaveWarden
 **
 ** Odin 2 is free software: you can redistribute it and/or modify
 ** it under the terms of the GNU General Public License as published by
@@ -27,20 +27,25 @@
 #endif
 #ifdef ODIN_WIN
 #define M_PI 3.14159265359
+#pragma warning(disable : 4244) //disable conversion warnings
+#pragma warning(disable : 4100) //disable unreferenced parameter warning (VS really misses the point here...)
+#pragma warning(disable : 4305) //disable double to float truncation warning
+#pragma warning(disable : 4267) //disable size_t to int truncation warning
+#endif
+#ifdef ODIN_MAC
 #endif
 
 // shows the spectrum and wave display for wavetable osc 1
 //#define WTGEN
 
 #define ODIN_MAJOR_VERSION 2
-#define ODIN_MINOR_VERSION 2
-#define ODIN_PATCH_VERSION 4
+#define ODIN_MINOR_VERSION 3
+#define ODIN_PATCH_VERSION 1
 
-#define ODIN_VERSION_STRING                                                                                            \
-	("Odin 2." + std::to_string(ODIN_MINOR_VERSION) + "." + std::to_string(ODIN_PATCH_VERSION))
+#define ODIN_VERSION_STRING ("Odin 2." + std::to_string(ODIN_MINOR_VERSION) + "." + std::to_string(ODIN_PATCH_VERSION))
 
 // ! this is for migrating patches from older version, not to be confused with above
-#define ODIN_PATCH_MIGRATION_VERSION 4
+#define ODIN_PATCH_MIGRATION_VERSION 5
 //1 -> 2: replaced "amp width" by "amp velocity"
 //2 -> 3: made carrier and modulator ratio, as well as pitchbend amount nonaudio values (but wrote migration code)
 
@@ -69,26 +74,25 @@
 #define MATRIX_SECTION_INDEX_ARP 1
 #define MATRIX_SECTION_INDEX_MATRIX 0
 
-
-
-//#ifdef ODIN_LINUXXXX
-//#define ODIN_STORAGE_PATH File::getSpecialLocation(File::SpecialLocationType::commonApplicationDataDirectory).getFullPathName() +                    \
-// 	    File::getSeparatorString() + "odin2"
-//#else 
+#ifdef ODIN_LINUX
+#define ODIN_STORAGE_PATH                                                                                              \
+	File::getSpecialLocation(File::SpecialLocationType::userHomeDirectory).getFullPathName() +                         \
+	    File::getSeparatorString() + ".local" + File::getSeparatorString() + "share" + File::getSeparatorString() +    \
+	    "odin2"
+#endif
 #ifdef ODIN_MAC
-#define ODIN_STORAGE_PATH File::getSpecialLocation(File::SpecialLocationType::commonApplicationDataDirectory).getFullPathName() +                    \
- 	    File::getSeparatorString()  + "Audio" + File::getSeparatorString() + "Presets" + File::getSeparatorString() + "odin2"
-#else
-#define ODIN_STORAGE_PATH File::getSpecialLocation(File::SpecialLocationType::commonApplicationDataDirectory).getFullPathName() +                    \
- 	    File::getSeparatorString()  + "odin2"
+#define ODIN_STORAGE_PATH                                                                                              \
+	File::getSpecialLocation(File::SpecialLocationType::commonApplicationDataDirectory).getFullPathName() +            \
+	    File::getSeparatorString() + "Audio" + File::getSeparatorString() + "Presets" + File::getSeparatorString() +   \
+	    "odin2"
+#endif
+#ifdef ODIN_WIN
+#define ODIN_STORAGE_PATH                                                                                              \
+	File::getSpecialLocation(File::SpecialLocationType::commonApplicationDataDirectory).getFullPathName() +            \
+	    File::getSeparatorString() + "odin2"
 #endif
 //#endif
 #define CONFIG_FILE_PATH ODIN_STORAGE_PATH + File::getSeparatorString() + "odin2.conf"
-
-
-
-
-
 
 // leave spare values for future additions :hype:
 #define OSC_TYPE_ANALOG 2
@@ -122,16 +126,15 @@
 #define BROWSER_INLAY_Y_150 5
 #define BROWSER_POS_X_150 411
 #define BROWSER_POS_Y_150 701
-#define BROWSER_SIZE_X_150 (738 + 2*BROWSER_INLAY_X_150)
-#define BROWSER_SIZE_Y_150 (213 + 2*BROWSER_INLAY_Y_150)
+#define BROWSER_SIZE_X_150 (738 + 2 * BROWSER_INLAY_X_150)
+#define BROWSER_SIZE_Y_150 (213 + 2 * BROWSER_INLAY_Y_150)
 
 #define BROWSER_INLAY_X 4
 #define BROWSER_INLAY_Y 4
 #define BROWSER_POS_X 274
 #define BROWSER_POS_Y 467
-#define BROWSER_SIZE_X (492 + 2*BROWSER_INLAY_X)
-#define BROWSER_SIZE_Y (141 + 2*BROWSER_INLAY_Y)
-
+#define BROWSER_SIZE_X (492 + 2 * BROWSER_INLAY_X)
+#define BROWSER_SIZE_Y (141 + 2 * BROWSER_INLAY_Y)
 
 // midpoint for filters:
 // https://www.wolframalpha.com/input/?i=80*e%5E%28ln%2818000%2F80%29*0.5%29
@@ -139,16 +142,16 @@
 // https://www.wolframalpha.com/input/?i=ln%280.5%29%2F%28ln%28%281200-80%29%2F%2818000-80%29%29%29
 #define FILTER_SKEW_DEFAULT 0.25f
 
-#define GAIN_SMOOTHIN_FACTOR 0.995
-#define PAN_SMOOTHIN_FACTOR 0.998
-#define PITCHBEND_SMOOTHIN_FACTOR 0.998
-#define FILTER_FREQ_SMOOTHING_FACTOR 0.998
-#define PAD_SMOOTHIN_FACTOR 0.998
-#define PWM_SMOOTHIN_FACTOR 0.998
-#define THRESHOLD_SMOOTHIN_FACTOR 0.998
+#define GAIN_SMOOTHIN_FACTOR 0.995f
+#define PAN_SMOOTHIN_FACTOR 0.998f
+#define PITCHBEND_SMOOTHIN_FACTOR 0.998f
+#define FILTER_FREQ_SMOOTHING_FACTOR 0.998f
+#define PAD_SMOOTHIN_FACTOR 0.998f
+#define PWM_SMOOTHIN_FACTOR 0.998f
+#define THRESHOLD_SMOOTHIN_FACTOR 0.998f
 
-#define MINUS_12_dB_GAIN 0.251189 //needed for volume modulation threshold
-#define PLUS_12_dB_GAIN 3.981072
+#define MINUS_12_dB_GAIN 0.251189f //needed for volume modulation threshold
+#define PLUS_12_dB_GAIN 3.981072f
 
 #define INPUT_LABEL_SIZE_X 70
 #define INPUT_LABEL_SIZE_Y 20
@@ -194,7 +197,7 @@
 
 //set interpolation value to 'none' for integer scaling, else to high
 #define SET_INTERPOLATION_QUALITY(graphics)                                                                            \
-	float desktop_scale = Desktop::getInstance().Desktop::getInstance().getDisplays().getMainDisplay().scale;          \
+	float desktop_scale = Desktop::getInstance().Desktop::getInstance().getDisplays().getPrimaryDisplay()->scale;      \
 	if ((fabs(desktop_scale - 1.f) < 1e-4) || (fabs(desktop_scale - 2.f) < 1e-4)) {                                    \
 		graphics.setImageResamplingQuality(INTERPOLATION_QUALITY_LOW);                                                 \
 	} else {                                                                                                           \
@@ -213,216 +216,14 @@
 	DBG("REPLACE SKEW:  NormalisableRange<float>(" + std::to_string(component.getMinimum()) + ", " +                   \
 	    std::to_string(component.getMaximum()) + ", 0, " + std::to_string(component.getSkewFactor()) + ")");
 
-
 typedef AudioProcessorValueTreeState::SliderAttachment SliderAttachment;
 typedef AudioProcessorValueTreeState::ButtonAttachment ButtonAttachment;
 typedef AudioProcessorValueTreeState::ComboBoxAttachment ComboBoxAttachment;
 
-
 // note: these are not the values stored in the value tree, since historically the param was a button (mono 0, poly 1) and is now a dropdown (can't be 0)
-enum class PlayModes {
-	Legato = 1,
-	Poly = 2,
-	Retrig = 3
-};
+enum class PlayModes { Legato = 1, Poly = 2, Retrig = 3 };
 #define PLAYMODETOVALUETREE(playmode) ((int)playmode - 1)
-#define VALUETREETOPLAYMODE(mode) ((PlayModes) (mode + 1))
-
-
-class OdinMenuFeels : public LookAndFeel_V4 {
-public:
-	void drawPopupMenuBackground(Graphics &g, int width, int height) override {
-		g.fillAll(MENU_BACKGROUND_COLOR);
-		g.setColour(MENU_FONT_COLOR);
-		g.drawRect(0, 0, width, height);
-	}
-
-	void setMenuWidth(int p_width) {
-		m_width = p_width;
-	}
-
-	void getIdealPopupMenuItemSize(
-	    const String &text, bool isSeparator, int standardMenuItemHeight, int &idealWidth, int &idealHeight) {
-		if (m_GUI_big) {
-			if (isSeparator) {
-				idealWidth  = m_width;
-				idealHeight = 10;
-			} else {
-				idealWidth  = m_width;
-				idealHeight = 30;
-			}
-		} else {
-			if (isSeparator) {
-				idealWidth  = m_width;
-				idealHeight = 7;
-			} else {
-				idealWidth  = m_width;
-				idealHeight = 26;
-			}
-		}
-	}
-
-	void drawPopupMenuItem(Graphics &g,
-	                       const Rectangle<int> &area,
-	                       bool isSeparator,
-	                       bool isActive,
-	                       bool isHighlighted,
-	                       bool isTicked,
-	                       bool hasSubMenu,
-	                       const String &text,
-	                       const String &shortcutKeyText,
-	                       const Drawable *icon,
-	                       const Colour *textColour) override {
-
-		Font font(17.f);
-		if (m_GUI_big) {
-			font = Font(21.f);
-		}
-		font = Font(m_font_size);
-
-		if (!isHighlighted) {
-			drawPopupMenuItemOdin(g,
-			                      area,
-			                      isSeparator,
-			                      isActive,
-			                      isHighlighted,
-			                      isTicked,
-			                      hasSubMenu,
-			                      text,
-			                      shortcutKeyText,
-			                      icon,
-			                      &m_text_color,
-			                      font);
-		} else {
-			if (!isSeparator) {
-				g.setColour(MENU_HIGHLIGHT_BACKGROUND_COLOR);
-				g.fillRect(area);
-				g.setColour(MENU_FONT_COLOR);
-				g.drawRect(area);
-			}
-			drawPopupMenuItemOdin(g,
-			                      area,
-			                      isSeparator,
-			                      isActive,
-			                      false,
-			                      isTicked,
-			                      hasSubMenu,
-			                      text,
-			                      shortcutKeyText,
-			                      icon,
-			                      &m_highlight_text_color,
-			                      font);
-		}
-	}
-
-	//this function is copied from JUCE and modified
-	void drawPopupMenuItemOdin(Graphics &g,
-	                           const Rectangle<int> &area,
-	                           const bool isSeparator,
-	                           const bool isActive,
-	                           const bool isHighlighted,
-	                           const bool isTicked,
-	                           const bool hasSubMenu,
-	                           const String &text,
-	                           const String &shortcutKeyText,
-	                           const Drawable *icon,
-	                           const Colour *const textColourToUse,
-	                           Font p_font) {
-		if (isSeparator) {
-			auto r = area.reduced(5, 0);
-			r.removeFromTop(roundToInt((r.getHeight() * 0.5f) - 0.5f));
-
-			g.setColour(findColour(PopupMenu::textColourId).withAlpha(0.3f));
-			g.fillRect(r.removeFromTop(1));
-		} else {
-			auto textColour = (textColourToUse == nullptr ? findColour(PopupMenu::textColourId) : *textColourToUse);
-
-			auto r = area.reduced(1);
-
-			if (isHighlighted && isActive) {
-				g.setColour(findColour(PopupMenu::highlightedBackgroundColourId));
-				g.fillRect(r);
-
-				g.setColour(findColour(PopupMenu::highlightedTextColourId));
-			} else {
-				g.setColour(textColour.withMultipliedAlpha(isActive ? 1.0f : 0.5f));
-			}
-
-			r.reduce(jmin(5, area.getWidth() / 20), 0);
-
-			auto font = getPopupMenuFont();
-
-			auto maxFontHeight = r.getHeight() / 1.3f;
-
-			if (font.getHeight() > maxFontHeight)
-				font.setHeight(maxFontHeight);
-
-			g.setFont(p_font);
-
-			auto iconArea = r.removeFromLeft(roundToInt(maxFontHeight)).toFloat();
-
-			if (icon != nullptr) {
-				icon->drawWithin(g, iconArea, RectanglePlacement::centred | RectanglePlacement::onlyReduceInSize, 1.0f);
-				r.removeFromLeft(roundToInt(maxFontHeight * 0.5f));
-			} else if (isTicked) {
-				auto tick = getTickShape(1.0f);
-				g.fillPath(tick,
-				           tick.getTransformToScaleToFit(iconArea.reduced(iconArea.getWidth() / 5, 0).toFloat(), true));
-			}
-
-			if (hasSubMenu) {
-				auto arrowH = 0.6f * getPopupMenuFont().getAscent();
-
-				auto x     = static_cast<float>(r.removeFromRight((int)arrowH).getX());
-				auto halfH = static_cast<float>(r.getCentreY());
-
-				Path path;
-				path.startNewSubPath(x, halfH - arrowH * 0.5f);
-				path.lineTo(x + arrowH * 0.6f, halfH);
-				path.lineTo(x, halfH + arrowH * 0.5f);
-
-				g.strokePath(path, PathStrokeType(2.0f));
-			}
-
-			r.removeFromRight(3);
-			g.drawFittedText(text, r, Justification::centredLeft, 1);
-
-			if (shortcutKeyText.isNotEmpty()) {
-				auto f2 = font;
-				f2.setHeight(f2.getHeight() * 0.75f);
-				f2.setHorizontalScale(0.95f);
-				g.setFont(f2);
-
-				g.drawText(shortcutKeyText, r, Justification::centredRight, true);
-			}
-		}
-	}
-	Colour m_text_color           = MENU_FONT_COLOR;
-	Colour m_highlight_text_color = MENU_HIGHLIGHT_FONT_COLOR;
-
-	void setGUIBig() {
-		m_GUI_big = true;
-		m_width   = 240;
-		m_font_size = 21.f;
-	}
-	void setGUISmall() {
-		m_GUI_big = false;
-		m_width   = 170;
-		m_font_size = 21.f;
-	}
-
-	void setFontSize(float p_size){
-		m_font_size = p_size;
-	}
-
-	void setWidth(float p_width){
-		m_width = p_width;
-	}
-
-	float m_font_size = 17.f;
-	float m_width  = 150;
-	bool m_GUI_big = false;
-};
+#define VALUETREETOPLAYMODE(mode) ((PlayModes)(mode + 1))
 
 //Used to convert positions and sizes to 150% GUI scaling
 class OdinHelper {
@@ -431,7 +232,6 @@ public:
 	static int c150(int input) {
 		float x = input * 1.5f;
 		return x + 0.5 - (x < 0);
-		return (int)x;
 	}
 };
 

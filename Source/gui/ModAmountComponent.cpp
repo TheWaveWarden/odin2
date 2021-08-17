@@ -1,6 +1,6 @@
 /*
 ** Odin 2 Synthesizer Plugin
-** Copyright (C) 2020 TheWaveWarden
+** Copyright (C) 2020 - 2021 TheWaveWarden
 **
 ** Odin 2 is free software: you can redistribute it and/or modify
 ** it under the terms of the GNU General Public License as published by
@@ -32,7 +32,7 @@ void ModAmountComponent::paint(Graphics &g) {
 	top_left.addXY(m_inlay, m_inlay + m_inlay_top);
 	juce::Point<int> bottom_right = getLocalBounds().getBottomRight();
 	bottom_right.addXY(-m_inlay, -m_inlay - m_inlay_bottom);
-	g.fillRect(juce::Rectangle<int>(top_left, bottom_right)); // pmai
+	g.fillRect(juce::Rectangle<int>(top_left, bottom_right));
 
 	if (m_value > 0) {
 		g.setColour(m_color_bar);
@@ -71,8 +71,8 @@ void ModAmountComponent::mouseDrag(const MouseEvent &event) {
 		drag_scalar *= 0.66f;
 	}
 	m_value = m_drag_start_value + (m_drag_start_y - getMouseXYRelative().getY()) * drag_scalar;
-	m_value = m_value > 1 ? 1 : m_value;
-	m_value = m_value < -1 ? -1 : m_value;
+	m_value = m_value > m_input_limit ? m_input_limit : m_value;
+	m_value = m_value < -m_input_limit ? -m_input_limit : m_value;
 	onValueChange(m_value);
 	repaint();
 }

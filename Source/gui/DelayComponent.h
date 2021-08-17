@@ -1,6 +1,6 @@
 /*
 ** Odin 2 Synthesizer Plugin
-** Copyright (C) 2020 TheWaveWarden
+** Copyright (C) 2020 - 2021 TheWaveWarden
 **
 ** Odin 2 is free software: you can redistribute it and/or modify
 ** it under the terms of the GNU General Public License as published by
@@ -54,12 +54,6 @@
 #define TIME_MID 1
 #define TIME_DEFAULT 1
 
-//#define SYNC_TIME_DELAY_POS_X 17
-//#define SYNC_TIME_DELAY_POS_Y 10
-
-//==============================================================================
-/*
-*/
 class DelayComponent : public Component {
 public:
 	DelayComponent(AudioProcessorValueTreeState &vts, bool p_is_standalone);
@@ -79,7 +73,7 @@ public:
 	void setGUISmall();
 
 private:
-	bool m_GUI_big = false;
+	bool m_GUI_big = true;
 
 	bool m_is_standalone_plugin;
 	bool m_sync_on = false;

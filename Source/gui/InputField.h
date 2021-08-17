@@ -1,6 +1,6 @@
 /*
 ** Odin 2 Synthesizer Plugin
-** Copyright (C) 2020 TheWaveWarden
+** Copyright (C) 2020 - 2021 TheWaveWarden
 **
 ** Odin 2 is free software: you can redistribute it and/or modify
 ** it under the terms of the GNU General Public License as published by
@@ -27,7 +27,7 @@ public:
   }
 
   void drawTextEditorOutline(Graphics &g, int width, int height,
-                             TextEditor &t) {
+                             TextEditor &t) override {
     g.setColour(Colour(80, 80, 80));
     Rectangle<float> Rect(0, 0, width, height);
     g.drawRect(Rect); // pmai
