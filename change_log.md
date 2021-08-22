@@ -1,3 +1,5 @@
+# 2.3.2
+- increased number of voices to 48
 # 2.3.1
 - debian package: fixed data file being owned by root (introduced in 2.3.0)
 - LFO Waves now selectable from a dropdown
