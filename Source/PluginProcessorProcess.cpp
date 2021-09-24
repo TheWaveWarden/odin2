@@ -468,9 +468,7 @@ void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &mi
 				}
 			} else if (m_reverb_position == fx_slot) {
 				if (*m_reverb_on) {
-					auto rev_out     = m_reverb_zita.process(stereo_signal);
-					stereo_signal[0] = rev_out[0];
-					stereo_signal[1] = rev_out[1];
+					m_reverb_zita.process(stereo_signal);
 				}
 			}
 		}

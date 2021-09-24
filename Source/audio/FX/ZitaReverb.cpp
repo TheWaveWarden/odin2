@@ -151,12 +151,10 @@ void Filt1::set_params(float del, float tmf, float tlo, float wlo, float thi, fl
 
 // -----------------------------------------------------------------------
 
-float ZitaReverb::_tdiff1[8] = {20346e-6f, 24421e-6f, 31604e-6f, 27333e-6f, 22904e-6f, 29291e-6f, 13458e-6f, 19123e-6f};
-
-float ZitaReverb::_tdelay[8] = {
-    153129e-6f, 210389e-6f, 127837e-6f, 256891e-6f, 174713e-6f, 192303e-6f, 125000e-6f, 219991e-6f};
-
 ZitaReverb::ZitaReverb(void) {
+	_tdiff1 = {20346e-6f, 24421e-6f, 31604e-6f, 27333e-6f, 22904e-6f, 29291e-6f, 13458e-6f, 19123e-6f};
+	_tdelay = {153129e-6f, 210389e-6f, 127837e-6f, 256891e-6f, 174713e-6f, 192303e-6f, 125000e-6f, 219991e-6f};
+
 	//todo find good eq values
 	_pareq[0].setQ(REVERB_EQ_Q_DEFAULT);
 	_pareq[1].setQ(REVERB_EQ_Q_DEFAULT);
@@ -280,7 +278,7 @@ void ZitaReverb::prepare() {
 	// set_eq1(200, 0);
 }
 
-float *ZitaReverb::process(float input[2]) {
+void ZitaReverb::process(float input[2]) {
 
 	int i, n;
 	float *p0, *p1;
@@ -383,7 +381,8 @@ float *ZitaReverb::process(float input[2]) {
 	// DBG_VAR(_d0);
 	// DBG_VAR(_d1);
 
-	return out;
+	input[0] = out[0];
+	input[1] = out[1];
 }
 
 void ZitaReverb::set_delay(float v) {
