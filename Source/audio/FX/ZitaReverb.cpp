@@ -286,7 +286,7 @@ float *ZitaReverb::process(float input[2]) {
 	float *p0, *p1;
 	float *q0, *q1, *q2, *q3;
 	float t, g, x0, x1, x2, x3, x4, x5, x6, x7;
-	static float out[2];
+	float out[2];
 
 	//g = sqrtf(0.125f);
 	g = 0.35355f;

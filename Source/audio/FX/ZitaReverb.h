@@ -216,8 +216,8 @@ private:
 	BiquadEQ _pareq[2];
 	//ParametricEQ _pareq2;
 
-	static float _tdiff1[8];
-	static float _tdelay[8];
+	float _tdiff1[8];
+	float _tdelay[8];
 };
 
 // -----------------------------------------------------------------------
