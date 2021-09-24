@@ -68,7 +68,7 @@
 #define WAVETABLE_DROPDOWN_COLOR juce::Colour(66, 81, 85)
 #define DARKGREY juce::Colour(30, 30, 30)
 #define CHORUS_DISPLAY_COLOR Colour(69, 39, 38)
-#define VOICES 48
+#define VOICES 24
 
 #define MATRIX_SECTION_INDEX_PRESETS 10
 #define MATRIX_SECTION_INDEX_ARP 1
