@@ -40,7 +40,7 @@
 
 #define ODIN_MAJOR_VERSION 2
 #define ODIN_MINOR_VERSION 3
-#define ODIN_PATCH_VERSION 2
+#define ODIN_PATCH_VERSION 1
 
 #define ODIN_VERSION_STRING ("Odin 2." + std::to_string(ODIN_MINOR_VERSION) + "." + std::to_string(ODIN_PATCH_VERSION))
 
@@ -199,7 +199,7 @@
 #define SET_INTERPOLATION_QUALITY(graphics)                                                                            \
 	float desktop_scale = Desktop::getInstance().Desktop::getInstance().getDisplays().getPrimaryDisplay()->scale;      \
 	if ((fabs(desktop_scale - 1.f) < 1e-4) || (fabs(desktop_scale - 2.f) < 1e-4)) {                                    \
-		graphics.setImageResamplingQuality(INTERPOLATION_QUALITY_LOW);                                                 \
+		graphics.setImageResamplingQuality(INTERPOLATION_QUALITY_HIGH);                                                 \
 	} else {                                                                                                           \
 		graphics.setImageResamplingQuality(INTERPOLATION_QUALITY_HIGH);                                                \
 	}
