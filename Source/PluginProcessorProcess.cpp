@@ -17,7 +17,6 @@
 
 #include "PluginProcessor.h"
 #include "ScopedNoDenormals.h"
-#include <math.h> //todo remove isnan
 
 void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &midiMessages) {
 
