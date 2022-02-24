@@ -16,12 +16,11 @@
 //this file is included from PluginProcessor.cpp to split the class implementation
 
 #include "PluginProcessor.h"
-#include "ScopedNoDenormals.h"
 
 void OdinAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &midiMessages) {
 
 	//avoid denormals
-	denormals::ScopedNoDenormals snd;
+	juce::ScopedNoDenormals snd;
 
 	// get BPM info from host
 	if (AudioPlayHead *playhead = getPlayHead()) {
