@@ -1,6 +1,7 @@
-|Master|Devel|
-|---|---|
-|[![Build Status](https://dev.azure.com/TheWaveWarden/odin2/_apis/build/status/TheWaveWarden.odin2?branchName=master)](https://dev.azure.com/TheWaveWarden/odin2/_build/latest?definitionId=1&branchName=master)|[![Build Status](https://dev.azure.com/TheWaveWarden/odin2/_apis/build/status/TheWaveWarden.odin2?branchName=devel)](https://dev.azure.com/TheWaveWarden/odin2/_build/latest?definitionId=1&branchName=devel)|
+## *This fork is my "Waldorfized" variation on Odin 2, so named because longer envelopes and slower LFOs will make it a bit more like Waldorf's Blofeld, and better suited to the long drone work I like to do.*
+
+1. Attack, decay, and release on all envelopes increases to 30 seconds
+2. The LFO minimum speed drops to 0.1Hz
 
 # Odin 2 Synthesizer
 
