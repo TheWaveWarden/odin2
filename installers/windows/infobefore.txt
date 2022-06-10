@@ -1,5 +1,8 @@
 Odin2 VST3 plugin will be installed to:
 C:\Program Files\Common Files\VST3\Odin2.vst3
 
+Odin2 CLAP plugin will be installed to:
+C:\Program Files\Common Files\CLAP\Odin2.clap
+
 Soundbank and config location will be created in:
 C:\ProgramData\odin2
