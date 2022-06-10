@@ -19,10 +19,10 @@
 #pragma once
 
 #include "../../GlobalIncludes.h"
-#include "Filter.h"
+#include "OdinFilterBase.h"
 #include "VAOnePoleFilter.h"
 
-class LadderFilter : public Filter {
+class LadderFilter : public OdinFilterBase {
 public:
   enum class FILTERTYPE {
     LP4 = 0,
@@ -40,7 +40,7 @@ public:
   void reset() override;
   void setResControl(double p_res) override;
   void setSampleRate(double p_sr) override {
-    Filter::setSampleRate(p_sr);
+    OdinFilterBase::setSampleRate(p_sr);
     m_LPF1.setSampleRate(p_sr);
     m_LPF2.setSampleRate(p_sr);
     m_LPF3.setSampleRate(p_sr);
@@ -51,7 +51,7 @@ public:
   inline void update() override {
 
     // do any modulation first
-    Filter::update();
+    OdinFilterBase::update();
 
     //! only recalc filter-coefficients if:
     // freq changed

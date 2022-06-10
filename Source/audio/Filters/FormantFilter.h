@@ -15,14 +15,14 @@
 
 #pragma once
 
-#include "Filter.h"
+#include "OdinFilterBase.h"
 #include "BiquadResonator.h"
 #include "../../GlobalIncludes.h"
 
 #define FORMANT_DB_AT_88KHZ -11
 #define FORMANT_DB_AT_192KHZ -18
 
-class FormantFilter : public Filter {
+class FormantFilter : public OdinFilterBase {
 public:
   FormantFilter();
   ~FormantFilter();
@@ -46,7 +46,7 @@ public:
   }
 
   void setSampleRate(double p_sr) override{
-    Filter::setSampleRate(p_sr);
+    OdinFilterBase::setSampleRate(p_sr);
     m_resonator1.setSampleRate(p_sr);
     m_resonator2.setSampleRate(p_sr);
 

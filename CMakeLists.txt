@@ -91,7 +91,7 @@ target_sources(Odin2
     "Source/audio/Filters/BiquadResonator.cpp"
     "Source/audio/Filters/CombFilter.cpp"
     "Source/audio/Filters/DiodeFilter.cpp"
-    "Source/audio/Filters/Filter.cpp"
+    "Source/audio/Filters/OdinFilterBase.cpp"
     "Source/audio/Filters/FormantFilter.cpp"
     "Source/audio/Filters/Korg35Filter.cpp"
     "Source/audio/Filters/LadderFilter.cpp"

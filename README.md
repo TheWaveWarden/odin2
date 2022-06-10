@@ -27,6 +27,7 @@ Finally, build the project:
 ```
 cmake --build build --config Release
 ```
+To build in debug configuration, replace `Release` with `Debug` in the above commands.
 
 ## Linux Prerequisites
 Upon building the project, you will most likely hit some errors regarding missing header files. You need to find out which packages the header belongs to and install the required packages. On Ubuntu 18.04, the required packages can be installed with

@@ -19,9 +19,9 @@
 #pragma once
 
 #include "../../GlobalIncludes.h"
-#include "Filter.h"
+#include "OdinFilterBase.h"
 
-class VAOnePoleFilter : public Filter {
+class VAOnePoleFilter : public OdinFilterBase {
 public:
 	VAOnePoleFilter();
 	virtual ~VAOnePoleFilter();

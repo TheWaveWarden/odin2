@@ -44,7 +44,7 @@ void Korg35Filter::reset() {
 }
 
 void Korg35Filter::update() {
-	Filter::update();
+	OdinFilterBase::update();
 
 	//recalc filter coeffs only if
 	// freq_modded changed
@@ -119,7 +119,7 @@ void Korg35Filter::setResControl(double res) {
 }
 
 void Korg35Filter::setSampleRate(double p_sr) {
-	Filter::setSampleRate(p_sr);
+	OdinFilterBase::setSampleRate(p_sr);
 	m_LPF1.setSampleRate(p_sr);
 	m_LPF2.setSampleRate(p_sr);
 	m_HPF1.setSampleRate(p_sr);

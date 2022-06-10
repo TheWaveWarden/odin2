@@ -49,7 +49,7 @@ void DiodeFilter::reset() {
 
 void DiodeFilter::update() {
 	//modulation
-	Filter::update();
+	OdinFilterBase::update();
 
 	//recalculate filter coefficients only if:
 	// filter freq changed
@@ -142,7 +142,7 @@ void DiodeFilter::setResControl(double res) {
 }
 
 void DiodeFilter::setSampleRate(double p_sr) {
-	Filter::setSampleRate(p_sr);
+	OdinFilterBase::setSampleRate(p_sr);
 	m_LPF1.setSampleRate(p_sr);
 	m_LPF2.setSampleRate(p_sr);
 	m_LPF3.setSampleRate(p_sr);

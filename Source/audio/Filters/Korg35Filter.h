@@ -17,11 +17,11 @@
 // "Designing Software Synthesizer Plug-Ins in C++". Find out more on https://willpirkle.com
 
 #pragma once
-#include "Filter.h"
+#include "OdinFilterBase.h"
 #include "VAOnePoleFilter.h"
 
 class Korg35Filter :
-	public Filter{
+	public OdinFilterBase{
 public:
 	Korg35Filter();
 	~Korg35Filter();

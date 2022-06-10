@@ -44,7 +44,7 @@ VAOnePoleFilter::~VAOnePoleFilter() {
 // recalc coeffs
 void VAOnePoleFilter::update() {
 	// base class does modulation, changes m_fFc
-	Filter::update();
+	OdinFilterBase::update();
 
 	double wd = 2 * M_PI * m_freq_modded;
 	double T  = 1 / m_samplerate;

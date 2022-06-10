@@ -18,7 +18,7 @@
 #include "../../GlobalIncludes.h"
 #include "../OdinConstants.h"
 #include "DCBlockingFilter.h"
-#include "Filter.h"
+#include "OdinFilterBase.h"
 #include <cstring>
 
 //#define COMB_FC_MIN FILTER_FC_MIN

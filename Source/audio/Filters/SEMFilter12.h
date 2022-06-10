@@ -14,10 +14,10 @@
 */
 
 #pragma once
-#include "Filter.h"
+#include "OdinFilterBase.h"
 #include "../../GlobalIncludes.h"
 class SEMFilter12 :
-	public Filter
+	public OdinFilterBase
 {
 public:
 	SEMFilter12();

@@ -2224,8 +2224,8 @@
                 file="Source/audio/Filters/DCBlockingFilter.h"/>
           <FILE id="JHfaPb" name="DiodeFilter.cpp" compile="1" resource="0" file="Source/audio/Filters/DiodeFilter.cpp"/>
           <FILE id="FSMHAJ" name="DiodeFilter.h" compile="0" resource="0" file="Source/audio/Filters/DiodeFilter.h"/>
-          <FILE id="gg9mto" name="Filter.cpp" compile="1" resource="0" file="Source/audio/Filters/Filter.cpp"/>
-          <FILE id="IvlOHH" name="Filter.h" compile="0" resource="0" file="Source/audio/Filters/Filter.h"/>
+          <FILE id="gg9mto" name="OdinFilterBase.cpp" compile="1" resource="0" file="Source/audio/Filters/OdinFilterBase.cpp"/>
+          <FILE id="IvlOHH" name="OdinFilterBase.h" compile="0" resource="0" file="Source/audio/Filters/OdinFilterBase.h"/>
           <FILE id="PCXPLn" name="FormantFilter.cpp" compile="1" resource="0"
                 file="Source/audio/Filters/FormantFilter.cpp"/>
           <FILE id="RcryvM" name="FormantFilter.h" compile="0" resource="0" file="Source/audio/Filters/FormantFilter.h"/>
