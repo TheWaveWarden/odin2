@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="vpwEHn" name="Odin2" projectType="audioplug" pluginFormats="buildAU,buildStandalone,buildVST3"
-              version="2.3.2" companyName="TheWaveWarden" companyWebsite="www.thewavewarden.com"
+              version="2.3.3" companyName="TheWaveWarden" companyWebsite="www.thewavewarden.com"
               pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn"
               pluginManufacturerCode="WAWA" pluginCode="ODIN" pluginChannelConfigs="{0,2}"
               displaySplashScreen="0" jucerFormatVersion="1" companyEmail="info@thewavewarden.com"
