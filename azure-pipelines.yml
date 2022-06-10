@@ -56,7 +56,7 @@ jobs:
       echo "Results"
       [[ $(find Odin2.exe -type f -size +30000000c 2>/dev/null) ]] && echo "Windows installer built successfully" || exit 1
 
-      export PROJ_VERSION="$(../../../../JUCE/extras/Projucer/Builds/VisualStudio2019/x64/Release/App/Projucer.exe --get-version ../../../Odin.jucer)"
+      export PROJ_VERSION=$(cat ../../../CMakeLists.txt | grep "VERSION \"" | awk '{print $2}' | tr -d '"')
       echo "Odin Project Version: $PROJ_VERSION"
       mv "Odin2.exe" "Odin${PROJ_VERSION}WinInstaller.exe"
       ls -la
@@ -125,7 +125,7 @@ jobs:
 
       [[ $(find build/Odin2MacInstaller.pkg -type f -size +50000000c 2>/dev/null) ]] && echo "Mac Package Built Successfully" || exit 1
 
-      export PROJ_VERSION="$(../../../JUCE/extras/Projucer/Builds/MacOSX/build/Release/Projucer.app/Contents/MacOS/Projucer --get-version ../../Odin.jucer)"
+      export PROJ_VERSION=$(cat ../../CMakeLists.txt | grep "VERSION \"" | awk '{print $2}' | tr -d '"')
       echo "Odin Project Version: $PROJ_VERSION"
       mv "build/Odin2MacInstaller.pkg" "build/Odin${PROJ_VERSION}MacInstaller.pkg"
 
