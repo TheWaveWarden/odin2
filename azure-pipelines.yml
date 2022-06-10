@@ -211,6 +211,8 @@ jobs:
 
 
 - job: NightlyDevelUpdate
+  pool:
+    vmImage: 'ubuntu-latest'
   dependsOn: Build
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/devel'))
 
