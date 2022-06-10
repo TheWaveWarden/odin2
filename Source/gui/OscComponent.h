@@ -21,7 +21,7 @@
 #include "ChipdrawWindow.h"
 #include "GlassDropdown.h"
 #include "IntegerKnob.h"
-#include "Knob.h"
+#include "OdinKnob.h"
 #include "LeftRightButton.h"
 #include "NumberSelector.h"
 #include "OdinButton.h"
@@ -231,22 +231,22 @@ protected:
 
   IntegerKnob m_oct;
   IntegerKnob m_semi;
-  Knob m_fine;
+  OdinKnob m_fine;
   DecibelKnob m_vol;
-  Knob m_pw;
-  Knob m_drift;
+  OdinKnob m_pw;
+  OdinKnob m_drift;
   IntegerKnob m_step_1;
   IntegerKnob m_step_2;
   IntegerKnob m_step_3;
-  Knob m_fm;
-  Knob m_speed;
-  Knob m_lp;
-  Knob m_hp;
-  Knob m_position;
-  Knob m_position_multi;
-  Knob m_spread;
-  Knob m_detune;
-  Knob m_pos_mod;
+  OdinKnob m_fm;
+  OdinKnob m_speed;
+  OdinKnob m_lp;
+  OdinKnob m_hp;
+  OdinKnob m_position;
+  OdinKnob m_position_multi;
+  OdinKnob m_spread;
+  OdinKnob m_detune;
+  OdinKnob m_pos_mod;
 
   OdinButton m_arp;
   OdinButton m_step_button;
@@ -283,8 +283,8 @@ protected:
   SpecdrawDisplay m_specdraw;
 
   XYPadComponent m_xy;
-  Knob m_xy_x;
-  Knob m_xy_y;
+  OdinKnob m_xy_x;
+  OdinKnob m_xy_y;
   GlassDropdown m_vec_a;
   GlassDropdown m_vec_b;
   GlassDropdown m_vec_c;

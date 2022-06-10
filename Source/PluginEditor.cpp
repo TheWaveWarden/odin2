@@ -120,7 +120,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 		}
 	};
 
-	Knob::setOdinPointer(&p_processor);
+	OdinKnob::setOdinPointer(&p_processor);
 	DrawableSlider::setOdinPointer(&p_processor);
 	LeftRightButton::setOdinPointer(&p_processor);
 	OdinButton::setOdinPointer(&p_processor);

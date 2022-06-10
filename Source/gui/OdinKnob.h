@@ -106,9 +106,9 @@ public:
 	}
 };
 
-class Knob : public juce::Slider, public OdinMidiLearnBase {
+class OdinKnob : public juce::Slider, public OdinMidiLearnBase {
 public:
-	Knob() {
+	OdinKnob() {
 		setLookAndFeel(&m_knob_feels);
 		setRange(0, 1);
 
@@ -119,7 +119,7 @@ public:
 		setTooltip("henlo");
 	}
 
-	~Knob() {
+	~OdinKnob() {
 		setLookAndFeel(nullptr);
 	}
 	void setTextValueSuffix(const String &suffix) {
@@ -220,7 +220,7 @@ public:
 		default:
 			m_midi_learn_left_offset   = 4;
 			m_midi_learn_bottom_offset = 3;
-			//DBG("Unknown knob width " + std::to_string(width) + "px in Knob::setBounds()");
+			//DBG("Unknown knob width " + std::to_string(width) + "px in OdinKnob::setBounds()");
 			break;
 		}
 		Slider::setBounds(x, y, width, height);
@@ -287,7 +287,7 @@ private:
 	//Label m_label;
 };
 
-class DecibelKnob : public Knob {
+class DecibelKnob : public OdinKnob {
 	String getTextFromValue(double value) override {
 		if (value < -59.999) {
 			return "-Inf dB";

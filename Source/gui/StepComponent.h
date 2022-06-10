@@ -15,7 +15,7 @@
 
 #pragma once
 
-#include "Knob.h"
+#include "OdinKnob.h"
 #include "OdinButton.h"
 #include "OdinControlAttachments.h"
 #include "StepLED.h"
@@ -66,9 +66,9 @@ private:
 
 	AudioProcessorValueTreeState &m_value_tree;
 
-	Knob m_mod_1;
-	Knob m_mod_2;
-	Knob m_transpose;
+	OdinKnob m_mod_1;
+	OdinKnob m_mod_2;
+	OdinKnob m_transpose;
 
 	OdinButton m_step_on;
 	StepLED m_led;

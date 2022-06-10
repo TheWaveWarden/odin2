@@ -33,7 +33,7 @@
 #include "audio/Oscillators/WavetableContainer.h"
 #include "audio/Voice.h"
 #include "gui/DrawableSlider.h"
-#include "gui/Knob.h"
+#include "gui/OdinKnob.h"
 #include "gui/LeftRightButton.h"
 #include "gui/ModMatrix.h"
 #include "gui/OdinArpeggiator.h"

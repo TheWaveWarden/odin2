@@ -17,7 +17,7 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 
 XYPadComponent::XYPadComponent(
-    AudioProcessorValueTreeState &vts, const std::string &p_param_prefix, Knob &p_x, Knob &p_y, bool p_vector_pad) :
+    AudioProcessorValueTreeState &vts, const std::string &p_param_prefix, OdinKnob &p_x, OdinKnob &p_y, bool p_vector_pad) :
     m_value_tree(vts),
     m_param_name_x(p_param_prefix + "x"), m_param_name_y(p_param_prefix + "y"), m_knob_x(p_x), m_knob_y(p_y),
     m_vector_pad(p_vector_pad) {

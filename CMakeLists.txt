@@ -127,7 +127,7 @@ target_sources(Odin2
     "Source/gui/GlasDisplay.cpp"
     "Source/gui/GlassDropdown.cpp"
     "Source/gui/IntegerKnob.cpp"
-    "Source/gui/Knob.cpp"
+    "Source/gui/OdinKnob.cpp"
     "Source/gui/LFOComponent.cpp"
     "Source/gui/LFODisplayComponent.cpp"
     "Source/gui/LFOPopupLookAndFeel.cpp"

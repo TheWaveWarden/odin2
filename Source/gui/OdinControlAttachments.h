@@ -17,7 +17,7 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "../GlobalIncludes.h"
-#include "Knob.h"
+#include "OdinKnob.h"
 #include "DrawableSlider.h"
 #include "OdinButton.h"
 #include "LeftRightButton.h"
@@ -26,7 +26,7 @@ class OdinKnobAttachment : public SliderAttachment {
 public:
 	OdinKnobAttachment(AudioProcessorValueTreeState &p_audio_tree_state,
 	                   const String &p_parameter_ID,
-	                   Knob &p_slider_to_control) :
+	                   OdinKnob &p_slider_to_control) :
 	    SliderAttachment(p_audio_tree_state, p_parameter_ID, (Slider &)p_slider_to_control) {
 		p_slider_to_control.setParameterID(p_parameter_ID);
 		if(p_audio_tree_state.state.getChildWithName("midi_learn").hasProperty(p_parameter_ID)){

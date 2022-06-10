@@ -17,9 +17,9 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "../GlobalIncludes.h"
-#include "Knob.h"
+#include "OdinKnob.h"
 
-class PitchWheel : public Knob {
+class PitchWheel : public OdinKnob {
 public:
   PitchWheel() {
     setRange(-1, 1);

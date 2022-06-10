@@ -2,6 +2,8 @@
 - added CLAP plugin support
 - much improved UI appearance when using OS display scaling
 - switched build system to CMake
+- made WinInstaller suitable for systems not mounted on C:
+- fixed symbol name clash "Knob" in LMMS
 # 2.3.2
 - fixed issue where multiple instances of reverb would produce noise
 # 2.3.1

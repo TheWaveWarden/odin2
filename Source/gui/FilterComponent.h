@@ -19,7 +19,7 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "FormantSelector.h"
 #include "../GlobalIncludes.h"
-#include "Knob.h"
+#include "OdinKnob.h"
 #include "LeftRightButton.h"
 #include "OdinControlAttachments.h"
 
@@ -128,16 +128,16 @@ public:
 protected:
 	bool m_GUI_big = true;
 
-	Knob m_vel;
-	Knob m_kbd;
-	Knob m_env;
+	OdinKnob m_vel;
+	OdinKnob m_kbd;
+	OdinKnob m_env;
 	DecibelKnob m_gain;
-	Knob m_freq;
-	Knob m_res;
-	Knob m_saturation;
-	Knob m_sem_transition;
-	Knob m_formant_transition;
-	Knob m_ring_mod_amount;
+	OdinKnob m_freq;
+	OdinKnob m_res;
+	OdinKnob m_saturation;
+	OdinKnob m_sem_transition;
+	OdinKnob m_formant_transition;
+	OdinKnob m_ring_mod_amount;
 
 	FormantSelector m_vowel_left;
 	FormantSelector m_vowel_right;

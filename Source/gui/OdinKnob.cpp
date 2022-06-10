@@ -16,12 +16,12 @@
 #include <iomanip> // setprecision
 #include <sstream> // stringstream
 
-#include "Knob.h"
+#include "OdinKnob.h"
 #include "../PluginProcessor.h"
 
-OdinAudioProcessor *Knob::m_processor;
+OdinAudioProcessor *OdinKnob::m_processor;
 
-void Knob::mouseDown(const MouseEvent &event) {
+void OdinKnob::mouseDown(const MouseEvent &event) {
 	if (event.mods.isRightButtonDown() && m_midi_learn_possible) {
 		//DBG("RIGHT");
 		PopupMenu midi_learn_menu;
@@ -56,7 +56,7 @@ void Knob::mouseDown(const MouseEvent &event) {
 	Slider::mouseDown(event);
 }
 
-String Knob::getTextFromValue(double value) {
+String OdinKnob::getTextFromValue(double value) {
 	//apparently there's a better solution....
 	//https://forum.juce.com/t/setnumdecimalplacestodisplay-not-behaving-solved/33686/2
 	//DBG(String(value, getNumDecimalPlacesToDisplay()) + getTextValueSuffix());

@@ -18,7 +18,7 @@
 #include "../GlobalIncludes.h"
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "GlassDropdown.h"
-#include "Knob.h"
+#include "OdinKnob.h"
 #include "OdinButton.h"
 #include "OdinControlAttachments.h"
 
@@ -68,15 +68,15 @@ private:
 
 	juce::Image m_background;
 
-	Knob m_delay; // zita: delay / size
-	Knob m_EQ_gain; // zita: eq
-	Knob m_EQ_freq; // zita: eq
-	//Knob m_ducking;
-	Knob m_dry_wet;  // zita: mix
-	Knob m_low_freq; // zita: low freq
-	Knob m_low_hall; // zita: low hall
-	Knob m_mid_hall; // zita: mid hall
-	Knob m_hf_damp;  //zita: hf damp
+	OdinKnob m_delay; // zita: delay / size
+	OdinKnob m_EQ_gain; // zita: eq
+	OdinKnob m_EQ_freq; // zita: eq
+	//OdinKnob m_ducking;
+	OdinKnob m_dry_wet;  // zita: mix
+	OdinKnob m_low_freq; // zita: low freq
+	OdinKnob m_low_hall; // zita: low hall
+	OdinKnob m_mid_hall; // zita: mid hall
+	OdinKnob m_hf_damp;  //zita: hf damp
 
 	AudioProcessorValueTreeState &m_value_tree;
 
