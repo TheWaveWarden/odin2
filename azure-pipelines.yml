@@ -198,14 +198,14 @@ jobs:
       mkdir build
       cmake -B build -D CMAKE_BUILD_TYPE=Release
       ls -la
-    displayName: 'Windows: CMake'
-    condition: variables.isWindows
+    displayName: 'Linux: CMake'
+    condition: variables.isLinux
 
   - script: |
       cmake --build build --config Release
       ls -la
-    displayName: "Windows: Build"
-    condition: variables.isWindows
+    displayName: "Linux: Build"
+    condition: variables.isLinux
 
   - script: |
       export PROJECT_VERSION=$(cat CMakeLists.txt | grep "VERSION \"" | awk '{print $2}' | tr -d '"')
