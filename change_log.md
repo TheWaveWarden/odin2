@@ -1,4 +1,7 @@
-#2.3.1
+# 2.3.2
+- added CLAP plugin support
+- switched build system to CMake
+# 2.3.1
 - debian package: fixed data file being owned by root (introduced in 2.3.0)
 - LFO Waves now selectable from a dropdown
 - Reversed order of LFO waves to make them align with dropdown

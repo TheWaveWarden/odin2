@@ -41,13 +41,13 @@ jobs:
   - script: |
       mkdir build
       cmake -B build -D CMAKE_BUILD_TYPE=Release
-      ls -la
+      find .
     displayName: 'Windows: CMake'
     condition: variables.isWindows
 
   - script: |
       cmake --build build --config Release
-      ls -la
+      find .
     displayName: "Windows: Build"
     condition: variables.isWindows
 
@@ -61,9 +61,7 @@ jobs:
       export PROJ_VERSION="$(../../../../JUCE/extras/Projucer/Builds/VisualStudio2019/x64/Release/App/Projucer.exe --get-version ../../../Odin.jucer)"
       echo "Odin Project Version: $PROJ_VERSION"
       mv "Odin2.exe" "Odin${PROJ_VERSION}WinInstaller.exe"
-      ls -l
-
-
+      ls -la
     displayName: 'Windows: Build Installer'
     condition: variables.isWindows
 
@@ -81,11 +79,6 @@ jobs:
 #! ██      ██ ██   ██  ██████
 
   - script: |
-      echo ""
-      echo "==============================="
-      echo "====== INSTALL PACKAGES ======="
-      echo "==============================="
-      echo ""
       function installdmg {
         set -x
         tempd=$(mktemp -d)
@@ -114,30 +107,18 @@ jobs:
   - script: |
       mkdir build
       cmake -B build -D CMAKE_BUILD_TYPE=Release
-      ls -la
+      find .
     displayName: 'Mac: CMake'
     condition: variables.isMac
 
   - script: |
       cmake --build build --config Release
-      ls -la
+      find .
     displayName: "Mac: Build"
     condition: variables.isMac
 
   - script: |
-      echo ""
-      echo "==============================="
-      echo "======== PACKAGE ODIN ========="
-      echo "==============================="
-      echo ""
       cd installers/mac
-      echo "Adjusting paths in pkgproj to Azure build system"
-      cat Odin2MacInstaller.pkgproj | grep ../../..
-      echo ""
-      sed -i '' 's:../../../Library:../../../../../Library:' Odin2MacInstaller.pkgproj
-      sed -i '' 's:../../../odin2:../..:' Odin2MacInstaller.pkgproj
-      cat Odin2MacInstaller.pkgproj | grep ../../..
-
       /usr/local/bin/packagesbuild Odin2MacInstaller.pkgproj
       echo ""
       echo "The final product:"
@@ -150,7 +131,7 @@ jobs:
       echo "Odin Project Version: $PROJ_VERSION"
       mv "build/Odin2MacInstaller.pkg" "build/Odin${PROJ_VERSION}MacInstaller.pkg"
 
-      ls -l build
+      ls -la build
 
     displayName: 'Mac: Package Odin'
     condition: variables.isMac
@@ -169,33 +150,8 @@ jobs:
 #! ███████ ██ ██   ████  ██████  ██   ██
 
   - script: |
-      echo ""
-      echo "==============================="
-      echo "==== INSTALL STUFF VIA APT ===="
-      echo "==============================="
       sudo apt-get update
-      sudo apt-get install -y libgtk-3-dev
-      sudo apt-get install -y libwebkit2gtk-4.0
-      sudo apt-get install -y libwebkit2gtk-4.0-dev
-      sudo apt-get install -y libcurl4-openssl-dev
-      sudo apt-get install -y alsa
-      sudo apt-get install -y alsa-tools
-      sudo apt-get install -y libasound2-dev
-      sudo apt-get install -y jack
-      sudo apt-get install -y libjack-dev
-      sudo apt-get install -y libfreetype6-dev
-      sudo apt-get install -y libxinerama-dev
-      sudo apt-get install -y libxcb-xinerama0
-      sudo apt-get install -y libxinerama1
-      sudo apt-get install -y x11proto-xinerama-dev
-      sudo apt-get install -y libxrandr-dev
-      sudo apt-get install -y libgl1-mesa-dev
-      sudo apt-get install -y libxcursor-dev 
-      sudo apt-get install -y libxcursor1 
-      sudo apt-get install -y libxcb-cursor-dev 
-      sudo apt-get install -y libxcb-cursor0
-      sudo apt-get install -y xvfb
-      sudo apt-get install -y lv2-dev 
+      sudo apt-get install -y libgtk-3-dev libwebkit2gtk-4.0 libwebkit2gtk-4.0-dev libcurl4-openssl-dev alsa alsa-tools libasound2-dev jack libjack-dev libfreetype6-dev libxinerama-dev libxcb-xinerama0 libxinerama1 x11proto-xinerama-dev libxrandr-dev libgl1-mesa-dev libxcursor-dev libxcursor1 libxcb-cursor-dev libxcb-cursor0 xvfb lv2-dev
       sudo apt-get install -y --fix-missing
       apt list --installed
     displayName: 'Linux: Install Prerequisites'
@@ -204,13 +160,13 @@ jobs:
   - script: |
       mkdir build
       cmake -B build -D CMAKE_BUILD_TYPE=Release
-      ls -la
+      find .
     displayName: 'Linux: CMake'
     condition: variables.isLinux
 
   - script: |
       cmake --build build --config Release
-      ls -la
+      find .
     displayName: "Linux: Build"
     condition: variables.isLinux
 
@@ -227,7 +183,7 @@ jobs:
       echo ""
       ls -lh | grep Odin
 
-      export $DEB_NAME="Odin_$DEBIAN_PROJECT_STRING.deb"
+      export DEB_NAME="Odin_$DEBIAN_PROJECT_STRING.deb"
       echo "Debian name should be: $DEB_NAME"
 
       echo ""
@@ -241,9 +197,8 @@ jobs:
       mv Odin* build/
 
       echo "Rename Linux Zip"
-      export PROJ_VERSION="$(../../../JUCE/extras/Projucer/Builds/LinuxMakefile/build/Projucer --get-version ../../Odin.jucer)"
-      echo "Odin Project Version: $PROJ_VERSION"
-      mv "build/Odin2_linux_x64.zip" "build/Odin${PROJ_VERSION}Linux.zip"
+      echo "Odin Project Version: $PROJECT_VERSION"
+      mv "build/Odin2_linux_x64.zip" "build/Odin${PROJECT_VERSION}Linux.zip"
       
     displayName: 'Linux: Build Odin2 Packages'
     condition: variables.isLinux
