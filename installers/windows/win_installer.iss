@@ -11,7 +11,7 @@ InfoBeforeFile=infobefore.txt
 
  
 [Files]
-Source: "..\..\build\Odin2_artefacts\Release\VST3\Odin2.vst3\Contents\x86_64-win\Odin2.vst3
+Source: "..\..\build\Odin2_artefacts\Release\VST3\Odin2.vst3\Contents\x86_64-win\Odin2.vst3"
 
 [Dirs]
 Name: "C:\ProgramData\odin2\Soundbanks"; Permissions: everyone-full

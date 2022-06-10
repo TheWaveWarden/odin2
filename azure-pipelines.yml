@@ -46,7 +46,6 @@ jobs:
 
   - script: |
       cmake --build build --config Release
-      find .
     displayName: "Windows: Build"
     condition: variables.isWindows
 
@@ -179,7 +178,7 @@ jobs:
       ./create_installers.sh $DEBIAN_PROJECT_STRING
       ls -lh | grep Odin
 
-      export DEB_NAME="Odin_$DEBIAN_PROJECT_STRING.deb"
+      export DEB_NAME="Odin2-synth_$DEBIAN_PROJECT_STRING.deb"
       echo "Debian name should be: $DEB_NAME"
 
       echo "RESULTS:"
