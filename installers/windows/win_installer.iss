@@ -23,6 +23,6 @@ Source: "..\..\build\Odin2_artefacts\Release\VST3\Odin2.vst3\Contents\x86_64-win
 Source: "..\..\build\Odin2_artefacts\Release\CLAP\Odin2.clap"; DestDir: "{cf}\CLAP"; Flags: ignoreversion; Components: clap
 
 [Dirs]
-Name: "C:\ProgramData\odin2\Soundbanks"; Permissions: everyone-full
-Name: "C:\ProgramData\odin2\Soundbanks\User Patches"; Permissions: everyone-full
+Name: "{commonappdata}\odin2\Soundbanks"; Permissions: everyone-full
+Name: "{commonappdata}\odin2\Soundbanks\User Patches"; Permissions: everyone-full
 
