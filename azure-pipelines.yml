@@ -41,7 +41,6 @@ jobs:
   - script: |
       mkdir build
       cmake -B build -D CMAKE_BUILD_TYPE=Release
-      find .
     displayName: 'Windows: CMake'
     condition: variables.isWindows
 
@@ -178,25 +177,18 @@ jobs:
       echo "Debian package String: $DEBIAN_PROJECT_STRING"
       cd installers/linux
       ./create_installers.sh $DEBIAN_PROJECT_STRING
-      echo ""
-      echo "Packed builds:"
-      echo ""
       ls -lh | grep Odin
 
       export DEB_NAME="Odin_$DEBIAN_PROJECT_STRING.deb"
       echo "Debian name should be: $DEB_NAME"
 
-      echo ""
       echo "RESULTS:"
-      echo ""
       [[ $(find Odin2_linux_x64.zip -type f -size +50000000c 2>/dev/null) ]] && echo "Generic Zip Built sucessfully!" || exit 1
       [[ $(find $DEB_NAME -type f -size +50000000c 2>/dev/null) ]] && echo "Debian package built successfully!" || exit 1
 
-      echo "Move installers to separate dir"
+      echo "Rename Linux Zip"
       mkdir build
       mv Odin* build/
-
-      echo "Rename Linux Zip"
       echo "Odin Project Version: $PROJECT_VERSION"
       mv "build/Odin2_linux_x64.zip" "build/Odin${PROJECT_VERSION}Linux.zip"
       
