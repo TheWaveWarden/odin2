@@ -15,7 +15,7 @@
 
 #pragma once
 
-#include "../../tuning-library/include/Tunings.h"
+#include "include/Tunings.h"
 #include "../GlobalIncludes.h"
 #include "Amplifier.h"
 #include "FX/OversamplingDistortion.h"

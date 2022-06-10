@@ -15,7 +15,7 @@
 
 #pragma once
 
-#include "../../JuceLibraryCode/JuceHeader.h"
+#include "JuceHeader.h"
 #include "../GlobalIncludes.h"
 #include <functional>
 
