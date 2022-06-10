@@ -38,12 +38,17 @@ jobs:
     displayName: 'Windows: Install Prerequisites'
     condition: variables.isWindows
 
-  - task: MSBuild@1
-    inputs:
-      solution: "Builds/VisualStudio2019/Odin2.sln"
-      platform: "x64"
-      configuration: "release"
-    displayName: "Windows: Build Odin MSBuild"
+  - script: |
+      mkdir build
+      cmake -B build -D CMAKE_BUILD_TYPE=Release
+      ls -la
+    displayName: 'Windows: CMake'
+    condition: variables.isWindows
+
+  - script: |
+      cmake --build build --config Release
+      ls -la
+    displayName: "Windows: Build"
     condition: variables.isWindows
 
   - bash: |
@@ -106,14 +111,17 @@ jobs:
     displayName: 'Mac: Install Prerequisites'
     condition: variables.isMac
 
-  - task: Xcode@5
-    inputs:
-      actions: 'build'
-      sdk: ''
-      configuration: 'Release'
-      xcodeVersion: 'default'
-      xcWorkspacePath: Builds/MacOSX/Odin2.xcodeproj
-    displayName: 'Mac: Build Odin XCode'
+  - script: |
+      mkdir build
+      cmake -B build -D CMAKE_BUILD_TYPE=Release
+      ls -la
+    displayName: 'Mac: CMake'
+    condition: variables.isMac
+
+  - script: |
+      cmake --build build --config Release
+      ls -la
+    displayName: "Mac: Build"
     condition: variables.isMac
 
   - script: |

@@ -79,7 +79,7 @@
 															<key>GID</key>
 															<integer>0</integer>
 															<key>PATH</key>
-															<string>../../../Library/Audio/Plug-Ins/VST3/Odin2.vst3</string>
+															<string>../../build/Odin2_artefacts/Release/VST3/Odin2.vst3</string>
 															<key>PATH_TYPE</key>
 															<integer>1</integer>
 															<key>PERMISSIONS</key>
@@ -633,7 +633,7 @@
 															<key>GID</key>
 															<integer>0</integer>
 															<key>PATH</key>
-															<string>../../../Library/Audio/Plug-Ins/Components/Odin2.component</string>
+															<string>../../build/Odin2_artefacts/Release/AU/Odin2.component</string>
 															<key>PATH_TYPE</key>
 															<integer>1</integer>
 															<key>PERMISSIONS</key>

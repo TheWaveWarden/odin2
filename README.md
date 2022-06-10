@@ -4,7 +4,7 @@
 
 # Odin 2 Synthesizer
 
-This is the home of **Odin 2 free VST3, AU and LV2 synthesizer** plugin. This repository contains the code to build the project. **If you just want to download the synth, get it from
+This is the home of **Odin 2 free VST3, CLAP, AU and LV2 synthesizer** plugin. This repository contains the code to build the project. **If you just want to download the synth, get it from
 https://thewavewarden.com/odin2**
 
 ![alt text](screenshot.png)

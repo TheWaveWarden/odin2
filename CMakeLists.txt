@@ -2,7 +2,7 @@
 
 cmake_minimum_required(VERSION 3.15)
 
-project(Odin2 VERSION 2.3.1 LANGUAGES C CXX ASM)
+project(Odin2 VERSION 2.3.3 LANGUAGES C CXX ASM)
 
 add_subdirectory(libs/JUCE)
 add_subdirectory(libs/clap-juce-extensions)
