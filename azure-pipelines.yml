@@ -12,7 +12,11 @@ jobs:
         imageName: 'windows-2019'
         isWindows: True
       Mac:
+<<<<<<< HEAD
+        imageName: 'macOS-10.15'
+=======
         imageName: 'macOS-1015'
+>>>>>>> 21fe04ca8bf6a3baf417c98ac179b8d6f0e5d4a7
         isMac: True
       Linux:
         imageName: 'ubuntu-18.04'
