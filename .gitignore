@@ -7,3 +7,4 @@ Source/GitCommitId.h
 ignore
 cmake-build-*
 .idea/
+build/

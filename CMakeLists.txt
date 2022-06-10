@@ -2,7 +2,7 @@
 
 cmake_minimum_required(VERSION 3.15)
 
-project(Odin2 VERSION 2.3.1 LANGUAGES C CXX ASM)
+project(Odin2 VERSION 2.3.3 LANGUAGES C CXX ASM)
 
 add_subdirectory(libs/JUCE)
 add_subdirectory(libs/clap-juce-extensions)
@@ -24,7 +24,7 @@ file(WRITE "${CMAKE_BINARY_DIR}/include/GitCommitId.h" "#define GIT_COMMIT_ID \"
 option(ODIN2_COPY_PLUGIN_AFTER_BUILD "Copy JUCE Plugins after built" OFF)
 
 juce_add_plugin(Odin2
-  VERSION "2.3.1"
+  VERSION "2.3.3"
   COMPANY_NAME "TheWaveWarden"
   COMPANY_WEBSITE "www.thewavewarden.com"
   COMPANY_EMAIL "info@thewavewarden.com"
@@ -1161,5 +1161,5 @@ target_link_libraries(Odin2
     juce::juce_opengl
     juce::juce_recommended_config_flags
     juce::juce_recommended_lto_flags
-    juce::juce_recommended_warning_flags
+    #juce::juce_recommended_warning_flags
 )

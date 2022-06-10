@@ -1,12 +1,7 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
 trigger:
 - master
 - devel
-
+- cmake_azure
   
 jobs:
 
@@ -17,11 +12,7 @@ jobs:
         imageName: 'windows-2019'
         isWindows: True
       Mac:
-<<<<<<< HEAD
-        imageName: 'macOS-10.15'
-=======
         imageName: 'macOS-1015'
->>>>>>> 21fe04ca8bf6a3baf417c98ac179b8d6f0e5d4a7
         isMac: True
       Linux:
         imageName: 'ubuntu-18.04'
@@ -33,8 +24,7 @@ jobs:
   steps:
 
   - bash: |
-      git submodule init
-      git submodule update
+      git submodule update --init --recursive
     displayName: "Git Submodules"
 
 #! ██     ██ ██ ███    ██ ██████   ██████  ██     ██ ███████ 
@@ -49,60 +39,14 @@ jobs:
     condition: variables.isWindows
 
   - script: |
-      echo ""
-      echo "==============================="
-      echo "========= CLONE JUCE =========="
-      echo "==============================="
-      echo ""
-      cd ..
-      git clone https://github.com/juce-framework/JUCE.git JUCE
-      cd JUCE
-      echo "Checking out JUCE dev version"
-      git fetch origin
-      git checkout b13af2df9530bf473ff9a85936e5700027bd2af4
-      ls -l
-      cd extras/Projucer
-      ls -l
-      cd Builds
-      ls -l
-      cd VisualStudio2019
-      ls -l
-    displayName: 'Windows: Clone JUCE'
+      mkdir build
+      cmake -B build -D CMAKE_BUILD_TYPE=Release
+    displayName: 'Windows: CMake'
     condition: variables.isWindows
-
-  - task: MSBuild@1
-    inputs:
-      solution: "../JUCE/extras/Projucer/Builds/VisualStudio2019/Projucer.sln"
-      platform: "x64"
-      configuration: "release"
-    displayName: "Windows: Build Projucer MSBuild"
-    condition: variables.isWindows
-
 
   - script: |
-      echo ""
-      echo "==============================="
-      echo "======= EXPORT PROJUCER ======="
-      echo "==============================="
-      echo ""
-      pwd
-      echo "Set JUCE Moudules path"
-      cd ../JUCE/extras/Projucer/Builds/VisualStudio2019/x64/Release/App
-      Projucer.exe --set-global-search-path windows defaultJuceModulePath /a/1/JUCE/modules
-      echo "Export project"
-      Projucer.exe --resave /a/1/s/Odin.jucer
-      cd /a/1/s
-      cat Source/GitCommitId.h
-    displayName: 'Windows: Export Project Projucer'
-    condition: variables.isWindows
-
-
-  - task: MSBuild@1
-    inputs:
-      solution: "Builds/VisualStudio2019/Odin2.sln"
-      platform: "x64"
-      configuration: "release"
-    displayName: "Windows: Build Odin MSBuild"
+      cmake --build build --config Release
+    displayName: "Windows: Build"
     condition: variables.isWindows
 
   - bash: |
@@ -112,12 +56,10 @@ jobs:
       echo "Results"
       [[ $(find Odin2.exe -type f -size +30000000c 2>/dev/null) ]] && echo "Windows installer built successfully" || exit 1
 
-      export PROJ_VERSION="$(../../../../JUCE/extras/Projucer/Builds/VisualStudio2019/x64/Release/App/Projucer.exe --get-version ../../../Odin.jucer)"
+      export PROJ_VERSION=$(cat ../../../CMakeLists.txt | grep "VERSION \"" | awk '{print $2}' | tr -d '"')
       echo "Odin Project Version: $PROJ_VERSION"
       mv "Odin2.exe" "Odin${PROJ_VERSION}WinInstaller.exe"
-      ls -l
-
-
+      ls -la
     displayName: 'Windows: Build Installer'
     condition: variables.isWindows
 
@@ -135,11 +77,6 @@ jobs:
 #! ██      ██ ██   ██  ██████
 
   - script: |
-      echo ""
-      echo "==============================="
-      echo "====== INSTALL PACKAGES ======="
-      echo "==============================="
-      echo ""
       function installdmg {
         set -x
         tempd=$(mktemp -d)
@@ -166,70 +103,20 @@ jobs:
     condition: variables.isMac
 
   - script: |
-      echo ""
-      echo "==============================="
-      echo "========= CLONE JUCE =========="
-      echo "==============================="
-      echo ""
-      cd ..
-      git clone https://github.com/juce-framework/JUCE.git JUCE
-      cd JUCE
-      echo "Checking out JUCE dev version"
-      git fetch origin
-      git checkout b13af2df9530bf473ff9a85936e5700027bd2af4
-    displayName: 'Mac: Clone JUCE'
-    condition: variables.isMac
-
-  - task: Xcode@5
-    inputs:
-      actions: 'build'
-      sdk: ''
-      configuration: 'Release'
-      xcodeVersion: 'default'
-      xcWorkspacePath: ../JUCE/extras/Projucer/Builds/MacOSX/Projucer.xcodeproj
-    displayName: 'Mac: Build Projucer XCode'
+      mkdir build
+      cmake -B build -D CMAKE_BUILD_TYPE=Release
+      find .
+    displayName: 'Mac: CMake'
     condition: variables.isMac
 
   - script: |
-      echo ""
-      echo "==============================="
-      echo "======= EXPORT PROJUCER ======="
-      echo "==============================="
-      echo ""
-      echo "Set JUCE Moudules path"
-      ../JUCE/extras/Projucer/Builds/MacOSX/build/Release/Projucer.app/Contents/MacOS/Projucer --set-global-search-path osx defaultJuceModulePath /Users/runner/work/1/JUCE/modules
-      echo "Export project"
-      ../JUCE/extras/Projucer/Builds/MacOSX/build/Release/Projucer.app/Contents/MacOS/Projucer --resave Odin.jucer
-      echo "extract git commit id"
-      echo "#define GIT_COMMIT_ID \"$(git rev-parse --short HEAD)\"" > Source/GitCommitId.h
-      cat Source/GitCommitId.h
-    displayName: 'Mac: Export Project Projucer'
-    condition: variables.isMac
-
-  - task: Xcode@5
-    inputs:
-      actions: 'build'
-      sdk: ''
-      configuration: 'Release'
-      xcodeVersion: 'default'
-      xcWorkspacePath: Builds/MacOSX/Odin2.xcodeproj
-    displayName: 'Mac: Build Odin XCode'
+      cmake --build build --config Release
+      find .
+    displayName: "Mac: Build"
     condition: variables.isMac
 
   - script: |
-      echo ""
-      echo "==============================="
-      echo "======== PACKAGE ODIN ========="
-      echo "==============================="
-      echo ""
       cd installers/mac
-      echo "Adjusting paths in pkgproj to Azure build system"
-      cat Odin2MacInstaller.pkgproj | grep ../../..
-      echo ""
-      sed -i '' 's:../../../Library:../../../../../Library:' Odin2MacInstaller.pkgproj
-      sed -i '' 's:../../../odin2:../..:' Odin2MacInstaller.pkgproj
-      cat Odin2MacInstaller.pkgproj | grep ../../..
-
       /usr/local/bin/packagesbuild Odin2MacInstaller.pkgproj
       echo ""
       echo "The final product:"
@@ -238,11 +125,11 @@ jobs:
 
       [[ $(find build/Odin2MacInstaller.pkg -type f -size +50000000c 2>/dev/null) ]] && echo "Mac Package Built Successfully" || exit 1
 
-      export PROJ_VERSION="$(../../../JUCE/extras/Projucer/Builds/MacOSX/build/Release/Projucer.app/Contents/MacOS/Projucer --get-version ../../Odin.jucer)"
+      export PROJ_VERSION=$(cat ../../CMakeLists.txt | grep "VERSION \"" | awk '{print $2}' | tr -d '"')
       echo "Odin Project Version: $PROJ_VERSION"
       mv "build/Odin2MacInstaller.pkg" "build/Odin${PROJ_VERSION}MacInstaller.pkg"
 
-      ls -l build
+      ls -la build
 
     displayName: 'Mac: Package Odin'
     condition: variables.isMac
@@ -261,132 +148,48 @@ jobs:
 #! ███████ ██ ██   ████  ██████  ██   ██
 
   - script: |
-      echo ""
-      echo "==============================="
-      echo "==== INSTALL STUFF VIA APT ===="
-      echo "==============================="
       sudo apt-get update
-      sudo apt-get install -y libgtk-3-dev
-      sudo apt-get install -y libwebkit2gtk-4.0
-      sudo apt-get install -y libwebkit2gtk-4.0-dev
-      sudo apt-get install -y libcurl4-openssl-dev
-      sudo apt-get install -y alsa
-      sudo apt-get install -y alsa-tools
-      sudo apt-get install -y libasound2-dev
-      sudo apt-get install -y jack
-      sudo apt-get install -y libjack-dev
-      sudo apt-get install -y libfreetype6-dev
-      sudo apt-get install -y libxinerama-dev
-      sudo apt-get install -y libxcb-xinerama0
-      sudo apt-get install -y libxinerama1
-      sudo apt-get install -y x11proto-xinerama-dev
-      sudo apt-get install -y libxrandr-dev
-      sudo apt-get install -y libgl1-mesa-dev
-      sudo apt-get install -y libxcursor-dev 
-      sudo apt-get install -y libxcursor1 
-      sudo apt-get install -y libxcb-cursor-dev 
-      sudo apt-get install -y libxcb-cursor0
-      sudo apt-get install -y xvfb
-      sudo apt-get install -y lv2-dev 
+      sudo apt-get install -y libgtk-3-dev libwebkit2gtk-4.0 libwebkit2gtk-4.0-dev libcurl4-openssl-dev alsa alsa-tools libasound2-dev jack libjack-dev libfreetype6-dev libxinerama-dev libxcb-xinerama0 libxinerama1 x11proto-xinerama-dev libxrandr-dev libgl1-mesa-dev libxcursor-dev libxcursor1 libxcb-cursor-dev libxcb-cursor0 xvfb lv2-dev
       sudo apt-get install -y --fix-missing
       apt list --installed
     displayName: 'Linux: Install Prerequisites'
     condition: variables.isLinux
 
   - script: |
-      echo ""
-      echo "==============================="
-      echo "========= CLONE JUCE =========="
-      echo "==============================="
-      echo ""
-      cd ..
-      git clone https://github.com/lv2-porting-project/JUCE.git JUCE
-      cd JUCE
-      echo "Checking out JUCE dev version"
-      git fetch origin
-      git checkout b13af2df9530bf473ff9a85936e5700027bd2af4
-      echo ""
-      echo "==============================="
-      echo "======= BUILD PROJUCER ========"
-      echo "==============================="
-      echo ""
-      cd extras/Projucer/Builds/LinuxMakefile
-      make -j 8 CONFIG=Release
-      echo "checking out lv2 branch"
-      git checkout lv2
-      git checkout f00a420bc348d79c4688b33b2b905b8ca0f25a3a
-      echo "Set Projucer modules path"
-      export GDK_BACKEND=x11
-      Xvfb :99 &
-      export DISPLAY=:99
-      sleep 5
-      build/Projucer --set-global-search-path linux defaultJuceModulePath /home/vsts/work/1/JUCE/modules
-      echo "setting symlink to Projucer"
-      ln -s /home/vsts/work/1/JUCE/extras/Projucer/Builds/LinuxMakefile/build/Projucer /home/vsts/work/1/JUCE/Projucer
-      ls -l /home/vsts/work/1/JUCE
-
-    displayName: 'Linux: Set up JUCE'
+      mkdir build
+      cmake -B build -D CMAKE_BUILD_TYPE=Release
+      find .
+    displayName: 'Linux: CMake'
     condition: variables.isLinux
 
   - script: |
-      echo ""
-      echo "==============================="
-      echo "======= EXPORT PROJUCER ======="
-      echo "==============================="
-      echo ""
-      ../JUCE/extras/Projucer/Builds/LinuxMakefile/build/Projucer --resave Odin.jucer
-      cat Source/GitCommitId.h
-      echo ""
-      echo "==============================="
-      echo "====== PREPARE LV2 STUFF ======"
-      echo "==============================="
-      echo ""
-      cd JuceLibraryCode
-      export LINE_NUMBER="$(grep -n 'BEGIN_USER_CODE_SECTION' AppConfig.h | cut -d: -f1)"
-      echo "Line for usercode in AppConfig.h is $LINE_NUMBER"
-      echo "Insert commands to AppConfig.h"
-      head -n $LINE_NUMBER AppConfig.h > app_config.tmp
-      echo -e "#define JucePlugin_Build_LV2 1" >> app_config.tmp
-      echo -e "#define JucePlugin_LV2URI \"https://www.thewavewarden.com/odin2\"" >> app_config.tmp
-      echo -e "#define JucePlugin_MaxNumOutputChannels 2" >> app_config.tmp
-      tail -n +$((LINE_NUMBER+1)) AppConfig.h >> app_config.tmp
-      mv app_config.tmp AppConfig.h
-      cd ..
-      echo -e "include ../../LV2.mak" >> Builds/LinuxMakefile/Makefile
-      echo ""
-      echo "==============================="
-      echo "===== Build Odin Packages ====="
-      echo "==============================="
-      echo ""
-      export PROJECT_VERSION="$(../JUCE/extras/Projucer/Builds/LinuxMakefile/build/Projucer --get-version Odin.jucer)"
+      cmake --build build --config Release
+      find .
+    displayName: "Linux: Build"
+    condition: variables.isLinux
+
+  - script: |
+      export PROJECT_VERSION=$(cat CMakeLists.txt | grep "VERSION \"" | awk '{print $2}' | tr -d '"')
       echo "Odin Project Version: $PROJECT_VERSION"
       IFS='.' read -ra ADDR <<< "$PROJECT_VERSION"
       export DEBIAN_PROJECT_STRING="${ADDR[0]}.${ADDR[1]}-${ADDR[2]}"
       echo "Debian package String: $DEBIAN_PROJECT_STRING"
       cd installers/linux
       ./create_installers.sh $DEBIAN_PROJECT_STRING
-      echo ""
-      echo "Packed builds:"
-      echo ""
       ls -lh | grep Odin
 
-      export $DEB_NAME="Odin_$DEBIAN_PROJECT_STRING.deb"
+      export DEB_NAME="Odin2-synth_$DEBIAN_PROJECT_STRING.deb"
       echo "Debian name should be: $DEB_NAME"
 
-      echo ""
       echo "RESULTS:"
-      echo ""
       [[ $(find Odin2_linux_x64.zip -type f -size +50000000c 2>/dev/null) ]] && echo "Generic Zip Built sucessfully!" || exit 1
       [[ $(find $DEB_NAME -type f -size +50000000c 2>/dev/null) ]] && echo "Debian package built successfully!" || exit 1
 
-      echo "Move installers to separate dir"
+      echo "Rename Linux Zip"
       mkdir build
       mv Odin* build/
-
-      echo "Rename Linux Zip"
-      export PROJ_VERSION="$(../../../JUCE/extras/Projucer/Builds/LinuxMakefile/build/Projucer --get-version ../../Odin.jucer)"
-      echo "Odin Project Version: $PROJ_VERSION"
-      mv "build/Odin2_linux_x64.zip" "build/Odin${PROJ_VERSION}Linux.zip"
+      echo "Odin Project Version: $PROJECT_VERSION"
+      mv "build/Odin2_linux_x64.zip" "build/Odin${PROJECT_VERSION}Linux.zip"
       
     displayName: 'Linux: Build Odin2 Packages'
     condition: variables.isLinux
