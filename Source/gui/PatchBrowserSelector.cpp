@@ -429,10 +429,15 @@ void PatchBrowserSelector::generateContent() {
 				m_entries.back()->onRightClick = [&, return_string, file_index]() {
 					int selected = m_menu.show();
 
+					DBG_VAR(file_index);
+
 					if (selected == PATCH_BROWSER_MENU_ENTRY_DELETE) {
 						passDeleteToPatchBrowser(return_string);
 					} else if (selected == PATCH_BROWSER_MENU_ENTRY_RENAME) {
-						m_entries[file_index]->showRenameEditor();
+						
+						// in soundbank, index zero is factory presets
+						const int rename_index = (m_browser_type == BrowserType::Soundbank) ? file_index + 1 : file_index;
+						m_entries[rename_index]->showRenameEditor();
 					} else if (selected >= PATCH_BROWSER_MENU_MOVE_OFFSET &&
 					           selected < PATCH_BROWSER_MENU_COPY_OFFSET) {
 						onMove(m_entries[file_index]->getText(), getMoveFileString(selected));
