@@ -30,7 +30,7 @@ mkdir $package_name/usr/lib/clap
 # copy build files over
 cp -r ../../build/Odin2_artefacts/Release/VST3/Odin2.vst3 $package_name/usr/lib/vst3/Odin2.vst3
 #cp -r ../../build/Odin2_artefacts/Release/VST3/Odin2_.lv2 $package_name/usr/lib/lv2/Odin2.lv2
-cp -r ../../build/Odin2_artefacts/Release/CLAP/Odin2.clap $package_name/usr/lib/clap/Odin2.clappopd
+cp -r ../../build/Odin2_artefacts/Release/CLAP/Odin2.clap $package_name/usr/lib/clap/Odin2.clap
 
 mkdir $package_name/DEBIAN
 
