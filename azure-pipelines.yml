@@ -104,7 +104,7 @@ jobs:
 
   - script: |
       mkdir build
-      cmake -B build -D CMAKE_BUILD_TYPE=Release -D"CMAKE_OSX_ARCHITECTURES=arm64;x86_64
+      cmake -B build -D CMAKE_BUILD_TYPE=Release -D"CMAKE_OSX_ARCHITECTURES=arm64;x86_64"
       find .
     displayName: 'Mac: CMake'
     condition: variables.isMac
