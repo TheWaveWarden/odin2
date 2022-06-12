@@ -3,9 +3,12 @@ cmake_minimum_required(VERSION 3.15)
 project(Odin2 VERSION 2.3.3 LANGUAGES C CXX ASM)
 
 # ================== CMake Subdirs ======================
-add_subdirectory(libs/JUCE)
 add_subdirectory(libs/clap-juce-extensions)
-
+if(UNIX AND NOT APPLE)
+  add_subdirectory(libs/JUCELV2)
+else()
+  add_subdirectory(libs/JUCE)
+endif()
 
 # ================= Git Commit Hash =====================
 find_package(Git)
@@ -25,21 +28,25 @@ file(WRITE "${CMAKE_BINARY_DIR}/include/GitCommitId.h" "#define GIT_COMMIT_ID \"
 option(ODIN2_COPY_PLUGIN_AFTER_BUILD "Copy JUCE Plugins after built" OFF)
 
 # ==================== Add Plugin =======================
+# Build LV2 only on Linux
+set(JUCE_FORMATS AU VST3 Standalone)
+if(UNIX AND NOT APPLE)
+    list(APPEND JUCE_FORMATS LV2)
+endif()
+
 juce_add_plugin(Odin2
   VERSION "2.3.3"
   COMPANY_NAME "TheWaveWarden"
   COMPANY_WEBSITE "www.thewavewarden.com"
   COMPANY_EMAIL "info@thewavewarden.com"
-
-  FORMATS
-    "VST3"
-    "AU"
-    "Standalone"
+  FORMATS ${JUCE_FORMATS}
   PLUGIN_MANUFACTURER_CODE "WAWA"
   PLUGIN_CODE "ODIN"
   IS_SYNTH TRUE
   NEEDS_MIDI_INPUT TRUE
   COPY_PLUGIN_AFTER_BUILD ${ODIN2_COPY_PLUGIN_AFTER_BUILD}
+  LV2_URI https://thewavewarden.com/odin2
+  LV2_SHARED_LIBRARY_NAME Odin2
 )
 
 # ==================== CLAP =======================
