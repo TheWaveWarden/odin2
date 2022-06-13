@@ -6,7 +6,7 @@ trigger:
 jobs:
 
 - job: Build
-  cancelTimeoutInMinutes: 120
+  timeoutInMinutes: 120
   strategy:
     matrix:
       Windows:
