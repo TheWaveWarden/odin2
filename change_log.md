@@ -1,5 +1,6 @@
 # 2.3.3
 - added CLAP plugin support
+- added native M1 Mac support
 - much improved UI appearance when using OS display scaling
 - switched build system to CMake
 - made WinInstaller suitable for systems not mounted on C:
