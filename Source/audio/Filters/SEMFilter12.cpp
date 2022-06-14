@@ -36,7 +36,7 @@ void SEMFilter12::reset() {
 }
 
 void SEMFilter12::update() {
-	Filter::update();
+	OdinFilterBase::update();
 
 	//recalc coeffs only if
 	// freq changed
@@ -96,6 +96,6 @@ void SEMFilter12::setResControl(double p_res) {
 }
 
 void SEMFilter12::setSampleRate(double p_sr) {
-	Filter::setSampleRate(p_sr);
+	OdinFilterBase::setSampleRate(p_sr);
 	m_last_freq_modded = -1; // to signal recalculation of filter coeffs in update()
 }

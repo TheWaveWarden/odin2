@@ -164,7 +164,7 @@ public:
 	void fini(void);
 
 	void prepare();
-	float* process(float input[2]);
+	void process(float input[2]);
 	void reset();
 
 	void set_delay(float v);  //v in seconds
@@ -216,8 +216,8 @@ private:
 	BiquadEQ _pareq[2];
 	//ParametricEQ _pareq2;
 
-	static float _tdiff1[8];
-	static float _tdelay[8];
+	std::vector<float> _tdiff1;
+	std::vector<float> _tdelay;
 };
 
 // -----------------------------------------------------------------------

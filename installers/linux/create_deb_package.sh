@@ -16,33 +16,25 @@ package_name="Odin2-synth_${package_version}"
 
 echo "Creating package ${package_name}"
 
-#recreate directory
+# recreate directory
 sudo rm -rf $package_name
 mkdir $package_name
 
-#build tree for vst3 && lv2 plugin
+# build tree for vst3 && lv2 plugin
 mkdir $package_name/usr/
 mkdir $package_name/usr/lib
 mkdir $package_name/usr/lib/vst3
 mkdir $package_name/usr/lib/lv2
+mkdir $package_name/usr/lib/clap
 
-#build Odin2 from scratch
-pushd ../../Builds/LinuxMakefile/
-../../../JUCE/Projucer --resave ../../Odin.jucer
-#add command to build LV2 as well
-echo -e "include ../../LV2.mak" >> Makefile
-make clean
-
-make CONFIG=Release -j 12
-
-#copy it over and go back to installer dir
-cp -r build/Odin2.vst3 ../../installers/linux/$package_name/usr/lib/vst3/Odin2.vst3
-cp -r build/Odin2_.lv2 ../../installers/linux/$package_name/usr/lib/lv2/Odin2.lv2
-popd
+# copy build files over
+cp -r ../../build/Odin2_artefacts/Release/VST3/Odin2.vst3 $package_name/usr/lib/vst3/Odin2.vst3
+cp -r ../../build/Odin2_artefacts/Release/LV2/Odin2.lv2 $package_name/usr/lib/lv2/Odin2.lv2
+cp -r ../../build/Odin2_artefacts/Release/CLAP/Odin2.clap $package_name/usr/lib/clap/Odin2.clap
 
 mkdir $package_name/DEBIAN
 
-#create config file
+# create config file
 echo "Package: Odin2-synth" >> $package_name/DEBIAN/control
 echo "Version: ${package_version}" >> $package_name/DEBIAN/control
 echo "Replaces: odin (<< 2.2-6~)" >> $package_name/DEBIAN/control
@@ -54,6 +46,7 @@ echo "Maintainer: TheWaveWarden info@thewavewarden.com" >> $package_name/DEBIAN/
 echo "Description: Odin 2 Synthesizer Plugin" >> $package_name/DEBIAN/control
 echo "  Semimodular VST3 and LV2 Synthesizer Plugin" >> $package_name/DEBIAN/control
 
+# create postinst files with some location hacks after changes...
 echo "echo \"running post install script...\"" >> $package_name/DEBIAN/postinst
 echo "if [ ! -d \"\$HOME/.local/share/odin2/Soundbanks\" ]; then" >> $package_name/DEBIAN/postinst
 echo "    mkdir -p \"\$HOME/.local/share/odin2/Soundbanks/User Patches\"" >> $package_name/DEBIAN/postinst

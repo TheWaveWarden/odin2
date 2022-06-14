@@ -27,10 +27,10 @@
 #define FILTER_FREQ_MOD_RANGE_SEMITONES 64
 
 // Abstract Base Class for all filters
-class Filter {
+class OdinFilterBase {
 public:
-	Filter();
-	virtual ~Filter();
+	OdinFilterBase();
+	virtual ~OdinFilterBase();
 
 	inline float pitchShiftMultiplier(float p_semitones) {
 		if (p_semitones < 48.f && p_semitones > -48.f) {

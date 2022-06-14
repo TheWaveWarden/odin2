@@ -120,7 +120,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 		}
 	};
 
-	Knob::setOdinPointer(&p_processor);
+	OdinKnob::setOdinPointer(&p_processor);
 	DrawableSlider::setOdinPointer(&p_processor);
 	LeftRightButton::setOdinPointer(&p_processor);
 	OdinButton::setOdinPointer(&p_processor);
@@ -318,11 +318,10 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	                "to access MIDI-learn\n\nThe order of FX can be rearranged by "
 	                "dragging and dropping the FX selection buttons.\n\nVersion: ") +
 	    ODIN_VERSION_STRING
-#ifdef ODIN_RELEASE
-	    + " Release"
-#endif
 #ifdef ODIN_DEBUG
 	    + " Debug"
+#else
+	    + " Release"
 #endif
 	    + "\ngit commit: " + GIT_COMMIT_ID);
 

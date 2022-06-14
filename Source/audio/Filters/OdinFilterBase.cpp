@@ -13,47 +13,47 @@
 ** GNU General Public License for more details.
 */
 
-#include "Filter.h"
+#include "OdinFilterBase.h"
 
 // --- construction
-Filter::Filter() {
+OdinFilterBase::OdinFilterBase() {
 }
 
-Filter::~Filter() {
+OdinFilterBase::~OdinFilterBase() {
 }
 
 // --- flush buffers
-void Filter::reset() {
+void OdinFilterBase::reset() {
 }
 
-void Filter::setFreqModPointer(float *p_pointer) {
+void OdinFilterBase::setFreqModPointer(float *p_pointer) {
 	m_freq_mod = p_pointer;
 }
 
-void Filter::setResModPointer(float *p_pointer) {
+void OdinFilterBase::setResModPointer(float *p_pointer) {
 	m_res_mod = p_pointer;
 }
 
-void Filter::setVelModPointer(float *p_pointer) {
+void OdinFilterBase::setVelModPointer(float *p_pointer) {
 	m_vel_mod_mod = p_pointer;
 }
 
-void Filter::setKbdModPointer(float *p_pointer) {
+void OdinFilterBase::setKbdModPointer(float *p_pointer) {
 	m_kbd_mod_mod = p_pointer;
 }
 
-void Filter::setSaturationModPointer(float *p_pointer) {
+void OdinFilterBase::setSaturationModPointer(float *p_pointer) {
 	m_saturation_mod = p_pointer;
 }
 
-void Filter::setEnvModPointer(float *p_pointer) {
+void OdinFilterBase::setEnvModPointer(float *p_pointer) {
 	m_env_mod_mod = p_pointer;
 }
 
-void Filter::setResControl(double p_res) {
+void OdinFilterBase::setResControl(double p_res) {
 }
 
-void Filter::setSampleRate(double d) {
+void OdinFilterBase::setSampleRate(double d) {
 	m_samplerate          = d;
 	m_one_over_samplerate = 1.f / d;
 }

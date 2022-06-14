@@ -17,7 +17,7 @@
 
 #include "../GlobalIncludes.h"
 #include "../JuceLibraryCode/JuceHeader.h"
-#include "Knob.h"
+#include "OdinKnob.h"
 
 #define HANDLE_DIAMETER 8
 #define HANDLE_INLAY 4
@@ -30,8 +30,8 @@ class XYPadComponent : public Component, public SettableTooltipClient {
 public:
 	XYPadComponent(AudioProcessorValueTreeState &vts,
 	               const std::string &p_param_prefix,
-	               Knob &p_x,
-	               Knob &p_y,
+	               OdinKnob &p_x,
+	               OdinKnob &p_y,
 	               bool p_vector_pad = false);
 	~XYPadComponent();
 
@@ -68,8 +68,8 @@ private:
 	juce::Image m_panel;
 	juce::Image m_logo;
 
-	Knob &m_knob_x;
-	Knob &m_knob_y;
+	OdinKnob &m_knob_x;
+	OdinKnob &m_knob_y;
 
 	bool m_vector_pad;
 

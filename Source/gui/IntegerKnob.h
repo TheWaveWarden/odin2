@@ -17,9 +17,9 @@
 
 #include "../GlobalIncludes.h"
 #include "../JuceLibraryCode/JuceHeader.h"
-#include "Knob.h"
+#include "OdinKnob.h"
 
-class IntegerKnob : public Knob {
+class IntegerKnob : public OdinKnob {
 public:
   IntegerKnob();
   ~IntegerKnob();

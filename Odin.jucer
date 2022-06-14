@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="vpwEHn" name="Odin2" projectType="audioplug" pluginFormats="buildAU,buildStandalone,buildVST3"
-              version="2.3.1" companyName="TheWaveWarden" companyWebsite="www.thewavewarden.com"
+              version="2.3.3" companyName="TheWaveWarden" companyWebsite="www.thewavewarden.com"
               pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn"
               pluginManufacturerCode="WAWA" pluginCode="ODIN" pluginChannelConfigs="{0,2}"
               displaySplashScreen="0" jucerFormatVersion="1" companyEmail="info@thewavewarden.com"
@@ -1914,8 +1914,8 @@
       <FILE id="z5mvGZ" name="InputField.h" compile="0" resource="0" file="Source/gui/InputField.h"/>
       <FILE id="Yvnf2T" name="IntegerKnob.cpp" compile="1" resource="0" file="Source/gui/IntegerKnob.cpp"/>
       <FILE id="HOGsjk" name="IntegerKnob.h" compile="0" resource="0" file="Source/gui/IntegerKnob.h"/>
-      <FILE id="lg6TXu" name="Knob.cpp" compile="1" resource="0" file="Source/gui/Knob.cpp"/>
-      <FILE id="R6tzKP" name="Knob.h" compile="0" resource="0" file="Source/gui/Knob.h"/>
+      <FILE id="lg6TXu" name="OdinKnob.cpp" compile="1" resource="0" file="Source/gui/OdinKnob.cpp"/>
+      <FILE id="R6tzKP" name="OdinKnob.h" compile="0" resource="0" file="Source/gui/OdinKnob.h"/>
       <FILE id="FrV6eZ" name="LeftRightButton.cpp" compile="1" resource="0"
             file="Source/gui/LeftRightButton.cpp"/>
       <FILE id="MTYUSc" name="LeftRightButton.h" compile="0" resource="0"
@@ -2224,8 +2224,8 @@
                 file="Source/audio/Filters/DCBlockingFilter.h"/>
           <FILE id="JHfaPb" name="DiodeFilter.cpp" compile="1" resource="0" file="Source/audio/Filters/DiodeFilter.cpp"/>
           <FILE id="FSMHAJ" name="DiodeFilter.h" compile="0" resource="0" file="Source/audio/Filters/DiodeFilter.h"/>
-          <FILE id="gg9mto" name="Filter.cpp" compile="1" resource="0" file="Source/audio/Filters/Filter.cpp"/>
-          <FILE id="IvlOHH" name="Filter.h" compile="0" resource="0" file="Source/audio/Filters/Filter.h"/>
+          <FILE id="gg9mto" name="OdinFilterBase.cpp" compile="1" resource="0" file="Source/audio/Filters/OdinFilterBase.cpp"/>
+          <FILE id="IvlOHH" name="OdinFilterBase.h" compile="0" resource="0" file="Source/audio/Filters/OdinFilterBase.h"/>
           <FILE id="PCXPLn" name="FormantFilter.cpp" compile="1" resource="0"
                 file="Source/audio/Filters/FormantFilter.cpp"/>
           <FILE id="RcryvM" name="FormantFilter.h" compile="0" resource="0" file="Source/audio/Filters/FormantFilter.h"/>

@@ -17,7 +17,7 @@
 
 #include "../GlobalIncludes.h"
 #include "../JuceLibraryCode/JuceHeader.h"
-#include "Knob.h"
+#include "OdinKnob.h"
 #include "OdinControlAttachments.h"
 #include "XYPadComponent.h"
 
@@ -44,8 +44,8 @@ private:
 	std::string m_section_name;
 	AudioProcessorValueTreeState &m_value_tree;
 
-	Knob m_modx;
-	Knob m_mody;
+	OdinKnob m_modx;
+	OdinKnob m_mody;
 
 	std::unique_ptr<OdinKnobAttachment> m_x_attach;
 	std::unique_ptr<OdinKnobAttachment> m_y_attach;

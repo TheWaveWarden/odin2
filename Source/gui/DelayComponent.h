@@ -17,7 +17,7 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "../GlobalIncludes.h"
-#include "Knob.h"
+#include "OdinKnob.h"
 #include "OdinButton.h"
 #include "OdinControlAttachments.h"
 #include "SyncTimeSelector.h"
@@ -80,12 +80,12 @@ private:
 
 	juce::Image m_background;
 
-	Knob m_time;
-	Knob m_feedback;
-	Knob m_HP;
-	Knob m_ducking;
-	Knob m_dry;
-	Knob m_wet;
+	OdinKnob m_time;
+	OdinKnob m_feedback;
+	OdinKnob m_HP;
+	OdinKnob m_ducking;
+	OdinKnob m_dry;
+	OdinKnob m_wet;
 
 	SyncTimeSelector m_sync_time;
 

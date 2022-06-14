@@ -29,7 +29,7 @@
 #include "gui/FilterComponent.h"
 #include "gui/FixedTextGlassDropdown.h"
 #include "gui/InputField.h"
-#include "gui/Knob.h"
+#include "gui/OdinKnob.h"
 #include "gui/LFOComponent.h"
 #include "gui/LeftRightButton.h"
 #include "gui/ModMatrixComponent.h"
@@ -281,11 +281,11 @@ private:
 	// Your private member variables go here...
 	OdinMenuFeels m_menu_feels;
 
-	Knob m_glide;
-	Knob m_master;
-	Knob m_modwheel;
-	Knob m_unison_detune;
-	Knob m_unison_width;
+	OdinKnob m_glide;
+	OdinKnob m_master;
+	OdinKnob m_modwheel;
+	OdinKnob m_unison_detune;
+	OdinKnob m_unison_width;
 
 	PitchWheel m_pitchwheel;
 	NumberSelector m_pitch_amount;

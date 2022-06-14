@@ -16,7 +16,7 @@
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
-#include "Knob.h"
+#include "OdinKnob.h"
 #include "LFOSelectorComponent.h"
 #include "../GlobalIncludes.h"
 #include "OdinButton.h"
@@ -94,7 +94,7 @@ private:
   LFOSelectorComponent m_selector;
   SyncTimeSelector m_sync_time;
 
-  Knob m_freq;
+  OdinKnob m_freq;
 
   OdinButton m_reset;
   OdinButton m_sync;

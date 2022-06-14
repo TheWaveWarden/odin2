@@ -17,7 +17,7 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "../GlobalIncludes.h"
-#include "Knob.h"
+#include "OdinKnob.h"
 #include "OdinButton.h"
 #include "OdinControlAttachments.h"
 #include "SyncTimeSelector.h"
@@ -76,10 +76,10 @@ private:
 	bool m_GUI_big = true;
 	bool m_is_standalone_plugin;
 
-	Knob m_rate;
-	Knob m_amount;
-	Knob m_feedback;
-	Knob m_dry_wet;
+	OdinKnob m_rate;
+	OdinKnob m_amount;
+	OdinKnob m_feedback;
+	OdinKnob m_dry_wet;
 
 	OdinButton m_sync;
 	OdinButton m_reset;

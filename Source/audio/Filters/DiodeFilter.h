@@ -17,10 +17,10 @@
 // "Designing Software Synthesizer Plug-Ins in C++". Find out more on https://willpirkle.com
 
 #pragma once
-#include "Filter.h"
+#include "OdinFilterBase.h"
 #include "VAOnePoleFilter.h"
 class DiodeFilter :
-	public 	Filter
+	public 	OdinFilterBase
 {
 public:
 	DiodeFilter();

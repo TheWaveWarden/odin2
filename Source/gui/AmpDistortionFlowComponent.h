@@ -18,7 +18,7 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "GlassDropdown.h"
 #include "../GlobalIncludes.h"
-#include "Knob.h"
+#include "OdinKnob.h"
 #include "OdinButton.h"
 #include "OdinControlAttachments.h"
 
@@ -90,11 +90,11 @@ private:
 
 	bool m_distortion_on = false;
 
-	Knob m_amp_gain;
-	Knob m_amp_pan;
-	Knob m_amp_velocity;
-	Knob m_boost;
-	Knob m_dry_wet;
+	OdinKnob m_amp_gain;
+	OdinKnob m_amp_pan;
+	OdinKnob m_amp_velocity;
+	OdinKnob m_boost;
+	OdinKnob m_dry_wet;
 
 	OdinButton m_flow_left;
 	OdinButton m_flow_right;

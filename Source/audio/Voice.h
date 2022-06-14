@@ -637,6 +637,14 @@ struct Voice {
 
 class VoiceManager {
 public:
+	VoiceManager() {
+
+		//fill voice history in ascending order
+		for(int voice = 0; voice < VOICES; ++voice) {
+			m_voice_history.push_back(voice);
+		}
+	}
+
 	//voice return priority:
 	// 0. legato (fixed)
 	// 1. same key in sustain
@@ -810,8 +818,7 @@ protected:
 
 	PlayModes m_mono_poly_legato = PlayModes::Poly;
 	// used to determine oldest voice for stealing
-	int m_voice_history[VOICES] = {0,  1,  2,  3,  4,  5,  6,  7,  8,  9,  10, 11,
-	                               12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23};
+	std::vector<int> m_voice_history;
 
 	bool m_kill_list[VOICES] = {0};
 	int m_kill_list_note[VOICES];

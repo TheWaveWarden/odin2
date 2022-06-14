@@ -315,11 +315,11 @@ void PatchBrowserSelector::generateContentFactoryPresetCategories() {
 
 	for (auto &entry : m_factory_preset_cat_and_names) {
 		m_entries.push_back(std::make_unique<BrowserEntry>(entry.first, m_GUI_big));
-		std::string cat_name = entry.first;
+		std::string cat_name          = entry.first;
 		m_entries.back()->onLeftClick = [&, cat_name]() {
-					//DBG(return_string + " was clicked!");
-					passValueToPatchBrowser(FACTORY_PRESETS_SOUNDBANK_CODE + cat_name);
-					unhighlightAllEntries();
+			//DBG(return_string + " was clicked!");
+			passValueToPatchBrowser(FACTORY_PRESETS_SOUNDBANK_CODE + cat_name);
+			unhighlightAllEntries();
 		};
 		m_entries.back()->onRightClick = []() {};
 	}
@@ -336,18 +336,18 @@ void PatchBrowserSelector::generateContentFactoryPresetCategories() {
 	m_directory_status = DirectoryStatus::Ok;
 }
 
-void PatchBrowserSelector::setDirectoryFactoryPresetPreset(const std::string& p_category) {
+void PatchBrowserSelector::setDirectoryFactoryPresetPreset(const std::string &p_category) {
 	//this function is for the special case of factory preset selection (category provided)(presets are stored in binary, not in folders)
 	removeAllChildren();
 	m_entries.clear();
 
 	for (auto &entry : m_factory_preset_cat_and_names[p_category]) {
 		m_entries.push_back(std::make_unique<BrowserEntry>(entry, m_GUI_big));
-		std::string patch_name = entry;
+		std::string patch_name        = entry;
 		m_entries.back()->onLeftClick = [&, patch_name]() {
-					DBG("FP Preset " + patch_name + " was clicked!");
-					passValueToPatchBrowser(FACTORY_PRESETS_SOUNDBANK_CODE + patch_name);
-					unhighlightAllEntries();
+			DBG("FP Preset " + patch_name + " was clicked!");
+			passValueToPatchBrowser(FACTORY_PRESETS_SOUNDBANK_CODE + patch_name);
+			unhighlightAllEntries();
 		};
 		m_entries.back()->onRightClick = []() {};
 	}
@@ -363,7 +363,6 @@ void PatchBrowserSelector::setDirectoryFactoryPresetPreset(const std::string& p_
 
 	m_directory_status = DirectoryStatus::Ok;
 }
-
 
 void PatchBrowserSelector::generateContent() {
 
@@ -396,14 +395,14 @@ void PatchBrowserSelector::generateContent() {
 
 		Array<File> file_array = current_dir.findChildFiles(m_file_or_dir, false, m_wildcard);
 		//don't show the old factory presets (before they were in binary)
-		if(m_browser_type == BrowserType::Soundbank && file_array.size() > 0) {
+		if (m_browser_type == BrowserType::Soundbank && file_array.size() > 0) {
 			int remove_index = -1;
 			for (int file_index = 0; file_index < file_array.size(); ++file_index) {
-				if(file_array[file_index].getFileName() == "Factory Presets") {
+				if (file_array[file_index].getFileName() == "Factory Presets") {
 					remove_index = file_index;
 				}
 			}
-			if(remove_index != -1) {
+			if (remove_index != -1) {
 				file_array.remove(remove_index);
 			}
 		}
@@ -429,10 +428,16 @@ void PatchBrowserSelector::generateContent() {
 				m_entries.back()->onRightClick = [&, return_string, file_index]() {
 					int selected = m_menu.show();
 
+					DBG_VAR(file_index);
+
 					if (selected == PATCH_BROWSER_MENU_ENTRY_DELETE) {
 						passDeleteToPatchBrowser(return_string);
 					} else if (selected == PATCH_BROWSER_MENU_ENTRY_RENAME) {
-						m_entries[file_index]->showRenameEditor();
+
+						// in soundbank, index zero is factory presets
+						const int rename_index =
+						    (m_browser_type == BrowserType::Soundbank) ? file_index + 1 : file_index;
+						m_entries[rename_index]->showRenameEditor();
 					} else if (selected >= PATCH_BROWSER_MENU_MOVE_OFFSET &&
 					           selected < PATCH_BROWSER_MENU_COPY_OFFSET) {
 						onMove(m_entries[file_index]->getText(), getMoveFileString(selected));

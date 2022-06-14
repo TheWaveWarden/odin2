@@ -1,4 +1,13 @@
-#2.3.1
+# 2.3.3
+- added CLAP plugin support
+- added native M1 Mac support
+- much improved UI appearance when using OS display scaling
+- switched build system to CMake
+- made WinInstaller suitable for systems not mounted on C:
+- fixed symbol name clashes for "Knob" and "Filter"
+# 2.3.2
+- fixed issue where multiple instances of reverb would produce noise
+# 2.3.1
 - debian package: fixed data file being owned by root (introduced in 2.3.0)
 - LFO Waves now selectable from a dropdown
 - Reversed order of LFO waves to make them align with dropdown
