@@ -1,5 +1,6 @@
 # ================== General Info ======================
 cmake_minimum_required(VERSION 3.15)
+set(CMAKE_OSX_DEPLOYMENT_TARGET 10.11 CACHE STRING "Minimum macOS version")
 project(Odin2 VERSION 2.3.3 LANGUAGES C CXX ASM)
 
 # ================== CMake Subdirs ======================
