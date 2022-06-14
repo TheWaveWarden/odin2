@@ -5,6 +5,7 @@
 - switched build system to CMake
 - made WinInstaller suitable for systems not mounted on C:
 - fixed symbol name clashes for "Knob" and "Filter"
+- fixed issue where renaming a soundbank would select the bank above
 # 2.3.2
 - fixed issue where multiple instances of reverb would produce noise
 # 2.3.1
