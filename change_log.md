@@ -1,3 +1,5 @@
+# 2.3.4
+- fixed unitialized editor pointer
 # 2.3.3
 - added CLAP plugin support
 - added native M1 Mac support

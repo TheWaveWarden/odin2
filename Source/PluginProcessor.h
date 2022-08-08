@@ -301,7 +301,7 @@ private:
 	int m_flanger_position = 3;
 	int m_reverb_position  = 4;
 
-	OdinAudioProcessorEditor *m_editor_pointer;
+	OdinAudioProcessorEditor *m_editor_pointer = nullptr;
 
 	int m_osc_type[3] = {OSC_TYPE_ANALOG, 1, 1};
 	int m_fil_type[3] = {FILTER_TYPE_LP24, 1, 1};
