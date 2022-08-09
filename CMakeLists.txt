@@ -1,6 +1,7 @@
 # ================== General Info ======================
 cmake_minimum_required(VERSION 3.15)
-project(Odin2 VERSION 2.3.3 LANGUAGES C CXX ASM)
+set(CMAKE_OSX_DEPLOYMENT_TARGET 10.11 CACHE STRING "Minimum macOS version")
+project(Odin2 VERSION 2.3.4 LANGUAGES C CXX ASM)
 
 # ================== CMake Subdirs ======================
 add_subdirectory(libs/clap-juce-extensions)
@@ -35,7 +36,7 @@ if(UNIX AND NOT APPLE)
 endif()
 
 juce_add_plugin(Odin2
-  VERSION "2.3.3"
+  VERSION "2.3.4"
   COMPANY_NAME "TheWaveWarden"
   COMPANY_WEBSITE "www.thewavewarden.com"
   COMPANY_EMAIL "info@thewavewarden.com"
@@ -166,6 +167,7 @@ target_sources(Odin2
     "Source/gui/NumberSelectorWithText.cpp"
     "Source/gui/OdinArpeggiator.cpp"
     "Source/gui/OdinButton.cpp"
+    "Source/gui/TitleButton.cpp"
     "Source/gui/OdinControlAttachments.cpp"
     "Source/gui/OscComponent.cpp"
     "Source/gui/PatchBrowser.cpp"
@@ -222,6 +224,7 @@ juce_add_binary_data(Odin2_BinaryData
     "Graphics/applied/vector_backdrop.png"
     "Graphics/applied/wavedraw_backdrop.png"
     "Graphics/applied/wavetable_backdrop.png"
+    "Graphics/applied/title_button.png"
     "Graphics/cropped/BP12_cropped.png"
     "Graphics/cropped/BP12_knobs_cropped.png"
     "Graphics/cropped/BP24_cropped.png"
@@ -552,6 +555,7 @@ juce_add_binary_data(Odin2_BinaryData
     "Graphics_150/applied/SEM12_backdrop_150.png"
     "Graphics_150/applied/SEM24_backdrop_150.png"
     "Graphics_150/applied/WW_logo_xy_150.png"
+    "Graphics_150/applied/title_button_150.png"
     "Graphics_150/applied/analog_backdrop_150.png"
     "Graphics_150/applied/chipdraw_backdrop_150.png"
     "Graphics_150/applied/chiptune_backdrop_150.png"

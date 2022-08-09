@@ -15,6 +15,8 @@
 
 void OdinAudioProcessorEditor::setGUIBig() {
 
+	m_title_button.setBounds(494, 0, 225, 44);
+
 	m_tuning.setTopLeftPosition(1.5f * TUNING_POS_X, 1.5f * TUNING_POS_Y);
 
 	juce::Image dropdown_button1 =
