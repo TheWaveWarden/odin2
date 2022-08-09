@@ -168,6 +168,8 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 		m_osc1_dropdown.setToggleState(false, dontSendNotification);
 		setOsc1Plate(m_osc_dropdown_menu.show());
 	};
+	addAndMakeVisible(m_title_button);
+
 	addAndMakeVisible(m_osc1_dropdown);
 	m_osc1_dropdown.setTooltip("Select the module to\nbe used for oscillator 1");
 	m_osc1_dropdown.setAlwaysOnTop(true);
@@ -1165,6 +1167,7 @@ void OdinAudioProcessorEditor::setGUISizeBig(bool p_big, bool p_write_to_config)
 		m_unison_selector.setGUIBig();
 		m_mono_poly_legato_dropdown.setGUIBig();
 		m_tuning.setGUIBig();
+		m_title_button.setGUIBig();
 		setGUIBig();
 	} else {
 		g_GUI_big = false;
@@ -1199,6 +1202,7 @@ void OdinAudioProcessorEditor::setGUISizeBig(bool p_big, bool p_write_to_config)
 		m_unison_selector.setGUISmall();
 		m_mono_poly_legato_dropdown.setGUISmall();
 		m_tuning.setGUISmall();
+		m_title_button.setGUISmall();
 		setGUISmall();
 	}
 

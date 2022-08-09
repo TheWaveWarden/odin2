@@ -46,6 +46,7 @@
 #include "gui/XYSectionComponent.h"
 #include "gui/TooltipFeels.h"
 #include "gui/OdinFeels.h"
+#include "gui/TitleButton.h"
 
 #ifdef WTGEN
 #include "SpectrumDisplay.h"
@@ -355,6 +356,8 @@ private:
 	OdinButton m_select_arp_button;
 	OdinButton m_select_modmatrix_button;
 	OdinButton m_select_presets_button;
+
+	TitleButton m_title_button;
 
 	juce::DrawableButton m_question_button;
 

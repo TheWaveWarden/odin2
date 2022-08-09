@@ -1,5 +1,6 @@
 # 2.3.4
 - fixed unitialized editor pointer
+- made title a button which leads to TheWaveWarden homepage
 # 2.3.3
 - added CLAP plugin support
 - added native M1 Mac support
