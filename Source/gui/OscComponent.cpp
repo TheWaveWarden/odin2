@@ -244,7 +244,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 	m_hp.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
 	m_hp.setTextValueSuffix(" Hz");
 	m_hp.setNumDecimalPlacesToDisplay(0);
-	m_hp.setKnobTooltip("The frequency of\nthe highspass filter which\nis applied to the noise");
+	m_hp.setKnobTooltip("The frequency of\nthe highpass filter which\nis applied to the noise");
 	addChildComponent(m_hp);
 
 	m_position.setSliderStyle(Slider::RotaryVerticalDrag);
@@ -670,7 +670,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 	m_modulation_source.setIncrementValue(10, 1);
 	m_modulation_source.setDecrementValue(1, 10);
 	m_modulation_source.setDecrementValue(10, 1);
-	m_modulation_source.setTooltip("Select wich source modulates the wavetable position");
+	m_modulation_source.setTooltip("Select which source modulates the wavetable position");
 	m_modulation_source.OnValueChange = [&](int p_new_value) {
 		m_value_tree.state.getChildWithName("osc").setProperty(
 		    m_modulation_source_identifier, (float)p_new_value, nullptr);
