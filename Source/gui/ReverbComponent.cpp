@@ -51,13 +51,13 @@ ReverbComponent::ReverbComponent(AudioProcessorValueTreeState &vts, bool p_is_st
 	m_EQ_gain.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
 	m_EQ_gain.setTextValueSuffix(" dB");
 	m_EQ_gain.setNumDecimalPlacesToDisplay(1);
-	m_EQ_gain.setKnobTooltip("Sets the gain of the build in equalizer");
+	m_EQ_gain.setKnobTooltip("Sets the gain of the built in equalizer");
 	addAndMakeVisible(m_EQ_gain);
 
 	m_EQ_freq.setSliderStyle(Slider::RotaryVerticalDrag);
 	m_EQ_freq.setTextValueSuffix(" Hz");
 	m_EQ_freq.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-	m_EQ_freq.setKnobTooltip("Sets the frequency of the build in eqalizer");
+	m_EQ_freq.setKnobTooltip("Sets the frequency of the built in equalizer");
 	addAndMakeVisible(m_EQ_freq);
 
 	//m_ducking.setSliderStyle(Slider::RotaryVerticalDrag);
