@@ -4,11 +4,11 @@ set(CMAKE_OSX_DEPLOYMENT_TARGET 10.11 CACHE STRING "Minimum macOS version")
 project(Odin2 VERSION 2.3.4 LANGUAGES C CXX ASM)
 
 # ================== CMake Subdirs ======================
-add_subdirectory(libs/clap-juce-extensions)
+add_subdirectory(libs/clap-juce-extensions EXCLUDE_FROM_ALL)
 if(UNIX AND NOT APPLE)
-  add_subdirectory(libs/JUCELV2)
+  add_subdirectory(libs/JUCELV2 EXCLUDE_FROM_ALL)
 else()
-  add_subdirectory(libs/JUCE)
+  add_subdirectory(libs/JUCE EXCLUDE_FROM_ALL)
 endif()
 
 # ================= Git Commit Hash =====================
@@ -1194,3 +1194,22 @@ target_link_libraries(Odin2
     juce::juce_recommended_lto_flags
     #juce::juce_recommended_warning_flags
 )
+
+# ==================== Installation =======================
+
+include(GNUInstallDirs)
+
+if(TARGET ${PROJECT_NAME}_Standalone)
+  install(TARGETS ${PROJECT_NAME}_Standalone DESTINATION ${CMAKE_INSTALL_BINDIR})
+endif()
+
+foreach(format VST3 LV2)
+  if(TARGET ${PROJECT_NAME}_${format})
+    get_target_property(output ${PROJECT_NAME}_${format} JUCE_PLUGIN_ARTEFACT_FILE)
+    install(DIRECTORY ${output} DESTINATION ${CMAKE_INSTALL_LIBDIR}/$<LOWER_CASE:${format}>)
+  endif()
+endforeach()
+
+if(TARGET ${PROJECT_NAME}_CLAP)
+  install(TARGETS ${PROJECT_NAME}_CLAP DESTINATION ${CMAKE_INSTALL_LIBDIR}/clap)
+endif()
