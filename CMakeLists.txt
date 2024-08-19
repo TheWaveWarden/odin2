@@ -28,6 +28,12 @@ file(WRITE "${CMAKE_BINARY_DIR}/include/GitCommitId.h" "#define GIT_COMMIT_ID \"
 
 option(ODIN2_COPY_PLUGIN_AFTER_BUILD "Copy JUCE Plugins after built" OFF)
 
+add_compile_definitions(
+  JUCE_MODAL_LOOPS_PERMITTED
+  #JUCE_ENABLE_REPAINT_DEBUGGING
+  CMAKE_SOURCE_DIRECTORY="${CMAKE_SOURCE_DIR}"
+)
+
 # ==================== Add Plugin =======================
 # Build LV2 only on Linux
 set(JUCE_FORMATS AU VST3 Standalone)

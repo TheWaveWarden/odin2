@@ -36,7 +36,13 @@
  */
 class ConfigFileManager {
 public:
-	ConfigFileManager();
+	static ConfigFileManager &getInstance() {
+		static ConfigFileManager instance;
+		return instance;
+	}
+	ConfigFileManager(ConfigFileManager const &) = delete;
+	void operator=(ConfigFileManager const &)    = delete;
+
 	void saveDataToFile();
 
 	void setOptionBigGUI(bool p_GUI_big);
@@ -51,6 +57,8 @@ public:
 	String getOptionPatchDir();
 
 private:
+	ConfigFileManager();
+
 	int m_gui_scale = int(GuiScale::Z100);
 	void createDirIfNeeded();
 	void loadDataFromFile();

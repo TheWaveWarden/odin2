@@ -11,11 +11,11 @@ void GuiDataEditor::paint (juce::Graphics& g) {
 
 	g.setColour (m_colour_border);
 	g.drawRect (getLocalBounds(), 1);
-	g.drawRect (m_top, 1);
-	g.drawRect (m_bottom, 1);
+	//g.drawRect (m_top, 1);
+	//g.drawRect (m_bottom, 1);
 
 	g.setColour (m_colour_text.withAlpha (0.5f));
-	g.fillRect (m_data * 2);
+	g.fillRect (m_data);
 
 	auto textBounds = getLocalBounds().reduced (proportionOfHeight(0.2f));
 	textBounds.reduce (textBounds.proportionOfHeight (0.1f), textBounds.proportionOfHeight (0.1f));
@@ -39,8 +39,8 @@ void GuiDataEditor::resized() {
 }
 
 void GuiDataEditor::mouseDown (const juce::MouseEvent& e) {
-	m_data.setX (e.x / 2);
-	m_data.setY (e.y / 2);
+	m_data.setX (e.x);
+	m_data.setY (e.y);
 	m_data.setWidth (1);
 	m_data.setHeight (1);
 

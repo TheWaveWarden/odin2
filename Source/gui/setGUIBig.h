@@ -420,9 +420,9 @@ void OdinAudioProcessorEditor::setGUIBig() {
 	                     pitchwheel.getWidth() / N_KNOB_FRAMES,
 	                     pitchwheel.getHeight());
 
-	m_osc1.setBackgroundBypass(bypass_osc1_plate);
-	m_osc2.setBackgroundBypass(bypass_osc2_plate);
-	m_osc3.setBackgroundBypass(bypass_osc3_plate);
+	//m_osc1.setBackgroundBypass(bypass_osc1_plate);
+	//m_osc2.setBackgroundBypass(bypass_osc2_plate);
+	//m_osc3.setBackgroundBypass(bypass_osc3_plate);
 
 	m_fil1_component.setBackgroundBypass(bypass_fil1_plate);
 	m_fil2_component.setBackgroundBypass(bypass_fil2_plate);
@@ -648,9 +648,9 @@ void OdinAudioProcessorEditor::setGUIBig() {
 	                         OdinHelper::c150(BLACK_KNOB_SMALL_SIZE_X),
 	                         OdinHelper::c150(BLACK_KNOB_SMALL_SIZE_Y));
 
-	m_osc1.setBounds(area_osc_1);
-	m_osc2.setBounds(area_osc_2);
-	m_osc3.setBounds(area_osc_3);
+	//m_osc1.setBounds(area_osc_1);
+	//m_osc2.setBounds(area_osc_2);
+	//m_osc3.setBounds(area_osc_3);
 
 	m_fil1_component.setBounds(area_fil_1);
 	m_fil2_component.setBounds(OdinHelper::c150(FIL2_POS_X),

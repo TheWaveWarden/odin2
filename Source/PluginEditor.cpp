@@ -31,7 +31,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
                                                    AudioProcessorValueTreeState &vts,
                                                    bool p_is_standalone) :
     AudioProcessorEditor(&p_processor),
-    processor(p_processor), m_fx_buttons_section(vts, p_processor), m_value_tree(vts),
+    m_live_constrainer(*this), processor(p_processor), m_fx_buttons_section(vts, p_processor), m_value_tree(vts),
     m_osc1_dropdown("osc1_dropdown_button", juce::DrawableButton::ButtonStyle::ImageRaw),
     m_osc2_dropdown("osc2_dropdown_button", juce::DrawableButton::ButtonStyle::ImageRaw),
     m_osc3_dropdown("osc3_dropdown_button", juce::DrawableButton::ButtonStyle::ImageRaw),
@@ -327,7 +327,9 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 #endif
 	    + "\ngit commit: " + GIT_COMMIT_ID);
 
-	m_question_button.onClick = [&]() {};
+	m_question_button.onClick = [&]() {
+        JsonGuiProvider::getInstance().saveToFile();
+    };
 
 	addAndMakeVisible(m_tuning);
 
@@ -400,16 +402,16 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 
 	m_osc1.setOscType(OSC_TYPE_ANALOG); // analog
 	addAndMakeVisible(m_osc1);
-	m_osc2.setOscType(1); // bypass
+	m_osc2.setOscType(1);               // bypass
 	addAndMakeVisible(m_osc2);
-	m_osc3.setOscType(1); // bypass
+	m_osc3.setOscType(1);               // bypass
 	addAndMakeVisible(m_osc3);
 
 	m_fil1_component.setFilterType(FILTER_TYPE_LP24); // LP
 	addAndMakeVisible(m_fil1_component);
-	m_fil2_component.setFilterType(1); // bypass
+	m_fil2_component.setFilterType(1);                // bypass
 	addAndMakeVisible(m_fil2_component);
-	m_fil3_component.setFilterType(1); // bypass
+	m_fil3_component.setFilterType(1);                // bypass
 	addAndMakeVisible(m_fil3_component);
 
 	addAndMakeVisible(m_midsection);
@@ -675,6 +677,9 @@ void OdinAudioProcessorEditor::paint(Graphics &g) {
 }
 
 void OdinAudioProcessorEditor::resized() {
+    GET_LOCAL_AREA(m_osc1, "Osc1");
+    GET_LOCAL_AREA(m_osc2, "Osc2");
+    GET_LOCAL_AREA(m_osc3, "Osc3");
 }
 
 void OdinAudioProcessorEditor::setOsc1Plate(int p_osc_type) {
@@ -1208,16 +1213,67 @@ void OdinAudioProcessorEditor::setGUISizeBig(bool p_big, bool p_write_to_config)
 	}
 
 	if (p_write_to_config) {
-		ConfigFileManager config;
-		config.setOptionBigGUI(p_big);
-		config.saveDataToFile();
+		ConfigFileManager::getInstance().setOptionBigGUI(p_big);
+		ConfigFileManager::getInstance().saveDataToFile();
 	}
 
 	repaint();
 }
 
 void OdinAudioProcessorEditor::readOrCreateConfigFile(bool &p_GUI_big) {
-	ConfigFileManager config;
-	p_GUI_big = config.getOptionBigGUI();
-	config.saveDataToFile();
+	p_GUI_big = ConfigFileManager::getInstance().getOptionBigGUI();
+	ConfigFileManager::getInstance().saveDataToFile();
+}
+
+void OdinAudioProcessorEditor::paintOverChildren(Graphics &g) {
+	if (m_live_constrainer.isConstraining())
+		paintGrid(g);
+
+	m_live_constrainer.paintOverlay(g);
+}
+
+void OdinAudioProcessorEditor::paintGrid (Graphics& g) {
+
+	constexpr auto grid_alpha       = 0.05f;
+	constexpr auto grid_alpha_major = 0.2f;
+	constexpr auto grid_alpha_mid   = 0.1f;
+	const auto grid_size            = int (ConfigFileManager::getInstance().getOptionGuiScale());
+
+	auto grid_base_colour = juce::Colour (0x0088ffff);
+	//g.fillAll (juce::Colours::white);
+	//auto grid_base_colour = juce::Colours::black;
+
+	for (int x = 0; x < getWidth(); x += grid_size) {
+		if (x % (grid_size * 10) == 0)
+			g.setColour (grid_base_colour.withAlpha (grid_alpha_major));
+		else if (x % (grid_size * 5) == 0)
+			g.setColour (grid_base_colour.withAlpha (grid_alpha_mid));
+		else
+			g.setColour (grid_base_colour.withAlpha (grid_alpha));
+
+		g.drawLine (x, 0, x, getHeight(), 1);
+	}
+
+	for (int y = 0; y < getHeight(); y += grid_size) {
+		if (y % (grid_size * 10) == 0)
+			g.setColour (grid_base_colour.withAlpha (grid_alpha_major));
+		else if (y % (grid_size * 5) == 0)
+			g.setColour (grid_base_colour.withAlpha (grid_alpha_mid));
+		else
+			g.setColour (grid_base_colour.withAlpha (grid_alpha));
+
+		g.drawLine (0, y, getWidth(), y, 1);
+	}
+
+	//g.setColour (juce::Colours::white);
+	//for (int x = 0; x < getWidth(); x += grid_size) {
+	//	for (int y = 0; y < getHeight(); y += grid_size) {
+	//		if (y % (grid_size * 10) == 0 && x % (grid_size * 10) == 0) {
+	//			g.drawText (juce::String (x / grid_size) + "x" +
+	//			                juce::String (y / grid_size),
+	//			            juce::Rectangle<int> (x, y, grid_size * 10, grid_size * 10),
+	//			            juce::Justification::topLeft);
+	//		}
+	//	}
+	//}
 }

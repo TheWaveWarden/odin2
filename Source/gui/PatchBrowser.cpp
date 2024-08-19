@@ -49,7 +49,7 @@ PatchBrowser::PatchBrowser(OdinAudioProcessor &p_processor, AudioProcessorValueT
 	}
 
 	m_soundbank_selector.setDirectory(DEFAULT_SOUNDBANK_LOCATION_STRING);
-	
+
 	m_category_selector.setDirectoryFactoryPresetCategory();
 	m_patch_selector.setDirectoryFactoryPresetPreset("Arps & Sequences");
 
@@ -57,7 +57,7 @@ PatchBrowser::PatchBrowser(OdinAudioProcessor &p_processor, AudioProcessorValueT
 	m_patch_selector.setDirectoryFactoryPresetPreset("Arps & Sequences");
 
 	m_soundbank_selector.passValueToPatchBrowser = [&](String p_string) {
-		if(p_string == FACTORY_PRESETS_SOUNDBANK_CODE) {
+		if (p_string == FACTORY_PRESETS_SOUNDBANK_CODE) {
 			DBG("The Factory Preset Soundbank has been requested!");
 			m_category_selector.setDirectoryFactoryPresetCategory();
 			m_category_selector.highlightFirstEntry();
@@ -71,8 +71,9 @@ PatchBrowser::PatchBrowser(OdinAudioProcessor &p_processor, AudioProcessorValueT
 
 	m_category_selector.passValueToPatchBrowser = [&](String p_string) {
 		//handle factory sounds:
-		if(p_string.toStdString().find(FACTORY_PRESETS_SOUNDBANK_CODE) != std::string::npos) {
-			m_patch_selector.setDirectoryFactoryPresetPreset(p_string.toStdString().substr(std::string(FACTORY_PRESETS_SOUNDBANK_CODE).size()));
+		if (p_string.toStdString().find(FACTORY_PRESETS_SOUNDBANK_CODE) != std::string::npos) {
+			m_patch_selector.setDirectoryFactoryPresetPreset(
+			    p_string.toStdString().substr(std::string(FACTORY_PRESETS_SOUNDBANK_CODE).size()));
 			return;
 		}
 		DBG(p_string + " was pressed in category");
@@ -81,7 +82,7 @@ PatchBrowser::PatchBrowser(OdinAudioProcessor &p_processor, AudioProcessorValueT
 
 	m_patch_selector.passValueToPatchBrowser = [&](String p_string) {
 		//handle factory sounds
-		if(p_string.toStdString().find(FACTORY_PRESETS_SOUNDBANK_CODE) != std::string::npos) {
+		if (p_string.toStdString().find(FACTORY_PRESETS_SOUNDBANK_CODE) != std::string::npos) {
 			auto binary_patch_key = p_string.toStdString().substr(std::string(FACTORY_PRESETS_SOUNDBANK_CODE).size());
 			DBG("Loading Binary Patch:" + binary_patch_key);
 			auto binary_patch_data = getFactoryPresetBinaryData(binary_patch_key);
@@ -97,11 +98,11 @@ PatchBrowser::PatchBrowser(OdinAudioProcessor &p_processor, AudioProcessorValueT
 			m_value_tree.state.getChildWithName("misc").setProperty(
 			    "arp_mod_selected", MATRIX_SECTION_INDEX_MATRIX, nullptr);
 
-			m_value_tree.state.getChildWithName("misc").setProperty("arp_mod_selected", MATRIX_SECTION_INDEX_PRESETS, nullptr);
+			m_value_tree.state.getChildWithName("misc").setProperty(
+			    "arp_mod_selected", MATRIX_SECTION_INDEX_PRESETS, nullptr);
 			forceValueTreeLambda();
 			return;
 		}
-
 
 		DBG("Try to open patch: " + m_patch_selector.getDirectory() + File::getSeparatorString() + p_string);
 		String absolute_path = m_patch_selector.getDirectory() + File::getSeparatorString() + p_string;
@@ -277,8 +278,7 @@ PatchBrowser::PatchBrowser(OdinAudioProcessor &p_processor, AudioProcessorValueT
 		// } else {
 		// 	file_suggestion = File(DEFAULT_EXPORT_LOCATION_STRING + +File::getSeparatorString() + "Preset.odin");
 		// }
-		ConfigFileManager config;
-		auto suggested_dir = config.getOptionPatchDir();
+		auto suggested_dir = ConfigFileManager::getInstance().getOptionPatchDir();
 		file_suggestion    = File(suggested_dir + File::getSeparatorString() + "Preset.odin");
 
 		// set up filechooser
@@ -299,9 +299,9 @@ PatchBrowser::PatchBrowser(OdinAudioProcessor &p_processor, AudioProcessorValueT
 
 				    File file_to_write(file_name);
 
-				    ConfigFileManager config_save;
-				    config_save.setOptionPatchDir(file_to_write.getParentDirectory().getFullPathName());
-				    config_save.saveDataToFile();
+				    ConfigFileManager::getInstance().setOptionPatchDir(
+				        file_to_write.getParentDirectory().getFullPathName());
+				    ConfigFileManager::getInstance().saveDataToFile();
 
 				    //check whether file already exists
 				    if (file_to_write.existsAsFile()) {
@@ -335,8 +335,7 @@ PatchBrowser::PatchBrowser(OdinAudioProcessor &p_processor, AudioProcessorValueT
 			                            "Bummer");
 		}
 
-		ConfigFileManager config;
-		auto suggested_dir = config.getOptionSoundbankDir();
+		auto suggested_dir = ConfigFileManager::getInstance().getOptionSoundbankDir();
 		File file_suggestion(suggested_dir + File::getSeparatorString() + soundbank_file.getFileName() + ".osb");
 
 		// set up filechooser
@@ -356,9 +355,9 @@ PatchBrowser::PatchBrowser(OdinAudioProcessor &p_processor, AudioProcessorValueT
 
 				    File file_to_write(file_name);
 
-				    ConfigFileManager config_save;
-				    config_save.setOptionSoundbankDir(file_to_write.getParentDirectory().getFullPathName());
-				    config_save.saveDataToFile();
+				    ConfigFileManager::getInstance().setOptionSoundbankDir(
+				        file_to_write.getParentDirectory().getFullPathName());
+				    ConfigFileManager::getInstance().saveDataToFile();
 
 				    //check whether file already exists
 				    if (file_to_write.existsAsFile()) {
@@ -646,7 +645,6 @@ PatchBrowser::PatchBrowser(OdinAudioProcessor &p_processor, AudioProcessorValueT
 	    "new Soundbank with the \"New\" button below!",
 	    "Soundbank folder\n" + DEFAULT_SOUNDBANK_LOCATION_STRING +
 	        "\n\nnot found! Please create this folder or reinstall the plugin");
-
 }
 
 PatchBrowser::~PatchBrowser() {
@@ -1048,8 +1046,7 @@ void PatchBrowser::loadPatchWithFileBrowserAndCopyToCategory(String p_directory)
 	// } else {
 	// 	file = File(DEFAULT_EXPORT_LOCATION_STRING);
 	// }
-	ConfigFileManager config;
-	auto suggested_dir = config.getOptionPatchDir();
+	auto suggested_dir = ConfigFileManager::getInstance().getOptionPatchDir();
 	File file(suggested_dir);
 
 	m_filechooser.reset(new FileChooser("Choose a file to open...", file, "*.odin", true));
@@ -1074,9 +1071,8 @@ void PatchBrowser::loadPatchWithFileBrowserAndCopyToCategory(String p_directory)
 				    DBG("Copy Patch " + file_name + " to \n" + copy_target_string);
 
 				    File copy_target(copy_target_string);
-				    ConfigFileManager config_save;
-				    config_save.setOptionPatchDir(file_to_read.getParentDirectory().getFullPathName());
-				    config_save.saveDataToFile();
+				    ConfigFileManager::getInstance().setOptionPatchDir(file_to_read.getParentDirectory().getFullPathName());
+				    ConfigFileManager::getInstance().saveDataToFile();
 
 				    if (copy_target.existsAsFile()) {
 					    AlertWindow::showMessageBox(
@@ -1130,8 +1126,7 @@ void PatchBrowser::loadPatchWithFileBrowserAndCopyToCategory(String p_directory)
 void PatchBrowser::loadSoundbankWithFileBrowser(String p_directory) {
 	File file;
 
-	ConfigFileManager config;
-	auto suggested_dir = config.getOptionSoundbankDir();
+	auto suggested_dir = ConfigFileManager::getInstance().getOptionSoundbankDir();
 	file               = File(suggested_dir);
 
 	m_filechooser.reset(new FileChooser("Choose a Odin 2 soundbank to open...", file, "*.osb", true));
@@ -1149,9 +1144,8 @@ void PatchBrowser::loadSoundbankWithFileBrowser(String p_directory) {
 		    FileInputStream file_stream(file_to_read);
 		    if (file_stream.openedOk()) {
 
-			    ConfigFileManager config_save;
-			    config_save.setOptionSoundbankDir(file_to_read.getParentDirectory().getFullPathName());
-			    config_save.saveDataToFile();
+			    ConfigFileManager::getInstance().setOptionSoundbankDir(file_to_read.getParentDirectory().getFullPathName());
+			    ConfigFileManager::getInstance().saveDataToFile();
 
 			    String soundbank_name = file_to_read.getFileNameWithoutExtension();
 

@@ -31,6 +31,7 @@
 #include "gui/InputField.h"
 #include "gui/LFOComponent.h"
 #include "gui/LeftRightButton.h"
+#include "gui/LiveConstrainer.h"
 #include "gui/ModMatrixComponent.h"
 #include "gui/NumberSelector.h"
 #include "gui/NumberSelectorWithText.h"
@@ -47,7 +48,6 @@
 #include "gui/TooltipFeels.h"
 #include "gui/TuningComponent.h"
 #include "gui/XYSectionComponent.h"
-
 
 #ifdef WTGEN
 #include "SpectrumDisplay.h"
@@ -216,9 +216,6 @@
 #define ODIN_EDITOR_SIZE_X 800
 #define ODIN_EDITOR_SIZE_Y 614
 
-static constexpr auto GUI_BASE_WIDTH  = 205;
-static constexpr auto GUI_BASE_HEIGHT = 267;
-
 #define ODIN_EDITOR_SIZE_150_X 1200
 #define ODIN_EDITOR_SIZE_150_Y 921
 
@@ -229,6 +226,8 @@ public:
 
 	//==============================================================================
 	void paint(Graphics &) override;
+	void paintOverChildren(juce::Graphics &g) override;
+
 	void resized() override;
 	void arrangeFXOnButtons(std::map<std::string, int> p_map);
 	void setActiveFXPanel(const std::string &name);
@@ -260,6 +259,8 @@ public:
 #endif
 
 private:
+	void paintGrid(Graphics &g);
+
 	bool m_A_down = false; // C
 	bool m_W_down = false; // C#
 	bool m_S_down = false; // D
@@ -280,6 +281,8 @@ private:
 	// This reference is provided as a quick way for your editor to
 	// access the processor object that created it.
 	OdinAudioProcessor &processor;
+
+	LiveConstrainer m_live_constrainer;
 
 	void setTooltipEnabled(bool p_enabled);
 	//==============================================================================
