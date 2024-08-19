@@ -29,24 +29,25 @@
 #include "gui/FilterComponent.h"
 #include "gui/FixedTextGlassDropdown.h"
 #include "gui/InputField.h"
-#include "gui/OdinKnob.h"
 #include "gui/LFOComponent.h"
 #include "gui/LeftRightButton.h"
 #include "gui/ModMatrixComponent.h"
 #include "gui/NumberSelector.h"
 #include "gui/NumberSelectorWithText.h"
 #include "gui/OdinButton.h"
+#include "gui/OdinFeels.h"
+#include "gui/OdinKnob.h"
 #include "gui/OdinTooltipWindow.h"
 #include "gui/OscComponent.h"
 #include "gui/PatchBrowser.h"
 #include "gui/PhaserComponent.h"
 #include "gui/PitchWheel.h"
 #include "gui/ReverbComponent.h"
+#include "gui/TitleButton.h"
+#include "gui/TooltipFeels.h"
 #include "gui/TuningComponent.h"
 #include "gui/XYSectionComponent.h"
-#include "gui/TooltipFeels.h"
-#include "gui/OdinFeels.h"
-#include "gui/TitleButton.h"
+
 
 #ifdef WTGEN
 #include "SpectrumDisplay.h"
@@ -214,6 +215,9 @@
 
 #define ODIN_EDITOR_SIZE_X 800
 #define ODIN_EDITOR_SIZE_Y 614
+
+static constexpr auto GUI_BASE_WIDTH  = 205;
+static constexpr auto GUI_BASE_HEIGHT = 267;
 
 #define ODIN_EDITOR_SIZE_150_X 1200
 #define ODIN_EDITOR_SIZE_150_Y 921

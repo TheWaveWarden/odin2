@@ -114,11 +114,8 @@ DelayComponent::~DelayComponent() {
 }
 
 void DelayComponent::paint(Graphics &g) {
-
-	//DEBUG_COMPONENT_OUTLINE
-	SET_INTERPOLATION_QUALITY(g)
-
-	g.drawImageAt(m_background, 0, 0);
+	g.setColour(COL_LIGHT);
+	g.drawRect(getLocalBounds(), 1);
 }
 
 void DelayComponent::forceValueTreeOntoComponents(ValueTree p_tree) {

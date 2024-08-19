@@ -19,9 +19,10 @@
 
 #define DEFAULT_TUNING_DIRECTORY                                                                                       \
 	(File::getSpecialLocation(File::SpecialLocationType::userDocumentsDirectory).getFullPathName())
-#define DEFAULT_SOUNDBANK_IO_LOCATION_STRING (File::getSpecialLocation(File::SpecialLocationType::userDocumentsDirectory).getFullPathName())
-#define DEFAULT_PATCH_LOCATION_STRING (File::getSpecialLocation(File::SpecialLocationType::userDocumentsDirectory).getFullPathName())
-
+#define DEFAULT_SOUNDBANK_IO_LOCATION_STRING                                                                           \
+	(File::getSpecialLocation(File::SpecialLocationType::userDocumentsDirectory).getFullPathName())
+#define DEFAULT_PATCH_LOCATION_STRING                                                                                  \
+	(File::getSpecialLocation(File::SpecialLocationType::userDocumentsDirectory).getFullPathName())
 
 #define XML_ATTRIBUTE_ODIN_CONFIG ("odin_config")
 #define XML_ATTRIBUTE_BIG_GUI ("big_gui")
@@ -40,6 +41,8 @@ public:
 
 	void setOptionBigGUI(bool p_GUI_big);
 	bool getOptionBigGUI();
+	void setOptionGuiScale(int p_scale);
+	int getOptionGuiScale();
 	void setOptionTuningDir(String p_dir);
 	String getOptionTuningDir();
 	void setOptionSoundbankDir(String p_dir);
@@ -48,11 +51,12 @@ public:
 	String getOptionPatchDir();
 
 private:
+	int m_gui_scale = int(GuiScale::Z100);
 	void createDirIfNeeded();
 	void loadDataFromFile();
 	//the actual config values with default values
-	bool m_big_gui = true;
-	String m_tuning_dir = DEFAULT_TUNING_DIRECTORY;
+	bool m_big_gui         = true;
+	String m_tuning_dir    = DEFAULT_TUNING_DIRECTORY;
 	String m_soundbank_dir = DEFAULT_SOUNDBANK_IO_LOCATION_STRING;
-	String m_patch_dir = DEFAULT_PATCH_LOCATION_STRING;
+	String m_patch_dir     = DEFAULT_PATCH_LOCATION_STRING;
 };

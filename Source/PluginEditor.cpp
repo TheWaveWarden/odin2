@@ -669,8 +669,9 @@ OdinAudioProcessorEditor::~OdinAudioProcessorEditor() {
 
 //==============================================================================
 void OdinAudioProcessorEditor::paint(Graphics &g) {
-	SET_INTERPOLATION_QUALITY(g)
-	g.drawImageAt(m_odin_backdrop, 0, 0);
+	g.fillAll(COL_DARK);
+	g.setColour(COL_LIGHT);
+	g.drawRect(getLocalBounds(), 1);
 }
 
 void OdinAudioProcessorEditor::resized() {

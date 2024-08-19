@@ -15,12 +15,13 @@
 
 #pragma once
 
+#include "../GlobalIncludes.h"
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "GlassDropdown.h"
-#include "../GlobalIncludes.h"
-#include "OdinKnob.h"
 #include "OdinButton.h"
 #include "OdinControlAttachments.h"
+#include "OdinKnob.h"
+
 
 #define AMP_GAIN_POS_X (400 - 275)
 #define AMP_GAIN_POS_Y (222 - 175)
@@ -65,17 +66,8 @@ public:
 	void forceValueTreeOntoComponents(ValueTree p_tree);
 
 	void paint(Graphics &g) override {
-		SET_INTERPOLATION_QUALITY(g)
-		if (m_GUI_big) {
-			if (m_distortion_on) {
-				g.drawImageAt(
-				    m_distortion_image, OdinHelper::c150(DISTORTION_OVERLAY_X), OdinHelper::c150(DISTORTION_OVERLAY_Y));
-			}
-		} else {
-			if (m_distortion_on) {
-				g.drawImageAt(m_distortion_image, DISTORTION_OVERLAY_X, DISTORTION_OVERLAY_Y);
-			}
-		}
+		g.setColour(COL_LIGHT);
+		g.drawRect(getLocalBounds(), 1);
 	}
 
 	void setGUIBig();

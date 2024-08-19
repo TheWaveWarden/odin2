@@ -14,8 +14,9 @@
 */
 
 #include "PhaserComponent.h"
-#include "../JuceLibraryCode/JuceHeader.h"
 #include "../GlobalIncludes.h"
+#include "../JuceLibraryCode/JuceHeader.h"
+
 
 PhaserComponent::PhaserComponent(AudioProcessorValueTreeState &vts, const std::string &p_fx_name, bool p_is_standalone) :
     m_value_tree(vts), m_fx_name(p_fx_name), m_is_standalone_plugin(p_is_standalone),
@@ -110,12 +111,8 @@ PhaserComponent::~PhaserComponent() {
 }
 
 void PhaserComponent::paint(Graphics &g) {
-	SET_INTERPOLATION_QUALITY(g)
-	if (m_sync_enabled) {
-		g.drawImageAt(m_background_sync, 0, 0);
-	} else {
-		g.drawImageAt(m_background_no_sync, 0, 0);
-	}
+	g.setColour(COL_LIGHT);
+	g.drawRect(getLocalBounds(), 1);
 }
 
 void PhaserComponent::setSyncEnabled(bool p_sync) {
@@ -210,24 +207,24 @@ void PhaserComponent::setGUIBig() {
 	                 sync_1.getHeight());
 	m_sync_time.setTopLeftPosition(OdinHelper::c150(PHASER_SYNC_TIME_POS_X), OdinHelper::c150(PHASER_SYNC_TIME_POS_Y));
 
-	m_mod.setBounds(OdinHelper::c150(PHASER_MOD_POS_X)-2,
-	                OdinHelper::c150(PHASER_MOD_POS_Y)-1,
+	m_mod.setBounds(OdinHelper::c150(PHASER_MOD_POS_X) - 2,
+	                OdinHelper::c150(PHASER_MOD_POS_Y) - 1,
 	                metal_knob_mid.getWidth(),
 	                metal_knob_mid.getWidth());
-	m_rate.setBounds(OdinHelper::c150(PHASER_RATE_POS_X)-2,
-	                 OdinHelper::c150(PHASER_RATE_POS_Y)-1,
+	m_rate.setBounds(OdinHelper::c150(PHASER_RATE_POS_X) - 2,
+	                 OdinHelper::c150(PHASER_RATE_POS_Y) - 1,
 	                 metal_knob_mid.getWidth(),
 	                 metal_knob_mid.getWidth());
-	m_dry_wet.setBounds(OdinHelper::c150(PHASER_DRY_WET_POS_X)-2,
-	                    OdinHelper::c150(PHASER_DRY_WET_POS_Y)-1,
+	m_dry_wet.setBounds(OdinHelper::c150(PHASER_DRY_WET_POS_X) - 2,
+	                    OdinHelper::c150(PHASER_DRY_WET_POS_Y) - 1,
 	                    metal_knob_mid.getWidth(),
 	                    metal_knob_mid.getWidth());
-	m_freq.setBounds(OdinHelper::c150(PHASER_FREQ_POS_X)-2,
-	                 OdinHelper::c150(PHASER_FREQ_POS_Y)-1,
+	m_freq.setBounds(OdinHelper::c150(PHASER_FREQ_POS_X) - 2,
+	                 OdinHelper::c150(PHASER_FREQ_POS_Y) - 1,
 	                 metal_knob_mid.getWidth(),
 	                 metal_knob_mid.getWidth());
-	m_feedback.setBounds(OdinHelper::c150(PHASER_FEEDBACK_POS_X)-2,
-	                     OdinHelper::c150(PHASER_FEEDBACK_POS_Y)-1,
+	m_feedback.setBounds(OdinHelper::c150(PHASER_FEEDBACK_POS_X) - 2,
+	                     OdinHelper::c150(PHASER_FEEDBACK_POS_Y) - 1,
 	                     metal_knob_mid.getWidth(),
 	                     metal_knob_mid.getWidth());
 

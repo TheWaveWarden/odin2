@@ -90,10 +90,8 @@ ReverbComponent::~ReverbComponent() {
 }
 
 void ReverbComponent::paint(Graphics &g) {
-
-	SET_INTERPOLATION_QUALITY(g)
-
-	g.drawImageAt(m_background, 0, 0);
+	g.setColour(COL_LIGHT);
+	g.drawRect(getLocalBounds(), 1);
 }
 
 void ReverbComponent::forceValueTreeOntoComponents(ValueTree p_tree) {
@@ -187,7 +185,8 @@ void ReverbComponent::setGUISmall() {
 	//	                    (REVERB_WIDTH_POS_Y),
 	//	                    (BLACK_KNOB_MID_SIZE_X),
 	//	                    (BLACK_KNOB_MID_SIZE_Y));
-	m_EQ_freq.setBounds((REVERB_DRY_POS_X) + 1, (REVERB_DRY_POS_Y) + 1, (BLACK_KNOB_MID_SIZE_X), (BLACK_KNOB_MID_SIZE_Y));
+	m_EQ_freq.setBounds(
+	    (REVERB_DRY_POS_X) + 1, (REVERB_DRY_POS_Y) + 1, (BLACK_KNOB_MID_SIZE_X), (BLACK_KNOB_MID_SIZE_Y));
 	m_dry_wet.setBounds((REVERB_WET_POS_X) + 1, (REVERB_WET_POS_Y), (BLACK_KNOB_BIG_SIZE_X), (BLACK_KNOB_BIG_SIZE_Y));
 
 	forceValueTreeOntoComponents(m_value_tree.state);

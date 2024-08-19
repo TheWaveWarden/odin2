@@ -68,7 +68,13 @@ target_compile_definitions(Odin2
 )
 
 # ==================== Check OS =======================
-target_include_directories(Odin2 PRIVATE ${CMAKE_BINARY_DIR}/include libs/tuning-library)
+target_include_directories(Odin2 
+  PRIVATE 
+    ${CMAKE_BINARY_DIR}/include 
+    libs/tuning-library
+    libs/json/include
+)
+
 if(APPLE)
     target_compile_definitions(Odin2 PRIVATE ODIN_MAC=1)
     target_compile_options(Odin2 PRIVATE "-Wno-implicit-float-conversion")
@@ -140,6 +146,9 @@ target_sources(Odin2
     "Source/audio/Oscillators/WavetableOsc2D.cpp"
     "Source/audio/Oscillators/Wavetables/Tables/LFOTableData.cpp"
     "Source/audio/Oscillators/Wavetables/Tables/WavetableData.cpp"
+    "Source/gui/JSONGuiProvider.cpp"
+    "Source/gui/LiveConstrainer.cpp"
+    "Source/gui/GuiDataEditor.cpp"
     "Source/gui/ADSRComponent.cpp"
     "Source/gui/AmpDistortionFlowComponent.cpp"
     "Source/gui/ArpComponent.cpp"
@@ -190,6 +199,7 @@ target_sources(Odin2
 # ==================== Binary Files =======================
 juce_add_binary_data(Odin2_BinaryData
   SOURCES
+    "Source/GuiData.json"
     "Graphics/applied/BP12_backdrop.png"
     "Graphics/applied/BP24_backdrop.png"
     "Graphics/applied/HP12_backdrop.png"

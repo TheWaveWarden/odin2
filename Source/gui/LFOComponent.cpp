@@ -86,18 +86,8 @@ LFOComponent::~LFOComponent() {
 }
 
 void LFOComponent::paint(Graphics &g) {
-
-	//g.setColour(Colour((uint8_t)255,(uint8_t)255,(uint8_t)255,(uint8_t)40));
-	//g.drawRoundedRectangle(getLocalBounds().getX(),getLocalBounds().getY(),getLocalBounds().getWidth(),getLocalBounds().getHeight(),4.f, 3.f); // draw an outline around the component
-
-	SET_INTERPOLATION_QUALITY(g)
-	if (!m_sync_active) {
-		if (m_GUI_big) {
-			g.drawImageAt(m_knob_guide, OVERDRAW_POS_X_150, OVERDRAW_POS_Y_150);
-		} else {
-			g.drawImageAt(m_knob_guide, OVERDRAW_POS_X, OVERDRAW_POS_Y);
-		}
-	}
+	g.setColour(COL_LIGHT);
+	g.drawRect(getLocalBounds(), 1);
 }
 
 void LFOComponent::forceValueTreeOntoComponents(ValueTree p_tree) {

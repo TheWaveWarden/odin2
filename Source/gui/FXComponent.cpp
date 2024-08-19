@@ -101,12 +101,8 @@ FXComponent::~FXComponent() {
 }
 
 void FXComponent::paint(Graphics &g) {
-	SET_INTERPOLATION_QUALITY(g)
-	if (m_sync_enabled) {
-		g.drawImageAt(m_background_sync, 0, 0);
-	} else {
-		g.drawImageAt(m_background_no_sync, 0, 0);
-	}
+	g.setColour(COL_LIGHT);
+	g.drawRect(getLocalBounds(), 1);
 }
 
 void FXComponent::setSyncEnabled(bool p_sync) {

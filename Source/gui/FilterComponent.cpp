@@ -14,8 +14,9 @@
 */
 
 #include "FilterComponent.h"
-#include "../JuceLibraryCode/JuceHeader.h"
 #include "../GlobalIncludes.h"
+#include "../JuceLibraryCode/JuceHeader.h"
+
 
 FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts, const std::string &p_filter_number) :
     m_value_tree(vts), m_filter_number(p_filter_number), m_vowel_left(false), m_vowel_right(true),
@@ -169,8 +170,8 @@ FilterComponent::~FilterComponent() {
 }
 
 void FilterComponent::paint(Graphics &g) {
-	SET_INTERPOLATION_QUALITY(g)
-	g.drawImageAt(m_background, 0, 0);
+	g.setColour(COL_LIGHT);
+	g.drawRect(getLocalBounds(), 1);
 }
 
 void FilterComponent::setFilterType(int p_filter_type, bool p_force) {
@@ -404,8 +405,8 @@ void FilterComponent::showSEMFilterComponents() {
 	m_sem_transition.setVisible(true);
 
 	if (m_GUI_big) {
-		m_freq.setTopLeftPosition(OdinHelper::c150(SEM_FREQ_POS_X)-1, OdinHelper::c150(SEM_FREQ_POS_Y)-1);
-		m_res.setTopLeftPosition(OdinHelper::c150(SEM_RES_POS_X)-1, OdinHelper::c150(SEM_RES_POS_Y)-1);
+		m_freq.setTopLeftPosition(OdinHelper::c150(SEM_FREQ_POS_X) - 1, OdinHelper::c150(SEM_FREQ_POS_Y) - 1);
+		m_res.setTopLeftPosition(OdinHelper::c150(SEM_RES_POS_X) - 1, OdinHelper::c150(SEM_RES_POS_Y) - 1);
 	} else {
 		m_freq.setTopLeftPosition(SEM_FREQ_POS_X, SEM_FREQ_POS_Y);
 		m_res.setTopLeftPosition(SEM_RES_POS_X, SEM_RES_POS_Y);
@@ -442,8 +443,8 @@ void FilterComponent::showCombFilterComponents() {
 	m_comb_plus_minus.setVisible(true);
 
 	if (m_GUI_big) {
-		m_freq.setTopLeftPosition(OdinHelper::c150(COMB_FREQ_POS_X)-1, OdinHelper::c150(FILTER_FREQ_POS_Y)-1);
-		m_res.setTopLeftPosition(OdinHelper::c150(COMB_RES_POS_X)-2, OdinHelper::c150(RES_POS_Y)-1);
+		m_freq.setTopLeftPosition(OdinHelper::c150(COMB_FREQ_POS_X) - 1, OdinHelper::c150(FILTER_FREQ_POS_Y) - 1);
+		m_res.setTopLeftPosition(OdinHelper::c150(COMB_RES_POS_X) - 2, OdinHelper::c150(RES_POS_Y) - 1);
 	} else {
 		m_freq.setTopLeftPosition(COMB_FREQ_POS_X, FILTER_FREQ_POS_Y);
 		m_res.setTopLeftPosition(COMB_RES_POS_X, RES_POS_Y);
@@ -467,7 +468,7 @@ void FilterComponent::showRingModFilterComponents() {
 	m_freq.setVisible(true);
 	m_ring_mod_amount.setVisible(true);
 	if (m_GUI_big) {
-		m_freq.setTopLeftPosition(OdinHelper::c150(RINGMOD_FREQ_X)-1, OdinHelper::c150(RINGMOD_FREQ_Y)-1);
+		m_freq.setTopLeftPosition(OdinHelper::c150(RINGMOD_FREQ_X) - 1, OdinHelper::c150(RINGMOD_FREQ_Y) - 1);
 	} else {
 		m_freq.setTopLeftPosition(RINGMOD_FREQ_X, RINGMOD_FREQ_Y);
 	}
@@ -534,20 +535,20 @@ void FilterComponent::setGUIBig() {
 	                       black_knob_small.getHeight() / N_KNOB_FRAMES);
 
 	m_sem_transition.setStrip(metal_knob_mid, N_KNOB_FRAMES);
-	m_sem_transition.setBounds(OdinHelper::c150(TRANSITION_POS_X)-1,
-	                           OdinHelper::c150(TRANSITION_POS_Y)-1,
+	m_sem_transition.setBounds(OdinHelper::c150(TRANSITION_POS_X) - 1,
+	                           OdinHelper::c150(TRANSITION_POS_Y) - 1,
 	                           metal_knob_mid.getWidth(),
 	                           metal_knob_mid.getHeight() / N_KNOB_FRAMES);
 
 	m_formant_transition.setStrip(metal_knob_big, N_KNOB_FRAMES);
-	m_formant_transition.setBounds(OdinHelper::c150(FORMANT_TRANSITION_X)-1,
-	                               OdinHelper::c150(FORMANT_TRANSITION_Y)-1,
+	m_formant_transition.setBounds(OdinHelper::c150(FORMANT_TRANSITION_X) - 1,
+	                               OdinHelper::c150(FORMANT_TRANSITION_Y) - 1,
 	                               metal_knob_big.getWidth(),
 	                               metal_knob_big.getHeight() / N_KNOB_FRAMES);
 
 	m_ring_mod_amount.setStrip(metal_knob_big, N_KNOB_FRAMES);
-	m_ring_mod_amount.setBounds(OdinHelper::c150(RINGMOD_AMOUNT_X)-1,
-	                            OdinHelper::c150(RINGMOD_AMOUNT_Y)-1,
+	m_ring_mod_amount.setBounds(OdinHelper::c150(RINGMOD_AMOUNT_X) - 1,
+	                            OdinHelper::c150(RINGMOD_AMOUNT_Y) - 1,
 	                            metal_knob_big.getWidth(),
 	                            metal_knob_big.getHeight() / N_KNOB_FRAMES);
 

@@ -136,6 +136,14 @@
 #define BROWSER_SIZE_X (492 + 2 * BROWSER_INLAY_X)
 #define BROWSER_SIZE_Y (141 + 2 * BROWSER_INLAY_Y)
 
+#define COL_LIGHT (juce::Colours::white)
+#define COL_DARK (juce::Colours::black)
+
+#define W (getWidth())
+#define H (getHeight())
+
+static constexpr auto GUI_DATA_NAME = "GuiDataName";
+
 // midpoint for filters:
 // https://www.wolframalpha.com/input/?i=80*e%5E%28ln%2818000%2F80%29*0.5%29
 // skew for filters:
@@ -224,6 +232,13 @@ typedef AudioProcessorValueTreeState::ComboBoxAttachment ComboBoxAttachment;
 enum class PlayModes { Legato = 1, Poly = 2, Retrig = 3 };
 #define PLAYMODETOVALUETREE(playmode) ((int)playmode - 1)
 #define VALUETREETOPLAYMODE(mode) ((PlayModes)(mode + 1))
+
+enum class GuiScale {
+	Z100 = 3,
+	Z133 = 4,
+	Z166 = 5,
+	Z200 = 6
+};
 
 //Used to convert positions and sizes to 150% GUI scaling
 class OdinHelper {

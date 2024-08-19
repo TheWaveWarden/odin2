@@ -112,6 +112,14 @@ bool ConfigFileManager::getOptionBigGUI() {
 	return m_big_gui;
 }
 
+void ConfigFileManager::setOptionGuiScale(int p_scale) {
+	m_gui_scale = p_scale;
+}
+
+int ConfigFileManager::getOptionGuiScale() {
+	return m_gui_scale;
+}
+
 void ConfigFileManager::setOptionTuningDir(String p_dir) {
 	m_tuning_dir = p_dir;
 }

@@ -879,7 +879,9 @@ void OscComponent::resetVectorWaves() {
 
 void OscComponent::paint(Graphics &g) {
 	SET_INTERPOLATION_QUALITY(g)
-	g.drawImageAt(m_background, 0, 0);
+	//g.drawImageAt(m_background, 0, 0);
+	g.setColour(COL_LIGHT);
+	g.drawRect(getLocalBounds(), 1);
 }
 
 void OscComponent::setOscType(int p_osc_type, bool p_force) {

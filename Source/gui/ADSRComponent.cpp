@@ -80,6 +80,8 @@ ADSRComponent::~ADSRComponent() {
 }
 
 void ADSRComponent::paint(Graphics &g) {
+	g.setColour(COL_LIGHT);
+	g.drawRect(getLocalBounds(), 1);
 }
 
 void ADSRComponent::setGUIBig() {
