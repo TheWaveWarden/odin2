@@ -157,7 +157,7 @@ void LiveConstrainer::paintOverlay(juce::Graphics &g) {
 		auto bounds = textBounds.removeFromTop(line_height);
 		g.drawText(m_name, bounds, juce::Justification::centredLeft);
 		bounds = textBounds.removeFromTop(line_height);
-		g.drawText("Zoom: " + juce::String(juce::roundToInt(100.0f / 6.0f * float(zoom_size))) + "% (x" +
+		g.drawText("Zoom: " + juce::String(juce::roundToInt(100.0f / float(GuiScale::Z100) * float(zoom_size))) + "% (x" +
 		               juce::String(zoom_size) + ")",
 		           bounds,
 		           juce::Justification::centredRight);

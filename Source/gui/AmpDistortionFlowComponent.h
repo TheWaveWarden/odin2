@@ -22,7 +22,6 @@
 #include "OdinControlAttachments.h"
 #include "OdinKnob.h"
 
-
 #define AMP_GAIN_POS_X (400 - 275)
 #define AMP_GAIN_POS_Y (222 - 175)
 #define AMP_PAN_POS_X (465 - 275)
@@ -69,6 +68,7 @@ public:
 		g.setColour(COL_LIGHT);
 		g.drawRect(getLocalBounds(), 1);
 	}
+	void resized() override;
 
 	void setGUIBig();
 	void setGUISmall();

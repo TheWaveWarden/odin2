@@ -27,8 +27,8 @@
 
 #include <functional>
 
-#include "../JuceLibraryCode/JuceHeader.h"
 #include "../GlobalIncludes.h"
+#include "../JuceLibraryCode/JuceHeader.h"
 #include "OdinFeels.h"
 
 #define INLAY_DEFAULT 1
@@ -104,17 +104,19 @@ public:
 	void setInlayLeft(int p_inlay) {
 		m_inlay_left = p_inlay;
 	}
-	void showTriangle(bool p_show = true){
+	void showTriangle(bool p_show = true) {
 		m_show_triangle = p_show;
 	}
 
 protected:
+	void paintTriangle(juce::Graphics &g);
+
 	int m_inlay_top  = 0;
 	int m_inlay_left = 0;
 
-	bool m_GUI_big = true;
-	bool m_setOneToZero = false;
-	bool m_show_triangle = false;
+	bool m_GUI_big             = true;
+	bool m_setOneToZero        = false;
+	bool m_show_triangle       = false;
 	std::string m_default_text = "undefined";
 
 	bool m_grey_first_element = false;

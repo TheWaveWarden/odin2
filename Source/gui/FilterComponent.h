@@ -85,6 +85,7 @@ public:
 	~FilterComponent();
 
 	void paint(Graphics &) override;
+	void resized() override;
 
 	void setBackground(juce::Image p_background) {
 		m_background = p_background;

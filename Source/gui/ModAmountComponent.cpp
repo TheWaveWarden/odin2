@@ -14,8 +14,8 @@
 */
 
 #include "ModAmountComponent.h"
-#include "../JuceLibraryCode/JuceHeader.h"
 #include "../GlobalIncludes.h"
+#include "../JuceLibraryCode/JuceHeader.h"
 #include <iomanip> // setprecision
 #include <sstream> // stringstream
 
@@ -62,7 +62,8 @@ void ModAmountComponent::paint(Graphics &g) {
 	}
 	g.drawText(value_string, getLocalBounds(), Justification::centred, true);
 
-	g.drawImageAt(m_glas_panel, 0, 0);
+	g.setColour(COL_LIGHT);
+	g.drawRect(getLocalBounds(), 1);
 }
 
 void ModAmountComponent::mouseDrag(const MouseEvent &event) {

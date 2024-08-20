@@ -137,14 +137,14 @@
 #define BROWSER_SIZE_Y (141 + 2 * BROWSER_INLAY_Y)
 
 #define COL_LIGHT (juce::Colours::white)
-#define COL_DARK (juce::Colours::black)
+#define COL_DARK (juce::Colour(0xff333333))
 
 #define W (getWidth())
 #define H (getHeight())
 
 static constexpr auto GUI_DATA_NAME   = "GuiDataName";
-static constexpr auto GUI_BASE_WIDTH  = 267; // the UI size without any scaling factor applied
-static constexpr auto GUI_BASE_HEIGHT = 205; // the UI size without any scaling factor applied
+static constexpr auto GUI_BASE_WIDTH  = 200; // the UI size without any scaling factor applied
+static constexpr auto GUI_BASE_HEIGHT = 154; // the UI size without any scaling factor applied
 
 // midpoint for filters:
 // https://www.wolframalpha.com/input/?i=80*e%5E%28ln%2818000%2F80%29*0.5%29
@@ -152,7 +152,9 @@ static constexpr auto GUI_BASE_HEIGHT = 205; // the UI size without any scaling 
 // https://www.wolframalpha.com/input/?i=ln%280.5%29%2F%28ln%28%281200-80%29%2F%2818000-80%29%29%29
 #define FILTER_SKEW_DEFAULT 0.25f
 
-#define GET_LOCAL_AREA(component, name) component.setBounds(JsonGuiProvider::getInstance().getBounds(name)); component.getProperties().set(GUI_DATA_NAME, name)
+#define GET_LOCAL_AREA(component, name)                                                                                \
+	component.setBounds(JsonGuiProvider::getInstance().getBounds(name));                                               \
+	component.getProperties().set(GUI_DATA_NAME, name)
 
 #define GAIN_SMOOTHIN_FACTOR 0.995f
 #define PAN_SMOOTHIN_FACTOR 0.998f
@@ -237,7 +239,7 @@ enum class PlayModes { Legato = 1, Poly = 2, Retrig = 3 };
 #define PLAYMODETOVALUETREE(playmode) ((int)playmode - 1)
 #define VALUETREETOPLAYMODE(mode) ((PlayModes)(mode + 1))
 
-enum class GuiScale { Z100 = 3, Z133 = 4, Z166 = 5, Z200 = 6 };
+enum class GuiScale { Z100 = 4, Z125 = 5, Z150 = 6, Z175 = 7, Z200 = 8 };
 
 //Used to convert positions and sizes to 150% GUI scaling
 class OdinHelper {

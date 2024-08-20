@@ -16,8 +16,11 @@
 #include "XYPadComponent.h"
 #include "../JuceLibraryCode/JuceHeader.h"
 
-XYPadComponent::XYPadComponent(
-    AudioProcessorValueTreeState &vts, const std::string &p_param_prefix, OdinKnob &p_x, OdinKnob &p_y, bool p_vector_pad) :
+XYPadComponent::XYPadComponent(AudioProcessorValueTreeState &vts,
+                               const std::string &p_param_prefix,
+                               OdinKnob &p_x,
+                               OdinKnob &p_y,
+                               bool p_vector_pad) :
     m_value_tree(vts),
     m_param_name_x(p_param_prefix + "x"), m_param_name_y(p_param_prefix + "y"), m_knob_x(p_x), m_knob_y(p_y),
     m_vector_pad(p_vector_pad) {
@@ -30,20 +33,8 @@ XYPadComponent::~XYPadComponent() {
 void XYPadComponent::paint(Graphics &g) {
 	SET_INTERPOLATION_QUALITY(g)
 
-	g.setColour(m_color);
-	juce::Point<int> top_left = getLocalBounds().getTopLeft();
-	if (m_GUI_big) {
-		top_left.addXY(m_inlay + 2, m_inlay);
-	} else {
-		top_left.addXY(m_inlay + 1, m_inlay);
-	}
-	juce::Point<int> bottom_right = getLocalBounds().getBottomRight();
-	bottom_right.addXY(-m_inlay, -m_inlay);
-	g.fillRect(juce::Rectangle<int>(top_left, bottom_right)); //
-
-	if (m_draw_logo) {
-		g.drawImageAt(m_logo, 0, -5);
-	}
+	g.setColour(COL_LIGHT);
+	g.drawRect(getLocalBounds(), 1);
 
 	if (m_vector_pad) {
 		g.setColour(juce::Colours::lightgrey);
@@ -92,7 +83,7 @@ void XYPadComponent::paint(Graphics &g) {
 		g.setColour(Colour(20, 105, 129));
 		g.fillEllipse(x_handle - 1, y_handle - 1, handle_diameter + 2, handle_diameter + 2);
 	}
-	g.setColour(Colours::white);
+	g.setColour(COL_LIGHT);
 	g.fillEllipse(x_handle, y_handle, handle_diameter, handle_diameter);
 
 	g.drawImageAt(m_panel, 0, 0);

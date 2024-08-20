@@ -16,64 +16,74 @@
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "OdinButton.h"
 
-#define FX_BUTTON_OFFSET 48
-
-class DragButton : public juce::DrawableButton {
+class DragButton : public juce::Component, public juce::SettableTooltipClient {
 public:
-	DragButton(const String &buttonName,
-	           ButtonStyle buttonStyle,
-	           juce::ComponentBoundsConstrainer *constrainer,
-	           const std::string &p_name) :
-	    juce::DrawableButton(buttonName, buttonStyle) {
-		m_constrainer = constrainer;
-		m_button_name = p_name;
+	DragButton(const String &p_text, juce::ComponentBoundsConstrainer *constrainer) :
+	    m_constrainer(constrainer), m_text(p_text) {
+	}
+
+	void paint(juce::Graphics &g) override {
+		g.setColour(COL_LIGHT);
+		g.drawRect(getLocalBounds(), 1);
+
+		if (m_pressed) {
+			g.setColour(COL_LIGHT.withAlpha(0.5f));
+			g.fillRect(getLocalBounds());
+		}
+
+		g.setColour(COL_LIGHT);
+		g.setFont(H * 0.6f);
+		g.drawText(m_text, getLocalBounds(), Justification::centred);
+	}
+
+	void setIsPressed(bool p_pressed) {
+		m_pressed = p_pressed;
+		repaint();
 	}
 
 	bool isInRangeDrag(float p_low, int p_check, float p_high) {
 		return ((p_check >= p_low) && (p_check <= p_high));
 	}
 	void mouseDrag(const MouseEvent &event) override {
-		juce::DrawableButton::mouseDrag(event);
 		m_dragger.dragComponent(this, event, m_constrainer);
-		//DBG(getX());
-		float GUI_factor = m_GUI_big ? 1.5f : 1.f;
+		const auto width = getWidth();
 
-		if (isInRangeDrag(0 * (float)FX_BUTTON_OFFSET * GUI_factor, getX(), 0.5f * FX_BUTTON_OFFSET * GUI_factor)) {
+		if (isInRangeDrag(0 * width, getX(), 0.5f * width)) {
 			lambdaMouseDrag(0);
 			return;
 		}
 
-		if (isInRangeDrag(0.5f * (float)FX_BUTTON_OFFSET * GUI_factor, getX(), 1.5f * FX_BUTTON_OFFSET * GUI_factor)) {
+		if (isInRangeDrag(0.5f * width, getX(), 1.5f * width)) {
 			lambdaMouseDrag(1);
 			return;
 		}
 
-		if (isInRangeDrag(1.5f * FX_BUTTON_OFFSET * GUI_factor, getX(), 2.5f * FX_BUTTON_OFFSET * GUI_factor)) {
+		if (isInRangeDrag(1.5f * width, getX(), 2.5f * width)) {
 			lambdaMouseDrag(2);
 			return;
 		}
 
-		if (isInRangeDrag(2.5f * FX_BUTTON_OFFSET * GUI_factor, getX(), 3.5f * FX_BUTTON_OFFSET * GUI_factor)) {
+		if (isInRangeDrag(2.5f * width, getX(), 3.5f * width)) {
 			lambdaMouseDrag(3);
 			return;
 		}
 
-		if (isInRangeDrag(3.5f * FX_BUTTON_OFFSET * GUI_factor, getX(), 4.f * FX_BUTTON_OFFSET * GUI_factor)) {
+		if (isInRangeDrag(3.5f * width, getX(), 4.f * width)) {
 			lambdaMouseDrag(4);
 			return;
 		}
 	}
 
 	void mouseDown(const MouseEvent &event) override {
-		juce::DrawableButton::mouseDown(event);
 		setAlwaysOnTop(true);
 		m_dragger.startDraggingComponent(this, event);
 		lambdaMouseDown();
+		m_pressed = true;
 	}
 
 	void mouseUp(const MouseEvent &event) override {
-		juce::DrawableButton::mouseUp(event);
 		setAlwaysOnTop(false);
 		lambdaMouseUp();
 	}
@@ -92,8 +102,9 @@ public:
 
 private:
 	bool m_GUI_big = true;
+	bool m_pressed = false;
 
-	std::string m_button_name;
+	juce::String m_text;
 	juce::ComponentDragger m_dragger;
 	juce::ComponentBoundsConstrainer *m_constrainer;
 	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(DragButton)

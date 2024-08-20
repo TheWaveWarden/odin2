@@ -62,6 +62,10 @@ void ConfigFileManager::loadDataFromFile() {
 						DBG("Found Config Element: " << XML_ATTRIBUTE_PATCH_DIR << ": "
 						                             << child->getStringAttribute("data"));
 						m_patch_dir = child->getStringAttribute("data");
+					} else if (child->hasTagName(XML_ATTRIBUTE_GUI_SCALE)) {
+						DBG("Found Config Element: " << XML_ATTRIBUTE_GUI_SCALE << ": "
+						                             << child->getStringAttribute("data"));
+						m_gui_scale = std::stoi(child->getStringAttribute("data").toStdString());
 					}
 				}
 			}
@@ -91,6 +95,10 @@ void ConfigFileManager::saveDataToFile() {
 	XmlElement *patch_dir = new XmlElement(XML_ATTRIBUTE_PATCH_DIR);
 	patch_dir->setAttribute("data", m_patch_dir);
 	config_xml->addChildElement(patch_dir);
+
+	XmlElement *gui_scale = new XmlElement(XML_ATTRIBUTE_GUI_SCALE);
+	gui_scale->setAttribute("data", std::to_string(m_gui_scale));
+	config_xml->addChildElement(gui_scale);
 
 	//DBG_VAR(config_xml->toString());
 

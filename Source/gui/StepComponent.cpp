@@ -17,8 +17,7 @@
 #include <JuceHeader.h>
 
 StepComponent::StepComponent(AudioProcessorValueTreeState &vts, int p_step_index) :
-    m_value_tree(vts),
-    m_step_on("step_" + std::to_string(p_step_index + 1) + "_on", juce::DrawableButton::ButtonStyle::ImageRaw),
+    m_value_tree(vts), m_step_on("step_" + std::to_string(p_step_index + 1) + "_on", std::to_string(p_step_index + 1)),
     m_step_index(p_step_index) {
 
 	addAndMakeVisible(m_mod_1);
@@ -118,14 +117,6 @@ void StepComponent::setGUIBig() {
 	step_on_draw3.setImage(step_on_3);
 	step_on_draw4.setImage(step_on_4);
 
-	m_step_on.setImages(&step_on_draw2,
-	                    &step_on_draw2,
-	                    &step_on_draw1,
-	                    &step_on_draw1,
-	                    &step_on_draw4,
-	                    &step_on_draw4,
-	                    &step_on_draw3,
-	                    &step_on_draw3);
 	m_step_on.setBounds(STEP_ON_X_150, STEP_ON_Y_150, step_on_1.getWidth(), step_on_1.getHeight());
 
 	m_knob_guide =
@@ -168,14 +159,6 @@ void StepComponent::setGUISmall() {
 	step_on_draw3.setImage(step_on_3);
 	step_on_draw4.setImage(step_on_4);
 
-	m_step_on.setImages(&step_on_draw2,
-	                    &step_on_draw2,
-	                    &step_on_draw1,
-	                    &step_on_draw1,
-	                    &step_on_draw4,
-	                    &step_on_draw4,
-	                    &step_on_draw3,
-	                    &step_on_draw3);
 	m_step_on.setBounds(STEP_ON_X_100, STEP_ON_Y_100, step_on_1.getWidth(), step_on_1.getHeight());
 
 	m_knob_guide = ImageCache::getFromMemory(BinaryData::arp_knob_guide_png, BinaryData::arp_knob_guide_pngSize);

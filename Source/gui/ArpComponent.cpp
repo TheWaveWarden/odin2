@@ -21,8 +21,8 @@ ArpComponent::ArpComponent(OdinAudioProcessor &p_processor, AudioProcessorValueT
     m_processor(p_processor), m_value_tree(vts), m_step_0(vts, 0), m_step_1(vts, 1), m_step_2(vts, 2), m_step_3(vts, 3),
     m_step_4(vts, 4), m_step_5(vts, 5), m_step_6(vts, 6), m_step_7(vts, 7), m_step_8(vts, 8), m_step_9(vts, 9),
     m_step_10(vts, 10), m_step_11(vts, 11), m_step_12(vts, 12), m_step_13(vts, 13), m_step_14(vts, 14),
-    m_step_15(vts, 15), m_on("arp_on", juce::DrawableButton::ButtonStyle::ImageRaw),
-    m_one_shot("arp_one_shot", juce::DrawableButton::ButtonStyle::ImageRaw),m_mod_transpose("arp_mod_transpose", juce::DrawableButton::ButtonStyle::ImageRaw) {
+    m_step_15(vts, 15), m_on("arp_on", "On"),
+    m_one_shot("arp_one_shot", "1-Shot"),m_mod_transpose("arp_mod_transpose", "Md/Trns") {
 	addAndMakeVisible(m_step_0);
 	addAndMakeVisible(m_step_1);
 	addAndMakeVisible(m_step_2);
@@ -157,12 +157,6 @@ void ArpComponent::resized() {
 void ArpComponent::setGUIBig() {
 	m_GUI_big = true;
 
-	m_octave_selector.setGUIBig();
-	m_steps_selector.setGUIBig();
-	m_direction.setGUIBig();
-	m_gate.setGUIBig();
-	m_sync_time.setGUIBig();
-
 	m_octave_selector.setTopLeftPosition(OCTAVE_SELECTOR_X_150, OCTAVE_SELECTOR_Y_150);
 	m_steps_selector.setTopLeftPosition(STEP_SELECTOR_X_150, STEP_SELECTOR_Y_150);
 	m_direction.setTopLeftPosition(DIRECTION_SELECTOR_X_150, DIRECTION_SELECTOR_Y_150);
@@ -187,14 +181,6 @@ void ArpComponent::setGUIBig() {
 	on_off_draw2.setImage(on_off_2);
 	on_off_draw3.setImage(on_off_3);
 	on_off_draw4.setImage(on_off_4);
-	m_on.setImages(&on_off_draw2,
-	               &on_off_draw2,
-	               &on_off_draw1,
-	               &on_off_draw1,
-	               &on_off_draw4,
-	               &on_off_draw4,
-	               &on_off_draw3,
-	               &on_off_draw3);
 	m_on.setBounds(ON_OFF_POS_X_150, ON_OFF_POS_Y_150, on_off_1.getWidth(), on_off_1.getHeight());
 
 	juce::Image one_shot_1 =
@@ -215,14 +201,6 @@ void ArpComponent::setGUIBig() {
 	one_shot_draw2.setImage(one_shot_2);
 	one_shot_draw3.setImage(one_shot_3);
 	one_shot_draw4.setImage(one_shot_4);
-	m_one_shot.setImages(&one_shot_draw2,
-	                     &one_shot_draw2,
-	                     &one_shot_draw1,
-	                     &one_shot_draw1,
-	                     &one_shot_draw4,
-	                     &one_shot_draw4,
-	                     &one_shot_draw3,
-	                     &one_shot_draw3);
 	m_one_shot.setBounds(ONE_SHOT_POS_X_150, ONE_SHOT_POS_Y_150, one_shot_1.getWidth(), one_shot_1.getHeight());
 
 
@@ -245,14 +223,6 @@ void ArpComponent::setGUIBig() {
 	mod_transpose_draw2.setImage(mod_transpose_2);
 	mod_transpose_draw3.setImage(mod_transpose_3);
 	mod_transpose_draw4.setImage(mod_transpose_4);
-	m_mod_transpose.setImages(&mod_transpose_draw2,
-	                     &mod_transpose_draw2,
-	                     &mod_transpose_draw1,
-	                     &mod_transpose_draw1,
-	                     &mod_transpose_draw4,
-	                     &mod_transpose_draw4,
-	                     &mod_transpose_draw3,
-	                     &mod_transpose_draw3);
 	m_mod_transpose.setBounds(MOD_TRANSPOSE_POS_X_150, MOD_TRANSPOSE_POS_Y_150, mod_transpose_1.getWidth(), mod_transpose_1.getHeight());
 
 	for (int step = 0; step < NUMBER_OF_STEPS; ++step) {
@@ -362,12 +332,6 @@ void ArpComponent::setGUIBig() {
 void ArpComponent::setGUISmall() {
 	m_GUI_big = false;
 
-	m_octave_selector.setGUISmall();
-	m_steps_selector.setGUISmall();
-	m_direction.setGUISmall();
-	m_gate.setGUISmall();
-	m_sync_time.setGUISmall();
-
 	m_octave_selector.setTopLeftPosition(OCTAVE_SELECTOR_X_100, OCTAVE_SELECTOR_Y_100);
 	m_steps_selector.setTopLeftPosition(STEP_SELECTOR_X_100, STEP_SELECTOR_Y_100);
 	m_direction.setTopLeftPosition(DIRECTION_SELECTOR_X_100, DIRECTION_SELECTOR_Y_100);
@@ -392,14 +356,6 @@ void ArpComponent::setGUISmall() {
 	on_off_draw2.setImage(on_off_2);
 	on_off_draw3.setImage(on_off_3);
 	on_off_draw4.setImage(on_off_4);
-	m_on.setImages(&on_off_draw2,
-	               &on_off_draw2,
-	               &on_off_draw1,
-	               &on_off_draw1,
-	               &on_off_draw4,
-	               &on_off_draw4,
-	               &on_off_draw3,
-	               &on_off_draw3);
 	m_on.setBounds(ON_OFF_POS_X_100, ON_OFF_POS_Y_100, on_off_1.getWidth(), on_off_1.getHeight());
 
 	juce::Image one_shot_1 =
@@ -420,14 +376,6 @@ void ArpComponent::setGUISmall() {
 	one_shot_draw2.setImage(one_shot_2);
 	one_shot_draw3.setImage(one_shot_3);
 	one_shot_draw4.setImage(one_shot_4);
-	m_one_shot.setImages(&one_shot_draw2,
-	                     &one_shot_draw2,
-	                     &one_shot_draw1,
-	                     &one_shot_draw1,
-	                     &one_shot_draw4,
-	                     &one_shot_draw4,
-	                     &one_shot_draw3,
-	                     &one_shot_draw3);
 	m_one_shot.setBounds(ONE_SHOT_POS_X_100, ONE_SHOT_POS_Y_100, one_shot_1.getWidth(), one_shot_1.getHeight());
 
 	juce::Image mod_transpose_1 =
@@ -448,14 +396,6 @@ void ArpComponent::setGUISmall() {
 	mod_transpose_draw2.setImage(mod_transpose_2);
 	mod_transpose_draw3.setImage(mod_transpose_3);
 	mod_transpose_draw4.setImage(mod_transpose_4);
-	m_mod_transpose.setImages(&mod_transpose_draw2,
-	                     &mod_transpose_draw2,
-	                     &mod_transpose_draw1,
-	                     &mod_transpose_draw1,
-	                     &mod_transpose_draw4,
-	                     &mod_transpose_draw4,
-	                     &mod_transpose_draw3,
-	                     &mod_transpose_draw3);
 	m_mod_transpose.setBounds(MOD_TRANSPOSE_POS_X_100, MOD_TRANSPOSE_POS_Y_100, mod_transpose_1.getWidth(), mod_transpose_1.getHeight());
 
 

@@ -103,5 +103,6 @@ void ModAmountComponentExtended::paint(Graphics &g) {
 	}
 	g.drawText(value_string, getLocalBounds(), Justification::centred, true);
 
-	g.drawImageAt(m_glas_panel, 0, 0);
+	g.setColour(COL_LIGHT);
+	g.drawRect(getLocalBounds(), 1);
 }

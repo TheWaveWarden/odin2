@@ -44,6 +44,7 @@
 #include "gui/PhaserComponent.h"
 #include "gui/PitchWheel.h"
 #include "gui/ReverbComponent.h"
+#include "gui/TextLabel.h"
 #include "gui/TitleButton.h"
 #include "gui/TooltipFeels.h"
 #include "gui/TuningComponent.h"
@@ -295,6 +296,11 @@ private:
 	OdinKnob m_unison_detune;
 	OdinKnob m_unison_width;
 
+	TextLabel m_detune_label;
+	TextLabel m_width_label;
+	TextLabel m_master_label;
+	TextLabel m_glide_label;
+
 	PitchWheel m_pitchwheel;
 	NumberSelector m_pitch_amount;
 
@@ -334,14 +340,14 @@ private:
 	TuningComponent m_tuning;
 
 	juce::PopupMenu m_osc_dropdown_menu;
-	juce::DrawableButton m_osc1_dropdown;
-	juce::DrawableButton m_osc2_dropdown;
-	juce::DrawableButton m_osc3_dropdown;
+	OdinButton m_osc1_dropdown;
+	OdinButton m_osc2_dropdown;
+	OdinButton m_osc3_dropdown;
 
 	juce::PopupMenu m_filter_dropdown_menu;
-	juce::DrawableButton m_filter1_dropdown;
-	juce::DrawableButton m_filter2_dropdown;
-	juce::DrawableButton m_filter3_dropdown;
+	OdinButton m_filter1_dropdown;
+	OdinButton m_filter2_dropdown;
+	OdinButton m_filter3_dropdown;
 
 	OdinButton m_filleft_button1;
 	OdinButton m_filleft_button2;
@@ -366,20 +372,21 @@ private:
 
 	TitleButton m_title_button;
 
-	juce::DrawableButton m_question_button;
+	OdinButton m_question_button;
+	OdinButton m_burger_button;
 
 	juce::ComponentDragger m_dragger;
 
-	LeftRightButton m_env_13_button;
-	LeftRightButton m_env_24_button;
+	OdinButton m_env_13_button;
+	OdinButton m_env_24_button;
 
-	LeftRightButton m_lfo_13_button;
-	LeftRightButton m_lfo_24_button;
+	OdinButton m_lfo_13_button;
+	OdinButton m_lfo_24_button;
 
 	GlassDropdown m_mono_poly_legato_dropdown;
 	LeftRightButton m_gui_size_button;
 
-	juce::DrawableButton m_reset;
+	OdinButton m_reset;
 
 	AudioProcessorValueTreeState &m_value_tree;
 
@@ -440,8 +447,6 @@ private:
 	void updatePitchWheel(float p_value);
 	void updateModWheel(float p_value);
 	void setGUISizeBig(bool p_big, bool p_write_to_config);
-	void setGUISmall();
-	void setGUIBig();
 
 	void readOrCreateConfigFile(bool &p_GUI_big);
 

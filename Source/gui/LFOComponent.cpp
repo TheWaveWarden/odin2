@@ -19,8 +19,8 @@
 #include "LFOComponent.h"
 
 LFOComponent::LFOComponent(AudioProcessorValueTreeState &vts, const std::string &p_lfo_number, bool p_is_standalone) :
-    m_value_tree(vts), m_lfo_number(p_lfo_number), m_reset("reset", juce::DrawableButton::ButtonStyle::ImageRaw),
-    m_sync("sync", juce::DrawableButton::ButtonStyle::ImageRaw), m_lfo_wave_identifier("lfo" + p_lfo_number + "_wave"),
+    m_value_tree(vts), m_lfo_number(p_lfo_number), m_reset("reset", "Reset"),
+    m_sync("sync", "Sync"), m_lfo_wave_identifier("lfo" + p_lfo_number + "_wave"),
     m_lfo_synctime_denominator_identifier("lfo" + p_lfo_number + "_synctime_denominator"),
     m_lfo_synctime_numerator_identifier("lfo" + p_lfo_number + "_synctime_numerator"),
     m_is_standalone_plugin(p_is_standalone) {
@@ -125,8 +125,6 @@ void LFOComponent::setGUIBig() {
 	reset_draw3.setImage(reset_3);
 	reset_draw4.setImage(reset_4);
 
-	m_reset.setImages(
-	    &reset_draw2, &reset_draw2, &reset_draw1, &reset_draw1, &reset_draw4, &reset_draw4, &reset_draw3, &reset_draw3);
 	m_reset.setBounds(
 	    OdinHelper::c150(LFO_RESET_POS_X), OdinHelper::c150(LFO_RESET_POS_Y), reset_1.getWidth(), reset_1.getHeight());
 
@@ -149,8 +147,6 @@ void LFOComponent::setGUIBig() {
 	sync_draw3.setImage(sync_3);
 	sync_draw4.setImage(sync_4);
 
-	m_sync.setImages(
-	    &sync_draw2, &sync_draw2, &sync_draw1, &sync_draw1, &sync_draw4, &sync_draw4, &sync_draw3, &sync_draw3);
 	m_sync.setBounds(OdinHelper::c150(SYNC_POS_X), OdinHelper::c150(SYNC_POS_Y), sync_1.getWidth(), sync_1.getHeight());
 
 	juce::Image black_knob_small =
@@ -194,8 +190,6 @@ void LFOComponent::setGUISmall() {
 	reset_draw3.setImage(reset_3);
 	reset_draw4.setImage(reset_4);
 
-	m_reset.setImages(
-	    &reset_draw2, &reset_draw2, &reset_draw1, &reset_draw1, &reset_draw4, &reset_draw4, &reset_draw3, &reset_draw3);
 	m_reset.setBounds(LFO_RESET_POS_X, LFO_RESET_POS_Y, reset_1.getWidth(), reset_1.getHeight());
 
 	juce::Image sync_1 = ImageCache::getFromMemory(BinaryData::buttonsync_1_png, BinaryData::buttonsync_1_pngSize);
@@ -213,8 +207,6 @@ void LFOComponent::setGUISmall() {
 	sync_draw3.setImage(sync_3);
 	sync_draw4.setImage(sync_4);
 
-	m_sync.setImages(
-	    &sync_draw2, &sync_draw2, &sync_draw1, &sync_draw1, &sync_draw4, &sync_draw4, &sync_draw3, &sync_draw3);
 	m_sync.setBounds(SYNC_POS_X, SYNC_POS_Y, sync_1.getWidth(), sync_1.getHeight());
 
 	juce::Image black_knob_small =

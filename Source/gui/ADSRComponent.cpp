@@ -14,12 +14,12 @@
 */
 
 #include "ADSRComponent.h"
+#include "JsonGuiProvider.h"
 #include "../JuceLibraryCode/JuceHeader.h"
 
 //==============================================================================
 ADSRComponent::ADSRComponent(AudioProcessorValueTreeState &vts, const std::string &p_adsr_number) :
-    m_loop("loop_button", juce::DrawableButton::ButtonStyle::ImageRaw), m_value_tree(vts),
-    m_adsr_number(p_adsr_number) {
+    m_loop("loop_button", "Loop"), m_value_tree(vts), m_adsr_number(p_adsr_number) {
 
 	m_attack_attach.reset(new OdinSliderAttachment(m_value_tree, ("env" + m_adsr_number + "_attack"), m_attack));
 	m_decay_attach.reset(new OdinSliderAttachment(m_value_tree, "env" + m_adsr_number + "_decay", m_decay));
@@ -85,85 +85,14 @@ void ADSRComponent::paint(Graphics &g) {
 }
 
 void ADSRComponent::setGUIBig() {
-	juce::Image loop_1 =
-	    ImageCache::getFromMemory(BinaryData::buttonloop_1_150_png, BinaryData::buttonloop_1_150_pngSize);
-	juce::Image loop_2 =
-	    ImageCache::getFromMemory(BinaryData::buttonloop_2_150_png, BinaryData::buttonloop_2_150_pngSize);
-	juce::Image loop_3 =
-	    ImageCache::getFromMemory(BinaryData::buttonloop_3_150_png, BinaryData::buttonloop_3_150_pngSize);
-	juce::Image loop_4 =
-	    ImageCache::getFromMemory(BinaryData::buttonloop_4_150_png, BinaryData::buttonloop_4_150_pngSize);
-
-	juce::DrawableImage loop_draw1;
-	juce::DrawableImage loop_draw2;
-	juce::DrawableImage loop_draw3;
-	juce::DrawableImage loop_draw4;
-
-	loop_draw1.setImage(loop_1);
-	loop_draw2.setImage(loop_2);
-	loop_draw3.setImage(loop_3);
-	loop_draw4.setImage(loop_4);
-
-	m_loop.setImages(
-	    &loop_draw2, &loop_draw2, &loop_draw1, &loop_draw1, &loop_draw4, &loop_draw4, &loop_draw3, &loop_draw3);
-
-	m_loop.setBounds(OdinHelper::c150(LOOP_POS_X), OdinHelper::c150(LOOP_POS_Y), loop_1.getWidth(), loop_1.getHeight());
-
-	m_attack.setBounds(OdinHelper::c150(SLIDER_POS_X) - 3,
-	                   OdinHelper::c150(SLIDER_POS_Y),
-	                   OdinHelper::c150(SLIDER_SIZE_X),
-	                   OdinHelper::c150(SLIDER_SIZE_Y));
-	m_decay.setBounds(OdinHelper::c150(SLIDER_POS_X) + OdinHelper::c150(SLIDER_OFFSET) * 1 - 3,
-	                  OdinHelper::c150(SLIDER_POS_Y),
-	                  OdinHelper::c150(SLIDER_SIZE_X),
-	                  OdinHelper::c150(SLIDER_SIZE_Y));
-	m_sustain.setBounds(OdinHelper::c150(SLIDER_POS_X) + OdinHelper::c150(SLIDER_OFFSET) * 2 - 3,
-	                    OdinHelper::c150(SLIDER_POS_Y),
-	                    OdinHelper::c150(SLIDER_SIZE_X),
-	                    OdinHelper::c150(SLIDER_SIZE_Y));
-	m_release.setBounds(OdinHelper::c150(SLIDER_POS_X) + OdinHelper::c150(SLIDER_OFFSET) * 3 - 3,
-	                    OdinHelper::c150(SLIDER_POS_Y),
-	                    OdinHelper::c150(SLIDER_SIZE_X),
-	                    OdinHelper::c150(SLIDER_SIZE_Y));
-
-	m_attack.setHandle(
-	    ImageCache::getFromMemory(BinaryData::slider_handle_150_png, BinaryData::slider_handle_150_pngSize));
-	m_decay.setHandle(
-	    ImageCache::getFromMemory(BinaryData::slider_handle_150_png, BinaryData::slider_handle_150_pngSize));
-	m_sustain.setHandle(
-	    ImageCache::getFromMemory(BinaryData::slider_handle_150_png, BinaryData::slider_handle_150_pngSize));
-	m_release.setHandle(
-	    ImageCache::getFromMemory(BinaryData::slider_handle_150_png, BinaryData::slider_handle_150_pngSize));
 }
 void ADSRComponent::setGUISmall() {
+}
 
-	juce::Image loop_1 = ImageCache::getFromMemory(BinaryData::buttonloop_1_png, BinaryData::buttonloop_1_pngSize);
-	juce::Image loop_2 = ImageCache::getFromMemory(BinaryData::buttonloop_2_png, BinaryData::buttonloop_2_pngSize);
-	juce::Image loop_3 = ImageCache::getFromMemory(BinaryData::buttonloop_3_png, BinaryData::buttonloop_3_pngSize);
-	juce::Image loop_4 = ImageCache::getFromMemory(BinaryData::buttonloop_4_png, BinaryData::buttonloop_4_pngSize);
-
-	juce::DrawableImage loop_draw1;
-	juce::DrawableImage loop_draw2;
-	juce::DrawableImage loop_draw3;
-	juce::DrawableImage loop_draw4;
-
-	loop_draw1.setImage(loop_1);
-	loop_draw2.setImage(loop_2);
-	loop_draw3.setImage(loop_3);
-	loop_draw4.setImage(loop_4);
-
-	m_loop.setImages(
-	    &loop_draw2, &loop_draw2, &loop_draw1, &loop_draw1, &loop_draw4, &loop_draw4, &loop_draw3, &loop_draw3);
-
-	m_loop.setBounds(LOOP_POS_X, LOOP_POS_Y, loop_1.getWidth(), loop_1.getHeight());
-
-	m_attack.setBounds(SLIDER_POS_X, SLIDER_POS_Y, SLIDER_SIZE_X, SLIDER_SIZE_Y);
-	m_decay.setBounds(SLIDER_POS_X + SLIDER_OFFSET * 1 - 1, SLIDER_POS_Y, SLIDER_SIZE_X, SLIDER_SIZE_Y);
-	m_sustain.setBounds(SLIDER_POS_X + SLIDER_OFFSET * 2, SLIDER_POS_Y, SLIDER_SIZE_X, SLIDER_SIZE_Y);
-	m_release.setBounds(SLIDER_POS_X + SLIDER_OFFSET * 3, SLIDER_POS_Y, SLIDER_SIZE_X, SLIDER_SIZE_Y);
-
-	m_attack.setHandle(ImageCache::getFromMemory(BinaryData::slider_handle_png, BinaryData::slider_handle_pngSize));
-	m_decay.setHandle(ImageCache::getFromMemory(BinaryData::slider_handle_png, BinaryData::slider_handle_pngSize));
-	m_sustain.setHandle(ImageCache::getFromMemory(BinaryData::slider_handle_png, BinaryData::slider_handle_pngSize));
-	m_release.setHandle(ImageCache::getFromMemory(BinaryData::slider_handle_png, BinaryData::slider_handle_pngSize));
+void ADSRComponent::resized() {
+	GET_LOCAL_AREA(m_loop, "ADSRLoop");
+	GET_LOCAL_AREA(m_attack, "ADSRAttack");
+	GET_LOCAL_AREA(m_decay, "ADSRDecay");
+	GET_LOCAL_AREA(m_sustain, "ADSRSustain");
+	GET_LOCAL_AREA(m_release, "ADSRRelease");
 }

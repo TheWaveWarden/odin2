@@ -15,23 +15,23 @@
 
 #pragma once
 
-#include "../JuceLibraryCode/JuceHeader.h"
 #include "../GlobalIncludes.h"
+#include "../JuceLibraryCode/JuceHeader.h"
 #include "../Utilities.h"
+#include "../audio/Oscillators/WavetableContainer.h"
 #include "ChipdrawWindow.h"
 #include "GlassDropdown.h"
 #include "IntegerKnob.h"
-#include "OdinKnob.h"
 #include "LeftRightButton.h"
 #include "NumberSelector.h"
 #include "OdinButton.h"
+#include "OdinControlAttachments.h"
+#include "OdinKnob.h"
 #include "SpecdrawDisplay.h"
+#include "TextLabel.h"
 #include "WavedrawDisplay.h"
 #include "WaveformSelectorComponent.h"
 #include "XYPadComponent.h"
-#include "OdinControlAttachments.h"
-#include "../audio/Oscillators/WavetableContainer.h"
-
 
 //#include "../PluginProcessor.h"
 
@@ -97,7 +97,6 @@
 #define VEC_WAVE_Y 52
 #define VEC_WAVE_OFFSET 21
 
-
 #define DETUNE_POS_X 100
 #define DETUNE_POS_Y 50
 #define SPREAD_POS_X 33
@@ -158,191 +157,199 @@
 
 class OscComponent : public Component {
 public:
-  OscComponent(OdinAudioProcessor &p_processor,
-               AudioProcessorValueTreeState &vts, const std::string &p_osc_number);
-  ~OscComponent();
+	OscComponent(OdinAudioProcessor &p_processor, AudioProcessorValueTreeState &vts, const std::string &p_osc_number);
+	~OscComponent();
 
-  void paint(Graphics &) override;
-  void setBackground(juce::Image p_background) { m_background = p_background; }
-  void setBackgroundBypass(juce::Image p_background) {
-    m_background_bypass = p_background;
-  }
-  int getOscType() { return m_osc_type; }
-  void setOscType(int p_osc_type, bool p_force = true);
-  void setOscTypeBypass();
-  void setOscTypeAnalog();
-  void setOscTypeChiptune();
-  void setOscTypeFM();
-  void setOscTypePM();
-  void setOscTypeChipdraw();
-  void setOscTypeWavedraw();
-  void setOscTypeSpecdraw();
-  void setOscTypeNoise();
-  void setOscTypeVector();
-  void setOscTypeWavetable();
-  void setOscTypeMulti();
-  void setGUIBig();
-  void setGUISmall();
+	void paint(Graphics &) override;
+	void setBackground(juce::Image p_background) {
+		m_background = p_background;
+	}
+	void setBackgroundBypass(juce::Image p_background) {
+		m_background_bypass = p_background;
+	}
+	int getOscType() {
+		return m_osc_type;
+	}
+	void setOscType(int p_osc_type, bool p_force = true);
+	void setOscTypeBypass();
+	void setOscTypeAnalog();
+	void setOscTypeChiptune();
+	void setOscTypeFM();
+	void setOscTypePM();
+	void setOscTypeChipdraw();
+	void setOscTypeWavedraw();
+	void setOscTypeSpecdraw();
+	void setOscTypeNoise();
+	void setOscTypeVector();
+	void setOscTypeWavetable();
+	void setOscTypeMulti();
+	void setGUIBig();
+	void setGUISmall();
 
-  void hideAllComponents();
+	void hideAllComponents();
 
-  void showVolComponent();
-  void showPitchComponents();
-  void showAnalogComponents();
-  void showChiptuneComponents();
-  void showFMComponents();
-  void showPMComponents();
-  void showChipdrawComponents();
-  void showWavedrawComponents();
-  void showSpecdrawComponents();
-  void showNoiseComponents();
-  void showVectorComponents();
-  void showWavetableComponents();
-  void showMultiComponents();
+	void showVolComponent();
+	void showPitchComponents();
+	void showAnalogComponents();
+	void showChiptuneComponents();
+	void showFMComponents();
+	void showPMComponents();
+	void showChipdrawComponents();
+	void showWavedrawComponents();
+	void showSpecdrawComponents();
+	void showNoiseComponents();
+	void showVectorComponents();
+	void showWavetableComponents();
+	void showMultiComponents();
 
 #ifdef WTGEN
-  void writeWavedrawTableToFile();
-  void writeChipdrawTableToFile();
-  void writeSpecdrawTableToFile();
+	void writeWavedrawTableToFile();
+	void writeChipdrawTableToFile();
+	void writeSpecdrawTableToFile();
 #endif
 
-  void createWavedrawTables();
-  void createChipdrawTables();
-  void createSpecdrawTables();
+	void createWavedrawTables();
+	void createChipdrawTables();
+	void createSpecdrawTables();
 
-  void forceValueTreeOntoComponents(ValueTree p_tree, int p_index,
-                                    bool p_create_wavetables);
+	void forceValueTreeOntoComponents(ValueTree p_tree, int p_index, bool p_create_wavetables);
 
-  void resetVectorWaves();
+	void resetVectorWaves();
 
-  void setWavetableContainer(WavetableContainer* p_WT_container){
-    m_WT_container = p_WT_container;
-  }
+	void setWavetableContainer(WavetableContainer *p_WT_container) {
+		m_WT_container = p_WT_container;
+	}
+
+	void resized();
 
 protected:
-  // TextEditor REMOVE_EDITOR;
+	// TextEditor REMOVE_EDITOR;
 
-  bool m_GUI_big = true;
+	bool m_GUI_big = true;
 
-  int m_osc_type = 0;
+	int m_osc_type = 0;
 
-  juce::Image m_background;
-  juce::Image m_background_bypass;
+	juce::Image m_background;
+	juce::Image m_background_bypass;
 
-  IntegerKnob m_oct;
-  IntegerKnob m_semi;
-  OdinKnob m_fine;
-  DecibelKnob m_vol;
-  OdinKnob m_pw;
-  OdinKnob m_drift;
-  IntegerKnob m_step_1;
-  IntegerKnob m_step_2;
-  IntegerKnob m_step_3;
-  OdinKnob m_fm;
-  OdinKnob m_speed;
-  OdinKnob m_lp;
-  OdinKnob m_hp;
-  OdinKnob m_position;
-  OdinKnob m_position_multi;
-  OdinKnob m_spread;
-  OdinKnob m_detune;
-  OdinKnob m_pos_mod;
+	TextLabel m_osc_label;
+	TextLabel m_oct_label;
+	TextLabel m_semi_label;
+	TextLabel m_fine_label;
+	TextLabel m_vol_label;
+	TextLabel m_drift_label;
+	TextLabel m_pw_label;
 
-  OdinButton m_arp;
-  OdinButton m_step_button;
-  OdinButton m_noise;
-  OdinButton m_chipdraw_convert;
-  OdinButton m_wavedraw_convert;
+	IntegerKnob m_oct;
+	IntegerKnob m_semi;
+	OdinKnob m_fine;
+	DecibelKnob m_vol;
+	OdinKnob m_pw;
+	OdinKnob m_drift;
+	IntegerKnob m_step_1;
+	IntegerKnob m_step_2;
+	IntegerKnob m_step_3;
+	OdinKnob m_fm;
+	OdinKnob m_speed;
+	OdinKnob m_lp;
+	OdinKnob m_hp;
+	OdinKnob m_position;
+	OdinKnob m_position_multi;
+	OdinKnob m_spread;
+	OdinKnob m_detune;
+	OdinKnob m_pos_mod;
 
-  // OdinButton m_wavedraw_convert_REMOVE;
-  // OdinButton m_specdraw_convert_REMOVE;
-  // OdinButton m_chipdraw_convert_REMOVE;
+	OdinButton m_arp;
+	OdinButton m_step_button;
+	OdinButton m_noise;
+	OdinButton m_chipdraw_convert;
+	OdinButton m_wavedraw_convert;
 
-  OdinButton m_specdraw_convert;
-  DrawableButton m_LED_saw;
-  DrawableButton m_LED_pulse;
-  DrawableButton m_LED_triangle;
-  DrawableButton m_LED_sine;
+	OdinButton m_specdraw_convert;
+	OdinButton m_LED_saw;
+	OdinButton m_LED_pulse;
+	OdinButton m_LED_triangle;
+	OdinButton m_LED_sine;
 
-  OdinButton m_reset;
-  OdinButton m_sync;
+	OdinButton m_reset;
+	OdinButton m_sync;
 
-  WaveformSelectorComponent m_chiptune_waveselector;
-  WaveformSelectorComponent m_carrier_waveselector;
-  WaveformSelectorComponent m_modulator_waveselector;
-  WaveformSelectorComponent m_wavetable_waveselector;
-  WaveformSelectorComponent m_modulation_source;
+	WaveformSelectorComponent m_chiptune_waveselector;
+	WaveformSelectorComponent m_carrier_waveselector;
+	WaveformSelectorComponent m_modulator_waveselector;
+	WaveformSelectorComponent m_wavetable_waveselector;
+	WaveformSelectorComponent m_modulation_source;
 
-  NumberSelector m_carrier_ratio;
-  NumberSelector m_modulator_ratio;
+	NumberSelector m_carrier_ratio;
+	NumberSelector m_modulator_ratio;
 
-  LeftRightButton m_fm_exp;
+	LeftRightButton m_fm_exp;
 
-  ChipdrawWindow m_chipdraw;
-  WavedrawDisplay m_wavedraw;
-  SpecdrawDisplay m_specdraw;
+	ChipdrawWindow m_chipdraw;
+	WavedrawDisplay m_wavedraw;
+	SpecdrawDisplay m_specdraw;
 
-  XYPadComponent m_xy;
-  OdinKnob m_xy_x;
-  OdinKnob m_xy_y;
-  GlassDropdown m_vec_a;
-  GlassDropdown m_vec_b;
-  GlassDropdown m_vec_c;
-  GlassDropdown m_vec_d;
+	XYPadComponent m_xy;
+	OdinKnob m_xy_x;
+	OdinKnob m_xy_y;
+	GlassDropdown m_vec_a;
+	GlassDropdown m_vec_b;
+	GlassDropdown m_vec_c;
+	GlassDropdown m_vec_d;
 
-  std::string m_osc_number;
-  AudioProcessorValueTreeState &m_value_tree;
+	std::string m_osc_number;
+	AudioProcessorValueTreeState &m_value_tree;
 
-  std::unique_ptr<OdinKnobAttachment> m_oct_attach;
-  std::unique_ptr<OdinKnobAttachment> m_semi_attach;
-  std::unique_ptr<OdinKnobAttachment> m_fine_attach;
-  std::unique_ptr<OdinKnobAttachment> m_vol_attach;
-  std::unique_ptr<OdinKnobAttachment> m_position_attach;
-  std::unique_ptr<OdinKnobAttachment> m_detune_attach;
-  std::unique_ptr<OdinKnobAttachment> m_multi_position_attach;
-  std::unique_ptr<OdinKnobAttachment> m_spread_attach;
-  std::unique_ptr<OdinKnobAttachment> m_pulsewidth_attach;
-  std::unique_ptr<OdinKnobAttachment> m_drift_attach;
-  std::unique_ptr<OdinKnobAttachment> m_arp_speed_attach;
-  std::unique_ptr<OdinKnobAttachment> m_step_1_attach;
-  std::unique_ptr<OdinKnobAttachment> m_step_2_attach;
-  std::unique_ptr<OdinKnobAttachment> m_step_3_attach;
-  std::unique_ptr<OdinKnobAttachment> m_fm_attach;
-  std::unique_ptr<OdinKnobAttachment> m_lp_attach;
-  std::unique_ptr<OdinKnobAttachment> m_hp_attach;
-  std::unique_ptr<OdinKnobAttachment> m_x_attach;
-  std::unique_ptr<OdinKnobAttachment> m_y_attach;
-  std::unique_ptr<OdinKnobAttachment> m_pos_mod_attach;
+	std::unique_ptr<OdinKnobAttachment> m_oct_attach;
+	std::unique_ptr<OdinKnobAttachment> m_semi_attach;
+	std::unique_ptr<OdinKnobAttachment> m_fine_attach;
+	std::unique_ptr<OdinKnobAttachment> m_vol_attach;
+	std::unique_ptr<OdinKnobAttachment> m_position_attach;
+	std::unique_ptr<OdinKnobAttachment> m_detune_attach;
+	std::unique_ptr<OdinKnobAttachment> m_multi_position_attach;
+	std::unique_ptr<OdinKnobAttachment> m_spread_attach;
+	std::unique_ptr<OdinKnobAttachment> m_pulsewidth_attach;
+	std::unique_ptr<OdinKnobAttachment> m_drift_attach;
+	std::unique_ptr<OdinKnobAttachment> m_arp_speed_attach;
+	std::unique_ptr<OdinKnobAttachment> m_step_1_attach;
+	std::unique_ptr<OdinKnobAttachment> m_step_2_attach;
+	std::unique_ptr<OdinKnobAttachment> m_step_3_attach;
+	std::unique_ptr<OdinKnobAttachment> m_fm_attach;
+	std::unique_ptr<OdinKnobAttachment> m_lp_attach;
+	std::unique_ptr<OdinKnobAttachment> m_hp_attach;
+	std::unique_ptr<OdinKnobAttachment> m_x_attach;
+	std::unique_ptr<OdinKnobAttachment> m_y_attach;
+	std::unique_ptr<OdinKnobAttachment> m_pos_mod_attach;
 
-  std::unique_ptr<OdinButtonAttachment> m_reset_attach;
-  std::unique_ptr<OdinButtonAttachment> m_sync_attach;
-  std::unique_ptr<OdinButtonAttachment> m_arp_on_attach;
-  std::unique_ptr<OdinButtonAttachment> m_step_3_on_attach;
-  std::unique_ptr<OdinButtonAttachment> m_chipnoise_attach;
-  std::unique_ptr<OdinButtonAttachment> m_exp_fm_attach;
+	std::unique_ptr<OdinButtonAttachment> m_reset_attach;
+	std::unique_ptr<OdinButtonAttachment> m_sync_attach;
+	std::unique_ptr<OdinButtonAttachment> m_arp_on_attach;
+	std::unique_ptr<OdinButtonAttachment> m_step_3_on_attach;
+	std::unique_ptr<OdinButtonAttachment> m_chipnoise_attach;
+	std::unique_ptr<OdinButtonAttachment> m_exp_fm_attach;
 
-  // std::unique_ptr<ComboBoxAttachment> m_vec_a_attach;
-  // std::unique_ptr<ComboBoxAttachment> m_vec_b_attach;
-  // std::unique_ptr<ComboBoxAttachment> m_vec_c_attach;
-  // std::unique_ptr<ComboBoxAttachment> m_vec_d_attach;
+	// std::unique_ptr<ComboBoxAttachment> m_vec_a_attach;
+	// std::unique_ptr<ComboBoxAttachment> m_vec_b_attach;
+	// std::unique_ptr<ComboBoxAttachment> m_vec_c_attach;
+	// std::unique_ptr<ComboBoxAttachment> m_vec_d_attach;
 
-  Identifier m_wavetable_identifier;
-  Identifier m_modulation_source_identifier;
-  Identifier m_chipwave_identifier;
-  Identifier m_modulator_wave_identifier;
-  Identifier m_carrier_wave_identifier;
-  Identifier m_modulator_ratio_identifier;
-  Identifier m_carrier_ratio_identifier;
-  Identifier m_analog_wave_identifier;
-  Identifier m_vec_a_identifier;
-  Identifier m_vec_b_identifier;
-  Identifier m_vec_c_identifier;
-  Identifier m_vec_d_identifier;
-  Identifier m_pos_mod_identifier;
+	Identifier m_wavetable_identifier;
+	Identifier m_modulation_source_identifier;
+	Identifier m_chipwave_identifier;
+	Identifier m_modulator_wave_identifier;
+	Identifier m_carrier_wave_identifier;
+	Identifier m_modulator_ratio_identifier;
+	Identifier m_carrier_ratio_identifier;
+	Identifier m_analog_wave_identifier;
+	Identifier m_vec_a_identifier;
+	Identifier m_vec_b_identifier;
+	Identifier m_vec_c_identifier;
+	Identifier m_vec_d_identifier;
+	Identifier m_pos_mod_identifier;
 
-  OdinMenuFeels m_menu_feels;
+	OdinMenuFeels m_menu_feels;
 
-  WavetableContainer* m_WT_container;
+	WavetableContainer *m_WT_container;
 
-  JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(OscComponent)
+	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(OscComponent)
 };

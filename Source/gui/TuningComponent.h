@@ -30,8 +30,7 @@ class TuningComponent : public Component {
 public:
 	TuningComponent(OdinAudioProcessor &processor);
 
-    void setGUIBig();
-    void setGUISmall();
+    void resized() override;
 
 protected:
 	void importSCLFile();

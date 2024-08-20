@@ -12,7 +12,7 @@ public:
 	void mouseDrag (const juce::MouseEvent& e) override;
 	void resized() override;
 
-    void setTopBottom(const juce::Rectangle<int>& p_top, const juce::Rectangle<int>& p_bottom);
+    void setParent(const juce::Rectangle<int>& p_parent);
 
     juce::Rectangle<int> getData() const;
 
@@ -22,8 +22,7 @@ private:
 	juce::Colour m_colour_border     = juce::Colours::grey;
 
 	juce::Rectangle<int> m_data;
-	juce::Rectangle<int> m_top;
-	juce::Rectangle<int> m_bottom;
+	juce::Rectangle<int> m_parent;
 
 	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (GuiDataEditor)
 };

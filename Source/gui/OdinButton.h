@@ -15,54 +15,54 @@
 
 #pragma once
 
+#include "../GlobalIncludes.h"
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "OdinMidiLearnBase.h"
-#include "../GlobalIncludes.h"
 
 class OdinAudioProcessor;
 
-class OdinButton : public DrawableButton, public OdinMidiLearnBase {
+class OdinButton : public juce::Button, public OdinMidiLearnBase {
 public:
-  OdinButton(const String &buttonName, ButtonStyle buttonStyle)
-      : DrawableButton(buttonName, buttonStyle) {}
+	OdinButton(const String &buttonName, const String &p_button_text) :
+	    juce::Button(buttonName), m_button_text(p_button_text) {
+	}
 
-  void paint(juce::Graphics &g) override {
-    SET_INTERPOLATION_QUALITY(g)
+	void paintButton(juce::Graphics &g, bool p_highlight, bool p_pressed) override {
+		static constexpr auto stroke = 1.0f;
 
-    DrawableButton::paint(g);
-    if (m_midi_learn) {
-      g.setColour(Colours::red);
-      g.drawRoundedRectangle(getLocalBounds().getX(), getLocalBounds().getY(),
-                             getLocalBounds().getWidth(),
-                             getLocalBounds().getHeight(), 5,
-                             2); // draw an outline around the component
-    } else if (m_midi_control) {
-      g.setColour(Colours::green);
-      g.drawRoundedRectangle(getLocalBounds().getX(), getLocalBounds().getY(),
-                             getLocalBounds().getWidth(),
-                             getLocalBounds().getHeight(), 5,
-                             2); // draw an outline around the component
-    }
-  }
+		g.setColour(COL_LIGHT);
+		g.drawRoundedRectangle(getLocalBounds().toFloat().reduced(stroke / 2.0f), 4.0f, stroke);
 
-  void mouseDown(const MouseEvent &event) override;
-  static void setOdinPointer(OdinAudioProcessor *p_pointer) {
-    m_processor = p_pointer;
-  }
+		if (p_highlight) {
+			g.setColour(COL_LIGHT.withAlpha(0.3f));
+			g.fillRoundedRectangle(getLocalBounds().toFloat().reduced(stroke / 2.0f), 4.0f);
+		} else if (getToggleState()) {
+			g.setColour(COL_LIGHT.withAlpha(0.15f));
+			g.fillRoundedRectangle(getLocalBounds().toFloat().reduced(stroke / 2.0f), 4.0f);
+		}
 
-  void stopMidiLearn() override {
-    m_midi_learn = false;
-    m_midi_control = false;
-    repaint();
-  }
+		g.setColour(COL_LIGHT);
+		g.setFont(H * 0.6f);
+		g.drawText(m_button_text, getLocalBounds(), juce::Justification::centred);
+	}
 
-  void setMidiControlActive() override {
-    m_midi_learn = false;
-    m_midi_control = true;
-    repaint();
-  }
+	static void setOdinPointer(OdinAudioProcessor *p_pointer) {
+		m_processor = p_pointer;
+	}
+
+	void stopMidiLearn() override {
+		m_midi_learn   = false;
+		m_midi_control = false;
+		repaint();
+	}
+
+	void setMidiControlActive() override {
+		m_midi_learn   = false;
+		m_midi_control = true;
+		repaint();
+	}
 
 private:
-
-  static OdinAudioProcessor *m_processor;
+	juce::String m_button_text;
+	static OdinAudioProcessor *m_processor;
 };

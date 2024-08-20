@@ -14,9 +14,9 @@
 */
 
 #include "FilterComponent.h"
+#include "JsonGuiProvider.h"
 #include "../GlobalIncludes.h"
 #include "../JuceLibraryCode/JuceHeader.h"
-
 
 FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts, const std::string &p_filter_number) :
     m_value_tree(vts), m_filter_number(p_filter_number), m_vowel_left(false), m_vowel_right(true),
@@ -250,148 +250,61 @@ void FilterComponent::hideAllComponents() {
 }
 
 void FilterComponent::setFilterBypass() {
-	m_background = m_background_bypass;
 }
 
 void FilterComponent::setFilterLP24() {
-	if (m_GUI_big) {
-		m_background =
-		    ImageCache::getFromMemory(BinaryData::LP24_backdrop_150_png, BinaryData::LP24_backdrop_150_pngSize);
-	} else {
-		m_background = ImageCache::getFromMemory(BinaryData::LP24_backdrop_png, BinaryData::LP24_backdrop_pngSize);
-	}
 	showStandardFilterComponents();
 }
 
 void FilterComponent::setFilterLP12() {
-	if (m_GUI_big) {
-		m_background =
-		    ImageCache::getFromMemory(BinaryData::LP12_backdrop_150_png, BinaryData::LP12_backdrop_150_pngSize);
-	} else {
-		m_background = ImageCache::getFromMemory(BinaryData::LP12_backdrop_png, BinaryData::LP12_backdrop_pngSize);
-	}
 	showStandardFilterComponents();
 }
 
 void FilterComponent::setFilterBP24() {
-	if (m_GUI_big) {
-		m_background =
-		    ImageCache::getFromMemory(BinaryData::BP24_backdrop_150_png, BinaryData::BP24_backdrop_150_pngSize);
-	} else {
-		m_background = ImageCache::getFromMemory(BinaryData::BP24_backdrop_png, BinaryData::BP24_backdrop_pngSize);
-	}
 	showStandardFilterComponents();
 }
 
 void FilterComponent::setFilterBP12() {
-	if (m_GUI_big) {
-		m_background =
-		    ImageCache::getFromMemory(BinaryData::BP12_backdrop_150_png, BinaryData::BP12_backdrop_150_pngSize);
-	} else {
-		m_background = ImageCache::getFromMemory(BinaryData::BP12_backdrop_png, BinaryData::BP12_backdrop_pngSize);
-	}
 	showStandardFilterComponents();
 }
 
 void FilterComponent::setFilterHP24() {
-	if (m_GUI_big) {
-		m_background =
-		    ImageCache::getFromMemory(BinaryData::HP24_backdrop_150_png, BinaryData::HP24_backdrop_150_pngSize);
-	} else {
-		m_background = ImageCache::getFromMemory(BinaryData::HP24_backdrop_png, BinaryData::HP24_backdrop_pngSize);
-	}
 	showStandardFilterComponents();
 }
 
 void FilterComponent::setFilterHP12() {
-	if (m_GUI_big) {
-		m_background =
-		    ImageCache::getFromMemory(BinaryData::HP12_backdrop_150_png, BinaryData::HP12_backdrop_150_pngSize);
-	} else {
-		m_background = ImageCache::getFromMemory(BinaryData::HP12_backdrop_png, BinaryData::HP12_backdrop_pngSize);
-	}
 	showStandardFilterComponents();
 }
 
 void FilterComponent::setFilterSEM24() {
-	if (m_GUI_big) {
-		m_background =
-		    ImageCache::getFromMemory(BinaryData::SEM24_backdrop_150_png, BinaryData::SEM24_backdrop_150_pngSize);
-	} else {
-		m_background = ImageCache::getFromMemory(BinaryData::SEM24_backdrop_png, BinaryData::SEM24_backdrop_pngSize);
-	}
 	showSEMFilterComponents();
 }
 
 void FilterComponent::setFilterSEM12() {
-	if (m_GUI_big) {
-		m_background =
-		    ImageCache::getFromMemory(BinaryData::SEM12_backdrop_150_png, BinaryData::SEM12_backdrop_150_pngSize);
-	} else {
-		m_background = ImageCache::getFromMemory(BinaryData::SEM12_backdrop_png, BinaryData::SEM12_backdrop_pngSize);
-	}
 	showSEMFilterComponents();
 }
 
 void FilterComponent::setFilterDiode() {
-	if (m_GUI_big) {
-		m_background =
-		    ImageCache::getFromMemory(BinaryData::diode_backdrop_150_png, BinaryData::diode_backdrop_150_pngSize);
-	} else {
-		m_background = ImageCache::getFromMemory(BinaryData::diode_backdrop_png, BinaryData::diode_backdrop_pngSize);
-	}
 	showStandardFilterComponents();
 }
 
 void FilterComponent::setFilterKorgLP() {
-	if (m_GUI_big) {
-		m_background =
-		    ImageCache::getFromMemory(BinaryData::korg_backdrop_150_png, BinaryData::korg_backdrop_150_pngSize);
-	} else {
-		m_background = ImageCache::getFromMemory(BinaryData::korg_backdrop_png, BinaryData::korg_backdrop_pngSize);
-	}
 	showStandardFilterComponents();
 }
 
 void FilterComponent::setFilterKorgHP() {
-	if (m_GUI_big) {
-		m_background =
-		    ImageCache::getFromMemory(BinaryData::korgHP_backdrop_150_png, BinaryData::korgHP_backdrop_150_pngSize);
-	} else {
-		m_background = ImageCache::getFromMemory(BinaryData::korgHP_backdrop_png, BinaryData::korgHP_backdrop_pngSize);
-	}
 	showStandardFilterComponents();
 }
 
 void FilterComponent::setFilterComb() {
-	if (m_GUI_big) {
-		m_background =
-		    ImageCache::getFromMemory(BinaryData::comb_backdrop_150_png, BinaryData::comb_backdrop_150_pngSize);
-	} else {
-		m_background = ImageCache::getFromMemory(BinaryData::comb_backdrop_png, BinaryData::comb_backdrop_pngSize);
-	}
 	showCombFilterComponents();
 }
 
 void FilterComponent::setFilterFormant() {
-	if (m_GUI_big) {
-		m_background =
-		    ImageCache::getFromMemory(BinaryData::formant_backdrop_150_png, BinaryData::formant_backdrop_150_pngSize);
-	} else {
-		m_background =
-		    ImageCache::getFromMemory(BinaryData::formant_backdrop_png, BinaryData::formant_backdrop_pngSize);
-	}
 	showFormantFilterComponents();
 }
 
 void FilterComponent::setFilterRingMod() {
-	if (m_GUI_big) {
-		m_background =
-		    ImageCache::getFromMemory(BinaryData::ringmod_backdrop_150_png, BinaryData::ringmod_backdrop_150_pngSize);
-	} else {
-		m_background =
-		    ImageCache::getFromMemory(BinaryData::ringmod_backdrop_png, BinaryData::ringmod_backdrop_pngSize);
-	}
 	showRingModFilterComponents();
 }
 
@@ -403,14 +316,6 @@ void FilterComponent::showSEMFilterComponents() {
 	m_freq.setVisible(true);
 	m_res.setVisible(true);
 	m_sem_transition.setVisible(true);
-
-	if (m_GUI_big) {
-		m_freq.setTopLeftPosition(OdinHelper::c150(SEM_FREQ_POS_X) - 1, OdinHelper::c150(SEM_FREQ_POS_Y) - 1);
-		m_res.setTopLeftPosition(OdinHelper::c150(SEM_RES_POS_X) - 1, OdinHelper::c150(SEM_RES_POS_Y) - 1);
-	} else {
-		m_freq.setTopLeftPosition(SEM_FREQ_POS_X, SEM_FREQ_POS_Y);
-		m_res.setTopLeftPosition(SEM_RES_POS_X, SEM_RES_POS_Y);
-	}
 }
 
 void FilterComponent::showStandardFilterComponents() {
@@ -421,16 +326,6 @@ void FilterComponent::showStandardFilterComponents() {
 	m_freq.setVisible(true);
 	m_res.setVisible(true);
 	m_saturation.setVisible(true);
-
-	if (m_GUI_big) {
-		m_freq.setTopLeftPosition(OdinHelper::c150(FILTER_FREQ_POS_X) - 1, OdinHelper::c150(FILTER_FREQ_POS_Y) - 1);
-		m_res.setTopLeftPosition(OdinHelper::c150(RES_POS_X) - 1, OdinHelper::c150(RES_POS_Y) - 1);
-		m_saturation.setTopLeftPosition(OdinHelper::c150(SATURATION_POS_X), OdinHelper::c150(SATURATION_POS_Y));
-	} else {
-		m_freq.setTopLeftPosition(FILTER_FREQ_POS_X, FILTER_FREQ_POS_Y);
-		m_res.setTopLeftPosition(RES_POS_X, RES_POS_Y);
-		m_saturation.setTopLeftPosition(SATURATION_POS_X, SATURATION_POS_Y);
-	}
 }
 
 void FilterComponent::showCombFilterComponents() {
@@ -441,14 +336,6 @@ void FilterComponent::showCombFilterComponents() {
 	m_freq.setVisible(true);
 	m_res.setVisible(true);
 	m_comb_plus_minus.setVisible(true);
-
-	if (m_GUI_big) {
-		m_freq.setTopLeftPosition(OdinHelper::c150(COMB_FREQ_POS_X) - 1, OdinHelper::c150(FILTER_FREQ_POS_Y) - 1);
-		m_res.setTopLeftPosition(OdinHelper::c150(COMB_RES_POS_X) - 2, OdinHelper::c150(RES_POS_Y) - 1);
-	} else {
-		m_freq.setTopLeftPosition(COMB_FREQ_POS_X, FILTER_FREQ_POS_Y);
-		m_res.setTopLeftPosition(COMB_RES_POS_X, RES_POS_Y);
-	}
 }
 
 void FilterComponent::showFormantFilterComponents() {
@@ -467,11 +354,6 @@ void FilterComponent::showRingModFilterComponents() {
 	m_gain.setVisible(true);
 	m_freq.setVisible(true);
 	m_ring_mod_amount.setVisible(true);
-	if (m_GUI_big) {
-		m_freq.setTopLeftPosition(OdinHelper::c150(RINGMOD_FREQ_X) - 1, OdinHelper::c150(RINGMOD_FREQ_Y) - 1);
-	} else {
-		m_freq.setTopLeftPosition(RINGMOD_FREQ_X, RINGMOD_FREQ_Y);
-	}
 }
 
 void FilterComponent::forceValueTreeOntoComponents(ValueTree p_tree, int p_index) {
@@ -482,156 +364,24 @@ void FilterComponent::forceValueTreeOntoComponents(ValueTree p_tree, int p_index
 	m_vowel_right.setValue(m_value_tree.state.getChildWithName("misc")[m_vowel_right_identifier]);
 }
 
-void FilterComponent::setGUIBig() {
-	m_GUI_big = true;
-
-	juce::Image metal_knob_big =
-	    ImageCache::getFromMemory(BinaryData::metal_knob_big_150_png, BinaryData::metal_knob_big_150_pngSize);
-	juce::Image metal_knob_mid =
-	    ImageCache::getFromMemory(BinaryData::metal_knob_mid_150_png, BinaryData::metal_knob_mid_150_pngSize);
-	juce::Image black_knob_small =
-	    ImageCache::getFromMemory(BinaryData::black_knob_small_150_png, BinaryData::black_knob_small_150_pngSize);
-
-	m_vel.setStrip(black_knob_small, N_KNOB_FRAMES);
-	m_vel.setBounds(OdinHelper::c150(VEL_POS_X),
-	                OdinHelper::c150(VEL_POS_Y),
-	                black_knob_small.getWidth(),
-	                black_knob_small.getHeight() / N_KNOB_FRAMES);
-
-	m_kbd.setStrip(black_knob_small, N_KNOB_FRAMES);
-	m_kbd.setBounds(OdinHelper::c150(KBD_POS_X),
-	                OdinHelper::c150(KBD_POS_Y),
-	                black_knob_small.getWidth(),
-	                black_knob_small.getHeight() / N_KNOB_FRAMES);
-
-	m_env.setStrip(black_knob_small, N_KNOB_FRAMES);
-	m_env.setBounds(OdinHelper::c150(ENV_POS_X),
-	                OdinHelper::c150(ENV_POS_Y),
-	                black_knob_small.getWidth(),
-	                black_knob_small.getHeight() / N_KNOB_FRAMES);
-
-	m_gain.setStrip(black_knob_small, N_KNOB_FRAMES);
-	m_gain.setBounds(OdinHelper::c150(GAIN_POS_X),
-	                 OdinHelper::c150(GAIN_POS_Y),
-	                 black_knob_small.getWidth(),
-	                 black_knob_small.getHeight() / N_KNOB_FRAMES);
-
-	m_freq.setStrip(metal_knob_big, N_KNOB_FRAMES);
-	m_freq.setBounds(OdinHelper::c150(FILTER_FREQ_POS_X) - 1,
-	                 OdinHelper::c150(FILTER_FREQ_POS_Y) - 1,
-	                 metal_knob_big.getWidth(),
-	                 metal_knob_big.getHeight() / N_KNOB_FRAMES);
-
-	m_res.setStrip(metal_knob_mid, N_KNOB_FRAMES);
-	m_res.setBounds(OdinHelper::c150(RES_POS_X) - 1,
-	                OdinHelper::c150(RES_POS_Y) - 1,
-	                metal_knob_mid.getWidth(),
-	                metal_knob_mid.getHeight() / N_KNOB_FRAMES);
-
-	m_saturation.setStrip(black_knob_small, N_KNOB_FRAMES);
-	m_saturation.setBounds(OdinHelper::c150(SATURATION_POS_X),
-	                       OdinHelper::c150(SATURATION_POS_Y),
-	                       black_knob_small.getWidth(),
-	                       black_knob_small.getHeight() / N_KNOB_FRAMES);
-
-	m_sem_transition.setStrip(metal_knob_mid, N_KNOB_FRAMES);
-	m_sem_transition.setBounds(OdinHelper::c150(TRANSITION_POS_X) - 1,
-	                           OdinHelper::c150(TRANSITION_POS_Y) - 1,
-	                           metal_knob_mid.getWidth(),
-	                           metal_knob_mid.getHeight() / N_KNOB_FRAMES);
-
-	m_formant_transition.setStrip(metal_knob_big, N_KNOB_FRAMES);
-	m_formant_transition.setBounds(OdinHelper::c150(FORMANT_TRANSITION_X) - 1,
-	                               OdinHelper::c150(FORMANT_TRANSITION_Y) - 1,
-	                               metal_knob_big.getWidth(),
-	                               metal_knob_big.getHeight() / N_KNOB_FRAMES);
-
-	m_ring_mod_amount.setStrip(metal_knob_big, N_KNOB_FRAMES);
-	m_ring_mod_amount.setBounds(OdinHelper::c150(RINGMOD_AMOUNT_X) - 1,
-	                            OdinHelper::c150(RINGMOD_AMOUNT_Y) - 1,
-	                            metal_knob_big.getWidth(),
-	                            metal_knob_big.getHeight() / N_KNOB_FRAMES);
-
-	m_vowel_left.setTopLeftPosition(OdinHelper::c150(FORMANT_VOW_LEFT_POS_X), OdinHelper::c150(FORMANT_VOW_LEFT_POS_Y));
-	m_vowel_right.setTopLeftPosition(OdinHelper::c150(FORMANT_VOW_RIGHT_POS_X),
-	                                 OdinHelper::c150(FORMANT_VOW_RIGHT_POS_Y));
-
-	juce::Image comb_plus =
-	    ImageCache::getFromMemory(BinaryData::buttonplusminus_1_150_png, BinaryData::buttonplusminus_1_150_pngSize);
-	juce::Image comb_minus =
-	    ImageCache::getFromMemory(BinaryData::buttonplusminus_3_150_png, BinaryData::buttonplusminus_3_150_pngSize);
-	m_comb_plus_minus.setImage(comb_plus, 1);
-	m_comb_plus_minus.setImage(comb_minus, 2);
-	m_comb_plus_minus.setBounds(OdinHelper::c150(COMB_PLUS_POS_X),
-	                            OdinHelper::c150(COMB_PLUS_POS_Y),
-	                            comb_plus.getWidth(),
-	                            comb_plus.getHeight());
-
-	m_vowel_left.setGUIBig();
-	m_vowel_right.setGUIBig();
-
-	forceValueTreeOntoComponents(m_value_tree.state, std::stoi(m_filter_number));
+void FilterComponent::resized() {
+	GET_LOCAL_AREA(m_vel, "FilVel");
+	GET_LOCAL_AREA(m_kbd, "FilKbd");
+	GET_LOCAL_AREA(m_env, "FilEnv");
+	GET_LOCAL_AREA(m_gain, "FilGain");
+	GET_LOCAL_AREA(m_freq, "FilFreq");
+	GET_LOCAL_AREA(m_res, "FilRes");
+	GET_LOCAL_AREA(m_saturation, "FilSaturation");
+	GET_LOCAL_AREA(m_sem_transition, "FilSemTransition");
+	GET_LOCAL_AREA(m_formant_transition, "FilFormantTransition");
+	GET_LOCAL_AREA(m_ring_mod_amount, "FilRingModAmount");
+	GET_LOCAL_AREA(m_vowel_left, "FilVowelLeft");
+	GET_LOCAL_AREA(m_vowel_right, "FilVowelRight");
+	GET_LOCAL_AREA(m_comb_plus_minus, "FilCombPlusMinus");
 }
+
+void FilterComponent::setGUIBig() {
+}
+
 void FilterComponent::setGUISmall() {
-	m_GUI_big = false;
-
-	juce::Image metal_knob_big =
-	    ImageCache::getFromMemory(BinaryData::metal_knob_big_png, BinaryData::metal_knob_big_pngSize);
-	juce::Image metal_knob_mid =
-	    ImageCache::getFromMemory(BinaryData::metal_knob_mid_png, BinaryData::metal_knob_mid_pngSize);
-	juce::Image black_knob_small =
-	    ImageCache::getFromMemory(BinaryData::black_knob_small_png, BinaryData::black_knob_small_pngSize);
-
-	m_vel.setStrip(black_knob_small, N_KNOB_FRAMES);
-	m_vel.setBounds(VEL_POS_X, VEL_POS_Y, black_knob_small.getWidth(), black_knob_small.getHeight() / N_KNOB_FRAMES);
-
-	m_kbd.setStrip(black_knob_small, N_KNOB_FRAMES);
-	m_kbd.setBounds(KBD_POS_X, KBD_POS_Y, black_knob_small.getWidth(), black_knob_small.getHeight() / N_KNOB_FRAMES);
-
-	m_env.setStrip(black_knob_small, N_KNOB_FRAMES);
-	m_env.setBounds(ENV_POS_X, ENV_POS_Y, black_knob_small.getWidth(), black_knob_small.getHeight() / N_KNOB_FRAMES);
-
-	m_gain.setStrip(black_knob_small, N_KNOB_FRAMES);
-	m_gain.setBounds(GAIN_POS_X, GAIN_POS_Y, black_knob_small.getWidth(), black_knob_small.getHeight() / N_KNOB_FRAMES);
-
-	m_freq.setStrip(metal_knob_big, N_KNOB_FRAMES);
-	m_freq.setBounds(
-	    FILTER_FREQ_POS_X, FILTER_FREQ_POS_Y, metal_knob_big.getWidth(), metal_knob_big.getHeight() / N_KNOB_FRAMES);
-
-	m_res.setStrip(metal_knob_mid, N_KNOB_FRAMES);
-	m_res.setBounds(RES_POS_X, RES_POS_Y, metal_knob_mid.getWidth(), metal_knob_mid.getHeight() / N_KNOB_FRAMES);
-
-	m_saturation.setStrip(black_knob_small, N_KNOB_FRAMES);
-	m_saturation.setBounds(
-	    SATURATION_POS_X, SATURATION_POS_Y, black_knob_small.getWidth(), black_knob_small.getHeight() / N_KNOB_FRAMES);
-
-	m_sem_transition.setStrip(metal_knob_mid, N_KNOB_FRAMES);
-	m_sem_transition.setBounds(
-	    TRANSITION_POS_X, TRANSITION_POS_Y, metal_knob_mid.getWidth(), metal_knob_mid.getHeight() / N_KNOB_FRAMES);
-
-	m_formant_transition.setStrip(metal_knob_big, N_KNOB_FRAMES);
-	m_formant_transition.setBounds(FORMANT_TRANSITION_X,
-	                               FORMANT_TRANSITION_Y,
-	                               metal_knob_big.getWidth(),
-	                               metal_knob_big.getHeight() / N_KNOB_FRAMES);
-
-	m_ring_mod_amount.setStrip(metal_knob_big, N_KNOB_FRAMES);
-	m_ring_mod_amount.setBounds(
-	    RINGMOD_AMOUNT_X, RINGMOD_AMOUNT_Y, metal_knob_big.getWidth(), metal_knob_big.getHeight() / N_KNOB_FRAMES);
-
-	m_vowel_left.setTopLeftPosition(FORMANT_VOW_LEFT_POS_X, FORMANT_VOW_LEFT_POS_Y);
-	m_vowel_right.setTopLeftPosition(FORMANT_VOW_RIGHT_POS_X, FORMANT_VOW_RIGHT_POS_Y);
-
-	juce::Image comb_plus =
-	    ImageCache::getFromMemory(BinaryData::buttonplusminus_1_png, BinaryData::buttonplusminus_1_pngSize);
-	juce::Image comb_minus =
-	    ImageCache::getFromMemory(BinaryData::buttonplusminus_3_png, BinaryData::buttonplusminus_3_pngSize);
-	m_comb_plus_minus.setImage(comb_plus, 1);
-	m_comb_plus_minus.setImage(comb_minus, 2);
-	m_comb_plus_minus.setBounds(COMB_PLUS_POS_X, COMB_PLUS_POS_Y, comb_plus.getWidth(), comb_plus.getHeight());
-
-	m_vowel_left.setGUISmall();
-	m_vowel_right.setGUISmall();
-
-	forceValueTreeOntoComponents(m_value_tree.state, std::stoi(m_filter_number));
 }

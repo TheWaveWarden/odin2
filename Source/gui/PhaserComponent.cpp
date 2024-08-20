@@ -20,8 +20,8 @@
 
 PhaserComponent::PhaserComponent(AudioProcessorValueTreeState &vts, const std::string &p_fx_name, bool p_is_standalone) :
     m_value_tree(vts), m_fx_name(p_fx_name), m_is_standalone_plugin(p_is_standalone),
-    m_sync("sync", juce::DrawableButton::ButtonStyle::ImageRaw),
-    m_reset("reset", juce::DrawableButton::ButtonStyle::ImageRaw),
+    m_sync("sync", "Sync"),
+    m_reset("reset", "Reset"),
     m_fx_synctime_denominator_identifier(p_fx_name + "_synctime_denominator"),
     m_fx_synctime_numerator_identifier(p_fx_name + "_synctime_numerator") {
 
@@ -173,8 +173,6 @@ void PhaserComponent::setGUIBig() {
 	reset_draw3.setImage(reset_3);
 	reset_draw4.setImage(reset_4);
 
-	m_reset.setImages(
-	    &reset_draw2, &reset_draw2, &reset_draw1, &reset_draw1, &reset_draw4, &reset_draw4, &reset_draw3, &reset_draw3);
 	m_reset.setBounds(OdinHelper::c150(PHASER_RESET_POS_X),
 	                  OdinHelper::c150(PHASER_RESET_POS_Y),
 	                  reset_1.getWidth(),
@@ -199,8 +197,6 @@ void PhaserComponent::setGUIBig() {
 	sync_draw3.setImage(sync_3);
 	sync_draw4.setImage(sync_4);
 
-	m_sync.setImages(
-	    &sync_draw2, &sync_draw2, &sync_draw1, &sync_draw1, &sync_draw4, &sync_draw4, &sync_draw3, &sync_draw3);
 	m_sync.setBounds(OdinHelper::c150(PHASER_SYNC_POS_X),
 	                 OdinHelper::c150(PHASER_SYNC_POS_Y),
 	                 sync_1.getWidth(),
@@ -269,8 +265,6 @@ void PhaserComponent::setGUISmall() {
 	reset_draw3.setImage(reset_3);
 	reset_draw4.setImage(reset_4);
 
-	m_reset.setImages(
-	    &reset_draw2, &reset_draw2, &reset_draw1, &reset_draw1, &reset_draw4, &reset_draw4, &reset_draw3, &reset_draw3);
 	m_reset.setBounds(PHASER_RESET_POS_X, PHASER_RESET_POS_Y, reset_1.getWidth(), reset_1.getHeight());
 
 	juce::Image sync_1 = ImageCache::getFromMemory(BinaryData::buttonsync_1_png, BinaryData::buttonsync_1_pngSize);
@@ -288,8 +282,6 @@ void PhaserComponent::setGUISmall() {
 	sync_draw3.setImage(sync_3);
 	sync_draw4.setImage(sync_4);
 
-	m_sync.setImages(
-	    &sync_draw2, &sync_draw2, &sync_draw1, &sync_draw1, &sync_draw4, &sync_draw4, &sync_draw3, &sync_draw3);
 	m_sync.setBounds(PHASER_SYNC_POS_X, PHASER_SYNC_POS_Y, sync_1.getWidth(), sync_1.getHeight());
 	m_sync_time.setTopLeftPosition(PHASER_SYNC_TIME_POS_X, PHASER_SYNC_TIME_POS_Y);
 

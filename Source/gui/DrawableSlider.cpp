@@ -38,30 +38,13 @@ DrawableSlider::~DrawableSlider() {
 
 void DrawableSlider::paint(Graphics &g) {
 	SET_INTERPOLATION_QUALITY(g)
-	//g.setColour(Colours::grey);
-	//g.drawRect(getLocalBounds(), 1); // draw an outline around the component
+	g.setColour(COL_LIGHT);
+	g.drawRect(getLocalBounds().withSizeKeepingCentre(proportionOfWidth(0.2f), H), 1);
 
-	//DBG(getValue());
-	g.drawImageAt(m_handle, 0, (1.f - valueToProportionOfLength(getValue())) * (getHeight() - m_handle.getHeight()));
-
-	//DBG(getValue());
-	if (m_midi_learn) {
-		g.setColour(Colours::red);
-		g.drawRoundedRectangle(getLocalBounds().getX(),
-		                       getLocalBounds().getY(),
-		                       getLocalBounds().getWidth(),
-		                       getLocalBounds().getHeight(),
-		                       5,
-		                       2); // draw an outline around the component
-	} else if (m_midi_control) {
-		g.setColour(Colours::green);
-		g.drawRoundedRectangle(getLocalBounds().getX(),
-		                       getLocalBounds().getY(),
-		                       getLocalBounds().getWidth(),
-		                       getLocalBounds().getHeight(),
-		                       5,
-		                       2); // draw an outline around the component
-	}
+	auto handle = getLocalBounds().toFloat().withHeight(H * 0.1f);
+	auto y      = (1.f - valueToProportionOfLength(getValue())) * (getHeight() - handle.getHeight());
+	handle.setY(y);
+	g.drawRect(handle, 1);
 }
 
 void DrawableSlider::mouseDown(const MouseEvent &event) {

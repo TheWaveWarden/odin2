@@ -29,6 +29,7 @@
 #define XML_ATTRIBUTE_TUNING_DIR ("tuning_dir")
 #define XML_ATTRIBUTE_SOUNDBANK_DIR ("soundbank_dir")
 #define XML_ATTRIBUTE_PATCH_DIR ("patch_dir")
+#define XML_ATTRIBUTE_GUI_SCALE ("gui_scale")
 
 /**
  * This class manages the config file. Data is loaded from the file in constructor if possible. Then the individual 

@@ -27,12 +27,6 @@ public:
 	NumberSelectorWithText();
 	~NumberSelectorWithText();
 
-	//void paint (Graphics&) override;
-	void resized() override;
-
-	void setGUIBig() override;
-	void setGUISmall() override;
-
 	virtual void increment() override;
 	virtual void decrement() override;
 	virtual void setValue(int p_value) override;

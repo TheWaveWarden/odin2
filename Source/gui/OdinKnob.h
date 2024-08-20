@@ -148,82 +148,18 @@ public:
 	}
 
 	void paint(juce::Graphics &g) override {
-		SET_INTERPOLATION_QUALITY(g)
+		g.setColour(COL_LIGHT);
+		const auto val                 = valueToProportionOfLength(getValue());
+		static constexpr auto deadzone = 30.0f;
+		static constexpr auto stroke   = 2.0f;
+		const auto angle    = (deadzone + val * (360.0f - 2 * deadzone)) * juce::MathConstants<float>::twoPi / 360.0f;
+		const auto sin      = std::sin(angle);
+		const auto cos      = std::cos(angle);
+		const auto center_x = getLocalBounds().getCentreX();
+		const auto center_y = getLocalBounds().getCentreY();
 
-		int image_number = (int)(valueToProportionOfLength(getValue()) * (m_frames - 1));
-		if (m_is_vertical) {
-			g.drawImage(m_filmstrip, 0, 0, m_width, m_height, 0, image_number * m_height, m_width, m_height);
-		} else {
-			g.drawImage(m_filmstrip, 0, 0, m_width, m_height, image_number * m_width, 0, m_width, m_height);
-		}
-
-		if (m_midi_learn) {
-			g.setColour(Colours::red);
-			g.drawRoundedRectangle(getLocalBounds().getX() + m_midi_learn_left_offset,
-			                       getLocalBounds().getY(),
-			                       getLocalBounds().getWidth() - m_midi_learn_left_offset,
-			                       getLocalBounds().getHeight() - m_midi_learn_bottom_offset,
-			                       5,
-			                       2); // draw an outline around the component
-		} else if (m_midi_control) {
-			g.setColour(Colours::green);
-			g.drawRoundedRectangle(getLocalBounds().getX() + m_midi_learn_left_offset,
-			                       getLocalBounds().getY(),
-			                       getLocalBounds().getWidth() - m_midi_learn_left_offset,
-			                       getLocalBounds().getHeight() - m_midi_learn_bottom_offset,
-			                       5,
-			                       2); // draw an outline around the component
-		}
-	}
-
-	// this does not override, but hide (hides other variants as well)
-	void setBounds(int x, int y, int width, int height) {
-		switch (width) {
-		case ROUND_KNOB_SIZE_X:
-			m_midi_learn_left_offset   = ROUND_KNOB_LEFT_OFFSET;
-			m_midi_learn_bottom_offset = ROUND_KNOB_BOTTOM_OFFSET;
-			break;
-		case METAL_KNOB_SMALL_SIZE_X:
-			m_midi_learn_left_offset   = METAL_KNOB_SMALL_LEFT_OFFSET;
-			m_midi_learn_bottom_offset = METAL_KNOB_SMALL_BOTTOM_OFFSET;
-			break;
-		case METAL_KNOB_MID_SIZE_X:
-			m_midi_learn_left_offset   = METAL_KNOB_MID_LEFT_OFFSET;
-			m_midi_learn_bottom_offset = METAL_KNOB_MID_BOTTOM_OFFSET;
-			break;
-		case METAL_KNOB_BIG_SIZE_X:
-			m_midi_learn_left_offset   = METAL_KNOB_BIG_LEFT_OFFSET;
-			m_midi_learn_bottom_offset = METAL_KNOB_BIG_BOTTOM_OFFSET;
-			break;
-		case BLACK_KNOB_VERY_SMALL_SIZE_X:
-			m_midi_learn_left_offset   = BLACK_KNOB_VERY_SMALL_LEFT_OFFSET;
-			m_midi_learn_bottom_offset = BLACK_KNOB_VERY_SMALL_BOTTOM_OFFSET;
-			break;
-		case BLACK_KNOB_SMALL_SIZE_X:
-			m_midi_learn_left_offset   = BLACK_KNOB_SMALL_LEFT_OFFSET;
-			m_midi_learn_bottom_offset = BLACK_KNOB_SMALL_BOTTOM_OFFSET;
-			break;
-		case BLACK_KNOB_MID_SIZE_X:
-			m_midi_learn_left_offset   = BLACK_KNOB_MID_LEFT_OFFSET;
-			m_midi_learn_bottom_offset = BLACK_KNOB_MID_BOTTOM_OFFSET;
-			break;
-		case BLACK_KNOB_BIG_SIZE_X:
-			m_midi_learn_left_offset   = BLACK_KNOB_BIG_LEFT_OFFSET;
-			m_midi_learn_bottom_offset = BLACK_KNOB_BIG_BOTTOM_OFFSET;
-			break;
-		case 69:
-			m_midi_learn_left_offset   = 5;
-			m_midi_learn_bottom_offset = 4;
-		case WHEEL_SIZE_X:
-			m_midi_learn_left_offset = WHEEL_LEFT_OFFSET;
-			break;
-		default:
-			m_midi_learn_left_offset   = 4;
-			m_midi_learn_bottom_offset = 3;
-			//DBG("Unknown knob width " + std::to_string(width) + "px in OdinKnob::setBounds()");
-			break;
-		}
-		Slider::setBounds(x, y, width, height);
+		g.drawEllipse(getLocalBounds().toFloat().reduced(stroke / 2.0f), 1.0f);
+		g.drawLine(center_x, center_y, center_x * (1.0f - sin), center_y * (1.0f + cos));
 	}
 
 	void mouseDown(const MouseEvent &event) override;

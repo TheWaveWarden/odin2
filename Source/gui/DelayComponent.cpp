@@ -17,8 +17,8 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 
 DelayComponent::DelayComponent(AudioProcessorValueTreeState &vts, bool p_is_standalone) :
-    m_sync("sync", juce::DrawableButton::ButtonStyle::ImageRaw),
-    m_pingpong("pingpong", juce::DrawableButton::ButtonStyle::ImageRaw), m_value_tree(vts),
+    m_sync("sync", "Sync"),
+    m_pingpong("pingpong", "PingPong"), m_value_tree(vts),
     m_delay_synctime_denominator_identifier("delay_synctime_denominator"),
     m_delay_synctime_numerator_identifier("delay_synctime_numerator"), m_is_standalone_plugin(p_is_standalone) {
 
@@ -149,8 +149,6 @@ void DelayComponent::setGUIBig() {
 	sync_draw3.setImage(sync_3);
 	sync_draw4.setImage(sync_4);
 
-	m_sync.setImages(
-	    &sync_draw2, &sync_draw2, &sync_draw1, &sync_draw1, &sync_draw4, &sync_draw4, &sync_draw3, &sync_draw3);
 	m_sync.setBounds(
 	    OdinHelper::c150(DELAY_SYNC_POS_X), OdinHelper::c150(DELAY_SYNC_POS_Y), sync_1.getWidth(), sync_1.getHeight());
 
@@ -173,14 +171,6 @@ void DelayComponent::setGUIBig() {
 	pingpong_draw3.setImage(pingpong_3);
 	pingpong_draw4.setImage(pingpong_4);
 
-	m_pingpong.setImages(&pingpong_draw2,
-	                     &pingpong_draw2,
-	                     &pingpong_draw1,
-	                     &pingpong_draw1,
-	                     &pingpong_draw4,
-	                     &pingpong_draw4,
-	                     &pingpong_draw3,
-	                     &pingpong_draw3);
 	m_pingpong.setBounds(OdinHelper::c150(DELAY_PINGPONG_POS_X),
 	                     OdinHelper::c150(DELAY_PINGPONG_POS_Y),
 	                     pingpong_1.getWidth(),
@@ -253,8 +243,6 @@ void DelayComponent::setGUISmall() {
 	sync_draw3.setImage(sync_3);
 	sync_draw4.setImage(sync_4);
 
-	m_sync.setImages(
-	    &sync_draw2, &sync_draw2, &sync_draw1, &sync_draw1, &sync_draw4, &sync_draw4, &sync_draw3, &sync_draw3);
 	m_sync.setBounds(DELAY_SYNC_POS_X, DELAY_SYNC_POS_Y, sync_1.getWidth(), sync_1.getHeight());
 
 	juce::Image pingpong_1 =
@@ -276,14 +264,6 @@ void DelayComponent::setGUISmall() {
 	pingpong_draw3.setImage(pingpong_3);
 	pingpong_draw4.setImage(pingpong_4);
 
-	m_pingpong.setImages(&pingpong_draw2,
-	                     &pingpong_draw2,
-	                     &pingpong_draw1,
-	                     &pingpong_draw1,
-	                     &pingpong_draw4,
-	                     &pingpong_draw4,
-	                     &pingpong_draw3,
-	                     &pingpong_draw3);
 	m_pingpong.setBounds(DELAY_PINGPONG_POS_X, DELAY_PINGPONG_POS_Y, pingpong_1.getWidth(), pingpong_1.getHeight());
 	juce::Image metal_knob_big =
 	    ImageCache::getFromMemory(BinaryData::metal_knob_big_png, BinaryData::metal_knob_big_pngSize);

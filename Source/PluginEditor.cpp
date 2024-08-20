@@ -17,8 +17,6 @@
 #include "PluginProcessor.h"
 
 #include "ConfigFileManager.h"
-#include "gui/setGUIBig.h"
-#include "gui/setGUISmall.h"
 
 void writeValueTreeToFile(const ValueTree &tree) {
 	File file("../../odin2/ValueTree.txt");
@@ -32,40 +30,29 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
                                                    bool p_is_standalone) :
     AudioProcessorEditor(&p_processor),
     m_live_constrainer(*this), processor(p_processor), m_fx_buttons_section(vts, p_processor), m_value_tree(vts),
-    m_osc1_dropdown("osc1_dropdown_button", juce::DrawableButton::ButtonStyle::ImageRaw),
-    m_osc2_dropdown("osc2_dropdown_button", juce::DrawableButton::ButtonStyle::ImageRaw),
-    m_osc3_dropdown("osc3_dropdown_button", juce::DrawableButton::ButtonStyle::ImageRaw),
-    m_filter1_dropdown("filter1_dropdown_button", juce::DrawableButton::ButtonStyle::ImageRaw),
-    m_filter2_dropdown("filter2_dropdown_button", juce::DrawableButton::ButtonStyle::ImageRaw),
-    m_filter3_dropdown("filter3_dropdown_button", juce::DrawableButton::ButtonStyle::ImageRaw),
-    m_filleft_button1("filter_left_button1", juce::DrawableButton::ButtonStyle::ImageRaw),
-    m_filleft_button2("filter_left_button2", juce::DrawableButton::ButtonStyle::ImageRaw),
-    m_filleft_button3("filter_left_button3", juce::DrawableButton::ButtonStyle::ImageRaw),
-    m_filright_button1("filter_right_button1", juce::DrawableButton::ButtonStyle::ImageRaw),
-    m_filright_button2("filter_right_button2", juce::DrawableButton::ButtonStyle::ImageRaw),
-    m_filright_button3("filter_right_button3", juce::DrawableButton::ButtonStyle::ImageRaw),
-    m_filright_buttonf1("filter_left_buttonf1", juce::DrawableButton::ButtonStyle::ImageRaw),
-
-    m_flanger_on_button("flanger_button", juce::DrawableButton::ButtonStyle::ImageRaw),
-    m_phaser_on_button("phaser_button", juce::DrawableButton::ButtonStyle::ImageRaw),
-    m_chorus_on_button("chorus_button", juce::DrawableButton::ButtonStyle::ImageRaw),
-    m_delay_on_button("delay_button", juce::DrawableButton::ButtonStyle::ImageRaw),
-    m_reverb_on_button("reverb_button", juce::DrawableButton::ButtonStyle::ImageRaw),
-    m_select_arp_button("select_arpeggiator_button", juce::DrawableButton::ButtonStyle::ImageRaw),
-    m_question_button("question_button", juce::DrawableButton::ButtonStyle::ImageRaw),
-    m_select_modmatrix_button("select_modmatrix_button", juce::DrawableButton::ButtonStyle::ImageRaw),
-    m_select_presets_button("select_presets_button", juce::DrawableButton::ButtonStyle::ImageRaw),
-    m_env_13_button("env13_button"), m_env_24_button("env24_button"),
-    m_reset("reset", juce::DrawableButton::ButtonStyle::ImageRaw), m_lfo_13_button("lfo13_button"),
-    m_lfo_24_button("lfo24_button"), m_pitch_amount(true), m_osc1(p_processor, vts, "1"), m_osc2(p_processor, vts, "2"),
-    m_osc3(p_processor, vts, "3"), m_fil1_component(vts, "1"), m_fil2_component(vts, "2"), m_fil3_component(vts, "3"),
-    m_midsection(vts), m_adsr_1(vts, "1"), m_adsr_2(vts, "2"), m_adsr_3(vts, "3"), m_adsr_4(vts, "4"),
-    m_lfo_1(vts, "1", p_is_standalone), m_lfo_2(vts, "2", p_is_standalone), m_lfo_3(vts, "3", p_is_standalone),
-    m_lfo_4(vts, "4", p_is_standalone), m_delay(vts, p_is_standalone), m_reverb(vts, p_is_standalone),
-    m_phaser(vts, "phaser", p_is_standalone), m_flanger(vts, "flanger", p_is_standalone),
-    m_chorus(vts, "chorus", p_is_standalone), m_xy_section(vts, "xy"), m_osc1_type_identifier("osc1_type"),
-    m_osc2_type_identifier("osc2_type"), m_osc3_type_identifier("osc3_type"), m_fil1_type_identifier("fil1_type"),
-    m_fil2_type_identifier("fil2_type"), m_fil3_type_identifier("fil3_type"),
+    m_detune_label("Detune"), m_width_label("Width"), m_master_label("Master"), m_glide_label("Glide"),
+    m_osc1_dropdown("osc1_dropdown_button", "v"), m_osc2_dropdown("osc2_dropdown_button", "v"),
+    m_osc3_dropdown("osc3_dropdown_button", "v"), m_filter1_dropdown("filter1_dropdown_button", "v"),
+    m_filter2_dropdown("filter2_dropdown_button", "v"), m_filter3_dropdown("filter3_dropdown_button", "v"),
+    m_filleft_button1("filter_left_button1", "1"), m_filleft_button2("filter_left_button2", "2"),
+    m_filleft_button3("filter_left_button3", "3"), m_filright_button1("filter_right_button1", "1"),
+    m_filright_button2("filter_right_button2", "2"), m_filright_button3("filter_right_button3", "3"),
+    m_filright_buttonf1("filter_left_buttonf1", "F1"), m_flanger_on_button("flanger_button", "Flanger On"),
+    m_phaser_on_button("phaser_button", "Phaser On"), m_chorus_on_button("chorus_button", "Chorus On"),
+    m_delay_on_button("delay_button", "Delay On"), m_reverb_on_button("reverb_button", "Reverb On"),
+    m_select_arp_button("select_arpeggiator_button", "Arpeggiator"), m_question_button("question_button", "?"),
+    m_burger_button("burger_button", "B"), m_select_modmatrix_button("select_modmatrix_button", "ModMatrix"),
+    m_select_presets_button("select_presets_button", "Presets"), m_env_13_button("env13_button", "Envelope1/3"),
+    m_env_24_button("env24_button", "Envelope2/4"), m_reset("reset", "Reset"),
+    m_lfo_13_button("lfo13_button", "LFO1/3"), m_lfo_24_button("lfo24_button", "LFO2/4"), m_pitch_amount(true),
+    m_osc1(p_processor, vts, "1"), m_osc2(p_processor, vts, "2"), m_osc3(p_processor, vts, "3"),
+    m_fil1_component(vts, "1"), m_fil2_component(vts, "2"), m_fil3_component(vts, "3"), m_midsection(vts),
+    m_adsr_1(vts, "1"), m_adsr_2(vts, "2"), m_adsr_3(vts, "3"), m_adsr_4(vts, "4"), m_lfo_1(vts, "1", p_is_standalone),
+    m_lfo_2(vts, "2", p_is_standalone), m_lfo_3(vts, "3", p_is_standalone), m_lfo_4(vts, "4", p_is_standalone),
+    m_delay(vts, p_is_standalone), m_reverb(vts, p_is_standalone), m_phaser(vts, "phaser", p_is_standalone),
+    m_flanger(vts, "flanger", p_is_standalone), m_chorus(vts, "chorus", p_is_standalone), m_xy_section(vts, "xy"),
+    m_osc1_type_identifier("osc1_type"), m_osc2_type_identifier("osc2_type"), m_osc3_type_identifier("osc3_type"),
+    m_fil1_type_identifier("fil1_type"), m_fil2_type_identifier("fil2_type"), m_fil3_type_identifier("fil3_type"),
     m_pitchbend_amount_identifier("pitchbend_amount"), m_unison_voices_identifier("unison_voices"),
     m_delay_position_identifier("delay_position"), m_flanger_position_identifier("flanger_position"),
     m_phaser_position_identifier("phaser_position"), m_chorus_position_identifier("chorus_position"),
@@ -169,6 +156,11 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 		setOsc1Plate(m_osc_dropdown_menu.show());
 	};
 	addAndMakeVisible(m_title_button);
+
+	addAndMakeVisible(m_detune_label);
+	addAndMakeVisible(m_width_label);
+	addAndMakeVisible(m_master_label);
+	addAndMakeVisible(m_glide_label);
 
 	addAndMakeVisible(m_osc1_dropdown);
 	m_osc1_dropdown.setTooltip("Select the module to\nbe used for oscillator 1");
@@ -304,6 +296,28 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	m_filright_button1.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
 	m_filright_button1.setTooltip("Routes oscillator 1\ninto the filter");
 
+	addAndMakeVisible(m_burger_button);
+	m_burger_button.onClick = [&]() {
+		// open popup menu
+		PopupMenu menu;
+		PopupMenu zoomMenu;
+		zoomMenu.addItem(int(GuiScale::Z100), "100%");
+		zoomMenu.addItem(int(GuiScale::Z125), "125%");
+		zoomMenu.addItem(int(GuiScale::Z150), "150%");
+		zoomMenu.addItem(int(GuiScale::Z175), "175%");
+		zoomMenu.addItem(int(GuiScale::Z200), "200%");
+
+		menu.addSubMenu("Zoom", zoomMenu);
+
+		const auto ret = menu.show();
+
+		if (ret != 0) {
+			ConfigFileManager::getInstance().setOptionGuiScale(ret);
+			ConfigFileManager::getInstance().saveDataToFile();
+			setSize(GUI_BASE_WIDTH * ret, GUI_BASE_HEIGHT * ret);
+		}
+	};
+
 	m_question_button.setClickingTogglesState(true);
 	m_question_button.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
 	m_question_button.onStateChange = [&] {
@@ -327,9 +341,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 #endif
 	    + "\ngit commit: " + GIT_COMMIT_ID);
 
-	m_question_button.onClick = [&]() {
-        JsonGuiProvider::getInstance().saveToFile();
-    };
+	m_question_button.onClick = [&]() { JsonGuiProvider::getInstance().saveToFile(); };
 
 	addAndMakeVisible(m_tuning);
 
@@ -641,7 +653,9 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 
 	bool set_GUI_big;
 	readOrCreateConfigFile(set_GUI_big);
-	setGUISizeBig(set_GUI_big, false);
+	setGUISizeBig(false, false);
+	auto scale = ConfigFileManager::getInstance().getOptionGuiScale();
+	setSize(GUI_BASE_WIDTH * scale, GUI_BASE_HEIGHT * scale);
 
 	//set lambda after setting the button
 	m_gui_size_button.setToggleState(!set_GUI_big, dontSendNotification);
@@ -677,9 +691,88 @@ void OdinAudioProcessorEditor::paint(Graphics &g) {
 }
 
 void OdinAudioProcessorEditor::resized() {
-    GET_LOCAL_AREA(m_osc1, "Osc1");
-    GET_LOCAL_AREA(m_osc2, "Osc2");
-    GET_LOCAL_AREA(m_osc3, "Osc3");
+	GET_LOCAL_AREA(m_detune_label, "DetuneLabel");
+	GET_LOCAL_AREA(m_width_label, "WidthLabel");
+	GET_LOCAL_AREA(m_master_label, "MasterLabel");
+	GET_LOCAL_AREA(m_glide_label, "GlideLabel");
+
+	GET_LOCAL_AREA(m_osc1, "Osc1");
+	GET_LOCAL_AREA(m_osc2, "Osc2");
+	GET_LOCAL_AREA(m_osc3, "Osc3");
+	GET_LOCAL_AREA(m_fil1_component, "Fil1");
+	GET_LOCAL_AREA(m_fil2_component, "Fil2");
+	GET_LOCAL_AREA(m_fil3_component, "Fil3");
+	GET_LOCAL_AREA(m_osc1_dropdown, "Osc1DD");
+	GET_LOCAL_AREA(m_osc2_dropdown, "Osc2DD");
+	GET_LOCAL_AREA(m_osc3_dropdown, "Osc3DD");
+	GET_LOCAL_AREA(m_filter1_dropdown, "Fil1DD");
+	GET_LOCAL_AREA(m_filter2_dropdown, "Fil2DD");
+	GET_LOCAL_AREA(m_filter3_dropdown, "Fil3DD");
+
+	GET_LOCAL_AREA(m_mod_matrix, "MatrixArpPreset");
+	GET_LOCAL_AREA(m_arp, "MatrixArpPreset");
+	GET_LOCAL_AREA(m_patch_browser, "MatrixArpPreset");
+
+	GET_LOCAL_AREA(m_select_presets_button, "SelectPresets");
+	GET_LOCAL_AREA(m_select_modmatrix_button, "SelectModMatrix");
+	GET_LOCAL_AREA(m_select_arp_button, "SelectArp");
+
+	GET_LOCAL_AREA(m_midsection, "AmpDist");
+
+	GET_LOCAL_AREA(m_env_13_button, "ADSRButton13");
+	GET_LOCAL_AREA(m_env_24_button, "ADSRButton24");
+
+	GET_LOCAL_AREA(m_adsr_1, "ADSRLeft");
+	GET_LOCAL_AREA(m_adsr_3, "ADSRLeft");
+	GET_LOCAL_AREA(m_adsr_2, "ADSRRight");
+	GET_LOCAL_AREA(m_adsr_4, "ADSRRight");
+
+	GET_LOCAL_AREA(m_lfo_13_button, "LFOButton13");
+	GET_LOCAL_AREA(m_lfo_24_button, "LFOButton24");
+
+	GET_LOCAL_AREA(m_lfo_1, "LFOLeft");
+	GET_LOCAL_AREA(m_lfo_2, "LFOLeft");
+	GET_LOCAL_AREA(m_lfo_3, "LFORight");
+	GET_LOCAL_AREA(m_lfo_4, "LFORight");
+
+	GET_LOCAL_AREA(m_flanger, "FX");
+	GET_LOCAL_AREA(m_phaser, "FX");
+	GET_LOCAL_AREA(m_chorus, "FX");
+	GET_LOCAL_AREA(m_delay, "FX");
+	GET_LOCAL_AREA(m_reverb, "FX");
+
+	GET_LOCAL_AREA(m_burger_button, "BurgerButton");
+
+	GET_LOCAL_AREA(m_reset, "Reset");
+	GET_LOCAL_AREA(m_glide, "Glide");
+	GET_LOCAL_AREA(m_master, "Master");
+	GET_LOCAL_AREA(m_unison_detune, "UnisonDetune");
+	GET_LOCAL_AREA(m_unison_width, "UnisonWidth");
+	GET_LOCAL_AREA(m_xy_section, "XY_SECTION");
+
+	GET_LOCAL_AREA(m_fx_buttons_section, "FXButtons");
+	GET_LOCAL_AREA(m_delay_on_button, "DelayOn");
+	GET_LOCAL_AREA(m_phaser_on_button, "PhaserOn");
+	GET_LOCAL_AREA(m_chorus_on_button, "ChorusOn");
+	GET_LOCAL_AREA(m_flanger_on_button, "FlangerOn");
+	GET_LOCAL_AREA(m_reverb_on_button, "ReverbOn");
+
+	GET_LOCAL_AREA(m_filleft_button1, "FilLeft1");
+	GET_LOCAL_AREA(m_filleft_button2, "FilLeft2");
+	GET_LOCAL_AREA(m_filleft_button3, "FilLeft3");
+	GET_LOCAL_AREA(m_filright_button1, "FilRight1");
+	GET_LOCAL_AREA(m_filright_button2, "FilRight2");
+	GET_LOCAL_AREA(m_filright_button3, "FilRight3");
+	GET_LOCAL_AREA(m_filright_buttonf1, "FilRightF1");
+	GET_LOCAL_AREA(m_question_button, "QuestionButton");
+
+	GET_LOCAL_AREA(m_tuning, "Tuning");
+	GET_LOCAL_AREA(m_pitchwheel, "PitchBend");
+	GET_LOCAL_AREA(m_modwheel, "ModWheel");
+	GET_LOCAL_AREA(m_mono_poly_legato_dropdown, "Playmode");
+	GET_LOCAL_AREA(m_pitch_amount, "PitchBend Amount");
+	GET_LOCAL_AREA(m_unison_selector, "UnisonAmount");
+	GET_LOCAL_AREA(m_value_input, "ValueInput");
 }
 
 void OdinAudioProcessorEditor::setOsc1Plate(int p_osc_type) {
@@ -798,34 +891,15 @@ void OdinAudioProcessorEditor::setMatrixSectionModule(int p_module) {
 
 void OdinAudioProcessorEditor::arrangeFXOnButtons(std::map<std::string, int> p_map) {
 
-	if (g_GUI_big) {
-		m_flanger_on_button.setTopLeftPosition(
-		    OdinHelper::c150(FX_ON_BUTTON_X) + p_map.find("flanger")->second * OdinHelper::c150(FX_BUTTON_OFFSET) + 1,
-		    OdinHelper::c150(FX_ON_BUTTON_Y));
-		m_phaser_on_button.setTopLeftPosition(OdinHelper::c150(FX_ON_BUTTON_X) +
-		                                          p_map.find("phaser")->second * OdinHelper::c150(FX_BUTTON_OFFSET) + 1,
-		                                      OdinHelper::c150(FX_ON_BUTTON_Y));
-		m_chorus_on_button.setTopLeftPosition(OdinHelper::c150(FX_ON_BUTTON_X) +
-		                                          p_map.find("chorus")->second * OdinHelper::c150(FX_BUTTON_OFFSET) + 1,
-		                                      OdinHelper::c150(FX_ON_BUTTON_Y));
-		m_delay_on_button.setTopLeftPosition(OdinHelper::c150(FX_ON_BUTTON_X) +
-		                                         p_map.find("delay")->second * OdinHelper::c150(FX_BUTTON_OFFSET) + 1,
-		                                     OdinHelper::c150(FX_ON_BUTTON_Y));
-		m_reverb_on_button.setTopLeftPosition(OdinHelper::c150(FX_ON_BUTTON_X) +
-		                                          p_map.find("reverb")->second * OdinHelper::c150(FX_BUTTON_OFFSET) + 1,
-		                                      OdinHelper::c150(FX_ON_BUTTON_Y));
-	} else {
-		m_flanger_on_button.setTopLeftPosition(FX_ON_BUTTON_X + p_map.find("flanger")->second * (FX_BUTTON_OFFSET)-1,
-		                                       FX_ON_BUTTON_Y);
-		m_phaser_on_button.setTopLeftPosition(FX_ON_BUTTON_X + p_map.find("phaser")->second * (FX_BUTTON_OFFSET)-1,
-		                                      FX_ON_BUTTON_Y);
-		m_chorus_on_button.setTopLeftPosition(FX_ON_BUTTON_X + p_map.find("chorus")->second * (FX_BUTTON_OFFSET)-1,
-		                                      FX_ON_BUTTON_Y);
-		m_delay_on_button.setTopLeftPosition(FX_ON_BUTTON_X + p_map.find("delay")->second * (FX_BUTTON_OFFSET)-1,
-		                                     FX_ON_BUTTON_Y);
-		m_reverb_on_button.setTopLeftPosition(FX_ON_BUTTON_X + p_map.find("reverb")->second * (FX_BUTTON_OFFSET)-1,
-		                                      FX_ON_BUTTON_Y);
-	}
+	const auto width = m_delay_on_button.getWidth();
+	const auto x     = m_fx_buttons_section.getX();
+	const auto y     = m_delay_on_button.getY();
+
+	m_flanger_on_button.setTopLeftPosition(x + p_map.find("flanger")->second * width, y);
+	m_phaser_on_button.setTopLeftPosition(x + p_map.find("phaser")->second * width, y);
+	m_chorus_on_button.setTopLeftPosition(x + p_map.find("chorus")->second * width, y);
+	m_delay_on_button.setTopLeftPosition(x + p_map.find("delay")->second * width, y);
+	m_reverb_on_button.setTopLeftPosition(x + p_map.find("reverb")->second * width, y);
 
 	m_value_tree.state.getChildWithName("fx").setProperty(
 	    m_delay_position_identifier, (float)p_map.find("delay")->second, nullptr);
@@ -1169,12 +1243,8 @@ void OdinAudioProcessorEditor::setGUISizeBig(bool p_big, bool p_write_to_config)
 		m_arp.setGUIBig();
 		//m_save_load.setGUIBig();
 		m_menu_feels.setGUIBig();
-		m_pitch_amount.setGUIBig();
-		m_unison_selector.setGUIBig();
 		m_mono_poly_legato_dropdown.setGUIBig();
-		m_tuning.setGUIBig();
 		m_title_button.setGUIBig();
-		setGUIBig();
 	} else {
 		g_GUI_big = false;
 		m_osc1.setGUISmall();
@@ -1204,12 +1274,8 @@ void OdinAudioProcessorEditor::setGUISizeBig(bool p_big, bool p_write_to_config)
 		m_arp.setGUISmall();
 		//m_save_load.setGUISmall();
 		m_menu_feels.setGUISmall();
-		m_pitch_amount.setGUISmall();
-		m_unison_selector.setGUISmall();
 		m_mono_poly_legato_dropdown.setGUISmall();
-		m_tuning.setGUISmall();
 		m_title_button.setGUISmall();
-		setGUISmall();
 	}
 
 	if (p_write_to_config) {
@@ -1232,37 +1298,37 @@ void OdinAudioProcessorEditor::paintOverChildren(Graphics &g) {
 	m_live_constrainer.paintOverlay(g);
 }
 
-void OdinAudioProcessorEditor::paintGrid (Graphics& g) {
+void OdinAudioProcessorEditor::paintGrid(Graphics &g) {
 
 	constexpr auto grid_alpha       = 0.05f;
 	constexpr auto grid_alpha_major = 0.2f;
 	constexpr auto grid_alpha_mid   = 0.1f;
-	const auto grid_size            = int (ConfigFileManager::getInstance().getOptionGuiScale());
+	const auto grid_size            = int(ConfigFileManager::getInstance().getOptionGuiScale());
 
-	auto grid_base_colour = juce::Colour (0x0088ffff);
+	auto grid_base_colour = juce::Colour(0x0088ffff);
 	//g.fillAll (juce::Colours::white);
 	//auto grid_base_colour = juce::Colours::black;
 
 	for (int x = 0; x < getWidth(); x += grid_size) {
 		if (x % (grid_size * 10) == 0)
-			g.setColour (grid_base_colour.withAlpha (grid_alpha_major));
+			g.setColour(grid_base_colour.withAlpha(grid_alpha_major));
 		else if (x % (grid_size * 5) == 0)
-			g.setColour (grid_base_colour.withAlpha (grid_alpha_mid));
+			g.setColour(grid_base_colour.withAlpha(grid_alpha_mid));
 		else
-			g.setColour (grid_base_colour.withAlpha (grid_alpha));
+			g.setColour(grid_base_colour.withAlpha(grid_alpha));
 
-		g.drawLine (x, 0, x, getHeight(), 1);
+		g.drawLine(x, 0, x, getHeight(), 1);
 	}
 
 	for (int y = 0; y < getHeight(); y += grid_size) {
 		if (y % (grid_size * 10) == 0)
-			g.setColour (grid_base_colour.withAlpha (grid_alpha_major));
+			g.setColour(grid_base_colour.withAlpha(grid_alpha_major));
 		else if (y % (grid_size * 5) == 0)
-			g.setColour (grid_base_colour.withAlpha (grid_alpha_mid));
+			g.setColour(grid_base_colour.withAlpha(grid_alpha_mid));
 		else
-			g.setColour (grid_base_colour.withAlpha (grid_alpha));
+			g.setColour(grid_base_colour.withAlpha(grid_alpha));
 
-		g.drawLine (0, y, getWidth(), y, 1);
+		g.drawLine(0, y, getWidth(), y, 1);
 	}
 
 	//g.setColour (juce::Colours::white);
