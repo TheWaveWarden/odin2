@@ -15,6 +15,8 @@
 
 #include "ReverbComponent.h"
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "JsonGuiProvider.h"
+
 
 ReverbComponent::ReverbComponent(AudioProcessorValueTreeState &vts, bool p_is_standalone) :
     m_value_tree(vts), m_is_standalone_plugin(p_is_standalone) {
@@ -98,96 +100,18 @@ void ReverbComponent::forceValueTreeOntoComponents(ValueTree p_tree) {
 }
 
 void ReverbComponent::setGUIBig() {
-	m_GUI_big = true;
-
-	setImage(ImageCache::getFromMemory(BinaryData::reverb_zita_150_png, BinaryData::reverb_zita_150_pngSize));
-
-	juce::Image black_knob_mid =
-	    ImageCache::getFromMemory(BinaryData::black_knob_mid_150_png, BinaryData::black_knob_mid_150_pngSize);
-	juce::Image metal_knob_mid =
-	    ImageCache::getFromMemory(BinaryData::metal_knob_mid_150_png, BinaryData::metal_knob_mid_150_pngSize);
-	juce::Image black_knob_big =
-	    ImageCache::getFromMemory(BinaryData::black_knob_big_150_png, BinaryData::black_knob_big_150_pngSize);
-
-	m_delay.setStrip(metal_knob_mid, N_KNOB_FRAMES);
-	m_EQ_gain.setStrip(black_knob_mid, N_KNOB_FRAMES);
-	//m_ducking.setStrip(black_knob_mid, N_KNOB_FRAMES);
-	m_EQ_freq.setStrip(black_knob_mid, N_KNOB_FRAMES);
-	m_dry_wet.setStrip(black_knob_big, N_KNOB_FRAMES);
-	m_mid_hall.setStrip(metal_knob_mid, N_KNOB_FRAMES);
-	m_hf_damp.setStrip(metal_knob_mid, N_KNOB_FRAMES);
-
-	m_mid_hall.setBounds(OdinHelper::c150(REVERB_MID_HALL_POS_X),
-	                     OdinHelper::c150(REVERB_MID_HALL_POS_Y),
-	                     OdinHelper::c150(METAL_KNOB_MID_SIZE_X),
-	                     OdinHelper::c150(METAL_KNOB_MID_SIZE_Y));
-	m_hf_damp.setBounds(OdinHelper::c150(REVERB_HF_DAMP_POS_X),
-	                    OdinHelper::c150(REVERB_HF_DAMP_POS_Y),
-	                    OdinHelper::c150(METAL_KNOB_MID_SIZE_X),
-	                    OdinHelper::c150(METAL_KNOB_MID_SIZE_Y));
-
-	m_delay.setBounds(OdinHelper::c150(REVERB_DELAY_POS_X),
-	                  OdinHelper::c150(REVERB_DELAY_POS_Y),
-	                  OdinHelper::c150(METAL_KNOB_MID_SIZE_X),
-	                  OdinHelper::c150(METAL_KNOB_MID_SIZE_Y));
-
-	m_EQ_gain.setBounds(OdinHelper::c150(REVERB_EQ_GAIN_POS_X),
-	                    OdinHelper::c150(REVERB_EQ_GAIN_POS_Y),
-	                    OdinHelper::c150(BLACK_KNOB_MID_SIZE_X),
-	                    OdinHelper::c150(BLACK_KNOB_MID_SIZE_Y));
-	//	m_ducking.setBounds(OdinHelper::c150(REVERB_WIDTH_POS_X),
-	//	                    OdinHelper::c150(REVERB_WIDTH_POS_Y),
-	//	                    OdinHelper::c150(BLACK_KNOB_MID_SIZE_X),
-	//	                    OdinHelper::c150(BLACK_KNOB_MID_SIZE_Y));
-	m_EQ_freq.setBounds(OdinHelper::c150(REVERB_DRY_POS_X),
-	                    OdinHelper::c150(REVERB_DRY_POS_Y),
-	                    OdinHelper::c150(BLACK_KNOB_MID_SIZE_X),
-	                    OdinHelper::c150(BLACK_KNOB_MID_SIZE_Y));
-	m_dry_wet.setBounds(OdinHelper::c150(REVERB_WET_POS_X),
-	                    OdinHelper::c150(REVERB_WET_POS_Y),
-	                    OdinHelper::c150(BLACK_KNOB_BIG_SIZE_X),
-	                    OdinHelper::c150(BLACK_KNOB_BIG_SIZE_Y));
-
-	forceValueTreeOntoComponents(m_value_tree.state);
 }
 
 void ReverbComponent::setGUISmall() {
-	m_GUI_big = false;
+}
 
-	setImage(ImageCache::getFromMemory(BinaryData::reverb_zita_png, BinaryData::reverb_zita_pngSize));
-
-	juce::Image black_knob_mid =
-	    ImageCache::getFromMemory(BinaryData::black_knob_mid_png, BinaryData::black_knob_mid_pngSize);
-	juce::Image metal_knob_mid =
-	    ImageCache::getFromMemory(BinaryData::metal_knob_mid_png, BinaryData::metal_knob_mid_pngSize);
-	juce::Image black_knob_big =
-	    ImageCache::getFromMemory(BinaryData::black_knob_big_png, BinaryData::black_knob_big_pngSize);
-
-	m_delay.setStrip(metal_knob_mid, N_KNOB_FRAMES);
-	m_EQ_gain.setStrip(black_knob_mid, N_KNOB_FRAMES);
-	//m_ducking.setStrip(black_knob_mid, N_KNOB_FRAMES);
-	m_EQ_freq.setStrip(black_knob_mid, N_KNOB_FRAMES);
-	m_dry_wet.setStrip(black_knob_big, N_KNOB_FRAMES);
-	m_mid_hall.setStrip(metal_knob_mid, N_KNOB_FRAMES);
-	m_hf_damp.setStrip(metal_knob_mid, N_KNOB_FRAMES);
-
-	m_mid_hall.setBounds(
-	    (REVERB_MID_HALL_POS_X) + 2, (REVERB_MID_HALL_POS_Y) + 1, (METAL_KNOB_MID_SIZE_X), (METAL_KNOB_MID_SIZE_Y));
-	m_hf_damp.setBounds(
-	    (REVERB_HF_DAMP_POS_X) + 2, (REVERB_HF_DAMP_POS_Y) + 1, (METAL_KNOB_MID_SIZE_X), (METAL_KNOB_MID_SIZE_Y));
-
-	m_delay.setBounds(
-	    (REVERB_DELAY_POS_X) + 2, (REVERB_DELAY_POS_Y) + 1, (METAL_KNOB_MID_SIZE_X), (METAL_KNOB_MID_SIZE_Y));
-
-	m_EQ_gain.setBounds(
-	    (REVERB_EQ_GAIN_POS_X) + 1, (REVERB_EQ_GAIN_POS_Y) + 1, (BLACK_KNOB_MID_SIZE_X), (BLACK_KNOB_MID_SIZE_Y));
-	//	m_ducking.setBounds((REVERB_WIDTH_POS_X),
-	//	                    (REVERB_WIDTH_POS_Y),
-	//	                    (BLACK_KNOB_MID_SIZE_X),
-	//	                    (BLACK_KNOB_MID_SIZE_Y));
-	m_EQ_freq.setBounds(
-	    (REVERB_DRY_POS_X) + 1, (REVERB_DRY_POS_Y) + 1, (BLACK_KNOB_MID_SIZE_X), (BLACK_KNOB_MID_SIZE_Y));
-	m_dry_wet.setBounds((REVERB_WET_POS_X) + 1, (REVERB_WET_POS_Y), (BLACK_KNOB_BIG_SIZE_X), (BLACK_KNOB_BIG_SIZE_Y));
-
-	forceValueTreeOntoComponents(m_value_tree.state);
+void ReverbComponent::resized() {
+	GET_LOCAL_AREA(m_delay, "RevDelay");
+	GET_LOCAL_AREA(m_EQ_gain, "RevEqGain");
+	GET_LOCAL_AREA(m_EQ_freq, "RevEqFreq");
+	GET_LOCAL_AREA(m_dry_wet, "RevDryWet");
+	GET_LOCAL_AREA(m_low_freq, "RevLowFreq");
+	GET_LOCAL_AREA(m_low_hall, "RevLowHall");
+	GET_LOCAL_AREA(m_mid_hall, "RevMidHall");
+	GET_LOCAL_AREA(m_hf_damp, "RevHfDamp");
 }

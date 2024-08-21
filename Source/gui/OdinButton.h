@@ -43,7 +43,7 @@ public:
 
 		g.setColour(COL_LIGHT);
 		g.setFont(H * 0.6f);
-		g.drawText(m_button_text, getLocalBounds(), juce::Justification::centred);
+		g.drawText(m_button_text, getLocalBounds(), juce::Justification::centred, false);
 	}
 
 	static void setOdinPointer(OdinAudioProcessor *p_pointer) {

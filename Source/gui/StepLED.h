@@ -26,11 +26,11 @@ public:
 	}
 
 	void paint(Graphics &g) override {
-		if (m_LED_on) {
-			g.drawImageAt(m_image_on, 0, 0);
-		} else {
-			g.drawImageAt(m_image_off, 0, 0);
-		}
+		g.setColour(COL_LIGHT);
+		if (m_LED_on)
+			g.fillEllipse(getLocalBounds().toFloat());
+		else
+			g.drawEllipse(getLocalBounds().toFloat(), 1.0f);
 	}
 
 	void resized() override {

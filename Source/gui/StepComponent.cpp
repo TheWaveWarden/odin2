@@ -14,6 +14,7 @@
 */
 
 #include "StepComponent.h"
+#include "JsonGuiProvider.h"
 #include <JuceHeader.h>
 
 StepComponent::StepComponent(AudioProcessorValueTreeState &vts, int p_step_index) :
@@ -77,91 +78,17 @@ void StepComponent::paint(Graphics &g) {
 }
 
 void StepComponent::resized() {
+	GET_LOCAL_AREA(m_mod_1, "ArpStepMod_1");
+	GET_LOCAL_AREA(m_mod_2, "ArpStepMod_2");
+	GET_LOCAL_AREA(m_transpose, "ArpStepTranspose");
+	GET_LOCAL_AREA(m_step_on, "ArpStepStepOn");
+	GET_LOCAL_AREA(m_led, "ArpStepLed");
 }
 
 void StepComponent::setGUIBig() {
-	m_GUI_big = true;
-
-	m_led.setGUIBig();
-	m_led.setTopLeftPosition(STEP_LED_POS_X_150, STEP_LED_POS_Y_150);
-
-	juce::Image black_knob_small =
-	    ImageCache::getFromMemory(BinaryData::black_knob_small_150_png, BinaryData::black_knob_small_150_pngSize);
-	m_mod_1.setStrip(black_knob_small, N_KNOB_FRAMES);
-	m_mod_1.setBounds(KNOB_POS_X_150, MOD_POS_Y_150, BLACK_KNOB_SMALL_SIZE_X * 1.5, BLACK_KNOB_SMALL_SIZE_Y * 1.5);
-
-	m_mod_2.setStrip(black_knob_small, N_KNOB_FRAMES);
-	m_mod_2.setBounds(
-	    KNOB_POS_X_150, TRANSPOSE_POS_Y_150, BLACK_KNOB_SMALL_SIZE_X * 1.5, BLACK_KNOB_SMALL_SIZE_Y * 1.5);
-
-	m_transpose.setStrip(black_knob_small, N_KNOB_FRAMES);
-	m_transpose.setBounds(
-	    KNOB_POS_X_150, TRANSPOSE_POS_Y_150, BLACK_KNOB_SMALL_SIZE_X * 1.5, BLACK_KNOB_SMALL_SIZE_Y * 1.5);
-
-	juce::Image step_on_4 =
-	    ImageCache::getFromMemory(BinaryData::button_arp_step_1_150_png, BinaryData::button_arp_step_1_150_pngSize);
-	juce::Image step_on_2 =
-	    ImageCache::getFromMemory(BinaryData::button_arp_step_2_150_png, BinaryData::button_arp_step_2_150_pngSize);
-	juce::Image step_on_3 =
-	    ImageCache::getFromMemory(BinaryData::button_arp_step_3_150_png, BinaryData::button_arp_step_3_150_pngSize);
-	juce::Image step_on_1 =
-	    ImageCache::getFromMemory(BinaryData::button_arp_step_4_150_png, BinaryData::button_arp_step_4_150_pngSize);
-
-	juce::DrawableImage step_on_draw1;
-	juce::DrawableImage step_on_draw2;
-	juce::DrawableImage step_on_draw3;
-	juce::DrawableImage step_on_draw4;
-
-	step_on_draw1.setImage(step_on_1);
-	step_on_draw2.setImage(step_on_2);
-	step_on_draw3.setImage(step_on_3);
-	step_on_draw4.setImage(step_on_4);
-
-	m_step_on.setBounds(STEP_ON_X_150, STEP_ON_Y_150, step_on_1.getWidth(), step_on_1.getHeight());
-
-	m_knob_guide =
-	    ImageCache::getFromMemory(BinaryData::arp_knob_guide_150_png, BinaryData::arp_knob_guide_150_pngSize);
 }
 
 void StepComponent::setGUISmall() {
-	m_GUI_big = false;
-
-	m_led.setGUISmall();
-	m_led.setTopLeftPosition(STEP_LED_POS_X_100, STEP_LED_POS_Y_100);
-
-	juce::Image black_knob_small =
-	    ImageCache::getFromMemory(BinaryData::black_knob_small_png, BinaryData::black_knob_small_pngSize);
-	m_mod_1.setStrip(black_knob_small, N_KNOB_FRAMES);
-	m_mod_1.setBounds(KNOB_POS_X_100, MOD_POS_Y_100, BLACK_KNOB_SMALL_SIZE_X, BLACK_KNOB_SMALL_SIZE_Y);
-
-	m_mod_2.setStrip(black_knob_small, N_KNOB_FRAMES);
-	m_mod_2.setBounds(KNOB_POS_X_100, TRANSPOSE_POS_Y_100, BLACK_KNOB_SMALL_SIZE_X, BLACK_KNOB_SMALL_SIZE_Y);
-
-	m_transpose.setStrip(black_knob_small, N_KNOB_FRAMES);
-	m_transpose.setBounds(KNOB_POS_X_100, TRANSPOSE_POS_Y_100, BLACK_KNOB_SMALL_SIZE_X, BLACK_KNOB_SMALL_SIZE_Y);
-
-	juce::Image step_on_4 =
-	    ImageCache::getFromMemory(BinaryData::button_arp_step_1_png, BinaryData::button_arp_step_1_pngSize);
-	juce::Image step_on_2 =
-	    ImageCache::getFromMemory(BinaryData::button_arp_step_2_png, BinaryData::button_arp_step_2_pngSize);
-	juce::Image step_on_3 =
-	    ImageCache::getFromMemory(BinaryData::button_arp_step_3_png, BinaryData::button_arp_step_3_pngSize);
-	juce::Image step_on_1 =
-	    ImageCache::getFromMemory(BinaryData::button_arp_step_4_png, BinaryData::button_arp_step_4_pngSize);
-
-	juce::DrawableImage step_on_draw1;
-	juce::DrawableImage step_on_draw2;
-	juce::DrawableImage step_on_draw3;
-	juce::DrawableImage step_on_draw4;
-
-	step_on_draw1.setImage(step_on_1);
-	step_on_draw2.setImage(step_on_2);
-	step_on_draw3.setImage(step_on_3);
-	step_on_draw4.setImage(step_on_4);
-
-	m_step_on.setBounds(STEP_ON_X_100, STEP_ON_Y_100, step_on_1.getWidth(), step_on_1.getHeight());
-
-	m_knob_guide = ImageCache::getFromMemory(BinaryData::arp_knob_guide_png, BinaryData::arp_knob_guide_pngSize);
 }
 
 void StepComponent::setLEDActive(int p_step_index) {

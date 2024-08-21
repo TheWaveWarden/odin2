@@ -19,6 +19,7 @@
 #include "../GlobalIncludes.h"
 #include "LFODisplayComponent.h"
 #include "LFOPopupLookAndFeel.h"
+#include "OdinButton.h"
 
 class LFOSelectorComponent : public Component,
                              public AudioProcessorValueTreeState::Listener {
@@ -32,6 +33,7 @@ public:
     }
   }
 
+  void resized() override;
   void paint(Graphics &) override;
 
   void setValueGUIOnly(int p_value) {
@@ -82,8 +84,8 @@ protected:
   LFOPopupLookAndFeel m_popup_look_and_feel;
   PopupMenu m_popup;
 
-  DrawableButton m_up;
-  DrawableButton m_down;
+  OdinButton m_up;
+  OdinButton m_down;
 
   int m_value = 0;
 

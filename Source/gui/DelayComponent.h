@@ -15,12 +15,13 @@
 
 #pragma once
 
-#include "../JuceLibraryCode/JuceHeader.h"
 #include "../GlobalIncludes.h"
-#include "OdinKnob.h"
+#include "../JuceLibraryCode/JuceHeader.h"
 #include "OdinButton.h"
 #include "OdinControlAttachments.h"
+#include "OdinKnob.h"
 #include "SyncTimeSelector.h"
+
 
 #define TIME_POS_X 17
 #define TIME_POS_Y 21
@@ -62,6 +63,7 @@ public:
 	void forceValueTreeOntoComponents(ValueTree p_tree);
 
 	void paint(Graphics &) override;
+	void resized() override;
 
 	void setImage(juce::Image p_background) {
 		m_background = p_background;

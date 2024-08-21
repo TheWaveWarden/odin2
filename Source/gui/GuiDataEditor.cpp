@@ -1,6 +1,7 @@
 #include "GuiDataEditor.h"
 
 GuiDataEditor::GuiDataEditor() {
+	m_data = juce::Rectangle<int>(0, 0, 6, 6);
 }
 
 GuiDataEditor::~GuiDataEditor() {
@@ -37,7 +38,6 @@ void GuiDataEditor::setParent(const juce::Rectangle<int> &p_parent) {
 }
 
 void GuiDataEditor::resized() {
-	m_data = getLocalBounds().reduced(W / 1.5f, H / 1.5f);
 }
 
 void GuiDataEditor::mouseDown(const juce::MouseEvent &e) {

@@ -15,14 +15,13 @@
 
 #pragma once
 
-#include "../JuceLibraryCode/JuceHeader.h"
-#include "OdinKnob.h"
-#include "LFOSelectorComponent.h"
 #include "../GlobalIncludes.h"
+#include "../JuceLibraryCode/JuceHeader.h"
+#include "LFOSelectorComponent.h"
 #include "OdinButton.h"
-#include "SyncTimeSelector.h"
 #include "OdinControlAttachments.h"
-
+#include "OdinKnob.h"
+#include "SyncTimeSelector.h"
 
 #define LFO_FREQ_POS_X 74
 #define LFO_FREQ_POS_Y 33
@@ -54,67 +53,66 @@
 
 class LFOComponent : public Component {
 public:
-  LFOComponent(AudioProcessorValueTreeState& vts, const std::string &p_lfo_number, bool p_is_standalone);
-  ~LFOComponent();
+	LFOComponent(AudioProcessorValueTreeState &vts, const std::string &p_lfo_number, bool p_is_standalone);
+	~LFOComponent();
 
-  void forceValueTreeOntoComponents(ValueTree p_tree);
-  
+	void forceValueTreeOntoComponents(ValueTree p_tree);
 
-  void paint(Graphics &) override;
-  void setSync(bool p_sync){
-    if(m_sync_active != p_sync){
-      m_sync_active = p_sync;
-      if(m_sync_active){
-        m_freq.setVisible(false);
-        m_sync_time.setVisible(true);
-      } else {
-        m_freq.setVisible(true);
-        m_sync_time.setVisible(false);        
-      }
-      repaint();
-    }
-  }
+	void resized() override;
+	void paint(Graphics &) override;
+	void setSync(bool p_sync) {
+		if (m_sync_active != p_sync) {
+			m_sync_active = p_sync;
+			if (m_sync_active) {
+				m_freq.setVisible(false);
+				m_sync_time.setVisible(true);
+			} else {
+				m_freq.setVisible(true);
+				m_sync_time.setVisible(false);
+			}
+			repaint();
+		}
+	}
 
-  void setSyncOverdraw(juce::Image p_image){
-    m_freq_overdraw = p_image;
-  }
+	void setSyncOverdraw(juce::Image p_image) {
+		m_freq_overdraw = p_image;
+	}
 
-  void setGUIBig();  
-  void setGUISmall();
+	void setGUIBig();
+	void setGUISmall();
+
 private:
+	bool m_GUI_big = true;
 
-  bool m_GUI_big = true;
+	Image m_knob_guide;
 
-  Image m_knob_guide;
+	void toggleSync() {
+		setSync(!m_sync_active);
+	}
 
-  void toggleSync(){
-    setSync(!m_sync_active);
-  }
+	LFOSelectorComponent m_selector;
+	SyncTimeSelector m_sync_time;
 
-  LFOSelectorComponent m_selector;
-  SyncTimeSelector m_sync_time;
+	OdinKnob m_freq;
 
-  OdinKnob m_freq;
+	OdinButton m_reset;
+	OdinButton m_sync;
 
-  OdinButton m_reset;
-  OdinButton m_sync;
+	juce::Image m_freq_overdraw;
+	bool m_sync_active = false;
 
-  juce::Image m_freq_overdraw;
-  bool m_sync_active = false;
+	std::string m_lfo_number;
+	AudioProcessorValueTreeState &m_value_tree;
 
-  std::string m_lfo_number;
-  AudioProcessorValueTreeState& m_value_tree;
+	std::unique_ptr<OdinKnobAttachment> m_freq_attach;
 
-  std::unique_ptr<OdinKnobAttachment> m_freq_attach;
+	std::unique_ptr<OdinButtonAttachment> m_reset_attach;
 
-  //std::unique_ptr<OdinButtonAttachment> m_sync_attach;
-  std::unique_ptr<OdinButtonAttachment> m_reset_attach;
+	Identifier m_lfo_wave_identifier;
+	Identifier m_lfo_synctime_numerator_identifier;
+	Identifier m_lfo_synctime_denominator_identifier;
 
-  Identifier m_lfo_wave_identifier;
-  Identifier m_lfo_synctime_numerator_identifier;
-  Identifier m_lfo_synctime_denominator_identifier;
+	bool m_is_standalone_plugin;
 
-  bool m_is_standalone_plugin;
-
-  JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(LFOComponent)
+	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(LFOComponent)
 };

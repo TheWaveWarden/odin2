@@ -53,6 +53,7 @@ public:
 	void forceValueTreeOntoComponents(ValueTree p_tree);
 
 	void paint(Graphics &) override;
+	void resized() override;
 
 	void setImage(juce::Image p_background) {
 		m_background = p_background;
@@ -71,7 +72,6 @@ private:
 	OdinKnob m_delay; // zita: delay / size
 	OdinKnob m_EQ_gain; // zita: eq
 	OdinKnob m_EQ_freq; // zita: eq
-	//OdinKnob m_ducking;
 	OdinKnob m_dry_wet;  // zita: mix
 	OdinKnob m_low_freq; // zita: low freq
 	OdinKnob m_low_hall; // zita: low hall

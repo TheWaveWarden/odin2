@@ -13,16 +13,16 @@
 ** GNU General Public License for more details.
 */
 
-
 #include "ArpComponent.h"
+#include "JsonGuiProvider.h"
 #include <JuceHeader.h>
 
 ArpComponent::ArpComponent(OdinAudioProcessor &p_processor, AudioProcessorValueTreeState &vts) :
     m_processor(p_processor), m_value_tree(vts), m_step_0(vts, 0), m_step_1(vts, 1), m_step_2(vts, 2), m_step_3(vts, 3),
     m_step_4(vts, 4), m_step_5(vts, 5), m_step_6(vts, 6), m_step_7(vts, 7), m_step_8(vts, 8), m_step_9(vts, 9),
     m_step_10(vts, 10), m_step_11(vts, 11), m_step_12(vts, 12), m_step_13(vts, 13), m_step_14(vts, 14),
-    m_step_15(vts, 15), m_on("arp_on", "On"),
-    m_one_shot("arp_one_shot", "1-Shot"),m_mod_transpose("arp_mod_transpose", "Md/Trns") {
+    m_step_15(vts, 15), m_on("arp_on", "On"), m_one_shot("arp_one_shot", "1-Shot"),
+    m_mod_transpose("arp_mod_transpose", "Md/Trns") {
 	addAndMakeVisible(m_step_0);
 	addAndMakeVisible(m_step_1);
 	addAndMakeVisible(m_step_2);
@@ -127,9 +127,7 @@ ArpComponent::ArpComponent(OdinAudioProcessor &p_processor, AudioProcessorValueT
 	m_mod_transpose.setTooltip("Toggles between the knob-rows for mod 2 or transpose");
 	m_mod_transpose.setTriggeredOnMouseDown(true);
 	m_mod_transpose.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
-	m_mod_transpose.onClick = [&](){
-		setModTranspose(!m_mod_transpose.getToggleState());
-	};
+	m_mod_transpose.onClick = [&]() { setModTranspose(!m_mod_transpose.getToggleState()); };
 
 	m_one_shot.setClickingTogglesState(true);
 	addAndMakeVisible(m_one_shot);
@@ -146,360 +144,52 @@ ArpComponent::~ArpComponent() {
 }
 
 void ArpComponent::paint(Graphics &g) {
+	g.setColour(COL_LIGHT);
+	g.drawRect(getLocalBounds(), 1);
 	//g.drawImageAt(m_background, 0, 0);
 	//g.setColour(Colours::black);
 	//g.drawRect(getLocalBounds(), 1); // draw an outline around the component
 }
 
 void ArpComponent::resized() {
+	GET_LOCAL_AREA(m_octave_selector, "ArpOctaveSelector");
+	GET_LOCAL_AREA(m_steps_selector, "ArpStepsSelector");
+	GET_LOCAL_AREA(m_direction, "ArpDirection");
+	GET_LOCAL_AREA(m_gate, "ArpGate");
+	GET_LOCAL_AREA(m_on, "ArpOn");
+	GET_LOCAL_AREA(m_one_shot, "ArpOneShot");
+	GET_LOCAL_AREA(m_mod_transpose, "ArpModTranspose");
+	GET_LOCAL_AREA(m_sync_time, "ArpSyncTime");
+	GET_LOCAL_AREA(m_step_0, "ArpStep_0");
+
+	const auto width                                  = m_step_0.getBounds().getWidth();
+	std::array<juce::Component *, 16> step_components = {
+	    &m_step_0,
+	    &m_step_1,
+	    &m_step_2,
+	    &m_step_3,
+	    &m_step_4,
+	    &m_step_5,
+	    &m_step_6,
+	    &m_step_7,
+	    &m_step_8,
+	    &m_step_9,
+	    &m_step_10,
+	    &m_step_11,
+	    &m_step_12,
+	    &m_step_13,
+	    &m_step_14,
+	    &m_step_15,
+	};
+	for (int step = 1; step < 16; ++step) {
+		step_components[step]->setBounds(step_components[step - 1]->getBounds().translated(width, 0));
+	}
 }
 
 void ArpComponent::setGUIBig() {
-	m_GUI_big = true;
-
-	m_octave_selector.setTopLeftPosition(OCTAVE_SELECTOR_X_150, OCTAVE_SELECTOR_Y_150);
-	m_steps_selector.setTopLeftPosition(STEP_SELECTOR_X_150, STEP_SELECTOR_Y_150);
-	m_direction.setTopLeftPosition(DIRECTION_SELECTOR_X_150, DIRECTION_SELECTOR_Y_150);
-	m_gate.setTopLeftPosition(GATE_SELECTOR_X_150, GATE_SELECTOR_Y_150);
-	m_sync_time.setTopLeftPosition(SYNC_TIME_ARP_POS_X_150, SYNC_TIME_ARP_POS_Y_150);
-
-	juce::Image on_off_1 =
-	    ImageCache::getFromMemory(BinaryData::button_on_off_1_150_png, BinaryData::button_on_off_1_150_pngSize);
-	juce::Image on_off_2 =
-	    ImageCache::getFromMemory(BinaryData::button_on_off_2_150_png, BinaryData::button_on_off_2_150_pngSize);
-	juce::Image on_off_3 =
-	    ImageCache::getFromMemory(BinaryData::button_on_off_3_150_png, BinaryData::button_on_off_3_150_pngSize);
-	juce::Image on_off_4 =
-	    ImageCache::getFromMemory(BinaryData::button_on_off_4_150_png, BinaryData::button_on_off_4_150_pngSize);
-
-	juce::DrawableImage on_off_draw1;
-	juce::DrawableImage on_off_draw2;
-	juce::DrawableImage on_off_draw3;
-	juce::DrawableImage on_off_draw4;
-
-	on_off_draw1.setImage(on_off_1);
-	on_off_draw2.setImage(on_off_2);
-	on_off_draw3.setImage(on_off_3);
-	on_off_draw4.setImage(on_off_4);
-	m_on.setBounds(ON_OFF_POS_X_150, ON_OFF_POS_Y_150, on_off_1.getWidth(), on_off_1.getHeight());
-
-	juce::Image one_shot_1 =
-	    ImageCache::getFromMemory(BinaryData::button_one_shot_1_150_png, BinaryData::button_one_shot_1_150_pngSize);
-	juce::Image one_shot_2 =
-	    ImageCache::getFromMemory(BinaryData::button_one_shot_2_150_png, BinaryData::button_one_shot_2_150_pngSize);
-	juce::Image one_shot_3 =
-	    ImageCache::getFromMemory(BinaryData::button_one_shot_3_150_png, BinaryData::button_one_shot_3_150_pngSize);
-	juce::Image one_shot_4 =
-	    ImageCache::getFromMemory(BinaryData::button_one_shot_4_150_png, BinaryData::button_one_shot_4_150_pngSize);
-
-	juce::DrawableImage one_shot_draw1;
-	juce::DrawableImage one_shot_draw2;
-	juce::DrawableImage one_shot_draw3;
-	juce::DrawableImage one_shot_draw4;
-
-	one_shot_draw1.setImage(one_shot_1);
-	one_shot_draw2.setImage(one_shot_2);
-	one_shot_draw3.setImage(one_shot_3);
-	one_shot_draw4.setImage(one_shot_4);
-	m_one_shot.setBounds(ONE_SHOT_POS_X_150, ONE_SHOT_POS_Y_150, one_shot_1.getWidth(), one_shot_1.getHeight());
-
-
-
-	juce::Image mod_transpose_1 =
-	    ImageCache::getFromMemory(BinaryData::button_mod_transpose_1_150_png, BinaryData::button_mod_transpose_1_150_pngSize);
-	juce::Image mod_transpose_2 =
-	    ImageCache::getFromMemory(BinaryData::button_mod_transpose_2_150_png, BinaryData::button_mod_transpose_2_150_pngSize);
-	juce::Image mod_transpose_3 =
-	    ImageCache::getFromMemory(BinaryData::button_mod_transpose_3_150_png, BinaryData::button_mod_transpose_3_150_pngSize);
-	juce::Image mod_transpose_4 =
-	    ImageCache::getFromMemory(BinaryData::button_mod_transpose_4_150_png, BinaryData::button_mod_transpose_4_150_pngSize);
-
-	juce::DrawableImage mod_transpose_draw1;
-	juce::DrawableImage mod_transpose_draw2;
-	juce::DrawableImage mod_transpose_draw3;
-	juce::DrawableImage mod_transpose_draw4;
-
-	mod_transpose_draw1.setImage(mod_transpose_1);
-	mod_transpose_draw2.setImage(mod_transpose_2);
-	mod_transpose_draw3.setImage(mod_transpose_3);
-	mod_transpose_draw4.setImage(mod_transpose_4);
-	m_mod_transpose.setBounds(MOD_TRANSPOSE_POS_X_150, MOD_TRANSPOSE_POS_Y_150, mod_transpose_1.getWidth(), mod_transpose_1.getHeight());
-
-	for (int step = 0; step < NUMBER_OF_STEPS; ++step) {
-
-		m_step_0.setBounds(STEP_COMPONENT_POS_X_150 + 0 * STEP_COMPONENT_WIDTH_150,
-		                   STEP_COMPONENT_POS_Y_150,
-		                   STEP_COMPONENT_WIDTH_150,
-		                   STEP_COMPONENT_HEIGHT_150);
-		m_step_0.setGUIBig();
-
-		m_step_1.setBounds(STEP_COMPONENT_POS_X_150 + 1 * STEP_COMPONENT_WIDTH_150,
-		                   STEP_COMPONENT_POS_Y_150,
-		                   STEP_COMPONENT_WIDTH_150,
-		                   STEP_COMPONENT_HEIGHT_150);
-		m_step_1.setGUIBig();
-
-		m_step_2.setBounds(STEP_COMPONENT_POS_X_150 + 2 * STEP_COMPONENT_WIDTH_150,
-		                   STEP_COMPONENT_POS_Y_150,
-		                   STEP_COMPONENT_WIDTH_150,
-		                   STEP_COMPONENT_HEIGHT_150);
-		m_step_2.setGUIBig();
-
-		m_step_3.setBounds(STEP_COMPONENT_POS_X_150 + 3 * STEP_COMPONENT_WIDTH_150,
-		                   STEP_COMPONENT_POS_Y_150,
-		                   STEP_COMPONENT_WIDTH_150,
-		                   STEP_COMPONENT_HEIGHT_150);
-		m_step_3.setGUIBig();
-
-		m_step_4.setBounds(STEP_COMPONENT_POS_X_150 + 4 * STEP_COMPONENT_WIDTH_150 + STEP_COMPONENT_SPACING_150,
-		                   STEP_COMPONENT_POS_Y_150,
-		                   STEP_COMPONENT_WIDTH_150,
-		                   STEP_COMPONENT_HEIGHT_150);
-		m_step_4.setGUIBig();
-
-		m_step_5.setBounds(STEP_COMPONENT_POS_X_150 + 5 * STEP_COMPONENT_WIDTH_150 + STEP_COMPONENT_SPACING_150,
-		                   STEP_COMPONENT_POS_Y_150,
-		                   STEP_COMPONENT_WIDTH_150,
-		                   STEP_COMPONENT_HEIGHT_150);
-		m_step_5.setGUIBig();
-
-		m_step_6.setBounds(STEP_COMPONENT_POS_X_150 + 6 * STEP_COMPONENT_WIDTH_150 + STEP_COMPONENT_SPACING_150,
-		                   STEP_COMPONENT_POS_Y_150,
-		                   STEP_COMPONENT_WIDTH_150,
-		                   STEP_COMPONENT_HEIGHT_150);
-		m_step_6.setGUIBig();
-
-		m_step_7.setBounds(STEP_COMPONENT_POS_X_150 + 7 * STEP_COMPONENT_WIDTH_150 + STEP_COMPONENT_SPACING_150,
-		                   STEP_COMPONENT_POS_Y_150,
-		                   STEP_COMPONENT_WIDTH_150,
-		                   STEP_COMPONENT_HEIGHT_150);
-		m_step_7.setGUIBig();
-
-		m_step_8.setBounds(STEP_COMPONENT_POS_X_150 + 8 * STEP_COMPONENT_WIDTH_150 + STEP_COMPONENT_SPACING_150 * 2,
-		                   STEP_COMPONENT_POS_Y_150,
-		                   STEP_COMPONENT_WIDTH_150,
-		                   STEP_COMPONENT_HEIGHT_150);
-		m_step_8.setGUIBig();
-
-		m_step_9.setBounds(STEP_COMPONENT_POS_X_150 + 9 * STEP_COMPONENT_WIDTH_150 + STEP_COMPONENT_SPACING_150 * 2,
-		                   STEP_COMPONENT_POS_Y_150,
-		                   STEP_COMPONENT_WIDTH_150,
-		                   STEP_COMPONENT_HEIGHT_150);
-		m_step_9.setGUIBig();
-
-		m_step_10.setBounds(STEP_COMPONENT_POS_X_150 + 10 * STEP_COMPONENT_WIDTH_150 + STEP_COMPONENT_SPACING_150 * 2,
-		                    STEP_COMPONENT_POS_Y_150,
-		                    STEP_COMPONENT_WIDTH_150,
-		                    STEP_COMPONENT_HEIGHT_150);
-		m_step_10.setGUIBig();
-
-		m_step_11.setBounds(STEP_COMPONENT_POS_X_150 + 11 * STEP_COMPONENT_WIDTH_150 + STEP_COMPONENT_SPACING_150 * 2,
-		                    STEP_COMPONENT_POS_Y_150,
-		                    STEP_COMPONENT_WIDTH_150,
-		                    STEP_COMPONENT_HEIGHT_150);
-		m_step_11.setGUIBig();
-
-		m_step_12.setBounds(STEP_COMPONENT_POS_X_150 + 12 * STEP_COMPONENT_WIDTH_150 + STEP_COMPONENT_SPACING_150 * 3,
-		                    STEP_COMPONENT_POS_Y_150,
-		                    STEP_COMPONENT_WIDTH_150,
-		                    STEP_COMPONENT_HEIGHT_150);
-		m_step_12.setGUIBig();
-
-		m_step_13.setBounds(STEP_COMPONENT_POS_X_150 + 13 * STEP_COMPONENT_WIDTH_150 + STEP_COMPONENT_SPACING_150 * 3,
-		                    STEP_COMPONENT_POS_Y_150,
-		                    STEP_COMPONENT_WIDTH_150,
-		                    STEP_COMPONENT_HEIGHT_150);
-		m_step_13.setGUIBig();
-
-		m_step_14.setBounds(STEP_COMPONENT_POS_X_150 + 14 * STEP_COMPONENT_WIDTH_150 + STEP_COMPONENT_SPACING_150 * 3,
-		                    STEP_COMPONENT_POS_Y_150,
-		                    STEP_COMPONENT_WIDTH_150,
-		                    STEP_COMPONENT_HEIGHT_150);
-		m_step_14.setGUIBig();
-
-		m_step_15.setBounds(STEP_COMPONENT_POS_X_150 + 15 * STEP_COMPONENT_WIDTH_150 + STEP_COMPONENT_SPACING_150 * 3,
-		                    STEP_COMPONENT_POS_Y_150,
-		                    STEP_COMPONENT_WIDTH_150,
-		                    STEP_COMPONENT_HEIGHT_150);
-		m_step_15.setGUIBig();
-	}
-
-	//m_background = ImageCache::getFromMemory(BinaryData::arp_backdrop_150_png, BinaryData::arp_backdrop_150_pngSize);
-
-
-	//DBG("SIZE: " + std::to_string(getX()) + ", " + std::to_string(getY()) + ", " + std::to_string(getWidth()) + ", " + std::to_string(getHeight()) );
 }
+
 void ArpComponent::setGUISmall() {
-	m_GUI_big = false;
-
-	m_octave_selector.setTopLeftPosition(OCTAVE_SELECTOR_X_100, OCTAVE_SELECTOR_Y_100);
-	m_steps_selector.setTopLeftPosition(STEP_SELECTOR_X_100, STEP_SELECTOR_Y_100);
-	m_direction.setTopLeftPosition(DIRECTION_SELECTOR_X_100, DIRECTION_SELECTOR_Y_100);
-	m_gate.setTopLeftPosition(GATE_SELECTOR_X_100, GATE_SELECTOR_Y_100);
-	m_sync_time.setTopLeftPosition(SYNC_TIME_ARP_POS_X_100, SYNC_TIME_ARP_POS_Y_100);
-
-	juce::Image on_off_1 =
-	    ImageCache::getFromMemory(BinaryData::button_on_off_1_png, BinaryData::button_on_off_1_pngSize);
-	juce::Image on_off_2 =
-	    ImageCache::getFromMemory(BinaryData::button_on_off_2_png, BinaryData::button_on_off_2_pngSize);
-	juce::Image on_off_3 =
-	    ImageCache::getFromMemory(BinaryData::button_on_off_3_png, BinaryData::button_on_off_3_pngSize);
-	juce::Image on_off_4 =
-	    ImageCache::getFromMemory(BinaryData::button_on_off_4_png, BinaryData::button_on_off_4_pngSize);
-
-	juce::DrawableImage on_off_draw1;
-	juce::DrawableImage on_off_draw2;
-	juce::DrawableImage on_off_draw3;
-	juce::DrawableImage on_off_draw4;
-
-	on_off_draw1.setImage(on_off_1);
-	on_off_draw2.setImage(on_off_2);
-	on_off_draw3.setImage(on_off_3);
-	on_off_draw4.setImage(on_off_4);
-	m_on.setBounds(ON_OFF_POS_X_100, ON_OFF_POS_Y_100, on_off_1.getWidth(), on_off_1.getHeight());
-
-	juce::Image one_shot_1 =
-	    ImageCache::getFromMemory(BinaryData::button_one_shot_1_png, BinaryData::button_one_shot_1_pngSize);
-	juce::Image one_shot_2 =
-	    ImageCache::getFromMemory(BinaryData::button_one_shot_2_png, BinaryData::button_one_shot_2_pngSize);
-	juce::Image one_shot_3 =
-	    ImageCache::getFromMemory(BinaryData::button_one_shot_3_png, BinaryData::button_one_shot_3_pngSize);
-	juce::Image one_shot_4 =
-	    ImageCache::getFromMemory(BinaryData::button_one_shot_4_png, BinaryData::button_one_shot_4_pngSize);
-
-	juce::DrawableImage one_shot_draw1;
-	juce::DrawableImage one_shot_draw2;
-	juce::DrawableImage one_shot_draw3;
-	juce::DrawableImage one_shot_draw4;
-
-	one_shot_draw1.setImage(one_shot_1);
-	one_shot_draw2.setImage(one_shot_2);
-	one_shot_draw3.setImage(one_shot_3);
-	one_shot_draw4.setImage(one_shot_4);
-	m_one_shot.setBounds(ONE_SHOT_POS_X_100, ONE_SHOT_POS_Y_100, one_shot_1.getWidth(), one_shot_1.getHeight());
-
-	juce::Image mod_transpose_1 =
-	    ImageCache::getFromMemory(BinaryData::button_mod_transpose_1_png, BinaryData::button_mod_transpose_1_pngSize);
-	juce::Image mod_transpose_2 =
-	    ImageCache::getFromMemory(BinaryData::button_mod_transpose_2_png, BinaryData::button_mod_transpose_2_pngSize);
-	juce::Image mod_transpose_3 =
-	    ImageCache::getFromMemory(BinaryData::button_mod_transpose_3_png, BinaryData::button_mod_transpose_3_pngSize);
-	juce::Image mod_transpose_4 =
-	    ImageCache::getFromMemory(BinaryData::button_mod_transpose_4_png, BinaryData::button_mod_transpose_4_pngSize);
-
-	juce::DrawableImage mod_transpose_draw1;
-	juce::DrawableImage mod_transpose_draw2;
-	juce::DrawableImage mod_transpose_draw3;
-	juce::DrawableImage mod_transpose_draw4;
-
-	mod_transpose_draw1.setImage(mod_transpose_1);
-	mod_transpose_draw2.setImage(mod_transpose_2);
-	mod_transpose_draw3.setImage(mod_transpose_3);
-	mod_transpose_draw4.setImage(mod_transpose_4);
-	m_mod_transpose.setBounds(MOD_TRANSPOSE_POS_X_100, MOD_TRANSPOSE_POS_Y_100, mod_transpose_1.getWidth(), mod_transpose_1.getHeight());
-
-
-	for (int step = 0; step < NUMBER_OF_STEPS; ++step) {
-
-		m_step_0.setBounds(STEP_COMPONENT_POS_X_100 + 0 * STEP_COMPONENT_WIDTH_100,
-		                   STEP_COMPONENT_POS_Y_100,
-		                   STEP_COMPONENT_WIDTH_100,
-		                   STEP_COMPONENT_HEIGHT_100);
-		m_step_0.setGUISmall();
-
-		m_step_1.setBounds(STEP_COMPONENT_POS_X_100 + 1 * STEP_COMPONENT_WIDTH_100,
-		                   STEP_COMPONENT_POS_Y_100,
-		                   STEP_COMPONENT_WIDTH_100,
-		                   STEP_COMPONENT_HEIGHT_100);
-		m_step_1.setGUISmall();
-
-		m_step_2.setBounds(STEP_COMPONENT_POS_X_100 + 2 * STEP_COMPONENT_WIDTH_100,
-		                   STEP_COMPONENT_POS_Y_100,
-		                   STEP_COMPONENT_WIDTH_100,
-		                   STEP_COMPONENT_HEIGHT_100);
-		m_step_2.setGUISmall();
-
-		m_step_3.setBounds(STEP_COMPONENT_POS_X_100 + 3 * STEP_COMPONENT_WIDTH_100,
-		                   STEP_COMPONENT_POS_Y_100,
-		                   STEP_COMPONENT_WIDTH_100,
-		                   STEP_COMPONENT_HEIGHT_100);
-		m_step_3.setGUISmall();
-
-		m_step_4.setBounds(STEP_COMPONENT_POS_X_100 + 4 * STEP_COMPONENT_WIDTH_100 + STEP_COMPONENT_SPACING_100,
-		                   STEP_COMPONENT_POS_Y_100,
-		                   STEP_COMPONENT_WIDTH_100,
-		                   STEP_COMPONENT_HEIGHT_100);
-		m_step_4.setGUISmall();
-
-		m_step_5.setBounds(STEP_COMPONENT_POS_X_100 + 5 * STEP_COMPONENT_WIDTH_100 + STEP_COMPONENT_SPACING_100,
-		                   STEP_COMPONENT_POS_Y_100,
-		                   STEP_COMPONENT_WIDTH_100,
-		                   STEP_COMPONENT_HEIGHT_100);
-		m_step_5.setGUISmall();
-
-		m_step_6.setBounds(STEP_COMPONENT_POS_X_100 + 6 * STEP_COMPONENT_WIDTH_100 + STEP_COMPONENT_SPACING_100,
-		                   STEP_COMPONENT_POS_Y_100,
-		                   STEP_COMPONENT_WIDTH_100,
-		                   STEP_COMPONENT_HEIGHT_100);
-		m_step_6.setGUISmall();
-
-		m_step_7.setBounds(STEP_COMPONENT_POS_X_100 + 7 * STEP_COMPONENT_WIDTH_100 + STEP_COMPONENT_SPACING_100,
-		                   STEP_COMPONENT_POS_Y_100,
-		                   STEP_COMPONENT_WIDTH_100,
-		                   STEP_COMPONENT_HEIGHT_100);
-		m_step_7.setGUISmall();
-
-		m_step_8.setBounds(STEP_COMPONENT_POS_X_100 + 8 * STEP_COMPONENT_WIDTH_100 + STEP_COMPONENT_SPACING_100 * 2,
-		                   STEP_COMPONENT_POS_Y_100,
-		                   STEP_COMPONENT_WIDTH_100,
-		                   STEP_COMPONENT_HEIGHT_100);
-		m_step_8.setGUISmall();
-
-		m_step_9.setBounds(STEP_COMPONENT_POS_X_100 + 9 * STEP_COMPONENT_WIDTH_100 + STEP_COMPONENT_SPACING_100 * 2,
-		                   STEP_COMPONENT_POS_Y_100,
-		                   STEP_COMPONENT_WIDTH_100,
-		                   STEP_COMPONENT_HEIGHT_100);
-		m_step_9.setGUISmall();
-
-		m_step_10.setBounds(STEP_COMPONENT_POS_X_100 + 10 * STEP_COMPONENT_WIDTH_100 + STEP_COMPONENT_SPACING_100 * 2,
-		                    STEP_COMPONENT_POS_Y_100,
-		                    STEP_COMPONENT_WIDTH_100,
-		                    STEP_COMPONENT_HEIGHT_100);
-		m_step_10.setGUISmall();
-
-		m_step_11.setBounds(STEP_COMPONENT_POS_X_100 + 11 * STEP_COMPONENT_WIDTH_100 + STEP_COMPONENT_SPACING_100 * 2,
-		                    STEP_COMPONENT_POS_Y_100,
-		                    STEP_COMPONENT_WIDTH_100,
-		                    STEP_COMPONENT_HEIGHT_100);
-		m_step_11.setGUISmall();
-
-		m_step_12.setBounds(STEP_COMPONENT_POS_X_100 + 12 * STEP_COMPONENT_WIDTH_100 + STEP_COMPONENT_SPACING_100 * 3,
-		                    STEP_COMPONENT_POS_Y_100,
-		                    STEP_COMPONENT_WIDTH_100,
-		                    STEP_COMPONENT_HEIGHT_100);
-		m_step_12.setGUISmall();
-
-		m_step_13.setBounds(STEP_COMPONENT_POS_X_100 + 13 * STEP_COMPONENT_WIDTH_100 + STEP_COMPONENT_SPACING_100 * 3,
-		                    STEP_COMPONENT_POS_Y_100,
-		                    STEP_COMPONENT_WIDTH_100,
-		                    STEP_COMPONENT_HEIGHT_100);
-		m_step_13.setGUISmall();
-
-		m_step_14.setBounds(STEP_COMPONENT_POS_X_100 + 14 * STEP_COMPONENT_WIDTH_100 + STEP_COMPONENT_SPACING_100 * 3,
-		                    STEP_COMPONENT_POS_Y_100,
-		                    STEP_COMPONENT_WIDTH_100,
-		                    STEP_COMPONENT_HEIGHT_100);
-		m_step_14.setGUISmall();
-
-		m_step_15.setBounds(STEP_COMPONENT_POS_X_100 + 15 * STEP_COMPONENT_WIDTH_100 + STEP_COMPONENT_SPACING_100 * 3,
-		                    STEP_COMPONENT_POS_Y_100,
-		                    STEP_COMPONENT_WIDTH_100,
-		                    STEP_COMPONENT_HEIGHT_100);
-		m_step_15.setGUISmall();
-	}
-	//DBG("SIZE: " + std::to_string(getX()) + ", " + std::to_string(getY()) + ", " + std::to_string(getWidth()) + ", " + std::to_string(getHeight()) );
-
-	//m_background = ImageCache::getFromMemory(BinaryData::arp_backdrop_png, BinaryData::arp_backdrop_pngSize);
 }
 
 void ArpComponent::timerCallback() {
@@ -584,9 +274,8 @@ void ArpComponent::forceValueTreeOntoComponents(ValueTree p_tree) {
 	setModTranspose(!m_mod_transpose.getToggleState());
 }
 
-
-void ArpComponent::setVisibleAndStartTimer(bool p_set_visible){
-	if(p_set_visible){
+void ArpComponent::setVisibleAndStartTimer(bool p_set_visible) {
+	if (p_set_visible) {
 		startTimer(ARP_TIMER_MILLISECS);
 	} else {
 		stopTimer();
@@ -594,8 +283,7 @@ void ArpComponent::setVisibleAndStartTimer(bool p_set_visible){
 	setVisible(p_set_visible);
 }
 
-
-void ArpComponent::setModTranspose(bool p_is_mod){
+void ArpComponent::setModTranspose(bool p_is_mod) {
 	m_step_0.setModTranspose(p_is_mod);
 	m_step_1.setModTranspose(p_is_mod);
 	m_step_2.setModTranspose(p_is_mod);

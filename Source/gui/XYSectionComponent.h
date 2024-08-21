@@ -17,9 +17,11 @@
 
 #include "../GlobalIncludes.h"
 #include "../JuceLibraryCode/JuceHeader.h"
-#include "OdinKnob.h"
 #include "OdinControlAttachments.h"
+#include "OdinKnob.h"
 #include "XYPadComponent.h"
+#include "TextLabel.h"
+
 
 #define MODX_POS_X (264 - 150)
 #define MODX_POS_Y (564 - 502)
@@ -34,6 +36,7 @@ public:
 	~XYSectionComponent();
 
 	void paint(Graphics &) override;
+	void resized() override;
 
 	void setGUIBig();
 	void setGUISmall();
@@ -46,6 +49,9 @@ private:
 
 	OdinKnob m_modx;
 	OdinKnob m_mody;
+
+    TextLabel m_label_x;
+    TextLabel m_label_y;
 
 	std::unique_ptr<OdinKnobAttachment> m_x_attach;
 	std::unique_ptr<OdinKnobAttachment> m_y_attach;
