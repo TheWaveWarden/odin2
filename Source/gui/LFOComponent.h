@@ -21,6 +21,7 @@
 #include "OdinButton.h"
 #include "OdinControlAttachments.h"
 #include "OdinKnob.h"
+#include "TextLabel.h"
 #include "SyncTimeSelector.h"
 
 #define LFO_FREQ_POS_X 74
@@ -89,6 +90,8 @@ private:
 	void toggleSync() {
 		setSync(!m_sync_active);
 	}
+
+    TextLabel m_freq_label;
 
 	LFOSelectorComponent m_selector;
 	SyncTimeSelector m_sync_time;

@@ -19,6 +19,7 @@
 #include "DrawableSlider.h"
 #include "OdinButton.h"
 #include "OdinControlAttachments.h"
+#include "TextLabel.h"
 
 #define SLIDER_SIZE_X 23
 #define SLIDER_SIZE_Y 79
@@ -63,6 +64,11 @@ public:
 
 private:
 	bool m_GUI_big = true;
+
+    TextLabel m_attack_label;
+    TextLabel m_decay_label;
+    TextLabel m_sustain_label;
+    TextLabel m_release_label;
 
 	OdinButton m_loop;
 	DrawableSlider m_attack;

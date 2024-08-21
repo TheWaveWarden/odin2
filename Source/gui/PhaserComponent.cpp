@@ -18,13 +18,18 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "JsonGuiProvider.h"
 
-
-PhaserComponent::PhaserComponent(AudioProcessorValueTreeState &vts,
-                                 const std::string &p_fx_name,
-                                 bool p_is_standalone) :
+PhaserComponent::PhaserComponent(AudioProcessorValueTreeState &vts, const std::string &p_fx_name, bool p_is_standalone) :
     m_value_tree(vts), m_fx_name(p_fx_name), m_is_standalone_plugin(p_is_standalone), m_sync("sync", "Sync"),
     m_reset("reset", "Reset"), m_fx_synctime_denominator_identifier(p_fx_name + "_synctime_denominator"),
-    m_fx_synctime_numerator_identifier(p_fx_name + "_synctime_numerator") {
+    m_fx_synctime_numerator_identifier(p_fx_name + "_synctime_numerator"), m_rate_label("Rate"), m_mod_label("Amount"),
+    m_freq_label("Freq"), m_feedback_label("Feedback"), m_dry_wet_label("DryWet")
+
+{
+	addAndMakeVisible(m_rate_label);
+	addAndMakeVisible(m_mod_label);
+	addAndMakeVisible(m_freq_label);
+	addAndMakeVisible(m_feedback_label);
+	addAndMakeVisible(m_dry_wet_label);
 
 	m_rate_attach.reset(new OdinKnobAttachment(m_value_tree, m_fx_name + "_rate", m_rate));
 	m_freq_attach.reset(new OdinKnobAttachment(m_value_tree, m_fx_name + "_freq", m_freq));
@@ -146,6 +151,11 @@ void PhaserComponent::setGUISmall() {
 }
 
 void PhaserComponent::resized() {
+	GET_LOCAL_AREA(m_rate_label, "PhaserRateLabel");
+	GET_LOCAL_AREA(m_mod_label, "PhaserModLabel");
+	GET_LOCAL_AREA(m_freq_label, "PhaserFreqLabel");
+	GET_LOCAL_AREA(m_feedback_label, "PhaserFeedbackLabel");
+	GET_LOCAL_AREA(m_dry_wet_label, "PhaserDryWetLabel");
 
 	GET_LOCAL_AREA(m_rate, "PhaserRate");
 	GET_LOCAL_AREA(m_mod, "PhaserMod");

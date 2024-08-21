@@ -32,7 +32,6 @@ void ModAmountComponent::paint(Graphics &g) {
 	top_left.addXY(m_inlay, m_inlay + m_inlay_top);
 	juce::Point<int> bottom_right = getLocalBounds().getBottomRight();
 	bottom_right.addXY(-m_inlay, -m_inlay - m_inlay_bottom);
-	g.fillRect(juce::Rectangle<int>(top_left, bottom_right));
 
 	if (m_value > 0) {
 		g.setColour(m_color_bar);

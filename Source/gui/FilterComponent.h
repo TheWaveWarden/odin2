@@ -13,15 +13,15 @@
 ** GNU General Public License for more details.
 */
 
-
 #pragma once
 
+#include "../GlobalIncludes.h"
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "FormantSelector.h"
-#include "../GlobalIncludes.h"
-#include "OdinKnob.h"
 #include "LeftRightButton.h"
 #include "OdinControlAttachments.h"
+#include "OdinKnob.h"
+#include "TextLabel.h"
 
 #define VEL_POS_X 9
 #define VEL_POS_Y 8
@@ -128,6 +128,18 @@ public:
 
 protected:
 	bool m_GUI_big = true;
+
+	TextLabel m_vel_label;
+	TextLabel m_kbd_label;
+	TextLabel m_env_label;
+	TextLabel m_gain_label;
+	TextLabel m_freq_label;
+	TextLabel m_res_label;
+	TextLabel m_saturation_label;
+	TextLabel m_sem_transition_label;
+	TextLabel m_formant_transition_label;
+	TextLabel m_ring_mod_amount_label;
+	TextLabel m_module_label;
 
 	OdinKnob m_vel;
 	OdinKnob m_kbd;

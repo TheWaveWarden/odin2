@@ -14,12 +14,18 @@
 */
 
 #include "ADSRComponent.h"
-#include "JsonGuiProvider.h"
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "JsonGuiProvider.h"
 
 //==============================================================================
 ADSRComponent::ADSRComponent(AudioProcessorValueTreeState &vts, const std::string &p_adsr_number) :
-    m_loop("loop_button", "Loop"), m_value_tree(vts), m_adsr_number(p_adsr_number) {
+    m_loop("loop_button", "Loop"), m_value_tree(vts), m_adsr_number(p_adsr_number), m_attack_label("A"),
+    m_decay_label("D"), m_sustain_label("S"), m_release_label("R") {
+
+	addAndMakeVisible(m_attack_label);
+	addAndMakeVisible(m_decay_label);
+	addAndMakeVisible(m_sustain_label);
+	addAndMakeVisible(m_release_label);
 
 	m_attack_attach.reset(new OdinSliderAttachment(m_value_tree, ("env" + m_adsr_number + "_attack"), m_attack));
 	m_decay_attach.reset(new OdinSliderAttachment(m_value_tree, "env" + m_adsr_number + "_decay", m_decay));
@@ -90,6 +96,11 @@ void ADSRComponent::setGUISmall() {
 }
 
 void ADSRComponent::resized() {
+	GET_LOCAL_AREA(m_attack_label, "AttackLabel");
+	GET_LOCAL_AREA(m_decay_label, "DecayLabel");
+	GET_LOCAL_AREA(m_sustain_label, "SustainLabel");
+	GET_LOCAL_AREA(m_release_label, "ReleaseLabel");
+
 	GET_LOCAL_AREA(m_loop, "ADSRLoop");
 	GET_LOCAL_AREA(m_attack, "ADSRAttack");
 	GET_LOCAL_AREA(m_decay, "ADSRDecay");

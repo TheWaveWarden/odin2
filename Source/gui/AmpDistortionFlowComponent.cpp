@@ -14,12 +14,19 @@
 */
 
 #include "AmpDistortionFlowComponent.h"
-#include "JsonGuiProvider.h"
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "JsonGuiProvider.h"
 
 AmpDistortionFlowComponent::AmpDistortionFlowComponent(AudioProcessorValueTreeState &vts) :
     m_flow_left("flow_left", "<"), m_flow_right("flow_right", ">"), m_distortion("distortion", "Distortion"),
-    m_value_tree(vts) {
+    m_value_tree(vts), m_gain_label("Gain"), m_pan_label("Pan"), m_velocity_label("Velocity"), m_boost_label("Boost"),
+    m_drywet_label("DryWet") {
+
+	addAndMakeVisible(m_gain_label);
+	addAndMakeVisible(m_pan_label);
+	addAndMakeVisible(m_velocity_label);
+	addAndMakeVisible(m_boost_label);
+	addAndMakeVisible(m_drywet_label);
 
 	m_flow_left.setClickingTogglesState(true);
 	addAndMakeVisible(m_flow_left);
@@ -142,6 +149,12 @@ void AmpDistortionFlowComponent::setDistortionPanelActive(bool p_active) {
 void AmpDistortionFlowComponent::setGUIBig() {
 }
 void AmpDistortionFlowComponent::resized() {
+
+	GET_LOCAL_AREA(m_gain_label, "GainLabel");
+	GET_LOCAL_AREA(m_pan_label, "PanLabel");
+	GET_LOCAL_AREA(m_velocity_label, "VelocityLabel");
+	GET_LOCAL_AREA(m_boost_label, "BoostLabel");
+	GET_LOCAL_AREA(m_drywet_label, "DistDryWetLabel");
 
 	GET_LOCAL_AREA(m_flow_left, "FlowLeft");
 	GET_LOCAL_AREA(m_flow_right, "FlowRight");

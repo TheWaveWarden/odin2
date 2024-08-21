@@ -20,6 +20,7 @@
 #include "GlassDropdown.h"
 #include "OdinKnob.h"
 #include "OdinButton.h"
+#include "TextLabel.h"
 #include "OdinControlAttachments.h"
 
 #define REVERB_POS_X_SPACING 48
@@ -69,12 +70,17 @@ private:
 
 	juce::Image m_background;
 
+    TextLabel m_delay_label;
+    TextLabel m_EQ_gain_label;
+    TextLabel m_EQ_freq_label;
+    TextLabel m_dry_wet_label;
+    TextLabel m_mid_hall_label;
+    TextLabel m_hf_damp_label;
+
 	OdinKnob m_delay; // zita: delay / size
 	OdinKnob m_EQ_gain; // zita: eq
 	OdinKnob m_EQ_freq; // zita: eq
 	OdinKnob m_dry_wet;  // zita: mix
-	OdinKnob m_low_freq; // zita: low freq
-	OdinKnob m_low_hall; // zita: low hall
 	OdinKnob m_mid_hall; // zita: mid hall
 	OdinKnob m_hf_damp;  //zita: hf damp
 

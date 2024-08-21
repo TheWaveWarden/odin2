@@ -14,14 +14,29 @@
 */
 
 #include "FilterComponent.h"
-#include "JsonGuiProvider.h"
 #include "../GlobalIncludes.h"
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "JsonGuiProvider.h"
 
 FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts, const std::string &p_filter_number) :
     m_value_tree(vts), m_filter_number(p_filter_number), m_vowel_left(false), m_vowel_right(true),
     m_vowel_left_identifier("fil" + p_filter_number + "_vowel_left"),
-    m_vowel_right_identifier("fil" + p_filter_number + "_vowel_right"), m_comb_plus_minus("comb_plus_minus") {
+    m_vowel_right_identifier("fil" + p_filter_number + "_vowel_right"), m_comb_plus_minus("comb_plus_minus"),
+    m_vel_label("Vel"), m_kbd_label("Kbd"), m_env_label("Env"), m_gain_label("Gain"), m_freq_label("Frequency"),
+    m_res_label("Resonance"), m_saturation_label("Saturation"), m_sem_transition_label("Transition"),
+    m_formant_transition_label("Formant"), m_ring_mod_amount_label("Amount"), m_module_label("Lowpass24") {
+
+	addAndMakeVisible(m_vel_label);
+	addAndMakeVisible(m_kbd_label);
+	addAndMakeVisible(m_env_label);
+	addAndMakeVisible(m_gain_label);
+	addAndMakeVisible(m_freq_label);
+	addAndMakeVisible(m_res_label);
+	addAndMakeVisible(m_saturation_label);
+	addAndMakeVisible(m_sem_transition_label);
+	addAndMakeVisible(m_formant_transition_label);
+	addAndMakeVisible(m_ring_mod_amount_label);
+	addAndMakeVisible(m_module_label);
 
 	m_vel_attach.reset(new OdinKnobAttachment(m_value_tree, "fil" + m_filter_number + "_vel", m_vel));
 	m_env_attach.reset(new OdinKnobAttachment(m_value_tree, "fil" + m_filter_number + "_env", m_env));
@@ -365,6 +380,18 @@ void FilterComponent::forceValueTreeOntoComponents(ValueTree p_tree, int p_index
 }
 
 void FilterComponent::resized() {
+	GET_LOCAL_AREA(m_vel_label, "FilVelLabel");
+	GET_LOCAL_AREA(m_kbd_label, "FilKbdLabel");
+	GET_LOCAL_AREA(m_env_label, "FilEnvLabel");
+	GET_LOCAL_AREA(m_gain_label, "FilGainLabel");
+	GET_LOCAL_AREA(m_freq_label, "FilFreqLabel");
+	GET_LOCAL_AREA(m_res_label, "FilResLabel");
+	GET_LOCAL_AREA(m_saturation_label, "FilSaturationLabel");
+	GET_LOCAL_AREA(m_sem_transition_label, "FilSemTransitionLabel");
+	GET_LOCAL_AREA(m_formant_transition_label, "FilFormantTransitionLabel");
+	GET_LOCAL_AREA(m_ring_mod_amount_label, "FilRingModAmountLabel");
+	GET_LOCAL_AREA(m_module_label, "FilModuleLabel");
+
 	GET_LOCAL_AREA(m_vel, "FilVel");
 	GET_LOCAL_AREA(m_kbd, "FilKbd");
 	GET_LOCAL_AREA(m_env, "FilEnv");

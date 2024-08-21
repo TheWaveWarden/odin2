@@ -14,13 +14,22 @@
 */
 
 #include "DelayComponent.h"
-#include "JsonGuiProvider.h"
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "JsonGuiProvider.h"
 
 DelayComponent::DelayComponent(AudioProcessorValueTreeState &vts, bool p_is_standalone) :
     m_sync("sync", "Sync"), m_pingpong("pingpong", "PingPong"), m_value_tree(vts),
     m_delay_synctime_denominator_identifier("delay_synctime_denominator"),
-    m_delay_synctime_numerator_identifier("delay_synctime_numerator"), m_is_standalone_plugin(p_is_standalone) {
+    m_delay_synctime_numerator_identifier("delay_synctime_numerator"), m_is_standalone_plugin(p_is_standalone),
+    m_time_label("Time"), m_feedback_label("Feedback"), m_hp_label("HP"), m_ducking_label("Ducking"),
+    m_dry_label("Dry"), m_wet_label("Wet") {
+
+	addAndMakeVisible(m_time_label);
+	addAndMakeVisible(m_feedback_label);
+	addAndMakeVisible(m_hp_label);
+	addAndMakeVisible(m_ducking_label);
+	addAndMakeVisible(m_dry_label);
+	addAndMakeVisible(m_wet_label);
 
 	m_delay_time_attach.reset(new OdinKnobAttachment(m_value_tree, "delay_time", m_time));
 	m_delay_feedback_attach.reset(new OdinKnobAttachment(m_value_tree, "delay_feedback", m_feedback));
@@ -133,6 +142,13 @@ void DelayComponent::setGUIBig() {
 void DelayComponent::setGUISmall() {
 }
 void DelayComponent::resized() {
+	GET_LOCAL_AREA(m_time_label, "DelayTimeLabel");
+	GET_LOCAL_AREA(m_feedback_label, "DelayFeedbackLabel");
+	GET_LOCAL_AREA(m_hp_label, "DelayHpLabel");
+	GET_LOCAL_AREA(m_ducking_label, "DelayDuckingLabel");
+	GET_LOCAL_AREA(m_dry_label, "DelayDryLabel");
+	GET_LOCAL_AREA(m_wet_label, "DelayWetLabel");
+
 	GET_LOCAL_AREA(m_sync, "DelaySync");
 	GET_LOCAL_AREA(m_pingpong, "DelayPingpong");
 	GET_LOCAL_AREA(m_time, "DelayTime");
@@ -142,7 +158,6 @@ void DelayComponent::resized() {
 	GET_LOCAL_AREA(m_dry, "DelayDry");
 	GET_LOCAL_AREA(m_wet, "DelayWet");
 	GET_LOCAL_AREA(m_sync_time, "DelaySyncTime");
-    
 }
 
 void DelayComponent::setSync(bool p_sync_on) {

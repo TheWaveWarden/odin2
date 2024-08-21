@@ -790,15 +790,6 @@ ModMatrixComponent::~ModMatrixComponent() {
 }
 
 void ModMatrixComponent::paint(Graphics &g) {
-	SET_INTERPOLATION_QUALITY(g)
-
-	g.setColour(m_color);
-	auto background = getLocalBounds();
-	background.removeFromRight(19);
-	if (m_GUI_big) {
-		background.removeFromBottom(20);
-	}
-	g.fillRect(background);
 }
 
 void ModMatrixComponent::clearRow(int p_row) {

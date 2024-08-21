@@ -16,15 +16,17 @@
 #include <typeinfo>
 
 #include "../JuceLibraryCode/JuceHeader.h"
-#include "LFOComponent.h"
 #include "JsonGuiProvider.h"
+#include "LFOComponent.h"
 
 LFOComponent::LFOComponent(AudioProcessorValueTreeState &vts, const std::string &p_lfo_number, bool p_is_standalone) :
     m_value_tree(vts), m_lfo_number(p_lfo_number), m_reset("reset", "Reset"), m_sync("sync", "Sync"),
     m_lfo_wave_identifier("lfo" + p_lfo_number + "_wave"),
     m_lfo_synctime_denominator_identifier("lfo" + p_lfo_number + "_synctime_denominator"),
     m_lfo_synctime_numerator_identifier("lfo" + p_lfo_number + "_synctime_numerator"),
-    m_is_standalone_plugin(p_is_standalone) {
+    m_is_standalone_plugin(p_is_standalone), m_freq_label("Freq") {
+
+	addAndMakeVisible(m_freq_label);
 
 	m_freq_attach.reset(new OdinKnobAttachment(m_value_tree, "lfo" + m_lfo_number + "_freq", m_freq));
 
@@ -105,6 +107,7 @@ void LFOComponent::forceValueTreeOntoComponents(ValueTree p_tree) {
 }
 
 void LFOComponent::resized() {
+	GET_LOCAL_AREA(m_freq_label, "LFOFreqLabel");
 	GET_LOCAL_AREA(m_selector, "LFOSelector");
 	GET_LOCAL_AREA(m_sync_time, "LFOSyncTime");
 	GET_LOCAL_AREA(m_freq, "LFOFreq");

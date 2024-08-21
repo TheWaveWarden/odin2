@@ -17,9 +17,16 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "JsonGuiProvider.h"
 
-
 ReverbComponent::ReverbComponent(AudioProcessorValueTreeState &vts, bool p_is_standalone) :
-    m_value_tree(vts), m_is_standalone_plugin(p_is_standalone) {
+    m_value_tree(vts), m_is_standalone_plugin(p_is_standalone), m_delay_label("Delay"), m_EQ_gain_label("EQ Gain"),
+    m_EQ_freq_label("EQ Freq"), m_dry_wet_label("DryWet"), m_mid_hall_label("Decay"), m_hf_damp_label("HF Damp") {
+
+	addAndMakeVisible(m_delay_label);
+	addAndMakeVisible(m_EQ_gain_label);
+	addAndMakeVisible(m_EQ_freq_label);
+	addAndMakeVisible(m_dry_wet_label);
+	addAndMakeVisible(m_mid_hall_label);
+	addAndMakeVisible(m_hf_damp_label);
 
 	m_reverb_delay_attach.reset(new OdinKnobAttachment(m_value_tree, "rev_delay", m_delay));
 	m_reverb_EQ_gain_attach.reset(new OdinKnobAttachment(m_value_tree, "rev_eqgain", m_EQ_gain));
@@ -106,12 +113,17 @@ void ReverbComponent::setGUISmall() {
 }
 
 void ReverbComponent::resized() {
+	GET_LOCAL_AREA(m_delay_label, "RevDelayLabel");
+	GET_LOCAL_AREA(m_EQ_gain_label, "RevEqGainLabel");
+	GET_LOCAL_AREA(m_EQ_freq_label, "RevEqFreqLabel");
+	GET_LOCAL_AREA(m_dry_wet_label, "RevDryWetLabel");
+	GET_LOCAL_AREA(m_mid_hall_label, "RevMidHallLabel");
+	GET_LOCAL_AREA(m_hf_damp_label, "RevHfDampLabel");
+
 	GET_LOCAL_AREA(m_delay, "RevDelay");
 	GET_LOCAL_AREA(m_EQ_gain, "RevEqGain");
 	GET_LOCAL_AREA(m_EQ_freq, "RevEqFreq");
 	GET_LOCAL_AREA(m_dry_wet, "RevDryWet");
-	GET_LOCAL_AREA(m_low_freq, "RevLowFreq");
-	GET_LOCAL_AREA(m_low_hall, "RevLowHall");
 	GET_LOCAL_AREA(m_mid_hall, "RevMidHall");
 	GET_LOCAL_AREA(m_hf_damp, "RevHfDamp");
 }

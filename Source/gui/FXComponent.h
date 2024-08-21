@@ -20,6 +20,7 @@
 #include "OdinButton.h"
 #include "OdinControlAttachments.h"
 #include "OdinKnob.h"
+#include "TextLabel.h"
 #include "SyncTimeSelector.h"
 
 
@@ -77,6 +78,11 @@ public:
 private:
 	bool m_GUI_big = true;
 	bool m_is_standalone_plugin;
+
+    TextLabel m_rate_label;
+    TextLabel m_amount_label;
+    TextLabel m_feedback_label;
+    TextLabel m_dry_wet_label;
 
 	OdinKnob m_rate;
 	OdinKnob m_amount;

@@ -21,6 +21,7 @@
 #include "OdinButton.h"
 #include "OdinControlAttachments.h"
 #include "SyncTimeSelector.h"
+#include "TextLabel.h"
 
 #define PHASER_FREQ_MIN 0.05
 #define PHASER_FREQ_MAX 20
@@ -87,6 +88,12 @@ public:
 private:
 	bool m_GUI_big = true;
 	bool m_is_standalone_plugin;
+
+    TextLabel m_rate_label;
+    TextLabel m_mod_label;
+    TextLabel m_freq_label;
+    TextLabel m_feedback_label;
+    TextLabel m_dry_wet_label;
 
 	OdinKnob m_rate;
 	OdinKnob m_mod;
