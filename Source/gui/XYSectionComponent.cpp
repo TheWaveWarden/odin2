@@ -58,12 +58,6 @@ XYSectionComponent::~XYSectionComponent() {
 void XYSectionComponent::paint(Graphics &g) {
 }
 
-void XYSectionComponent::setGUIBig() {
-}
-
-void XYSectionComponent::setGUISmall() {
-}
-
 void XYSectionComponent::resized() {
 	GET_LOCAL_AREA(m_modx, "Modx");
 	GET_LOCAL_AREA(m_mody, "Mody");

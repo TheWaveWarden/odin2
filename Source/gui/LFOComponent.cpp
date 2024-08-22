@@ -63,7 +63,6 @@ LFOComponent::LFOComponent(AudioProcessorValueTreeState &vts, const std::string 
 		//m_value_tree.getParameter(m_lfo_wave_identifier)->setValueNotifyingHost(((float)p_new_value) / 20.f);
 		m_value_tree.state.getChildWithName("lfo").setProperty(m_lfo_wave_identifier, p_new_value, nullptr);
 	};
-	m_selector.setTopLeftPosition(SELECTOR_POS_X, SELECTOR_POS_Y);
 	m_selector.setTooltip("The waveform to be used for this LFO. WD 1-3 use "
 	                      "the WaveDraw tables drawn in oscillators 1-3. CD 1-3 use the ChipDraw tables.");
 	addAndMakeVisible(m_selector);
@@ -72,7 +71,6 @@ LFOComponent::LFOComponent(AudioProcessorValueTreeState &vts, const std::string 
 		m_value_tree.state.getChildWithName("lfo").setProperty(m_lfo_synctime_numerator_identifier, p_left, nullptr);
 		m_value_tree.state.getChildWithName("lfo").setProperty(m_lfo_synctime_denominator_identifier, p_right, nullptr);
 	};
-	m_sync_time.setTopLeftPosition(SYNC_TIME_POS_X, SYNC_TIME_POS_Y);
 	m_sync_time.setTooltip("Set the frequency in sync to your track.");
 	addChildComponent(m_sync_time);
 
@@ -113,10 +111,4 @@ void LFOComponent::resized() {
 	GET_LOCAL_AREA(m_freq, "LFOFreq");
 	GET_LOCAL_AREA(m_reset, "LFOReset");
 	GET_LOCAL_AREA(m_sync, "LFOSync");
-}
-
-void LFOComponent::setGUIBig() {
-}
-
-void LFOComponent::setGUISmall() {
 }

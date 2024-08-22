@@ -40,12 +40,7 @@ public:
 	void paint(Graphics &) override;
 	void resized() override;
 
-	void setGUIBig();
-	void setGUISmall();
-
 private:
-	bool m_GUI_big = true;
-
 	void clearRow(int p_row);
 
 	void createMenu(PopupMenu *p_menu);

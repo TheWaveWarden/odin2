@@ -19,9 +19,6 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "OdinKnob.h"
 
-#define HANDLE_DIAMETER 8
-#define HANDLE_INLAY 4
-
 #define VECTOR_UP 1
 #define VECTOR_DOWN 70
 #define VECTOR_LEFT 4
@@ -47,15 +44,12 @@ public:
 	void setY(float p_y);
 	void setColor(juce::Colour p_color);
 	void setLogoImage(juce::Image p_image);
-	void setGUIBig();
-	void setGUISmall();
 
 private:
 	AudioProcessorValueTreeState &m_value_tree;
 	const std::string m_param_name_x;
 	const std::string m_param_name_y;
 
-	bool m_GUI_big   = true;
 	bool m_draw_logo = false;
 
 	//this resolves the issue where the pad updates the knob, which updates the pad again

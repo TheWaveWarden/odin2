@@ -75,11 +75,6 @@ ADSRComponent::ADSRComponent(AudioProcessorValueTreeState &vts, const std::strin
 	SET_CTR_KEY(m_decay);
 	SET_CTR_KEY(m_sustain);
 	SET_CTR_KEY(m_release);
-
-	m_attack.setBounds(SLIDER_POS_X, SLIDER_POS_Y, SLIDER_SIZE_X, SLIDER_SIZE_Y);
-	m_decay.setBounds(SLIDER_POS_X + SLIDER_OFFSET * 1 - 1, SLIDER_POS_Y, SLIDER_SIZE_X, SLIDER_SIZE_Y);
-	m_sustain.setBounds(SLIDER_POS_X + SLIDER_OFFSET * 2, SLIDER_POS_Y, SLIDER_SIZE_X, SLIDER_SIZE_Y);
-	m_release.setBounds(SLIDER_POS_X + SLIDER_OFFSET * 3, SLIDER_POS_Y, SLIDER_SIZE_X, SLIDER_SIZE_Y);
 }
 
 ADSRComponent::~ADSRComponent() {
@@ -88,11 +83,6 @@ ADSRComponent::~ADSRComponent() {
 void ADSRComponent::paint(Graphics &g) {
 	g.setColour(COL_LIGHT);
 	g.drawRect(getLocalBounds(), 1);
-}
-
-void ADSRComponent::setGUIBig() {
-}
-void ADSRComponent::setGUISmall() {
 }
 
 void ADSRComponent::resized() {

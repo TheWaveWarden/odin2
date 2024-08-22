@@ -19,16 +19,8 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "OdinControlAttachments.h"
 #include "OdinKnob.h"
-#include "XYPadComponent.h"
 #include "TextLabel.h"
-
-
-#define MODX_POS_X (264 - 150)
-#define MODX_POS_Y (564 - 502)
-#define MODY_POS_X (264 - 150)
-#define MODY_POS_Y (521 - 502)
-
-#define XY_PAD_POSIITON_Y 4
+#include "XYPadComponent.h"
 
 class XYSectionComponent : public Component {
 public:
@@ -38,20 +30,15 @@ public:
 	void paint(Graphics &) override;
 	void resized() override;
 
-	void setGUIBig();
-	void setGUISmall();
-
 private:
-	bool m_GUI_big = true;
-
 	std::string m_section_name;
 	AudioProcessorValueTreeState &m_value_tree;
 
 	OdinKnob m_modx;
 	OdinKnob m_mody;
 
-    TextLabel m_label_x;
-    TextLabel m_label_y;
+	TextLabel m_label_x;
+	TextLabel m_label_y;
 
 	std::unique_ptr<OdinKnobAttachment> m_x_attach;
 	std::unique_ptr<OdinKnobAttachment> m_y_attach;

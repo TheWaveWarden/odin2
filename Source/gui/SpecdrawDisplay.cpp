@@ -115,16 +115,3 @@ void SpecdrawDisplay::mouseUp(const MouseEvent &event) {
 float *SpecdrawDisplay::getDrawnTable() {
 	return m_draw_values;
 }
-
-void SpecdrawDisplay::setGUIBig() {
-	m_GUI_big   = true;
-	m_glaspanel = ImageCache::getFromMemory(BinaryData::drawpanel_150_png, BinaryData::drawpanel_150_pngSize);
-
-	setSize(m_glaspanel.getWidth(), m_glaspanel.getHeight());
-}
-void SpecdrawDisplay::setGUISmall() {
-	m_GUI_big   = false;
-	m_glaspanel = ImageCache::getFromMemory(BinaryData::drawpanel_png, BinaryData::drawpanel_pngSize);
-
-	setSize(m_glaspanel.getWidth(), m_glaspanel.getHeight());
-}

@@ -97,9 +97,9 @@ void PatchBrowserSelector::paint(Graphics &g) {
 	switch (m_directory_status) {
 	case DirectoryStatus::Nonexistent: {
 		g.setColour(WARNING_COLOR);
-		float font_size = m_GUI_big ? 17.f : 13.f;
-		float inlay_x   = m_GUI_big ? WARNING_INLAY_X_150 : WARNING_INLAY_X_100;
-		float offset_y  = m_GUI_big ? WARNING_OFFSET_Y_150 : WARNING_OFFSET_Y_100;
+		float font_size = H / 1.4f;
+		float inlay_x   = proportionOfWidth(0.1f);
+		float offset_y  = proportionOfHeight(0.1f);
 		g.setFont(font_size);
 		g.drawMultiLineText(
 		    m_nonexistent_text, inlay_x, font_size + offset_y, getWidth() - 2 * inlay_x, Justification::centred, 5.f);
@@ -107,9 +107,9 @@ void PatchBrowserSelector::paint(Graphics &g) {
 
 	case DirectoryStatus::Empty: {
 		g.setColour(WARNING_COLOR);
-		float font_size = m_GUI_big ? 17.f : 13.f;
-		float inlay_x   = m_GUI_big ? WARNING_INLAY_X_150 : WARNING_INLAY_X_100;
-		float offset_y  = m_GUI_big ? WARNING_OFFSET_Y_150 : WARNING_OFFSET_Y_100;
+		float font_size = proportionOfHeight(0.05f);
+		float inlay_x   = proportionOfWidth(0.1f);
+		float offset_y  = proportionOfHeight(0.1f);
 		g.setFont(font_size);
 		g.drawMultiLineText(
 		    m_empty_text, inlay_x, font_size + offset_y, getWidth() - 2 * inlay_x, Justification::centred, 5.f);
@@ -149,12 +149,6 @@ void PatchBrowserSelector::showInputField() {
 void PatchBrowserSelector::hideInputField() {
 	m_input_field.setVisible(false);
 	m_input_field_active = false;
-}
-
-void PatchBrowserSelector::setGUIBig() {
-}
-
-void PatchBrowserSelector::setGUISmall() {
 }
 
 void PatchBrowserSelector::setWildCard(String p_wildcard) {
@@ -269,7 +263,7 @@ void PatchBrowserSelector::generateContentFactoryPresetCategories() {
 	m_entries.clear();
 
 	for (auto &entry : m_factory_preset_cat_and_names) {
-		m_entries.push_back(std::make_unique<BrowserEntry>(entry.first, m_GUI_big));
+		m_entries.push_back(std::make_unique<BrowserEntry>(entry.first));
 		std::string cat_name          = entry.first;
 		m_entries.back()->onLeftClick = [&, cat_name]() {
 			//DBG(return_string + " was clicked!");
@@ -297,7 +291,7 @@ void PatchBrowserSelector::setDirectoryFactoryPresetPreset(const std::string &p_
 	m_entries.clear();
 
 	for (auto &entry : m_factory_preset_cat_and_names[p_category]) {
-		m_entries.push_back(std::make_unique<BrowserEntry>(entry, m_GUI_big));
+		m_entries.push_back(std::make_unique<BrowserEntry>(entry));
 		std::string patch_name        = entry;
 		m_entries.back()->onLeftClick = [&, patch_name]() {
 			DBG("FP Preset " + patch_name + " was clicked!");
@@ -326,7 +320,7 @@ void PatchBrowserSelector::generateContent() {
 
 	//allways show "Factory Presets" in Soundbank selector first
 	if (m_browser_type == BrowserType::Soundbank) {
-		m_entries.push_back(std::make_unique<BrowserEntry>("Static Factory Presets", m_GUI_big));
+		m_entries.push_back(std::make_unique<BrowserEntry>("Static Factory Presets"));
 		m_entries[0]->onLeftClick = [this]() {
 			//DBG(return_string + " was clicked!");
 			passValueToPatchBrowser(FACTORY_PRESETS_SOUNDBANK_CODE);
@@ -367,7 +361,7 @@ void PatchBrowserSelector::generateContent() {
 
 			for (int file_index = 0; file_index < file_array.size(); ++file_index) {
 				m_entries.push_back(std::make_unique<BrowserEntry>(
-				    file_array[file_index].getFileName().dropLastCharacters((int)m_wildcard.length() - 1), m_GUI_big));
+				    file_array[file_index].getFileName().dropLastCharacters((int)m_wildcard.length() - 1)));
 				if (m_pass_active_element_to_parent) {
 					m_entries[m_entries.size() - 1]->enablePassActiveNameToParent(true);
 					m_entries[m_entries.size() - 1]->passActiveNameToParent = [&](String p_name) {
@@ -433,7 +427,7 @@ void PatchBrowserSelector::positionEntries() {
 		    0, m_scroll_position + entry_height * entry, getWidth(), entry_height);
 	}
 
-	auto scroll_bar_width = m_GUI_big ? SCROLL_BAR_WIDTH_150 : SCROLL_BAR_WIDTH_100;
+	auto scroll_bar_width = proportionOfWidth(0.03f);
 
 	m_available_scroll_height = getHeight() - entry_height;
 	m_scroll_bar_height       = m_available_scroll_height * getHeight() / (m_entries.size() * entry_height);
@@ -454,11 +448,7 @@ void PatchBrowserSelector::resetScrollPosition() {
 
 void PatchBrowserSelector::mouseWheelMove(const MouseEvent &event, const MouseWheelDetails &wheel) {
 
-	if (m_GUI_big) {
-		m_scroll_position += wheel.deltaY * MOUSE_WHEEL_FACTOR_PATCH_BROWSER_150;
-	} else {
-		m_scroll_position += wheel.deltaY * MOUSE_WHEEL_FACTOR_PATCH_BROWSER_100;
-	}
+	m_scroll_position += wheel.deltaY * proportionOfHeight(0.5f);
 
 	enforceScrollLimits();
 
@@ -474,7 +464,7 @@ void PatchBrowserSelector::enforceScrollLimits() {
 	float entry_height      = m_entries.size() * entry_height_single;
 
 	float bottom      = entry_height + m_scroll_position;
-	int button_height = m_GUI_big ? BUTTON_HEIGHT_BROWSER_150 : BUTTON_HEIGHT_BROWSER;
+	int button_height = m_left_button.getHeight();
 	if (bottom < getHeight() - button_height) {
 		m_scroll_position -= (bottom - getHeight() + button_height);
 		m_scroll_position = m_scroll_position > 0.f ? 0.f : m_scroll_position;

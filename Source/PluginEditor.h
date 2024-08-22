@@ -385,7 +385,6 @@ private:
 	OdinButton m_lfo_24_button;
 
 	GlassDropdown m_mono_poly_legato_dropdown;
-	LeftRightButton m_gui_size_button;
 
 	OdinButton m_reset;
 
@@ -447,7 +446,6 @@ private:
 	void setMatrixSectionModule(int p_module);
 	void updatePitchWheel(float p_value);
 	void updateModWheel(float p_value);
-	void setGUISizeBig(bool p_big, bool p_write_to_config);
 
 	void readOrCreateConfigFile(bool &p_GUI_big);
 

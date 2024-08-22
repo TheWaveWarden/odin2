@@ -50,20 +50,12 @@ void XYPadComponent::paint(Graphics &g) {
 	int handle_inlay    = handle_diameter / 3.0f;
 
 	float x_handle = handle_inlay + m_value_x * (getWidth() - handle_diameter - 2 * handle_inlay);
-	if (m_GUI_big) {
-		++x_handle;
-	}
 	float y_handle =
 	    getHeight() - handle_diameter - (handle_inlay + m_value_y * (getHeight() - handle_diameter - 2 * handle_inlay));
 	if (!m_vector_pad) {
 		//g.setColour(Colour(0, 10, 30));
 		g.setColour(Colour(60, 90, 120));
-		if (!m_GUI_big) {
-			g.drawLine(m_inlay, y_handle + handle_diameter / 2, getWidth() - m_inlay, y_handle + handle_diameter / 2);
-		} else {
-			g.drawLine(
-			    m_inlay + 2, y_handle + handle_diameter / 2, getWidth() - m_inlay, y_handle + handle_diameter / 2);
-		}
+		g.drawLine(m_inlay, y_handle + handle_diameter / 2, getWidth() - m_inlay, y_handle + handle_diameter / 2);
 		g.drawLine(x_handle + handle_diameter / 2, m_inlay, x_handle + handle_diameter / 2, getHeight() - m_inlay);
 		g.setColour(Colour(20, 105, 129));
 		g.fillEllipse(x_handle - 1, y_handle - 1, handle_diameter + 2, handle_diameter + 2);
@@ -90,12 +82,8 @@ void XYPadComponent::mouseDown(const MouseEvent &event) {
 void XYPadComponent::mouseInteraction() {
 	juce::Point<int> mouse_pos = getMouseXYRelative();
 
-	int handle_inlay    = HANDLE_INLAY;
-	int handle_diameter = HANDLE_DIAMETER;
-	if (m_GUI_big) {
-		//handle_inlay *= 1.5f;
-		handle_diameter *= 1.5f;
-	}
+	int handle_inlay    = proportionOfWidth(0.02f);
+	int handle_diameter = proportionOfWidth(0.03f);
 
 	m_value_x = (float)(mouse_pos.getX() - handle_inlay - handle_diameter / 2) /
 	            (float)(getWidth() - handle_diameter - 2 * handle_inlay);
@@ -149,12 +137,4 @@ void XYPadComponent::setColor(juce::Colour p_color) {
 void XYPadComponent::setLogoImage(juce::Image p_image) {
 	m_logo      = p_image;
 	m_draw_logo = true;
-}
-
-void XYPadComponent::setGUIBig() {
-	m_GUI_big = true;
-}
-
-void XYPadComponent::setGUISmall() {
-	m_GUI_big = false;
 }

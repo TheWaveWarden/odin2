@@ -56,12 +56,7 @@ public:
   std::function<void(int)> OnValueChange = [](int) {};
   void setParameterId(String p_id) { m_parameter_id = p_id; }
 
-  void setGUIBig();
-  void setGUISmall();
-
 protected:
-  bool m_GUI_big = true;
-
   int mouse_reference_value = 0;
   int m_drag_initial_value = 0;
 

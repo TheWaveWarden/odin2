@@ -188,12 +188,6 @@ void ArpComponent::resized() {
 	}
 }
 
-void ArpComponent::setGUIBig() {
-}
-
-void ArpComponent::setGUISmall() {
-}
-
 void ArpComponent::timerCallback() {
 	int led_active = m_processor.m_step_led_active.get();
 

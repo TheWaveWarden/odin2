@@ -23,26 +23,6 @@
 #include "OdinKnob.h"
 #include "TextLabel.h"
 
-#define AMP_GAIN_POS_X (400 - 275)
-#define AMP_GAIN_POS_Y (222 - 175)
-#define AMP_PAN_POS_X (465 - 275)
-#define AMP_PAN_POS_Y (212 - 175)
-#define AMP_VEL_POS_X (335 - 275)
-#define AMP_VEL_POS_Y (212 - 175)
-#define BIAS_POS_X (330 - 275)
-#define BIAS_POS_Y (286 - 175)
-#define THRESHOLD_POS_X (470 - 275)
-#define THRESHOLD_POS_Y (286 - 175)
-#define DISTORTION_POS_X 93
-#define DISTORTION_POS_Y 87
-
-#define FLOW_RIGHT_POS_X 0
-#define FLOW_LEFT_POS_X 226
-#define FLOW_POS_Y 2
-
-#define DIST_ALGO_POS_X 92
-#define DIST_ALGO_POS_Y 114
-
 #define THRESHOLD_DEFAULT 0.7
 #define DRYWET_DIST_DEFAULT 1
 #define AMP_GAIN_MIN -30
@@ -51,9 +31,6 @@
 #define PAN_MIN -1
 #define PAN_MAX 1
 #define PAN_DEFAULT 0
-
-#define DISTORTION_OVERLAY_X 22
-#define DISTORTION_OVERLAY_Y 81
 
 //==============================================================================
 /*
@@ -71,12 +48,7 @@ public:
 	}
 	void resized() override;
 
-	void setGUIBig();
-	void setGUISmall();
-
 private:
-	bool m_GUI_big = true;
-
 	juce::Image m_distortion_image;
 
 	void setDistortionPanelActive(bool p_active);

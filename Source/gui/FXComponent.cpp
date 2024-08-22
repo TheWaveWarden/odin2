@@ -85,7 +85,6 @@ FXComponent::FXComponent(AudioProcessorValueTreeState &vts, const std::string &p
 		m_value_tree.state.getChildWithName("fx").setProperty(m_fx_synctime_denominator_identifier, p_right, nullptr);
 	};
 
-	m_sync_time.setTopLeftPosition(FX_SYNC_TIME_FX_POS_X, FX_SYNC_TIME_FX_POS_Y);
 	m_sync_time.setTooltip("Set the delay time in sync to your track");
 	addChildComponent(m_sync_time);
 
@@ -133,11 +132,6 @@ void FXComponent::forceValueTreeOntoComponents(ValueTree p_tree) {
 	setSyncEnabled((float)m_value_tree.state.getChildWithName("fx")[(Identifier)(m_fx_name + "_sync")] > 0.5f);
 	//send change message to set member in processor
 	m_value_tree.state.getChildWithName("fx").sendPropertyChangeMessage(((Identifier)(m_fx_name + "_sync")));
-}
-
-void FXComponent::setGUIBig() {
-}
-void FXComponent::setGUISmall() {
 }
 
 void FXComponent::resized() {

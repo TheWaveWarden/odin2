@@ -246,8 +246,6 @@ public:
 	std::function<void(std::map<std::string, int>)> onButtonArrange = [](std::map<std::string, int>) {};
 	std::function<void(std::string)> setHighlighted                 = [](std::string) {};
 
-	void setGUIBig() {
-	}
 	void resized() override {
 		auto bounds      = getLocalBounds();
 		const auto width = bounds.getWidth() / 5;
@@ -258,12 +256,8 @@ public:
 		m_delay_button.setBounds(bounds.removeFromLeft(width));
 		m_reverb_button.setBounds(bounds.removeFromLeft(width));
 	}
-	void setGUISmall() {
-	}
 
 private:
-	bool m_GUI_big = true;
-
 	OdinAudioProcessor &m_processor;
 
 	DragButton m_flanger_button;

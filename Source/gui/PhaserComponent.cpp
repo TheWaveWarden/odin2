@@ -95,7 +95,6 @@ PhaserComponent::PhaserComponent(AudioProcessorValueTreeState &vts, const std::s
 		m_value_tree.state.getChildWithName("fx").setProperty(m_fx_synctime_numerator_identifier, p_left, nullptr);
 		m_value_tree.state.getChildWithName("fx").setProperty(m_fx_synctime_denominator_identifier, p_right, nullptr);
 	};
-	m_sync_time.setTopLeftPosition(PHASER_SYNC_TIME_POS_X, PHASER_SYNC_TIME_POS_Y);
 	m_sync_time.setTooltip("Set the delay time in sync to your track");
 	addChildComponent(m_sync_time);
 
@@ -143,11 +142,6 @@ void PhaserComponent::forceValueTreeOntoComponents(ValueTree p_tree) {
 	setSyncEnabled((float)m_value_tree.state.getChildWithName("fx")["phaser_sync"] > 0.5f);
 	//send change message to set member in processor
 	m_value_tree.state.getChildWithName("fx").sendPropertyChangeMessage((Identifier)("phaser_sync"));
-}
-
-void PhaserComponent::setGUIBig() {
-}
-void PhaserComponent::setGUISmall() {
 }
 
 void PhaserComponent::resized() {

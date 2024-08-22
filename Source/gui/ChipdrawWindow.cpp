@@ -25,12 +25,11 @@ ChipdrawWindow::~ChipdrawWindow() {
 }
 
 void ChipdrawWindow::paint(Graphics &g) {
-
-	int draw_inlay_left       = DRAW_INLAY_LEFT;
-	int draw_inlay_right      = DRAW_INLAY_RIGHT;
-	int draw_inlay_up         = DRAW_INLAY_UP;
-	int draw_inlay_down       = DRAW_INLAY_DOWN;
-	int chipdraw_thiccness    = CHIPDRAW_THICCNESS;
+	int draw_inlay_left       = proportionOfWidth(DRAW_INLAY_HORZ_PROPORTION);
+	int draw_inlay_right      = draw_inlay_left;
+	int draw_inlay_up         = proportionOfHeight(DRAW_INLAY_VERT_PROPORION);
+	int draw_inlay_down       = draw_inlay_up;
+	int chipdraw_thiccness    = proportionOfWidth(DRAW_STROKE_PROPORION);
 	juce::Point<int> top_left = getLocalBounds().getTopLeft();
 	top_left.addXY(m_inlay + 1, m_inlay);
 	juce::Point<int> bottom_right = getLocalBounds().getBottomRight();
@@ -59,13 +58,13 @@ void ChipdrawWindow::paint(Graphics &g) {
 		           mid - m_draw_values[i] * height,
 		           draw_inlay_left + (i + 1) * width,
 		           mid - m_draw_values[i] * height,
-		           CHIPDRAW_THICCNESS);
+		           chipdraw_thiccness);
 		if (i != CHIPDRAW_STEPS_X - 1) {
 			g.drawLine(draw_inlay_left + (i + 1) * width,
 			           mid - m_draw_values[i] * height,
 			           draw_inlay_left + (i + 1) * width,
 			           mid - m_draw_values[i + 1] * height,
-			           CHIPDRAW_THICCNESS);
+			           chipdraw_thiccness);
 		}
 	}
 }
@@ -86,16 +85,11 @@ int min_int_chipdraw(int a, int b) {
 } // shouldnt be here
 
 void ChipdrawWindow::mouseInteraction() {
-	int draw_inlay_left  = DRAW_INLAY_LEFT;
-	int draw_inlay_right = DRAW_INLAY_RIGHT;
-	int draw_inlay_up    = DRAW_INLAY_UP;
-	int draw_inlay_down  = DRAW_INLAY_DOWN;
-	if (m_GUI_big) {
-		draw_inlay_left  = 4;
-		draw_inlay_up    = 7;
-		draw_inlay_down  = 5;
-		draw_inlay_right = 1;
-	}
+	int draw_inlay_left    = proportionOfWidth(DRAW_INLAY_HORZ_PROPORTION);
+	int draw_inlay_right   = draw_inlay_left;
+	int draw_inlay_up      = proportionOfHeight(DRAW_INLAY_VERT_PROPORION);
+	int draw_inlay_down    = draw_inlay_up;
+	int chipdraw_thiccness = proportionOfWidth(DRAW_STROKE_PROPORION);
 
 	// get Mouse data
 	juce::Point<int> mouse_pos = getMouseXYRelative();
@@ -151,17 +145,4 @@ void ChipdrawWindow::mouseUp(const MouseEvent &event) {
 
 float *ChipdrawWindow::getDrawnTable() {
 	return m_draw_values;
-}
-
-void ChipdrawWindow::setGUIBig() {
-	m_GUI_big   = true;
-	m_glaspanel = ImageCache::getFromMemory(BinaryData::drawpanel_150_png, BinaryData::drawpanel_150_pngSize);
-
-	setSize(m_glaspanel.getWidth(), m_glaspanel.getHeight());
-}
-void ChipdrawWindow::setGUISmall() {
-	m_GUI_big   = false;
-	m_glaspanel = ImageCache::getFromMemory(BinaryData::drawpanel_png, BinaryData::drawpanel_pngSize);
-
-	setSize(m_glaspanel.getWidth(), m_glaspanel.getHeight());
 }

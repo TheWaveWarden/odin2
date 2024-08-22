@@ -478,9 +478,3 @@ void FilterComponent::resized() {
 	GET_LOCAL_AREA(m_vowel_right, "FilVowelRight");
 	GET_LOCAL_AREA(m_comb_plus_minus, "FilCombPlusMinus");
 }
-
-void FilterComponent::setGUIBig() {
-}
-
-void FilterComponent::setGUISmall() {
-}

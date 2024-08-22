@@ -31,7 +31,6 @@ ReverbComponent::ReverbComponent(AudioProcessorValueTreeState &vts, bool p_is_st
 	m_reverb_delay_attach.reset(new OdinKnobAttachment(m_value_tree, "rev_delay", m_delay));
 	m_reverb_EQ_gain_attach.reset(new OdinKnobAttachment(m_value_tree, "rev_eqgain", m_EQ_gain));
 	m_reverb_EQ_freq_attach.reset(new OdinKnobAttachment(m_value_tree, "rev_eqfreq", m_EQ_freq));
-	//m_reverb_ducking_attach.reset(new OdinKnobAttachment(m_value_tree, "rev_ducking", m_ducking));
 	m_reverb_drywet_attach.reset(new OdinKnobAttachment(m_value_tree, "rev_drywet", m_dry_wet));
 	m_reverb_mid_hall_attach.reset(new OdinKnobAttachment(m_value_tree, "rev_mid_hall", m_mid_hall));
 	m_reverb_hf_damp_attach.reset(new OdinKnobAttachment(m_value_tree, "rev_hf_damp", m_hf_damp));
@@ -69,18 +68,12 @@ ReverbComponent::ReverbComponent(AudioProcessorValueTreeState &vts, bool p_is_st
 	m_EQ_freq.setKnobTooltip("Sets the frequency of the built in equalizer");
 	addAndMakeVisible(m_EQ_freq);
 
-	//m_ducking.setSliderStyle(Slider::RotaryVerticalDrag);
-	//m_ducking.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-	//m_ducking.setKnobTooltip("DUCKING");
-	//addAndMakeVisible(m_ducking);
-
 	m_dry_wet.setSliderStyle(Slider::RotaryVerticalDrag);
 	m_dry_wet.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
 	m_dry_wet.setKnobTooltip("Controls the mix of processed and unprocessed signals");
 	addAndMakeVisible(m_dry_wet);
 
 	m_delay.setNumDecimalPlacesToDisplay(3);
-	//m_ducking.setNumDecimalPlacesToDisplay(3);
 	m_EQ_freq.setNumDecimalPlacesToDisplay(3);
 	m_dry_wet.setNumDecimalPlacesToDisplay(3);
 
@@ -89,7 +82,6 @@ ReverbComponent::ReverbComponent(AudioProcessorValueTreeState &vts, bool p_is_st
 	SET_CTR_KEY(m_delay);
 	SET_CTR_KEY(m_mid_hall);
 	SET_CTR_KEY(m_hf_damp);
-	//SET_CTR_KEY(m_ducking);
 	SET_CTR_KEY(m_dry_wet);
 
 	forceValueTreeOntoComponents(m_value_tree.state);
@@ -104,12 +96,6 @@ void ReverbComponent::paint(Graphics &g) {
 }
 
 void ReverbComponent::forceValueTreeOntoComponents(ValueTree p_tree) {
-}
-
-void ReverbComponent::setGUIBig() {
-}
-
-void ReverbComponent::setGUISmall() {
 }
 
 void ReverbComponent::resized() {

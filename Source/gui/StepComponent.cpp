@@ -67,28 +67,12 @@ StepComponent::StepComponent(AudioProcessorValueTreeState &vts, int p_step_index
 StepComponent::~StepComponent() {
 }
 
-void StepComponent::paint(Graphics &g) {
-	if (m_GUI_big) {
-		g.drawImageAt(m_knob_guide, KNOB_GUIDE_X_150, KNOB_GUIDE_1_Y_150);
-		g.drawImageAt(m_knob_guide, KNOB_GUIDE_X_150, KNOB_GUIDE_2_Y_150);
-	} else {
-		g.drawImageAt(m_knob_guide, KNOB_GUIDE_X_100, KNOB_GUIDE_1_Y_100);
-		g.drawImageAt(m_knob_guide, KNOB_GUIDE_X_100, KNOB_GUIDE_2_Y_100);
-	}
-}
-
 void StepComponent::resized() {
 	GET_LOCAL_AREA(m_mod_1, "ArpStepMod_1");
 	GET_LOCAL_AREA(m_mod_2, "ArpStepMod_2");
 	GET_LOCAL_AREA(m_transpose, "ArpStepTranspose");
 	GET_LOCAL_AREA(m_step_on, "ArpStepStepOn");
 	GET_LOCAL_AREA(m_led, "ArpStepLed");
-}
-
-void StepComponent::setGUIBig() {
-}
-
-void StepComponent::setGUISmall() {
 }
 
 void StepComponent::setLEDActive(int p_step_index) {

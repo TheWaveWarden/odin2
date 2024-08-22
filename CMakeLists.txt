@@ -190,7 +190,6 @@ target_sources(Odin2
     "Source/gui/PatchBrowserSelector.cpp"
     "Source/gui/PhaserComponent.cpp"
     "Source/gui/ReverbComponent.cpp"
-    "Source/gui/SaveLoadComponent.cpp"
     "Source/gui/SpecdrawDisplay.cpp"
     "Source/gui/SpectrumDisplay.cpp"
     "Source/gui/StepComponent.cpp"

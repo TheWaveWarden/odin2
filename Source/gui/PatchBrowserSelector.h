@@ -24,25 +24,10 @@
 
 #define FACTORY_PRESETS_SOUNDBANK_CODE "F_A_C_T_O_R_Y"
 
-#define MOUSE_WHEEL_FACTOR_PATCH_BROWSER_150 90.f
-#define MOUSE_WHEEL_FACTOR_PATCH_BROWSER_100 60.f
-
-#define BUTTON_HEIGHT_BROWSER 18
-#define BUTTON_HEIGHT_BROWSER_150 25
-
 #define PATCH_BROWSER_MENU_ENTRY_RENAME 10
 #define PATCH_BROWSER_MENU_ENTRY_DELETE 20
 #define PATCH_BROWSER_MENU_MOVE_OFFSET 1000
 #define PATCH_BROWSER_MENU_COPY_OFFSET 3000
-
-#define WARNING_INLAY_X_150 10
-#define WARNING_INLAY_X_100 6
-
-#define WARNING_OFFSET_Y_150 50
-#define WARNING_OFFSET_Y_100 33
-
-#define SCROLL_BAR_WIDTH_150 15
-#define SCROLL_BAR_WIDTH_100 10
 
 class OdinBrowserButtonFeels : public LookAndFeel_V4 {
 public:
@@ -124,9 +109,6 @@ public:
 	void paint(Graphics &) override;
 	void resized() override;
 
-	void setGUIBig();
-	void setGUISmall();
-
 	void resetInputFieldAndShow();
 	void showInputField();
 	void hideInputField();
@@ -206,7 +188,6 @@ private:
 
 	PatchBrowserScrollBar m_scroll_bar;
 
-	bool m_GUI_big = true;
 	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(PatchBrowserSelector)
 
 	bool m_show_left_button = false;

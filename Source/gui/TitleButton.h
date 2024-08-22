@@ -25,8 +25,6 @@ public:
   TitleButton();
 
   void paintButton(Graphics &g, bool shouldDrawButtonAsHighlighted, bool shouldDrawButtonAsDown) override;
-  void setGUIBig();
-  void setGUISmall();
 
   juce::Image m_hover_image;
 };

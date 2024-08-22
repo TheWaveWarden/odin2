@@ -93,15 +93,7 @@ public:
 	std::function<void()> lambdaMouseUp;
 	std::function<void()> lambdaMouseDown;
 
-	void setGUIBig() {
-		m_GUI_big = true;
-	}
-	void setGUISmall() {
-		m_GUI_big = false;
-	}
-
 private:
-	bool m_GUI_big = true;
 	bool m_pressed = false;
 
 	juce::String m_text;

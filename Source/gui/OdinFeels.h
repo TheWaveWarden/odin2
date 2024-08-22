@@ -18,19 +18,6 @@ public:
 	void getIdealPopupMenuItemSize(
 	    const String &text, bool isSeparator, int standardMenuItemHeight, int &idealWidth, int &idealHeight) override {
 		idealWidth = m_width;
-		if (m_GUI_big) {
-			if (isSeparator) {
-				idealHeight = 10;
-			} else {
-				idealHeight = 30;
-			}
-		} else {
-			if (isSeparator) {
-				idealHeight = 10;
-			} else {
-				idealHeight = 25;
-			}
-		}
 	}
 
 	void drawPopupMenuItem(Graphics &g,
@@ -167,17 +154,6 @@ public:
 	Colour m_text_color           = MENU_FONT_COLOR;
 	Colour m_highlight_text_color = MENU_HIGHLIGHT_FONT_COLOR;
 
-	void setGUIBig() {
-		m_GUI_big   = true;
-		m_width     = 240;
-		m_font_size = 21.f;
-	}
-	void setGUISmall() {
-		m_GUI_big   = false;
-		m_width     = 170;
-		m_font_size = 17.f;
-	}
-
 	void setFontSize(float p_size) {
 		m_font_size = p_size;
 	}
@@ -188,5 +164,4 @@ public:
 
 	float m_font_size = 17.f;
 	float m_width     = 150;
-	bool m_GUI_big    = true;
 };

@@ -85,21 +85,14 @@ void ModAmountComponentExtended::paint(Graphics &g) {
 		g.fillRect(juce::Rectangle<int>(top_left, bottom_right));
 	}
 
-	Font current_font = g.getCurrentFont();
-	current_font.setStyleFlags(1); //bold
-	g.setFont(current_font);
-	if (m_GUI_big) {
-		g.setFont(18.0f);
-	} else {
-		g.setFont(12.0f);
-	}
+	g.setFont(H / 1.4f);
+
+    // prepare string
 	std::stringstream stream;
 	stream << std::fixed << std::setprecision(0) << m_value * 100;
 	std::string value_string = stream.str();
-	g.setColour(Colours::white);
-	if (value_string == "0") {
-		g.setColour(juce::Colours::lightgrey);
-	}
+
+	g.setColour(COL_LIGHT);
 	g.drawText(value_string, getLocalBounds(), Justification::centred, true);
 
 	g.setColour(COL_LIGHT);

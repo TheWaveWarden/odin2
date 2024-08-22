@@ -44,14 +44,7 @@ void ModAmountComponent::paint(Graphics &g) {
 		g.fillRect(juce::Rectangle<int>(top_left, bottom_right));
 	}
 
-	Font current_font = g.getCurrentFont();
-	current_font.setStyleFlags(1); //bold
-	g.setFont(current_font);
-	if (m_GUI_big) {
-		g.setFont(18.0f);
-	} else {
-		g.setFont(12.0f);
-	}
+	g.setFont(H / 1.4f);
 	std::stringstream stream;
 	stream << std::fixed << std::setprecision(0) << m_value * 100;
 	std::string value_string = stream.str();
@@ -66,13 +59,10 @@ void ModAmountComponent::paint(Graphics &g) {
 }
 
 void ModAmountComponent::mouseDrag(const MouseEvent &event) {
-	float drag_scalar = DRAG_SCALAR;
-	if (m_GUI_big) {
-		drag_scalar *= 0.66f;
-	}
-	m_value = m_drag_start_value + (m_drag_start_y - getMouseXYRelative().getY()) * drag_scalar;
-	m_value = m_value > m_input_limit ? m_input_limit : m_value;
-	m_value = m_value < -m_input_limit ? -m_input_limit : m_value;
+	float drag_scalar = H * 0.0002f;
+	m_value           = m_drag_start_value + (m_drag_start_y - getMouseXYRelative().getY()) * drag_scalar;
+	m_value           = m_value > m_input_limit ? m_input_limit : m_value;
+	m_value           = m_value < -m_input_limit ? -m_input_limit : m_value;
 	onValueChange(m_value);
 	repaint();
 }

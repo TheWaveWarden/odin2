@@ -26,21 +26,6 @@
 
 #define SPACING 56
 
-#define FX_FREQ_POS_X 20
-#define FX_FREQ_POS_Y 15
-#define FX_AMOUNT_POS_X FX_FREQ_POS_X + 1 * SPACING
-#define FX_AMOUNT_POS_Y 52
-#define FX_FEEDBACK_POS_X FX_FREQ_POS_X + 2 * SPACING
-#define FX_FEEDBACK_POS_Y FX_FREQ_POS_Y
-#define FX_DRY_WET_POS_X FX_FREQ_POS_X + 3 * SPACING
-#define FX_DRY_WET_POS_Y FX_AMOUNT_POS_Y
-#define FX_SYNC_POS_X 24
-#define FX_SYNC_POS_Y 70
-#define FX_RESET_POS_X 129
-#define FX_RESET_POS_Y FX_SYNC_POS_Y
-#define FX_SYNC_TIME_FX_POS_X 5
-#define FX_SYNC_TIME_FX_POS_Y 20
-
 #define FX_FREQ_MIN 0.05
 #define FX_FREQ_MAX 20
 #define FX_FREQ_MID 0.8
@@ -72,11 +57,8 @@ public:
 	}
 
 	void setSyncEnabled(bool p_sync);
-	void setGUIBig();
-	void setGUISmall();
 
 private:
-	bool m_GUI_big = true;
 	bool m_is_standalone_plugin;
 
     TextLabel m_rate_label;

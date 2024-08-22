@@ -100,7 +100,6 @@ DelayComponent::DelayComponent(AudioProcessorValueTreeState &vts, bool p_is_stan
 		m_value_tree.state.getChildWithName("fx").setProperty(
 		    m_delay_synctime_denominator_identifier, p_right, nullptr);
 	};
-	m_sync_time.setTopLeftPosition(SYNC_TIME_DELAY_POS_X, SYNC_TIME_DELAY_POS_Y);
 	m_sync_time.setTooltip("Set the delay time in sync to your track");
 	addChildComponent(m_sync_time);
 
@@ -136,11 +135,6 @@ void DelayComponent::forceValueTreeOntoComponents(ValueTree p_tree) {
 	m_value_tree.state.getChildWithName("fx").sendPropertyChangeMessage((Identifier)("delay_sync"));
 }
 
-void DelayComponent::setGUIBig() {
-}
-
-void DelayComponent::setGUISmall() {
-}
 void DelayComponent::resized() {
 	GET_LOCAL_AREA(m_time_label, "DelayTimeLabel");
 	GET_LOCAL_AREA(m_feedback_label, "DelayFeedbackLabel");
@@ -163,22 +157,6 @@ void DelayComponent::resized() {
 void DelayComponent::setSync(bool p_sync_on) {
 	if (p_sync_on != m_sync_on) {
 		m_sync_on = p_sync_on;
-
-		if (m_GUI_big) {
-			if (m_sync_on) {
-				m_background =
-				    ImageCache::getFromMemory(BinaryData::delaysync_150_png, BinaryData::delaysync_150_pngSize);
-			} else {
-				m_background =
-				    ImageCache::getFromMemory(BinaryData::delaynosync_150_png, BinaryData::delaynosync_150_pngSize);
-			}
-		} else {
-			if (m_sync_on) {
-				m_background = ImageCache::getFromMemory(BinaryData::delaysync_png, BinaryData::delaysync_pngSize);
-			} else {
-				m_background = ImageCache::getFromMemory(BinaryData::delaynosync_png, BinaryData::delaynosync_pngSize);
-			}
-		}
 
 		if (p_sync_on) {
 			m_time.setVisible(false);

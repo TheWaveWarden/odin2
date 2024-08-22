@@ -67,18 +67,7 @@ public:
 		m_text_offset_left = p_offset;
 	}
 
-	void setGUIBig() {
-		m_GUI_big = true;
-		m_menu_feels.setGUIBig();
-	}
-	void setGUISmall() {
-		m_GUI_big = false;
-		m_menu_feels.setGUISmall();
-	}
-
 private:
-	bool m_GUI_big = true;
-
 	int m_text_offset_top  = 0;
 	int m_text_offset_left = 0;
 

@@ -939,10 +939,6 @@ void ModMatrixComponent::forceValueTreeOntoComponents(ValueTree p_tree) {
 	}
 }
 
-void ModMatrixComponent::setGUIBig() {
-}
-void ModMatrixComponent::setGUISmall() {
-}
 void ModMatrixComponent::resized() {
 	GET_LOCAL_AREA(m_clear_button0, "MatrixClearButton");
 	GET_LOCAL_AREA(m_source[0], "MatrixSource");

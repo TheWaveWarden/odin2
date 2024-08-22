@@ -21,14 +21,6 @@
 #include "OdinControlAttachments.h"
 #include "TextLabel.h"
 
-#define SLIDER_SIZE_X 23
-#define SLIDER_SIZE_Y 79
-#define SLIDER_POS_X 5
-#define SLIDER_POS_Y 2
-#define SLIDER_OFFSET 25
-#define LOOP_POS_X 24
-#define LOOP_POS_Y 82
-
 #define A_LOW_LIMIT 0.001
 #define A_HIGH_LIMIT 10
 #define A_DEFAULT 0.03
@@ -59,12 +51,7 @@ public:
 	void paint(Graphics &) override;
 	void resized() override;
 
-	void setGUIBig();
-	void setGUISmall();
-
 private:
-	bool m_GUI_big = true;
-
     TextLabel m_attack_label;
     TextLabel m_decay_label;
     TextLabel m_sustain_label;

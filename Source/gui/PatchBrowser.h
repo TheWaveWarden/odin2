@@ -29,9 +29,6 @@ public:
 	void paint(Graphics &) override;
 	void resized() override;
 
-	void setGUIBig();
-	void setGUISmall();
-
 	std::function<void()> forceValueTreeLambda;
 
 private:
@@ -52,8 +49,6 @@ private:
 	std::unique_ptr<FileChooser> m_filechooser;
 
 	Image m_background;
-
-	bool m_GUI_big = true;
 
 	OdinAudioProcessor &m_audio_processor;
 	AudioProcessorValueTreeState &m_value_tree;

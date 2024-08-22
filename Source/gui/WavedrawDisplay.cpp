@@ -24,10 +24,10 @@ WavedrawDisplay::~WavedrawDisplay() {
 }
 
 void WavedrawDisplay::paint(Graphics &g) {
-	int draw_inlay_left    = DRAW_INLAY_LEFT;
-	int draw_inlay_up      = DRAW_INLAY_UP;
-	int draw_inlay_down    = DRAW_INLAY_DOWN;
-	int wavedraw_thiccness = WAVEDRAW_THICCNESS;
+	int draw_inlay_left = proportionOfWidth(DRAW_INLAY_HORZ_PROPORTION);
+	int draw_inlay_up   = proportionOfHeight(DRAW_INLAY_VERT_PROPORION);
+	int draw_inlay_down    = draw_inlay_up;
+	int wavedraw_thiccness = proportionOfHeight(DRAW_STROKE_PROPORION);
 
 	juce::Point<int> top_left = getLocalBounds().getTopLeft();
 	top_left.addXY(m_inlay + 1, m_inlay);
@@ -36,7 +36,7 @@ void WavedrawDisplay::paint(Graphics &g) {
 	g.setColour(COL_LIGHT);
 	g.drawRect(juce::Rectangle<int>(top_left, bottom_right), 1);
 
-	float width  = (float)(getWidth() - draw_inlay_left - DRAW_INLAY_RIGHT) / (float)WAVEDRAW_STEPS_X;
+	float width  = (float)(getWidth() - draw_inlay_left - draw_inlay_left) / (float)WAVEDRAW_STEPS_X;
 	float height = (float)(getHeight() - draw_inlay_up - draw_inlay_down) / 2.f;
 	float mid    = (float)getHeight() / 2.f;
 
@@ -94,23 +94,17 @@ void WavedrawDisplay::mouseInteraction() {
 	float x                    = mouse_pos.getX();
 	float y                    = mouse_pos.getY();
 
-	int draw_inlay_left = DRAW_INLAY_LEFT;
-	int draw_inlay_up   = DRAW_INLAY_UP;
-	int draw_inlay_down = DRAW_INLAY_DOWN;
-
-	if (m_GUI_big) {
-		draw_inlay_left = 5;
-		draw_inlay_up   = 7;
-		draw_inlay_down = 5;
-	}
+	int draw_inlay_left = proportionOfWidth(DRAW_INLAY_HORZ_PROPORTION);
+	int draw_inlay_up   = proportionOfHeight(DRAW_INLAY_VERT_PROPORION);
+	int draw_inlay_down = draw_inlay_up;
 
 	// clamp values
 	y = y < draw_inlay_up ? draw_inlay_up : y;
 	y = y > getHeight() - draw_inlay_down ? getHeight() - draw_inlay_down : y;
 	x = x > draw_inlay_left ? x : draw_inlay_left + 1;
-	x = x < getWidth() - DRAW_INLAY_RIGHT ? x : getWidth() - DRAW_INLAY_RIGHT - 1;
+	x = x < getWidth() - draw_inlay_left ? x : getWidth() - draw_inlay_left - 1;
 
-	float float_x = (x - draw_inlay_left) / (getWidth() - draw_inlay_left - DRAW_INLAY_RIGHT);
+	float float_x = (x - draw_inlay_left) / (getWidth() - draw_inlay_left - draw_inlay_left);
 	int step_x    = (int)(floor(float_x * WAVEDRAW_STEPS_X));
 
 	float float_y = (y - draw_inlay_up) / (getHeight() - draw_inlay_up - draw_inlay_down);
@@ -151,17 +145,4 @@ void WavedrawDisplay::mouseUp(const MouseEvent &event) {
 
 float *WavedrawDisplay::getDrawnTable() {
 	return m_draw_values;
-}
-
-void WavedrawDisplay::setGUIBig() {
-	m_GUI_big   = true;
-	m_glaspanel = ImageCache::getFromMemory(BinaryData::drawpanel_150_png, BinaryData::drawpanel_150_pngSize);
-
-	setSize(m_glaspanel.getWidth(), m_glaspanel.getHeight());
-}
-void WavedrawDisplay::setGUISmall() {
-	m_GUI_big   = false;
-	m_glaspanel = ImageCache::getFromMemory(BinaryData::drawpanel_png, BinaryData::drawpanel_pngSize);
-
-	setSize(m_glaspanel.getWidth(), m_glaspanel.getHeight());
 }

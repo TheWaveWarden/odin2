@@ -101,14 +101,7 @@ public:
 
 	juce::PopupMenu m_menu;
 
-	void setGUIBig() {
-	}
-	void setGUISmall() {
-	}
-
 private:
-	bool m_GUI_big = true;
-
 	void increment() {
 		auto it = m_inc_map.find(m_value);
 		if (it != m_inc_map.end()) {

@@ -109,8 +109,6 @@ void LFOSelectorComponent::paint(Graphics &g) {
 	g.drawRect(getLocalBounds(), 1);
 }
 
-void LFOSelectorComponent::setGUIBig() {
-}
 void LFOSelectorComponent::resized() {
 
 	auto bounds        = getLocalBounds();
@@ -168,7 +166,4 @@ void LFOSelectorComponent::resized() {
 	m_display.addWave(chipdraw2);
 	juce::Image chipdraw3 = ImageCache::getFromMemory(BinaryData::chipdraw3_150_png, BinaryData::chipdraw3_150_pngSize);
 	m_display.addWave(chipdraw3);
-}
-
-void LFOSelectorComponent::setGUISmall() {
 }

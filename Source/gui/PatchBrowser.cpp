@@ -655,27 +655,6 @@ void PatchBrowser::paint(Graphics &g) {
 	g.drawRect(getLocalBounds(), 1);
 }
 
-void PatchBrowser::setGUIBig() {
-	m_GUI_big = true;
-
-	m_soundbank_selector.setGUIBig();
-	m_category_selector.setGUIBig();
-	m_patch_selector.setGUIBig();
-
-	setFirstSoundbankActive();
-}
-void PatchBrowser::setGUISmall() {
-
-	m_soundbank_selector.setGUISmall();
-	m_category_selector.setGUISmall();
-	m_patch_selector.setGUISmall();
-
-	m_background =
-	    ImageCache::getFromMemory(BinaryData::patch_browser_window_png, BinaryData::patch_browser_window_pngSize);
-
-	setFirstSoundbankActive();
-}
-
 void PatchBrowser::loadPatchFromOpenedFileStream(juce::FileInputStream &p_file_stream) {
 	//first see if the patch is of a higher version than we know about:
 	std::string version_string;

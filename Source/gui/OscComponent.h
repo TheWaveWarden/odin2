@@ -33,88 +33,6 @@
 #include "WaveformSelectorComponent.h"
 #include "XYPadComponent.h"
 
-//#include "../PluginProcessor.h"
-
-#define OCT_POS_X 139
-#define SEMI_POS_X 169
-#define FINE_POS_X 199
-#define PITCH_POS_Y 20
-#define VOL_POS_X 228
-#define VOL_POS_Y 39
-#define PW_POS_X 33
-#define PW_POS_Y 86
-#define DRIFT_POS_X 157
-#define DRIFT_POS_Y 86
-#define RESET_POS_X 214
-#define RESET_POS_Y 70
-#define OSC_SYNC_POS_X RESET_POS_X
-#define OSC_SYNC_POS_Y 92
-#define LED_POS_X (82 - 29)
-#define LED_POS_Y (105 - 29)
-#define STEP_1_POS_X 23
-#define STEP_1_POS_Y 107
-#define STEP_2_POS_X 67
-#define STEP_2_POS_Y 107
-#define STEP_3_POS_X 110
-#define STEP_3_POS_Y 107
-#define SPEED_POS_X 159
-#define SPEED_POS_Y 93
-#define ARP_POS_X 15
-#define ARP_POS_Y 80
-#define STEP_BUTTON_POS_X 102
-#define STEP_BUTTON_POS_Y 88
-#define NOISE_POS_X 145
-#define NOISE_POS_Y 50
-#define WAVE_CHIPTUNE_POS_X 20
-#define WAVE_CHIPTUNE_POS_Y 50
-#define WAVE_CARRIER_POS_X 8
-#define WAVE_CARRIER_POS_Y 8
-#define WAVE_MODULATOR_POS_X 130
-#define WAVE_MODULATOR_POS_Y 118
-#define RATIO_CARRIER_POS_X 8
-#define RATIO_CARRIER_POS_Y 33
-#define RATIO_MODULATOR_POS_X 193
-#define RATIO_MODULATOR_POS_Y 93
-#define FM_POS_X 98
-#define FM_POS_Y 52
-#define FM_EXP_POS_X 8
-#define FM_EXP_POS_Y 118
-
-#define CHIPDRAW_POSITION_X 5
-#define CHIPDRAW_POSITION_Y 35
-
-#define CONVERT_POS_X 215
-#define CONVERT_POS_Y 114
-
-#define HP_POS_X (54 - 8)
-#define HP_POS_Y (72 + 6)
-#define LP_POS_X (148 - 8)
-#define LP_POS_Y (38 + 6)
-
-#define XY_POS_X 7
-#define XY_POS_Y 51
-#define VEC_WAVE_X 120
-#define VEC_WAVE_Y 52
-#define VEC_WAVE_OFFSET 21
-
-#define DETUNE_POS_X 100
-#define DETUNE_POS_Y 50
-#define SPREAD_POS_X 33
-#define SPREAD_POS_Y 52
-#define POSITION_MULTI_POS_X SPREAD_POS_X
-#define POSITION_MULTI_POS_Y 90
-
-#define WAVETABLE_WAVE_X 10
-#define WAVETABLE_WAVE_Y 54
-#define POS_MODULATION_X 40
-#define POS_MODULATION_Y 101
-#define POSITION_POS_X 122
-#define POSITION_POS_Y 49
-#define POS_ENV_POS_X 173
-#define POS_ENV_POS_Y 98
-#define MULTI_WAVE_X 80
-#define MULTI_WAVE_Y 103
-
 #define OCT_RANGE_MAX 4
 #define SEMI_RANGE_MAX 7
 #define FINE_RANGE_MAX 50
@@ -147,9 +65,7 @@
 #define Y_POS_X 75
 #define Y_POS_Y X_POS_Y
 
-//#define FM_COLOR Colour(90, 40, 40)
 #define FM_COLOR Colour(93, 41, 41)
-//#define PM_COLOR Colour(40, 40, 40)
 #define PM_COLOR Colour(30, 30, 30)
 //==============================================================================
 /*
@@ -183,8 +99,6 @@ public:
 	void setOscTypeVector();
 	void setOscTypeWavetable();
 	void setOscTypeMulti();
-	void setGUIBig();
-	void setGUISmall();
 
 	void hideAllComponents();
 
@@ -223,10 +137,6 @@ public:
 	void resized();
 
 protected:
-	// TextEditor REMOVE_EDITOR;
-
-	bool m_GUI_big = true;
-
 	int m_osc_type = 0;
 
 	juce::Image m_background;

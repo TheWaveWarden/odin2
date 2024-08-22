@@ -146,8 +146,6 @@ void AmpDistortionFlowComponent::setDistortionPanelActive(bool p_active) {
 	repaint();
 }
 
-void AmpDistortionFlowComponent::setGUIBig() {
-}
 void AmpDistortionFlowComponent::resized() {
 
 	GET_LOCAL_AREA(m_gain_label, "GainLabel");
@@ -165,6 +163,4 @@ void AmpDistortionFlowComponent::resized() {
 	GET_LOCAL_AREA(m_amp_velocity, "AmpVelocity");
 	GET_LOCAL_AREA(m_boost, "Boost");
 	GET_LOCAL_AREA(m_dry_wet, "DryWet");
-}
-void AmpDistortionFlowComponent::setGUISmall() {
 }

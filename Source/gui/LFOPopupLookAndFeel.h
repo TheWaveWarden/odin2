@@ -17,11 +17,6 @@
 #include <JuceHeader.h>
 #include "../GlobalIncludes.h"
 
-#define LFO_POPUP_SIZE_BIG_X 63
-#define LFO_POPUP_SIZE_BIG_Y 30
-#define LFO_POPUP_SIZE_SMALL_X 42
-#define LFO_POPUP_SIZE_SMALL_Y 20
-
 class LFOPopupLookAndFeel : public LookAndFeel_V4 {
 public:
 	void drawPopupMenuItem(Graphics &,
@@ -39,9 +34,5 @@ public:
 	void getIdealPopupMenuItemSize(
 	    const String &text, bool isSeparator, int standardMenuItemHeight, int &idealWidth, int &idealHeight) override;
 
-	void setGUIBig();
-	void setGUISmall();
-
 protected:
-	bool m_gui_big = true;
 };

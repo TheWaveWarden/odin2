@@ -81,8 +81,6 @@ SyncTimeSelector::~SyncTimeSelector() {
 	m_dropdown.setLookAndFeel(nullptr);
 }
 
-void SyncTimeSelector::setGUIBig() {
-}
 void SyncTimeSelector::resized() {
 
 	auto bounds       = getLocalBounds();
@@ -95,8 +93,6 @@ void SyncTimeSelector::resized() {
 	m_down_right.setBounds(button_right);
 
 	m_display.setBounds(bounds);
-}
-void SyncTimeSelector::setGUISmall() {
 }
 
 void SyncTimeSelector::setValuesFromDropdown(int p_dropdown_return) {

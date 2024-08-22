@@ -57,7 +57,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
     m_delay_position_identifier("delay_position"), m_flanger_position_identifier("flanger_position"),
     m_phaser_position_identifier("phaser_position"), m_chorus_position_identifier("chorus_position"),
     m_reverb_position_identifier("reverb_position"), m_mod_matrix(vts),
-    /*m_legato_button("legato"),*/ m_gui_size_button("gui_size"), m_tooltip(nullptr, 2047483647),
+    m_tooltip(nullptr, 2047483647),
     m_is_standalone_plugin(p_is_standalone), /*m_save_load(vts, p_processor),*/ m_arp(p_processor, vts),
     m_processor(p_processor), m_patch_browser(p_processor, vts), m_tuning(p_processor) {
 
@@ -552,11 +552,6 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	};
 	addAndMakeVisible(m_mono_poly_legato_dropdown);
 
-	m_gui_size_button.setToggleState(false, sendNotification);
-	m_gui_size_button.setTooltip("Scale the GUI to 100% or 150%");
-	addAndMakeVisible(m_gui_size_button);
-	m_gui_size_button.disableMidiLearn();
-
 	addAndMakeVisible(m_lfo_1);
 	addChildComponent(m_lfo_2);
 	addAndMakeVisible(m_lfo_3);
@@ -658,13 +653,8 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 
 	bool set_GUI_big;
 	readOrCreateConfigFile(set_GUI_big);
-	setGUISizeBig(false, false);
 	auto scale = ConfigFileManager::getInstance().getOptionGuiScale();
 	setSize(GUI_BASE_WIDTH * scale, GUI_BASE_HEIGHT * scale);
-
-	//set lambda after setting the button
-	m_gui_size_button.setToggleState(!set_GUI_big, dontSendNotification);
-	m_gui_size_button.onClick = [&]() { setGUISizeBig(!m_gui_size_button.getToggleState(), true); };
 
 	setTooltipEnabled(ConfigFileManager::getInstance().getOptionShowTooltip());
 
@@ -1224,81 +1214,7 @@ void OdinAudioProcessorEditor::updateModWheel(float p_value) {
 	});
 }
 
-void OdinAudioProcessorEditor::setGUISizeBig(bool p_big, bool p_write_to_config) {
-	if (p_big) {
-		g_GUI_big = true;
-		m_osc1.setGUIBig();
-		m_osc2.setGUIBig();
-		m_osc3.setGUIBig();
-		m_fil1_component.setGUIBig();
-		m_fil2_component.setGUIBig();
-		m_fil3_component.setGUIBig();
-		m_midsection.setGUIBig();
-		m_adsr_1.setGUIBig();
-		m_adsr_2.setGUIBig();
-		m_adsr_3.setGUIBig();
-		m_adsr_4.setGUIBig();
-		m_lfo_1.setGUIBig();
-		m_lfo_2.setGUIBig();
-		m_lfo_3.setGUIBig();
-		m_lfo_4.setGUIBig();
-		m_xy_section.setGUIBig();
-		m_delay.setGUIBig();
-		m_phaser.setGUIBig();
-		m_chorus.setGUIBig();
-		m_flanger.setGUIBig();
-		m_reverb.setGUIBig();
-		m_fx_buttons_section.setGUIBig();
-		m_mod_matrix.setGUIBig();
-		m_patch_browser.setGUIBig();
-		m_arp.setGUIBig();
-		//m_save_load.setGUIBig();
-		m_menu_feels.setGUIBig();
-		m_mono_poly_legato_dropdown.setGUIBig();
-		m_title_button.setGUIBig();
-	} else {
-		g_GUI_big = false;
-		m_osc1.setGUISmall();
-		m_osc2.setGUISmall();
-		m_osc3.setGUISmall();
-		m_fil1_component.setGUISmall();
-		m_fil2_component.setGUISmall();
-		m_fil3_component.setGUISmall();
-		m_midsection.setGUISmall();
-		m_adsr_1.setGUISmall();
-		m_adsr_2.setGUISmall();
-		m_adsr_3.setGUISmall();
-		m_adsr_4.setGUISmall();
-		m_lfo_1.setGUISmall();
-		m_lfo_2.setGUISmall();
-		m_lfo_3.setGUISmall();
-		m_lfo_4.setGUISmall();
-		m_xy_section.setGUISmall();
-		m_delay.setGUISmall();
-		m_phaser.setGUISmall();
-		m_chorus.setGUISmall();
-		m_flanger.setGUISmall();
-		m_reverb.setGUISmall();
-		m_fx_buttons_section.setGUISmall();
-		m_mod_matrix.setGUISmall();
-		m_patch_browser.setGUISmall();
-		m_arp.setGUISmall();
-		//m_save_load.setGUISmall();
-		m_menu_feels.setGUISmall();
-		m_mono_poly_legato_dropdown.setGUISmall();
-		m_title_button.setGUISmall();
-	}
-
-	if (p_write_to_config) {
-		ConfigFileManager::getInstance().setOptionBigGUI(p_big);
-		ConfigFileManager::getInstance().saveDataToFile();
-	}
-
-	repaint();
-}
-
 void OdinAudioProcessorEditor::readOrCreateConfigFile(bool &p_GUI_big) {
-	p_GUI_big = ConfigFileManager::getInstance().getOptionBigGUI();
 	ConfigFileManager::getInstance().saveDataToFile();
 }
 
