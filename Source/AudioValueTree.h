@@ -270,7 +270,7 @@
 	    std::make_unique<AudioParameterInt>("fil1_to_amp", "Filter1 To Amplifier", 0, 1, 0),
 	    std::make_unique<AudioParameterInt>("fil2_to_amp", "Filter2 To Amplifier", 0, 1, 1),
 	    std::make_unique<AudioParameterFloat>("glide", "Glide", NormalisableRange<float>(0.f, 1.f, 0.f, 1.f), 0.f),
-	    std::make_unique<AudioParameterFloat>("master", "Master", -30.f, 12.f, -7.f),
+	    std::make_unique<AudioParameterFloat>("master", "Master", -50.f, 12.f, -7.f),
 	    std::make_unique<AudioParameterFloat>(
 	        "modwheel", "Modwheel", NormalisableRange<float>(0.f, 1.f, 0.f, 1.f), 0.f),
 	    std::make_unique<AudioParameterFloat>(

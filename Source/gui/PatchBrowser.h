@@ -31,7 +31,13 @@ public:
 
 	std::function<void()> forceValueTreeLambda;
 
+	void setSelectedEntriesFromValueTree();
+
 private:
+	void writeSelectedEntriesToValueTree(const juce::String &p_soundbank,
+	                                     const juce::String &p_category,
+	                                     const juce::String &p_patch);
+
 	void loadPatchWithFileBrowserAndCopyToCategory(String p_directory);
 	void loadPatchFromOpenedFileStream(juce::FileInputStream &p_file_stream);
 	void savePatchInOpenedFileStream(FileOutputStream &p_file_stream);
@@ -56,6 +62,8 @@ private:
 	PatchBrowserSelector m_soundbank_selector;
 	PatchBrowserSelector m_category_selector;
 	PatchBrowserSelector m_patch_selector;
+
+    bool m_is_selected_from_internal = false;
 
 	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(PatchBrowser)
 };

@@ -17,10 +17,11 @@
 
 #include "../GlobalIncludes.h"
 #include "BrowserEntry.h"
-#include "OdinFeels.h"
 #include "OdinButton.h"
+#include "OdinFeels.h"
 #include "PatchBrowserScrollBar.h"
 #include <JuceHeader.h>
+
 
 #define FACTORY_PRESETS_SOUNDBANK_CODE "F_A_C_T_O_R_Y"
 
@@ -123,6 +124,7 @@ public:
 	String getFirstSubDirectoryAndHighlightIt();
 	String getSubDirectoryAndHighlightItFromName(String p_name);
 	void setType(BrowserType p_type);
+	bool highlightSelectedEntryIfPossible(String p_entry);
 
 	void mouseWheelMove(const MouseEvent &event, const MouseWheelDetails &wheel) override;
 
@@ -148,9 +150,11 @@ public:
 	void setCopyMoveEnabled(bool p_enabled);
 	void enablePassActiveNameToParent(bool p_enable);
 
-	String getCopyFileString(int p_popupmenu_index);
-	String getMoveFileString(int p_popupmenu_index);
-	String getCopyMoveMap(int p_index);
+	juce::String getCopyFileString(int p_popupmenu_index);
+	juce::String getMoveFileString(int p_popupmenu_index);
+	juce::String getCopyMoveMap(int p_index);
+
+	juce::String getSelectedEntry();
 
 private:
 	void generateContent();

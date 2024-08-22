@@ -171,6 +171,16 @@ void PatchBrowserSelector::setDirectory(String p_absolute_path) {
 	}
 }
 
+bool PatchBrowserSelector::highlightSelectedEntryIfPossible(String p_entry) {
+	for (int entry = 0; entry < m_entries.size(); ++entry) {
+		if (m_entries[entry]->getText() == p_entry) {
+			m_entries[entry]->setEntryActive(true);
+			return true;
+		}
+	}
+	return false;
+}
+
 void PatchBrowserSelector::setDirectoryFactoryPresetCategory() {
 	m_menu.clear();
 	m_menu.addItem(1, "Factory Preset items cannot be modified", false);
@@ -576,4 +586,13 @@ void PatchBrowserSelector::resized() {
 	regenerateContent();
 	resetScrollPosition();
 	positionEntries();
+}
+
+juce::String PatchBrowserSelector::getSelectedEntry() {
+	for (int entry = 0; entry < m_entries.size(); ++entry) {
+		if (m_entries[entry]->isActive()) {
+			return m_entries[entry]->getText();
+		}
+	}
+	return "";
 }

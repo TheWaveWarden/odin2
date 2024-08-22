@@ -104,9 +104,9 @@ void OdinAudioProcessor::getStateInformation(MemoryBlock &destData) {
 void OdinAudioProcessor::setStateInformation(const void *data, int sizeInBytes) {
 
 	// disable for standalone plugins
-	if (wrapperType == wrapperType_Standalone) {
-		return;
-	}
+	//if (wrapperType == wrapperType_Standalone) {
+	//		return;
+	//	}
 
 	std::unique_ptr<XmlElement> xmlState(getXmlFromBinary(data, sizeInBytes));
 	if (xmlState.get() != nullptr) {

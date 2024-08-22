@@ -62,26 +62,42 @@ PatchBrowser::PatchBrowser(OdinAudioProcessor &p_processor, AudioProcessorValueT
 			m_category_selector.setDirectoryFactoryPresetCategory();
 			m_category_selector.highlightFirstEntry();
 			m_patch_selector.setDirectoryFactoryPresetPreset("Arps & Sequences");
+
+			const auto category = m_category_selector.getSelectedEntry();
+			writeSelectedEntriesToValueTree("Static Factory Presets", category, "");
 			return;
 		}
 		DBG(p_string + " was pressed in soundbank");
 		m_category_selector.setDirectory(m_soundbank_selector.getDirectory() + File::getSeparatorString() + p_string);
 		m_patch_selector.setDirectory(m_category_selector.getFirstSubDirectoryAndHighlightIt());
+
+		const auto category = m_category_selector.getSelectedEntry();
+		writeSelectedEntriesToValueTree(p_string, category, "");
 	};
 
 	m_category_selector.passValueToPatchBrowser = [&](String p_string) {
 		//handle factory sounds:
 		if (p_string.toStdString().find(FACTORY_PRESETS_SOUNDBANK_CODE) != std::string::npos) {
-			m_patch_selector.setDirectoryFactoryPresetPreset(
-			    p_string.toStdString().substr(std::string(FACTORY_PRESETS_SOUNDBANK_CODE).size()));
+			const auto category = p_string.toStdString().substr(std::string(FACTORY_PRESETS_SOUNDBANK_CODE).size());
+			m_patch_selector.setDirectoryFactoryPresetPreset(category);
+
+			writeSelectedEntriesToValueTree("Static Factory Presets", category, "");
 			return;
 		}
 		DBG(p_string + " was pressed in category");
 		m_patch_selector.setDirectory(m_category_selector.getDirectory() + File::getSeparatorString() + p_string);
+
+		const auto soundbank = m_soundbank_selector.getSelectedEntry();
+		writeSelectedEntriesToValueTree(soundbank, p_string, "");
 	};
 
 	m_patch_selector.passValueToPatchBrowser = [&](String p_string) {
 		//handle factory sounds
+
+		const auto soundbank = m_soundbank_selector.getSelectedEntry();
+		const auto category  = m_category_selector.getSelectedEntry();
+		const auto patch     = p_string;
+
 		if (p_string.toStdString().find(FACTORY_PRESETS_SOUNDBANK_CODE) != std::string::npos) {
 			auto binary_patch_key = p_string.toStdString().substr(std::string(FACTORY_PRESETS_SOUNDBANK_CODE).size());
 			DBG("Loading Binary Patch:" + binary_patch_key);
@@ -100,7 +116,12 @@ PatchBrowser::PatchBrowser(OdinAudioProcessor &p_processor, AudioProcessorValueT
 
 			m_value_tree.state.getChildWithName("misc").setProperty(
 			    "arp_mod_selected", MATRIX_SECTION_INDEX_PRESETS, nullptr);
+
+			writeSelectedEntriesToValueTree(soundbank, category, patch);
+
+			juce::ScopedValueSetter<bool> setter(m_is_selected_from_internal, true);
 			forceValueTreeLambda();
+
 			return;
 		}
 
@@ -116,6 +137,9 @@ PatchBrowser::PatchBrowser(OdinAudioProcessor &p_processor, AudioProcessorValueT
 			    "current_patch_filename", file_to_open.getFileName(), nullptr);
 			DBG("set filename in valuetree: " +
 			    m_value_tree.state.getChildWithName("misc")["current_patch_filename"].toString());
+
+			juce::ScopedValueSetter<bool> setter(m_is_selected_from_internal, true);
+			writeSelectedEntriesToValueTree(soundbank, category, patch);
 		}
 	};
 
@@ -223,6 +247,11 @@ PatchBrowser::PatchBrowser(OdinAudioProcessor &p_processor, AudioProcessorValueT
 			DBG("Wrote above patch to " + p_string + ".odin");
 			m_patch_selector.regenerateContent();
 			m_patch_selector.getSubDirectoryAndHighlightItFromName(p_string);
+
+            const auto soundbank = m_soundbank_selector.getSelectedEntry();
+            const auto category  = m_category_selector.getSelectedEntry();
+            const auto patch = m_patch_selector.getSelectedEntry();
+            writeSelectedEntriesToValueTree(soundbank, category, patch);
 		}
 	};
 
@@ -686,6 +715,7 @@ void PatchBrowser::loadPatchFromOpenedFileStream(juce::FileInputStream &p_file_s
 	m_value_tree.state.getChildWithName("misc").setProperty("arp_mod_selected", MATRIX_SECTION_INDEX_PRESETS, nullptr);
 
 	//note: 99% percent of patch-loading time is spent here:
+	juce::ScopedValueSetter<bool> setter(m_is_selected_from_internal, true);
 	forceValueTreeLambda();
 
 	//set the correct Version number again
@@ -693,9 +723,6 @@ void PatchBrowser::loadPatchFromOpenedFileStream(juce::FileInputStream &p_file_s
 	m_value_tree.state.getChildWithName("misc").setProperty("version_patch", ODIN_PATCH_VERSION, nullptr);
 	m_value_tree.state.getChildWithName("misc").setProperty(
 	    "patch_migration_version", ODIN_PATCH_MIGRATION_VERSION, nullptr);
-
-	//this forces values onto the GUI (patch label as well)
-	//	forceValueTreeLambda();
 }
 
 bool PatchBrowser::checkForBiggerVersion(FileInputStream &p_file_stream, std::string &p_version_string) {
@@ -978,12 +1005,6 @@ bool PatchBrowser::usesSpecdraw(int p_osc) {
 
 void PatchBrowser::loadPatchWithFileBrowserAndCopyToCategory(String p_directory) {
 
-	// File file;
-	// if (File(m_value_tree.state.getChildWithName("misc")["current_patch_directory"].toString()).exists()) {
-	// 	file = File(m_value_tree.state.getChildWithName("misc")["current_patch_directory"].toString());
-	// } else {
-	// 	file = File(DEFAULT_EXPORT_LOCATION_STRING);
-	// }
 	auto suggested_dir = ConfigFileManager::getInstance().getOptionPatchDir();
 	File file(suggested_dir);
 
@@ -1149,4 +1170,66 @@ void PatchBrowser::resized() {
 	m_patch_selector.setBounds(bounds);
 
 	setFirstSoundbankActive();
+}
+
+void PatchBrowser::writeSelectedEntriesToValueTree(const juce::String &p_soundbank,
+                                                   const juce::String &p_category,
+                                                   const juce::String &p_patch) {
+	m_value_tree.state.getChildWithName("misc").setProperty("preset_soundbank_selected", p_soundbank, nullptr);
+	m_value_tree.state.getChildWithName("misc").setProperty("preset_category_selected", p_category, nullptr);
+	m_value_tree.state.getChildWithName("misc").setProperty("preset_patch_selected", p_patch, nullptr);
+
+	DBG("Write to value tree:");
+	DBG(p_soundbank);
+	DBG(p_category);
+	DBG(p_patch);
+}
+
+void PatchBrowser::setSelectedEntriesFromValueTree() {
+	if (m_is_selected_from_internal) {
+		return;
+	}
+
+	auto soundbank = m_value_tree.state.getChildWithName("misc")["preset_soundbank_selected"].toString();
+	auto category  = m_value_tree.state.getChildWithName("misc")["preset_category_selected"].toString();
+	auto patch     = m_value_tree.state.getChildWithName("misc")["preset_patch_selected"].toString();
+	if (patch.startsWith(FACTORY_PRESETS_SOUNDBANK_CODE))
+		patch = patch.fromFirstOccurrenceOf(FACTORY_PRESETS_SOUNDBANK_CODE, false, true);
+	if (patch.endsWith(".odin"))
+		patch = patch.upToFirstOccurrenceOf(".odin", false, true);
+
+	const auto is_factory = (soundbank == "Static Factory Presets");
+	DBG("PresetEntries in value tree:");
+	DBG(soundbank);
+	DBG(category);
+	DBG(patch);
+
+	// todo what if we cant find? dont just return but set default values?
+
+	// soundbank
+	auto dir = DEFAULT_SOUNDBANK_LOCATION_STRING;
+	m_soundbank_selector.setDirectory(dir);
+	if (!m_soundbank_selector.highlightSelectedEntryIfPossible(soundbank)) {
+		return;
+	}
+
+	// category
+	if (is_factory) {
+		m_category_selector.setDirectoryFactoryPresetCategory();
+	} else {
+		dir += File::getSeparatorString() + soundbank;
+		m_category_selector.setDirectory(dir);
+	}
+	if (!m_category_selector.highlightSelectedEntryIfPossible(category)) {
+		return;
+	}
+
+	// patch
+	if (is_factory) {
+		m_patch_selector.setDirectoryFactoryPresetPreset(category.toStdString());
+	} else {
+		dir += File::getSeparatorString() + category;
+		m_patch_selector.setDirectory(dir);
+	}
+	m_patch_selector.highlightSelectedEntryIfPossible(patch);
 }
