@@ -51,8 +51,7 @@ public:
 		repaint();
 	}
 
-	std::function<void()> onDraw = []() {};
-
+	std::function<void()> onMouseUp = []() {};
 private:
 	static constexpr auto DRAW_INLAY_HORZ_PROPORTION = 0.02f;
 	static constexpr auto DRAW_INLAY_VERT_PROPORION  = 0.02f;

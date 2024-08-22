@@ -102,7 +102,6 @@ void SpecdrawDisplay::mouseInteraction() {
 	m_last_x_value = x;
 	m_last_y_value = float_y;
 
-	onDraw();
 	repaint();
 
 	m_mouse_was_down = true;
@@ -110,6 +109,7 @@ void SpecdrawDisplay::mouseInteraction() {
 
 void SpecdrawDisplay::mouseUp(const MouseEvent &event) {
 	m_mouse_was_down = false;
+	onMouseUp();
 }
 
 float *SpecdrawDisplay::getDrawnTable() {

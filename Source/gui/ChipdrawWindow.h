@@ -43,7 +43,7 @@ public:
 
 	void mouseInteraction();
 
-	std::function<void()> onDraw = []() {};
+	std::function<void()> onMouseUp = []() {};
 
 	float *getDrawnTable();
 

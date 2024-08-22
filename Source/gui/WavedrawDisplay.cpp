@@ -133,7 +133,6 @@ void WavedrawDisplay::mouseInteraction() {
 	m_last_x_value = step_x;
 	m_last_y_value = float_y;
 
-	onDraw();
 	repaint();
 
 	m_mouse_was_down = true;
@@ -141,6 +140,7 @@ void WavedrawDisplay::mouseInteraction() {
 
 void WavedrawDisplay::mouseUp(const MouseEvent &event) {
 	m_mouse_was_down = false;
+    onMouseUp();
 }
 
 float *WavedrawDisplay::getDrawnTable() {

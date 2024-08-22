@@ -34,7 +34,7 @@
 #include "XYPadComponent.h"
 
 #define OCT_RANGE_MAX 4
-#define SEMI_RANGE_MAX 7
+#define SEMI_RANGE_MAX 12
 #define FINE_RANGE_MAX 50
 #define PW_DEFAULT 0.5
 #define STEP_RANGE_MAX 12
@@ -201,10 +201,6 @@ protected:
 	OdinButton m_arp;
 	OdinButton m_step_button;
 	OdinButton m_noise;
-
-	OdinButton m_chipdraw_convert;
-	OdinButton m_wavedraw_convert;
-	OdinButton m_specdraw_convert;
 
 	OdinButton m_LED_saw;
 	OdinButton m_LED_pulse;

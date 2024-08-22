@@ -57,7 +57,7 @@ public:
 		repaint();
 	}
 
-	std::function<void()> onDraw = []() {};
+	std::function<void()> onMouseUp = []() {};
 
 private:
 	int m_inlay    = INLAY_DEFAULT_SPECDRAW;

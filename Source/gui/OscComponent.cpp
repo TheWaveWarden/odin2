@@ -26,12 +26,10 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
     m_LED_pulse("LED_pulse", "PWM"), m_LED_triangle("LED_triangle", "Tri"), m_LED_sine("LED_sine", "Sine"),
     m_arp("arp", "Arpeggiator"), m_step_button("step", "Step 3 "), m_noise("noise", "Noise"),
     m_carrier_label("Carrier"), m_modulator_label("Modulator"), m_FM_label("FM"), m_PM_label("PM"),
-    m_chipdraw_convert("convert_chipdraw", "ok"), m_wavedraw_convert("convert_wavedraw", "ok"),
-    m_specdraw_convert("convert_wavedraw", "ok"), m_chiptune_waveselector(true), m_carrier_waveselector(false),
-    m_modulator_waveselector(true), m_wavetable_waveselector(true), m_modulation_source(true), m_carrier_ratio(false),
-    m_modulator_ratio(true), m_fm_exp("fm_exp"), m_xy(vts, "osc" + p_osc_number + "_vec_", m_xy_x, m_xy_y, true),
-    m_HP_label("HighPass"), m_LP_label("LowPass"), m_osc_number(p_osc_number),
-    m_wavetable_identifier("osc" + p_osc_number + "_wavetable"),
+    m_chiptune_waveselector(true), m_carrier_waveselector(false), m_modulator_waveselector(true),
+    m_wavetable_waveselector(true), m_modulation_source(true), m_carrier_ratio(false), m_modulator_ratio(true),
+    m_fm_exp("fm_exp"), m_xy(vts, "osc" + p_osc_number + "_vec_", m_xy_x, m_xy_y, true), m_HP_label("HighPass"),
+    m_LP_label("LowPass"), m_osc_number(p_osc_number), m_wavetable_identifier("osc" + p_osc_number + "_wavetable"),
     m_modulation_source_identifier("osc" + p_osc_number + "_mod_source"),
     m_chipwave_identifier("osc" + p_osc_number + "_chipwave"),
     m_modulator_wave_identifier("osc" + p_osc_number + "_modulator_wave"),
@@ -311,56 +309,9 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 	m_speed.setKnobTooltip("Speed of the arpeggiator");
 	addChildComponent(m_speed);
 
-	m_chipdraw_convert.setAlwaysOnTop(true);
-	m_chipdraw_convert.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
-	m_chipdraw_convert.setToggleState(true, sendNotification);
-	m_chipdraw_convert.disableMidiLearn();
-	m_chipdraw_convert.setClickingTogglesState(true);
-	m_chipdraw_convert.setTriggeredOnMouseDown(false);
-	m_chipdraw_convert.onClick = [&]() {
-		if (m_chipdraw_convert.getToggleState()) {
-			createChipdrawTables();
-		}
-		m_chipdraw_convert.setToggleState(true, dontSendNotification);
-	};
-
-	m_chipdraw_convert.setTooltip("Converts the waveform drawn\nin the window. You won't hear\nany changes "
-	                              "before you press\nthis button");
-	addChildComponent(m_chipdraw_convert);
-
-	m_wavedraw_convert.setClickingTogglesState(true);
-	m_wavedraw_convert.setAlwaysOnTop(true);
-	m_wavedraw_convert.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
-	m_wavedraw_convert.setToggleState(true, sendNotification);
-	m_wavedraw_convert.setClickingTogglesState(true);
-	m_wavedraw_convert.setTriggeredOnMouseDown(false);
-	m_wavedraw_convert.onClick = [&]() {
-		if (m_wavedraw_convert.getToggleState()) {
-			createWavedrawTables();
-		}
-		m_wavedraw_convert.setToggleState(true, dontSendNotification);
-	};
-	m_wavedraw_convert.setTooltip("Converts the waveform drawn\nin the window. You won't hear\nany changes "
-	                              "before you press\nthis button");
-	addChildComponent(m_wavedraw_convert);
-	m_wavedraw_convert.disableMidiLearn();
-
-	m_specdraw_convert.setClickingTogglesState(true);
-	m_specdraw_convert.setAlwaysOnTop(true);
-	m_specdraw_convert.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
-	m_specdraw_convert.setToggleState(true, sendNotification);
-	m_specdraw_convert.setClickingTogglesState(true);
-	m_specdraw_convert.setTriggeredOnMouseDown(false);
-	m_specdraw_convert.onClick = [&]() {
-		if (m_specdraw_convert.getToggleState()) {
-			createSpecdrawTables();
-		}
-		m_specdraw_convert.setToggleState(true, dontSendNotification);
-	};
-	m_specdraw_convert.setTooltip("Converts the waveform drawn\nin the window. You won't hear\nany changes "
-	                              "before you press\nthis button");
-	addChildComponent(m_specdraw_convert);
-	m_specdraw_convert.disableMidiLearn();
+	m_wavedraw.onMouseUp = [&] { createWavedrawTables(); };
+	m_chipdraw.onMouseUp = [&] { createChipdrawTables(); };
+	m_specdraw.onMouseUp = [&] { createSpecdrawTables(); };
 
 	juce::Colour chip_color(93, 81, 63);
 
@@ -748,7 +699,6 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 
 	m_chipdraw.setColor(chip_color);
 	m_chipdraw.setDrawColor(juce::Colour(238, 230, 217));
-	m_chipdraw.onDraw = [&]() { m_chipdraw_convert.setToggleState(false, dontSendNotification); };
 	m_chipdraw.setTooltip("Draw a custom 4Bit waveform.\n\nDon't forget to apply "
 	                      "your waveform with the button on the bottom right.");
 	addChildComponent(m_chipdraw);
@@ -758,7 +708,6 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 
 	m_wavedraw.setColor(wave_color);
 	m_wavedraw.setDrawColor(wave_draw_color);
-	m_wavedraw.onDraw = [&]() { m_wavedraw_convert.setToggleState(false, dontSendNotification); };
 	m_wavedraw.setTooltip("Become the Picasso of music production.\n\nDon't forget to apply your "
 	                      "waveform with the button on the bottom right.");
 	addChildComponent(m_wavedraw);
@@ -768,7 +717,6 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 
 	m_specdraw.setColor(spec_color);
 	m_specdraw.setDrawColor(spec_draw_color);
-	m_specdraw.onDraw = [&]() { m_specdraw_convert.setToggleState(false, dontSendNotification); };
 	m_specdraw.setTooltip("Draw the spectrum of the oscillator. A single peak corresponds to a "
 	                      "sine function.\n\nDon't forget to apply your waveform with the button "
 	                      "on the bottom right.");
@@ -1050,11 +998,8 @@ void OscComponent::hideAllComponents() {
 	m_fm.setVisible(false);
 	m_fm_exp.setVisible(false);
 	m_chipdraw.setVisible(false);
-	m_chipdraw_convert.setVisible(false);
 	m_wavedraw.setVisible(false);
-	m_wavedraw_convert.setVisible(false);
 	m_specdraw.setVisible(false);
-	m_specdraw_convert.setVisible(false);
 	m_lp.setVisible(false);
 	m_hp.setVisible(false);
 	m_xy.setVisible(false);
@@ -1179,7 +1124,6 @@ void OscComponent::showChipdrawComponents() {
 	showVolComponent();
 	showPitchComponents();
 	m_chipdraw.setVisible(true);
-	m_chipdraw_convert.setVisible(true);
 	m_sync.setVisible(true);
 }
 
@@ -1187,7 +1131,6 @@ void OscComponent::showWavedrawComponents() {
 	showVolComponent();
 	showPitchComponents();
 	m_wavedraw.setVisible(true);
-	m_wavedraw_convert.setVisible(true);
 	m_sync.setVisible(true);
 }
 
@@ -1195,7 +1138,6 @@ void OscComponent::showSpecdrawComponents() {
 	showVolComponent();
 	showPitchComponents();
 	m_specdraw.setVisible(true);
-	m_specdraw_convert.setVisible(true);
 	m_sync.setVisible(true);
 }
 
@@ -1360,21 +1302,18 @@ void OscComponent::forceValueTreeOntoComponents(ValueTree p_tree, int p_index, b
 	}
 
 	m_wavedraw.setDrawnTable(wavedraw_values);
-	m_wavedraw_convert.setToggleState(true, dontSendNotification);
 
 	// chipdraw
 	for (int i = 0; i < CHIPDRAW_STEPS_X; ++i) {
 		wavedraw_values[i] = (float)node[String("osc" + m_osc_number + "_chipdraw_values_" + std::to_string(i))];
 	}
 	m_chipdraw.setDrawnTable(wavedraw_values);
-	m_chipdraw_convert.setToggleState(true, dontSendNotification);
 
 	// specdraw
 	for (int i = 0; i < SPECDRAW_STEPS_X; ++i) {
 		wavedraw_values[i] = (float)node[String("osc" + m_osc_number + "_specdraw_values_" + std::to_string(i))];
 	}
 	m_specdraw.setDrawnTable(wavedraw_values);
-	m_specdraw_convert.setToggleState(true, dontSendNotification);
 
 	if (p_create_wavetables) {
 		createWavedrawTables();
@@ -1450,10 +1389,6 @@ void OscComponent::resized() {
 	GET_LOCAL_AREA(m_carrier_waveselector, "CarrWave");
 	GET_LOCAL_AREA(m_modulator_waveselector, "ModWave");
 	GET_LOCAL_AREA(m_modulation_source, "OscModSource");
-
-	GET_LOCAL_AREA(m_chipdraw_convert, "WavedrawConvert");
-	GET_LOCAL_AREA(m_wavedraw_convert, "WavedrawConvert");
-	GET_LOCAL_AREA(m_specdraw_convert, "WavedrawConvert");
 
 	GET_LOCAL_AREA(m_chipdraw, "Wavedraw");
 	GET_LOCAL_AREA(m_wavedraw, "Wavedraw");
