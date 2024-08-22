@@ -136,10 +136,14 @@ protected:
 	TextLabel m_freq_label;
 	TextLabel m_res_label;
 	TextLabel m_saturation_label;
-	TextLabel m_sem_transition_label;
+	TextLabel m_sem_notch_label;
+	TextLabel m_sem_lp_label;
+	TextLabel m_sem_hp_label;
 	TextLabel m_formant_transition_label;
 	TextLabel m_ring_mod_amount_label;
 	TextLabel m_module_label;
+	TextLabel m_vowel1_label;
+	TextLabel m_vowel2_label;
 
 	OdinKnob m_vel;
 	OdinKnob m_kbd;

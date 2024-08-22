@@ -37,32 +37,17 @@ void XYPadComponent::paint(Graphics &g) {
 	g.drawRect(getLocalBounds(), 1);
 
 	if (m_vector_pad) {
-		g.setColour(juce::Colours::lightgrey);
-		if (m_GUI_big) {
-			g.setFont(18.0f);
-			g.drawText(
-			    "A", OdinHelper::c150(VECTOR_LEFT) + 1, OdinHelper::c150(VECTOR_DOWN), 12, 23, Justification::topLeft);
-			g.drawText(
-			    "B", OdinHelper::c150(VECTOR_LEFT) + 1, OdinHelper::c150(VECTOR_UP), 12, 23, Justification::topLeft);
-			g.drawText(
-			    "C", OdinHelper::c150(VECTOR_RIGHT), OdinHelper::c150(VECTOR_UP), 12, 23, Justification::topLeft);
-			g.drawText(
-			    "D", OdinHelper::c150(VECTOR_RIGHT), OdinHelper::c150(VECTOR_DOWN), 12, 23, Justification::topLeft);
-		} else {
-			g.setFont(12.0f);
-			g.drawText("A", VECTOR_LEFT, VECTOR_DOWN, 8, 15, Justification::topLeft);
-			g.drawText("B", VECTOR_LEFT, VECTOR_UP, 8, 15, Justification::topLeft);
-			g.drawText("C", VECTOR_RIGHT, VECTOR_UP, 8, 15, Justification::topLeft);
-			g.drawText("D", VECTOR_RIGHT, VECTOR_DOWN, 8, 15, Justification::topLeft);
-		}
+		g.setColour(COL_LIGHT);
+		g.setFont(H / 10.0f);
+		const auto bounds = getLocalBounds().reduced(H / 40.0f);
+		g.drawText("A", bounds, Justification::bottomLeft, false);
+		g.drawText("B", bounds, Justification::topLeft, false);
+		g.drawText("C", bounds, Justification::topRight, false);
+		g.drawText("D", bounds, Justification::bottomRight, false);
 	}
 
-	int handle_inlay    = HANDLE_INLAY;
-	int handle_diameter = HANDLE_DIAMETER;
-	if (m_GUI_big) {
-		//handle_inlay *= 1.5f;
-		handle_diameter = 10;
-	}
+	int handle_diameter = proportionOfHeight(1.0f / 18.0f);
+	int handle_inlay    = handle_diameter / 3.0f;
 
 	float x_handle = handle_inlay + m_value_x * (getWidth() - handle_diameter - 2 * handle_inlay);
 	if (m_GUI_big) {

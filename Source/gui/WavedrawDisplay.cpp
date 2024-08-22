@@ -24,49 +24,38 @@ WavedrawDisplay::~WavedrawDisplay() {
 }
 
 void WavedrawDisplay::paint(Graphics &g) {
-	SET_INTERPOLATION_QUALITY(g)
-
-	int draw_inlay_left = DRAW_INLAY_LEFT;
-	int draw_inlay_up = DRAW_INLAY_UP;
-	int draw_inlay_down = DRAW_INLAY_DOWN;
+	int draw_inlay_left    = DRAW_INLAY_LEFT;
+	int draw_inlay_up      = DRAW_INLAY_UP;
+	int draw_inlay_down    = DRAW_INLAY_DOWN;
 	int wavedraw_thiccness = WAVEDRAW_THICCNESS;
 
-	if(m_GUI_big){
-		draw_inlay_left = 5;
-		draw_inlay_up = 7;
-		draw_inlay_down = 5;
-		wavedraw_thiccness = 3;
-	}
-
-
-	g.setColour(m_color);
 	juce::Point<int> top_left = getLocalBounds().getTopLeft();
 	top_left.addXY(m_inlay + 1, m_inlay);
 	juce::Point<int> bottom_right = getLocalBounds().getBottomRight();
 	bottom_right.addXY(-m_inlay - 1, -m_inlay);
-	g.fillRect(juce::Rectangle<int>(top_left, bottom_right)); //
+	g.setColour(COL_LIGHT);
+	g.drawRect(juce::Rectangle<int>(top_left, bottom_right), 1);
 
 	float width  = (float)(getWidth() - draw_inlay_left - DRAW_INLAY_RIGHT) / (float)WAVEDRAW_STEPS_X;
 	float height = (float)(getHeight() - draw_inlay_up - draw_inlay_down) / 2.f;
 	float mid    = (float)getHeight() / 2.f;
 
 	for (int i = 0; i < WAVEDRAW_STEPS_X; ++i) {
-		
+
 		if (i != WAVEDRAW_STEPS_X - 1) {
 
 			//draw backgorund shade as path
 			Path path;
 			path.startNewSubPath(draw_inlay_left + (i)*width, mid);
-			path.lineTo(draw_inlay_left + (i)*width,mid - m_draw_values[i] * height);
+			path.lineTo(draw_inlay_left + (i)*width, mid - m_draw_values[i] * height);
 			path.lineTo(draw_inlay_left + (i + 1) * width, mid - m_draw_values[i + 1] * height);
-			path.lineTo(draw_inlay_left + (i + 1)*width, mid);
+			path.lineTo(draw_inlay_left + (i + 1) * width, mid);
 			path.closeSubPath();
-		
-			g.setColour(m_fill_color);
+
+			g.setColour(COL_LIGHT.withAlpha(0.3f));
 			g.fillPath(path);
 
-			g.setColour(m_draw_color);
-
+			g.setColour(COL_LIGHT);
 
 			g.drawLine(draw_inlay_left + (i)*width,
 			           mid - m_draw_values[i] * height,
@@ -81,8 +70,6 @@ void WavedrawDisplay::paint(Graphics &g) {
 			           wavedraw_thiccness);
 		}
 	}
-
-	g.drawImageAt(m_glaspanel, 0, 0);
 }
 
 void WavedrawDisplay::mouseDrag(const MouseEvent &event) {
@@ -108,12 +95,12 @@ void WavedrawDisplay::mouseInteraction() {
 	float y                    = mouse_pos.getY();
 
 	int draw_inlay_left = DRAW_INLAY_LEFT;
-	int draw_inlay_up = DRAW_INLAY_UP;
+	int draw_inlay_up   = DRAW_INLAY_UP;
 	int draw_inlay_down = DRAW_INLAY_DOWN;
 
-	if(m_GUI_big){
+	if (m_GUI_big) {
 		draw_inlay_left = 5;
-		draw_inlay_up = 7;
+		draw_inlay_up   = 7;
 		draw_inlay_down = 5;
 	}
 
@@ -166,14 +153,14 @@ float *WavedrawDisplay::getDrawnTable() {
 	return m_draw_values;
 }
 
-void WavedrawDisplay::setGUIBig(){
-	m_GUI_big = true;
+void WavedrawDisplay::setGUIBig() {
+	m_GUI_big   = true;
 	m_glaspanel = ImageCache::getFromMemory(BinaryData::drawpanel_150_png, BinaryData::drawpanel_150_pngSize);
 
 	setSize(m_glaspanel.getWidth(), m_glaspanel.getHeight());
 }
-void WavedrawDisplay::setGUISmall(){
-	m_GUI_big = false;
+void WavedrawDisplay::setGUISmall() {
+	m_GUI_big   = false;
 	m_glaspanel = ImageCache::getFromMemory(BinaryData::drawpanel_png, BinaryData::drawpanel_pngSize);
 
 	setSize(m_glaspanel.getWidth(), m_glaspanel.getHeight());

@@ -29,30 +29,14 @@ LeftRightButton::~LeftRightButton() {
 }
 
 void LeftRightButton::paintButton(Graphics &g, bool shouldDrawButtonAsHighlighted, bool shouldDrawButtonAsDown) {
-	g.fillAll(Colours::transparentBlack);
+	g.setColour(COL_LIGHT);
+	g.drawRect(getLocalBounds(), 1);
+	g.setColour(COL_LIGHT.withAlpha(0.5f));
 
-	if (getToggleState()) {
-		g.drawImageAt(m_image_left, 0, 0);
-	} else {
-		g.drawImageAt(m_image_right, 0, 0);
-	}
-	if (m_midi_learn) {
-		g.setColour(Colours::red);
-		g.drawRoundedRectangle(getLocalBounds().getX(),
-		                       getLocalBounds().getY(),
-		                       getLocalBounds().getWidth(),
-		                       getLocalBounds().getHeight(),
-		                       5,
-		                       2); // draw an outline around the component
-	} else if (m_midi_control) {
-		g.setColour(Colours::green);
-		g.drawRoundedRectangle(getLocalBounds().getX(),
-		                       getLocalBounds().getY(),
-		                       getLocalBounds().getWidth(),
-		                       getLocalBounds().getHeight(),
-		                       5,
-		                       2); // draw an outline around the component
-	}
+	if (getToggleState())
+		g.fillRect(getLocalBounds().removeFromLeft(getWidth() / 2));
+	else
+		g.fillRect(getLocalBounds().removeFromRight(getWidth() / 2));
 }
 
 void LeftRightButton::mouseDown(const MouseEvent &p_event) {

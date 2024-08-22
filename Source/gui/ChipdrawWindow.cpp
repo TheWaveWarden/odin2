@@ -26,32 +26,22 @@ ChipdrawWindow::~ChipdrawWindow() {
 
 void ChipdrawWindow::paint(Graphics &g) {
 
-	int draw_inlay_left    = DRAW_INLAY_LEFT;
-	int draw_inlay_right   = DRAW_INLAY_RIGHT;
-	int draw_inlay_up      = DRAW_INLAY_UP;
-	int draw_inlay_down    = DRAW_INLAY_DOWN;
-	int chipdraw_thiccness = CHIPDRAW_THICCNESS;
-	if (m_GUI_big) {
-		draw_inlay_left    = 4;
-		draw_inlay_up      = 7;
-		draw_inlay_down    = 5;
-		chipdraw_thiccness = 3;
-	}
-
-	SET_INTERPOLATION_QUALITY(g)
-	g.setColour(m_color);
+	int draw_inlay_left       = DRAW_INLAY_LEFT;
+	int draw_inlay_right      = DRAW_INLAY_RIGHT;
+	int draw_inlay_up         = DRAW_INLAY_UP;
+	int draw_inlay_down       = DRAW_INLAY_DOWN;
+	int chipdraw_thiccness    = CHIPDRAW_THICCNESS;
 	juce::Point<int> top_left = getLocalBounds().getTopLeft();
 	top_left.addXY(m_inlay + 1, m_inlay);
 	juce::Point<int> bottom_right = getLocalBounds().getBottomRight();
 	bottom_right.addXY(-m_inlay - 1, -m_inlay);
-	g.fillRect(juce::Rectangle<int>(top_left, bottom_right)); //
+
+	g.setColour(COL_LIGHT);
+	g.drawRect(juce::Rectangle<int>(top_left, bottom_right), 1);
 
 	float width  = (float)(getWidth() - draw_inlay_left - draw_inlay_right) / (float)CHIPDRAW_STEPS_X;
 	float height = (float)(getHeight() - draw_inlay_up - draw_inlay_down) / 2.f;
 	float mid    = (float)getHeight() / 2.f;
-
-	//juce::ColourGradient gradient_up   = juce::ColourGradient::vertical(m_color, mid, m_fill_color, mid + height);
-	//juce::ColourGradient gradient_down = juce::ColourGradient::vertical(m_color, mid, m_fill_color, mid - height);
 
 	for (int i = 0; i < CHIPDRAW_STEPS_X; ++i) {
 		Path path;
@@ -61,16 +51,10 @@ void ChipdrawWindow::paint(Graphics &g) {
 		path.lineTo(draw_inlay_left + (i)*width, mid);
 		path.closeSubPath();
 
-		//if (m_draw_values[i] < 0) {
-		//	g.setGradientFill(gradient_up);
-		//} else {
-		//	g.setGradientFill(gradient_down);
-		//}
-		g.setColour(m_fill_color);
+		g.setColour(COL_LIGHT.withAlpha(0.3f));
 		g.fillPath(path);
 
-		g.setColour(m_draw_color);
-
+		g.setColour(COL_LIGHT);
 		g.drawLine(draw_inlay_left + i * width,
 		           mid - m_draw_values[i] * height,
 		           draw_inlay_left + (i + 1) * width,
@@ -84,8 +68,6 @@ void ChipdrawWindow::paint(Graphics &g) {
 			           CHIPDRAW_THICCNESS);
 		}
 	}
-
-	g.drawImageAt(m_glaspanel, 0, 0);
 }
 
 void ChipdrawWindow::mouseDrag(const MouseEvent &event) {

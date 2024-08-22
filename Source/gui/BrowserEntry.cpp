@@ -51,12 +51,11 @@ void BrowserEntry::paint(Graphics &g) {
 
 	if (!m_is_active) {
 		if (m_is_highlighted) {
-			//g.fillAll(Colour(35, 35, 35));
-			g.fillAll(Colour(22, 22, 22));
-			g.setColour(Colours::grey);
+			g.fillAll(COL_LIGHT.withAlpha(0.3f));
+			g.setColour(COL_LIGHT);
 			g.drawRect(getLocalBounds(), 1); // draw an outline around the component
 		}
-		g.setColour(Colours::white);
+		g.setColour(COL_LIGHT);
 	} else {
 		//g.fillAll(Colour(35, 35, 35));
 		g.fillAll(Colour(22, 22, 22));
@@ -64,21 +63,8 @@ void BrowserEntry::paint(Graphics &g) {
 		g.drawRect(getLocalBounds(), 1); // draw an outline around the component
 	}
 
-	if (m_GUI_big) {
-		g.setFont(18.0f);
-	} else {
-		g.setFont(15.0f);
-	}
-	auto text_area = getLocalBounds();
-
-	if (m_GUI_big) {
-		text_area.removeFromLeft(TEXT_INLAY_BROWSER_150);
-		text_area.removeFromRight(TEXT_INLAY_BROWSER_150);
-	} else {
-		text_area.removeFromLeft(TEXT_INLAY_BROWSER_100);
-		text_area.removeFromRight(TEXT_INLAY_BROWSER_100);
-	}
-
+	g.setFont(H / 1.2f);
+	const auto text_area = getLocalBounds().reduced(proportionOfWidth(0.05f), 0);
 	g.drawText(m_text, text_area, Justification::centredLeft, true); // draw some placeholder text
 }
 

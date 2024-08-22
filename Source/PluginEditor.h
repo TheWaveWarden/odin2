@@ -300,6 +300,8 @@ private:
 	TextLabel m_width_label;
 	TextLabel m_master_label;
 	TextLabel m_glide_label;
+	TextLabel m_modwheel_label;
+	TextLabel m_pitchwheel_label;
 
 	PitchWheel m_pitchwheel;
 	NumberSelector m_pitch_amount;
@@ -372,7 +374,6 @@ private:
 
 	TitleButton m_title_button;
 
-	OdinButton m_question_button;
 	OdinButton m_burger_button;
 
 	juce::ComponentDragger m_dragger;

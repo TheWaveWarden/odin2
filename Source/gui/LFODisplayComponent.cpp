@@ -23,21 +23,14 @@ LFODisplayComponent::~LFODisplayComponent() {
 }
 
 void LFODisplayComponent::paint(Graphics &g) {
-	SET_INTERPOLATION_QUALITY(g)
-
-	g.setColour(STANDARD_DISPLAY_COLOR);
 	juce::Point<int> top_left = getLocalBounds().getTopLeft();
 	top_left.addXY(m_inlay + 1 + m_inlay_top, m_inlay + m_inlay_left);
 	juce::Point<int> bottom_right = getLocalBounds().getBottomRight();
 	bottom_right.addXY(-m_inlay - 1, -m_inlay);
 
-	g.fillRect(juce::Rectangle<int>(top_left, bottom_right)); // pmai
-
 	if (m_value < m_waves.size()) {
 		g.drawImageAt((m_waves[m_value]), 0, 1);
 	}
-
-	g.drawImageAt(m_panel, 0, 0);
 }
 
 void LFODisplayComponent::addWave(juce::Image p_wave) {

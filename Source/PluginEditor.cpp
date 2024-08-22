@@ -29,18 +29,18 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
                                                    AudioProcessorValueTreeState &vts,
                                                    bool p_is_standalone) :
     AudioProcessorEditor(&p_processor),
-    m_live_constrainer(*this), processor(p_processor), m_fx_buttons_section(vts, p_processor), m_value_tree(vts),
-    m_detune_label("Detune"), m_width_label("Width"), m_master_label("Master"), m_glide_label("Glide"),
-    m_osc1_dropdown("osc1_dropdown_button", "v"), m_osc2_dropdown("osc2_dropdown_button", "v"),
-    m_osc3_dropdown("osc3_dropdown_button", "v"), m_filter1_dropdown("filter1_dropdown_button", "v"),
-    m_filter2_dropdown("filter2_dropdown_button", "v"), m_filter3_dropdown("filter3_dropdown_button", "v"),
-    m_filleft_button1("filter_left_button1", "1"), m_filleft_button2("filter_left_button2", "2"),
-    m_filleft_button3("filter_left_button3", "3"), m_filright_button1("filter_right_button1", "1"),
-    m_filright_button2("filter_right_button2", "2"), m_filright_button3("filter_right_button3", "3"),
-    m_filright_buttonf1("filter_left_buttonf1", "F1"), m_flanger_on_button("flanger_button", "Flanger On"),
-    m_phaser_on_button("phaser_button", "Phaser On"), m_chorus_on_button("chorus_button", "Chorus On"),
-    m_delay_on_button("delay_button", "Delay On"), m_reverb_on_button("reverb_button", "Reverb On"),
-    m_select_arp_button("select_arpeggiator_button", "Arpeggiator"), m_question_button("question_button", "?"),
+    m_modwheel_label("Mod Wheel"), m_pitchwheel_label("Pitch Bend"), m_live_constrainer(*this), processor(p_processor),
+    m_fx_buttons_section(vts, p_processor), m_value_tree(vts), m_detune_label("Detune"), m_width_label("Width"),
+    m_master_label("Master"), m_glide_label("Glide"), m_osc1_dropdown("osc1_dropdown_button", "v"),
+    m_osc2_dropdown("osc2_dropdown_button", "v"), m_osc3_dropdown("osc3_dropdown_button", "v"),
+    m_filter1_dropdown("filter1_dropdown_button", "v"), m_filter2_dropdown("filter2_dropdown_button", "v"),
+    m_filter3_dropdown("filter3_dropdown_button", "v"), m_filleft_button1("filter_left_button1", "1"),
+    m_filleft_button2("filter_left_button2", "2"), m_filleft_button3("filter_left_button3", "3"),
+    m_filright_button1("filter_right_button1", "1"), m_filright_button2("filter_right_button2", "2"),
+    m_filright_button3("filter_right_button3", "3"), m_filright_buttonf1("filter_left_buttonf1", "F1"),
+    m_flanger_on_button("flanger_button", "Flanger On"), m_phaser_on_button("phaser_button", "Phaser On"),
+    m_chorus_on_button("chorus_button", "Chorus On"), m_delay_on_button("delay_button", "Delay On"),
+    m_reverb_on_button("reverb_button", "Reverb On"), m_select_arp_button("select_arpeggiator_button", "Arpeggiator"),
     m_burger_button("burger_button", "B"), m_select_modmatrix_button("select_modmatrix_button", "ModMatrix"),
     m_select_presets_button("select_presets_button", "Presets"), m_env_13_button("env13_button", "Envelope1/3"),
     m_env_24_button("env24_button", "Envelope2/4"), m_reset("reset", "Reset"),
@@ -60,6 +60,11 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
     /*m_legato_button("legato"),*/ m_gui_size_button("gui_size"), m_tooltip(nullptr, 2047483647),
     m_is_standalone_plugin(p_is_standalone), /*m_save_load(vts, p_processor),*/ m_arp(p_processor, vts),
     m_processor(p_processor), m_patch_browser(p_processor, vts), m_tuning(p_processor) {
+
+	addAndMakeVisible(m_modwheel_label);
+	addAndMakeVisible(m_pitchwheel_label);
+	m_modwheel_label.setRotate90Degrees(true);
+	m_pitchwheel_label.setRotate90Degrees(true);
 
 	setResizable(false, false);
 
@@ -308,44 +313,44 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 		zoomMenu.addItem(int(GuiScale::Z200), "200%");
 
 		menu.addSubMenu("Zoom", zoomMenu);
+		menu.addSeparator();
+		if (ConfigFileManager::getInstance().getOptionShowTooltip())
+			menu.addItem(1000, "Hide Tooltips");
+		else
+			menu.addItem(1000, "Show Tooltips");
+
+#ifdef ODIN_DEBUG
+		menu.addSeparator();
+		menu.addItem(1100, "Save GuiData.json");
+#endif
 
 		const auto ret = menu.show();
 
-		if (ret != 0) {
+		if (ret == 0) {
+			return;
+		}
+
+		if (ret <= int(GuiScale::Z200)) {
 			ConfigFileManager::getInstance().setOptionGuiScale(ret);
 			ConfigFileManager::getInstance().saveDataToFile();
 			setSize(GUI_BASE_WIDTH * ret, GUI_BASE_HEIGHT * ret);
 		}
-	};
 
-	m_question_button.setClickingTogglesState(true);
-	m_question_button.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
-	m_question_button.onStateChange = [&] {
-		// this function is reason for tooltip subclass, else the tooltip will show
-		// after window creation for some reason...
-		m_tooltip.activate();
-		setTooltipEnabled(m_question_button.getToggleState());
-	};
-	m_question_button.setTooltip(
-	    std::string("Activating this button shows a tooltip for every parameter in the synth. Simply hover your "
-	                "mouse over it!\n\nPlease report bugs on the issues page of "
-	                "https://gitlab.com/TheWaveWarden/odin2.\n\nGENERAL TIPS:\n\nHold shift to finetune knobs\n\nCtr "
-	                "+ click to reset knobs\n\nDouble click to enter values\n\nRight click "
-	                "to access MIDI-learn\n\nThe order of FX can be rearranged by "
-	                "dragging and dropping the FX selection buttons.\n\nVersion: ") +
-	    ODIN_VERSION_STRING
-#ifdef ODIN_DEBUG
-	    + " Debug"
-#else
-	    + " Release"
-#endif
-	    + "\ngit commit: " + GIT_COMMIT_ID);
+		if (ret == 1000) {
+			const auto new_tooltip_state = !ConfigFileManager::getInstance().getOptionShowTooltip();
+			ConfigFileManager::getInstance().setOptionShowTooltip(new_tooltip_state);
+			ConfigFileManager::getInstance().saveDataToFile();
+			setTooltipEnabled(new_tooltip_state);
+			return;
+		}
 
-	m_question_button.onClick = [&]() { JsonGuiProvider::getInstance().saveToFile(); };
+		if (ret == 1100) {
+			JsonGuiProvider::getInstance().saveToFile();
+			return;
+		}
+	};
 
 	addAndMakeVisible(m_tuning);
-
-	addAndMakeVisible(m_question_button);
 
 	m_filleft_button2.setClickingTogglesState(true);
 	addAndMakeVisible(m_filleft_button2);
@@ -661,6 +666,8 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	m_gui_size_button.setToggleState(!set_GUI_big, dontSendNotification);
 	m_gui_size_button.onClick = [&]() { setGUISizeBig(!m_gui_size_button.getToggleState(), true); };
 
+	setTooltipEnabled(ConfigFileManager::getInstance().getOptionShowTooltip());
+
 	//DBG("Display_Scale: " + std::to_string(Desktop::getInstance().getDisplays().getMainDisplay().scale));
 }
 
@@ -695,6 +702,8 @@ void OdinAudioProcessorEditor::resized() {
 	GET_LOCAL_AREA(m_width_label, "WidthLabel");
 	GET_LOCAL_AREA(m_master_label, "MasterLabel");
 	GET_LOCAL_AREA(m_glide_label, "GlideLabel");
+	GET_LOCAL_AREA(m_modwheel_label, "ModwheelLabel");
+	GET_LOCAL_AREA(m_pitchwheel_label, "PitchwheelLabel");
 
 	GET_LOCAL_AREA(m_osc1, "Osc1");
 	GET_LOCAL_AREA(m_osc2, "Osc2");
@@ -764,7 +773,6 @@ void OdinAudioProcessorEditor::resized() {
 	GET_LOCAL_AREA(m_filright_button2, "FilRight2");
 	GET_LOCAL_AREA(m_filright_button3, "FilRight3");
 	GET_LOCAL_AREA(m_filright_buttonf1, "FilRightF1");
-	GET_LOCAL_AREA(m_question_button, "QuestionButton");
 
 	GET_LOCAL_AREA(m_tuning, "Tuning");
 	GET_LOCAL_AREA(m_pitchwheel, "PitchBend");
@@ -773,6 +781,8 @@ void OdinAudioProcessorEditor::resized() {
 	GET_LOCAL_AREA(m_pitch_amount, "PitchBend Amount");
 	GET_LOCAL_AREA(m_unison_selector, "UnisonAmount");
 	GET_LOCAL_AREA(m_value_input, "ValueInput");
+
+	forceValueTreeOntoComponents(false);
 }
 
 void OdinAudioProcessorEditor::setOsc1Plate(int p_osc_type) {
@@ -956,6 +966,7 @@ void OdinAudioProcessorEditor::setActiveFXPanel(const std::string &p_name) {
 }
 
 void OdinAudioProcessorEditor::setTooltipEnabled(bool p_enabled) {
+	m_tooltip.activate(p_enabled);
 	if (p_enabled) {
 		m_tooltip.setMillisecondsBeforeTipAppears(0);
 	} else {

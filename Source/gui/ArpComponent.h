@@ -22,6 +22,7 @@
 #include "OdinControlAttachments.h"
 #include "StepComponent.h"
 #include "SyncTimeSelector.h"
+#include "TextLabel.h"
 #include <JuceHeader.h>
 
 
@@ -114,6 +115,8 @@ private:
 	NumberSelectorWithText m_steps_selector;
 	NumberSelectorWithText m_direction;
 	NumberSelectorWithText m_gate;
+
+	TextLabel m_mod1_label;
 
 	OdinButton m_on;
 	OdinButton m_one_shot;

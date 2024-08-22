@@ -15,55 +15,52 @@
 
 #pragma once
 
-#include <JuceHeader.h>
-#include "PatchBrowserSelector.h"
 #include "../PluginProcessor.h"
+#include "PatchBrowserSelector.h"
+#include <JuceHeader.h>
 
 #define DEFAULT_SOUNDBANK_LOCATION_STRING (ODIN_STORAGE_PATH + File::getSeparatorString() + "Soundbanks")
 
-class PatchBrowser    : public Component
-{
+class PatchBrowser : public Component {
 public:
-    PatchBrowser(OdinAudioProcessor &p_processor, AudioProcessorValueTreeState &p_vts);
-    ~PatchBrowser();
+	PatchBrowser(OdinAudioProcessor &p_processor, AudioProcessorValueTreeState &p_vts);
+	~PatchBrowser();
 
-    void paint (Graphics&) override;
-    void paintOverChildren (Graphics&) override;
+	void paint(Graphics &) override;
+	void resized() override;
 
-    void setGUIBig();
-    void setGUISmall();
+	void setGUIBig();
+	void setGUISmall();
 
 	std::function<void()> forceValueTreeLambda;
 
-
 private:
-    void loadPatchWithFileBrowserAndCopyToCategory(String p_directory);
-    void loadPatchFromOpenedFileStream(juce::FileInputStream &p_file_stream);
-    void savePatchInOpenedFileStream(FileOutputStream &p_file_stream);
-    void loadSoundbankWithFileBrowser(String p_directory);
+	void loadPatchWithFileBrowserAndCopyToCategory(String p_directory);
+	void loadPatchFromOpenedFileStream(juce::FileInputStream &p_file_stream);
+	void savePatchInOpenedFileStream(FileOutputStream &p_file_stream);
+	void loadSoundbankWithFileBrowser(String p_directory);
 
-    bool checkForBiggerVersion(FileInputStream &p_file_stream, std::string &p_version_string);
-    bool checkForSmallerVersion(FileInputStream &p_file_stream, std::string &p_version_string);
+	bool checkForBiggerVersion(FileInputStream &p_file_stream, std::string &p_version_string);
+	bool checkForSmallerVersion(FileInputStream &p_file_stream, std::string &p_version_string);
 
-    bool usesWavedraw(int p_osc);
-    bool usesChipdraw(int p_osc);
-    bool usesSpecdraw(int p_osc);
+	bool usesWavedraw(int p_osc);
+	bool usesChipdraw(int p_osc);
+	bool usesSpecdraw(int p_osc);
 
-    void setFirstSoundbankActive();
-
+	void setFirstSoundbankActive();
 
 	std::unique_ptr<FileChooser> m_filechooser;
 
-    Image m_background;
+	Image m_background;
 
-    bool m_GUI_big = true;
+	bool m_GUI_big = true;
 
 	OdinAudioProcessor &m_audio_processor;
 	AudioProcessorValueTreeState &m_value_tree;
 
-    PatchBrowserSelector m_soundbank_selector;
-    PatchBrowserSelector m_category_selector;
-    PatchBrowserSelector m_patch_selector;
+	PatchBrowserSelector m_soundbank_selector;
+	PatchBrowserSelector m_category_selector;
+	PatchBrowserSelector m_patch_selector;
 
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PatchBrowser)
+	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(PatchBrowser)
 };

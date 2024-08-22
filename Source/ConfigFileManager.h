@@ -30,6 +30,7 @@
 #define XML_ATTRIBUTE_SOUNDBANK_DIR ("soundbank_dir")
 #define XML_ATTRIBUTE_PATCH_DIR ("patch_dir")
 #define XML_ATTRIBUTE_GUI_SCALE ("gui_scale")
+#define XML_ATTRIBUTE_SHOW_TOOLTIP ("show_tooltip")
 
 /**
  * This class manages the config file. Data is loaded from the file in constructor if possible. Then the individual 
@@ -48,6 +49,8 @@ public:
 
 	void setOptionBigGUI(bool p_GUI_big);
 	bool getOptionBigGUI();
+	void setOptionShowTooltip(bool p_show);
+	bool getOptionShowTooltip();
 	void setOptionGuiScale(int p_scale);
 	int getOptionGuiScale();
 	void setOptionTuningDir(String p_dir);
@@ -65,6 +68,7 @@ private:
 	void loadDataFromFile();
 	//the actual config values with default values
 	bool m_big_gui         = true;
+	bool m_show_tooltip    = false;
 	String m_tuning_dir    = DEFAULT_TUNING_DIRECTORY;
 	String m_soundbank_dir = DEFAULT_SOUNDBANK_IO_LOCATION_STRING;
 	String m_patch_dir     = DEFAULT_PATCH_LOCATION_STRING;

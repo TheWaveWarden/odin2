@@ -15,16 +15,14 @@
 
 #pragma once
 
-#include <JuceHeader.h>
-#include "BrowserEntry.h"
 #include "../GlobalIncludes.h"
-#include "PatchBrowserScrollBar.h"
+#include "BrowserEntry.h"
 #include "OdinFeels.h"
+#include "OdinButton.h"
+#include "PatchBrowserScrollBar.h"
+#include <JuceHeader.h>
 
 #define FACTORY_PRESETS_SOUNDBANK_CODE "F_A_C_T_O_R_Y"
-
-#define ENTRY_HEIGHT_150 24
-#define ENTRY_HEIGHT_100 18
 
 #define MOUSE_WHEEL_FACTOR_PATCH_BROWSER_150 90.f
 #define MOUSE_WHEEL_FACTOR_PATCH_BROWSER_100 60.f
@@ -112,6 +110,8 @@ protected:
 
 class PatchBrowserSelector : public Component {
 public:
+	static constexpr auto ENTRY_HEIGHT_REL = 1.0f / 12.0f;
+
 	enum class DirectoryStatus { Ok, Empty, Nonexistent };
 	enum class BrowserType { Soundbank, Category, Patch };
 
@@ -122,6 +122,7 @@ public:
 	~PatchBrowserSelector();
 
 	void paint(Graphics &) override;
+	void resized() override;
 
 	void setGUIBig();
 	void setGUISmall();
@@ -132,7 +133,7 @@ public:
 
 	void setDirectory(String p_absolute_path);
 	void setDirectoryFactoryPresetCategory();
-	void setDirectoryFactoryPresetPreset(const std::string& p_category);
+	void setDirectoryFactoryPresetPreset(const std::string &p_category);
 	String getDirectory();
 	void setWildCard(String p_wildcard);
 	void resetScrollPosition();
@@ -169,7 +170,6 @@ public:
 	String getMoveFileString(int p_popupmenu_index);
 	String getCopyMoveMap(int p_index);
 
-
 private:
 	void generateContent();
 	void generateContentFactoryPresetCategories();
@@ -179,12 +179,11 @@ private:
 	void checkDirectoryStatus();
 	void recreatePopupMenu();
 
-	float m_scroll_position = 0.f;
-	float m_max_scroll_position = 0.f;
-	float m_scroll_bar_height = 0.f;
-	float m_scroll_bar_position = 0.f;
+	float m_scroll_position         = 0.f;
+	float m_max_scroll_position     = 0.f;
+	float m_scroll_bar_height       = 0.f;
+	float m_scroll_bar_position     = 0.f;
 	float m_available_scroll_height = 0.f;
-
 
 	String m_absolute_path;
 	File::TypesOfFileToFind m_file_or_dir;
@@ -201,9 +200,9 @@ private:
 
 	TextEditor m_input_field;
 
-	TextButton m_left_button;
-	TextButton m_mid_button;
-	TextButton m_right_button;
+	OdinButton m_left_button;
+	OdinButton m_mid_button;
+	OdinButton m_right_button;
 
 	PatchBrowserScrollBar m_scroll_bar;
 
@@ -225,8 +224,8 @@ private:
 	bool m_pass_active_element_to_parent = false;
 	BrowserType m_browser_type;
 
-	//auto generated header with the factory preset names
-    #include "FactoryPresetNames.h"
+//auto generated header with the factory preset names
+#include "FactoryPresetNames.h"
 
 	DirectoryStatus m_directory_status = DirectoryStatus::Nonexistent;
 };

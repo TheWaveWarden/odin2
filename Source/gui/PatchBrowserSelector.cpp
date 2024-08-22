@@ -14,13 +14,16 @@
 */
 
 #include "PatchBrowserSelector.h"
+#include "JsonGuiProvider.h"
 #include <JuceHeader.h>
 
 PatchBrowserSelector::PatchBrowserSelector(File::TypesOfFileToFind p_file_or_dir,
                                            String p_left_button,
                                            String p_mid_button,
                                            String p_right_button) :
-    m_file_or_dir(p_file_or_dir) {
+    m_file_or_dir(p_file_or_dir),
+    m_left_button(p_left_button, p_left_button), m_mid_button(p_mid_button, p_mid_button),
+    m_right_button(p_right_button, p_right_button) {
 
 	m_scroll_bar.reportMouseDrag = [&](float p_delta_y) {
 		if (fabs(m_available_scroll_height - m_scroll_bar_height) >= 1) {
@@ -86,8 +89,7 @@ PatchBrowserSelector::~PatchBrowserSelector() {
 }
 
 void PatchBrowserSelector::paint(Graphics &g) {
-	g.fillAll(MODMATRIX_COLOR); // clear the background
-	g.setColour(Colours::grey);
+	g.setColour(COL_LIGHT);
 	g.drawRect(getLocalBounds(), 1); // draw an outline around the component
 
 #define WARNING_COLOR ODIN_BLUE
@@ -150,56 +152,9 @@ void PatchBrowserSelector::hideInputField() {
 }
 
 void PatchBrowserSelector::setGUIBig() {
-	m_GUI_big = true;
-
-	m_menu_feels.setWidth(200);
-	m_menu_feels.setFontSize(18);
-	m_button_feels.setButtonFontSize(17.f);
-
-	m_left_button.setBounds(0, getHeight() - BUTTON_HEIGHT_BROWSER_150, getWidth() / 3, BUTTON_HEIGHT_BROWSER_150);
-	m_mid_button.setBounds(
-	    getWidth() / 3, getHeight() - BUTTON_HEIGHT_BROWSER_150, getWidth() / 3, BUTTON_HEIGHT_BROWSER_150);
-	m_right_button.setBounds(
-	    getWidth() * 2 / 3, getHeight() - BUTTON_HEIGHT_BROWSER_150, getWidth() / 3, BUTTON_HEIGHT_BROWSER_150);
-
-	m_input_field.setBounds(0, getHeight() - BUTTON_HEIGHT_BROWSER_150, getWidth() / 3 * 2, BUTTON_HEIGHT_BROWSER_150);
-	m_input_field.setFont(Font(17.f));
-
-	regenerateContent();
-	resetScrollPosition();
-	positionEntries();
 }
 
 void PatchBrowserSelector::setGUISmall() {
-	m_GUI_big = false;
-
-	m_menu_feels.setWidth(170.f);
-	m_menu_feels.setFontSize(16.f);
-	m_button_feels.setButtonFontSize(14.f);
-
-	m_left_button.setBounds(0,
-	                        BROWSER_SIZE_Y - BUTTON_HEIGHT_BROWSER - 2 * BROWSER_INLAY_Y - 2,
-	                        getWidth() / 3,
-	                        BUTTON_HEIGHT_BROWSER + BROWSER_INLAY_Y - 4);
-
-	m_mid_button.setBounds(getWidth() / 3,
-	                       BROWSER_SIZE_Y - BUTTON_HEIGHT_BROWSER - 2 * BROWSER_INLAY_Y - 2,
-	                       getWidth() / 3,
-	                       BUTTON_HEIGHT_BROWSER + BROWSER_INLAY_Y - 4);
-	m_right_button.setBounds(getWidth() * 2 / 3,
-	                         BROWSER_SIZE_Y - BUTTON_HEIGHT_BROWSER - 2 * BROWSER_INLAY_Y - 2,
-	                         getWidth() / 3,
-	                         BUTTON_HEIGHT_BROWSER + BROWSER_INLAY_Y - 4);
-
-	m_input_field.setBounds(0,
-	                        BROWSER_SIZE_Y - BUTTON_HEIGHT_BROWSER - 2 * BROWSER_INLAY_Y - 2,
-	                        getWidth() / 3 * 2,
-	                        BUTTON_HEIGHT_BROWSER + BROWSER_INLAY_Y - 4);
-	m_input_field.setFont(Font(17.f));
-
-	regenerateContent();
-	resetScrollPosition();
-	positionEntries();
 }
 
 void PatchBrowserSelector::setWildCard(String p_wildcard) {
@@ -472,7 +427,7 @@ void PatchBrowserSelector::generateContent() {
 }
 
 void PatchBrowserSelector::positionEntries() {
-	int entry_height = m_GUI_big ? ENTRY_HEIGHT_150 : ENTRY_HEIGHT_100;
+	int entry_height = proportionOfHeight(ENTRY_HEIGHT_REL);
 	for (int entry = 0; entry < m_entries.size(); ++entry) {
 		m_entries[entry]->setBoundsWithInputField(
 		    0, m_scroll_position + entry_height * entry, getWidth(), entry_height);
@@ -515,7 +470,7 @@ void PatchBrowserSelector::mouseWheelMove(const MouseEvent &event, const MouseWh
 
 void PatchBrowserSelector::enforceScrollLimits() {
 	m_scroll_position       = m_scroll_position > 0.f ? 0.f : m_scroll_position;
-	int entry_height_single = m_GUI_big ? ENTRY_HEIGHT_150 : ENTRY_HEIGHT_100;
+	int entry_height_single = proportionOfHeight(ENTRY_HEIGHT_REL);
 	float entry_height      = m_entries.size() * entry_height_single;
 
 	float bottom      = entry_height + m_scroll_position;
@@ -555,13 +510,13 @@ String PatchBrowserSelector::getSubDirectoryAndHighlightItFromName(String p_name
 
 	unhighlightAllEntries();
 
+	const auto entry_height_single = proportionOfHeight(ENTRY_HEIGHT_REL);
 	for (int entry = 0; entry < m_entries.size(); ++entry) {
 		if (m_entries[entry]->getText() == name) {
 			m_entries[entry]->setEntryActive(true);
 
-			int entry_height_single = m_GUI_big ? ENTRY_HEIGHT_150 : ENTRY_HEIGHT_100;
-			float entry_position    = entry * entry_height_single;
-			m_scroll_position       = -entry_position + getHeight() / 2.f;
+			float entry_position = entry * entry_height_single;
+			m_scroll_position    = -entry_position + getHeight() / 2.f;
 
 			enforceScrollLimits();
 			positionEntries();
@@ -614,3 +569,21 @@ void PatchBrowserSelector::setType(BrowserType p_type) {
 // 	//hideInputField();
 // 	Component::focusLost(p_cause);
 // }
+
+void PatchBrowserSelector::resized() {
+
+	m_menu_feels.setWidth(proportionOfWidth(0.5f));
+	m_menu_feels.setFontSize(H / 15.0f);
+	m_button_feels.setButtonFontSize(H / 14.0f);
+	m_input_field.setFont(H / 15.0f);
+
+	GET_LOCAL_AREA(m_left_button, "PresetLeftButton");
+	m_mid_button.setBounds(m_left_button.getBounds().withX(m_left_button.getRight()));
+	m_right_button.setBounds(m_mid_button.getBounds().withX(m_mid_button.getRight()).withRight(getWidth()));
+
+	m_input_field.setBounds(m_left_button.getBounds().withX(0).withRight(m_right_button.getX()));
+
+	regenerateContent();
+	resetScrollPosition();
+	positionEntries();
+}

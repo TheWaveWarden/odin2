@@ -62,6 +62,11 @@ public:
 		repaint();
 	}
 
+	void setButtonText(const juce::String &p_text) {
+		m_button_text = p_text;
+		repaint();
+	}
+
 private:
 	juce::String m_button_text;
 	static OdinAudioProcessor *m_processor;

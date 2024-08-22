@@ -651,61 +651,20 @@ PatchBrowser::~PatchBrowser() {
 }
 
 void PatchBrowser::paint(Graphics &g) {
-	// g.fillAll(getLookAndFeel().findColour(ResizableWindow::backgroundColourId)); // clear the background
-
-	// g.setColour(Colours::white);
-	// g.setFont(14.0f);
-	// g.drawText("PatchBrowser", getLocalBounds(), Justification::centred, true); // draw some placeholder text
-}
-
-void PatchBrowser::paintOverChildren(Graphics &g) {
-	//g.setColour(Colours::grey);
-	//g.drawRect(getLocalBounds().expanded(0, 1).translated(0, -1), 1); // draw an outline around the component
-	if (m_GUI_big) {
-		g.drawImageAt(m_background, 0, 0);
-	} else {
-		g.drawImageAt(m_background, 2, 3);
-	}
+	g.setColour(COL_LIGHT);
+	g.drawRect(getLocalBounds(), 1);
 }
 
 void PatchBrowser::setGUIBig() {
 	m_GUI_big = true;
 
-	m_soundbank_selector.setBounds(
-	    BROWSER_INLAY_X_150 - 1, BROWSER_INLAY_Y_150, (BROWSER_SIZE_X_150 - BROWSER_INLAY_X_150 * 2) / 3, 213);
-	m_category_selector.setBounds(BROWSER_INLAY_X_150 - 1 + (BROWSER_SIZE_X_150 - BROWSER_INLAY_X_150 * 2) / 3,
-	                              BROWSER_INLAY_Y_150,
-	                              (BROWSER_SIZE_X_150 - BROWSER_INLAY_X_150 * 2) / 3,
-	                              213);
-	m_patch_selector.setBounds(BROWSER_INLAY_X_150 - 1 + ((BROWSER_SIZE_X_150 - BROWSER_INLAY_X_150 * 2) / 3) * 2,
-	                           BROWSER_INLAY_Y_150,
-	                           (BROWSER_INLAY_X_150 + BROWSER_SIZE_X_150 - BROWSER_INLAY_X_150 * 2) / 3,
-	                           213);
-
 	m_soundbank_selector.setGUIBig();
 	m_category_selector.setGUIBig();
 	m_patch_selector.setGUIBig();
 
-	m_background = ImageCache::getFromMemory(BinaryData::patch_browser_window_150_png,
-	                                         BinaryData::patch_browser_window_150_pngSize);
-
 	setFirstSoundbankActive();
 }
 void PatchBrowser::setGUISmall() {
-	m_GUI_big = false;
-
-	m_soundbank_selector.setBounds(BROWSER_INLAY_X - 1,
-	                               BROWSER_INLAY_Y + 2,
-	                               (BROWSER_SIZE_X - BROWSER_INLAY_X * 2) / 3,
-	                               BROWSER_SIZE_Y - 2 * BROWSER_INLAY_Y - 2);
-	m_category_selector.setBounds(BROWSER_INLAY_X - 1 + (BROWSER_SIZE_X - BROWSER_INLAY_X * 2) / 3,
-	                              BROWSER_INLAY_Y + 2,
-	                              (BROWSER_SIZE_X - BROWSER_INLAY_X * 2) / 3,
-	                              BROWSER_SIZE_Y - 2 * BROWSER_INLAY_Y - 2);
-	m_patch_selector.setBounds(BROWSER_INLAY_X - 1 + ((BROWSER_SIZE_X - BROWSER_INLAY_X * 2) / 3) * 2,
-	                           BROWSER_INLAY_Y + 2,
-	                           (BROWSER_INLAY_X + BROWSER_SIZE_X - BROWSER_INLAY_X * 2) / 3,
-	                           BROWSER_SIZE_Y - 2 * BROWSER_INLAY_Y - 2);
 
 	m_soundbank_selector.setGUISmall();
 	m_category_selector.setGUISmall();
@@ -1071,7 +1030,8 @@ void PatchBrowser::loadPatchWithFileBrowserAndCopyToCategory(String p_directory)
 				    DBG("Copy Patch " + file_name + " to \n" + copy_target_string);
 
 				    File copy_target(copy_target_string);
-				    ConfigFileManager::getInstance().setOptionPatchDir(file_to_read.getParentDirectory().getFullPathName());
+				    ConfigFileManager::getInstance().setOptionPatchDir(
+				        file_to_read.getParentDirectory().getFullPathName());
 				    ConfigFileManager::getInstance().saveDataToFile();
 
 				    if (copy_target.existsAsFile()) {
@@ -1144,7 +1104,8 @@ void PatchBrowser::loadSoundbankWithFileBrowser(String p_directory) {
 		    FileInputStream file_stream(file_to_read);
 		    if (file_stream.openedOk()) {
 
-			    ConfigFileManager::getInstance().setOptionSoundbankDir(file_to_read.getParentDirectory().getFullPathName());
+			    ConfigFileManager::getInstance().setOptionSoundbankDir(
+			        file_to_read.getParentDirectory().getFullPathName());
 			    ConfigFileManager::getInstance().saveDataToFile();
 
 			    String soundbank_name = file_to_read.getFileNameWithoutExtension();
@@ -1199,4 +1160,14 @@ void PatchBrowser::setFirstSoundbankActive() {
 	m_category_selector.setDirectoryFactoryPresetCategory();
 	m_category_selector.highlightFirstEntry();
 	m_patch_selector.setDirectoryFactoryPresetPreset("Arps & Sequences");
+}
+
+void PatchBrowser::resized() {
+	auto bounds = getLocalBounds();
+	auto width  = W / 3;
+	m_soundbank_selector.setBounds(bounds.removeFromLeft(width));
+	m_category_selector.setBounds(bounds.removeFromLeft(width));
+	m_patch_selector.setBounds(bounds);
+
+	setFirstSoundbankActive();
 }

@@ -17,9 +17,7 @@
 #include "../GlobalIncludes.h"
 #include "../JuceLibraryCode/JuceHeader.h"
 
-LFOSelectorComponent::LFOSelectorComponent() :
-    m_up("up", "Up"),
-    m_down("down", "Down") {
+LFOSelectorComponent::LFOSelectorComponent() : m_up("up", "Up"), m_down("down", "Down") {
 
 	m_display.setInlay(1);
 	addAndMakeVisible(m_display);
@@ -107,6 +105,8 @@ LFOSelectorComponent::~LFOSelectorComponent() {
 }
 
 void LFOSelectorComponent::paint(Graphics &g) {
+	g.setColour(COL_LIGHT);
+	g.drawRect(getLocalBounds(), 1);
 }
 
 void LFOSelectorComponent::setGUIBig() {

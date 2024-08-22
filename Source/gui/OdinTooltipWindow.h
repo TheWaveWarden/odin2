@@ -33,8 +33,8 @@ public:
     return "";
   }
 
-  void activate(){
-    m_is_active = true;
+  void activate(bool p_active){
+    m_is_active = p_active;
   }
 
 private:

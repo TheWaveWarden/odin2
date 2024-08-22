@@ -23,8 +23,11 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts, const std::s
     m_vowel_left_identifier("fil" + p_filter_number + "_vowel_left"),
     m_vowel_right_identifier("fil" + p_filter_number + "_vowel_right"), m_comb_plus_minus("comb_plus_minus"),
     m_vel_label("Vel"), m_kbd_label("Kbd"), m_env_label("Env"), m_gain_label("Gain"), m_freq_label("Frequency"),
-    m_res_label("Resonance"), m_saturation_label("Saturation"), m_sem_transition_label("Transition"),
-    m_formant_transition_label("Formant"), m_ring_mod_amount_label("Amount"), m_module_label("Lowpass24") {
+    m_res_label("Resonance"), m_saturation_label("Saturation"), m_formant_transition_label("Transition"),
+    m_ring_mod_amount_label("Amount"), m_module_label("Lowpass24"), m_sem_notch_label("Notch"), m_sem_lp_label("LP"),
+    m_sem_hp_label("HP"), m_vowel1_label("Vowel 1"), m_vowel2_label("Vowel 2")
+
+{
 
 	addAndMakeVisible(m_vel_label);
 	addAndMakeVisible(m_kbd_label);
@@ -33,10 +36,14 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts, const std::s
 	addAndMakeVisible(m_freq_label);
 	addAndMakeVisible(m_res_label);
 	addAndMakeVisible(m_saturation_label);
-	addAndMakeVisible(m_sem_transition_label);
 	addAndMakeVisible(m_formant_transition_label);
 	addAndMakeVisible(m_ring_mod_amount_label);
 	addAndMakeVisible(m_module_label);
+	addAndMakeVisible(m_sem_notch_label);
+	addAndMakeVisible(m_sem_lp_label);
+	addAndMakeVisible(m_sem_hp_label);
+	addAndMakeVisible(m_vowel1_label);
+	addAndMakeVisible(m_vowel2_label);
 
 	m_vel_attach.reset(new OdinKnobAttachment(m_value_tree, "fil" + m_filter_number + "_vel", m_vel));
 	m_env_attach.reset(new OdinKnobAttachment(m_value_tree, "fil" + m_filter_number + "_env", m_env));
@@ -103,7 +110,6 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts, const std::s
 
 	m_sem_transition.setSliderStyle(Slider::RotaryVerticalDrag);
 	m_sem_transition.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-	m_sem_transition.setTopLeftPosition(TRANSITION_POS_X, TRANSITION_POS_Y);
 	m_sem_transition.setRange(TRANSITION_MIN, TRANSITION_MAX);
 	m_sem_transition.setNumDecimalPlacesToDisplay(3);
 	m_sem_transition.setKnobTooltip("Sets the filter characteristic\nfrom a "
@@ -112,13 +118,11 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts, const std::s
 
 	m_formant_transition.setSliderStyle(Slider::RotaryVerticalDrag);
 	m_formant_transition.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-	m_formant_transition.setTopLeftPosition(FORMANT_TRANSITION_X, FORMANT_TRANSITION_Y);
 	m_formant_transition.setKnobTooltip("Transitions from the vowel on the\nleft to the one on the right");
 	addChildComponent(m_formant_transition);
 
 	m_ring_mod_amount.setSliderStyle(Slider::RotaryVerticalDrag);
 	m_ring_mod_amount.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
-	m_ring_mod_amount.setTopLeftPosition(RINGMOD_AMOUNT_X, RINGMOD_AMOUNT_Y);
 	m_ring_mod_amount.setKnobTooltip("How much ring modulation is applied to the signal");
 	addChildComponent(m_ring_mod_amount);
 
@@ -126,7 +130,6 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts, const std::s
 		m_value_tree.state.getChildWithName("misc").setProperty(m_vowel_left_identifier, p_new_value, nullptr);
 		m_value_tree.state.getChildWithName("misc").sendPropertyChangeMessage(m_vowel_left_identifier);
 	};
-	m_vowel_left.setTopLeftPosition(FORMANT_VOW_LEFT_POS_X, FORMANT_VOW_LEFT_POS_Y);
 	m_vowel_left.setTooltip("The vowel to\nthe left side of\nthe transition knob");
 	m_vowel_left.setMouseDragDivisor(40.f);
 	addChildComponent(m_vowel_left);
@@ -136,7 +139,6 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts, const std::s
 		m_value_tree.state.getChildWithName("misc").setProperty(m_vowel_right_identifier, p_new_value, nullptr);
 		m_value_tree.state.getChildWithName("misc").sendPropertyChangeMessage(m_vowel_right_identifier);
 	};
-	m_vowel_right.setTopLeftPosition(FORMANT_VOW_RIGHT_POS_X, FORMANT_VOW_RIGHT_POS_Y);
 	m_vowel_right.setTooltip("The vowel to\nthe right side of\nthe transition knob");
 	m_vowel_right.setMouseDragDivisor(40.f);
 	addChildComponent(m_vowel_right);
@@ -262,64 +264,97 @@ void FilterComponent::hideAllComponents() {
 	m_vowel_left.setVisible(false);
 	m_vowel_right.setVisible(false);
 	m_comb_plus_minus.setVisible(false);
+
+	m_vel_label.setVisible(false);
+	m_kbd_label.setVisible(false);
+	m_env_label.setVisible(false);
+	m_gain_label.setVisible(false);
+	m_freq_label.setVisible(false);
+	m_res_label.setVisible(false);
+	m_saturation_label.setVisible(false);
+
+	m_vowel1_label.setVisible(false);
+	m_vowel2_label.setVisible(false);
+	m_formant_transition_label.setVisible(false);
+
+	m_sem_notch_label.setVisible(false);
+	m_sem_lp_label.setVisible(false);
+	m_sem_hp_label.setVisible(false);
+
+	m_ring_mod_amount_label.setVisible(false);
 }
 
 void FilterComponent::setFilterBypass() {
+	m_module_label.setText(std::string("Filter") + m_filter_number);
 }
 
 void FilterComponent::setFilterLP24() {
+	m_module_label.setText("Lowpass 24");
 	showStandardFilterComponents();
 }
 
 void FilterComponent::setFilterLP12() {
+	m_module_label.setText("Lowpass 12");
 	showStandardFilterComponents();
 }
 
 void FilterComponent::setFilterBP24() {
+	m_module_label.setText("Bandpass 24");
 	showStandardFilterComponents();
 }
 
 void FilterComponent::setFilterBP12() {
+	m_module_label.setText("Bandpass 12");
 	showStandardFilterComponents();
 }
 
 void FilterComponent::setFilterHP24() {
+	m_module_label.setText("Highpass 24");
 	showStandardFilterComponents();
 }
 
 void FilterComponent::setFilterHP12() {
+	m_module_label.setText("Highpass 12");
 	showStandardFilterComponents();
 }
 
 void FilterComponent::setFilterSEM24() {
+	m_module_label.setText("SEM-24");
 	showSEMFilterComponents();
 }
 
 void FilterComponent::setFilterSEM12() {
+	m_module_label.setText("SEM-12");
 	showSEMFilterComponents();
 }
 
 void FilterComponent::setFilterDiode() {
+	m_module_label.setText("DiodeLadder");
 	showStandardFilterComponents();
 }
 
 void FilterComponent::setFilterKorgLP() {
+	m_module_label.setText("KRG-35 LP");
 	showStandardFilterComponents();
 }
 
 void FilterComponent::setFilterKorgHP() {
+	m_module_label.setText("KRG-35 HP");
 	showStandardFilterComponents();
 }
 
 void FilterComponent::setFilterComb() {
+	m_module_label.setText("CombFilter");
 	showCombFilterComponents();
 }
 
 void FilterComponent::setFilterFormant() {
+	m_module_label.setText("Formant");
 	showFormantFilterComponents();
 }
 
 void FilterComponent::setFilterRingMod() {
+	m_module_label.setText("RingMod");
 	showRingModFilterComponents();
 }
 
@@ -331,6 +366,17 @@ void FilterComponent::showSEMFilterComponents() {
 	m_freq.setVisible(true);
 	m_res.setVisible(true);
 	m_sem_transition.setVisible(true);
+
+	m_vel_label.setVisible(true);
+	m_kbd_label.setVisible(true);
+	m_env_label.setVisible(true);
+	m_gain_label.setVisible(true);
+	m_freq_label.setVisible(true);
+	m_res_label.setVisible(true);
+
+	m_sem_notch_label.setVisible(true);
+	m_sem_lp_label.setVisible(true);
+	m_sem_hp_label.setVisible(true);
 }
 
 void FilterComponent::showStandardFilterComponents() {
@@ -341,6 +387,14 @@ void FilterComponent::showStandardFilterComponents() {
 	m_freq.setVisible(true);
 	m_res.setVisible(true);
 	m_saturation.setVisible(true);
+
+	m_vel_label.setVisible(true);
+	m_kbd_label.setVisible(true);
+	m_env_label.setVisible(true);
+	m_gain_label.setVisible(true);
+	m_freq_label.setVisible(true);
+	m_res_label.setVisible(true);
+	m_saturation_label.setVisible(true);
 }
 
 void FilterComponent::showCombFilterComponents() {
@@ -350,6 +404,14 @@ void FilterComponent::showCombFilterComponents() {
 	m_gain.setVisible(true);
 	m_freq.setVisible(true);
 	m_res.setVisible(true);
+
+	m_vel_label.setVisible(true);
+	m_kbd_label.setVisible(true);
+	m_env_label.setVisible(true);
+	m_gain_label.setVisible(true);
+	m_freq_label.setVisible(true);
+	m_res_label.setVisible(true);
+
 	m_comb_plus_minus.setVisible(true);
 }
 
@@ -360,6 +422,10 @@ void FilterComponent::showFormantFilterComponents() {
 	m_vowel_right.setVisible(true);
 	m_vowel_left.setVisible(true);
 	m_formant_transition.setVisible(true);
+
+	m_vowel1_label.setVisible(true);
+	m_vowel2_label.setVisible(true);
+	m_formant_transition_label.setVisible(true);
 }
 
 void FilterComponent::showRingModFilterComponents() {
@@ -368,7 +434,9 @@ void FilterComponent::showRingModFilterComponents() {
 	m_env.setVisible(true);
 	m_gain.setVisible(true);
 	m_freq.setVisible(true);
+	m_freq_label.setVisible(true);
 	m_ring_mod_amount.setVisible(true);
+	m_ring_mod_amount_label.setVisible(true);
 }
 
 void FilterComponent::forceValueTreeOntoComponents(ValueTree p_tree, int p_index) {
@@ -380,6 +448,11 @@ void FilterComponent::forceValueTreeOntoComponents(ValueTree p_tree, int p_index
 }
 
 void FilterComponent::resized() {
+	GET_LOCAL_AREA(m_vowel1_label, "FilVowel1Label");
+	GET_LOCAL_AREA(m_vowel2_label, "FilVowel2Label");
+	GET_LOCAL_AREA(m_sem_notch_label, "FilSemNotchLabel");
+	GET_LOCAL_AREA(m_sem_lp_label, "FilSemLpLabel");
+	GET_LOCAL_AREA(m_sem_hp_label, "FilSemHpLabel");
 	GET_LOCAL_AREA(m_vel_label, "FilVelLabel");
 	GET_LOCAL_AREA(m_kbd_label, "FilKbdLabel");
 	GET_LOCAL_AREA(m_env_label, "FilEnvLabel");
@@ -387,7 +460,6 @@ void FilterComponent::resized() {
 	GET_LOCAL_AREA(m_freq_label, "FilFreqLabel");
 	GET_LOCAL_AREA(m_res_label, "FilResLabel");
 	GET_LOCAL_AREA(m_saturation_label, "FilSaturationLabel");
-	GET_LOCAL_AREA(m_sem_transition_label, "FilSemTransitionLabel");
 	GET_LOCAL_AREA(m_formant_transition_label, "FilFormantTransitionLabel");
 	GET_LOCAL_AREA(m_ring_mod_amount_label, "FilRingModAmountLabel");
 	GET_LOCAL_AREA(m_module_label, "FilModuleLabel");

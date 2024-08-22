@@ -22,7 +22,7 @@ ArpComponent::ArpComponent(OdinAudioProcessor &p_processor, AudioProcessorValueT
     m_step_4(vts, 4), m_step_5(vts, 5), m_step_6(vts, 6), m_step_7(vts, 7), m_step_8(vts, 8), m_step_9(vts, 9),
     m_step_10(vts, 10), m_step_11(vts, 11), m_step_12(vts, 12), m_step_13(vts, 13), m_step_14(vts, 14),
     m_step_15(vts, 15), m_on("arp_on", "On"), m_one_shot("arp_one_shot", "1-Shot"),
-    m_mod_transpose("arp_mod_transpose", "Md/Trns") {
+    m_mod_transpose("arp_mod_transpose", "Md/Trns"), m_mod1_label("Mod 1") {
 	addAndMakeVisible(m_step_0);
 	addAndMakeVisible(m_step_1);
 	addAndMakeVisible(m_step_2);
@@ -39,6 +39,7 @@ ArpComponent::ArpComponent(OdinAudioProcessor &p_processor, AudioProcessorValueT
 	addAndMakeVisible(m_step_13);
 	addAndMakeVisible(m_step_14);
 	addAndMakeVisible(m_step_15);
+	addAndMakeVisible(m_mod1_label);
 
 	m_octave_selector.OnValueChange = [&](int p_new_value) {
 		m_value_tree.state.getChildWithName("misc").setProperty("arp_octaves", p_new_value, nullptr);
@@ -152,6 +153,7 @@ void ArpComponent::paint(Graphics &g) {
 }
 
 void ArpComponent::resized() {
+	GET_LOCAL_AREA(m_mod1_label, "ArpMod1Label");
 	GET_LOCAL_AREA(m_octave_selector, "ArpOctaveSelector");
 	GET_LOCAL_AREA(m_steps_selector, "ArpStepsSelector");
 	GET_LOCAL_AREA(m_direction, "ArpDirection");

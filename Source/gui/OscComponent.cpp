@@ -24,12 +24,14 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
     m_value_tree(vts),
     m_reset("reset_button", "Reset"), m_sync("osc_sync_button", "Sync"), m_LED_saw("LED_Saw", "Saw"),
     m_LED_pulse("LED_pulse", "PWM"), m_LED_triangle("LED_triangle", "Tri"), m_LED_sine("LED_sine", "Sine"),
-    m_arp("arp", "Arp"), m_step_button("step", "Step"), m_noise("noise", "Noise"),
+    m_arp("arp", "Arpeggiator"), m_step_button("step", "Step 3 "), m_noise("noise", "Noise"),
+    m_carrier_label("Carrier"), m_modulator_label("Modulator"), m_FM_label("FM"), m_PM_label("PM"),
     m_chipdraw_convert("convert_chipdraw", "ok"), m_wavedraw_convert("convert_wavedraw", "ok"),
     m_specdraw_convert("convert_wavedraw", "ok"), m_chiptune_waveselector(true), m_carrier_waveselector(false),
     m_modulator_waveselector(true), m_wavetable_waveselector(true), m_modulation_source(true), m_carrier_ratio(false),
     m_modulator_ratio(true), m_fm_exp("fm_exp"), m_xy(vts, "osc" + p_osc_number + "_vec_", m_xy_x, m_xy_y, true),
-    m_osc_number(p_osc_number), m_wavetable_identifier("osc" + p_osc_number + "_wavetable"),
+    m_HP_label("HighPass"), m_LP_label("LowPass"), m_osc_number(p_osc_number),
+    m_wavetable_identifier("osc" + p_osc_number + "_wavetable"),
     m_modulation_source_identifier("osc" + p_osc_number + "_mod_source"),
     m_chipwave_identifier("osc" + p_osc_number + "_chipwave"),
     m_modulator_wave_identifier("osc" + p_osc_number + "_modulator_wave"),
@@ -40,7 +42,40 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
     m_vec_a_identifier("osc" + p_osc_number + "_vec_a"), m_vec_b_identifier("osc" + p_osc_number + "_vec_b"),
     m_vec_c_identifier("osc" + p_osc_number + "_vec_c"), m_vec_d_identifier("osc" + p_osc_number + "_vec_d"),
     m_pos_mod_identifier("osc" + p_osc_number + "_pos_mod"), m_osc_label("AnalogOsc"), m_oct_label("Oct"),
-    m_semi_label("Semi"), m_fine_label("Fine"), m_vol_label("Vol"), m_drift_label("Drift"), m_pw_label("PW") {
+    m_semi_label("Semi"), m_fine_label("Fine"), m_vol_label("Vol"), m_drift_label("Drift"), m_pw_label("PW"),
+    m_chip1_label("1"), m_chip2_label("2"), m_chip_speed_label("Speed"), m_wt_select_label("Wavetable"),
+    m_wt_mod_label("Modulation"), m_wt_pos_label("WT-Position"), m_wt_amount_label("Amount"),
+    m_detune_spread_label("WT_Spread"), m_detune_pos_label("WT-Position"), m_detune_label("Detune"),
+    m_detune_wt_label("Wavetable"), m_vec_x_label("X"), m_vec_y_label("Y"), m_vec_a_label("A"), m_vec_b_label("B"),
+    m_vec_c_label("C"), m_vec_d_label("D") {
+
+	addAndMakeVisible(m_HP_label);
+	addAndMakeVisible(m_LP_label);
+	addAndMakeVisible(m_carrier_label);
+	addAndMakeVisible(m_modulator_label);
+	addAndMakeVisible(m_FM_label);
+	addAndMakeVisible(m_PM_label);
+
+	addAndMakeVisible(m_chip1_label);
+	addAndMakeVisible(m_chip2_label);
+	addAndMakeVisible(m_chip_speed_label);
+
+	addAndMakeVisible(m_wt_select_label);
+	addAndMakeVisible(m_wt_mod_label);
+	addAndMakeVisible(m_wt_pos_label);
+	addAndMakeVisible(m_wt_amount_label);
+	addAndMakeVisible(m_detune_spread_label);
+	addAndMakeVisible(m_detune_pos_label);
+	addAndMakeVisible(m_detune_label);
+	addAndMakeVisible(m_detune_wt_label);
+	addAndMakeVisible(m_vec_x_label);
+	addAndMakeVisible(m_vec_y_label);
+	addAndMakeVisible(m_vec_a_label);
+	addAndMakeVisible(m_vec_b_label);
+	addAndMakeVisible(m_vec_c_label);
+	addAndMakeVisible(m_vec_d_label);
+
+	m_osc_label.setJustification(juce::Justification::centredLeft);
 
 	m_WT_container = p_processor.getWavetableContainerPointer();
 
@@ -937,121 +972,64 @@ void OscComponent::setOscType(int p_osc_type, bool p_force) {
 		setOscTypeBypass();
 		break;
 	}
-	repaint();
+	resized();
 }
 void OscComponent::setOscTypeBypass() {
 	m_background = m_background_bypass;
+	m_osc_label.setText(std::string("Osc") + m_osc_number);
 }
 
 void OscComponent::setOscTypeAnalog() {
-	if (m_GUI_big) {
-		m_background =
-		    ImageCache::getFromMemory(BinaryData::analog_backdrop_150_png, BinaryData::analog_backdrop_150_pngSize);
-	} else {
-		m_background = ImageCache::getFromMemory(BinaryData::analog_backdrop_png, BinaryData::analog_backdrop_pngSize);
-	}
+	m_osc_label.setText("AnalogOsc");
 	showAnalogComponents();
 }
 void OscComponent::setOscTypeChiptune() {
-	if (m_GUI_big) {
-		m_background =
-		    ImageCache::getFromMemory(BinaryData::chiptune_backdrop_150_png, BinaryData::chiptune_backdrop_150_pngSize);
-	} else {
-		m_background =
-		    ImageCache::getFromMemory(BinaryData::chiptune_backdrop_png, BinaryData::chiptune_backdrop_pngSize);
-	}
+	m_osc_label.setText("ChiptuneOsc");
 	showChiptuneComponents();
 }
 
 void OscComponent::setOscTypeFM() {
-	if (m_GUI_big) {
-		m_background = ImageCache::getFromMemory(BinaryData::fm_backdrop_150_png, BinaryData::fm_backdrop_150_pngSize);
-	} else {
-		m_background = ImageCache::getFromMemory(BinaryData::fm_backdrop_png, BinaryData::fm_backdrop_pngSize);
-	}
+	m_osc_label.setText("FMOsc");
 	showFMComponents();
 }
 
 void OscComponent::setOscTypePM() {
-	if (m_GUI_big) {
-		m_background = ImageCache::getFromMemory(BinaryData::pm_backdrop_150_png, BinaryData::pm_backdrop_150_pngSize);
-	} else {
-		m_background = ImageCache::getFromMemory(BinaryData::pm_backdrop_png, BinaryData::pm_backdrop_pngSize);
-	}
+	m_osc_label.setText("PMOsc");
 	showPMComponents();
 }
 
 void OscComponent::setOscTypeChipdraw() {
-	if (m_GUI_big) {
-		m_background =
-		    ImageCache::getFromMemory(BinaryData::chipdraw_backdrop_150_png, BinaryData::chipdraw_backdrop_150_pngSize);
-	} else {
-		m_background =
-		    ImageCache::getFromMemory(BinaryData::chipdraw_backdrop_png, BinaryData::chipdraw_backdrop_pngSize);
-	}
+	m_osc_label.setText("ChipDrawOsc");
 	showChipdrawComponents();
 }
 
 void OscComponent::setOscTypeWavedraw() {
-	if (m_GUI_big) {
-		m_background =
-		    ImageCache::getFromMemory(BinaryData::wavedraw_backdrop_150_png, BinaryData::wavedraw_backdrop_150_pngSize);
-	} else {
-		m_background =
-		    ImageCache::getFromMemory(BinaryData::wavedraw_backdrop_png, BinaryData::wavedraw_backdrop_pngSize);
-	}
+	m_osc_label.setText("WaveDrawOsc");
 	showWavedrawComponents();
 }
 
 void OscComponent::setOscTypeSpecdraw() {
-	if (m_GUI_big) {
-		m_background =
-		    ImageCache::getFromMemory(BinaryData::specdraw_backdrop_150_png, BinaryData::specdraw_backdrop_150_pngSize);
-	} else {
-		m_background =
-		    ImageCache::getFromMemory(BinaryData::specdraw_backdrop_png, BinaryData::specdraw_backdrop_pngSize);
-	}
+	m_osc_label.setText("SpecDrawOsc");
 	showSpecdrawComponents();
 }
 
 void OscComponent::setOscTypeNoise() {
-	if (m_GUI_big) {
-		m_background =
-		    ImageCache::getFromMemory(BinaryData::noise_backdrop_150_png, BinaryData::noise_backdrop_150_pngSize);
-	} else {
-		m_background = ImageCache::getFromMemory(BinaryData::noise_backdrop_png, BinaryData::noise_backdrop_pngSize);
-	}
+	m_osc_label.setText("NoiseOsc");
 	showNoiseComponents();
 }
 
 void OscComponent::setOscTypeVector() {
-	if (m_GUI_big) {
-		m_background =
-		    ImageCache::getFromMemory(BinaryData::vector_backdrop_150_png, BinaryData::vector_backdrop_150_pngSize);
-	} else {
-		m_background = ImageCache::getFromMemory(BinaryData::vector_backdrop_png, BinaryData::vector_backdrop_pngSize);
-	}
+	m_osc_label.setText("VectorOsc");
 	showVectorComponents();
 }
 
 void OscComponent::setOscTypeWavetable() {
-	if (m_GUI_big) {
-		m_background = ImageCache::getFromMemory(BinaryData::wavetable_backdrop_150_png,
-		                                         BinaryData::wavetable_backdrop_150_pngSize);
-	} else {
-		m_background =
-		    ImageCache::getFromMemory(BinaryData::wavetable_backdrop_png, BinaryData::wavetable_backdrop_pngSize);
-	}
+	m_osc_label.setText("WavetableOsc");
 	showWavetableComponents();
 }
 
 void OscComponent::setOscTypeMulti() {
-	if (m_GUI_big) {
-		m_background =
-		    ImageCache::getFromMemory(BinaryData::multi_backdrop_150_png, BinaryData::multi_backdrop_150_pngSize);
-	} else {
-		m_background = ImageCache::getFromMemory(BinaryData::multi_backdrop_png, BinaryData::multi_backdrop_pngSize);
-	}
+	m_osc_label.setText("MultiOsc");
 	showMultiComponents();
 }
 
@@ -1104,9 +1082,39 @@ void OscComponent::hideAllComponents() {
 	m_modulation_source.setVisible(false);
 	m_sync.setVisible(false);
 	m_pos_mod.setVisible(false);
+	m_oct_label.setVisible(false);
+	m_semi_label.setVisible(false);
+	m_fine_label.setVisible(false);
+	m_vol_label.setVisible(false);
+	m_drift_label.setVisible(false);
+	m_pw_label.setVisible(false);
+	m_wt_select_label.setVisible(false);
+	m_wt_mod_label.setVisible(false);
+	m_wt_pos_label.setVisible(false);
+	m_wt_amount_label.setVisible(false);
+	m_detune_spread_label.setVisible(false);
+	m_detune_pos_label.setVisible(false);
+	m_detune_label.setVisible(false);
+	m_detune_wt_label.setVisible(false);
+	m_vec_x_label.setVisible(false);
+	m_vec_y_label.setVisible(false);
+	m_vec_a_label.setVisible(false);
+	m_vec_b_label.setVisible(false);
+	m_vec_c_label.setVisible(false);
+	m_vec_d_label.setVisible(false);
+	m_chip1_label.setVisible(false);
+	m_chip2_label.setVisible(false);
+	m_chip_speed_label.setVisible(false);
+	m_carrier_label.setVisible(false);
+	m_modulator_label.setVisible(false);
+	m_FM_label.setVisible(false);
+	m_PM_label.setVisible(false);
+	m_HP_label.setVisible(false);
+	m_LP_label.setVisible(false);
 }
 void OscComponent::showVolComponent() {
 	m_vol.setVisible(true);
+	m_vol_label.setVisible(true);
 }
 
 void OscComponent::showPitchComponents() {
@@ -1114,6 +1122,9 @@ void OscComponent::showPitchComponents() {
 	m_semi.setVisible(true);
 	m_fine.setVisible(true);
 	m_reset.setVisible(true);
+	m_oct_label.setVisible(true);
+	m_semi_label.setVisible(true);
+	m_fine_label.setVisible(true);
 }
 
 void OscComponent::showAnalogComponents() {
@@ -1125,6 +1136,7 @@ void OscComponent::showAnalogComponents() {
 	m_LED_pulse.setVisible(true);
 	m_LED_triangle.setVisible(true);
 	m_LED_sine.setVisible(true);
+	m_drift_label.setVisible(true);
 	m_sync.setVisible(true);
 }
 
@@ -1140,6 +1152,9 @@ void OscComponent::showChiptuneComponents() {
 	m_noise.setVisible(true);
 	m_chiptune_waveselector.setVisible(true);
 	m_sync.setVisible(true);
+	m_chip1_label.setVisible(true);
+	m_chip2_label.setVisible(true);
+	m_chip_speed_label.setVisible(true);
 }
 
 void OscComponent::showFMComponents() {
@@ -1152,10 +1167,9 @@ void OscComponent::showFMComponents() {
 	m_fm.setVisible(true);
 	m_fm_exp.setVisible(true);
 
-	m_carrier_waveselector.setColor(FM_COLOR);
-	m_modulator_waveselector.setColor(FM_COLOR);
-	m_carrier_ratio.setColor(FM_COLOR);
-	m_modulator_ratio.setColor(FM_COLOR);
+	m_carrier_label.setVisible(true);
+	m_modulator_label.setVisible(true);
+	m_FM_label.setVisible(true);
 }
 
 void OscComponent::showPMComponents() {
@@ -1166,11 +1180,9 @@ void OscComponent::showPMComponents() {
 	m_carrier_ratio.setVisible(true);
 	m_modulator_ratio.setVisible(true);
 	m_fm.setVisible(true);
-
-	m_carrier_waveselector.setColor(PM_COLOR);
-	m_modulator_waveselector.setColor(PM_COLOR);
-	m_carrier_ratio.setColor(PM_COLOR);
-	m_modulator_ratio.setColor(PM_COLOR);
+	m_carrier_label.setVisible(true);
+	m_modulator_label.setVisible(true);
+	m_PM_label.setVisible(true);
 }
 
 void OscComponent::showChipdrawComponents() {
@@ -1200,6 +1212,12 @@ void OscComponent::showSpecdrawComponents() {
 void OscComponent::showVectorComponents() {
 	showVolComponent();
 	showPitchComponents();
+	m_vec_x_label.setVisible(true);
+	m_vec_y_label.setVisible(true);
+	m_vec_a_label.setVisible(true);
+	m_vec_b_label.setVisible(true);
+	m_vec_c_label.setVisible(true);
+	m_vec_d_label.setVisible(true);
 	m_xy.setVisible(true);
 	m_vec_a.setVisible(true);
 	m_vec_b.setVisible(true);
@@ -1213,13 +1231,10 @@ void OscComponent::showVectorComponents() {
 void OscComponent::showWavetableComponents() {
 	showVolComponent();
 	showPitchComponents();
-	m_wavetable_waveselector.setColor(WAVETABLE_DROPDOWN_COLOR);
-	if (m_GUI_big) {
-		m_wavetable_waveselector.setTopLeftPosition(OdinHelper::c150(WAVETABLE_WAVE_X),
-		                                            OdinHelper::c150(WAVETABLE_WAVE_Y));
-	} else {
-		m_wavetable_waveselector.setTopLeftPosition(WAVETABLE_WAVE_X, WAVETABLE_WAVE_Y);
-	}
+	m_wt_select_label.setVisible(true);
+	m_wt_mod_label.setVisible(true);
+	m_wt_pos_label.setVisible(true);
+	m_wt_amount_label.setVisible(true);
 	m_position.setVisible(true);
 	m_wavetable_waveselector.setVisible(true);
 	m_sync.setVisible(true);
@@ -1230,16 +1245,13 @@ void OscComponent::showWavetableComponents() {
 void OscComponent::showMultiComponents() {
 	showVolComponent();
 	showPitchComponents();
+	m_detune_spread_label.setVisible(true);
+	m_detune_pos_label.setVisible(true);
+	m_detune_label.setVisible(true);
+	m_detune_wt_label.setVisible(true);
 	m_position_multi.setVisible(true);
 	m_spread.setVisible(true);
 	m_detune.setVisible(true);
-
-	m_wavetable_waveselector.setColor(MULTI_DROPDOWN_COLOR);
-	if (m_GUI_big) {
-		m_wavetable_waveselector.setTopLeftPosition(OdinHelper::c150(MULTI_WAVE_X), OdinHelper::c150(MULTI_WAVE_Y));
-	} else {
-		m_wavetable_waveselector.setTopLeftPosition(MULTI_WAVE_X, MULTI_WAVE_Y);
-	}
 	m_wavetable_waveselector.setVisible(true);
 }
 
@@ -1247,6 +1259,8 @@ void OscComponent::showNoiseComponents() {
 	showVolComponent();
 	m_lp.setVisible(true);
 	m_hp.setVisible(true);
+	m_HP_label.setVisible(true);
+	m_LP_label.setVisible(true);
 }
 
 void OscComponent::createWavedrawTables() {
@@ -1380,53 +1394,37 @@ void OscComponent::forceValueTreeOntoComponents(ValueTree p_tree, int p_index, b
 }
 
 void OscComponent::setGUIBig() {
-	m_GUI_big = true;
-
-	m_xy.setGUIBig();
-	m_vec_a.setGUIBig();
-	m_vec_b.setGUIBig();
-	m_vec_c.setGUIBig();
-	m_vec_d.setGUIBig();
-	m_vec_a.setInlayLeft(1);
-	m_vec_b.setInlayLeft(1);
-	m_vec_c.setInlayLeft(1);
-	m_vec_d.setInlayLeft(1);
-	m_wavedraw.setGUIBig();
-	m_chipdraw.setGUIBig();
-	m_specdraw.setGUIBig();
-	m_chiptune_waveselector.setGUIBig();
-	m_carrier_waveselector.setGUIBig();
-	m_modulator_waveselector.setGUIBig();
-	m_wavetable_waveselector.setGUIBig();
-	m_modulation_source.setGUIBig();
-	m_menu_feels.setGUIBig();
 }
 
 void OscComponent::setGUISmall() {
-	m_GUI_big = false;
-
-	m_xy.setGUISmall();
-	m_vec_a.setGUISmall();
-	m_vec_b.setGUISmall();
-	m_vec_c.setGUISmall();
-	m_vec_d.setGUISmall();
-	m_vec_a.setInlayLeft(0);
-	m_vec_b.setInlayLeft(0);
-	m_vec_c.setInlayLeft(0);
-	m_vec_d.setInlayLeft(0);
-	m_wavedraw.setGUISmall();
-	m_chipdraw.setGUISmall();
-	m_specdraw.setGUISmall();
-	m_chiptune_waveselector.setGUISmall();
-	m_carrier_waveselector.setGUISmall();
-	m_modulator_waveselector.setGUISmall();
-	m_wavetable_waveselector.setGUISmall();
-	m_modulation_source.setGUISmall();
-	m_menu_feels.setGUISmall();
 }
 
 void OscComponent::resized() {
-	GET_LOCAL_AREA(m_osc_label, "Osc_osc_label");
+
+	GET_LOCAL_AREA(m_wt_select_label, "OscWtSelectLabel");
+	GET_LOCAL_AREA(m_wt_mod_label, "OscWtModLabel");
+	GET_LOCAL_AREA(m_wt_pos_label, "OscWtPosLabel");
+	GET_LOCAL_AREA(m_wt_amount_label, "OscWtAmountLabel");
+	GET_LOCAL_AREA(m_detune_spread_label, "OscDetuneSpreadLabel");
+	GET_LOCAL_AREA(m_detune_pos_label, "OscDetunePosLabel");
+	GET_LOCAL_AREA(m_detune_label, "OscDetuneLabel");
+	GET_LOCAL_AREA(m_detune_wt_label, "OscDetuneWtLabel");
+	GET_LOCAL_AREA(m_vec_x_label, "OscVecXLabel");
+	GET_LOCAL_AREA(m_vec_y_label, "OscVecYLabel");
+	GET_LOCAL_AREA(m_vec_a_label, "OscVecALabel");
+	GET_LOCAL_AREA(m_vec_b_label, "OscVecBLabel");
+	GET_LOCAL_AREA(m_vec_c_label, "OscVecCLabel");
+	GET_LOCAL_AREA(m_vec_d_label, "OscVecDLabel");
+	GET_LOCAL_AREA(m_chip1_label, "Chip1Label");
+	GET_LOCAL_AREA(m_chip2_label, "Chip2Label");
+	GET_LOCAL_AREA(m_chip_speed_label, "ChipSpeedLabel");
+	GET_LOCAL_AREA(m_carrier_label, "CarrierLabel");
+	GET_LOCAL_AREA(m_modulator_label, "ModulatorLabel");
+	GET_LOCAL_AREA(m_FM_label, "FmLabel");
+	GET_LOCAL_AREA(m_PM_label, "FmLabel");
+	GET_LOCAL_AREA(m_HP_label, "NoiseHpLabel");
+	GET_LOCAL_AREA(m_LP_label, "NoiseLpLabel");
+
 	GET_LOCAL_AREA(m_oct_label, "Osc_oct_label");
 	GET_LOCAL_AREA(m_semi_label, "Osc_semi_label");
 	GET_LOCAL_AREA(m_fine_label, "Osc_fine_label");
@@ -1455,11 +1453,50 @@ void OscComponent::resized() {
 	GET_LOCAL_AREA(m_lp, "OscLP");
 	GET_LOCAL_AREA(m_hp, "OscHP");
 	GET_LOCAL_AREA(m_position, "OscPos");
+	GET_LOCAL_AREA(m_pos_mod, "OscPosMod");
 	GET_LOCAL_AREA(m_detune, "OscDetune");
+	GET_LOCAL_AREA(m_position_multi, "OscPositionMulti");
+	GET_LOCAL_AREA(m_spread, "OscSpread");
+	GET_LOCAL_AREA(m_speed, "OscSpeed");
+	GET_LOCAL_AREA(m_modulator_ratio, "OscModRatio");
+	GET_LOCAL_AREA(m_carrier_ratio, "OscCarrRatio");
+	GET_LOCAL_AREA(m_fm_exp, "OscFmExp");
 
 	GET_LOCAL_AREA(m_chiptune_waveselector, "ChipWave");
 	GET_LOCAL_AREA(m_carrier_waveselector, "CarrWave");
 	GET_LOCAL_AREA(m_modulator_waveselector, "ModWave");
-	GET_LOCAL_AREA(m_wavetable_waveselector, "OscWave");
 	GET_LOCAL_AREA(m_modulation_source, "OscModSource");
+
+	GET_LOCAL_AREA(m_chipdraw_convert, "WavedrawConvert");
+	GET_LOCAL_AREA(m_wavedraw_convert, "WavedrawConvert");
+	GET_LOCAL_AREA(m_specdraw_convert, "WavedrawConvert");
+
+	GET_LOCAL_AREA(m_chipdraw, "Wavedraw");
+	GET_LOCAL_AREA(m_wavedraw, "Wavedraw");
+	GET_LOCAL_AREA(m_specdraw, "Wavedraw");
+
+	GET_LOCAL_AREA(m_modulation_source, "OscModSource");
+
+	GET_LOCAL_AREA(m_xy, "OscXy");
+	GET_LOCAL_AREA(m_xy_x, "OscXyX");
+	GET_LOCAL_AREA(m_xy_y, "OscXyY");
+
+	GET_LOCAL_AREA(m_vec_a, "OscVecA");
+	GET_LOCAL_AREA(m_vec_b, "OscVecB");
+	GET_LOCAL_AREA(m_vec_c, "OscVecC");
+	GET_LOCAL_AREA(m_vec_d, "OscVecD");
+
+	if (m_osc_type == OSC_TYPE_MULTI) {
+		GET_LOCAL_AREA(m_wavetable_waveselector, "OscWaveMulti");
+	} else {
+		GET_LOCAL_AREA(m_wavetable_waveselector, "OscWaveWT");
+	}
+
+	if (m_osc_type == OSC_TYPE_FM) {
+		GET_LOCAL_AREA(m_osc_label, "Osc_osc_label_fm");
+	} else if (m_osc_type == OSC_TYPE_PM) {
+		GET_LOCAL_AREA(m_osc_label, "Osc_osc_label_pm");
+	} else {
+		GET_LOCAL_AREA(m_osc_label, "Osc_osc_label");
+	}
 }

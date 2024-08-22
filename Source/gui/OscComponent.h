@@ -240,6 +240,35 @@ protected:
 	TextLabel m_drift_label;
 	TextLabel m_pw_label;
 
+	TextLabel m_wt_select_label;
+	TextLabel m_wt_mod_label;
+	TextLabel m_wt_pos_label;
+	TextLabel m_wt_amount_label;
+
+	TextLabel m_detune_spread_label;
+	TextLabel m_detune_pos_label;
+	TextLabel m_detune_label;
+	TextLabel m_detune_wt_label;
+
+	TextLabel m_vec_x_label;
+	TextLabel m_vec_y_label;
+	TextLabel m_vec_a_label;
+	TextLabel m_vec_b_label;
+	TextLabel m_vec_c_label;
+	TextLabel m_vec_d_label;
+
+	TextLabel m_chip1_label;
+	TextLabel m_chip2_label;
+	TextLabel m_chip_speed_label;
+
+	TextLabel m_carrier_label;
+	TextLabel m_modulator_label;
+	TextLabel m_FM_label;
+	TextLabel m_PM_label;
+
+	TextLabel m_HP_label;
+	TextLabel m_LP_label;
+
 	IntegerKnob m_oct;
 	IntegerKnob m_semi;
 	OdinKnob m_fine;
@@ -262,10 +291,11 @@ protected:
 	OdinButton m_arp;
 	OdinButton m_step_button;
 	OdinButton m_noise;
+
 	OdinButton m_chipdraw_convert;
 	OdinButton m_wavedraw_convert;
-
 	OdinButton m_specdraw_convert;
+
 	OdinButton m_LED_saw;
 	OdinButton m_LED_pulse;
 	OdinButton m_LED_triangle;
@@ -327,11 +357,6 @@ protected:
 	std::unique_ptr<OdinButtonAttachment> m_step_3_on_attach;
 	std::unique_ptr<OdinButtonAttachment> m_chipnoise_attach;
 	std::unique_ptr<OdinButtonAttachment> m_exp_fm_attach;
-
-	// std::unique_ptr<ComboBoxAttachment> m_vec_a_attach;
-	// std::unique_ptr<ComboBoxAttachment> m_vec_b_attach;
-	// std::unique_ptr<ComboBoxAttachment> m_vec_c_attach;
-	// std::unique_ptr<ComboBoxAttachment> m_vec_d_attach;
 
 	Identifier m_wavetable_identifier;
 	Identifier m_modulation_source_identifier;

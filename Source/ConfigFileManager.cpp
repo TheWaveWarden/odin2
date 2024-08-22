@@ -50,6 +50,10 @@ void ConfigFileManager::loadDataFromFile() {
 						DBG("Found Config Element: " << XML_ATTRIBUTE_BIG_GUI << ": "
 						                             << (int)child->getBoolAttribute("data"));
 						m_big_gui = child->getBoolAttribute("data");
+					} else if (child->hasTagName(XML_ATTRIBUTE_SHOW_TOOLTIP)) {
+						DBG("Found Config Element: " << XML_ATTRIBUTE_SHOW_TOOLTIP << ": "
+						                             << (int)child->getBoolAttribute("data"));
+						m_show_tooltip = child->getBoolAttribute("data");
 					} else if (child->hasTagName(XML_ATTRIBUTE_TUNING_DIR)) {
 						DBG("Found Config Element: " << XML_ATTRIBUTE_TUNING_DIR << ": "
 						                             << child->getStringAttribute("data"));
@@ -83,6 +87,10 @@ void ConfigFileManager::saveDataToFile() {
 	XmlElement *big_gui = new XmlElement(XML_ATTRIBUTE_BIG_GUI);
 	big_gui->setAttribute("data", m_big_gui);
 	config_xml->addChildElement(big_gui);
+
+	XmlElement *show_tooltip = new XmlElement(XML_ATTRIBUTE_SHOW_TOOLTIP);
+	show_tooltip->setAttribute("data", m_show_tooltip);
+	config_xml->addChildElement(show_tooltip);
 
 	XmlElement *tuning_dir = new XmlElement(XML_ATTRIBUTE_TUNING_DIR);
 	tuning_dir->setAttribute("data", m_tuning_dir);
@@ -118,6 +126,14 @@ void ConfigFileManager::setOptionBigGUI(bool p_GUI_big) {
 
 bool ConfigFileManager::getOptionBigGUI() {
 	return m_big_gui;
+}
+
+void ConfigFileManager::setOptionShowTooltip(bool p_show) {
+	m_show_tooltip = p_show;
+}
+
+bool ConfigFileManager::getOptionShowTooltip() {
+	return m_show_tooltip;
 }
 
 void ConfigFileManager::setOptionGuiScale(int p_scale) {
