@@ -2,8 +2,8 @@
   "": {
     "SizeX": 0,
     "SizeY": 0,
-    "X": 134,
-    "Y": 102
+    "X": 4,
+    "Y": 0
   },
   "ADSRAttack": {
     "SizeX": 3,
@@ -836,14 +836,14 @@
   "Glide": {
     "SizeX": 6,
     "SizeY": 6,
-    "X": 18,
-    "Y": 136
+    "X": 28,
+    "Y": 142
   },
   "GlideLabel": {
     "SizeX": 8,
     "SizeY": 3,
-    "X": 17,
-    "Y": 143
+    "X": 27,
+    "Y": 149
   },
   "LFOButton13": {
     "SizeX": 31,
@@ -918,16 +918,16 @@
     "Y": 3
   },
   "Master": {
-    "SizeX": 6,
-    "SizeY": 6,
-    "X": 29,
-    "Y": 136
+    "SizeX": 4,
+    "SizeY": 4,
+    "X": 155,
+    "Y": 2
   },
   "MasterLabel": {
-    "SizeX": 8,
-    "SizeY": 3,
-    "X": 28,
-    "Y": 143
+    "SizeX": 10,
+    "SizeY": 4,
+    "X": 145,
+    "Y": 2
   },
   "MatrixAmount1": {
     "SizeX": 11,
@@ -1589,6 +1589,12 @@
     "X": 180,
     "Y": 2
   },
+  "ResizeDragger": {
+    "SizeX": 3,
+    "SizeY": 3,
+    "X": 197,
+    "Y": 151
+  },
   "RevDelay": {
     "SizeX": 7,
     "SizeY": 7,
@@ -1718,7 +1724,7 @@
   "Tuning": {
     "SizeX": 16,
     "SizeY": 4,
-    "X": 155,
+    "X": 162,
     "Y": 2
   },
   "UnisonAmount": {

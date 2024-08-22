@@ -56,8 +56,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
     m_pitchbend_amount_identifier("pitchbend_amount"), m_unison_voices_identifier("unison_voices"),
     m_delay_position_identifier("delay_position"), m_flanger_position_identifier("flanger_position"),
     m_phaser_position_identifier("phaser_position"), m_chorus_position_identifier("chorus_position"),
-    m_reverb_position_identifier("reverb_position"), m_mod_matrix(vts),
-    m_tooltip(nullptr, 2047483647),
+    m_reverb_position_identifier("reverb_position"), m_mod_matrix(vts), m_tooltip(nullptr, 2047483647),
     m_is_standalone_plugin(p_is_standalone), /*m_save_load(vts, p_processor),*/ m_arp(p_processor, vts),
     m_processor(p_processor), m_patch_browser(p_processor, vts), m_tuning(p_processor) {
 
@@ -306,11 +305,22 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 		// open popup menu
 		PopupMenu menu;
 		PopupMenu zoomMenu;
-		zoomMenu.addItem(int(GuiScale::Z100), "100%");
-		zoomMenu.addItem(int(GuiScale::Z125), "125%");
-		zoomMenu.addItem(int(GuiScale::Z150), "150%");
-		zoomMenu.addItem(int(GuiScale::Z175), "175%");
-		zoomMenu.addItem(int(GuiScale::Z200), "200%");
+		const auto current_zoom = ConfigFileManager::getInstance().getOptionGuiScale();
+		zoomMenu.addItem(int(GuiScale::Z100),
+		                 (current_zoom == int(GuiScale::Z100) ? juce::String("* ") : juce::String("")) +
+		                     juce::String("100%"));
+		zoomMenu.addItem(int(GuiScale::Z125),
+		                 (current_zoom == int(GuiScale::Z125) ? juce::String("* ") : juce::String("")) +
+		                     juce::String("125%"));
+		zoomMenu.addItem(int(GuiScale::Z150),
+		                 (current_zoom == int(GuiScale::Z150) ? juce::String("* ") : juce::String("")) +
+		                     juce::String("150%"));
+		zoomMenu.addItem(int(GuiScale::Z175),
+		                 (current_zoom == int(GuiScale::Z175) ? juce::String("* ") : juce::String("")) +
+		                     juce::String("175%"));
+		zoomMenu.addItem(int(GuiScale::Z200),
+		                 (current_zoom == int(GuiScale::Z200) ? juce::String("* ") : juce::String("")) +
+		                     juce::String("200%"));
 
 		menu.addSubMenu("Zoom", zoomMenu);
 		menu.addSeparator();
@@ -330,11 +340,8 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 			return;
 		}
 
-		if (ret <= int(GuiScale::Z200)) {
-			ConfigFileManager::getInstance().setOptionGuiScale(ret);
-			ConfigFileManager::getInstance().saveDataToFile();
-			setSize(GUI_BASE_WIDTH * ret, GUI_BASE_HEIGHT * ret);
-		}
+		if (ret <= int(GuiScale::Z200))
+			setGuiScale(ret);
 
 		if (ret == 1000) {
 			const auto new_tooltip_state = !ConfigFileManager::getInstance().getOptionShowTooltip();
@@ -465,7 +472,9 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	m_env_13_button.setTooltip("Shows the amplifier\nenvelope or the mod envelope");
 	addAndMakeVisible(m_env_13_button);
 	m_env_13_button.disableMidiLearn();
+	m_env_13_button.setClickingTogglesState(true);
 
+	m_env_24_button.setClickingTogglesState(true);
 	m_env_24_button.setToggleState(true, dontSendNotification);
 	m_env_24_button.onStateChange = [&]() {
 		setEnv24(m_env_24_button.getToggleState());
@@ -476,6 +485,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	addAndMakeVisible(m_env_24_button);
 	m_env_24_button.disableMidiLearn();
 
+	m_lfo_13_button.setClickingTogglesState(true);
 	m_lfo_13_button.setToggleState(true, dontSendNotification);
 	m_lfo_13_button.onStateChange = [&]() {
 		setLfo12(m_lfo_13_button.getToggleState());
@@ -521,6 +531,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	addAndMakeVisible(m_select_presets_button);
 	m_select_presets_button.disableMidiLearn();
 
+	m_lfo_24_button.setClickingTogglesState(true);
 	m_lfo_24_button.setToggleState(true, dontSendNotification);
 	m_lfo_24_button.onStateChange = [&]() {
 		setLfo34(m_lfo_24_button.getToggleState());
@@ -572,7 +583,6 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	m_unison_selector.valueToText = [](int p_value) { return "Unison: " + std::to_string(p_value); };
 	m_unison_selector.setLegalValues({1, 2, 3, 4, 6});
 
-	m_unison_selector.setTopLeftPosition(UNISON_SELECTOR_X, UNISON_SELECTOR_Y);
 	addAndMakeVisible(m_unison_selector);
 	m_unison_selector.setMouseDragDivisor(20.f);
 	m_unison_selector.setColor(Colour(10, 40, 50));
@@ -658,6 +668,21 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 
 	setTooltipEnabled(ConfigFileManager::getInstance().getOptionShowTooltip());
 
+	addAndMakeVisible(m_resize_dragger);
+	m_resize_dragger.onIncrease = [&]() {
+		auto new_size = int(ConfigFileManager::getInstance().getOptionGuiScale()) + 1;
+		if (new_size <= int(GuiScale::Z200)) {
+			setGuiScale(new_size);
+		}
+	};
+	m_resize_dragger.onDecrease = [&]() {
+		auto new_size = int(ConfigFileManager::getInstance().getOptionGuiScale()) - 1;
+		if (new_size >= int(GuiScale::Z100)) {
+			setGuiScale(new_size);
+		}
+	};
+	m_resize_dragger.setTooltip("Drag here to change the size of the user interface");
+
 	//DBG("Display_Scale: " + std::to_string(Desktop::getInstance().getDisplays().getMainDisplay().scale));
 }
 
@@ -688,6 +713,8 @@ void OdinAudioProcessorEditor::paint(Graphics &g) {
 }
 
 void OdinAudioProcessorEditor::resized() {
+	GET_LOCAL_AREA(m_resize_dragger, "ResizeDragger");
+
 	GET_LOCAL_AREA(m_detune_label, "DetuneLabel");
 	GET_LOCAL_AREA(m_width_label, "WidthLabel");
 	GET_LOCAL_AREA(m_master_label, "MasterLabel");
@@ -1257,16 +1284,11 @@ void OdinAudioProcessorEditor::paintGrid(Graphics &g) {
 
 		g.drawLine(0, y, getWidth(), y, 1);
 	}
+}
 
-	//g.setColour (juce::Colours::white);
-	//for (int x = 0; x < getWidth(); x += grid_size) {
-	//	for (int y = 0; y < getHeight(); y += grid_size) {
-	//		if (y % (grid_size * 10) == 0 && x % (grid_size * 10) == 0) {
-	//			g.drawText (juce::String (x / grid_size) + "x" +
-	//			                juce::String (y / grid_size),
-	//			            juce::Rectangle<int> (x, y, grid_size * 10, grid_size * 10),
-	//			            juce::Justification::topLeft);
-	//		}
-	//	}
-	//}
+void OdinAudioProcessorEditor::setGuiScale(int scale) {
+	ConfigFileManager::getInstance().setOptionGuiScale(scale);
+	ConfigFileManager::getInstance().saveDataToFile();
+
+	setSize(GUI_BASE_WIDTH * scale, GUI_BASE_HEIGHT * scale);
 }

@@ -97,7 +97,7 @@ void PatchBrowserSelector::paint(Graphics &g) {
 	switch (m_directory_status) {
 	case DirectoryStatus::Nonexistent: {
 		g.setColour(WARNING_COLOR);
-		float font_size = H / 1.4f;
+		float font_size = proportionOfHeight(0.065f);
 		float inlay_x   = proportionOfWidth(0.1f);
 		float offset_y  = proportionOfHeight(0.1f);
 		g.setFont(font_size);
@@ -107,7 +107,7 @@ void PatchBrowserSelector::paint(Graphics &g) {
 
 	case DirectoryStatus::Empty: {
 		g.setColour(WARNING_COLOR);
-		float font_size = proportionOfHeight(0.05f);
+		float font_size = proportionOfHeight(0.065f);
 		float inlay_x   = proportionOfWidth(0.1f);
 		float offset_y  = proportionOfHeight(0.1f);
 		g.setFont(font_size);

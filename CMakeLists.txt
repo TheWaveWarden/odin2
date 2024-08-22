@@ -191,6 +191,7 @@ target_sources(Odin2
     "Source/gui/PhaserComponent.cpp"
     "Source/gui/ReverbComponent.cpp"
     "Source/gui/SpecdrawDisplay.cpp"
+    "Source/gui/ResizeDragger.cpp"
     "Source/gui/SpectrumDisplay.cpp"
     "Source/gui/StepComponent.cpp"
     "Source/gui/SyncTimeSelector.cpp"
