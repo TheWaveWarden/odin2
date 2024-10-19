@@ -47,29 +47,19 @@ void ConfigFileManager::loadDataFromFile() {
 			if (config_xml->hasTagName(XML_ATTRIBUTE_ODIN_CONFIG)) {
 				for (auto *child : config_xml->getChildIterator()) {
 					if (child->hasTagName(XML_ATTRIBUTE_BIG_GUI)) {
-						DBG("Found Config Element: " << XML_ATTRIBUTE_BIG_GUI << ": "
-						                             << (int)child->getBoolAttribute("data"));
 						m_big_gui = child->getBoolAttribute("data");
 					} else if (child->hasTagName(XML_ATTRIBUTE_SHOW_TOOLTIP)) {
-						DBG("Found Config Element: " << XML_ATTRIBUTE_SHOW_TOOLTIP << ": "
-						                             << (int)child->getBoolAttribute("data"));
 						m_show_tooltip = child->getBoolAttribute("data");
 					} else if (child->hasTagName(XML_ATTRIBUTE_TUNING_DIR)) {
-						DBG("Found Config Element: " << XML_ATTRIBUTE_TUNING_DIR << ": "
-						                             << child->getStringAttribute("data"));
 						m_tuning_dir = child->getStringAttribute("data");
 					} else if (child->hasTagName(XML_ATTRIBUTE_SOUNDBANK_DIR)) {
-						DBG("Found Config Element: " << XML_ATTRIBUTE_SOUNDBANK_DIR << ": "
-						                             << child->getStringAttribute("data"));
 						m_soundbank_dir = child->getStringAttribute("data");
 					} else if (child->hasTagName(XML_ATTRIBUTE_PATCH_DIR)) {
-						DBG("Found Config Element: " << XML_ATTRIBUTE_PATCH_DIR << ": "
-						                             << child->getStringAttribute("data"));
 						m_patch_dir = child->getStringAttribute("data");
 					} else if (child->hasTagName(XML_ATTRIBUTE_GUI_SCALE)) {
-						DBG("Found Config Element: " << XML_ATTRIBUTE_GUI_SCALE << ": "
-						                             << child->getStringAttribute("data"));
 						m_gui_scale = std::stoi(child->getStringAttribute("data").toStdString());
+					} else if (child->hasTagName(XML_ATTRIBUTE_GUI_OPEN)) {
+						m_num_gui_opens = std::stoi(child->getStringAttribute("data").toStdString());
 					}
 				}
 			}
@@ -108,6 +98,10 @@ void ConfigFileManager::saveDataToFile() {
 	gui_scale->setAttribute("data", std::to_string(m_gui_scale));
 	config_xml->addChildElement(gui_scale);
 
+	XmlElement *num_gui_open = new XmlElement(XML_ATTRIBUTE_GUI_OPEN);
+	num_gui_open->setAttribute("data", std::to_string(m_num_gui_opens));
+	config_xml->addChildElement(num_gui_open);
+
 	//DBG_VAR(config_xml->toString());
 
 	String path_absolute    = CONFIG_FILE_PATH;
@@ -142,6 +136,15 @@ void ConfigFileManager::setOptionGuiScale(int p_scale) {
 
 int ConfigFileManager::getOptionGuiScale() {
 	return m_gui_scale;
+}
+
+int ConfigFileManager::getNumGuiOpens() {
+	return m_num_gui_opens;
+}
+
+void ConfigFileManager::incrementNumGuiOpens() {
+	m_num_gui_opens++;
+	DBG_VAR(m_num_gui_opens);
 }
 
 void ConfigFileManager::setOptionTuningDir(String p_dir) {

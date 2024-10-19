@@ -49,6 +49,7 @@
 #include "gui/TitleButton.h"
 #include "gui/TooltipFeels.h"
 #include "gui/TuningComponent.h"
+#include "gui/SplineAdComponent.h"
 #include "gui/XYSectionComponent.h"
 
 #ifdef WTGEN
@@ -155,6 +156,8 @@ private:
 	OscComponent m_osc1;
 	OscComponent m_osc2;
 	OscComponent m_osc3;
+
+    SplineAdComponent m_spline_ad;
 
 	FilterComponent m_fil1_component;
 	FilterComponent m_fil2_component;
