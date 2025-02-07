@@ -21,12 +21,13 @@
 #include "UIAssetManager.h"
 
 OscComponent::OscComponent(OdinAudioProcessor &p_processor, AudioProcessorValueTreeState &vts, const std::string &p_osc_number) :
-    m_value_tree(vts), m_reset("reset_button", "Reset"), m_sync("osc_sync_button", "Sync"), m_LED_saw("LED_Saw", "Saw"), m_LED_pulse("LED_pulse", "PWM"),
-    m_LED_triangle("LED_triangle", "Tri"), m_LED_sine("LED_sine", "Sine"), m_arp("arp", "Arpeggiator"), m_step_button("step", "Step 3 "), m_noise("noise", "Noise"),
-    m_carrier_label("Carrier"), m_modulator_label("Modulator"), m_FM_label("FM"), m_PM_label("PM"), m_chiptune_waveselector(true), m_carrier_waveselector(false),
-    m_modulator_waveselector(true), m_wavetable_waveselector(true), m_modulation_source(true), m_carrier_ratio(false), m_modulator_ratio(true), m_fm_exp("fm_exp"),
-    m_xy(vts, "osc" + p_osc_number + "_vec_", m_xy_x, m_xy_y, true), m_HP_label("HighPass"), m_LP_label("LowPass"), m_osc_number(p_osc_number),
-    m_wavetable_identifier("osc" + p_osc_number + "_wavetable"), m_modulation_source_identifier("osc" + p_osc_number + "_mod_source"),
+    m_value_tree(vts), m_reset("reset_button", "Reset", OdinButton::Type::button_7x4), m_sync("osc_sync_button", "Sync", OdinButton::Type::button_7x4),
+    m_LED_saw("LED_Saw", "Saw", OdinButton::Type::button_9x4), m_LED_pulse("LED_pulse", "PWM", OdinButton::Type::button_9x4),
+    m_LED_triangle("LED_triangle", "Tri", OdinButton::Type::button_9x4), m_LED_sine("LED_sine", "Sine", OdinButton::Type::button_9x4), m_arp("arp", "Arpeggiator"),
+    m_step_button("step", "Step 3 "), m_noise("noise", "Noise"), m_carrier_label("Carrier"), m_modulator_label("Modulator"), m_FM_label("FM"), m_PM_label("PM"),
+    m_chiptune_waveselector(true), m_carrier_waveselector(false), m_modulator_waveselector(true), m_wavetable_waveselector(true), m_modulation_source(true), m_carrier_ratio(false),
+    m_modulator_ratio(true), m_fm_exp("fm_exp"), m_xy(vts, "osc" + p_osc_number + "_vec_", m_xy_x, m_xy_y, true), m_HP_label("HighPass"), m_LP_label("LowPass"),
+    m_osc_number(p_osc_number), m_wavetable_identifier("osc" + p_osc_number + "_wavetable"), m_modulation_source_identifier("osc" + p_osc_number + "_mod_source"),
     m_chipwave_identifier("osc" + p_osc_number + "_chipwave"), m_modulator_wave_identifier("osc" + p_osc_number + "_modulator_wave"),
     m_carrier_wave_identifier("osc" + p_osc_number + "_carrier_wave"), m_modulator_ratio_identifier("osc" + p_osc_number + "_modulator_ratio"),
     m_carrier_ratio_identifier("osc" + p_osc_number + "_carrier_ratio"), m_analog_wave_identifier("osc" + p_osc_number + "_analog_wave"),
@@ -35,7 +36,8 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor, AudioProcessorValueT
     m_vol_label("Vol"), m_drift_label("Drift"), m_pw_label("PW"), m_chip1_label("1"), m_chip2_label("2"), m_chip_speed_label("Speed"), m_wt_select_label("Wavetable"),
     m_wt_mod_label("Modulation"), m_wt_pos_label("WT-Position"), m_wt_amount_label("Amount"), m_detune_spread_label("WT_Spread"), m_detune_pos_label("WT-Position"),
     m_detune_label("Detune"), m_detune_wt_label("Wavetable"), m_vec_x_label("X"), m_vec_y_label("Y"), m_vec_a_label("A"), m_vec_b_label("B"), m_vec_c_label("C"),
-    m_vec_d_label("D") {
+    m_vec_d_label("D"), m_oct(OdinKnob::Type::knob_4x4a), m_semi(OdinKnob::Type::knob_4x4a), m_fine(OdinKnob::Type::knob_4x4a), m_vol(OdinKnob::Type::knob_5x5a),
+    m_pw(OdinKnob::Type::knob_8x8a), m_drift(OdinKnob::Type::knob_8x8a), m_position(OdinKnob::Type::knob_5x5a), m_detune(OdinKnob::Type::knob_8x8a) {
 
 	addAndMakeVisible(m_HP_label);
 	addAndMakeVisible(m_LP_label);

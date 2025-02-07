@@ -367,7 +367,7 @@ for filename in $(find . -name '*.png'); do
     echo "    ${baseFileName}," >> "$indexfile"
     echo "    BinaryData::${baseFileName}_png," >> "$datafile"
     echo "    BinaryData::${baseFileName}_pngSize," >> "$sizefile"
-    echo "    \"graphics/${baseFileName}.png\"" >> "$cmakefile"
+    echo "    \"${filename}\"" >> "$cmakefile"
 
     progress=$((progress+1))
 done

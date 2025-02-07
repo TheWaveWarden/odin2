@@ -17,7 +17,7 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 
 //==============================================================================
-IntegerKnob::IntegerKnob() {
+IntegerKnob::IntegerKnob(OdinKnob::Type type) : OdinKnob(type) {
 	setNumDecimalPlacesToDisplay(0);
 }
 

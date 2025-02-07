@@ -23,28 +23,27 @@ class OdinAudioProcessor;
 
 class OdinButton : public juce::Button, public OdinMidiLearnBase {
 public:
-	OdinButton(const String &buttonName, const String &p_button_text) :
-	    juce::Button(buttonName), m_button_text(p_button_text) {
-	}
+	enum class Type {
+		unassigned,
+		button_7x4,
+		button_9x4,
+	};
 
-	void paintButton(juce::Graphics &g, bool p_highlight, bool p_pressed) override {
-		static constexpr auto stroke = 1.0f;
+	OdinButton(const String &buttonName, const String &p_button_text, Type p_type = Type::unassigned) : juce::Button(buttonName), m_button_text(p_button_text), m_type(p_type) {
 
-		g.setColour(COL_LIGHT);
-		g.drawRoundedRectangle(getLocalBounds().toFloat().reduced(stroke / 2.0f), 4.0f, stroke);
-
-		if (p_highlight) {
-			g.setColour(COL_LIGHT.withAlpha(0.3f));
-			g.fillRoundedRectangle(getLocalBounds().toFloat().reduced(stroke / 2.0f), 4.0f);
-		} else if (getToggleState()) {
-			g.setColour(COL_LIGHT.withAlpha(0.15f));
-			g.fillRoundedRectangle(getLocalBounds().toFloat().reduced(stroke / 2.0f), 4.0f);
+		switch (m_type) {
+		case Type::button_7x4:
+			m_ui_asset_base = int(UIAssets::Indices::bttn_7x4_off);
+			break;
+		case Type::button_9x4:
+			m_ui_asset_base = int(UIAssets::Indices::bttn_9x4_off);
+			break;
+		default:
+			break;
 		}
-
-		g.setColour(COL_LIGHT);
-		g.setFont(H * 0.6f);
-		g.drawText(m_button_text, getLocalBounds(), juce::Justification::centred, false);
 	}
+
+	void paintButton(juce::Graphics &g, bool p_highlight, bool p_pressed) override;
 
 	static void setOdinPointer(OdinAudioProcessor *p_pointer) {
 		m_processor = p_pointer;
@@ -68,6 +67,8 @@ public:
 	}
 
 private:
+	Type m_type;
+	int m_ui_asset_base;
 	juce::String m_button_text;
 	static OdinAudioProcessor *m_processor;
 };

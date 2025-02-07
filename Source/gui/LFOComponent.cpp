@@ -86,11 +86,6 @@ LFOComponent::~LFOComponent() {
 	m_value_tree.removeParameterListener("lfo" + m_lfo_number + "_wave", &m_selector);
 }
 
-void LFOComponent::paint(Graphics &g) {
-	g.setColour(COL_LIGHT);
-	g.drawRect(getLocalBounds(), 1);
-}
-
 void LFOComponent::forceValueTreeOntoComponents(ValueTree p_tree) {
 
 	m_selector.setValueGUIOnly(m_value_tree.state.getChildWithName("lfo")[m_lfo_wave_identifier]);

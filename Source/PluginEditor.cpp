@@ -1246,38 +1246,31 @@ void OdinEditor::paintOverChildren(Graphics &g) {
 }
 
 void OdinEditor::paintGrid(Graphics &g) {
-	g.fillAll(juce::Colours::black);
-
 	constexpr auto grid_alpha       = 0.05f;
 	constexpr auto grid_alpha_major = 0.2f;
 	constexpr auto grid_alpha_mid   = 0.1f;
 	const auto grid_size            = int(ConfigFileManager::getInstance().getOptionGuiScale());
 
 	auto grid_base_colour = juce::Colour(0x0088ffff);
-	//g.fillAll (juce::Colours::white);
-	//auto grid_base_colour = juce::Colours::black;
 
 	for (int x = 0; x < getWidth(); x += grid_size) {
-		g.setColour(juce::Colours::white);
-		//if (x % (grid_size * 10) == 0)
-		//	g.setColour(grid_base_colour.withAlpha(grid_alpha_major));
-		//else if (x % (grid_size * 5) == 0)
-		//	g.setColour(grid_base_colour.withAlpha(grid_alpha_mid));
-		//else
-		//	g.setColour(grid_base_colour.withAlpha(grid_alpha));
+		if (x % (grid_size * 10) == 0)
+			g.setColour(grid_base_colour.withAlpha(grid_alpha_major));
+		else if (x % (grid_size * 5) == 0)
+			g.setColour(grid_base_colour.withAlpha(grid_alpha_mid));
+		else
+			g.setColour(grid_base_colour.withAlpha(grid_alpha));
 
 		g.drawLine(x, 0, x, getHeight(), 1);
 	}
 
 	for (int y = 0; y < getHeight(); y += grid_size) {
-		g.setColour(juce::Colours::white);
-
-		//		if (y % (grid_size * 10) == 0)
-		//			g.setColour(grid_base_colour.withAlpha(grid_alpha_major));
-		//		else if (y % (grid_size * 5) == 0)
-		//			g.setColour(grid_base_colour.withAlpha(grid_alpha_mid));
-		//		else
-		//			g.setColour(grid_base_colour.withAlpha(grid_alpha));
+		if (y % (grid_size * 10) == 0)
+			g.setColour(grid_base_colour.withAlpha(grid_alpha_major));
+		else if (y % (grid_size * 5) == 0)
+			g.setColour(grid_base_colour.withAlpha(grid_alpha_mid));
+		else
+			g.setColour(grid_base_colour.withAlpha(grid_alpha));
 
 		g.drawLine(0, y, getWidth(), y, 1);
 	}

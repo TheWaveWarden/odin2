@@ -21,7 +21,7 @@
 
 class IntegerKnob : public OdinKnob {
 public:
-  IntegerKnob();
+  IntegerKnob(OdinKnob::Type type = OdinKnob::Type::unassigned);
   ~IntegerKnob();
 
   virtual double snapValue(double attemptedValue, DragMode dragMode){

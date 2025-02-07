@@ -37,7 +37,6 @@ public:
 	void forceValueTreeOntoComponents(ValueTree p_tree);
 
 	void resized() override;
-	void paint(Graphics &) override;
 	void setSync(bool p_sync) {
 		if (m_sync_active != p_sync) {
 			m_sync_active = p_sync;

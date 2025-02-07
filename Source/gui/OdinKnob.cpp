@@ -16,8 +16,10 @@
 #include <iomanip> // setprecision
 #include <sstream> // stringstream
 
-#include "OdinKnob.h"
 #include "../PluginProcessor.h"
+#include "OdinKnob.h"
+#include "UIAssetManager.h"
+#include "../ConfigFileManager.h"
 
 OdinAudioProcessor *OdinKnob::m_processor;
 
@@ -61,4 +63,30 @@ String OdinKnob::getTextFromValue(double value) {
 	//https://forum.juce.com/t/setnumdecimalplacestodisplay-not-behaving-solved/33686/2
 	//DBG(String(value, getNumDecimalPlacesToDisplay()) + getTextValueSuffix());
 	return String(value, getNumDecimalPlacesToDisplay()) + getTextValueSuffix();
+}
+
+void OdinKnob::paint(juce::Graphics &g) {
+	if (m_type == Type::unassigned) {
+		g.setColour(COL_LIGHT);
+		const auto val                 = valueToProportionOfLength(getValue());
+		static constexpr auto deadzone = 30.0f;
+		static constexpr auto stroke   = 2.0f;
+		const auto angle               = (deadzone + val * (360.0f - 2 * deadzone)) * juce::MathConstants<float>::twoPi / 360.0f;
+		const auto sin                 = std::sin(angle);
+		const auto cos                 = std::cos(angle);
+		const auto center_x            = getLocalBounds().getCentreX();
+		const auto center_y            = getLocalBounds().getCentreY();
+
+		g.drawEllipse(getLocalBounds().toFloat().reduced(stroke / 2.0f), 1.0f);
+		g.drawLine(center_x, center_y, center_x * (1.0f - sin), center_y * (1.0f + cos));
+		return;
+	}
+
+	//drawGuides (g, isEnabled());
+
+	const auto value01      = valueToProportionOfLength(getValue());
+	const auto image_offset = juce::roundToInt(value01 * double(N_KNOB_FRAMES - 1));
+	const auto asset        = UIAssets::Indices(int(m_ui_asset_base) + int(image_offset));
+	juce::Image graphic     = UIAssetManager::getInstance()->getUIAsset(asset, ConfigFileManager::getInstance().getOptionGuiScale());
+	g.drawImageAt(graphic, 0, 0);
 }

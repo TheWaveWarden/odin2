@@ -80,11 +80,6 @@ ADSRComponent::ADSRComponent(AudioProcessorValueTreeState &vts, const std::strin
 ADSRComponent::~ADSRComponent() {
 }
 
-void ADSRComponent::paint(Graphics &g) {
-	g.setColour(COL_LIGHT);
-	g.drawRect(getLocalBounds(), 1);
-}
-
 void ADSRComponent::resized() {
 	GET_LOCAL_AREA(m_attack_label, "AttackLabel");
 	GET_LOCAL_AREA(m_decay_label, "DecayLabel");
