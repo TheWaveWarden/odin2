@@ -3,13 +3,13 @@
 #include "../GlobalIncludes.h"
 #include "JsonGuiProvider.h"
 
-class OdinAudioProcessorEditor;
+class OdinEditor;
 
 class LiveConstrainer : public juce::MouseListener {
 public:
 	enum class DragMode { None, Center, Left, TopLeft, Top, TopRight, Right, BottomRight, Bottom, BottomLeft };
 
-	LiveConstrainer(OdinAudioProcessorEditor &p_editor);
+	LiveConstrainer(OdinEditor &p_editor);
 	~LiveConstrainer();
 
 	void mouseDown(const juce::MouseEvent &p_event) override;
@@ -32,7 +32,7 @@ protected:
 
 	juce::Component *m_component = nullptr;
 
-	OdinAudioProcessorEditor &m_main_editor;
+	OdinEditor &m_main_editor;
 
 	std::string m_name;
 	juce::Rectangle<int> m_bounds;

@@ -17,7 +17,7 @@ void JsonGuiProvider::loadData() {
 	m_data = nlohmann::json::parse(
 	    juce::String::createStringFromData(BinaryData::GuiData_json, BinaryData::GuiData_jsonSize).toStdString());
 #ifdef ODIN_DEBUG
-#define GUI_DATA_PATH CMAKE_SOURCE_DIRECTORY "/Source/GuiData.json"
+#define GUI_DATA_PATH CMAKE_SOURCE_DIRECTORY "/assets/GuiData.json"
 	const auto file = juce::File(GUI_DATA_PATH);
 	if (file.existsAsFile()) {
 		m_data = nlohmann::json::parse(file.loadFileAsString().toStdString());

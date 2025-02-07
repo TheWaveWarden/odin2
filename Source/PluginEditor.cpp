@@ -14,51 +14,33 @@
 */
 
 #include "PluginEditor.h"
-#include "PluginProcessor.h"
-
 #include "ConfigFileManager.h"
-
-void writeValueTreeToFile(const ValueTree &tree) {
-	File file("../../odin2/ValueTree.txt");
-	String text = tree.toXmlString();
-	file.replaceWithText(text);
-}
+#include "PluginProcessor.h"
+#include "gui/UIAssetManager.h"
 
 //==============================================================================
-OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_processor,
-                                                   AudioProcessorValueTreeState &vts,
-                                                   bool p_is_standalone) :
-    AudioProcessorEditor(&p_processor),
-    m_modwheel_label("Mod Wheel"), m_pitchwheel_label("Pitch Bend"), m_live_constrainer(*this), processor(p_processor),
-    m_fx_buttons_section(vts, p_processor), m_value_tree(vts), m_detune_label("Detune"), m_width_label("Width"),
-    m_master_label("Master"), m_glide_label("Glide"), m_osc1_dropdown("osc1_dropdown_button", "v"),
-    m_osc2_dropdown("osc2_dropdown_button", "v"), m_osc3_dropdown("osc3_dropdown_button", "v"),
-    m_filter1_dropdown("filter1_dropdown_button", "v"), m_filter2_dropdown("filter2_dropdown_button", "v"),
-    m_filter3_dropdown("filter3_dropdown_button", "v"), m_filleft_button1("filter_left_button1", "1"),
-    m_filleft_button2("filter_left_button2", "2"), m_filleft_button3("filter_left_button3", "3"),
-    m_filright_button1("filter_right_button1", "1"), m_filright_button2("filter_right_button2", "2"),
-    m_filright_button3("filter_right_button3", "3"), m_filright_buttonf1("filter_left_buttonf1", "F1"),
-    m_flanger_on_button("flanger_button", "Flanger On"), m_phaser_on_button("phaser_button", "Phaser On"),
-    m_chorus_on_button("chorus_button", "Chorus On"), m_delay_on_button("delay_button", "Delay On"),
-    m_reverb_on_button("reverb_button", "Reverb On"), m_select_arp_button("select_arpeggiator_button", "Arpeggiator"),
-    m_burger_button("burger_button", "B"), m_select_modmatrix_button("select_modmatrix_button", "ModMatrix"),
-    m_select_presets_button("select_presets_button", "Presets"), m_env_13_button("env13_button", "Envelope1/3"),
-    m_env_24_button("env24_button", "Envelope2/4"), m_reset("reset", "Reset"),
-    m_lfo_13_button("lfo13_button", "LFO1/3"), m_lfo_24_button("lfo24_button", "LFO2/4"), m_pitch_amount(true),
-    m_osc1(p_processor, vts, "1"), m_osc2(p_processor, vts, "2"), m_osc3(p_processor, vts, "3"),
-    m_fil1_component(vts, "1"), m_fil2_component(vts, "2"), m_fil3_component(vts, "3"), m_midsection(vts),
-    m_adsr_1(vts, "1"), m_adsr_2(vts, "2"), m_adsr_3(vts, "3"), m_adsr_4(vts, "4"), m_lfo_1(vts, "1", p_is_standalone),
-    m_lfo_2(vts, "2", p_is_standalone), m_lfo_3(vts, "3", p_is_standalone), m_lfo_4(vts, "4", p_is_standalone),
-    m_delay(vts, p_is_standalone), m_reverb(vts, p_is_standalone), m_phaser(vts, "phaser", p_is_standalone),
-    m_flanger(vts, "flanger", p_is_standalone), m_chorus(vts, "chorus", p_is_standalone), m_xy_section(vts, "xy"),
-    m_osc1_type_identifier("osc1_type"), m_osc2_type_identifier("osc2_type"), m_osc3_type_identifier("osc3_type"),
-    m_fil1_type_identifier("fil1_type"), m_fil2_type_identifier("fil2_type"), m_fil3_type_identifier("fil3_type"),
-    m_pitchbend_amount_identifier("pitchbend_amount"), m_unison_voices_identifier("unison_voices"),
-    m_delay_position_identifier("delay_position"), m_flanger_position_identifier("flanger_position"),
-    m_phaser_position_identifier("phaser_position"), m_chorus_position_identifier("chorus_position"),
-    m_reverb_position_identifier("reverb_position"), m_mod_matrix(vts), m_tooltip(nullptr, 2047483647),
-    m_is_standalone_plugin(p_is_standalone), /*m_save_load(vts, p_processor),*/ m_arp(p_processor, vts),
-    m_processor(p_processor), m_patch_browser(p_processor, vts), m_tuning(p_processor) {
+OdinEditor::OdinEditor(OdinAudioProcessor &p_processor, AudioProcessorValueTreeState &vts, bool p_is_standalone) :
+    AudioProcessorEditor(&p_processor), m_modwheel_label("Mod Wheel"), m_pitchwheel_label("Pitch Bend"), m_live_constrainer(*this), processor(p_processor),
+    m_fx_buttons_section(vts, p_processor), m_value_tree(vts), m_detune_label("Detune"), m_width_label("Width"), m_master_label("Master"), m_glide_label("Glide"),
+    m_osc1_dropdown("osc1_dropdown_button", "v"), m_osc2_dropdown("osc2_dropdown_button", "v"), m_osc3_dropdown("osc3_dropdown_button", "v"),
+    m_filter1_dropdown("filter1_dropdown_button", "v"), m_filter2_dropdown("filter2_dropdown_button", "v"), m_filter3_dropdown("filter3_dropdown_button", "v"),
+    m_filleft_button1("filter_left_button1", "1"), m_filleft_button2("filter_left_button2", "2"), m_filleft_button3("filter_left_button3", "3"),
+    m_filright_button1("filter_right_button1", "1"), m_filright_button2("filter_right_button2", "2"), m_filright_button3("filter_right_button3", "3"),
+    m_filright_buttonf1("filter_left_buttonf1", "F1"), m_flanger_on_button("flanger_button", "Flanger On"), m_phaser_on_button("phaser_button", "Phaser On"),
+    m_chorus_on_button("chorus_button", "Chorus On"), m_delay_on_button("delay_button", "Delay On"), m_reverb_on_button("reverb_button", "Reverb On"),
+    m_select_arp_button("select_arpeggiator_button", "Arpeggiator"), m_burger_button("burger_button", "B"), m_select_modmatrix_button("select_modmatrix_button", "ModMatrix"),
+    m_select_presets_button("select_presets_button", "Presets"), m_env_13_button("env13_button", "Envelope1/3"), m_env_24_button("env24_button", "Envelope2/4"),
+    m_reset("reset", "Reset"), m_lfo_13_button("lfo13_button", "LFO1/3"), m_lfo_24_button("lfo24_button", "LFO2/4"), m_pitch_amount(true), m_osc1(p_processor, vts, "1"),
+    m_osc2(p_processor, vts, "2"), m_osc3(p_processor, vts, "3"), m_fil1_component(vts, "1"), m_fil2_component(vts, "2"), m_fil3_component(vts, "3"), m_midsection(vts),
+    m_adsr_1(vts, "1"), m_adsr_2(vts, "2"), m_adsr_3(vts, "3"), m_adsr_4(vts, "4"), m_lfo_1(vts, "1", p_is_standalone), m_lfo_2(vts, "2", p_is_standalone),
+    m_lfo_3(vts, "3", p_is_standalone), m_lfo_4(vts, "4", p_is_standalone), m_delay(vts, p_is_standalone), m_reverb(vts, p_is_standalone), m_phaser(vts, "phaser", p_is_standalone),
+    m_flanger(vts, "flanger", p_is_standalone), m_chorus(vts, "chorus", p_is_standalone), m_xy_section(vts, "xy"), m_osc1_type_identifier("osc1_type"),
+    m_osc2_type_identifier("osc2_type"), m_osc3_type_identifier("osc3_type"), m_fil1_type_identifier("fil1_type"), m_fil2_type_identifier("fil2_type"),
+    m_fil3_type_identifier("fil3_type"), m_pitchbend_amount_identifier("pitchbend_amount"), m_unison_voices_identifier("unison_voices"),
+    m_delay_position_identifier("delay_position"), m_flanger_position_identifier("flanger_position"), m_phaser_position_identifier("phaser_position"),
+    m_chorus_position_identifier("chorus_position"), m_reverb_position_identifier("reverb_position"), m_mod_matrix(vts), m_tooltip(nullptr, 2047483647),
+    m_is_standalone_plugin(p_is_standalone), /*m_save_load(vts, p_processor),*/ m_arp(p_processor, vts), m_processor(p_processor), m_patch_browser(p_processor, vts),
+    m_tuning(p_processor) {
 
 	addAndMakeVisible(m_modwheel_label);
 	addAndMakeVisible(m_pitchwheel_label);
@@ -101,8 +83,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 			SETAUDIOFULLRANGESAFE("pitchbend", 0.f);
 
 			//force modmatrix to show
-			m_value_tree.state.getChildWithName("misc").setProperty(
-			    "arp_mod_selected", MATRIX_SECTION_INDEX_MATRIX, nullptr);
+			m_value_tree.state.getChildWithName("misc").setProperty("arp_mod_selected", MATRIX_SECTION_INDEX_MATRIX, nullptr);
 
 			//this forces values onto the GUI (patch label as well)
 			forceValueTreeOntoComponents(true);
@@ -293,21 +274,11 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 		PopupMenu menu;
 		PopupMenu zoomMenu;
 		const auto current_zoom = ConfigFileManager::getInstance().getOptionGuiScale();
-		zoomMenu.addItem(int(GuiScale::Z100),
-		                 (current_zoom == int(GuiScale::Z100) ? juce::String("* ") : juce::String("")) +
-		                     juce::String("100%"));
-		zoomMenu.addItem(int(GuiScale::Z125),
-		                 (current_zoom == int(GuiScale::Z125) ? juce::String("* ") : juce::String("")) +
-		                     juce::String("125%"));
-		zoomMenu.addItem(int(GuiScale::Z150),
-		                 (current_zoom == int(GuiScale::Z150) ? juce::String("* ") : juce::String("")) +
-		                     juce::String("150%"));
-		zoomMenu.addItem(int(GuiScale::Z175),
-		                 (current_zoom == int(GuiScale::Z175) ? juce::String("* ") : juce::String("")) +
-		                     juce::String("175%"));
-		zoomMenu.addItem(int(GuiScale::Z200),
-		                 (current_zoom == int(GuiScale::Z200) ? juce::String("* ") : juce::String("")) +
-		                     juce::String("200%"));
+		zoomMenu.addItem(int(GuiScale::Z100), (current_zoom == int(GuiScale::Z100) ? juce::String("* ") : juce::String("")) + juce::String("100%"));
+		zoomMenu.addItem(int(GuiScale::Z125), (current_zoom == int(GuiScale::Z125) ? juce::String("* ") : juce::String("")) + juce::String("125%"));
+		zoomMenu.addItem(int(GuiScale::Z150), (current_zoom == int(GuiScale::Z150) ? juce::String("* ") : juce::String("")) + juce::String("150%"));
+		zoomMenu.addItem(int(GuiScale::Z175), (current_zoom == int(GuiScale::Z175) ? juce::String("* ") : juce::String("")) + juce::String("175%"));
+		zoomMenu.addItem(int(GuiScale::Z200), (current_zoom == int(GuiScale::Z200) ? juce::String("* ") : juce::String("")) + juce::String("200%"));
 
 		menu.addSubMenu("Zoom", zoomMenu);
 		menu.addSeparator();
@@ -316,6 +287,8 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 		else
 			menu.addItem(1000, "Show Tooltips");
 
+		menu.addSeparator(), menu.addItem(1050, "Open Main Storage Path");
+
 #ifdef ODIN_DEBUG
 		menu.addSeparator();
 		menu.addItem(1100, "Save GuiData.json");
@@ -323,18 +296,26 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 
 		const auto ret = menu.show();
 
-		if (ret == 0) {
+		if (ret == 0)
+			return;
+
+		if (ret <= int(GuiScale::Z200)) {
+			const auto threadWasStarted = UIAssetManager::getInstance()->launchImageCreationThreads(ret);
+			if (!threadWasStarted)
+				setGuiSize((GuiScale)(ret), true);
 			return;
 		}
-
-		if (ret <= int(GuiScale::Z200))
-			setGuiScale(ret);
 
 		if (ret == 1000) {
 			const auto new_tooltip_state = !ConfigFileManager::getInstance().getOptionShowTooltip();
 			ConfigFileManager::getInstance().setOptionShowTooltip(new_tooltip_state);
 			ConfigFileManager::getInstance().saveDataToFile();
 			setTooltipEnabled(new_tooltip_state);
+			return;
+		}
+
+		if (ret == 1050) {
+			juce::URL(ODIN_STORAGE_PATH).launchInDefaultBrowser();
 			return;
 		}
 
@@ -408,16 +389,16 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 
 	m_osc1.setOscType(OSC_TYPE_ANALOG); // analog
 	addAndMakeVisible(m_osc1);
-	m_osc2.setOscType(1);               // bypass
+	m_osc2.setOscType(1); // bypass
 	addAndMakeVisible(m_osc2);
-	m_osc3.setOscType(1);               // bypass
+	m_osc3.setOscType(1); // bypass
 	addAndMakeVisible(m_osc3);
 
 	m_fil1_component.setFilterType(FILTER_TYPE_LP24); // LP
 	addAndMakeVisible(m_fil1_component);
-	m_fil2_component.setFilterType(1);                // bypass
+	m_fil2_component.setFilterType(1); // bypass
 	addAndMakeVisible(m_fil2_component);
-	m_fil3_component.setFilterType(1);                // bypass
+	m_fil3_component.setFilterType(1); // bypass
 	addAndMakeVisible(m_fil3_component);
 
 	addAndMakeVisible(m_midsection);
@@ -448,8 +429,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	m_env_13_button.setToggleState(true, dontSendNotification);
 	m_env_13_button.onStateChange = [&]() {
 		setEnv13(m_env_13_button.getToggleState());
-		m_value_tree.state.getChildWithName("misc").setProperty(
-		    "env_left_selected", (int)m_env_13_button.getToggleState(), nullptr);
+		m_value_tree.state.getChildWithName("misc").setProperty("env_left_selected", (int)m_env_13_button.getToggleState(), nullptr);
 	};
 	m_env_13_button.setTooltip("Shows the amplifier\nenvelope or the mod envelope");
 	addAndMakeVisible(m_env_13_button);
@@ -460,8 +440,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	m_env_24_button.setToggleState(true, dontSendNotification);
 	m_env_24_button.onStateChange = [&]() {
 		setEnv24(m_env_24_button.getToggleState());
-		m_value_tree.state.getChildWithName("misc").setProperty(
-		    "env_right_selected", (int)m_env_24_button.getToggleState(), nullptr);
+		m_value_tree.state.getChildWithName("misc").setProperty("env_right_selected", (int)m_env_24_button.getToggleState(), nullptr);
 	};
 	m_env_24_button.setTooltip("Shows the filter\nenvelope or global envelope");
 	addAndMakeVisible(m_env_24_button);
@@ -471,8 +450,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	m_lfo_13_button.setToggleState(true, dontSendNotification);
 	m_lfo_13_button.onStateChange = [&]() {
 		setLfo12(m_lfo_13_button.getToggleState());
-		m_value_tree.state.getChildWithName("lfo").setProperty(
-		    "lfo_left_selected", (int)m_lfo_13_button.getToggleState(), nullptr);
+		m_value_tree.state.getChildWithName("lfo").setProperty("lfo_left_selected", (int)m_lfo_13_button.getToggleState(), nullptr);
 	};
 	m_lfo_13_button.setTooltip("Shows LFO 1 or LFO 2");
 	addAndMakeVisible(m_lfo_13_button);
@@ -494,8 +472,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	m_select_modmatrix_button.setRadioGroupId(RADIO_GROUP_ARP_MODMATRIX_PRESETS);
 	m_select_modmatrix_button.onClick = [&]() {
 		setMatrixSectionModule(MATRIX_SECTION_INDEX_MATRIX);
-		m_value_tree.state.getChildWithName("misc").setProperty(
-		    "arp_mod_selected", MATRIX_SECTION_INDEX_MATRIX, nullptr);
+		m_value_tree.state.getChildWithName("misc").setProperty("arp_mod_selected", MATRIX_SECTION_INDEX_MATRIX, nullptr);
 	};
 	m_select_modmatrix_button.setTooltip("Shows the arpeggiator or the mod-matrix");
 	addAndMakeVisible(m_select_modmatrix_button);
@@ -506,8 +483,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	m_select_presets_button.setRadioGroupId(RADIO_GROUP_ARP_MODMATRIX_PRESETS);
 	m_select_presets_button.onClick = [&]() {
 		setMatrixSectionModule(MATRIX_SECTION_INDEX_PRESETS);
-		m_value_tree.state.getChildWithName("misc").setProperty(
-		    "arp_mod_selected", MATRIX_SECTION_INDEX_PRESETS, nullptr);
+		m_value_tree.state.getChildWithName("misc").setProperty("arp_mod_selected", MATRIX_SECTION_INDEX_PRESETS, nullptr);
 	};
 	m_select_presets_button.setTooltip("Shows the arpeggiator or the mod-matrix");
 	addAndMakeVisible(m_select_presets_button);
@@ -517,8 +493,7 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	m_lfo_24_button.setToggleState(true, dontSendNotification);
 	m_lfo_24_button.onStateChange = [&]() {
 		setLfo34(m_lfo_24_button.getToggleState());
-		m_value_tree.state.getChildWithName("lfo").setProperty(
-		    "lfo_right_selected", (int)m_lfo_24_button.getToggleState(), nullptr);
+		m_value_tree.state.getChildWithName("lfo").setProperty("lfo_right_selected", (int)m_lfo_24_button.getToggleState(), nullptr);
 	};
 	m_lfo_24_button.setTooltip("Shows LFO 3 or the global LFO");
 	m_lfo_24_button.disableMidiLearn();
@@ -534,13 +509,11 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	m_mono_poly_legato_dropdown.showTriangle();
 
 	m_mono_poly_legato_dropdown.setColor(juce::STANDARD_DISPLAY_COLOR);
-	m_mono_poly_legato_dropdown.setTooltip(
-	    "Selects the Playmode:\n\nPoly: Play multiple voices at once.\n\nLegato: Only one voice available. Envelopes "
-	    "are not restarted, so legato notes will blend over seemlessly.\n\nRetrig: Like Legato, but the envelopes are "
-	    "restarted on every note start.");
+	m_mono_poly_legato_dropdown.setTooltip("Selects the Playmode:\n\nPoly: Play multiple voices at once.\n\nLegato: Only one voice available. Envelopes "
+	                                       "are not restarted, so legato notes will blend over seemlessly.\n\nRetrig: Like Legato, but the envelopes are "
+	                                       "restarted on every note start.");
 	m_mono_poly_legato_dropdown.onChange = [&]() {
-		m_value_tree.state.getChildWithName("misc").setProperty(
-		    "legato", PLAYMODETOVALUETREE(m_mono_poly_legato_dropdown.getSelectedId()), nullptr);
+		m_value_tree.state.getChildWithName("misc").setProperty("legato", PLAYMODETOVALUETREE(m_mono_poly_legato_dropdown.getSelectedId()), nullptr);
 		processor.setMonoPolyLegato((PlayModes)m_mono_poly_legato_dropdown.getSelectedId());
 	};
 	addAndMakeVisible(m_mono_poly_legato_dropdown);
@@ -550,19 +523,15 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	addAndMakeVisible(m_lfo_3);
 	addChildComponent(m_lfo_4);
 
-	m_pitch_amount.OnValueChange = [&](int p_new_value) {
-		m_value_tree.state.getChildWithName("misc").setProperty("pitchbend_amount", p_new_value, nullptr);
-	};
+	m_pitch_amount.OnValueChange = [&](int p_new_value) { m_value_tree.state.getChildWithName("misc").setProperty("pitchbend_amount", p_new_value, nullptr); };
 	addAndMakeVisible(m_pitch_amount);
 	m_pitch_amount.setMouseDragDivisor(20.f);
 	m_pitch_amount.setRange(0, 24);
 	m_pitch_amount.setColor(Colour(10, 40, 50));
 	m_pitch_amount.setTooltip("The amount of pitchbend for the pitchwheel in semitones");
 
-	m_unison_selector.OnValueChange = [&](int p_new_value) {
-		m_value_tree.state.getChildWithName("misc").setProperty("unison_voices", p_new_value, nullptr);
-	};
-	m_unison_selector.valueToText = [](int p_value) { return "Unison: " + std::to_string(p_value); };
+	m_unison_selector.OnValueChange = [&](int p_new_value) { m_value_tree.state.getChildWithName("misc").setProperty("unison_voices", p_new_value, nullptr); };
+	m_unison_selector.valueToText   = [](int p_value) { return "Unison: " + std::to_string(p_value); };
 	m_unison_selector.setLegalValues({1, 2, 3, 4, 6});
 
 	addAndMakeVisible(m_unison_selector);
@@ -689,10 +658,23 @@ OdinAudioProcessorEditor::OdinAudioProcessorEditor(OdinAudioProcessor &p_process
 	ConfigFileManager::getInstance().saveDataToFile();
 
 	addChildComponent(m_spline_ad);
-	m_spline_ad.setVisible(ConfigFileManager::getInstance().getNumGuiOpens() > 10);
+	// todo todo todo add preference when user has clicked this away and also second time
+	//m_spline_ad.setVisible(ConfigFileManager::getInstance().getNumGuiOpens() > 10);
+	addChildComponent(m_rescale_component);
+
+	UIAssetManager::getInstance()->registerEditor(this);
+
+	// start resizing thread
+	const auto threadWasStarted = UIAssetManager::getInstance()->launchImageCreationThreads(ConfigFileManager::getInstance().getOptionGuiScale());
+	if (threadWasStarted)
+		setGuiSize(GuiScale::Z100, false); // if the assets don't exist, the thread will set the size in a few seconds set this size to ensure call of resized
+	else
+		setGuiSize((GuiScale)ConfigFileManager::getInstance().getOptionGuiScale(), false);
 }
 
-OdinAudioProcessorEditor::~OdinAudioProcessorEditor() {
+OdinEditor::~OdinEditor() {
+	UIAssetManager::getInstance()->unregisterEditor(this);
+
 	//remove lookandfeels
 	m_osc_dropdown_menu.setLookAndFeel(nullptr);
 	m_filter_dropdown_menu.setLookAndFeel(nullptr);
@@ -712,21 +694,15 @@ OdinAudioProcessorEditor::~OdinAudioProcessorEditor() {
 }
 
 //==============================================================================
-void OdinAudioProcessorEditor::paint(Graphics &g) {
-	g.fillAll(COL_DARK);
-	g.setColour(COL_LIGHT);
-	g.drawRect(getLocalBounds(), 1);
-
-	//	auto file =
-	//	    juce::File::getSpecialLocation(juce::File::SpecialLocationType::userHomeDirectory).getChildFile("odin1.png");
-	//	//load image from file
-	//	jassert(file.existsAsFile());
-	//	juce::Image image = juce::ImageFileFormat::loadFrom(file);
-	//	//draw image stretched to the entire component
-	//	g.drawImage(image, getLocalBounds().toFloat());
+void OdinEditor::paint(Graphics &g) {
+	const auto asset       = UIAssets::Indices::background;
+	juce::Image background = UIAssetManager::getInstance()->getUIAsset(asset, ConfigFileManager::getInstance().getOptionGuiScale());
+	jassert(background.getWidth() == getWidth());
+	jassert(background.getHeight() == getHeight());
+	g.drawImageAt(background, 0, 0);
 }
 
-void OdinAudioProcessorEditor::resized() {
+void OdinEditor::resized() {
 	GET_LOCAL_AREA(m_resize_dragger, "ResizeDragger");
 
 	GET_LOCAL_AREA(m_detune_label, "DetuneLabel");
@@ -814,11 +790,23 @@ void OdinAudioProcessorEditor::resized() {
 	GET_LOCAL_AREA(m_value_input, "ValueInput");
 
 	m_spline_ad.setBounds(getLocalBounds());
+	m_rescale_component.setBounds(getLocalBounds());
 
 	//forceValueTreeOntoComponents(false);
 }
 
-void OdinAudioProcessorEditor::setOsc1Plate(int p_osc_type) {
+void OdinEditor::setGuiSize(GuiScale p_size, bool p_set_config) {
+	if (p_set_config) {
+		ConfigFileManager::getInstance().setOptionGuiScale(int(p_size));
+		ConfigFileManager::getInstance().saveDataToFile();
+	}
+
+	setSize(GUI_BASE_WIDTH * (int)p_size, GUI_BASE_HEIGHT * (int)p_size);
+
+	forceValueTreeOntoComponents();
+}
+
+void OdinEditor::setOsc1Plate(int p_osc_type) {
 	if (p_osc_type == 0) {
 		return;
 	}
@@ -826,7 +814,7 @@ void OdinAudioProcessorEditor::setOsc1Plate(int p_osc_type) {
 	m_value_tree.state.getChildWithName("osc").setProperty(m_osc1_type_identifier, p_osc_type, nullptr);
 }
 
-void OdinAudioProcessorEditor::setOsc2Plate(int p_osc_type) {
+void OdinEditor::setOsc2Plate(int p_osc_type) {
 	if (p_osc_type == 0) {
 		return;
 	}
@@ -834,7 +822,7 @@ void OdinAudioProcessorEditor::setOsc2Plate(int p_osc_type) {
 	m_value_tree.state.getChildWithName("osc").setProperty(m_osc2_type_identifier, p_osc_type, nullptr);
 }
 
-void OdinAudioProcessorEditor::setOsc3Plate(int p_osc_type) {
+void OdinEditor::setOsc3Plate(int p_osc_type) {
 	if (p_osc_type == 0) {
 		return;
 	}
@@ -842,7 +830,7 @@ void OdinAudioProcessorEditor::setOsc3Plate(int p_osc_type) {
 	m_value_tree.state.getChildWithName("osc").setProperty(m_osc3_type_identifier, p_osc_type, nullptr);
 }
 
-void OdinAudioProcessorEditor::setFilter1Plate(int p_osc_type) {
+void OdinEditor::setFilter1Plate(int p_osc_type) {
 	if (p_osc_type == 0) {
 		return;
 	}
@@ -850,7 +838,7 @@ void OdinAudioProcessorEditor::setFilter1Plate(int p_osc_type) {
 	m_value_tree.state.getChildWithName("misc").setProperty(m_fil1_type_identifier, p_osc_type, nullptr);
 }
 
-void OdinAudioProcessorEditor::setFilter2Plate(int p_osc_type) {
+void OdinEditor::setFilter2Plate(int p_osc_type) {
 	if (p_osc_type == 0) {
 		return;
 	}
@@ -858,7 +846,7 @@ void OdinAudioProcessorEditor::setFilter2Plate(int p_osc_type) {
 	m_value_tree.state.getChildWithName("misc").setProperty(m_fil2_type_identifier, p_osc_type, nullptr);
 }
 
-void OdinAudioProcessorEditor::setFilter3Plate(int p_osc_type) {
+void OdinEditor::setFilter3Plate(int p_osc_type) {
 	if (p_osc_type == 0) {
 		return;
 	}
@@ -866,7 +854,7 @@ void OdinAudioProcessorEditor::setFilter3Plate(int p_osc_type) {
 	m_value_tree.state.getChildWithName("misc").setProperty(m_fil3_type_identifier, p_osc_type, nullptr);
 }
 
-void OdinAudioProcessorEditor::setEnv13(bool p_env1) {
+void OdinEditor::setEnv13(bool p_env1) {
 	if (p_env1) {
 		m_adsr_1.setVisible(true);
 		m_adsr_3.setVisible(false);
@@ -876,7 +864,7 @@ void OdinAudioProcessorEditor::setEnv13(bool p_env1) {
 	}
 }
 
-void OdinAudioProcessorEditor::setEnv24(bool p_env2) {
+void OdinEditor::setEnv24(bool p_env2) {
 	if (p_env2) {
 		m_adsr_2.setVisible(true);
 		m_adsr_4.setVisible(false);
@@ -886,7 +874,7 @@ void OdinAudioProcessorEditor::setEnv24(bool p_env2) {
 	}
 }
 
-void OdinAudioProcessorEditor::setLfo12(bool p_lfo1) {
+void OdinEditor::setLfo12(bool p_lfo1) {
 	if (p_lfo1) {
 		m_lfo_1.setVisible(true);
 		m_lfo_2.setVisible(false);
@@ -896,7 +884,7 @@ void OdinAudioProcessorEditor::setLfo12(bool p_lfo1) {
 	}
 }
 
-void OdinAudioProcessorEditor::setLfo34(bool p_lfo2) {
+void OdinEditor::setLfo34(bool p_lfo2) {
 	if (p_lfo2) {
 		m_lfo_3.setVisible(true);
 		m_lfo_4.setVisible(false);
@@ -906,7 +894,7 @@ void OdinAudioProcessorEditor::setLfo34(bool p_lfo2) {
 	}
 }
 
-void OdinAudioProcessorEditor::setMatrixSectionModule(int p_module) {
+void OdinEditor::setMatrixSectionModule(int p_module) {
 	switch (p_module) {
 	case MATRIX_SECTION_INDEX_ARP:
 		m_mod_matrix.setVisible(false);
@@ -932,7 +920,7 @@ void OdinAudioProcessorEditor::setMatrixSectionModule(int p_module) {
 	}
 }
 
-void OdinAudioProcessorEditor::arrangeFXOnButtons(std::map<std::string, int> p_map) {
+void OdinEditor::arrangeFXOnButtons(std::map<std::string, int> p_map) {
 
 	const auto width = m_delay_on_button.getWidth();
 	const auto x     = m_fx_buttons_section.getX();
@@ -944,16 +932,11 @@ void OdinAudioProcessorEditor::arrangeFXOnButtons(std::map<std::string, int> p_m
 	m_delay_on_button.setTopLeftPosition(x + p_map.find("delay")->second * width, y);
 	m_reverb_on_button.setTopLeftPosition(x + p_map.find("reverb")->second * width, y);
 
-	m_value_tree.state.getChildWithName("fx").setProperty(
-	    m_delay_position_identifier, (float)p_map.find("delay")->second, nullptr);
-	m_value_tree.state.getChildWithName("fx").setProperty(
-	    m_phaser_position_identifier, (float)p_map.find("phaser")->second, nullptr);
-	m_value_tree.state.getChildWithName("fx").setProperty(
-	    m_flanger_position_identifier, (float)p_map.find("flanger")->second, nullptr);
-	m_value_tree.state.getChildWithName("fx").setProperty(
-	    m_chorus_position_identifier, (float)p_map.find("chorus")->second, nullptr);
-	m_value_tree.state.getChildWithName("fx").setProperty(
-	    m_reverb_position_identifier, (float)p_map.find("reverb")->second, nullptr);
+	m_value_tree.state.getChildWithName("fx").setProperty(m_delay_position_identifier, (float)p_map.find("delay")->second, nullptr);
+	m_value_tree.state.getChildWithName("fx").setProperty(m_phaser_position_identifier, (float)p_map.find("phaser")->second, nullptr);
+	m_value_tree.state.getChildWithName("fx").setProperty(m_flanger_position_identifier, (float)p_map.find("flanger")->second, nullptr);
+	m_value_tree.state.getChildWithName("fx").setProperty(m_chorus_position_identifier, (float)p_map.find("chorus")->second, nullptr);
+	m_value_tree.state.getChildWithName("fx").setProperty(m_reverb_position_identifier, (float)p_map.find("reverb")->second, nullptr);
 
 	processor.setFXButtonsPosition((float)p_map.find("delay")->second,
 	                               (float)p_map.find("phaser")->second,
@@ -962,7 +945,7 @@ void OdinAudioProcessorEditor::arrangeFXOnButtons(std::map<std::string, int> p_m
 	                               (float)p_map.find("reverb")->second);
 }
 
-void OdinAudioProcessorEditor::setActiveFXPanel(const std::string &p_name) {
+void OdinEditor::setActiveFXPanel(const std::string &p_name) {
 	m_phaser.setVisible(false);
 	m_flanger.setVisible(false);
 	m_chorus.setVisible(false);
@@ -998,7 +981,7 @@ void OdinAudioProcessorEditor::setActiveFXPanel(const std::string &p_name) {
 	}
 }
 
-void OdinAudioProcessorEditor::setTooltipEnabled(bool p_enabled) {
+void OdinEditor::setTooltipEnabled(bool p_enabled) {
 	m_tooltip.activate(p_enabled);
 	if (p_enabled) {
 		m_tooltip.setMillisecondsBeforeTipAppears(0);
@@ -1009,12 +992,11 @@ void OdinAudioProcessorEditor::setTooltipEnabled(bool p_enabled) {
 	}
 }
 
-void OdinAudioProcessorEditor::forceValueTreeOntoComponentsOnlyMainPanel() {
+void OdinEditor::forceValueTreeOntoComponentsOnlyMainPanel() {
 
 	m_unison_selector.setValue(m_value_tree.state.getChildWithName("misc")["unison_voices"]);
 	m_pitch_amount.setValue(m_value_tree.state.getChildWithName("misc")["pitchbend_amount"]);
-	m_mono_poly_legato_dropdown.setSelectedId(
-	    (int)VALUETREETOPLAYMODE((int)m_value_tree.state.getChildWithName("misc")["legato"]), dontSendNotification);
+	m_mono_poly_legato_dropdown.setSelectedId((int)VALUETREETOPLAYMODE((int)m_value_tree.state.getChildWithName("misc")["legato"]), dontSendNotification);
 
 	// ugly fix to set highlighted fx panel
 	std::string fx_name = "delay";
@@ -1029,31 +1011,24 @@ void OdinAudioProcessorEditor::forceValueTreeOntoComponentsOnlyMainPanel() {
 	}
 	setActiveFXPanel(fx_name);
 
-	m_env_13_button.setToggleState((float)m_value_tree.state.getChildWithName("misc")["env_left_selected"] > 0.5,
-	                               dontSendNotification);
+	m_env_13_button.setToggleState((float)m_value_tree.state.getChildWithName("misc")["env_left_selected"] > 0.5, dontSendNotification);
 	setEnv13(m_env_13_button.getToggleState());
-	m_env_24_button.setToggleState((float)m_value_tree.state.getChildWithName("misc")["env_right_selected"] > 0.5,
-	                               dontSendNotification);
+	m_env_24_button.setToggleState((float)m_value_tree.state.getChildWithName("misc")["env_right_selected"] > 0.5, dontSendNotification);
 	setEnv24(m_env_24_button.getToggleState());
 
-	m_lfo_13_button.setToggleState((float)m_value_tree.state.getChildWithName("lfo")["lfo_left_selected"] > 0.5,
-	                               dontSendNotification);
+	m_lfo_13_button.setToggleState((float)m_value_tree.state.getChildWithName("lfo")["lfo_left_selected"] > 0.5, dontSendNotification);
 	setLfo12(m_lfo_13_button.getToggleState());
-	m_lfo_24_button.setToggleState((float)m_value_tree.state.getChildWithName("lfo")["lfo_right_selected"] > 0.5,
-	                               dontSendNotification);
+	m_lfo_24_button.setToggleState((float)m_value_tree.state.getChildWithName("lfo")["lfo_right_selected"] > 0.5, dontSendNotification);
 	setLfo34(m_lfo_24_button.getToggleState());
 
 	float select_bottom_left = (float)m_value_tree.state.getChildWithName("misc")["arp_mod_selected"];
-	m_select_arp_button.setToggleState(fabs(select_bottom_left - (float)MATRIX_SECTION_INDEX_ARP) < 0.1f,
-	                                   dontSendNotification);
-	m_select_modmatrix_button.setToggleState(fabs(select_bottom_left - (float)MATRIX_SECTION_INDEX_MATRIX) < 0.1f,
-	                                         dontSendNotification);
-	m_select_presets_button.setToggleState(fabs(select_bottom_left - (float)MATRIX_SECTION_INDEX_PRESETS) < 0.1f,
-	                                       dontSendNotification);
+	m_select_arp_button.setToggleState(fabs(select_bottom_left - (float)MATRIX_SECTION_INDEX_ARP) < 0.1f, dontSendNotification);
+	m_select_modmatrix_button.setToggleState(fabs(select_bottom_left - (float)MATRIX_SECTION_INDEX_MATRIX) < 0.1f, dontSendNotification);
+	m_select_presets_button.setToggleState(fabs(select_bottom_left - (float)MATRIX_SECTION_INDEX_PRESETS) < 0.1f, dontSendNotification);
 	setMatrixSectionModule((int)(select_bottom_left + 0.5f));
 }
 
-void OdinAudioProcessorEditor::forceValueTreeOntoComponents(bool p_reset_audio) {
+void OdinEditor::forceValueTreeOntoComponents(bool p_reset_audio) {
 
 	// reset audioengine
 	if (p_reset_audio) {
@@ -1092,7 +1067,7 @@ void OdinAudioProcessorEditor::forceValueTreeOntoComponents(bool p_reset_audio) 
 	m_patch_browser.setSelectedEntriesFromValueTree();
 }
 
-bool OdinAudioProcessorEditor::keyStateChanged(bool isKeyDown, Component *originatingComponent) {
+bool OdinEditor::keyStateChanged(bool isKeyDown, Component *originatingComponent) {
 
 	if (m_is_standalone_plugin) {
 
@@ -1228,7 +1203,7 @@ bool OdinAudioProcessorEditor::keyStateChanged(bool isKeyDown, Component *origin
 	return false;
 }
 
-void OdinAudioProcessorEditor::allMidiKeysOff() {
+void OdinEditor::allMidiKeysOff() {
 	// this is the SHITTIEST implementation ever
 	// but it gets the job done and is only called every blue moon :-)
 	// (gets called only for (PC-)keyboard octave change)
@@ -1237,7 +1212,7 @@ void OdinAudioProcessorEditor::allMidiKeysOff() {
 	}
 }
 
-void OdinAudioProcessorEditor::updatePitchWheel(float p_value) {
+void OdinEditor::updatePitchWheel(float p_value) {
 	auto sp = SafePointer<Component>(this);
 
 	MessageManager::callAsync([p_value, sp, this] {
@@ -1248,7 +1223,7 @@ void OdinAudioProcessorEditor::updatePitchWheel(float p_value) {
 	});
 }
 
-void OdinAudioProcessorEditor::updateModWheel(float p_value) {
+void OdinEditor::updateModWheel(float p_value) {
 	auto sp = SafePointer<Component>(this);
 
 	MessageManager::callAsync([p_value, sp, this] {
@@ -1259,19 +1234,19 @@ void OdinAudioProcessorEditor::updateModWheel(float p_value) {
 	});
 }
 
-void OdinAudioProcessorEditor::readOrCreateConfigFile(bool &p_GUI_big) {
+void OdinEditor::readOrCreateConfigFile(bool &p_GUI_big) {
 	ConfigFileManager::getInstance().saveDataToFile();
 }
 
-void OdinAudioProcessorEditor::paintOverChildren(Graphics &g) {
+void OdinEditor::paintOverChildren(Graphics &g) {
 	if (m_live_constrainer.isConstraining())
 		paintGrid(g);
 
 	m_live_constrainer.paintOverlay(g);
 }
 
-void OdinAudioProcessorEditor::paintGrid(Graphics &g) {
-    g.fillAll(juce::Colours::black);
+void OdinEditor::paintGrid(Graphics &g) {
+	g.fillAll(juce::Colours::black);
 
 	constexpr auto grid_alpha       = 0.05f;
 	constexpr auto grid_alpha_major = 0.2f;
@@ -1283,7 +1258,7 @@ void OdinAudioProcessorEditor::paintGrid(Graphics &g) {
 	//auto grid_base_colour = juce::Colours::black;
 
 	for (int x = 0; x < getWidth(); x += grid_size) {
-        g.setColour(juce::Colours::white);
+		g.setColour(juce::Colours::white);
 		//if (x % (grid_size * 10) == 0)
 		//	g.setColour(grid_base_colour.withAlpha(grid_alpha_major));
 		//else if (x % (grid_size * 5) == 0)
@@ -1295,20 +1270,20 @@ void OdinAudioProcessorEditor::paintGrid(Graphics &g) {
 	}
 
 	for (int y = 0; y < getHeight(); y += grid_size) {
-        g.setColour(juce::Colours::white);
+		g.setColour(juce::Colours::white);
 
-//		if (y % (grid_size * 10) == 0)
-//			g.setColour(grid_base_colour.withAlpha(grid_alpha_major));
-//		else if (y % (grid_size * 5) == 0)
-//			g.setColour(grid_base_colour.withAlpha(grid_alpha_mid));
-//		else
-//			g.setColour(grid_base_colour.withAlpha(grid_alpha));
+		//		if (y % (grid_size * 10) == 0)
+		//			g.setColour(grid_base_colour.withAlpha(grid_alpha_major));
+		//		else if (y % (grid_size * 5) == 0)
+		//			g.setColour(grid_base_colour.withAlpha(grid_alpha_mid));
+		//		else
+		//			g.setColour(grid_base_colour.withAlpha(grid_alpha));
 
 		g.drawLine(0, y, getWidth(), y, 1);
 	}
 }
 
-void OdinAudioProcessorEditor::setGuiScale(int scale) {
+void OdinEditor::setGuiScale(int scale) {
 	ConfigFileManager::getInstance().setOptionGuiScale(scale);
 	ConfigFileManager::getInstance().saveDataToFile();
 

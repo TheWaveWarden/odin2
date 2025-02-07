@@ -22,6 +22,7 @@
 #include <sstream> // stringstream
 
 #include "GitCommitId.h"
+#include "gui/UIAssetsIndices.h"
 
 #ifdef ODIN_LINUX
 #endif

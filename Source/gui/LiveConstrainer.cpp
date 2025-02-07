@@ -2,7 +2,7 @@
 #include "../ConfigFileManager.h"
 #include "../PluginEditor.h"
 
-LiveConstrainer::LiveConstrainer(OdinAudioProcessorEditor &p_editor) : m_main_editor(p_editor) {
+LiveConstrainer::LiveConstrainer(OdinEditor &p_editor) : m_main_editor(p_editor) {
 	juce::Desktop::getInstance().addGlobalMouseListener(this);
 }
 
@@ -133,7 +133,7 @@ void LiveConstrainer::paintOverlay(juce::Graphics &g) {
 	if (m_component) {
 		constexpr auto stroke_size = 1.0f;
 
-		auto *editor = m_component->findParentComponentOfClass<OdinAudioProcessorEditor>();
+		auto *editor = m_component->findParentComponentOfClass<OdinEditor>();
 
 		// highlgiht component outline
 		//auto textBounds = editor->getLocalBounds().withSizeKeepingCentre (editor->proportionOfWidth (0.2f), editor->proportionOfHeight (0.2f));

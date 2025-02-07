@@ -14,38 +14,28 @@
 */
 
 #include "OscComponent.h"
+#include "../ConfigFileManager.h"
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "../PluginProcessor.h"
 #include "JsonGuiProvider.h"
+#include "UIAssetManager.h"
 
-OscComponent::OscComponent(OdinAudioProcessor &p_processor,
-                           AudioProcessorValueTreeState &vts,
-                           const std::string &p_osc_number) :
-    m_value_tree(vts),
-    m_reset("reset_button", "Reset"), m_sync("osc_sync_button", "Sync"), m_LED_saw("LED_Saw", "Saw"),
-    m_LED_pulse("LED_pulse", "PWM"), m_LED_triangle("LED_triangle", "Tri"), m_LED_sine("LED_sine", "Sine"),
-    m_arp("arp", "Arpeggiator"), m_step_button("step", "Step 3 "), m_noise("noise", "Noise"),
-    m_carrier_label("Carrier"), m_modulator_label("Modulator"), m_FM_label("FM"), m_PM_label("PM"),
-    m_chiptune_waveselector(true), m_carrier_waveselector(false), m_modulator_waveselector(true),
-    m_wavetable_waveselector(true), m_modulation_source(true), m_carrier_ratio(false), m_modulator_ratio(true),
-    m_fm_exp("fm_exp"), m_xy(vts, "osc" + p_osc_number + "_vec_", m_xy_x, m_xy_y, true), m_HP_label("HighPass"),
-    m_LP_label("LowPass"), m_osc_number(p_osc_number), m_wavetable_identifier("osc" + p_osc_number + "_wavetable"),
-    m_modulation_source_identifier("osc" + p_osc_number + "_mod_source"),
-    m_chipwave_identifier("osc" + p_osc_number + "_chipwave"),
-    m_modulator_wave_identifier("osc" + p_osc_number + "_modulator_wave"),
-    m_carrier_wave_identifier("osc" + p_osc_number + "_carrier_wave"),
-    m_modulator_ratio_identifier("osc" + p_osc_number + "_modulator_ratio"),
-    m_carrier_ratio_identifier("osc" + p_osc_number + "_carrier_ratio"),
-    m_analog_wave_identifier("osc" + p_osc_number + "_analog_wave"),
-    m_vec_a_identifier("osc" + p_osc_number + "_vec_a"), m_vec_b_identifier("osc" + p_osc_number + "_vec_b"),
-    m_vec_c_identifier("osc" + p_osc_number + "_vec_c"), m_vec_d_identifier("osc" + p_osc_number + "_vec_d"),
-    m_pos_mod_identifier("osc" + p_osc_number + "_pos_mod"), m_osc_label("AnalogOsc"), m_oct_label("Oct"),
-    m_semi_label("Semi"), m_fine_label("Fine"), m_vol_label("Vol"), m_drift_label("Drift"), m_pw_label("PW"),
-    m_chip1_label("1"), m_chip2_label("2"), m_chip_speed_label("Speed"), m_wt_select_label("Wavetable"),
-    m_wt_mod_label("Modulation"), m_wt_pos_label("WT-Position"), m_wt_amount_label("Amount"),
-    m_detune_spread_label("WT_Spread"), m_detune_pos_label("WT-Position"), m_detune_label("Detune"),
-    m_detune_wt_label("Wavetable"), m_vec_x_label("X"), m_vec_y_label("Y"), m_vec_a_label("A"), m_vec_b_label("B"),
-    m_vec_c_label("C"), m_vec_d_label("D") {
+OscComponent::OscComponent(OdinAudioProcessor &p_processor, AudioProcessorValueTreeState &vts, const std::string &p_osc_number) :
+    m_value_tree(vts), m_reset("reset_button", "Reset"), m_sync("osc_sync_button", "Sync"), m_LED_saw("LED_Saw", "Saw"), m_LED_pulse("LED_pulse", "PWM"),
+    m_LED_triangle("LED_triangle", "Tri"), m_LED_sine("LED_sine", "Sine"), m_arp("arp", "Arpeggiator"), m_step_button("step", "Step 3 "), m_noise("noise", "Noise"),
+    m_carrier_label("Carrier"), m_modulator_label("Modulator"), m_FM_label("FM"), m_PM_label("PM"), m_chiptune_waveselector(true), m_carrier_waveselector(false),
+    m_modulator_waveselector(true), m_wavetable_waveselector(true), m_modulation_source(true), m_carrier_ratio(false), m_modulator_ratio(true), m_fm_exp("fm_exp"),
+    m_xy(vts, "osc" + p_osc_number + "_vec_", m_xy_x, m_xy_y, true), m_HP_label("HighPass"), m_LP_label("LowPass"), m_osc_number(p_osc_number),
+    m_wavetable_identifier("osc" + p_osc_number + "_wavetable"), m_modulation_source_identifier("osc" + p_osc_number + "_mod_source"),
+    m_chipwave_identifier("osc" + p_osc_number + "_chipwave"), m_modulator_wave_identifier("osc" + p_osc_number + "_modulator_wave"),
+    m_carrier_wave_identifier("osc" + p_osc_number + "_carrier_wave"), m_modulator_ratio_identifier("osc" + p_osc_number + "_modulator_ratio"),
+    m_carrier_ratio_identifier("osc" + p_osc_number + "_carrier_ratio"), m_analog_wave_identifier("osc" + p_osc_number + "_analog_wave"),
+    m_vec_a_identifier("osc" + p_osc_number + "_vec_a"), m_vec_b_identifier("osc" + p_osc_number + "_vec_b"), m_vec_c_identifier("osc" + p_osc_number + "_vec_c"),
+    m_vec_d_identifier("osc" + p_osc_number + "_vec_d"), m_pos_mod_identifier("osc" + p_osc_number + "_pos_mod"), m_oct_label("Oct"), m_semi_label("Semi"), m_fine_label("Fine"),
+    m_vol_label("Vol"), m_drift_label("Drift"), m_pw_label("PW"), m_chip1_label("1"), m_chip2_label("2"), m_chip_speed_label("Speed"), m_wt_select_label("Wavetable"),
+    m_wt_mod_label("Modulation"), m_wt_pos_label("WT-Position"), m_wt_amount_label("Amount"), m_detune_spread_label("WT_Spread"), m_detune_pos_label("WT-Position"),
+    m_detune_label("Detune"), m_detune_wt_label("Wavetable"), m_vec_x_label("X"), m_vec_y_label("Y"), m_vec_a_label("A"), m_vec_b_label("B"), m_vec_c_label("C"),
+    m_vec_d_label("D") {
 
 	addAndMakeVisible(m_HP_label);
 	addAndMakeVisible(m_LP_label);
@@ -73,8 +63,6 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 	addAndMakeVisible(m_vec_c_label);
 	addAndMakeVisible(m_vec_d_label);
 
-	m_osc_label.setJustification(juce::Justification::centredLeft);
-
 	m_WT_container = p_processor.getWavetableContainerPointer();
 
 	m_oct_attach.reset(new OdinKnobAttachment(m_value_tree, "osc" + m_osc_number + "_oct", m_oct));
@@ -84,8 +72,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 	m_position_attach.reset(new OdinKnobAttachment(m_value_tree, "osc" + m_osc_number + "_position", m_position));
 	m_detune_attach.reset(new OdinKnobAttachment(m_value_tree, "osc" + m_osc_number + "_detune", m_detune));
 	m_pos_mod_attach.reset(new OdinKnobAttachment(m_value_tree, "osc" + m_osc_number + "_pos_mod", m_pos_mod));
-	m_multi_position_attach.reset(
-	    new OdinKnobAttachment(m_value_tree, "osc" + m_osc_number + "_multi_position", m_position_multi));
+	m_multi_position_attach.reset(new OdinKnobAttachment(m_value_tree, "osc" + m_osc_number + "_multi_position", m_position_multi));
 	m_spread_attach.reset(new OdinKnobAttachment(m_value_tree, "osc" + m_osc_number + "_spread", m_spread));
 	m_pulsewidth_attach.reset(new OdinKnobAttachment(m_value_tree, "osc" + m_osc_number + "_pulsewidth", m_pw));
 	m_drift_attach.reset(new OdinKnobAttachment(m_value_tree, "osc" + m_osc_number + "_drift", m_drift));
@@ -104,8 +91,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 		m_sync_attach.reset(new OdinButtonAttachment(m_value_tree, "osc" + m_osc_number + "_sync", m_sync));
 	}
 	m_arp_on_attach.reset(new OdinButtonAttachment(m_value_tree, "osc" + m_osc_number + "_arp_on", m_arp));
-	m_step_3_on_attach.reset(
-	    new OdinButtonAttachment(m_value_tree, "osc" + m_osc_number + "_step_3_on", m_step_button));
+	m_step_3_on_attach.reset(new OdinButtonAttachment(m_value_tree, "osc" + m_osc_number + "_step_3_on", m_step_button));
 	m_chipnoise_attach.reset(new OdinButtonAttachment(m_value_tree, "osc" + m_osc_number + "_chipnoise", m_noise));
 	m_exp_fm_attach.reset(new OdinButtonAttachment(m_value_tree, "osc" + m_osc_number + "_exp_fm", m_fm_exp));
 
@@ -315,9 +301,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 
 	juce::Colour chip_color(93, 81, 63);
 
-	m_chiptune_waveselector.OnValueChange = [&](int p_new_value) {
-		m_value_tree.state.getChildWithName("osc").setProperty(m_chipwave_identifier, (float)p_new_value, nullptr);
-	};
+	m_chiptune_waveselector.OnValueChange = [&](int p_new_value) { m_value_tree.state.getChildWithName("osc").setProperty(m_chipwave_identifier, (float)p_new_value, nullptr); };
 	m_chiptune_waveselector.setColor(chip_color);
 	m_chiptune_waveselector.setTooltip("Selects the wave for the oscillator");
 	addChildComponent(m_chiptune_waveselector);
@@ -328,18 +312,18 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 	juce::PopupMenu wavetable_submenu;
 	juce::PopupMenu wavetable_recycle_menu;
 
-#define ADD_WAVETABLE_SUB_MENU(name, number)                                                                           \
-	wavetable_recycle_menu.clear();                                                                                    \
-	wavetable_recycle_menu.addItem(number + 1, (std::string)name + (std::string) " 1");                                \
-	wavetable_recycle_menu.addItem(number + 2, (std::string)name + (std::string) " 2");                                \
-	wavetable_recycle_menu.addItem(number + 3, (std::string)name + (std::string) " 3");                                \
-	wavetable_recycle_menu.addItem(number + 4, (std::string)name + (std::string) " 4");                                \
+#define ADD_WAVETABLE_SUB_MENU(name, number)                                                                                                                                       \
+	wavetable_recycle_menu.clear();                                                                                                                                                \
+	wavetable_recycle_menu.addItem(number + 1, (std::string)name + (std::string) " 1");                                                                                            \
+	wavetable_recycle_menu.addItem(number + 2, (std::string)name + (std::string) " 2");                                                                                            \
+	wavetable_recycle_menu.addItem(number + 3, (std::string)name + (std::string) " 3");                                                                                            \
+	wavetable_recycle_menu.addItem(number + 4, (std::string)name + (std::string) " 4");                                                                                            \
 	wavetable_submenu.addSubMenu(name, wavetable_recycle_menu);
 
-#define ADD_MAP_ENTRY(name, number, selector)                                                                          \
-	selector.addMapEntry((std::string)name + (std::string) " 1", number + 1, number + 2, number - 6);                  \
-	selector.addMapEntry((std::string)name + (std::string) " 2", number + 2, number + 3, number + 1);                  \
-	selector.addMapEntry((std::string)name + (std::string) " 3", number + 3, number + 4, number + 2);                  \
+#define ADD_MAP_ENTRY(name, number, selector)                                                                                                                                      \
+	selector.addMapEntry((std::string)name + (std::string) " 1", number + 1, number + 2, number - 6);                                                                              \
+	selector.addMapEntry((std::string)name + (std::string) " 2", number + 2, number + 3, number + 1);                                                                              \
+	selector.addMapEntry((std::string)name + (std::string) " 3", number + 3, number + 4, number + 2);                                                                              \
 	selector.addMapEntry((std::string)name + (std::string) " 4", number + 4, number + 11, number + 3);
 
 	juce::PopupMenu chiptune_submenu;
@@ -541,7 +525,6 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 	ADD_MAP_ENTRY("MutantSquare A", 440, m_modulator_waveselector)
 	ADD_MAP_ENTRY("MutantSquare B", 450, m_modulator_waveselector)
 
-	addAndMakeVisible(m_osc_label);
 	addAndMakeVisible(m_oct_label);
 	addAndMakeVisible(m_semi_label);
 	addAndMakeVisible(m_fine_label);
@@ -598,17 +581,13 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 	chip_menu.setLookAndFeel(&m_menu_feels);
 	m_chiptune_waveselector.m_menu = chip_menu;
 
-	m_carrier_waveselector.OnValueChange = [&](int p_new_value) {
-		m_value_tree.state.getChildWithName("osc").setProperty(m_carrier_wave_identifier, (float)p_new_value, nullptr);
-	};
+	m_carrier_waveselector.OnValueChange = [&](int p_new_value) { m_value_tree.state.getChildWithName("osc").setProperty(m_carrier_wave_identifier, (float)p_new_value, nullptr); };
 
 	m_carrier_waveselector.setColor(FM_COLOR);
 	m_carrier_waveselector.setTooltip("Selects the wave for the carrier osc");
 	addChildComponent(m_carrier_waveselector);
 
-	m_wavetable_waveselector.OnValueChange = [&](int p_new_value) {
-		m_value_tree.state.getChildWithName("osc").setProperty(m_wavetable_identifier, (float)p_new_value, nullptr);
-	};
+	m_wavetable_waveselector.OnValueChange = [&](int p_new_value) { m_value_tree.state.getChildWithName("osc").setProperty(m_wavetable_identifier, (float)p_new_value, nullptr); };
 	m_wavetable_waveselector.addWave(1, "Classic Analog");
 	m_wavetable_waveselector.addWave(2, "Nasal");
 	m_wavetable_waveselector.addWave(3, "Reed");
@@ -657,15 +636,13 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 	m_modulation_source.setDecrementValue(10, 1);
 	m_modulation_source.setTooltip("Select which source modulates the wavetable position");
 	m_modulation_source.OnValueChange = [&](int p_new_value) {
-		m_value_tree.state.getChildWithName("osc").setProperty(
-		    m_modulation_source_identifier, (float)p_new_value, nullptr);
+		m_value_tree.state.getChildWithName("osc").setProperty(m_modulation_source_identifier, (float)p_new_value, nullptr);
 	};
 	m_modulation_source.setColor(WAVETABLE_DROPDOWN_COLOR);
 	addChildComponent(m_modulation_source);
 
 	m_modulator_waveselector.OnValueChange = [&](int p_new_value) {
-		m_value_tree.state.getChildWithName("osc").setProperty(
-		    m_modulator_wave_identifier, (float)p_new_value, nullptr);
+		m_value_tree.state.getChildWithName("osc").setProperty(m_modulator_wave_identifier, (float)p_new_value, nullptr);
 	};
 	m_modulator_waveselector.setColor(FM_COLOR);
 	m_modulator_waveselector.setTooltip("Selects the waveform for the modulator osc");
@@ -735,10 +712,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 	m_vec_a.setSelectedId(101, dontSendNotification);
 	m_vec_a.setColor(vector_color);
 	m_vec_a.setTooltip("Select the waveform to the bottom left of the XY pad");
-	m_vec_a.onChange = [&]() {
-		m_value_tree.state.getChildWithName("osc").setProperty(
-		    m_vec_a_identifier, (float)m_vec_a.getSelectedId(), nullptr);
-	};
+	m_vec_a.onChange = [&]() { m_value_tree.state.getChildWithName("osc").setProperty(m_vec_a_identifier, (float)m_vec_a.getSelectedId(), nullptr); };
 	addChildComponent(m_vec_a);
 
 	m_vec_b.setInlay(1);
@@ -746,10 +720,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 	m_vec_b.setSelectedId(102, dontSendNotification);
 	m_vec_b.setColor(vector_color);
 	m_vec_b.setTooltip("Select the waveform to the top left of the XY pad");
-	m_vec_b.onChange = [&]() {
-		m_value_tree.state.getChildWithName("osc").setProperty(
-		    m_vec_b_identifier, (float)m_vec_b.getSelectedId(), nullptr);
-	};
+	m_vec_b.onChange = [&]() { m_value_tree.state.getChildWithName("osc").setProperty(m_vec_b_identifier, (float)m_vec_b.getSelectedId(), nullptr); };
 	addChildComponent(m_vec_b);
 
 	m_vec_c.setInlay(1);
@@ -757,10 +728,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 	m_vec_c.setSelectedId(103, dontSendNotification);
 	m_vec_c.setColor(vector_color);
 	m_vec_c.setTooltip("Select the waveform to the top right of the XY pad");
-	m_vec_c.onChange = [&]() {
-		m_value_tree.state.getChildWithName("osc").setProperty(
-		    m_vec_c_identifier, (float)m_vec_c.getSelectedId(), nullptr);
-	};
+	m_vec_c.onChange = [&]() { m_value_tree.state.getChildWithName("osc").setProperty(m_vec_c_identifier, (float)m_vec_c.getSelectedId(), nullptr); };
 	addChildComponent(m_vec_c);
 
 	m_vec_d.setInlay(1);
@@ -768,10 +736,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 	m_vec_d.setSelectedId(104, dontSendNotification);
 	m_vec_d.setColor(vector_color);
 	m_vec_d.setTooltip("Select the waveform to the bottom right of the XY pad");
-	m_vec_d.onChange = [&]() {
-		m_value_tree.state.getChildWithName("osc").setProperty(
-		    m_vec_d_identifier, (float)m_vec_d.getSelectedId(), nullptr);
-	};
+	m_vec_d.onChange = [&]() { m_value_tree.state.getChildWithName("osc").setProperty(m_vec_d_identifier, (float)m_vec_d.getSelectedId(), nullptr); };
 	addChildComponent(m_vec_d);
 
 	m_xy_x.setSliderStyle(Slider::RotaryVerticalDrag);
@@ -855,9 +820,54 @@ void OscComponent::resetVectorWaves() {
 
 void OscComponent::paint(Graphics &g) {
 	SET_INTERPOLATION_QUALITY(g)
-	//g.drawImageAt(m_background, 0, 0);
-	g.setColour(COL_LIGHT);
-	g.drawRect(getLocalBounds(), 1);
+
+	auto asset = UIAssets::Indices::Oscillator_Analog;
+	switch (m_osc_type) {
+	case 1:
+		return;
+		break;
+	case OSC_TYPE_ANALOG:
+		asset = UIAssets::Indices::Oscillator_Analog;
+		break;
+	case OSC_TYPE_WAVETABLE:
+		asset = UIAssets::Indices::Oscillator_Wavetable;
+		break;
+	case OSC_TYPE_MULTI:
+		asset = UIAssets::Indices::Oscillator_Multi;
+		break;
+	case OSC_TYPE_VECTOR:
+		asset = UIAssets::Indices::Oscillator_Vector;
+		break;
+	case OSC_TYPE_CHIPTUNE:
+		asset = UIAssets::Indices::Oscillator_Chiptune;
+		break;
+	case OSC_TYPE_FM:
+		asset = UIAssets::Indices::Oscillator_FM;
+		break;
+	case OSC_TYPE_PM:
+		asset = UIAssets::Indices::Oscillator_PM;
+		break;
+	case OSC_TYPE_NOISE:
+		asset = UIAssets::Indices::Oscillator_Noise;
+		break;
+	case OSC_TYPE_WAVEDRAW:
+		asset = UIAssets::Indices::Oscillator_WaveDraw;
+		break;
+	case OSC_TYPE_CHIPDRAW:
+		asset = UIAssets::Indices::Oscillator_ChipDraw;
+		break;
+	case OSC_TYPE_SPECDRAW:
+		asset = UIAssets::Indices::Oscillator_SpecDraw;
+		break;
+	default:
+		return;
+		break;
+	}
+
+	auto background = UIAssetManager::getInstance()->getUIAsset(asset, ConfigFileManager::getInstance().getOptionGuiScale());
+	jassert(background.getWidth() == getWidth());
+	jassert(background.getHeight() == getHeight());
+	g.drawImageAt(background, 0, 0);
 }
 
 void OscComponent::setOscType(int p_osc_type, bool p_force) {
@@ -910,64 +920,55 @@ void OscComponent::setOscType(int p_osc_type, bool p_force) {
 		setOscTypeBypass();
 		break;
 	}
+
 	resized();
+	repaint();
 }
+
 void OscComponent::setOscTypeBypass() {
 	m_background = m_background_bypass;
-	m_osc_label.setText(std::string("Osc") + m_osc_number);
 }
 
 void OscComponent::setOscTypeAnalog() {
-	m_osc_label.setText("AnalogOsc");
 	showAnalogComponents();
 }
 void OscComponent::setOscTypeChiptune() {
-	m_osc_label.setText("ChiptuneOsc");
 	showChiptuneComponents();
 }
 
 void OscComponent::setOscTypeFM() {
-	m_osc_label.setText("FMOsc");
 	showFMComponents();
 }
 
 void OscComponent::setOscTypePM() {
-	m_osc_label.setText("PMOsc");
 	showPMComponents();
 }
 
 void OscComponent::setOscTypeChipdraw() {
-	m_osc_label.setText("ChipDrawOsc");
 	showChipdrawComponents();
 }
 
 void OscComponent::setOscTypeWavedraw() {
-	m_osc_label.setText("WaveDrawOsc");
 	showWavedrawComponents();
 }
 
 void OscComponent::setOscTypeSpecdraw() {
-	m_osc_label.setText("SpecDrawOsc");
 	showSpecdrawComponents();
 }
 
 void OscComponent::setOscTypeNoise() {
-	m_osc_label.setText("NoiseOsc");
 	showNoiseComponents();
 }
 
 void OscComponent::setOscTypeVector() {
-	m_osc_label.setText("VectorOsc");
 	showVectorComponents();
 }
 
 void OscComponent::setOscTypeWavetable() {
-	m_osc_label.setText("WavetableOsc");
 	showWavetableComponents();
 }
 
 void OscComponent::setOscTypeMulti() {
-	m_osc_label.setText("MultiOsc");
 	showMultiComponents();
 }
 
@@ -1289,8 +1290,7 @@ void OscComponent::forceValueTreeOntoComponents(ValueTree p_tree, int p_index, b
 	m_fm_exp.setValue(m_value_tree.getParameterAsValue("osc" + m_osc_number + "_exp_fm").getValue());
 
 	// chiptune
-	m_chiptune_waveselector.setValue(
-	    m_value_tree.state.getChildWithName("osc")[String("osc" + m_osc_number + "_chipwave")]);
+	m_chiptune_waveselector.setValue(m_value_tree.state.getChildWithName("osc")[String("osc" + m_osc_number + "_chipwave")]);
 	auto node = m_value_tree.state;
 
 	node = m_value_tree.state.getChildWithName("draw");
@@ -1409,13 +1409,5 @@ void OscComponent::resized() {
 		GET_LOCAL_AREA(m_wavetable_waveselector, "OscWaveMulti");
 	} else {
 		GET_LOCAL_AREA(m_wavetable_waveselector, "OscWaveWT");
-	}
-
-	if (m_osc_type == OSC_TYPE_FM) {
-		GET_LOCAL_AREA(m_osc_label, "Osc_osc_label_fm");
-	} else if (m_osc_type == OSC_TYPE_PM) {
-		GET_LOCAL_AREA(m_osc_label, "Osc_osc_label_pm");
-	} else {
-		GET_LOCAL_AREA(m_osc_label, "Osc_osc_label");
 	}
 }

@@ -18,9 +18,8 @@
 #include "JsonGuiProvider.h"
 
 AmpDistortionFlowComponent::AmpDistortionFlowComponent(AudioProcessorValueTreeState &vts) :
-    m_flow_left("flow_left", "<"), m_flow_right("flow_right", ">"), m_distortion("distortion", "Distortion"),
-    m_value_tree(vts), m_gain_label("Gain"), m_pan_label("Pan"), m_velocity_label("Velocity"), m_boost_label("Boost"),
-    m_drywet_label("DryWet") {
+    m_flow_left("flow_left", "<"), m_flow_right("flow_right", ">"), m_distortion("distortion", "Distortion"), m_value_tree(vts), m_gain_label("Gain"), m_pan_label("Pan"),
+    m_velocity_label("Velocity"), m_boost_label("Boost"), m_drywet_label("DryWet") {
 
 	addAndMakeVisible(m_gain_label);
 	addAndMakeVisible(m_pan_label);
@@ -51,8 +50,7 @@ AmpDistortionFlowComponent::AmpDistortionFlowComponent(AudioProcessorValueTreeSt
 	m_distortion.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
 	m_distortion.onClick = [&]() {
 		setDistortionPanelActive(m_distortion.getToggleState());
-		m_value_tree.state.getChildWithName("misc").setProperty(
-		    "dist_on", m_distortion.getToggleState() ? 1.f : 0.f, nullptr);
+		m_value_tree.state.getChildWithName("misc").setProperty("dist_on", m_distortion.getToggleState() ? 1.f : 0.f, nullptr);
 		m_value_tree.state.getChildWithName("misc").sendPropertyChangeMessage("dist_on");
 	};
 
@@ -98,10 +96,7 @@ AmpDistortionFlowComponent::AmpDistortionFlowComponent(AudioProcessorValueTreeSt
 	m_distortion_algo.setSelectedId(1, dontSendNotification);
 	m_distortion_algo.setColor(juce::STANDARD_DISPLAY_COLOR);
 	m_distortion_algo.setTooltip("Selects the distortion algorithm to be used");
-	m_distortion_algo.onChange = [&]() {
-		m_value_tree.state.getChildWithName("misc").setProperty(
-		    "dist_algo", m_distortion_algo.getSelectedId(), nullptr);
-	};
+	m_distortion_algo.onChange = [&]() { m_value_tree.state.getChildWithName("misc").setProperty("dist_algo", m_distortion_algo.getSelectedId(), nullptr); };
 	addAndMakeVisible(m_distortion_algo);
 
 	m_amp_velocity_attach.reset(new OdinKnobAttachment(m_value_tree, "amp_velocity", m_amp_velocity));
@@ -135,8 +130,7 @@ AmpDistortionFlowComponent::~AmpDistortionFlowComponent() {
 void AmpDistortionFlowComponent::forceValueTreeOntoComponents(ValueTree p_tree) {
 	m_distortion_algo.setValue(m_value_tree.state.getChildWithName("misc")["dist_algo"]);
 	setDistortionPanelActive((float)m_value_tree.state.getChildWithName("misc")["dist_on"] > 0.5f);
-	m_distortion.setToggleState((float)m_value_tree.state.getChildWithName("misc")["dist_on"] > 0.5f,
-	                            dontSendNotification);
+	m_distortion.setToggleState((float)m_value_tree.state.getChildWithName("misc")["dist_on"] > 0.5f, dontSendNotification);
 }
 
 void AmpDistortionFlowComponent::setDistortionPanelActive(bool p_active) {
@@ -144,6 +138,9 @@ void AmpDistortionFlowComponent::setDistortionPanelActive(bool p_active) {
 	m_distortion_algo.setColor(p_active ? DISTORTION_ON_COLOR : DARKGREY);
 	m_distortion_on = p_active;
 	repaint();
+}
+
+void AmpDistortionFlowComponent::paint(Graphics &g) {
 }
 
 void AmpDistortionFlowComponent::resized() {

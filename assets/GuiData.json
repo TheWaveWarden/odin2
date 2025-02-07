@@ -1,0 +1,1820 @@
+{
+  "": {
+    "SizeX": 0,
+    "SizeY": 0,
+    "X": 4,
+    "Y": 0
+  },
+  "ADSRAttack": {
+    "SizeX": 3,
+    "SizeY": 16,
+    "X": 5,
+    "Y": 1
+  },
+  "ADSRButton13": {
+    "SizeX": 31,
+    "SizeY": 5,
+    "X": 7,
+    "Y": 76
+  },
+  "ADSRButton24": {
+    "SizeX": 30,
+    "SizeY": 5,
+    "X": 38,
+    "Y": 76
+  },
+  "ADSRDecay": {
+    "SizeX": 3,
+    "SizeY": 16,
+    "X": 12,
+    "Y": 1
+  },
+  "ADSRLeft": {
+    "SizeX": 31,
+    "SizeY": 23,
+    "X": 7,
+    "Y": 82
+  },
+  "ADSRLoop": {
+    "SizeX": 7,
+    "SizeY": 2,
+    "X": 10,
+    "Y": 20
+  },
+  "ADSRRelease": {
+    "SizeX": 3,
+    "SizeY": 16,
+    "X": 25,
+    "Y": 1
+  },
+  "ADSRRight": {
+    "SizeX": 30,
+    "SizeY": 23,
+    "X": 38,
+    "Y": 82
+  },
+  "ADSRSustain": {
+    "SizeX": 3,
+    "SizeY": 16,
+    "X": 19,
+    "Y": 1
+  },
+  "AmpDist": {
+    "SizeX": 60,
+    "SizeY": 30,
+    "X": 70,
+    "Y": 45
+  },
+  "AmpGain": {
+    "SizeX": 6,
+    "SizeY": 6,
+    "X": 27,
+    "Y": 7
+  },
+  "AmpPan": {
+    "SizeX": 5,
+    "SizeY": 5,
+    "X": 44,
+    "Y": 6
+  },
+  "AmpVelocity": {
+    "SizeX": 5,
+    "SizeY": 5,
+    "X": 11,
+    "Y": 6
+  },
+  "ArpDirection": {
+    "SizeX": 16,
+    "SizeY": 4,
+    "X": 85,
+    "Y": 3
+  },
+  "ArpGate": {
+    "SizeX": 16,
+    "SizeY": 4,
+    "X": 106,
+    "Y": 3
+  },
+  "ArpMod1Label": {
+    "SizeX": 9,
+    "SizeY": 3,
+    "X": 2,
+    "Y": 12
+  },
+  "ArpModTranspose": {
+    "SizeX": 9,
+    "SizeY": 3,
+    "X": 2,
+    "Y": 19
+  },
+  "ArpOctaveSelector": {
+    "SizeX": 16,
+    "SizeY": 4,
+    "X": 39,
+    "Y": 3
+  },
+  "ArpOn": {
+    "SizeX": 5,
+    "SizeY": 5,
+    "X": 3,
+    "Y": 3
+  },
+  "ArpOneShot": {
+    "SizeX": 9,
+    "SizeY": 3,
+    "X": 2,
+    "Y": 27
+  },
+  "ArpStepLed": {
+    "SizeX": 3,
+    "SizeY": 3,
+    "X": 1,
+    "Y": 23
+  },
+  "ArpStepMod_1": {
+    "SizeX": 5,
+    "SizeY": 5,
+    "X": 0,
+    "Y": 2
+  },
+  "ArpStepMod_2": {
+    "SizeX": 5,
+    "SizeY": 5,
+    "X": 0,
+    "Y": 9
+  },
+  "ArpStepStepOn": {
+    "SizeX": 5,
+    "SizeY": 5,
+    "X": 0,
+    "Y": 16
+  },
+  "ArpStepTranspose": {
+    "SizeX": 5,
+    "SizeY": 5,
+    "X": 0,
+    "Y": 9
+  },
+  "ArpStep_0": {
+    "SizeX": 7,
+    "SizeY": 26,
+    "X": 12,
+    "Y": 9
+  },
+  "ArpStep_1": {
+    "SizeX": 7,
+    "SizeY": 26,
+    "X": 16,
+    "Y": 9
+  },
+  "ArpStep_10": {
+    "SizeX": 4,
+    "SizeY": 26,
+    "X": 103,
+    "Y": 9
+  },
+  "ArpStep_11": {
+    "SizeX": 4,
+    "SizeY": 26,
+    "X": 107,
+    "Y": 9
+  },
+  "ArpStep_12": {
+    "SizeX": 4,
+    "SizeY": 26,
+    "X": 111,
+    "Y": 9
+  },
+  "ArpStep_13": {
+    "SizeX": 4,
+    "SizeY": 26,
+    "X": 115,
+    "Y": 9
+  },
+  "ArpStep_14": {
+    "SizeX": 4,
+    "SizeY": 26,
+    "X": 119,
+    "Y": 9
+  },
+  "ArpStep_15": {
+    "SizeX": 4,
+    "SizeY": 26,
+    "X": 123,
+    "Y": 9
+  },
+  "ArpStep_2": {
+    "SizeX": 7,
+    "SizeY": 26,
+    "X": 23,
+    "Y": 9
+  },
+  "ArpStep_3": {
+    "SizeX": 7,
+    "SizeY": 26,
+    "X": 30,
+    "Y": 9
+  },
+  "ArpStep_4": {
+    "SizeX": 7,
+    "SizeY": 26,
+    "X": 37,
+    "Y": 9
+  },
+  "ArpStep_5": {
+    "SizeX": 7,
+    "SizeY": 26,
+    "X": 44,
+    "Y": 9
+  },
+  "ArpStep_6": {
+    "SizeX": 7,
+    "SizeY": 26,
+    "X": 51,
+    "Y": 9
+  },
+  "ArpStep_7": {
+    "SizeX": 7,
+    "SizeY": 26,
+    "X": 58,
+    "Y": 9
+  },
+  "ArpStep_8": {
+    "SizeX": 4,
+    "SizeY": 26,
+    "X": 95,
+    "Y": 9
+  },
+  "ArpStep_9": {
+    "SizeX": 4,
+    "SizeY": 26,
+    "X": 99,
+    "Y": 9
+  },
+  "ArpStepsSelector": {
+    "SizeX": 16,
+    "SizeY": 4,
+    "X": 62,
+    "Y": 3
+  },
+  "ArpSyncTime": {
+    "SizeX": 13,
+    "SizeY": 4,
+    "X": 19,
+    "Y": 3
+  },
+  "AttackLabel": {
+    "SizeX": 3,
+    "SizeY": 3,
+    "X": 5,
+    "Y": 17
+  },
+  "Boost": {
+    "SizeX": 7,
+    "SizeY": 7,
+    "X": 9,
+    "Y": 20
+  },
+  "BoostLabel": {
+    "SizeX": 7,
+    "SizeY": 3,
+    "X": 9,
+    "Y": 27
+  },
+  "BurgerButton": {
+    "SizeX": 4,
+    "SizeY": 4,
+    "X": 188,
+    "Y": 2
+  },
+  "CarrWave": {
+    "SizeX": 18,
+    "SizeY": 3,
+    "X": 2,
+    "Y": 2
+  },
+  "CarrierLabel": {
+    "SizeX": 9,
+    "SizeY": 3,
+    "X": 11,
+    "Y": 7
+  },
+  "Chip1Label": {
+    "SizeX": 3,
+    "SizeY": 4,
+    "X": 4,
+    "Y": 28
+  },
+  "Chip2Label": {
+    "SizeX": 3,
+    "SizeY": 4,
+    "X": 15,
+    "Y": 28
+  },
+  "ChipSpeedLabel": {
+    "SizeX": 8,
+    "SizeY": 3,
+    "X": 41,
+    "Y": 28
+  },
+  "ChipWave": {
+    "SizeX": 18,
+    "SizeY": 3,
+    "X": 4,
+    "Y": 12
+  },
+  "Chipdraw": {
+    "SizeX": 6,
+    "SizeY": 6,
+    "X": 0,
+    "Y": 0
+  },
+  "ChipdrawConvert": {
+    "SizeX": 6,
+    "SizeY": 6,
+    "X": 0,
+    "Y": 0
+  },
+  "ChorusOn": {
+    "SizeX": 12,
+    "SizeY": 3,
+    "X": 158,
+    "Y": 79
+  },
+  "DecayLabel": {
+    "SizeX": 3,
+    "SizeY": 3,
+    "X": 12,
+    "Y": 17
+  },
+  "DelayDry": {
+    "SizeX": 6,
+    "SizeY": 6,
+    "X": 42,
+    "Y": 13
+  },
+  "DelayDryLabel": {
+    "SizeX": 6,
+    "SizeY": 3,
+    "X": 42,
+    "Y": 19
+  },
+  "DelayDucking": {
+    "SizeX": 6,
+    "SizeY": 6,
+    "X": 46,
+    "Y": 2
+  },
+  "DelayDuckingLabel": {
+    "SizeX": 8,
+    "SizeY": 3,
+    "X": 45,
+    "Y": 8
+  },
+  "DelayFeedback": {
+    "SizeX": 8,
+    "SizeY": 8,
+    "X": 19,
+    "Y": 11
+  },
+  "DelayFeedbackLabel": {
+    "SizeX": 10,
+    "SizeY": 3,
+    "X": 18,
+    "Y": 19
+  },
+  "DelayHp": {
+    "SizeX": 6,
+    "SizeY": 6,
+    "X": 36,
+    "Y": 2
+  },
+  "DelayHpLabel": {
+    "SizeX": 6,
+    "SizeY": 3,
+    "X": 36,
+    "Y": 8
+  },
+  "DelayOn": {
+    "SizeX": 12,
+    "SizeY": 3,
+    "X": 132,
+    "Y": 79
+  },
+  "DelayPingpong": {
+    "SizeX": 11,
+    "SizeY": 4,
+    "X": 22,
+    "Y": 1
+  },
+  "DelaySync": {
+    "SizeX": 9,
+    "SizeY": 4,
+    "X": 3,
+    "Y": 17
+  },
+  "DelaySyncTime": {
+    "SizeX": 13,
+    "SizeY": 3,
+    "X": 3,
+    "Y": 8
+  },
+  "DelayTime": {
+    "SizeX": 8,
+    "SizeY": 8,
+    "X": 7,
+    "Y": 4
+  },
+  "DelayTimeLabel": {
+    "SizeX": 8,
+    "SizeY": 3,
+    "X": 7,
+    "Y": 12
+  },
+  "DelayWet": {
+    "SizeX": 6,
+    "SizeY": 6,
+    "X": 52,
+    "Y": 13
+  },
+  "DelayWetLabel": {
+    "SizeX": 6,
+    "SizeY": 3,
+    "X": 52,
+    "Y": 19
+  },
+  "DetuneLabel": {
+    "SizeX": 9,
+    "SizeY": 4,
+    "X": 22,
+    "Y": 2
+  },
+  "DistDryWetLabel": {
+    "SizeX": 9,
+    "SizeY": 3,
+    "X": 43,
+    "Y": 27
+  },
+  "Distortion": {
+    "SizeX": 16,
+    "SizeY": 4,
+    "X": 22,
+    "Y": 20
+  },
+  "DistortionAlgo": {
+    "SizeX": 16,
+    "SizeY": 4,
+    "X": 22,
+    "Y": 25
+  },
+  "DryWet": {
+    "SizeX": 7,
+    "SizeY": 7,
+    "X": 44,
+    "Y": 20
+  },
+  "FX": {
+    "SizeX": 60,
+    "SizeY": 23,
+    "X": 132,
+    "Y": 83
+  },
+  "FXAmount": {
+    "SizeX": 7,
+    "SizeY": 7,
+    "X": 22,
+    "Y": 3
+  },
+  "FXAmountLabel": {
+    "SizeX": 7,
+    "SizeY": 3,
+    "X": 22,
+    "Y": 11
+  },
+  "FXButtons": {
+    "SizeX": 60,
+    "SizeY": 3,
+    "X": 132,
+    "Y": 76
+  },
+  "FXDryWet": {
+    "SizeX": 7,
+    "SizeY": 7,
+    "X": 49,
+    "Y": 9
+  },
+  "FXDryWetLabel": {
+    "SizeX": 7,
+    "SizeY": 3,
+    "X": 49,
+    "Y": 17
+  },
+  "FXFeedback": {
+    "SizeX": 7,
+    "SizeY": 7,
+    "X": 36,
+    "Y": 3
+  },
+  "FXFeedbackLabel": {
+    "SizeX": 9,
+    "SizeY": 3,
+    "X": 35,
+    "Y": 11
+  },
+  "FXRate": {
+    "SizeX": 7,
+    "SizeY": 7,
+    "X": 9,
+    "Y": 9
+  },
+  "FXRateLabel": {
+    "SizeX": 7,
+    "SizeY": 3,
+    "X": 9,
+    "Y": 17
+  },
+  "FXReset": {
+    "SizeX": 7,
+    "SizeY": 3,
+    "X": 36,
+    "Y": 17
+  },
+  "FXSync": {
+    "SizeX": 7,
+    "SizeY": 3,
+    "X": 22,
+    "Y": 17
+  },
+  "FXSyncTime": {
+    "SizeX": 12,
+    "SizeY": 3,
+    "X": 4,
+    "Y": 12
+  },
+  "Fil1": {
+    "SizeX": 60,
+    "SizeY": 30,
+    "X": 8,
+    "Y": 45
+  },
+  "Fil1DD": {
+    "SizeX": 5,
+    "SizeY": 2,
+    "X": 62,
+    "Y": 46
+  },
+  "Fil2": {
+    "SizeX": 60,
+    "SizeY": 30,
+    "X": 132,
+    "Y": 45
+  },
+  "Fil2DD": {
+    "SizeX": 5,
+    "SizeY": 2,
+    "X": 186,
+    "Y": 46
+  },
+  "Fil3": {
+    "SizeX": 60,
+    "SizeY": 30,
+    "X": 70,
+    "Y": 76
+  },
+  "Fil3DD": {
+    "SizeX": 5,
+    "SizeY": 2,
+    "X": 124,
+    "Y": 77
+  },
+  "FilCombPlusMinus": {
+    "SizeX": 12,
+    "SizeY": 5,
+    "X": 41,
+    "Y": 24
+  },
+  "FilEnv": {
+    "SizeX": 5,
+    "SizeY": 5,
+    "X": 10,
+    "Y": 2
+  },
+  "FilEnvLabel": {
+    "SizeX": 5,
+    "SizeY": 3,
+    "X": 10,
+    "Y": 8
+  },
+  "FilFormantTransition": {
+    "SizeX": 9,
+    "SizeY": 9,
+    "X": 27,
+    "Y": 12
+  },
+  "FilFormantTransitionLabel": {
+    "SizeX": 9,
+    "SizeY": 3,
+    "X": 27,
+    "Y": 22
+  },
+  "FilFreq": {
+    "SizeX": 8,
+    "SizeY": 8,
+    "X": 35,
+    "Y": 13
+  },
+  "FilFreqLabel": {
+    "SizeX": 16,
+    "SizeY": 4,
+    "X": 31,
+    "Y": 22
+  },
+  "FilGain": {
+    "SizeX": 5,
+    "SizeY": 5,
+    "X": 24,
+    "Y": 2
+  },
+  "FilGainLabel": {
+    "SizeX": 5,
+    "SizeY": 3,
+    "X": 24,
+    "Y": 8
+  },
+  "FilKbd": {
+    "SizeX": 5,
+    "SizeY": 5,
+    "X": 17,
+    "Y": 2
+  },
+  "FilKbdLabel": {
+    "SizeX": 5,
+    "SizeY": 3,
+    "X": 17,
+    "Y": 8
+  },
+  "FilLeft1": {
+    "SizeX": 5,
+    "SizeY": 5,
+    "X": 9,
+    "Y": 57
+  },
+  "FilLeft2": {
+    "SizeX": 5,
+    "SizeY": 5,
+    "X": 9,
+    "Y": 63
+  },
+  "FilLeft3": {
+    "SizeX": 5,
+    "SizeY": 5,
+    "X": 9,
+    "Y": 69
+  },
+  "FilModuleLabel": {
+    "SizeX": 21,
+    "SizeY": 5,
+    "X": 32,
+    "Y": 2
+  },
+  "FilRes": {
+    "SizeX": 7,
+    "SizeY": 7,
+    "X": 15,
+    "Y": 18
+  },
+  "FilResLabel": {
+    "SizeX": 14,
+    "SizeY": 4,
+    "X": 11,
+    "Y": 25
+  },
+  "FilRight1": {
+    "SizeX": 5,
+    "SizeY": 5,
+    "X": 186,
+    "Y": 51
+  },
+  "FilRight2": {
+    "SizeX": 5,
+    "SizeY": 5,
+    "X": 186,
+    "Y": 57
+  },
+  "FilRight3": {
+    "SizeX": 5,
+    "SizeY": 5,
+    "X": 186,
+    "Y": 63
+  },
+  "FilRightF1": {
+    "SizeX": 5,
+    "SizeY": 5,
+    "X": 186,
+    "Y": 69
+  },
+  "FilRingModAmount": {
+    "SizeX": 8,
+    "SizeY": 8,
+    "X": 16,
+    "Y": 13
+  },
+  "FilRingModAmountLabel": {
+    "SizeX": 10,
+    "SizeY": 4,
+    "X": 15,
+    "Y": 22
+  },
+  "FilSaturation": {
+    "SizeX": 5,
+    "SizeY": 5,
+    "X": 45,
+    "Y": 21
+  },
+  "FilSaturationLabel": {
+    "SizeX": 11,
+    "SizeY": 3,
+    "X": 42,
+    "Y": 26
+  },
+  "FilSemHpLabel": {
+    "SizeX": 4,
+    "SizeY": 3,
+    "X": 51,
+    "Y": 21
+  },
+  "FilSemLpLabel": {
+    "SizeX": 4,
+    "SizeY": 3,
+    "X": 44,
+    "Y": 21
+  },
+  "FilSemNotchLabel": {
+    "SizeX": 7,
+    "SizeY": 3,
+    "X": 46,
+    "Y": 11
+  },
+  "FilSemTransition": {
+    "SizeX": 7,
+    "SizeY": 7,
+    "X": 46,
+    "Y": 14
+  },
+  "FilSemTransitionLabel": {
+    "SizeX": 9,
+    "SizeY": 3,
+    "X": 53,
+    "Y": 20
+  },
+  "FilVel": {
+    "SizeX": 5,
+    "SizeY": 5,
+    "X": 3,
+    "Y": 2
+  },
+  "FilVelLabel": {
+    "SizeX": 5,
+    "SizeY": 3,
+    "X": 3,
+    "Y": 8
+  },
+  "FilVowel1Label": {
+    "SizeX": 9,
+    "SizeY": 3,
+    "X": 14,
+    "Y": 20
+  },
+  "FilVowel2Label": {
+    "SizeX": 9,
+    "SizeY": 3,
+    "X": 39,
+    "Y": 20
+  },
+  "FilVowelLeft": {
+    "SizeX": 12,
+    "SizeY": 5,
+    "X": 13,
+    "Y": 14
+  },
+  "FilVowelRight": {
+    "SizeX": 11,
+    "SizeY": 5,
+    "X": 38,
+    "Y": 14
+  },
+  "FlangerOn": {
+    "SizeX": 12,
+    "SizeY": 3,
+    "X": 170,
+    "Y": 79
+  },
+  "FlowLeft": {
+    "SizeX": 5,
+    "SizeY": 5,
+    "X": 54,
+    "Y": 1
+  },
+  "FlowRight": {
+    "SizeX": 5,
+    "SizeY": 5,
+    "X": 1,
+    "Y": 1
+  },
+  "FmLabel": {
+    "SizeX": 5,
+    "SizeY": 3,
+    "X": 24,
+    "Y": 22
+  },
+  "GainLabel": {
+    "SizeX": 6,
+    "SizeY": 3,
+    "X": 27,
+    "Y": 14
+  },
+  "Glide": {
+    "SizeX": 6,
+    "SizeY": 6,
+    "X": 30,
+    "Y": 142
+  },
+  "GlideLabel": {
+    "SizeX": 8,
+    "SizeY": 3,
+    "X": 29,
+    "Y": 149
+  },
+  "LFOButton13": {
+    "SizeX": 31,
+    "SizeY": 6,
+    "X": 7,
+    "Y": 105
+  },
+  "LFOButton24": {
+    "SizeX": 30,
+    "SizeY": 6,
+    "X": 38,
+    "Y": 105
+  },
+  "LFOFreq": {
+    "SizeX": 6,
+    "SizeY": 6,
+    "X": 20,
+    "Y": 4
+  },
+  "LFOFreqLabel": {
+    "SizeX": 8,
+    "SizeY": 3,
+    "X": 19,
+    "Y": 11
+  },
+  "LFOLeft": {
+    "SizeX": 31,
+    "SizeY": 23,
+    "X": 7,
+    "Y": 112
+  },
+  "LFOReset": {
+    "SizeX": 13,
+    "SizeY": 4,
+    "X": 2,
+    "Y": 6
+  },
+  "LFORight": {
+    "SizeX": 30,
+    "SizeY": 23,
+    "X": 38,
+    "Y": 112
+  },
+  "LFOSelector": {
+    "SizeX": 13,
+    "SizeY": 4,
+    "X": 2,
+    "Y": 16
+  },
+  "LFOSync": {
+    "SizeX": 11,
+    "SizeY": 4,
+    "X": 17,
+    "Y": 16
+  },
+  "LFOSyncTime": {
+    "SizeX": 13,
+    "SizeY": 4,
+    "X": 16,
+    "Y": 6
+  },
+  "LabelX": {
+    "SizeX": 4,
+    "SizeY": 3,
+    "X": 25,
+    "Y": 11
+  },
+  "LabelY": {
+    "SizeX": 4,
+    "SizeY": 3,
+    "X": 25,
+    "Y": 3
+  },
+  "Master": {
+    "SizeX": 4,
+    "SizeY": 4,
+    "X": 153,
+    "Y": 2
+  },
+  "MasterLabel": {
+    "SizeX": 10,
+    "SizeY": 4,
+    "X": 142,
+    "Y": 2
+  },
+  "MatrixAmount1": {
+    "SizeX": 10,
+    "SizeY": 4,
+    "X": 22,
+    "Y": 0
+  },
+  "MatrixAmount2": {
+    "SizeX": 10,
+    "SizeY": 4,
+    "X": 54,
+    "Y": 0
+  },
+  "MatrixAmount3": {
+    "SizeX": 10,
+    "SizeY": 4,
+    "X": 87,
+    "Y": 0
+  },
+  "MatrixArpPreset": {
+    "SizeX": 122,
+    "SizeY": 37,
+    "X": 70,
+    "Y": 115
+  },
+  "MatrixClearButton": {
+    "SizeX": 4,
+    "SizeY": 4,
+    "X": 119,
+    "Y": 0
+  },
+  "MatrixDest1": {
+    "SizeX": 22,
+    "SizeY": 4,
+    "X": 32,
+    "Y": 0
+  },
+  "MatrixDest2": {
+    "SizeX": 23,
+    "SizeY": 4,
+    "X": 64,
+    "Y": 0
+  },
+  "MatrixScale": {
+    "SizeX": 22,
+    "SizeY": 4,
+    "X": 97,
+    "Y": 0
+  },
+  "MatrixSource": {
+    "SizeX": 22,
+    "SizeY": 4,
+    "X": 0,
+    "Y": 0
+  },
+  "ModWave": {
+    "SizeX": 18,
+    "SizeY": 3,
+    "X": 41,
+    "Y": 31
+  },
+  "ModWheel": {
+    "SizeX": 3,
+    "SizeY": 16,
+    "X": 16,
+    "Y": 137
+  },
+  "ModulatorLabel": {
+    "SizeX": 10,
+    "SizeY": 3,
+    "X": 41,
+    "Y": 26
+  },
+  "ModwheelLabel": {
+    "SizeX": 3,
+    "SizeY": 16,
+    "X": 13,
+    "Y": 137
+  },
+  "Modx": {
+    "SizeX": 5,
+    "SizeY": 5,
+    "X": 20,
+    "Y": 10
+  },
+  "Mody": {
+    "SizeX": 5,
+    "SizeY": 5,
+    "X": 20,
+    "Y": 2
+  },
+  "NoiseHpLabel": {
+    "SizeX": 14,
+    "SizeY": 3,
+    "X": 10,
+    "Y": 16
+  },
+  "NoiseLpLabel": {
+    "SizeX": 14,
+    "SizeY": 3,
+    "X": 33,
+    "Y": 20
+  },
+  "Osc1": {
+    "SizeX": 60,
+    "SizeY": 36,
+    "X": 8,
+    "Y": 8
+  },
+  "Osc1AA": {
+    "SizeX": 60,
+    "SizeY": 36,
+    "X": 8,
+    "Y": 8
+  },
+  "Osc1DD": {
+    "SizeX": 5,
+    "SizeY": 2,
+    "X": 62,
+    "Y": 9
+  },
+  "Osc2": {
+    "SizeX": 60,
+    "SizeY": 36,
+    "X": 70,
+    "Y": 8
+  },
+  "Osc2DD": {
+    "SizeX": 5,
+    "SizeY": 2,
+    "X": 124,
+    "Y": 9
+  },
+  "Osc3": {
+    "SizeX": 60,
+    "SizeY": 36,
+    "X": 132,
+    "Y": 8
+  },
+  "Osc3DD": {
+    "SizeX": 5,
+    "SizeY": 2,
+    "X": 186,
+    "Y": 9
+  },
+  "OscArpeggiator": {
+    "SizeX": 14,
+    "SizeY": 3,
+    "X": 3,
+    "Y": 20
+  },
+  "OscCarrRatio": {
+    "SizeX": 7,
+    "SizeY": 3,
+    "X": 2,
+    "Y": 7
+  },
+  "OscDetune": {
+    "SizeX": 8,
+    "SizeY": 8,
+    "X": 26,
+    "Y": 13
+  },
+  "OscDetuneLabel": {
+    "SizeX": 10,
+    "SizeY": 4,
+    "X": 35,
+    "Y": 15
+  },
+  "OscDetunePosLabel": {
+    "SizeX": 12,
+    "SizeY": 3,
+    "X": 7,
+    "Y": 32
+  },
+  "OscDetuneSpreadLabel": {
+    "SizeX": 12,
+    "SizeY": 3,
+    "X": 7,
+    "Y": 17
+  },
+  "OscDetuneWtLabel": {
+    "SizeX": 14,
+    "SizeY": 4,
+    "X": 26,
+    "Y": 30
+  },
+  "OscDrift": {
+    "SizeX": 7,
+    "SizeY": 7,
+    "X": 35,
+    "Y": 18
+  },
+  "OscFM": {
+    "SizeX": 8,
+    "SizeY": 8,
+    "X": 27,
+    "Y": 15
+  },
+  "OscFine": {
+    "SizeX": 5,
+    "SizeY": 5,
+    "X": 46,
+    "Y": 2
+  },
+  "OscFmExp": {
+    "SizeX": 12,
+    "SizeY": 3,
+    "X": 2,
+    "Y": 30
+  },
+  "OscHP": {
+    "SizeX": 8,
+    "SizeY": 8,
+    "X": 13,
+    "Y": 20
+  },
+  "OscLP": {
+    "SizeX": 8,
+    "SizeY": 8,
+    "X": 36,
+    "Y": 11
+  },
+  "OscModRatio": {
+    "SizeX": 7,
+    "SizeY": 3,
+    "X": 52,
+    "Y": 26
+  },
+  "OscModSource": {
+    "SizeX": 26,
+    "SizeY": 5,
+    "X": 10,
+    "Y": 25
+  },
+  "OscNoise": {
+    "SizeX": 6,
+    "SizeY": 3,
+    "X": 25,
+    "Y": 12
+  },
+  "OscOct": {
+    "SizeX": 5,
+    "SizeY": 5,
+    "X": 32,
+    "Y": 2
+  },
+  "OscPW": {
+    "SizeX": 6,
+    "SizeY": 6,
+    "X": 4,
+    "Y": 18
+  },
+  "OscPos": {
+    "SizeX": 7,
+    "SizeY": 7,
+    "X": 32,
+    "Y": 12
+  },
+  "OscPosMod": {
+    "SizeX": 7,
+    "SizeY": 7,
+    "X": 43,
+    "Y": 24
+  },
+  "OscPositionMulti": {
+    "SizeX": 6,
+    "SizeY": 6,
+    "X": 10,
+    "Y": 25
+  },
+  "OscPulseLED": {
+    "SizeX": 7,
+    "SizeY": 3,
+    "X": 19,
+    "Y": 24
+  },
+  "OscReset": {
+    "SizeX": 7,
+    "SizeY": 3,
+    "X": 52,
+    "Y": 18
+  },
+  "OscSawLED": {
+    "SizeX": 7,
+    "SizeY": 3,
+    "X": 19,
+    "Y": 29
+  },
+  "OscSemi": {
+    "SizeX": 5,
+    "SizeY": 5,
+    "X": 39,
+    "Y": 2
+  },
+  "OscSineLED": {
+    "SizeX": 7,
+    "SizeY": 3,
+    "X": 19,
+    "Y": 14
+  },
+  "OscSpeed": {
+    "SizeX": 6,
+    "SizeY": 6,
+    "X": 42,
+    "Y": 21
+  },
+  "OscSpread": {
+    "SizeX": 6,
+    "SizeY": 6,
+    "X": 10,
+    "Y": 10
+  },
+  "OscStep": {
+    "SizeX": 8,
+    "SizeY": 3,
+    "X": 28,
+    "Y": 23
+  },
+  "OscStep1": {
+    "SizeX": 6,
+    "SizeY": 6,
+    "X": 7,
+    "Y": 27
+  },
+  "OscStep2": {
+    "SizeX": 6,
+    "SizeY": 6,
+    "X": 18,
+    "Y": 27
+  },
+  "OscStep3": {
+    "SizeX": 6,
+    "SizeY": 6,
+    "X": 29,
+    "Y": 27
+  },
+  "OscSync": {
+    "SizeX": 7,
+    "SizeY": 3,
+    "X": 52,
+    "Y": 23
+  },
+  "OscTriangleLED": {
+    "SizeX": 7,
+    "SizeY": 3,
+    "X": 19,
+    "Y": 19
+  },
+  "OscVecA": {
+    "SizeX": 19,
+    "SizeY": 3,
+    "X": 32,
+    "Y": 14
+  },
+  "OscVecALabel": {
+    "SizeX": 3,
+    "SizeY": 3,
+    "X": 29,
+    "Y": 14
+  },
+  "OscVecB": {
+    "SizeX": 19,
+    "SizeY": 3,
+    "X": 32,
+    "Y": 20
+  },
+  "OscVecBLabel": {
+    "SizeX": 3,
+    "SizeY": 3,
+    "X": 29,
+    "Y": 20
+  },
+  "OscVecC": {
+    "SizeX": 19,
+    "SizeY": 3,
+    "X": 32,
+    "Y": 26
+  },
+  "OscVecCLabel": {
+    "SizeX": 3,
+    "SizeY": 3,
+    "X": 29,
+    "Y": 26
+  },
+  "OscVecD": {
+    "SizeX": 19,
+    "SizeY": 3,
+    "X": 32,
+    "Y": 32
+  },
+  "OscVecDLabel": {
+    "SizeX": 3,
+    "SizeY": 3,
+    "X": 29,
+    "Y": 32
+  },
+  "OscVecXLabel": {
+    "SizeX": 3,
+    "SizeY": 3,
+    "X": 5,
+    "Y": 6
+  },
+  "OscVecYLabel": {
+    "SizeX": 3,
+    "SizeY": 3,
+    "X": 17,
+    "Y": 6
+  },
+  "OscVol": {
+    "SizeX": 5,
+    "SizeY": 5,
+    "X": 53,
+    "Y": 7
+  },
+  "OscWave": {
+    "SizeX": 18,
+    "SizeY": 3,
+    "X": 5,
+    "Y": 15
+  },
+  "OscWaveMulti": {
+    "SizeX": 27,
+    "SizeY": 5,
+    "X": 20,
+    "Y": 25
+  },
+  "OscWaveWT": {
+    "SizeX": 27,
+    "SizeY": 5,
+    "X": 2,
+    "Y": 13
+  },
+  "OscWtAmountLabel": {
+    "SizeX": 11,
+    "SizeY": 4,
+    "X": 41,
+    "Y": 31
+  },
+  "OscWtModLabel": {
+    "SizeX": 15,
+    "SizeY": 4,
+    "X": 15,
+    "Y": 30
+  },
+  "OscWtPosLabel": {
+    "SizeX": 11,
+    "SizeY": 3,
+    "X": 30,
+    "Y": 20
+  },
+  "OscWtSelectLabel": {
+    "SizeX": 16,
+    "SizeY": 4,
+    "X": 7,
+    "Y": 18
+  },
+  "OscXy": {
+    "SizeX": 25,
+    "SizeY": 25,
+    "X": 2,
+    "Y": 10
+  },
+  "OscXyX": {
+    "SizeX": 4,
+    "SizeY": 4,
+    "X": 8,
+    "Y": 5
+  },
+  "OscXyY": {
+    "SizeX": 4,
+    "SizeY": 4,
+    "X": 20,
+    "Y": 5
+  },
+  "Osc_drift_label": {
+    "SizeX": 9,
+    "SizeY": 4,
+    "X": 34,
+    "Y": 25
+  },
+  "Osc_fine_label": {
+    "SizeX": 7,
+    "SizeY": 4,
+    "X": 45,
+    "Y": 7
+  },
+  "Osc_oct_label": {
+    "SizeX": 7,
+    "SizeY": 4,
+    "X": 31,
+    "Y": 7
+  },
+  "Osc_osc_label": {
+    "SizeX": 25,
+    "SizeY": 6,
+    "X": 3,
+    "Y": 1
+  },
+  "Osc_osc_label_fm": {
+    "SizeX": 12,
+    "SizeY": 4,
+    "X": 2,
+    "Y": 25
+  },
+  "Osc_osc_label_pm": {
+    "SizeX": 16,
+    "SizeY": 5,
+    "X": 1,
+    "Y": 30
+  },
+  "Osc_pw_label": {
+    "SizeX": 10,
+    "SizeY": 4,
+    "X": 3,
+    "Y": 26
+  },
+  "Osc_semi_label": {
+    "SizeX": 7,
+    "SizeY": 4,
+    "X": 38,
+    "Y": 7
+  },
+  "Osc_vol_label": {
+    "SizeX": 7,
+    "SizeY": 4,
+    "X": 52,
+    "Y": 12
+  },
+  "PanLabel": {
+    "SizeX": 9,
+    "SizeY": 3,
+    "X": 42,
+    "Y": 12
+  },
+  "PhaserDryWet": {
+    "SizeX": 7,
+    "SizeY": 7,
+    "X": 49,
+    "Y": 9
+  },
+  "PhaserDryWetLabel": {
+    "SizeX": 9,
+    "SizeY": 3,
+    "X": 48,
+    "Y": 17
+  },
+  "PhaserFeedback": {
+    "SizeX": 7,
+    "SizeY": 7,
+    "X": 38,
+    "Y": 2
+  },
+  "PhaserFeedbackLabel": {
+    "SizeX": 9,
+    "SizeY": 3,
+    "X": 37,
+    "Y": 10
+  },
+  "PhaserFreq": {
+    "SizeX": 7,
+    "SizeY": 7,
+    "X": 26,
+    "Y": 2
+  },
+  "PhaserFreqLabel": {
+    "SizeX": 9,
+    "SizeY": 3,
+    "X": 25,
+    "Y": 10
+  },
+  "PhaserMod": {
+    "SizeX": 7,
+    "SizeY": 7,
+    "X": 14,
+    "Y": 2
+  },
+  "PhaserModLabel": {
+    "SizeX": 9,
+    "SizeY": 3,
+    "X": 13,
+    "Y": 10
+  },
+  "PhaserOn": {
+    "SizeX": 12,
+    "SizeY": 3,
+    "X": 146,
+    "Y": 79
+  },
+  "PhaserRate": {
+    "SizeX": 7,
+    "SizeY": 7,
+    "X": 4,
+    "Y": 10
+  },
+  "PhaserRateLabel": {
+    "SizeX": 9,
+    "SizeY": 3,
+    "X": 3,
+    "Y": 18
+  },
+  "PhaserReset": {
+    "SizeX": 7,
+    "SizeY": 3,
+    "X": 34,
+    "Y": 17
+  },
+  "PhaserSync": {
+    "SizeX": 7,
+    "SizeY": 3,
+    "X": 20,
+    "Y": 17
+  },
+  "PhaserSyncTime": {
+    "SizeX": 13,
+    "SizeY": 3,
+    "X": 1,
+    "Y": 14
+  },
+  "PitchBend": {
+    "SizeX": 3,
+    "SizeY": 16,
+    "X": 10,
+    "Y": 137
+  },
+  "PitchBend Amount": {
+    "SizeX": 8,
+    "SizeY": 4,
+    "X": 21,
+    "Y": 148
+  },
+  "PitchwheelLabel": {
+    "SizeX": 3,
+    "SizeY": 16,
+    "X": 7,
+    "Y": 137
+  },
+  "Playmode": {
+    "SizeX": 14,
+    "SizeY": 4,
+    "X": 53,
+    "Y": 2
+  },
+  "PresetLeftButton": {
+    "SizeX": 14,
+    "SizeY": 4,
+    "X": 0,
+    "Y": 32
+  },
+  "QuestionButton": {
+    "SizeX": 4,
+    "SizeY": 4,
+    "X": 174,
+    "Y": 2
+  },
+  "ReleaseLabel": {
+    "SizeX": 3,
+    "SizeY": 3,
+    "X": 25,
+    "Y": 17
+  },
+  "Reset": {
+    "SizeX": 9,
+    "SizeY": 4,
+    "X": 177,
+    "Y": 2
+  },
+  "ResizeDragger": {
+    "SizeX": 3,
+    "SizeY": 3,
+    "X": 197,
+    "Y": 151
+  },
+  "RevDelay": {
+    "SizeX": 7,
+    "SizeY": 7,
+    "X": 3,
+    "Y": 8
+  },
+  "RevDelayLabel": {
+    "SizeX": 7,
+    "SizeY": 3,
+    "X": 3,
+    "Y": 16
+  },
+  "RevDryWet": {
+    "SizeX": 7,
+    "SizeY": 7,
+    "X": 50,
+    "Y": 8
+  },
+  "RevDryWetLabel": {
+    "SizeX": 9,
+    "SizeY": 3,
+    "X": 49,
+    "Y": 16
+  },
+  "RevEqFreq": {
+    "SizeX": 6,
+    "SizeY": 6,
+    "X": 39,
+    "Y": 2
+  },
+  "RevEqFreqLabel": {
+    "SizeX": 8,
+    "SizeY": 3,
+    "X": 38,
+    "Y": 8
+  },
+  "RevEqGain": {
+    "SizeX": 6,
+    "SizeY": 6,
+    "X": 39,
+    "Y": 13
+  },
+  "RevEqGainLabel": {
+    "SizeX": 8,
+    "SizeY": 3,
+    "X": 38,
+    "Y": 19
+  },
+  "RevHfDamp": {
+    "SizeX": 7,
+    "SizeY": 7,
+    "X": 27,
+    "Y": 8
+  },
+  "RevHfDampLabel": {
+    "SizeX": 9,
+    "SizeY": 3,
+    "X": 26,
+    "Y": 16
+  },
+  "RevLowFreq": {
+    "SizeX": 7,
+    "SizeY": 6,
+    "X": 1,
+    "Y": 2
+  },
+  "RevLowHall": {
+    "SizeX": 7,
+    "SizeY": 6,
+    "X": 1,
+    "Y": 2
+  },
+  "RevMidHall": {
+    "SizeX": 7,
+    "SizeY": 7,
+    "X": 15,
+    "Y": 8
+  },
+  "RevMidHallLabel": {
+    "SizeX": 9,
+    "SizeY": 3,
+    "X": 14,
+    "Y": 16
+  },
+  "ReverbOn": {
+    "SizeX": 12,
+    "SizeY": 3,
+    "X": 182,
+    "Y": 79
+  },
+  "SelectArp": {
+    "SizeX": 41,
+    "SizeY": 5,
+    "X": 70,
+    "Y": 108
+  },
+  "SelectModMatrix": {
+    "SizeX": 40,
+    "SizeY": 5,
+    "X": 112,
+    "Y": 108
+  },
+  "SelectPresets": {
+    "SizeX": 40,
+    "SizeY": 5,
+    "X": 153,
+    "Y": 108
+  },
+  "Specdraw": {
+    "SizeX": 6,
+    "SizeY": 6,
+    "X": 0,
+    "Y": 0
+  },
+  "SpecdrawConvert": {
+    "SizeX": 6,
+    "SizeY": 6,
+    "X": 0,
+    "Y": 0
+  },
+  "SplineAdCloseButton": {
+    "SizeX": 7,
+    "SizeY": 7,
+    "X": 190,
+    "Y": 3
+  },
+  "SplineAdCopyClipboard": {
+    "SizeX": 12,
+    "SizeY": 7,
+    "X": 115,
+    "Y": 83
+  },
+  "SplineAdDiscountCode": {
+    "SizeX": 42,
+    "SizeY": 7,
+    "X": 70,
+    "Y": 83
+  },
+  "SplineAdLearnMore": {
+    "SizeX": 46,
+    "SizeY": 8,
+    "X": 77,
+    "Y": 122
+  },
+  "SustainLabel": {
+    "SizeX": 3,
+    "SizeY": 3,
+    "X": 19,
+    "Y": 17
+  },
+  "Tuning": {
+    "SizeX": 16,
+    "SizeY": 4,
+    "X": 159,
+    "Y": 2
+  },
+  "UnisonAmount": {
+    "SizeX": 13,
+    "SizeY": 4,
+    "X": 8,
+    "Y": 2
+  },
+  "UnisonDetune": {
+    "SizeX": 4,
+    "SizeY": 4,
+    "X": 32,
+    "Y": 2
+  },
+  "UnisonWidth": {
+    "SizeX": 4,
+    "SizeY": 4,
+    "X": 45,
+    "Y": 2
+  },
+  "ValueInput": {
+    "SizeX": 8,
+    "SizeY": 6,
+    "X": 0,
+    "Y": 2
+  },
+  "VelocityLabel": {
+    "SizeX": 9,
+    "SizeY": 3,
+    "X": 9,
+    "Y": 12
+  },
+  "Wavedraw": {
+    "SizeX": 51,
+    "SizeY": 24,
+    "X": 1,
+    "Y": 11
+  },
+  "WavedrawConvert": {
+    "SizeX": 5,
+    "SizeY": 5,
+    "X": 55,
+    "Y": 29
+  },
+  "WidthLabel": {
+    "SizeX": 8,
+    "SizeY": 4,
+    "X": 37,
+    "Y": 2
+  },
+  "XY_SECTION": {
+    "SizeX": 32,
+    "SizeY": 17,
+    "X": 38,
+    "Y": 136
+  },
+  "XyPad": {
+    "SizeX": 17,
+    "SizeY": 17,
+    "X": 0,
+    "Y": 0
+  }
+}

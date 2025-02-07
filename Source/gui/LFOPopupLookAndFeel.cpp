@@ -48,53 +48,12 @@ void LFOPopupLookAndFeel::drawPopupMenuItem(Graphics &g,
 	Image waveform;
 
 	if (!isSeparator) {
+		// TODO
 		if (text == "si") {
-			waveform = ImageCache::getFromMemory(BinaryData::sine_150_png, BinaryData::sine_150_pngSize);
+			//waveform = ImageCache::getFromMemory(BinaryData::sine_150_png, BinaryData::sine_150_pngSize);
 		} else if (text == "sa") {
-			waveform = ImageCache::getFromMemory(BinaryData::saw_150_png, BinaryData::saw_150_pngSize);
-		} else if (text == "tr") {
-			waveform = ImageCache::getFromMemory(BinaryData::triangle_150_png, BinaryData::triangle_150_pngSize);
-		} else if (text == "sq50") {
-			waveform = ImageCache::getFromMemory(BinaryData::square50_150_png, BinaryData::square50_150_pngSize);
-		} else if (text == "sq25") {
-			waveform = ImageCache::getFromMemory(BinaryData::square25_150_png, BinaryData::square25_150_pngSize);
-		} else if (text == "sq12") {
-			waveform = ImageCache::getFromMemory(BinaryData::square12_150_png, BinaryData::square12_150_pngSize);
-		} else if (text == "pe") {
-			waveform = ImageCache::getFromMemory(BinaryData::peak_150_png, BinaryData::peak_150_pngSize);
-		} else if (text == "sh") {
-			waveform = ImageCache::getFromMemory(BinaryData::SH_150_png, BinaryData::SH_150_pngSize);
-		} else if (text == "p4") {
-			waveform = ImageCache::getFromMemory(BinaryData::pyram4_150_png, BinaryData::pyram4_150_pngSize);
-		} else if (text == "p6") {
-			waveform = ImageCache::getFromMemory(BinaryData::pyram6_150_png, BinaryData::pyram6_150_pngSize);
-		} else if (text == "p8") {
-			waveform = ImageCache::getFromMemory(BinaryData::pyram8_150_png, BinaryData::pyram8_150_pngSize);
-		} else if (text == "p12") {
-			waveform = ImageCache::getFromMemory(BinaryData::pyram12_150_png, BinaryData::pyram12_150_pngSize);
-		} else if (text == "s3") {
-			waveform = ImageCache::getFromMemory(BinaryData::stair3_150_png, BinaryData::stair3_150_pngSize);
-		} else if (text == "s4") {
-			waveform = ImageCache::getFromMemory(BinaryData::stair4_150_png, BinaryData::stair4_150_pngSize);
-		} else if (text == "s6") {
-			waveform = ImageCache::getFromMemory(BinaryData::stair6_150_png, BinaryData::stair6_150_pngSize);
-		} else if (text == "s8") {
-			waveform = ImageCache::getFromMemory(BinaryData::stair8_150_png, BinaryData::stair8_150_pngSize);
-		} else if (text == "s12") {
-			waveform = ImageCache::getFromMemory(BinaryData::stair12_150_png, BinaryData::stair12_150_pngSize);
-		} else if (text == "w1") {
-			waveform = ImageCache::getFromMemory(BinaryData::wavedraw1_150_png, BinaryData::wavedraw1_150_pngSize);
-		} else if (text == "w2") {
-			waveform = ImageCache::getFromMemory(BinaryData::wavedraw2_150_png, BinaryData::wavedraw2_150_pngSize);
-		} else if (text == "w3") {
-			waveform = ImageCache::getFromMemory(BinaryData::wavedraw3_150_png, BinaryData::wavedraw3_150_pngSize);
-		} else if (text == "c1") {
-			waveform = ImageCache::getFromMemory(BinaryData::chipdraw1_150_png, BinaryData::chipdraw1_150_pngSize);
-		} else if (text == "c2") {
-			waveform = ImageCache::getFromMemory(BinaryData::chipdraw2_150_png, BinaryData::chipdraw2_150_pngSize);
-		} else if (text == "c3") {
-			waveform = ImageCache::getFromMemory(BinaryData::chipdraw3_150_png, BinaryData::chipdraw3_150_pngSize);
-		}
+			//waveform = ImageCache::getFromMemory(BinaryData::saw_150_png, BinaryData::saw_150_pngSize);
+		} 
 	}
 	if (!isSeparator) {
 		g.drawImageAt(waveform, area.getX(), area.getY());

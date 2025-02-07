@@ -25,8 +25,6 @@ DrawableSlider::DrawableSlider() {
 	setPopupDisplayEnabled(true, false, nullptr);
 	setNumDecimalPlacesToDisplay(3);
 
-	m_handle = ImageCache::getFromMemory(BinaryData::slider_handle_png, BinaryData::slider_handle_pngSize);
-
 	setVelocityModeParameters(1.0, 1, 0.0, true, ModifierKeys::shiftModifier);
 
 	setTextBoxStyle(NoTextBox, true, 0, 0);

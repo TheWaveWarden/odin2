@@ -14,19 +14,19 @@
 */
 
 #include "FilterComponent.h"
+#include "../ConfigFileManager.h"
 #include "../GlobalIncludes.h"
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "JsonGuiProvider.h"
+#include "UIAssetManager.h"
+
 
 FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts, const std::string &p_filter_number) :
-    m_value_tree(vts), m_filter_number(p_filter_number), m_vowel_left(false), m_vowel_right(true),
-    m_vowel_left_identifier("fil" + p_filter_number + "_vowel_left"),
-    m_vowel_right_identifier("fil" + p_filter_number + "_vowel_right"), m_comb_plus_minus("comb_plus_minus"),
-    m_vel_label("Vel"), m_kbd_label("Kbd"), m_env_label("Env"), m_gain_label("Gain"), m_freq_label("Frequency"),
-    m_res_label("Resonance"), m_saturation_label("Saturation"), m_formant_transition_label("Transition"),
-    m_ring_mod_amount_label("Amount"), m_module_label("Lowpass24"), m_sem_notch_label("Notch"), m_sem_lp_label("LP"),
-    m_sem_hp_label("HP"), m_vowel1_label("Vowel 1"), m_vowel2_label("Vowel 2")
-
+    m_value_tree(vts), m_filter_number(p_filter_number), m_vowel_left(false), m_vowel_right(true), m_vowel_left_identifier("fil" + p_filter_number + "_vowel_left"),
+    m_vowel_right_identifier("fil" + p_filter_number + "_vowel_right"), m_comb_plus_minus("comb_plus_minus"), m_vel_label("Vel"), m_kbd_label("Kbd"), m_env_label("Env"),
+    m_gain_label("Gain"), m_freq_label("Frequency"), m_res_label("Resonance"), m_saturation_label("Saturation"), m_formant_transition_label("Transition"),
+    m_ring_mod_amount_label("Amount"), m_sem_notch_label("Notch"), m_sem_lp_label("LP"), m_sem_hp_label("HP"), m_vowel1_label("Vowel 1"),
+    m_vowel2_label("Vowel 2")
 {
 
 	addAndMakeVisible(m_vel_label);
@@ -38,7 +38,6 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts, const std::s
 	addAndMakeVisible(m_saturation_label);
 	addAndMakeVisible(m_formant_transition_label);
 	addAndMakeVisible(m_ring_mod_amount_label);
-	addAndMakeVisible(m_module_label);
 	addAndMakeVisible(m_sem_notch_label);
 	addAndMakeVisible(m_sem_lp_label);
 	addAndMakeVisible(m_sem_hp_label);
@@ -51,14 +50,10 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts, const std::s
 	m_gain_attach.reset(new OdinKnobAttachment(m_value_tree, "fil" + m_filter_number + "_gain", m_gain));
 	m_freq_attach.reset(new OdinKnobAttachment(m_value_tree, "fil" + m_filter_number + "_freq", m_freq));
 	m_res_attach.reset(new OdinKnobAttachment(m_value_tree, "fil" + m_filter_number + "_res", m_res));
-	m_saturation_attach.reset(
-	    new OdinKnobAttachment(m_value_tree, "fil" + m_filter_number + "_saturation", m_saturation));
-	m_formant_transition_attach.reset(
-	    new OdinKnobAttachment(m_value_tree, "fil" + m_filter_number + "_formant_transition", m_formant_transition));
-	m_ring_mod_amount_attach.reset(
-	    new OdinKnobAttachment(m_value_tree, "fil" + m_filter_number + "_ring_mod_amount", m_ring_mod_amount));
-	m_sem_transition_attach.reset(
-	    new OdinKnobAttachment(m_value_tree, "fil" + m_filter_number + "_sem_transition", m_sem_transition));
+	m_saturation_attach.reset(new OdinKnobAttachment(m_value_tree, "fil" + m_filter_number + "_saturation", m_saturation));
+	m_formant_transition_attach.reset(new OdinKnobAttachment(m_value_tree, "fil" + m_filter_number + "_formant_transition", m_formant_transition));
+	m_ring_mod_amount_attach.reset(new OdinKnobAttachment(m_value_tree, "fil" + m_filter_number + "_ring_mod_amount", m_ring_mod_amount));
+	m_sem_transition_attach.reset(new OdinKnobAttachment(m_value_tree, "fil" + m_filter_number + "_sem_transition", m_sem_transition));
 
 	m_vel.setSliderStyle(Slider::RotaryVerticalDrag);
 	m_vel.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
@@ -145,10 +140,8 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts, const std::s
 	m_vowel_right.setColor(Colour(90, 40, 40));
 
 	m_comb_plus_minus.onClick = [&]() {
-		m_value_tree.state.getChildWithName("misc").setProperty(
-		    (Identifier)("fil" + m_filter_number + "_comb_polarity"), m_comb_plus_minus.getToggleState(), nullptr);
-		m_value_tree.state.getChildWithName("misc").sendPropertyChangeMessage(
-		    (Identifier)("fil" + m_filter_number + "_comb_polarity"));
+		m_value_tree.state.getChildWithName("misc").setProperty((Identifier)("fil" + m_filter_number + "_comb_polarity"), m_comb_plus_minus.getToggleState(), nullptr);
+		m_value_tree.state.getChildWithName("misc").sendPropertyChangeMessage((Identifier)("fil" + m_filter_number + "_comb_polarity"));
 	};
 
 	m_comb_plus_minus.setTooltip("Whether to add or subtract the feedback\n in the internal delay line");
@@ -187,8 +180,58 @@ FilterComponent::~FilterComponent() {
 }
 
 void FilterComponent::paint(Graphics &g) {
-	g.setColour(COL_LIGHT);
-	g.drawRect(getLocalBounds(), 1);
+
+	auto asset = UIAssets::Indices::Filter_Lowpass24;
+	switch (m_filter_type) {
+	case 1:
+		return;
+	case FILTER_TYPE_LP24:
+		asset = UIAssets::Indices::Filter_Lowpass24;
+		break;
+	case FILTER_TYPE_LP12:
+		asset = UIAssets::Indices::Filter_Lowpass12;
+		break;
+	case FILTER_TYPE_BP24:
+		asset = UIAssets::Indices::Filter_Bandpass24;
+		break;
+	case FILTER_TYPE_BP12:
+		asset = UIAssets::Indices::Filter_Bandpass12;
+		break;
+	case FILTER_TYPE_HP24:
+		asset = UIAssets::Indices::Filter_Highpass24;
+		break;
+	case FILTER_TYPE_HP12:
+		asset = UIAssets::Indices::Filter_Highpass12;
+		break;
+	case FILTER_TYPE_SEM12:
+		asset = UIAssets::Indices::Filter_SEM12;
+		break;
+	case FILTER_TYPE_DIODE:
+		asset = UIAssets::Indices::Filter_DiodeLadder;
+		break;
+	case FILTER_TYPE_KORG_LP:
+		asset = UIAssets::Indices::Filter_KRG35LP;
+		break;
+	case FILTER_TYPE_KORG_HP:
+		asset = UIAssets::Indices::Filter_KRG35HP;
+		break;
+	case FILTER_TYPE_COMB:
+		asset = UIAssets::Indices::Filter_Combfilter;
+		break;
+	case FILTER_TYPE_FORMANT:
+		asset = UIAssets::Indices::Filter_Formant;
+		break;
+	case FILTER_TYPE_RINGMOD:
+		asset = UIAssets::Indices::Filter_Ringmod;
+		break;
+	default:
+		break;
+	}
+
+	auto background = UIAssetManager::getInstance()->getUIAsset(asset, ConfigFileManager::getInstance().getOptionGuiScale());
+	jassert(background.getWidth() == getWidth());
+	jassert(background.getHeight() == getHeight());
+	g.drawImageAt(background, 0, 0);
 }
 
 void FilterComponent::setFilterType(int p_filter_type, bool p_force) {
@@ -247,6 +290,7 @@ void FilterComponent::setFilterType(int p_filter_type, bool p_force) {
 		setFilterBypass();
 		break;
 	}
+
 	repaint();
 }
 
@@ -285,76 +329,61 @@ void FilterComponent::hideAllComponents() {
 }
 
 void FilterComponent::setFilterBypass() {
-	m_module_label.setText(std::string("Filter") + m_filter_number);
 }
 
 void FilterComponent::setFilterLP24() {
-	m_module_label.setText("Lowpass 24");
 	showStandardFilterComponents();
 }
 
 void FilterComponent::setFilterLP12() {
-	m_module_label.setText("Lowpass 12");
 	showStandardFilterComponents();
 }
 
 void FilterComponent::setFilterBP24() {
-	m_module_label.setText("Bandpass 24");
 	showStandardFilterComponents();
 }
 
 void FilterComponent::setFilterBP12() {
-	m_module_label.setText("Bandpass 12");
 	showStandardFilterComponents();
 }
 
 void FilterComponent::setFilterHP24() {
-	m_module_label.setText("Highpass 24");
 	showStandardFilterComponents();
 }
 
 void FilterComponent::setFilterHP12() {
-	m_module_label.setText("Highpass 12");
 	showStandardFilterComponents();
 }
 
 void FilterComponent::setFilterSEM24() {
-	m_module_label.setText("SEM-24");
 	showSEMFilterComponents();
 }
 
 void FilterComponent::setFilterSEM12() {
-	m_module_label.setText("SEM-12");
 	showSEMFilterComponents();
 }
 
 void FilterComponent::setFilterDiode() {
-	m_module_label.setText("DiodeLadder");
 	showStandardFilterComponents();
 }
 
 void FilterComponent::setFilterKorgLP() {
-	m_module_label.setText("KRG-35 LP");
 	showStandardFilterComponents();
 }
 
 void FilterComponent::setFilterKorgHP() {
-	m_module_label.setText("KRG-35 HP");
 	showStandardFilterComponents();
 }
 
 void FilterComponent::setFilterComb() {
-	m_module_label.setText("CombFilter");
 	showCombFilterComponents();
 }
 
 void FilterComponent::setFilterFormant() {
-	m_module_label.setText("Formant");
 	showFormantFilterComponents();
 }
 
 void FilterComponent::setFilterRingMod() {
-	m_module_label.setText("RingMod");
 	showRingModFilterComponents();
 }
 
@@ -440,8 +469,7 @@ void FilterComponent::showRingModFilterComponents() {
 }
 
 void FilterComponent::forceValueTreeOntoComponents(ValueTree p_tree, int p_index) {
-	m_comb_plus_minus.setValue(
-	    m_value_tree.state.getChildWithName("misc")[(Identifier)("fil" + m_filter_number + "_comb_polarity")]);
+	m_comb_plus_minus.setValue(m_value_tree.state.getChildWithName("misc")[(Identifier)("fil" + m_filter_number + "_comb_polarity")]);
 
 	m_vowel_left.setValue(m_value_tree.state.getChildWithName("misc")[m_vowel_left_identifier]);
 	m_vowel_right.setValue(m_value_tree.state.getChildWithName("misc")[m_vowel_right_identifier]);
@@ -462,7 +490,6 @@ void FilterComponent::resized() {
 	GET_LOCAL_AREA(m_saturation_label, "FilSaturationLabel");
 	GET_LOCAL_AREA(m_formant_transition_label, "FilFormantTransitionLabel");
 	GET_LOCAL_AREA(m_ring_mod_amount_label, "FilRingModAmountLabel");
-	GET_LOCAL_AREA(m_module_label, "FilModuleLabel");
 
 	GET_LOCAL_AREA(m_vel, "FilVel");
 	GET_LOCAL_AREA(m_kbd, "FilKbd");

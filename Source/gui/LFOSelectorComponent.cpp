@@ -120,50 +120,10 @@ void LFOSelectorComponent::resized() {
 
 	m_display.clearWaves();
 
-	juce::Image sine = ImageCache::getFromMemory(BinaryData::sine_150_png, BinaryData::sine_150_pngSize);
-	m_display.addWave(sine);
-	juce::Image saw = ImageCache::getFromMemory(BinaryData::saw_150_png, BinaryData::saw_150_pngSize);
-	m_display.addWave(saw);
-	juce::Image triangle = ImageCache::getFromMemory(BinaryData::triangle_150_png, BinaryData::triangle_150_pngSize);
-	m_display.addWave(triangle);
-	juce::Image square = ImageCache::getFromMemory(BinaryData::square50_150_png, BinaryData::square50_150_pngSize);
-	m_display.addWave(square);
-	juce::Image square25 = ImageCache::getFromMemory(BinaryData::square25_150_png, BinaryData::square25_150_pngSize);
-	m_display.addWave(square25);
-	juce::Image square12 = ImageCache::getFromMemory(BinaryData::square12_150_png, BinaryData::square12_150_pngSize);
-	m_display.addWave(square12);
-	juce::Image peak = ImageCache::getFromMemory(BinaryData::peak_150_png, BinaryData::peak_150_pngSize);
-	m_display.addWave(peak);
-	juce::Image SH = ImageCache::getFromMemory(BinaryData::SH_150_png, BinaryData::SH_150_pngSize);
-	m_display.addWave(SH);
-	juce::Image pyram4 = ImageCache::getFromMemory(BinaryData::pyram4_150_png, BinaryData::pyram4_150_pngSize);
-	m_display.addWave(pyram4);
-	juce::Image pyram6 = ImageCache::getFromMemory(BinaryData::pyram6_150_png, BinaryData::pyram6_150_pngSize);
-	m_display.addWave(pyram6);
-	juce::Image pyram8 = ImageCache::getFromMemory(BinaryData::pyram8_150_png, BinaryData::pyram8_150_pngSize);
-	m_display.addWave(pyram8);
-	juce::Image pyram12 = ImageCache::getFromMemory(BinaryData::pyram12_150_png, BinaryData::pyram12_150_pngSize);
-	m_display.addWave(pyram12);
-	juce::Image stair3 = ImageCache::getFromMemory(BinaryData::stair3_150_png, BinaryData::stair3_150_pngSize);
-	m_display.addWave(stair3);
-	juce::Image stair4 = ImageCache::getFromMemory(BinaryData::stair4_150_png, BinaryData::stair4_150_pngSize);
-	m_display.addWave(stair4);
-	juce::Image stair6 = ImageCache::getFromMemory(BinaryData::stair6_150_png, BinaryData::stair6_150_pngSize);
-	m_display.addWave(stair6);
-	juce::Image stair8 = ImageCache::getFromMemory(BinaryData::stair8_150_png, BinaryData::stair8_150_pngSize);
-	m_display.addWave(stair8);
-	juce::Image stair12 = ImageCache::getFromMemory(BinaryData::stair12_150_png, BinaryData::stair12_150_pngSize);
-	m_display.addWave(stair12);
-	juce::Image wavedraw1 = ImageCache::getFromMemory(BinaryData::wavedraw1_150_png, BinaryData::wavedraw1_150_pngSize);
-	m_display.addWave(wavedraw1);
-	juce::Image wavedraw2 = ImageCache::getFromMemory(BinaryData::wavedraw2_150_png, BinaryData::wavedraw2_150_pngSize);
-	m_display.addWave(wavedraw2);
-	juce::Image wavedraw3 = ImageCache::getFromMemory(BinaryData::wavedraw3_150_png, BinaryData::wavedraw3_150_pngSize);
-	m_display.addWave(wavedraw3);
-	juce::Image chipdraw1 = ImageCache::getFromMemory(BinaryData::chipdraw1_150_png, BinaryData::chipdraw1_150_pngSize);
-	m_display.addWave(chipdraw1);
-	juce::Image chipdraw2 = ImageCache::getFromMemory(BinaryData::chipdraw2_150_png, BinaryData::chipdraw2_150_pngSize);
-	m_display.addWave(chipdraw2);
-	juce::Image chipdraw3 = ImageCache::getFromMemory(BinaryData::chipdraw3_150_png, BinaryData::chipdraw3_150_pngSize);
-	m_display.addWave(chipdraw3);
+	// TODO
+	//juce::Image sine = ImageCache::getFromMemory(BinaryData::sine_150_png, BinaryData::sine_150_pngSize);
+	//m_display.addWave(sine);
+	//juce::Image saw = ImageCache::getFromMemory(BinaryData::saw_150_png, BinaryData::saw_150_pngSize);
+	//m_display.addWave(saw);
+	// ...
 }

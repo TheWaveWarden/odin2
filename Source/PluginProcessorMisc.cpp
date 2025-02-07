@@ -73,7 +73,7 @@ bool OdinAudioProcessor::hasEditor() const {
 
 AudioProcessorEditor *OdinAudioProcessor::createEditor() {
 
-	OdinAudioProcessorEditor *editor = new OdinAudioProcessorEditor(*this, m_value_tree, m_is_standalone_plugin);
+	OdinEditor *editor = new OdinEditor(*this, m_value_tree, m_is_standalone_plugin);
 	m_editor_pointer                 = editor;
 
 	return editor;

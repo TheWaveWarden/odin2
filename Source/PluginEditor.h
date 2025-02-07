@@ -43,13 +43,14 @@
 #include "gui/PatchBrowser.h"
 #include "gui/PhaserComponent.h"
 #include "gui/PitchWheel.h"
+#include "gui/RescaleProgressComponent.h"
 #include "gui/ResizeDragger.h"
 #include "gui/ReverbComponent.h"
+#include "gui/SplineAdComponent.h"
 #include "gui/TextLabel.h"
 #include "gui/TitleButton.h"
 #include "gui/TooltipFeels.h"
 #include "gui/TuningComponent.h"
-#include "gui/SplineAdComponent.h"
 #include "gui/XYSectionComponent.h"
 
 #ifdef WTGEN
@@ -61,10 +62,10 @@
 #define MASTER_MIN -50.0f
 #define MASTER_MAX 12.0f
 
-class OdinAudioProcessorEditor : public AudioProcessorEditor, public KeyListener {
+class OdinEditor : public AudioProcessorEditor, public KeyListener {
 public:
-	OdinAudioProcessorEditor(OdinAudioProcessor &p_processor, AudioProcessorValueTreeState &vts, bool p_is_standalone);
-	~OdinAudioProcessorEditor();
+	OdinEditor(OdinAudioProcessor &p_processor, AudioProcessorValueTreeState &vts, bool p_is_standalone);
+	~OdinEditor();
 
 	//==============================================================================
 	void paint(Graphics &) override;
@@ -74,7 +75,7 @@ public:
 	void arrangeFXOnButtons(std::map<std::string, int> p_map);
 	void setActiveFXPanel(const std::string &name);
 
-	void forceValueTreeOntoComponents(bool p_reset_audio);
+	void forceValueTreeOntoComponents(bool p_reset_audio = false);
 	void forceValueTreeOntoComponentsOnlyMainPanel();
 
 	bool keyPressed(const KeyPress &key, Component *) override {
@@ -89,6 +90,12 @@ public:
 	}
 	bool keyStateChanged(bool isKeyDown, Component *originatingComponent) override;
 	void allMidiKeysOff();
+
+	RescaleProgressComponent &getRescaleOverlayComponent() {
+		return m_rescale_component;
+	}
+
+	void setGuiSize(GuiScale p_size, bool p_set_config);
 
 	InputField m_value_input;
 	InputFeels m_input_feels;
@@ -157,7 +164,7 @@ private:
 	OscComponent m_osc2;
 	OscComponent m_osc3;
 
-    SplineAdComponent m_spline_ad;
+	SplineAdComponent m_spline_ad;
 
 	FilterComponent m_fil1_component;
 	FilterComponent m_fil2_component;
@@ -232,6 +239,7 @@ private:
 	OdinButton m_lfo_24_button;
 
 	GlassDropdown m_mono_poly_legato_dropdown;
+	RescaleProgressComponent m_rescale_component;
 
 	OdinButton m_reset;
 
@@ -299,5 +307,6 @@ private:
 	int m_octave_shift = 0;
 	bool m_is_standalone_plugin;
 
-	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(OdinAudioProcessorEditor)
+	JUCE_DECLARE_WEAK_REFERENCEABLE(OdinEditor)
+	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(OdinEditor)
 };

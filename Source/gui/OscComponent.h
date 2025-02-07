@@ -142,7 +142,6 @@ protected:
 	juce::Image m_background;
 	juce::Image m_background_bypass;
 
-	TextLabel m_osc_label;
 	TextLabel m_oct_label;
 	TextLabel m_semi_label;
 	TextLabel m_fine_label;

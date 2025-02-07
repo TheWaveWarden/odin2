@@ -1,5 +1,5 @@
 Language: Cpp
-ColumnLimit: 120
+ColumnLimit: 180
 IndentWidth: 4
 TabWidth: 4
 UseTab: ForIndentation

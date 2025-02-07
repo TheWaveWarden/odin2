@@ -100,7 +100,6 @@ protected:
 	TextLabel m_sem_hp_label;
 	TextLabel m_formant_transition_label;
 	TextLabel m_ring_mod_amount_label;
-	TextLabel m_module_label;
 	TextLabel m_vowel1_label;
 	TextLabel m_vowel2_label;
 

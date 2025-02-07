@@ -42,10 +42,7 @@ public:
 
 	void forceValueTreeOntoComponents(ValueTree p_tree);
 
-	void paint(Graphics &g) override {
-		g.setColour(COL_LIGHT);
-		g.drawRect(getLocalBounds(), 1);
-	}
+	void paint(Graphics &g) override;
 	void resized() override;
 
 private:
