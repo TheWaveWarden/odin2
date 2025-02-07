@@ -27,6 +27,10 @@ public:
 		unassigned,
 		button_7x4,
 		button_9x4,
+		button_dropdown,
+		up,
+		down,
+		burger,
 	};
 
 	OdinButton(const String &buttonName, const String &p_button_text, Type p_type = Type::unassigned) : juce::Button(buttonName), m_button_text(p_button_text), m_type(p_type) {
@@ -37,6 +41,18 @@ public:
 			break;
 		case Type::button_9x4:
 			m_ui_asset_base = int(UIAssets::Indices::bttn_9x4_off);
+			break;
+		case Type::button_dropdown:
+			m_ui_asset_base = int(UIAssets::Indices::bttn_dropdown_5x2_off);
+			break;
+		case Type::up:
+			m_ui_asset_base = int(UIAssets::Indices::bttn_4x2_arrow_up_off);
+			break;
+		case Type::down:
+			m_ui_asset_base = int(UIAssets::Indices::bttn_4x2_arrow_down_off);
+			break;
+		case Type::burger:
+			m_ui_asset_base = int(UIAssets::Indices::bttn_4x4_burger_off);
 			break;
 		default:
 			break;

@@ -342,27 +342,11 @@ progress=0
 # loop over images in directory
 for filename in $(find . -name '*.png'); do
         
-
-    #if [[ "$filename" == *"12"* ]];then
-        #echo "Skipping $filename"
-    #    continue
-    #fi
-
     echo "[$progress / $numfiles] $filename"
 
     baseFilePath=${filename%.png}
     baseFileName="$(basename -- $baseFilePath)"
     #echo "$baseFileName"
-
-    # get width / height
-    width=$(identify -format '%w' $filename)
-    height=$(identify -format '%h' $filename)
-
-    baseWidth=$( bc -l <<<"$width / 12 + 0.5")
-    baseHeight=$( bc -l <<<"$height / 12 + 0.5")
-    # remove decimal places
-    baseWidth=${baseWidth%.*}
-    baseHeight=${baseHeight%.*}
 
     echo "    ${baseFileName}," >> "$indexfile"
     echo "    BinaryData::${baseFileName}_png," >> "$datafile"

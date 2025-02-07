@@ -17,7 +17,7 @@
 #include "../GlobalIncludes.h"
 #include "../JuceLibraryCode/JuceHeader.h"
 
-LFOSelectorComponent::LFOSelectorComponent() : m_up("up", "Up"), m_down("down", "Down") {
+LFOSelectorComponent::LFOSelectorComponent() : m_up("up", "", OdinButton::Type::up), m_down("down", "", OdinButton::Type::down) {
 
 	m_display.setInlay(1);
 	addAndMakeVisible(m_display);

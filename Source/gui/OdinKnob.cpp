@@ -68,14 +68,14 @@ OdinKnob::OdinKnob(Type type) : m_type(type) {
 		m_inlay_x       = 1;
 		m_inlay_y       = 1;
 		m_center_pos_y  = 40.0f / 88.0f;
-		m_guide_radius  = 0.48f;
+		m_guide_radius  = 0.46f;
 		break;
 	case Type::knob_8x8b:
 		m_ui_asset_base = int(UIAssets::Indices::knob_8x8_b_0000);
 		m_inlay_x       = 1;
 		m_inlay_y       = 1;
 		m_center_pos_y  = 40.0f / 88.0f;
-		m_guide_radius  = 0.45f;
+		m_guide_radius  = 0.46f;
 		break;
 	case Type::wheel:
 		m_ui_asset_base = int(UIAssets::Indices::wheel_0000);

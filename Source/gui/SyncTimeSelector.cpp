@@ -18,8 +18,8 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 
 SyncTimeSelector::SyncTimeSelector() :
-    m_up_left("up_left", "Up"), m_down_left("down_left", "Down"), m_up_right("up_right", "Up"),
-    m_down_right("down_right", "Down") {
+    m_up_left("up_left", "", OdinButton::Type::up), m_down_left("down_left", "", OdinButton::Type::up), m_up_right("up_right", "", OdinButton::Type::down),
+    m_down_right("down_right", "Down", OdinButton::Type::down) {
 
 	m_dropdown.addItem(10, "8 / 1");
 	m_dropdown.addItem(20, "4 / 1");

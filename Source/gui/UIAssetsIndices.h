@@ -1467,6 +1467,18 @@ enum class Indices : int {
     Oscillator_Vector,
     Oscillator_WaveDraw,
     Oscillator_Wavetable,
+    screen_dropdown_12x4,
+    screen_dropdown_14x4,
+    screen_up-down_12x4_R,
+    screen_up-down_13x4_LR,
+    screen_up-down_13x4_R,
+    screen_up-down_14x4_LR,
+    screen_up-down_14x4_R,
+    screen_up-down_16x4_R,
+    screen_up-down_18x4_R,
+    screen_up-down_24x4_R,
+    screen_up-down_8x4_L,
+    screen_up-down_8x4_R,
     NumIndices
 };
 }

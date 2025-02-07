@@ -17,7 +17,7 @@
 #include "../GlobalIncludes.h"
 #include "../JuceLibraryCode/JuceHeader.h"
 
-NumberSelector::NumberSelector(bool p_buttons_right) : m_up("up", "Up"), m_down("down", "Down") {
+NumberSelector::NumberSelector(bool p_buttons_right) : m_up("up", "", OdinButton::Type::up), m_down("down", "", OdinButton::Type::down) {
 
 	m_up.setClickingTogglesState(false);
 	m_down.setClickingTogglesState(false);

@@ -17,7 +17,7 @@
 #include "../GlobalIncludes.h"
 #include "../JuceLibraryCode/JuceHeader.h"
 
-WaveformSelectorComponent::WaveformSelectorComponent(bool p_buttons_right) : m_up("up", "Up"), m_down("down", "Down") {
+WaveformSelectorComponent::WaveformSelectorComponent(bool p_buttons_right) : m_up("up", "", OdinButton::Type::up), m_down("down", "", OdinButton::Type::down) {
 
 	m_display.setInlay(1);
 	addAndMakeVisible(m_display);
