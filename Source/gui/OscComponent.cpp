@@ -128,6 +128,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor, AudioProcessorValueT
 	m_oct.setRange(-OCT_RANGE_MAX, OCT_RANGE_MAX);
 	m_oct.setNumDecimalPlacesToDisplay(0);
 	m_oct.setKnobTooltip("The pitch of\nthe oscillator in octaves");
+	m_oct.setNumGuides(9);
 	addChildComponent(m_oct);
 
 	m_semi.setSliderStyle(Slider::RotaryVerticalDrag);
@@ -135,6 +136,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor, AudioProcessorValueT
 	m_semi.setRange(-SEMI_RANGE_MAX, SEMI_RANGE_MAX);
 	m_semi.setNumDecimalPlacesToDisplay(0);
 	m_semi.setKnobTooltip("The pitch of\nthe oscillator in semitones");
+	m_semi.setNumGuides(13);
 	addChildComponent(m_semi);
 
 	m_fine.setSliderStyle(Slider::RotaryVerticalDrag);
@@ -193,6 +195,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor, AudioProcessorValueT
 	m_pw.setSliderStyle(Slider::RotaryVerticalDrag);
 	m_pw.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
 	m_pw.setKnobTooltip("The pulse width if\nthe pulse wave is selected");
+	m_pw.setNumGuides(0);
 	addChildComponent(m_pw);
 
 	m_drift.setSliderStyle(Slider::RotaryVerticalDrag);

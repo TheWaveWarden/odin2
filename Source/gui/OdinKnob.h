@@ -44,47 +44,7 @@ class OdinKnob : public juce::Slider, public OdinMidiLearnBase {
 public:
 	enum class Type { unassigned, knob_4x4a, knob_4x4b, knob_5x5a, knob_5x5b, knob_6x6a, knob_6x6b, knob_8x8a, knob_8x8b, wheel };
 
-	OdinKnob(Type type = Type::unassigned) : m_type(type) {
-		setLookAndFeel(&m_knob_feels);
-		setRange(0, 1);
-
-		setPopupDisplayEnabled(true, false, nullptr);
-		setNumDecimalPlacesToDisplay(3);
-		setVelocityModeParameters(1.0, 1, 0.0, true, ModifierKeys::shiftModifier);
-
-		setTooltip("henlo");
-
-		switch (m_type) {
-		default:
-		case Type::knob_4x4a:
-			m_ui_asset_base = int(UIAssets::Indices::knob_4x4_a_0000);
-			break;
-		case Type::knob_4x4b:
-			m_ui_asset_base = int(UIAssets::Indices::knob_4x4_b_0000);
-			break;
-		case Type::knob_5x5a:
-			m_ui_asset_base = int(UIAssets::Indices::knob_5x5_a_0000);
-			break;
-		case Type::knob_5x5b:
-			m_ui_asset_base = int(UIAssets::Indices::knob_5x5_b_0000);
-			break;
-		case Type::knob_6x6a:
-			m_ui_asset_base = int(UIAssets::Indices::knob_6x6_a_0000);
-			break;
-		case Type::knob_6x6b:
-			m_ui_asset_base = int(UIAssets::Indices::knob_6x6_b_0000);
-			break;
-		case Type::knob_8x8a:
-			m_ui_asset_base = int(UIAssets::Indices::knob_8x8_a_0000);
-			break;
-		case Type::knob_8x8b:
-			m_ui_asset_base = int(UIAssets::Indices::knob_8x8_b_0000);
-			break;
-		case Type::wheel:
-			m_ui_asset_base = int(UIAssets::Indices::wheel_0000);
-			break;
-		}
-	}
+	OdinKnob(Type type = Type::unassigned);
 
 	~OdinKnob() {
 		setLookAndFeel(nullptr);
@@ -92,6 +52,10 @@ public:
 	void setTextValueSuffix(const String &suffix) {
 		setNumDecimalPlacesToDisplay(3);
 		Slider::setTextValueSuffix(suffix);
+	}
+
+	void setNumGuides(int p_num_guides) {
+		m_num_guides = p_num_guides;
 	}
 
 	String getTextFromValue(double value) override;
@@ -146,6 +110,8 @@ public:
 	}
 
 private:
+	void drawGuides(juce::Graphics &g, bool isEnabled);
+
 	int m_midi_learn_left_offset   = 0;
 	int m_midi_learn_bottom_offset = 0;
 
@@ -156,6 +122,13 @@ private:
 	KnobFeels m_knob_feels;
 	Type m_type;
 	int m_ui_asset_base;
+
+	int m_inlay_x = 0;
+	int m_inlay_y = 0;
+
+	float m_center_pos_y = 0.5f;
+	float m_guide_radius = 0.5f;
+	int m_num_guides     = 17;
 };
 
 class DecibelKnob : public OdinKnob {

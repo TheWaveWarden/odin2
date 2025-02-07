@@ -1116,10 +1116,10 @@
     "Y": 30
   },
   "OscDrift": {
-    "SizeX": 8,
-    "SizeY": 10,
-    "X": 35,
-    "Y": 16
+    "SizeX": 10,
+    "SizeY": 11,
+    "X": 34,
+    "Y": 15
   },
   "OscFM": {
     "SizeX": 8,
@@ -1129,8 +1129,8 @@
   },
   "OscFine": {
     "SizeX": 6,
-    "SizeY": 6,
-    "X": 46,
+    "SizeY": 7,
+    "X": 45,
     "Y": 2
   },
   "OscFmExp": {
@@ -1171,15 +1171,15 @@
   },
   "OscOct": {
     "SizeX": 6,
-    "SizeY": 6,
-    "X": 32,
+    "SizeY": 7,
+    "X": 31,
     "Y": 2
   },
   "OscPW": {
-    "SizeX": 8,
-    "SizeY": 10,
-    "X": 4,
-    "Y": 16
+    "SizeX": 10,
+    "SizeY": 11,
+    "X": 3,
+    "Y": 15
   },
   "OscPos": {
     "SizeX": 7,
@@ -1219,8 +1219,8 @@
   },
   "OscSemi": {
     "SizeX": 6,
-    "SizeY": 6,
-    "X": 39,
+    "SizeY": 7,
+    "X": 38,
     "Y": 2
   },
   "OscSineLED": {
@@ -1339,8 +1339,8 @@
   },
   "OscVol": {
     "SizeX": 7,
-    "SizeY": 7,
-    "X": 52,
+    "SizeY": 8,
+    "X": 51,
     "Y": 7
   },
   "OscWave": {
@@ -1412,14 +1412,14 @@
   "Osc_fine_label": {
     "SizeX": 6,
     "SizeY": 3,
-    "X": 46,
-    "Y": 8
+    "X": 45,
+    "Y": 7
   },
   "Osc_oct_label": {
     "SizeX": 6,
     "SizeY": 3,
-    "X": 32,
-    "Y": 8
+    "X": 31,
+    "Y": 7
   },
   "Osc_osc_label": {
     "SizeX": 25,
@@ -1448,13 +1448,13 @@
   "Osc_semi_label": {
     "SizeX": 6,
     "SizeY": 3,
-    "X": 39,
-    "Y": 8
+    "X": 38,
+    "Y": 7
   },
   "Osc_vol_label": {
     "SizeX": 7,
     "SizeY": 3,
-    "X": 52,
+    "X": 51,
     "Y": 13
   },
   "PanLabel": {

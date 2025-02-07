@@ -16,12 +16,72 @@
 #include <iomanip> // setprecision
 #include <sstream> // stringstream
 
+#include "../ConfigFileManager.h"
 #include "../PluginProcessor.h"
 #include "OdinKnob.h"
 #include "UIAssetManager.h"
-#include "../ConfigFileManager.h"
 
 OdinAudioProcessor *OdinKnob::m_processor;
+
+OdinKnob::OdinKnob(Type type) : m_type(type) {
+	setLookAndFeel(&m_knob_feels);
+	setRange(0, 1);
+
+	setPopupDisplayEnabled(true, false, nullptr);
+	setNumDecimalPlacesToDisplay(3);
+	setVelocityModeParameters(1.0, 1, 0.0, true, ModifierKeys::shiftModifier);
+
+	switch (m_type) {
+	default:
+	case Type::knob_4x4a:
+		m_ui_asset_base = int(UIAssets::Indices::knob_4x4_a_0000);
+		m_inlay_y       = 1;
+		m_center_pos_y  = 24.0f / 56.0f;
+		m_guide_radius  = 0.39f;
+		break;
+	case Type::knob_4x4b:
+		m_ui_asset_base = int(UIAssets::Indices::knob_4x4_b_0000);
+		m_inlay_y       = 1;
+		m_center_pos_y  = 24.0f / 56.0f;
+		m_guide_radius  = 0.39f;
+		break;
+	case Type::knob_5x5a:
+		m_ui_asset_base = int(UIAssets::Indices::knob_5x5_a_0000);
+		m_inlay_y       = 1;
+		m_center_pos_y  = 28.0f / 64.0f;
+		m_guide_radius  = 0.42f;
+		break;
+	case Type::knob_5x5b:
+		m_ui_asset_base = int(UIAssets::Indices::knob_5x5_b_0000);
+		m_inlay_y       = 1;
+		m_center_pos_y  = 28.0f / 64.0f;
+		m_guide_radius  = 0.42f;
+		break;
+	case Type::knob_6x6a:
+		m_ui_asset_base = int(UIAssets::Indices::knob_6x6_a_0000);
+		break;
+	case Type::knob_6x6b:
+		m_ui_asset_base = int(UIAssets::Indices::knob_6x6_b_0000);
+		break;
+	case Type::knob_8x8a:
+		m_ui_asset_base = int(UIAssets::Indices::knob_8x8_a_0000);
+		m_inlay_x       = 1;
+		m_inlay_y       = 1;
+		m_center_pos_y  = 40.0f / 88.0f;
+		m_guide_radius  = 0.48f;
+		break;
+	case Type::knob_8x8b:
+		m_ui_asset_base = int(UIAssets::Indices::knob_8x8_b_0000);
+		m_inlay_x       = 1;
+		m_inlay_y       = 1;
+		m_center_pos_y  = 40.0f / 88.0f;
+		m_guide_radius  = 0.45f;
+		break;
+	case Type::wheel:
+		m_ui_asset_base = int(UIAssets::Indices::wheel_0000);
+		break;
+	}
+}
 
 void OdinKnob::mouseDown(const MouseEvent &event) {
 	if (event.mods.isRightButtonDown() && m_midi_learn_possible) {
@@ -82,11 +142,41 @@ void OdinKnob::paint(juce::Graphics &g) {
 		return;
 	}
 
-	//drawGuides (g, isEnabled());
+	if (m_num_guides > 0)
+		drawGuides(g, isEnabled());
 
 	const auto value01      = valueToProportionOfLength(getValue());
 	const auto image_offset = juce::roundToInt(value01 * double(N_KNOB_FRAMES - 1));
 	const auto asset        = UIAssets::Indices(int(m_ui_asset_base) + int(image_offset));
-	juce::Image graphic     = UIAssetManager::getInstance()->getUIAsset(asset, ConfigFileManager::getInstance().getOptionGuiScale());
-	g.drawImageAt(graphic, 0, 0);
+
+	const auto ui_scale = ConfigFileManager::getInstance().getOptionGuiScale();
+	juce::Image graphic = UIAssetManager::getInstance()->getUIAsset(asset, ui_scale);
+	g.setColour(juce::Colours::white);
+	g.drawImageAt(graphic, ui_scale * m_inlay_x, ui_scale * m_inlay_y);
+}
+
+void OdinKnob::drawGuides(juce::Graphics &g, bool isEnabled) {
+	g.setColour(juce::Colours::white.withAlpha(0.5f));
+
+	const auto center_x = float(getWidth()) / 2.0f;
+	const auto center_y = float(getHeight()) * m_center_pos_y;
+	const auto radius   = float(getWidth()) * m_guide_radius;
+
+	const auto angle_start = 43.6 / 360.0f * juce::MathConstants<float>::twoPi;
+	const auto angle_range = juce::MathConstants<float>::twoPi - 2.0f * angle_start;
+
+	const auto stroke = float(getHeight()) / 70.0f;
+
+	for (int guide = 0; guide < m_num_guides; ++guide) {
+		const auto angle = angle_start + angle_range * float(guide) / float(m_num_guides - 1);
+		const auto sin   = std::sin(angle);
+		const auto cos   = std::cos(angle);
+
+		const auto x1 = center_x + radius * sin;
+		const auto y1 = center_y + radius * cos;
+		const auto x2 = center_x;
+		const auto y2 = center_y;
+
+		g.drawLine(x1, y1, x2, y2, stroke);
+	}
 }
