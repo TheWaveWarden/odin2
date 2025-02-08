@@ -24,52 +24,36 @@ WavedrawDisplay::~WavedrawDisplay() {
 }
 
 void WavedrawDisplay::paint(Graphics &g) {
-	int draw_inlay_left = proportionOfWidth(DRAW_INLAY_HORZ_PROPORTION);
-	int draw_inlay_up   = proportionOfHeight(DRAW_INLAY_VERT_PROPORION);
-	int draw_inlay_down    = draw_inlay_up;
-	int wavedraw_thiccness = proportionOfHeight(DRAW_STROKE_PROPORION);
+	const int draw_inlay_left    = proportionOfWidth(DRAW_INLAY_HORZ_PROPORTION);
+	const int draw_inlay_up      = proportionOfHeight(DRAW_INLAY_VERT_PROPORION);
+	const int draw_inlay_down    = proportionOfHeight(0.03f);
+	const int wavedraw_thiccness = proportionOfHeight(DRAW_STROKE_PROPORION);
 
 	juce::Point<int> top_left = getLocalBounds().getTopLeft();
 	top_left.addXY(m_inlay + 1, m_inlay);
 	juce::Point<int> bottom_right = getLocalBounds().getBottomRight();
 	bottom_right.addXY(-m_inlay - 1, -m_inlay);
-	g.setColour(COL_LIGHT);
-	g.drawRect(juce::Rectangle<int>(top_left, bottom_right), 1);
 
-	float width  = (float)(getWidth() - draw_inlay_left - draw_inlay_left) / (float)WAVEDRAW_STEPS_X;
-	float height = (float)(getHeight() - draw_inlay_up - draw_inlay_down) / 2.f;
-	float mid    = (float)getHeight() / 2.f;
+	const float width  = (float)(getWidth() - 2 * draw_inlay_left) / float(WAVEDRAW_STEPS_X - 1);
+	const float height = (float)(getHeight() - draw_inlay_up - draw_inlay_down) / 2.f;
+	const float mid    = (float)getHeight() / 2.f;
 
-	for (int i = 0; i < WAVEDRAW_STEPS_X; ++i) {
+	Path path;
+	path.startNewSubPath(draw_inlay_left, mid - m_draw_values[0] * height);
+	for (int i = 1; i < WAVEDRAW_STEPS_X; ++i)
+		path.lineTo(draw_inlay_left + (i)*width, mid - m_draw_values[i] * height);
 
-		if (i != WAVEDRAW_STEPS_X - 1) {
+	// fill
+	Path fill_path = path;
+	fill_path.lineTo(getWidth() - draw_inlay_left, mid);
+	fill_path.lineTo(draw_inlay_left, mid);
+	fill_path.closeSubPath();
+	g.setColour(COL_TEXT_BLUE.withAlpha(0.15f));
+	g.fillPath(fill_path);
 
-			//draw backgorund shade as path
-			Path path;
-			path.startNewSubPath(draw_inlay_left + (i)*width, mid);
-			path.lineTo(draw_inlay_left + (i)*width, mid - m_draw_values[i] * height);
-			path.lineTo(draw_inlay_left + (i + 1) * width, mid - m_draw_values[i + 1] * height);
-			path.lineTo(draw_inlay_left + (i + 1) * width, mid);
-			path.closeSubPath();
-
-			g.setColour(COL_LIGHT.withAlpha(0.3f));
-			g.fillPath(path);
-
-			g.setColour(COL_LIGHT);
-
-			g.drawLine(draw_inlay_left + (i)*width,
-			           mid - m_draw_values[i] * height,
-			           draw_inlay_left + (i + 1) * width,
-			           mid - m_draw_values[i + 1] * height,
-			           wavedraw_thiccness);
-		} else {
-			g.drawLine(draw_inlay_left + (i)*width,
-			           mid - m_draw_values[i] * height,
-			           draw_inlay_left + (i + 1) * width,
-			           mid - m_draw_values[0] * height,
-			           wavedraw_thiccness);
-		}
-	}
+	// stroke
+	g.setColour(COL_TEXT_BLUE.withAlpha(0.9f));
+	g.strokePath(path, PathStrokeType(wavedraw_thiccness));
 }
 
 void WavedrawDisplay::mouseDrag(const MouseEvent &event) {
@@ -140,7 +124,7 @@ void WavedrawDisplay::mouseInteraction() {
 
 void WavedrawDisplay::mouseUp(const MouseEvent &event) {
 	m_mouse_was_down = false;
-    onMouseUp();
+	onMouseUp();
 }
 
 float *WavedrawDisplay::getDrawnTable() {

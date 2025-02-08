@@ -56,9 +56,9 @@ public:
 	}
 
 private:
-	static constexpr auto DRAW_INLAY_HORZ_PROPORTION = 0.02f;
-	static constexpr auto DRAW_INLAY_VERT_PROPORION  = 0.02f;
-	static constexpr auto DRAW_STROKE_PROPORION      = 0.01f;
+	static constexpr auto DRAW_INLAY_HORZ_PROPORTION = 0.015f;
+	static constexpr auto DRAW_INLAY_VERT_PROPORION  = 0.06f;
+	static constexpr auto DRAW_STROKE_PROPORION      = 0.005f;
 
 	bool m_mouse_was_down = false;
 	int m_last_x_value;

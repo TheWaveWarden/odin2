@@ -21,23 +21,96 @@
 #include "UIAssetManager.h"
 
 OscComponent::OscComponent(OdinAudioProcessor &p_processor, AudioProcessorValueTreeState &vts, const std::string &p_osc_number) :
-    m_value_tree(vts), m_reset("reset_button", "Reset", OdinButton::Type::button_7x4), m_sync("osc_sync_button", "Sync", OdinButton::Type::button_7x4),
-    m_LED_saw("LED_Saw", "Saw", OdinButton::Type::button_9x4), m_LED_pulse("LED_pulse", "PWM", OdinButton::Type::button_9x4),
-    m_LED_triangle("LED_triangle", "Tri", OdinButton::Type::button_9x4), m_LED_sine("LED_sine", "Sine", OdinButton::Type::button_9x4), m_arp("arp", "Arpeggiator"),
-    m_step_button("step", "Step 3 "), m_noise("noise", "Noise"), m_carrier_label("Carrier"), m_modulator_label("Modulator"), m_FM_label("FM"), m_PM_label("PM"),
-    m_chiptune_waveselector(true), m_carrier_waveselector(false), m_modulator_waveselector(true), m_wavetable_waveselector(true), m_modulation_source(true), m_carrier_ratio(false),
-    m_modulator_ratio(true), m_fm_exp("fm_exp"), m_xy(vts, "osc" + p_osc_number + "_vec_", m_xy_x, m_xy_y, true), m_HP_label("HighPass"), m_LP_label("LowPass"),
-    m_osc_number(p_osc_number), m_wavetable_identifier("osc" + p_osc_number + "_wavetable"), m_modulation_source_identifier("osc" + p_osc_number + "_mod_source"),
-    m_chipwave_identifier("osc" + p_osc_number + "_chipwave"), m_modulator_wave_identifier("osc" + p_osc_number + "_modulator_wave"),
-    m_carrier_wave_identifier("osc" + p_osc_number + "_carrier_wave"), m_modulator_ratio_identifier("osc" + p_osc_number + "_modulator_ratio"),
-    m_carrier_ratio_identifier("osc" + p_osc_number + "_carrier_ratio"), m_analog_wave_identifier("osc" + p_osc_number + "_analog_wave"),
-    m_vec_a_identifier("osc" + p_osc_number + "_vec_a"), m_vec_b_identifier("osc" + p_osc_number + "_vec_b"), m_vec_c_identifier("osc" + p_osc_number + "_vec_c"),
-    m_vec_d_identifier("osc" + p_osc_number + "_vec_d"), m_pos_mod_identifier("osc" + p_osc_number + "_pos_mod"), m_oct_label("Oct"), m_semi_label("Semi"), m_fine_label("Fine"),
-    m_vol_label("Vol"), m_drift_label("Drift"), m_pw_label("PW"), m_chip1_label("1"), m_chip2_label("2"), m_chip_speed_label("Speed"), m_wt_select_label("Wavetable"),
-    m_wt_mod_label("Modulation"), m_wt_pos_label("WT-Position"), m_wt_amount_label("Amount"), m_detune_spread_label("WT_Spread"), m_detune_pos_label("WT-Position"),
-    m_detune_label("Detune"), m_detune_wt_label("Wavetable"), m_vec_x_label("X"), m_vec_y_label("Y"), m_vec_a_label("A"), m_vec_b_label("B"), m_vec_c_label("C"),
-    m_vec_d_label("D"), m_oct(OdinKnob::Type::knob_4x4a), m_semi(OdinKnob::Type::knob_4x4a), m_fine(OdinKnob::Type::knob_4x4a), m_vol(OdinKnob::Type::knob_5x5a),
-    m_pw(OdinKnob::Type::knob_8x8a), m_drift(OdinKnob::Type::knob_8x8a), m_position(OdinKnob::Type::knob_5x5a), m_detune(OdinKnob::Type::knob_8x8a) {
+    m_value_tree(vts),
+    m_reset("reset_button", "Reset", OdinButton::Type::button_7x4),
+    m_sync("osc_sync_button", "Sync", OdinButton::Type::button_7x4),
+    m_LED_saw("LED_Saw", "Saw", OdinButton::Type::button_9x4),
+    m_LED_pulse("LED_pulse", "PWM", OdinButton::Type::button_9x4),
+    m_LED_triangle("LED_triangle", "Tri", OdinButton::Type::button_9x4),
+    m_LED_sine("LED_sine", "Sine", OdinButton::Type::button_9x4),
+    m_arp("arp", "", OdinButton::Type::power_4x4),
+    m_step_button("step", "3", OdinButton::Type::button_7x4),
+    m_noise("noise", "Noise", OdinButton::Type::button_7x4),
+    m_carrier_label("Carrier"),
+    m_modulator_label("Modulator"),
+    m_FM_label("FM"),
+    m_PM_label("PM"),
+    m_exponential_label("Exponential"),
+    m_linear_label("Linear"),
+    m_chiptune_waveselector(true),
+    m_carrier_waveselector(false),
+    m_modulator_waveselector(true),
+    m_wavetable_waveselector(true),
+    m_modulation_source(true),
+    m_carrier_ratio(false, NumberSelector::Type::selector_12x4),
+    m_modulator_ratio(true, NumberSelector::Type::selector_12x4),
+    m_fm_exp("fm_exp", LeftRightButton::Type::osc_fm_exp),
+    m_xy(vts, "osc" + p_osc_number + "_vec_", m_xy_x, m_xy_y, true),
+    m_HP_label("HighPass"),
+    m_LP_label("LowPass"),
+    m_osc_number(p_osc_number),
+    m_wavetable_identifier("osc" + p_osc_number + "_wavetable"),
+    m_modulation_source_identifier("osc" + p_osc_number + "_mod_source"),
+    m_chipwave_identifier("osc" + p_osc_number + "_chipwave"),
+    m_modulator_wave_identifier("osc" + p_osc_number + "_modulator_wave"),
+    m_carrier_wave_identifier("osc" + p_osc_number + "_carrier_wave"),
+    m_modulator_ratio_identifier("osc" + p_osc_number + "_modulator_ratio"),
+    m_carrier_ratio_identifier("osc" + p_osc_number + "_carrier_ratio"),
+    m_analog_wave_identifier("osc" + p_osc_number + "_analog_wave"),
+    m_vec_a_identifier("osc" + p_osc_number + "_vec_a"),
+    m_vec_b_identifier("osc" + p_osc_number + "_vec_b"),
+    m_vec_c_identifier("osc" + p_osc_number + "_vec_c"),
+    m_vec_d_identifier("osc" + p_osc_number + "_vec_d"),
+    m_pos_mod_identifier("osc" + p_osc_number + "_pos_mod"),
+    m_oct_label("Oct"),
+    m_semi_label("Semi"),
+    m_fine_label("Fine"),
+    m_vol_label("Vol"),
+    m_drift_label("Drift"),
+    m_pw_label("PW"),
+    m_chip1_label("1"),
+    m_chip2_label("2"),
+    m_chip_speed_label("Speed"),
+    m_wt_select_label("Wavetable"),
+    m_wt_mod_label("Modulation"),
+    m_wt_pos_label("WT-Position"),
+    m_pos_mod(OdinKnob::Type::knob_8x8a),
+    m_wt_amount_label("Amount"),
+    m_detune_spread_label("WT-Spread"),
+    m_detune_pos_label("WT-Position"),
+    m_detune_label("Detune"),
+    m_detune_wt_label("Wavetable"),
+    m_vec_x_label("X"),
+    m_vec_y_label("Y"),
+    m_vec_a_label("A"),
+    m_vec_b_label("B"),
+    m_vec_c_label("C"),
+    m_vec_d_label("D"),
+    m_oct(OdinKnob::Type::knob_4x4a),
+    m_semi(OdinKnob::Type::knob_4x4a),
+    m_fine(OdinKnob::Type::knob_4x4a),
+    m_vol(OdinKnob::Type::knob_5x5a),
+    m_pw(OdinKnob::Type::knob_8x8a),
+    m_drift(OdinKnob::Type::knob_8x8a),
+    m_position(OdinKnob::Type::knob_8x8a),
+    m_detune(OdinKnob::Type::knob_8x8a),
+    m_spread(OdinKnob::Type::knob_5x5a),
+    m_position_multi(OdinKnob::Type::knob_5x5a),
+    m_xy_x(OdinKnob::Type::knob_5x5a),
+    m_xy_y(OdinKnob::Type::knob_5x5a),
+    m_vec_a(GlassDropdown::Type::dropdown_14x4),
+    m_vec_b(GlassDropdown::Type::dropdown_14x4),
+    m_vec_c(GlassDropdown::Type::dropdown_14x4),
+    m_vec_d(GlassDropdown::Type::dropdown_14x4),
+    m_step_1(OdinKnob::Type::knob_4x4a),
+    m_step_2(OdinKnob::Type::knob_4x4a),
+    m_step_3(OdinKnob::Type::knob_4x4a),
+    m_speed(OdinKnob::Type::knob_8x8a),
+    m_arp_label("ARPEGGIATOR"),
+    m_step_label("Steps:"),
+    m_fm(OdinKnob::Type::knob_8x8a),
+    m_lp(OdinKnob::Type::knob_8x8a),
+    m_hp(OdinKnob::Type::knob_8x8a) {
 
 	addAndMakeVisible(m_HP_label);
 	addAndMakeVisible(m_LP_label);
@@ -45,10 +118,14 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor, AudioProcessorValueT
 	addAndMakeVisible(m_modulator_label);
 	addAndMakeVisible(m_FM_label);
 	addAndMakeVisible(m_PM_label);
+	addAndMakeVisible(m_exponential_label);
+	addAndMakeVisible(m_linear_label);
 
 	addAndMakeVisible(m_chip1_label);
 	addAndMakeVisible(m_chip2_label);
 	addAndMakeVisible(m_chip_speed_label);
+	addAndMakeVisible(m_arp_label);
+	addAndMakeVisible(m_step_label);
 
 	addAndMakeVisible(m_wt_select_label);
 	addAndMakeVisible(m_wt_mod_label);
@@ -64,6 +141,9 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor, AudioProcessorValueT
 	addAndMakeVisible(m_vec_b_label);
 	addAndMakeVisible(m_vec_c_label);
 	addAndMakeVisible(m_vec_d_label);
+
+	m_linear_label.setJustification(Justification::centredLeft);
+	m_exponential_label.setJustification(Justification::centredLeft);
 
 	m_WT_container = p_processor.getWavetableContainerPointer();
 
@@ -1046,10 +1126,14 @@ void OscComponent::hideAllComponents() {
 	m_chip1_label.setVisible(false);
 	m_chip2_label.setVisible(false);
 	m_chip_speed_label.setVisible(false);
+	m_arp_label.setVisible(false);
+	m_step_label.setVisible(false);
 	m_carrier_label.setVisible(false);
 	m_modulator_label.setVisible(false);
 	m_FM_label.setVisible(false);
 	m_PM_label.setVisible(false);
+	m_exponential_label.setVisible(false);
+	m_linear_label.setVisible(false);
 	m_HP_label.setVisible(false);
 	m_LP_label.setVisible(false);
 }
@@ -1096,6 +1180,8 @@ void OscComponent::showChiptuneComponents() {
 	m_chip1_label.setVisible(true);
 	m_chip2_label.setVisible(true);
 	m_chip_speed_label.setVisible(true);
+	m_arp_label.setVisible(true);
+	m_step_label.setVisible(true);
 }
 
 void OscComponent::showFMComponents() {
@@ -1111,6 +1197,8 @@ void OscComponent::showFMComponents() {
 	m_carrier_label.setVisible(true);
 	m_modulator_label.setVisible(true);
 	m_FM_label.setVisible(true);
+	m_exponential_label.setVisible(true);
+	m_linear_label.setVisible(true);
 }
 
 void OscComponent::showPMComponents() {
@@ -1346,8 +1434,12 @@ void OscComponent::resized() {
 	GET_LOCAL_AREA(m_chip1_label, "Chip1Label");
 	GET_LOCAL_AREA(m_chip2_label, "Chip2Label");
 	GET_LOCAL_AREA(m_chip_speed_label, "ChipSpeedLabel");
+	GET_LOCAL_AREA(m_arp_label, "ChipArpLabel");
+	GET_LOCAL_AREA(m_step_label, "ChipStepLabel");
 	GET_LOCAL_AREA(m_carrier_label, "CarrierLabel");
 	GET_LOCAL_AREA(m_modulator_label, "ModulatorLabel");
+	GET_LOCAL_AREA(m_exponential_label, "FmExpLabel");
+	GET_LOCAL_AREA(m_linear_label, "FmLinLabel");
 	GET_LOCAL_AREA(m_FM_label, "FmLabel");
 	GET_LOCAL_AREA(m_PM_label, "FmLabel");
 	GET_LOCAL_AREA(m_HP_label, "NoiseHpLabel");
@@ -1373,7 +1465,13 @@ void OscComponent::resized() {
 	GET_LOCAL_AREA(m_drift, "OscDrift");
 	GET_LOCAL_AREA(m_arp, "OscArpeggiator");
 	GET_LOCAL_AREA(m_noise, "OscNoise");
+
+	// note: the 4x4 arp knobs were faultily placed at 0.5 grid cells now we need to align the step button below
+	// by offsetting it half a grid cell to the left
+	const auto grid = ConfigFileManager::getInstance().getOptionGuiScale();
 	GET_LOCAL_AREA(m_step_button, "OscStep");
+	m_step_button.setBounds(m_step_button.getBounds().translated(-grid / 2, 0));
+
 	GET_LOCAL_AREA(m_step_1, "OscStep1");
 	GET_LOCAL_AREA(m_step_2, "OscStep2");
 	GET_LOCAL_AREA(m_step_3, "OscStep3");

@@ -14,10 +14,17 @@
 */
 
 #include "NumberSelector.h"
+#include "../ConfigFileManager.h"
 #include "../GlobalIncludes.h"
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "UIAssetManager.h"
 
-NumberSelector::NumberSelector(bool p_buttons_right) : m_up("up", "", OdinButton::Type::up), m_down("down", "", OdinButton::Type::down) {
+NumberSelector::NumberSelector(bool p_buttons_right, Type p_type) : m_type(p_type), m_up("up", "", OdinButton::Type::up), m_down("down", "", OdinButton::Type::down) {
+	switch (m_type) {
+	case Type::selector_12x4:
+		m_asset = UIAssets::Indices::screen_up_down_24x4_R;
+		break;
+	}
 
 	m_up.setClickingTogglesState(false);
 	m_down.setClickingTogglesState(false);
@@ -75,9 +82,14 @@ NumberSelector::~NumberSelector() {
 }
 
 void NumberSelector::paint(Graphics &g) {
-	g.setColour(COL_LIGHT);
-	static constexpr auto stroke = 1.0f;
-	g.drawRoundedRectangle(getLocalBounds().toFloat().reduced(stroke / 2.0f), 4.0f, stroke);
+	if (m_type == Type::unassigned) {
+		g.setColour(COL_LIGHT);
+		static constexpr auto stroke = 1.0f;
+		g.drawRoundedRectangle(getLocalBounds().toFloat().reduced(stroke / 2.0f), 4.0f, stroke);
+		return;
+	}
+
+	g.drawImageAt(UIAssetManager::getInstance()->getUIAsset(m_asset, ConfigFileManager::getInstance().getOptionGuiScale()), 0, 0);
 }
 
 void NumberSelector::resized() {

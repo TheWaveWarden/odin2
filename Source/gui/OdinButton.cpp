@@ -70,6 +70,7 @@ void OdinButton::paintButton(juce::Graphics &g, bool p_highlight, bool p_pressed
 	auto colour_hex       = getToggleState() ? 0xff0084d7 : 0xff86cbf6;
 	if (p_highlight)
 		colour_hex = 0xffffffff;
+
 	g.setColour(juce::Colour(colour_hex).withAlpha(text_alpha));
 	g.setFont(H * 0.5f);
 	g.drawText(m_button_text, getLocalBounds(), juce::Justification::centred, false);

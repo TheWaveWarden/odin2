@@ -23,18 +23,17 @@ class OdinAudioProcessor;
 
 class LeftRightButton : public juce::Button, public OdinMidiLearnBase {
 public:
-	LeftRightButton(const String &buttonName);
+    enum class Type {
+        osc_fm_exp,
+        filter_comb_polarity
+    };
+
+	LeftRightButton(const String &buttonName, Type p_type);
 	~LeftRightButton();
 
 	void paintButton(Graphics &g, bool shouldDrawButtonAsHighlighted, bool shouldDrawButtonAsDown) override;
-	void setImage(juce::Image p_image, int p_frame) {
-		if (p_frame == 1) {
-			m_image_left = p_image;
-		} else {
-			m_image_right = p_image;
-		}
-	}
 
+	void mouseDrag(const MouseEvent &) override;
 	void mouseDown(const MouseEvent &) override;
 	void mouseExit(const MouseEvent &) override {
 	}
@@ -62,6 +61,11 @@ private:
 	static OdinAudioProcessor *m_processor;
 	juce::Image m_image_left;
 	juce::Image m_image_right;
+
+    bool m_is_up_down = false;
+
+    Type m_type;
+    UIAssets::Indices m_asset;
 
 	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(LeftRightButton)
 };

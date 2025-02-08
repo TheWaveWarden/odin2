@@ -20,14 +20,12 @@
 #include "JsonGuiProvider.h"
 #include "UIAssetManager.h"
 
-
 FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts, const std::string &p_filter_number) :
     m_value_tree(vts), m_filter_number(p_filter_number), m_vowel_left(false), m_vowel_right(true), m_vowel_left_identifier("fil" + p_filter_number + "_vowel_left"),
-    m_vowel_right_identifier("fil" + p_filter_number + "_vowel_right"), m_comb_plus_minus("comb_plus_minus"), m_vel_label("Vel"), m_kbd_label("Kbd"), m_env_label("Env"),
-    m_gain_label("Gain"), m_freq_label("Frequency"), m_res_label("Resonance"), m_saturation_label("Saturation"), m_formant_transition_label("Transition"),
-    m_ring_mod_amount_label("Amount"), m_sem_notch_label("Notch"), m_sem_lp_label("LP"), m_sem_hp_label("HP"), m_vowel1_label("Vowel 1"),
-    m_vowel2_label("Vowel 2")
-{
+    m_vowel_right_identifier("fil" + p_filter_number + "_vowel_right"), m_comb_plus_minus("comb_plus_minus", LeftRightButton::Type::filter_comb_polarity), m_vel_label("Vel"),
+    m_kbd_label("Kbd"), m_env_label("Env"), m_gain_label("Gain"), m_freq_label("Frequency"), m_res_label("Resonance"), m_saturation_label("Saturation"),
+    m_formant_transition_label("Transition"), m_ring_mod_amount_label("Amount"), m_sem_notch_label("Notch"), m_sem_lp_label("LP"), m_sem_hp_label("HP"), m_vowel1_label("Vowel 1"),
+    m_vowel2_label("Vowel 2") {
 
 	addAndMakeVisible(m_vel_label);
 	addAndMakeVisible(m_kbd_label);

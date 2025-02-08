@@ -28,14 +28,14 @@ void SpecdrawDisplay::paint(Graphics &g) {
 	top_left.addXY(m_inlay + 1, m_inlay);
 	juce::Point<int> bottom_right = getLocalBounds().getBottomRight();
 	bottom_right.addXY(-m_inlay - 1, -m_inlay);
-	g.setColour(COL_LIGHT);
-	g.drawRect(juce::Rectangle<int>(top_left, bottom_right), 1);
 
 	int draw_inlay_left_spec = DRAW_INLAY_LEFT_SPEC;
 	float height             = (float)(getHeight() - DRAW_INLAY_UP_SPEC - DRAW_INLAY_DOWN_SPEC);
 
 	float width      = float(W - DRAW_INLAY_LEFT_SPEC - DRAW_INLAY_RIGHT_SPEC) / float(SPECDRAW_STEPS_X);
 	float draw_width = 2.8f;
+
+    g.setColour(COL_TEXT_BLUE.withAlpha(0.9f));
 
 	for (int i = 0; i < SPECDRAW_STEPS_X; ++i) {
 		g.drawLine(draw_inlay_left_spec + i * width,

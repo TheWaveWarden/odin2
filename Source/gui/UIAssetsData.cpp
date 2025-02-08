@@ -3,7 +3,7 @@
 
 #include "UIAssetsData.h"
 
-std::array<const char*, 1473> UIAssetsData::Data = {
+std::array<const char*, 1481> UIAssetsData::Data = {
     BinaryData::knob_4x4_a_0000_png,
     BinaryData::knob_4x4_a_0001_png,
     BinaryData::knob_4x4_a_0002_png,
@@ -1436,6 +1436,14 @@ std::array<const char*, 1473> UIAssetsData::Data = {
     BinaryData::bttn_select_bot_41x5_on_png,
     BinaryData::bttn_select_bot_41x5_on_hover_png,
     BinaryData::bttn_select_bot_41x5_on_pressed_png,
+    BinaryData::switch_comb_neg_png,
+    BinaryData::switch_comb_neg_hover_png,
+    BinaryData::switch_comb_pos_png,
+    BinaryData::switch_comb_pos_hover_png,
+    BinaryData::switch_v_down_png,
+    BinaryData::switch_v_down_hover_png,
+    BinaryData::switch_v_up_png,
+    BinaryData::switch_v_up_hover_png,
     BinaryData::Filter_Bandpass12_png,
     BinaryData::Filter_Bandpass24_png,
     BinaryData::Filter_Combfilter_png,
@@ -1467,14 +1475,14 @@ std::array<const char*, 1473> UIAssetsData::Data = {
     BinaryData::Oscillator_Wavetable_png,
     BinaryData::screen_dropdown_12x4_png,
     BinaryData::screen_dropdown_14x4_png,
-    BinaryData::screen_up-down_12x4_R_png,
-    BinaryData::screen_up-down_13x4_LR_png,
-    BinaryData::screen_up-down_13x4_R_png,
-    BinaryData::screen_up-down_14x4_LR_png,
-    BinaryData::screen_up-down_14x4_R_png,
-    BinaryData::screen_up-down_16x4_R_png,
-    BinaryData::screen_up-down_18x4_R_png,
-    BinaryData::screen_up-down_24x4_R_png,
-    BinaryData::screen_up-down_8x4_L_png,
-    BinaryData::screen_up-down_8x4_R_png,
+    BinaryData::screen_up_down_12x4_R_png,
+    BinaryData::screen_up_down_13x4_LR_png,
+    BinaryData::screen_up_down_13x4_R_png,
+    BinaryData::screen_up_down_14x4_LR_png,
+    BinaryData::screen_up_down_14x4_R_png,
+    BinaryData::screen_up_down_16x4_R_png,
+    BinaryData::screen_up_down_18x4_R_png,
+    BinaryData::screen_up_down_24x4_R_png,
+    BinaryData::screen_up_down_8x4_L_png,
+    BinaryData::screen_up_down_8x4_R_png,
 };

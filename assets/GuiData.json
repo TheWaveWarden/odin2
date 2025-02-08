@@ -288,40 +288,52 @@
     "Y": 2
   },
   "CarrWave": {
-    "SizeX": 18,
-    "SizeY": 3,
+    "SizeX": 24,
+    "SizeY": 4,
     "X": 2,
-    "Y": 2
+    "Y": 30
   },
   "CarrierLabel": {
-    "SizeX": 9,
+    "SizeX": 12,
     "SizeY": 3,
-    "X": 11,
-    "Y": 7
+    "X": 14,
+    "Y": 26
   },
   "Chip1Label": {
-    "SizeX": 3,
+    "SizeX": 4,
     "SizeY": 4,
-    "X": 4,
-    "Y": 28
+    "X": 11,
+    "Y": 23
   },
   "Chip2Label": {
-    "SizeX": 3,
+    "SizeX": 4,
     "SizeY": 4,
-    "X": 15,
-    "Y": 28
+    "X": 18,
+    "Y": 23
+  },
+  "ChipArpLabel": {
+    "SizeX": 19,
+    "SizeY": 4,
+    "X": 6,
+    "Y": 12
   },
   "ChipSpeedLabel": {
     "SizeX": 8,
     "SizeY": 3,
-    "X": 41,
-    "Y": 28
+    "X": 35,
+    "Y": 22
+  },
+  "ChipStepLabel": {
+    "SizeX": 8,
+    "SizeY": 4,
+    "X": 3,
+    "Y": 23
   },
   "ChipWave": {
-    "SizeX": 18,
-    "SizeY": 3,
-    "X": 4,
-    "Y": 12
+    "SizeX": 24,
+    "SizeY": 4,
+    "X": 2,
+    "Y": 30
   },
   "Chipdraw": {
     "SizeX": 6,
@@ -656,19 +668,19 @@
   "FilLeft1": {
     "SizeX": 5,
     "SizeY": 5,
-    "X": 9,
+    "X": 10,
     "Y": 57
   },
   "FilLeft2": {
     "SizeX": 5,
     "SizeY": 5,
-    "X": 9,
+    "X": 10,
     "Y": 63
   },
   "FilLeft3": {
     "SizeX": 5,
     "SizeY": 5,
-    "X": 9,
+    "X": 10,
     "Y": 69
   },
   "FilModuleLabel": {
@@ -692,25 +704,25 @@
   "FilRight1": {
     "SizeX": 5,
     "SizeY": 5,
-    "X": 186,
+    "X": 185,
     "Y": 51
   },
   "FilRight2": {
     "SizeX": 5,
     "SizeY": 5,
-    "X": 186,
+    "X": 185,
     "Y": 57
   },
   "FilRight3": {
     "SizeX": 5,
     "SizeY": 5,
-    "X": 186,
+    "X": 185,
     "Y": 63
   },
   "FilRightF1": {
     "SizeX": 5,
     "SizeY": 5,
-    "X": 186,
+    "X": 185,
     "Y": 69
   },
   "FilRingModAmount": {
@@ -821,11 +833,23 @@
     "X": 1,
     "Y": 0
   },
-  "FmLabel": {
-    "SizeX": 5,
+  "FmExpLabel": {
+    "SizeX": 13,
     "SizeY": 3,
-    "X": 24,
+    "X": 5,
+    "Y": 13
+  },
+  "FmLabel": {
+    "SizeX": 6,
+    "SizeY": 3,
+    "X": 27,
     "Y": 22
+  },
+  "FmLinLabel": {
+    "SizeX": 8,
+    "SizeY": 3,
+    "X": 5,
+    "Y": 18
   },
   "GainLabel": {
     "SizeX": 6,
@@ -984,10 +1008,10 @@
     "Y": 0
   },
   "ModWave": {
-    "SizeX": 18,
-    "SizeY": 3,
-    "X": 41,
-    "Y": 31
+    "SizeX": 24,
+    "SizeY": 4,
+    "X": 34,
+    "Y": 30
   },
   "ModWheel": {
     "SizeX": 3,
@@ -996,9 +1020,9 @@
     "Y": 137
   },
   "ModulatorLabel": {
-    "SizeX": 10,
+    "SizeX": 12,
     "SizeY": 3,
-    "X": 41,
+    "X": 34,
     "Y": 26
   },
   "ModwheelLabel": {
@@ -1020,16 +1044,16 @@
     "Y": 2
   },
   "NoiseHpLabel": {
-    "SizeX": 14,
+    "SizeX": 12,
     "SizeY": 3,
-    "X": 10,
-    "Y": 16
+    "X": 15,
+    "Y": 23
   },
   "NoiseLpLabel": {
-    "SizeX": 14,
+    "SizeX": 10,
     "SizeY": 3,
     "X": 33,
-    "Y": 20
+    "Y": 23
   },
   "Osc1": {
     "SizeX": 60,
@@ -1074,46 +1098,46 @@
     "Y": 9
   },
   "OscArpeggiator": {
-    "SizeX": 14,
-    "SizeY": 3,
-    "X": 3,
-    "Y": 20
+    "SizeX": 4,
+    "SizeY": 4,
+    "X": 2,
+    "Y": 12
   },
   "OscCarrRatio": {
-    "SizeX": 7,
-    "SizeY": 3,
+    "SizeX": 12,
+    "SizeY": 4,
     "X": 2,
-    "Y": 7
+    "Y": 25
   },
   "OscDetune": {
-    "SizeX": 8,
-    "SizeY": 10,
-    "X": 26,
-    "Y": 13
+    "SizeX": 10,
+    "SizeY": 11,
+    "X": 25,
+    "Y": 12
   },
   "OscDetuneLabel": {
     "SizeX": 10,
-    "SizeY": 4,
-    "X": 35,
-    "Y": 15
+    "SizeY": 3,
+    "X": 25,
+    "Y": 22
   },
   "OscDetunePosLabel": {
-    "SizeX": 12,
+    "SizeX": 13,
     "SizeY": 3,
-    "X": 7,
-    "Y": 32
+    "X": 1,
+    "Y": 28
   },
   "OscDetuneSpreadLabel": {
-    "SizeX": 12,
+    "SizeX": 13,
     "SizeY": 3,
-    "X": 7,
+    "X": 1,
     "Y": 17
   },
   "OscDetuneWtLabel": {
     "SizeX": 14,
-    "SizeY": 4,
-    "X": 26,
-    "Y": 30
+    "SizeY": 3,
+    "X": 23,
+    "Y": 27
   },
   "OscDrift": {
     "SizeX": 10,
@@ -1122,57 +1146,57 @@
     "Y": 15
   },
   "OscFM": {
-    "SizeX": 8,
-    "SizeY": 8,
-    "X": 27,
-    "Y": 15
+    "SizeX": 10,
+    "SizeY": 11,
+    "X": 25,
+    "Y": 12
   },
   "OscFine": {
     "SizeX": 6,
     "SizeY": 7,
-    "X": 45,
+    "X": 44,
     "Y": 2
   },
   "OscFmExp": {
-    "SizeX": 12,
-    "SizeY": 3,
+    "SizeX": 2,
+    "SizeY": 6,
     "X": 2,
-    "Y": 30
+    "Y": 14
   },
   "OscHP": {
-    "SizeX": 8,
-    "SizeY": 8,
-    "X": 13,
-    "Y": 20
+    "SizeX": 10,
+    "SizeY": 11,
+    "X": 16,
+    "Y": 12
   },
   "OscLP": {
-    "SizeX": 8,
-    "SizeY": 8,
-    "X": 36,
-    "Y": 11
+    "SizeX": 10,
+    "SizeY": 11,
+    "X": 33,
+    "Y": 12
   },
   "OscModRatio": {
-    "SizeX": 7,
-    "SizeY": 3,
-    "X": 52,
-    "Y": 26
-  },
-  "OscModSource": {
-    "SizeX": 26,
-    "SizeY": 5,
-    "X": 10,
+    "SizeX": 12,
+    "SizeY": 4,
+    "X": 46,
     "Y": 25
   },
+  "OscModSource": {
+    "SizeX": 24,
+    "SizeY": 4,
+    "X": 34,
+    "Y": 30
+  },
   "OscNoise": {
-    "SizeX": 6,
-    "SizeY": 3,
-    "X": 25,
-    "Y": 12
+    "SizeX": 7,
+    "SizeY": 4,
+    "X": 51,
+    "Y": 30
   },
   "OscOct": {
     "SizeX": 6,
     "SizeY": 7,
-    "X": 31,
+    "X": 30,
     "Y": 2
   },
   "OscPW": {
@@ -1182,22 +1206,22 @@
     "Y": 15
   },
   "OscPos": {
-    "SizeX": 7,
-    "SizeY": 8,
-    "X": 32,
+    "SizeX": 10,
+    "SizeY": 11,
+    "X": 16,
     "Y": 12
   },
   "OscPosMod": {
-    "SizeX": 7,
-    "SizeY": 7,
-    "X": 43,
-    "Y": 24
+    "SizeX": 10,
+    "SizeY": 11,
+    "X": 34,
+    "Y": 12
   },
   "OscPositionMulti": {
-    "SizeX": 6,
-    "SizeY": 6,
-    "X": 10,
-    "Y": 25
+    "SizeX": 7,
+    "SizeY": 8,
+    "X": 4,
+    "Y": 21
   },
   "OscPulseLED": {
     "SizeX": 9,
@@ -1220,7 +1244,7 @@
   "OscSemi": {
     "SizeX": 6,
     "SizeY": 7,
-    "X": 38,
+    "X": 37,
     "Y": 2
   },
   "OscSineLED": {
@@ -1230,40 +1254,40 @@
     "Y": 28
   },
   "OscSpeed": {
-    "SizeX": 6,
-    "SizeY": 6,
-    "X": 42,
-    "Y": 21
+    "SizeX": 10,
+    "SizeY": 11,
+    "X": 34,
+    "Y": 12
   },
   "OscSpread": {
-    "SizeX": 6,
-    "SizeY": 6,
-    "X": 10,
+    "SizeX": 7,
+    "SizeY": 8,
+    "X": 4,
     "Y": 10
   },
   "OscStep": {
-    "SizeX": 8,
-    "SizeY": 3,
-    "X": 28,
+    "SizeX": 7,
+    "SizeY": 4,
+    "X": 24,
     "Y": 23
   },
   "OscStep1": {
     "SizeX": 6,
-    "SizeY": 6,
-    "X": 7,
-    "Y": 27
+    "SizeY": 7,
+    "X": 10,
+    "Y": 16
   },
   "OscStep2": {
     "SizeX": 6,
-    "SizeY": 6,
-    "X": 18,
-    "Y": 27
+    "SizeY": 7,
+    "X": 17,
+    "Y": 16
   },
   "OscStep3": {
     "SizeX": 6,
-    "SizeY": 6,
-    "X": 29,
-    "Y": 27
+    "SizeY": 7,
+    "X": 24,
+    "Y": 16
   },
   "OscSync": {
     "SizeX": 7,
@@ -1278,64 +1302,64 @@
     "Y": 23
   },
   "OscVecA": {
-    "SizeX": 19,
-    "SizeY": 3,
-    "X": 32,
-    "Y": 14
+    "SizeX": 14,
+    "SizeY": 4,
+    "X": 36,
+    "Y": 13
   },
   "OscVecALabel": {
-    "SizeX": 3,
-    "SizeY": 3,
-    "X": 29,
-    "Y": 14
+    "SizeX": 4,
+    "SizeY": 4,
+    "X": 32,
+    "Y": 13
   },
   "OscVecB": {
-    "SizeX": 19,
-    "SizeY": 3,
-    "X": 32,
-    "Y": 20
+    "SizeX": 14,
+    "SizeY": 4,
+    "X": 36,
+    "Y": 18
   },
   "OscVecBLabel": {
-    "SizeX": 3,
-    "SizeY": 3,
-    "X": 29,
-    "Y": 20
+    "SizeX": 4,
+    "SizeY": 4,
+    "X": 32,
+    "Y": 18
   },
   "OscVecC": {
-    "SizeX": 19,
-    "SizeY": 3,
-    "X": 32,
-    "Y": 26
+    "SizeX": 14,
+    "SizeY": 4,
+    "X": 36,
+    "Y": 23
   },
   "OscVecCLabel": {
-    "SizeX": 3,
-    "SizeY": 3,
-    "X": 29,
-    "Y": 26
+    "SizeX": 4,
+    "SizeY": 4,
+    "X": 32,
+    "Y": 23
   },
   "OscVecD": {
-    "SizeX": 19,
-    "SizeY": 3,
-    "X": 32,
-    "Y": 32
+    "SizeX": 14,
+    "SizeY": 4,
+    "X": 36,
+    "Y": 28
   },
   "OscVecDLabel": {
-    "SizeX": 3,
-    "SizeY": 3,
-    "X": 29,
-    "Y": 32
+    "SizeX": 4,
+    "SizeY": 4,
+    "X": 32,
+    "Y": 28
   },
   "OscVecXLabel": {
     "SizeX": 3,
     "SizeY": 3,
-    "X": 5,
-    "Y": 6
+    "X": 28,
+    "Y": 18
   },
   "OscVecYLabel": {
     "SizeX": 3,
     "SizeY": 3,
-    "X": 17,
-    "Y": 6
+    "X": 28,
+    "Y": 30
   },
   "OscVol": {
     "SizeX": 7,
@@ -1350,58 +1374,58 @@
     "Y": 15
   },
   "OscWaveMulti": {
-    "SizeX": 27,
-    "SizeY": 5,
-    "X": 20,
-    "Y": 25
-  },
-  "OscWaveWT": {
-    "SizeX": 27,
-    "SizeY": 5,
-    "X": 2,
-    "Y": 13
-  },
-  "OscWtAmountLabel": {
-    "SizeX": 11,
+    "SizeX": 24,
     "SizeY": 4,
-    "X": 41,
-    "Y": 31
-  },
-  "OscWtModLabel": {
-    "SizeX": 15,
-    "SizeY": 4,
-    "X": 15,
+    "X": 18,
     "Y": 30
   },
-  "OscWtPosLabel": {
-    "SizeX": 11,
+  "OscWaveWT": {
+    "SizeX": 24,
+    "SizeY": 4,
+    "X": 2,
+    "Y": 30
+  },
+  "OscWtAmountLabel": {
+    "SizeX": 10,
     "SizeY": 3,
-    "X": 30,
-    "Y": 20
+    "X": 34,
+    "Y": 22
+  },
+  "OscWtModLabel": {
+    "SizeX": 16,
+    "SizeY": 3,
+    "X": 38,
+    "Y": 27
+  },
+  "OscWtPosLabel": {
+    "SizeX": 12,
+    "SizeY": 3,
+    "X": 15,
+    "Y": 22
   },
   "OscWtSelectLabel": {
     "SizeX": 16,
-    "SizeY": 4,
-    "X": 7,
-    "Y": 18
+    "SizeY": 3,
+    "X": 6,
+    "Y": 27
   },
   "OscXy": {
-    "SizeX": 25,
-    "SizeY": 25,
-    "X": 2,
-    "Y": 10
+    "SizeX": 24,
+    "SizeY": 24,
+    "X": 1,
+    "Y": 11
   },
   "OscXyX": {
-    "SizeX": 4,
-    "SizeY": 4,
-    "X": 8,
-    "Y": 5
+    "SizeX": 7,
+    "SizeY": 8,
+    "X": 26,
+    "Y": 23
   },
   "OscXyY": {
-    "SizeX": 4,
-    "SizeY": 4,
-    "X": 20,
-    "Y": 5
+    "SizeX": 7,
+    "SizeY": 8,
+    "X": 26,
+    "Y": 11
   },
   "Osc_drift_label": {
     "SizeX": 8,
@@ -1412,14 +1436,14 @@
   "Osc_fine_label": {
     "SizeX": 6,
     "SizeY": 3,
-    "X": 45,
-    "Y": 7
+    "X": 44,
+    "Y": 8
   },
   "Osc_oct_label": {
     "SizeX": 6,
     "SizeY": 3,
-    "X": 31,
-    "Y": 7
+    "X": 30,
+    "Y": 8
   },
   "Osc_osc_label": {
     "SizeX": 25,
@@ -1448,14 +1472,14 @@
   "Osc_semi_label": {
     "SizeX": 6,
     "SizeY": 3,
-    "X": 38,
-    "Y": 7
+    "X": 37,
+    "Y": 8
   },
   "Osc_vol_label": {
     "SizeX": 7,
     "SizeY": 3,
     "X": 51,
-    "Y": 13
+    "Y": 14
   },
   "PanLabel": {
     "SizeX": 9,
@@ -1788,7 +1812,7 @@
     "Y": 12
   },
   "Wavedraw": {
-    "SizeX": 51,
+    "SizeX": 49,
     "SizeY": 24,
     "X": 1,
     "Y": 11

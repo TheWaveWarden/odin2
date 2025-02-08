@@ -11,7 +11,7 @@ public:
 	}
 
 	void paint(juce::Graphics &g) {
-		g.setColour(COL_LIGHT);
+		g.setColour(juce::Colours::white.withAlpha(0.7f));
 		if (m_rotate_90_degrees)
 			g.setFont(W * m_font_height_relative);
 		else

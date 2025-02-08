@@ -22,3 +22,4 @@ PenaltyExcessCharacter: 100
 PointerAlignment: Right
 ReflowComments: false
 SortIncludes: true
+PackConstructorInitializers: CurrentLine

@@ -14,10 +14,21 @@
 */
 
 #include "GlassDropdown.h"
+#include "../ConfigFileManager.h"
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "UIAssetManager.h"
 
-GlassDropdown::GlassDropdown() {
+GlassDropdown::GlassDropdown(Type p_type) : m_type(p_type) {
 	setLookAndFeel(&m_menu_feels);
+
+	switch (m_type) {
+	case Type::dropdown_12x4:
+		m_asset = UIAssets::Indices::screen_dropdown_12x4;
+		break;
+	case Type::dropdown_14x4:
+		m_asset = UIAssets::Indices::screen_dropdown_14x4;
+		break;
+	}
 }
 
 GlassDropdown::~GlassDropdown() {
@@ -25,9 +36,15 @@ GlassDropdown::~GlassDropdown() {
 }
 
 void GlassDropdown::paint(Graphics &g) {
-	g.setColour(COL_LIGHT);
-	g.drawRect(getLocalBounds(), 1);
-	g.setFont(H * 0.6f);
+	if (m_type == Type::unassigned) {
+		g.drawRect(getLocalBounds(), 1);
+	} else {
+		auto background = UIAssetManager::getInstance()->getUIAsset(m_asset, ConfigFileManager::getInstance().getOptionGuiScale());
+		g.drawImageAt(background, 0, 0);
+	}
+
+	g.setColour(COL_TEXT_BLUE);
+	g.setFont(H * 0.54f);
 
 	auto text_bounds = getLocalBounds();
 	text_bounds.removeFromRight(H).reduced(proportionOfHeight(0.4f));
@@ -43,7 +60,7 @@ void GlassDropdown::paint(Graphics &g) {
 }
 
 void GlassDropdown::paintTriangle(juce::Graphics &g) {
-	auto triangle_bounds = getLocalBounds().removeFromRight(H).reduced(proportionOfHeight(0.4f));
+	auto triangle_bounds = getLocalBounds().removeFromRight(H).reduced(proportionOfHeight(0.3f), proportionOfHeight(0.4f));
 
 	// draw the triangle
 	juce::Path triangle;

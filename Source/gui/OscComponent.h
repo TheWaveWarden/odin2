@@ -169,11 +169,15 @@ protected:
 	TextLabel m_chip1_label;
 	TextLabel m_chip2_label;
 	TextLabel m_chip_speed_label;
+	TextLabel m_arp_label;
+	TextLabel m_step_label;
 
 	TextLabel m_carrier_label;
 	TextLabel m_modulator_label;
 	TextLabel m_FM_label;
 	TextLabel m_PM_label;
+	TextLabel m_exponential_label;
+	TextLabel m_linear_label;
 
 	TextLabel m_HP_label;
 	TextLabel m_LP_label;

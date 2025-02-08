@@ -25,48 +25,40 @@ ChipdrawWindow::~ChipdrawWindow() {
 }
 
 void ChipdrawWindow::paint(Graphics &g) {
-	int draw_inlay_left       = proportionOfWidth(DRAW_INLAY_HORZ_PROPORTION);
-	int draw_inlay_right      = draw_inlay_left;
-	int draw_inlay_up         = proportionOfHeight(DRAW_INLAY_VERT_PROPORION);
-	int draw_inlay_down       = draw_inlay_up;
-	int chipdraw_thiccness    = proportionOfWidth(DRAW_STROKE_PROPORION);
+	const int draw_inlay_left    = proportionOfWidth(DRAW_INLAY_HORZ_PROPORTION);
+	const int draw_inlay_right   = draw_inlay_left;
+	const int draw_inlay_up      = proportionOfHeight(DRAW_INLAY_VERT_PROPORION);
+	const int draw_inlay_down    = proportionOfHeight(0.03f);
+	const int chipdraw_thiccness = proportionOfWidth(DRAW_STROKE_PROPORION);
+
 	juce::Point<int> top_left = getLocalBounds().getTopLeft();
 	top_left.addXY(m_inlay + 1, m_inlay);
 	juce::Point<int> bottom_right = getLocalBounds().getBottomRight();
 	bottom_right.addXY(-m_inlay - 1, -m_inlay);
 
-	g.setColour(COL_LIGHT);
-	g.drawRect(juce::Rectangle<int>(top_left, bottom_right), 1);
+	const float width  = (float)(getWidth() - draw_inlay_left - draw_inlay_right) / float(CHIPDRAW_STEPS_X);
+	const float height = (float)(getHeight() - draw_inlay_up - draw_inlay_down) / 2.f;
+	const float mid    = draw_inlay_up + height;
 
-	float width  = (float)(getWidth() - draw_inlay_left - draw_inlay_right) / (float)CHIPDRAW_STEPS_X;
-	float height = (float)(getHeight() - draw_inlay_up - draw_inlay_down) / 2.f;
-	float mid    = (float)getHeight() / 2.f;
-
-	for (int i = 0; i < CHIPDRAW_STEPS_X; ++i) {
-		Path path;
-		path.startNewSubPath(draw_inlay_left + (i)*width, mid - m_draw_values[i] * height);
-		path.lineTo(draw_inlay_left + (i + 1) * width, mid - m_draw_values[i] * height);
-		path.lineTo(draw_inlay_left + (i + 1) * width, mid);
-		path.lineTo(draw_inlay_left + (i)*width, mid);
-		path.closeSubPath();
-
-		g.setColour(COL_LIGHT.withAlpha(0.3f));
-		g.fillPath(path);
-
-		g.setColour(COL_LIGHT);
-		g.drawLine(draw_inlay_left + i * width,
-		           mid - m_draw_values[i] * height,
-		           draw_inlay_left + (i + 1) * width,
-		           mid - m_draw_values[i] * height,
-		           chipdraw_thiccness);
-		if (i != CHIPDRAW_STEPS_X - 1) {
-			g.drawLine(draw_inlay_left + (i + 1) * width,
-			           mid - m_draw_values[i] * height,
-			           draw_inlay_left + (i + 1) * width,
-			           mid - m_draw_values[i + 1] * height,
-			           chipdraw_thiccness);
-		}
+	Path path;
+	path.startNewSubPath(draw_inlay_left, mid - m_draw_values[0] * height);
+	for (int i = 1; i < CHIPDRAW_STEPS_X; ++i) {
+		path.lineTo(draw_inlay_left + i * width, mid - m_draw_values[i - 1] * height);
+		path.lineTo(draw_inlay_left + i * width, mid - m_draw_values[i] * height);
 	}
+	path.lineTo(draw_inlay_left + CHIPDRAW_STEPS_X * width, mid - m_draw_values[CHIPDRAW_STEPS_X - 1] * height);
+
+	// fill
+	Path fill_path = path;
+	fill_path.lineTo(getWidth() - draw_inlay_left, mid);
+	fill_path.lineTo(draw_inlay_left, mid);
+	fill_path.closeSubPath();
+	g.setColour(COL_TEXT_BLUE.withAlpha(0.15f));
+	g.fillPath(fill_path);
+
+	// stroke
+	g.setColour(COL_TEXT_BLUE.withAlpha(0.9f));
+	g.strokePath(path, PathStrokeType(chipdraw_thiccness));
 }
 
 void ChipdrawWindow::mouseDrag(const MouseEvent &event) {
@@ -76,13 +68,6 @@ void ChipdrawWindow::mouseDrag(const MouseEvent &event) {
 void ChipdrawWindow::mouseDown(const MouseEvent &event) {
 	mouseInteraction();
 }
-
-int max_int_chipdraw(int a, int b) {
-	return a < b ? b : a;
-} // shouldnt be here
-int min_int_chipdraw(int a, int b) {
-	return a > b ? b : a;
-} // shouldnt be here
 
 void ChipdrawWindow::mouseInteraction() {
 	int draw_inlay_left    = proportionOfWidth(DRAW_INLAY_HORZ_PROPORTION);
@@ -112,8 +97,8 @@ void ChipdrawWindow::mouseInteraction() {
 	float_y = (round(float_y * CHIPDRAW_STEPS_Y)) / CHIPDRAW_STEPS_Y;
 
 	if (m_mouse_was_down) {
-		int min_x     = min_int_chipdraw(step_x, m_last_x_value);
-		int max_x     = max_int_chipdraw(step_x, m_last_x_value);
+		int min_x     = juce::jmax(step_x, m_last_x_value);
+		int max_x     = juce::jmax(step_x, m_last_x_value);
 		float range_x = max_x - min_x;
 
 		float min_y   = step_x > m_last_x_value ? m_last_y_value : float_y;
@@ -140,7 +125,7 @@ void ChipdrawWindow::mouseInteraction() {
 
 void ChipdrawWindow::mouseUp(const MouseEvent &event) {
 	m_mouse_was_down = false;
-    onMouseUp();
+	onMouseUp();
 }
 
 float *ChipdrawWindow::getDrawnTable() {

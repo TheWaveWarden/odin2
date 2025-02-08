@@ -22,8 +22,12 @@
 
 class NumberSelector : public Component, public AudioProcessorValueTreeState::Listener {
 public:
-	NumberSelector() = delete;
-	NumberSelector(bool p_buttons_right);
+	enum class Type {
+		unassigned,
+		selector_12x4,
+	};
+
+	NumberSelector(bool p_buttons_right, Type p_type = Type::unassigned);
 	~NumberSelector();
 
 	void parameterChanged(const String &parameterID, float newValue) override {
@@ -69,6 +73,7 @@ public:
 	void setMouseDragDivisor(float p_divisor) {
 		m_mouse_drag_divisor = p_divisor;
 	}
+
 protected:
 	float m_mouse_drag_divisor = 7.f;
 	int mouse_reference_value  = 0;
@@ -90,6 +95,9 @@ protected:
 
 	OdinButton m_up;
 	OdinButton m_down;
+
+	Type m_type;
+	UIAssets::Indices m_asset;
 
 	int m_value = 1;
 	bool m_buttons_right;

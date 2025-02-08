@@ -33,13 +33,10 @@ XYPadComponent::~XYPadComponent() {
 void XYPadComponent::paint(Graphics &g) {
 	SET_INTERPOLATION_QUALITY(g)
 
-	g.setColour(COL_LIGHT);
-	g.drawRect(getLocalBounds(), 1);
-
 	if (m_vector_pad) {
-		g.setColour(COL_LIGHT);
-		g.setFont(H / 10.0f);
-		const auto bounds = getLocalBounds().reduced(H / 40.0f);
+		g.setColour(COL_TEXT_BLUE);
+		g.setFont(H / 11.0f);
+		const auto bounds = getLocalBounds().reduced(H / 20.0f);
 		g.drawText("A", bounds, Justification::bottomLeft, false);
 		g.drawText("B", bounds, Justification::topLeft, false);
 		g.drawText("C", bounds, Justification::topRight, false);

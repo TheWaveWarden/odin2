@@ -14,29 +14,36 @@
 */
 
 #include "LeftRightButton.h"
+#include "../ConfigFileManager.h"
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "../PluginProcessor.h"
+#include "UIAssetManager.h"
 
 OdinAudioProcessor *LeftRightButton::m_processor;
 
-LeftRightButton::LeftRightButton(const String &buttonName) : juce::Button(buttonName) {
-	// In your constructor, you should add any child components, and
-	// initialise any special settings that your component needs.
+LeftRightButton::LeftRightButton(const String &buttonName, Type p_type) : juce::Button(buttonName), m_type(p_type) {
+	switch (m_type) {
+	case Type::osc_fm_exp:
+		m_asset      = UIAssets::Indices::switch_v_down;
+		m_is_up_down = true;
+		break;
+	case Type::filter_comb_polarity:
+		m_asset = UIAssets::Indices::switch_v_down;
+		break;
+	}
 }
 
 LeftRightButton::~LeftRightButton() {
-	// setClickingTogglesState(true);
 }
 
-void LeftRightButton::paintButton(Graphics &g, bool shouldDrawButtonAsHighlighted, bool shouldDrawButtonAsDown) {
-	g.setColour(COL_LIGHT);
-	g.drawRect(getLocalBounds(), 1);
-	g.setColour(COL_LIGHT.withAlpha(0.5f));
-
+void LeftRightButton::paintButton(Graphics &g, bool p_highlight, bool /*p_pressed*/) {
+	auto asset = int(m_asset);
 	if (getToggleState())
-		g.fillRect(getLocalBounds().removeFromLeft(getWidth() / 2));
-	else
-		g.fillRect(getLocalBounds().removeFromRight(getWidth() / 2));
+		asset += 2;
+	if (p_highlight)
+		asset += 1;
+
+	g.drawImageAt(UIAssetManager::getInstance()->getUIAsset(UIAssets::Indices(asset), ConfigFileManager::getInstance().getOptionGuiScale()), 0, 0);
 }
 
 void LeftRightButton::mouseDown(const MouseEvent &p_event) {
@@ -73,12 +80,31 @@ void LeftRightButton::mouseDown(const MouseEvent &p_event) {
 		return;
 	}
 	juce::Point<int> mouse_position = getMouseXYRelative();
-	bool left                       = mouse_position.getX() < getWidth() / 2.f ? true : false;
-	if (left) {
+	bool new_toggle_state           = false;
+
+	if (m_is_up_down)
+		new_toggle_state = mouse_position.getY() < getHeight() / 2 ? true : false;
+	else
+		new_toggle_state = mouse_position.getX() > getWidth() / 2 ? true : false;
+
+	if (new_toggle_state) {
 		// Button::mouseDown(p_event);
 		setToggleState(true, sendNotification);
 	} else {
 		// Button::mouseDown(p_event);
 		setToggleState(false, sendNotification);
 	}
+}
+
+void LeftRightButton::mouseDrag(const MouseEvent &p_event) {
+	// for the up down buttons in the FM osc, also allow dragging
+
+	if (!m_is_up_down)
+		return;
+
+	juce::Point<int> mouse_position = getMouseXYRelative();
+	bool new_toggle_state           = mouse_position.getY() < getHeight() / 2 ? true : false;
+
+	if (getToggleState() != new_toggle_state)
+		setToggleState(new_toggle_state, sendNotification);
 }

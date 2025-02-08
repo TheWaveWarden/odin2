@@ -27,6 +27,7 @@ public:
 		unassigned,
 		button_7x4,
 		button_9x4,
+		power_4x4,
 		button_dropdown,
 		up,
 		down,
@@ -53,6 +54,9 @@ public:
 			break;
 		case Type::burger:
 			m_ui_asset_base = int(UIAssets::Indices::bttn_4x4_burger_off);
+			break;
+		case Type::power_4x4:
+			m_ui_asset_base = int(UIAssets::Indices::bttn_4x4_power_off);
 			break;
 		default:
 			break;

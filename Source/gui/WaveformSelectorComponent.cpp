@@ -14,8 +14,10 @@
 */
 
 #include "WaveformSelectorComponent.h"
+#include "../ConfigFileManager.h"
 #include "../GlobalIncludes.h"
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "UIAssetManager.h"
 
 WaveformSelectorComponent::WaveformSelectorComponent(bool p_buttons_right) : m_up("up", "", OdinButton::Type::up), m_down("down", "", OdinButton::Type::down) {
 
@@ -51,15 +53,13 @@ WaveformSelectorComponent::~WaveformSelectorComponent() {
 }
 
 void WaveformSelectorComponent::paint(Graphics &g) {
-	g.setColour(COL_LIGHT);
-	static constexpr auto stroke = 1.0f;
-	g.drawRoundedRectangle(getLocalBounds().toFloat().reduced(stroke / 2.0f), 4.0f, stroke);
+	g.drawImageAt(UIAssetManager::getInstance()->getUIAsset(UIAssets::Indices::screen_up_down_24x4_R, ConfigFileManager::getInstance().getOptionGuiScale()), 0, 0);
 }
 
 void WaveformSelectorComponent::resized() {
-    auto bounds = getLocalBounds();
-    auto button_bounds = bounds.removeFromRight(H);
-    m_up.setBounds(button_bounds.removeFromTop(proportionOfHeight(0.5f)));
-    m_down.setBounds(button_bounds);
-    m_display.setBounds(bounds);
+	auto bounds        = getLocalBounds();
+	auto button_bounds = bounds.removeFromRight(H);
+	m_up.setBounds(button_bounds.removeFromTop(proportionOfHeight(0.5f)));
+	m_down.setBounds(button_bounds);
+	m_display.setBounds(bounds);
 }

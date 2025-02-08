@@ -23,7 +23,9 @@
 
 class GlassDropdown : public juce::ComboBox {
 public:
-	GlassDropdown();
+	enum class Type { unassigned, dropdown_12x4, dropdown_14x4 };
+
+	GlassDropdown(Type p_type = Type::unassigned);
 	virtual ~GlassDropdown();
 
 	virtual void paint(Graphics &) override;
@@ -91,6 +93,9 @@ public:
 
 protected:
 	void paintTriangle(juce::Graphics &g);
+
+    Type m_type;
+    UIAssets::Indices m_asset;
 
 	int m_inlay_top  = 0;
 	int m_inlay_left = 0;
