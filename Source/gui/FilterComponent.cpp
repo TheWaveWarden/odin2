@@ -21,11 +21,40 @@
 #include "UIAssetManager.h"
 
 FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts, const std::string &p_filter_number) :
-    m_value_tree(vts), m_filter_number(p_filter_number), m_vowel_left(false), m_vowel_right(true), m_vowel_left_identifier("fil" + p_filter_number + "_vowel_left"),
-    m_vowel_right_identifier("fil" + p_filter_number + "_vowel_right"), m_comb_plus_minus("comb_plus_minus", LeftRightButton::Type::filter_comb_polarity), m_vel_label("Vel"),
-    m_kbd_label("Kbd"), m_env_label("Env"), m_gain_label("Gain"), m_freq_label("Frequency"), m_res_label("Resonance"), m_saturation_label("Saturation"),
-    m_formant_transition_label("Transition"), m_ring_mod_amount_label("Amount"), m_sem_notch_label("Notch"), m_sem_lp_label("LP"), m_sem_hp_label("HP"), m_vowel1_label("Vowel 1"),
-    m_vowel2_label("Vowel 2") {
+    m_value_tree(vts),
+    m_filter_number(p_filter_number),
+    m_vowel_left(false),
+    m_vowel_right(true),
+    m_vowel_left_identifier("fil" + p_filter_number + "_vowel_left"),
+    m_vowel_right_identifier("fil" + p_filter_number + "_vowel_right"),
+    m_comb_plus_minus("comb_plus_minus", LeftRightButton::Type::filter_comb_polarity),
+    m_vel_label("Vel"),
+    m_kbd_label("Kbd"),
+    m_env_label("Env"),
+    m_gain_label("Gain"),
+    m_freq_label("Frequency"),
+    m_res_label("Resonance"),
+    m_freq_comb_label("Frequency"),
+    m_res_comb_label("Resonance"),
+    m_saturation_label("Saturation"),
+    m_formant_transition_label("Transition"),
+    m_ring_mod_amount_label("Amount"),
+    m_sem_notch_label("Notch"),
+    m_sem_lp_label("LP"),
+    m_sem_hp_label("HP"),
+    m_vowel1_label("Vowel 1"),
+    m_vowel2_label("Vowel 2"),
+    m_vel(OdinKnob::Type::knob_4x4a),
+    m_env(OdinKnob::Type::knob_4x4a),
+    m_kbd(OdinKnob::Type::knob_4x4a),
+    m_gain(OdinKnob::Type::knob_4x4a),
+    m_res(OdinKnob::Type::knob_5x5a),
+    m_sem_transition(OdinKnob::Type::knob_5x5a),
+    m_saturation(OdinKnob::Type::knob_5x5a),
+    m_freq(OdinKnob::Type::knob_8x8a),
+    m_freq_comb(OdinKnob::Type::knob_8x8a),
+    m_res_comb(OdinKnob::Type::knob_8x8a),
+    m_ring_mod_amount(OdinKnob::Type::knob_8x8a) {
 
 	addAndMakeVisible(m_vel_label);
 	addAndMakeVisible(m_kbd_label);
@@ -33,6 +62,8 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts, const std::s
 	addAndMakeVisible(m_gain_label);
 	addAndMakeVisible(m_freq_label);
 	addAndMakeVisible(m_res_label);
+	addAndMakeVisible(m_freq_comb_label);
+	addAndMakeVisible(m_res_comb_label);
 	addAndMakeVisible(m_saturation_label);
 	addAndMakeVisible(m_formant_transition_label);
 	addAndMakeVisible(m_ring_mod_amount_label);
@@ -48,6 +79,8 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts, const std::s
 	m_gain_attach.reset(new OdinKnobAttachment(m_value_tree, "fil" + m_filter_number + "_gain", m_gain));
 	m_freq_attach.reset(new OdinKnobAttachment(m_value_tree, "fil" + m_filter_number + "_freq", m_freq));
 	m_res_attach.reset(new OdinKnobAttachment(m_value_tree, "fil" + m_filter_number + "_res", m_res));
+	m_freq_comb_attach.reset(new OdinKnobAttachment(m_value_tree, "fil" + m_filter_number + "_freq", m_freq_comb));
+	m_res_comb_attach.reset(new OdinKnobAttachment(m_value_tree, "fil" + m_filter_number + "_res", m_res_comb));
 	m_saturation_attach.reset(new OdinKnobAttachment(m_value_tree, "fil" + m_filter_number + "_saturation", m_saturation));
 	m_formant_transition_attach.reset(new OdinKnobAttachment(m_value_tree, "fil" + m_filter_number + "_formant_transition", m_formant_transition));
 	m_ring_mod_amount_attach.reset(new OdinKnobAttachment(m_value_tree, "fil" + m_filter_number + "_ring_mod_amount", m_ring_mod_amount));
@@ -90,11 +123,25 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts, const std::s
 	m_freq.setNumDecimalPlacesToDisplay(1);
 	addChildComponent(m_freq);
 
+	m_freq_comb.setSliderStyle(Slider::RotaryVerticalDrag);
+	m_freq_comb.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
+	m_freq_comb.setRange(FREQ_MIN, FREQ_MAX);
+	m_freq_comb.setKnobTooltip("The filter cutoff frequency");
+	m_freq_comb.setTextValueSuffix(" Hz");
+	m_freq_comb.setNumDecimalPlacesToDisplay(1);
+	addChildComponent(m_freq_comb);
+
 	m_res.setSliderStyle(Slider::RotaryVerticalDrag);
 	m_res.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
 	m_res.setKnobTooltip("Creates a resonant peak at the cutoff "
 	                     "frequency.\nFilters will not\n self oscillate");
 	addChildComponent(m_res);
+
+	m_res_comb.setSliderStyle(Slider::RotaryVerticalDrag);
+	m_res_comb.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
+	m_res_comb.setKnobTooltip("Creates a resonant peak at the cutoff "
+	                          "frequency.\nFilters will not\n self oscillate");
+	addChildComponent(m_res_comb);
 
 	m_saturation.setSliderStyle(Slider::RotaryVerticalDrag);
 	m_saturation.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
@@ -162,6 +209,8 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts, const std::s
 	SET_CTR_KEY(m_gain);
 	SET_CTR_KEY(m_freq);
 	SET_CTR_KEY(m_res);
+	SET_CTR_KEY(m_freq_comb);
+	SET_CTR_KEY(m_res_comb);
 	SET_CTR_KEY(m_saturation);
 	SET_CTR_KEY(m_sem_transition);
 	SET_CTR_KEY(m_formant_transition);
@@ -299,6 +348,8 @@ void FilterComponent::hideAllComponents() {
 	m_gain.setVisible(false);
 	m_freq.setVisible(false);
 	m_res.setVisible(false);
+	m_freq_comb.setVisible(false);
+	m_res_comb.setVisible(false);
 	m_saturation.setVisible(false);
 	m_sem_transition.setVisible(false);
 	m_formant_transition.setVisible(false);
@@ -313,6 +364,8 @@ void FilterComponent::hideAllComponents() {
 	m_gain_label.setVisible(false);
 	m_freq_label.setVisible(false);
 	m_res_label.setVisible(false);
+	m_freq_comb_label.setVisible(false);
+	m_res_comb_label.setVisible(false);
 	m_saturation_label.setVisible(false);
 
 	m_vowel1_label.setVisible(false);
@@ -429,15 +482,15 @@ void FilterComponent::showCombFilterComponents() {
 	m_kbd.setVisible(true);
 	m_env.setVisible(true);
 	m_gain.setVisible(true);
-	m_freq.setVisible(true);
-	m_res.setVisible(true);
+	m_freq_comb.setVisible(true);
+	m_res_comb.setVisible(true);
 
 	m_vel_label.setVisible(true);
 	m_kbd_label.setVisible(true);
 	m_env_label.setVisible(true);
 	m_gain_label.setVisible(true);
-	m_freq_label.setVisible(true);
-	m_res_label.setVisible(true);
+	m_freq_comb_label.setVisible(true);
+	m_res_comb_label.setVisible(true);
 
 	m_comb_plus_minus.setVisible(true);
 }
@@ -460,8 +513,8 @@ void FilterComponent::showRingModFilterComponents() {
 	m_vel.setVisible(true);
 	m_env.setVisible(true);
 	m_gain.setVisible(true);
-	m_freq.setVisible(true);
-	m_freq_label.setVisible(true);
+	m_freq_comb.setVisible(true);
+	m_freq_comb_label.setVisible(true);
 	m_ring_mod_amount.setVisible(true);
 	m_ring_mod_amount_label.setVisible(true);
 }
@@ -485,6 +538,8 @@ void FilterComponent::resized() {
 	GET_LOCAL_AREA(m_gain_label, "FilGainLabel");
 	GET_LOCAL_AREA(m_freq_label, "FilFreqLabel");
 	GET_LOCAL_AREA(m_res_label, "FilResLabel");
+	GET_LOCAL_AREA(m_freq_comb_label, "FilFreqCombLabel");
+	GET_LOCAL_AREA(m_res_comb_label, "FilResCombLabel");
 	GET_LOCAL_AREA(m_saturation_label, "FilSaturationLabel");
 	GET_LOCAL_AREA(m_formant_transition_label, "FilFormantTransitionLabel");
 	GET_LOCAL_AREA(m_ring_mod_amount_label, "FilRingModAmountLabel");
@@ -495,6 +550,8 @@ void FilterComponent::resized() {
 	GET_LOCAL_AREA(m_gain, "FilGain");
 	GET_LOCAL_AREA(m_freq, "FilFreq");
 	GET_LOCAL_AREA(m_res, "FilRes");
+	GET_LOCAL_AREA(m_freq_comb, "FilFreqComb");
+	GET_LOCAL_AREA(m_res_comb, "FilResComb");
 	GET_LOCAL_AREA(m_saturation, "FilSaturation");
 	GET_LOCAL_AREA(m_sem_transition, "FilSemTransition");
 	GET_LOCAL_AREA(m_formant_transition, "FilFormantTransition");

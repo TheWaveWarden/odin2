@@ -28,7 +28,7 @@ LeftRightButton::LeftRightButton(const String &buttonName, Type p_type) : juce::
 		m_is_up_down = true;
 		break;
 	case Type::filter_comb_polarity:
-		m_asset = UIAssets::Indices::switch_v_down;
+		m_asset = UIAssets::Indices::switch_comb_neg;
 		break;
 	}
 }

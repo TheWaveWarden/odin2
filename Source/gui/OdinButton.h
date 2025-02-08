@@ -27,6 +27,7 @@ public:
 		unassigned,
 		button_7x4,
 		button_9x4,
+		button_5x5,
 		power_4x4,
 		button_dropdown,
 		up,
@@ -57,6 +58,9 @@ public:
 			break;
 		case Type::power_4x4:
 			m_ui_asset_base = int(UIAssets::Indices::bttn_4x4_power_off);
+			break;
+        case Type::button_5x5:
+			m_ui_asset_base = int(UIAssets::Indices::bttn_5x5_off);
 			break;
 		default:
 			break;

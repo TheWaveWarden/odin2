@@ -600,21 +600,21 @@
     "Y": 77
   },
   "FilCombPlusMinus": {
-    "SizeX": 12,
-    "SizeY": 5,
-    "X": 41,
-    "Y": 24
+    "SizeX": 6,
+    "SizeY": 4,
+    "X": 27,
+    "Y": 22
   },
   "FilEnv": {
-    "SizeX": 5,
-    "SizeY": 5,
-    "X": 10,
+    "SizeX": 6,
+    "SizeY": 7,
+    "X": 30,
     "Y": 2
   },
   "FilEnvLabel": {
-    "SizeX": 5,
+    "SizeX": 6,
     "SizeY": 3,
-    "X": 10,
+    "X": 30,
     "Y": 8
   },
   "FilFormantTransition": {
@@ -630,58 +630,70 @@
     "Y": 22
   },
   "FilFreq": {
-    "SizeX": 8,
-    "SizeY": 8,
+    "SizeX": 10,
+    "SizeY": 11,
+    "X": 25,
+    "Y": 12
+  },
+  "FilFreqComb": {
+    "SizeX": 10,
+    "SizeY": 11,
     "X": 35,
-    "Y": 13
+    "Y": 12
+  },
+  "FilFreqCombLabel": {
+    "SizeX": 10,
+    "SizeY": 3,
+    "X": 35,
+    "Y": 22
   },
   "FilFreqLabel": {
-    "SizeX": 16,
-    "SizeY": 4,
-    "X": 31,
+    "SizeX": 14,
+    "SizeY": 3,
+    "X": 23,
     "Y": 22
   },
   "FilGain": {
-    "SizeX": 5,
-    "SizeY": 5,
-    "X": 24,
+    "SizeX": 6,
+    "SizeY": 7,
+    "X": 44,
     "Y": 2
   },
   "FilGainLabel": {
-    "SizeX": 5,
+    "SizeX": 6,
     "SizeY": 3,
-    "X": 24,
+    "X": 44,
     "Y": 8
   },
   "FilKbd": {
-    "SizeX": 5,
-    "SizeY": 5,
-    "X": 17,
+    "SizeX": 6,
+    "SizeY": 7,
+    "X": 37,
     "Y": 2
   },
   "FilKbdLabel": {
-    "SizeX": 5,
+    "SizeX": 6,
     "SizeY": 3,
-    "X": 17,
+    "X": 37,
     "Y": 8
   },
   "FilLeft1": {
     "SizeX": 5,
     "SizeY": 5,
     "X": 10,
-    "Y": 57
+    "Y": 56
   },
   "FilLeft2": {
     "SizeX": 5,
     "SizeY": 5,
     "X": 10,
-    "Y": 63
+    "Y": 62
   },
   "FilLeft3": {
     "SizeX": 5,
     "SizeY": 5,
     "X": 10,
-    "Y": 69
+    "Y": 68
   },
   "FilModuleLabel": {
     "SizeX": 21,
@@ -691,87 +703,99 @@
   },
   "FilRes": {
     "SizeX": 7,
-    "SizeY": 7,
+    "SizeY": 8,
+    "X": 13,
+    "Y": 16
+  },
+  "FilResComb": {
+    "SizeX": 10,
+    "SizeY": 11,
     "X": 15,
-    "Y": 18
+    "Y": 12
+  },
+  "FilResCombLabel": {
+    "SizeX": 10,
+    "SizeY": 3,
+    "X": 15,
+    "Y": 22
   },
   "FilResLabel": {
-    "SizeX": 14,
-    "SizeY": 4,
-    "X": 11,
-    "Y": 25
+    "SizeX": 13,
+    "SizeY": 3,
+    "X": 10,
+    "Y": 23
   },
   "FilRight1": {
     "SizeX": 5,
     "SizeY": 5,
     "X": 185,
-    "Y": 51
+    "Y": 50
   },
   "FilRight2": {
     "SizeX": 5,
     "SizeY": 5,
     "X": 185,
-    "Y": 57
+    "Y": 56
   },
   "FilRight3": {
     "SizeX": 5,
     "SizeY": 5,
     "X": 185,
-    "Y": 63
+    "Y": 62
   },
   "FilRightF1": {
     "SizeX": 5,
     "SizeY": 5,
     "X": 185,
-    "Y": 69
+    "Y": 68
   },
   "FilRingModAmount": {
-    "SizeX": 8,
-    "SizeY": 8,
-    "X": 16,
-    "Y": 13
+    "SizeX": 10,
+    "SizeY": 11,
+    "X": 15,
+    "Y": 12
   },
   "FilRingModAmountLabel": {
     "SizeX": 10,
-    "SizeY": 4,
+    "SizeY": 3,
     "X": 15,
     "Y": 22
   },
   "FilSaturation": {
-    "SizeX": 5,
-    "SizeY": 5,
-    "X": 45,
-    "Y": 21
+    "SizeX": 7,
+    "SizeY": 8,
+    "X": 40,
+    "Y": 16
   },
   "FilSaturationLabel": {
     "SizeX": 11,
     "SizeY": 3,
-    "X": 42,
-    "Y": 26
+    "X": 38,
+    "Y": 23
   },
   "FilSemHpLabel": {
     "SizeX": 4,
     "SizeY": 3,
-    "X": 51,
+    "X": 46,
     "Y": 21
   },
   "FilSemLpLabel": {
     "SizeX": 4,
     "SizeY": 3,
-    "X": 44,
+    "X": 37,
     "Y": 21
   },
   "FilSemNotchLabel": {
     "SizeX": 7,
     "SizeY": 3,
-    "X": 46,
-    "Y": 11
+    "X": 40,
+    "Y": 14
   },
   "FilSemTransition": {
     "SizeX": 7,
-    "SizeY": 7,
-    "X": 46,
-    "Y": 14
+    "SizeY": 8,
+    "X": 40,
+    "Y": 16
   },
   "FilSemTransitionLabel": {
     "SizeX": 9,
@@ -780,15 +804,15 @@
     "Y": 20
   },
   "FilVel": {
-    "SizeX": 5,
-    "SizeY": 5,
-    "X": 3,
+    "SizeX": 6,
+    "SizeY": 7,
+    "X": 23,
     "Y": 2
   },
   "FilVelLabel": {
-    "SizeX": 5,
+    "SizeX": 6,
     "SizeY": 3,
-    "X": 3,
+    "X": 23,
     "Y": 8
   },
   "FilVowel1Label": {
@@ -805,15 +829,15 @@
   },
   "FilVowelLeft": {
     "SizeX": 12,
-    "SizeY": 5,
+    "SizeY": 4,
     "X": 13,
-    "Y": 14
+    "Y": 15
   },
   "FilVowelRight": {
     "SizeX": 11,
-    "SizeY": 5,
+    "SizeY": 4,
     "X": 38,
-    "Y": 14
+    "Y": 15
   },
   "FlangerOn": {
     "SizeX": 12,

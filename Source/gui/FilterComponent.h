@@ -94,6 +94,8 @@ protected:
 	TextLabel m_gain_label;
 	TextLabel m_freq_label;
 	TextLabel m_res_label;
+    TextLabel m_freq_comb_label;
+	TextLabel m_res_comb_label;
 	TextLabel m_saturation_label;
 	TextLabel m_sem_notch_label;
 	TextLabel m_sem_lp_label;
@@ -109,6 +111,8 @@ protected:
 	DecibelKnob m_gain;
 	OdinKnob m_freq;
 	OdinKnob m_res;
+    OdinKnob m_freq_comb;
+	OdinKnob m_res_comb;
 	OdinKnob m_saturation;
 	OdinKnob m_sem_transition;
 	OdinKnob m_formant_transition;
@@ -132,6 +136,8 @@ protected:
 	std::unique_ptr<OdinKnobAttachment> m_gain_attach;
 	std::unique_ptr<OdinKnobAttachment> m_freq_attach;
 	std::unique_ptr<OdinKnobAttachment> m_res_attach;
+    std::unique_ptr<OdinKnobAttachment> m_freq_comb_attach;
+	std::unique_ptr<OdinKnobAttachment> m_res_comb_attach;
 	std::unique_ptr<OdinKnobAttachment> m_saturation_attach;
 	std::unique_ptr<OdinKnobAttachment> m_formant_transition_attach;
 	std::unique_ptr<OdinKnobAttachment> m_ring_mod_amount_attach;
