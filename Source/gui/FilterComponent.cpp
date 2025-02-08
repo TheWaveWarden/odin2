@@ -54,7 +54,8 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts, const std::s
     m_freq(OdinKnob::Type::knob_8x8a),
     m_freq_comb(OdinKnob::Type::knob_8x8a),
     m_res_comb(OdinKnob::Type::knob_8x8a),
-    m_ring_mod_amount(OdinKnob::Type::knob_8x8a) {
+    m_ring_mod_amount(OdinKnob::Type::knob_8x8a),
+	m_formant_transition(OdinKnob::Type::knob_8x8a) {
 
 	addAndMakeVisible(m_vel_label);
 	addAndMakeVisible(m_kbd_label);
@@ -499,6 +500,9 @@ void FilterComponent::showFormantFilterComponents() {
 	m_vel.setVisible(true);
 	m_env.setVisible(true);
 	m_gain.setVisible(true);
+	m_vel_label.setVisible(true);
+	m_env_label.setVisible(true);
+	m_gain_label.setVisible(true);
 	m_vowel_right.setVisible(true);
 	m_vowel_left.setVisible(true);
 	m_formant_transition.setVisible(true);
@@ -513,6 +517,10 @@ void FilterComponent::showRingModFilterComponents() {
 	m_vel.setVisible(true);
 	m_env.setVisible(true);
 	m_gain.setVisible(true);
+	m_kbd_label.setVisible(true);
+	m_vel_label.setVisible(true);
+	m_env_label.setVisible(true);
+	m_gain_label.setVisible(true);
 	m_freq_comb.setVisible(true);
 	m_freq_comb_label.setVisible(true);
 	m_ring_mod_amount.setVisible(true);

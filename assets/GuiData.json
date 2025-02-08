@@ -66,22 +66,22 @@
     "Y": 45
   },
   "AmpGain": {
-    "SizeX": 6,
-    "SizeY": 6,
-    "X": 27,
-    "Y": 7
+    "SizeX": 10,
+    "SizeY": 11,
+    "X": 25,
+    "Y": 1
   },
   "AmpPan": {
-    "SizeX": 5,
-    "SizeY": 5,
-    "X": 44,
-    "Y": 6
+    "SizeX": 7,
+    "SizeY": 8,
+    "X": 41,
+    "Y": 3
   },
   "AmpVelocity": {
-    "SizeX": 5,
-    "SizeY": 5,
-    "X": 11,
-    "Y": 6
+    "SizeX": 7,
+    "SizeY": 8,
+    "X": 12,
+    "Y": 3
   },
   "ArpDirection": {
     "SizeX": 16,
@@ -270,16 +270,16 @@
     "Y": 17
   },
   "Boost": {
-    "SizeX": 7,
-    "SizeY": 7,
+    "SizeX": 10,
+    "SizeY": 11,
     "X": 9,
-    "Y": 20
+    "Y": 16
   },
   "BoostLabel": {
-    "SizeX": 7,
+    "SizeX": 8,
     "SizeY": 3,
-    "X": 9,
-    "Y": 27
+    "X": 10,
+    "Y": 26
   },
   "BurgerButton": {
     "SizeX": 4,
@@ -458,32 +458,38 @@
   "DetuneLabel": {
     "SizeX": 9,
     "SizeY": 4,
-    "X": 22,
+    "X": 23,
     "Y": 2
   },
   "DistDryWetLabel": {
-    "SizeX": 9,
+    "SizeX": 8,
     "SizeY": 3,
-    "X": 43,
-    "Y": 27
+    "X": 42,
+    "Y": 26
+  },
+  "DistModuleLabel": {
+    "SizeX": 20,
+    "SizeY": 3,
+    "X": 20,
+    "Y": 16
   },
   "Distortion": {
-    "SizeX": 16,
-    "SizeY": 4,
-    "X": 22,
+    "SizeX": 12,
+    "SizeY": 2,
+    "X": 24,
     "Y": 20
   },
   "DistortionAlgo": {
-    "SizeX": 16,
+    "SizeX": 12,
     "SizeY": 4,
-    "X": 22,
-    "Y": 25
+    "X": 24,
+    "Y": 23
   },
   "DryWet": {
-    "SizeX": 7,
-    "SizeY": 7,
-    "X": 44,
-    "Y": 20
+    "SizeX": 10,
+    "SizeY": 11,
+    "X": 41,
+    "Y": 16
   },
   "FX": {
     "SizeX": 60,
@@ -618,8 +624,8 @@
     "Y": 8
   },
   "FilFormantTransition": {
-    "SizeX": 9,
-    "SizeY": 9,
+    "SizeX": 10,
+    "SizeY": 11,
     "X": 27,
     "Y": 12
   },
@@ -848,13 +854,13 @@
   "FlowLeft": {
     "SizeX": 5,
     "SizeY": 5,
-    "X": 54,
+    "X": 55,
     "Y": 0
   },
   "FlowRight": {
     "SizeX": 5,
     "SizeY": 5,
-    "X": 1,
+    "X": 0,
     "Y": 0
   },
   "FmExpLabel": {
@@ -876,10 +882,10 @@
     "Y": 18
   },
   "GainLabel": {
-    "SizeX": 6,
+    "SizeX": 8,
     "SizeY": 3,
-    "X": 27,
-    "Y": 14
+    "X": 26,
+    "Y": 11
   },
   "Glide": {
     "SizeX": 6,
@@ -966,15 +972,15 @@
     "Y": 3
   },
   "Master": {
-    "SizeX": 4,
-    "SizeY": 4,
+    "SizeX": 6,
+    "SizeY": 7,
     "X": 153,
-    "Y": 2
+    "Y": 1
   },
   "MasterLabel": {
     "SizeX": 10,
     "SizeY": 4,
-    "X": 142,
+    "X": 143,
     "Y": 2
   },
   "MatrixAmount1": {
@@ -1506,10 +1512,10 @@
     "Y": 14
   },
   "PanLabel": {
-    "SizeX": 9,
+    "SizeX": 7,
     "SizeY": 3,
-    "X": 42,
-    "Y": 12
+    "X": 41,
+    "Y": 10
   },
   "PhaserDryWet": {
     "SizeX": 7,
@@ -1740,7 +1746,7 @@
     "Y": 79
   },
   "SelectArp": {
-    "SizeX": 41,
+    "SizeX": 40,
     "SizeY": 5,
     "X": 70,
     "Y": 108
@@ -1748,13 +1754,13 @@
   "SelectModMatrix": {
     "SizeX": 40,
     "SizeY": 5,
-    "X": 112,
+    "X": 111,
     "Y": 108
   },
   "SelectPresets": {
     "SizeX": 40,
     "SizeY": 5,
-    "X": 153,
+    "X": 152,
     "Y": 108
   },
   "Specdraw": {
@@ -1800,9 +1806,9 @@
     "Y": 17
   },
   "Tuning": {
-    "SizeX": 16,
+    "SizeX": 14,
     "SizeY": 4,
-    "X": 159,
+    "X": 161,
     "Y": 2
   },
   "UnisonAmount": {
@@ -1812,16 +1818,16 @@
     "Y": 2
   },
   "UnisonDetune": {
-    "SizeX": 4,
-    "SizeY": 4,
+    "SizeX": 6,
+    "SizeY": 7,
     "X": 32,
-    "Y": 2
+    "Y": 1
   },
   "UnisonWidth": {
-    "SizeX": 4,
-    "SizeY": 4,
+    "SizeX": 6,
+    "SizeY": 7,
     "X": 45,
-    "Y": 2
+    "Y": 1
   },
   "ValueInput": {
     "SizeX": 8,
@@ -1832,8 +1838,8 @@
   "VelocityLabel": {
     "SizeX": 9,
     "SizeY": 3,
-    "X": 9,
-    "Y": 12
+    "X": 11,
+    "Y": 10
   },
   "Wavedraw": {
     "SizeX": 49,
@@ -1850,7 +1856,7 @@
   "WidthLabel": {
     "SizeX": 8,
     "SizeY": 4,
-    "X": 37,
+    "X": 38,
     "Y": 2
   },
   "XY_SECTION": {

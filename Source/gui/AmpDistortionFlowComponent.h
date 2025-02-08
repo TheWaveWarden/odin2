@@ -57,6 +57,7 @@ private:
 	TextLabel m_velocity_label;
 	TextLabel m_boost_label;
 	TextLabel m_drywet_label;
+	TextLabel m_distortion_label;
 
 	OdinKnob m_amp_gain;
 	OdinKnob m_amp_pan;

@@ -14,13 +14,16 @@
 */
 
 #include "FixedTextGlassDropdown.h"
+#include "../ConfigFileManager.h"
+#include "UIAssetManager.h"
 
 FixedTextGlassDropdown::FixedTextGlassDropdown(const std::string &p_fixed_text) : m_fixed_text(p_fixed_text) {
 }
 
 void FixedTextGlassDropdown::paint(Graphics &g) {
-	g.setColour(COL_LIGHT);
-	g.drawRect(getLocalBounds(), 1);
+	g.drawImageAt(UIAssetManager::getInstance()->getUIAsset(UIAssets::Indices::screen_dropdown_14x4, ConfigFileManager::getInstance().getOptionGuiScale()), 0, 0);
+
+	g.setColour(COL_TEXT_BLUE);
 	g.setFont(H * 0.6f);
 
 	auto text_bounds = getLocalBounds();

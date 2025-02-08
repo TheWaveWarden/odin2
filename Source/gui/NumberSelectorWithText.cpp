@@ -17,7 +17,7 @@
 #include <JuceHeader.h>
 
 //==============================================================================
-NumberSelectorWithText::NumberSelectorWithText() : NumberSelector(true) {
+NumberSelectorWithText::NumberSelectorWithText() : NumberSelector(true, NumberSelector::Type::selector_14x4) {
 	m_display.setInlay(1);
 
 	m_display.toParentMouseDown = [&](const MouseEvent e) {
@@ -44,7 +44,7 @@ NumberSelectorWithText::NumberSelectorWithText() : NumberSelector(true) {
 	m_display.onMouseDown = [&]() {
 		m_dropdown.clear();
 		for (int index = m_legal_values.size() - 1; index >= 0; --index) {
-			//ugly hack to 
+			//ugly hack to
 			// a) avoid 0 being used as value (reserved for "nothing selected")
 			// b) make ordering inside menu the same as up/down buttons
 			m_dropdown.addItem(9999 - m_legal_values[index], valueToText(m_legal_values[index]));
@@ -58,13 +58,13 @@ NumberSelectorWithText::NumberSelectorWithText() : NumberSelector(true) {
 
 	addAndMakeVisible(m_display);
 
-	m_up.setClickingTogglesState(true);
+	m_up.setClickingTogglesState(false);
 	addAndMakeVisible(m_up);
 	m_up.setTriggeredOnMouseDown(false);
 	m_up.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
 	m_up.onClick = [&]() { increment(); };
 
-	m_down.setClickingTogglesState(true);
+	m_down.setClickingTogglesState(false);
 	addAndMakeVisible(m_down);
 	m_down.setTriggeredOnMouseDown(false);
 	m_down.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
@@ -100,12 +100,12 @@ void NumberSelectorWithText::setValue(int p_value) {
 	}
 	if (!value_legal) {
 		//this should never happen (unless patch with unison = 12 is loaded)
-		int nearest_value = 0;
+		int nearest_value  = 0;
 		float nearest_dist = 999;
 		for (auto value : m_legal_values) {
-			if(fabs(value - p_value) < nearest_dist){
+			if (fabs(value - p_value) < nearest_dist) {
 				nearest_value = value;
-				nearest_dist = fabs(value - p_value);
+				nearest_dist  = fabs(value - p_value);
 			}
 		}
 		m_value = nearest_value;

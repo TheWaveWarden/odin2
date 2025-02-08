@@ -30,6 +30,9 @@ public:
 		button_5x5,
 		power_4x4,
 		button_dropdown,
+		button_left,
+		button_right,
+		fx_enabled,
 		up,
 		down,
 		burger,
@@ -47,6 +50,15 @@ public:
 		case Type::button_dropdown:
 			m_ui_asset_base = int(UIAssets::Indices::bttn_dropdown_5x2_off);
 			break;
+		case Type::button_left:
+			m_ui_asset_base = int(UIAssets::Indices::bttn_5x5_arrow_L_off);
+			break;
+			case Type::button_right:
+			m_ui_asset_base = int(UIAssets::Indices::bttn_5x5_arrow_R_off);
+			break;
+			case Type::fx_enabled:
+			m_ui_asset_base = int(UIAssets::Indices::bttn_12x2_power_off);
+			break;
 		case Type::up:
 			m_ui_asset_base = int(UIAssets::Indices::bttn_4x2_arrow_up_off);
 			break;
@@ -59,7 +71,7 @@ public:
 		case Type::power_4x4:
 			m_ui_asset_base = int(UIAssets::Indices::bttn_4x4_power_off);
 			break;
-        case Type::button_5x5:
+		case Type::button_5x5:
 			m_ui_asset_base = int(UIAssets::Indices::bttn_5x5_off);
 			break;
 		default:

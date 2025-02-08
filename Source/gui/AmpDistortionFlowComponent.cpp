@@ -18,14 +18,30 @@
 #include "JsonGuiProvider.h"
 
 AmpDistortionFlowComponent::AmpDistortionFlowComponent(AudioProcessorValueTreeState &vts) :
-    m_flow_left("flow_left", "<"), m_flow_right("flow_right", ">"), m_distortion("distortion", "Distortion"), m_value_tree(vts), m_gain_label("Gain"), m_pan_label("Pan"),
-    m_velocity_label("Velocity"), m_boost_label("Boost"), m_drywet_label("DryWet") {
+    m_flow_left("flow_left", "", OdinButton::Type::button_left),
+    m_flow_right("flow_right", "", OdinButton::Type::button_right),
+    m_distortion("distortion", "", OdinButton::Type::fx_enabled),
+    m_value_tree(vts),
+    m_gain_label("Gain"),
+    m_pan_label("Pan"),
+    m_velocity_label("Velocity"),
+    m_boost_label("Boost"),
+    m_drywet_label("DryWet"),
+    m_amp_gain(OdinKnob::Type::knob_8x8a),
+    m_amp_pan(OdinKnob::Type::knob_5x5a),
+    m_amp_velocity(OdinKnob::Type::knob_5x5a),
+    m_boost(OdinKnob::Type::knob_8x8b),
+    m_dry_wet(OdinKnob::Type::knob_8x8b),
+    m_distortion_algo(GlassDropdown::Type::dropdown_12x4),
+	m_distortion_label("DISTORTION")
+{
 
 	addAndMakeVisible(m_gain_label);
 	addAndMakeVisible(m_pan_label);
 	addAndMakeVisible(m_velocity_label);
 	addAndMakeVisible(m_boost_label);
 	addAndMakeVisible(m_drywet_label);
+	addAndMakeVisible(m_distortion_label);
 
 	m_flow_left.setClickingTogglesState(true);
 	addAndMakeVisible(m_flow_left);
@@ -150,6 +166,7 @@ void AmpDistortionFlowComponent::resized() {
 	GET_LOCAL_AREA(m_velocity_label, "VelocityLabel");
 	GET_LOCAL_AREA(m_boost_label, "BoostLabel");
 	GET_LOCAL_AREA(m_drywet_label, "DistDryWetLabel");
+	GET_LOCAL_AREA(m_distortion_label, "DistModuleLabel");
 
 	GET_LOCAL_AREA(m_flow_left, "FlowLeft");
 	GET_LOCAL_AREA(m_flow_right, "FlowRight");

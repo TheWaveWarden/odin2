@@ -24,7 +24,9 @@ class NumberSelector : public Component, public AudioProcessorValueTreeState::Li
 public:
 	enum class Type {
 		unassigned,
+		selector_14x4,
 		selector_12x4,
+		selector_8x4,
 	};
 
 	NumberSelector(bool p_buttons_right, Type p_type = Type::unassigned);

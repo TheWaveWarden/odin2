@@ -30,6 +30,9 @@ OdinEditor::OdinEditor(OdinAudioProcessor &p_processor, AudioProcessorValueTreeS
     m_detune_label("Detune"),
     m_width_label("Width"),
     m_master_label("Master"),
+    m_master(OdinKnob::Type::knob_4x4a),
+    m_unison_detune(OdinKnob::Type::knob_4x4a),
+    m_unison_width(OdinKnob::Type::knob_4x4a),
     m_glide_label("Glide"),
     m_osc1_dropdown("osc1_dropdown_button", "", OdinButton::Type::button_dropdown),
     m_osc2_dropdown("osc2_dropdown_button", "", OdinButton::Type::button_dropdown),
@@ -99,7 +102,8 @@ OdinEditor::OdinEditor(OdinAudioProcessor &p_processor, AudioProcessorValueTreeS
     /*m_save_load(vts, p_processor),*/ m_arp(p_processor, vts),
     m_processor(p_processor),
     m_patch_browser(p_processor, vts),
-    m_tuning(p_processor) {
+    m_tuning(p_processor),
+	m_mono_poly_legato_dropdown(GlassDropdown::Type::dropdown_14x4) {
 
 	addAndMakeVisible(m_modwheel_label);
 	addAndMakeVisible(m_pitchwheel_label);
@@ -754,10 +758,7 @@ OdinEditor::~OdinEditor() {
 
 //==============================================================================
 void OdinEditor::paint(Graphics &g) {
-	const auto asset       = UIAssets::Indices::background;
-	juce::Image background = UIAssetManager::getInstance()->getUIAsset(asset, ConfigFileManager::getInstance().getOptionGuiScale());
-	jassert(background.getWidth() == getWidth());
-	jassert(background.getHeight() == getHeight());
+	juce::Image background = UIAssetManager::getInstance()->getUIAsset(UIAssets::Indices::background, ConfigFileManager::getInstance().getOptionGuiScale());
 	g.drawImageAt(background, 0, 0);
 }
 

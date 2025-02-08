@@ -22,7 +22,13 @@
 NumberSelector::NumberSelector(bool p_buttons_right, Type p_type) : m_type(p_type), m_up("up", "", OdinButton::Type::up), m_down("down", "", OdinButton::Type::down) {
 	switch (m_type) {
 	case Type::selector_12x4:
-		m_asset = UIAssets::Indices::screen_up_down_24x4_R;
+		m_asset = UIAssets::Indices::screen_up_down_12x4_R;
+		break;
+	case Type::selector_14x4:
+		m_asset = UIAssets::Indices::screen_up_down_14x4_R;
+		break;
+	case Type::selector_8x4:
+		m_asset = UIAssets::Indices::screen_up_down_8x4_R;
 		break;
 	}
 
