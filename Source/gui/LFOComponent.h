@@ -62,8 +62,6 @@ private:
 		setSync(!m_sync_active);
 	}
 
-    TextLabel m_freq_label;
-
 	LFOSelectorComponent m_selector;
 	SyncTimeSelector m_sync_time;
 

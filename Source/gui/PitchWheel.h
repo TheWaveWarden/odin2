@@ -15,24 +15,25 @@
 
 #pragma once
 
-#include "../JuceLibraryCode/JuceHeader.h"
 #include "../GlobalIncludes.h"
+#include "../JuceLibraryCode/JuceHeader.h"
 #include "OdinKnob.h"
 
 class PitchWheel : public OdinKnob {
 public:
-  PitchWheel() {
-    setRange(-1, 1);
-    setNumDecimalPlacesToDisplay(3);
-  }
+	PitchWheel() : OdinKnob(Type::wheel) {
+		setRange(-1, 1);
+		setNumDecimalPlacesToDisplay(3);
+	}
 
-  ~PitchWheel() {}
+	~PitchWheel() {
+	}
 
-  void mouseUp(const MouseEvent &e) { 
-    Slider::mouseUp(e);
-    setValue(0, sendNotification); 
-    }
+	void mouseUp(const MouseEvent &e) {
+		Slider::mouseUp(e);
+		setValue(0, sendNotification);
+	}
 
 private:
-  JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(PitchWheel)
+	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(PitchWheel)
 };

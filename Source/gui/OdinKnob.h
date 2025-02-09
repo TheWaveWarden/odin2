@@ -20,6 +20,7 @@
 #include "OdinMidiLearnBase.h"
 
 #define N_KNOB_FRAMES 129
+#define N_KNOB_FRAMES_WHEEL 257
 
 class OdinAudioProcessor;
 
@@ -42,7 +43,7 @@ public:
 
 class OdinKnob : public juce::Slider, public OdinMidiLearnBase {
 public:
-	enum class Type { unassigned, knob_4x4a, knob_4x4b, knob_5x5a, knob_5x5b, knob_6x6a, knob_6x6b, knob_8x8a, knob_8x8b, wheel };
+	enum class Type { unassigned, knob_4x4a, knob_4x4b, knob_5x5a, knob_5x5b, knob_6x6a, knob_6x6b, knob_8x8a, knob_8x8b, wheel, timeHz };
 
 	OdinKnob(Type type = Type::unassigned);
 

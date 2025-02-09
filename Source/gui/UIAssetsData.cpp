@@ -3,7 +3,7 @@
 
 #include "UIAssetsData.h"
 
-std::array<const char*, 1481> UIAssetsData::Data = {
+std::array<const char*, 1483> UIAssetsData::Data = {
     BinaryData::knob_4x4_a_0000_png,
     BinaryData::knob_4x4_a_0001_png,
     BinaryData::knob_4x4_a_0002_png,
@@ -1444,6 +1444,7 @@ std::array<const char*, 1481> UIAssetsData::Data = {
     BinaryData::switch_v_down_hover_png,
     BinaryData::switch_v_up_png,
     BinaryData::switch_v_up_hover_png,
+    BinaryData::fader_cap_png,
     BinaryData::Filter_Bandpass12_png,
     BinaryData::Filter_Bandpass24_png,
     BinaryData::Filter_Combfilter_png,
@@ -1474,6 +1475,7 @@ std::array<const char*, 1481> UIAssetsData::Data = {
     BinaryData::Oscillator_WaveDraw_png,
     BinaryData::Oscillator_Wavetable_png,
     BinaryData::screen_dropdown_12x4_png,
+    BinaryData::screen_dropdown_13x4_png,
     BinaryData::screen_dropdown_14x4_png,
     BinaryData::screen_up_down_12x4_R_png,
     BinaryData::screen_up_down_13x4_LR_png,

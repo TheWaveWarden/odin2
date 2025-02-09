@@ -3,7 +3,7 @@
 
 #include "UIAssetsSize.h"
 
-std::array<size_t, 1481> UIAssetsSize::Size = {
+std::array<size_t, 1483> UIAssetsSize::Size = {
     BinaryData::knob_4x4_a_0000_pngSize,
     BinaryData::knob_4x4_a_0001_pngSize,
     BinaryData::knob_4x4_a_0002_pngSize,
@@ -1444,6 +1444,7 @@ std::array<size_t, 1481> UIAssetsSize::Size = {
     BinaryData::switch_v_down_hover_pngSize,
     BinaryData::switch_v_up_pngSize,
     BinaryData::switch_v_up_hover_pngSize,
+    BinaryData::fader_cap_pngSize,
     BinaryData::Filter_Bandpass12_pngSize,
     BinaryData::Filter_Bandpass24_pngSize,
     BinaryData::Filter_Combfilter_pngSize,
@@ -1474,6 +1475,7 @@ std::array<size_t, 1481> UIAssetsSize::Size = {
     BinaryData::Oscillator_WaveDraw_pngSize,
     BinaryData::Oscillator_Wavetable_pngSize,
     BinaryData::screen_dropdown_12x4_pngSize,
+    BinaryData::screen_dropdown_13x4_pngSize,
     BinaryData::screen_dropdown_14x4_pngSize,
     BinaryData::screen_up_down_12x4_R_pngSize,
     BinaryData::screen_up_down_13x4_LR_pngSize,

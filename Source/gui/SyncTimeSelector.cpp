@@ -14,12 +14,16 @@
 */
 
 #include "SyncTimeSelector.h"
+#include "../ConfigFileManager.h"
 #include "../GlobalIncludes.h"
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "UIAssetManager.h"
 
 SyncTimeSelector::SyncTimeSelector() :
-    m_up_left("up_left", "", OdinButton::Type::up), m_down_left("down_left", "", OdinButton::Type::up), m_up_right("up_right", "", OdinButton::Type::down),
-    m_down_right("down_right", "Down", OdinButton::Type::down) {
+    m_up_left("up_left", "", OdinButton::Type::up),
+    m_down_left("down_left", "", OdinButton::Type::down),
+    m_up_right("up_right", "", OdinButton::Type::up),
+    m_down_right("down_right", "", OdinButton::Type::down) {
 
 	m_dropdown.addItem(10, "8 / 1");
 	m_dropdown.addItem(20, "4 / 1");
@@ -79,6 +83,10 @@ SyncTimeSelector::SyncTimeSelector() :
 
 SyncTimeSelector::~SyncTimeSelector() {
 	m_dropdown.setLookAndFeel(nullptr);
+}
+
+void SyncTimeSelector::paint(Graphics &g) {
+	g.drawImageAt(UIAssetManager::getInstance()->getUIAsset(UIAssets::Indices::screen_up_down_13x4_LR, ConfigFileManager::getInstance().getOptionGuiScale()), 0, 0);
 }
 
 void SyncTimeSelector::resized() {

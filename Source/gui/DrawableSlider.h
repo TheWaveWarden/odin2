@@ -53,11 +53,6 @@ public:
 	DrawableSlider();
 	~DrawableSlider();
 
-
-	void setHandle(juce::Image p_handle){
-		m_handle = p_handle;
-	}
-	
 	String getTextFromValue(double value) override;
 
 	void setTextValueSuffix(const String &suffix) {
@@ -66,10 +61,6 @@ public:
 	}
 
 	void paint(Graphics &) override;
-
-	void setImage(juce::Image p_handle) {
-		m_handle = p_handle;
-	}
 
 	static void setOdinPointer(OdinAudioProcessor *p_pointer) {
 		m_processor = p_pointer;
@@ -110,7 +101,6 @@ public:
 private:
 	static OdinAudioProcessor *m_processor;
 	ADSRFeels m_feels;
-	juce::Image m_handle;
 
 	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(DrawableSlider)
 };

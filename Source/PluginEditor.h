@@ -59,6 +59,10 @@
 #endif
 
 #define RADIO_GROUP_ARP_MODMATRIX_PRESETS 98765
+#define RADIO_GROUP_ENV13 13
+#define RADIO_GROUP_ENV24 24
+#define RADIO_GROUP_LFO12 12
+#define RADIO_GROUP_LFO34 34
 #define MASTER_MIN -50.0f
 #define MASTER_MAX 12.0f
 
@@ -150,8 +154,6 @@ private:
 	TextLabel m_width_label;
 	TextLabel m_master_label;
 	TextLabel m_glide_label;
-	TextLabel m_modwheel_label;
-	TextLabel m_pitchwheel_label;
 
 	PitchWheel m_pitchwheel;
 	NumberSelector m_pitch_amount;
@@ -232,11 +234,15 @@ private:
 
 	juce::ComponentDragger m_dragger;
 
-	OdinButton m_env_13_button;
-	OdinButton m_env_24_button;
+	OdinButton m_env_1_button;
+	OdinButton m_env_2_button;
+	OdinButton m_env_3_button;
+	OdinButton m_env_4_button;
 
-	OdinButton m_lfo_13_button;
-	OdinButton m_lfo_24_button;
+	OdinButton m_lfo_1_button;
+	OdinButton m_lfo_2_button;
+	OdinButton m_lfo_3_button;
+	OdinButton m_lfo_4_button;
 
 	GlassDropdown m_mono_poly_legato_dropdown;
 	RescaleProgressComponent m_rescale_component;

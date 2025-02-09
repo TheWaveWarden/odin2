@@ -14,8 +14,10 @@
 */
 
 #include "DrawableSlider.h"
+#include "../ConfigFileManager.h"
 #include "../GlobalIncludes.h"
 #include "../PluginProcessor.h"
+#include "UIAssetManager.h"
 
 OdinAudioProcessor *DrawableSlider::m_processor;
 
@@ -36,13 +38,10 @@ DrawableSlider::~DrawableSlider() {
 
 void DrawableSlider::paint(Graphics &g) {
 	SET_INTERPOLATION_QUALITY(g)
-	g.setColour(COL_LIGHT);
-	g.drawRect(getLocalBounds().withSizeKeepingCentre(proportionOfWidth(0.2f), H), 1);
 
-	auto handle = getLocalBounds().toFloat().withHeight(H * 0.1f);
-	auto y      = (1.f - valueToProportionOfLength(getValue())) * (getHeight() - handle.getHeight());
-	handle.setY(y);
-	g.drawRect(handle, 1);
+	const auto handle = UIAssetManager::getInstance()->getUIAsset(UIAssets::Indices::fader_cap, ConfigFileManager::getInstance().getOptionGuiScale());
+	const auto y      = (1.f - valueToProportionOfLength(getValue())) * (getHeight() - juce::roundToInt(float(handle.getHeight()) * 0.9f));
+	g.drawImageAt(handle, 0, y);
 }
 
 void DrawableSlider::mouseDown(const MouseEvent &event) {

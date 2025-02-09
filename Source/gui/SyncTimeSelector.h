@@ -25,6 +25,8 @@ public:
 	SyncTimeSelector();
 	~SyncTimeSelector();
 
+    void paint(Graphics &g) override;
+
 	void setColor(juce::Colour p_color) {
 		m_display.setColor(p_color);
 	}

@@ -14,7 +14,6 @@
 */
 
 #include "LFODisplayComponent.h"
-#include "../JuceLibraryCode/JuceHeader.h"
 
 LFODisplayComponent::LFODisplayComponent() {
 }
@@ -23,6 +22,7 @@ LFODisplayComponent::~LFODisplayComponent() {
 }
 
 void LFODisplayComponent::paint(Graphics &g) {
+
 	juce::Point<int> top_left = getLocalBounds().getTopLeft();
 	top_left.addXY(m_inlay + 1 + m_inlay_top, m_inlay + m_inlay_left);
 	juce::Point<int> bottom_right = getLocalBounds().getBottomRight();

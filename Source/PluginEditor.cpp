@@ -21,8 +21,6 @@
 //==============================================================================
 OdinEditor::OdinEditor(OdinAudioProcessor &p_processor, AudioProcessorValueTreeState &vts, bool p_is_standalone) :
     AudioProcessorEditor(&p_processor),
-    m_modwheel_label("Mod Wheel"),
-    m_pitchwheel_label("Pitch Bend"),
     m_live_constrainer(*this),
     processor(p_processor),
     m_fx_buttons_section(vts, p_processor),
@@ -56,12 +54,16 @@ OdinEditor::OdinEditor(OdinAudioProcessor &p_processor, AudioProcessorValueTreeS
     m_burger_button("burger_button", "", OdinButton::Type::burger),
     m_select_modmatrix_button("select_modmatrix_button", "ModMatrix"),
     m_select_presets_button("select_presets_button", "Presets"),
-    m_env_13_button("env13_button", "Envelope1/3"),
-    m_env_24_button("env24_button", "Envelope2/4"),
     m_reset("reset", "Reset", OdinButton::Type::button_9x4),
-    m_lfo_13_button("lfo13_button", "LFO1/3"),
-    m_lfo_24_button("lfo24_button", "LFO2/4"),
-    m_pitch_amount(true),
+    m_env_1_button("env1_button", "Amp Env", OdinButton::Type::button_13x4EnvLFO),
+    m_env_2_button("env2_button", "Filter Env", OdinButton::Type::button_13x4EnvLFO),
+    m_env_3_button("env3_button", "Mod Env", OdinButton::Type::button_13x4EnvLFO),
+    m_env_4_button("env4_button", "Global Env", OdinButton::Type::button_13x4EnvLFO),
+    m_lfo_1_button("lfo1_button", "LFO 1", OdinButton::Type::button_13x4EnvLFO),
+    m_lfo_2_button("lfo2_button", "LFO 2", OdinButton::Type::button_13x4EnvLFO),
+    m_lfo_3_button("lfo3_button", "LFO 3", OdinButton::Type::button_13x4EnvLFO),
+    m_lfo_4_button("lfo4_button", "Global LFO", OdinButton::Type::button_13x4EnvLFO),
+    m_pitch_amount(true, NumberSelector::Type::selector_8x4),
     m_osc1(p_processor, vts, "1"),
     m_osc2(p_processor, vts, "2"),
     m_osc3(p_processor, vts, "3"),
@@ -103,12 +105,9 @@ OdinEditor::OdinEditor(OdinAudioProcessor &p_processor, AudioProcessorValueTreeS
     m_processor(p_processor),
     m_patch_browser(p_processor, vts),
     m_tuning(p_processor),
-	m_mono_poly_legato_dropdown(GlassDropdown::Type::dropdown_14x4) {
-
-	addAndMakeVisible(m_modwheel_label);
-	addAndMakeVisible(m_pitchwheel_label);
-	m_modwheel_label.setRotate90Degrees(true);
-	m_pitchwheel_label.setRotate90Degrees(true);
+    m_mono_poly_legato_dropdown(GlassDropdown::Type::dropdown_14x4),
+    m_modwheel(OdinKnob::Type::wheel),
+    m_glide(OdinKnob::Type::knob_6x6b) {
 
 	setResizable(false, false);
 
@@ -489,35 +488,93 @@ OdinEditor::OdinEditor(OdinAudioProcessor &p_processor, AudioProcessorValueTreeS
 
 	addAndMakeVisible(m_xy_section);
 
-	m_env_13_button.setToggleState(true, dontSendNotification);
-	m_env_13_button.onStateChange = [&]() {
-		setEnv13(m_env_13_button.getToggleState());
-		m_value_tree.state.getChildWithName("misc").setProperty("env_left_selected", (int)m_env_13_button.getToggleState(), nullptr);
+	m_env_1_button.setToggleState(true, dontSendNotification);
+	m_env_1_button.setRadioGroupId(RADIO_GROUP_ENV13);
+	m_env_1_button.onClick = [&]() {
+		setEnv13(m_env_1_button.getToggleState());
+		m_value_tree.state.getChildWithName("misc").setProperty("env_left_selected", (int)m_env_1_button.getToggleState(), nullptr);
 	};
-	m_env_13_button.setTooltip("Shows the amplifier\nenvelope or the mod envelope");
-	addAndMakeVisible(m_env_13_button);
-	m_env_13_button.disableMidiLearn();
-	m_env_13_button.setClickingTogglesState(true);
+	m_env_1_button.setTooltip("Shows the amplifier\nenvelope");
+	addAndMakeVisible(m_env_1_button);
+	m_env_1_button.disableMidiLearn();
+	m_env_1_button.setClickingTogglesState(true);
 
-	m_env_24_button.setClickingTogglesState(true);
-	m_env_24_button.setToggleState(true, dontSendNotification);
-	m_env_24_button.onStateChange = [&]() {
-		setEnv24(m_env_24_button.getToggleState());
-		m_value_tree.state.getChildWithName("misc").setProperty("env_right_selected", (int)m_env_24_button.getToggleState(), nullptr);
+	m_env_3_button.setToggleState(false, dontSendNotification);
+	m_env_3_button.setRadioGroupId(RADIO_GROUP_ENV13);
+	m_env_3_button.onClick = [&]() {
+		setEnv13(!m_env_3_button.getToggleState());
+		m_value_tree.state.getChildWithName("misc").setProperty("env_left_selected", (int)!m_env_3_button.getToggleState(), nullptr);
 	};
-	m_env_24_button.setTooltip("Shows the filter\nenvelope or global envelope");
-	addAndMakeVisible(m_env_24_button);
-	m_env_24_button.disableMidiLearn();
+	m_env_3_button.setTooltip("Shows the mod envelope");
+	addAndMakeVisible(m_env_3_button);
+	m_env_3_button.disableMidiLearn();
+	m_env_3_button.setClickingTogglesState(true);
 
-	m_lfo_13_button.setClickingTogglesState(true);
-	m_lfo_13_button.setToggleState(true, dontSendNotification);
-	m_lfo_13_button.onStateChange = [&]() {
-		setLfo12(m_lfo_13_button.getToggleState());
-		m_value_tree.state.getChildWithName("lfo").setProperty("lfo_left_selected", (int)m_lfo_13_button.getToggleState(), nullptr);
+	m_env_2_button.setClickingTogglesState(true);
+	m_env_2_button.setRadioGroupId(RADIO_GROUP_ENV24);
+	m_env_2_button.setToggleState(true, dontSendNotification);
+	m_env_2_button.onClick = [&]() {
+		setEnv24(m_env_2_button.getToggleState());
+		m_value_tree.state.getChildWithName("misc").setProperty("env_right_selected", (int)m_env_2_button.getToggleState(), nullptr);
 	};
-	m_lfo_13_button.setTooltip("Shows LFO 1 or LFO 2");
-	addAndMakeVisible(m_lfo_13_button);
-	m_lfo_13_button.disableMidiLearn();
+	m_env_2_button.setTooltip("Shows the filter envelope");
+	addAndMakeVisible(m_env_2_button);
+	m_env_2_button.disableMidiLearn();
+
+	m_env_4_button.setClickingTogglesState(true);
+	m_env_4_button.setRadioGroupId(RADIO_GROUP_ENV24);
+	m_env_4_button.setToggleState(false, dontSendNotification);
+	m_env_4_button.onClick = [&]() {
+		setEnv24(!m_env_4_button.getToggleState());
+		m_value_tree.state.getChildWithName("misc").setProperty("env_right_selected", (int)!m_env_4_button.getToggleState(), nullptr);
+	};
+	m_env_4_button.setTooltip("Shows the global envelope");
+	addAndMakeVisible(m_env_4_button);
+	m_env_4_button.disableMidiLearn();
+
+	m_lfo_1_button.setClickingTogglesState(true);
+	m_lfo_1_button.setRadioGroupId(RADIO_GROUP_LFO12);
+	m_lfo_1_button.setToggleState(true, dontSendNotification);
+	m_lfo_1_button.onClick = [&]() {
+		setLfo12(m_lfo_1_button.getToggleState());
+		m_value_tree.state.getChildWithName("lfo").setProperty("lfo_left_selected", (int)m_lfo_1_button.getToggleState(), nullptr);
+	};
+	m_lfo_1_button.setTooltip("Shows LFO 1");
+	addAndMakeVisible(m_lfo_1_button);
+	m_lfo_1_button.disableMidiLearn();
+
+	m_lfo_2_button.setClickingTogglesState(true);
+	m_lfo_2_button.setRadioGroupId(RADIO_GROUP_LFO12);
+	m_lfo_2_button.setToggleState(false, dontSendNotification);
+	m_lfo_2_button.onClick = [&]() {
+		setLfo12(!m_lfo_2_button.getToggleState());
+		m_value_tree.state.getChildWithName("lfo").setProperty("lfo_left_selected", (int)!m_lfo_2_button.getToggleState(), nullptr);
+	};
+	m_lfo_2_button.setTooltip("Shows LFO 2");
+	addAndMakeVisible(m_lfo_2_button);
+	m_lfo_2_button.disableMidiLearn();
+
+	m_lfo_3_button.setClickingTogglesState(true);
+	m_lfo_3_button.setRadioGroupId(RADIO_GROUP_LFO34);
+	m_lfo_3_button.setToggleState(true, dontSendNotification);
+	m_lfo_3_button.onClick = [&]() {
+		setLfo34(m_lfo_3_button.getToggleState());
+		m_value_tree.state.getChildWithName("lfo").setProperty("lfo_right_selected", (int)m_lfo_3_button.getToggleState(), nullptr);
+	};
+	m_lfo_3_button.setTooltip("Shows LFO 3");
+	addAndMakeVisible(m_lfo_3_button);
+	m_lfo_3_button.disableMidiLearn();
+
+	m_lfo_4_button.setClickingTogglesState(true);
+	m_lfo_4_button.setRadioGroupId(RADIO_GROUP_LFO34);
+	m_lfo_4_button.setToggleState(false, dontSendNotification);
+	m_lfo_4_button.onClick = [&]() {
+		setLfo34(!m_lfo_4_button.getToggleState());
+		m_value_tree.state.getChildWithName("lfo").setProperty("lfo_right_selected", (int)!m_lfo_4_button.getToggleState(), nullptr);
+	};
+	m_lfo_4_button.setTooltip("Shows the Global LFO");
+	addAndMakeVisible(m_lfo_4_button);
+	m_lfo_4_button.disableMidiLearn();
 
 	m_select_arp_button.setToggleState(false, dontSendNotification);
 	m_select_arp_button.setClickingTogglesState(true);
@@ -551,17 +608,6 @@ OdinEditor::OdinEditor(OdinAudioProcessor &p_processor, AudioProcessorValueTreeS
 	m_select_presets_button.setTooltip("Shows the arpeggiator or the mod-matrix");
 	addAndMakeVisible(m_select_presets_button);
 	m_select_presets_button.disableMidiLearn();
-
-	m_lfo_24_button.setClickingTogglesState(true);
-	m_lfo_24_button.setToggleState(true, dontSendNotification);
-	m_lfo_24_button.onStateChange = [&]() {
-		setLfo34(m_lfo_24_button.getToggleState());
-		m_value_tree.state.getChildWithName("lfo").setProperty("lfo_right_selected", (int)m_lfo_24_button.getToggleState(), nullptr);
-	};
-	m_lfo_24_button.setTooltip("Shows LFO 3 or the global LFO");
-	m_lfo_24_button.disableMidiLearn();
-
-	addAndMakeVisible(m_lfo_24_button);
 
 	m_mono_poly_legato_dropdown.setInlay(1);
 	m_mono_poly_legato_dropdown.addItem("Legato", 1);
@@ -769,8 +815,6 @@ void OdinEditor::resized() {
 	GET_LOCAL_AREA(m_width_label, "WidthLabel");
 	GET_LOCAL_AREA(m_master_label, "MasterLabel");
 	GET_LOCAL_AREA(m_glide_label, "GlideLabel");
-	GET_LOCAL_AREA(m_modwheel_label, "ModwheelLabel");
-	GET_LOCAL_AREA(m_pitchwheel_label, "PitchwheelLabel");
 
 	GET_LOCAL_AREA(m_osc1, "Osc1");
 	GET_LOCAL_AREA(m_osc2, "Osc2");
@@ -795,16 +839,20 @@ void OdinEditor::resized() {
 
 	GET_LOCAL_AREA(m_midsection, "AmpDist");
 
-	GET_LOCAL_AREA(m_env_13_button, "ADSRButton13");
-	GET_LOCAL_AREA(m_env_24_button, "ADSRButton24");
+	GET_LOCAL_AREA(m_env_1_button, "ADSRButton1");
+	GET_LOCAL_AREA(m_env_2_button, "ADSRButton2");
+	GET_LOCAL_AREA(m_env_3_button, "ADSRButton3");
+	GET_LOCAL_AREA(m_env_4_button, "ADSRButton4");
 
 	GET_LOCAL_AREA(m_adsr_1, "ADSRLeft");
 	GET_LOCAL_AREA(m_adsr_3, "ADSRLeft");
 	GET_LOCAL_AREA(m_adsr_2, "ADSRRight");
 	GET_LOCAL_AREA(m_adsr_4, "ADSRRight");
 
-	GET_LOCAL_AREA(m_lfo_13_button, "LFOButton13");
-	GET_LOCAL_AREA(m_lfo_24_button, "LFOButton24");
+	GET_LOCAL_AREA(m_lfo_1_button, "LFOButton1");
+	GET_LOCAL_AREA(m_lfo_2_button, "LFOButton2");
+	GET_LOCAL_AREA(m_lfo_3_button, "LFOButton3");
+	GET_LOCAL_AREA(m_lfo_4_button, "LFOButton4");
 
 	GET_LOCAL_AREA(m_lfo_1, "LFOLeft");
 	GET_LOCAL_AREA(m_lfo_2, "LFOLeft");
@@ -1071,21 +1119,29 @@ void OdinEditor::forceValueTreeOntoComponentsOnlyMainPanel() {
 	}
 	setActiveFXPanel(fx_name);
 
-	m_env_13_button.setToggleState((float)m_value_tree.state.getChildWithName("misc")["env_left_selected"] > 0.5, dontSendNotification);
-	setEnv13(m_env_13_button.getToggleState());
-	m_env_24_button.setToggleState((float)m_value_tree.state.getChildWithName("misc")["env_right_selected"] > 0.5, dontSendNotification);
-	setEnv24(m_env_24_button.getToggleState());
+	const auto env_1_selected = (float)m_value_tree.state.getChildWithName("misc")["env_left_selected"] > 0.5;
+	m_env_1_button.setToggleState(env_1_selected, dontSendNotification);
+	m_env_3_button.setToggleState(!env_1_selected, dontSendNotification);
+	setEnv13(env_1_selected);
+	const auto env_2_selected = (float)m_value_tree.state.getChildWithName("misc")["env_right_selected"] > 0.5;
+	m_env_2_button.setToggleState(env_2_selected, dontSendNotification);
+	m_env_4_button.setToggleState(!env_2_selected, dontSendNotification);
+	setEnv24(env_2_selected);
 
-	m_lfo_13_button.setToggleState((float)m_value_tree.state.getChildWithName("lfo")["lfo_left_selected"] > 0.5, dontSendNotification);
-	setLfo12(m_lfo_13_button.getToggleState());
-	m_lfo_24_button.setToggleState((float)m_value_tree.state.getChildWithName("lfo")["lfo_right_selected"] > 0.5, dontSendNotification);
-	setLfo34(m_lfo_24_button.getToggleState());
+	const auto lfo_1_selected = (float)m_value_tree.state.getChildWithName("lfo")["lfo_left_selected"] > 0.5;
+	m_lfo_1_button.setToggleState(lfo_1_selected, dontSendNotification);
+	m_lfo_2_button.setToggleState(!lfo_1_selected, dontSendNotification);
+	setLfo12(lfo_1_selected);
+	const auto lfo_3_selected = (float)m_value_tree.state.getChildWithName("lfo")["lfo_right_selected"] > 0.5;
+	m_lfo_3_button.setToggleState(lfo_3_selected, dontSendNotification);
+	m_lfo_4_button.setToggleState(!lfo_3_selected, dontSendNotification);
+	setLfo34(lfo_3_selected);
 
-	float select_bottom_left = (float)m_value_tree.state.getChildWithName("misc")["arp_mod_selected"];
-	m_select_arp_button.setToggleState(fabs(select_bottom_left - (float)MATRIX_SECTION_INDEX_ARP) < 0.1f, dontSendNotification);
-	m_select_modmatrix_button.setToggleState(fabs(select_bottom_left - (float)MATRIX_SECTION_INDEX_MATRIX) < 0.1f, dontSendNotification);
-	m_select_presets_button.setToggleState(fabs(select_bottom_left - (float)MATRIX_SECTION_INDEX_PRESETS) < 0.1f, dontSendNotification);
-	setMatrixSectionModule((int)(select_bottom_left + 0.5f));
+	const float bottom_section_selection = (float)m_value_tree.state.getChildWithName("misc")["arp_mod_selected"];
+	m_select_arp_button.setToggleState(fabs(bottom_section_selection - (float)MATRIX_SECTION_INDEX_ARP) < 0.1f, dontSendNotification);
+	m_select_modmatrix_button.setToggleState(fabs(bottom_section_selection - (float)MATRIX_SECTION_INDEX_MATRIX) < 0.1f, dontSendNotification);
+	m_select_presets_button.setToggleState(fabs(bottom_section_selection - (float)MATRIX_SECTION_INDEX_PRESETS) < 0.1f, dontSendNotification);
+	setMatrixSectionModule((int)(bottom_section_selection + 0.5f));
 }
 
 void OdinEditor::forceValueTreeOntoComponents(bool p_reset_audio) {

@@ -20,13 +20,15 @@
 #include "LFOComponent.h"
 
 LFOComponent::LFOComponent(AudioProcessorValueTreeState &vts, const std::string &p_lfo_number, bool p_is_standalone) :
-    m_value_tree(vts), m_lfo_number(p_lfo_number), m_reset("reset", "Reset"), m_sync("sync", "Sync"),
+    m_value_tree(vts),
+    m_lfo_number(p_lfo_number),
+    m_reset("reset", "Reset", OdinButton::Type::button_13x4),
+    m_sync("sync", "Sync", OdinButton::Type::button_13x4),
     m_lfo_wave_identifier("lfo" + p_lfo_number + "_wave"),
     m_lfo_synctime_denominator_identifier("lfo" + p_lfo_number + "_synctime_denominator"),
     m_lfo_synctime_numerator_identifier("lfo" + p_lfo_number + "_synctime_numerator"),
-    m_is_standalone_plugin(p_is_standalone), m_freq_label("Freq") {
-
-	addAndMakeVisible(m_freq_label);
+    m_is_standalone_plugin(p_is_standalone),
+    m_freq(OdinKnob::Type::timeHz) {
 
 	m_freq_attach.reset(new OdinKnobAttachment(m_value_tree, "lfo" + m_lfo_number + "_freq", m_freq));
 
@@ -45,10 +47,8 @@ LFOComponent::LFOComponent(AudioProcessorValueTreeState &vts, const std::string 
 	m_sync.setTooltip("Enables syncing the LFO\nto the speed of your track");
 	m_sync.onClick = [&]() {
 		setSync(m_sync.getToggleState());
-		m_value_tree.state.getChildWithName("lfo").setProperty(
-		    (Identifier)("lfo" + m_lfo_number + "_sync"), m_sync.getToggleState() ? 1.f : 0.f, nullptr);
-		m_value_tree.state.getChildWithName("lfo").sendPropertyChangeMessage(
-		    (Identifier)("lfo" + m_lfo_number + "_sync"));
+		m_value_tree.state.getChildWithName("lfo").setProperty((Identifier)("lfo" + m_lfo_number + "_sync"), m_sync.getToggleState() ? 1.f : 0.f, nullptr);
+		m_value_tree.state.getChildWithName("lfo").sendPropertyChangeMessage((Identifier)("lfo" + m_lfo_number + "_sync"));
 	};
 
 	m_freq.setSliderStyle(Slider::RotaryVerticalDrag);
@@ -94,13 +94,10 @@ void LFOComponent::forceValueTreeOntoComponents(ValueTree p_tree) {
 	                      m_value_tree.state.getChildWithName("lfo")[m_lfo_synctime_denominator_identifier]);
 	setSync((float)m_value_tree.state.getChildWithName("lfo")[(Identifier)("lfo" + m_lfo_number + "_sync")] > 0.5f);
 	//m_value_tree.state.getChildWithName("lfo").sendPropertyChangeMessage((Identifier)("lfo" + m_lfo_number + "_sync"));
-	m_sync.setToggleState(
-	    (float)m_value_tree.state.getChildWithName("lfo")[(Identifier)("lfo" + m_lfo_number + "_sync")] > 0.5f,
-	    dontSendNotification);
+	m_sync.setToggleState((float)m_value_tree.state.getChildWithName("lfo")[(Identifier)("lfo" + m_lfo_number + "_sync")] > 0.5f, dontSendNotification);
 }
 
 void LFOComponent::resized() {
-	GET_LOCAL_AREA(m_freq_label, "LFOFreqLabel");
 	GET_LOCAL_AREA(m_selector, "LFOSelector");
 	GET_LOCAL_AREA(m_sync_time, "LFOSyncTime");
 	GET_LOCAL_AREA(m_freq, "LFOFreq");

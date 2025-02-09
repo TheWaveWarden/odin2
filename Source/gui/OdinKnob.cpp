@@ -27,7 +27,9 @@ OdinKnob::OdinKnob(Type type) : m_type(type) {
 	setLookAndFeel(&m_knob_feels);
 	setRange(0, 1);
 
-	setPopupDisplayEnabled(true, false, nullptr);
+	if (m_type != Type::timeHz)
+		setPopupDisplayEnabled(true, false, nullptr);
+
 	setNumDecimalPlacesToDisplay(3);
 	setVelocityModeParameters(1.0, 1, 0.0, true, ModifierKeys::shiftModifier);
 
@@ -59,9 +61,17 @@ OdinKnob::OdinKnob(Type type) : m_type(type) {
 		break;
 	case Type::knob_6x6a:
 		m_ui_asset_base = int(UIAssets::Indices::knob_6x6_a_0000);
+		m_inlay_x       = 1;
+		m_inlay_y       = 1;
+		m_center_pos_y  = 32.0f / 72.0f;
+		m_guide_radius  = 0.42f;
 		break;
 	case Type::knob_6x6b:
 		m_ui_asset_base = int(UIAssets::Indices::knob_6x6_b_0000);
+		m_inlay_x       = 1;
+		m_inlay_y       = 1;
+		m_center_pos_y  = 32.0f / 72.0f;
+		m_guide_radius  = 0.42f;
 		break;
 	case Type::knob_8x8a:
 		m_ui_asset_base = int(UIAssets::Indices::knob_8x8_a_0000);
@@ -79,6 +89,10 @@ OdinKnob::OdinKnob(Type type) : m_type(type) {
 		break;
 	case Type::wheel:
 		m_ui_asset_base = int(UIAssets::Indices::wheel_0000);
+		break;
+	case Type::timeHz:
+		m_ui_asset_base = int(UIAssets::Indices::screen_dropdown_13x4);
+		setMouseCursor(juce::MouseCursor::UpDownResizeCursor);
 		break;
 	}
 }
@@ -142,11 +156,20 @@ void OdinKnob::paint(juce::Graphics &g) {
 		return;
 	}
 
+	if (m_type == Type::timeHz) {
+		g.drawImageAt(UIAssetManager::getInstance()->getUIAsset(UIAssets::Indices(m_ui_asset_base), ConfigFileManager::getInstance().getOptionGuiScale()), 0, 0);
+		g.setColour(COL_TEXT_BLUE);
+		g.setFont(getHeight() / 2.0f);
+		g.drawText(getTextFromValue(getValue()), getLocalBounds(), juce::Justification::centred, false);
+		return;
+	}
+
 	if (m_num_guides > 0)
 		drawGuides(g, isEnabled());
 
 	const auto value01      = valueToProportionOfLength(getValue());
-	const auto image_offset = juce::roundToInt(value01 * double(N_KNOB_FRAMES - 1));
+	const auto num_frames   = m_type == Type::wheel ? N_KNOB_FRAMES_WHEEL : N_KNOB_FRAMES;
+	const auto image_offset = juce::roundToInt(value01 * double(num_frames - 1));
 	const auto asset        = UIAssets::Indices(int(m_ui_asset_base) + int(image_offset));
 
 	const auto ui_scale = ConfigFileManager::getInstance().getOptionGuiScale();
@@ -162,7 +185,7 @@ void OdinKnob::drawGuides(juce::Graphics &g, bool isEnabled) {
 	const auto center_y = float(getHeight()) * m_center_pos_y;
 	const auto radius   = float(getWidth()) * m_guide_radius;
 
-	const auto angle_start = 43.6 / 360.0f * juce::MathConstants<float>::twoPi;
+	const auto angle_start = 42.0f / 360.0f * juce::MathConstants<float>::twoPi;
 	const auto angle_range = juce::MathConstants<float>::twoPi - 2.0f * angle_start;
 
 	const auto stroke = float(getHeight()) / 70.0f;

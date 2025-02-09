@@ -14,13 +14,20 @@
 */
 
 #include "ADSRComponent.h"
+#include "../ConfigFileManager.h"
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "JsonGuiProvider.h"
+#include "UIAssetManager.h"
 
 //==============================================================================
 ADSRComponent::ADSRComponent(AudioProcessorValueTreeState &vts, const std::string &p_adsr_number) :
-    m_loop("loop_button", "Loop"), m_value_tree(vts), m_adsr_number(p_adsr_number), m_attack_label("A"),
-    m_decay_label("D"), m_sustain_label("S"), m_release_label("R") {
+    m_loop("loop_button", "", OdinButton::Type::loop),
+    m_value_tree(vts),
+    m_adsr_number(p_adsr_number),
+    m_attack_label("A"),
+    m_decay_label("D"),
+    m_sustain_label("S"),
+    m_release_label("R") {
 
 	addAndMakeVisible(m_attack_label);
 	addAndMakeVisible(m_decay_label);
@@ -86,9 +93,13 @@ void ADSRComponent::resized() {
 	GET_LOCAL_AREA(m_sustain_label, "SustainLabel");
 	GET_LOCAL_AREA(m_release_label, "ReleaseLabel");
 
-	GET_LOCAL_AREA(m_loop, "ADSRLoop");
 	GET_LOCAL_AREA(m_attack, "ADSRAttack");
 	GET_LOCAL_AREA(m_decay, "ADSRDecay");
 	GET_LOCAL_AREA(m_sustain, "ADSRSustain");
 	GET_LOCAL_AREA(m_release, "ADSRRelease");
+
+	// this one was position not conforming to the grid, so we need to move it half a cell to center align it with "D"
+	GET_LOCAL_AREA(m_loop, "ADSRLoop");
+	const auto grid = ConfigFileManager::getInstance().getOptionGuiScale();
+	m_loop.setBounds(m_loop.getBounds().translated(grid / 2, 0));
 }

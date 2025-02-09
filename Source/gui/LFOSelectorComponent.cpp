@@ -14,21 +14,23 @@
 */
 
 #include "LFOSelectorComponent.h"
+#include "../ConfigFileManager.h"
 #include "../GlobalIncludes.h"
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "UIAssetManager.h"
 
 LFOSelectorComponent::LFOSelectorComponent() : m_up("up", "", OdinButton::Type::up), m_down("down", "", OdinButton::Type::down) {
 
 	m_display.setInlay(1);
 	addAndMakeVisible(m_display);
 
-	m_up.setClickingTogglesState(true);
+	m_up.setClickingTogglesState(false);
 	addAndMakeVisible(m_up);
 	m_up.setTriggeredOnMouseDown(false);
 	m_up.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
 	m_up.onClick = [&]() { decrement(); };
 
-	m_down.setClickingTogglesState(true);
+	m_down.setClickingTogglesState(false);
 	addAndMakeVisible(m_down);
 	m_down.setTriggeredOnMouseDown(false);
 	m_down.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
@@ -105,8 +107,7 @@ LFOSelectorComponent::~LFOSelectorComponent() {
 }
 
 void LFOSelectorComponent::paint(Graphics &g) {
-	g.setColour(COL_LIGHT);
-	g.drawRect(getLocalBounds(), 1);
+	g.drawImageAt(UIAssetManager::getInstance()->getUIAsset(UIAssets::Indices::screen_up_down_13x4_R, ConfigFileManager::getInstance().getOptionGuiScale()), 0, 0);
 }
 
 void LFOSelectorComponent::resized() {

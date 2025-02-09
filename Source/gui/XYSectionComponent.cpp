@@ -18,8 +18,13 @@
 #include "JsonGuiProvider.h"
 
 XYSectionComponent::XYSectionComponent(AudioProcessorValueTreeState &vts, const std::string &p_section_name) :
-    m_value_tree(vts), m_section_name(p_section_name), m_xy_pad(vts, "xy_", m_modx, m_mody), m_label_x("X"),
-    m_label_y("Y") {
+    m_value_tree(vts),
+    m_section_name(p_section_name),
+    m_xy_pad(vts, "xy_", m_modx, m_mody),
+    m_label_x("X"),
+    m_label_y("Y"),
+    m_modx(OdinKnob::Type::knob_6x6a),
+    m_mody(OdinKnob::Type::knob_6x6a) {
 
 	addAndMakeVisible(m_label_x);
 	addAndMakeVisible(m_label_y);
