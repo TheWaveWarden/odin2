@@ -14,27 +14,36 @@
 */
 
 #include "PhaserComponent.h"
+#include "../ConfigFileManager.h"
 #include "../GlobalIncludes.h"
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "JsonGuiProvider.h"
+#include "UIAssetManager.h"
 
 PhaserComponent::PhaserComponent(AudioProcessorValueTreeState &vts, const std::string &p_fx_name, bool p_is_standalone) :
     m_value_tree(vts),
     m_fx_name(p_fx_name),
     m_is_standalone_plugin(p_is_standalone),
-    m_sync("sync", "Sync"),
-    m_reset("reset", "Reset"),
+    m_sync("sync", "Sync", OdinButton::Type::button_10x4),
+    m_reset("reset", "Reset", OdinButton::Type::button_10x4),
     m_fx_synctime_denominator_identifier(p_fx_name + "_synctime_denominator"),
     m_fx_synctime_numerator_identifier(p_fx_name + "_synctime_numerator"),
     m_rate_label("Rate"),
+    m_rate_label_sync("Rate"),
     m_mod_label("Amount"),
     m_freq_label("Freq"),
     m_feedback_label("Feedback"),
     m_dry_wet_label("DryWet"),
-	m_sync_time(UIAssets::Indices::screen_up_down_13x4_LR)
+    m_sync_time(UIAssets::Indices::screen_up_down_14x4_LR),
+    m_rate(OdinKnob::Type::knob_8x8b),
+    m_mod(OdinKnob::Type::knob_8x8a),
+    m_freq(OdinKnob::Type::knob_8x8a),
+    m_feedback(OdinKnob::Type::knob_8x8a),
+    m_dry_wet(OdinKnob::Type::knob_8x8b)
 
 {
 	addAndMakeVisible(m_rate_label);
+	addChildComponent(m_rate_label_sync);
 	addAndMakeVisible(m_mod_label);
 	addAndMakeVisible(m_freq_label);
 	addAndMakeVisible(m_feedback_label);
@@ -124,17 +133,20 @@ PhaserComponent::~PhaserComponent() {
 }
 
 void PhaserComponent::paint(Graphics &g) {
-	g.setColour(COL_LIGHT);
-	g.drawRect(getLocalBounds(), 1);
+	g.drawImageAt(UIAssetManager::getInstance()->getUIAsset(UIAssets::Indices::FX_Phaser, ConfigFileManager::getInstance().getOptionGuiScale()), 0, 0);
 }
 
 void PhaserComponent::setSyncEnabled(bool p_sync) {
 	if (m_sync_enabled != p_sync) {
 		m_sync_enabled = p_sync;
 		if (m_sync_enabled) {
+			m_rate_label.setVisible(false);
+			m_rate_label_sync.setVisible(true);
 			m_rate.setVisible(false);
 			m_sync_time.setVisible(true);
 		} else {
+			m_rate_label.setVisible(true);
+			m_rate_label_sync.setVisible(false);
 			m_rate.setVisible(true);
 			m_sync_time.setVisible(false);
 		}
@@ -154,6 +166,7 @@ void PhaserComponent::forceValueTreeOntoComponents(ValueTree p_tree) {
 
 void PhaserComponent::resized() {
 	GET_LOCAL_AREA(m_rate_label, "PhaserRateLabel");
+	GET_LOCAL_AREA(m_rate_label_sync, "PhaserRateLabelSync");
 	GET_LOCAL_AREA(m_mod_label, "PhaserModLabel");
 	GET_LOCAL_AREA(m_freq_label, "PhaserFreqLabel");
 	GET_LOCAL_AREA(m_feedback_label, "PhaserFeedbackLabel");

@@ -14,12 +14,26 @@
 */
 
 #include "ReverbComponent.h"
+#include "../ConfigFileManager.h"
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "JsonGuiProvider.h"
+#include "UIAssetManager.h"
 
 ReverbComponent::ReverbComponent(AudioProcessorValueTreeState &vts, bool p_is_standalone) :
-    m_value_tree(vts), m_is_standalone_plugin(p_is_standalone), m_delay_label("Delay"), m_EQ_gain_label("EQ Gain"),
-    m_EQ_freq_label("EQ Freq"), m_dry_wet_label("DryWet"), m_mid_hall_label("Decay"), m_hf_damp_label("HF Damp") {
+    m_value_tree(vts),
+    m_is_standalone_plugin(p_is_standalone),
+    m_delay_label("Delay"),
+    m_EQ_gain_label("EQ Gain"),
+    m_EQ_freq_label("EQ Freq"),
+    m_dry_wet_label("DryWet"),
+    m_mid_hall_label("Decay"),
+    m_hf_damp_label("HF Damp"),
+    m_delay(OdinKnob::Type::knob_8x8a),
+    m_mid_hall(OdinKnob::Type::knob_8x8a),
+    m_hf_damp(OdinKnob::Type::knob_8x8a),
+    m_EQ_freq(OdinKnob::Type::knob_5x5a),
+    m_EQ_gain(OdinKnob::Type::knob_5x5a),
+    m_dry_wet(OdinKnob::Type::knob_8x8b) {
 
 	addAndMakeVisible(m_delay_label);
 	addAndMakeVisible(m_EQ_gain_label);
@@ -91,8 +105,7 @@ ReverbComponent::~ReverbComponent() {
 }
 
 void ReverbComponent::paint(Graphics &g) {
-	g.setColour(COL_LIGHT);
-	g.drawRect(getLocalBounds(), 1);
+	g.drawImageAt(UIAssetManager::getInstance()->getUIAsset(UIAssets::Indices::FX_Reverb, ConfigFileManager::getInstance().getOptionGuiScale()), 0, 0);
 }
 
 void ReverbComponent::forceValueTreeOntoComponents(ValueTree p_tree) {

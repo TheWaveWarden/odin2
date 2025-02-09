@@ -25,15 +25,19 @@ FXComponent::FXComponent(AudioProcessorValueTreeState &vts, const std::string &p
     m_value_tree(vts),
     m_fx_name(p_fx_name),
     m_is_standalone_plugin(p_is_standalone),
-    m_sync("sync", "Sync"),
-    m_reset("reset", "Reset"),
+    m_sync("sync", "Sync", OdinButton::Type::button_10x4),
+    m_reset("reset", "Reset", OdinButton::Type::button_10x4),
     m_fx_synctime_denominator_identifier(p_fx_name + "_synctime_denominator"),
     m_fx_synctime_numerator_identifier(p_fx_name + "_synctime_numerator"),
     m_rate_label("Rate"),
     m_amount_label("Amount"),
     m_feedback_label("Feedback"),
     m_dry_wet_label("DryWet"),
-    m_sync_time(UIAssets::Indices::screen_up_down_13x4_LR) {
+    m_sync_time(UIAssets::Indices::screen_up_down_14x4_LR),
+    m_rate(OdinKnob::Type::knob_8x8b),
+    m_amount(OdinKnob::Type::knob_8x8a),
+    m_feedback(OdinKnob::Type::knob_8x8a),
+    m_dry_wet(OdinKnob::Type::knob_8x8b) {
 
 	addAndMakeVisible(m_rate_label);
 	addAndMakeVisible(m_amount_label);

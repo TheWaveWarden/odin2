@@ -53,6 +53,7 @@ private:
 	bool m_is_standalone_plugin;
 
 	TextLabel m_rate_label;
+	TextLabel m_rate_label_sync;
 	TextLabel m_mod_label;
 	TextLabel m_freq_label;
 	TextLabel m_feedback_label;
