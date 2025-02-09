@@ -15,25 +15,31 @@
 
 #pragma once
 
+#include "../ConfigFileManager.h"
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "OdinButton.h"
+#include "UIAssetManager.h"
 
 class DragButton : public juce::Component, public juce::SettableTooltipClient {
 public:
-	DragButton(const String &p_text, juce::ComponentBoundsConstrainer *constrainer) :
-	    m_constrainer(constrainer), m_text(p_text) {
+	DragButton(const String &p_text, juce::ComponentBoundsConstrainer *constrainer) : m_constrainer(constrainer), m_text(p_text) {
 	}
 
 	void paint(juce::Graphics &g) override {
-		g.setColour(COL_LIGHT);
-		g.drawRect(getLocalBounds(), 1);
 
-		if (m_pressed) {
-			g.setColour(COL_LIGHT.withAlpha(0.5f));
-			g.fillRect(getLocalBounds());
-		}
+		auto asset = int(UIAssets::Indices::bttn_12x4_FX_off);
+		if (m_pressed)
+			asset += 3;
 
-		g.setColour(COL_LIGHT);
+		//if (p_pressed) {
+		//	asset += 2;
+		//} else if (p_highlight) {
+		//	asset += 1;
+		//}
+
+		g.drawImageAt(UIAssetManager::getInstance()->getUIAsset(UIAssets::Indices(asset), ConfigFileManager::getInstance().getOptionGuiScale()), 0, 0);
+
+		g.setColour(COL_TEXT_BLUE);
 		g.setFont(H * 0.6f);
 		g.drawText(m_text, getLocalBounds(), Justification::centred);
 	}

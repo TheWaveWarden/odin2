@@ -361,9 +361,9 @@
   },
   "ChorusOn": {
     "SizeX": 12,
-    "SizeY": 3,
+    "SizeY": 2,
     "X": 158,
-    "Y": 79
+    "Y": 80
   },
   "DecayLabel": {
     "SizeX": 3,
@@ -372,99 +372,99 @@
     "Y": 17
   },
   "DelayDry": {
-    "SizeX": 6,
-    "SizeY": 6,
-    "X": 42,
-    "Y": 13
+    "SizeX": 7,
+    "SizeY": 8,
+    "X": 41,
+    "Y": 12
   },
   "DelayDryLabel": {
-    "SizeX": 6,
+    "SizeX": 7,
     "SizeY": 3,
-    "X": 42,
+    "X": 41,
     "Y": 19
   },
   "DelayDucking": {
-    "SizeX": 6,
-    "SizeY": 6,
-    "X": 46,
-    "Y": 2
+    "SizeX": 7,
+    "SizeY": 8,
+    "X": 50,
+    "Y": 1
   },
   "DelayDuckingLabel": {
-    "SizeX": 8,
+    "SizeX": 9,
     "SizeY": 3,
-    "X": 45,
+    "X": 49,
     "Y": 8
   },
   "DelayFeedback": {
-    "SizeX": 8,
-    "SizeY": 8,
-    "X": 19,
-    "Y": 11
+    "SizeX": 10,
+    "SizeY": 11,
+    "X": 25,
+    "Y": 8
   },
   "DelayFeedbackLabel": {
     "SizeX": 10,
     "SizeY": 3,
-    "X": 18,
-    "Y": 19
+    "X": 25,
+    "Y": 18
   },
   "DelayHp": {
-    "SizeX": 6,
-    "SizeY": 6,
-    "X": 36,
-    "Y": 2
+    "SizeX": 7,
+    "SizeY": 8,
+    "X": 41,
+    "Y": 1
   },
   "DelayHpLabel": {
-    "SizeX": 6,
+    "SizeX": 5,
     "SizeY": 3,
-    "X": 36,
+    "X": 42,
     "Y": 8
   },
   "DelayOn": {
     "SizeX": 12,
-    "SizeY": 3,
+    "SizeY": 2,
     "X": 132,
-    "Y": 79
+    "Y": 80
   },
   "DelayPingpong": {
-    "SizeX": 11,
+    "SizeX": 12,
     "SizeY": 4,
-    "X": 22,
-    "Y": 1
+    "X": 24,
+    "Y": 3
   },
   "DelaySync": {
-    "SizeX": 9,
+    "SizeX": 10,
     "SizeY": 4,
-    "X": 3,
-    "Y": 17
+    "X": 7,
+    "Y": 14
   },
   "DelaySyncTime": {
-    "SizeX": 13,
-    "SizeY": 3,
-    "X": 3,
-    "Y": 8
+    "SizeX": 14,
+    "SizeY": 4,
+    "X": 5,
+    "Y": 5
   },
   "DelayTime": {
-    "SizeX": 8,
-    "SizeY": 8,
-    "X": 7,
-    "Y": 4
+    "SizeX": 14,
+    "SizeY": 4,
+    "X": 5,
+    "Y": 5
   },
   "DelayTimeLabel": {
     "SizeX": 8,
     "SizeY": 3,
-    "X": 7,
-    "Y": 12
+    "X": 8,
+    "Y": 10
   },
   "DelayWet": {
-    "SizeX": 6,
-    "SizeY": 6,
-    "X": 52,
-    "Y": 13
+    "SizeX": 7,
+    "SizeY": 8,
+    "X": 50,
+    "Y": 12
   },
   "DelayWetLabel": {
-    "SizeX": 6,
+    "SizeX": 7,
     "SizeY": 3,
-    "X": 52,
+    "X": 50,
     "Y": 19
   },
   "DetuneLabel": {
@@ -505,7 +505,7 @@
   },
   "FX": {
     "SizeX": 60,
-    "SizeY": 23,
+    "SizeY": 24,
     "X": 132,
     "Y": 83
   },
@@ -523,7 +523,7 @@
   },
   "FXButtons": {
     "SizeX": 60,
-    "SizeY": 3,
+    "SizeY": 4,
     "X": 132,
     "Y": 76
   },
@@ -859,9 +859,9 @@
   },
   "FlangerOn": {
     "SizeX": 12,
-    "SizeY": 3,
+    "SizeY": 2,
     "X": 170,
-    "Y": 79
+    "Y": 80
   },
   "FlowLeft": {
     "SizeX": 5,
@@ -1585,9 +1585,9 @@
   },
   "PhaserOn": {
     "SizeX": 12,
-    "SizeY": 3,
+    "SizeY": 2,
     "X": 146,
-    "Y": 79
+    "Y": 80
   },
   "PhaserRate": {
     "SizeX": 7,
@@ -1615,9 +1615,9 @@
   },
   "PhaserSyncTime": {
     "SizeX": 13,
-    "SizeY": 3,
+    "SizeY": 4,
     "X": 1,
-    "Y": 14
+    "Y": 13
   },
   "PitchBend": {
     "SizeX": 4,
@@ -1759,9 +1759,9 @@
   },
   "ReverbOn": {
     "SizeX": 12,
-    "SizeY": 3,
+    "SizeY": 2,
     "X": 182,
-    "Y": 79
+    "Y": 80
   },
   "SelectArp": {
     "SizeX": 40,

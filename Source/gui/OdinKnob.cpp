@@ -27,7 +27,7 @@ OdinKnob::OdinKnob(Type type) : m_type(type) {
 	setLookAndFeel(&m_knob_feels);
 	setRange(0, 1);
 
-	if (m_type != Type::timeHz)
+	if (m_type != Type::timeHz_13x4 && m_type != Type::timeHz_14x4)
 		setPopupDisplayEnabled(true, false, nullptr);
 
 	setNumDecimalPlacesToDisplay(3);
@@ -90,8 +90,12 @@ OdinKnob::OdinKnob(Type type) : m_type(type) {
 	case Type::wheel:
 		m_ui_asset_base = int(UIAssets::Indices::wheel_0000);
 		break;
-	case Type::timeHz:
+	case Type::timeHz_13x4:
 		m_ui_asset_base = int(UIAssets::Indices::screen_dropdown_13x4);
+		setMouseCursor(juce::MouseCursor::UpDownResizeCursor);
+		break;
+	case Type::timeHz_14x4:
+		m_ui_asset_base = int(UIAssets::Indices::screen_dropdown_14x4);
 		setMouseCursor(juce::MouseCursor::UpDownResizeCursor);
 		break;
 	}
@@ -156,7 +160,7 @@ void OdinKnob::paint(juce::Graphics &g) {
 		return;
 	}
 
-	if (m_type == Type::timeHz) {
+	if (m_type == Type::timeHz_13x4 || m_type == Type::timeHz_14x4) {
 		g.drawImageAt(UIAssetManager::getInstance()->getUIAsset(UIAssets::Indices(m_ui_asset_base), ConfigFileManager::getInstance().getOptionGuiScale()), 0, 0);
 		g.setColour(COL_TEXT_BLUE);
 		g.setFont(getHeight() / 2.0f);
@@ -179,16 +183,16 @@ void OdinKnob::paint(juce::Graphics &g) {
 }
 
 void OdinKnob::drawGuides(juce::Graphics &g, bool isEnabled) {
-	g.setColour(juce::Colours::white.withAlpha(0.5f));
+	g.setColour(juce::Colours::white.withAlpha(0.4f));
 
 	const auto center_x = float(getWidth()) / 2.0f;
 	const auto center_y = float(getHeight()) * m_center_pos_y;
 	const auto radius   = float(getWidth()) * m_guide_radius;
 
-	const auto angle_start = 42.0f / 360.0f * juce::MathConstants<float>::twoPi;
+	const auto angle_start = 44.0f / 360.0f * juce::MathConstants<float>::twoPi;
 	const auto angle_range = juce::MathConstants<float>::twoPi - 2.0f * angle_start;
 
-	const auto stroke = float(getHeight()) / 70.0f;
+	const auto stroke = float(getHeight()) / 50.0f;
 
 	for (int guide = 0; guide < m_num_guides; ++guide) {
 		const auto angle = angle_start + angle_range * float(guide) / float(m_num_guides - 1);

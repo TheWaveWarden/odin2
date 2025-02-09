@@ -19,10 +19,19 @@
 #include "JsonGuiProvider.h"
 
 PhaserComponent::PhaserComponent(AudioProcessorValueTreeState &vts, const std::string &p_fx_name, bool p_is_standalone) :
-    m_value_tree(vts), m_fx_name(p_fx_name), m_is_standalone_plugin(p_is_standalone), m_sync("sync", "Sync"),
-    m_reset("reset", "Reset"), m_fx_synctime_denominator_identifier(p_fx_name + "_synctime_denominator"),
-    m_fx_synctime_numerator_identifier(p_fx_name + "_synctime_numerator"), m_rate_label("Rate"), m_mod_label("Amount"),
-    m_freq_label("Freq"), m_feedback_label("Feedback"), m_dry_wet_label("DryWet")
+    m_value_tree(vts),
+    m_fx_name(p_fx_name),
+    m_is_standalone_plugin(p_is_standalone),
+    m_sync("sync", "Sync"),
+    m_reset("reset", "Reset"),
+    m_fx_synctime_denominator_identifier(p_fx_name + "_synctime_denominator"),
+    m_fx_synctime_numerator_identifier(p_fx_name + "_synctime_numerator"),
+    m_rate_label("Rate"),
+    m_mod_label("Amount"),
+    m_freq_label("Freq"),
+    m_feedback_label("Feedback"),
+    m_dry_wet_label("DryWet"),
+	m_sync_time(UIAssets::Indices::screen_up_down_13x4_LR)
 
 {
 	addAndMakeVisible(m_rate_label);
@@ -86,8 +95,7 @@ PhaserComponent::PhaserComponent(AudioProcessorValueTreeState &vts, const std::s
 	addAndMakeVisible(m_sync);
 	m_sync.onClick = [&]() {
 		setSyncEnabled(m_sync.getToggleState());
-		m_value_tree.state.getChildWithName("fx").setProperty(
-		    (Identifier)("phaser_sync"), m_sync.getToggleState() ? 1.f : 0.f, nullptr);
+		m_value_tree.state.getChildWithName("fx").setProperty((Identifier)("phaser_sync"), m_sync.getToggleState() ? 1.f : 0.f, nullptr);
 		m_value_tree.state.getChildWithName("fx").sendPropertyChangeMessage("phaser_sync");
 	};
 

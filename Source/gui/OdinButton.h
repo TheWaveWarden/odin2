@@ -27,6 +27,8 @@ public:
 		unassigned,
 		button_7x4,
 		button_9x4,
+		button_10x4,
+		button_12x4,
 		button_13x4,
 		button_13x4EnvLFO,
 		button_5x5,
@@ -38,7 +40,7 @@ public:
 		up,
 		down,
 		burger,
-        loop
+		loop
 	};
 
 	OdinButton(const String &buttonName, const String &p_button_text, Type p_type = Type::unassigned) : juce::Button(buttonName), m_button_text(p_button_text), m_type(p_type) {
@@ -50,10 +52,16 @@ public:
 		case Type::button_9x4:
 			m_ui_asset_base = int(UIAssets::Indices::bttn_9x4_off);
 			break;
-        case Type::button_13x4:
+		case Type::button_13x4:
 			m_ui_asset_base = int(UIAssets::Indices::bttn_13x4_off);
 			break;
-        case Type::button_13x4EnvLFO:
+			case Type::button_12x4:
+			m_ui_asset_base = int(UIAssets::Indices::bttn_12x4_off);
+			break;
+			case Type::button_10x4:
+			m_ui_asset_base = int(UIAssets::Indices::bttn_10x4_off);
+			break;
+		case Type::button_13x4EnvLFO:
 			m_ui_asset_base = int(UIAssets::Indices::bttn_13x4_EnvLFO_off);
 			break;
 		case Type::button_dropdown:
@@ -62,10 +70,10 @@ public:
 		case Type::button_left:
 			m_ui_asset_base = int(UIAssets::Indices::bttn_5x5_arrow_L_off);
 			break;
-			case Type::button_right:
+		case Type::button_right:
 			m_ui_asset_base = int(UIAssets::Indices::bttn_5x5_arrow_R_off);
 			break;
-			case Type::fx_enabled:
+		case Type::fx_enabled:
 			m_ui_asset_base = int(UIAssets::Indices::bttn_12x2_power_off);
 			break;
 		case Type::up:
@@ -83,7 +91,7 @@ public:
 		case Type::button_5x5:
 			m_ui_asset_base = int(UIAssets::Indices::bttn_5x5_off);
 			break;
-        case Type::loop:
+		case Type::loop:
 			m_ui_asset_base = int(UIAssets::Indices::bttn_loop_off);
 			break;
 		default:

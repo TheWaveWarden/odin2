@@ -14,15 +14,31 @@
 */
 
 #include "DelayComponent.h"
+#include "../ConfigFileManager.h"
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "JsonGuiProvider.h"
+#include "UIAssetManager.h"
 
 DelayComponent::DelayComponent(AudioProcessorValueTreeState &vts, bool p_is_standalone) :
-    m_sync("sync", "Sync"), m_pingpong("pingpong", "PingPong"), m_value_tree(vts),
+    m_sync("sync", "Sync", OdinButton::Type::button_10x4),
+    m_pingpong("pingpong", "PingPong", OdinButton::Type::button_12x4),
+    m_value_tree(vts),
     m_delay_synctime_denominator_identifier("delay_synctime_denominator"),
-    m_delay_synctime_numerator_identifier("delay_synctime_numerator"), m_is_standalone_plugin(p_is_standalone),
-    m_time_label("Time"), m_feedback_label("Feedback"), m_hp_label("HP"), m_ducking_label("Ducking"),
-    m_dry_label("Dry"), m_wet_label("Wet") {
+    m_delay_synctime_numerator_identifier("delay_synctime_numerator"),
+    m_is_standalone_plugin(p_is_standalone),
+    m_time_label("Time"),
+    m_feedback_label("Feedback"),
+    m_hp_label("HP"),
+    m_ducking_label("Ducking"),
+    m_dry_label("Dry"),
+    m_wet_label("Wet"),
+    m_feedback(OdinKnob::Type::knob_8x8a),
+    m_HP(OdinKnob::Type::knob_5x5a),
+    m_dry(OdinKnob::Type::knob_5x5a),
+    m_wet(OdinKnob::Type::knob_5x5a),
+    m_ducking(OdinKnob::Type::knob_5x5a),
+    m_time(OdinKnob::Type::timeHz_14x4),
+    m_sync_time(UIAssets::Indices::screen_up_down_14x4_LR) {
 
 	addAndMakeVisible(m_time_label);
 	addAndMakeVisible(m_feedback_label);
@@ -45,8 +61,7 @@ DelayComponent::DelayComponent(AudioProcessorValueTreeState &vts, bool p_is_stan
 	addAndMakeVisible(m_sync);
 	m_sync.onClick = [&]() {
 		setSync(m_sync.getToggleState());
-		m_value_tree.state.getChildWithName("fx").setProperty(
-		    (Identifier)("delay_sync"), m_sync.getToggleState() ? 1.f : 0.f, nullptr);
+		m_value_tree.state.getChildWithName("fx").setProperty((Identifier)("delay_sync"), m_sync.getToggleState() ? 1.f : 0.f, nullptr);
 		m_value_tree.state.getChildWithName("fx").sendPropertyChangeMessage((Identifier)("delay_sync"));
 	};
 
@@ -97,8 +112,7 @@ DelayComponent::DelayComponent(AudioProcessorValueTreeState &vts, bool p_is_stan
 
 	m_sync_time.OnValueChange = [&](int p_left, int p_right) {
 		m_value_tree.state.getChildWithName("fx").setProperty(m_delay_synctime_numerator_identifier, p_left, nullptr);
-		m_value_tree.state.getChildWithName("fx").setProperty(
-		    m_delay_synctime_denominator_identifier, p_right, nullptr);
+		m_value_tree.state.getChildWithName("fx").setProperty(m_delay_synctime_denominator_identifier, p_right, nullptr);
 	};
 	m_sync_time.setTooltip("Set the delay time in sync to your track");
 	addChildComponent(m_sync_time);
@@ -122,8 +136,7 @@ DelayComponent::~DelayComponent() {
 }
 
 void DelayComponent::paint(Graphics &g) {
-	g.setColour(COL_LIGHT);
-	g.drawRect(getLocalBounds(), 1);
+	g.drawImageAt(UIAssetManager::getInstance()->getUIAsset(UIAssets::Indices::FX_Delay, ConfigFileManager::getInstance().getOptionGuiScale()), 0, 0);
 }
 
 void DelayComponent::forceValueTreeOntoComponents(ValueTree p_tree) {

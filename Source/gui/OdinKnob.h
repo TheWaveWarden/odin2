@@ -43,7 +43,7 @@ public:
 
 class OdinKnob : public juce::Slider, public OdinMidiLearnBase {
 public:
-	enum class Type { unassigned, knob_4x4a, knob_4x4b, knob_5x5a, knob_5x5b, knob_6x6a, knob_6x6b, knob_8x8a, knob_8x8b, wheel, timeHz };
+	enum class Type { unassigned, knob_4x4a, knob_4x4b, knob_5x5a, knob_5x5b, knob_6x6a, knob_6x6b, knob_8x8a, knob_8x8b, wheel, timeHz_13x4, timeHz_14x4 };
 
 	OdinKnob(Type type = Type::unassigned);
 

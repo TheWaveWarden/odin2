@@ -14,15 +14,26 @@
 */
 
 #include "FXComponent.h"
+#include "../ConfigFileManager.h"
 #include "../GlobalIncludes.h"
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "JsonGuiProvider.h"
+#include "UIAssetManager.h"
 
-FXComponent::FXComponent(AudioProcessorValueTreeState &vts, const std::string &p_fx_name, bool p_is_standalone) :
-    m_value_tree(vts), m_fx_name(p_fx_name), m_is_standalone_plugin(p_is_standalone), m_sync("sync", "Sync"),
-    m_reset("reset", "Reset"), m_fx_synctime_denominator_identifier(p_fx_name + "_synctime_denominator"),
-    m_fx_synctime_numerator_identifier(p_fx_name + "_synctime_numerator"), m_rate_label("Rate"),
-    m_amount_label("Amount"), m_feedback_label("Feedback"), m_dry_wet_label("DryWet") {
+FXComponent::FXComponent(AudioProcessorValueTreeState &vts, const std::string &p_fx_name, bool p_is_standalone, Type p_type) :
+    m_type(p_type),
+    m_value_tree(vts),
+    m_fx_name(p_fx_name),
+    m_is_standalone_plugin(p_is_standalone),
+    m_sync("sync", "Sync"),
+    m_reset("reset", "Reset"),
+    m_fx_synctime_denominator_identifier(p_fx_name + "_synctime_denominator"),
+    m_fx_synctime_numerator_identifier(p_fx_name + "_synctime_numerator"),
+    m_rate_label("Rate"),
+    m_amount_label("Amount"),
+    m_feedback_label("Feedback"),
+    m_dry_wet_label("DryWet"),
+    m_sync_time(UIAssets::Indices::screen_up_down_13x4_LR) {
 
 	addAndMakeVisible(m_rate_label);
 	addAndMakeVisible(m_amount_label);
@@ -75,8 +86,7 @@ FXComponent::FXComponent(AudioProcessorValueTreeState &vts, const std::string &p
 	addAndMakeVisible(m_sync);
 	m_sync.onClick = [&]() {
 		setSyncEnabled(m_sync.getToggleState());
-		m_value_tree.state.getChildWithName("fx").setProperty(
-		    (Identifier)(m_fx_name + "_sync"), m_sync.getToggleState() ? 1.f : 0.f, nullptr);
+		m_value_tree.state.getChildWithName("fx").setProperty((Identifier)(m_fx_name + "_sync"), m_sync.getToggleState() ? 1.f : 0.f, nullptr);
 		m_value_tree.state.getChildWithName("fx").sendPropertyChangeMessage((Identifier)(m_fx_name + "_sync"));
 	};
 
@@ -105,8 +115,9 @@ FXComponent::~FXComponent() {
 }
 
 void FXComponent::paint(Graphics &g) {
-	g.setColour(COL_LIGHT);
-	g.drawRect(getLocalBounds(), 1);
+	auto asset = m_type == Type::chorus ? UIAssets::Indices::FX_Chorus : UIAssets::Indices::FX_Flanger;
+
+	g.drawImageAt(UIAssetManager::getInstance()->getUIAsset(asset, ConfigFileManager::getInstance().getOptionGuiScale()), 0, 0);
 }
 
 void FXComponent::setSyncEnabled(bool p_sync) {
@@ -127,8 +138,7 @@ void FXComponent::forceValueTreeOntoComponents(ValueTree p_tree) {
 	m_sync_time.setValues(m_value_tree.state.getChildWithName("fx")[m_fx_synctime_numerator_identifier],
 	                      m_value_tree.state.getChildWithName("fx")[m_fx_synctime_denominator_identifier]);
 
-	m_sync.setToggleState((float)m_value_tree.state.getChildWithName("fx")[(Identifier)(m_fx_name + "_sync")] > 0.5f,
-	                      dontSendNotification);
+	m_sync.setToggleState((float)m_value_tree.state.getChildWithName("fx")[(Identifier)(m_fx_name + "_sync")] > 0.5f, dontSendNotification);
 	setSyncEnabled((float)m_value_tree.state.getChildWithName("fx")[(Identifier)(m_fx_name + "_sync")] > 0.5f);
 	//send change message to set member in processor
 	m_value_tree.state.getChildWithName("fx").sendPropertyChangeMessage(((Identifier)(m_fx_name + "_sync")));

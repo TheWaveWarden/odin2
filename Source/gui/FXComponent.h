@@ -36,7 +36,11 @@
 
 class FXComponent : public Component {
 public:
-	FXComponent(AudioProcessorValueTreeState &vts, const std::string &p_fx_name, bool p_is_standalone);
+	enum class Type {
+		chorus,
+		flanger
+	};
+	FXComponent(AudioProcessorValueTreeState &vts, const std::string &p_fx_name, bool p_is_standalone, Type p_type);
 	~FXComponent();
 
 	void forceValueTreeOntoComponents(ValueTree p_tree);
@@ -46,14 +50,6 @@ public:
 
 	void setSyncTimeColor(juce::Colour p_color) {
 		m_sync_time.setColor(p_color);
-	}
-
-	void setImage(juce::Image p_background, bool p_sync) {
-		// if (p_sync) {
-		// 	m_background_sync = p_background;
-		// } else {
-		// 	m_background_no_sync = p_background;
-		// }
 	}
 
 	void setSyncEnabled(bool p_sync);
@@ -76,6 +72,8 @@ private:
 
 	juce::Image m_background_sync;
 	juce::Image m_background_no_sync;
+
+	Type m_type;
 
 	SyncTimeSelector m_sync_time;
 

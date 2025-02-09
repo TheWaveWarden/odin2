@@ -28,7 +28,8 @@ LFOComponent::LFOComponent(AudioProcessorValueTreeState &vts, const std::string 
     m_lfo_synctime_denominator_identifier("lfo" + p_lfo_number + "_synctime_denominator"),
     m_lfo_synctime_numerator_identifier("lfo" + p_lfo_number + "_synctime_numerator"),
     m_is_standalone_plugin(p_is_standalone),
-    m_freq(OdinKnob::Type::timeHz) {
+    m_freq(OdinKnob::Type::timeHz_13x4),
+	m_sync_time(UIAssets::Indices::screen_up_down_13x4_LR) {
 
 	m_freq_attach.reset(new OdinKnobAttachment(m_value_tree, "lfo" + m_lfo_number + "_freq", m_freq));
 

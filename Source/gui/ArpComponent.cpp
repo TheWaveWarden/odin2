@@ -18,11 +18,30 @@
 #include <JuceHeader.h>
 
 ArpComponent::ArpComponent(OdinAudioProcessor &p_processor, AudioProcessorValueTreeState &vts) :
-    m_processor(p_processor), m_value_tree(vts), m_step_0(vts, 0), m_step_1(vts, 1), m_step_2(vts, 2), m_step_3(vts, 3),
-    m_step_4(vts, 4), m_step_5(vts, 5), m_step_6(vts, 6), m_step_7(vts, 7), m_step_8(vts, 8), m_step_9(vts, 9),
-    m_step_10(vts, 10), m_step_11(vts, 11), m_step_12(vts, 12), m_step_13(vts, 13), m_step_14(vts, 14),
-    m_step_15(vts, 15), m_on("arp_on", "On"), m_one_shot("arp_one_shot", "1-Shot"),
-    m_mod_transpose("arp_mod_transpose", "Md/Trns"), m_mod1_label("Mod 1") {
+    m_processor(p_processor),
+    m_value_tree(vts),
+    m_step_0(vts, 0),
+    m_step_1(vts, 1),
+    m_step_2(vts, 2),
+    m_step_3(vts, 3),
+    m_step_4(vts, 4),
+    m_step_5(vts, 5),
+    m_step_6(vts, 6),
+    m_step_7(vts, 7),
+    m_step_8(vts, 8),
+    m_step_9(vts, 9),
+    m_step_10(vts, 10),
+    m_step_11(vts, 11),
+    m_step_12(vts, 12),
+    m_step_13(vts, 13),
+    m_step_14(vts, 14),
+    m_step_15(vts, 15),
+    m_on("arp_on", "On"),
+    m_one_shot("arp_one_shot", "1-Shot"),
+    m_mod_transpose("arp_mod_transpose", "Md/Trns"),
+    m_mod1_label("Mod 1"),
+    m_sync_time(UIAssets::Indices::screen_up_down_13x4_LR) {
+
 	addAndMakeVisible(m_step_0);
 	addAndMakeVisible(m_step_1);
 	addAndMakeVisible(m_step_2);
@@ -41,15 +60,13 @@ ArpComponent::ArpComponent(OdinAudioProcessor &p_processor, AudioProcessorValueT
 	addAndMakeVisible(m_step_15);
 	addAndMakeVisible(m_mod1_label);
 
-	m_octave_selector.OnValueChange = [&](int p_new_value) {
-		m_value_tree.state.getChildWithName("misc").setProperty("arp_octaves", p_new_value, nullptr);
-	};
-	m_octave_selector.valueToText = [](int p_value) {
-		if (p_value > 1) {
-			return std::to_string(p_value) + " Octaves";
-		} else {
-			return std::to_string(p_value) + " Octave";
-		}
+	m_octave_selector.OnValueChange = [&](int p_new_value) { m_value_tree.state.getChildWithName("misc").setProperty("arp_octaves", p_new_value, nullptr); };
+	m_octave_selector.valueToText   = [](int p_value) {
+        if (p_value > 1) {
+            return std::to_string(p_value) + " Octaves";
+        } else {
+            return std::to_string(p_value) + " Octave";
+        }
 	};
 	m_octave_selector.setLegalValues({1, 2, 3, 4});
 
@@ -76,12 +93,8 @@ ArpComponent::ArpComponent(OdinAudioProcessor &p_processor, AudioProcessorValueT
 	m_steps_selector.setColor(Colour(10, 40, 50));
 	m_steps_selector.setTooltip("Sets how many steps the step sequence has before it wraps around");
 
-	m_direction.OnValueChange = [&](int p_new_value) {
-		m_value_tree.state.getChildWithName("misc").setProperty("arp_direction", p_new_value, nullptr);
-	};
-	m_direction.valueToText = [&](int p_value) {
-		return OdinArpeggiator::ArpPatternToString((OdinArpeggiator::ArpPattern)p_value).toStdString();
-	};
+	m_direction.OnValueChange = [&](int p_new_value) { m_value_tree.state.getChildWithName("misc").setProperty("arp_direction", p_new_value, nullptr); };
+	m_direction.valueToText   = [&](int p_value) { return OdinArpeggiator::ArpPatternToString((OdinArpeggiator::ArpPattern)p_value).toStdString(); };
 	m_direction.setLegalValues({(int)OdinArpeggiator::ArpPattern::Up,
 	                            (int)OdinArpeggiator::ArpPattern::Down,
 	                            (int)OdinArpeggiator::ArpPattern::UpAndDown,
@@ -94,15 +107,13 @@ ArpComponent::ArpComponent(OdinAudioProcessor &p_processor, AudioProcessorValueT
 	m_direction.setColor(Colour(10, 40, 50));
 	m_direction.setTooltip("Sets the direction of the arpeggio being played");
 
-	m_gate.OnValueChange = [&](int p_new_value) {
-		m_value_tree.state.getChildWithName("misc").setProperty("arp_gate", p_new_value, nullptr);
-	};
-	m_gate.valueToText = [&](int p_value) {
-		if (p_value < 100) {
-			return "Gate: " + std::to_string(p_value) + "%";
-		} else {
-			return "Gate " + std::to_string(p_value) + "%";
-		}
+	m_gate.OnValueChange = [&](int p_new_value) { m_value_tree.state.getChildWithName("misc").setProperty("arp_gate", p_new_value, nullptr); };
+	m_gate.valueToText   = [&](int p_value) {
+        if (p_value < 100) {
+            return "Gate: " + std::to_string(p_value) + "%";
+        } else {
+            return "Gate " + std::to_string(p_value) + "%";
+        }
 	};
 	m_gate.setLegalValues({10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 125, 150, 175, 200});
 	addAndMakeVisible(m_gate);
@@ -264,8 +275,7 @@ void ArpComponent::forceValueTreeOntoComponents(ValueTree p_tree) {
 
 	m_direction.setValue((int)m_value_tree.state.getChildWithName("misc")["arp_direction"]);
 	m_gate.setValue((int)m_value_tree.state.getChildWithName("misc")["arp_gate"]);
-	m_sync_time.setValues((int)m_value_tree.state.getChildWithName("misc")["arp_synctime_numerator"],
-	                      (int)m_value_tree.state.getChildWithName("misc")["arp_synctime_denominator"]);
+	m_sync_time.setValues((int)m_value_tree.state.getChildWithName("misc")["arp_synctime_numerator"], (int)m_value_tree.state.getChildWithName("misc")["arp_synctime_denominator"]);
 
 	setModTranspose(!m_mod_transpose.getToggleState());
 }

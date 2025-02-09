@@ -22,10 +22,10 @@
 
 class SyncTimeSelector : public Component {
 public:
-	SyncTimeSelector();
+	SyncTimeSelector(UIAssets::Indices p_asset);
 	~SyncTimeSelector();
 
-    void paint(Graphics &g) override;
+	void paint(Graphics &g) override;
 
 	void setColor(juce::Colour p_color) {
 		m_display.setColor(p_color);
@@ -117,6 +117,8 @@ private:
 
 	int m_value_left  = 2;
 	int m_value_right = 5;
+
+	const UIAssets::Indices m_asset;
 
 	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(SyncTimeSelector)
 };

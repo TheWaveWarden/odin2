@@ -19,7 +19,8 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "UIAssetManager.h"
 
-SyncTimeSelector::SyncTimeSelector() :
+SyncTimeSelector::SyncTimeSelector(UIAssets::Indices p_asset) :
+    m_asset(p_asset),
     m_up_left("up_left", "", OdinButton::Type::up),
     m_down_left("down_left", "", OdinButton::Type::down),
     m_up_right("up_right", "", OdinButton::Type::up),
@@ -47,33 +48,26 @@ SyncTimeSelector::SyncTimeSelector() :
 	m_display.setColor(STANDARD_DISPLAY_COLOR);
 	addAndMakeVisible(m_display);
 
-	juce::DrawableImage up_draw1;
-	juce::DrawableImage up_draw2;
-
-	m_up_left.setClickingTogglesState(true);
+	m_up_left.setClickingTogglesState(false);
 	addAndMakeVisible(m_up_left);
-	m_up_left.setTriggeredOnMouseDown(false);
 	m_up_left.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
 	m_up_left.onClick = [&]() { incrementLeft(); };
 	m_up_left.setAlwaysOnTop(true);
 
-	m_up_right.setClickingTogglesState(true);
+	m_up_right.setClickingTogglesState(false);
 	addAndMakeVisible(m_up_right);
-	m_up_right.setTriggeredOnMouseDown(false);
 	m_up_right.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
 	m_up_right.onClick = [&]() { incrementRight(); };
 	m_up_right.setAlwaysOnTop(true);
 
-	m_down_left.setClickingTogglesState(true);
+	m_down_left.setClickingTogglesState(false);
 	addAndMakeVisible(m_down_left);
-	m_down_left.setTriggeredOnMouseDown(false);
 	m_down_left.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
 	m_down_left.onClick = [&]() { decrementLeft(); };
 	m_down_left.setAlwaysOnTop(true);
 
-	m_down_right.setClickingTogglesState(true);
+	m_down_right.setClickingTogglesState(false);
 	addAndMakeVisible(m_down_right);
-	m_down_right.setTriggeredOnMouseDown(false);
 	m_down_right.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
 	m_down_right.onClick = [&]() { decrementRight(); };
 	m_down_right.setAlwaysOnTop(true);
@@ -86,7 +80,7 @@ SyncTimeSelector::~SyncTimeSelector() {
 }
 
 void SyncTimeSelector::paint(Graphics &g) {
-	g.drawImageAt(UIAssetManager::getInstance()->getUIAsset(UIAssets::Indices::screen_up_down_13x4_LR, ConfigFileManager::getInstance().getOptionGuiScale()), 0, 0);
+	g.drawImageAt(UIAssetManager::getInstance()->getUIAsset(m_asset, ConfigFileManager::getInstance().getOptionGuiScale()), 0, 0);
 }
 
 void SyncTimeSelector::resized() {
