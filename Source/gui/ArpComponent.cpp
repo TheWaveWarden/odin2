@@ -146,12 +146,14 @@ ArpComponent::ArpComponent(OdinAudioProcessor &p_processor, AudioProcessorValueT
 	m_mod_transpose.setTriggeredOnMouseDown(true);
 	m_mod_transpose.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
 	m_mod_transpose.onClick = [&]() { setModTranspose(!m_mod_transpose.getToggleState()); };
+	m_mod_transpose.setFontHeightRelative(0.2f);
 
 	m_one_shot.setClickingTogglesState(true);
 	addAndMakeVisible(m_one_shot);
 	m_one_shot.setTooltip("Makes the sequence stop after it ran through every step once");
 	m_one_shot.setTriggeredOnMouseDown(true);
 	m_one_shot.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
+	m_one_shot.setFontHeightRelative(0.4f);
 
 	m_on_attach.reset(new OdinButtonAttachment(m_value_tree, "arp_on", m_on));
 	m_one_shot_attach.reset(new OdinButtonAttachment(m_value_tree, "arp_one_shot", m_one_shot));
@@ -162,7 +164,7 @@ ArpComponent::~ArpComponent() {
 }
 
 void ArpComponent::paint(Graphics &g) {
-	//g.drawImageAt(UIAssetManager::getInstance()->getUIAsset(UIAssets::Indices::, ConfigFileManager::getInstance().getOptionGuiScale()), 0, 0);
+	g.drawImageAt(UIAssetManager::getInstance()->getUIAsset(UIAssets::Indices::Arpeggiator_back, ConfigFileManager::getInstance().getOptionGuiScale()), 0, 0);
 }
 
 void ArpComponent::resized() {

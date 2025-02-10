@@ -5,5 +5,5 @@
 
 #include "../GlobalIncludes.h"
 struct UIAssetsSize {
-    static std::array<size_t, 1485> Size;
+    static std::array<size_t, 1488> Size;
 };

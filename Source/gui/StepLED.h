@@ -15,7 +15,10 @@
 
 #pragma once
 
+#include "../ConfigFileManager.h"
+#include "UIAssetManager.h"
 #include <JuceHeader.h>
+
 
 class StepLED : public Component {
 public:
@@ -26,11 +29,8 @@ public:
 	}
 
 	void paint(Graphics &g) override {
-		g.setColour(COL_LIGHT);
-		if (m_LED_on)
-			g.fillEllipse(getLocalBounds().toFloat());
-		else
-			g.drawEllipse(getLocalBounds().toFloat(), 1.0f);
+		const auto asset = m_LED_on ? UIAssets::Indices::LED_on : UIAssets::Indices::LED_off;
+		g.drawImageAt(UIAssetManager::getInstance()->getUIAsset(asset, ConfigFileManager::getInstance().getOptionGuiScale()), 0, 0);
 	}
 
 	void resized() override {
@@ -45,7 +45,7 @@ public:
 	}
 
 private:
-	bool m_LED_on  = false;
+	bool m_LED_on = false;
 
 	juce::Image m_image_on;
 	juce::Image m_image_off;

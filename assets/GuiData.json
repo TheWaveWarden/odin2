@@ -138,10 +138,10 @@
     "Y": 24
   },
   "ArpStepLed": {
-    "SizeX": 3,
-    "SizeY": 3,
-    "X": 2,
-    "Y": 22
+    "SizeX": 5,
+    "SizeY": 5,
+    "X": 1,
+    "Y": 21
   },
   "ArpStepMod_1": {
     "SizeX": 7,

@@ -44,7 +44,7 @@ public:
 		down,
 		burger,
 		loop,
-        matrix_clear
+		matrix_clear
 	};
 
 	OdinButton(const String &buttonName, const String &p_button_text, Type p_type = Type::unassigned) : juce::Button(buttonName), m_button_text(p_button_text), m_type(p_type) {
@@ -53,7 +53,7 @@ public:
 		case Type::button_7x4:
 			m_ui_asset_base = int(UIAssets::Indices::bttn_7x4_off);
 			break;
-        case Type::button_7x5:
+		case Type::button_7x5:
 			m_ui_asset_base = int(UIAssets::Indices::bttn_7x5_off);
 			break;
 		case Type::button_9x4:
@@ -107,7 +107,7 @@ public:
 		case Type::loop:
 			m_ui_asset_base = int(UIAssets::Indices::bttn_loop_off);
 			break;
-        case Type::matrix_clear:
+		case Type::matrix_clear:
 			m_ui_asset_base = int(UIAssets::Indices::bttn_2x2_close);
 			break;
 		default:
@@ -138,9 +138,16 @@ public:
 		repaint();
 	}
 
+	void setFontHeightRelative(float p_font_height_relative) {
+		m_font_height_relative = p_font_height_relative;
+		repaint();
+	}
+
 private:
 	Type m_type;
 	int m_ui_asset_base;
 	juce::String m_button_text;
 	static OdinAudioProcessor *m_processor;
+
+	float m_font_height_relative = 0.5f;
 };

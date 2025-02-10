@@ -72,6 +72,6 @@ void OdinButton::paintButton(juce::Graphics &g, bool p_highlight, bool p_pressed
 		colour_hex = 0xffffffff;
 
 	g.setColour(juce::Colour(colour_hex).withAlpha(text_alpha));
-	g.setFont(H * 0.5f);
+	g.setFont(float(H) * m_font_height_relative);
 	g.drawText(m_button_text, getLocalBounds(), juce::Justification::centred, false);
 }
