@@ -14,7 +14,9 @@
 */
 
 #include "ArpComponent.h"
+#include "../ConfigFileManager.h"
 #include "JsonGuiProvider.h"
+#include "UIAssetManager.h"
 #include <JuceHeader.h>
 
 ArpComponent::ArpComponent(OdinAudioProcessor &p_processor, AudioProcessorValueTreeState &vts) :
@@ -36,11 +38,15 @@ ArpComponent::ArpComponent(OdinAudioProcessor &p_processor, AudioProcessorValueT
     m_step_13(vts, 13),
     m_step_14(vts, 14),
     m_step_15(vts, 15),
-    m_on("arp_on", "On"),
-    m_one_shot("arp_one_shot", "1-Shot"),
-    m_mod_transpose("arp_mod_transpose", "Md/Trns"),
+    m_on("arp_on", "", OdinButton::Type::power_4x4),
+    m_one_shot("arp_one_shot", "1-Shot", OdinButton::Type::button_7x5),
+    m_mod_transpose("arp_mod_transpose", "Mod/\nTrns", OdinButton::Type::button_7x5),
     m_mod1_label("Mod 1"),
-    m_sync_time(UIAssets::Indices::screen_up_down_13x4_LR) {
+    m_sync_time(UIAssets::Indices::screen_up_down_13x4_LR),
+    m_octave_selector(NumberSelector::Type::selector_16x4),
+    m_steps_selector(NumberSelector::Type::selector_16x4),
+    m_direction(NumberSelector::Type::selector_16x4),
+    m_gate(NumberSelector::Type::selector_16x4) {
 
 	addAndMakeVisible(m_step_0);
 	addAndMakeVisible(m_step_1);
@@ -156,11 +162,7 @@ ArpComponent::~ArpComponent() {
 }
 
 void ArpComponent::paint(Graphics &g) {
-	g.setColour(COL_LIGHT);
-	g.drawRect(getLocalBounds(), 1);
-	//g.drawImageAt(m_background, 0, 0);
-	//g.setColour(Colours::black);
-	//g.drawRect(getLocalBounds(), 1); // draw an outline around the component
+	//g.drawImageAt(UIAssetManager::getInstance()->getUIAsset(UIAssets::Indices::, ConfigFileManager::getInstance().getOptionGuiScale()), 0, 0);
 }
 
 void ArpComponent::resized() {

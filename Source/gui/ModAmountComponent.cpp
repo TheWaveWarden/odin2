@@ -14,10 +14,9 @@
 */
 
 #include "ModAmountComponent.h"
+#include "../ConfigFileManager.h"
 #include "../GlobalIncludes.h"
 #include "../JuceLibraryCode/JuceHeader.h"
-#include <iomanip> // setprecision
-#include <sstream> // stringstream
 
 ModAmountComponent::ModAmountComponent() {
 }
@@ -27,31 +26,27 @@ ModAmountComponent::~ModAmountComponent() {
 
 void ModAmountComponent::paint(Graphics &g) {
 	SET_INTERPOLATION_QUALITY(g)
-	g.setColour(m_color);
-	juce::Point<float> top_left = getLocalBounds().getTopLeft().toFloat();
-	top_left.addXY(m_inlay, m_inlay + m_inlay_top);
-	juce::Point<float> bottom_right = getLocalBounds().getBottomRight().toFloat();
-	bottom_right.addXY(-m_inlay, -m_inlay - m_inlay_bottom);
 
+	auto bounds       = getLocalBounds().toFloat();
 	const auto corner = float(getHeight()) * 0.1f;
+
+	const auto scaleCompensation = float(ConfigFileManager::getInstance().getOptionGuiScale()) / float(GuiScale::Z200);
+	juce::BorderSize<float> border_size(3.0f * scaleCompensation, 3.0f * scaleCompensation, 1.0f * scaleCompensation, 2.0f * scaleCompensation);
+	border_size.subtractFrom(bounds);
 
 	if (m_value > 0) {
 		g.setColour(m_color_bar.withAlpha(0.3f));
-		bottom_right.addXY(-(getWidth() - m_inlay * 2) * (1.f - m_value), -m_inlay);
-		g.fillRoundedRectangle(juce::Rectangle<float>(top_left, bottom_right), corner);
+		bounds = bounds.removeFromLeft(bounds.proportionOfWidth(m_value));
+		g.fillRoundedRectangle(bounds, corner);
 	} else if (m_value < 0) {
 		g.setColour(m_color_bar_negative.withAlpha(0.3f));
-		top_left.addXY((getWidth() - m_inlay * 2) * (1 + m_value), m_inlay - m_inlay_bottom);
-		bottom_right.addXY(0, -m_inlay);
-		g.fillRoundedRectangle(juce::Rectangle<float>(top_left, bottom_right), corner);
+		bounds = bounds.removeFromRight(bounds.proportionOfWidth(-m_value));
+		g.fillRoundedRectangle(bounds, corner);
 	}
 
 	g.setFont(H / 1.8f);
-	std::stringstream stream;
-	stream << std::fixed << std::setprecision(0) << m_value * 100;
-	std::string value_string = stream.str();
 	g.setColour(COL_TEXT_BLUE);
-	g.drawText(value_string, getLocalBounds(), Justification::centred, true);
+	g.drawText(juce::String(juce::roundToInt(m_value * 100.0f)), getLocalBounds(), Justification::centred, true);
 }
 
 void ModAmountComponent::mouseDrag(const MouseEvent &event) {

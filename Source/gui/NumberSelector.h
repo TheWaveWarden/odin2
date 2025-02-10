@@ -24,6 +24,7 @@ class NumberSelector : public Component, public AudioProcessorValueTreeState::Li
 public:
 	enum class Type {
 		unassigned,
+		selector_16x4,
 		selector_14x4,
 		selector_12x4,
 		selector_8x4,

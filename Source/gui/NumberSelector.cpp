@@ -27,6 +27,9 @@ NumberSelector::NumberSelector(bool p_buttons_right, Type p_type) : m_type(p_typ
 	case Type::selector_14x4:
 		m_asset = UIAssets::Indices::screen_up_down_14x4_R;
 		break;
+	case Type::selector_16x4:
+		m_asset = UIAssets::Indices::screen_up_down_16x4_R;
+		break;
 	case Type::selector_8x4:
 		m_asset = UIAssets::Indices::screen_up_down_8x4_R;
 		break;

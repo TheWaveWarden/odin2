@@ -98,79 +98,79 @@
   "ArpDirection": {
     "SizeX": 16,
     "SizeY": 4,
-    "X": 85,
+    "X": 82,
     "Y": 3
   },
   "ArpGate": {
     "SizeX": 16,
     "SizeY": 4,
-    "X": 106,
+    "X": 104,
     "Y": 3
   },
   "ArpMod1Label": {
-    "SizeX": 9,
+    "SizeX": 7,
     "SizeY": 3,
     "X": 2,
-    "Y": 12
+    "Y": 10
   },
   "ArpModTranspose": {
-    "SizeX": 9,
-    "SizeY": 3,
+    "SizeX": 7,
+    "SizeY": 5,
     "X": 2,
-    "Y": 19
+    "Y": 17
   },
   "ArpOctaveSelector": {
     "SizeX": 16,
     "SizeY": 4,
-    "X": 39,
+    "X": 38,
     "Y": 3
   },
   "ArpOn": {
-    "SizeX": 5,
-    "SizeY": 5,
-    "X": 3,
+    "SizeX": 4,
+    "SizeY": 4,
+    "X": 2,
     "Y": 3
   },
   "ArpOneShot": {
-    "SizeX": 9,
-    "SizeY": 3,
+    "SizeX": 7,
+    "SizeY": 5,
     "X": 2,
-    "Y": 27
+    "Y": 24
   },
   "ArpStepLed": {
     "SizeX": 3,
     "SizeY": 3,
-    "X": 1,
-    "Y": 23
+    "X": 2,
+    "Y": 22
   },
   "ArpStepMod_1": {
-    "SizeX": 5,
-    "SizeY": 5,
+    "SizeX": 7,
+    "SizeY": 8,
     "X": 0,
-    "Y": 2
+    "Y": -1
   },
   "ArpStepMod_2": {
-    "SizeX": 5,
-    "SizeY": 5,
+    "SizeX": 7,
+    "SizeY": 8,
     "X": 0,
-    "Y": 9
+    "Y": 7
   },
   "ArpStepStepOn": {
     "SizeX": 5,
     "SizeY": 5,
-    "X": 0,
-    "Y": 16
+    "X": 1,
+    "Y": 15
   },
   "ArpStepTranspose": {
-    "SizeX": 5,
-    "SizeY": 5,
+    "SizeX": 7,
+    "SizeY": 8,
     "X": 0,
-    "Y": 9
+    "Y": 7
   },
   "ArpStep_0": {
     "SizeX": 7,
     "SizeY": 26,
-    "X": 12,
+    "X": 9,
     "Y": 9
   },
   "ArpStep_1": {
@@ -266,7 +266,7 @@
   "ArpStepsSelector": {
     "SizeX": 16,
     "SizeY": 4,
-    "X": 62,
+    "X": 60,
     "Y": 3
   },
   "ArpSyncTime": {
@@ -1026,10 +1026,10 @@
     "Y": 115
   },
   "MatrixClearButton": {
-    "SizeX": 4,
-    "SizeY": 4,
-    "X": 117,
-    "Y": 1
+    "SizeX": 2,
+    "SizeY": 2,
+    "X": 118,
+    "Y": 2
   },
   "MatrixDest1": {
     "SizeX": 20,

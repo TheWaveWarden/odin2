@@ -14,7 +14,9 @@
 */
 
 #include "ModAmountComponentExtended.h"
+#include "../ConfigFileManager.h"
 #include "../GlobalIncludes.h"
+
 
 ModAmountComponentExtended::ModAmountComponentExtended() {
 	m_input_limit = 3.f;
@@ -31,63 +33,56 @@ void ModAmountComponentExtended::setColorBarsExtended(
 }
 
 void ModAmountComponentExtended::paint(Graphics &g) {
+
 	SET_INTERPOLATION_QUALITY(g)
-	g.setColour(m_color);
-	juce::Point<int> top_left = getLocalBounds().getTopLeft();
-	top_left.addXY(m_inlay, m_inlay + m_inlay_top);
-	juce::Point<int> bottom_right = getLocalBounds().getBottomRight();
-	bottom_right.addXY(-m_inlay, -m_inlay - m_inlay_bottom);
+
+	auto bounds       = getLocalBounds().toFloat();
+	const auto corner = float(getHeight()) * 0.1f;
+
+	const auto scaleCompensation = float(ConfigFileManager::getInstance().getOptionGuiScale()) / float(GuiScale::Z200);
+	juce::BorderSize<float> border_size(3.0f * scaleCompensation, 3.0f * scaleCompensation, 1.0f * scaleCompensation, 2.0f * scaleCompensation);
+	border_size.subtractFrom(bounds);
 
 	if (m_value > 0 && m_value <= 1) {
-		g.setColour(m_cols_pos[0]);
-		bottom_right.addXY(-(getWidth() - m_inlay * 2) * (1.f - m_value), -m_inlay);
-		g.fillRect(juce::Rectangle<int>(top_left, bottom_right));
+		g.setColour(m_cols_pos[0].withAlpha(0.3f));
+		bounds = bounds.removeFromLeft(bounds.proportionOfWidth(m_value));
+		g.fillRoundedRectangle(bounds, corner);
 	} else if (m_value > 1 && m_value <= 2) {
-		g.setColour(m_cols_pos[0]);
-		bottom_right.addXY(0, -m_inlay);
-		g.fillRect(juce::Rectangle<int>(top_left, bottom_right));
-		g.setColour(m_cols_pos[1]);
-		bottom_right.addXY(-(getWidth() - m_inlay * 2) * (2.f - m_value), 0);
-		g.fillRect(juce::Rectangle<int>(top_left, bottom_right));
+		g.setColour(m_cols_pos[0].withAlpha(0.3f));
+		const auto bounds2 = bounds.removeFromLeft(bounds.proportionOfWidth(m_value - 1.0f));
+		g.fillRoundedRectangle(bounds, corner);
+
+		g.setColour(m_cols_pos[1].withAlpha(0.3f));
+		g.fillRoundedRectangle(bounds2, corner);
 	} else if (m_value > 2 && m_value <= 3) {
-		g.setColour(m_cols_pos[1]);
-		bottom_right.addXY(0, -m_inlay);
-		g.fillRect(juce::Rectangle<int>(top_left, bottom_right));
-		g.setColour(m_cols_pos[2]);
-		bottom_right.addXY(-(getWidth() - m_inlay * 2) * (3.f - m_value), 0);
-		g.fillRect(juce::Rectangle<int>(top_left, bottom_right));
+		g.setColour(m_cols_pos[1].withAlpha(0.3f));
+		const auto bounds2 = bounds.removeFromLeft(bounds.proportionOfWidth(m_value - 2.0f));
+		g.fillRoundedRectangle(bounds, corner);
+
+		g.setColour(m_cols_pos[2].withAlpha(0.3f));
+		g.fillRoundedRectangle(bounds2, corner);
 	}
 
 	else if (m_value < 0 && m_value >= -1) {
-		g.setColour(m_cols_neg[0]);
-		top_left.addXY((getWidth() - m_inlay * 2) * (1 + m_value), m_inlay - m_inlay_bottom);
-		bottom_right.addXY(0, -m_inlay);
-		g.fillRect(juce::Rectangle<int>(top_left, bottom_right));
+		g.setColour(m_cols_neg[0].withAlpha(0.3f));
+		bounds = bounds.removeFromRight(bounds.proportionOfWidth(-m_value));
+		g.fillRoundedRectangle(bounds, corner);
 	} else if (m_value < -1 && m_value >= -2) {
-		g.setColour(m_cols_neg[0]);
-		top_left.addXY(0, m_inlay - m_inlay_bottom);
-		bottom_right.addXY(0, -m_inlay);
-		g.fillRect(juce::Rectangle<int>(top_left, bottom_right));
-		g.setColour(m_cols_neg[1]);
-		top_left.addXY((getWidth() - m_inlay * 2) * (2 + m_value), 0);
-		g.fillRect(juce::Rectangle<int>(top_left, bottom_right));
+		g.setColour(m_cols_neg[1].withAlpha(0.3f));
+		const auto bounds2 = bounds.removeFromLeft(bounds.proportionOfWidth(2.0f + m_value));
+		g.fillRoundedRectangle(bounds, corner);
+		g.setColour(m_cols_neg[0].withAlpha(0.3f));
+		g.fillRoundedRectangle(bounds2, corner);
 	} else if (m_value < -2 && m_value >= -3) {
-		g.setColour(m_cols_neg[1]);
-		top_left.addXY(0, m_inlay - m_inlay_bottom);
-		bottom_right.addXY(0, -m_inlay);
-		g.fillRect(juce::Rectangle<int>(top_left, bottom_right));
-		g.setColour(m_cols_neg[2]);
-		top_left.addXY((getWidth() - m_inlay * 2) * (3 + m_value), 0);
-		g.fillRect(juce::Rectangle<int>(top_left, bottom_right));
+		g.setColour(m_cols_neg[2].withAlpha(0.3f));
+		const auto bounds2 = bounds.removeFromLeft(bounds.proportionOfWidth(3.0f + m_value));
+		g.fillRoundedRectangle(bounds, corner);
+
+		g.setColour(m_cols_neg[1].withAlpha(0.3f));
+		g.fillRoundedRectangle(bounds2, corner);
 	}
 
-	g.setFont(H / 1.4f);
-
-	// prepare string
-	std::stringstream stream;
-	stream << std::fixed << std::setprecision(0) << m_value * 100;
-	std::string value_string = stream.str();
-
+	g.setFont(H / 1.8f);
 	g.setColour(COL_TEXT_BLUE);
-	g.drawText(value_string, getLocalBounds(), Justification::centred, true);
+	g.drawText(juce::String(juce::roundToInt(m_value * 100.0f)), getLocalBounds(), Justification::centred, true);
 }

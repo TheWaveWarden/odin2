@@ -26,6 +26,7 @@ public:
 	enum class Type {
 		unassigned,
 		button_7x4,
+		button_7x5,
 		button_9x4,
 		button_10x4,
 		button_12x4,
@@ -42,7 +43,8 @@ public:
 		up,
 		down,
 		burger,
-		loop
+		loop,
+        matrix_clear
 	};
 
 	OdinButton(const String &buttonName, const String &p_button_text, Type p_type = Type::unassigned) : juce::Button(buttonName), m_button_text(p_button_text), m_type(p_type) {
@@ -50,6 +52,9 @@ public:
 		switch (m_type) {
 		case Type::button_7x4:
 			m_ui_asset_base = int(UIAssets::Indices::bttn_7x4_off);
+			break;
+        case Type::button_7x5:
+			m_ui_asset_base = int(UIAssets::Indices::bttn_7x5_off);
 			break;
 		case Type::button_9x4:
 			m_ui_asset_base = int(UIAssets::Indices::bttn_9x4_off);
@@ -101,6 +106,9 @@ public:
 			break;
 		case Type::loop:
 			m_ui_asset_base = int(UIAssets::Indices::bttn_loop_off);
+			break;
+        case Type::matrix_clear:
+			m_ui_asset_base = int(UIAssets::Indices::bttn_2x2_close);
 			break;
 		default:
 			break;

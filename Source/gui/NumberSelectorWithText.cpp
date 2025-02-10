@@ -17,28 +17,12 @@
 #include <JuceHeader.h>
 
 //==============================================================================
-NumberSelectorWithText::NumberSelectorWithText() : NumberSelector(true, NumberSelector::Type::selector_14x4) {
+NumberSelectorWithText::NumberSelectorWithText(NumberSelector::Type p_type) : NumberSelector(true, p_type) {
 	m_display.setInlay(1);
 
-	m_display.toParentMouseDown = [&](const MouseEvent e) {
-		// mouse_reference_value = e.getScreenY();
-		// m_drag_initial_value  = m_value;
-		// Component::mouseDown(e);
-	};
+	m_display.toParentMouseDown = [&](const MouseEvent e) {};
 
-	m_display.toParentMouseDrag = [&](const MouseEvent e) {
-		// float mouse_moved = mouse_reference_value - e.getScreenY();
-
-		// if (mouse_moved > m_mouse_drag_divisor) {
-		// 	increment();
-		// 	mouse_reference_value = e.getScreenY();
-		// } else if (mouse_moved < -m_mouse_drag_divisor) {
-		// 	decrement();
-		// 	mouse_reference_value = e.getScreenY();
-		// }
-
-		//		Component::mouseDrag(e);
-	};
+	m_display.toParentMouseDrag = [&](const MouseEvent e) {};
 
 	// m_display.toParentMouseUp = [&](const MouseEvent e) {};
 	m_display.onMouseDown = [&]() {
