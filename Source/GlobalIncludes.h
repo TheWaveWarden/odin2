@@ -134,6 +134,9 @@
 #define BROWSER_SIZE_Y (141 + 2 * BROWSER_INLAY_Y)
 
 #define COL_TEXT_BLUE (juce::Colour(0xff86cbf6))
+#define COL_TEXT_BLUE_DARK (juce::Colour(0xff0084d7))
+
+// todo remove this below and see if there are errors
 #define COL_LIGHT (juce::Colours::white)
 #define COL_DARK (juce::Colour(0xff333333))
 

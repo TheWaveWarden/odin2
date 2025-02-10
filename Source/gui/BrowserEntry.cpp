@@ -21,16 +21,12 @@ BrowserEntry::BrowserEntry(String p_text) : m_text(p_text) {
 	m_rename_editor.setColour(TextEditor::ColourIds::backgroundColourId, PATCH_BROWSER_INPUT_FIELD_BACKGROUND_COLOR);
 	m_rename_editor.setColour(TextEditor::ColourIds::textColourId, COL_LIGHT);
 	m_rename_editor.setSelectAllWhenFocused(true);
-	m_rename_editor.onFocusLost = [&]() {
-		DBG("RENAME FOCUS LOST");
-		hideRenameEditor();
-	};
+	m_rename_editor.onFocusLost = [&]() { hideRenameEditor(); };
 	m_rename_editor.onEscapeKey = [&]() { hideRenameEditor(); };
 
 	m_rename_editor.onReturnKey = [&]() {
 		if (m_rename_editor.getText().isEmpty()) {
-			AlertWindow::showMessageBox(
-			    AlertWindow::AlertIconType::WarningIcon, "Empty Name", "Please input a valid name!", "Ok");
+			AlertWindow::showMessageBox(AlertWindow::AlertIconType::WarningIcon, "Empty Name", "Please input a valid name!", "Ok");
 			return;
 		}
 		hideRenameEditor();
@@ -45,18 +41,21 @@ BrowserEntry::~BrowserEntry() {
 
 void BrowserEntry::paint(Graphics &g) {
 
+	const auto background_colour = juce::Colours::black.withAlpha(0.25f);
+	const auto highlight_colour  = COL_TEXT_BLUE_DARK;
+	static constexpr auto corner = 2.0f;
+
 	if (!m_is_active) {
+		g.setColour(juce::Colours::white.withAlpha(0.7f));
 		if (m_is_highlighted) {
-			g.fillAll(COL_LIGHT.withAlpha(0.3f));
-			g.setColour(COL_LIGHT);
-			g.drawRect(getLocalBounds(), 1); // draw an outline around the component
+			g.setColour(background_colour);
+			g.fillRoundedRectangle(getLocalBounds().toFloat(), corner);
+			g.setColour(highlight_colour);
 		}
-		g.setColour(COL_LIGHT);
 	} else {
-		//g.fillAll(Colour(35, 35, 35));
-		g.fillAll(Colour(22, 22, 22));
-		g.setColour(ODIN_BLUE);
-		g.drawRect(getLocalBounds(), 1); // draw an outline around the component
+		g.setColour(background_colour);
+		g.fillRoundedRectangle(getLocalBounds().toFloat(), corner);
+		g.setColour(highlight_colour);
 	}
 
 	g.setFont(H / 1.2f);

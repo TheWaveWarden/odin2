@@ -44,7 +44,11 @@ public:
 		down,
 		burger,
 		loop,
-		matrix_clear
+		matrix_clear,
+		preset_import,
+		preset_export,
+		preset_export_small,
+		preset_new
 	};
 
 	OdinButton(const String &buttonName, const String &p_button_text, Type p_type = Type::unassigned) : juce::Button(buttonName), m_button_text(p_button_text), m_type(p_type) {
@@ -109,6 +113,18 @@ public:
 			break;
 		case Type::matrix_clear:
 			m_ui_asset_base = int(UIAssets::Indices::bttn_2x2_close);
+			break;
+		case Type::preset_import:
+			m_ui_asset_base = int(UIAssets::Indices::bttn_preset_a);
+			break;
+		case Type::preset_export:
+			m_ui_asset_base = int(UIAssets::Indices::bttn_preset_b);
+			break;
+		case Type::preset_export_small:
+			m_ui_asset_base = int(UIAssets::Indices::bttn_preset_export2);
+			break;
+		case Type::preset_new:
+			m_ui_asset_base = int(UIAssets::Indices::bttn_preset_c);
 			break;
 		default:
 			break;

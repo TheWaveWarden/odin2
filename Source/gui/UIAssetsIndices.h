@@ -1424,6 +1424,18 @@ enum class Indices : int {
     bttn_loop_on_hover,
     bttn_loop_on_pressed,
     bttn_preset,
+    bttn_preset_a,
+    bttn_preset_a_hover,
+    bttn_preset_a_pressed,
+    bttn_preset_b,
+    bttn_preset_b_hover,
+    bttn_preset_b_pressed,
+    bttn_preset_c,
+    bttn_preset_c_hover,
+    bttn_preset_c_pressed,
+    bttn_preset_export2,
+    bttn_preset_export2_hover,
+    bttn_preset_export2_pressed,
     bttn_preset_frame,
     bttn_preset_hover,
     bttn_preset_pressed,
@@ -1494,6 +1506,7 @@ enum class Indices : int {
     screen_up_down_24x4_R,
     screen_up_down_8x4_L,
     screen_up_down_8x4_R,
+    slider,
     NumIndices
 };
 }

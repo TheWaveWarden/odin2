@@ -3,7 +3,7 @@
 
 #include "UIAssetsData.h"
 
-std::array<const char*, 1488> UIAssetsData::Data = {
+std::array<const char*, 1501> UIAssetsData::Data = {
     BinaryData::knob_4x4_a_0000_png,
     BinaryData::knob_4x4_a_0001_png,
     BinaryData::knob_4x4_a_0002_png,
@@ -1422,6 +1422,18 @@ std::array<const char*, 1488> UIAssetsData::Data = {
     BinaryData::bttn_loop_on_hover_png,
     BinaryData::bttn_loop_on_pressed_png,
     BinaryData::bttn_preset_png,
+    BinaryData::bttn_preset_a_png,
+    BinaryData::bttn_preset_a_hover_png,
+    BinaryData::bttn_preset_a_pressed_png,
+    BinaryData::bttn_preset_b_png,
+    BinaryData::bttn_preset_b_hover_png,
+    BinaryData::bttn_preset_b_pressed_png,
+    BinaryData::bttn_preset_c_png,
+    BinaryData::bttn_preset_c_hover_png,
+    BinaryData::bttn_preset_c_pressed_png,
+    BinaryData::bttn_preset_export2_png,
+    BinaryData::bttn_preset_export2_hover_png,
+    BinaryData::bttn_preset_export2_pressed_png,
     BinaryData::bttn_preset_frame_png,
     BinaryData::bttn_preset_hover_png,
     BinaryData::bttn_preset_pressed_png,
@@ -1492,4 +1504,5 @@ std::array<const char*, 1488> UIAssetsData::Data = {
     BinaryData::screen_up_down_24x4_R_png,
     BinaryData::screen_up_down_8x4_L_png,
     BinaryData::screen_up_down_8x4_R_png,
+    BinaryData::slider_png,
 };

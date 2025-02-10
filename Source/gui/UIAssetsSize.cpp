@@ -3,7 +3,7 @@
 
 #include "UIAssetsSize.h"
 
-std::array<size_t, 1488> UIAssetsSize::Size = {
+std::array<size_t, 1501> UIAssetsSize::Size = {
     BinaryData::knob_4x4_a_0000_pngSize,
     BinaryData::knob_4x4_a_0001_pngSize,
     BinaryData::knob_4x4_a_0002_pngSize,
@@ -1422,6 +1422,18 @@ std::array<size_t, 1488> UIAssetsSize::Size = {
     BinaryData::bttn_loop_on_hover_pngSize,
     BinaryData::bttn_loop_on_pressed_pngSize,
     BinaryData::bttn_preset_pngSize,
+    BinaryData::bttn_preset_a_pngSize,
+    BinaryData::bttn_preset_a_hover_pngSize,
+    BinaryData::bttn_preset_a_pressed_pngSize,
+    BinaryData::bttn_preset_b_pngSize,
+    BinaryData::bttn_preset_b_hover_pngSize,
+    BinaryData::bttn_preset_b_pressed_pngSize,
+    BinaryData::bttn_preset_c_pngSize,
+    BinaryData::bttn_preset_c_hover_pngSize,
+    BinaryData::bttn_preset_c_pressed_pngSize,
+    BinaryData::bttn_preset_export2_pngSize,
+    BinaryData::bttn_preset_export2_hover_pngSize,
+    BinaryData::bttn_preset_export2_pressed_pngSize,
     BinaryData::bttn_preset_frame_pngSize,
     BinaryData::bttn_preset_hover_pngSize,
     BinaryData::bttn_preset_pressed_pngSize,
@@ -1492,4 +1504,5 @@ std::array<size_t, 1488> UIAssetsSize::Size = {
     BinaryData::screen_up_down_24x4_R_pngSize,
     BinaryData::screen_up_down_8x4_L_pngSize,
     BinaryData::screen_up_down_8x4_R_pngSize,
+    BinaryData::slider_pngSize,
 };

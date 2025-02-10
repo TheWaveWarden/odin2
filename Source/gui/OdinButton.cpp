@@ -45,12 +45,12 @@ void OdinButton::paintButton(juce::Graphics &g, bool p_highlight, bool p_pressed
 	}
 
 	// ordering of assets:
-	//bttn_7x4_off.png
-	//bttn_7x4_off_hover.png
-	//bttn_7x4_off_pressed.png
-	//bttn_7x4_on.png
-	//bttn_7x4_on_hover.png
-	//bttn_7x4_on_pressed.png
+	//bttn_off.png
+	//bttn_off_hover.png
+	//bttn_off_pressed.png
+	//bttn_on.png
+	//bttn_on_hover.png
+	//bttn_on_pressed.png
 
 	auto asset = m_ui_asset_base;
 	if (getToggleState()) {
@@ -67,11 +67,11 @@ void OdinButton::paintButton(juce::Graphics &g, bool p_highlight, bool p_pressed
 	g.drawImageAt(background, 0, 0);
 
 	const auto text_alpha = p_pressed ? 0.64f : 1.0f;
-	auto colour_hex       = getToggleState() ? 0xff0084d7 : 0xff86cbf6;
+	auto colour           = getToggleState() ? COL_TEXT_BLUE_DARK : COL_TEXT_BLUE;
 	if (p_highlight)
-		colour_hex = 0xffffffff;
+		colour = juce::Colour(0xffffffff);
 
-	g.setColour(juce::Colour(colour_hex).withAlpha(text_alpha));
+	g.setColour(colour.withAlpha(text_alpha));
 	g.setFont(float(H) * m_font_height_relative);
 	g.drawText(m_button_text, getLocalBounds(), juce::Justification::centred, false);
 }
