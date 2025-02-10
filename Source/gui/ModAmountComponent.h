@@ -16,7 +16,7 @@
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
-#define INLAY_DEF_MODAMOUNT 1
+#define INLAY_DEF_MODAMOUNT 2
 
 class ModAmountComponent : public Component,
                            public SettableTooltipClient,
@@ -29,10 +29,8 @@ public:
 	void setImage(juce::Image p_panel) {
 		m_glas_panel = p_panel;
 	}
-	void setInlay(int p_inlay) {
-		m_inlay = p_inlay;
-	}
-	void setColor(juce::Colour p_color) {
+	
+    void setColor(juce::Colour p_color) {
 		m_color = p_color;
 	}
 	void setColorBars(juce::Colour p_color, juce::Colour p_color_negative) {

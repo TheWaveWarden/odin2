@@ -1002,58 +1002,58 @@
     "Y": 2
   },
   "MatrixAmount1": {
-    "SizeX": 10,
+    "SizeX": 11,
     "SizeY": 4,
     "X": 22,
-    "Y": 0
+    "Y": 1
   },
   "MatrixAmount2": {
-    "SizeX": 10,
+    "SizeX": 11,
     "SizeY": 4,
-    "X": 54,
-    "Y": 0
+    "X": 53,
+    "Y": 1
   },
   "MatrixAmount3": {
-    "SizeX": 10,
+    "SizeX": 11,
     "SizeY": 4,
-    "X": 87,
-    "Y": 0
+    "X": 84,
+    "Y": 1
   },
   "MatrixArpPreset": {
     "SizeX": 122,
-    "SizeY": 37,
+    "SizeY": 38,
     "X": 70,
     "Y": 115
   },
   "MatrixClearButton": {
     "SizeX": 4,
     "SizeY": 4,
-    "X": 119,
-    "Y": 0
+    "X": 117,
+    "Y": 1
   },
   "MatrixDest1": {
-    "SizeX": 22,
+    "SizeX": 20,
     "SizeY": 4,
-    "X": 32,
-    "Y": 0
+    "X": 33,
+    "Y": 1
   },
   "MatrixDest2": {
-    "SizeX": 23,
+    "SizeX": 20,
     "SizeY": 4,
     "X": 64,
-    "Y": 0
+    "Y": 1
   },
   "MatrixScale": {
     "SizeX": 22,
     "SizeY": 4,
-    "X": 97,
-    "Y": 0
+    "X": 95,
+    "Y": 1
   },
   "MatrixSource": {
-    "SizeX": 22,
+    "SizeX": 20,
     "SizeY": 4,
-    "X": 0,
-    "Y": 0
+    "X": 2,
+    "Y": 1
   },
   "ModWave": {
     "SizeX": 24,
@@ -1770,7 +1770,7 @@
     "Y": 80
   },
   "SelectArp": {
-    "SizeX": 40,
+    "SizeX": 41,
     "SizeY": 5,
     "X": 70,
     "Y": 108
@@ -1782,9 +1782,9 @@
     "Y": 108
   },
   "SelectPresets": {
-    "SizeX": 40,
+    "SizeX": 41,
     "SizeY": 5,
-    "X": 152,
+    "X": 151,
     "Y": 108
   },
   "Specdraw": {

@@ -20,12 +20,8 @@ ModAmountComponentExtended::ModAmountComponentExtended() {
 	m_input_limit = 3.f;
 }
 
-void ModAmountComponentExtended::setColorBarsExtended(juce::Colour p_col_pos_1,
-                                                      juce::Colour p_col_pos_2,
-                                                      juce::Colour p_col_pos_3,
-                                                      juce::Colour p_col_neg_1,
-                                                      juce::Colour p_col_neg_2,
-                                                      juce::Colour p_col_neg_3) {
+void ModAmountComponentExtended::setColorBarsExtended(
+    juce::Colour p_col_pos_1, juce::Colour p_col_pos_2, juce::Colour p_col_pos_3, juce::Colour p_col_neg_1, juce::Colour p_col_neg_2, juce::Colour p_col_neg_3) {
 	m_cols_pos[0] = p_col_pos_1;
 	m_cols_pos[1] = p_col_pos_2;
 	m_cols_pos[2] = p_col_pos_3;
@@ -87,14 +83,11 @@ void ModAmountComponentExtended::paint(Graphics &g) {
 
 	g.setFont(H / 1.4f);
 
-    // prepare string
+	// prepare string
 	std::stringstream stream;
 	stream << std::fixed << std::setprecision(0) << m_value * 100;
 	std::string value_string = stream.str();
 
-	g.setColour(COL_LIGHT);
+	g.setColour(COL_TEXT_BLUE);
 	g.drawText(value_string, getLocalBounds(), Justification::centred, true);
-
-	g.setColour(COL_LIGHT);
-	g.drawRect(getLocalBounds(), 1);
 }

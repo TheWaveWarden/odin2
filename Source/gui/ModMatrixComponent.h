@@ -122,7 +122,6 @@ private:
 	Identifier m_amount_2_identifier8;
 	Identifier m_amount_3_identifier8;
 
-	// can't be array due to missing standard constructor..
 	OdinButton m_clear_button0;
 	OdinButton m_clear_button1;
 	OdinButton m_clear_button2;

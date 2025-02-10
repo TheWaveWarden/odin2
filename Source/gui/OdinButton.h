@@ -32,6 +32,8 @@ public:
 		button_13x4,
 		button_13x4EnvLFO,
 		button_5x5,
+		button_40x5,
+		button_41x5,
 		power_4x4,
 		button_dropdown,
 		button_left,
@@ -55,10 +57,10 @@ public:
 		case Type::button_13x4:
 			m_ui_asset_base = int(UIAssets::Indices::bttn_13x4_off);
 			break;
-			case Type::button_12x4:
+		case Type::button_12x4:
 			m_ui_asset_base = int(UIAssets::Indices::bttn_12x4_off);
 			break;
-			case Type::button_10x4:
+		case Type::button_10x4:
 			m_ui_asset_base = int(UIAssets::Indices::bttn_10x4_off);
 			break;
 		case Type::button_13x4EnvLFO:
@@ -90,6 +92,12 @@ public:
 			break;
 		case Type::button_5x5:
 			m_ui_asset_base = int(UIAssets::Indices::bttn_5x5_off);
+			break;
+		case Type::button_40x5:
+			m_ui_asset_base = int(UIAssets::Indices::bttn_select_bot_40x5_off);
+			break;
+		case Type::button_41x5:
+			m_ui_asset_base = int(UIAssets::Indices::bttn_select_bot_41x5_off);
 			break;
 		case Type::loop:
 			m_ui_asset_base = int(UIAssets::Indices::bttn_loop_off);

@@ -16,6 +16,8 @@
 #include "ModMatrixComponent.h"
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "JsonGuiProvider.h"
+#include "../ConfigFileManager.h"
+    #include "UIAssetManager.h"
 
 ModMatrixComponent::ModMatrixComponent(AudioProcessorValueTreeState &vts) :
     m_clear_button0("clear_button", "X"), m_clear_button1("clear_button", "X"), m_clear_button2("clear_button", "X"),
@@ -790,6 +792,7 @@ ModMatrixComponent::~ModMatrixComponent() {
 }
 
 void ModMatrixComponent::paint(Graphics &g) {
+    g.drawImageAt (UIAssetManager::getInstance()->getUIAsset (UIAssets::Indices::ModMatrix_back, ConfigFileManager::getInstance().getOptionGuiScale()), 0, 0);
 }
 
 void ModMatrixComponent::clearRow(int p_row) {

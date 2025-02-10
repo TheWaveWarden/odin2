@@ -36,9 +36,7 @@ GlassDropdown::~GlassDropdown() {
 }
 
 void GlassDropdown::paint(Graphics &g) {
-	if (m_type == Type::unassigned) {
-		g.drawRect(getLocalBounds(), 1);
-	} else {
+	if (m_type != Type::unassigned) {
 		auto background = UIAssetManager::getInstance()->getUIAsset(m_asset, ConfigFileManager::getInstance().getOptionGuiScale());
 		g.drawImageAt(background, 0, 0);
 	}
