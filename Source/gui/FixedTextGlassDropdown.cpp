@@ -23,8 +23,9 @@ FixedTextGlassDropdown::FixedTextGlassDropdown(const std::string &p_fixed_text) 
 void FixedTextGlassDropdown::paint(Graphics &g) {
 	g.drawImageAt(UIAssetManager::getInstance()->getUIAsset(UIAssets::Indices::screen_dropdown_14x4, ConfigFileManager::getInstance().getOptionGuiScale()), 0, 0);
 
-	g.setColour(COL_TEXT_BLUE);
-	g.setFont(H * 0.6f);
+	const auto col = isMouseOver() ? juce::Colours::white : COL_TEXT_BLUE;
+	g.setColour(col);
+	g.setFont(H * 0.5f);
 
 	auto text_bounds = getLocalBounds();
 	text_bounds.removeFromRight(H).reduced(proportionOfHeight(0.4f));

@@ -290,6 +290,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor, AudioProcessorValueT
 	m_arp.setAlwaysOnTop(true);
 	m_arp.setTriggeredOnMouseDown(true);
 	m_arp.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
+	m_arp.onClick = [&]() { enableChipArpComponents(); };
 
 	m_noise.setClickingTogglesState(true);
 	m_noise.setTooltip("Switches the oscillator\nto 4Bit noise mode");
@@ -304,6 +305,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor, AudioProcessorValueT
 	m_step_button.setAlwaysOnTop(true);
 	m_step_button.setTriggeredOnMouseDown(true);
 	m_step_button.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
+	m_step_button.onClick = [&]() { enableChipArpComponents(); };
 
 	m_step_1.setSliderStyle(Slider::RotaryVerticalDrag);
 	m_step_1.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
@@ -387,7 +389,6 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor, AudioProcessorValueT
 	juce::Colour chip_color(93, 81, 63);
 
 	m_chiptune_waveselector.OnValueChange = [&](int p_new_value) { m_value_tree.state.getChildWithName("osc").setProperty(m_chipwave_identifier, (float)p_new_value, nullptr); };
-	m_chiptune_waveselector.setColor(chip_color);
 	m_chiptune_waveselector.setTooltip("Selects the wave for the oscillator");
 	addChildComponent(m_chiptune_waveselector);
 
@@ -668,7 +669,6 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor, AudioProcessorValueT
 
 	m_carrier_waveselector.OnValueChange = [&](int p_new_value) { m_value_tree.state.getChildWithName("osc").setProperty(m_carrier_wave_identifier, (float)p_new_value, nullptr); };
 
-	m_carrier_waveselector.setColor(FM_COLOR);
 	m_carrier_waveselector.setTooltip("Selects the wave for the carrier osc");
 	addChildComponent(m_carrier_waveselector);
 
@@ -723,13 +723,11 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor, AudioProcessorValueT
 	m_modulation_source.OnValueChange = [&](int p_new_value) {
 		m_value_tree.state.getChildWithName("osc").setProperty(m_modulation_source_identifier, (float)p_new_value, nullptr);
 	};
-	m_modulation_source.setColor(WAVETABLE_DROPDOWN_COLOR);
 	addChildComponent(m_modulation_source);
 
 	m_modulator_waveselector.OnValueChange = [&](int p_new_value) {
 		m_value_tree.state.getChildWithName("osc").setProperty(m_modulator_wave_identifier, (float)p_new_value, nullptr);
 	};
-	m_modulator_waveselector.setColor(FM_COLOR);
 	m_modulator_waveselector.setTooltip("Selects the waveform for the modulator osc");
 	addChildComponent(m_modulator_waveselector);
 
@@ -738,7 +736,6 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor, AudioProcessorValueT
 		m_value_tree.state.getChildWithName("osc").setProperty(m_carrier_ratio_identifier, p_new_value, nullptr);
 	};
 	m_carrier_ratio.setRange(1, 16);
-	m_carrier_ratio.setColor(FM_COLOR);
 	m_carrier_ratio.setTooltip("The pitch ratio of the carrier to base frequency");
 	m_carrier_ratio.setMouseDragDivisor(20.f);
 
@@ -749,7 +746,6 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor, AudioProcessorValueT
 		m_value_tree.state.getChildWithName("osc").setProperty(m_modulator_ratio_identifier, p_new_value, nullptr);
 	};
 	m_modulator_ratio.setRange(1, 16);
-	m_modulator_ratio.setColor(FM_COLOR);
 	m_modulator_ratio.setTooltip("The pitch ratio of the modulator to base frequency");
 	m_modulator_ratio.setMouseDragDivisor(20.f);
 	addChildComponent(m_modulator_ratio);
@@ -759,7 +755,6 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor, AudioProcessorValueT
 	                    "musical character to it, as it preserves the perceived note pitch.");
 	addChildComponent(m_fm_exp);
 
-	m_chipdraw.setColor(chip_color);
 	m_chipdraw.setDrawColor(juce::Colour(238, 230, 217));
 	m_chipdraw.setTooltip("Draw a custom 4Bit waveform.\n\nDon't forget to apply "
 	                      "your waveform with the button on the bottom right.");
@@ -768,7 +763,6 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor, AudioProcessorValueT
 	juce::Colour wave_color(71, 92, 108);
 	juce::Colour wave_draw_color(99, 165, 236);
 
-	m_wavedraw.setColor(wave_color);
 	m_wavedraw.setDrawColor(wave_draw_color);
 	m_wavedraw.setTooltip("Become the Picasso of music production.\n\nDon't forget to apply your "
 	                      "waveform with the button on the bottom right.");
@@ -777,7 +771,6 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor, AudioProcessorValueT
 	juce::Colour spec_color(61, 80, 70);
 	juce::Colour spec_draw_color(116, 180, 147);
 
-	m_specdraw.setColor(spec_color);
 	m_specdraw.setDrawColor(spec_draw_color);
 	m_specdraw.setTooltip("Draw the spectrum of the oscillator. A single peak corresponds to a "
 	                      "sine function.\n\nDon't forget to apply your waveform with the button "
@@ -787,7 +780,6 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor, AudioProcessorValueT
 	juce::Colour vector_color(25, 50, 60);
 
 	m_xy.setInlay(1);
-	m_xy.setColor(vector_color);
 	m_xy.setTooltip("Transition seamlessly through four waveforms. Each corner contains a "
 	                "waveform, which can be selected by the dropdowns on the right.");
 	addAndMakeVisible(m_xy);
@@ -795,7 +787,6 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor, AudioProcessorValueT
 	m_vec_a.setInlay(1);
 	m_vec_a.setEditableText(false);
 	m_vec_a.setSelectedId(101, dontSendNotification);
-	m_vec_a.setColor(vector_color);
 	m_vec_a.setTooltip("Select the waveform to the bottom left of the XY pad");
 	m_vec_a.onChange = [&]() { m_value_tree.state.getChildWithName("osc").setProperty(m_vec_a_identifier, (float)m_vec_a.getSelectedId(), nullptr); };
 	addChildComponent(m_vec_a);
@@ -803,7 +794,6 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor, AudioProcessorValueT
 	m_vec_b.setInlay(1);
 	m_vec_b.setEditableText(false);
 	m_vec_b.setSelectedId(102, dontSendNotification);
-	m_vec_b.setColor(vector_color);
 	m_vec_b.setTooltip("Select the waveform to the top left of the XY pad");
 	m_vec_b.onChange = [&]() { m_value_tree.state.getChildWithName("osc").setProperty(m_vec_b_identifier, (float)m_vec_b.getSelectedId(), nullptr); };
 	addChildComponent(m_vec_b);
@@ -811,7 +801,6 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor, AudioProcessorValueT
 	m_vec_c.setInlay(1);
 	m_vec_c.setEditableText(false);
 	m_vec_c.setSelectedId(103, dontSendNotification);
-	m_vec_c.setColor(vector_color);
 	m_vec_c.setTooltip("Select the waveform to the top right of the XY pad");
 	m_vec_c.onChange = [&]() { m_value_tree.state.getChildWithName("osc").setProperty(m_vec_c_identifier, (float)m_vec_c.getSelectedId(), nullptr); };
 	addChildComponent(m_vec_c);
@@ -819,7 +808,6 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor, AudioProcessorValueT
 	m_vec_d.setInlay(1);
 	m_vec_d.setEditableText(false);
 	m_vec_d.setSelectedId(104, dontSendNotification);
-	m_vec_d.setColor(vector_color);
 	m_vec_d.setTooltip("Select the waveform to the bottom right of the XY pad");
 	m_vec_d.onChange = [&]() { m_value_tree.state.getChildWithName("osc").setProperty(m_vec_d_identifier, (float)m_vec_d.getSelectedId(), nullptr); };
 	addChildComponent(m_vec_d);
@@ -1413,6 +1401,8 @@ void OscComponent::forceValueTreeOntoComponents(ValueTree p_tree, int p_index, b
 		createChipdrawTables();
 		createSpecdrawTables();
 	}
+
+	enableChipArpComponents();
 }
 
 void OscComponent::resized() {
@@ -1513,4 +1503,18 @@ void OscComponent::resized() {
 	} else {
 		GET_LOCAL_AREA(m_wavetable_waveselector, "OscWaveWT");
 	}
+}
+
+void OscComponent::enableChipArpComponents() {
+	const auto arp_enabled = m_arp.getToggleState();
+
+	m_step_1.setEnabled(arp_enabled);
+	m_step_2.setEnabled(arp_enabled);
+	m_step_label.setEnabled(arp_enabled);
+	m_chip1_label.setEnabled(arp_enabled);
+	m_chip2_label.setEnabled(arp_enabled);
+	m_step_button.setEnabled(arp_enabled);
+	m_speed.setEnabled(arp_enabled);
+
+	m_step_3.setEnabled(arp_enabled && m_step_button.getToggleState());
 }

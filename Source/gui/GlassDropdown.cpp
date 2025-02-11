@@ -41,7 +41,8 @@ void GlassDropdown::paint(Graphics &g) {
 		g.drawImageAt(background, 0, 0);
 	}
 
-	g.setColour(COL_TEXT_BLUE);
+	const auto col = isMouseOver() ? juce::Colours::white : COL_TEXT_BLUE;
+	g.setColour(col);
 	g.setFont(H * 0.54f);
 
 	auto text_bounds = getLocalBounds();
@@ -58,7 +59,7 @@ void GlassDropdown::paint(Graphics &g) {
 }
 
 void GlassDropdown::paintTriangle(juce::Graphics &g) {
-	auto triangle_bounds = getLocalBounds().removeFromRight(H).reduced(proportionOfHeight(0.3f), proportionOfHeight(0.4f));
+	auto triangle_bounds = getLocalBounds().removeFromRight(H).reduced(proportionOfHeight(0.32f), proportionOfHeight(0.4f));
 
 	// draw the triangle
 	juce::Path triangle;

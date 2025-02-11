@@ -10,8 +10,13 @@ public:
 		repaint();
 	}
 
+	void enablementChanged() override {
+		repaint();
+	}
+
 	void paint(juce::Graphics &g) {
-		g.setColour(juce::Colours::white.withAlpha(0.7f));
+		const auto disabled_alpha = isEnabled() ? 1.0f : 0.6f;
+		g.setColour(juce::Colours::white.withAlpha(0.7f * disabled_alpha));
 		if (m_rotate_90_degrees)
 			g.setFont(W * m_font_height_relative);
 		else

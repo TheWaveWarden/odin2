@@ -60,6 +60,8 @@ private:
 	static constexpr auto DRAW_INLAY_VERT_PROPORION  = 0.06f;
 	static constexpr auto DRAW_STROKE_PROPORION      = 0.005f;
 
+	static float quantizeY(float p_y);
+
 	bool m_mouse_was_down = false;
 	int m_last_x_value;
 	float m_last_y_value;
@@ -72,22 +74,8 @@ private:
 	juce::Colour m_fill_color = juce::Colour(0x47d1bc84);
 
 #ifndef WTGEN
-	float m_draw_values[CHIPDRAW_STEPS_X] = {0.875f,
-	                                         0.875f,
-	                                         0.875f,
-	                                         0.875f,
-	                                         0.875f,
-	                                         0.875f,
-	                                         0.875f,
-	                                         0.875f,
-	                                         -0.875f,
-	                                         -0.875f,
-	                                         -0.875f,
-	                                         -0.875f,
-	                                         -0.875f,
-	                                         -0.875f,
-	                                         -0.875f,
-	                                         -0.875f};
+	float m_draw_values[CHIPDRAW_STEPS_X] = {
+	    0.875f, 0.875f, 0.875f, 0.875f, 0.875f, 0.875f, 0.875f, 0.875f, -0.875f, -0.875f, -0.875f, -0.875f, -0.875f, -0.875f, -0.875f, -0.875f};
 #endif
 #ifdef WTGEN
 	float m_draw_values[CHIPDRAW_STEPS_X] = {0};

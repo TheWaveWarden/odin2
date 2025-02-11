@@ -1064,7 +1064,7 @@
   "ModWheel": {
     "SizeX": 4,
     "SizeY": 19,
-    "X": 20,
+    "X": 11,
     "Y": 133
   },
   "ModulatorLabel": {
@@ -1628,7 +1628,7 @@
   "PitchBend": {
     "SizeX": 4,
     "SizeY": 19,
-    "X": 11,
+    "X": 20,
     "Y": 133
   },
   "PitchBend Amount": {

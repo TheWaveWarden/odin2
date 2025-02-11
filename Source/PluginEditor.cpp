@@ -617,7 +617,6 @@ OdinEditor::OdinEditor(OdinAudioProcessor &p_processor, AudioProcessorValueTreeS
 	m_mono_poly_legato_dropdown.setSelectedId(2, dontSendNotification);
 	m_mono_poly_legato_dropdown.showTriangle();
 
-	m_mono_poly_legato_dropdown.setColor(juce::STANDARD_DISPLAY_COLOR);
 	m_mono_poly_legato_dropdown.setTooltip("Selects the Playmode:\n\nPoly: Play multiple voices at once.\n\nLegato: Only one voice available. Envelopes "
 	                                       "are not restarted, so legato notes will blend over seemlessly.\n\nRetrig: Like Legato, but the envelopes are "
 	                                       "restarted on every note start.");
@@ -636,7 +635,6 @@ OdinEditor::OdinEditor(OdinAudioProcessor &p_processor, AudioProcessorValueTreeS
 	addAndMakeVisible(m_pitch_amount);
 	m_pitch_amount.setMouseDragDivisor(20.f);
 	m_pitch_amount.setRange(0, 24);
-	m_pitch_amount.setColor(Colour(10, 40, 50));
 	m_pitch_amount.setTooltip("The amount of pitchbend for the pitchwheel in semitones");
 
 	m_unison_selector.OnValueChange = [&](int p_new_value) { m_value_tree.state.getChildWithName("misc").setProperty("unison_voices", p_new_value, nullptr); };
@@ -645,7 +643,6 @@ OdinEditor::OdinEditor(OdinAudioProcessor &p_processor, AudioProcessorValueTreeS
 
 	addAndMakeVisible(m_unison_selector);
 	m_unison_selector.setMouseDragDivisor(20.f);
-	m_unison_selector.setColor(Colour(10, 40, 50));
 	m_unison_selector.setTooltip("Number of voices to trigger simultaneously\nThis limits the polyphony to 12 / "
 	                             "N\nBeware: N voices means N times the CPU load, so use with care!");
 

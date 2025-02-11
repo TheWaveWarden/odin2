@@ -111,7 +111,7 @@ public:
 	}
 
 private:
-	void drawGuides(juce::Graphics &g, bool isEnabled);
+	void drawGuides(juce::Graphics &g);
 
 	int m_midi_learn_left_offset   = 0;
 	int m_midi_learn_bottom_offset = 0;

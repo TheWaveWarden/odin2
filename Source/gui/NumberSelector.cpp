@@ -20,6 +20,7 @@
 #include "UIAssetManager.h"
 
 NumberSelector::NumberSelector(bool p_buttons_right, Type p_type) : m_type(p_type), m_up("up", "", OdinButton::Type::up), m_down("down", "", OdinButton::Type::down) {
+
 	switch (m_type) {
 	case Type::selector_12x4:
 		m_asset = UIAssets::Indices::screen_up_down_12x4_R;
@@ -35,16 +36,14 @@ NumberSelector::NumberSelector(bool p_buttons_right, Type p_type) : m_type(p_typ
 		break;
 	}
 
-	m_up.setClickingTogglesState(false);
-	m_down.setClickingTogglesState(false);
 
 	m_display.setInlay(1);
 	m_display.setText(std::to_string(m_value));
+	m_display.setMouseCursor(juce::MouseCursor::StandardCursorType::UpDownResizeCursor);
 
 	m_display.toParentMouseDown = [&](const MouseEvent e) {
 		mouse_reference_value = e.getScreenY();
 		m_drag_initial_value  = m_value;
-		// Component::mouseDown(e);
 	};
 
 	m_display.toParentMouseDrag = [&](const MouseEvent e) {
@@ -63,14 +62,14 @@ NumberSelector::NumberSelector(bool p_buttons_right, Type p_type) : m_type(p_typ
 
 	addAndMakeVisible(m_display);
 
-	m_up.setClickingTogglesState(true);
 	addAndMakeVisible(m_up);
+	m_up.setClickingTogglesState(false);
 	m_up.setTriggeredOnMouseDown(false);
 	m_up.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
 	m_up.onClick = [&]() { increment(); };
 
-	m_down.setClickingTogglesState(true);
 	addAndMakeVisible(m_down);
+	m_down.setClickingTogglesState(false);
 	m_down.setTriggeredOnMouseDown(false);
 	m_down.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
 	m_down.onClick = [&]() { decrement(); };
@@ -95,6 +94,7 @@ void NumberSelector::paint(Graphics &g) {
 		g.setColour(COL_LIGHT);
 		static constexpr auto stroke = 1.0f;
 		g.drawRoundedRectangle(getLocalBounds().toFloat().reduced(stroke / 2.0f), 4.0f, stroke);
+		jassertfalse;
 		return;
 	}
 

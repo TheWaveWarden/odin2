@@ -137,6 +137,8 @@ public:
 	void resized();
 
 protected:
+	void enableChipArpComponents();
+
 	int m_osc_type = 0;
 
 	juce::Image m_background;

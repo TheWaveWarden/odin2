@@ -78,7 +78,6 @@ ArpComponent::ArpComponent(OdinAudioProcessor &p_processor, AudioProcessorValueT
 
 	addAndMakeVisible(m_octave_selector);
 	m_octave_selector.setMouseDragDivisor(20.f);
-	m_octave_selector.setColor(Colour(10, 40, 50));
 	m_octave_selector.setTooltip("Sets how many octaves the arpeggio will play");
 
 	m_steps_selector.OnValueChange = [&](int p_new_value) {
@@ -96,7 +95,6 @@ ArpComponent::ArpComponent(OdinAudioProcessor &p_processor, AudioProcessorValueT
 
 	addAndMakeVisible(m_steps_selector);
 	m_steps_selector.setMouseDragDivisor(20.f);
-	m_steps_selector.setColor(Colour(10, 40, 50));
 	m_steps_selector.setTooltip("Sets how many steps the step sequence has before it wraps around");
 
 	m_direction.OnValueChange = [&](int p_new_value) { m_value_tree.state.getChildWithName("misc").setProperty("arp_direction", p_new_value, nullptr); };
@@ -110,7 +108,6 @@ ArpComponent::ArpComponent(OdinAudioProcessor &p_processor, AudioProcessorValueT
 	                            (int)OdinArpeggiator::ArpPattern::CrawlDown});
 	addAndMakeVisible(m_direction);
 	m_direction.setMouseDragDivisor(20.f);
-	m_direction.setColor(Colour(10, 40, 50));
 	m_direction.setTooltip("Sets the direction of the arpeggio being played");
 
 	m_gate.OnValueChange = [&](int p_new_value) { m_value_tree.state.getChildWithName("misc").setProperty("arp_gate", p_new_value, nullptr); };
@@ -124,7 +121,6 @@ ArpComponent::ArpComponent(OdinAudioProcessor &p_processor, AudioProcessorValueT
 	m_gate.setLegalValues({10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 125, 150, 175, 200});
 	addAndMakeVisible(m_gate);
 	m_gate.setMouseDragDivisor(20.f);
-	m_gate.setColor(Colour(10, 40, 50));
 	m_gate.setTooltip("Sets how long each note is triggered, before a note-off is sent");
 
 	m_sync_time.OnValueChange = [&](int p_left, int p_right) {
@@ -138,13 +134,11 @@ ArpComponent::ArpComponent(OdinAudioProcessor &p_processor, AudioProcessorValueT
 	addAndMakeVisible(m_on);
 	m_on.setTooltip("Turns the arpeggiator on or off");
 	m_on.setTriggeredOnMouseDown(true);
-	m_on.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
 
 	m_mod_transpose.setClickingTogglesState(true);
 	addAndMakeVisible(m_mod_transpose);
 	m_mod_transpose.setTooltip("Toggles between the knob-rows for mod 2 or transpose");
 	m_mod_transpose.setTriggeredOnMouseDown(true);
-	m_mod_transpose.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
 	m_mod_transpose.onClick = [&]() { setModTranspose(!m_mod_transpose.getToggleState()); };
 	m_mod_transpose.setFontHeightRelative(0.2f);
 
@@ -152,7 +146,6 @@ ArpComponent::ArpComponent(OdinAudioProcessor &p_processor, AudioProcessorValueT
 	addAndMakeVisible(m_one_shot);
 	m_one_shot.setTooltip("Makes the sequence stop after it ran through every step once");
 	m_one_shot.setTriggeredOnMouseDown(true);
-	m_one_shot.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
 	m_one_shot.setFontHeightRelative(0.4f);
 
 	m_on_attach.reset(new OdinButtonAttachment(m_value_tree, "arp_on", m_on));

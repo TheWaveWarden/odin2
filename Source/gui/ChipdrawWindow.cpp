@@ -69,6 +69,10 @@ void ChipdrawWindow::mouseDown(const MouseEvent &event) {
 	mouseInteraction();
 }
 
+float ChipdrawWindow::quantizeY(float p_y) {
+	return std::round(p_y * CHIPDRAW_STEPS_Y) / float(CHIPDRAW_STEPS_Y);
+}
+
 void ChipdrawWindow::mouseInteraction() {
 	int draw_inlay_left    = proportionOfWidth(DRAW_INLAY_HORZ_PROPORTION);
 	int draw_inlay_right   = draw_inlay_left;
@@ -94,10 +98,10 @@ void ChipdrawWindow::mouseInteraction() {
 	float_y       = 2 * (0.5 - float_y);
 
 	//discretize y
-	float_y = (round(float_y * CHIPDRAW_STEPS_Y)) / CHIPDRAW_STEPS_Y;
+	float_y = quantizeY(float_y);
 
 	if (m_mouse_was_down) {
-		int min_x     = juce::jmax(step_x, m_last_x_value);
+		int min_x     = juce::jmin(step_x, m_last_x_value);
 		int max_x     = juce::jmax(step_x, m_last_x_value);
 		float range_x = max_x - min_x;
 
@@ -107,7 +111,7 @@ void ChipdrawWindow::mouseInteraction() {
 
 		if (range_x > 0) {
 			for (int i = min_x; i <= max_x; ++i) {
-				m_draw_values[i] = min_y + (range_y) * (float)(i - min_x) / (float)range_x;
+				m_draw_values[i] = quantizeY(min_y + (range_y) * (float)(i - min_x) / (float)range_x);
 			}
 		} else {
 			m_draw_values[step_x] = float_y;

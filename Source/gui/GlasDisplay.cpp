@@ -18,6 +18,7 @@
 
 GlasDisplay::GlasDisplay() {
 	setLookAndFeel(&m_menu_feels);
+	setRepaintsOnMouseActivity(true);
 }
 
 GlasDisplay::~GlasDisplay() {
@@ -25,7 +26,9 @@ GlasDisplay::~GlasDisplay() {
 }
 
 void GlasDisplay::paint(Graphics &g) {
-	g.setColour(COL_LIGHT);
+	const auto col = m_highlight ? juce::Colours::white : COL_TEXT_BLUE;
+	g.setColour(col);
+	g.setFont(H * 0.5f);
 	g.drawText(m_text, getLocalBounds(), Justification::centred, false);
 }
 

@@ -40,10 +40,6 @@ public:
 	}
 
 	void paint(Graphics &) override;
-
-	void setColor(juce::Colour p_color) {
-		m_display.setColor(p_color);
-	}
 	void resized() override;
 
 	void setRange(int p_min, int p_max) {

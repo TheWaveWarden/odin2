@@ -14,6 +14,7 @@
 */
 
 #include "LFOPopupLookAndFeel.h"
+#include "LFODisplayComponent.h"
 
 void LFOPopupLookAndFeel::drawPopupMenuItem(Graphics &g,
                                             const Rectangle<int> &area,
@@ -26,36 +27,57 @@ void LFOPopupLookAndFeel::drawPopupMenuItem(Graphics &g,
                                             const String &shortcutKeyText,
                                             const Drawable *icon,
                                             const Colour *textColour) {
-	if (isHighlighted && !isSeparator) {
+	if (isHighlighted && !isSeparator)
 		g.setColour(MENU_HIGHLIGHT_BACKGROUND_COLOR);
-	} else {
+	else
 		g.setColour(MENU_BACKGROUND_COLOR);
-	}
+
 	//draw background
 	g.fillRect(area);
 
 	if (isSeparator) {
 		g.setColour(MENU_FONT_COLOR);
 		int padding_x = 3;
-		g.drawLine(area.getX() + padding_x,
-		           (area.getY() + area.getBottom()) * 0.5f,
-		           area.getRight() - padding_x,
-		           (area.getY() + area.getBottom()) * 0.5f,
-		           1);
+		g.drawLine(area.getX() + padding_x, (area.getY() + area.getBottom()) * 0.5f, area.getRight() - padding_x, (area.getY() + area.getBottom()) * 0.5f, 1);
 	}
 
 	//select proper image and draw it
-	Image waveform;
+	juce::Image waveform(juce::Image::PixelFormat::ARGB, area.getWidth(), area.getHeight(), true);
+	juce::Graphics waveform_g(waveform);
 
 	if (!isSeparator) {
-		// TODO
 		if (text == "si") {
-			//waveform = ImageCache::getFromMemory(BinaryData::sine_150_png, BinaryData::sine_150_pngSize);
+			LFODisplayComponent::drawSineImage(waveform_g, COL_TEXT_BLUE);
 		} else if (text == "sa") {
-			//waveform = ImageCache::getFromMemory(BinaryData::saw_150_png, BinaryData::saw_150_pngSize);
-		} 
-	}
-	if (!isSeparator) {
+			LFODisplayComponent::drawSawImage(waveform_g, COL_TEXT_BLUE);
+		} else if (text == "tr") {
+			LFODisplayComponent::drawTriangleImage(waveform_g, COL_TEXT_BLUE);
+		} else if (text == "sq50") {
+			LFODisplayComponent::drawSquareImage(waveform_g, COL_TEXT_BLUE, 0.5f);
+		} else if (text == "sq25") {
+			LFODisplayComponent::drawSquareImage(waveform_g, COL_TEXT_BLUE, 0.25f);
+		} else if (text == "sq12") {
+			LFODisplayComponent::drawSquareImage(waveform_g, COL_TEXT_BLUE, 0.125f);
+		} else if (text == "pe") {
+			LFODisplayComponent::drawPointyImage(waveform_g, COL_TEXT_BLUE);
+		} else if (text == "sh") {
+		} else if (text == "p4") {
+		} else if (text == "p6") {
+		} else if (text == "p8") {
+		} else if (text == "p12") {
+		} else if (text == "s3") {
+		} else if (text == "s4") {
+		} else if (text == "s6") {
+		} else if (text == "s8") {
+		} else if (text == "s12") {
+		} else if (text == "w1") {
+		} else if (text == "w2") {
+		} else if (text == "w3") {
+		} else if (text == "c1") {
+		} else if (text == "c2") {
+		} else if (text == "c3") {
+		}
+
 		g.drawImageAt(waveform, area.getX(), area.getY());
 	}
 
@@ -69,11 +91,9 @@ void LFOPopupLookAndFeel::drawPopupMenuItem(Graphics &g,
 	}
 }
 
-void LFOPopupLookAndFeel::getIdealPopupMenuItemSize(
-    const String &text, bool isSeparator, int standardMenuItemHeight, int &idealWidth, int &idealHeight) {
+void LFOPopupLookAndFeel::getIdealPopupMenuItemSize(const String &text, bool isSeparator, int standardMenuItemHeight, int &idealWidth, int &idealHeight) {
 
 	if (isSeparator) {
-		return LookAndFeel_V4::getIdealPopupMenuItemSize(
-		    text, isSeparator, standardMenuItemHeight, idealWidth, idealHeight);
+		return LookAndFeel_V4::getIdealPopupMenuItemSize(text, isSeparator, standardMenuItemHeight, idealWidth, idealHeight);
 	}
 }

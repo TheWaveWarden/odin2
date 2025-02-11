@@ -41,6 +41,7 @@ void OdinButton::paintButton(juce::Graphics &g, bool p_highlight, bool p_pressed
 		g.setFont(H * 0.6f);
 		g.drawText(m_button_text, getLocalBounds(), juce::Justification::centred, false);
 
+		jassertfalse;
 		return;
 	}
 
@@ -64,12 +65,11 @@ void OdinButton::paintButton(juce::Graphics &g, bool p_highlight, bool p_pressed
 	}
 
 	auto background = UIAssetManager::getInstance()->getUIAsset(UIAssets::Indices(asset), ConfigFileManager::getInstance().getOptionGuiScale());
+	g.setColour(juce::Colours::white.withAlpha(isEnabled() ? 1.0f : 0.6f));
 	g.drawImageAt(background, 0, 0);
 
-	const auto text_alpha = p_pressed ? 0.64f : 1.0f;
+	const auto text_alpha = p_pressed ? 0.8f : 1.0f;
 	auto colour           = getToggleState() ? COL_TEXT_BLUE_DARK : COL_TEXT_BLUE;
-	if (p_highlight)
-		colour = juce::Colour(0xffffffff);
 
 	g.setColour(colour.withAlpha(text_alpha));
 	g.setFont(float(H) * m_font_height_relative);

@@ -157,6 +157,7 @@ void OdinKnob::paint(juce::Graphics &g) {
 
 		g.drawEllipse(getLocalBounds().toFloat().reduced(stroke / 2.0f), 1.0f);
 		g.drawLine(center_x, center_y, center_x * (1.0f - sin), center_y * (1.0f + cos));
+		jassertfalse;
 		return;
 	}
 
@@ -168,8 +169,8 @@ void OdinKnob::paint(juce::Graphics &g) {
 		return;
 	}
 
-	if (m_num_guides > 0)
-		drawGuides(g, isEnabled());
+	if (m_num_guides > 0 && isEnabled())
+		drawGuides(g);
 
 	const auto value01      = valueToProportionOfLength(getValue());
 	const auto num_frames   = m_type == Type::wheel ? N_KNOB_FRAMES_WHEEL : N_KNOB_FRAMES;
@@ -178,11 +179,11 @@ void OdinKnob::paint(juce::Graphics &g) {
 
 	const auto ui_scale = ConfigFileManager::getInstance().getOptionGuiScale();
 	juce::Image graphic = UIAssetManager::getInstance()->getUIAsset(asset, ui_scale);
-	g.setColour(juce::Colours::white);
+	g.setColour(juce::Colours::white.withAlpha(isEnabled() ? 1.0f : 0.6f));
 	g.drawImageAt(graphic, ui_scale * m_inlay_x, ui_scale * m_inlay_y);
 }
 
-void OdinKnob::drawGuides(juce::Graphics &g, bool isEnabled) {
+void OdinKnob::drawGuides(juce::Graphics &g) {
 	g.setColour(juce::Colours::white.withAlpha(0.4f));
 
 	const auto center_x = float(getWidth()) / 2.0f;

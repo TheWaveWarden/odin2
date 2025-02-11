@@ -21,7 +21,6 @@
 
 LFOSelectorComponent::LFOSelectorComponent() : m_up("up", "", OdinButton::Type::up), m_down("down", "", OdinButton::Type::down) {
 
-	m_display.setInlay(1);
 	addAndMakeVisible(m_display);
 
 	m_up.setClickingTogglesState(false);
@@ -118,13 +117,4 @@ void LFOSelectorComponent::resized() {
 	m_up.setBounds(button_bounds.removeFromTop(proportionOfHeight(0.5f)));
 	m_down.setBounds(button_bounds);
 	m_display.setBounds(bounds);
-
-	m_display.clearWaves();
-
-	// TODO
-	//juce::Image sine = ImageCache::getFromMemory(BinaryData::sine_150_png, BinaryData::sine_150_pngSize);
-	//m_display.addWave(sine);
-	//juce::Image saw = ImageCache::getFromMemory(BinaryData::saw_150_png, BinaryData::saw_150_pngSize);
-	//m_display.addWave(saw);
-	// ...
 }

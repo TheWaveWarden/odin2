@@ -174,7 +174,6 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts, const std::s
 	m_vowel_left.setTooltip("The vowel to\nthe left side of\nthe transition knob");
 	m_vowel_left.setMouseDragDivisor(40.f);
 	addChildComponent(m_vowel_left);
-	m_vowel_left.setColor(Colour(90, 40, 40));
 
 	m_vowel_right.OnValueChange = [&](int p_new_value) {
 		m_value_tree.state.getChildWithName("misc").setProperty(m_vowel_right_identifier, p_new_value, nullptr);
@@ -183,7 +182,6 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts, const std::s
 	m_vowel_right.setTooltip("The vowel to\nthe right side of\nthe transition knob");
 	m_vowel_right.setMouseDragDivisor(40.f);
 	addChildComponent(m_vowel_right);
-	m_vowel_right.setColor(Colour(90, 40, 40));
 
 	m_comb_plus_minus.onClick = [&]() {
 		m_value_tree.state.getChildWithName("misc").setProperty((Identifier)("fil" + m_filter_number + "_comb_polarity"), m_comb_plus_minus.getToggleState(), nullptr);
