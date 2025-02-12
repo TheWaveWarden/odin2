@@ -64,14 +64,37 @@ void OdinButton::paintButton(juce::Graphics &g, bool p_highlight, bool p_pressed
 		asset += 1;
 	}
 
-	auto background = UIAssetManager::getInstance()->getUIAsset(UIAssets::Indices(asset), ConfigFileManager::getInstance().getOptionGuiScale());
-	g.setColour(juce::Colours::white.withAlpha(isEnabled() ? 1.0f : 0.6f));
+	auto background  = UIAssetManager::getInstance()->getUIAsset(UIAssets::Indices(asset), ConfigFileManager::getInstance().getOptionGuiScale());
+	const auto alpha = isEnabled() ? 1.0f : MODULE_DISABLED_ALPHA;
+	g.setColour(juce::Colours::white.withAlpha(alpha));
 	g.drawImageAt(background, 0, 0);
 
-	const auto text_alpha = p_pressed ? 0.8f : 1.0f;
+	const auto text_alpha = p_pressed ? 0.8f : alpha;
 	auto colour           = getToggleState() ? COL_TEXT_BLUE_DARK : COL_TEXT_BLUE;
 
 	g.setColour(colour.withAlpha(text_alpha));
 	g.setFont(float(H) * m_font_height_relative);
 	g.drawText(m_button_text, getLocalBounds(), juce::Justification::centred, false);
+}
+
+void DoubleTextButton::paintButton(juce::Graphics &g, bool p_highlight, bool p_pressed) {
+	auto asset = int(UIAssets::Indices::bttn_7x5_off);
+
+	if (p_pressed) {
+		asset += 2;
+	} else if (p_highlight) {
+		asset += 1;
+	}
+
+	auto background  = UIAssetManager::getInstance()->getUIAsset(UIAssets::Indices(asset), ConfigFileManager::getInstance().getOptionGuiScale());
+	const auto alpha = isEnabled() ? 1.0f : MODULE_DISABLED_ALPHA;
+	g.setColour(juce::Colours::white.withAlpha(alpha));
+	g.drawImageAt(background, 0, 0);
+
+	const auto text_alpha = p_pressed ? 0.8f : alpha;
+	auto colour           = COL_TEXT_BLUE;
+
+	g.setColour(colour.withAlpha(text_alpha));
+	g.setFont(float(H) * 0.4f);
+	g.drawText(getToggleState() ? m_on_text : m_off_text, getLocalBounds(), juce::Justification::centred, false);
 }

@@ -111,6 +111,7 @@ public:
 	}
 
 private:
+	void paintKnobInternal(juce::Graphics &g);
 	void drawGuides(juce::Graphics &g);
 
 	int m_midi_learn_left_offset   = 0;

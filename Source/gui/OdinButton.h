@@ -167,3 +167,18 @@ private:
 
 	float m_font_height_relative = 0.5f;
 };
+
+class DoubleTextButton : public OdinButton {
+public:
+	DoubleTextButton(const juce::String &buttonName, const juce::String &p_on_text, const juce::String &p_off_text) :
+	    OdinButton(buttonName, ""),
+	    m_on_text(p_on_text),
+	    m_off_text(p_off_text) {
+	}
+
+	void paintButton(juce::Graphics &g, bool isHighlighted, bool isPressed) override;
+
+private:
+	juce::String m_on_text;
+	juce::String m_off_text;
+};

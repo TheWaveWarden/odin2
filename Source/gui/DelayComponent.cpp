@@ -37,7 +37,7 @@ DelayComponent::DelayComponent(AudioProcessorValueTreeState &vts, bool p_is_stan
     m_dry(OdinKnob::Type::knob_5x5a),
     m_wet(OdinKnob::Type::knob_5x5a),
     m_ducking(OdinKnob::Type::knob_5x5a),
-    m_time(OdinKnob::Type::timeHz_14x4),
+    m_time(OdinKnob::Type::knob_8x8b),
     m_sync_time(UIAssets::Indices::screen_up_down_14x4_LR) {
 
 	addAndMakeVisible(m_time_label);

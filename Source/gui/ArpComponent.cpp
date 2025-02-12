@@ -40,7 +40,7 @@ ArpComponent::ArpComponent(OdinAudioProcessor &p_processor, AudioProcessorValueT
     m_step_15(vts, 15),
     m_on("arp_on", "", OdinButton::Type::power_4x4),
     m_one_shot("arp_one_shot", "1-Shot", OdinButton::Type::button_7x5),
-    m_mod_transpose("arp_mod_transpose", "Mod/\nTrns", OdinButton::Type::button_7x5),
+    m_mod_transpose("arp_mod_transpose", "Trans", "Mod 2"),
     m_mod1_label("Mod 1"),
     m_sync_time(UIAssets::Indices::screen_up_down_13x4_LR),
     m_octave_selector(NumberSelector::Type::selector_16x4),
@@ -140,7 +140,6 @@ ArpComponent::ArpComponent(OdinAudioProcessor &p_processor, AudioProcessorValueT
 	m_mod_transpose.setTooltip("Toggles between the knob-rows for mod 2 or transpose");
 	m_mod_transpose.setTriggeredOnMouseDown(true);
 	m_mod_transpose.onClick = [&]() { setModTranspose(!m_mod_transpose.getToggleState()); };
-	m_mod_transpose.setFontHeightRelative(0.2f);
 
 	m_one_shot.setClickingTogglesState(true);
 	addAndMakeVisible(m_one_shot);

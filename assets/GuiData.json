@@ -141,37 +141,37 @@
     "SizeX": 5,
     "SizeY": 5,
     "X": 1,
-    "Y": 21
+    "Y": 22
   },
   "ArpStepMod_1": {
     "SizeX": 7,
     "SizeY": 8,
     "X": 0,
-    "Y": -1
+    "Y": 0
   },
   "ArpStepMod_2": {
     "SizeX": 7,
     "SizeY": 8,
     "X": 0,
-    "Y": 7
+    "Y": 8
   },
   "ArpStepStepOn": {
     "SizeX": 5,
     "SizeY": 5,
     "X": 1,
-    "Y": 15
+    "Y": 16
   },
   "ArpStepTranspose": {
     "SizeX": 7,
     "SizeY": 8,
     "X": 0,
-    "Y": 7
+    "Y": 8
   },
   "ArpStep_0": {
     "SizeX": 7,
-    "SizeY": 26,
+    "SizeY": 27,
     "X": 9,
-    "Y": 9
+    "Y": 8
   },
   "ArpStep_1": {
     "SizeX": 7,
@@ -435,25 +435,25 @@
     "SizeX": 10,
     "SizeY": 4,
     "X": 7,
-    "Y": 14
+    "Y": 17
   },
   "DelaySyncTime": {
     "SizeX": 14,
     "SizeY": 4,
     "X": 5,
-    "Y": 5
+    "Y": 7
   },
   "DelayTime": {
-    "SizeX": 14,
-    "SizeY": 4,
-    "X": 5,
-    "Y": 5
+    "SizeX": 10,
+    "SizeY": 11,
+    "X": 7,
+    "Y": 3
   },
   "DelayTimeLabel": {
     "SizeX": 8,
     "SizeY": 3,
     "X": 8,
-    "Y": 10
+    "Y": 12
   },
   "DelayWet": {
     "SizeX": 7,

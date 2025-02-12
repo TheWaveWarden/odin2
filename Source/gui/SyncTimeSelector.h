@@ -63,6 +63,10 @@ public:
 
 	void resized() override;
 
+	void enablementChanged() override {
+		repaint();
+	}
+
 private:
 	void updateDisplay() {
 		m_display.setText(m_left_values[m_value_left] + "/" + m_right_values[m_value_right]);

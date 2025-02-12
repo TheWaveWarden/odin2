@@ -288,30 +288,35 @@ OdinEditor::OdinEditor(OdinAudioProcessor &p_processor, AudioProcessorValueTreeS
 	m_phaser_on_button.setTriggeredOnMouseDown(true);
 	m_phaser_on_button.setTooltip("Enables the phaser module");
 	m_phaser_on_button.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
+	m_phaser_on_button.onClick = [&]() { setFXModulesEnablements(); };
 
 	m_flanger_on_button.setClickingTogglesState(true);
 	addAndMakeVisible(m_flanger_on_button);
 	m_flanger_on_button.setTriggeredOnMouseDown(true);
 	m_flanger_on_button.setTooltip("Enables the flanger module");
 	m_flanger_on_button.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
+	m_flanger_on_button.onClick = [&]() { setFXModulesEnablements(); };
 
 	m_chorus_on_button.setClickingTogglesState(true);
 	addAndMakeVisible(m_chorus_on_button);
 	m_chorus_on_button.setTriggeredOnMouseDown(true);
 	m_chorus_on_button.setTooltip("Enables the chorus module");
 	m_chorus_on_button.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
+	m_chorus_on_button.onClick = [&]() { setFXModulesEnablements(); };
 
 	m_delay_on_button.setClickingTogglesState(true);
 	addAndMakeVisible(m_delay_on_button);
 	m_delay_on_button.setTriggeredOnMouseDown(true);
 	m_delay_on_button.setTooltip("Enables the delay module");
 	m_delay_on_button.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
+	m_delay_on_button.onClick = [&]() { setFXModulesEnablements(); };
 
 	m_reverb_on_button.setClickingTogglesState(true);
 	addAndMakeVisible(m_reverb_on_button);
 	m_reverb_on_button.setTriggeredOnMouseDown(true);
 	m_reverb_on_button.setTooltip("Enables the reverb module");
 	m_reverb_on_button.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
+	m_reverb_on_button.onClick = [&]() { setFXModulesEnablements(); };
 
 	m_reset.setTooltip("Reset the synth to its initial state");
 	addAndMakeVisible(m_reset);
@@ -1139,6 +1144,8 @@ void OdinEditor::forceValueTreeOntoComponentsOnlyMainPanel() {
 	m_select_modmatrix_button.setToggleState(fabs(bottom_section_selection - (float)MATRIX_SECTION_INDEX_MATRIX) < 0.1f, dontSendNotification);
 	m_select_presets_button.setToggleState(fabs(bottom_section_selection - (float)MATRIX_SECTION_INDEX_PRESETS) < 0.1f, dontSendNotification);
 	setMatrixSectionModule((int)(bottom_section_selection + 0.5f));
+
+	setFXModulesEnablements();
 }
 
 void OdinEditor::forceValueTreeOntoComponents(bool p_reset_audio) {
@@ -1178,6 +1185,14 @@ void OdinEditor::forceValueTreeOntoComponents(bool p_reset_audio) {
 	m_arp.forceValueTreeOntoComponents(m_value_tree.state);
 
 	m_patch_browser.setSelectedEntriesFromValueTree();
+}
+
+void OdinEditor::setFXModulesEnablements() {
+	m_delay.setEnabled(m_delay_on_button.getToggleState());
+	m_phaser.setEnabled(m_phaser_on_button.getToggleState());
+	m_flanger.setEnabled(m_flanger_on_button.getToggleState());
+	m_chorus.setEnabled(m_chorus_on_button.getToggleState());
+	m_reverb.setEnabled(m_reverb_on_button.getToggleState());
 }
 
 bool OdinEditor::keyStateChanged(bool isKeyDown, Component *originatingComponent) {

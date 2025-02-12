@@ -24,23 +24,27 @@ static bool g_GUI_big = false;
 class FXButtonsSection : public Component {
 public:
 	FXButtonsSection(AudioProcessorValueTreeState &vts, OdinAudioProcessor &p_processor) :
-	    m_processor(p_processor), m_value_tree(vts), m_flanger_button("flanger", &m_constrainer),
-	    m_phaser_button("phaser", &m_constrainer), m_chorus_button("chorus", &m_constrainer),
-	    m_delay_button("delay", &m_constrainer), m_reverb_button("reverb", &m_constrainer) {
+	    m_processor(p_processor),
+	    m_value_tree(vts),
+	    m_flanger_button("Flanger", &m_constrainer),
+	    m_phaser_button("Phaser", &m_constrainer),
+	    m_chorus_button("Chorus", &m_constrainer),
+	    m_delay_button("Delay", &m_constrainer),
+	    m_reverb_button("Reverb", &m_constrainer) {
 
-		m_phaser_button.setTooltip("Shows the phaser.\nDrag and Drop this to\nrearrange the FX order");
+		m_phaser_button.setTooltip("Shows the phaser.\nDrag this to\nrearrange the FX order");
 		addAndMakeVisible(m_phaser_button);
 
-		m_flanger_button.setTooltip("Shows the flanger.\nDrag and Drop this to\nrearrange the FX order");
+		m_flanger_button.setTooltip("Shows the flanger.\nDrag this to\nrearrange the FX order");
 		addAndMakeVisible(m_flanger_button);
 
-		m_chorus_button.setTooltip("Shows the chorus.\nDrag and Drop this to\nrearrange the FX order");
+		m_chorus_button.setTooltip("Shows the chorus.\nDrag this to\nrearrange the FX order");
 		addAndMakeVisible(m_chorus_button);
 
-		m_delay_button.setTooltip("Shows the delay.\nDrag and Drop this to\nrearrange the FX order");
+		m_delay_button.setTooltip("Shows the delay.\nDrag this to\nrearrange the FX order");
 		addAndMakeVisible(m_delay_button);
 
-		m_reverb_button.setTooltip("Shows the reverb.\nDrag and Drop this to\nrearrange the FX order");
+		m_reverb_button.setTooltip("Shows the reverb.\nDrag this to\nrearrange the FX order");
 		addAndMakeVisible(m_reverb_button);
 
 		m_phaser_button.lambdaMouseDrag = [&](int p_position) { changeMapPosition("phaser", p_position); };
@@ -104,8 +108,7 @@ public:
 	void parentSizeChanged() override {
 		auto newBounds = getBoundsInParent();
 
-		m_constrainer.checkBounds(
-		    newBounds, getBoundsInParent(), getParentComponent()->getLocalBounds(), false, false, false, false);
+		m_constrainer.checkBounds(newBounds, getBoundsInParent(), getParentComponent()->getLocalBounds(), false, false, false, false);
 		setBounds(newBounds);
 
 		m_constrainer.setMinimumOnscreenAmounts(getHeight(), getWidth(), getHeight(), getWidth());
@@ -268,8 +271,7 @@ private:
 
 	AudioProcessorValueTreeState &m_value_tree;
 
-	std::map<std::string, int> m_position_map = {
-	    {"reverb", 4}, {"flanger", 3}, {"phaser", 1}, {"chorus", 2}, {"delay", 0}};
+	std::map<std::string, int> m_position_map = {{"reverb", 4}, {"flanger", 3}, {"phaser", 1}, {"chorus", 2}, {"delay", 0}};
 
 	juce::ComponentBoundsConstrainer m_constrainer;
 	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(FXButtonsSection)

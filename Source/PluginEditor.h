@@ -307,6 +307,7 @@ private:
 	void setMatrixSectionModule(int p_module);
 	void updatePitchWheel(float p_value);
 	void updateModWheel(float p_value);
+	void setFXModulesEnablements();
 
 	void readOrCreateConfigFile(bool &p_GUI_big);
 

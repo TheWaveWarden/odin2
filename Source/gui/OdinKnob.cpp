@@ -161,6 +161,19 @@ void OdinKnob::paint(juce::Graphics &g) {
 		return;
 	}
 
+	if (isEnabled()) {
+		paintKnobInternal(g);
+	} else {
+		// render entire knob into an image and draw this with transparency, so the guides don't look through the knob
+		juce::Image knob_image(juce::Image::PixelFormat::ARGB, getWidth(), getHeight(), true);
+		juce::Graphics knob_g(knob_image);
+		paintKnobInternal(knob_g);
+		g.setColour(juce::Colours::white.withAlpha(MODULE_DISABLED_ALPHA));
+		g.drawImageAt(knob_image, 0, 0);
+	}
+}
+
+void OdinKnob::paintKnobInternal(juce::Graphics &g) {
 	if (m_type == Type::timeHz_13x4 || m_type == Type::timeHz_14x4) {
 		g.drawImageAt(UIAssetManager::getInstance()->getUIAsset(UIAssets::Indices(m_ui_asset_base), ConfigFileManager::getInstance().getOptionGuiScale()), 0, 0);
 		g.setColour(COL_TEXT_BLUE);
@@ -169,7 +182,7 @@ void OdinKnob::paint(juce::Graphics &g) {
 		return;
 	}
 
-	if (m_num_guides > 0 && isEnabled())
+	if (m_num_guides > 0)
 		drawGuides(g);
 
 	const auto value01      = valueToProportionOfLength(getValue());
@@ -179,7 +192,7 @@ void OdinKnob::paint(juce::Graphics &g) {
 
 	const auto ui_scale = ConfigFileManager::getInstance().getOptionGuiScale();
 	juce::Image graphic = UIAssetManager::getInstance()->getUIAsset(asset, ui_scale);
-	g.setColour(juce::Colours::white.withAlpha(isEnabled() ? 1.0f : 0.6f));
+	g.setColour(juce::Colours::white);
 	g.drawImageAt(graphic, ui_scale * m_inlay_x, ui_scale * m_inlay_y);
 }
 

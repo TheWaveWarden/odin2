@@ -30,17 +30,16 @@ public:
 		auto asset = int(UIAssets::Indices::bttn_12x4_FX_off);
 		if (m_pressed)
 			asset += 3;
+		else if (m_highlight)
+			asset += 1;
 
 		//if (p_pressed) {
 		//	asset += 2;
-		//} else if (p_highlight) {
-		//	asset += 1;
-		//}
 
 		g.drawImageAt(UIAssetManager::getInstance()->getUIAsset(UIAssets::Indices(asset), ConfigFileManager::getInstance().getOptionGuiScale()), 0, 0);
 
-		g.setColour(COL_TEXT_BLUE);
-		g.setFont(H * 0.6f);
+		g.setColour(m_pressed ? COL_TEXT_BLUE_DARK : COL_TEXT_BLUE);
+		g.setFont(H * 0.53f);
 		g.drawText(m_text, getLocalBounds(), Justification::centred);
 	}
 
@@ -94,13 +93,28 @@ public:
 		lambdaMouseUp();
 	}
 
+	void mouseMove(const MouseEvent &event) override {
+		if (!m_highlight) {
+			m_highlight = true;
+			repaint();
+		}
+	}
+
+	void mouseExit(const MouseEvent &event) override {
+		if (m_highlight) {
+			m_highlight = false;
+			repaint();
+		}
+	}
+
 	// std::function lambdaMouseDown;
 	std::function<void(int)> lambdaMouseDrag;
 	std::function<void()> lambdaMouseUp;
 	std::function<void()> lambdaMouseDown;
 
 private:
-	bool m_pressed = false;
+	bool m_pressed   = false;
+	bool m_highlight = false;
 
 	juce::String m_text;
 	juce::ComponentDragger m_dragger;

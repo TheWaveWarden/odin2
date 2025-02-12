@@ -26,24 +26,32 @@ GlasDisplay::~GlasDisplay() {
 }
 
 void GlasDisplay::paint(Graphics &g) {
-	const auto col = m_highlight ? juce::Colours::white : COL_TEXT_BLUE;
-	g.setColour(col);
+	const auto alpha = isEnabled() ? 1.0f : MODULE_DISABLED_ALPHA;
+	const auto col   = (m_highlight && isEnabled()) ? juce::Colours::white : COL_TEXT_BLUE;
+	g.setColour(col.withAlpha(alpha));
 	g.setFont(H * 0.5f);
 	g.drawText(m_text, getLocalBounds(), Justification::centred, false);
 }
 
 void GlasDisplay::mouseDown(const MouseEvent &event) {
-	onMouseDown();
-	toParentMouseDown(event);
+	if (isEnabled()) {
+		onMouseDown();
+		toParentMouseDown(event);
+	}
+
 	Component::mouseDown(event);
 }
 
 void GlasDisplay::mouseDrag(const MouseEvent &event) {
-	toParentMouseDrag(event);
+	if (isEnabled())
+		toParentMouseDrag(event);
+
 	Component::mouseDrag(event);
 }
 
 void GlasDisplay::mouseUp(const MouseEvent &event) {
-	toParentMouseUp(event);
+	if (isEnabled())
+		toParentMouseUp(event);
+
 	Component::mouseUp(event);
 }

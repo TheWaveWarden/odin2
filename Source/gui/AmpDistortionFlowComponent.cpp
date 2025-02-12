@@ -33,8 +33,7 @@ AmpDistortionFlowComponent::AmpDistortionFlowComponent(AudioProcessorValueTreeSt
     m_boost(OdinKnob::Type::knob_8x8b),
     m_dry_wet(OdinKnob::Type::knob_8x8b),
     m_distortion_algo(GlassDropdown::Type::dropdown_12x4),
-	m_distortion_label("DISTORTION")
-{
+    m_distortion_label("DISTORTION") {
 
 	addAndMakeVisible(m_gain_label);
 	addAndMakeVisible(m_pan_label);
@@ -150,8 +149,11 @@ void AmpDistortionFlowComponent::forceValueTreeOntoComponents(ValueTree p_tree) 
 }
 
 void AmpDistortionFlowComponent::setDistortionPanelActive(bool p_active) {
-	//DBG("SetDistortionPanelActive: " + std::to_string(p_active));
-	m_distortion_algo.setColor(p_active ? DISTORTION_ON_COLOR : DARKGREY);
+	m_distortion_algo.setEnabled(p_active);
+	m_boost.setEnabled(p_active);
+	m_boost_label.setEnabled(p_active);
+	m_dry_wet.setEnabled(p_active);
+	m_drywet_label.setEnabled(p_active);
 	m_distortion_on = p_active;
 	repaint();
 }

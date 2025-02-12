@@ -80,6 +80,7 @@ SyncTimeSelector::~SyncTimeSelector() {
 }
 
 void SyncTimeSelector::paint(Graphics &g) {
+	g.setColour(juce::Colours::white.withAlpha(isEnabled() ? 1.0f : MODULE_DISABLED_ALPHA));
 	g.drawImageAt(UIAssetManager::getInstance()->getUIAsset(m_asset, ConfigFileManager::getInstance().getOptionGuiScale()), 0, 0);
 }
 

@@ -173,24 +173,104 @@ void LFODisplayComponent::resized() {
 	drawPyramidImage(graphics_pyramid12, highlight_colour, 12);
 	m_waves_highlight.push_back(pyramid12_image.createCopy());
 
-	//separator
 	// step 3
-	// step 4
-	// step 6
-	// step 8
-	// step 12
-	//separator
-	// WD1
-	// WD2
-	// WD3
-	//separator
-	// CD1
-	// CD2
-	// CD3
+	juce::Image step3_image(juce::Image::PixelFormat::ARGB, W, H, true);
+	juce::Graphics graphics_step3(step3_image);
+	drawStepImage(graphics_step3, COL_TEXT_BLUE, 3);
+	m_waves.push_back((step3_image.createCopy()));
+	step3_image.clear(step3_image.getBounds());
+	drawStepImage(graphics_step3, highlight_colour, 3);
+	m_waves_highlight.push_back(step3_image.createCopy());
 
-	//juce::Image saw = ImageCache::getFromMemory(BinaryData::saw_150_png, BinaryData::saw_150_pngSize);
-	//m_display.addWave(saw);
-	// ...
+	// step 4
+	juce::Image step4_image(juce::Image::PixelFormat::ARGB, W, H, true);
+	juce::Graphics graphics_step4(step4_image);
+	drawStepImage(graphics_step4, COL_TEXT_BLUE, 4);
+	m_waves.push_back((step4_image.createCopy()));
+	step4_image.clear(step4_image.getBounds());
+	drawStepImage(graphics_step4, highlight_colour, 4);
+	m_waves_highlight.push_back(step4_image.createCopy());
+
+	// step 6
+	juce::Image step6_image(juce::Image::PixelFormat::ARGB, W, H, true);
+	juce::Graphics graphics_step6(step6_image);
+	drawStepImage(graphics_step6, COL_TEXT_BLUE, 6);
+	m_waves.push_back((step6_image.createCopy()));
+	step6_image.clear(step6_image.getBounds());
+	drawStepImage(graphics_step6, highlight_colour, 6);
+	m_waves_highlight.push_back(step6_image.createCopy());
+
+	// step 8
+	juce::Image step8_image(juce::Image::PixelFormat::ARGB, W, H, true);
+	juce::Graphics graphics_step8(step8_image);
+	drawStepImage(graphics_step8, COL_TEXT_BLUE, 8);
+	m_waves.push_back((step8_image.createCopy()));
+	step8_image.clear(step8_image.getBounds());
+	drawStepImage(graphics_step8, highlight_colour, 8);
+	m_waves_highlight.push_back(step8_image.createCopy());
+
+	// step 12
+	juce::Image step12_image(juce::Image::PixelFormat::ARGB, W, H, true);
+	juce::Graphics graphics_step12(step12_image);
+	drawStepImage(graphics_step12, COL_TEXT_BLUE, 12);
+	m_waves.push_back((step12_image.createCopy()));
+	step12_image.clear(step12_image.getBounds());
+	drawStepImage(graphics_step12, highlight_colour, 12);
+	m_waves_highlight.push_back(step12_image.createCopy());
+
+	// WD1
+	juce::Image WD1_image(juce::Image::PixelFormat::ARGB, W, H, true);
+	juce::Graphics graphics_WD1(WD1_image);
+	drawTextImage(graphics_WD1, COL_TEXT_BLUE, "WaDraw1");
+	m_waves.push_back((WD1_image.createCopy()));
+	WD1_image.clear(WD1_image.getBounds());
+	drawTextImage(graphics_WD1, highlight_colour, "WaDraw1");
+	m_waves_highlight.push_back(WD1_image.createCopy());
+
+	// WD2
+	juce::Image WD2_image(juce::Image::PixelFormat::ARGB, W, H, true);
+	juce::Graphics graphics_WD2(WD2_image);
+	drawTextImage(graphics_WD2, COL_TEXT_BLUE, "WaDraw2");
+	m_waves.push_back((WD2_image.createCopy()));
+	WD2_image.clear(WD2_image.getBounds());
+	drawTextImage(graphics_WD2, highlight_colour, "WaDraw2");
+	m_waves_highlight.push_back(WD2_image.createCopy());
+
+	// WD3
+	juce::Image WD3_image(juce::Image::PixelFormat::ARGB, W, H, true);
+	juce::Graphics graphics_WD3(WD3_image);
+	drawTextImage(graphics_WD3, COL_TEXT_BLUE, "WaDraw3");
+	m_waves.push_back((WD3_image.createCopy()));
+	WD3_image.clear(WD3_image.getBounds());
+	drawTextImage(graphics_WD3, highlight_colour, "WaDraw3");
+	m_waves_highlight.push_back(WD3_image.createCopy());
+
+	// CD1
+	juce::Image CD1_image(juce::Image::PixelFormat::ARGB, W, H, true);
+	juce::Graphics graphics_CD1(CD1_image);
+	drawTextImage(graphics_CD1, COL_TEXT_BLUE, "ChDraw1");
+	m_waves.push_back((CD1_image.createCopy()));
+	CD1_image.clear(CD1_image.getBounds());
+	drawTextImage(graphics_CD1, highlight_colour, "ChDraw1");
+	m_waves_highlight.push_back(CD1_image.createCopy());
+
+	// CD2
+	juce::Image CD2_image(juce::Image::PixelFormat::ARGB, W, H, true);
+	juce::Graphics graphics_CD2(CD2_image);
+	drawTextImage(graphics_CD2, COL_TEXT_BLUE, "ChDraw2");
+	m_waves.push_back((CD2_image.createCopy()));
+	CD2_image.clear(CD2_image.getBounds());
+	drawTextImage(graphics_CD2, highlight_colour, "ChDraw2");
+	m_waves_highlight.push_back(CD2_image.createCopy());
+
+	// CD3
+	juce::Image CD3_image(juce::Image::PixelFormat::ARGB, W, H, true);
+	juce::Graphics graphics_CD3(CD3_image);
+	drawTextImage(graphics_CD3, COL_TEXT_BLUE, "ChDraw3");
+	m_waves.push_back((CD3_image.createCopy()));
+	CD3_image.clear(CD3_image.getBounds());
+	drawTextImage(graphics_CD3, highlight_colour, "ChDraw3");
+	m_waves_highlight.push_back(CD3_image.createCopy());
 }
 
 void LFODisplayComponent::drawSineImage(juce::Graphics &g, juce::Colour p_col) {
@@ -311,6 +391,7 @@ void LFODisplayComponent::drawSHImage(juce::Graphics &g, juce::Colour p_col) {
 	static constexpr auto stroke = 1.0f;
 
 	bounds.reduce(bounds.proportionOfWidth(0.15f), bounds.proportionOfHeight(0.2f));
+	bounds.removeFromRight(bounds.proportionOfWidth(0.3f));
 
 	juce::Path p;
 	p.startNewSubPath(bounds.getRelativePoint(0.0f, 0.35f));
@@ -331,6 +412,9 @@ void LFODisplayComponent::drawSHImage(juce::Graphics &g, juce::Colour p_col) {
 
 	g.setColour(p_col);
 	g.strokePath(p, juce::PathStrokeType(stroke));
+
+	g.setFont(bounds.getHeight() * 0.9f);
+	g.drawText("SH", g.getClipBounds().withLeft(bounds.getRight()), juce::Justification::centred);
 }
 
 void LFODisplayComponent::drawPyramidImage(juce::Graphics &g, juce::Colour p_col, int p_steps) {
@@ -362,6 +446,46 @@ void LFODisplayComponent::drawPyramidImage(juce::Graphics &g, juce::Colour p_col
 	g.setColour(p_col);
 	g.strokePath(p, juce::PathStrokeType(stroke));
 
-	g.setFont(bounds.getHeight());
+	g.setFont(bounds.getHeight() * 0.9f);
 	g.drawText(juce::String(p_steps), g.getClipBounds().withLeft(bounds.getRight()), juce::Justification::centred);
+}
+
+void LFODisplayComponent::drawStepImage(juce::Graphics &g, juce::Colour p_col, int p_steps) {
+	auto bounds                  = g.getClipBounds().toFloat();
+	static constexpr auto stroke = 1.0f;
+
+	bounds.reduce(bounds.proportionOfWidth(0.15f), bounds.proportionOfHeight(0.2f));
+	bounds.removeFromRight(bounds.proportionOfWidth(0.3f));
+
+	juce::Path p;
+	p.startNewSubPath(bounds.getRelativePoint(0.0f, 1.0f));
+	p.lineTo(bounds.getRelativePoint(0.25f, 1.0f));
+	p.lineTo(bounds.getRelativePoint(0.25f, 0.66f));
+	p.lineTo(bounds.getRelativePoint(0.5f, 0.66f));
+	p.lineTo(bounds.getRelativePoint(0.5f, 0.33f));
+	p.lineTo(bounds.getRelativePoint(0.75f, 0.33f));
+	p.lineTo(bounds.getRelativePoint(0.75f, 0.0f));
+	p.lineTo(bounds.getRelativePoint(1.0f, 0.0f));
+
+	auto fill_path = p;
+	fill_path.lineTo(bounds.getRelativePoint(1.0f, 0.5f));
+	fill_path.lineTo(bounds.getRelativePoint(0.0f, 0.5f));
+	fill_path.closeSubPath();
+	g.setColour(COL_TEXT_BLUE.withAlpha(0.2f));
+	g.fillPath(fill_path);
+
+	g.setColour(p_col);
+	g.strokePath(p, juce::PathStrokeType(stroke));
+
+	g.setFont(bounds.getHeight() * 0.9f);
+	g.drawText(juce::String(p_steps), g.getClipBounds().withLeft(bounds.getRight()), juce::Justification::centred);
+}
+
+void LFODisplayComponent::drawTextImage(juce::Graphics &g, juce::Colour p_col, juce::String p_text) {
+	auto bounds = g.getClipBounds().toFloat();
+	bounds.reduce(bounds.proportionOfWidth(0.15f), bounds.proportionOfHeight(0.2f));
+
+	g.setColour(p_col);
+	g.setFont(bounds.getHeight() * 0.8f);
+	g.drawText(p_text, g.getClipBounds(), juce::Justification::centred, false);
 }

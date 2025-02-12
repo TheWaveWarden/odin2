@@ -60,6 +60,8 @@ public:
 	static void drawPointyImage(juce::Graphics &g, juce::Colour p_col);
 	static void drawSHImage(juce::Graphics &g, juce::Colour p_col);
 	static void drawPyramidImage(juce::Graphics &g, juce::Colour p_col, int p_steps);
+	static void drawStepImage(juce::Graphics &g, juce::Colour p_col, int p_steps);
+	static void drawTextImage(juce::Graphics &g, juce::Colour p_col, juce::String p_text);
 
 private:
 	int m_value = 0;

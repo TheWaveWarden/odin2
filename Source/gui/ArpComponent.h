@@ -62,7 +62,7 @@ private:
 
 	OdinButton m_on;
 	OdinButton m_one_shot;
-	OdinButton m_mod_transpose;
+	DoubleTextButton m_mod_transpose;
 
 	SyncTimeSelector m_sync_time;
 
