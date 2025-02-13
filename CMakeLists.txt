@@ -152,7 +152,7 @@ target_sources(Odin2
     "Source/audio/Oscillators/WavetableOsc2D.cpp"
     "Source/audio/Oscillators/Wavetables/Tables/LFOTableData.cpp"
     "Source/audio/Oscillators/Wavetables/Tables/WavetableData.cpp"
-    "Source/gui/JSONGuiProvider.cpp"
+    "Source/gui/JsonGuiProvider.cpp"
     "Source/gui/LiveConstrainer.cpp"
     "Source/gui/GuiDataEditor.cpp"
     "Source/gui/ADSRComponent.cpp"
