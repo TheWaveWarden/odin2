@@ -43,6 +43,11 @@ PatchBrowser::PatchBrowser(OdinAudioProcessor &p_processor, AudioProcessorValueT
 	m_category_selector.setCopyTargetName("Soundbank");
 	m_patch_selector.setCopyTargetName("Category");
 
+	File dir_to_create(DEFAULT_SOUNDBANK_LOCATION_STRING);
+	if (!dir_to_create.exists()) {
+		dir_to_create.createDirectory();
+	}
+
 	m_soundbank_selector.setDirectory(DEFAULT_SOUNDBANK_LOCATION_STRING);
 	
 	m_category_selector.setDirectoryFactoryPresetCategory();
