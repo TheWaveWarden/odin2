@@ -12,4 +12,4 @@
 	url = https://github.com/lv2-porting-project/JUCE
 [submodule "libs/json"]
 	path = libs/json
-	url = git@github.com:nlohmann/json.git
+	url = https://github.com/nlohmann/json.git
