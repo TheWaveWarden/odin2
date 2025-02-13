@@ -43,16 +43,18 @@ void WavedrawDisplay::paint(Graphics &g) {
 	for (int i = 1; i < WAVEDRAW_STEPS_X; ++i)
 		path.lineTo(draw_inlay_left + (i)*width, mid - m_draw_values[i] * height);
 
+    const juce::Colour col(0xff86aef6);
+
 	// fill
 	Path fill_path = path;
 	fill_path.lineTo(getWidth() - draw_inlay_left, mid);
 	fill_path.lineTo(draw_inlay_left, mid);
 	fill_path.closeSubPath();
-	g.setColour(COL_TEXT_BLUE.withAlpha(0.15f));
+	g.setColour(col.withAlpha(0.15f));
 	g.fillPath(fill_path);
 
 	// stroke
-	g.setColour(COL_TEXT_BLUE.withAlpha(0.9f));
+	g.setColour(col.withAlpha(0.9f));
 	g.strokePath(path, PathStrokeType(wavedraw_thiccness));
 }
 

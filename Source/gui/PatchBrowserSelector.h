@@ -22,7 +22,6 @@
 #include "PatchBrowserScrollBar.h"
 #include <JuceHeader.h>
 
-
 #define FACTORY_PRESETS_SOUNDBANK_CODE "F_A_C_T_O_R_Y"
 
 #define PATCH_BROWSER_MENU_ENTRY_RENAME 10
@@ -37,11 +36,7 @@ public:
 	}
 
 protected:
-	void drawButtonBackground(Graphics &g,
-	                          Button &button,
-	                          const Colour &backgroundColour,
-	                          bool shouldDrawButtonAsHighlighted,
-	                          bool shouldDrawButtonAsDown) override {
+	void drawButtonBackground(Graphics &g, Button &button, const Colour &backgroundColour, bool shouldDrawButtonAsHighlighted, bool shouldDrawButtonAsDown) override {
 		auto cornerSize = 0.f;
 		auto bounds     = button.getLocalBounds().toFloat().reduced(0.5f, 0.5f);
 
@@ -62,15 +57,14 @@ protected:
 	}
 
 	void drawButtonText(Graphics &g, TextButton &button, bool p_highlighted, bool /*shouldDrawButtonAsDown*/) override {
-		Font font(m_font_size);
+		auto font = Helpers::getAldrichFont(m_font_size);
 		g.setFont(font);
 
 		if (p_highlighted) {
 			g.setColour(ODIN_BLUE);
 		} else {
 			g.setColour(
-			    button.findColour(button.getToggleState() ? TextButton::textColourOnId : TextButton::textColourOffId)
-			        .withMultipliedAlpha(button.isEnabled() ? 1.0f : 0.5f));
+			    button.findColour(button.getToggleState() ? TextButton::textColourOnId : TextButton::textColourOffId).withMultipliedAlpha(button.isEnabled() ? 1.0f : 0.5f));
 		}
 
 		const int yIndent    = jmin(4, button.proportionOfHeight(0.3f));
@@ -82,13 +76,7 @@ protected:
 		const int textWidth   = button.getWidth() - leftIndent - rightIndent;
 
 		if (textWidth > 0)
-			g.drawFittedText(button.getButtonText(),
-			                 leftIndent,
-			                 yIndent,
-			                 textWidth,
-			                 button.getHeight() - yIndent * 2,
-			                 Justification::centred,
-			                 2);
+			g.drawFittedText(button.getButtonText(), leftIndent, yIndent, textWidth, button.getHeight() - yIndent * 2, Justification::centred, 2);
 	}
 
 	float m_font_size = 15.f;
@@ -101,10 +89,7 @@ public:
 	enum class DirectoryStatus { Ok, Empty, Nonexistent };
 	enum class BrowserType { Soundbank, Category, Patch };
 
-	PatchBrowserSelector(File::TypesOfFileToFind p_file_or_dir,
-	                     String p_left_button,
-	                     String p_mid_button,
-	                     String p_right_button);
+	PatchBrowserSelector(File::TypesOfFileToFind p_file_or_dir, String p_left_button, String p_mid_button, String p_right_button);
 	~PatchBrowserSelector();
 
 	void paint(Graphics &) override;

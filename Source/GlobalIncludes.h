@@ -182,6 +182,9 @@ static constexpr auto GUI_BASE_HEIGHT = 154; // the UI size without any scaling 
 
 #define VOL_MOD_UPPER_LIMIT 100
 
+#define NUM_SP_AD1 15
+#define NUM_SP_AD2 100
+
 #define GETAUDIO(name) m_value_tree.getParameterAsValue(name).getValue()
 
 #define SETAUDIO0TO1(name, value) m_value_tree.getParameter(name)->setValueNotifyingHost((float)value)
@@ -239,16 +242,6 @@ enum class PlayModes { Legato = 1, Poly = 2, Retrig = 3 };
 #define VALUETREETOPLAYMODE(mode) ((PlayModes)(mode + 1))
 
 enum class GuiScale { Z100 = 4, Z125 = 5, Z150 = 6, Z175 = 7, Z200 = 8 };
-
-//Used to convert positions and sizes to 150% GUI scaling
-class OdinHelper {
-public:
-	//convert an iteger value to 150%
-	static int c150(int input) {
-		float x = input * 1.5f;
-		return x + 0.5 - (x < 0);
-	}
-};
 
 //sets the Ctrl-key as "reset" key for a given control
 #define SET_CTR_KEY(name) name.setDoubleClickReturnValue(true, name.getDoubleClickReturnValue(), ModifierKeys::ctrlModifier)
@@ -361,5 +354,13 @@ class FileElementComparatorAlphabetical {
 public:
 	static int compareElements(const File &first, const File &second) {
 		return first.getFileName().compareIgnoreCase(second.getFileName());
+	}
+};
+
+class Helpers {
+public:
+	static const Font getAldrichFont(float p_size) {
+		static auto typeface_aldrich = Typeface::createSystemTypefaceFor(BinaryData::aldrich_regular_ttf, BinaryData::aldrich_regular_ttfSize);
+		return Font(typeface_aldrich).withHeight(p_size);
 	}
 };

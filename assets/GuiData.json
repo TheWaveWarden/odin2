@@ -128,7 +128,7 @@
   "ArpOn": {
     "SizeX": 4,
     "SizeY": 4,
-    "X": 2,
+    "X": 3,
     "Y": 3
   },
   "ArpOneShot": {
@@ -915,25 +915,25 @@
     "SizeX": 13,
     "SizeY": 4,
     "X": 10,
-    "Y": 109
+    "Y": 110
   },
   "LFOButton2": {
     "SizeX": 13,
     "SizeY": 4,
     "X": 23,
-    "Y": 109
+    "Y": 110
   },
   "LFOButton3": {
     "SizeX": 13,
     "SizeY": 4,
     "X": 40,
-    "Y": 109
+    "Y": 110
   },
   "LFOButton4": {
     "SizeX": 13,
     "SizeY": 4,
     "X": 53,
-    "Y": 109
+    "Y": 110
   },
   "LFOFreq": {
     "SizeX": 13,
@@ -1094,13 +1094,13 @@
   "NoiseHpLabel": {
     "SizeX": 12,
     "SizeY": 3,
-    "X": 15,
+    "X": 14,
     "Y": 23
   },
   "NoiseLpLabel": {
     "SizeX": 10,
     "SizeY": 3,
-    "X": 33,
+    "X": 34,
     "Y": 23
   },
   "Osc1": {
@@ -1214,13 +1214,13 @@
   "OscHP": {
     "SizeX": 10,
     "SizeY": 11,
-    "X": 16,
+    "X": 15,
     "Y": 12
   },
   "OscLP": {
     "SizeX": 10,
     "SizeY": 11,
-    "X": 33,
+    "X": 34,
     "Y": 12
   },
   "OscModRatio": {
@@ -1512,10 +1512,10 @@
     "Y": 30
   },
   "Osc_pw_label": {
-    "SizeX": 10,
+    "SizeX": 8,
     "SizeY": 4,
-    "X": 3,
-    "Y": 26
+    "X": 4,
+    "Y": 25
   },
   "Osc_semi_label": {
     "SizeX": 6,

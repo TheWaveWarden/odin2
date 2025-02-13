@@ -33,6 +33,10 @@ public:
 	NumberSelector(bool p_buttons_right, Type p_type = Type::unassigned);
 	~NumberSelector();
 
+	void enablementChanged() override {
+		repaint();
+	}
+
 	void parameterChanged(const String &parameterID, float newValue) override {
 		if (parameterID == m_parameter_id) {
 			setValue(newValue);

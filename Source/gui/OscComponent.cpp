@@ -756,16 +756,14 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor, AudioProcessorValueT
 	addChildComponent(m_fm_exp);
 
 	m_chipdraw.setDrawColor(juce::Colour(238, 230, 217));
-	m_chipdraw.setTooltip("Draw a custom 4Bit waveform.\n\nDon't forget to apply "
-	                      "your waveform with the button on the bottom right.");
+	m_chipdraw.setTooltip("Draw a custom 4Bit waveform.");
 	addChildComponent(m_chipdraw);
 
 	juce::Colour wave_color(71, 92, 108);
 	juce::Colour wave_draw_color(99, 165, 236);
 
 	m_wavedraw.setDrawColor(wave_draw_color);
-	m_wavedraw.setTooltip("Become the Picasso of music production.\n\nDon't forget to apply your "
-	                      "waveform with the button on the bottom right.");
+	m_wavedraw.setTooltip("Become the Picasso of music production and draw your own waveform.");
 	addChildComponent(m_wavedraw);
 
 	juce::Colour spec_color(61, 80, 70);
@@ -773,15 +771,14 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor, AudioProcessorValueT
 
 	m_specdraw.setDrawColor(spec_draw_color);
 	m_specdraw.setTooltip("Draw the spectrum of the oscillator. A single peak corresponds to a "
-	                      "sine function.\n\nDon't forget to apply your waveform with the button "
-	                      "on the bottom right.");
+	                      "sine function.");
 	addChildComponent(m_specdraw);
 
 	juce::Colour vector_color(25, 50, 60);
 
 	m_xy.setInlay(1);
 	m_xy.setTooltip("Transition seamlessly through four waveforms. Each corner contains a "
-	                "waveform, which can be selected by the dropdowns on the right.");
+	                "waveform, which can be selected by the dropdowns to the right.");
 	addAndMakeVisible(m_xy);
 
 	m_vec_a.setInlay(1);
@@ -1151,6 +1148,7 @@ void OscComponent::showAnalogComponents() {
 	m_LED_sine.setVisible(true);
 	m_drift_label.setVisible(true);
 	m_sync.setVisible(true);
+	m_pw_label.setVisible(true);
 }
 
 void OscComponent::showChiptuneComponents() {

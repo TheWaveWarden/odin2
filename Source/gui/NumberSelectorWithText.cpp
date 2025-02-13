@@ -21,8 +21,8 @@ NumberSelectorWithText::NumberSelectorWithText(NumberSelector::Type p_type) : Nu
 	m_display.setInlay(1);
 
 	m_display.toParentMouseDown = [&](const MouseEvent e) {};
-
 	m_display.toParentMouseDrag = [&](const MouseEvent e) {};
+	m_display.setMouseCursor(juce::MouseCursor::StandardCursorType::NormalCursor);
 
 	// m_display.toParentMouseUp = [&](const MouseEvent e) {};
 	m_display.onMouseDown = [&]() {

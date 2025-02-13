@@ -21,7 +21,7 @@ void GuiDataEditor::paint(juce::Graphics &g) {
 	auto textBounds = getLocalBounds().reduced(proportionOfHeight(0.2f));
 	textBounds.reduce(textBounds.proportionOfHeight(0.1f), textBounds.proportionOfHeight(0.1f));
 	const auto line_height = textBounds.proportionOfHeight(0.33f);
-	g.setFont(line_height * 0.8f);
+	g.setFont(Helpers::getAldrichFont(line_height * 0.8f));
 	const auto just = juce::Justification::centred;
 
 	g.setColour(juce::Colours::lightblue);

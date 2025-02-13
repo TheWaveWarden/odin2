@@ -19,7 +19,6 @@
 #include "UIAssetManager.h"
 #include <JuceHeader.h>
 
-
 class StepLED : public Component {
 public:
 	StepLED() {
@@ -28,8 +27,13 @@ public:
 	~StepLED() {
 	}
 
+	void enablementChanged() override {
+		repaint();
+	}
+
 	void paint(Graphics &g) override {
 		const auto asset = m_LED_on ? UIAssets::Indices::LED_on : UIAssets::Indices::LED_off;
+		g.setColour(Colours::white.withAlpha(isEnabled() ? 1.0f : MODULE_DISABLED_ALPHA));
 		g.drawImageAt(UIAssetManager::getInstance()->getUIAsset(asset, ConfigFileManager::getInstance().getOptionGuiScale()), 0, 0);
 	}
 

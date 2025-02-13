@@ -48,6 +48,10 @@ void ConfigFileManager::loadDataFromFile() {
 				for (auto *child : config_xml->getChildIterator()) {
 					if (child->hasTagName(XML_ATTRIBUTE_BIG_GUI)) {
 						m_big_gui = child->getBoolAttribute("data");
+					} else if (child->hasTagName(XML_ATTRIBUTE_SPLINE_AD1)) {
+						m_spline_ad_1_seen = child->getBoolAttribute("data");
+					} else if (child->hasTagName(XML_ATTRIBUTE_SPLINE_AD2)) {
+						m_spline_ad_2_seen = child->getBoolAttribute("data");
 					} else if (child->hasTagName(XML_ATTRIBUTE_SHOW_TOOLTIP)) {
 						m_show_tooltip = child->getBoolAttribute("data");
 					} else if (child->hasTagName(XML_ATTRIBUTE_TUNING_DIR)) {
@@ -77,6 +81,14 @@ void ConfigFileManager::saveDataToFile() {
 	XmlElement *big_gui = new XmlElement(XML_ATTRIBUTE_BIG_GUI);
 	big_gui->setAttribute("data", m_big_gui);
 	config_xml->addChildElement(big_gui);
+
+	XmlElement *spline_ad1 = new XmlElement(XML_ATTRIBUTE_SPLINE_AD1);
+	spline_ad1->setAttribute("data", m_spline_ad_1_seen);
+	config_xml->addChildElement(spline_ad1);
+
+	XmlElement *spline_ad2 = new XmlElement(XML_ATTRIBUTE_SPLINE_AD2);
+	spline_ad2->setAttribute("data", m_spline_ad_2_seen);
+	config_xml->addChildElement(spline_ad2);
 
 	XmlElement *show_tooltip = new XmlElement(XML_ATTRIBUTE_SHOW_TOOLTIP);
 	show_tooltip->setAttribute("data", m_show_tooltip);
@@ -128,6 +140,22 @@ void ConfigFileManager::setOptionShowTooltip(bool p_show) {
 
 bool ConfigFileManager::getOptionShowTooltip() {
 	return m_show_tooltip;
+}
+
+void ConfigFileManager::setOptionSplineAd1Seen(bool p_seen) {
+	m_spline_ad_1_seen = p_seen;
+}
+
+bool ConfigFileManager::getOptionSplineAd1Seen() {
+	return m_spline_ad_1_seen;
+}
+
+void ConfigFileManager::setOptionSplineAd2Seen(bool p_seen) {
+	m_spline_ad_2_seen = p_seen;
+}
+
+bool ConfigFileManager::getOptionSplineAd2Seen() {
+	return m_spline_ad_2_seen;
 }
 
 void ConfigFileManager::setOptionGuiScale(int p_scale) {

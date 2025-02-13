@@ -58,7 +58,7 @@ void BrowserEntry::paint(Graphics &g) {
 		g.setColour(highlight_colour);
 	}
 
-	g.setFont(H / 1.2f);
+	g.setFont(Helpers::getAldrichFont(H / 1.2f));
 	const auto text_area = getLocalBounds().reduced(proportionOfWidth(0.05f), 0);
 	g.drawText(m_text, text_area, Justification::centredLeft, true); // draw some placeholder text
 }

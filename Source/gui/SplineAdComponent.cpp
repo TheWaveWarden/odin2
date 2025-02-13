@@ -15,30 +15,27 @@
 
 #include <typeinfo>
 
+#include "../ConfigFileManager.h"
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "JsonGuiProvider.h"
 #include "SplineAdComponent.h"
 
 static constexpr auto DISCOUNT_CODE = "ODIN2SPLINE";
 
-SplineAdComponent::SplineAdComponent() :
-    m_close_button("Close", "X"), m_learn_more_button("LearnMore", "Learn More"),
-    m_copy_clipboard_button("Copy", "Copy") {
+SplineAdComponent::SplineAdComponent() : m_close_button("Close", "X"), m_learn_more_button("LearnMore", "Learn More"), m_copy_clipboard_button("Copy", "Copy") {
 	addAndMakeVisible(m_close_button);
 	addAndMakeVisible(m_learn_more_button);
 	addAndMakeVisible(m_discount_code);
 	addAndMakeVisible(m_copy_clipboard_button);
 
-	m_close_button.onClick = [this] { setVisible(false); };
+	m_close_button.onClick = [this] { disableAd(); };
 
 	m_learn_more_button.onClick = [this] {
 		juce::URL("https://www.thewavewarden.com/spline").launchInDefaultBrowser();
-		//setVisible(false);
+		//disableAd();
 	};
 
-    m_copy_clipboard_button.onClick = [this] {
-		juce::SystemClipboard::copyTextToClipboard(DISCOUNT_CODE);
-	};
+	m_copy_clipboard_button.onClick = [this] { juce::SystemClipboard::copyTextToClipboard(DISCOUNT_CODE); };
 
 	m_discount_code.setMultiLine(false);
 	m_discount_code.setReadOnly(true);
@@ -53,6 +50,18 @@ SplineAdComponent::SplineAdComponent() :
 SplineAdComponent::~SplineAdComponent() {
 }
 
+void SplineAdComponent::disableAd() {
+	setVisible(false);
+
+	const auto num_gui_opens = ConfigFileManager::getInstance().getNumGuiOpens();
+	if (num_gui_opens >= NUM_SP_AD1)
+		ConfigFileManager::getInstance().setOptionSplineAd1Seen(true);
+	if (num_gui_opens >= NUM_SP_AD2)
+		ConfigFileManager::getInstance().setOptionSplineAd2Seen(true);
+
+	ConfigFileManager::getInstance().saveDataToFile();
+}
+
 void SplineAdComponent::paint(Graphics &g) {
 	g.setColour(COL_DARK);
 	g.fillRect(getLocalBounds());
@@ -61,27 +70,17 @@ void SplineAdComponent::paint(Graphics &g) {
 	auto bounds = getLocalBounds();
 	bounds      = bounds.reduced(0, bounds.getHeight() * 0.1f);
 
-	g.setFont(H * 0.04f);
-	g.drawText("Enjoying Odin 2? Take Your Sound to the Next Level!",
-	           bounds.removeFromTop(proportionOfHeight(0.1f)),
-	           Justification::centred);
+	g.setFont(Helpers::getAldrichFont(H * 0.04f));
+	g.drawText("Enjoying Odin 2? Take Your Sound to the Next Level!", bounds.removeFromTop(proportionOfHeight(0.1f)), Justification::centred);
 	bounds.removeFromTop(proportionOfHeight(0.05f));
 
 	const auto slice_height = 0.04f;
 	const auto font_height  = slice_height * 0.8f;
-	g.setFont(proportionOfHeight(font_height));
-	g.drawText("If you love creating with Odin 2, you might be interested in ",
-	           bounds.removeFromTop(proportionOfHeight(slice_height)),
-	           juce::Justification::centred);
-	g.drawText("exploring Spline - my latest synthesizer with even more powerful ",
-	           bounds.removeFromTop(proportionOfHeight(slice_height)),
-	           juce::Justification::centred);
-	g.drawText("features and possibilities. Spline is the spiritual successor to Odin 2, ",
-	           bounds.removeFromTop(proportionOfHeight(slice_height)),
-	           juce::Justification::centred);
-	g.drawText("building on top of its engine with much much more to discover.",
-	           bounds.removeFromTop(proportionOfHeight(slice_height)),
-	           juce::Justification::centred);
+	g.setFont(Helpers::getAldrichFont(proportionOfHeight(font_height)));
+	g.drawText("If you love creating with Odin 2, you might be interested in ", bounds.removeFromTop(proportionOfHeight(slice_height)), juce::Justification::centred);
+	g.drawText("exploring Spline - my latest synthesizer with even more powerful ", bounds.removeFromTop(proportionOfHeight(slice_height)), juce::Justification::centred);
+	g.drawText("features and possibilities. Spline is the spiritual successor to Odin 2, ", bounds.removeFromTop(proportionOfHeight(slice_height)), juce::Justification::centred);
+	g.drawText("building on top of its engine with much much more to discover.", bounds.removeFromTop(proportionOfHeight(slice_height)), juce::Justification::centred);
 
 	bounds.removeFromTop(proportionOfHeight(slice_height));
 	bounds.removeFromTop(proportionOfHeight(slice_height));
@@ -89,16 +88,14 @@ void SplineAdComponent::paint(Graphics &g) {
 	g.drawText("Use the code", bounds.removeFromTop(proportionOfHeight(slice_height)), juce::Justification::centred);
 
 	g.setColour(juce::Colours::lightblue);
-	g.setFont(proportionOfHeight(font_height * 1.3f));
+	g.setFont(Helpers::getAldrichFont(proportionOfHeight(font_height * 1.3f)));
 	//g.drawText(
 	//    "ODIN2SPLINE", bounds.removeFromTop(proportionOfHeight(slice_height * 1.7f)), juce::Justification::centred);
 	bounds.removeFromTop(proportionOfHeight(slice_height * 1.7f));
 
 	g.setColour(COL_LIGHT);
-	g.setFont(proportionOfHeight(font_height));
-	g.drawText("to get a 10% discount on Spline!",
-	           bounds.removeFromTop(proportionOfHeight(slice_height)),
-	           juce::Justification::centred);
+	g.setFont(Helpers::getAldrichFont(proportionOfHeight(font_height)));
+	g.drawText("to get a 10% discount on Spline!", bounds.removeFromTop(proportionOfHeight(slice_height)), juce::Justification::centred);
 }
 
 void SplineAdComponent::resized() {

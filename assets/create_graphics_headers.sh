@@ -335,6 +335,7 @@ echo "    \"Soundbanks/Factory Presets/Stabs/Pluck.odin\"" >> "$cmakefile"
 echo "    \"Soundbanks/Factory Presets/Stabs/Plucker 3.odin\"" >> "$cmakefile"
 echo "    \"Soundbanks/Factory Presets/Stabs/Saw Pluck [Projektor].odin\"" >> "$cmakefile"
 echo "    \"init_patch.odin\"" >> "$cmakefile"
+echo "    \"font/aldrich_regular.ttf\"" >> "$cmakefile"
 echo "" >> "$cmakefile"
 
 

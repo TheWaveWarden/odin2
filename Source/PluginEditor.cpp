@@ -355,13 +355,19 @@ OdinEditor::OdinEditor(OdinAudioProcessor &p_processor, AudioProcessorValueTreeS
 			menu.addItem(1000, "Show Tooltips");
 
 		menu.addSeparator(), menu.addItem(1050, "Open Main Storage Path");
+		menu.addSeparator();
+
+		menu.addSeparator(), menu.addItem(1070, "Visit wwww.thewavewarden.com");
 
 #ifdef ODIN_DEBUG
 		menu.addSeparator();
 		menu.addItem(1100, "Save GuiData.json");
 #endif
 
+		OdinMenuFeels laf;
+		menu.setLookAndFeel(&laf);
 		const auto ret = menu.show();
+		menu.setLookAndFeel(nullptr);
 
 		if (ret == 0)
 			return;
@@ -383,6 +389,11 @@ OdinEditor::OdinEditor(OdinAudioProcessor &p_processor, AudioProcessorValueTreeS
 
 		if (ret == 1050) {
 			juce::URL(ODIN_STORAGE_PATH).launchInDefaultBrowser();
+			return;
+		}
+
+		if (ret == 1070) {
+			juce::URL("https://thewavewarden.com").launchInDefaultBrowser();
 			return;
 		}
 
@@ -728,21 +739,6 @@ OdinEditor::OdinEditor(OdinAudioProcessor &p_processor, AudioProcessorValueTreeS
 
 	setTooltipEnabled(ConfigFileManager::getInstance().getOptionShowTooltip());
 
-	addAndMakeVisible(m_resize_dragger);
-	m_resize_dragger.onIncrease = [&]() {
-		auto new_size = int(ConfigFileManager::getInstance().getOptionGuiScale()) + 1;
-		if (new_size <= int(GuiScale::Z200)) {
-			setGuiScale(new_size);
-		}
-	};
-	m_resize_dragger.onDecrease = [&]() {
-		auto new_size = int(ConfigFileManager::getInstance().getOptionGuiScale()) - 1;
-		if (new_size >= int(GuiScale::Z100)) {
-			setGuiScale(new_size);
-		}
-	};
-	m_resize_dragger.setTooltip("Drag here to change the size of the user interface");
-
 	m_osc1_dropdown.toFront(false);
 	m_osc2_dropdown.toFront(false);
 	m_osc3_dropdown.toFront(false);
@@ -769,9 +765,9 @@ OdinEditor::OdinEditor(OdinAudioProcessor &p_processor, AudioProcessorValueTreeS
 	ConfigFileManager::getInstance().saveDataToFile();
 
 	addChildComponent(m_spline_ad);
-	// todo todo todo add preference when user has clicked this away and also second time
-	//m_spline_ad.setVisible(ConfigFileManager::getInstance().getNumGuiOpens() > 10);
-	addChildComponent(m_rescale_component);
+	bool show_spline_ad = ConfigFileManager::getInstance().getNumGuiOpens() > NUM_SP_AD1 && !ConfigFileManager::getInstance().getOptionSplineAd1Seen();
+	show_spline_ad |= ConfigFileManager::getInstance().getNumGuiOpens() > NUM_SP_AD2 && !ConfigFileManager::getInstance().getOptionSplineAd2Seen();
+	m_spline_ad.setVisible(show_spline_ad);
 
 	UIAssetManager::getInstance()->registerEditor(this);
 
@@ -811,8 +807,6 @@ void OdinEditor::paint(Graphics &g) {
 }
 
 void OdinEditor::resized() {
-	GET_LOCAL_AREA(m_resize_dragger, "ResizeDragger");
-
 	GET_LOCAL_AREA(m_detune_label, "DetuneLabel");
 	GET_LOCAL_AREA(m_width_label, "WidthLabel");
 	GET_LOCAL_AREA(m_master_label, "MasterLabel");

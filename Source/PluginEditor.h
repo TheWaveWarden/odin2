@@ -160,8 +160,6 @@ private:
 
 	NumberSelectorWithText m_unison_selector;
 
-	ResizeDragger m_resize_dragger;
-
 	OscComponent m_osc1;
 	OscComponent m_osc2;
 	OscComponent m_osc3;

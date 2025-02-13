@@ -39,8 +39,8 @@ public:
 		g.drawImageAt(UIAssetManager::getInstance()->getUIAsset(UIAssets::Indices(asset), ConfigFileManager::getInstance().getOptionGuiScale()), 0, 0);
 
 		g.setColour(m_pressed ? COL_TEXT_BLUE_DARK : COL_TEXT_BLUE);
-		g.setFont(H * 0.53f);
-		g.drawText(m_text, getLocalBounds(), Justification::centred);
+		g.setFont(Helpers::getAldrichFont(H * 0.53f));
+		g.drawText(m_text, getLocalBounds().removeFromBottom(proportionOfHeight(0.94f)), Justification::centred);
 	}
 
 	void setIsPressed(bool p_pressed) {

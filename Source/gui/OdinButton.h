@@ -48,7 +48,8 @@ public:
 		preset_import,
 		preset_export,
 		preset_export_small,
-		preset_new
+		preset_new,
+		preset_save
 	};
 
 	OdinButton(const String &buttonName, const String &p_button_text, Type p_type = Type::unassigned) : juce::Button(buttonName), m_button_text(p_button_text), m_type(p_type) {
@@ -125,6 +126,9 @@ public:
 			break;
 		case Type::preset_new:
 			m_ui_asset_base = int(UIAssets::Indices::bttn_preset_c);
+			break;
+		case Type::preset_save:
+			m_ui_asset_base = int(UIAssets::Indices::bttn_preset_d);
 			break;
 		default:
 			break;

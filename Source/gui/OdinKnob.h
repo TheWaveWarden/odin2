@@ -15,6 +15,7 @@
 
 #pragma once
 
+#include "../ConfigFileManager.h"
 #include "../GlobalIncludes.h"
 #include "InputField.h"
 #include "OdinMidiLearnBase.h"
@@ -27,6 +28,7 @@ class OdinAudioProcessor;
 class KnobFeels : public juce::LookAndFeel_V4 {
 public:
 	KnobFeels() {
+		setColour(juce::TooltipWindow::textColourId, juce::Colours::white.withAlpha(0.9f));
 	}
 
 	void drawBubble(Graphics &g, BubbleComponent &b, const Point<float> &positionOfTip, const Rectangle<float> &body) override {
@@ -34,16 +36,22 @@ public:
 		g.fillRect(body); // pmai
 		g.setColour(Colour(50, 50, 50));
 		g.drawRect(body); // pmai
-		g.setFont(30.f);
+		g.setFont(Helpers::getAldrichFont(30.f));
 	}
 	int getSliderPopupPlacement(Slider &slider) override {
 		return 2;
+	}
+
+	juce::Font getSliderPopupFont(Slider &slider) override {
+		const auto grid_scale = juce::jmap(float(ConfigFileManager::getInstance().getOptionGuiScale()), float(GuiScale::Z100), float(GuiScale::Z200), 1.0f, 1.5f);
+		auto font             = juce::LookAndFeel_V4::getSliderPopupFont(slider);
+		return Helpers::getAldrichFont(font.getHeight() * grid_scale);
 	}
 };
 
 class OdinKnob : public juce::Slider, public OdinMidiLearnBase {
 public:
-	enum class Type { unassigned, knob_4x4a, knob_4x4b, knob_5x5a, knob_5x5b, knob_6x6a, knob_6x6b, knob_8x8a, knob_8x8b, wheel, timeHz_13x4, timeHz_14x4 };
+	enum class Type { unassigned, knob_4x4a, knob_5x5a, knob_6x6a, knob_6x6b, knob_8x8a, knob_8x8b, wheel, timeHz_13x4, timeHz_14x4 };
 
 	OdinKnob(Type type = Type::unassigned);
 
@@ -130,7 +138,7 @@ private:
 
 	float m_center_pos_y = 0.5f;
 	float m_guide_radius = 0.5f;
-	int m_num_guides     = 17;
+	int m_num_guides     = 19;
 };
 
 class DecibelKnob : public OdinKnob {

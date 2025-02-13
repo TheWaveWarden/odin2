@@ -25,7 +25,7 @@ void FixedTextGlassDropdown::paint(Graphics &g) {
 
 	const auto col = isMouseOver() ? juce::Colours::white : COL_TEXT_BLUE;
 	g.setColour(col);
-	g.setFont(H * 0.5f);
+	g.setFont(Helpers::getAldrichFont(H * 0.5f));
 
 	auto text_bounds = getLocalBounds();
 	text_bounds.removeFromRight(H).reduced(proportionOfHeight(0.4f));

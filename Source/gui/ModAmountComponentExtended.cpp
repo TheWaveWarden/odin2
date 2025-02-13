@@ -82,7 +82,7 @@ void ModAmountComponentExtended::paint(Graphics &g) {
 		g.fillRoundedRectangle(bounds2, corner);
 	}
 
-	g.setFont(H / 1.8f);
+	g.setFont(Helpers::getAldrichFont(H / 1.8f));
 	g.setColour(COL_TEXT_BLUE);
 	g.drawText(juce::String(juce::roundToInt(m_value * 100.0f)), getLocalBounds(), Justification::centred, true);
 }

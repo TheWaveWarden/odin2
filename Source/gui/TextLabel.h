@@ -18,9 +18,9 @@ public:
 		const auto disabled_alpha = isEnabled() ? 1.0f : MODULE_DISABLED_ALPHA;
 		g.setColour(juce::Colours::white.withAlpha(0.7f * disabled_alpha));
 		if (m_rotate_90_degrees)
-			g.setFont(W * m_font_height_relative);
+			g.setFont(Helpers::getAldrichFont(W * m_font_height_relative));
 		else
-			g.setFont(H * m_font_height_relative);
+			g.setFont(Helpers::getAldrichFont(H * m_font_height_relative));
 
 		if (m_rotate_90_degrees)
 			g.addTransform(juce::AffineTransform::rotation(-juce::MathConstants<float>::pi / 2.0f, W / 2.0f, H / 2.0f));

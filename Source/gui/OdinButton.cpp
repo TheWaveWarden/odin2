@@ -38,7 +38,7 @@ void OdinButton::paintButton(juce::Graphics &g, bool p_highlight, bool p_pressed
 		}
 
 		g.setColour(COL_LIGHT);
-		g.setFont(H * 0.6f);
+		g.setFont(Helpers::getAldrichFont(H * 0.6f));
 		g.drawText(m_button_text, getLocalBounds(), juce::Justification::centred, false);
 
 		jassertfalse;
@@ -73,8 +73,8 @@ void OdinButton::paintButton(juce::Graphics &g, bool p_highlight, bool p_pressed
 	auto colour           = getToggleState() ? COL_TEXT_BLUE_DARK : COL_TEXT_BLUE;
 
 	g.setColour(colour.withAlpha(text_alpha));
-	g.setFont(float(H) * m_font_height_relative);
-	g.drawText(m_button_text, getLocalBounds(), juce::Justification::centred, false);
+	g.setFont(Helpers::getAldrichFont(float(H) * m_font_height_relative));
+	g.drawText(m_button_text, getLocalBounds().removeFromBottom(proportionOfHeight(0.94f)), juce::Justification::centred, false);
 }
 
 void DoubleTextButton::paintButton(juce::Graphics &g, bool p_highlight, bool p_pressed) {
@@ -95,6 +95,6 @@ void DoubleTextButton::paintButton(juce::Graphics &g, bool p_highlight, bool p_p
 	auto colour           = COL_TEXT_BLUE;
 
 	g.setColour(colour.withAlpha(text_alpha));
-	g.setFont(float(H) * 0.4f);
-	g.drawText(getToggleState() ? m_on_text : m_off_text, getLocalBounds(), juce::Justification::centred, false);
+	g.setFont(Helpers::getAldrichFont(float(H) * 0.4f));
+	g.drawText(getToggleState() ? m_on_text : m_off_text, getLocalBounds().removeFromBottom(proportionOfHeight(0.94f)), juce::Justification::centred, false);
 }

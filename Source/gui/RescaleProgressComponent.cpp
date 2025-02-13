@@ -14,7 +14,7 @@ void RescaleProgressComponent::paint(juce::Graphics &g) {
 	g.setGradientFill(ColourGradient(colour_background.darker(0.4f), 0, H, colour_background.brighter(0.04f), W, 0, false));
 	g.fillRect(getLocalBounds());
 
-	g.setFont(getHeight() * 0.03f);
+	g.setFont(Helpers::getAldrichFont(getHeight() * 0.03f));
 	g.setColour(juce::Colours::white);
 
 	auto progress_shell  = getLocalBounds().withSizeKeepingCentre(getWidth() * 0.6f, proportionOfHeight(0.03f));

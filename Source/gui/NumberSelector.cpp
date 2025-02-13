@@ -36,7 +36,6 @@ NumberSelector::NumberSelector(bool p_buttons_right, Type p_type) : m_type(p_typ
 		break;
 	}
 
-
 	m_display.setInlay(1);
 	m_display.setText(std::to_string(m_value));
 	m_display.setMouseCursor(juce::MouseCursor::StandardCursorType::UpDownResizeCursor);

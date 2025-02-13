@@ -28,6 +28,8 @@ public:
 	void paint(Graphics &) override;
 
 private:
+    void disableAd();
+
     OdinButton m_close_button;
     OdinButton m_learn_more_button;
     OdinButton m_copy_clipboard_button;

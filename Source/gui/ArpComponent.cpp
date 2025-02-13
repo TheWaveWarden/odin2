@@ -134,6 +134,7 @@ ArpComponent::ArpComponent(OdinAudioProcessor &p_processor, AudioProcessorValueT
 	addAndMakeVisible(m_on);
 	m_on.setTooltip("Turns the arpeggiator on or off");
 	m_on.setTriggeredOnMouseDown(true);
+	m_on.onClick = [&]() { setComponentsEnabled(); };
 
 	m_mod_transpose.setClickingTogglesState(true);
 	addAndMakeVisible(m_mod_transpose);
@@ -274,6 +275,7 @@ void ArpComponent::forceValueTreeOntoComponents(ValueTree p_tree) {
 	m_sync_time.setValues((int)m_value_tree.state.getChildWithName("misc")["arp_synctime_numerator"], (int)m_value_tree.state.getChildWithName("misc")["arp_synctime_denominator"]);
 
 	setModTranspose(!m_mod_transpose.getToggleState());
+	setComponentsEnabled();
 }
 
 void ArpComponent::setVisibleAndStartTimer(bool p_set_visible) {
@@ -302,4 +304,34 @@ void ArpComponent::setModTranspose(bool p_is_mod) {
 	m_step_13.setModTranspose(p_is_mod);
 	m_step_14.setModTranspose(p_is_mod);
 	m_step_15.setModTranspose(p_is_mod);
+}
+
+void ArpComponent::setComponentsEnabled() {
+	const auto enabled = m_on.getToggleState();
+
+	m_one_shot.setEnabled(enabled);
+	m_direction.setEnabled(enabled);
+	m_gate.setEnabled(enabled);
+	m_sync_time.setEnabled(enabled);
+	m_octave_selector.setEnabled(enabled);
+	m_mod1_label.setEnabled(enabled);
+	m_mod_transpose.setEnabled(enabled);
+	m_steps_selector.setEnabled(enabled);
+
+	m_step_0.setEnabled(enabled);
+	m_step_1.setEnabled(enabled);
+	m_step_2.setEnabled(enabled);
+	m_step_3.setEnabled(enabled);
+	m_step_4.setEnabled(enabled);
+	m_step_5.setEnabled(enabled);
+	m_step_6.setEnabled(enabled);
+	m_step_7.setEnabled(enabled);
+	m_step_8.setEnabled(enabled);
+	m_step_9.setEnabled(enabled);
+	m_step_10.setEnabled(enabled);
+	m_step_11.setEnabled(enabled);
+	m_step_12.setEnabled(enabled);
+	m_step_13.setEnabled(enabled);
+	m_step_14.setEnabled(enabled);
+	m_step_15.setEnabled(enabled);
 }

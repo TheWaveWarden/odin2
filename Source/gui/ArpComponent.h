@@ -50,6 +50,8 @@ private:
 	void setNumberLEDsToShow(int p_number);
 	void setModTranspose(bool p_is_mod);
 
+    void setComponentsEnabled();
+
 	OdinAudioProcessor &m_processor;
 	AudioProcessorValueTreeState &m_value_tree;
 

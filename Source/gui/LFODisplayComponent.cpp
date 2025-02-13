@@ -413,7 +413,7 @@ void LFODisplayComponent::drawSHImage(juce::Graphics &g, juce::Colour p_col) {
 	g.setColour(p_col);
 	g.strokePath(p, juce::PathStrokeType(stroke));
 
-	g.setFont(bounds.getHeight() * 0.9f);
+	g.setFont(Helpers::getAldrichFont(bounds.getHeight() * 0.9f));
 	g.drawText("SH", g.getClipBounds().withLeft(bounds.getRight()), juce::Justification::centred);
 }
 
@@ -446,7 +446,7 @@ void LFODisplayComponent::drawPyramidImage(juce::Graphics &g, juce::Colour p_col
 	g.setColour(p_col);
 	g.strokePath(p, juce::PathStrokeType(stroke));
 
-	g.setFont(bounds.getHeight() * 0.9f);
+	g.setFont(Helpers::getAldrichFont(bounds.getHeight() * 0.9f));
 	g.drawText(juce::String(p_steps), g.getClipBounds().withLeft(bounds.getRight()), juce::Justification::centred);
 }
 
@@ -477,7 +477,7 @@ void LFODisplayComponent::drawStepImage(juce::Graphics &g, juce::Colour p_col, i
 	g.setColour(p_col);
 	g.strokePath(p, juce::PathStrokeType(stroke));
 
-	g.setFont(bounds.getHeight() * 0.9f);
+	g.setFont(Helpers::getAldrichFont(bounds.getHeight() * 0.9f));
 	g.drawText(juce::String(p_steps), g.getClipBounds().withLeft(bounds.getRight()), juce::Justification::centred);
 }
 
@@ -486,6 +486,6 @@ void LFODisplayComponent::drawTextImage(juce::Graphics &g, juce::Colour p_col, j
 	bounds.reduce(bounds.proportionOfWidth(0.15f), bounds.proportionOfHeight(0.2f));
 
 	g.setColour(p_col);
-	g.setFont(bounds.getHeight() * 0.8f);
+	g.setFont(Helpers::getAldrichFont(bounds.getHeight() * 0.8f));
 	g.drawText(p_text, g.getClipBounds(), juce::Justification::centred, false);
 }

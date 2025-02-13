@@ -29,7 +29,7 @@ void GlasDisplay::paint(Graphics &g) {
 	const auto alpha = isEnabled() ? 1.0f : MODULE_DISABLED_ALPHA;
 	const auto col   = (m_highlight && isEnabled()) ? juce::Colours::white : COL_TEXT_BLUE;
 	g.setColour(col.withAlpha(alpha));
-	g.setFont(H * 0.5f);
+	g.setFont(Helpers::getAldrichFont(H * 0.5f));
 	g.drawText(m_text, getLocalBounds(), Justification::centred, false);
 }
 

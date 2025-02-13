@@ -36,7 +36,7 @@ GlassDropdown::~GlassDropdown() {
 }
 
 void GlassDropdown::paint(Graphics &g) {
-	const auto alpha = isEnabled() ? 1.0f : MODULE_DISABLED_ALPHA;
+	const auto alpha = isEnabled() ? 1.0f : 0.6f;
 
 	if (m_type != Type::unassigned) {
 		auto background = UIAssetManager::getInstance()->getUIAsset(m_asset, ConfigFileManager::getInstance().getOptionGuiScale());
@@ -46,17 +46,17 @@ void GlassDropdown::paint(Graphics &g) {
 
 	const auto col = (isMouseOver() && isEnabled()) ? juce::Colours::white : COL_TEXT_BLUE;
 	g.setColour(col.withAlpha(alpha));
-	g.setFont(H * 0.54f);
+	g.setFont(Helpers::getAldrichFont(H * 0.54f));
 
 	auto text_bounds = getLocalBounds();
-	text_bounds.removeFromRight(H).reduced(proportionOfHeight(0.4f));
+	text_bounds.removeFromRight(H * 0.75f).reduced(proportionOfHeight(0.4f));
 
 	paintTriangle(g);
 
 	if (getSelectedId() == 0)
 		g.drawText(m_default_text, text_bounds, Justification::centred, true);
 	else
-		g.drawText(getText(), text_bounds, Justification::centred, true);
+		g.drawText(getText(), text_bounds, Justification::centred, false);
 }
 
 void GlassDropdown::paintTriangle(juce::Graphics &g) {

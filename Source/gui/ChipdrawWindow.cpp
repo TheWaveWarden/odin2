@@ -48,16 +48,18 @@ void ChipdrawWindow::paint(Graphics &g) {
 	}
 	path.lineTo(draw_inlay_left + CHIPDRAW_STEPS_X * width, mid - m_draw_values[CHIPDRAW_STEPS_X - 1] * height);
 
+	const juce::Colour col(0xff86f6e8);
+
 	// fill
 	Path fill_path = path;
 	fill_path.lineTo(getWidth() - draw_inlay_left, mid);
 	fill_path.lineTo(draw_inlay_left, mid);
 	fill_path.closeSubPath();
-	g.setColour(COL_TEXT_BLUE.withAlpha(0.15f));
+	g.setColour(col.withAlpha(0.15f));
 	g.fillPath(fill_path);
 
 	// stroke
-	g.setColour(COL_TEXT_BLUE.withAlpha(0.9f));
+	g.setColour(col.withAlpha(0.9f));
 	g.strokePath(path, PathStrokeType(chipdraw_thiccness));
 }
 

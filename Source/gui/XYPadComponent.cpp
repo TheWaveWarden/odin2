@@ -14,15 +14,16 @@
 */
 
 #include "XYPadComponent.h"
+#include "../ConfigFileManager.h"
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "UIAssetManager.h"
 
-XYPadComponent::XYPadComponent(AudioProcessorValueTreeState &vts,
-                               const std::string &p_param_prefix,
-                               OdinKnob &p_x,
-                               OdinKnob &p_y,
-                               bool p_vector_pad) :
+XYPadComponent::XYPadComponent(AudioProcessorValueTreeState &vts, const std::string &p_param_prefix, OdinKnob &p_x, OdinKnob &p_y, bool p_vector_pad) :
     m_value_tree(vts),
-    m_param_name_x(p_param_prefix + "x"), m_param_name_y(p_param_prefix + "y"), m_knob_x(p_x), m_knob_y(p_y),
+    m_param_name_x(p_param_prefix + "x"),
+    m_param_name_y(p_param_prefix + "y"),
+    m_knob_x(p_x),
+    m_knob_y(p_y),
     m_vector_pad(p_vector_pad) {
 	m_color = juce::Colour(30, 30, 30);
 }
@@ -35,7 +36,7 @@ void XYPadComponent::paint(Graphics &g) {
 
 	if (m_vector_pad) {
 		g.setColour(COL_TEXT_BLUE);
-		g.setFont(H / 11.0f);
+		g.setFont(Helpers::getAldrichFont(H / 11.0f));
 		const auto bounds = getLocalBounds().reduced(H / 20.0f);
 		g.drawText("A", bounds, Justification::bottomLeft, false);
 		g.drawText("B", bounds, Justification::topLeft, false);
@@ -43,24 +44,19 @@ void XYPadComponent::paint(Graphics &g) {
 		g.drawText("D", bounds, Justification::bottomRight, false);
 	}
 
-	int handle_diameter = proportionOfHeight(1.0f / 18.0f);
-	int handle_inlay    = handle_diameter / 3.0f;
+	const auto grid     = ConfigFileManager::getInstance().getOptionGuiScale();
+	int handle_diameter = 2 * grid;
+	int handle_inlay    = handle_diameter / 6.0f;
 
 	float x_handle = handle_inlay + m_value_x * (getWidth() - handle_diameter - 2 * handle_inlay);
-	float y_handle =
-	    getHeight() - handle_diameter - (handle_inlay + m_value_y * (getHeight() - handle_diameter - 2 * handle_inlay));
+	float y_handle = getHeight() - handle_diameter - (handle_inlay + m_value_y * (getHeight() - handle_diameter - 2 * handle_inlay));
 	if (!m_vector_pad) {
-		//g.setColour(Colour(0, 10, 30));
 		g.setColour(Colour(60, 90, 120));
 		g.drawLine(m_inlay, y_handle + handle_diameter / 2, getWidth() - m_inlay, y_handle + handle_diameter / 2);
 		g.drawLine(x_handle + handle_diameter / 2, m_inlay, x_handle + handle_diameter / 2, getHeight() - m_inlay);
-		g.setColour(Colour(20, 105, 129));
-		g.fillEllipse(x_handle - 1, y_handle - 1, handle_diameter + 2, handle_diameter + 2);
 	}
-	g.setColour(COL_LIGHT);
-	g.fillEllipse(x_handle, y_handle, handle_diameter, handle_diameter);
-
-	g.drawImageAt(m_panel, 0, 0);
+	g.setColour(juce::Colours::white);
+	g.drawImageAt(UIAssetManager::getInstance()->getUIAsset(UIAssets::Indices::screen_dot, grid), x_handle, y_handle);
 }
 
 void XYPadComponent::mouseDrag(const MouseEvent &event) {
@@ -82,13 +78,11 @@ void XYPadComponent::mouseInteraction() {
 	int handle_inlay    = proportionOfWidth(0.02f);
 	int handle_diameter = proportionOfWidth(0.03f);
 
-	m_value_x = (float)(mouse_pos.getX() - handle_inlay - handle_diameter / 2) /
-	            (float)(getWidth() - handle_diameter - 2 * handle_inlay);
+	m_value_x = (float)(mouse_pos.getX() - handle_inlay - handle_diameter / 2) / (float)(getWidth() - handle_diameter - 2 * handle_inlay);
 	m_value_x = m_value_x < 0 ? 0 : m_value_x;
 	m_value_x = m_value_x > 1 ? 1 : m_value_x;
 
-	m_value_y = (float)(mouse_pos.getY() + handle_diameter / 2 - getHeight() + handle_inlay) /
-	            ((float)(2 * handle_inlay + handle_diameter - getHeight()));
+	m_value_y = (float)(mouse_pos.getY() + handle_diameter / 2 - getHeight() + handle_inlay) / ((float)(2 * handle_inlay + handle_diameter - getHeight()));
 	m_value_y = m_value_y < 0 ? 0 : m_value_y;
 	m_value_y = m_value_y > 1 ? 1 : m_value_y;
 

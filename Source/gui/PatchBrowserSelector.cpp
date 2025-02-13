@@ -23,7 +23,7 @@ PatchBrowserSelector::PatchBrowserSelector(File::TypesOfFileToFind p_file_or_dir
     m_file_or_dir(p_file_or_dir),
     m_left_button(p_left_button, "", OdinButton::Type::preset_import),
     m_mid_button(p_mid_button, "", p_right_button == "Save" ? OdinButton::Type::preset_export_small : OdinButton::Type::preset_export), // this is a hack lmao
-    m_right_button(p_right_button, "", OdinButton::Type::preset_new) {
+    m_right_button(p_right_button, "", p_right_button == "Save" ? OdinButton::Type::preset_save : OdinButton::Type::preset_new) {
 
 	m_scroll_bar.reportMouseDrag = [&](float p_delta_y) {
 		if (fabs(m_available_scroll_height - m_scroll_bar_height) >= 1) {
@@ -119,7 +119,7 @@ void PatchBrowserSelector::paint(Graphics &g) {
 		float font_size = proportionOfHeight(0.065f);
 		float inlay_x   = proportionOfWidth(0.1f);
 		float offset_y  = proportionOfHeight(0.1f);
-		g.setFont(font_size);
+		g.setFont(Helpers::getAldrichFont(font_size));
 		g.drawMultiLineText(m_nonexistent_text, inlay_x, font_size + offset_y, getWidth() - 2 * inlay_x, Justification::centred, 5.f);
 	} break;
 
@@ -128,7 +128,7 @@ void PatchBrowserSelector::paint(Graphics &g) {
 		float font_size = proportionOfHeight(0.065f);
 		float inlay_x   = proportionOfWidth(0.1f);
 		float offset_y  = proportionOfHeight(0.1f);
-		g.setFont(font_size);
+		g.setFont(Helpers::getAldrichFont(font_size));
 		g.drawMultiLineText(m_empty_text, inlay_x, font_size + offset_y, getWidth() - 2 * inlay_x, Justification::centred, 5.f);
 	} break;
 	default:
@@ -569,8 +569,6 @@ void PatchBrowserSelector::setType(BrowserType p_type) {
 
 void PatchBrowserSelector::resized() {
 
-	m_menu_feels.setWidth(proportionOfWidth(0.5f));
-	m_menu_feels.setFontSize(H / 15.0f);
 	m_button_feels.setButtonFontSize(H / 14.0f);
 	m_input_field.setFont(H / 15.0f);
 

@@ -41,20 +41,8 @@ OdinKnob::OdinKnob(Type type) : m_type(type) {
 		m_center_pos_y  = 24.0f / 56.0f;
 		m_guide_radius  = 0.39f;
 		break;
-	case Type::knob_4x4b:
-		m_ui_asset_base = int(UIAssets::Indices::knob_4x4_b_0000);
-		m_inlay_y       = 1;
-		m_center_pos_y  = 24.0f / 56.0f;
-		m_guide_radius  = 0.39f;
-		break;
 	case Type::knob_5x5a:
 		m_ui_asset_base = int(UIAssets::Indices::knob_5x5_a_0000);
-		m_inlay_y       = 1;
-		m_center_pos_y  = 28.0f / 64.0f;
-		m_guide_radius  = 0.42f;
-		break;
-	case Type::knob_5x5b:
-		m_ui_asset_base = int(UIAssets::Indices::knob_5x5_b_0000);
 		m_inlay_y       = 1;
 		m_center_pos_y  = 28.0f / 64.0f;
 		m_guide_radius  = 0.42f;
@@ -177,7 +165,7 @@ void OdinKnob::paintKnobInternal(juce::Graphics &g) {
 	if (m_type == Type::timeHz_13x4 || m_type == Type::timeHz_14x4) {
 		g.drawImageAt(UIAssetManager::getInstance()->getUIAsset(UIAssets::Indices(m_ui_asset_base), ConfigFileManager::getInstance().getOptionGuiScale()), 0, 0);
 		g.setColour(COL_TEXT_BLUE);
-		g.setFont(getHeight() / 2.0f);
+		g.setFont(Helpers::getAldrichFont(getHeight() / 2.0f));
 		g.drawText(getTextFromValue(getValue()), getLocalBounds(), juce::Justification::centred, false);
 		return;
 	}
