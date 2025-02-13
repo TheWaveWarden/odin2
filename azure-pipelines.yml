@@ -150,7 +150,7 @@ jobs:
 
   - script: |
       sudo apt-get update
-      sudo apt-get install -y libgtk-3-dev libwebkit2gtk-4.0 libwebkit2gtk-4.0-dev libcurl4-openssl-dev alsa alsa-tools libasound2-dev jack libjack-dev libfreetype6-dev libxinerama-dev libxcb-xinerama0 libxinerama1 x11proto-xinerama-dev libxrandr-dev libgl1-mesa-dev libxcursor-dev libxcursor1 libxcb-cursor-dev libxcb-cursor0 xvfb lv2-dev
+      sudo apt-get install -y libgtk-3-dev libwebkit2gtk-4.0 libwebkit2gtk-4.0-dev libcurl4-openssl-dev alsa alsa-tools libasound2-dev libjack-dev libfreetype6-dev libxinerama-dev libxcb-xinerama0 libxinerama1 x11proto-xinerama-dev libxrandr-dev libgl1-mesa-dev libxcursor-dev libxcursor1 libxcb-cursor-dev libxcb-cursor0 xvfb lv2-dev
       sudo apt-get install -y --fix-missing
       apt list --installed
     displayName: 'Linux: Install Prerequisites'
