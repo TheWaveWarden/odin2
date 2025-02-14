@@ -23,7 +23,6 @@
 #include "SyncTimeSelector.h"
 #include "TextLabel.h"
 
-
 #define HP_FREQ_MIN 80
 #define HP_FREQ_MAX 18000
 #define HP_FREQ_MID 1280
@@ -59,12 +58,12 @@ private:
 
 	juce::Image m_background;
 
-    TextLabel m_time_label;
-    TextLabel m_feedback_label;
-    TextLabel m_hp_label;
-    TextLabel m_ducking_label;
-    TextLabel m_dry_label;
-    TextLabel m_wet_label;
+	TextLabel m_time_label;
+	TextLabel m_feedback_label;
+	TextLabel m_hp_label;
+	TextLabel m_ducking_label;
+	TextLabel m_dry_label;
+	TextLabel m_wet_label;
 
 	OdinKnob m_time;
 	OdinKnob m_feedback;

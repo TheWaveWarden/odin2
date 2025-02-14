@@ -55,7 +55,7 @@ FilterComponent::FilterComponent(AudioProcessorValueTreeState &vts, const std::s
     m_freq_comb(OdinKnob::Type::knob_8x8a),
     m_res_comb(OdinKnob::Type::knob_8x8a),
     m_ring_mod_amount(OdinKnob::Type::knob_8x8a),
-	m_formant_transition(OdinKnob::Type::knob_8x8a) {
+    m_formant_transition(OdinKnob::Type::knob_8x8a) {
 
 	addAndMakeVisible(m_vel_label);
 	addAndMakeVisible(m_kbd_label);

@@ -113,7 +113,7 @@ void OdinAudioProcessor::addNonAudioParametersToTree() {
 	node.setProperty("arp_direction", (int)OdinArpeggiator::ArpPattern::Up, nullptr);
 	node.setProperty("arp_steps", 16, nullptr);
 	node.setProperty("arp_gate", 50, nullptr);
-	node.setProperty("arp_mod_selected", 0, nullptr); //actually arp,modmatrix,patchbrowser, TBD
+	node.setProperty("arp_mod_selected", 0, nullptr); // switches arp, modmatrix and patchbrowser
 	node.setProperty("preset_soundbank_selected", "", nullptr);
 	node.setProperty("preset_category_selected", "", nullptr);
 	node.setProperty("preset_patch_selected", "", nullptr);

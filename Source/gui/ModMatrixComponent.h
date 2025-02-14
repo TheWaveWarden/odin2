@@ -27,8 +27,8 @@
 #define MODMATRIX_COL_POS_2 juce::Colour(0xff1ff153)
 #define MODMATRIX_COL_POS_3 juce::Colour(0xffa0cde7)
 #define MODMATRIX_COL_NEG_1 juce::Colour(252, 58, 97)
-#define MODMATRIX_COL_NEG_2 juce::Colour(0xfff1771f)
-#define MODMATRIX_COL_NEG_3 juce::Colour(0xffec1ff1)
+#define MODMATRIX_COL_NEG_2 juce::Colour(0xffa000ff)
+#define MODMATRIX_COL_NEG_3 juce::Colour(0xffe79118)
 
 class ModMatrixComponent : public Component {
 public:

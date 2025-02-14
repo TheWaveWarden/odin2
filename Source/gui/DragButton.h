@@ -33,9 +33,6 @@ public:
 		else if (m_highlight)
 			asset += 1;
 
-		//if (p_pressed) {
-		//	asset += 2;
-
 		g.drawImageAt(UIAssetManager::getInstance()->getUIAsset(UIAssets::Indices(asset), ConfigFileManager::getInstance().getOptionGuiScale()), 0, 0);
 
 		g.setColour(m_pressed ? COL_TEXT_BLUE_DARK : COL_TEXT_BLUE);

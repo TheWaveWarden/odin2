@@ -12,8 +12,6 @@ void GuiDataEditor::paint(juce::Graphics &g) {
 
 	g.setColour(m_colour_border);
 	g.drawRect(getLocalBounds(), 1);
-	//g.drawRect (m_top, 1);
-	//g.drawRect (m_bottom, 1);
 
 	g.setColour(m_colour_text.withAlpha(0.5f));
 	g.fillRect(m_data);

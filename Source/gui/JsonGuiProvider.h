@@ -18,9 +18,6 @@ public:
 	juce::Rectangle<int> getBoundsMirrored(const std::string &p_name, const std::string &p_parent);
 	juce::Rectangle<int> getBoundsUnscaled(const std::string &p_name);
 	juce::Rectangle<float> getFloatBounds(const std::string &p_name);
-	juce::Rectangle<int> getFloatBoundsWithIntSize(const std::string &p_name, bool p_for_knob = false);
-	juce::Image getImage(const std::string &p_name);
-	juce::Point<int> getKnobInlay();
 
 	void setBoundsUnscaled(const std::string &p_name, const juce::Rectangle<int> &p_bounds);
 

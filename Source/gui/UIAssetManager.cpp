@@ -3,7 +3,9 @@
 #include "../PluginEditor.h"
 
 UIRescalerWorkerThread::UIRescalerWorkerThread(std::atomic<float> &p_progress, int p_thread_index) :
-    juce::Thread("UIRescalerWorkerThread"), m_progress(p_progress), m_thread_index(p_thread_index) {
+    juce::Thread("UIRescalerWorkerThread"),
+    m_progress(p_progress),
+    m_thread_index(p_thread_index) {
 }
 
 void UIRescalerWorkerThread::run() {
@@ -96,14 +98,16 @@ bool UIAssetManager::isCurrentlyRescaling() const {
 void UIAssetManager::popuplateStorageFromFolder() {
 	m_is_rescaling.store(true);
 
-	[[maybe_unused]] const auto time_start = juce::Time::getMillisecondCounter();
+	const auto time_start = juce::Time::getMillisecondCounter();
 
 	for (int i = 0; i < int(UIAssets::Indices::NumIndices); ++i)
 		m_image_storage[i] = juce::ImageFileFormat::loadFrom(m_scaled_asset_folder.getChildFile(juce::String(i) + ".png"));
 
-	[[maybe_unused]] const auto time_end = juce::Time::getMillisecondCounter();
+	const auto time_end = juce::Time::getMillisecondCounter();
 
 	DBG("Loaded images from disk in " << (float(time_end - time_start) / 1000.0f) << "s");
+	(void)time_start;
+	(void)time_end;
 
 	m_is_rescaling.store(false);
 }

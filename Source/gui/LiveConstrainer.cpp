@@ -136,7 +136,6 @@ void LiveConstrainer::paintOverlay(juce::Graphics &g) {
 		auto *editor = m_component->findParentComponentOfClass<OdinEditor>();
 
 		// highlgiht component outline
-		//auto textBounds = editor->getLocalBounds().withSizeKeepingCentre (editor->proportionOfWidth (0.2f), editor->proportionOfHeight (0.2f));
 		auto textBounds = editor->getLocalBounds()
 		                      .removeFromRight(editor->proportionOfWidth(0.2f))
 		                      .removeFromTop(editor->proportionOfHeight(0.2f));

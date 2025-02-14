@@ -1026,12 +1026,16 @@ void PatchBrowser::resized() {
 }
 
 void PatchBrowser::writeSelectedEntriesToValueTree(const juce::String &p_soundbank, const juce::String &p_category, const juce::String &p_patch) {
-	m_value_tree.state.getChildWithName("misc").setProperty("preset_soundbank_selected", p_soundbank, nullptr);
+	auto soundbank = p_soundbank;
+	if (soundbank.isEmpty())
+		soundbank = "Static Factory Presets";
+
+	m_value_tree.state.getChildWithName("misc").setProperty("preset_soundbank_selected", soundbank, nullptr);
 	m_value_tree.state.getChildWithName("misc").setProperty("preset_category_selected", p_category, nullptr);
 	m_value_tree.state.getChildWithName("misc").setProperty("preset_patch_selected", p_patch, nullptr);
 
 	DBG("Write to value tree:");
-	DBG(p_soundbank);
+	DBG(soundbank);
 	DBG(p_category);
 	DBG(p_patch);
 }
@@ -1054,8 +1058,6 @@ void PatchBrowser::setSelectedEntriesFromValueTree() {
 	DBG(soundbank);
 	DBG(category);
 	DBG(patch);
-
-	// todo what if we cant find? dont just return but set default values?
 
 	// soundbank
 	auto dir = DEFAULT_SOUNDBANK_LOCATION_STRING;

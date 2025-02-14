@@ -20,9 +20,8 @@
 #include "OdinButton.h"
 #include "OdinControlAttachments.h"
 #include "OdinKnob.h"
-#include "TextLabel.h"
 #include "SyncTimeSelector.h"
-
+#include "TextLabel.h"
 
 #define SPACING 56
 
@@ -36,10 +35,7 @@
 
 class FXComponent : public Component {
 public:
-	enum class Type {
-		chorus,
-		flanger
-	};
+	enum class Type { chorus, flanger };
 	FXComponent(AudioProcessorValueTreeState &vts, const std::string &p_fx_name, bool p_is_standalone, Type p_type);
 	~FXComponent();
 
@@ -57,10 +53,10 @@ public:
 private:
 	bool m_is_standalone_plugin;
 
-    TextLabel m_rate_label;
-    TextLabel m_amount_label;
-    TextLabel m_feedback_label;
-    TextLabel m_dry_wet_label;
+	TextLabel m_rate_label;
+	TextLabel m_amount_label;
+	TextLabel m_feedback_label;
+	TextLabel m_dry_wet_label;
 
 	OdinKnob m_rate;
 	OdinKnob m_amount;
