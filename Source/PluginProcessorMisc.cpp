@@ -168,13 +168,6 @@ void OdinAudioProcessor::setStateInformation(const void *data, int sizeInBytes) 
 
 			m_force_values_onto_gui = true;
 
-			//create midi learn map from valuetree
-			for (int i = 0; i < m_value_tree_midi_learn.getNumProperties(); ++i) {
-				m_midi_control_param_map.emplace(
-				    (int)m_value_tree_midi_learn[m_value_tree_midi_learn.getPropertyName(i)],
-				    m_value_tree.getParameter(m_value_tree_midi_learn.getPropertyName(i)));
-			}
-
 			createDrawTablesFromValueTree();
 
 			if (m_editor_pointer) {

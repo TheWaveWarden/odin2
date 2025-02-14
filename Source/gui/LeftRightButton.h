@@ -17,11 +17,10 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "../GlobalIncludes.h"
-#include "OdinMidiLearnBase.h"
 
 class OdinAudioProcessor;
 
-class LeftRightButton : public juce::Button, public OdinMidiLearnBase {
+class LeftRightButton : public juce::Button {
 public:
     enum class Type {
         osc_fm_exp,
@@ -39,17 +38,6 @@ public:
 	}
 	static void setOdinPointer(OdinAudioProcessor *p_pointer) {
 		m_processor = p_pointer;
-	}
-
-	void stopMidiLearn() override {
-		m_midi_learn = false;
-		repaint();
-	}
-
-	void setMidiControlActive() override {
-		m_midi_learn   = false;
-		m_midi_control = true;
-		repaint();
 	}
 
 	void setValue(bool p_on) {

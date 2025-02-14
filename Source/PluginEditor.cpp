@@ -512,7 +512,6 @@ OdinEditor::OdinEditor(OdinAudioProcessor &p_processor, AudioProcessorValueTreeS
 	};
 	m_env_1_button.setTooltip("Shows the amplifier\nenvelope");
 	addAndMakeVisible(m_env_1_button);
-	m_env_1_button.disableMidiLearn();
 	m_env_1_button.setClickingTogglesState(true);
 
 	m_env_3_button.setToggleState(false, dontSendNotification);
@@ -523,7 +522,6 @@ OdinEditor::OdinEditor(OdinAudioProcessor &p_processor, AudioProcessorValueTreeS
 	};
 	m_env_3_button.setTooltip("Shows the mod envelope");
 	addAndMakeVisible(m_env_3_button);
-	m_env_3_button.disableMidiLearn();
 	m_env_3_button.setClickingTogglesState(true);
 
 	m_env_2_button.setClickingTogglesState(true);
@@ -535,7 +533,6 @@ OdinEditor::OdinEditor(OdinAudioProcessor &p_processor, AudioProcessorValueTreeS
 	};
 	m_env_2_button.setTooltip("Shows the filter envelope");
 	addAndMakeVisible(m_env_2_button);
-	m_env_2_button.disableMidiLearn();
 
 	m_env_4_button.setClickingTogglesState(true);
 	m_env_4_button.setRadioGroupId(RADIO_GROUP_ENV24);
@@ -546,7 +543,6 @@ OdinEditor::OdinEditor(OdinAudioProcessor &p_processor, AudioProcessorValueTreeS
 	};
 	m_env_4_button.setTooltip("Shows the global envelope");
 	addAndMakeVisible(m_env_4_button);
-	m_env_4_button.disableMidiLearn();
 
 	m_lfo_1_button.setClickingTogglesState(true);
 	m_lfo_1_button.setRadioGroupId(RADIO_GROUP_LFO12);
@@ -557,7 +553,6 @@ OdinEditor::OdinEditor(OdinAudioProcessor &p_processor, AudioProcessorValueTreeS
 	};
 	m_lfo_1_button.setTooltip("Shows LFO 1");
 	addAndMakeVisible(m_lfo_1_button);
-	m_lfo_1_button.disableMidiLearn();
 
 	m_lfo_2_button.setClickingTogglesState(true);
 	m_lfo_2_button.setRadioGroupId(RADIO_GROUP_LFO12);
@@ -568,7 +563,6 @@ OdinEditor::OdinEditor(OdinAudioProcessor &p_processor, AudioProcessorValueTreeS
 	};
 	m_lfo_2_button.setTooltip("Shows LFO 2");
 	addAndMakeVisible(m_lfo_2_button);
-	m_lfo_2_button.disableMidiLearn();
 
 	m_lfo_3_button.setClickingTogglesState(true);
 	m_lfo_3_button.setRadioGroupId(RADIO_GROUP_LFO34);
@@ -579,7 +573,6 @@ OdinEditor::OdinEditor(OdinAudioProcessor &p_processor, AudioProcessorValueTreeS
 	};
 	m_lfo_3_button.setTooltip("Shows LFO 3");
 	addAndMakeVisible(m_lfo_3_button);
-	m_lfo_3_button.disableMidiLearn();
 
 	m_lfo_4_button.setClickingTogglesState(true);
 	m_lfo_4_button.setRadioGroupId(RADIO_GROUP_LFO34);
@@ -590,7 +583,6 @@ OdinEditor::OdinEditor(OdinAudioProcessor &p_processor, AudioProcessorValueTreeS
 	};
 	m_lfo_4_button.setTooltip("Shows the Global LFO");
 	addAndMakeVisible(m_lfo_4_button);
-	m_lfo_4_button.disableMidiLearn();
 
 	m_select_arp_button.setToggleState(false, dontSendNotification);
 	m_select_arp_button.setClickingTogglesState(true);
@@ -601,7 +593,6 @@ OdinEditor::OdinEditor(OdinAudioProcessor &p_processor, AudioProcessorValueTreeS
 	};
 	m_select_arp_button.setTooltip("Shows the arpeggiator or the mod-matrix");
 	addAndMakeVisible(m_select_arp_button);
-	m_select_arp_button.disableMidiLearn();
 
 	m_select_modmatrix_button.setToggleState(false, dontSendNotification);
 	m_select_modmatrix_button.setClickingTogglesState(true);
@@ -612,7 +603,6 @@ OdinEditor::OdinEditor(OdinAudioProcessor &p_processor, AudioProcessorValueTreeS
 	};
 	m_select_modmatrix_button.setTooltip("Shows the arpeggiator or the mod-matrix");
 	addAndMakeVisible(m_select_modmatrix_button);
-	m_select_modmatrix_button.disableMidiLearn();
 
 	m_select_presets_button.setToggleState(false, dontSendNotification);
 	m_select_presets_button.setClickingTogglesState(true);
@@ -623,7 +613,6 @@ OdinEditor::OdinEditor(OdinAudioProcessor &p_processor, AudioProcessorValueTreeS
 	};
 	m_select_presets_button.setTooltip("Shows the arpeggiator or the mod-matrix");
 	addAndMakeVisible(m_select_presets_button);
-	m_select_presets_button.disableMidiLearn();
 
 	m_mono_poly_legato_dropdown.setInlay(1);
 	m_mono_poly_legato_dropdown.addItem("Legato", 1);

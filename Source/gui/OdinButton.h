@@ -17,11 +17,10 @@
 
 #include "../GlobalIncludes.h"
 #include "../JuceLibraryCode/JuceHeader.h"
-#include "OdinMidiLearnBase.h"
 
 class OdinAudioProcessor;
 
-class OdinButton : public juce::Button, public OdinMidiLearnBase {
+class OdinButton : public juce::Button {
 public:
 	enum class Type {
 		unassigned,
@@ -139,18 +138,6 @@ public:
 
 	static void setOdinPointer(OdinAudioProcessor *p_pointer) {
 		m_processor = p_pointer;
-	}
-
-	void stopMidiLearn() override {
-		m_midi_learn   = false;
-		m_midi_control = false;
-		repaint();
-	}
-
-	void setMidiControlActive() override {
-		m_midi_learn   = false;
-		m_midi_control = true;
-		repaint();
 	}
 
 	void setButtonText(const juce::String &p_text) {

@@ -18,7 +18,6 @@
 #include "../ConfigFileManager.h"
 #include "../GlobalIncludes.h"
 #include "InputField.h"
-#include "OdinMidiLearnBase.h"
 
 #define N_KNOB_FRAMES 129
 #define N_KNOB_FRAMES_WHEEL 257
@@ -49,7 +48,7 @@ public:
 	}
 };
 
-class OdinKnob : public juce::Slider, public OdinMidiLearnBase {
+class OdinKnob : public juce::Slider {
 public:
 	enum class Type { unassigned, knob_4x4a, knob_5x5a, knob_6x6a, knob_6x6b, knob_8x8a, knob_8x8b, wheel, timeHz_13x4, timeHz_14x4 };
 
@@ -71,29 +70,12 @@ public:
 
 	void paint(juce::Graphics &g) override;
 
-	void mouseDown(const MouseEvent &event) override;
-
 	void setKnobTooltip(const std::string &p_tooltip) {
 		setTooltip(p_tooltip);
 	}
 
 	static void setOdinPointer(OdinAudioProcessor *p_pointer) {
 		m_processor = p_pointer;
-	}
-
-	void stopMidiLearn() override {
-		m_midi_learn = false;
-		//todo replace lock by async MM call
-		//const MessageManagerLock mmLock;
-		repaint();
-	}
-
-	void setMidiControlActive() override {
-		m_midi_learn   = false;
-		m_midi_control = true;
-		//todo replace lock by async MM call
-		//const MessageManagerLock mmLock;
-		repaint();
 	}
 
 	void mouseDoubleClick(const MouseEvent &e) override {
