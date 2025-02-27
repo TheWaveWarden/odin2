@@ -16,8 +16,7 @@
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
-#define INLAY_DEF_MODAMOUNT 1
-#define DRAG_SCALAR 0.01f;
+#define INLAY_DEF_MODAMOUNT 2
 
 class ModAmountComponent : public Component,
                            public SettableTooltipClient,
@@ -30,10 +29,8 @@ public:
 	void setImage(juce::Image p_panel) {
 		m_glas_panel = p_panel;
 	}
-	void setInlay(int p_inlay) {
-		m_inlay = p_inlay;
-	}
-	void setColor(juce::Colour p_color) {
+	
+    void setColor(juce::Colour p_color) {
 		m_color = p_color;
 	}
 	void setColorBars(juce::Colour p_color, juce::Colour p_color_negative) {
@@ -72,22 +69,7 @@ public:
 		m_parameter_id = p_id;
 	}
 
-	void setGUIBig() {
-		m_GUI_big      = true;
-		m_inlay_top    = 1;
-		m_inlay_bottom = 0;
-	}
-	void setGUISmall() {
-		m_GUI_big      = false;
-		m_inlay_top    = 0;
-		m_inlay_bottom = 0;
-	}
-
-	//void setInlayTop(int p_inlay){m_inlay_top = p_inlay;}
-
 protected:
-	bool m_GUI_big = true;
-
 	String m_parameter_id = "";
 
 	juce::Colour m_color_bar;

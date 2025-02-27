@@ -13,51 +13,15 @@
 ** GNU General Public License for more details.
 */
 
-
 #pragma once
 
+#include "../GlobalIncludes.h"
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "FormantSelector.h"
-#include "../GlobalIncludes.h"
-#include "OdinKnob.h"
 #include "LeftRightButton.h"
 #include "OdinControlAttachments.h"
-
-#define VEL_POS_X 9
-#define VEL_POS_Y 8
-#define ENV_POS_X 37
-#define ENV_POS_Y VEL_POS_Y
-#define KBD_POS_X 65
-#define KBD_POS_Y VEL_POS_Y
-#define GAIN_POS_X 93
-#define GAIN_POS_Y VEL_POS_Y
-#define FILTER_FREQ_POS_X 120
-#define FILTER_FREQ_POS_Y 39
-#define RES_POS_X 55
-#define RES_POS_Y 71
-#define SATURATION_POS_X 174
-#define SATURATION_POS_Y 91
-#define SEM_FREQ_POS_X 104
-#define SEM_FREQ_POS_Y 48
-#define SEM_RES_POS_X 49
-#define SEM_RES_POS_Y 73
-#define COMB_FREQ_POS_X 130
-#define COMB_RES_POS_X 61
-#define FORMANT_VOW_LEFT_POS_X 44
-#define FORMANT_VOW_LEFT_POS_Y 66
-#define FORMANT_VOW_RIGHT_POS_X 161
-#define FORMANT_VOW_RIGHT_POS_Y FORMANT_VOW_LEFT_POS_Y
-#define FORMANT_TRANSITION_X 102
-#define FORMANT_TRANSITION_Y 56
-#define TRANSITION_POS_X 166
-#define TRANSITION_POS_Y (RES_POS_Y + 2)
-#define COMB_PLUS_POS_X 152
-#define COMB_PLUS_POS_Y 105
-
-#define RINGMOD_AMOUNT_X 148
-#define RINGMOD_AMOUNT_Y FORMANT_TRANSITION_Y
-#define RINGMOD_FREQ_X 58
-#define RINGMOD_FREQ_Y RINGMOD_AMOUNT_Y
+#include "OdinKnob.h"
+#include "TextLabel.h"
 
 #define FREQ_MIN 20
 #define FREQ_MAX 20000
@@ -85,6 +49,7 @@ public:
 	~FilterComponent();
 
 	void paint(Graphics &) override;
+	void resized() override;
 
 	void setBackground(juce::Image p_background) {
 		m_background = p_background;
@@ -122,11 +87,23 @@ public:
 
 	void forceValueTreeOntoComponents(ValueTree p_tree, int index);
 
-	void setGUIBig();
-	void setGUISmall();
-
 protected:
-	bool m_GUI_big = true;
+	TextLabel m_vel_label;
+	TextLabel m_kbd_label;
+	TextLabel m_env_label;
+	TextLabel m_gain_label;
+	TextLabel m_freq_label;
+	TextLabel m_res_label;
+	TextLabel m_freq_comb_label;
+	TextLabel m_res_comb_label;
+	TextLabel m_saturation_label;
+	TextLabel m_sem_notch_label;
+	TextLabel m_sem_lp_label;
+	TextLabel m_sem_hp_label;
+	TextLabel m_formant_transition_label;
+	TextLabel m_ring_mod_amount_label;
+	TextLabel m_vowel1_label;
+	TextLabel m_vowel2_label;
 
 	OdinKnob m_vel;
 	OdinKnob m_kbd;
@@ -134,6 +111,8 @@ protected:
 	DecibelKnob m_gain;
 	OdinKnob m_freq;
 	OdinKnob m_res;
+	OdinKnob m_freq_comb;
+	OdinKnob m_res_comb;
 	OdinKnob m_saturation;
 	OdinKnob m_sem_transition;
 	OdinKnob m_formant_transition;
@@ -157,6 +136,8 @@ protected:
 	std::unique_ptr<OdinKnobAttachment> m_gain_attach;
 	std::unique_ptr<OdinKnobAttachment> m_freq_attach;
 	std::unique_ptr<OdinKnobAttachment> m_res_attach;
+	std::unique_ptr<OdinKnobAttachment> m_freq_comb_attach;
+	std::unique_ptr<OdinKnobAttachment> m_res_comb_attach;
 	std::unique_ptr<OdinKnobAttachment> m_saturation_attach;
 	std::unique_ptr<OdinKnobAttachment> m_formant_transition_attach;
 	std::unique_ptr<OdinKnobAttachment> m_ring_mod_amount_attach;

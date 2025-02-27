@@ -1,3 +1,9 @@
+# 2.4.0
+- complete overhaul the synth UI
+- GUI scaling options now 100%, 125%, 150%, 175%, 200%,
+- all draw oscillators now automatically apply the waveform on mouse up
+- preset section now remembers the selected preset when reopening the UI
+- removed MIDI learn on buttons and knobs (as a replacement, your DAW should be well capable of this)
 # 2.3.4
 - fixed unitialized editor pointer
 - made title a button which leads to TheWaveWarden homepage

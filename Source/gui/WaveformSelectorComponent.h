@@ -18,6 +18,7 @@
 #include "../GlobalIncludes.h"
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "GlasDisplay.h"
+#include "OdinButton.h"
 #include <map>
 
 #define N_SUBMENUS 5
@@ -29,6 +30,7 @@ public:
 	~WaveformSelectorComponent();
 
 	void paint(Graphics &) override;
+	void resized() override;
 
 	void setTooltip(const String p_text) {
 		m_display.setTooltip(p_text);
@@ -99,12 +101,7 @@ public:
 
 	juce::PopupMenu m_menu;
 
-	void setGUIBig();
-	void setGUISmall();
-
 private:
-	bool m_GUI_big = true;
-
 	void increment() {
 		auto it = m_inc_map.find(m_value);
 		if (it != m_inc_map.end()) {
@@ -125,8 +122,8 @@ private:
 	std::map<int, int> m_inc_map;          //which value to go to on increment()
 	std::map<int, int> m_dec_map;          //which value to go to on decrement()
 
-	juce::DrawableButton m_up;
-	juce::DrawableButton m_down;
+	OdinButton m_up;
+	OdinButton m_down;
 
 	int m_value = 0;
 	bool m_buttons_right;

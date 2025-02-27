@@ -31,11 +31,3 @@ void TitleButton::paintButton(Graphics &g, bool shouldDrawButtonAsHighlighted, b
 	if(shouldDrawButtonAsHighlighted)
 		g.drawImageAt(m_hover_image, 0, 0);
 }
-
-void TitleButton::setGUIBig() {
-	m_hover_image = ImageCache::getFromMemory(BinaryData::title_button_150_png, BinaryData::title_button_150_pngSize);
-}
-
-void TitleButton::setGUISmall() {
-	m_hover_image = ImageCache::getFromMemory(BinaryData::title_button_png, BinaryData::title_button_pngSize);
-}

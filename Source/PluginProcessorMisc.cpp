@@ -73,7 +73,7 @@ bool OdinAudioProcessor::hasEditor() const {
 
 AudioProcessorEditor *OdinAudioProcessor::createEditor() {
 
-	OdinAudioProcessorEditor *editor = new OdinAudioProcessorEditor(*this, m_value_tree, m_is_standalone_plugin);
+	OdinEditor *editor = new OdinEditor(*this, m_value_tree, m_is_standalone_plugin);
 	m_editor_pointer                 = editor;
 
 	return editor;
@@ -104,9 +104,9 @@ void OdinAudioProcessor::getStateInformation(MemoryBlock &destData) {
 void OdinAudioProcessor::setStateInformation(const void *data, int sizeInBytes) {
 
 	// disable for standalone plugins
-	if (wrapperType == wrapperType_Standalone) {
-		return;
-	}
+	//if (wrapperType == wrapperType_Standalone) {
+	//		return;
+	//	}
 
 	std::unique_ptr<XmlElement> xmlState(getXmlFromBinary(data, sizeInBytes));
 	if (xmlState.get() != nullptr) {
@@ -167,13 +167,6 @@ void OdinAudioProcessor::setStateInformation(const void *data, int sizeInBytes) 
 			    "patch_migration_version", ODIN_PATCH_MIGRATION_VERSION, nullptr);
 
 			m_force_values_onto_gui = true;
-
-			//create midi learn map from valuetree
-			for (int i = 0; i < m_value_tree_midi_learn.getNumProperties(); ++i) {
-				m_midi_control_param_map.emplace(
-				    (int)m_value_tree_midi_learn[m_value_tree_midi_learn.getPropertyName(i)],
-				    m_value_tree.getParameter(m_value_tree_midi_learn.getPropertyName(i)));
-			}
 
 			createDrawTablesFromValueTree();
 

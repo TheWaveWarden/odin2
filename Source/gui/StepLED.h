@@ -15,6 +15,8 @@
 
 #pragma once
 
+#include "../ConfigFileManager.h"
+#include "UIAssetManager.h"
 #include <JuceHeader.h>
 
 class StepLED : public Component {
@@ -25,29 +27,17 @@ public:
 	~StepLED() {
 	}
 
+	void enablementChanged() override {
+		repaint();
+	}
+
 	void paint(Graphics &g) override {
-		if (m_LED_on) {
-			g.drawImageAt(m_image_on, 0, 0);
-		} else {
-			g.drawImageAt(m_image_off, 0, 0);
-		}
+		const auto asset = m_LED_on ? UIAssets::Indices::LED_on : UIAssets::Indices::LED_off;
+		g.setColour(Colours::white.withAlpha(isEnabled() ? 1.0f : MODULE_DISABLED_ALPHA));
+		g.drawImageAt(UIAssetManager::getInstance()->getUIAsset(asset, ConfigFileManager::getInstance().getOptionGuiScale()), 0, 0);
 	}
 
 	void resized() override {
-	}
-
-	void setGUIBig() {
-		m_GUI_big   = true;
-		m_image_on  = ImageCache::getFromMemory(BinaryData::Arp_LED_1_150_png, BinaryData::Arp_LED_1_150_pngSize);
-		m_image_off = ImageCache::getFromMemory(BinaryData::Arp_LED_2_150_png, BinaryData::Arp_LED_2_150_pngSize);
-		setSize(m_image_on.getHeight(), m_image_on.getWidth());
-	}
-
-	void setGUISmall() {
-		m_GUI_big   = false;
-		m_image_on  = ImageCache::getFromMemory(BinaryData::arp_LED_1_png, BinaryData::arp_LED_1_pngSize);
-		m_image_off = ImageCache::getFromMemory(BinaryData::arp_LED_2_png, BinaryData::arp_LED_2_pngSize);
-		setSize(m_image_on.getHeight(), m_image_on.getWidth());
 	}
 
 	void setLEDOn(bool p_on) {
@@ -59,8 +49,7 @@ public:
 	}
 
 private:
-	bool m_GUI_big = true;
-	bool m_LED_on  = false;
+	bool m_LED_on = false;
 
 	juce::Image m_image_on;
 	juce::Image m_image_off;

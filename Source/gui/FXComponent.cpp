@@ -14,15 +14,35 @@
 */
 
 #include "FXComponent.h"
-#include "../JuceLibraryCode/JuceHeader.h"
+#include "../ConfigFileManager.h"
 #include "../GlobalIncludes.h"
+#include "../JuceLibraryCode/JuceHeader.h"
+#include "JsonGuiProvider.h"
+#include "UIAssetManager.h"
 
-FXComponent::FXComponent(AudioProcessorValueTreeState &vts, const std::string &p_fx_name, bool p_is_standalone) :
-    m_value_tree(vts), m_fx_name(p_fx_name), m_is_standalone_plugin(p_is_standalone),
-    m_sync("sync", juce::DrawableButton::ButtonStyle::ImageRaw),
-    m_reset("reset", juce::DrawableButton::ButtonStyle::ImageRaw),
+FXComponent::FXComponent(AudioProcessorValueTreeState &vts, const std::string &p_fx_name, bool p_is_standalone, Type p_type) :
+    m_type(p_type),
+    m_value_tree(vts),
+    m_fx_name(p_fx_name),
+    m_is_standalone_plugin(p_is_standalone),
+    m_sync("sync", "Sync", OdinButton::Type::button_10x4),
+    m_reset("reset", "Reset", OdinButton::Type::button_10x4),
     m_fx_synctime_denominator_identifier(p_fx_name + "_synctime_denominator"),
-    m_fx_synctime_numerator_identifier(p_fx_name + "_synctime_numerator") {
+    m_fx_synctime_numerator_identifier(p_fx_name + "_synctime_numerator"),
+    m_rate_label("Rate"),
+    m_amount_label("Amount"),
+    m_feedback_label("Feedback"),
+    m_dry_wet_label("DryWet"),
+    m_sync_time(UIAssets::Indices::screen_up_down_14x4_LR),
+    m_rate(OdinKnob::Type::knob_8x8b),
+    m_amount(OdinKnob::Type::knob_8x8a),
+    m_feedback(OdinKnob::Type::knob_8x8a),
+    m_dry_wet(OdinKnob::Type::knob_8x8b) {
+
+	addAndMakeVisible(m_rate_label);
+	addAndMakeVisible(m_amount_label);
+	addAndMakeVisible(m_feedback_label);
+	addAndMakeVisible(m_dry_wet_label);
 
 	m_rate_attach.reset(new OdinKnobAttachment(m_value_tree, m_fx_name + "_rate", m_rate));
 	m_amount_attach.reset(new OdinKnobAttachment(m_value_tree, m_fx_name + "_amount", m_amount));
@@ -62,7 +82,7 @@ FXComponent::FXComponent(AudioProcessorValueTreeState &vts, const std::string &p
 
 	m_reset.setTooltip("Resets the internal\n LFO on every new note");
 	addAndMakeVisible(m_reset);
-	
+
 	m_sync.setClickingTogglesState(true);
 	m_sync.setTriggeredOnMouseDown(true);
 	m_sync.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
@@ -70,8 +90,7 @@ FXComponent::FXComponent(AudioProcessorValueTreeState &vts, const std::string &p
 	addAndMakeVisible(m_sync);
 	m_sync.onClick = [&]() {
 		setSyncEnabled(m_sync.getToggleState());
-		m_value_tree.state.getChildWithName("fx").setProperty(
-		    (Identifier)(m_fx_name + "_sync"), m_sync.getToggleState() ? 1.f : 0.f, nullptr);
+		m_value_tree.state.getChildWithName("fx").setProperty((Identifier)(m_fx_name + "_sync"), m_sync.getToggleState() ? 1.f : 0.f, nullptr);
 		m_value_tree.state.getChildWithName("fx").sendPropertyChangeMessage((Identifier)(m_fx_name + "_sync"));
 	};
 
@@ -80,7 +99,6 @@ FXComponent::FXComponent(AudioProcessorValueTreeState &vts, const std::string &p
 		m_value_tree.state.getChildWithName("fx").setProperty(m_fx_synctime_denominator_identifier, p_right, nullptr);
 	};
 
-	m_sync_time.setTopLeftPosition(FX_SYNC_TIME_FX_POS_X, FX_SYNC_TIME_FX_POS_Y);
 	m_sync_time.setTooltip("Set the delay time in sync to your track");
 	addChildComponent(m_sync_time);
 
@@ -101,12 +119,9 @@ FXComponent::~FXComponent() {
 }
 
 void FXComponent::paint(Graphics &g) {
-	SET_INTERPOLATION_QUALITY(g)
-	if (m_sync_enabled) {
-		g.drawImageAt(m_background_sync, 0, 0);
-	} else {
-		g.drawImageAt(m_background_no_sync, 0, 0);
-	}
+	auto asset = m_type == Type::chorus ? UIAssets::Indices::FX_Chorus : UIAssets::Indices::FX_Flanger;
+
+	g.drawImageAt(UIAssetManager::getInstance()->getUIAsset(asset, ConfigFileManager::getInstance().getOptionGuiScale()), 0, 0);
 }
 
 void FXComponent::setSyncEnabled(bool p_sync) {
@@ -127,174 +142,24 @@ void FXComponent::forceValueTreeOntoComponents(ValueTree p_tree) {
 	m_sync_time.setValues(m_value_tree.state.getChildWithName("fx")[m_fx_synctime_numerator_identifier],
 	                      m_value_tree.state.getChildWithName("fx")[m_fx_synctime_denominator_identifier]);
 
-	m_sync.setToggleState((float)m_value_tree.state.getChildWithName("fx")[(Identifier)(m_fx_name + "_sync")] > 0.5f,
-	                      dontSendNotification);
+	m_sync.setToggleState((float)m_value_tree.state.getChildWithName("fx")[(Identifier)(m_fx_name + "_sync")] > 0.5f, dontSendNotification);
 	setSyncEnabled((float)m_value_tree.state.getChildWithName("fx")[(Identifier)(m_fx_name + "_sync")] > 0.5f);
 	//send change message to set member in processor
 	m_value_tree.state.getChildWithName("fx").sendPropertyChangeMessage(((Identifier)(m_fx_name + "_sync")));
 }
 
-void FXComponent::setGUIBig() {
-	juce::Image metal_knob_mid =
-	    ImageCache::getFromMemory(BinaryData::metal_knob_mid_150_png, BinaryData::metal_knob_mid_150_pngSize);
-	m_amount.setStrip(metal_knob_mid, N_KNOB_FRAMES);
-	m_rate.setStrip(metal_knob_mid, N_KNOB_FRAMES);
-	m_feedback.setStrip(metal_knob_mid, N_KNOB_FRAMES);
-	m_dry_wet.setStrip(metal_knob_mid, N_KNOB_FRAMES);
+void FXComponent::resized() {
 
-	juce::Image reset_1 =
-	    ImageCache::getFromMemory(BinaryData::buttonreset_lfo_1_150_png, BinaryData::buttonreset_lfo_1_150_pngSize);
-	juce::Image reset_2 =
-	    ImageCache::getFromMemory(BinaryData::buttonreset_lfo_2_150_png, BinaryData::buttonreset_lfo_2_150_pngSize);
-	juce::Image reset_3 =
-	    ImageCache::getFromMemory(BinaryData::buttonreset_lfo_3_150_png, BinaryData::buttonreset_lfo_3_150_pngSize);
-	juce::Image reset_4 =
-	    ImageCache::getFromMemory(BinaryData::buttonreset_lfo_4_150_png, BinaryData::buttonreset_lfo_4_150_pngSize);
+	GET_LOCAL_AREA(m_rate_label, "FXRateLabel");
+	GET_LOCAL_AREA(m_amount_label, "FXAmountLabel");
+	GET_LOCAL_AREA(m_feedback_label, "FXFeedbackLabel");
+	GET_LOCAL_AREA(m_dry_wet_label, "FXDryWetLabel");
 
-	juce::DrawableImage reset_draw1;
-	juce::DrawableImage reset_draw2;
-	juce::DrawableImage reset_draw3;
-	juce::DrawableImage reset_draw4;
-
-	reset_draw1.setImage(reset_1);
-	reset_draw2.setImage(reset_2);
-	reset_draw3.setImage(reset_3);
-	reset_draw4.setImage(reset_4);
-
-	m_reset.setImages(
-	    &reset_draw2, &reset_draw2, &reset_draw1, &reset_draw1, &reset_draw4, &reset_draw4, &reset_draw3, &reset_draw3);
-	m_reset.setBounds(
-	    OdinHelper::c150(FX_RESET_POS_X), OdinHelper::c150(FX_RESET_POS_Y), reset_1.getWidth(), reset_1.getHeight());
-
-	juce::Image sync_1 =
-	    ImageCache::getFromMemory(BinaryData::buttonsync_1_150_png, BinaryData::buttonsync_1_150_pngSize);
-	juce::Image sync_2 =
-	    ImageCache::getFromMemory(BinaryData::buttonsync_2_150_png, BinaryData::buttonsync_2_150_pngSize);
-	juce::Image sync_3 =
-	    ImageCache::getFromMemory(BinaryData::buttonsync_3_150_png, BinaryData::buttonsync_3_150_pngSize);
-	juce::Image sync_4 =
-	    ImageCache::getFromMemory(BinaryData::buttonsync_4_150_png, BinaryData::buttonsync_4_150_pngSize);
-
-	juce::DrawableImage sync_draw1;
-	juce::DrawableImage sync_draw2;
-	juce::DrawableImage sync_draw3;
-	juce::DrawableImage sync_draw4;
-
-	sync_draw1.setImage(sync_1);
-	sync_draw2.setImage(sync_2);
-	sync_draw3.setImage(sync_3);
-	sync_draw4.setImage(sync_4);
-
-	//m_sync_attach.reset(new OdinButtonAttachment(m_value_tree, m_fx_name + "_sync", m_sync));
-	m_sync.setImages(
-	    &sync_draw2, &sync_draw2, &sync_draw1, &sync_draw1, &sync_draw4, &sync_draw4, &sync_draw3, &sync_draw3);
-	m_sync.setBounds(
-	    OdinHelper::c150(FX_SYNC_POS_X), OdinHelper::c150(FX_SYNC_POS_Y), sync_1.getWidth(), sync_1.getHeight());
-	m_sync_time.setTopLeftPosition(OdinHelper::c150(FX_SYNC_TIME_FX_POS_X), OdinHelper::c150(FX_SYNC_TIME_FX_POS_Y));
-
-	m_amount.setBounds(OdinHelper::c150(FX_AMOUNT_POS_X)-2,
-	                   OdinHelper::c150(FX_AMOUNT_POS_Y)-1,
-	                   metal_knob_mid.getWidth(),
-	                   metal_knob_mid.getHeight() / 256);
-	m_rate.setBounds(OdinHelper::c150(FX_FREQ_POS_X)-2,
-	                 OdinHelper::c150(FX_FREQ_POS_Y)-1,
-	                 metal_knob_mid.getWidth(),
-	                 metal_knob_mid.getHeight() / 256);
-	m_feedback.setBounds(OdinHelper::c150(FX_FEEDBACK_POS_X)-2,
-	                     OdinHelper::c150(FX_FEEDBACK_POS_Y)-1,
-	                     metal_knob_mid.getWidth(),
-	                     metal_knob_mid.getHeight() / 256);
-	m_dry_wet.setBounds(OdinHelper::c150(FX_DRY_WET_POS_X)-2,
-	                    OdinHelper::c150(FX_DRY_WET_POS_Y)-1,
-	                    metal_knob_mid.getWidth(),
-	                    metal_knob_mid.getHeight() / 256);
-
-	if (m_fx_name == "chorus") {
-		m_background_sync =
-		    ImageCache::getFromMemory(BinaryData::chorussync_150_png, BinaryData::chorussync_150_pngSize);
-		m_background_no_sync =
-		    ImageCache::getFromMemory(BinaryData::chorusnosync_150_png, BinaryData::chorusnosync_150_pngSize);
-	} else {
-		m_background_sync =
-		    ImageCache::getFromMemory(BinaryData::flangersync_150_png, BinaryData::flangersync_150_pngSize);
-		m_background_no_sync =
-		    ImageCache::getFromMemory(BinaryData::flangernosync_150_png, BinaryData::flangernosync_150_pngSize);
-	}
-	m_sync_time.setGUIBig();
-
-	forceValueTreeOntoComponents(m_value_tree.state);
-}
-void FXComponent::setGUISmall() {
-	juce::Image metal_knob_mid =
-	    ImageCache::getFromMemory(BinaryData::metal_knob_mid_png, BinaryData::metal_knob_mid_pngSize);
-	m_amount.setStrip(metal_knob_mid, N_KNOB_FRAMES);
-	m_rate.setStrip(metal_knob_mid, N_KNOB_FRAMES);
-	m_feedback.setStrip(metal_knob_mid, N_KNOB_FRAMES);
-	m_dry_wet.setStrip(metal_knob_mid, N_KNOB_FRAMES);
-
-	juce::Image reset_1 =
-	    ImageCache::getFromMemory(BinaryData::buttonreset_lfo_1_png, BinaryData::buttonreset_lfo_1_pngSize);
-	juce::Image reset_2 =
-	    ImageCache::getFromMemory(BinaryData::buttonreset_lfo_2_png, BinaryData::buttonreset_lfo_2_pngSize);
-	juce::Image reset_3 =
-	    ImageCache::getFromMemory(BinaryData::buttonreset_lfo_3_png, BinaryData::buttonreset_lfo_3_pngSize);
-	juce::Image reset_4 =
-	    ImageCache::getFromMemory(BinaryData::buttonreset_lfo_4_png, BinaryData::buttonreset_lfo_4_pngSize);
-
-	juce::DrawableImage reset_draw1;
-	juce::DrawableImage reset_draw2;
-	juce::DrawableImage reset_draw3;
-	juce::DrawableImage reset_draw4;
-
-	reset_draw1.setImage(reset_1);
-	reset_draw2.setImage(reset_2);
-	reset_draw3.setImage(reset_3);
-	reset_draw4.setImage(reset_4);
-
-	m_reset.setImages(
-	    &reset_draw2, &reset_draw2, &reset_draw1, &reset_draw1, &reset_draw4, &reset_draw4, &reset_draw3, &reset_draw3);
-	m_reset.setBounds(FX_RESET_POS_X, FX_RESET_POS_Y, reset_1.getWidth(), reset_1.getHeight());
-
-	juce::Image sync_1 = ImageCache::getFromMemory(BinaryData::buttonsync_1_png, BinaryData::buttonsync_1_pngSize);
-	juce::Image sync_2 = ImageCache::getFromMemory(BinaryData::buttonsync_2_png, BinaryData::buttonsync_2_pngSize);
-	juce::Image sync_3 = ImageCache::getFromMemory(BinaryData::buttonsync_3_png, BinaryData::buttonsync_3_pngSize);
-	juce::Image sync_4 = ImageCache::getFromMemory(BinaryData::buttonsync_4_png, BinaryData::buttonsync_4_pngSize);
-
-	juce::DrawableImage sync_draw1;
-	juce::DrawableImage sync_draw2;
-	juce::DrawableImage sync_draw3;
-	juce::DrawableImage sync_draw4;
-
-	sync_draw1.setImage(sync_1);
-	sync_draw2.setImage(sync_2);
-	sync_draw3.setImage(sync_3);
-	sync_draw4.setImage(sync_4);
-
-	//m_sync_attach.reset(new OdinButtonAttachment(m_value_tree, m_fx_name + "_sync", m_sync));
-	m_sync.setImages(
-	    &sync_draw2, &sync_draw2, &sync_draw1, &sync_draw1, &sync_draw4, &sync_draw4, &sync_draw3, &sync_draw3);
-	m_sync.setBounds(FX_SYNC_POS_X, FX_SYNC_POS_Y, sync_1.getWidth(), sync_1.getHeight());
-	m_sync_time.setTopLeftPosition(FX_SYNC_TIME_FX_POS_X, FX_SYNC_TIME_FX_POS_Y);
-
-	m_amount.setBounds(FX_AMOUNT_POS_X, FX_AMOUNT_POS_Y, metal_knob_mid.getWidth(), metal_knob_mid.getHeight() / 256);
-	m_rate.setBounds(FX_FREQ_POS_X, FX_FREQ_POS_Y, metal_knob_mid.getWidth(), metal_knob_mid.getHeight() / 256);
-	m_feedback.setBounds(
-	    FX_FEEDBACK_POS_X, FX_FEEDBACK_POS_Y, metal_knob_mid.getWidth(), metal_knob_mid.getHeight() / 256);
-	m_dry_wet.setBounds(
-	    FX_DRY_WET_POS_X, FX_DRY_WET_POS_Y, metal_knob_mid.getWidth(), metal_knob_mid.getHeight() / 256);
-
-	if (m_fx_name == "chorus") {
-		m_background_sync =
-		    ImageCache::getFromMemory(BinaryData::chorussync_png, BinaryData::chorussync_pngSize);
-		m_background_no_sync =
-		    ImageCache::getFromMemory(BinaryData::chorusnosync_png, BinaryData::chorusnosync_pngSize);
-	} else {
-		m_background_sync =
-		    ImageCache::getFromMemory(BinaryData::flangersync_png, BinaryData::flangersync_pngSize);
-		m_background_no_sync =
-		    ImageCache::getFromMemory(BinaryData::flangernosync_png, BinaryData::flangernosync_pngSize);
-	}
-	m_sync_time.setGUISmall();
-
-	forceValueTreeOntoComponents(m_value_tree.state);
+	GET_LOCAL_AREA(m_rate, "FXRate");
+	GET_LOCAL_AREA(m_amount, "FXAmount");
+	GET_LOCAL_AREA(m_feedback, "FXFeedback");
+	GET_LOCAL_AREA(m_dry_wet, "FXDryWet");
+	GET_LOCAL_AREA(m_sync, "FXSync");
+	GET_LOCAL_AREA(m_reset, "FXReset");
+	GET_LOCAL_AREA(m_sync_time, "FXSyncTime");
 }

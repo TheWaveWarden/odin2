@@ -21,7 +21,7 @@
 class FormantSelector : public NumberSelector {
 public:
   FormantSelector(bool p_buttons_right = true)
-      : NumberSelector(p_buttons_right) {
+      : NumberSelector(p_buttons_right, NumberSelector::Type::selector_8x4) {
     m_min = 0;
     m_max = (int)m_formant_vector.size() - 1;
   }

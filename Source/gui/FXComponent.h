@@ -15,29 +15,15 @@
 
 #pragma once
 
-#include "../JuceLibraryCode/JuceHeader.h"
 #include "../GlobalIncludes.h"
-#include "OdinKnob.h"
+#include "../JuceLibraryCode/JuceHeader.h"
 #include "OdinButton.h"
 #include "OdinControlAttachments.h"
+#include "OdinKnob.h"
 #include "SyncTimeSelector.h"
+#include "TextLabel.h"
 
 #define SPACING 56
-
-#define FX_FREQ_POS_X 20
-#define FX_FREQ_POS_Y 15
-#define FX_AMOUNT_POS_X FX_FREQ_POS_X + 1 * SPACING
-#define FX_AMOUNT_POS_Y 52
-#define FX_FEEDBACK_POS_X FX_FREQ_POS_X + 2 * SPACING
-#define FX_FEEDBACK_POS_Y FX_FREQ_POS_Y
-#define FX_DRY_WET_POS_X FX_FREQ_POS_X + 3 * SPACING
-#define FX_DRY_WET_POS_Y FX_AMOUNT_POS_Y
-#define FX_SYNC_POS_X 24
-#define FX_SYNC_POS_Y 70
-#define FX_RESET_POS_X 129
-#define FX_RESET_POS_Y FX_SYNC_POS_Y
-#define FX_SYNC_TIME_FX_POS_X 5
-#define FX_SYNC_TIME_FX_POS_Y 20
 
 #define FX_FREQ_MIN 0.05
 #define FX_FREQ_MAX 20
@@ -49,32 +35,28 @@
 
 class FXComponent : public Component {
 public:
-	FXComponent(AudioProcessorValueTreeState &vts, const std::string &p_fx_name, bool p_is_standalone);
+	enum class Type { chorus, flanger };
+	FXComponent(AudioProcessorValueTreeState &vts, const std::string &p_fx_name, bool p_is_standalone, Type p_type);
 	~FXComponent();
 
 	void forceValueTreeOntoComponents(ValueTree p_tree);
 
 	void paint(Graphics &) override;
+	void resized() override;
 
 	void setSyncTimeColor(juce::Colour p_color) {
 		m_sync_time.setColor(p_color);
 	}
 
-	void setImage(juce::Image p_background, bool p_sync) {
-		// if (p_sync) {
-		// 	m_background_sync = p_background;
-		// } else {
-		// 	m_background_no_sync = p_background;
-		// }
-	}
-
 	void setSyncEnabled(bool p_sync);
-	void setGUIBig();
-	void setGUISmall();
 
 private:
-	bool m_GUI_big = true;
 	bool m_is_standalone_plugin;
+
+	TextLabel m_rate_label;
+	TextLabel m_amount_label;
+	TextLabel m_feedback_label;
+	TextLabel m_dry_wet_label;
 
 	OdinKnob m_rate;
 	OdinKnob m_amount;
@@ -86,6 +68,8 @@ private:
 
 	juce::Image m_background_sync;
 	juce::Image m_background_no_sync;
+
+	Type m_type;
 
 	SyncTimeSelector m_sync_time;
 

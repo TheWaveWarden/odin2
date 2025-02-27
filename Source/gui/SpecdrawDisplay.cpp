@@ -24,30 +24,18 @@ SpecdrawDisplay::~SpecdrawDisplay() {
 }
 
 void SpecdrawDisplay::paint(Graphics &g) {
-	SET_INTERPOLATION_QUALITY(g)
-	g.setColour(m_color);
 	juce::Point<int> top_left = getLocalBounds().getTopLeft();
 	top_left.addXY(m_inlay + 1, m_inlay);
 	juce::Point<int> bottom_right = getLocalBounds().getBottomRight();
 	bottom_right.addXY(-m_inlay - 1, -m_inlay);
-	g.fillRect(juce::Rectangle<int>(top_left, bottom_right)); //
-
-	g.setColour(m_draw_color);
-
 
 	int draw_inlay_left_spec = DRAW_INLAY_LEFT_SPEC;
-	if(m_GUI_big){
-		draw_inlay_left_spec = 11;
-	}
+	float height             = (float)(getHeight() - DRAW_INLAY_UP_SPEC - DRAW_INLAY_DOWN_SPEC);
 
-	float height = (float)(getHeight() - DRAW_INLAY_UP_SPEC - DRAW_INLAY_DOWN_SPEC);
-
-	float width = SPECDRAW_THICCNESS;
+	float width      = float(W - DRAW_INLAY_LEFT_SPEC - DRAW_INLAY_RIGHT_SPEC) / float(SPECDRAW_STEPS_X);
 	float draw_width = 2.8f;
-	if(m_GUI_big){
-		width = 6;
-		//float draw_width = 4.2f;
-	}
+
+    g.setColour(COL_TEXT_BLUE.withAlpha(0.9f));
 
 	for (int i = 0; i < SPECDRAW_STEPS_X; ++i) {
 		g.drawLine(draw_inlay_left_spec + i * width,
@@ -56,8 +44,6 @@ void SpecdrawDisplay::paint(Graphics &g) {
 		           getHeight() - DRAW_INLAY_DOWN_SPEC,
 		           draw_width);
 	}
-
-	g.drawImageAt(m_glaspanel, 0, 0);
 }
 
 void SpecdrawDisplay::mouseDrag(const MouseEvent &event) {
@@ -76,30 +62,22 @@ int min_int(int a, int b) {
 }
 
 void SpecdrawDisplay::mouseInteraction() {
-	int draw_inlay_left_spec = DRAW_INLAY_LEFT_SPEC;
-	if(m_GUI_big){
-		draw_inlay_left_spec = 10;
-	}
-
+	int draw_inlay_left_spec   = DRAW_INLAY_LEFT_SPEC;
 	juce::Point<int> mouse_pos = getMouseXYRelative();
 
-	float specdraw_thiccness = SPECDRAW_THICCNESS;
-	float specdraw_x_offset = 6;
-	if(m_GUI_big){
-		specdraw_x_offset = 8;
-		specdraw_thiccness = 6.f;
-	}
+	float specdraw_thiccness = float(W - DRAW_INLAY_LEFT_SPEC - DRAW_INLAY_RIGHT_SPEC) / float(SPECDRAW_STEPS_X);
+	float specdraw_x_offset  = DRAW_INLAY_LEFT_SPEC;
 
-	int x                      = (mouse_pos.getX() - specdraw_x_offset)/ specdraw_thiccness;
-	float y                    = mouse_pos.getY();
+	int x   = (mouse_pos.getX() - specdraw_x_offset) / specdraw_thiccness;
+	float y = mouse_pos.getY();
 
 	y = y < DRAW_INLAY_UP_SPEC ? DRAW_INLAY_UP_SPEC : y;
 	y = y > getHeight() - DRAW_INLAY_DOWN_SPEC ? getHeight() - DRAW_INLAY_DOWN_SPEC : y;
 	x = x < 0 ? 0 : x;
 	x = x >= SPECDRAW_STEPS_X ? SPECDRAW_STEPS_X - 1 : x;
 
-	float float_y =
-	    (getHeight() - DRAW_INLAY_DOWN_SPEC - y) / ((float)getHeight() - (float)DRAW_INLAY_UP_SPEC - (float)DRAW_INLAY_DOWN_SPEC);
+	float float_y = (getHeight() - DRAW_INLAY_DOWN_SPEC - y) /
+	                ((float)getHeight() - (float)DRAW_INLAY_UP_SPEC - (float)DRAW_INLAY_DOWN_SPEC);
 	if (m_mouse_was_down) {
 
 		//DBG(std::to_string(x) + ", " + std::to_string(m_last_x_value));
@@ -124,7 +102,6 @@ void SpecdrawDisplay::mouseInteraction() {
 	m_last_x_value = x;
 	m_last_y_value = float_y;
 
-	onDraw();
 	repaint();
 
 	m_mouse_was_down = true;
@@ -132,21 +109,9 @@ void SpecdrawDisplay::mouseInteraction() {
 
 void SpecdrawDisplay::mouseUp(const MouseEvent &event) {
 	m_mouse_was_down = false;
+	onMouseUp();
 }
 
 float *SpecdrawDisplay::getDrawnTable() {
 	return m_draw_values;
-}
-
-void SpecdrawDisplay::setGUIBig(){
-	m_GUI_big = true;
-	m_glaspanel = ImageCache::getFromMemory(BinaryData::drawpanel_150_png, BinaryData::drawpanel_150_pngSize);
-
-	setSize(m_glaspanel.getWidth(), m_glaspanel.getHeight());
-}
-void SpecdrawDisplay::setGUISmall(){
-	m_GUI_big = false;
-	m_glaspanel = ImageCache::getFromMemory(BinaryData::drawpanel_png, BinaryData::drawpanel_pngSize);
-
-	setSize(m_glaspanel.getWidth(), m_glaspanel.getHeight());
 }

@@ -24,14 +24,8 @@
 */
 class NumberSelectorWithText : public NumberSelector {
 public:
-	NumberSelectorWithText();
+	NumberSelectorWithText(NumberSelector::Type p_type = NumberSelector::Type::selector_14x4);
 	~NumberSelectorWithText();
-
-	//void paint (Graphics&) override;
-	void resized() override;
-
-	void setGUIBig() override;
-	void setGUISmall() override;
 
 	virtual void increment() override;
 	virtual void decrement() override;

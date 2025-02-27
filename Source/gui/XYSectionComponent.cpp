@@ -15,9 +15,19 @@
 
 #include "XYSectionComponent.h"
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "JsonGuiProvider.h"
 
-XYSectionComponent::XYSectionComponent(AudioProcessorValueTreeState &vts,const std::string &p_section_name) :
-    m_value_tree(vts), m_section_name(p_section_name), m_xy_pad(vts, "xy_", m_modx, m_mody) {
+XYSectionComponent::XYSectionComponent(AudioProcessorValueTreeState &vts, const std::string &p_section_name) :
+    m_value_tree(vts),
+    m_section_name(p_section_name),
+    m_xy_pad(vts, "xy_", m_modx, m_mody),
+    m_label_x("X"),
+    m_label_y("Y"),
+    m_modx(OdinKnob::Type::knob_6x6a),
+    m_mody(OdinKnob::Type::knob_6x6a) {
+
+	addAndMakeVisible(m_label_x);
+	addAndMakeVisible(m_label_y);
 
 	m_xy_pad.setInlay(1);
 	m_xy_pad.setTooltip("An XY pad to be used as a modulation source in the modmatrix.");
@@ -53,71 +63,11 @@ XYSectionComponent::~XYSectionComponent() {
 void XYSectionComponent::paint(Graphics &g) {
 }
 
+void XYSectionComponent::resized() {
+	GET_LOCAL_AREA(m_modx, "Modx");
+	GET_LOCAL_AREA(m_mody, "Mody");
+	GET_LOCAL_AREA(m_xy_pad, "XyPad");
 
-void XYSectionComponent::setGUIBig(){
-
-	m_GUI_big = true;
-	
-	juce::Image glas_panel = ImageCache::getFromMemory(BinaryData::vectorpanel_150_png, BinaryData::vectorpanel_150_pngSize);
-	m_xy_pad.setTopLeftPosition(0, OdinHelper::c150(XY_PAD_POSIITON_Y));
-	m_xy_pad.setSize(glas_panel.getWidth(), glas_panel.getHeight());
-	m_xy_pad.setInlay(1);
-	m_xy_pad.setImage(glas_panel);
-
-
-	juce::Image black_knob_very_small =
-	    ImageCache::getFromMemory(BinaryData::black_knob_very_small_150_png, BinaryData::black_knob_very_small_150_pngSize);
-
-	m_modx.setStrip(black_knob_very_small, N_KNOB_FRAMES);
-
-	m_mody.setStrip(black_knob_very_small, N_KNOB_FRAMES);
-
-	m_modx.setBounds(OdinHelper::c150(MODX_POS_X) - OdinHelper::c150(BLACK_KNOB_VERY_SMALL_OFFSET_X)-1,
-	                 OdinHelper::c150(MODX_POS_Y) - OdinHelper::c150(BLACK_KNOB_VERY_SMALL_OFFSET_Y),
-	                 OdinHelper::c150(BLACK_KNOB_VERY_SMALL_SIZE_X),
-	                 OdinHelper::c150(BLACK_KNOB_VERY_SMALL_SIZE_Y));
-	m_mody.setBounds(OdinHelper::c150(MODY_POS_X) - OdinHelper::c150(BLACK_KNOB_VERY_SMALL_OFFSET_X)-1,
-	                 OdinHelper::c150(MODY_POS_Y) - OdinHelper::c150(BLACK_KNOB_VERY_SMALL_OFFSET_Y),
-	                 OdinHelper::c150(BLACK_KNOB_VERY_SMALL_SIZE_X),
-	                 OdinHelper::c150(BLACK_KNOB_VERY_SMALL_SIZE_Y));
-
-	juce::Image logo =
-	    ImageCache::getFromMemory(BinaryData::WW_logo_xy_150_png, BinaryData::WW_logo_xy_150_pngSize);
-	m_xy_pad.setLogoImage(logo);	
-
-	m_xy_pad.setGUIBig();
-}
-
-void XYSectionComponent::setGUISmall(){
-
-	m_GUI_big = false;
-
-	juce::Image glas_panel = ImageCache::getFromMemory(BinaryData::vectorpanel_png, BinaryData::vectorpanel_pngSize);
-	m_xy_pad.setTopLeftPosition(0, XY_PAD_POSIITON_Y);
-	m_xy_pad.setSize(glas_panel.getWidth(), glas_panel.getHeight());
-	m_xy_pad.setInlay(1);
-	m_xy_pad.setImage(glas_panel);
-
-
-	juce::Image black_knob_very_small =
-	    ImageCache::getFromMemory(BinaryData::black_knob_very_small_png, BinaryData::black_knob_very_small_pngSize);
-
-	m_modx.setStrip(black_knob_very_small, N_KNOB_FRAMES);
-
-	m_mody.setStrip(black_knob_very_small, N_KNOB_FRAMES);
-
-	m_modx.setBounds(MODX_POS_X - BLACK_KNOB_VERY_SMALL_OFFSET_X,
-	                 MODX_POS_Y - BLACK_KNOB_VERY_SMALL_OFFSET_Y,
-	                 BLACK_KNOB_VERY_SMALL_SIZE_X,
-	                 BLACK_KNOB_VERY_SMALL_SIZE_Y);
-	m_mody.setBounds(MODY_POS_X - BLACK_KNOB_VERY_SMALL_OFFSET_X,
-	                 MODY_POS_Y - BLACK_KNOB_VERY_SMALL_OFFSET_Y,
-	                 BLACK_KNOB_VERY_SMALL_SIZE_X,
-	                 BLACK_KNOB_VERY_SMALL_SIZE_Y);
-
-	juce::Image logo =
-	    ImageCache::getFromMemory(BinaryData::WW_logo_xy_png, BinaryData::WW_logo_xy_pngSize);
-	m_xy_pad.setLogoImage(logo);
-
-	m_xy_pad.setGUISmall();
+	GET_LOCAL_AREA(m_label_x, "LabelX");
+	GET_LOCAL_AREA(m_label_y, "LabelY");
 }

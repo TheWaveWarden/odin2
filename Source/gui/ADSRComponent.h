@@ -19,14 +19,7 @@
 #include "DrawableSlider.h"
 #include "OdinButton.h"
 #include "OdinControlAttachments.h"
-
-#define SLIDER_SIZE_X 23
-#define SLIDER_SIZE_Y 79
-#define SLIDER_POS_X 5
-#define SLIDER_POS_Y 2
-#define SLIDER_OFFSET 25
-#define LOOP_POS_X 24
-#define LOOP_POS_Y 82
+#include "TextLabel.h"
 
 #define A_LOW_LIMIT 0.001
 #define A_HIGH_LIMIT 10
@@ -52,35 +45,32 @@
  */
 class ADSRComponent : public Component {
 public:
-  ADSRComponent(AudioProcessorValueTreeState& vts, const std::string &p_adsr_number);
-  ~ADSRComponent();
+	ADSRComponent(AudioProcessorValueTreeState &vts, const std::string &p_adsr_number);
+	~ADSRComponent();
 
-  void paint(Graphics &) override;
-
-  void setGUIBig();
-  void setGUISmall();
+	void resized() override;
 
 private:
-  bool m_GUI_big = true;
+    TextLabel m_attack_label;
+    TextLabel m_decay_label;
+    TextLabel m_sustain_label;
+    TextLabel m_release_label;
 
-  OdinButton m_loop;
+	OdinButton m_loop;
+	DrawableSlider m_attack;
+	DrawableSlider m_decay;
+	DrawableSlider m_sustain;
+	DrawableSlider m_release;
 
+	std::string m_adsr_number;
+	AudioProcessorValueTreeState &m_value_tree;
 
-  DrawableSlider m_attack;
-  DrawableSlider m_decay;
-  DrawableSlider m_sustain;
-  DrawableSlider m_release;
+	std::unique_ptr<OdinSliderAttachment> m_attack_attach;
+	std::unique_ptr<OdinSliderAttachment> m_decay_attach;
+	std::unique_ptr<OdinSliderAttachment> m_sustain_attach;
+	std::unique_ptr<OdinSliderAttachment> m_release_attach;
 
-  std::string m_adsr_number;
-  AudioProcessorValueTreeState& m_value_tree;
+	std::unique_ptr<OdinButtonAttachment> m_loop_attach;
 
-  std::unique_ptr<OdinSliderAttachment> m_attack_attach;
-  std::unique_ptr<OdinSliderAttachment> m_decay_attach;
-  std::unique_ptr<OdinSliderAttachment> m_sustain_attach;
-  std::unique_ptr<OdinSliderAttachment> m_release_attach;
-
-  std::unique_ptr<OdinButtonAttachment> m_loop_attach;
-
-
-  JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(ADSRComponent)
+	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(ADSRComponent)
 };

@@ -14,15 +14,40 @@
 */
 
 #include "PhaserComponent.h"
-#include "../JuceLibraryCode/JuceHeader.h"
+#include "../ConfigFileManager.h"
 #include "../GlobalIncludes.h"
+#include "../JuceLibraryCode/JuceHeader.h"
+#include "JsonGuiProvider.h"
+#include "UIAssetManager.h"
 
 PhaserComponent::PhaserComponent(AudioProcessorValueTreeState &vts, const std::string &p_fx_name, bool p_is_standalone) :
-    m_value_tree(vts), m_fx_name(p_fx_name), m_is_standalone_plugin(p_is_standalone),
-    m_sync("sync", juce::DrawableButton::ButtonStyle::ImageRaw),
-    m_reset("reset", juce::DrawableButton::ButtonStyle::ImageRaw),
+    m_value_tree(vts),
+    m_fx_name(p_fx_name),
+    m_is_standalone_plugin(p_is_standalone),
+    m_sync("sync", "Sync", OdinButton::Type::button_10x4),
+    m_reset("reset", "Reset", OdinButton::Type::button_10x4),
     m_fx_synctime_denominator_identifier(p_fx_name + "_synctime_denominator"),
-    m_fx_synctime_numerator_identifier(p_fx_name + "_synctime_numerator") {
+    m_fx_synctime_numerator_identifier(p_fx_name + "_synctime_numerator"),
+    m_rate_label("Rate"),
+    m_rate_label_sync("Rate"),
+    m_mod_label("Amount"),
+    m_freq_label("Freq"),
+    m_feedback_label("Feedback"),
+    m_dry_wet_label("DryWet"),
+    m_sync_time(UIAssets::Indices::screen_up_down_14x4_LR),
+    m_rate(OdinKnob::Type::knob_8x8b),
+    m_mod(OdinKnob::Type::knob_8x8a),
+    m_freq(OdinKnob::Type::knob_8x8a),
+    m_feedback(OdinKnob::Type::knob_8x8a),
+    m_dry_wet(OdinKnob::Type::knob_8x8b)
+
+{
+	addAndMakeVisible(m_rate_label);
+	addChildComponent(m_rate_label_sync);
+	addAndMakeVisible(m_mod_label);
+	addAndMakeVisible(m_freq_label);
+	addAndMakeVisible(m_feedback_label);
+	addAndMakeVisible(m_dry_wet_label);
 
 	m_rate_attach.reset(new OdinKnobAttachment(m_value_tree, m_fx_name + "_rate", m_rate));
 	m_freq_attach.reset(new OdinKnobAttachment(m_value_tree, m_fx_name + "_freq", m_freq));
@@ -79,8 +104,7 @@ PhaserComponent::PhaserComponent(AudioProcessorValueTreeState &vts, const std::s
 	addAndMakeVisible(m_sync);
 	m_sync.onClick = [&]() {
 		setSyncEnabled(m_sync.getToggleState());
-		m_value_tree.state.getChildWithName("fx").setProperty(
-		    (Identifier)("phaser_sync"), m_sync.getToggleState() ? 1.f : 0.f, nullptr);
+		m_value_tree.state.getChildWithName("fx").setProperty((Identifier)("phaser_sync"), m_sync.getToggleState() ? 1.f : 0.f, nullptr);
 		m_value_tree.state.getChildWithName("fx").sendPropertyChangeMessage("phaser_sync");
 	};
 
@@ -88,7 +112,6 @@ PhaserComponent::PhaserComponent(AudioProcessorValueTreeState &vts, const std::s
 		m_value_tree.state.getChildWithName("fx").setProperty(m_fx_synctime_numerator_identifier, p_left, nullptr);
 		m_value_tree.state.getChildWithName("fx").setProperty(m_fx_synctime_denominator_identifier, p_right, nullptr);
 	};
-	m_sync_time.setTopLeftPosition(PHASER_SYNC_TIME_POS_X, PHASER_SYNC_TIME_POS_Y);
 	m_sync_time.setTooltip("Set the delay time in sync to your track");
 	addChildComponent(m_sync_time);
 
@@ -110,21 +133,20 @@ PhaserComponent::~PhaserComponent() {
 }
 
 void PhaserComponent::paint(Graphics &g) {
-	SET_INTERPOLATION_QUALITY(g)
-	if (m_sync_enabled) {
-		g.drawImageAt(m_background_sync, 0, 0);
-	} else {
-		g.drawImageAt(m_background_no_sync, 0, 0);
-	}
+	g.drawImageAt(UIAssetManager::getInstance()->getUIAsset(UIAssets::Indices::FX_Phaser, ConfigFileManager::getInstance().getOptionGuiScale()), 0, 0);
 }
 
 void PhaserComponent::setSyncEnabled(bool p_sync) {
 	if (m_sync_enabled != p_sync) {
 		m_sync_enabled = p_sync;
 		if (m_sync_enabled) {
+			m_rate_label.setVisible(false);
+			m_rate_label_sync.setVisible(true);
 			m_rate.setVisible(false);
 			m_sync_time.setVisible(true);
 		} else {
+			m_rate_label.setVisible(true);
+			m_rate_label_sync.setVisible(false);
 			m_rate.setVisible(true);
 			m_sync_time.setVisible(false);
 		}
@@ -142,171 +164,20 @@ void PhaserComponent::forceValueTreeOntoComponents(ValueTree p_tree) {
 	m_value_tree.state.getChildWithName("fx").sendPropertyChangeMessage((Identifier)("phaser_sync"));
 }
 
-void PhaserComponent::setGUIBig() {
-	m_GUI_big = true;
+void PhaserComponent::resized() {
+	GET_LOCAL_AREA(m_rate_label, "PhaserRateLabel");
+	GET_LOCAL_AREA(m_rate_label_sync, "PhaserRateLabelSync");
+	GET_LOCAL_AREA(m_mod_label, "PhaserModLabel");
+	GET_LOCAL_AREA(m_freq_label, "PhaserFreqLabel");
+	GET_LOCAL_AREA(m_feedback_label, "PhaserFeedbackLabel");
+	GET_LOCAL_AREA(m_dry_wet_label, "PhaserDryWetLabel");
 
-	juce::Image metal_knob_mid =
-	    ImageCache::getFromMemory(BinaryData::metal_knob_mid_150_png, BinaryData::metal_knob_mid_150_pngSize);
-	m_mod.setStrip(metal_knob_mid, N_KNOB_FRAMES);
-
-	m_rate.setStrip(metal_knob_mid, N_KNOB_FRAMES);
-
-	m_freq.setStrip(metal_knob_mid, N_KNOB_FRAMES);
-
-	m_feedback.setStrip(metal_knob_mid, N_KNOB_FRAMES);
-
-	m_dry_wet.setStrip(metal_knob_mid, N_KNOB_FRAMES);
-
-	juce::Image reset_1 =
-	    ImageCache::getFromMemory(BinaryData::buttonreset_lfo_1_150_png, BinaryData::buttonreset_lfo_1_150_pngSize);
-	juce::Image reset_2 =
-	    ImageCache::getFromMemory(BinaryData::buttonreset_lfo_2_150_png, BinaryData::buttonreset_lfo_2_150_pngSize);
-	juce::Image reset_3 =
-	    ImageCache::getFromMemory(BinaryData::buttonreset_lfo_3_150_png, BinaryData::buttonreset_lfo_3_150_pngSize);
-	juce::Image reset_4 =
-	    ImageCache::getFromMemory(BinaryData::buttonreset_lfo_4_150_png, BinaryData::buttonreset_lfo_4_150_pngSize);
-
-	juce::DrawableImage reset_draw1;
-	juce::DrawableImage reset_draw2;
-	juce::DrawableImage reset_draw3;
-	juce::DrawableImage reset_draw4;
-
-	reset_draw1.setImage(reset_1);
-	reset_draw2.setImage(reset_2);
-	reset_draw3.setImage(reset_3);
-	reset_draw4.setImage(reset_4);
-
-	m_reset.setImages(
-	    &reset_draw2, &reset_draw2, &reset_draw1, &reset_draw1, &reset_draw4, &reset_draw4, &reset_draw3, &reset_draw3);
-	m_reset.setBounds(OdinHelper::c150(PHASER_RESET_POS_X),
-	                  OdinHelper::c150(PHASER_RESET_POS_Y),
-	                  reset_1.getWidth(),
-	                  reset_1.getHeight());
-
-	juce::Image sync_1 =
-	    ImageCache::getFromMemory(BinaryData::buttonsync_1_150_png, BinaryData::buttonsync_1_150_pngSize);
-	juce::Image sync_2 =
-	    ImageCache::getFromMemory(BinaryData::buttonsync_2_150_png, BinaryData::buttonsync_2_150_pngSize);
-	juce::Image sync_3 =
-	    ImageCache::getFromMemory(BinaryData::buttonsync_3_150_png, BinaryData::buttonsync_3_150_pngSize);
-	juce::Image sync_4 =
-	    ImageCache::getFromMemory(BinaryData::buttonsync_4_150_png, BinaryData::buttonsync_4_150_pngSize);
-
-	juce::DrawableImage sync_draw1;
-	juce::DrawableImage sync_draw2;
-	juce::DrawableImage sync_draw3;
-	juce::DrawableImage sync_draw4;
-
-	sync_draw1.setImage(sync_1);
-	sync_draw2.setImage(sync_2);
-	sync_draw3.setImage(sync_3);
-	sync_draw4.setImage(sync_4);
-
-	m_sync.setImages(
-	    &sync_draw2, &sync_draw2, &sync_draw1, &sync_draw1, &sync_draw4, &sync_draw4, &sync_draw3, &sync_draw3);
-	m_sync.setBounds(OdinHelper::c150(PHASER_SYNC_POS_X),
-	                 OdinHelper::c150(PHASER_SYNC_POS_Y),
-	                 sync_1.getWidth(),
-	                 sync_1.getHeight());
-	m_sync_time.setTopLeftPosition(OdinHelper::c150(PHASER_SYNC_TIME_POS_X), OdinHelper::c150(PHASER_SYNC_TIME_POS_Y));
-
-	m_mod.setBounds(OdinHelper::c150(PHASER_MOD_POS_X)-2,
-	                OdinHelper::c150(PHASER_MOD_POS_Y)-1,
-	                metal_knob_mid.getWidth(),
-	                metal_knob_mid.getWidth());
-	m_rate.setBounds(OdinHelper::c150(PHASER_RATE_POS_X)-2,
-	                 OdinHelper::c150(PHASER_RATE_POS_Y)-1,
-	                 metal_knob_mid.getWidth(),
-	                 metal_knob_mid.getWidth());
-	m_dry_wet.setBounds(OdinHelper::c150(PHASER_DRY_WET_POS_X)-2,
-	                    OdinHelper::c150(PHASER_DRY_WET_POS_Y)-1,
-	                    metal_knob_mid.getWidth(),
-	                    metal_knob_mid.getWidth());
-	m_freq.setBounds(OdinHelper::c150(PHASER_FREQ_POS_X)-2,
-	                 OdinHelper::c150(PHASER_FREQ_POS_Y)-1,
-	                 metal_knob_mid.getWidth(),
-	                 metal_knob_mid.getWidth());
-	m_feedback.setBounds(OdinHelper::c150(PHASER_FEEDBACK_POS_X)-2,
-	                     OdinHelper::c150(PHASER_FEEDBACK_POS_Y)-1,
-	                     metal_knob_mid.getWidth(),
-	                     metal_knob_mid.getWidth());
-
-	m_background_sync = ImageCache::getFromMemory(BinaryData::phasersync_150_png, BinaryData::phasersync_150_pngSize);
-	m_background_no_sync =
-	    ImageCache::getFromMemory(BinaryData::phasernosync_150_png, BinaryData::phasernosync_150_pngSize);
-	m_sync_time.setGUIBig();
-
-	forceValueTreeOntoComponents(m_value_tree.state);
-}
-void PhaserComponent::setGUISmall() {
-	m_GUI_big = false;
-
-	juce::Image metal_knob_mid =
-	    ImageCache::getFromMemory(BinaryData::metal_knob_mid_png, BinaryData::metal_knob_mid_pngSize);
-	m_mod.setStrip(metal_knob_mid, N_KNOB_FRAMES);
-
-	m_rate.setStrip(metal_knob_mid, N_KNOB_FRAMES);
-
-	m_freq.setStrip(metal_knob_mid, N_KNOB_FRAMES);
-
-	m_feedback.setStrip(metal_knob_mid, N_KNOB_FRAMES);
-
-	m_dry_wet.setStrip(metal_knob_mid, N_KNOB_FRAMES);
-
-	juce::Image reset_1 =
-	    ImageCache::getFromMemory(BinaryData::buttonreset_lfo_1_png, BinaryData::buttonreset_lfo_1_pngSize);
-	juce::Image reset_2 =
-	    ImageCache::getFromMemory(BinaryData::buttonreset_lfo_2_png, BinaryData::buttonreset_lfo_2_pngSize);
-	juce::Image reset_3 =
-	    ImageCache::getFromMemory(BinaryData::buttonreset_lfo_3_png, BinaryData::buttonreset_lfo_3_pngSize);
-	juce::Image reset_4 =
-	    ImageCache::getFromMemory(BinaryData::buttonreset_lfo_4_png, BinaryData::buttonreset_lfo_4_pngSize);
-
-	juce::DrawableImage reset_draw1;
-	juce::DrawableImage reset_draw2;
-	juce::DrawableImage reset_draw3;
-	juce::DrawableImage reset_draw4;
-
-	reset_draw1.setImage(reset_1);
-	reset_draw2.setImage(reset_2);
-	reset_draw3.setImage(reset_3);
-	reset_draw4.setImage(reset_4);
-
-	m_reset.setImages(
-	    &reset_draw2, &reset_draw2, &reset_draw1, &reset_draw1, &reset_draw4, &reset_draw4, &reset_draw3, &reset_draw3);
-	m_reset.setBounds(PHASER_RESET_POS_X, PHASER_RESET_POS_Y, reset_1.getWidth(), reset_1.getHeight());
-
-	juce::Image sync_1 = ImageCache::getFromMemory(BinaryData::buttonsync_1_png, BinaryData::buttonsync_1_pngSize);
-	juce::Image sync_2 = ImageCache::getFromMemory(BinaryData::buttonsync_2_png, BinaryData::buttonsync_2_pngSize);
-	juce::Image sync_3 = ImageCache::getFromMemory(BinaryData::buttonsync_3_png, BinaryData::buttonsync_3_pngSize);
-	juce::Image sync_4 = ImageCache::getFromMemory(BinaryData::buttonsync_4_png, BinaryData::buttonsync_4_pngSize);
-
-	juce::DrawableImage sync_draw1;
-	juce::DrawableImage sync_draw2;
-	juce::DrawableImage sync_draw3;
-	juce::DrawableImage sync_draw4;
-
-	sync_draw1.setImage(sync_1);
-	sync_draw2.setImage(sync_2);
-	sync_draw3.setImage(sync_3);
-	sync_draw4.setImage(sync_4);
-
-	m_sync.setImages(
-	    &sync_draw2, &sync_draw2, &sync_draw1, &sync_draw1, &sync_draw4, &sync_draw4, &sync_draw3, &sync_draw3);
-	m_sync.setBounds(PHASER_SYNC_POS_X, PHASER_SYNC_POS_Y, sync_1.getWidth(), sync_1.getHeight());
-	m_sync_time.setTopLeftPosition(PHASER_SYNC_TIME_POS_X, PHASER_SYNC_TIME_POS_Y);
-
-	m_mod.setBounds(PHASER_MOD_POS_X, PHASER_MOD_POS_Y, metal_knob_mid.getWidth(), metal_knob_mid.getWidth());
-	m_rate.setBounds(PHASER_RATE_POS_X, PHASER_RATE_POS_Y, metal_knob_mid.getWidth(), metal_knob_mid.getWidth());
-	m_dry_wet.setBounds(
-	    PHASER_DRY_WET_POS_X, PHASER_DRY_WET_POS_Y, metal_knob_mid.getWidth(), metal_knob_mid.getWidth());
-	m_freq.setBounds(PHASER_FREQ_POS_X, PHASER_FREQ_POS_Y, metal_knob_mid.getWidth(), metal_knob_mid.getWidth());
-	m_feedback.setBounds(
-	    PHASER_FEEDBACK_POS_X, PHASER_FEEDBACK_POS_Y, metal_knob_mid.getWidth(), metal_knob_mid.getWidth());
-
-	m_background_sync    = ImageCache::getFromMemory(BinaryData::phasersync_png, BinaryData::phasersync_pngSize);
-	m_background_no_sync = ImageCache::getFromMemory(BinaryData::phasernosync_png, BinaryData::phasernosync_pngSize);
-
-	m_sync_time.setGUISmall();
-	forceValueTreeOntoComponents(m_value_tree.state);
+	GET_LOCAL_AREA(m_rate, "PhaserRate");
+	GET_LOCAL_AREA(m_mod, "PhaserMod");
+	GET_LOCAL_AREA(m_freq, "PhaserFreq");
+	GET_LOCAL_AREA(m_feedback, "PhaserFeedback");
+	GET_LOCAL_AREA(m_dry_wet, "PhaserDryWet");
+	GET_LOCAL_AREA(m_sync, "PhaserSync");
+	GET_LOCAL_AREA(m_reset, "PhaserReset");
+	GET_LOCAL_AREA(m_sync_time, "PhaserSyncTime");
 }

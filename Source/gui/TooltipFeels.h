@@ -26,7 +26,7 @@ public:
 
 	void drawTooltip(Graphics &g, const String &text, int width, int height) override {
 		Rectangle<int> bounds(width, height);
-		auto cornerSize = 5.0f;
+		auto cornerSize = 0.0f;
 
 		g.setColour(findColour(TooltipWindow::backgroundColourId));
 		g.fillRoundedRectangle(bounds.toFloat(), cornerSize);
@@ -34,8 +34,7 @@ public:
 		g.setColour(findColour(TooltipWindow::outlineColourId));
 		g.drawRoundedRectangle(bounds.toFloat().reduced(0.5f, 0.5f), cornerSize, 1.0f);
 
-		layoutTooltipText(text, findColour(TooltipWindow::textColourId))
-		    .draw(g, {static_cast<float>(width), static_cast<float>(height)});
+		layoutTooltipText(text, findColour(TooltipWindow::textColourId)).draw(g, {static_cast<float>(width), static_cast<float>(height)});
 	}
 
 	Rectangle<int> getTooltipBounds(const String &tipText, Point<int> screenPos, Rectangle<int> parentArea) override {
@@ -57,7 +56,7 @@ public:
 
 		AttributedString s;
 		s.setJustification(Justification::centred);
-		s.append(text, Font(tooltipFontSize, Font::bold), colour);
+		s.append(text, Helpers::getAldrichFont(tooltipFontSize), colour);
 
 		TextLayout tl;
 		tl.createLayoutWithBalancedLineLengths(s, (float)maxToolTipWidth);

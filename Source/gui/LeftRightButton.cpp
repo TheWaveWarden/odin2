@@ -14,87 +14,62 @@
 */
 
 #include "LeftRightButton.h"
+#include "../ConfigFileManager.h"
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "../PluginProcessor.h"
+#include "UIAssetManager.h"
 
 OdinAudioProcessor *LeftRightButton::m_processor;
 
-LeftRightButton::LeftRightButton(const String &buttonName) : juce::Button(buttonName) {
-	// In your constructor, you should add any child components, and
-	// initialise any special settings that your component needs.
+LeftRightButton::LeftRightButton(const String &buttonName, Type p_type) : juce::Button(buttonName), m_type(p_type) {
+	switch (m_type) {
+	case Type::osc_fm_exp:
+		m_asset      = UIAssets::Indices::switch_v_down;
+		m_is_up_down = true;
+		break;
+	case Type::filter_comb_polarity:
+		m_asset = UIAssets::Indices::switch_comb_neg;
+		break;
+	}
 }
 
 LeftRightButton::~LeftRightButton() {
-	// setClickingTogglesState(true);
 }
 
-void LeftRightButton::paintButton(Graphics &g, bool shouldDrawButtonAsHighlighted, bool shouldDrawButtonAsDown) {
-	g.fillAll(Colours::transparentBlack);
+void LeftRightButton::paintButton(Graphics &g, bool p_highlight, bool /*p_pressed*/) {
+	auto asset = int(m_asset);
+	if (getToggleState())
+		asset += 2;
+	if (p_highlight)
+		asset += 1;
 
-	if (getToggleState()) {
-		g.drawImageAt(m_image_left, 0, 0);
-	} else {
-		g.drawImageAt(m_image_right, 0, 0);
-	}
-	if (m_midi_learn) {
-		g.setColour(Colours::red);
-		g.drawRoundedRectangle(getLocalBounds().getX(),
-		                       getLocalBounds().getY(),
-		                       getLocalBounds().getWidth(),
-		                       getLocalBounds().getHeight(),
-		                       5,
-		                       2); // draw an outline around the component
-	} else if (m_midi_control) {
-		g.setColour(Colours::green);
-		g.drawRoundedRectangle(getLocalBounds().getX(),
-		                       getLocalBounds().getY(),
-		                       getLocalBounds().getWidth(),
-		                       getLocalBounds().getHeight(),
-		                       5,
-		                       2); // draw an outline around the component
-	}
+	g.drawImageAt(UIAssetManager::getInstance()->getUIAsset(UIAssets::Indices(asset), ConfigFileManager::getInstance().getOptionGuiScale()), 0, 0);
 }
 
 void LeftRightButton::mouseDown(const MouseEvent &p_event) {
-	if (p_event.mods.isRightButtonDown() && m_midi_learn_possible) {
-
-		//DBG("RIGHT");
-		PopupMenu midi_learn_menu;
-		if (m_midi_learn) {
-			midi_learn_menu.addItem(2, "Stop MIDI learn");
-			if (midi_learn_menu.show() == 2) {
-				stopMidiLearn();
-				m_processor->stopMidiLearn();
-			}
-		} else {
-			midi_learn_menu.addItem(2, "MIDI learn");
-			if (m_midi_control) {
-				midi_learn_menu.addItem(3, "MIDI forget");
-			}
-			int menu = midi_learn_menu.show();
-			if (menu == 2) {
-				if (m_midi_control) {
-					m_processor->midiForget(m_parameter_ID, this);
-				}
-				m_processor->startMidiLearn(m_parameter_ID, this);
-				m_midi_learn   = true;
-				m_midi_control = false;
-				repaint();
-			} else if (menu == 3) {
-				m_processor->midiForget(m_parameter_ID, this);
-				m_midi_control = false;
-				repaint();
-			}
-		}
-		return;
-	}
 	juce::Point<int> mouse_position = getMouseXYRelative();
-	bool left                       = mouse_position.getX() < getWidth() / 2.f ? true : false;
-	if (left) {
-		// Button::mouseDown(p_event);
+	bool new_toggle_state           = false;
+
+	if (m_is_up_down)
+		new_toggle_state = mouse_position.getY() < getHeight() / 2 ? true : false;
+	else
+		new_toggle_state = mouse_position.getX() > getWidth() / 2 ? true : false;
+
+	if (new_toggle_state)
 		setToggleState(true, sendNotification);
-	} else {
-		// Button::mouseDown(p_event);
+	else
 		setToggleState(false, sendNotification);
-	}
+}
+
+void LeftRightButton::mouseDrag(const MouseEvent &p_event) {
+	// for the up down buttons in the FM osc, also allow dragging
+
+	if (!m_is_up_down)
+		return;
+
+	juce::Point<int> mouse_position = getMouseXYRelative();
+	bool new_toggle_state           = mouse_position.getY() < getHeight() / 2 ? true : false;
+
+	if (getToggleState() != new_toggle_state)
+		setToggleState(new_toggle_state, sendNotification);
 }

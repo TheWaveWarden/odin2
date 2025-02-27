@@ -14,10 +14,21 @@
 */
 
 #include "GlassDropdown.h"
+#include "../ConfigFileManager.h"
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "UIAssetManager.h"
 
-GlassDropdown::GlassDropdown() {
+GlassDropdown::GlassDropdown(Type p_type) : m_type(p_type) {
 	setLookAndFeel(&m_menu_feels);
+
+	switch (m_type) {
+	case Type::dropdown_12x4:
+		m_asset = UIAssets::Indices::screen_dropdown_12x4;
+		break;
+	case Type::dropdown_14x4:
+		m_asset = UIAssets::Indices::screen_dropdown_14x4;
+		break;
+	}
 }
 
 GlassDropdown::~GlassDropdown() {
@@ -25,70 +36,39 @@ GlassDropdown::~GlassDropdown() {
 }
 
 void GlassDropdown::paint(Graphics &g) {
-	SET_INTERPOLATION_QUALITY(g)
+	const auto alpha = isEnabled() ? 1.0f : 0.6f;
 
-	if (getSelectedId() == 0 && m_grey_first_element) {
-		g.setColour(m_grey_background_color);
-	} else {
-		g.setColour(m_color);
+	if (m_type != Type::unassigned) {
+		auto background = UIAssetManager::getInstance()->getUIAsset(m_asset, ConfigFileManager::getInstance().getOptionGuiScale());
+		g.setColour(juce::Colours::white.withAlpha(alpha));
+		g.drawImageAt(background, 0, 0);
 	}
-	juce::Point<int> top_left = getLocalBounds().getTopLeft();
-	top_left.addXY(m_inlay + m_inlay_left, m_inlay - m_inlay_top);
-	juce::Point<int> bottom_right = getLocalBounds().getBottomRight();
-	bottom_right.addXY(-m_inlay - 1, -m_inlay);
-	g.fillRect(juce::Rectangle<int>(top_left, bottom_right)); //
+
+	const auto col = (isMouseOver() && isEnabled()) ? juce::Colours::white : COL_TEXT_BLUE;
+	g.setColour(col.withAlpha(alpha));
+	g.setFont(Helpers::getAldrichFont(H * 0.54f));
 
 	auto text_bounds = getLocalBounds();
-	if (m_show_triangle) {
-		if (m_GUI_big) {
+	text_bounds.removeFromRight(H * 0.75f).reduced(proportionOfHeight(0.4f));
 
-			Path triangle;
-			triangle.addTriangle(TRIANGLE_POS_X_150,
-			                     TRIANGLE_POS_Y_150,
-			                     TRIANGLE_POS_X_150 + TRIANGLE_WIDTH_150,
-			                     TRIANGLE_POS_Y_150,
-			                     TRIANGLE_POS_X_150 + TRIANGLE_WIDTH_150 / 2,
-			                     TRIANGLE_POS_Y_150 + TRIANGLE_HEIGHT_150);
-			g.setColour(m_grey_color);
-			g.fillPath(triangle);
+	paintTriangle(g);
 
-			text_bounds.removeFromRight(TRIANGLE_WIDTH_150 * 1.f);
-		} else {
-
-			Path triangle;
-			triangle.addTriangle(TRIANGLE_POS_X,
-			                     TRIANGLE_POS_Y,
-			                     TRIANGLE_POS_X + TRIANGLE_WIDTH,
-			                     TRIANGLE_POS_Y,
-			                     TRIANGLE_POS_X + TRIANGLE_WIDTH / 2,
-			                     TRIANGLE_POS_Y + TRIANGLE_HEIGHT);
-			g.setColour(m_grey_color);
-			g.fillPath(triangle);
-
-			text_bounds.removeFromRight(TRIANGLE_WIDTH * 1.f);
-		}
-	}
-
-	g.setColour(m_font_color);
-
-	if (getSelectedId() == 0 && m_grey_first_element) {
-		g.setColour(m_grey_color);
-	}
-
-	// g.setFont(bfont);Font current_font = g.getCurrentFont();
-	Font current_font = g.getCurrentFont();
-	current_font.setStyleFlags(1); // bold
-	g.setFont(current_font);
-	if (m_GUI_big) {
-		g.setFont(18.0f);
-	} else {
-		g.setFont(12.0f);
-	}
-
-	if (getSelectedId() == 0) {
+	if (getSelectedId() == 0)
 		g.drawText(m_default_text, text_bounds, Justification::centred, true);
-	} else {
-		g.drawText(getText(), text_bounds, Justification::centred, true);
-	}
-	g.drawImageAt(m_glaspanel, 0, 0);
+	else
+		g.drawText(getText(), text_bounds, Justification::centred, false);
+}
+
+void GlassDropdown::paintTriangle(juce::Graphics &g) {
+	auto triangle_bounds = getLocalBounds().removeFromRight(H).reduced(proportionOfHeight(0.32f), proportionOfHeight(0.4f));
+
+	// draw the triangle
+	juce::Path triangle;
+	triangle.addTriangle(triangle_bounds.getX(),
+	                     triangle_bounds.getY(),
+	                     triangle_bounds.getRight(),
+	                     triangle_bounds.getY(),
+	                     triangle_bounds.getX() + triangle_bounds.getWidth() / 2,
+	                     triangle_bounds.getBottom());
+	g.fillPath(triangle);
 }

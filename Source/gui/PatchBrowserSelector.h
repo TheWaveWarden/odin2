@@ -15,36 +15,19 @@
 
 #pragma once
 
-#include <JuceHeader.h>
-#include "BrowserEntry.h"
 #include "../GlobalIncludes.h"
-#include "PatchBrowserScrollBar.h"
+#include "BrowserEntry.h"
+#include "OdinButton.h"
 #include "OdinFeels.h"
+#include "PatchBrowserScrollBar.h"
+#include <JuceHeader.h>
 
 #define FACTORY_PRESETS_SOUNDBANK_CODE "F_A_C_T_O_R_Y"
-
-#define ENTRY_HEIGHT_150 24
-#define ENTRY_HEIGHT_100 18
-
-#define MOUSE_WHEEL_FACTOR_PATCH_BROWSER_150 90.f
-#define MOUSE_WHEEL_FACTOR_PATCH_BROWSER_100 60.f
-
-#define BUTTON_HEIGHT_BROWSER 18
-#define BUTTON_HEIGHT_BROWSER_150 25
 
 #define PATCH_BROWSER_MENU_ENTRY_RENAME 10
 #define PATCH_BROWSER_MENU_ENTRY_DELETE 20
 #define PATCH_BROWSER_MENU_MOVE_OFFSET 1000
 #define PATCH_BROWSER_MENU_COPY_OFFSET 3000
-
-#define WARNING_INLAY_X_150 10
-#define WARNING_INLAY_X_100 6
-
-#define WARNING_OFFSET_Y_150 50
-#define WARNING_OFFSET_Y_100 33
-
-#define SCROLL_BAR_WIDTH_150 15
-#define SCROLL_BAR_WIDTH_100 10
 
 class OdinBrowserButtonFeels : public LookAndFeel_V4 {
 public:
@@ -53,11 +36,7 @@ public:
 	}
 
 protected:
-	void drawButtonBackground(Graphics &g,
-	                          Button &button,
-	                          const Colour &backgroundColour,
-	                          bool shouldDrawButtonAsHighlighted,
-	                          bool shouldDrawButtonAsDown) override {
+	void drawButtonBackground(Graphics &g, Button &button, const Colour &backgroundColour, bool shouldDrawButtonAsHighlighted, bool shouldDrawButtonAsDown) override {
 		auto cornerSize = 0.f;
 		auto bounds     = button.getLocalBounds().toFloat().reduced(0.5f, 0.5f);
 
@@ -78,15 +57,14 @@ protected:
 	}
 
 	void drawButtonText(Graphics &g, TextButton &button, bool p_highlighted, bool /*shouldDrawButtonAsDown*/) override {
-		Font font(m_font_size);
+		auto font = Helpers::getAldrichFont(m_font_size);
 		g.setFont(font);
 
 		if (p_highlighted) {
 			g.setColour(ODIN_BLUE);
 		} else {
 			g.setColour(
-			    button.findColour(button.getToggleState() ? TextButton::textColourOnId : TextButton::textColourOffId)
-			        .withMultipliedAlpha(button.isEnabled() ? 1.0f : 0.5f));
+			    button.findColour(button.getToggleState() ? TextButton::textColourOnId : TextButton::textColourOffId).withMultipliedAlpha(button.isEnabled() ? 1.0f : 0.5f));
 		}
 
 		const int yIndent    = jmin(4, button.proportionOfHeight(0.3f));
@@ -98,13 +76,7 @@ protected:
 		const int textWidth   = button.getWidth() - leftIndent - rightIndent;
 
 		if (textWidth > 0)
-			g.drawFittedText(button.getButtonText(),
-			                 leftIndent,
-			                 yIndent,
-			                 textWidth,
-			                 button.getHeight() - yIndent * 2,
-			                 Justification::centred,
-			                 2);
+			g.drawFittedText(button.getButtonText(), leftIndent, yIndent, textWidth, button.getHeight() - yIndent * 2, Justification::centred, 2);
 	}
 
 	float m_font_size = 15.f;
@@ -112,19 +84,16 @@ protected:
 
 class PatchBrowserSelector : public Component {
 public:
+	static constexpr auto ENTRY_HEIGHT_REL = 1.0f / 12.0f;
+
 	enum class DirectoryStatus { Ok, Empty, Nonexistent };
 	enum class BrowserType { Soundbank, Category, Patch };
 
-	PatchBrowserSelector(File::TypesOfFileToFind p_file_or_dir,
-	                     String p_left_button,
-	                     String p_mid_button,
-	                     String p_right_button);
+	PatchBrowserSelector(File::TypesOfFileToFind p_file_or_dir, String p_left_button, String p_mid_button, String p_right_button);
 	~PatchBrowserSelector();
 
 	void paint(Graphics &) override;
-
-	void setGUIBig();
-	void setGUISmall();
+	void resized() override;
 
 	void resetInputFieldAndShow();
 	void showInputField();
@@ -132,7 +101,7 @@ public:
 
 	void setDirectory(String p_absolute_path);
 	void setDirectoryFactoryPresetCategory();
-	void setDirectoryFactoryPresetPreset(const std::string& p_category);
+	void setDirectoryFactoryPresetPreset(const std::string &p_category);
 	String getDirectory();
 	void setWildCard(String p_wildcard);
 	void resetScrollPosition();
@@ -140,6 +109,7 @@ public:
 	String getFirstSubDirectoryAndHighlightIt();
 	String getSubDirectoryAndHighlightItFromName(String p_name);
 	void setType(BrowserType p_type);
+	bool highlightSelectedEntryIfPossible(String p_entry);
 
 	void mouseWheelMove(const MouseEvent &event, const MouseWheelDetails &wheel) override;
 
@@ -165,10 +135,11 @@ public:
 	void setCopyMoveEnabled(bool p_enabled);
 	void enablePassActiveNameToParent(bool p_enable);
 
-	String getCopyFileString(int p_popupmenu_index);
-	String getMoveFileString(int p_popupmenu_index);
-	String getCopyMoveMap(int p_index);
+	juce::String getCopyFileString(int p_popupmenu_index);
+	juce::String getMoveFileString(int p_popupmenu_index);
+	juce::String getCopyMoveMap(int p_index);
 
+	juce::String getSelectedEntry();
 
 private:
 	void generateContent();
@@ -179,12 +150,11 @@ private:
 	void checkDirectoryStatus();
 	void recreatePopupMenu();
 
-	float m_scroll_position = 0.f;
-	float m_max_scroll_position = 0.f;
-	float m_scroll_bar_height = 0.f;
-	float m_scroll_bar_position = 0.f;
+	float m_scroll_position         = 0.f;
+	float m_max_scroll_position     = 0.f;
+	float m_scroll_bar_height       = 0.f;
+	float m_scroll_bar_position     = 0.f;
 	float m_available_scroll_height = 0.f;
-
 
 	String m_absolute_path;
 	File::TypesOfFileToFind m_file_or_dir;
@@ -201,13 +171,12 @@ private:
 
 	TextEditor m_input_field;
 
-	TextButton m_left_button;
-	TextButton m_mid_button;
-	TextButton m_right_button;
+	OdinButton m_left_button;
+	OdinButton m_mid_button;
+	OdinButton m_right_button;
 
 	PatchBrowserScrollBar m_scroll_bar;
 
-	bool m_GUI_big = true;
 	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(PatchBrowserSelector)
 
 	bool m_show_left_button = false;
@@ -225,8 +194,8 @@ private:
 	bool m_pass_active_element_to_parent = false;
 	BrowserType m_browser_type;
 
-	//auto generated header with the factory preset names
-    #include "FactoryPresetNames.h"
+//auto generated header with the factory preset names
+#include "FactoryPresetNames.h"
 
 	DirectoryStatus m_directory_status = DirectoryStatus::Nonexistent;
 };

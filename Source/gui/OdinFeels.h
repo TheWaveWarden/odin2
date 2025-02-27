@@ -1,5 +1,6 @@
 #pragma once
 
+#include "../ConfigFileManager.h"
 #include "../GlobalIncludes.h"
 #include "../JuceLibraryCode/JuceHeader.h"
 
@@ -11,26 +12,18 @@ public:
 		g.drawRect(0, 0, width, height);
 	}
 
-	void setMenuWidth(int p_width) {
-		m_width = p_width;
+	juce::Font getPopupMenuFont() override {
+		auto font             = LookAndFeel_V4::getPopupMenuFont();
+		const auto grid_scale = juce::jmap(float(ConfigFileManager::getInstance().getOptionGuiScale()), float(GuiScale::Z100), float(GuiScale::Z200), 0.7f, 1.2f);
+		return Helpers::getAldrichFont(font.getHeight() * grid_scale);
 	}
 
-	void getIdealPopupMenuItemSize(
-	    const String &text, bool isSeparator, int standardMenuItemHeight, int &idealWidth, int &idealHeight) override {
-		idealWidth = m_width;
-		if (m_GUI_big) {
-			if (isSeparator) {
-				idealHeight = 10;
-			} else {
-				idealHeight = 30;
-			}
-		} else {
-			if (isSeparator) {
-				idealHeight = 10;
-			} else {
-				idealHeight = 25;
-			}
-		}
+	void getIdealPopupMenuItemSize(const String &text, bool isSeparator, int standardMenuItemHeight, int &idealWidth, int &idealHeight) override {
+		juce::LookAndFeel_V4::getIdealPopupMenuItemSize(text, isSeparator, standardMenuItemHeight, idealWidth, idealHeight);
+
+		const auto grid_scale = juce::jmap(float(ConfigFileManager::getInstance().getOptionGuiScale()), float(GuiScale::Z100), float(GuiScale::Z200), 0.7f, 1.2f);
+		idealWidth *= grid_scale;
+		idealHeight *= grid_scale;
 	}
 
 	void drawPopupMenuItem(Graphics &g,
@@ -45,21 +38,8 @@ public:
 	                       const Drawable *icon,
 	                       const Colour *textColour) override {
 
-		Font font(m_font_size);
-
 		if (!isHighlighted) {
-			drawPopupMenuItemOdin(g,
-			                      area,
-			                      isSeparator,
-			                      isActive,
-			                      isHighlighted,
-			                      isTicked,
-			                      hasSubMenu,
-			                      text,
-			                      shortcutKeyText,
-			                      icon,
-			                      &m_text_color,
-			                      font);
+			drawPopupMenuItemOdin(g, area, isSeparator, isActive, isHighlighted, isTicked, hasSubMenu, text, shortcutKeyText, icon, &m_text_color);
 		} else {
 			if (!isSeparator) {
 				g.setColour(MENU_HIGHLIGHT_BACKGROUND_COLOR);
@@ -67,18 +47,7 @@ public:
 				g.setColour(MENU_FONT_COLOR);
 				g.drawRect(area);
 			}
-			drawPopupMenuItemOdin(g,
-			                      area,
-			                      isSeparator,
-			                      isActive,
-			                      false,
-			                      isTicked,
-			                      hasSubMenu,
-			                      text,
-			                      shortcutKeyText,
-			                      icon,
-			                      &m_highlight_text_color,
-			                      font);
+			drawPopupMenuItemOdin(g, area, isSeparator, isActive, false, isTicked, hasSubMenu, text, shortcutKeyText, icon, &m_highlight_text_color);
 		}
 	}
 
@@ -93,8 +62,7 @@ public:
 	                           const String &text,
 	                           const String &shortcutKeyText,
 	                           const Drawable *icon,
-	                           const Colour *const textColourToUse,
-	                           Font p_font) {
+	                           const Colour *const textColourToUse) {
 		if (isSeparator) {
 			auto r = area.reduced(5, 0);
 			r.removeFromTop(roundToInt((r.getHeight() * 0.5f) - 0.5f));
@@ -115,26 +83,16 @@ public:
 				g.setColour(textColour.withMultipliedAlpha(isActive ? 1.0f : 0.5f));
 			}
 
-			r.reduce(jmin(5, area.getWidth() / 20), 0);
+			g.setFont(getPopupMenuFont());
 
-			auto font = getPopupMenuFont();
-
-			auto maxFontHeight = r.getHeight() / 1.3f;
-
-			if (font.getHeight() > maxFontHeight)
-				font.setHeight(maxFontHeight);
-
-			g.setFont(p_font);
-
-			auto iconArea = r.removeFromLeft(roundToInt(maxFontHeight)).toFloat();
+			auto iconArea = r.removeFromLeft(r.proportionOfHeight(0.6f)).toFloat();
 
 			if (icon != nullptr) {
 				icon->drawWithin(g, iconArea, RectanglePlacement::centred | RectanglePlacement::onlyReduceInSize, 1.0f);
-				r.removeFromLeft(roundToInt(maxFontHeight * 0.5f));
+				r.removeFromLeft(r.proportionOfHeight(0.3f));
 			} else if (isTicked) {
 				auto tick = getTickShape(1.0f);
-				g.fillPath(tick,
-				           tick.getTransformToScaleToFit(iconArea.reduced(iconArea.getWidth() / 5, 0).toFloat(), true));
+				g.fillPath(tick, tick.getTransformToScaleToFit(iconArea.reduced(iconArea.getWidth() / 5, 0).toFloat(), true));
 			}
 
 			if (hasSubMenu) {
@@ -155,7 +113,7 @@ public:
 			g.drawFittedText(text, r, Justification::centredLeft, 1);
 
 			if (shortcutKeyText.isNotEmpty()) {
-				auto f2 = font;
+				auto f2 = getPopupMenuFont();
 				f2.setHeight(f2.getHeight() * 0.75f);
 				f2.setHorizontalScale(0.95f);
 				g.setFont(f2);
@@ -166,27 +124,4 @@ public:
 	}
 	Colour m_text_color           = MENU_FONT_COLOR;
 	Colour m_highlight_text_color = MENU_HIGHLIGHT_FONT_COLOR;
-
-	void setGUIBig() {
-		m_GUI_big   = true;
-		m_width     = 240;
-		m_font_size = 21.f;
-	}
-	void setGUISmall() {
-		m_GUI_big   = false;
-		m_width     = 170;
-		m_font_size = 17.f;
-	}
-
-	void setFontSize(float p_size) {
-		m_font_size = p_size;
-	}
-
-	void setWidth(float p_width) {
-		m_width = p_width;
-	}
-
-	float m_font_size = 17.f;
-	float m_width     = 150;
-	bool m_GUI_big    = true;
 };

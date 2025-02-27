@@ -15,55 +15,61 @@
 
 #pragma once
 
-#include "../JuceLibraryCode/JuceHeader.h"
 #include "../GlobalIncludes.h"
+#include "../JuceLibraryCode/JuceHeader.h"
 #include <vector>
 
 class LFODisplayComponent : public Component, public SettableTooltipClient {
 public:
-  LFODisplayComponent();
-  ~LFODisplayComponent();
+	LFODisplayComponent();
+	~LFODisplayComponent();
 
-  void paint(Graphics &) override;
-  void setImage(juce::Image p_panel) { m_panel = p_panel; }
-  void addWave(juce::Image p_wave);
-  void setInlay(int p_inlay) { m_inlay = p_inlay; }
-  int getNrOfWaves() { return (int)m_waves.size(); }
-  void setValue(int p_value) {
-    m_value = p_value;
-    repaint();
-  }
+	void paint(Graphics &) override;
 
-  void mouseDown(const MouseEvent &event) override;
-  void mouseDrag(const MouseEvent &event) override;
-  void mouseUp(const MouseEvent &event) override;
-  std::function<void(const MouseEvent&)> toParentMouseDown = [](const MouseEvent&){};
-  std::function<void(const MouseEvent&)> toParentMouseDrag = [](const MouseEvent&){};
-  std::function<void(const MouseEvent&)> toParentMouseUp = [](const MouseEvent&){};
-  std::function<void()> onClick;
+	int getNrOfWaves() {
+		return (int)m_waves.size();
+	}
 
-  void clearWaves(){
-    m_waves.clear();
-  }
+	void setValue(int p_value) {
+		m_value = p_value;
+		repaint();
+	}
 
-  void setInlayTop(int p_inlay){
-    m_inlay_top = p_inlay;
-  }
+	void resized() override;
 
-  void setInlayLeft(int p_inlay){
-    m_inlay_left = p_inlay;
-  }
+	void mouseEnter(const MouseEvent &event) override;
+	void mouseExit(const MouseEvent &event) override;
+	void mouseDown(const MouseEvent &event) override;
+	void mouseDrag(const MouseEvent &event) override;
+	void mouseUp(const MouseEvent &event) override;
+
+	std::function<void(const MouseEvent &)> toParentMouseDown = [](const MouseEvent &) {};
+	std::function<void(const MouseEvent &)> toParentMouseDrag = [](const MouseEvent &) {};
+	std::function<void(const MouseEvent &)> toParentMouseUp   = [](const MouseEvent &) {};
+	std::function<void()> onClick;
+
+	void clearWaves() {
+		m_waves.clear();
+		m_waves_highlight.clear();
+	}
+
+	static void drawSineImage(juce::Graphics &g, juce::Colour p_col);
+	static void drawSawImage(juce::Graphics &g, juce::Colour p_col);
+	static void drawTriangleImage(juce::Graphics &g, juce::Colour p_col);
+	static void drawSquareImage(juce::Graphics &g, juce::Colour p_col, float p_width);
+	static void drawPointyImage(juce::Graphics &g, juce::Colour p_col);
+	static void drawSHImage(juce::Graphics &g, juce::Colour p_col);
+	static void drawPyramidImage(juce::Graphics &g, juce::Colour p_col, int p_steps);
+	static void drawStepImage(juce::Graphics &g, juce::Colour p_col, int p_steps);
+	static void drawTextImage(juce::Graphics &g, juce::Colour p_col, juce::String p_text);
 
 private:
-  juce::Image m_panel;
-  std::vector<juce::Image> m_waves;
-  int m_inlay = 0;
-  int m_value = 0;
+	int m_value = 0;
 
-  int  m_inlay_top = 0;
-  int  m_inlay_left = 0;
+	std::vector<juce::Image> m_waves;
+	std::vector<juce::Image> m_waves_highlight;
 
+	bool m_highlight = false;
 
-
-  JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(LFODisplayComponent)
+	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(LFODisplayComponent)
 };

@@ -14,28 +14,42 @@
 */
 
 #include "OscComponent.h"
+#include "../ConfigFileManager.h"
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "../PluginProcessor.h"
+#include "JsonGuiProvider.h"
+#include "UIAssetManager.h"
 
-OscComponent::OscComponent(OdinAudioProcessor &p_processor,
-                           AudioProcessorValueTreeState &vts,
-                           const std::string &p_osc_number) :
+OscComponent::OscComponent(OdinAudioProcessor &p_processor, AudioProcessorValueTreeState &vts, const std::string &p_osc_number) :
     m_value_tree(vts),
-    m_reset("reset_button", juce::DrawableButton::ButtonStyle::ImageRaw),
-    m_sync("osc_sync_button", juce::DrawableButton::ButtonStyle::ImageRaw),
-    m_LED_saw("LED_Saw", juce::DrawableButton::ButtonStyle::ImageRaw),
-    m_LED_pulse("LED_pulse", juce::DrawableButton::ButtonStyle::ImageRaw),
-    m_LED_triangle("LED_triangle", juce::DrawableButton::ButtonStyle::ImageRaw),
-    m_LED_sine("LED_sine", juce::DrawableButton::ButtonStyle::ImageRaw),
-    m_arp("arp", juce::DrawableButton::ButtonStyle::ImageRaw),
-    m_step_button("step", juce::DrawableButton::ButtonStyle::ImageRaw),
-    m_noise("noise", juce::DrawableButton::ButtonStyle::ImageRaw),
-    m_chipdraw_convert("convert_chipdraw", juce::DrawableButton::ButtonStyle::ImageRaw),
-    m_wavedraw_convert("convert_wavedraw", juce::DrawableButton::ButtonStyle::ImageRaw),
-    m_specdraw_convert("convert_wavedraw", juce::DrawableButton::ButtonStyle::ImageRaw), m_chiptune_waveselector(true),
-    m_carrier_waveselector(false), m_modulator_waveselector(true), m_wavetable_waveselector(true),
-    m_modulation_source(true), m_carrier_ratio(false), m_modulator_ratio(true), m_fm_exp("fm_exp"),
-    m_xy(vts, "osc" + p_osc_number + "_vec_", m_xy_x, m_xy_y, true), m_osc_number(p_osc_number), m_wavetable_identifier("osc" + p_osc_number + "_wavetable"),
+    m_reset("reset_button", "Reset", OdinButton::Type::button_7x4),
+    m_sync("osc_sync_button", "Sync", OdinButton::Type::button_7x4),
+    m_LED_saw("LED_Saw", "Saw", OdinButton::Type::button_9x4),
+    m_LED_pulse("LED_pulse", "PWM", OdinButton::Type::button_9x4),
+    m_LED_triangle("LED_triangle", "Tri", OdinButton::Type::button_9x4),
+    m_LED_sine("LED_sine", "Sine", OdinButton::Type::button_9x4),
+    m_arp("arp", "", OdinButton::Type::power_4x4),
+    m_step_button("step", "3", OdinButton::Type::button_7x4),
+    m_noise("noise", "Noise", OdinButton::Type::button_7x4),
+    m_carrier_label("Carrier"),
+    m_modulator_label("Modulator"),
+    m_FM_label("FM"),
+    m_PM_label("PM"),
+    m_exponential_label("Exponential"),
+    m_linear_label("Linear"),
+    m_chiptune_waveselector(true),
+    m_carrier_waveselector(false),
+    m_modulator_waveselector(true),
+    m_wavetable_waveselector(true),
+    m_modulation_source(true),
+    m_carrier_ratio(false, NumberSelector::Type::selector_12x4),
+    m_modulator_ratio(true, NumberSelector::Type::selector_12x4),
+    m_fm_exp("fm_exp", LeftRightButton::Type::osc_fm_exp),
+    m_xy(vts, "osc" + p_osc_number + "_vec_", m_xy_x, m_xy_y, true),
+    m_HP_label("HighPass"),
+    m_LP_label("LowPass"),
+    m_osc_number(p_osc_number),
+    m_wavetable_identifier("osc" + p_osc_number + "_wavetable"),
     m_modulation_source_identifier("osc" + p_osc_number + "_mod_source"),
     m_chipwave_identifier("osc" + p_osc_number + "_chipwave"),
     m_modulator_wave_identifier("osc" + p_osc_number + "_modulator_wave"),
@@ -43,9 +57,93 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
     m_modulator_ratio_identifier("osc" + p_osc_number + "_modulator_ratio"),
     m_carrier_ratio_identifier("osc" + p_osc_number + "_carrier_ratio"),
     m_analog_wave_identifier("osc" + p_osc_number + "_analog_wave"),
-    m_vec_a_identifier("osc" + p_osc_number + "_vec_a"), m_vec_b_identifier("osc" + p_osc_number + "_vec_b"),
-    m_vec_c_identifier("osc" + p_osc_number + "_vec_c"), m_vec_d_identifier("osc" + p_osc_number + "_vec_d"),
-    m_pos_mod_identifier("osc" + p_osc_number + "_pos_mod") {
+    m_vec_a_identifier("osc" + p_osc_number + "_vec_a"),
+    m_vec_b_identifier("osc" + p_osc_number + "_vec_b"),
+    m_vec_c_identifier("osc" + p_osc_number + "_vec_c"),
+    m_vec_d_identifier("osc" + p_osc_number + "_vec_d"),
+    m_pos_mod_identifier("osc" + p_osc_number + "_pos_mod"),
+    m_oct_label("Oct"),
+    m_semi_label("Semi"),
+    m_fine_label("Fine"),
+    m_vol_label("Vol"),
+    m_drift_label("Drift"),
+    m_pw_label("PW"),
+    m_chip1_label("1"),
+    m_chip2_label("2"),
+    m_chip_speed_label("Speed"),
+    m_wt_select_label("Wavetable"),
+    m_wt_mod_label("Modulation"),
+    m_wt_pos_label("WT-Position"),
+    m_pos_mod(OdinKnob::Type::knob_8x8a),
+    m_wt_amount_label("Amount"),
+    m_detune_spread_label("WT-Spread"),
+    m_detune_pos_label("WT-Position"),
+    m_detune_label("Detune"),
+    m_detune_wt_label("Wavetable"),
+    m_vec_x_label("X"),
+    m_vec_y_label("Y"),
+    m_vec_a_label("A"),
+    m_vec_b_label("B"),
+    m_vec_c_label("C"),
+    m_vec_d_label("D"),
+    m_oct(OdinKnob::Type::knob_4x4a),
+    m_semi(OdinKnob::Type::knob_4x4a),
+    m_fine(OdinKnob::Type::knob_4x4a),
+    m_vol(OdinKnob::Type::knob_5x5a),
+    m_pw(OdinKnob::Type::knob_8x8a),
+    m_drift(OdinKnob::Type::knob_8x8a),
+    m_position(OdinKnob::Type::knob_8x8a),
+    m_detune(OdinKnob::Type::knob_8x8a),
+    m_spread(OdinKnob::Type::knob_5x5a),
+    m_position_multi(OdinKnob::Type::knob_5x5a),
+    m_xy_x(OdinKnob::Type::knob_5x5a),
+    m_xy_y(OdinKnob::Type::knob_5x5a),
+    m_vec_a(GlassDropdown::Type::dropdown_14x4),
+    m_vec_b(GlassDropdown::Type::dropdown_14x4),
+    m_vec_c(GlassDropdown::Type::dropdown_14x4),
+    m_vec_d(GlassDropdown::Type::dropdown_14x4),
+    m_step_1(OdinKnob::Type::knob_4x4a),
+    m_step_2(OdinKnob::Type::knob_4x4a),
+    m_step_3(OdinKnob::Type::knob_4x4a),
+    m_speed(OdinKnob::Type::knob_8x8a),
+    m_arp_label("ARPEGGIATOR"),
+    m_step_label("Steps:"),
+    m_fm(OdinKnob::Type::knob_8x8a),
+    m_lp(OdinKnob::Type::knob_8x8a),
+    m_hp(OdinKnob::Type::knob_8x8a) {
+
+	addAndMakeVisible(m_HP_label);
+	addAndMakeVisible(m_LP_label);
+	addAndMakeVisible(m_carrier_label);
+	addAndMakeVisible(m_modulator_label);
+	addAndMakeVisible(m_FM_label);
+	addAndMakeVisible(m_PM_label);
+	addAndMakeVisible(m_exponential_label);
+	addAndMakeVisible(m_linear_label);
+
+	addAndMakeVisible(m_chip1_label);
+	addAndMakeVisible(m_chip2_label);
+	addAndMakeVisible(m_chip_speed_label);
+	addAndMakeVisible(m_arp_label);
+	addAndMakeVisible(m_step_label);
+
+	addAndMakeVisible(m_wt_select_label);
+	addAndMakeVisible(m_wt_mod_label);
+	addAndMakeVisible(m_wt_pos_label);
+	addAndMakeVisible(m_wt_amount_label);
+	addAndMakeVisible(m_detune_spread_label);
+	addAndMakeVisible(m_detune_pos_label);
+	addAndMakeVisible(m_detune_label);
+	addAndMakeVisible(m_detune_wt_label);
+	addAndMakeVisible(m_vec_x_label);
+	addAndMakeVisible(m_vec_y_label);
+	addAndMakeVisible(m_vec_a_label);
+	addAndMakeVisible(m_vec_b_label);
+	addAndMakeVisible(m_vec_c_label);
+	addAndMakeVisible(m_vec_d_label);
+
+	m_linear_label.setJustification(Justification::centredLeft);
+	m_exponential_label.setJustification(Justification::centredLeft);
 
 	m_WT_container = p_processor.getWavetableContainerPointer();
 
@@ -56,8 +154,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 	m_position_attach.reset(new OdinKnobAttachment(m_value_tree, "osc" + m_osc_number + "_position", m_position));
 	m_detune_attach.reset(new OdinKnobAttachment(m_value_tree, "osc" + m_osc_number + "_detune", m_detune));
 	m_pos_mod_attach.reset(new OdinKnobAttachment(m_value_tree, "osc" + m_osc_number + "_pos_mod", m_pos_mod));
-	m_multi_position_attach.reset(
-	    new OdinKnobAttachment(m_value_tree, "osc" + m_osc_number + "_multi_position", m_position_multi));
+	m_multi_position_attach.reset(new OdinKnobAttachment(m_value_tree, "osc" + m_osc_number + "_multi_position", m_position_multi));
 	m_spread_attach.reset(new OdinKnobAttachment(m_value_tree, "osc" + m_osc_number + "_spread", m_spread));
 	m_pulsewidth_attach.reset(new OdinKnobAttachment(m_value_tree, "osc" + m_osc_number + "_pulsewidth", m_pw));
 	m_drift_attach.reset(new OdinKnobAttachment(m_value_tree, "osc" + m_osc_number + "_drift", m_drift));
@@ -76,8 +173,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 		m_sync_attach.reset(new OdinButtonAttachment(m_value_tree, "osc" + m_osc_number + "_sync", m_sync));
 	}
 	m_arp_on_attach.reset(new OdinButtonAttachment(m_value_tree, "osc" + m_osc_number + "_arp_on", m_arp));
-	m_step_3_on_attach.reset(
-	    new OdinButtonAttachment(m_value_tree, "osc" + m_osc_number + "_step_3_on", m_step_button));
+	m_step_3_on_attach.reset(new OdinButtonAttachment(m_value_tree, "osc" + m_osc_number + "_step_3_on", m_step_button));
 	m_chipnoise_attach.reset(new OdinButtonAttachment(m_value_tree, "osc" + m_osc_number + "_chipnoise", m_noise));
 	m_exp_fm_attach.reset(new OdinButtonAttachment(m_value_tree, "osc" + m_osc_number + "_exp_fm", m_fm_exp));
 
@@ -112,6 +208,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 	m_oct.setRange(-OCT_RANGE_MAX, OCT_RANGE_MAX);
 	m_oct.setNumDecimalPlacesToDisplay(0);
 	m_oct.setKnobTooltip("The pitch of\nthe oscillator in octaves");
+	m_oct.setNumGuides(9);
 	addChildComponent(m_oct);
 
 	m_semi.setSliderStyle(Slider::RotaryVerticalDrag);
@@ -119,6 +216,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 	m_semi.setRange(-SEMI_RANGE_MAX, SEMI_RANGE_MAX);
 	m_semi.setNumDecimalPlacesToDisplay(0);
 	m_semi.setKnobTooltip("The pitch of\nthe oscillator in semitones");
+	m_semi.setNumGuides(13);
 	addChildComponent(m_semi);
 
 	m_fine.setSliderStyle(Slider::RotaryVerticalDrag);
@@ -177,6 +275,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 	m_pw.setSliderStyle(Slider::RotaryVerticalDrag);
 	m_pw.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
 	m_pw.setKnobTooltip("The pulse width if\nthe pulse wave is selected");
+	m_pw.setNumGuides(0);
 	addChildComponent(m_pw);
 
 	m_drift.setSliderStyle(Slider::RotaryVerticalDrag);
@@ -191,6 +290,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 	m_arp.setAlwaysOnTop(true);
 	m_arp.setTriggeredOnMouseDown(true);
 	m_arp.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
+	m_arp.onClick = [&]() { enableChipArpComponents(); };
 
 	m_noise.setClickingTogglesState(true);
 	m_noise.setTooltip("Switches the oscillator\nto 4Bit noise mode");
@@ -205,6 +305,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 	m_step_button.setAlwaysOnTop(true);
 	m_step_button.setTriggeredOnMouseDown(true);
 	m_step_button.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
+	m_step_button.onClick = [&]() { enableChipArpComponents(); };
 
 	m_step_1.setSliderStyle(Slider::RotaryVerticalDrag);
 	m_step_1.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
@@ -281,64 +382,13 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 	m_speed.setKnobTooltip("Speed of the arpeggiator");
 	addChildComponent(m_speed);
 
-	m_chipdraw_convert.setAlwaysOnTop(true);
-	m_chipdraw_convert.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
-	m_chipdraw_convert.setToggleState(true, sendNotification);
-	m_chipdraw_convert.disableMidiLearn();
-	m_chipdraw_convert.setClickingTogglesState(true);
-	m_chipdraw_convert.setTriggeredOnMouseDown(false);
-	m_chipdraw_convert.onClick = [&]() {
-		if (m_chipdraw_convert.getToggleState()) {
-			createChipdrawTables();
-		}
-		m_chipdraw_convert.setToggleState(true, dontSendNotification);
-	};
-
-	m_chipdraw_convert.setTooltip("Converts the waveform drawn\nin the window. You won't hear\nany changes "
-	                              "before you press\nthis button");
-	addChildComponent(m_chipdraw_convert);
-
-	m_wavedraw_convert.setClickingTogglesState(true);
-	m_wavedraw_convert.setAlwaysOnTop(true);
-	m_wavedraw_convert.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
-	m_wavedraw_convert.setToggleState(true, sendNotification);
-	m_wavedraw_convert.setClickingTogglesState(true);
-	m_wavedraw_convert.setTriggeredOnMouseDown(false);
-	m_wavedraw_convert.onClick = [&]() {
-		if (m_wavedraw_convert.getToggleState()) {
-			createWavedrawTables();
-		}
-		m_wavedraw_convert.setToggleState(true, dontSendNotification);
-	};
-	m_wavedraw_convert.setTooltip("Converts the waveform drawn\nin the window. You won't hear\nany changes "
-	                              "before you press\nthis button");
-	addChildComponent(m_wavedraw_convert);
-	m_wavedraw_convert.disableMidiLearn();
-
-	m_specdraw_convert.setClickingTogglesState(true);
-	m_specdraw_convert.setAlwaysOnTop(true);
-	m_specdraw_convert.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
-	m_specdraw_convert.setToggleState(true, sendNotification);
-	m_specdraw_convert.setClickingTogglesState(true);
-	m_specdraw_convert.setTriggeredOnMouseDown(false);
-	m_specdraw_convert.onClick = [&]() {
-		if (m_specdraw_convert.getToggleState()) {
-			createSpecdrawTables();
-		}
-		m_specdraw_convert.setToggleState(true, dontSendNotification);
-	};
-	m_specdraw_convert.setTooltip("Converts the waveform drawn\nin the window. You won't hear\nany changes "
-	                              "before you press\nthis button");
-	addChildComponent(m_specdraw_convert);
-	m_specdraw_convert.disableMidiLearn();
+	m_wavedraw.onMouseUp = [&] { createWavedrawTables(); };
+	m_chipdraw.onMouseUp = [&] { createChipdrawTables(); };
+	m_specdraw.onMouseUp = [&] { createSpecdrawTables(); };
 
 	juce::Colour chip_color(93, 81, 63);
 
-	m_chiptune_waveselector.OnValueChange = [&](int p_new_value) {
-		m_value_tree.state.getChildWithName("osc").setProperty(m_chipwave_identifier, (float)p_new_value, nullptr);
-	};
-	m_chiptune_waveselector.setTopLeftPosition(WAVE_CHIPTUNE_POS_X, WAVE_CHIPTUNE_POS_Y);
-	m_chiptune_waveselector.setColor(chip_color);
+	m_chiptune_waveselector.OnValueChange = [&](int p_new_value) { m_value_tree.state.getChildWithName("osc").setProperty(m_chipwave_identifier, (float)p_new_value, nullptr); };
 	m_chiptune_waveselector.setTooltip("Selects the wave for the oscillator");
 	addChildComponent(m_chiptune_waveselector);
 
@@ -348,18 +398,18 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 	juce::PopupMenu wavetable_submenu;
 	juce::PopupMenu wavetable_recycle_menu;
 
-#define ADD_WAVETABLE_SUB_MENU(name, number)                                                                           \
-	wavetable_recycle_menu.clear();                                                                                    \
-	wavetable_recycle_menu.addItem(number + 1, (std::string)name + (std::string) " 1");                                \
-	wavetable_recycle_menu.addItem(number + 2, (std::string)name + (std::string) " 2");                                \
-	wavetable_recycle_menu.addItem(number + 3, (std::string)name + (std::string) " 3");                                \
-	wavetable_recycle_menu.addItem(number + 4, (std::string)name + (std::string) " 4");                                \
+#define ADD_WAVETABLE_SUB_MENU(name, number)                                                                                                                                       \
+	wavetable_recycle_menu.clear();                                                                                                                                                \
+	wavetable_recycle_menu.addItem(number + 1, (std::string)name + (std::string) " 1");                                                                                            \
+	wavetable_recycle_menu.addItem(number + 2, (std::string)name + (std::string) " 2");                                                                                            \
+	wavetable_recycle_menu.addItem(number + 3, (std::string)name + (std::string) " 3");                                                                                            \
+	wavetable_recycle_menu.addItem(number + 4, (std::string)name + (std::string) " 4");                                                                                            \
 	wavetable_submenu.addSubMenu(name, wavetable_recycle_menu);
 
-#define ADD_MAP_ENTRY(name, number, selector)                                                                          \
-	selector.addMapEntry((std::string)name + (std::string) " 1", number + 1, number + 2, number - 6);                  \
-	selector.addMapEntry((std::string)name + (std::string) " 2", number + 2, number + 3, number + 1);                  \
-	selector.addMapEntry((std::string)name + (std::string) " 3", number + 3, number + 4, number + 2);                  \
+#define ADD_MAP_ENTRY(name, number, selector)                                                                                                                                      \
+	selector.addMapEntry((std::string)name + (std::string) " 1", number + 1, number + 2, number - 6);                                                                              \
+	selector.addMapEntry((std::string)name + (std::string) " 2", number + 2, number + 3, number + 1);                                                                              \
+	selector.addMapEntry((std::string)name + (std::string) " 3", number + 3, number + 4, number + 2);                                                                              \
 	selector.addMapEntry((std::string)name + (std::string) " 4", number + 4, number + 11, number + 3);
 
 	juce::PopupMenu chiptune_submenu;
@@ -561,6 +611,13 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 	ADD_MAP_ENTRY("MutantSquare A", 440, m_modulator_waveselector)
 	ADD_MAP_ENTRY("MutantSquare B", 450, m_modulator_waveselector)
 
+	addAndMakeVisible(m_oct_label);
+	addAndMakeVisible(m_semi_label);
+	addAndMakeVisible(m_fine_label);
+	addAndMakeVisible(m_vol_label);
+	addAndMakeVisible(m_drift_label);
+	addAndMakeVisible(m_pw_label);
+
 	m_modulator_waveselector.setDecrementValue(121, 104);
 	m_modulator_waveselector.setIncrementValue(454, 501);
 	m_modulator_waveselector.addMapEntry("Sine", 1, 101, 1);
@@ -610,19 +667,12 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 	chip_menu.setLookAndFeel(&m_menu_feels);
 	m_chiptune_waveselector.m_menu = chip_menu;
 
-	m_carrier_waveselector.OnValueChange = [&](int p_new_value) {
-		m_value_tree.state.getChildWithName("osc").setProperty(m_carrier_wave_identifier, (float)p_new_value, nullptr);
-	};
-	m_carrier_waveselector.setTopLeftPosition(WAVE_CARRIER_POS_X, WAVE_CARRIER_POS_Y);
+	m_carrier_waveselector.OnValueChange = [&](int p_new_value) { m_value_tree.state.getChildWithName("osc").setProperty(m_carrier_wave_identifier, (float)p_new_value, nullptr); };
 
-	m_carrier_waveselector.setColor(FM_COLOR);
 	m_carrier_waveselector.setTooltip("Selects the wave for the carrier osc");
 	addChildComponent(m_carrier_waveselector);
 
-	m_wavetable_waveselector.OnValueChange = [&](int p_new_value) {
-		m_value_tree.state.getChildWithName("osc").setProperty(m_wavetable_identifier, (float)p_new_value, nullptr);
-	};
-	m_wavetable_waveselector.setTopLeftPosition(WAVE_CARRIER_POS_X, WAVE_CARRIER_POS_Y);
+	m_wavetable_waveselector.OnValueChange = [&](int p_new_value) { m_value_tree.state.getChildWithName("osc").setProperty(m_wavetable_identifier, (float)p_new_value, nullptr); };
 	m_wavetable_waveselector.addWave(1, "Classic Analog");
 	m_wavetable_waveselector.addWave(2, "Nasal");
 	m_wavetable_waveselector.addWave(3, "Reed");
@@ -662,7 +712,6 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 	m_wavetable_waveselector.setTooltip("Selects the waveform for the oscillator");
 	addChildComponent(m_wavetable_waveselector);
 
-	m_modulation_source.setTopLeftPosition(POS_MODULATION_X, POS_MODULATION_Y);
 	m_modulation_source.addWave(1, "ModEnvelope");
 	m_modulation_source.addWave(10, "LFO 1");
 	//just toggle for this one
@@ -672,18 +721,13 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 	m_modulation_source.setDecrementValue(10, 1);
 	m_modulation_source.setTooltip("Select which source modulates the wavetable position");
 	m_modulation_source.OnValueChange = [&](int p_new_value) {
-		m_value_tree.state.getChildWithName("osc").setProperty(
-		    m_modulation_source_identifier, (float)p_new_value, nullptr);
+		m_value_tree.state.getChildWithName("osc").setProperty(m_modulation_source_identifier, (float)p_new_value, nullptr);
 	};
-	m_modulation_source.setColor(WAVETABLE_DROPDOWN_COLOR);
 	addChildComponent(m_modulation_source);
 
 	m_modulator_waveselector.OnValueChange = [&](int p_new_value) {
-		m_value_tree.state.getChildWithName("osc").setProperty(
-		    m_modulator_wave_identifier, (float)p_new_value, nullptr);
+		m_value_tree.state.getChildWithName("osc").setProperty(m_modulator_wave_identifier, (float)p_new_value, nullptr);
 	};
-	m_modulator_waveselector.setTopLeftPosition(WAVE_MODULATOR_POS_X, WAVE_MODULATOR_POS_Y);
-	m_modulator_waveselector.setColor(FM_COLOR);
 	m_modulator_waveselector.setTooltip("Selects the waveform for the modulator osc");
 	addChildComponent(m_modulator_waveselector);
 
@@ -691,9 +735,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 		//SETAUDIOFULLRANGE(m_carrier_ratio_identifier, p_new_value);
 		m_value_tree.state.getChildWithName("osc").setProperty(m_carrier_ratio_identifier, p_new_value, nullptr);
 	};
-	m_carrier_ratio.setTopLeftPosition(RATIO_CARRIER_POS_X, RATIO_CARRIER_POS_Y);
 	m_carrier_ratio.setRange(1, 16);
-	m_carrier_ratio.setColor(FM_COLOR);
 	m_carrier_ratio.setTooltip("The pitch ratio of the carrier to base frequency");
 	m_carrier_ratio.setMouseDragDivisor(20.f);
 
@@ -703,9 +745,7 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 		//SETAUDIOFULLRANGE(m_modulator_ratio_identifier, p_new_value);
 		m_value_tree.state.getChildWithName("osc").setProperty(m_modulator_ratio_identifier, p_new_value, nullptr);
 	};
-	m_modulator_ratio.setTopLeftPosition(RATIO_MODULATOR_POS_X, RATIO_MODULATOR_POS_Y);
 	m_modulator_ratio.setRange(1, 16);
-	m_modulator_ratio.setColor(FM_COLOR);
 	m_modulator_ratio.setTooltip("The pitch ratio of the modulator to base frequency");
 	m_modulator_ratio.setMouseDragDivisor(20.f);
 	addChildComponent(m_modulator_ratio);
@@ -715,87 +755,58 @@ OscComponent::OscComponent(OdinAudioProcessor &p_processor,
 	                    "musical character to it, as it preserves the perceived note pitch.");
 	addChildComponent(m_fm_exp);
 
-	m_chipdraw.setTopLeftPosition(CHIPDRAW_POSITION_X, CHIPDRAW_POSITION_Y);
-	m_chipdraw.setColor(chip_color);
 	m_chipdraw.setDrawColor(juce::Colour(238, 230, 217));
-	m_chipdraw.onDraw = [&]() { m_chipdraw_convert.setToggleState(false, dontSendNotification); };
-	m_chipdraw.setTooltip("Draw a custom 4Bit waveform.\n\nDon't forget to apply "
-	                      "your waveform with the button on the bottom right.");
+	m_chipdraw.setTooltip("Draw a custom 4Bit waveform.");
 	addChildComponent(m_chipdraw);
 
 	juce::Colour wave_color(71, 92, 108);
 	juce::Colour wave_draw_color(99, 165, 236);
 
-	m_wavedraw.setTopLeftPosition(CHIPDRAW_POSITION_X, CHIPDRAW_POSITION_Y);
-	m_wavedraw.setColor(wave_color);
 	m_wavedraw.setDrawColor(wave_draw_color);
-	m_wavedraw.onDraw = [&]() { m_wavedraw_convert.setToggleState(false, dontSendNotification); };
-	m_wavedraw.setTooltip("Become the Picasso of music production.\n\nDon't forget to apply your "
-	                      "waveform with the button on the bottom right.");
+	m_wavedraw.setTooltip("Become the Picasso of music production and draw your own waveform.");
 	addChildComponent(m_wavedraw);
 
 	juce::Colour spec_color(61, 80, 70);
 	juce::Colour spec_draw_color(116, 180, 147);
 
-	m_specdraw.setTopLeftPosition(CHIPDRAW_POSITION_X, CHIPDRAW_POSITION_Y);
-	m_specdraw.setColor(spec_color);
 	m_specdraw.setDrawColor(spec_draw_color);
-	m_specdraw.onDraw = [&]() { m_specdraw_convert.setToggleState(false, dontSendNotification); };
 	m_specdraw.setTooltip("Draw the spectrum of the oscillator. A single peak corresponds to a "
-	                      "sine function.\n\nDon't forget to apply your waveform with the button "
-	                      "on the bottom right.");
+	                      "sine function.");
 	addChildComponent(m_specdraw);
 
 	juce::Colour vector_color(25, 50, 60);
 
 	m_xy.setInlay(1);
-	m_xy.setColor(vector_color);
 	m_xy.setTooltip("Transition seamlessly through four waveforms. Each corner contains a "
-	                "waveform, which can be selected by the dropdowns on the right.");
+	                "waveform, which can be selected by the dropdowns to the right.");
 	addAndMakeVisible(m_xy);
 
 	m_vec_a.setInlay(1);
 	m_vec_a.setEditableText(false);
 	m_vec_a.setSelectedId(101, dontSendNotification);
-	m_vec_a.setColor(vector_color);
 	m_vec_a.setTooltip("Select the waveform to the bottom left of the XY pad");
-	m_vec_a.onChange = [&]() {
-		m_value_tree.state.getChildWithName("osc").setProperty(
-		    m_vec_a_identifier, (float)m_vec_a.getSelectedId(), nullptr);
-	};
+	m_vec_a.onChange = [&]() { m_value_tree.state.getChildWithName("osc").setProperty(m_vec_a_identifier, (float)m_vec_a.getSelectedId(), nullptr); };
 	addChildComponent(m_vec_a);
 
 	m_vec_b.setInlay(1);
 	m_vec_b.setEditableText(false);
 	m_vec_b.setSelectedId(102, dontSendNotification);
-	m_vec_b.setColor(vector_color);
 	m_vec_b.setTooltip("Select the waveform to the top left of the XY pad");
-	m_vec_b.onChange = [&]() {
-		m_value_tree.state.getChildWithName("osc").setProperty(
-		    m_vec_b_identifier, (float)m_vec_b.getSelectedId(), nullptr);
-	};
+	m_vec_b.onChange = [&]() { m_value_tree.state.getChildWithName("osc").setProperty(m_vec_b_identifier, (float)m_vec_b.getSelectedId(), nullptr); };
 	addChildComponent(m_vec_b);
 
 	m_vec_c.setInlay(1);
 	m_vec_c.setEditableText(false);
 	m_vec_c.setSelectedId(103, dontSendNotification);
-	m_vec_c.setColor(vector_color);
 	m_vec_c.setTooltip("Select the waveform to the top right of the XY pad");
-	m_vec_c.onChange = [&]() {
-		m_value_tree.state.getChildWithName("osc").setProperty(
-		    m_vec_c_identifier, (float)m_vec_c.getSelectedId(), nullptr);
-	};
+	m_vec_c.onChange = [&]() { m_value_tree.state.getChildWithName("osc").setProperty(m_vec_c_identifier, (float)m_vec_c.getSelectedId(), nullptr); };
 	addChildComponent(m_vec_c);
 
 	m_vec_d.setInlay(1);
 	m_vec_d.setEditableText(false);
 	m_vec_d.setSelectedId(104, dontSendNotification);
-	m_vec_d.setColor(vector_color);
 	m_vec_d.setTooltip("Select the waveform to the bottom right of the XY pad");
-	m_vec_d.onChange = [&]() {
-		m_value_tree.state.getChildWithName("osc").setProperty(
-		    m_vec_d_identifier, (float)m_vec_d.getSelectedId(), nullptr);
-	};
+	m_vec_d.onChange = [&]() { m_value_tree.state.getChildWithName("osc").setProperty(m_vec_d_identifier, (float)m_vec_d.getSelectedId(), nullptr); };
 	addChildComponent(m_vec_d);
 
 	m_xy_x.setSliderStyle(Slider::RotaryVerticalDrag);
@@ -879,7 +890,54 @@ void OscComponent::resetVectorWaves() {
 
 void OscComponent::paint(Graphics &g) {
 	SET_INTERPOLATION_QUALITY(g)
-	g.drawImageAt(m_background, 0, 0);
+
+	auto asset = UIAssets::Indices::Oscillator_Analog;
+	switch (m_osc_type) {
+	case 1:
+		return;
+		break;
+	case OSC_TYPE_ANALOG:
+		asset = UIAssets::Indices::Oscillator_Analog;
+		break;
+	case OSC_TYPE_WAVETABLE:
+		asset = UIAssets::Indices::Oscillator_Wavetable;
+		break;
+	case OSC_TYPE_MULTI:
+		asset = UIAssets::Indices::Oscillator_Multi;
+		break;
+	case OSC_TYPE_VECTOR:
+		asset = UIAssets::Indices::Oscillator_Vector;
+		break;
+	case OSC_TYPE_CHIPTUNE:
+		asset = UIAssets::Indices::Oscillator_Chiptune;
+		break;
+	case OSC_TYPE_FM:
+		asset = UIAssets::Indices::Oscillator_FM;
+		break;
+	case OSC_TYPE_PM:
+		asset = UIAssets::Indices::Oscillator_PM;
+		break;
+	case OSC_TYPE_NOISE:
+		asset = UIAssets::Indices::Oscillator_Noise;
+		break;
+	case OSC_TYPE_WAVEDRAW:
+		asset = UIAssets::Indices::Oscillator_WaveDraw;
+		break;
+	case OSC_TYPE_CHIPDRAW:
+		asset = UIAssets::Indices::Oscillator_ChipDraw;
+		break;
+	case OSC_TYPE_SPECDRAW:
+		asset = UIAssets::Indices::Oscillator_SpecDraw;
+		break;
+	default:
+		return;
+		break;
+	}
+
+	auto background = UIAssetManager::getInstance()->getUIAsset(asset, ConfigFileManager::getInstance().getOptionGuiScale());
+	jassert(background.getWidth() == getWidth());
+	jassert(background.getHeight() == getHeight());
+	g.drawImageAt(background, 0, 0);
 }
 
 void OscComponent::setOscType(int p_osc_type, bool p_force) {
@@ -932,121 +990,55 @@ void OscComponent::setOscType(int p_osc_type, bool p_force) {
 		setOscTypeBypass();
 		break;
 	}
+
+	resized();
 	repaint();
 }
+
 void OscComponent::setOscTypeBypass() {
 	m_background = m_background_bypass;
 }
 
 void OscComponent::setOscTypeAnalog() {
-	if (m_GUI_big) {
-		m_background =
-		    ImageCache::getFromMemory(BinaryData::analog_backdrop_150_png, BinaryData::analog_backdrop_150_pngSize);
-	} else {
-		m_background = ImageCache::getFromMemory(BinaryData::analog_backdrop_png, BinaryData::analog_backdrop_pngSize);
-	}
 	showAnalogComponents();
 }
 void OscComponent::setOscTypeChiptune() {
-	if (m_GUI_big) {
-		m_background =
-		    ImageCache::getFromMemory(BinaryData::chiptune_backdrop_150_png, BinaryData::chiptune_backdrop_150_pngSize);
-	} else {
-		m_background =
-		    ImageCache::getFromMemory(BinaryData::chiptune_backdrop_png, BinaryData::chiptune_backdrop_pngSize);
-	}
 	showChiptuneComponents();
 }
 
 void OscComponent::setOscTypeFM() {
-	if (m_GUI_big) {
-		m_background = ImageCache::getFromMemory(BinaryData::fm_backdrop_150_png, BinaryData::fm_backdrop_150_pngSize);
-	} else {
-		m_background = ImageCache::getFromMemory(BinaryData::fm_backdrop_png, BinaryData::fm_backdrop_pngSize);
-	}
 	showFMComponents();
 }
 
 void OscComponent::setOscTypePM() {
-	if (m_GUI_big) {
-		m_background = ImageCache::getFromMemory(BinaryData::pm_backdrop_150_png, BinaryData::pm_backdrop_150_pngSize);
-	} else {
-		m_background = ImageCache::getFromMemory(BinaryData::pm_backdrop_png, BinaryData::pm_backdrop_pngSize);
-	}
 	showPMComponents();
 }
 
 void OscComponent::setOscTypeChipdraw() {
-	if (m_GUI_big) {
-		m_background =
-		    ImageCache::getFromMemory(BinaryData::chipdraw_backdrop_150_png, BinaryData::chipdraw_backdrop_150_pngSize);
-	} else {
-		m_background =
-		    ImageCache::getFromMemory(BinaryData::chipdraw_backdrop_png, BinaryData::chipdraw_backdrop_pngSize);
-	}
 	showChipdrawComponents();
 }
 
 void OscComponent::setOscTypeWavedraw() {
-	if (m_GUI_big) {
-		m_background =
-		    ImageCache::getFromMemory(BinaryData::wavedraw_backdrop_150_png, BinaryData::wavedraw_backdrop_150_pngSize);
-	} else {
-		m_background =
-		    ImageCache::getFromMemory(BinaryData::wavedraw_backdrop_png, BinaryData::wavedraw_backdrop_pngSize);
-	}
 	showWavedrawComponents();
 }
 
 void OscComponent::setOscTypeSpecdraw() {
-	if (m_GUI_big) {
-		m_background =
-		    ImageCache::getFromMemory(BinaryData::specdraw_backdrop_150_png, BinaryData::specdraw_backdrop_150_pngSize);
-	} else {
-		m_background =
-		    ImageCache::getFromMemory(BinaryData::specdraw_backdrop_png, BinaryData::specdraw_backdrop_pngSize);
-	}
 	showSpecdrawComponents();
 }
 
 void OscComponent::setOscTypeNoise() {
-	if (m_GUI_big) {
-		m_background =
-		    ImageCache::getFromMemory(BinaryData::noise_backdrop_150_png, BinaryData::noise_backdrop_150_pngSize);
-	} else {
-		m_background = ImageCache::getFromMemory(BinaryData::noise_backdrop_png, BinaryData::noise_backdrop_pngSize);
-	}
 	showNoiseComponents();
 }
 
 void OscComponent::setOscTypeVector() {
-	if (m_GUI_big) {
-		m_background =
-		    ImageCache::getFromMemory(BinaryData::vector_backdrop_150_png, BinaryData::vector_backdrop_150_pngSize);
-	} else {
-		m_background = ImageCache::getFromMemory(BinaryData::vector_backdrop_png, BinaryData::vector_backdrop_pngSize);
-	}
 	showVectorComponents();
 }
 
 void OscComponent::setOscTypeWavetable() {
-	if (m_GUI_big) {
-		m_background = ImageCache::getFromMemory(BinaryData::wavetable_backdrop_150_png,
-		                                         BinaryData::wavetable_backdrop_150_pngSize);
-	} else {
-		m_background =
-		    ImageCache::getFromMemory(BinaryData::wavetable_backdrop_png, BinaryData::wavetable_backdrop_pngSize);
-	}
 	showWavetableComponents();
 }
 
 void OscComponent::setOscTypeMulti() {
-	if (m_GUI_big) {
-		m_background =
-		    ImageCache::getFromMemory(BinaryData::multi_backdrop_150_png, BinaryData::multi_backdrop_150_pngSize);
-	} else {
-		m_background = ImageCache::getFromMemory(BinaryData::multi_backdrop_png, BinaryData::multi_backdrop_pngSize);
-	}
 	showMultiComponents();
 }
 
@@ -1077,11 +1069,8 @@ void OscComponent::hideAllComponents() {
 	m_fm.setVisible(false);
 	m_fm_exp.setVisible(false);
 	m_chipdraw.setVisible(false);
-	m_chipdraw_convert.setVisible(false);
 	m_wavedraw.setVisible(false);
-	m_wavedraw_convert.setVisible(false);
 	m_specdraw.setVisible(false);
-	m_specdraw_convert.setVisible(false);
 	m_lp.setVisible(false);
 	m_hp.setVisible(false);
 	m_xy.setVisible(false);
@@ -1099,9 +1088,43 @@ void OscComponent::hideAllComponents() {
 	m_modulation_source.setVisible(false);
 	m_sync.setVisible(false);
 	m_pos_mod.setVisible(false);
+	m_oct_label.setVisible(false);
+	m_semi_label.setVisible(false);
+	m_fine_label.setVisible(false);
+	m_vol_label.setVisible(false);
+	m_drift_label.setVisible(false);
+	m_pw_label.setVisible(false);
+	m_wt_select_label.setVisible(false);
+	m_wt_mod_label.setVisible(false);
+	m_wt_pos_label.setVisible(false);
+	m_wt_amount_label.setVisible(false);
+	m_detune_spread_label.setVisible(false);
+	m_detune_pos_label.setVisible(false);
+	m_detune_label.setVisible(false);
+	m_detune_wt_label.setVisible(false);
+	m_vec_x_label.setVisible(false);
+	m_vec_y_label.setVisible(false);
+	m_vec_a_label.setVisible(false);
+	m_vec_b_label.setVisible(false);
+	m_vec_c_label.setVisible(false);
+	m_vec_d_label.setVisible(false);
+	m_chip1_label.setVisible(false);
+	m_chip2_label.setVisible(false);
+	m_chip_speed_label.setVisible(false);
+	m_arp_label.setVisible(false);
+	m_step_label.setVisible(false);
+	m_carrier_label.setVisible(false);
+	m_modulator_label.setVisible(false);
+	m_FM_label.setVisible(false);
+	m_PM_label.setVisible(false);
+	m_exponential_label.setVisible(false);
+	m_linear_label.setVisible(false);
+	m_HP_label.setVisible(false);
+	m_LP_label.setVisible(false);
 }
 void OscComponent::showVolComponent() {
 	m_vol.setVisible(true);
+	m_vol_label.setVisible(true);
 }
 
 void OscComponent::showPitchComponents() {
@@ -1109,6 +1132,9 @@ void OscComponent::showPitchComponents() {
 	m_semi.setVisible(true);
 	m_fine.setVisible(true);
 	m_reset.setVisible(true);
+	m_oct_label.setVisible(true);
+	m_semi_label.setVisible(true);
+	m_fine_label.setVisible(true);
 }
 
 void OscComponent::showAnalogComponents() {
@@ -1120,7 +1146,9 @@ void OscComponent::showAnalogComponents() {
 	m_LED_pulse.setVisible(true);
 	m_LED_triangle.setVisible(true);
 	m_LED_sine.setVisible(true);
+	m_drift_label.setVisible(true);
 	m_sync.setVisible(true);
+	m_pw_label.setVisible(true);
 }
 
 void OscComponent::showChiptuneComponents() {
@@ -1135,6 +1163,11 @@ void OscComponent::showChiptuneComponents() {
 	m_noise.setVisible(true);
 	m_chiptune_waveselector.setVisible(true);
 	m_sync.setVisible(true);
+	m_chip1_label.setVisible(true);
+	m_chip2_label.setVisible(true);
+	m_chip_speed_label.setVisible(true);
+	m_arp_label.setVisible(true);
+	m_step_label.setVisible(true);
 }
 
 void OscComponent::showFMComponents() {
@@ -1147,10 +1180,11 @@ void OscComponent::showFMComponents() {
 	m_fm.setVisible(true);
 	m_fm_exp.setVisible(true);
 
-	m_carrier_waveselector.setColor(FM_COLOR);
-	m_modulator_waveselector.setColor(FM_COLOR);
-	m_carrier_ratio.setColor(FM_COLOR);
-	m_modulator_ratio.setColor(FM_COLOR);
+	m_carrier_label.setVisible(true);
+	m_modulator_label.setVisible(true);
+	m_FM_label.setVisible(true);
+	m_exponential_label.setVisible(true);
+	m_linear_label.setVisible(true);
 }
 
 void OscComponent::showPMComponents() {
@@ -1161,18 +1195,15 @@ void OscComponent::showPMComponents() {
 	m_carrier_ratio.setVisible(true);
 	m_modulator_ratio.setVisible(true);
 	m_fm.setVisible(true);
-
-	m_carrier_waveselector.setColor(PM_COLOR);
-	m_modulator_waveselector.setColor(PM_COLOR);
-	m_carrier_ratio.setColor(PM_COLOR);
-	m_modulator_ratio.setColor(PM_COLOR);
+	m_carrier_label.setVisible(true);
+	m_modulator_label.setVisible(true);
+	m_PM_label.setVisible(true);
 }
 
 void OscComponent::showChipdrawComponents() {
 	showVolComponent();
 	showPitchComponents();
 	m_chipdraw.setVisible(true);
-	m_chipdraw_convert.setVisible(true);
 	m_sync.setVisible(true);
 }
 
@@ -1180,7 +1211,6 @@ void OscComponent::showWavedrawComponents() {
 	showVolComponent();
 	showPitchComponents();
 	m_wavedraw.setVisible(true);
-	m_wavedraw_convert.setVisible(true);
 	m_sync.setVisible(true);
 }
 
@@ -1188,13 +1218,18 @@ void OscComponent::showSpecdrawComponents() {
 	showVolComponent();
 	showPitchComponents();
 	m_specdraw.setVisible(true);
-	m_specdraw_convert.setVisible(true);
 	m_sync.setVisible(true);
 }
 
 void OscComponent::showVectorComponents() {
 	showVolComponent();
 	showPitchComponents();
+	m_vec_x_label.setVisible(true);
+	m_vec_y_label.setVisible(true);
+	m_vec_a_label.setVisible(true);
+	m_vec_b_label.setVisible(true);
+	m_vec_c_label.setVisible(true);
+	m_vec_d_label.setVisible(true);
 	m_xy.setVisible(true);
 	m_vec_a.setVisible(true);
 	m_vec_b.setVisible(true);
@@ -1208,13 +1243,10 @@ void OscComponent::showVectorComponents() {
 void OscComponent::showWavetableComponents() {
 	showVolComponent();
 	showPitchComponents();
-	m_wavetable_waveselector.setColor(WAVETABLE_DROPDOWN_COLOR);
-	if (m_GUI_big) {
-		m_wavetable_waveselector.setTopLeftPosition(OdinHelper::c150(WAVETABLE_WAVE_X),
-		                                            OdinHelper::c150(WAVETABLE_WAVE_Y));
-	} else {
-		m_wavetable_waveselector.setTopLeftPosition(WAVETABLE_WAVE_X, WAVETABLE_WAVE_Y);
-	}
+	m_wt_select_label.setVisible(true);
+	m_wt_mod_label.setVisible(true);
+	m_wt_pos_label.setVisible(true);
+	m_wt_amount_label.setVisible(true);
 	m_position.setVisible(true);
 	m_wavetable_waveselector.setVisible(true);
 	m_sync.setVisible(true);
@@ -1225,16 +1257,13 @@ void OscComponent::showWavetableComponents() {
 void OscComponent::showMultiComponents() {
 	showVolComponent();
 	showPitchComponents();
+	m_detune_spread_label.setVisible(true);
+	m_detune_pos_label.setVisible(true);
+	m_detune_label.setVisible(true);
+	m_detune_wt_label.setVisible(true);
 	m_position_multi.setVisible(true);
 	m_spread.setVisible(true);
 	m_detune.setVisible(true);
-
-	m_wavetable_waveselector.setColor(MULTI_DROPDOWN_COLOR);
-	if (m_GUI_big) {
-		m_wavetable_waveselector.setTopLeftPosition(OdinHelper::c150(MULTI_WAVE_X), OdinHelper::c150(MULTI_WAVE_Y));
-	} else {
-		m_wavetable_waveselector.setTopLeftPosition(MULTI_WAVE_X, MULTI_WAVE_Y);
-	}
 	m_wavetable_waveselector.setVisible(true);
 }
 
@@ -1242,6 +1271,8 @@ void OscComponent::showNoiseComponents() {
 	showVolComponent();
 	m_lp.setVisible(true);
 	m_hp.setVisible(true);
+	m_HP_label.setVisible(true);
+	m_LP_label.setVisible(true);
 }
 
 void OscComponent::createWavedrawTables() {
@@ -1322,8 +1353,8 @@ void OscComponent::forceValueTreeOntoComponents(ValueTree p_tree, int p_index, b
 	m_vec_c.setSelectedId(m_value_tree.state.getChildWithName("osc")[m_vec_c_identifier]);
 	m_vec_d.setSelectedId(m_value_tree.state.getChildWithName("osc")[m_vec_d_identifier]);
 
-	m_xy.setX(GETAUDIO( "osc" + m_osc_number + "_vec_x"));
-	m_xy.setY(GETAUDIO( "osc" + m_osc_number + "_vec_y"));
+	m_xy.setX(GETAUDIO("osc" + m_osc_number + "_vec_x"));
+	m_xy.setY(GETAUDIO("osc" + m_osc_number + "_vec_y"));
 
 	// fm
 	m_carrier_waveselector.setValue(m_value_tree.state.getChildWithName("osc")[m_carrier_wave_identifier]);
@@ -1338,8 +1369,7 @@ void OscComponent::forceValueTreeOntoComponents(ValueTree p_tree, int p_index, b
 	m_fm_exp.setValue(m_value_tree.getParameterAsValue("osc" + m_osc_number + "_exp_fm").getValue());
 
 	// chiptune
-	m_chiptune_waveselector.setValue(
-	    m_value_tree.state.getChildWithName("osc")[String("osc" + m_osc_number + "_chipwave")]);
+	m_chiptune_waveselector.setValue(m_value_tree.state.getChildWithName("osc")[String("osc" + m_osc_number + "_chipwave")]);
 	auto node = m_value_tree.state;
 
 	node = m_value_tree.state.getChildWithName("draw");
@@ -1351,878 +1381,138 @@ void OscComponent::forceValueTreeOntoComponents(ValueTree p_tree, int p_index, b
 	}
 
 	m_wavedraw.setDrawnTable(wavedraw_values);
-	m_wavedraw_convert.setToggleState(true, dontSendNotification);
 
 	// chipdraw
 	for (int i = 0; i < CHIPDRAW_STEPS_X; ++i) {
 		wavedraw_values[i] = (float)node[String("osc" + m_osc_number + "_chipdraw_values_" + std::to_string(i))];
 	}
 	m_chipdraw.setDrawnTable(wavedraw_values);
-	m_chipdraw_convert.setToggleState(true, dontSendNotification);
 
 	// specdraw
 	for (int i = 0; i < SPECDRAW_STEPS_X; ++i) {
 		wavedraw_values[i] = (float)node[String("osc" + m_osc_number + "_specdraw_values_" + std::to_string(i))];
 	}
 	m_specdraw.setDrawnTable(wavedraw_values);
-	m_specdraw_convert.setToggleState(true, dontSendNotification);
 
 	if (p_create_wavetables) {
 		createWavedrawTables();
 		createChipdrawTables();
 		createSpecdrawTables();
 	}
+
+	enableChipArpComponents();
 }
 
-void OscComponent::setGUIBig() {
-	m_GUI_big = true;
+void OscComponent::resized() {
 
-	m_vol.setStrip(
-	    ImageCache::getFromMemory(BinaryData::black_knob_small_150_png, BinaryData::black_knob_small_150_pngSize),
-	    N_KNOB_FRAMES);
+	GET_LOCAL_AREA(m_wt_select_label, "OscWtSelectLabel");
+	GET_LOCAL_AREA(m_wt_mod_label, "OscWtModLabel");
+	GET_LOCAL_AREA(m_wt_pos_label, "OscWtPosLabel");
+	GET_LOCAL_AREA(m_wt_amount_label, "OscWtAmountLabel");
+	GET_LOCAL_AREA(m_detune_spread_label, "OscDetuneSpreadLabel");
+	GET_LOCAL_AREA(m_detune_pos_label, "OscDetunePosLabel");
+	GET_LOCAL_AREA(m_detune_label, "OscDetuneLabel");
+	GET_LOCAL_AREA(m_detune_wt_label, "OscDetuneWtLabel");
+	GET_LOCAL_AREA(m_vec_x_label, "OscVecXLabel");
+	GET_LOCAL_AREA(m_vec_y_label, "OscVecYLabel");
+	GET_LOCAL_AREA(m_vec_a_label, "OscVecALabel");
+	GET_LOCAL_AREA(m_vec_b_label, "OscVecBLabel");
+	GET_LOCAL_AREA(m_vec_c_label, "OscVecCLabel");
+	GET_LOCAL_AREA(m_vec_d_label, "OscVecDLabel");
+	GET_LOCAL_AREA(m_chip1_label, "Chip1Label");
+	GET_LOCAL_AREA(m_chip2_label, "Chip2Label");
+	GET_LOCAL_AREA(m_chip_speed_label, "ChipSpeedLabel");
+	GET_LOCAL_AREA(m_arp_label, "ChipArpLabel");
+	GET_LOCAL_AREA(m_step_label, "ChipStepLabel");
+	GET_LOCAL_AREA(m_carrier_label, "CarrierLabel");
+	GET_LOCAL_AREA(m_modulator_label, "ModulatorLabel");
+	GET_LOCAL_AREA(m_exponential_label, "FmExpLabel");
+	GET_LOCAL_AREA(m_linear_label, "FmLinLabel");
+	GET_LOCAL_AREA(m_FM_label, "FmLabel");
+	GET_LOCAL_AREA(m_PM_label, "FmLabel");
+	GET_LOCAL_AREA(m_HP_label, "NoiseHpLabel");
+	GET_LOCAL_AREA(m_LP_label, "NoiseLpLabel");
 
-	m_vol.setBounds(OdinHelper::c150(VOL_POS_X) - OdinHelper::c150(BLACK_KNOB_SMALL_OFFSET_X),
-	                OdinHelper::c150(VOL_POS_Y) - OdinHelper::c150(BLACK_KNOB_SMALL_OFFSET_Y),
-	                OdinHelper::c150(BLACK_KNOB_SMALL_SIZE_X),
-	                OdinHelper::c150(BLACK_KNOB_SMALL_SIZE_Y));
+	GET_LOCAL_AREA(m_oct_label, "Osc_oct_label");
+	GET_LOCAL_AREA(m_semi_label, "Osc_semi_label");
+	GET_LOCAL_AREA(m_fine_label, "Osc_fine_label");
+	GET_LOCAL_AREA(m_vol_label, "Osc_vol_label");
+	GET_LOCAL_AREA(m_drift_label, "Osc_drift_label");
+	GET_LOCAL_AREA(m_pw_label, "Osc_pw_label");
+	GET_LOCAL_AREA(m_vol, "OscVol");
+	GET_LOCAL_AREA(m_reset, "OscReset");
+	GET_LOCAL_AREA(m_sync, "OscSync");
+	GET_LOCAL_AREA(m_oct, "OscOct");
+	GET_LOCAL_AREA(m_semi, "OscSemi");
+	GET_LOCAL_AREA(m_fine, "OscFine");
+	GET_LOCAL_AREA(m_LED_saw, "OscSawLED");
+	GET_LOCAL_AREA(m_LED_pulse, "OscPulseLED");
+	GET_LOCAL_AREA(m_LED_triangle, "OscTriangleLED");
+	GET_LOCAL_AREA(m_LED_sine, "OscSineLED");
+	GET_LOCAL_AREA(m_pw, "OscPW");
+	GET_LOCAL_AREA(m_drift, "OscDrift");
+	GET_LOCAL_AREA(m_arp, "OscArpeggiator");
+	GET_LOCAL_AREA(m_noise, "OscNoise");
 
-	juce::Image reset_1 =
-	    ImageCache::getFromMemory(BinaryData::buttonreset_osc_1_150_png, BinaryData::buttonreset_osc_1_150_pngSize);
-	juce::Image reset_2 =
-	    ImageCache::getFromMemory(BinaryData::buttonreset_osc_2_150_png, BinaryData::buttonreset_osc_2_150_pngSize);
-	juce::Image reset_3 =
-	    ImageCache::getFromMemory(BinaryData::buttonreset_osc_3_150_png, BinaryData::buttonreset_osc_3_150_pngSize);
-	juce::Image reset_4 =
-	    ImageCache::getFromMemory(BinaryData::buttonreset_osc_4_150_png, BinaryData::buttonreset_osc_4_150_pngSize);
+	// note: the 4x4 arp knobs were faultily placed at 0.5 grid cells now we need to align the step button below
+	// by offsetting it half a grid cell to the left
+	const auto grid = ConfigFileManager::getInstance().getOptionGuiScale();
+	GET_LOCAL_AREA(m_step_button, "OscStep");
+	m_step_button.setBounds(m_step_button.getBounds().translated(-grid / 2, 0));
 
-	juce::DrawableImage reset_draw1;
-	juce::DrawableImage reset_draw2;
-	juce::DrawableImage reset_draw3;
-	juce::DrawableImage reset_draw4;
+	GET_LOCAL_AREA(m_step_1, "OscStep1");
+	GET_LOCAL_AREA(m_step_2, "OscStep2");
+	GET_LOCAL_AREA(m_step_3, "OscStep3");
+	GET_LOCAL_AREA(m_fm, "OscFM");
+	GET_LOCAL_AREA(m_lp, "OscLP");
+	GET_LOCAL_AREA(m_hp, "OscHP");
+	GET_LOCAL_AREA(m_position, "OscPos");
+	GET_LOCAL_AREA(m_pos_mod, "OscPosMod");
+	GET_LOCAL_AREA(m_detune, "OscDetune");
+	GET_LOCAL_AREA(m_position_multi, "OscPositionMulti");
+	GET_LOCAL_AREA(m_spread, "OscSpread");
+	GET_LOCAL_AREA(m_speed, "OscSpeed");
+	GET_LOCAL_AREA(m_modulator_ratio, "OscModRatio");
+	GET_LOCAL_AREA(m_carrier_ratio, "OscCarrRatio");
+	GET_LOCAL_AREA(m_fm_exp, "OscFmExp");
 
-	reset_draw1.setImage(reset_1);
-	reset_draw2.setImage(reset_2);
-	reset_draw3.setImage(reset_3);
-	reset_draw4.setImage(reset_4);
+	GET_LOCAL_AREA(m_chiptune_waveselector, "ChipWave");
+	GET_LOCAL_AREA(m_carrier_waveselector, "CarrWave");
+	GET_LOCAL_AREA(m_modulator_waveselector, "ModWave");
+	GET_LOCAL_AREA(m_modulation_source, "OscModSource");
 
-	m_reset.setImages(
-	    &reset_draw2, &reset_draw2, &reset_draw1, &reset_draw1, &reset_draw4, &reset_draw4, &reset_draw3, &reset_draw3);
-	m_reset.setBounds(
-	    OdinHelper::c150(RESET_POS_X), OdinHelper::c150(RESET_POS_Y), reset_1.getWidth(), reset_1.getHeight());
+	GET_LOCAL_AREA(m_chipdraw, "Wavedraw");
+	GET_LOCAL_AREA(m_wavedraw, "Wavedraw");
+	GET_LOCAL_AREA(m_specdraw, "Wavedraw");
 
-	// sync button only for osc 2 & 3
-	if (std::stoi(m_osc_number) != 1) {
+	GET_LOCAL_AREA(m_modulation_source, "OscModSource");
 
-		juce::Image sync_1 =
-		    ImageCache::getFromMemory(BinaryData::buttonsync_osc_1_150_png, BinaryData::buttonsync_osc_1_150_pngSize);
-		juce::Image sync_2 =
-		    ImageCache::getFromMemory(BinaryData::buttonsync_osc_2_150_png, BinaryData::buttonsync_osc_2_150_pngSize);
-		juce::Image sync_3 =
-		    ImageCache::getFromMemory(BinaryData::buttonsync_osc_3_150_png, BinaryData::buttonsync_osc_3_150_pngSize);
-		juce::Image sync_4 =
-		    ImageCache::getFromMemory(BinaryData::buttonsync_osc_4_150_png, BinaryData::buttonsync_osc_4_150_pngSize);
+	GET_LOCAL_AREA(m_xy, "OscXy");
+	GET_LOCAL_AREA(m_xy_x, "OscXyX");
+	GET_LOCAL_AREA(m_xy_y, "OscXyY");
 
-		juce::DrawableImage sync_draw1;
-		juce::DrawableImage sync_draw2;
-		juce::DrawableImage sync_draw3;
-		juce::DrawableImage sync_draw4;
+	GET_LOCAL_AREA(m_vec_a, "OscVecA");
+	GET_LOCAL_AREA(m_vec_b, "OscVecB");
+	GET_LOCAL_AREA(m_vec_c, "OscVecC");
+	GET_LOCAL_AREA(m_vec_d, "OscVecD");
 
-		sync_draw1.setImage(sync_1);
-		sync_draw2.setImage(sync_2);
-		sync_draw3.setImage(sync_3);
-		sync_draw4.setImage(sync_4);
-
-		m_sync.setImages(
-		    &sync_draw2, &sync_draw2, &sync_draw1, &sync_draw1, &sync_draw4, &sync_draw4, &sync_draw3, &sync_draw3);
-		m_sync.setBounds(
-		    OdinHelper::c150(OSC_SYNC_POS_X), OdinHelper::c150(OSC_SYNC_POS_Y), sync_1.getWidth(), sync_1.getHeight());
+	if (m_osc_type == OSC_TYPE_MULTI) {
+		GET_LOCAL_AREA(m_wavetable_waveselector, "OscWaveMulti");
+	} else {
+		GET_LOCAL_AREA(m_wavetable_waveselector, "OscWaveWT");
 	}
-
-	m_oct.setStrip(
-	    ImageCache::getFromMemory(BinaryData::black_knob_small_150_png, BinaryData::black_knob_small_150_pngSize),
-	    N_KNOB_FRAMES);
-	m_oct.setBounds(OdinHelper::c150(OCT_POS_X) - OdinHelper::c150(BLACK_KNOB_SMALL_OFFSET_X),
-	                OdinHelper::c150(PITCH_POS_Y) - OdinHelper::c150(BLACK_KNOB_SMALL_OFFSET_Y),
-	                OdinHelper::c150(BLACK_KNOB_SMALL_SIZE_X),
-	                OdinHelper::c150(BLACK_KNOB_SMALL_SIZE_Y));
-
-	m_semi.setStrip(
-	    ImageCache::getFromMemory(BinaryData::black_knob_small_150_png, BinaryData::black_knob_small_150_pngSize),
-	    N_KNOB_FRAMES);
-
-	m_fine.setStrip(
-	    ImageCache::getFromMemory(BinaryData::black_knob_small_150_png, BinaryData::black_knob_small_150_pngSize),
-	    N_KNOB_FRAMES);
-
-	m_semi.setBounds(OdinHelper::c150(SEMI_POS_X) - OdinHelper::c150(BLACK_KNOB_SMALL_OFFSET_X),
-	                 OdinHelper::c150(PITCH_POS_Y) - OdinHelper::c150(BLACK_KNOB_SMALL_OFFSET_Y),
-	                 OdinHelper::c150(BLACK_KNOB_SMALL_SIZE_X),
-	                 OdinHelper::c150(BLACK_KNOB_SMALL_SIZE_Y));
-
-	Rectangle<int> area_fine(OdinHelper::c150(BLACK_KNOB_SMALL_SIZE_X), OdinHelper::c150(BLACK_KNOB_SMALL_SIZE_Y));
-	m_fine.setBounds(OdinHelper::c150(FINE_POS_X) - OdinHelper::c150(BLACK_KNOB_SMALL_OFFSET_X),
-	                 OdinHelper::c150(PITCH_POS_Y) - OdinHelper::c150(BLACK_KNOB_SMALL_OFFSET_Y),
-	                 OdinHelper::c150(BLACK_KNOB_SMALL_SIZE_X),
-	                 OdinHelper::c150(BLACK_KNOB_SMALL_SIZE_Y));
-
-	juce::Image LED_1 = ImageCache::getFromMemory(BinaryData::LED_1_150_png, BinaryData::LED_1_150_pngSize);
-	juce::Image LED_2 = ImageCache::getFromMemory(BinaryData::LED_2_150_png, BinaryData::LED_2_150_pngSize);
-	juce::DrawableImage LED_draw1;
-	juce::DrawableImage LED_draw2;
-	LED_draw1.setImage(LED_1);
-	LED_draw2.setImage(LED_2);
-
-	m_LED_saw.setImages(&LED_draw2, &LED_draw2, &LED_draw2, &LED_draw2, &LED_draw1, &LED_draw1, &LED_draw1);
-	m_LED_saw.setBounds(OdinHelper::c150(LED_POS_X),
-	                    OdinHelper::c150(LED_POS_Y) - LED_1.getHeight() - 1,
-	                    LED_1.getWidth(),
-	                    LED_1.getHeight());
-
-	m_LED_pulse.setImages(&LED_draw2, &LED_draw2, &LED_draw2, &LED_draw2, &LED_draw1, &LED_draw1, &LED_draw1);
-	m_LED_pulse.setBounds(
-	    OdinHelper::c150(LED_POS_X), OdinHelper::c150(LED_POS_Y), LED_1.getWidth(), LED_1.getHeight());
-
-	m_LED_triangle.setImages(&LED_draw2, &LED_draw2, &LED_draw2, &LED_draw2, &LED_draw1, &LED_draw1, &LED_draw1);
-	m_LED_triangle.setBounds(OdinHelper::c150(LED_POS_X),
-	                         OdinHelper::c150(LED_POS_Y) + LED_1.getHeight() + 1,
-	                         LED_1.getWidth(),
-	                         LED_1.getHeight());
-
-	m_LED_sine.setImages(&LED_draw2, &LED_draw2, &LED_draw2, &LED_draw2, &LED_draw1, &LED_draw1, &LED_draw1);
-	m_LED_sine.setBounds(OdinHelper::c150(LED_POS_X),
-	                     OdinHelper::c150(LED_POS_Y) + 2 * LED_1.getHeight() + 2,
-	                     LED_1.getWidth(),
-	                     LED_1.getHeight());
-
-	m_pw.setStrip(
-	    ImageCache::getFromMemory(BinaryData::black_knob_small_150_png, BinaryData::black_knob_small_150_pngSize),
-	    N_KNOB_FRAMES);
-	m_drift.setStrip(
-	    ImageCache::getFromMemory(BinaryData::black_knob_big_150_png, BinaryData::black_knob_big_150_pngSize),
-	    N_KNOB_FRAMES);
-
-	juce::Image arp_1 =
-	    ImageCache::getFromMemory(BinaryData::buttonarpeggiator_1_150_png, BinaryData::buttonarpeggiator_1_150_pngSize);
-	juce::Image arp_2 =
-	    ImageCache::getFromMemory(BinaryData::buttonarpeggiator_2_150_png, BinaryData::buttonarpeggiator_2_150_pngSize);
-	juce::Image arp_3 =
-	    ImageCache::getFromMemory(BinaryData::buttonarpeggiator_3_150_png, BinaryData::buttonarpeggiator_3_150_pngSize);
-	juce::Image arp_4 =
-	    ImageCache::getFromMemory(BinaryData::buttonarpeggiator_4_150_png, BinaryData::buttonarpeggiator_4_150_pngSize);
-
-	juce::DrawableImage arp_draw1;
-	juce::DrawableImage arp_draw2;
-	juce::DrawableImage arp_draw3;
-	juce::DrawableImage arp_draw4;
-
-	arp_draw1.setImage(arp_1);
-	arp_draw2.setImage(arp_2);
-	arp_draw3.setImage(arp_3);
-	arp_draw4.setImage(arp_4);
-
-	m_arp.setImages(&arp_draw2, &arp_draw2, &arp_draw1, &arp_draw1, &arp_draw4, &arp_draw4, &arp_draw3, &arp_draw3);
-	m_arp.setBounds(OdinHelper::c150(ARP_POS_X), OdinHelper::c150(ARP_POS_Y), arp_1.getWidth(), arp_1.getHeight());
-
-	juce::Image noise_1 =
-	    ImageCache::getFromMemory(BinaryData::buttonnoise_1_150_png, BinaryData::buttonnoise_1_150_pngSize);
-	juce::Image noise_2 =
-	    ImageCache::getFromMemory(BinaryData::buttonnoise_2_150_png, BinaryData::buttonnoise_2_150_pngSize);
-	juce::Image noise_3 =
-	    ImageCache::getFromMemory(BinaryData::buttonnoise_3_150_png, BinaryData::buttonnoise_3_150_pngSize);
-	juce::Image noise_4 =
-	    ImageCache::getFromMemory(BinaryData::buttonnoise_4_150_png, BinaryData::buttonnoise_4_150_pngSize);
-
-	juce::DrawableImage noise_draw1;
-	juce::DrawableImage noise_draw2;
-	juce::DrawableImage noise_draw3;
-	juce::DrawableImage noise_draw4;
-
-	noise_draw1.setImage(noise_1);
-	noise_draw2.setImage(noise_2);
-	noise_draw3.setImage(noise_3);
-	noise_draw4.setImage(noise_4);
-
-	m_noise.setImages(
-	    &noise_draw2, &noise_draw2, &noise_draw1, &noise_draw1, &noise_draw4, &noise_draw4, &noise_draw3, &noise_draw3);
-	m_noise.setBounds(
-	    OdinHelper::c150(NOISE_POS_X), OdinHelper::c150(NOISE_POS_Y), noise_1.getWidth(), noise_1.getHeight());
-
-	juce::Image step_button_1 =
-	    ImageCache::getFromMemory(BinaryData::buttonstep_1_150_png, BinaryData::buttonstep_1_150_pngSize);
-	juce::Image step_button_2 =
-	    ImageCache::getFromMemory(BinaryData::buttonstep_2_150_png, BinaryData::buttonstep_2_150_pngSize);
-	juce::Image step_button_3 =
-	    ImageCache::getFromMemory(BinaryData::buttonstep_3_150_png, BinaryData::buttonstep_3_150_pngSize);
-	juce::Image step_button_4 =
-	    ImageCache::getFromMemory(BinaryData::buttonstep_4_150_png, BinaryData::buttonstep_4_150_pngSize);
-
-	juce::DrawableImage step_button_draw1;
-	juce::DrawableImage step_button_draw2;
-	juce::DrawableImage step_button_draw3;
-	juce::DrawableImage step_button_draw4;
-
-	step_button_draw1.setImage(step_button_1);
-	step_button_draw2.setImage(step_button_2);
-	step_button_draw3.setImage(step_button_3);
-	step_button_draw4.setImage(step_button_4);
-
-	m_step_button.setImages(&step_button_draw2,
-	                        &step_button_draw2,
-	                        &step_button_draw1,
-	                        &step_button_draw1,
-	                        &step_button_draw4,
-	                        &step_button_draw4,
-	                        &step_button_draw3,
-	                        &step_button_draw3);
-	m_step_button.setBounds(OdinHelper::c150(STEP_BUTTON_POS_X),
-	                        OdinHelper::c150(STEP_BUTTON_POS_Y),
-	                        step_button_1.getWidth(),
-	                        step_button_1.getHeight());
-
-	m_step_1.setStrip(
-	    ImageCache::getFromMemory(BinaryData::black_knob_small_150_png, BinaryData::black_knob_small_150_pngSize), 256);
-	m_step_1.setBounds(OdinHelper::c150(STEP_1_POS_X),
-	                   OdinHelper::c150(STEP_1_POS_Y),
-	                   OdinHelper::c150(BLACK_KNOB_SMALL_SIZE_X),
-	                   OdinHelper::c150(BLACK_KNOB_SMALL_SIZE_Y));
-
-	m_step_2.setStrip(
-	    ImageCache::getFromMemory(BinaryData::black_knob_small_150_png, BinaryData::black_knob_small_150_pngSize), 256);
-	m_step_2.setBounds(OdinHelper::c150(STEP_2_POS_X),
-	                   OdinHelper::c150(STEP_2_POS_Y),
-	                   OdinHelper::c150(BLACK_KNOB_SMALL_SIZE_X),
-	                   OdinHelper::c150(BLACK_KNOB_SMALL_SIZE_Y));
-
-	m_step_3.setStrip(
-	    ImageCache::getFromMemory(BinaryData::black_knob_small_150_png, BinaryData::black_knob_small_150_pngSize), 256);
-	m_step_3.setBounds(OdinHelper::c150(STEP_3_POS_X),
-	                   OdinHelper::c150(STEP_3_POS_Y),
-	                   OdinHelper::c150(BLACK_KNOB_SMALL_SIZE_X),
-	                   OdinHelper::c150(BLACK_KNOB_SMALL_SIZE_Y));
-
-	m_fm.setStrip(ImageCache::getFromMemory(BinaryData::metal_knob_big_150_png, BinaryData::metal_knob_big_150_pngSize),
-	              256);
-	m_fm.setBounds(OdinHelper::c150(FM_POS_X) - 1,
-	               OdinHelper::c150(FM_POS_Y) - 1,
-	               OdinHelper::c150(METAL_KNOB_BIG_SIZE_X),
-	               OdinHelper::c150(METAL_KNOB_BIG_SIZE_Y));
-
-	m_lp.setStrip(ImageCache::getFromMemory(BinaryData::metal_knob_big_150_png, BinaryData::metal_knob_big_150_pngSize),
-	              256);
-	m_lp.setBounds(OdinHelper::c150(LP_POS_X) - 1,
-	               OdinHelper::c150(LP_POS_Y),
-	               OdinHelper::c150(METAL_KNOB_BIG_SIZE_X),
-	               OdinHelper::c150(METAL_KNOB_BIG_SIZE_Y));
-
-	m_hp.setStrip(ImageCache::getFromMemory(BinaryData::metal_knob_big_150_png, BinaryData::metal_knob_big_150_pngSize),
-	              256);
-	m_hp.setBounds(OdinHelper::c150(HP_POS_X) - 1,
-	               OdinHelper::c150(HP_POS_Y),
-	               OdinHelper::c150(METAL_KNOB_BIG_SIZE_X),
-	               OdinHelper::c150(METAL_KNOB_BIG_SIZE_Y));
-	m_position.setStrip(
-	    ImageCache::getFromMemory(BinaryData::metal_knob_mid_150_png, BinaryData::metal_knob_mid_150_pngSize), 256);
-	m_position.setBounds(OdinHelper::c150(POSITION_POS_X),
-	                     OdinHelper::c150(POSITION_POS_Y),
-	                     OdinHelper::c150(METAL_KNOB_MID_SIZE_X),
-	                     OdinHelper::c150(METAL_KNOB_MID_SIZE_Y));
-
-	m_detune.setStrip(
-	    ImageCache::getFromMemory(BinaryData::metal_knob_big_150_png, BinaryData::metal_knob_big_150_pngSize), 256);
-	m_detune.setBounds(OdinHelper::c150(DETUNE_POS_X) - 1,
-	                   OdinHelper::c150(DETUNE_POS_Y) - 1,
-	                   OdinHelper::c150(METAL_KNOB_BIG_SIZE_X),
-	                   OdinHelper::c150(METAL_KNOB_BIG_SIZE_Y));
-
-	m_pos_mod.setStrip(
-	    ImageCache::getFromMemory(BinaryData::black_knob_mid_150_png, BinaryData::black_knob_mid_150_pngSize), 256);
-	m_pos_mod.setBounds(OdinHelper::c150(POS_ENV_POS_X) - 2,
-	                    OdinHelper::c150(POS_ENV_POS_Y) - 1,
-	                    OdinHelper::c150(BLACK_KNOB_MID_SIZE_X),
-	                    OdinHelper::c150(BLACK_KNOB_MID_SIZE_Y));
-
-	m_spread.setStrip(
-	    ImageCache::getFromMemory(BinaryData::metal_knob_small_150_png, BinaryData::metal_knob_small_150_pngSize), 256);
-	m_spread.setBounds(OdinHelper::c150(SPREAD_POS_X),
-	                   OdinHelper::c150(SPREAD_POS_Y),
-	                   OdinHelper::c150(METAL_KNOB_SMALL_SIZE_X),
-	                   OdinHelper::c150(METAL_KNOB_SMALL_SIZE_Y));
-
-	m_position_multi.setStrip(
-	    ImageCache::getFromMemory(BinaryData::metal_knob_small_150_png, BinaryData::metal_knob_small_150_pngSize), 256);
-	m_position_multi.setBounds(OdinHelper::c150(POSITION_MULTI_POS_X),
-	                           OdinHelper::c150(POSITION_MULTI_POS_Y),
-	                           OdinHelper::c150(METAL_KNOB_SMALL_SIZE_X),
-	                           OdinHelper::c150(METAL_KNOB_SMALL_SIZE_Y));
-
-	m_speed.setStrip(
-	    ImageCache::getFromMemory(BinaryData::black_knob_small_150_png, BinaryData::black_knob_small_150_pngSize), 256);
-	m_speed.setBounds(OdinHelper::c150(SPEED_POS_X),
-	                  OdinHelper::c150(SPEED_POS_Y),
-	                  OdinHelper::c150(BLACK_KNOB_SMALL_SIZE_X),
-	                  OdinHelper::c150(BLACK_KNOB_SMALL_SIZE_Y));
-
-	juce::Image chipdraw_convert_1 =
-	    ImageCache::getFromMemory(BinaryData::buttonapply_1_150_png, BinaryData::buttonapply_1_150_pngSize);
-	juce::Image chipdraw_convert_2 =
-	    ImageCache::getFromMemory(BinaryData::buttonapply_2_150_png, BinaryData::buttonapply_2_150_pngSize);
-	juce::Image chipdraw_convert_3 =
-	    ImageCache::getFromMemory(BinaryData::buttonapply_3_150_png, BinaryData::buttonapply_3_150_pngSize);
-	juce::Image chipdraw_convert_4 =
-	    ImageCache::getFromMemory(BinaryData::buttonapply_4_150_png, BinaryData::buttonapply_4_150_pngSize);
-
-	juce::DrawableImage chipdraw_convert_draw1;
-	juce::DrawableImage chipdraw_convert_draw2;
-	juce::DrawableImage chipdraw_convert_draw3;
-	juce::DrawableImage chipdraw_convert_draw4;
-
-	chipdraw_convert_draw1.setImage(chipdraw_convert_1);
-	chipdraw_convert_draw2.setImage(chipdraw_convert_2);
-	chipdraw_convert_draw3.setImage(chipdraw_convert_3);
-	chipdraw_convert_draw4.setImage(chipdraw_convert_4);
-
-	m_chipdraw_convert.setImages(&chipdraw_convert_draw2,
-	                             &chipdraw_convert_draw2,
-	                             &chipdraw_convert_draw1,
-	                             &chipdraw_convert_draw1,
-	                             &chipdraw_convert_draw4,
-	                             &chipdraw_convert_draw4,
-	                             &chipdraw_convert_draw3,
-	                             &chipdraw_convert_draw3);
-	m_chipdraw_convert.setBounds(OdinHelper::c150(CONVERT_POS_X),
-	                             OdinHelper::c150(CONVERT_POS_Y),
-	                             chipdraw_convert_1.getWidth(),
-	                             chipdraw_convert_1.getHeight());
-
-	m_wavedraw_convert.setImages(&chipdraw_convert_draw2,
-	                             &chipdraw_convert_draw2,
-	                             &chipdraw_convert_draw1,
-	                             &chipdraw_convert_draw1,
-	                             &chipdraw_convert_draw4,
-	                             &chipdraw_convert_draw4,
-	                             &chipdraw_convert_draw3,
-	                             &chipdraw_convert_draw3);
-	m_wavedraw_convert.setBounds(OdinHelper::c150(CONVERT_POS_X),
-	                             OdinHelper::c150(CONVERT_POS_Y),
-	                             chipdraw_convert_1.getWidth(),
-	                             chipdraw_convert_1.getHeight());
-
-	m_specdraw_convert.setImages(&chipdraw_convert_draw2,
-	                             &chipdraw_convert_draw2,
-	                             &chipdraw_convert_draw1,
-	                             &chipdraw_convert_draw1,
-	                             &chipdraw_convert_draw4,
-	                             &chipdraw_convert_draw4,
-	                             &chipdraw_convert_draw3,
-	                             &chipdraw_convert_draw3);
-	m_specdraw_convert.setBounds(OdinHelper::c150(CONVERT_POS_X),
-	                             OdinHelper::c150(CONVERT_POS_Y),
-	                             chipdraw_convert_1.getWidth(),
-	                             chipdraw_convert_1.getHeight());
-
-	juce::Colour chip_color(93, 81, 63);
-
-	m_chiptune_waveselector.setTopLeftPosition(OdinHelper::c150(WAVE_CHIPTUNE_POS_X),
-	                                           OdinHelper::c150(WAVE_CHIPTUNE_POS_Y));
-	m_carrier_waveselector.setTopLeftPosition(OdinHelper::c150(WAVE_CARRIER_POS_X),
-	                                          OdinHelper::c150(WAVE_CARRIER_POS_Y));
-	m_wavetable_waveselector.setTopLeftPosition(OdinHelper::c150(WAVE_CARRIER_POS_X),
-	                                            OdinHelper::c150(WAVE_CARRIER_POS_Y));
-	m_modulation_source.setTopLeftPosition(OdinHelper::c150(POS_MODULATION_X), OdinHelper::c150(POS_MODULATION_Y));
-	m_modulator_waveselector.setTopLeftPosition(OdinHelper::c150(WAVE_MODULATOR_POS_X),
-	                                            OdinHelper::c150(WAVE_MODULATOR_POS_Y));
-	m_carrier_ratio.setTopLeftPosition(OdinHelper::c150(RATIO_CARRIER_POS_X), OdinHelper::c150(RATIO_CARRIER_POS_Y));
-	m_modulator_ratio.setTopLeftPosition(OdinHelper::c150(RATIO_MODULATOR_POS_X - 1),
-	                                     OdinHelper::c150(RATIO_MODULATOR_POS_Y));
-
-	juce::Image fm_exp_left =
-	    ImageCache::getFromMemory(BinaryData::buttonexplin_1_150_png, BinaryData::buttonexplin_1_150_pngSize);
-	juce::Image fm_exp_right =
-	    ImageCache::getFromMemory(BinaryData::buttonexplin_3_150_png, BinaryData::buttonexplin_3_150_pngSize);
-	m_fm_exp.setImage(fm_exp_left, 1);
-	m_fm_exp.setImage(fm_exp_right, 2);
-	m_fm_exp.setBounds(OdinHelper::c150(FM_EXP_POS_X),
-	                   OdinHelper::c150(FM_EXP_POS_Y),
-	                   fm_exp_left.getWidth(),
-	                   fm_exp_left.getHeight());
-
-	m_chipdraw.setTopLeftPosition(OdinHelper::c150(CHIPDRAW_POSITION_X), OdinHelper::c150(CHIPDRAW_POSITION_Y));
-
-	juce::Colour wave_color(71, 92, 108);
-	juce::Colour wave_draw_color(99, 165, 236);
-
-	m_wavedraw.setTopLeftPosition(OdinHelper::c150(CHIPDRAW_POSITION_X), OdinHelper::c150(CHIPDRAW_POSITION_Y));
-
-	juce::Colour spec_color(61, 80, 70);
-	juce::Colour spec_draw_color(116, 180, 147);
-
-	m_specdraw.setTopLeftPosition(OdinHelper::c150(CHIPDRAW_POSITION_X), OdinHelper::c150(CHIPDRAW_POSITION_Y));
-	juce::Colour vector_color(25, 50, 60);
-
-	juce::Image glas_panel =
-	    ImageCache::getFromMemory(BinaryData::vectorpanel_150_png, BinaryData::vectorpanel_150_pngSize);
-	m_xy.setTopLeftPosition(OdinHelper::c150(XY_POS_X), OdinHelper::c150(XY_POS_Y));
-	m_xy.setSize(glas_panel.getWidth(), glas_panel.getHeight());
-	m_xy.setImage(glas_panel);
-	m_xy.setInlay(1);
-
-	juce::Image glas_panel_vecwave =
-	    ImageCache::getFromMemory(BinaryData::glaspanel_big_150_png, BinaryData::glaspanel_big_150_pngSize);
-	m_vec_a.setImage(glas_panel_vecwave);
-	m_vec_a.setInlay(1);
-	m_vec_a.setBounds(OdinHelper::c150(VEC_WAVE_X),
-	                  OdinHelper::c150(VEC_WAVE_Y),
-	                  glas_panel_vecwave.getWidth(),
-	                  glas_panel_vecwave.getHeight());
-
-	m_vec_b.setImage(glas_panel_vecwave);
-	m_vec_b.setInlay(1);
-	m_vec_b.setBounds(OdinHelper::c150(VEC_WAVE_X),
-	                  OdinHelper::c150(VEC_WAVE_Y) + 1 * OdinHelper::c150(VEC_WAVE_OFFSET),
-	                  glas_panel_vecwave.getWidth(),
-	                  glas_panel_vecwave.getHeight());
-
-	m_vec_c.setImage(glas_panel_vecwave);
-	m_vec_c.setInlay(1);
-	m_vec_c.setBounds(OdinHelper::c150(VEC_WAVE_X),
-	                  OdinHelper::c150(VEC_WAVE_Y) + 2 * OdinHelper::c150(VEC_WAVE_OFFSET),
-	                  glas_panel_vecwave.getWidth(),
-	                  glas_panel_vecwave.getHeight());
-
-	m_vec_d.setImage(glas_panel_vecwave);
-	m_vec_d.setInlay(1);
-	m_vec_d.setBounds(OdinHelper::c150(VEC_WAVE_X),
-	                  OdinHelper::c150(VEC_WAVE_Y) + 3 * OdinHelper::c150(VEC_WAVE_OFFSET),
-	                  glas_panel_vecwave.getWidth(),
-	                  glas_panel_vecwave.getHeight());
-
-	m_xy_x.setStrip(ImageCache::getFromMemory(BinaryData::black_knob_very_small_150_png,
-	                                          BinaryData::black_knob_very_small_150_pngSize),
-	                256);
-	m_xy_x.setBounds(OdinHelper::c150(X_POS_X),
-	                 OdinHelper::c150(X_POS_Y),
-	                 OdinHelper::c150(BLACK_KNOB_VERY_SMALL_SIZE_X) + 2,
-	                 OdinHelper::c150(BLACK_KNOB_VERY_SMALL_SIZE_Y) + 2);
-
-	m_xy_y.setStrip(ImageCache::getFromMemory(BinaryData::black_knob_very_small_150_png,
-	                                          BinaryData::black_knob_very_small_150_pngSize),
-	                256);
-	m_xy_y.setBounds(OdinHelper::c150(Y_POS_X),
-	                 OdinHelper::c150(Y_POS_Y),
-	                 OdinHelper::c150(BLACK_KNOB_VERY_SMALL_SIZE_X) + 2,
-	                 OdinHelper::c150(BLACK_KNOB_VERY_SMALL_SIZE_Y) + 2);
-
-	forceValueTreeOntoComponents(m_value_tree.state, std::stoi(m_osc_number), false);
-
-	resetVectorWaves();
-
-	m_pw.setBounds(OdinHelper::c150(PW_POS_X) - OdinHelper::c150(BLACK_KNOB_SMALL_OFFSET_X) - 1,
-	               OdinHelper::c150(PW_POS_Y) - OdinHelper::c150(BLACK_KNOB_SMALL_OFFSET_Y) + 1,
-	               OdinHelper::c150(BLACK_KNOB_SMALL_SIZE_X),
-	               OdinHelper::c150(BLACK_KNOB_SMALL_SIZE_Y));
-	m_drift.setBounds(OdinHelper::c150(DRIFT_POS_X) - OdinHelper::c150(BLACK_KNOB_BIG_OFFSET_X) - 1,
-	                  OdinHelper::c150(DRIFT_POS_Y) - OdinHelper::c150(BLACK_KNOB_BIG_OFFSET_Y) + 1,
-	                  OdinHelper::c150(BLACK_KNOB_BIG_SIZE_X) + 2,
-	                  OdinHelper::c150(BLACK_KNOB_BIG_SIZE_Y) + 2);
-
-	m_xy.setGUIBig();
-	m_vec_a.setGUIBig();
-	m_vec_b.setGUIBig();
-	m_vec_c.setGUIBig();
-	m_vec_d.setGUIBig();
-	m_vec_a.setInlayLeft(1);
-	m_vec_b.setInlayLeft(1);
-	m_vec_c.setInlayLeft(1);
-	m_vec_d.setInlayLeft(1);
-	m_wavedraw.setGUIBig();
-	m_chipdraw.setGUIBig();
-	m_specdraw.setGUIBig();
-	m_chiptune_waveselector.setGUIBig();
-	m_carrier_waveselector.setGUIBig();
-	m_modulator_waveselector.setGUIBig();
-	m_wavetable_waveselector.setGUIBig();
-	m_modulation_source.setGUIBig();
-	m_carrier_ratio.setGUIBig();
-	m_modulator_ratio.setGUIBig();
-	m_menu_feels.setGUIBig();
-	setSize(OdinHelper::c150(247), OdinHelper::c150(145));
 }
 
-void OscComponent::setGUISmall() {
-	m_GUI_big = false;
-
-	m_vol.setStrip(ImageCache::getFromMemory(BinaryData::black_knob_small_png, BinaryData::black_knob_small_pngSize),
-	               N_KNOB_FRAMES);
-
-	m_vol.setBounds(VOL_POS_X - BLACK_KNOB_SMALL_OFFSET_X,
-	                VOL_POS_Y - BLACK_KNOB_SMALL_OFFSET_Y,
-	                BLACK_KNOB_SMALL_SIZE_X,
-	                BLACK_KNOB_SMALL_SIZE_Y);
-
-	juce::Image reset_1 =
-	    ImageCache::getFromMemory(BinaryData::buttonreset_osc_1_png, BinaryData::buttonreset_osc_1_pngSize);
-	juce::Image reset_2 =
-	    ImageCache::getFromMemory(BinaryData::buttonreset_osc_2_png, BinaryData::buttonreset_osc_2_pngSize);
-	juce::Image reset_3 =
-	    ImageCache::getFromMemory(BinaryData::buttonreset_osc_3_png, BinaryData::buttonreset_osc_3_pngSize);
-	juce::Image reset_4 =
-	    ImageCache::getFromMemory(BinaryData::buttonreset_osc_4_png, BinaryData::buttonreset_osc_4_pngSize);
-
-	juce::DrawableImage reset_draw1;
-	juce::DrawableImage reset_draw2;
-	juce::DrawableImage reset_draw3;
-	juce::DrawableImage reset_draw4;
-
-	reset_draw1.setImage(reset_1);
-	reset_draw2.setImage(reset_2);
-	reset_draw3.setImage(reset_3);
-	reset_draw4.setImage(reset_4);
-
-	m_reset.setImages(
-	    &reset_draw2, &reset_draw2, &reset_draw1, &reset_draw1, &reset_draw4, &reset_draw4, &reset_draw3, &reset_draw3);
-	m_reset.setBounds(RESET_POS_X, RESET_POS_Y, reset_1.getWidth(), reset_1.getHeight());
-
-	// sync button only for osc 2 & 3
-	if (std::stoi(m_osc_number) != 1) {
-
-		juce::Image sync_1 =
-		    ImageCache::getFromMemory(BinaryData::buttonsync_osc_1_png, BinaryData::buttonsync_osc_1_pngSize);
-		juce::Image sync_2 =
-		    ImageCache::getFromMemory(BinaryData::buttonsync_osc_2_png, BinaryData::buttonsync_osc_2_pngSize);
-		juce::Image sync_3 =
-		    ImageCache::getFromMemory(BinaryData::buttonsync_osc_3_png, BinaryData::buttonsync_osc_3_pngSize);
-		juce::Image sync_4 =
-		    ImageCache::getFromMemory(BinaryData::buttonsync_osc_4_png, BinaryData::buttonsync_osc_4_pngSize);
-
-		juce::DrawableImage sync_draw1;
-		juce::DrawableImage sync_draw2;
-		juce::DrawableImage sync_draw3;
-		juce::DrawableImage sync_draw4;
-
-		sync_draw1.setImage(sync_1);
-		sync_draw2.setImage(sync_2);
-		sync_draw3.setImage(sync_3);
-		sync_draw4.setImage(sync_4);
-
-		m_sync.setImages(
-		    &sync_draw2, &sync_draw2, &sync_draw1, &sync_draw1, &sync_draw4, &sync_draw4, &sync_draw3, &sync_draw3);
-		m_sync.setBounds(OSC_SYNC_POS_X, OSC_SYNC_POS_Y, sync_1.getWidth(), sync_1.getHeight());
-	}
-
-	m_oct.setStrip(ImageCache::getFromMemory(BinaryData::black_knob_small_png, BinaryData::black_knob_small_pngSize),
-	               N_KNOB_FRAMES);
-	m_oct.setBounds(OCT_POS_X - BLACK_KNOB_SMALL_OFFSET_X,
-	                PITCH_POS_Y - BLACK_KNOB_SMALL_OFFSET_Y,
-	                BLACK_KNOB_SMALL_SIZE_X,
-	                BLACK_KNOB_SMALL_SIZE_Y);
-
-	m_semi.setStrip(ImageCache::getFromMemory(BinaryData::black_knob_small_png, BinaryData::black_knob_small_pngSize),
-	                N_KNOB_FRAMES);
-
-	m_fine.setStrip(ImageCache::getFromMemory(BinaryData::black_knob_small_png, BinaryData::black_knob_small_pngSize),
-	                N_KNOB_FRAMES);
-
-	m_semi.setBounds(SEMI_POS_X - BLACK_KNOB_SMALL_OFFSET_X,
-	                 PITCH_POS_Y - BLACK_KNOB_SMALL_OFFSET_Y,
-	                 BLACK_KNOB_SMALL_SIZE_X,
-	                 BLACK_KNOB_SMALL_SIZE_Y);
-
-	Rectangle<int> area_fine(BLACK_KNOB_SMALL_SIZE_X, BLACK_KNOB_SMALL_SIZE_Y);
-	m_fine.setBounds(FINE_POS_X - BLACK_KNOB_SMALL_OFFSET_X,
-	                 PITCH_POS_Y - BLACK_KNOB_SMALL_OFFSET_Y,
-	                 BLACK_KNOB_SMALL_SIZE_X,
-	                 BLACK_KNOB_SMALL_SIZE_Y);
-
-	juce::Image LED_1 = ImageCache::getFromMemory(BinaryData::LED_1_png, BinaryData::LED_1_pngSize);
-	juce::Image LED_2 = ImageCache::getFromMemory(BinaryData::LED_2_png, BinaryData::LED_2_pngSize);
-	juce::DrawableImage LED_draw1;
-	juce::DrawableImage LED_draw2;
-	LED_draw1.setImage(LED_1);
-	LED_draw2.setImage(LED_2);
-
-	m_LED_saw.setImages(&LED_draw2, &LED_draw2, &LED_draw2, &LED_draw2, &LED_draw1, &LED_draw1, &LED_draw1);
-	m_LED_saw.setBounds(LED_POS_X, LED_POS_Y - LED_1.getHeight(), LED_1.getWidth(), LED_1.getHeight());
-
-	m_LED_pulse.setImages(&LED_draw2, &LED_draw2, &LED_draw2, &LED_draw2, &LED_draw1, &LED_draw1, &LED_draw1);
-	m_LED_pulse.setBounds(LED_POS_X, LED_POS_Y, LED_1.getWidth(), LED_1.getHeight());
-
-	m_LED_triangle.setImages(&LED_draw2, &LED_draw2, &LED_draw2, &LED_draw2, &LED_draw1, &LED_draw1, &LED_draw1);
-	m_LED_triangle.setBounds(LED_POS_X, LED_POS_Y + LED_1.getHeight(), LED_1.getWidth(), LED_1.getHeight());
-
-	m_LED_sine.setImages(&LED_draw2, &LED_draw2, &LED_draw2, &LED_draw2, &LED_draw1, &LED_draw1, &LED_draw1);
-	m_LED_sine.setBounds(LED_POS_X, LED_POS_Y + 2 * LED_1.getHeight(), LED_1.getWidth(), LED_1.getHeight());
-
-	m_pw.setStrip(ImageCache::getFromMemory(BinaryData::black_knob_small_png, BinaryData::black_knob_small_pngSize),
-	              N_KNOB_FRAMES);
-	m_drift.setStrip(ImageCache::getFromMemory(BinaryData::black_knob_big_png, BinaryData::black_knob_big_pngSize),
-	                 N_KNOB_FRAMES);
-
-	juce::Image arp_1 =
-	    ImageCache::getFromMemory(BinaryData::buttonarpeggiator_1_png, BinaryData::buttonarpeggiator_1_pngSize);
-	juce::Image arp_2 =
-	    ImageCache::getFromMemory(BinaryData::buttonarpeggiator_2_png, BinaryData::buttonarpeggiator_2_pngSize);
-	juce::Image arp_3 =
-	    ImageCache::getFromMemory(BinaryData::buttonarpeggiator_3_png, BinaryData::buttonarpeggiator_3_pngSize);
-	juce::Image arp_4 =
-	    ImageCache::getFromMemory(BinaryData::buttonarpeggiator_4_png, BinaryData::buttonarpeggiator_4_pngSize);
-
-	juce::DrawableImage arp_draw1;
-	juce::DrawableImage arp_draw2;
-	juce::DrawableImage arp_draw3;
-	juce::DrawableImage arp_draw4;
-
-	arp_draw1.setImage(arp_1);
-	arp_draw2.setImage(arp_2);
-	arp_draw3.setImage(arp_3);
-	arp_draw4.setImage(arp_4);
-
-	m_arp.setImages(&arp_draw2, &arp_draw2, &arp_draw1, &arp_draw1, &arp_draw4, &arp_draw4, &arp_draw3, &arp_draw3);
-	m_arp.setBounds(ARP_POS_X, ARP_POS_Y, arp_1.getWidth(), arp_1.getHeight());
-
-	juce::Image noise_1 = ImageCache::getFromMemory(BinaryData::buttonnoise_1_png, BinaryData::buttonnoise_1_pngSize);
-	juce::Image noise_2 = ImageCache::getFromMemory(BinaryData::buttonnoise_2_png, BinaryData::buttonnoise_2_pngSize);
-	juce::Image noise_3 = ImageCache::getFromMemory(BinaryData::buttonnoise_3_png, BinaryData::buttonnoise_3_pngSize);
-	juce::Image noise_4 = ImageCache::getFromMemory(BinaryData::buttonnoise_4_png, BinaryData::buttonnoise_4_pngSize);
-
-	juce::DrawableImage noise_draw1;
-	juce::DrawableImage noise_draw2;
-	juce::DrawableImage noise_draw3;
-	juce::DrawableImage noise_draw4;
-
-	noise_draw1.setImage(noise_1);
-	noise_draw2.setImage(noise_2);
-	noise_draw3.setImage(noise_3);
-	noise_draw4.setImage(noise_4);
-
-	m_noise.setImages(
-	    &noise_draw2, &noise_draw2, &noise_draw1, &noise_draw1, &noise_draw4, &noise_draw4, &noise_draw3, &noise_draw3);
-	m_noise.setBounds(NOISE_POS_X, NOISE_POS_Y, noise_1.getWidth(), noise_1.getHeight());
-
-	juce::Image step_button_1 =
-	    ImageCache::getFromMemory(BinaryData::buttonstep_1_png, BinaryData::buttonstep_1_pngSize);
-	juce::Image step_button_2 =
-	    ImageCache::getFromMemory(BinaryData::buttonstep_2_png, BinaryData::buttonstep_2_pngSize);
-	juce::Image step_button_3 =
-	    ImageCache::getFromMemory(BinaryData::buttonstep_3_png, BinaryData::buttonstep_3_pngSize);
-	juce::Image step_button_4 =
-	    ImageCache::getFromMemory(BinaryData::buttonstep_4_png, BinaryData::buttonstep_4_pngSize);
-
-	juce::DrawableImage step_button_draw1;
-	juce::DrawableImage step_button_draw2;
-	juce::DrawableImage step_button_draw3;
-	juce::DrawableImage step_button_draw4;
-
-	step_button_draw1.setImage(step_button_1);
-	step_button_draw2.setImage(step_button_2);
-	step_button_draw3.setImage(step_button_3);
-	step_button_draw4.setImage(step_button_4);
-
-	m_step_button.setImages(&step_button_draw2,
-	                        &step_button_draw2,
-	                        &step_button_draw1,
-	                        &step_button_draw1,
-	                        &step_button_draw4,
-	                        &step_button_draw4,
-	                        &step_button_draw3,
-	                        &step_button_draw3);
-	m_step_button.setBounds(STEP_BUTTON_POS_X, STEP_BUTTON_POS_Y, step_button_1.getWidth(), step_button_1.getHeight());
-
-	m_step_1.setStrip(ImageCache::getFromMemory(BinaryData::black_knob_small_png, BinaryData::black_knob_small_pngSize),
-	                  256);
-	m_step_1.setBounds(STEP_1_POS_X, STEP_1_POS_Y, BLACK_KNOB_SMALL_SIZE_X, BLACK_KNOB_SMALL_SIZE_Y);
-
-	m_step_2.setStrip(ImageCache::getFromMemory(BinaryData::black_knob_small_png, BinaryData::black_knob_small_pngSize),
-	                  256);
-	m_step_2.setBounds(STEP_2_POS_X, STEP_2_POS_Y, BLACK_KNOB_SMALL_SIZE_X, BLACK_KNOB_SMALL_SIZE_Y);
-
-	m_step_3.setStrip(ImageCache::getFromMemory(BinaryData::black_knob_small_png, BinaryData::black_knob_small_pngSize),
-	                  256);
-	m_step_3.setBounds(STEP_3_POS_X, STEP_3_POS_Y, BLACK_KNOB_SMALL_SIZE_X, BLACK_KNOB_SMALL_SIZE_Y);
-
-	m_fm.setStrip(ImageCache::getFromMemory(BinaryData::metal_knob_big_png, BinaryData::metal_knob_big_pngSize), 256);
-	m_fm.setBounds(FM_POS_X, FM_POS_Y, METAL_KNOB_BIG_SIZE_X, METAL_KNOB_BIG_SIZE_Y);
-
-	m_lp.setStrip(ImageCache::getFromMemory(BinaryData::metal_knob_big_png, BinaryData::metal_knob_big_pngSize), 256);
-	m_lp.setBounds(LP_POS_X, LP_POS_Y, METAL_KNOB_BIG_SIZE_X, METAL_KNOB_BIG_SIZE_Y);
-
-	m_hp.setStrip(ImageCache::getFromMemory(BinaryData::metal_knob_big_png, BinaryData::metal_knob_big_pngSize), 256);
-	m_hp.setBounds(HP_POS_X, HP_POS_Y, METAL_KNOB_BIG_SIZE_X, METAL_KNOB_BIG_SIZE_Y);
-	m_position.setStrip(ImageCache::getFromMemory(BinaryData::metal_knob_mid_png, BinaryData::metal_knob_mid_pngSize),
-	                    256);
-	m_position.setBounds(POSITION_POS_X, POSITION_POS_Y, METAL_KNOB_MID_SIZE_X, METAL_KNOB_MID_SIZE_Y);
-
-	m_detune.setStrip(ImageCache::getFromMemory(BinaryData::metal_knob_big_png, BinaryData::metal_knob_big_pngSize),
-	                  256);
-	m_detune.setBounds(DETUNE_POS_X, DETUNE_POS_Y, METAL_KNOB_BIG_SIZE_X, METAL_KNOB_BIG_SIZE_Y);
-
-	m_pos_mod.setStrip(ImageCache::getFromMemory(BinaryData::black_knob_mid_png, BinaryData::black_knob_mid_pngSize),
-	                   256);
-	m_pos_mod.setBounds(POS_ENV_POS_X, POS_ENV_POS_Y, BLACK_KNOB_MID_SIZE_X, BLACK_KNOB_MID_SIZE_Y);
-
-	m_spread.setStrip(ImageCache::getFromMemory(BinaryData::metal_knob_small_png, BinaryData::metal_knob_small_pngSize),
-	                  256);
-	m_spread.setBounds(SPREAD_POS_X, SPREAD_POS_Y, METAL_KNOB_SMALL_SIZE_X, METAL_KNOB_SMALL_SIZE_Y);
-
-	m_position_multi.setStrip(
-	    ImageCache::getFromMemory(BinaryData::metal_knob_small_png, BinaryData::metal_knob_small_pngSize), 256);
-	m_position_multi.setBounds(
-	    POSITION_MULTI_POS_X, POSITION_MULTI_POS_Y, METAL_KNOB_SMALL_SIZE_X, METAL_KNOB_SMALL_SIZE_Y);
-
-	m_speed.setStrip(ImageCache::getFromMemory(BinaryData::black_knob_small_png, BinaryData::black_knob_small_pngSize),
-	                 256);
-	m_speed.setBounds(SPEED_POS_X, SPEED_POS_Y, BLACK_KNOB_SMALL_SIZE_X, BLACK_KNOB_SMALL_SIZE_Y);
-
-	juce::Image chipdraw_convert_1 =
-	    ImageCache::getFromMemory(BinaryData::buttonapply_1_png, BinaryData::buttonapply_1_pngSize);
-	juce::Image chipdraw_convert_2 =
-	    ImageCache::getFromMemory(BinaryData::buttonapply_2_png, BinaryData::buttonapply_2_pngSize);
-	juce::Image chipdraw_convert_3 =
-	    ImageCache::getFromMemory(BinaryData::buttonapply_3_png, BinaryData::buttonapply_3_pngSize);
-	juce::Image chipdraw_convert_4 =
-	    ImageCache::getFromMemory(BinaryData::buttonapply_4_png, BinaryData::buttonapply_4_pngSize);
-
-	juce::DrawableImage chipdraw_convert_draw1;
-	juce::DrawableImage chipdraw_convert_draw2;
-	juce::DrawableImage chipdraw_convert_draw3;
-	juce::DrawableImage chipdraw_convert_draw4;
-
-	chipdraw_convert_draw1.setImage(chipdraw_convert_1);
-	chipdraw_convert_draw2.setImage(chipdraw_convert_2);
-	chipdraw_convert_draw3.setImage(chipdraw_convert_3);
-	chipdraw_convert_draw4.setImage(chipdraw_convert_4);
-
-	m_chipdraw_convert.setImages(&chipdraw_convert_draw2,
-	                             &chipdraw_convert_draw2,
-	                             &chipdraw_convert_draw1,
-	                             &chipdraw_convert_draw1,
-	                             &chipdraw_convert_draw4,
-	                             &chipdraw_convert_draw4,
-	                             &chipdraw_convert_draw3,
-	                             &chipdraw_convert_draw3);
-	m_chipdraw_convert.setBounds(
-	    CONVERT_POS_X, CONVERT_POS_Y, chipdraw_convert_1.getWidth(), chipdraw_convert_1.getHeight());
-
-	m_wavedraw_convert.setImages(&chipdraw_convert_draw2,
-	                             &chipdraw_convert_draw2,
-	                             &chipdraw_convert_draw1,
-	                             &chipdraw_convert_draw1,
-	                             &chipdraw_convert_draw4,
-	                             &chipdraw_convert_draw4,
-	                             &chipdraw_convert_draw3,
-	                             &chipdraw_convert_draw3);
-	m_wavedraw_convert.setBounds(
-	    CONVERT_POS_X, CONVERT_POS_Y, chipdraw_convert_1.getWidth(), chipdraw_convert_1.getHeight());
-
-	m_specdraw_convert.setImages(&chipdraw_convert_draw2,
-	                             &chipdraw_convert_draw2,
-	                             &chipdraw_convert_draw1,
-	                             &chipdraw_convert_draw1,
-	                             &chipdraw_convert_draw4,
-	                             &chipdraw_convert_draw4,
-	                             &chipdraw_convert_draw3,
-	                             &chipdraw_convert_draw3);
-	m_specdraw_convert.setBounds(
-	    CONVERT_POS_X, CONVERT_POS_Y, chipdraw_convert_1.getWidth(), chipdraw_convert_1.getHeight());
-
-	juce::Colour chip_color(93, 81, 63);
-
-	m_chiptune_waveselector.setTopLeftPosition(WAVE_CHIPTUNE_POS_X, WAVE_CHIPTUNE_POS_Y);
-	m_carrier_waveselector.setTopLeftPosition(WAVE_CARRIER_POS_X, WAVE_CARRIER_POS_Y);
-	m_wavetable_waveselector.setTopLeftPosition(WAVE_CARRIER_POS_X, WAVE_CARRIER_POS_Y);
-	m_modulation_source.setTopLeftPosition(POS_MODULATION_X, POS_MODULATION_Y);
-	m_modulator_waveselector.setTopLeftPosition(WAVE_MODULATOR_POS_X, WAVE_MODULATOR_POS_Y);
-	m_carrier_ratio.setTopLeftPosition(RATIO_CARRIER_POS_X, RATIO_CARRIER_POS_Y);
-	m_modulator_ratio.setTopLeftPosition(RATIO_MODULATOR_POS_X, RATIO_MODULATOR_POS_Y);
-
-	juce::Image fm_exp_left =
-	    ImageCache::getFromMemory(BinaryData::buttonexplin_1_png, BinaryData::buttonexplin_1_pngSize);
-	juce::Image fm_exp_right =
-	    ImageCache::getFromMemory(BinaryData::buttonexplin_3_png, BinaryData::buttonexplin_3_pngSize);
-	m_fm_exp.setImage(fm_exp_left, 1);
-	m_fm_exp.setImage(fm_exp_right, 2);
-	m_fm_exp.setBounds(FM_EXP_POS_X, FM_EXP_POS_Y, fm_exp_left.getWidth(), fm_exp_left.getHeight());
-
-	m_chipdraw.setTopLeftPosition(CHIPDRAW_POSITION_X, CHIPDRAW_POSITION_Y);
-
-	juce::Colour wave_color(71, 92, 108);
-	juce::Colour wave_draw_color(99, 165, 236);
-
-	m_wavedraw.setTopLeftPosition(CHIPDRAW_POSITION_X, CHIPDRAW_POSITION_Y);
-
-	juce::Colour spec_color(61, 80, 70);
-	juce::Colour spec_draw_color(116, 180, 147);
-
-	m_specdraw.setTopLeftPosition(CHIPDRAW_POSITION_X, CHIPDRAW_POSITION_Y);
-	juce::Colour vector_color(25, 50, 60);
-
-	juce::Image glas_panel = ImageCache::getFromMemory(BinaryData::vectorpanel_png, BinaryData::vectorpanel_pngSize);
-	m_xy.setTopLeftPosition(XY_POS_X, XY_POS_Y);
-	m_xy.setSize(glas_panel.getWidth(), glas_panel.getHeight());
-	m_xy.setImage(glas_panel);
-	m_xy.setInlay(1);
-
-	juce::Image glas_panel_vecwave =
-	    ImageCache::getFromMemory(BinaryData::glaspanel_big_png, BinaryData::glaspanel_big_pngSize);
-	m_vec_a.setImage(glas_panel_vecwave);
-	m_vec_a.setInlay(1);
-	m_vec_a.setBounds(VEC_WAVE_X, VEC_WAVE_Y, glas_panel_vecwave.getWidth(), glas_panel_vecwave.getHeight());
-
-	m_vec_b.setImage(glas_panel_vecwave);
-	m_vec_b.setInlay(1);
-	m_vec_b.setBounds(
-	    VEC_WAVE_X, VEC_WAVE_Y + 1 * VEC_WAVE_OFFSET, glas_panel_vecwave.getWidth(), glas_panel_vecwave.getHeight());
-
-	m_vec_c.setImage(glas_panel_vecwave);
-	m_vec_c.setInlay(1);
-	m_vec_c.setBounds(
-	    VEC_WAVE_X, VEC_WAVE_Y + 2 * VEC_WAVE_OFFSET, glas_panel_vecwave.getWidth(), glas_panel_vecwave.getHeight());
-
-	m_vec_d.setImage(glas_panel_vecwave);
-	m_vec_d.setInlay(1);
-	m_vec_d.setBounds(
-	    VEC_WAVE_X, VEC_WAVE_Y + 3 * VEC_WAVE_OFFSET, glas_panel_vecwave.getWidth(), glas_panel_vecwave.getHeight());
-
-	m_xy_x.setStrip(
-	    ImageCache::getFromMemory(BinaryData::black_knob_very_small_png, BinaryData::black_knob_very_small_pngSize),
-	    256);
-	m_xy_x.setBounds(X_POS_X, X_POS_Y, BLACK_KNOB_VERY_SMALL_SIZE_X, BLACK_KNOB_VERY_SMALL_SIZE_Y);
-
-	m_xy_y.setStrip(
-	    ImageCache::getFromMemory(BinaryData::black_knob_very_small_png, BinaryData::black_knob_very_small_pngSize),
-	    256);
-	m_xy_y.setBounds(Y_POS_X, Y_POS_Y, BLACK_KNOB_VERY_SMALL_SIZE_X, BLACK_KNOB_VERY_SMALL_SIZE_Y);
-
-	forceValueTreeOntoComponents(m_value_tree.state, std::stoi(m_osc_number), false);
-
-	resetVectorWaves();
-
-	m_pw.setBounds(PW_POS_X - BLACK_KNOB_SMALL_OFFSET_X,
-	               PW_POS_Y - BLACK_KNOB_SMALL_OFFSET_Y,
-	               BLACK_KNOB_SMALL_SIZE_X,
-	               BLACK_KNOB_SMALL_SIZE_Y);
-	m_drift.setBounds(DRIFT_POS_X - BLACK_KNOB_BIG_OFFSET_X,
-	                  DRIFT_POS_Y - BLACK_KNOB_BIG_OFFSET_Y,
-	                  BLACK_KNOB_BIG_SIZE_X,
-	                  BLACK_KNOB_BIG_SIZE_Y);
-	m_xy.setGUISmall();
-	m_vec_a.setGUISmall();
-	m_vec_b.setGUISmall();
-	m_vec_c.setGUISmall();
-	m_vec_d.setGUISmall();
-	m_vec_a.setInlayLeft(0);
-	m_vec_b.setInlayLeft(0);
-	m_vec_c.setInlayLeft(0);
-	m_vec_d.setInlayLeft(0);
-	m_wavedraw.setGUISmall();
-	m_chipdraw.setGUISmall();
-	m_specdraw.setGUISmall();
-	m_chiptune_waveselector.setGUISmall();
-	m_carrier_waveselector.setGUISmall();
-	m_modulator_waveselector.setGUISmall();
-	m_wavetable_waveselector.setGUISmall();
-	m_modulation_source.setGUISmall();
-	m_carrier_ratio.setGUISmall();
-	m_modulator_ratio.setGUISmall();
-	m_menu_feels.setGUISmall();
-	setSize(247, 145);
+void OscComponent::enableChipArpComponents() {
+	const auto arp_enabled = m_arp.getToggleState();
+
+	m_step_1.setEnabled(arp_enabled);
+	m_step_2.setEnabled(arp_enabled);
+	m_step_label.setEnabled(arp_enabled);
+	m_chip1_label.setEnabled(arp_enabled);
+	m_chip2_label.setEnabled(arp_enabled);
+	m_step_button.setEnabled(arp_enabled);
+	m_speed.setEnabled(arp_enabled);
+
+	m_step_3.setEnabled(arp_enabled && m_step_button.getToggleState());
 }

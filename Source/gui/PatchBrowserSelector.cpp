@@ -14,13 +14,16 @@
 */
 
 #include "PatchBrowserSelector.h"
+#include "../ConfigFileManager.h"
+#include "JsonGuiProvider.h"
+#include "UIAssetManager.h"
 #include <JuceHeader.h>
 
-PatchBrowserSelector::PatchBrowserSelector(File::TypesOfFileToFind p_file_or_dir,
-                                           String p_left_button,
-                                           String p_mid_button,
-                                           String p_right_button) :
-    m_file_or_dir(p_file_or_dir) {
+PatchBrowserSelector::PatchBrowserSelector(File::TypesOfFileToFind p_file_or_dir, String p_left_button, String p_mid_button, String p_right_button) :
+    m_file_or_dir(p_file_or_dir),
+    m_left_button(p_left_button, "", OdinButton::Type::preset_import),
+    m_mid_button(p_mid_button, "", p_right_button == "Save" ? OdinButton::Type::preset_export_small : OdinButton::Type::preset_export), // this is a hack lmao
+    m_right_button(p_right_button, "", p_right_button == "Save" ? OdinButton::Type::preset_save : OdinButton::Type::preset_new) {
 
 	m_scroll_bar.reportMouseDrag = [&](float p_delta_y) {
 		if (fabs(m_available_scroll_height - m_scroll_bar_height) >= 1) {
@@ -41,7 +44,6 @@ PatchBrowserSelector::PatchBrowserSelector(File::TypesOfFileToFind p_file_or_dir
 
 	if (p_left_button != "") {
 		addAndMakeVisible(m_left_button);
-		m_left_button.setButtonText(p_left_button);
 		m_show_left_button = true;
 		m_left_button.setLookAndFeel(&m_button_feels);
 		m_left_button.setAlwaysOnTop(true);
@@ -49,23 +51,19 @@ PatchBrowserSelector::PatchBrowserSelector(File::TypesOfFileToFind p_file_or_dir
 	}
 	if (p_mid_button != "") {
 		addAndMakeVisible(m_mid_button);
-		m_mid_button.setButtonText(p_mid_button);
 		m_show_mid_button = true;
 		m_mid_button.setLookAndFeel(&m_button_feels);
 		m_mid_button.setAlwaysOnTop(true);
 		m_mid_button.onClick = [&]() { onExport(getDirectory()); };
 	}
 	addAndMakeVisible(m_right_button);
-	m_right_button.setButtonText(p_right_button);
 	m_right_button.setLookAndFeel(&m_button_feels);
 	m_right_button.setAlwaysOnTop(true);
 	m_right_button.onClick = [&]() {
-		if (m_input_field_active) {
+		if (m_input_field_active)
 			applyInputField();
-		} else {
-			//resetInputFieldAndShow();
+		else
 			showInputField();
-		}
 	};
 
 	//m_input_field.onFocusLost = [&]() { hideInputField(); };
@@ -86,31 +84,52 @@ PatchBrowserSelector::~PatchBrowserSelector() {
 }
 
 void PatchBrowserSelector::paint(Graphics &g) {
-	g.fillAll(MODMATRIX_COLOR); // clear the background
-	g.setColour(Colours::grey);
-	g.drawRect(getLocalBounds(), 1); // draw an outline around the component
 
-#define WARNING_COLOR ODIN_BLUE
+	// draw outline for bottom buttons
+	g.setColour(juce::Colour(0xff618eaa));
+	const auto stroke = H * 0.003f;
+	const auto corner = H * 0.015f;
+	if (m_left_button.isShowing() && m_right_button.isShowing()) {
+		auto bounds = m_left_button.getBounds().withRight(m_right_button.getBounds().getRight());
+		bounds.removeFromBottom(bounds.proportionOfHeight(0.06f));
+		// draw outline around all buttons
+		g.drawRoundedRectangle(bounds.toFloat().reduced(stroke / 2.0f), corner, stroke);
+		// draw line at button intersections
+		g.drawLine(m_left_button.getRight(), m_left_button.getY(), m_left_button.getRight(), bounds.getBottom(), stroke);
+		g.drawLine(m_mid_button.getRight(), m_mid_button.getY(), m_mid_button.getRight(), bounds.getBottom(), stroke);
+	}
 
+	else if (m_right_button.isShowing()) {
+		auto bounds = m_right_button.getBounds();
+		bounds.removeFromBottom(bounds.proportionOfHeight(0.06f));
+		g.drawRoundedRectangle(bounds.toFloat().reduced(stroke / 2.0f), corner, stroke);
+	}
+
+	else if (m_left_button.isShowing() && m_mid_button.isShowing()) {
+		auto bounds = m_left_button.getBounds().withRight(m_mid_button.getBounds().getRight());
+		bounds.removeFromBottom(bounds.proportionOfHeight(0.06f));
+		g.drawRoundedRectangle(bounds.toFloat().reduced(stroke / 2.0f), corner, stroke);
+		g.drawLine(m_left_button.getRight(), m_left_button.getY(), m_left_button.getRight(), bounds.getBottom(), stroke);
+	}
+
+	// draw warning texts if necessary
 	switch (m_directory_status) {
 	case DirectoryStatus::Nonexistent: {
-		g.setColour(WARNING_COLOR);
-		float font_size = m_GUI_big ? 17.f : 13.f;
-		float inlay_x   = m_GUI_big ? WARNING_INLAY_X_150 : WARNING_INLAY_X_100;
-		float offset_y  = m_GUI_big ? WARNING_OFFSET_Y_150 : WARNING_OFFSET_Y_100;
-		g.setFont(font_size);
-		g.drawMultiLineText(
-		    m_nonexistent_text, inlay_x, font_size + offset_y, getWidth() - 2 * inlay_x, Justification::centred, 5.f);
+		g.setColour(COL_TEXT_BLUE_DARK);
+		float font_size = proportionOfHeight(0.065f);
+		float inlay_x   = proportionOfWidth(0.1f);
+		float offset_y  = proportionOfHeight(0.1f);
+		g.setFont(Helpers::getAldrichFont(font_size));
+		g.drawMultiLineText(m_nonexistent_text, inlay_x, font_size + offset_y, getWidth() - 2 * inlay_x, Justification::centred, 5.f);
 	} break;
 
 	case DirectoryStatus::Empty: {
-		g.setColour(WARNING_COLOR);
-		float font_size = m_GUI_big ? 17.f : 13.f;
-		float inlay_x   = m_GUI_big ? WARNING_INLAY_X_150 : WARNING_INLAY_X_100;
-		float offset_y  = m_GUI_big ? WARNING_OFFSET_Y_150 : WARNING_OFFSET_Y_100;
-		g.setFont(font_size);
-		g.drawMultiLineText(
-		    m_empty_text, inlay_x, font_size + offset_y, getWidth() - 2 * inlay_x, Justification::centred, 5.f);
+		g.setColour(COL_TEXT_BLUE_DARK);
+		float font_size = proportionOfHeight(0.065f);
+		float inlay_x   = proportionOfWidth(0.1f);
+		float offset_y  = proportionOfHeight(0.1f);
+		g.setFont(Helpers::getAldrichFont(font_size));
+		g.drawMultiLineText(m_empty_text, inlay_x, font_size + offset_y, getWidth() - 2 * inlay_x, Justification::centred, 5.f);
 	} break;
 	default:
 		break;
@@ -120,10 +139,7 @@ void PatchBrowserSelector::paint(Graphics &g) {
 void PatchBrowserSelector::applyInputField() {
 
 	if (m_input_field.getText().isEmpty()) {
-		AlertWindow::showMessageBox(AlertWindow::AlertIconType::WarningIcon,
-		                            "No name provided!",
-		                            "Please enter a name into the text field!",
-		                            "Jeeez, okay...");
+		AlertWindow::showMessageBox(AlertWindow::AlertIconType::WarningIcon, "No name provided!", "Please enter a name into the text field!", "Jeeez, okay...");
 	} else {
 		onCreateNewFile(getDirectory() + File::getSeparatorString() + m_input_field.getText());
 		m_input_field_active = false;
@@ -149,59 +165,6 @@ void PatchBrowserSelector::hideInputField() {
 	m_input_field_active = false;
 }
 
-void PatchBrowserSelector::setGUIBig() {
-	m_GUI_big = true;
-
-	m_menu_feels.setWidth(200);
-	m_menu_feels.setFontSize(18);
-	m_button_feels.setButtonFontSize(17.f);
-
-	m_left_button.setBounds(0, getHeight() - BUTTON_HEIGHT_BROWSER_150, getWidth() / 3, BUTTON_HEIGHT_BROWSER_150);
-	m_mid_button.setBounds(
-	    getWidth() / 3, getHeight() - BUTTON_HEIGHT_BROWSER_150, getWidth() / 3, BUTTON_HEIGHT_BROWSER_150);
-	m_right_button.setBounds(
-	    getWidth() * 2 / 3, getHeight() - BUTTON_HEIGHT_BROWSER_150, getWidth() / 3, BUTTON_HEIGHT_BROWSER_150);
-
-	m_input_field.setBounds(0, getHeight() - BUTTON_HEIGHT_BROWSER_150, getWidth() / 3 * 2, BUTTON_HEIGHT_BROWSER_150);
-	m_input_field.setFont(Font(17.f));
-
-	regenerateContent();
-	resetScrollPosition();
-	positionEntries();
-}
-
-void PatchBrowserSelector::setGUISmall() {
-	m_GUI_big = false;
-
-	m_menu_feels.setWidth(170.f);
-	m_menu_feels.setFontSize(16.f);
-	m_button_feels.setButtonFontSize(14.f);
-
-	m_left_button.setBounds(0,
-	                        BROWSER_SIZE_Y - BUTTON_HEIGHT_BROWSER - 2 * BROWSER_INLAY_Y - 2,
-	                        getWidth() / 3,
-	                        BUTTON_HEIGHT_BROWSER + BROWSER_INLAY_Y - 4);
-
-	m_mid_button.setBounds(getWidth() / 3,
-	                       BROWSER_SIZE_Y - BUTTON_HEIGHT_BROWSER - 2 * BROWSER_INLAY_Y - 2,
-	                       getWidth() / 3,
-	                       BUTTON_HEIGHT_BROWSER + BROWSER_INLAY_Y - 4);
-	m_right_button.setBounds(getWidth() * 2 / 3,
-	                         BROWSER_SIZE_Y - BUTTON_HEIGHT_BROWSER - 2 * BROWSER_INLAY_Y - 2,
-	                         getWidth() / 3,
-	                         BUTTON_HEIGHT_BROWSER + BROWSER_INLAY_Y - 4);
-
-	m_input_field.setBounds(0,
-	                        BROWSER_SIZE_Y - BUTTON_HEIGHT_BROWSER - 2 * BROWSER_INLAY_Y - 2,
-	                        getWidth() / 3 * 2,
-	                        BUTTON_HEIGHT_BROWSER + BROWSER_INLAY_Y - 4);
-	m_input_field.setFont(Font(17.f));
-
-	regenerateContent();
-	resetScrollPosition();
-	positionEntries();
-}
-
 void PatchBrowserSelector::setWildCard(String p_wildcard) {
 	m_wildcard = p_wildcard;
 }
@@ -220,6 +183,16 @@ void PatchBrowserSelector::setDirectory(String p_absolute_path) {
 	if (m_copy_move_enabled) {
 		recreatePopupMenu();
 	}
+}
+
+bool PatchBrowserSelector::highlightSelectedEntryIfPossible(String p_entry) {
+	for (int entry = 0; entry < m_entries.size(); ++entry) {
+		if (m_entries[entry]->getText() == p_entry) {
+			m_entries[entry]->setEntryActive(true);
+			return true;
+		}
+	}
+	return false;
 }
 
 void PatchBrowserSelector::setDirectoryFactoryPresetCategory() {
@@ -300,6 +273,7 @@ void PatchBrowserSelector::checkDirectoryStatus() {
 
 void PatchBrowserSelector::showButtons(bool p_show) {
 	m_right_button.setVisible(p_show);
+	repaint();
 }
 
 void PatchBrowserSelector::regenerateContent() {
@@ -314,7 +288,7 @@ void PatchBrowserSelector::generateContentFactoryPresetCategories() {
 	m_entries.clear();
 
 	for (auto &entry : m_factory_preset_cat_and_names) {
-		m_entries.push_back(std::make_unique<BrowserEntry>(entry.first, m_GUI_big));
+		m_entries.push_back(std::make_unique<BrowserEntry>(entry.first));
 		std::string cat_name          = entry.first;
 		m_entries.back()->onLeftClick = [&, cat_name]() {
 			//DBG(return_string + " was clicked!");
@@ -342,7 +316,7 @@ void PatchBrowserSelector::setDirectoryFactoryPresetPreset(const std::string &p_
 	m_entries.clear();
 
 	for (auto &entry : m_factory_preset_cat_and_names[p_category]) {
-		m_entries.push_back(std::make_unique<BrowserEntry>(entry, m_GUI_big));
+		m_entries.push_back(std::make_unique<BrowserEntry>(entry));
 		std::string patch_name        = entry;
 		m_entries.back()->onLeftClick = [&, patch_name]() {
 			DBG("FP Preset " + patch_name + " was clicked!");
@@ -371,7 +345,7 @@ void PatchBrowserSelector::generateContent() {
 
 	//allways show "Factory Presets" in Soundbank selector first
 	if (m_browser_type == BrowserType::Soundbank) {
-		m_entries.push_back(std::make_unique<BrowserEntry>("Static Factory Presets", m_GUI_big));
+		m_entries.push_back(std::make_unique<BrowserEntry>("Static Factory Presets"));
 		m_entries[0]->onLeftClick = [this]() {
 			//DBG(return_string + " was clicked!");
 			passValueToPatchBrowser(FACTORY_PRESETS_SOUNDBANK_CODE);
@@ -411,13 +385,10 @@ void PatchBrowserSelector::generateContent() {
 			file_array.sort(m_file_comparator);
 
 			for (int file_index = 0; file_index < file_array.size(); ++file_index) {
-				m_entries.push_back(std::make_unique<BrowserEntry>(
-				    file_array[file_index].getFileName().dropLastCharacters((int)m_wildcard.length() - 1), m_GUI_big));
+				m_entries.push_back(std::make_unique<BrowserEntry>(file_array[file_index].getFileName().dropLastCharacters((int)m_wildcard.length() - 1)));
 				if (m_pass_active_element_to_parent) {
 					m_entries[m_entries.size() - 1]->enablePassActiveNameToParent(true);
-					m_entries[m_entries.size() - 1]->passActiveNameToParent = [&](String p_name) {
-						m_input_field.setText(p_name);
-					};
+					m_entries[m_entries.size() - 1]->passActiveNameToParent = [&](String p_name) { m_input_field.setText(p_name); };
 				}
 				String return_string          = file_array[file_index].getFileName();
 				m_entries.back()->onLeftClick = [&, return_string]() {
@@ -435,19 +406,15 @@ void PatchBrowserSelector::generateContent() {
 					} else if (selected == PATCH_BROWSER_MENU_ENTRY_RENAME) {
 
 						// in soundbank, index zero is factory presets
-						const int rename_index =
-						    (m_browser_type == BrowserType::Soundbank) ? file_index + 1 : file_index;
+						const int rename_index = (m_browser_type == BrowserType::Soundbank) ? file_index + 1 : file_index;
 						m_entries[rename_index]->showRenameEditor();
-					} else if (selected >= PATCH_BROWSER_MENU_MOVE_OFFSET &&
-					           selected < PATCH_BROWSER_MENU_COPY_OFFSET) {
+					} else if (selected >= PATCH_BROWSER_MENU_MOVE_OFFSET && selected < PATCH_BROWSER_MENU_COPY_OFFSET) {
 						onMove(m_entries[file_index]->getText(), getMoveFileString(selected));
 					} else if (selected >= PATCH_BROWSER_MENU_COPY_OFFSET) {
 						onCopy(m_entries[file_index]->getText(), getCopyFileString(selected));
 					}
 				};
-				m_entries.back()->applyRenaming = [&](String p_old_name, String p_new_name) {
-					applyRenamingSelector(getDirectory(), p_old_name, p_new_name);
-				};
+				m_entries.back()->applyRenaming = [&](String p_old_name, String p_new_name) { applyRenamingSelector(getDirectory(), p_old_name, p_new_name); };
 			}
 
 			for (int entry = 0; entry < m_entries.size(); ++entry) {
@@ -472,23 +439,19 @@ void PatchBrowserSelector::generateContent() {
 }
 
 void PatchBrowserSelector::positionEntries() {
-	int entry_height = m_GUI_big ? ENTRY_HEIGHT_150 : ENTRY_HEIGHT_100;
+	int entry_height = proportionOfHeight(ENTRY_HEIGHT_REL);
 	for (int entry = 0; entry < m_entries.size(); ++entry) {
-		m_entries[entry]->setBoundsWithInputField(
-		    0, m_scroll_position + entry_height * entry, getWidth(), entry_height);
+		m_entries[entry]->setBoundsWithInputField(0, m_scroll_position + entry_height * entry, getWidth(), entry_height);
 	}
 
-	auto scroll_bar_width = m_GUI_big ? SCROLL_BAR_WIDTH_150 : SCROLL_BAR_WIDTH_100;
+	auto scroll_bar_width = proportionOfWidth(0.03f);
 
 	m_available_scroll_height = getHeight() - entry_height;
 	m_scroll_bar_height       = m_available_scroll_height * getHeight() / (m_entries.size() * entry_height);
-	m_scroll_bar_height =
-	    m_scroll_bar_height > m_available_scroll_height ? m_available_scroll_height : m_scroll_bar_height;
+	m_scroll_bar_height       = m_scroll_bar_height > m_available_scroll_height ? m_available_scroll_height : m_scroll_bar_height;
 
-	m_max_scroll_position = (m_entries.size() + 1) * entry_height -
-	                        getHeight(); // + 1 because we leave 1 space at the bottom for the buttons
-	m_scroll_bar_position =
-	    -m_scroll_position / m_max_scroll_position * (m_available_scroll_height - m_scroll_bar_height);
+	m_max_scroll_position = (m_entries.size() + 1) * entry_height - getHeight(); // + 1 because we leave 1 space at the bottom for the buttons
+	m_scroll_bar_position = -m_scroll_position / m_max_scroll_position * (m_available_scroll_height - m_scroll_bar_height);
 
 	m_scroll_bar.setBounds(getWidth() - scroll_bar_width, m_scroll_bar_position, scroll_bar_width, m_scroll_bar_height);
 }
@@ -499,11 +462,7 @@ void PatchBrowserSelector::resetScrollPosition() {
 
 void PatchBrowserSelector::mouseWheelMove(const MouseEvent &event, const MouseWheelDetails &wheel) {
 
-	if (m_GUI_big) {
-		m_scroll_position += wheel.deltaY * MOUSE_WHEEL_FACTOR_PATCH_BROWSER_150;
-	} else {
-		m_scroll_position += wheel.deltaY * MOUSE_WHEEL_FACTOR_PATCH_BROWSER_100;
-	}
+	m_scroll_position += wheel.deltaY * proportionOfHeight(0.5f);
 
 	enforceScrollLimits();
 
@@ -515,11 +474,11 @@ void PatchBrowserSelector::mouseWheelMove(const MouseEvent &event, const MouseWh
 
 void PatchBrowserSelector::enforceScrollLimits() {
 	m_scroll_position       = m_scroll_position > 0.f ? 0.f : m_scroll_position;
-	int entry_height_single = m_GUI_big ? ENTRY_HEIGHT_150 : ENTRY_HEIGHT_100;
+	int entry_height_single = proportionOfHeight(ENTRY_HEIGHT_REL);
 	float entry_height      = m_entries.size() * entry_height_single;
 
 	float bottom      = entry_height + m_scroll_position;
-	int button_height = m_GUI_big ? BUTTON_HEIGHT_BROWSER_150 : BUTTON_HEIGHT_BROWSER;
+	int button_height = m_left_button.getHeight();
 	if (bottom < getHeight() - button_height) {
 		m_scroll_position -= (bottom - getHeight() + button_height);
 		m_scroll_position = m_scroll_position > 0.f ? 0.f : m_scroll_position;
@@ -555,13 +514,13 @@ String PatchBrowserSelector::getSubDirectoryAndHighlightItFromName(String p_name
 
 	unhighlightAllEntries();
 
+	const auto entry_height_single = proportionOfHeight(ENTRY_HEIGHT_REL);
 	for (int entry = 0; entry < m_entries.size(); ++entry) {
 		if (m_entries[entry]->getText() == name) {
 			m_entries[entry]->setEntryActive(true);
 
-			int entry_height_single = m_GUI_big ? ENTRY_HEIGHT_150 : ENTRY_HEIGHT_100;
-			float entry_position    = entry * entry_height_single;
-			m_scroll_position       = -entry_position + getHeight() / 2.f;
+			float entry_position = entry * entry_height_single;
+			m_scroll_position    = -entry_position + getHeight() / 2.f;
 
 			enforceScrollLimits();
 			positionEntries();
@@ -608,9 +567,27 @@ void PatchBrowserSelector::setType(BrowserType p_type) {
 	m_browser_type = p_type;
 }
 
-// void PatchBrowserSelector::focusLost(FocusChangeType p_cause){
-// 	//this doesnt do anything?
-// 	DBG("FOCUS LOST!!");
-// 	//hideInputField();
-// 	Component::focusLost(p_cause);
-// }
+void PatchBrowserSelector::resized() {
+
+	m_button_feels.setButtonFontSize(H / 14.0f);
+	m_input_field.setFont(H / 15.0f);
+
+	GET_LOCAL_AREA(m_left_button, "PresetLeftButton");
+	m_right_button.setBounds(m_left_button.getBounds().withRightX(W));
+	m_mid_button.setBounds(m_left_button.getBounds().withX(m_left_button.getRight()).withRight(m_right_button.getX()));
+
+	m_input_field.setBounds(m_left_button.getBounds().withX(0).withRight(m_right_button.getX()));
+
+	regenerateContent();
+	resetScrollPosition();
+	positionEntries();
+}
+
+juce::String PatchBrowserSelector::getSelectedEntry() {
+	for (int entry = 0; entry < m_entries.size(); ++entry) {
+		if (m_entries[entry]->isActive()) {
+			return m_entries[entry]->getText();
+		}
+	}
+	return "";
+}

@@ -15,9 +15,10 @@
 
 #pragma once
 
+#include "../GlobalIncludes.h"
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "OdinFeels.h"
-#include "../GlobalIncludes.h"
+
 
 #define INLAY_DEF 1
 
@@ -46,6 +47,12 @@ public:
 		m_color = p_color;
 	}
 
+	void mouseEnter(const MouseEvent &event) override {
+		m_highlight = true;
+	}
+	void mouseExit(const MouseEvent &event) override {
+		m_highlight = false;
+	}
 	void mouseDown(const MouseEvent &event) override;
 	void mouseDrag(const MouseEvent &event) override;
 	void mouseUp(const MouseEvent &event) override;
@@ -67,18 +74,7 @@ public:
 		m_text_offset_left = p_offset;
 	}
 
-	void setGUIBig() {
-		m_GUI_big = true;
-		m_menu_feels.setGUIBig();
-	}
-	void setGUISmall() {
-		m_GUI_big = false;
-		m_menu_feels.setGUISmall();
-	}
-
 private:
-	bool m_GUI_big = true;
-
 	int m_text_offset_top  = 0;
 	int m_text_offset_left = 0;
 
@@ -91,6 +87,8 @@ private:
 	std::string m_text           = "text";
 	std::string m_text_no_suffix = "text";
 	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(GlasDisplay)
+
+	bool m_highlight = false;
 
 	OdinMenuFeels m_menu_feels;
 };

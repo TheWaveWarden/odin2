@@ -15,26 +15,17 @@
 
 #pragma once
 
-#define TRIANGLE_POS_X 51
-#define TRIANGLE_POS_Y 8
-#define TRIANGLE_WIDTH 8
-#define TRIANGLE_HEIGHT 4
-
-#define TRIANGLE_POS_X_150 76
-#define TRIANGLE_POS_Y_150 12
-#define TRIANGLE_WIDTH_150 12
-#define TRIANGLE_HEIGHT_150 6
-
 #include <functional>
 
-#include "../JuceLibraryCode/JuceHeader.h"
 #include "../GlobalIncludes.h"
+#include "../JuceLibraryCode/JuceHeader.h"
 #include "OdinFeels.h"
 
-#define INLAY_DEFAULT 1
 class GlassDropdown : public juce::ComboBox {
 public:
-	GlassDropdown();
+	enum class Type { unassigned, dropdown_12x4, dropdown_14x4 };
+
+	GlassDropdown(Type p_type = Type::unassigned);
 	virtual ~GlassDropdown();
 
 	virtual void paint(Graphics &) override;
@@ -64,7 +55,7 @@ public:
 	void setDefaultText(const std::string &p_text) {
 		m_default_text = p_text;
 	}
-	int m_inlay = INLAY_DEFAULT;
+	int m_inlay = 0;
 	void setInlayTop(int p_inlay) {
 		m_inlay_top = p_inlay;
 	}
@@ -93,28 +84,24 @@ public:
 		m_setOneToZero = p_enable;
 	}
 
-	void setGUIBig() {
-		m_GUI_big = true;
-		m_menu_feels.setGUIBig();
-	}
-	void setGUISmall() {
-		m_GUI_big = false;
-		m_menu_feels.setGUISmall();
-	}
 	void setInlayLeft(int p_inlay) {
 		m_inlay_left = p_inlay;
 	}
-	void showTriangle(bool p_show = true){
+	void showTriangle(bool p_show = true) {
 		m_show_triangle = p_show;
 	}
 
 protected:
+	void paintTriangle(juce::Graphics &g);
+
+    Type m_type;
+    UIAssets::Indices m_asset;
+
 	int m_inlay_top  = 0;
 	int m_inlay_left = 0;
 
-	bool m_GUI_big = true;
-	bool m_setOneToZero = false;
-	bool m_show_triangle = false;
+	bool m_setOneToZero        = false;
+	bool m_show_triangle       = false;
 	std::string m_default_text = "undefined";
 
 	bool m_grey_first_element = false;

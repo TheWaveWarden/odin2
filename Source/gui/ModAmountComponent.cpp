@@ -14,10 +14,9 @@
 */
 
 #include "ModAmountComponent.h"
-#include "../JuceLibraryCode/JuceHeader.h"
+#include "../ConfigFileManager.h"
 #include "../GlobalIncludes.h"
-#include <iomanip> // setprecision
-#include <sstream> // stringstream
+#include "../JuceLibraryCode/JuceHeader.h"
 
 ModAmountComponent::ModAmountComponent() {
 }
@@ -27,52 +26,34 @@ ModAmountComponent::~ModAmountComponent() {
 
 void ModAmountComponent::paint(Graphics &g) {
 	SET_INTERPOLATION_QUALITY(g)
-	g.setColour(m_color);
-	juce::Point<int> top_left = getLocalBounds().getTopLeft();
-	top_left.addXY(m_inlay, m_inlay + m_inlay_top);
-	juce::Point<int> bottom_right = getLocalBounds().getBottomRight();
-	bottom_right.addXY(-m_inlay, -m_inlay - m_inlay_bottom);
-	g.fillRect(juce::Rectangle<int>(top_left, bottom_right));
+
+	auto bounds       = getLocalBounds().toFloat();
+	const auto corner = float(getHeight()) * 0.1f;
+
+	const auto scaleCompensation = float(ConfigFileManager::getInstance().getOptionGuiScale()) / float(GuiScale::Z200);
+	juce::BorderSize<float> border_size(3.0f * scaleCompensation, 3.0f * scaleCompensation, 1.0f * scaleCompensation, 2.0f * scaleCompensation);
+	border_size.subtractFrom(bounds);
 
 	if (m_value > 0) {
-		g.setColour(m_color_bar);
-		bottom_right.addXY(-(getWidth() - m_inlay * 2) * (1.f - m_value), -m_inlay);
-		g.fillRect(juce::Rectangle<int>(top_left, bottom_right));
+		g.setColour(m_color_bar.withAlpha(0.3f));
+		bounds = bounds.removeFromLeft(bounds.proportionOfWidth(m_value));
+		g.fillRoundedRectangle(bounds, corner);
 	} else if (m_value < 0) {
-		g.setColour(m_color_bar_negative);
-		top_left.addXY((getWidth() - m_inlay * 2) * (1 + m_value), m_inlay - m_inlay_bottom);
-		bottom_right.addXY(0, -m_inlay);
-		g.fillRect(juce::Rectangle<int>(top_left, bottom_right));
+		g.setColour(m_color_bar_negative.withAlpha(0.3f));
+		bounds = bounds.removeFromRight(bounds.proportionOfWidth(-m_value));
+		g.fillRoundedRectangle(bounds, corner);
 	}
 
-	Font current_font = g.getCurrentFont();
-	current_font.setStyleFlags(1); //bold
-	g.setFont(current_font);
-	if (m_GUI_big) {
-		g.setFont(18.0f);
-	} else {
-		g.setFont(12.0f);
-	}
-	std::stringstream stream;
-	stream << std::fixed << std::setprecision(0) << m_value * 100;
-	std::string value_string = stream.str();
-	g.setColour(Colours::white);
-	if (value_string == "0") {
-		g.setColour(juce::Colours::lightgrey);
-	}
-	g.drawText(value_string, getLocalBounds(), Justification::centred, true);
-
-	g.drawImageAt(m_glas_panel, 0, 0);
+	g.setFont(Helpers::getAldrichFont(H / 1.8f));
+	g.setColour(COL_TEXT_BLUE);
+	g.drawText(juce::String(juce::roundToInt(m_value * 100.0f)), getLocalBounds(), Justification::centred, true);
 }
 
 void ModAmountComponent::mouseDrag(const MouseEvent &event) {
-	float drag_scalar = DRAG_SCALAR;
-	if (m_GUI_big) {
-		drag_scalar *= 0.66f;
-	}
-	m_value = m_drag_start_value + (m_drag_start_y - getMouseXYRelative().getY()) * drag_scalar;
-	m_value = m_value > m_input_limit ? m_input_limit : m_value;
-	m_value = m_value < -m_input_limit ? -m_input_limit : m_value;
+	float drag_scalar = H * 0.0002f;
+	m_value           = m_drag_start_value + (m_drag_start_y - getMouseXYRelative().getY()) * drag_scalar;
+	m_value           = m_value > m_input_limit ? m_input_limit : m_value;
+	m_value           = m_value < -m_input_limit ? -m_input_limit : m_value;
 	onValueChange(m_value);
 	repaint();
 }

@@ -57,12 +57,9 @@ public:
 		repaint();
 	}
 
-	std::function<void()> onDraw = []() {};
-	void setGUIBig();
-	void setGUISmall();
+	std::function<void()> onMouseUp = []() {};
 
 private:
-	bool m_GUI_big = true;
 	int m_inlay    = INLAY_DEFAULT_SPECDRAW;
 	juce::Image m_glaspanel;
 	juce::Colour m_color      = juce::Colours::black;

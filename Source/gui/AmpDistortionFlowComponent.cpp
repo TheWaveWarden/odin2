@@ -15,11 +15,32 @@
 
 #include "AmpDistortionFlowComponent.h"
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "JsonGuiProvider.h"
 
 AmpDistortionFlowComponent::AmpDistortionFlowComponent(AudioProcessorValueTreeState &vts) :
-    m_flow_left("flow_left", juce::DrawableButton::ButtonStyle::ImageRaw),
-    m_flow_right("flow_right", juce::DrawableButton::ButtonStyle::ImageRaw),
-    m_distortion("distortion", juce::DrawableButton::ButtonStyle::ImageRaw), m_value_tree(vts) {
+    m_flow_left("flow_left", "", OdinButton::Type::button_left),
+    m_flow_right("flow_right", "", OdinButton::Type::button_right),
+    m_distortion("distortion", "", OdinButton::Type::fx_enabled),
+    m_value_tree(vts),
+    m_gain_label("Gain"),
+    m_pan_label("Pan"),
+    m_velocity_label("Velocity"),
+    m_boost_label("Boost"),
+    m_drywet_label("DryWet"),
+    m_amp_gain(OdinKnob::Type::knob_8x8a),
+    m_amp_pan(OdinKnob::Type::knob_5x5a),
+    m_amp_velocity(OdinKnob::Type::knob_5x5a),
+    m_boost(OdinKnob::Type::knob_8x8b),
+    m_dry_wet(OdinKnob::Type::knob_8x8b),
+    m_distortion_algo(GlassDropdown::Type::dropdown_12x4),
+    m_distortion_label("DISTORTION") {
+
+	addAndMakeVisible(m_gain_label);
+	addAndMakeVisible(m_pan_label);
+	addAndMakeVisible(m_velocity_label);
+	addAndMakeVisible(m_boost_label);
+	addAndMakeVisible(m_drywet_label);
+	addAndMakeVisible(m_distortion_label);
 
 	m_flow_left.setClickingTogglesState(true);
 	addAndMakeVisible(m_flow_left);
@@ -44,8 +65,7 @@ AmpDistortionFlowComponent::AmpDistortionFlowComponent(AudioProcessorValueTreeSt
 	m_distortion.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
 	m_distortion.onClick = [&]() {
 		setDistortionPanelActive(m_distortion.getToggleState());
-		m_value_tree.state.getChildWithName("misc").setProperty(
-		    "dist_on", m_distortion.getToggleState() ? 1.f : 0.f, nullptr);
+		m_value_tree.state.getChildWithName("misc").setProperty("dist_on", m_distortion.getToggleState() ? 1.f : 0.f, nullptr);
 		m_value_tree.state.getChildWithName("misc").sendPropertyChangeMessage("dist_on");
 	};
 
@@ -91,10 +111,7 @@ AmpDistortionFlowComponent::AmpDistortionFlowComponent(AudioProcessorValueTreeSt
 	m_distortion_algo.setSelectedId(1, dontSendNotification);
 	m_distortion_algo.setColor(juce::STANDARD_DISPLAY_COLOR);
 	m_distortion_algo.setTooltip("Selects the distortion algorithm to be used");
-	m_distortion_algo.onChange = [&]() {
-		m_value_tree.state.getChildWithName("misc").setProperty(
-		    "dist_algo", m_distortion_algo.getSelectedId(), nullptr);
-	};
+	m_distortion_algo.onChange = [&]() { m_value_tree.state.getChildWithName("misc").setProperty("dist_algo", m_distortion_algo.getSelectedId(), nullptr); };
 	addAndMakeVisible(m_distortion_algo);
 
 	m_amp_velocity_attach.reset(new OdinKnobAttachment(m_value_tree, "amp_velocity", m_amp_velocity));
@@ -132,275 +149,34 @@ void AmpDistortionFlowComponent::forceValueTreeOntoComponents(ValueTree p_tree) 
 }
 
 void AmpDistortionFlowComponent::setDistortionPanelActive(bool p_active) {
-	//DBG("SetDistortionPanelActive: " + std::to_string(p_active));
-	m_distortion_algo.setColor(p_active ? DISTORTION_ON_COLOR : DARKGREY);
+	m_distortion_algo.setEnabled(p_active);
+	m_boost.setEnabled(p_active);
+	m_boost_label.setEnabled(p_active);
+	m_dry_wet.setEnabled(p_active);
+	m_drywet_label.setEnabled(p_active);
 	m_distortion_on = p_active;
 	repaint();
 }
 
-
-void AmpDistortionFlowComponent::setGUIBig(){
-	m_GUI_big = true;
-
-juce::Image flow_left_1 = ImageCache::getFromMemory(BinaryData::buttonleft_1_150_png, BinaryData::buttonleft_1_150_pngSize);
-	juce::Image flow_left_2 = ImageCache::getFromMemory(BinaryData::buttonleft_2_150_png, BinaryData::buttonleft_2_150_pngSize);
-	juce::Image flow_left_3 = ImageCache::getFromMemory(BinaryData::buttonleft_3_150_png, BinaryData::buttonleft_3_150_pngSize);
-	juce::Image flow_left_4 = ImageCache::getFromMemory(BinaryData::buttonleft_4_150_png, BinaryData::buttonleft_4_150_pngSize);
-
-	juce::DrawableImage flow_left_draw1;
-	juce::DrawableImage flow_left_draw2;
-	juce::DrawableImage flow_left_draw3;
-	juce::DrawableImage flow_left_draw4;
-
-	flow_left_draw1.setImage(flow_left_1);
-	flow_left_draw2.setImage(flow_left_2);
-	flow_left_draw3.setImage(flow_left_3);
-	flow_left_draw4.setImage(flow_left_4);
-
-	m_flow_left.setImages(&flow_left_draw2,
-	                      &flow_left_draw2,
-	                      &flow_left_draw1,
-	                      &flow_left_draw1,
-	                      &flow_left_draw4,
-	                      &flow_left_draw4,
-	                      &flow_left_draw3,
-	                      &flow_left_draw3);
-	m_flow_left.setBounds(OdinHelper::c150(FLOW_LEFT_POS_X)+3, OdinHelper::c150(FLOW_POS_Y), flow_left_1.getWidth(), flow_left_1.getHeight());
-
-	juce::Image flow_right_1 =
-	    ImageCache::getFromMemory(BinaryData::buttonright_1_150_png, BinaryData::buttonright_1_150_pngSize);
-	juce::Image flow_right_2 =
-	    ImageCache::getFromMemory(BinaryData::buttonright_2_150_png, BinaryData::buttonright_2_150_pngSize);
-	juce::Image flow_right_3 =
-	    ImageCache::getFromMemory(BinaryData::buttonright_3_150_png, BinaryData::buttonright_3_150_pngSize);
-	juce::Image flow_right_4 =
-	    ImageCache::getFromMemory(BinaryData::buttonright_4_150_png, BinaryData::buttonright_4_150_pngSize);
-
-	juce::DrawableImage flow_right_draw1;
-	juce::DrawableImage flow_right_draw2;
-	juce::DrawableImage flow_right_draw3;
-	juce::DrawableImage flow_right_draw4;
-
-	flow_right_draw1.setImage(flow_right_1);
-	flow_right_draw2.setImage(flow_right_2);
-	flow_right_draw3.setImage(flow_right_3);
-	flow_right_draw4.setImage(flow_right_4);
-
-	m_flow_right.setImages(&flow_right_draw2,
-	                       &flow_right_draw2,
-	                       &flow_right_draw1,
-	                       &flow_right_draw1,
-	                       &flow_right_draw4,
-	                       &flow_right_draw4,
-	                       &flow_right_draw3,
-	                       &flow_right_draw3);
-	m_flow_right.setBounds(OdinHelper::c150(FLOW_RIGHT_POS_X), OdinHelper::c150(FLOW_POS_Y), flow_right_1.getWidth(), flow_right_1.getHeight());
-
-	juce::Image distortion_1 =
-	    ImageCache::getFromMemory(BinaryData::buttondistortion_1_150_png, BinaryData::buttondistortion_1_150_pngSize);
-	juce::Image distortion_2 =
-	    ImageCache::getFromMemory(BinaryData::buttondistortion_2_150_png, BinaryData::buttondistortion_2_150_pngSize);
-	juce::Image distortion_3 =
-	    ImageCache::getFromMemory(BinaryData::buttondistortion_3_150_png, BinaryData::buttondistortion_3_150_pngSize);
-	juce::Image distortion_4 =
-	    ImageCache::getFromMemory(BinaryData::buttondistortion_4_150_png, BinaryData::buttondistortion_4_150_pngSize);
-
-	juce::DrawableImage distortion_draw1;
-	juce::DrawableImage distortion_draw2;
-	juce::DrawableImage distortion_draw3;
-	juce::DrawableImage distortion_draw4;
-
-	distortion_draw1.setImage(distortion_1);
-	distortion_draw2.setImage(distortion_2);
-	distortion_draw3.setImage(distortion_3);
-	distortion_draw4.setImage(distortion_4);
-
-	m_distortion.setImages(&distortion_draw2,
-	                       &distortion_draw2,
-	                       &distortion_draw1,
-	                       &distortion_draw1,
-	                       &distortion_draw4,
-	                       &distortion_draw4,
-	                       &distortion_draw3,
-	                       &distortion_draw3);
-	m_distortion.setBounds(OdinHelper::c150(DISTORTION_POS_X)-2, OdinHelper::c150(DISTORTION_POS_Y), distortion_1.getWidth(), distortion_1.getHeight());
-
-	juce::Image metal_knob_big =
-	    ImageCache::getFromMemory(BinaryData::metal_knob_big_150_png, BinaryData::metal_knob_big_150_pngSize);
-	juce::Image black_knob_mid =
-	    ImageCache::getFromMemory(BinaryData::black_knob_mid_150_png, BinaryData::black_knob_mid_150_pngSize);
-	juce::Image round_knob = ImageCache::getFromMemory(BinaryData::round_knob_150_png, BinaryData::round_knob_150_pngSize);
-
-	m_amp_gain.setStrip(metal_knob_big, N_KNOB_FRAMES);
-
-	m_amp_pan.setStrip(black_knob_mid, N_KNOB_FRAMES);
-
-	m_amp_velocity.setStrip(black_knob_mid, N_KNOB_FRAMES);
-
-	m_boost.setStrip(round_knob, N_KNOB_FRAMES);
-
-	m_dry_wet.setStrip(round_knob, N_KNOB_FRAMES);
-
-	juce::Image glas_panel =
-	    ImageCache::getFromMemory(BinaryData::glaspanel_midbig_150_png, BinaryData::glaspanel_midbig_150_pngSize);
-	m_distortion_algo.setImage(glas_panel);
-	m_distortion_algo.setInlay(1);
-	m_distortion_algo.setBounds(OdinHelper::c150(DIST_ALGO_POS_X), OdinHelper::c150(DIST_ALGO_POS_Y), glas_panel.getWidth(), glas_panel.getHeight());
-
-	m_amp_gain.setBounds(OdinHelper::c150(AMP_GAIN_POS_X) - OdinHelper::c150(METAL_KNOB_BIG_OFFSET_X)-1,
-	                     OdinHelper::c150(AMP_GAIN_POS_Y) - OdinHelper::c150(METAL_KNOB_BIG_OFFSET_Y)-1,
-	                     OdinHelper::c150(METAL_KNOB_BIG_SIZE_X),
-	                     OdinHelper::c150(METAL_KNOB_BIG_SIZE_Y));
-	m_amp_pan.setBounds(OdinHelper::c150(AMP_PAN_POS_X) - OdinHelper::c150(BLACK_KNOB_MID_OFFSET_X),
-	                    OdinHelper::c150(AMP_PAN_POS_Y) - OdinHelper::c150(BLACK_KNOB_MID_OFFSET_Y),
-	                    OdinHelper::c150(BLACK_KNOB_MID_SIZE_X),
-	                    OdinHelper::c150(BLACK_KNOB_MID_SIZE_Y));
-	m_amp_velocity.setBounds(OdinHelper::c150(AMP_VEL_POS_X) - OdinHelper::c150(BLACK_KNOB_MID_OFFSET_X),
-	                      OdinHelper::c150(AMP_VEL_POS_Y) - OdinHelper::c150(BLACK_KNOB_MID_OFFSET_Y)-1,
-	                      OdinHelper::c150(BLACK_KNOB_MID_SIZE_X),
-	                      OdinHelper::c150(BLACK_KNOB_MID_SIZE_Y));
-	m_boost.setBounds(
-	    OdinHelper::c150(BIAS_POS_X) - OdinHelper::c150(ROUND_KNOB_OFFSET_X)-1, OdinHelper::c150(BIAS_POS_Y) - OdinHelper::c150(ROUND_KNOB_OFFSET_Y)+1, OdinHelper::c150(ROUND_KNOB_SIZE_X)+2, OdinHelper::c150(ROUND_KNOB_SIZE_Y));
-	m_dry_wet.setBounds(OdinHelper::c150(THRESHOLD_POS_X) - OdinHelper::c150(ROUND_KNOB_OFFSET_X)-1,
-	                    OdinHelper::c150(THRESHOLD_POS_Y) - OdinHelper::c150(ROUND_KNOB_OFFSET_Y)+1,
-	                    OdinHelper::c150(ROUND_KNOB_SIZE_X)+2,
-	                    OdinHelper::c150(ROUND_KNOB_SIZE_Y));
-
-	m_distortion_algo.setGUIBig();
-
-	m_distortion_image = ImageCache::getFromMemory(BinaryData::distortion_on_150_png, BinaryData::distortion_on_150_pngSize);
-
-	forceValueTreeOntoComponents(m_value_tree.state);
+void AmpDistortionFlowComponent::paint(Graphics &g) {
 }
-void AmpDistortionFlowComponent::setGUISmall(){
-	m_GUI_big = false;
-	
-	juce::Image flow_left_1 = ImageCache::getFromMemory(BinaryData::buttonleft_1_png, BinaryData::buttonleft_1_pngSize);
-	juce::Image flow_left_2 = ImageCache::getFromMemory(BinaryData::buttonleft_2_png, BinaryData::buttonleft_2_pngSize);
-	juce::Image flow_left_3 = ImageCache::getFromMemory(BinaryData::buttonleft_3_png, BinaryData::buttonleft_3_pngSize);
-	juce::Image flow_left_4 = ImageCache::getFromMemory(BinaryData::buttonleft_4_png, BinaryData::buttonleft_4_pngSize);
 
-	juce::DrawableImage flow_left_draw1;
-	juce::DrawableImage flow_left_draw2;
-	juce::DrawableImage flow_left_draw3;
-	juce::DrawableImage flow_left_draw4;
+void AmpDistortionFlowComponent::resized() {
 
-	flow_left_draw1.setImage(flow_left_1);
-	flow_left_draw2.setImage(flow_left_2);
-	flow_left_draw3.setImage(flow_left_3);
-	flow_left_draw4.setImage(flow_left_4);
+	GET_LOCAL_AREA(m_gain_label, "GainLabel");
+	GET_LOCAL_AREA(m_pan_label, "PanLabel");
+	GET_LOCAL_AREA(m_velocity_label, "VelocityLabel");
+	GET_LOCAL_AREA(m_boost_label, "BoostLabel");
+	GET_LOCAL_AREA(m_drywet_label, "DistDryWetLabel");
+	GET_LOCAL_AREA(m_distortion_label, "DistModuleLabel");
 
-	m_flow_left.setImages(&flow_left_draw2,
-	                      &flow_left_draw2,
-	                      &flow_left_draw1,
-	                      &flow_left_draw1,
-	                      &flow_left_draw4,
-	                      &flow_left_draw4,
-	                      &flow_left_draw3,
-	                      &flow_left_draw3);
-	m_flow_left.setBounds(FLOW_LEFT_POS_X, FLOW_POS_Y, flow_left_1.getWidth(), flow_left_1.getHeight());
-
-	juce::Image flow_right_1 =
-	    ImageCache::getFromMemory(BinaryData::buttonright_1_png, BinaryData::buttonright_1_pngSize);
-	juce::Image flow_right_2 =
-	    ImageCache::getFromMemory(BinaryData::buttonright_2_png, BinaryData::buttonright_2_pngSize);
-	juce::Image flow_right_3 =
-	    ImageCache::getFromMemory(BinaryData::buttonright_3_png, BinaryData::buttonright_3_pngSize);
-	juce::Image flow_right_4 =
-	    ImageCache::getFromMemory(BinaryData::buttonright_4_png, BinaryData::buttonright_4_pngSize);
-
-	juce::DrawableImage flow_right_draw1;
-	juce::DrawableImage flow_right_draw2;
-	juce::DrawableImage flow_right_draw3;
-	juce::DrawableImage flow_right_draw4;
-
-	flow_right_draw1.setImage(flow_right_1);
-	flow_right_draw2.setImage(flow_right_2);
-	flow_right_draw3.setImage(flow_right_3);
-	flow_right_draw4.setImage(flow_right_4);
-
-	m_flow_right.setImages(&flow_right_draw2,
-	                       &flow_right_draw2,
-	                       &flow_right_draw1,
-	                       &flow_right_draw1,
-	                       &flow_right_draw4,
-	                       &flow_right_draw4,
-	                       &flow_right_draw3,
-	                       &flow_right_draw3);
-	m_flow_right.setBounds(FLOW_RIGHT_POS_X, FLOW_POS_Y, flow_right_1.getWidth(), flow_right_1.getHeight());
-
-	juce::Image distortion_1 =
-	    ImageCache::getFromMemory(BinaryData::buttondistortion_1_png, BinaryData::buttondistortion_1_pngSize);
-	juce::Image distortion_2 =
-	    ImageCache::getFromMemory(BinaryData::buttondistortion_2_png, BinaryData::buttondistortion_2_pngSize);
-	juce::Image distortion_3 =
-	    ImageCache::getFromMemory(BinaryData::buttondistortion_3_png, BinaryData::buttondistortion_3_pngSize);
-	juce::Image distortion_4 =
-	    ImageCache::getFromMemory(BinaryData::buttondistortion_4_png, BinaryData::buttondistortion_4_pngSize);
-
-	juce::DrawableImage distortion_draw1;
-	juce::DrawableImage distortion_draw2;
-	juce::DrawableImage distortion_draw3;
-	juce::DrawableImage distortion_draw4;
-
-	distortion_draw1.setImage(distortion_1);
-	distortion_draw2.setImage(distortion_2);
-	distortion_draw3.setImage(distortion_3);
-	distortion_draw4.setImage(distortion_4);
-
-	m_distortion.setImages(&distortion_draw2,
-	                       &distortion_draw2,
-	                       &distortion_draw1,
-	                       &distortion_draw1,
-	                       &distortion_draw4,
-	                       &distortion_draw4,
-	                       &distortion_draw3,
-	                       &distortion_draw3);
-	m_distortion.setBounds(DISTORTION_POS_X, DISTORTION_POS_Y, distortion_1.getWidth(), distortion_1.getHeight());
-
-	juce::Image metal_knob_big =
-	    ImageCache::getFromMemory(BinaryData::metal_knob_big_png, BinaryData::metal_knob_big_pngSize);
-	juce::Image black_knob_mid =
-	    ImageCache::getFromMemory(BinaryData::black_knob_mid_png, BinaryData::black_knob_mid_pngSize);
-	juce::Image round_knob = ImageCache::getFromMemory(BinaryData::round_knob_png, BinaryData::round_knob_pngSize);
-
-	m_amp_gain.setStrip(metal_knob_big, N_KNOB_FRAMES);
-
-	m_amp_pan.setStrip(black_knob_mid, N_KNOB_FRAMES);
-
-	m_amp_velocity.setStrip(black_knob_mid, N_KNOB_FRAMES);
-
-	m_boost.setStrip(round_knob, N_KNOB_FRAMES);
-
-	m_dry_wet.setStrip(round_knob, N_KNOB_FRAMES);
-
-	juce::Image glas_panel =
-	    ImageCache::getFromMemory(BinaryData::glaspanel_midbig_png, BinaryData::glaspanel_midbig_pngSize);
-	m_distortion_algo.setImage(glas_panel);
-	m_distortion_algo.setInlay(1);
-	m_distortion_algo.setBounds(DIST_ALGO_POS_X, DIST_ALGO_POS_Y, glas_panel.getWidth(), glas_panel.getHeight());
-
-	m_amp_gain.setBounds(AMP_GAIN_POS_X - METAL_KNOB_BIG_OFFSET_X,
-	                     AMP_GAIN_POS_Y - METAL_KNOB_BIG_OFFSET_Y,
-	                     METAL_KNOB_BIG_SIZE_X,
-	                     METAL_KNOB_BIG_SIZE_Y);
-	m_amp_pan.setBounds(AMP_PAN_POS_X - BLACK_KNOB_MID_OFFSET_X,
-	                    AMP_PAN_POS_Y - BLACK_KNOB_MID_OFFSET_Y,
-	                    BLACK_KNOB_MID_SIZE_X,
-	                    BLACK_KNOB_MID_SIZE_Y);
-	m_amp_velocity.setBounds(AMP_VEL_POS_X - BLACK_KNOB_MID_OFFSET_X,
-	                      AMP_VEL_POS_Y - BLACK_KNOB_MID_OFFSET_Y,
-	                      BLACK_KNOB_MID_SIZE_X,
-	                      BLACK_KNOB_MID_SIZE_Y);
-	m_boost.setBounds(
-	    BIAS_POS_X - ROUND_KNOB_OFFSET_X, BIAS_POS_Y - ROUND_KNOB_OFFSET_Y, ROUND_KNOB_SIZE_X, ROUND_KNOB_SIZE_Y);
-	m_dry_wet.setBounds(THRESHOLD_POS_X - ROUND_KNOB_OFFSET_X,
-	                    THRESHOLD_POS_Y - ROUND_KNOB_OFFSET_Y,
-	                    ROUND_KNOB_SIZE_X,
-	                    ROUND_KNOB_SIZE_Y);
-
-	m_distortion_algo.setGUISmall();
-	m_distortion_image = ImageCache::getFromMemory(BinaryData::distortion_on_png, BinaryData::distortion_on_pngSize);
-
-	forceValueTreeOntoComponents(m_value_tree.state);
+	GET_LOCAL_AREA(m_flow_left, "FlowLeft");
+	GET_LOCAL_AREA(m_flow_right, "FlowRight");
+	GET_LOCAL_AREA(m_distortion, "Distortion");
+	GET_LOCAL_AREA(m_distortion_algo, "DistortionAlgo");
+	GET_LOCAL_AREA(m_amp_gain, "AmpGain");
+	GET_LOCAL_AREA(m_amp_pan, "AmpPan");
+	GET_LOCAL_AREA(m_amp_velocity, "AmpVelocity");
+	GET_LOCAL_AREA(m_boost, "Boost");
+	GET_LOCAL_AREA(m_dry_wet, "DryWet");
 }

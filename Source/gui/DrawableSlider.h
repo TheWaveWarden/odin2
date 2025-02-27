@@ -15,10 +15,9 @@
 
 #pragma once
 
-#include "../JuceLibraryCode/JuceHeader.h"
 #include "../GlobalIncludes.h"
+#include "../JuceLibraryCode/JuceHeader.h"
 #include "InputField.h"
-#include "OdinMidiLearnBase.h"
 
 #include "../JuceLibraryCode/JuceHeader.h"
 
@@ -26,10 +25,7 @@
 
 class ADSRFeels : public juce::LookAndFeel_V4 {
 public:
-	void drawBubble(Graphics &g,
-	                BubbleComponent &b,
-	                const Point<float> &positionOfTip,
-	                const Rectangle<float> &body) override {
+	void drawBubble(Graphics &g, BubbleComponent &b, const Point<float> &positionOfTip, const Rectangle<float> &body) override {
 		g.setColour(MENU_BACKGROUND_COLOR);
 		g.fillRect(body); // pmai
 		g.setColour(Colour(50, 50, 50));
@@ -48,45 +44,22 @@ public:
 
 class OdinAudioProcessor;
 
-class DrawableSlider : public juce::Slider, public OdinMidiLearnBase {
+class DrawableSlider : public juce::Slider {
 public:
 	DrawableSlider();
 	~DrawableSlider();
 
-
-	void setHandle(juce::Image p_handle){
-		m_handle = p_handle;
-	}
-	
 	String getTextFromValue(double value) override;
 
 	void setTextValueSuffix(const String &suffix) {
-		//setNumDecimalPlacesToDisplay(20);
 		Slider::setTextValueSuffix(suffix);
 	}
 
 	void paint(Graphics &) override;
 
-	void setImage(juce::Image p_handle) {
-		m_handle = p_handle;
-	}
-
 	static void setOdinPointer(OdinAudioProcessor *p_pointer) {
 		m_processor = p_pointer;
 	}
-
-	void stopMidiLearn() override {
-		m_midi_learn = false;
-		repaint();
-	}
-
-	void setMidiControlActive() override {
-		m_midi_learn   = false;
-		m_midi_control = true;
-		repaint();
-	}
-
-	void mouseDown(const MouseEvent &event) override;
 
 	void mouseDoubleClick(const MouseEvent &e) override {
 		if (!e.mods.isRightButtonDown()) {
@@ -110,7 +83,6 @@ public:
 private:
 	static OdinAudioProcessor *m_processor;
 	ADSRFeels m_feels;
-	juce::Image m_handle;
 
 	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(DrawableSlider)
 };

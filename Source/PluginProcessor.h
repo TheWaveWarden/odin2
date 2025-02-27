@@ -41,7 +41,7 @@
 
 #include <list>
 
-class OdinAudioProcessorEditor;
+class OdinEditor;
 
 class OdinAudioProcessor : public AudioProcessor {
 public:
@@ -73,9 +73,6 @@ public:
 	void getStateInformation(MemoryBlock &destData) override;
 	void setStateInformation(const void *data, int sizeInBytes) override;
 	WavetableContainer *getWavetableContainerPointer();
-	void startMidiLearn(const String &p_parameter_ID, OdinMidiLearnBase *p_GUI_control);
-	void midiForget(const String &p_parameter_ID, OdinMidiLearnBase *p_GUI_control);
-	void stopMidiLearn();
 	void midiNoteOff(int p_midi_note);
 	void midiNoteOn(int p_midi_note,
 	                int p_midi_velocity,
@@ -229,7 +226,6 @@ private:
 	ModSources m_mod_sources;
 	ModDestinations m_mod_destinations;
 
-	OdinMidiLearnBase *m_midi_learn_control = nullptr;
 	String m_midi_learn_parameter_ID        = "";
 	std::multimap<int, RangedAudioParameter *> m_midi_control_param_map;
 	bool m_midi_learn_parameter_active = false;
@@ -301,7 +297,7 @@ private:
 	int m_flanger_position = 3;
 	int m_reverb_position  = 4;
 
-	OdinAudioProcessorEditor *m_editor_pointer = nullptr;
+	OdinEditor *m_editor_pointer = nullptr;
 
 	int m_osc_type[3] = {OSC_TYPE_ANALOG, 1, 1};
 	int m_fil_type[3] = {FILTER_TYPE_LP24, 1, 1};

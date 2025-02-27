@@ -15,31 +15,13 @@
 
 #pragma once
 
-#include "../JuceLibraryCode/JuceHeader.h"
 #include "../GlobalIncludes.h"
-#include "OdinKnob.h"
+#include "../JuceLibraryCode/JuceHeader.h"
 #include "OdinButton.h"
 #include "OdinControlAttachments.h"
+#include "OdinKnob.h"
 #include "SyncTimeSelector.h"
-
-#define TIME_POS_X 17
-#define TIME_POS_Y 21
-#define FEEDBACK_POS_X 83
-#define FEEDBACK_POS_Y 51
-#define DELAY_HP_POS_X 141
-#define DELAY_HP_POS_Y 17
-#define DUCKING_POS_X 180
-#define DUCKING_POS_Y DELAY_HP_POS_Y
-#define DRY_POS_X 160
-#define DRY_POS_Y 64
-#define WET_POS_X 200
-#define WET_POS_Y DRY_POS_Y
-#define DELAY_SYNC_POS_X 25
-#define DELAY_SYNC_POS_Y 78
-#define DELAY_PINGPONG_POS_X 85
-#define DELAY_PINGPONG_POS_Y 10
-#define SYNC_TIME_DELAY_POS_X 2
-#define SYNC_TIME_DELAY_POS_Y 36
+#include "TextLabel.h"
 
 #define HP_FREQ_MIN 80
 #define HP_FREQ_MAX 18000
@@ -62,6 +44,7 @@ public:
 	void forceValueTreeOntoComponents(ValueTree p_tree);
 
 	void paint(Graphics &) override;
+	void resized() override;
 
 	void setImage(juce::Image p_background) {
 		m_background = p_background;
@@ -69,16 +52,18 @@ public:
 
 	void setSync(bool p_sync_on);
 
-	void setGUIBig();
-	void setGUISmall();
-
 private:
-	bool m_GUI_big = true;
-
 	bool m_is_standalone_plugin;
 	bool m_sync_on = false;
 
 	juce::Image m_background;
+
+	TextLabel m_time_label;
+	TextLabel m_feedback_label;
+	TextLabel m_hp_label;
+	TextLabel m_ducking_label;
+	TextLabel m_dry_label;
+	TextLabel m_wet_label;
 
 	OdinKnob m_time;
 	OdinKnob m_feedback;

@@ -47,21 +47,23 @@ void ConfigFileManager::loadDataFromFile() {
 			if (config_xml->hasTagName(XML_ATTRIBUTE_ODIN_CONFIG)) {
 				for (auto *child : config_xml->getChildIterator()) {
 					if (child->hasTagName(XML_ATTRIBUTE_BIG_GUI)) {
-						DBG("Found Config Element: " << XML_ATTRIBUTE_BIG_GUI << ": "
-						                             << (int)child->getBoolAttribute("data"));
 						m_big_gui = child->getBoolAttribute("data");
+					} else if (child->hasTagName(XML_ATTRIBUTE_SPLINE_AD1)) {
+						m_spline_ad_1_seen = child->getBoolAttribute("data");
+					} else if (child->hasTagName(XML_ATTRIBUTE_SPLINE_AD2)) {
+						m_spline_ad_2_seen = child->getBoolAttribute("data");
+					} else if (child->hasTagName(XML_ATTRIBUTE_SHOW_TOOLTIP)) {
+						m_show_tooltip = child->getBoolAttribute("data");
 					} else if (child->hasTagName(XML_ATTRIBUTE_TUNING_DIR)) {
-						DBG("Found Config Element: " << XML_ATTRIBUTE_TUNING_DIR << ": "
-						                             << child->getStringAttribute("data"));
 						m_tuning_dir = child->getStringAttribute("data");
 					} else if (child->hasTagName(XML_ATTRIBUTE_SOUNDBANK_DIR)) {
-						DBG("Found Config Element: " << XML_ATTRIBUTE_SOUNDBANK_DIR << ": "
-						                             << child->getStringAttribute("data"));
 						m_soundbank_dir = child->getStringAttribute("data");
 					} else if (child->hasTagName(XML_ATTRIBUTE_PATCH_DIR)) {
-						DBG("Found Config Element: " << XML_ATTRIBUTE_PATCH_DIR << ": "
-						                             << child->getStringAttribute("data"));
 						m_patch_dir = child->getStringAttribute("data");
+					} else if (child->hasTagName(XML_ATTRIBUTE_GUI_SCALE)) {
+						m_gui_scale = std::stoi(child->getStringAttribute("data").toStdString());
+					} else if (child->hasTagName(XML_ATTRIBUTE_GUI_OPEN)) {
+						m_num_gui_opens = std::stoi(child->getStringAttribute("data").toStdString());
 					}
 				}
 			}
@@ -80,6 +82,18 @@ void ConfigFileManager::saveDataToFile() {
 	big_gui->setAttribute("data", m_big_gui);
 	config_xml->addChildElement(big_gui);
 
+	XmlElement *spline_ad1 = new XmlElement(XML_ATTRIBUTE_SPLINE_AD1);
+	spline_ad1->setAttribute("data", m_spline_ad_1_seen);
+	config_xml->addChildElement(spline_ad1);
+
+	XmlElement *spline_ad2 = new XmlElement(XML_ATTRIBUTE_SPLINE_AD2);
+	spline_ad2->setAttribute("data", m_spline_ad_2_seen);
+	config_xml->addChildElement(spline_ad2);
+
+	XmlElement *show_tooltip = new XmlElement(XML_ATTRIBUTE_SHOW_TOOLTIP);
+	show_tooltip->setAttribute("data", m_show_tooltip);
+	config_xml->addChildElement(show_tooltip);
+
 	XmlElement *tuning_dir = new XmlElement(XML_ATTRIBUTE_TUNING_DIR);
 	tuning_dir->setAttribute("data", m_tuning_dir);
 	config_xml->addChildElement(tuning_dir);
@@ -91,6 +105,14 @@ void ConfigFileManager::saveDataToFile() {
 	XmlElement *patch_dir = new XmlElement(XML_ATTRIBUTE_PATCH_DIR);
 	patch_dir->setAttribute("data", m_patch_dir);
 	config_xml->addChildElement(patch_dir);
+
+	XmlElement *gui_scale = new XmlElement(XML_ATTRIBUTE_GUI_SCALE);
+	gui_scale->setAttribute("data", std::to_string(m_gui_scale));
+	config_xml->addChildElement(gui_scale);
+
+	XmlElement *num_gui_open = new XmlElement(XML_ATTRIBUTE_GUI_OPEN);
+	num_gui_open->setAttribute("data", std::to_string(m_num_gui_opens));
+	config_xml->addChildElement(num_gui_open);
 
 	//DBG_VAR(config_xml->toString());
 
@@ -110,6 +132,47 @@ void ConfigFileManager::setOptionBigGUI(bool p_GUI_big) {
 
 bool ConfigFileManager::getOptionBigGUI() {
 	return m_big_gui;
+}
+
+void ConfigFileManager::setOptionShowTooltip(bool p_show) {
+	m_show_tooltip = p_show;
+}
+
+bool ConfigFileManager::getOptionShowTooltip() {
+	return m_show_tooltip;
+}
+
+void ConfigFileManager::setOptionSplineAd1Seen(bool p_seen) {
+	m_spline_ad_1_seen = p_seen;
+}
+
+bool ConfigFileManager::getOptionSplineAd1Seen() {
+	return m_spline_ad_1_seen;
+}
+
+void ConfigFileManager::setOptionSplineAd2Seen(bool p_seen) {
+	m_spline_ad_2_seen = p_seen;
+}
+
+bool ConfigFileManager::getOptionSplineAd2Seen() {
+	return m_spline_ad_2_seen;
+}
+
+void ConfigFileManager::setOptionGuiScale(int p_scale) {
+	m_gui_scale = p_scale;
+}
+
+int ConfigFileManager::getOptionGuiScale() {
+	return m_gui_scale;
+}
+
+int ConfigFileManager::getNumGuiOpens() {
+	return m_num_gui_opens;
+}
+
+void ConfigFileManager::incrementNumGuiOpens() {
+	m_num_gui_opens++;
+	DBG_VAR(m_num_gui_opens);
 }
 
 void ConfigFileManager::setOptionTuningDir(String p_dir) {

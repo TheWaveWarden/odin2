@@ -29,24 +29,29 @@
 #include "gui/FilterComponent.h"
 #include "gui/FixedTextGlassDropdown.h"
 #include "gui/InputField.h"
-#include "gui/OdinKnob.h"
 #include "gui/LFOComponent.h"
 #include "gui/LeftRightButton.h"
+#include "gui/LiveConstrainer.h"
 #include "gui/ModMatrixComponent.h"
 #include "gui/NumberSelector.h"
 #include "gui/NumberSelectorWithText.h"
 #include "gui/OdinButton.h"
+#include "gui/OdinFeels.h"
+#include "gui/OdinKnob.h"
 #include "gui/OdinTooltipWindow.h"
 #include "gui/OscComponent.h"
 #include "gui/PatchBrowser.h"
 #include "gui/PhaserComponent.h"
 #include "gui/PitchWheel.h"
+#include "gui/RescaleProgressComponent.h"
+#include "gui/ResizeDragger.h"
 #include "gui/ReverbComponent.h"
+#include "gui/SplineAdComponent.h"
+#include "gui/TextLabel.h"
+#include "gui/TitleButton.h"
+#include "gui/TooltipFeels.h"
 #include "gui/TuningComponent.h"
 #include "gui/XYSectionComponent.h"
-#include "gui/TooltipFeels.h"
-#include "gui/OdinFeels.h"
-#include "gui/TitleButton.h"
 
 #ifdef WTGEN
 #include "SpectrumDisplay.h"
@@ -54,182 +59,27 @@
 #endif
 
 #define RADIO_GROUP_ARP_MODMATRIX_PRESETS 98765
+#define RADIO_GROUP_ENV13 13
+#define RADIO_GROUP_ENV24 24
+#define RADIO_GROUP_LFO12 12
+#define RADIO_GROUP_LFO34 34
+#define MASTER_MIN -50.0f
+#define MASTER_MAX 12.0f
 
-#define GLIDE_POS_X 117
-#define GLIDE_POS_Y 536
-#define MASTER_POS_X GLIDE_POS_X
-#define MASTER_POS_Y 582
-
-#define OSC1_POS_X 29
-#define OSC2_POS_X 277
-#define OSC3_POS_X 525
-#define OSC_POS_Y 29
-#define OSC_SIZE_X 247
-#define OSC_SIZE_Y 145
-
-#define FILTER_SIZE_X 247
-#define FILTER_SIZE_Y 134
-#define FIL1_POS_X 29
-#define FIL1_POS_Y 177
-#define FIL2_POS_X 525
-#define FIL2_POS_Y FIL1_POS_Y
-#define FIL3_POS_X OSC2_POS_X
-#define FIL3_POS_Y 317
-
-#define DROPDOWN_OSC1_POS_X 245
-#define DROPDOWN_OSC2_POS_X 493
-#define DROPDOWN_OSC3_POS_X 741
-#define DROPDOWN_POS_Y 36
-
-#define DROPDOWN_FILTER1_POS_X 245
-#define DROPDOWN_FILTER1_POS_Y 182
-#define DROPDOWN_FILTER2_POS_X 741
-#define DROPDOWN_FILTER2_POS_Y DROPDOWN_FILTER1_POS_Y
-#define DROPDOWN_FILTER3_POS_X DROPDOWN_OSC2_POS_X
-#define DROPDOWN_FILTER3_POS_Y 323
-
-#define BUTTON_1_LEFT_POS_X 33
-#define BUTTON_1_LEFT_POS_Y 239
-#define BUTTON_2_RIGHT_POS_X 742
-#define BUTTON_2_RIGHT_POS_Y BUTTON_1_LEFT_POS_Y
-
-#define MIDSECTION_SIZE_X 252
-#define MIDSECTION_SIZE_Y 142
-#define MIDSECTION_POS_X 275
-#define MIDSECTION_POS_Y 175
-
-#define ADSR_SIZE_X 108
-#define ADSR_SIZE_Y 96
-#define ADSR_LEFT_POS_X 33
-#define ADSR_LEFT_POS_Y 330
-#define ADSR_RIGHT_POS_X 162
-#define ADSR_RIGHT_POS_Y 330
-
-#define FX_BUTTON_X 527
-#define FX_BUTTON_Y 310
-
-#define FX_ON_BUTTON_X 528
-#define FX_ON_BUTTON_Y 330
-
-#define LEFT_FX_POS_X 526
-#define LEFT_FX_POS_Y 343
-#define RIGHT_FX_POS_X 746
-#define RIGHT_FX_POS_Y LEFT_FX_POS_Y
-
-#define FX_AREA_POS_X 527
-#define FX_AREA_POS_Y 343
-#define FX_AREA_SIZE_X 243
-#define FX_AREA_SIZE_Y 107
-
-#define MATRIX_SIZE_X 500
-#define MATRIX_SIZE_Y 144
-#define MATRIX_POS_X_100 274
-#define MATRIX_POS_Y_100 470
-
-#define MATRIX_POS_X_150 411
-#define MATRIX_POS_Y_150 708
-
-#define ARP_MATRIX_BUTTON_POS_X MATRIX_POS_X_100
-#define ARP_MATRIX_BUTTON_POS_Y 450
-#define SELECT_BUTTON_WIDTH_150 249
-#define SELECT_BUTTON_WIDTH 166
-
-#define ARPEGGIATOR_POS_X MATRIX_POS_X_100
-#define ARPEGGIATOR_POS_Y 470
-
-#define SAVE_LOAD_POS_X 23
-#define SAVE_LOAD_POS_Y 2
-#define SAVE_LOAD_SIZE_X 288
-#define SAVE_LOAD_SIZE_Y 25
-
-#define LEGATO_POS_X 225
-#define LEGATO_POS_Y 8
-
-#define TUNING_POS_X 530
-#define TUNING_POS_Y 7
-
-#define UNISON_OFFSET 80
-//define UNISON_OFFSET_150 567
-
-#define UNISON_SELECTOR_X 112 - UNISON_OFFSET
-#define UNISON_SELECTOR_Y 6
-#define UNISON_DETUNE_X 223 - UNISON_OFFSET
-#define UNISON_DETUNE_Y 5
-#define UNISON_STEREO_X 268 - UNISON_OFFSET
-#define UNISON_STEREO_Y UNISON_DETUNE_Y
-
-#define GUI_SIZE_POS_X 674
-#define GUI_SIZE_POS_Y 7
-
-#define RESET_SYNTH_POS_X_100 604
-#define RESET_SYNTH_POS_Y_100 8
-#define RESET_SYNTH_POS_X_150 904
-#define RESET_SYNTH_POS_Y_150 12
-
-#define ENV13_POS_X 30
-#define ENV13_POS_Y 313
-#define ENV24_POS_X 158
-#define ENV24_POS_Y ENV13_POS_Y
-
-#define LFO13_POS_X 30
-#define LFO13_POS_Y 430
-#define LFO24_POS_X 156
-#define LFO24_POS_Y LFO13_POS_Y
-
-#define LFO_SIZE_X 116
-#define LFO_SIZE_Y 71
-#define LFO_RIGHT_POS_X 157
-#define LFO_RIGHT_POS_Y 448
-#define LFO_LEFT_POS_X 30
-#define LFO_LEFT_POS_Y LFO_RIGHT_POS_Y
-
-#define XY_COMPONENT_POS_X 143
-#define XY_COMPONENT_POS_Y 516
-#define XY_COMPONENT_SIZE_X 127
-#define XY_COMPONENT_SIZE_Y 93
-
-#define QUESTION_POS_X 745
-#define QUESTION_POS_Y 5
-
-#define PITCHWHEEL_X 42
-#define MODWHEEL_X 72
-#define WHEEL_Y 511
-
-#define PITCH_AMOUNT_X 35
-#define PITCH_AMOUNT_Y 592
-
-#define MASTER_MAX 12
-#define MASTER_MIN -30
-#define MASTER_DEFAULT -7
-
-#define FONT_SIZE_Y 16
-#define FONT_SIZE_X 10
-#define FONT_SPACE_Y 4
-#define TOOLTIP_INLAY 10
-
-#define BPM_POS_X 500
-#define BPM_POS_Y 6
-
-#define MIDI_KEYBOARD_SIZE 85
-
-#define ODIN_EDITOR_SIZE_X 800
-#define ODIN_EDITOR_SIZE_Y 614
-
-#define ODIN_EDITOR_SIZE_150_X 1200
-#define ODIN_EDITOR_SIZE_150_Y 921
-
-class OdinAudioProcessorEditor : public AudioProcessorEditor, public KeyListener {
+class OdinEditor : public AudioProcessorEditor, public KeyListener {
 public:
-	OdinAudioProcessorEditor(OdinAudioProcessor &p_processor, AudioProcessorValueTreeState &vts, bool p_is_standalone);
-	~OdinAudioProcessorEditor();
+	OdinEditor(OdinAudioProcessor &p_processor, AudioProcessorValueTreeState &vts, bool p_is_standalone);
+	~OdinEditor();
 
 	//==============================================================================
 	void paint(Graphics &) override;
+	void paintOverChildren(juce::Graphics &g) override;
+
 	void resized() override;
 	void arrangeFXOnButtons(std::map<std::string, int> p_map);
 	void setActiveFXPanel(const std::string &name);
 
-	void forceValueTreeOntoComponents(bool p_reset_audio);
+	void forceValueTreeOntoComponents(bool p_reset_audio = false);
 	void forceValueTreeOntoComponentsOnlyMainPanel();
 
 	bool keyPressed(const KeyPress &key, Component *) override {
@@ -245,6 +95,12 @@ public:
 	bool keyStateChanged(bool isKeyDown, Component *originatingComponent) override;
 	void allMidiKeysOff();
 
+	RescaleProgressComponent &getRescaleOverlayComponent() {
+		return m_rescale_component;
+	}
+
+	void setGuiSize(GuiScale p_size, bool p_set_config);
+
 	InputField m_value_input;
 	InputFeels m_input_feels;
 
@@ -256,6 +112,8 @@ public:
 #endif
 
 private:
+	void paintGrid(Graphics &g);
+
 	bool m_A_down = false; // C
 	bool m_W_down = false; // C#
 	bool m_S_down = false; // D
@@ -277,7 +135,11 @@ private:
 	// access the processor object that created it.
 	OdinAudioProcessor &processor;
 
+	LiveConstrainer m_live_constrainer;
+
+	void setGuiScale(int scale);
 	void setTooltipEnabled(bool p_enabled);
+
 	//==============================================================================
 	// Your private member variables go here...
 	OdinMenuFeels m_menu_feels;
@@ -288,6 +150,11 @@ private:
 	OdinKnob m_unison_detune;
 	OdinKnob m_unison_width;
 
+	TextLabel m_detune_label;
+	TextLabel m_width_label;
+	TextLabel m_master_label;
+	TextLabel m_glide_label;
+
 	PitchWheel m_pitchwheel;
 	NumberSelector m_pitch_amount;
 
@@ -296,6 +163,8 @@ private:
 	OscComponent m_osc1;
 	OscComponent m_osc2;
 	OscComponent m_osc3;
+
+	SplineAdComponent m_spline_ad;
 
 	FilterComponent m_fil1_component;
 	FilterComponent m_fil2_component;
@@ -327,14 +196,14 @@ private:
 	TuningComponent m_tuning;
 
 	juce::PopupMenu m_osc_dropdown_menu;
-	juce::DrawableButton m_osc1_dropdown;
-	juce::DrawableButton m_osc2_dropdown;
-	juce::DrawableButton m_osc3_dropdown;
+	OdinButton m_osc1_dropdown;
+	OdinButton m_osc2_dropdown;
+	OdinButton m_osc3_dropdown;
 
 	juce::PopupMenu m_filter_dropdown_menu;
-	juce::DrawableButton m_filter1_dropdown;
-	juce::DrawableButton m_filter2_dropdown;
-	juce::DrawableButton m_filter3_dropdown;
+	OdinButton m_filter1_dropdown;
+	OdinButton m_filter2_dropdown;
+	OdinButton m_filter3_dropdown;
 
 	OdinButton m_filleft_button1;
 	OdinButton m_filleft_button2;
@@ -359,20 +228,24 @@ private:
 
 	TitleButton m_title_button;
 
-	juce::DrawableButton m_question_button;
+	OdinButton m_burger_button;
 
 	juce::ComponentDragger m_dragger;
 
-	LeftRightButton m_env_13_button;
-	LeftRightButton m_env_24_button;
+	OdinButton m_env_1_button;
+	OdinButton m_env_2_button;
+	OdinButton m_env_3_button;
+	OdinButton m_env_4_button;
 
-	LeftRightButton m_lfo_13_button;
-	LeftRightButton m_lfo_24_button;
+	OdinButton m_lfo_1_button;
+	OdinButton m_lfo_2_button;
+	OdinButton m_lfo_3_button;
+	OdinButton m_lfo_4_button;
 
 	GlassDropdown m_mono_poly_legato_dropdown;
-	LeftRightButton m_gui_size_button;
+	RescaleProgressComponent m_rescale_component;
 
-	juce::DrawableButton m_reset;
+	OdinButton m_reset;
 
 	AudioProcessorValueTreeState &m_value_tree;
 
@@ -432,14 +305,13 @@ private:
 	void setMatrixSectionModule(int p_module);
 	void updatePitchWheel(float p_value);
 	void updateModWheel(float p_value);
-	void setGUISizeBig(bool p_big, bool p_write_to_config);
-	void setGUISmall();
-	void setGUIBig();
+	void setFXModulesEnablements();
 
 	void readOrCreateConfigFile(bool &p_GUI_big);
 
 	int m_octave_shift = 0;
 	bool m_is_standalone_plugin;
 
-	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(OdinAudioProcessorEditor)
+	JUCE_DECLARE_WEAK_REFERENCEABLE(OdinEditor)
+	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(OdinEditor)
 };

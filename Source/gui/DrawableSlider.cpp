@@ -14,8 +14,10 @@
 */
 
 #include "DrawableSlider.h"
+#include "../ConfigFileManager.h"
 #include "../GlobalIncludes.h"
 #include "../PluginProcessor.h"
+#include "UIAssetManager.h"
 
 OdinAudioProcessor *DrawableSlider::m_processor;
 
@@ -24,8 +26,6 @@ DrawableSlider::DrawableSlider() {
 
 	setPopupDisplayEnabled(true, false, nullptr);
 	setNumDecimalPlacesToDisplay(3);
-
-	m_handle = ImageCache::getFromMemory(BinaryData::slider_handle_png, BinaryData::slider_handle_pngSize);
 
 	setVelocityModeParameters(1.0, 1, 0.0, true, ModifierKeys::shiftModifier);
 
@@ -38,65 +38,10 @@ DrawableSlider::~DrawableSlider() {
 
 void DrawableSlider::paint(Graphics &g) {
 	SET_INTERPOLATION_QUALITY(g)
-	//g.setColour(Colours::grey);
-	//g.drawRect(getLocalBounds(), 1); // draw an outline around the component
 
-	//DBG(getValue());
-	g.drawImageAt(m_handle, 0, (1.f - valueToProportionOfLength(getValue())) * (getHeight() - m_handle.getHeight()));
-
-	//DBG(getValue());
-	if (m_midi_learn) {
-		g.setColour(Colours::red);
-		g.drawRoundedRectangle(getLocalBounds().getX(),
-		                       getLocalBounds().getY(),
-		                       getLocalBounds().getWidth(),
-		                       getLocalBounds().getHeight(),
-		                       5,
-		                       2); // draw an outline around the component
-	} else if (m_midi_control) {
-		g.setColour(Colours::green);
-		g.drawRoundedRectangle(getLocalBounds().getX(),
-		                       getLocalBounds().getY(),
-		                       getLocalBounds().getWidth(),
-		                       getLocalBounds().getHeight(),
-		                       5,
-		                       2); // draw an outline around the component
-	}
-}
-
-void DrawableSlider::mouseDown(const MouseEvent &event) {
-	if (event.mods.isRightButtonDown() && m_midi_learn_possible) {
-		//DBG("RIGHT");
-		PopupMenu midi_learn_menu;
-		if (m_midi_learn) {
-			midi_learn_menu.addItem(2, "Stop MIDI learn");
-			if (midi_learn_menu.show() == 2) {
-				stopMidiLearn();
-				m_processor->stopMidiLearn();
-			}
-		} else {
-			midi_learn_menu.addItem(2, "MIDI learn");
-			if (m_midi_control) {
-				midi_learn_menu.addItem(3, "MIDI forget");
-			}
-			int menu = midi_learn_menu.show();
-			if (menu == 2) {
-				if (m_midi_control) {
-					m_processor->midiForget(m_parameter_ID, this);
-				}
-				m_processor->startMidiLearn(m_parameter_ID, this);
-				m_midi_learn   = true;
-				m_midi_control = false;
-				repaint();
-			} else if (menu == 3) {
-				m_processor->midiForget(m_parameter_ID, this);
-				m_midi_control = false;
-				repaint();
-			}
-		}
-		return;
-	}
-	Slider::mouseDown(event);
+	const auto handle = UIAssetManager::getInstance()->getUIAsset(UIAssets::Indices::fader_cap, ConfigFileManager::getInstance().getOptionGuiScale());
+	const auto y      = (1.f - valueToProportionOfLength(getValue())) * (getHeight() - juce::roundToInt(float(handle.getHeight()) * 0.9f));
+	g.drawImageAt(handle, 0, y);
 }
 
 String DrawableSlider::getTextFromValue(double value) {

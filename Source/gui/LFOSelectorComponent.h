@@ -15,77 +15,78 @@
 
 #pragma once
 
-#include "../JuceLibraryCode/JuceHeader.h"
 #include "../GlobalIncludes.h"
+#include "../JuceLibraryCode/JuceHeader.h"
 #include "LFODisplayComponent.h"
 #include "LFOPopupLookAndFeel.h"
+#include "OdinButton.h"
 
-class LFOSelectorComponent : public Component,
-                             public AudioProcessorValueTreeState::Listener {
+
+class LFOSelectorComponent : public Component, public AudioProcessorValueTreeState::Listener {
 public:
-  LFOSelectorComponent();
-  ~LFOSelectorComponent();
+	LFOSelectorComponent();
+	~LFOSelectorComponent();
 
-  void parameterChanged(const String &parameterID, float newValue) override {
-    if (parameterID == m_parameter_id) {
-      setValueGUIOnly(newValue);
-    }
-  }
+	void parameterChanged(const String &parameterID, float newValue) override {
+		if (parameterID == m_parameter_id) {
+			setValueGUIOnly(newValue);
+		}
+	}
 
-  void paint(Graphics &) override;
+	void resized() override;
+	void paint(Graphics &) override;
 
-  void setValueGUIOnly(int p_value) {
-    if (p_value < m_display.getNrOfWaves() && p_value >= 0) {
-      m_value = p_value;
-      m_display.setValue(p_value);
-    }
-  }
+	void setValueGUIOnly(int p_value) {
+		if (p_value < m_display.getNrOfWaves() && p_value >= 0) {
+			m_value = p_value;
+			m_display.setValue(p_value);
+		}
+	}
 
-  void setValue(int p_value) {
-    if (p_value < m_display.getNrOfWaves() && p_value >= 0) {
-      m_value = p_value;
-      m_display.setValue(p_value);
-      OnValueChange(p_value);
-    }
-  }
+	void setValue(int p_value) {
+		if (p_value < m_display.getNrOfWaves() && p_value >= 0) {
+			m_value = p_value;
+			m_display.setValue(p_value);
+			OnValueChange(p_value);
+		}
+	}
 
-  void setTooltip(const String p_text) { m_display.setTooltip(p_text); }
+	void setTooltip(const String p_text) {
+		m_display.setTooltip(p_text);
+	}
 
-  std::function<void(int)> OnValueChange = [](int) {};
-  void setParameterId(String p_id) { m_parameter_id = p_id; }
-
-  void setGUIBig();
-  void setGUISmall();
+	std::function<void(int)> OnValueChange = [](int) {};
+	void setParameterId(String p_id) {
+		m_parameter_id = p_id;
+	}
 
 protected:
-  bool m_GUI_big = true;
+	int mouse_reference_value = 0;
+	int m_drag_initial_value  = 0;
 
-  int mouse_reference_value = 0;
-  int m_drag_initial_value = 0;
+	String m_parameter_id;
+	void increment() {
+		if (m_value + 1 < m_display.getNrOfWaves()) {
+			m_display.setValue(++m_value);
+			OnValueChange(m_value);
+		}
+	}
 
-  String m_parameter_id;
-  void increment() {
-    if (m_value + 1 < m_display.getNrOfWaves()) {
-      m_display.setValue(++m_value);
-      OnValueChange(m_value);
-    }
-  }
+	void decrement() {
+		if (m_value > 0) {
+			m_display.setValue(--m_value);
+			OnValueChange(m_value);
+		}
+	}
 
-  void decrement() {
-    if (m_value > 0) {
-      m_display.setValue(--m_value);
-      OnValueChange(m_value);
-    }
-  }
+	LFODisplayComponent m_display;
+	LFOPopupLookAndFeel m_popup_look_and_feel;
+	PopupMenu m_popup;
 
-  LFODisplayComponent m_display;
-  LFOPopupLookAndFeel m_popup_look_and_feel;
-  PopupMenu m_popup;
+	OdinButton m_up;
+	OdinButton m_down;
 
-  DrawableButton m_up;
-  DrawableButton m_down;
+	int m_value = 0;
 
-  int m_value = 0;
-
-  JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(LFOSelectorComponent)
+	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(LFOSelectorComponent)
 };

@@ -90,8 +90,7 @@ void TuningComponent::exportSCLFileWithFileBrowser() {
 
 	DBG(m_processor.m_tuning.scale.rawText);
 
-	ConfigFileManager config;
-	auto suggested_dir = config.getOptionTuningDir();
+	auto suggested_dir = ConfigFileManager::getInstance().getOptionTuningDir();
 
 	File file_suggestion(suggested_dir + File::getSeparatorString() + "tuning.scl");
 
@@ -127,9 +126,9 @@ void TuningComponent::exportSCLFileWithFileBrowser() {
 			    }
 			    FileOutputStream file_stream(file_to_write);
 
-			    ConfigFileManager config_save;
-			    config_save.setOptionTuningDir(file_to_write.getParentDirectory().getFullPathName());
-			    config_save.saveDataToFile();
+			    ConfigFileManager::getInstance().saveDataToFile();
+			    ConfigFileManager::getInstance().setOptionTuningDir(
+			        file_to_write.getParentDirectory().getFullPathName());
 
 			    if (file_stream.openedOk()) {
 				    DBG("Writing tuning file to " << file_to_write.getFullPathName());
@@ -151,8 +150,7 @@ void TuningComponent::exportKBMFileWithFileBrowser() {
 	DBG("exportKBMFile()");
 	DBG(m_processor.m_tuning.keyboardMapping.rawText);
 
-	ConfigFileManager config;
-	auto suggested_dir = config.getOptionTuningDir();
+	auto suggested_dir = ConfigFileManager::getInstance().getOptionTuningDir();
 
 	File file_suggestion(suggested_dir + File::getSeparatorString() + "mapping.kbm");
 
@@ -188,9 +186,9 @@ void TuningComponent::exportKBMFileWithFileBrowser() {
 			    }
 			    FileOutputStream file_stream(file_to_write);
 
-			    ConfigFileManager config_save;
-			    config_save.setOptionTuningDir(file_to_write.getParentDirectory().getFullPathName());
-			    config_save.saveDataToFile();
+			    ConfigFileManager::getInstance().setOptionTuningDir(
+			        file_to_write.getParentDirectory().getFullPathName());
+			    ConfigFileManager::getInstance().saveDataToFile();
 
 			    if (file_stream.openedOk()) {
 				    DBG("Writing kbm mapping file to " << file_to_write.getFullPathName());
@@ -227,8 +225,7 @@ void TuningComponent::importKBMFromFileBrowser(String p_directory,
                                                String p_title_text,
                                                int p_flags) {
 
-	ConfigFileManager config;
-	auto suggested_dir = config.getOptionTuningDir();
+	auto suggested_dir = ConfigFileManager::getInstance().getOptionTuningDir();
 	File file(suggested_dir);
 
 	m_filechooser.reset(new FileChooser(p_title_text, file, p_extension, true));
@@ -250,9 +247,8 @@ void TuningComponent::importKBMFromFileBrowser(String p_directory,
 		// store filename for next opening
 		File file(file_name);
 
-		ConfigFileManager config_save;
-		config_save.setOptionTuningDir(file.getParentDirectory().getFullPathName());
-		config_save.saveDataToFile();
+		ConfigFileManager::getInstance().setOptionTuningDir(file.getParentDirectory().getFullPathName());
+		ConfigFileManager::getInstance().saveDataToFile();
 
 		Tunings::KeyboardMapping kbm_from_file;
 		try {
@@ -272,8 +268,7 @@ void TuningComponent::importSCLFromFileBrowser(String p_directory,
                                                String p_extension,
                                                String p_title_text,
                                                int p_flags) {
-	ConfigFileManager config;
-	auto suggested_dir = config.getOptionTuningDir();
+	auto suggested_dir = ConfigFileManager::getInstance().getOptionTuningDir();
 	File file(suggested_dir);
 
 	m_filechooser.reset(new FileChooser(p_title_text, file, p_extension, true));
@@ -295,9 +290,8 @@ void TuningComponent::importSCLFromFileBrowser(String p_directory,
 		// store filename for next opening
 		File file(file_name);
 
-		ConfigFileManager config_save;
-		config_save.setOptionTuningDir(file.getParentDirectory().getFullPathName());
-		config_save.saveDataToFile();
+		ConfigFileManager::getInstance().saveDataToFile();
+		ConfigFileManager::getInstance().setOptionTuningDir(file.getParentDirectory().getFullPathName());
 
 		Tunings::Scale scale_from_file;
 		try {
@@ -314,23 +308,6 @@ void TuningComponent::importSCLFromFileBrowser(String p_directory,
 	});
 }
 
-void TuningComponent::setGUIBig() {
-	m_tuning_dropdown.setGUIBig();
-
-	juce::Image glas_panel =
-	    ImageCache::getFromMemory(BinaryData::glaspanel_midbig_150_png, BinaryData::glaspanel_midbig_150_pngSize);
-	m_tuning_dropdown.setBounds(0, 0, glas_panel.getWidth(), glas_panel.getHeight());
-	m_tuning_dropdown.setImage(glas_panel);
-	m_tuning_dropdown.setInlay(1);
-	setSize(m_tuning_dropdown.getWidth(), m_tuning_dropdown.getHeight());
-}
-void TuningComponent::setGUISmall() {
-	m_tuning_dropdown.setGUISmall();
-
-	juce::Image glas_panel =
-	    ImageCache::getFromMemory(BinaryData::glaspanel_midbig_png, BinaryData::glaspanel_midbig_pngSize);
-	m_tuning_dropdown.setBounds(0, 0, glas_panel.getWidth(), glas_panel.getHeight());
-	m_tuning_dropdown.setImage(glas_panel);
-	m_tuning_dropdown.setInlay(1);
-	setSize(m_tuning_dropdown.getWidth(), m_tuning_dropdown.getHeight());
+void TuningComponent::resized() {
+	m_tuning_dropdown.setBounds(getLocalBounds());
 }
