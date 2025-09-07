@@ -468,9 +468,9 @@
     "Y": 19
   },
   "DetuneLabel": {
-    "SizeX": 9,
+    "SizeX": 11,
     "SizeY": 4,
-    "X": 24,
+    "X": 23,
     "Y": 2
   },
   "DistDryWetLabel": {
@@ -1878,9 +1878,9 @@
     "Y": 29
   },
   "WidthLabel": {
-    "SizeX": 8,
+    "SizeX": 10,
     "SizeY": 4,
-    "X": 39,
+    "X": 38,
     "Y": 2
   },
   "XY_SECTION": {
