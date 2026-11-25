@@ -396,23 +396,19 @@ void PatchBrowserSelector::generateContent() {
 					passValueToPatchBrowser(return_string);
 					unhighlightAllEntries();
 				};
-				m_entries.back()->onRightClick = [&, return_string, file_index]() {
-					int selected = m_menu.show();
-
-					DBG_VAR(file_index);
-
-					if (selected == PATCH_BROWSER_MENU_ENTRY_DELETE) {
-						passDeleteToPatchBrowser(return_string);
-					} else if (selected == PATCH_BROWSER_MENU_ENTRY_RENAME) {
-
-						// in soundbank, index zero is factory presets
-						const int rename_index = (m_browser_type == BrowserType::Soundbank) ? file_index + 1 : file_index;
-						m_entries[rename_index]->showRenameEditor();
-					} else if (selected >= PATCH_BROWSER_MENU_MOVE_OFFSET && selected < PATCH_BROWSER_MENU_COPY_OFFSET) {
-						onMove(m_entries[file_index]->getText(), getMoveFileString(selected));
-					} else if (selected >= PATCH_BROWSER_MENU_COPY_OFFSET) {
-						onCopy(m_entries[file_index]->getText(), getCopyFileString(selected));
-					}
+				auto *entry = m_entries.back().get();
+				entry->onRightClick = [this, entry, return_string]() {
+					Helpers::showPopupMenu(m_menu, *entry, [this, entry, return_string](int selected) {
+						if (selected == PATCH_BROWSER_MENU_ENTRY_DELETE) {
+							passDeleteToPatchBrowser(return_string);
+						} else if (selected == PATCH_BROWSER_MENU_ENTRY_RENAME) {
+							entry->showRenameEditor();
+						} else if (selected >= PATCH_BROWSER_MENU_MOVE_OFFSET && selected < PATCH_BROWSER_MENU_COPY_OFFSET) {
+							onMove(entry->getText(), getMoveFileString(selected));
+						} else if (selected >= PATCH_BROWSER_MENU_COPY_OFFSET) {
+							onCopy(entry->getText(), getCopyFileString(selected));
+						}
+					});
 				};
 				m_entries.back()->applyRenaming = [&](String p_old_name, String p_new_name) { applyRenamingSelector(getDirectory(), p_old_name, p_new_name); };
 			}

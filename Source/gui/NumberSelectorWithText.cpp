@@ -33,11 +33,7 @@ NumberSelectorWithText::NumberSelectorWithText(NumberSelector::Type p_type) : Nu
 			// b) make ordering inside menu the same as up/down buttons
 			m_dropdown.addItem(9999 - m_legal_values[index], valueToText(m_legal_values[index]));
 		}
-		int selected = 9999 - m_dropdown.show();
-		if (selected != 9999) {
-			DBG(selected);
-			setValue(selected);
-		}
+		Helpers::showPopupMenu(m_dropdown, m_display, [this](int item) { setValue(9999 - item); });
 	};
 
 	addAndMakeVisible(m_display);

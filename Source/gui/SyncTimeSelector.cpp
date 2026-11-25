@@ -40,7 +40,9 @@ SyncTimeSelector::SyncTimeSelector(UIAssets::Indices p_asset) :
 	m_dropdown.addItem(120, "1 / 32");
 	m_dropdown.addItem(130, "1 / 32T");
 
-	m_display.onMouseDown = [&]() { setValuesFromDropdown(m_dropdown.show()); };
+	m_display.onMouseDown = [this]() {
+		Helpers::showPopupMenu(m_dropdown, m_display, [this](int item) { setValuesFromDropdown(item); });
+	};
 
 	m_dropdown.setLookAndFeel(&m_menu_feels);
 

@@ -355,6 +355,14 @@ public:
 
 class Helpers {
 public:
+	static void showPopupMenu(PopupMenu &menu, Component &owner, std::function<void(int)> onSelect) {
+		auto options = PopupMenu::Options().withTargetComponent(&owner).withMousePosition();
+		menu.showMenuAsync(options, [owner = Component::SafePointer<Component>(&owner), onSelect = std::move(onSelect)](int result) {
+			if (owner && result)
+				onSelect(result);
+		});
+	}
+
 	static const Font getAldrichFont(float p_size) {
 #ifdef ODIN_MAC
 		p_size *= 0.81f; // for some reason the font is just larget on mac...
