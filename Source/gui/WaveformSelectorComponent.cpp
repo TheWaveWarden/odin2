@@ -36,7 +36,9 @@ WaveformSelectorComponent::WaveformSelectorComponent(bool p_buttons_right) : m_u
 	m_down.setColour(juce::DrawableButton::ColourIds::backgroundOnColourId, juce::Colour());
 	m_down.onClick = [&]() { increment(); };
 
-	m_display.onMouseDown = [&]() { setValue(m_menu.show()); };
+	m_display.onMouseDown = [this]() {
+		Helpers::showPopupMenu(m_menu, m_display, [this](int item) { setValue(item); });
+	};
 
 	m_buttons_right = p_buttons_right;
 

@@ -200,7 +200,7 @@ OdinEditor::OdinEditor(OdinAudioProcessor &p_processor, AudioProcessorValueTreeS
 	m_osc1_dropdown.onClick = [&]() {
 		m_osc1_dropdown.setState(Button::ButtonState::buttonNormal);
 		m_osc1_dropdown.setToggleState(false, dontSendNotification);
-		setOsc1Plate(m_osc_dropdown_menu.show());
+		Helpers::showPopupMenu(m_osc_dropdown_menu, m_osc1_dropdown, [this](int item) { setOsc1Plate(item); });
 	};
 	addAndMakeVisible(m_title_button);
 
@@ -220,7 +220,7 @@ OdinEditor::OdinEditor(OdinAudioProcessor &p_processor, AudioProcessorValueTreeS
 	m_osc2_dropdown.onClick = [&]() {
 		m_osc2_dropdown.setState(Button::ButtonState::buttonNormal);
 		m_osc2_dropdown.setToggleState(false, dontSendNotification);
-		setOsc2Plate(m_osc_dropdown_menu.show());
+		Helpers::showPopupMenu(m_osc_dropdown_menu, m_osc2_dropdown, [this](int item) { setOsc2Plate(item); });
 	};
 	m_osc2_dropdown.setTooltip("Select the module to\nbe used for oscillator 2");
 	addAndMakeVisible(m_osc2_dropdown);
@@ -233,7 +233,7 @@ OdinEditor::OdinEditor(OdinAudioProcessor &p_processor, AudioProcessorValueTreeS
 	m_osc3_dropdown.onClick = [&]() {
 		m_osc3_dropdown.setState(Button::ButtonState::buttonNormal);
 		m_osc3_dropdown.setToggleState(false, dontSendNotification);
-		setOsc3Plate(m_osc_dropdown_menu.show());
+		Helpers::showPopupMenu(m_osc_dropdown_menu, m_osc3_dropdown, [this](int item) { setOsc3Plate(item); });
 	};
 	m_osc3_dropdown.setTooltip("Select the module to\nbe used for oscillator 3");
 	addAndMakeVisible(m_osc3_dropdown);
@@ -246,7 +246,7 @@ OdinEditor::OdinEditor(OdinAudioProcessor &p_processor, AudioProcessorValueTreeS
 	m_filter1_dropdown.onClick = [&]() {
 		m_filter1_dropdown.setState(Button::ButtonState::buttonNormal);
 		m_filter1_dropdown.setToggleState(false, dontSendNotification);
-		setFilter1Plate(m_filter_dropdown_menu.show());
+		Helpers::showPopupMenu(m_filter_dropdown_menu, m_filter1_dropdown, [this](int item) { setFilter1Plate(item); });
 	};
 	m_filter1_dropdown.setTooltip("Select the module to\nbe used for filter 1");
 	addAndMakeVisible(m_filter1_dropdown);
@@ -259,7 +259,7 @@ OdinEditor::OdinEditor(OdinAudioProcessor &p_processor, AudioProcessorValueTreeS
 	m_filter2_dropdown.onClick = [&]() {
 		m_filter2_dropdown.setState(Button::ButtonState::buttonNormal);
 		m_filter2_dropdown.setToggleState(false, dontSendNotification);
-		setFilter2Plate(m_filter_dropdown_menu.show());
+		Helpers::showPopupMenu(m_filter_dropdown_menu, m_filter2_dropdown, [this](int item) { setFilter2Plate(item); });
 	};
 	m_filter2_dropdown.setTooltip("Select the module to\nbe used for filter 2");
 	addAndMakeVisible(m_filter2_dropdown);
@@ -272,7 +272,7 @@ OdinEditor::OdinEditor(OdinAudioProcessor &p_processor, AudioProcessorValueTreeS
 	m_filter3_dropdown.onClick = [&]() {
 		m_filter3_dropdown.setState(Button::ButtonState::buttonNormal);
 		m_filter3_dropdown.setToggleState(false, dontSendNotification);
-		setFilter3Plate(m_filter_dropdown_menu.show());
+		Helpers::showPopupMenu(m_filter_dropdown_menu, m_filter3_dropdown, [this](int item) { setFilter3Plate(item); });
 	};
 	m_filter3_dropdown.setTooltip("Select the module to\nbe used for filter 3");
 	addAndMakeVisible(m_filter3_dropdown);
@@ -364,43 +364,38 @@ OdinEditor::OdinEditor(OdinAudioProcessor &p_processor, AudioProcessorValueTreeS
 		menu.addItem(1100, "Save GuiData.json");
 #endif
 
-		OdinMenuFeels laf;
-		menu.setLookAndFeel(&laf);
-		const auto ret = menu.show();
-		menu.setLookAndFeel(nullptr);
+		menu.setLookAndFeel(&m_menu_feels);
+		Helpers::showPopupMenu(menu, m_burger_button, [this](int ret) {
+			if (ret <= int(GuiScale::Z200)) {
+				const auto threadWasStarted = UIAssetManager::getInstance()->launchImageCreationThreads(ret);
+				if (!threadWasStarted)
+					setGuiSize((GuiScale)(ret), true);
+				return;
+			}
 
-		if (ret == 0)
-			return;
+			if (ret == 1000) {
+				const auto new_tooltip_state = !ConfigFileManager::getInstance().getOptionShowTooltip();
+				ConfigFileManager::getInstance().setOptionShowTooltip(new_tooltip_state);
+				ConfigFileManager::getInstance().saveDataToFile();
+				setTooltipEnabled(new_tooltip_state);
+				return;
+			}
 
-		if (ret <= int(GuiScale::Z200)) {
-			const auto threadWasStarted = UIAssetManager::getInstance()->launchImageCreationThreads(ret);
-			if (!threadWasStarted)
-				setGuiSize((GuiScale)(ret), true);
-			return;
-		}
+			if (ret == 1050) {
+				juce::URL(ODIN_STORAGE_PATH).launchInDefaultBrowser();
+				return;
+			}
 
-		if (ret == 1000) {
-			const auto new_tooltip_state = !ConfigFileManager::getInstance().getOptionShowTooltip();
-			ConfigFileManager::getInstance().setOptionShowTooltip(new_tooltip_state);
-			ConfigFileManager::getInstance().saveDataToFile();
-			setTooltipEnabled(new_tooltip_state);
-			return;
-		}
+			if (ret == 1070) {
+				juce::URL("https://thewavewarden.com").launchInDefaultBrowser();
+				return;
+			}
 
-		if (ret == 1050) {
-			juce::URL(ODIN_STORAGE_PATH).launchInDefaultBrowser();
-			return;
-		}
-
-		if (ret == 1070) {
-			juce::URL("https://thewavewarden.com").launchInDefaultBrowser();
-			return;
-		}
-
-		if (ret == 1100) {
-			JsonGuiProvider::getInstance().saveToFile();
-			return;
-		}
+			if (ret == 1100) {
+				JsonGuiProvider::getInstance().saveToFile();
+				return;
+			}
+		});
 	};
 
 	addAndMakeVisible(m_tuning);
